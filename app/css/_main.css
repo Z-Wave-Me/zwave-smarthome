@@ -1,0 +1,438 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+html {}
+body {}
+
+/* Navigation
+-------------------------------------------------- */
+.navbar-inverse {
+    background-color: #333333;
+    border-color: #080808;
+}
+
+
+.navbar-inverse .navbar-nav>.active>a, 
+.navbar-inverse .navbar-nav>.active>a:hover, 
+.navbar-inverse .navbar-nav>.active>a:focus {
+    background-color: #282828;
+}
+
+.navbar-inverse .navbar-nav>.open>a, 
+.navbar-inverse .navbar-nav>.open>a:hover, 
+.navbar-inverse .navbar-nav>.open>a:focus {
+    background-color: #232323;
+}
+
+.navbar-inverse .dropdown-menu>.active>a,
+.navbar-inverse .dropdown-menu>.active>a:hover,
+.navbar-inverse .dropdown-menu>.active>a:focus {
+
+    background-color: #474747;
+
+}
+
+.navbar-inverse .dropdown-menu>li>a:hover, 
+.navbar-inverse .dropdown-menu>li>a:focus {
+    background-color: #474747;
+}
+
+.navbar .divider-vertical {
+    height: 50px;
+    /*    margin: 0 9px;*/
+    border-left: 1px solid #1e1e1e;
+    border-right: 1px solid #3b3b3b;
+}
+
+.dropdown > .dropdown-menu::before, .dropdown > .dropdown-menu::after {
+    content: '';
+    display: inline-block;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid #CCC;
+    border-bottom-color: rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: -7px;
+    left: 9px;
+}
+
+.dropdown > .dropdown-menu::after {
+    border-left-width: 6px;
+    border-right-width: 6px;
+    border-bottom-width: 6px;
+    border-bottom-color: #ffffff;
+    top: -6px;
+    left: 10px;
+}
+
+.navbar-right .dropdown>.dropdown-menu:after{
+    left: auto;
+    right: 13px;
+}
+
+.only-icon .only-icon-menu i{
+    font-size: 18px;
+}
+
+.only-icon-menu span {
+    display:none;
+}
+
+.dropdown-menu a i{
+    padding-right: 10px;
+}
+
+/* Typo
+-------------------------------------------------- */
+h1, .h1, h2, .h2, h3, .h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+h1 {
+    font-size: 26px;
+    /*    text-shadow: 3px 1px 2px rgba(150, 150, 150, 1);*/
+    /*    color: #2A6496;*/
+}
+
+h3 {
+    font-size: 20px;
+}
+
+.perex{
+    margin: 20px 0;
+    padding: 20px 0 0 0;
+    border-top: 1px dotted #9fd8ef;
+}
+
+.badge{
+    padding: 7px;
+    margin-right: 5px;
+}
+
+.btn-tooltip{
+    cursor: help;
+}
+
+
+/* Page CSS
+-------------------------------------------------- */
+
+/*/
+/* gridster
+/*/
+
+.gridster ul {
+    background-color: #EFEFEF;
+}
+
+.gridster li {
+    font-size: 1em;
+    font-weight: bold;
+    text-align: center;
+    line-height: 100%;
+    list-style: none;
+}
+
+
+.gridster {
+    margin: 0 auto;
+
+    opacity: .8;
+
+    -webkit-transition: opacity .6s;
+    -moz-transition: opacity .6s;
+    -o-transition: opacity .6s;
+    -ms-transition: opacity .6s;
+    transition: opacity .6s;
+}
+
+.gridster .gs-w {
+    background: #DDD;
+    cursor: pointer;
+}
+
+.gridster .player {
+    background: #BBB;
+}
+
+
+.gridster .preview-holder {
+    border: none!important;
+    background: red!important;
+}
+
+#respone_container{
+    display: none;
+}
+.page-header {
+    padding-bottom: 0;
+    margin: 20px 0 30px 0;
+    border-bottom: 0;
+}
+
+#main_content {
+    margin-top: 70px; 
+    margin-bottom: 20px;
+}
+
+/* Homepage
+-------------------------------------------------- */
+
+/* Elements
+-------------------------------------------------- */
+.panel-element{
+    min-height: 100px;
+}
+.panel-body-element{
+    position:relative;
+}
+.element-hidden{
+     /* min-width: 110%; */
+    border-radius: 3px;
+    padding: 20px;
+    background-color: #fff;
+    border: solid 1px #DDDDDD;
+    position: absolute;
+    top: -150%;
+    /* left: -5%; */
+    z-index: 10000;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+.element-hidden table{
+    width: 100%;
+}
+.element-hidden table td{
+    width: 50%;
+    vertical-align: middle;
+    text-align: center;
+}
+.element-device-id{
+    font-style:italic;
+}
+
+/* Theme 1 */
+#page_elements-1{ 
+   background: #E5E5E5;
+}
+.widget-block{ 
+   margin-bottom: 20px;
+   background-color: #fff;
+   -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+-moz-box-shadow:    1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+box-shadow:         1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+}
+.widget-block-in{
+/*   border: solid 1px red;*/
+    height: 200px;
+   position:relative;
+}
+.widget-header{
+   position: relative;
+  
+}
+.widget-config{
+   position: absolute;
+    left: 88%;
+    top: 5%;
+}
+.widget-image{
+    max-width: 70%;
+}
+
+.widget-block h3{
+    font-size: 16px;
+    color: #909090;
+}
+
+.widget-body_{
+     position:relative;
+}
+
+.widget-body .element-hidden{
+     /* min-width: 110%; */
+    border-radius: 3px;
+    padding: 20px;
+    background-color: #fff;
+    border: solid 1px #DDDDDD;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* left: -5%; */
+    z-index: 10000;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+.hidden-switch-multilevel{
+    min-width: 130%;
+/*     min-height: 120%;*/
+     top: 0;
+    left: 0;
+}
+
+/* Events
+-------------------------------------------------- */
+.event-alert{
+    border: solid 1px #ccc;
+}
+.event-alert .text-warning{
+    color: #ff5d00;
+}
+
+/* Apps
+-------------------------------------------------- */
+.app-entry{
+}
+.app-entry-in{
+    border: solid 1px #ddd;
+    margin: 10px 0;
+    padding: 20px;
+    border-radius: 5px;
+    height: 270px;
+}
+.app-entry h3 .label{
+    font-size: 60%;
+}
+.apps-action-icons a{
+    margin-right: 7px;
+}
+.apps-image{
+    max-width: 100%;
+}
+
+.apps-image-list{
+    max-width: 100px;
+}
+
+/* Rooms
+-------------------------------------------------- */
+.panel-body-room{
+    text-align: center;
+    cursor: pointer;
+}
+.room-image{
+    position: relative;
+}
+.room-name{
+    position: absolute;
+    width: 100%;
+    text-align: left;
+    background-color: #323232;
+    color: #fff;
+    padding: 0 10px;
+    line-height: 34px;
+}
+.room-name a{
+    color: #fff;
+}
+.panel-body-room img{
+    max-width: 100%;
+    border: solid 4px #323232;
+}
+
+.btn-device {
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 0 5px 5px 0;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-image: none;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+}
+.room-assigned-block{
+    padding: 10px;
+     border: 1px solid #DDDDDD;
+     margin: 10px 0;
+}
+#modal_room .badge{
+    padding: 7px;
+
+}
+.hidden-device{
+    display: none;
+}
+
+/* Profile
+-------------------------------------------------- */
+.panel-profile{
+    color: #fff;
+    
+}
+.panel-profile a{
+    color: #fff;
+    
+}
+.profile-color{
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin: 0 10px 10px 0;
+     border: solid 2px transparent;
+    
+}
+.profile-color:hover{
+    text-decoration: none;
+    
+}
+.profile-color.active{
+   border: solid 2px #000;
+    
+}
+
+/* Devices
+-------------------------------------------------- */
+.device-logo{
+    text-align: center;
+}
+.device-logo img{
+    max-height: 50px;
+}
+
+/* Tables
+-------------------------------------------------- */
+.table > thead > tr > th {
+    border-bottom: 2px solid #9fd8ef;
+}
+.table > thead > tr > th, 
+.table > tbody > tr > th, 
+.table > tfoot > tr > th, 
+.table > thead > tr > td, .table > tbody > tr > td, 
+.table > tfoot > tr > td {
+    border-top: 1px solid #9fd8ef;
+}
+
+.table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th {
+    background-color: #e4f5fc;
+}
+
+/* Forms
+-------------------------------------------------- */
+
+.form-control {
+    border: 1px solid #9fd8ef;
+}
+
+
+/* Footer
+-------------------------------------------------- */
+#footer {
+    text-align: center;
+    height: 60px;
+}
+#footer .container{
+    margin-top: 10px;
+}
+#footer a{}
+#footer a:hover{}
+
+/* Hide footer */
+#page_ #footer,
+#page_rooms #footer,
+#page_network #footer,
+#page_room #footer,
+#page_config-rooms #footer{
+    display: none;
+}

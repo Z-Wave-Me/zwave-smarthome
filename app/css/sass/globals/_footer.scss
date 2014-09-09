@@ -1,0 +1,20 @@
+/* Footer
+-------------------------------------------------- */
+#footer {
+    text-align: center;
+    height: 60px;
+}
+#footer .container{
+    margin-top: 10px;
+}
+#footer a{}
+#footer a:hover{}
+
+/* Hide footer */
+#page_ #footer,
+#page_rooms #footer,
+#page_network #footer,
+#page_room #footer,
+#page_config-rooms #footer{
+    display: none;
+}

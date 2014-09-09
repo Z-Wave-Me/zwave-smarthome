@@ -1,0 +1,53 @@
+/* Rooms
+-------------------------------------------------- */
+.panel-body-room{
+    text-align: center;
+    cursor: pointer;
+}
+.room-image{
+    position: relative;
+}
+.room-name{
+    position: absolute;
+    width: 100%;
+    text-align: left;
+    background-color: #323232;
+    color: #fff;
+    padding: 0 10px;
+    line-height: 34px;
+}
+.room-name a{
+    color: #fff;
+}
+.panel-body-room img{
+    max-width: 100%;
+    border: solid 4px #323232;
+}
+
+.btn-device {
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 0 5px 5px 0;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-image: none;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+}
+.room-assigned-block{
+    padding: 10px;
+     border: 1px solid #DDDDDD;
+     margin: 10px 0;
+}
+#modal_room .badge{
+    padding: 7px;
+
+}
+.hidden-device{
+    display: none;
+}

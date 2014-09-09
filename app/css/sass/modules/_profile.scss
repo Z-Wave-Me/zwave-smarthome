@@ -1,0 +1,26 @@
+/* Profile
+-------------------------------------------------- */
+.panel-profile{
+    color: #fff;
+    
+}
+.panel-profile a{
+    color: #fff;
+    
+}
+.profile-color{
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin: 0 10px 10px 0;
+     border: solid 2px transparent;
+    
+}
+.profile-color:hover{
+    text-decoration: none;
+    
+}
+.profile-color.active{
+   border: solid 2px #000;
+    
+}

@@ -1,0 +1,89 @@
+/* Elements
+-------------------------------------------------- */
+.panel-element{
+    min-height: 100px;
+}
+.panel-body-element{
+    position:relative;
+}
+.element-hidden{
+     /* min-width: 110%; */
+    border-radius: 3px;
+    padding: 20px;
+    background-color: #fff;
+    border: solid 1px #DDDDDD;
+    position: absolute;
+    top: -150%;
+    /* left: -5%; */
+    z-index: 10000;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+.element-hidden table{
+    width: 100%;
+}
+.element-hidden table td{
+    width: 50%;
+    vertical-align: middle;
+    text-align: center;
+}
+.element-device-id{
+    font-style:italic;
+}
+
+/* Theme 1 */
+#page_elements-1{ 
+   background: #E5E5E5;
+}
+.widget-block{ 
+   margin-bottom: 20px;
+   background-color: #fff;
+   -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+-moz-box-shadow:    1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+box-shadow:         1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+}
+.widget-block-in{
+/*   border: solid 1px red;*/
+    height: 200px;
+   position:relative;
+}
+.widget-header{
+   position: relative;
+  
+}
+.widget-config{
+   position: absolute;
+    left: 88%;
+    top: 5%;
+}
+.widget-image{
+    max-width: 70%;
+}
+
+.widget-block h3{
+    font-size: 16px;
+    color: #909090;
+}
+
+.widget-body_{
+     position:relative;
+}
+
+.widget-body .element-hidden{
+     /* min-width: 110%; */
+    border-radius: 3px;
+    padding: 20px;
+    background-color: #fff;
+    border: solid 1px #DDDDDD;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* left: -5%; */
+    z-index: 10000;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+.hidden-switch-multilevel{
+    min-width: 130%;
+/*     min-height: 120%;*/
+     top: 0;
+    left: 0;
+}

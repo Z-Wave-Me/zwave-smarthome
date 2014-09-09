@@ -1,438 +1,545 @@
-/* Sticky footer styles
--------------------------------------------------- */
-html {}
-body {}
-
-/* Navigation
--------------------------------------------------- */
-.navbar-inverse {
-    background-color: #333333;
-    border-color: #080808;
-}
-
-
-.navbar-inverse .navbar-nav>.active>a, 
-.navbar-inverse .navbar-nav>.active>a:hover, 
-.navbar-inverse .navbar-nav>.active>a:focus {
-    background-color: #282828;
-}
-
-.navbar-inverse .navbar-nav>.open>a, 
-.navbar-inverse .navbar-nav>.open>a:hover, 
-.navbar-inverse .navbar-nav>.open>a:focus {
-    background-color: #232323;
-}
-
-.navbar-inverse .dropdown-menu>.active>a,
-.navbar-inverse .dropdown-menu>.active>a:hover,
-.navbar-inverse .dropdown-menu>.active>a:focus {
-
-    background-color: #474747;
-
-}
-
-.navbar-inverse .dropdown-menu>li>a:hover, 
-.navbar-inverse .dropdown-menu>li>a:focus {
-    background-color: #474747;
-}
-
-.navbar .divider-vertical {
-    height: 50px;
-    /*    margin: 0 9px;*/
-    border-left: 1px solid #1e1e1e;
-    border-right: 1px solid #3b3b3b;
-}
-
-.dropdown > .dropdown-menu::before, .dropdown > .dropdown-menu::after {
-    content: '';
-    display: inline-block;
-    border-left: 7px solid transparent;
-    border-right: 7px solid transparent;
-    border-bottom: 7px solid #CCC;
-    border-bottom-color: rgba(0, 0, 0, 0.2);
-    position: absolute;
-    top: -7px;
-    left: 9px;
-}
-
-.dropdown > .dropdown-menu::after {
-    border-left-width: 6px;
-    border-right-width: 6px;
-    border-bottom-width: 6px;
-    border-bottom-color: #ffffff;
-    top: -6px;
-    left: 10px;
-}
-
-.navbar-right .dropdown>.dropdown-menu:after{
-    left: auto;
-    right: 13px;
-}
-
-.only-icon .only-icon-menu i{
-    font-size: 18px;
-}
-
-.only-icon-menu span {
-    display:none;
-}
-
-.dropdown-menu a i{
-    padding-right: 10px;
-}
-
+/* Body Global settings */
 /* Typo
 -------------------------------------------------- */
+/* line 7, sass/globals/_body.scss */
 h1, .h1, h2, .h2, h3, .h3 {
-    margin-top: 0;
-    margin-bottom: 10px;
+  margin-top: 0;
+  margin-bottom: 10px;
 }
+
+/* line 11, sass/globals/_body.scss */
 h1 {
-    font-size: 26px;
-    /*    text-shadow: 3px 1px 2px rgba(150, 150, 150, 1);*/
-    /*    color: #2A6496;*/
+  font-size: 26px;
+  /*    text-shadow: 3px 1px 2px rgba(150, 150, 150, 1);*/
+  /*    color: #2A6496;*/
 }
 
+/* line 17, sass/globals/_body.scss */
 h3 {
-    font-size: 20px;
+  font-size: 20px;
 }
 
-.perex{
-    margin: 20px 0;
-    padding: 20px 0 0 0;
-    border-top: 1px dotted #9fd8ef;
+/* line 21, sass/globals/_body.scss */
+.perex {
+  margin: 20px 0;
+  padding: 20px 0 0 0;
+  border-top: 1px dotted #9fd8ef;
 }
 
-.badge{
-    padding: 7px;
-    margin-right: 5px;
+/* line 27, sass/globals/_body.scss */
+.badge {
+  padding: 7px;
+  margin-right: 5px;
 }
 
-.btn-tooltip{
-    cursor: help;
+/* line 32, sass/globals/_body.scss */
+.btn-tooltip {
+  cursor: help;
 }
 
-
-/* Page CSS
+/* Page
 -------------------------------------------------- */
-
-/*/
-/* gridster
-/*/
-
-.gridster ul {
-    background-color: #EFEFEF;
+/* line 38, sass/globals/_body.scss */
+#respone_container {
+  display: none;
 }
 
-.gridster li {
-    font-size: 1em;
-    font-weight: bold;
-    text-align: center;
-    line-height: 100%;
-    list-style: none;
-}
-
-
-.gridster {
-    margin: 0 auto;
-
-    opacity: .8;
-
-    -webkit-transition: opacity .6s;
-    -moz-transition: opacity .6s;
-    -o-transition: opacity .6s;
-    -ms-transition: opacity .6s;
-    transition: opacity .6s;
-}
-
-.gridster .gs-w {
-    background: #DDD;
-    cursor: pointer;
-}
-
-.gridster .player {
-    background: #BBB;
-}
-
-
-.gridster .preview-holder {
-    border: none!important;
-    background: red!important;
-}
-
-#respone_container{
-    display: none;
-}
+/* line 41, sass/globals/_body.scss */
 .page-header {
-    padding-bottom: 0;
-    margin: 20px 0 30px 0;
-    border-bottom: 0;
+  padding-bottom: 0;
+  margin: 20px 0 30px 0;
+  border-bottom: 0;
 }
 
+/* line 47, sass/globals/_body.scss */
 #main_content {
-    margin-top: 70px; 
-    margin-bottom: 20px;
+  margin-top: 70px;
+  margin-bottom: 20px;
 }
 
-/* Homepage
--------------------------------------------------- */
-
-/* Elements
--------------------------------------------------- */
-.panel-element{
-    min-height: 100px;
-}
-.panel-body-element{
-    position:relative;
-}
-.element-hidden{
-     /* min-width: 110%; */
-    border-radius: 3px;
-    padding: 20px;
-    background-color: #fff;
-    border: solid 1px #DDDDDD;
-    position: absolute;
-    top: -150%;
-    /* left: -5%; */
-    z-index: 10000;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-}
-.element-hidden table{
-    width: 100%;
-}
-.element-hidden table td{
-    width: 50%;
-    vertical-align: middle;
-    text-align: center;
-}
-.element-device-id{
-    font-style:italic;
+/* Homepage styles */
+/* line 2, sass/globals/_navigation.scss */
+.navbar-inverse {
+  background-color: #333333;
+  border-color: #080808;
 }
 
-/* Theme 1 */
-#page_elements-1{ 
-   background: #E5E5E5;
-}
-.widget-block{ 
-   margin-bottom: 20px;
-   background-color: #fff;
-   -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
--moz-box-shadow:    1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-box-shadow:         1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-}
-.widget-block-in{
-/*   border: solid 1px red;*/
-    height: 200px;
-   position:relative;
-}
-.widget-header{
-   position: relative;
-  
-}
-.widget-config{
-   position: absolute;
-    left: 88%;
-    top: 5%;
-}
-.widget-image{
-    max-width: 70%;
+/* line 8, sass/globals/_navigation.scss */
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:hover,
+.navbar-inverse .navbar-nav > .active > a:focus {
+  background-color: #282828;
 }
 
-.widget-block h3{
-    font-size: 16px;
-    color: #909090;
+/* line 14, sass/globals/_navigation.scss */
+.navbar-inverse .navbar-nav > .open > a,
+.navbar-inverse .navbar-nav > .open > a:hover,
+.navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: #232323;
 }
 
-.widget-body_{
-     position:relative;
+/* line 20, sass/globals/_navigation.scss */
+.navbar-inverse .dropdown-menu > .active > a,
+.navbar-inverse .dropdown-menu > .active > a:hover,
+.navbar-inverse .dropdown-menu > .active > a:focus {
+  background-color: #474747;
 }
 
-.widget-body .element-hidden{
-     /* min-width: 110%; */
-    border-radius: 3px;
-    padding: 20px;
-    background-color: #fff;
-    border: solid 1px #DDDDDD;
-    position: absolute;
-    top: 0;
-    left: 0;
-    /* left: -5%; */
-    z-index: 10000;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-}
-.hidden-switch-multilevel{
-    min-width: 130%;
-/*     min-height: 120%;*/
-     top: 0;
-    left: 0;
+/* line 28, sass/globals/_navigation.scss */
+.navbar-inverse .dropdown-menu > li > a:hover,
+.navbar-inverse .dropdown-menu > li > a:focus {
+  background-color: #474747;
 }
 
-/* Events
--------------------------------------------------- */
-.event-alert{
-    border: solid 1px #ccc;
-}
-.event-alert .text-warning{
-    color: #ff5d00;
-}
-
-/* Apps
--------------------------------------------------- */
-.app-entry{
-}
-.app-entry-in{
-    border: solid 1px #ddd;
-    margin: 10px 0;
-    padding: 20px;
-    border-radius: 5px;
-    height: 270px;
-}
-.app-entry h3 .label{
-    font-size: 60%;
-}
-.apps-action-icons a{
-    margin-right: 7px;
-}
-.apps-image{
-    max-width: 100%;
+/* line 33, sass/globals/_navigation.scss */
+.navbar .divider-vertical {
+  height: 50px;
+  /*    margin: 0 9px;*/
+  border-left: 1px solid #1e1e1e;
+  border-right: 1px solid #3b3b3b;
 }
 
-.apps-image-list{
-    max-width: 100px;
+/* line 40, sass/globals/_navigation.scss */
+.dropdown > .dropdown-menu::before, .dropdown > .dropdown-menu::after {
+  content: '';
+  display: inline-block;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 7px solid #CCC;
+  border-bottom-color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: -7px;
+  left: 9px;
 }
 
-/* Rooms
--------------------------------------------------- */
-.panel-body-room{
-    text-align: center;
-    cursor: pointer;
-}
-.room-image{
-    position: relative;
-}
-.room-name{
-    position: absolute;
-    width: 100%;
-    text-align: left;
-    background-color: #323232;
-    color: #fff;
-    padding: 0 10px;
-    line-height: 34px;
-}
-.room-name a{
-    color: #fff;
-}
-.panel-body-room img{
-    max-width: 100%;
-    border: solid 4px #323232;
+/* line 52, sass/globals/_navigation.scss */
+.dropdown > .dropdown-menu::after {
+  border-left-width: 6px;
+  border-right-width: 6px;
+  border-bottom-width: 6px;
+  border-bottom-color: #ffffff;
+  top: -6px;
+  left: 10px;
 }
 
-.btn-device {
-    display: inline-block;
-    padding: 6px 12px;
-    margin: 0 5px 5px 0;
-    margin-bottom: 0;
-    font-size: 14px;
-    font-weight: normal;
-    line-height: 1.42857143;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    background-image: none;
-    border: 1px solid #DDDDDD;
-    border-radius: 4px;
-}
-.room-assigned-block{
-    padding: 10px;
-     border: 1px solid #DDDDDD;
-     margin: 10px 0;
-}
-#modal_room .badge{
-    padding: 7px;
-
-}
-.hidden-device{
-    display: none;
+/* line 61, sass/globals/_navigation.scss */
+.navbar-right .dropdown > .dropdown-menu:after {
+  left: auto;
+  right: 13px;
 }
 
-/* Profile
--------------------------------------------------- */
-.panel-profile{
-    color: #fff;
-    
-}
-.panel-profile a{
-    color: #fff;
-    
-}
-.profile-color{
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    margin: 0 10px 10px 0;
-     border: solid 2px transparent;
-    
-}
-.profile-color:hover{
-    text-decoration: none;
-    
-}
-.profile-color.active{
-   border: solid 2px #000;
-    
+/* line 66, sass/globals/_navigation.scss */
+.only-icon .only-icon-menu i {
+  font-size: 18px;
 }
 
-/* Devices
--------------------------------------------------- */
-.device-logo{
-    text-align: center;
-}
-.device-logo img{
-    max-height: 50px;
+/* line 70, sass/globals/_navigation.scss */
+.only-icon-menu span {
+  display: none;
 }
 
-/* Tables
--------------------------------------------------- */
-.table > thead > tr > th {
-    border-bottom: 2px solid #9fd8ef;
+/* line 74, sass/globals/_navigation.scss */
+.dropdown-menu a i {
+  padding-right: 10px;
 }
-.table > thead > tr > th, 
-.table > tbody > tr > th, 
-.table > tfoot > tr > th, 
-.table > thead > tr > td, .table > tbody > tr > td, 
-.table > tfoot > tr > td {
-    border-top: 1px solid #9fd8ef;
-}
-
-.table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th {
-    background-color: #e4f5fc;
-}
-
-/* Forms
--------------------------------------------------- */
-
-.form-control {
-    border: 1px solid #9fd8ef;
-}
-
 
 /* Footer
 -------------------------------------------------- */
+/* line 3, sass/globals/_footer.scss */
 #footer {
-    text-align: center;
-    height: 60px;
+  text-align: center;
+  height: 60px;
 }
-#footer .container{
-    margin-top: 10px;
+
+/* line 7, sass/globals/_footer.scss */
+#footer .container {
+  margin-top: 10px;
 }
-#footer a{}
-#footer a:hover{}
 
 /* Hide footer */
+/* line 14, sass/globals/_footer.scss */
 #page_ #footer,
 #page_rooms #footer,
 #page_network #footer,
 #page_room #footer,
-#page_config-rooms #footer{
+#page_config-rooms #footer {
+  display: none;
+}
+
+/* Homepage styles */
+/* Elements
+-------------------------------------------------- */
+/* line 3, sass/modules/_elements.scss */
+.panel-element {
+  min-height: 100px;
+}
+
+/* line 6, sass/modules/_elements.scss */
+.panel-body-element {
+  position: relative;
+}
+
+/* line 9, sass/modules/_elements.scss */
+.element-hidden {
+  /* min-width: 110%; */
+  border-radius: 3px;
+  padding: 20px;
+  background-color: #fff;
+  border: solid 1px #DDDDDD;
+  position: absolute;
+  top: -150%;
+  /* left: -5%; */
+  z-index: 10000;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+}
+
+/* line 21, sass/modules/_elements.scss */
+.element-hidden table {
+  width: 100%;
+}
+
+/* line 24, sass/modules/_elements.scss */
+.element-hidden table td {
+  width: 50%;
+  vertical-align: middle;
+  text-align: center;
+}
+
+/* line 29, sass/modules/_elements.scss */
+.element-device-id {
+  font-style: italic;
+}
+
+/* Theme 1 */
+/* line 34, sass/modules/_elements.scss */
+#page_elements-1 {
+  background: #E5E5E5;
+}
+
+/* line 37, sass/modules/_elements.scss */
+.widget-block {
+  margin-bottom: 20px;
+  background-color: #fff;
+  -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+  -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+  box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+}
+
+/* line 44, sass/modules/_elements.scss */
+.widget-block-in {
+  /*   border: solid 1px red;*/
+  height: 200px;
+  position: relative;
+}
+
+/* line 49, sass/modules/_elements.scss */
+.widget-header {
+  position: relative;
+}
+
+/* line 53, sass/modules/_elements.scss */
+.widget-config {
+  position: absolute;
+  left: 88%;
+  top: 5%;
+}
+
+/* line 58, sass/modules/_elements.scss */
+.widget-image {
+  max-width: 70%;
+}
+
+/* line 62, sass/modules/_elements.scss */
+.widget-block h3 {
+  font-size: 16px;
+  color: #909090;
+}
+
+/* line 67, sass/modules/_elements.scss */
+.widget-body_ {
+  position: relative;
+}
+
+/* line 71, sass/modules/_elements.scss */
+.widget-body .element-hidden {
+  /* min-width: 110%; */
+  border-radius: 3px;
+  padding: 20px;
+  background-color: #fff;
+  border: solid 1px #DDDDDD;
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* left: -5%; */
+  z-index: 10000;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+}
+
+/* line 84, sass/modules/_elements.scss */
+.hidden-switch-multilevel {
+  min-width: 130%;
+  /*     min-height: 120%;*/
+  top: 0;
+  left: 0;
+}
+
+/* Events
+-------------------------------------------------- */
+/* line 3, sass/modules/_events.scss */
+.event-alert {
+  border: solid 1px #ccc;
+}
+
+/* line 6, sass/modules/_events.scss */
+.event-alert .text-warning {
+  color: #ff5d00;
+}
+
+/* Apps
+-------------------------------------------------- */
+/* line 5, sass/modules/_apps.scss */
+.app-entry-in {
+  border: solid 1px #ddd;
+  margin: 10px 0;
+  padding: 20px;
+  border-radius: 5px;
+  height: 270px;
+}
+
+/* line 12, sass/modules/_apps.scss */
+.app-entry h3 .label {
+  font-size: 60%;
+}
+
+/* line 15, sass/modules/_apps.scss */
+.apps-action-icons a {
+  margin-right: 7px;
+}
+
+/* line 18, sass/modules/_apps.scss */
+.apps-image {
+  max-width: 100%;
+}
+
+/* line 22, sass/modules/_apps.scss */
+.apps-image-list {
+  max-width: 100px;
+}
+
+/* Rooms
+-------------------------------------------------- */
+/* line 3, sass/modules/_rooms.scss */
+.panel-body-room {
+  text-align: center;
+  cursor: pointer;
+}
+
+/* line 7, sass/modules/_rooms.scss */
+.room-image {
+  position: relative;
+}
+
+/* line 10, sass/modules/_rooms.scss */
+.room-name {
+  position: absolute;
+  width: 100%;
+  text-align: left;
+  background-color: #323232;
+  color: #fff;
+  padding: 0 10px;
+  line-height: 34px;
+}
+
+/* line 19, sass/modules/_rooms.scss */
+.room-name a {
+  color: #fff;
+}
+
+/* line 22, sass/modules/_rooms.scss */
+.panel-body-room img {
+  max-width: 100%;
+  border: solid 4px #323232;
+}
+
+/* line 27, sass/modules/_rooms.scss */
+.btn-device {
+  display: inline-block;
+  padding: 6px 12px;
+  margin: 0 5px 5px 0;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-image: none;
+  border: 1px solid #DDDDDD;
+  border-radius: 4px;
+}
+
+/* line 42, sass/modules/_rooms.scss */
+.room-assigned-block {
+  padding: 10px;
+  border: 1px solid #DDDDDD;
+  margin: 10px 0;
+}
+
+/* line 47, sass/modules/_rooms.scss */
+#modal_room .badge {
+  padding: 7px;
+}
+
+/* line 51, sass/modules/_rooms.scss */
+.hidden-device {
+  display: none;
+}
+
+/* Profile
+-------------------------------------------------- */
+/* line 3, sass/modules/_profile.scss */
+.panel-profile {
+  color: #fff;
+}
+
+/* line 7, sass/modules/_profile.scss */
+.panel-profile a {
+  color: #fff;
+}
+
+/* line 11, sass/modules/_profile.scss */
+.profile-color {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  margin: 0 10px 10px 0;
+  border: solid 2px transparent;
+}
+
+/* line 19, sass/modules/_profile.scss */
+.profile-color:hover {
+  text-decoration: none;
+}
+
+/* line 23, sass/modules/_profile.scss */
+.profile-color.active {
+  border: solid 2px #000;
+}
+
+/* Devices
+-------------------------------------------------- */
+/* line 3, sass/modules/_devices.scss */
+.device-logo {
+  text-align: center;
+}
+
+/* line 6, sass/modules/_devices.scss */
+.device-logo img {
+  max-height: 50px;
+}
+
+/*
+ * The responsive style for the front-end
+ */
+/* Global settings
+-------------------------------------------------- */
+/* line 7, sass/globals/_responsive.scss */
+.clearfix {
+  *zoom: 1;
+}
+
+/* line 10, sass/globals/_responsive.scss */
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+
+/* line 16, sass/globals/_responsive.scss */
+.clearfix:after {
+  clear: both;
+}
+
+/* line 19, sass/globals/_responsive.scss */
+.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+/* line 26, sass/globals/_responsive.scss */
+.input-block-level {
+  display: block;
+  width: 100%;
+  min-height: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/*==================================================
+=            Bootstrap 3 Media Queries             =
+==================================================*/
+/*==========  Detected mobile devices  ==========*/
+@media (max-width: 2000px) {
+  /* line 42, sass/globals/_responsive.scss */
+  .is-mobile-true .container {
+    width: 100%;
+  }
+}
+/*==========  Mobile First Method  ==========*/
+/* Custom, iPhone Retina */
+/* Extra Small Devices, Phones */
+/* Small Devices, Tablets */
+/* Medium Devices, Desktops */
+/* Large Devices, Wide Screens */
+/*==========  Non-Mobile First Method  ==========*/
+/* Large Devices, Wide Screens */
+/* Medium Devices, Desktops */
+/* Small Devices, Tablets */
+@media only screen and (max-width: 768px) {
+  /* line 91, sass/globals/_responsive.scss */
+  .container {
+    max-width: none;
+    width: 100%;
+  }
+
+  /* line 95, sass/globals/_responsive.scss */
+  .navbar .divider-vertical {
     display: none;
+  }
+
+  /* line 99, sass/globals/_responsive.scss */
+  .dropdown > .dropdown-menu::before,
+  .dropdown > .dropdown-menu::after,
+  .navbar .divider-vertical {
+    display: none;
+  }
+
+  /* line 105, sass/globals/_responsive.scss */
+  .only-icon-menu span {
+    display: inline;
+  }
+
+  /* line 109, sass/globals/_responsive.scss */
+  .only-icon-menu {
+    padding: 10px 7px;
+  }
+
+  /* line 113, sass/globals/_responsive.scss */
+  .only-icon-menu i {
+    font-size: 14px;
+  }
+}
+/* Extra Small Devices, Phones */
+/* Custom, iPhone Retina */
+/* Custom, iPhone Retina */
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+  /* line 136, sass/globals/_responsive.scss */
+  .hide-navi-text {
+    display: none !important;
+  }
 }
