@@ -39,9 +39,37 @@
 /*==========  Detected mobile devices  ==========*/
 
 @media (max-width: 2000px) {
-    .is-mobile-true .container{
-        width: 100%;
+    .is-mobile-true{
+        .container{
+            width: 100%;
+        }
+         .hidden-switch-multilevel{
+        min-width: 260px;
+        /*     min-height: 120%;*/
+        top: 5%;
+        left:0;
     }
+
+    .hidden-sensor-multilevel{
+        min-width: 360px;
+        /*     min-height: 120%;*/
+        top: -5%;
+        left: 0;
+    }
+
+    .hidden-sensor-multilevel-linear{
+        min-width: 260px;
+        /*     min-height: 120%;*/
+        top: 15%;
+        left: 0;
+    }
+
+    .hidden-camera{
+        min-width: 360px;
+        top: -15%;
+        left: 0;
+    }
+    } 
 }
 
 
@@ -59,7 +87,7 @@
 
 /* Small Devices, Tablets */
 @media only screen and (min-width : 768px) {
-    
+
 
 }
 
@@ -70,7 +98,7 @@
 
 /* Large Devices, Wide Screens */
 @media only screen and (min-width : 1200px) {
- 
+
 }
 
 
@@ -84,12 +112,38 @@
 
 /* Medium Devices, Desktops */
 @media only screen and (max-width : 992px) {
+    .hidden-switch-multilevel{
+        min-width: 260px;
+        /*     min-height: 120%;*/
+        top: 5%;
+        left: 5%;
+    }
+
+    .hidden-sensor-multilevel{
+        min-width: 360px;
+        /*     min-height: 120%;*/
+        top: -5%;
+        left: 0;
+    }
+
+    .hidden-sensor-multilevel-linear{
+        min-width: 260px;
+        /*     min-height: 120%;*/
+        top: 15%;
+        left: 3%;
+    }
+
+    .hidden-camera{
+        min-width: 360px;
+        top: -15%;
+        left: 0;
+    }
 }
 
 /* Small Devices, Tablets */
 @media only screen and (max-width : 768px) {
     .container{
-         max-width:none;
+        max-width:none;
         width: 100%;
     }
     .navbar .divider-vertical{
@@ -106,7 +160,7 @@
         display: inline;
     }
 
-   .only-icon-menu {
+    .only-icon-menu {
         padding: 10px 7px;
     }
 
@@ -115,10 +169,63 @@
 
 
     }
+    
+    .hidden-switch-multilevel{
+        min-width: 260px;
+        /*     min-height: 120%;*/
+        top: 5%;
+        left: 25%;
+    }
+
+    .hidden-sensor-multilevel{
+        min-width: 360px;
+        /*     min-height: 120%;*/
+        top: -5%;
+        left: 15%;
+    }
+
+    .hidden-sensor-multilevel-linear{
+        min-width: 260px;
+        /*     min-height: 120%;*/
+        top: 15%;
+        left: 25%;
+    }
+
+    .hidden-camera{
+        min-width: 360px;
+        top: -15%;
+        left: 15%;
+    }
 }
 
 /* Extra Small Devices, Phones */ 
 @media only screen and (max-width : 480px) {
+     .hidden-switch-multilevel{
+        min-width: 260px;
+        /*     min-height: 120%;*/
+        top: 5%;
+        left:0;
+    }
+
+    .hidden-sensor-multilevel{
+        min-width: 360px;
+        /*     min-height: 120%;*/
+        top: -5%;
+        left: 0;
+    }
+
+    .hidden-sensor-multilevel-linear{
+        min-width: 260px;
+        /*     min-height: 120%;*/
+        top: 15%;
+        left: 0;
+    }
+
+    .hidden-camera{
+        min-width: 360px;
+        top: -15%;
+        left: 0;
+    }
 
 }
 
@@ -133,7 +240,7 @@
 }
 
 @media only screen and (min-width: 768px) and (max-width : 992px) {
- .hide-navi-text{
+    .hide-navi-text{
         display: none !important;
     }
 }

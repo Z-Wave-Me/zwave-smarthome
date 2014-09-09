@@ -7,7 +7,7 @@
     position:relative;
 }
 .element-hidden{
-     /* min-width: 110%; */
+    /* min-width: 110%; */
     border-radius: 3px;
     padding: 20px;
     background-color: #fff;
@@ -31,59 +31,76 @@
 }
 
 /* Theme 1 */
-#page_elements-1{ 
-   background: #E5E5E5;
+#page_elements{ 
+    background: #E5E5E5;
 }
 .widget-block{ 
-   margin-bottom: 20px;
-   background-color: #fff;
-   -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
--moz-box-shadow:    1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-box-shadow:         1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+    margin-bottom: 20px;
+    background-color: #fff;
+    -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+    -moz-box-shadow:    1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+    box-shadow:         1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+    h3{
+        font-size: 16px;
+        color: #909090;
+    }
 }
 .widget-block-in{
-/*   border: solid 1px red;*/
+    /*   border: solid 1px red;*/
     height: 200px;
-   position:relative;
+    position:relative;
 }
 .widget-header{
-   position: relative;
-  
+    position: relative;
+
 }
 .widget-config{
-   position: absolute;
-    left: 88%;
+    position: absolute;
+    left: 85%;
     top: 5%;
 }
 .widget-image{
     max-width: 70%;
 }
 
-.widget-block h3{
-    font-size: 16px;
-    color: #909090;
+.widget-body{
+    //position:relative;
+    .element-hidden{
+        /* min-width: 110%; */
+        border-radius: 3px;
+        padding: 20px;
+        background-color: #fff;
+        border: solid 1px #DDDDDD;
+        position: absolute;
+        /* left: -5%; */
+        z-index: 10000;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    }
 }
 
-.widget-body_{
-     position:relative;
-}
-
-.widget-body .element-hidden{
-     /* min-width: 110%; */
-    border-radius: 3px;
-    padding: 20px;
-    background-color: #fff;
-    border: solid 1px #DDDDDD;
-    position: absolute;
-    top: 0;
-    left: 0;
-    /* left: -5%; */
-    z-index: 10000;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-}
 .hidden-switch-multilevel{
-    min-width: 130%;
-/*     min-height: 120%;*/
-     top: 0;
-    left: 0;
+    min-width: 260px;
+    /*     min-height: 120%;*/
+    top: 5%;
+    left: -25%;
+}
+
+.hidden-sensor-multilevel{
+    min-width: 320px;
+    /*     min-height: 120%;*/
+    top: -5%;
+    left: -50%;
+}
+
+.hidden-sensor-multilevel-linear{
+     min-width: 260px;
+    /*     min-height: 120%;*/
+    top: 15%;
+    left: -25%;
+}
+
+.hidden-camera{
+     min-width: 300px;
+    top: -5%;
+    left: -50%;
 }

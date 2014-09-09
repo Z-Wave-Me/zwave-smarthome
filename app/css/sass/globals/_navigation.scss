@@ -1,9 +1,25 @@
-/* Homepage styles */
+/* Navigation
+-------------------------------------------------- */
+/* Visible */
+.navbar-visible{
+    position: relative;
+    .navbar-visible-in{
+       top: 13px;
+        position: absolute;
+        a{
+            color: #999;
+            margin-right: 20px;
+        }
+        a:hover{
+            color: #eeeeee;
+        }
+    }
+}
 .navbar-inverse {
     background-color: #333333;
     border-color: #080808;
 }
-
+/* Collapse */
 
 .navbar-inverse .navbar-nav>.active>a, 
 .navbar-inverse .navbar-nav>.active>a:hover, 

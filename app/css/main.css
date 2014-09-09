@@ -1,97 +1,120 @@
-/* Body Global settings */
+/* Body
+-------------------------------------------------- */
 /* Typo
 -------------------------------------------------- */
-/* line 7, sass/globals/_body.scss */
+/* line 8, sass/globals/_body.scss */
 h1, .h1, h2, .h2, h3, .h3 {
   margin-top: 0;
   margin-bottom: 10px;
 }
 
-/* line 11, sass/globals/_body.scss */
+/* line 12, sass/globals/_body.scss */
 h1 {
   font-size: 26px;
   /*    text-shadow: 3px 1px 2px rgba(150, 150, 150, 1);*/
   /*    color: #2A6496;*/
 }
 
-/* line 17, sass/globals/_body.scss */
+/* line 18, sass/globals/_body.scss */
 h3 {
   font-size: 20px;
 }
 
-/* line 21, sass/globals/_body.scss */
+/* line 22, sass/globals/_body.scss */
 .perex {
   margin: 20px 0;
   padding: 20px 0 0 0;
   border-top: 1px dotted #9fd8ef;
 }
 
-/* line 27, sass/globals/_body.scss */
+/* line 28, sass/globals/_body.scss */
 .badge {
   padding: 7px;
   margin-right: 5px;
 }
 
-/* line 32, sass/globals/_body.scss */
+/* line 33, sass/globals/_body.scss */
 .btn-tooltip {
   cursor: help;
 }
 
 /* Page
 -------------------------------------------------- */
-/* line 38, sass/globals/_body.scss */
+/* line 39, sass/globals/_body.scss */
 #respone_container {
   display: none;
 }
 
-/* line 41, sass/globals/_body.scss */
+/* line 42, sass/globals/_body.scss */
 .page-header {
   padding-bottom: 0;
   margin: 20px 0 30px 0;
   border-bottom: 0;
 }
 
-/* line 47, sass/globals/_body.scss */
+/* line 48, sass/globals/_body.scss */
 #main_content {
   margin-top: 70px;
   margin-bottom: 20px;
 }
 
-/* Homepage styles */
-/* line 2, sass/globals/_navigation.scss */
+/* Navigation
+-------------------------------------------------- */
+/* Visible */
+/* line 4, sass/globals/_navigation.scss */
+.navbar-visible {
+  position: relative;
+}
+/* line 6, sass/globals/_navigation.scss */
+.navbar-visible .navbar-visible-in {
+  top: 13px;
+  position: absolute;
+}
+/* line 9, sass/globals/_navigation.scss */
+.navbar-visible .navbar-visible-in a {
+  color: #999;
+  margin-right: 20px;
+}
+/* line 13, sass/globals/_navigation.scss */
+.navbar-visible .navbar-visible-in a:hover {
+  color: #eeeeee;
+}
+
+/* line 18, sass/globals/_navigation.scss */
 .navbar-inverse {
   background-color: #333333;
   border-color: #080808;
 }
 
-/* line 8, sass/globals/_navigation.scss */
+/* Collapse */
+/* line 24, sass/globals/_navigation.scss */
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > .active > a:focus {
   background-color: #282828;
 }
 
-/* line 14, sass/globals/_navigation.scss */
+/* line 30, sass/globals/_navigation.scss */
 .navbar-inverse .navbar-nav > .open > a,
 .navbar-inverse .navbar-nav > .open > a:hover,
 .navbar-inverse .navbar-nav > .open > a:focus {
   background-color: #232323;
 }
 
-/* line 20, sass/globals/_navigation.scss */
+/* line 36, sass/globals/_navigation.scss */
 .navbar-inverse .dropdown-menu > .active > a,
 .navbar-inverse .dropdown-menu > .active > a:hover,
 .navbar-inverse .dropdown-menu > .active > a:focus {
   background-color: #474747;
 }
 
-/* line 28, sass/globals/_navigation.scss */
+/* line 44, sass/globals/_navigation.scss */
 .navbar-inverse .dropdown-menu > li > a:hover,
 .navbar-inverse .dropdown-menu > li > a:focus {
   background-color: #474747;
 }
 
-/* line 33, sass/globals/_navigation.scss */
+/* line 49, sass/globals/_navigation.scss */
 .navbar .divider-vertical {
   height: 50px;
   /*    margin: 0 9px;*/
@@ -99,7 +122,7 @@ h3 {
   border-right: 1px solid #3b3b3b;
 }
 
-/* line 40, sass/globals/_navigation.scss */
+/* line 56, sass/globals/_navigation.scss */
 .dropdown > .dropdown-menu::before, .dropdown > .dropdown-menu::after {
   content: '';
   display: inline-block;
@@ -112,7 +135,7 @@ h3 {
   left: 9px;
 }
 
-/* line 52, sass/globals/_navigation.scss */
+/* line 68, sass/globals/_navigation.scss */
 .dropdown > .dropdown-menu::after {
   border-left-width: 6px;
   border-right-width: 6px;
@@ -122,23 +145,23 @@ h3 {
   left: 10px;
 }
 
-/* line 61, sass/globals/_navigation.scss */
+/* line 77, sass/globals/_navigation.scss */
 .navbar-right .dropdown > .dropdown-menu:after {
   left: auto;
   right: 13px;
 }
 
-/* line 66, sass/globals/_navigation.scss */
+/* line 82, sass/globals/_navigation.scss */
 .only-icon .only-icon-menu i {
   font-size: 18px;
 }
 
-/* line 70, sass/globals/_navigation.scss */
+/* line 86, sass/globals/_navigation.scss */
 .only-icon-menu span {
   display: none;
 }
 
-/* line 74, sass/globals/_navigation.scss */
+/* line 90, sass/globals/_navigation.scss */
 .dropdown-menu a i {
   padding-right: 10px;
 }
@@ -212,7 +235,7 @@ h3 {
 
 /* Theme 1 */
 /* line 34, sass/modules/_elements.scss */
-#page_elements-1 {
+#page_elements {
   background: #E5E5E5;
 }
 
@@ -224,43 +247,37 @@ h3 {
   -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
   box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
 }
+/* line 43, sass/modules/_elements.scss */
+.widget-block h3 {
+  font-size: 16px;
+  color: #909090;
+}
 
-/* line 44, sass/modules/_elements.scss */
+/* line 48, sass/modules/_elements.scss */
 .widget-block-in {
   /*   border: solid 1px red;*/
   height: 200px;
   position: relative;
 }
 
-/* line 49, sass/modules/_elements.scss */
+/* line 53, sass/modules/_elements.scss */
 .widget-header {
   position: relative;
 }
 
-/* line 53, sass/modules/_elements.scss */
+/* line 57, sass/modules/_elements.scss */
 .widget-config {
   position: absolute;
-  left: 88%;
+  left: 85%;
   top: 5%;
 }
 
-/* line 58, sass/modules/_elements.scss */
+/* line 62, sass/modules/_elements.scss */
 .widget-image {
   max-width: 70%;
 }
 
-/* line 62, sass/modules/_elements.scss */
-.widget-block h3 {
-  font-size: 16px;
-  color: #909090;
-}
-
-/* line 67, sass/modules/_elements.scss */
-.widget-body_ {
-  position: relative;
-}
-
-/* line 71, sass/modules/_elements.scss */
+/* line 68, sass/modules/_elements.scss */
 .widget-body .element-hidden {
   /* min-width: 110%; */
   border-radius: 3px;
@@ -268,19 +285,40 @@ h3 {
   background-color: #fff;
   border: solid 1px #DDDDDD;
   position: absolute;
-  top: 0;
-  left: 0;
   /* left: -5%; */
   z-index: 10000;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
 }
 
-/* line 84, sass/modules/_elements.scss */
+/* line 81, sass/modules/_elements.scss */
 .hidden-switch-multilevel {
-  min-width: 130%;
+  min-width: 260px;
   /*     min-height: 120%;*/
-  top: 0;
-  left: 0;
+  top: 5%;
+  left: -25%;
+}
+
+/* line 88, sass/modules/_elements.scss */
+.hidden-sensor-multilevel {
+  min-width: 320px;
+  /*     min-height: 120%;*/
+  top: -5%;
+  left: -50%;
+}
+
+/* line 95, sass/modules/_elements.scss */
+.hidden-sensor-multilevel-linear {
+  min-width: 260px;
+  /*     min-height: 120%;*/
+  top: 15%;
+  left: -25%;
+}
+
+/* line 102, sass/modules/_elements.scss */
+.hidden-camera {
+  min-width: 300px;
+  top: -5%;
+  left: -50%;
 }
 
 /* Events
@@ -485,9 +523,36 @@ h3 {
 ==================================================*/
 /*==========  Detected mobile devices  ==========*/
 @media (max-width: 2000px) {
-  /* line 42, sass/globals/_responsive.scss */
+  /* line 43, sass/globals/_responsive.scss */
   .is-mobile-true .container {
     width: 100%;
+  }
+  /* line 46, sass/globals/_responsive.scss */
+  .is-mobile-true .hidden-switch-multilevel {
+    min-width: 260px;
+    /*     min-height: 120%;*/
+    top: 5%;
+    left: 0;
+  }
+  /* line 53, sass/globals/_responsive.scss */
+  .is-mobile-true .hidden-sensor-multilevel {
+    min-width: 360px;
+    /*     min-height: 120%;*/
+    top: -5%;
+    left: 0;
+  }
+  /* line 60, sass/globals/_responsive.scss */
+  .is-mobile-true .hidden-sensor-multilevel-linear {
+    min-width: 260px;
+    /*     min-height: 120%;*/
+    top: 15%;
+    left: 0;
+  }
+  /* line 67, sass/globals/_responsive.scss */
+  .is-mobile-true .hidden-camera {
+    min-width: 360px;
+    top: -15%;
+    left: 0;
   }
 }
 /*==========  Mobile First Method  ==========*/
@@ -499,46 +564,141 @@ h3 {
 /*==========  Non-Mobile First Method  ==========*/
 /* Large Devices, Wide Screens */
 /* Medium Devices, Desktops */
+@media only screen and (max-width: 992px) {
+  /* line 115, sass/globals/_responsive.scss */
+  .hidden-switch-multilevel {
+    min-width: 260px;
+    /*     min-height: 120%;*/
+    top: 5%;
+    left: 5%;
+  }
+
+  /* line 122, sass/globals/_responsive.scss */
+  .hidden-sensor-multilevel {
+    min-width: 360px;
+    /*     min-height: 120%;*/
+    top: -5%;
+    left: 0;
+  }
+
+  /* line 129, sass/globals/_responsive.scss */
+  .hidden-sensor-multilevel-linear {
+    min-width: 260px;
+    /*     min-height: 120%;*/
+    top: 15%;
+    left: 3%;
+  }
+
+  /* line 136, sass/globals/_responsive.scss */
+  .hidden-camera {
+    min-width: 360px;
+    top: -15%;
+    left: 0;
+  }
+}
 /* Small Devices, Tablets */
 @media only screen and (max-width: 768px) {
-  /* line 91, sass/globals/_responsive.scss */
+  /* line 145, sass/globals/_responsive.scss */
   .container {
     max-width: none;
     width: 100%;
   }
 
-  /* line 95, sass/globals/_responsive.scss */
+  /* line 149, sass/globals/_responsive.scss */
   .navbar .divider-vertical {
     display: none;
   }
 
-  /* line 99, sass/globals/_responsive.scss */
+  /* line 153, sass/globals/_responsive.scss */
   .dropdown > .dropdown-menu::before,
   .dropdown > .dropdown-menu::after,
   .navbar .divider-vertical {
     display: none;
   }
 
-  /* line 105, sass/globals/_responsive.scss */
+  /* line 159, sass/globals/_responsive.scss */
   .only-icon-menu span {
     display: inline;
   }
 
-  /* line 109, sass/globals/_responsive.scss */
+  /* line 163, sass/globals/_responsive.scss */
   .only-icon-menu {
     padding: 10px 7px;
   }
 
-  /* line 113, sass/globals/_responsive.scss */
+  /* line 167, sass/globals/_responsive.scss */
   .only-icon-menu i {
     font-size: 14px;
   }
+
+  /* line 173, sass/globals/_responsive.scss */
+  .hidden-switch-multilevel {
+    min-width: 260px;
+    /*     min-height: 120%;*/
+    top: 5%;
+    left: 25%;
+  }
+
+  /* line 180, sass/globals/_responsive.scss */
+  .hidden-sensor-multilevel {
+    min-width: 360px;
+    /*     min-height: 120%;*/
+    top: -5%;
+    left: 15%;
+  }
+
+  /* line 187, sass/globals/_responsive.scss */
+  .hidden-sensor-multilevel-linear {
+    min-width: 260px;
+    /*     min-height: 120%;*/
+    top: 15%;
+    left: 25%;
+  }
+
+  /* line 194, sass/globals/_responsive.scss */
+  .hidden-camera {
+    min-width: 360px;
+    top: -15%;
+    left: 15%;
+  }
 }
 /* Extra Small Devices, Phones */
+@media only screen and (max-width: 480px) {
+  /* line 203, sass/globals/_responsive.scss */
+  .hidden-switch-multilevel {
+    min-width: 260px;
+    /*     min-height: 120%;*/
+    top: 5%;
+    left: 0;
+  }
+
+  /* line 210, sass/globals/_responsive.scss */
+  .hidden-sensor-multilevel {
+    min-width: 360px;
+    /*     min-height: 120%;*/
+    top: -5%;
+    left: 0;
+  }
+
+  /* line 217, sass/globals/_responsive.scss */
+  .hidden-sensor-multilevel-linear {
+    min-width: 260px;
+    /*     min-height: 120%;*/
+    top: 15%;
+    left: 0;
+  }
+
+  /* line 224, sass/globals/_responsive.scss */
+  .hidden-camera {
+    min-width: 360px;
+    top: -15%;
+    left: 0;
+  }
+}
 /* Custom, iPhone Retina */
 /* Custom, iPhone Retina */
 @media only screen and (min-width: 768px) and (max-width: 992px) {
-  /* line 136, sass/globals/_responsive.scss */
+  /* line 243, sass/globals/_responsive.scss */
   .hide-navi-text {
     display: none !important;
   }
