@@ -1,0 +1,20 @@
+// Settings
+@import "settings/_base";
+// CSS3
+@import "css3/_box-shadow.scss";
+// Core Bootstrap variables and mixins
+@import "bootstrap/_variables";
+@import "bootstrap/_mixins";
+
+// Partials
+@import "partials/_body";
+@import "partials/_header";
+@import "partials/_navigation";
+@import "partials/_suplementary";
+@import "partials/_footer";
+
+// Modules
+@import "modules/product/_detail";
+
+// Responsive
+@import "partials/_responsive";

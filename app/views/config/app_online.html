@@ -1,0 +1,34 @@
+<!-- Online app view -->
+<div class="row">
+    <div class="col-md-6 app-entry"  ng-repeat="v in collection">
+        <div class="app-entry-in">
+            <div class="row">
+                <div class="col-md-5">
+                    <h3>
+                        {{ v.name}}
+                        <span class="label label-danger" ng-show="v.version == 1">{{_t('lb_alpha')}}</span>
+                        <span class="label label-warning" ng-show="v.version == 2">{{_t('lb_beta')}}</span>
+                        <span class="label label-success" ng-show="v.version == 3">{{_t('lb_stable')}}</span>
+                    </h3>
+                    <img class="apps-image" src="storage/img/apps/appimage.jpg" alt="{{ v.name}}"/>
+                </div>
+                <div class="col-md-7">
+                    <div>
+                        <span ng-show="v.ranking == 1"><i class="fa fa-star"></i></span>
+                        <span ng-show="v.ranking == 2"><i class="fa fa-star"></i><i class="fa fa-star"></i></span>
+                        <span ng-show="v.ranking == 3"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></span>
+                        <span ng-show="v.ranking == 4"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></span>
+                        <span ng-show="v.ranking == 5"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></span>
+                    </div>
+                    <ul class="list-group">
+                        <li class="list-group-item"><i class="fa fa-download fa-lg"></i> <strong>{{ v.download}}x</strong></li>
+                        <li class="list-group-item"><i class="fa fa-user fa-lg"></i> <strong>{{ v.author}}</strong><br /> <a href="mailto:{{ v.email}}"><em>{{ v.email}}</em></a></li>
+                        <li class="list-group-item"><span title="{{v.description}}" tooltip>{{ v.description | cutText:true:50}}</span></li>
+                    </ul>
+                    <div><a class="btn btn-primary" href="" title="Download"><i class="fa fa-download fa-lg"></i> {{_t('lb_download')}}</a></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

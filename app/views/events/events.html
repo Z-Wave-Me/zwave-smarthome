@@ -1,0 +1,28 @@
+<!-- Events view -->
+<div ng-controller="EventController">
+    <div class="row alert alert-dismissible event-alert" ng-repeat="v in collection| limitTo:30">
+        <button type="button" class="close" data-dismiss="alert"> &nbsp;&nbsp;&nbsp;<span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <div class="btn-group" title="{{v.type}}">
+            <i class="fa fa-file-image-o fa-2x" ng-class="(v.level == 'error') ? 'text-danger' : 'text-warning'"></i> 
+            <!-- <strong>{{v.timestamp| date:'dd.MM.yyyy H:mm'}}</strong> | {{v.message}} -->
+            <strong ng-if="$index <= 5" title="{{v.timestamp| date:'H:mm'}}">today</strong>
+            <strong ng-if="$index > 5" title="{{v.timestamp| date:'dd.MM.yyyy H:mm'}}">1 day</strong>
+            | {{v.message}}
+        </div>
+        <div class="btn-group pull-right">
+            <button type="button" class="btn btn-default">Action</button>
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="">Hide all events from this source</a></li>
+                <li><a href="">Only show events from this source</a></li>
+                <li><a href="">Dont`t show events from this source in this profile anymore</a></li>
+            </ul>
+        </div>
+
+
+    </div>
+    <div ng-include="'app/views/partials/footer_events.html'"></div>
+</div> <!-- /ng-controller --> 

@@ -1,0 +1,60 @@
+<!-- Network view -->
+<div ng-controller="NetworkController">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-info">
+                <div class="panel-heading"><h4><i class="fa fa-bolt"></i> {{_t('lb_battery_status')}}</h4></div>
+                <div class="panel-body">
+                   <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                <a href="" ng-click="orderBy('name')">{{_t('lb_device')}}
+                                    <span ng-show="predicate == 'level'"><i ng-show="!reverse" class="fa fa-sort-asc"></i><i ng-show="reverse" class="fa fa-sort-desc"></i></span>
+                                </a>
+                            </th>
+                            <th>
+                                <a href="" ng-click="orderBy('level')">{{_t('lb_status')}}
+                                    <span ng-show="predicate == 'level'"><i ng-show="!reverse" class="fa fa-sort-asc"></i><i ng-show="reverse" class="fa fa-sort-desc"></i></span>
+                                </a>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="v in collection| orderBy:predicate:reverse" id="{{ v.rowId}}">
+                            <td>(#{{v.id}}) {{v.name}}</td>
+                            <td>
+                                <span class="text-success" ng-show="v.level > 80">{{v.level}}%</span>
+                                <span class="text-default" ng-show="v.level < 80 && v.level > 20">{{v.level}}%</span>
+                                <span class="text-danger" ng-show="v.level < 20"><i class="fa fa-exclamation-triangle"></i> {{v.level}}%</span>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-info">
+                 <div class="panel-heading"><h4><i class="fa fa-power-off"></i> {{_t('lb_zwave_device_status')}}</h4></div>
+                <div class="panel-body">
+                    
+            
+            <div class="alert alert-success"><i class="fa fa-check fa-lg"></i> {{_t('lb_devices_ok')}}</div>
+            <ul class="list-group">
+                <li class="list-group-item row text-danger" ng-repeat="v in collection| limitTo: 5">
+                    <strong>(#{{v.id}}) {{v.name}}</strong> {{_t('lb_has_problems')}} <button class="btn btn-primary pull-right">{{_t('lb_network_repair')}}</button>
+                </li>
+            </ul>
+
+                </div>
+            </div>
+
+        </div>  
+    </div>
+</div>

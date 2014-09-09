@@ -1,0 +1,23 @@
+/* Footer styles */
+#footer {
+    background-color: $app-footer-background-color;
+    border-top: $app-footer-border-top;
+    height: $app-footer-height;
+    color: $app-footer-color;
+    font-size: $app-footer-font-size;
+    a{
+        padding: $app-footer-a-padding;
+        color: $app-footer-a-color;
+        text-decoration: $app-footer-a-text-decoration;
+        
+     &:hover{
+        color: $app-footer-a-hover-color;
+        text-decoration: $app-footer-a-hover-text-decoration;
+    }
+    }
+    .container{
+        text-align: $app-footer-text-align;
+        padding: $app-footer-padding;
+        height: $app-footer-container-height;
+    }
+}

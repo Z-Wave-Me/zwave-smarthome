@@ -1,0 +1,98 @@
+<!-- Devicess view -->
+<div ng-controller="DeviceController">
+    <div class="row">
+        <div class="col-sm-6">
+<div class="panel panel-default panel-highlighted">
+                <div class="panel-heading ng-binding"> <h4><i class="fa fa-cubes"></i> {{_t('lb_select_device_type')}}</h4></div>
+                <div class="panel-body">
+                    <div class="row device-logo">
+                        <div class="col-sm-6">
+                            <div class="device-types">
+                                <a href="" ng-click="goDevice1 = true"><img class="apps-image" src="app/img/logo-z-wave.png" alt="Logo" /></a>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="device-types">
+                                <a href="" ng-click="goDevice1 = true"><img class="apps-image" src="app/img/logo-enocean.png" alt="Logo" /></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center" ng-show="goDevice1">
+                        <br />
+                        <button type="button" 
+                                class="btn btn-primary btn-lg btn-block"
+                                ng-click="addDevice()"
+                                ng-show="[1, 3].indexOf(status) > -1"
+                                ng-hide="[2].indexOf(status) > -1"
+                                >{{_t('lb_add_device')}} </button>
+                        <br />
+                        <div class="alert alert-warning"  ng-show="[2].indexOf(status) > -1"><i class="fa fa-spinner fa-spin"></i> {{_t('lb_waiting_for_device')}}</div>
+
+                        <div ng-show="[3].indexOf(status) > -1"  ng-hide="[1, 2].indexOf(status) > -1">
+                             <div class="alert alert-warning"><i class="fa fa-spinner fa-spin"></i> {{_t('lb_device_found')}}</div>
+                             <div class="alert alert-success"><i class="fa fa-check fa-lg"></i> {{_t('lb_device_included')}}</div>
+                            <div class="alert alert-danger"><i class="fa fa-exclamation-triangle fa-lg"></i> {{_t('lb_error')}}: Error message comes here...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-default panel-highlighted">
+                <div class="panel-heading"> <h4><i class="fa fa-cubes"></i> {{_t('lb_select_device_type')}}</h4></div>
+                <div class="panel-body">
+
+                    <ul class="media-list list-group">
+                        <li class="media list-group-item">
+                            <button class="pull-left" href="" ng-click="goDevice2 = true;
+                                addDevice2()">
+                                <img class="apps-image" width="70" height="70" src="storage/img/apps/appimage.jpg"/>
+                            </button>
+                            <div class="media-body">
+                                <h4 class="media-heading">Dapibus ac facilisis</h4>
+                                <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.</p>
+                            </div>
+                        </li>
+                        <li class="media list-group-item">
+                            <button class="pull-left" ng-click="goDevice2 = true;
+                                addDevice2()">
+                                <img class="apps-image" width="70" height="70" src="storage/img/apps/appimage.jpg"/>
+                            </button>
+                            <div class="media-body">
+                                <h4 class="media-heading">Morbi leo risus</h4>
+                                <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.</p>
+                            </div>
+                        </li>
+                        <li class="media list-group-item">
+                            <button class="pull-left" ng-click="goDevice2 = true;
+                                addDevice2()">
+                                <img class="apps-image" width="70" height="70" src="storage/img/apps/appimage.jpg"/>
+                            </button>
+                            <div class="media-body">
+                                <h4 class="media-heading">Porta ac consectetur ac</h4>
+                                <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="text-center" ng-show="goDevice2">
+
+                        <div class="alert alert-warning" ng-show="goDevice2"  ng-hide="[2, 3].indexOf(status2) > -1">
+                            To connect pleae hit button 3 of second row 3 times and wait for blue LED
+                        </div>
+
+                        <div class="alert alert-danger" ng-show="[2].indexOf(status2) > -1">
+                            <i class="fa fa-spinner fa-spin"></i>  {{_t('lb_device_found')}}
+                        </div>
+
+                        <div ng-show="[3].indexOf(status2) > -1"  ng-hide="[1, 2].indexOf(status2) > -1">
+                            <div class="alert alert-success" role="alert"><i class="fa fa-check fa-lg"></i> {{_t('lb_device_included')}}</div>
+                            <div class="alert alert-danger" role="alert"><i class="fa fa-exclamation-triangle fa-lg"></i> {{_t('lb_error')}}: Error message comes here...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>  
+    </div>
+</div> <!-- /ng-controller --> 

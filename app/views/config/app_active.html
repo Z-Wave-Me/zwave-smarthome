@@ -1,0 +1,27 @@
+<!-- Online app view -->
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                 <th>Image</th>
+                    <th>
+                        <a href="" ng-click="orderBy('app_name')">{{_t('lb_app_name')}}
+                            <span ng-show="predicate == 'app_name'"><i ng-show="!reverse" class="fa fa-sort-asc"></i><i ng-show="reverse" class="fa fa-sort-desc"></i></span>
+                        </a>
+                    </th>
+                   <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="v in collection| orderBy:predicate:reverse" id="{{ v.rowId}}">
+                    <td><img class="apps-image-list" src="storage/img/apps/appimage.jpg" alt="{{ v.name}}"/></td>
+                     <td><strong>{{_t('lb_instance_of')}} {{ v.instance_name}}</strong>
+                     <td class="apps-action-icons">
+                         <a class="btn btn-primary" href="" ng-show="v.status">{{_t('lb_deactivate')}}</a>
+                          <a class="btn btn-info" href="" ng-show="!v.status"><i class="fa fa-refresh fa-lg"></i> {{_t('lb_activate')}}</a>
+                         <button class="btn btn-danger"><i class="fa fa-remove fa-lg"></i> {{_t('lb_remove')}}</button>
+                     </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>

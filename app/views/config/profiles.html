@@ -1,0 +1,126 @@
+<!-- Home view -->
+<div ng-controller="ProfileController">
+    <div class="page-header row">
+        <button type="button" 
+                class="btn btn-success pull-right"
+                ng-click="showModal('#modal_profile', {'id': null, 'name': null, 'color': null})"
+                >C{{_t('lb_new_profile')}}</button>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2" id="panel_{{$index}}" ng-repeat="v in collection">
+            <div class="panel panel-profile" style="height: 100px; background-color: {{v.color}};">
+                <div class="panel-body text-center">
+                    <h3>{{v.name}}</h3>
+                    <div>
+                        <a href="" 
+                           ng-click="showModal('#modal_profile', {'id': v.id, 'name': v.name, 'description': v.description, 'color': null})"
+                           ><i class="fa fa-pencil fa-2x"></i></a>
+
+
+                        <a href="" 
+                           ng-click="delete('#panel_' + $index, {'id': v.id, 'name': v.name})"
+                           >&nbsp;&nbsp;&nbsp;<i class="fa fa-times fa-2x"></i></a>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <!-- Modal profile -->
+    <div class="modal fade" id="modal_profile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">{{_t('lb_profile')}}: {{input.name}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input name="name" id="name" type="text" class="form-control" placeholder="{{_t('lb_profile_name')}}" value="{{input.name}}" ng-model="input.name" />
+                    </div>
+
+                    <div class="form-group">
+                        <input type="checkbox" name="active" value="" id="active" /> <label>{{_t('lb_active')}}</label>
+                    </div>
+
+                    <div class="form-group">
+                        <label>{{_t('lb_profile_color')}}: </label>
+                        <a href=""
+                           class="profile-color"
+                           ng-repeat="v in cfg.profile_colors" 
+                           ng-class="$index == 3 ? 'active' : ''"
+                           style="background-color: {{v}}">&nbsp;</a>
+                    </div>
+                    <div class="form-group form-inline">
+                        <label>{{_t('lb_language')}}:</label>
+                        <select name="lang" class="form-control">
+                            <option>EN</option>
+                            <option>DE</option>
+                            <option>ES</option>
+                        </select>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>{{_t('lb_event_sources')}}</th>
+                                    <th>{{_t('lb_ignore')}}</th>
+                                    <th>{{_t('lb_in_event_log')}}</th>
+                                    <th>{{_t('lb_alert_me')}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{_t('lb_changes_in_dashboard')}}</td>
+                                     <th><input type="checkbox" /></th>
+                                     <th><input type="checkbox" /></th>
+                                     <th><input type="checkbox" /></th>
+                                </tr>
+                                <tr>
+                                    <td>{{_t('lb_changes_in_rooms')}}</td>
+                                     <th><input type="checkbox" /></th>
+                                     <th><input type="checkbox" /></th>
+                                     <th><input type="checkbox" /></th>
+                                </tr>
+                                <tr>
+                                    <td>{{_t('lb_changes_on_elements')}}</td>
+                                     <th><input type="checkbox" /></th>
+                                     <th><input type="checkbox" /></th>
+                                     <th><input type="checkbox" /></th>
+                                </tr>
+                                <tr>
+                                    <td>{{_t('lb_alerts')}} <i class="fa fa-question-circle text-info btn-help" title="{{_t('lb_alerts_tt')}}" tooltip></i></td>
+                                     <th><input type="checkbox" /></th>
+                                     <th><input type="checkbox" /></th>
+                                     <th><input type="checkbox" /></th>
+                                </tr>
+                                <tr>
+                                    <td>{{_t('lb_system_alerts')}}</td>
+                                     <th><input type="checkbox" /></th>
+                                     <th><input type="checkbox" /></th>
+                                     <th><input type="checkbox" /></th>
+                                </tr>
+                                <tr>
+                                    <td>{{_t('lb_system_status_changes')}}</td>
+                                     <th><input type="checkbox" /></th>
+                                     <th><input type="checkbox" /></th>
+                                     <th><input type="checkbox" /></th>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" 
+                            class="btn btn-primary" 
+                            data-dismiss="modal"
+                            ng-click="create(input)">{{_t('lb_save')}}</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{_t('lb_cancel')}}</button>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.Modal -->
+</div> <!-- /ng-controller --> 

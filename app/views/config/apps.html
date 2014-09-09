@@ -1,0 +1,25 @@
+<!-- Appp view -->
+<div ng-controller="AppController">
+   <ul class="nav nav-tabs" role="tablist">
+            <li class="active" ng-class="activeTab == 'online' ? 'active' : ''">
+                <a href="" data-target="#module_online" data-toggle="tab" ng-click="rememberTab('online')">{{_t('lb_online_modules')}}</a>
+            </li>
+            <li ng-class="activeTab == 'local' ? 'active' : ''">
+                <a href="" data-target="#module_local" data-toggle="tab" ng-click="rememberTab('local')">{{_t('lb_local_modules')}}</a>
+            </li>
+             <li ng-class="activeTab == 'activel' ? 'active' : ''">
+                <a href="" data-target="#module_active" data-toggle="tab" ng-click="rememberTab('active')">{{_t('lb_active')}}</a>
+            </li>
+        </ul>
+    
+     <!-- Tab panes -->
+        <div class="tab-content">
+            <!-- Online -->
+            <div class="tab-pane active" id="module_online" ng-class="activeTab == 'online' ? 'active' : ''" ng-include="'app/views/config/app_online.html'"></div>
+            <!-- Local -->
+            <div class="tab-pane" id="module_local" ng-class="activeTab == 'local' ? 'active' : ''" ng-include="'app/views/config/app_local.html'"></div>
+            <!-- Active -->
+            <div class="tab-pane" id="module_active" ng-class="activeTab == 'active' ? 'active' : ''" ng-include="'app/views/config/app_active.html'"></div>
+        </div>
+<div ng-include="'app/views/partials/footer_apps.html'"></div>
+</div> <!-- /ng-controller --> 
