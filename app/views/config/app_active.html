@@ -1,6 +1,6 @@
 <!-- Online app view -->
-<div class="table-responsive">
-    <table class="table table-striped">
+<div class="table-responsive_">
+    <table id="table_apps_active" class="table table-striped">
         <thead>
             <tr>
                  <th>Image</th>
@@ -14,12 +14,18 @@
         </thead>
         <tbody>
             <tr ng-repeat="v in collection| orderBy:predicate:reverse" id="{{ v.rowId}}">
-                    <td><img class="apps-image-list" src="storage/img/apps/appimage.jpg" alt="{{ v.name}}"/></td>
+                    <td><img class="app-image-list" src="storage/img/apps/appimage.jpg" alt="{{ v.name}}"/></td>
                      <td><strong>{{_t('lb_instance_of')}} {{ v.instance_name}}</strong>
                      <td class="apps-action-icons">
-                         <a class="btn btn-primary" href="" ng-show="v.status">{{_t('lb_deactivate')}}</a>
-                          <a class="btn btn-info" href="" ng-show="!v.status"><i class="fa fa-refresh fa-lg"></i> {{_t('lb_activate')}}</a>
-                         <button class="btn btn-danger"><i class="fa fa-remove fa-lg"></i> {{_t('lb_remove')}}</button>
+                         <a title="{{_t('lb_deactivate')}}" class="btn btn-primary" href="" ng-show="v.status">
+                             <i class="fa fa-power-off fa-lg"></i> <span class="btn-name">{{_t('lb_deactivate')}}</span>
+                         </a>
+                          <a title="{{_t('lb_activate')}}" class="btn btn-info" href="" ng-show="!v.status">
+                              <i class="fa fa-refresh fa-lg"></i> <span class="btn-name">{{_t('lb_activate')}}</span>
+                          </a>
+                         <button title="{{_t('lb_remove')}}" class="btn btn-danger">
+                             <i class="fa fa-remove fa-lg"></i> <span class="btn-name">{{_t('lb_remove')}}</span>
+                         </button>
                      </td>
             </tr>
         </tbody>

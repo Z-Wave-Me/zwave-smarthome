@@ -1,18 +1,16 @@
 <!-- Online app view -->
 <div class="row">
-    <div class="col-md-6 app-entry"  ng-repeat="v in collection">
+    <div class="col-sm-6 app-entry"  ng-repeat="v in collection">
         <div class="app-entry-in">
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-sm-5 app-header">
                     <h3>
                         {{ v.name}}
                         <span class="label label-danger" ng-show="v.version == 1">{{_t('lb_alpha')}}</span>
                         <span class="label label-warning" ng-show="v.version == 2">{{_t('lb_beta')}}</span>
                         <span class="label label-success" ng-show="v.version == 3">{{_t('lb_stable')}}</span>
                     </h3>
-                    <img class="apps-image" src="storage/img/apps/appimage.jpg" alt="{{ v.name}}"/>
-                </div>
-                <div class="col-md-7">
+                    <img class="app-image" src="storage/img/apps/appimage.jpg" alt="{{ v.name}}"/>
                     <div>
                         <span ng-show="v.ranking == 1"><i class="fa fa-star"></i></span>
                         <span ng-show="v.ranking == 2"><i class="fa fa-star"></i><i class="fa fa-star"></i></span>
@@ -20,6 +18,9 @@
                         <span ng-show="v.ranking == 4"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></span>
                         <span ng-show="v.ranking == 5"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></span>
                     </div>
+                </div>
+                <div class="col-sm-7 app-body">
+                    
                     <ul class="list-group">
                         <li class="list-group-item"><i class="fa fa-download fa-lg"></i> <strong>{{ v.download}}x</strong></li>
                         <li class="list-group-item"><i class="fa fa-user fa-lg"></i> <strong>{{ v.author}}</strong><br /> <a href="mailto:{{ v.email}}"><em>{{ v.email}}</em></a></li>

@@ -1,80 +1,107 @@
 <!-- Home view -->
 <div ng-controller="HomeController">
     <div class="row">
-        <div class="col-md-2 col-sm-6" ng-repeat="v in collection | limitTo: 18">
+        <div class="col-md-2 col-sm-6 widget-entry" ng-repeat="v in collection | limitTo: 18">
             <div class="widget-block" ng-switch="v.deviceType">
-                <div class="widget-block-in text-center">
-                
-                 <!-- Widget header -->
-                 <div class="widget-header">
-                <a class="widget-config" href="" 
-                   ng-switch-when="sensorMultilevel"
-                   ng-click="showModal('#modal_widget', {'id': v.id, 'title': v.title, 'dasboard': 0, 'deviceType': v.deviceType, 'level': v.level})"
-                   ><i class="fa fa-cog fa-lg"></i></a>
-                <img class="widget-image img-rounded" src="storage/img/elements/icon-elements.png" alt="{{ v.title}}"/>
-                 </div>
-               
-                
-                <div class="widget-body"
-                     ng-mouseenter="goHidden = true;
+                <div class="widget-block-in clearfix">
+                    <a class="widget-config" href="" 
+                       ng-switch-when="sensorMultilevel"
+                           ng-click="showModal('#modal_widget', {'id': v.id, 'title': v.title, 'dasboard': 0, 'deviceType': v.deviceType, 'level': v.level})"
+                           ><i class="fa fa-cog fa-lg"></i></a>
+                    <!-- Widget header -->
+                    <div class="widget-header">
+                        <img class="widget-image" ng-src="storage/img/elements/{{v.deviceType}}.png" alt="{{ v.title}}"/>
+                    </div>
+
+                    <!-- Widget body -->
+                    <div class="widget-body"
+                         ng-mouseenter="goHidden = true;
                                          goHiddenCamera = true;
                                          goHiddenSensor = true;
                                          goHiddenSwitchLinear = true;" 
-                     ng-mouseleave="goHidden = false;
+                         ng-mouseleave="goHidden = false;
                                          goHiddenCamera = false;
                                          goHiddenSensor = false;
                                          goHiddenSwitchLinear = false;">
 
-                     <h3 title="{{v.title}}">{{v.title | cutText:true:20}}</h3>
-                    <!-- switchMultilevel -->
-                    <div ng-switch-when="switchMultilevel">
-                        <strong>{{v.level}} <i class="fa fa-caret-down"></i></strong>
-                    </div>
-                    <!-- switchBinary -->
-                    <div ng-switch-when="switchBinary">
-                        <input
-                            bs-switch
-                            ng-model="isSelected"
-                            type="checkbox"
-                            switch-active="true"
-                            switch-on-text="ON"
-                            switch-off-text="OFF"
-                            switch-on-color="{{ onColor}}"
-                            switch-off-color="{{ offColor}}"
-                            switch-animate="{{ animate}}"
-                            switch-size="normal"
-                            switch-label="{{ label}}"
-                            switch-icon="{{ icon}}" >
-                    </div>
-                    <!-- doorlock -->
-                    <div ng-switch-when="doorlock">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-primary btn-sm active" title="{{_t('lb_lock')}}"><i class="fa fa-lock"></i></button>
-                            <button type="button" class="btn btn-primary btn-sm" title="{{_t('lb_unlock')}}"><i class="fa fa-unlock"></i></button>
+                        <h3 title="{{v.title}}">{{v.title| cutText:true:20}}</h3>
+                        <!-- switchMultilevel -->
+                        <div ng-switch-when="switchMultilevel">
+                            <strong>{{v.level}} <i class="fa fa-caret-down"></i></strong>
                         </div>
-                    </div>
-                    <!-- toggleButton -->
-                    <div ng-switch-when="toggleButton">
-                       <a href=""><i class="fa fa-toggle-on fa-2x text-primary"></i></a>
-                    </div>
-                    <!-- sensorMultilevel -->
-                    <div  ng-switch-when="sensorMultilevel"><strong>{{v.level + v.scaleTitle}}</strong> <i class="fa fa-caret-down"></i></div>
-                    <!-- switchMultilevelLinear -->
-                    <div  ng-switch-when="switchMultilevelLinear"><strong>{{v.level + v.scaleTitle}}</strong> <i class="fa fa-caret-down"></i></div>
-                    <!-- camera -->
-                    <div  ng-switch-when="camera">{{v.deviceType}} <i class="fa fa-caret-down"></i></div>
-                    <!-- Default -->
-                    <div  ng-switch-default><strong>{{v.level + v.scaleTitle}}</strong></div>
+                        <!-- switchBinary -->
+                        <div ng-switch-when="switchBinary">
+                            <input
+                                bs-switch
+                                ng-model="isSelected"
+                                type="checkbox"
+                                switch-active="true"
+                                switch-on-text="ON"
+                                switch-off-text="OFF"
+                                switch-on-color="{{ onColor}}"
+                                switch-off-color="{{ offColor}}"
+                                switch-animate="{{ animate}}"
+                                switch-size="normal"
+                                switch-label="{{ label}}"
+                                switch-icon="{{ icon}}" >
+                        </div>
+                        <!-- doorlock -->
+                        <div ng-switch-when="doorlock">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary btn-sm active" title="{{_t('lb_lock')}}"><i class="fa fa-lock"></i></button>
+                                <button type="button" class="btn btn-primary btn-sm" title="{{_t('lb_unlock')}}"><i class="fa fa-unlock"></i></button>
+                            </div>
+                        </div>
+                        <!-- toggleButton -->
+                        <div ng-switch-when="toggleButton">
+                            <a href=""><i class="fa fa-toggle-on fa-2x text-primary"></i></a>
+                        </div>
+                        <!-- sensorMultilevel -->
+                        <div  ng-switch-when="sensorMultilevel"><strong>{{v.level + v.scaleTitle}}</strong> <i class="fa fa-caret-down"></i></div>
+                        <!-- switchMultilevelLinear -->
+                        <div  ng-switch-when="switchMultilevelLinear"><strong>{{v.level + v.scaleTitle}}</strong> <i class="fa fa-caret-down"></i></div>
+                        <!-- camera -->
+                        <div  ng-switch-when="camera">{{v.deviceType}} <i class="fa fa-caret-down"></i></div>
+                        <!-- Default -->
+                        <div  ng-switch-default><strong>{{v.level + v.scaleTitle}}</strong></div>
 
-                    <!-- Hidden switchMultilevel -->
-                    <div class="col-sm-11 element-hidden hidden-switch-multilevel" ng-switch-when="switchMultilevel" ng-show="goHidden">
-                        <div>
+                        <!-- Hidden switchMultilevel -->
+                        <div class="col-sm-11 element-hidden hidden-switch-multilevel" ng-switch-when="switchMultilevel" ng-show="goHidden">
+                            <div>
+                                <p class="text-center">{{v.title}} </p>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <input type="text" value="75" class="dial" data-width="100" data-height="100" knob />  
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-primary" href=""><i class="fa fa-angle-up fa-lg"></i></a>&nbsp;<a class="btn btn-info" href=""><i class="fa fa-angle-double-up fa-lg"></i></a><br /><br />
+                                                <a class="btn btn-primary" href=""><i class="fa fa-angle-down fa-lg"></i></a>&nbsp;<a class="btn btn-info" href=""><i class="fa fa-angle-double-down fa-lg"></i></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Hidden sensorMultilevel -->
+                        <div class="col-sm-11 element-hidden hidden-sensor-multilevel" ng-switch-when="sensorMultilevel" ng-show="goHidden">
+                            <p class="text-center">{{v.title}} </p>
+                            <div>
+                                <canvas tc-chartjs-line chart-data="chartData" chart-options="chartOptions" width="260" height="150"></canvas>
+                            </div>
+                        </div>
+
+
+                        <!-- Hidden switchMultilevelLinear -->
+                        <div class="col-sm-11 element-hidden hidden-sensor-multilevel-linear" ng-switch-when="switchMultilevelLinear" ng-show="goHidden">
                             <p class="text-center">{{v.title}} </p>
                             <table>
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <input type="text" value="75" class="dial" data-width="100" data-height="100" knob />  
+                                            <div range-slider min="0" orientation_="vertical" max="255" model-max="slider.modelMax" pin-handle="min"></div>
                                         </td>
                                         <td>
                                             <a class="btn btn-primary" href=""><i class="fa fa-angle-up fa-lg"></i></a>&nbsp;<a class="btn btn-info" href=""><i class="fa fa-angle-double-up fa-lg"></i></a><br /><br />
@@ -84,44 +111,16 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div>
 
-                    <!-- Hidden sensorMultilevel -->
-                    <div class="col-sm-11 element-hidden hidden-sensor-multilevel" ng-switch-when="sensorMultilevel" ng-show="goHidden">
-                        <p class="text-center">{{v.title}} </p>
-                        <div>
-                            <canvas tc-chartjs-line chart-data="chartData" chart-options="chartOptions" width="260" height="150"></canvas>
+                        <!-- Hidden camera -->
+                        <div class="col-sm-11 element-hidden hidden-camera" ng-switch-when="camera" ng-show="goHidden">
+                            <p class="text-center">{{v.title}} </p>
+                            <div>
+                                <iframe width="240" height="160" src="//www.youtube.com/embed/IKbxMIWCto0?rel=0" frameborder="0" allowfullscreen></iframe>
+                            </div>
                         </div>
-                    </div>
-
-
-                    <!-- Hidden switchMultilevelLinear -->
-                    <div class="col-sm-11 element-hidden hidden-sensor-multilevel-linear" ng-switch-when="switchMultilevelLinear" ng-show="goHidden">
-                        <p class="text-center">{{v.title}} </p>
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div range-slider min="0" orientation_="vertical" max="255" model-max="slider.modelMax" pin-handle="min"></div>
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-primary" href=""><i class="fa fa-angle-up fa-lg"></i></a>&nbsp;<a class="btn btn-info" href=""><i class="fa fa-angle-double-up fa-lg"></i></a><br /><br />
-                                        <a class="btn btn-primary" href=""><i class="fa fa-angle-down fa-lg"></i></a>&nbsp;<a class="btn btn-info" href=""><i class="fa fa-angle-double-down fa-lg"></i></a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <!-- Hidden camera -->
-                    <div class="col-sm-11 element-hidden hidden-camera" ng-switch-when="camera" ng-show="goHidden">
-                        <p class="text-center">{{v.title}} </p>
-                        <div>
-                            <iframe width="240" height="160" src="//www.youtube.com/embed/IKbxMIWCto0?rel=0" frameborder="0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                </div><!-- /.panel-body -->
-                 </div>
+                    </div><!-- /.panel-body -->
+                </div>
             </div>
 
 

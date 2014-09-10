@@ -63,6 +63,22 @@ h3 {
   margin-bottom: 20px;
 }
 
+/* Tooltip
+-------------------------------------------------- */
+/* line 57, sass/globals/_body.scss */
+.tooltip-inner {
+  background-color: #f2f2f2;
+  color: #000;
+  font-size: 14px;
+  padding: 10px;
+  text-align: left;
+}
+
+/* line 64, sass/globals/_body.scss */
+.tooltip-arrow {
+  border-bottom-color: #f2f2f2;
+}
+
 /* Navigation
 -------------------------------------------------- */
 /* Visible */
@@ -241,8 +257,8 @@ h3 {
 }
 /* line 42, sass/modules/_elements.scss */
 .widget-block h3 {
-  font-size: 16px;
-  color: #909090;
+  font-size: 15px;
+  color: #6d6d6d;
 }
 
 /* line 47, sass/modules/_elements.scss */
@@ -250,26 +266,30 @@ h3 {
   /*   border: solid 1px red;*/
   height: 200px;
   position: relative;
+  text-align: center;
 }
 
-/* line 52, sass/modules/_elements.scss */
+/* line 53, sass/modules/_elements.scss */
 .widget-header {
   position: relative;
 }
 
-/* line 56, sass/modules/_elements.scss */
+/* line 57, sass/modules/_elements.scss */
 .widget-config {
   position: absolute;
   left: 85%;
   top: 5%;
+  z-index: 10;
 }
 
-/* line 61, sass/modules/_elements.scss */
+/* line 63, sass/modules/_elements.scss */
 .widget-image {
-  max-width: 70%;
+  margin: 15px;
+  width: 96px;
+  height: 96px;
 }
 
-/* line 67, sass/modules/_elements.scss */
+/* line 71, sass/modules/_elements.scss */
 .widget-body .element-hidden {
   z-index: 10000;
   overflow: hidden;
@@ -334,12 +354,13 @@ h3 {
 }
 
 /* line 18, sass/modules/_apps.scss */
-.apps-image {
+.app-image {
   max-width: 100%;
+  margin: 10px 0;
 }
 
-/* line 22, sass/modules/_apps.scss */
-.apps-image-list {
+/* line 23, sass/modules/_apps.scss */
+.app-image-list {
   max-width: 100px;
 }
 
@@ -502,9 +523,153 @@ h3 {
 ==================================================*/
 /*==========  Detected mobile devices  ==========*/
 @media (max-width: 2000px) {
+  /* line 42, sass/globals/_responsive.scss */
+  .is-mobile-true {
+   /* Tabs
+  -------------------------------------------------- */
+    /* Elements
+    -------------------------------------------------- */
+    /* Eevents
+    -------------------------------------------------- */
+    /* Apps
+    -------------------------------------------------- */
+  }
   /* line 43, sass/globals/_responsive.scss */
   .is-mobile-true .container {
+    max-width: none;
     width: 100%;
+  }
+  /* line 48, sass/globals/_responsive.scss */
+  .is-mobile-true #main_content {
+    padding: 0;
+  }
+  /* line 51, sass/globals/_responsive.scss */
+  .is-mobile-true .navbar .divider-vertical {
+    display: none;
+  }
+  /* line 55, sass/globals/_responsive.scss */
+  .is-mobile-true .dropdown > .dropdown-menu::before,
+  .is-mobile-true .dropdown > .dropdown-menu::after,
+  .is-mobile-true .navbar .divider-vertical {
+    display: none;
+  }
+  /* line 65, sass/globals/_responsive.scss */
+  .is-mobile-true .widget-entry {
+    width: 100%;
+  }
+  /* line 68, sass/globals/_responsive.scss */
+  .is-mobile-true .widget-block {
+    margin: 0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    border-bottom: solid 1px #ccc;
+  }
+  /* line 75, sass/globals/_responsive.scss */
+  .is-mobile-true .widget-block-in {
+    /*   border: solid 1px red;*/
+    height: auto;
+    text-align: left;
+    padding: 10px;
+  }
+  /* line 81, sass/globals/_responsive.scss */
+  .is-mobile-true .widget-header {
+    float: left;
+    width: 70px;
+  }
+  /* line 85, sass/globals/_responsive.scss */
+  .is-mobile-true .widget-body {
+    float: left;
+  }
+  /* line 88, sass/globals/_responsive.scss */
+  .is-mobile-true .widget-image {
+    margin: 0;
+    width: 48px;
+    height: 48px;
+  }
+  /* line 97, sass/globals/_responsive.scss */
+  .is-mobile-true .event-entry .event-img {
+    width: 24px;
+    height: 24px;
+  }
+  /* line 101, sass/globals/_responsive.scss */
+  .is-mobile-true .event-entry .event-message {
+    display: block;
+  }
+  /* line 104, sass/globals/_responsive.scss */
+  .is-mobile-true .event-entry .event-action {
+    text-align: right;
+  }
+  /* line 111, sass/globals/_responsive.scss */
+  .is-mobile-true .tabs-container {
+    text-align: center;
+  }
+  /* line 114, sass/globals/_responsive.scss */
+  .is-mobile-true .nav-tabs {
+    display: block;
+    text-align: center;
+    padding: 0 25%;
+  }
+  /* line 119, sass/globals/_responsive.scss */
+  .is-mobile-true .tab-name {
+    display: none;
+  }
+  /* line 122, sass/globals/_responsive.scss */
+  .is-mobile-true .tab-icon {
+    font-size: 20px;
+  }
+  /* line 125, sass/globals/_responsive.scss */
+  .is-mobile-true .app-entry {
+    width: 100%;
+    padding: 0 20px;
+  }
+  /* line 129, sass/globals/_responsive.scss */
+  .is-mobile-true .app-entry-in {
+    border: none;
+    border-bottom: solid 1px #ccc;
+    margin: 0;
+    padding: 10px;
+    border-radius: 0;
+    height: auto;
+  }
+  /* line 136, sass/globals/_responsive.scss */
+  .is-mobile-true .app-entry-in .list-group {
+    border: 0 none;
+  }
+  /* line 139, sass/globals/_responsive.scss */
+  .is-mobile-true .app-entry-in .list-group-item {
+    border: none;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 10px;
+  }
+  /* line 147, sass/globals/_responsive.scss */
+  .is-mobile-true .app-entry-in .app-header {
+    float: left;
+    width: 35%;
+  }
+  /* line 151, sass/globals/_responsive.scss */
+  .is-mobile-true .app-entry-in .app-body {
+    float: left;
+    width: 64%;
+    margin: 0;
+    padding: 0;
+  }
+  /* line 156, sass/globals/_responsive.scss */
+  .is-mobile-true .app-entry-in .app-body .btn {
+    vertical-align: top;
+  }
+  /* line 163, sass/globals/_responsive.scss */
+  .is-mobile-true #table_apps_active .btn {
+    font-size: 12px;
+  }
+  /* line 166, sass/globals/_responsive.scss */
+  .is-mobile-true #table_apps_active .btn-name {
+    display: none;
+  }
+  /* line 170, sass/globals/_responsive.scss */
+  .is-mobile-true .app-image-list {
+    max-width: 50px;
   }
 }
 /*==========  Mobile First Method  ==========*/
@@ -518,63 +683,175 @@ h3 {
 /* Medium Devices, Desktops */
 /* Small Devices, Tablets */
 @media only screen and (max-width: 768px) {
-  /* line 94, sass/globals/_responsive.scss */
+  /* line 221, sass/globals/_responsive.scss */
   .container {
     max-width: none;
     width: 100%;
   }
 
-  /* line 99, sass/globals/_responsive.scss */
+  /* line 226, sass/globals/_responsive.scss */
   #main_content {
     padding: 0;
   }
 
-  /* line 102, sass/globals/_responsive.scss */
+  /* line 229, sass/globals/_responsive.scss */
   .navbar .divider-vertical {
     display: none;
   }
 
-  /* line 106, sass/globals/_responsive.scss */
+  /* line 233, sass/globals/_responsive.scss */
   .dropdown > .dropdown-menu::before,
   .dropdown > .dropdown-menu::after,
   .navbar .divider-vertical {
     display: none;
   }
 
-  /* line 112, sass/globals/_responsive.scss */
-  .only-icon-menu span {
-    display: inline;
+ /* Tabs
+-------------------------------------------------- */
+  /* Elements
+  -------------------------------------------------- */
+  /* line 243, sass/globals/_responsive.scss */
+  .widget-entry {
+    width: 100%;
   }
 
-  /* line 116, sass/globals/_responsive.scss */
-  .only-icon-menu {
-    padding: 10px 7px;
+  /* line 246, sass/globals/_responsive.scss */
+  .widget-block {
+    margin: 0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    border-bottom: solid 1px #ccc;
   }
 
-  /* line 120, sass/globals/_responsive.scss */
-  .only-icon-menu i {
-    font-size: 14px;
+  /* line 253, sass/globals/_responsive.scss */
+  .widget-block-in {
+    /*   border: solid 1px red;*/
+    height: auto;
+    text-align: left;
+    padding: 10px;
   }
 
-  /* line 127, sass/globals/_responsive.scss */
+  /* line 259, sass/globals/_responsive.scss */
+  .widget-header {
+    float: left;
+    width: 70px;
+  }
+
+  /* line 263, sass/globals/_responsive.scss */
+  .widget-body {
+    float: left;
+  }
+
+  /* line 266, sass/globals/_responsive.scss */
+  .widget-image {
+    margin: 0;
+    width: 48px;
+    height: 48px;
+  }
+
+  /* Eevents
+  -------------------------------------------------- */
+  /* line 275, sass/globals/_responsive.scss */
   .event-entry .event-img {
     width: 24px;
     height: 24px;
   }
-  /* line 131, sass/globals/_responsive.scss */
+  /* line 279, sass/globals/_responsive.scss */
   .event-entry .event-message {
     display: block;
   }
-  /* line 134, sass/globals/_responsive.scss */
+  /* line 282, sass/globals/_responsive.scss */
   .event-entry .event-action {
     text-align: right;
+  }
+
+  /* Apps
+  -------------------------------------------------- */
+  /* line 289, sass/globals/_responsive.scss */
+  .tabs-container {
+    text-align: center;
+  }
+
+  /* line 292, sass/globals/_responsive.scss */
+  .nav-tabs {
+    display: block;
+    text-align: center;
+    padding: 0 25%;
+  }
+
+  /* line 297, sass/globals/_responsive.scss */
+  .tab-name {
+    display: none;
+  }
+
+  /* line 300, sass/globals/_responsive.scss */
+  .tab-icon {
+    font-size: 20px;
+  }
+
+  /* line 303, sass/globals/_responsive.scss */
+  .app-entry {
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  /* line 307, sass/globals/_responsive.scss */
+  .app-entry-in {
+    border: none;
+    border-bottom: solid 1px #ccc;
+    margin: 0;
+    padding: 10px;
+    border-radius: 0;
+    height: auto;
+  }
+  /* line 314, sass/globals/_responsive.scss */
+  .app-entry-in .list-group {
+    border: 0 none;
+  }
+  /* line 317, sass/globals/_responsive.scss */
+  .app-entry-in .list-group-item {
+    border: none;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 10px;
+  }
+  /* line 325, sass/globals/_responsive.scss */
+  .app-entry-in .app-header {
+    float: left;
+    width: 35%;
+  }
+  /* line 329, sass/globals/_responsive.scss */
+  .app-entry-in .app-body {
+    float: left;
+    width: 64%;
+    margin: 0;
+    padding: 0;
+  }
+  /* line 334, sass/globals/_responsive.scss */
+  .app-entry-in .app-body .btn {
+    vertical-align: top;
+  }
+
+  /* line 341, sass/globals/_responsive.scss */
+  #table_apps_active .btn {
+    font-size: 12px;
+  }
+  /* line 344, sass/globals/_responsive.scss */
+  #table_apps_active .btn-name {
+    display: none;
+  }
+
+  /* line 348, sass/globals/_responsive.scss */
+  .app-image-list {
+    max-width: 50px;
   }
 }
 /* Extra Small Devices, Phones */
 /* Custom, iPhone Retina */
 /* Custom, iPhone Retina */
 @media only screen and (min-width: 768px) and (max-width: 992px) {
-  /* line 156, sass/globals/_responsive.scss */
+  /* line 369, sass/globals/_responsive.scss */
   .hide-navi-text {
     display: none !important;
   }

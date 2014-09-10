@@ -3,11 +3,11 @@
     <div class="col-md-6 app-entry"  ng-repeat="v in collection">
         <div class="app-entry-in">
        <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-5 app-header">
                  <h3>{{ v.name}}</h3>
-                 <img class="apps-image" src="storage/img/apps/appimage.jpg" alt="{{ v.name}}"/>
+                 <img class="app-image" src="storage/img/apps/appimage.jpg" alt="{{ v.name}}"/>
             </div>
-            <div class="col-md-7">
+            <div class="col-md-7 app-body">
                
                 <ul class="list-group">
                     <li class="list-group-item"><strong>{{_t('lb_active_in')}}:</strong> <span ng-repeat="i in v.instances">{{i}}, </span></li>
