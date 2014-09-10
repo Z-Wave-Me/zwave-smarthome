@@ -1,58 +1,63 @@
 /* Body
 -------------------------------------------------- */
+/* line 4, sass/globals/_body.scss */
+body {
+  background-color: #fff;
+}
+
 /* Typo
 -------------------------------------------------- */
-/* line 8, sass/globals/_body.scss */
+/* line 10, sass/globals/_body.scss */
 h1, .h1, h2, .h2, h3, .h3 {
   margin-top: 0;
   margin-bottom: 10px;
 }
 
-/* line 12, sass/globals/_body.scss */
+/* line 14, sass/globals/_body.scss */
 h1 {
   font-size: 26px;
   /*    text-shadow: 3px 1px 2px rgba(150, 150, 150, 1);*/
   /*    color: #2A6496;*/
 }
 
-/* line 18, sass/globals/_body.scss */
+/* line 20, sass/globals/_body.scss */
 h3 {
   font-size: 20px;
 }
 
-/* line 22, sass/globals/_body.scss */
+/* line 24, sass/globals/_body.scss */
 .perex {
   margin: 20px 0;
   padding: 20px 0 0 0;
   border-top: 1px dotted #9fd8ef;
 }
 
-/* line 28, sass/globals/_body.scss */
+/* line 30, sass/globals/_body.scss */
 .badge {
   padding: 7px;
   margin-right: 5px;
 }
 
-/* line 33, sass/globals/_body.scss */
+/* line 35, sass/globals/_body.scss */
 .btn-tooltip {
   cursor: help;
 }
 
 /* Page
 -------------------------------------------------- */
-/* line 39, sass/globals/_body.scss */
+/* line 41, sass/globals/_body.scss */
 #respone_container {
   display: none;
 }
 
-/* line 42, sass/globals/_body.scss */
+/* line 44, sass/globals/_body.scss */
 .page-header {
   padding-bottom: 0;
   margin: 20px 0 30px 0;
   border-bottom: 0;
 }
 
-/* line 48, sass/globals/_body.scss */
+/* line 50, sass/globals/_body.scss */
 #main_content {
   margin-top: 70px;
   margin-bottom: 20px;
@@ -179,16 +184,6 @@ h3 {
   margin-top: 10px;
 }
 
-/* Hide footer */
-/* line 14, sass/globals/_footer.scss */
-#page_ #footer,
-#page_rooms #footer,
-#page_network #footer,
-#page_room #footer,
-#page_config-rooms #footer {
-  display: none;
-}
-
 /* Homepage styles */
 /* Elements
 -------------------------------------------------- */
@@ -233,13 +228,10 @@ h3 {
   font-style: italic;
 }
 
-/* Theme 1 */
-/* line 34, sass/modules/_elements.scss */
-#page_elements {
-  background: #E5E5E5;
-}
-
-/* line 37, sass/modules/_elements.scss */
+/*#page_elements{ 
+    background: #E5E5E5;
+}*/
+/* line 36, sass/modules/_elements.scss */
 .widget-block {
   margin-bottom: 20px;
   background-color: #fff;
@@ -247,90 +239,77 @@ h3 {
   -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
   box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
 }
-/* line 43, sass/modules/_elements.scss */
+/* line 42, sass/modules/_elements.scss */
 .widget-block h3 {
   font-size: 16px;
   color: #909090;
 }
 
-/* line 48, sass/modules/_elements.scss */
+/* line 47, sass/modules/_elements.scss */
 .widget-block-in {
   /*   border: solid 1px red;*/
   height: 200px;
   position: relative;
 }
 
-/* line 53, sass/modules/_elements.scss */
+/* line 52, sass/modules/_elements.scss */
 .widget-header {
   position: relative;
 }
 
-/* line 57, sass/modules/_elements.scss */
+/* line 56, sass/modules/_elements.scss */
 .widget-config {
   position: absolute;
   left: 85%;
   top: 5%;
 }
 
-/* line 62, sass/modules/_elements.scss */
+/* line 61, sass/modules/_elements.scss */
 .widget-image {
   max-width: 70%;
 }
 
-/* line 68, sass/modules/_elements.scss */
+/* line 67, sass/modules/_elements.scss */
 .widget-body .element-hidden {
-  /* min-width: 110%; */
+  z-index: 10000;
+  overflow: hidden;
+  width: 300px;
+  height: 200px;
+  left: 50%;
+  margin-left: -150px;
+  top: 50%;
+  transform: translateY(-50%);
   border-radius: 3px;
-  padding: 20px;
+  padding: 10px;
   background-color: #fff;
   border: solid 1px #DDDDDD;
   position: absolute;
-  /* left: -5%; */
-  z-index: 10000;
+  background-color: #fff;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-}
-
-/* line 81, sass/modules/_elements.scss */
-.hidden-switch-multilevel {
-  min-width: 260px;
-  /*     min-height: 120%;*/
-  top: 5%;
-  left: -25%;
-}
-
-/* line 88, sass/modules/_elements.scss */
-.hidden-sensor-multilevel {
-  min-width: 320px;
-  /*     min-height: 120%;*/
-  top: -5%;
-  left: -50%;
-}
-
-/* line 95, sass/modules/_elements.scss */
-.hidden-sensor-multilevel-linear {
-  min-width: 260px;
-  /*     min-height: 120%;*/
-  top: 15%;
-  left: -25%;
-}
-
-/* line 102, sass/modules/_elements.scss */
-.hidden-camera {
-  min-width: 300px;
-  top: -5%;
-  left: -50%;
 }
 
 /* Events
 -------------------------------------------------- */
 /* line 3, sass/modules/_events.scss */
-.event-alert {
-  border: solid 1px #ccc;
+.event-entry {
+  border-bottom: solid 1px #ccc;
+  background: #fff;
+  padding: 10px;
 }
-
-/* line 6, sass/modules/_events.scss */
-.event-alert .text-warning {
+/* line 7, sass/modules/_events.scss */
+.event-entry .text-warning {
   color: #ff5d00;
+}
+/* line 10, sass/modules/_events.scss */
+.event-entry .event-time {
+  font-style: italic;
+  color: #969696;
+}
+/* line 14, sass/modules/_events.scss */
+.event-entry .event-img {
+  margin: 0 5px;
+  /*        width: 24px;
+          height: 24px;*/
 }
 
 /* Apps
@@ -527,33 +506,6 @@ h3 {
   .is-mobile-true .container {
     width: 100%;
   }
-  /* line 46, sass/globals/_responsive.scss */
-  .is-mobile-true .hidden-switch-multilevel {
-    min-width: 260px;
-    /*     min-height: 120%;*/
-    top: 5%;
-    left: 0;
-  }
-  /* line 53, sass/globals/_responsive.scss */
-  .is-mobile-true .hidden-sensor-multilevel {
-    min-width: 360px;
-    /*     min-height: 120%;*/
-    top: -5%;
-    left: 0;
-  }
-  /* line 60, sass/globals/_responsive.scss */
-  .is-mobile-true .hidden-sensor-multilevel-linear {
-    min-width: 260px;
-    /*     min-height: 120%;*/
-    top: 15%;
-    left: 0;
-  }
-  /* line 67, sass/globals/_responsive.scss */
-  .is-mobile-true .hidden-camera {
-    min-width: 360px;
-    top: -15%;
-    left: 0;
-  }
 }
 /*==========  Mobile First Method  ==========*/
 /* Custom, iPhone Retina */
@@ -564,141 +516,65 @@ h3 {
 /*==========  Non-Mobile First Method  ==========*/
 /* Large Devices, Wide Screens */
 /* Medium Devices, Desktops */
-@media only screen and (max-width: 992px) {
-  /* line 115, sass/globals/_responsive.scss */
-  .hidden-switch-multilevel {
-    min-width: 260px;
-    /*     min-height: 120%;*/
-    top: 5%;
-    left: 5%;
-  }
-
-  /* line 122, sass/globals/_responsive.scss */
-  .hidden-sensor-multilevel {
-    min-width: 360px;
-    /*     min-height: 120%;*/
-    top: -5%;
-    left: 0;
-  }
-
-  /* line 129, sass/globals/_responsive.scss */
-  .hidden-sensor-multilevel-linear {
-    min-width: 260px;
-    /*     min-height: 120%;*/
-    top: 15%;
-    left: 3%;
-  }
-
-  /* line 136, sass/globals/_responsive.scss */
-  .hidden-camera {
-    min-width: 360px;
-    top: -15%;
-    left: 0;
-  }
-}
 /* Small Devices, Tablets */
 @media only screen and (max-width: 768px) {
-  /* line 145, sass/globals/_responsive.scss */
+  /* line 94, sass/globals/_responsive.scss */
   .container {
     max-width: none;
     width: 100%;
   }
 
-  /* line 149, sass/globals/_responsive.scss */
+  /* line 99, sass/globals/_responsive.scss */
+  #main_content {
+    padding: 0;
+  }
+
+  /* line 102, sass/globals/_responsive.scss */
   .navbar .divider-vertical {
     display: none;
   }
 
-  /* line 153, sass/globals/_responsive.scss */
+  /* line 106, sass/globals/_responsive.scss */
   .dropdown > .dropdown-menu::before,
   .dropdown > .dropdown-menu::after,
   .navbar .divider-vertical {
     display: none;
   }
 
-  /* line 159, sass/globals/_responsive.scss */
+  /* line 112, sass/globals/_responsive.scss */
   .only-icon-menu span {
     display: inline;
   }
 
-  /* line 163, sass/globals/_responsive.scss */
+  /* line 116, sass/globals/_responsive.scss */
   .only-icon-menu {
     padding: 10px 7px;
   }
 
-  /* line 167, sass/globals/_responsive.scss */
+  /* line 120, sass/globals/_responsive.scss */
   .only-icon-menu i {
     font-size: 14px;
   }
 
-  /* line 173, sass/globals/_responsive.scss */
-  .hidden-switch-multilevel {
-    min-width: 260px;
-    /*     min-height: 120%;*/
-    top: 5%;
-    left: 25%;
+  /* line 127, sass/globals/_responsive.scss */
+  .event-entry .event-img {
+    width: 24px;
+    height: 24px;
   }
-
-  /* line 180, sass/globals/_responsive.scss */
-  .hidden-sensor-multilevel {
-    min-width: 360px;
-    /*     min-height: 120%;*/
-    top: -5%;
-    left: 15%;
+  /* line 131, sass/globals/_responsive.scss */
+  .event-entry .event-message {
+    display: block;
   }
-
-  /* line 187, sass/globals/_responsive.scss */
-  .hidden-sensor-multilevel-linear {
-    min-width: 260px;
-    /*     min-height: 120%;*/
-    top: 15%;
-    left: 25%;
-  }
-
-  /* line 194, sass/globals/_responsive.scss */
-  .hidden-camera {
-    min-width: 360px;
-    top: -15%;
-    left: 15%;
+  /* line 134, sass/globals/_responsive.scss */
+  .event-entry .event-action {
+    text-align: right;
   }
 }
 /* Extra Small Devices, Phones */
-@media only screen and (max-width: 480px) {
-  /* line 203, sass/globals/_responsive.scss */
-  .hidden-switch-multilevel {
-    min-width: 260px;
-    /*     min-height: 120%;*/
-    top: 5%;
-    left: 0;
-  }
-
-  /* line 210, sass/globals/_responsive.scss */
-  .hidden-sensor-multilevel {
-    min-width: 360px;
-    /*     min-height: 120%;*/
-    top: -5%;
-    left: 0;
-  }
-
-  /* line 217, sass/globals/_responsive.scss */
-  .hidden-sensor-multilevel-linear {
-    min-width: 260px;
-    /*     min-height: 120%;*/
-    top: 15%;
-    left: 0;
-  }
-
-  /* line 224, sass/globals/_responsive.scss */
-  .hidden-camera {
-    min-width: 360px;
-    top: -15%;
-    left: 0;
-  }
-}
 /* Custom, iPhone Retina */
 /* Custom, iPhone Retina */
 @media only screen and (min-width: 768px) and (max-width: 992px) {
-  /* line 243, sass/globals/_responsive.scss */
+  /* line 156, sass/globals/_responsive.scss */
   .hide-navi-text {
     display: none !important;
   }

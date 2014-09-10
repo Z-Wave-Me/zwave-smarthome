@@ -43,32 +43,6 @@
         .container{
             width: 100%;
         }
-         .hidden-switch-multilevel{
-        min-width: 260px;
-        /*     min-height: 120%;*/
-        top: 5%;
-        left:0;
-    }
-
-    .hidden-sensor-multilevel{
-        min-width: 360px;
-        /*     min-height: 120%;*/
-        top: -5%;
-        left: 0;
-    }
-
-    .hidden-sensor-multilevel-linear{
-        min-width: 260px;
-        /*     min-height: 120%;*/
-        top: 15%;
-        left: 0;
-    }
-
-    .hidden-camera{
-        min-width: 360px;
-        top: -15%;
-        left: 0;
-    }
     } 
 }
 
@@ -112,32 +86,7 @@
 
 /* Medium Devices, Desktops */
 @media only screen and (max-width : 992px) {
-    .hidden-switch-multilevel{
-        min-width: 260px;
-        /*     min-height: 120%;*/
-        top: 5%;
-        left: 5%;
-    }
 
-    .hidden-sensor-multilevel{
-        min-width: 360px;
-        /*     min-height: 120%;*/
-        top: -5%;
-        left: 0;
-    }
-
-    .hidden-sensor-multilevel-linear{
-        min-width: 260px;
-        /*     min-height: 120%;*/
-        top: 15%;
-        left: 3%;
-    }
-
-    .hidden-camera{
-        min-width: 360px;
-        top: -15%;
-        left: 0;
-    }
 }
 
 /* Small Devices, Tablets */
@@ -145,6 +94,10 @@
     .container{
         max-width:none;
         width: 100%;
+       
+    }
+    #main_content{
+        padding: 0;
     }
     .navbar .divider-vertical{
         display: none;
@@ -169,63 +122,23 @@
 
 
     }
-    
-    .hidden-switch-multilevel{
-        min-width: 260px;
-        /*     min-height: 120%;*/
-        top: 5%;
-        left: 25%;
-    }
-
-    .hidden-sensor-multilevel{
-        min-width: 360px;
-        /*     min-height: 120%;*/
-        top: -5%;
-        left: 15%;
-    }
-
-    .hidden-sensor-multilevel-linear{
-        min-width: 260px;
-        /*     min-height: 120%;*/
-        top: 15%;
-        left: 25%;
-    }
-
-    .hidden-camera{
-        min-width: 360px;
-        top: -15%;
-        left: 15%;
+    // Events
+    .event-entry{
+       .event-img{
+         width: 24px;
+          height: 24px;
+        }
+        .event-message{
+            display: block;
+        }
+        .event-action{
+            text-align: right;
+        }
     }
 }
 
 /* Extra Small Devices, Phones */ 
 @media only screen and (max-width : 480px) {
-     .hidden-switch-multilevel{
-        min-width: 260px;
-        /*     min-height: 120%;*/
-        top: 5%;
-        left:0;
-    }
-
-    .hidden-sensor-multilevel{
-        min-width: 360px;
-        /*     min-height: 120%;*/
-        top: -5%;
-        left: 0;
-    }
-
-    .hidden-sensor-multilevel-linear{
-        min-width: 260px;
-        /*     min-height: 120%;*/
-        top: 15%;
-        left: 0;
-    }
-
-    .hidden-camera{
-        min-width: 360px;
-        top: -15%;
-        left: 0;
-    }
 
 }
 

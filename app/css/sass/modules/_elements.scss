@@ -30,10 +30,9 @@
     font-style:italic;
 }
 
-/* Theme 1 */
-#page_elements{ 
+/*#page_elements{ 
     background: #E5E5E5;
-}
+}*/
 .widget-block{ 
     margin-bottom: 20px;
     background-color: #fff;
@@ -47,7 +46,7 @@
 }
 .widget-block-in{
     /*   border: solid 1px red;*/
-    height: 200px;
+    height: $app-el-block-h;
     position:relative;
 }
 .widget-header{
@@ -58,7 +57,7 @@
     position: absolute;
     left: 85%;
     top: 5%;
-}
+} 
 .widget-image{
     max-width: 70%;
 }
@@ -66,41 +65,28 @@
 .widget-body{
     //position:relative;
     .element-hidden{
-        /* min-width: 110%; */
+        z-index: 10000;
+        overflow: hidden;
+        width: $app-el-block-w;
+        height: $app-el-block-h;
+        left: 50%;
+        margin-left:-150px;
+        top: 50%;
+        transform: translateY(-50%);
         border-radius: 3px;
-        padding: 20px;
+        padding: 10px;
         background-color: #fff;
         border: solid 1px #DDDDDD;
         position: absolute;
-        /* left: -5%; */
-        z-index: 10000;
+        background-color: #fff;
         box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
     }
 }
 
-.hidden-switch-multilevel{
-    min-width: 260px;
-    /*     min-height: 120%;*/
-    top: 5%;
-    left: -25%;
-}
+.hidden-switch-multilevel{}
 
-.hidden-sensor-multilevel{
-    min-width: 320px;
-    /*     min-height: 120%;*/
-    top: -5%;
-    left: -50%;
-}
+.hidden-sensor-multilevel{}
 
-.hidden-sensor-multilevel-linear{
-     min-width: 260px;
-    /*     min-height: 120%;*/
-    top: 15%;
-    left: -25%;
-}
+.hidden-sensor-multilevel-linear{}
 
-.hidden-camera{
-     min-width: 300px;
-    top: -5%;
-    left: -50%;
-}
+.hidden-camera{}

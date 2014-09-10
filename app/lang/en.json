@@ -1,4 +1,8 @@
 {
+     "missing": "---",
+    "lb_devices_room":"Devices in the room",
+     "---": "missing",
+     
     "nav_home": "Dashboard",
     "nav_elements": "Elements",
     "nav_rooms": "Rooms",

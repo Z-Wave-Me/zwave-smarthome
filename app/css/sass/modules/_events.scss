@@ -1,8 +1,19 @@
 /* Events
 -------------------------------------------------- */
-.event-alert{
-    border: solid 1px #ccc;
-}
-.event-alert .text-warning{
-    color: #ff5d00;
+.event-entry{
+    border-bottom: solid 1px #ccc;
+    background: #fff;
+    padding: 10px;
+    .text-warning{
+        color: #ff5d00;
+    }
+    .event-time{
+        font-style: italic;
+        color:#969696;
+    }
+    .event-img{
+        margin: 0 5px;
+/*        width: 24px;
+        height: 24px;*/
+    }
 }

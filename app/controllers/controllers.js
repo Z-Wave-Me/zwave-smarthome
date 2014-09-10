@@ -198,6 +198,13 @@ myAppController.controller('HomeController', function($scope, $location, dataFac
     $scope.chartOptions = {
         // Chart.js options can go here.
     };
+    
+    /**
+     * Slider options
+     */
+    $scope.slider = {
+        modelMax: 38
+    };
 
     /**
      * Show modal window
@@ -619,6 +626,13 @@ myAppController.controller('RoomDeviceController', function($scope, $routeParams
         ]
     };
 
+    /**
+     * Chart settings
+     */
+    $scope.chartOptions = {
+        // Chart.js options can go here.
+    };
+    
     /**
      * Chart settings
      */
