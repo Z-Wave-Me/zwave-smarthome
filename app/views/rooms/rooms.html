@@ -1,16 +1,10 @@
 <!-- Rooms view -->
 <div ng-controller="RoomController">
     <div class="row">
-        <div class="col-md-4 col-sm-6" id="panel_{{$index}}" ng-repeat="v in collection">
-            <div class="panel panel-default">
-                <div class="panel-body panel-body-room">
-                    <div class="room-image">
-                        <div class="room-name"><a href="#/room/{{v.id}}">{{v.name}}</a></div>
-                        <a href="#/room/{{v.id}}"  ng-show="v.id == 1"><img ng-src="storage/img/rooms/kitchen.jpg" alt="{{v.name}}" /></a>
-                         <a href="#/room/{{v.id}}"  ng-show="v.id == 2"><img ng-src="storage/img/rooms/bathroom.jpg" alt="{{v.name}}" /></a>
-                         <a href="#/room/{{v.id}}"  ng-show="v.id == 3"><img ng-src="storage/img/rooms/sleeping_room.png" alt="{{v.name}}" /></a>
-                    </div>
-                </div>
+        <div class="col-md-3 col-sm-6 room-entry" id="panel_{{$index}}" ng-repeat="v in collection">
+            <div class="room-in">
+                <h3 class="entry-title"><a href="#/room/{{v.id}}">{{v.name}}</a></h3>
+                <a href="#/room/{{v.id}}"><img class="room-image img-circle" ng-src="storage/img/rooms/{{v.img}}" alt="{{v.name}}" /></a>
             </div>
         </div>
     </div>

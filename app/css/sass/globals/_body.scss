@@ -20,6 +20,22 @@ h1 {
 h3 {
     font-size: 20px;
 }
+.page-header{
+    padding: 0 20px;
+}
+.page-subtitle{
+    font-size: 20px;
+    color: #6d6d6d;
+}
+.entry-title,.entry-title a{
+    font-size: 15px;
+    color: #6d6d6d;
+}
+
+.text-supp{
+    font-style: italic;
+    color:#969696;
+}
 
 .perex{
     margin: 20px 0;
@@ -34,6 +50,22 @@ h3 {
 
 .btn-tooltip{
     cursor: help;
+}
+/* Images
+-------------------------------------------------- */
+.report-img{
+    margin: 0 5px;
+    width: 48px;
+    display: inline;
+}
+
+/* tables
+-------------------------------------------------- */
+.table-report{
+   border: none !important;
+   td{
+       vertical-align: middle;
+   }
 }
 
 /* Page
@@ -56,12 +88,12 @@ h3 {
 -------------------------------------------------- */
 .tooltip-inner {
     background-color:#f2f2f2;
-   color: #000;
-   font-size: 14px;
-   padding: 10px;
-   text-align: left;
+    color: #000;
+    font-size: 14px;
+    padding: 10px;
+    text-align: left;
 }
 .tooltip-arrow {
-      border-bottom-color: #f2f2f2;
+    border-bottom-color: #f2f2f2;
 }
 

@@ -3,18 +3,21 @@
         "id": 1,
         "name": "Home",
         "description": "1. Profile description",
-        "color": "#3071A9"
+        "color": "#3071A9",
+        "img": "profile-home.png"
     },
     {
         "id": 2,
         "name": "Away",
         "description": "2. Profile description",
-        "color": "#449D44"
+        "color": "#449D44",
+        "img": "profile-away.png"
     },
     {
         "id": 3,
         "name": "My Profile",
          "description": "3. Profile description",
-        "color": "#31B0D5"
+        "color": "#31B0D5",
+        "img": "profile-icon.png"
     }
 ]

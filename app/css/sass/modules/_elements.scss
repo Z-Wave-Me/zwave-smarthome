@@ -35,14 +35,9 @@
 }*/
 .widget-block{ 
     margin-bottom: 20px;
-    background-color: #fff;
-    -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    -moz-box-shadow:    1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    box-shadow:         1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    h3{
-        font-size: 15px;
-        color: #6d6d6d;
-    }
+
+    @include appGradient();
+    @include appBoxShadow();
 }
 .widget-block-in{
     /*   border: solid 1px red;*/
@@ -62,8 +57,10 @@
 } 
 .widget-image{
     margin: 15px;
-   width: 96px;
-   height: 96px;
+    width: 96px;
+    height: 96px;
+    border: solid 6px #fff;
+    border-radius: 50%;
 }
 
 .widget-body{
@@ -87,6 +84,18 @@
     }
 }
 
+/* Home widget
+-------------------------------------------------- */
+.home-widget{
+    .widget-entry{
+        padding: 0;
+       
+        .widget-block{
+             margin: 0 !important;
+              border: solid 1px #e2e2e2;
+        }
+    }
+}
 .hidden-switch-multilevel{}
 
 .hidden-sensor-multilevel{}

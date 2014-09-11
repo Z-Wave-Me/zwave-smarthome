@@ -1,6 +1,6 @@
 <!-- Home view -->
 <div ng-controller="RoomDeviceController">
-    <h3>{{_t('lb_devices_room')}}: <strong>{{roomName}}</strong></h3> 
+    <h2 class="page-subtitle">{{_t('lb_devices_room')}}: <strong>{{roomName}}</strong></h2> 
     <div class="row">
         <div class="col-md-2 col-sm-6 widget-entry" ng-repeat="v in collection | limitTo: 18">
             <div class="widget-block" ng-switch="v.deviceType">
@@ -25,7 +25,7 @@
                                          goHiddenSensor = false;
                                          goHiddenSwitchLinear = false;">
 
-                        <h3 title="{{v.title}}">{{v.title| cutText:true:20}}</h3>
+                         <h3 class="entry-title" title="{{v.title}}">{{v.title| cutText:true:20}}</h3>
                         <!-- switchMultilevel -->
                         <div ng-switch-when="switchMultilevel">
                             <strong>{{v.level}} <i class="fa fa-caret-down"></i></strong>

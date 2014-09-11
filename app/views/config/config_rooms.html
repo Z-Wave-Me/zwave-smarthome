@@ -1,34 +1,26 @@
 <!-- Rooms view -->
 <div ng-controller="RoomConfigController">
-    <div class="page-header row">
+    <div class="page-header clearfix">
         <button type="button" 
-                class="btn btn-success pull-right"
+                class="btn btn-success pull-right btn-new-item"
                 ng-click="showModal('#modal_room', {'id': null, 'name': null})"
                 >{{_t('lb_add_room')}}</button>
     </div>
     <div class="row">
-        <div class="col-md-4 col-sm-6" id="panel_{{$index}}" ng-repeat="v in collection">
-            <div class="panel panel-default">
-                <div class="panel-body panel-body-room" ng-click="showModal('#modal_room', {'id': v.id, 'name': v.name})">
-                    <div class="room-image">
-                        <div class="room-name">
-                            {{v.name}}
-                            <span class="pull-right" >
+        <div class="col-md-3 col-sm-6 room-entry" id="panel_{{$index}}" ng-repeat="v in collection">
+            <div class="room-in">
+                <h3 class="entry-title"><span class="entry-title-text">{{v.name}}</span> 
+                            <a href="" 
+                                   ng-click="showModal('#modal_room', {'id': v.id, 'name': v.name,'img': v.img})"
+                                   ><i class="fa fa-pencil"></i></a>&nbsp;
                                 <a href="" 
-                                   ng-click="showModal('#modal_room', {'id': v.id, 'name': v.name})"
-                                   ><i class="fa fa-pencil"></i></a>&nbsp;&nbsp;&nbsp;
-                                <a href="" 
-                                    ng-click="delete('#panel_' + $index, {'id': v.id, 'name': v.name})"
+                                   ng-click="delete('#panel_' + $index, {'id': v.id, 'name': v.name})"
                                    ><i class="fa fa-times"></i></a>
-                                
-                            </span>
-                        </div>
-                        <img ng-show="v.id == 1" ng-src="storage/img/rooms/kitchen.jpg" alt="{{v.name}}" />
-                        <img ng-show="v.id == 2" ng-src="storage/img/rooms/bathroom.jpg" alt="{{v.name}}" />
-                        <img ng-show="v.id == 3" ng-src="storage/img/rooms/sleeping_room.png" alt="{{v.name}}" />
-                    </div>
-                </div>
-            </div>
+                        </h3>
+                 <a href="" title="{{v.name}}" ng-click="showModal('#modal_room', {'id': v.id, 'name': v.name,'img': v.img})">
+                     <img class="room-image img-circle" ng-src="storage/img/rooms/{{v.img}}" alt="{{v.name}}" />
+                 </a>
+             </div>
         </div>
     </div>
     <div class="modal fade" id="modal_room" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -58,9 +50,7 @@
                         </div>
                     </div>
                     <div class="form-control-static text-center">
-                        <img ng-show="input.id == 1" ng-src="storage/img/rooms/kitchen.jpg" width="320" height="180" alt="{{v.name}}" />
-                        <img ng-show="input.id == 2" ng-src="storage/img/rooms/bathroom.jpg" width="320" height="180" alt="{{v.name}}" />
-                        <img ng-show="input.id == 3" ng-src="storage/img/rooms/sleeping_room.png" width="320" height="180" alt="{{v.name}}" />
+                        <img class="romm-image-preview" ng-src="storage/img/rooms/{{input.img}}" ng-show="input.img" />
                     </div>
                     <div class="room-assigned-block">
                         <h4>{{_t('lb_devices_in_room')}}</h4>

@@ -1,19 +1,10 @@
 /* Events
 -------------------------------------------------- */
-.event-entry{
-    border-bottom: solid 1px #ccc;
-    background: #fff;
-    padding: 10px;
-    .text-warning{
-        color: #ff5d00;
+.table-events{
+    .td-img{
+        max-width: 110px !important;
     }
-    .event-time{
-        font-style: italic;
-        color:#969696;
-    }
-    .event-img{
-        margin: 0 5px;
-/*        width: 24px;
-        height: 24px;*/
+    .td-action{
+        min-width: 110px;
     }
 }

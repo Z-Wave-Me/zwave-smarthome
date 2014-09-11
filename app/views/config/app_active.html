@@ -1,7 +1,7 @@
 <!-- Online app view -->
 <div class="table-responsive_">
-    <table id="table_apps_active" class="table table-striped">
-        <thead>
+    <table id="table_apps_active" class="table table-report">
+        <!--<thead>
             <tr>
                  <th>Image</th>
                     <th>
@@ -11,11 +11,11 @@
                     </th>
                    <th>&nbsp;</th>
             </tr>
-        </thead>
+        </thead> -->
         <tbody>
             <tr ng-repeat="v in collection| orderBy:predicate:reverse" id="{{ v.rowId}}">
                     <td><img class="app-image-list" src="storage/img/apps/appimage.jpg" alt="{{ v.name}}"/></td>
-                     <td><strong>{{_t('lb_instance_of')}} {{ v.instance_name}}</strong>
+                     <td>{{_t('lb_instance_of')}} {{ v.instance_name}}</td>
                      <td class="apps-action-icons">
                          <a title="{{_t('lb_deactivate')}}" class="btn btn-primary" href="" ng-show="v.status">
                              <i class="fa fa-power-off fa-lg"></i> <span class="btn-name">{{_t('lb_deactivate')}}</span>

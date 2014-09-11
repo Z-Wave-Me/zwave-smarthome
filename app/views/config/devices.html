@@ -1,11 +1,8 @@
 <!-- Devicess view -->
 <div ng-controller="DeviceController">
-    <div class="row">
-        <div class="col-sm-6">
-<div class="panel panel-default panel-highlighted">
-                <div class="panel-heading ng-binding"> <h4><i class="fa fa-cubes"></i> {{_t('lb_select_device_type')}}</h4></div>
-                <div class="panel-body">
-                    <div class="row device-logo">
+    <div class="device-container">
+        <h2 class="page-subtitle"><i class="fa fa-cubes"></i> {{_t('lb_select_device_type')}}</h2>
+        <div class="row device-logo">
                         <div class="col-sm-6">
                             <div class="device-types">
                                 <a href="" ng-click="goDevice1 = true"><img class="apps-image" src="app/img/logo-z-wave.png" alt="Logo" /></a>
@@ -34,40 +31,36 @@
                             <div class="alert alert-danger"><i class="fa fa-exclamation-triangle fa-lg"></i> {{_t('lb_error')}}: Error message comes here...</div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="panel panel-default panel-highlighted">
-                <div class="panel-heading"> <h4><i class="fa fa-cubes"></i> {{_t('lb_select_device_type')}}</h4></div>
-                <div class="panel-body">
-
-                    <ul class="media-list list-group">
+    </div>
+    
+    <div class="device-container">
+        <h2 class="page-subtitle"><i class="fa fa-cubes"></i> {{_t('lb_select_device_type')}}</h2>
+        <ul class="media-list list-group">
                         <li class="media list-group-item">
-                            <button class="pull-left" href="" ng-click="goDevice2 = true;
+                            <a class="pull-left" href="" ng-click="goDevice2 = true;
                                 addDevice2()">
-                                <img class="apps-image" width="70" height="70" src="storage/img/apps/appimage.jpg"/>
-                            </button>
+                                <img class="apps-image" width="70" height="70" src="storage/img/elements/battery.png"/>
+                            </a>
                             <div class="media-body">
                                 <h4 class="media-heading">Dapibus ac facilisis</h4>
                                 <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.</p>
                             </div>
                         </li>
                         <li class="media list-group-item">
-                            <button class="pull-left" ng-click="goDevice2 = true;
+                            <a class="pull-left" href="" ng-click="goDevice2 = true;
                                 addDevice2()">
-                                <img class="apps-image" width="70" height="70" src="storage/img/apps/appimage.jpg"/>
-                            </button>
+                                <img class="apps-image" width="70" height="70" src="storage/img/elements/switchBinary.png"/>
+                            </a>
                             <div class="media-body">
                                 <h4 class="media-heading">Morbi leo risus</h4>
                                 <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.</p>
                             </div>
                         </li>
                         <li class="media list-group-item">
-                            <button class="pull-left" ng-click="goDevice2 = true;
+                            <a class="pull-left" href="" ng-click="goDevice2 = true;
                                 addDevice2()">
-                                <img class="apps-image" width="70" height="70" src="storage/img/apps/appimage.jpg"/>
-                            </button>
+                               <img class="apps-image" width="70" height="70" src="storage/img/elements/toggleButton.png"/>
+                            </a>
                             <div class="media-body">
                                 <h4 class="media-heading">Porta ac consectetur ac</h4>
                                 <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.</p>
@@ -89,10 +82,5 @@
                             <div class="alert alert-danger" role="alert"><i class="fa fa-exclamation-triangle fa-lg"></i> {{_t('lb_error')}}: Error message comes here...</div>
                         </div>
                     </div>
-                </div>
-            </div>
-
-
-        </div>  
-    </div>
+        </div>
 </div> <!-- /ng-controller --> 

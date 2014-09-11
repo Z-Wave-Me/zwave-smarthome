@@ -1,5 +1,18 @@
 /* Devices
 -------------------------------------------------- */
+.device-container{
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 20px auto;
+    text-align: center;
+    padding: 10px;
+    border: solid 1px #e2e2e2;
+    @include appGradient();
+    
+    .list-group-item{
+        text-align: left;
+    }
+}
 .device-logo{
     text-align: center;
 }

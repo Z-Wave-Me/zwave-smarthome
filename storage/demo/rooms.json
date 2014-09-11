@@ -12,6 +12,11 @@
     {
         "id": 3,
         "name": "Sleeping room",
-        "img": "sleeping_room.png"
+        "img": "sleeping_room.jpg"
+    },
+    {
+        "id": 4,
+        "name": "Living room",
+        "img": "living_room.jpg"
     }
 ]

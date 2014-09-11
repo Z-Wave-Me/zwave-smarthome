@@ -25,39 +25,82 @@ h3 {
   font-size: 20px;
 }
 
-/* line 24, sass/globals/_body.scss */
+/* line 23, sass/globals/_body.scss */
+.page-header {
+  padding: 0 20px;
+}
+
+/* line 26, sass/globals/_body.scss */
+.page-subtitle {
+  font-size: 20px;
+  color: #6d6d6d;
+}
+
+/* line 30, sass/globals/_body.scss */
+.entry-title, .entry-title a {
+  font-size: 15px;
+  color: #6d6d6d;
+}
+
+/* line 35, sass/globals/_body.scss */
+.text-supp {
+  font-style: italic;
+  color: #969696;
+}
+
+/* line 40, sass/globals/_body.scss */
 .perex {
   margin: 20px 0;
   padding: 20px 0 0 0;
   border-top: 1px dotted #9fd8ef;
 }
 
-/* line 30, sass/globals/_body.scss */
+/* line 46, sass/globals/_body.scss */
 .badge {
   padding: 7px;
   margin-right: 5px;
 }
 
-/* line 35, sass/globals/_body.scss */
+/* line 51, sass/globals/_body.scss */
 .btn-tooltip {
   cursor: help;
 }
 
+/* Images
+-------------------------------------------------- */
+/* line 56, sass/globals/_body.scss */
+.report-img {
+  margin: 0 5px;
+  width: 48px;
+  display: inline;
+}
+
+/* tables
+-------------------------------------------------- */
+/* line 64, sass/globals/_body.scss */
+.table-report {
+  border: none !important;
+}
+/* line 66, sass/globals/_body.scss */
+.table-report td {
+  vertical-align: middle;
+}
+
 /* Page
 -------------------------------------------------- */
-/* line 41, sass/globals/_body.scss */
+/* line 73, sass/globals/_body.scss */
 #respone_container {
   display: none;
 }
 
-/* line 44, sass/globals/_body.scss */
+/* line 76, sass/globals/_body.scss */
 .page-header {
   padding-bottom: 0;
   margin: 20px 0 30px 0;
   border-bottom: 0;
 }
 
-/* line 50, sass/globals/_body.scss */
+/* line 82, sass/globals/_body.scss */
 #main_content {
   margin-top: 70px;
   margin-bottom: 20px;
@@ -65,7 +108,7 @@ h3 {
 
 /* Tooltip
 -------------------------------------------------- */
-/* line 57, sass/globals/_body.scss */
+/* line 89, sass/globals/_body.scss */
 .tooltip-inner {
   background-color: #f2f2f2;
   color: #000;
@@ -74,7 +117,7 @@ h3 {
   text-align: left;
 }
 
-/* line 64, sass/globals/_body.scss */
+/* line 96, sass/globals/_body.scss */
 .tooltip-arrow {
   border-bottom-color: #f2f2f2;
 }
@@ -250,18 +293,28 @@ h3 {
 /* line 36, sass/modules/_elements.scss */
 .widget-block {
   margin-bottom: 20px;
-  background-color: #fff;
+  background: #f7f7f7;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #f7f7f7 0%, #eaeaea 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f7f7f7), color-stop(100%, #eaeaea));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #f7f7f7 0%, #eaeaea 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #f7f7f7 0%, #eaeaea 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #f7f7f7 0%, #eaeaea 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #f7f7f7 0%, #eaeaea 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', endColorstr='#eaeaea',GradientType=0 );
+  /* IE6-9 */
   -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
   -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
   box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
 }
-/* line 42, sass/modules/_elements.scss */
-.widget-block h3 {
-  font-size: 15px;
-  color: #6d6d6d;
-}
 
-/* line 47, sass/modules/_elements.scss */
+/* line 42, sass/modules/_elements.scss */
 .widget-block-in {
   /*   border: solid 1px red;*/
   height: 200px;
@@ -269,12 +322,12 @@ h3 {
   text-align: center;
 }
 
-/* line 53, sass/modules/_elements.scss */
+/* line 48, sass/modules/_elements.scss */
 .widget-header {
   position: relative;
 }
 
-/* line 57, sass/modules/_elements.scss */
+/* line 52, sass/modules/_elements.scss */
 .widget-config {
   position: absolute;
   left: 85%;
@@ -282,14 +335,16 @@ h3 {
   z-index: 10;
 }
 
-/* line 63, sass/modules/_elements.scss */
+/* line 58, sass/modules/_elements.scss */
 .widget-image {
   margin: 15px;
   width: 96px;
   height: 96px;
+  border: solid 6px #fff;
+  border-radius: 50%;
 }
 
-/* line 71, sass/modules/_elements.scss */
+/* line 68, sass/modules/_elements.scss */
 .widget-body .element-hidden {
   z-index: 10000;
   overflow: hidden;
@@ -308,28 +363,27 @@ h3 {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
 }
 
+/* Home widget
+-------------------------------------------------- */
+/* line 90, sass/modules/_elements.scss */
+.home-widget .widget-entry {
+  padding: 0;
+}
+/* line 93, sass/modules/_elements.scss */
+.home-widget .widget-entry .widget-block {
+  margin: 0 !important;
+  border: solid 1px #e2e2e2;
+}
+
 /* Events
 -------------------------------------------------- */
-/* line 3, sass/modules/_events.scss */
-.event-entry {
-  border-bottom: solid 1px #ccc;
-  background: #fff;
-  padding: 10px;
+/* line 4, sass/modules/_events.scss */
+.table-events .td-img {
+  max-width: 110px !important;
 }
 /* line 7, sass/modules/_events.scss */
-.event-entry .text-warning {
-  color: #ff5d00;
-}
-/* line 10, sass/modules/_events.scss */
-.event-entry .event-time {
-  font-style: italic;
-  color: #969696;
-}
-/* line 14, sass/modules/_events.scss */
-.event-entry .event-img {
-  margin: 0 5px;
-  /*        width: 24px;
-          height: 24px;*/
+.table-events .td-action {
+  min-width: 110px;
 }
 
 /* Apps
@@ -367,39 +421,63 @@ h3 {
 /* Rooms
 -------------------------------------------------- */
 /* line 3, sass/modules/_rooms.scss */
-.panel-body-room {
+.room-entry {
+  padding: 0;
+}
+
+/* line 6, sass/modules/_rooms.scss */
+.room-in {
   text-align: center;
-  cursor: pointer;
+  padding: 10px;
+  border: solid 1px #e2e2e2;
+  background: #f7f7f7;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #f7f7f7 0%, #eaeaea 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f7f7f7), color-stop(100%, #eaeaea));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #f7f7f7 0%, #eaeaea 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #f7f7f7 0%, #eaeaea 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #f7f7f7 0%, #eaeaea 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #f7f7f7 0%, #eaeaea 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', endColorstr='#eaeaea',GradientType=0 );
+  /* IE6-9 */
+}
+/* line 11, sass/modules/_rooms.scss */
+.room-in .entry-title-text {
+  padding-right: 20px;
 }
 
-/* line 7, sass/modules/_rooms.scss */
-.room-image {
-  position: relative;
-}
-
-/* line 10, sass/modules/_rooms.scss */
-.room-name {
-  position: absolute;
+/* line 15, sass/modules/_rooms.scss */
+.room-image, .romm-image-preview {
+  border: solid 6px #fff;
   width: 100%;
-  text-align: left;
-  background-color: #323232;
-  color: #fff;
+  max-width: 260px;
+}
+
+/* line 20, sass/modules/_rooms.scss */
+.room-image:hover {
+  border-color: #e2e2e2;
+}
+
+/* line 23, sass/modules/_rooms.scss */
+.room-name {
+  text-align: center;
   padding: 0 10px;
   line-height: 34px;
 }
 
-/* line 19, sass/modules/_rooms.scss */
-.room-name a {
-  color: #fff;
-}
-
-/* line 22, sass/modules/_rooms.scss */
+/* line 29, sass/modules/_rooms.scss */
 .panel-body-room img {
   max-width: 100%;
   border: solid 4px #323232;
 }
 
-/* line 27, sass/modules/_rooms.scss */
+/* line 34, sass/modules/_rooms.scss */
 .btn-device {
   display: inline-block;
   padding: 6px 12px;
@@ -416,19 +494,19 @@ h3 {
   border-radius: 4px;
 }
 
-/* line 42, sass/modules/_rooms.scss */
+/* line 49, sass/modules/_rooms.scss */
 .room-assigned-block {
   padding: 10px;
   border: 1px solid #DDDDDD;
   margin: 10px 0;
 }
 
-/* line 47, sass/modules/_rooms.scss */
+/* line 54, sass/modules/_rooms.scss */
 #modal_room .badge {
   padding: 7px;
 }
 
-/* line 51, sass/modules/_rooms.scss */
+/* line 58, sass/modules/_rooms.scss */
 .hidden-device {
   display: none;
 }
@@ -436,16 +514,42 @@ h3 {
 /* Profile
 -------------------------------------------------- */
 /* line 3, sass/modules/_profile.scss */
-.panel-profile {
-  color: #fff;
+.profile-entry {
+  padding: 0;
 }
 
-/* line 7, sass/modules/_profile.scss */
-.panel-profile a {
-  color: #fff;
+/* line 6, sass/modules/_profile.scss */
+.profile-in {
+  text-align: center;
+  padding: 10px;
+  border: solid 1px #e2e2e2;
 }
-
 /* line 11, sass/modules/_profile.scss */
+.profile-in .entry-title {
+  color: #fff;
+}
+/* line 13, sass/modules/_profile.scss */
+.profile-in .entry-title a {
+  color: #fff;
+}
+/* line 17, sass/modules/_profile.scss */
+.profile-in .entry-title-text {
+  padding-right: 20px;
+}
+
+/* line 21, sass/modules/_profile.scss */
+.profile-image {
+  border: solid 6px #fff;
+  width: 100%;
+  max-width: 96px;
+}
+
+/* line 26, sass/modules/_profile.scss */
+.profile-image:hover {
+  border-color: #e2e2e2;
+}
+
+/* line 30, sass/modules/_profile.scss */
 .profile-color {
   display: inline-block;
   width: 24px;
@@ -454,12 +558,12 @@ h3 {
   border: solid 2px transparent;
 }
 
-/* line 19, sass/modules/_profile.scss */
+/* line 38, sass/modules/_profile.scss */
 .profile-color:hover {
   text-decoration: none;
 }
 
-/* line 23, sass/modules/_profile.scss */
+/* line 42, sass/modules/_profile.scss */
 .profile-color.active {
   border: solid 2px #000;
 }
@@ -467,15 +571,47 @@ h3 {
 /* Devices
 -------------------------------------------------- */
 /* line 3, sass/modules/_devices.scss */
+.device-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto 20px auto;
+  text-align: center;
+  padding: 10px;
+  border: solid 1px #e2e2e2;
+  background: #f7f7f7;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #f7f7f7 0%, #eaeaea 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f7f7f7), color-stop(100%, #eaeaea));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #f7f7f7 0%, #eaeaea 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #f7f7f7 0%, #eaeaea 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #f7f7f7 0%, #eaeaea 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #f7f7f7 0%, #eaeaea 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', endColorstr='#eaeaea',GradientType=0 );
+  /* IE6-9 */
+}
+/* line 12, sass/modules/_devices.scss */
+.device-container .list-group-item {
+  text-align: left;
+}
+
+/* line 16, sass/modules/_devices.scss */
 .device-logo {
   text-align: center;
 }
 
-/* line 6, sass/modules/_devices.scss */
+/* line 19, sass/modules/_devices.scss */
 .device-logo img {
   max-height: 50px;
 }
 
+/* Network
+-------------------------------------------------- */
 /*
  * The responsive style for the front-end
  */
@@ -683,39 +819,103 @@ h3 {
 /* Medium Devices, Desktops */
 /* Small Devices, Tablets */
 @media only screen and (max-width: 768px) {
-  /* line 221, sass/globals/_responsive.scss */
+  /* line 223, sass/globals/_responsive.scss */
   .container {
     max-width: none;
     width: 100%;
   }
 
-  /* line 226, sass/globals/_responsive.scss */
+  /* line 228, sass/globals/_responsive.scss */
   #main_content {
     padding: 0;
   }
 
-  /* line 229, sass/globals/_responsive.scss */
+  /* line 231, sass/globals/_responsive.scss */
   .navbar .divider-vertical {
     display: none;
   }
 
-  /* line 233, sass/globals/_responsive.scss */
+  /* line 235, sass/globals/_responsive.scss */
   .dropdown > .dropdown-menu::before,
   .dropdown > .dropdown-menu::after,
   .navbar .divider-vertical {
     display: none;
   }
 
- /* Tabs
--------------------------------------------------- */
+  /* line 241, sass/globals/_responsive.scss */
+  .page-header {
+    margin: 0 0 10px 0;
+    text-align: center;
+  }
+
+  /* Typo
+  -------------------------------------------------- */
+  /* line 247, sass/globals/_responsive.scss */
+  .page-subtitle {
+    padding: 0 10px;
+    font-size: 16px;
+  }
+
+  /* Images
+  -------------------------------------------------- */
+  /* line 253, sass/globals/_responsive.scss */
+  .report-img {
+    margin: 0 5px;
+    width: 32px;
+    display: inline;
+  }
+
+  /* tables
+  -------------------------------------------------- */
+  /* line 262, sass/globals/_responsive.scss */
+  .table-report tbody tr {
+    background: #f7f7f7;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #f7f7f7 0%, #eaeaea 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f7f7f7), color-stop(100%, #eaeaea));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #f7f7f7 0%, #eaeaea 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #f7f7f7 0%, #eaeaea 100%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #f7f7f7 0%, #eaeaea 100%);
+    /* IE10+ */
+    background: linear-gradient(to bottom, #f7f7f7 0%, #eaeaea 100%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', endColorstr='#eaeaea',GradientType=0 );
+    /* IE6-9 */
+  }
+
+  /* Forms
+  -------------------------------------------------- */
+  /* line 270, sass/globals/_responsive.scss */
+  .btn-new-item {
+    float: none !important;
+  }
+
+  /* line 273, sass/globals/_responsive.scss */
+  .btn-name {
+    display: none;
+  }
+
+  /* Tabs
+  -------------------------------------------------- */
+  /* Home
+  -------------------------------------------------- */
+  /* line 283, sass/globals/_responsive.scss */
+  .home-widget .widget-entry .widget-block {
+    padding: 5px 10px;
+  }
+
   /* Elements
   -------------------------------------------------- */
-  /* line 243, sass/globals/_responsive.scss */
+  /* line 291, sass/globals/_responsive.scss */
   .widget-entry {
     width: 100%;
   }
 
-  /* line 246, sass/globals/_responsive.scss */
+  /* line 294, sass/globals/_responsive.scss */
   .widget-block {
     margin: 0;
     -webkit-box-shadow: none;
@@ -724,7 +924,7 @@ h3 {
     border-bottom: solid 1px #ccc;
   }
 
-  /* line 253, sass/globals/_responsive.scss */
+  /* line 301, sass/globals/_responsive.scss */
   .widget-block-in {
     /*   border: solid 1px red;*/
     height: auto;
@@ -732,18 +932,18 @@ h3 {
     padding: 10px;
   }
 
-  /* line 259, sass/globals/_responsive.scss */
+  /* line 307, sass/globals/_responsive.scss */
   .widget-header {
     float: left;
     width: 70px;
   }
 
-  /* line 263, sass/globals/_responsive.scss */
+  /* line 311, sass/globals/_responsive.scss */
   .widget-body {
     float: left;
   }
 
-  /* line 266, sass/globals/_responsive.scss */
+  /* line 314, sass/globals/_responsive.scss */
   .widget-image {
     margin: 0;
     width: 48px;
@@ -752,51 +952,51 @@ h3 {
 
   /* Eevents
   -------------------------------------------------- */
-  /* line 275, sass/globals/_responsive.scss */
+  /* line 323, sass/globals/_responsive.scss */
   .event-entry .event-img {
     width: 24px;
     height: 24px;
   }
-  /* line 279, sass/globals/_responsive.scss */
+  /* line 327, sass/globals/_responsive.scss */
   .event-entry .event-message {
-    display: block;
+    /*            display: block;*/
   }
-  /* line 282, sass/globals/_responsive.scss */
+  /* line 330, sass/globals/_responsive.scss */
   .event-entry .event-action {
     text-align: right;
   }
 
   /* Apps
   -------------------------------------------------- */
-  /* line 289, sass/globals/_responsive.scss */
+  /* line 337, sass/globals/_responsive.scss */
   .tabs-container {
     text-align: center;
   }
 
-  /* line 292, sass/globals/_responsive.scss */
+  /* line 340, sass/globals/_responsive.scss */
   .nav-tabs {
     display: block;
     text-align: center;
     padding: 0 25%;
   }
 
-  /* line 297, sass/globals/_responsive.scss */
+  /* line 345, sass/globals/_responsive.scss */
   .tab-name {
     display: none;
   }
 
-  /* line 300, sass/globals/_responsive.scss */
+  /* line 348, sass/globals/_responsive.scss */
   .tab-icon {
     font-size: 20px;
   }
 
-  /* line 303, sass/globals/_responsive.scss */
+  /* line 351, sass/globals/_responsive.scss */
   .app-entry {
     width: 100%;
     padding: 0 20px;
   }
 
-  /* line 307, sass/globals/_responsive.scss */
+  /* line 355, sass/globals/_responsive.scss */
   .app-entry-in {
     border: none;
     border-bottom: solid 1px #ccc;
@@ -805,53 +1005,93 @@ h3 {
     border-radius: 0;
     height: auto;
   }
-  /* line 314, sass/globals/_responsive.scss */
+  /* line 362, sass/globals/_responsive.scss */
   .app-entry-in .list-group {
     border: 0 none;
   }
-  /* line 317, sass/globals/_responsive.scss */
+  /* line 365, sass/globals/_responsive.scss */
   .app-entry-in .list-group-item {
     border: none;
     margin: 0;
     padding: 0;
     padding-bottom: 10px;
   }
-  /* line 325, sass/globals/_responsive.scss */
+  /* line 373, sass/globals/_responsive.scss */
   .app-entry-in .app-header {
     float: left;
     width: 35%;
   }
-  /* line 329, sass/globals/_responsive.scss */
+  /* line 377, sass/globals/_responsive.scss */
   .app-entry-in .app-body {
     float: left;
     width: 64%;
     margin: 0;
     padding: 0;
   }
-  /* line 334, sass/globals/_responsive.scss */
+  /* line 382, sass/globals/_responsive.scss */
   .app-entry-in .app-body .btn {
     vertical-align: top;
   }
 
-  /* line 341, sass/globals/_responsive.scss */
+  /* line 389, sass/globals/_responsive.scss */
   #table_apps_active .btn {
     font-size: 12px;
   }
-  /* line 344, sass/globals/_responsive.scss */
-  #table_apps_active .btn-name {
+
+  /* line 394, sass/globals/_responsive.scss */
+  .app-image-list {
+    max-width: 50px;
+  }
+
+  /* Rooms
+  -------------------------------------------------- */
+  /* line 401, sass/globals/_responsive.scss */
+  .room-entry {
+    float: left;
+    width: 50%;
+  }
+  /* line 404, sass/globals/_responsive.scss */
+  .room-entry .entry-title {
+    font-size: 12px;
+  }
+  /* line 407, sass/globals/_responsive.scss */
+  .room-entry .entry-title-text {
     display: none;
   }
 
-  /* line 348, sass/globals/_responsive.scss */
-  .app-image-list {
-    max-width: 50px;
+  /* line 412, sass/globals/_responsive.scss */
+  .room-image {
+    max-width: 130px;
+  }
+
+  /* Profiles
+  -------------------------------------------------- */
+  /* line 419, sass/globals/_responsive.scss */
+  .profile-entry {
+    float: left;
+    width: 50%;
+  }
+  /* line 422, sass/globals/_responsive.scss */
+  .profile-entry .entry-title {
+    font-size: 12px;
+  }
+  /* line 425, sass/globals/_responsive.scss */
+  .profile-entry .entry-title-text {
+    display: none;
+  }
+
+  /* Devices
+  -------------------------------------------------- */
+  /* line 432, sass/globals/_responsive.scss */
+  .device-container_ {
+    width: 100%;
   }
 }
 /* Extra Small Devices, Phones */
 /* Custom, iPhone Retina */
 /* Custom, iPhone Retina */
 @media only screen and (min-width: 768px) and (max-width: 992px) {
-  /* line 369, sass/globals/_responsive.scss */
+  /* line 453, sass/globals/_responsive.scss */
   .hide-navi-text {
     display: none !important;
   }

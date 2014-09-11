@@ -1,11 +1,14 @@
 // Settings
 @import "settings/_base";
+@import "settings/_mixins";
 // CSS3
 @import "css3/_box-shadow.scss";
 // Core Bootstrap variables and mixins
 @import "bootstrap/_variables";
 @import "bootstrap/_mixins";
 
+// Css 3
+//@import "css3/_border-radius";
 // Vendors
 
 // Partials
@@ -21,6 +24,7 @@
 @import "modules/_rooms";
 @import "modules/_profile";
 @import "modules/_devices";
+@import "modules/_network";
 
 // Responsive
 @import "globals/_responsive";
