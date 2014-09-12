@@ -57,9 +57,55 @@
         .navbar .divider-vertical{
             display: none;
         }
-        /* Tabs
-       -------------------------------------------------- */
+
+        .page-header{
+            margin: 0 0 10px 0;
+            text-align: center;
+        }
+        /* Typo
+        -------------------------------------------------- */
+        .page-subtitle{
+            padding: 0 10px;
+            font-size: 16px;
+        }
+        /* Images
+        -------------------------------------------------- */
+        .report-img{
+            margin: 0 5px;
+            width: 32px;
+            display: inline;
+        }
+
+        /* tables
+        -------------------------------------------------- */
+        .table-report{
+            tbody tr{
+                @include appGradient();
+            }
+        }
+
         .tab-content{}
+        /* Forms
+        -------------------------------------------------- */
+        .btn-new-item{
+            float: none !important;
+        }
+        .btn-name{
+            display: none;
+        }
+
+        /* Tabs
+        -------------------------------------------------- */
+        /* Home
+        -------------------------------------------------- */
+        .home-widget{
+            .widget-entry{
+                .widget-block{
+                    padding: 5px 10px;
+                }
+            }
+        }
+
         /* Elements
         -------------------------------------------------- */
         .widget-entry{
@@ -99,7 +145,7 @@
                 height: 24px;
             }
             .event-message{
-                display: block;
+                /*            display: block;*/
             }
             .event-action{
                 text-align: right;
@@ -163,12 +209,43 @@
             .btn{
                 font-size: 12px;
             }
-            .btn-name{
-                display: none;
-            }
+
         }
         .app-image-list{
             max-width: 50px;
+        }
+
+        /* Rooms
+        -------------------------------------------------- */
+
+        .room-entry{
+            float:left;
+            width: 50%;
+            .entry-title{
+                font-size: 12px;
+            }
+            .entry-title-text{
+                display: none;
+            }
+
+        }
+        .room-image{
+            max-width: 130px;
+        }
+
+        /* Profiles
+        -------------------------------------------------- */
+
+        .profile-entry{
+            float:left;
+            width: 50%;
+            .entry-title{
+                font-size: 12px;
+            }
+            .entry-title-text{
+                display: none;
+            }
+
         }
     } 
 
@@ -242,6 +319,17 @@
         margin: 0 0 10px 0;
         text-align: center;
     }
+    .row-page{
+        margin: 0;
+    }
+
+    
+
+    .app-shadow{
+       -webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+    }
     /* Typo
     -------------------------------------------------- */
     .page-subtitle{
@@ -259,7 +347,7 @@
     /* tables
     -------------------------------------------------- */
     .table-report{
-       tbody tr{
+        tbody tr{
             @include appGradient();
         }
     }
@@ -279,12 +367,12 @@
     /* Home
     -------------------------------------------------- */
     .home-widget{
-    .widget-entry{
-        .widget-block{
-            padding: 5px 10px;
+        .widget-entry{
+            .widget-block{
+                padding: 5px 10px;
+            }
         }
     }
-}
 
     /* Elements
     -------------------------------------------------- */
@@ -350,11 +438,11 @@
     }
     .app-entry{
         width: 100%;
-        padding:  0 20px;
+        padding:  0;
     }
     .app-entry-in{
-        border: none;
-        border-bottom: solid 1px #ccc;
+        border: 0;
+        border-bottom: dotted 1px $app-border-color; 
         margin: 0;
         padding: 10px;
         border-radius: 0;
@@ -378,7 +466,7 @@
             float: left;
             width: 64%;
             margin: 0;
-            padding: 0;
+            padding-right: 10px;
             .btn{
                 vertical-align: top;
             }
@@ -429,9 +517,6 @@
     }
     /* Devices
     -------------------------------------------------- */
-    .device-container_{
-        width: 100%;
-    }
 }
 
 /* Extra Small Devices, Phones */ 

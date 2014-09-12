@@ -2,7 +2,7 @@
 <div ng-controller="RoomController">
     <div class="row">
         <div class="col-md-3 col-sm-6 room-entry" id="panel_{{$index}}" ng-repeat="v in collection">
-            <div class="room-in">
+            <div class="room-in app-border app-gradient app-shadow">
                 <h3 class="entry-title"><a href="#/room/{{v.id}}">{{v.name}}</a></h3>
                 <a href="#/room/{{v.id}}"><img class="room-image img-circle" ng-src="storage/img/rooms/{{v.img}}" alt="{{v.name}}" /></a>
             </div>

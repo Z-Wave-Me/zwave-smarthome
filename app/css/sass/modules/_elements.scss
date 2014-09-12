@@ -36,8 +36,8 @@
 .widget-block{ 
     margin-bottom: 20px;
 
-    @include appGradient();
-    @include appBoxShadow();
+/*    @include appGradient();
+    @include appBoxShadow();*/
 }
 .widget-block-in{
     /*   border: solid 1px red;*/
@@ -92,7 +92,7 @@
        
         .widget-block{
              margin: 0 !important;
-              border: solid 1px #e2e2e2;
+/*              border: solid 1px #e2e2e2;*/
         }
     }
 }

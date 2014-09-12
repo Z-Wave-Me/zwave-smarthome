@@ -1,56 +1,91 @@
 /* Navigation
 -------------------------------------------------- */
+/* Navbar */
+#main_navbar{
+    .container{
+        padding: 0;
+    }
+}
 /* Visible */
 .navbar-visible{
     position: relative;
     .navbar-visible-in{
-       top: 13px;
+        line-height: 50px;
+        //top: 13px;
         position: absolute;
         a{
-            color: #999;
-            margin-right: 20px;
+            display: inline-block;
+            padding: 0 15px;
+            color: $brand-color-secondary;
+            line-height: 60px;
         }
         a:hover{
-            color: #eeeeee;
+            color: lighten($brand-color-secondary, 20%);
+        }
+        .active{
+            background-color:$brand-color-secondary;
+             color: lighten($brand-color-primary, 10%);
         }
     }
 }
+
 .navbar-inverse {
-    background-color: #333333;
-    border-color: #080808;
+    background-color: $brand-color-primary;
+    border-color: transparent;
+    border-bottom: solid 10px $brand-color-secondary;
+    color: $brand-color-secondary;
+    .navbar-nav{
+        .dropdown-toggle{
+            color: $brand-color-secondary;
+        }
+        .dropdown-toggle:hover{
+             color: lighten($brand-color-secondary, 20%);
+        }
+    }
+
+}
+.navbar-inverse_ .navbar-nav .dropdown-toggle{
+    color: $brand-color-secondary;
 }
 /* Collapse */
 
 .navbar-inverse .navbar-nav>.active>a, 
 .navbar-inverse .navbar-nav>.active>a:hover, 
 .navbar-inverse .navbar-nav>.active>a:focus {
-    background-color: #282828;
+    background-color: lighten($brand-color-secondary, 40%);
 }
 
 .navbar-inverse .navbar-nav>.open>a, 
 .navbar-inverse .navbar-nav>.open>a:hover, 
 .navbar-inverse .navbar-nav>.open>a:focus {
-    background-color: #232323;
+    background-color: darken($brand-color-secondary, 50%);
 }
 
 .navbar-inverse .dropdown-menu>.active>a,
 .navbar-inverse .dropdown-menu>.active>a:hover,
 .navbar-inverse .dropdown-menu>.active>a:focus {
 
-    background-color: #474747;
+    background-color: lighten($brand-color-secondary, 40%);
 
 }
 
 .navbar-inverse .dropdown-menu>li>a:hover, 
 .navbar-inverse .dropdown-menu>li>a:focus {
-    background-color: #474747;
+    background-color: lighten($brand-color-secondary, 40%);
 }
 
 .navbar .divider-vertical {
     height: 50px;
     /*    margin: 0 9px;*/
-    border-left: 1px solid #1e1e1e;
-    border-right: 1px solid #3b3b3b;
+    border-left: 1px solid darken($brand-color-primary, 30%);
+    border-right: 1px solid lighten($brand-color-primary, 15%);
+}
+.dropdown-menu {
+
+    border: 1px solid lighten($brand-color-secondary, 30%);
+    .divider {
+        background-color: lighten($brand-color-secondary, 30%);
+    }
 }
 
 .dropdown > .dropdown-menu::before, .dropdown > .dropdown-menu::after {

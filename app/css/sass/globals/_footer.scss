@@ -1,11 +1,18 @@
 /* Footer
 -------------------------------------------------- */
 #footer {
+    
     text-align: center;
     height: 60px;
+    .navbar{
+        border-top: solid 4px darken($app-body-bcg-color, 10%);
+         background-color: darken($app-body-bcg-color, 5%);
+    }
+    .container{
+        margin-top: 10px;
+    }
+    
 }
-#footer .container{
-    margin-top: 10px;
-}
+
 #footer a{}
 #footer a:hover{}

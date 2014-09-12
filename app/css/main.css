@@ -1,74 +1,128 @@
+/*$brand-primary:         #428bca !default;
+$brand-success:         #5cb85c !default;
+$brand-info:            #5bc0de !default;
+$brand-warning:         #f0ad4e !default;
+$brand-danger:          #d9534f !default;*/
 /* Body
 -------------------------------------------------- */
 /* line 4, sass/globals/_body.scss */
 body {
-  background-color: #fff;
+  background-color: #c4d0de;
+  color: #1f2b37;
 }
 
 /* Typo
 -------------------------------------------------- */
-/* line 10, sass/globals/_body.scss */
+/* line 12, sass/globals/_body.scss */
 h1, .h1, h2, .h2, h3, .h3 {
   margin-top: 0;
   margin-bottom: 10px;
+  color: #3b5068;
 }
 
-/* line 14, sass/globals/_body.scss */
+/* line 17, sass/globals/_body.scss */
 h1 {
   font-size: 26px;
   /*    text-shadow: 3px 1px 2px rgba(150, 150, 150, 1);*/
   /*    color: #2A6496;*/
 }
 
-/* line 20, sass/globals/_body.scss */
+/* line 23, sass/globals/_body.scss */
 h3 {
   font-size: 20px;
 }
 
-/* line 23, sass/globals/_body.scss */
+/* line 26, sass/globals/_body.scss */
 .page-header {
+  margin: 0;
   padding: 0 20px;
 }
 
-/* line 26, sass/globals/_body.scss */
+/* line 30, sass/globals/_body.scss */
+.page-control {
+  position: relative;
+  top: -15px;
+}
+/* line 33, sass/globals/_body.scss */
+.page-control .btn-new-item {
+  background-color: #6C7A89;
+  border: 0;
+}
+
+/* line 38, sass/globals/_body.scss */
 .page-subtitle {
   font-size: 20px;
-  color: #6d6d6d;
 }
 
-/* line 30, sass/globals/_body.scss */
+/* line 41, sass/globals/_body.scss */
 .entry-title, .entry-title a {
   font-size: 15px;
-  color: #6d6d6d;
 }
 
-/* line 35, sass/globals/_body.scss */
+/* line 45, sass/globals/_body.scss */
+a {
+  color: #4d6989;
+}
+
+/* line 49, sass/globals/_body.scss */
 .text-supp {
   font-style: italic;
-  color: #969696;
+  color: #567699;
 }
 
-/* line 40, sass/globals/_body.scss */
+/* line 54, sass/globals/_body.scss */
 .perex {
   margin: 20px 0;
   padding: 20px 0 0 0;
   border-top: 1px dotted #9fd8ef;
 }
 
-/* line 46, sass/globals/_body.scss */
+/* line 60, sass/globals/_body.scss */
 .badge {
   padding: 7px;
   margin-right: 5px;
 }
 
-/* line 51, sass/globals/_body.scss */
+/* line 65, sass/globals/_body.scss */
 .btn-tooltip {
   cursor: help;
 }
 
+/* line 68, sass/globals/_body.scss */
+.app-border {
+  border: solid 1px #a4b6cb;
+}
+
+/* line 71, sass/globals/_body.scss */
+.app-gradient {
+  background: #e5eaf0;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #e5eaf0 0%, #f5f7f9 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e5eaf0), color-stop(100%, #f5f7f9));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #e5eaf0 0%, #f5f7f9 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #e5eaf0 0%, #f5f7f9 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #e5eaf0 0%, #f5f7f9 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #e5eaf0 0%, #f5f7f9 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e5eaf0', endColorstr='#f5f7f9',GradientType=0 );
+  /* IE6-9 */
+}
+
+/* line 75, sass/globals/_body.scss */
+.app-shadow {
+  -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+  -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+  box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+}
+
 /* Images
 -------------------------------------------------- */
-/* line 56, sass/globals/_body.scss */
+/* line 80, sass/globals/_body.scss */
 .report-img {
   margin: 0 5px;
   width: 48px;
@@ -77,30 +131,58 @@ h3 {
 
 /* tables
 -------------------------------------------------- */
-/* line 64, sass/globals/_body.scss */
-.table-report {
-  border: none !important;
+/* line 91, sass/globals/_body.scss */
+.table tbody tr td {
+  border-top: 4px solid #c4d0de;
 }
-/* line 66, sass/globals/_body.scss */
+
+/* line 99, sass/globals/_body.scss */
+.table-report {
+  border: 0 !important;
+}
+/* line 101, sass/globals/_body.scss */
 .table-report td {
   vertical-align: middle;
+}
+/* line 105, sass/globals/_body.scss */
+.table-report tbody tr {
+  background-color: #f5f7f9;
+}
+
+/* Tabs
+-------------------------------------------------- */
+/* line 112, sass/globals/_body.scss */
+.nav-tabs {
+  border-bottom: 1px solid #a4b6cb;
+}
+
+/* line 115, sass/globals/_body.scss */
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+  color: #283748;
+  background-color: #a4b6cb;
+  border: #a4b6cb;
+}
+
+/* line 120, sass/globals/_body.scss */
+.nav > li > a:hover, .nav > li > a:focus {
+  background-color: #e5eaf0;
 }
 
 /* Page
 -------------------------------------------------- */
-/* line 73, sass/globals/_body.scss */
+/* line 126, sass/globals/_body.scss */
 #respone_container {
   display: none;
 }
 
-/* line 76, sass/globals/_body.scss */
+/* line 129, sass/globals/_body.scss */
 .page-header {
   padding-bottom: 0;
   margin: 20px 0 30px 0;
   border-bottom: 0;
 }
 
-/* line 82, sass/globals/_body.scss */
+/* line 135, sass/globals/_body.scss */
 #main_content {
   margin-top: 70px;
   margin-bottom: 20px;
@@ -108,7 +190,7 @@ h3 {
 
 /* Tooltip
 -------------------------------------------------- */
-/* line 89, sass/globals/_body.scss */
+/* line 142, sass/globals/_body.scss */
 .tooltip-inner {
   background-color: #f2f2f2;
   color: #000;
@@ -117,76 +199,113 @@ h3 {
   text-align: left;
 }
 
-/* line 96, sass/globals/_body.scss */
+/* line 149, sass/globals/_body.scss */
 .tooltip-arrow {
   border-bottom-color: #f2f2f2;
 }
 
 /* Navigation
 -------------------------------------------------- */
+/* Navbar */
+/* line 5, sass/globals/_navigation.scss */
+#main_navbar .container {
+  padding: 0;
+}
+
 /* Visible */
-/* line 4, sass/globals/_navigation.scss */
+/* line 10, sass/globals/_navigation.scss */
 .navbar-visible {
   position: relative;
 }
-/* line 6, sass/globals/_navigation.scss */
+/* line 12, sass/globals/_navigation.scss */
 .navbar-visible .navbar-visible-in {
-  top: 13px;
+  line-height: 50px;
   position: absolute;
 }
-/* line 9, sass/globals/_navigation.scss */
+/* line 16, sass/globals/_navigation.scss */
 .navbar-visible .navbar-visible-in a {
-  color: #999;
-  margin-right: 20px;
+  display: inline-block;
+  padding: 0 15px;
+  color: #6C7A89;
+  line-height: 60px;
 }
-/* line 13, sass/globals/_navigation.scss */
+/* line 22, sass/globals/_navigation.scss */
 .navbar-visible .navbar-visible-in a:hover {
-  color: #eeeeee;
+  color: #a4adb7;
+}
+/* line 25, sass/globals/_navigation.scss */
+.navbar-visible .navbar-visible-in .active {
+  background-color: #6C7A89;
+  color: #283748;
 }
 
-/* line 18, sass/globals/_navigation.scss */
+/* line 32, sass/globals/_navigation.scss */
 .navbar-inverse {
-  background-color: #333333;
-  border-color: #080808;
+  background-color: #161E27;
+  border-color: transparent;
+  border-bottom: solid 10px #6C7A89;
+  color: #6C7A89;
+}
+/* line 38, sass/globals/_navigation.scss */
+.navbar-inverse .navbar-nav .dropdown-toggle {
+  color: #6C7A89;
+}
+/* line 41, sass/globals/_navigation.scss */
+.navbar-inverse .navbar-nav .dropdown-toggle:hover {
+  color: #a4adb7;
+}
+
+/* line 47, sass/globals/_navigation.scss */
+.navbar-inverse_ .navbar-nav .dropdown-toggle {
+  color: #6C7A89;
 }
 
 /* Collapse */
-/* line 24, sass/globals/_navigation.scss */
+/* line 52, sass/globals/_navigation.scss */
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > .active > a:focus {
-  background-color: #282828;
+  background-color: #dde0e4;
 }
 
-/* line 30, sass/globals/_navigation.scss */
+/* line 58, sass/globals/_navigation.scss */
 .navbar-inverse .navbar-nav > .open > a,
 .navbar-inverse .navbar-nav > .open > a:hover,
 .navbar-inverse .navbar-nav > .open > a:focus {
-  background-color: #232323;
+  background-color: black;
 }
 
-/* line 36, sass/globals/_navigation.scss */
+/* line 64, sass/globals/_navigation.scss */
 .navbar-inverse .dropdown-menu > .active > a,
 .navbar-inverse .dropdown-menu > .active > a:hover,
 .navbar-inverse .dropdown-menu > .active > a:focus {
-  background-color: #474747;
+  background-color: #dde0e4;
 }
 
-/* line 44, sass/globals/_navigation.scss */
+/* line 72, sass/globals/_navigation.scss */
 .navbar-inverse .dropdown-menu > li > a:hover,
 .navbar-inverse .dropdown-menu > li > a:focus {
-  background-color: #474747;
+  background-color: #dde0e4;
 }
 
-/* line 49, sass/globals/_navigation.scss */
+/* line 77, sass/globals/_navigation.scss */
 .navbar .divider-vertical {
   height: 50px;
   /*    margin: 0 9px;*/
-  border-left: 1px solid #1e1e1e;
-  border-right: 1px solid #3b3b3b;
+  border-left: 1px solid black;
+  border-right: 1px solid #324458;
 }
 
-/* line 56, sass/globals/_navigation.scss */
+/* line 83, sass/globals/_navigation.scss */
+.dropdown-menu {
+  border: 1px solid #c0c7ce;
+}
+/* line 86, sass/globals/_navigation.scss */
+.dropdown-menu .divider {
+  background-color: #c0c7ce;
+}
+
+/* line 91, sass/globals/_navigation.scss */
 .dropdown > .dropdown-menu::before, .dropdown > .dropdown-menu::after {
   content: '';
   display: inline-block;
@@ -199,7 +318,7 @@ h3 {
   left: 9px;
 }
 
-/* line 68, sass/globals/_navigation.scss */
+/* line 103, sass/globals/_navigation.scss */
 .dropdown > .dropdown-menu::after {
   border-left-width: 6px;
   border-right-width: 6px;
@@ -209,23 +328,23 @@ h3 {
   left: 10px;
 }
 
-/* line 77, sass/globals/_navigation.scss */
+/* line 112, sass/globals/_navigation.scss */
 .navbar-right .dropdown > .dropdown-menu:after {
   left: auto;
   right: 13px;
 }
 
-/* line 82, sass/globals/_navigation.scss */
+/* line 117, sass/globals/_navigation.scss */
 .only-icon .only-icon-menu i {
   font-size: 18px;
 }
 
-/* line 86, sass/globals/_navigation.scss */
+/* line 121, sass/globals/_navigation.scss */
 .only-icon-menu span {
   display: none;
 }
 
-/* line 90, sass/globals/_navigation.scss */
+/* line 125, sass/globals/_navigation.scss */
 .dropdown-menu a i {
   padding-right: 10px;
 }
@@ -237,8 +356,12 @@ h3 {
   text-align: center;
   height: 60px;
 }
-
 /* line 7, sass/globals/_footer.scss */
+#footer .navbar {
+  border-top: solid 4px #a4b6cb;
+  background-color: #b4c3d5;
+}
+/* line 11, sass/globals/_footer.scss */
 #footer .container {
   margin-top: 10px;
 }
@@ -293,25 +416,8 @@ h3 {
 /* line 36, sass/modules/_elements.scss */
 .widget-block {
   margin-bottom: 20px;
-  background: #f7f7f7;
-  /* Old browsers */
-  background: -moz-linear-gradient(top, #f7f7f7 0%, #eaeaea 100%);
-  /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f7f7f7), color-stop(100%, #eaeaea));
-  /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, #f7f7f7 0%, #eaeaea 100%);
-  /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, #f7f7f7 0%, #eaeaea 100%);
-  /* Opera 11.10+ */
-  background: -ms-linear-gradient(top, #f7f7f7 0%, #eaeaea 100%);
-  /* IE10+ */
-  background: linear-gradient(to bottom, #f7f7f7 0%, #eaeaea 100%);
-  /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', endColorstr='#eaeaea',GradientType=0 );
-  /* IE6-9 */
-  -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-  -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-  box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+  /*    @include appGradient();
+      @include appBoxShadow();*/
 }
 
 /* line 42, sass/modules/_elements.scss */
@@ -372,7 +478,7 @@ h3 {
 /* line 93, sass/modules/_elements.scss */
 .home-widget .widget-entry .widget-block {
   margin: 0 !important;
-  border: solid 1px #e2e2e2;
+  /*              border: solid 1px #e2e2e2;*/
 }
 
 /* Events
@@ -390,30 +496,43 @@ h3 {
 -------------------------------------------------- */
 /* line 5, sass/modules/_apps.scss */
 .app-entry-in {
-  border: solid 1px #ddd;
   margin: 10px 0;
   padding: 20px;
   border-radius: 5px;
-  height: 270px;
+  height: 220px;
+}
+/* line 10, sass/modules/_apps.scss */
+.app-entry-in .app-rating {
+  margin-right: 20px;
+  color: #5CB85C;
+}
+/* line 14, sass/modules/_apps.scss */
+.app-entry-in .entry-title {
+  font-size: 16px;
+}
+/* line 16, sass/modules/_apps.scss */
+.app-entry-in .entry-title .label {
+  font-size: 70%;
+}
+/* line 21, sass/modules/_apps.scss */
+.app-entry-in .app-body p {
+  padding: 0 0 3px 0;
+  border-bottom: dotted 1px #c4d0de;
 }
 
-/* line 12, sass/modules/_apps.scss */
-.app-entry h3 .label {
-  font-size: 60%;
-}
-
-/* line 15, sass/modules/_apps.scss */
+/* line 28, sass/modules/_apps.scss */
 .apps-action-icons a {
   margin-right: 7px;
 }
 
-/* line 18, sass/modules/_apps.scss */
+/* line 31, sass/modules/_apps.scss */
 .app-image {
-  max-width: 100%;
+  width: 100%;
+  max-width: 200px;
   margin: 10px 0;
 }
 
-/* line 23, sass/modules/_apps.scss */
+/* line 37, sass/modules/_apps.scss */
 .app-image-list {
   max-width: 100px;
 }
@@ -429,55 +548,38 @@ h3 {
 .room-in {
   text-align: center;
   padding: 10px;
-  border: solid 1px #e2e2e2;
-  background: #f7f7f7;
-  /* Old browsers */
-  background: -moz-linear-gradient(top, #f7f7f7 0%, #eaeaea 100%);
-  /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f7f7f7), color-stop(100%, #eaeaea));
-  /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, #f7f7f7 0%, #eaeaea 100%);
-  /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, #f7f7f7 0%, #eaeaea 100%);
-  /* Opera 11.10+ */
-  background: -ms-linear-gradient(top, #f7f7f7 0%, #eaeaea 100%);
-  /* IE10+ */
-  background: linear-gradient(to bottom, #f7f7f7 0%, #eaeaea 100%);
-  /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', endColorstr='#eaeaea',GradientType=0 );
-  /* IE6-9 */
 }
-/* line 11, sass/modules/_rooms.scss */
+/* line 10, sass/modules/_rooms.scss */
 .room-in .entry-title-text {
   padding-right: 20px;
 }
 
-/* line 15, sass/modules/_rooms.scss */
+/* line 14, sass/modules/_rooms.scss */
 .room-image, .romm-image-preview {
   border: solid 6px #fff;
   width: 100%;
   max-width: 260px;
 }
 
-/* line 20, sass/modules/_rooms.scss */
+/* line 19, sass/modules/_rooms.scss */
 .room-image:hover {
   border-color: #e2e2e2;
 }
 
-/* line 23, sass/modules/_rooms.scss */
+/* line 22, sass/modules/_rooms.scss */
 .room-name {
   text-align: center;
   padding: 0 10px;
   line-height: 34px;
 }
 
-/* line 29, sass/modules/_rooms.scss */
+/* line 28, sass/modules/_rooms.scss */
 .panel-body-room img {
   max-width: 100%;
   border: solid 4px #323232;
 }
 
-/* line 34, sass/modules/_rooms.scss */
+/* line 33, sass/modules/_rooms.scss */
 .btn-device {
   display: inline-block;
   padding: 6px 12px;
@@ -494,19 +596,19 @@ h3 {
   border-radius: 4px;
 }
 
-/* line 49, sass/modules/_rooms.scss */
+/* line 48, sass/modules/_rooms.scss */
 .room-assigned-block {
   padding: 10px;
   border: 1px solid #DDDDDD;
   margin: 10px 0;
 }
 
-/* line 54, sass/modules/_rooms.scss */
+/* line 53, sass/modules/_rooms.scss */
 #modal_room .badge {
   padding: 7px;
 }
 
-/* line 58, sass/modules/_rooms.scss */
+/* line 57, sass/modules/_rooms.scss */
 .hidden-device {
   display: none;
 }
@@ -522,7 +624,7 @@ h3 {
 .profile-in {
   text-align: center;
   padding: 10px;
-  border: solid 1px #e2e2e2;
+  border: solid 1px white;
 }
 /* line 11, sass/modules/_profile.scss */
 .profile-in .entry-title {
@@ -578,21 +680,21 @@ h3 {
   text-align: center;
   padding: 10px;
   border: solid 1px #e2e2e2;
-  background: #f7f7f7;
+  background: #e5eaf0;
   /* Old browsers */
-  background: -moz-linear-gradient(top, #f7f7f7 0%, #eaeaea 100%);
+  background: -moz-linear-gradient(top, #e5eaf0 0%, #f5f7f9 100%);
   /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f7f7f7), color-stop(100%, #eaeaea));
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e5eaf0), color-stop(100%, #f5f7f9));
   /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, #f7f7f7 0%, #eaeaea 100%);
+  background: -webkit-linear-gradient(top, #e5eaf0 0%, #f5f7f9 100%);
   /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, #f7f7f7 0%, #eaeaea 100%);
+  background: -o-linear-gradient(top, #e5eaf0 0%, #f5f7f9 100%);
   /* Opera 11.10+ */
-  background: -ms-linear-gradient(top, #f7f7f7 0%, #eaeaea 100%);
+  background: -ms-linear-gradient(top, #e5eaf0 0%, #f5f7f9 100%);
   /* IE10+ */
-  background: linear-gradient(to bottom, #f7f7f7 0%, #eaeaea 100%);
+  background: linear-gradient(to bottom, #e5eaf0 0%, #f5f7f9 100%);
   /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', endColorstr='#eaeaea',GradientType=0 );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e5eaf0', endColorstr='#f5f7f9',GradientType=0 );
   /* IE6-9 */
 }
 /* line 12, sass/modules/_devices.scss */
@@ -661,13 +763,27 @@ h3 {
 @media (max-width: 2000px) {
   /* line 42, sass/globals/_responsive.scss */
   .is-mobile-true {
-   /* Tabs
-  -------------------------------------------------- */
+    /* Typo
+    -------------------------------------------------- */
+    /* Images
+    -------------------------------------------------- */
+    /* tables
+    -------------------------------------------------- */
+    /* Forms
+    -------------------------------------------------- */
+    /* Tabs
+    -------------------------------------------------- */
+    /* Home
+    -------------------------------------------------- */
     /* Elements
     -------------------------------------------------- */
     /* Eevents
     -------------------------------------------------- */
     /* Apps
+    -------------------------------------------------- */
+    /* Rooms
+    -------------------------------------------------- */
+    /* Profiles
     -------------------------------------------------- */
   }
   /* line 43, sass/globals/_responsive.scss */
@@ -689,11 +805,58 @@ h3 {
   .is-mobile-true .navbar .divider-vertical {
     display: none;
   }
-  /* line 65, sass/globals/_responsive.scss */
+  /* line 61, sass/globals/_responsive.scss */
+  .is-mobile-true .page-header {
+    margin: 0 0 10px 0;
+    text-align: center;
+  }
+  /* line 67, sass/globals/_responsive.scss */
+  .is-mobile-true .page-subtitle {
+    padding: 0 10px;
+    font-size: 16px;
+  }
+  /* line 73, sass/globals/_responsive.scss */
+  .is-mobile-true .report-img {
+    margin: 0 5px;
+    width: 32px;
+    display: inline;
+  }
+  /* line 82, sass/globals/_responsive.scss */
+  .is-mobile-true .table-report tbody tr {
+    background: #e5eaf0;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #e5eaf0 0%, #f5f7f9 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e5eaf0), color-stop(100%, #f5f7f9));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #e5eaf0 0%, #f5f7f9 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #e5eaf0 0%, #f5f7f9 100%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #e5eaf0 0%, #f5f7f9 100%);
+    /* IE10+ */
+    background: linear-gradient(to bottom, #e5eaf0 0%, #f5f7f9 100%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e5eaf0', endColorstr='#f5f7f9',GradientType=0 );
+    /* IE6-9 */
+  }
+  /* line 90, sass/globals/_responsive.scss */
+  .is-mobile-true .btn-new-item {
+    float: none !important;
+  }
+  /* line 93, sass/globals/_responsive.scss */
+  .is-mobile-true .btn-name {
+    display: none;
+  }
+  /* line 103, sass/globals/_responsive.scss */
+  .is-mobile-true .home-widget .widget-entry .widget-block {
+    padding: 5px 10px;
+  }
+  /* line 111, sass/globals/_responsive.scss */
   .is-mobile-true .widget-entry {
     width: 100%;
   }
-  /* line 68, sass/globals/_responsive.scss */
+  /* line 114, sass/globals/_responsive.scss */
   .is-mobile-true .widget-block {
     margin: 0;
     -webkit-box-shadow: none;
@@ -701,65 +864,65 @@ h3 {
     box-shadow: none;
     border-bottom: solid 1px #ccc;
   }
-  /* line 75, sass/globals/_responsive.scss */
+  /* line 121, sass/globals/_responsive.scss */
   .is-mobile-true .widget-block-in {
     /*   border: solid 1px red;*/
     height: auto;
     text-align: left;
     padding: 10px;
   }
-  /* line 81, sass/globals/_responsive.scss */
+  /* line 127, sass/globals/_responsive.scss */
   .is-mobile-true .widget-header {
     float: left;
     width: 70px;
   }
-  /* line 85, sass/globals/_responsive.scss */
+  /* line 131, sass/globals/_responsive.scss */
   .is-mobile-true .widget-body {
     float: left;
   }
-  /* line 88, sass/globals/_responsive.scss */
+  /* line 134, sass/globals/_responsive.scss */
   .is-mobile-true .widget-image {
     margin: 0;
     width: 48px;
     height: 48px;
   }
-  /* line 97, sass/globals/_responsive.scss */
+  /* line 143, sass/globals/_responsive.scss */
   .is-mobile-true .event-entry .event-img {
     width: 24px;
     height: 24px;
   }
-  /* line 101, sass/globals/_responsive.scss */
+  /* line 147, sass/globals/_responsive.scss */
   .is-mobile-true .event-entry .event-message {
-    display: block;
+    /*            display: block;*/
   }
-  /* line 104, sass/globals/_responsive.scss */
+  /* line 150, sass/globals/_responsive.scss */
   .is-mobile-true .event-entry .event-action {
     text-align: right;
   }
-  /* line 111, sass/globals/_responsive.scss */
+  /* line 157, sass/globals/_responsive.scss */
   .is-mobile-true .tabs-container {
     text-align: center;
   }
-  /* line 114, sass/globals/_responsive.scss */
+  /* line 160, sass/globals/_responsive.scss */
   .is-mobile-true .nav-tabs {
     display: block;
     text-align: center;
     padding: 0 25%;
   }
-  /* line 119, sass/globals/_responsive.scss */
+  /* line 165, sass/globals/_responsive.scss */
   .is-mobile-true .tab-name {
     display: none;
   }
-  /* line 122, sass/globals/_responsive.scss */
+  /* line 168, sass/globals/_responsive.scss */
   .is-mobile-true .tab-icon {
     font-size: 20px;
   }
-  /* line 125, sass/globals/_responsive.scss */
+  /* line 171, sass/globals/_responsive.scss */
   .is-mobile-true .app-entry {
     width: 100%;
     padding: 0 20px;
   }
-  /* line 129, sass/globals/_responsive.scss */
+  /* line 175, sass/globals/_responsive.scss */
   .is-mobile-true .app-entry-in {
     border: none;
     border-bottom: solid 1px #ccc;
@@ -768,44 +931,70 @@ h3 {
     border-radius: 0;
     height: auto;
   }
-  /* line 136, sass/globals/_responsive.scss */
+  /* line 182, sass/globals/_responsive.scss */
   .is-mobile-true .app-entry-in .list-group {
     border: 0 none;
   }
-  /* line 139, sass/globals/_responsive.scss */
+  /* line 185, sass/globals/_responsive.scss */
   .is-mobile-true .app-entry-in .list-group-item {
     border: none;
     margin: 0;
     padding: 0;
     padding-bottom: 10px;
   }
-  /* line 147, sass/globals/_responsive.scss */
+  /* line 193, sass/globals/_responsive.scss */
   .is-mobile-true .app-entry-in .app-header {
     float: left;
     width: 35%;
   }
-  /* line 151, sass/globals/_responsive.scss */
+  /* line 197, sass/globals/_responsive.scss */
   .is-mobile-true .app-entry-in .app-body {
     float: left;
     width: 64%;
     margin: 0;
     padding: 0;
   }
-  /* line 156, sass/globals/_responsive.scss */
+  /* line 202, sass/globals/_responsive.scss */
   .is-mobile-true .app-entry-in .app-body .btn {
     vertical-align: top;
   }
-  /* line 163, sass/globals/_responsive.scss */
+  /* line 209, sass/globals/_responsive.scss */
   .is-mobile-true #table_apps_active .btn {
     font-size: 12px;
   }
-  /* line 166, sass/globals/_responsive.scss */
-  .is-mobile-true #table_apps_active .btn-name {
-    display: none;
-  }
-  /* line 170, sass/globals/_responsive.scss */
+  /* line 214, sass/globals/_responsive.scss */
   .is-mobile-true .app-image-list {
     max-width: 50px;
+  }
+  /* line 221, sass/globals/_responsive.scss */
+  .is-mobile-true .room-entry {
+    float: left;
+    width: 50%;
+  }
+  /* line 224, sass/globals/_responsive.scss */
+  .is-mobile-true .room-entry .entry-title {
+    font-size: 12px;
+  }
+  /* line 227, sass/globals/_responsive.scss */
+  .is-mobile-true .room-entry .entry-title-text {
+    display: none;
+  }
+  /* line 232, sass/globals/_responsive.scss */
+  .is-mobile-true .room-image {
+    max-width: 130px;
+  }
+  /* line 239, sass/globals/_responsive.scss */
+  .is-mobile-true .profile-entry {
+    float: left;
+    width: 50%;
+  }
+  /* line 242, sass/globals/_responsive.scss */
+  .is-mobile-true .profile-entry .entry-title {
+    font-size: 12px;
+  }
+  /* line 245, sass/globals/_responsive.scss */
+  .is-mobile-true .profile-entry .entry-title-text {
+    display: none;
   }
 }
 /*==========  Mobile First Method  ==========*/
@@ -819,38 +1008,50 @@ h3 {
 /* Medium Devices, Desktops */
 /* Small Devices, Tablets */
 @media only screen and (max-width: 768px) {
-  /* line 223, sass/globals/_responsive.scss */
+  /* line 300, sass/globals/_responsive.scss */
   .container {
     max-width: none;
     width: 100%;
   }
 
-  /* line 228, sass/globals/_responsive.scss */
+  /* line 305, sass/globals/_responsive.scss */
   #main_content {
     padding: 0;
   }
 
-  /* line 231, sass/globals/_responsive.scss */
+  /* line 308, sass/globals/_responsive.scss */
   .navbar .divider-vertical {
     display: none;
   }
 
-  /* line 235, sass/globals/_responsive.scss */
+  /* line 312, sass/globals/_responsive.scss */
   .dropdown > .dropdown-menu::before,
   .dropdown > .dropdown-menu::after,
   .navbar .divider-vertical {
     display: none;
   }
 
-  /* line 241, sass/globals/_responsive.scss */
+  /* line 318, sass/globals/_responsive.scss */
   .page-header {
     margin: 0 0 10px 0;
     text-align: center;
   }
 
+  /* line 322, sass/globals/_responsive.scss */
+  .row-page {
+    margin: 0;
+  }
+
+  /* line 328, sass/globals/_responsive.scss */
+  .app-shadow {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+  }
+
   /* Typo
   -------------------------------------------------- */
-  /* line 247, sass/globals/_responsive.scss */
+  /* line 335, sass/globals/_responsive.scss */
   .page-subtitle {
     padding: 0 10px;
     font-size: 16px;
@@ -858,7 +1059,7 @@ h3 {
 
   /* Images
   -------------------------------------------------- */
-  /* line 253, sass/globals/_responsive.scss */
+  /* line 341, sass/globals/_responsive.scss */
   .report-img {
     margin: 0 5px;
     width: 32px;
@@ -867,34 +1068,34 @@ h3 {
 
   /* tables
   -------------------------------------------------- */
-  /* line 262, sass/globals/_responsive.scss */
+  /* line 350, sass/globals/_responsive.scss */
   .table-report tbody tr {
-    background: #f7f7f7;
+    background: #e5eaf0;
     /* Old browsers */
-    background: -moz-linear-gradient(top, #f7f7f7 0%, #eaeaea 100%);
+    background: -moz-linear-gradient(top, #e5eaf0 0%, #f5f7f9 100%);
     /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f7f7f7), color-stop(100%, #eaeaea));
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e5eaf0), color-stop(100%, #f5f7f9));
     /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, #f7f7f7 0%, #eaeaea 100%);
+    background: -webkit-linear-gradient(top, #e5eaf0 0%, #f5f7f9 100%);
     /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, #f7f7f7 0%, #eaeaea 100%);
+    background: -o-linear-gradient(top, #e5eaf0 0%, #f5f7f9 100%);
     /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, #f7f7f7 0%, #eaeaea 100%);
+    background: -ms-linear-gradient(top, #e5eaf0 0%, #f5f7f9 100%);
     /* IE10+ */
-    background: linear-gradient(to bottom, #f7f7f7 0%, #eaeaea 100%);
+    background: linear-gradient(to bottom, #e5eaf0 0%, #f5f7f9 100%);
     /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', endColorstr='#eaeaea',GradientType=0 );
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e5eaf0', endColorstr='#f5f7f9',GradientType=0 );
     /* IE6-9 */
   }
 
   /* Forms
   -------------------------------------------------- */
-  /* line 270, sass/globals/_responsive.scss */
+  /* line 358, sass/globals/_responsive.scss */
   .btn-new-item {
     float: none !important;
   }
 
-  /* line 273, sass/globals/_responsive.scss */
+  /* line 361, sass/globals/_responsive.scss */
   .btn-name {
     display: none;
   }
@@ -903,19 +1104,19 @@ h3 {
   -------------------------------------------------- */
   /* Home
   -------------------------------------------------- */
-  /* line 283, sass/globals/_responsive.scss */
+  /* line 371, sass/globals/_responsive.scss */
   .home-widget .widget-entry .widget-block {
     padding: 5px 10px;
   }
 
   /* Elements
   -------------------------------------------------- */
-  /* line 291, sass/globals/_responsive.scss */
+  /* line 379, sass/globals/_responsive.scss */
   .widget-entry {
     width: 100%;
   }
 
-  /* line 294, sass/globals/_responsive.scss */
+  /* line 382, sass/globals/_responsive.scss */
   .widget-block {
     margin: 0;
     -webkit-box-shadow: none;
@@ -924,7 +1125,7 @@ h3 {
     border-bottom: solid 1px #ccc;
   }
 
-  /* line 301, sass/globals/_responsive.scss */
+  /* line 389, sass/globals/_responsive.scss */
   .widget-block-in {
     /*   border: solid 1px red;*/
     height: auto;
@@ -932,18 +1133,18 @@ h3 {
     padding: 10px;
   }
 
-  /* line 307, sass/globals/_responsive.scss */
+  /* line 395, sass/globals/_responsive.scss */
   .widget-header {
     float: left;
     width: 70px;
   }
 
-  /* line 311, sass/globals/_responsive.scss */
+  /* line 399, sass/globals/_responsive.scss */
   .widget-body {
     float: left;
   }
 
-  /* line 314, sass/globals/_responsive.scss */
+  /* line 402, sass/globals/_responsive.scss */
   .widget-image {
     margin: 0;
     width: 48px;
@@ -952,146 +1153,142 @@ h3 {
 
   /* Eevents
   -------------------------------------------------- */
-  /* line 323, sass/globals/_responsive.scss */
+  /* line 411, sass/globals/_responsive.scss */
   .event-entry .event-img {
     width: 24px;
     height: 24px;
   }
-  /* line 327, sass/globals/_responsive.scss */
+  /* line 415, sass/globals/_responsive.scss */
   .event-entry .event-message {
     /*            display: block;*/
   }
-  /* line 330, sass/globals/_responsive.scss */
+  /* line 418, sass/globals/_responsive.scss */
   .event-entry .event-action {
     text-align: right;
   }
 
   /* Apps
   -------------------------------------------------- */
-  /* line 337, sass/globals/_responsive.scss */
+  /* line 425, sass/globals/_responsive.scss */
   .tabs-container {
     text-align: center;
   }
 
-  /* line 340, sass/globals/_responsive.scss */
+  /* line 428, sass/globals/_responsive.scss */
   .nav-tabs {
     display: block;
     text-align: center;
     padding: 0 25%;
   }
 
-  /* line 345, sass/globals/_responsive.scss */
+  /* line 433, sass/globals/_responsive.scss */
   .tab-name {
     display: none;
   }
 
-  /* line 348, sass/globals/_responsive.scss */
+  /* line 436, sass/globals/_responsive.scss */
   .tab-icon {
     font-size: 20px;
   }
 
-  /* line 351, sass/globals/_responsive.scss */
+  /* line 439, sass/globals/_responsive.scss */
   .app-entry {
     width: 100%;
-    padding: 0 20px;
+    padding: 0;
   }
 
-  /* line 355, sass/globals/_responsive.scss */
+  /* line 443, sass/globals/_responsive.scss */
   .app-entry-in {
-    border: none;
-    border-bottom: solid 1px #ccc;
+    border: 0;
+    border-bottom: dotted 1px #a4b6cb;
     margin: 0;
     padding: 10px;
     border-radius: 0;
     height: auto;
   }
-  /* line 362, sass/globals/_responsive.scss */
+  /* line 450, sass/globals/_responsive.scss */
   .app-entry-in .list-group {
     border: 0 none;
   }
-  /* line 365, sass/globals/_responsive.scss */
+  /* line 453, sass/globals/_responsive.scss */
   .app-entry-in .list-group-item {
     border: none;
     margin: 0;
     padding: 0;
     padding-bottom: 10px;
   }
-  /* line 373, sass/globals/_responsive.scss */
+  /* line 461, sass/globals/_responsive.scss */
   .app-entry-in .app-header {
     float: left;
     width: 35%;
   }
-  /* line 377, sass/globals/_responsive.scss */
+  /* line 465, sass/globals/_responsive.scss */
   .app-entry-in .app-body {
     float: left;
     width: 64%;
     margin: 0;
-    padding: 0;
+    padding-right: 10px;
   }
-  /* line 382, sass/globals/_responsive.scss */
+  /* line 470, sass/globals/_responsive.scss */
   .app-entry-in .app-body .btn {
     vertical-align: top;
   }
 
-  /* line 389, sass/globals/_responsive.scss */
+  /* line 477, sass/globals/_responsive.scss */
   #table_apps_active .btn {
     font-size: 12px;
   }
 
-  /* line 394, sass/globals/_responsive.scss */
+  /* line 482, sass/globals/_responsive.scss */
   .app-image-list {
     max-width: 50px;
   }
 
   /* Rooms
   -------------------------------------------------- */
-  /* line 401, sass/globals/_responsive.scss */
+  /* line 489, sass/globals/_responsive.scss */
   .room-entry {
     float: left;
     width: 50%;
   }
-  /* line 404, sass/globals/_responsive.scss */
+  /* line 492, sass/globals/_responsive.scss */
   .room-entry .entry-title {
     font-size: 12px;
   }
-  /* line 407, sass/globals/_responsive.scss */
+  /* line 495, sass/globals/_responsive.scss */
   .room-entry .entry-title-text {
     display: none;
   }
 
-  /* line 412, sass/globals/_responsive.scss */
+  /* line 500, sass/globals/_responsive.scss */
   .room-image {
     max-width: 130px;
   }
 
   /* Profiles
   -------------------------------------------------- */
-  /* line 419, sass/globals/_responsive.scss */
+  /* line 507, sass/globals/_responsive.scss */
   .profile-entry {
     float: left;
     width: 50%;
   }
-  /* line 422, sass/globals/_responsive.scss */
+  /* line 510, sass/globals/_responsive.scss */
   .profile-entry .entry-title {
     font-size: 12px;
   }
-  /* line 425, sass/globals/_responsive.scss */
+  /* line 513, sass/globals/_responsive.scss */
   .profile-entry .entry-title-text {
     display: none;
   }
 
   /* Devices
   -------------------------------------------------- */
-  /* line 432, sass/globals/_responsive.scss */
-  .device-container_ {
-    width: 100%;
-  }
 }
 /* Extra Small Devices, Phones */
 /* Custom, iPhone Retina */
 /* Custom, iPhone Retina */
 @media only screen and (min-width: 768px) and (max-width: 992px) {
-  /* line 453, sass/globals/_responsive.scss */
+  /* line 538, sass/globals/_responsive.scss */
   .hide-navi-text {
     display: none !important;
   }

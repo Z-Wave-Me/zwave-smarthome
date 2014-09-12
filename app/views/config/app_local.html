@@ -1,29 +1,28 @@
 <!-- Online app view -->
-<div class="row">
+<div class="row row-page">
     <div class="col-md-6 app-entry"  ng-repeat="v in collection">
-        <div class="app-entry-in">
-       <div class="row">
-            <div class="col-md-5 app-header">
-                 <h3>{{ v.name}}</h3>
+        <div class="app-border app-gradient app-shadow app-entry-in">
+            <div class="row">
+                <div class="col-sm-5 app-header">
+                     <h3 class="entry-title">{{ v.name}}</h3>
                  <img class="app-image" src="storage/img/apps/appimage.jpg" alt="{{ v.name}}"/>
-            </div>
-            <div class="col-md-7 app-body">
-               
-                <ul class="list-group">
-                    <li class="list-group-item"><strong>{{_t('lb_active_in')}}:</strong> <span ng-repeat="i in v.instances">{{i}}, </span></li>
-                    <li class="list-group-item"><i class="fa fa-user fa-lg"></i> <strong>{{ v.author}}</strong><br /> <a href="mailto:{{ v.email}}"><em>{{ v.email}}</em></a></li>
-                    <li class="list-group-item"><span title="{{v.description}}" tooltip>{{ v.description | cutText:true:50}}</span></li>
-                </ul>
-                <div>
-                     <button class="btn btn-primary" ng-click="showActivateModal('#modal_activate')"><i class="fa fa-plus fa-lg"></i> {{_t('lb_add_app')}}</button>
-                     <button class="btn btn-danger"><i class="fa fa-remove fa-lg"></i> {{_t('lb_remove')}}</button>
                 </div>
-               
+                <div class="col-sm-7 app-body">
+                    <p><strong>{{_t('lb_active_in')}}:</strong> <span ng-repeat="i in v.instances">{{i}}, </span></p>
+                    <p title="{{ v.email}}" tooltip><i class="fa fa-user fa-lg"></i> <strong>{{ v.author}}</strong><!--<br /> <a href="mailto:{{ v.email}}"><em>{{ v.email}}</em></a> --></p>
+                    <p><span title="{{v.description}}" tooltip>{{ v.description | cutText:true:50}}</span></p>
+             
+                <div>
+                     <button class="btn btn-primary" title="{{_t('lb_add_app')}}" ng-click="showActivateModal('#modal_activate')"><i class="fa fa-plus fa-lg"></i> <span class="btn-name">{{_t('lb_add_app')}}</span></button>
+                     <button class="btn btn-danger" title="{{_t('lb_remove')}}"><i class="fa fa-remove fa-lg"></i> <span class="btn-name">{{_t('lb_remove')}}</span></button>
+                </div>
+
+                </div>
             </div>
-        </div>
         </div>
     </div>
 </div>
+
 <!-- Modal apps -->
   <div class="modal fade" id="modal_activate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">

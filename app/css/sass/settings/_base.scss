@@ -1,7 +1,13 @@
 // Main color
-$brand-color-primary: #27272A;
-$brand-color-secondary: #79BD10;
+$brand-color-primary: #161E27;
+$brand-color-secondary: #6C7A89;
 
+// Body
+$app-body-bcg-color:  lighten($brand-color-primary, 70%);
+$app-body-color:  lighten($brand-color-primary, 5%);
+
+// Border color
+$app-border-color: lighten($brand-color-primary, 60%);
 //== Bootstrap Colors
 //
 //## Gray and brand colors for use across Bootstrap.
@@ -36,8 +42,6 @@ $navbar-inverse-toggle-hover-bg:            #333 !default;
 $navbar-inverse-toggle-icon-bar-bg:         #fff !default;
 $navbar-inverse-toggle-border-color:        #333 !default;
 
-// Body
-$app-body-bcg-color:  #fff;
 // Elements
 $app-el-block-w: 300px;
 $app-el-block-h: 200px;

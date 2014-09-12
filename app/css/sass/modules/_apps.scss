@@ -3,22 +3,36 @@
 .app-entry{
 }
 .app-entry-in{
-    border: solid 1px #ddd;
     margin: 10px 0;
     padding: 20px;
     border-radius: 5px;
-    height: 270px;
+    height: 220px;
+    .app-rating{
+        margin-right: 20px;
+        color: #5CB85C;
+    }
+    .entry-title{
+        font-size: 16px;
+        .label{
+            font-size: 70%;
+        }
+    }
+    .app-body{
+        p{
+           padding: 0 0 3px 0;
+           border-bottom: dotted 1px lighten($app-border-color, 10%); 
+        }
+    }
 }
-.app-entry h3 .label{
-    font-size: 60%;
-}
+
 .apps-action-icons a{
     margin-right: 7px;
 }
 .app-image{
-        max-width: 100%;
-        margin: 10px 0;
-    }
+    width: 100%;
+    max-width: 200px;
+    margin: 10px 0;
+}
 
 .app-image-list{
     max-width: 100px;

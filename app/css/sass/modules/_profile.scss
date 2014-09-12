@@ -6,7 +6,7 @@
 .profile-in{
     text-align: center;
     padding: 10px;
-    border: solid 1px #e2e2e2;
+     border:  solid 1px lighten($app-border-color, 50%);  
     //@include appGradient();
     .entry-title{
         color: #fff;

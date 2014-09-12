@@ -1,15 +1,17 @@
 <!-- Home view -->
 <div ng-controller="ProfileController">
-    <div class="page-header clearfix">
+    <div class="clearfix text-center">
+        <div class="page-control">
         <button type="button" 
-                class="btn btn-success pull-right btn-new-item"
+                class="btn btn-success btn-new-item"
                 ng-click="showModal('#modal_profile', {'id': null, 'name': null, 'color': null})"
-                >{{_t('lb_new_profile')}}</button>
+                ><i class="fa fa-plus"></i> {{_t('lb_new_profile')}}</button>
+                </div>
     </div>
 
     <div class="row">
         <div class="col-md-2 col-sm-4 profile-entry" id="panel_{{$index}}" style="background-color: {{v.color}};" ng-repeat="v in collection">
-            <div class="profile-in">
+            <div class="profile-in app-shadow">
                 <h3 class="entry-title"><span class="entry-title-text">{{v.name}}</span> 
                     <a href="" 
                        ng-click="showModal('#modal_profile', {'id': v.id, 'name': v.name, 'description': v.description, 'color': null})"
