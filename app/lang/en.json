@@ -1,6 +1,8 @@
 {
      "missing": "---",
     "lb_devices_room":"Devices in the room",
+    "lb_configuration_of":"Configuration of ",
+    
      "---": "missing",
      
     "nav_home": "Dashboard",

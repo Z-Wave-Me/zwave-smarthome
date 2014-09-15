@@ -227,7 +227,7 @@ a {
   display: inline-block;
   padding: 0 15px;
   color: #6C7A89;
-  line-height: 60px;
+  line-height: 50px;
 }
 /* line 22, sass/globals/_navigation.scss */
 .navbar-visible .navbar-visible-in a:hover {
@@ -773,8 +773,6 @@ a {
     -------------------------------------------------- */
     /* Tabs
     -------------------------------------------------- */
-    /* Home
-    -------------------------------------------------- */
     /* Elements
     -------------------------------------------------- */
     /* Eevents
@@ -849,14 +847,10 @@ a {
     display: none;
   }
   /* line 103, sass/globals/_responsive.scss */
-  .is-mobile-true .home-widget .widget-entry .widget-block {
-    padding: 5px 10px;
-  }
-  /* line 111, sass/globals/_responsive.scss */
   .is-mobile-true .widget-entry {
     width: 100%;
   }
-  /* line 114, sass/globals/_responsive.scss */
+  /* line 106, sass/globals/_responsive.scss */
   .is-mobile-true .widget-block {
     margin: 0;
     -webkit-box-shadow: none;
@@ -864,65 +858,65 @@ a {
     box-shadow: none;
     border-bottom: solid 1px #ccc;
   }
-  /* line 121, sass/globals/_responsive.scss */
+  /* line 113, sass/globals/_responsive.scss */
   .is-mobile-true .widget-block-in {
     /*   border: solid 1px red;*/
     height: auto;
     text-align: left;
     padding: 10px;
   }
-  /* line 127, sass/globals/_responsive.scss */
+  /* line 119, sass/globals/_responsive.scss */
   .is-mobile-true .widget-header {
     float: left;
     width: 70px;
   }
-  /* line 131, sass/globals/_responsive.scss */
+  /* line 123, sass/globals/_responsive.scss */
   .is-mobile-true .widget-body {
     float: left;
   }
-  /* line 134, sass/globals/_responsive.scss */
+  /* line 126, sass/globals/_responsive.scss */
   .is-mobile-true .widget-image {
     margin: 0;
     width: 48px;
     height: 48px;
   }
-  /* line 143, sass/globals/_responsive.scss */
+  /* line 135, sass/globals/_responsive.scss */
   .is-mobile-true .event-entry .event-img {
     width: 24px;
     height: 24px;
   }
-  /* line 147, sass/globals/_responsive.scss */
+  /* line 139, sass/globals/_responsive.scss */
   .is-mobile-true .event-entry .event-message {
     /*            display: block;*/
   }
-  /* line 150, sass/globals/_responsive.scss */
+  /* line 142, sass/globals/_responsive.scss */
   .is-mobile-true .event-entry .event-action {
     text-align: right;
   }
-  /* line 157, sass/globals/_responsive.scss */
+  /* line 149, sass/globals/_responsive.scss */
   .is-mobile-true .tabs-container {
     text-align: center;
   }
-  /* line 160, sass/globals/_responsive.scss */
+  /* line 152, sass/globals/_responsive.scss */
   .is-mobile-true .nav-tabs {
     display: block;
     text-align: center;
     padding: 0 25%;
   }
-  /* line 165, sass/globals/_responsive.scss */
+  /* line 157, sass/globals/_responsive.scss */
   .is-mobile-true .tab-name {
     display: none;
   }
-  /* line 168, sass/globals/_responsive.scss */
+  /* line 160, sass/globals/_responsive.scss */
   .is-mobile-true .tab-icon {
     font-size: 20px;
   }
-  /* line 171, sass/globals/_responsive.scss */
+  /* line 163, sass/globals/_responsive.scss */
   .is-mobile-true .app-entry {
     width: 100%;
     padding: 0 20px;
   }
-  /* line 175, sass/globals/_responsive.scss */
+  /* line 167, sass/globals/_responsive.scss */
   .is-mobile-true .app-entry-in {
     border: none;
     border-bottom: solid 1px #ccc;
@@ -931,68 +925,68 @@ a {
     border-radius: 0;
     height: auto;
   }
-  /* line 182, sass/globals/_responsive.scss */
+  /* line 174, sass/globals/_responsive.scss */
   .is-mobile-true .app-entry-in .list-group {
     border: 0 none;
   }
-  /* line 185, sass/globals/_responsive.scss */
+  /* line 177, sass/globals/_responsive.scss */
   .is-mobile-true .app-entry-in .list-group-item {
     border: none;
     margin: 0;
     padding: 0;
     padding-bottom: 10px;
   }
-  /* line 193, sass/globals/_responsive.scss */
+  /* line 185, sass/globals/_responsive.scss */
   .is-mobile-true .app-entry-in .app-header {
     float: left;
     width: 35%;
   }
-  /* line 197, sass/globals/_responsive.scss */
+  /* line 189, sass/globals/_responsive.scss */
   .is-mobile-true .app-entry-in .app-body {
     float: left;
     width: 64%;
     margin: 0;
     padding: 0;
   }
-  /* line 202, sass/globals/_responsive.scss */
+  /* line 194, sass/globals/_responsive.scss */
   .is-mobile-true .app-entry-in .app-body .btn {
     vertical-align: top;
   }
-  /* line 209, sass/globals/_responsive.scss */
+  /* line 201, sass/globals/_responsive.scss */
   .is-mobile-true #table_apps_active .btn {
     font-size: 12px;
   }
-  /* line 214, sass/globals/_responsive.scss */
+  /* line 206, sass/globals/_responsive.scss */
   .is-mobile-true .app-image-list {
     max-width: 50px;
   }
-  /* line 221, sass/globals/_responsive.scss */
+  /* line 213, sass/globals/_responsive.scss */
   .is-mobile-true .room-entry {
     float: left;
     width: 50%;
   }
-  /* line 224, sass/globals/_responsive.scss */
+  /* line 216, sass/globals/_responsive.scss */
   .is-mobile-true .room-entry .entry-title {
     font-size: 12px;
   }
-  /* line 227, sass/globals/_responsive.scss */
+  /* line 219, sass/globals/_responsive.scss */
   .is-mobile-true .room-entry .entry-title-text {
     display: none;
   }
-  /* line 232, sass/globals/_responsive.scss */
+  /* line 224, sass/globals/_responsive.scss */
   .is-mobile-true .room-image {
     max-width: 130px;
   }
-  /* line 239, sass/globals/_responsive.scss */
+  /* line 231, sass/globals/_responsive.scss */
   .is-mobile-true .profile-entry {
     float: left;
     width: 50%;
   }
-  /* line 242, sass/globals/_responsive.scss */
+  /* line 234, sass/globals/_responsive.scss */
   .is-mobile-true .profile-entry .entry-title {
     font-size: 12px;
   }
-  /* line 245, sass/globals/_responsive.scss */
+  /* line 237, sass/globals/_responsive.scss */
   .is-mobile-true .profile-entry .entry-title-text {
     display: none;
   }
@@ -1008,41 +1002,47 @@ a {
 /* Medium Devices, Desktops */
 /* Small Devices, Tablets */
 @media only screen and (max-width: 768px) {
-  /* line 300, sass/globals/_responsive.scss */
+  /* line 292, sass/globals/_responsive.scss */
   .container {
     max-width: none;
     width: 100%;
   }
 
-  /* line 305, sass/globals/_responsive.scss */
+  /* line 298, sass/globals/_responsive.scss */
+  .navbar-collapse {
+    padding-right: 25px;
+    padding-left: 25px;
+  }
+
+  /* line 302, sass/globals/_responsive.scss */
   #main_content {
     padding: 0;
   }
 
-  /* line 308, sass/globals/_responsive.scss */
+  /* line 305, sass/globals/_responsive.scss */
   .navbar .divider-vertical {
     display: none;
   }
 
-  /* line 312, sass/globals/_responsive.scss */
+  /* line 309, sass/globals/_responsive.scss */
   .dropdown > .dropdown-menu::before,
   .dropdown > .dropdown-menu::after,
   .navbar .divider-vertical {
     display: none;
   }
 
-  /* line 318, sass/globals/_responsive.scss */
+  /* line 315, sass/globals/_responsive.scss */
   .page-header {
     margin: 0 0 10px 0;
     text-align: center;
   }
 
-  /* line 322, sass/globals/_responsive.scss */
+  /* line 319, sass/globals/_responsive.scss */
   .row-page {
     margin: 0;
   }
 
-  /* line 328, sass/globals/_responsive.scss */
+  /* line 325, sass/globals/_responsive.scss */
   .app-shadow {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
@@ -1051,7 +1051,7 @@ a {
 
   /* Typo
   -------------------------------------------------- */
-  /* line 335, sass/globals/_responsive.scss */
+  /* line 332, sass/globals/_responsive.scss */
   .page-subtitle {
     padding: 0 10px;
     font-size: 16px;
@@ -1059,7 +1059,7 @@ a {
 
   /* Images
   -------------------------------------------------- */
-  /* line 341, sass/globals/_responsive.scss */
+  /* line 338, sass/globals/_responsive.scss */
   .report-img {
     margin: 0 5px;
     width: 32px;
@@ -1068,7 +1068,12 @@ a {
 
   /* tables
   -------------------------------------------------- */
-  /* line 350, sass/globals/_responsive.scss */
+  /* line 349, sass/globals/_responsive.scss */
+  .table tbody tr td {
+    border-top: 1px solid #c4d0de;
+  }
+
+  /* line 358, sass/globals/_responsive.scss */
   .table-report tbody tr {
     background: #e5eaf0;
     /* Old browsers */
@@ -1090,33 +1095,26 @@ a {
 
   /* Forms
   -------------------------------------------------- */
-  /* line 358, sass/globals/_responsive.scss */
+  /* line 365, sass/globals/_responsive.scss */
   .btn-new-item {
     float: none !important;
   }
 
-  /* line 361, sass/globals/_responsive.scss */
+  /* line 368, sass/globals/_responsive.scss */
   .btn-name {
     display: none;
   }
 
   /* Tabs
   -------------------------------------------------- */
-  /* Home
-  -------------------------------------------------- */
-  /* line 371, sass/globals/_responsive.scss */
-  .home-widget .widget-entry .widget-block {
-    padding: 5px 10px;
-  }
-
   /* Elements
   -------------------------------------------------- */
-  /* line 379, sass/globals/_responsive.scss */
+  /* line 377, sass/globals/_responsive.scss */
   .widget-entry {
     width: 100%;
   }
 
-  /* line 382, sass/globals/_responsive.scss */
+  /* line 380, sass/globals/_responsive.scss */
   .widget-block {
     margin: 0;
     -webkit-box-shadow: none;
@@ -1125,7 +1123,7 @@ a {
     border-bottom: solid 1px #ccc;
   }
 
-  /* line 389, sass/globals/_responsive.scss */
+  /* line 387, sass/globals/_responsive.scss */
   .widget-block-in {
     /*   border: solid 1px red;*/
     height: auto;
@@ -1133,71 +1131,78 @@ a {
     padding: 10px;
   }
 
-  /* line 395, sass/globals/_responsive.scss */
+  /* line 393, sass/globals/_responsive.scss */
   .widget-header {
     float: left;
     width: 70px;
   }
 
-  /* line 399, sass/globals/_responsive.scss */
+  /* line 397, sass/globals/_responsive.scss */
   .widget-body {
     float: left;
   }
 
-  /* line 402, sass/globals/_responsive.scss */
+  /* line 400, sass/globals/_responsive.scss */
   .widget-image {
     margin: 0;
     width: 48px;
     height: 48px;
   }
 
+  /* Home */
+  /* line 409, sass/globals/_responsive.scss */
+  .home-widget .widget-entry .widget-block-in {
+    border: 0;
+    padding: 0;
+  }
+
   /* Eevents
   -------------------------------------------------- */
-  /* line 411, sass/globals/_responsive.scss */
+  /* line 420, sass/globals/_responsive.scss */
   .event-entry .event-img {
     width: 24px;
     height: 24px;
   }
-  /* line 415, sass/globals/_responsive.scss */
+  /* line 424, sass/globals/_responsive.scss */
   .event-entry .event-message {
     /*            display: block;*/
   }
-  /* line 418, sass/globals/_responsive.scss */
+  /* line 427, sass/globals/_responsive.scss */
   .event-entry .event-action {
     text-align: right;
   }
 
   /* Apps
   -------------------------------------------------- */
-  /* line 425, sass/globals/_responsive.scss */
+  /* line 434, sass/globals/_responsive.scss */
   .tabs-container {
     text-align: center;
   }
 
-  /* line 428, sass/globals/_responsive.scss */
+  /* line 437, sass/globals/_responsive.scss */
   .nav-tabs {
     display: block;
     text-align: center;
     padding: 0 25%;
   }
 
-  /* line 433, sass/globals/_responsive.scss */
+  /* line 442, sass/globals/_responsive.scss */
   .tab-name {
     display: none;
   }
 
-  /* line 436, sass/globals/_responsive.scss */
+  /* line 445, sass/globals/_responsive.scss */
   .tab-icon {
     font-size: 20px;
   }
 
-  /* line 439, sass/globals/_responsive.scss */
+  /* line 448, sass/globals/_responsive.scss */
   .app-entry {
     width: 100%;
     padding: 0;
   }
 
-  /* line 443, sass/globals/_responsive.scss */
+  /* line 452, sass/globals/_responsive.scss */
   .app-entry-in {
     border: 0;
     border-bottom: dotted 1px #a4b6cb;
@@ -1206,77 +1211,77 @@ a {
     border-radius: 0;
     height: auto;
   }
-  /* line 450, sass/globals/_responsive.scss */
+  /* line 459, sass/globals/_responsive.scss */
   .app-entry-in .list-group {
     border: 0 none;
   }
-  /* line 453, sass/globals/_responsive.scss */
+  /* line 462, sass/globals/_responsive.scss */
   .app-entry-in .list-group-item {
     border: none;
     margin: 0;
     padding: 0;
     padding-bottom: 10px;
   }
-  /* line 461, sass/globals/_responsive.scss */
+  /* line 470, sass/globals/_responsive.scss */
   .app-entry-in .app-header {
     float: left;
     width: 35%;
   }
-  /* line 465, sass/globals/_responsive.scss */
+  /* line 474, sass/globals/_responsive.scss */
   .app-entry-in .app-body {
     float: left;
     width: 64%;
     margin: 0;
     padding-right: 10px;
   }
-  /* line 470, sass/globals/_responsive.scss */
+  /* line 479, sass/globals/_responsive.scss */
   .app-entry-in .app-body .btn {
     vertical-align: top;
   }
 
-  /* line 477, sass/globals/_responsive.scss */
+  /* line 486, sass/globals/_responsive.scss */
   #table_apps_active .btn {
     font-size: 12px;
   }
 
-  /* line 482, sass/globals/_responsive.scss */
+  /* line 491, sass/globals/_responsive.scss */
   .app-image-list {
     max-width: 50px;
   }
 
   /* Rooms
   -------------------------------------------------- */
-  /* line 489, sass/globals/_responsive.scss */
+  /* line 498, sass/globals/_responsive.scss */
   .room-entry {
     float: left;
     width: 50%;
   }
-  /* line 492, sass/globals/_responsive.scss */
+  /* line 501, sass/globals/_responsive.scss */
   .room-entry .entry-title {
     font-size: 12px;
   }
-  /* line 495, sass/globals/_responsive.scss */
+  /* line 504, sass/globals/_responsive.scss */
   .room-entry .entry-title-text {
     display: none;
   }
 
-  /* line 500, sass/globals/_responsive.scss */
+  /* line 509, sass/globals/_responsive.scss */
   .room-image {
     max-width: 130px;
   }
 
   /* Profiles
   -------------------------------------------------- */
-  /* line 507, sass/globals/_responsive.scss */
+  /* line 516, sass/globals/_responsive.scss */
   .profile-entry {
     float: left;
     width: 50%;
   }
-  /* line 510, sass/globals/_responsive.scss */
+  /* line 519, sass/globals/_responsive.scss */
   .profile-entry .entry-title {
     font-size: 12px;
   }
-  /* line 513, sass/globals/_responsive.scss */
+  /* line 522, sass/globals/_responsive.scss */
   .profile-entry .entry-title-text {
     display: none;
   }
@@ -1288,7 +1293,7 @@ a {
 /* Custom, iPhone Retina */
 /* Custom, iPhone Retina */
 @media only screen and (min-width: 768px) and (max-width: 992px) {
-  /* line 538, sass/globals/_responsive.scss */
+  /* line 547, sass/globals/_responsive.scss */
   .hide-navi-text {
     display: none !important;
   }

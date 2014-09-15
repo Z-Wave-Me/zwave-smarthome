@@ -5,7 +5,7 @@
             <tbody>
                 <tr ng-repeat="v in collection| limitTo:30" id="{{ v.rowId}}">
                     <td class="td-img">
-                        <span class="text-supp" title="{{v.timestamp| date:'dd.MM.yyyy H:mm'}}" ng-if="$index <= 9" >{{v.timestamp| date:'hh:mm'}}</span>
+                        <span class="text-supp" title="{{v.timestamp| date:'dd.MM.yyyy H:mm'}}" ng-if="$index <= 9" >{{v.timestamp| date:'H:mm'}}</span>
                         <span class="text-supp" title="{{v.timestamp| date:'dd.MM.yyyy H:mm'}}" ng-if="$index > 9" >-1 day</span>
                         <img class="report-img" src="storage/img/events/icon-1.png" alt="icon" ng-show="v.level == 'error'"/>
                         <img class="report-img" src="storage/img/events/icon-2.png" alt="icon" ng-show="v.level != 'error'"/>

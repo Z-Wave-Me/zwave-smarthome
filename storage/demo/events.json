@@ -2,6 +2,39 @@
   "data": {
     "updateTime": 1407248762,
     "notifications": [
+        
+      {
+        "id": 1402668540,
+        "timestamp": "2014-06-13T12:27:07.316Z",
+        "level": "error",
+        "message": "Humidity Kitchen: to 45 %",
+        "type": "core",
+        "redeemed": false
+      }, 
+       {
+        "id": 1402668541,
+        "timestamp": "2014-06-13T12:30:07.316Z",
+        "level": "error",
+        "message": "Thermostat Kitchen: to 24 Grd from remote",
+        "type": "core",
+        "redeemed": false
+      }, 
+      {
+        "id": 1402668542,
+        "timestamp": "2014-06-13T13:32:07.316Z",
+        "level": "error",
+        "message": "Scene Home: Activated from local",
+        "type": "core",
+        "redeemed": false
+      }, 
+      {
+        "id": 1402668543,
+        "timestamp": "2014-06-13T13:34:07.316Z",
+        "level": "error",
+        "message": "Sleeping Room Light: Switch ON from local",
+        "type": "core",
+        "redeemed": false
+      }, 
       {
         "id": 1402668547,
         "timestamp": "2014-06-13T14:09:07.316Z",

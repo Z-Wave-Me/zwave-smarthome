@@ -96,15 +96,7 @@
 
         /* Tabs
         -------------------------------------------------- */
-        /* Home
-        -------------------------------------------------- */
-        .home-widget{
-            .widget-entry{
-                .widget-block{
-                    padding: 5px 10px;
-                }
-            }
-        }
+
 
         /* Elements
         -------------------------------------------------- */
@@ -302,6 +294,11 @@
         width: 100%;
 
     }
+
+    .navbar-collapse {
+        padding-right: 25px;
+        padding-left: 25px;
+    }
     #main_content{
         padding: 0;
     }
@@ -323,12 +320,12 @@
         margin: 0;
     }
 
-    
+
 
     .app-shadow{
-       -webkit-box-shadow: none;
-	-moz-box-shadow: none;
-	box-shadow: none;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
     }
     /* Typo
     -------------------------------------------------- */
@@ -346,13 +343,23 @@
 
     /* tables
     -------------------------------------------------- */
+    .table{
+        tbody{
+            tr{
+                td{
+                    //border-top: 1px solid lighten($app-border-color, 20%); 
+                    border-top: 1px solid $app-body-bcg-color;  
+                }
+            }
+        }
+
+    }
     .table-report{
         tbody tr{
             @include appGradient();
         }
     }
 
-    .tab-content{}
     /* Forms
     -------------------------------------------------- */
     .btn-new-item{
@@ -364,15 +371,6 @@
 
     /* Tabs
     -------------------------------------------------- */
-    /* Home
-    -------------------------------------------------- */
-    .home-widget{
-        .widget-entry{
-            .widget-block{
-                padding: 5px 10px;
-            }
-        }
-    }
 
     /* Elements
     -------------------------------------------------- */
@@ -403,6 +401,17 @@
         margin: 0;
         width: 48px;
         height: 48px;
+    }
+
+    /* Home */
+    .home-widget{
+        .widget-entry{
+            .widget-block-in{
+                border: 0;
+                padding: 0;
+
+            }
+        }
     }
 
     /* Eevents
