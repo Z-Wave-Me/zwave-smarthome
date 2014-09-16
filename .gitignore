@@ -4,3 +4,4 @@
 /upload/*
 /app/core/config.js
 upload.php
+/app/css/.sass-cache/*

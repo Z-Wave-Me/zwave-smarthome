@@ -140,7 +140,7 @@ background-color: lighten($app-body-bcg-color, 10%);;
 /* Tooltip
 -------------------------------------------------- */
 .tooltip-inner {
-    background-color:#f2f2f2;
+    background-color: $app-body-bcg-color;
     color: #000;
     font-size: 14px;
     padding: 10px;

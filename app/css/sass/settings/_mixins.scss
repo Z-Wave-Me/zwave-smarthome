@@ -23,3 +23,244 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e5eaf0', end
     -moz-box-shadow:    1px 1px 5px 0px rgba(50, 50, 50, 0.29);
     box-shadow:         1px 1px 5px 0px rgba(50, 50, 50, 0.29);
 }
+
+// Mobile layout
+@mixin appMobileLayout() {
+   .container{
+        max-width:none;
+        width: 100%;
+
+    }
+
+    .navbar-collapse {
+        padding-right: 25px;
+        padding-left: 25px;
+    }
+    #main_content{
+        padding: 0;
+    }
+    .navbar .divider-vertical{
+        display: none;
+    }
+
+    .dropdown > .dropdown-menu::before, 
+    .dropdown > .dropdown-menu::after,
+    .navbar .divider-vertical{
+        display: none;
+    }
+
+    .page-header{
+        margin: 0 0 10px 0;
+        text-align: center;
+    }
+    .row-page{
+        margin: 0;
+    }
+
+
+
+    .app-shadow{
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+    }
+    /* Typo
+    -------------------------------------------------- */
+    .page-subtitle{
+        padding: 0 10px;
+        font-size: 16px;
+    }
+    /* Images
+    -------------------------------------------------- */
+    .report-img{
+        margin: 0 5px;
+        width: 32px;
+        display: inline;
+    }
+
+    /* tables
+    -------------------------------------------------- */
+    .table{
+        tbody{
+            tr{
+                td{
+                    //border-top: 1px solid lighten($app-border-color, 20%); 
+                    border-top: 1px solid $app-body-bcg-color;  
+                }
+            }
+        }
+
+    }
+    .table-report{
+        tbody tr{
+            @include appGradient();
+        }
+    }
+
+    /* Forms
+    -------------------------------------------------- */
+    .btn-new-item{
+        float: none !important;
+    }
+    .btn-name{
+        display: none;
+    }
+
+    /* Tabs
+    -------------------------------------------------- */
+
+    /* Elements
+    -------------------------------------------------- */
+    .widget-entry{
+        width: 100%;
+    }
+    .widget-block{ 
+        margin: 0;
+        -webkit-box-shadow: none;
+        -moz-box-shadow:    none;
+        box-shadow:        none;
+        border-bottom: solid 1px #ccc;
+    }
+    .widget-block-in{
+        /*   border: solid 1px red;*/
+        height: auto;
+        text-align: left;
+        padding: 10px;
+    }
+    .widget-header{
+        float: left;
+        width: 70px;
+    }
+    .widget-body{
+        float: left;
+    }
+    .widget-image{
+        margin: 0;
+        width: 48px;
+        height: 48px;
+    }
+
+    /* Home */
+    .home-widget{
+        .widget-entry{
+            .widget-block-in{
+                border: 0;
+                padding: 0;
+
+            }
+        }
+    }
+
+    /* Eevents
+    -------------------------------------------------- */
+    .event-entry{
+        .event-img{
+            width: 24px;
+            height: 24px;
+        }
+        .event-message{
+            /*            display: block;*/
+        }
+        .event-action{
+            text-align: right;
+        }
+    }
+
+    /* Apps
+    -------------------------------------------------- */
+    .tabs-container{
+        text-align: center;
+    }
+    .nav-tabs{
+        display: block;
+        text-align: center;
+        padding: 0 25%;
+    }
+    .tab-name{
+        display: none;
+    }
+    .tab-icon{
+        font-size: 20px;
+    }
+    .app-entry{
+        width: 100%;
+        padding:  0;
+    }
+    .app-entry-in{
+        border: 0;
+        border-bottom: dotted 1px $app-border-color; 
+        margin: 0;
+        padding: 10px;
+        border-radius: 0;
+        height: auto;
+        .list-group{
+            border: 0 none;
+        }
+        .list-group-item{
+            border: none;
+            margin: 0;
+            padding: 0;
+            padding-bottom: 10px;
+
+        }
+
+        .app-header{
+            float: left;
+            width: 35%;
+        }
+        .app-body{
+            float: left;
+            width: 64%;
+            margin: 0;
+            padding-right: 10px;
+            .btn{
+                vertical-align: top;
+            }
+
+        }
+    }
+    #table_apps_active{
+        .btn{
+            font-size: 12px;
+        }
+
+    }
+    .app-image-list{
+        max-width: 50px;
+    }
+
+    /* Rooms
+    -------------------------------------------------- */
+
+    .room-entry{
+        float:left;
+        width: 50%;
+        .entry-title{
+            font-size: 12px;
+        }
+        .entry-title-text{
+            display: none;
+        }
+
+    }
+    .room-image{
+        max-width: 130px;
+    }
+
+    /* Profiles
+    -------------------------------------------------- */
+
+    .profile-entry{
+        float:left;
+        width: 50%;
+        .entry-title{
+            font-size: 12px;
+        }
+        .entry-title-text{
+            display: none;
+        }
+
+    }
+    /* Devices
+    -------------------------------------------------- */
+}

@@ -17,7 +17,7 @@
     max-width: 260px;
 }
 .room-image:hover{
-    border-color: #e2e2e2;
+    border-color: $app-body-bcg-color;
 }
 .room-name{
     //position: absolute;
@@ -42,12 +42,12 @@
     white-space: nowrap;
     vertical-align: middle;
     background-image: none;
-    border: 1px solid #DDDDDD;
+    border: 1px solid $app-border-color;
     border-radius: 4px;
 }
 .room-assigned-block{
     padding: 10px;
-    border: 1px solid #DDDDDD;
+    border: 1px solid $app-border-color;
     margin: 10px 0;
 }
 #modal_room .badge{

@@ -6,11 +6,16 @@
     margin: 0 auto 20px auto;
     text-align: center;
     padding: 10px;
-    border: solid 1px #e2e2e2;
     @include appGradient();
     
     .list-group-item{
         text-align: left;
+        background-color: transparent;
+         margin: 0;
+        border: 0;
+        border-radius: 0;
+        border-top: solid 1px $app-border-color;
+       
     }
 }
 .device-logo{
@@ -18,4 +23,13 @@
 }
 .device-logo img{
     max-height: 50px;
+    
+}
+
+.device-image{
+    border-radius: 50%;
+    border: solid 4px #fff;
+}
+.device-image:hover{
+    border-color: $app-body-bcg-color;
 }
