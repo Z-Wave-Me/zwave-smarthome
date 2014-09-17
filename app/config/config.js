@@ -12,10 +12,13 @@ var config_data = {
     // Application version
     'app_version': '0.1',
     
-    // Api server base url
-    'server_url': '',
+    // Server base url
+    'server_url': 'http://zwave.dyndns.org:8083',
     
-    // Demo ddata path
+    // Api url
+    'api_url': '/ZAutomation/api/v1/',
+    
+    // Demo data path
     'demo_url': 'storage/demo/',
     
     // Language directory
@@ -28,7 +31,7 @@ var config_data = {
     'lang_list': ["en","de","fr","es"],
     
     // List of profile colors
-    'profile_colors': ['#3071A9','#449D44','#31B0D5','#F0AD4E','#D9534F'],
+    'profile_colors': ['#6C7A89','#3071A9','#449D44','#31B0D5','#F0AD4E','#D9534F'],
     
      // Results per page
     'page_results': 12

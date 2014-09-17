@@ -46,15 +46,15 @@
         <script src="app/filters/filters.js"></script>
         <script src="app/controllers/controllers.js"></script>
     </head>
-    <body ng-controller="BaseController" id="page_{{getBodyId()}}" class="is-mobile-{{isMobile}}">
+    <body ng-controller="BaseController" id="page_{{getBodyId()}}" class="is-mobile-{{isMobile}}" ng-class="profile.cssClass">
         <div id="main_navbar" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
                <div class="navbar-visible">
                          <div class="navbar-visible-in">
-                        <a class="active" href="#home" title="{{_t('nav_home')}}"><i class="fa fa-home fa-2x"></i></a>
-                        <a href="#elements" title="{{_t('nav_elements')}}"><i class="fa fa-th fa-2x"></i></a>
-                        <a href="#rooms" title="{{_t('nav_rooms')}}"><i class="fa fa-th-large fa-2x"></i></a>
-                       <a href="#events" title="{{_t('nav_events')}}"><i class="fa fa-list-ul fa-2x"></i></a>
+                        <a href="#home" title="{{_t('nav_home')}}" ng-class="isActive('')"><i class="fa fa-home fa-2x"></i></a>
+                        <a href="#elements" title="{{_t('nav_elements')}}" ng-class="isActive('elements')"><i class="fa fa-th fa-2x"></i></a>
+                        <a href="#rooms" title="{{_t('nav_rooms')}}" ng-class="isActive('rooms')"><i class="fa fa-th-large fa-2x"></i></a>
+                       <a href="#events" title="{{_t('nav_events')}}" ng-class="isActive('events')"><i class="fa fa-list-ul fa-2x"></i></a>
                        </div>
                     </div>
                 <div class="navbar-header">
@@ -89,20 +89,20 @@
                                 <i class="fa fa-user fa-lg"></i> Away  <b class="caret"></b> 
                             </a>
                             <ul class="dropdown-menu">
-                                <li ng-repeat="v in profiles"><a href="#profiles" class="nav-control">{{v.name}}</a></li>
+                                <li ng-repeat="v in profiles"><a href="" class="nav-control" ng-click="setProfile(v.color)"><i class="fa fa-circle" style="color: {{v.color}};"></i> {{v.name}}</a></li>
                             </ul>
                         </li>
                         <li class="divider-vertical remove-margin"></li>
                         <li class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog fa-lg"></i><b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#apps" class="nav-control"><i class="fa fa-file-image-o"></i> {{_t('nav_apps')}}</a></li>
-                                <li><a href="#devices" class="nav-control"><i class="fa fa-file-image-o"></i> {{_t('nav_devices')}}</a></li>
-                                <li><a href="#config-rooms" class="nav-control"><i class="fa fa-file-image-o"></i> {{_t('nav_rooms')}}</a></li>
-                                <li><a href="#network" class="nav-control"><i class="fa fa-file-image-o"></i> {{_t('nav_network_health')}}</a></li>
-                                <li><a href="#profiles" class="nav-control"><i class="fa fa-file-image-o"></i> {{_t('nav_profiles')}}</a></li>
+                                <li ng-class="isActive('apps')"><a href="#apps" class="nav-control"><i class="fa fa-file-image-o"></i> {{_t('nav_apps')}}</a></li>
+                                <li ng-class="isActive('devices')"><a href="#devices" class="nav-control"><i class="fa fa-file-image-o"></i> {{_t('nav_devices')}}</a></li>
+                                <li ng-class="isActive('config-rooms')"><a href="#config-rooms" class="nav-control"><i class="fa fa-file-image-o"></i> {{_t('nav_rooms')}}</a></li>
+                                <li ng-class="isActive('network')"><a href="#network" class="nav-control"><i class="fa fa-file-image-o"></i> {{_t('nav_network_health')}}</a></li>
+                                <li ng-class="isActive('profiles')"><a href="#profiles" class="nav-control"><i class="fa fa-file-image-o"></i> {{_t('nav_profiles')}}</a></li>
                                 <li class="divider"></li>
-                                <li><a href="#about" class="nav-control"><i class="fa fa-file-image-o"></i> {{_t('nav_about')}}</a></li>
+                                <li ng-class="isActive('about')"><a href="#about" class="nav-control"><i class="fa fa-file-image-o"></i> {{_t('nav_about')}}</a></li>
                             </ul>
                         </li>
                         <li class="divider-vertical remove-margin"></li>
@@ -113,8 +113,8 @@
             </div> <!-- /.container -->
         </div> <!-- /.navbar --> 
 
-        <!-- Response Container -->
-        <div id="respone_container"></div>
+       <!-- Response Container -->
+        <div id="respone_container" class="container"><div id="respone_container_inner"></div></div>
         <!-- Ang Content Container -->
         <div id="main_content" class="container" ng-view></div>
         <div class="clearfix"></div>

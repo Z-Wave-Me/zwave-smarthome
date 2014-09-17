@@ -2,6 +2,7 @@
 -------------------------------------------------- */
 .profile-entry{
     padding: 0;
+    background-color: $brand-color-secondary;
 }
 .profile-in{
     text-align: center;
@@ -24,7 +25,7 @@
     max-width: 96px;
 }
 .profile-image:hover{
-    border-color: #e2e2e2;
+    border-color: $app-body-bcg-color;
 }
 
 .profile-color{

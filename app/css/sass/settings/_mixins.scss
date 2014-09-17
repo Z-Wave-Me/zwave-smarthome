@@ -2,6 +2,76 @@
 // Mixins
 // --------------------------------------------------
 
+
+// Profile colors
+@mixin appProfileColors($brand-color-secondary) {
+    /* Visible */
+.navbar-visible{
+    .navbar-visible-in{
+       a{
+             color: $brand-color-secondary;
+        }
+        a:hover{
+            color: lighten($brand-color-secondary, 20%);
+        }
+        .active{
+            background-color:$brand-color-secondary;
+             color: lighten($brand-color-primary, 10%);
+        }
+    }
+}
+
+.navbar-inverse {
+    border-bottom: solid 10px $brand-color-secondary;
+    color: $brand-color-secondary;
+    .navbar-nav{
+        .dropdown-toggle{
+            color: $brand-color-secondary;
+        }
+        .dropdown-toggle:hover{
+             color: lighten($brand-color-secondary, 20%);
+        }
+    }
+
+}
+.navbar-inverse_ .navbar-nav .dropdown-toggle{
+    color: $brand-color-secondary;
+}
+/* Collapse */
+
+.navbar-inverse .navbar-nav>.active>a, 
+.navbar-inverse .navbar-nav>.active>a:hover, 
+.navbar-inverse .navbar-nav>.active>a:focus {
+    background-color: lighten($brand-color-secondary, 40%);
+}
+
+.navbar-inverse .navbar-nav>.open>a, 
+.navbar-inverse .navbar-nav>.open>a:hover, 
+.navbar-inverse .navbar-nav>.open>a:focus {
+    background-color: darken($brand-color-secondary, 50%);
+}
+
+.navbar-inverse .dropdown-menu>.active>a,
+.navbar-inverse .dropdown-menu>.active>a:hover,
+.navbar-inverse .dropdown-menu>.active>a:focus {
+
+    background-color:$brand-color-secondary;
+             color: lighten($brand-color-primary, 10%);
+
+}
+
+.navbar-inverse .dropdown-menu>li>a:hover, 
+.navbar-inverse .dropdown-menu>li>a:focus {
+   background-color: lighten($brand-color-secondary, 40%);
+}
+.dropdown-menu {
+
+    border: 1px solid lighten($brand-color-secondary, 30%);
+    .divider {
+        background-color: lighten($brand-color-secondary, 30%);
+    }
+}
+}
 // Gradient
 @mixin appGradient() {
     background: #e5eaf0; /* Old browsers */

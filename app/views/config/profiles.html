@@ -10,18 +10,42 @@
     </div>
 
     <div class="row">
-        <div class="col-md-2 col-sm-4 profile-entry" id="panel_{{$index}}" style="background-color: {{v.color}};" ng-repeat="v in collection">
+        <div class="col-md-2 col-sm-4 profile-entry" id="panel_demo_{{$index}}" style="background-color: {{v.color}};" ng-repeat="v in demo">
             <div class="profile-in app-shadow">
                 <h3 class="entry-title"><span class="entry-title-text">{{v.name}}</span> 
                     <a href="" 
                        ng-click="showModal('#modal_profile', {'id': v.id, 'name': v.name, 'description': v.description, 'color': null})"
                        ><i class="fa fa-pencil fa-lg"></i></a>
                     <a href="" 
-                       ng-click="delete('#panel_' + $index, {'id': v.id, 'name': v.name})"
+                       ng-click="delete('#panel_demo_' + $index, {'id': v.id},_t('lb_delete_confirm'))"
                        >&nbsp;&nbsp;&nbsp;<i class="fa fa-times fa-lg"></i></a>
                 </h3>
                 <a href="" title="{{v.name}}" ng-click="showModal('#modal_profile', {'id': v.id, 'name': v.name, 'description': v.description, 'color': null})">
                     <img class="profile-image img-circle" ng-src="storage/img/profiles/{{v.img}}" alt="{{v.name}}" />
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Real data -->
+    
+    <div class="row">
+       
+        <br /><br /><h3>Real data output</h3>
+        <div class="col-md-2 col-sm-4 profile-entry" id="panel_{{$index}}" style="background-color: {{v.color}};" ng-repeat="v in collection">
+            <div class="profile-in app-shadow">
+                <h3 class="entry-title" title="{{v.name}}"><span class="entry-title-text">{{v.name | cutText:true:15}}</span> 
+                   
+                </h3>
+                <p class="entry-title">
+                  <a href="" 
+                       ng-click="showModal('#modal_profile', {'id': v.id, 'name': v.name, 'description': v.description, 'color': null})"
+                       ><i class="fa fa-pencil fa-lg"></i></a>
+                    <a href="" 
+                       ng-click="delete('#panel_' + $index, {'id': v.id},_t('lb_delete_confirm'))"
+                       >&nbsp;&nbsp;&nbsp;<i class="fa fa-times fa-lg"></i></a>   
+                </p>
+                <a href="" title="{{v.name}}" ng-click="showModal('#modal_profile', {'id': v.id, 'name': v.name, 'description': v.description, 'color': null})">
+                    <img class="profile-image img-circle" ng-src="storage/img/profiles/profile-icon.png" alt="{{v.name}}" />
                 </a>
             </div>
         </div>
@@ -41,7 +65,7 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="checkbox" name="active" value="" id="active" /> <label>{{_t('lb_active')}}</label>
+                        <input type="checkbox" name="active" value="true" id="active" ng-model="input.active" /> <label>{{_t('lb_active')}}</label>
                     </div>
 
                     <div class="form-group">
@@ -116,7 +140,7 @@
                     <button type="button" 
                             class="btn btn-primary" 
                             data-dismiss="modal"
-                            ng-click="create(input)">{{_t('lb_save')}}</button>
+                            ng-click="store(input,input.name)">{{_t('lb_save')}}</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">{{_t('lb_cancel')}}</button>
                 </div>
             </div>

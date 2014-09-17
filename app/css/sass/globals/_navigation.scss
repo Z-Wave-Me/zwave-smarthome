@@ -6,7 +6,7 @@
         padding: 0;
     }
 }
-/* Visible */
+    /* Visible */
 .navbar-visible{
     position: relative;
     .navbar-visible-in{
@@ -65,13 +65,14 @@
 .navbar-inverse .dropdown-menu>.active>a:hover,
 .navbar-inverse .dropdown-menu>.active>a:focus {
 
-    background-color: lighten($brand-color-secondary, 40%);
+    background-color:$brand-color-secondary;
+             color: lighten($brand-color-primary, 10%);
 
 }
 
 .navbar-inverse .dropdown-menu>li>a:hover, 
 .navbar-inverse .dropdown-menu>li>a:focus {
-    background-color: lighten($brand-color-secondary, 40%);
+   background-color: lighten($brand-color-secondary, 40%);
 }
 
 .navbar .divider-vertical {
@@ -124,4 +125,15 @@
 
 .dropdown-menu a i{
     padding-right: 10px;
+}
+/** Profile colors */
+.profile-6494bc{
+     @include appProfileColors(#6494bc);
+}
+.profile-80ad80{
+     @include appProfileColors(#80ad80);
+}
+
+.profile-dd976e{
+     @include appProfileColors(#dd976e);
 }

@@ -125,7 +125,16 @@ background-color: lighten($app-body-bcg-color, 10%);;
 -------------------------------------------------- */
 #respone_container{
     display: none;
+margin-top: 70px;
+/*position: relative;*/
 }
+#respone_container_inner {
+    //display: none;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+}
+
 .page-header {
     padding-bottom: 0;
     margin: 20px 0 30px 0;
