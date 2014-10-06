@@ -269,7 +269,7 @@ myAppController.controller('ElementController', function($scope, dataFactory, de
      * Load data into collection
      */
     $scope.loadData = function() {
-        dataFactory.demoData('elements.json', function(data) {
+        dataFactory.getDevices(function(data) {
             $scope.collection = deviceService.getDevices(data.data.devices);
         });
     };
@@ -327,9 +327,31 @@ myAppController.controller('ElementController', function($scope, dataFactory, de
  */
 myAppController.controller('EventController', function($scope, dataFactory) {
     $scope.collection = [];
+    $scope.demo = [];
     $scope.reset = function() {
         $scope.collection = angular.copy([]);
     };
+    
+    /**
+     * Load demo data
+     */
+    $scope.loadDemoData = function() {
+        dataFactory.demoData('events.json', function(data) {
+            $scope.demo = data.data.notifications;
+        });
+    };
+    $scope.loadDemoData();
+
+    /**
+     * Load data into collection
+     */
+    $scope.loadData = function() {
+        dataFactory.getNotifications(function(data) {
+            $scope.collection = data.data.notifications;
+            console.log($scope.collection);
+        });
+    };
+    $scope.loadData();
 
     /**
      * Load data into collection
@@ -581,7 +603,7 @@ myAppController.controller('DeviceController', function($scope, $window, $interv
  */
 myAppController.controller('RoomController', function($scope, $window, $interval, $upload, dataFactory, deviceService) {
     $scope.collection = [];
-    $scope.devices = [];
+    $scope.demo = [];
     $scope.upload = {
         'showProgress': false,
         'progressVal': 0
@@ -594,29 +616,26 @@ myAppController.controller('RoomController', function($scope, $window, $interval
     $scope.reset = function() {
         $scope.collection = angular.copy([]);
     };
-
+    
+     /**
+     * Load demo data
+     */
+    $scope.loadDemoData = function() {
+        dataFactory.demoData('rooms.json', function(data) {
+            $scope.demo = data;
+        });
+    };
+    $scope.loadDemoData();
 
     /**
      * Load data into collection
      */
     $scope.loadData = function() {
-        dataFactory.demoData('rooms.json', function(data) {
-            $scope.collection = data;
+        dataFactory.getLocations(function(data) {
+            $scope.collection = data.data;
         });
     };
     $scope.loadData();
-
-
-
-    /**
-     * Load data into collection
-     */
-    $scope.loadDevices = function() {
-        dataFactory.demoData('elements.json', function(data) {
-            $scope.devices = deviceService.getDevices(data.data.devices);
-        });
-    };
-    $scope.loadDevices();
 
     /**
      * Show modal window
@@ -716,8 +735,9 @@ myAppController.controller('RoomDeviceController', function($scope, $routeParams
 /**
  * Room config controller
  */
-myAppController.controller('RoomConfigController', function($scope, $window, $interval, $upload, dataFactory, deviceService) {
+myAppController.controller('RoomConfigController', function($scope, $route,$window, $interval, $upload, dataFactory, deviceService) {
     $scope.collection = [];
+    $scope.demo = [];
     $scope.devices = [];
     $scope.upload = {
         'showProgress': false,
@@ -726,25 +746,34 @@ myAppController.controller('RoomConfigController', function($scope, $window, $in
     $scope.showProgress = false;
     $scope.input = {
         'id': null,
-        'name': null
+        'title': null
     };
     $scope.reset = function() {
         $scope.collection = angular.copy([]);
     };
-
+    
+     /**
+     * Load demo data
+     */
+    $scope.loadDemoData = function() {
+        dataFactory.demoData('rooms.json', function(data) {
+            $scope.demo = data;
+        });
+    };
+    $scope.loadDemoData();
 
     /**
      * Load data into collection
      */
     $scope.loadData = function() {
-        dataFactory.demoData('rooms.json', function(data) {
-            $scope.collection = data;
+        dataFactory.getLocations(function(data) {
+            $scope.collection = data.data;
         });
     };
     $scope.loadData();
-
+    
     /**
-     * Load data into collection
+     * Load devices
      */
     $scope.loadDevices = function() {
         dataFactory.demoData('elements.json', function(data) {
@@ -753,6 +782,7 @@ myAppController.controller('RoomConfigController', function($scope, $window, $in
     };
     $scope.loadDevices();
 
+
     /**
      * Show modal window
      */
@@ -760,25 +790,43 @@ myAppController.controller('RoomConfigController', function($scope, $window, $in
         $scope.input = input;
         $(target).modal();
     };
-
+    
     /**
      * Create an item
      */
-    $scope.create = function(input) {
-        if (input.id === null) {
-            $scope.collection.push(input);
+    $scope.store = function(input) {
+        var inputData = {
+            "id": input.id,
+            "title": input.title
+        };
+        if (input.id) {
+              dataFactory.putLocation(function(data) {
+                $scope.collection.push = data.data;
+                console.log('PUT: ' + inputData);
+                $route.reload();
+            },input.id,inputData);
+        }else{
+            dataFactory.postLocation(function(data) {
+                $scope.collection.push = data.data;
+                console.log('POST: ' + inputData);
+                $route.reload();
+            },inputData);
+           
         }
-        console.log(input);
+        
     };
-
-    /**
+    
+     /**
      * Delete an item
      */
-    $scope.delete = function(target, input) {
-        var confirm = $window.confirm('Are you absolutely sure you want to delete?');
+    $scope.delete = function(target, input, dialog) {
+        var confirm = true;
+        if (dialog) {
+            confirm = $window.confirm(dialog);
+        }
         if (confirm) {
-            console.log('Removing: ' + target);
-            $(target).fadeOut();
+            dataFactory.deleteLocation(input.id, input, target);
+
         }
     };
 

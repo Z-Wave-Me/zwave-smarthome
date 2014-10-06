@@ -11,6 +11,9 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
     return({
         getDevices: getDevices,
         getLocations: getLocations,
+        postLocation: postLocation,
+        putLocation: putLocation,
+        deleteLocation: deleteLocation,
         getProfiles: getProfiles,
         postProfile: postProfile,
         putProfile: putProfile,
@@ -20,7 +23,7 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
     });
 
     /**
-     * Devices
+     * Elements
      */
     function getDevices(callback, params) {
         var request = $http({
@@ -40,6 +43,36 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
         });
         return load(callback, request);
     }
+    
+    // Post
+    function postLocation(callback, data) {
+        var request = $http({
+            method: "post",
+            data: data,
+            url: cfg.server_url + cfg.api_url + "locations"
+        });
+        return postData(callback, request);
+    }
+    
+    // Put
+    function putLocation(callback, id, data) {
+        var request = $http({
+            method: "put",
+            data: data,
+            url: cfg.server_url + cfg.api_url + "locations/" + id
+        });
+        return postData(callback, request);
+    }
+    
+    // Delete
+    function deleteLocation(id, input, target) {
+        var request = $http({
+            method: "delete",
+            data: input,
+            url: cfg.server_url + cfg.api_url + "locations/" + id
+        });
+        return deleteData(request, target);
+    }
 
     /**
      * Profiles
@@ -51,7 +84,7 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
         });
         return load(callback, request, 'profiles');
     }
-    // Put
+    // Post
     function postProfile(callback, data) {
         var request = $http({
             method: "post",

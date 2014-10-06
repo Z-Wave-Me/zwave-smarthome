@@ -4,22 +4,43 @@
         <div class="page-control">
         <button type="button" 
                 class="btn btn-success pull-right btn-new-item"
-                ng-click="showModal('#modal_room', {'id': null, 'name': null})"
+                ng-click="showModal('#modal_room', {'id': null, 'title': null})"
                 ><i class="fa fa-plus"></i> {{_t('lb_add_room')}}</button>
             </div>
     </div>
+    
     <div class="row">
         <div class="col-md-3 col-sm-6 room-entry" id="panel_{{$index}}" ng-repeat="v in collection">
             <div class="room-in">
-                <h3 class="entry-title"><span class="entry-title-text">{{v.name}}</span> 
+                <h3 class="entry-title"><span class="entry-title-text">{{v.title}}</span> 
                             <a href="" 
-                                   ng-click="showModal('#modal_room', {'id': v.id, 'name': v.name,'img': v.img})"
+                                   ng-click="showModal('#modal_room', {'id': v.id, 'title': v.title,'img': v.img})"
                                    ><i class="fa fa-pencil"></i></a>&nbsp;
                                 <a href="" 
-                                   ng-click="delete('#panel_' + $index, {'id': v.id, 'name': v.name})"
+                                   ng-click="delete('#panel_' + $index, {'id': v.id},_t('lb_delete_confirm'))"
                                    ><i class="fa fa-times"></i></a>
                         </h3>
-                 <a href="" title="{{v.name}}" ng-click="showModal('#modal_room', {'id': v.id, 'name': v.name,'img': v.img})">
+                 <a href="" title="{{v.title}}" ng-click="showModal('#modal_room', {'id': v.id, 'title': v.title,'img': v.img})">
+                     <img class="room-image img-circle" ng-src="storage/img/rooms/{{v.img}}" alt="{{v.title}}" />
+                 </a>
+             </div>
+        </div>
+    </div>
+    
+     <!-- Demo data -->
+    <div class="row">
+        <br /><br /><h3>Demo data output</h3>
+        <div class="col-md-3 col-sm-6 room-entry" id="panel_{{$index}}" ng-repeat="v in demo">
+            <div class="room-in">
+                <h3 class="entry-title"><span class="entry-title-text">{{v.name}}</span> 
+                            <a href="" 
+                                   ng-click="showModal('#modal_room', {'id': v.id, 'title': v.name,'img': v.img})"
+                                   ><i class="fa fa-pencil"></i></a>&nbsp;
+                                <a href="" 
+                                   ng-click="delete('#panel_' + $index, {'id': v.id, 'title': v.name})"
+                                   ><i class="fa fa-times"></i></a>
+                        </h3>
+                 <a href="" title="{{v.name}}" ng-click="showModal('#modal_room', {'id': v.id, 'title': v.name,'img': v.img})">
                      <img class="room-image img-circle" ng-src="storage/img/rooms/{{v.img}}" alt="{{v.name}}" />
                  </a>
              </div>
@@ -30,11 +51,11 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">{{_t('lb_room')}}: {{input.name}}</h4>
+                    <h4 class="modal-title">{{_t('lb_room')}}: {{input.title}}</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <input name="name" id="name" type="text" class="form-control" placeholder="{{_t('lb_room_name')}}" value="{{input.name}}" ng-model="input.name" />
+                        <input name="title" id="title" type="text" class="form-control" placeholder="{{_t('lb_room_name')}}" value="{{input.title}}" ng-model="input.title" />
                     </div>
 
                     <div class="form-group text-center">
@@ -70,7 +91,7 @@
                     <button type="button" 
                             class="btn btn-primary" 
                             data-dismiss="modal"
-                            ng-click="create(input)">{{_t('lb_save')}}</button>
+                            ng-click="store(input)">{{_t('lb_save')}}</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">{{_t('lb_cancel')}}</button>
                 </div>
             </div>
