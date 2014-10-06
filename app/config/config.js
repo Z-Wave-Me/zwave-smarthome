@@ -28,7 +28,7 @@ var config_data = {
     'lang': 'en',
     
     // List of supported languages
-    'lang_list': ["en","de","fr","es"],
+    'lang_list': ["en","de"],
     
     // List of profile colors
     'profile_colors': ['#6C7A89','#3071A9','#449D44','#31B0D5','#F0AD4E','#D9534F'],

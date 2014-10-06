@@ -15,14 +15,18 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
      */
     $scope.cfg = cfg;
     $scope.profile = {
-        'cssClass': 'profile-default'
+        'cssClass': 'profile-default',
+        'lang': 'en'
     };
     /**
      * Language settings
      */
     $scope.lang_list = cfg.lang_list;
     // Set language
-    $scope.lang = (angular.isDefined($cookies.lang) ? $cookies.lang : cfg.lang);
+    //$scope.lang = (angular.isDefined($cookies.lang) ? $cookies.lang : cfg.lang);
+    $scope.lang = (angular.isDefined($scope.profile.lang) ? $scope.profile.lang : cfg.lang);
+    
+    // TODO: remove?
     $scope.changeLang = function(lang) {
         $cookies.lang = lang;
         $scope.lang = lang;
@@ -61,19 +65,18 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
     };
 
     /**
-     * Set data (menu etc)
+     * Load base data (profiles, languages)
      */
-    $scope.events = [];
     $scope.profiles = [];
-    $scope.loadData = function() {
-        dataFactory.demoData('events.json', function(data) {
-            $scope.events = data.data.notifications;
-        });
+    $scope.loadBaseData = function() {
+//       dataFactory.getProfiles(function(data) {
+//            $scope.profiles = data.data;
+//        });
         dataFactory.demoData('profiles.json', function(data) {
             $scope.profiles = data;
         });
     };
-    $scope.loadData();
+    $scope.loadBaseData();
 
     /**
      * Get body ID
@@ -99,14 +102,6 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
     };
     $scope.mobileCheck(navigator.userAgent || navigator.vendor || window.opera);
 
-    /**
-     * Hide collapsed navi after click on mobile devices
-     */
-    $("#main_navbar .nav-control").click(function(event) {
-        // check if window is small enough so dropdown is created
-        $("#nav_collapse").removeClass("in").addClass("collapse");
-    });
-
     /*
      * Menu active class
      */
@@ -118,9 +113,10 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
      * Set profile
      */
     $scope.setProfile = function(color) {
-        var cssClass = 'profile-' + color.substring(1);
-        $scope.profile.cssClass = cssClass;
-        $route.reload();
+       if(color){
+             $scope.profile.cssClass = 'profile-' + color.substring(1);
+       }
+       $route.reload();
     };
 
 });
@@ -241,6 +237,7 @@ myAppController.controller('HomeController', function($scope, $location, dataFac
  * Element controller
  */
 myAppController.controller('ElementController', function($scope, dataFactory, deviceService) {
+    $scope.demo = [];
     $scope.collection = [];
     $scope.input = {
         'id': null,
@@ -256,6 +253,17 @@ myAppController.controller('ElementController', function($scope, dataFactory, de
     $scope.isActive = true;
     $scope.size = 'small';
     $scope.animate = false;
+    
+    
+    /**
+     * Load demo data
+     */
+    $scope.loadDemoData = function() {
+        dataFactory.demoData('elements.json', function(data) {
+            $scope.demo = deviceService.getDevices(data.data.devices);
+        });
+    };
+    $scope.loadDemoData();
 
     /**
      * Load data into collection

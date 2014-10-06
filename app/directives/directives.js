@@ -11,6 +11,20 @@ myApp.directive('testDir', function() {
 });
 
 /**
+ * Hide collapsed navi after click on mobile devices
+ */
+myApp.directive('collapseNavbar', function() {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            $(element).click(function() {
+                $("#nav_collapse").removeClass("in").addClass("collapse");
+            });
+        }
+    };
+});
+
+/**
  * Knob directive
  */
 myApp.directive('knob', function() {
