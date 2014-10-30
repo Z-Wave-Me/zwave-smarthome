@@ -778,7 +778,7 @@ a {
 
 /* line 19, sass/modules/_rooms.scss */
 .room-image:hover {
-  border-color: #c4d0de;
+  border-color: #a4b6cb;
 }
 
 /* line 22, sass/modules/_rooms.scss */
@@ -826,6 +826,18 @@ a {
 /* line 57, sass/modules/_rooms.scss */
 .hidden-device {
   display: none;
+}
+
+/* line 60, sass/modules/_rooms.scss */
+.modal-room-images {
+  float: left;
+  width: 100px;
+  text-align: center;
+  margin: 10px;
+}
+/* line 65, sass/modules/_rooms.scss */
+.modal-room-images img {
+  width: 100px;
 }
 
 /* Profile

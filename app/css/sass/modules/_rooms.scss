@@ -17,7 +17,7 @@
     max-width: 260px;
 }
 .room-image:hover{
-    border-color: $app-body-bcg-color;
+    border-color: darken($app-body-bcg-color,10);
 }
 .room-name{
     //position: absolute;
@@ -56,4 +56,13 @@
 }
 .hidden-device{
     display: none;
+}
+.modal-room-images{
+    float: left;
+    width: 100px;
+    text-align: center;
+    margin: 10px;
+    img{
+        width: 100px;
+    }
 }
