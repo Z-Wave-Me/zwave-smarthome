@@ -5,7 +5,15 @@
             <div class="widget-block" ng-switch="v.deviceType">
                 <div class="widget-block-in clearfix app-gradient app-shadow">
                     <a class="widget-config" href="" 
-                           ng-click="showModal('#modal_widget', {'id': v.id, 'title': v.title, 'dasboard': 0, 'deviceType': v.deviceType, 'level': v.level})"
+                           ng-click="showModal('#modal_widget', {
+                               'id': v.id, 
+                                'title': v.title, 
+                                'dashboard': v.tags == true ? true : false, 
+                                'deviceType': v.deviceType, 
+                                'level': v.level,
+                                'metrics': v.metrics,
+                                'permanently_hidden': v.permanently_hidden
+                           })"
                            ><i class="fa fa-cog fa-lg"></i></a>
                     <!-- Widget header -->
                     <div class="widget-header">
@@ -127,7 +135,7 @@
     </div>
     
     <!-- Demo data -->
-    <div class="row">
+    <div class="row" ng-show="demo">
          <br /><br /><h3>Demo data output</h3>
         <div class="col-md-2 col-sm-6 widget-entry" ng-repeat="v in demo">
             <div class="widget-block" ng-switch="v.deviceType">
@@ -265,11 +273,11 @@
                 <div class="modal-body">
                     <div>ID: {{input.id}} | Device type: {{input.deviceType}} | Updated: {{v.updateTime| isTodayFromUnix}}</div>
                     <div class="form-group">
-                        <input name="name" id="name" type="text" class="form-control" value="{{input.title}}" placeholder="Name" ng-model="input.title" />
+                        <input name="title" id="title" type="text" class="form-control" value="{{input.title}}" placeholder="Name" ng-model="input.title" />
                     </div>
                     <div class="form-group">
-                        <input type="checkbox" name="dashboard" value="{{input.dashboard}}" id="restore_confirm" ng-model="input.dashboard" /> <label>Add to dashboard</label>
-                        &nbsp;&nbsp;<input type="checkbox" name="hide_element" id="hide_element" value="" ng-confirm-click="This means that you can never use this element again. Are you sure?" /> <label>Permanently hide this element</label>
+                        <input type="checkbox" name="dashboard" value="{{input.dashboard}}" id="dashboard" ng-model="input.dashboard" ng-checked="input.dashboard" /> <label>Add to dashboard</label>
+                        &nbsp;&nbsp;<input type="checkbox" name="permanently_hidden" id="permanently_hidden" value="" ng-model="input.permanently_hidden" ng-checked="input.permanently_hidden" ng-confirm-click="This means that you can never use this element again. Are you sure?" /> <label>Permanently hide this element</label>
                     </div>
 
                     <div class="form-group">
@@ -300,8 +308,11 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Update</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" 
+                            class="btn btn-primary" 
+                            data-dismiss="modal"
+                            ng-click="store(input)">{{_t('lb_save')}}</button>
+                     <button type="button" class="btn btn-default" data-dismiss="modal">{{_t('lb_cancel')}}</button>
                 </div>
             </div>
         </div>

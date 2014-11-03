@@ -25,7 +25,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
     // Set language
     //$scope.lang = (angular.isDefined($cookies.lang) ? $cookies.lang : cfg.lang);
     $scope.lang = (angular.isDefined($scope.profile.lang) ? $scope.profile.lang : cfg.lang);
-    
+
     // TODO: remove?
     $scope.changeLang = function(lang) {
         $cookies.lang = lang;
@@ -113,10 +113,10 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
      * Set profile
      */
     $scope.setProfile = function(color) {
-       if(color){
-             $scope.profile.cssClass = 'profile-' + color.substring(1);
-       }
-       $route.reload();
+        if (color) {
+            $scope.profile.cssClass = 'profile-' + color.substring(1);
+        }
+        $route.reload();
     };
 
 });
@@ -158,12 +158,17 @@ myAppController.controller('TestController', function($scope, dataFactory) {
 /**
  * Home controller
  */
-myAppController.controller('HomeController', function($scope, $location, dataFactory, deviceService) {
+myAppController.controller('HomeController', function($scope, dataFactory, deviceService) {
+    $scope.demo = [];
     $scope.collection = [];
     $scope.hideFooter = true;
-    $scope.widget = {
+    $scope.input = {
+        'id': null,
+        'metrics': null,
+        'tags': null,
+        'permanently_hidden': false,
         'title': '',
-        'dasboard': 0,
+        'dashboard': false,
         'deviceType': null,
         'level': null
     };
@@ -178,84 +183,6 @@ myAppController.controller('HomeController', function($scope, $location, dataFac
     };
 
     /**
-     * Load data into collection
-     */
-    $scope.loadData = function() {
-        dataFactory.demoData('elements.json', function(data) {
-            $scope.collection = deviceService.getDevices(data.data.devices);
-        });
-    };
-    $scope.loadData();
-
-    /**
-     * Chart data
-     */
-    $scope.chartData = {
-        labels: ['01:00', '06:00', '10:00', '12:00', '14:00', '18:00', '20:00'],
-        datasets: [
-            /*{
-             fillColor: 'rgba(220,220,220,0.5)',
-             strokeColor: 'rgba(220,220,220,1)',
-             pointColor: 'rgba(220,220,220,1)',
-             pointStrokeColor: '#fff',
-             data: [65, 59, 90, 81, 56, 55, 40]
-             },*/
-            {
-                fillColor: 'rgba(151,187,205,0.5)',
-                strokeColor: 'rgba(151,187,205,1)',
-                pointColor: 'rgba(151,187,205,1)',
-                pointStrokeColor: '#fff',
-                data: [8, 10, 15, 20, 22, 18, 16]
-            }
-        ]
-    };
-
-    /**
-     * Chart settings
-     */
-    $scope.chartOptions = {
-        // Chart.js options can go here.
-    };
-
-    /**
-     * Slider options
-     */
-    $scope.slider = {
-        modelMax: 38
-    };
-
-    /**
-     * Show modal window
-     */
-    $scope.showModal = function(target, widget) {
-        $scope.widget = widget;
-        $(target).modal();
-    };
-});
-
-/**
- * Element controller
- */
-myAppController.controller('ElementController', function($scope, dataFactory, deviceService) {
-    $scope.demo = [];
-    $scope.collection = [];
-    $scope.input = {
-        'id': null,
-        'title': '',
-        'dasboard': 0,
-        'deviceType': null,
-        'level': null
-    };
-
-    $scope.isSelected = true;
-    $scope.onText = 'ON';
-    $scope.offText = 'OFF';
-    $scope.isActive = true;
-    $scope.size = 'small';
-    $scope.animate = false;
-    
-    
-    /**
      * Load demo data
      */
     $scope.loadDemoData = function() {
@@ -263,14 +190,16 @@ myAppController.controller('ElementController', function($scope, dataFactory, de
             $scope.demo = deviceService.getDevices(data.data.devices);
         });
     };
-    $scope.loadDemoData();
-
-    /**
+    //$scope.loadDemoData();
+    
+     /**
      * Load data into collection
      */
+    dataFactory.setCache(true);
     $scope.loadData = function() {
         dataFactory.getDevices(function(data) {
-            $scope.collection = deviceService.getDevices(data.data.devices);
+            var filter = {param: "tags", val: true};
+            $scope.collection = deviceService.getDevices(data.data.devices, filter);
         });
     };
     $scope.loadData();
@@ -320,6 +249,152 @@ myAppController.controller('ElementController', function($scope, dataFactory, de
         $scope.input = input;
         $(target).modal();
     };
+    
+    /**
+     * Update an item
+     */
+    $scope.store = function(input) {
+        //var tags = in
+        var inputData = {
+            'id': input.id,
+            'tags': input.dashboard,
+             'permanently_hidden': input.permanently_hidden,
+            'metrics': input.metrics
+         };
+        inputData.metrics.title = input.title;
+        if (input.id) {
+            dataFactory.putDevice(function(data) {
+                //$scope.collection.push = data.data;
+                dataFactory.setCache(false);
+                $scope.loadData();
+                //$route.reload();
+            }, input.id, inputData);
+        }
+
+    };
+});
+
+/**
+ * Element controller
+ */
+myAppController.controller('ElementController', function($scope, $routeParams, dataFactory, deviceService) {
+    $scope.demo = [];
+    $scope.collection = [];
+    $scope.deviceType = [];
+    $scope.input = {
+        'id': null,
+        'metrics': null,
+        'tags': null,
+        'permanently_hidden': false,
+        'title': '',
+        'dashboard': false,
+        'deviceType': null,
+        'level': null
+    };
+
+    $scope.isSelected = true;
+    $scope.onText = 'ON';
+    $scope.offText = 'OFF';
+    $scope.isActive = true;
+    $scope.size = 'small';
+    $scope.animate = false;
+
+
+    /**
+     * Load demo data
+     */
+    $scope.loadDemoData = function() {
+        dataFactory.demoData('elements.json', function(data) {
+            $scope.demo = deviceService.getDevices(data.data.devices);
+        });
+    };
+    //$scope.loadDemoData();
+
+    /**
+     * Load data into collection
+     */
+    dataFactory.setCache(true);
+    $scope.loadData = function() {
+        dataFactory.getDevices(function(data) {
+            var filter = null;
+            $scope.deviceType = deviceService.getDeviceType(data.data.devices);
+            if (angular.isDefined($routeParams.param) && angular.isDefined($routeParams.val)) {
+                filter = $routeParams;
+                //console.log($routeParams.filter,$routeParams.val)
+            }
+            $scope.collection = deviceService.getDevices(data.data.devices, filter);
+        });
+    };
+    $scope.loadData();
+    //$(".dial").knob();
+
+    /**
+     * Chart data
+     */
+    $scope.chartData = {
+        labels: ['01:00', '06:00', '10:00', '12:00', '14:00', '18:00', '20:00'],
+        datasets: [
+            /*{
+             fillColor: 'rgba(220,220,220,0.5)',
+             strokeColor: 'rgba(220,220,220,1)',
+             pointColor: 'rgba(220,220,220,1)',
+             pointStrokeColor: '#fff',
+             data: [65, 59, 90, 81, 56, 55, 40]
+             },*/
+            {
+                fillColor: 'rgba(151,187,205,0.5)',
+                strokeColor: 'rgba(151,187,205,1)',
+                pointColor: 'rgba(151,187,205,1)',
+                pointStrokeColor: '#fff',
+                data: [8, 10, 15, 20, 22, 18, 16]
+            }
+        ]
+    };
+
+    /**
+     * Chart settings
+     */
+    $scope.chartOptions = {
+        // Chart.js options can go here.
+    };
+
+    /**
+     * Slider options
+     */
+    $scope.slider = {
+        modelMax: 38
+    };
+
+    /**
+     * Show modal window
+     */
+    $scope.showModal = function(target, input) {
+        $scope.input = input;
+        $(target).modal();
+    };
+
+    /**
+     * Update an item
+     */
+    $scope.store = function(input) {
+        //var tags = in
+        var inputData = {
+            'id': input.id,
+            'tags': input.dashboard,
+             'permanently_hidden': input.permanently_hidden,
+            'metrics': input.metrics
+         };
+        inputData.metrics.title = input.title;
+        if (input.id) {
+            dataFactory.putDevice(function(data) {
+                //$scope.collection.push = data.data;
+                dataFactory.setCache(false);
+                $scope.loadData();
+                //$route.reload();
+            }, input.id, inputData);
+        }
+
+    };
 });
 
 /**
@@ -331,7 +406,7 @@ myAppController.controller('EventController', function($scope, dataFactory) {
     $scope.reset = function() {
         $scope.collection = angular.copy([]);
     };
-    
+
     /**
      * Load demo data
      */
@@ -370,12 +445,13 @@ myAppController.controller('EventController', function($scope, dataFactory) {
 myAppController.controller('ProfileController', function($scope, $window, $route, dataFactory) {
     $scope.demo = [];
     $scope.collection = [];
-    $scope.targetColor = '#cccccc';
+    $scope.targetColor = '#6C7A89';
     $scope.input = {
         "id": null,
         "active": "false",
         "name": null,
         "description": null,
+        "lang": 'en',
         "positions": [
             "ZWayVDev_2:0:49:4",
             "ZWayVDev_2:0:50:0"
@@ -398,11 +474,12 @@ myAppController.controller('ProfileController', function($scope, $window, $route
             $scope.demo = data;
         });
     };
-    $scope.loadDemoData();
+    //$scope.loadDemoData();
 
     /**
      * Load data into collection
      */
+    dataFactory.setCache(true);
     $scope.loadData = function() {
         dataFactory.getProfiles(function(data) {
             $scope.collection = data.data;
@@ -419,13 +496,14 @@ myAppController.controller('ProfileController', function($scope, $window, $route
     };
 
     /**
-     * Create an item
+     * Create/Update an item
      */
     $scope.store = function(input) {
         var inputData = {
             "id": input.id,
             "name": input.name,
             "active": input.active,
+            "lang": input.lang,
             "positions": [
                 "ZWayVDev_2:0:49:4",
                 "ZWayVDev_2:0:50:0"
@@ -433,20 +511,22 @@ myAppController.controller('ProfileController', function($scope, $window, $route
 
         };
         if (input.id) {
-              dataFactory.putProfile(function(data) {
+            dataFactory.putProfile(function(data) {
                 $scope.collection.push = data.data;
-                console.log('PUT: ' + inputData);
-                $route.reload();
-            },input.id,inputData);
-        }else{
+                dataFactory.setCache(false);
+                $scope.loadData();
+                //$route.reload();
+            }, input.id, inputData);
+        } else {
             dataFactory.postProfile(function(data) {
                 $scope.collection.push = data.data;
-                console.log('POST: ' + inputData);
-                $route.reload();
-            },inputData);
-           
+                dataFactory.setCache(false);
+                $scope.loadData();
+                //$route.reload();
+            }, inputData);
+
         }
-        
+
     };
 
     /**
@@ -459,6 +539,8 @@ myAppController.controller('ProfileController', function($scope, $window, $route
         }
         if (confirm) {
             dataFactory.deleteProfile(input.id, input, target);
+            dataFactory.setCache(false);
+            $scope.loadData();
 
         }
     };
@@ -601,7 +683,7 @@ myAppController.controller('DeviceController', function($scope, $window, $interv
 /**
  * Room controller
  */
-myAppController.controller('RoomController', function($scope, $window, $interval, $upload, dataFactory, deviceService) {
+myAppController.controller('RoomController', function($scope, dataFactory) {
     $scope.collection = [];
     $scope.demo = [];
     $scope.upload = {
@@ -616,8 +698,8 @@ myAppController.controller('RoomController', function($scope, $window, $interval
     $scope.reset = function() {
         $scope.collection = angular.copy([]);
     };
-    
-     /**
+
+    /**
      * Load demo data
      */
     $scope.loadDemoData = function() {
@@ -625,7 +707,7 @@ myAppController.controller('RoomController', function($scope, $window, $interval
             $scope.demo = data;
         });
     };
-    $scope.loadDemoData();
+    //$scope.loadDemoData();
 
     /**
      * Load data into collection
@@ -735,7 +817,7 @@ myAppController.controller('RoomDeviceController', function($scope, $routeParams
 /**
  * Room config controller
  */
-myAppController.controller('RoomConfigController', function($scope, $route,$window, $interval, $upload, dataFactory, deviceService) {
+myAppController.controller('RoomConfigController', function($scope, $route, $window, $interval, $upload, dataFactory, deviceService) {
     $scope.collection = [];
     $scope.demo = [];
     $scope.devices = [];
@@ -743,16 +825,23 @@ myAppController.controller('RoomConfigController', function($scope, $route,$wind
         'showProgress': false,
         'progressVal': 0
     };
+    $scope.defaultImages = [
+        'kitchen.jpg',
+        'bathroom.jpg',
+        'sleeping_room.jpg',
+        'living_room.jpg'
+    ];
     $scope.showProgress = false;
     $scope.input = {
         'id': null,
-        'title': null
+        'title': null,
+        'icon': null
     };
     $scope.reset = function() {
         $scope.collection = angular.copy([]);
     };
-    
-     /**
+
+    /**
      * Load demo data
      */
     $scope.loadDemoData = function() {
@@ -760,18 +849,19 @@ myAppController.controller('RoomConfigController', function($scope, $route,$wind
             $scope.demo = data;
         });
     };
-    $scope.loadDemoData();
+    //$scope.loadDemoData();
 
     /**
      * Load data into collection
      */
+    dataFactory.setCache(true);
     $scope.loadData = function() {
         dataFactory.getLocations(function(data) {
             $scope.collection = data.data;
         });
     };
     $scope.loadData();
-    
+
     /**
      * Load devices
      */
@@ -790,33 +880,37 @@ myAppController.controller('RoomConfigController', function($scope, $route,$wind
         $scope.input = input;
         $(target).modal();
     };
-    
+
     /**
-     * Create an item
+     * Create/Update an item
      */
     $scope.store = function(input) {
         var inputData = {
             "id": input.id,
-            "title": input.title
+            "title": input.title,
+            "icon": input.icon
         };
         if (input.id) {
-              dataFactory.putLocation(function(data) {
+            dataFactory.putLocation(function(data) {
                 $scope.collection.push = data.data;
-                console.log('PUT: ' + inputData);
-                $route.reload();
-            },input.id,inputData);
-        }else{
+                console.log(inputData);
+                dataFactory.setCache(false);
+                $scope.loadData();
+            }, input.id, inputData);
+        } else {
             dataFactory.postLocation(function(data) {
                 $scope.collection.push = data.data;
-                console.log('POST: ' + inputData);
-                $route.reload();
-            },inputData);
-           
+                console.log(inputData);
+                dataFactory.setCache(false);
+                $scope.loadData();
+                //$route.reload();
+            }, inputData);
+
         }
-        
+
     };
-    
-     /**
+
+    /**
      * Delete an item
      */
     $scope.delete = function(target, input, dialog) {
@@ -826,6 +920,8 @@ myAppController.controller('RoomConfigController', function($scope, $route,$wind
         }
         if (confirm) {
             dataFactory.deleteLocation(input.id, input, target);
+            dataFactory.setCache(false);
+            $scope.loadData();
 
         }
     };

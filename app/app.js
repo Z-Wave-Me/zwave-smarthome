@@ -25,7 +25,7 @@ myApp.config(['$routeProvider',
                     templateUrl: 'app/views/home/home.html'
                 }).
                 // Elements
-                when('/elements', {
+                when('/elements/:param?/:val?', {
                     templateUrl: 'app/views/elements/elements.html'
                 }).
                 // Elements

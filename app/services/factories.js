@@ -8,8 +8,10 @@ var myAppFactory = angular.module('myAppFactory', ['ngResource']);
  * Main data factory
  */
 myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
+    var enableCache = true;
     return({
         getDevices: getDevices,
+         putDevice: putDevice,
         getLocations: getLocations,
         postLocation: postLocation,
         putLocation: putLocation,
@@ -19,7 +21,8 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
         putProfile: putProfile,
         deleteProfile: deleteProfile,
         getNotifications: getNotifications,
-        demoData: demoData
+        demoData: demoData,
+        setCache:  setCache
     });
 
     /**
@@ -30,7 +33,16 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
             method: "get",
             url: cfg.server_url + cfg.api_url + "devices" + (params ? params : '')
         });
-        return load(callback, request);
+        return load(callback, request,'devices');
+    }
+    // Put
+    function putDevice(callback, id, data) {
+        var request = $http({
+            method: "put",
+            data: data,
+            url: cfg.server_url + cfg.api_url + "devices/" + id
+        });
+        return postData(callback, request);
     }
 
     /**
@@ -41,7 +53,7 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
             method: "get",
             url: cfg.server_url + cfg.api_url + "locations" + (id ? '/' + id : '')
         });
-        return load(callback, request);
+        return load(callback, request,'locations');
     }
     
     // Post
@@ -120,7 +132,7 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
             method: "get",
             url: cfg.server_url + cfg.api_url + "notifications" + (params ? params : '')
         });
-        return load(callback, request);
+        return load(callback, request,'notofications');
     }
 
     /**
@@ -148,7 +160,7 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
             cached = myCache.get(cacheName);
         }
         // Cached data
-        if (cached) {
+        if (enableCache && cached) {
              console.log('CACHED: ' + cacheName);
             return callback(cached);
         } else {
@@ -208,6 +220,7 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
     function deleteData(request, target) {
         return request.success(function(data) {
             if (target) {
+                console.log(target);
                 $(target).fadeOut();
             }
         }).error(function(data, error) {
@@ -223,6 +236,14 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
         return;
 
 
+    }
+    
+    /**
+     * Enable/Disable the cache
+     */
+    function setCache(enable) {
+      enableCache = enable;
+        return;
     }
 
 });

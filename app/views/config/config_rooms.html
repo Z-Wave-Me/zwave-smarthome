@@ -4,7 +4,7 @@
         <div class="page-control">
         <button type="button" 
                 class="btn btn-success pull-right btn-new-item"
-                ng-click="showModal('#modal_room', {'id': null, 'title': null})"
+                ng-click="showModal('#modal_room', {'id': null, 'title': null,'icon': null})"
                 ><i class="fa fa-plus"></i> {{_t('lb_add_room')}}</button>
             </div>
     </div>
@@ -14,23 +14,24 @@
             <div class="room-in">
                 <h3 class="entry-title"><span class="entry-title-text">{{v.title}}</span> 
                             <a href="" 
-                                   ng-click="showModal('#modal_room', {'id': v.id, 'title': v.title,'img': v.img})"
+                                   ng-click="showModal('#modal_room', {'id': v.id, 'title': v.title,'icon': v.icon})"
                                    ><i class="fa fa-pencil"></i></a>&nbsp;
                                 <a href="" 
                                    ng-click="delete('#panel_' + $index, {'id': v.id},_t('lb_delete_confirm'))"
                                    ><i class="fa fa-times"></i></a>
                         </h3>
-                 <a href="" title="{{v.title}}" ng-click="showModal('#modal_room', {'id': v.id, 'title': v.title,'img': v.img})">
-                     <img class="room-image img-circle" ng-src="storage/img/rooms/{{v.img}}" alt="{{v.title}}" />
+                 <a href="" title="{{v.title}}" ng-click="showModal('#modal_room', {'id': v.id, 'title': v.title,'icon': v.icon})">
+                     <img class="room-image img-circle" ng-src="storage/img/rooms/{{v.icon}}" ng-show="v.icon" alt="{{v.title}}" />
+                     <img class="room-image img-circle" ng-src="storage/img/placeholder-img.png" ng-show="!v.icon" alt="{{v.title}}" />
                  </a>
              </div>
         </div>
     </div>
     
      <!-- Demo data -->
-    <div class="row">
+    <div class="row" ng-show="demo">
         <br /><br /><h3>Demo data output</h3>
-        <div class="col-md-3 col-sm-6 room-entry" id="panel_{{$index}}" ng-repeat="v in demo">
+        <div class="col-md-3 col-sm-6 room-entry" id="panel_demo_{{$index}}" ng-repeat="v in demo">
             <div class="room-in">
                 <h3 class="entry-title"><span class="entry-title-text">{{v.name}}</span> 
                             <a href="" 
@@ -57,8 +58,14 @@
                     <div class="form-group">
                         <input name="title" id="title" type="text" class="form-control" placeholder="{{_t('lb_room_name')}}" value="{{input.title}}" ng-model="input.title" />
                     </div>
-
-                    <div class="form-group text-center">
+                    <div class="clearfix">
+                        <h4>Select an image</h4>
+                        <div class="modal-room-images" ng-repeat="v in defaultImages">
+                            <input type="radio" name="icon" value="{{v}}" ng-model="input.icon" ng-checked="input.icon == v" /><br />
+                            <img class="" ng-src="storage/img/rooms/{{v}}" alt="{{v}}" />
+                        </div>
+                    </div>
+                   <!-- <div class="form-group text-center">
                         <button 
                             ng-file-select="uploadImage($files)" 
                             data-multiple="true"
@@ -74,7 +81,7 @@
                     </div>
                     <div class="form-control-static text-center">
                         <img class="romm-image-preview" ng-src="storage/img/rooms/{{input.img}}" ng-show="input.img" />
-                    </div>
+                    </div>-->
                     <div class="room-assigned-block">
                         <h4>{{_t('lb_devices_in_room')}}</h4>
                         <div class="btn-device hidden-device" id="device_assigned_{{$index}}" ng-repeat="d in devices">{{d.title}} <a href="" ng-click="assignDevice($index, '#device_assigned_' + $index, false)"><i class="fa fa-times text-danger"></i></a></div>

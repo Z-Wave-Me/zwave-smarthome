@@ -17,13 +17,13 @@
                 </h3>
                 <p class="entry-title">
                   <a href="" 
-                       ng-click="showModal('#modal_profile', {'id': v.id, 'name': v.name, 'description': v.description, 'color': null})"
+                       ng-click="showModal('#modal_profile', {'id': v.id, 'name': v.name, 'description': v.description, 'active': v.active,'lang': 'en','color': null})"
                        ><i class="fa fa-pencil fa-lg"></i></a>
                     <a href="" 
                        ng-click="delete('#panel_' + $index, {'id': v.id},_t('lb_delete_confirm'))"
                        >&nbsp;&nbsp;&nbsp;<i class="fa fa-times fa-lg"></i></a>   
                 </p>
-                <a href="" title="{{v.name}}" ng-click="showModal('#modal_profile', {'id': v.id, 'name': v.name, 'description': v.description, 'color': null})">
+                <a href="" title="{{v.name}}" ng-click="showModal('#modal_profile', {'id': v.id, 'name': v.name, 'description': v.description, 'active': v.active,'lang': 'en','color': null})">
                     <img class="profile-image img-circle" ng-src="storage/img/profiles/profile-icon.png" alt="{{v.name}}" />
                 </a>
             </div>
@@ -31,7 +31,7 @@
     </div>
     
      <!-- Demo data -->
-    <div class="row">
+    <div class="row" ng-show="demo">
         <br /><br /><h3>Demo data output</h3>
         <div class="col-md-2 col-sm-4 profile-entry" id="panel_demo_{{$index}}" style="background-color: {{v.color}};" ng-repeat="v in demo">
             <div class="profile-in app-shadow">
@@ -62,11 +62,17 @@
                     <div class="form-group">
                         <input name="name" id="name" type="text" class="form-control" placeholder="{{_t('lb_profile_name')}}" value="{{input.name}}" ng-model="input.name" />
                     </div>
-
                     <div class="form-group">
-                        <input type="checkbox" name="active" value="true" id="active" ng-model="input.active" /> <label>{{_t('lb_active')}}</label>
+                        <input type="checkbox" name="active" value="true" id="active" ng-model="input.active" ng-checked="input.active" /> <label>{{_t('lb_active')}}</label>
                     </div>
-
+                    <div class="form-group form-inline">
+                        <label>{{_t('lb_language')}}:</label>
+                        <select name="lang" class="form-control" ng-model="input.lang">
+                            <option value="en">EN</option>
+                            <option value="de">DE</option>
+                            <option value="it">IT</option>
+                        </select>
+                    </div>
                     <div class="form-group">
                         <label>{{_t('lb_profile_color')}}: </label>
                         <a href=""
@@ -75,13 +81,7 @@
                            ng-class="$index == 3 ? 'active' : ''"
                            style="background-color: {{v}}">&nbsp;</a>
                     </div>
-                    <div class="form-group form-inline">
-                        <label>{{_t('lb_language')}}:</label>
-                        <select name="lang" class="form-control">
-                            <option>EN</option>
-                            <option>DE</option>
-                        </select>
-                    </div>
+                    
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead>
