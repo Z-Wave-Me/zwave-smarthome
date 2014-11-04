@@ -6,31 +6,34 @@
  * Strip HTML tags from input
  */
 myApp.filter('stripTags', function() {
-   return String(input).replace(/<[^>]+>/gm, '');
- });
- /**
-  * Cut text into x chars
-  */
- myApp.filter('cutText', function () {
-        return function (value, wordwise, max, tail) {
-            if (!value) return '';
+    return String(input).replace(/<[^>]+>/gm, '');
+});
+/**
+ * Cut text into x chars
+ */
+myApp.filter('cutText', function() {
+    return function(value, wordwise, max, tail) {
+        if (!value)
+            return '';
 
-            max = parseInt(max, 10);
-            if (!max) return value;
-            if (value.length <= max) return value;
+        max = parseInt(max, 10);
+        if (!max)
+            return value;
+        if (value.length <= max)
+            return value;
 
-            value = value.substr(0, max);
-            if (wordwise) {
-                var lastspace = value.lastIndexOf(' ');
-                if (lastspace != -1) {
-                    value = value.substr(0, lastspace);
-                }
+        value = value.substr(0, max);
+        if (wordwise) {
+            var lastspace = value.lastIndexOf(' ');
+            if (lastspace != -1) {
+                value = value.substr(0, lastspace);
             }
+        }
 
-            return value + (tail || ' …');
-        };
-    });
- 
+        return value + (tail || ' …');
+    };
+});
+
 /**
  * Get current time
  */
@@ -44,13 +47,49 @@ myApp.filter('getCurrentTime', function() {
         return time;
     };
 });
+/**
+ * If is today display h:m otherwise d:m:y
+ */
+myApp.filter('isToday', function() {
+    return function(input) {
+        var d = new Date(input);
+
+        var hrs = (d.getHours() < 10 ? '0' + d.getHours() : d.getHours());
+        var min = (d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes());
+
+        if (d.toDateString() == (new Date()).toDateString()) {
+            return hrs + ':' + min;
+
+        } else {
+            var startDate = new Date(input);  // 2000-01-01
+            var endDate = new Date();              // Today
+            var nDays = diffDays(startDate, endDate) + 1;
+            var str = '- ' + nDays + ' days';
+            if(nDays < 2){
+                str = 'yesterday';
+            }
+            return str;
+        }
+    };
+    // Calculate the number of days between two dates
+    function diffDays(d1, d2)
+    {
+        var ndays;
+        var tv1 = d1.valueOf();  // msec since 1970
+        var tv2 = d2.valueOf();
+
+        ndays = (tv2 - tv1) / 1000 / 86400;
+        ndays = Math.round(ndays - 0.5);
+        return ndays;
+    }
+});
 
 /**
- * If is today dysplay h:m otherwise d:m:y
+ * If is today from unix stamp display h:m otherwise d:m:y
  */
 myApp.filter('isTodayFromUnix', function() {
     return function(input) {
-        if(isNaN(input)){
+        if (isNaN(input)) {
             return '?';
         }
         var d = new Date(input * 1000);
@@ -76,55 +115,61 @@ myApp.filter('isTodayFromUnix', function() {
  * Get only unique values
  */
 myApp.filter('unique', function() {
-      return function (items, filterOn) {
+    return function(items, filterOn) {
 
-    if (filterOn === false) {
-      return items;
-    }
-
-    if ((filterOn || angular.isUndefined(filterOn)) && angular.isArray(items)) {
-      var hashCheck = {}, newItems = [];
-
-      var extractValueToCompare = function (item) {
-        if (angular.isObject(item) && angular.isString(filterOn)) {
-          return item[filterOn];
-        } else {
-          return item;
-        }
-      };
-
-      angular.forEach(items, function (item) {
-        var valueToCheck, isDuplicate = false;
-
-        for (var i = 0; i < newItems.length; i++) {
-          if (angular.equals(extractValueToCompare(newItems[i]), extractValueToCompare(item))) {
-            isDuplicate = true;
-            break;
-          }
-        }
-        if (!isDuplicate) {
-          newItems.push(item);
+        if (filterOn === false) {
+            return items;
         }
 
-      });
-      items = newItems;
-    }
-    return items;
-  };
+        if ((filterOn || angular.isUndefined(filterOn)) && angular.isArray(items)) {
+            var hashCheck = {}, newItems = [];
+
+            var extractValueToCompare = function(item) {
+                if (angular.isObject(item) && angular.isString(filterOn)) {
+                    return item[filterOn];
+                } else {
+                    return item;
+                }
+            };
+
+            angular.forEach(items, function(item) {
+                var valueToCheck, isDuplicate = false;
+
+                for (var i = 0; i < newItems.length; i++) {
+                    if (angular.equals(extractValueToCompare(newItems[i]), extractValueToCompare(item))) {
+                        isDuplicate = true;
+                        break;
+                    }
+                }
+                if (!isDuplicate) {
+                    newItems.push(item);
+                }
+
+            });
+            items = newItems;
+        }
+        return items;
+    };
 });
-
+/**
+ * Get uri segment
+ */
 myApp.filter('uri', function($location) {
     return {
         segment: function(segment) {
             var data = $location.path().split("/");
-            if(data[segment]) { return data[segment]; }
+            if (data[segment]) {
+                return data[segment];
+            }
             return false;
         },
         total_segments: function() {
             var data = $location.path().split("/");
             var i = 0;
-            angular.forEach(data, function(value){
-            if(value.length) { i++; }
+            angular.forEach(data, function(value) {
+                if (value.length) {
+                    i++;
+                }
             });
             return i;
         }

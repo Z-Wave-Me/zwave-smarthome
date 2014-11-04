@@ -3,14 +3,17 @@
     <div class="table-responsive_">
         <table class="table table-report table-events">
             <tbody>
-                <tr ng-repeat="v in collection| limitTo:30" id="{{ v.rowId}}">
+                <tr ng-repeat="v in collection| orderBy: '-timestamp' | limitTo:30" id="{{ v.rowId}}">
                     <td class="td-img">
-                        <span class="text-supp" title="{{v.timestamp| date:'dd.MM.yyyy H:mm'}}" ng-if="$index <= 9" >{{v.timestamp| date:'H:mm'}}</span>
-                        <span class="text-supp" title="{{v.timestamp| date:'dd.MM.yyyy H:mm'}}" ng-if="$index > 9" >-1 day</span>
-                        <img class="report-img" src="storage/img/events/icon-1.png" alt="icon" ng-show="v.level == 'error'"/>
-                        <img class="report-img" src="storage/img/events/icon-2.png" alt="icon" ng-show="v.level != 'error'"/>
+                        <img class="report-img" ng-src="storage/img/events/icon-error.png" alt="icon" ng-show="v.level == 'error'"/>
+                        <img class="report-img" ng-src="storage/img/events/icon-warning.png" alt="icon" ng-show="v.level == 'warning'"/>
+                        <img class="report-img" ng-src="storage/img/events/icon-notification.png" alt="icon" ng-show="v.level == 'notification'"/>
+                        <img class="report-img" ng-src="storage/img/events/icon-debug.png" alt="icon" ng-show="v.level == 'debug'"/>
                     </td>
                     <td>
+                        <p>
+                            <span class="text-supp" title="{{v.timestamp| date:'dd.MM.yyyy H:mm'}}">{{v.timestamp|isToday}}</span> <span class="badge">{{v.type}}</span> 
+                        </p>
                         <span class="report-message">{{v.message}}</span>
                     </td>
                    <td class="td-action">
@@ -37,7 +40,7 @@
         </table>
     </div>
     <!-- Demo data -->
-    <div class="table-responsive_">
+    <div class="table-responsive_" ng-show="demo">
         <br /><br /><h3>Demo data output</h3>
         <table class="table table-report table-events">
             <tbody>

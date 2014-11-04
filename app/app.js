@@ -41,7 +41,7 @@ myApp.config(['$routeProvider',
                     templateUrl: 'app/views/rooms/room_device.html'
                 }).
                 // Events
-                when('/events', {
+                when('/events/:param?/:val?', {
                     templateUrl: 'app/views/events/events.html'
                 }).
                 //Profile

@@ -10,9 +10,8 @@
                     <span class="sr-only">Toggle Dropdown</span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a href="">{{_t('lb_type')}}</a></li>
-                    <li><a href="">{{_t('lb_profile')}}</a></li>
-                    <li><a href="">{{_t('lb_only_system')}}</a></li>
+                    <li><a href="#events">All</a></li>
+                     <li ng-repeat="v in eventLevel"><a href="#events/level/{{v.key}}">{{v.key}}</a></li>
                 </ul>
             </div>
             </form>

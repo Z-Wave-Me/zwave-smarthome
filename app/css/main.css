@@ -700,11 +700,11 @@ a {
 -------------------------------------------------- */
 /* line 4, sass/modules/_events.scss */
 .table-events .td-img {
-  max-width: 110px !important;
+  width: 50px !important;
 }
 /* line 7, sass/modules/_events.scss */
 .table-events .td-action {
-  min-width: 110px;
+  width: 110px;
 }
 
 /* Apps

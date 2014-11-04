@@ -14,7 +14,11 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
      * Global scopes
      */
     $scope.cfg = cfg;
+    // Current profile
+    $scope.demoColor = ['#6494bc', '#80ad80', '#dd976e', '#6494bc', '#80ad80', '#dd976e', '#6494bc', '#80ad80', '#dd976e', '#6494bc', '#80ad80', '#dd976e'];
     $scope.profile = {
+        'id': 1,
+        'name': 'Default',
         'cssClass': 'profile-default',
         'lang': 'en'
     };
@@ -67,14 +71,14 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
     /**
      * Load base data (profiles, languages)
      */
-    $scope.profiles = [];
+    $scope.navpPofiles = [];
     $scope.loadBaseData = function() {
-//       dataFactory.getProfiles(function(data) {
-//            $scope.profiles = data.data;
-//        });
-        dataFactory.demoData('profiles.json', function(data) {
-            $scope.profiles = data;
+        dataFactory.getProfiles(function(data) {
+            $scope.navpPofiles = data.data;
         });
+//        dataFactory.demoData('profiles.json', function(data) {
+//            $scope.navpPofiles = data;
+//        });
     };
     $scope.loadBaseData();
 
@@ -112,14 +116,39 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
     /**
      * Set profile
      */
-    $scope.setProfile = function(color) {
-        if (color) {
-            $scope.profile.cssClass = 'profile-' + color.substring(1);
+    $scope.setProfile = function(data) {
+        if (data.color) {
+            $scope.profile.cssClass = 'profile-' + data.color.substring(1);
+            data.cssClass = 'profile-' + data.color.substring(1);
+
         }
+        if (data.name) {
+            $scope.profile.name = data.name;
+        }
+        if (data.id) {
+            $scope.profile.id = data.id;
+        }
+        if (data.lanf) {
+            $scope.profile.lang = data.lang;
+        }
+
+        $cookies.profile = angular.toJson(data);
         $route.reload();
     };
+    /**
+     * Get profile
+     */
+    $scope.getProfile = function() {
+        var cookie = angular.fromJson($cookies.profile);
+        if (cookie) {
+            $scope.profile = cookie;
+        }
+    };
+    $scope.getProfile();
+
 
 });
+
 
 /**
  * Test controller
@@ -191,8 +220,8 @@ myAppController.controller('HomeController', function($scope, dataFactory, devic
         });
     };
     //$scope.loadDemoData();
-    
-     /**
+
+    /**
      * Load data into collection
      */
     dataFactory.setCache(true);
@@ -249,7 +278,7 @@ myAppController.controller('HomeController', function($scope, dataFactory, devic
         $scope.input = input;
         $(target).modal();
     };
-    
+
     /**
      * Update an item
      */
@@ -258,9 +287,9 @@ myAppController.controller('HomeController', function($scope, dataFactory, devic
         var inputData = {
             'id': input.id,
             'tags': input.dashboard,
-             'permanently_hidden': input.permanently_hidden,
+            'permanently_hidden': input.permanently_hidden,
             'metrics': input.metrics
-         };
+        };
         inputData.metrics.title = input.title;
         if (input.id) {
             dataFactory.putDevice(function(data) {
@@ -381,9 +410,9 @@ myAppController.controller('ElementController', function($scope, $routeParams, d
         var inputData = {
             'id': input.id,
             'tags': input.dashboard,
-             'permanently_hidden': input.permanently_hidden,
+            'permanently_hidden': input.permanently_hidden,
             'metrics': input.metrics
-         };
+        };
         inputData.metrics.title = input.title;
         if (input.id) {
             dataFactory.putDevice(function(data) {
@@ -400,8 +429,9 @@ myAppController.controller('ElementController', function($scope, $routeParams, d
 /**
  * Event controller
  */
-myAppController.controller('EventController', function($scope, dataFactory) {
+myAppController.controller('EventController', function($scope, $routeParams, dataFactory, deviceService) {
     $scope.collection = [];
+    $scope.eventLevel = [];
     $scope.demo = [];
     $scope.reset = function() {
         $scope.collection = angular.copy([]);
@@ -415,25 +445,29 @@ myAppController.controller('EventController', function($scope, dataFactory) {
             $scope.demo = data.data.notifications;
         });
     };
-    $scope.loadDemoData();
+    //$scope.loadDemoData();
 
     /**
      * Load data into collection
      */
     $scope.loadData = function() {
         dataFactory.getNotifications(function(data) {
-            $scope.collection = data.data.notifications;
-            console.log($scope.collection);
-        });
-    };
-    $scope.loadData();
+            $scope.eventLevel = deviceService.getEventLevel(data.data.notifications);
+            var filter = null;
+            if (angular.isDefined($routeParams.param) && angular.isDefined($routeParams.val)) {
+                filter = $routeParams;
+                angular.forEach(data.data.notifications, function(v, k) {
+                    if (filter && angular.isDefined(v[filter.param])) {
+                        if (v[filter.param] == filter.val) {
+                            $scope.collection.push(v);
+                        }
+                    }
+                });
+            } else {
+                $scope.collection = data.data.notifications;
+            }
 
-    /**
-     * Load data into collection
-     */
-    $scope.loadData = function() {
-        dataFactory.demoData('events.json', function(data) {
-            $scope.collection = data.data.notifications;
+            //console.log($scope.eventLevel);
         });
     };
     $scope.loadData();
@@ -732,10 +766,20 @@ myAppController.controller('RoomController', function($scope, dataFactory) {
  * Room device controller
  */
 myAppController.controller('RoomDeviceController', function($scope, $routeParams, dataFactory, deviceService) {
+    $scope.demo = [];
     $scope.collection = [];
     $scope.rooms = [];
     $scope.roomName = '';
-
+    $scope.input = {
+        'id': null,
+        'metrics': null,
+        'tags': null,
+        'permanently_hidden': false,
+        'title': '',
+        'dashboard': false,
+        'deviceType': null,
+        'level': null
+    };
     $scope.isSelected = true;
     $scope.onText = 'ON';
     $scope.offText = 'OFF';
@@ -750,23 +794,23 @@ myAppController.controller('RoomDeviceController', function($scope, $routeParams
     /**
      * Load data into collection
      */
-    $scope.load = function() {
-        dataFactory.demoData('elements.json', function(data) {
+    $scope.loadData = function() {
+        dataFactory.getDevices(function(data) {
             $scope.collection = deviceService.getDevices(data.data.devices);
         });
-        dataFactory.demoData('rooms.json', function(data) {
-            $scope.rooms = data;
-            angular.forEach(data, function(v, k) {
+       dataFactory.getLocations(function(data) {
+            $scope.rooms = data.data;
+            angular.forEach(data.data, function(v, k) {
 
                 if (v.id == $routeParams.id) {
-                    $scope.roomName = v.name;
+                    $scope.roomName = v.title;
                     return;
                 }
             });
 
         });
     };
-    $scope.load();
+    $scope.loadData();
 
     /**
      * Show modal window
@@ -811,6 +855,29 @@ myAppController.controller('RoomDeviceController', function($scope, $routeParams
      */
     $scope.chartOptions = {
         // Chart.js options can go here.
+    };
+    
+    /**
+     * Update an item
+     */
+    $scope.store = function(input) {
+        //var tags = in
+        var inputData = {
+            'id': input.id,
+            'tags': input.dashboard,
+            'permanently_hidden': input.permanently_hidden,
+            'metrics': input.metrics
+        };
+        inputData.metrics.title = input.title;
+        if (input.id) {
+            dataFactory.putDevice(function(data) {
+                //$scope.collection.push = data.data;
+                dataFactory.setCache(false);
+                $scope.loadData();
+                //$route.reload();
+            }, input.id, inputData);
+        }
+
     };
 });
 
@@ -893,14 +960,12 @@ myAppController.controller('RoomConfigController', function($scope, $route, $win
         if (input.id) {
             dataFactory.putLocation(function(data) {
                 $scope.collection.push = data.data;
-                console.log(inputData);
                 dataFactory.setCache(false);
                 $scope.loadData();
             }, input.id, inputData);
         } else {
             dataFactory.postLocation(function(data) {
                 $scope.collection.push = data.data;
-                console.log(inputData);
                 dataFactory.setCache(false);
                 $scope.loadData();
                 //$route.reload();

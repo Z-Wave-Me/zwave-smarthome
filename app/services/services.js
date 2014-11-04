@@ -23,6 +23,13 @@ myAppService.service('deviceService', function($filter) {
     this.getDeviceType = function(data) {
         return getDeviceType(data);
     };
+    
+    /**
+     * Get event level
+     */
+    this.getEventLevel = function(data) {
+        return getEventLevel(data);
+    };
 
     /// --- Private functions --- ///
     
@@ -63,7 +70,7 @@ myAppService.service('deviceService', function($filter) {
     }
     
     /**
-     * Get device data
+     * Get device type
      */
     function getDeviceType(data) {
         var collection = [];
@@ -71,6 +78,20 @@ myAppService.service('deviceService', function($filter) {
            collection.push({
                 'key': v.deviceType,
                 'val': v.deviceType
+            });
+         });
+        return $filter('unique')(collection, 'key');
+    }
+    
+    /**
+     * Get event level
+     */
+    function getEventLevel(data) {
+        var collection = [];
+        angular.forEach(data, function(v, k) {
+           collection.push({
+                'key': v.level,
+                'val': v.level
             });
          });
         return $filter('unique')(collection, 'key');
