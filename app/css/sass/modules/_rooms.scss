@@ -1,7 +1,7 @@
 /* Rooms
 -------------------------------------------------- */
 .room-entry{
-    padding: 0;
+    //padding: 0;
 }
 .room-in{
     text-align: center;
@@ -12,7 +12,7 @@
     }
 }
 .room-image, .romm-image-preview{
-    border: solid 6px #fff;
+    border: solid 6px $app-border-color-light;
     width: 100%;
     max-width: 260px;
 }

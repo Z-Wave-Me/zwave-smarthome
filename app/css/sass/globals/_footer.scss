@@ -5,8 +5,8 @@
     text-align: center;
     height: 60px;
     .navbar{
-        border-top: solid 4px darken($app-body-bcg-color, 10%);
-         background-color: darken($app-body-bcg-color, 5%);
+        border-top: solid 4px $footer-border-color;
+         background-color: $footer-bcg-color;
     }
     .container{
         margin-top: 10px;

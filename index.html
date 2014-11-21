@@ -49,16 +49,20 @@
     <body ng-controller="BaseController" id="page_{{getBodyId()}}" class="is-mobile-{{isMobile}}" ng-class="profile.cssClass">
         <div id="main_navbar" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
-               <div class="navbar-visible">
-                         <div class="navbar-visible-in">
-                        <a href="#home" title="{{_t('nav_home')}}" ng-class="isActive('')"><i class="fa fa-home fa-2x"></i></a>
-                        <a href="#elements" title="{{_t('nav_elements')}}" ng-class="isActive('elements')"><i class="fa fa-th fa-2x"></i></a>
-                        <a href="#rooms" title="{{_t('nav_rooms')}}" ng-class="isActive('rooms')"><i class="fa fa-th-large fa-2x"></i></a>
-                       <a href="#events" title="{{_t('nav_events')}}" ng-class="isActive('events')"><i class="fa fa-list-ul fa-2x"></i></a>
-                       </div>
+                <div class="navbar-visible">
+                    <div class="navbar-visible-in">
+                        <a href="#home" title="{{_t('nav_home')}}" class="header-logo">
+                            <img src="app/img/app-logo.png" class="header-logo" alt="App logo" />
+                        </a>
+                         <span class="divider-vertical"></span>
+                        <a href="#home" title="{{_t('nav_home')}}" ng-class="isActive('')"><i class="fa fa-home"></i></a>
+                        <a href="#elements" title="{{_t('nav_elements')}}" ng-class="isActive('elements')"><i class="fa fa-th"></i></a>
+                        <a href="#rooms" title="{{_t('nav_rooms')}}" ng-class="isActive('rooms')"><i class="fa fa-th-large"></i></a>
+                        <a href="#events" title="{{_t('nav_events')}}" ng-class="isActive('events')"><i class="fa fa-list-ul"></i></a>
                     </div>
+                </div>
                 <div class="navbar-header">
-                     
+
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
@@ -81,16 +85,16 @@
                         <li><a href="#events" title="{{_t('nav_events')}}" class="only-icon-menu"><i class="fa fa-list-ul fa-2x"></i> <span>{{_t('nav_events')}}</span></a></li>
 
                     </ul>-->
-                   
+
                     <ul class="nav navbar-nav navbar-right only-icon">
                         <li class="divider-vertical remove-margin"></li>
                         <li class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-user fa-lg"></i> {{profile.name | cutText:true:15}}  <b class="caret"></b> 
+                                <i class="fa fa-user fa-lg"></i> {{profile.name| cutText:true:15}}  <b class="caret"></b> 
                             </a>
                             <ul class="dropdown-menu">
                                 <li ng-repeat="v in navpPofiles" ng-show="v.id != profile.id" ng-init="color = v.id > 1 ? demoColor[$index] : '#6C7A89';">
-                                    <a href="" data-collapse-navbar ng-click="setProfile({'color': color,'id': v.id,'name': v.name,'lang': 'en'})">
+                                    <a href="" data-collapse-navbar ng-click="setProfile({'color': color, 'id': v.id, 'name': v.name, 'lang': 'en'})">
                                         <i class="fa fa-circle" style="color: {{color}};"></i> {{v.name}} 
                                     </a>
                                 </li>
@@ -117,10 +121,10 @@
             </div> <!-- /.container -->
         </div> <!-- /.navbar --> 
 
-       <!-- Response Container -->
+        <!-- Response Container -->
         <div id="respone_container" class="container"><div id="respone_container_inner"></div></div>
         <!-- Ang Content Container -->
         <div id="main_content" class="container" ng-view></div>
         <div class="clearfix"></div>
-</body>
+    </body>
 </html>

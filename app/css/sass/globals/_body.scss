@@ -30,10 +30,10 @@ h3 {
 .page-control{
    position: relative;
    top: -15px;
-   .btn-new-item{
+/*   .btn-new-item{
        background-color: $brand-color-secondary;
        border: 0;
-   }
+   }*/
 }
 .page-subtitle{
     font-size: 20px;
@@ -44,6 +44,9 @@ h3 {
 
 a {
     color: lighten($app-body-color, 25%);
+}
+a:hover {
+    color: lighten($brand-color-secondary, 15%);
 }
 
 .text-supp{
@@ -66,7 +69,7 @@ a {
     cursor: help;
 }
 .app-border{
-    border: solid 1px $app-border-color;
+     border: solid 4px $app-border-color-light;
 }
 .app-gradient{
     @include appGradient();
@@ -79,7 +82,7 @@ a {
 -------------------------------------------------- */
 .report-img{
     margin: 0 5px;
-    width: 48px;
+    width: 40px;
     display: inline;
 }
 
@@ -114,12 +117,15 @@ a {
 }
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
     color:  lighten($brand-color-primary, 10%);
-    background-color: darken($app-body-bcg-color, 10%);
+    background-color: $header-color-secondary;
     border: darken($app-body-bcg-color, 10%);
 }
-.nav > li > a:hover, .nav > li > a:focus {
-background-color: lighten($app-body-bcg-color, 10%);;
+.nav-tabs > li.active > a i {
+    color:  $brand-color-secondary;
 }
+/*.nav > li > a:hover, .nav > li > a:focus {
+background-color: lighten($app-body-bcg-color, 10%);;
+}*/
 
 /* Page
 -------------------------------------------------- */

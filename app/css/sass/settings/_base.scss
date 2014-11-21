@@ -1,15 +1,28 @@
 // Main color
-$brand-color-primary: #161E27;
-$brand-color-secondary: #6C7A89;
+$brand-color-primary: #000;
+$brand-color-secondary: #DA131F;
 
 $brand-color-6494bc: #80ad80;
 
 // Body
-$app-body-bcg-color:  lighten($brand-color-primary, 70%);
+$app-body-bcg-color:  #F6F6F6;
 $app-body-color:  lighten($brand-color-primary, 5%);
 
-// Border color
-$app-border-color: lighten($brand-color-primary, 60%);
+// Link
+$header-link-color: #5d5d5d;
+
+// Header
+$header-color-primary: #E9E9E9;
+$header-color-secondary:  #DDDDDD;
+
+// Footer
+$footer-bcg-color: #E9E9E9;
+$footer-border-color:  #DDDDDD;
+
+
+// Border color 
+$app-border-color: #d3d3d3;
+$app-border-color-light: #fff;
 //== Bootstrap Colors
 //
 //## Gray and brand colors for use across Bootstrap.

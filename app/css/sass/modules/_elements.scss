@@ -1,41 +1,10 @@
 /* Elements
 -------------------------------------------------- */
-/*.panel-element{
-    min-height: 100px;
-}
-.panel-body-element{
-    position:relative;
-}
-.element-hidden{
-     min-width: 110%; 
-    border-radius: 3px;
-    padding: 20px;
-    background-color: #fff;
-    border: solid 1px #DDDDDD;
-    position: absolute;
-    top: -150%;
-    //height: 50px;
-     left: -5%; 
-    z-index: 10000;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-}*/
-
-/*.element-device-id{
-    font-style:italic;
-}*/
-
-/*#page_elements{ 
-    background: #E5E5E5;
-}*/
 .widget-block{ 
     margin-bottom: 20px;
-
-    /*    @include appGradient();
-        @include appBoxShadow();*/
 }
 .widget-block-in{
-    /*   border: solid 1px red;*/
-    height: $app-el-block-h;
+   height: $app-el-block-h;
     position:relative;
     text-align: left;
 }
