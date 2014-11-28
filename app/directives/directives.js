@@ -35,6 +35,49 @@ myApp.directive('knob', function() {
         }
     };
 });
+
+myApp.directive('myknob', ['$timeout','dataFactory', function($timeout,dataFactory) {
+    'use strict';
+
+    return {
+        restrict: 'A',
+        replace: true,
+        //template: '<input class="dial" data-width="100" data-height="100" value="{{ knobData }}"/>',
+        scope: {
+            knobId: '=',
+            knobData: '=',
+            knobOptions: '&'
+        },
+        link: function($scope, $element) {
+            var knobInit = $scope.knobOptions() || {};
+
+            knobInit.release = function(newValue) {
+                $timeout(function() {
+                    $scope.knobData = newValue;
+                    runCmdExact($scope.knobId,newValue);
+                   $scope.$apply();
+                });
+            };
+
+            $scope.$watch('knobData', function(newValue, oldValue) {
+                if (newValue != oldValue) {
+                    $($element).val(newValue).change();
+                }
+            });
+
+            $($element).val($scope.knobData).knob(knobInit);
+        }
+    };
+    
+    /**
+     * Run command exact value
+     */
+    function runCmdExact(id,val) {
+        var cmd = id +  '/command/exact?level=' + val;
+        dataFactory.runCmd(cmd);
+        return;
+    };
+}]);
 /**
  * Bootstrap tooltip
  */

@@ -22,10 +22,10 @@ myApp.config(['$routeProvider',
         $routeProvider.
                 // Home
                 when('/', {
-                    templateUrl: 'app/views/home/home.html'
+                    redirectTo: '/elements/dashboard/1'
                 }).
                 // Elements
-                when('/elements/:param?/:val?', {
+                when('/elements/:filter?/:val?', {
                     templateUrl: 'app/views/elements/elements.html'
                 }).
                 // Elements
@@ -35,10 +35,6 @@ myApp.config(['$routeProvider',
                 // Rooms
                 when('/rooms', {
                     templateUrl: 'app/views/rooms/rooms.html'
-                }).
-                         // Room detail
-                when('/room/:id', {
-                    templateUrl: 'app/views/rooms/room_device.html'
                 }).
                 // Events
                 when('/events/:param?/:val?', {
@@ -73,7 +69,7 @@ myApp.config(['$routeProvider',
                     templateUrl: 'app/views/test.html'
                 }).
                 otherwise({
-                    redirectTo: '/'
+                    redirectTo: '/elements/dashboard/1'
                 });
     }]);
 

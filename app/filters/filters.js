@@ -37,6 +37,24 @@ myApp.filter('cutText', function() {
 /**
  * Get current time
  */
+myApp.filter('getElementIcon', function() {
+    return function(input,deviceType) {
+        var icon = 'storage/img/elements/' + deviceType + '.png';
+        if (input) {
+            if ((/^http:\/\//.test(input))) {
+                icon = input;
+            } else {
+                icon = 'storage/img/elements/' + input + '.png';
+            }
+
+        }
+        return icon;
+    };
+});
+
+/**
+ * Get current time
+ */
 myApp.filter('getCurrentTime', function() {
     return function() {
         var d = new Date();
@@ -65,7 +83,7 @@ myApp.filter('isToday', function() {
             var endDate = new Date();              // Today
             var nDays = diffDays(startDate, endDate) + 1;
             var str = '- ' + nDays + ' days';
-            if(nDays < 2){
+            if (nDays < 2) {
                 str = 'yesterday';
             }
             return str;

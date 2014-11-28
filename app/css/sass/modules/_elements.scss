@@ -20,7 +20,7 @@
     width: 20%;
 
     .widget-image{
-        margin: 15px;
+        margin: 10px 20px 10px 10px;
         width: 64px;
         height: 64px;
         border: solid 4px #fff;
@@ -33,7 +33,10 @@
 .widget-body{
     float: left;
     margin: 20px 15px 15px 20px;
-    width: 60%;
+    width: 70%;
+    .btn-group{
+        float: right !important;
+    }
     //position:relative;
     .element-hidden{
         z-index: 10000;

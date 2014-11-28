@@ -3,22 +3,11 @@
     <div class="row">
         <div class="col-md-3 col-sm-6 room-entry" id="panel_{{$index}}" ng-repeat="v in collection">
             <div class="room-in app-border app-gradient app-shadow">
-                <h3 class="entry-title"><a href="#/room/{{v.id}}">{{v.title}}</a></h3>
-                <a href="#/room/{{v.id}}">
+                <h3 class="entry-title"><a href="#/elements/location/{{v.id}}">{{v.title}}</a></h3>
+                <a href="#/elements/location/{{v.id}}">
                     <img class="room-image img-circle" ng-src="storage/img/rooms/{{v.icon}}" ng-show="v.icon" alt="{{v.title}}" />
                      <img class="room-image img-circle" ng-src="storage/img/placeholder-img.png" ng-show="!v.icon" alt="{{v.title}}" />
                 </a>
-            </div>
-        </div>
-    </div>
-    
-     <!-- Demo data -->
-    <div class="row" ng-show="demo">
-         <br /><br /><h3>Demo data output</h3>
-        <div class="col-md-3 col-sm-6 room-entry" id="panel_{{$index}}" ng-repeat="v in demo">
-            <div class="room-in app-border app-gradient app-shadow">
-                <h3 class="entry-title"><a href="#/room/{{v.id}}">{{v.name}}</a></h3>
-                <a href="#/room/{{v.id}}"><img class="room-image img-circle" ng-src="storage/img/rooms/{{v.img}}" alt="{{v.name}}" /></a>
             </div>
         </div>
     </div>

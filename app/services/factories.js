@@ -11,7 +11,7 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
     var enableCache = true;
     return({
         getDevices: getDevices,
-         putDevice: putDevice,
+        putDevice: putDevice,
         getLocations: getLocations,
         postLocation: postLocation,
         putLocation: putLocation,
@@ -22,7 +22,8 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
         deleteProfile: deleteProfile,
         getNotifications: getNotifications,
         demoData: demoData,
-        setCache:  setCache
+        setCache: setCache,
+        runCmd: runCmd
     });
 
     /**
@@ -33,7 +34,7 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
             method: "get",
             url: cfg.server_url + cfg.api_url + "devices" + (params ? params : '')
         });
-        return load(callback, request,'devices');
+        return load(callback, request, 'devices');
     }
     // Put
     function putDevice(callback, id, data) {
@@ -53,9 +54,9 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
             method: "get",
             url: cfg.server_url + cfg.api_url + "locations" + (id ? '/' + id : '')
         });
-        return load(callback, request,'locations');
+        return load(callback, request, 'locations');
     }
-    
+
     // Post
     function postLocation(callback, data) {
         var request = $http({
@@ -65,7 +66,7 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
         });
         return postData(callback, request);
     }
-    
+
     // Put
     function putLocation(callback, id, data) {
         var request = $http({
@@ -75,7 +76,7 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
         });
         return postData(callback, request);
     }
-    
+
     // Delete
     function deleteLocation(id, input, target) {
         var request = $http({
@@ -107,6 +108,7 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
     }
     // Put
     function putProfile(callback, id, data) {
+        console.log(data)
         var request = $http({
             method: "put",
             data: data,
@@ -132,7 +134,7 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
             method: "get",
             url: cfg.server_url + cfg.api_url + "notifications" + (params ? params : '')
         });
-        return load(callback, request,'notofications');
+        return load(callback, request, 'notofications');
     }
 
     /**
@@ -161,7 +163,7 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
         }
         // Cached data
         if (enableCache && cached) {
-             console.log('CACHED: ' + cacheName);
+            console.log('CACHED: ' + cacheName);
             return callback(cached);
         } else {
             console.log('NOOOOT CACHED: ' + cacheName);
@@ -174,6 +176,22 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
             });
         }
 
+    }
+
+    /**
+     * Run command
+     */
+    function runCmd(cmd) {
+        var request = $http({
+            method: "get",
+            url: cfg.server_url + cfg.api_url + "devices/" + cmd
+        });
+        return request.success(function(data) {
+            console.log('SUCCESS:' + cfg.server_url + cfg.api_url + "devices/" + cmd);
+        }).error(function(error) {
+            handleError(error);
+
+        });
     }
 
 
@@ -237,12 +255,12 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
 
 
     }
-    
+
     /**
      * Enable/Disable the cache
      */
     function setCache(enable) {
-      enableCache = enable;
+        enableCache = enable;
         return;
     }
 

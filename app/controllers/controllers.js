@@ -5,11 +5,10 @@
 
 /*** Controllers ***/
 var myAppController = angular.module('myAppController', []);
-
 /**
  * Base controller
  */
-myAppController.controller('BaseController', function($scope, $cookies, $filter, $location, $route, cfg, dataFactory, langFactory, langTransFactory) {
+myAppController.controller('BaseController', function($scope, $cookies, $filter, $location, $route, cfg, dataFactory, deviceService, langFactory, langTransFactory) {
     /**
      * Global scopes
      */
@@ -29,7 +28,6 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
     // Set language
     //$scope.lang = (angular.isDefined($cookies.lang) ? $cookies.lang : cfg.lang);
     $scope.lang = (angular.isDefined($scope.profile.lang) ? $scope.profile.lang : cfg.lang);
-
     // TODO: remove?
     $scope.changeLang = function(lang) {
         $cookies.lang = lang;
@@ -52,7 +50,6 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
     $scope.$watch('lang', function() {
         $scope.loadLang($scope.lang);
     });
-
     /**
      * Set time
      */
@@ -61,13 +58,11 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
         $('#update_time_tick').html($filter('getCurrentTime')(time));
     };
     $scope.setTime();
-
     // Order by
     $scope.orderBy = function(field) {
         $scope.predicate = field;
         $scope.reverse = !$scope.reverse;
     };
-
     /**
      * Load base data (profiles, languages)
      */
@@ -81,15 +76,29 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
 //        });
     };
     $scope.loadBaseData();
-
     /**
      * Get body ID
      */
     $scope.getBodyId = function() {
         var path = $location.path().split('/');
-        return path[1];
+        if(path[1] == 'elements'){
+            switch (path[2]) {
+                    case 'location':
+                         return 'location'; 
+                        break;
+                    case 'dashboard':
+                        return 'dashboard'; 
+                        break;
+                   default:
+                       return 'elements'; 
+                        break;
+                }
+            
+        }else{
+           return path[1]; 
+        }
+        
     };
-
     /**
      * Get body ID
      */
@@ -98,21 +107,13 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
      * 
      * Mobile detect
      */
-    $scope.isMobile = false;
-    $scope.mobileCheck = function(a) {
-        if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) {
-            $scope.isMobile = true;
-        }
-    };
-    $scope.mobileCheck(navigator.userAgent || navigator.vendor || window.opera);
-
+    $scope.isMobile = deviceService.isMobile(navigator.userAgent || navigator.vendor || window.opera);
     /*
      * Menu active class
      */
     $scope.isActive = function(route) {
         return (route === $scope.getBodyId() ? 'active' : '');
     };
-
     /**
      * Set profile
      */
@@ -120,7 +121,6 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
         if (data.color) {
             $scope.profile.cssClass = 'profile-' + data.color.substring(1);
             data.cssClass = 'profile-' + data.color.substring(1);
-
         }
         if (data.name) {
             $scope.profile.name = data.name;
@@ -145,11 +145,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
         }
     };
     $scope.getProfile();
-
-
 });
-
-
 /**
  * Test controller
  */
@@ -159,15 +155,14 @@ myAppController.controller('TestController', function($scope, dataFactory) {
     $scope.reset = function() {
         $scope.collection = angular.copy([]);
     };
-
     /**
      * Load data into collection
      */
     $scope.loadData = function() {
         //dataFactory.demoData('elements.json', function(data) {
-        dataFactory.getLocations(function(data) {
-            $scope.collection = data;
-
+        dataFactory.getDevices(function(data) {
+            $scope.collection = data.data.devices;
+            console.log($scope.collection);
         });
     };
     $scope.loadData();
@@ -175,7 +170,6 @@ myAppController.controller('TestController', function($scope, dataFactory) {
         widget_margins: [10, 10],
         widget_base_dimensions: [300, 70]
     });
-
     /**
      * Slider values
      */
@@ -183,133 +177,20 @@ myAppController.controller('TestController', function($scope, dataFactory) {
         modelMax: 38
     };
 });
-
 /**
  * Home controller
  */
 myAppController.controller('HomeController', function($scope, dataFactory, deviceService) {
-    $scope.demo = [];
-    $scope.collection = [];
-    $scope.hideFooter = true;
-    $scope.input = {
-        'id': null,
-        'metrics': null,
-        'tags': null,
-        'permanently_hidden': false,
-        'title': '',
-        'dashboard': false,
-        'deviceType': null,
-        'level': null
-    };
-    $scope.isSelected = true;
-    $scope.onText = 'ON';
-    $scope.offText = 'OFF';
-    $scope.isActive = true;
-    $scope.size = 'small';
-    $scope.animate = false;
-    $scope.reset = function() {
-        $scope.collection = angular.copy([]);
-    };
 
-    /**
-     * Load demo data
-     */
-    $scope.loadDemoData = function() {
-        dataFactory.demoData('elements.json', function(data) {
-            $scope.demo = deviceService.getDevices(data.data.devices);
-        });
-    };
-    //$scope.loadDemoData();
-
-    /**
-     * Load data into collection
-     */
-    dataFactory.setCache(true);
-    $scope.loadData = function() {
-        dataFactory.getDevices(function(data) {
-            var filter = {param: "tags", val: true};
-            $scope.collection = deviceService.getDevices(data.data.devices, filter);
-        });
-    };
-    $scope.loadData();
-    //$(".dial").knob();
-
-    /**
-     * Chart data
-     */
-    $scope.chartData = {
-        labels: ['01:00', '06:00', '10:00', '12:00', '14:00', '18:00', '20:00'],
-        datasets: [
-            /*{
-             fillColor: 'rgba(220,220,220,0.5)',
-             strokeColor: 'rgba(220,220,220,1)',
-             pointColor: 'rgba(220,220,220,1)',
-             pointStrokeColor: '#fff',
-             data: [65, 59, 90, 81, 56, 55, 40]
-             },*/
-            {
-                fillColor: 'rgba(151,187,205,0.5)',
-                strokeColor: 'rgba(151,187,205,1)',
-                pointColor: 'rgba(151,187,205,1)',
-                pointStrokeColor: '#fff',
-                data: [8, 10, 15, 20, 22, 18, 16]
-            }
-        ]
-    };
-
-    /**
-     * Chart settings
-     */
-    $scope.chartOptions = {
-        // Chart.js options can go here.
-    };
-
-    /**
-     * Slider options
-     */
-    $scope.slider = {
-        modelMax: 38
-    };
-
-    /**
-     * Show modal window
-     */
-    $scope.showModal = function(target, input) {
-        $scope.input = input;
-        $(target).modal();
-    };
-
-    /**
-     * Update an item
-     */
-    $scope.store = function(input) {
-        //var tags = in
-        var inputData = {
-            'id': input.id,
-            'tags': input.dashboard,
-            'permanently_hidden': input.permanently_hidden,
-            'metrics': input.metrics
-        };
-        inputData.metrics.title = input.title;
-        if (input.id) {
-            dataFactory.putDevice(function(data) {
-                //$scope.collection.push = data.data;
-                dataFactory.setCache(false);
-                $scope.loadData();
-                //$route.reload();
-            }, input.id, inputData);
-        }
-
-    };
 });
-
 /**
  * Element controller
  */
 myAppController.controller('ElementController', function($scope, $routeParams, dataFactory, deviceService) {
-    $scope.demo = [];
     $scope.collection = [];
+    $scope.showFooter = true;
     $scope.deviceType = [];
+    $scope.levelVal = [];
     $scope.input = {
         'id': null,
         'metrics': null,
@@ -320,7 +201,6 @@ myAppController.controller('ElementController', function($scope, $routeParams, d
         'deviceType': null,
         'level': null
     };
-
     $scope.isSelected = true;
     $scope.onText = 'ON';
     $scope.offText = 'OFF';
@@ -328,16 +208,9 @@ myAppController.controller('ElementController', function($scope, $routeParams, d
     $scope.size = 'small';
     $scope.animate = false;
 
-
-    /**
-     * Load demo data
-     */
-    $scope.loadDemoData = function() {
-        dataFactory.demoData('elements.json', function(data) {
-            $scope.demo = deviceService.getDevices(data.data.devices);
-        });
+    $scope.knobopt = {
+        width: 100
     };
-    //$scope.loadDemoData();
 
     /**
      * Load data into collection
@@ -347,8 +220,29 @@ myAppController.controller('ElementController', function($scope, $routeParams, d
         dataFactory.getDevices(function(data) {
             var filter = null;
             $scope.deviceType = deviceService.getDeviceType(data.data.devices);
-            if (angular.isDefined($routeParams.param) && angular.isDefined($routeParams.val)) {
-                filter = $routeParams;
+            if (angular.isDefined($routeParams.filter) && angular.isDefined($routeParams.val)) {
+                switch ($routeParams.filter) {
+                    case 'dashboard':
+                        $scope.showFooter = false;
+                        filter = {filter: "onDashboard", val: true};
+                        break;
+                    case 'deviceType':
+                        filter = $routeParams;
+                        break;
+                    case 'location':
+                        $scope.showFooter = false;
+                        filter = $routeParams;
+                        dataFactory.getLocations(function(rooms) {
+                            //getRowBy(data, key, val, cache);
+                            var room = deviceService.getRowBy(rooms.data, 'id', $routeParams.val, 'room_' + $routeParams.val);
+                            if (room) {
+                                $scope.headline = $scope._t('lb_devices_room') + ': ' + room.title;
+                            }
+                        });
+                        break;
+                    default:
+                        break;
+                }
                 //console.log($routeParams.filter,$routeParams.val)
             }
             $scope.collection = deviceService.getDevices(data.data.devices, filter);
@@ -379,21 +273,18 @@ myAppController.controller('ElementController', function($scope, $routeParams, d
             }
         ]
     };
-
     /**
      * Chart settings
      */
     $scope.chartOptions = {
         // Chart.js options can go here.
     };
-
     /**
      * Slider options
      */
     $scope.slider = {
         modelMax: 38
     };
-
     /**
      * Show modal window
      */
@@ -401,15 +292,13 @@ myAppController.controller('ElementController', function($scope, $routeParams, d
         $scope.input = input;
         $(target).modal();
     };
-
     /**
      * Update an item
      */
     $scope.store = function(input) {
-        //var tags = in
         var inputData = {
             'id': input.id,
-            'tags': input.dashboard,
+            'tags': deviceService.setDeviceTags(input.tags,'dashboard',input.dashboard),
             'permanently_hidden': input.permanently_hidden,
             'metrics': input.metrics
         };
@@ -424,8 +313,46 @@ myAppController.controller('ElementController', function($scope, $routeParams, d
         }
 
     };
-});
+    /**
+     * Run command
+     */
+    $scope.runCmd = function(cmd) {
+        dataFactory.runCmd(cmd);
+        return;
+    };
+    /**
+     * Run command exact value
+     */
+    $scope.runCmdExact = function(id, type, min, max) {
+        var count;
+        var val = parseInt($scope.levelVal[id]);
+        var min = parseInt(min, 10);
+        var max = parseInt(max, 10);
+        switch (type) {
+            case '-':
+                count = val - 1;
+                break;
+            case '+':
+                count = val + 1;
+                break;
+            default:
+                count = parseInt(type, 10);
+                break;
+        }
 
+        if (count < min) {
+            count = min;
+        }
+        if (count > max) {
+            count = max;
+        }
+        $scope.levelVal[id] = count;
+        var cmd = id + '/command/exact?level=' + $scope.levelVal[id];
+        console.log(cmd);
+        dataFactory.runCmd(cmd);
+        return;
+    };
+});
 /**
  * Event controller
  */
@@ -436,7 +363,6 @@ myAppController.controller('EventController', function($scope, $routeParams, dat
     $scope.reset = function() {
         $scope.collection = angular.copy([]);
     };
-
     /**
      * Load demo data
      */
@@ -472,7 +398,6 @@ myAppController.controller('EventController', function($scope, $routeParams, dat
     };
     $scope.loadData();
 });
-
 /**
  * Profile controller
  */
@@ -499,7 +424,6 @@ myAppController.controller('ProfileController', function($scope, $window, $route
     $scope.reset = function() {
         $scope.collection = angular.copy([]);
     };
-
     /**
      * Load demo data
      */
@@ -520,7 +444,6 @@ myAppController.controller('ProfileController', function($scope, $window, $route
         });
     };
     $scope.loadData();
-
     /**
      * Show modal window
      */
@@ -528,7 +451,6 @@ myAppController.controller('ProfileController', function($scope, $window, $route
         $scope.input = input;
         $(target).modal();
     };
-
     /**
      * Create/Update an item
      */
@@ -558,11 +480,9 @@ myAppController.controller('ProfileController', function($scope, $window, $route
                 $scope.loadData();
                 //$route.reload();
             }, inputData);
-
         }
 
     };
-
     /**
      * Delete an item
      */
@@ -575,11 +495,9 @@ myAppController.controller('ProfileController', function($scope, $window, $route
             dataFactory.deleteProfile(input.id, input, target);
             dataFactory.setCache(false);
             $scope.loadData();
-
         }
     };
 });
-
 /**
  * App controller
  */
@@ -592,7 +510,6 @@ myAppController.controller('AppController', function($scope, $window, dataFactor
     $scope.reset = function() {
         $scope.collection = angular.copy([]);
     };
-
     /**
      * Load data into collection
      */
@@ -602,7 +519,6 @@ myAppController.controller('AppController', function($scope, $window, dataFactor
         });
     };
     $scope.loadData();
-
     /**
      * Show modal window
      */
@@ -610,7 +526,6 @@ myAppController.controller('AppController', function($scope, $window, dataFactor
         $scope.input = input;
         $(target).modal();
     };
-
     /**
      * Show modal window for activate
      */
@@ -619,7 +534,6 @@ myAppController.controller('AppController', function($scope, $window, dataFactor
         $scope.input = input;
         $(target).modal();
     };
-
     /**
      * Create an item
      */
@@ -629,7 +543,6 @@ myAppController.controller('AppController', function($scope, $window, dataFactor
         }
         console.log(input);
     };
-
     /**
      * Delete an item
      */
@@ -641,7 +554,6 @@ myAppController.controller('AppController', function($scope, $window, dataFactor
         }
     };
 });
-
 /**
  * Device controller
  */
@@ -657,7 +569,6 @@ myAppController.controller('DeviceController', function($scope, $window, $interv
     $scope.reset = function() {
         $scope.collection = angular.copy([]);
     };
-
     /**
      * Load data into collection
      */
@@ -667,7 +578,6 @@ myAppController.controller('DeviceController', function($scope, $window, $interv
         });
     };
     $scope.loadData();
-
     /**
      * Show modal window
      */
@@ -675,7 +585,6 @@ myAppController.controller('DeviceController', function($scope, $window, $interv
         $scope.input = input;
         $(target).modal();
     };
-
     /**
      * Create an item
      */
@@ -699,9 +608,7 @@ myAppController.controller('DeviceController', function($scope, $window, $interv
             $interval.cancel(progress2);
             $interval.cancel(progress);
         };
-
     };
-
     /**
      * Delete an item
      */
@@ -713,13 +620,11 @@ myAppController.controller('DeviceController', function($scope, $window, $interv
         }
     };
 });
-
 /**
  * Room controller
  */
 myAppController.controller('RoomController', function($scope, dataFactory) {
     $scope.collection = [];
-    $scope.demo = [];
     $scope.upload = {
         'showProgress': false,
         'progressVal': 0
@@ -734,16 +639,6 @@ myAppController.controller('RoomController', function($scope, dataFactory) {
     };
 
     /**
-     * Load demo data
-     */
-    $scope.loadDemoData = function() {
-        dataFactory.demoData('rooms.json', function(data) {
-            $scope.demo = data;
-        });
-    };
-    //$scope.loadDemoData();
-
-    /**
      * Load data into collection
      */
     $scope.loadData = function() {
@@ -752,132 +647,12 @@ myAppController.controller('RoomController', function($scope, dataFactory) {
         });
     };
     $scope.loadData();
-
     /**
      * Show modal window
      */
     $scope.showModal = function(target, input) {
         $scope.input = input;
         $(target).modal();
-    };
-});
-
-/**
- * Room device controller
- */
-myAppController.controller('RoomDeviceController', function($scope, $routeParams, dataFactory, deviceService) {
-    $scope.demo = [];
-    $scope.collection = [];
-    $scope.rooms = [];
-    $scope.roomName = '';
-    $scope.input = {
-        'id': null,
-        'metrics': null,
-        'tags': null,
-        'permanently_hidden': false,
-        'title': '',
-        'dashboard': false,
-        'deviceType': null,
-        'level': null
-    };
-    $scope.isSelected = true;
-    $scope.onText = 'ON';
-    $scope.offText = 'OFF';
-    $scope.isActive = true;
-    $scope.size = 'small';
-    $scope.animate = false;
-
-    $scope.reset = function() {
-        $scope.collection = angular.copy([]);
-    };
-
-    /**
-     * Load data into collection
-     */
-    $scope.loadData = function() {
-        dataFactory.getDevices(function(data) {
-            $scope.collection = deviceService.getDevices(data.data.devices);
-        });
-       dataFactory.getLocations(function(data) {
-            $scope.rooms = data.data;
-            angular.forEach(data.data, function(v, k) {
-
-                if (v.id == $routeParams.id) {
-                    $scope.roomName = v.title;
-                    return;
-                }
-            });
-
-        });
-    };
-    $scope.loadData();
-
-    /**
-     * Show modal window
-     */
-    $scope.showModal = function(target, input) {
-        $scope.input = input;
-        $(target).modal();
-    };
-
-    /**
-     * Chart data
-     */
-    $scope.chartData = {
-        labels: ['01:00', '06:00', '10:00', '12:00', '14:00', '18:00', '20:00'],
-        datasets: [
-            /*{
-             fillColor: 'rgba(220,220,220,0.5)',
-             strokeColor: 'rgba(220,220,220,1)',
-             pointColor: 'rgba(220,220,220,1)',
-             pointStrokeColor: '#fff',
-             data: [65, 59, 90, 81, 56, 55, 40]
-             },*/
-            {
-                fillColor: 'rgba(151,187,205,0.5)',
-                strokeColor: 'rgba(151,187,205,1)',
-                pointColor: 'rgba(151,187,205,1)',
-                pointStrokeColor: '#fff',
-                data: [8, 10, 15, 20, 22, 18, 16]
-            }
-        ]
-    };
-
-    /**
-     * Chart settings
-     */
-    $scope.chartOptions = {
-        // Chart.js options can go here.
-    };
-
-    /**
-     * Chart settings
-     */
-    $scope.chartOptions = {
-        // Chart.js options can go here.
-    };
-    
-    /**
-     * Update an item
-     */
-    $scope.store = function(input) {
-        //var tags = in
-        var inputData = {
-            'id': input.id,
-            'tags': input.dashboard,
-            'permanently_hidden': input.permanently_hidden,
-            'metrics': input.metrics
-        };
-        inputData.metrics.title = input.title;
-        if (input.id) {
-            dataFactory.putDevice(function(data) {
-                //$scope.collection.push = data.data;
-                dataFactory.setCache(false);
-                $scope.loadData();
-                //$route.reload();
-            }, input.id, inputData);
-        }
-
     };
 });
 
@@ -886,8 +661,9 @@ myAppController.controller('RoomDeviceController', function($scope, $routeParams
  */
 myAppController.controller('RoomConfigController', function($scope, $route, $window, $interval, $upload, dataFactory, deviceService) {
     $scope.collection = [];
-    $scope.demo = [];
-    $scope.devices = [];
+    $scope.devicesAssigned = [];
+    //$scope.devicesAvailable = [];
+    $scope.devicesToRemove = [];
     $scope.upload = {
         'showProgress': false,
         'progressVal': 0
@@ -909,16 +685,6 @@ myAppController.controller('RoomConfigController', function($scope, $route, $win
     };
 
     /**
-     * Load demo data
-     */
-    $scope.loadDemoData = function() {
-        dataFactory.demoData('rooms.json', function(data) {
-            $scope.demo = data;
-        });
-    };
-    //$scope.loadDemoData();
-
-    /**
      * Load data into collection
      */
     dataFactory.setCache(true);
@@ -929,25 +695,22 @@ myAppController.controller('RoomConfigController', function($scope, $route, $win
     };
     $scope.loadData();
 
-    /**
-     * Load devices
-     */
-    $scope.loadDevices = function() {
-        dataFactory.demoData('elements.json', function(data) {
-            $scope.devices = deviceService.getDevices(data.data.devices);
-        });
-    };
-    $scope.loadDevices();
-
 
     /**
      * Show modal window
      */
     $scope.showModal = function(target, input) {
+        $scope.loadDevices = function() {
+            dataFactory.getDevices(function(data) {
+                $scope.devices = deviceService.getDevices(data.data.devices);
+                $scope.devicesAssigned = deviceService.getDevices(data.data.devices,{filter: "location", val: input.id});
+
+            });
+        };
+        $scope.loadDevices();
         $scope.input = input;
         $(target).modal();
     };
-
     /**
      * Create/Update an item
      */
@@ -957,24 +720,28 @@ myAppController.controller('RoomConfigController', function($scope, $route, $win
             "title": input.title,
             "icon": input.icon
         };
+
         if (input.id) {
             dataFactory.putLocation(function(data) {
                 $scope.collection.push = data.data;
+                $scope.saveRoomIdIntoDevice(data,$scope.devicesAssigned);
+                $scope.removeRoomIdFromDevice(data,$scope.devicesToRemove);
                 dataFactory.setCache(false);
                 $scope.loadData();
             }, input.id, inputData);
         } else {
             dataFactory.postLocation(function(data) {
                 $scope.collection.push = data.data;
+                $scope.saveRoomIdIntoDevice(data,$scope.devicesAssigned);
+                $scope.removeRoomIdFromDevice(data,$scope.devicesToRemove);
                 dataFactory.setCache(false);
                 $scope.loadData();
                 //$route.reload();
             }, inputData);
-
         }
+        return;
 
     };
-
     /**
      * Delete an item
      */
@@ -985,22 +752,72 @@ myAppController.controller('RoomConfigController', function($scope, $route, $win
         }
         if (confirm) {
             dataFactory.deleteLocation(input.id, input, target);
+            dataFactory.getDevices(function(data) {
+               var devices = deviceService.getDevices(data.data.devices,{filter: "location", val: input.id});
+               $scope.removeRoomIdFromDevice({'error':null},devices);
+
+            });
             dataFactory.setCache(false);
             $scope.loadData();
-
         }
     };
-
+    /**
+     * Assign device to room
+     */
     $scope.assignDevice = function(id, selector, assign) {
-
         $(selector).toggleClass('hidden-device');
-        if (assign) {
-            $('#device_assigned_' + id).toggleClass('hidden-device');
-        } else {
-            $('#device_unassigned_' + id).toggleClass('hidden-device');
-        }
+        $('#device_assigned_' + id).toggleClass('hidden-device');
+        $scope.devicesAssigned.push(assign);
+        return;
+
     };
-    ;
+    /**
+     * Remove device from the room
+     */
+    $scope.removeDevice = function(id, selector, deviceId) {
+        $(selector).toggleClass('hidden-device');
+        $('#device_unassigned_' + id).toggleClass('hidden-device');
+        var oldList = $scope.devicesAssigned;
+        $scope.devicesAssigned = [];
+        angular.forEach(oldList, function(v, k) {
+            if (v.id != deviceId) {
+                $scope.devicesAssigned.push(v);
+            }else{
+                $scope.devicesToRemove.push(v);
+            }
+        });
+        return;
+    };
+
+    /**
+     * Save room id into device
+     */
+    $scope.saveRoomIdIntoDevice = function(data,devices) {
+        if (data.error == null) {
+            angular.forEach(devices, function(v, k) {
+                dataFactory.putDevice(function(data) {
+                    //console.log(data);
+                }, v.id, {'location': data.data.id});
+            });
+        }
+        return;
+
+    };
+    
+    /**
+     * Remove room id from device
+     */
+    $scope.removeRoomIdFromDevice = function(data,devices) {
+        if (data.error == null) {
+            angular.forEach(devices, function(v, k) {
+                dataFactory.putDevice(function(data) {
+                   // console.log(data);
+                }, v.id, {'location': null});
+            });
+        }
+        return;
+
+    };
 
     /**
      * Upload image
@@ -1032,10 +849,8 @@ myAppController.controller('RoomConfigController', function($scope, $route, $win
             }
         };
         var progress = $interval(countUp, 100);
-
     };
 });
-
 /**
  * Network controller
  */
@@ -1044,7 +859,6 @@ myAppController.controller('NetworkController', function($scope, dataFactory) {
     $scope.reset = function() {
         $scope.collection = angular.copy([]);
     };
-
     /**
      * Load data into collection
      */
@@ -1055,7 +869,6 @@ myAppController.controller('NetworkController', function($scope, dataFactory) {
     };
     $scope.loadData();
 });
-
 /**
  * About controller
  */
@@ -1064,7 +877,6 @@ myAppController.controller('AboutController', function($scope, dataFactory) {
     $scope.reset = function() {
         $scope.collection = angular.copy([]);
     };
-
     /**
      * Load data into collection
      */
