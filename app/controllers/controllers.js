@@ -502,20 +502,31 @@ myAppController.controller('ProfileController', function($scope, $window, $route
  * App controller
  */
 myAppController.controller('AppController', function($scope, $window, dataFactory) {
-    $scope.collection = [];
+    $scope.instances = [];
     $scope.input = {
         'id': null,
         'name': null
     };
     $scope.reset = function() {
-        $scope.collection = angular.copy([]);
+        $scope.instances = angular.copy([]);
     };
     /**
      * Load data into collection
      */
-    $scope.loadData = function() {
+    $scope.loadDemo = function() {
         dataFactory.demoData('apps.json', function(data) {
             $scope.collection = data;
+        });
+    };
+    $scope.loadDemo();
+    
+    /**
+     * Load data into collection
+     */
+    dataFactory.setCache(true);
+    $scope.loadData = function() {
+        dataFactory.getInstances(function(data) {
+            $scope.instances = data.data;
         });
     };
     $scope.loadData();
@@ -534,6 +545,42 @@ myAppController.controller('AppController', function($scope, $window, dataFactor
         $scope.input = input;
         $(target).modal();
     };
+    
+     /**
+     * Ictivate instance
+     */
+    $scope.activateInstance = function(input) {
+        var inputData = {
+            'id': input.id,
+            'active': input.active
+        };
+       if (input.id) {
+            dataFactory.putInstance(function(data) {
+                //$scope.instance.push = data.data;
+                dataFactory.setCache(false);
+                $scope.loadData();
+                //$route.reload();
+            }, input.id, inputData);
+        }
+
+    };
+    
+    /**
+     * Ictivate instance
+     */
+    $scope.deleteInstance = function(target, input, dialog) {
+        var confirm = true;
+        if (dialog) {
+            confirm = $window.confirm(dialog);
+        }
+        if (confirm) {
+            dataFactory.deleteInstance(input.id, input, target);
+            dataFactory.setCache(false);
+            //$scope.loadData();
+        }
+    };
+        
+      
     /**
      * Create an item
      */
@@ -542,16 +589,6 @@ myAppController.controller('AppController', function($scope, $window, dataFactor
             $scope.collection.push(input);
         }
         console.log(input);
-    };
-    /**
-     * Delete an item
-     */
-    $scope.delete = function(target, input) {
-        var confirm = $window.confirm('Are you absolutely sure you want to delete?');
-        if (confirm) {
-            console.log('Removing: ' + target);
-            $(target).fadeOut();
-        }
     };
 });
 /**

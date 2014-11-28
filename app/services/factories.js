@@ -21,6 +21,9 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
         putProfile: putProfile,
         deleteProfile: deleteProfile,
         getNotifications: getNotifications,
+        getInstances: getInstances,
+        putInstance: putInstance,
+        deleteInstance: deleteInstance,
         demoData: demoData,
         setCache: setCache,
         runCmd: runCmd
@@ -136,6 +139,38 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
         });
         return load(callback, request, 'notofications');
     }
+
+    /**
+     * Instances
+     */
+    // Get
+    function getInstances(callback, params) {
+        var request = $http({
+            method: "get",
+            url: cfg.server_url + cfg.api_url + "instances" + (params ? params : '')
+        });
+        return load(callback, request, 'instances');
+    }
+    // Put
+    function putInstance(callback, id, data) {
+        var request = $http({
+            method: "put",
+            data: data,
+            url: cfg.server_url + cfg.api_url + "instances/" + id
+        });
+        return postData(callback, request);
+    }
+    // Delete
+    function deleteInstance(id, input, target) {
+        var request = $http({
+            method: "delete",
+            data: input,
+            url: cfg.server_url + cfg.api_url + "instances/" + id
+        });
+        return deleteData(request, target);
+    }
+
+
 
     /**
      * Gets dummy data

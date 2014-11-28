@@ -1,29 +1,31 @@
 <!-- Online app view -->
 <div class="table-responsive_">
     <table id="table_apps_active" class="table table-report">
-        <!--<thead>
-            <tr>
-                 <th>Image</th>
-                    <th>
-                        <a href="" ng-click="orderBy('app_name')">{{_t('lb_app_name')}}
-                            <span ng-show="predicate == 'app_name'"><i ng-show="!reverse" class="fa fa-sort-asc"></i><i ng-show="reverse" class="fa fa-sort-desc"></i></span>
-                        </a>
-                    </th>
-                   <th>&nbsp;</th>
-            </tr>
-        </thead> -->
-        <tbody>
-            <tr ng-repeat="v in collection| orderBy:predicate:reverse" id="{{ v.rowId}}">
+       <tbody>
+            <tr ng-repeat="v in instances| orderBy:predicate:reverse" id="instance_{{$index}}">
                     <td><img class="app-image-list" src="storage/img/apps/appimage.jpg" alt="{{ v.name}}"/></td>
-                     <td>{{_t('lb_instance_of')}} {{ v.instance_name}}</td>
+                     <td>
+                         {{_t('lb_instance_of')}} <strong ng-show="v.title">{{ v.title}}</strong><strong ng-show="!v.title">#{{v.id}}</strong>
+                        </td>
                      <td class="apps-action-icons">
-                         <a title="{{_t('lb_deactivate')}}" class="btn btn-primary" href="" ng-show="v.status">
+                         <button title="{{_t('lb_deactivate')}}" 
+                                 class="btn btn-primary" href="" 
+                                 ng-show="v.active"
+                                 ng-click="activateInstance({'id': v.id,'active': false})"
+                                 >
                              <i class="fa fa-power-off fa-lg"></i> <span class="btn-name">{{_t('lb_deactivate')}}</span>
-                         </a>
-                          <a title="{{_t('lb_activate')}}" class="btn btn-info" href="" ng-show="!v.status">
+                         </button>
+                          <button title="{{_t('lb_activate')}}" 
+                                  class="btn btn-info" 
+                                  ng-show="!v.active" 
+                                  ng-click="activateInstance({'id': v.id,'active': true})
+                                  ">
                               <i class="fa fa-refresh fa-lg"></i> <span class="btn-name">{{_t('lb_activate')}}</span>
-                          </a>
-                         <button title="{{_t('lb_remove')}}" class="btn btn-danger">
+                          </button>
+                         <button title="{{_t('lb_remove')}}" 
+                                 class="btn btn-danger"
+                                  ng-click="deleteInstance('#instance_' + $index, {'id': v.id},_t('lb_delete_confirm'))"
+                                 >
                              <i class="fa fa-remove fa-lg"></i> <span class="btn-name">{{_t('lb_remove')}}</span>
                          </button>
                      </td>
