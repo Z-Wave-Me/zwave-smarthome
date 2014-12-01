@@ -21,6 +21,7 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
         putProfile: putProfile,
         deleteProfile: deleteProfile,
         getNotifications: getNotifications,
+        getModules: getModules,
         getInstances: getInstances,
         putInstance: putInstance,
         deleteInstance: deleteInstance,
@@ -141,6 +142,18 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
     }
 
     /**
+     * Modules
+     */
+    // Get
+    function getModules(callback, params) {
+        var request = {
+            method: "get",
+            url: cfg.server_url + cfg.api_url + "modules" + (params ? params : '')
+        };
+        return loadData(callback, request, 'instances');
+    }
+
+    /**
      * Instances
      */
     // Get
@@ -190,6 +203,36 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
 
     /**
      * Load data
+     */
+    function loadData(callback, request, cacheName) {
+        var cached = null;
+        if (cacheName) {
+            cached = myCache.get(cacheName);
+        }
+        // Cached data
+        if (enableCache && cached) {
+            console.log('CACHED: ' + cacheName);
+            return callback(cached);
+        } else {
+            console.log('NOOOOT CACHED: ' + cacheName);
+//            var request = $http({
+//            method: "get",
+//            url: cfg.server_url + cfg.api_url + "notifications" + (params ? params : '')
+//        });
+            return $http(request).success(function(data) {
+                myCache.put(cacheName, data);
+                return callback(data);
+            }).error(function(error) {
+                handleError(error);
+
+            });
+        }
+
+    }
+
+    /**
+     * Load data
+     * todo: remove when loadData() finished
      */
     function load(callback, request, cacheName) {
         var cached = null;

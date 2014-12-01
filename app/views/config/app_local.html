@@ -1,16 +1,21 @@
 <!-- Online app view -->
 <div class="row row-page">
-    <div class="col-md-6 app-entry"  ng-repeat="v in collection">
+    <div class="col-md-6 app-entry"  ng-repeat="v in modules">
         <div class="app-border app-gradient app-shadow app-entry-in">
             <div class="row">
                 <div class="col-sm-5 app-header">
-                     <h3 class="entry-title">{{ v.name}}</h3>
+                    
+                     <!--<span class="label label-danger">{{v.maturity}}</span>
+                     <app-local-maturity maturity="v.maturity"></app-local-maturity>-->
+                     <h3 class="entry-title">
+                        {{v.defaults.title}}
+                     </h3>
                  <img class="app-image" src="storage/img/apps/appimage.jpg" alt="{{ v.name}}"/>
                 </div>
                 <div class="col-sm-7 app-body">
-                    <p><strong>{{_t('lb_active_in')}}:</strong> <span ng-repeat="i in v.instances">{{i}}, </span></p>
-                    <p title="{{ v.email}}" tooltip><i class="fa fa-user fa-lg"></i> <strong>{{ v.author}}</strong><!--<br /> <a href="mailto:{{ v.email}}"><em>{{ v.email}}</em></a> --></p>
-                    <p><span title="{{v.description}}" tooltip>{{ v.description | cutText:true:50}}</span></p>
+                    <p ng-show="v.dependencies.length > 0"><strong>{{_t('lb_active_in')}}:</strong> <span ng-repeat="i in v.dependencies">{{i}}, </span></p>
+                    <p title="{{ v.email}}" tooltip_><i class="fa fa-user fa-lg"></i> <strong>{{ v.author}}</strong><!--<br /> <a href="mailto:{{ v.email}}"><em>{{ v.email}}</em></a> --></p>
+                    <p><span title="{{v.defaults.description}}" tooltip_>{{ v.defaults.description | cutText:true:50}}</span></p>
              
                 <div>
                      <button class="btn btn-primary" title="{{_t('lb_add_app')}}" ng-click="showActivateModal('#modal_activate')"><i class="fa fa-plus fa-lg"></i> <span class="btn-name">{{_t('lb_add_app')}}</span></button>

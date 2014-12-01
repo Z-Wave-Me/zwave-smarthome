@@ -81,23 +81,23 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
      */
     $scope.getBodyId = function() {
         var path = $location.path().split('/');
-        if(path[1] == 'elements'){
+        if (path[1] == 'elements') {
             switch (path[2]) {
-                    case 'location':
-                         return 'location'; 
-                        break;
-                    case 'dashboard':
-                        return 'dashboard'; 
-                        break;
-                   default:
-                       return 'elements'; 
-                        break;
-                }
-            
-        }else{
-           return path[1]; 
+                case 'location':
+                    return 'location';
+                    break;
+                case 'dashboard':
+                    return 'dashboard';
+                    break;
+                default:
+                    return 'elements';
+                    break;
+            }
+
+        } else {
+            return path[1];
         }
-        
+
     };
     /**
      * Get body ID
@@ -298,7 +298,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, d
     $scope.store = function(input) {
         var inputData = {
             'id': input.id,
-            'tags': deviceService.setDeviceTags(input.tags,'dashboard',input.dashboard),
+            'tags': deviceService.setDeviceTags(input.tags, 'dashboard', input.dashboard),
             'permanently_hidden': input.permanently_hidden,
             'metrics': input.metrics
         };
@@ -503,33 +503,60 @@ myAppController.controller('ProfileController', function($scope, $window, $route
  */
 myAppController.controller('AppController', function($scope, $window, dataFactory) {
     $scope.instances = [];
+    $scope.modules = [];
+    $scope.activeTab = 'local';
+    $scope.showFooter = true;
     $scope.input = {
         'id': null,
         'name': null
     };
     $scope.reset = function() {
         $scope.instances = angular.copy([]);
+        $scope.modules = angular.copy([]);
     };
+
     /**
-     * Load data into collection
-     */
-    $scope.loadDemo = function() {
-        dataFactory.demoData('apps.json', function(data) {
-            $scope.collection = data;
-        });
-    };
-    $scope.loadDemo();
-    
-    /**
-     * Load data into collection
+     * Load data into collections
      */
     dataFactory.setCache(true);
-    $scope.loadData = function() {
+    $scope.loadModules = function() {
+         dataFactory.getModules(function(data) {
+             console.log(data.data)
+            $scope.modules = data.data;
+        });
+        dataFactory.demoData('apps.json', function(data) {
+            //$scope.modules = data;
+        });
+    };
+    $scope.loadInstances = function() {
         dataFactory.getInstances(function(data) {
             $scope.instances = data.data;
         });
     };
-    $scope.loadData();
+
+    /**
+     * Set tab
+     */
+    $scope.setTab = function(tabId) {
+       $scope.activeTab = tabId;
+    };
+
+    // Watch for refresh change
+    $scope.$watch('activeTab', function() {
+         console.log($scope.activeTab);
+         switch ($scope.activeTab) {
+            case 'instance':
+                $scope.showFooter = false;
+                console.log('This is: instance');
+                $scope.loadInstances();
+                break;
+            default:
+                $scope.showFooter = false;
+                console.log('This is default: local');
+                $scope.loadModules();
+                break;
+        }
+     });
     /**
      * Show modal window
      */
@@ -545,8 +572,8 @@ myAppController.controller('AppController', function($scope, $window, dataFactor
         $scope.input = input;
         $(target).modal();
     };
-    
-     /**
+
+    /**
      * Ictivate instance
      */
     $scope.activateInstance = function(input) {
@@ -554,17 +581,17 @@ myAppController.controller('AppController', function($scope, $window, dataFactor
             'id': input.id,
             'active': input.active
         };
-       if (input.id) {
+        if (input.id) {
             dataFactory.putInstance(function(data) {
                 //$scope.instance.push = data.data;
                 dataFactory.setCache(false);
-                $scope.loadData();
+                $scope.loadInstances();
                 //$route.reload();
             }, input.id, inputData);
         }
 
     };
-    
+
     /**
      * Ictivate instance
      */
@@ -579,8 +606,8 @@ myAppController.controller('AppController', function($scope, $window, dataFactor
             //$scope.loadData();
         }
     };
-        
-      
+
+
     /**
      * Create an item
      */
@@ -740,7 +767,7 @@ myAppController.controller('RoomConfigController', function($scope, $route, $win
         $scope.loadDevices = function() {
             dataFactory.getDevices(function(data) {
                 $scope.devices = deviceService.getDevices(data.data.devices);
-                $scope.devicesAssigned = deviceService.getDevices(data.data.devices,{filter: "location", val: input.id});
+                $scope.devicesAssigned = deviceService.getDevices(data.data.devices, {filter: "location", val: input.id});
 
             });
         };
@@ -761,16 +788,16 @@ myAppController.controller('RoomConfigController', function($scope, $route, $win
         if (input.id) {
             dataFactory.putLocation(function(data) {
                 $scope.collection.push = data.data;
-                $scope.saveRoomIdIntoDevice(data,$scope.devicesAssigned);
-                $scope.removeRoomIdFromDevice(data,$scope.devicesToRemove);
+                $scope.saveRoomIdIntoDevice(data, $scope.devicesAssigned);
+                $scope.removeRoomIdFromDevice(data, $scope.devicesToRemove);
                 dataFactory.setCache(false);
                 $scope.loadData();
             }, input.id, inputData);
         } else {
             dataFactory.postLocation(function(data) {
                 $scope.collection.push = data.data;
-                $scope.saveRoomIdIntoDevice(data,$scope.devicesAssigned);
-                $scope.removeRoomIdFromDevice(data,$scope.devicesToRemove);
+                $scope.saveRoomIdIntoDevice(data, $scope.devicesAssigned);
+                $scope.removeRoomIdFromDevice(data, $scope.devicesToRemove);
                 dataFactory.setCache(false);
                 $scope.loadData();
                 //$route.reload();
@@ -790,8 +817,8 @@ myAppController.controller('RoomConfigController', function($scope, $route, $win
         if (confirm) {
             dataFactory.deleteLocation(input.id, input, target);
             dataFactory.getDevices(function(data) {
-               var devices = deviceService.getDevices(data.data.devices,{filter: "location", val: input.id});
-               $scope.removeRoomIdFromDevice({'error':null},devices);
+                var devices = deviceService.getDevices(data.data.devices, {filter: "location", val: input.id});
+                $scope.removeRoomIdFromDevice({'error': null}, devices);
 
             });
             dataFactory.setCache(false);
@@ -819,7 +846,7 @@ myAppController.controller('RoomConfigController', function($scope, $route, $win
         angular.forEach(oldList, function(v, k) {
             if (v.id != deviceId) {
                 $scope.devicesAssigned.push(v);
-            }else{
+            } else {
                 $scope.devicesToRemove.push(v);
             }
         });
@@ -829,7 +856,7 @@ myAppController.controller('RoomConfigController', function($scope, $route, $win
     /**
      * Save room id into device
      */
-    $scope.saveRoomIdIntoDevice = function(data,devices) {
+    $scope.saveRoomIdIntoDevice = function(data, devices) {
         if (data.error == null) {
             angular.forEach(devices, function(v, k) {
                 dataFactory.putDevice(function(data) {
@@ -840,15 +867,15 @@ myAppController.controller('RoomConfigController', function($scope, $route, $win
         return;
 
     };
-    
+
     /**
      * Remove room id from device
      */
-    $scope.removeRoomIdFromDevice = function(data,devices) {
+    $scope.removeRoomIdFromDevice = function(data, devices) {
         if (data.error == null) {
             angular.forEach(devices, function(v, k) {
                 dataFactory.putDevice(function(data) {
-                   // console.log(data);
+                    // console.log(data);
                 }, v.id, {'location': null});
             });
         }
