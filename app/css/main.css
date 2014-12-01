@@ -555,30 +555,31 @@ background-color: lighten($app-body-bcg-color, 10%);;
 /* line 14, sass/modules/_apps.scss */
 .app-entry-in .entry-title {
   font-size: 16px;
+  font-weight: bold;
 }
-/* line 16, sass/modules/_apps.scss */
+/* line 17, sass/modules/_apps.scss */
 .app-entry-in .entry-title .label {
   font-size: 70%;
 }
-/* line 21, sass/modules/_apps.scss */
+/* line 22, sass/modules/_apps.scss */
 .app-entry-in .app-body p {
   padding: 0 0 3px 0;
   border-bottom: dotted 1px #ececec;
 }
 
-/* line 28, sass/modules/_apps.scss */
+/* line 29, sass/modules/_apps.scss */
 .apps-action-icons a {
   margin-right: 7px;
 }
 
-/* line 31, sass/modules/_apps.scss */
+/* line 32, sass/modules/_apps.scss */
 .app-image {
   width: 100%;
-  max-width: 200px;
+  max-width: 150px;
   margin: 10px 0;
 }
 
-/* line 37, sass/modules/_apps.scss */
+/* line 38, sass/modules/_apps.scss */
 .app-image-list {
   max-width: 100px;
 }

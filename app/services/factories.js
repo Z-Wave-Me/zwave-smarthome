@@ -21,6 +21,7 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
         putProfile: putProfile,
         deleteProfile: deleteProfile,
         getNotifications: getNotifications,
+         getCategories: getCategories,
         getModules: getModules,
         getInstances: getInstances,
         putInstance: putInstance,
@@ -144,13 +145,22 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
     /**
      * Modules
      */
+    // Get categories
+    function getCategories(callback, params) {
+        var request = {
+            method: "get",
+            url: cfg.server_url + cfg.api_url + "modules/categories" + (params ? params : '')
+        };
+        return loadData(callback, request, 'categories');
+    }
+    
     // Get
     function getModules(callback, params) {
         var request = {
             method: "get",
             url: cfg.server_url + cfg.api_url + "modules" + (params ? params : '')
         };
-        return loadData(callback, request, 'instances');
+        return loadData(callback, request, 'modules');
     }
 
     /**
@@ -158,11 +168,11 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
      */
     // Get
     function getInstances(callback, params) {
-        var request = $http({
+        var request = {
             method: "get",
             url: cfg.server_url + cfg.api_url + "instances" + (params ? params : '')
-        });
-        return load(callback, request, 'instances');
+        };
+        return loadData(callback, request, 'instances');
     }
     // Put
     function putInstance(callback, id, data) {
@@ -215,10 +225,6 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
             return callback(cached);
         } else {
             console.log('NOOOOT CACHED: ' + cacheName);
-//            var request = $http({
-//            method: "get",
-//            url: cfg.server_url + cfg.api_url + "notifications" + (params ? params : '')
-//        });
             return $http(request).success(function(data) {
                 myCache.put(cacheName, data);
                 return callback(data);
@@ -244,7 +250,7 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
             console.log('CACHED: ' + cacheName);
             return callback(cached);
         } else {
-            console.log('NOOOOT CACHED: ' + cacheName);
+            console.log('NOT CACHED: ' + cacheName);
             return request.success(function(data) {
                 myCache.put(cacheName, data);
                 return callback(data);

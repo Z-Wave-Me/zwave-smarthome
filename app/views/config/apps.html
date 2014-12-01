@@ -29,5 +29,32 @@
             <!-- Active -->
             <div class="tab-pane" id="module_instance" ng-class="activeTab == 'instance' ? 'active' : ''" ng-include="'app/views/config/app_instance.html'"></div>
         </div>
-<div ng-show="showFooter" ng-include="'app/views/partials/footer_apps.html'"></div>
+
+<div id="footer" ng-show="showFooter">
+    <div class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
+            <div class="form-inline" role="form">
+                <select class="form-control" ng-model="category">
+                    <option value="">-- All categories --</option>
+                    <option ng-repeat="v in categories" value="{{v.id}}" ng-selected="category == v.id" ng-bind="v.name">
+                    </option>
+                </select>
+                <!--<div class="btn-group dropup">
+                 <button type="button" class="btn btn-default">{{_t('lb_filter_by')}}</button>
+                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                     <span class="caret"></span>
+                     <span class="sr-only">Toggle Dropdown</span>
+                 </button>
+                 <ul class="dropdown-menu">
+                     <li><a href="">{{_t('lb_stable')}}</a></li>
+                     <li><a href="">{{_t('lb_alpha')}}</a></li>
+                      <li><a href="">{{_t('lb_beta')}}</a></li>
+                 </ul>
+             </div>-->
+
+            </div>
+
+        </div>
+    </div>
+</div>
 </div> <!-- /ng-controller --> 

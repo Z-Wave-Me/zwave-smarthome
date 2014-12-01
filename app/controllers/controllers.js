@@ -501,10 +501,12 @@ myAppController.controller('ProfileController', function($scope, $window, $route
 /**
  * App controller
  */
-myAppController.controller('AppController', function($scope, $window, dataFactory) {
+myAppController.controller('AppController', function($scope, $window, dataFactory, deviceService) {
     $scope.instances = [];
     $scope.modules = [];
+    $scope.categories = [];
     $scope.activeTab = 'local';
+    $scope.category = '';
     $scope.showFooter = true;
     $scope.input = {
         'id': null,
@@ -519,14 +521,22 @@ myAppController.controller('AppController', function($scope, $window, dataFactor
      * Load data into collections
      */
     dataFactory.setCache(true);
-    $scope.loadModules = function() {
-         dataFactory.getModules(function(data) {
-             console.log(data.data)
-            $scope.modules = data.data;
+    $scope.loadCategories = function() {
+        dataFactory.getCategories(function(data) {
+            $scope.categories = data.data;
         });
-        dataFactory.demoData('apps.json', function(data) {
-            //$scope.modules = data;
+    };
+    $scope.loadCategories();
+    $scope.loadModules = function(filter) {
+        dataFactory.getModules(function(data) {
+            $scope.modules = deviceService.filterData(data.data, filter);
+            //console.log($scope.modules);
+
+
         });
+//        dataFactory.demoData('apps.json', function(data) {
+//            //$scope.modules = data;
+//        });
     };
     $scope.loadInstances = function() {
         dataFactory.getInstances(function(data) {
@@ -538,25 +548,36 @@ myAppController.controller('AppController', function($scope, $window, dataFactor
      * Set tab
      */
     $scope.setTab = function(tabId) {
-       $scope.activeTab = tabId;
+        $scope.activeTab = tabId;
     };
 
-    // Watch for refresh change
+    // Watch for tab change
     $scope.$watch('activeTab', function() {
-         console.log($scope.activeTab);
-         switch ($scope.activeTab) {
+        switch ($scope.activeTab) {
             case 'instance':
                 $scope.showFooter = false;
                 console.log('This is: instance');
                 $scope.loadInstances();
                 break;
             default:
-                $scope.showFooter = false;
+                $scope.showFooter = true;
                 console.log('This is default: local');
-                $scope.loadModules();
+                // Watch for category change
+                $scope.$watch('category', function() {
+                    $scope.modules = angular.copy([]);
+                    var filter = false;
+                    if ($scope.category != '') {
+                        filter = {
+                            'filter': 'category',
+                            'val': $scope.category
+                        };
+                    }
+                    $scope.loadModules(filter);
+                });
                 break;
         }
-     });
+    });
+
     /**
      * Show modal window
      */

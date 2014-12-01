@@ -9,21 +9,21 @@
                         </td>
                      <td class="apps-action-icons">
                          <button title="{{_t('lb_deactivate')}}" 
-                                 class="btn btn-primary" href="" 
+                                 class="btn btn-primary btn-sm" href="" 
                                  ng-show="v.active"
                                  ng-click="activateInstance({'id': v.id,'active': false})"
                                  >
                              <i class="fa fa-power-off fa-lg"></i> <span class="btn-name">{{_t('lb_deactivate')}}</span>
                          </button>
                           <button title="{{_t('lb_activate')}}" 
-                                  class="btn btn-info" 
+                                  class="btn btn-info btn-sm" 
                                   ng-show="!v.active" 
                                   ng-click="activateInstance({'id': v.id,'active': true})
                                   ">
                               <i class="fa fa-refresh fa-lg"></i> <span class="btn-name">{{_t('lb_activate')}}</span>
                           </button>
                          <button title="{{_t('lb_remove')}}" 
-                                 class="btn btn-danger"
+                                 class="btn btn-danger btn-sm"
                                   ng-click="deleteInstance('#instance_' + $index, {'id': v.id},_t('lb_delete_confirm'))"
                                  >
                              <i class="fa fa-remove fa-lg"></i> <span class="btn-name">{{_t('lb_remove')}}</span>

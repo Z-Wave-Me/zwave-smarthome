@@ -15,6 +15,15 @@ myAppService.service('deviceService', function($filter, myCache) {
     this.isMobile = function(a) {
         return isMobile(a);
     };
+    
+    /**
+     * Get filtered data
+     */
+    this.filterData = function(data, filter) {
+        return filterData(data, filter);
+    };
+    
+    
 
     /**
      * Get device data
@@ -69,6 +78,25 @@ myAppService.service('deviceService', function($filter, myCache) {
         } else {
             return false;
         }
+    }
+    
+    
+   /**
+     * Get filtered data
+     */
+    function filterData(data, filter) {
+        var collection = [];
+        if (filter) {
+            angular.forEach(data, function(v, k) {
+                if (v[filter.filter] == filter.val) {
+                    collection.push(v);
+                }
+            });
+            return collection;
+        }else{
+            return data;
+        }
+        
     }
 
     /**
@@ -134,7 +162,7 @@ myAppService.service('deviceService', function($filter, myCache) {
     function setDeviceTags(data, key, add) {
         if (add) {
             return addDeviceTag(data, key);
-        }else{
+        } else {
             return removeDeviceTag(data, key);
         }
     }
@@ -149,12 +177,12 @@ myAppService.service('deviceService', function($filter, myCache) {
         }
         return collection;
     }
-    
+
     /**
      * Remove device tag
      */
     function removeDeviceTag(data, key) {
-       var collection = [];
+        var collection = [];
         angular.forEach(data, function(v, k) {
             if (v != key) {
                 collection.push(v);
