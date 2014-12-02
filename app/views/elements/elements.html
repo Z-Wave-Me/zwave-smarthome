@@ -116,7 +116,7 @@
                             <!--<a href=""><i class="fa fa-toggle-on fa-2x text-primary"></i></a> -->
                         </div>
                         <!-- sensorMultilevel -->
-                        <div  ng-switch-when="sensorMultilevel"><strong>{{v.level + v.scaleTitle}}</strong> <i class="fa fa-caret-down"></i></div>
+                        <div  ng-switch-when="sensorMultilevel"><strong>{{v.level + v.scaleTitle}}</strong></div>
                         <!-- thermostat -->
                         <div  ng-switch-when="thermostat"><strong>{{levelVal[v.id] + v.scaleTitle}}</strong> <i class="fa fa-caret-down"></i></div>
                         <!-- switchMultilevelLinear -->
@@ -225,7 +225,7 @@
                         </div>
 
                         <!-- Hidden sensorMultilevel -->
-                        <div class="col-sm-11 element-hidden hidden-sensor-multilevel" ng-switch-when="sensorMultilevel" ng-show="goHidden">
+                        <div class="col-sm-11 element-hidden hidden-sensor-multilevel" ng-switch-when="sensorMultilevel__" ng-show="goHidden">
                             <p class="text-center">{{v.title}}</p>
                             <div>
                                 <canvas tc-chartjs-line chart-data="chartData" chart-options="chartOptions" width="260" height="150"></canvas>

@@ -113,7 +113,6 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
     }
     // Put
     function putProfile(callback, id, data) {
-        console.log(data)
         var request = $http({
             method: "put",
             data: data,

@@ -19,7 +19,9 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
         'id': 1,
         'name': 'Default',
         'cssClass': 'profile-default',
-        'lang': 'en'
+        'active': true,
+        'lang': 'en',
+        'positions': []
     };
     /**
      * Language settings
@@ -71,9 +73,6 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
         dataFactory.getProfiles(function(data) {
             $scope.navpPofiles = data.data;
         });
-//        dataFactory.demoData('profiles.json', function(data) {
-//            $scope.navpPofiles = data;
-//        });
     };
     $scope.loadBaseData();
     /**
@@ -128,8 +127,11 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
         if (data.id) {
             $scope.profile.id = data.id;
         }
-        if (data.lanf) {
+        if (data.lang) {
             $scope.profile.lang = data.lang;
+        }
+        if (data.positions) {
+            $scope.profile.positions = data.positions;
         }
 
         $cookies.profile = angular.toJson(data);
@@ -191,6 +193,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, d
     $scope.showFooter = true;
     $scope.deviceType = [];
     $scope.levelVal = [];
+    $scope.profileData = [];
     $scope.input = {
         'id': null,
         'metrics': null,
@@ -220,6 +223,14 @@ myAppController.controller('ElementController', function($scope, $routeParams, d
         dataFactory.getDevices(function(data) {
             var filter = null;
             $scope.deviceType = deviceService.getDeviceType(data.data.devices);
+             dataFactory.getProfiles(function(data) {
+                    var profile = deviceService.getRowBy(data.data, 'id', $scope.profile.id);
+                    $scope.profileData = {
+                        'id': profile.id,
+                        'name': profile.name,
+                        'positions': profile.positions
+                    };
+                });
             if (angular.isDefined($routeParams.filter) && angular.isDefined($routeParams.val)) {
                 switch ($routeParams.filter) {
                     case 'dashboard':
@@ -243,9 +254,8 @@ myAppController.controller('ElementController', function($scope, $routeParams, d
                     default:
                         break;
                 }
-                //console.log($routeParams.filter,$routeParams.val)
             }
-            $scope.collection = deviceService.getDevices(data.data.devices, filter);
+            $scope.collection = deviceService.getDevices(data.data.devices, filter,$scope.profileData.positions);
         });
     };
     $scope.loadData();
@@ -298,14 +308,26 @@ myAppController.controller('ElementController', function($scope, $routeParams, d
     $scope.store = function(input) {
         var inputData = {
             'id': input.id,
-            'tags': deviceService.setDeviceTags(input.tags, 'dashboard', input.dashboard),
+            'tags': deviceService.setArrayValue(input.tags, 'dashboard', input.dashboard),
             'permanently_hidden': input.permanently_hidden,
             'metrics': input.metrics
         };
         inputData.metrics.title = input.title;
         if (input.id) {
+
+            //console.log(profileData);
             dataFactory.putDevice(function(data) {
                 //$scope.collection.push = data.data;
+                dataFactory.getProfiles(function(data) {
+                    var profile = deviceService.getRowBy(data.data, 'id', $scope.profile.id);
+                    $scope.profileData = {
+                        'id': profile.id,
+                        'name': profile.name,
+                        'positions': deviceService.setArrayValue(profile.positions, input.id, input.dashboard)
+                    };
+                    saveDeviceIdIntoProfile(data, $scope.profileData);
+                });
+
                 dataFactory.setCache(false);
                 $scope.loadData();
                 //$route.reload();
@@ -352,6 +374,18 @@ myAppController.controller('ElementController', function($scope, $routeParams, d
         dataFactory.runCmd(cmd);
         return;
     };
+
+    /// --- Private functions --- ///
+    /**
+     * Save device id into profile
+     */
+    function saveDeviceIdIntoProfile(data, profileData) {
+        if (data.error == null) {
+            dataFactory.putProfile(function(data) {
+            }, profileData.id, profileData);
+        }
+        return;
+    }
 });
 /**
  * Event controller
@@ -411,10 +445,7 @@ myAppController.controller('ProfileController', function($scope, $window, $route
         "name": null,
         "description": null,
         "lang": 'en',
-        "positions": [
-            "ZWayVDev_2:0:49:4",
-            "ZWayVDev_2:0:50:0"
-        ],
+        "positions": [],
         "color": null,
         "groups": {
             "instances": []
@@ -459,11 +490,7 @@ myAppController.controller('ProfileController', function($scope, $window, $route
             "id": input.id,
             "name": input.name,
             "active": input.active,
-            "lang": input.lang,
-            "positions": [
-                "ZWayVDev_2:0:49:4",
-                "ZWayVDev_2:0:50:0"
-            ]
+            "lang": input.lang
 
         };
         if (input.id) {
@@ -529,7 +556,7 @@ myAppController.controller('AppController', function($scope, $window, dataFactor
     $scope.loadCategories();
     $scope.loadModules = function(filter) {
         dataFactory.getModules(function(data) {
-            $scope.modules = deviceService.filterData(data.data, filter);
+            $scope.modules = deviceService.getData(data.data, filter);
             //console.log($scope.modules);
 
 
@@ -740,7 +767,6 @@ myAppController.controller('RoomController', function($scope, dataFactory) {
         $(target).modal();
     };
 });
-
 /**
  * Room config controller
  */

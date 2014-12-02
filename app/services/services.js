@@ -15,21 +15,19 @@ myAppService.service('deviceService', function($filter, myCache) {
     this.isMobile = function(a) {
         return isMobile(a);
     };
-    
+
     /**
-     * Get filtered data
+     * Get data or filtered data
      */
-    this.filterData = function(data, filter) {
-        return filterData(data, filter);
+    this.getData = function(data, filter) {
+        return getData(data, filter);
     };
-    
-    
 
     /**
      * Get device data
      */
-    this.getDevices = function(data, filter) {
-        return getDevices(data, filter);
+    this.getDevices = function(data, filter,positions) {
+        return getDevices(data, filter,positions);
     };
 
     /**
@@ -40,10 +38,10 @@ myAppService.service('deviceService', function($filter, myCache) {
     };
 
     /**
-     * Set device tags
+     * Set array value
      */
-    this.setDeviceTags = function(data, key, add) {
-        return setDeviceTags(data, key, add);
+    this.setArrayValue = function(data, key, add) {
+        return setArrayValue(data, key, add);
     };
 
     /**
@@ -79,12 +77,12 @@ myAppService.service('deviceService', function($filter, myCache) {
             return false;
         }
     }
-    
-    
-   /**
-     * Get filtered data
+
+
+    /**
+     * Get data or filtered data
      */
-    function filterData(data, filter) {
+    function getData(data, filter) {
         var collection = [];
         if (filter) {
             angular.forEach(data, function(v, k) {
@@ -93,16 +91,16 @@ myAppService.service('deviceService', function($filter, myCache) {
                 }
             });
             return collection;
-        }else{
+        } else {
             return data;
         }
-        
+
     }
 
     /**
      * Get device data
      */
-    function getDevices(data, filter) {
+    function getDevices(data, filter,positions) {
         var obj;
         var collection = [];
         var onDashboard = false;
@@ -110,7 +108,8 @@ myAppService.service('deviceService', function($filter, myCache) {
             if (v.permanently_hidden) {
                 return;
             }
-            if (v.tags && v.tags.indexOf('dashboard') !== -1) {
+            if (positions && positions.indexOf(v.id) !== -1) {
+                console.log(v.id);
                 var onDashboard = true;
             }
             obj = {
@@ -157,20 +156,20 @@ myAppService.service('deviceService', function($filter, myCache) {
     }
 
     /**
-     * Set devace tags
+     * Set array value
      */
-    function setDeviceTags(data, key, add) {
+    function setArrayValue(data, key, add) {
         if (add) {
-            return addDeviceTag(data, key);
+            return addArrayValue(data, key);
         } else {
-            return removeDeviceTag(data, key);
+            return removeArrayValue(data, key);
         }
     }
 
     /**
-     * Add device tag
+     * Add array value
      */
-    function addDeviceTag(data, key) {
+    function addArrayValue(data, key) {
         var collection = data;
         if (collection.indexOf(key) === -1) {
             collection.push(key);
@@ -179,9 +178,9 @@ myAppService.service('deviceService', function($filter, myCache) {
     }
 
     /**
-     * Remove device tag
+     * Remove array value
      */
-    function removeDeviceTag(data, key) {
+    function removeArrayValue(data, key) {
         var collection = [];
         angular.forEach(data, function(v, k) {
             if (v != key) {
@@ -245,7 +244,9 @@ myAppService.service('deviceService', function($filter, myCache) {
         angular.forEach(data, function(v, k) {
             if (v[key] == val) {
                 collection = v;
-                myCache.put(cache, collection);
+                if (cache) {
+                    myCache.put(cache, collection);
+                }
                 return;
             }
 
