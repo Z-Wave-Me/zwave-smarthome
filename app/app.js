@@ -28,10 +28,6 @@ myApp.config(['$routeProvider',
                 when('/elements/:filter?/:val?', {
                     templateUrl: 'app/views/elements/elements.html'
                 }).
-                // Elements
-                when('/elements-1', {
-                    templateUrl: 'app/views/elements/elements_1.html'
-                }).
                 // Rooms
                 when('/rooms', {
                     templateUrl: 'app/views/rooms/rooms.html'
@@ -47,6 +43,10 @@ myApp.config(['$routeProvider',
                 //Apps
                 when('/apps', {
                     templateUrl: 'app/views/config/apps.html'
+                }).
+                //Apps
+                when('/apps/add/:id', {
+                    templateUrl: 'app/views/config/app_add.html'
                 }).
                 //Devices
                 when('/devices', {

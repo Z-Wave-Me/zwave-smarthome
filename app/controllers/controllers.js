@@ -223,14 +223,14 @@ myAppController.controller('ElementController', function($scope, $routeParams, d
         dataFactory.getDevices(function(data) {
             var filter = null;
             $scope.deviceType = deviceService.getDeviceType(data.data.devices);
-             dataFactory.getProfiles(function(data) {
-                    var profile = deviceService.getRowBy(data.data, 'id', $scope.profile.id);
-                    $scope.profileData = {
-                        'id': profile.id,
-                        'name': profile.name,
-                        'positions': profile.positions
-                    };
-                });
+            dataFactory.getProfiles(function(data) {
+                var profile = deviceService.getRowBy(data.data, 'id', $scope.profile.id);
+                $scope.profileData = {
+                    'id': profile.id,
+                    'name': profile.name,
+                    'positions': profile.positions
+                };
+            });
             if (angular.isDefined($routeParams.filter) && angular.isDefined($routeParams.val)) {
                 switch ($routeParams.filter) {
                     case 'dashboard':
@@ -255,7 +255,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, d
                         break;
                 }
             }
-            $scope.collection = deviceService.getDevices(data.data.devices, filter,$scope.profileData.positions);
+            $scope.collection = deviceService.getDevices(data.data.devices, filter, $scope.profileData.positions);
         });
     };
     $scope.loadData();
@@ -532,9 +532,13 @@ myAppController.controller('AppController', function($scope, $window, dataFactor
     $scope.instances = [];
     $scope.modules = [];
     $scope.categories = [];
-    $scope.activeTab = 'local';
+    $scope.activeTab = 'instance';
     $scope.category = '';
     $scope.showFooter = true;
+    $scope.showInFooter = {
+        'categories': true,
+        'serach': true
+    };
     $scope.input = {
         'id': null,
         'name': null
@@ -567,7 +571,9 @@ myAppController.controller('AppController', function($scope, $window, dataFactor
     };
     $scope.loadInstances = function() {
         dataFactory.getInstances(function(data) {
-            $scope.instances = data.data;
+            dataFactory.getModules(function(modules) {
+                  $scope.instances = deviceService.getInstances(data.data, modules.data);
+            });
         });
     };
 
@@ -582,14 +588,12 @@ myAppController.controller('AppController', function($scope, $window, dataFactor
     $scope.$watch('activeTab', function() {
         switch ($scope.activeTab) {
             case 'instance':
-                $scope.showFooter = false;
-                console.log('This is: instance');
+                $scope.showInFooter.categories = false;
                 $scope.loadInstances();
+                
                 break;
             default:
-                $scope.showFooter = true;
-                console.log('This is default: local');
-                // Watch for category change
+                $scope.showInFooter.categories = true;
                 $scope.$watch('category', function() {
                     $scope.modules = angular.copy([]);
                     var filter = false;
@@ -608,7 +612,7 @@ myAppController.controller('AppController', function($scope, $window, dataFactor
     /**
      * Show modal window
      */
-    $scope.showModal = function(target, input) {
+    $scope.showInstanceModal = function(target, input) {
         $scope.input = input;
         $(target).modal();
     };
@@ -619,6 +623,32 @@ myAppController.controller('AppController', function($scope, $window, dataFactor
         console.log('Acivate func');
         $scope.input = input;
         $(target).modal();
+    };
+
+    /**
+     * Update instance
+     */
+    $scope.updateInstance = function(input) {
+       var params = {};
+       angular.forEach(input.moduleOptions, function(v, k) {
+             params[v.field] = v.value;
+               
+            });
+        
+        var inputData = {
+            'id': input.id,
+            'title': input.title,
+            'description': input.description,
+            'params': params
+        };
+            // return;
+        if (input.id) {
+            dataFactory.putInstance(function(data) {
+                dataFactory.setCache(false);
+                $scope.loadInstances();
+            }, input.id, inputData);
+        }
+
     };
 
     /**
@@ -665,6 +695,48 @@ myAppController.controller('AppController', function($scope, $window, dataFactor
         }
         console.log(input);
     };
+});
+/**
+ * App controller - add module
+ */
+myAppController.controller('AppAddController', function($scope, $routeParams, dataFactory, deviceService) {
+    $scope.collection = false;
+    $scope.reset = function() {
+        $scope.collection = angular.copy([]);
+    };
+
+    $scope.loadModules = function(filter) {
+        dataFactory.getModules(function(data) {
+            $scope.modules = deviceService.getData(data.data, filter);
+            //console.log($scope.modules);
+
+
+        });
+//        dataFactory.demoData('apps.json', function(data) {
+//            //$scope.modules = data;
+//        });
+    };
+    /**
+     * Load data into collection
+     */
+    $scope.loadData = function() {
+        dataFactory.getModules(function(data) {
+            var filter = {
+                'filter': 'id',
+                'val': $routeParams.id
+            };
+            console.log(filter);
+            $scope.modules = deviceService.getData(data.data, filter);
+            //console.log($scope.modules);
+
+
+        });
+        dataFactory.demoData('demo.json', function(data) {
+
+            $scope.collection = data;
+        });
+    };
+    $scope.loadData();
 });
 /**
  * Device controller

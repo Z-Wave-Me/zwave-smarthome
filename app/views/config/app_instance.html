@@ -1,35 +1,76 @@
 <!-- Online app view -->
 <div class="table-responsive_">
     <table id="table_apps_active" class="table table-report">
-       <tbody>
-            <tr ng-repeat="v in instances| orderBy:predicate:reverse" id="instance_{{$index}}">
-                    <td><img class="app-image-list" src="storage/img/apps/appimage.jpg" alt="{{ v.name}}"/></td>
-                     <td>
-                         {{_t('lb_instance_of')}} <strong ng-show="v.title">{{ v.title}}</strong><strong ng-show="!v.title">#{{v.id}}</strong>
-                        </td>
-                     <td class="apps-action-icons">
-                         <button title="{{_t('lb_deactivate')}}" 
-                                 class="btn btn-primary btn-sm" href="" 
-                                 ng-show="v.active"
-                                 ng-click="activateInstance({'id': v.id,'active': false})"
-                                 >
-                             <i class="fa fa-power-off fa-lg"></i> <span class="btn-name">{{_t('lb_deactivate')}}</span>
-                         </button>
-                          <button title="{{_t('lb_activate')}}" 
-                                  class="btn btn-info btn-sm" 
-                                  ng-show="!v.active" 
-                                  ng-click="activateInstance({'id': v.id,'active': true})
-                                  ">
-                              <i class="fa fa-refresh fa-lg"></i> <span class="btn-name">{{_t('lb_activate')}}</span>
-                          </button>
-                         <button title="{{_t('lb_remove')}}" 
-                                 class="btn btn-danger btn-sm"
-                                  ng-click="deleteInstance('#instance_' + $index, {'id': v.id},_t('lb_delete_confirm'))"
-                                 >
-                             <i class="fa fa-remove fa-lg"></i> <span class="btn-name">{{_t('lb_remove')}}</span>
-                         </button>
-                     </td>
+        <tbody>
+            <tr ng-repeat="v in instances| orderBy:predicate:reverse | filter:q" id="instance_{{$index}}">
+                <td><img class="app-image-list" src="storage/img/apps/appimage.jpg" alt="{{ v.name}}"/></td>
+                <td>
+                    <span ng-show="!v.title">This</span>{{v.title}} is a <strong>{{v.moduleId}}</strong>
+                </td>
+                <td class="apps-action-icons">
+                     <a href="" title="{{_t('lb_update')}}" 
+                            ng-click="showInstanceModal('#modal_instance',{'id': v.id, 'title': v.title,'description': v.description,'params': v.params,'moduleOptions': v.moduleOptions})"
+                            >
+                        <i class="fa fa-cog fa-lg"></i>
+                    </a>
+                    <button title="{{_t('lb_deactivate')}}" 
+                            class="btn btn-primary btn-sm" href="" 
+                            ng-show="v.active"
+                            ng-click="activateInstance({'id': v.id, 'active': false})"
+                            >
+                        <i class="fa fa-power-off fa-lg"></i> <span class="btn-name">{{_t('lb_deactivate')}}</span>
+                    </button>
+                    <button title="{{_t('lb_activate')}}" 
+                            class="btn btn-info btn-sm" 
+                            ng-show="!v.active" 
+                            ng-click="activateInstance({'id': v.id, 'active': true})
+                            ">
+                        <i class="fa fa-refresh fa-lg"></i> <span class="btn-name">{{_t('lb_activate')}}</span>
+                    </button>
+                    <button title="{{_t('lb_remove')}}" 
+                            class="btn btn-danger btn-sm"
+                            ng-click="deleteInstance('#instance_' + $index, {'id': v.id}, _t('lb_delete_confirm'))"
+                            >
+                        <i class="fa fa-remove fa-lg"></i> <span class="btn-name">{{_t('lb_remove')}}</span>
+                    </button>
+                    
+                   
+                </td>
             </tr>
         </tbody>
     </table>
-    </div>
+</div>
+
+<!-- Modal apps -->
+  <div class="modal fade" id="modal_instance" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title">{{input.title}}</h4>
+              </div>
+              <div class="modal-body">
+                  <input name="params" id="params" type="hidden" class="form-control" value="{{input.params}}" />
+                  <div class="form-group">
+                      <label>{{_t('lb_name')}}</label>
+                      <input name="title" id="title" type="text" class="form-control" value="{{input.title}}" ng-model="input.title" />
+                  </div>
+                  <div class="form-group">
+                      <label>{{_t('lb_description')}}</label>
+                      <textarea name="description" id="description" class="form-control" ng-model="input.description">{{input.description}}</textarea>
+                  </div>
+                   <div class="form-group" ng-repeat="v in input.moduleOptions">
+                      <label>{{v.label}}</label>
+                      <input name="{{v.field}}" id="{{v.field}}" type="text" class="form-control" value="{{input.moduleOptions[$index].value}}" ng-model="input.moduleOptions[$index].value" />
+                  </div>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" 
+                          class="btn btn-primary" 
+                          data-dismiss="modal"
+                          ng-click="updateInstance(input)">{{_t('lb_save')}}</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">{{_t('lb_cancel')}}</button>
+              </div>
+          </div>
+      </div>
+  </div><!-- /.Modal -->

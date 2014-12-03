@@ -13,7 +13,7 @@ var config_data = {
     'app_version': '0.1',
     
     // Server base url
-    'server_url': 'http://zwave.dyndns.org:8083',
+    'server_url': 'http://192.168.10.162:8083/',
     
     // Api url
     'api_url': '/ZAutomation/api/v1/',

@@ -26,8 +26,8 @@ myAppService.service('deviceService', function($filter, myCache) {
     /**
      * Get device data
      */
-    this.getDevices = function(data, filter,positions) {
-        return getDevices(data, filter,positions);
+    this.getDevices = function(data, filter, positions) {
+        return getDevices(data, filter, positions);
     };
 
     /**
@@ -37,6 +37,12 @@ myAppService.service('deviceService', function($filter, myCache) {
         return getDeviceType(data);
     };
 
+    /**
+     * Get instances
+     */
+    this.getInstances = function(data, modules) {
+        return getInstances(data, modules);
+    };
     /**
      * Set array value
      */
@@ -100,7 +106,7 @@ myAppService.service('deviceService', function($filter, myCache) {
     /**
      * Get device data
      */
-    function getDevices(data, filter,positions) {
+    function getDevices(data, filter, positions) {
         var obj;
         var collection = [];
         var onDashboard = false;
@@ -109,7 +115,6 @@ myAppService.service('deviceService', function($filter, myCache) {
                 return;
             }
             if (positions && positions.indexOf(v.id) !== -1) {
-                console.log(v.id);
                 var onDashboard = true;
             }
             obj = {
@@ -136,6 +141,52 @@ myAppService.service('deviceService', function($filter, myCache) {
             }
 
         });
+        return collection;
+    }
+
+    /**
+     * Get instances data
+     */
+    function getInstances(data, modules) {
+        var collection = [];
+        var moduleOptions;
+        var module;
+       var  params;
+        angular.forEach(data, function(v, k) {
+            module = getRowBy(modules, 'id', v.moduleId);
+             params = (!v.params ? [] : v.params)
+            collection.push({
+                'id': v.id,
+                'moduleId': v.moduleId,
+                'title': v.title,
+                'moduleTitle': module.defaults.title,
+                'params': params,
+                'description': v.description,
+                'moduleData': module,
+                'moduleOptions': instanceModuleOptions(module,params)
+            });
+
+        });
+        return collection;
+    }
+    
+    /**
+     *  Get module options
+     */
+    function instanceModuleOptions(module,params) {
+        var collection = [];
+        if (module) {
+            angular.forEach($filter('hasNode')(module, 'options.fields'), function(v, k) {
+                if ((!v.hidden) || (v.hidden != true)) {
+                    collection.push({
+                        'value': $filter('hasNode')(params, k),
+                        'field': k,
+                        'label': v.label,
+                        'helper': v.helper
+                    });
+                }
+            });
+        }
         return collection;
     }
 
@@ -244,9 +295,9 @@ myAppService.service('deviceService', function($filter, myCache) {
         angular.forEach(data, function(v, k) {
             if (v[key] == val) {
                 collection = v;
-                if (cache) {
-                    myCache.put(cache, collection);
-                }
+//                if (cache) {
+//                    myCache.put(cache, collection);
+//                }
                 return;
             }
 

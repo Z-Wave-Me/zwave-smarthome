@@ -35,6 +35,22 @@ myApp.filter('cutText', function() {
 });
 
 /**
+ * Check if JSON keys/nodes exist
+ */
+myApp.filter('hasNode', function() {
+    return function(obj, path) {
+        path = path.split('.');
+        var p = obj || {};
+        for (var i in path) {
+            if (p === null || typeof p[path[i]] === 'undefined') {
+                return null;
+            }
+            p = p[path[i]];
+        }
+        return p;
+    };
+});
+/**
  * Get current time
  */
 myApp.filter('getElementIcon', function() {

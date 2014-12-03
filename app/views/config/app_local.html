@@ -16,7 +16,7 @@
                 <div class="col-sm-8 app-body">
                      <h3 class="entry-title" ng-bind="v.defaults.title"> </h3>
                     <p ng-show="v.dependencies.length > 0"><strong>{{_t('lb_active_in')}}:</strong> <span ng-repeat="i in v.dependencies">{{i}}, </span></p>
-                    <p><span title="{{v.defaults.description}}" tooltip_>{{ v.defaults.description | cutText:true:50}}</span></p>
+                    <p><span title="{{v.defaults.description}}" tooltip_>{{ v.defaults.description | cutText:true:100}}</span></p>
                     <p><i class="fa fa-user fa-lg"></i>
                         <strong ng-show="!v.homepage" ng-bind="v.author"></strong>
                         <a ng-href="{{v.homepage}}" ng-show="v.homepage"><strong ng-bind="v.author"></strong></a>
