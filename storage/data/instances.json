@@ -1,0 +1,38 @@
+{
+    "data": [{
+            "params": {
+                "name": "zway",
+                "port": "/dev/ttyAMA0",
+                "config": "config",
+                "translations": "translations",
+                "ZDDX": "ZDDX",
+                "closeOnExit": true
+            },
+            "active": true,
+            "moduleId": "ZWave",
+            "id": 1
+        }, {
+            "id": 2,
+            "moduleId": "Cron",
+            "params": {},
+            "active": true
+        }, {
+            "id": 3,
+            "moduleId": "ZWaveDeadDetection",
+            "params": {},
+            "active": true
+        }, {
+            "id": 4,
+            "moduleId": "ZWaveGate",
+            "params": {},
+            "active": true
+        }, {
+            "id": 5,
+            "moduleId": "OpenRemoteHelpers",
+            "params": {},
+            "active": true
+        }],
+    "code": 200,
+    "message": "200 OK",
+    "error": null
+}

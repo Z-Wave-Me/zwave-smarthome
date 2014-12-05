@@ -43,6 +43,15 @@ myAppService.service('deviceService', function($filter, myCache) {
     this.getInstances = function(data, modules) {
         return getInstances(data, modules);
     };
+
+    /**
+     * Get module config input
+     */
+    this.getModuleConfigInputs = function(module, params) {
+        return getModuleConfigInputs(module, params);
+    };
+
+
     /**
      * Set array value
      */
@@ -151,29 +160,131 @@ myAppService.service('deviceService', function($filter, myCache) {
         var collection = [];
         var moduleOptions;
         var module;
-       var  params;
+        var moduleTitle;
+        var params;
         angular.forEach(data, function(v, k) {
+            params = (!v.params ? [] : v.params);
             module = getRowBy(modules, 'id', v.moduleId);
-             params = (!v.params ? [] : v.params)
+            if (module) {
+                moduleTitle = $filter('hasNode')(module, 'defaults.title');
+                moduleOptions = getModuleConfigOptions(module, params);
+            }
+
             collection.push({
                 'id': v.id,
                 'moduleId': v.moduleId,
                 'title': v.title,
-                'moduleTitle': module.defaults.title,
+                'moduleTitle': moduleTitle,
                 'params': params,
                 'description': v.description,
                 'moduleData': module,
-                'moduleOptions': instanceModuleOptions(module,params)
+                'moduleOptions': moduleOptions,
+                'moduleInput': getModuleConfigInputs(module, params)
             });
 
         });
         return collection;
     }
+
+    /**
+     *  Get module config options
+     */
+    function getModuleConfigInputs(module, params) {
+        if (!module) {
+            return false;
+        }
+        var options = $filter('hasNode')(module, 'options.fields');
+        var schema = $filter('hasNode')(module, 'schema.properties');
+        var defaults = $filter('hasNode')(module, 'defaults');
+        if (!options || !schema) {
+            return false;
+        }
+        //console.log(module.id);
+
+        var collection = {};
+        var type;
+        var enums;
+        var pairs;
+        var inputType;
+        angular.forEach(options, function(v, k) {
+            if ((v.hidden) || (v.hidden == true)) {
+                return false;
+            }
+            type = $filter('hasNode')(schema[k], 'type');
+            enums = $filter('hasNode')(schema[k], 'enum');
+            //console.log(v.datasource);
+            if (v.datasource == 'namespaces') {
+                pairs = getModulePairsFromNamespaces(enums,v.optionLabels);
+            } else {
+                pairs = getModulePairsFromArray(enums,v.optionLabels);
+            }
+            inputType = $filter('hasNode')(options[k], 'type');
+            if(!inputType){
+                if(enums){
+                    inputType = 'select';
+                }else{
+                   inputType = 'text'; 
+                }
+                
+            }
+            collection[k] = {
+                'inputName': k,
+                'label': v.label,
+                'placeholder': v.placeholder,
+                'helper': v.helper,
+                'optionLabels': v.optionLabels,
+                'default': defaults[k],
+                'type': type,
+                'inputType': inputType ,
+                'enum': enums,
+                "datasource": v.datasource,
+                'pairs': pairs,
+                'pattern': $filter('hasNode')(schema[k], 'pattern'),
+                'required': $filter('hasNode')(schema[k], 'required'),
+                'value': $filter('hasNode')(params, k)
+            };
+
+        });
+        
+        return collection;
+    }
+    /**
+     * Get module pairs from array - enums and labels
+     */
+    function getModulePairsFromArray(enums, labels) {
+        if (!$.isArray(enums)) {
+            return false;
+        }
+        var collection = {};
+        angular.forEach(enums, function(v, k) {
+            if(labels){
+                collection[v] = (labels[k] ? labels[k] : v);
+            }else{
+                 collection[v] = v;
+            }
+        });
+
+        return collection;
+    }
     
     /**
-     *  Get module options
+     * Get module pairs from namespaces
      */
-    function instanceModuleOptions(module,params) {
+    function getModulePairsFromNamespaces(enums, labels) {
+        var collection = {};
+        var arr = enums.split(',');
+        if (!$.isArray(arr)) {
+            return false;
+        }
+        angular.forEach(arr, function(v) {
+            collection[v] = v;
+        });
+        return collection;
+    }
+    /**
+     *  Get module config options
+     */
+    function getModuleConfigOptions(module, params) {
         var collection = [];
         if (module) {
             angular.forEach($filter('hasNode')(module, 'options.fields'), function(v, k) {

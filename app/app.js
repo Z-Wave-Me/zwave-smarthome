@@ -44,9 +44,9 @@ myApp.config(['$routeProvider',
                 when('/apps', {
                     templateUrl: 'app/views/config/apps.html'
                 }).
-                //Apps
-                when('/apps/add/:id', {
-                    templateUrl: 'app/views/config/app_add.html'
+                //Module
+                when('/module/:action/:id', {
+                    templateUrl: 'app/views/config/app_module.html'
                 }).
                 //Devices
                 when('/devices', {

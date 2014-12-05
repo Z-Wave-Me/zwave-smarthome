@@ -8,9 +8,7 @@
                     <span ng-show="!v.title">This</span>{{v.title}} is a <strong>{{v.moduleId}}</strong>
                 </td>
                 <td class="apps-action-icons">
-                     <a href="" title="{{_t('lb_update')}}" 
-                            ng-click="showInstanceModal('#modal_instance',{'id': v.id, 'title': v.title,'description': v.description,'params': v.params,'moduleOptions': v.moduleOptions})"
-                            >
+                    <a href="#module/put/{{v.id}}" title="{{_t('lb_update')}}" class="btn btn-primary btn-sm">
                         <i class="fa fa-cog fa-lg"></i>
                     </a>
                     <button title="{{_t('lb_deactivate')}}" 
@@ -33,44 +31,8 @@
                             >
                         <i class="fa fa-remove fa-lg"></i> <span class="btn-name">{{_t('lb_remove')}}</span>
                     </button>
-                    
-                   
                 </td>
             </tr>
         </tbody>
     </table>
 </div>
-
-<!-- Modal apps -->
-  <div class="modal fade" id="modal_instance" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-          <div class="modal-content">
-              <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                  <h4 class="modal-title">{{input.title}}</h4>
-              </div>
-              <div class="modal-body">
-                  <input name="params" id="params" type="hidden" class="form-control" value="{{input.params}}" />
-                  <div class="form-group">
-                      <label>{{_t('lb_name')}}</label>
-                      <input name="title" id="title" type="text" class="form-control" value="{{input.title}}" ng-model="input.title" />
-                  </div>
-                  <div class="form-group">
-                      <label>{{_t('lb_description')}}</label>
-                      <textarea name="description" id="description" class="form-control" ng-model="input.description">{{input.description}}</textarea>
-                  </div>
-                   <div class="form-group" ng-repeat="v in input.moduleOptions">
-                      <label>{{v.label}}</label>
-                      <input name="{{v.field}}" id="{{v.field}}" type="text" class="form-control" value="{{input.moduleOptions[$index].value}}" ng-model="input.moduleOptions[$index].value" />
-                  </div>
-              </div>
-              <div class="modal-footer">
-                  <button type="button" 
-                          class="btn btn-primary" 
-                          data-dismiss="modal"
-                          ng-click="updateInstance(input)">{{_t('lb_save')}}</button>
-                  <button type="button" class="btn btn-default" data-dismiss="modal">{{_t('lb_cancel')}}</button>
-              </div>
-          </div>
-      </div>
-  </div><!-- /.Modal -->

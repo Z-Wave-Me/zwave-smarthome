@@ -22,7 +22,7 @@
                         <a ng-href="{{v.homepage}}" ng-show="v.homepage"><strong ng-bind="v.author"></strong></a>
                     </p>
                 <div>
-                     <button class="btn btn-primary btn-sm" title="{{_t('lb_add_app')}}" ng-click="showActivateModal('#modal_activate')"><i class="fa fa-plus fa-lg"></i> <span class="btn-name">{{_t('lb_add_app')}}</span></button>
+                     <a href="#module/post/{{v.id}}" title="{{_t('lb_add_app')}}" class="btn btn-primary btn-sm"><i class="fa fa-plus fa-lg"></i> <span class="btn-name">{{_t('lb_add_app')}}</span></a>
                      <button class="btn btn-danger btn-sm" title="{{_t('lb_remove')}}"><i class="fa fa-remove fa-lg"></i> <span class="btn-name">{{_t('lb_remove')}}</span></button>
                 </div>
 
@@ -31,44 +31,3 @@
         </div>
     </div>
 </div>
-
-<!-- Modal apps -->
-  <div class="modal fade" id="modal_activate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-          <div class="modal-content">
-              <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                  <h4 class="modal-title">Omsk Weather {{input.name}}</h4>
-              </div>
-              <div class="modal-body">
-                  <div class="form-group">
-                      <label>{{_t('lb_name')}}</label>
-                      <input name="name" id="name" type="text" class="form-control" value="{{input.name}}" ng-model="input.name" />
-                  </div>
-                  <div class="form-group">
-                      <label>{{_t('lb_description')}}</label>
-                      <textarea name="description" id="description" class="form-control" ></textarea>
-                  </div>
-                  <div class="form-group">
-                      <label>{{_t('lb_city')}}</label>
-                      <input name="city" id="city" type="text" class="form-control" value="{{input.name}}" ng-model="input.name" />
-                  </div>
-                  <div class="form-group">
-                      <label>{{_t('lb_country')}}</label>
-                      <input name="country" id="country" type="text" class="form-control" value="{{input.name}}" ng-model="input.name" />
-                  </div>
-                   <div class="form-group">
-                       <input type="radio" name="temp" value="f" checked="checked" /> °F
-                       <input type="radio" name="temp" value="f" checked="checked" /> °C
-                  </div>
-              </div>
-              <div class="modal-footer">
-                  <button type="button" 
-                          class="btn btn-primary" 
-                          data-dismiss="modal"
-                          ng-click="create(input)">{{_t('lb_save')}}</button>
-                  <button type="button" class="btn btn-default" data-dismiss="modal">{{_t('lb_cancel')}}</button>
-              </div>
-          </div>
-      </div>
-  </div><!-- /.Modal -->

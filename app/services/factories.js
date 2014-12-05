@@ -25,6 +25,7 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
         getModules: getModules,
         getInstances: getInstances,
         putInstance: putInstance,
+        postInstance: postInstance,
         deleteInstance: deleteInstance,
         demoData: demoData,
         setCache: setCache,
@@ -172,6 +173,15 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
             url: cfg.server_url + cfg.api_url + "instances" + (params ? params : '')
         };
         return loadData(callback, request, 'instances');
+    }
+     // Post
+    function postInstance(callback, data) {
+        var request = $http({
+            method: "post",
+            data: data,
+            url: cfg.server_url + cfg.api_url + "instances"
+        });
+        return postData(callback, request);
     }
     // Put
     function putInstance(callback, id, data) {

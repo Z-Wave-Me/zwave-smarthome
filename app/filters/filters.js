@@ -3,6 +3,18 @@
  * @author Martin Vach
  */
 /**
+ * Display HTML tags in scope
+ */
+myApp.filter('toTrusted', ['$sce', function($sce){
+       
+        return function(text) {
+             if(text == null){
+            return '';
+        }
+            return $sce.trustAsHtml(text);
+        };
+    }]);
+/**
  * Strip HTML tags from input
  */
 myApp.filter('stripTags', function() {
@@ -39,6 +51,10 @@ myApp.filter('cutText', function() {
  */
 myApp.filter('hasNode', function() {
     return function(obj, path) {
+        if(!obj || !path){
+            return null;
+        }
+        //console.log(path);
         path = path.split('.');
         var p = obj || {};
         for (var i in path) {

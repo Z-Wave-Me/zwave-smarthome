@@ -1,0 +1,67 @@
+<!-- Appp module ad  view -->
+<div ng-controller="AppModuleController">
+    <h2 class="page-subtitle" ng-bind="input.moduleTitle"></h2>
+    <div ng-show="!showForm">
+        Module does not exists <a href="#apps" class="btn btn-default" data-dismiss="modal">{{_t('lb_cancel')}}</a>
+    </div>
+
+    <div ng-show="showForm">
+        <form id="form_module" ng-submit="store(input)">
+            <input name="params" id="params" type="hidden" class="form-control" value="{{input.params}}" />
+            <div class="form-group">
+                <input type="checkbox" name="active" value="{{input.active}}" id="active" ng-model="input.active" ng-checked="input.active" /> <label>Active</label>
+            </div>
+            <div class="form-group">
+                <label>{{_t('lb_name')}}</label>
+                <input name="title" id="title" type="text" class="form-control" value="{{input.title}}" ng-model="input.title" />
+            </div>
+             <div class="form-group">
+                <label>{{_t('lb_description')}}</label>
+                <textarea name="description" id="description" class="form-control" ng-model="input.description">{{input.description}}</textarea>
+            </div>
+
+            <!-- Repeat -->
+            <div ng-repeat="i in input.moduleInput">
+                <!-- Switch -->
+                <div ng-switch="i.inputType">
+                    <!-- Text -->
+                    <div class="form-group" ng-switch-when="text">
+                        <label ng-bind="i.label"></label>
+                        <input name="{{i.inputName}}" id="{{i.inputName}}" type="text" class="form-control" value="{{input.moduleInput[i.inputName].value}}" ng-model="input.moduleInput[i.inputName].value" />
+                    </div><!-- /Text --> 
+                     <!-- Textarea -->
+                    <div class="form-group" ng-switch-when="textarea">
+                        <label ng-bind="i.label"></label>
+                        <textarea 
+                            name="{{i.inputName}}" 
+                            id="{{i.inputName}}" 
+                            class="form-control" 
+                            ng-model="input.moduleInput[i.inputName].value"
+                            >{{input.moduleInput[i.inputName].value}}</textarea>
+                    </div><!-- /Textarea --> 
+
+                    <!-- Select -->
+                    <div class="form-group" ng-switch-when="select">
+                        <label ng-bind="i.label"></label>
+                        <select name="{{i.inputName}}" id="{{i.inputName}}" class="form-control" ng-model="input.moduleInput[i.inputName].value">
+                            <option ng-repeat="(k,v) in i.pairs" value="{{k}}" ng-selected="i.value == k" ng-bind="v"></option>
+                        </select>
+                    </div><!-- /Select -->
+                </div><!-- /ng-switch -->
+            </div><!-- /ng-repeat --> 
+
+            <!-- Submit -->
+            <button type="submit" 
+                    class="btn btn-primary" 
+                    data-dismiss_="modal"
+                    ng-click_="updateInstance(input)">{{_t('lb_save')}}</button>
+            <a href="#apps" class="btn btn-default" data-dismiss="modal">{{_t('lb_cancel')}}</a>
+            <!-- /Submit --> 
+
+            <div class="alert alert-success alert-dismissable" ng-show="success">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                Data successfully saved
+            </div>
+        </form><!-- /form --> 
+    </div>
+</div> <!-- /ng-controller --> 
