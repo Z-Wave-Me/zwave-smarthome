@@ -134,8 +134,10 @@ myApp.filter('isToday', function() {
     return function(input,fromunix) {
         if(fromunix){
             var d = new Date(input * 1000);
+             var startDate = new Date(input * 1000);  // 2000-01-01
         }else{
            var d = new Date(input);  
+            var startDate = new Date(input);  // 2000-01-01
         }
        
 
@@ -146,10 +148,10 @@ myApp.filter('isToday', function() {
             return hrs + ':' + min;
 
         } else {
-            var startDate = new Date(input);  // 2000-01-01
+           
             var endDate = new Date();              // Today
             var nDays = diffDays(startDate, endDate) + 1;
-            var str = '- ' + nDays + ' days';
+            var str = '' + nDays + ' days';
             if (nDays < 2) {
                 str = 'yesterday';
             }
