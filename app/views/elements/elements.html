@@ -122,7 +122,7 @@
                             <div class="row">
                                 <div class="col-sm-6"> <strong>{{v.level}} <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span></strong> </div>
                                 <div class="col-sm-6 text-right">
-                                    <button class="btn btn-default btn-sm" ng-click="runCmd(v.id)"> <i class="fa fa-clock-o"></i> {{v.updateTime|isTodayFromUnix}}</button>
+                                    <button class="btn btn-default btn-sm" ng-click="runCmd(v.id + '/command/update')"> <i class="fa fa-clock-o"></i> {{v.updateTime|isTodayFromUnix}}</button>
                                 </div>
                             </div>
                         </div>
