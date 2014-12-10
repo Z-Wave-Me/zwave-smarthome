@@ -26,8 +26,8 @@ myAppService.service('deviceService', function($filter, myCache) {
     /**
      * Get device data
      */
-    this.getDevices = function(data, filter, positions) {
-        return getDevices(data, filter, positions);
+    this.getDevices = function(data, filter, positions, instances) {
+        return getDevices(data, filter, positions, instances);
     };
 
     /**
@@ -115,31 +115,51 @@ myAppService.service('deviceService', function($filter, myCache) {
     /**
      * Get device data
      */
-    function getDevices(data, filter, positions) {
+    function getDevices(data, filter, positions, instances) {
+
         var obj;
         var collection = [];
         var onDashboard = false;
+        var instance;
+        var hasInstance = false;
+        var findZwaveStr = "ZWayVDev_zway_";
+        var zwaveId;
         angular.forEach(data, function(v, k) {
-            if (v.permanently_hidden) {
+            if (v.permanently_hidden || v.deviceType == 'battery') {
                 return;
             }
             if (positions && positions.indexOf(v.id) !== -1) {
                 var onDashboard = true;
             }
+            instance = getRowBy(instances, 'id', v.creatorId);
+            if (instance && instance['moduleId'] != 'ZWave') {
+                hasInstance = instance;
+            }
+            if (v.id.indexOf(findZwaveStr) > -1) {
+                zwaveId = v.id.split(findZwaveStr)[1].split('-')[0]; 
+            } else{
+                zwaveId = false;
+            }
             obj = {
                 'id': v.id,
+                'zwaveId': zwaveId,
                 'title': v.metrics.title,
                 'metrics': v.metrics,
                 'tags': v.tags,
                 'permanently_hidden': v.permanently_hidden,
-                'level': v.metrics.level,
+                'level': $filter('numberFixedLen')(v.metrics.level),
                 'icon': v.metrics.icon,
                 'probeTitle': v.metrics.probeTitle,
                 'scaleTitle': v.metrics.scaleTitle,
                 'deviceType': v.deviceType,
                 'location': v.location,
+                'creatorID': v.creatorId,
                 'updateTime': v.updateTime,
-                'onDashboard': onDashboard
+                'onDashboard': onDashboard,
+                'cfg':{
+                    'zwaveId': zwaveId,
+                    'hasInstance': hasInstance
+                }
             };
             if (filter) {
                 if (obj[filter.filter] == filter.val) {
@@ -214,18 +234,18 @@ myAppService.service('deviceService', function($filter, myCache) {
             enums = $filter('hasNode')(schema[k], 'enum');
             //console.log(v.datasource);
             if (v.datasource == 'namespaces') {
-                pairs = getModulePairsFromNamespaces(enums,v.optionLabels);
+                pairs = getModulePairsFromNamespaces(enums, v.optionLabels);
             } else {
-                pairs = getModulePairsFromArray(enums,v.optionLabels);
+                pairs = getModulePairsFromArray(enums, v.optionLabels);
             }
             inputType = $filter('hasNode')(options[k], 'type');
-            if(!inputType){
-                if(enums){
+            if (!inputType) {
+                if (enums) {
                     inputType = 'select';
-                }else{
-                   inputType = 'text'; 
+                } else {
+                    inputType = 'text';
                 }
-                
+
             }
             collection[k] = {
                 'inputName': k,
@@ -235,7 +255,7 @@ myAppService.service('deviceService', function($filter, myCache) {
                 'optionLabels': v.optionLabels,
                 'default': defaults[k],
                 'type': type,
-                'inputType': inputType ,
+                'inputType': inputType,
                 'enum': enums,
                 "datasource": v.datasource,
                 'pairs': pairs,
@@ -245,7 +265,7 @@ myAppService.service('deviceService', function($filter, myCache) {
             };
 
         });
-        
+
         return collection;
     }
     /**
@@ -257,16 +277,16 @@ myAppService.service('deviceService', function($filter, myCache) {
         }
         var collection = {};
         angular.forEach(enums, function(v, k) {
-            if(labels){
+            if (labels) {
                 collection[v] = (labels[k] ? labels[k] : v);
-            }else{
-                 collection[v] = v;
+            } else {
+                collection[v] = v;
             }
         });
 
         return collection;
     }
-    
+
     /**
      * Get module pairs from namespaces
      */
@@ -309,6 +329,9 @@ myAppService.service('deviceService', function($filter, myCache) {
     function getDeviceType(data) {
         var collection = [];
         angular.forEach(data, function(v, k) {
+            if(v.deviceType == 'battery'){
+                return;
+            }
             collection.push({
                 'key': v.deviceType,
                 'val': v.deviceType

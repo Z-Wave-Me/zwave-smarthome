@@ -15,6 +15,8 @@
                                            'deviceType': v.deviceType,
                                            'level': v.level,
                                            'metrics': v.metrics,
+                                           'updateTime': v.updateTime,
+                                           'cfg': v.cfg,
                                            'permanently_hidden': v.permanently_hidden
                                        })"
                        ><i class="fa fa-cog fa-lg"></i></a>
@@ -25,10 +27,10 @@
 
                     <!-- Widget body -->
                     <div class="widget-body"  ng-init="levelVal[v.id] = v.level"
-                         ng-mouseenter="goHidden = true;
-                                             goHiddenCamera = true;
-                                             goHiddenSensor = true;
-                                             goHiddenSwitchLinear = true;" 
+                         ng-click="goHidden = true;
+                                         goHiddenCamera = true;
+                                         goHiddenSensor = true;
+                                         goHiddenSwitchLinear = true;" 
                          ng-mouseleave="goHidden = false;
                                              goHiddenCamera = false;
                                              goHiddenSensor = false;
@@ -38,41 +40,41 @@
 
                         <!-- switchMultilevel -->
                         <div ng-switch-when="switchMultilevel">
-                            <strong>{{levelVal[v.id]}} <i class="fa fa-caret-down"></i></strong>
+                            <strong>{{levelVal[v.id]}} % <i class="fa fa-caret-down"></i></strong>
                         </div>
                         <!-- switchBinary -->
                         <div class="btn-group"  ng-switch-when="switchBinary">
-                           <button 
-                                class="btn btn-info btn-sm" 
+                            <button 
+                                class="btn btn-sm" 
                                 id="btn_off_{{ v.id}}"
                                 data-ng-click="runCmd(v.id + '/command/off')"
-                                ng-class="v.level=='off' ? 'active': ''"
+                                ng-class="v.level=='off' ? 'btn-primary active': 'btn-info'"
                                 >OFF</button>
                             <button 
                                 class="btn btn-primary btn-sm" 
                                 id="btn_on_{{ v.id}}"
                                 data-ng-click="runCmd(v.id + '/command/on')"
-                                ng-class="v.level=='on' ? 'active': ''"
+                                ng-class="v.level=='on' ? 'btn-primary active': 'btn-info'"
                                 >ON</button>
 
 
                         </div>
-                         <!--<div ng-switch-when="switchBinary___">
-                            <input
-                                bs-switch
-                                ng-model="isSelected"
-                                type="checkbox"
-                                switch-active="true"
-                                switch-on-text="ON"
-                                switch-off-text="OFF"
-                                switch-on-color="{{ onColor}}"
-                                switch-off-color="{{ offColor}}"
-                                switch-animate="{{ animate}}"
-                                switch-size="normal"
-                                switch-label="{{ label}}"
-                                switch-icon="{{ icon}}" >
-                        </div> -->
-                          <!-- switchRGBW -->
+                        <!--<div ng-switch-when="switchBinary___">
+                           <input
+                               bs-switch
+                               ng-model="isSelected"
+                               type="checkbox"
+                               switch-active="true"
+                               switch-on-text="ON"
+                               switch-off-text="OFF"
+                               switch-on-color="{{ onColor}}"
+                               switch-off-color="{{ offColor}}"
+                               switch-animate="{{ animate}}"
+                               switch-size="normal"
+                               switch-label="{{ label}}"
+                               switch-icon="{{ icon}}" >
+                       </div> -->
+                        <!-- switchRGBW -->
                         <div class="btn-group"  style="min-width: 110px !important;" ng-switch-when="switchRGBW">
                             <button 
                                 class="btn btn-info btn-sm" 
@@ -116,15 +118,22 @@
                             <!--<a href=""><i class="fa fa-toggle-on fa-2x text-primary"></i></a> -->
                         </div>
                         <!-- sensorMultilevel -->
-                        <div  ng-switch-when="sensorMultilevel"><strong>{{v.level + v.scaleTitle}}</strong></div>
+                        <div  ng-switch-when="sensorMultilevel">
+                            <div class="row">
+                                <div class="col-sm-6"> <strong>{{v.level}} <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span></strong> </div>
+                                <div class="col-sm-6 text-right">
+                                    <button class="btn btn-default btn-sm" ng-click="runCmd(v.id)"> <i class="fa fa-clock-o"></i> {{v.updateTime|isTodayFromUnix}}</button>
+                                </div>
+                            </div>
+                        </div>
                         <!-- thermostat -->
-                        <div  ng-switch-when="thermostat"><strong>{{levelVal[v.id] + v.scaleTitle}}</strong> <i class="fa fa-caret-down"></i></div>
+                        <div  ng-switch-when="thermostat"><strong>{{levelVal[v.id]}} <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span></strong> <i class="fa fa-caret-down"></i></div>
                         <!-- switchMultilevelLinear -->
-                        <div  ng-switch-when="switchMultilevelLinear"><strong>{{v.level + v.scaleTitle}}</strong> <i class="fa fa-caret-down"></i></div>
+                        <div  ng-switch-when="switchMultilevelLinear"><strong>{{v.level}} <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span></strong> <i class="fa fa-caret-down"></i></div>
                         <!-- camera -->
                         <div  ng-switch-when="camera">{{v.deviceType}} <i class="fa fa-caret-down"></i></div>
                         <!-- Default -->
-                        <div  ng-switch-default><strong>{{v.level + v.scaleTitle}}</strong></div>
+                        <div  ng-switch-default><strong>{{v.level}} <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span></strong></div>
 
                         <!-- Hidden switchMultilevel -->
                         <div class="col-sm-11 element-hidden hidden-switch-multilevel animate-show" ng-switch-when="switchMultilevel" ng-show="goHidden">
@@ -142,7 +151,7 @@
                                                     data-width="100" 
                                                     data-height="100" 
                                                     data-min="0"
-                                                    data-max="255" 
+                                                    data-max="100" 
                                                     knob-id="v.id" 
                                                     knob-data="v.level" 
                                                     knob-options="knobopt" 
@@ -240,7 +249,7 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <div range-slider min="0" orientation_="vertical" max="255" model-max="slider.modelMax" pin-handle="min"></div>
+                                            <div range-slider min="0" orientation_="vertical" max="100" model-max="slider.modelMax" pin-handle="min"></div>
                                         </td>
                                         <td>
                                             <a class="btn btn-primary" href=""><i class="fa fa-angle-up fa-lg"></i></a>&nbsp;<a class="btn btn-info" href=""><i class="fa fa-angle-double-up fa-lg"></i></a><br /><br />
@@ -284,23 +293,33 @@
                     <h4 class="modal-title">Configuration view: {{input.title}}</h4>
                 </div>
                 <div class="modal-body">
-                    <div>ID: {{input.id}} | Device type: {{input.deviceType}} | Updated: {{v.updateTime| isTodayFromUnix}}</div>
                     <div class="form-group">
-                        <input name="title" id="title" type="text" class="form-control" value="{{input.title}}" placeholder="Name" ng-model="input.title" />
+                        <label for="title">Element name</label>
+                        <input name="title" id="title" type="text" class="form-control" value="{{input.title}}" placeholder="Element name" ng-model="input.title" />
+                    </div>
+                    <h3>Configuration</h3>
+                    <div class="form-group" ng-show="input.cfg.hasInstance">
+                        Generated by module <button href="#module/put/{{input.cfg.hasInstance.id}}" class="btn btn-primary btn-sm" ng-click="toModule(input.cfg.hasInstance.id,'#modal_widget')">{{input.cfg.hasInstance.moduleId}}</button>
+                    </div>
+                    <div class="form-group" ng-show="input.cfg.zwaveId">
+                        Generated by <a href="expert/#/config/configuration/{{input.cfg.zwaveId}}" class="btn btn-primary btn-sm">Z-Wave device #{{input.cfg.zwaveId}}</a>
                     </div>
                     <div class="form-group">
                         <input type="checkbox" name="dashboard" value="{{input.dashboard}}" id="dashboard" ng-model="input.dashboard" ng-checked="input.dashboard" /> <label>Add to dashboard</label>
                         &nbsp;&nbsp;<input type="checkbox" name="permanently_hidden" id="permanently_hidden" value="" ng-model="input.permanently_hidden" ng-checked="input.permanently_hidden" ng-confirm-click="This means that you can never use this element again. Are you sure?" /> <label>Permanently hide this element</label>
                     </div>
+                     <!--<div class="form-group">
+                        <span class="text-supp"><i class="fa fa-clock-o"></i> {{input.updateTime|isTodayFromUnix}}</span>
+                    </div>-->
 
-                    <div class="form-group">
-                        <label>Icon: </label>
-                        <input type="checkbox" value="1" checked /> <label><i class="fa fa-camera fa-2x text-success"></i></label>&nbsp;&nbsp;
-                        <input type="checkbox" value="1" /> <label><i class="fa fa-cube fa-2x"></i></label>&nbsp;&nbsp;
-                        <input type="checkbox" value="1" /> <label><i class="fa fa-dashboard fa-2x"></i></label>&nbsp;&nbsp;
-                        <input type="checkbox" value="1" /> <label><i class="fa fa-globe fa-2x"></i></label>&nbsp;&nbsp;
-                    </div>
-                    <div>
+                    <!--<div class="form-group">
+                       <label>Icon: </label>
+                       <input type="checkbox" value="1" checked /> <label><i class="fa fa-camera fa-2x text-success"></i></label>&nbsp;&nbsp;
+                       <input type="checkbox" value="1" /> <label><i class="fa fa-cube fa-2x"></i></label>&nbsp;&nbsp;
+                       <input type="checkbox" value="1" /> <label><i class="fa fa-dashboard fa-2x"></i></label>&nbsp;&nbsp;
+                       <input type="checkbox" value="1" /> <label><i class="fa fa-globe fa-2x"></i></label>&nbsp;&nbsp;
+                   </div>-->
+                    <!--<div>
                         <div class="panel panel-default" ng-if="input.id == 'OpenWeather_10' || input.id == 'OpenWeather_9' || input.id == 'OpenWeather_11'">
                             <div class="panel-heading"><h4><i class="fa fa-wrench"></i> {{_t('lb_configuration_of')}} <strong>Open Weather instance</strong></h4></div>
                             <div class="panel-body">
@@ -317,7 +336,7 @@
                             </div>
                         </div>
 
-                    </div>
+                    </div>-->
 
                 </div>
                 <div class="modal-footer">

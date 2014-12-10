@@ -5,12 +5,12 @@
 /**
  * Display HTML tags in scope
  */
-myApp.filter('toTrusted', ['$sce', function($sce){
-       
+myApp.filter('toTrusted', ['$sce', function($sce) {
+
         return function(text) {
-             if(text == null){
-            return '';
-        }
+            if (text == null) {
+                return '';
+            }
             return $sce.trustAsHtml(text);
         };
     }]);
@@ -45,13 +45,32 @@ myApp.filter('cutText', function() {
         return value + (tail || ' …');
     };
 });
+/**
+ * Set the max dec. lenghth
+ */
+myApp.filter('numberFixedLen', function() {
+    return function(val) {
+        var len = 3;
+        var isDec = val.toString().split(".");
+        if (isDec.length > 1 && isDec[1].length > len) {
+            var num = parseFloat(val);
+            if (isNaN(num)){
+                return val;
+            }else{
+               return num.toFixed(len); 
+            }
+           
+        }
+        return val;
+    };
+});
 
 /**
  * Check if JSON keys/nodes exist
  */
 myApp.filter('hasNode', function() {
     return function(obj, path) {
-        if(!obj || !path){
+        if (!obj || !path) {
             return null;
         }
         //console.log(path);
@@ -70,7 +89,7 @@ myApp.filter('hasNode', function() {
  * Get current time
  */
 myApp.filter('getElementIcon', function() {
-    return function(input,deviceType) {
+    return function(input, deviceType) {
         var icon = 'storage/img/elements/' + deviceType + '.png';
         if (input) {
             if ((/^http:\/\//.test(input))) {
@@ -81,6 +100,17 @@ myApp.filter('getElementIcon', function() {
 
         }
         return icon;
+    };
+});
+
+/**
+ * Get max level
+ */
+myApp.filter('getMaxLevel', function() {
+    return function(input) {
+        var maxLevel = 100;
+        var levelVal = (input < 101 ? input : 100);
+        return levelVal;
     };
 });
 
@@ -101,8 +131,13 @@ myApp.filter('getCurrentTime', function() {
  * If is today display h:m otherwise d:m:y
  */
 myApp.filter('isToday', function() {
-    return function(input) {
-        var d = new Date(input);
+    return function(input,fromunix) {
+        if(fromunix){
+            var d = new Date(input * 1000);
+        }else{
+           var d = new Date(input);  
+        }
+       
 
         var hrs = (d.getHours() < 10 ? '0' + d.getHours() : d.getHours());
         var min = (d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes());
@@ -140,7 +175,7 @@ myApp.filter('isToday', function() {
 myApp.filter('isTodayFromUnix', function() {
     return function(input) {
         if (isNaN(input)) {
-            return '?';
+            return '';
         }
         var d = new Date(input * 1000);
         var day = d.getDate();

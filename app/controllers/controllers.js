@@ -188,7 +188,7 @@ myAppController.controller('HomeController', function($scope, dataFactory, devic
 /**
  * Element controller
  */
-myAppController.controller('ElementController', function($scope, $routeParams, dataFactory, deviceService) {
+myAppController.controller('ElementController', function($scope, $routeParams, $location, dataFactory, deviceService) {
     $scope.collection = [];
     $scope.showFooter = true;
     $scope.deviceType = [];
@@ -255,7 +255,10 @@ myAppController.controller('ElementController', function($scope, $routeParams, d
                         break;
                 }
             }
-            $scope.collection = deviceService.getDevices(data.data.devices, filter, $scope.profileData.positions);
+            dataFactory.getInstances(function(instances) {
+                $scope.collection = deviceService.getDevices(data.data.devices, filter, $scope.profileData.positions, instances.data);
+            });
+
         });
     };
     $scope.loadData();
@@ -334,6 +337,15 @@ myAppController.controller('ElementController', function($scope, $routeParams, d
             }, input.id, inputData);
         }
 
+    };
+    /**
+     * Redirect to module config
+     */
+    $scope.toModule = function(id, target) {
+        $('.modal').remove();
+        $('.modal-backdrop').remove();
+        $('body').removeClass("modal-open");
+        $location.path('module/put/' + id);
     };
     /**
      * Run command
@@ -677,7 +689,7 @@ myAppController.controller('AppModuleController', function($scope, $routeParams,
     $scope.input = {
         'id': 0,
         'active': false,
-         'moduleId': null,
+        'moduleId': null,
         'title': null,
         'description': null,
         'moduleTitle': null,
@@ -687,10 +699,10 @@ myAppController.controller('AppModuleController', function($scope, $routeParams,
 
     // Post new module instance
     $scope.postModule = function(id) {
-         var module;
+        var module;
         dataFactory.getModules(function(modules) {
             module = deviceService.getRowBy(modules.data, 'id', id);
-             if (!module) {
+            if (!module) {
                 return;
             }
             $scope.input = {
@@ -773,10 +785,10 @@ myAppController.controller('AppModuleController', function($scope, $routeParams,
             dataFactory.putInstance(function(data) {
                 $scope.success = true;
             }, input.id, inputData);
-        }else{
+        } else {
             dataFactory.postInstance(function(data) {
-                 $location.path('/apps');
-            },inputData);
+                $location.path('/apps');
+            }, inputData);
         }
 
     };
