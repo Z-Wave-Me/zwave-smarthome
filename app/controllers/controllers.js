@@ -1136,17 +1136,27 @@ myAppController.controller('RoomConfigController', function($scope, $window, $in
 /**
  * Network controller
  */
-myAppController.controller('NetworkController', function($scope, dataFactory) {
-    $scope.collection = [];
+myAppController.controller('NetworkController', function($scope, dataFactory,deviceService) {
+    $scope.demo = [];
+    $scope.batteries = [];
     $scope.reset = function() {
-        $scope.collection = angular.copy([]);
+        $scope.batteries = angular.copy([]);
     };
     /**
      * Load data into collection
      */
-    $scope.loadData = function() {
+    $scope.loadDemo = function() {
         dataFactory.demoData('network_bateries.json', function(data) {
-            $scope.collection = data;
+            $scope.demo = data;
+        });
+    };
+    $scope.loadDemo();
+    
+    $scope.loadData = function() {
+        dataFactory.getDevices(function(data) {
+            $scope.batteries = deviceService.getData(data.data.devices,{filter: "deviceType", val: 'battery'});
+            console.log($scope.batteries)
+
         });
     };
     $scope.loadData();

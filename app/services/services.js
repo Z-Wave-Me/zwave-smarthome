@@ -108,8 +108,14 @@ myAppService.service('deviceService', function($filter, myCache) {
         var collection = [];
         if (filter) {
             angular.forEach(data, function(v, k) {
-                if (v[filter.filter] == filter.val) {
-                    collection.push(v);
+                if (angular.isArray(v[filter.filter])) {
+                    if(v[filter.filter].indexOf(filter.val) > -1){
+                        collection.push(v);
+                    }
+                } else {
+                    if (v[filter.filter] == filter.val) {
+                        collection.push(v);
+                    }
                 }
             });
             return collection;
