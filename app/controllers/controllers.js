@@ -192,6 +192,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.collection = [];
     $scope.showFooter = true;
     $scope.deviceType = [];
+    $scope.tags = [];
     $scope.levelVal = [];
     $scope.profileData = [];
     $scope.input = {
@@ -223,6 +224,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         dataFactory.getDevices(function(data) {
             var filter = null;
             $scope.deviceType = deviceService.getDeviceType(data.data.devices);
+            $scope.tags = deviceService.getTags(data.data.devices);
             dataFactory.getProfiles(function(data) {
                 var profile = deviceService.getRowBy(data.data, 'id', $scope.profile.id);
                 $scope.profileData = {
@@ -238,6 +240,9 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
                         filter = {filter: "onDashboard", val: true};
                         break;
                     case 'deviceType':
+                        filter = $routeParams;
+                        break;
+                     case 'tags':
                         filter = $routeParams;
                         break;
                     case 'location':

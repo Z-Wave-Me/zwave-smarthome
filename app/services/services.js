@@ -26,8 +26,8 @@ myAppService.service('deviceService', function($filter, myCache) {
     /**
      * Get device data
      */
-    this.getDevices = function(data, filter, positions, instances,location) {
-        return getDevices(data, filter, positions, instances,location);
+    this.getDevices = function(data, filter, positions, instances, location) {
+        return getDevices(data, filter, positions, instances, location);
     };
 
     /**
@@ -35,6 +35,13 @@ myAppService.service('deviceService', function($filter, myCache) {
      */
     this.getDeviceType = function(data) {
         return getDeviceType(data);
+    };
+
+    /**
+     * Get tags
+     */
+    this.getTags = function(data) {
+        return getTags(data);
     };
 
     /**
@@ -115,7 +122,7 @@ myAppService.service('deviceService', function($filter, myCache) {
     /**
      * Get device data
      */
-    function getDevices(data, filter, positions, instances,location) {
+    function getDevices(data, filter, positions, instances, location) {
 
         var obj;
         var collection = [];
@@ -128,22 +135,22 @@ myAppService.service('deviceService', function($filter, myCache) {
             if (v.permanently_hidden || v.deviceType == 'battery') {
                 return;
             }
-             if (location){
+            if (location) {
                 if (v.location != location && v.location) {
-                   return;
+                    return;
                 }
             }
             if (positions && positions.indexOf(v.id) !== -1) {
                 var onDashboard = true;
             }
-             
+
             instance = getRowBy(instances, 'id', v.creatorId);
             if (instance && instance['moduleId'] != 'ZWave') {
                 hasInstance = instance;
             }
             if (v.id.indexOf(findZwaveStr) > -1) {
-                zwaveId = v.id.split(findZwaveStr)[1].split('-')[0]; 
-            } else{
+                zwaveId = v.id.split(findZwaveStr)[1].split('-')[0];
+            } else {
                 zwaveId = false;
             }
             obj = {
@@ -162,16 +169,23 @@ myAppService.service('deviceService', function($filter, myCache) {
                 'creatorID': v.creatorId,
                 'updateTime': v.updateTime,
                 'onDashboard': onDashboard,
-                'cfg':{
+                'cfg': {
                     'zwaveId': zwaveId,
                     'hasInstance': hasInstance
                 }
             };
             if (filter) {
-                if (obj[filter.filter] == filter.val) {
-                    collection.push(obj);
+                if (angular.isArray(obj[filter.filter])) {
+                    if(obj[filter.filter].indexOf(filter.val) > -1){
+                        collection.push(obj);
+                    }
+                } else {
+                    if (obj[filter.filter] == filter.val) {
+                        collection.push(obj);
+                    }
                 }
-            }else {
+
+            } else {
                 collection.push(obj);
             }
 
@@ -335,12 +349,31 @@ myAppService.service('deviceService', function($filter, myCache) {
     function getDeviceType(data) {
         var collection = [];
         angular.forEach(data, function(v, k) {
-            if(v.deviceType == 'battery'){
+            if (v.deviceType == 'battery') {
                 return;
             }
             collection.push({
                 'key': v.deviceType,
                 'val': v.deviceType
+            });
+        });
+        return $filter('unique')(collection, 'key');
+    }
+
+    /**
+     * Get tags
+     */
+    function getTags(data) {
+        var collection = [];
+        angular.forEach(data, function(v, k) {
+            if (v.deviceType == 'battery' || v.tags.length < 1) {
+                return;
+            }
+            angular.forEach(v.tags, function(t, k) {
+                collection.push({
+                    'key': t,
+                    'val': t
+                });
             });
         });
         return $filter('unique')(collection, 'key');
