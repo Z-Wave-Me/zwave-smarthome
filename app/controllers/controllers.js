@@ -305,6 +305,23 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         $scope.input = input;
         $(target).modal();
     };
+     /**
+     * Add tag to list
+     */
+    $scope.addTag = function(tag) {
+        if(!tag || $scope.input.tags.indexOf(tag) > -1){
+            return;
+        }
+        $scope.input.tags.push(tag);
+        $scope.addNewTag = null;
+        return;
+    };
+     /**
+     * Remove tag from list
+     */
+    $scope.removeTag = function(index,target) {
+       $scope.input.tags.splice(index, 1);
+    };
     /**
      * Update an item
      */
