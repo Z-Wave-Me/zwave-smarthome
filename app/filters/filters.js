@@ -50,6 +50,9 @@ myApp.filter('cutText', function() {
  */
 myApp.filter('numberFixedLen', function() {
     return function(val) {
+        if(!val){
+            return;
+        }
         var len = 3;
         var isDec = val.toString().split(".");
         if (isDec.length > 1 && isDec[1].length > len) {

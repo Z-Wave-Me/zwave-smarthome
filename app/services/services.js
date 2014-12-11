@@ -26,8 +26,8 @@ myAppService.service('deviceService', function($filter, myCache) {
     /**
      * Get device data
      */
-    this.getDevices = function(data, filter, positions, instances) {
-        return getDevices(data, filter, positions, instances);
+    this.getDevices = function(data, filter, positions, instances,location) {
+        return getDevices(data, filter, positions, instances,location);
     };
 
     /**
@@ -115,7 +115,7 @@ myAppService.service('deviceService', function($filter, myCache) {
     /**
      * Get device data
      */
-    function getDevices(data, filter, positions, instances) {
+    function getDevices(data, filter, positions, instances,location) {
 
         var obj;
         var collection = [];
@@ -128,9 +128,15 @@ myAppService.service('deviceService', function($filter, myCache) {
             if (v.permanently_hidden || v.deviceType == 'battery') {
                 return;
             }
+             if (location){
+                if (v.location != location && v.location) {
+                   return;
+                }
+            }
             if (positions && positions.indexOf(v.id) !== -1) {
                 var onDashboard = true;
             }
+             
             instance = getRowBy(instances, 'id', v.creatorId);
             if (instance && instance['moduleId'] != 'ZWave') {
                 hasInstance = instance;
@@ -165,7 +171,7 @@ myAppService.service('deviceService', function($filter, myCache) {
                 if (obj[filter.filter] == filter.val) {
                     collection.push(obj);
                 }
-            } else {
+            }else {
                 collection.push(obj);
             }
 

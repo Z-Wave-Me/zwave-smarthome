@@ -319,7 +319,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
      /**
      * Remove tag from list
      */
-    $scope.removeTag = function(index,target) {
+    $scope.removeTag = function(index) {
        $scope.input.tags.splice(index, 1);
     };
     /**
@@ -464,8 +464,7 @@ myAppController.controller('EventController', function($scope, $routeParams, dat
 /**
  * Profile controller
  */
-myAppController.controller('ProfileController', function($scope, $window, $route, dataFactory) {
-    $scope.demo = [];
+myAppController.controller('ProfileController', function($scope, $window,dataFactory) {
     $scope.collection = [];
     $scope.targetColor = '#6C7A89';
     $scope.input = {
@@ -484,15 +483,6 @@ myAppController.controller('ProfileController', function($scope, $window, $route
     $scope.reset = function() {
         $scope.collection = angular.copy([]);
     };
-    /**
-     * Load demo data
-     */
-    $scope.loadDemoData = function() {
-        dataFactory.demoData('profiles.json', function(data) {
-            $scope.demo = data;
-        });
-    };
-    //$scope.loadDemoData();
 
     /**
      * Load data into collection
@@ -542,7 +532,10 @@ myAppController.controller('ProfileController', function($scope, $window, $route
     /**
      * Delete an item
      */
-    $scope.delete = function(target, input, dialog) {
+    $scope.delete = function(target, input, dialog,except) {
+        if(input.id == except){
+            return;
+        }
         var confirm = true;
         if (dialog) {
             confirm = $window.confirm(dialog);
@@ -943,7 +936,7 @@ myAppController.controller('RoomController', function($scope, dataFactory) {
 /**
  * Room config controller
  */
-myAppController.controller('RoomConfigController', function($scope, $route, $window, $interval, $upload, dataFactory, deviceService) {
+myAppController.controller('RoomConfigController', function($scope, $window, $interval, $upload, dataFactory, deviceService) {
     $scope.collection = [];
     $scope.devicesAssigned = [];
     //$scope.devicesAvailable = [];
@@ -986,7 +979,7 @@ myAppController.controller('RoomConfigController', function($scope, $route, $win
     $scope.showModal = function(target, input) {
         $scope.loadDevices = function() {
             dataFactory.getDevices(function(data) {
-                $scope.devices = deviceService.getDevices(data.data.devices);
+                $scope.devices = deviceService.getDevices(data.data.devices,false,false,false,input.id);
                 $scope.devicesAssigned = deviceService.getDevices(data.data.devices, {filter: "location", val: input.id});
 
             });

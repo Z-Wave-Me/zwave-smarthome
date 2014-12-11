@@ -20,31 +20,12 @@
                        ng-click="showModal('#modal_profile', {'id': v.id, 'name': v.name, 'description': v.description, 'active': v.active,'lang': 'en','color': null})"
                        ><i class="fa fa-pencil fa-lg"></i></a>
                     <a href="" 
-                       ng-click="delete('#panel_' + $index, {'id': v.id},_t('lb_delete_confirm'))"
+                       ng-hide="v.id == 1"
+                       ng-click="delete('#panel_' + $index, {'id': v.id},_t('lb_delete_confirm'),1)"
                        >&nbsp;&nbsp;&nbsp;<i class="fa fa-times fa-lg"></i></a>   
                 </p>
                 <a href="" title="{{v.name}}" ng-click="showModal('#modal_profile', {'id': v.id, 'name': v.name, 'description': v.description, 'active': v.active,'lang': 'en','color': null})">
                     <img class="profile-image img-circle" ng-src="storage/img/profiles/profile-icon.png" alt="{{v.name}}" />
-                </a>
-            </div>
-        </div>
-    </div>
-    
-     <!-- Demo data -->
-    <div class="row" ng-show="demo">
-        <br /><br /><h3>Demo data output</h3>
-        <div class="col-md-2 col-sm-4 profile-entry" id="panel_demo_{{$index}}" style="background-color: {{v.color}};" ng-repeat="v in demo">
-            <div class="profile-in app-shadow">
-                <h3 class="entry-title"><span class="entry-title-text">{{v.name}}</span> 
-                    <a href="" 
-                       ng-click="showModal('#modal_profile', {'id': v.id, 'name': v.name, 'description': v.description, 'color': null})"
-                       ><i class="fa fa-pencil fa-lg"></i></a>
-                    <a href="" 
-                       ng-click="delete('#panel_demo_' + $index, {'id': v.id},_t('lb_delete_confirm'))"
-                       >&nbsp;&nbsp;&nbsp;<i class="fa fa-times fa-lg"></i></a>
-                </h3>
-                <a href="" title="{{v.name}}" ng-click="showModal('#modal_profile', {'id': v.id, 'name': v.name, 'description': v.description, 'color': null})">
-                    <img class="profile-image img-circle" ng-src="storage/img/profiles/{{v.img}}" alt="{{v.name}}" />
                 </a>
             </div>
         </div>
@@ -65,6 +46,7 @@
                     <div class="form-group">
                         <input type="checkbox" name="active" value="true" id="active" ng-model="input.active" ng-checked="input.active" /> <label>{{_t('lb_active')}}</label>
                     </div>
+                    <!--
                     <div class="form-group form-inline">
                         <label>{{_t('lb_language')}}:</label>
                         <select name="lang" class="form-control" ng-model="input.lang">
@@ -132,7 +114,7 @@
                             </tbody>
                         </table>
 
-                    </div>
+                    </div>-->
                 </div>
                 <div class="modal-footer">
                     <button type="button" 
