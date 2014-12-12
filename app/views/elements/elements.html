@@ -39,7 +39,7 @@
                         <h3 class="entry-title" title="{{v.title}}">{{v.title}}</h3>
 
                         <!-- switchMultilevel -->
-                        <div ng-switch-when="switchMultilevel">
+                        <div class="widget-click-popup" ng-switch-when="switchMultilevel">
                             <strong>{{levelVal[v.id]}} % <i class="fa fa-caret-down"></i></strong>
                         </div>
                         <!-- switchBinary -->
@@ -127,11 +127,11 @@
                             </div>
                         </div>
                         <!-- thermostat -->
-                        <div  ng-switch-when="thermostat"><strong>{{levelVal[v.id]}} <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span></strong> <i class="fa fa-caret-down"></i></div>
+                        <div class="widget-click-popup" ng-switch-when="thermostat"><strong>{{levelVal[v.id]}} <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span></strong> <i class="fa fa-caret-down"></i></div>
                         <!-- switchMultilevelLinear -->
-                        <div  ng-switch-when="switchMultilevelLinear"><strong>{{v.level}} <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span></strong> <i class="fa fa-caret-down"></i></div>
+                        <div class="widget-click-popup" ng-switch-when="switchMultilevelLinear"><strong>{{v.level}} <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span></strong> <i class="fa fa-caret-down"></i></div>
                         <!-- camera -->
-                        <div  ng-switch-when="camera">{{v.deviceType}} <i class="fa fa-caret-down"></i></div>
+                        <div class="widget-click-popup" ng-switch-when="camera">{{v.deviceType}} <i class="fa fa-caret-down"></i></div>
                         <!-- Default -->
                         <div  ng-switch-default><strong>{{v.level}} <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span></strong></div>
 

@@ -34,6 +34,9 @@
     float: left;
     margin: 20px 15px 15px 20px;
     width: 70%;
+    .widget-click-popup{
+        cursor: pointer;
+    }
     .btn-group{
         float: right !important;
     }
