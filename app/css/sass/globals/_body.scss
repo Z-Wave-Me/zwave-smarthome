@@ -126,6 +126,13 @@ a:hover {
 /*.nav > li > a:hover, .nav > li > a:focus {
 background-color: lighten($app-body-bcg-color, 10%);;
 }*/
+/* Forms
+-------------------------------------------------- */
+fieldset{
+    margin-bottom: 10px;
+    background-color: $app-body-bcg-color;
+    padding: 10px;
+}
 
 /* Page
 -------------------------------------------------- */

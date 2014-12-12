@@ -175,30 +175,39 @@ a:hover {
 /*.nav > li > a:hover, .nav > li > a:focus {
 background-color: lighten($app-body-bcg-color, 10%);;
 }*/
+/* Forms
+-------------------------------------------------- */
+/* line 131, sass/globals/_body.scss */
+fieldset {
+  margin-bottom: 10px;
+  background-color: #F6F6F6;
+  padding: 10px;
+}
+
 /* Page
 -------------------------------------------------- */
-/* line 132, sass/globals/_body.scss */
+/* line 139, sass/globals/_body.scss */
 #respone_container {
   display: none;
   margin-top: 70px;
   /*position: relative;*/
 }
 
-/* line 137, sass/globals/_body.scss */
+/* line 144, sass/globals/_body.scss */
 #respone_container_inner {
   margin: 0 auto;
   text-align: center;
   position: relative;
 }
 
-/* line 144, sass/globals/_body.scss */
+/* line 151, sass/globals/_body.scss */
 .page-header {
   padding-bottom: 0;
   margin: 20px 0 30px 0;
   border-bottom: 0;
 }
 
-/* line 150, sass/globals/_body.scss */
+/* line 157, sass/globals/_body.scss */
 #main_content {
   margin-top: 70px;
   margin-bottom: 20px;
@@ -206,7 +215,7 @@ background-color: lighten($app-body-bcg-color, 10%);;
 
 /* Tooltip
 -------------------------------------------------- */
-/* line 157, sass/globals/_body.scss */
+/* line 164, sass/globals/_body.scss */
 .tooltip-inner {
   background-color: #F6F6F6;
   color: #000;
@@ -215,7 +224,7 @@ background-color: lighten($app-body-bcg-color, 10%);;
   text-align: left;
 }
 
-/* line 164, sass/globals/_body.scss */
+/* line 171, sass/globals/_body.scss */
 .tooltip-arrow {
   border-bottom-color: #f2f2f2;
 }
@@ -517,11 +526,11 @@ background-color: lighten($app-body-bcg-color, 10%);;
 
 /* Home widget
 -------------------------------------------------- */
-/* line 71, sass/modules/_elements.scss */
+/* line 73, sass/modules/_elements.scss */
 .home-widget .widget-entry {
   padding: 0;
 }
-/* line 74, sass/modules/_elements.scss */
+/* line 76, sass/modules/_elements.scss */
 .home-widget .widget-entry .widget-block {
   margin: 0 !important;
   /*              border: solid 1px #e2e2e2;*/
@@ -856,94 +865,102 @@ background-color: lighten($app-body-bcg-color, 10%);;
     -------------------------------------------------- */
   }
   /* line 45, sass/settings/_mixins.scss */
+  .is-mobile-true .header-logo {
+    display: none !important;
+  }
+  /* line 48, sass/settings/_mixins.scss */
+  .is-mobile-true .navbar-toggle {
+    margin-right: 30px !important;
+  }
+  /* line 51, sass/settings/_mixins.scss */
   .is-mobile-true .container {
     max-width: none;
     width: 100%;
   }
-  /* line 52, sass/settings/_mixins.scss */
+  /* line 58, sass/settings/_mixins.scss */
   .is-mobile-true .navbar-visible-in .header-logo img {
     max-height: 20px !important;
     max-width: 40px !important;
   }
-  /* line 57, sass/settings/_mixins.scss */
+  /* line 63, sass/settings/_mixins.scss */
   .is-mobile-true .navbar-visible-in a {
     padding: 0 10px;
   }
-  /* line 63, sass/settings/_mixins.scss */
+  /* line 69, sass/settings/_mixins.scss */
   .is-mobile-true .navbar-collapse {
     padding-right: 25px;
     padding-left: 25px;
   }
-  /* line 68, sass/settings/_mixins.scss */
+  /* line 74, sass/settings/_mixins.scss */
   .is-mobile-true .navbar-inverse .navbar-toggle {
     border-color: #5d5d5d;
   }
-  /* line 72, sass/settings/_mixins.scss */
+  /* line 78, sass/settings/_mixins.scss */
   .is-mobile-true .navbar-inverse .navbar-toggle .icon-bar {
     background-color: #5d5d5d;
   }
-  /* line 75, sass/settings/_mixins.scss */
+  /* line 81, sass/settings/_mixins.scss */
   .is-mobile-true .navbar-inverse .navbar-collapse, .is-mobile-true .navbar-inverse .navbar-form {
     border-color: #DDDDDD;
   }
-  /* line 78, sass/settings/_mixins.scss */
+  /* line 84, sass/settings/_mixins.scss */
   .is-mobile-true .navbar-inverse .navbar-nav .open .dropdown-menu .divider {
     background-color: #d3d3d3;
   }
-  /* line 81, sass/settings/_mixins.scss */
+  /* line 87, sass/settings/_mixins.scss */
   .is-mobile-true .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a, .is-mobile-true .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:hover, .is-mobile-true .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:focus {
     color: #5d5d5d;
     background-color: #DDDDDD;
   }
-  /* line 85, sass/settings/_mixins.scss */
+  /* line 91, sass/settings/_mixins.scss */
   .is-mobile-true #main_content {
     padding: 0;
   }
-  /* line 88, sass/settings/_mixins.scss */
+  /* line 94, sass/settings/_mixins.scss */
   .is-mobile-true .navbar .divider-vertical {
     display: none;
   }
-  /* line 92, sass/settings/_mixins.scss */
+  /* line 98, sass/settings/_mixins.scss */
   .is-mobile-true .dropdown > .dropdown-menu::before,
   .is-mobile-true .dropdown > .dropdown-menu::after,
   .is-mobile-true .navbar .divider-vertical {
     display: none;
   }
-  /* line 98, sass/settings/_mixins.scss */
+  /* line 104, sass/settings/_mixins.scss */
   .is-mobile-true .page-header {
     margin: 0 0 10px 0;
     text-align: center;
   }
-  /* line 102, sass/settings/_mixins.scss */
+  /* line 108, sass/settings/_mixins.scss */
   .is-mobile-true .row-page {
     margin: 0;
   }
-  /* line 108, sass/settings/_mixins.scss */
+  /* line 114, sass/settings/_mixins.scss */
   .is-mobile-true .app-shadow {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
   }
-  /* line 113, sass/settings/_mixins.scss */
+  /* line 119, sass/settings/_mixins.scss */
   .is-mobile-true .app-border {
     border: 0;
   }
-  /* line 120, sass/settings/_mixins.scss */
+  /* line 126, sass/settings/_mixins.scss */
   .is-mobile-true .page-subtitle {
     padding: 0 10px;
     font-size: 16px;
   }
-  /* line 126, sass/settings/_mixins.scss */
+  /* line 132, sass/settings/_mixins.scss */
   .is-mobile-true .report-img {
     margin: 0 5px;
     width: 32px;
     display: inline;
   }
-  /* line 137, sass/settings/_mixins.scss */
+  /* line 143, sass/settings/_mixins.scss */
   .is-mobile-true .table tbody tr td {
     border-top: 1px solid #dbdbdb;
   }
-  /* line 146, sass/settings/_mixins.scss */
+  /* line 152, sass/settings/_mixins.scss */
   .is-mobile-true .table-report tbody tr {
     background: #f6f6f6;
     /* Old browsers */
@@ -962,19 +979,19 @@ background-color: lighten($app-body-bcg-color, 10%);;
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6f6f6', endColorstr='#ffffff',GradientType=0 );
     /* IE6-9 */
   }
-  /* line 153, sass/settings/_mixins.scss */
+  /* line 159, sass/settings/_mixins.scss */
   .is-mobile-true .btn-new-item {
     float: none !important;
   }
-  /* line 156, sass/settings/_mixins.scss */
+  /* line 162, sass/settings/_mixins.scss */
   .is-mobile-true .btn-name {
     display: none;
   }
-  /* line 165, sass/settings/_mixins.scss */
+  /* line 171, sass/settings/_mixins.scss */
   .is-mobile-true .widget-entry {
     width: 100%;
   }
-  /* line 168, sass/settings/_mixins.scss */
+  /* line 174, sass/settings/_mixins.scss */
   .is-mobile-true .widget-block {
     margin: 0;
     -webkit-box-shadow: none;
@@ -982,71 +999,80 @@ background-color: lighten($app-body-bcg-color, 10%);;
     box-shadow: none;
     border-bottom: solid 1px #ccc;
   }
-  /* line 175, sass/settings/_mixins.scss */
+  /* line 181, sass/settings/_mixins.scss */
   .is-mobile-true .widget-block-in {
     /*   border: solid 1px red;*/
     height: auto;
     text-align: left;
     padding: 10px;
   }
-  /* line 181, sass/settings/_mixins.scss */
+  /* line 188, sass/settings/_mixins.scss */
   .is-mobile-true .widget-header {
     float: left;
     width: 70px;
   }
-  /* line 184, sass/settings/_mixins.scss */
+  /* line 191, sass/settings/_mixins.scss */
   .is-mobile-true .widget-header .widget-image {
     margin: 0 !important;
     width: 48px;
     height: 48px;
   }
-  /* line 190, sass/settings/_mixins.scss */
+  /* line 197, sass/settings/_mixins.scss */
   .is-mobile-true .widget-body {
     float: left;
     margin: 0 !important;
   }
-  /* line 199, sass/settings/_mixins.scss */
+  /* line 200, sass/settings/_mixins.scss */
+  .is-mobile-true .widget-body .sensor-multilevel .col-sm-6 {
+    float: left !important;
+    width: 45%;
+  }
+  /* line 204, sass/settings/_mixins.scss */
+  .is-mobile-true .widget-body .sensor-multilevel .text-right {
+    float: right !important;
+  }
+  /* line 214, sass/settings/_mixins.scss */
   .is-mobile-true .home-widget .widget-entry .widget-block-in {
     border: 0;
     padding: 0;
   }
-  /* line 210, sass/settings/_mixins.scss */
+  /* line 225, sass/settings/_mixins.scss */
   .is-mobile-true .event-entry .event-img {
     width: 24px;
     height: 24px;
   }
-  /* line 214, sass/settings/_mixins.scss */
+  /* line 229, sass/settings/_mixins.scss */
   .is-mobile-true .event-entry .event-message {
     /*            display: block;*/
   }
-  /* line 217, sass/settings/_mixins.scss */
+  /* line 232, sass/settings/_mixins.scss */
   .is-mobile-true .event-entry .event-action {
     text-align: right;
   }
-  /* line 224, sass/settings/_mixins.scss */
+  /* line 239, sass/settings/_mixins.scss */
   .is-mobile-true .tabs-container {
     text-align: center;
   }
-  /* line 227, sass/settings/_mixins.scss */
+  /* line 242, sass/settings/_mixins.scss */
   .is-mobile-true .nav-tabs {
     display: block;
     text-align: center;
     padding: 0 25%;
   }
-  /* line 232, sass/settings/_mixins.scss */
+  /* line 247, sass/settings/_mixins.scss */
   .is-mobile-true .tab-name {
     display: none;
   }
-  /* line 235, sass/settings/_mixins.scss */
+  /* line 250, sass/settings/_mixins.scss */
   .is-mobile-true .tab-icon {
     font-size: 20px;
   }
-  /* line 238, sass/settings/_mixins.scss */
+  /* line 253, sass/settings/_mixins.scss */
   .is-mobile-true .app-entry {
     width: 100%;
     padding: 0;
   }
-  /* line 242, sass/settings/_mixins.scss */
+  /* line 257, sass/settings/_mixins.scss */
   .is-mobile-true .app-entry-in {
     border: 0;
     border-bottom: dotted 1px #d3d3d3;
@@ -1055,73 +1081,73 @@ background-color: lighten($app-body-bcg-color, 10%);;
     border-radius: 0;
     height: auto;
   }
-  /* line 249, sass/settings/_mixins.scss */
+  /* line 264, sass/settings/_mixins.scss */
   .is-mobile-true .app-entry-in .list-group {
     border: 0 none;
   }
-  /* line 252, sass/settings/_mixins.scss */
+  /* line 267, sass/settings/_mixins.scss */
   .is-mobile-true .app-entry-in .list-group-item {
     border: none;
     margin: 0;
     padding: 0;
     padding-bottom: 10px;
   }
-  /* line 260, sass/settings/_mixins.scss */
+  /* line 275, sass/settings/_mixins.scss */
   .is-mobile-true .app-entry-in .app-header {
     float: left;
     width: 35%;
   }
-  /* line 264, sass/settings/_mixins.scss */
+  /* line 279, sass/settings/_mixins.scss */
   .is-mobile-true .app-entry-in .app-body {
     float: left;
     width: 64%;
     margin: 0;
     padding-right: 10px;
   }
-  /* line 269, sass/settings/_mixins.scss */
+  /* line 284, sass/settings/_mixins.scss */
   .is-mobile-true .app-entry-in .app-body .btn {
     vertical-align: top;
   }
-  /* line 276, sass/settings/_mixins.scss */
+  /* line 291, sass/settings/_mixins.scss */
   .is-mobile-true #table_apps_active .btn {
     font-size: 12px;
   }
-  /* line 281, sass/settings/_mixins.scss */
+  /* line 296, sass/settings/_mixins.scss */
   .is-mobile-true .app-image-list {
     max-width: 50px;
   }
-  /* line 288, sass/settings/_mixins.scss */
+  /* line 303, sass/settings/_mixins.scss */
   .is-mobile-true .room-entry {
     float: left;
     width: 50%;
     padding: 0;
   }
-  /* line 292, sass/settings/_mixins.scss */
+  /* line 307, sass/settings/_mixins.scss */
   .is-mobile-true .room-entry .entry-title {
     font-size: 12px;
   }
-  /* line 295, sass/settings/_mixins.scss */
+  /* line 310, sass/settings/_mixins.scss */
   .is-mobile-true .room-entry .entry-title-text {
     display: none;
   }
-  /* line 298, sass/settings/_mixins.scss */
+  /* line 313, sass/settings/_mixins.scss */
   .is-mobile-true .room-entry .app-border {
     border: solid 1px #d3d3d3;
   }
-  /* line 303, sass/settings/_mixins.scss */
+  /* line 318, sass/settings/_mixins.scss */
   .is-mobile-true .room-image {
     max-width: 130px;
   }
-  /* line 310, sass/settings/_mixins.scss */
+  /* line 325, sass/settings/_mixins.scss */
   .is-mobile-true .profile-entry {
     float: left;
     width: 50%;
   }
-  /* line 313, sass/settings/_mixins.scss */
+  /* line 328, sass/settings/_mixins.scss */
   .is-mobile-true .profile-entry .entry-title {
     font-size: 12px;
   }
-  /* line 316, sass/settings/_mixins.scss */
+  /* line 331, sass/settings/_mixins.scss */
   .is-mobile-true .profile-entry .entry-title-text {
     display: none;
   }
@@ -1135,99 +1161,132 @@ background-color: lighten($app-body-bcg-color, 10%);;
 /*==========  Non-Mobile First Method  ==========*/
 /* Large Devices, Wide Screens */
 /* Medium Devices, Desktops */
+@media only screen and (max-width: 992px) {
+  /* line 87, sass/globals/_responsive.scss */
+  .widget-header {
+    /*        float: left;*/
+    /*                width: 30px;*/
+  }
+  /* line 90, sass/globals/_responsive.scss */
+  .widget-header .widget-image {
+    width: 48px;
+    height: 48px;
+  }
+
+  /* line 97, sass/globals/_responsive.scss */
+  .widget-body {
+    float: left;
+    margin: 20px 15px 15px 20px;
+    width: 60%;
+  }
+  /* line 101, sass/globals/_responsive.scss */
+  .widget-body .btn-group {
+    float: right !important;
+  }
+}
 /* Small Devices, Tablets */
 @media only screen and (max-width: 768px) {
   /* line 45, sass/settings/_mixins.scss */
+  .header-logo {
+    display: none !important;
+  }
+
+  /* line 48, sass/settings/_mixins.scss */
+  .navbar-toggle {
+    margin-right: 30px !important;
+  }
+
+  /* line 51, sass/settings/_mixins.scss */
   .container {
     max-width: none;
     width: 100%;
   }
 
-  /* line 52, sass/settings/_mixins.scss */
+  /* line 58, sass/settings/_mixins.scss */
   .navbar-visible-in .header-logo img {
     max-height: 20px !important;
     max-width: 40px !important;
   }
-  /* line 57, sass/settings/_mixins.scss */
+  /* line 63, sass/settings/_mixins.scss */
   .navbar-visible-in a {
     padding: 0 10px;
   }
 
-  /* line 63, sass/settings/_mixins.scss */
+  /* line 69, sass/settings/_mixins.scss */
   .navbar-collapse {
     padding-right: 25px;
     padding-left: 25px;
   }
 
-  /* line 68, sass/settings/_mixins.scss */
+  /* line 74, sass/settings/_mixins.scss */
   .navbar-inverse .navbar-toggle {
     border-color: #5d5d5d;
   }
 
-  /* line 72, sass/settings/_mixins.scss */
+  /* line 78, sass/settings/_mixins.scss */
   .navbar-inverse .navbar-toggle .icon-bar {
     background-color: #5d5d5d;
   }
 
-  /* line 75, sass/settings/_mixins.scss */
+  /* line 81, sass/settings/_mixins.scss */
   .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
     border-color: #DDDDDD;
   }
 
-  /* line 78, sass/settings/_mixins.scss */
+  /* line 84, sass/settings/_mixins.scss */
   .navbar-inverse .navbar-nav .open .dropdown-menu .divider {
     background-color: #d3d3d3;
   }
 
-  /* line 81, sass/settings/_mixins.scss */
+  /* line 87, sass/settings/_mixins.scss */
   .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a, .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:focus {
     color: #5d5d5d;
     background-color: #DDDDDD;
   }
 
-  /* line 85, sass/settings/_mixins.scss */
+  /* line 91, sass/settings/_mixins.scss */
   #main_content {
     padding: 0;
   }
 
-  /* line 88, sass/settings/_mixins.scss */
+  /* line 94, sass/settings/_mixins.scss */
   .navbar .divider-vertical {
     display: none;
   }
 
-  /* line 92, sass/settings/_mixins.scss */
+  /* line 98, sass/settings/_mixins.scss */
   .dropdown > .dropdown-menu::before,
   .dropdown > .dropdown-menu::after,
   .navbar .divider-vertical {
     display: none;
   }
 
-  /* line 98, sass/settings/_mixins.scss */
+  /* line 104, sass/settings/_mixins.scss */
   .page-header {
     margin: 0 0 10px 0;
     text-align: center;
   }
 
-  /* line 102, sass/settings/_mixins.scss */
+  /* line 108, sass/settings/_mixins.scss */
   .row-page {
     margin: 0;
   }
 
-  /* line 108, sass/settings/_mixins.scss */
+  /* line 114, sass/settings/_mixins.scss */
   .app-shadow {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
   }
 
-  /* line 113, sass/settings/_mixins.scss */
+  /* line 119, sass/settings/_mixins.scss */
   .app-border {
     border: 0;
   }
 
   /* Typo
   -------------------------------------------------- */
-  /* line 120, sass/settings/_mixins.scss */
+  /* line 126, sass/settings/_mixins.scss */
   .page-subtitle {
     padding: 0 10px;
     font-size: 16px;
@@ -1235,7 +1294,7 @@ background-color: lighten($app-body-bcg-color, 10%);;
 
   /* Images
   -------------------------------------------------- */
-  /* line 126, sass/settings/_mixins.scss */
+  /* line 132, sass/settings/_mixins.scss */
   .report-img {
     margin: 0 5px;
     width: 32px;
@@ -1244,12 +1303,12 @@ background-color: lighten($app-body-bcg-color, 10%);;
 
   /* tables
   -------------------------------------------------- */
-  /* line 137, sass/settings/_mixins.scss */
+  /* line 143, sass/settings/_mixins.scss */
   .table tbody tr td {
     border-top: 1px solid #dbdbdb;
   }
 
-  /* line 146, sass/settings/_mixins.scss */
+  /* line 152, sass/settings/_mixins.scss */
   .table-report tbody tr {
     background: #f6f6f6;
     /* Old browsers */
@@ -1271,12 +1330,12 @@ background-color: lighten($app-body-bcg-color, 10%);;
 
   /* Forms
   -------------------------------------------------- */
-  /* line 153, sass/settings/_mixins.scss */
+  /* line 159, sass/settings/_mixins.scss */
   .btn-new-item {
     float: none !important;
   }
 
-  /* line 156, sass/settings/_mixins.scss */
+  /* line 162, sass/settings/_mixins.scss */
   .btn-name {
     display: none;
   }
@@ -1285,12 +1344,12 @@ background-color: lighten($app-body-bcg-color, 10%);;
   -------------------------------------------------- */
   /* Elements
   -------------------------------------------------- */
-  /* line 165, sass/settings/_mixins.scss */
+  /* line 171, sass/settings/_mixins.scss */
   .widget-entry {
     width: 100%;
   }
 
-  /* line 168, sass/settings/_mixins.scss */
+  /* line 174, sass/settings/_mixins.scss */
   .widget-block {
     margin: 0;
     -webkit-box-shadow: none;
@@ -1299,7 +1358,7 @@ background-color: lighten($app-body-bcg-color, 10%);;
     border-bottom: solid 1px #ccc;
   }
 
-  /* line 175, sass/settings/_mixins.scss */
+  /* line 181, sass/settings/_mixins.scss */
   .widget-block-in {
     /*   border: solid 1px red;*/
     height: auto;
@@ -1307,26 +1366,35 @@ background-color: lighten($app-body-bcg-color, 10%);;
     padding: 10px;
   }
 
-  /* line 181, sass/settings/_mixins.scss */
+  /* line 188, sass/settings/_mixins.scss */
   .widget-header {
     float: left;
     width: 70px;
   }
-  /* line 184, sass/settings/_mixins.scss */
+  /* line 191, sass/settings/_mixins.scss */
   .widget-header .widget-image {
     margin: 0 !important;
     width: 48px;
     height: 48px;
   }
 
-  /* line 190, sass/settings/_mixins.scss */
+  /* line 197, sass/settings/_mixins.scss */
   .widget-body {
     float: left;
     margin: 0 !important;
   }
+  /* line 200, sass/settings/_mixins.scss */
+  .widget-body .sensor-multilevel .col-sm-6 {
+    float: left !important;
+    width: 45%;
+  }
+  /* line 204, sass/settings/_mixins.scss */
+  .widget-body .sensor-multilevel .text-right {
+    float: right !important;
+  }
 
   /* Home */
-  /* line 199, sass/settings/_mixins.scss */
+  /* line 214, sass/settings/_mixins.scss */
   .home-widget .widget-entry .widget-block-in {
     border: 0;
     padding: 0;
@@ -1334,51 +1402,51 @@ background-color: lighten($app-body-bcg-color, 10%);;
 
   /* Eevents
   -------------------------------------------------- */
-  /* line 210, sass/settings/_mixins.scss */
+  /* line 225, sass/settings/_mixins.scss */
   .event-entry .event-img {
     width: 24px;
     height: 24px;
   }
-  /* line 214, sass/settings/_mixins.scss */
+  /* line 229, sass/settings/_mixins.scss */
   .event-entry .event-message {
     /*            display: block;*/
   }
-  /* line 217, sass/settings/_mixins.scss */
+  /* line 232, sass/settings/_mixins.scss */
   .event-entry .event-action {
     text-align: right;
   }
 
   /* Apps
   -------------------------------------------------- */
-  /* line 224, sass/settings/_mixins.scss */
+  /* line 239, sass/settings/_mixins.scss */
   .tabs-container {
     text-align: center;
   }
 
-  /* line 227, sass/settings/_mixins.scss */
+  /* line 242, sass/settings/_mixins.scss */
   .nav-tabs {
     display: block;
     text-align: center;
     padding: 0 25%;
   }
 
-  /* line 232, sass/settings/_mixins.scss */
+  /* line 247, sass/settings/_mixins.scss */
   .tab-name {
     display: none;
   }
 
-  /* line 235, sass/settings/_mixins.scss */
+  /* line 250, sass/settings/_mixins.scss */
   .tab-icon {
     font-size: 20px;
   }
 
-  /* line 238, sass/settings/_mixins.scss */
+  /* line 253, sass/settings/_mixins.scss */
   .app-entry {
     width: 100%;
     padding: 0;
   }
 
-  /* line 242, sass/settings/_mixins.scss */
+  /* line 257, sass/settings/_mixins.scss */
   .app-entry-in {
     border: 0;
     border-bottom: dotted 1px #d3d3d3;
@@ -1387,82 +1455,82 @@ background-color: lighten($app-body-bcg-color, 10%);;
     border-radius: 0;
     height: auto;
   }
-  /* line 249, sass/settings/_mixins.scss */
+  /* line 264, sass/settings/_mixins.scss */
   .app-entry-in .list-group {
     border: 0 none;
   }
-  /* line 252, sass/settings/_mixins.scss */
+  /* line 267, sass/settings/_mixins.scss */
   .app-entry-in .list-group-item {
     border: none;
     margin: 0;
     padding: 0;
     padding-bottom: 10px;
   }
-  /* line 260, sass/settings/_mixins.scss */
+  /* line 275, sass/settings/_mixins.scss */
   .app-entry-in .app-header {
     float: left;
     width: 35%;
   }
-  /* line 264, sass/settings/_mixins.scss */
+  /* line 279, sass/settings/_mixins.scss */
   .app-entry-in .app-body {
     float: left;
     width: 64%;
     margin: 0;
     padding-right: 10px;
   }
-  /* line 269, sass/settings/_mixins.scss */
+  /* line 284, sass/settings/_mixins.scss */
   .app-entry-in .app-body .btn {
     vertical-align: top;
   }
 
-  /* line 276, sass/settings/_mixins.scss */
+  /* line 291, sass/settings/_mixins.scss */
   #table_apps_active .btn {
     font-size: 12px;
   }
 
-  /* line 281, sass/settings/_mixins.scss */
+  /* line 296, sass/settings/_mixins.scss */
   .app-image-list {
     max-width: 50px;
   }
 
   /* Rooms
   -------------------------------------------------- */
-  /* line 288, sass/settings/_mixins.scss */
+  /* line 303, sass/settings/_mixins.scss */
   .room-entry {
     float: left;
     width: 50%;
     padding: 0;
   }
-  /* line 292, sass/settings/_mixins.scss */
+  /* line 307, sass/settings/_mixins.scss */
   .room-entry .entry-title {
     font-size: 12px;
   }
-  /* line 295, sass/settings/_mixins.scss */
+  /* line 310, sass/settings/_mixins.scss */
   .room-entry .entry-title-text {
     display: none;
   }
-  /* line 298, sass/settings/_mixins.scss */
+  /* line 313, sass/settings/_mixins.scss */
   .room-entry .app-border {
     border: solid 1px #d3d3d3;
   }
 
-  /* line 303, sass/settings/_mixins.scss */
+  /* line 318, sass/settings/_mixins.scss */
   .room-image {
     max-width: 130px;
   }
 
   /* Profiles
   -------------------------------------------------- */
-  /* line 310, sass/settings/_mixins.scss */
+  /* line 325, sass/settings/_mixins.scss */
   .profile-entry {
     float: left;
     width: 50%;
   }
-  /* line 313, sass/settings/_mixins.scss */
+  /* line 328, sass/settings/_mixins.scss */
   .profile-entry .entry-title {
     font-size: 12px;
   }
-  /* line 316, sass/settings/_mixins.scss */
+  /* line 331, sass/settings/_mixins.scss */
   .profile-entry .entry-title-text {
     display: none;
   }
@@ -1474,7 +1542,7 @@ background-color: lighten($app-body-bcg-color, 10%);;
 /* Custom, iPhone Retina */
 /* Custom, iPhone Retina */
 @media only screen and (min-width: 768px) and (max-width: 992px) {
-  /* line 111, sass/globals/_responsive.scss */
+  /* line 128, sass/globals/_responsive.scss */
   .hide-navi-text {
     display: none !important;
   }

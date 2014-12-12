@@ -42,6 +42,12 @@
 
 // Mobile layout
 @mixin appMobileLayout() {
+    .header-logo{
+        display: none !important;
+    }
+    .navbar-toggle{
+        margin-right: 30px !important;
+    }
     .container{
         max-width:none;
         width: 100%;
@@ -178,6 +184,7 @@
         text-align: left;
         padding: 10px;
     }
+    
     .widget-header{
         float: left;
         width: 70px;
@@ -190,7 +197,15 @@
     .widget-body{
         float: left;
         margin: 0 !important;
+        .sensor-multilevel .col-sm-6{
+            float: left !important;
+            width: 45%;
+        }
+        .sensor-multilevel .text-right{
+            float: right !important;
+        }
     }
+    
 
 
     /* Home */

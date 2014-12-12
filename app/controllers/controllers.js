@@ -188,7 +188,7 @@ myAppController.controller('HomeController', function($scope, dataFactory, devic
 /**
  * Element controller
  */
-myAppController.controller('ElementController', function($scope, $routeParams, $location, cfg,dataFactory, deviceService) {
+myAppController.controller('ElementController', function($scope, $routeParams, $location, dataFactory, deviceService,myCache) {
     $scope.collection = [];
     $scope.showFooter = true;
     $scope.deviceType = [];
@@ -340,10 +340,9 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         };
         inputData.metrics.title = input.title;
         if (input.id) {
-
-            //console.log(profileData);
+            //Load devices
             dataFactory.putApiData('devices', input.id, inputData,function(data) {
-                //$scope.collection.push = data.data;
+                //Load profiles
                 dataFactory.getApiData('profiles',function(data) {
                     var profile = deviceService.getRowBy(data.data, 'id', $scope.profile.id);
                     $scope.profileData = {
@@ -353,8 +352,9 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
                     };
                     saveDeviceIdIntoProfile(data, $scope.profileData);
                 });
-
-                dataFactory.setCache(false);
+                myCache.remove('devices');
+                myCache.remove('profiles');
+                //dataFactory.setCache(false);
                 $scope.loadData();
                 //$route.reload();
             });
@@ -470,7 +470,7 @@ myAppController.controller('EventController', function($scope, $routeParams, dat
 /**
  * Profile controller
  */
-myAppController.controller('ProfileController', function($scope, $window,cfg,dataFactory) {
+myAppController.controller('ProfileController', function($scope, $window,dataFactory) {
     $scope.collection = [];
     $scope.targetColor = '#6C7A89';
     $scope.input = {

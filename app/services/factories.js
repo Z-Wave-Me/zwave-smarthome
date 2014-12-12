@@ -7,7 +7,8 @@ var myAppFactory = angular.module('myAppFactory', ['ngResource']);
 /**
  * Main data factory
  */
-myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
+myAppFactory.factory('dataFactory', function($http, myCache, cfg) {
+   
     var enableCache = true;
     return({
         getApiData: getApiData,
@@ -18,6 +19,8 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
         setCache: setCache,
         runCmd: runCmd
     });
+    
+     /// --- Public functions --- ///
 
     /**
      * Gets dummy data
@@ -74,6 +77,24 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
     }
 
     /**
+     * Run command
+     */
+    function runCmd(cmd) {
+        var request = $http({
+            method: "get",
+            url: cfg.server_url + cfg.api_url + "devices/" + cmd
+        });
+        return request.success(function(data) {
+            console.log('SUCCESS:' + cfg.server_url + cfg.api_url + "devices/" + cmd);
+        }).error(function(error) {
+            handleError(error);
+
+        });
+    }
+    
+     /// --- Private functions --- ///
+    
+     /**
      * Api handle
      */
     // GET
@@ -84,10 +105,10 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
         }
         // Cached data
         if (enableCache && cached) {
-            console.log('NEW CACHED: ' + cacheName);
+            console.log('CACHED: ' + cacheName);
             return callback(cached);
         } else {
-            console.log('NEW NOOOOT CACHED: ' + cacheName);
+            console.log('NOT CACHED: ' + cacheName);
             return $http(request).success(function(data) {
                 myCache.put(cacheName, data);
                 return callback(data);
@@ -119,22 +140,7 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
             handleDeleteError(data, error);
         });
     }
-
-    /**
-     * Run command
-     */
-    function runCmd(cmd) {
-        var request = $http({
-            method: "get",
-            url: cfg.server_url + cfg.api_url + "devices/" + cmd
-        });
-        return request.success(function(data) {
-            console.log('SUCCESS:' + cfg.server_url + cfg.api_url + "devices/" + cmd);
-        }).error(function(error) {
-            handleError(error);
-
-        });
-    }
+    
     
     /**
      * Handle errors
