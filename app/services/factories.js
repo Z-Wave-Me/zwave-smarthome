@@ -10,230 +10,84 @@ var myAppFactory = angular.module('myAppFactory', ['ngResource']);
 myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
     var enableCache = true;
     return({
-        getDevices: getDevices,
-        putDevice: putDevice,
-        getLocations: getLocations,
-        postLocation: postLocation,
-        putLocation: putLocation,
-        deleteLocation: deleteLocation,
-        getProfiles: getProfiles,
-        postProfile: postProfile,
-        putProfile: putProfile,
-        deleteProfile: deleteProfile,
-        getNotifications: getNotifications,
-         getCategories: getCategories,
-        getModules: getModules,
-        getInstances: getInstances,
-        putInstance: putInstance,
-        postInstance: postInstance,
-        deleteInstance: deleteInstance,
+        getApiData: getApiData,
+        postApiData: postApiData,
+        putApiData: putApiData,
+        deleteApiData: deleteApiData,
         demoData: demoData,
         setCache: setCache,
         runCmd: runCmd
     });
 
     /**
-     * Elements
-     */
-    function getDevices(callback, params) {
-        var request = $http({
-            method: "get",
-            url: cfg.server_url + cfg.api_url + "devices" + (params ? params : '')
-        });
-        return load(callback, request, 'devices');
-    }
-    // Put
-    function putDevice(callback, id, data) {
-        var request = $http({
-            method: "put",
-            data: data,
-            url: cfg.server_url + cfg.api_url + "devices/" + id
-        });
-        return postData(callback, request);
-    }
-
-    /**
-     * Locations
-     */
-    function getLocations(callback, id) {
-        var request = $http({
-            method: "get",
-            url: cfg.server_url + cfg.api_url + "locations" + (id ? '/' + id : '')
-        });
-        return load(callback, request, 'locations');
-    }
-
-    // Post
-    function postLocation(callback, data) {
-        var request = $http({
-            method: "post",
-            data: data,
-            url: cfg.server_url + cfg.api_url + "locations"
-        });
-        return postData(callback, request);
-    }
-
-    // Put
-    function putLocation(callback, id, data) {
-        var request = $http({
-            method: "put",
-            data: data,
-            url: cfg.server_url + cfg.api_url + "locations/" + id
-        });
-        return postData(callback, request);
-    }
-
-    // Delete
-    function deleteLocation(id, input, target) {
-        var request = $http({
-            method: "delete",
-            data: input,
-            url: cfg.server_url + cfg.api_url + "locations/" + id
-        });
-        return deleteData(request, target);
-    }
-
-    /**
-     * Profiles
-     */
-    function getProfiles(callback, id) {
-        var request = $http({
-            method: "get",
-            url: cfg.server_url + cfg.api_url + "profiles" + (id ? '/' + id : '')
-        });
-        return load(callback, request, 'profiles');
-    }
-    // Post
-    function postProfile(callback, data) {
-        var request = $http({
-            method: "post",
-            data: data,
-            url: cfg.server_url + cfg.api_url + "profiles"
-        });
-        return postData(callback, request);
-    }
-    // Put
-    function putProfile(callback, id, data) {
-        var request = $http({
-            method: "put",
-            data: data,
-            url: cfg.server_url + cfg.api_url + "profiles/" + id
-        });
-        return postData(callback, request);
-    }
-    // Delete
-    function deleteProfile(id, input, target) {
-        var request = $http({
-            method: "delete",
-            data: input,
-            url: cfg.server_url + cfg.api_url + "profiles/" + id
-        });
-        return deleteData(request, target);
-    }
-
-    /**
-     * Notifications
-     */
-    function getNotifications(callback, params) {
-        var request = $http({
-            method: "get",
-            url: cfg.server_url + cfg.api_url + "notifications" + (params ? params : '')
-        });
-        return load(callback, request, 'notofications');
-    }
-
-    /**
-     * Modules
-     */
-    // Get categories
-    function getCategories(callback, params) {
-        var request = {
-            method: "get",
-            url: cfg.server_url + cfg.api_url + "modules/categories" + (params ? params : '')
-        };
-        return loadData(callback, request, 'categories');
-    }
-    
-    // Get
-    function getModules(callback, params) {
-        var request = {
-            method: "get",
-            url: cfg.server_url + cfg.api_url + "modules" + (params ? params : '')
-        };
-        return loadData(callback, request, 'modules');
-    }
-
-    /**
-     * Instances
-     */
-    // Get
-    function getInstances(callback, params) {
-        var request = {
-            method: "get",
-            url: cfg.server_url + cfg.api_url + "instances" + (params ? params : '')
-        };
-        return loadData(callback, request, 'instances');
-    }
-     // Post
-    function postInstance(callback, data) {
-        var request = $http({
-            method: "post",
-            data: data,
-            url: cfg.server_url + cfg.api_url + "instances"
-        });
-        return postData(callback, request);
-    }
-    // Put
-    function putInstance(callback, id, data) {
-        var request = $http({
-            method: "put",
-            data: data,
-            url: cfg.server_url + cfg.api_url + "instances/" + id
-        });
-        return postData(callback, request);
-    }
-    // Delete
-    function deleteInstance(id, input, target) {
-        var request = $http({
-            method: "delete",
-            data: input,
-            url: cfg.server_url + cfg.api_url + "instances/" + id
-        });
-        return deleteData(request, target);
-    }
-
-
-
-    /**
      * Gets dummy data
      */
     function demoData(file, callback) {
-        var cached = myCache.get(file);
-        if (cached) {
-            return callback(cached);
-        } else {
-            var request = $http({
-                method: "get",
-                url: cfg.demo_url + file
-            });
-            return load(callback, request, file);
-        }
+        var request = {
+            method: "get",
+            url: cfg.demo_url + file
+        };
+        return getApiHandle(callback, request, file);
+
     }
 
     /**
-     * Load data
+     * API data
      */
-    function loadData(callback, request, cacheName) {
+    // Get
+    function getApiData(api, callback, params) {
+        var request = {
+            method: "get",
+            url: cfg.server_url + cfg.api[api] + (params ? params : '')
+        };
+        return getApiHandle(callback, request, api);
+    }
+
+    // Post
+    function postApiData(api, data, callback) {
+        var request = {
+            method: "post",
+            data: data,
+            url: cfg.server_url + cfg.api[api]
+        };
+        return storeApiHandle(callback, request);
+    }
+
+    // Put
+    function putApiData(api, id, data, callback) {
+        var request = {
+            method: "put",
+            data: data,
+            url: cfg.server_url + cfg.api[api] + "/" + id
+        };
+        return storeApiHandle(callback, request);
+    }
+
+    // Delete
+    function deleteApiData(api, id, target) {
+        var request = {
+            method: "delete",
+            //data: data,
+            url: cfg.server_url + cfg.api[api] + "/" + id
+        };
+        return deleteApiHandle(request, target);
+    }
+
+    /**
+     * Api handle
+     */
+    // GET
+    function getApiHandle(callback, request, cacheName) {
         var cached = null;
         if (cacheName) {
             cached = myCache.get(cacheName);
         }
         // Cached data
         if (enableCache && cached) {
-            console.log('CACHED: ' + cacheName);
+            console.log('NEW CACHED: ' + cacheName);
             return callback(cached);
         } else {
-            console.log('NOOOOT CACHED: ' + cacheName);
+            console.log('NEW NOOOOT CACHED: ' + cacheName);
             return $http(request).success(function(data) {
                 myCache.put(cacheName, data);
                 return callback(data);
@@ -244,31 +98,26 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
         }
 
     }
+    // POST/PUT
+    function storeApiHandle(callback, request) {
+        //$('#respone_container').html('Loading').show();
+        return $http(request).success(function(data) {
+            return callback(data);
+        }).error(function(error) {
+            handlePostError(error);
 
-    /**
-     * Load data
-     * todo: remove when loadData() finished
-     */
-    function load(callback, request, cacheName) {
-        var cached = null;
-        if (cacheName) {
-            cached = myCache.get(cacheName);
-        }
-        // Cached data
-        if (enableCache && cached) {
-            console.log('CACHED: ' + cacheName);
-            return callback(cached);
-        } else {
-            console.log('NOT CACHED: ' + cacheName);
-            return request.success(function(data) {
-                myCache.put(cacheName, data);
-                return callback(data);
-            }).error(function(error) {
-                handleError(error);
+        });
+    }
 
-            });
-        }
-
+    // Delete
+    function deleteApiHandle(request, target) {
+        return $http(request).success(function(data) {
+            if (target) {
+                $(target).fadeOut();
+            }
+        }).error(function(data, error) {
+            handleDeleteError(data, error);
+        });
     }
 
     /**
@@ -286,8 +135,7 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
 
         });
     }
-
-
+    
     /**
      * Handle errors
      */
@@ -302,19 +150,6 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
 
     }
 
-    /**
-     * Post data
-     */
-    function postData(callback, request) {
-        //$('#respone_container').html('Loading').show();
-        return request.success(function(data) {
-            return callback(data);
-        }).error(function(error) {
-            handlePostError(error);
-
-        });
-    }
-
     function handlePostError(error, message) {
         var msg = (message ? message : 'Error saving data');
         $('#respone_container').show();
@@ -323,20 +158,6 @@ myAppFactory.factory('dataFactory', function($http, $q, myCache, cfg) {
         return;
 
 
-    }
-
-    /**
-     * Delete data
-     */
-    function deleteData(request, target) {
-        return request.success(function(data) {
-            if (target) {
-                console.log(target);
-                $(target).fadeOut();
-            }
-        }).error(function(data, error) {
-            handleDeleteError(data, error);
-        });
     }
 
     function handleDeleteError(data, error, message) {

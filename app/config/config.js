@@ -15,6 +15,17 @@ var config_data = {
     // Server base url
     'server_url': 'http://192.168.10.162:8083/',
     
+    // List of API links
+    'api': {
+        'devices':'/ZAutomation/api/v1/devices',
+        'profiles':'/ZAutomation/api/v1/profiles',
+        'locations':'/ZAutomation/api/v1/locations',
+        'notifications':'/ZAutomation/api/v1/notifications',
+        'modules':'/ZAutomation/api/v1/modules',
+        'modules_categories':'/ZAutomation/api/v1/modules/categories',
+        'instances':'/ZAutomation/api/v1/instances'
+    },
+    
     // Api url
     'api_url': '/ZAutomation/api/v1/',
     

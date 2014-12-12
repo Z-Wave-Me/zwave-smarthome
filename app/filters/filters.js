@@ -53,7 +53,7 @@ myApp.filter('numberFixedLen', function() {
         if(!val){
             return;
         }
-        var len = 3;
+        var len = 1;
         var isDec = val.toString().split(".");
         if (isDec.length > 1 && isDec[1].length > len) {
             var num = parseFloat(val);
