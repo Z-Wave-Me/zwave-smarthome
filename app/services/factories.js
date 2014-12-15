@@ -7,8 +7,8 @@ var myAppFactory = angular.module('myAppFactory', ['ngResource']);
 /**
  * Main data factory
  */
-myAppFactory.factory('dataFactory', function($http, myCache, cfg) {
-   
+myAppFactory.factory('dataFactory', function($http, $interval,myCache, cfg) {
+    var apiDataInterval;
     var enableCache = true;
     return({
         getApiData: getApiData,
@@ -17,10 +17,12 @@ myAppFactory.factory('dataFactory', function($http, myCache, cfg) {
         deleteApiData: deleteApiData,
         demoData: demoData,
         setCache: setCache,
-        runCmd: runCmd
+        runCmd: runCmd,
+         updateDeviceData:  updateDeviceData,
+         cancelApiDataInterval: cancelApiDataInterval
     });
-    
-     /// --- Public functions --- ///
+
+    /// --- Public functions --- ///
 
     /**
      * Gets dummy data
@@ -91,10 +93,44 @@ myAppFactory.factory('dataFactory', function($http, myCache, cfg) {
 
         });
     }
+
+
+    /**
+     * Get updated data from the device collection.
+     */
+    function  updateDeviceData(callback) {
+        var time = Math.round(+new Date() / 1000);
+         var refresh = function() {
+            var request = $http({
+                method: "get",
+                url:  cfg.server_url + cfg.api['devices'] + '?since=' + time
+            });
+            request.success(function(data) {
+                time = data.data.updateTime;
+                //$('#update_time_tick').html($filter('getCurrentTime')(time));
+                return callback(data);
+            }).error(function() {
+                handleError();
+
+            });
+        };
+        apiDataInterval = $interval(refresh, cfg.interval);
+    }
     
-     /// --- Private functions --- ///
-    
-     /**
+    /**
+     * Cancel data interval
+     */
+    function cancelApiDataInterval() {
+        if (apiDataInterval) {
+            $interval.cancel(apiDataInterval);
+            apiDataInterval = undefined;
+        }
+        return;
+    }
+
+    /// --- Private functions --- ///
+
+    /**
      * Api handle
      */
     // GET
@@ -140,8 +176,8 @@ myAppFactory.factory('dataFactory', function($http, myCache, cfg) {
             handleDeleteError(data, error);
         });
     }
-    
-    
+
+
     /**
      * Handle errors
      */

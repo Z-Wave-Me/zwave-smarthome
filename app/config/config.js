@@ -15,15 +15,23 @@ var config_data = {
     // Server base url
     'server_url': 'http://192.168.10.162:8083/',
     
+    // Interval in miliseconds to refresh data
+     'interval': 3000,
+    
     // List of API links
     'api': {
-        'devices':'/ZAutomation/api/v1/devices',
-        'profiles':'/ZAutomation/api/v1/profiles',
-        'locations':'/ZAutomation/api/v1/locations',
+        'devices':'ZAutomation/api/v1/devices',
+        'profiles':'ZAutomation/api/v1/profiles',
+        'locations':'ZAutomation/api/v1/locations',
         'notifications':'/ZAutomation/api/v1/notifications',
-        'modules':'/ZAutomation/api/v1/modules',
+        'modules':'ZAutomation/api/v1/modules',
         'modules_categories':'/ZAutomation/api/v1/modules/categories',
-        'instances':'/ZAutomation/api/v1/instances'
+        'instances':'ZAutomation/api/v1/instances'
+    },
+    
+    // List of image pathes
+    'img': {
+        'icons':'storage/img/icons/'
     },
     
     // Api url

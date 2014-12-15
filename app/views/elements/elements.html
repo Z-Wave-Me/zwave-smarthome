@@ -3,8 +3,8 @@
     <h2 class="page-subtitle" ng-show="headline" ng-bind="headline"></h2> 
     <div class="row">
         <div class="alert alert-warning" ng-show="collection.length < 1" ng-bind="'No element found'" ng-cloak></div>
-        <div class="col-lg-4 col-md-6 col-sm-6 widget-entry" ng-repeat="v in collection | filter:q">
-            <div class="widget-block" ng-switch="v.deviceType">
+        <div id="Widget_{{v.id}}" class="col-lg-4 col-md-6 col-sm-6 widget-entry" ng-repeat="v in collection | filter:q">
+            <div class="widget-block {{v.deviceType}}" ng-switch="v.deviceType">
                 <div class="widget-block-in clearfix app-border app-gradient app-shadow">
                     <a class="widget-config" href="" 
                        ng-click="showModal('#modal_widget', {
@@ -22,7 +22,7 @@
                        ><i class="fa fa-cog fa-lg"></i></a>
                     <!-- Widget header -->
                     <div class="widget-header">
-                        <img class="widget-image" ng-src="{{v.icon|getElementIcon:v.deviceType}}" alt="{{ v.title}}"/>
+                        <img class="widget-image" ng-src="{{v.icon|getElementIcon:v}}" alt="{{ v.title}}"/>
                     </div>
 
                     <!-- Widget body -->
@@ -37,24 +37,25 @@
                                              goHiddenSwitchLinear = false;">
 
                         <h3 class="entry-title" title="{{v.title}}">{{v.title}}</h3>
+                         <!-- <i>{{v.icon}}, {{v.deviceType}}</i> -->
 
                         <!-- switchMultilevel -->
                         <div class="widget-click-popup" ng-switch-when="switchMultilevel">
-                            <strong>{{levelVal[v.id]}} % <i class="fa fa-caret-down"></i></strong>
+                            <div class="widget-result"><span class="widget-level" ng-bind="levelVal[v.id]|getMaxLevel"></span> % <i class="fa fa-caret-down"></i></div>
                         </div>
                         <!-- switchBinary -->
                         <div class="btn-group"  ng-switch-when="switchBinary">
                             <button 
-                                class="btn btn-sm" 
+                                class="btn btn-sm widget-btn-off" 
                                 id="btn_off_{{ v.id}}"
                                 data-ng-click="runCmd(v.id + '/command/off')"
-                                ng-class="v.level=='off' ? 'btn-primary active': 'btn - info'"
+                                ng-class="v.level=='off' ? 'btn-primary': 'btn-default'"
                                 >OFF</button>
                             <button 
-                                class="btn btn-primary btn-sm" 
+                                class="btn btn-sm widget-btn-on" 
                                 id="btn_on_{{ v.id}}"
                                 data-ng-click="runCmd(v.id + '/command/on')"
-                                ng-class="v.level=='on' ? 'btn-primary active': 'btn - info'"
+                                ng-class="v.level=='on' ? 'btn-primary': 'btn-default'"
                                 >ON</button>
 
 
@@ -77,15 +78,15 @@
                         <!-- switchRGBW -->
                         <div class="btn-group"  style="min-width: 110px !important;" ng-switch-when="switchRGBW">
                             <button 
-                                class="btn btn-info btn-sm" 
+                                class="btn widget-btn-off btn-sm" 
                                 id="btn_off_{{ v.id}}"
-                                ng-class="v.level=='off' ? 'active': ''"
+                                ng-class="v.level=='off' ? 'btn-primary': 'btn-default'"
                                 data-ng-click="runCmd(v.id + '/command/close')"
                                 >CLOSE</button>
                             <button 
-                                class="btn btn-primary btn-sm" 
+                                class="btn widget-btn-on btn-sm" 
                                 id="btn_on_{{ v.id}}"
-                                ng-class="v.level=='on' ? 'active': ''"
+                                ng-class="v.level=='on' ? 'btn-primary': 'btn-default'"
                                 data-ng-click="runCmd(v.id + '/command/open')"
                                 >OPEN</button>
 
@@ -95,14 +96,14 @@
                         <div ng-switch-when="doorlock">
                             <div class="btn-group">
                                 <button 
-                                    class="btn btn-info btn-sm"
-                                    ng-class="v.level=='closed' ? 'active': ''"
+                                    class="btn widget-btn-off btn-sm"
+                                    ng-class="v.level=='closed' ? 'btn-primary': 'btn-default'"
                                     data-ng-click="runCmd(v.id + '/command/off')"
                                     ><i class="fa fa-lock"></i>
                                 </button>
                                 <button 
-                                    class="btn btn-primary btn-sm"
-                                    ng-class="v.level=='open' ? 'active': ''"
+                                    class="btn widget-btn-on btn-sm"
+                                    ng-class="v.level=='open' ? 'btn-primary': 'btn-default'"
                                     data-ng-click="runCmd(v.id + '/command/on')"
                                     ><i class="fa fa-unlock"></i>
                                 </button>
@@ -120,9 +121,9 @@
                         <!-- sensorMultilevel -->
                         <div  ng-switch-when="sensorMultilevel">
                             <div class="row sensor-multilevel">
-                                <div class="col-sm-6"> <strong>{{v.level}} <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span></strong> </div>
+                                <div class="col-sm-6 widget-result"><span class="widget-level" ng-bind="v.level"></span> <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span></div>
                                 <div class="col-sm-6 text-right">
-                                    <button class="btn btn-default btn-sm" ng-click="runCmd(v.id + '/command/update')"> <i class="fa fa-clock-o"></i> {{v.updateTime|isToday:true}}</button>
+                                    <button class="btn btn-default btn-sm" ng-click="runCmd(v.id + '/command/update')"> <i class="fa fa-clock-o"></i> <span class="widget-update-time">{{v.updateTime|isToday:true}}</span></button>
                                 </div>
                             </div>
                         </div>
@@ -133,7 +134,7 @@
                         <!-- camera -->
                         <div class="widget-click-popup" ng-switch-when="camera">{{v.deviceType}} <i class="fa fa-caret-down"></i></div>
                         <!-- Default -->
-                        <div  ng-switch-default><strong>{{v.level}} <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span></strong></div>
+                        <div  class="widget-result" ng-switch-default><span class="widget-level" ng-bind="v.level"></span> <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span></div>
 
                         <!-- Hidden switchMultilevel -->
                         <div class="col-sm-11 element-hidden hidden-switch-multilevel animate-show" ng-switch-when="switchMultilevel" ng-show="goHidden">
@@ -146,7 +147,7 @@
                                                 <!--<myknob knob-data="v.level" knob-options="knobopt"></myknob> -->
                                                 <input 
                                                     type="text" 
-                                                    value="v.level" 
+                                                    value="v.level|getMaxLevel" 
                                                     class="dial" 
                                                     data-width="100" 
                                                     data-height="100" 

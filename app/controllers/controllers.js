@@ -215,6 +215,11 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.knobopt = {
         width: 100
     };
+    
+    // Cancel interval on page destroy
+    $scope.$on('$destroy', function() {
+       dataFactory.cancelApiDataInterval();
+    });
 
     /**
      * Load data into collection
@@ -268,6 +273,14 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         });
     };
     $scope.loadData();
+    
+    $scope.updateData = function(){
+         dataFactory.updateDeviceData(function(data) {
+             deviceService.updateDevices(data);
+                //console.log(data);
+            });
+    };
+    $scope.updateData();
     //$(".dial").knob();
 
     /**

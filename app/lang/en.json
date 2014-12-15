@@ -106,5 +106,7 @@
     "sensorBinary": "Binary Sensor",
     "thermostat": "Thermostat",
     "camera": "Camera",
+    "toggleButton": "Button toggle",
+    "doorlock": "Door Lock",
     "---": "---"
 }

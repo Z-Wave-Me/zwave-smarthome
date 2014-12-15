@@ -50,19 +50,22 @@ myApp.filter('cutText', function() {
  */
 myApp.filter('numberFixedLen', function() {
     return function(val) {
-        if(!val){
+       if (val == 0) {
+            return 0;
+        }
+        if (!val) {
             return;
         }
         var len = 1;
         var isDec = val.toString().split(".");
         if (isDec.length > 1 && isDec[1].length > len) {
             var num = parseFloat(val);
-            if (isNaN(num)){
+            if (isNaN(num)) {
                 return val;
-            }else{
-               return num.toFixed(len); 
+            } else {
+                return num.toFixed(len);
             }
-           
+
         }
         return val;
     };
@@ -91,14 +94,67 @@ myApp.filter('hasNode', function() {
 /**
  * Get current time
  */
-myApp.filter('getElementIcon', function() {
-    return function(input, deviceType) {
-        var icon = 'storage/img/elements/' + deviceType + '.png';
+myApp.filter('getElementIcon', function(cfg) {
+    return function(input, device) {
+        var icon = cfg.img.icons + 'placeholder.png';
         if (input) {
             if ((/^http:\/\//.test(input))) {
-                icon = input;
-            } else {
-                icon = 'storage/img/elements/' + input + '.png';
+                return input;
+            }
+            switch (input) {
+                 case 'door':
+                    icon = cfg.img.icons + (device.metrics.level == 'open' ? 'door-open.png' : 'door-closed.png');
+                    break;
+                    
+                     case 'switch':
+                     icon = cfg.img.icons + (device.metrics.level == 'on' ? 'switch-on.png' : 'switch-off.png');
+                    break;
+                    
+                case 'motion':
+                    icon = cfg.img.icons + (device.metrics.level == 'on' ? 'motion-on.png' : 'motion-off.png');
+                    break;
+                
+                case 'blinds':
+                    if(device.metrics.level == 0){
+                        icon = cfg.img.icons + 'blind-down.png';
+                    }else if(device.metrics.level >= 99){
+                        icon = cfg.img.icons + 'blind-up.png';
+                    }else{
+                        icon = cfg.img.icons + 'blind-half.png';
+                    }
+                    break;
+                    
+               case 'multilevel':
+                    if(device.metrics.level == 0){
+                        icon = cfg.img.icons + 'dimmer-off.png';
+                    }else if(device.metrics.level >= 99){
+                        icon = cfg.img.icons + 'dimmer-on.png';
+                    }else{
+                        icon = cfg.img.icons + 'dimmer-half.png';
+                    }
+                     break;
+                case 'thermostat':
+                    icon = cfg.img.icons + 'thermostat.png';
+                    break;
+                    
+                 case 'energy':
+                    icon = cfg.img.icons + 'energy.png';
+                    break;
+                    
+                 case 'meter':
+                    icon = cfg.img.icons + 'meter.png';
+                    break;
+                
+                case 'temperature':
+                    icon = cfg.img.icons + 'temperature.png';
+                    break;
+               
+                case 'camera':
+                    icon = cfg.img.icons + 'camera.png';
+                    break;
+                
+                default:
+                    break;
             }
 
         }
@@ -134,15 +190,15 @@ myApp.filter('getCurrentTime', function() {
  * If is today display h:m otherwise d:m:y
  */
 myApp.filter('isToday', function() {
-    return function(input,fromunix) {
-        if(fromunix){
+    return function(input, fromunix) {
+        if (fromunix) {
             var d = new Date(input * 1000);
-             var startDate = new Date(input * 1000);  // 2000-01-01
-        }else{
-           var d = new Date(input);  
+            var startDate = new Date(input * 1000);  // 2000-01-01
+        } else {
+            var d = new Date(input);
             var startDate = new Date(input);  // 2000-01-01
         }
-       
+
 
         var hrs = (d.getHours() < 10 ? '0' + d.getHours() : d.getHours());
         var min = (d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes());
@@ -151,7 +207,7 @@ myApp.filter('isToday', function() {
             return hrs + ':' + min;
 
         } else {
-           
+
             var endDate = new Date();              // Today
             var nDays = diffDays(startDate, endDate) + 1;
             var str = '' + nDays + ' days';

@@ -492,14 +492,18 @@ fieldset {
   width: 70%;
 }
 /* line 37, sass/modules/_elements.scss */
+.widget-body .widget-result {
+  font-weight: bold;
+}
+/* line 40, sass/modules/_elements.scss */
 .widget-body .widget-click-popup {
   cursor: pointer;
 }
-/* line 40, sass/modules/_elements.scss */
+/* line 43, sass/modules/_elements.scss */
 .widget-body .btn-group {
   float: right !important;
 }
-/* line 44, sass/modules/_elements.scss */
+/* line 47, sass/modules/_elements.scss */
 .widget-body .element-hidden {
   z-index: 10000;
   overflow: hidden;
@@ -517,11 +521,11 @@ fieldset {
   background-color: #fff;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
 }
-/* line 61, sass/modules/_elements.scss */
+/* line 64, sass/modules/_elements.scss */
 .widget-body table {
   width: 100%;
 }
-/* line 63, sass/modules/_elements.scss */
+/* line 66, sass/modules/_elements.scss */
 .widget-body table td {
   width: 50%;
   vertical-align: middle;
@@ -530,11 +534,11 @@ fieldset {
 
 /* Home widget
 -------------------------------------------------- */
-/* line 76, sass/modules/_elements.scss */
+/* line 79, sass/modules/_elements.scss */
 .home-widget .widget-entry {
   padding: 0;
 }
-/* line 79, sass/modules/_elements.scss */
+/* line 82, sass/modules/_elements.scss */
 .home-widget .widget-entry .widget-block {
   margin: 0 !important;
   /*              border: solid 1px #e2e2e2;*/

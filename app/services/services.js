@@ -38,6 +38,13 @@ myAppService.service('deviceService', function($filter, myCache) {
     };
 
     /**
+     * Update devices
+     */
+    this.updateDevices = function(data) {
+        return updateDevices(data);
+    };
+
+    /**
      * Get tags
      */
     this.getTags = function(data) {
@@ -109,7 +116,7 @@ myAppService.service('deviceService', function($filter, myCache) {
         if (filter) {
             angular.forEach(data, function(v, k) {
                 if (angular.isArray(v[filter.filter])) {
-                    if(v[filter.filter].indexOf(filter.val) > -1){
+                    if (v[filter.filter].indexOf(filter.val) > -1) {
                         collection.push(v);
                     }
                 } else {
@@ -182,7 +189,7 @@ myAppService.service('deviceService', function($filter, myCache) {
             };
             if (filter) {
                 if (angular.isArray(obj[filter.filter])) {
-                    if(obj[filter.filter].indexOf(filter.val) > -1){
+                    if (obj[filter.filter].indexOf(filter.val) > -1) {
                         collection.push(obj);
                     }
                 } else {
@@ -197,6 +204,108 @@ myAppService.service('deviceService', function($filter, myCache) {
 
         });
         return collection;
+    }
+
+    /**
+     * Update devices
+     */
+    function updateDevices(data) {
+        var devices = data.data.devices;
+        var widgetId;
+        if (devices.length > 0) {
+            angular.forEach(devices, function(v, k) {
+                widgetId = '#Widget_' + v.id;
+                updateDeviceLevel(widgetId, v);
+                updateDeviceTime(widgetId, v);
+                updateDeviceIcon(widgetId, v);
+                updateDeviceBtn(widgetId, v);
+
+
+            });
+        }
+
+    }
+    /**
+     * Update device level
+     */
+    function updateDeviceLevel(widgetId, v) {
+        var level = $filter('numberFixedLen')(v.metrics.level);
+        var val;
+        if (level) {
+            switch (v.deviceType) {
+            case 'switchMultilevel':
+                val = $filter('getMaxLevel')(level);
+                break;
+            default:
+                val = level;
+                break;
+        }
+            $(widgetId + ' .widget-level').html(val);
+        }
+        console.log('Update device: ID: ' + v.id + ' - level: ' + val)
+
+    }
+
+    /**
+     * Update device time
+     */
+    function updateDeviceTime(widgetId, v) {
+        var time = $filter('isToday')(v.updateTime, true);
+        if (time) {
+            $(widgetId + ' .widget-update-time').html(time);
+        }
+        console.log('Update device: ID: ' + v.id + ' - time: ' + time)
+    }
+
+    /**
+     * Update device icon
+     */
+    function updateDeviceIcon(widgetId, v) {
+        var icon = $filter('getElementIcon')(v.metrics.icon, v);
+        if (icon) {
+            $(widgetId + ' .widget-image').attr('src', icon);
+        }
+        console.log('Update device: ID: ' + v.id + ' - icon: ' + icon)
+    }
+
+    /**
+     * Update device button
+     */
+    function updateDeviceBtn(widgetId, v) {
+        var status = false;
+        switch (v.deviceType) {
+            case 'switchBinary':
+                if (v.metrics.level == 'on') {
+                    status = 'on';
+                } else {
+                    status = 'off';
+                }
+                break;
+
+            case 'doorlock':
+                if (v.metrics.level == 'open') {
+                    status = 'on';
+                } else {
+                    status = 'off';
+                }
+                break;
+            default:
+                break;
+        }
+        if (status == false) {
+            return;
+        }
+        if (v.deviceType == 'switchBinary') {
+            if (status == 'on') {
+                $(widgetId + ' .widget-btn-on').removeClass('btn-default').addClass('btn-primary');
+                $(widgetId + ' .widget-btn-off').removeClass('btn-primary').addClass('btn-default');
+            } else {
+                $(widgetId + ' .widget-btn-on').removeClass('btn-primary').addClass('btn-default');
+                $(widgetId + ' .widget-btn-off').removeClass('btn-default').addClass('btn-primary');
+            }
+            console.log('Update device: ID: ' + v.id + ' - button ' + v.metrics.level)
+        }
+
     }
 
     /**
