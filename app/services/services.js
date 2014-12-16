@@ -140,11 +140,12 @@ myAppService.service('deviceService', function($filter, myCache) {
         var obj;
         var collection = [];
         var onDashboard = false;
-        var instance;
-        var hasInstance = false;
         var findZwaveStr = "ZWayVDev_zway_";
-        var zwaveId;
+       
         angular.forEach(data, function(v, k) {
+            var instance;
+            var hasInstance = false;
+             var zwaveId = false;
             if (v.permanently_hidden || v.deviceType == 'battery') {
                 return;
             }
@@ -157,14 +158,15 @@ myAppService.service('deviceService', function($filter, myCache) {
                 var onDashboard = true;
             }
 
-            instance = getRowBy(instances, 'id', v.creatorId);
-            if (instance && instance['moduleId'] != 'ZWave') {
-                hasInstance = instance;
-            }
             if (v.id.indexOf(findZwaveStr) > -1) {
                 zwaveId = v.id.split(findZwaveStr)[1].split('-')[0];
             } else {
-                zwaveId = false;
+                
+                instance = getRowBy(instances, 'id', v.creatorId);
+                if (instance && instance['moduleId'] != 'ZWave') {
+                    hasInstance = instance;
+
+                }
             }
             obj = {
                 'id': v.id,
@@ -233,13 +235,13 @@ myAppService.service('deviceService', function($filter, myCache) {
         var val;
         if (level) {
             switch (v.deviceType) {
-            case 'switchMultilevel':
-                val = $filter('getMaxLevel')(level);
-                break;
-            default:
-                val = level;
-                break;
-        }
+                case 'switchMultilevel':
+                    val = $filter('getMaxLevel')(level);
+                    break;
+                default:
+                    val = level;
+                    break;
+            }
             $(widgetId + ' .widget-level').html(val);
         }
         console.log('Update device: ID: ' + v.id + ' - level: ' + val)

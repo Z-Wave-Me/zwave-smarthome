@@ -280,7 +280,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
                 //console.log(data);
             });
     };
-    $scope.updateData();
+    //$scope.updateData();
     //$(".dial").knob();
 
     /**
