@@ -26,7 +26,8 @@ var config_data = {
         'notifications':'/ZAutomation/api/v1/notifications',
         'modules':'ZAutomation/api/v1/modules',
         'modules_categories':'/ZAutomation/api/v1/modules/categories',
-        'instances':'ZAutomation/api/v1/instances'
+        'instances':'ZAutomation/api/v1/instances',
+        'namespaces':'ZAutomation/api/v1/namespaces'
     },
     
     // List of image pathes

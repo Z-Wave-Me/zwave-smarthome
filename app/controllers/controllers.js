@@ -70,7 +70,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
      */
     $scope.navpPofiles = [];
     $scope.loadBaseData = function() {
-        dataFactory.getApiData('profiles',function(data) {
+        dataFactory.getApiData('profiles', function(data) {
             $scope.navpPofiles = data.data;
         });
     };
@@ -151,7 +151,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
 /**
  * Test controller
  */
-myAppController.controller('TestController', function($scope, cfg,dataFactory) {
+myAppController.controller('TestController', function($scope, cfg, dataFactory) {
     $scope.collection = [];
     $scope.targetColor = '#ccc';
     $scope.reset = function() {
@@ -162,7 +162,7 @@ myAppController.controller('TestController', function($scope, cfg,dataFactory) {
      */
     $scope.loadData = function() {
         //dataFactory.demoData('elements.json', function(data) {
-        dataFactory.getApiData('devices',function(data) {
+        dataFactory.getApiData('devices', function(data) {
             $scope.collection = data.data.devices;
             console.log($scope.collection);
         });
@@ -188,7 +188,7 @@ myAppController.controller('HomeController', function($scope, dataFactory, devic
 /**
  * Element controller
  */
-myAppController.controller('ElementController', function($scope, $routeParams, $location, dataFactory, deviceService,myCache) {
+myAppController.controller('ElementController', function($scope, $routeParams, $location, dataFactory, deviceService, myCache) {
     $scope.collection = [];
     $scope.showFooter = true;
     $scope.deviceType = [];
@@ -215,10 +215,10 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.knobopt = {
         width: 100
     };
-    
+
     // Cancel interval on page destroy
     $scope.$on('$destroy', function() {
-       dataFactory.cancelApiDataInterval();
+        dataFactory.cancelApiDataInterval();
     });
 
     /**
@@ -227,11 +227,11 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     dataFactory.setCache(true);
     $scope.loadData = function() {
         //getData(callback,api,cache,params)
-        dataFactory.getApiData('devices',function(data) {
+        dataFactory.getApiData('devices', function(data) {
             var filter = null;
             $scope.deviceType = deviceService.getDeviceType(data.data.devices);
             $scope.tags = deviceService.getTags(data.data.devices);
-            dataFactory.getApiData('profiles',function(data) {
+            dataFactory.getApiData('profiles', function(data) {
                 var profile = deviceService.getRowBy(data.data, 'id', $scope.profile.id);
                 $scope.profileData = {
                     'id': profile.id,
@@ -248,13 +248,13 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
                     case 'deviceType':
                         filter = $routeParams;
                         break;
-                     case 'tags':
+                    case 'tags':
                         filter = $routeParams;
                         break;
                     case 'location':
                         $scope.showFooter = false;
                         filter = $routeParams;
-                        dataFactory.getApiData('locations',function(rooms) {
+                        dataFactory.getApiData('locations', function(rooms) {
                             //getRowBy(data, key, val, cache);
                             var room = deviceService.getRowBy(rooms.data, 'id', $routeParams.val, 'room_' + $routeParams.val);
                             if (room) {
@@ -266,18 +266,18 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
                         break;
                 }
             }
-            dataFactory.getApiData('instances',function(instances) {
+            dataFactory.getApiData('instances', function(instances) {
                 $scope.collection = deviceService.getDevices(data.data.devices, filter, $scope.profileData.positions, instances.data);
             });
 
         });
     };
     $scope.loadData();
-    
-    $scope.updateData = function(){
-         dataFactory.updateDeviceData(function(data) {
-             deviceService.updateDevices(data);
-         });
+
+    $scope.updateData = function() {
+        dataFactory.updateDeviceData(function(data) {
+            deviceService.updateDevices(data);
+        });
     };
     $scope.updateData();
     //$(".dial").knob();
@@ -323,22 +323,22 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         $scope.input = input;
         $(target).modal();
     };
-     /**
+    /**
      * Add tag to list
      */
     $scope.addTag = function(tag) {
-        if(!tag || $scope.input.tags.indexOf(tag) > -1){
+        if (!tag || $scope.input.tags.indexOf(tag) > -1) {
             return;
         }
         $scope.input.tags.push(tag);
         $scope.addNewTag = null;
         return;
     };
-     /**
+    /**
      * Remove tag from list
      */
     $scope.removeTag = function(index) {
-       $scope.input.tags.splice(index, 1);
+        $scope.input.tags.splice(index, 1);
     };
     /**
      * Update an item
@@ -353,9 +353,9 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         inputData.metrics.title = input.title;
         if (input.id) {
             //Load devices
-            dataFactory.putApiData('devices', input.id, inputData,function(data) {
+            dataFactory.putApiData('devices', input.id, inputData, function(data) {
                 //Load profiles
-                dataFactory.getApiData('profiles',function(data) {
+                dataFactory.getApiData('profiles', function(data) {
                     var profile = deviceService.getRowBy(data.data, 'id', $scope.profile.id);
                     $scope.profileData = {
                         'id': profile.id,
@@ -428,7 +428,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
      */
     function saveDeviceIdIntoProfile(data, profileData) {
         if (data.error == null) {
-            dataFactory.putApiData('profiles', profileData.id, profileData,function(data) {
+            dataFactory.putApiData('profiles', profileData.id, profileData, function(data) {
             });
         }
         return;
@@ -458,7 +458,7 @@ myAppController.controller('EventController', function($scope, $routeParams, dat
      * Load data into collection
      */
     $scope.loadData = function() {
-        dataFactory.getApiData('notifications',function(data) {
+        dataFactory.getApiData('notifications', function(data) {
             $scope.eventLevel = deviceService.getEventLevel(data.data.notifications);
             var filter = null;
             if (angular.isDefined($routeParams.param) && angular.isDefined($routeParams.val)) {
@@ -482,7 +482,7 @@ myAppController.controller('EventController', function($scope, $routeParams, dat
 /**
  * Profile controller
  */
-myAppController.controller('ProfileController', function($scope, $window,dataFactory) {
+myAppController.controller('ProfileController', function($scope, $window, $cookies, dataFactory) {
     $scope.collection = [];
     $scope.targetColor = '#6C7A89';
     $scope.input = {
@@ -507,7 +507,7 @@ myAppController.controller('ProfileController', function($scope, $window,dataFac
      */
     dataFactory.setCache(true);
     $scope.loadData = function() {
-        dataFactory.getApiData('profiles',function(data) {
+        dataFactory.getApiData('profiles', function(data) {
             $scope.collection = data.data;
         });
     };
@@ -523,6 +523,7 @@ myAppController.controller('ProfileController', function($scope, $window,dataFac
      * Create/Update an item
      */
     $scope.store = function(input) {
+        //var profileLang = (angular.fromJson($cookies.profileLang) ? angular.fromJson($cookies.profileLang) : []);
         var inputData = {
             "id": input.id,
             "name": input.name,
@@ -531,27 +532,38 @@ myAppController.controller('ProfileController', function($scope, $window,dataFac
 
         };
         if (input.id) {
-            dataFactory.putApiData('profiles',input.id, inputData,function(data) {
+            dataFactory.putApiData('profiles', input.id, inputData, function(data) {
                 $scope.collection.push = data.data;
                 dataFactory.setCache(false);
                 $scope.loadData();
                 //$route.reload();
             });
         } else {
-            dataFactory.postProfile('profiles',inputData,function(data) {
+            dataFactory.postApiData('profiles', inputData, function(data) {
                 $scope.collection.push = data.data;
                 dataFactory.setCache(false);
                 $scope.loadData();
-                //$route.reload();
+                input.id = data.data.id
+
             });
         }
+//        if (profileLang.length > 0) {
+//            angular.forEach(profileLang, function(v, k) {
+//                if (v['id'] != input.id) {
+//                    profileLang.push({'id': input.id, 'lang': input.lang});
+//                }
+//            });
+//        } else {
+//            profileLang.push({'id': input.id, 'lang': input.lang});
+//        }
+//         $cookies.profileLang = angular.toJson(profileLang);
 
     };
     /**
      * Delete an item
      */
-    $scope.delete = function(target, input, dialog,except) {
-        if(input.id == except){
+    $scope.delete = function(target, input, dialog, except) {
+        if (input.id == except) {
             return;
         }
         var confirm = true;
@@ -559,7 +571,7 @@ myAppController.controller('ProfileController', function($scope, $window,dataFac
             confirm = $window.confirm(dialog);
         }
         if (confirm) {
-             dataFactory.deleteApiData('profiles',input.id,target);
+            dataFactory.deleteApiData('profiles', input.id, target);
             dataFactory.setCache(false);
             $scope.loadData();
         }
@@ -593,13 +605,13 @@ myAppController.controller('AppController', function($scope, $window, dataFactor
      */
     dataFactory.setCache(true);
     $scope.loadCategories = function() {
-        dataFactory.getApiData('modules_categories',function(data) {
+        dataFactory.getApiData('modules_categories', function(data) {
             $scope.categories = data.data;
         });
     };
     $scope.loadCategories();
     $scope.loadModules = function(filter) {
-        dataFactory.getApiData('modules',function(data) {
+        dataFactory.getApiData('modules', function(data) {
             $scope.modules = deviceService.getData(data.data, filter);
             //console.log($scope.modules);
 
@@ -610,7 +622,7 @@ myAppController.controller('AppController', function($scope, $window, dataFactor
 //        });
     };
     $scope.loadInstances = function() {
-        dataFactory.getApiData('instances',function(data) {
+        dataFactory.getApiData('instances', function(data) {
             $scope.instances = data.data;
         });
     };
@@ -672,7 +684,7 @@ myAppController.controller('AppController', function($scope, $window, dataFactor
             'active': input.active
         };
         if (input.id) {
-            dataFactory.putApiData('instances',input.id, inputData,function(data) {
+            dataFactory.putApiData('instances', input.id, inputData, function(data) {
                 //$scope.instance.push = data.data;
                 dataFactory.setCache(false);
                 $scope.loadInstances();
@@ -691,7 +703,7 @@ myAppController.controller('AppController', function($scope, $window, dataFactor
             confirm = $window.confirm(dialog);
         }
         if (confirm) {
-            dataFactory.deleteApiData('instances',input.id,target);
+            dataFactory.deleteApiData('instances', input.id, target);
             dataFactory.setCache(false);
             //$scope.loadData();
         }
@@ -728,22 +740,26 @@ myAppController.controller('AppModuleController', function($scope, $routeParams,
     // Post new module instance
     $scope.postModule = function(id) {
         var module;
-        dataFactory.getApiData('modules',function(modules) {
+        dataFactory.getApiData('modules', function(modules) {
             module = deviceService.getRowBy(modules.data, 'id', id);
             if (!module) {
                 return;
             }
-            $scope.input = {
-                //'id': instance.id,
-                //'active': instance.active,
-                'title': $filter('hasNode')(module, 'defaults.title'),
-                'description': $filter('hasNode')(module, 'defaults.description'),
-                'moduleTitle': $filter('hasNode')(module, 'defaults.title'),
-                'moduleId': module.id,
-                //'params': instance.params,
-                'moduleInput': deviceService.getModuleConfigInputs(module, null)
-            };
-            $scope.showForm = true;
+            dataFactory.getApiData('namespaces', function(namespaces) {
+                $scope.input = {
+                    //'id': instance.id,
+                    //'active': instance.active,
+                    'title': $filter('hasNode')(module, 'defaults.title'),
+                    'description': $filter('hasNode')(module, 'defaults.description'),
+                    'moduleTitle': $filter('hasNode')(module, 'defaults.title'),
+                    'moduleId': module.id,
+                    //'params': instance.params,
+                    'moduleInput': deviceService.getModuleConfigInputs(module, null, namespaces.data)
+                };
+                //console.log($scope.input)
+
+                $scope.showForm = true;
+            });
         });
         console.log('Add new module: ' + id);
     };
@@ -755,13 +771,14 @@ myAppController.controller('AppModuleController', function($scope, $routeParams,
         }
         var instance;
         var module;
-        dataFactory.getApiData('instances',function(data) {
+        dataFactory.getApiData('instances', function(data) {
             instance = deviceService.getRowBy(data.data, 'id', id);
             if (!instance) {
                 return;
             }
-            dataFactory.getApiData('modules',function(modules) {
+            dataFactory.getApiData('modules', function(modules) {
                 module = deviceService.getRowBy(modules.data, 'id', instance.moduleId);
+                dataFactory.getApiData('namespaces', function(namespaces) {
                 $scope.input = {
                     'id': instance.id,
                     'moduleId': module.id,
@@ -770,9 +787,10 @@ myAppController.controller('AppModuleController', function($scope, $routeParams,
                     'description': instance.description,
                     'moduleTitle': $filter('hasNode')(module, 'defaults.title'),
                     'params': instance.params,
-                    'moduleInput': deviceService.getModuleConfigInputs(module, instance.params)
+                    'moduleInput': deviceService.getModuleConfigInputs(module, instance.params,namespaces.data)
                 };
                 $scope.showForm = true;
+                 });
             });
 
         });
@@ -810,11 +828,11 @@ myAppController.controller('AppModuleController', function($scope, $routeParams,
             'params': params
         };
         if (input.id > 0) {
-            dataFactory.putApiData('instances',input.id, inputData,function(data) {
+            dataFactory.putApiData('instances', input.id, inputData, function(data) {
                 $scope.success = true;
             });
         } else {
-            dataFactory.postApiData('instances',inputData,function(data) {
+            dataFactory.postApiData('instances', inputData, function(data) {
                 $location.path('/apps');
             });
         }
@@ -841,7 +859,7 @@ myAppController.controller('AppModuleController', function($scope, $routeParams,
             'params': params
         };
         if (input.id) {
-            dataFactory.putApiData('instances',input.id, inputData,function(data) {
+            dataFactory.putApiData('instances', input.id, inputData, function(data) {
                 dataFactory.setCache(false);
                 $scope.loadInstances();
             });
@@ -938,7 +956,7 @@ myAppController.controller('RoomController', function($scope, dataFactory) {
      * Load data into collection
      */
     $scope.loadData = function() {
-        dataFactory.getApiData('locations',function(data) {
+        dataFactory.getApiData('locations', function(data) {
             $scope.collection = data.data;
         });
     };
@@ -954,7 +972,7 @@ myAppController.controller('RoomController', function($scope, dataFactory) {
 /**
  * Room config controller
  */
-myAppController.controller('RoomConfigController', function($scope, $window, $interval, $upload, cfg,dataFactory, deviceService) {
+myAppController.controller('RoomConfigController', function($scope, $window, $interval, $upload, cfg, dataFactory, deviceService) {
     $scope.collection = [];
     $scope.devicesAssigned = [];
     //$scope.devicesAvailable = [];
@@ -984,7 +1002,7 @@ myAppController.controller('RoomConfigController', function($scope, $window, $in
      */
     dataFactory.setCache(true);
     $scope.loadData = function() {
-        dataFactory.getApiData('locations',function(data) {
+        dataFactory.getApiData('locations', function(data) {
             $scope.collection = data.data;
         });
     };
@@ -996,8 +1014,8 @@ myAppController.controller('RoomConfigController', function($scope, $window, $in
      */
     $scope.showModal = function(target, input) {
         $scope.loadDevices = function() {
-            dataFactory.getApiData('devices',function(data) {
-                $scope.devices = deviceService.getDevices(data.data.devices,false,false,false,input.id);
+            dataFactory.getApiData('devices', function(data) {
+                $scope.devices = deviceService.getDevices(data.data.devices, false, false, false, input.id);
                 $scope.devicesAssigned = deviceService.getDevices(data.data.devices, {filter: "location", val: input.id});
 
             });
@@ -1017,7 +1035,7 @@ myAppController.controller('RoomConfigController', function($scope, $window, $in
         };
 
         if (input.id) {
-            dataFactory.putApiData('locations',input.id, inputData,function(data) {
+            dataFactory.putApiData('locations', input.id, inputData, function(data) {
                 $scope.collection.push = data.data;
                 $scope.saveRoomIdIntoDevice(data, $scope.devicesAssigned);
                 $scope.removeRoomIdFromDevice(data, $scope.devicesToRemove);
@@ -1025,7 +1043,7 @@ myAppController.controller('RoomConfigController', function($scope, $window, $in
                 $scope.loadData();
             });
         } else {
-            dataFactory.postApiData('locations',inputData,function(data) {
+            dataFactory.postApiData('locations', inputData, function(data) {
                 $scope.collection.push = data.data;
                 $scope.saveRoomIdIntoDevice(data, $scope.devicesAssigned);
                 $scope.removeRoomIdFromDevice(data, $scope.devicesToRemove);
@@ -1046,8 +1064,8 @@ myAppController.controller('RoomConfigController', function($scope, $window, $in
             confirm = $window.confirm(dialog);
         }
         if (confirm) {
-            dataFactory.deleteApiData('locations',input.id, target);
-            dataFactory.getApiData('devices',function(data) {
+            dataFactory.deleteApiData('locations', input.id, target);
+            dataFactory.getApiData('devices', function(data) {
                 var devices = deviceService.getDevices(data.data.devices, {filter: "location", val: input.id});
                 $scope.removeRoomIdFromDevice({'error': null}, devices);
 
@@ -1090,7 +1108,7 @@ myAppController.controller('RoomConfigController', function($scope, $window, $in
     $scope.saveRoomIdIntoDevice = function(data, devices) {
         if (data.error == null) {
             angular.forEach(devices, function(v, k) {
-                dataFactory.putApiData('devices',v.id, {'location': data.data.id},function(data) {
+                dataFactory.putApiData('devices', v.id, {'location': data.data.id}, function(data) {
                     //console.log(data);
                 });
             });
@@ -1105,7 +1123,7 @@ myAppController.controller('RoomConfigController', function($scope, $window, $in
     $scope.removeRoomIdFromDevice = function(data, devices) {
         if (data.error == null) {
             angular.forEach(devices, function(v, k) {
-                dataFactory.putApiData('devices',v.id, {'location': null},function(data) {
+                dataFactory.putApiData('devices', v.id, {'location': null}, function(data) {
                     // console.log(data);
                 });
             });
@@ -1149,7 +1167,7 @@ myAppController.controller('RoomConfigController', function($scope, $window, $in
 /**
  * Network controller
  */
-myAppController.controller('NetworkController', function($scope, cfg,dataFactory,deviceService) {
+myAppController.controller('NetworkController', function($scope, cfg, dataFactory, deviceService) {
     $scope.demo = [];
     $scope.batteries = [];
     $scope.reset = function() {
@@ -1164,10 +1182,10 @@ myAppController.controller('NetworkController', function($scope, cfg,dataFactory
         });
     };
     $scope.loadDemo();
-    
+
     $scope.loadData = function() {
-        dataFactory.getApiData('devices',function(data) {
-            $scope.batteries = deviceService.getData(data.data.devices,{filter: "deviceType", val: 'battery'});
+        dataFactory.getApiData('devices', function(data) {
+            $scope.batteries = deviceService.getData(data.data.devices, {filter: "deviceType", val: 'battery'});
 
         });
     };

@@ -61,8 +61,8 @@ myAppService.service('deviceService', function($filter, myCache) {
     /**
      * Get module config input
      */
-    this.getModuleConfigInputs = function(module, params) {
-        return getModuleConfigInputs(module, params);
+    this.getModuleConfigInputs = function(module, params, namespaces) {
+        return getModuleConfigInputs(module, params, namespaces);
     };
 
 
@@ -141,11 +141,11 @@ myAppService.service('deviceService', function($filter, myCache) {
         var collection = [];
         var onDashboard = false;
         var findZwaveStr = "ZWayVDev_zway_";
-       
+
         angular.forEach(data, function(v, k) {
             var instance;
             var hasInstance = false;
-             var zwaveId = false;
+            var zwaveId = false;
             if (v.permanently_hidden || v.deviceType == 'battery') {
                 return;
             }
@@ -161,7 +161,7 @@ myAppService.service('deviceService', function($filter, myCache) {
             if (v.id.indexOf(findZwaveStr) > -1) {
                 zwaveId = v.id.split(findZwaveStr)[1].split('-')[0];
             } else {
-                
+
                 instance = getRowBy(instances, 'id', v.creatorId);
                 if (instance && instance['moduleId'] != 'ZWave') {
                     hasInstance = instance;
@@ -346,7 +346,7 @@ myAppService.service('deviceService', function($filter, myCache) {
     /**
      *  Get module config options
      */
-    function getModuleConfigInputs(module, params) {
+    function getModuleConfigInputs(module, params, namespaces) {
         if (!module) {
             return false;
         }
@@ -361,7 +361,9 @@ myAppService.service('deviceService', function($filter, myCache) {
         var collection = {};
         var type;
         var enums;
+        var items;
         var pairs;
+        var itemPairs;
         var inputType;
         angular.forEach(options, function(v, k) {
             if ((v.hidden) || (v.hidden == true)) {
@@ -369,21 +371,34 @@ myAppService.service('deviceService', function($filter, myCache) {
             }
             type = $filter('hasNode')(schema[k], 'type');
             enums = $filter('hasNode')(schema[k], 'enum');
-            //console.log(v.datasource);
+            items = $filter('hasNode')(schema[k], 'items');
+
             if (v.datasource == 'namespaces') {
-                pairs = getModulePairsFromNamespaces(enums, v.optionLabels);
-            } else {
+                pairs = getModulePairsFromNamespaces(enums, namespaces);
+            } else if (items) {
+                if(type == 'array'){
+                    if(items.datasource == 'namespaces'){
+                        itemPairs = getModulePairsFromNamespaces(items.enum, namespaces);
+                    }
+                }
+                
+            }
+            else {
                 pairs = getModulePairsFromArray(enums, v.optionLabels);
             }
             inputType = $filter('hasNode')(options[k], 'type');
             if (!inputType) {
                 if (enums) {
                     inputType = 'select';
-                } else {
+                } else if (items) {
+                    inputType = 'items';
+                }
+                else {
                     inputType = 'text';
                 }
 
             }
+            //console.log(itemPairs)
             collection[k] = {
                 'inputName': k,
                 'label': v.label,
@@ -396,6 +411,7 @@ myAppService.service('deviceService', function($filter, myCache) {
                 'enum': enums,
                 "datasource": v.datasource,
                 'pairs': pairs,
+                'itemPairs': itemPairs,
                 'pattern': $filter('hasNode')(schema[k], 'pattern'),
                 'required': $filter('hasNode')(schema[k], 'required'),
                 'value': $filter('hasNode')(params, k)
@@ -427,14 +443,70 @@ myAppService.service('deviceService', function($filter, myCache) {
     /**
      * Get module pairs from namespaces
      */
-    function getModulePairsFromNamespaces(enums, labels) {
+    function getModulePairsFromNamespaces(enums, namespaces) {
+
         var collection = {};
-        var arr = enums.split(',');
+         var namesp = enums.split(',');
+         if (!$.isArray(namesp)) {
+            return false;
+        }
+         console.log(namesp)
+        var arr = enums.split(':');
         if (!$.isArray(arr)) {
             return false;
         }
-        angular.forEach(arr, function(v) {
-            collection[v] = v;
+        angular.forEach(namesp, function(v, k) {
+             var id = v.split(':');
+             console.log(id[1])
+            
+
+        });
+        var devices = arr[1];
+        angular.forEach(namespaces, function(v, k) {
+            if (v.id == devices) {
+                angular.forEach(v.params, function(i, n) {
+                    collection[i['deviceId']] = i['deviceName'];
+                });
+            }
+
+        });
+        return collection;
+    }
+     /**
+     * Get pairs from given namespace
+     */
+    function getPairsFromNamespace(device, namespaces){
+        var collection = {};
+        angular.forEach(namespaces, function(v, k) {
+            if (v.id == devices) {
+                angular.forEach(v.params, function(i, n) {
+                    collection[i['deviceId']] = i['deviceName'];
+                });
+            }
+
+        });
+        return collection;
+    }
+    
+    /**
+     * Get module pairs from items
+     */
+    function getModulePairsFromItems(items, namespaces) {
+        console.log(items)
+        return;
+        var collection = {};
+        var arr = enums.split(':');
+        if (!$.isArray(arr)) {
+            return false;
+        }
+        var devices = arr[1];
+        angular.forEach(namespaces, function(v, k) {
+            if (v.id == devices) {
+                angular.forEach(v.params, function(i, n) {
+                    collection[i['deviceId']] = i['deviceName'];
+                });
+            }
+
         });
         return collection;
     }

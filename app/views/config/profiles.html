@@ -46,15 +46,21 @@
                     <div class="form-group">
                         <input type="checkbox" name="active" value="true" id="active" ng-model="input.active" ng-checked="input.active" /> <label>{{_t('lb_active')}}</label>
                     </div>
+                    
+                    <select class="form-control" ng-model="category" ng-show="showInFooter.categories">
+                        <option value="">-- All categories --</option>
+                        <option ng-repeat="v in categories" value="{{v.id}}" ng-selected="category == v.id" ng-bind="v.name">
+                        </option>
+                    </select>
+                    
                     <!--
                     <div class="form-group form-inline">
                         <label>{{_t('lb_language')}}:</label>
                         <select name="lang" class="form-control" ng-model="input.lang">
-                            <option value="en">EN</option>
-                            <option value="de">DE</option>
-                            <option value="it">IT</option>
+                            <option ng-repeat="l in cfg.lang_list" value="{{l}}" ng-bind="l"></option>
                         </select>
                     </div>
+                    
                     <div class="form-group">
                         <label>{{_t('lb_profile_color')}}: </label>
                         <a href=""

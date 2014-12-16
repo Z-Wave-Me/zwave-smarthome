@@ -23,16 +23,19 @@
 
             <!-- Repeat -->
             <div ng-repeat="i in input.moduleInput">
+                <label ng-bind="i.label"></label>
                 <!-- Switch -->
-                <div ng-switch="i.inputType">
+                <div class="form-group" ng-switch="i.inputType">
                     <!-- Text -->
-                    <div class="form-group" ng-switch-when="text">
-                        <label ng-bind="i.label"></label>
+                    <div ng-switch-when="text">
+                        <input name="{{i.inputName}}" id="{{i.inputName}}" type="text" class="form-control" value="{{input.moduleInput[i.inputName].value}}" ng-model="input.moduleInput[i.inputName].value" />
+                    </div><!-- /Text --> 
+                     <!-- Url -->
+                    <div ng-switch-when="url">
                         <input name="{{i.inputName}}" id="{{i.inputName}}" type="text" class="form-control" value="{{input.moduleInput[i.inputName].value}}" ng-model="input.moduleInput[i.inputName].value" />
                     </div><!-- /Text --> 
                      <!-- Textarea -->
-                    <div class="form-group" ng-switch-when="textarea">
-                        <label ng-bind="i.label"></label>
+                    <div ng-switch-when="textarea">
                         <textarea 
                             name="{{i.inputName}}" 
                             id="{{i.inputName}}" 
@@ -42,13 +45,14 @@
                     </div><!-- /Textarea --> 
 
                     <!-- Select -->
-                    <div class="form-group" ng-switch-when="select">
-                        <label ng-bind="i.label"></label>
+                    <div ng-switch-when="select">
                         <select name="{{i.inputName}}" id="{{i.inputName}}" class="form-control" ng-model="input.moduleInput[i.inputName].value">
                             <option ng-repeat="(k,v) in i.pairs" value="{{k}}" ng-selected="i.value == k" ng-bind="v"></option>
                         </select>
                     </div><!-- /Select -->
+                    <p class="help-block" ng-show="i.helper" ng-bind="i.helper"></p>
                 </div><!-- /ng-switch -->
+               
             </div><!-- /ng-repeat --> 
 
             <!-- Submit -->
