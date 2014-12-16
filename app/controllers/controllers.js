@@ -277,10 +277,9 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.updateData = function(){
          dataFactory.updateDeviceData(function(data) {
              deviceService.updateDevices(data);
-                //console.log(data);
-            });
+         });
     };
-    //$scope.updateData();
+    $scope.updateData();
     //$(".dial").knob();
 
     /**
