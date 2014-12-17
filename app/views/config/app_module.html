@@ -1,12 +1,11 @@
 <!-- Appp module ad  view -->
-<div ng-controller="AppModuleController">
+<div id="page_module_update" ng-controller="AppModuleController">
     <h2 class="page-subtitle" ng-bind="input.moduleTitle"></h2>
+    <p class="help-block">Debug! Module ID: {{input.moduleId}} | Instance ID: {{input.id}}</p>
     <div ng-show="!showForm">
         Module does not exists <a href="#apps" class="btn btn-default" data-dismiss="modal">{{_t('lb_cancel')}}</a>
     </div>
-
-    <div ng-show="showForm">
-        <form id="form_module" ng-submit="store(input)">
+        <form id="form_module" ng-submit="store(input)" ng-show="showForm">
             <input name="params" id="params" type="hidden" class="form-control" value="{{input.params}}" />
             <div class="form-group">
                 <input type="checkbox" name="active" value="{{input.active}}" id="active" ng-model="input.active" ng-checked="input.active" /> <label>Active</label>
@@ -34,6 +33,10 @@
                     <div ng-switch-when="url">
                         <input name="{{i.inputName}}" id="{{i.inputName}}" type="text" class="form-control" value="{{input.moduleInput[i.inputName].value}}" ng-model="input.moduleInput[i.inputName].value" />
                     </div><!-- /Text --> 
+                     <!-- Url -->
+                    <div ng-switch-when="time">
+                        <input name="{{i.inputName}}" id="{{i.inputName}}" type="text" class="form-control" value="{{input.moduleInput[i.inputName].value}}" ng-model="input.moduleInput[i.inputName].value" />
+                    </div><!-- /Text --> 
                      <!-- Textarea -->
                     <div ng-switch-when="textarea">
                         <textarea 
@@ -50,6 +53,32 @@
                             <option ng-repeat="(k,v) in i.pairs" value="{{k}}" ng-selected="i.value == k" ng-bind="v"></option>
                         </select>
                     </div><!-- /Select -->
+                    
+                     <!-- Checkbox -->
+                    <div ng-switch-when="checkbox" ng-init="input.moduleInput[i.inputName].value = (input.moduleInput[i.inputName].value ? input.moduleInput[i.inputName].value : [])">
+                        <div ng-repeat="(k,v) in i.pairs">
+                            <input type="checkbox" 
+                                   name="{{i.inputName}}" 
+                                   id="{{i.inputName}}" 
+                                   ng-true-value="{{k}}" 
+                                   ng-model="input.moduleInput[i.inputName].value[$index]"
+                                   ng-checked="input.moduleInput[i.inputName].value.indexOf(k) > -1" /> <span ng-bind="v"></span>
+                        </div>
+                     </div><!-- /Checkbox -->
+                     
+                      <!-- Items -->
+                    <div ng-switch-when="items" ng-init="input.moduleInput[i.inputName].value = (input.moduleInput[i.inputName].value ? input.moduleInput[i.inputName].value : [])">
+                        <div ng-repeat="(k,v) in i.pairs">
+                            <input type="checkbox" 
+                                   name="{{i.inputName}}" 
+                                   id="{{i.inputName}}" 
+                                   ng-true-value="{{k}}" 
+                                   ng-model="input.moduleInput[i.inputName].value[$index]"
+                                   ng-checked="input.moduleInput[i.inputName].value.indexOf(k) > -1" /> <span ng-bind="v"></span>
+                        </div>
+                     </div><!-- /Items -->
+                    
+                    <!-- /Helper -->
                     <p class="help-block" ng-show="i.helper" ng-bind="i.helper"></p>
                 </div><!-- /ng-switch -->
                
@@ -68,5 +97,5 @@
                 Data successfully saved
             </div>
         </form><!-- /form --> 
-    </div>
+  
 </div> <!-- /ng-controller --> 

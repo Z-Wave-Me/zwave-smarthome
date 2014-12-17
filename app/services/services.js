@@ -7,8 +7,19 @@ var myAppService = angular.module('myAppService', []);
 /**
  * Device service
  */
-myAppService.service('deviceService', function($filter, myCache) {
+myAppService.service('dataService', function($filter, myCache) {
     /// --- Public functions --- ///
+    /**
+     * Get language line by key
+     */
+    this.getLangLine = function(key, languages) {
+        if (angular.isObject(languages)) {
+            if (angular.isDefined(languages[key])) {
+                return languages[key] !== '' ? languages[key] : key;
+            }
+        }
+        return key;
+    };
     /**
      * Mobile device detect
      */
@@ -376,12 +387,12 @@ myAppService.service('deviceService', function($filter, myCache) {
             if (v.datasource == 'namespaces') {
                 pairs = getModulePairsFromNamespaces(enums, namespaces);
             } else if (items) {
-                if(type == 'array'){
-                    if(items.datasource == 'namespaces'){
-                        itemPairs = getModulePairsFromNamespaces(items.enum, namespaces);
+                if (type == 'array') {
+                    if (items.datasource == 'namespaces') {
+                        pairs = getModulePairsFromNamespaces(items.enum, namespaces);
                     }
                 }
-                
+
             }
             else {
                 pairs = getModulePairsFromArray(enums, v.optionLabels);
@@ -418,7 +429,7 @@ myAppService.service('deviceService', function($filter, myCache) {
             };
 
         });
-
+        //console.log(collection)
         return collection;
     }
     /**
@@ -444,50 +455,27 @@ myAppService.service('deviceService', function($filter, myCache) {
      * Get module pairs from namespaces
      */
     function getModulePairsFromNamespaces(enums, namespaces) {
-
         var collection = {};
-         var namesp = enums.split(',');
-         if (!$.isArray(namesp)) {
-            return false;
-        }
-         console.log(namesp)
-        var arr = enums.split(':');
-        if (!$.isArray(arr)) {
+        var namesp = enums.split(',');
+        if (!angular.isArray(namesp)) {
             return false;
         }
         angular.forEach(namesp, function(v, k) {
-             var id = v.split(':');
-             console.log(id[1])
-            
-
-        });
-        var devices = arr[1];
-        angular.forEach(namespaces, function(v, k) {
-            if (v.id == devices) {
-                angular.forEach(v.params, function(i, n) {
-                    collection[i['deviceId']] = i['deviceName'];
-                });
+            var id = v.split(':');
+            if (!angular.isArray(id)) {
+                return false;
             }
-
+            angular.forEach(namespaces, function(nm, km) {
+                if (nm.id == id[1]) {
+                    angular.forEach(nm.params, function(i, n) {
+                        collection[i['deviceId']] = i['deviceName'];
+                    });
+                }
+            });
         });
         return collection;
     }
-     /**
-     * Get pairs from given namespace
-     */
-    function getPairsFromNamespace(device, namespaces){
-        var collection = {};
-        angular.forEach(namespaces, function(v, k) {
-            if (v.id == devices) {
-                angular.forEach(v.params, function(i, n) {
-                    collection[i['deviceId']] = i['deviceName'];
-                });
-            }
 
-        });
-        return collection;
-    }
-    
     /**
      * Get module pairs from items
      */

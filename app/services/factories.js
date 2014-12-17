@@ -5,9 +5,16 @@
 var myAppFactory = angular.module('myAppFactory', ['ngResource']);
 
 /**
+ * Caching the river...
+ */
+myAppFactory.factory('myCache', function($cacheFactory) {
+    return $cacheFactory('myData');
+});
+
+/**
  * Main data factory
  */
-myAppFactory.factory('dataFactory', function($http, $interval,myCache, cfg) {
+myAppFactory.factory('dataFactory', function($http, $interval, myCache, cfg) {
     var apiDataInterval;
     var enableCache = true;
     return({
@@ -18,8 +25,9 @@ myAppFactory.factory('dataFactory', function($http, $interval,myCache, cfg) {
         demoData: demoData,
         setCache: setCache,
         runCmd: runCmd,
-         updateDeviceData:  updateDeviceData,
-         cancelApiDataInterval: cancelApiDataInterval
+        updateDeviceData: updateDeviceData,
+        cancelApiDataInterval: cancelApiDataInterval,
+        getLanguageFile: getLanguageFile
     });
 
     /// --- Public functions --- ///
@@ -100,10 +108,10 @@ myAppFactory.factory('dataFactory', function($http, $interval,myCache, cfg) {
      */
     function  updateDeviceData(callback) {
         var time = Math.round(+new Date() / 1000);
-         var refresh = function() {
+        var refresh = function() {
             var request = $http({
                 method: "get",
-                url:  cfg.server_url + cfg.api['devices'] + '?since=' + time
+                url: cfg.server_url + cfg.api['devices'] + '?since=' + time
             });
             request.success(function(data) {
                 time = data.data.updateTime;
@@ -116,7 +124,7 @@ myAppFactory.factory('dataFactory', function($http, $interval,myCache, cfg) {
         };
         apiDataInterval = $interval(refresh, cfg.interval);
     }
-    
+
     /**
      * Cancel data interval
      */
@@ -126,6 +134,18 @@ myAppFactory.factory('dataFactory', function($http, $interval,myCache, cfg) {
             apiDataInterval = undefined;
         }
         return;
+    }
+
+    /**
+     * Load language file
+     */
+    function getLanguageFile(callback, lang) {
+        var langFile = lang + '.json';
+        var request = {
+            method: "get",
+            url: cfg.lang_dir + langFile
+        };
+        return getApiHandle(callback, request, langFile);
     }
 
     /// --- Private functions --- ///
@@ -222,35 +242,3 @@ myAppFactory.factory('dataFactory', function($http, $interval,myCache, cfg) {
 
 });
 
-/**
- * Caching the river...
- */
-myAppFactory.factory('myCache', function($cacheFactory) {
-    return $cacheFactory('myData');
-});
-
-// Get language file
-myAppFactory.factory('langFactory', function($resource, cfg) {
-    return {
-        get: function(lang) {
-            return $resource(cfg.lang_dir + lang + '.json', {}, {query: {
-                    method: 'GET',
-                    params: {},
-                    isArray: false
-                }});
-        }
-    };
-});
-// Translation factory - get language line by key
-myAppFactory.factory('langTransFactory', function() {
-    return {
-        get: function(key, languages) {
-            if (angular.isObject(languages)) {
-                if (angular.isDefined(languages[key])) {
-                    return languages[key] !== '' ? languages[key] : key;
-                }
-            }
-            return key;
-        }
-    };
-});

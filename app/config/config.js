@@ -12,6 +12,9 @@ var config_data = {
     // Application version
     'app_version': '0.1',
     
+    // Application type: web/app
+    'app_type': 'web',
+    
     // Server base url
     'server_url': 'http://zwave.dyndns.org:8083/',
     
