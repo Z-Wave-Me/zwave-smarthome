@@ -51,53 +51,54 @@ h3 {
 /* line 38, sass/globals/_body.scss */
 .page-subtitle {
   font-size: 20px;
+  border-bottom: #DDDDDD;
 }
 
-/* line 41, sass/globals/_body.scss */
+/* line 42, sass/globals/_body.scss */
 .entry-title, .entry-title a {
   font-size: 15px;
 }
 
-/* line 45, sass/globals/_body.scss */
+/* line 46, sass/globals/_body.scss */
 a {
   color: #4d4d4d;
 }
 
-/* line 48, sass/globals/_body.scss */
+/* line 49, sass/globals/_body.scss */
 a:hover {
   color: #ef4a54;
 }
 
-/* line 52, sass/globals/_body.scss */
+/* line 53, sass/globals/_body.scss */
 .text-supp {
   font-style: italic;
   color: #595959;
 }
 
-/* line 57, sass/globals/_body.scss */
+/* line 58, sass/globals/_body.scss */
 .perex {
   margin: 20px 0;
   padding: 20px 0 0 0;
   border-top: 1px dotted #9fd8ef;
 }
 
-/* line 63, sass/globals/_body.scss */
+/* line 64, sass/globals/_body.scss */
 .badge {
   padding: 7px;
   margin-right: 5px;
 }
 
-/* line 68, sass/globals/_body.scss */
+/* line 69, sass/globals/_body.scss */
 .btn-tooltip {
   cursor: help;
 }
 
-/* line 71, sass/globals/_body.scss */
+/* line 72, sass/globals/_body.scss */
 .app-border {
   border: solid 4px #fff;
 }
 
-/* line 74, sass/globals/_body.scss */
+/* line 75, sass/globals/_body.scss */
 .app-gradient {
   background: #f6f6f6;
   /* Old browsers */
@@ -117,7 +118,7 @@ a:hover {
   /* IE6-9 */
 }
 
-/* line 78, sass/globals/_body.scss */
+/* line 79, sass/globals/_body.scss */
 .app-shadow {
   -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
   -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
@@ -126,7 +127,7 @@ a:hover {
 
 /* Images
 -------------------------------------------------- */
-/* line 83, sass/globals/_body.scss */
+/* line 84, sass/globals/_body.scss */
 .report-img {
   margin: 0 5px;
   width: 40px;
@@ -135,39 +136,39 @@ a:hover {
 
 /* tables
 -------------------------------------------------- */
-/* line 94, sass/globals/_body.scss */
+/* line 95, sass/globals/_body.scss */
 .table tbody tr td {
   border-top: 4px solid #F6F6F6;
 }
 
-/* line 102, sass/globals/_body.scss */
+/* line 103, sass/globals/_body.scss */
 .table-report {
   border: 0 !important;
 }
-/* line 104, sass/globals/_body.scss */
+/* line 105, sass/globals/_body.scss */
 .table-report td {
   vertical-align: middle;
 }
-/* line 108, sass/globals/_body.scss */
+/* line 109, sass/globals/_body.scss */
 .table-report tbody tr {
   background-color: white;
 }
 
 /* Tabs
 -------------------------------------------------- */
-/* line 115, sass/globals/_body.scss */
+/* line 116, sass/globals/_body.scss */
 .nav-tabs {
   border-bottom: 1px solid #dddddd;
 }
 
-/* line 118, sass/globals/_body.scss */
+/* line 119, sass/globals/_body.scss */
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
   color: #1a1a1a;
   background-color: #DDDDDD;
   border: #dddddd;
 }
 
-/* line 123, sass/globals/_body.scss */
+/* line 124, sass/globals/_body.scss */
 .nav-tabs > li.active > a i {
   color: #DA131F;
 }
@@ -177,7 +178,7 @@ background-color: lighten($app-body-bcg-color, 10%);;
 }*/
 /* Forms
 -------------------------------------------------- */
-/* line 131, sass/globals/_body.scss */
+/* line 132, sass/globals/_body.scss */
 fieldset {
   margin-bottom: 10px;
   background-color: #F6F6F6;
@@ -186,28 +187,28 @@ fieldset {
 
 /* Page
 -------------------------------------------------- */
-/* line 139, sass/globals/_body.scss */
+/* line 140, sass/globals/_body.scss */
 #respone_container {
   display: none;
   margin-top: 70px;
   /*position: relative;*/
 }
 
-/* line 144, sass/globals/_body.scss */
+/* line 145, sass/globals/_body.scss */
 #respone_container_inner {
   margin: 0 auto;
   text-align: center;
   position: relative;
 }
 
-/* line 151, sass/globals/_body.scss */
+/* line 152, sass/globals/_body.scss */
 .page-header {
   padding-bottom: 0;
   margin: 20px 0 30px 0;
   border-bottom: 0;
 }
 
-/* line 157, sass/globals/_body.scss */
+/* line 158, sass/globals/_body.scss */
 #main_content {
   margin-top: 70px;
   margin-bottom: 20px;
@@ -215,7 +216,7 @@ fieldset {
 
 /* Tooltip
 -------------------------------------------------- */
-/* line 164, sass/globals/_body.scss */
+/* line 165, sass/globals/_body.scss */
 .tooltip-inner {
   background-color: #F6F6F6;
   color: #000;
@@ -224,7 +225,7 @@ fieldset {
   text-align: left;
 }
 
-/* line 171, sass/globals/_body.scss */
+/* line 172, sass/globals/_body.scss */
 .tooltip-arrow {
   border-bottom-color: #f2f2f2;
 }
