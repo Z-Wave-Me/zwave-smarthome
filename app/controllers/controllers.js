@@ -233,9 +233,9 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
             dataFactory.getApiData('profiles', function(data) {
                 var profile = dataService.getRowBy(data.data, 'id', $scope.profile.id);
                 $scope.profileData = {
-                    'id': profile.id,
-                    'name': profile.name,
-                    'positions': profile.positions
+                    'id': profile ? profile.id : 1,
+                    'name': profile ? profile.name : 'Default',
+                    'positions': profile ? profile.positions : []
                 };
             });
             if (angular.isDefined($routeParams.filter) && angular.isDefined($routeParams.val)) {
@@ -752,6 +752,7 @@ myAppController.controller('AppModuleController', function($scope, $routeParams,
                     'description': $filter('hasNode')(module, 'defaults.description'),
                     'moduleTitle': $filter('hasNode')(module, 'defaults.title'),
                     'moduleId': module.id,
+                    'category': module.category,
                     //'params': instance.params,
                     'moduleInput': dataService.getModuleConfigInputs(module, null, namespaces.data)
                 };
@@ -788,6 +789,7 @@ myAppController.controller('AppModuleController', function($scope, $routeParams,
                     'params': instance.params,
                     'moduleInput': dataService.getModuleConfigInputs(module, instance.params,namespaces.data)
                 };
+                console.log($scope.input)
                 $scope.showForm = true;
                  });
             });

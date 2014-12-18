@@ -1,7 +1,7 @@
 <!-- Appp module ad  view -->
 <div id="page_module_update" ng-controller="AppModuleController">
     <h2 class="page-subtitle" ng-bind="input.moduleTitle"></h2>
-    <p class="help-block">Debug! Module ID: {{input.moduleId}} | Instance ID: {{input.id}}</p>
+    <p class="help-block">Debug! Module ID: {{input.moduleId}} | Instance ID: {{input.id}} | Category: {{input.category}}</p>
     <div ng-show="!showForm">
         Module does not exists <a href="#apps" class="btn btn-default" data-dismiss="modal">{{_t('lb_cancel')}}</a>
     </div>
@@ -16,8 +16,8 @@
             </div>
              <div class="form-group">
                 <label>{{_t('lb_description')}}</label>
-                <textarea name="description" id="description" class="form-control" ng-model="input.description">{{input.description}}</textarea>
-                <p class="help-block">Rooms for your notes</p>
+                <textarea name="description" id="description" class="form-control" ng-model="input.description" placeholder="Rooms for your notes"></textarea>
+              
             </div>
 
             <!-- Repeat -->
@@ -77,6 +77,19 @@
                                    ng-checked="input.moduleInput[i.inputName].value.indexOf(k) > -1" /> <span ng-bind="v"></span>
                         </div>
                      </div><!-- /Items -->
+                     
+                       <!-- Items with properties -->
+                    <div ng-switch-when="itemsProperties" ng-init="input.moduleInput[i.inputName].value = (input.moduleInput[i.inputName].value ? input.moduleInput[i.inputName].value : [])">
+                        Items with properties:  {{i.pairsItemsProperties}}
+                        <div ng-repeat="(k,v) in i.pairsItemsProperties.pairs">
+                            <input type="checkbox" 
+                                   name="{{i.inputName}}" 
+                                   id="{{i.inputName}}" 
+                                   ng-true-value="{{k}}" 
+                                   ng-model="input.moduleInput[i.inputName].value[$index]"
+                                   ng-checked="input.moduleInput[i.inputName].value.indexOf(k) > -1" /> <span ng-bind="v"></span>
+                        </div>
+                     </div><!-- /Items with properties -->
                     
                     <!-- /Helper -->
                     <p class="help-block" ng-show="i.helper" ng-bind="i.helper"></p>

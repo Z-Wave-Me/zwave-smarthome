@@ -370,45 +370,62 @@ myAppService.service('dataService', function($filter, myCache) {
         //console.log(module.id);
 
         var collection = {};
-        var type;
-        var enums;
-        var items;
-        var pairs;
-        var itemPairs;
-        var inputType;
+        var cfg = {};
+//        var type;
+//        var enums;
+//        var items;
+//        var itemsProperties;
+//        var pairs;
+//        var itemPairs;
+//        var inputType;
         angular.forEach(options, function(v, k) {
             if ((v.hidden) || (v.hidden == true)) {
                 return false;
             }
-            type = $filter('hasNode')(schema[k], 'type');
-            enums = $filter('hasNode')(schema[k], 'enum');
-            items = $filter('hasNode')(schema[k], 'items');
+            cfg = {
+                'pairs': [],
+                'pairsItemsProperties': {},
+                'inputType': $filter('hasNode')(options[k], 'type'),
+                'enums': $filter('hasNode')(schema[k], 'enum'),
+                'items': $filter('hasNode')(schema[k], 'items'),
+                'itemsProperties': $filter('hasNode')(schema[k], 'items.properties')
+            };
+//            inputType = $filter('hasNode')(options[k], 'type');
+//            type = $filter('hasNode')(schema[k], 'type');
+//            enums = $filter('hasNode')(schema[k], 'enum');
+//            items = $filter('hasNode')(schema[k], 'items');
+//            itemsProperties = $filter('hasNode')(schema[k], 'items.properties');
 
             if (v.datasource == 'namespaces') {
-                pairs = getModulePairsFromNamespaces(enums, namespaces);
-            } else if (items) {
-                if (type == 'array') {
-                    if (items.datasource == 'namespaces') {
-                        pairs = getModulePairsFromNamespaces(items.enum, namespaces);
-                    }
-                }
+                cfg.pairs = getModulePairsFromNamespaces(cfg.enums, namespaces);
+            } else if (cfg.items) {
+                if (cfg.itemsProperties) {
+                    angular.forEach(cfg.itemsProperties, function(item, ik) {
+                        var iPairs = getItemsPropertiesPairs(item, v.optionLabels, namespaces);
+                        if (iPairs) {
+                            cfg.pairsItemsProperties = {
+                                'name': ik,
+                                'pairs': getItemsPropertiesPairs(item, v.optionLabels, namespaces)
+                            };
+                            return;
+                        }
 
-            }
-            else {
-                pairs = getModulePairsFromArray(enums, v.optionLabels);
-            }
-            inputType = $filter('hasNode')(options[k], 'type');
-            if (!inputType) {
-                if (enums) {
-                    inputType = 'select';
-                } else if (items) {
-                    inputType = 'items';
-                }
-                else {
-                    inputType = 'text';
-                }
+                        // getItemsPropertiesPairs(item,v.optionLabels,namespaces);
+                        //cfg.pairs = getItemsPropertiesPairs(item,v.optionLabels,namespaces);
+                        //console.log(item);
 
+                    });
+
+                }
+                if (cfg.items.datasource == 'namespaces') {
+                    cfg.pairs = getModulePairsFromNamespaces(cfg.items.enum, namespaces);
+
+                }
+            } else {
+                cfg.pairs = getModulePairsFromArray(cfg.enums, v.optionLabels);
             }
+
+            //console.log(cfg.pairsItemsProperties);
             //console.log(itemPairs)
             collection[k] = {
                 'inputName': k,
@@ -417,12 +434,11 @@ myAppService.service('dataService', function($filter, myCache) {
                 'helper': v.helper,
                 'optionLabels': v.optionLabels,
                 'default': defaults[k],
-                'type': type,
-                'inputType': inputType,
-                'enum': enums,
+                'inputType': getModuleInputType(cfg),
+                'enum': cfg.enums,
                 "datasource": v.datasource,
-                'pairs': pairs,
-                'itemPairs': itemPairs,
+                'pairs': cfg.pairs,
+                'pairsItemsProperties': cfg.pairsItemsProperties,
                 'pattern': $filter('hasNode')(schema[k], 'pattern'),
                 'required': $filter('hasNode')(schema[k], 'required'),
                 'value': $filter('hasNode')(params, k)
@@ -433,10 +449,44 @@ myAppService.service('dataService', function($filter, myCache) {
         return collection;
     }
     /**
+     * Get module input type
+     */
+    function getModuleInputType(cfg) {
+        var inputType;
+        if (!cfg.inputType) {
+            if (cfg.enums) {
+                inputType = 'select';
+            } else if (cfg.itemsProperties) {
+                inputType = 'itemsProperties';
+            } else if (cfg.items) {
+                inputType = 'items';
+            }
+            else {
+                inputType = 'text';
+            }
+        }
+        return inputType;
+    }
+
+    /**
+     * Get Items Properties Input
+     */
+    function getItemsPropertiesPairs(item, optionLabels, namespaces) {
+        var pairs;
+         if (item.field == 'enum') {
+        if (item.datasource == 'namespaces') {
+            pairs = getModulePairsFromNamespaces(item.enum, namespaces);
+        } else {
+            pairs = getModulePairsFromArray(item.enum, optionLabels);
+        }
+         }
+        return pairs;
+    }
+    /**
      * Get module pairs from array - enums and labels
      */
     function getModulePairsFromArray(enums, labels) {
-        if (!$.isArray(enums)) {
+        if (!angular.isArray(enums)) {
             return false;
         }
         var collection = {};
