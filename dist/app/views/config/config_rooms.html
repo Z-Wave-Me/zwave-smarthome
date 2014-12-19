@@ -1,0 +1,89 @@
+<!-- Rooms view -->
+<div ng-controller="RoomConfigController">
+    <div class="clearfix text-center">
+        <div class="page-control">
+        <button type="button" 
+                class="btn btn-success pull-right btn-new-item"
+                ng-click="showModal('#modal_room', {'id': 0, 'title': null,'icon': null})"
+                ><i class="fa fa-plus"></i> {{_t('lb_add_room')}}</button>
+            </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-3 col-sm-6 room-entry" id="panel_{{$index}}" ng-repeat="v in collection">
+            <div class="room-in">
+                <h3 class="entry-title"><span class="entry-title-text">{{v.title}}</span> 
+                            <a href="" 
+                                   ng-click="showModal('#modal_room', {'id': v.id, 'title': v.title,'icon': v.icon})"
+                                   ><i class="fa fa-pencil"></i></a>&nbsp;
+                                <a href="" 
+                                   ng-click="delete('#panel_' + $index, {'id': v.id},_t('lb_delete_confirm'))"
+                                   ><i class="fa fa-times"></i></a>
+                        </h3>
+                 <a href="" title="{{v.title}}" ng-click="showModal('#modal_room', {'id': v.id, 'title': v.title,'icon': v.icon})">
+                     <img class="room-image img-circle" ng-src="storage/img/rooms/{{v.icon}}" ng-show="v.icon" alt="{{v.title}}" />
+                     <img class="room-image img-circle" ng-src="storage/img/placeholder-img.png" ng-show="!v.icon" alt="{{v.title}}" />
+                 </a>
+             </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal_room" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">{{_t('lb_room')}}: {{input.title}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input name="title" id="title" type="text" class="form-control" placeholder="{{_t('lb_room_name')}}" value="{{input.title}}" ng-model="input.title" />
+                    </div>
+                    <div class="clearfix">
+                        <h4>Select an image</h4>
+                        <div class="modal-room-images" ng-repeat="v in defaultImages">
+                            <input type="radio" name="icon" value="{{v}}" ng-model="input.icon" ng-checked="input.icon == v" /><br />
+                            <img class="" ng-src="storage/img/rooms/{{v}}" alt="{{v}}" />
+                        </div>
+                    </div>
+                   <!-- <div class="form-group text-center">
+                        <button 
+                            ng-file-select="uploadImage($files)" 
+                            data-multiple="true"
+                            onclick="this.value = null" 
+                            id="btn_upload"
+                            class="btn btn-success" 
+                            >{{_t('lb_upload image')}}<input type="file" ng-file-select="uploadImage($files)" data-multiple="true" title="select file" onclick="this.value = null" class="upload-button" multiple="multiple" style="top: 0px; bottom: 0px; left: 0px; right: 0px; width: 100%; opacity: 0; position: absolute;"></button>
+                    </div>  
+                    <div class="progress" ng-show="upload.showProgress">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{upload.progressVal}}%;">
+
+                        </div>
+                    </div>
+                    <div class="form-control-static text-center">
+                        <img class="romm-image-preview" ng-src="storage/img/rooms/{{input.img}}" ng-show="input.img" />
+                    </div>-->
+                    <div class="room-assigned-block">
+                        <h4>{{_t('lb_devices_in_room')}}</h4>
+                        <div class="btn-device" id="device_assigned_{{$index}}"  ng-class="d.location == input.id ? '': 'hidden-device'" ng-repeat="d in devices">{{d.title}} <a href="" ng-click="removeDevice($index, '#device_assigned_' + $index, d.id)"><i class="fa fa-times text-danger"></i></a></div>
+                    </div>
+                    <div class="room-available-block">
+                        <h4 ng-clic_k="goDevice = !goDevice">{{_t('lb_available_devices')}}</h4>
+                        <div ng-show_="goDevice">
+                            <div class="btn-device" id="device_unassigned_{{$index}}" ng-class="d.location != input.id ? '': 'hidden-device'" ng-repeat="d in devices">{{d.title}} 
+                                <a href="" ng-click="assignDevice($index, '#device_unassigned_' + $index,d)"><i class="fa fa-plus text-success"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" 
+                            class="btn btn-primary" 
+                            data-dismiss="modal"
+                            ng-click="store(input)">{{_t('lb_save')}}</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{_t('lb_cancel')}}</button>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.Modal -->
+</div> <!-- /ng-controller --> 

@@ -2,7 +2,7 @@
  * Application factories
  * @author Martin Vach
  */
-var myAppFactory = angular.module('myAppFactory', ['ngResource']);
+var myAppFactory = angular.module('myAppFactory', []);
 
 /**
  * Caching the river...

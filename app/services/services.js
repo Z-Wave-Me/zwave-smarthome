@@ -445,7 +445,6 @@ myAppService.service('dataService', function($filter, myCache) {
             };
 
         });
-        //console.log(collection)
         return collection;
     }
     /**
@@ -464,7 +463,10 @@ myAppService.service('dataService', function($filter, myCache) {
             else {
                 inputType = 'text';
             }
+        }else{
+             inputType = cfg.inputType;
         }
+       
         return inputType;
     }
 

@@ -1,0 +1,26 @@
+<!-- Online app view -->
+<div class="row">
+    <div class="col-md-6 app-entry"  ng-repeat="v in collection">
+        <div class="app-entry-in">
+       <div class="row">
+            <div class="col-md-5">
+                 <h3>{{ v.instance_name}}</h3>
+                 <img class="apps-image" src="storage/img/apps/appimage.jpg" alt="{{ v.name}}"/>
+            </div>
+            <div class="col-md-7">
+               <strong>{{ v.app_name }}</strong>
+                <ul class="list-group">
+                    <li class="list-group-item"><i class="fa fa-user fa-lg"></i> <strong>{{ v.author}}</strong><br /> <a href="mailto:{{ v.email}}"><em>{{ v.email}}</em></a></li>
+                    <li class="list-group-item"><span title="{{v.description}}" tooltip>{{ v.description | cutText:true:50}}</span></li>
+                </ul>
+                <div>
+                     <a class="btn btn-primary" href="" ng-show="v.status">Deactivate</a>
+                          <a class="btn btn-info" href="" ng-show="!v.status"><i class="fa fa-refresh fa-lg"></i> Activate</a>
+                        <button class="btn btn-danger"><i class="fa fa-remove fa-lg"></i> Remove</button>
+                </div>
+               
+            </div>
+        </div>
+        </div>
+    </div>
+</div>

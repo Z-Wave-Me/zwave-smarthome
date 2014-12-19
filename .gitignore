@@ -5,3 +5,5 @@
 /app/core/config.js
 upload.php
 /app/css/.sass-cache/*
+/node_modules/*
+npm-debug.log

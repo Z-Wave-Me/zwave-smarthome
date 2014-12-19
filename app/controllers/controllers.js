@@ -789,7 +789,7 @@ myAppController.controller('AppModuleController', function($scope, $routeParams,
                     'params': instance.params,
                     'moduleInput': dataService.getModuleConfigInputs(module, instance.params,namespaces.data)
                 };
-                console.log($scope.input)
+                //console.log($scope.input)
                 $scope.showForm = true;
                  });
             });
