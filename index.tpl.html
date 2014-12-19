@@ -24,6 +24,8 @@
                         <a href="#elements" title="{{_t('nav_elements')}}" ng-class="isActive('elements')"><i class="fa fa-th"></i></a>
                         <a href="#rooms" title="{{_t('nav_rooms')}}" ng-class="isActive('location')"><i class="fa fa-th-large"></i></a>
                         <a href="#events" title="{{_t('nav_events')}}" ng-class="isActive('events')"><i class="fa fa-list-ul"></i></a>
+                        <span class="divider-vertical"></span>
+                        <span class="navi-time text-success"><i class="fa fa-clock-o"></i> <span id="update_time_tick"></span></span>
                     </div>
                 </div>
                 <div class="navbar-header">
@@ -67,16 +69,11 @@
                                 <li ng-class="isActive('about')"><a href="#about" data-collapse-navbar><i class="fa fa-file-image-o"></i> {{_t('nav_about')}}</a></li>
                             </ul>
                         </li>
-                        <li class="divider-vertical remove-margin"></li>
-                        <li><a href="" class="dropdown-toggle"><i class="fa fa-clock-o"></i> <span id="update_time_tick"></span></a></li>
                     </ul>
 
                 </div> <!-- /.navbar-collapse -->
             </div> <!-- /.container -->
         </div> <!-- /.navbar --> 
-
-        <!-- Response Container -->
-        <div id="respone_container" class="container"><div id="respone_container_inner"></div></div>
         <!-- Ang Content Container -->
         <div id="main_content" class="container" ng-view></div>
         <div class="clearfix"></div>
