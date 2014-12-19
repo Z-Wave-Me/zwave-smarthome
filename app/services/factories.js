@@ -14,7 +14,7 @@ myAppFactory.factory('myCache', function($cacheFactory) {
 /**
  * Main data factory
  */
-myAppFactory.factory('dataFactory', function($http, $interval, myCache, cfg) {
+myAppFactory.factory('dataFactory', function($http, $interval,$window,myCache, cfg) {
     var apiDataInterval;
     var enableCache = true;
     return({
@@ -90,14 +90,14 @@ myAppFactory.factory('dataFactory', function($http, $interval, myCache, cfg) {
      * Run command
      */
     function runCmd(cmd) {
-        var request = $http({
+        var request = {
             method: "get",
             url: cfg.server_url + cfg.api_url + "devices/" + cmd
-        });
-        return request.success(function(data) {
+        };
+        return $http(request).success(function(data) {
             console.log('SUCCESS:' + cfg.server_url + cfg.api_url + "devices/" + cmd);
-        }).error(function(error) {
-            handleError(error);
+        }).error(function(data, status, headers, config, statusText) {
+            handleError(data, status, headers, config, statusText);
 
         });
     }
@@ -109,16 +109,16 @@ myAppFactory.factory('dataFactory', function($http, $interval, myCache, cfg) {
     function  updateDeviceData(callback) {
         var time = Math.round(+new Date() / 1000);
         var refresh = function() {
-            var request = $http({
+            var request = {
                 method: "get",
                 url: cfg.server_url + cfg.api['devices'] + '?since=' + time
-            });
-            request.success(function(data) {
+            };
+            $http(request).success(function(data) {
                 time = data.data.updateTime;
                 //$('#update_time_tick').html($filter('getCurrentTime')(time));
                 return callback(data);
-            }).error(function() {
-                handleError();
+            }).error(function(data, status, headers, config, statusText) {
+                handleError(data, status, headers, config, statusText);
 
             });
         };
@@ -168,8 +168,8 @@ myAppFactory.factory('dataFactory', function($http, $interval, myCache, cfg) {
             return $http(request).success(function(data) {
                 myCache.put(cacheName, data);
                 return callback(data);
-            }).error(function(error) {
-                handleError(error);
+            }).error(function(data, status, headers, config, statusText) {
+                handleError(data, status, headers, config, statusText);
 
             });
         }
@@ -180,8 +180,8 @@ myAppFactory.factory('dataFactory', function($http, $interval, myCache, cfg) {
         //$('#respone_container').html('Loading').show();
         return $http(request).success(function(data) {
             return callback(data);
-        }).error(function(error) {
-            handlePostError(error);
+        }).error(function(data, status, headers, config, statusText) {
+            handlePostError(data, status, headers, config, statusText);
 
         });
     }
@@ -192,8 +192,8 @@ myAppFactory.factory('dataFactory', function($http, $interval, myCache, cfg) {
             if (target) {
                 $(target).fadeOut();
             }
-        }).error(function(data, error) {
-            handleDeleteError(data, error);
+        }).error(function(data, status, headers, config, statusText) {
+            handleDeleteError(data, status, headers, config, statusText);
         });
     }
 
@@ -201,32 +201,29 @@ myAppFactory.factory('dataFactory', function($http, $interval, myCache, cfg) {
     /**
      * Handle errors
      */
-    function handleError(error, message) {
-        var msg = (message ? message : 'Error handling data from server');
-        //$('#main_content').hide();
-        $('#respone_container').show();
-        $('#respone_container_inner').html('<div class="alert alert-danger alert-dismissable response-message"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> <i class="icon-ban-circle"></i> ' + msg + '</div>');
-        console.log('Error');
+    function handleError(data, status, headers, config, statusText) {
+        var msg = 'Can`t receive data from the remote server';
+        $('.navi-time').html('<i class="fa fa-minus-circle fa-lg text-danger"></i>');
+        $('#main_content').html('<div class="alert alert-danger alert-dismissable response-message"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> <i class="icon-ban-circle"></i> ' + msg + '</div>');
+        console.log(config);
         return;
 
 
     }
 
-    function handlePostError(error, message) {
-        var msg = (message ? message : 'Error saving data');
-        $('#respone_container').show();
-        $('#respone_container_inner').html('<div class="alert alert-danger alert-dismissable response-message"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> <i class="icon-ban-circle"></i> ' + msg + '</div>');
-        console.log(msg);
+    function handlePostError(data, status, headers, config, statusText) {
+        var msg = 'Can`t store data in the remote server';
+       $window.alert(msg);
+        console.log(config);
         return;
 
 
     }
 
-    function handleDeleteError(data, error, message) {
-        var msg = (message ? message : 'Error deleting data from server');
-        $('#respone_container').show();
-        $('#respone_container_inner').html('<div class="alert alert-danger alert-dismissable response-message"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> <i class="icon-ban-circle"></i> ' + msg + '</div>');
-        console.log(data);
+    function handleDeleteError(data, status, headers, config, statusText) {
+        var msg = 'Can`t delete data from the remote server';
+        $window.alert(msg);
+        console.log(config);
         return;
 
 

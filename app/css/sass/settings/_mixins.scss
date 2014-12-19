@@ -18,7 +18,7 @@
         border-color: lighten($brand-color-secondary, 20%);
 
     }
-    
+
 }
 // Gradient
 @mixin appGradient() {
@@ -61,14 +61,36 @@
             }
         }
         a{
-            padding: 0 10px;
+            padding: 0 8px !important;
 
         }
     }
 
+    .navi-time{
+        padding-left: 6px !important;
+        font-size: 90%;
+    }
+
+    #nav_collapse .dropdown-menu {
+        position: static;
+        float: none;
+        width: auto;
+        margin-top: 0;
+        background-color: transparent;
+        border: 0;
+        box-shadow: none;                
+        display: block !important;
+    }
     .navbar-collapse {
         padding-right: 25px;
         padding-left: 25px;
+    }
+
+    .navbar-toggle {
+        padding: 5px 6px;
+        }
+    .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
+        background-color: transparent;
     }
 
     .navbar-inverse .navbar-toggle {
@@ -100,6 +122,13 @@
     .navbar .divider-vertical{
         display: none;
     }
+    
+     /* Body
+    -------------------------------------------------- */
+    
+     .mobile-padding{
+         padding: 0 15px;
+     }
 
     .page-header{
         margin: 0 0 10px 0;
@@ -108,8 +137,6 @@
     .row-page{
         margin: 0;
     }
-
-
 
     .app-shadow{
         -webkit-box-shadow: none;
@@ -126,6 +153,9 @@
     .page-subtitle{
         padding: 0 10px;
         font-size: 16px;
+        font-weight: bold;
+        border-bottom: solid 1px $footer-border-color;
+        padding-bottom: 10px;
     }
     /* Images
     -------------------------------------------------- */
@@ -184,7 +214,7 @@
         text-align: left;
         padding: 10px;
     }
-    
+
     .widget-header{
         float: left;
         width: 70px;
@@ -205,7 +235,7 @@
             float: right !important;
         }
     }
-    
+
 
 
     /* Home */
