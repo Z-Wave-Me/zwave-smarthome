@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "name": "Home",
+        "description": "1. Profile description",
+        "color": "#6494bc",
+        "img": "profile-home.png"
+    },
+    {
+        "id": 2,
+        "name": "Away",
+        "description": "2. Profile description",
+        "color": "#80ad80",
+        "img": "profile-away.png"
+    },
+    {
+        "id": 3,
+        "name": "My Profile",
+         "description": "3. Profile description",
+        "color": "#dd976e",
+        "img": "profile-icon.png"
+    }
+]

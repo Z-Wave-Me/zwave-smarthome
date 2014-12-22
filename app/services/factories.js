@@ -14,9 +14,10 @@ myAppFactory.factory('myCache', function($cacheFactory) {
 /**
  * Main data factory
  */
-myAppFactory.factory('dataFactory', function($http, $interval,$window,myCache, cfg) {
+myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,myCache, cfg) {
     var apiDataInterval;
     var enableCache = true;
+    var updatedTime = Math.round(+new Date() / 1000);
     return({
         getApiData: getApiData,
         postApiData: postApiData,
@@ -107,15 +108,13 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,myCache, c
      * Get updated data from the device collection.
      */
     function  updateDeviceData(callback) {
-        var time = Math.round(+new Date() / 1000);
         var refresh = function() {
             var request = {
                 method: "get",
-                url: cfg.server_url + cfg.api['devices'] + '?since=' + time
+                url: cfg.server_url + cfg.api['devices'] + '?since=' +  updatedTime
             };
             $http(request).success(function(data) {
-                time = data.data.updateTime;
-                //$('#update_time_tick').html($filter('getCurrentTime')(time));
+                updateTimeTick(data.data.updateTime);
                 return callback(data);
             }).error(function(data, status, headers, config, statusText) {
                 handleError(data, status, headers, config, statusText);
@@ -166,6 +165,7 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,myCache, c
         } else {
             console.log('NOT CACHED: ' + cacheName);
             return $http(request).success(function(data) {
+                updateTimeTick($filter('hasNode')(data,'data.updateTime'));
                 myCache.put(cacheName, data);
                 return callback(data);
             }).error(function(data, status, headers, config, statusText) {
@@ -235,6 +235,16 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,myCache, c
     function setCache(enable) {
         enableCache = enable;
         return;
+    }
+    
+    
+    /**
+     * Update time tick
+     */
+    function updateTimeTick(time) {
+        time = (time || Math.round(+new Date() / 1000));
+        updatedTime = time;
+        $('#update_time_tick').html($filter('getCurrentTime')(time));
     }
 
 });

@@ -31,7 +31,7 @@
     <div class="table-responsive_">
        <table class="table table-report">
               <tbody>
-                <tr ng-repeat="v in demo | orderBy:predicate:reverse" id="{{ v.rowId}}">
+                <tr ng-repeat="v in batteries | orderBy:predicate:reverse" id="{{ v.rowId}}">
                     <td>
                         <span class="text-supp">#{{v.id}}</span>
                         <img class="report-img" src="storage/img/elements/toggleButton.png" alt="icon" ng-show="$index < 2" />

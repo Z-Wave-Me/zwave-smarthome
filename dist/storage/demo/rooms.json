@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "name": "Kitchen",
+        "img": "kitchen.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Bathroom",
+        "img": "bathroom.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Sleeping room",
+        "img": "sleeping_room.jpg"
+    },
+    {
+        "id": 4,
+        "name": "Living room",
+        "img": "living_room.jpg"
+    }
+]

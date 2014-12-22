@@ -4825,99 +4825,6 @@ angular.forEach(config_data,function(key,value) {
 
 
 /**
- * App settings and arrays
- * @author Martin Vach
- */
-
-var config_module = angular.module('myAppSettings', []);
-var settings_data = {
-    "settings": {
-        // Months
-        "months": {
-            "1": "January",
-            "2": "February",
-            "3": "March",
-            "4": "April",
-            "5": "May",
-            "6": "June",
-            "7": "July",
-            "8": "August",
-            "9": "September",
-            "10": "October",
-            "11": "November",
-            "12": "December"
-        },
-        // User navigation
-        "user_nav": {
-            1: {
-                "route": "#",
-                "label": "nav_profile",
-                "url": "profile",
-                "title": "",
-                "icon": "fa-smile-o"
-            },
-            2: {
-                "route": "#",
-                "label": "nav_courses",
-                "url": "courses",
-                "title": "",
-                "icon": ""
-            },
-            3: {
-                "route": "#",
-                "label": "nav_account",
-                "url": "account",
-                "title": "",
-                "icon": "",
-                "divider": 1
-            },
-            4: {
-                "route": "",
-                "label": "nav_logout",
-                "url": "/logout",
-                "title": "",
-                "icon": ""
-            }
-        },
-        // Profile submenu
-        "profile_submenu": {
-            1: {
-                "route": "#",
-                "label": "nav_profile",
-                "url": "profile"
-            },
-            2: {
-                "route": "#",
-                "label": "nav_interest",
-                "url": "interest"
-            },
-            3: {
-                "route": "#",
-                "label": "nav_contact",
-                "url": "contact"
-            },
-            4: {
-                "route": "#",
-                "label": "nav_address",
-                "url": "address"
-            },
-            5: {
-                "route": "#",
-                "label": "nav_experience",
-                "url": "experience"
-            },
-            6: {
-                "route": "#",
-                "label": "nav_account",
-                "url": "account"
-            }
-        }
-    }
-};
-angular.forEach(settings_data, function(key, value) {
-    config_module.constant(value, key);
-});
-/**
  * Application factories
  * @author Martin Vach
  */
@@ -4933,9 +4840,10 @@ myAppFactory.factory('myCache', function($cacheFactory) {
 /**
  * Main data factory
  */
-myAppFactory.factory('dataFactory', function($http, $interval,$window,myCache, cfg) {
+myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,myCache, cfg) {
     var apiDataInterval;
     var enableCache = true;
+    var updatedTime = Math.round(+new Date() / 1000);
     return({
         getApiData: getApiData,
         postApiData: postApiData,
@@ -5026,15 +4934,13 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,myCache, c
      * Get updated data from the device collection.
      */
     function  updateDeviceData(callback) {
-        var time = Math.round(+new Date() / 1000);
         var refresh = function() {
             var request = {
                 method: "get",
-                url: cfg.server_url + cfg.api['devices'] + '?since=' + time
+                url: cfg.server_url + cfg.api['devices'] + '?since=' +  updatedTime
             };
             $http(request).success(function(data) {
-                time = data.data.updateTime;
-                //$('#update_time_tick').html($filter('getCurrentTime')(time));
+                updateTimeTick(data.data.updateTime);
                 return callback(data);
             }).error(function(data, status, headers, config, statusText) {
                 handleError(data, status, headers, config, statusText);
@@ -5085,6 +4991,7 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,myCache, c
         } else {
             console.log('NOT CACHED: ' + cacheName);
             return $http(request).success(function(data) {
+                updateTimeTick($filter('hasNode')(data,'data.updateTime'));
                 myCache.put(cacheName, data);
                 return callback(data);
             }).error(function(data, status, headers, config, statusText) {
@@ -5154,6 +5061,16 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,myCache, c
     function setCache(enable) {
         enableCache = enable;
         return;
+    }
+    
+    
+    /**
+     * Update time tick
+     */
+    function updateTimeTick(time) {
+        time = (time || Math.round(+new Date() / 1000));
+        updatedTime = time;
+        $('#update_time_tick').html($filter('getCurrentTime')(time));
     }
 
 });
@@ -6329,7 +6246,6 @@ myApp.filter('uri', function($location) {
         }
     };
 });
-
 /**
  * Application controllers
  * @author Martin Vach
@@ -6771,19 +6687,9 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
 myAppController.controller('EventController', function($scope, $routeParams, dataFactory, dataService) {
     $scope.collection = [];
     $scope.eventLevel = [];
-    $scope.demo = [];
     $scope.reset = function() {
         $scope.collection = angular.copy([]);
     };
-    /**
-     * Load demo data
-     */
-    $scope.loadDemoData = function() {
-        dataFactory.demoData('events.json', function(data) {
-            $scope.demo = data.data.notifications;
-        });
-    };
-    //$scope.loadDemoData();
 
     /**
      * Load data into collection
@@ -7508,20 +7414,10 @@ myAppController.controller('RoomConfigController', function($scope, $window, $in
  * Network controller
  */
 myAppController.controller('NetworkController', function($scope, cfg, dataFactory, dataService) {
-    $scope.demo = [];
-    $scope.batteries = [];
+   $scope.batteries = [];
     $scope.reset = function() {
         $scope.batteries = angular.copy([]);
     };
-    /**
-     * Load data into collection
-     */
-    $scope.loadDemo = function() {
-        dataFactory.demoData('network_bateries.json', function(data) {
-            $scope.demo = data;
-        });
-    };
-    $scope.loadDemo();
 
     $scope.loadData = function() {
         dataFactory.getApiData('devices', function(data) {

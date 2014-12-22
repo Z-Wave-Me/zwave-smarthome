@@ -439,19 +439,9 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
 myAppController.controller('EventController', function($scope, $routeParams, dataFactory, dataService) {
     $scope.collection = [];
     $scope.eventLevel = [];
-    $scope.demo = [];
     $scope.reset = function() {
         $scope.collection = angular.copy([]);
     };
-    /**
-     * Load demo data
-     */
-    $scope.loadDemoData = function() {
-        dataFactory.demoData('events.json', function(data) {
-            $scope.demo = data.data.notifications;
-        });
-    };
-    //$scope.loadDemoData();
 
     /**
      * Load data into collection
@@ -1176,20 +1166,10 @@ myAppController.controller('RoomConfigController', function($scope, $window, $in
  * Network controller
  */
 myAppController.controller('NetworkController', function($scope, cfg, dataFactory, dataService) {
-    $scope.demo = [];
-    $scope.batteries = [];
+   $scope.batteries = [];
     $scope.reset = function() {
         $scope.batteries = angular.copy([]);
     };
-    /**
-     * Load data into collection
-     */
-    $scope.loadDemo = function() {
-        dataFactory.demoData('network_bateries.json', function(data) {
-            $scope.demo = data;
-        });
-    };
-    $scope.loadDemo();
 
     $scope.loadData = function() {
         dataFactory.getApiData('devices', function(data) {

@@ -8,6 +8,7 @@ var config_data = {
         'app_type': 'web',
         // Server base url
         'server_url': '/',
+        //'server_url': 'http://zwave.dyndns.org:8083/',
         // Interval in miliseconds to refresh data
         'interval': 3000,
         // List of API links
@@ -15,9 +16,9 @@ var config_data = {
             'devices': 'ZAutomation/api/v1/devices',
             'profiles': 'ZAutomation/api/v1/profiles',
             'locations': 'ZAutomation/api/v1/locations',
-            'notifications': '/ZAutomation/api/v1/notifications',
+            'notifications': 'ZAutomation/api/v1/notifications',
             'modules': 'ZAutomation/api/v1/modules',
-            'modules_categories': '/ZAutomation/api/v1/modules/categories',
+            'modules_categories': 'ZAutomation/api/v1/modules/categories',
             'instances': 'ZAutomation/api/v1/instances',
             'namespaces': 'ZAutomation/api/v1/namespaces'
         },

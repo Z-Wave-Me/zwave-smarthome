@@ -39,43 +39,5 @@
             </tbody>
         </table>
     </div>
-    <!-- Demo data -->
-    <div class="table-responsive_" ng-show="demo">
-        <br /><br /><h3>Demo data output</h3>
-        <table class="table table-report table-events">
-            <tbody>
-                <tr ng-repeat="v in demo| limitTo:30" id="{{ v.rowId}}">
-                    <td class="td-img">
-                        <span class="text-supp" title="{{v.timestamp| date:'dd.MM.yyyy H:mm'}}" ng-if="$index <= 9" >{{v.timestamp| date:'H:mm'}}</span>
-                        <span class="text-supp" title="{{v.timestamp| date:'dd.MM.yyyy H:mm'}}" ng-if="$index > 9" >-1 day</span>
-                        <img class="report-img" src="storage/img/events/icon-1.png" alt="icon" ng-show="v.level == 'error'"/>
-                        <img class="report-img" src="storage/img/events/icon-2.png" alt="icon" ng-show="v.level != 'error'"/>
-                    </td>
-                    <td>
-                        <span class="report-message">{{v.message}}</span>
-                    </td>
-                   <td class="td-action">
-                         <!--<select class="form-control">
-                        <option>Hide all events from this source</option>
-                        <option>Only show events from this source</option>
-                        <option>Dont`t show events from this source in this profile anymore</option>
-                    </select>-->
-                        <div class="btn-group">
-                    <button type="button" class="btn btn-default">Action</button>
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        <span class="caret"></span>
-                        <span class="sr-only">Toggle Dropdown</span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a href="">Hide all events from this source</a></li>
-                        <li><a href="">Only show events from this source</a></li>
-                        <li><a href="">Dont`t show events from this source in this profile anymore</a></li>
-                    </ul>
-                </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
     <div ng-include="'app/views/partials/footer_events.html'"></div>
 </div> <!-- /ng-controller --> 
