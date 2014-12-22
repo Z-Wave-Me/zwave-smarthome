@@ -1,0 +1,34 @@
+<!-- Zwave device view -->
+<div class="device-logo">
+  <img class="apps-image" ng-src="app/img/logo-z-wave.png" alt="Logo" />  
+</div>
+<div class="table-responsive_" ng-hide="includeDevice">
+        <table class="table table-report table-events">
+            <tbody>
+                <tr ng-repeat="v in zwaveDevices">
+                    <td class="td-img">
+                        <img class="report-img" ng-src="storage/img/devices/{{v.image}}" alt="img" />
+                    </td>
+                    <td>
+                        <strong ng-bind="v.name"></strong>  <span ng-bind="v.type"></span>
+                    </td>
+                   <td class="td-action">
+                       <a href="#devices/zwave/{{v.name}}" class="btn btn-primary">Include device</a>
+                           
+                   </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+<div ng-show="includeDevice">
+    <div class="alert alert-info">
+    The controller is ready to include the device <strong ng-bind="includeDevice.name">NAME</strong> into the network. 
+</div>
+    <p>Please execute: <span ng-bind="includeDevice.include_string"></span></p>
+    <div class="alert alert-warning"><i class="fa fa-spinner fa-spin"></i> {{_t('lb_device_found')}}</div>
+    <button class="btn btn-danger">Abort inclusion</button>
+    
+    
+</div>
+

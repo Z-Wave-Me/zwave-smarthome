@@ -1,14 +1,29 @@
 [
     {
         "id": 1,
-        "name": "Device 1"
+        "name": "VIS_ZS6101",
+        "type": "Smoke Detector",
+        "image": "12672_0.jpg",
+        "include_string": "Hit any of the four buttons once",
+        "wakeup_string": "Push all four buttons for 5 seconds until the LED blinks green, Now hit button 2 (upper right)",
+        "battery": "3 * CR123A"
     },
     {
         "id": 2,
-        "name": "Device 2"
+        "name": "DUW_064398",
+        "type": "Wall Plugs",
+        "image": "659_0.png",
+        "include_string": "Hit any of the four buttons once",
+        "wakeup_string": "Push all four buttons for 5 seconds until the LED blinks green, Now hit button 2 (upper right)",
+        "battery": "no"
     },
     {
         "id": 3,
-        "name": "Device 3"
+        "name": "DUW_054313",
+        "type": "Switch",
+        "image": "771_0.png",
+        "include_string": "Hit any of the four buttons once",
+        "wakeup_string": "Push all four buttons for 5 seconds until the LED blinks green, Now hit button 2 (upper right)",
+        "battery": "no"
     }
 ]

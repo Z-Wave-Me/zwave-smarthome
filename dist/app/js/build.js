@@ -4788,7 +4788,7 @@ myApp.config(['$routeProvider',
                     templateUrl: 'app/views/config/app_module.html'
                 }).
                 //Devices
-                when('/devices', {
+                when('/devices/:type?/:device?', {
                     templateUrl: 'app/views/config/devices.html'
                 }).
                 //Rooms
@@ -5031,7 +5031,7 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,my
     function handleError(data, status, headers, config, statusText) {
         var msg = 'Can`t receive data from the remote server';
         $('.navi-time').html('<i class="fa fa-minus-circle fa-lg text-danger"></i>');
-        $('#main_content').html('<div class="alert alert-danger alert-dismissable response-message"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> <i class="icon-ban-circle"></i> ' + msg + '</div>');
+        //$('#main_content').html('<div class="alert alert-danger alert-dismissable response-message"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> <i class="icon-ban-circle"></i> ' + msg + '</div>');
         console.log(config);
         return;
 
@@ -7135,8 +7135,10 @@ myAppController.controller('AppModuleController', function($scope, $routeParams,
 /**
  * Device controller
  */
-myAppController.controller('DeviceController', function($scope, $window, $interval, dataFactory) {
-    $scope.collection = [];
+myAppController.controller('DeviceController', function($scope, $window, $interval,$routeParams, dataFactory,dataService) {
+    $scope.zwaveDevices = [];
+    $scope.deviceVendor = false;
+    $scope.includeDevice = false;
     $scope.status = 1;
     $scope.status2 = 1;
     $scope.goDevice = false;
@@ -7147,12 +7149,18 @@ myAppController.controller('DeviceController', function($scope, $window, $interv
     $scope.reset = function() {
         $scope.collection = angular.copy([]);
     };
+     if (angular.isDefined($routeParams.type)) {
+         $scope.deviceVendor = $routeParams.type;
+     }
     /**
      * Load data into collection
      */
     $scope.loadData = function() {
         dataFactory.demoData('devices.json', function(data) {
-            $scope.collection = data;
+            $scope.zwaveDevices = data;
+            if (angular.isDefined($routeParams.device)) {
+                $scope.includeDevice = dataService.getRowBy(data, 'name', $routeParams.device);
+     }
         });
     };
     $scope.loadData();

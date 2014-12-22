@@ -886,8 +886,10 @@ myAppController.controller('AppModuleController', function($scope, $routeParams,
 /**
  * Device controller
  */
-myAppController.controller('DeviceController', function($scope, $window, $interval, dataFactory) {
-    $scope.collection = [];
+myAppController.controller('DeviceController', function($scope, $window, $interval,$routeParams, dataFactory,dataService) {
+    $scope.zwaveDevices = [];
+    $scope.deviceVendor = false;
+    $scope.includeDevice = false;
     $scope.status = 1;
     $scope.status2 = 1;
     $scope.goDevice = false;
@@ -898,12 +900,18 @@ myAppController.controller('DeviceController', function($scope, $window, $interv
     $scope.reset = function() {
         $scope.collection = angular.copy([]);
     };
+     if (angular.isDefined($routeParams.type)) {
+         $scope.deviceVendor = $routeParams.type;
+     }
     /**
      * Load data into collection
      */
     $scope.loadData = function() {
         dataFactory.demoData('devices.json', function(data) {
-            $scope.collection = data;
+            $scope.zwaveDevices = data;
+            if (angular.isDefined($routeParams.device)) {
+                $scope.includeDevice = dataService.getRowBy(data, 'name', $routeParams.device);
+     }
         });
     };
     $scope.loadData();

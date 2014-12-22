@@ -205,7 +205,7 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,my
     function handleError(data, status, headers, config, statusText) {
         var msg = 'Can`t receive data from the remote server';
         $('.navi-time').html('<i class="fa fa-minus-circle fa-lg text-danger"></i>');
-        $('#main_content').html('<div class="alert alert-danger alert-dismissable response-message"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> <i class="icon-ban-circle"></i> ' + msg + '</div>');
+        //$('#main_content').html('<div class="alert alert-danger alert-dismissable response-message"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> <i class="icon-ban-circle"></i> ' + msg + '</div>');
         console.log(config);
         return;
 

@@ -7,8 +7,8 @@ var config_data = {
         // Application type: web/app
         'app_type': 'web',
         // Server base url
-        'server_url': '/',
-        //'server_url': 'http://zwave.dyndns.org:8083/',
+        //'server_url': '/',
+        'server_url': 'http://zwave.dyndns.org:8083/',
         // Interval in miliseconds to refresh data
         'interval': 3000,
         // List of API links
@@ -38,6 +38,8 @@ var config_data = {
         'lang_list': ["en", "de"],
         // List of profile colors
         'profile_colors': ['#6C7A89', '#3071A9', '#449D44', '#31B0D5', '#F0AD4E', '#D9534F'],
+         // Device vendors
+        'device_vendors': ['zwave', 'enocean'],
         // Results per page
         'page_results': 12
 

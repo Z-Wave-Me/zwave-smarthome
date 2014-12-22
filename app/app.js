@@ -48,7 +48,7 @@ myApp.config(['$routeProvider',
                     templateUrl: 'app/views/config/app_module.html'
                 }).
                 //Devices
-                when('/devices', {
+                when('/devices/:type?/:device?', {
                     templateUrl: 'app/views/config/devices.html'
                 }).
                 //Rooms
