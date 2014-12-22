@@ -7,8 +7,8 @@ var config_data = {
         // Application type: web/app
         'app_type': 'web',
         // Server base url
-        'server_url': '/',
-        //'server_url': 'http://zwave.dyndns.org:8083/',
+        //'server_url': '/',
+        'server_url': 'http://zwave.dyndns.org:8083/',
         // Interval in miliseconds to refresh data
         'interval': 3000,
         // List of API links

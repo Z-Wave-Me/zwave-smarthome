@@ -1,0 +1,3327 @@
+{
+    "data": {
+        "updateTime": 1417679179,
+        "notifications": [{
+                "id": 1412957238641,
+                "timestamp": "2014-10-10T16:07:18.641Z",
+                "level": "error",
+                "message": "Failed to load module ZWaveDeadDetection because ZWave was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1412957239016,
+                "timestamp": "2014-10-10T16:07:19.016Z",
+                "level": "error",
+                "message": "Failed to load module ZWaveGate because ZWave was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1412957301601,
+                "timestamp": "2014-10-10T16:08:21.601Z",
+                "level": "error",
+                "message": "Can not init module ZWave: Error: Binding with name 'zway' already exists",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1412957301984,
+                "timestamp": "2014-10-10T16:08:21.984Z",
+                "level": "error",
+                "message": "Can not init module ZWave: Error: Binding with name 'zway' already exists",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1412957568745,
+                "timestamp": "2014-10-10T16:12:48.745Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 25 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957568865,
+                "timestamp": "2014-10-10T16:12:48.865Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 26 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957568886,
+                "timestamp": "2014-10-10T16:12:48.886Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 26 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957568992,
+                "timestamp": "2014-10-10T16:12:48.992Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 27 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957569105,
+                "timestamp": "2014-10-10T16:12:49.105Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 27 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957569164,
+                "timestamp": "2014-10-10T16:12:49.164Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 28 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957569220,
+                "timestamp": "2014-10-10T16:12:49.220Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 28 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957569228,
+                "timestamp": "2014-10-10T16:12:49.228Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 29 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957569281,
+                "timestamp": "2014-10-10T16:12:49.281Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 29 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957569340,
+                "timestamp": "2014-10-10T16:12:49.340Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 30 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957569394,
+                "timestamp": "2014-10-10T16:12:49.394Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 30 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957569450,
+                "timestamp": "2014-10-10T16:12:49.450Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 31 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957569512,
+                "timestamp": "2014-10-10T16:12:49.512Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 31 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957569565,
+                "timestamp": "2014-10-10T16:12:49.565Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 32 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957569620,
+                "timestamp": "2014-10-10T16:12:49.620Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 32 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957569658,
+                "timestamp": "2014-10-10T16:12:49.658Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 33 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957569710,
+                "timestamp": "2014-10-10T16:12:49.710Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 33 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957569766,
+                "timestamp": "2014-10-10T16:12:49.766Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 34 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957569822,
+                "timestamp": "2014-10-10T16:12:49.822Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 34 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957569877,
+                "timestamp": "2014-10-10T16:12:49.877Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 35 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957569932,
+                "timestamp": "2014-10-10T16:12:49.932Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 35 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957569988,
+                "timestamp": "2014-10-10T16:12:49.988Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 36 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957570048,
+                "timestamp": "2014-10-10T16:12:50.048Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 36 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957570102,
+                "timestamp": "2014-10-10T16:12:50.102Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 37 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957570166,
+                "timestamp": "2014-10-10T16:12:50.166Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 37 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957570175,
+                "timestamp": "2014-10-10T16:12:50.175Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 38 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957570188,
+                "timestamp": "2014-10-10T16:12:50.188Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 38 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957570202,
+                "timestamp": "2014-10-10T16:12:50.202Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 39 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957570210,
+                "timestamp": "2014-10-10T16:12:50.210Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 39 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957570224,
+                "timestamp": "2014-10-10T16:12:50.224Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 40 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957570237,
+                "timestamp": "2014-10-10T16:12:50.237Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 40 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957570244,
+                "timestamp": "2014-10-10T16:12:50.244Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 41 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957570305,
+                "timestamp": "2014-10-10T16:12:50.305Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 41 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957570361,
+                "timestamp": "2014-10-10T16:12:50.361Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 42 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957570422,
+                "timestamp": "2014-10-10T16:12:50.422Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 42 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957570478,
+                "timestamp": "2014-10-10T16:12:50.478Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 43 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957570532,
+                "timestamp": "2014-10-10T16:12:50.532Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 43 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957570592,
+                "timestamp": "2014-10-10T16:12:50.592Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 44 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957570649,
+                "timestamp": "2014-10-10T16:12:50.649Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 44 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957570705,
+                "timestamp": "2014-10-10T16:12:50.705Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 45 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957570766,
+                "timestamp": "2014-10-10T16:12:50.766Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 45 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957570821,
+                "timestamp": "2014-10-10T16:12:50.821Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 46 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957570873,
+                "timestamp": "2014-10-10T16:12:50.873Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 46 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957570929,
+                "timestamp": "2014-10-10T16:12:50.929Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 47 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957570996,
+                "timestamp": "2014-10-10T16:12:50.996Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 47 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957571051,
+                "timestamp": "2014-10-10T16:12:51.051Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 48 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957571108,
+                "timestamp": "2014-10-10T16:12:51.108Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 48 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957571166,
+                "timestamp": "2014-10-10T16:12:51.166Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 49 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957571218,
+                "timestamp": "2014-10-10T16:12:51.218Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 49 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957571274,
+                "timestamp": "2014-10-10T16:12:51.274Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 50 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957571331,
+                "timestamp": "2014-10-10T16:12:51.331Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 50 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957571393,
+                "timestamp": "2014-10-10T16:12:51.393Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 51 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957571450,
+                "timestamp": "2014-10-10T16:12:51.450Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 51 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957571508,
+                "timestamp": "2014-10-10T16:12:51.508Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 52 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957571560,
+                "timestamp": "2014-10-10T16:12:51.560Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 52 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957571615,
+                "timestamp": "2014-10-10T16:12:51.615Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 53 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957571670,
+                "timestamp": "2014-10-10T16:12:51.670Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 53 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957571730,
+                "timestamp": "2014-10-10T16:12:51.730Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 54 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957571785,
+                "timestamp": "2014-10-10T16:12:51.785Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 54 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957571841,
+                "timestamp": "2014-10-10T16:12:51.841Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 55 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957571901,
+                "timestamp": "2014-10-10T16:12:51.901Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 55 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957572153,
+                "timestamp": "2014-10-10T16:12:52.153Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 56 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957572266,
+                "timestamp": "2014-10-10T16:12:52.266Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 56 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957572325,
+                "timestamp": "2014-10-10T16:12:52.325Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 57 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957572382,
+                "timestamp": "2014-10-10T16:12:52.382Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 57 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957572439,
+                "timestamp": "2014-10-10T16:12:52.439Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 58 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957572498,
+                "timestamp": "2014-10-10T16:12:52.498Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 58 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957572557,
+                "timestamp": "2014-10-10T16:12:52.557Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 59 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957572616,
+                "timestamp": "2014-10-10T16:12:52.616Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 59 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957572670,
+                "timestamp": "2014-10-10T16:12:52.670Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 60 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957572729,
+                "timestamp": "2014-10-10T16:12:52.729Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 60 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957572783,
+                "timestamp": "2014-10-10T16:12:52.783Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 61 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957572838,
+                "timestamp": "2014-10-10T16:12:52.838Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 61 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957572900,
+                "timestamp": "2014-10-10T16:12:52.900Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 62 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957572958,
+                "timestamp": "2014-10-10T16:12:52.958Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 62 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957573012,
+                "timestamp": "2014-10-10T16:12:53.012Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 63 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957573071,
+                "timestamp": "2014-10-10T16:12:53.071Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 63 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957573101,
+                "timestamp": "2014-10-10T16:12:53.101Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 64 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957573117,
+                "timestamp": "2014-10-10T16:12:53.117Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 64 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957573179,
+                "timestamp": "2014-10-10T16:12:53.179Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 65 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957573188,
+                "timestamp": "2014-10-10T16:12:53.188Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 65 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957573253,
+                "timestamp": "2014-10-10T16:12:53.253Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 66 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957573263,
+                "timestamp": "2014-10-10T16:12:53.263Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 66 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957573329,
+                "timestamp": "2014-10-10T16:12:53.329Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 67 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957573339,
+                "timestamp": "2014-10-10T16:12:53.339Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 67 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957573398,
+                "timestamp": "2014-10-10T16:12:53.398Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 68 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957573419,
+                "timestamp": "2014-10-10T16:12:53.419Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 68 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957573475,
+                "timestamp": "2014-10-10T16:12:53.475Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 69 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957573498,
+                "timestamp": "2014-10-10T16:12:53.498Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 69 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957573554,
+                "timestamp": "2014-10-10T16:12:53.554Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 70 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957573564,
+                "timestamp": "2014-10-10T16:12:53.564Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 70 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957573626,
+                "timestamp": "2014-10-10T16:12:53.626Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 71 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957573636,
+                "timestamp": "2014-10-10T16:12:53.636Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 71 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957573698,
+                "timestamp": "2014-10-10T16:12:53.698Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 72 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957573718,
+                "timestamp": "2014-10-10T16:12:53.718Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 72 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957573783,
+                "timestamp": "2014-10-10T16:12:53.783Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 73 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957573835,
+                "timestamp": "2014-10-10T16:12:53.835Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 73 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957573894,
+                "timestamp": "2014-10-10T16:12:53.894Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 74 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957574010,
+                "timestamp": "2014-10-10T16:12:54.010Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 74 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957574076,
+                "timestamp": "2014-10-10T16:12:54.076Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 75 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957574131,
+                "timestamp": "2014-10-10T16:12:54.131Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 75 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957574192,
+                "timestamp": "2014-10-10T16:12:54.192Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 76 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957574248,
+                "timestamp": "2014-10-10T16:12:54.248Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 76 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957574310,
+                "timestamp": "2014-10-10T16:12:54.310Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 77 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957574362,
+                "timestamp": "2014-10-10T16:12:54.362Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 77 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957574430,
+                "timestamp": "2014-10-10T16:12:54.430Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 78 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957574490,
+                "timestamp": "2014-10-10T16:12:54.490Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 78 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957574553,
+                "timestamp": "2014-10-10T16:12:54.553Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 79 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957574605,
+                "timestamp": "2014-10-10T16:12:54.605Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 79 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957574659,
+                "timestamp": "2014-10-10T16:12:54.659Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 80 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957574721,
+                "timestamp": "2014-10-10T16:12:54.721Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 80 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957574777,
+                "timestamp": "2014-10-10T16:12:54.777Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 81 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957574836,
+                "timestamp": "2014-10-10T16:12:54.836Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 81 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957574897,
+                "timestamp": "2014-10-10T16:12:54.897Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 82 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957574954,
+                "timestamp": "2014-10-10T16:12:54.954Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 82 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957575010,
+                "timestamp": "2014-10-10T16:12:55.010Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 83 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957575072,
+                "timestamp": "2014-10-10T16:12:55.072Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 83 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957575127,
+                "timestamp": "2014-10-10T16:12:55.127Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 84 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957575189,
+                "timestamp": "2014-10-10T16:12:55.189Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 84 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957575242,
+                "timestamp": "2014-10-10T16:12:55.242Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 85 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957575308,
+                "timestamp": "2014-10-10T16:12:55.308Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 85 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957575362,
+                "timestamp": "2014-10-10T16:12:55.362Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 86 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957575373,
+                "timestamp": "2014-10-10T16:12:55.373Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 86 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957575402,
+                "timestamp": "2014-10-10T16:12:55.402Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 87 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957575434,
+                "timestamp": "2014-10-10T16:12:55.434Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 87 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957575446,
+                "timestamp": "2014-10-10T16:12:55.446Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 88 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957575476,
+                "timestamp": "2014-10-10T16:12:55.476Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 88 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957575504,
+                "timestamp": "2014-10-10T16:12:55.504Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 89 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957575516,
+                "timestamp": "2014-10-10T16:12:55.516Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 89 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957575544,
+                "timestamp": "2014-10-10T16:12:55.544Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 90 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957575575,
+                "timestamp": "2014-10-10T16:12:55.575Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 90 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957575588,
+                "timestamp": "2014-10-10T16:12:55.588Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 91 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957575621,
+                "timestamp": "2014-10-10T16:12:55.621Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 91 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957575653,
+                "timestamp": "2014-10-10T16:12:55.653Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 92 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957575665,
+                "timestamp": "2014-10-10T16:12:55.665Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 92 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957575697,
+                "timestamp": "2014-10-10T16:12:55.697Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 93 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957575716,
+                "timestamp": "2014-10-10T16:12:55.716Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 93 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957575738,
+                "timestamp": "2014-10-10T16:12:55.738Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 94 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957575767,
+                "timestamp": "2014-10-10T16:12:55.767Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 94 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957575793,
+                "timestamp": "2014-10-10T16:12:55.793Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 95 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957575821,
+                "timestamp": "2014-10-10T16:12:55.821Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 95 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957575849,
+                "timestamp": "2014-10-10T16:12:55.849Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 96 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957575862,
+                "timestamp": "2014-10-10T16:12:55.862Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 96 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957575891,
+                "timestamp": "2014-10-10T16:12:55.891Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 97 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957575918,
+                "timestamp": "2014-10-10T16:12:55.918Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 97 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957575937,
+                "timestamp": "2014-10-10T16:12:55.937Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 98 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957575965,
+                "timestamp": "2014-10-10T16:12:55.965Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 98 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957575988,
+                "timestamp": "2014-10-10T16:12:55.988Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 99 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957576016,
+                "timestamp": "2014-10-10T16:12:56.016Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 99 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957576043,
+                "timestamp": "2014-10-10T16:12:56.043Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 100 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957576071,
+                "timestamp": "2014-10-10T16:12:56.071Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 100 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957576098,
+                "timestamp": "2014-10-10T16:12:56.098Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 101 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957576129,
+                "timestamp": "2014-10-10T16:12:56.129Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 101 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957576158,
+                "timestamp": "2014-10-10T16:12:56.158Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 102 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957576182,
+                "timestamp": "2014-10-10T16:12:56.182Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 102 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957576210,
+                "timestamp": "2014-10-10T16:12:56.210Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 103 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957576229,
+                "timestamp": "2014-10-10T16:12:56.229Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 103 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957576253,
+                "timestamp": "2014-10-10T16:12:56.253Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 104 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957576286,
+                "timestamp": "2014-10-10T16:12:56.286Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 104 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957576317,
+                "timestamp": "2014-10-10T16:12:56.317Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 105 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957576342,
+                "timestamp": "2014-10-10T16:12:56.342Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 105 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957576374,
+                "timestamp": "2014-10-10T16:12:56.374Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 106 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957576402,
+                "timestamp": "2014-10-10T16:12:56.402Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 106 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957576435,
+                "timestamp": "2014-10-10T16:12:56.435Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 107 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957576455,
+                "timestamp": "2014-10-10T16:12:56.455Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 107 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957576492,
+                "timestamp": "2014-10-10T16:12:56.492Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 108 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957576509,
+                "timestamp": "2014-10-10T16:12:56.509Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 108 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957576538,
+                "timestamp": "2014-10-10T16:12:56.538Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 109 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957576567,
+                "timestamp": "2014-10-10T16:12:56.567Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 109 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957576583,
+                "timestamp": "2014-10-10T16:12:56.583Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 110 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957576616,
+                "timestamp": "2014-10-10T16:12:56.616Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 110 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957576653,
+                "timestamp": "2014-10-10T16:12:56.653Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 111 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957576674,
+                "timestamp": "2014-10-10T16:12:56.674Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 111 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957576699,
+                "timestamp": "2014-10-10T16:12:56.699Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 112 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957576728,
+                "timestamp": "2014-10-10T16:12:56.728Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 112 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957576754,
+                "timestamp": "2014-10-10T16:12:56.754Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 113 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957576783,
+                "timestamp": "2014-10-10T16:12:56.783Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 113 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957576858,
+                "timestamp": "2014-10-10T16:12:56.858Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 114 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957576919,
+                "timestamp": "2014-10-10T16:12:56.919Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 114 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957577413,
+                "timestamp": "2014-10-10T16:12:57.413Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 115 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957577443,
+                "timestamp": "2014-10-10T16:12:57.443Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 115 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957577473,
+                "timestamp": "2014-10-10T16:12:57.473Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 116 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957577502,
+                "timestamp": "2014-10-10T16:12:57.502Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 116 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957577532,
+                "timestamp": "2014-10-10T16:12:57.532Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 117 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957577558,
+                "timestamp": "2014-10-10T16:12:57.558Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 117 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957577631,
+                "timestamp": "2014-10-10T16:12:57.631Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 118 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957577660,
+                "timestamp": "2014-10-10T16:12:57.660Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 118 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957577694,
+                "timestamp": "2014-10-10T16:12:57.694Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 119 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957577732,
+                "timestamp": "2014-10-10T16:12:57.732Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 119 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957577761,
+                "timestamp": "2014-10-10T16:12:57.761Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 120 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957577788,
+                "timestamp": "2014-10-10T16:12:57.788Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 120 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957577841,
+                "timestamp": "2014-10-10T16:12:57.841Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 121 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957577878,
+                "timestamp": "2014-10-10T16:12:57.878Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 121 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957577909,
+                "timestamp": "2014-10-10T16:12:57.909Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 122 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957577940,
+                "timestamp": "2014-10-10T16:12:57.940Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 122 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957577970,
+                "timestamp": "2014-10-10T16:12:57.970Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 123 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957577998,
+                "timestamp": "2014-10-10T16:12:57.998Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 123 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957578069,
+                "timestamp": "2014-10-10T16:12:58.069Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 124 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957578092,
+                "timestamp": "2014-10-10T16:12:58.092Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 124 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957578130,
+                "timestamp": "2014-10-10T16:12:58.130Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 125 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957578152,
+                "timestamp": "2014-10-10T16:12:58.152Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 125 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957578191,
+                "timestamp": "2014-10-10T16:12:58.191Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 126 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957578219,
+                "timestamp": "2014-10-10T16:12:58.219Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 126 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957578280,
+                "timestamp": "2014-10-10T16:12:58.280Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 127 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957578307,
+                "timestamp": "2014-10-10T16:12:58.307Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 127 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957578350,
+                "timestamp": "2014-10-10T16:12:58.350Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 128 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957578380,
+                "timestamp": "2014-10-10T16:12:58.380Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 128 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957578412,
+                "timestamp": "2014-10-10T16:12:58.412Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 129 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957578442,
+                "timestamp": "2014-10-10T16:12:58.442Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 129 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957578509,
+                "timestamp": "2014-10-10T16:12:58.509Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 130 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957578540,
+                "timestamp": "2014-10-10T16:12:58.540Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 130 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957578575,
+                "timestamp": "2014-10-10T16:12:58.575Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 131 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957578607,
+                "timestamp": "2014-10-10T16:12:58.607Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 131 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957578639,
+                "timestamp": "2014-10-10T16:12:58.639Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 132 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957578658,
+                "timestamp": "2014-10-10T16:12:58.658Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 132 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957578718,
+                "timestamp": "2014-10-10T16:12:58.718Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 133 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957578759,
+                "timestamp": "2014-10-10T16:12:58.759Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 133 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957578783,
+                "timestamp": "2014-10-10T16:12:58.783Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 134 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957578820,
+                "timestamp": "2014-10-10T16:12:58.820Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 134 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957578852,
+                "timestamp": "2014-10-10T16:12:58.852Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 135 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957578878,
+                "timestamp": "2014-10-10T16:12:58.878Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 135 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957579481,
+                "timestamp": "2014-10-10T16:12:59.481Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 136 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957579543,
+                "timestamp": "2014-10-10T16:12:59.543Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 136 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957579599,
+                "timestamp": "2014-10-10T16:12:59.599Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 137 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957579661,
+                "timestamp": "2014-10-10T16:12:59.661Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 137 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957579722,
+                "timestamp": "2014-10-10T16:12:59.722Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 138 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957579779,
+                "timestamp": "2014-10-10T16:12:59.779Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 138 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957579840,
+                "timestamp": "2014-10-10T16:12:59.840Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 139 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957579899,
+                "timestamp": "2014-10-10T16:12:59.899Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 139 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957579959,
+                "timestamp": "2014-10-10T16:12:59.959Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 140 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957580017,
+                "timestamp": "2014-10-10T16:13:00.017Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 140 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957580079,
+                "timestamp": "2014-10-10T16:13:00.079Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 141 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957580140,
+                "timestamp": "2014-10-10T16:13:00.140Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 141 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957580203,
+                "timestamp": "2014-10-10T16:13:00.203Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 142 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957580261,
+                "timestamp": "2014-10-10T16:13:00.261Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 142 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957580294,
+                "timestamp": "2014-10-10T16:13:00.294Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 143 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957580351,
+                "timestamp": "2014-10-10T16:13:00.351Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 143 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957580412,
+                "timestamp": "2014-10-10T16:13:00.412Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 144 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957580470,
+                "timestamp": "2014-10-10T16:13:00.470Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 144 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957580528,
+                "timestamp": "2014-10-10T16:13:00.528Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 145 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957580585,
+                "timestamp": "2014-10-10T16:13:00.585Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 145 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957580694,
+                "timestamp": "2014-10-10T16:13:00.694Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 146 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957580754,
+                "timestamp": "2014-10-10T16:13:00.754Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 146 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957580780,
+                "timestamp": "2014-10-10T16:13:00.780Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 147 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957580836,
+                "timestamp": "2014-10-10T16:13:00.836Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 147 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957580945,
+                "timestamp": "2014-10-10T16:13:00.945Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 148 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957581009,
+                "timestamp": "2014-10-10T16:13:01.009Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 148 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957581071,
+                "timestamp": "2014-10-10T16:13:01.071Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 149 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957581105,
+                "timestamp": "2014-10-10T16:13:01.105Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 149 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957581222,
+                "timestamp": "2014-10-10T16:13:01.222Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 150 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957581286,
+                "timestamp": "2014-10-10T16:13:01.286Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 150 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957581324,
+                "timestamp": "2014-10-10T16:13:01.324Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 151 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957581380,
+                "timestamp": "2014-10-10T16:13:01.380Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 151 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957581500,
+                "timestamp": "2014-10-10T16:13:01.500Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 152 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957581539,
+                "timestamp": "2014-10-10T16:13:01.539Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 152 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957581651,
+                "timestamp": "2014-10-10T16:13:01.651Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 153 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957581713,
+                "timestamp": "2014-10-10T16:13:01.713Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 153 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957581755,
+                "timestamp": "2014-10-10T16:13:01.755Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 154 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957581807,
+                "timestamp": "2014-10-10T16:13:01.807Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 154 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957581921,
+                "timestamp": "2014-10-10T16:13:01.921Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 155 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957582209,
+                "timestamp": "2014-10-10T16:13:02.209Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 155 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957582247,
+                "timestamp": "2014-10-10T16:13:02.247Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 156 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957582300,
+                "timestamp": "2014-10-10T16:13:02.300Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 156 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957582415,
+                "timestamp": "2014-10-10T16:13:02.415Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 157 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957582474,
+                "timestamp": "2014-10-10T16:13:02.474Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 157 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957582535,
+                "timestamp": "2014-10-10T16:13:02.535Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 158 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957582599,
+                "timestamp": "2014-10-10T16:13:02.599Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 158 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957582654,
+                "timestamp": "2014-10-10T16:13:02.654Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 159 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957582714,
+                "timestamp": "2014-10-10T16:13:02.714Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 159 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957582774,
+                "timestamp": "2014-10-10T16:13:02.774Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 160 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957582892,
+                "timestamp": "2014-10-10T16:13:02.892Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 160 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957582952,
+                "timestamp": "2014-10-10T16:13:02.952Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 161 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957583015,
+                "timestamp": "2014-10-10T16:13:03.015Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 161 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957583078,
+                "timestamp": "2014-10-10T16:13:03.078Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 162 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957583138,
+                "timestamp": "2014-10-10T16:13:03.138Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 162 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957583183,
+                "timestamp": "2014-10-10T16:13:03.183Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 163 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957583247,
+                "timestamp": "2014-10-10T16:13:03.247Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 163 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957583309,
+                "timestamp": "2014-10-10T16:13:03.309Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 164 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957583373,
+                "timestamp": "2014-10-10T16:13:03.373Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 164 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957583402,
+                "timestamp": "2014-10-10T16:13:03.402Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 165 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957583430,
+                "timestamp": "2014-10-10T16:13:03.430Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 165 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957583460,
+                "timestamp": "2014-10-10T16:13:03.460Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 166 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957583486,
+                "timestamp": "2014-10-10T16:13:03.486Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 166 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957583520,
+                "timestamp": "2014-10-10T16:13:03.520Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 167 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957583549,
+                "timestamp": "2014-10-10T16:13:03.549Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 167 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957583578,
+                "timestamp": "2014-10-10T16:13:03.578Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 168 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957583608,
+                "timestamp": "2014-10-10T16:13:03.608Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 168 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957583644,
+                "timestamp": "2014-10-10T16:13:03.644Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 169 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957583677,
+                "timestamp": "2014-10-10T16:13:03.677Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 169 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957583787,
+                "timestamp": "2014-10-10T16:13:03.787Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 170 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957583846,
+                "timestamp": "2014-10-10T16:13:03.846Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 170 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957583910,
+                "timestamp": "2014-10-10T16:13:03.910Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 171 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957584631,
+                "timestamp": "2014-10-10T16:13:04.631Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 171 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957584749,
+                "timestamp": "2014-10-10T16:13:04.749Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 172 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957584807,
+                "timestamp": "2014-10-10T16:13:04.807Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 172 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957584869,
+                "timestamp": "2014-10-10T16:13:04.869Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 173 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957584931,
+                "timestamp": "2014-10-10T16:13:04.931Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 173 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957584989,
+                "timestamp": "2014-10-10T16:13:04.989Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 174 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957585048,
+                "timestamp": "2014-10-10T16:13:05.048Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 174 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957585109,
+                "timestamp": "2014-10-10T16:13:05.109Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 175 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957585166,
+                "timestamp": "2014-10-10T16:13:05.166Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 175 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957585229,
+                "timestamp": "2014-10-10T16:13:05.229Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 176 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957585294,
+                "timestamp": "2014-10-10T16:13:05.294Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 176 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957585352,
+                "timestamp": "2014-10-10T16:13:05.352Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 177 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957585413,
+                "timestamp": "2014-10-10T16:13:05.413Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 177 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957585478,
+                "timestamp": "2014-10-10T16:13:05.478Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 178 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957585538,
+                "timestamp": "2014-10-10T16:13:05.538Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 178 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957585601,
+                "timestamp": "2014-10-10T16:13:05.601Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 179 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957585665,
+                "timestamp": "2014-10-10T16:13:05.665Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 179 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957585729,
+                "timestamp": "2014-10-10T16:13:05.729Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 180 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957585790,
+                "timestamp": "2014-10-10T16:13:05.790Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 180 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957586078,
+                "timestamp": "2014-10-10T16:13:06.078Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 181 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957586140,
+                "timestamp": "2014-10-10T16:13:06.140Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 181 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957586202,
+                "timestamp": "2014-10-10T16:13:06.202Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 182 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957586263,
+                "timestamp": "2014-10-10T16:13:06.263Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 182 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957586377,
+                "timestamp": "2014-10-10T16:13:06.377Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 183 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957587250,
+                "timestamp": "2014-10-10T16:13:07.250Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 183 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957587365,
+                "timestamp": "2014-10-10T16:13:07.365Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 184 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957587427,
+                "timestamp": "2014-10-10T16:13:07.427Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 184 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957587538,
+                "timestamp": "2014-10-10T16:13:07.538Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 185 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957587604,
+                "timestamp": "2014-10-10T16:13:07.604Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 185 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957588477,
+                "timestamp": "2014-10-10T16:13:08.477Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 186 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957588588,
+                "timestamp": "2014-10-10T16:13:08.588Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 186 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957588701,
+                "timestamp": "2014-10-10T16:13:08.701Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 187 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957588762,
+                "timestamp": "2014-10-10T16:13:08.762Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 187 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957589212,
+                "timestamp": "2014-10-10T16:13:09.212Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 188 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957589754,
+                "timestamp": "2014-10-10T16:13:09.754Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 188 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957589870,
+                "timestamp": "2014-10-10T16:13:09.870Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 189 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957589928,
+                "timestamp": "2014-10-10T16:13:09.928Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 189 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957589991,
+                "timestamp": "2014-10-10T16:13:09.991Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 190 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957590913,
+                "timestamp": "2014-10-10T16:13:10.913Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 190 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957591031,
+                "timestamp": "2014-10-10T16:13:11.031Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 191 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957591094,
+                "timestamp": "2014-10-10T16:13:11.094Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 191 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957591206,
+                "timestamp": "2014-10-10T16:13:11.206Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 192 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957591268,
+                "timestamp": "2014-10-10T16:13:11.268Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 192 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957592054,
+                "timestamp": "2014-10-10T16:13:12.054Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 193 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957592167,
+                "timestamp": "2014-10-10T16:13:12.167Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 193 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957592229,
+                "timestamp": "2014-10-10T16:13:12.229Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 194 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957592288,
+                "timestamp": "2014-10-10T16:13:12.288Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 194 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957592351,
+                "timestamp": "2014-10-10T16:13:12.351Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 195 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957592380,
+                "timestamp": "2014-10-10T16:13:12.380Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 195 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957592417,
+                "timestamp": "2014-10-10T16:13:12.417Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 196 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957592446,
+                "timestamp": "2014-10-10T16:13:12.446Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 196 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957592482,
+                "timestamp": "2014-10-10T16:13:12.482Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 197 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957592518,
+                "timestamp": "2014-10-10T16:13:12.518Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 197 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957592548,
+                "timestamp": "2014-10-10T16:13:12.548Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 198 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957592586,
+                "timestamp": "2014-10-10T16:13:12.586Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 198 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957592621,
+                "timestamp": "2014-10-10T16:13:12.621Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 199 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957592657,
+                "timestamp": "2014-10-10T16:13:12.657Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 199 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957593636,
+                "timestamp": "2014-10-10T16:13:13.636Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 200 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957593676,
+                "timestamp": "2014-10-10T16:13:13.676Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 200 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957593713,
+                "timestamp": "2014-10-10T16:13:13.713Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 201 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957593743,
+                "timestamp": "2014-10-10T16:13:13.743Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 201 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957593857,
+                "timestamp": "2014-10-10T16:13:13.857Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 202 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957593919,
+                "timestamp": "2014-10-10T16:13:13.919Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 202 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957594035,
+                "timestamp": "2014-10-10T16:13:14.035Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 203 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957595029,
+                "timestamp": "2014-10-10T16:13:15.029Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 203 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957595142,
+                "timestamp": "2014-10-10T16:13:15.142Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 204 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957595205,
+                "timestamp": "2014-10-10T16:13:15.205Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 204 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957595320,
+                "timestamp": "2014-10-10T16:13:15.320Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 205 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957596099,
+                "timestamp": "2014-10-10T16:13:16.099Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 205 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957596210,
+                "timestamp": "2014-10-10T16:13:16.210Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 206 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957596245,
+                "timestamp": "2014-10-10T16:13:16.245Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 206 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957596280,
+                "timestamp": "2014-10-10T16:13:16.280Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 207 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957596389,
+                "timestamp": "2014-10-10T16:13:16.389Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 207 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957596454,
+                "timestamp": "2014-10-10T16:13:16.454Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 208 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957596514,
+                "timestamp": "2014-10-10T16:13:16.514Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 208 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957596573,
+                "timestamp": "2014-10-10T16:13:16.573Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 209 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957597346,
+                "timestamp": "2014-10-10T16:13:17.346Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 209 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957597455,
+                "timestamp": "2014-10-10T16:13:17.455Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 210 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957597520,
+                "timestamp": "2014-10-10T16:13:17.520Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 210 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957597583,
+                "timestamp": "2014-10-10T16:13:17.583Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 211 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957597642,
+                "timestamp": "2014-10-10T16:13:17.642Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 211 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957597683,
+                "timestamp": "2014-10-10T16:13:17.683Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 212 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957597719,
+                "timestamp": "2014-10-10T16:13:17.719Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 212 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957597757,
+                "timestamp": "2014-10-10T16:13:17.757Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 213 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957597794,
+                "timestamp": "2014-10-10T16:13:17.794Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 213 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957597826,
+                "timestamp": "2014-10-10T16:13:17.826Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 214 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957597861,
+                "timestamp": "2014-10-10T16:13:17.861Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 214 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957597899,
+                "timestamp": "2014-10-10T16:13:17.899Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 215 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957597935,
+                "timestamp": "2014-10-10T16:13:17.935Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 215 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957597967,
+                "timestamp": "2014-10-10T16:13:17.967Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 216 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957598003,
+                "timestamp": "2014-10-10T16:13:18.003Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 216 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957598039,
+                "timestamp": "2014-10-10T16:13:18.039Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 217 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957598075,
+                "timestamp": "2014-10-10T16:13:18.075Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 217 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957598183,
+                "timestamp": "2014-10-10T16:13:18.183Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 218 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957598249,
+                "timestamp": "2014-10-10T16:13:18.249Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 218 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957598361,
+                "timestamp": "2014-10-10T16:13:18.361Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 219 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957598475,
+                "timestamp": "2014-10-10T16:13:18.475Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 219 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957598611,
+                "timestamp": "2014-10-10T16:13:18.611Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 220 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957598723,
+                "timestamp": "2014-10-10T16:13:18.723Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 220 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957598832,
+                "timestamp": "2014-10-10T16:13:18.832Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 221 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957598948,
+                "timestamp": "2014-10-10T16:13:18.948Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 221 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957599060,
+                "timestamp": "2014-10-10T16:13:19.060Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 222 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957599174,
+                "timestamp": "2014-10-10T16:13:19.174Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 222 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957599290,
+                "timestamp": "2014-10-10T16:13:19.290Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 223 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957599400,
+                "timestamp": "2014-10-10T16:13:19.400Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 223 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957599513,
+                "timestamp": "2014-10-10T16:13:19.513Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 224 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957599625,
+                "timestamp": "2014-10-10T16:13:19.625Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 224 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957599730,
+                "timestamp": "2014-10-10T16:13:19.730Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 225 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957599841,
+                "timestamp": "2014-10-10T16:13:19.841Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 225 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957599953,
+                "timestamp": "2014-10-10T16:13:19.953Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 226 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957600126,
+                "timestamp": "2014-10-10T16:13:20.126Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 226 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957600244,
+                "timestamp": "2014-10-10T16:13:20.244Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 227 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957600360,
+                "timestamp": "2014-10-10T16:13:20.360Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 227 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957600472,
+                "timestamp": "2014-10-10T16:13:20.472Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 228 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957600583,
+                "timestamp": "2014-10-10T16:13:20.583Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 228 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957600699,
+                "timestamp": "2014-10-10T16:13:20.699Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 229 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957600814,
+                "timestamp": "2014-10-10T16:13:20.814Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 229 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957600924,
+                "timestamp": "2014-10-10T16:13:20.924Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 230 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957601036,
+                "timestamp": "2014-10-10T16:13:21.036Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 230 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957601153,
+                "timestamp": "2014-10-10T16:13:21.153Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 231 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957601267,
+                "timestamp": "2014-10-10T16:13:21.267Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 231 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957601383,
+                "timestamp": "2014-10-10T16:13:21.383Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 232 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1412957601496,
+                "timestamp": "2014-10-10T16:13:21.496Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 232 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1413046194405,
+                "timestamp": "2014-10-11T16:49:54.405Z",
+                "level": "error",
+                "message": "Can not init module ZWave: Error: Bad data - communication failed",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1413046195428,
+                "timestamp": "2014-10-11T16:49:55.428Z",
+                "level": "error",
+                "message": "Can not init module ZWave: Error: Binding with name 'zway' already exists",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1413046195587,
+                "timestamp": "2014-10-11T16:49:55.587Z",
+                "level": "error",
+                "message": "Failed to load module ZWaveDeadDetection because ZWave was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1413046195947,
+                "timestamp": "2014-10-11T16:49:55.947Z",
+                "level": "error",
+                "message": "Can not init module ZWave: Error: Binding with name 'zway' already exists",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1413046196081,
+                "timestamp": "2014-10-11T16:49:56.081Z",
+                "level": "error",
+                "message": "Failed to load module ZWaveGate because ZWave was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1416497557249,
+                "timestamp": "2014-11-20T15:32:37.249Z",
+                "level": "error",
+                "message": "Failed to load module SensorsPolling because Cron was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1416497557384,
+                "timestamp": "2014-11-20T15:32:37.384Z",
+                "level": "error",
+                "message": "Failed to load module BatteryPolling because Cron was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1416497557530,
+                "timestamp": "2014-11-20T15:32:37.530Z",
+                "level": "error",
+                "message": "Failed to load module ZWaveDeadDetection because ZWave was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1416497557782,
+                "timestamp": "2014-11-20T15:32:37.782Z",
+                "level": "error",
+                "message": "Failed to load module ZWaveGate because ZWave was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1416500603718,
+                "timestamp": "2014-11-20T16:23:23.718Z",
+                "level": "error",
+                "message": "Failed to load module ZWaveDeadDetection because ZWave was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1416500604130,
+                "timestamp": "2014-11-20T16:23:24.130Z",
+                "level": "error",
+                "message": "Failed to load module ZWaveGate because ZWave was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1416500604638,
+                "timestamp": "2014-11-20T16:23:24.638Z",
+                "level": "error",
+                "message": "Failed to load module BatteryPolling because Cron was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1416500604694,
+                "timestamp": "2014-11-20T16:23:24.694Z",
+                "level": "error",
+                "message": "Failed to load module SensorsPolling because Cron was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1416501065202,
+                "timestamp": "2014-11-20T16:31:05.202Z",
+                "level": "error",
+                "message": "Failed to load module ZWaveDeadDetection because ZWave was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1416501065406,
+                "timestamp": "2014-11-20T16:31:05.406Z",
+                "level": "error",
+                "message": "Failed to load module BatteryPolling because Cron was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1416501065715,
+                "timestamp": "2014-11-20T16:31:05.715Z",
+                "level": "error",
+                "message": "Failed to load module ZWaveGate because ZWave was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1416501065966,
+                "timestamp": "2014-11-20T16:31:05.966Z",
+                "level": "error",
+                "message": "Failed to load module SensorsPolling because Cron was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1416501335124,
+                "timestamp": "2014-11-20T16:35:35.124Z",
+                "level": "error",
+                "message": "Failed to load module ZWaveGate because ZWave was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1416501335983,
+                "timestamp": "2014-11-20T16:35:35.983Z",
+                "level": "error",
+                "message": "Failed to load module BatteryPolling because Cron was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1416501336047,
+                "timestamp": "2014-11-20T16:35:36.047Z",
+                "level": "error",
+                "message": "Failed to load module SensorsPolling because Cron was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1416501336331,
+                "timestamp": "2014-11-20T16:35:36.331Z",
+                "level": "error",
+                "message": "Failed to load module ZWaveDeadDetection because ZWave was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1416501476850,
+                "timestamp": "2014-11-20T16:37:56.850Z",
+                "level": "error",
+                "message": "Failed to load module ZWaveDeadDetection because ZWave was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1416501477160,
+                "timestamp": "2014-11-20T16:37:57.160Z",
+                "level": "error",
+                "message": "Failed to load module BatteryPolling because Cron was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1416501477288,
+                "timestamp": "2014-11-20T16:37:57.288Z",
+                "level": "error",
+                "message": "Failed to load module SensorsPolling because Cron was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1416501477460,
+                "timestamp": "2014-11-20T16:37:57.460Z",
+                "level": "error",
+                "message": "Failed to load module ZWaveGate because ZWave was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1416501441135,
+                "timestamp": "2014-11-20T16:37:21.135Z",
+                "level": "error",
+                "message": "Failed to load module ZWaveGate because ZWave was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1416501441292,
+                "timestamp": "2014-11-20T16:37:21.292Z",
+                "level": "error",
+                "message": "Failed to load module SensorsPolling because Cron was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1416501441511,
+                "timestamp": "2014-11-20T16:37:21.511Z",
+                "level": "error",
+                "message": "Failed to load module BatteryPolling because Cron was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1416501441662,
+                "timestamp": "2014-11-20T16:37:21.662Z",
+                "level": "error",
+                "message": "Failed to load module ZWaveDeadDetection because ZWave was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1416502360471,
+                "timestamp": "2014-11-20T16:52:40.471Z",
+                "level": "error",
+                "message": "Failed to load module ZWaveDeadDetection because ZWave was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1416502360935,
+                "timestamp": "2014-11-20T16:52:40.935Z",
+                "level": "error",
+                "message": "Failed to load module SensorsPolling because Cron was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1416502361116,
+                "timestamp": "2014-11-20T16:52:41.116Z",
+                "level": "error",
+                "message": "Failed to load module ZWaveGate because ZWave was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1416502361317,
+                "timestamp": "2014-11-20T16:52:41.317Z",
+                "level": "error",
+                "message": "Failed to load module BatteryPolling because Cron was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1416502637909,
+                "timestamp": "2014-11-20T16:57:17.909Z",
+                "level": "error",
+                "message": "Failed to load module ZWaveDeadDetection because ZWave was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1416502638114,
+                "timestamp": "2014-11-20T16:57:18.114Z",
+                "level": "error",
+                "message": "Failed to load module SensorsPolling because Cron was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1416502638482,
+                "timestamp": "2014-11-20T16:57:18.482Z",
+                "level": "error",
+                "message": "Failed to load module ZWaveGate because ZWave was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1416502638749,
+                "timestamp": "2014-11-20T16:57:18.749Z",
+                "level": "error",
+                "message": "Failed to load module BatteryPolling because Cron was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1416501441628,
+                "timestamp": "2014-11-20T16:37:21.628Z",
+                "level": "error",
+                "message": "Failed to load module ZWaveDeadDetection because ZWave was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1416501441744,
+                "timestamp": "2014-11-20T16:37:21.744Z",
+                "level": "error",
+                "message": "Failed to load module SensorsPolling because Cron was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1416501442012,
+                "timestamp": "2014-11-20T16:37:22.012Z",
+                "level": "error",
+                "message": "Failed to load module ZWaveGate because ZWave was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1416501442137,
+                "timestamp": "2014-11-20T16:37:22.137Z",
+                "level": "error",
+                "message": "Failed to load module BatteryPolling because Cron was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1417598745,
+                "timestamp": "2014-12-03T09:25:45.545Z",
+                "level": "error",
+                "message": "Failed to load module SensorsPolling because Cron was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1417598749,
+                "timestamp": "2014-12-03T09:25:49.772Z",
+                "level": "error",
+                "message": "Failed to load module BatteryPolling because Cron was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1417598773,
+                "timestamp": "2014-12-03T09:26:13.805Z",
+                "level": "error",
+                "message": "Can not create vDev based on 7-0-37: TypeError: Cannot read property 'data' of undefined",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1417598921,
+                "timestamp": "2014-12-03T09:28:41.430Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 52 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1417599230,
+                "timestamp": "2014-12-03T09:33:50.312Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 32 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1417599587,
+                "timestamp": "2014-12-03T09:39:47.473Z",
+                "level": "error",
+                "message": "Failed to load module BatteryPolling because Cron was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1417599588,
+                "timestamp": "2014-12-03T09:39:48.041Z",
+                "level": "error",
+                "message": "Failed to load module SensorsPolling because Cron was not instanciated",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1417599601,
+                "timestamp": "2014-12-03T09:40:01.166Z",
+                "level": "error",
+                "message": "Can not create vDev based on 7-0-37: TypeError: Cannot read property 'data' of undefined",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1417599924,
+                "timestamp": "2014-12-03T09:45:24.053Z",
+                "level": "error",
+                "message": "Can not create vDev based on 7-0-37: TypeError: Cannot read property 'data' of undefined",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1417600080600,
+                "timestamp": "2014-12-03T09:48:00.600Z",
+                "level": "error",
+                "message": "Can not instanciate module: module not found in the list of all modules",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1417600080660,
+                "timestamp": "2014-12-03T09:48:00.660Z",
+                "level": "error",
+                "message": "Can not instanciate module ZWave: TypeError: Cannot read property 'meta' of undefined",
+                "type": "core",
+                "redeemed": false
+            }, {
+                "id": 1417600106951,
+                "timestamp": "2014-12-03T09:48:26.951Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 52 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1417600403,
+                "timestamp": "2014-12-03T09:53:23.345Z",
+                "level": "notification",
+                "message": "Z-Wave device ID 52 is back to life",
+                "type": "connection",
+                "redeemed": false
+            }, {
+                "id": 1417677051,
+                "timestamp": "2014-12-20T15:40:03.048Z",
+                "level": "error",
+                "message": "Can not create vDev based on 7-0-37: TypeError: Cannot read property 'data' of undefined",
+                "type": "core",
+                "redeemed": false
+            }]
+    },
+    "code": 200,
+    "message": "200 OK",
+    "error": null
+}

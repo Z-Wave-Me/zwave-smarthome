@@ -4852,7 +4852,7 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,my
         demoData: demoData,
         setCache: setCache,
         runCmd: runCmd,
-        updateDeviceData: updateDeviceData,
+        updateApiData: updateApiData,
         cancelApiDataInterval: cancelApiDataInterval,
         getLanguageFile: getLanguageFile
     });
@@ -4931,13 +4931,14 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,my
 
 
     /**
-     * Get updated data from the device collection.
+     * Get updated data from the api collection.
      */
-    function  updateDeviceData(callback) {
+    function  updateApiData(api,callback) {
         var refresh = function() {
             var request = {
                 method: "get",
-                url: cfg.server_url + cfg.api['devices'] + '?since=' +  updatedTime
+                //url:  cfg.demo_url + api + '.json',
+                url: cfg.server_url + cfg.api[api] + '?since=' +  updatedTime
             };
             $http(request).success(function(data) {
                 updateTimeTick(data.data.updateTime);
@@ -6522,7 +6523,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.loadData();
 
     $scope.updateData = function() {
-        dataFactory.updateDeviceData(function(data) {
+        dataFactory.updateApiData('devices',function(data) {
             dataService.updateDevices(data);
         });
     };
@@ -6690,6 +6691,11 @@ myAppController.controller('EventController', function($scope, $routeParams, dat
     $scope.reset = function() {
         $scope.collection = angular.copy([]);
     };
+    
+    // Cancel interval on page destroy
+    $scope.$on('$destroy', function() {
+        dataFactory.cancelApiDataInterval();
+    });
 
     /**
      * Load data into collection
@@ -6715,6 +6721,18 @@ myAppController.controller('EventController', function($scope, $routeParams, dat
         });
     };
     $scope.loadData();
+    /**
+     * Update data into collection
+     */
+    $scope.updateData = function() {
+        dataFactory.updateApiData('notifications',function(data) {
+            angular.forEach(data.data.notifications, function(v, k) {
+                     $scope.collection.push(v);
+                });
+           //console.log(data.data.notifications);
+        });
+    };
+    $scope.updateData();
 });
 /**
  * Profile controller

@@ -26,7 +26,7 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,my
         demoData: demoData,
         setCache: setCache,
         runCmd: runCmd,
-        updateDeviceData: updateDeviceData,
+        updateApiData: updateApiData,
         cancelApiDataInterval: cancelApiDataInterval,
         getLanguageFile: getLanguageFile
     });
@@ -105,13 +105,14 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,my
 
 
     /**
-     * Get updated data from the device collection.
+     * Get updated data from the api collection.
      */
-    function  updateDeviceData(callback) {
+    function  updateApiData(api,callback) {
         var refresh = function() {
             var request = {
                 method: "get",
-                url: cfg.server_url + cfg.api['devices'] + '?since=' +  updatedTime
+                //url:  cfg.demo_url + api + '.json',
+                url: cfg.server_url + cfg.api[api] + '?since=' +  updatedTime
             };
             $http(request).success(function(data) {
                 updateTimeTick(data.data.updateTime);

@@ -274,7 +274,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.loadData();
 
     $scope.updateData = function() {
-        dataFactory.updateDeviceData(function(data) {
+        dataFactory.updateApiData('devices',function(data) {
             dataService.updateDevices(data);
         });
     };
@@ -442,6 +442,11 @@ myAppController.controller('EventController', function($scope, $routeParams, dat
     $scope.reset = function() {
         $scope.collection = angular.copy([]);
     };
+    
+    // Cancel interval on page destroy
+    $scope.$on('$destroy', function() {
+        dataFactory.cancelApiDataInterval();
+    });
 
     /**
      * Load data into collection
@@ -467,6 +472,18 @@ myAppController.controller('EventController', function($scope, $routeParams, dat
         });
     };
     $scope.loadData();
+    /**
+     * Update data into collection
+     */
+    $scope.updateData = function() {
+        dataFactory.updateApiData('notifications',function(data) {
+            angular.forEach(data.data.notifications, function(v, k) {
+                     $scope.collection.push(v);
+                });
+           //console.log(data.data.notifications);
+        });
+    };
+    $scope.updateData();
 });
 /**
  * Profile controller
