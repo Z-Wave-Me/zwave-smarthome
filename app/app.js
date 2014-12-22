@@ -8,7 +8,6 @@ var myApp = angular.module('myApp', [
     'ngRoute',
     'ngCookies',
     'myAppConfig',
-    'myAppSettings',
     'myAppController',
     'myAppFactory',
     'myAppService',
@@ -72,5 +71,15 @@ myApp.config(['$routeProvider',
                     redirectTo: '/elements/dashboard/1'
                 });
     }]);
+
+/**
+ * App configuration
+ */
+
+var config_module = angular.module('myAppConfig', []);
+
+angular.forEach(config_data,function(key,value) {
+  config_module.constant(value,key);
+});
 
 

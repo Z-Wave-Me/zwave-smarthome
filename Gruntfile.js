@@ -42,7 +42,7 @@ module.exports = function(grunt) {
                     'vendor/bootstrap/bootstrap.min.js',
                     // APP
                     'app/app.js',
-                    'app/config/config.js',
+                    //'app/config/config.js',
                     'app/config/settings.js',
                     'app/services/factories.js',
                     'app/services/services.js',
@@ -53,7 +53,7 @@ module.exports = function(grunt) {
                     'app/filters/filters.js',
                     'app/controllers/controllers.js'
                 ],
-                dest: 'dist/app/core/build.js'
+                dest: 'dist/app/js/build.js'
             }
         },
         // Copy
@@ -67,6 +67,7 @@ module.exports = function(grunt) {
                             'app/lang/**'
                         ], dest: 'dist/'
                     },
+                     {expand:true,src: ['app/config.js'], dest: 'dist/app/js/',flatten: true},
                     {src: ['storage/img/**'], dest: 'dist/'}
                 ]
             },
@@ -77,9 +78,9 @@ module.exports = function(grunt) {
             },
             angmap: {
                 files: [
-                    {expand:true,src: ['vendor/angular/angular-1.2.16/angular-cookies.min.js.map'], dest: 'dist/app/core/',flatten: true},
-                     {expand:true,src: ['vendor/angular/angular-1.2.16/angular.min.js.map'], dest: 'dist/app/core/',flatten: true},
-                      {expand:true,src: ['vendor/angular/angular-1.2.16/angular-route.min.js.map'], dest: 'dist/app/core/',flatten: true}
+                    {expand:true,src: ['vendor/angular/angular-1.2.16/angular-cookies.min.js.map'], dest: 'dist/app/js/',flatten: true},
+                     {expand:true,src: ['vendor/angular/angular-1.2.16/angular.min.js.map'], dest: 'dist/app/js/',flatten: true},
+                      {expand:true,src: ['vendor/angular/angular-1.2.16/angular-route.min.js.map'], dest: 'dist/app/js/',flatten: true}
                 ]
             }
         },
@@ -131,8 +132,22 @@ module.exports = function(grunt) {
                 compress: true
             },
             build: {
-                src: ['app/core/*'],
-                dest: 'dist/app/core/build.min.js'
+                src: ['app/js/*'],
+                dest: 'dist/app/js/build.min.js'
+            }
+        },
+        'string-replace': {
+            dist: {
+              files: {
+                'dist/app/js/config.js': 'app/config.js',
+              },
+             
+            options: {
+              replacements: [{
+                pattern: /'server_url': (.*?) /ig,
+                replacement: 'abc'
+              }]
+            }
             }
         }
     });
@@ -146,8 +161,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
+    grunt.loadNpmTasks('grunt-string-replace');
 
     // Default task(s).
-    grunt.registerTask('default', ['clean','concat','copy','cssmin']);
+    grunt.registerTask('default', ['clean','concat','copy','cssmin','string-replace']);
 
 };
