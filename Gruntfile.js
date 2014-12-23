@@ -69,7 +69,8 @@ module.exports = function(grunt) {
                     },
                      {expand:true,src: ['app/config.js'], dest: 'dist/app/js/',flatten: true},
                     {src: ['storage/img/**'], dest: 'dist/'},
-                    {src: ['storage/demo/**'], dest: 'dist/'}
+                    {src: ['storage/demo/**'], dest: 'dist/'},
+                    {src: ['storage/data/**'], dest: 'dist/'}
                 ]
             },
             fonts: {
