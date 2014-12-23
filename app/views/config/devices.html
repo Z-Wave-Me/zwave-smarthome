@@ -22,11 +22,11 @@
     <div ng-switch="deviceVendor">
         <!-- Z wave devices -->
         <div ng-switch-when="zwave">
-            <div class="device-container app-border app-shadow" ng-include="'app/views/config/devices_zwave.html'"></div>
+            <div class="device-container_" ng-include="'app/views/config/devices_zwave.html'"></div>
         </div>
         <!-- Enocean devices -->
         <div ng-switch-when="enocean">
-            <div class="device-container app-border app-shadow" ng-include="'app/views/config/devices_enocean.html'"></div>
+            <div class="device-container_" ng-include="'app/views/config/devices_enocean.html'"></div>
         </div>
         
           

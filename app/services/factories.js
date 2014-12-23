@@ -23,7 +23,7 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,my
         postApiData: postApiData,
         putApiData: putApiData,
         deleteApiData: deleteApiData,
-        demoData: demoData,
+        localData: localData,
         setCache: setCache,
         runCmd: runCmd,
         updateApiData: updateApiData,
@@ -34,12 +34,12 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,my
     /// --- Public functions --- ///
 
     /**
-     * Gets dummy data
+     * Gets app local data
      */
-    function demoData(file, callback) {
+    function localData(file, callback) {
         var request = {
             method: "get",
-            url: cfg.demo_url + file
+            url: cfg.local_data_url + file
         };
         return getApiHandle(callback, request, file);
 
@@ -114,8 +114,12 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,my
                 //url:  cfg.demo_url + api + '.json',
                 url: cfg.server_url + cfg.api[api] + '?since=' +  updatedTime
             };
+            if($http.pendingRequests.length > 0){
+                addErrorElement();
+            }
             $http(request).success(function(data) {
-                updateTimeTick(data.data.updateTime);
+                addTimeTickElement();
+                updateTimeTick($filter('hasNode')(data,'data.updateTime'));
                 return callback(data);
             }).error(function(data, status, headers, config, statusText) {
                 handleError(data, status, headers, config, statusText);
@@ -165,7 +169,11 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,my
             return callback(cached);
         } else {
             console.log('NOT CACHED: ' + cacheName);
+            if($http.pendingRequests.length > 0){
+                addErrorElement();
+            }
             return $http(request).success(function(data) {
+                addTimeTickElement();
                 updateTimeTick($filter('hasNode')(data,'data.updateTime'));
                 myCache.put(cacheName, data);
                 return callback(data);
@@ -204,9 +212,9 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,my
      */
     function handleError(data, status, headers, config, statusText) {
         var msg = 'Can`t receive data from the remote server';
-        $('.navi-time').html('<i class="fa fa-minus-circle fa-lg text-danger"></i>');
+       addErrorElement();
         //$('#main_content').html('<div class="alert alert-danger alert-dismissable response-message"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> <i class="icon-ban-circle"></i> ' + msg + '</div>');
-        console.log(config);
+        //console.log(config);
         return;
 
 
@@ -237,7 +245,25 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,my
         enableCache = enable;
         return;
     }
+     /**
+     * Add add error element
+     */
+    function addErrorElement() {
+         $('.navi-time').html('<i class="fa fa-minus-circle fa-lg text-danger"></i>');
+    }
+     /**
+     * Add spinner
+     */
+    function addSpinnerElement() {
+         $('.navi-time').html('<i class="fa fa-spinner fa-spin"></i>');
+    }
     
+    /**
+     * Add time tick
+     */
+    function addTimeTickElement() {
+         $('.navi-time').html('<i class="fa fa-clock-o"></i> <span id="update_time_tick"></span>');
+    }
     
     /**
      * Update time tick

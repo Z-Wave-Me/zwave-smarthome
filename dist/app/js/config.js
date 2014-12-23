@@ -28,8 +28,8 @@ var config_data = {
         },
         // Api url
         'api_url': '/ZAutomation/api/v1/',
-        // Demo data path
-        'demo_url': 'storage/demo/',
+        // Local data path
+        'local_data_url': 'storage/data/',
         // Language directory
         'lang_dir': 'app/lang/',
         // Default language

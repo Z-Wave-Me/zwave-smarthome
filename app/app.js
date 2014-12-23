@@ -51,6 +51,10 @@ myApp.config(['$routeProvider',
                 when('/devices/:type?/:device?', {
                     templateUrl: 'app/views/config/devices.html'
                 }).
+                //Include Devices
+                when('/include/:type/:device', {
+                    templateUrl: 'app/views/config/device_include.html'
+                }).
                 //Rooms
                 when('/config-rooms', {
                     templateUrl: 'app/views/config/config_rooms.html'
@@ -80,6 +84,51 @@ var config_module = angular.module('myAppConfig', []);
 
 angular.forEach(config_data,function(key,value) {
   config_module.constant(value,key);
+});
+
+// Intercepting HTTP calls with AngularJS.
+myApp.config(function ($provide, $httpProvider) {
+  $httpProvider.defaults.timeout = 5000;
+  // Intercept http calls.
+  $provide.factory('MyHttpInterceptor', function ($q) {
+    return {
+      // On request success
+      request: function (config) {
+       //console.log(config); // Contains the data about the request before it is sent.
+
+        // Return the config or wrap it in a promise if blank.
+        return config || $q.when(config);
+      },
+
+      // On request failure
+      requestError: function (rejection) {
+        console.log(rejection); // Contains the data about the error on the request.
+        
+        // Return the promise rejection.
+        return $q.reject(rejection);
+      },
+
+      // On response success
+      response: function (response) {
+        //console.log(response.data); // Contains the data from the response.
+        
+        // Return the response or promise.
+        return response || $q.when(response);
+      },
+
+      // On response failture
+      responseError: function (rejection) {
+        // console.log(rejection); // Contains the data about the error.
+        
+        // Return the promise rejection.
+        return $q.reject(rejection);
+      }
+    };
+  });
+
+  // Add the interceptor to the $httpProvider.
+  //$httpProvider.interceptors.push('MyHttpInterceptor');
+
 });
 
 

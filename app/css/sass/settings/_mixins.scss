@@ -70,7 +70,14 @@
         padding-left: 6px !important;
         font-size: 90%;
     }
-
+    .row {
+        padding-right: 0;
+        margin-right: 0;
+       
+    }
+    .col-sm-6{
+        padding-right: 0;
+    }
     #nav_collapse .dropdown-menu {
         position: static;
         float: none;
@@ -88,7 +95,7 @@
 
     .navbar-toggle {
         padding: 5px 6px;
-        }
+    }
     .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
         background-color: transparent;
     }
@@ -122,13 +129,13 @@
     .navbar .divider-vertical{
         display: none;
     }
-    
-     /* Body
-    -------------------------------------------------- */
-    
-     .mobile-padding{
-         padding: 0 15px;
-     }
+
+    /* Body
+   -------------------------------------------------- */
+
+    .mobile-padding{
+        padding: 0 15px;
+    }
 
     .page-header{
         margin: 0 0 10px 0;

@@ -160,7 +160,7 @@ myAppController.controller('TestController', function($scope, cfg, dataFactory) 
      * Load data into collection
      */
     $scope.loadData = function() {
-        //dataFactory.demoData('elements.json', function(data) {
+        //dataFactory.localData('elements.json', function(data) {
         dataFactory.getApiData('devices', function(data) {
             $scope.collection = data.data.devices;
             console.log($scope.collection);
@@ -274,7 +274,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.loadData();
 
     $scope.updateData = function() {
-        dataFactory.updateApiData('devices',function(data) {
+        dataFactory.updateApiData('devices', function(data) {
             dataService.updateDevices(data);
         });
     };
@@ -442,7 +442,7 @@ myAppController.controller('EventController', function($scope, $routeParams, dat
     $scope.reset = function() {
         $scope.collection = angular.copy([]);
     };
-    
+
     // Cancel interval on page destroy
     $scope.$on('$destroy', function() {
         dataFactory.cancelApiDataInterval();
@@ -476,11 +476,11 @@ myAppController.controller('EventController', function($scope, $routeParams, dat
      * Update data into collection
      */
     $scope.updateData = function() {
-        dataFactory.updateApiData('notifications',function(data) {
+        dataFactory.updateApiData('notifications', function(data) {
             angular.forEach(data.data.notifications, function(v, k) {
-                     $scope.collection.push(v);
-                });
-           //console.log(data.data.notifications);
+                $scope.collection.push(v);
+            });
+            //console.log(data.data.notifications);
         });
     };
     $scope.updateData();
@@ -623,7 +623,7 @@ myAppController.controller('AppController', function($scope, $window, dataFactor
 
 
         });
-//        dataFactory.demoData('apps.json', function(data) {
+//        dataFactory.localData('apps.json', function(data) {
 //            //$scope.modules = data;
 //        });
     };
@@ -786,19 +786,19 @@ myAppController.controller('AppModuleController', function($scope, $routeParams,
             dataFactory.getApiData('modules', function(modules) {
                 module = dataService.getRowBy(modules.data, 'id', instance.moduleId);
                 dataFactory.getApiData('namespaces', function(namespaces) {
-                $scope.input = {
-                    'id': instance.id,
-                    'moduleId': module.id,
-                    'active': instance.active,
-                    'title': instance.title,
-                    'description': instance.description,
-                    'moduleTitle': $filter('hasNode')(module, 'defaults.title'),
-                    'params': instance.params,
-                    'moduleInput': dataService.getModuleConfigInputs(module, instance.params,namespaces.data)
-                };
-                //console.log($scope.input)
-                $scope.showForm = true;
-                 });
+                    $scope.input = {
+                        'id': instance.id,
+                        'moduleId': module.id,
+                        'active': instance.active,
+                        'title': instance.title,
+                        'description': instance.description,
+                        'moduleTitle': $filter('hasNode')(module, 'defaults.title'),
+                        'params': instance.params,
+                        'moduleInput': dataService.getModuleConfigInputs(module, instance.params, namespaces.data)
+                    };
+                    //console.log($scope.input)
+                    $scope.showForm = true;
+                });
             });
 
         });
@@ -824,12 +824,14 @@ myAppController.controller('AppModuleController', function($scope, $routeParams,
     $scope.store = function(input) {
         var params = {};
         angular.forEach(input.moduleInput, function(v, k) {
-            if(angular.isArray(v.value)){
-                params[v.inputName] = v.value.filter(function(e){return e}); 
-            }else{
+            if (angular.isArray(v.value)) {
+                params[v.inputName] = v.value.filter(function(e) {
+                    return e
+                });
+            } else {
                 params[v.inputName] = v.value;
             }
-            
+
         });
 
         var inputData = {
@@ -840,7 +842,7 @@ myAppController.controller('AppModuleController', function($scope, $routeParams,
             'description': input.description,
             'params': params
         };
-       
+
         //return;
         if (input.id > 0) {
             dataFactory.putApiData('instances', input.id, inputData, function(data) {
@@ -886,10 +888,12 @@ myAppController.controller('AppModuleController', function($scope, $routeParams,
 /**
  * Device controller
  */
-myAppController.controller('DeviceController', function($scope, $window, $interval,$routeParams, dataFactory,dataService) {
+myAppController.controller('DeviceController', function($scope, $window, $interval, $routeParams, dataFactory, dataService) {
     $scope.zwaveDevices = [];
     $scope.deviceVendor = false;
     $scope.includeDevice = false;
+    $scope.manufacturers = [];
+    $scope.zwaveDevicesFilter = false;
     $scope.status = 1;
     $scope.status2 = 1;
     $scope.goDevice = false;
@@ -900,21 +904,33 @@ myAppController.controller('DeviceController', function($scope, $window, $interv
     $scope.reset = function() {
         $scope.collection = angular.copy([]);
     };
-     if (angular.isDefined($routeParams.type)) {
-         $scope.deviceVendor = $routeParams.type;
-     }
+    if (angular.isDefined($routeParams.type)) {
+        $scope.deviceVendor = $routeParams.type;
+    }
+     /**
+     * Set filter
+     */
+    $scope.setFilter = function(filter) {
+        $scope.zwaveDevicesFilter = filter;
+    };
     /**
      * Load data into collection
      */
-    $scope.loadData = function() {
-        dataFactory.demoData('devices.json', function(data) {
-            $scope.zwaveDevices = data;
+    $scope.loadData = function(filter) {
+        dataFactory.localData('devices.json', function(data) {
+            $scope.manufacturers = dataService.getPairs(data, 'ZManufacturersName', 'ZManufacturersImage', 'manufacturers');
+            $scope.zwaveDevices = dataService.getData(data, filter);
             if (angular.isDefined($routeParams.device)) {
-                $scope.includeDevice = dataService.getRowBy(data, 'name', $routeParams.device);
-     }
+                $scope.includeDevice = data[$routeParams.device];
+            }
         });
     };
-    $scope.loadData();
+
+    $scope.$watch('zwaveDevicesFilter', function() {
+        $scope.loadData($scope.zwaveDevicesFilter);
+        console.log($scope.zwaveDevicesFilter)
+    });
+   
     /**
      * Show modal window
      */
@@ -1191,7 +1207,7 @@ myAppController.controller('RoomConfigController', function($scope, $window, $in
  * Network controller
  */
 myAppController.controller('NetworkController', function($scope, cfg, dataFactory, dataService) {
-   $scope.batteries = [];
+    $scope.batteries = [];
     $scope.reset = function() {
         $scope.batteries = angular.copy([]);
     };
@@ -1208,18 +1224,6 @@ myAppController.controller('NetworkController', function($scope, cfg, dataFactor
  * About controller
  */
 myAppController.controller('AboutController', function($scope, dataFactory) {
-    $scope.collection = [];
-    $scope.reset = function() {
-        $scope.collection = angular.copy([]);
-    };
-    /**
-     * Load data into collection
-     */
-    $scope.loadData = function() {
-        dataFactory.demoData('demo.json', function(data) {
-            $scope.collection = data;
-        });
-    };
-    $scope.loadData();
+
 });
 
