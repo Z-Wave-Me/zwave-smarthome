@@ -1,42 +1,28 @@
 <!-- Zwave device view -->
-<div class="device-logo">
-  <!--<img class="apps-image" ng-src="app/img/logo-z-wave.png" alt="Logo" />-->
-  
-</div>
-<div class="device-manufacturers" ng-hide="includeDevice">
-    <p class="text-center"><a href="" ng-click="setFilter(false)"><i class="fa fa-refresh fa-lg"></i> All Z-Wave devices</a></p>
-  <a href="" ng-repeat="v in manufacturers" ng-click="setFilter({'filter': 'ZManufacturersName','val': v.key})">
-      <img class="manufacturer-logo" ng-src="storage/img/{{v.val}}" alt="img" ng-show="v.val" />
-  </a>
-   
-</div>
-<div class="table-responsive" ng-hide="includeDevice">
-        <table class="table table-report table-events">
-            <tbody>
-                <tr ng-repeat="(k,v) in zwaveDevices">
-                    <td class="td-img">
-                        <img class="report-img" ng-src="storage/img/devices/{{v.ZProductImage}}" alt="img" ng-show="v.ZProductImage" />
-                    </td>
-                    <td class="text-left">
-                        <span ng-bind="v.ZProductHeadline"></span> <em ng-bind="v.ZManufacturersName"></em>
-                    </td>
-                   <td class="td-action">
-                       <a href="#devices/zwave/{{k}}" class="btn btn-primary">Include device</a>
-                           
-                   </td>
-                </tr>
-            </tbody>
-        </table>
+<div class="text-center device-autodetect"><a href="#include" class="btn btn-primary">Autodetect new Z-Wave Device</a></div>
+<div class="row device-manufacturers" ng-hide="zwaveDevices">
+    <div class="col-md-3 col-sm-6" ng-repeat="v in manufacturers">
+        <a href="" class="vendor-list" ng-click="setFilter({'filter': 'ZManufacturersName', 'val': v.key})">
+            <p class="vendor-image"><img class="vendor-image"  ng-src="storage/img/{{v.val}}" alt="img" ng-show="v.val" /></p>
+        </a>
     </div>
-
-<div ng-show="includeDevice">
-    <div class="alert alert-info">
-    The controller is ready to include the device <strong ng-bind="includeDevice.ZProductHeadline"></strong> into the network. 
 </div>
-    <p>Please execute: <span ng-bind="includeDevice.TechData.Inclusion"></span></p>
-    <div class="alert alert-warning"><i class="fa fa-spinner fa-spin"></i> {{_t('lb_device_found')}}</div>
-    <button class="btn btn-danger">Abort inclusion</button>
-    
-    
-</div>
+<div class="table-responsive_" ng-show="manufacturer">
+    <h3 ng-bind="manufacturer"></h3> 
+    <table class="table table-report table-events">
+        <tbody>
+            <tr ng-repeat="v in zwaveDevices">
+                <td class="td-img">
+                    <img class="report-img" ng-src="storage/img/devices/{{v.ZProductImage}}" alt="img" ng-show="v.ZProductImage" />
+                </td>
+                <td class="text-left">
+                    <span ng-bind="v.ZProductHeadline"></span> <!--<em ng-bind="v.ZManufacturersName"></em>-->
+                </td>
+                <td class="td-action">
+                    <a href="#include/{{v.TechData.ZProductsSku}}" class="btn btn-primary">Include device</a>
 
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

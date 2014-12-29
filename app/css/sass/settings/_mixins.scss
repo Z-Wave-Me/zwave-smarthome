@@ -372,4 +372,28 @@
     }
     /* Devices
     -------------------------------------------------- */
+    .device-manufacturers{
+        .col-sm-6{
+            float: left;
+            width: 50%;
+            padding: 0;
+            margin: 0;
+        }
+
+        .vendor-list {
+            width: 100%;
+            margin: 0;
+            border-color: $app-border-color;
+        }
+        
+       
+
+    }
+    
+     .vendor-image{
+        img {
+            max-width: 130px !important;
+            max-height: 115px !important;
+        }
+    }
 }

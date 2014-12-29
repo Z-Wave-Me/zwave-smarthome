@@ -1,17 +1,16 @@
 <!-- Devicess view -->
 <div ng-controller="DeviceController">
-    <div class="device-container app-border app-shadow" ng-hide="cfg.device_vendors.indexOf(deviceVendor) > -1">
-        <h2 class="page-subtitle"><i class="fa fa-cubes"></i> {{_t('lb_select_device_type')}}</h2>
-        <div class="row device-logo">
-            <div class="col-sm-6">
-                <div class="device-types">
-                    <a href="#devices/zwave"><img class="apps-image" ng-src="app/img/logo-z-wave.png" alt="Logo" /></a>
-                </div>
+    <div class="device-container_" ng-hide="cfg.device_vendors.indexOf(deviceVendor) > -1">
+        <h2 class="page-subtitle">{{_t('lb_select_device_type')}}</h2>
+        <div class="row device-manufacturers">
+            <div class="col-md-3 col-sm-6">
+                <a href="#devices/zwave" class="vendor-list"><p class="vendor-image"><img class="apps-image" ng-src="app/img/logo-z-wave.png" alt="Logo" /></p></a>
             </div>
-            <div class="col-sm-6">
-                <div class="device-types">
-                    <a href="#devices/enocean"><img class="apps-image" ng-src="app/img/logo-enocean.png" alt="Logo" /></a>
-                </div>
+            <div class="col-md-3 col-sm-6">
+               <a href="#devices/ipcamera" class="vendor-list"><p class="vendor-image"><img class="apps-image" ng-src="app/img/logo-ipcamera.png" alt="Logo" /></p></a>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <a href="#devices/enocean" class="vendor-list"><p class="vendor-image"><img class="apps-image" ng-src="app/img/logo-enocean.png" alt="Logo" /></p></a>
             </div>
         </div>
     </div>
@@ -23,6 +22,10 @@
         <!-- Z wave devices -->
         <div ng-switch-when="zwave">
             <div class="device-container_" ng-include="'app/views/config/devices_zwave.html'"></div>
+        </div>
+        <!-- IP camera devices -->
+        <div ng-switch-when="ipcamera">
+            <div class="device-container_" ng-include="'app/views/config/devices_ipcamera.html'"></div>
         </div>
         <!-- Enocean devices -->
         <div ng-switch-when="enocean">

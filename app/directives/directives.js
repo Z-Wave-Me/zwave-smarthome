@@ -23,6 +23,19 @@ myApp.directive('collapseNavbar', function() {
         }
     };
 });
+/**
+ * Go back
+ */
+myApp.directive('goBack', ['$window', function($window) {
+        return {
+            restrict: 'A',
+            link: function (scope, elem, attrs) {
+                elem.bind('click', function () {
+                    $window.history.back();
+                });
+            }
+        };
+    }]);
 
 /**
  * Knob directive

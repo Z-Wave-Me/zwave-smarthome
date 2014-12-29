@@ -48,11 +48,11 @@ myApp.config(['$routeProvider',
                     templateUrl: 'app/views/config/app_module.html'
                 }).
                 //Devices
-                when('/devices/:type?/:device?', {
+                when('/devices/:type?', {
                     templateUrl: 'app/views/config/devices.html'
                 }).
                 //Include Devices
-                when('/include/:type/:device', {
+                when('/include/:device?', {
                     templateUrl: 'app/views/config/device_include.html'
                 }).
                 //Rooms

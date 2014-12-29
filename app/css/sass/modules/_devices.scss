@@ -20,15 +20,17 @@
 }
 .device-logo{
     text-align: center;
+    margin: 0 0 20px 0;
 }
 .device-logo img{
-    max-height: 50px;
+     max-width: 100px !important;
+            max-height: 70px !important;
     
 }
-.device-manufacturers{
+/*.device-manufacturers{
     background-color: #fff;
     padding: 10px;
-}
+}*/
 .manufacturer-logo{
     margin: 0 5px;
     max-width: 70px;
@@ -41,4 +43,25 @@
 }
 .device-image:hover{
     border-color: $app-body-bcg-color;
+}
+
+.device-autodetect{
+    margin: 0 0 10px 0;
+}
+
+.vendor-list {
+    display: block; 
+    margin: 0 0 30px 0 ;
+    background-color: #fff;
+    text-align: center; 
+    border: solid 1px $app-border-color;
+   
+    .vendor-image{
+        line-height: 120px;
+        img {
+            vertical-align: middle;
+            max-width: 180px;
+            max-height: 115px;
+        }
+    }
 }

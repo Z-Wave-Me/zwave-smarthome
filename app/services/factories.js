@@ -28,7 +28,9 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,my
         runCmd: runCmd,
         updateApiData: updateApiData,
         cancelApiDataInterval: cancelApiDataInterval,
-        getLanguageFile: getLanguageFile
+        getLanguageFile: getLanguageFile,
+         getZwaveApiData: getZwaveApiData,
+         updateZwaveApiData: updateZwaveApiData
     });
 
     /// --- Public functions --- ///
@@ -150,6 +152,41 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,my
             url: cfg.lang_dir + langFile
         };
         return getApiHandle(callback, request, langFile);
+    }
+    
+    /**
+     * Get ExpertUI data
+     */
+    function getZwaveApiData(api,callback, params) {
+        var request = {
+            method: "post",
+            url: cfg.server_url + cfg.zwave_api_url  + 'Data' + (params ? params : '')
+        };
+        return getApiHandle(callback, request, api);
+    }
+    
+    /**
+     * Get updated data from ExpertUI
+     */
+    function  updateZwaveApiData(callback) {
+        var refresh = function() {
+            var request = {
+                method: "post",
+                url: cfg.server_url + cfg.zwave_api_url  + 'Data/' + updatedTime
+            };
+            if($http.pendingRequests.length > 0){
+                addErrorElement();
+            }
+            $http(request).success(function(data) {
+                addTimeTickElement();
+                updateTimeTick($filter('hasNode')(data,'data.updateTime'));
+                return callback(data);
+            }).error(function(data, status, headers, config, statusText) {
+                handleError(data, status, headers, config, statusText);
+
+            });
+        };
+        apiDataInterval = $interval(refresh, cfg.interval);
     }
 
     /// --- Private functions --- ///

@@ -28,6 +28,8 @@ var config_data = {
         },
         // Api url
         'api_url': '/ZAutomation/api/v1/',
+        // ZWave api url
+        'zwave_api_url': '/ZWaveAPI/',
         // Local data path
         'local_data_url': 'storage/data/',
         // Language directory
@@ -39,7 +41,7 @@ var config_data = {
         // List of profile colors
         'profile_colors': ['#6C7A89', '#3071A9', '#449D44', '#31B0D5', '#F0AD4E', '#D9534F'],
          // Device vendors
-        'device_vendors': ['zwave', 'enocean'],
+        'device_vendors': ['zwave', 'enocean','ipcamera'],
         // Results per page
         'page_results': 12
 

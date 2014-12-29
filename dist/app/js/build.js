@@ -4788,11 +4788,11 @@ myApp.config(['$routeProvider',
                     templateUrl: 'app/views/config/app_module.html'
                 }).
                 //Devices
-                when('/devices/:type?/:device?', {
+                when('/devices/:type?', {
                     templateUrl: 'app/views/config/devices.html'
                 }).
                 //Include Devices
-                when('/include/:type/:device', {
+                when('/include/:device?', {
                     templateUrl: 'app/views/config/device_include.html'
                 }).
                 //Rooms
@@ -4903,7 +4903,9 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,my
         runCmd: runCmd,
         updateApiData: updateApiData,
         cancelApiDataInterval: cancelApiDataInterval,
-        getLanguageFile: getLanguageFile
+        getLanguageFile: getLanguageFile,
+         getZwaveApiData: getZwaveApiData,
+         updateZwaveApiData: updateZwaveApiData
     });
 
     /// --- Public functions --- ///
@@ -5025,6 +5027,41 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,my
             url: cfg.lang_dir + langFile
         };
         return getApiHandle(callback, request, langFile);
+    }
+    
+    /**
+     * Get ExpertUI data
+     */
+    function getZwaveApiData(api,callback, params) {
+        var request = {
+            method: "post",
+            url: cfg.server_url + cfg.zwave_api_url  + 'Data' + (params ? params : '')
+        };
+        return getApiHandle(callback, request, api);
+    }
+    
+    /**
+     * Get updated data from ExpertUI
+     */
+    function  updateZwaveApiData(callback) {
+        var refresh = function() {
+            var request = {
+                method: "post",
+                url: cfg.server_url + cfg.zwave_api_url  + 'Data/' + updatedTime
+            };
+            if($http.pendingRequests.length > 0){
+                addErrorElement();
+            }
+            $http(request).success(function(data) {
+                addTimeTickElement();
+                updateTimeTick($filter('hasNode')(data,'data.updateTime'));
+                return callback(data);
+            }).error(function(data, status, headers, config, statusText) {
+                handleError(data, status, headers, config, statusText);
+
+            });
+        };
+        apiDataInterval = $interval(refresh, cfg.interval);
     }
 
     /// --- Private functions --- ///
@@ -5887,6 +5924,19 @@ myApp.directive('collapseNavbar', function() {
         }
     };
 });
+/**
+ * Go back
+ */
+myApp.directive('goBack', ['$window', function($window) {
+        return {
+            restrict: 'A',
+            link: function (scope, elem, attrs) {
+                elem.bind('click', function () {
+                    $window.history.back();
+                });
+            }
+        };
+    }]);
 
 /**
  * Knob directive
@@ -7212,26 +7262,17 @@ myAppController.controller('AppModuleController', function($scope, $routeParams,
 /**
  * Device controller
  */
-myAppController.controller('DeviceController', function($scope, $window, $interval, $routeParams, dataFactory, dataService) {
+myAppController.controller('DeviceController', function($scope, $routeParams, dataFactory, dataService) {
     $scope.zwaveDevices = [];
     $scope.deviceVendor = false;
-    $scope.includeDevice = false;
     $scope.manufacturers = [];
+    $scope.manufacturer = false;
     $scope.zwaveDevicesFilter = false;
-    $scope.status = 1;
-    $scope.status2 = 1;
-    $scope.goDevice = false;
-    $scope.input = {
-        'id': null,
-        'name': null
-    };
-    $scope.reset = function() {
-        $scope.collection = angular.copy([]);
-    };
+    
     if (angular.isDefined($routeParams.type)) {
         $scope.deviceVendor = $routeParams.type;
     }
-     /**
+    /**
      * Set filter
      */
     $scope.setFilter = function(filter) {
@@ -7243,59 +7284,79 @@ myAppController.controller('DeviceController', function($scope, $window, $interv
     $scope.loadData = function(filter) {
         dataFactory.localData('devices.json', function(data) {
             $scope.manufacturers = dataService.getPairs(data, 'ZManufacturersName', 'ZManufacturersImage', 'manufacturers');
-            $scope.zwaveDevices = dataService.getData(data, filter);
-            if (angular.isDefined($routeParams.device)) {
-                $scope.includeDevice = data[$routeParams.device];
+            if (filter) {
+                $scope.zwaveDevices = dataService.getData(data, filter);
+                $scope.manufacturer = filter.val;
             }
         });
     };
 
     $scope.$watch('zwaveDevicesFilter', function() {
         $scope.loadData($scope.zwaveDevicesFilter);
-        console.log($scope.zwaveDevicesFilter)
+        //onsole.log($scope.zwaveDevicesFilter)
     });
-   
-    /**
-     * Show modal window
-     */
-    $scope.showModal = function(target, input) {
-        $scope.input = input;
-        $(target).modal();
+});
+
+/**
+ * Device controller
+ */
+myAppController.controller('IncludeController', function($scope, $filter, $routeParams, dataFactory, dataService) {
+    $scope.device = {
+        'data':null
     };
+    $scope.controllerState = 0;
+    $scope.zwaveApiData = [];
+    // Cancel interval on page destroy
+    $scope.$on('$destroy', function() {
+        dataFactory.cancelApiDataInterval();
+    });
     /**
-     * Create an item
+     * Load data into collection
      */
-    $scope.addDevice = function(input) {
-        $scope.status = 2;
-        var countUp = function() {
-            $scope.status = 3;
-        };
-        var progress = $interval(countUp, 3000);
-    };
-    $scope.addDevice2 = function(input) {
-        console.log('dfdfdfdfdf')
-        var progress2;
-        var countUp1 = function() {
-            $scope.status2 = 2;
-            progress2 = $interval(countUp2, 6000);
-        };
-        var progress = $interval(countUp1, 3000);
-        var countUp2 = function() {
-            $scope.status2 = 3;
-            $interval.cancel(progress2);
-            $interval.cancel(progress);
-        };
-    };
-    /**
-     * Delete an item
-     */
-    $scope.delete = function(target, input) {
-        var confirm = $window.confirm('Are you absolutely sure you want to delete?');
-        if (confirm) {
-            console.log('Removing: ' + target);
-            $(target).fadeOut();
+    $scope.loadData = function() {
+        dataFactory.updateZwaveApiData(function(zwaveData){
+           // console.log(zwaveData);
+            refreshZwaveData(zwaveData);
+        });
+        if (angular.isDefined($routeParams.device)) { 
+            dataFactory.localData('devices.json', function(data) {
+               $scope.device.data = data[$routeParams.device];
+              
+            });
+            
         }
+        
+
     };
+    
+    $scope.loadData();
+    
+    
+    /**
+     * Refresh data
+     */
+    function refreshZwaveData(data) {
+        if ('controller.data.controllerState' in data) {
+            $scope.controllerState = data['controller.data.controllerState'].value;
+             console.log($scope.controllerState);
+        }
+    // console.log('Controller state: ' + conrollerState);
+
+        // console.log('Learn mode 2: ' + $scope.learnMode);
+        if ('controller.data.lastExcludedDevice' in data) {
+            $scope.lastExcludedDevice = data['controller.data.lastExcludedDevice'].value;
+        }
+
+        if ('controller.data.lastIncludedDevice' in data) {
+            $scope.lastIncludedDevice = data['controller.data.lastIncludedDevice'].value;
+        }
+        if ('controller.data.secureInclusion' in data) {
+            $scope.secureInclusion = data['controller.data.secureInclusion'].value;
+        }
+        
+    };
+
+
 });
 /**
  * Room controller
