@@ -1,7 +1,7 @@
 <!-- Zwave device view -->
-<div class="text-center device-autodetect"><a href="#include" class="btn btn-primary">Autodetect new Z-Wave Device</a></div>
+<div class="text-center device-autodetect"><a href="#include" class="btn btn-success btn-lg"><i class="fa fa-lightbulb-o"></i> Autodetect new Z-Wave Device</a></div>
 <div class="row device-manufacturers" ng-hide="zwaveDevices">
-    <div class="col-md-3 col-sm-6" ng-repeat="v in manufacturers">
+    <div class="col-md-2 col-sm-6" ng-repeat="v in manufacturers">
         <a href="" class="vendor-list" ng-click="setFilter({'filter': 'ZManufacturersName', 'val': v.key})">
             <p class="vendor-image"><img class="vendor-image"  ng-src="storage/img/{{v.val}}" alt="img" ng-show="v.val" /></p>
         </a>

@@ -73,7 +73,7 @@
     .row {
         padding-right: 0;
         margin-right: 0;
-       
+
     }
     .col-sm-6{
         padding-right: 0;
@@ -385,15 +385,28 @@
             margin: 0;
             border-color: $app-border-color;
         }
-        
-       
+
+
 
     }
-    
-     .vendor-image{
+
+    .vendor-image{
         img {
-            max-width: 130px !important;
-            max-height: 115px !important;
+            max-width: 90px !important;
+            max-height: 80px !important;
+        }
+    }
+
+    .device-perex{
+       padding: 10px;
+        border-top: 0 none;
+    }
+    .row-device {
+        margin-left: 0;
+        .col-device{
+            margin: 0 0 20px 0;
+            background-color: #fff;
+            
         }
     }
 }

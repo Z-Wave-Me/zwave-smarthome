@@ -803,7 +803,7 @@ fieldset {
 
 /* line 48, sass/modules/_devices.scss */
 .device-autodetect {
-  margin: 0 0 10px 0;
+  margin: 0 0 20px 0;
 }
 
 /* line 52, sass/modules/_devices.scss */
@@ -816,13 +816,32 @@ fieldset {
 }
 /* line 59, sass/modules/_devices.scss */
 .vendor-list .vendor-image {
-  line-height: 120px;
+  line-height: 100px;
 }
 /* line 61, sass/modules/_devices.scss */
 .vendor-list .vendor-image img {
   vertical-align: middle;
-  max-width: 180px;
-  max-height: 115px;
+  max-width: 100px;
+  max-height: 80px;
+}
+
+/* line 68, sass/modules/_devices.scss */
+.device-perex {
+  font-size: 110%;
+  padding: 10px 0;
+  border-top: solid 1px #d3d3d3;
+}
+
+/* line 74, sass/modules/_devices.scss */
+.row-device .col-device {
+  text-align: center;
+  padding: 20px;
+}
+/* line 77, sass/modules/_devices.scss */
+.row-device .col-device .device-statement {
+  margin: 10px 0 0 0;
+  padding: 10px 0 0 0;
+  border-top: solid 1px #d3d3d3;
 }
 
 /* Network
@@ -1244,8 +1263,22 @@ fieldset {
   }
   /* line 394, sass/settings/_mixins.scss */
   .is-mobile-true .vendor-image img {
-    max-width: 130px !important;
-    max-height: 115px !important;
+    max-width: 90px !important;
+    max-height: 80px !important;
+  }
+  /* line 400, sass/settings/_mixins.scss */
+  .is-mobile-true .device-perex {
+    padding: 10px;
+    border-top: 0 none;
+  }
+  /* line 404, sass/settings/_mixins.scss */
+  .is-mobile-true .row-device {
+    margin-left: 0;
+  }
+  /* line 406, sass/settings/_mixins.scss */
+  .is-mobile-true .row-device .col-device {
+    margin: 0 0 20px 0;
+    background-color: #fff;
   }
 }
 /*==========  Mobile First Method  ==========*/
@@ -1698,8 +1731,24 @@ fieldset {
 
   /* line 394, sass/settings/_mixins.scss */
   .vendor-image img {
-    max-width: 130px !important;
-    max-height: 115px !important;
+    max-width: 90px !important;
+    max-height: 80px !important;
+  }
+
+  /* line 400, sass/settings/_mixins.scss */
+  .device-perex {
+    padding: 10px;
+    border-top: 0 none;
+  }
+
+  /* line 404, sass/settings/_mixins.scss */
+  .row-device {
+    margin-left: 0;
+  }
+  /* line 406, sass/settings/_mixins.scss */
+  .row-device .col-device {
+    margin: 0 0 20px 0;
+    background-color: #fff;
   }
 }
 /* Extra Small Devices, Phones */

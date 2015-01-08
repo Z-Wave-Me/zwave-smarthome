@@ -894,7 +894,7 @@ myAppController.controller('DeviceController', function($scope, $routeParams, da
     $scope.manufacturers = [];
     $scope.manufacturer = false;
     $scope.zwaveDevicesFilter = false;
-    
+
     if (angular.isDefined($routeParams.type)) {
         $scope.deviceVendor = $routeParams.type;
     }
@@ -922,16 +922,42 @@ myAppController.controller('DeviceController', function($scope, $routeParams, da
         //onsole.log($scope.zwaveDevicesFilter)
     });
 });
-
 /**
  * Device controller
  */
-myAppController.controller('IncludeController', function($scope, $filter, $routeParams, dataFactory, dataService) {
+myAppController.controller('IncludeController', function($scope, $filter, $routeParams, $timeout, dataFactory, dataService) {
     $scope.device = {
-        'data':null
+        'data': null
     };
     $scope.controllerState = 0;
     $scope.zwaveApiData = [];
+    $scope.includedDeviceId = null;
+    $scope.lastIncludedDevice = null;
+    $scope.lastExcludedDevice = null;
+    $scope.hasBattery = false;
+    $scope.inclusionError = false;
+    $scope.messages = {
+        "nm_controller_state_0": "Controller is in normal mode",
+        "nm_controller_state_1": "Ready to include.",
+        "nm_controller_state_2": "Device found, please wait...",
+        "nm_controller_state_3": "Including device, please wait...",
+        "nm_controller_state_4": "Device included.",
+        "nm_controller_state_5": "Ready to exclude.",
+        "nm_controller_state_6": "Device found, please wait...",
+        "nm_controller_state_7": "Device excluded.",
+        "nm_controller_state_8": "Ready to be (re-)included in the network.",
+        "nm_controller_state_9": "(Re-)inclusion started.",
+        "nm_controller_state_10": "Controller found, please wait...",
+        "nm_controller_state_11": "(Re-)including myself in network, please wait...",
+        "nm_controller_state_12": "Controller was (re-)included in network.",
+        "nm_controller_state_13": "Ready to include new primary. Press a button on the device to be included.",
+        "nm_controller_state_14": "Device found, please wait...",
+        "nm_controller_state_15": "Including new primary, please wait...",
+        "nm_controller_state_16": "Device included as primary.",
+        "nm_controller_state_17": "Canceling.",
+        "nm_controller_state_18": "Replace Failed Node process started.",
+        "nm_controller_state_19": "Replace Failed Node ready to include replacement device."
+    };
     // Cancel interval on page destroy
     $scope.$on('$destroy', function() {
         dataFactory.cancelApiDataInterval();
@@ -940,33 +966,98 @@ myAppController.controller('IncludeController', function($scope, $filter, $route
      * Load data into collection
      */
     $scope.loadData = function() {
-        dataFactory.updateZwaveApiData(function(zwaveData){
-           // console.log(zwaveData);
-            refreshZwaveData(zwaveData);
-        });
-        if (angular.isDefined($routeParams.device)) { 
-            dataFactory.localData('devices.json', function(data) {
-               $scope.device.data = data[$routeParams.device];
-              
+        // Get device from JSON
+        if (angular.isDefined($routeParams.device)) {
+            dataFactory.localData('devices.json', function(devices) {
+                $scope.device.data = devices[$routeParams.device];
+
             });
-            
         }
-        
+
+        // Get ZwaveApiData
+        dataFactory.updateZwaveApiData(function(data) {
+            if ('controller.data.controllerState' in data) {
+                $scope.controllerState = data['controller.data.controllerState'].value;
+                //console.log($scope.controllerState);
+            }
+            if ('controller.data.lastExcludedDevice' in data) {
+                $scope.lastExcludedDevice = data['controller.data.lastExcludedDevice'].value;
+            }
+            if ('controller.data.lastIncludedDevice' in data) {
+                var deviceIncId = data['controller.data.lastIncludedDevice'].value;
+                if (deviceIncId != null) {
+                    var givenName = 'Device_' + deviceIncId;
+                    var cmd = 'devices[' + deviceIncId + '].data.givenName.value=\'' + givenName + '\'';
+                    dataFactory.runZwaveCmd(cmd);
+                    $scope.includedDeviceId = deviceIncId;
+                }
+            }
+
+//            $scope.hasBattery = true;
+//            $scope.inclusionError = true;
+        });
+
+
+
+
 
     };
-    
+
     $scope.loadData();
-    
-    
+
+    // Watch for last excluded device
+    $scope.$watch('includedDeviceId', function() {
+        if ($scope.includedDeviceId) {
+            var timeOut;
+            timeOut = $timeout(function() {
+                dataFactory.getZwaveApiData(function(ZWaveAPIData) {
+                    var interviewDone = true;
+                   var  nodeId = $scope.includedDeviceId;
+                    if (ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value && ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value.length) {
+                        for (var iId in ZWaveAPIData.devices[nodeId].instances)
+                            for (var ccId in ZWaveAPIData.devices[nodeId].instances[iId].commandClasses)
+                                if (!ZWaveAPIData.devices[nodeId].instances[iId].commandClasses[ccId].data.interviewDone.value) {
+                                    interviewDone = false;
+                                }
+                    } else {
+                         interviewDone = false;
+                    }
+                    if(interviewDone){
+                        $scope.lastIncludedDevice = 'Device_' + nodeId; 
+                    }else{
+                        $scope.inclusionError = false;
+                    }
+                   
+                    $scope.includedDeviceId = null;
+                    console.log(ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value);
+                     console.log(ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value.length);
+                });
+
+            }, 10000);
+        }
+        // console.log('lastIncludedDevice: ' + $scope.lastIncludedDevice)
+    });
+
+    /**
+     * Run ExpertUI command
+     */
+    $scope.runZwaveCmd = function(cmd) {
+        $scope.lastIncludedDevice = null;
+        $scope.lastExcludedDevice = null;
+        dataFactory.runZwaveCmd(cmd);
+
+    };
+
+
     /**
      * Refresh data
      */
     function refreshZwaveData(data) {
         if ('controller.data.controllerState' in data) {
             $scope.controllerState = data['controller.data.controllerState'].value;
-             console.log($scope.controllerState);
+            console.log($scope.controllerState);
         }
-    // console.log('Controller state: ' + conrollerState);
+        // console.log('Controller state: ' + conrollerState);
 
         // console.log('Learn mode 2: ' + $scope.learnMode);
         if ('controller.data.lastExcludedDevice' in data) {
@@ -979,8 +1070,9 @@ myAppController.controller('IncludeController', function($scope, $filter, $route
         if ('controller.data.secureInclusion' in data) {
             $scope.secureInclusion = data['controller.data.secureInclusion'].value;
         }
-        
-    };
+
+    }
+    ;
 
 
 });

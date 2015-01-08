@@ -30,7 +30,8 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,my
         cancelApiDataInterval: cancelApiDataInterval,
         getLanguageFile: getLanguageFile,
          getZwaveApiData: getZwaveApiData,
-         updateZwaveApiData: updateZwaveApiData
+         updateZwaveApiData: updateZwaveApiData,
+         runZwaveCmd: runZwaveCmd
     });
 
     /// --- Public functions --- ///
@@ -157,27 +158,29 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,my
     /**
      * Get ExpertUI data
      */
-    function getZwaveApiData(api,callback, params) {
+    function getZwaveApiData(callback) {
         var request = {
             method: "post",
-            url: cfg.server_url + cfg.zwave_api_url  + 'Data' + (params ? params : '')
+            url: cfg.server_url + cfg.zwave_api_url  + 'Data/0'
         };
-        return getApiHandle(callback, request, api);
+        return getApiHandle(callback, request);
     }
     
     /**
      * Get updated data from ExpertUI
      */
     function  updateZwaveApiData(callback) {
+         var zTime = Math.round(+new Date() / 1000);
         var refresh = function() {
             var request = {
                 method: "post",
-                url: cfg.server_url + cfg.zwave_api_url  + 'Data/' + updatedTime
+                url: cfg.server_url + cfg.zwave_api_url  + 'Data/' + zTime
             };
             if($http.pendingRequests.length > 0){
                 addErrorElement();
             }
             $http(request).success(function(data) {
+                 zTime = data.updateTime;
                 addTimeTickElement();
                 updateTimeTick($filter('hasNode')(data,'data.updateTime'));
                 return callback(data);
@@ -187,6 +190,22 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,my
             });
         };
         apiDataInterval = $interval(refresh, cfg.interval);
+    }
+    
+    /**
+     * Run ExpertUI command
+     */
+    function runZwaveCmd(cmd) {
+        var request = {
+            method: "get",
+            url: cfg.server_url + cfg.zwave_api_url + "Run/" + cmd
+        };
+        return $http(request).success(function(data) {
+            console.log('SUCCESS:' + request.url);
+        }).error(function(data, status, headers, config, statusText) {
+            handleError(data, status, headers, config, statusText);
+
+        });
     }
 
     /// --- Private functions --- ///
