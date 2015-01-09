@@ -1,44 +1,42 @@
 <!-- Include -->
 <div ng-controller="IncludeController">
     <h2 class="page-subtitle">Include the device <strong  ng-show="device.data" ng-bind="device.data.ZProductHeadline"></strong> into the network</h2> 
-    <div class="device-perex">
-        The inclusion process connected your new device to the Z-Wave network. Make sure that the device is in factory default state. Othrwise the inclusion will not work. If you are unsure consult the devices manual how to reset the device int factory default or perform a device exclusion.
-    </div>
-    <div class="row row-device">
-        <!-- include -->
-        <div class="col-sm-8 col-device app-border app-gradient app-shadow">
-            <div class="col-device-in">
-                <div ng-show="!inclusionError">
-                    <div class="alert alert-warning" ng-show="controllerState == 1"><i class="fa fa-spinner fa-spin"></i> {{messages.nm_controller_state_1}} Hit any button for 1 sec</div>
-                    <div class="alert alert-warning" ng-show="includedDeviceId"><i class="fa fa-spinner fa-spin"></i> New Device found. Please wait to complete confiuration of new device</div>
-                    <div class="alert alert-success" ng-show="lastIncludedDevice"><i class="fa fa-check"></i> New device configured and ready to be used. New device is named:  <strong ng-bind="lastIncludedDevice"></strong></div>
-                </div>
-                <div ng-show="inclusionError">
-                    <div class="alert alert-danger" ng-show="!hasBattery"><i class="fa fa-minus-circle"></i> Something went wrong during the inclusion. Please exclude the device and repeat the process.</div>
-                    <div class="alert alert-danger" ng-show="hasBattery"><i class="fa fa-minus-circle"></i> Could not complete the inclusion. The device liely went to sleep state. Please wakeup the device to complete configuration. [WAKEUP STATEMENT FROM DATABASE] .</div>
+    <!-- <div class="device-perex">
+       The inclusion process connected your new device to the Z-Wave network. Make sure that the device is in factory default state. Othrwise the inclusion will not work. If you are unsure consult the devices manual how to reset the device int factory default or perform a device exclusion.
+   </div>-->
 
-                </div>
-
-
-                <button class="btn btn-success btn-lg"
-                        ng-disabled="[5, 6, 7, 20].indexOf(controllerState) > -1"
-                        ng-show="[1, 2, 3, 4].indexOf(controllerState) == -1"
-                        ng-click="runZwaveCmd('controller.AddNodeToNetwork(1)')"
-                        ><i class="fa fa-plug"></i> Start inclusion</button>
-                <button 
-                    class="btn btn-danger btn-lg"
-                    id="btn_nm_include_stop"
-                    ng-show="[1, 2, 3, 4].indexOf(controllerState) > -1"
-                    ng-click="runZwaveCmd('controller.AddNodeToNetwork(0)')"
-                    >Stop inclusion</button>
-                <div class="device-statement"><strong>Inclusion:</strong> <span ng-bind="includeDevice.TechData.Inclusion_"></span> The statement to include the new device. E.g.: "Hit any button for 1 sec"</div>
+    <!-- include -->
+    <div class="col-device app-border app-gradient app-shadow">
+        <div class="col-device-in">
+            <div ng-show="!inclusionError">
+                <div class="alert alert-warning" ng-show="controllerState == 1"><i class="fa fa-spinner fa-spin"></i> Ready to include. <span ng-bind="device.data.ZInclusionNote"></span></div>
+                <div class="alert alert-warning" ng-show="includedDeviceId"><i class="fa fa-spinner fa-spin"></i> New Device found. Please wait to complete confiuration of new device</div>
+                <div class="alert alert-success" ng-show="lastIncludedDevice"><i class="fa fa-check"></i> New device configured and ready to be used. New device is named:  <strong ng-bind="lastIncludedDevice"></strong></div>
+            </div>
+            <div ng-show="inclusionError">
+                <div class="alert alert-danger" ng-show="!device.data.TechData.Battery"><i class="fa fa-minus-circle"></i> Something went wrong during the inclusion. Please exclude the device and repeat the process.</div>
+                <div class="alert alert-danger" ng-show="device.data.TechData.Battery"><i class="fa fa-minus-circle"></i> Could not complete the inclusion. The device liely went to sleep state. Please wakeup the device to complete configuration. <span ng-bind="device.data.ZWakeupNote"></span></div>
 
             </div>
-        </div>
-        <!-- exclude -->
-        <div class="col-sm-4 col-device">
-            <div class="col-device-in">
-                <div class="alert alert-warning" ng-show="controllerState == 5"><i class="fa fa-spinner fa-spin"></i> {{messages.nm_controller_state_5}} Make sure the device is in factory deaut state You can verify this by pushing any button for 1 sec. The two LED must start blinking.</div>
+
+
+            <button class="btn btn-success btn-lg"
+                    ng-disabled="[5, 6, 7, 20].indexOf(controllerState) > -1"
+                    ng-show="[1, 2, 3, 4].indexOf(controllerState) == -1"
+                    ng-click="runZwaveCmd('controller.AddNodeToNetwork(1)')"
+                    ><i class="fa fa-plug"></i> Start inclusion</button>
+            <button 
+                class="btn btn-danger btn-lg"
+                id="btn_nm_include_stop"
+                ng-show="[1, 2, 3, 4].indexOf(controllerState) > -1"
+                ng-click="runZwaveCmd('controller.AddNodeToNetwork(0)')"
+                >Stop inclusion</button>
+            <div class="device-statement"> The inclusion process connected your new device to the Z-Wave network. Make sure that the device is in factory default state. Othrwise the inclusion will not work. If you are unsure consult the devices manual how to reset the device int factory default or perform a device exclusion.</div>
+            <!--  <div class="device-statement" ng-show="device.data.ZInclusionNote"><strong>Inclusion:</strong> <span ng-bind="device.data.ZInclusionNote"></span></div>-->
+            
+              <!-- exclude -->
+            <div class="col-device-exclude">
+                <div class="alert alert-warning" ng-show="controllerState == 5"><i class="fa fa-spinner fa-spin"></i> <span ng-bind="device.data.ZExclusionNote"></span></div>
                 <div class="alert alert-success" ng-show="lastExcludedDevice != null"><i class="fa fa-check"></i> Device excluded</div>
                 <button 
                     class="btn btn-info"
@@ -52,11 +50,15 @@
                     ng-click="runZwaveCmd('controller.RemoveNodeFromNetwork(0)')"
                     >Stop exclusion</button>
 
-                <div class="device-statement"><strong>Preparation:</strong> Make sure the device is in factory deaut state You can verify this by pushing any button for 1 sec. The two LED must start blinking</div>
+                <div class="device-statement" ng-show="device.data.ZExclusionNote"><strong>Exclusion:</strong> <span ng-bind="device.data.ZExclusionNote"></span></div>
             </div>
-        </div>
 
+        </div>
     </div>
+
+
+
+
 
 </div>
 

@@ -833,15 +833,15 @@ fieldset {
 }
 
 /* line 74, sass/modules/_devices.scss */
-.row-device .col-device {
+.col-device {
   text-align: center;
   padding: 20px;
 }
 /* line 77, sass/modules/_devices.scss */
-.row-device .col-device .device-statement {
-  margin: 10px 0 0 0;
-  padding: 10px 0 0 0;
-  border-top: solid 1px #d3d3d3;
+.col-device .device-statement {
+  margin: 10px 0;
+  padding: 10px 0;
+  border-bottom: solid 1px #d3d3d3;
 }
 
 /* Network

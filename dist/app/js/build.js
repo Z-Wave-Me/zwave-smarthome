@@ -7301,7 +7301,7 @@ myAppController.controller('DeviceController', function($scope, $routeParams, da
      * Load data into collection
      */
     $scope.loadData = function(filter) {
-        dataFactory.localData('devices.json', function(data) {
+        dataFactory.localData('z_en.json', function(data) {
             $scope.manufacturers = dataService.getPairs(data, 'ZManufacturersName', 'ZManufacturersImage', 'manufacturers');
             if (filter) {
                 $scope.zwaveDevices = dataService.getData(data, filter);
@@ -7361,7 +7361,7 @@ myAppController.controller('IncludeController', function($scope, $filter, $route
     $scope.loadData = function() {
         // Get device from JSON
         if (angular.isDefined($routeParams.device)) {
-            dataFactory.localData('devices.json', function(devices) {
+            dataFactory.localData('z_en.json', function(devices) {
                 $scope.device.data = devices[$routeParams.device];
 
             });
