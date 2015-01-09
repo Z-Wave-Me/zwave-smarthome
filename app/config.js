@@ -1,14 +1,14 @@
 var config_data = {
     'cfg': {
         //Application name
-        'app_name': 'My App',
+        'app_name': 'HAUI',
         // Application version
         'app_version': '0.1',
         // Application type: web/app
         'app_type': 'web',
         // Server base url
-        //'server_url': '/',
-        'server_url': 'http://zwave.dyndns.org:8083/',
+        'server_url': '/',
+        //'server_url': 'http://zwave.dyndns.org:8083/',
         // Interval in miliseconds to refresh data
         'interval': 3000,
         // List of API links
@@ -27,9 +27,9 @@ var config_data = {
             'icons': 'storage/img/icons/'
         },
         // Api url
-        'api_url': '/ZAutomation/api/v1/',
+        'api_url': 'ZAutomation/api/v1/',
         // ZWave api url
-        'zwave_api_url': '/ZWaveAPI/',
+        'zwave_api_url': 'ZWaveAPI/',
         // Local data path
         'local_data_url': 'storage/data/',
         // Language directory

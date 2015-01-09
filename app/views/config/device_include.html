@@ -2,31 +2,11 @@
 <div ng-controller="IncludeController">
     <h2 class="page-subtitle">Include the device <strong  ng-show="device.data" ng-bind="device.data.ZProductHeadline"></strong> into the network</h2> 
     <div class="device-perex">
-        The inclusion process connectd your new device to the Z-Wave network. Make sure that the device is in factory default state. Othrwise the inclusion will not work. If you are unsure consult the devices manual how to reset the device int factory default ot perform a device exclusion, 
+        The inclusion process connected your new device to the Z-Wave network. Make sure that the device is in factory default state. Othrwise the inclusion will not work. If you are unsure consult the devices manual how to reset the device int factory default or perform a device exclusion.
     </div>
-    <div class="row row-device app-border app-gradient app-shadow">
-        <!-- exclude -->
-        <div class="col-sm-6 col-device">
-            <div class="col-device-in">
-                <div class="alert alert-warning" ng-show="controllerState == 5"><i class="fa fa-spinner fa-spin"></i> {{messages.nm_controller_state_5}} Make sure the device is in factory deaut state You can verify this by pushing any button for 1 sec. The two LED must start blinking.</div>
-                <div class="alert alert-success" ng-show="lastExcludedDevice != null"><i class="fa fa-check"></i> Device excluded</div>
-                <button 
-                    class="btn btn-info btn-lg"
-                    ng-disabled="[1, 2, 3, 4, 20].indexOf(controllerState) > -1"
-                    ng-show="[5, 6, 7].indexOf(controllerState) == -1"
-                    ng-click="runZwaveCmd('controller.RemoveNodeFromNetwork(1)')"
-                    ><i class="fa fa-power-off"></i> Start exclusion</button>
-                <button 
-                    class="btn btn-danger btn-lg"
-                    ng-show="[5, 6, 7].indexOf(controllerState) > -1"
-                    ng-click="runZwaveCmd('controller.RemoveNodeFromNetwork(0)')"
-                    >Stop exclusion</button>
-
-                <div class="device-statement"><strong>Preparation:</strong> This is a test from the database that describes what to do to get the device included. E.g.: "Make sure the device is in factory deaut state You can verify this by pushing any button for 1 sec. The two LED must start blinking"</div>
-            </div>
-        </div>
+    <div class="row row-device">
         <!-- include -->
-        <div class="col-sm-6 col-device">
+        <div class="col-sm-8 col-device app-border app-gradient app-shadow">
             <div class="col-device-in">
                 <div ng-show="!inclusionError">
                     <div class="alert alert-warning" ng-show="controllerState == 1"><i class="fa fa-spinner fa-spin"></i> {{messages.nm_controller_state_1}} Hit any button for 1 sec</div>
@@ -53,6 +33,26 @@
                     >Stop inclusion</button>
                 <div class="device-statement"><strong>Inclusion:</strong> <span ng-bind="includeDevice.TechData.Inclusion_"></span> The statement to include the new device. E.g.: "Hit any button for 1 sec"</div>
 
+            </div>
+        </div>
+        <!-- exclude -->
+        <div class="col-sm-4 col-device">
+            <div class="col-device-in">
+                <div class="alert alert-warning" ng-show="controllerState == 5"><i class="fa fa-spinner fa-spin"></i> {{messages.nm_controller_state_5}} Make sure the device is in factory deaut state You can verify this by pushing any button for 1 sec. The two LED must start blinking.</div>
+                <div class="alert alert-success" ng-show="lastExcludedDevice != null"><i class="fa fa-check"></i> Device excluded</div>
+                <button 
+                    class="btn btn-info"
+                    ng-disabled="[1, 2, 3, 4, 20].indexOf(controllerState) > -1"
+                    ng-show="[5, 6, 7].indexOf(controllerState) == -1"
+                    ng-click="runZwaveCmd('controller.RemoveNodeFromNetwork(1)')"
+                    ><i class="fa fa-power-off"></i> Start exclusion</button>
+                <button 
+                    class="btn btn-danger"
+                    ng-show="[5, 6, 7].indexOf(controllerState) > -1"
+                    ng-click="runZwaveCmd('controller.RemoveNodeFromNetwork(0)')"
+                    >Stop exclusion</button>
+
+                <div class="device-statement"><strong>Preparation:</strong> Make sure the device is in factory deaut state You can verify this by pushing any button for 1 sec. The two LED must start blinking</div>
             </div>
         </div>
 

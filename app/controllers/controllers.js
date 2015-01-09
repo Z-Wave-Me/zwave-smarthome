@@ -992,15 +992,7 @@ myAppController.controller('IncludeController', function($scope, $filter, $route
                     $scope.includedDeviceId = deviceIncId;
                 }
             }
-
-//            $scope.hasBattery = true;
-//            $scope.inclusionError = true;
         });
-
-
-
-
-
     };
 
     $scope.loadData();
@@ -1035,7 +1027,6 @@ myAppController.controller('IncludeController', function($scope, $filter, $route
 
             }, 10000);
         }
-        // console.log('lastIncludedDevice: ' + $scope.lastIncludedDevice)
     });
 
     /**
@@ -1047,32 +1038,6 @@ myAppController.controller('IncludeController', function($scope, $filter, $route
         dataFactory.runZwaveCmd(cmd);
 
     };
-
-
-    /**
-     * Refresh data
-     */
-    function refreshZwaveData(data) {
-        if ('controller.data.controllerState' in data) {
-            $scope.controllerState = data['controller.data.controllerState'].value;
-            console.log($scope.controllerState);
-        }
-        // console.log('Controller state: ' + conrollerState);
-
-        // console.log('Learn mode 2: ' + $scope.learnMode);
-        if ('controller.data.lastExcludedDevice' in data) {
-            $scope.lastExcludedDevice = data['controller.data.lastExcludedDevice'].value;
-        }
-
-        if ('controller.data.lastIncludedDevice' in data) {
-            $scope.lastIncludedDevice = data['controller.data.lastIncludedDevice'].value;
-        }
-        if ('controller.data.secureInclusion' in data) {
-            $scope.secureInclusion = data['controller.data.secureInclusion'].value;
-        }
-
-    }
-    ;
 
 
 });
