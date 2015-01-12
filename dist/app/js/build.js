@@ -7012,7 +7012,7 @@ myAppController.controller('AppController', function($scope, $window, dataFactor
     $scope.loadModules = function(filter) {
         dataFactory.getApiData('modules', function(data) {
             $scope.modules = dataService.getData(data.data, filter);
-            //console.log($scope.modules);
+           console.log(filter);
 
 
         });
@@ -7283,10 +7283,12 @@ myAppController.controller('AppModuleController', function($scope, $routeParams,
  */
 myAppController.controller('DeviceController', function($scope, $routeParams, dataFactory, dataService) {
     $scope.zwaveDevices = [];
+    $scope.zwaveDevicesFilter = false;
     $scope.deviceVendor = false;
     $scope.manufacturers = [];
     $scope.manufacturer = false;
-    $scope.zwaveDevicesFilter = false;
+
+    $scope.ipcameraDevices = [];
 
     if (angular.isDefined($routeParams.type)) {
         $scope.deviceVendor = $routeParams.type;
@@ -7298,9 +7300,9 @@ myAppController.controller('DeviceController', function($scope, $routeParams, da
         $scope.zwaveDevicesFilter = filter;
     };
     /**
-     * Load data into collection
+     * Load z-wave devices
      */
-    $scope.loadData = function(filter) {
+    $scope.loadZwaveDevices = function(filter) {
         dataFactory.localData('z_en.json', function(data) {
             $scope.manufacturers = dataService.getPairs(data, 'ZManufacturersName', 'ZManufacturersImage', 'manufacturers');
             if (filter) {
@@ -7309,10 +7311,31 @@ myAppController.controller('DeviceController', function($scope, $routeParams, da
             }
         });
     };
+    
+    /**
+     * Load ip cameras
+     */
+    $scope.loadIpcameras = function() {
+        dataFactory.getApiData('modules', function(data) {
+            $scope.ipcameraDevices = dataService.getData(data.data, {filter: "category", val: "surveillance"});
+          });
+    };
 
-    $scope.$watch('zwaveDevicesFilter', function() {
-        $scope.loadData($scope.zwaveDevicesFilter);
-        //onsole.log($scope.zwaveDevicesFilter)
+    $scope.$watch('deviceVendor', function() {
+        switch ($scope.deviceVendor) {
+            case 'zwave':
+                $scope.$watch('zwaveDevicesFilter', function() {
+                    $scope.loadZwaveDevices($scope.zwaveDevicesFilter);
+                });
+                break;
+            case 'ipcamera':
+               $scope.loadIpcameras();
+                break;
+            case 'enocean':
+                break;
+            default:
+                break;
+        }
     });
 });
 /**
@@ -7397,7 +7420,7 @@ myAppController.controller('IncludeController', function($scope, $filter, $route
             timeOut = $timeout(function() {
                 dataFactory.getZwaveApiData(function(ZWaveAPIData) {
                     var interviewDone = true;
-                   var  nodeId = $scope.includedDeviceId;
+                    var nodeId = $scope.includedDeviceId;
                     if (ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value && ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value.length) {
                         for (var iId in ZWaveAPIData.devices[nodeId].instances)
                             for (var ccId in ZWaveAPIData.devices[nodeId].instances[iId].commandClasses)
@@ -7405,17 +7428,17 @@ myAppController.controller('IncludeController', function($scope, $filter, $route
                                     interviewDone = false;
                                 }
                     } else {
-                         interviewDone = false;
+                        interviewDone = false;
                     }
-                    if(interviewDone){
-                        $scope.lastIncludedDevice = 'Device_' + nodeId; 
-                    }else{
+                    if (interviewDone) {
+                        $scope.lastIncludedDevice = 'Device_' + nodeId;
+                    } else {
                         $scope.inclusionError = false;
                     }
-                   
+
                     $scope.includedDeviceId = null;
                     console.log(ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value);
-                     console.log(ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value.length);
+                    console.log(ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value.length);
                 });
 
             }, 10000);

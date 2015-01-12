@@ -2,7 +2,22 @@
 <div class="device-logo">
 <img class="apps-image" ng-src="app/img/logo-ipcamera.png" alt="Logo" />
 </div>
-<p class="alert alert-warning">
-    IP camera device
-</p>
+<div class="table-responsive_" ng-show="ipcameraDevices">
+    <table class="table table-report table-events">
+        <tbody>
+            <tr ng-repeat="v in ipcameraDevices">
+                <td class="td-img">
+                    <img class="report-img" ng-src="storage/img/icons/camera.png" alt="img" />
+                </td>
+                <td class="text-left">
+                    <span ng-bind="v.defaults.title"></span>
+                </td>
+                <td class="td-action">
+                    <a href="#module/post/{{v.id}}" class="btn btn-primary">Include device</a>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
             
