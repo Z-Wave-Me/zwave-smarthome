@@ -339,10 +339,10 @@
                          
                     <div class="form-group">
                         <h4>Assign to room</h4>
-                        <div class="modal-room-images" ng-repeat="v in rooms">
-                            <input type="radio" name="icon" value="{{v.id}}" title="{{v.title}}" ng-model="input.location" ng-checked="input.location == v.id" /><br />
-                            <img class="" ng-src="storage/img/rooms/{{v.icon}}" alt="{{v.title}}"  />
-                        </div>
+                        <select class="form-control" ng-model="input.location">
+                            <!-- <option value="">--- Select one ---</option>-->
+                            <option ng-repeat="v in rooms" ng-selected="input.location == v.id" value="{{v.id}}" ng-bind="v.title"></option>
+                        </select>
                         </div>
                         </fieldset>
 
