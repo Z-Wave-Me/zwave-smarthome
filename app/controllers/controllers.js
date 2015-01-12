@@ -734,7 +734,7 @@ myAppController.controller('AppModuleController', function($scope, $routeParams,
     $scope.success = false;
     $scope.input = {
         'id': 0,
-        'active': false,
+        'active': true,
         'moduleId': null,
         'title': null,
         'description': null,
@@ -754,7 +754,7 @@ myAppController.controller('AppModuleController', function($scope, $routeParams,
             dataFactory.getApiData('namespaces', function(namespaces) {
                 $scope.input = {
                     //'id': instance.id,
-                    //'active': instance.active,
+                    'active': true,
                     'title': $filter('hasNode')(module, 'defaults.title'),
                     'description': $filter('hasNode')(module, 'defaults.description'),
                     'moduleTitle': $filter('hasNode')(module, 'defaults.title'),
