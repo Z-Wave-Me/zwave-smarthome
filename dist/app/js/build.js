@@ -6222,7 +6222,12 @@ myApp.filter('getElementIcon', function(cfg) {
                 case 'camera':
                     icon = cfg.img.icons + 'camera.png';
                     break;
-                
+                case 'smoke':
+                    icon = cfg.img.icons + 'smoke.png';
+                    break;
+                    case 'alarm':
+                    icon = cfg.img.icons + 'alarm.png';
+                    break;
                 default:
                     break;
             }
@@ -6585,11 +6590,13 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.showFooter = true;
     $scope.deviceType = [];
     $scope.tags = [];
+    $scope.rooms = [];
     $scope.levelVal = [];
     $scope.profileData = [];
     $scope.input = {
         'id': null,
         'metrics': null,
+        'location': null,
         'tags': null,
         'permanently_hidden': false,
         'title': '',
@@ -6630,6 +6637,9 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
                     'name': profile ? profile.name : 'Default',
                     'positions': profile ? profile.positions : []
                 };
+            });
+            dataFactory.getApiData('locations', function(data) {
+                $scope.rooms = data.data;
             });
             if (angular.isDefined($routeParams.filter) && angular.isDefined($routeParams.val)) {
                 switch ($routeParams.filter) {
@@ -6738,6 +6748,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.store = function(input) {
         var inputData = {
             'id': input.id,
+            'location': input.location,
             'tags': dataService.setArrayValue(input.tags, 'dashboard', input.dashboard),
             'permanently_hidden': input.permanently_hidden,
             'metrics': input.metrics
@@ -7012,7 +7023,7 @@ myAppController.controller('AppController', function($scope, $window, dataFactor
     $scope.loadModules = function(filter) {
         dataFactory.getApiData('modules', function(data) {
             $scope.modules = dataService.getData(data.data, filter);
-           console.log(filter);
+            console.log(filter);
 
 
         });
@@ -7311,14 +7322,14 @@ myAppController.controller('DeviceController', function($scope, $routeParams, da
             }
         });
     };
-    
+
     /**
      * Load ip cameras
      */
     $scope.loadIpcameras = function() {
         dataFactory.getApiData('modules', function(data) {
             $scope.ipcameraDevices = dataService.getData(data.data, {filter: "category", val: "surveillance"});
-          });
+        });
     };
 
     $scope.$watch('deviceVendor', function() {
@@ -7329,7 +7340,7 @@ myAppController.controller('DeviceController', function($scope, $routeParams, da
                 });
                 break;
             case 'ipcamera':
-               $scope.loadIpcameras();
+                $scope.loadIpcameras();
                 break;
             case 'enocean':
                 break;

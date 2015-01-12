@@ -11,13 +11,15 @@
                                            'id': v.id,
                                            'title': v.title,
                                            'dashboard': v.onDashboard == true ? true : false,
+                                           'location': v.location,
                                            'tags': v.tags,
                                            'deviceType': v.deviceType,
                                            'level': v.level,
                                            'metrics': v.metrics,
                                            'updateTime': v.updateTime,
                                            'cfg': v.cfg,
-                                           'permanently_hidden': v.permanently_hidden
+                                           'permanently_hidden': v.permanently_hidden,
+                                           'rooms': rooms
                                        })"
                        ><i class="fa fa-cog fa-lg"></i></a>
                     <!-- Widget header -->
@@ -331,35 +333,16 @@
                          <button type="button" class="btn btn-default" ng-click="addTag(addNewTag)"><i class="fa fa-plus text-success"></i></button>
                     </div>
                         </fieldset>
-                    <!--<div class="form-group">
-                       <span class="text-supp"><i class="fa fa-clock-o"></i> {{input.updateTime|isTodayFromUnix}}</span>
-                   </div>-->
-
-                    <!--<div class="form-group">
-                       <label>Icon: </label>
-                       <input type="checkbox" value="1" checked /> <label><i class="fa fa-camera fa-2x text-success"></i></label>&nbsp;&nbsp;
-                       <input type="checkbox" value="1" /> <label><i class="fa fa-cube fa-2x"></i></label>&nbsp;&nbsp;
-                       <input type="checkbox" value="1" /> <label><i class="fa fa-dashboard fa-2x"></i></label>&nbsp;&nbsp;
-                       <input type="checkbox" value="1" /> <label><i class="fa fa-globe fa-2x"></i></label>&nbsp;&nbsp;
-                   </div>-->
-                    <!--<div>
-                        <div class="panel panel-default" ng-if="input.id == 'OpenWeather_10' || input.id == 'OpenWeather_9' || input.id == 'OpenWeather_11'">
-                            <div class="panel-heading"><h4><i class="fa fa-wrench"></i> {{_t('lb_configuration_of')}} <strong>Open Weather instance</strong></h4></div>
-                            <div class="panel-body">
-                                <div class="form-group">
-                                    <input name="city" id="city" type="text" class="form-control" placeholder="City" value="{{input.name}}" ng-model="input.name" />
-                                </div>
-                                <div class="form-group">
-                                    <input name="country" id="country" type="text" class="form-control" placeholder="Country" value="{{input.name}}" ng-model="input.name" />
-                                </div>
-                                <div class="form-group">
-                                    <input type="radio" name="temp" value="f" checked="checked" /> °F
-                                    <input type="radio" name="temp" value="f" checked="checked" /> °C
-                                </div>
-                            </div>
+                     <fieldset class="widget-cfg-block">
+                         
+                    <div class="form-group">
+                        <h4>Assign to room</h4>
+                        <div class="modal-room-images" ng-repeat="v in rooms">
+                            <input type="radio" name="icon" value="{{v.id}}" title="{{v.title}}" ng-model="input.location" ng-checked="input.location == v.id" /><br />
+                            <img class="" ng-src="storage/img/rooms/{{v.icon}}" alt="{{v.title}}"  />
                         </div>
-
-                    </div>-->
+                        </div>
+                        </fieldset>
 
                 </div>
                 <div class="modal-footer">

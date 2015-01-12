@@ -152,7 +152,12 @@ myApp.filter('getElementIcon', function(cfg) {
                 case 'camera':
                     icon = cfg.img.icons + 'camera.png';
                     break;
-                
+                case 'smoke':
+                    icon = cfg.img.icons + 'smoke.png';
+                    break;
+                    case 'alarm':
+                    icon = cfg.img.icons + 'alarm.png';
+                    break;
                 default:
                     break;
             }
