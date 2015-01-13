@@ -7,15 +7,15 @@
     text-align: center;
     padding: 10px;
     @include appGradient();
-    
+
     .list-group-item{
         text-align: left;
         background-color: transparent;
-         margin: 0;
+        margin: 0;
         border: 0;
         border-radius: 0;
         border-top: solid 1px $app-border-color;
-       
+
     }
 }
 .device-logo{
@@ -23,9 +23,9 @@
     margin: 0 0 20px 0;
 }
 .device-logo img{
-     max-width: 100px !important;
-            max-height: 70px !important;
-    
+    max-width: 100px !important;
+    max-height: 70px !important;
+
 }
 /*.device-manufacturers{
     background-color: #fff;
@@ -49,34 +49,39 @@
     margin: 0 0 20px 0;
 }
 
+ .col-device-vendor{
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+    }
 .vendor-list {
     display: block; 
-    margin: 0 0 30px 0 ;
+    margin: 0 0 10px 0 ;
     background-color: #fff;
     text-align: center; 
     border: solid 1px $app-border-color;
    
     .vendor-image{
-        line-height: 100px;
+        line-height: 80px;
+        margin: 0 !important;
         img {
             vertical-align: middle;
-            max-width: 100px;
-            max-height: 80px;
+            max-width: 80px;
+            max-height: 60px;
         }
     }
 }
- .device-perex{
-     font-size: 110%;
-            padding: 10px 0;
-            border-top: solid 1px $app-border-color;
-        }
+.device-perex{
+    font-size: 110%;
+    padding: 10px 0;
+    border-top: solid 1px $app-border-color;
+}
 
-     .col-device{
-        text-align: center;
-        padding: 20px;
-        .device-statement{
-            margin: 10px 0;
-            padding: 10px 0;
-            border-bottom: solid 1px $app-border-color;
-        }
+.col-device{
+    text-align: center;
+    padding: 20px;
+    .device-statement{
+        margin: 10px 0;
+        padding: 10px 0;
+        border-bottom: solid 1px $app-border-color;
     }
+}

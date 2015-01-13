@@ -975,7 +975,7 @@ myAppController.controller('DeviceController', function($scope, $routeParams, da
 /**
  * Device controller
  */
-myAppController.controller('IncludeController', function($scope, $filter, $routeParams, $timeout, dataFactory, dataService) {
+myAppController.controller('IncludeController', function($scope, $routeParams, $timeout, dataFactory) {
     $scope.device = {
         'data': null
     };
@@ -1067,7 +1067,7 @@ myAppController.controller('IncludeController', function($scope, $filter, $route
                     if (interviewDone) {
                         $scope.lastIncludedDevice = 'Device_' + nodeId;
                     } else {
-                        $scope.inclusionError = false;
+                        $scope.inclusionError = true;
                     }
 
                     $scope.includedDeviceId = null;
