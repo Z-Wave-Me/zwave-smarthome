@@ -442,9 +442,11 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
 /**
  * Event controller
  */
-myAppController.controller('EventController', function($scope, $routeParams, dataFactory, dataService) {
+myAppController.controller('EventController', function($scope, $routeParams, dataFactory, dataService,paginationService,cfg) {
     $scope.collection = [];
     $scope.eventLevel = [];
+    $scope.currentPage = 1;
+    $scope.pageSize = cfg.page_results;
     $scope.reset = function() {
         $scope.collection = angular.copy([]);
     };
@@ -488,6 +490,25 @@ myAppController.controller('EventController', function($scope, $routeParams, dat
             });
             //console.log(data.data.notifications);
         });
+    };
+    $scope.updateData();
+    
+     /**
+     * Watch for pagination change
+     */
+    $scope.$watch('currentPage', function(page) {
+        paginationService.setCurrentPage(page);
+    });
+
+    $scope.setCurrentPage = function(val) {
+        $scope.currentPage = val;
+    };
+    
+     /**
+     * Update data into collection
+     */
+    $scope.markAsRead = function(id) {
+       $('#row_' + id).fadeOut();
     };
     $scope.updateData();
 });

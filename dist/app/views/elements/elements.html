@@ -135,7 +135,7 @@
                         <div class="widget-click-popup" ng-switch-when="switchMultilevelLinear"><strong>{{v.level}} <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span></strong> <i class="fa fa-caret-down"></i></div>
                         <!-- camera -->
                         <div class="widget-click-popup" ng-switch-when="camera_" ng-click="showModal('#modal_camera', v)">{{v.deviceType}} <i class="fa fa-caret-down"></i></div>
-                        <div class="text-right"><a href="" class="btn btn-info" ng-switch-when="camera" ng-click="showModal('#modal_camera', v)"><i class="fa fa-video-camera"></i></a></div> 
+                        <div class="text-right"><a href="" class="btn btn-info" ng-switch-when="camera" ng-click="showModal('#modal_camera', v)"><i class="fa fa-play"></i></a></div> 
                         <!-- Default -->
                         <div  class="widget-result" ng-switch-default><span class="widget-level" ng-bind="v.level"></span> <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span></div>
 
@@ -382,7 +382,7 @@
 
                     <div class="camera-img">
                         <!--<img ng-src="storage/img/test.jpg">-->
-                        <img class="text-center camera-img" src="{{cfg.server_url + input.metrics.url}}">
+                        <img class="text-center camera-img" src="{{input.metrics.url}}">
                     </div>
 
                 </div>
