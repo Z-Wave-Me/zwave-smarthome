@@ -150,7 +150,29 @@ fieldset{
     margin-top: 70px; 
     margin-bottom: 20px;
 }
-
+/* Modal
+-------------------------------------------------- */
+.modal-vertical-centered {
+    position: fixed;
+    top: 15% !important;
+}
+//.modal-vertical.fade.in { top: 50%; transform: translateY(-50%); }
+/*.modal-vertical-centered {
+  transform: translate(0, 25%) !important;
+  -ms-transform: translate(0, 25%) !important;  IE 9 
+  -webkit-transform: translate(0, 25%) !important;  Safari and Chrome 
+}*/
+/*.modal-dialog-center_ {
+    margin-top: 25%;
+}
+.table {
+ display: table;
+ height:100%;
+}
+.table-cell {
+display: table-cell;
+vertical-align: middle;
+}*/
 /* Tooltip
 -------------------------------------------------- */
 .tooltip-inner {

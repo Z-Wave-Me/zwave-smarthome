@@ -4,7 +4,7 @@
     margin-bottom: 20px;
 }
 .widget-block-in{
-   height: $app-el-block-h;
+    height: $app-el-block-h;
     position:relative;
     text-align: left;
 }
@@ -61,6 +61,14 @@
         background-color: #fff;
         box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
     }
+    .element-hidden.hidden-camera{
+        width: 100%;
+        height: 300%;
+        left: 50%;
+        margin-left:-50%;
+        top: 50%;
+    }
+
     table{
         width: 100%;
         td{
@@ -68,6 +76,17 @@
             vertical-align: middle;
             text-align: center;
         }
+    }
+}
+
+.element-camera-control{
+    text-align: center;
+}
+.camera-img{
+    text-align:center;
+    img{
+        width: 100%;
+        display: inline-block;
     }
 }
 
