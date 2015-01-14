@@ -87,17 +87,22 @@ a:hover {
   margin-right: 5px;
 }
 
-/* line 68, sass/globals/_body.scss */
+/* line 67, sass/globals/_body.scss */
+.label-more {
+  cursor: pointer;
+}
+
+/* line 71, sass/globals/_body.scss */
 .btn-tooltip {
   cursor: help;
 }
 
-/* line 71, sass/globals/_body.scss */
+/* line 74, sass/globals/_body.scss */
 .app-border {
   border: solid 4px #fff;
 }
 
-/* line 74, sass/globals/_body.scss */
+/* line 77, sass/globals/_body.scss */
 .app-gradient {
   background: #f6f6f6;
   /* Old browsers */
@@ -117,7 +122,7 @@ a:hover {
   /* IE6-9 */
 }
 
-/* line 78, sass/globals/_body.scss */
+/* line 81, sass/globals/_body.scss */
 .app-shadow {
   -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
   -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
@@ -126,7 +131,7 @@ a:hover {
 
 /* Images
 -------------------------------------------------- */
-/* line 85, sass/globals/_body.scss */
+/* line 88, sass/globals/_body.scss */
 .report-img {
   margin: 0 5px;
   width: 40px;
@@ -135,39 +140,39 @@ a:hover {
 
 /* tables
 -------------------------------------------------- */
-/* line 96, sass/globals/_body.scss */
+/* line 99, sass/globals/_body.scss */
 .table tbody tr td {
   border-top: 4px solid #F6F6F6;
 }
 
-/* line 104, sass/globals/_body.scss */
+/* line 107, sass/globals/_body.scss */
 .table-report {
   border: 0 !important;
 }
-/* line 106, sass/globals/_body.scss */
+/* line 109, sass/globals/_body.scss */
 .table-report td {
   vertical-align: middle;
 }
-/* line 110, sass/globals/_body.scss */
+/* line 113, sass/globals/_body.scss */
 .table-report tbody tr {
   background-color: white;
 }
 
 /* Tabs
 -------------------------------------------------- */
-/* line 117, sass/globals/_body.scss */
+/* line 120, sass/globals/_body.scss */
 .nav-tabs {
   border-bottom: 1px solid #dddddd;
 }
 
-/* line 120, sass/globals/_body.scss */
+/* line 123, sass/globals/_body.scss */
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
   color: #1a1a1a;
   background-color: #DDDDDD;
   border: #dddddd;
 }
 
-/* line 125, sass/globals/_body.scss */
+/* line 128, sass/globals/_body.scss */
 .nav-tabs > li.active > a i {
   color: #DA131F;
 }
@@ -177,7 +182,7 @@ background-color: lighten($app-body-bcg-color, 10%);;
 }*/
 /* Forms
 -------------------------------------------------- */
-/* line 133, sass/globals/_body.scss */
+/* line 136, sass/globals/_body.scss */
 fieldset {
   margin-bottom: 10px;
   background-color: #F6F6F6;
@@ -186,14 +191,14 @@ fieldset {
 
 /* Page
 -------------------------------------------------- */
-/* line 143, sass/globals/_body.scss */
+/* line 146, sass/globals/_body.scss */
 .page-header {
   padding-bottom: 0;
   margin: 20px 0 30px 0;
   border-bottom: 0;
 }
 
-/* line 149, sass/globals/_body.scss */
+/* line 152, sass/globals/_body.scss */
 #main_content {
   margin-top: 70px;
   margin-bottom: 20px;
@@ -201,7 +206,7 @@ fieldset {
 
 /* Modal
 -------------------------------------------------- */
-/* line 155, sass/globals/_body.scss */
+/* line 158, sass/globals/_body.scss */
 .modal-vertical-centered {
   position: fixed;
   top: 15% !important;
@@ -225,7 +230,7 @@ vertical-align: middle;
 }*/
 /* Tooltip
 -------------------------------------------------- */
-/* line 178, sass/globals/_body.scss */
+/* line 181, sass/globals/_body.scss */
 .tooltip-inner {
   background-color: #F6F6F6;
   color: #000;
@@ -234,28 +239,28 @@ vertical-align: middle;
   text-align: left;
 }
 
-/* line 185, sass/globals/_body.scss */
+/* line 188, sass/globals/_body.scss */
 .tooltip-arrow {
   border-bottom-color: #f2f2f2;
 }
 
 /* Pagination
 -------------------------------------------------- */
-/* line 191, sass/globals/_body.scss */
+/* line 194, sass/globals/_body.scss */
 .pagination > li > a, .pagination > li > span {
   color: #DA131F;
   background-color: #FFF;
   border: 1px solid #d3d3d3;
 }
 
-/* line 197, sass/globals/_body.scss */
+/* line 200, sass/globals/_body.scss */
 .pagination > li > a:hover, .pagination > li > a:focus, .pagination > li > span:hover, .pagination > li > span:focus {
   color: #DA131F;
   background-color: #F6F6F6;
   border-color: #d3d3d3;
 }
 
-/* line 203, sass/globals/_body.scss */
+/* line 206, sass/globals/_body.scss */
 .pagination > .disabled > a, .pagination > .disabled > a:hover, .pagination > .disabled > a:focus {
   color: #777777;
   background-color: #FFF;
@@ -263,7 +268,7 @@ vertical-align: middle;
   cursor: not-allowed;
 }
 
-/* line 210, sass/globals/_body.scss */
+/* line 213, sass/globals/_body.scss */
 .pagination > .active > a, .pagination > .active > a:hover {
   color: #fff;
   background-color: #d3d3d3;
@@ -931,6 +936,11 @@ vertical-align: middle;
 
 /* Network
 -------------------------------------------------- */
+/* line 8, sass/modules/_network.scss */
+.network-block {
+  margin-bottom: 20px;
+}
+
 /*
  * The responsive style for the front-end
  */

@@ -1,16 +1,22 @@
 <!-- Network view -->
 <div ng-controller="NetworkController">
     <!-- Battery status -->
-    <h2 class="page-subtitle"><i class="fa fa-bolt"></i> {{_t('lb_battery_status')}}</h2>
-    <div class="table-responsive_">
-       <table class="table table-report">
+    <div class="network-block">
+        <h2 class="page-subtitle"><i class="fa fa-bolt"></i> {{_t('lb_battery_status')}}</h2>
+        <div class="network-entry">
+            <span ng-if="batteries.list.length > 0"><strong ng-bind="batteries.list.length"></strong> <span ng-bind="_t('lb_battery_devices')"></span>,</span>
+            <span ng-if="batteries.cntLess20.length > 0"><strong ng-bind="batteries.cntLess20.length"></strong> <span ng-bind="_t('lb_battery_20')"></span>, </span> 
+            <span ng-if="batteries.cnt0.length > 0"><strong  ng-bind="batteries.cnt0.length"></strong> <span ng-bind="_t('lb_battery_0')"></span> </span> 
+            <span class="label label-default label-more" ng-click="showBatteryList = !showBatteryList">More <i class="fa fa-caret-down"></i></span>
+        </div>
+        <table class="table table-report" ng-show="showBatteryList">
             <tbody>
-                <tr ng-repeat="v in batteries | orderBy:predicate:reverse" id="{{ v.rowId}}">
+                <tr ng-repeat="v in batteries.list| orderBy:predicate:reverse" id="{{ v.rowId}}">
                     <td>
-                         <!-- <span class="text-supp">#{{v.id}}</span>-->
-                        <img class="report-img" src="storage/img/elements/battery.png" alt="icon" />
+                        <!-- <span class="text-supp">#{{v.id}}</span>-->
+                        <img class="report-img" src="storage/img/icons/battery.png" alt="icon" />
                         <span class="report-message">{{v.metrics.title}}</span>
-                       
+
                     </td>
                     <td>
                         <span class="text-success" ng-show="v.metrics.level > 80">{{v.metrics.level}} %</span>
@@ -23,7 +29,25 @@
         </table>
     </div>
     
-    <div>To solve network errors, please refer to the <a href="/expert/"><strong>Z-Wave network experts User Interface <i class="fa fa-external-link"></i></strong></a></div>
+    <div class="network-block">
+        <h2 class="page-subtitle"><i class="fa fa-sitemap"></i> {{_t('nav_network_health')}}</h2>
+        <table class="table table-report">
+            <tbody>
+                <tr ng-repeat="v in devices.failed" id="{{v.id}}" ng-show=" v.messages.length > 0">
+                    <td>
+                        <!-- <span class="text-supp">#{{v.id}}</span>-->
+                        <img class="report-img" ng-src="{{v.metrics.icon|getElementIcon:v}}" alt="{{ v.metrics.title}}" />
+                        <span class="report-message" ng-bind="v.metrics.title"></span>
+
+                    </td>
+                    <td>
+                        <div class="text-danger" ng-repeat="message in v.messages" ng-bind="message"></div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="alert alert-warning">To solve network errors, please refer to the <a href="/expert/" class="alert-link"><strong>Z-Wave network experts User Interface <i class="fa fa-external-link"></i></strong></a></div>
     <!-- Device status -->
     <!-- <h2 class="page-subtitle"><i class="fa fa-power-off"></i> {{_t('lb_zwave_device_status')}}</h2>
 

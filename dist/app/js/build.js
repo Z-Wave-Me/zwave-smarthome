@@ -6352,7 +6352,7 @@ myApp.filter('cutText', function() {
  */
 myApp.filter('numberFixedLen', function() {
     return function(val) {
-       if (val == 0) {
+        if (val == 0) {
             return 0;
         }
         if (!val) {
@@ -6404,61 +6404,64 @@ myApp.filter('getElementIcon', function(cfg) {
                 return input;
             }
             switch (input) {
-                 case 'door':
+                case 'door':
                     icon = cfg.img.icons + (device.metrics.level == 'open' ? 'door-open.png' : 'door-closed.png');
                     break;
-                    
-                     case 'switch':
-                     icon = cfg.img.icons + (device.metrics.level == 'on' ? 'switch-on.png' : 'switch-off.png');
+
+                case 'switch':
+                    icon = cfg.img.icons + (device.metrics.level == 'on' ? 'switch-on.png' : 'switch-off.png');
                     break;
-                    
+
                 case 'motion':
                     icon = cfg.img.icons + (device.metrics.level == 'on' ? 'motion-on.png' : 'motion-off.png');
                     break;
-                
+
                 case 'blinds':
-                    if(device.metrics.level == 0){
+                    if (device.metrics.level == 0) {
                         icon = cfg.img.icons + 'blind-down.png';
-                    }else if(device.metrics.level >= 99){
+                    } else if (device.metrics.level >= 99) {
                         icon = cfg.img.icons + 'blind-up.png';
-                    }else{
+                    } else {
                         icon = cfg.img.icons + 'blind-half.png';
                     }
                     break;
-                    
-               case 'multilevel':
-                    if(device.metrics.level == 0){
+
+                case 'multilevel':
+                    if (device.metrics.level == 0) {
                         icon = cfg.img.icons + 'dimmer-off.png';
-                    }else if(device.metrics.level >= 99){
+                    } else if (device.metrics.level >= 99) {
                         icon = cfg.img.icons + 'dimmer-on.png';
-                    }else{
+                    } else {
                         icon = cfg.img.icons + 'dimmer-half.png';
                     }
-                     break;
+                    break;
                 case 'thermostat':
                     icon = cfg.img.icons + 'thermostat.png';
                     break;
-                    
-                 case 'energy':
+
+                case 'energy':
                     icon = cfg.img.icons + 'energy.png';
                     break;
-                    
-                 case 'meter':
+
+                case 'meter':
                     icon = cfg.img.icons + 'meter.png';
                     break;
-                
+
                 case 'temperature':
                     icon = cfg.img.icons + 'temperature.png';
                     break;
-               
+
                 case 'camera':
                     icon = cfg.img.icons + 'camera.png';
                     break;
                 case 'smoke':
                     icon = cfg.img.icons + 'smoke.png';
                     break;
-                    case 'alarm':
+                case 'alarm':
                     icon = cfg.img.icons + 'alarm.png';
+                    break;
+                case 'battery':
+                    icon = cfg.img.icons + 'battery.png';
                     break;
                 default:
                     break;
@@ -7072,7 +7075,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
 /**
  * Event controller
  */
-myAppController.controller('EventController', function($scope, $routeParams, dataFactory, dataService,paginationService,cfg) {
+myAppController.controller('EventController', function($scope, $routeParams, dataFactory, dataService, paginationService, cfg) {
     $scope.collection = [];
     $scope.eventLevel = [];
     $scope.currentPage = 1;
@@ -7122,8 +7125,8 @@ myAppController.controller('EventController', function($scope, $routeParams, dat
         });
     };
     $scope.updateData();
-    
-     /**
+
+    /**
      * Watch for pagination change
      */
     $scope.$watch('currentPage', function(page) {
@@ -7133,12 +7136,12 @@ myAppController.controller('EventController', function($scope, $routeParams, dat
     $scope.setCurrentPage = function(val) {
         $scope.currentPage = val;
     };
-    
-     /**
+
+    /**
      * Update data into collection
      */
     $scope.markAsRead = function(id) {
-       $('#row_' + id).fadeOut();
+        $('#row_' + id).fadeOut();
     };
     $scope.updateData();
 });
@@ -7685,32 +7688,36 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
                 dataFactory.getZwaveApiData(function(ZWaveAPIData) {
                     var interviewDone = true;
                     var nodeId = $scope.includedDeviceId;
-                     var instanceId = 0;
+                    var instanceId = 0;
                     var hasBattery = 0x80 in ZWaveAPIData.devices[nodeId].instances[0].commandClasses;
                     var vendor = ZWaveAPIData.devices[nodeId].data.vendorString.value;
                     var deviceType = ZWaveAPIData.devices[nodeId].data.deviceTypeString.value;
                     $scope.hasBattery = hasBattery;
-                    
+                    console.log('Device id: ' + nodeId)
                     // Check interview
                     if (ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value && ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value.length) {
-                        for (var iId in ZWaveAPIData.devices[nodeId].instances)
-                            for (var ccId in ZWaveAPIData.devices[nodeId].instances[iId].commandClasses)
-                                 console.log('ccId: ' + ccId +  ' | interviewDone: ' + ZWaveAPIData.devices[nodeId].instances[iId].commandClasses[ccId].data.interviewDone.value);
+                        for (var iId in ZWaveAPIData.devices[nodeId].instances) {
+                            for (var ccId in ZWaveAPIData.devices[nodeId].instances[iId].commandClasses) {
+                                console.log('ccId: ' + ccId + ' | interviewDone: ' + ZWaveAPIData.devices[nodeId].instances[iId].commandClasses[ccId].data.interviewDone.value);
                                 if (!ZWaveAPIData.devices[nodeId].instances[iId].commandClasses[ccId].data.interviewDone.value) {
                                     interviewDone = false;
                                 }
+                            }
+
+                        }
+
                     } else {
                         interviewDone = false;
                     }
                     // Set device name
-                    var deviceName = function(vendor,deviceType) {
-                        if(!vendor && deviceType){
+                    var deviceName = function(vendor, deviceType) {
+                        if (!vendor && deviceType) {
                             return 'Device';
                         }
                         return vendor + ' ' + deviceType;
                     };
                     if (interviewDone) {
-                        $scope.lastIncludedDevice = deviceName(vendor,deviceType)  + ' ' + nodeId + '-' + instanceId;
+                        $scope.lastIncludedDevice = deviceName(vendor, deviceType) + ' ' + nodeId + '-' + instanceId;
                     } else {
                         $scope.inclusionError = true;
                     }
@@ -7970,14 +7977,69 @@ myAppController.controller('RoomConfigController', function($scope, $window, $in
  * Network controller
  */
 myAppController.controller('NetworkController', function($scope, cfg, dataFactory, dataService) {
-    $scope.batteries = [];
+
+    $scope.batteries = {
+        'list': [],
+        'cntLess20': [],
+        'cnt0': []
+    };
+    $scope.devices = {
+        'failed': []
+    };
+
+    $scope.notInterviewDevices = [];
     $scope.reset = function() {
         $scope.batteries = angular.copy([]);
     };
 
     $scope.loadData = function() {
         dataFactory.getApiData('devices', function(data) {
-            $scope.batteries = dataService.getData(data.data.devices, {filter: "deviceType", val: 'battery'});
+            var devices = data.data.devices;
+            $scope.batteries.list = dataService.getData(data.data.devices, {filter: "deviceType", val: 'battery'});
+            for (i = 0; i < $scope.batteries.list.length; ++i) {
+                var battery = $scope.batteries.list[i];
+                if (battery.metrics.level < 1) {
+                    $scope.batteries.cnt0.push(battery.id);
+                }
+                if (battery.metrics.level > 0 && battery.metrics.level < 20) {
+                    $scope.batteries.cntLess20.push(battery.id);
+                }
+
+            }
+            // Get ZwaveApiData
+            dataFactory.getZwaveApiData(function(ZWaveAPIData) {
+                var findZwaveStr = "ZWayVDev_zway_";
+                angular.forEach(devices, function(v, k) {
+                    var cmd;
+                    var nodeId;
+                    var iId;
+                    var ccId;
+                    if (v.id.indexOf(findZwaveStr) > -1) {
+                        cmd = v.id.split(findZwaveStr)[1].split('-');
+                        nodeId = cmd[0];
+                        iId = cmd[1];
+                        ccId = cmd[2];
+
+                        var obj = {};
+                        obj['id'] = v.id;
+                        obj['metrics'] = v.metrics;
+                        obj['messages'] = [];
+
+                        var interviewDone = ZWaveAPIData.devices[nodeId].instances[iId].commandClasses[ccId].data.interviewDone.value;
+                        if (!interviewDone) {
+                            obj['messages'].push($scope._t('lb_not_configured'));
+                        }
+                        //obj['messages'].push('Another error message');
+//                         console.log(v.id + ': ' + nodeId + ', ' + iId + ', ' + ccId)
+//                         console.log(interviewDone)
+//                          console.log(interviewDone)
+                        // if(angular.isDefined())
+                        $scope.devices.failed.push(obj);
+                    }
+                });
+                //console.log($scope.devices.failed)
+            });
+
 
         });
     };
