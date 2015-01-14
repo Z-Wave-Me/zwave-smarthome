@@ -1061,15 +1061,24 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
                     var deviceType = ZWaveAPIData.devices[nodeId].data.deviceTypeString.value;
                     $scope.hasBattery = hasBattery;
                     console.log('Device id: ' + nodeId)
+                    debugger;
                     // Check interview
                     if (ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value && ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value.length) {
+                         console.log('Hello 1');
                         for (var iId in ZWaveAPIData.devices[nodeId].instances) {
-                            for (var ccId in ZWaveAPIData.devices[nodeId].instances[iId].commandClasses) {
-                                console.log('ccId: ' + ccId + ' | interviewDone: ' + ZWaveAPIData.devices[nodeId].instances[iId].commandClasses[ccId].data.interviewDone.value);
+//                             console.log('Hello 233: ' + iId);
+//                             console.log(ZWaveAPIData.devices[nodeId].instances[iId].commandClasses);
+                             if(ZWaveAPIData.devices[nodeId].instances[iId].commandClasses.length > 0){
+                                 for (var ccId in ZWaveAPIData.devices[nodeId].instances[iId].commandClasses) {
+                                //console.log('ccId: ' + ccId + ' | interviewDone: ' + ZWaveAPIData.devices[nodeId].instances[iId].commandClasses[ccId].data.interviewDone.value);
                                 if (!ZWaveAPIData.devices[nodeId].instances[iId].commandClasses[ccId].data.interviewDone.value) {
                                     interviewDone = false;
                                 }
                             }
+                             }else{
+                                 interviewDone = false; 
+                             }
+                            
 
                         }
 
@@ -1090,8 +1099,8 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
                     }
 
                     $scope.includedDeviceId = null;
-                    console.log('Interview done: ' + interviewDone);
-                    console.log(ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value.length);
+//                    console.log('Interview done: ' + interviewDone);
+//                    console.log(ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value.length);
                 });
 
             }, 10000);
