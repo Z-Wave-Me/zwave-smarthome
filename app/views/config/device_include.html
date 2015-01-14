@@ -17,9 +17,9 @@
                 <div class="alert alert-warning" ng-show="includedDeviceId"><i class="fa fa-spinner fa-spin"></i> New Device found. Please wait to complete configuration of new device</div>
                 <div class="alert alert-success" ng-show="lastIncludedDevice"><i class="fa fa-check"></i> New device configured and ready to be used. New device is named:  <strong ng-bind="lastIncludedDevice"></strong></div>
             </div>
-            <div ng-show="inclusionError">
-                <div class="alert alert-danger" ng-show="!device.data.TechData.Battery"><i class="fa fa-minus-circle"></i> Something went wrong during the inclusion. Please exclude the device and repeat the process.</div>
-                <div class="alert alert-danger" ng-show="device.data.TechData.Battery"><i class="fa fa-minus-circle"></i> Could not complete the inclusion. The device likely went to sleep state. Please wakeup the device to complete configuration. <span ng-bind="device.data.ZWakeupNote"></span></div>
+            <div ng-if="inclusionError">
+                <div class="alert alert-danger" ng-show="!hasBattery"><i class="fa fa-minus-circle"></i> Something went wrong during the inclusion. Please exclude the device and repeat the process.</div>
+                <div class="alert alert-danger" ng-show="hasBattery"><i class="fa fa-minus-circle"></i> Could not complete the inclusion. The device likely went to sleep state. Please wakeup the device to complete configuration. <span ng-bind="device.data.ZWakeupNote"></span></div>
 
             </div>
 

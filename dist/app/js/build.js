@@ -7685,23 +7685,38 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
                 dataFactory.getZwaveApiData(function(ZWaveAPIData) {
                     var interviewDone = true;
                     var nodeId = $scope.includedDeviceId;
+                     var instanceId = 0;
+                    var hasBattery = 0x80 in ZWaveAPIData.devices[nodeId].instances[0].commandClasses;
+                    var vendor = ZWaveAPIData.devices[nodeId].data.vendorString.value;
+                    var deviceType = ZWaveAPIData.devices[nodeId].data.deviceTypeString.value;
+                    $scope.hasBattery = hasBattery;
+                    
+                    // Check interview
                     if (ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value && ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value.length) {
                         for (var iId in ZWaveAPIData.devices[nodeId].instances)
                             for (var ccId in ZWaveAPIData.devices[nodeId].instances[iId].commandClasses)
+                                 console.log('ccId: ' + ccId +  ' | interviewDone: ' + ZWaveAPIData.devices[nodeId].instances[iId].commandClasses[ccId].data.interviewDone.value);
                                 if (!ZWaveAPIData.devices[nodeId].instances[iId].commandClasses[ccId].data.interviewDone.value) {
                                     interviewDone = false;
                                 }
                     } else {
                         interviewDone = false;
                     }
+                    // Set device name
+                    var deviceName = function(vendor,deviceType) {
+                        if(!vendor && deviceType){
+                            return 'Device';
+                        }
+                        return vendor + ' ' + deviceType;
+                    };
                     if (interviewDone) {
-                        $scope.lastIncludedDevice = 'Device_' + nodeId;
+                        $scope.lastIncludedDevice = deviceName(vendor,deviceType)  + ' ' + nodeId + '-' + instanceId;
                     } else {
                         $scope.inclusionError = true;
                     }
 
                     $scope.includedDeviceId = null;
-                    console.log(ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value);
+                    console.log('Interview done: ' + interviewDone);
                     console.log(ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value.length);
                 });
 

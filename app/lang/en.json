@@ -1,9 +1,4 @@
 {
-    "missing": "---",
-    "lb_devices_room": "Devices in the",
-    "lb_configuration_of": "Configuration of ",
-    "lb_delete_confirm": "Are you absolutely sure you want to delete?",
-    "---": "missing",
     "nav_home": "Dashboard",
     "nav_elements": "Elements",
     "nav_rooms": "Rooms",
@@ -107,6 +102,5 @@
     "thermostat": "Thermostat",
     "camera": "Camera",
     "toggleButton": "Button toggle",
-    "doorlock": "Door Lock",
-    "---": "---"
+    "doorlock": "Door Lock"
 }
