@@ -68,7 +68,7 @@ module.exports = function(grunt) {
                             'app/lang/**'
                         ], dest: 'dist/'
                     },
-                    {expand:true,src: ['../zwave-api/storage/data/z_en.json'], dest: 'storage/data/',flatten: true},
+                    //{expand:true,src: ['../zwave-api/storage/data/z_en.json'], dest: 'storage/data/',flatten: true},
                      {expand:true,src: ['app/config.js'], dest: 'dist/app/js/',flatten: true},
                     {src: ['storage/img/**'], dest: 'dist/'},
                     {src: ['storage/demo/**'], dest: 'dist/'},

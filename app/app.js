@@ -68,7 +68,7 @@ myApp.config(['$routeProvider',
                     templateUrl: 'app/views/pages/about.html'
                 }).
                 // Test
-                when('/test', {
+                when('/test/:action/:id', {
                     templateUrl: 'app/views/test.html'
                 }).
                 otherwise({

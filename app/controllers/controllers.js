@@ -150,32 +150,220 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
 /**
  * Test controller
  */
-myAppController.controller('TestController', function($scope, cfg, dataFactory) {
-    $scope.collection = [];
-    $scope.targetColor = '#ccc';
-    $scope.reset = function() {
-        $scope.collection = angular.copy([]);
+myAppController.controller('TestController', function($scope, $routeParams, $filter, $location, dataFactory, dataService) {
+    $scope.showForm = false;
+    $scope.success = false;
+    $scope.input = {
+        'id': 0,
+        'active': true,
+        'moduleId': null,
+        'title': null,
+        'description': null,
+        'moduleTitle': null,
+        'params': {},
+        'moduleInput': false
     };
-    /**
-     * Load data into collection
-     */
-    $scope.loadData = function() {
-        //dataFactory.localData('elements.json', function(data) {
-        dataFactory.getApiData('devices', function(data) {
-            $scope.collection = data.data.devices;
-            console.log($scope.collection);
+    
+    // Post new module instance
+    $scope.postModule = function(id) {
+        var module;
+        dataFactory.getApiData('modules', function(modules) {
+            module = dataService.getRowBy(modules.data, 'id', id);
+            if (!module) {
+                return;
+            }
+            dataFactory.getApiData('namespaces', function(namespaces) {
+                $scope.input = {
+                    //'id': instance.id,
+                    'active': true,
+                    'title': $filter('hasNode')(module, 'defaults.title'),
+                    'description': $filter('hasNode')(module, 'defaults.description'),
+                    'moduleTitle': $filter('hasNode')(module, 'defaults.title'),
+                    'moduleId': module.id,
+                    'category': module.category,
+                    //'params': instance.params,
+                    'moduleInput': dataService.getModuleConfigInputs(module, null, namespaces.data)
+                };
+                //console.log($scope.input)
+
+                $scope.showForm = true;
+            });
+        });
+        console.log('Add new module: ' + id);
+    };
+
+    // Put module instance
+    $scope.putModule = function(id) {
+        if (id < 1) {
+            return;
+        }
+        var instance;
+        var module;
+        dataFactory.getApiData('instances', function(data) {
+            instance = dataService.getRowBy(data.data, 'id', id);
+            if (!instance) {
+                return;
+            }
+            dataFactory.getApiData('modules', function(modules) {
+                module = dataService.getRowBy(modules.data, 'id', instance.moduleId);
+                dataFactory.getApiData('namespaces', function(namespaces) {
+                    $scope.input = {
+                        'id': instance.id,
+                        'moduleId': module.id,
+                        'active': instance.active,
+                        'title': instance.title,
+                        'description': instance.description,
+                        'moduleTitle': $filter('hasNode')(module, 'defaults.title'),
+                        'params': instance.params,
+                        'moduleInput': dataService.getModuleConfigInputs(module, instance.params, namespaces.data)
+                    };
+                    //console.log($scope.input)
+                    $scope.showForm = true;
+                });
+            });
+
         });
     };
-    $scope.loadData();
-    $(".gridster ul").gridster({
-        widget_margins: [10, 10],
-        widget_base_dimensions: [300, 70]
-    });
     /**
-     * Slider values
+     * Load data
      */
-    $scope.slider = {
-        modelMax: 38
+
+    switch ($routeParams.action) {
+        case 'put':
+            $scope.putModule($routeParams.id);
+            break;
+        case 'post':
+            $scope.postModule($routeParams.id);
+            break;
+        default:
+            break;
+    }
+    $scope.collection = {
+        "singleton": true,
+        "dependencies": [
+            "Cron"
+        ],
+        "category": "devices",
+        "author": "Z-Wave.Me",
+        "homepage": "http://razberry.z-wave.me",
+        "icon": "",
+        "version": "2.0.0",
+        "maturity": "stable",
+        "repository": {
+            "type": "git",
+            "source": "https://github.com/Z-Wave-Me/home-automation"
+        },
+        "data": {
+                        "launchWeekDay": "4",
+                        "warningLevel": 10
+                    },
+        "defaults": {
+            "title": "Battery Polling",
+            "description": "Battery Polling notifications",
+            "launchWeekDay": 0,
+            "warningLevel": 20
+        },
+        "schema": {
+            "type": "object",
+            "properties": {
+                "launchWeekDay": {
+                    "type": "number",
+                    "required": true,
+                    "enum": [
+                        1,
+                        2,
+                        3,
+                        4,
+                        5,
+                        6,
+                        0
+                    ]
+                },
+                "warningLevel": {
+                    "type": "select",
+                    "required": true,
+                    "enum": [
+                        5,
+                        10,
+                        15,
+                        20
+                    ]
+                }
+            },
+            "required": false
+        },
+        "options": {
+            "fields": {
+                "launchWeekDay": {
+                    "label": "Do battery polling on",
+                    "optionLabels": [
+                        "Monday",
+                        "Tuesday",
+                        "Wednesday",
+                        "Thursday",
+                        "Friday",
+                        "Saturday",
+                        "Sunday"
+                    ]
+                },
+                "warningLevel": {
+                    "label": "Warning Level",
+                    "helper": "Warn if device's battery is below this level",
+                    "optionLabels": [
+                        "5%",
+                        "10%",
+                        "15%",
+                        "20%"
+                    ]
+                }
+            }
+        },
+        "id": "BatteryPolling",
+        "className": "BatteryPolling",
+        "created": false
+    };
+    
+     $scope.store = function(formId) {
+         var data = $(formId).serializeArray();
+         console.log(data);
+     };
+     
+     /**
+     * Store data
+     */
+    $scope.store_ = function(input) {
+        var params = {};
+        angular.forEach(input.moduleInput, function(v, k) {
+            if (angular.isArray(v.value)) {
+                params[v.inputName] = v.value.filter(function(e) {
+                    return e
+                });
+            } else {
+                params[v.inputName] = v.value;
+            }
+
+        });
+
+        var inputData = {
+            'id': input.id,
+            'moduleId': input.moduleId,
+            'active': input.active,
+            'title': input.title,
+            'description': input.description,
+            'params': params
+        };
+
+        //return;
+        if (input.id > 0) {
+            dataFactory.putApiData('instances', input.id, inputData, function(data) {
+                $scope.success = true;
+            });
+        } else {
+            dataFactory.postApiData('instances', inputData, function(data) {
+                $location.path('/apps');
+            });
+        }
+
     };
 });
 /**
@@ -1060,26 +1248,18 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
                     var vendor = ZWaveAPIData.devices[nodeId].data.vendorString.value;
                     var deviceType = ZWaveAPIData.devices[nodeId].data.deviceTypeString.value;
                     $scope.hasBattery = hasBattery;
-                    console.log('Device id: ' + nodeId)
-                    debugger;
                     // Check interview
                     if (ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value && ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value.length) {
-                         console.log('Hello 1');
                         for (var iId in ZWaveAPIData.devices[nodeId].instances) {
-//                             console.log('Hello 233: ' + iId);
-//                             console.log(ZWaveAPIData.devices[nodeId].instances[iId].commandClasses);
-                             if(ZWaveAPIData.devices[nodeId].instances[iId].commandClasses.length > 0){
-                                 for (var ccId in ZWaveAPIData.devices[nodeId].instances[iId].commandClasses) {
-                                //console.log('ccId: ' + ccId + ' | interviewDone: ' + ZWaveAPIData.devices[nodeId].instances[iId].commandClasses[ccId].data.interviewDone.value);
-                                if (!ZWaveAPIData.devices[nodeId].instances[iId].commandClasses[ccId].data.interviewDone.value) {
-                                    interviewDone = false;
+                            if (ZWaveAPIData.devices[nodeId].instances[iId].commandClasses.length > 0) {
+                                for (var ccId in ZWaveAPIData.devices[nodeId].instances[iId].commandClasses) {
+                                    if (!ZWaveAPIData.devices[nodeId].instances[iId].commandClasses[ccId].data.interviewDone.value) {
+                                        interviewDone = false;
+                                    }
                                 }
+                            } else {
+                                interviewDone = false;
                             }
-                             }else{
-                                 interviewDone = false; 
-                             }
-                            
-
                         }
 
                     } else {
@@ -1099,8 +1279,6 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
                     }
 
                     $scope.includedDeviceId = null;
-//                    console.log('Interview done: ' + interviewDone);
-//                    console.log(ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value.length);
                 });
 
             }, 10000);

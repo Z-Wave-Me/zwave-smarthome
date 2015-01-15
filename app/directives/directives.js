@@ -10,6 +10,19 @@ myApp.directive('testDir', function() {
     };
 });
 
+myApp.directive('alpacaDir', function() {
+    return {
+        restrict: "A",
+        scope: {
+            collection: '='
+        },
+        link: function(scope, element, attr) {
+            console.log(scope.collection)
+            $(element).alpaca(scope.collection);
+        }
+    };
+});
+
 /**
  * Hide collapsed navi after click on mobile devices
  */
