@@ -13,12 +13,14 @@ myApp.directive('testDir', function() {
 myApp.directive('alpacaDir', function() {
     return {
         restrict: "A",
+        //scope: false,
         scope: {
-            collection: '='
+            formData: '=alpacaDir'
         },
-        link: function(scope, element, attr) {
-            console.log(scope.collection)
-            $(element).alpaca(scope.collection);
+        template: '<p>{{formData}}</p>',
+        link: function($scope, element, attr) {
+            //console.log($scope.formData);
+           //$(element).alpaca($scope.formData);
         }
     };
 });

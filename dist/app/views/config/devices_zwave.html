@@ -5,7 +5,7 @@
 <div class="text-center device-autodetect"><a href="#include" class="btn btn-success btn-lg btn-block"><i class="fa fa-lightbulb-o"></i> Autodetect new Z-Wave Device</a></div>
 <div class="row device-manufacturers" ng-hide="zwaveDevices">
     <div class="col-md-2 col-sm-6 col-device-vendor" ng-repeat="v in manufacturers">
-        <a href="" class="vendor-list" ng-click="setFilter({'filter': 'ZManufacturersName', 'val': v.key})">
+        <a href="" class="vendor-list" ng-click="setFilter({'filter': 'ManufacturersName', 'val': v.key})">
             <p class="vendor-image"><img ng-src="storage/img/{{v.val}}" alt="img" ng-show="v.val" /></p>
         </a>
     </div>
@@ -14,15 +14,15 @@
     <h3 ng-bind="manufacturer"></h3> 
     <table class="table table-report table-events">
         <tbody>
-            <tr ng-repeat="v in zwaveDevices">
+            <tr ng-repeat="(k,v) in zwaveDevices">
                 <td class="td-img">
-                    <img class="report-img" ng-src="storage/img/devices/{{v.ZProductImage}}" alt="img" ng-show="v.ZProductImage" />
+                   <img class="report-img" ng-src="storage/img/devices/{{v.ProductImage}}" alt="img" ng-show="v.ProductImage" />
                 </td>
                 <td class="text-left">
-                    <span ng-bind="v.ZProductHeadline"></span> <!--<em ng-bind="v.ZManufacturersName"></em>-->
+                    <span ng-bind="v.Name"></span> <!--<em ng-bind="v.ZManufacturersName"></em>-->
                 </td>
                 <td class="td-action">
-                    <a href="#include/{{v.TechData.ZProductsSku}}" class="btn btn-primary">Include device</a>
+                    <a href="#include/{{v.Id}}" class="btn btn-primary">Include device</a>
 
                 </td>
             </tr>

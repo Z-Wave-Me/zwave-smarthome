@@ -68,6 +68,13 @@ myAppService.service('dataService', function($filter, myCache) {
     this.getInstances = function(data, modules) {
         return getInstances(data, modules);
     };
+    
+    /**
+     * Get module form data
+     */
+    this.getModuleFormData = function(module, data, namespaces) {
+        return getModuleFormData(module, data, namespaces);
+    };
 
     /**
      * Get module config input
@@ -353,6 +360,25 @@ myAppService.service('dataService', function($filter, myCache) {
         });
         return collection;
     }
+    
+    /**
+     * Update device icon
+     */
+    function getModuleFormData(module, data, namespaces) {
+        var collection = {
+            'options':{},
+            'schema':{},
+            'data':{}
+        };
+        console.log(module)
+        console.log(data)
+        console.log(namespaces)
+        collection.options = module.options;
+        collection.schema = module.schema;
+        collection.data = data;
+        return collection;
+    }
+
 
     /**
      *  Get module config options
@@ -680,6 +706,7 @@ myAppService.service('dataService', function($filter, myCache) {
 
         });
         ret = $filter('unique')(collection, 'key');
+         //debugger;
         myCache.put(cache, ret);
         return ret;
     }

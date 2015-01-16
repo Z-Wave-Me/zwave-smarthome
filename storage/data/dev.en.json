@@ -1,0 +1,37 @@
+{
+    "DAN_LC-13": {
+        "Id": "DAN_LC-13",
+        "Battery": "1",
+        "ManufacturersName": "Danfoss",
+        "ProductImage": "Connect_R.jpg",
+        "ManufacturersImage": "manufacturers\/Danfoss.png",
+        "Name": "Thermostat Radiator Valve.",
+        "Inclusion": "Keep the middle button pushed 3 times until 'M' appears. Now hit the middle button.",
+        "Exclusion": "Hit the middle button.",
+        "Wakeup": "Hit the middle button.",
+        "Preparation": "Keep the middle button pushed 3 times."
+    },
+    "POP_123634": {
+        "Id": "POP_123634",
+        "Battery": "0",
+        "ProductImage": "12512_0.png",
+        "ManufacturersImage": "manufacturers\/PoppLogo150px.png",
+        "ManufacturersName": "Popp",
+        "Name": "Z-Wave Wall Plug",
+        "Inclusion": "Plug in the device into the outlet or hit the button on the device if the device is already installed.",
+        "Exclusion": "Hit button once.",
+        "Preparation": "A blinking blue LED indicates that the device is in factory default state."
+    },
+    "ZMEEKFOB": {
+        "Id": "ZMEEKFOB",
+        "Battery": "1",
+        "ProductImage": "12375_0.jpg",
+        "ManufacturersImage": "manufacturers\/Z-WaveMe.png",
+        "ManufacturersName": "Z-Wave.Me",
+        "Name": "4 Button Key Chain Controller",
+        "Inclusion": "Push one o the buttons for 1 second",
+        "Exclusion": "Push all 4 buttons simultaneously for 5 seconds to enter management mode (green LED blinks). Then hit button 1",
+        "Wakeup": "Push all 4 buttons simultaneously for 5 seconds to enter management mode (green LED blinks). Then hit button 2",
+        "Preparation": "Pushing a button for 1 seconds turns on green/red blinking to indicate factory default"
+    }
+}

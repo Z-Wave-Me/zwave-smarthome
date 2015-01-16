@@ -4808,7 +4808,7 @@ myApp.config(['$routeProvider',
                     templateUrl: 'app/views/pages/about.html'
                 }).
                 // Test
-                when('/test', {
+                when('/test/:action/:id', {
                     templateUrl: 'app/views/test.html'
                 }).
                 otherwise({
@@ -4932,7 +4932,7 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,my
             method: "get",
             url: cfg.server_url + cfg.api[api] + (params ? params : '')
         };
-        return getApiHandle(callback, request, api);
+        return getApiHandle(callback, request, api + params);
     }
 
     // Post
@@ -5278,6 +5278,13 @@ myAppService.service('dataService', function($filter, myCache) {
     this.getInstances = function(data, modules) {
         return getInstances(data, modules);
     };
+    
+    /**
+     * Get module form data
+     */
+    this.getModuleFormData = function(module, data, namespaces) {
+        return getModuleFormData(module, data, namespaces);
+    };
 
     /**
      * Get module config input
@@ -5563,6 +5570,25 @@ myAppService.service('dataService', function($filter, myCache) {
         });
         return collection;
     }
+    
+    /**
+     * Update device icon
+     */
+    function getModuleFormData(module, data, namespaces) {
+        var collection = {
+            'options':{},
+            'schema':{},
+            'data':{}
+        };
+        console.log(module)
+        console.log(data)
+        console.log(namespaces)
+        collection.options = module.options;
+        collection.schema = module.schema;
+        collection.data = data;
+        return collection;
+    }
+
 
     /**
      *  Get module config options
@@ -5890,6 +5916,7 @@ myAppService.service('dataService', function($filter, myCache) {
 
         });
         ret = $filter('unique')(collection, 'key');
+         //debugger;
         myCache.put(cache, ret);
         return ret;
     }
@@ -5927,6 +5954,21 @@ myApp.directive('testDir', function() {
         restrict: "E",
         replace: true,
         template: '<p>This is a test directive</p>'
+    };
+});
+
+myApp.directive('alpacaDir', function() {
+    return {
+        restrict: "A",
+        //scope: false,
+        scope: {
+            formData: '=alpacaDir'
+        },
+        template: '<p>{{formData}}</p>',
+        link: function($scope, element, attr) {
+            //console.log($scope.formData);
+           //$(element).alpaca($scope.formData);
+        }
     };
 });
 
@@ -6783,32 +6825,210 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
 /**
  * Test controller
  */
-myAppController.controller('TestController', function($scope, cfg, dataFactory) {
-    $scope.collection = [];
-    $scope.targetColor = '#ccc';
-    $scope.reset = function() {
-        $scope.collection = angular.copy([]);
+myAppController.controller('TestController', function($scope, $routeParams, $filter, $location, dataFactory, dataService) {
+    $scope.showForm = false;
+    $scope.success = false;
+    $scope.collection = {};
+    $scope.input = {
+        'id': 0,
+        'active': true,
+        'moduleId': null,
+        'title': null,
+        'description': null,
+        'moduleTitle': null,
+        'params': {},
+        'moduleInput': false
     };
-    /**
-     * Load data into collection
-     */
-    $scope.loadData = function() {
-        //dataFactory.localData('elements.json', function(data) {
-        dataFactory.getApiData('devices', function(data) {
-            $scope.collection = data.data.devices;
-            console.log($scope.collection);
+
+    // Post new module instance
+    $scope.postModule = function(id) {
+        var module;
+        dataFactory.getApiData('modules', function(modules) {
+            module = dataService.getRowBy(modules.data, 'id', id);
+            if (!module) {
+                return;
+            }
+            dataFactory.getApiData('namespaces', function(namespaces) {
+                $scope.input = {
+                    //'id': instance.id,
+                    'active': true,
+                    'title': $filter('hasNode')(module, 'defaults.title'),
+                    'description': $filter('hasNode')(module, 'defaults.description'),
+                    'moduleTitle': $filter('hasNode')(module, 'defaults.title'),
+                    'moduleId': module.id,
+                    'category': module.category,
+                    //'params': instance.params,
+                    'moduleInput': dataService.getModuleConfigInputs(module, null, namespaces.data)
+                };
+                //console.log($scope.input)
+
+                $scope.showForm = true;
+            });
+        });
+        console.log('Add new module: ' + id);
+    };
+
+    // Put module instance
+    $scope.putModule = function(id) {
+        if (id < 1) {
+            return;
+        }
+        var instance;
+       var formData;
+        dataFactory.getApiData('instances', function(data) {
+           
+            
+            //$scope.collection = data;
+            instance = dataService.getRowBy(data.data, 'id', id);
+            if (!instance) {
+                return;
+            }
+
+            dataFactory.getApiData('modules', function(module) {
+               
+                dataFactory.getApiData('namespaces', function(namespaces) {
+                     //console.log(module.data.meta)
+                    $scope.input = {
+                        'id': instance.id,
+                        'moduleId': module.data.meta.id,
+                        'active': instance.active,
+                        'title': instance.title,
+                        'description': instance.description,
+                        'moduleTitle': $filter('hasNode')(module, 'defaults.title'),
+                        'params': instance.params,
+                        //'collection': module.data.meta,
+                        'moduleInput': dataService.getModuleConfigInputs(module, instance.params, namespaces.data)
+                    };
+                    formData =  dataService.getModuleFormData(module.data.meta, instance.params, namespaces);
+                     $('#form1').alpaca(formData);
+                    //dataService.getModuleFormData(module.data.meta, instance.params, namespaces);
+                    //console.log($scope.input)
+                    $scope.showForm = true;
+                    
+                });
+            }, '/' + instance.moduleId);
+
         });
     };
-    $scope.loadData();
-    $(".gridster ul").gridster({
-        widget_margins: [10, 10],
-        widget_base_dimensions: [300, 70]
-    });
     /**
-     * Slider values
+     * Load data
      */
-    $scope.slider = {
-        modelMax: 38
+
+    switch ($routeParams.action) {
+        case 'put':
+            $scope.putModule($routeParams.id);
+            break;
+        case 'post':
+            $scope.postModule($routeParams.id);
+            break;
+        default:
+            break;
+    }
+    $scope.collection_ = {
+        "defaults": {
+            "title": "Z-Wave binding",
+            "description": "Loads Z-Wave engine",
+            "name": "zway",
+            "port": "/dev/ttyUSB0",
+            "config": "config",
+            "translations": "translations",
+            "ZDDX": "ZDDX"
+        },
+        "schema": {
+            "type": "object",
+            "properties": {
+                "port": {
+                    "type": "string",
+                    "required": true
+                },
+                "name": {
+                    "type": "string",
+                    "required": true
+                },
+                "config": {
+                    "type": "string",
+                    "required": true
+                },
+                "translations": {
+                    "type": "string",
+                    "required": true
+                },
+                "ZDDX": {
+                    "type": "string",
+                    "required": true
+                }
+            },
+            "required": false
+        },
+        "options": {
+            "fields": {
+                "port": {
+                    "label": "Serial port to Z-Wave dongle"
+                },
+                "name": {
+                    "label": "Internal name",
+                    "helper": "Chould be a valid JS key string. Don't change unless you know what you are doing"
+                },
+                "config": {
+                    "hidden": true,
+                    "label": "Path to config folder",
+                    "helper": "Don't change unless you know what you are doing"
+                },
+                "translations": {
+                    "hidden": true,
+                    "label": "Path to dictionaries folder",
+                    "helper": "Don't change unless you know what you are doing"
+                },
+                "ZDDX": {
+                    "hidden": true,
+                    "label": "Path to ZDDX database",
+                    "helper": "Don't change unless you know what you are doing"
+                }
+            }
+        }
+    };
+
+    $scope.store = function(formId) {
+        var data = $(formId).serializeArray();
+        console.log(data);
+    };
+
+    /**
+     * Store data
+     */
+    $scope.store_ = function(input) {
+        var params = {};
+        angular.forEach(input.moduleInput, function(v, k) {
+            if (angular.isArray(v.value)) {
+                params[v.inputName] = v.value.filter(function(e) {
+                    return e
+                });
+            } else {
+                params[v.inputName] = v.value;
+            }
+
+        });
+
+        var inputData = {
+            'id': input.id,
+            'moduleId': input.moduleId,
+            'active': input.active,
+            'title': input.title,
+            'description': input.description,
+            'params': params
+        };
+
+        //return;
+        if (input.id > 0) {
+            dataFactory.putApiData('instances', input.id, inputData, function(data) {
+                $scope.success = true;
+            });
+        } else {
+            dataFactory.postApiData('instances', inputData, function(data) {
+                $location.path('/apps');
+            });
+        }
+
     };
 });
 /**
@@ -7569,13 +7789,14 @@ myAppController.controller('DeviceController', function($scope, $routeParams, da
     /**
      * Load z-wave devices
      */
-    $scope.loadZwaveDevices = function(filter) {
-        dataFactory.localData('z_en.json', function(data) {
-            $scope.manufacturers = dataService.getPairs(data, 'ZManufacturersName', 'ZManufacturersImage', 'manufacturers');
+    $scope.loadZwaveDevices = function(filter, lang) {
+        dataFactory.localData('dev.' + lang + '.json', function(data) {
+            $scope.manufacturers = dataService.getPairs(data, 'ManufacturersName', 'ManufacturersImage', 'manufacturers');
             if (filter) {
                 $scope.zwaveDevices = dataService.getData(data, filter);
                 $scope.manufacturer = filter.val;
             }
+
         });
     };
 
@@ -7592,7 +7813,7 @@ myAppController.controller('DeviceController', function($scope, $routeParams, da
         switch ($scope.deviceVendor) {
             case 'zwave':
                 $scope.$watch('zwaveDevicesFilter', function() {
-                    $scope.loadZwaveDevices($scope.zwaveDevicesFilter);
+                    $scope.loadZwaveDevices($scope.zwaveDevicesFilter, $scope.lang);
                 });
                 break;
             case 'ipcamera':
@@ -7648,10 +7869,10 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
     /**
      * Load data into collection
      */
-    $scope.loadData = function() {
+    $scope.loadData = function(lang) {
         // Get device from JSON
         if (angular.isDefined($routeParams.device)) {
-            dataFactory.localData('z_en.json', function(devices) {
+            dataFactory.localData('dev.' + lang + '.json', function(devices) {
                 $scope.device.data = devices[$routeParams.device];
 
             });
@@ -7678,7 +7899,7 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
         });
     };
 
-    $scope.loadData();
+    $scope.loadData($scope.lang);
 
     // Watch for last excluded device
     $scope.$watch('includedDeviceId', function() {
@@ -7693,26 +7914,18 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
                     var vendor = ZWaveAPIData.devices[nodeId].data.vendorString.value;
                     var deviceType = ZWaveAPIData.devices[nodeId].data.deviceTypeString.value;
                     $scope.hasBattery = hasBattery;
-                    console.log('Device id: ' + nodeId)
-                    debugger;
                     // Check interview
                     if (ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value && ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value.length) {
-                         console.log('Hello 1');
                         for (var iId in ZWaveAPIData.devices[nodeId].instances) {
-//                             console.log('Hello 233: ' + iId);
-//                             console.log(ZWaveAPIData.devices[nodeId].instances[iId].commandClasses);
-                             if(ZWaveAPIData.devices[nodeId].instances[iId].commandClasses.length > 0){
-                                 for (var ccId in ZWaveAPIData.devices[nodeId].instances[iId].commandClasses) {
-                                //console.log('ccId: ' + ccId + ' | interviewDone: ' + ZWaveAPIData.devices[nodeId].instances[iId].commandClasses[ccId].data.interviewDone.value);
-                                if (!ZWaveAPIData.devices[nodeId].instances[iId].commandClasses[ccId].data.interviewDone.value) {
-                                    interviewDone = false;
+                            if (ZWaveAPIData.devices[nodeId].instances[iId].commandClasses.length > 0) {
+                                for (var ccId in ZWaveAPIData.devices[nodeId].instances[iId].commandClasses) {
+                                    if (!ZWaveAPIData.devices[nodeId].instances[iId].commandClasses[ccId].data.interviewDone.value) {
+                                        interviewDone = false;
+                                    }
                                 }
+                            } else {
+                                interviewDone = false;
                             }
-                             }else{
-                                 interviewDone = false; 
-                             }
-                            
-
                         }
 
                     } else {
@@ -7732,8 +7945,6 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
                     }
 
                     $scope.includedDeviceId = null;
-//                    console.log('Interview done: ' + interviewDone);
-//                    console.log(ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value.length);
                 });
 
             }, 10000);

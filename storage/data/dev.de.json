@@ -1,0 +1,37 @@
+{
+    "DAN_LC-13": {
+        "Id": "DAN_LC-13",
+        "Battery": "1",
+        "ManufacturersName": "Danfoss",
+        "ProductImage": "Connect_R.jpg",
+        "ManufacturersImage": "manufacturers\/Danfoss.png",
+        "Name": "Heizungsstellglied",
+        "Inclusion": "Mittlere Taste gedrückt halten, bis auf dem Display ein 'M' erscheint. Dan drücken Sie die Taste erneut kurz. ",
+        "Exclusion": "Mittlere Taste kurz drücken.",
+        "Wakeup": "Mittlere Taste kurz drücken.",
+        "Preparation": "Gerät am Heizkörper montieren und halten Sie die mittlere Taste für 3 Sekunden gedrückt, um die Mechanik zu kalibrieren."
+    },
+    "POP_123634": {
+        "Id": "POP_123634",
+        "Battery": "0",
+        "ProductImage": "12512_0.png",
+        "ManufacturersImage": "manufacturers\/PoppLogo150px.png",
+        "ManufacturersName": "Popp",
+        "Name": "Z-Wave Zwischenstecker",
+        "Inclusion": "Gerät in Steckdose stecken oder Taste kurz drücken, wenn das Gerät bereits installiert ist.",
+        "Exclusion": "Taste kurz drücken.",
+        "Preparation": "Eine blinkende LED zeigt an, ob das Gerät im Auslieferungszustand ist."
+    },
+    "ZMEEKFOB": {
+        "Id": "ZMEEKFOB",
+        "Battery": "1",
+        "ProductImage": "12375_0.jpg",
+        "ManufacturersImage": "manufacturers\/Z-WaveMe.png",
+        "ManufacturersName": "Z-Wave.Me",
+        "Name": "4 Tasten Schlüsselanhänger",
+        "Inclusion": "Eine der Tasten für eine Sekunde gedrückt halten.",
+        "Exclusion": "Alle 4 Tasten 5 Sekunden gedrückt halten, um in den Managementmodus zu gelangen. Dies wird durch eine langsam blinkende LED angezeigt. Jetzt Taste 1 kurz drücken.",
+        "Wakeup": "Alle 4 Tasten 5 Sekunden gedrückt halten, um in den Managementmodus zu gelangen. Dies wird durch eine langsam blinkende LED angezeigt. Jetzt Taste 2 kurz drücken.",
+        "Preparation": "Eine der Tasten eine Sekunde lang drücken. Eine schnell blinkende rot/grüne LED zeigt an, das sich das Gerät im Auslieferungszustand befindet. "
+    }
+}

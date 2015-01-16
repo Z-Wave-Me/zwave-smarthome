@@ -57,7 +57,7 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,my
             method: "get",
             url: cfg.server_url + cfg.api[api] + (params ? params : '')
         };
-        return getApiHandle(callback, request, api);
+        return getApiHandle(callback, request, api + params);
     }
 
     // Post

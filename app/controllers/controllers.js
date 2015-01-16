@@ -153,6 +153,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
 myAppController.controller('TestController', function($scope, $routeParams, $filter, $location, dataFactory, dataService) {
     $scope.showForm = false;
     $scope.success = false;
+    $scope.collection = {};
     $scope.input = {
         'id': 0,
         'active': true,
@@ -163,7 +164,7 @@ myAppController.controller('TestController', function($scope, $routeParams, $fil
         'params': {},
         'moduleInput': false
     };
-    
+
     // Post new module instance
     $scope.postModule = function(id) {
         var module;
@@ -198,29 +199,39 @@ myAppController.controller('TestController', function($scope, $routeParams, $fil
             return;
         }
         var instance;
-        var module;
+       var formData;
         dataFactory.getApiData('instances', function(data) {
+           
+            
+            //$scope.collection = data;
             instance = dataService.getRowBy(data.data, 'id', id);
             if (!instance) {
                 return;
             }
-            dataFactory.getApiData('modules', function(modules) {
-                module = dataService.getRowBy(modules.data, 'id', instance.moduleId);
+
+            dataFactory.getApiData('modules', function(module) {
+               
                 dataFactory.getApiData('namespaces', function(namespaces) {
+                     //console.log(module.data.meta)
                     $scope.input = {
                         'id': instance.id,
-                        'moduleId': module.id,
+                        'moduleId': module.data.meta.id,
                         'active': instance.active,
                         'title': instance.title,
                         'description': instance.description,
                         'moduleTitle': $filter('hasNode')(module, 'defaults.title'),
                         'params': instance.params,
+                        //'collection': module.data.meta,
                         'moduleInput': dataService.getModuleConfigInputs(module, instance.params, namespaces.data)
                     };
+                    formData =  dataService.getModuleFormData(module.data.meta, instance.params, namespaces);
+                     $('#form1').alpaca(formData);
+                    //dataService.getModuleFormData(module.data.meta, instance.params, namespaces);
                     //console.log($scope.input)
                     $scope.showForm = true;
+                    
                 });
-            });
+            }, '/' + instance.moduleId);
 
         });
     };
@@ -238,97 +249,76 @@ myAppController.controller('TestController', function($scope, $routeParams, $fil
         default:
             break;
     }
-    $scope.collection = {
-        "singleton": true,
-        "dependencies": [
-            "Cron"
-        ],
-        "category": "devices",
-        "author": "Z-Wave.Me",
-        "homepage": "http://razberry.z-wave.me",
-        "icon": "",
-        "version": "2.0.0",
-        "maturity": "stable",
-        "repository": {
-            "type": "git",
-            "source": "https://github.com/Z-Wave-Me/home-automation"
-        },
-        "data": {
-                        "launchWeekDay": "4",
-                        "warningLevel": 10
-                    },
+    $scope.collection_ = {
         "defaults": {
-            "title": "Battery Polling",
-            "description": "Battery Polling notifications",
-            "launchWeekDay": 0,
-            "warningLevel": 20
+            "title": "Z-Wave binding",
+            "description": "Loads Z-Wave engine",
+            "name": "zway",
+            "port": "/dev/ttyUSB0",
+            "config": "config",
+            "translations": "translations",
+            "ZDDX": "ZDDX"
         },
         "schema": {
             "type": "object",
             "properties": {
-                "launchWeekDay": {
-                    "type": "number",
-                    "required": true,
-                    "enum": [
-                        1,
-                        2,
-                        3,
-                        4,
-                        5,
-                        6,
-                        0
-                    ]
+                "port": {
+                    "type": "string",
+                    "required": true
                 },
-                "warningLevel": {
-                    "type": "select",
-                    "required": true,
-                    "enum": [
-                        5,
-                        10,
-                        15,
-                        20
-                    ]
+                "name": {
+                    "type": "string",
+                    "required": true
+                },
+                "config": {
+                    "type": "string",
+                    "required": true
+                },
+                "translations": {
+                    "type": "string",
+                    "required": true
+                },
+                "ZDDX": {
+                    "type": "string",
+                    "required": true
                 }
             },
             "required": false
         },
         "options": {
             "fields": {
-                "launchWeekDay": {
-                    "label": "Do battery polling on",
-                    "optionLabels": [
-                        "Monday",
-                        "Tuesday",
-                        "Wednesday",
-                        "Thursday",
-                        "Friday",
-                        "Saturday",
-                        "Sunday"
-                    ]
+                "port": {
+                    "label": "Serial port to Z-Wave dongle"
                 },
-                "warningLevel": {
-                    "label": "Warning Level",
-                    "helper": "Warn if device's battery is below this level",
-                    "optionLabels": [
-                        "5%",
-                        "10%",
-                        "15%",
-                        "20%"
-                    ]
+                "name": {
+                    "label": "Internal name",
+                    "helper": "Chould be a valid JS key string. Don't change unless you know what you are doing"
+                },
+                "config": {
+                    "hidden": true,
+                    "label": "Path to config folder",
+                    "helper": "Don't change unless you know what you are doing"
+                },
+                "translations": {
+                    "hidden": true,
+                    "label": "Path to dictionaries folder",
+                    "helper": "Don't change unless you know what you are doing"
+                },
+                "ZDDX": {
+                    "hidden": true,
+                    "label": "Path to ZDDX database",
+                    "helper": "Don't change unless you know what you are doing"
                 }
             }
-        },
-        "id": "BatteryPolling",
-        "className": "BatteryPolling",
-        "created": false
+        }
     };
-    
-     $scope.store = function(formId) {
-         var data = $(formId).serializeArray();
-         console.log(data);
-     };
-     
-     /**
+
+    $scope.store = function(formId) {
+        var data = $(formId).serializeArray();
+        console.log(data);
+    };
+
+    /**
      * Store data
      */
     $scope.store_ = function(input) {
@@ -1124,13 +1114,14 @@ myAppController.controller('DeviceController', function($scope, $routeParams, da
     /**
      * Load z-wave devices
      */
-    $scope.loadZwaveDevices = function(filter) {
-        dataFactory.localData('z_en.json', function(data) {
-            $scope.manufacturers = dataService.getPairs(data, 'ZManufacturersName', 'ZManufacturersImage', 'manufacturers');
+    $scope.loadZwaveDevices = function(filter, lang) {
+        dataFactory.localData('dev.' + lang + '.json', function(data) {
+            $scope.manufacturers = dataService.getPairs(data, 'ManufacturersName', 'ManufacturersImage', 'manufacturers');
             if (filter) {
                 $scope.zwaveDevices = dataService.getData(data, filter);
                 $scope.manufacturer = filter.val;
             }
+
         });
     };
 
@@ -1147,7 +1138,7 @@ myAppController.controller('DeviceController', function($scope, $routeParams, da
         switch ($scope.deviceVendor) {
             case 'zwave':
                 $scope.$watch('zwaveDevicesFilter', function() {
-                    $scope.loadZwaveDevices($scope.zwaveDevicesFilter);
+                    $scope.loadZwaveDevices($scope.zwaveDevicesFilter, $scope.lang);
                 });
                 break;
             case 'ipcamera':
@@ -1203,10 +1194,10 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
     /**
      * Load data into collection
      */
-    $scope.loadData = function() {
+    $scope.loadData = function(lang) {
         // Get device from JSON
         if (angular.isDefined($routeParams.device)) {
-            dataFactory.localData('z_en.json', function(devices) {
+            dataFactory.localData('dev.' + lang + '.json', function(devices) {
                 $scope.device.data = devices[$routeParams.device];
 
             });
@@ -1233,7 +1224,7 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
         });
     };
 
-    $scope.loadData();
+    $scope.loadData($scope.lang);
 
     // Watch for last excluded device
     $scope.$watch('includedDeviceId', function() {
