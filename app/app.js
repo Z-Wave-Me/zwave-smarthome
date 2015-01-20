@@ -45,7 +45,7 @@ myApp.config(['$routeProvider',
                 }).
                 //Module
                 when('/module/:action/:id', {
-                    templateUrl: 'app/views/config/app_module.html'
+                    templateUrl: 'app/views/config/app_module_alpaca.html'
                 }).
                 //Devices
                 when('/devices/:type?', {
@@ -68,7 +68,7 @@ myApp.config(['$routeProvider',
                     templateUrl: 'app/views/pages/about.html'
                 }).
                 // Test
-                when('/test/:action/:id', {
+                when('/test', {
                     templateUrl: 'app/views/test.html'
                 }).
                 otherwise({

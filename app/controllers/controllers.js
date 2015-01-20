@@ -151,210 +151,6 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
  * Test controller
  */
 myAppController.controller('TestController', function($scope, $routeParams, $filter, $location, dataFactory, dataService) {
-    $scope.showForm = false;
-    $scope.success = false;
-    $scope.collection = {};
-    $scope.input = {
-        'id': 0,
-        'active': true,
-        'moduleId': null,
-        'title': null,
-        'description': null,
-        'moduleTitle': null,
-        'params': {},
-        'moduleInput': false
-    };
-
-    // Post new module instance
-    $scope.postModule = function(id) {
-        var module;
-        dataFactory.getApiData('modules', function(modules) {
-            module = dataService.getRowBy(modules.data, 'id', id);
-            if (!module) {
-                return;
-            }
-            dataFactory.getApiData('namespaces', function(namespaces) {
-                $scope.input = {
-                    //'id': instance.id,
-                    'active': true,
-                    'title': $filter('hasNode')(module, 'defaults.title'),
-                    'description': $filter('hasNode')(module, 'defaults.description'),
-                    'moduleTitle': $filter('hasNode')(module, 'defaults.title'),
-                    'moduleId': module.id,
-                    'category': module.category,
-                    //'params': instance.params,
-                    'moduleInput': dataService.getModuleConfigInputs(module, null, namespaces.data)
-                };
-                //console.log($scope.input)
-
-                $scope.showForm = true;
-            });
-        });
-        console.log('Add new module: ' + id);
-    };
-
-    // Put module instance
-    $scope.putModule = function(id) {
-        if (id < 1) {
-            return;
-        }
-        var instance;
-       var formData;
-        dataFactory.getApiData('instances', function(data) {
-           
-            
-            //$scope.collection = data;
-            instance = dataService.getRowBy(data.data, 'id', id);
-            if (!instance) {
-                return;
-            }
-
-            dataFactory.getApiData('modules', function(module) {
-               
-                dataFactory.getApiData('namespaces', function(namespaces) {
-                     //console.log(module.data.meta)
-                    $scope.input = {
-                        'id': instance.id,
-                        'moduleId': module.data.meta.id,
-                        'active': instance.active,
-                        'title': instance.title,
-                        'description': instance.description,
-                        'moduleTitle': $filter('hasNode')(module, 'defaults.title'),
-                        'params': instance.params,
-                        //'collection': module.data.meta,
-                        'moduleInput': dataService.getModuleConfigInputs(module, instance.params, namespaces.data)
-                    };
-                    formData =  dataService.getModuleFormData(module.data.meta, instance.params, namespaces);
-                     $('#form1').alpaca(formData);
-                    //dataService.getModuleFormData(module.data.meta, instance.params, namespaces);
-                    //console.log($scope.input)
-                    $scope.showForm = true;
-                    
-                });
-            }, '/' + instance.moduleId);
-
-        });
-    };
-    /**
-     * Load data
-     */
-
-    switch ($routeParams.action) {
-        case 'put':
-            $scope.putModule($routeParams.id);
-            break;
-        case 'post':
-            $scope.postModule($routeParams.id);
-            break;
-        default:
-            break;
-    }
-    $scope.collection_ = {
-        "defaults": {
-            "title": "Z-Wave binding",
-            "description": "Loads Z-Wave engine",
-            "name": "zway",
-            "port": "/dev/ttyUSB0",
-            "config": "config",
-            "translations": "translations",
-            "ZDDX": "ZDDX"
-        },
-        "schema": {
-            "type": "object",
-            "properties": {
-                "port": {
-                    "type": "string",
-                    "required": true
-                },
-                "name": {
-                    "type": "string",
-                    "required": true
-                },
-                "config": {
-                    "type": "string",
-                    "required": true
-                },
-                "translations": {
-                    "type": "string",
-                    "required": true
-                },
-                "ZDDX": {
-                    "type": "string",
-                    "required": true
-                }
-            },
-            "required": false
-        },
-        "options": {
-            "fields": {
-                "port": {
-                    "label": "Serial port to Z-Wave dongle"
-                },
-                "name": {
-                    "label": "Internal name",
-                    "helper": "Chould be a valid JS key string. Don't change unless you know what you are doing"
-                },
-                "config": {
-                    "hidden": true,
-                    "label": "Path to config folder",
-                    "helper": "Don't change unless you know what you are doing"
-                },
-                "translations": {
-                    "hidden": true,
-                    "label": "Path to dictionaries folder",
-                    "helper": "Don't change unless you know what you are doing"
-                },
-                "ZDDX": {
-                    "hidden": true,
-                    "label": "Path to ZDDX database",
-                    "helper": "Don't change unless you know what you are doing"
-                }
-            }
-        }
-    };
-
-    $scope.store = function(formId) {
-        var data = $(formId).serializeArray();
-        console.log(data);
-    };
-
-    /**
-     * Store data
-     */
-    $scope.store_ = function(input) {
-        var params = {};
-        angular.forEach(input.moduleInput, function(v, k) {
-            if (angular.isArray(v.value)) {
-                params[v.inputName] = v.value.filter(function(e) {
-                    return e
-                });
-            } else {
-                params[v.inputName] = v.value;
-            }
-
-        });
-
-        var inputData = {
-            'id': input.id,
-            'moduleId': input.moduleId,
-            'active': input.active,
-            'title': input.title,
-            'description': input.description,
-            'params': params
-        };
-
-        //return;
-        if (input.id > 0) {
-            dataFactory.putApiData('instances', input.id, inputData, function(data) {
-                $scope.success = true;
-            });
-        } else {
-            dataFactory.postApiData('instances', inputData, function(data) {
-                $location.path('/apps');
-            });
-        }
-
-    };
 });
 /**
  * Home controller
@@ -934,6 +730,121 @@ myAppController.controller('AppController', function($scope, $window, dataFactor
 /**
  * App controller - add module
  */
+myAppController.controller('AppModuleAlpacaController', function($scope, $routeParams, $filter, $location, dataFactory, dataService) {
+   $scope.showForm = false;
+    $scope.success = false;
+    $scope.collection = {};
+    $scope.input = {
+        'instanceId': 0,
+        'active': true,
+        'moduleId': null,
+        'title': null,
+        'description': null,
+        'moduleTitle': null,
+         'category': null
+    };
+
+    // Post new module instance
+    $scope.postModule = function(id) {
+        dataFactory.getApiData('modules', function(module) {
+           dataFactory.getApiData('namespaces', function(namespaces) {
+                var formData =  dataService.getModuleFormData(module.data.meta, module.data.meta.defaults, namespaces.data);
+                $scope.input = {
+                    'instanceId': 0,
+                    'moduleId': id,
+                    'active': true,
+                    'title': $filter('hasNode')(formData, 'data.title'),
+                    'description': $filter('hasNode')(formData, 'data.description'),
+                    'moduleTitle': $filter('hasNode')(formData, 'data.title'),
+                    'category': module.data.meta.category
+                };
+                $('#alpaca_data').alpaca(formData);
+                $scope.showForm = true;
+            });
+        }, '/' + id);
+    };
+
+    // Put module instance
+    $scope.putModule = function(id) {
+        if (id < 1) {
+            return;
+        }
+        dataFactory.getApiData('instances', function(data) {
+            var instance = data.data;
+            dataFactory.getApiData('modules', function(module) {
+                dataFactory.getApiData('namespaces', function(namespaces) {
+                     var formData =  dataService.getModuleFormData(module.data.meta, instance.params, namespaces.data);
+                   
+                   $scope.input = {
+                        'instanceId': instance.id,
+                        'moduleId': module.data.meta.id,
+                        'active': instance.active,
+                        'title': instance.title,
+                        'description': instance.description,
+                        'moduleTitle': instance.title,
+                        'category': module.data.meta.category
+                    };
+                    $('#alpaca_data').alpaca(formData);
+                    $scope.showForm = true;
+                    
+                });
+            }, '/' + instance.moduleId);
+
+        }, '/' + id);
+    };
+    /**
+     * Load data
+     */
+
+    switch ($routeParams.action) {
+        case 'put':
+            $scope.putModule($routeParams.id);
+            break;
+        case 'post':
+            $scope.postModule($routeParams.id);
+            break;
+        default:
+            break;
+    }
+
+    $scope.store = function(formId) {
+        var data = $(formId).serializeArray();
+        var defaults = ['instanceId','moduleId','active','title','description'];
+        var input = [];
+        var params = {};
+        angular.forEach(data, function(v, k) {
+           if(defaults.indexOf(v.name) > -1){
+                 input[v.name] = v.value;
+            }else{
+                params[v.name] = v.value;
+            }
+           
+        });
+         console.log(params);
+         var inputData = {
+            'id': input.instanceId,
+            'moduleId': input.moduleId,
+            'active': input.active,
+            'title': input.title,
+            'description': input.description,
+            'params': params
+        };
+        if (input.instanceId > 0) {
+            dataFactory.putApiData('instances', input.instanceId, inputData, function(data) {
+                $scope.success = true;
+            });
+        } else {
+           
+            dataFactory.postApiData('instances', inputData, function(data) {
+                $location.path('/apps');
+            });
+        }
+    };
+
+});
+/**
+ * App controller - add module
+ */
 myAppController.controller('AppModuleController', function($scope, $routeParams, $filter, $location, dataFactory, dataService) {
     $scope.showForm = false;
     $scope.success = false;
@@ -1001,7 +912,6 @@ myAppController.controller('AppModuleController', function($scope, $routeParams,
                         'params': instance.params,
                         'moduleInput': dataService.getModuleConfigInputs(module, instance.params, namespaces.data)
                     };
-                    //console.log($scope.input)
                     $scope.showForm = true;
                 });
             });

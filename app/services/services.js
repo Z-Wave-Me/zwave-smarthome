@@ -68,7 +68,7 @@ myAppService.service('dataService', function($filter, myCache) {
     this.getInstances = function(data, modules) {
         return getInstances(data, modules);
     };
-    
+
     /**
      * Get module form data
      */
@@ -360,180 +360,57 @@ myAppService.service('dataService', function($filter, myCache) {
         });
         return collection;
     }
-    
+
     /**
-     * Update device icon
+     * Get module form data
      */
     function getModuleFormData(module, data, namespaces) {
         var collection = {
-            'options':{},
-            'schema':{},
-            'data':{}
+            'options': {},
+            'schema': {},
+            'data': {}
         };
-        console.log(module)
-        console.log(data)
-        console.log(namespaces)
-        collection.options = module.options;
-        collection.schema = module.schema;
+        var bind = setModuleFormData(module.options, module.schema, namespaces);
+        collection.options = bind.options;
+        collection.schema = bind.schema;
         collection.data = data;
         return collection;
     }
 
-
     /**
-     *  Get module config options
+     * Set module form data
      */
-    function getModuleConfigInputs(module, params, namespaces) {
-        if (!module) {
-            return false;
-        }
-        var options = $filter('hasNode')(module, 'options.fields');
-        var schema = $filter('hasNode')(module, 'schema.properties');
-        var defaults = $filter('hasNode')(module, 'defaults');
-        if (!options || !schema) {
-            return false;
-        }
-        //console.log(module.id);
-
-        var collection = {};
-        var cfg = {};
-//        var type;
-//        var enums;
-//        var items;
-//        var itemsProperties;
-//        var pairs;
-//        var itemPairs;
-//        var inputType;
-        angular.forEach(options, function(v, k) {
-            if ((v.hidden) || (v.hidden == true)) {
-                return false;
-            }
-            cfg = {
-                'pairs': [],
-                'pairsItemsProperties': {},
-                'inputType': $filter('hasNode')(options[k], 'type'),
-                'enums': $filter('hasNode')(schema[k], 'enum'),
-                'items': $filter('hasNode')(schema[k], 'items'),
-                'itemsProperties': $filter('hasNode')(schema[k], 'items.properties')
-            };
-//            inputType = $filter('hasNode')(options[k], 'type');
-//            type = $filter('hasNode')(schema[k], 'type');
-//            enums = $filter('hasNode')(schema[k], 'enum');
-//            items = $filter('hasNode')(schema[k], 'items');
-//            itemsProperties = $filter('hasNode')(schema[k], 'items.properties');
-
-            if (v.datasource == 'namespaces') {
-                cfg.pairs = getModulePairsFromNamespaces(cfg.enums, namespaces);
-            } else if (cfg.items) {
-                if (cfg.itemsProperties) {
-                    angular.forEach(cfg.itemsProperties, function(item, ik) {
-                        var iPairs = getItemsPropertiesPairs(item, v.optionLabels, namespaces);
-                        if (iPairs) {
-                            cfg.pairsItemsProperties = {
-                                'name': ik,
-                                'pairs': getItemsPropertiesPairs(item, v.optionLabels, namespaces)
-                            };
-                            return;
-                        }
-
-                        // getItemsPropertiesPairs(item,v.optionLabels,namespaces);
-                        //cfg.pairs = getItemsPropertiesPairs(item,v.optionLabels,namespaces);
-                        //console.log(item);
-
-                    });
-
-                }
-                if (cfg.items.datasource == 'namespaces') {
-                    cfg.pairs = getModulePairsFromNamespaces(cfg.items.enum, namespaces);
-
-                }
-            } else {
-                cfg.pairs = getModulePairsFromArray(cfg.enums, v.optionLabels);
-            }
-
-            //console.log(cfg.pairsItemsProperties);
-            //console.log(itemPairs)
-            collection[k] = {
-                'inputName': k,
-                'label': v.label,
-                'placeholder': v.placeholder,
-                'helper': v.helper,
-                'optionLabels': v.optionLabels,
-                'default': defaults[k],
-                'inputType': getModuleInputType(cfg),
-                'enum': cfg.enums,
-                "datasource": v.datasource,
-                'pairs': cfg.pairs,
-                'pairsItemsProperties': cfg.pairsItemsProperties,
-                'pattern': $filter('hasNode')(schema[k], 'pattern'),
-                'required': $filter('hasNode')(schema[k], 'required'),
-                'value': $filter('hasNode')(params, k)
-            };
-
-        });
+    function setModuleFormData(options, schema, namespaces) {
+        var collection = {
+            'options': replaceModuleFormData(options, 'optionLabels', namespaces, 'deviceName'),
+            'schema': replaceModuleFormData(schema, 'enum', namespaces, 'deviceId')
+        };
         return collection;
     }
     /**
-     * Get module input type
+     * Replace module object
      */
-    function getModuleInputType(cfg) {
-        var inputType;
-        if (!cfg.inputType) {
-            if (cfg.enums) {
-                inputType = 'select';
-            } else if (cfg.itemsProperties) {
-                inputType = 'itemsProperties';
-            } else if (cfg.items) {
-                inputType = 'items';
+    function replaceModuleFormData(obj, key, namespaces, namespaceKey) {
+        var objects = [];
+        for (var i in obj) {
+            if (!obj.hasOwnProperty(i))
+                continue;
+            if (typeof obj[i] == 'object') {
+                objects = objects.concat(replaceModuleFormData(obj[i], key, namespaces, namespaceKey));
+            } else if (i == key && !angular.isArray(obj[key])) {
+                obj[key] = buildArrayFromNamespaces(obj[key], namespaces, namespaceKey);
             }
-            else {
-                inputType = 'text';
-            }
-        }else{
-             inputType = cfg.inputType;
         }
-       
-        return inputType;
+        return obj;
     }
 
-    /**
-     * Get Items Properties Input
-     */
-    function getItemsPropertiesPairs(item, optionLabels, namespaces) {
-        var pairs;
-         if (item.field == 'enum') {
-        if (item.datasource == 'namespaces') {
-            pairs = getModulePairsFromNamespaces(item.enum, namespaces);
-        } else {
-            pairs = getModulePairsFromArray(item.enum, optionLabels);
-        }
-         }
-        return pairs;
-    }
-    /**
-     * Get module pairs from array - enums and labels
-     */
-    function getModulePairsFromArray(enums, labels) {
-        if (!angular.isArray(enums)) {
-            return false;
-        }
-        var collection = {};
-        angular.forEach(enums, function(v, k) {
-            if (labels) {
-                collection[v] = (labels[k] ? labels[k] : v);
-            } else {
-                collection[v] = v;
-            }
-        });
-
-        return collection;
-    }
 
     /**
-     * Get module pairs from namespaces
+     * Build an array from namespaces
      */
-    function getModulePairsFromNamespaces(enums, namespaces) {
-        var collection = {};
+    function buildArrayFromNamespaces(enums, namespaces, namespaceKey) {
+         
+        var collection = [];
         var namesp = enums.split(',');
         if (!angular.isArray(namesp)) {
             return false;
@@ -544,57 +421,232 @@ myAppService.service('dataService', function($filter, myCache) {
                 return false;
             }
             angular.forEach(namespaces, function(nm, km) {
-                if (nm.id == id[1]) {
+               if (nm.id == id[1]) {
                     angular.forEach(nm.params, function(i, n) {
-                        collection[i['deviceId']] = i['deviceName'];
+                        collection.push(i[namespaceKey]);
                     });
                 }
             });
         });
+       
         return collection;
     }
 
-    /**
-     * Get module pairs from items
-     */
-    function getModulePairsFromItems(items, namespaces) {
-        console.log(items)
-        return;
-        var collection = {};
-        var arr = enums.split(':');
-        if (!$.isArray(arr)) {
-            return false;
-        }
-        var devices = arr[1];
-        angular.forEach(namespaces, function(v, k) {
-            if (v.id == devices) {
-                angular.forEach(v.params, function(i, n) {
-                    collection[i['deviceId']] = i['deviceName'];
-                });
-            }
-
-        });
-        return collection;
-    }
     /**
      *  Get module config options
      */
-    function getModuleConfigOptions(module, params) {
-        var collection = [];
-        if (module) {
-            angular.forEach($filter('hasNode')(module, 'options.fields'), function(v, k) {
-                if ((!v.hidden) || (v.hidden != true)) {
-                    collection.push({
-                        'value': $filter('hasNode')(params, k),
-                        'field': k,
-                        'label': v.label,
-                        'helper': v.helper
-                    });
-                }
-            });
-        }
-        return collection;
-    }
+//    function getModuleConfigInputs(module, params, namespaces) {
+//        if (!module) {
+//            return false;
+//        }
+//        var options = $filter('hasNode')(module, 'options.fields');
+//        var schema = $filter('hasNode')(module, 'schema.properties');
+//        var defaults = $filter('hasNode')(module, 'defaults');
+//        if (!options || !schema) {
+//            return false;
+//        }
+//        //console.log(module.id);
+//
+//        var collection = {};
+//        var cfg = {};
+////        var type;
+////        var enums;
+////        var items;
+////        var itemsProperties;
+////        var pairs;
+////        var itemPairs;
+////        var inputType;
+//        angular.forEach(options, function(v, k) {
+//            if ((v.hidden) || (v.hidden == true)) {
+//                return false;
+//            }
+//            cfg = {
+//                'pairs': [],
+//                'pairsItemsProperties': {},
+//                'inputType': $filter('hasNode')(options[k], 'type'),
+//                'enums': $filter('hasNode')(schema[k], 'enum'),
+//                'items': $filter('hasNode')(schema[k], 'items'),
+//                'itemsProperties': $filter('hasNode')(schema[k], 'items.properties')
+//            };
+////            inputType = $filter('hasNode')(options[k], 'type');
+////            type = $filter('hasNode')(schema[k], 'type');
+////            enums = $filter('hasNode')(schema[k], 'enum');
+////            items = $filter('hasNode')(schema[k], 'items');
+////            itemsProperties = $filter('hasNode')(schema[k], 'items.properties');
+//
+//            if (v.datasource == 'namespaces') {
+//                cfg.pairs = getModulePairsFromNamespaces(cfg.enums, namespaces);
+//            } else if (cfg.items) {
+//                if (cfg.itemsProperties) {
+//                    angular.forEach(cfg.itemsProperties, function(item, ik) {
+//                        var iPairs = getItemsPropertiesPairs(item, v.optionLabels, namespaces);
+//                        if (iPairs) {
+//                            cfg.pairsItemsProperties = {
+//                                'name': ik,
+//                                'pairs': getItemsPropertiesPairs(item, v.optionLabels, namespaces)
+//                            };
+//                            return;
+//                        }
+//
+//                        // getItemsPropertiesPairs(item,v.optionLabels,namespaces);
+//                        //cfg.pairs = getItemsPropertiesPairs(item,v.optionLabels,namespaces);
+//                        //console.log(item);
+//
+//                    });
+//
+//                }
+//                if (cfg.items.datasource == 'namespaces') {
+//                    cfg.pairs = getModulePairsFromNamespaces(cfg.items.enum, namespaces);
+//
+//                }
+//            } else {
+//                cfg.pairs = getModulePairsFromArray(cfg.enums, v.optionLabels);
+//            }
+//
+//            //console.log(cfg.pairsItemsProperties);
+//            //console.log(itemPairs)
+//            collection[k] = {
+//                'inputName': k,
+//                'label': v.label,
+//                'placeholder': v.placeholder,
+//                'helper': v.helper,
+//                'optionLabels': v.optionLabels,
+//                'default': defaults[k],
+//                'inputType': getModuleInputType(cfg),
+//                'enum': cfg.enums,
+//                "datasource": v.datasource,
+//                'pairs': cfg.pairs,
+//                'pairsItemsProperties': cfg.pairsItemsProperties,
+//                'pattern': $filter('hasNode')(schema[k], 'pattern'),
+//                'required': $filter('hasNode')(schema[k], 'required'),
+//                'value': $filter('hasNode')(params, k)
+//            };
+//
+//        });
+//        return collection;
+//    }
+//    /**
+//     * Get module input type
+//     */
+//    function getModuleInputType(cfg) {
+//        var inputType;
+//        if (!cfg.inputType) {
+//            if (cfg.enums) {
+//                inputType = 'select';
+//            } else if (cfg.itemsProperties) {
+//                inputType = 'itemsProperties';
+//            } else if (cfg.items) {
+//                inputType = 'items';
+//            }
+//            else {
+//                inputType = 'text';
+//            }
+//        } else {
+//            inputType = cfg.inputType;
+//        }
+//
+//        return inputType;
+//    }
+//
+//    /**
+//     * Get Items Properties Input
+//     */
+//    function getItemsPropertiesPairs(item, optionLabels, namespaces) {
+//        var pairs;
+//        if (item.field == 'enum') {
+//            if (item.datasource == 'namespaces') {
+//                pairs = getModulePairsFromNamespaces(item.enum, namespaces);
+//            } else {
+//                pairs = getModulePairsFromArray(item.enum, optionLabels);
+//            }
+//        }
+//        return pairs;
+//    }
+//    /**
+//     * Get module pairs from array - enums and labels
+//     */
+//    function getModulePairsFromArray(enums, labels) {
+//        if (!angular.isArray(enums)) {
+//            return false;
+//        }
+//        var collection = {};
+//        angular.forEach(enums, function(v, k) {
+//            if (labels) {
+//                collection[v] = (labels[k] ? labels[k] : v);
+//            } else {
+//                collection[v] = v;
+//            }
+//        });
+//
+//        return collection;
+//    }
+//
+//    /**
+//     * Get module pairs from namespaces
+//     */
+//    function getModulePairsFromNamespaces(enums, namespaces) {
+//        var collection = {};
+//        var namesp = enums.split(',');
+//        if (!angular.isArray(namesp)) {
+//            return false;
+//        }
+//        angular.forEach(namesp, function(v, k) {
+//            var id = v.split(':');
+//            if (!angular.isArray(id)) {
+//                return false;
+//            }
+//            angular.forEach(namespaces, function(nm, km) {
+//                if (nm.id == id[1]) {
+//                    angular.forEach(nm.params, function(i, n) {
+//                        collection[i['deviceId']] = i['deviceName'];
+//                    });
+//                }
+//            });
+//        });
+//        return collection;
+//    }
+//
+//    /**
+//     * Get module pairs from items
+//     */
+//    function getModulePairsFromItems(items, namespaces) {
+//        console.log(items)
+//        return;
+//        var collection = {};
+//        var arr = enums.split(':');
+//        if (!$.isArray(arr)) {
+//            return false;
+//        }
+//        var devices = arr[1];
+//        angular.forEach(namespaces, function(v, k) {
+//            if (v.id == devices) {
+//                angular.forEach(v.params, function(i, n) {
+//                    collection[i['deviceId']] = i['deviceName'];
+//                });
+//            }
+//
+//        });
+//        return collection;
+//    }
+//    /**
+//     *  Get module config options
+//     */
+//    function getModuleConfigOptions(module, params) {
+//        var collection = [];
+//        if (module) {
+//            angular.forEach($filter('hasNode')(module, 'options.fields'), function(v, k) {
+//                if ((!v.hidden) || (v.hidden != true)) {
+//                    collection.push({
+//                        'value': $filter('hasNode')(params, k),
+//                        'field': k,
+//                        'label': v.label,
+//                        'helper': v.helper
+//                    });
+//                }
+//            });
+//        }
+//        return collection;
+//    }
 
 
 
@@ -706,7 +758,7 @@ myAppService.service('dataService', function($filter, myCache) {
 
         });
         ret = $filter('unique')(collection, 'key');
-         //debugger;
+        //debugger;
         myCache.put(cache, ret);
         return ret;
     }

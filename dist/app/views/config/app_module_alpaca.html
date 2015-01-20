@@ -1,0 +1,37 @@
+<!-- Appp module ad  view -->
+<div id="page_module_update" ng-controller="AppModuleAlpacaController">
+    <h2 class="page-subtitle" ng-bind="input.moduleTitle"></h2>
+    <p class="help-block">Debug! Module ID: {{input.moduleId}} | Instance ID: {{input.instanceId}} | Category: {{input.category}}</p>
+    <div ng-show="!showForm">
+        Module does not exists <a href="#apps" class="btn btn-default" data-dismiss="modal">{{_t('lb_cancel')}}</a>
+    </div>
+        <form id="form_module" ng-submit="store('#form_module')" ng-show="showForm">
+         <input name="instanceId" id="instanceId" type="hidden" class="form-control" value="{{input.instanceId}}" />
+        <input name="moduleId" id="moduleId" type="hidden" class="form-control" value="{{input.moduleId}}" />
+        <div class="form-group">
+                <input type="checkbox" name="active" value="{{input.active}}" id="active" ng-model="input.active" ng-checked="input.active" /> <label>Active</label>
+            </div>
+            <div class="form-group">
+                <label>{{_t('lb_name')}}</label>
+                <input name="title" id="title" type="text" class="form-control" value="{{input.title}}" ng-model="input.title" />
+            </div>
+             <div class="form-group">
+                <label>{{_t('lb_description')}}</label>
+                <textarea name="description" id="description" class="form-control" ng-model="input.description" placeholder="Rooms for your notes"></textarea>
+              
+            </div>
+       
+<div id="alpaca_data" alpaca-dir_="collection"></div>
+
+ <!-- Submit -->
+ <div>
+     
+            <button type="submit" 
+                    class="btn btn-primary" 
+                    data-dismiss_="modal"
+                    ng-click_="updateInstance(input)">{{_t('lb_save')}}</button>
+     </div>
+     
+</form><!-- /form --> 
+  
+</div> <!-- /ng-controller --> 

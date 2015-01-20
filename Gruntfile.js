@@ -20,6 +20,7 @@ module.exports = function(grunt) {
                     'app/css/bootstrap.css',
                     'app/css/main.css',
                     'app/css/font-awesome-4.2.0/css/font-awesome.min.css',
+                    'app/css/alpaca/alpaca.css'
                 ],
                 dest: 'dist/app/css/build.css'
             },
@@ -32,6 +33,8 @@ module.exports = function(grunt) {
                     //'vendor/gridster/jquery.gridster.js',
                     'vendor/knob/jquery.knob.js',
                     //'vendor/bootstrap-switch/bootstrap-switch.js',
+                    'vendor/handlebars/handlebars.min.js',
+                    'vendor/alpaca/alpaca.min.js',
                     // Angular
                     'vendor/angular/angular-1.2.16/angular.min.js',
                     'vendor/upload/angular-file-upload.js',
@@ -77,6 +80,7 @@ module.exports = function(grunt) {
             },
             fonts: {
                 files: [
+                    {src: ['app/fonts/**'], dest: 'dist/'},
                     {expand:true,src: ['app/css/font-awesome-4.2.0/fonts/*'], dest: 'dist/app/fonts/',flatten: true}
                 ]
             },

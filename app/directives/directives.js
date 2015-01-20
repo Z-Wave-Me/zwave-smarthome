@@ -9,22 +9,6 @@ myApp.directive('testDir', function() {
         template: '<p>This is a test directive</p>'
     };
 });
-
-myApp.directive('alpacaDir', function() {
-    return {
-        restrict: "A",
-        //scope: false,
-        scope: {
-            formData: '=alpacaDir'
-        },
-        template: '<p>{{formData}}</p>',
-        link: function($scope, element, attr) {
-            //console.log($scope.formData);
-           //$(element).alpaca($scope.formData);
-        }
-    };
-});
-
 /**
  * Hide collapsed navi after click on mobile devices
  */
