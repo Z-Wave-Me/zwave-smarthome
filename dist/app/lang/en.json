@@ -19,6 +19,7 @@
       "btn_exclusion_start":"Start exclusion",
      "btn_exclusion_stop":"Stop exclusion",
       "btn_back":"Back",
+       "lb_no_module":"Module does not exists or has no valid parameters ",
     "---": "missing",
     "nav_home": "Dashboard",
     "nav_elements": "Elements",

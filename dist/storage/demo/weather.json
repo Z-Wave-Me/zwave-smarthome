@@ -1,0 +1,44 @@
+{
+    "data": {
+        "creatorId": 9,
+        "deviceType": "sensorMultilevel",
+        "id": "OpenWeather_9",
+        "location": null,
+        "metrics": {
+            "scaleTitle": "°C",
+            "title": "Chemnitz",
+            "probeTitle": "Temperature",
+            "level": 0.9,
+            "icon": "http://openweathermap.org/img/w/02d.png",
+            "zwaveWeather": {
+                "main": {
+                    "temp": 274.01,
+                    "humidity": 86.3,
+                    "pressure": 1012.86,
+                    "temp_min": 271.55,
+                    "temp_max": 275.55
+                },
+                "weather": [
+                    {
+                        "id": 801,
+                        "main": "Clouds",
+                        "description": "few clouds",
+                        "icon": "02d"
+                    }
+                ],
+                "wind": {
+                    "speed": 1.52,
+                    "deg": 102.501
+                }
+
+            }
+
+        },
+        "permanently_hidden": false,
+        "tags": [],
+        "updateTime": 1421845080
+    },
+    "code": 200,
+    "message": "200 OK",
+    "error": null
+}

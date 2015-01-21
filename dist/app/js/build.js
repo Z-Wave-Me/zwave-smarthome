@@ -4966,12 +4966,13 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,my
      * API data
      */
     // Get
-    function getApiData(api, callback, params) {
+    function getApiData(api, callback, params,noCache) {
+        var cacheName = (noCache == true ? false : api + params);
         var request = {
             method: "get",
             url: cfg.server_url + cfg.api[api] + (params ? params : '')
         };
-        return getApiHandle(callback, request, api + params);
+        return getApiHandle(callback, request, cacheName);
     }
 
     // Post
@@ -5614,15 +5615,13 @@ myAppService.service('dataService', function($filter, myCache) {
      * Get module form data
      */
     function getModuleFormData(module, data, namespaces) {
-        var collection = {
-            'options': {},
-            'schema': {},
-            'data': {}
-        };
         var bind = setModuleFormData(module.options, module.schema, namespaces);
-        collection.options = bind.options;
-        collection.schema = bind.schema;
-        collection.data = data;
+        var collection = {
+            'options': bind.options,
+            'schema': bind.schema,
+            'data': data,
+            'postRender': postRenderAlpaca
+        };
         return collection;
     }
 
@@ -5680,225 +5679,6 @@ myAppService.service('dataService', function($filter, myCache) {
        
         return collection;
     }
-
-    /**
-     *  Get module config options
-     */
-//    function getModuleConfigInputs(module, params, namespaces) {
-//        if (!module) {
-//            return false;
-//        }
-//        var options = $filter('hasNode')(module, 'options.fields');
-//        var schema = $filter('hasNode')(module, 'schema.properties');
-//        var defaults = $filter('hasNode')(module, 'defaults');
-//        if (!options || !schema) {
-//            return false;
-//        }
-//        //console.log(module.id);
-//
-//        var collection = {};
-//        var cfg = {};
-////        var type;
-////        var enums;
-////        var items;
-////        var itemsProperties;
-////        var pairs;
-////        var itemPairs;
-////        var inputType;
-//        angular.forEach(options, function(v, k) {
-//            if ((v.hidden) || (v.hidden == true)) {
-//                return false;
-//            }
-//            cfg = {
-//                'pairs': [],
-//                'pairsItemsProperties': {},
-//                'inputType': $filter('hasNode')(options[k], 'type'),
-//                'enums': $filter('hasNode')(schema[k], 'enum'),
-//                'items': $filter('hasNode')(schema[k], 'items'),
-//                'itemsProperties': $filter('hasNode')(schema[k], 'items.properties')
-//            };
-////            inputType = $filter('hasNode')(options[k], 'type');
-////            type = $filter('hasNode')(schema[k], 'type');
-////            enums = $filter('hasNode')(schema[k], 'enum');
-////            items = $filter('hasNode')(schema[k], 'items');
-////            itemsProperties = $filter('hasNode')(schema[k], 'items.properties');
-//
-//            if (v.datasource == 'namespaces') {
-//                cfg.pairs = getModulePairsFromNamespaces(cfg.enums, namespaces);
-//            } else if (cfg.items) {
-//                if (cfg.itemsProperties) {
-//                    angular.forEach(cfg.itemsProperties, function(item, ik) {
-//                        var iPairs = getItemsPropertiesPairs(item, v.optionLabels, namespaces);
-//                        if (iPairs) {
-//                            cfg.pairsItemsProperties = {
-//                                'name': ik,
-//                                'pairs': getItemsPropertiesPairs(item, v.optionLabels, namespaces)
-//                            };
-//                            return;
-//                        }
-//
-//                        // getItemsPropertiesPairs(item,v.optionLabels,namespaces);
-//                        //cfg.pairs = getItemsPropertiesPairs(item,v.optionLabels,namespaces);
-//                        //console.log(item);
-//
-//                    });
-//
-//                }
-//                if (cfg.items.datasource == 'namespaces') {
-//                    cfg.pairs = getModulePairsFromNamespaces(cfg.items.enum, namespaces);
-//
-//                }
-//            } else {
-//                cfg.pairs = getModulePairsFromArray(cfg.enums, v.optionLabels);
-//            }
-//
-//            //console.log(cfg.pairsItemsProperties);
-//            //console.log(itemPairs)
-//            collection[k] = {
-//                'inputName': k,
-//                'label': v.label,
-//                'placeholder': v.placeholder,
-//                'helper': v.helper,
-//                'optionLabels': v.optionLabels,
-//                'default': defaults[k],
-//                'inputType': getModuleInputType(cfg),
-//                'enum': cfg.enums,
-//                "datasource": v.datasource,
-//                'pairs': cfg.pairs,
-//                'pairsItemsProperties': cfg.pairsItemsProperties,
-//                'pattern': $filter('hasNode')(schema[k], 'pattern'),
-//                'required': $filter('hasNode')(schema[k], 'required'),
-//                'value': $filter('hasNode')(params, k)
-//            };
-//
-//        });
-//        return collection;
-//    }
-//    /**
-//     * Get module input type
-//     */
-//    function getModuleInputType(cfg) {
-//        var inputType;
-//        if (!cfg.inputType) {
-//            if (cfg.enums) {
-//                inputType = 'select';
-//            } else if (cfg.itemsProperties) {
-//                inputType = 'itemsProperties';
-//            } else if (cfg.items) {
-//                inputType = 'items';
-//            }
-//            else {
-//                inputType = 'text';
-//            }
-//        } else {
-//            inputType = cfg.inputType;
-//        }
-//
-//        return inputType;
-//    }
-//
-//    /**
-//     * Get Items Properties Input
-//     */
-//    function getItemsPropertiesPairs(item, optionLabels, namespaces) {
-//        var pairs;
-//        if (item.field == 'enum') {
-//            if (item.datasource == 'namespaces') {
-//                pairs = getModulePairsFromNamespaces(item.enum, namespaces);
-//            } else {
-//                pairs = getModulePairsFromArray(item.enum, optionLabels);
-//            }
-//        }
-//        return pairs;
-//    }
-//    /**
-//     * Get module pairs from array - enums and labels
-//     */
-//    function getModulePairsFromArray(enums, labels) {
-//        if (!angular.isArray(enums)) {
-//            return false;
-//        }
-//        var collection = {};
-//        angular.forEach(enums, function(v, k) {
-//            if (labels) {
-//                collection[v] = (labels[k] ? labels[k] : v);
-//            } else {
-//                collection[v] = v;
-//            }
-//        });
-//
-//        return collection;
-//    }
-//
-//    /**
-//     * Get module pairs from namespaces
-//     */
-//    function getModulePairsFromNamespaces(enums, namespaces) {
-//        var collection = {};
-//        var namesp = enums.split(',');
-//        if (!angular.isArray(namesp)) {
-//            return false;
-//        }
-//        angular.forEach(namesp, function(v, k) {
-//            var id = v.split(':');
-//            if (!angular.isArray(id)) {
-//                return false;
-//            }
-//            angular.forEach(namespaces, function(nm, km) {
-//                if (nm.id == id[1]) {
-//                    angular.forEach(nm.params, function(i, n) {
-//                        collection[i['deviceId']] = i['deviceName'];
-//                    });
-//                }
-//            });
-//        });
-//        return collection;
-//    }
-//
-//    /**
-//     * Get module pairs from items
-//     */
-//    function getModulePairsFromItems(items, namespaces) {
-//        console.log(items)
-//        return;
-//        var collection = {};
-//        var arr = enums.split(':');
-//        if (!$.isArray(arr)) {
-//            return false;
-//        }
-//        var devices = arr[1];
-//        angular.forEach(namespaces, function(v, k) {
-//            if (v.id == devices) {
-//                angular.forEach(v.params, function(i, n) {
-//                    collection[i['deviceId']] = i['deviceName'];
-//                });
-//            }
-//
-//        });
-//        return collection;
-//    }
-//    /**
-//     *  Get module config options
-//     */
-//    function getModuleConfigOptions(module, params) {
-//        var collection = [];
-//        if (module) {
-//            angular.forEach($filter('hasNode')(module, 'options.fields'), function(v, k) {
-//                if ((!v.hidden) || (v.hidden != true)) {
-//                    collection.push({
-//                        'value': $filter('hasNode')(params, k),
-//                        'field': k,
-//                        'label': v.label,
-//                        'helper': v.helper
-//                    });
-//                }
-//            });
-//        }
-//        return collection;
-//    }
-
-
-
     /**
      * Get device type
      */
@@ -7337,11 +7117,11 @@ myAppController.controller('ProfileController', function($scope, $window, $cooki
 /**
  * App controller
  */
-myAppController.controller('AppController', function($scope, $window, dataFactory, dataService) {
+myAppController.controller('AppController', function($scope, $window,$cookies, dataFactory, dataService) {
     $scope.instances = [];
     $scope.modules = [];
     $scope.categories = [];
-    $scope.activeTab = 'local';
+    $scope.activeTab = (angular.isDefined($cookies.tab_app) ? $cookies.tab_app : 'local');
     $scope.category = '';
     $scope.showFooter = true;
     $scope.showInFooter = {
@@ -7381,7 +7161,7 @@ myAppController.controller('AppController', function($scope, $window, dataFactor
     $scope.loadInstances = function() {
         dataFactory.getApiData('instances', function(data) {
             $scope.instances = data.data;
-        });
+        },null,true);
     };
 
     /**
@@ -7389,6 +7169,7 @@ myAppController.controller('AppController', function($scope, $window, dataFactor
      */
     $scope.setTab = function(tabId) {
         $scope.activeTab = tabId;
+        $cookies.tab_app = tabId;
     };
 
     // Watch for tab change
@@ -7483,6 +7264,7 @@ myAppController.controller('AppController', function($scope, $window, dataFactor
 myAppController.controller('AppModuleAlpacaController', function($scope, $routeParams, $filter, $location, dataFactory, dataService) {
    $scope.showForm = false;
     $scope.success = false;
+    $scope.alpacaData = true;
     $scope.collection = {};
     $scope.input = {
         'instanceId': 0,
@@ -7508,8 +7290,13 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                     'moduleTitle': $filter('hasNode')(formData, 'data.title'),
                     'category': module.data.meta.category
                 };
-                $('#alpaca_data').alpaca(formData);
                 $scope.showForm = true;
+                 if(!$filter('hasNode')(formData, 'options.fields') || !$filter('hasNode')(formData, 'schema.properties')){
+                     $scope.alpacaData = false;
+                        return;
+                    }
+                    
+                $('#alpaca_data').alpaca(formData);
             });
         }, '/' + id);
     };
@@ -7534,13 +7321,19 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                         'moduleTitle': instance.title,
                         'category': module.data.meta.category
                     };
-                    $('#alpaca_data').alpaca(formData);
                     $scope.showForm = true;
+                    if(!$filter('hasNode')(formData, 'options.fields') || !$filter('hasNode')(formData, 'schema.properties')){
+                        $scope.alpacaData = false;
+                        return;
+                    }
+                    
+                    $('#alpaca_data').alpaca(formData);
+                    
                     
                 });
             }, '/' + instance.moduleId);
 
-        }, '/' + id);
+        }, '/' + id,true);
     };
     /**
      * Load data
@@ -7557,20 +7350,20 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
             break;
     }
 
-    $scope.store = function(formId) {
-        var data = $(formId).serializeArray();
-        var defaults = ['instanceId','moduleId','active','title','description'];
+    $scope.store = function(data) {
+       var defaults = ['instanceId','moduleId','active','title','description'];
         var input = [];
         var params = {};
         angular.forEach(data, function(v, k) {
-           if(defaults.indexOf(v.name) > -1){
-                 input[v.name] = v.value;
-            }else{
-                params[v.name] = v.value;
+           if(defaults.indexOf(k) > -1){
+                 input[k] = v;
             }
+//            else{
+//                params[v.name] = v.value;
+//            }
            
         });
-         console.log(params);
+        
          var inputData = {
             'id': input.instanceId,
             'moduleId': input.moduleId,
@@ -7589,164 +7382,6 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                 $location.path('/apps');
             });
         }
-    };
-
-});
-/**
- * App controller - add module
- */
-myAppController.controller('AppModuleController', function($scope, $routeParams, $filter, $location, dataFactory, dataService) {
-    $scope.showForm = false;
-    $scope.success = false;
-    $scope.input = {
-        'id': 0,
-        'active': true,
-        'moduleId': null,
-        'title': null,
-        'description': null,
-        'moduleTitle': null,
-        'params': {},
-        'moduleInput': false
-    };
-
-    // Post new module instance
-    $scope.postModule = function(id) {
-        var module;
-        dataFactory.getApiData('modules', function(modules) {
-            module = dataService.getRowBy(modules.data, 'id', id);
-            if (!module) {
-                return;
-            }
-            dataFactory.getApiData('namespaces', function(namespaces) {
-                $scope.input = {
-                    //'id': instance.id,
-                    'active': true,
-                    'title': $filter('hasNode')(module, 'defaults.title'),
-                    'description': $filter('hasNode')(module, 'defaults.description'),
-                    'moduleTitle': $filter('hasNode')(module, 'defaults.title'),
-                    'moduleId': module.id,
-                    'category': module.category,
-                    //'params': instance.params,
-                    'moduleInput': dataService.getModuleConfigInputs(module, null, namespaces.data)
-                };
-                //console.log($scope.input)
-
-                $scope.showForm = true;
-            });
-        });
-        console.log('Add new module: ' + id);
-    };
-
-    // Put module instance
-    $scope.putModule = function(id) {
-        if (id < 1) {
-            return;
-        }
-        var instance;
-        var module;
-        dataFactory.getApiData('instances', function(data) {
-            instance = dataService.getRowBy(data.data, 'id', id);
-            if (!instance) {
-                return;
-            }
-            dataFactory.getApiData('modules', function(modules) {
-                module = dataService.getRowBy(modules.data, 'id', instance.moduleId);
-                dataFactory.getApiData('namespaces', function(namespaces) {
-                    $scope.input = {
-                        'id': instance.id,
-                        'moduleId': module.id,
-                        'active': instance.active,
-                        'title': instance.title,
-                        'description': instance.description,
-                        'moduleTitle': $filter('hasNode')(module, 'defaults.title'),
-                        'params': instance.params,
-                        'moduleInput': dataService.getModuleConfigInputs(module, instance.params, namespaces.data)
-                    };
-                    $scope.showForm = true;
-                });
-            });
-
-        });
-    };
-    /**
-     * Load data
-     */
-
-    switch ($routeParams.action) {
-        case 'put':
-            $scope.putModule($routeParams.id);
-            break;
-        case 'post':
-            $scope.postModule($routeParams.id);
-            break;
-        default:
-            break;
-    }
-
-    /**
-     * Store data
-     */
-    $scope.store = function(input) {
-        var params = {};
-        angular.forEach(input.moduleInput, function(v, k) {
-            if (angular.isArray(v.value)) {
-                params[v.inputName] = v.value.filter(function(e) {
-                    return e
-                });
-            } else {
-                params[v.inputName] = v.value;
-            }
-
-        });
-
-        var inputData = {
-            'id': input.id,
-            'moduleId': input.moduleId,
-            'active': input.active,
-            'title': input.title,
-            'description': input.description,
-            'params': params
-        };
-
-        //return;
-        if (input.id > 0) {
-            dataFactory.putApiData('instances', input.id, inputData, function(data) {
-                $scope.success = true;
-            });
-        } else {
-            dataFactory.postApiData('instances', inputData, function(data) {
-                $location.path('/apps');
-            });
-        }
-
-    };
-
-    /**
-     * Update instance
-     */
-    $scope.putModule = function(form, input) {
-        var data = $(form).serializeArray();
-        var params = {};
-        angular.forEach(data, function(v, k) {
-            if (angular.isDefined(input.params[v.name])) {
-                params[v.name] = v.value;
-            }
-
-        });
-
-        var inputData = {
-            'id': input.id,
-            'title': input.title,
-            //'description': input.description,
-            'params': params
-        };
-        if (input.id) {
-            dataFactory.putApiData('instances', input.id, inputData, function(data) {
-                dataFactory.setCache(false);
-                $scope.loadInstances();
-            });
-        }
-
     };
 
 });

@@ -38,3 +38,12 @@
 .app-image-list{
     max-width: 70px;
 }
+
+/* Apps module
+-------------------------------------------------- */
+#alpaca_data{
+    padding: 20px;
+    margin: 0 0 20px 0;
+    background-color: darken($app-body-bcg-color, 3%);
+    border-radius: 4px;
+}

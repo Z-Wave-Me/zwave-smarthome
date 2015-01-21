@@ -40,8 +40,8 @@ var config_data = {
         'lang_list': ["en", "de"],
         // List of profile colors
         'profile_colors': ['#6C7A89', '#3071A9', '#449D44', '#31B0D5', '#F0AD4E', '#D9534F'],
-         // Device vendors
-        'device_vendors': ['zwave', 'enocean','ipcamera'],
+        // Device vendors
+        'device_vendors': ['zwave', 'enocean', 'ipcamera'],
         // Results per page
         'page_results': 12
 

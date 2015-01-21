@@ -19,8 +19,7 @@ module.exports = function(grunt) {
                 src: [
                     'app/css/bootstrap.css',
                     'app/css/main.css',
-                    'app/css/font-awesome-4.2.0/css/font-awesome.min.css',
-                    'app/css/alpaca/alpaca.css'
+                    'app/css/font-awesome-4.2.0/css/font-awesome.min.css'
                 ],
                 dest: 'dist/app/css/build.css'
             },

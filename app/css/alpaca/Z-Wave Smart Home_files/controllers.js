@@ -587,11 +587,11 @@ myAppController.controller('ProfileController', function($scope, $window, $cooki
 /**
  * App controller
  */
-myAppController.controller('AppController', function($scope, $window,$cookies, dataFactory, dataService) {
+myAppController.controller('AppController', function($scope, $window, dataFactory, dataService) {
     $scope.instances = [];
     $scope.modules = [];
     $scope.categories = [];
-    $scope.activeTab = (angular.isDefined($cookies.tab_app) ? $cookies.tab_app : 'local');
+    $scope.activeTab = 'local';
     $scope.category = '';
     $scope.showFooter = true;
     $scope.showInFooter = {
@@ -631,7 +631,7 @@ myAppController.controller('AppController', function($scope, $window,$cookies, d
     $scope.loadInstances = function() {
         dataFactory.getApiData('instances', function(data) {
             $scope.instances = data.data;
-        },null,true);
+        });
     };
 
     /**
@@ -639,7 +639,6 @@ myAppController.controller('AppController', function($scope, $window,$cookies, d
      */
     $scope.setTab = function(tabId) {
         $scope.activeTab = tabId;
-        $cookies.tab_app = tabId;
     };
 
     // Watch for tab change
@@ -803,7 +802,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                 });
             }, '/' + instance.moduleId);
 
-        }, '/' + id,true);
+        }, '/' + id);
     };
     /**
      * Load data
@@ -820,13 +819,13 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
             break;
     }
 
-    $scope.store = function(data) {
+    $scope.store = function(formId) {
        var defaults = ['instanceId','moduleId','active','title','description'];
         var input = [];
         var params = {};
         angular.forEach(data, function(v, k) {
-           if(defaults.indexOf(k) > -1){
-                 input[k] = v;
+           if(defaults.indexOf(v.name) > -1){
+                 input[v.name] = v.value;
             }
 //            else{
 //                params[v.name] = v.value;
@@ -842,6 +841,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
             'description': input.description,
             'params': params
         };
+         console.log(inputData);
         if (input.instanceId > 0) {
             dataFactory.putApiData('instances', input.instanceId, inputData, function(data) {
                 $scope.success = true;
@@ -852,6 +852,164 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                 $location.path('/apps');
             });
         }
+    };
+
+});
+/**
+ * App controller - add module
+ */
+myAppController.controller('AppModuleController', function($scope, $routeParams, $filter, $location, dataFactory, dataService) {
+    $scope.showForm = false;
+    $scope.success = false;
+    $scope.input = {
+        'id': 0,
+        'active': true,
+        'moduleId': null,
+        'title': null,
+        'description': null,
+        'moduleTitle': null,
+        'params': {},
+        'moduleInput': false
+    };
+
+    // Post new module instance
+    $scope.postModule = function(id) {
+        var module;
+        dataFactory.getApiData('modules', function(modules) {
+            module = dataService.getRowBy(modules.data, 'id', id);
+            if (!module) {
+                return;
+            }
+            dataFactory.getApiData('namespaces', function(namespaces) {
+                $scope.input = {
+                    //'id': instance.id,
+                    'active': true,
+                    'title': $filter('hasNode')(module, 'defaults.title'),
+                    'description': $filter('hasNode')(module, 'defaults.description'),
+                    'moduleTitle': $filter('hasNode')(module, 'defaults.title'),
+                    'moduleId': module.id,
+                    'category': module.category,
+                    //'params': instance.params,
+                    'moduleInput': dataService.getModuleConfigInputs(module, null, namespaces.data)
+                };
+                //console.log($scope.input)
+
+                $scope.showForm = true;
+            });
+        });
+        console.log('Add new module: ' + id);
+    };
+
+    // Put module instance
+    $scope.putModule = function(id) {
+        if (id < 1) {
+            return;
+        }
+        var instance;
+        var module;
+        dataFactory.getApiData('instances', function(data) {
+            instance = dataService.getRowBy(data.data, 'id', id);
+            if (!instance) {
+                return;
+            }
+            dataFactory.getApiData('modules', function(modules) {
+                module = dataService.getRowBy(modules.data, 'id', instance.moduleId);
+                dataFactory.getApiData('namespaces', function(namespaces) {
+                    $scope.input = {
+                        'id': instance.id,
+                        'moduleId': module.id,
+                        'active': instance.active,
+                        'title': instance.title,
+                        'description': instance.description,
+                        'moduleTitle': $filter('hasNode')(module, 'defaults.title'),
+                        'params': instance.params,
+                        'moduleInput': dataService.getModuleConfigInputs(module, instance.params, namespaces.data)
+                    };
+                    $scope.showForm = true;
+                });
+            });
+
+        });
+    };
+    /**
+     * Load data
+     */
+
+    switch ($routeParams.action) {
+        case 'put':
+            $scope.putModule($routeParams.id);
+            break;
+        case 'post':
+            $scope.postModule($routeParams.id);
+            break;
+        default:
+            break;
+    }
+
+    /**
+     * Store data
+     */
+    $scope.store = function(input) {
+        var params = {};
+        angular.forEach(input.moduleInput, function(v, k) {
+            if (angular.isArray(v.value)) {
+                params[v.inputName] = v.value.filter(function(e) {
+                    return e
+                });
+            } else {
+                params[v.inputName] = v.value;
+            }
+
+        });
+
+        var inputData = {
+            'id': input.id,
+            'moduleId': input.moduleId,
+            'active': input.active,
+            'title': input.title,
+            'description': input.description,
+            'params': params
+        };
+
+        //return;
+        if (input.id > 0) {
+            dataFactory.putApiData('instances', input.id, inputData, function(data) {
+                $scope.success = true;
+            });
+        } else {
+            dataFactory.postApiData('instances', inputData, function(data) {
+                $location.path('/apps');
+            });
+        }
+
+    };
+
+    /**
+     * Update instance
+     */
+    $scope.putModule = function(form, input) {
+        var data = $(form).serializeArray();
+        var params = {};
+        angular.forEach(data, function(v, k) {
+            if (angular.isDefined(input.params[v.name])) {
+                params[v.name] = v.value;
+            }
+
+        });
+
+        var inputData = {
+            'id': input.id,
+            'title': input.title,
+            //'description': input.description,
+            'params': params
+        };
+        if (input.id) {
+            dataFactory.putApiData('instances', input.id, inputData, function(data) {
+                dataFactory.setCache(false);
+                $scope.loadInstances();
+            });
+        }
+
     };
 
 });

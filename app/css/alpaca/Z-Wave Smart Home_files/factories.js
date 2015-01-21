@@ -52,13 +52,12 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,my
      * API data
      */
     // Get
-    function getApiData(api, callback, params,noCache) {
-        var cacheName = (noCache == true ? false : api + params);
+    function getApiData(api, callback, params) {
         var request = {
             method: "get",
             url: cfg.server_url + cfg.api[api] + (params ? params : '')
         };
-        return getApiHandle(callback, request, cacheName);
+        return getApiHandle(callback, request, api + params);
     }
 
     // Post

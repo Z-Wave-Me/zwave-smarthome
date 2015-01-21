@@ -82,6 +82,11 @@ a:hover {
     @include appBoxShadow();
 }
 
+/* Spinners
+-------------------------------------------------- */
+.module-spinner{
+    display: none;
+}
 
 /* Images
 -------------------------------------------------- */
@@ -137,6 +142,10 @@ fieldset{
     margin-bottom: 10px;
     background-color: $app-body-bcg-color;
     padding: 10px;
+}
+
+.submit-entry{
+   text-align: right;
 }
 
 /* Page
