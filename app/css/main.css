@@ -133,7 +133,7 @@ a:hover {
 -------------------------------------------------- */
 /* line 87, sass/globals/_body.scss */
 .module-spinner {
-  display: none;
+  display: none !important;
 }
 
 /* Images

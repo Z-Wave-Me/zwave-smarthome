@@ -54,6 +54,7 @@ module.exports = function(grunt) {
                     //'app/directives/tc-angular-chartjs.js',
                     //'app/directives/angular-slider.j',
                     'app/filters/filters.js',
+                    'app/jquery/postrender.js',
                     'app/controllers/controllers.js'
                 ],
                 dest: 'dist/app/js/build.js'
