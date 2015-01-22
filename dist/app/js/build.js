@@ -6739,6 +6739,9 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
  * Test controller
  */
 myAppController.controller('TestController', function($scope, $routeParams, $filter, $location, dataFactory, dataService) {
+    
+    $scope.myData = 'Niels';
+     $scope.show = true;
 });
 /**
  * Home controller

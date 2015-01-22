@@ -24,7 +24,7 @@
                        ><i class="fa fa-cog fa-lg"></i></a>
                     <!-- Widget header -->
                     <div class="widget-header">
-                        <img class="widget-image" ng-src="{{v.icon|getElementIcon:v}}" alt="{{ v.title}}"/>
+                        <img class="widget-image" ng-src="{{v.icon|getElementIcon:v}}" alt="{{v.title}}"/>
                     </div>
 
                     <!-- Widget body -->
@@ -62,21 +62,7 @@
 
 
                         </div>
-                        <!--<div ng-switch-when="switchBinary___">
-                           <input
-                               bs-switch
-                               ng-model="isSelected"
-                               type="checkbox"
-                               switch-active="true"
-                               switch-on-text="ON"
-                               switch-off-text="OFF"
-                               switch-on-color="{{ onColor}}"
-                               switch-off-color="{{ offColor}}"
-                               switch-animate="{{ animate}}"
-                               switch-size="normal"
-                               switch-label="{{ label}}"
-                               switch-icon="{{ icon}}" >
-                       </div> -->
+                        
                         <!-- switchRGBW -->
                         <div class="btn-group"  style="min-width: 110px !important;" ng-switch-when="switchRGBW">
                             <button 
@@ -123,10 +109,18 @@
                         <!-- sensorMultilevel -->
                         <div  ng-switch-when="sensorMultilevel">
                             <div class="row sensor-multilevel">
-                                <div class="col-sm-6 widget-result"><span class="widget-level" ng-bind="v.level"></span> <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span></div>
+                                 <div class="col-sm-6 widget-result">
+                                     <span ng-if="!v.metrics.zwaveOpenWeather"><span class="widget-level" ng-bind="v.level"></span> <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span></span>
+                                     <span ng-if="v.metrics.zwaveOpenWeather">
+                                         <span class="widget-level" ng-bind="v.level"></span> <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span> <i class="fa fa-caret-down"></i>
+                                         
+                                     </span>
+                                 </div>
+                                
                                 <div class="col-sm-6 text-right">
                                     <button class="btn btn-default btn-sm" ng-click="runCmd(v.id + '/command/update')"> <i class="fa fa-clock-o"></i> <span class="widget-update-time">{{v.updateTime|isToday:true}}</span></button>
                                 </div>
+
                             </div>
                         </div>
                         <!-- thermostat -->
@@ -250,6 +244,12 @@
                                 <canvas tc-chartjs-line chart-data="chartData" chart-options="chartOptions" width="260" height="150"></canvas>
                             </div>
                         </div>
+                        
+                         <!-- Hidden sensorMultilevel zwaveWeather -->
+                        <div class="col-sm-11 element-hidden hidden-sensor-multilevel" ng-if="v.metrics.zwaveOpenWeather" ng-show="goHidden">
+                            <p class="text-center">{{v.title}}</p>
+                           Humidity: {{v.metrics.zwaveOpenWeather.main.humidity}}
+                        </div>
 
 
                         <!-- Hidden switchMultilevelLinear -->
@@ -368,33 +368,33 @@
     <!-- Modal camera -->
     <div class="modal modal-vertical-centered fade" id="modal_camera" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="table_"><div class="table-cell_">
-        <div class="modal-dialog modal-dialog-center">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" ng-bind="input.title"></h4>
-                </div>
-                <div class="modal-body">
-                    <p class="text-center element-camera-control">
-                        <a href="" ng-click="runCmd(input.id + '/command/zoomIn')" ng-if="input.metrics.hasZoomIn"><i class="fa fa-search-plus"></i></a>&nbsp;&nbsp;&nbsp;
-                        <a href="" ng-click="runCmd(input.id + '/command/zoomOut')" ng-if="input.metrics.hasZoomOut"><i class="fa fa-search-minus"></i></a>&nbsp;&nbsp;&nbsp;
-                        <a href="" ng-click="runCmd(input.id + '/command/left')" ng-if="input.metrics.hasLeft"><i class="fa fa-arrow-circle-left"></i></a>&nbsp;&nbsp;&nbsp;
-                        <a href="" ng-click="runCmd(input.id + '/command/right')" ng-if="input.metrics.hasRight"><i class="fa fa-arrow-circle-right"></i></a>&nbsp;&nbsp;&nbsp;
-                        <a href="" ng-click="runCmd(input.id + '/command/up')" ng-if="input.metrics.hasUp"><i class="fa fa-arrow-circle-up"></i></a>&nbsp;&nbsp;&nbsp;
-                        <a href="" ng-click="runCmd(input.id + '/command/down')" ng-if="input.metrics.hasDown"><i class="fa fa-arrow-circle-down"></i></a>&nbsp;&nbsp;&nbsp;
-                        <a href="" ng-click="runCmd(input.id + '/command/open')" ng-if="input.metrics.hasOpen"><i class="fa fa-power-off"></i></a>&nbsp;&nbsp;&nbsp;
-                        <a href="" ng-click="runCmd(input.id + '/command/close')" ng-if="input.metrics.hasClose"><i class="fa fa-close"></i></a>&nbsp;&nbsp;&nbsp;
-                    </p>
+                <div class="modal-dialog modal-dialog-center">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" ng-bind="input.title"></h4>
+                        </div>
+                        <div class="modal-body">
+                            <p class="text-center element-camera-control">
+                                <a href="" ng-click="runCmd(input.id + '/command/zoomIn')" ng-if="input.metrics.hasZoomIn"><i class="fa fa-search-plus"></i></a>&nbsp;&nbsp;&nbsp;
+                                <a href="" ng-click="runCmd(input.id + '/command/zoomOut')" ng-if="input.metrics.hasZoomOut"><i class="fa fa-search-minus"></i></a>&nbsp;&nbsp;&nbsp;
+                                <a href="" ng-click="runCmd(input.id + '/command/left')" ng-if="input.metrics.hasLeft"><i class="fa fa-arrow-circle-left"></i></a>&nbsp;&nbsp;&nbsp;
+                                <a href="" ng-click="runCmd(input.id + '/command/right')" ng-if="input.metrics.hasRight"><i class="fa fa-arrow-circle-right"></i></a>&nbsp;&nbsp;&nbsp;
+                                <a href="" ng-click="runCmd(input.id + '/command/up')" ng-if="input.metrics.hasUp"><i class="fa fa-arrow-circle-up"></i></a>&nbsp;&nbsp;&nbsp;
+                                <a href="" ng-click="runCmd(input.id + '/command/down')" ng-if="input.metrics.hasDown"><i class="fa fa-arrow-circle-down"></i></a>&nbsp;&nbsp;&nbsp;
+                                <a href="" ng-click="runCmd(input.id + '/command/open')" ng-if="input.metrics.hasOpen"><i class="fa fa-power-off"></i></a>&nbsp;&nbsp;&nbsp;
+                                <a href="" ng-click="runCmd(input.id + '/command/close')" ng-if="input.metrics.hasClose"><i class="fa fa-close"></i></a>&nbsp;&nbsp;&nbsp;
+                            </p>
 
-                    <div class="camera-img">
-                        <!--<img ng-src="storage/img/test.jpg">-->
-                        <img class="text-center camera-img" src="{{input.metrics.url}}">
+                            <div class="camera-img">
+                                <!--<img ng-src="storage/img/test.jpg">-->
+                                <img class="text-center camera-img" src="{{input.metrics.url}}">
+                            </div>
+
+                        </div>
                     </div>
-
                 </div>
-            </div>
-        </div>
-              </div></div> <!-- /.Modal vertical align -->
+            </div></div> <!-- /.Modal vertical align -->
     </div><!-- /.Modal -->
 
 
