@@ -41,11 +41,11 @@ myApp.config(['$routeProvider',
                 }).
                 //Apps
                 when('/apps', {
-                    templateUrl: 'app/views/config/apps.html'
+                    templateUrl: 'app/views/apps/apps.html'
                 }).
                 //Module
                 when('/module/:action/:id', {
-                    templateUrl: 'app/views/config/app_module_alpaca.html'
+                    templateUrl: 'app/views/apps/app_module_alpaca.html'
                 }).
                 //Devices
                 when('/devices/:type?', {

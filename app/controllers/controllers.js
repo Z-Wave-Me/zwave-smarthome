@@ -51,6 +51,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
     $scope.$watch('lang', function() {
         $scope.loadLang($scope.lang);
     });
+    
     /**
      * Set time
      */
@@ -59,11 +60,13 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
         $('#update_time_tick').html($filter('getCurrentTime')(time));
     };
     $scope.setTime();
+    
     // Order by
     $scope.orderBy = function(field) {
         $scope.predicate = field;
         $scope.reverse = !$scope.reverse;
     };
+    
     /**
      * Load base data (profiles, languages)
      */
@@ -74,6 +77,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
         });
     };
     $scope.loadBaseData();
+    
     /**
      * Get body ID
      */
@@ -487,7 +491,6 @@ myAppController.controller('EventController', function($scope, $routeParams, dat
     $scope.markAsRead = function(id) {
         $('#row_' + id).fadeOut();
     };
-    $scope.updateData();
 });
 /**
  * Profile controller
@@ -590,7 +593,7 @@ myAppController.controller('ProfileController', function($scope, $window, $cooki
 /**
  * App controller
  */
-myAppController.controller('AppController', function($scope, $window,$cookies, dataFactory, dataService) {
+myAppController.controller('AppController', function($scope, $window,$cookies, dataFactory, dataService,myCache) {
     $scope.instances = [];
     $scope.modules = [];
     $scope.categories = [];
@@ -601,15 +604,6 @@ myAppController.controller('AppController', function($scope, $window,$cookies, d
         'categories': true,
         'serach': true
     };
-    $scope.input = {
-        'id': null,
-        'name': null
-    };
-    $scope.reset = function() {
-        $scope.instances = angular.copy([]);
-        $scope.modules = angular.copy([]);
-    };
-
     /**
      * Load data into collections
      */
@@ -624,12 +618,7 @@ myAppController.controller('AppController', function($scope, $window,$cookies, d
         dataFactory.getApiData('modules', function(data) {
             $scope.modules = dataService.getData(data.data, filter);
             console.log(filter);
-
-
         });
-//        dataFactory.localData('apps.json', function(data) {
-//            //$scope.modules = data;
-//        });
     };
     $scope.loadInstances = function() {
         dataFactory.getApiData('instances', function(data) {
@@ -671,35 +660,13 @@ myAppController.controller('AppController', function($scope, $window,$cookies, d
     });
 
     /**
-     * Show modal window
-     */
-    $scope.showInstanceModal = function(target, input) {
-        $scope.input = input;
-        $(target).modal();
-    };
-    /**
-     * Show modal window for activate
-     */
-    $scope.showActivateModal = function(target, input) {
-        console.log('Acivate func');
-        $scope.input = input;
-        $(target).modal();
-    };
-
-    /**
      * Ictivate instance
      */
-    $scope.activateInstance = function(input) {
-        var inputData = {
-            'id': input.id,
-            'active': input.active
-        };
+    $scope.activateInstance = function(input,activeStatus) {
+        input.active = activeStatus;
         if (input.id) {
-            dataFactory.putApiData('instances', input.id, inputData, function(data) {
-                //$scope.instance.push = data.data;
-                dataFactory.setCache(false);
-                $scope.loadInstances();
-                //$route.reload();
+            dataFactory.putApiData('instances', input.id, input, function(data) {
+                myCache.remove('devicesundefined');
             });
         }
 
@@ -718,17 +685,6 @@ myAppController.controller('AppController', function($scope, $window,$cookies, d
             dataFactory.setCache(false);
             //$scope.loadData();
         }
-    };
-
-
-    /**
-     * Create an item
-     */
-    $scope.create = function(input) {
-        if (input.id === null) {
-            $scope.collection.push(input);
-        }
-        console.log(input);
     };
 });
 /**

@@ -186,9 +186,14 @@
 
     }
     .table-report{
-        tbody tr{
+          tbody tr.bcg-active.true{
             @include appGradient();
         }
+        tbody tr.bcg-active.false{
+    background-color: $app-bcg-active-false !important;
+}
+       
+         
     }
 
     /* Forms

@@ -7,6 +7,7 @@
     "lb_include_device": "Include the device",
     "lb_ready_exclude": "Ready to exclude.",
     "lb_device_excluded": "Device excluded.",
+     "lb_delete_confirm": " Are you sure you want to delete this?",
      "lb_include_device_mains_error": "Something went wrong during the inclusion. Please exclude the device and repeat the process.",
       "lb_include_device_battery_error": "Could not complete the inclusion. The device likely went to sleep state. Please wakeup the device to complete configuration.",
      "lb_battery_devices": "battery operated devices",

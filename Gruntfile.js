@@ -133,6 +133,23 @@ module.exports = function(grunt) {
             }
         },
         
+        sass: {
+            dist: {
+                options: {
+                    style: 'expanded'
+                },
+                files: {
+                    'app/css/bootstrap.css': 'app/css/sass/bootstrap.scss',
+                    'app/css/main.css': 'app/css/sass/main.scss'
+                }
+            }
+        },
+        
+        watch: {
+            files: "app/css/sass/**",
+            tasks: ["sass"]
+        },
+        
         // Uglify
         uglify: {
             options: {
@@ -170,6 +187,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
     grunt.loadNpmTasks('grunt-string-replace');
+    grunt.loadNpmTasks('grunt-contrib-sass');
 
     // Default task(s).
     grunt.registerTask('default', ['clean','concat','copy','cssmin','string-replace']);

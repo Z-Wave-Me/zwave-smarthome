@@ -2,7 +2,7 @@
 @import "settings/_base";
 @import "settings/_mixins";
 // CSS3
-@import "css3/_box-shadow.scss";
+@import "css3/_box-shadow.scss"; 
 // Core Bootstrap variables and mixins
 @import "bootstrap/_variables";
 @import "bootstrap/_mixins";
@@ -15,9 +15,9 @@
 @import "globals/_body";
 @import "globals/_navigation";
 @import "globals/_footer";
-//@import "globals/_alpaca";
 
 // Modules
+//@import "modules/_alpaca";
 @import "modules/_homepage";
 @import "modules/_elements";
 @import "modules/_events";

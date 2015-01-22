@@ -82,6 +82,10 @@ a:hover {
     @include appBoxShadow();
 }
 
+.bcg-active.false{
+    background-color: $app-bcg-active-false;
+}
+
 /* Spinners
 -------------------------------------------------- */
 .module-spinner{
@@ -146,6 +150,12 @@ fieldset{
 
 .submit-entry{
    text-align: right;
+}
+
+/* Alpaca
+-------------------------------------------------- */
+.alpaca-message-invalidValueOfEnum{
+    display: none !important; 
 }
 
 /* Page
