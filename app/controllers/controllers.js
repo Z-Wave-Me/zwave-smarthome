@@ -155,9 +155,58 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
  * Test controller
  */
 myAppController.controller('TestController', function($scope, $routeParams, $filter, $location, dataFactory, dataService) {
-    
-    $scope.myData = 'Niels';
-     $scope.show = true;
+    $scope.collection = [];
+    $scope.loadData = function() {
+        //getData(callback,api,cache,params)
+        dataFactory.getApiData('devices', function(data) {
+            var filter = null;
+            $scope.deviceType = dataService.getDeviceType(data.data.devices);
+            $scope.tags = dataService.getTags(data.data.devices);
+            dataFactory.getApiData('profiles', function(data) {
+                var profile = dataService.getRowBy(data.data, 'id', $scope.profile.id);
+                $scope.profileData = {
+                    'id': profile ? profile.id : 1,
+                    'name': profile ? profile.name : 'Default',
+                    'positions': profile ? profile.positions : []
+                };
+            });
+            dataFactory.getApiData('locations', function(data) {
+                $scope.rooms = data.data;
+            });
+            if (angular.isDefined($routeParams.filter) && angular.isDefined($routeParams.val)) {
+                switch ($routeParams.filter) {
+                    case 'dashboard':
+                        $scope.showFooter = false;
+                        filter = {filter: "onDashboard", val: true};
+                        break;
+                    case 'deviceType':
+                        filter = $routeParams;
+                        break;
+                    case 'tags':
+                        filter = $routeParams;
+                        break;
+                    case 'location':
+                        $scope.showFooter = false;
+                        filter = $routeParams;
+                        dataFactory.getApiData('locations', function(rooms) {
+                            //getRowBy(data, key, val, cache);
+                            var room = dataService.getRowBy(rooms.data, 'id', $routeParams.val, 'room_' + $routeParams.val);
+                            if (room) {
+                                $scope.headline = $scope._t('lb_devices_room') + ' ' + room.title;
+                            }
+                        });
+                        break;
+                    default:
+                        break;
+                }
+            }
+            dataFactory.getApiData('instances', function(instances) {
+                $scope.collection = dataService.getDevices(data.data.devices, filter, $scope.profileData.positions, instances.data);
+            });
+
+        });
+    };
+    $scope.loadData();
 });
 /**
  * Home controller
@@ -666,7 +715,7 @@ myAppController.controller('AppController', function($scope, $window,$cookies, d
         input.active = activeStatus;
         if (input.id) {
             dataFactory.putApiData('instances', input.id, input, function(data) {
-                myCache.remove('devicesundefined');
+                myCache.remove('devices');
             });
         }
 

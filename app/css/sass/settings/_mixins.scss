@@ -186,14 +186,14 @@
 
     }
     .table-report{
-          tbody tr.bcg-active.true{
+        tbody tr.bcg-active.true{
             @include appGradient();
         }
         tbody tr.bcg-active.false{
-    background-color: $app-bcg-active-false !important;
-}
-       
-         
+            background-color: $app-bcg-active-false !important;
+        }
+
+
     }
 
     /* Forms
@@ -226,25 +226,17 @@
         text-align: left;
         padding: 10px;
     }
-
-    .widget-header{
-        float: left;
-        width: 70px;
-        .widget-image{
-            margin: 0 !important;
-            width: 48px;
-            height: 48px;
-        }
+    .widget-image{
+        top: 10px;
+        left: 10px;
+        width: 48px;
+        height: 48px;
     }
     .widget-body{
-        float: left;
-        margin: 0 !important;
-        .sensor-multilevel .col-sm-6{
-            float: left !important;
-            width: 45%;
-        }
-        .sensor-multilevel .text-right{
-            float: right !important;
+         margin-top: -15px;
+        padding: 0 5px 15px 64px;
+        .entry-title{
+            padding-right: 30px;
         }
     }
 
@@ -405,7 +397,7 @@
     }
 
     .device-perex{
-       padding: 10px;
+        padding: 10px;
         border-top: 0 none;
     }
     .row-device {
@@ -413,7 +405,7 @@
         .col-device{
             margin: 0 0 20px 0;
             background-color: #fff;
-            
+
         }
     }
 }

@@ -53,12 +53,12 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,my
      */
     // Get
     function getApiData(api, callback, params,noCache) {
-        var cacheName = (noCache == true ? false : api + params);
+        var cacheName = api + (params || '');
         var request = {
             method: "get",
             url: cfg.server_url + cfg.api[api] + (params ? params : '')
         };
-        return getApiHandle(callback, request, cacheName);
+        return getApiHandle(callback, request, cacheName,noCache);
     }
 
     // Post
@@ -215,9 +215,9 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,my
      * Api handle
      */
     // GET
-    function getApiHandle(callback, request, cacheName) {
+    function getApiHandle(callback, request, cacheName,noCache) {
         var cached = null;
-        if (cacheName) {
+        if (!noCache) {
             cached = myCache.get(cacheName);
         }
         // Cached data
