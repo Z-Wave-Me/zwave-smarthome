@@ -630,6 +630,30 @@ vertical-align: middle;
   /*              border: solid 1px #e2e2e2;*/
 }
 
+/* OpenWeather widget
+----------------------------------------------------*/
+/* line 117, sass/modules/_elements.scss */
+.widget-body .hidden-sensor-multiline table td {
+  text-align: left;
+  padding: 5px 0;
+}
+
+/* line 122, sass/modules/_elements.scss */
+.widget-body .hidden-sensor-multiline table td:first-child {
+  padding-left: 20px;
+  vertical-align: top;
+}
+
+/* line 127, sass/modules/_elements.scss */
+.widget-body .hidden-sensor-multiline h4 {
+  display: inline;
+}
+
+/* line 131, sass/modules/_elements.scss */
+.widget-body .hidden-sensor-multiline .text-center {
+  margin: 10px 0;
+}
+
 /* Events
 -------------------------------------------------- */
 /* line 4, sass/modules/_events.scss */

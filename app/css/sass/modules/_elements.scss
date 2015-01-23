@@ -111,3 +111,23 @@
 .hidden-sensor-multilevel-linear{}
 
 .hidden-camera{}
+
+/* OpenWeather widget
+----------------------------------------------------*/
+.widget-body .hidden-sensor-multiline table td {
+    text-align: left;
+    padding: 5px 0;
+}
+
+.widget-body .hidden-sensor-multiline table td:first-child {
+    padding-left: 20px;
+    vertical-align: top;
+}
+
+.widget-body .hidden-sensor-multiline h4 {
+    display: inline;
+}
+
+.widget-body .hidden-sensor-multiline .text-center {
+    margin: 10px 0;
+}
