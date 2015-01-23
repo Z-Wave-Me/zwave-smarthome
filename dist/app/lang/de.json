@@ -92,5 +92,17 @@
     "lb_up": "Oben",
     "lb_down": "Unten",
     "lb_configuration_view": "Konfiguratonsansicht",
+    "lb_humidity": "Luftfeuchte:",
+    "lb_pressure": "Luftdruck:",
+    "lb_weather": "Wetter:",
+    "lb_wind": "Wind:",
+    "lb_n": "Nord",
+    "lb_ne": "Nordost",
+    "lb_e": "Ost",
+    "lb_se": "Südost",
+    "lb_s": "Süd",
+    "lb_sw": "Südwest",
+    "lb_w": "West",
+    "lb_nw": "Nordwest",
     "---": "---"
 }

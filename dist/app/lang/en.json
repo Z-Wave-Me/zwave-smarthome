@@ -125,5 +125,17 @@
     "thermostat": "Thermostat",
     "camera": "Camera",
     "toggleButton": "Button toggle",
-    "doorlock": "Door Lock"
+    "doorlock": "Door Lock",
+    "lb_humidity": "Humidity:",
+    "lb_pressure": "Pressure:",
+    "lb_weather": "Weather:",
+    "lb_wind": "Wind:",
+    "lb_n": "North",
+    "lb_ne": "North-east",
+    "lb_e": "East",
+    "lb_se": "South-east",
+    "lb_s": "South",
+    "lb_sw": "South-west",
+    "lb_w": "West",
+    "lb_nw": "North-west"
 }

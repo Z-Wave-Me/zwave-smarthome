@@ -656,24 +656,24 @@ vertical-align: middle;
 
 /* OpenWeather widget
 ----------------------------------------------------*/
-/* line 117, sass/modules/_elements.scss */
+/* line 124, sass/modules/_elements_new.scss */
 .widget-body .hidden-sensor-multiline table td {
   text-align: left;
   padding: 5px 0;
 }
 
-/* line 122, sass/modules/_elements.scss */
+/* line 129, sass/modules/_elements_new.scss */
 .widget-body .hidden-sensor-multiline table td:first-child {
   padding-left: 20px;
   vertical-align: top;
 }
 
-/* line 127, sass/modules/_elements.scss */
+/* line 134, sass/modules/_elements_new.scss */
 .widget-body .hidden-sensor-multiline h4 {
   display: inline;
 }
 
-/* line 131, sass/modules/_elements.scss */
+/* line 138, sass/modules/_elements_new.scss */
 .widget-body .hidden-sensor-multiline .text-center {
   margin: 10px 0;
 }
