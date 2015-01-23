@@ -246,9 +246,44 @@
                         </div>
                         
                          <!-- Hidden sensorMultilevel zwaveWeather -->
-                        <div class="col-sm-11 element-hidden hidden-sensor-multilevel" ng-if="v.metrics.zwaveOpenWeather" ng-show="goHidden">
-                            <p class="text-center">{{v.title}}</p>
-                           Humidity: {{v.metrics.zwaveOpenWeather.main.humidity}}
+                        <div class="col-sm-11 element-hidden hidden-sensor-multiline" ng-if="v.metrics.zwaveOpenWeather" ng-show="goHidden">
+                            <div class="text-center">
+                                <h4>{{v.title}}, {{v.metrics.country}}</h4>
+                                <img ng-src="{{v.metrics.flag}}">
+                            </div>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td><b>{{_t('lb_humidity')}}</b></td>
+                                        <td><span ng-bind="v.metrics.zwaveOpenWeather.main.humidity"/><span> %</span></td>    
+                                    </tr>
+                                    <tr>
+                                        <td><b>{{_t('lb_pressure')}}</b></td>
+                                        <td><span ng-bind="v.metrics.zwaveOpenWeather.main.pressure"/><span> hPa</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>{{_t('lb_weather')}}</b></td>
+                                        <td><span ng-bind="v.metrics.zwaveOpenWeather.weather[0].description"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>{{_t('lb_wind')}}</b></td>
+                                        <td>
+                                            <span ng-bind="v.metrics.zwaveOpenWeather.wind.speed | number:1"/><span> m/s</span><br>
+                                            <!-- Choose correct wind direction -->
+                                            <span ng-if="v.metrics.zwaveOpenWeather.wind.deg === 0">{{_t('lb_n')}}</span>
+                                            <span ng-if="0 < v.metrics.zwaveOpenWeather.wind.deg < 45">{{_t('lb_ne')}}</span>
+                                            <span ng-if="v.metrics.zwaveOpenWeather.wind.deg === 90">{{_t('lb_e')}}</span>
+                                            <span ng-if="90 < v.metrics.zwaveOpenWeather.wind.deg < 180">{{_t('lb_se')}}</span>
+                                            <span ng-if="v.metrics.zwaveOpenWeather.wind.deg === 180">{{_t('lb_s')}}</span>
+                                            <span ng-if="180 < v.metrics.zwaveOpenWeather.wind.deg < 270">{{_t('lb_sw')}}</span>
+                                            <span ng-if="v.metrics.zwaveOpenWeather.wind.speed === 270">{{_t('lb_w')}}</span>
+                                            <span ng-if="270 < v.metrics.zwaveOpenWeather.wind.deg < 360">{{_t('lb_nw')}}</span>
+                                            <!-- Wind dirction in degree -->
+                                            (<span ng-bind="v.metrics.zwaveOpenWeather.wind.deg | number:0"/><span>°</span>)
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
 
 
