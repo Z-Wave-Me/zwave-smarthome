@@ -525,19 +525,19 @@ vertical-align: middle;
 /* Homepage styles */
 /* Elements
 -------------------------------------------------- */
-/* line 3, sass/modules/_elements_new.scss */
+/* line 3, sass/modules/_elements.scss */
 .widget-block {
   margin-bottom: 20px;
 }
 
-/* line 6, sass/modules/_elements_new.scss */
+/* line 6, sass/modules/_elements.scss */
 .widget-block-in {
   height: 100px;
   position: relative;
   text-align: left;
 }
 
-/* line 11, sass/modules/_elements_new.scss */
+/* line 11, sass/modules/_elements.scss */
 .widget-image {
   position: absolute;
   top: 10px;
@@ -549,48 +549,48 @@ vertical-align: middle;
   border-radius: 50%;
 }
 
-/* line 21, sass/modules/_elements_new.scss */
+/* line 21, sass/modules/_elements.scss */
 .widget-header {
   text-align: right;
   padding: 5px 10px 0 0;
 }
 
-/* line 27, sass/modules/_elements_new.scss */
+/* line 27, sass/modules/_elements.scss */
 .widget-body {
   margin-top: -5px;
   padding: 0 5px 15px 84px;
   width: 100%;
 }
-/* line 31, sass/modules/_elements_new.scss */
+/* line 31, sass/modules/_elements.scss */
 .widget-body .entry-title {
   padding-right: 30px;
 }
-/* line 34, sass/modules/_elements_new.scss */
+/* line 34, sass/modules/_elements.scss */
 .widget-body .widget-control-wrap {
   width: 100%;
 }
-/* line 37, sass/modules/_elements_new.scss */
+/* line 37, sass/modules/_elements.scss */
 .widget-body .widget-control {
   width: 50%;
   float: left;
 }
-/* line 41, sass/modules/_elements_new.scss */
+/* line 41, sass/modules/_elements.scss */
 .widget-body .widget-control.control-left {
   font-weight: bold;
 }
-/* line 44, sass/modules/_elements_new.scss */
+/* line 44, sass/modules/_elements.scss */
 .widget-body .widget-control.control-right {
   float: right;
 }
-/* line 46, sass/modules/_elements_new.scss */
+/* line 46, sass/modules/_elements.scss */
 .widget-body .widget-control.control-right .btn-group {
   float: right;
 }
-/* line 50, sass/modules/_elements_new.scss */
+/* line 50, sass/modules/_elements.scss */
 .widget-body .widget-click-popup {
   cursor: pointer;
 }
-/* line 54, sass/modules/_elements_new.scss */
+/* line 54, sass/modules/_elements.scss */
 .widget-body .element-hidden {
   z-index: 10000;
   overflow: hidden;
@@ -608,7 +608,7 @@ vertical-align: middle;
   background-color: #fff;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
 }
-/* line 71, sass/modules/_elements_new.scss */
+/* line 71, sass/modules/_elements.scss */
 .widget-body .element-hidden.hidden-camera {
   width: 100%;
   height: 300%;
@@ -616,27 +616,27 @@ vertical-align: middle;
   margin-left: -50%;
   top: 50%;
 }
-/* line 79, sass/modules/_elements_new.scss */
+/* line 79, sass/modules/_elements.scss */
 .widget-body table {
   width: 100%;
 }
-/* line 81, sass/modules/_elements_new.scss */
+/* line 81, sass/modules/_elements.scss */
 .widget-body table td {
   width: 50%;
   vertical-align: middle;
   text-align: center;
 }
 
-/* line 89, sass/modules/_elements_new.scss */
+/* line 89, sass/modules/_elements.scss */
 .element-camera-control {
   text-align: center;
 }
 
-/* line 92, sass/modules/_elements_new.scss */
+/* line 92, sass/modules/_elements.scss */
 .camera-img {
   text-align: center;
 }
-/* line 94, sass/modules/_elements_new.scss */
+/* line 94, sass/modules/_elements.scss */
 .camera-img img {
   width: 100%;
   display: inline-block;
@@ -644,11 +644,11 @@ vertical-align: middle;
 
 /* Home widget
 -------------------------------------------------- */
-/* line 105, sass/modules/_elements_new.scss */
+/* line 105, sass/modules/_elements.scss */
 .home-widget .widget-entry {
   padding: 0;
 }
-/* line 108, sass/modules/_elements_new.scss */
+/* line 108, sass/modules/_elements.scss */
 .home-widget .widget-entry .widget-block {
   margin: 0 !important;
   /*              border: solid 1px #e2e2e2;*/
@@ -656,24 +656,24 @@ vertical-align: middle;
 
 /* OpenWeather widget
 ----------------------------------------------------*/
-/* line 124, sass/modules/_elements_new.scss */
+/* line 124, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline table td {
   text-align: left;
   padding: 5px 0;
 }
 
-/* line 129, sass/modules/_elements_new.scss */
+/* line 129, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline table td:first-child {
   padding-left: 20px;
   vertical-align: top;
 }
 
-/* line 134, sass/modules/_elements_new.scss */
+/* line 134, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline h4 {
   display: inline;
 }
 
-/* line 138, sass/modules/_elements_new.scss */
+/* line 138, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline .text-center {
   margin: 10px 0;
 }
