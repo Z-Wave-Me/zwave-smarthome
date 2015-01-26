@@ -12,7 +12,8 @@ myApp.directive('elDefault', function() {
         templateUrl: "app/views/elements/directives/default.html",
         scope: {
             v: '=',
-            levelVal: '='
+            levelVal: '=',
+            'runCmd': '='
         },
         link: function (scope, elem, attr) {}
     };

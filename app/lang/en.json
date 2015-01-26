@@ -120,6 +120,7 @@
     "lb_configuration_view": "Configuration view",
     "switchBinary": "Binary Switch",
     "sensorMultilevel": "Multi-Level Sensor",
+    "sensorMultiline": "Multi-Line Sensor",
     "switchMultilevel": "Multi-Level Switch",
     "sensorBinary": "Binary Sensor",
     "thermostat": "Thermostat",

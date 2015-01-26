@@ -116,12 +116,21 @@
                              
                             <!-- sensorMultilevel -->
                             <div  ng-switch-when="sensorMultilevel">
-                                <div class="widget-control control-left widget-click-popup">
-                                        <span ng-if="!v.metrics.zwaveOpenWeather"><span class="widget-level" ng-bind="v.level"></span> <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span></span>
-                                        <span ng-if="v.metrics.zwaveOpenWeather">
-                                            <span class="widget-level" ng-bind="v.level"></span> <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span> <i class="fa fa-caret-down"></i>
+                                <div class="widget-control control-left">
+                                       <span class="widget-level" ng-bind="v.level"></span> <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span>
+                                    </div>
 
-                                        </span>
+                                    <div class="widget-control control-right">
+                                         <div class="btn-group">
+                                        <button class="btn btn-default btn-sm" ng-click="runCmd(v.id + '/command/update')"> <i class="fa fa-clock-o"></i> <span class="widget-update-time">{{v.updateTime|isToday:true}}</span></button>
+                                        </div>
+                                    </div><!-- /.widget-control .right -->
+                            </div>
+                            
+                             <!-- sensorMultiline -->
+                            <div  ng-switch-when="sensorMultiline">
+                                <div class="widget-control control-left widget-click-popup">
+                                       <span class="widget-level" ng-bind="v.level"></span> <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span> <i class="fa fa-caret-down"></i>
                                     </div>
 
                                     <div class="widget-control control-right">
@@ -314,25 +323,6 @@
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
-
-                        <!-- Hidden camera -->
-                        <div class="col-sm-11 element-hidden hidden-camera" ng-switch-when="camera_" ng-show="goHidden_">
-                            <p class="text-center">{{v.title}} </p>
-                            <p class="text-center">
-                                <a href="" ng-click="runCmd(v.id + '/command/zoomIn')" ng-if="v.metrics.hasZoomIn"><i class="fa fa-search-plus"></i></a>&nbsp;&nbsp;&nbsp;
-                                <a href="" ng-click="runCmd(v.id + '/command/zoomOut')" ng-if="v.metrics.hasZoomOut"><i class="fa fa-search-minus"></i></a>&nbsp;&nbsp;&nbsp;
-                                <a href="" ng-click="runCmd(v.id + '/command/left')" ng-if="v.metrics.hasLeft"><i class="fa fa-arrow-circle-left"></i></a>&nbsp;&nbsp;&nbsp;
-                                <a href="" ng-click="runCmd(v.id + '/command/right')" ng-if="v.metrics.hasRight"><i class="fa fa-arrow-circle-right"></i></a>&nbsp;&nbsp;&nbsp;
-                                <a href="" ng-click="runCmd(v.id + '/command/up')" ng-if="v.metrics.hasUp"><i class="fa fa-arrow-circle-up"></i></a>&nbsp;&nbsp;&nbsp;
-                                <a href="" ng-click="runCmd(v.id + '/command/down')" ng-if="v.metrics.hasDown"><i class="fa fa-arrow-circle-down"></i></a>&nbsp;&nbsp;&nbsp;
-                                <a href="" ng-click="runCmd(v.id + '/command/open')" ng-if="v.metrics.hasOpen"><i class="fa fa-power-off"></i></a>&nbsp;&nbsp;&nbsp;
-                                <a href="" ng-click="runCmd(v.id + '/command/close')" ng-if="v.metrics.hasClose"><i class="fa fa-close"></i></a>&nbsp;&nbsp;&nbsp;
-                            </p>
-
-                            <div>
-                                <img class="text-center camera-img" ng-src="{{cfg.server_url + v.metrics.url}}">
-                            </div>
                         </div>
                     </div><!-- /.panel-body -->
                 </div>
