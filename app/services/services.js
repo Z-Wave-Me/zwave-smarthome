@@ -261,6 +261,7 @@ myAppService.service('dataService', function($filter, myCache) {
                     break;
             }
             $(widgetId + ' .widget-level').html(val);
+             $(widgetId + ' .widget-level-knob').val(val);
         }
         //console.log('Update device: ID: ' + v.id + ' - level: ' + val)
 

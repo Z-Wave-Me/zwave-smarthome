@@ -617,26 +617,30 @@ vertical-align: middle;
   top: 50%;
 }
 /* line 79, sass/modules/_elements.scss */
+.widget-body .element-hidden.hidden-sensor-multiline {
+  height: 220px;
+}
+/* line 83, sass/modules/_elements.scss */
 .widget-body table {
   width: 100%;
 }
-/* line 81, sass/modules/_elements.scss */
+/* line 85, sass/modules/_elements.scss */
 .widget-body table td {
   width: 50%;
   vertical-align: middle;
   text-align: center;
 }
 
-/* line 89, sass/modules/_elements.scss */
+/* line 93, sass/modules/_elements.scss */
 .element-camera-control {
   text-align: center;
 }
 
-/* line 92, sass/modules/_elements.scss */
+/* line 96, sass/modules/_elements.scss */
 .camera-img {
   text-align: center;
 }
-/* line 94, sass/modules/_elements.scss */
+/* line 98, sass/modules/_elements.scss */
 .camera-img img {
   width: 100%;
   display: inline-block;
@@ -644,11 +648,11 @@ vertical-align: middle;
 
 /* Home widget
 -------------------------------------------------- */
-/* line 105, sass/modules/_elements.scss */
+/* line 109, sass/modules/_elements.scss */
 .home-widget .widget-entry {
   padding: 0;
 }
-/* line 108, sass/modules/_elements.scss */
+/* line 112, sass/modules/_elements.scss */
 .home-widget .widget-entry .widget-block {
   margin: 0 !important;
   /*              border: solid 1px #e2e2e2;*/
@@ -656,24 +660,24 @@ vertical-align: middle;
 
 /* OpenWeather widget
 ----------------------------------------------------*/
-/* line 124, sass/modules/_elements.scss */
+/* line 128, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline table td {
   text-align: left;
   padding: 5px 0;
 }
 
-/* line 129, sass/modules/_elements.scss */
+/* line 133, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline table td:first-child {
   padding-left: 20px;
   vertical-align: top;
 }
 
-/* line 134, sass/modules/_elements.scss */
+/* line 138, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline h4 {
   display: inline;
 }
 
-/* line 138, sass/modules/_elements.scss */
+/* line 142, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline .text-center {
   margin: 10px 0;
 }

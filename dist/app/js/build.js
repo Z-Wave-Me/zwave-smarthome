@@ -4828,11 +4828,11 @@ myApp.config(['$routeProvider',
                 }).
                 //Devices
                 when('/devices/:type?', {
-                    templateUrl: 'app/views/config/devices.html'
+                    templateUrl: 'app/views/devices/devices.html' 
                 }).
                 //Include Devices
                 when('/include/:device?', {
-                    templateUrl: 'app/views/config/device_include.html'
+                    templateUrl: 'app/views/devices/device_include.html'
                 }).
                 //Rooms
                 when('/config-rooms', {
@@ -5511,6 +5511,7 @@ myAppService.service('dataService', function($filter, myCache) {
                     break;
             }
             $(widgetId + ' .widget-level').html(val);
+             $(widgetId + ' .widget-level-knob').val(val);
         }
         //console.log('Update device: ID: ' + v.id + ' - level: ' + val)
 
@@ -6591,9 +6592,9 @@ var postRenderAlpaca = function(renderedForm) {
             },
             success: function(response) {
                  $('.module-spinner').fadeOut();
-                 if(type == 'POST'){
+                 //if(type == 'POST'){
                      window.location.replace("#apps");
-                }
+                //}
             },
             error: function(xhr, ajaxOptions, thrownError) {
                  $('.module-spinner').fadeOut();
@@ -6616,15 +6617,12 @@ function postRenderAlpacaData(renderedForm) {
     var alpacaData = {'params': renderedForm.getValue()};
     var formData = $('#form_module').serializeArray();
     var inputData = {};
-    //var thestr = JSON.stringify(renderedForm.getValue());
-
     $.each(formData, function(k, v) {
         if (defaults.indexOf(v.name) > -1) {
             inputData[v.name] = v.value;
         }
 
     });
-    //$.merge(inputData, alpacaData);
     return $.extend(inputData, alpacaData);
 }
 /**
@@ -6649,7 +6647,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
         'name': 'Default',
         'cssClass': 'profile-default',
         'active': true,
-        'lang': 'en',
+        'lang': cfg.lang, 
         'positions': []
     };
     /**
@@ -6948,7 +6946,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
 
     $scope.updateData = function() {
         dataFactory.updateApiData('devices', function(data) {
-            dataService.updateDevices(data);
+            dataService.updateDevices(data,$scope.updateValues);
         });
     };
     $scope.updateData();
@@ -7088,8 +7086,12 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         if (count > max) {
             count = max;
         }
-        $scope.levelVal[id] = count;
-        var cmd = id + '/command/exact?level=' + $scope.levelVal[id];
+        
+        var cmd = id + '/command/exact?level=' + count;
+        //if (count < 100 && count > 0) {
+            $scope.levelVal[id] = count;
+        //}
+        
         console.log(cmd);
         dataFactory.runCmd(cmd);
         return;
@@ -7306,7 +7308,6 @@ myAppController.controller('AppController', function($scope, $window,$cookies, d
     $scope.loadModules = function(filter) {
         dataFactory.getApiData('modules', function(data) {
             $scope.modules = dataService.getData(data.data, filter);
-            console.log(filter);
         });
     };
     $scope.loadInstances = function() {
@@ -7468,42 +7469,46 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
         default:
             break;
     }
-
-    $scope.store = function(data) {
-       var defaults = ['instanceId','moduleId','active','title','description'];
-        var input = [];
-        var params = {};
-        angular.forEach(data, function(v, k) {
-           if(defaults.indexOf(k) > -1){
-                 input[k] = v;
-            }
-//            else{
-//                params[v.name] = v.value;
+/**
+ * 
+ * Deprecated
+ */
+//    $scope.store = function(data) {
+//       var defaults = ['instanceId','moduleId','active','title','description'];
+//        var input = [];
+//        var params = {};
+//        angular.forEach(data, function(v, k) {
+//           if(defaults.indexOf(k) > -1){
+//                 input[k] = v;
 //            }
-           
-        });
-        
-         var inputData = {
-            'id': input.instanceId,
-            'moduleId': input.moduleId,
-            'active': input.active,
-            'title': input.title,
-            'description': input.description,
-            'params': params
-        };
-        if (input.instanceId > 0) {
-            dataFactory.putApiData('instances', input.instanceId, inputData, function(data) {
-                $scope.success = true;
-                 myCache.remove('devices');
-            });
-        } else {
-           
-            dataFactory.postApiData('instances', inputData, function(data) {
-                 myCache.remove('devices');
-                $location.path('/apps');
-            });
-        }
-    };
+////            else{
+////                params[v.name] = v.value;
+////            }
+//           
+//        });
+//        
+//         var inputData = {
+//            'id': input.instanceId,
+//            'moduleId': input.moduleId,
+//            'active': input.active,
+//            'title': input.title,
+//            'description': input.description,
+//            'params': params
+//        };
+//        if (input.instanceId > 0) {
+//            dataFactory.putApiData('instances', input.instanceId, inputData, function(data) {
+//                myCache.remove('devices');
+//                console.log(inputData)
+//                 $location.path('/apps'); 
+//            });
+//        } else {
+//           
+//            dataFactory.postApiData('instances', inputData, function(data) {
+//                 myCache.remove('devices');
+//                $location.path('/apps');
+//            });
+//        }
+//    };
 
 });
 /**
@@ -7937,8 +7942,8 @@ myAppController.controller('RoomConfigController', function($scope, $window, $in
 /**
  * Network controller
  */
-myAppController.controller('NetworkController', function($scope, cfg, dataFactory, dataService) {
-
+myAppController.controller('NetworkController', function($scope, $cookies, dataFactory, dataService) {
+    $scope.activeTab = (angular.isDefined($cookies.tab_network) ? $cookies.tab_network : 'local');
     $scope.batteries = {
         'list': [],
         'cntLess20': [],
@@ -7987,9 +7992,10 @@ myAppController.controller('NetworkController', function($scope, cfg, dataFactor
                         obj['messages'] = [];
 
                         var interviewDone = ZWaveAPIData.devices[nodeId].instances[iId].commandClasses[ccId].data.interviewDone.value;
-                        if (!interviewDone) {
+                         obj['messages'].push($scope._t('lb_not_configured'));
+                        /*if (!interviewDone) {
                             obj['messages'].push($scope._t('lb_not_configured'));
-                        }
+                        }*/
                         //obj['messages'].push('Another error message');
 //                         console.log(v.id + ': ' + nodeId + ', ' + iId + ', ' + ccId)
 //                         console.log(interviewDone)

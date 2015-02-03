@@ -20,9 +20,9 @@ var postRenderAlpaca = function(renderedForm) {
             },
             success: function(response) {
                  $('.module-spinner').fadeOut();
-                 if(type == 'POST'){
+                 //if(type == 'POST'){
                      window.location.replace("#apps");
-                }
+                //}
             },
             error: function(xhr, ajaxOptions, thrownError) {
                  $('.module-spinner').fadeOut();
@@ -45,14 +45,11 @@ function postRenderAlpacaData(renderedForm) {
     var alpacaData = {'params': renderedForm.getValue()};
     var formData = $('#form_module').serializeArray();
     var inputData = {};
-    //var thestr = JSON.stringify(renderedForm.getValue());
-
     $.each(formData, function(k, v) {
         if (defaults.indexOf(v.name) > -1) {
             inputData[v.name] = v.value;
         }
 
     });
-    //$.merge(inputData, alpacaData);
     return $.extend(inputData, alpacaData);
 }

@@ -128,7 +128,7 @@
                             </div>
                             
                              <!-- sensorMultiline -->
-                            <div  ng-switch-when="sensorMultiline">
+                            <div ng-switch-when="sensorMultiline">
                                 <div class="widget-control control-left widget-click-popup">
                                        <span class="widget-level" ng-bind="v.level"></span> <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span> <i class="fa fa-caret-down"></i>
                                     </div>
@@ -164,8 +164,9 @@
                                                 <!--<myknob knob-data="v.level" knob-options="knobopt"></myknob> -->
                                                 <input 
                                                     type="text" 
-                                                    value="v.level|getMaxLevel" 
-                                                    class="dial" 
+                                                    id="knob_{{v.id}}"
+                                                    value="{{levelVal[v.id]|getMaxLevel}}" 
+                                                    class="dial widget-level-knob" 
                                                     data-width="100" 
                                                     data-height="100" 
                                                     data-min="0"
@@ -178,7 +179,7 @@
                                             </td>
                                             <td>
                                                 <button class="btn btn-primary"
-                                                        data-ng-click="runCmdExact(v.id, '+', 0, 255)"
+                                                        data-ng-click="runCmdExact(v.id, '+', 1, 99)"
                                                         >
                                                     <i class="fa fa-angle-up fa-lg"></i>
                                                 </button>&nbsp;
@@ -187,7 +188,7 @@
                                                         ><i class="fa fa-angle-double-up fa-lg"></i>
                                                 </button><br /><br />
                                                 <button class="btn btn-primary"
-                                                        data-ng-click="runCmdExact(v.id, '-', 0, 255)"
+                                                        data-ng-click="runCmdExact(v.id, '-', 1, 99)"
                                                         ><i class="fa fa-angle-down fa-lg"></i>
                                                 </button>&nbsp;
                                                 <button class="btn btn-info"
@@ -199,7 +200,7 @@
                                             <td>
                                                 <button class="btn btn-info"
                                                         data-ng-click="runCmdExact(v.id, 99, 0, 99)"
-                                                        >100
+                                                        ng-bind="_t('lb_full')">
                                                 </button>
                                             </td>
                                         </tr>
@@ -271,7 +272,7 @@
                                 <h4>{{v.title}}, {{v.metrics.country}}</h4>
                                 <img ng-src="{{v.metrics.flag}}">
                             </div>
-                            <table>
+                            <table class="table-condensed">
                                 <tbody>
                                     <tr>
                                         <td><b>{{_t('lb_humidity')}}</b></td>
@@ -288,7 +289,7 @@
                                     <tr>
                                         <td><b>{{_t('lb_wind')}}</b></td>
                                         <td>
-                                            <span ng-bind="v.metrics.zwaveOpenWeather.wind.speed | number:1"/><span> m/s</span><br>
+                                            <span ng-bind="v.metrics.zwaveOpenWeather.wind.speed | number:1"/><span> m/s</span> 
                                             <!-- Choose correct wind direction -->
                                             <span ng-if="v.metrics.zwaveOpenWeather.wind.deg === 0">{{_t('lb_n')}}</span>
                                             <span ng-if="0 < v.metrics.zwaveOpenWeather.wind.deg < 45">{{_t('lb_ne')}}</span>
@@ -301,6 +302,11 @@
                                             <!-- Wind dirction in degree -->
                                             (<span ng-bind="v.metrics.zwaveOpenWeather.wind.deg | number:0"/><span>°</span>)
                                         </td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>{{_t('lb_last_update')}}</b></td>
+                                        <td>{{v.updateTime|isToday:true}}</td>
+                                            
                                     </tr>
                                 </tbody>
                             </table>

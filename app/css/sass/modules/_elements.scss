@@ -75,6 +75,10 @@
         margin-left:-50%;
         top: 50%;
     }
+    
+    .element-hidden.hidden-sensor-multiline{
+        height: $app-el-hidden-h + 20;
+    }
 
     table{
         width: 100%;

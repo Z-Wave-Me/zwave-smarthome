@@ -1,5 +1,20 @@
 <!-- Network view -->
 <div ng-controller="NetworkController">
+    
+    <div class="tabs-container">
+        <ul class="nav nav-tabs" role="tablist">
+            <li ng-class="activeTab == 'battery' ? 'active' : ''">
+                <a href="" title="{{_t('lb_local_modules')}}" data-target="#module_local" data-toggle="tab" ng-click="setTab('local')">
+                    <i class="fa fa-cloud-download fa-lg tab-icon"></i> <span class="tab-name">{{_t('lb_local_modules')}}</span>
+                </a>
+            </li>
+            <li ng-class="activeTab == 'health' ? 'active' : ''">
+                <a href="" title="{{_t('lb_active')}}" data-target="#module_instance" data-toggle="tab" ng-click="setTab('instance')">
+                    <i class="fa fa-cog fa-fire tab-icon"></i> <span class="tab-name">{{_t('lb_active')}}</span>
+                </a>
+            </li>
+        </ul>
+    </div>
     <!-- Battery status -->
     <div class="network-block">
         <h2 class="page-subtitle"><i class="fa fa-bolt"></i> <span ng-bind="_t('lb_battery_status')"></span></h2>
@@ -48,27 +63,4 @@
         </table>
     </div>
     <div class="alert alert-warning"><span ng-bind="_t('lb_solve_network_error')"></span> <a href="/expert/" class="alert-link"><strong ng-bind="_t('lb_zwui')"></strong> <i class="fa fa-external-link"></i></a></div>
-    <!-- Device status -->
-    <!-- <h2 class="page-subtitle"><i class="fa fa-power-off"></i> {{_t('lb_zwave_device_status')}}</h2>
-
-    <div class="alert alert-success"><i class="fa fa-check fa-lg"></i> {{_t('lb_devices_ok')}}</div>
-    <div class="table-responsive_">
-       <table class="table table-report">
-              <tbody>
-                <tr ng-repeat="v in batteries | orderBy:predicate:reverse" id="{{ v.rowId}}">
-                    <td>
-                        <span class="text-supp">#{{v.id}}</span>
-                        <img class="report-img" src="storage/img/elements/toggleButton.png" alt="icon" ng-show="$index < 2" />
-                        <img class="report-img" src="storage/img/elements/sensorMultilevel.png" alt="icon" ng-show="$index < 4 && $index >= 2" />
-                        <img class="report-img" src="storage/img/elements/switchBinary.png" alt="icon" ng-show="$index >= 4" />
-                        <span class="report-message"><strong class="text-danger">{{v.name}}</strong> {{_t('lb_has_problems')}}</span>
-                       
-                    </td>
-                    <td>
-                        <button class="btn btn-primary" title="{{_t('lb_network_repair')}}"><i class="fa fa-wrench"></i> <span class="btn-name">{{_t('lb_network_repair')}}</span></button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>-->
 </div>

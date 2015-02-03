@@ -49,11 +49,11 @@ myApp.config(['$routeProvider',
                 }).
                 //Devices
                 when('/devices/:type?', {
-                    templateUrl: 'app/views/config/devices.html'
+                    templateUrl: 'app/views/devices/devices.html' 
                 }).
                 //Include Devices
                 when('/include/:device?', {
-                    templateUrl: 'app/views/config/device_include.html'
+                    templateUrl: 'app/views/devices/device_include.html'
                 }).
                 //Rooms
                 when('/config-rooms', {
