@@ -37,7 +37,7 @@ myApp.config(['$routeProvider',
                 }).
                 //Profile
                 when('/profiles', {
-                    templateUrl: 'app/views/config/profiles.html'
+                    templateUrl: 'app/views/profiles/profiles.html'
                 }).
                 //Apps
                 when('/apps', {
@@ -57,11 +57,11 @@ myApp.config(['$routeProvider',
                 }).
                 //Rooms
                 when('/config-rooms', {
-                    templateUrl: 'app/views/config/config_rooms.html'
+                    templateUrl: 'app/views/rooms/config_rooms.html'
                 }).
                 //Network
                 when('/network', {
-                    templateUrl: 'app/views/config/network.html'
+                    templateUrl: 'app/views/network/network.html'
                 }).
                 //About
                 when('/about', {

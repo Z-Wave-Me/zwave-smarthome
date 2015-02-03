@@ -101,6 +101,14 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
         }
 
     };
+    
+    /**
+     * Get current filter
+     */
+    $scope.getCurrFilter = function(index,val) {
+        var path = $location.path().split('/');
+
+    };
     /**
      * Get body ID
      */
@@ -150,6 +158,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
         }
     };
     $scope.getProfile();
+    //console.log($scope.abcde);
 });
 /**
  * Test controller
@@ -474,7 +483,8 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
  */
 myAppController.controller('EventController', function($scope, $routeParams, dataFactory, dataService, paginationService, cfg) {
     $scope.collection = [];
-    $scope.eventLevel = [];
+    $scope.eventLevels = [];
+    $scope.currLevel = null;
     $scope.currentPage = 1;
     $scope.pageSize = cfg.page_results;
     $scope.reset = function() {
@@ -491,11 +501,12 @@ myAppController.controller('EventController', function($scope, $routeParams, dat
      */
     $scope.loadData = function() {
         dataFactory.getApiData('notifications', function(data) {
-            $scope.eventLevel = dataService.getEventLevel(data.data.notifications);
+            $scope.eventLevels = dataService.getEventLevel(data.data.notifications,[{'key':null,'val': $scope._t('lb_all')}]);
             var filter = null;
             if (angular.isDefined($routeParams.param) && angular.isDefined($routeParams.val)) {
-                filter = $routeParams;
-                angular.forEach(data.data.notifications, function(v, k) {
+                $scope.currLevel = $routeParams.val;
+                 filter = $routeParams;
+                 angular.forEach(data.data.notifications, function(v, k) {
                     if (filter && angular.isDefined(v[filter.param])) {
                         if (v[filter.param] == filter.val) {
                             $scope.collection.push(v);
@@ -716,6 +727,7 @@ myAppController.controller('AppController', function($scope, $window,$cookies, d
         if (input.id) {
             dataFactory.putApiData('instances', input.id, input, function(data) {
                 myCache.remove('devices');
+                 myCache.remove('instances');
             });
         }
 
@@ -731,15 +743,15 @@ myAppController.controller('AppController', function($scope, $window,$cookies, d
         }
         if (confirm) {
             dataFactory.deleteApiData('instances', input.id, target);
-            dataFactory.setCache(false);
-            //$scope.loadData();
+            myCache.remove('instances');
+             myCache.remove('devices'); 
         }
     };
 });
 /**
  * App controller - add module
  */
-myAppController.controller('AppModuleAlpacaController', function($scope, $routeParams, $filter, $location, dataFactory, dataService) {
+myAppController.controller('AppModuleAlpacaController', function($scope, $routeParams, $filter, $location, dataFactory, dataService, myCache) {
    $scope.showForm = false;
     $scope.success = false;
     $scope.alpacaData = true;
@@ -758,7 +770,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
     $scope.postModule = function(id) {
         dataFactory.getApiData('modules', function(module) {
            dataFactory.getApiData('namespaces', function(namespaces) {
-                var formData =  dataService.getModuleFormData(module.data.meta, module.data.meta.defaults, namespaces.data);
+                var formData =  dataService.getModuleFormData(module.data, module.data.defaults, namespaces.data);
                 $scope.input = {
                     'instanceId': 0,
                     'moduleId': id,
@@ -766,7 +778,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                     'title': $filter('hasNode')(formData, 'data.title'),
                     'description': $filter('hasNode')(formData, 'data.description'),
                     'moduleTitle': $filter('hasNode')(formData, 'data.title'),
-                    'category': module.data.meta.category
+                    'category': module.data.category
                 };
                 $scope.showForm = true;
                  if(!$filter('hasNode')(formData, 'options.fields') || !$filter('hasNode')(formData, 'schema.properties')){
@@ -776,7 +788,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                     
                 $('#alpaca_data').alpaca(formData);
             });
-        }, '/' + id);
+        }, '/' + id + '?lang=' + $scope.lang);
     };
 
     // Put module instance
@@ -788,16 +800,16 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
             var instance = data.data;
             dataFactory.getApiData('modules', function(module) {
                 dataFactory.getApiData('namespaces', function(namespaces) {
-                     var formData =  dataService.getModuleFormData(module.data.meta, instance.params, namespaces.data);
+                     var formData =  dataService.getModuleFormData(module.data, instance.params, namespaces.data);
                    
                    $scope.input = {
                         'instanceId': instance.id,
-                        'moduleId': module.data.meta.id,
+                        'moduleId': module.data.id,
                         'active': instance.active,
                         'title': instance.title,
                         'description': instance.description,
                         'moduleTitle': instance.title,
-                        'category': module.data.meta.category
+                        'category': module.data.category
                     };
                     $scope.showForm = true;
                     if(!$filter('hasNode')(formData, 'options.fields') || !$filter('hasNode')(formData, 'schema.properties')){
@@ -809,7 +821,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                     
                     
                 });
-            }, '/' + instance.moduleId);
+            }, '/' + instance.moduleId + '?lang=' + $scope.lang);
 
         }, '/' + id,true);
     };
@@ -853,10 +865,12 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
         if (input.instanceId > 0) {
             dataFactory.putApiData('instances', input.instanceId, inputData, function(data) {
                 $scope.success = true;
+                 myCache.remove('devices');
             });
         } else {
            
             dataFactory.postApiData('instances', inputData, function(data) {
+                 myCache.remove('devices');
                 $location.path('/apps');
             });
         }

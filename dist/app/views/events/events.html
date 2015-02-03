@@ -12,28 +12,22 @@
                     </td>
                     <td>
                         <p>
-                            <span class="text-supp" title="{{v.timestamp| date:'dd.MM.yyyy H:mm'}}">{{v.timestamp|isToday}}</span> <span class="badge">{{v.type}}</span> 
+                            <span class="text-supp" title="{{v.timestamp| date:'dd.MM.yyyy H:mm'}}" ng-bind="v.timestamp | isToday"></span> <span class="badge" ng-bind="v.type"></span> 
                         </p>
-                        <span class="report-message">{{v.message}}</span>
+                        <span class="report-message" ng-bind="v.message"></span>
                     </td>
-                   <td class="td-action">
-                         <!--<select class="form-control">
-                        <option>Hide all events from this source</option>
-                        <option>Only show events from this source</option>
-                        <option>Dont`t show events from this source in this profile anymore</option>
-                    </select>-->
+                    <td class="td-action">
                         <div class="btn-group">
-                    <button type="button" class="btn btn-default">Action</button>
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        <span class="caret"></span>
-                        <span class="sr-only">Toggle Dropdown</span>
-                    </button>
-                    <ul class="dropdown-menu pull-right">
-                        <li><a href="" ng-click="markAsRead(v.id)">Mark as read</a></li>
-                        <li><a href="">Only show events from this source</a></li>
-                        <li><a href="">Dont`t show events from this source<br /> in this profile anymore</a></li>
-                    </ul>
-                </div>
+                            <button type="button" class="btn btn-default" ng-bind="_t('lb_action')"></button>
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu pull-right">
+                                <li><a href="" ng-click="markAsRead(v.id)" ng-bind="_t('lb_mark_read')"></a></li>
+                                <li><a href="#events/device/{{v.id}}" ng-bind="_t('lb_events_source')"></a></li> 
+                            </ul>
+                        </div>
                     </td>
                 </tr>
             </tbody>
@@ -42,5 +36,25 @@
             <dir-pagination-controls boundary-links="true"></dir-pagination-controls>
         </div>
     </div>
-    <div ng-include="'app/views/partials/footer_events.html'"></div>
+    <!-- Elements footer view -->
+    <div id="footer">
+        <div class="navbar navbar-default navbar-fixed-bottom">
+            <div class="container">
+                <form class="form-inline" role="form">
+                    <div class="btn-group dropup">
+                        <button type="button" class="btn btn-default" ng-bind="_t('lb_filter_by')"></button>
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li ng-repeat="v in eventLevels" ng-class="v.key == currLevel ? 'active':''">
+                                <a href="#events/level/{{v.key}}" ng-init="v.val"></a> 
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div> <!-- /ng-controller --> 

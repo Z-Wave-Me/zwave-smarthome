@@ -14,7 +14,7 @@ myAppFactory.factory('myCache', function($cacheFactory) {
 /**
  * Main data factory
  */
-myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,myCache, cfg) {
+myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,$timeout,myCache, cfg) {
     var apiDataInterval;
     var enableCache = true;
     var updatedTime = Math.round(+new Date() / 1000);
@@ -122,6 +122,7 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,my
                 addErrorElement();
             }
             $http(request).success(function(data) {
+                
                 addTimeTickElement();
                 updateTimeTick($filter('hasNode')(data,'data.updateTime'));
                 return callback(data);
@@ -177,6 +178,7 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,my
                 method: "post",
                 url: cfg.server_url + cfg.zwave_api_url  + 'Data/' + zTime
             };
+            
             if($http.pendingRequests.length > 0){
                 addErrorElement();
             }
@@ -270,8 +272,6 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,my
     function handleError(data, status, headers, config, statusText) {
         var msg = 'Can`t receive data from the remote server';
        addErrorElement();
-        //$('#main_content').html('<div class="alert alert-danger alert-dismissable response-message"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> <i class="icon-ban-circle"></i> ' + msg + '</div>');
-        //console.log(config);
         return;
 
 

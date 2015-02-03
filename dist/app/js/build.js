@@ -4816,7 +4816,7 @@ myApp.config(['$routeProvider',
                 }).
                 //Profile
                 when('/profiles', {
-                    templateUrl: 'app/views/config/profiles.html'
+                    templateUrl: 'app/views/profiles/profiles.html'
                 }).
                 //Apps
                 when('/apps', {
@@ -4836,11 +4836,11 @@ myApp.config(['$routeProvider',
                 }).
                 //Rooms
                 when('/config-rooms', {
-                    templateUrl: 'app/views/config/config_rooms.html'
+                    templateUrl: 'app/views/rooms/config_rooms.html'
                 }).
                 //Network
                 when('/network', {
-                    templateUrl: 'app/views/config/network.html'
+                    templateUrl: 'app/views/network/network.html'
                 }).
                 //About
                 when('/about', {
@@ -4928,7 +4928,7 @@ myAppFactory.factory('myCache', function($cacheFactory) {
 /**
  * Main data factory
  */
-myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,myCache, cfg) {
+myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,$timeout,myCache, cfg) {
     var apiDataInterval;
     var enableCache = true;
     var updatedTime = Math.round(+new Date() / 1000);
@@ -5036,6 +5036,7 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,my
                 addErrorElement();
             }
             $http(request).success(function(data) {
+                
                 addTimeTickElement();
                 updateTimeTick($filter('hasNode')(data,'data.updateTime'));
                 return callback(data);
@@ -5091,6 +5092,7 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,my
                 method: "post",
                 url: cfg.server_url + cfg.zwave_api_url  + 'Data/' + zTime
             };
+            
             if($http.pendingRequests.length > 0){
                 addErrorElement();
             }
@@ -5184,8 +5186,6 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,my
     function handleError(data, status, headers, config, statusText) {
         var msg = 'Can`t receive data from the remote server';
        addErrorElement();
-        //$('#main_content').html('<div class="alert alert-danger alert-dismissable response-message"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> <i class="icon-ban-circle"></i> ' + msg + '</div>');
-        //console.log(config);
         return;
 
 
@@ -5344,8 +5344,8 @@ myAppService.service('dataService', function($filter, myCache) {
     /**
      * Get event level
      */
-    this.getEventLevel = function(data) {
-        return getEventLevel(data);
+    this.getEventLevel = function(data,set) {
+        return getEventLevel(data,set);
     };
 
     /**
@@ -5512,7 +5512,7 @@ myAppService.service('dataService', function($filter, myCache) {
             }
             $(widgetId + ' .widget-level').html(val);
         }
-        console.log('Update device: ID: ' + v.id + ' - level: ' + val)
+        //console.log('Update device: ID: ' + v.id + ' - level: ' + val)
 
     }
 
@@ -5524,7 +5524,7 @@ myAppService.service('dataService', function($filter, myCache) {
         if (time) {
             $(widgetId + ' .widget-update-time').html(time);
         }
-        console.log('Update device: ID: ' + v.id + ' - time: ' + time)
+        //console.log('Update device: ID: ' + v.id + ' - time: ' + time)
     }
 
     /**
@@ -5535,7 +5535,7 @@ myAppService.service('dataService', function($filter, myCache) {
         if (icon) {
             $(widgetId + ' .widget-image').attr('src', icon);
         }
-        console.log('Update device: ID: ' + v.id + ' - icon: ' + icon)
+        //console.log('Update device: ID: ' + v.id + ' - icon: ' + icon)
     }
 
     /**
@@ -5573,7 +5573,7 @@ myAppService.service('dataService', function($filter, myCache) {
                 $(widgetId + ' .widget-btn-on').removeClass('btn-primary').addClass('btn-default');
                 $(widgetId + ' .widget-btn-off').removeClass('btn-default').addClass('btn-primary');
             }
-            console.log('Update device: ID: ' + v.id + ' - button ' + v.metrics.level)
+            //console.log('Update device: ID: ' + v.id + ' - button ' + v.metrics.level)
         }
 
     }
@@ -5753,14 +5753,15 @@ myAppService.service('dataService', function($filter, myCache) {
     /**
      * Get event level
      */
-    function getEventLevel(data) {
-        var collection = [];
+    function getEventLevel(data,set) {
+        var collection = (set ? set : []);
         angular.forEach(data, function(v, k) {
             collection.push({
                 'key': v.level,
                 'val': v.level
             });
         });
+        
         return $filter('unique')(collection, 'key');
     }
 
@@ -5787,7 +5788,6 @@ myAppService.service('dataService', function($filter, myCache) {
 
         });
         ret = $filter('unique')(collection, 'key');
-        //debugger;
         myCache.put(cache, ret);
         return ret;
     }
@@ -5797,17 +5797,9 @@ myAppService.service('dataService', function($filter, myCache) {
      */
     function getRowBy(data, key, val, cache) {
         var collection = null;
-//        var cached = myCache.get(cache);
-//        // Cached data
-//        if (cached) {
-//            return cached;
-//        }
         angular.forEach(data, function(v, k) {
             if (v[key] == val) {
                 collection = v;
-//                if (cache) {
-//                    myCache.put(cache, collection);
-//                }
                 return;
             }
 
@@ -6211,7 +6203,8 @@ myApp.directive('elDefault', function() {
         templateUrl: "app/views/elements/directives/default.html",
         scope: {
             v: '=',
-            levelVal: '='
+            levelVal: '=',
+            'runCmd': '='
         },
         link: function (scope, elem, attr) {}
     };
@@ -6241,7 +6234,6 @@ myApp.directive('elSwitchBinary', function() {
  * Display HTML tags in scope
  */
 myApp.filter('toTrusted', ['$sce', function($sce) {
-
         return function(text) {
             if (text == null) {
                 return '';
@@ -6325,6 +6317,19 @@ myApp.filter('hasNode', function() {
         }
         return p;
     };
+});
+/**
+ * Get segment from url
+ */
+myApp.filter('getUrlSegment', function($location) {
+  return function(segment) {
+     var ret = false;
+     var data = $location.path().split('/');
+    if(data[segment]) {
+      ret = data[segment];
+    }
+    return ret;
+  };
 });
 /**
  * Get current time
@@ -6725,6 +6730,14 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
         }
 
     };
+    
+    /**
+     * Get current filter
+     */
+    $scope.getCurrFilter = function(index,val) {
+        var path = $location.path().split('/');
+
+    };
     /**
      * Get body ID
      */
@@ -6774,6 +6787,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
         }
     };
     $scope.getProfile();
+    //console.log($scope.abcde);
 });
 /**
  * Test controller
@@ -7098,7 +7112,8 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
  */
 myAppController.controller('EventController', function($scope, $routeParams, dataFactory, dataService, paginationService, cfg) {
     $scope.collection = [];
-    $scope.eventLevel = [];
+    $scope.eventLevels = [];
+    $scope.currLevel = null;
     $scope.currentPage = 1;
     $scope.pageSize = cfg.page_results;
     $scope.reset = function() {
@@ -7115,11 +7130,12 @@ myAppController.controller('EventController', function($scope, $routeParams, dat
      */
     $scope.loadData = function() {
         dataFactory.getApiData('notifications', function(data) {
-            $scope.eventLevel = dataService.getEventLevel(data.data.notifications);
+            $scope.eventLevels = dataService.getEventLevel(data.data.notifications,[{'key':null,'val': $scope._t('lb_all')}]);
             var filter = null;
             if (angular.isDefined($routeParams.param) && angular.isDefined($routeParams.val)) {
-                filter = $routeParams;
-                angular.forEach(data.data.notifications, function(v, k) {
+                $scope.currLevel = $routeParams.val;
+                 filter = $routeParams;
+                 angular.forEach(data.data.notifications, function(v, k) {
                     if (filter && angular.isDefined(v[filter.param])) {
                         if (v[filter.param] == filter.val) {
                             $scope.collection.push(v);
@@ -7340,6 +7356,7 @@ myAppController.controller('AppController', function($scope, $window,$cookies, d
         if (input.id) {
             dataFactory.putApiData('instances', input.id, input, function(data) {
                 myCache.remove('devices');
+                 myCache.remove('instances');
             });
         }
 
@@ -7355,15 +7372,15 @@ myAppController.controller('AppController', function($scope, $window,$cookies, d
         }
         if (confirm) {
             dataFactory.deleteApiData('instances', input.id, target);
-            dataFactory.setCache(false);
-            //$scope.loadData();
+            myCache.remove('instances');
+             myCache.remove('devices'); 
         }
     };
 });
 /**
  * App controller - add module
  */
-myAppController.controller('AppModuleAlpacaController', function($scope, $routeParams, $filter, $location, dataFactory, dataService) {
+myAppController.controller('AppModuleAlpacaController', function($scope, $routeParams, $filter, $location, dataFactory, dataService, myCache) {
    $scope.showForm = false;
     $scope.success = false;
     $scope.alpacaData = true;
@@ -7382,7 +7399,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
     $scope.postModule = function(id) {
         dataFactory.getApiData('modules', function(module) {
            dataFactory.getApiData('namespaces', function(namespaces) {
-                var formData =  dataService.getModuleFormData(module.data.meta, module.data.meta.defaults, namespaces.data);
+                var formData =  dataService.getModuleFormData(module.data, module.data.defaults, namespaces.data);
                 $scope.input = {
                     'instanceId': 0,
                     'moduleId': id,
@@ -7390,7 +7407,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                     'title': $filter('hasNode')(formData, 'data.title'),
                     'description': $filter('hasNode')(formData, 'data.description'),
                     'moduleTitle': $filter('hasNode')(formData, 'data.title'),
-                    'category': module.data.meta.category
+                    'category': module.data.category
                 };
                 $scope.showForm = true;
                  if(!$filter('hasNode')(formData, 'options.fields') || !$filter('hasNode')(formData, 'schema.properties')){
@@ -7400,7 +7417,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                     
                 $('#alpaca_data').alpaca(formData);
             });
-        }, '/' + id);
+        }, '/' + id + '?lang=' + $scope.lang);
     };
 
     // Put module instance
@@ -7412,16 +7429,16 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
             var instance = data.data;
             dataFactory.getApiData('modules', function(module) {
                 dataFactory.getApiData('namespaces', function(namespaces) {
-                     var formData =  dataService.getModuleFormData(module.data.meta, instance.params, namespaces.data);
+                     var formData =  dataService.getModuleFormData(module.data, instance.params, namespaces.data);
                    
                    $scope.input = {
                         'instanceId': instance.id,
-                        'moduleId': module.data.meta.id,
+                        'moduleId': module.data.id,
                         'active': instance.active,
                         'title': instance.title,
                         'description': instance.description,
                         'moduleTitle': instance.title,
-                        'category': module.data.meta.category
+                        'category': module.data.category
                     };
                     $scope.showForm = true;
                     if(!$filter('hasNode')(formData, 'options.fields') || !$filter('hasNode')(formData, 'schema.properties')){
@@ -7433,7 +7450,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                     
                     
                 });
-            }, '/' + instance.moduleId);
+            }, '/' + instance.moduleId + '?lang=' + $scope.lang);
 
         }, '/' + id,true);
     };
@@ -7477,10 +7494,12 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
         if (input.instanceId > 0) {
             dataFactory.putApiData('instances', input.instanceId, inputData, function(data) {
                 $scope.success = true;
+                 myCache.remove('devices');
             });
         } else {
            
             dataFactory.postApiData('instances', inputData, function(data) {
+                 myCache.remove('devices');
                 $location.path('/apps');
             });
         }

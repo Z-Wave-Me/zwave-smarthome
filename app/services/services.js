@@ -94,8 +94,8 @@ myAppService.service('dataService', function($filter, myCache) {
     /**
      * Get event level
      */
-    this.getEventLevel = function(data) {
-        return getEventLevel(data);
+    this.getEventLevel = function(data,set) {
+        return getEventLevel(data,set);
     };
 
     /**
@@ -262,7 +262,7 @@ myAppService.service('dataService', function($filter, myCache) {
             }
             $(widgetId + ' .widget-level').html(val);
         }
-        console.log('Update device: ID: ' + v.id + ' - level: ' + val)
+        //console.log('Update device: ID: ' + v.id + ' - level: ' + val)
 
     }
 
@@ -274,7 +274,7 @@ myAppService.service('dataService', function($filter, myCache) {
         if (time) {
             $(widgetId + ' .widget-update-time').html(time);
         }
-        console.log('Update device: ID: ' + v.id + ' - time: ' + time)
+        //console.log('Update device: ID: ' + v.id + ' - time: ' + time)
     }
 
     /**
@@ -285,7 +285,7 @@ myAppService.service('dataService', function($filter, myCache) {
         if (icon) {
             $(widgetId + ' .widget-image').attr('src', icon);
         }
-        console.log('Update device: ID: ' + v.id + ' - icon: ' + icon)
+        //console.log('Update device: ID: ' + v.id + ' - icon: ' + icon)
     }
 
     /**
@@ -323,7 +323,7 @@ myAppService.service('dataService', function($filter, myCache) {
                 $(widgetId + ' .widget-btn-on').removeClass('btn-primary').addClass('btn-default');
                 $(widgetId + ' .widget-btn-off').removeClass('btn-default').addClass('btn-primary');
             }
-            console.log('Update device: ID: ' + v.id + ' - button ' + v.metrics.level)
+            //console.log('Update device: ID: ' + v.id + ' - button ' + v.metrics.level)
         }
 
     }
@@ -503,14 +503,15 @@ myAppService.service('dataService', function($filter, myCache) {
     /**
      * Get event level
      */
-    function getEventLevel(data) {
-        var collection = [];
+    function getEventLevel(data,set) {
+        var collection = (set ? set : []);
         angular.forEach(data, function(v, k) {
             collection.push({
                 'key': v.level,
                 'val': v.level
             });
         });
+        
         return $filter('unique')(collection, 'key');
     }
 
@@ -537,7 +538,6 @@ myAppService.service('dataService', function($filter, myCache) {
 
         });
         ret = $filter('unique')(collection, 'key');
-        //debugger;
         myCache.put(cache, ret);
         return ret;
     }
@@ -547,17 +547,9 @@ myAppService.service('dataService', function($filter, myCache) {
      */
     function getRowBy(data, key, val, cache) {
         var collection = null;
-//        var cached = myCache.get(cache);
-//        // Cached data
-//        if (cached) {
-//            return cached;
-//        }
         angular.forEach(data, function(v, k) {
             if (v[key] == val) {
                 collection = v;
-//                if (cache) {
-//                    myCache.put(cache, collection);
-//                }
                 return;
             }
 

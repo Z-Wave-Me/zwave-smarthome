@@ -6,7 +6,6 @@
  * Display HTML tags in scope
  */
 myApp.filter('toTrusted', ['$sce', function($sce) {
-
         return function(text) {
             if (text == null) {
                 return '';
@@ -90,6 +89,19 @@ myApp.filter('hasNode', function() {
         }
         return p;
     };
+});
+/**
+ * Get segment from url
+ */
+myApp.filter('getUrlSegment', function($location) {
+  return function(segment) {
+     var ret = false;
+     var data = $location.path().split('/');
+    if(data[segment]) {
+      ret = data[segment];
+    }
+    return ret;
+  };
 });
 /**
  * Get current time
