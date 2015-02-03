@@ -1316,7 +1316,7 @@ myAppController.controller('RoomConfigController', function($scope, $window, $in
  * Network controller
  */
 myAppController.controller('NetworkController', function($scope, $cookies, dataFactory, dataService) {
-    $scope.activeTab = (angular.isDefined($cookies.tab_network) ? $cookies.tab_network : 'local');
+    $scope.activeTab = (angular.isDefined($cookies.tab_network) ? $cookies.tab_network : 'battery');
     $scope.batteries = {
         'list': [],
         'cntLess20': [],
@@ -1329,6 +1329,14 @@ myAppController.controller('NetworkController', function($scope, $cookies, dataF
     $scope.notInterviewDevices = [];
     $scope.reset = function() {
         $scope.batteries = angular.copy([]);
+    };
+    
+     /**
+     * Set tab
+     */
+    $scope.setTab = function(tabId) {
+        $scope.activeTab = tabId;
+        $cookies.tab_app = tabId;
     };
 
     $scope.loadData = function() {
