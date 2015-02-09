@@ -180,10 +180,10 @@
     "nt_yp_errParse_jam_info": "Can not parse jams information.",
     "nt_yp_errFetch_jam_info": "Can not fetch yandex jam information.",
     "nt_zb_errStart_binding": "Can not start Z-Wave binding: ",
-    "nt_zb_errConct_dev_lost": "Connection lost to Z-Wave device ID: [DEVICEID] = ",
-    "nt_zb_errConct_dev_btl": "Z-Wave device ID is back to life: [DEVICEID] = ",
+    "nt_zb_errConct_dev_lost": "Connection lost to Z-Wave device ID: ",
+    "nt_zb_errConct_dev_btl": "Z-Wave device ID is back to life: ",
     "nt_zb_errCreate_vDev": "Can not create vDev based on ",
-    "nt_dm_change_metric": "Sensor or Device has changed - [DEVICETYPE] :: [DEVICE] :: [LEVEL] = ",
-    "nt_dm_change_multi_metrics": "Sensor status has changed - [DEVICETYPE] :: [DEVICE] :: [MEASUREMENT] :: [LEVEL] = ",
-    "nt_dm_change_metrics_unknown": "Device has changed metrics or status - [DEVICETYPE] :: [DEVICE] = "
+    "nt_dm_change_metric": "Sensor or Device has changed - ",
+    "nt_dm_change_multi_metrics": "Sensor status has changed - ",
+    "nt_dm_change_metrics_unknown": "Device has changed metrics or status - "
 }

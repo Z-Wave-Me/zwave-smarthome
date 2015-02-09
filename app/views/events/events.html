@@ -14,7 +14,7 @@
                         <p>
                             <span class="text-supp" title="{{v.timestamp| date:'dd.MM.yyyy H:mm'}}" ng-bind="v.timestamp | isToday"></span> <span class="badge" ng-bind="v.type"></span> 
                         </p>
-                        <span class="report-message" ng-bind="v.message"></span>
+                        <span class="report-message" ng-bind="_t(v.intlKey)"></span> <span class="report-message" ng-bind="v.bgData"></span>
                     </td>
                     <td class="td-action">
                         <div class="btn-group">

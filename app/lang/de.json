@@ -180,10 +180,10 @@
     "nt_yp_errParse_jam_info": "Fehler beim einlesen der Yandex Jam Informationen.",
     "nt_yp_errFetch_jam_info": "Fehler beim aktualisieren der Yandex Jam Informationen.",
     "nt_zb_errStart_binding": "Folgendes Z-Wave binding konnte nicht getstartet werden: ",
-    "nt_zb_errConct_dev_lost": "Die Verbindung zur folgenden Z-Wave Geräte-ID wurde verloren: [GERÄT-ID] = ",
-    "nt_zb_errConct_dev_btl": "Folgende Z-Wave Geräte-ID ist wieder verbunden: [GERÄT-ID] = ",
+    "nt_zb_errConct_dev_lost": "Die Verbindung zur folgenden Z-Wave Geräte-ID wurde verloren: ",
+    "nt_zb_errConct_dev_btl": "Folgende Z-Wave Geräte-ID ist wieder verbunden: ",
     "nt_zb_errCreate_vDev": "vDev konnte mit den folgenden Daten nicht erstellt werden: ",
-    "nt_dm_change_metric": "Der Status des folgenden Sensors oder Gerätes hat sich verändert - [GERÄTTYP] :: [GERÄT] :: [LEVEL] = ",
-    "nt_dm_change_multi_metrics": "Der Status des folgenden Sensors hat sich verändert - [GERÄTTYP] :: [GERÄT] :: [MESSUNG] :: [LEVEL] = ",
-    "nt_dm_change_metrics_unknown": "Der Status des folgenden Gerätes hat sich verändert - [GERÄTTYP] :: [GERÄT] = "
+    "nt_dm_change_metric": "Der Status des folgenden Sensors oder Gerätes hat sich verändert - ",
+    "nt_dm_change_multi_metrics": "Der Status des folgenden Sensors hat sich verändert - ",
+    "nt_dm_change_metrics_unknown": "Der Status des folgenden Gerätes hat sich verändert - "
 }
