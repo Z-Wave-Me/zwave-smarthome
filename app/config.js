@@ -37,7 +37,13 @@ var config_data = {
         // Default language
         'lang': 'en',
         // List of supported languages
-        'lang_list': ["en", "de"],
+        'lang_list': ["en", "de","ru"],
+         // List of language codes
+        'lang_codes': {
+            'en': 'en_EN',
+            'de': 'de_AT',
+            'ru': 'en_EN'
+        },
         // List of profile colors
         'profile_colors': ['#6C7A89', '#3071A9', '#449D44', '#31B0D5', '#F0AD4E', '#D9534F'],
         // Device vendors

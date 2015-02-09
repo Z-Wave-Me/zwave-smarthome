@@ -754,7 +754,7 @@ myAppController.controller('AppController', function($scope, $window,$cookies, d
 /**
  * App controller - add module
  */
-myAppController.controller('AppModuleAlpacaController', function($scope, $routeParams, $filter, $location, dataFactory, dataService, myCache) {
+myAppController.controller('AppModuleAlpacaController', function($scope, $routeParams, $filter, dataFactory, dataService) {
    $scope.showForm = false;
     $scope.success = false;
     $scope.alpacaData = true;
@@ -788,7 +788,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                      $scope.alpacaData = false;
                         return;
                     }
-                    
+                //$.alpaca.setDefaultLocale('de_AT');    
                 $('#alpaca_data').alpaca(formData);
             });
         }, '/' + id + '?lang=' + $scope.lang);
