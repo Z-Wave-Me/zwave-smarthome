@@ -12,7 +12,7 @@
     position: absolute;
     top: 10px;
     left: 10px;
-/*    margin: 10px 20px 10px 10px;*/
+    /*    margin: 10px 20px 10px 10px;*/
     width: 64px;
     height: 64px;
     border: solid 4px #fff;
@@ -28,9 +28,9 @@
     margin-top: -5px;
     padding: 0 5px 15px 84px;
     width: 100%;
-     .entry-title{
-            padding-right: 30px;
-        }
+    .entry-title{
+        padding-right: 30px;
+    }
     .widget-control-wrap{
         width: 100%;
     }
@@ -38,8 +38,8 @@
         width: 50%;
         float: left;
     }
-     .widget-control.control-left{
-         font-weight: bold;
+    .widget-control.control-left{
+        font-weight: bold;
     }
     .widget-control.control-right{
         float: right;
@@ -75,7 +75,7 @@
         margin-left:-50%;
         top: 50%;
     }
-    
+
     .element-hidden.hidden-sensor-multiline{
         height: $app-el-hidden-h + 20;
     }

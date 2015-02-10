@@ -55,20 +55,20 @@
                                         class="btn btn-sm widget-btn-off" 
                                         id="btn_off_{{ v.id}}"
                                         data-ng-click="runCmd(v.id + '/command/off')"
-                                        ng-class="v.level=='off' ? 'btn-primary': 'btn - default'"
+                                        ng-class="v.level=='off' ? 'btn-primary': 'btn-default'"
                                         >OFF</button>
                                     <button 
                                         class="btn btn-sm widget-btn-on" 
                                         id="btn_on_{{ v.id}}"
                                         data-ng-click="runCmd(v.id + '/command/on')"
-                                        ng-class="v.level=='on' ? 'btn-primary': 'btn - default'"
+                                        ng-class="v.level=='on' ? 'btn-primary': 'btn-default'"
                                         >ON</button>
                                 </div>
                             </div><!-- /.widget-control .right --> 
 
                             <!-- switchRGBW -->
                             <div class="widget-control control-right" ng-switch-when="switchRGBW">
-                            <div class="btn-group"  style="min-width: 110px !important;">
+                            <div class="btn-group">
                                 <button 
                                     class="btn widget-btn-off btn-sm" 
                                     id="btn_off_{{ v.id}}"
@@ -89,13 +89,13 @@
                                 <div class="btn-group">
                                     <button 
                                         class="btn widget-btn-off btn-sm"
-                                        ng-class="v.level=='closed' ? 'btn-primary': 'btn - default'"
+                                        ng-class="v.level=='closed' ? 'btn-primary': 'btn-default'"
                                         data-ng-click="runCmd(v.id + '/command/off')"
                                         ><i class="fa fa-lock"></i>
                                     </button>
                                     <button 
                                         class="btn widget-btn-on btn-sm"
-                                        ng-class="v.level=='open' ? 'btn-primary': 'btn - default'"
+                                        ng-class="v.level=='open' ? 'btn-primary': 'btn-default'"
                                         data-ng-click="runCmd(v.id + '/command/on')"
                                         ><i class="fa fa-unlock"></i>
                                     </button>
@@ -106,7 +106,7 @@
                              <div class="widget-control control-right" ng-switch-when="toggleButton">
                             <div class="btn-group">
                                 <button 
-                                    class="btn btn-info btn-sm" 
+                                    class="btn btn-primary btn-sm" 
                                     id="btn_off_{{ v.id}}"
                                     data-ng-click="runCmd(v.id + '/command/on')"
                                     ><i class="fa fa-power-off fa-lg"></i></button>
@@ -145,8 +145,7 @@
                             <!-- switchMultilevelLinear -->
                             <div class="widget-click-popup" ng-switch-when="switchMultilevelLinear"><strong>{{v.level}} <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span></strong> <i class="fa fa-caret-down"></i></div>
                             <!-- camera -->
-                            <div class="widget-click-popup" ng-switch-when="camera_" ng-click="showModal('#modal_camera', v)">{{v.deviceType}} <i class="fa fa-caret-down"></i></div>
-                            <div class="text-right"><a href="" class="btn btn-info" ng-switch-when="camera" ng-click="showModal('#modal_camera', v)"><i class="fa fa-play"></i></a></div>
+                            <div class="text-right"><a href="" class="btn btn-primary" ng-switch-when="camera" ng-click="showModal('#modal_camera', v)"><i class="fa fa-play"></i></a></div>
 
                             <!-- Default -->
                             <div class="widget-control control-left widget-click-popup" ng-switch-default><span class="widget-level" ng-bind="v.level"></span> <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span></div>
