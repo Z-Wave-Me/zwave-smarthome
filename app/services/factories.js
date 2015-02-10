@@ -14,7 +14,7 @@ myAppFactory.factory('myCache', function($cacheFactory) {
 /**
  * Main data factory
  */
-myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,$timeout,myCache, cfg) {
+myAppFactory.factory('dataFactory', function($http, $interval, $window, $filter, $timeout, myCache, cfg) {
     var apiDataInterval;
     var enableCache = true;
     var updatedTime = Math.round(+new Date() / 1000);
@@ -29,9 +29,9 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,$t
         updateApiData: updateApiData,
         cancelApiDataInterval: cancelApiDataInterval,
         getLanguageFile: getLanguageFile,
-         getZwaveApiData: getZwaveApiData,
-         updateZwaveApiData: updateZwaveApiData,
-         runZwaveCmd: runZwaveCmd
+        getZwaveApiData: getZwaveApiData,
+        updateZwaveApiData: updateZwaveApiData,
+        runZwaveCmd: runZwaveCmd
     });
 
     /// --- Public functions --- ///
@@ -52,13 +52,17 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,$t
      * API data
      */
     // Get
-    function getApiData(api, callback, params,noCache) {
+    function getApiData(api, callback, params, noCache) {
         var cacheName = api + (params || '');
         var request = {
             method: "get",
+//            headers: {
+//                'Accept-Encoding': 'gzip, deflate',
+//                'Allow-compression': 'gz' 
+//            },
             url: cfg.server_url + cfg.api[api] + (params ? params : '')
         };
-        return getApiHandle(callback, request, cacheName,noCache);
+        return getApiHandle(callback, request, cacheName, noCache);
     }
 
     // Post
@@ -111,20 +115,20 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,$t
     /**
      * Get updated data from the api collection.
      */
-    function  updateApiData(api,callback) {
+    function  updateApiData(api, callback) {
         var refresh = function() {
             var request = {
                 method: "get",
                 //url:  cfg.demo_url + api + '.json',
-                url: cfg.server_url + cfg.api[api] + '?since=' +  updatedTime
+                url: cfg.server_url + cfg.api[api] + '?since=' + updatedTime
             };
-            if($http.pendingRequests.length > 0){
+            if ($http.pendingRequests.length > 0) {
                 addErrorElement();
             }
             $http(request).success(function(data) {
-                
+
                 addTimeTickElement();
-                updateTimeTick($filter('hasNode')(data,'data.updateTime'));
+                updateTimeTick($filter('hasNode')(data, 'data.updateTime'));
                 return callback(data);
             }).error(function(data, status, headers, config, statusText) {
                 handleError(data, status, headers, config, statusText);
@@ -156,36 +160,36 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,$t
         };
         return getApiHandle(callback, request, langFile);
     }
-    
+
     /**
      * Get ExpertUI data
      */
     function getZwaveApiData(callback) {
         var request = {
             method: "post",
-            url: cfg.server_url + cfg.zwave_api_url  + 'Data/0'
+            url: cfg.server_url + cfg.zwave_api_url + 'Data/0'
         };
         return getApiHandle(callback, request);
     }
-    
+
     /**
      * Get updated data from ExpertUI
      */
     function  updateZwaveApiData(callback) {
-         var zTime = Math.round(+new Date() / 1000);
+        var zTime = Math.round(+new Date() / 1000);
         var refresh = function() {
             var request = {
                 method: "post",
-                url: cfg.server_url + cfg.zwave_api_url  + 'Data/' + zTime
+                url: cfg.server_url + cfg.zwave_api_url + 'Data/' + zTime
             };
-            
-            if($http.pendingRequests.length > 0){
+
+            if ($http.pendingRequests.length > 0) {
                 addErrorElement();
             }
             $http(request).success(function(data) {
-                 zTime = data.updateTime;
+                zTime = data.updateTime;
                 addTimeTickElement();
-                updateTimeTick($filter('hasNode')(data,'data.updateTime'));
+                updateTimeTick($filter('hasNode')(data, 'data.updateTime'));
                 return callback(data);
             }).error(function(data, status, headers, config, statusText) {
                 handleError(data, status, headers, config, statusText);
@@ -194,7 +198,7 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,$t
         };
         apiDataInterval = $interval(refresh, cfg.interval);
     }
-    
+
     /**
      * Run ExpertUI command
      */
@@ -217,7 +221,7 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,$t
      * Api handle
      */
     // GET
-    function getApiHandle(callback, request, cacheName,noCache) {
+    function getApiHandle(callback, request, cacheName, noCache) {
         var cached = null;
         if (!noCache) {
             cached = myCache.get(cacheName);
@@ -228,12 +232,12 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,$t
             return callback(cached);
         } else {
             console.log('NOT CACHED: ' + cacheName);
-            if($http.pendingRequests.length > 0){
+            if ($http.pendingRequests.length > 0) {
                 addErrorElement();
             }
             return $http(request).success(function(data) {
                 addTimeTickElement();
-                updateTimeTick($filter('hasNode')(data,'data.updateTime'));
+                updateTimeTick($filter('hasNode')(data, 'data.updateTime'));
                 myCache.put(cacheName, data);
                 return callback(data);
             }).error(function(data, status, headers, config, statusText) {
@@ -271,7 +275,7 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,$t
      */
     function handleError(data, status, headers, config, statusText) {
         var msg = 'Can`t receive data from the remote server';
-       addErrorElement();
+        addErrorElement();
         return;
 
 
@@ -279,7 +283,7 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,$t
 
     function handlePostError(data, status, headers, config, statusText) {
         var msg = 'Can`t store data in the remote server';
-       $window.alert(msg);
+        $window.alert(msg);
         console.log(config);
         return;
 
@@ -302,26 +306,26 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,$t
         enableCache = enable;
         return;
     }
-     /**
+    /**
      * Add add error element
      */
     function addErrorElement() {
-         $('.navi-time').html('<i class="fa fa-minus-circle fa-lg text-danger"></i>');
+        $('.navi-time').html('<i class="fa fa-minus-circle fa-lg text-danger"></i>');
     }
-     /**
+    /**
      * Add spinner
      */
     function addSpinnerElement() {
-         $('.navi-time').html('<i class="fa fa-spinner fa-spin"></i>');
+        $('.navi-time').html('<i class="fa fa-spinner fa-spin"></i>');
     }
-    
+
     /**
      * Add time tick
      */
     function addTimeTickElement() {
-         $('.navi-time').html('<i class="fa fa-clock-o"></i> <span id="update_time_tick"></span>');
+        $('.navi-time').html('<i class="fa fa-clock-o"></i> <span id="update_time_tick"></span>');
     }
-    
+
     /**
      * Update time tick
      */

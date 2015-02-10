@@ -23,10 +23,9 @@
             <p>
             <span ng-if="batteries.list.length > 0"><strong ng-bind="batteries.list.length"></strong> <span ng-bind="_t('lb_battery_devices')"></span>,</span>
             <span ng-if="batteries.cntLess20.length > 0"><strong ng-bind="batteries.cntLess20.length"></strong> <span ng-bind="_t('lb_battery_20')"></span>, </span> 
-            <span ng-if="batteries.cnt0.length > 0"><strong  ng-bind="batteries.cnt0.length"></strong> <span ng-bind="_t('lb_battery_0')"></span> </span> 
-            <span class="label label-default label-more" ng-click="showBatteryList = !showBatteryList">{{_t('lb_more')}} <i class="fa fa-caret-down"></i></span>
+            <span ng-if="batteries.cnt0.length > 0"><strong  ng-bind="batteries.cnt0.length"></strong> <span ng-bind="_t('lb_battery_0')"></span> </span>
         </p>
-        <table class="table table-report table-condensed" ng-show="showBatteryList">
+        <table class="table table-report table-condensed">
             <tbody>
                 <tr ng-repeat="v in batteries.list| orderBy:predicate:reverse" id="{{ v.rowId}}">
                     <td>

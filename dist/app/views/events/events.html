@@ -1,5 +1,6 @@
 <!-- Events view -->
 <div ng-controller="EventController">
+    
     <div class="table-responsive_">
         <table class="table table-report table-events">
             <tbody>
@@ -25,7 +26,7 @@
                             </button>
                             <ul class="dropdown-menu pull-right">
                                 <li><a href="" ng-click="markAsRead(v.id)" ng-bind="_t('lb_mark_read')"></a></li>
-                                <li><a href="#events/device/{{v.id}}" ng-bind="_t('lb_events_source')"></a></li> 
+                                <li><a ng-href="#events/source/{{v.source}}" ng-bind="_t('lb_events_source')"></a></li>  
                             </ul>
                         </div>
                     </td>
@@ -49,7 +50,11 @@
                         </button>
                         <ul class="dropdown-menu">
                             <li ng-repeat="v in eventLevels" ng-class="v.key == currLevel ? 'active':''">
-                                <a href="#events/level/{{v.key}}" ng-init="v.val"></a> 
+                                <a href="#events/level/{{v.key}}" ng-bind="v.val"></a> 
+                            </li>
+                            <li class="divider"></li>
+                            <li ng-repeat="v in eventSources" ng-class="v.key == currSource ? 'active':''">
+                                <a href="#events/source/{{v.key}}" ng-bind="devices[v.key] ? devices[v.key] : v.val"></a> 
                             </li>
                         </ul>
                     </div>

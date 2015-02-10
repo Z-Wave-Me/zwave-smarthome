@@ -4928,7 +4928,7 @@ myAppFactory.factory('myCache', function($cacheFactory) {
 /**
  * Main data factory
  */
-myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,$timeout,myCache, cfg) {
+myAppFactory.factory('dataFactory', function($http, $interval, $window, $filter, $timeout, myCache, cfg) {
     var apiDataInterval;
     var enableCache = true;
     var updatedTime = Math.round(+new Date() / 1000);
@@ -4943,9 +4943,9 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,$t
         updateApiData: updateApiData,
         cancelApiDataInterval: cancelApiDataInterval,
         getLanguageFile: getLanguageFile,
-         getZwaveApiData: getZwaveApiData,
-         updateZwaveApiData: updateZwaveApiData,
-         runZwaveCmd: runZwaveCmd
+        getZwaveApiData: getZwaveApiData,
+        updateZwaveApiData: updateZwaveApiData,
+        runZwaveCmd: runZwaveCmd
     });
 
     /// --- Public functions --- ///
@@ -4966,13 +4966,17 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,$t
      * API data
      */
     // Get
-    function getApiData(api, callback, params,noCache) {
+    function getApiData(api, callback, params, noCache) {
         var cacheName = api + (params || '');
         var request = {
             method: "get",
+//            headers: {
+//                'Accept-Encoding': 'gzip, deflate',
+//                'Allow-compression': 'gz' 
+//            },
             url: cfg.server_url + cfg.api[api] + (params ? params : '')
         };
-        return getApiHandle(callback, request, cacheName,noCache);
+        return getApiHandle(callback, request, cacheName, noCache);
     }
 
     // Post
@@ -5025,20 +5029,20 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,$t
     /**
      * Get updated data from the api collection.
      */
-    function  updateApiData(api,callback) {
+    function  updateApiData(api, callback) {
         var refresh = function() {
             var request = {
                 method: "get",
                 //url:  cfg.demo_url + api + '.json',
-                url: cfg.server_url + cfg.api[api] + '?since=' +  updatedTime
+                url: cfg.server_url + cfg.api[api] + '?since=' + updatedTime
             };
-            if($http.pendingRequests.length > 0){
+            if ($http.pendingRequests.length > 0) {
                 addErrorElement();
             }
             $http(request).success(function(data) {
-                
+
                 addTimeTickElement();
-                updateTimeTick($filter('hasNode')(data,'data.updateTime'));
+                updateTimeTick($filter('hasNode')(data, 'data.updateTime'));
                 return callback(data);
             }).error(function(data, status, headers, config, statusText) {
                 handleError(data, status, headers, config, statusText);
@@ -5070,36 +5074,36 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,$t
         };
         return getApiHandle(callback, request, langFile);
     }
-    
+
     /**
      * Get ExpertUI data
      */
     function getZwaveApiData(callback) {
         var request = {
             method: "post",
-            url: cfg.server_url + cfg.zwave_api_url  + 'Data/0'
+            url: cfg.server_url + cfg.zwave_api_url + 'Data/0'
         };
         return getApiHandle(callback, request);
     }
-    
+
     /**
      * Get updated data from ExpertUI
      */
     function  updateZwaveApiData(callback) {
-         var zTime = Math.round(+new Date() / 1000);
+        var zTime = Math.round(+new Date() / 1000);
         var refresh = function() {
             var request = {
                 method: "post",
-                url: cfg.server_url + cfg.zwave_api_url  + 'Data/' + zTime
+                url: cfg.server_url + cfg.zwave_api_url + 'Data/' + zTime
             };
-            
-            if($http.pendingRequests.length > 0){
+
+            if ($http.pendingRequests.length > 0) {
                 addErrorElement();
             }
             $http(request).success(function(data) {
-                 zTime = data.updateTime;
+                zTime = data.updateTime;
                 addTimeTickElement();
-                updateTimeTick($filter('hasNode')(data,'data.updateTime'));
+                updateTimeTick($filter('hasNode')(data, 'data.updateTime'));
                 return callback(data);
             }).error(function(data, status, headers, config, statusText) {
                 handleError(data, status, headers, config, statusText);
@@ -5108,7 +5112,7 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,$t
         };
         apiDataInterval = $interval(refresh, cfg.interval);
     }
-    
+
     /**
      * Run ExpertUI command
      */
@@ -5131,7 +5135,7 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,$t
      * Api handle
      */
     // GET
-    function getApiHandle(callback, request, cacheName,noCache) {
+    function getApiHandle(callback, request, cacheName, noCache) {
         var cached = null;
         if (!noCache) {
             cached = myCache.get(cacheName);
@@ -5142,12 +5146,12 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,$t
             return callback(cached);
         } else {
             console.log('NOT CACHED: ' + cacheName);
-            if($http.pendingRequests.length > 0){
+            if ($http.pendingRequests.length > 0) {
                 addErrorElement();
             }
             return $http(request).success(function(data) {
                 addTimeTickElement();
-                updateTimeTick($filter('hasNode')(data,'data.updateTime'));
+                updateTimeTick($filter('hasNode')(data, 'data.updateTime'));
                 myCache.put(cacheName, data);
                 return callback(data);
             }).error(function(data, status, headers, config, statusText) {
@@ -5185,7 +5189,7 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,$t
      */
     function handleError(data, status, headers, config, statusText) {
         var msg = 'Can`t receive data from the remote server';
-       addErrorElement();
+        addErrorElement();
         return;
 
 
@@ -5193,7 +5197,7 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,$t
 
     function handlePostError(data, status, headers, config, statusText) {
         var msg = 'Can`t store data in the remote server';
-       $window.alert(msg);
+        $window.alert(msg);
         console.log(config);
         return;
 
@@ -5216,26 +5220,26 @@ myAppFactory.factory('dataFactory', function($http, $interval,$window,$filter,$t
         enableCache = enable;
         return;
     }
-     /**
+    /**
      * Add add error element
      */
     function addErrorElement() {
-         $('.navi-time').html('<i class="fa fa-minus-circle fa-lg text-danger"></i>');
+        $('.navi-time').html('<i class="fa fa-minus-circle fa-lg text-danger"></i>');
     }
-     /**
+    /**
      * Add spinner
      */
     function addSpinnerElement() {
-         $('.navi-time').html('<i class="fa fa-spinner fa-spin"></i>');
+        $('.navi-time').html('<i class="fa fa-spinner fa-spin"></i>');
     }
-    
+
     /**
      * Add time tick
      */
     function addTimeTickElement() {
-         $('.navi-time').html('<i class="fa fa-clock-o"></i> <span id="update_time_tick"></span>');
+        $('.navi-time').html('<i class="fa fa-clock-o"></i> <span id="update_time_tick"></span>');
     }
-    
+
     /**
      * Update time tick
      */
@@ -5414,6 +5418,7 @@ myAppService.service('dataService', function($filter, myCache) {
             var instance;
             var hasInstance = false;
             var zwaveId = false;
+            var level = $filter('numberFixedLen')(v.metrics.level);
             if (v.permanently_hidden || v.deviceType == 'battery') {
                 return;
             }
@@ -5429,12 +5434,15 @@ myAppService.service('dataService', function($filter, myCache) {
             if (v.id.indexOf(findZwaveStr) > -1) {
                 zwaveId = v.id.split(findZwaveStr)[1].split('-')[0];
             } else {
-
                 instance = getRowBy(instances, 'id', v.creatorId);
                 if (instance && instance['moduleId'] != 'ZWave') {
                     hasInstance = instance;
 
                 }
+            }
+            
+            if(v.deviceType == 'switchMultilevel'){
+                level = $filter('getMaxLevel')(level);
             }
             obj = {
                 'id': v.id,
@@ -5443,7 +5451,7 @@ myAppService.service('dataService', function($filter, myCache) {
                 'metrics': v.metrics,
                 'tags': v.tags,
                 'permanently_hidden': v.permanently_hidden,
-                'level': $filter('numberFixedLen')(v.metrics.level),
+                'level': level,
                 'icon': v.metrics.icon,
                 'probeTitle': v.metrics.probeTitle,
                 'scaleTitle': v.metrics.scaleTitle,
@@ -6417,7 +6425,7 @@ myApp.filter('getElementIcon', function(cfg) {
 myApp.filter('getMaxLevel', function() {
     return function(input) {
         var maxLevel = 100;
-        var levelVal = (input < 101 ? input : 100);
+        var levelVal = (input < 100 ? input : 99);
         return levelVal;
     };
 });
@@ -6785,7 +6793,14 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
         }
     };
     $scope.getProfile();
-    //console.log($scope.abcde);
+    /**
+     * Redirect to given url
+     */
+    $scope.redirectToRoute = function(url) {
+        if (url) {
+            $location.path(url);
+        }
+    };
 });
 /**
  * Test controller
@@ -7112,9 +7127,11 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
 /**
  * Event controller
  */
-myAppController.controller('EventController', function($scope, $routeParams, dataFactory, dataService, paginationService, cfg) {
+myAppController.controller('EventController', function($scope, $routeParams, $location, dataFactory, dataService, paginationService, cfg) {
     $scope.collection = [];
     $scope.eventLevels = [];
+    $scope.eventSources = [];
+    $scope.devices = [];
     $scope.currLevel = null;
     $scope.currentPage = 1;
     $scope.pageSize = cfg.page_results;
@@ -7133,8 +7150,10 @@ myAppController.controller('EventController', function($scope, $routeParams, dat
     $scope.loadData = function() {
         dataFactory.getApiData('notifications', function(data) {
             $scope.eventLevels = dataService.getEventLevel(data.data.notifications,[{'key':null,'val': $scope._t('lb_all')}]);
-            var filter = null;
+            $scope.eventSources = dataService.getPairs(data.data.notifications,'source','source');
+             var filter = null;
             if (angular.isDefined($routeParams.param) && angular.isDefined($routeParams.val)) {
+                $scope.currSource = $routeParams.val;
                 $scope.currLevel = $routeParams.val;
                  filter = $routeParams;
                  angular.forEach(data.data.notifications, function(v, k) {
@@ -7151,7 +7170,20 @@ myAppController.controller('EventController', function($scope, $routeParams, dat
             //console.log($scope.eventLevel);
         });
     };
-    $scope.loadData();
+    $scope.loadData(); 
+    
+    /**
+     * Load devices
+     */
+    $scope.loadDevices = function() {
+        dataFactory.getApiData('devices', function(data) {
+            angular.forEach(data.data.devices, function(v, k) {
+                 $scope.devices[v.id] = v.metrics.title;
+            });
+        });
+    };
+    $scope.loadDevices();
+    
     /**
      * Update data into collection
      */
@@ -7381,7 +7413,7 @@ myAppController.controller('AppController', function($scope, $window,$cookies, d
 /**
  * App controller - add module
  */
-myAppController.controller('AppModuleAlpacaController', function($scope, $routeParams, $filter, dataFactory, dataService) {
+myAppController.controller('AppModuleAlpacaController', function($scope, $routeParams, $filter, dataFactory, dataService,cfg) {
    $scope.showForm = false;
     $scope.success = false;
     $scope.alpacaData = true;
@@ -7401,6 +7433,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
         dataFactory.getApiData('modules', function(module) {
            dataFactory.getApiData('namespaces', function(namespaces) {
                 var formData =  dataService.getModuleFormData(module.data, module.data.defaults, namespaces.data);
+                var langCode = (angular.isDefined(cfg.lang_codes[$scope.lang]) ? cfg.lang_codes[$scope.lang] : null);
                 $scope.input = {
                     'instanceId': 0,
                     'moduleId': id,
@@ -7415,7 +7448,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                      $scope.alpacaData = false;
                         return;
                     }
-                //$.alpaca.setDefaultLocale('de_AT');    
+                $.alpaca.setDefaultLocale(langCode);    
                 $('#alpaca_data').alpaca(formData);
             });
         }, '/' + id + '?lang=' + $scope.lang);
@@ -7998,9 +8031,8 @@ myAppController.controller('NetworkController', function($scope, $cookies, dataF
                         obj['id'] = v.id;
                         obj['metrics'] = v.metrics;
                         obj['messages'] = [];
-
+                        obj['messages'].push($scope._t('lb_not_configured'));
                         var interviewDone = ZWaveAPIData.devices[nodeId].instances[iId].commandClasses[ccId].data.interviewDone.value;
-                         obj['messages'].push($scope._t('lb_not_configured'));
                         /*if (!interviewDone) {
                             obj['messages'].push($scope._t('lb_not_configured'));
                         }*/

@@ -164,6 +164,7 @@ myAppService.service('dataService', function($filter, myCache) {
             var instance;
             var hasInstance = false;
             var zwaveId = false;
+            var level = $filter('numberFixedLen')(v.metrics.level);
             if (v.permanently_hidden || v.deviceType == 'battery') {
                 return;
             }
@@ -179,12 +180,15 @@ myAppService.service('dataService', function($filter, myCache) {
             if (v.id.indexOf(findZwaveStr) > -1) {
                 zwaveId = v.id.split(findZwaveStr)[1].split('-')[0];
             } else {
-
                 instance = getRowBy(instances, 'id', v.creatorId);
                 if (instance && instance['moduleId'] != 'ZWave') {
                     hasInstance = instance;
 
                 }
+            }
+            
+            if(v.deviceType == 'switchMultilevel'){
+                level = $filter('getMaxLevel')(level);
             }
             obj = {
                 'id': v.id,
@@ -193,7 +197,7 @@ myAppService.service('dataService', function($filter, myCache) {
                 'metrics': v.metrics,
                 'tags': v.tags,
                 'permanently_hidden': v.permanently_hidden,
-                'level': $filter('numberFixedLen')(v.metrics.level),
+                'level': level,
                 'icon': v.metrics.icon,
                 'probeTitle': v.metrics.probeTitle,
                 'scaleTitle': v.metrics.scaleTitle,

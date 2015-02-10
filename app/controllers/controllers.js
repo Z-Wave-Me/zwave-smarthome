@@ -158,7 +158,14 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
         }
     };
     $scope.getProfile();
-    //console.log($scope.abcde);
+    /**
+     * Redirect to given url
+     */
+    $scope.redirectToRoute = function(url) {
+        if (url) {
+            $location.path(url);
+        }
+    };
 });
 /**
  * Test controller
@@ -485,9 +492,11 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
 /**
  * Event controller
  */
-myAppController.controller('EventController', function($scope, $routeParams, dataFactory, dataService, paginationService, cfg) {
+myAppController.controller('EventController', function($scope, $routeParams, $location, dataFactory, dataService, paginationService, cfg) {
     $scope.collection = [];
     $scope.eventLevels = [];
+    $scope.eventSources = [];
+    $scope.devices = [];
     $scope.currLevel = null;
     $scope.currentPage = 1;
     $scope.pageSize = cfg.page_results;
@@ -506,8 +515,10 @@ myAppController.controller('EventController', function($scope, $routeParams, dat
     $scope.loadData = function() {
         dataFactory.getApiData('notifications', function(data) {
             $scope.eventLevels = dataService.getEventLevel(data.data.notifications,[{'key':null,'val': $scope._t('lb_all')}]);
-            var filter = null;
+            $scope.eventSources = dataService.getPairs(data.data.notifications,'source','source');
+             var filter = null;
             if (angular.isDefined($routeParams.param) && angular.isDefined($routeParams.val)) {
+                $scope.currSource = $routeParams.val;
                 $scope.currLevel = $routeParams.val;
                  filter = $routeParams;
                  angular.forEach(data.data.notifications, function(v, k) {
@@ -524,7 +535,20 @@ myAppController.controller('EventController', function($scope, $routeParams, dat
             //console.log($scope.eventLevel);
         });
     };
-    $scope.loadData();
+    $scope.loadData(); 
+    
+    /**
+     * Load devices
+     */
+    $scope.loadDevices = function() {
+        dataFactory.getApiData('devices', function(data) {
+            angular.forEach(data.data.devices, function(v, k) {
+                 $scope.devices[v.id] = v.metrics.title;
+            });
+        });
+    };
+    $scope.loadDevices();
+    
     /**
      * Update data into collection
      */
@@ -754,7 +778,7 @@ myAppController.controller('AppController', function($scope, $window,$cookies, d
 /**
  * App controller - add module
  */
-myAppController.controller('AppModuleAlpacaController', function($scope, $routeParams, $filter, dataFactory, dataService) {
+myAppController.controller('AppModuleAlpacaController', function($scope, $routeParams, $filter, dataFactory, dataService,cfg) {
    $scope.showForm = false;
     $scope.success = false;
     $scope.alpacaData = true;
@@ -774,6 +798,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
         dataFactory.getApiData('modules', function(module) {
            dataFactory.getApiData('namespaces', function(namespaces) {
                 var formData =  dataService.getModuleFormData(module.data, module.data.defaults, namespaces.data);
+                var langCode = (angular.isDefined(cfg.lang_codes[$scope.lang]) ? cfg.lang_codes[$scope.lang] : null);
                 $scope.input = {
                     'instanceId': 0,
                     'moduleId': id,
@@ -788,7 +813,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                      $scope.alpacaData = false;
                         return;
                     }
-                //$.alpaca.setDefaultLocale('de_AT');    
+                $.alpaca.setDefaultLocale(langCode);    
                 $('#alpaca_data').alpaca(formData);
             });
         }, '/' + id + '?lang=' + $scope.lang);
@@ -1371,9 +1396,8 @@ myAppController.controller('NetworkController', function($scope, $cookies, dataF
                         obj['id'] = v.id;
                         obj['metrics'] = v.metrics;
                         obj['messages'] = [];
-
+                        obj['messages'].push($scope._t('lb_not_configured'));
                         var interviewDone = ZWaveAPIData.devices[nodeId].instances[iId].commandClasses[ccId].data.interviewDone.value;
-                         obj['messages'].push($scope._t('lb_not_configured'));
                         /*if (!interviewDone) {
                             obj['messages'].push($scope._t('lb_not_configured'));
                         }*/

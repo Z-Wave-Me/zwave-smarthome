@@ -72,13 +72,13 @@
                                 <button 
                                     class="btn widget-btn-off btn-sm" 
                                     id="btn_off_{{ v.id}}"
-                                    ng-class="v.level=='off' ? 'btn-primary': 'btn - default'"
+                                    ng-class="v.level=='off' ? 'btn-primary': 'btn-default'"
                                     data-ng-click="runCmd(v.id + '/command/close')"
                                     >CLOSE</button>
                                 <button 
                                     class="btn widget-btn-on btn-sm" 
                                     id="btn_on_{{ v.id}}"
-                                    ng-class="v.level=='on' ? 'btn-primary': 'btn - default'"
+                                    ng-class="v.level=='on' ? 'btn-primary': 'btn-default'"
                                     data-ng-click="runCmd(v.id + '/command/open')"
                                     >OPEN</button>
                             </div>
@@ -170,7 +170,7 @@
                                                     data-width="100" 
                                                     data-height="100" 
                                                     data-min="0"
-                                                    data-max="100" 
+                                                    data-max="99" 
                                                     knob-id="v.id" 
                                                     knob-data="v.level" 
                                                     knob-options="knobopt" 

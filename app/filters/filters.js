@@ -188,7 +188,7 @@ myApp.filter('getElementIcon', function(cfg) {
 myApp.filter('getMaxLevel', function() {
     return function(input) {
         var maxLevel = 100;
-        var levelVal = (input < 101 ? input : 100);
+        var levelVal = (input < 100 ? input : 99);
         return levelVal;
     };
 });
