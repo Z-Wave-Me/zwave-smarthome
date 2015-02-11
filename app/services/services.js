@@ -56,6 +56,13 @@ myAppService.service('dataService', function($filter, myCache) {
     };
 
     /**
+     * Get chart data
+     */
+    this.getChartData = function(data,colors) {
+        return getChartData(data,colors);
+    };
+
+    /**
      * Get tags
      */
     this.getTags = function(data) {
@@ -94,8 +101,8 @@ myAppService.service('dataService', function($filter, myCache) {
     /**
      * Get event level
      */
-    this.getEventLevel = function(data,set) {
-        return getEventLevel(data,set);
+    this.getEventLevel = function(data, set) {
+        return getEventLevel(data, set);
     };
 
     /**
@@ -186,8 +193,8 @@ myAppService.service('dataService', function($filter, myCache) {
 
                 }
             }
-            
-            if(v.deviceType == 'switchMultilevel'){
+
+            if (v.deviceType == 'switchMultilevel') {
                 level = $filter('getMaxLevel')(level);
             }
             obj = {
@@ -265,7 +272,7 @@ myAppService.service('dataService', function($filter, myCache) {
                     break;
             }
             $(widgetId + ' .widget-level').html(val);
-             $(widgetId + ' .widget-level-knob').val(val);
+            $(widgetId + ' .widget-level-knob').val(val);
         }
         //console.log('Update device: ID: ' + v.id + ' - level: ' + val)
 
@@ -332,6 +339,33 @@ myAppService.service('dataService', function($filter, myCache) {
         }
 
     }
+
+    /**
+     * Get chart data
+     */
+    function getChartData(data,colors) {
+        if (!angular.isObject(data,colors)) {
+            return null;
+        }
+        var out = {
+            labels: [],
+            datasets: [{
+                    fillColor: colors.fillColor,
+                    strokeColor: colors.strokeColor,
+                    pointColor: colors.pointColor,
+                    pointStrokeColor: colors.pointStrokeColor,
+                    data: []
+                }]
+        };
+        
+        angular.forEach(data, function(v, k) {
+            out.labels.push($filter('date')(v.timestamp,'H:mm'));
+            //out.labels.push($filter('date')(v.timestamp,'dd.MM.yyyy H:mm'));
+            out.datasets[0].data.push(v.level);
+
+        });
+        return out;
+    };
 
     /**
      * Get instances data
@@ -412,7 +446,7 @@ myAppService.service('dataService', function($filter, myCache) {
      * Build an array from namespaces
      */
     function buildArrayFromNamespaces(enums, namespaces, namespaceKey) {
-         
+
         var collection = [];
         var namesp = enums.split(',');
         if (!angular.isArray(namesp)) {
@@ -424,14 +458,14 @@ myAppService.service('dataService', function($filter, myCache) {
                 return false;
             }
             angular.forEach(namespaces, function(nm, km) {
-               if (nm.id == id[1]) {
+                if (nm.id == id[1]) {
                     angular.forEach(nm.params, function(i, n) {
                         collection.push(i[namespaceKey]);
                     });
                 }
             });
         });
-       
+
         return collection;
     }
     /**
@@ -508,7 +542,7 @@ myAppService.service('dataService', function($filter, myCache) {
     /**
      * Get event level
      */
-    function getEventLevel(data,set) {
+    function getEventLevel(data, set) {
         var collection = (set ? set : []);
         angular.forEach(data, function(v, k) {
             collection.push({
@@ -516,7 +550,7 @@ myAppService.service('dataService', function($filter, myCache) {
                 'val': v.level
             });
         });
-        
+
         return $filter('unique')(collection, 'key');
     }
 

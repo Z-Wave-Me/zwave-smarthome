@@ -116,8 +116,8 @@
                              
                             <!-- sensorMultilevel -->
                             <div  ng-switch-when="sensorMultilevel">
-                                <div class="widget-control control-left">
-                                       <span class="widget-level" ng-bind="v.level"></span> <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span>
+                                <div class="widget-control control-left widget-click-popup">
+                                       <span class="widget-level" ng-bind="v.level"></span> <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span> <i class="fa fa-caret-down"></i>
                                     </div>
 
                                     <div class="widget-control control-right">
@@ -258,15 +258,15 @@
                         </div>
 
                         <!-- Hidden sensorMultilevel -->
-                        <div class="col-sm-11 element-hidden hidden-sensor-multilevel" ng-switch-when="sensorMultilevel__" ng-show="goHidden">
-                            <p class="text-center">{{v.title}}</p>
+                        <div class="col-sm-11 element-hidden hidden-sensor-multilevel" ng-switch-when="sensorMultilevel" ng-show="goHidden">
+                            <p class="text-center popup-title">{{v.title |cutText:true:30}}</p>
                             <div>
                                 <canvas tc-chartjs-line chart-data="chartData" chart-options="chartOptions" width="260" height="150"></canvas>
                             </div>
                         </div>
 
-                        <!-- Hidden sensorMultilevel zwaveWeather -->
-                        <div class="col-sm-11 element-hidden hidden-sensor-multiline" ng-if="v.metrics.zwaveOpenWeather" ng-show="goHidden">
+                        <!-- Hidden sensorMultiline -->
+                        <div class="col-sm-11 element-hidden hidden-sensor-multiline"  ng-switch-when="sensorMultiline" ng-show="goHidden">
                             <div class="text-center">
                                 <h4>{{v.title}}, {{v.metrics.country}}</h4>
                                 <img ng-src="{{v.metrics.flag}}">

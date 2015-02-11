@@ -20,7 +20,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
         'name': 'Default',
         'cssClass': 'profile-default',
         'active': true,
-        'lang': cfg.lang, 
+        'lang': cfg.lang,
         'positions': []
     };
     /**
@@ -51,7 +51,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
     $scope.$watch('lang', function() {
         $scope.loadLang($scope.lang);
     });
-    
+
     /**
      * Set time
      */
@@ -60,13 +60,13 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
         $('#update_time_tick').html($filter('getCurrentTime')(time));
     };
     $scope.setTime();
-    
+
     // Order by
     $scope.orderBy = function(field) {
         $scope.predicate = field;
         $scope.reverse = !$scope.reverse;
     };
-    
+
     /**
      * Load base data (profiles, languages)
      */
@@ -77,7 +77,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
         });
     };
     $scope.loadBaseData();
-    
+
     /**
      * Get body ID
      */
@@ -101,11 +101,11 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
         }
 
     };
-    
+
     /**
      * Get current filter
      */
-    $scope.getCurrFilter = function(index,val) {
+    $scope.getCurrFilter = function(index, val) {
         var path = $location.path().split('/');
 
     };
@@ -171,58 +171,207 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
  * Test controller
  */
 myAppController.controller('TestController', function($scope, $routeParams, $filter, $location, dataFactory, dataService) {
-    $scope.collection = [];
-    $scope.loadData = function() {
-        //getData(callback,api,cache,params)
-        dataFactory.getApiData('devices', function(data) {
-            var filter = null;
-            $scope.deviceType = dataService.getDeviceType(data.data.devices);
-            $scope.tags = dataService.getTags(data.data.devices);
-            dataFactory.getApiData('profiles', function(data) {
-                var profile = dataService.getRowBy(data.data, 'id', $scope.profile.id);
-                $scope.profileData = {
-                    'id': profile ? profile.id : 1,
-                    'name': profile ? profile.name : 'Default',
-                    'positions': profile ? profile.positions : []
-                };
-            });
-            dataFactory.getApiData('locations', function(data) {
-                $scope.rooms = data.data;
-            });
-            if (angular.isDefined($routeParams.filter) && angular.isDefined($routeParams.val)) {
-                switch ($routeParams.filter) {
-                    case 'dashboard':
-                        $scope.showFooter = false;
-                        filter = {filter: "onDashboard", val: true};
-                        break;
-                    case 'deviceType':
-                        filter = $routeParams;
-                        break;
-                    case 'tags':
-                        filter = $routeParams;
-                        break;
-                    case 'location':
-                        $scope.showFooter = false;
-                        filter = $routeParams;
-                        dataFactory.getApiData('locations', function(rooms) {
-                            //getRowBy(data, key, val, cache);
-                            var room = dataService.getRowBy(rooms.data, 'id', $routeParams.val, 'room_' + $routeParams.val);
-                            if (room) {
-                                $scope.headline = $scope._t('lb_devices_room') + ' ' + room.title;
-                            }
-                        });
-                        break;
-                    default:
-                        break;
-                }
-            }
-            dataFactory.getApiData('instances', function(instances) {
-                $scope.collection = dataService.getDevices(data.data.devices, filter, $scope.profileData.positions, instances.data);
-            });
+
+    $scope.devices = [
+  {
+    "id": "54db2d487c2b6fd81175bbfa",
+    "deviceType": "Ecosys",
+    "metricsHistory": [
+      {
+        "timestamp": "2015-02-10T12:28:12.061Z",
+        "level": 7
+      },
+      {
+        "timestamp": "2015-02-10T12:28:12.061Z",
+        "level": 7
+      },
+      {
+        "timestamp": "2015-02-10T12:28:12.061Z",
+        "level": 5
+      },
+      {
+        "timestamp": "2015-02-10T12:28:12.061Z",
+        "level": 7
+      },
+      {
+        "timestamp": "2015-02-10T12:28:12.061Z",
+        "level": 4
+      },
+      {
+        "timestamp": "2015-02-10T12:28:12.061Z",
+        "level": 4
+      },
+      {
+        "timestamp": "2015-02-10T12:28:12.061Z",
+        "level": 8
+      },
+      {
+        "timestamp": "2015-02-10T12:28:12.061Z",
+        "level": 7
+      },
+      {
+        "timestamp": "2015-02-10T12:28:12.061Z",
+        "level": 7
+      },
+      {
+        "timestamp": "2015-02-10T12:28:12.061Z",
+        "level": 9
+      }
+    ]
+  },
+  {
+    "id": "54db2d48002ee11b40dc5716",
+    "deviceType": "Microluxe",
+    "metricsHistory": [
+      {
+        "timestamp": "2015-02-10T12:28:12.061Z",
+        "level": 8
+      },
+      {
+        "timestamp": "2015-02-10T12:28:12.061Z",
+        "level": 3
+      },
+      {
+        "timestamp": "2015-02-10T12:28:12.061Z",
+        "level": 3
+      },
+      {
+        "timestamp": "2015-02-10T12:28:12.061Z",
+        "level": 6
+      },
+      {
+        "timestamp": "2015-02-10T12:28:12.061Z",
+        "level": 5
+      },
+      {
+        "timestamp": "2015-02-10T12:28:12.061Z",
+        "level": 5
+      },
+      {
+        "timestamp": "2015-02-10T12:28:12.061Z",
+        "level": 8
+      },
+      {
+        "timestamp": "2015-02-10T12:28:12.061Z",
+        "level": 10
+      },
+      {
+        "timestamp": "2015-02-10T12:28:12.061Z",
+        "level": 8
+      },
+      {
+        "timestamp": "2015-02-10T12:28:12.061Z",
+        "level": 3
+      }
+    ]
+  },
+  {
+    "id": "54db2d489de8189686602b4d",
+    "deviceType": "Aeora",
+    "metricsHistory": [
+      {
+        "timestamp": "2015-02-10T12:28:12.061Z",
+        "level": 5
+      },
+      {
+        "timestamp": "2015-02-10T12:28:12.061Z",
+        "level": 5
+      },
+      {
+        "timestamp": "2015-02-10T12:28:12.061Z",
+        "level": 6
+      },
+      {
+        "timestamp": "2015-02-10T12:28:12.061Z",
+        "level": 3
+      },
+      {
+        "timestamp": "2015-02-10T12:28:12.061Z",
+        "level": 8
+      },
+      {
+        "timestamp": "2015-02-10T12:28:12.061Z",
+        "level": 9
+      },
+      {
+        "timestamp": "2015-02-10T12:28:12.061Z",
+        "level": 8
+      },
+      {
+        "timestamp": "2015-02-10T12:28:12.061Z",
+        "level": 10
+      },
+      {
+        "timestamp": "2015-02-10T12:28:12.061Z",
+        "level": 5
+      },
+      {
+        "timestamp": "2015-02-10T12:28:12.061Z",
+        "level": 7
+      }
+    ]
+  }
+];
+       
+    
+    
+    $scope.chartDemo = dataService.getChartData($scope.devices[0].metricsHistory,$scope.cfg.chart_colors);
+    
+    $scope.chartDataList = [];
+    
+    angular.forEach($scope.devices, function(v, k) {
+            console.log(v)
+             $scope.chartDataList[k] = dataService.getChartData(v.metricsHistory,$scope.cfg.chart_colors);
 
         });
+    /**
+     * Chart data
+     */
+    $scope.chartData = [];
+    $scope.chartData_= {
+        labels: ['01:00', '06:00', '10:00', '12:00', '14:00', '18:00', '20:00'],
+        datasets: [
+            {
+                fillColor: 'rgba(151,187,205,0.5)',
+                strokeColor: 'rgba(151,187,205,1)',
+                pointColor: 'rgba(151,187,205,1)',
+                pointStrokeColor: '#fff',
+                data: [8, 10, 15, 20, 22, 18, 16]
+            }
+        ]
     };
-    $scope.loadData();
+    $scope.chartData[1] = {
+        labels: ['01:00', '06:00', '10:00', '12:00', '14:00', '18:00', '20:00'],
+        datasets: [
+            {
+                fillColor: 'rgba(151,187,205,0.5)',
+                strokeColor: 'rgba(151,187,205,1)',
+                pointColor: 'rgba(151,187,205,1)',
+                pointStrokeColor: '#fff',
+                data: [4, 58, 96, 48, 62, 18, 16]
+            }
+        ]
+    };
+    $scope.chartData[2] = {
+        labels: ['01:00', '06:00', '10:00', '12:00', '14:00', '18:00', '20:00'],
+        datasets: [
+            {
+                fillColor: 'rgba(151,187,205,0.5)',
+                strokeColor: 'rgba(151,187,205,1)',
+                pointColor: 'rgba(151,187,205,1)',
+                pointStrokeColor: '#fff',
+                data: [12, 0, 5, 20, 120, 72, 39]
+            }
+        ]
+    };
+    /**
+     * Chart settings
+     */
+    $scope.chartOptions = {
+         animation: false,
+         showTooltips: false
+        // Chart.js options can go here.
+    };
 });
 /**
  * Home controller
@@ -326,7 +475,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
 
     $scope.updateData = function() {
         dataFactory.updateApiData('devices', function(data) {
-            dataService.updateDevices(data,$scope.updateValues);
+            dataService.updateDevices(data, $scope.updateValues);
         });
     };
     $scope.updateData();
@@ -466,12 +615,12 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         if (count > max) {
             count = max;
         }
-        
+
         var cmd = id + '/command/exact?level=' + count;
         //if (count < 100 && count > 0) {
-            $scope.levelVal[id] = count;
+        $scope.levelVal[id] = count;
         //}
-        
+
         console.log(cmd);
         dataFactory.runCmd(cmd);
         return;
@@ -514,14 +663,14 @@ myAppController.controller('EventController', function($scope, $routeParams, $lo
      */
     $scope.loadData = function() {
         dataFactory.getApiData('notifications', function(data) {
-            $scope.eventLevels = dataService.getEventLevel(data.data.notifications,[{'key':null,'val': $scope._t('lb_all')}]);
-            $scope.eventSources = dataService.getPairs(data.data.notifications,'source','source');
-             var filter = null;
+            $scope.eventLevels = dataService.getEventLevel(data.data.notifications, [{'key': null, 'val': $scope._t('lb_all')}]);
+            $scope.eventSources = dataService.getPairs(data.data.notifications, 'source', 'source');
+            var filter = null;
             if (angular.isDefined($routeParams.param) && angular.isDefined($routeParams.val)) {
                 $scope.currSource = $routeParams.val;
                 $scope.currLevel = $routeParams.val;
-                 filter = $routeParams;
-                 angular.forEach(data.data.notifications, function(v, k) {
+                filter = $routeParams;
+                angular.forEach(data.data.notifications, function(v, k) {
                     if (filter && angular.isDefined(v[filter.param])) {
                         if (v[filter.param] == filter.val) {
                             $scope.collection.push(v);
@@ -535,20 +684,20 @@ myAppController.controller('EventController', function($scope, $routeParams, $lo
             //console.log($scope.eventLevel);
         });
     };
-    $scope.loadData(); 
-    
+    $scope.loadData();
+
     /**
      * Load devices
      */
     $scope.loadDevices = function() {
         dataFactory.getApiData('devices', function(data) {
             angular.forEach(data.data.devices, function(v, k) {
-                 $scope.devices[v.id] = v.metrics.title;
+                $scope.devices[v.id] = v.metrics.title;
             });
         });
     };
     $scope.loadDevices();
-    
+
     /**
      * Update data into collection
      */
@@ -681,7 +830,7 @@ myAppController.controller('ProfileController', function($scope, $window, $cooki
 /**
  * App controller
  */
-myAppController.controller('AppController', function($scope, $window,$cookies, dataFactory, dataService,myCache) {
+myAppController.controller('AppController', function($scope, $window, $cookies, dataFactory, dataService, myCache) {
     $scope.instances = [];
     $scope.modules = [];
     $scope.categories = [];
@@ -710,7 +859,7 @@ myAppController.controller('AppController', function($scope, $window,$cookies, d
     $scope.loadInstances = function() {
         dataFactory.getApiData('instances', function(data) {
             $scope.instances = data.data;
-        },null,true);
+        }, null, true);
     };
 
     /**
@@ -749,12 +898,12 @@ myAppController.controller('AppController', function($scope, $window,$cookies, d
     /**
      * Ictivate instance
      */
-    $scope.activateInstance = function(input,activeStatus) {
+    $scope.activateInstance = function(input, activeStatus) {
         input.active = activeStatus;
         if (input.id) {
             dataFactory.putApiData('instances', input.id, input, function(data) {
                 myCache.remove('devices');
-                 myCache.remove('instances');
+                myCache.remove('instances');
             });
         }
 
@@ -771,15 +920,15 @@ myAppController.controller('AppController', function($scope, $window,$cookies, d
         if (confirm) {
             dataFactory.deleteApiData('instances', input.id, target);
             myCache.remove('instances');
-             myCache.remove('devices'); 
+            myCache.remove('devices');
         }
     };
 });
 /**
  * App controller - add module
  */
-myAppController.controller('AppModuleAlpacaController', function($scope, $routeParams, $filter, dataFactory, dataService,cfg) {
-   $scope.showForm = false;
+myAppController.controller('AppModuleAlpacaController', function($scope, $routeParams, $filter, dataFactory, dataService, cfg) {
+    $scope.showForm = false;
     $scope.success = false;
     $scope.alpacaData = true;
     $scope.collection = {};
@@ -790,14 +939,14 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
         'title': null,
         'description': null,
         'moduleTitle': null,
-         'category': null
+        'category': null
     };
 
     // Post new module instance
     $scope.postModule = function(id) {
         dataFactory.getApiData('modules', function(module) {
-           dataFactory.getApiData('namespaces', function(namespaces) {
-                var formData =  dataService.getModuleFormData(module.data, module.data.defaults, namespaces.data);
+            dataFactory.getApiData('namespaces', function(namespaces) {
+                var formData = dataService.getModuleFormData(module.data, module.data.defaults, namespaces.data);
                 var langCode = (angular.isDefined(cfg.lang_codes[$scope.lang]) ? cfg.lang_codes[$scope.lang] : null);
                 $scope.input = {
                     'instanceId': 0,
@@ -809,11 +958,11 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                     'category': module.data.category
                 };
                 $scope.showForm = true;
-                 if(!$filter('hasNode')(formData, 'options.fields') || !$filter('hasNode')(formData, 'schema.properties')){
-                     $scope.alpacaData = false;
-                        return;
-                    }
-                $.alpaca.setDefaultLocale(langCode);    
+                if (!$filter('hasNode')(formData, 'options.fields') || !$filter('hasNode')(formData, 'schema.properties')) {
+                    $scope.alpacaData = false;
+                    return;
+                }
+                $.alpaca.setDefaultLocale(langCode);
                 $('#alpaca_data').alpaca(formData);
             });
         }, '/' + id + '?lang=' + $scope.lang);
@@ -828,9 +977,9 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
             var instance = data.data;
             dataFactory.getApiData('modules', function(module) {
                 dataFactory.getApiData('namespaces', function(namespaces) {
-                     var formData =  dataService.getModuleFormData(module.data, instance.params, namespaces.data);
-                   
-                   $scope.input = {
+                    var formData = dataService.getModuleFormData(module.data, instance.params, namespaces.data);
+
+                    $scope.input = {
                         'instanceId': instance.id,
                         'moduleId': module.data.id,
                         'active': instance.active,
@@ -840,18 +989,18 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                         'category': module.data.category
                     };
                     $scope.showForm = true;
-                    if(!$filter('hasNode')(formData, 'options.fields') || !$filter('hasNode')(formData, 'schema.properties')){
+                    if (!$filter('hasNode')(formData, 'options.fields') || !$filter('hasNode')(formData, 'schema.properties')) {
                         $scope.alpacaData = false;
                         return;
                     }
-                    
+
                     $('#alpaca_data').alpaca(formData);
-                    
-                    
+
+
                 });
             }, '/' + instance.moduleId + '?lang=' + $scope.lang);
 
-        }, '/' + id,true);
+        }, '/' + id, true);
     };
     /**
      * Load data
@@ -867,10 +1016,10 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
         default:
             break;
     }
-/**
- * 
- * Deprecated
- */
+    /**
+     * 
+     * Deprecated
+     */
 //    $scope.store = function(data) {
 //       var defaults = ['instanceId','moduleId','active','title','description'];
 //        var input = [];
@@ -1355,8 +1504,8 @@ myAppController.controller('NetworkController', function($scope, $cookies, dataF
     $scope.reset = function() {
         $scope.batteries = angular.copy([]);
     };
-    
-     /**
+
+    /**
      * Set tab
      */
     $scope.setTab = function(tabId) {
@@ -1399,8 +1548,8 @@ myAppController.controller('NetworkController', function($scope, $cookies, dataF
                         obj['messages'].push($scope._t('lb_not_configured'));
                         var interviewDone = ZWaveAPIData.devices[nodeId].instances[iId].commandClasses[ccId].data.interviewDone.value;
                         /*if (!interviewDone) {
-                            obj['messages'].push($scope._t('lb_not_configured'));
-                        }*/
+                         obj['messages'].push($scope._t('lb_not_configured'));
+                         }*/
                         //obj['messages'].push('Another error message');
 //                         console.log(v.id + ': ' + nodeId + ', ' + iId + ', ' + ccId)
 //                         console.log(interviewDone)

@@ -46,6 +46,13 @@ var config_data = {
         },
         // List of profile colors
         'profile_colors': ['#6C7A89', '#3071A9', '#449D44', '#31B0D5', '#F0AD4E', '#D9534F'],
+        // Chart colors
+        'chart_colors': {
+                fillColor: 'rgba(151,187,205,0.5)',
+                strokeColor: 'rgba(151,187,205,1)',
+                pointColor: 'rgba(151,187,205,1)',
+                pointStrokeColor: '#fff'
+            },
         // Device vendors
         'device_vendors': ['zwave', 'enocean', 'ipcamera'],
         // Results per page
