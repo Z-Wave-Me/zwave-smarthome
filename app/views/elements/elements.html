@@ -55,13 +55,13 @@
                                         class="btn btn-sm widget-btn-off" 
                                         id="btn_off_{{ v.id}}"
                                         data-ng-click="runCmd(v.id + '/command/off')"
-                                        ng-class="v.level=='off' ? 'btn-primary': 'btn - default'"
+                                        ng-class="v.level=='off' ? 'btn-primary': 'btn-default'"
                                         >OFF</button>
                                     <button 
                                         class="btn btn-sm widget-btn-on" 
                                         id="btn_on_{{ v.id}}"
                                         data-ng-click="runCmd(v.id + '/command/on')"
-                                        ng-class="v.level=='on' ? 'btn-primary': 'btn - default'"
+                                        ng-class="v.level=='on' ? 'btn-primary': 'btn-default'"
                                         >ON</button>
                                 </div>
                             </div><!-- /.widget-control .right --> 
@@ -100,13 +100,13 @@
                                 <div class="btn-group">
                                     <button 
                                         class="btn widget-btn-off btn-sm"
-                                        ng-class="v.level=='closed' ? 'btn-primary': 'btn - default'"
+                                        ng-class="v.level=='closed' ? 'btn-primary': 'btn-default'"
                                         data-ng-click="runCmd(v.id + '/command/off')"
                                         ><i class="fa fa-lock"></i>
                                     </button>
                                     <button 
                                         class="btn widget-btn-on btn-sm"
-                                        ng-class="v.level=='open' ? 'btn-primary': 'btn - default'"
+                                        ng-class="v.level=='open' ? 'btn-primary': 'btn-default'"
                                         data-ng-click="runCmd(v.id + '/command/on')"
                                         ><i class="fa fa-unlock"></i>
                                     </button>
