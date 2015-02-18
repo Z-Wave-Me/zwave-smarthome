@@ -69,27 +69,27 @@
                             <!------------ switchRGBW ------------>
                             <div  ng-switch-when="switchRGBW" ng-init="rgbVal[v.id] = v.rgbColors">
                                 <div class="widget-control control-left" colorpicker="rgb" ng-model="rgbVal[v.id]" ng-click="showColor = !showColor">
-                                    <span class="color-picker-show" style="background-color: {{rgbVal[v.id]}};">&nbsp;</span> <span class="widget-level">RGB <i class="fa fa-caret-down"></i></span>
+                                    <span class="color-picker-show" style="background-color: {{rgbVal[v.id]}};">&nbsp;</span> <span>RGB <i class="fa fa-caret-down"></i></span>
                                 </div>
                                 <div class="widget-control control-right">
                                     <div class="btn-group" ng-show="showColor">
                                      <button class="btn btn-primary" ng-click="setRBGColor(v.id,rgbVal[v.id]);showColor = !showColor" >Update color</button>
                                      <button class="btn btn-default" ng-click="resetRBGColor(v.id,v.rgbColorsSDefault);showColor = !showColor">Cancel</button>
                                       </div>
-                                    <div class="btn-group" ng-hide="showColor">
+                                    <div class="btn-group" ng-hide="showColor"> 
                                        
                                         <button 
                                             class="btn widget-btn-off btn-sm" 
                                             id="btn_off_{{ v.id}}"
                                             ng-class="v.level=='off' ? 'btn-primary': 'btn-default'"
                                             data-ng-click="runCmd(v.id + '/command/close')"
-                                            >CLOSE</button>
+                                            >OFF</button>
                                         <button 
                                             class="btn widget-btn-on btn-sm" 
                                             id="btn_on_{{ v.id}}"
                                             ng-class="v.level=='on' ? 'btn-primary': 'btn-default'"
                                             data-ng-click="runCmd(v.id + '/command/open')"
-                                            >OPEN</button>
+                                            >ON</button>
                                     </div>
                                 </div><!-- /.widget-control .right --> 
                             </div><!-- /switchRGBW --> 

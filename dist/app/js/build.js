@@ -7404,7 +7404,8 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         };
         var cmd = id + '/command/exact?red=' + array[0] + '&green=' + array[1] + '&blue='+ array[2];
         dataFactory.runCmd(cmd);
-        $scope.rgbVal[id] = color;
+         myCache.remove('devices');
+        //$scope.rgbVal[id] = color;
     };
     /**
      * Reset color
