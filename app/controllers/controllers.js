@@ -653,7 +653,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
             g: array[1],
             b: array[2]
         };
-        var cmd = id + '/command/exact?colors=' + array[0] + ',' + array[1] + ','+ array[2];
+        var cmd = id + '/command/exact?red=' + array[0] + '&green=' + array[1] + '&blue='+ array[2];
         dataFactory.runCmd(cmd);
         $scope.rgbVal[id] = color;
     };
