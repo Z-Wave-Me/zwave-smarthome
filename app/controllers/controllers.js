@@ -171,164 +171,178 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
  * Test controller
  */
 myAppController.controller('TestController', function($scope, $routeParams, $filter, $location, dataFactory, dataService) {
+    $scope.rgbPicker = {color: 'rgb(107,61,61)'};
+
+    $scope.setRBGColor = function(id, color) {
+        var array = color.match(/\((.*)\)/)[1].split(',');
+        var colors = {
+            r: array[0],
+            g: array[1],
+            b: array[2]
+        };
+        console.log(colors);
+        console.log(id)
+        console.log(color)
+        $scope.rgbPicker = {color: color};
+    };
 
     $scope.devices = [
-  {
-    "id": "54db2d487c2b6fd81175bbfa",
-    "deviceType": "Ecosys",
-    "metricsHistory": [
-      {
-        "timestamp": "2015-02-10T12:28:12.061Z",
-        "level": 7
-      },
-      {
-        "timestamp": "2015-02-10T12:28:12.061Z",
-        "level": 7
-      },
-      {
-        "timestamp": "2015-02-10T12:28:12.061Z",
-        "level": 5
-      },
-      {
-        "timestamp": "2015-02-10T12:28:12.061Z",
-        "level": 7
-      },
-      {
-        "timestamp": "2015-02-10T12:28:12.061Z",
-        "level": 4
-      },
-      {
-        "timestamp": "2015-02-10T12:28:12.061Z",
-        "level": 4
-      },
-      {
-        "timestamp": "2015-02-10T12:28:12.061Z",
-        "level": 8
-      },
-      {
-        "timestamp": "2015-02-10T12:28:12.061Z",
-        "level": 7
-      },
-      {
-        "timestamp": "2015-02-10T12:28:12.061Z",
-        "level": 7
-      },
-      {
-        "timestamp": "2015-02-10T12:28:12.061Z",
-        "level": 9
-      }
-    ]
-  },
-  {
-    "id": "54db2d48002ee11b40dc5716",
-    "deviceType": "Microluxe",
-    "metricsHistory": [
-      {
-        "timestamp": "2015-02-10T12:28:12.061Z",
-        "level": 8
-      },
-      {
-        "timestamp": "2015-02-10T12:28:12.061Z",
-        "level": 3
-      },
-      {
-        "timestamp": "2015-02-10T12:28:12.061Z",
-        "level": 3
-      },
-      {
-        "timestamp": "2015-02-10T12:28:12.061Z",
-        "level": 6
-      },
-      {
-        "timestamp": "2015-02-10T12:28:12.061Z",
-        "level": 5
-      },
-      {
-        "timestamp": "2015-02-10T12:28:12.061Z",
-        "level": 5
-      },
-      {
-        "timestamp": "2015-02-10T12:28:12.061Z",
-        "level": 8
-      },
-      {
-        "timestamp": "2015-02-10T12:28:12.061Z",
-        "level": 10
-      },
-      {
-        "timestamp": "2015-02-10T12:28:12.061Z",
-        "level": 8
-      },
-      {
-        "timestamp": "2015-02-10T12:28:12.061Z",
-        "level": 3
-      }
-    ]
-  },
-  {
-    "id": "54db2d489de8189686602b4d",
-    "deviceType": "Aeora",
-    "metricsHistory": [
-      {
-        "timestamp": "2015-02-10T12:28:12.061Z",
-        "level": 5
-      },
-      {
-        "timestamp": "2015-02-10T12:28:12.061Z",
-        "level": 5
-      },
-      {
-        "timestamp": "2015-02-10T12:28:12.061Z",
-        "level": 6
-      },
-      {
-        "timestamp": "2015-02-10T12:28:12.061Z",
-        "level": 3
-      },
-      {
-        "timestamp": "2015-02-10T12:28:12.061Z",
-        "level": 8
-      },
-      {
-        "timestamp": "2015-02-10T12:28:12.061Z",
-        "level": 9
-      },
-      {
-        "timestamp": "2015-02-10T12:28:12.061Z",
-        "level": 8
-      },
-      {
-        "timestamp": "2015-02-10T12:28:12.061Z",
-        "level": 10
-      },
-      {
-        "timestamp": "2015-02-10T12:28:12.061Z",
-        "level": 5
-      },
-      {
-        "timestamp": "2015-02-10T12:28:12.061Z",
-        "level": 7
-      }
-    ]
-  }
-];
-       
-    
-    
-    $scope.chartDemo = dataService.getChartData($scope.devices[0].metricsHistory,$scope.cfg.chart_colors);
-    
-    $scope.chartDataList = [];
-    
-    angular.forEach($scope.devices, function(v, k) {
-            console.log(v)
-             $scope.chartDataList[k] = dataService.getChartData(v.metricsHistory,$scope.cfg.chart_colors);
+        {
+            "id": "54db2d487c2b6fd81175bbfa",
+            "deviceType": "Ecosys",
+            "metricsHistory": [
+                {
+                    "timestamp": "2015-02-10T12:28:12.061Z",
+                    "level": 7
+                },
+                {
+                    "timestamp": "2015-02-10T12:28:12.061Z",
+                    "level": 7
+                },
+                {
+                    "timestamp": "2015-02-10T12:28:12.061Z",
+                    "level": 5
+                },
+                {
+                    "timestamp": "2015-02-10T12:28:12.061Z",
+                    "level": 7
+                },
+                {
+                    "timestamp": "2015-02-10T12:28:12.061Z",
+                    "level": 4
+                },
+                {
+                    "timestamp": "2015-02-10T12:28:12.061Z",
+                    "level": 4
+                },
+                {
+                    "timestamp": "2015-02-10T12:28:12.061Z",
+                    "level": 8
+                },
+                {
+                    "timestamp": "2015-02-10T12:28:12.061Z",
+                    "level": 7
+                },
+                {
+                    "timestamp": "2015-02-10T12:28:12.061Z",
+                    "level": 7
+                },
+                {
+                    "timestamp": "2015-02-10T12:28:12.061Z",
+                    "level": 9
+                }
+            ]
+        },
+        {
+            "id": "54db2d48002ee11b40dc5716",
+            "deviceType": "Microluxe",
+            "metricsHistory": [
+                {
+                    "timestamp": "2015-02-10T12:28:12.061Z",
+                    "level": 8
+                },
+                {
+                    "timestamp": "2015-02-10T12:28:12.061Z",
+                    "level": 3
+                },
+                {
+                    "timestamp": "2015-02-10T12:28:12.061Z",
+                    "level": 3
+                },
+                {
+                    "timestamp": "2015-02-10T12:28:12.061Z",
+                    "level": 6
+                },
+                {
+                    "timestamp": "2015-02-10T12:28:12.061Z",
+                    "level": 5
+                },
+                {
+                    "timestamp": "2015-02-10T12:28:12.061Z",
+                    "level": 5
+                },
+                {
+                    "timestamp": "2015-02-10T12:28:12.061Z",
+                    "level": 8
+                },
+                {
+                    "timestamp": "2015-02-10T12:28:12.061Z",
+                    "level": 10
+                },
+                {
+                    "timestamp": "2015-02-10T12:28:12.061Z",
+                    "level": 8
+                },
+                {
+                    "timestamp": "2015-02-10T12:28:12.061Z",
+                    "level": 3
+                }
+            ]
+        },
+        {
+            "id": "54db2d489de8189686602b4d",
+            "deviceType": "Aeora",
+            "metricsHistory": [
+                {
+                    "timestamp": "2015-02-10T12:28:12.061Z",
+                    "level": 5
+                },
+                {
+                    "timestamp": "2015-02-10T12:28:12.061Z",
+                    "level": 5
+                },
+                {
+                    "timestamp": "2015-02-10T12:28:12.061Z",
+                    "level": 6
+                },
+                {
+                    "timestamp": "2015-02-10T12:28:12.061Z",
+                    "level": 3
+                },
+                {
+                    "timestamp": "2015-02-10T12:28:12.061Z",
+                    "level": 8
+                },
+                {
+                    "timestamp": "2015-02-10T12:28:12.061Z",
+                    "level": 9
+                },
+                {
+                    "timestamp": "2015-02-10T12:28:12.061Z",
+                    "level": 8
+                },
+                {
+                    "timestamp": "2015-02-10T12:28:12.061Z",
+                    "level": 10
+                },
+                {
+                    "timestamp": "2015-02-10T12:28:12.061Z",
+                    "level": 5
+                },
+                {
+                    "timestamp": "2015-02-10T12:28:12.061Z",
+                    "level": 7
+                }
+            ]
+        }
+    ];
 
-        });
+
+
+    $scope.chartDemo = dataService.getChartData($scope.devices[0].metricsHistory, $scope.cfg.chart_colors);
+
+    $scope.chartDataList = [];
+
+    angular.forEach($scope.devices, function(v, k) {
+        console.log(v)
+        $scope.chartDataList[k] = dataService.getChartData(v.metricsHistory, $scope.cfg.chart_colors);
+
+    });
     /**
      * Chart data
      */
     $scope.chartData = [];
-    $scope.chartData_= {
+    $scope.chartData_ = {
         labels: ['01:00', '06:00', '10:00', '12:00', '14:00', '18:00', '20:00'],
         datasets: [
             {
@@ -368,9 +382,9 @@ myAppController.controller('TestController', function($scope, $routeParams, $fil
      * Chart settings
      */
     $scope.chartOptions = {
-         animation: false,
-         showTooltips: false
-        // Chart.js options can go here.
+        animation: false,
+        showTooltips: false
+                // Chart.js options can go here.
     };
 });
 /**
@@ -389,6 +403,8 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.tags = [];
     $scope.rooms = [];
     $scope.levelVal = [];
+    $scope.rgbVal = [];
+    
     $scope.profileData = [];
     $scope.input = {
         'id': null,
@@ -401,6 +417,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         'deviceType': null,
         'level': null
     };
+    
     $scope.isSelected = true;
     $scope.onText = 'ON';
     $scope.offText = 'OFF';
@@ -624,6 +641,27 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         console.log(cmd);
         dataFactory.runCmd(cmd);
         return;
+    };
+    
+    /**
+     * Save color
+     */
+    $scope.setRBGColor = function(id, color) {
+        var array = color.match(/\((.*)\)/)[1].split(',');
+        var colors = {
+            r: array[0],
+            g: array[1],
+            b: array[2]
+        };
+        var cmd = id + '/command/exact?colors=' + array[0] + ',' + array[1] + ','+ array[2];
+        dataFactory.runCmd(cmd);
+        $scope.rgbVal[id] = color;
+    };
+    /**
+     * Reset color
+     */
+    $scope.resetRBGColor = function(id, color) {
+         $scope.rgbVal[id] = color;
     };
 
     /// --- Private functions --- ///
@@ -927,7 +965,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
 /**
  * App controller - add module
  */
-myAppController.controller('AppModuleAlpacaController', function($scope, $routeParams, $filter, $location,dataFactory, dataService,  myCache,cfg) {
+myAppController.controller('AppModuleAlpacaController', function($scope, $routeParams, $filter, $location, dataFactory, dataService, myCache, cfg) {
     $scope.showForm = false;
     $scope.success = false;
     $scope.alpacaData = true;
@@ -1021,16 +1059,16 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
      * Deprecated
      */
     $scope.store = function(data) {
-       var defaults = ['instanceId','moduleId','active','title','description'];
+        var defaults = ['instanceId', 'moduleId', 'active', 'title', 'description'];
         var input = [];
         var params = {};
         angular.forEach(data, function(v, k) {
-           if(defaults.indexOf(k) > -1){
-                 input[k] = v;
+            if (defaults.indexOf(k) > -1) {
+                input[k] = v;
             }
         });
-        
-         var inputData = {
+
+        var inputData = {
             'id': input.instanceId,
             'moduleId': input.moduleId,
             'active': input.active,
@@ -1041,12 +1079,12 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
         if (input.instanceId > 0) {
             dataFactory.putApiData('instances', input.instanceId, inputData, function(data) {
                 myCache.remove('devices');
-                $location.path('/apps'); 
+                $location.path('/apps');
             });
         } else {
-           
+
             dataFactory.postApiData('instances', inputData, function(data) {
-                 myCache.remove('devices');
+                myCache.remove('devices');
                 $location.path('/apps');
             });
         }

@@ -172,6 +172,7 @@ myAppService.service('dataService', function($filter, myCache) {
             var hasInstance = false;
             var zwaveId = false;
             var level = $filter('numberFixedLen')(v.metrics.level);
+            var rgbColors = false;
             if (v.permanently_hidden || v.deviceType == 'battery') {
                 return;
             }
@@ -193,15 +194,20 @@ myAppService.service('dataService', function($filter, myCache) {
 
                 }
             }
+            if (positions && positions.indexOf(v.id) !== -1) {
+                var onDashboard = true;
+            }
 
-            if (v.deviceType == 'switchMultilevel') {
-                level = $filter('getMaxLevel')(level);
+            if (v.metrics.color) {
+                rgbColors = 'rgb('+ v.metrics.color.r +',' + v.metrics.color.g +',' + v.metrics.color.b + ')';
             }
             obj = {
                 'id': v.id,
                 'zwaveId': zwaveId,
                 'title': v.metrics.title,
                 'metrics': v.metrics,
+                'rgbColors': rgbColors,
+                'rgbColorsSDefault': rgbColors,
                 'tags': v.tags,
                 'permanently_hidden': v.permanently_hidden,
                 'level': level,

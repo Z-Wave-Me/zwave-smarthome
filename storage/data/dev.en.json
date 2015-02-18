@@ -9,7 +9,7 @@
         "Inclusion": "Keep the middle button pushed 3 times until 'M' appears. Now hit the middle button.",
         "Exclusion": "Hit the middle button.",
         "Wakeup": "Hit the middle button.",
-        "Preparation": "Keep the middle button pushed 3 times."
+        "Preparation": "Mount the devicve on the radiator and push the middle button to calibrate the valve."
     },
     "POP_123634": {
         "Id": "POP_123634",

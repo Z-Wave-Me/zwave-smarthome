@@ -1,6 +1,14 @@
 <!-- Test view -->
 <div ng-controller="TestController">
     <h1>Test page</h1>
+    <p colorpicker="rgb" ng-model="rgbPicker.color">RGB: {{rgbPicker.color}}</p>
+    rgb: {{ rgbPicker.color}}
+    <div class="form-inline">
+        <span class="color-picker-show" style="background-color: {{rgbPicker.color}};" colorpicker="rgb" ng-model="rgbPicker.color">&nbsp;</span>
+        <input colorpicker="rgb" class="form-control" ng-model="rgbPicker.color" type="text" />
+        <button class="btn btn-primary" ng-click="setRBGColor(1,rgbPicker.color)">Update</button>
+    </div>
+
     <div>
         <canvas tc-chartjs-bar chart-data="chartDemo" chart-options="chartOptions" width="600" height="300"></canvas>
     </div>

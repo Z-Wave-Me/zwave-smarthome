@@ -646,13 +646,20 @@ vertical-align: middle;
   display: inline-block;
 }
 
+/* line 104, sass/modules/_elements.scss */
+.color-picker-show {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+}
+
 /* Home widget
 -------------------------------------------------- */
-/* line 109, sass/modules/_elements.scss */
+/* line 116, sass/modules/_elements.scss */
 .home-widget .widget-entry {
   padding: 0;
 }
-/* line 112, sass/modules/_elements.scss */
+/* line 119, sass/modules/_elements.scss */
 .home-widget .widget-entry .widget-block {
   margin: 0 !important;
   /*              border: solid 1px #e2e2e2;*/
@@ -660,24 +667,24 @@ vertical-align: middle;
 
 /* OpenWeather widget
 ----------------------------------------------------*/
-/* line 128, sass/modules/_elements.scss */
+/* line 135, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline table td {
   text-align: left;
   padding: 5px 0;
 }
 
-/* line 133, sass/modules/_elements.scss */
+/* line 140, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline table td:first-child {
   padding-left: 20px;
   vertical-align: top;
 }
 
-/* line 138, sass/modules/_elements.scss */
+/* line 145, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline h4 {
   display: inline;
 }
 
-/* line 142, sass/modules/_elements.scss */
+/* line 149, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline .text-center {
   margin: 10px 0;
 }
