@@ -9,6 +9,7 @@ myApp.directive('testDir', function() {
         template: '<p>This is a test directive</p>'
     };
 });
+
 /**
  * Hide collapsed navi after click on mobile devices
  */

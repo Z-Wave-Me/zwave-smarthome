@@ -927,7 +927,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
 /**
  * App controller - add module
  */
-myAppController.controller('AppModuleAlpacaController', function($scope, $routeParams, $filter, dataFactory, dataService, cfg) {
+myAppController.controller('AppModuleAlpacaController', function($scope, $routeParams, $filter, $location,dataFactory, dataService,  myCache,cfg) {
     $scope.showForm = false;
     $scope.success = false;
     $scope.alpacaData = true;
@@ -1020,42 +1020,37 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
      * 
      * Deprecated
      */
-//    $scope.store = function(data) {
-//       var defaults = ['instanceId','moduleId','active','title','description'];
-//        var input = [];
-//        var params = {};
-//        angular.forEach(data, function(v, k) {
-//           if(defaults.indexOf(k) > -1){
-//                 input[k] = v;
-//            }
-////            else{
-////                params[v.name] = v.value;
-////            }
-//           
-//        });
-//        
-//         var inputData = {
-//            'id': input.instanceId,
-//            'moduleId': input.moduleId,
-//            'active': input.active,
-//            'title': input.title,
-//            'description': input.description,
-//            'params': params
-//        };
-//        if (input.instanceId > 0) {
-//            dataFactory.putApiData('instances', input.instanceId, inputData, function(data) {
-//                myCache.remove('devices');
-//                console.log(inputData)
-//                 $location.path('/apps'); 
-//            });
-//        } else {
-//           
-//            dataFactory.postApiData('instances', inputData, function(data) {
-//                 myCache.remove('devices');
-//                $location.path('/apps');
-//            });
-//        }
-//    };
+    $scope.store = function(data) {
+       var defaults = ['instanceId','moduleId','active','title','description'];
+        var input = [];
+        var params = {};
+        angular.forEach(data, function(v, k) {
+           if(defaults.indexOf(k) > -1){
+                 input[k] = v;
+            }
+        });
+        
+         var inputData = {
+            'id': input.instanceId,
+            'moduleId': input.moduleId,
+            'active': input.active,
+            'title': input.title,
+            'description': input.description,
+            'params': params
+        };
+        if (input.instanceId > 0) {
+            dataFactory.putApiData('instances', input.instanceId, inputData, function(data) {
+                myCache.remove('devices');
+                $location.path('/apps'); 
+            });
+        } else {
+           
+            dataFactory.postApiData('instances', inputData, function(data) {
+                 myCache.remove('devices');
+                $location.path('/apps');
+            });
+        }
+    };
 
 });
 /**

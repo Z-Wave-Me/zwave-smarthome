@@ -16,6 +16,8 @@ var postRenderAlpaca = function(renderedForm) {
             dataType: 'json',
             data: JSON.stringify(data),
             beforeSend: function() {
+                console.log(data);
+                return; 
                 $('.module-spinner').show();
             },
             success: function(response) {
