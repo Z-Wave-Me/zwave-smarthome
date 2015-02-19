@@ -44,6 +44,15 @@
     padding-left: 10px;
 }
 
+.lang-switch{
+    text-transform: uppercase;
+}
+.lang-switch-current{
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+}
+
 .navbar-inverse {
     background-color: $header-color-primary;
     border-color: transparent;
@@ -104,6 +113,11 @@
     .divider {
         background-color: $header-color-secondary;
     }
+}
+
+.navbar-nav > li > a {
+padding-top: 15px;
+padding-bottom: 10px;
 }
 
 .dropdown > .dropdown-menu::before, .dropdown > .dropdown-menu::after {

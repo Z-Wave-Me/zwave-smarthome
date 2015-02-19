@@ -312,14 +312,6 @@ myAppService.service('dataService', function($filter, myCache) {
     function updateDeviceBtn(widgetId, v) {
         var status = false;
         switch (v.deviceType) {
-            case 'switchBinary':
-                if (v.metrics.level == 'on') {
-                    status = 'on';
-                } else {
-                    status = 'off';
-                }
-                break;
-
             case 'doorlock':
                 if (v.metrics.level == 'open') {
                     status = 'on';
@@ -328,12 +320,17 @@ myAppService.service('dataService', function($filter, myCache) {
                 }
                 break;
             default:
+                if (v.metrics.level == 'on') {
+                    status = 'on';
+                } else {
+                    status = 'off';
+                }
                 break;
         }
         if (status == false) {
             return;
         }
-        if (v.deviceType == 'switchBinary') {
+       // if (v.deviceType == 'switchBinary' || v.deviceType == 'switchRGBW') {
             if (status == 'on') {
                 $(widgetId + ' .widget-btn-on').removeClass('btn-default').addClass('btn-primary');
                 $(widgetId + ' .widget-btn-off').removeClass('btn-primary').addClass('btn-default');
@@ -342,7 +339,7 @@ myAppService.service('dataService', function($filter, myCache) {
                 $(widgetId + ' .widget-btn-off').removeClass('btn-default').addClass('btn-primary');
             }
             //console.log('Update device: ID: ' + v.id + ' - button ' + v.metrics.level)
-        }
+        //}
 
     }
 

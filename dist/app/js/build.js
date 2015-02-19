@@ -5567,14 +5567,6 @@ myAppService.service('dataService', function($filter, myCache) {
     function updateDeviceBtn(widgetId, v) {
         var status = false;
         switch (v.deviceType) {
-            case 'switchBinary':
-                if (v.metrics.level == 'on') {
-                    status = 'on';
-                } else {
-                    status = 'off';
-                }
-                break;
-
             case 'doorlock':
                 if (v.metrics.level == 'open') {
                     status = 'on';
@@ -5583,12 +5575,17 @@ myAppService.service('dataService', function($filter, myCache) {
                 }
                 break;
             default:
+                if (v.metrics.level == 'on') {
+                    status = 'on';
+                } else {
+                    status = 'off';
+                }
                 break;
         }
         if (status == false) {
             return;
         }
-        if (v.deviceType == 'switchBinary') {
+       // if (v.deviceType == 'switchBinary' || v.deviceType == 'switchRGBW') {
             if (status == 'on') {
                 $(widgetId + ' .widget-btn-on').removeClass('btn-default').addClass('btn-primary');
                 $(widgetId + ' .widget-btn-off').removeClass('btn-primary').addClass('btn-default');
@@ -5597,7 +5594,7 @@ myAppService.service('dataService', function($filter, myCache) {
                 $(widgetId + ' .widget-btn-off').removeClass('btn-default').addClass('btn-primary');
             }
             //console.log('Update device: ID: ' + v.id + ' - button ' + v.metrics.level)
-        }
+        //}
 
     }
 
@@ -6777,8 +6774,8 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
      */
     $scope.lang_list = cfg.lang_list;
     // Set language
-    //$scope.lang = (angular.isDefined($cookies.lang) ? $cookies.lang : cfg.lang);
-    $scope.lang = (angular.isDefined($scope.profile.lang) ? $scope.profile.lang : cfg.lang);
+    $scope.lang = (angular.isDefined($cookies.lang) ? $cookies.lang : cfg.lang);
+    //$scope.lang = (angular.isDefined($scope.profile.lang) ? $scope.profile.lang : cfg.lang);
     // TODO: remove?
     $scope.changeLang = function(lang) {
         $cookies.lang = lang;

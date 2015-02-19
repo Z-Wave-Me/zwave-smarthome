@@ -353,35 +353,47 @@ vertical-align: middle;
 }
 
 /* line 47, sass/globals/_navigation.scss */
+.lang-switch {
+  text-transform: uppercase;
+}
+
+/* line 50, sass/globals/_navigation.scss */
+.lang-switch-current {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+}
+
+/* line 56, sass/globals/_navigation.scss */
 .navbar-inverse {
   background-color: #E9E9E9;
   border-color: transparent;
   border-bottom: solid 4px #DDDDDD;
   color: #DDDDDD;
 }
-/* line 53, sass/globals/_navigation.scss */
+/* line 62, sass/globals/_navigation.scss */
 .navbar-inverse .navbar-nav .dropdown-toggle {
   color: #5d5d5d;
 }
-/* line 56, sass/globals/_navigation.scss */
+/* line 65, sass/globals/_navigation.scss */
 .navbar-inverse .navbar-nav .dropdown-toggle:hover {
   color: #5d5d5d;
 }
 
-/* line 62, sass/globals/_navigation.scss */
+/* line 71, sass/globals/_navigation.scss */
 .navbar-inverse_ .navbar-nav .dropdown-toggle {
   color: #DDDDDD;
 }
 
 /* Collapse */
-/* line 67, sass/globals/_navigation.scss */
+/* line 76, sass/globals/_navigation.scss */
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > .active > a:focus {
   background-color: #DDDDDD;
 }
 
-/* line 73, sass/globals/_navigation.scss */
+/* line 82, sass/globals/_navigation.scss */
 .navbar-inverse .navbar-nav > .open > a,
 .navbar-inverse .navbar-nav > .open > a:hover,
 .navbar-inverse .navbar-nav > .open > a:focus {
@@ -389,7 +401,7 @@ vertical-align: middle;
   color: #DA131F;
 }
 
-/* line 80, sass/globals/_navigation.scss */
+/* line 89, sass/globals/_navigation.scss */
 .navbar-inverse .dropdown-menu > .active > a,
 .navbar-inverse .dropdown-menu > .active > a:hover,
 .navbar-inverse .dropdown-menu > .active > a:focus {
@@ -397,14 +409,14 @@ vertical-align: middle;
   color: #5d5d5d;
 }
 
-/* line 89, sass/globals/_navigation.scss */
+/* line 98, sass/globals/_navigation.scss */
 .navbar-inverse .dropdown-menu > li > a:hover,
 .navbar-inverse .dropdown-menu > li > a:focus {
   background-color: #DDDDDD;
   color: #DA131F;
 }
 
-/* line 95, sass/globals/_navigation.scss */
+/* line 104, sass/globals/_navigation.scss */
 .navbar .divider-vertical {
   height: 50px;
   /*    margin: 0 9px;*/
@@ -412,16 +424,22 @@ vertical-align: middle;
   border-right: 1px solid white;
 }
 
-/* line 101, sass/globals/_navigation.scss */
+/* line 110, sass/globals/_navigation.scss */
 .dropdown-menu {
   border: 1px solid #DDDDDD;
 }
-/* line 104, sass/globals/_navigation.scss */
+/* line 113, sass/globals/_navigation.scss */
 .dropdown-menu .divider {
   background-color: #DDDDDD;
 }
 
-/* line 109, sass/globals/_navigation.scss */
+/* line 118, sass/globals/_navigation.scss */
+.navbar-nav > li > a {
+  padding-top: 15px;
+  padding-bottom: 10px;
+}
+
+/* line 123, sass/globals/_navigation.scss */
 .dropdown > .dropdown-menu::before, .dropdown > .dropdown-menu::after {
   content: '';
   display: inline-block;
@@ -435,7 +453,7 @@ vertical-align: middle;
   right: 12px;
 }
 
-/* line 123, sass/globals/_navigation.scss */
+/* line 137, sass/globals/_navigation.scss */
 .dropdown > .dropdown-menu::after {
   border-left-width: 6px;
   border-right-width: 6px;
@@ -450,23 +468,23 @@ vertical-align: middle;
     left: auto;
     right: 13px;
 }*/
-/* line 139, sass/globals/_navigation.scss */
+/* line 153, sass/globals/_navigation.scss */
 .only-icon .only-icon-menu i {
   font-size: 18px;
 }
 
-/* line 143, sass/globals/_navigation.scss */
+/* line 157, sass/globals/_navigation.scss */
 .only-icon-menu span {
   display: none;
 }
 
-/* line 147, sass/globals/_navigation.scss */
+/* line 161, sass/globals/_navigation.scss */
 .dropdown-menu a i {
   padding-right: 10px;
 }
 
 /** Profile colors */
-/* line 151, sass/globals/_navigation.scss */
+/* line 165, sass/globals/_navigation.scss */
 .profile-6494bc {
   /* Visible */
 }
@@ -479,7 +497,7 @@ vertical-align: middle;
   border-color: #abc5db;
 }
 
-/* line 154, sass/globals/_navigation.scss */
+/* line 168, sass/globals/_navigation.scss */
 .profile-80ad80 {
   /* Visible */
 }
@@ -492,7 +510,7 @@ vertical-align: middle;
   border-color: #bed5be;
 }
 
-/* line 158, sass/globals/_navigation.scss */
+/* line 172, sass/globals/_navigation.scss */
 .profile-dd976e {
   /* Visible */
 }

@@ -28,8 +28,8 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
      */
     $scope.lang_list = cfg.lang_list;
     // Set language
-    //$scope.lang = (angular.isDefined($cookies.lang) ? $cookies.lang : cfg.lang);
-    $scope.lang = (angular.isDefined($scope.profile.lang) ? $scope.profile.lang : cfg.lang);
+    $scope.lang = (angular.isDefined($cookies.lang) ? $cookies.lang : cfg.lang);
+    //$scope.lang = (angular.isDefined($scope.profile.lang) ? $scope.profile.lang : cfg.lang);
     // TODO: remove?
     $scope.changeLang = function(lang) {
         $cookies.lang = lang;
