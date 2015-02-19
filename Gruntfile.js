@@ -56,7 +56,8 @@ module.exports = function(grunt) {
                     //'app/directives/angular-slider.j',
                     'app/filters/filters.js',
                     'app/jquery/postrender.js',
-                    'app/controllers/controllers.js'
+                    'app/controllers/controllers.js',
+                    'app/modules/bootstrap-colorpicker-module.min.js'
                 ],
                 dest: 'dist/app/js/build.js'
             }
