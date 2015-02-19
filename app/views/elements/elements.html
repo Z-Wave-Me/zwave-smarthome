@@ -272,7 +272,7 @@
                         <div class="col-sm-11 element-hidden hidden-sensor-multilevel" ng-switch-when="sensorMultilevel" ng-show="goHidden">
                             <p class="text-center popup-title">{{v.title|cutText:true:30}}</p>
                             <div>
-                                <canvas tc-chartjs-line chart-data="chartData" chart-options="chartOptions" width="260" height="150"></canvas>
+                                <canvas tc-chartjs-line chart-data="history[v.id]" chart-options="chartOptions" width="260" height="150"></canvas>
                             </div>
                         </div>
 

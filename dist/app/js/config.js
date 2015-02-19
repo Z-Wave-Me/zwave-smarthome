@@ -11,7 +11,9 @@ var config_data = {
         //'server_url': 'http://zwave.dyndns.org:8083/',
         // Interval in miliseconds to refresh data
         'interval': 3000,
-        // List of API links
+        // Interval in miliseconds (5 min) to clear history (json) cache
+        'history_cache_interval': 300000,
+        // List of API links 
         'api': {
             'devices': 'ZAutomation/api/v1/devices',
             'profiles': 'ZAutomation/api/v1/profiles',
@@ -20,7 +22,8 @@ var config_data = {
             'modules': 'ZAutomation/api/v1/modules',
             'modules_categories': 'ZAutomation/api/v1/modules/categories',
             'instances': 'ZAutomation/api/v1/instances',
-            'namespaces': 'ZAutomation/api/v1/namespaces'
+            'namespaces': 'ZAutomation/api/v1/namespaces',
+             'history': 'ZAutomation/api/v1/history'
         },
         // List of image pathes
         'img': {

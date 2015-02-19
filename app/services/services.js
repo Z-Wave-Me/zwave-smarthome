@@ -58,8 +58,8 @@ myAppService.service('dataService', function($filter, myCache) {
     /**
      * Get chart data
      */
-    this.getChartData = function(data,colors) {
-        return getChartData(data,colors);
+    this.getChartData = function(data, colors) {
+        return getChartData(data, colors);
     };
 
     /**
@@ -199,7 +199,7 @@ myAppService.service('dataService', function($filter, myCache) {
             }
 
             if (v.metrics.color) {
-                rgbColors = 'rgb('+ v.metrics.color.r +',' + v.metrics.color.g +',' + v.metrics.color.b + ')';
+                rgbColors = 'rgb(' + v.metrics.color.r + ',' + v.metrics.color.g + ',' + v.metrics.color.b + ')';
             }
             obj = {
                 'id': v.id,
@@ -330,15 +330,15 @@ myAppService.service('dataService', function($filter, myCache) {
         if (status == false) {
             return;
         }
-       // if (v.deviceType == 'switchBinary' || v.deviceType == 'switchRGBW') {
-            if (status == 'on') {
-                $(widgetId + ' .widget-btn-on').removeClass('btn-default').addClass('btn-primary');
-                $(widgetId + ' .widget-btn-off').removeClass('btn-primary').addClass('btn-default');
-            } else {
-                $(widgetId + ' .widget-btn-on').removeClass('btn-primary').addClass('btn-default');
-                $(widgetId + ' .widget-btn-off').removeClass('btn-default').addClass('btn-primary');
-            }
-            //console.log('Update device: ID: ' + v.id + ' - button ' + v.metrics.level)
+        // if (v.deviceType == 'switchBinary' || v.deviceType == 'switchRGBW') {
+        if (status == 'on') {
+            $(widgetId + ' .widget-btn-on').removeClass('btn-default').addClass('btn-primary');
+            $(widgetId + ' .widget-btn-off').removeClass('btn-primary').addClass('btn-default');
+        } else {
+            $(widgetId + ' .widget-btn-on').removeClass('btn-primary').addClass('btn-default');
+            $(widgetId + ' .widget-btn-off').removeClass('btn-default').addClass('btn-primary');
+        }
+        //console.log('Update device: ID: ' + v.id + ' - button ' + v.metrics.level)
         //}
 
     }
@@ -346,10 +346,11 @@ myAppService.service('dataService', function($filter, myCache) {
     /**
      * Get chart data
      */
-    function getChartData(data,colors) {
-        if (!angular.isObject(data,colors)) {
+    function getChartData(data, colors) {
+        if (!angular.isObject(data, colors)) {
             return null;
         }
+        var currTime = (Math.round(+new Date() / 1000) - 300);
         var out = {
             labels: [],
             datasets: [{
@@ -360,15 +361,19 @@ myAppService.service('dataService', function($filter, myCache) {
                     data: []
                 }]
         };
-        
         angular.forEach(data, function(v, k) {
-            out.labels.push($filter('date')(v.timestamp,'H:mm'));
-            //out.labels.push($filter('date')(v.timestamp,'dd.MM.yyyy H:mm'));
-            out.datasets[0].data.push(v.level);
+            var time = $filter('date')(v.t, 'H:mm');
+            //if (v.id > currTime && out.labels.indexOf(time) === -1) {
+        if (v.id > currTime) {
+                out.labels.push(time);
+                //out.labels.push($filter('date')(v.timestamp,'dd.MM.yyyy H:mm'));
+                out.datasets[0].data.push(v.l);
+            }
 
         });
         return out;
-    };
+    }
+    ;
 
     /**
      * Get instances data

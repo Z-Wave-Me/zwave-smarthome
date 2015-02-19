@@ -396,16 +396,26 @@ myAppController.controller('HomeController', function($scope, dataFactory, dataS
 /**
  * Element controller
  */
-myAppController.controller('ElementController', function($scope, $routeParams, $location, dataFactory, dataService, myCache) {
+myAppController.controller('ElementController', function($scope, $routeParams, $location,$interval, dataFactory, dataService, myCache) {
     $scope.collection = [];
     $scope.showFooter = true;
     $scope.deviceType = [];
     $scope.tags = [];
     $scope.rooms = [];
+    $scope.history = [];
     $scope.levelVal = [];
     $scope.rgbVal = [];
-    
     $scope.profileData = [];
+    $scope.chartOptions = {
+        // Chart.js options can go here.
+    };
+    $scope.knobopt = {
+        width: 100
+    };
+    
+    $scope.slider = {
+        modelMax: 38
+    };
     $scope.input = {
         'id': null,
         'metrics': null,
@@ -418,17 +428,6 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         'level': null
     };
     
-    $scope.isSelected = true;
-    $scope.onText = 'ON';
-    $scope.offText = 'OFF';
-    $scope.isActive = true;
-    $scope.size = 'small';
-    $scope.animate = false;
-
-    $scope.knobopt = {
-        width: 100
-    };
-
     // Cancel interval on page destroy
     $scope.$on('$destroy', function() {
         dataFactory.cancelApiDataInterval();
@@ -455,6 +454,13 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
             dataFactory.getApiData('locations', function(data) {
                 $scope.rooms = data.data;
             });
+            dataFactory.getApiData('history', function(history) {
+                angular.forEach(history.data.history, function(v, k) {
+                    $scope.history[v.id] = dataService.getChartData(v.mH, $scope.cfg.chart_colors);
+
+                });
+            });
+
             if (angular.isDefined($routeParams.filter) && angular.isDefined($routeParams.val)) {
                 switch ($routeParams.filter) {
                     case 'dashboard':
@@ -496,42 +502,16 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         });
     };
     $scope.updateData();
-    //$(".dial").knob();
-
-    /**
-     * Chart data
-     */
-    $scope.chartData = {
-        labels: ['01:00', '06:00', '10:00', '12:00', '14:00', '18:00', '20:00'],
-        datasets: [
-            /*{
-             fillColor: 'rgba(220,220,220,0.5)',
-             strokeColor: 'rgba(220,220,220,1)',
-             pointColor: 'rgba(220,220,220,1)',
-             pointStrokeColor: '#fff',
-             data: [65, 59, 90, 81, 56, 55, 40]
-             },*/
-            {
-                fillColor: 'rgba(151,187,205,0.5)',
-                strokeColor: 'rgba(151,187,205,1)',
-                pointColor: 'rgba(151,187,205,1)',
-                pointStrokeColor: '#fff',
-                data: [8, 10, 15, 20, 22, 18, 16]
-            }
-        ]
+   
+    // Clear history json cache
+    $scope.clearHistoryCache = function() {
+        var refresh = function() {
+            myCache.remove('history');
+        };
+        $interval(refresh,$scope.cfg.history_cache_interval);
     };
-    /**
-     * Chart settings
-     */
-    $scope.chartOptions = {
-        // Chart.js options can go here.
-    };
-    /**
-     * Slider options
-     */
-    $scope.slider = {
-        modelMax: 38
-    };
+    $scope.clearHistoryCache();
+    
     /**
      * Show modal window
      */
@@ -642,27 +622,22 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         dataFactory.runCmd(cmd);
         return;
     };
-    
+
     /**
      * Save color
      */
     $scope.setRBGColor = function(id, color) {
         var array = color.match(/\((.*)\)/)[1].split(',');
-        var colors = {
-            r: array[0],
-            g: array[1],
-            b: array[2]
-        };
-        var cmd = id + '/command/exact?red=' + array[0] + '&green=' + array[1] + '&blue='+ array[2];
+        var cmd = id + '/command/exact?red=' + array[0] + '&green=' + array[1] + '&blue=' + array[2];
         dataFactory.runCmd(cmd);
-         myCache.remove('devices');
+        myCache.remove('devices');
         //$scope.rgbVal[id] = color;
     };
     /**
      * Reset color
      */
     $scope.resetRBGColor = function(id, color) {
-         $scope.rgbVal[id] = color;
+        $scope.rgbVal[id] = color;
     };
 
     /// --- Private functions --- ///
@@ -1563,6 +1538,9 @@ myAppController.controller('NetworkController', function($scope, $cookies, dataF
             }
             // Get ZwaveApiData
             dataFactory.getZwaveApiData(function(ZWaveAPIData) {
+                if(!ZWaveAPIData){
+                    return;
+                }
                 var findZwaveStr = "ZWayVDev_zway_";
                 angular.forEach(devices, function(v, k) {
                     var cmd;
@@ -1574,13 +1552,15 @@ myAppController.controller('NetworkController', function($scope, $cookies, dataF
                         nodeId = cmd[0];
                         iId = cmd[1];
                         ccId = cmd[2];
-
+                        var device = ZWaveAPIData.devices[nodeId];
+                        if(device){
+                            
                         var obj = {};
                         obj['id'] = v.id;
                         obj['metrics'] = v.metrics;
                         obj['messages'] = [];
                         obj['messages'].push($scope._t('lb_not_configured'));
-                        var interviewDone = ZWaveAPIData.devices[nodeId].instances[iId].commandClasses[ccId].data.interviewDone.value;
+                       var interviewDone = device.instances[iId].commandClasses[ccId].data.interviewDone.value;
                         /*if (!interviewDone) {
                          obj['messages'].push($scope._t('lb_not_configured'));
                          }*/
@@ -1590,6 +1570,8 @@ myAppController.controller('NetworkController', function($scope, $cookies, dataF
 //                          console.log(interviewDone)
                         // if(angular.isDefined())
                         $scope.devices.failed.push(obj);
+                        }
+
                     }
                 });
                 //console.log($scope.devices.failed)

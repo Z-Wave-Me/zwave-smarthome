@@ -126,7 +126,6 @@ myAppFactory.factory('dataFactory', function($http, $interval, $window, $filter,
                 addErrorElement();
             }
             $http(request).success(function(data) {
-
                 addTimeTickElement();
                 updateTimeTick($filter('hasNode')(data, 'data.updateTime'));
                 return callback(data);
