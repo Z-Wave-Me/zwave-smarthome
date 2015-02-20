@@ -1259,6 +1259,12 @@ vertical-align: middle;
   border-bottom: solid 1px #d3d3d3;
 }
 
+/* line 89, sass/modules/_devices.scss */
+.badge-number {
+  font-size: 14px;
+  border-radius: 3px;
+}
+
 /* Network
 -------------------------------------------------- */
 /* line 8, sass/modules/_network.scss */

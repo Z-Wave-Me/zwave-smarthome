@@ -1142,6 +1142,7 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
     $scope.lastExcludedDevice = null;
     $scope.hasBattery = false;
     $scope.inclusionError = false;
+    $scope.clearStepStatus = false;
     $scope.messages = {
         "nm_controller_state_0": "Controller is in normal mode",
         "nm_controller_state_1": "Ready to include.",

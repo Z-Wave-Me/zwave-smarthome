@@ -49,17 +49,17 @@
     margin: 0 0 20px 0;
 }
 
- .col-device-vendor{
-        padding-left: 5px !important;
-        padding-right: 5px !important;
-    }
+.col-device-vendor{
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+}
 .vendor-list {
     display: block; 
     margin: 0 0 10px 0 ;
     background-color: #fff;
     text-align: center; 
     border: solid 1px $app-border-color;
-   
+
     .vendor-image{
         line-height: 80px;
         margin: 0 !important;
@@ -84,4 +84,9 @@
         padding: 10px 0;
         border-bottom: solid 1px $app-border-color;
     }
+}
+
+.badge-number {
+    font-size: 14px;
+    border-radius: 3px;
 }
