@@ -396,7 +396,7 @@ myAppController.controller('HomeController', function($scope, dataFactory, dataS
 /**
  * Element controller
  */
-myAppController.controller('ElementController', function($scope, $routeParams, $location,$interval, dataFactory, dataService, myCache) {
+myAppController.controller('ElementController', function($scope, $routeParams, $location, $interval, dataFactory, dataService, myCache) {
     $scope.collection = [];
     $scope.showFooter = true;
     $scope.deviceType = [];
@@ -412,7 +412,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.knobopt = {
         width: 100
     };
-    
+
     $scope.slider = {
         modelMax: 38
     };
@@ -427,7 +427,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         'deviceType': null,
         'level': null
     };
-    
+
     // Cancel interval on page destroy
     $scope.$on('$destroy', function() {
         dataFactory.cancelApiDataInterval();
@@ -502,16 +502,16 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         });
     };
     $scope.updateData();
-   
+
     // Clear history json cache
     $scope.clearHistoryCache = function() {
         var refresh = function() {
             myCache.remove('history');
         };
-        $interval(refresh,$scope.cfg.history_cache_interval);
+        $interval(refresh, $scope.cfg.history_cache_interval);
     };
     $scope.clearHistoryCache();
-    
+
     /**
      * Show modal window
      */
@@ -912,7 +912,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
                 break;
         }
     });
-    
+
     /**
      * Show modal window
      */
@@ -1519,7 +1519,8 @@ myAppController.controller('NetworkController', function($scope, $cookies, dataF
         'cnt0': []
     };
     $scope.devices = {
-        'failed': []
+        'failed': [],
+        'zwave': []
     };
 
     $scope.notInterviewDevices = [];
@@ -1551,7 +1552,7 @@ myAppController.controller('NetworkController', function($scope, $cookies, dataF
             }
             // Get ZwaveApiData
             dataFactory.getZwaveApiData(function(ZWaveAPIData) {
-                if(!ZWaveAPIData){
+                if (!ZWaveAPIData && !ZWaveAPIData.devices) {
                     return;
                 }
                 var findZwaveStr = "ZWayVDev_zway_";
@@ -1561,28 +1562,32 @@ myAppController.controller('NetworkController', function($scope, $cookies, dataF
                     var iId;
                     var ccId;
                     if (v.id.indexOf(findZwaveStr) > -1) {
+                        console.log
                         cmd = v.id.split(findZwaveStr)[1].split('-');
                         nodeId = cmd[0];
                         iId = cmd[1];
                         ccId = cmd[2];
                         var device = ZWaveAPIData.devices[nodeId];
-                        if(device){
-                            
-                        var obj = {};
-                        obj['id'] = v.id;
-                        obj['metrics'] = v.metrics;
-                        obj['messages'] = [];
-                        obj['messages'].push($scope._t('lb_not_configured'));
-                       var interviewDone = device.instances[iId].commandClasses[ccId].data.interviewDone.value;
-                        /*if (!interviewDone) {
-                         obj['messages'].push($scope._t('lb_not_configured'));
-                         }*/
-                        //obj['messages'].push('Another error message');
+                        if (device) {
+                            var zwave = {};
+                             zwave['id'] = v.id;
+                            zwave['metrics'] = v.metrics;
+                            $scope.devices.zwave.push(zwave);
+                            var obj = {};
+                            obj['id'] = v.id;
+                            obj['metrics'] = v.metrics;
+                            obj['messages'] = [];
+                            obj['messages'].push($scope._t('lb_not_configured'));
+                            var interviewDone = device.instances[iId].commandClasses[ccId].data.interviewDone.value;
+                            /*if (!interviewDone) {
+                             obj['messages'].push($scope._t('lb_not_configured'));
+                             }*/
+                            //obj['messages'].push('Another error message');
 //                         console.log(v.id + ': ' + nodeId + ', ' + iId + ', ' + ccId)
 //                         console.log(interviewDone)
 //                          console.log(interviewDone)
-                        // if(angular.isDefined())
-                        $scope.devices.failed.push(obj);
+                            // if(angular.isDefined())
+                            $scope.devices.failed.push(obj);
                         }
 
                     }

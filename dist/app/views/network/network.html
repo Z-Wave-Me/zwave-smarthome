@@ -8,9 +8,14 @@
                     <i class="fa fa-bolt fa-lg tab-icon"></i> <span class="tab-name">{{_t('lb_battery_status')}}</span>
                 </a>
             </li>
+            <li ng-class="activeTab == 'zwave' ? 'active' : ''">
+                <a href="" title="{{_t('lb_zwave_devices')}}" data-target="#module_zwave" data-toggle="tab" ng-click="setTab('zwave')">
+                    <i class="fa fa-wifi fa-lg tab-icon"></i> <span class="tab-name">{{_t('lb_zwave_devices')}}</span>
+                </a>
+            </li>
             <li ng-class="activeTab == 'health' ? 'active' : ''">
                 <a href="" title="{{_t('nav_network_health')}}" data-target="#module_health" data-toggle="tab" ng-click="setTab('health')">
-                    <i class="fa fa-cog fa-sitemap tab-icon"></i> <span class="tab-name">{{_t('nav_network_health')}}</span> 
+                    <i class="fa fa-cog fa-sitemap tab-icon"></i> <span class="tab-name">{{_t('lb_network_status')}}</span> 
                 </a>
             </li>
         </ul>
@@ -39,6 +44,24 @@
                         <span class="text-default" ng-show="v.metrics.level < 80 && v.metrics.level > 20">{{v.metrics.level}} %</span>
                         <span class="text-danger" ng-show="v.metrics.level < 20"><i class="fa fa-exclamation-triangle"></i> {{v.metrics.level}} %</span>
 
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+        <!-- Z-Wave -->
+        <div class="tab-pane" id="module_zwave" ng-class="activeTab == 'zwave' ? 'active' : ''">
+        <table class="table table-report">
+            <tbody>
+                <tr ng-repeat="v in devices.zwave" id="zwave_{{v.id}}">
+                    <td>
+                        <!-- <span class="text-supp">#{{v.id}}</span>-->
+                        <img class="report-img" ng-src="{{v.metrics.icon|getElementIcon:v}}" alt="{{ v.metrics.title}}" />
+                        <span class="report-message" ng-bind="v.metrics.title"></span>
+
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" href=""><i class="fa fa-cog fa-lg"></i> Device configuration</a>
                     </td>
                 </tr>
             </tbody>
