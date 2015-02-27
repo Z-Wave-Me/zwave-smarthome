@@ -39,6 +39,9 @@
 /*==========  Detected mobile devices  ==========*/
 
 @media (max-width: 2000px) {
+    .show-on-mobile{
+        display: none;
+    }
     .is-mobile-true{
         @include appMobileLayout();
     } 
@@ -88,6 +91,12 @@
 
 /* Small Devices, Tablets */
 @media only screen and (max-width : 768px) {
+    .show-on-pc{
+        display: none;
+    }
+    .show-on-mobile{
+        display: block !important;
+    }
     @include appMobileLayout();
 }
 

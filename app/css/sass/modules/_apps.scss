@@ -6,7 +6,7 @@
     margin: 10px 0;
     padding: 20px;
     border-radius: 5px;
-    height: 220px;
+    height: 200px;
     .app-rating{
         margin-right: 20px;
         color: #5CB85C;
@@ -30,9 +30,12 @@
     margin-right: 7px;
 }
 .app-image{
-    width: 100%;
-    max-width: 130px;
-    margin: 10px 0;
+    //width: 100%;
+    max-width: 100px;
+    margin: 0;
+    -webkit-border-radius: 50%;
+-moz-border-radius: 50%;
+border-radius: 50%;
 }
 
 .app-image-list{

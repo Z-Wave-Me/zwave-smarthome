@@ -7601,6 +7601,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     $scope.activeTab = (angular.isDefined($cookies.tab_app) ? $cookies.tab_app : 'local');
     $scope.category = '';
     $scope.showFooter = true;
+    $scope.modalLocal = {};
     $scope.showInFooter = {
         'categories': true,
         'serach': true
@@ -7642,6 +7643,9 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
                 $scope.loadInstances();
 
                 break;
+            case 'hidden':
+                $scope.showInFooter.categories = false;
+                break;
             default:
                 $scope.showInFooter.categories = true;
                 $scope.$watch('category', function() {
@@ -7658,6 +7662,14 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
                 break;
         }
     });
+    
+    /**
+     * Show modal window
+     */
+    $scope.showModal = function(target, input) {
+        $scope.modalLocal = input;
+        $(target).modal();
+    };
 
     /**
      * Ictivate instance

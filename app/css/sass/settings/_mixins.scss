@@ -154,6 +154,7 @@
         border: 0;
 
     }
+    
 
     /* Typo
     -------------------------------------------------- */
@@ -310,11 +311,11 @@
 
         .app-header{
             float: left;
-            width: 35%;
+            width: 25%;
         }
         .app-body{
             float: left;
-            width: 64%;
+            width: 74%;
             margin: 0;
             padding-right: 10px;
             .btn{
@@ -323,6 +324,12 @@
 
         }
     }
+    
+    .app-image{
+        width: 100%;
+    max-width: 100px;
+    margin: 0;
+}
     #table_apps_active{
         .btn{
             font-size: 12px;

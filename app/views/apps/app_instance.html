@@ -1,13 +1,15 @@
 <!-- Online app view -->
 <div class="table-responsive_">
-    <table id="table_apps_active" class="table table-report">
+    <table id="table_apps_active_" class="table table-condensed table-report">
         <tbody>
             <tr class="bcg-active" ng-repeat="v in instances| orderBy:predicate:reverse | filter:q" id="instance_{{$index}}" ng-class="v.active ? 'true': 'false'">
-                <td><img class="app-image-list" ng-src="storage/img/apps/appimage.jpg" alt="{{ v.name}}"/></td>
+                <td class="td-img">
+                    <img class="report-img" ng-src="storage/img/apps/appimage.jpg" alt="icon" />
+                </td>
                 <td>
                     <span ng-show="!v.title">This</span><span ng-bind="v.title"></span> is a <strong ng-bind="v.moduleId"></strong>
                 </td>
-                <td class="apps-action-icons">
+                <td class="apps-action-icons text-right">
                     <a href="#module/put/{{v.id}}" title="{{_t('lb_update')}}" class="btn btn-primary btn-sm">
                         <i class="fa fa-cog fa-lg"></i>
                     </a>
