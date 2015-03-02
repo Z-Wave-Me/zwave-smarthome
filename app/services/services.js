@@ -7,7 +7,7 @@ var myAppService = angular.module('myAppService', []);
 /**
  * Device service
  */
-myAppService.service('dataService', function($filter, myCache) {
+myAppService.service('dataService', function($filter, $log,myCache) {
     /// --- Public functions --- ///
     /**
      * Get language line by key
@@ -19,6 +19,21 @@ myAppService.service('dataService', function($filter, myCache) {
             }
         }
         return key;
+    };
+    /**
+     * Show connection error
+     */
+    this.showConnectionError = function(error) {
+        $('.navi-time').html('<i class="fa fa-minus-circle fa-lg text-danger"></i>');
+        $log.error('---------- CONNECTION ERROR: Could not retrieve data from server. ----------', error);
+    };
+    
+    /**
+     * Update time tick
+     */
+    this.updateTimeTick = function(time) {
+        time = (time || Math.round(+new Date() / 1000));
+        $('#update_time_tick').html($filter('getCurrentTime')(time));
     };
     /**
      * Mobile device detect

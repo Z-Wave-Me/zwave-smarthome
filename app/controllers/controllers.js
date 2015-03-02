@@ -1511,7 +1511,7 @@ myAppController.controller('RoomConfigController', function($scope, $window, $in
 /**
  * Network controller
  */
-myAppController.controller('NetworkController', function($scope, $cookies, dataFactory, dataService) {
+myAppController.controller('NetworkController', function($scope, $cookies, $filter, dataFactory, dataService) {
     $scope.activeTab = (angular.isDefined($cookies.tab_network) ? $cookies.tab_network : 'battery');
     $scope.batteries = {
         'list': [],
@@ -1520,8 +1520,11 @@ myAppController.controller('NetworkController', function($scope, $cookies, dataF
     };
     $scope.devices = {
         'failed': [],
+        'batteries': [],
         'zwave': []
     };
+
+    $scope.testSort = [];
 
     $scope.notInterviewDevices = [];
     $scope.reset = function() {
@@ -1533,72 +1536,102 @@ myAppController.controller('NetworkController', function($scope, $cookies, dataF
      */
     $scope.setTab = function(tabId) {
         $scope.activeTab = tabId;
-        $cookies.tab_app = tabId;
+        $cookies.tab_network = tabId;
     };
 
     $scope.loadData = function() {
-        dataFactory.getApiData('devices', function(data) {
-            var devices = data.data.devices;
-            $scope.batteries.list = dataService.getData(data.data.devices, {filter: "deviceType", val: 'battery'});
-            for (i = 0; i < $scope.batteries.list.length; ++i) {
-                var battery = $scope.batteries.list[i];
-                if (battery.metrics.level < 1) {
+        dataFactory.getApi('devices').then(function(response) {
+            zwaveApiData(response.data.devices);
+         }, function(error) {
+             dataService.showConnectionError(error);
+        });
+    };
+    $scope.loadData();
+
+    /// --- Private functions --- ///
+    /**
+     * Get zwaveApiData
+     */
+    function zwaveApiData(devices) {
+       dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
+           if (!ZWaveAPIData.devices) {
+                return;
+            }
+            var findZwaveStr = "ZWayVDev_zway_";
+            angular.forEach(devices, function(v, k) {
+                var cmd;
+                var nodeId;
+                var iId;
+                var ccId;
+                if (v.id.indexOf(findZwaveStr) > -1) {
+                    cmd = v.id.split(findZwaveStr)[1].split('-');
+                    nodeId = cmd[0];
+                    iId = cmd[1];
+                    ccId = cmd[2];
+                    var node = ZWaveAPIData.devices[nodeId];
+                    if (node) {
+                        var isFailed = node.data.isFailed.value;
+                        var interviewDone = node.instances[iId].commandClasses[ccId].data.interviewDone.value;
+                        //var hasBattery = 0x80 in node.instances[0].commandClasses;
+                        var obj = {};
+                        obj['id'] = v.id;
+                        obj['nodeId'] = nodeId;
+                        obj['title'] = v.metrics.title;
+                        obj['level'] = $filter('toInt')(v.metrics.level);
+                        obj['metrics'] = v.metrics;
+                        obj['messages'] = [];
+                        $scope.devices.zwave.push(obj);
+                        // Batteries
+                        if (v.deviceType === 'battery') {
+                            $scope.devices.batteries.push(obj);
+                        }
+//                            if (hasBattery) {
+//                                $scope.devices.batteries.push(obj);
+//                            }
+                        // Not interview
+                        if (!interviewDone) {
+                            obj['messages'].push($scope._t('lb_not_configured'));
+                        }
+                        // Is failed
+                        if (isFailed) {
+                            obj['messages'].push($scope._t('lb_is_failed'));
+                        }
+                        //console.log(v.id + ': ' + nodeId + ', ' + iId + ', ' + ccId)
+                        //console.log('Interview done:' + interviewDone, 'isFailed:' + isFailed);
+                        $scope.devices.failed.push(obj);
+                    }
+
+                }
+            });
+            // Count device batteries
+            for (i = 0; i < $scope.devices.batteries.length; ++i) {
+                var battery = $scope.devices.batteries[i];
+                if (battery.level < 1) {
                     $scope.batteries.cnt0.push(battery.id);
                 }
-                if (battery.metrics.level > 0 && battery.metrics.level < 20) {
+                if (battery.level > 0 && battery.level < 20) {
                     $scope.batteries.cntLess20.push(battery.id);
                 }
 
             }
-            // Get ZwaveApiData
-            dataFactory.getZwaveApiData(function(ZWaveAPIData) {
-                if (!ZWaveAPIData && !ZWaveAPIData.devices) {
-                    return;
-                }
-                var findZwaveStr = "ZWayVDev_zway_";
-                angular.forEach(devices, function(v, k) {
-                    var cmd;
-                    var nodeId;
-                    var iId;
-                    var ccId;
-                    if (v.id.indexOf(findZwaveStr) > -1) {
-                        console.log
-                        cmd = v.id.split(findZwaveStr)[1].split('-');
-                        nodeId = cmd[0];
-                        iId = cmd[1];
-                        ccId = cmd[2];
-                        var device = ZWaveAPIData.devices[nodeId];
-                        if (device) {
-                            var zwave = {};
-                             zwave['id'] = v.id;
-                            zwave['metrics'] = v.metrics;
-                            $scope.devices.zwave.push(zwave);
-                            var obj = {};
-                            obj['id'] = v.id;
-                            obj['metrics'] = v.metrics;
-                            obj['messages'] = [];
-                            obj['messages'].push($scope._t('lb_not_configured'));
-                            var interviewDone = device.instances[iId].commandClasses[ccId].data.interviewDone.value;
-                            /*if (!interviewDone) {
-                             obj['messages'].push($scope._t('lb_not_configured'));
-                             }*/
-                            //obj['messages'].push('Another error message');
-//                         console.log(v.id + ': ' + nodeId + ', ' + iId + ', ' + ccId)
-//                         console.log(interviewDone)
-//                          console.log(interviewDone)
-                            // if(angular.isDefined())
-                            $scope.devices.failed.push(obj);
-                        }
-
-                    }
-                });
-                //console.log($scope.devices.failed)
-            });
-
-
+             dataService.updateTimeTick(12345);
+            //$scope.devices.zwave = $filter('naturalSort')($scope.devices.zwave);
+//                $scope.devices.zwave.sort(function(a, b) {
+//                    var nameA = a.name.toLowerCase(), nameB = b.name.toLowerCase()
+//                    if (nameA < nameB){ //sort string ascending
+//                        return -1;
+//                    }
+//                    if (nameA > nameB){
+//                        return 1;
+//                    }
+//                    return 0; //default return value (no sorting)
+//                });
+            //console.log($scope.devices.zwave)
+        }, function(error) {
+             dataService.showConnectionError(error);
         });
-    };
-    $scope.loadData();
+    }
+    ;
 });
 /**
  * About controller

@@ -14,6 +14,7 @@
     "lb_battery_20": "devices < 20 % battery level",
     "lb_battery_0": "at 0 % battery level",
     "lb_not_configured": "Device is not configured",
+    "lb_is_failed": "Device is failed",
     "lb_preparation": "Preparation",
     "btn_inclusion_start": "Start inclusion",
     "btn_inclusion_stop": "Stop inclusion",

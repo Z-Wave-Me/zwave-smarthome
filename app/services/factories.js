@@ -14,12 +14,13 @@ myAppFactory.factory('myCache', function($cacheFactory) {
 /**
  * Main data factory
  */
-myAppFactory.factory('dataFactory', function($http, $interval, $window, $filter, $timeout, myCache, cfg) {
+myAppFactory.factory('dataFactory', function($http, $interval, $window, $filter, $timeout, $q, myCache, cfg) {
     var apiDataInterval;
     var enableCache = true;
     var updatedTime = Math.round(+new Date() / 1000);
     return({
-        getApiData: getApiData,
+        getApi: getApi,
+        getApiData: getApiData, // Deprecated: Remove after getApi implementation
         postApiData: postApiData,
         putApiData: putApiData,
         deleteApiData: deleteApiData,
@@ -30,6 +31,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $window, $filter,
         cancelApiDataInterval: cancelApiDataInterval,
         getLanguageFile: getLanguageFile,
         getZwaveApiData: getZwaveApiData,
+        loadZwaveApiData: loadZwaveApiData,
         updateZwaveApiData: updateZwaveApiData,
         runZwaveCmd: runZwaveCmd
     });
@@ -51,6 +53,36 @@ myAppFactory.factory('dataFactory', function($http, $interval, $window, $filter,
     /**
      * API data
      */
+    // Get
+    function getApi(api, params, noCache) {
+        // Cached data
+         var cacheName = 'cache_' + api + (params || '');
+        var cached = myCache.get(cacheName);
+       
+        if (!noCache && cached) {
+            console.log('CACHED: ' + cacheName);
+            var deferred = $q.defer();
+            deferred.resolve(cached); // <-- Can I do this?
+            return deferred.promise;
+        }
+        // NOT Cached data
+        console.log('NOT CACHED: ' + cacheName);
+
+        return $http({
+            method: 'get',
+            url: cfg.server_url + cfg.api[api] + (params ? params : '')
+                    //cache: noCache || true
+        }).then(function(response) {
+            if (typeof response.data === 'object') {
+                myCache.put(cacheName, response.data);
+                return response.data;
+            } else {// invalid response
+                return $q.reject(response);
+            }
+        }, function(response) {// something went wrong
+            return $q.reject(response);
+        });
+    }
     // Get
     function getApiData(api, callback, params, noCache) {
         var cacheName = api + (params || '');
@@ -159,6 +191,39 @@ myAppFactory.factory('dataFactory', function($http, $interval, $window, $filter,
         };
         return getApiHandle(callback, request, langFile);
     }
+
+    /**
+     * Load ZwaveApiData 
+     */
+    function loadZwaveApiData(noCache) {
+        // Cached data
+         var cacheName = 'cache_zwaveapidata';
+        var cached = myCache.get(cacheName);
+        if (!noCache && cached) {
+            console.log('CACHED: ' + cacheName);
+            var deferred = $q.defer();
+            deferred.resolve(cached); // <-- Can I do this?
+            return deferred.promise;
+        }
+        // NOT Cached data
+        console.log('NOT CACHED: ' + cacheName);
+        return $http({
+            method: 'get',
+            url: cfg.server_url + cfg.zwave_api_url + 'Data/0'
+        }).then(function(response) {
+            if (typeof response.data === 'object') {
+                 myCache.put(cacheName, response.data);
+                return response.data;
+            } else {
+                // invalid response
+                return $q.reject(response);
+            }
+        }, function(response) {
+            // something went wrong
+            return $q.reject(response);
+        });
+    }
+
 
     /**
      * Get ExpertUI data
