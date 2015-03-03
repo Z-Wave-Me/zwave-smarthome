@@ -1263,20 +1263,28 @@ vertical-align: middle;
 }
 
 /* line 79, sass/modules/_devices.scss */
+.include-device-img {
+  float: left;
+  margin-right: 20px;
+  border-radius: 50%;
+  border: solid 2px #d3d3d3;
+}
+
+/* line 87, sass/modules/_devices.scss */
 .col-device {
   padding: 20px;
 }
-/* line 82, sass/modules/_devices.scss */
+/* line 90, sass/modules/_devices.scss */
 .col-device .device-statement {
   margin: 10px 0;
   padding: 10px 0;
   border-bottom: solid 1px #d3d3d3;
 }
 
-/* line 89, sass/modules/_devices.scss */
+/* line 97, sass/modules/_devices.scss */
 .badge-number {
-  font-size: 14px;
-  border-radius: 3px;
+  font-size: 22px;
+  border-radius: 50%;
 }
 
 /* Network

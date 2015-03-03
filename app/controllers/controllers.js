@@ -1232,18 +1232,23 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
                     // Check interview
                     if (ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value && ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value.length) {
                         for (var iId in ZWaveAPIData.devices[nodeId].instances) {
-                            if (ZWaveAPIData.devices[nodeId].instances[iId].commandClasses.length > 0) {
+                             console.log('commandClasses: ',ZWaveAPIData.devices[nodeId].instances[iId].commandClasses)
+                            console.log('commandClasses.length: ',Object.keys(ZWaveAPIData.devices[nodeId].instances[iId].commandClasses).length)
+                            if (Object.keys(ZWaveAPIData.devices[nodeId].instances[iId].commandClasses).length > 0) {
                                 for (var ccId in ZWaveAPIData.devices[nodeId].instances[iId].commandClasses) {
                                     if (!ZWaveAPIData.devices[nodeId].instances[iId].commandClasses[ccId].data.interviewDone.value) {
+                                        console.log('Interview false: 1')
                                         interviewDone = false;
                                     }
                                 }
                             } else {
+                                 console.log('Interview false: 2')
                                 interviewDone = false;
                             }
                         }
 
                     } else {
+                         console.log('Interview false: 3')
                         interviewDone = false;
                     }
                     // Set device name
@@ -1262,7 +1267,7 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
                     $scope.includedDeviceId = null;
                 });
 
-            }, 10000);
+            }, 15000);
         }
     });
 

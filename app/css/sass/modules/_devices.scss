@@ -76,6 +76,14 @@
     border-top: solid 1px $app-border-color;
 }
 
+.include-device-img{
+    float: left;
+    margin-right: 20px;
+    border-radius: 50%;
+     border: solid 2px $app-border-color;
+    
+}
+
 .col-device{
     //text-align: center;
     padding: 20px;
@@ -87,6 +95,6 @@
 }
 
 .badge-number {
-    font-size: 14px;
-    border-radius: 3px;
+    font-size: 22px;
+    border-radius: 50%;
 }
