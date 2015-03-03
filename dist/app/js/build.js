@@ -4929,12 +4929,13 @@ myAppFactory.factory('myCache', function($cacheFactory) {
 /**
  * Main data factory
  */
-myAppFactory.factory('dataFactory', function($http, $interval, $window, $filter, $timeout, myCache, cfg) {
+myAppFactory.factory('dataFactory', function($http, $interval, $window, $filter, $timeout, $q, myCache, cfg) {
     var apiDataInterval;
     var enableCache = true;
     var updatedTime = Math.round(+new Date() / 1000);
     return({
-        getApiData: getApiData,
+        getApi: getApi,
+        getApiData: getApiData, // Deprecated: Remove after getApi implementation
         postApiData: postApiData,
         putApiData: putApiData,
         deleteApiData: deleteApiData,
@@ -4945,6 +4946,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $window, $filter,
         cancelApiDataInterval: cancelApiDataInterval,
         getLanguageFile: getLanguageFile,
         getZwaveApiData: getZwaveApiData,
+        loadZwaveApiData: loadZwaveApiData,
         updateZwaveApiData: updateZwaveApiData,
         runZwaveCmd: runZwaveCmd
     });
@@ -4966,6 +4968,36 @@ myAppFactory.factory('dataFactory', function($http, $interval, $window, $filter,
     /**
      * API data
      */
+    // Get
+    function getApi(api, params, noCache) {
+        // Cached data
+         var cacheName = 'cache_' + api + (params || '');
+        var cached = myCache.get(cacheName);
+       
+        if (!noCache && cached) {
+            console.log('CACHED: ' + cacheName);
+            var deferred = $q.defer();
+            deferred.resolve(cached); // <-- Can I do this?
+            return deferred.promise;
+        }
+        // NOT Cached data
+        console.log('NOT CACHED: ' + cacheName);
+
+        return $http({
+            method: 'get',
+            url: cfg.server_url + cfg.api[api] + (params ? params : '')
+                    //cache: noCache || true
+        }).then(function(response) {
+            if (typeof response.data === 'object') {
+                myCache.put(cacheName, response.data);
+                return response.data;
+            } else {// invalid response
+                return $q.reject(response);
+            }
+        }, function(response) {// something went wrong
+            return $q.reject(response);
+        });
+    }
     // Get
     function getApiData(api, callback, params, noCache) {
         var cacheName = api + (params || '');
@@ -5074,6 +5106,39 @@ myAppFactory.factory('dataFactory', function($http, $interval, $window, $filter,
         };
         return getApiHandle(callback, request, langFile);
     }
+
+    /**
+     * Load ZwaveApiData 
+     */
+    function loadZwaveApiData(noCache) {
+        // Cached data
+         var cacheName = 'cache_zwaveapidata';
+        var cached = myCache.get(cacheName);
+        if (!noCache && cached) {
+            console.log('CACHED: ' + cacheName);
+            var deferred = $q.defer();
+            deferred.resolve(cached); // <-- Can I do this?
+            return deferred.promise;
+        }
+        // NOT Cached data
+        console.log('NOT CACHED: ' + cacheName);
+        return $http({
+            method: 'get',
+            url: cfg.server_url + cfg.zwave_api_url + 'Data/0'
+        }).then(function(response) {
+            if (typeof response.data === 'object') {
+                 myCache.put(cacheName, response.data);
+                return response.data;
+            } else {
+                // invalid response
+                return $q.reject(response);
+            }
+        }, function(response) {
+            // something went wrong
+            return $q.reject(response);
+        });
+    }
+
 
     /**
      * Get ExpertUI data
@@ -5261,7 +5326,7 @@ var myAppService = angular.module('myAppService', []);
 /**
  * Device service
  */
-myAppService.service('dataService', function($filter, myCache) {
+myAppService.service('dataService', function($filter, $log,myCache) {
     /// --- Public functions --- ///
     /**
      * Get language line by key
@@ -5273,6 +5338,21 @@ myAppService.service('dataService', function($filter, myCache) {
             }
         }
         return key;
+    };
+    /**
+     * Show connection error
+     */
+    this.showConnectionError = function(error) {
+        $('.navi-time').html('<i class="fa fa-minus-circle fa-lg text-danger"></i>');
+        $log.error('---------- CONNECTION ERROR: Could not retrieve data from server. ----------', error);
+    };
+    
+    /**
+     * Update time tick
+     */
+    this.updateTimeTick = function(time) {
+        time = (time || Math.round(+new Date() / 1000));
+        $('#update_time_tick').html($filter('getCurrentTime')(time));
     };
     /**
      * Mobile device detect
@@ -6395,6 +6475,65 @@ myApp.filter('cutText', function() {
     };
 });
 /**
+ * Convert val to int
+ */
+myApp.filter('toInt', function() {
+    return function(val,a) {
+        a = typeof a !== 'undefined' ? a : 10;
+        if(isNaN(val)){
+             return 0;
+        }
+        return parseInt(val,a);
+    };
+});
+
+//myApp.filter('naturalSort',function(){
+//    function naturalSort (a, b) {
+//        var re = /(^-?[0-9]+(\.?[0-9]*)[df]?e?[0-9]?$|^0x[0-9a-f]+$|[0-9]+)/gi,
+//            sre = /(^[ ]*|[ ]*$)/g,
+//            dre = /(^([\w ]+,?[\w ]+)?[\w ]+,?[\w ]+\d+:\d+(:\d+)?[\w ]?|^\d{1,4}[\/\-]\d{1,4}[\/\-]\d{1,4}|^\w+, \w+ \d+, \d{4})/,
+//            hre = /^0x[0-9a-f]+$/i,
+//            ore = /^0/,
+//            i = function(s) { return naturalSort.insensitive && (''+s).toLowerCase() || ''+s },
+//            // convert all to strings strip whitespace
+//            x = i(a).replace(sre, '') || '',
+//            y = i(b).replace(sre, '') || '',
+//            // chunk/tokenize
+//            xN = x.replace(re, '\0$1\0').replace(/\0$/,'').replace(/^\0/,'').split('\0'),
+//            yN = y.replace(re, '\0$1\0').replace(/\0$/,'').replace(/^\0/,'').split('\0'),
+//            // numeric, hex or date detection
+//            xD = parseInt(x.match(hre)) || (xN.length != 1 && x.match(dre) && Date.parse(x)),
+//            yD = parseInt(y.match(hre)) || xD && y.match(dre) && Date.parse(y) || null,
+//            oFxNcL, oFyNcL;
+//        // first try and sort Hex codes or Dates
+//        if (yD)
+//            if ( xD < yD ) return -1;
+//        else if ( xD > yD ) return 1;
+//        // natural sorting through split numeric strings and default strings
+//        for(var cLoc=0, numS=Math.max(xN.length, yN.length); cLoc < numS; cLoc++) {
+//            // find floats not starting with '0', string or 0 if not defined (Clint Priest)
+//            oFxNcL = !(xN[cLoc] || '').match(ore) && parseFloat(xN[cLoc]) || xN[cLoc] || 0;
+//            oFyNcL = !(yN[cLoc] || '').match(ore) && parseFloat(yN[cLoc]) || yN[cLoc] || 0;
+//            // handle numeric vs string comparison - number < string - (Kyle Adams)
+//            if (isNaN(oFxNcL) !== isNaN(oFyNcL)) { return (isNaN(oFxNcL)) ? 1 : -1; }
+//            // rely on string comparison if different types - i.e. '02' < 2 != '02' < '2'
+//            else if (typeof oFxNcL !== typeof oFyNcL) {
+//                oFxNcL += '';
+//                oFyNcL += '';
+//            }
+//            if (oFxNcL < oFyNcL) return -1;
+//            if (oFxNcL > oFyNcL) return 1;
+//        }
+//        return 0;
+//    }
+//    return function(arrInput) {
+//        var arr = arrInput.sort(function(a, b) {
+//            return naturalSort(a.title,b.title);
+//        });
+//        return arr;
+//    }
+//});
+/**
  * Set the max dec. lenghth
  */
 myApp.filter('numberFixedLen', function() {
@@ -7158,6 +7297,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.profileData = [];
     $scope.chartOptions = {
         // Chart.js options can go here.
+        //responsive: true
     };
     $scope.knobopt = {
         width: 100
@@ -7207,6 +7347,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
             dataFactory.getApiData('history', function(history) {
                 angular.forEach(history.data.history, function(v, k) {
                     $scope.history[v.id] = dataService.getChartData(v.mH, $scope.cfg.chart_colors);
+                    console.log($scope.history[v.id])
 
                 });
             });
@@ -7427,7 +7568,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $lo
      */
     $scope.loadData = function() {
         dataFactory.getApiData('notifications', function(data) {
-            $scope.eventLevels = dataService.getEventLevel(data.data.notifications, [{'key': null, 'val': $scope._t('lb_all')}]);
+            $scope.eventLevels = dataService.getEventLevel(data.data.notifications, [{'key': null, 'val': 'all'}]);
             $scope.eventSources = dataService.getPairs(data.data.notifications, 'source', 'source');
             var filter = null;
             if (angular.isDefined($routeParams.param) && angular.isDefined($routeParams.val)) {
@@ -7982,18 +8123,23 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
                     // Check interview
                     if (ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value && ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value.length) {
                         for (var iId in ZWaveAPIData.devices[nodeId].instances) {
-                            if (ZWaveAPIData.devices[nodeId].instances[iId].commandClasses.length > 0) {
+                             console.log('commandClasses: ',ZWaveAPIData.devices[nodeId].instances[iId].commandClasses)
+                            console.log('commandClasses.length: ',Object.keys(ZWaveAPIData.devices[nodeId].instances[iId].commandClasses).length)
+                            if (Object.keys(ZWaveAPIData.devices[nodeId].instances[iId].commandClasses).length > 0) {
                                 for (var ccId in ZWaveAPIData.devices[nodeId].instances[iId].commandClasses) {
                                     if (!ZWaveAPIData.devices[nodeId].instances[iId].commandClasses[ccId].data.interviewDone.value) {
+                                        console.log('Interview false: 1')
                                         interviewDone = false;
                                     }
                                 }
                             } else {
+                                 console.log('Interview false: 2')
                                 interviewDone = false;
                             }
                         }
 
                     } else {
+                         console.log('Interview false: 3')
                         interviewDone = false;
                     }
                     // Set device name
@@ -8012,7 +8158,7 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
                     $scope.includedDeviceId = null;
                 });
 
-            }, 10000);
+            }, 15000);
         }
     });
 
@@ -8261,7 +8407,7 @@ myAppController.controller('RoomConfigController', function($scope, $window, $in
 /**
  * Network controller
  */
-myAppController.controller('NetworkController', function($scope, $cookies, dataFactory, dataService) {
+myAppController.controller('NetworkController', function($scope, $cookies, $filter, dataFactory, dataService) {
     $scope.activeTab = (angular.isDefined($cookies.tab_network) ? $cookies.tab_network : 'battery');
     $scope.batteries = {
         'list': [],
@@ -8270,8 +8416,11 @@ myAppController.controller('NetworkController', function($scope, $cookies, dataF
     };
     $scope.devices = {
         'failed': [],
+        'batteries': [],
         'zwave': []
     };
+
+    $scope.testSort = [];
 
     $scope.notInterviewDevices = [];
     $scope.reset = function() {
@@ -8283,72 +8432,102 @@ myAppController.controller('NetworkController', function($scope, $cookies, dataF
      */
     $scope.setTab = function(tabId) {
         $scope.activeTab = tabId;
-        $cookies.tab_app = tabId;
+        $cookies.tab_network = tabId;
     };
 
     $scope.loadData = function() {
-        dataFactory.getApiData('devices', function(data) {
-            var devices = data.data.devices;
-            $scope.batteries.list = dataService.getData(data.data.devices, {filter: "deviceType", val: 'battery'});
-            for (i = 0; i < $scope.batteries.list.length; ++i) {
-                var battery = $scope.batteries.list[i];
-                if (battery.metrics.level < 1) {
+        dataFactory.getApi('devices').then(function(response) {
+            zwaveApiData(response.data.devices);
+         }, function(error) {
+             dataService.showConnectionError(error);
+        });
+    };
+    $scope.loadData();
+
+    /// --- Private functions --- ///
+    /**
+     * Get zwaveApiData
+     */
+    function zwaveApiData(devices) {
+       dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
+           if (!ZWaveAPIData.devices) {
+                return;
+            }
+            var findZwaveStr = "ZWayVDev_zway_";
+            angular.forEach(devices, function(v, k) {
+                var cmd;
+                var nodeId;
+                var iId;
+                var ccId;
+                if (v.id.indexOf(findZwaveStr) > -1) {
+                    cmd = v.id.split(findZwaveStr)[1].split('-');
+                    nodeId = cmd[0];
+                    iId = cmd[1];
+                    ccId = cmd[2];
+                    var node = ZWaveAPIData.devices[nodeId];
+                    if (node) {
+                        var isFailed = node.data.isFailed.value;
+                        var interviewDone = node.instances[iId].commandClasses[ccId].data.interviewDone.value;
+                        //var hasBattery = 0x80 in node.instances[0].commandClasses;
+                        var obj = {};
+                        obj['id'] = v.id;
+                        obj['nodeId'] = nodeId;
+                        obj['title'] = v.metrics.title;
+                        obj['level'] = $filter('toInt')(v.metrics.level);
+                        obj['metrics'] = v.metrics;
+                        obj['messages'] = [];
+                        $scope.devices.zwave.push(obj);
+                        // Batteries
+                        if (v.deviceType === 'battery') {
+                            $scope.devices.batteries.push(obj);
+                        }
+//                            if (hasBattery) {
+//                                $scope.devices.batteries.push(obj);
+//                            }
+                        // Not interview
+                        if (!interviewDone) {
+                            obj['messages'].push($scope._t('lb_not_configured'));
+                        }
+                        // Is failed
+                        if (isFailed) {
+                            obj['messages'].push($scope._t('lb_is_failed'));
+                        }
+                        //console.log(v.id + ': ' + nodeId + ', ' + iId + ', ' + ccId)
+                        //console.log('Interview done:' + interviewDone, 'isFailed:' + isFailed);
+                        $scope.devices.failed.push(obj);
+                    }
+
+                }
+            });
+            // Count device batteries
+            for (i = 0; i < $scope.devices.batteries.length; ++i) {
+                var battery = $scope.devices.batteries[i];
+                if (battery.level < 1) {
                     $scope.batteries.cnt0.push(battery.id);
                 }
-                if (battery.metrics.level > 0 && battery.metrics.level < 20) {
+                if (battery.level > 0 && battery.level < 20) {
                     $scope.batteries.cntLess20.push(battery.id);
                 }
 
             }
-            // Get ZwaveApiData
-            dataFactory.getZwaveApiData(function(ZWaveAPIData) {
-                if (!ZWaveAPIData && !ZWaveAPIData.devices) {
-                    return;
-                }
-                var findZwaveStr = "ZWayVDev_zway_";
-                angular.forEach(devices, function(v, k) {
-                    var cmd;
-                    var nodeId;
-                    var iId;
-                    var ccId;
-                    if (v.id.indexOf(findZwaveStr) > -1) {
-                        console.log
-                        cmd = v.id.split(findZwaveStr)[1].split('-');
-                        nodeId = cmd[0];
-                        iId = cmd[1];
-                        ccId = cmd[2];
-                        var device = ZWaveAPIData.devices[nodeId];
-                        if (device) {
-                            var zwave = {};
-                             zwave['id'] = v.id;
-                            zwave['metrics'] = v.metrics;
-                            $scope.devices.zwave.push(zwave);
-                            var obj = {};
-                            obj['id'] = v.id;
-                            obj['metrics'] = v.metrics;
-                            obj['messages'] = [];
-                            obj['messages'].push($scope._t('lb_not_configured'));
-                            var interviewDone = device.instances[iId].commandClasses[ccId].data.interviewDone.value;
-                            /*if (!interviewDone) {
-                             obj['messages'].push($scope._t('lb_not_configured'));
-                             }*/
-                            //obj['messages'].push('Another error message');
-//                         console.log(v.id + ': ' + nodeId + ', ' + iId + ', ' + ccId)
-//                         console.log(interviewDone)
-//                          console.log(interviewDone)
-                            // if(angular.isDefined())
-                            $scope.devices.failed.push(obj);
-                        }
-
-                    }
-                });
-                //console.log($scope.devices.failed)
-            });
-
-
+             dataService.updateTimeTick(12345);
+            //$scope.devices.zwave = $filter('naturalSort')($scope.devices.zwave);
+//                $scope.devices.zwave.sort(function(a, b) {
+//                    var nameA = a.name.toLowerCase(), nameB = b.name.toLowerCase()
+//                    if (nameA < nameB){ //sort string ascending
+//                        return -1;
+//                    }
+//                    if (nameA > nameB){
+//                        return 1;
+//                    }
+//                    return 0; //default return value (no sorting)
+//                });
+            //console.log($scope.devices.zwave)
+        }, function(error) {
+             dataService.showConnectionError(error);
         });
-    };
-    $scope.loadData();
+    }
+    ;
 });
 /**
  * About controller

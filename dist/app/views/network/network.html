@@ -32,7 +32,7 @@
         </p>
         <table class="table table-report table-condensed">
             <tbody>
-                <tr ng-repeat="v in batteries.list| orderBy:predicate:reverse" id="{{ v.rowId}}">
+                <tr ng-repeat="v in devices.batteries| orderBy:'level':false" id="row_battery_{{ v.rowId}}">
                     <td>
                         <!-- <span class="text-supp">#{{v.id}}</span>-->
                         <img class="report-img" src="storage/img/icons/battery.png" alt="icon" />
@@ -53,15 +53,15 @@
         <div class="tab-pane" id="module_zwave" ng-class="activeTab == 'zwave' ? 'active' : ''">
         <table class="table table-report">
             <tbody>
-                <tr ng-repeat="v in devices.zwave" id="zwave_{{v.id}}">
+                <tr ng-repeat="v in devices.zwave | orderBy:'title':false" id="row_zwave_{{v.id}}">
                     <td>
                         <!-- <span class="text-supp">#{{v.id}}</span>-->
-                        <img class="report-img" ng-src="{{v.metrics.icon|getElementIcon:v}}" alt="{{ v.metrics.title}}" />
-                        <span class="report-message" ng-bind="v.metrics.title"></span>
+                        <img class="report-img" ng-src="{{v.metrics.icon|getElementIcon:v}}" alt="{{ v.title}}" />
+                        <span class="report-message" ng-bind="v.title"></span>
 
                     </td>
                     <td>
-                        <a class="btn btn-primary" href=""><i class="fa fa-cog fa-lg"></i> Device configuration</a>
+                       <a class="btn btn-primary" href="/expert/#/configuration/interview/{{v.nodeId}}"><i class="fa fa-cog fa-lg"></i> Device configuration</a>
                     </td>
                 </tr>
             </tbody>
@@ -75,7 +75,7 @@
              </p>
             <table class="table table-report">
             <tbody>
-                <tr ng-repeat="v in devices.failed" id="{{v.id}}" ng-show=" v.messages.length > 0">
+                <tr ng-repeat="v in devices.failed | orderBy:'title':false" id="row_health_{{v.id}}" ng-show=" v.messages.length > 0">
                     <td>
                         <!-- <span class="text-supp">#{{v.id}}</span>-->
                         <img class="report-img" ng-src="{{v.metrics.icon|getElementIcon:v}}" alt="{{ v.metrics.title}}" />

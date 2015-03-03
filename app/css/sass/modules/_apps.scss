@@ -29,6 +29,13 @@
 .apps-action-icons a{
     margin-right: 7px;
 }
+#table_apps_instance{
+    .report-img{
+        -webkit-border-radius: 50%;
+-moz-border-radius: 50%;
+border-radius: 50%;
+    }
+}
 .app-image{
     //width: 100%;
     max-width: 100px;

@@ -1,6 +1,6 @@
 <!-- Online app view -->
 <div class="table-responsive_">
-    <table id="table_apps_active_" class="table table-condensed table-report">
+    <table id="table_apps_instance" class="table table-condensed table-report">
         <tbody>
             <tr class="bcg-active" ng-repeat="v in instances| orderBy:predicate:reverse | filter:q" id="instance_{{$index}}" ng-class="v.active ? 'true': 'false'">
                 <td class="td-img">

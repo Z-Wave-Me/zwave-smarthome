@@ -408,6 +408,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.profileData = [];
     $scope.chartOptions = {
         // Chart.js options can go here.
+        //responsive: true
     };
     $scope.knobopt = {
         width: 100
@@ -457,6 +458,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
             dataFactory.getApiData('history', function(history) {
                 angular.forEach(history.data.history, function(v, k) {
                     $scope.history[v.id] = dataService.getChartData(v.mH, $scope.cfg.chart_colors);
+                    console.log($scope.history[v.id])
 
                 });
             });
@@ -677,7 +679,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $lo
      */
     $scope.loadData = function() {
         dataFactory.getApiData('notifications', function(data) {
-            $scope.eventLevels = dataService.getEventLevel(data.data.notifications, [{'key': null, 'val': $scope._t('lb_all')}]);
+            $scope.eventLevels = dataService.getEventLevel(data.data.notifications, [{'key': null, 'val': 'all'}]);
             $scope.eventSources = dataService.getPairs(data.data.notifications, 'source', 'source');
             var filter = null;
             if (angular.isDefined($routeParams.param) && angular.isDefined($routeParams.val)) {

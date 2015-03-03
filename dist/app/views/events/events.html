@@ -41,7 +41,7 @@
     <div id="footer">
         <div class="navbar navbar-default navbar-fixed-bottom">
             <div class="container">
-                <form class="form-inline" role="form">
+               <form class="form-inline" role="form">
                     <div class="btn-group dropup">
                         <button type="button" class="btn btn-default" ng-bind="_t('lb_filter_by')"></button>
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -50,11 +50,11 @@
                         </button>
                         <ul class="dropdown-menu">
                             <li ng-repeat="v in eventLevels" ng-class="v.key == currLevel ? 'active':''">
-                                <a href="#events/level/{{v.key}}" ng-bind="v.val"></a> 
+                                <a href="#events/level/{{v.key}}" ng-bind="_t('lb_notify_' + v.val)"></a> 
                             </li>
                             <li class="divider"></li>
                             <li ng-repeat="v in eventSources" ng-class="v.key == currSource ? 'active':''">
-                                <a href="#events/source/{{v.key}}" ng-bind="devices[v.key] ? devices[v.key] : v.val"></a> 
+                                <a href="#events/source/{{v.key}}" ng-if="v.val" ng-bind="devices[v.key] ? devices[v.key] : v.val"></a> 
                             </li>
                         </ul>
                     </div>

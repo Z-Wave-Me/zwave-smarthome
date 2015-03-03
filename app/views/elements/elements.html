@@ -10,6 +10,7 @@
                     <img class="widget-image" ng-src="{{v.icon|getElementIcon:v}}" alt="{{v.title}}"/>
                     <!-- Widget header -->
                     <div class="widget-header">
+                        <a class="widget-history" href="" ng-click="goHistory = !goHistory" ng-show="history[v.id]"><i class="fa fa-bar-chart"></i></a>
                         <a class="widget-config" href="" 
                            ng-click="showModal('#modal_widget', {
                                        'id': v.id,
@@ -29,27 +30,31 @@
                     </div>
 
                     <!-- Widget body -->
-                    <div class="widget-body"  ng-init="levelVal[v.id] = v.level"
-                         ng-click="goHidden = true;
-                                     goHiddenCamera_ = true;
-                                     goHiddenSensor = true;
-                                     goHiddenSwitchLinear = true;" 
-                         ng-mouseleave="goHidden = false;
-                                             goHiddenCamera_ = false;
-                                             goHiddenSensor = false;
-                                             goHiddenSwitchLinear = false;">
+                    <div class="widget-body"  ng-init="levelVal[v.id] = v.level" ng-click="goHidden = true;" ng-mouseleave="goHidden = false;">
 
                         <h3 class="entry-title" title="{{v.title}}">{{v.title}}</h3>
                         <!--<i>{{v.icon}}, {{v.deviceType}}</i> -->
-
+                        
+                        <!-- Hidden sensorMultilevel -->
+                        <div class="col-sm-11 element-hidden hidden-history" ng-show="goHistory" ng-mouseleave="goHistory = !goHistory;">
+                            <p class="text-center popup-title">{{v.title|cutText:true:30}}</p>
+                            <div>
+                                <canvas tc-chartjs-line chart-data="history[v.id]" chart-options="chartOptions" width="260" height="150"></canvas>
+                            </div>
+                        </div>
+                       
                         <div class="widget-control-wrap">
-                            <!-- switchMultilevel -->
+                             <!------------ switchMultilevel ------------>
                             <div class="widget-control control-left widget-click-popup" ng-switch-when="switchMultilevel">
                                 <div class="widget-result"><span class="widget-level" ng-bind="levelVal[v.id] | getMaxLevel"></span> % <i class="fa fa-caret-down"></i></div>
                             </div>
 
-                            <!-- switchBinary -->
-                            <div class="widget-control control-right" ng-switch-when="switchBinary">
+                            <!------------ switchBinary ------------>
+                            <div ng-switch-when="switchBinary">
+                                <div class="widget-control control-left widget-click-popup-chart">
+                                    
+                                </div>
+                               <div class="widget-control control-right">
                                 <div class="btn-group">
                                     <button 
                                         class="btn btn-sm widget-btn-off" 
@@ -64,6 +69,7 @@
                                         ng-class="v.level=='on' ? 'btn-primary': 'btn-default'"
                                         ng-bind="_t('lb_on')"></button>
                                 </div>
+                               </div>
                             </div><!-- /.widget-control .right --> 
 
                             <!------------ switchRGBW ------------>
@@ -128,7 +134,7 @@
                             <!-- sensorMultilevel -->
                             <div  ng-switch-when="sensorMultilevel">
                                 <div class="widget-control control-left widget-click-popup">
-                                    <span class="widget-level" ng-bind="v.level"></span> <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span> <i class="fa fa-caret-down"></i>
+                                    <span class="widget-level" ng-bind="v.level"></span> <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span>
                                 </div>
 
                                 <div class="widget-control control-right">
@@ -269,12 +275,12 @@
                         </div>
 
                         <!-- Hidden sensorMultilevel -->
-                        <div class="col-sm-11 element-hidden hidden-sensor-multilevel" ng-switch-when="sensorMultilevel" ng-show="goHidden">
+                         <!--<div class="col-sm-11 element-hidden hidden-history" ng-switch-when="sensorMultilevel" ng-show="goHidden">
                             <p class="text-center popup-title">{{v.title|cutText:true:30}}</p>
                             <div>
                                 <canvas tc-chartjs-line chart-data="history[v.id]" chart-options="chartOptions" width="260" height="150"></canvas>
                             </div>
-                        </div>
+                        </div>-->
 
                         <!-- Hidden sensorMultiline -->
                         <div class="col-sm-11 element-hidden hidden-sensor-multiline"  ng-switch-when="sensorMultiline" ng-show="goHidden">

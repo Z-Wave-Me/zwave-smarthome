@@ -817,6 +817,13 @@ vertical-align: middle;
   margin-top: -5px;
   padding: 0 5px 15px 84px;
   width: 100%;
+  /*    .element-hidden.hidden-history{
+          width: 100%;
+          height: 300%; 
+          left: 50%;
+          margin-left:-50%;
+          top: 50%;
+      }*/
 }
 /* line 31, sass/modules/_elements.scss */
 .widget-body .entry-title {
@@ -865,45 +872,37 @@ vertical-align: middle;
   background-color: #fff;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
 }
-/* line 71, sass/modules/_elements.scss */
-.widget-body .element-hidden.hidden-camera {
-  width: 100%;
-  height: 300%;
-  left: 50%;
-  margin-left: -50%;
-  top: 50%;
-}
-/* line 79, sass/modules/_elements.scss */
+/* line 80, sass/modules/_elements.scss */
 .widget-body .element-hidden.hidden-sensor-multiline {
   height: 220px;
 }
-/* line 83, sass/modules/_elements.scss */
+/* line 84, sass/modules/_elements.scss */
 .widget-body table {
   width: 100%;
 }
-/* line 85, sass/modules/_elements.scss */
+/* line 86, sass/modules/_elements.scss */
 .widget-body table td {
   width: 50%;
   vertical-align: middle;
   text-align: center;
 }
 
-/* line 93, sass/modules/_elements.scss */
+/* line 94, sass/modules/_elements.scss */
 .element-camera-control {
   text-align: center;
 }
 
-/* line 96, sass/modules/_elements.scss */
+/* line 97, sass/modules/_elements.scss */
 .camera-img {
   text-align: center;
 }
-/* line 98, sass/modules/_elements.scss */
+/* line 99, sass/modules/_elements.scss */
 .camera-img img {
   width: 100%;
   display: inline-block;
 }
 
-/* line 104, sass/modules/_elements.scss */
+/* line 105, sass/modules/_elements.scss */
 .color-picker-show {
   display: inline-block;
   width: 24px;
@@ -912,11 +911,11 @@ vertical-align: middle;
 
 /* Home widget
 -------------------------------------------------- */
-/* line 116, sass/modules/_elements.scss */
+/* line 117, sass/modules/_elements.scss */
 .home-widget .widget-entry {
   padding: 0;
 }
-/* line 119, sass/modules/_elements.scss */
+/* line 120, sass/modules/_elements.scss */
 .home-widget .widget-entry .widget-block {
   margin: 0 !important;
   /*              border: solid 1px #e2e2e2;*/
@@ -924,24 +923,24 @@ vertical-align: middle;
 
 /* OpenWeather widget
 ----------------------------------------------------*/
-/* line 135, sass/modules/_elements.scss */
+/* line 136, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline table td {
   text-align: left;
   padding: 5px 0;
 }
 
-/* line 140, sass/modules/_elements.scss */
+/* line 141, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline table td:first-child {
   padding-left: 20px;
   vertical-align: top;
 }
 
-/* line 145, sass/modules/_elements.scss */
+/* line 146, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline h4 {
   display: inline;
 }
 
-/* line 149, sass/modules/_elements.scss */
+/* line 150, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline .text-center {
   margin: 10px 0;
 }
@@ -991,7 +990,14 @@ vertical-align: middle;
   margin-right: 7px;
 }
 
-/* line 32, sass/modules/_apps.scss */
+/* line 33, sass/modules/_apps.scss */
+#table_apps_instance .report-img {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+/* line 39, sass/modules/_apps.scss */
 .app-image {
   max-width: 100px;
   margin: 0;
@@ -1000,14 +1006,14 @@ vertical-align: middle;
   border-radius: 50%;
 }
 
-/* line 41, sass/modules/_apps.scss */
+/* line 48, sass/modules/_apps.scss */
 .app-image-list {
   max-width: 70px;
 }
 
 /* Apps module
 -------------------------------------------------- */
-/* line 47, sass/modules/_apps.scss */
+/* line 54, sass/modules/_apps.scss */
 #alpaca_data {
   padding: 20px;
   margin: 0 0 20px 0;
