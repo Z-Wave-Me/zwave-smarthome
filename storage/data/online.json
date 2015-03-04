@@ -1,0 +1,80 @@
+[
+  {
+    "id": "24",
+    "category": "devices",
+    "author": "Z-Wave.Me",
+    "homepage": "http:\/\/razberry.z-wave.me",
+    "icon": "none",
+    "version": "1.0.0",
+    "maturity": "stable",
+    "title": "RGB",
+    "desc": "Creates RGB device based on three different dimmers",
+    "last_updated": "2015-03-04",
+    "user_id": "1"
+  },
+  {
+    "id": "25",
+    "category": "",
+    "author": "",
+    "homepage": "",
+    "icon": "",
+    "version": "",
+    "maturity": "",
+    "title": "",
+    "desc": "",
+    "last_updated": "2015-03-04",
+    "user_id": "1"
+  },
+  {
+    "id": "23",
+    "category": "surveillance",
+    "author": "Z-Wave.Me",
+    "homepage": "http:\/\/www.foscam.com\/",
+    "icon": "23.png",
+    "version": "1.0.0",
+    "maturity": "stable",
+    "title": "FosCam FI9805",
+    "desc": "__m_descr__",
+    "last_updated": "2015-03-04",
+    "user_id": "1"
+  },
+  {
+    "id": "22",
+    "category": "environment",
+    "author": "Z-Wave.Me",
+    "homepage": "http:\/\/razberry.z-wave.me",
+    "icon": "",
+    "version": "1.0.0",
+    "maturity": "stable",
+    "title": "Extended Weather Informer",
+    "desc": "__m_descr__",
+    "last_updated": "2015-03-03",
+    "user_id": "1"
+  },
+  {
+    "id": "18",
+    "category": "scheduling",
+    "author": "Z-Wave.Me",
+    "homepage": "http:\/\/razberry.z-wave.me",
+    "icon": "",
+    "version": "2.0.1",
+    "maturity": "stable",
+    "title": "Battery Polling",
+    "desc": "__m_descr__",
+    "last_updated": "2015-03-03",
+    "user_id": "1"
+  },
+  {
+    "id": "19",
+    "category": "scenes",
+    "author": "Z-Wave.Me",
+    "homepage": "http:\/\/razberry.z-wave.me",
+    "icon": "",
+    "version": "1.0.0",
+    "maturity": "stable",
+    "title": "Delayed Scene",
+    "desc": "Activate scene after a defined timeout after",
+    "last_updated": "2015-03-03",
+    "user_id": "1"
+  }
+]

@@ -848,6 +848,7 @@ myAppController.controller('ProfileController', function($scope, $window, $cooki
 myAppController.controller('AppController', function($scope, $window, $cookies, dataFactory, dataService, myCache) {
     $scope.instances = [];
     $scope.modules = [];
+    $scope.onlineModules = [];
     $scope.categories = [];
     $scope.activeTab = (angular.isDefined($cookies.tab_app) ? $cookies.tab_app : 'local');
     $scope.category = '';
@@ -861,6 +862,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
      * Load data into collections
      */
     dataFactory.setCache(true);
+
     $scope.loadCategories = function() {
         dataFactory.getApiData('modules_categories', function(data) {
             $scope.categories = data.data;
@@ -871,6 +873,18 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
         dataFactory.getApiData('modules', function(data) {
             $scope.modules = dataService.getData(data.data, filter);
         });
+    };
+    $scope.loadOnlineModules = function(filter) {
+        dataFactory.localData('online.json', function(data) {
+            $scope.onlineModules = dataService.getData(data, filter);
+        });
+        dataFactory.getRemoteData('http://hrix.net/modules_store/json_store.php').then(function(response) {
+            
+            $scope.modules = dataService.getData(response.data, filter);
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+
     };
     $scope.loadInstances = function() {
         dataFactory.getApiData('instances', function(data) {
@@ -895,6 +909,10 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
 
                 break;
             case 'hidden':
+                $scope.showInFooter.categories = false;
+                break;
+            case 'online':
+                $scope.loadOnlineModules();
                 $scope.showInFooter.categories = false;
                 break;
             default:
@@ -1233,8 +1251,8 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
                     // Check interview
                     if (ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value && ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value.length) {
                         for (var iId in ZWaveAPIData.devices[nodeId].instances) {
-                             console.log('commandClasses: ',ZWaveAPIData.devices[nodeId].instances[iId].commandClasses)
-                            console.log('commandClasses.length: ',Object.keys(ZWaveAPIData.devices[nodeId].instances[iId].commandClasses).length)
+                            console.log('commandClasses: ', ZWaveAPIData.devices[nodeId].instances[iId].commandClasses)
+                            console.log('commandClasses.length: ', Object.keys(ZWaveAPIData.devices[nodeId].instances[iId].commandClasses).length)
                             if (Object.keys(ZWaveAPIData.devices[nodeId].instances[iId].commandClasses).length > 0) {
                                 for (var ccId in ZWaveAPIData.devices[nodeId].instances[iId].commandClasses) {
                                     if (!ZWaveAPIData.devices[nodeId].instances[iId].commandClasses[ccId].data.interviewDone.value) {
@@ -1243,13 +1261,13 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
                                     }
                                 }
                             } else {
-                                 console.log('Interview false: 2')
+                                console.log('Interview false: 2')
                                 interviewDone = false;
                             }
                         }
 
                     } else {
-                         console.log('Interview false: 3')
+                        console.log('Interview false: 3')
                         interviewDone = false;
                     }
                     // Set device name
@@ -1548,8 +1566,8 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
     $scope.loadData = function() {
         dataFactory.getApi('devices').then(function(response) {
             zwaveApiData(response.data.devices);
-         }, function(error) {
-             dataService.showConnectionError(error);
+        }, function(error) {
+            dataService.showConnectionError(error);
         });
     };
     $scope.loadData();
@@ -1559,8 +1577,8 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
      * Get zwaveApiData
      */
     function zwaveApiData(devices) {
-       dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
-           if (!ZWaveAPIData.devices) {
+        dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
+            if (!ZWaveAPIData.devices) {
                 return;
             }
             var findZwaveStr = "ZWayVDev_zway_";
@@ -1620,7 +1638,7 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
                 }
 
             }
-             dataService.updateTimeTick(12345);
+            dataService.updateTimeTick(12345);
             //$scope.devices.zwave = $filter('naturalSort')($scope.devices.zwave);
 //                $scope.devices.zwave.sort(function(a, b) {
 //                    var nameA = a.name.toLowerCase(), nameB = b.name.toLowerCase()
@@ -1634,7 +1652,7 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
 //                });
             //console.log($scope.devices.zwave)
         }, function(error) {
-             dataService.showConnectionError(error);
+            dataService.showConnectionError(error);
         });
     }
     ;

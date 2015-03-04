@@ -1,6 +1,48 @@
 <!-- Online app view -->
 <div class="row row-page">
-    <div class="col-lg-4 col-sm-6 app-entry"  ng-repeat="v in collection">
+    <div class="col-md-6 app-entry"  ng-repeat="v in onlineModules| filter:q">
+        <div class="app-border app-gradient app-shadow app-entry-in">
+            <div class="row">
+                <div class="col-sm-2 app-header">
+                    <img class="app-image" src="storage/img/apps/appimage.jpg" alt="{{ v.name}}"/>
+                </div>
+                <div class="col-sm-10 app-body">
+                    <h3 class="entry-title" ng-bind="v.title"> </h3>
+                    <p class="show-on-pc">
+                        <span title="{{v.defaults.description}}">{{ v.desc | cutText:true:90}}</span>
+                        <a class="more-info" href="" ng-click="showModal('#modal_detail', v)" ng-if="v.defaults.description.length > 90">{{_t('lb_more')}}&nbsp;&raquo;</a>
+                    </p>
+                    <p class="show-on-mobile" ng-bind="v.defaults.description"></p>
+                    <p ng-show="v.dependencies.length > 0"><strong>{{_t('lb_active_in')}}:</strong> <span ng-repeat="i in v.dependencies">{{i}}, </span></p>
+                    <p ng-show="v.version || v.author">
+                        <span ng-show="v.author">
+                            <i class="fa fa-user"></i>
+                        <span ng-show="!v.homepage" ng-bind="v.author"></span>
+                        <a ng-href="{{v.homepage}}" ng-show="v.homepage" ng-bind="v.author"></a>
+                        </span>
+                        <span ng-show="v.version">
+                        <i class="fa fa-info-circle"></i> <span class="app-version" ng-bind="v.version"></span>
+                        <span class="label"
+                              ng-class="v.maturity == 'stable' ? 'label-success':'label-warning'"
+                              >{{v.maturity}}</span>
+                         </span>
+                        
+                        <i class="fa fa-calendar-o"></i>
+                    </p> 
+                    <div class="text-right">
+                        <a href="" title="{{_t('lb_download')}}" class="btn btn-primary btn-sm"><i class="fa fa-download fa-lg"></i> <span class="btn-name_">{{_t('lb_download')}}</span></a>
+                        <!--<button class="btn btn-danger btn-sm" title="{{_t('lb_remove')}}"><i class="fa fa-remove fa-lg"></i> <span class="btn-name">{{_t('lb_remove')}}</span></button>-->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    
+    <div class="col-lg-4 col-sm-6 app-entry"  ng-repeat="v in onlineModules" ng-show="prasopes">
         <div class="app-border app-gradient app-shadow app-entry-in">
             <div class="row">
                 <div class="col-sm-5 app-header">
@@ -10,7 +52,7 @@
                         <span class="label label-warning" ng-show="v.version == 2">{{_t('lb_beta')}}</span>
                         <span class="label label-success" ng-show="v.version == 3">{{_t('lb_stable')}}</span>
                     </h3>
-                    <img class="app-image" src="storage/img/apps/appimage.jpg" alt="{{ v.name}}"/>
+                    <img class="app-image" src="storage/img/apps/appimage.jpg" alt="{{ v.title}}"/>
                 </div>
                 <div class="col-sm-7 app-body">
                      <p>

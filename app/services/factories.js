@@ -20,6 +20,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $window, $filter,
     var updatedTime = Math.round(+new Date() / 1000);
     return({
         getApi: getApi,
+        getRemoteData: getRemoteData,
         getApiData: getApiData, // Deprecated: Remove after getApi implementation
         postApiData: postApiData,
         putApiData: putApiData,
@@ -71,6 +72,40 @@ myAppFactory.factory('dataFactory', function($http, $interval, $window, $filter,
         return $http({
             method: 'get',
             url: cfg.server_url + cfg.api[api] + (params ? params : '')
+                    //cache: noCache || true
+        }).then(function(response) {
+            if (typeof response.data === 'object') {
+                myCache.put(cacheName, response.data);
+                return response.data;
+            } else {// invalid response
+                return $q.reject(response);
+            }
+        }, function(response) {// something went wrong
+            return $q.reject(response);
+        });
+    }
+    
+     /**
+     * Get remote data
+     */
+    // Get
+    function getRemoteData(url, noCache) {
+        // Cached data
+         var cacheName = 'cache_' + url;
+        var cached = myCache.get(cacheName);
+       
+        if (!noCache && cached) {
+            console.log('CACHED: ' + cacheName);
+            var deferred = $q.defer();
+            deferred.resolve(cached); // <-- Can I do this?
+            return deferred.promise;
+        }
+        // NOT Cached data
+        console.log('NOT CACHED: ' + cacheName);
+
+        return $http({
+            method: 'get',
+            url: url
                     //cache: noCache || true
         }).then(function(response) {
             if (typeof response.data === 'object') {
