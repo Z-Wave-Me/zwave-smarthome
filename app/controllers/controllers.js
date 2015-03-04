@@ -458,7 +458,6 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
             dataFactory.getApiData('history', function(history) {
                 angular.forEach(history.data.history, function(v, k) {
                     $scope.history[v.id] = dataService.getChartData(v.mH, $scope.cfg.chart_colors);
-                    console.log($scope.history[v.id])
 
                 });
             });

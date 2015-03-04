@@ -3,10 +3,10 @@
     <div class="col-md-6 app-entry"  ng-repeat="v in modules| filter:q">
         <div class="app-border app-gradient app-shadow app-entry-in">
             <div class="row">
-                <div class="col-sm-3 app-header">
+                <div class="col-sm-2 app-header">
                     <img class="app-image" src="storage/img/apps/appimage.jpg" alt="{{ v.name}}"/>
                 </div>
-                <div class="col-sm-9 app-body">
+                <div class="col-sm-10 app-body">
                     <h3 class="entry-title" ng-bind="v.defaults.title"> </h3>
                     <p class="show-on-pc">
                         <span title="{{v.defaults.description}}" tooltip_>{{ v.defaults.description | cutText:true:90}}</span>

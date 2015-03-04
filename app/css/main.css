@@ -958,62 +958,66 @@ vertical-align: middle;
 
 /* Apps
 -------------------------------------------------- */
-/* line 5, sass/modules/_apps.scss */
+/*.col-sm-2.app-header{
+padding-left: 5px;
+padding-right: 5px;
+}*/
+/* line 9, sass/modules/_apps.scss */
 .app-entry-in {
   margin: 10px 0;
   padding: 20px;
   border-radius: 5px;
-  height: 200px;
+  height: 190px;
 }
-/* line 10, sass/modules/_apps.scss */
+/* line 14, sass/modules/_apps.scss */
 .app-entry-in .app-rating {
   margin-right: 20px;
   color: #5CB85C;
 }
-/* line 14, sass/modules/_apps.scss */
+/* line 18, sass/modules/_apps.scss */
 .app-entry-in .entry-title {
   font-size: 16px;
   font-weight: bold;
 }
-/* line 17, sass/modules/_apps.scss */
+/* line 21, sass/modules/_apps.scss */
 .app-entry-in .entry-title .label {
   font-size: 70%;
 }
-/* line 22, sass/modules/_apps.scss */
+/* line 26, sass/modules/_apps.scss */
 .app-entry-in .app-body p {
   padding: 0 0 3px 0;
   border-bottom: dotted 1px #ececec;
 }
 
-/* line 29, sass/modules/_apps.scss */
+/* line 33, sass/modules/_apps.scss */
 .apps-action-icons a {
   margin-right: 7px;
 }
 
-/* line 33, sass/modules/_apps.scss */
+/* line 37, sass/modules/_apps.scss */
 #table_apps_instance .report-img {
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
 }
 
-/* line 39, sass/modules/_apps.scss */
+/* line 43, sass/modules/_apps.scss */
 .app-image {
-  max-width: 100px;
+  max-width: 70px;
   margin: 0;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
 }
 
-/* line 48, sass/modules/_apps.scss */
+/* line 52, sass/modules/_apps.scss */
 .app-image-list {
   max-width: 70px;
 }
 
 /* Apps module
 -------------------------------------------------- */
-/* line 54, sass/modules/_apps.scss */
+/* line 58, sass/modules/_apps.scss */
 #alpaca_data {
   padding: 20px;
   margin: 0 0 20px 0;
@@ -1650,12 +1654,12 @@ vertical-align: middle;
   /* line 312, sass/settings/_mixins.scss */
   .is-mobile-true .app-entry-in .app-header {
     float: left;
-    width: 25%;
+    width: 20%;
   }
   /* line 316, sass/settings/_mixins.scss */
   .is-mobile-true .app-entry-in .app-body {
     float: left;
-    width: 74%;
+    width: 79%;
     margin: 0;
     padding-right: 10px;
   }
@@ -1665,8 +1669,8 @@ vertical-align: middle;
   }
   /* line 328, sass/settings/_mixins.scss */
   .is-mobile-true .app-image {
-    width: 100%;
-    max-width: 100px;
+    /*        width: 100%;*/
+    /*    max-width: 100px;*/
     margin: 0;
   }
   /* line 334, sass/settings/_mixins.scss */
@@ -2098,12 +2102,12 @@ vertical-align: middle;
   /* line 312, sass/settings/_mixins.scss */
   .app-entry-in .app-header {
     float: left;
-    width: 25%;
+    width: 20%;
   }
   /* line 316, sass/settings/_mixins.scss */
   .app-entry-in .app-body {
     float: left;
-    width: 74%;
+    width: 79%;
     margin: 0;
     padding-right: 10px;
   }
@@ -2114,8 +2118,8 @@ vertical-align: middle;
 
   /* line 328, sass/settings/_mixins.scss */
   .app-image {
-    width: 100%;
-    max-width: 100px;
+    /*        width: 100%;*/
+    /*    max-width: 100px;*/
     margin: 0;
   }
 
