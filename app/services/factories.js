@@ -28,6 +28,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $window, $filter,
         localData: localData,
         setCache: setCache,
         runCmd: runCmd,
+        getSystemCmd: getSystemCmd,
         updateApiData: updateApiData,
         cancelApiDataInterval: cancelApiDataInterval,
         getLanguageFile: getLanguageFile,
@@ -163,12 +164,28 @@ myAppFactory.factory('dataFactory', function($http, $interval, $window, $filter,
     }
 
     /**
-     * Run command
+     * Run api command
      */
     function runCmd(cmd) {
         var request = {
             method: "get",
             url: cfg.server_url + cfg.api_url + "devices/" + cmd
+        };
+        return $http(request).success(function(data) {
+            console.log('SUCCESS:' + cfg.server_url + cfg.api_url + "devices/" + cmd);
+        }).error(function(data, status, headers, config, statusText) {
+            handleError(data, status, headers, config, statusText);
+
+        });
+    }
+    
+    /**
+     * Get system cmd
+     */
+    function getSystemCmd(cmd) {
+        var request = {
+            method: "get",
+            url: cfg.server_url + cfg.zwave_api_url +  cmd
         };
         return $http(request).success(function(data) {
             console.log('SUCCESS:' + cfg.server_url + cfg.api_url + "devices/" + cmd);

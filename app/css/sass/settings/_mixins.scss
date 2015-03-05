@@ -290,39 +290,38 @@
     .app-entry{
         width: 100%;
         padding:  0;
+        border-bottom: dotted 1px $app-border-color; 
+       @include appGradient();
     }
     .app-entry-in{
         border: 0;
-        border-bottom: dotted 1px $app-border-color; 
-        margin: 0;
-        padding: 10px;
-        border-radius: 0;
         height: auto;
-        .list-group{
-            border: 0 none;
+        text-align: left;
+        padding: 0;
+        background: none;
+        
+    }
+    
+    .app-image{
+        top: 0;
+        left: 10px;
+        width: 48px;
+        height: 48px;
+    }
+    .app-body{
+        height: 54px;
+         margin:0;
+        padding: 0 5px 15px 64px;
+        .entry-title{
+            position: absolute;
+            z-index: 10;
+            padding: 10px 90px 0 0;
         }
-        .list-group-item{
-            border: none;
-            margin: 0;
-            padding: 0;
-            padding-bottom: 10px;
-
-        }
-
-        .app-header{
-            float: left;
-            width: 20%;
-        }
-        .app-body{
-            float: left;
-            width: 79%;
-            margin: 0;
-            padding-right: 10px;
-            .btn{
-                vertical-align: top;
-            }
-
-        }
+    }
+    .app-footer{
+        //display: none;
+/*        display: block;
+         position: static;*/
     }
     
     .app-image{

@@ -876,18 +876,18 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     };
     $scope.loadOnlineModules = function(filter) {
         dataFactory.localData('online.json', function(data) {
-            $scope.onlineModules = dataService.getData(data, filter);
+            //$scope.onlineModules = dataService.getData(data, filter);
         });
         dataFactory.getRemoteData('http://hrix.net/modules_store/json_store.php').then(function(response) {
-            
-            $scope.modules = dataService.getData(response.data, filter);
+            console.log(response)
+            $scope.onlineModules = response;//dataService.getData(response.data, filter);
         }, function(error) {
             dataService.showConnectionError(error);
         });
 
     };
     $scope.loadInstances = function() {
-        dataFactory.getApiData('instances', function(data) {
+        dataFactory.getApiData('instances', function(data) { 
             $scope.instances = data.data;
         }, null, true);
     };
@@ -968,6 +968,53 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
             myCache.remove('devices');
         }
     };
+    
+    /**
+     * Download module
+     */
+    $scope.downloadModule = function(id,modulename) {
+        var url = 'Run/system("/opt/module_downloader.sh ' + id +' ' + modulename + '")';
+        dataFactory.getSystemCmd(url);
+        console.log(url)
+
+    };
+});
+/**
+ * App local detail controller
+ */
+myAppController.controller('AppLocalDetailController', function($scope, $routeParams,dataFactory, dataService) {
+   $scope.module = [];
+    /**
+     * Load module detail
+     */
+    $scope.loadModule = function(id) {
+        dataFactory.getApiData('modules', function(data) {
+            $scope.module = dataService.getRowBy(data.data, 'id', id);
+            console.log($scope.module)
+        });
+    };
+    
+    $scope.loadModule($routeParams.id);
+    
+});
+
+/**
+ * App online detail controller
+ */
+myAppController.controller('AppOnlineDetailController', function($scope, $routeParams,dataFactory, dataService) {
+   $scope.module = [];
+    /**
+     * Load module detail
+     */
+    $scope.loadModule = function(id) {
+        dataFactory.localData('online.json', function(data) {
+            $scope.module = dataService.getRowBy(data, 'id', id);
+            console.log($scope.module)
+        });
+    };
+    
+    $scope.loadModule($routeParams.id);
+    
 });
 /**
  * App controller - add module

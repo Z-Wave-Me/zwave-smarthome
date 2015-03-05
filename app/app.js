@@ -44,6 +44,14 @@ myApp.config(['$routeProvider',
                 when('/apps', {
                     templateUrl: 'app/views/apps/apps.html'
                 }).
+                //Apps - local detail
+                when('/apps/local/:id', {
+                    templateUrl: 'app/views/apps/app_local_detail.html'
+                }).
+                //Apps - online detail
+                when('/apps/online/:id', {
+                    templateUrl: 'app/views/apps/app_online_detail.html'
+                }).
                 //Module
                 when('/module/:action/:id', {
                     templateUrl: 'app/views/apps/app_module_alpaca.html'

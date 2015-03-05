@@ -7,50 +7,87 @@ padding-left: 5px;
 padding-right: 5px;
 }*/
 .app-entry-in{
+    position:relative;
+    height: 100px;
     margin: 10px 0;
-    padding: 20px;
-    border-radius: 5px;
-    height: 190px;
-    .app-rating{
-        margin-right: 20px;
-        color: #5CB85C;
-    }
+
+}
+
+.app-image{
+    //width: 100%;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    /*    margin: 10px 20px 10px 10px;*/
+    max-width: 64px;
+    max-height: 64px;
+    border: solid 4px #fff;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.app-body{
+    margin-top: -5px;
+    padding: 25px 5px 15px 84px;
+    width: 100%;
     .entry-title{
-        font-size: 16px;
-        font-weight: bold;
-        .label{
-            font-size: 70%;
-        }
-    }
-    .app-body{
-        p{
-           padding: 0 0 3px 0;
-           border-bottom: dotted 1px lighten($app-border-color, 10%); 
-        }
+        padding-right: 30px;
     }
 }
+.app-footer{
+    text-align: right;
+
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 40px;
+    .app-footer-in{
+        padding: 0 15px 10px 10px;
+    }
+}
+
 
 .apps-action-icons a{
     margin-right: 7px;
 }
 #table_apps_instance{
     .report-img{
+        max-width: 32px;
+        max-height: 32px;
         -webkit-border-radius: 50%;
--moz-border-radius: 50%;
-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
     }
 }
-.app-image{
-    //width: 100%;
-    max-width: 70px;
-    margin: 0;
-    -webkit-border-radius: 50%;
--moz-border-radius: 50%;
-border-radius: 50%;
-}
+
 
 .app-image-list{
     max-width: 70px;
+}
+/* Apps detail
+-------------------------------------------------- */
+.app-detail-header-in{
+    padding: 20px;
+    .app-image-detail{
+        max-width: 130px;
+        max-height: 130px;
+        border: solid 4px #fff;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+    }
+    .app-detail-list,.app-detail-perex{
+        padding-bottom: 10px;
+       margin-bottom: 10px;
+       border-bottom: dotted 1px $app-border-color; 
+    }
+    .app-detail-control{
+       margin-bottom: 20px;
+    }
 }
 
 /* Apps module
