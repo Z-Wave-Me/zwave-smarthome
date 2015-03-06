@@ -28,12 +28,12 @@ h3 {
     padding: 0 20px;
 }
 .page-control{
-   position: relative;
-   top: -15px;
-/*   .btn-new-item{
-       background-color: $brand-color-secondary;
-       border: 0;
-   }*/
+    position: relative;
+    top: -15px;
+    /*   .btn-new-item{
+           background-color: $brand-color-secondary;
+           border: 0;
+       }*/
 }
 .page-subtitle{
     font-size: 20px;
@@ -77,7 +77,7 @@ a:hover {
     cursor: help;
 }
 .app-border{
-     border: solid 4px $app-border-color-light;
+    border: solid 4px $app-border-color-light;
 }
 .app-gradient{
     @include appGradient();
@@ -95,7 +95,7 @@ a:hover {
     display: none;
 }
 .alert-page{
-   margin: 10px 0;
+    margin: 10px 0;
 }
 
 .alert-entry{
@@ -130,7 +130,7 @@ a:hover {
         tr{
             td{
                 //border-top: 1px solid lighten($app-border-color, 20%); 
-                 border-top: 4px solid $app-body-bcg-color;  
+                border-top: 4px solid $app-body-bcg-color;  
             }
         }
     }
@@ -172,7 +172,7 @@ fieldset{
 }
 
 .submit-entry{
-   text-align: right;
+    text-align: right;
 }
 
 /* Alpaca
@@ -198,12 +198,14 @@ fieldset{
 /* Modal
 -------------------------------------------------- */
 .modal-tooltip {
-  width: 40%; /* or whatever you wish */
+    width: 40%; /* or whatever you wish */
 }
 .modal-vertical-centered {
     position: fixed;
     top: 15% !important;
 }
+
+
 //.modal-vertical.fade.in { top: 50%; transform: translateY(-50%); }
 /*.modal-vertical-centered {
   transform: translate(0, 25%) !important;
@@ -237,27 +239,27 @@ vertical-align: middle;
 /* Pagination
 -------------------------------------------------- */
 .pagination > li > a, .pagination > li > span {
-color: $brand-color-secondary;
-background-color: $pagination-bcg-color;
-border: 1px solid $pagination-border-color;
+    color: $brand-color-secondary;
+    background-color: $pagination-bcg-color;
+    border: 1px solid $pagination-border-color;
 }
 
 .pagination > li > a:hover, .pagination > li > a:focus, .pagination > li > span:hover, .pagination > li > span:focus {
-color: $brand-color-secondary;
-background-color: $app-body-bcg-color;
-border-color:$pagination-border-color;
+    color: $brand-color-secondary;
+    background-color: $app-body-bcg-color;
+    border-color:$pagination-border-color;
 }
 
 .pagination > .disabled > a, .pagination > .disabled > a:hover, .pagination > .disabled > a:focus {
-color: #777777;
-background-color: $pagination-bcg-color;
-border-color: $pagination-border-color;
-cursor: not-allowed;
+    color: #777777;
+    background-color: $pagination-bcg-color;
+    border-color: $pagination-border-color;
+    cursor: not-allowed;
 }
 
 .pagination > .active > a, .pagination > .active > a:hover {
-color: #fff;
-background-color: $pagination-active-bcg-color;
-border-color: $pagination-border-color;
+    color: #fff;
+    background-color: $pagination-active-bcg-color;
+    border-color: $pagination-border-color;
 }
 

@@ -248,6 +248,13 @@
         }
     }
 
+    .modal-camera {
+        width: 100%;
+        .modal-body {
+            padding: 0;
+        }  
+    }
+
     .element-camera-control{
         text-align: right;
     }
@@ -368,7 +375,7 @@
             }
         }
         .app-detail-control{
-           text-align: center;
+            text-align: center;
         }
     }
 
