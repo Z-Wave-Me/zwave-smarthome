@@ -42,6 +42,9 @@
 
 // Mobile layout
 @mixin appMobileLayout() {
+    .hide-on-mobile{
+        display:none;
+    }
     .header-logo{
         display: none !important;
     }

@@ -46,7 +46,7 @@
                         <option ng-repeat="v in categories" value="{{v.id}}" ng-selected="category == v.id" ng-bind="v.name">
                         </option>
                     </select>
-                    <div class="input-group search-form">
+                    <div class="input-group search-form hide-on-mobile">
                         <input type="text" ng-model="q" class="form-control">
                         <span class="input-group-addon"><i class="fa fa-search"></i></span>
                     </div>
