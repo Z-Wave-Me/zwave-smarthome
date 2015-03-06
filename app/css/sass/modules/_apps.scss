@@ -70,15 +70,23 @@ padding-right: 5px;
 /* Apps detail
 -------------------------------------------------- */
 .app-detail-header-in{
+     position:relative;
     padding: 20px;
-    .app-image-detail{
-        max-width: 130px;
+    .app-detail-img{
+        img{
+            position:absolute;
+           max-width: 130px;
         max-height: 130px;
         border: solid 4px #fff;
         border-radius: 50%;
         -webkit-border-radius: 50%;
         -moz-border-radius: 50%;
-        border-radius: 50%;
+        border-radius: 50%; 
+        }
+    }
+    
+    .app-detail-body{
+        padding-left: 150px;
     }
     .app-detail-list,.app-detail-perex{
         padding-bottom: 10px;
@@ -86,7 +94,7 @@ padding-right: 5px;
        border-bottom: dotted 1px $app-border-color; 
     }
     .app-detail-control{
-       margin-bottom: 20px;
+        position: relative;
     }
 }
 

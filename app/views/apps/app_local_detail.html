@@ -1,16 +1,19 @@
 <!-- AppLocalDetailController -->
 <div ng-controller="AppLocalDetailController">
-    <div class="row app-border app-gradient app-shadow app-detail-header">
+    <div class="app-border app-gradient app-shadow app-detail-header">
         <div class="app-detail-header-in">
-        <div class="col-lg-3 app-detail-img">
-            <img class="app-image-detail" src="storage/img/apps/appimage.jpg" alt="{{module.name}}"/>
-        </div>
-        <div class="col-lg-9 app-detail-body">
-
+            <div class="app-detail-img">
+                <img class="app-image-detail" src="storage/img/apps/appimage.jpg" alt="{{module.name}}"/>
+            </div>
+        
+        <div class="app-detail-body">
             <h2 class="page-subtitle" ng-bind="module.defaults.title"></h2>
             <p class="app-detail-perex" ng-bind="module.defaults.description"></p>
             <p class="app-detail-list" ng-show="module.dependencies.length > 0">
                 <i class="fa fa-sitemap fa-lg"></i> <strong>{{_t('lb_instance_of')}}:</strong> <span ng-repeat="i in module.dependencies">{{i}}, </span>
+            </p>
+            <p class="app-detail-list" ng-show="module.category">
+                <i class="fa fa-list fa-lg"></i> <span ng-bind="module.category"></span>
             </p>
             <p class="app-detail-list" ng-show="module.author">
                 <i class="fa fa-user fa-lg"></i>
@@ -22,7 +25,7 @@
                     <span class="label"
                           ng-class="module.maturity == 'stable' ? 'label-success':'label-warning'"
                           >{{module.maturity}}</span>
-            </p> 
+            </p>
              <div class="app-detail-control">
             <a href="#module/post/{{module.id}}" title="{{_t('lb_add_app')}}" class="btn btn-default btn-lg">
                 <i class="fa fa-plus fa-lg text-success"></i> <span class="btn-name_">{{_t('lb_add_app')}}</span>

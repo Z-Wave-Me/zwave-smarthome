@@ -845,7 +845,7 @@ myAppController.controller('ProfileController', function($scope, $window, $cooki
 /**
  * App controller
  */
-myAppController.controller('AppController', function($scope, $window, $cookies, dataFactory, dataService, myCache) {
+myAppController.controller('AppController', function($scope, $window, $cookies,$timeout, dataFactory, dataService, myCache) {
     $scope.instances = [];
     $scope.modules = [];
     $scope.onlineModules = [];
@@ -858,6 +858,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
         'categories': true,
         'serach': true
     };
+    $scope.proccessDownload = [];
     /**
      * Load data into collections
      */
@@ -878,16 +879,15 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
         dataFactory.localData('online.json', function(data) {
             //$scope.onlineModules = dataService.getData(data, filter);
         });
-        dataFactory.getRemoteData('http://hrix.net/modules_store/json_store.php').then(function(response) {
-            console.log(response)
-            $scope.onlineModules = response;//dataService.getData(response.data, filter);
+        dataFactory.getRemoteData($scope.cfg.online_module_url).then(function(response) {
+            $scope.onlineModules = response.data;//dataService.getData(response.data, filter);
         }, function(error) {
             dataService.showConnectionError(error);
         });
 
     };
     $scope.loadInstances = function() {
-        dataFactory.getApiData('instances', function(data) { 
+        dataFactory.getApiData('instances', function(data) {
             $scope.instances = data.data;
         }, null, true);
     };
@@ -968,53 +968,87 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
             myCache.remove('devices');
         }
     };
-    
     /**
      * Download module
      */
-    $scope.downloadModule = function(id,modulename) {
-        var url = 'Run/system("/opt/module_downloader.sh ' + id +' ' + modulename + '")';
-        dataFactory.getSystemCmd(url);
-        console.log(url)
+    $scope.downloadModule = function(id, modulename) {
+       $scope.proccessDownload[id] = {icon: 'fa-spinner fa-spin'};
+        var cmd = 'Run/system("/opt/module_downloader.sh ' + id + ' ' + modulename + '")';
+         dataFactory.getSystemCmd(cmd).then(function(response) {
+            $scope.proccessDownload[id] = {icon: false,message: $scope._t('success_module_download'),status: 'alert-success'};
+            $timeout(function() {
+                $scope.proccessDownload[id] = {icon: false,message:false};
+            },3000);
+            
+        }, function(error) {
+            $scope.proccessDownload[id] = {icon: false};
+            alert($scope._t('error_no_module_download'));
+            $log.error('ERROR: ',error);
+        });
 
     };
+   
 });
 /**
  * App local detail controller
  */
-myAppController.controller('AppLocalDetailController', function($scope, $routeParams,dataFactory, dataService) {
-   $scope.module = [];
+myAppController.controller('AppLocalDetailController', function($scope, $routeParams, dataFactory, dataService) {
+    $scope.module = [];
     /**
      * Load module detail
      */
     $scope.loadModule = function(id) {
         dataFactory.getApiData('modules', function(data) {
             $scope.module = dataService.getRowBy(data.data, 'id', id);
-            console.log($scope.module)
         });
     };
-    
+
     $scope.loadModule($routeParams.id);
-    
+
 });
 
 /**
  * App online detail controller
  */
-myAppController.controller('AppOnlineDetailController', function($scope, $routeParams,dataFactory, dataService) {
-   $scope.module = [];
+myAppController.controller('AppOnlineDetailController', function($scope, $routeParams,$log, $timeout,dataFactory, dataService) {
+    $scope.module = [];
+    $scope.proccessDownload = {
+        icon: false,
+        message: false,
+        status: 'alert-hidden'
+    };
     /**
      * Load module detail
      */
     $scope.loadModule = function(id) {
-        dataFactory.localData('online.json', function(data) {
-            $scope.module = dataService.getRowBy(data, 'id', id);
-            console.log($scope.module)
+        dataFactory.getRemoteData($scope.cfg.online_module_url).then(function(response) {
+            $scope.module = dataService.getRowBy(response.data, 'id', id);
+        }, function(error) {
+            dataService.showConnectionError(error);
         });
     };
-    
+
     $scope.loadModule($routeParams.id);
     
+    /**
+     * Download module
+     */
+    $scope.downloadModule = function(id, modulename) {
+         $scope.proccessDownload = {icon: 'fa-spinner fa-spin'};
+        var cmd = 'Run/system("/opt/module_downloader.sh ' + id + ' ' + modulename + '")';
+         dataFactory.getSystemCmd(cmd).then(function(response) {
+            $scope.proccessDownload = {icon: false,message: $scope._t('success_module_download'),status: 'alert-success'};
+            $timeout(function() {
+                $scope.proccessDownload = {icon: false,message:false};
+            },3000);
+        }, function(error) {
+             $scope.proccessDownload = {icon: false};
+            alert($scope._t('error_no_module_download'));
+            $log.error('ERROR: ',error);
+        });
+
+    };
+
 });
 /**
  * App controller - add module

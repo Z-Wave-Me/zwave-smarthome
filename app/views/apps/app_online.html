@@ -1,15 +1,17 @@
 <!-- Online app view -->
-<!-- Online app view -->
 <div class="row row-page" id="_page_app_local">
     <div class="col-lg-4 col-md-6 col-sm-6 app-entry"  ng-repeat="v in onlineModules | filter:q">
         <div class="app-border app-gradient app-shadow app-entry-in">
+            <div class="alert alert-entry" ng-class="proccessDownload[v.id].status? proccessDownload[v.id].status :'alert-hidden'" ng-if="proccessDownload[v.id].message">
+                <span ng-bind="proccessDownload[v.id].message"></span>
+            </div>
             <a href="#apps/online/{{v.id}}"><img class="app-image" src="storage/img/apps/app.png" alt="{{v.title}}"/></a>
             <div class="app-body">
                 <h3 class="entry-title"><a href="#apps/online/{{v.id}}" ng-bind="v.title"></a>  &raquo;</h3>
              </div>
             <div class="app-footer">
                 <div class="app-footer-in">
-                    <a href="" class="btn btn-default btn-sm" ng-click="downloadModule(v.id, v.modulename)"><i class="fa fa-download fa-lg text-success"></i> <span class="btn-name_">{{_t('lb_download')}}</span></a> 
+                    <a href="" class="btn btn-default btn-sm" ng-click="downloadModule(v.id, v.modulename)"><i class="fa fa-lg text-success" ng-class="proccessDownload[v.id].icon? proccessDownload[v.id].icon:'fa-download'"></i> <span class="btn-name_">{{_t('lb_download')}}</span></a> 
                     <!--<a href="#apps/online/{{v.id}}" class="btn btn-default btn-sm"><i class="fa fa-plus fa-lg"></i> <span class="btn-name_">{{_t('lb_detail')}}</span></a>-->
                  </div>
                 </div>

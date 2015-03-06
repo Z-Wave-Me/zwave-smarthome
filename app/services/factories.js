@@ -110,8 +110,8 @@ myAppFactory.factory('dataFactory', function($http, $interval, $window, $filter,
                     //cache: noCache || true
         }).then(function(response) {
             if (typeof response.data === 'object') {
-                myCache.put(cacheName, response.data);
-                return response.data;
+                myCache.put(cacheName, response);
+                return response;
             } else {// invalid response
                 return $q.reject(response);
             }
@@ -183,15 +183,19 @@ myAppFactory.factory('dataFactory', function($http, $interval, $window, $filter,
      * Get system cmd
      */
     function getSystemCmd(cmd) {
-        var request = {
-            method: "get",
+        return $http({
+            method: 'get',
             url: cfg.server_url + cfg.zwave_api_url +  cmd
-        };
-        return $http(request).success(function(data) {
-            console.log('SUCCESS:' + cfg.server_url + cfg.api_url + "devices/" + cmd);
-        }).error(function(data, status, headers, config, statusText) {
-            handleError(data, status, headers, config, statusText);
-
+                    //cache: noCache || true
+        }).then(function(response) {
+             //return response;
+            if (typeof response.data === 'object') {
+                return response;
+            } else {// invalid response
+                return $q.reject(response);
+            }
+        }, function(response) {// something went wrong
+            return $q.reject(response);
         });
     }
 
