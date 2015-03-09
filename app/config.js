@@ -60,6 +60,8 @@ var config_data = {
             },
         // Device vendors
         'device_vendors': ['zwave', 'enocean', 'ipcamera'],
+        // Hidden apps
+        'hidden_apps': ['Cron'],
         // Results per page
         'page_results': 12
 
