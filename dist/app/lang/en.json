@@ -50,6 +50,8 @@
     "lb_notify_warning": "Warning",
     "lb_notify_critical": "Critical",
     "lb_notify_notification": "Notification",
+    "error_no_module_download":"Unable to download module",
+    "success_module_download":"Module successfully downloaded",
     "---": "missing",
     "nav_home": "Dashboard",
     "nav_elements": "Elements",

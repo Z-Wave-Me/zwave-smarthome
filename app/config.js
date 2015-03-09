@@ -61,7 +61,7 @@ var config_data = {
         // Device vendors
         'device_vendors': ['zwave', 'enocean', 'ipcamera'],
         // Hidden apps
-        'hidden_apps': ['Cron'],
+        'hidden_apps': ['Cron','AnotherModuleID'],
         // Results per page
         'page_results': 12
 

@@ -8,7 +8,7 @@ var config_data = {
         'app_type': 'web',
         // Server base url
         'server_url': '/',
-        //'server_url': 'http://zwave.dyndns.org:8083/',
+        //'server_url': 'http://192.168.10.162:8083/',
         // Interval in miliseconds to refresh data
         'interval': 3000,
         // Interval in miliseconds (5 min) to clear history (json) cache
@@ -35,6 +35,8 @@ var config_data = {
         'zwave_api_url': 'ZWaveAPI/',
         // Local data path
         'local_data_url': 'storage/data/',
+        // Online module url
+        'online_module_url': 'http://hrix.net/modules_store/json_store.php',
         // Language directory
         'lang_dir': 'app/lang/',
         // Default language
@@ -58,6 +60,8 @@ var config_data = {
             },
         // Device vendors
         'device_vendors': ['zwave', 'enocean', 'ipcamera'],
+        // Hidden apps
+        'hidden_apps': ['Cron','AnotherModuleID'],
         // Results per page
         'page_results': 12
 

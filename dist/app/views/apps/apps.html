@@ -17,11 +17,11 @@
                     <i class="fa fa-cog fa-fire tab-icon"></i> <span class="tab-name">{{_t('lb_active')}}</span>
                 </a>
             </li>
-             <li ng-class="activeTab == 'hidden' ? 'active' : ''">
+             <!-- <li ng-class="activeTab == 'hidden' ? 'active' : ''">
                 <a href="" title="{{_t('lb_hidden_app')}}" data-target="#module_hidden" data-toggle="tab" ng-click="setTab('hidden')">
                     <i class="fa fa-eye tab-icon"></i> <span class="tab-name">{{_t('lb_hidden_app')}}</span>
                 </a>
-            </li>
+            </li>-->
         </ul>
     </div>
 
@@ -34,7 +34,7 @@
         <!-- Active -->
         <div class="tab-pane" id="module_instance" ng-class="activeTab == 'instance' ? 'active' : ''" ng-include="'app/views/apps/app_instance.html'"></div>
          <!-- Hidden -->
-        <div class="tab-pane" id="module_hidden" ng-class="activeTab == 'hidden' ? 'active' : ''" ng-include="'app/views/apps/app_hidden.html'"></div>
+         <!--<div class="tab-pane" id="module_hidden" ng-class="activeTab == 'hidden' ? 'active' : ''" ng-include="'app/views/apps/app_hidden.html'"></div>-->
     </div>
 
     <div id="footer" ng-show="showFooter">
@@ -46,7 +46,7 @@
                         <option ng-repeat="v in categories" value="{{v.id}}" ng-selected="category == v.id" ng-bind="v.name">
                         </option>
                     </select>
-                    <div class="input-group search-form">
+                    <div class="input-group search-form hide-on-mobile">
                         <input type="text" ng-model="q" class="form-control">
                         <span class="input-group-addon"><i class="fa fa-search"></i></span>
                     </div>

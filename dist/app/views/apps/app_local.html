@@ -1,6 +1,6 @@
 <!-- Online app view -->
 <div class="row row-page" id="_page_app_local">
-    <div class="col-lg-4 col-md-6 col-sm-6 app-entry"  ng-repeat="v in modules| filter:q">
+    <div class="col-lg-4 col-md-6 col-sm-6 app-entry"  ng-repeat="v in modules| filter:q" ng-if="cfg.hidden_apps.indexOf(v.id) === -1">
         <div class="app-border app-gradient app-shadow app-entry-in">
             <a href="#apps/local/{{v.id}}"><img class="app-image" src="storage/img/apps/app.png" alt="{{ v.name}}"/></a>
             <div class="app-body">
