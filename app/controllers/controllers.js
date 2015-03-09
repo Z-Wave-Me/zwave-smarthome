@@ -845,7 +845,7 @@ myAppController.controller('ProfileController', function($scope, $window, $cooki
 /**
  * App controller
  */
-myAppController.controller('AppController', function($scope, $window, $cookies,$timeout, dataFactory, dataService, myCache) {
+myAppController.controller('AppController', function($scope, $window, $cookies,$timeout,$log, dataFactory, dataService, myCache) {
     $scope.instances = [];
     $scope.modules = [];
     $scope.onlineModules = [];
