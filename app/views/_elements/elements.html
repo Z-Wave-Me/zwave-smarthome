@@ -429,8 +429,7 @@
 
     <!-- Modal camera -->
     <div class="modal modal-vertical-centered fade" id="modal_camera" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="table_"><div class="table-cell_">
-                <div class="modal-dialog modal-dialog-center">
+                <div class="modal-dialog modal-dialog-center  modal-camera">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -438,14 +437,14 @@
                         </div>
                         <div class="modal-body">
                             <p class="text-center element-camera-control">
-                                <a href="" ng-click="runCmd(input.id + '/command/zoomIn')" ng-if="input.metrics.hasZoomIn"><i class="fa fa-search-plus"></i></a>&nbsp;&nbsp;&nbsp;
-                                <a href="" ng-click="runCmd(input.id + '/command/zoomOut')" ng-if="input.metrics.hasZoomOut"><i class="fa fa-search-minus"></i></a>&nbsp;&nbsp;&nbsp;
-                                <a href="" ng-click="runCmd(input.id + '/command/left')" ng-if="input.metrics.hasLeft"><i class="fa fa-arrow-circle-left"></i></a>&nbsp;&nbsp;&nbsp;
-                                <a href="" ng-click="runCmd(input.id + '/command/right')" ng-if="input.metrics.hasRight"><i class="fa fa-arrow-circle-right"></i></a>&nbsp;&nbsp;&nbsp;
-                                <a href="" ng-click="runCmd(input.id + '/command/up')" ng-if="input.metrics.hasUp"><i class="fa fa-arrow-circle-up"></i></a>&nbsp;&nbsp;&nbsp;
-                                <a href="" ng-click="runCmd(input.id + '/command/down')" ng-if="input.metrics.hasDown"><i class="fa fa-arrow-circle-down"></i></a>&nbsp;&nbsp;&nbsp;
-                                <a href="" ng-click="runCmd(input.id + '/command/open')" ng-if="input.metrics.hasOpen"><i class="fa fa-power-off"></i></a>&nbsp;&nbsp;&nbsp;
-                                <a href="" ng-click="runCmd(input.id + '/command/close')" ng-if="input.metrics.hasClose"><i class="fa fa-close"></i></a>&nbsp;&nbsp;&nbsp;
+                                <a href="" ng-click="runCmd(input.id + '/command/zoomIn')" ng-if="input.metrics.hasZoomIn"><i class="fa fa-search-plus fa-lg"></i></a>&nbsp;&nbsp;&nbsp;
+                                <a href="" ng-click="runCmd(input.id + '/command/zoomOut')" ng-if="input.metrics.hasZoomOut"><i class="fa fa-search-minus fa-lg"></i></a>&nbsp;&nbsp;&nbsp;
+                                <a href="" ng-click="runCmd(input.id + '/command/left')" ng-if="input.metrics.hasLeft"><i class="fa fa-arrow-circle-left fa-lg"></i></a>&nbsp;&nbsp;&nbsp;
+                                <a href="" ng-click="runCmd(input.id + '/command/right')" ng-if="input.metrics.hasRight"><i class="fa fa-arrow-circle-right fa-lg"></i></a>&nbsp;&nbsp;&nbsp;
+                                <a href="" ng-click="runCmd(input.id + '/command/up')" ng-if="input.metrics.hasUp"><i class="fa fa-arrow-circle-up fa-lg"></i></a>&nbsp;&nbsp;&nbsp;
+                                <a href="" ng-click="runCmd(input.id + '/command/down')" ng-if="input.metrics.hasDown"><i class="fa fa-arrow-circle-down fa-lg"></i></a>&nbsp;&nbsp;&nbsp;
+                                <a href="" ng-click="runCmd(input.id + '/command/open')" ng-if="input.metrics.hasOpen"><i class="fa fa-power-off fa-lg"></i></a>&nbsp;&nbsp;&nbsp;
+                                <a href="" ng-click="runCmd(input.id + '/command/close')" ng-if="input.metrics.hasClose"><i class="fa fa-close fa-lg"></i></a>&nbsp;&nbsp;&nbsp;
                             </p>
 
                             <div class="camera-img">
@@ -456,7 +455,6 @@
                         </div>
                     </div>
                 </div>
-            </div></div> <!-- /.Modal vertical align -->
     </div><!-- /.Modal -->
 
 
@@ -488,7 +486,7 @@
                             <li ng-repeat="v in tags"><a href="#elements/tags/{{v.key}}" ng-bind="v.key"></a></li>
                         </ul>
                     </div>
-                    <div class="input-group search-form">
+                    <div class="input-group search-form hide-on-mobile">
                         <input type="text" ng-model="q" class="form-control">
                         <span class="input-group-addon"><i class="fa fa-search"></i></span>
                     </div>
