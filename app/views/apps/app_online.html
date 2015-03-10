@@ -11,6 +11,8 @@
              </div>
             <div class="app-footer">
                 <div class="app-footer-in">
+                    <span ng-show="modulesIds.indexOf(v.modulename) !== -1"><i class="fa fa-lg fa-check-circle text-success"></i> </span>
+                   
                     <a href="" class="btn btn-default btn-sm" ng-click="downloadModule(v.id, v.modulename)"><i class="fa fa-lg text-success" ng-class="proccessDownload[v.id].icon? proccessDownload[v.id].icon:'fa-download'"></i> <span class="btn-name_">{{_t('lb_download')}}</span></a> 
                     <!--<a href="#apps/online/{{v.id}}" class="btn btn-default btn-sm"><i class="fa fa-plus fa-lg"></i> <span class="btn-name_">{{_t('lb_detail')}}</span></a>-->
                  </div>

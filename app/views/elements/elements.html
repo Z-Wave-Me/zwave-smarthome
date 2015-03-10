@@ -32,7 +32,7 @@
                     <!-- Widget body -->
                     <div class="widget-body"  ng-init="levelVal[v.id] = v.level" ng-click="goHidden = true;" ng-mouseleave="goHidden = false;">
 
-                        <h3 class="entry-title" title="{{v.title}}">{{v.title}}</h3>
+                        <h3 class="entry-title"><a href="" ng-click="showModal('#modal_promo', {'title': v.title})" ng-bind="v.title"></a> &raquo;</h3>
                         <!--<i>{{v.icon}}, {{v.deviceType}}</i> -->
                         
                         <!-- Hidden sensorMultilevel -->
@@ -425,6 +425,21 @@
                 </div>
             </div>
         </div>
+    </div><!-- /.Modal -->
+    
+    <!-- Modal promo -->
+    <div class="modal modal-vertical-centered fade" id="modal_promo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-center">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" ng-bind="input.title"></h4>
+                        </div>
+                        <div class="modal-body">
+                             <div class="widget-promo-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget sollicitudin tortor, nec ultricies felis. Donec faucibus purus sed sem fringilla tincidunt. Fusce nec ipsum sit amet purus iaculis blandit. Praesent dolor justo, tincidunt in nibh et, sodales condimentum nisi. Duis a quam felis. Nam lobortis odio non velit malesuada commodo. Nulla scelerisque, eros ac posuere tincidunt, metus lectus vulputate nibh, vitae elementum magna metus sed felis.</div>
+                        </div>
+                    </div>
+                </div>
     </div><!-- /.Modal -->
 
     <!-- Modal camera -->
