@@ -962,7 +962,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies,$
     };
 
     /**
-     * Ictivate instance
+     * Delete instance
      */
     $scope.deleteInstance = function(target, input, dialog) {
         var confirm = true;
@@ -973,6 +973,28 @@ myAppController.controller('AppController', function($scope, $window, $cookies,$
             dataFactory.deleteApiData('instances', input.id, target);
             myCache.remove('instances');
             myCache.remove('devices');
+        }
+    };
+    /**
+     * Delete module
+     */
+    $scope.deleteModule = function(target, input, dialog) {
+        var confirm = true;
+        if (dialog) {
+            confirm = $window.confirm(dialog);
+        }
+        if (confirm) {
+            dataFactory.deleteApi('modules',input.id).then(function(response) {
+//            $scope.proccessDownload[id] = {icon: false,message: $scope._t('success_module_download'),status: 'alert-success'};
+//            $timeout(function() {
+//                $scope.proccessDownload[id] = {icon: false,message:false};
+//            },3000);
+            
+        }, function(error) {
+//            $scope.proccessDownload[id] = {icon: false};
+//            alert($scope._t('error_no_module_download'));
+            $log.error('ERROR: ',error);
+        });
         }
     };
     /**

@@ -83,6 +83,10 @@ a:hover {
     @include appGradient();
 }
 
+.app-gradient-green{
+   @include appGradientGreen();
+}
+
 .app-shadow{
     @include appBoxShadow();
 }

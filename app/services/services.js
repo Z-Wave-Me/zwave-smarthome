@@ -295,7 +295,7 @@ myAppService.service('dataService', function($filter, $log,myCache) {
             $(widgetId + ' .widget-level').html(val);
             $(widgetId + ' .widget-level-knob').val(val);
         }
-        //console.log('Update device: ID: ' + v.id + ' - level: ' + val)
+        console.log('Update device: ID: ' + v.id + ' - level: ' + val)
 
     }
 
@@ -307,7 +307,7 @@ myAppService.service('dataService', function($filter, $log,myCache) {
         if (time) {
             $(widgetId + ' .widget-update-time').html(time);
         }
-        //console.log('Update device: ID: ' + v.id + ' - time: ' + time)
+        console.log('Update device: ID: ' + v.id + ' - time: ' + time)
     }
 
     /**
@@ -318,7 +318,7 @@ myAppService.service('dataService', function($filter, $log,myCache) {
         if (icon) {
             $(widgetId + ' .widget-image').attr('src', icon);
         }
-        //console.log('Update device: ID: ' + v.id + ' - icon: ' + icon)
+        console.log('Update device: ID: ' + v.id + ' - icon: ' + icon)
     }
 
     /**
@@ -353,7 +353,7 @@ myAppService.service('dataService', function($filter, $log,myCache) {
             $(widgetId + ' .widget-btn-on').removeClass('btn-primary').addClass('btn-default');
             $(widgetId + ' .widget-btn-off').removeClass('btn-default').addClass('btn-primary');
         }
-        //console.log('Update device: ID: ' + v.id + ' - button ' + v.metrics.level)
+        console.log('Update device: ID: ' + v.id + ' - button ' + v.metrics.level)
         //}
 
     }

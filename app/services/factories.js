@@ -20,6 +20,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $window, $filter,
     var updatedTime = Math.round(+new Date() / 1000);
     return({
         getApi: getApi,
+        deleteApi:deleteApi,
         getRemoteData: getRemoteData,
         getApiData: getApiData, // Deprecated: Remove after getApi implementation
         postApiData: postApiData,
@@ -84,6 +85,24 @@ myAppFactory.factory('dataFactory', function($http, $interval, $window, $filter,
         }, function(response) {// something went wrong
             return $q.reject(response);
         });
+    }
+    
+    // Delete
+    function deleteApi(api, id) {
+        return $http({
+            method: 'delete',
+            url: cfg.server_url + cfg.api[api] + "/" + id
+                    //cache: noCache || true
+        }).then(function(response) {
+            if (typeof response.data === 'object') {
+                return response.data;
+            } else {// invalid response
+                return $q.reject(response);
+            }
+        }, function(response) {// something went wrong
+            return $q.reject(response);
+        });
+        
     }
     
      /**
