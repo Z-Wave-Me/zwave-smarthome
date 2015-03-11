@@ -2,6 +2,8 @@
     "missing": "---",
     "lb_zwave_autodetect": "Autodetect new Z-Wave Device",
     "lb_device_configuration": "Device configuration",
+    "error_module_delete": "Unable to delete module",
+    "success_module_deleted": "Module successfully deleted",
     "---": "missing",
     "lb_inclusion_info": "The inclusion process connected your new device to the Z-Wave network. Make sure that the device is in factory default state. Othrwise the inclusion will not work. If you are unsure consult the devices manual how to reset the device int factory default or perform a device exclusion.",
     "lb_ready_include": "Ready to include.",

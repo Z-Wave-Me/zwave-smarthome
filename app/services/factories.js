@@ -56,7 +56,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $window, $filter,
     /**
      * API data
      */
-    // Get
+    // Get api data
     function getApi(api, params, noCache) {
         // Cached data
          var cacheName = 'cache_' + api + (params || '');
@@ -87,7 +87,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $window, $filter,
         });
     }
     
-    // Delete
+    // Delete api data
     function deleteApi(api, id) {
         return $http({
             method: 'delete',
@@ -100,7 +100,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $window, $filter,
                 return $q.reject(response);
             }
         }, function(response) {// something went wrong
-            return $q.reject(response);
+          return $q.reject(response);
         });
         
     }

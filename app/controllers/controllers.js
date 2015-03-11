@@ -861,6 +861,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies,$
         'serach': true
     };
     $scope.proccessDownload = [];
+    $scope.proccessDeleteModule = [];
     /**
      * Load data into collections
      */
@@ -984,15 +985,14 @@ myAppController.controller('AppController', function($scope, $window, $cookies,$
             confirm = $window.confirm(dialog);
         }
         if (confirm) {
-            dataFactory.deleteApi('modules',input.id).then(function(response) {
-//            $scope.proccessDownload[id] = {icon: false,message: $scope._t('success_module_download'),status: 'alert-success'};
-//            $timeout(function() {
-//                $scope.proccessDownload[id] = {icon: false,message:false};
-//            },3000);
+            $scope.proccessDeleteModule[input.id] = {icon: 'fa-spinner fa-spin'};
+            dataFactory.deleteApi('modules',input.id).then(function(response) { 
+                $scope.proccessDeleteModule[input.id] = {icon: false};
+                $(target).fadeOut(2000);
             
         }, function(error) {
-//            $scope.proccessDownload[id] = {icon: false};
-//            alert($scope._t('error_no_module_download'));
+            alert($scope._t('error_module_delete'));
+            $scope.proccessDeleteModule[input.id] = {icon: false};
             $log.error('ERROR: ',error);
         });
         }
