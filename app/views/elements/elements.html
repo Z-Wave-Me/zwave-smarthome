@@ -7,7 +7,9 @@
             <div class="widget-block {{v.deviceType}}" ng-switch="v.deviceType">
                 <div class="widget-block-in clearfix app-border app-gradient app-shadow">
                     <!-- Widget icon -->
-                    <img class="widget-image" ng-src="{{v.icon|getElementIcon:v}}" alt="{{v.title}}"/>
+                    <img ng-if="v.deviceType === 'text'" class="widget-image" ng-src="{{v.metrics.img}}" alt="{{v.title}}"/>
+                    <img ng-if="v.deviceType !== 'text'" class="widget-image" ng-src="{{v.icon|getElementIcon:v}}" alt="{{v.title}}"/>
+
                     <!-- Widget header -->
                     <div class="widget-header">
                         <a class="widget-history" href="" ng-click="goHistory = !goHistory" ng-show="history[v.id]"><i class="fa fa-bar-chart"></i></a>
@@ -163,6 +165,13 @@
                             <div class="widget-click-popup" ng-switch-when="switchMultilevelLinear"><strong>{{v.level}} <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span></strong> <i class="fa fa-caret-down"></i></div>
                             <!-- camera -->
                             <div class="text-right"><a href="" class="btn btn-primary" ng-switch-when="camera" ng-click="showModal('#modal_camera', v)"><i class="fa fa-play"></i></a></div>
+
+                            <!-- text -->
+                            <div ng-switch-when="text">
+                                <div class="widget-control control-left widget-click-popup text">
+                                    <span ng-show="v.metrics.text" ng-bind="v.metrics.text|cutText:true:60"></span> <i class="fa fa-newspaper-o"></i>
+                                </div>
+                            </div>
 
                             <!-- Default -->
                             <div class="widget-control control-left widget-click-popup" ng-switch-default><span class="widget-level" ng-bind="v.level"></span> <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span></div>

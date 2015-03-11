@@ -967,6 +967,13 @@ vertical-align: middle;
   margin: 10px 0;
 }
 
+/* Text widget
+-----------------------------------------------------*/
+/* line 156, sass/modules/_elements.scss */
+.widget-control.text {
+  width: 95%;
+}
+
 /* Events
 -------------------------------------------------- */
 /* line 4, sass/modules/_events.scss */
