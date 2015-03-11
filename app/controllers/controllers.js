@@ -848,7 +848,9 @@ myAppController.controller('ProfileController', function($scope, $window, $cooki
 myAppController.controller('AppController', function($scope, $window, $cookies,$timeout,$log, dataFactory, dataService, myCache) {
     $scope.instances = [];
     $scope.modules = [];
+    $scope.modulesIds = [];
     $scope.onlineModules = [];
+    
     $scope.categories = [];
     $scope.activeTab = (angular.isDefined($cookies.tab_app) ? $cookies.tab_app : 'local');
     $scope.category = '';
@@ -873,12 +875,16 @@ myAppController.controller('AppController', function($scope, $window, $cookies,$
     $scope.loadModules = function(filter) {
         dataFactory.getApiData('modules', function(data) {
             $scope.modules = dataService.getData(data.data, filter);
+           angular.forEach(data.data, function(v, k) {
+                    $scope.modulesIds.push(v.id);
+
+                });
         });
     };
     $scope.loadOnlineModules = function(filter) {
-        dataFactory.localData('online.json', function(data) {
-            //$scope.onlineModules = dataService.getData(data, filter);
-        });
+//        dataFactory.localData('online.json', function(data) {
+//            //$scope.onlineModules = dataService.getData(data, filter);
+//        });
         dataFactory.getRemoteData($scope.cfg.online_module_url).then(function(response) {
             $scope.onlineModules = response.data;//dataService.getData(response.data, filter);
         }, function(error) {
@@ -913,6 +919,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies,$
                 break;
             case 'online':
                 $scope.loadOnlineModules();
+                $scope.loadModules();
                 $scope.showInFooter.categories = false;
                 break;
             default:
@@ -955,7 +962,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies,$
     };
 
     /**
-     * Ictivate instance
+     * Delete instance
      */
     $scope.deleteInstance = function(target, input, dialog) {
         var confirm = true;
@@ -966,6 +973,28 @@ myAppController.controller('AppController', function($scope, $window, $cookies,$
             dataFactory.deleteApiData('instances', input.id, target);
             myCache.remove('instances');
             myCache.remove('devices');
+        }
+    };
+    /**
+     * Delete module
+     */
+    $scope.deleteModule = function(target, input, dialog) {
+        var confirm = true;
+        if (dialog) {
+            confirm = $window.confirm(dialog);
+        }
+        if (confirm) {
+            dataFactory.deleteApi('modules',input.id).then(function(response) {
+//            $scope.proccessDownload[id] = {icon: false,message: $scope._t('success_module_download'),status: 'alert-success'};
+//            $timeout(function() {
+//                $scope.proccessDownload[id] = {icon: false,message:false};
+//            },3000);
+            
+        }, function(error) {
+//            $scope.proccessDownload[id] = {icon: false};
+//            alert($scope._t('error_no_module_download'));
+            $log.error('ERROR: ',error);
+        });
         }
     };
     /**

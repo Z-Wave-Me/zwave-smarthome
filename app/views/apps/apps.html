@@ -42,7 +42,7 @@
             <div class="container">
                 <div class="form-inline" role="form">
                     <select class="form-control" ng-model="category" ng-show="showInFooter.categories">
-                        <option value="">-- All categories --</option>
+                        <option value="" ng-bind="_t('lb_all')"></option>
                         <option ng-repeat="v in categories" value="{{v.id}}" ng-selected="category == v.id" ng-bind="v.name">
                         </option>
                     </select>
