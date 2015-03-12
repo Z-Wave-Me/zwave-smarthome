@@ -79,9 +79,9 @@
 .include-device-img{
     float: left;
     margin-right: 20px;
-    border-radius: 50%;
-     border: solid 2px $app-border-color;
-    
+    //border-radius: 50%;
+    border: solid 2px $app-border-color;
+
 }
 
 .col-device{
@@ -93,8 +93,19 @@
         border-bottom: solid 1px $app-border-color;
     }
 }
+.table-inclusion td{
+    vertical-align: middle !important;
+    .alert {
+        margin-bottom: 0;
+    }
+}
 
 .badge-number {
-    font-size: 22px;
+    display: inline-block;
+    text-align: center;
+    line-height: 20px;
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
     border-radius: 50%;
 }

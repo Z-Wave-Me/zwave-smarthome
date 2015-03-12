@@ -1418,7 +1418,6 @@ padding-right: 5px;
 .include-device-img {
   float: left;
   margin-right: 20px;
-  border-radius: 50%;
   border: solid 2px #d3d3d3;
 }
 
@@ -1433,9 +1432,23 @@ padding-right: 5px;
   border-bottom: solid 1px #d3d3d3;
 }
 
-/* line 97, sass/modules/_devices.scss */
+/* line 96, sass/modules/_devices.scss */
+.table-inclusion td {
+  vertical-align: middle !important;
+}
+/* line 98, sass/modules/_devices.scss */
+.table-inclusion td .alert {
+  margin-bottom: 0;
+}
+
+/* line 103, sass/modules/_devices.scss */
 .badge-number {
-  font-size: 22px;
+  display: inline-block;
+  text-align: center;
+  line-height: 20px;
+  width: 32px;
+  height: 32px;
+  font-size: 16px;
   border-radius: 50%;
 }
 

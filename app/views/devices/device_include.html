@@ -40,7 +40,9 @@
                 <!-- 1 -->
                 <tr>
                     <td><span class="badge badge-number">1</span></td>
-                    <td><span class="device-step-body"> {{_t('lb_preparation')}} <strong  ng-show="device.data.Preparation" ng-bind="device.data.Preparation"></strong></span></td>
+                    <td><span class="device-step-body">
+                            <strong>{{_t('lb_preparation')}}: </strong>
+                                 <span  ng-show="device.data.Preparation" ng-bind="device.data.Preparation"></span></span></td>
                     <td><i class="fa fa-check fa-2x text-success"></i></td>
                 </tr>
 
@@ -72,9 +74,9 @@
                 <tr>
                     <td><span class="badge badge-number">3</span></td>
                     <td>
-                        Inclusion proccess
+                        <strong ng-hide="controllerState == 1 || includedDeviceId">Inclusion proccess</strong>
                         <div ng-show="!inclusionError">
-                            <div class="alert alert-warning" ng-show="controllerState == 1"><i class="fa fa-spinner fa-spin"></i> <span ng-bind="_t('lb_ready_include')"></span> <strong ng-bind="device.data.Inclusion"></strong></div>
+                            <div class="alert alert-warning" ng-show="controllerState == 1"><i class="fa fa-spinner fa-spin"></i> <strong ng-bind="_t('lb_ready_include')"></strong> <span ng-bind="device.data.Inclusion"></span></div>
                             <div class="alert alert-warning" ng-show="includedDeviceId"><i class="fa fa-spinner fa-spin"></i> <span ng-bind="_t('lb_new_device_found')"></span></div>
                         </div>
                     </td>
@@ -88,9 +90,9 @@
                 <tr>
                     <td><span class="badge badge-number">4</span></td>
                     <td>
-                        Configuration
+                        <strong ng-hide="lastIncludedDevice">Configuration</strong>
                         <div ng-show="!inclusionError">
-                            <div class="alert alert-success" ng-show="lastIncludedDevice"><i class="fa fa-check"></i> <span ng-bind="_t('lb_new_device_configured')"></span>:  <strong ng-bind="lastIncludedDevice"></strong></div>
+                            <div class="alert alert-success" ng-show="lastIncludedDevice"><i class="fa fa-check"></i> <strong ng-bind="_t('lb_new_device_configured')"></strong>:  <span ng-bind="lastIncludedDevice"></span></div>
                         </div>
                         <div ng-if="inclusionError">
                             <div class="alert alert-danger" ng-show="!hasBattery"><i class="fa fa-minus-circle"></i> <span ng-bind="_t('lb_include_device_mains_error')"></span></div>
