@@ -155,3 +155,48 @@
 .widget-body .hidden-sensor-multiline .text-center {
     margin: 10px 0;
 }
+
+/* Text widget
+-----------------------------------------------------*/
+.widget-body.text-widget h3{
+    font-weight: bold;
+}
+
+.widget-body.text-widget-no-img {
+    padding-left: 15px;
+}
+
+.widget-control.text{
+    width: 95%;
+}
+
+.modal-body {
+    text-align: center;
+}
+
+img.widget-promo-image {
+    max-height: 200px;
+    margin-bottom: 10px;
+}
+
+.widget-promo-text {
+    text-align: left;
+}
+
+.widget-control.text a {
+    font-weight: normal;
+}
+
+.widget-control.text a:hover {
+    text-decoration: none;
+}
+
+.widget-control.text a:after {
+    content: "\f1ea";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+/*--adjust as necessary--*/
+    padding-left: 4px;
+    position: absolute;
+}

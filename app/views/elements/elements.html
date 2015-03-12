@@ -7,7 +7,9 @@
             <div class="widget-block {{v.deviceType}}" ng-switch="v.deviceType">
                 <div class="widget-block-in clearfix app-border app-gradient app-shadow">
                     <!-- Widget icon -->
-                    <img class="widget-image" ng-src="{{v.icon|getElementIcon:v}}" alt="{{v.title}}"/>
+                    <img ng-if="v.deviceType === 'text'" ng-show="v.metrics.img" class="widget-image" ng-src="{{v.metrics.img}}" alt="{{v.title}}"/>
+                    <img ng-if="v.deviceType !== 'text'" class="widget-image" ng-src="{{v.icon|getElementIcon:v}}" alt="{{v.title}}"/>
+
                     <!-- Widget header -->
                     <div class="widget-header">
                         <a class="widget-history" href="" ng-click="goHistory = !goHistory" ng-show="history[v.id]"><i class="fa fa-bar-chart"></i></a>
@@ -30,9 +32,10 @@
                     </div>
 
                     <!-- Widget body -->
-                    <div class="widget-body"  ng-init="levelVal[v.id] = v.level" ng-click="goHidden = true;" ng-mouseleave="goHidden = false;">
-
-                        <h3 class="entry-title"><a href="" ng-click="showModal('#modal_promo', {'title': v.title})" ng-bind="v.title"></a> &raquo;</h3>
+                    <div class="widget-body" ng-class="{'text-widget': v.deviceType == 'text','text-widget-no-img': v.deviceType == 'text' && v.metrics.img == ''}" ng-init="levelVal[v.id] = v.level" ng-click="goHidden = true;" ng-mouseleave="goHidden = false;">
+                        
+                        <h3 class="entry-title" title="{{v.title}}">{{v.title}}</h3>
+                        <!-- <h3 class="entry-title"><a href="" ng-click="showModal('#modal_promo', {'title': v.title})" ng-bind="v.title"></a> &raquo;</h3> -->
                         <!--<i>{{v.icon}}, {{v.deviceType}}</i> -->
                         
                         <!-- Hidden sensorMultilevel -->
@@ -183,6 +186,13 @@
                             <div class="widget-click-popup" ng-switch-when="switchMultilevelLinear"><strong>{{v.level}} <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span></strong> <i class="fa fa-caret-down"></i></div>
                             <!-- camera -->
                             <div class="text-right"><a href="" class="btn btn-primary" ng-switch-when="camera" ng-click="showModal('#modal_camera', v)"><i class="fa fa-play"></i></a></div>
+
+                            <!-- text -->
+                            <div ng-switch-when="text">
+                                <div class="widget-control control-left widget-click-popup text">
+                                    <a href="" ng-click="showModal('#modal_promo', {'title': v.title, 'text': v.metrics.text, 'url': v.metrics.img})" ng-bind="v.metrics.text|cutText:true:60"></a>
+                                </div>
+                            </div>
 
                             <!-- Default -->
                             <div class="widget-control control-left widget-click-popup" ng-switch-default><span class="widget-level" ng-bind="v.level"></span> <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span></div>
@@ -457,7 +467,8 @@
                             <h4 class="modal-title" ng-bind="input.title"></h4>
                         </div>
                         <div class="modal-body">
-                             <div class="widget-promo-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget sollicitudin tortor, nec ultricies felis. Donec faucibus purus sed sem fringilla tincidunt. Fusce nec ipsum sit amet purus iaculis blandit. Praesent dolor justo, tincidunt in nibh et, sodales condimentum nisi. Duis a quam felis. Nam lobortis odio non velit malesuada commodo. Nulla scelerisque, eros ac posuere tincidunt, metus lectus vulputate nibh, vitae elementum magna metus sed felis.</div>
+                            <img class="widget-promo-image" ng-show="input.url" ng-src="{{input.url}}" alt="input.title"/>
+                            <div class="widget-promo-text" ng-bind="input.text"></div>
                         </div>
                     </div>
                 </div>
