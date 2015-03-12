@@ -433,6 +433,10 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.$on('$destroy', function() {
         dataFactory.cancelApiDataInterval();
     });
+    
+    $scope.$watch('rgbVal', function() {
+        console.log($scope.val)
+     });
 
     /**
      * Load data into collection
@@ -1037,7 +1041,6 @@ myAppController.controller('AppLocalDetailController', function($scope, $routePa
     $scope.loadModule($routeParams.id);
 
 });
-
 /**
  * App online detail controller
  */

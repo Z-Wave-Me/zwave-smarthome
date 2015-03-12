@@ -68,6 +68,11 @@
         background-color: #fff;
         box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
     }
+    .hidden-close{
+        position: absolute;
+        top: 10px;
+        left: 93%;
+    }
     
 /*    .element-hidden.hidden-history{
         width: 100%;
