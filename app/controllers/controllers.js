@@ -935,6 +935,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies,$
                         };
                     }
                     $scope.loadModules(filter);
+                     $scope.loadInstances();
                 });
                 break;
         }
@@ -980,6 +981,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies,$
      * Delete module
      */
     $scope.deleteModule = function(target, input, dialog) {
+        console.log($scope.instances)
         var confirm = true;
         if (dialog) {
             confirm = $window.confirm(dialog);
