@@ -990,8 +990,55 @@ vertical-align: middle;
 /* Text widget
 -----------------------------------------------------*/
 /* line 156, sass/modules/_elements.scss */
+.widget-body.text-widget h3 {
+  font-weight: bold;
+}
+
+/* line 160, sass/modules/_elements.scss */
+.widget-body.text-widget-no-img {
+  padding-left: 15px;
+}
+
+/* line 164, sass/modules/_elements.scss */
 .widget-control.text {
   width: 95%;
+}
+
+/* line 168, sass/modules/_elements.scss */
+.modal-body {
+  text-align: center;
+}
+
+/* line 172, sass/modules/_elements.scss */
+img.widget-promo-image {
+  max-height: 200px;
+  margin-bottom: 10px;
+}
+
+/* line 177, sass/modules/_elements.scss */
+.widget-promo-text {
+  text-align: left;
+}
+
+/* line 181, sass/modules/_elements.scss */
+.widget-control.text a {
+  font-weight: normal;
+}
+
+/* line 185, sass/modules/_elements.scss */
+.widget-control.text a:hover {
+  text-decoration: none;
+}
+
+/* line 189, sass/modules/_elements.scss */
+.widget-control.text a:after {
+  content: "\f1ea";
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  /*--adjust as necessary--*/
+  padding-left: 4px;
+  position: absolute;
 }
 
 /* Events
