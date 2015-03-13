@@ -39,8 +39,9 @@
                         <!--<i>{{v.icon}}, {{v.deviceType}}</i> -->
                         
                         <!-- Hidden sensorMultilevel -->
-                        <div class="col-sm-11 element-hidden hidden-history" ng-show="goHistory" ng-mouseleave="goHistory = !goHistory;">
-                            <p class="text-center popup-title">{{v.title|cutText:true:30}}</p>
+                        <div class="col-sm-11 element-hidden hidden-history" ng-show="goHistory">
+                            <a class="hidden-close" href="" ng-click="goHistory = !goHistory"><i class="fa fa-times"></i></a>
+                            <p class="popup-title">{{v.title|cutText:true:30}}</p>
                             <div>
                                 <canvas tc-chartjs-line chart-data="history[v.id]" chart-options="chartOptions" width="260" height="150"></canvas>
                             </div>
@@ -48,8 +49,27 @@
                        
                         <div class="widget-control-wrap">
                              <!------------ switchMultilevel ------------>
-                            <div class="widget-control control-left widget-click-popup" ng-switch-when="switchMultilevel">
-                                <div class="widget-result"><span class="widget-level" ng-bind="levelVal[v.id] | getMaxLevel"></span> % <i class="fa fa-caret-down"></i></div>
+                            <div ng-switch-when="switchMultilevel">
+                                <div class="widget-control control-left widget-click-popup">
+                                    <span class="widget-level" ng-bind="levelVal[v.id] | getMaxLevel"></span> % <i class="fa fa-caret-down"></i>
+                                </div>
+                                <div class="widget-control control-right" ng-if="v.metrics.icon == 'blinds'">
+                                   <div class="btn-group">
+                                    <button 
+                                        class="btn btn-sm widget-btn-off" 
+                                        id="btn_off_{{ v.id}}"
+                                        data-ng-click="runCmd(v.id + '/command/off')"
+                                        ng-class="v.level < 1 ? 'btn-primary': 'btn-default'"
+                                        ng-bind="_t('lb_down')"></button>
+                                    <button 
+                                        class="btn btn-sm widget-btn-on" 
+                                        id="btn_on_{{ v.id}}"
+                                        data-ng-click="runCmd(v.id + '/command/on');goHidden = false;"
+                                        ng-class="v.level > 0 ? 'btn-primary': 'btn-default'"
+                                        ng-bind="_t('lb_up')"></button>
+                                </div>
+                                 </div>
+                               
                             </div>
 
                             <!------------ switchBinary ------------>
@@ -77,15 +97,15 @@
 
                             <!------------ switchRGBW ------------>
                             <div  ng-switch-when="switchRGBW" ng-init="rgbVal[v.id] = v.rgbColors">
-                                <div class="widget-control control-left widget-click-popup" colorpicker="rgb" ng-model="rgbVal[v.id]" ng-click="showColor = !showColor">
+                                <div cmdurl="{{cfg.server_url + cfg.api_url}}devices/{{v.id}}/command/exact" class="widget-control control-left widget-click-popup" colorpicker="rgb" ng-model="rgbVal[v.id]" ng-click="showColor = !showColor">
                                     <span class="color-picker-show" style="background-color: {{rgbVal[v.id]}};">&nbsp;</span> <span>RGB <i class="fa fa-caret-down"></i></span>
                                 </div>
                                 <div class="widget-control control-right">
-                                    <div class="btn-group" ng-show="showColor">
-                                     <button class="btn btn-primary btn-sm" ng-click="setRBGColor(v.id,rgbVal[v.id]);showColor = !showColor" >Update</button>
+                                    <!--<div class="btn-group" ng-show="showColor">
+                                     <button class="btn btn-primary btn-sm" ng-click="setRBGColor(v.id,rgbVal[v.id]);showColor = !showColor">Update</button>
                                      <button class="btn btn-default btn-sm" ng-click="resetRBGColor(v.id,v.rgbColorsSDefault);showColor = !showColor">Cancel</button>
-                                      </div>
-                                    <div class="btn-group" ng-hide="showColor"> 
+                                      </div>--> 
+                                    <div class="btn-group"> 
                                        
                                         <button 
                                             class="btn widget-btn-off btn-sm" 
@@ -294,6 +314,7 @@
 
                         <!-- Hidden sensorMultiline -->
                         <div class="col-sm-11 element-hidden hidden-sensor-multiline"  ng-switch-when="sensorMultiline" ng-show="goHidden">
+                            <!-- <a class="hidden-close" href="" ng-click="goHidden = false;"><i class="fa fa-times"></i></a>-->
                             <div class="text-center">
                                 <h4>{{v.title}}, {{v.metrics.country}}</h4>
                                 <img ng-src="{{v.metrics.flag}}">

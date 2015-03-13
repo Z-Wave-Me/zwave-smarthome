@@ -365,7 +365,7 @@ myAppService.service('dataService', function($filter, $log,myCache) {
         if (!angular.isObject(data, colors)) {
             return null;
         }
-        var currTime = (Math.round(+new Date() / 1000) - 300);
+        var currTime = (Math.round(+new Date() / 1000) - 3600);
         var out = {
             labels: [],
             datasets: [{
@@ -386,7 +386,11 @@ myAppService.service('dataService', function($filter, $log,myCache) {
             }
 
         });
-        return out;
+        if(out.datasets[0].data.length > 1){
+            return out;
+        }
+        return null;
+        
     }
     ;
 
