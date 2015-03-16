@@ -94,11 +94,12 @@ myAppFactory.factory('dataFactory', function($http, $interval, $window, $filter,
             url: cfg.server_url + cfg.api[api] + "/" + id
                     //cache: noCache || true
         }).then(function(response) {
-            if (typeof response.data === 'object') {
-                return response.data;
-            } else {// invalid response
-                return $q.reject(response);
-            }
+            return response.data;
+//            if (typeof response.data === 'object') {
+//                return response.data;
+//            } else {// invalid response
+//                return $q.reject(response);
+//            }
         }, function(response) {// something went wrong
           return $q.reject(response);
         });
