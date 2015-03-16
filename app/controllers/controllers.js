@@ -1237,11 +1237,13 @@ myAppController.controller('DeviceController', function($scope, $routeParams, da
     /**
      * Load z-wave devices
      */
-    $scope.loadZwaveDevices = function(filter, lang) {
-        dataFactory.localData('dev.' + lang + '.json', function(data) {
-            $scope.manufacturers = dataService.getPairs(data, 'ManufacturersName', 'ManufacturersImage', 'manufacturers');
+     $scope.loadZwaveDevices = function(filter, lang) {
+        dataFactory.localData('device.' + lang + '.json', function(data) {
+            $scope.manufacturers = dataService.getPairs(data, 'brandname', 'brand_image', 'manufacturers');
             if (filter) {
-                $scope.zwaveDevices = dataService.getData(data, filter);
+                console.log(filter)
+                $scope.zwaveDevices = dataService.getData(data, filter); 
+                console.log($scope.zwaveDevices)
                 $scope.manufacturer = filter.val;
             }
 
@@ -1321,8 +1323,19 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
     $scope.loadData = function(lang) {
         // Get device from JSON
         if (angular.isDefined($routeParams.device)) {
-            dataFactory.localData('dev.' + lang + '.json', function(devices) {
-                $scope.device.data = devices[$routeParams.device];
+            dataFactory.localData('device.' + lang + '.json', function(devices) {
+                angular.forEach(devices, function(v, k) {
+                if (v.id == $routeParams.device) {
+                   
+                    $scope.device.data = v;
+                     console.log($scope.device.data)
+                    return;
+                }
+            });
+                //$scope.device.data = devices[$routeParams.device];
+                console.log('Devices: ',devices);
+                 console.log('Route: ',$routeParams.device);
+                  console.log('Device: ',$scope.device.data);
 
             });
         }
