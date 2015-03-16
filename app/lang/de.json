@@ -1,6 +1,7 @@
 {
     "missing": "---",
     "---": "missing",
+    "lb_include_preparation":"Das Gerät muss sich im Auslieferungszustand befinden. Wenn Sie unsicher sind, können Sie nochmals eine Exklusion durchführen.",
     "lb_hidden_app":"Hidden Apps",
     "lb_network_status":"Netzwerk-Status ",
     "lb_zwave_devices":"Z-Wave Geräte",
@@ -11,7 +12,7 @@
     "lb_notify_notification": "Notification",
     "error_no_module_download":"Das Modul kann nicht heruntergeladen werden",
     "success_module_download":"Modul wurde erfolgreich geladen.",
-    "lb_inclusion_info": "Das Anlernen (Inclusion) macht ein neues Gerät mit dem Z-Wave Netz bekannt. Dafür <b>muss</b> sich das Gerät im Auslieferungszustand befinden. Wenn Sie unsicher sind, können Sie das Gerät zur Sicherheit nochmals aus einem Netz entfernen und damit in den Auslieferungszustand bringen.",
+    "lb_inclusion_info": "Das Anlernen (Inclusion) macht ein neues Gerät mit dem Z-Wave Netz bekannt. Dafür muss sich das Gerät im Auslieferungszustand befinden. Wenn Sie unsicher sind, können Sie das Gerät zur Sicherheit nochmals aus einem Netz entfernen und damit in den Auslieferungszustand bringen.",
     "lb_ready_include": "Bereit zum Anlernen (Inclusion)",
     "lb_new_device_found": "Neues Gerät gefunden. Bitte warten, bis das Gerät vollständig konfiguriert wurde.",
     "lb_new_device_configured": "Das neue Gerät wurde erfolgreich konfiguriert und seine funktionen können jetzt genutzt werden. Das neue Gerät heisst ",
