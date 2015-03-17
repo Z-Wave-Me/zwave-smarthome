@@ -134,7 +134,8 @@ a:hover {
         tr{
             td{
                 //border-top: 1px solid lighten($app-border-color, 20%); 
-                border-top: 4px solid $app-body-bcg-color;  
+                //border-top: 4px solid $app-body-bcg-color;
+                border-bottom: 1px solid lighten($app-border-color, 3%); 
             }
         }
     }

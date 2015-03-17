@@ -9,6 +9,16 @@
     "error_delete_data":"Unable to delete data",
     "error_module_delete_active":"Unable to delete Module. Module is active in instance ",
      "lb_app_new_version":"New version available",
+      "lb_events_source_type": "Only show events from this source and type",
+      "lb_events_type": "Only show events from this type",
+      "lb_show_all": "Show all",
+       "lb_notify_info": "Info",
+       "lb_hide": "Hide",
+       "lb_hide_device_events": "Hide all device events",
+      "lb_hide_system_events": "Hide all system events",
+      "lb_delete_system_events": "Delete all system events",
+       
+      
    
     "---": "missing",
     "lb_include_preparation":"The device must in factory default state. If you are unsure about it, just run the Exclusion again.",

@@ -7,7 +7,9 @@
             <div class="widget-block {{v.deviceType}}" ng-switch="v.deviceType">
                 <div class="widget-block-in clearfix app-border app-gradient app-shadow">
                     <!-- Widget icon -->
-                    <img class="widget-image" ng-src="{{v.icon|getElementIcon:v}}" alt="{{v.title}}"/>
+                    <img ng-if="v.deviceType === 'text'" ng-show="v.metrics.img" class="widget-image" ng-src="{{v.metrics.img}}" alt="{{v.title}}"/>
+                    <img ng-if="v.deviceType !== 'text'" class="widget-image" ng-src="{{v.icon|getElementIcon:v}}" alt="{{v.title}}"/>
+
                     <!-- Widget header -->
                     <div class="widget-header">
                         <a class="widget-history" href="" ng-click="goHistory = !goHistory" ng-show="history[v.id]"><i class="fa fa-bar-chart"></i></a>
@@ -30,14 +32,16 @@
                     </div>
 
                     <!-- Widget body -->
-                    <div class="widget-body"  ng-init="levelVal[v.id] = v.level" ng-click="goHidden = true;" ng-mouseleave="goHidden = false;">
-
+                    <div class="widget-body" ng-class="{'text-widget': v.deviceType == 'text','text-widget-no-img': v.deviceType == 'text' && v.metrics.img == ''}" ng-init="levelVal[v.id] = v.level" ng-click="goHidden = true;" ng-mouseleave="goHidden = false;">
+                        
                         <h3 class="entry-title" title="{{v.title}}">{{v.title}}</h3>
+                        <!-- <h3 class="entry-title"><a href="" ng-click="showModal('#modal_promo', {'title': v.title})" ng-bind="v.title"></a> &raquo;</h3> -->
                         <!--<i>{{v.icon}}, {{v.deviceType}}</i> -->
                         
                         <!-- Hidden sensorMultilevel -->
-                        <div class="col-sm-11 element-hidden hidden-history" ng-show="goHistory" ng-mouseleave="goHistory = !goHistory;">
-                            <p class="text-center popup-title">{{v.title|cutText:true:30}}</p>
+                        <div class="col-sm-11 element-hidden hidden-history" ng-show="goHistory">
+                            <a class="hidden-close" href="" ng-click="goHistory = !goHistory"><i class="fa fa-times"></i></a>
+                            <p class="popup-title">{{v.title|cutText:true:30}}</p>
                             <div>
                                 <canvas tc-chartjs-line chart-data="history[v.id]" chart-options="chartOptions" width="260" height="150"></canvas>
                             </div>
@@ -45,8 +49,27 @@
                        
                         <div class="widget-control-wrap">
                              <!------------ switchMultilevel ------------>
-                            <div class="widget-control control-left widget-click-popup" ng-switch-when="switchMultilevel">
-                                <div class="widget-result"><span class="widget-level" ng-bind="levelVal[v.id] | getMaxLevel"></span> % <i class="fa fa-caret-down"></i></div>
+                            <div ng-switch-when="switchMultilevel">
+                                <div class="widget-control control-left widget-click-popup">
+                                    <span class="widget-level" ng-bind="levelVal[v.id] | getMaxLevel"></span> % <i class="fa fa-caret-down"></i>
+                                </div>
+                                <div class="widget-control control-right" ng-if="v.metrics.icon == 'blinds'">
+                                   <div class="btn-group">
+                                    <button 
+                                        class="btn btn-sm widget-btn-off" 
+                                        id="btn_off_{{ v.id}}"
+                                        data-ng-click="runCmd(v.id + '/command/off')"
+                                        ng-class="v.level < 1 ? 'btn-primary': 'btn-default'"
+                                        ng-bind="_t('lb_down')"></button>
+                                    <button 
+                                        class="btn btn-sm widget-btn-on" 
+                                        id="btn_on_{{ v.id}}"
+                                        data-ng-click="runCmd(v.id + '/command/on');goHidden = false;"
+                                        ng-class="v.level > 0 ? 'btn-primary': 'btn-default'"
+                                        ng-bind="_t('lb_up')"></button>
+                                </div>
+                                 </div>
+                               
                             </div>
 
                             <!------------ switchBinary ------------>
@@ -74,15 +97,15 @@
 
                             <!------------ switchRGBW ------------>
                             <div  ng-switch-when="switchRGBW" ng-init="rgbVal[v.id] = v.rgbColors">
-                                <div class="widget-control control-left widget-click-popup" colorpicker="rgb" ng-model="rgbVal[v.id]" ng-click="showColor = !showColor">
+                                <div cmdurl="{{cfg.server_url + cfg.api_url}}devices/{{v.id}}/command/exact" class="widget-control control-left widget-click-popup" colorpicker="rgb" ng-model="rgbVal[v.id]" ng-click="showColor = !showColor">
                                     <span class="color-picker-show" style="background-color: {{rgbVal[v.id]}};">&nbsp;</span> <span>RGB <i class="fa fa-caret-down"></i></span>
                                 </div>
                                 <div class="widget-control control-right">
-                                    <div class="btn-group" ng-show="showColor">
-                                     <button class="btn btn-primary btn-sm" ng-click="setRBGColor(v.id,rgbVal[v.id]);showColor = !showColor" >Update</button>
+                                    <!--<div class="btn-group" ng-show="showColor">
+                                     <button class="btn btn-primary btn-sm" ng-click="setRBGColor(v.id,rgbVal[v.id]);showColor = !showColor">Update</button>
                                      <button class="btn btn-default btn-sm" ng-click="resetRBGColor(v.id,v.rgbColorsSDefault);showColor = !showColor">Cancel</button>
-                                      </div>
-                                    <div class="btn-group" ng-hide="showColor"> 
+                                      </div>--> 
+                                    <div class="btn-group"> 
                                        
                                         <button 
                                             class="btn widget-btn-off btn-sm" 
@@ -163,6 +186,13 @@
                             <div class="widget-click-popup" ng-switch-when="switchMultilevelLinear"><strong>{{v.level}} <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span></strong> <i class="fa fa-caret-down"></i></div>
                             <!-- camera -->
                             <div class="text-right"><a href="" class="btn btn-primary" ng-switch-when="camera" ng-click="showModal('#modal_camera', v)"><i class="fa fa-play"></i></a></div>
+
+                            <!-- text -->
+                            <div ng-switch-when="text">
+                                <div class="widget-control control-left widget-click-popup text">
+                                    <a href="" ng-click="showModal('#modal_promo', {'type': v.deviceType, 'title': v.title, 'text': v.metrics.text, 'url': v.metrics.img})" ng-bind="v.metrics.text|cutText:true:60"></a>
+                                </div>
+                            </div>
 
                             <!-- Default -->
                             <div class="widget-control control-left widget-click-popup" ng-switch-default><span class="widget-level" ng-bind="v.level"></span> <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span></div>
@@ -284,6 +314,7 @@
 
                         <!-- Hidden sensorMultiline -->
                         <div class="col-sm-11 element-hidden hidden-sensor-multiline"  ng-switch-when="sensorMultiline" ng-show="goHidden">
+                            <!-- <a class="hidden-close" href="" ng-click="goHidden = false;"><i class="fa fa-times"></i></a>-->
                             <div class="text-center">
                                 <h4>{{v.title}}, {{v.metrics.country}}</h4>
                                 <img ng-src="{{v.metrics.flag}}">
@@ -426,6 +457,22 @@
             </div>
         </div>
     </div><!-- /.Modal -->
+    
+    <!-- Modal promo -->
+    <div class="modal modal-vertical-centered fade" id="modal_promo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-center" ng-class="{'text-widget-modal': input.type == 'text'}">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" ng-bind="input.title"></h4>
+                        </div>
+                        <div class="modal-body">
+                            <img class="widget-promo-image" ng-show="input.url" ng-src="{{input.url}}" alt="input.title"/>
+                            <div class="widget-promo-text" ng-bind="input.text"></div>
+                        </div>
+                    </div>
+                </div>
+    </div><!-- /.Modal -->
 
     <!-- Modal camera -->
     <div class="modal modal-vertical-centered fade" id="modal_camera" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -438,14 +485,14 @@
                         </div>
                         <div class="modal-body">
                             <p class="text-center element-camera-control">
-                                <a href="" ng-click="runCmd(input.id + '/command/zoomIn')" ng-if="input.metrics.hasZoomIn"><i class="fa fa-search-plus"></i></a>&nbsp;&nbsp;&nbsp;
-                                <a href="" ng-click="runCmd(input.id + '/command/zoomOut')" ng-if="input.metrics.hasZoomOut"><i class="fa fa-search-minus"></i></a>&nbsp;&nbsp;&nbsp;
-                                <a href="" ng-click="runCmd(input.id + '/command/left')" ng-if="input.metrics.hasLeft"><i class="fa fa-arrow-circle-left"></i></a>&nbsp;&nbsp;&nbsp;
-                                <a href="" ng-click="runCmd(input.id + '/command/right')" ng-if="input.metrics.hasRight"><i class="fa fa-arrow-circle-right"></i></a>&nbsp;&nbsp;&nbsp;
-                                <a href="" ng-click="runCmd(input.id + '/command/up')" ng-if="input.metrics.hasUp"><i class="fa fa-arrow-circle-up"></i></a>&nbsp;&nbsp;&nbsp;
-                                <a href="" ng-click="runCmd(input.id + '/command/down')" ng-if="input.metrics.hasDown"><i class="fa fa-arrow-circle-down"></i></a>&nbsp;&nbsp;&nbsp;
-                                <a href="" ng-click="runCmd(input.id + '/command/open')" ng-if="input.metrics.hasOpen"><i class="fa fa-power-off"></i></a>&nbsp;&nbsp;&nbsp;
-                                <a href="" ng-click="runCmd(input.id + '/command/close')" ng-if="input.metrics.hasClose"><i class="fa fa-close"></i></a>&nbsp;&nbsp;&nbsp;
+                                <a href="" ng-click="runCmd(input.id + '/command/zoomIn')" ng-if="input.metrics.hasZoomIn"><i class="fa fa-search-plus fa-lg"></i></a>&nbsp;&nbsp;&nbsp;
+                                <a href="" ng-click="runCmd(input.id + '/command/zoomOut')" ng-if="input.metrics.hasZoomOut"><i class="fa fa-search-minus fa-lg"></i></a>&nbsp;&nbsp;&nbsp;
+                                <a href="" ng-click="runCmd(input.id + '/command/left')" ng-if="input.metrics.hasLeft"><i class="fa fa-arrow-circle-left fa-lg"></i></a>&nbsp;&nbsp;&nbsp;
+                                <a href="" ng-click="runCmd(input.id + '/command/right')" ng-if="input.metrics.hasRight"><i class="fa fa-arrow-circle-right fa-lg"></i></a>&nbsp;&nbsp;&nbsp;
+                                <a href="" ng-click="runCmd(input.id + '/command/up')" ng-if="input.metrics.hasUp"><i class="fa fa-arrow-circle-up fa-lg"></i></a>&nbsp;&nbsp;&nbsp;
+                                <a href="" ng-click="runCmd(input.id + '/command/down')" ng-if="input.metrics.hasDown"><i class="fa fa-arrow-circle-down fa-lg"></i></a>&nbsp;&nbsp;&nbsp;
+                                <a href="" ng-click="runCmd(input.id + '/command/open')" ng-if="input.metrics.hasOpen"><i class="fa fa-power-off fa-lg"></i></a>&nbsp;&nbsp;&nbsp;
+                                <a href="" ng-click="runCmd(input.id + '/command/close')" ng-if="input.metrics.hasClose"><i class="fa fa-close fa-lg"></i></a>&nbsp;&nbsp;&nbsp;
                             </p>
 
                             <div class="camera-img">
@@ -488,7 +535,7 @@
                             <li ng-repeat="v in tags"><a href="#elements/tags/{{v.key}}" ng-bind="v.key"></a></li>
                         </ul>
                     </div>
-                    <div class="input-group search-form">
+                    <div class="input-group search-form hide-on-mobile">
                         <input type="text" ng-model="q" class="form-control">
                         <span class="input-group-addon"><i class="fa fa-search"></i></span>
                     </div>

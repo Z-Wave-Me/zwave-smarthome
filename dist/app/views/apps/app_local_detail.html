@@ -30,6 +30,9 @@
             <a href="#module/post/{{module.id}}" title="{{_t('lb_add_app')}}" class="btn btn-default btn-lg">
                 <i class="fa fa-plus fa-lg text-success"></i> <span class="btn-name_">{{_t('lb_add_app')}}</span>
             </a>
+                 <a href="#apps/online/{{module.id}}" class="btn btn-default btn-lg" ng-if="isOnline && isOnline.version != module.version">
+                        <i class="fa fa-download fa-lg text-info"></i> <span class="btn-name_">{{_t('lb_app_new_version')}} ({{isOnline.version}})</span>
+                    </a> 
                   </div> 
         </div>
       </div>

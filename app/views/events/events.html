@@ -2,20 +2,19 @@
 <div ng-controller="EventController">
     
     <div class="table-responsive_">
-        <table class="table table-report table-events">
+        <table class="table table-condensed table-report table-events">
             <tbody>
                 <tr dir-paginate="v in collection | orderBy: '-timestamp' | itemsPerPage: pageSize" current-page="currentPage" id="row_{{v.id}}">
-                    <td class="td-img">
-                        <img class="report-img" ng-src="storage/img/events/icon-error.png" alt="icon" ng-show="v.level == 'error'"/>
-                        <img class="report-img" ng-src="storage/img/events/icon-warning.png" alt="icon" ng-show="v.level == 'warning'"/>
-                        <img class="report-img" ng-src="storage/img/events/icon-notification.png" alt="icon" ng-show="v.level == 'notification'"/>
-                        <img class="report-img" ng-src="storage/img/events/icon-debug.png" alt="icon" ng-show="v.level == 'debug'"/>
+                    <td class="td-event-date td-event-{{v.level}}">
+                        <span class="text-supp___" title="{{v.timestamp| date:'dd.MM.yyyy H:mm'}}" ng-bind="v.timestamp | isToday"></span><br /> 
+                        <i class="fa fa-exclamation-triangle" ng-if="v.level == 'critical'"></i>
+                        <i class="fa fa-bell" ng-if="v.level == 'notification'"></i>
+                        <i class="fa fa-info-circle" ng-if="v.level == 'info'"></i>
+                        <i class="fa fa-cog" ng-if="v.level == 'error'"></i>
                     </td>
                     <td>
-                        <p>
-                            <span class="text-supp" title="{{v.timestamp| date:'dd.MM.yyyy H:mm'}}" ng-bind="v.timestamp | isToday"></span> <span class="badge" ng-bind="v.type"></span> 
-                        </p>
-                        <span class="report-message" ng-bind="v.message"></span>
+                        <span class="report-message" ng-bind="v.message"></span><br /> 
+                        <strong ng-bind="v.type"></strong> 
                     </td>
                     <td class="td-action">
                         <div class="btn-group">
@@ -25,8 +24,11 @@
                                 <span class="sr-only">Toggle Dropdown</span>
                             </button>
                             <ul class="dropdown-menu pull-right">
-                                <li><a href="" ng-click="markAsRead(v.id)" ng-bind="_t('lb_mark_read')"></a></li>
-                                <li><a ng-href="#events/source/{{v.source}}" ng-bind="_t('lb_events_source')"></a></li>  
+                                <!--<li><a href="" ng-click="markAsRead(v.id)" ng-bind="_t('lb_mark_read')"></a></li>-->
+                                <li><a ng-href="#events/source/{{v.source}}" ng-bind="_t('lb_events_source')"></a></li> 
+                                <li><a ng-href="#events/source/{{v.source}}" ng-bind="_t('lb_events_type')"></a></li> 
+                                <li><a ng-href="#events/source/{{v.source}}" ng-bind="_t('lb_events_source_type')"></a></li> 
+                                 <li><a ng-href="#events" ng-bind="_t('lb_show_all')"></a></li>  
                             </ul>
                         </div>
                     </td>
@@ -52,10 +54,18 @@
                             <li ng-repeat="v in eventLevels" ng-class="v.key == currLevel ? 'active':''">
                                 <a href="#events/level/{{v.key}}" ng-bind="_t('lb_notify_' + v.val)"></a> 
                             </li>
-                            <li class="divider"></li>
-                            <li ng-repeat="v in eventSources" ng-class="v.key == currSource ? 'active':''">
-                                <a href="#events/source/{{v.key}}" ng-if="v.val" ng-bind="devices[v.key] ? devices[v.key] : v.val"></a> 
-                            </li>
+                        </ul>
+                    </div>
+                    <div class="btn-group dropup">
+                        <button type="button" class="btn btn-default" ng-bind="_t('lb_hide')"></button>
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a ng-href="#events" ng-bind="_t('lb_hide_device_events')"></a></li> 
+                                <li><a ng-href="#events" ng-bind="_t('lb_hide_system_events')"></a></li> 
+                                <li><a ng-href="#events" ng-bind="_t('lb_delete_system_events')"></a></li> 
                         </ul>
                     </div>
                 </form>

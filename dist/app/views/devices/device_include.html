@@ -4,10 +4,9 @@
         <a href="#devices/zwave"><i class="fa fa-chevron-circle-left fa-lg"></i> <span ng-bind="_t('btn_back')"></span></a>
 
     <p>
-        
-    <h2 class="page-subtitle"><span ng-bind="_t('lb_include_device')"></span> <strong  ng-show="device.data" ng-bind="device.data.Name"></strong></h2> 
+     <h2 class="page-subtitle"><span ng-bind="_t('lb_include_device')"></span> <strong ng-show="device.data" ng-bind="device.data.brandname + ' '  + device.data.name"></strong></h2> 
     <div class="device-perex clearfix"> 
-        <img class="include-device-img" ng-src="storage/img/devices/{{device.data.ProductImage}}" alt="img" ng-show="device.data.ProductImage" /> 
+        <img class="include-device-img" ng-src="storage/img/devices/{{device.data.product_image}}" alt="img" ng-show="device.data.product_image" /> 
         {{_t('lb_inclusion_info')}} 
         <a href="" 
            ng-disabled="[1, 2, 3, 4, 20].indexOf(controllerState) > -1"
@@ -19,7 +18,7 @@
     </div>
     <div class="col-device-exclude">
         <div class="alert alert-warning" ng-show="controllerState == 5">
-            <i class="fa fa-spinner fa-spin"></i> <span ng-bind="_t('lb_ready_exclude')"></span> <strong ng-bind="device.data.Exclusion"></strong>
+            <i class="fa fa-spinner fa-spin"></i> <span ng-bind="_t('lb_ready_exclude')"></span> <strong ng-bind="device.data.exc"></strong>
             <button 
                 class="btn btn-danger"
                 ng-show="[5, 6, 7].indexOf(controllerState) > -1"
@@ -32,7 +31,7 @@
         </div>
 
 
-        <!--  <div class="device-statement" ng-show="device.data.Exclusion"><strong>Exclusion:</strong> <span ng-bind="device.data.Exclusion"></span></div>-->
+        <!--  <div class="device-statement" ng-show="device.data.exc"><strong>Exclusion:</strong> <span ng-bind="device.data.Exclusion"></span></div>-->
     </div>
     <div class="col-device app-border app-gradient app-shadow">
         <table class="table table-report table-inclusion">
@@ -40,7 +39,14 @@
                 <!-- 1 -->
                 <tr>
                     <td><span class="badge badge-number">1</span></td>
-                    <td><span class="device-step-body"> {{_t('lb_preparation')}} <strong  ng-show="device.data.Preparation" ng-bind="device.data.Preparation"></strong></span></td>
+                    <td>
+                        <span class="device-step-body">
+                            <strong>{{_t('lb_preparation')}}: </strong>
+                            <span ng-bind="_t('lb_include_preparation')"></span>
+                            <span  ng-show="device.data.prep" ng-bind="device.data.prep"></span>
+                                     
+                        </span>
+                    </td>
                     <td><i class="fa fa-check fa-2x text-success"></i></td>
                 </tr>
 
@@ -72,9 +78,9 @@
                 <tr>
                     <td><span class="badge badge-number">3</span></td>
                     <td>
-                        Inclusion proccess
+                        <strong ng-hide="controllerState == 1 || includedDeviceId">Inclusion proccess</strong>
                         <div ng-show="!inclusionError">
-                            <div class="alert alert-warning" ng-show="controllerState == 1"><i class="fa fa-spinner fa-spin"></i> <span ng-bind="_t('lb_ready_include')"></span> <strong ng-bind="device.data.Inclusion"></strong></div>
+                            <div class="alert alert-warning" ng-show="controllerState == 1"><i class="fa fa-spinner fa-spin"></i> <strong ng-bind="_t('lb_ready_include')"></strong> <span ng-bind="device.data.inc"></span></div>
                             <div class="alert alert-warning" ng-show="includedDeviceId"><i class="fa fa-spinner fa-spin"></i> <span ng-bind="_t('lb_new_device_found')"></span></div>
                         </div>
                     </td>
@@ -88,13 +94,13 @@
                 <tr>
                     <td><span class="badge badge-number">4</span></td>
                     <td>
-                        Configuration
+                        <strong ng-hide="lastIncludedDevice">Configuration</strong>
                         <div ng-show="!inclusionError">
-                            <div class="alert alert-success" ng-show="lastIncludedDevice"><i class="fa fa-check"></i> <span ng-bind="_t('lb_new_device_configured')"></span>:  <strong ng-bind="lastIncludedDevice"></strong></div>
+                            <div class="alert alert-success" ng-show="lastIncludedDevice"><i class="fa fa-check"></i> <strong ng-bind="_t('lb_new_device_configured')"></strong>:  <span ng-bind="lastIncludedDevice"></span></div>
                         </div>
                         <div ng-if="inclusionError">
                             <div class="alert alert-danger" ng-show="!hasBattery"><i class="fa fa-minus-circle"></i> <span ng-bind="_t('lb_include_device_mains_error')"></span></div>
-                            <div class="alert alert-danger" ng-show="hasBattery"><i class="fa fa-minus-circle"></i> <span ng-bind="_t('lb_include_device_battery_error')"></span> <span ng-bind="device.data.Wakeup"></span></div>
+                            <div class="alert alert-danger" ng-show="hasBattery"><i class="fa fa-minus-circle"></i> <span ng-bind="_t('lb_include_device_battery_error')"></span> <span ng-bind="device.data.wake"></span></div>
 
                         </div>
                     </td>

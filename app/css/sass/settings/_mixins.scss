@@ -195,17 +195,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', end
 
     /* tables
     -------------------------------------------------- */
-    .table{
-        tbody{
-            tr{
-                td{
-                    //border-top: 1px solid lighten($app-border-color, 20%); 
-                    border-top: 1px solid lighten($app-border-color, 3%);  
-                }
-            }
-        }
-
-    }
     .table-report{
         tbody tr.bcg-active.true{
             @include appGradient();

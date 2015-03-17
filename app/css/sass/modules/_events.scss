@@ -1,8 +1,25 @@
 /* Events
 -------------------------------------------------- */
 .table-events{ 
-    .td-img{
-        width: 50px !important;
+    .td-event-date{
+       //width: 50px !important;
+      width: 70px;
+        text-align: center;
+        .fa{
+            opacity: 0.5;
+        }
+    }
+    .td-event-error{
+        background: #FCF8E3;
+    }
+    .td-event-notification{
+        background: #DFF0D8;
+    }
+    .td-event-critical{
+        background: #F2DEDE;
+    }
+    .td-event-info{
+        background: #D9EDF7;
     }
     .td-action{
        width: 110px;
