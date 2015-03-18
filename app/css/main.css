@@ -1481,7 +1481,22 @@ padding-right: 5px;
 
 /* Network
 -------------------------------------------------- */
-/* line 8, sass/modules/_network.scss */
+/* line 4, sass/modules/_network.scss */
+.network-zwave-device {
+  display: block;
+  margin-bottom: 5px;
+}
+/* line 7, sass/modules/_network.scss */
+.network-zwave-device img {
+  width: 20px;
+}
+
+/* line 12, sass/modules/_network.scss */
+.network-zwave-title {
+  cursor: pointer;
+}
+
+/* line 16, sass/modules/_network.scss */
 .network-block {
   margin-bottom: 20px;
 }

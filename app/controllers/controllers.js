@@ -1759,6 +1759,8 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
         'batteries': [],
         'zwave': []
     };
+    
+    $scope.zWaveDevices = {};
 
     $scope.testSort = [];
 
@@ -1789,10 +1791,24 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
      * Get zwaveApiData
      */
     function zwaveApiData(devices) {
+       
         dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
             if (!ZWaveAPIData.devices) {
                 return;
             }
+           
+             angular.forEach(ZWaveAPIData.devices, function(v, k) {
+                 if(k == 1){
+                     return;
+                 }
+                 dataService.logInfo(k,'Node ID')
+                 $scope.zWaveDevices[k] = {
+                     id: k,
+                     title: v.data.givenName.value || 'Device ' + '_' + k,
+                     elements: []
+                 };
+              });
+              dataService.logInfo($scope.zWaveDevices,'Node ID')
             var findZwaveStr = "ZWayVDev_zway_";
             angular.forEach(devices, function(v, k) {
                 var cmd;
@@ -1817,6 +1833,7 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
                         obj['metrics'] = v.metrics;
                         obj['messages'] = [];
                         $scope.devices.zwave.push(obj);
+                        $scope.zWaveDevices[nodeId]['elements'].push(obj);
                         // Batteries
                         if (v.deviceType === 'battery') {
                             $scope.devices.batteries.push(obj);

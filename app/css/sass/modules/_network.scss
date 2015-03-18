@@ -1,10 +1,18 @@
 /* Network
 -------------------------------------------------- */
-.table-report{
-    .network-img{
-        
+
+    .network-zwave-device{
+        display: block;
+        margin-bottom: 5px;
+        img{
+            width: 20px;
+        }
     }
-}
+    
+    .network-zwave-title{
+        cursor: pointer;
+    }
+
 .network-block{
     margin-bottom: 20px;
 }

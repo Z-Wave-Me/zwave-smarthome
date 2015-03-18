@@ -53,15 +53,20 @@
         <div class="tab-pane" id="module_zwave" ng-class="activeTab == 'zwave' ? 'active' : ''">
         <table class="table table-report">
             <tbody>
-                <tr ng-repeat="v in devices.zwave | orderBy:'title':false" id="row_zwave_{{v.id}}">
+                <tr ng-repeat="v in zWaveDevices | orderBy:'title':false" id="row_zwave_{{v.id}}" ng-if="v.elements">
                     <td>
-                        <!-- <span class="text-supp">#{{v.id}}</span>-->
-                        <img class="report-img" ng-src="{{v.metrics.icon|getElementIcon:v}}" alt="{{ v.title}}" />
-                        <span class="report-message" ng-bind="v.title"></span>
+                        <!-- <span class="text-supp">#{{v.id}}</span>
+                        <img class="report-img" ng-src="{{v.metrics.icon|getElementIcon:v}}" alt="{{ v.title}}" />-->
+                        <p class="network-zwave-title" ng-click="goElements = !goElements">
+                            <i class="fa" ng-class="goElements ? 'fa-chevron-up':'fa-chevron-down'"></i> <span ng-bind="v.title"></span>
+                        </p>
+                        <div ng-show="goElements">
+                        <span  class="network-zwave-device" ng-repeat="e in v.elements | orderBy:'title':false"><img class="report-img" ng-src="{{e.metrics.icon|getElementIcon:e}}" alt="{{ e.title}}" /> {{e.title}}</span> 
+                        </div>
 
                     </td>
                     <td>
-                       <a class="btn btn-primary" href="/expert/#/configuration/interview/{{v.nodeId}}"><i class="fa fa-cog fa-lg"></i> {{_t('lb_device_configuration')}}</a>
+                       <a class="btn btn-default" href="/expert/#/configuration/interview/{{v.nodeId}}"><i class="fa fa-cog fa-lg"></i> {{_t('lb_device_configuration')}}</a>
                     </td>
                 </tr>
             </tbody>
