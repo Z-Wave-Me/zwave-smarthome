@@ -22,6 +22,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $window, $filter,
         getApi: getApi,
         deleteApi:deleteApi,
         getRemoteData: getRemoteData,
+        refreshApi: refreshApi,
         getApiData: getApiData, // Deprecated: Remove after getApi implementation
         postApiData: postApiData,
         putApiData: putApiData,
@@ -77,8 +78,8 @@ myAppFactory.factory('dataFactory', function($http, $interval, $window, $filter,
                     //cache: noCache || true
         }).then(function(response) {
             if (typeof response.data === 'object') {
-                myCache.put(cacheName, response.data);
-                return response.data;
+                myCache.put(cacheName, response);
+                return response;
             } else {// invalid response
                 return $q.reject(response);
             }
@@ -92,15 +93,10 @@ myAppFactory.factory('dataFactory', function($http, $interval, $window, $filter,
         return $http({
             method: 'delete',
             url: cfg.server_url + cfg.api[api] + "/" + id
-                    //cache: noCache || true
         }).then(function(response) {
-            return response.data;
-//            if (typeof response.data === 'object') {
-//                return response.data;
-//            } else {// invalid response
-//                return $q.reject(response);
-//            }
+            return response;
         }, function(response) {// something went wrong
+            
           return $q.reject(response);
         });
         
@@ -139,6 +135,28 @@ myAppFactory.factory('dataFactory', function($http, $interval, $window, $filter,
             return $q.reject(response);
         });
     }
+    
+    // Refresh api data
+    function refreshApi(api) {
+        //var refresh = function() {
+        return $http({
+            method: 'get',
+            url: cfg.server_url + cfg.api[api] + '?since=' + updatedTime
+                    //cache: noCache || true
+        }).then(function(response) {
+            if (typeof response.data === 'object') {
+                updatedTime = ($filter('hasNode')(response.data, 'data.updateTime') || Math.round(+new Date() / 1000));
+                return response;
+            } else {// invalid response
+                return $q.reject(response);
+            }
+        }, function(response) {// something went wrong
+            return $q.reject(response);
+        });
+      //};
+     //apiDataInterval = $interval(refresh, cfg.interval);
+    }
+    
     // Get
     function getApiData(api, callback, params, noCache) {
         var cacheName = api + (params || '');
@@ -474,6 +492,5 @@ myAppFactory.factory('dataFactory', function($http, $interval, $window, $filter,
         updatedTime = time;
         $('#update_time_tick').html($filter('getCurrentTime')(time));
     }
-
 });
 

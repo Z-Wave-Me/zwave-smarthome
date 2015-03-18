@@ -25,7 +25,22 @@ myAppService.service('dataService', function($filter, $log,myCache) {
      */
     this.showConnectionError = function(error) {
         $('.navi-time').html('<i class="fa fa-minus-circle fa-lg text-danger"></i>');
-        $log.error('---------- CONNECTION ERROR: Could not retrieve data from server. ----------', error);
+        return this.logError(error,'Unable to recieve HTTP data');
+    };
+    
+     /**
+     * Log error
+     */
+    this.logError = function(error,message) {
+        message = message || 'ERROR:';
+        $log.error('---------- ' + message + ' ----------', error);
+    };
+     /**
+     * Log info
+     */
+    this.logInfo = function(info,message) {
+        message = message || 'INFO:';
+        $log.info('---------- ' + message + ' ----------', info);
     };
     
     /**

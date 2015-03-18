@@ -660,75 +660,55 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
 /**
  * Event controller
  */
-myAppController.controller('EventController', function($scope, $routeParams, $location, dataFactory, dataService, paginationService, cfg) {
+myAppController.controller('EventController', function($scope, $routeParams, $interval, $window,dataFactory, dataService,  myCache,paginationService, cfg) {
     $scope.collection = [];
     $scope.eventLevels = [];
     $scope.eventSources = [];
-    $scope.devices = [];
     $scope.currLevel = null;
     $scope.currentPage = 1;
-    $scope.pageSize = cfg.page_results;
+    $scope.pageSize = cfg.page_results_events;
     $scope.reset = function() {
         $scope.collection = angular.copy([]);
     };
+    $scope.apiDataInterval = null;
 
     // Cancel interval on page destroy
     $scope.$on('$destroy', function() {
-        dataFactory.cancelApiDataInterval();
+        $interval.cancel($scope.apiDataInterval);
     });
 
     /**
      * Load data into collection
      */
     $scope.loadData = function() {
-        dataFactory.getApiData('notifications', function(data) {
-            $scope.eventLevels = dataService.getEventLevel(data.data.notifications, [{'key': null, 'val': 'all'}]);
-            $scope.eventSources = dataService.getPairs(data.data.notifications, 'source', 'source');
-            var filter = null;
-            if (angular.isDefined($routeParams.param) && angular.isDefined($routeParams.val)) {
-                $scope.currSource = $routeParams.val;
-                $scope.currLevel = $routeParams.val;
-                filter = $routeParams;
-                angular.forEach(data.data.notifications, function(v, k) {
-                    if (filter && angular.isDefined(v[filter.param])) {
-                        if (v[filter.param] == filter.val) {
-                            $scope.collection.push(v);
-                        }
-                    }
-                });
-            } else {
-                $scope.collection = data.data.notifications;
-            }
-
-            //console.log($scope.eventLevel);
+        dataFactory.getApi('notifications').then(function(response) {
+            setData(response.data);
+             dataService.updateTimeTick(response.data.data.updateTime);
+        }, function(error) {
+            dataService.showConnectionError(error);
         });
     };
     $scope.loadData();
 
     /**
-     * Load devices
+     * Refresh data
      */
-    $scope.loadDevices = function() {
-        dataFactory.getApiData('devices', function(data) {
-            angular.forEach(data.data.devices, function(v, k) {
-                $scope.devices[v.id] = v.metrics.title;
+    $scope.refreshData = function() {
+        var refresh = function() {
+            dataFactory.refreshApi('notifications').then(function(response) {
+                //dataService.logInfo(response,'Refresh notifications');
+                angular.forEach(response.data.data.notifications, function(v, k) {
+                    $scope.collection.push(v);
+                });
+                dataService.updateTimeTick(response.data.data.updateTime);
+            }, function(error) {
+                dataService.showConnectionError(error);
             });
-        });
+        };
+        $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
     };
-    $scope.loadDevices();
 
-    /**
-     * Update data into collection
-     */
-    $scope.updateData = function() {
-        dataFactory.updateApiData('notifications', function(data) {
-            angular.forEach(data.data.notifications, function(v, k) {
-                $scope.collection.push(v);
-            });
-            //console.log(data.data.notifications);
-        });
-    };
-    $scope.updateData();
+    $scope.refreshData();
 
     /**
      * Watch for pagination change
@@ -740,6 +720,24 @@ myAppController.controller('EventController', function($scope, $routeParams, $lo
     $scope.setCurrentPage = function(val) {
         $scope.currentPage = val;
     };
+    
+     /**
+     * Delete system events
+     */
+    $scope.deleteSystemEvents = function(dialog) {
+         var confirm = true;
+        if (dialog) {
+            confirm = $window.confirm(dialog);
+        }
+        if (confirm) {
+            dataFactory.deleteApi('notifications', 'system').then(function(response) {
+                myCache.remove('notifications');
+            }, function(error) {
+                alert($scope._t('error_delete_data'));
+                dataService.logError(error);
+            });
+        }
+    };
 
     /**
      * Update data into collection
@@ -747,6 +745,39 @@ myAppController.controller('EventController', function($scope, $routeParams, $lo
     $scope.markAsRead = function(id) {
         $('#row_' + id).fadeOut();
     };
+
+    /// --- Private functions --- ///
+    /**
+     * Set events data
+     */
+    function setData(data) {
+        $scope.eventLevels = dataService.getEventLevel(data.data.notifications, [{'key': null, 'val': 'all'}]);
+        $scope.eventSources = dataService.getPairs(data.data.notifications, 'source', 'source');
+        var filter = null;
+        if (angular.isDefined($routeParams.param) && angular.isDefined($routeParams.val)) {
+            $scope.currSource = $routeParams.val;
+            $scope.currLevel = $routeParams.val;
+            filter = $routeParams;
+            console.log(filter)
+            angular.forEach(data.data.notifications, function(v, k) {
+                if (filter && angular.isDefined(v[filter.param])) {
+                    if (v[filter.param] == filter.val) {
+                        $scope.collection.push(v);
+                    }
+                }
+            });
+        } else if(angular.isDefined($routeParams.param) && $routeParams.param == 'source_type'){
+            filter = $routeParams;
+            angular.forEach(data.data.notifications, function(v, k) {
+                if(v.source == filter.source && v.type == filter.type){
+                    $scope.collection.push(v);
+                }
+            });
+        }else {
+            $scope.collection = data.data.notifications;
+        }
+    }
+    ;
 });
 /**
  * Profile controller
@@ -890,10 +921,10 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
         dataFactory.localData('online.json', function(response) {
             $scope.onlineModules = response;
             angular.forEach(response, function(v, k) {
-                if(v.modulename && v.modulename != ''){
+                if (v.modulename && v.modulename != '') {
                     $scope.onlineVersion[v.modulename] = v.version;
                 }
-              });
+            });
         });
 //        dataFactory.getRemoteData($scope.cfg.online_module_url).then(function(response) {
 //            $scope.onlineModules = response.data;//dataService.getData(response.data, filter);
@@ -1049,7 +1080,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
 /**
  * App local detail controller
  */
-myAppController.controller('AppLocalDetailController', function($scope, $routeParams,$log, dataFactory, dataService) {
+myAppController.controller('AppLocalDetailController', function($scope, $routeParams, $log, dataFactory, dataService) {
     $scope.module = [];
     $scope.isOnline = null;
     /**
@@ -1067,8 +1098,8 @@ myAppController.controller('AppLocalDetailController', function($scope, $routePa
     $scope.loadOnlineModules = function(moduleName) {
         dataFactory.localData('online.json', function(response) {
             var hasOnline = dataService.getRowBy(response, 'modulename', moduleName);
-            
-              console.log(hasOnline)
+
+            console.log(hasOnline)
         });
 //        dataFactory.getRemoteData($scope.cfg.online_module_url).then(function(response) {
 //            $scope.onlineModules = response.data;//dataService.getData(response.data, filter);
@@ -1079,9 +1110,9 @@ myAppController.controller('AppLocalDetailController', function($scope, $routePa
     };
 
     $scope.loadModule($routeParams.id);
-    
+
     /// --- Private functions --- ///
-    function loadOnlineModules(moduleName){
+    function loadOnlineModules(moduleName) {
 //        dataFactory.getRemoteData($scope.cfg.online_module_url).then(function(response) {
 //             $scope.isOnline = dataService.getRowBy(response, 'modulename', moduleName);
 //        }, function(error) {
@@ -1108,9 +1139,9 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
      * Load module detail
      */
     $scope.loadModule = function(id) {
-        var param = parseInt(id,10);
+        var param = parseInt(id, 10);
         var filter = 'id';
-        if(isNaN(param)){
+        if (isNaN(param)) {
             filter = 'modulename';
         }
         dataFactory.localData('online.json', function(response) {
@@ -1746,7 +1777,7 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
 
     $scope.loadData = function() {
         dataFactory.getApi('devices').then(function(response) {
-            zwaveApiData(response.data.devices);
+            zwaveApiData(response.data.data.devices);
         }, function(error) {
             dataService.showConnectionError(error);
         });
@@ -1819,7 +1850,7 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
                 }
 
             }
-            dataService.updateTimeTick(12345);
+            //dataService.updateTimeTick(12345);
             //$scope.devices.zwave = $filter('naturalSort')($scope.devices.zwave);
 //                $scope.devices.zwave.sort(function(a, b) {
 //                    var nameA = a.name.toLowerCase(), nameB = b.name.toLowerCase()
