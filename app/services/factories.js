@@ -14,10 +14,11 @@ myAppFactory.factory('myCache', function($cacheFactory) {
 /**
  * Main data factory
  */
-myAppFactory.factory('dataFactory', function($http, $interval, $window, $filter, $timeout, $q, myCache, cfg) {
+myAppFactory.factory('dataFactory', function($http, $interval, $cookies,$window, $filter, $timeout, $q, myCache, cfg) {
     var apiDataInterval;
     var enableCache = true;
     var updatedTime = Math.round(+new Date() / 1000);
+    var lang = (angular.isDefined($cookies.lang) ? $cookies.lang : cfg.lang);
     return({
         getApi: getApi,
         deleteApi: deleteApi,
@@ -76,7 +77,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $window, $filter,
             method: 'get',
             url: cfg.server_url + cfg.api[api] + (params ? params : ''),
             headers: {
-                'Accept-Language': 'de'
+                'Accept-Language': lang
             }
             //cache: noCache || true
         }).then(function(response) {
