@@ -7,7 +7,7 @@ var config_data = {
         // Application type: web/app
         'app_type': 'web',
         // Server base url
-        'server_url': '/',
+        'server_url': '/', 
         //'server_url': 'http://192.168.10.119:8083/',
         // Interval in miliseconds to refresh data
         'interval': 3000,
@@ -37,6 +37,10 @@ var config_data = {
         'local_data_url': 'storage/data/',
         // Online module url
         'online_module_url': 'http://hrix.net/modules_store/json_store.php',
+         // Url to zddx xml files
+        'zddx_url': 'ZDDX/',
+        // Url to run ExpertUI cmd
+        'zwaveapi_run_url': 'ZWaveAPI/Run/',
         // Language directory
         'lang_dir': 'app/lang/',
         // Default language

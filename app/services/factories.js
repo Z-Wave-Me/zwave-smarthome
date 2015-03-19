@@ -24,6 +24,8 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies,$window,
         deleteApi: deleteApi,
         getRemoteData: getRemoteData,
         refreshApi: refreshApi,
+        runExpertCmd: runExpertCmd,
+        xmlToJson:  xmlToJson,
         getApiData: getApiData, // Deprecated: Remove after getApi implementation
         postApiData: postApiData,
         putApiData: putApiData,
@@ -104,6 +106,53 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies,$window,
             return $q.reject(response);
         });
 
+    }
+    
+    // Run expert cmd
+    function runExpertCmd(param) {
+        return $http({
+            method: 'post',
+            url: cfg.server_url + cfg.zwaveapi_run_url + param
+        }).then(function(response) {
+            return response;
+        }, function(response) {// something went wrong
+
+            return $q.reject(response);
+        });
+
+    }
+    
+    /**
+     * Get config XML file
+     */
+    function xmlToJson(url, noCache) {
+         // Cached data
+        var cacheName = 'cache_' + url;
+        var cached = myCache.get(cacheName);
+
+        if (!noCache && cached) {
+            console.log('CACHED: ' + cacheName);
+            var deferred = $q.defer();
+            deferred.resolve(cached); // <-- Can I do this?
+            return deferred.promise;
+        }
+        // NOT Cached data
+        console.log('NOT CACHED: ' + cacheName);
+         return $http({
+            method: 'get',
+            url: url
+        }).then(function(response) {
+            var x2js = new X2JS();
+            var json = x2js.xml_str2json(response.data);
+            if (json) {
+                myCache.put(cacheName, json);
+                return json;
+            } else {// invalid response
+                return $q.reject(response);
+            }
+        }, function(response) {// something went wrong
+            return $q.reject(response);
+        });
     }
 
     /**

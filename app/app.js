@@ -12,7 +12,7 @@ var myApp = angular.module('myApp', [
     'myAppFactory',
     'myAppService',
     'colorpicker.module',
-     'angularFileUpload'
+    'angularFileUpload'
 
 ]);
 
@@ -71,6 +71,10 @@ myApp.config(['$routeProvider',
                 //Network
                 when('/network', {
                     templateUrl: 'app/views/network/network.html'
+                }).
+                //Device configuration
+                when('/deviceconfig/:nodeId', {
+                    templateUrl: 'app/views/expertui/configuration.html'
                 }).
                 //About
                 when('/about', {

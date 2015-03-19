@@ -400,3 +400,42 @@ myApp.filter('uri', function($location) {
         }
     };
 });
+
+/**
+ * Display device name
+ */
+myApp.filter('deviceName', function() {
+    return function(deviceId,device) {
+        var name = (deviceId == 1 ? 'RaZberry' : 'Device ' + '_' + deviceId);
+        if (device === undefined) {
+            return name;
+        }
+        if(device.data.givenName.value != ''){
+             name = device.data.givenName.value;
+        }
+        return name;
+    };
+});
+
+/**
+ * Convert text to slug
+ */
+myApp.filter('stringToSlug', function() {
+    return function(str) {
+       str = str.replace(/^\s+|\s+$/g, ''); // trim
+        str = str.toLowerCase();
+
+        // remove accents, swap ñ for n, etc
+        var from = "àáäâèéëêìíïîòóöôùúüûñç·/_,:;";
+        var to = "aaaaeeeeiiiioooouuuunc------";
+        for (var i = 0, l = from.length; i < l; i++) {
+            str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+        }
+
+        str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+                .replace(/\s+/g, '-') // collapse whitespace and replace by -
+                .replace(/-+/g, '-'); // collapse dashes
+
+        return str;
+    };
+});

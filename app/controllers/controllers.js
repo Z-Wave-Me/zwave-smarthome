@@ -660,7 +660,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
 /**
  * Event controller
  */
-myAppController.controller('EventController', function($scope, $routeParams, $interval, $window,dataFactory, dataService,  myCache,paginationService, cfg) {
+myAppController.controller('EventController', function($scope, $routeParams, $interval, $window, dataFactory, dataService, myCache, paginationService, cfg) {
     $scope.collection = [];
     $scope.eventLevels = [];
     $scope.eventSources = [];
@@ -683,7 +683,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
     $scope.loadData = function() {
         dataFactory.getApi('notifications').then(function(response) {
             setData(response.data);
-             dataService.updateTimeTick(response.data.data.updateTime);
+            dataService.updateTimeTick(response.data.data.updateTime);
         }, function(error) {
             dataService.showConnectionError(error);
         });
@@ -720,12 +720,12 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
     $scope.setCurrentPage = function(val) {
         $scope.currentPage = val;
     };
-    
-     /**
+
+    /**
      * Delete system events
      */
     $scope.deleteSystemEvents = function(dialog) {
-         var confirm = true;
+        var confirm = true;
         if (dialog) {
             confirm = $window.confirm(dialog);
         }
@@ -766,14 +766,14 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
                     }
                 }
             });
-        } else if(angular.isDefined($routeParams.param) && $routeParams.param == 'source_type'){
+        } else if (angular.isDefined($routeParams.param) && $routeParams.param == 'source_type') {
             filter = $routeParams;
             angular.forEach(data.data.notifications, function(v, k) {
-                if(v.source == filter.source && v.type == filter.type){
+                if (v.source == filter.source && v.type == filter.type) {
                     $scope.collection.push(v);
                 }
             });
-        }else {
+        } else {
             $scope.collection = data.data.notifications;
         }
     }
@@ -1759,7 +1759,7 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
         'batteries': [],
         'zwave': []
     };
-    
+
     $scope.zWaveDevices = {};
 
     $scope.testSort = [];
@@ -1791,24 +1791,24 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
      * Get zwaveApiData
      */
     function zwaveApiData(devices) {
-       
+
         dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
             if (!ZWaveAPIData.devices) {
                 return;
             }
-           
-             angular.forEach(ZWaveAPIData.devices, function(v, k) {
-                 if(k == 1){
-                     return;
-                 }
-                 dataService.logInfo(k,'Node ID')
-                 $scope.zWaveDevices[k] = {
-                     id: k,
-                     title: v.data.givenName.value || 'Device ' + '_' + k,
-                     elements: []
-                 };
-              });
-              dataService.logInfo($scope.zWaveDevices,'Node ID')
+
+            angular.forEach(ZWaveAPIData.devices, function(v, k) {
+                if (k == 1) {
+                    return;
+                }
+                dataService.logInfo(k, 'Node ID')
+                $scope.zWaveDevices[k] = {
+                    id: k,
+                    title: v.data.givenName.value || 'Device ' + '_' + k,
+                    elements: []
+                };
+            });
+            dataService.logInfo($scope.zWaveDevices, 'Node ID')
             var findZwaveStr = "ZWayVDev_zway_";
             angular.forEach(devices, function(v, k) {
                 var cmd;

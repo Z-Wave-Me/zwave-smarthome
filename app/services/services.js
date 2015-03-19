@@ -148,6 +148,13 @@ myAppService.service('dataService', function($filter, $log,myCache) {
     this.getRowBy = function(data, key, val, cache) {
         return getRowBy(data, key, val, cache);
     };
+    
+    /**
+     * Get config navigation devices
+     */
+    this.configGetNav = function(ZWaveAPIData) {
+        return configGetNav(ZWaveAPIData);
+    };
 
     /// --- Private functions --- ///
 
