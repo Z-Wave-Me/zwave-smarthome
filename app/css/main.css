@@ -588,6 +588,57 @@ vertical-align: middle;
   border-color: #d3d3d3;
 }
 
+/* Absolute Center CSS Spinner
+http://codepen.io/MattIn4D/pen/LiKFC
+-------------------------------------------------- */
+/* line 280, sass/globals/_body.scss */
+#loading {
+  position: fixed;
+  z-index: 999;
+  width: 260px;
+  height: 50px;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  text-align: center;
+}
+/* line 292, sass/globals/_body.scss */
+#loading .loading-in {
+  margin: auto;
+  padding: 10px;
+  background-color: #fff;
+  border: solid 2px #d3d3d3;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+/* Transparent Overlay */
+/* line 304, sass/globals/_body.scss */
+.loading-spin:before {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* line 315, sass/globals/_body.scss */
+.loading-fade {
+  opacity: 0;
+  -webkit-transition: opacity 4s;
+  -moz-transition: opacity 4s;
+  -ms-transition: opacity 4s;
+  -o-transition: opacity 4s;
+  transition: opacity 4s;
+}
+
 /* Navigation
 -------------------------------------------------- */
 /* Navbar */

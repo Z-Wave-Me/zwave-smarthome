@@ -2,21 +2,25 @@
  * Device configuration controller from ExpertUI
  * @author Martin Vach
  */
-myAppController.controller('ConfigConfigurationController', function($scope, $routeParams, $location, $cookies, $filter, $timeout, dataFactory, dataService, expertService) {
+myAppController.controller('ConfigConfigurationController', function($scope, $routeParams, $location, $interval, $filter, $timeout, dataFactory, dataService, expertService) {
+    
     $scope.devices = [];
     $scope.deviceId = 0;
-//    $scope.activeTab = 'configuration';
-//    $scope.activeUrl = 'configuration/configuration/';
-//    $cookies.tab_config = $scope.activeTab;
     $scope.reset = function() {
         $scope.devices = angular.copy([]);
     };
+    $scope.apiDataInterval = null;
     // Config vars
     $scope.deviceZddx = [];
     $scope.configCont;
     $scope.switchAllCont;
     $scope.protectionCont;
     $scope.wakeupCont;
+    
+    // Cancel interval on page destroy
+    $scope.$on('$destroy', function() {
+        $interval.cancel($scope.apiDataInterval);
+    });
 
     // Load data
     $scope.load = function(nodeId) {
@@ -51,26 +55,23 @@ myAppController.controller('ConfigConfigurationController', function($scope, $ro
         });
     };
     $scope.load($routeParams.nodeId);
-
-    // Refresh data
+    
+    /**
+     * Refresh data
+     */
     $scope.refresh = function(nodeId) {
-        dataService.joinedZwaveData(function(data) {
-            setData(data.joined, nodeId, true);
-        });
-    };
-    //$scope.refresh($routeParams.nodeId); 
-
-    // Redirect to detail page
-    $scope.changeDevice = function(deviceId) {
-        if (deviceId > 0) {
-            $location.path($scope.activeUrl + deviceId);
-        }
+        var refresh = function() {
+            dataFactory.joinedZwaveData().then(function(response) {
+                dataService.updateTimeTick(response.data.update.updateTime);
+                 setData(response.data.joined, nodeId,true);
+            }, function(error) {
+                dataService.showConnectionError(error);
+            });
+        };
+        $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
     };
 
-    // Cancel interval on page destroy
-    $scope.$on('$destroy', function() {
-        //dataService.cancelZwaveDataInterval();
-    });
+    //$scope.refresh($routeParams.nodeId);
 
     /**
      * Update from device action
@@ -79,19 +80,19 @@ myAppController.controller('ConfigConfigurationController', function($scope, $ro
      * @returns {undefined}
      */
     $scope.updateFromDevice = function(cmd) {
+         $scope.loading = {status:'loading-spin',icon:'fa-spinner fa-spin', message:$scope._t('updating')};
         dataFactory.runExpertCmd(cmd, true).then(function(response) {
+            
             //dataService.logInfo(response, 'Update from device');
         }, function(error) {
             dataService.logError(error, 'Update from device');
             alert($scope._t('error_update_data'));
         });
-        return;
-        dataService.runCmd(cmd, false, $scope._t('error_handling_data'));
-        $scope.refresh = true;
-        var timeOut;
-        timeOut = $timeout(function() {
-            $scope.refresh = false;
-        }, 10000);
+        $scope.refresh($routeParams.nodeId);
+        $timeout(function() {
+             $scope.loading = {status:'loading-fade',icon:'fa-check text-success', message:$scope._t('success_updated')};
+            $interval.cancel($scope.apiDataInterval);
+        }, 7000);
         return;
     };
 
@@ -99,28 +100,23 @@ myAppController.controller('ConfigConfigurationController', function($scope, $ro
      * Update from device - configuration section
      */
     $scope.updateFromDeviceCfg = function(cmd, cfg, deviceId) {
-        var httpErrors = 0;
+         $scope.loading = {status:'loading-spin',icon:'fa-spinner fa-spin', message:$scope._t('updating')};
         angular.forEach(cfg, function(v, k) {
             if (v.confNum) {
                 var request = cmd + '(' + v.confNum + ')';
-                dataFactory.runExpertCmd(request + 'dfdf', true).then(function(response) {
+                dataFactory.runExpertCmd(request, true).then(function(response) {
                 }, function(error) {
-                    dataService.logError(httpErrors, 'Update from device');
+                    dataService.logError(error);
                     return;
                 });
             }
 
         });
-//         if(httpErrors  > 0){
-//             alert($scope._t('error_update_data'));
-//                return;
-//            }
-        return;
         $scope.refresh(deviceId);
-        var timeOut;
-        timeOut = $timeout(function() {
-            dataService.cancelZwaveDataInterval();
-        }, 10000);
+        $timeout(function() {
+            $scope.loading = {status:'loading-fade',icon:'fa-check text-success', message:$scope._t('success_updated')};
+            $interval.cancel($scope.apiDataInterval);
+        }, 7000);
         return;
     };
 
@@ -128,6 +124,7 @@ myAppController.controller('ConfigConfigurationController', function($scope, $ro
      * Apply Config action
      */
     $scope.submitApplyConfigCfg = function(form, cmd, cfgValues, hasBattery, confNum) {
+         $scope.loading = {status:'loading-spin',icon:'fa-spinner fa-spin', message:$scope._t('updating')};
         var xmlData = [];
         var configValues = [];
         if (hasBattery) {
@@ -182,9 +179,7 @@ myAppController.controller('ConfigConfigurationController', function($scope, $ro
 
 
         });
-        //console.log(xmlData)
-        //return;
-
+        
         // Send command
         var request = 'devices[' + cmd.id + '].instances[' + cmd.instance + '].commandClasses[0x' + cmd.commandclass + '].';
         switch (cmd['commandclass']) {
@@ -195,43 +190,55 @@ myAppController.controller('ConfigConfigurationController', function($scope, $ro
                     configRequest += cmd.command + '(' + v.parameterValues + ')';
                     if (confNum) {
                         if (confNum == v.confNum) {
-                            dataService.runCmd(configRequest, false, $scope._t('error_handling_data'));
+                            dataFactory.runExpertCmd(configRequest, true).then(function(response){}, function(error) {
+                                dataService.logError(error);
+                            });
                         }
                     } else {
-                        dataService.runCmd(configRequest, false, $scope._t('error_handling_data'));
+                        dataFactory.runExpertCmd(configRequest, true).then(function(response){},function(error) {
+                            dataService.logError(error);
+                        });
                     }
 
                 });
                 break;
             case '75':// Protection
                 request += cmd.command + '(' + configValues.join(",") + ')';
-                dataService.runCmd(request, false, $scope._t('error_handling_data'));
+                dataFactory.runExpertCmd(request, true).then(function(response){},function(error) {
+                    dataService.logError(error);
+                });
                 break;
             case '84':// Wakeup
                 request += cmd.command + '(' + configValues.join(",") + ')';
-                dataService.runCmd(request, false, $scope._t('error_handling_data'));
+                dataFactory.runExpertCmd(request, true).then(function(response){},function(error) {
+                    dataService.logError(error);
+                });
                 break;
             case '27':// Switch all
                 request += cmd.command + '(' + configValues.join(",") + ')';
-                dataService.runCmd(request, false, $scope._t('error_handling_data'));
+                dataFactory.runExpertCmd(request, true).then(function(response){},function(error) {
+                    dataService.logError(error);
+                });
                 break;
             default:
                 break;
         }
-
-        dataService.getCfgXml(function(cfgXml) {
-            var xmlFile = deviceService.buildCfgXml(xmlData, cfgXml, cmd['id'], cmd['commandclass']);
-            dataService.putCfgXml(xmlFile);
+        dataFactory.xmlToJson($scope.cfg.server_url + $scope.cfg.cfg_xml_url, true).then(function(cfgXml) {
+           var xmlFile = expertService.buildCfgXml(xmlData, cfgXml, cmd['id'], cmd['commandclass']);
+           dataFactory. putCfgXml(xmlFile).then(function(response){},function(error) {
+                    dataService.logError(error);
+                    alert($scope._t('error_update_data'));
+                });
+        }, function(error) {
+            dataService.logError(error);
+            alert($scope._t('error_update_data'));
         });
 
-
-        //debugger;
         $scope.refresh(cmd['id']);
-        var timeOut;
-        timeOut = $timeout(function() {
-            $('button .fa-spin,a .fa-spin').fadeOut(1000);
-            dataService.cancelZwaveDataInterval();
-        }, 10000);
+        $timeout(function() {
+            $scope.loading = {status:'loading-fade',icon:'fa-check text-success', message:$scope._t('success_updated')};
+            $interval.cancel($scope.apiDataInterval);
+        }, 7000);
         return;
     };
 
@@ -272,13 +279,11 @@ myAppController.controller('ConfigConfigurationController', function($scope, $ro
         if (!zddXml) {
             $scope.noZddx = true;
         }
-        dataFactory.xmlToJson($scope.cfg.server_url + 'config/Configuration.xml', true).then(function(cfgXml) {
-            dataService.logInfo(cfgXml, 'Configuration.xml');
+        dataFactory.xmlToJson($scope.cfg.server_url + $scope.cfg.cfg_xml_url, true).then(function(cfgXml) {
             $scope.configCont = expertService.configConfigCont(node, nodeId, zddXml, cfgXml, $scope.lang, $scope.languages);
             $scope.wakeupCont = expertService.configWakeupCont(node, nodeId, ZWaveAPIData, cfgXml);
             $scope.protectionCont = expertService.configProtectionCont(node, nodeId, ZWaveAPIData, cfgXml);
             $scope.switchAllCont = expertService.configSwitchAllCont(node, nodeId, ZWaveAPIData, cfgXml);
-            //dataService.logInfo($scope.switchAllCont, '$scope.switchAllCont');
         }, function(error) {
             dataService.logError(error);
         });

@@ -1,20 +1,16 @@
 <!-- Test view -->
 <div ng-controller="TestController">
     <h1>Test page</h1>
-    <p colorpicker="rgb" ng-model="rgbPicker.color">RGB: {{rgbPicker.color}}</p>
-    rgb: {{ rgbPicker.color}}
-    <div class="form-inline">
-        <span class="color-picker-show" style="background-color: {{rgbPicker.color}};" colorpicker="rgb" ng-model="rgbPicker.color">&nbsp;</span>
-        <input colorpicker="rgb" class="form-control" ng-model="rgbPicker.color" type="text" />
-        <button class="btn btn-primary" ng-click="setRBGColor(1,rgbPicker.color)">Update</button>
+     <button ng-click="hideStuff()">Click me!</button>
+    <div class="default" ng-hide="hidden" ng-class="{fade: startFade}">This will get hidden!</div>
+    
+    <bb-loader></bb-loader>
+    <div class="loading" ng-show="loading__">
+        <div class="loading-in">
+            <i class="fa fa-lg" ng-class="loading.icon"></i> <span ng-bind="loading.message"></span>
+        </div>
     </div>
-
-    <div>
-        <canvas tc-chartjs-bar chart-data="chartDemo" chart-options="chartOptions" width="600" height="300"></canvas>
-    </div>
-    <div ng-repeat="v in chartDataList">
-        <canvas tc-chartjs-line chart-data="v" chart-options="chartOptions" width="260" height="150"></canvas>
-    </div>
+    <button ng-click="testLoader()">Test me</button>
 </div><!-- /ng-controller --> 
 <script type="text/ng-template" id="app/views/elements/directives/default_.html">
     <h1>My title Inline</h1>

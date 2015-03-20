@@ -26,8 +26,8 @@
                             <ul class="dropdown-menu pull-right">
                                 <!--<li><a href="" ng-click="markAsRead(v.id)" ng-bind="_t('lb_mark_read')"></a></li>-->
                                 <li><a ng-href="#events/source/{{v.source}}" ng-bind="_t('lb_events_source')"></a></li> 
-                                <li><a ng-href="#events/source/{{v.source}}" ng-bind="_t('lb_events_type')"></a></li> 
-                                <li><a ng-href="#events/source/{{v.source}}" ng-bind="_t('lb_events_source_type')"></a></li> 
+                                <li><a ng-href="#events/type/{{v.type}}" ng-bind="_t('lb_events_type')"></a></li> 
+                                <li><a ng-href="#events/source_type?source={{v.source}}&type={{v.type}}" ng-bind="_t('lb_events_source_type')"></a></li> 
                                  <li><a ng-href="#events" ng-bind="_t('lb_show_all')"></a></li>  
                             </ul>
                         </div>
@@ -65,7 +65,7 @@
                         <ul class="dropdown-menu">
                             <li><a ng-href="#events" ng-bind="_t('lb_hide_device_events')"></a></li> 
                                 <li><a ng-href="#events" ng-bind="_t('lb_hide_system_events')"></a></li> 
-                                <li><a ng-href="#events" ng-bind="_t('lb_delete_system_events')"></a></li> 
+                                <li><a href="#events" ng-click="deleteSystemEvents(_t('lb_delete_confirm'))" ng-bind="_t('lb_delete_system_events')"></a></li> 
                         </ul>
                     </div>
                 </form>

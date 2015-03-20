@@ -41,6 +41,8 @@ var config_data = {
         'zddx_url': 'ZDDX/',
         // Url to run ExpertUI cmd
         'zwaveapi_run_url': 'ZWaveAPI/Run/',
+        // Url to config XML file
+        'cfg_xml_url': 'config/Configuration.xml',
         // Language directory
         'lang_dir': 'app/lang/',
         // Default language

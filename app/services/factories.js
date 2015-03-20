@@ -26,6 +26,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies,$window,
         refreshApi: refreshApi,
         runExpertCmd: runExpertCmd,
         xmlToJson:  xmlToJson,
+        putCfgXml: putCfgXml,
         getApiData: getApiData, // Deprecated: Remove after getApi implementation
         postApiData: postApiData,
         putApiData: putApiData,
@@ -39,6 +40,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies,$window,
         getLanguageFile: getLanguageFile,
         getZwaveApiData: getZwaveApiData,
         loadZwaveApiData: loadZwaveApiData,
+        joinedZwaveData: joinedZwaveData,
         updateZwaveApiData: updateZwaveApiData,
         runZwaveCmd: runZwaveCmd
     });
@@ -67,13 +69,10 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies,$window,
         var cached = myCache.get(cacheName);
 
         if (!noCache && cached) {
-            console.log('CACHED: ' + cacheName);
             var deferred = $q.defer();
             deferred.resolve(cached); // <-- Can I do this?
             return deferred.promise;
         }
-        // NOT Cached data
-        console.log('NOT CACHED: ' + cacheName);
 
         return $http({
             method: 'get',
@@ -131,14 +130,12 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies,$window,
         var cached = myCache.get(cacheName);
 
         if (!noCache && cached) {
-            console.log('CACHED: ' + cacheName);
             var deferred = $q.defer();
             deferred.resolve(cached); // <-- Can I do this?
             return deferred.promise;
         }
         // NOT Cached data
-        console.log('NOT CACHED: ' + cacheName);
-         return $http({
+        return $http({
             method: 'get',
             url: url
         }).then(function(response) {
@@ -154,6 +151,34 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies,$window,
             return $q.reject(response);
         });
     }
+    
+     /**
+     * Put config XML file
+     */
+    function putCfgXml(data) {
+       return $http({
+            method: "PUT",
+            //dataType: "text", 
+            url: cfg.server_url + cfg.cfg_xml_url,
+            data: data,
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            }
+         }).then(function(response) {
+            return response;
+        }, function(response) {// something went wrong
+
+            return $q.reject(response);
+        });
+        return;
+        request.success(function(data) {
+            handleSuccess(data);
+        }).error(function(error) {
+            $('button .fa-spin,a .fa-spin').fadeOut(1000);
+            handleError();
+
+        });
+    }
 
     /**
      * Get remote data
@@ -165,15 +190,12 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies,$window,
         var cached = myCache.get(cacheName);
 
         if (!noCache && cached) {
-            console.log('CACHED: ' + cacheName);
             var deferred = $q.defer();
             deferred.resolve(cached); // <-- Can I do this?
             return deferred.promise;
         }
         // NOT Cached data
-        console.log('NOT CACHED: ' + cacheName);
-
-        return $http({
+       return $http({
             method: 'get',
             url: url
                     //cache: noCache || true
@@ -347,13 +369,10 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies,$window,
         var cacheName = 'cache_zwaveapidata';
         var cached = myCache.get(cacheName);
         if (!noCache && cached) {
-            console.log('CACHED: ' + cacheName);
             var deferred = $q.defer();
             deferred.resolve(cached); // <-- Can I do this?
             return deferred.promise;
         }
-        // NOT Cached data
-        console.log('NOT CACHED: ' + cacheName);
         return $http({
             method: 'get',
             url: cfg.server_url + cfg.zwave_api_url + 'Data/0'
@@ -369,6 +388,83 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies,$window,
             // something went wrong
             return $q.reject(response);
         });
+    }
+    
+    /**
+     * Get updated data and join with ZwaveData
+     */
+    function  joinedZwaveData() {
+        var time = Math.round(+new Date() / 1000);
+        var apiData = myCache.get('cache_zwaveapidata');
+        var result = {};
+         return $http({
+            method: 'post',
+            url: cfg.server_url + cfg.zwave_api_url + 'Data/' + time
+        }).then(function(response) {
+            if (typeof response.data === 'object' && apiData) {
+                time = response.data.updateTime;
+                angular.forEach(response.data, function(obj, path) {
+                    if (!angular.isString(path)) {
+                        return;
+                    }
+                    var pobj = apiData;
+                    var pe_arr = path.split('.');
+                    for (var pe in pe_arr.slice(0, -1)) {
+                        pobj = pobj[pe_arr[pe]];
+                    }
+                    pobj[pe_arr.slice(-1)] = obj;
+                });
+                result = {
+                    "joined": apiData,
+                    "update": response.data
+                };
+                response.data = result;
+                return response;
+            } else {
+                // invalid response
+                return $q.reject(response);
+            }
+        }, function(response) {
+            // something went wrong
+            return $q.reject(response);
+        });
+        return;
+        
+        
+        var refresh = function() {
+            //console.log(apiData);
+            var request = $http({
+                method: "POST",
+                //url: "storage/updated.json"
+                url: cfg.server_url + cfg.update_url + time
+            });
+            request.success(function(data) {
+                $('#update_time_tick').html($filter('getCurrentTime')(time));
+                if (!apiData || !data)
+                    return;
+                time = data.updateTime;
+                angular.forEach(data, function(obj, path) {
+                    if (!angular.isString(path)) {
+                        return;
+                    }
+                    var pobj = apiData;
+                    var pe_arr = path.split('.');
+                    for (var pe in pe_arr.slice(0, -1)) {
+                        pobj = pobj[pe_arr[pe]];
+                    }
+                    pobj[pe_arr.slice(-1)] = obj;
+                });
+                result = {
+                    "joined": apiData,
+                    "update": data
+                };
+                return callback(result);
+            }).error(function() {
+                handleError();
+
+            });
+        };
+        apiDataInterval = $interval(refresh, cfg.interval);
     }
 
 

@@ -13,6 +13,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
      * Global scopes
      */
     $scope.cfg = cfg;
+    $scope.loading = false; 
     // Current profile
     $scope.demoColor = ['#6494bc', '#80ad80', '#dd976e', '#6494bc', '#80ad80', '#dd976e', '#6494bc', '#80ad80', '#dd976e', '#6494bc', '#80ad80', '#dd976e'];
     $scope.profile = {
@@ -170,222 +171,22 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
 /**
  * Test controller
  */
-myAppController.controller('TestController', function($scope, $routeParams, $filter, $location, dataFactory, dataService) {
-    $scope.rgbPicker = {color: 'rgb(107,61,61)'};
-
-    $scope.setRBGColor = function(id, color) {
-        var array = color.match(/\((.*)\)/)[1].split(',');
-        var colors = {
-            r: array[0],
-            g: array[1],
-            b: array[2]
-        };
-        console.log(colors);
-        console.log(id)
-        console.log(color)
-        $scope.rgbPicker = {color: color};
+myAppController.controller('TestController', function($scope, $routeParams, $filter, $location,$timeout, dataFactory, dataService) {
+   $scope.loading = false;
+   $scope.hideStuff = function () {
+        $scope.startFade = true;
+        $timeout(function(){
+            $scope.hidden = true;
+        }, 2000);
+        
     };
-
-    $scope.devices = [
-        {
-            "id": "54db2d487c2b6fd81175bbfa",
-            "deviceType": "Ecosys",
-            "metricsHistory": [
-                {
-                    "timestamp": "2015-02-10T12:28:12.061Z",
-                    "level": 7
-                },
-                {
-                    "timestamp": "2015-02-10T12:28:12.061Z",
-                    "level": 7
-                },
-                {
-                    "timestamp": "2015-02-10T12:28:12.061Z",
-                    "level": 5
-                },
-                {
-                    "timestamp": "2015-02-10T12:28:12.061Z",
-                    "level": 7
-                },
-                {
-                    "timestamp": "2015-02-10T12:28:12.061Z",
-                    "level": 4
-                },
-                {
-                    "timestamp": "2015-02-10T12:28:12.061Z",
-                    "level": 4
-                },
-                {
-                    "timestamp": "2015-02-10T12:28:12.061Z",
-                    "level": 8
-                },
-                {
-                    "timestamp": "2015-02-10T12:28:12.061Z",
-                    "level": 7
-                },
-                {
-                    "timestamp": "2015-02-10T12:28:12.061Z",
-                    "level": 7
-                },
-                {
-                    "timestamp": "2015-02-10T12:28:12.061Z",
-                    "level": 9
-                }
-            ]
-        },
-        {
-            "id": "54db2d48002ee11b40dc5716",
-            "deviceType": "Microluxe",
-            "metricsHistory": [
-                {
-                    "timestamp": "2015-02-10T12:28:12.061Z",
-                    "level": 8
-                },
-                {
-                    "timestamp": "2015-02-10T12:28:12.061Z",
-                    "level": 3
-                },
-                {
-                    "timestamp": "2015-02-10T12:28:12.061Z",
-                    "level": 3
-                },
-                {
-                    "timestamp": "2015-02-10T12:28:12.061Z",
-                    "level": 6
-                },
-                {
-                    "timestamp": "2015-02-10T12:28:12.061Z",
-                    "level": 5
-                },
-                {
-                    "timestamp": "2015-02-10T12:28:12.061Z",
-                    "level": 5
-                },
-                {
-                    "timestamp": "2015-02-10T12:28:12.061Z",
-                    "level": 8
-                },
-                {
-                    "timestamp": "2015-02-10T12:28:12.061Z",
-                    "level": 10
-                },
-                {
-                    "timestamp": "2015-02-10T12:28:12.061Z",
-                    "level": 8
-                },
-                {
-                    "timestamp": "2015-02-10T12:28:12.061Z",
-                    "level": 3
-                }
-            ]
-        },
-        {
-            "id": "54db2d489de8189686602b4d",
-            "deviceType": "Aeora",
-            "metricsHistory": [
-                {
-                    "timestamp": "2015-02-10T12:28:12.061Z",
-                    "level": 5
-                },
-                {
-                    "timestamp": "2015-02-10T12:28:12.061Z",
-                    "level": 5
-                },
-                {
-                    "timestamp": "2015-02-10T12:28:12.061Z",
-                    "level": 6
-                },
-                {
-                    "timestamp": "2015-02-10T12:28:12.061Z",
-                    "level": 3
-                },
-                {
-                    "timestamp": "2015-02-10T12:28:12.061Z",
-                    "level": 8
-                },
-                {
-                    "timestamp": "2015-02-10T12:28:12.061Z",
-                    "level": 9
-                },
-                {
-                    "timestamp": "2015-02-10T12:28:12.061Z",
-                    "level": 8
-                },
-                {
-                    "timestamp": "2015-02-10T12:28:12.061Z",
-                    "level": 10
-                },
-                {
-                    "timestamp": "2015-02-10T12:28:12.061Z",
-                    "level": 5
-                },
-                {
-                    "timestamp": "2015-02-10T12:28:12.061Z",
-                    "level": 7
-                }
-            ]
-        }
-    ];
-
-
-
-    $scope.chartDemo = dataService.getChartData($scope.devices[0].metricsHistory, $scope.cfg.chart_colors);
-
-    $scope.chartDataList = [];
-
-    angular.forEach($scope.devices, function(v, k) {
-        console.log(v)
-        $scope.chartDataList[k] = dataService.getChartData(v.metricsHistory, $scope.cfg.chart_colors);
-
-    });
-    /**
-     * Chart data
-     */
-    $scope.chartData = [];
-    $scope.chartData_ = {
-        labels: ['01:00', '06:00', '10:00', '12:00', '14:00', '18:00', '20:00'],
-        datasets: [
-            {
-                fillColor: 'rgba(151,187,205,0.5)',
-                strokeColor: 'rgba(151,187,205,1)',
-                pointColor: 'rgba(151,187,205,1)',
-                pointStrokeColor: '#fff',
-                data: [8, 10, 15, 20, 22, 18, 16]
-            }
-        ]
-    };
-    $scope.chartData[1] = {
-        labels: ['01:00', '06:00', '10:00', '12:00', '14:00', '18:00', '20:00'],
-        datasets: [
-            {
-                fillColor: 'rgba(151,187,205,0.5)',
-                strokeColor: 'rgba(151,187,205,1)',
-                pointColor: 'rgba(151,187,205,1)',
-                pointStrokeColor: '#fff',
-                data: [4, 58, 96, 48, 62, 18, 16]
-            }
-        ]
-    };
-    $scope.chartData[2] = {
-        labels: ['01:00', '06:00', '10:00', '12:00', '14:00', '18:00', '20:00'],
-        datasets: [
-            {
-                fillColor: 'rgba(151,187,205,0.5)',
-                strokeColor: 'rgba(151,187,205,1)',
-                pointColor: 'rgba(151,187,205,1)',
-                pointStrokeColor: '#fff',
-                data: [12, 0, 5, 20, 120, 72, 39]
-            }
-        ]
-    };
-    /**
-     * Chart settings
-     */
-    $scope.chartOptions = {
-        animation: false,
-        showTooltips: false
-                // Chart.js options can go here.
-    };
+   $scope.testLoader = function() {
+        $scope.loading = {icon:'fa-spinner fa-spin', message:$scope._t('loading')};
+        $timeout(function() {
+            $scope.loading = {status:'loading-fade',icon:'fa-check text-success', message:$scope._t('success_updated')};
+        }, 5000);
+        console.log($scope.loading)
+   };
 });
 /**
  * Home controller
@@ -1060,16 +861,15 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
      * Download module
      */
     $scope.downloadModule = function(id, modulename) {
-        $scope.proccessDownload[id] = {icon: 'fa-spinner fa-spin'};
+        $scope.loading = {status:'loading-spin',icon:'fa-spinner fa-spin', message:$scope._t('downloading')};
         var cmd = 'Run/system("/opt/module_downloader.sh ' + id + ' ' + modulename + '")';
         dataFactory.getSystemCmd(cmd).then(function(response) {
-            $scope.proccessDownload[id] = {icon: false, message: $scope._t('success_module_download'), status: 'alert-success'};
             $timeout(function() {
-                $scope.proccessDownload[id] = {icon: false, message: false};
+                $scope.loading = {status:'loading-fade',icon:'fa-check text-success', message:$scope._t('success_module_download')};
             }, 3000);
 
         }, function(error) {
-            $scope.proccessDownload[id] = {icon: false};
+              $scope.loading = false;
             alert($scope._t('error_no_module_download'));
             $log.error('ERROR: ', error);
         });

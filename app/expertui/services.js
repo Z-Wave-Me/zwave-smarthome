@@ -2,8 +2,14 @@
  * ExpertUI services
  * @author Martin Vach
  */
-myAppService.service('expertService', function($filter, $log,myCache) {
+myAppService.service('expertService', function($filter) {
     /// --- Public functions --- ///
+    /**
+     * Get language line by key
+     */
+    this.getLangLine = function(key, languages) {
+        return getLangLine(key, languages);
+    };
    /**
      * Get config navigation devices
      */
@@ -48,7 +54,26 @@ myAppService.service('expertService', function($filter, $log,myCache) {
         return configWakeupCont(node, nodeId, ZWaveAPIData, cfgXml);
     };
     
+    /**
+     *Build config XML file
+     */
+    this.buildCfgXml = function(data, cfgXml, id, commandclass) {
+        return buildCfgXml(data, cfgXml, id, commandclass);
+    };
+    
     /// --- Private functions --- ///
+     /**
+     * Get language line by key
+     */
+    function getLangLine(key, languages) {
+        if (angular.isObject(languages)) {
+            if (angular.isDefined(languages[key])) {
+                return languages[key] !== '' ? languages[key] : key;
+            }
+        }
+        return key;
+    }
+    ;
     
     /**
      *  Get config navigation devices
@@ -620,5 +645,70 @@ myAppService.service('expertService', function($filter, $log,myCache) {
         }
         ;
         return wakeup_cont;
+    }
+    
+    /**
+     *Build config XML file
+     */
+    function buildCfgXml(data, cfgXml, id, commandclass) {
+        var hasCfgXml = false;
+         var assocCc = [133, 142];
+        var formData = [];
+        if (commandclass == '84') {
+            var par1 = JSON.parse(data[0]['parameter']);
+            var par2 = JSON.parse(data[1]['parameter']);
+            var wakeData = {
+                'id': id,
+                'instance': data[0]['instance'],
+                'commandclass': commandclass,
+                'command': data[0]['command'],
+                'parameter': '[' + par1 + ',' + par2 + ']'
+            };
+            formData.push(wakeData);
+        } else {
+            formData = data;
+        }
+        var xmlData = formData;
+        if (angular.isObject(cfgXml) && $filter('hasNode')(cfgXml, 'config.devices.deviceconfiguration')) {
+            hasCfgXml = cfgXml.config.devices.deviceconfiguration;
+            angular.forEach(hasCfgXml, function(v, k) {
+                var obj = {};
+                if (v['_id'] == id && v['_commandclass'] == commandclass) {
+                    return;
+                }
+                obj['id'] = v['_id'];
+                obj['instance'] = v['_instance'];
+                obj['commandclass'] = v['_commandclass'];
+                obj['command'] = v['_command'];
+                obj['parameter'] = v['_parameter'];
+                 obj['group'] = v['_group'];
+                xmlData.push(obj);
+
+            });
+        }
+        var ret = buildCfgXmlFile(xmlData);
+        return ret;
+
+    }
+    
+    /**
+     * Build cfg XML file
+     */
+    function buildCfgXmlFile(xmlData) {
+        var assocCc = [133, 142];
+       var xml = '<config><devices>' + "\n";
+
+        angular.forEach(xmlData, function(v, k) {
+            if (assocCc.indexOf( parseInt(v.commandclass,10)) > -1) {
+                xml += '<deviceconfiguration id="' + v.id + '" instance="' + v.instance + '" commandclass="' + v.commandclass + '" command="' + v.command + '" group="' + v.group + '" parameter="' + v.parameter + '"/>' + "\n";
+               
+            } else {
+                xml += '<deviceconfiguration id="' + v.id + '" instance="' + v.instance + '" commandclass="' + v.commandclass + '" command="' + v.command + '" parameter="' + v.parameter + '"/>' + "\n";
+            }
+
+        });
+        xml += '</devices></config>' + "\n";
+        return xml;
+
     }
 });

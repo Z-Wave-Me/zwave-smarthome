@@ -7,7 +7,7 @@ var config_data = {
         // Application type: web/app
         'app_type': 'web',
         // Server base url
-        'server_url': '/',
+        abc
         //'server_url': 'http://192.168.10.119:8083/',
         // Interval in miliseconds to refresh data
         'interval': 3000,
@@ -37,6 +37,12 @@ var config_data = {
         'local_data_url': 'storage/data/',
         // Online module url
         'online_module_url': 'http://hrix.net/modules_store/json_store.php',
+         // Url to zddx xml files
+        'zddx_url': 'ZDDX/',
+        // Url to run ExpertUI cmd
+        'zwaveapi_run_url': 'ZWaveAPI/Run/',
+        // Url to config XML file
+        'cfg_xml_url': 'config/Configuration.xml',
         // Language directory
         'lang_dir': 'app/lang/',
         // Default language
@@ -63,7 +69,9 @@ var config_data = {
         // Hidden apps
         'hidden_apps': ['Cron','AnotherModuleID'],
         // Results per page
-        'page_results': 12
+        'page_results': 12,
+        // Results per events page
+        'page_results_events': 30
 
 
 
