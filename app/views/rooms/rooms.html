@@ -3,8 +3,8 @@
     <div class="row">
         <div class="col-md-3 col-sm-6 room-entry" id="panel_{{$index}}" ng-repeat="v in collection">
             <div class="room-in">
-                <h3 class="entry-title"><a href="#/elements/location/{{v.id}}">{{v.title}}</a></h3>
-                <a href="#/elements/location/{{v.id}}">
+                <h3 class="entry-title"><a href="#/elements/location/{{v.id}}/{{v.title}}">{{v.title}}</a></h3>
+                <a href="#/elements/location/{{v.id}}/{{v.title}}">
                     <img class="room-image img-circle" ng-src="storage/img/rooms/{{v.icon}}" ng-show="v.icon" alt="{{v.title}}" />
                      <img class="room-image img-circle" ng-src="storage/img/placeholder-img.png" ng-show="!v.icon" alt="{{v.title}}" />
                 </a>

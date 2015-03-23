@@ -13,7 +13,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
      * Global scopes
      */
     $scope.cfg = cfg;
-    $scope.loading = false; 
+    $scope.loading = false;
     // Current profile
     $scope.demoColor = ['#6494bc', '#80ad80', '#dd976e', '#6494bc', '#80ad80', '#dd976e', '#6494bc', '#80ad80', '#dd976e', '#6494bc', '#80ad80', '#dd976e'];
     $scope.profile = {
@@ -171,22 +171,22 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
 /**
  * Test controller
  */
-myAppController.controller('TestController', function($scope, $routeParams, $filter, $location,$timeout, dataFactory, dataService) {
-   $scope.loading = false;
-   $scope.hideStuff = function () {
+myAppController.controller('TestController', function($scope, $routeParams, $filter, $location, $timeout, dataFactory, dataService) {
+    $scope.loading = false;
+    $scope.hideStuff = function() {
         $scope.startFade = true;
-        $timeout(function(){
+        $timeout(function() {
             $scope.hidden = true;
         }, 2000);
-        
+
     };
-   $scope.testLoader = function() {
-        $scope.loading = {icon:'fa-spinner fa-spin', message:$scope._t('loading')};
+    $scope.testLoader = function() {
+        $scope.loading = {icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         $timeout(function() {
-            $scope.loading = {status:'loading-fade',icon:'fa-check text-success', message:$scope._t('success_updated')};
+            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
         }, 5000);
         console.log($scope.loading)
-   };
+    };
 });
 /**
  * Home controller
@@ -198,6 +198,7 @@ myAppController.controller('HomeController', function($scope, dataFactory, dataS
  * Element controller
  */
 myAppController.controller('ElementController', function($scope, $routeParams, $location, $interval, dataFactory, dataService, myCache) {
+    $scope.apiDataInterval = null;
     $scope.collection = [];
     $scope.showFooter = true;
     $scope.deviceType = [];
@@ -233,11 +234,14 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     // Cancel interval on page destroy
     $scope.$on('$destroy', function() {
         dataFactory.cancelApiDataInterval();
+         $interval.cancel($scope.apiDataInterval);
     });
-
-    $scope.$watch('rgbVal', function() {
-        console.log($scope.val)
-    });
+/**
+ * DEPRECATED
+ */
+//    $scope.$watch('rgbVal', function() {
+//        console.log($scope.val)
+//    });
 
     /**
      * Load data into collection
@@ -248,25 +252,12 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         dataFactory.getApiData('devices', function(data) {
             var filter = null;
             $scope.deviceType = dataService.getDeviceType(data.data.devices);
-            $scope.tags = dataService.getTags(data.data.devices);
-            dataFactory.getApiData('profiles', function(data) {
-                var profile = dataService.getRowBy(data.data, 'id', $scope.profile.id);
-                $scope.profileData = {
-                    'id': profile ? profile.id : 1,
-                    'name': profile ? profile.name : 'Default',
-                    'positions': profile ? profile.positions : []
-                };
-            });
-            dataFactory.getApiData('locations', function(data) {
-                $scope.rooms = data.data;
-            });
-            dataFactory.getApiData('history', function(history) {
-                angular.forEach(history.data.history, function(v, k) {
-                    $scope.history[v.id] = dataService.getChartData(v.mH, $scope.cfg.chart_colors);
-
-                });
-            });
-
+            $scope.tags = dataService.getTags(data.data.devices);loadProfile();
+            // Loacations
+            loadLocations();
+            // History
+            loadHistory();
+            // Filter
             if (angular.isDefined($routeParams.filter) && angular.isDefined($routeParams.val)) {
                 switch ($routeParams.filter) {
                     case 'dashboard':
@@ -282,32 +273,46 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
                     case 'location':
                         $scope.showFooter = false;
                         filter = $routeParams;
-                        dataFactory.getApiData('locations', function(rooms) {
-                            //getRowBy(data, key, val, cache);
-                            var room = dataService.getRowBy(rooms.data, 'id', $routeParams.val, 'room_' + $routeParams.val);
-                            if (room) {
-                                $scope.headline = $scope._t('lb_devices_room') + ' ' + room.title;
-                            }
-                        });
+                        if (angular.isDefined($routeParams.name)) {
+                            $scope.headline = $scope._t('lb_devices_room') + ' ' + $routeParams.name;
+                        }
                         break;
                     default:
                         break;
                 }
             }
-            dataFactory.getApiData('instances', function(instances) {
-                $scope.collection = dataService.getDevices(data.data.devices, filter, $scope.profileData.positions, instances.data);
-            });
+            loadInstances(data.data.devices, filter);
 
         });
     };
     $scope.loadData();
-
-    $scope.updateData = function() {
-        dataFactory.updateApiData('devices', function(data) {
-            dataService.updateDevices(data, $scope.updateValues);
-        });
+    
+    /**
+     * Refresh data
+     */
+    $scope.refreshData = function() {
+        var refresh = function() {
+            dataFactory.refreshApi('devices').then(function(response) {
+                dataService.updateDevices(response.data, $scope.updateValues);
+                dataService.updateTimeTick(response.data.data.updateTime);
+            }, function(error) {
+                dataService.showConnectionError(error);
+            });
+        };
+        $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
     };
-    $scope.updateData();
+
+    $scope.refreshData();
+    /**
+     * DEPRECATED
+     */
+
+//    $scope.updateData = function() {
+//        dataFactory.updateApiData('devices', function(data) {
+//            dataService.updateDevices(data, $scope.updateValues);
+//        });
+//    };
+    //$scope.updateData();
 
     // Clear history json cache
     $scope.clearHistoryCache = function() {
@@ -369,9 +374,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
                 });
                 myCache.remove('devices');
                 myCache.remove('profiles');
-                //dataFactory.setCache(false);
                 $scope.loadData();
-                //$route.reload();
             });
         }
 
@@ -447,6 +450,59 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     };
 
     /// --- Private functions --- ///
+    /**
+     * Load profile
+     */
+    function loadProfile() {
+        dataFactory.getApi('profiles').then(function(response) {
+            var profile = dataService.getRowBy(response.data.data, 'id', $scope.profile.id);
+            $scope.profileData = {
+                'id': profile ? profile.id : 1,
+                'name': profile ? profile.name : 'Default',
+                'positions': profile ? profile.positions : []
+            };
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    }
+    ;
+    /**
+     * Load history
+     */
+    function loadHistory() {
+        dataFactory.getApi('history').then(function(response) {
+            angular.forEach(response.data.data.history, function(v, k) {
+                $scope.history[v.id] = dataService.getChartData(v.mH, $scope.cfg.chart_colors);
+
+            });
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    }
+    ;
+    /**
+     * Load locations
+     */
+    function loadLocations() {
+        dataFactory.getApi('locations').then(function(response) {
+            $scope.rooms = response.data.data;
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    }
+    ;
+    /**
+     * Load instances
+     */
+    function loadInstances(devices, filter) {
+        dataFactory.getApi('instances').then(function(response) {
+            $scope.collection = dataService.getDevices(devices, filter, $scope.profileData.positions, response.data.data);
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    }
+    ;
+
     /**
      * Save device id into profile
      */
@@ -861,15 +917,15 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
      * Download module
      */
     $scope.downloadModule = function(id, modulename) {
-        $scope.loading = {status:'loading-spin',icon:'fa-spinner fa-spin', message:$scope._t('downloading')};
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
         var cmd = 'Run/system("/opt/module_downloader.sh ' + id + ' ' + modulename + '")';
         dataFactory.getSystemCmd(cmd).then(function(response) {
             $timeout(function() {
-                $scope.loading = {status:'loading-fade',icon:'fa-check text-success', message:$scope._t('success_module_download')};
+                $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_module_download')};
             }, 3000);
 
         }, function(error) {
-              $scope.loading = false;
+            $scope.loading = false;
             alert($scope._t('error_no_module_download'));
             $log.error('ERROR: ', error);
         });
@@ -1361,12 +1417,7 @@ myAppController.controller('RoomConfigController', function($scope, $window, $in
         'showProgress': false,
         'progressVal': 0
     };
-    $scope.defaultImages = [
-        'kitchen.jpg',
-        'bathroom.jpg',
-        'sleeping_room.jpg',
-        'living_room.jpg'
-    ];
+    $scope.defaultImages = $scope.cfg.room_images;
     $scope.showProgress = false;
     $scope.input = {
         'id': null,

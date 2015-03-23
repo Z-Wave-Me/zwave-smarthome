@@ -25,7 +25,7 @@ myApp.config(['$routeProvider',
                     redirectTo: '/elements/dashboard/1'
                 }).
                 // Elements
-                when('/elements/:filter?/:val?', {
+                when('/elements/:filter?/:val?/:name?', {
                     templateUrl: 'app/views/elements/elements.html'
                 }).
                 // Rooms
