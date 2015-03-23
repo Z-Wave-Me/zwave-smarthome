@@ -7,7 +7,7 @@ var config_data = {
         // Application type: web/app
         'app_type': 'web',
         // Server base url
-        abc
+        //abc
         //'server_url': 'http://192.168.10.119:8083/',
         // Interval in miliseconds to refresh data
         'interval': 3000,
@@ -23,7 +23,7 @@ var config_data = {
             'modules_categories': 'ZAutomation/api/v1/modules/categories',
             'instances': 'ZAutomation/api/v1/instances',
             'namespaces': 'ZAutomation/api/v1/namespaces',
-             'history': 'ZAutomation/api/v1/history'
+            'history': 'ZAutomation/api/v1/history'
         },
         // List of image pathes
         'img': {
@@ -33,11 +33,13 @@ var config_data = {
         'api_url': 'ZAutomation/api/v1/',
         // ZWave api url
         'zwave_api_url': 'ZWaveAPI/',
+        // ZWave run JS url
+        'zwave_jsrun_url': 'JS/Run/',
         // Local data path
         'local_data_url': 'storage/data/',
         // Online module url
         'online_module_url': 'http://hrix.net/modules_store/json_store.php',
-         // Url to zddx xml files
+        // Url to zddx xml files
         'zddx_url': 'ZDDX/',
         // Url to run ExpertUI cmd
         'zwaveapi_run_url': 'ZWaveAPI/Run/',
@@ -48,8 +50,8 @@ var config_data = {
         // Default language
         'lang': 'en',
         // List of supported languages
-        'lang_list': ["en", "de","ru"],
-         // List of language codes
+        'lang_list': ["en", "de", "ru"],
+        // List of language codes
         'lang_codes': {
             'en': 'en_EN',
             'de': 'de_AT',
@@ -59,15 +61,22 @@ var config_data = {
         'profile_colors': ['#6C7A89', '#3071A9', '#449D44', '#31B0D5', '#F0AD4E', '#D9534F'],
         // Chart colors
         'chart_colors': {
-                fillColor: 'rgba(151,187,205,0.5)',
-                strokeColor: 'rgba(151,187,205,1)',
-                pointColor: 'rgba(151,187,205,1)',
-                pointStrokeColor: '#fff'
-            },
+            fillColor: 'rgba(151,187,205,0.5)',
+            strokeColor: 'rgba(151,187,205,1)',
+            pointColor: 'rgba(151,187,205,1)',
+            pointStrokeColor: '#fff'
+        },
         // Device vendors
         'device_vendors': ['zwave', 'enocean', 'ipcamera'],
         // Hidden apps
-        'hidden_apps': ['Cron','AnotherModuleID'],
+        'hidden_apps': ['Cron', 'AnotherModuleID'],
+        // Room images
+        'room_images': [
+            'kitchen.jpg',
+            'bathroom.jpg',
+            'sleeping_room.jpg',
+            'living_room.jpg'
+        ],
         // Results per page
         'page_results': 12,
         // Results per events page

@@ -27,6 +27,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies,$window,
         runExpertCmd: runExpertCmd,
         xmlToJson:  xmlToJson,
         putCfgXml: putCfgXml,
+        getJSCmd: getJSCmd,
         getApiData: getApiData, // Deprecated: Remove after getApi implementation
         postApiData: postApiData,
         putApiData: putApiData,
@@ -46,7 +47,6 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies,$window,
     });
 
     /// --- Public functions --- ///
-
     /**
      * Gets app local data
      */
@@ -179,6 +179,26 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies,$window,
 
         });
     }
+    /**
+     * Get api js command
+     */
+    function getJSCmd(cmd) {
+        return $http({
+            method: 'get',
+            url: cfg.server_url + cfg.zwave_jsrun_url +  cmd
+                    //cache: noCache || true
+        }).then(function(response) {
+             //return response;
+            if (typeof response.data === 'string') {
+                return response;
+            } else {// invalid response
+                return $q.reject(response);
+            }
+        }, function(response) {// something went wrong
+            return $q.reject(response);
+        });
+    }
+
 
     /**
      * Get remote data

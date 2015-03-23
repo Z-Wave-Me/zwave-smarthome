@@ -1,6 +1,7 @@
 <!-- Test view -->
 <div ng-controller="TestController">
     <h1>Test page</h1>
+    <img ng-src="data:image/jpg;base64,{{getModuleImage}}" />
      <button ng-click="hideStuff()">Click me!</button>
     <div class="default" ng-hide="hidden" ng-class="{fade: startFade}">This will get hidden!</div>
     

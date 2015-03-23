@@ -171,7 +171,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
 /**
  * Test controller
  */
-myAppController.controller('TestController', function($scope, $routeParams, $filter, $location, $timeout, dataFactory, dataService) {
+myAppController.controller('TestController', function($scope, $routeParams, $filter, $location, $log,$timeout, dataFactory, dataService) {
     $scope.loading = false;
     $scope.hideStuff = function() {
         $scope.startFade = true;
@@ -187,6 +187,23 @@ myAppController.controller('TestController', function($scope, $routeParams, $fil
         }, 5000);
         console.log($scope.loading)
     };
+    $scope.showModuleImage = function() {
+        var cmd = 'fs.load("/blub/test_base64.jpg")';
+        dataFactory.getJSCmd(cmd).then(function(response) {
+            var x = response.data.replace(/["']/g, "");
+            //x = btoa(unescape(encodeURIComponent(x)));
+            console.log('blub: ',response.data.replace(/["']/g, ""));
+            $scope.getModuleImage = x;
+        }, function(error) {
+            $log.error('ERROR: ', error);
+        });
+    };
+    $scope.showModuleImage();
+    dataFactory.localData('test_base64.jpeg', function(response) {
+        console.log(response)
+            $scope.binImage2 = response;
+            
+        });
 });
 /**
  * Home controller
