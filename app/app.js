@@ -40,6 +40,14 @@ myApp.config(['$routeProvider',
                 when('/profiles', {
                     templateUrl: 'app/views/profiles/profiles.html'
                 }).
+                //Profile detail
+                when('/profiles/:id', {
+                    templateUrl: 'app/views/profiles/profile.html'
+                }).
+                //My Access
+                when('/myaccess', {
+                    templateUrl: 'app/views/myaccess/myaccess.html'
+                }).
                 //Apps
                 when('/apps', {
                     templateUrl: 'app/views/apps/apps.html'
@@ -79,6 +87,10 @@ myApp.config(['$routeProvider',
                 //About
                 when('/about', {
                     templateUrl: 'app/views/pages/about.html'
+                }).
+                //Login
+                when('/login', {
+                    templateUrl: 'app/views/login/login.html'
                 }).
                 // Test
                 when('/test', {

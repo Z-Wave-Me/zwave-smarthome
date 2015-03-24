@@ -1,0 +1,62 @@
+<!-- Home view -->
+<div ng-controller="MyAccessController" class="mobile-padding">
+    <bb-loader></bb-loader>
+    <div ng-show="input">
+        <h1 ng-bind="_t('nav_myaccess')"></h1>
+        <form name="form_profile" id="form_profile" class="form form-page" ng-submit="store(input)" novalidate>
+            <fieldset>
+                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_change_password')"></span></h3>
+                <!-- password -->
+                <div>
+                   <input name="password" id="password" type="password" class="form-control" placeholder="{{_t('lb_new_password')}}" value="" ng-model="input.password" />
+                </div>
+            </fieldset>
+           <fieldset>
+               <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_settings')"></span></h3>
+                <div>
+                    <!-- lang -->
+                    <div class="form-group form-inline">
+                        <label>{{_t('lb_language')}}:</label>
+                        <div ng-repeat="v in cfg.lang_list" >
+                              <input type="radio" name="color" value="{{v}}" ng-model="input.lang" ng-checked="input.color == v" />
+                              <img class="lang-switch-current_" ng-src="app/img/flags/{{v}}.png" alt="{{ v }}"/>
+                          </div>
+                    </div>
+                    <!-- colors -->
+                    <div class="form-group">
+                        <label>{{_t('lb_profile_color')}}: </label>
+                        <div ng-repeat="v in cfg.profile_colors" >
+                            <input type="radio" name="color" value="{{v}}" ng-model="input.color" ng-checked="input.color == v" />
+                             <span class="profile-color" style="background-color: {{v}}">&nbsp;</span> 
+                             
+                          </div>
+                    </div>
+
+                </div>
+             </fieldset>
+            <fieldset>
+                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('nav_events')"></span></h3>
+                <div>
+                    <div>
+                        <input type="checkbox" name="inband_filtering" value="true" id="inband_filtering" ng-model="input.inband_filtering" ng-checked="input.inband_filtering" /> 
+                        <label ng-bind="_t('lb_inband_filtering')"></label>
+                    </div>
+                  <div>
+                        <input type="checkbox" name="device_events" value="true" id="device_events" ng-model="input.device_events" ng-checked="input.device_events" /> 
+                        <label ng-bind="_t('lb_hide_device_events')"></label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="system_events" value="true" id="system_events" ng-model="input.system_events" ng-checked="input.system_events" /> 
+                        <label ng-bind="_t('lb_hide_device_events')"></label>
+                    </div>
+                </div>
+             </fieldset>
+            <div class="form-footer">
+                <button type="submit" class="btn btn-primary btn-lg" ng-bind="_t('lb_save')">{{_t('apply_config_into_device')}}</button>
+                <button class="btn btn-default btn-lg" ng-bind="_t('lb_cancel')" bb-go-back></button>
+            </div>
+        </form>
+
+    </div>
+
+</div> <!-- /ng-controller --> 

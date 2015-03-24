@@ -15,7 +15,7 @@ h1, .h1, h2, .h2, h3, .h3 {
     color: lighten($app-body-color, 15%);
 }
 h1 {
-    font-size: 26px;
+    font-size: 22px;
     /*    text-shadow: 3px 1px 2px rgba(150, 150, 150, 1);*/
     /*    color: #2A6496;*/
 }
@@ -119,6 +119,8 @@ a:hover {
     transform: translate(-50%, 0);
 }
 
+
+
 /* Spinners
 -------------------------------------------------- */
 .module-spinner{
@@ -180,6 +182,22 @@ fieldset{
     margin-bottom: 10px;
     background-color: $app-body-bcg-color;
     padding: 10px;
+}
+.form-page{
+    fieldset{
+        background-color: #fff;
+    }
+    h3{
+        font-size: 14px;
+        font-weight: bold;
+    }
+    .form-group{
+        border-top: solid 1px $app-border-color;
+        padding-top: 10px;
+    }
+    label{
+        font-weight: normal;
+    }
 }
 
 .submit-entry{
@@ -313,12 +331,12 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 
 .loading-fade{
-     opacity: 0;
+    opacity: 0;
     -webkit-transition: opacity $app-loader-fade;
-       -moz-transition: opacity $app-loader-fade;
-        -ms-transition: opacity $app-loader-fade;
-         -o-transition: opacity $app-loader-fade; 
-            transition: opacity $app-loader-fade;
-   
+    -moz-transition: opacity $app-loader-fade;
+    -ms-transition: opacity $app-loader-fade;
+    -o-transition: opacity $app-loader-fade; 
+    transition: opacity $app-loader-fade;
+
 }
 

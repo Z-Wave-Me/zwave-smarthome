@@ -633,7 +633,7 @@ myAppService.service('dataService', function($filter, $log,myCache) {
     /**
      * Get 1 row by - key => value
      */
-    function getRowBy(data, key, val, cache) {
+    function getRowBy(data, key, val) {
         var collection = null;
         angular.forEach(data, function(v, k) {
             if (v[key] == val) {

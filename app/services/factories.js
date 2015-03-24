@@ -22,6 +22,9 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies,$window,
     return({
         getApi: getApi,
         deleteApi: deleteApi,
+        postApi: postApi,
+        putApi: putApi,
+        storeApi: storeApi,
         getRemoteData: getRemoteData,
         refreshApi: refreshApi,
         runExpertCmd: runExpertCmd,
@@ -65,7 +68,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies,$window,
     // Get api data
     function getApi(api, params, noCache) {
         // Cached data
-        var cacheName = 'cache_' + api + (params || '');
+        var cacheName = api + (params || '');
         var cached = myCache.get(cacheName);
 
         if (!noCache && cached) {
@@ -89,6 +92,46 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies,$window,
                 return $q.reject(response);
             }
         }, function(response) {// something went wrong
+            return $q.reject(response);
+        });
+    }
+    // Post api data
+    function postApi(api,data) {
+       return $http({
+            method: "post",
+            data: data,
+            url: cfg.server_url + cfg.api[api]
+        }).then(function(response) {
+            return response;
+        }, function(response) {// something went wrong
+            return $q.reject(response);
+        });
+    }
+    
+    // Put api data
+    function putApi(api, id, data) {
+       return $http({
+            method: "put",
+            data: data,
+            url: cfg.server_url + cfg.api[api] + "/" + id
+        }).then(function(response) {
+            return response;
+        }, function(response) {// something went wrong
+
+            return $q.reject(response);
+        });
+    }
+    
+    // POST/PUT api data
+    function storeApi(api, id, data) {
+        return $http({
+            method: id > 0 ? 'put':'post',
+            data: data,
+            url: cfg.server_url + cfg.api[api] + (id > 0 ? '/' + id : '')
+        }).then(function(response) {
+            return response;
+        }, function(response) {// something went wrong
+
             return $q.reject(response);
         });
     }
@@ -171,13 +214,6 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies,$window,
             return $q.reject(response);
         });
         return;
-        request.success(function(data) {
-            handleSuccess(data);
-        }).error(function(error) {
-            $('button .fa-spin,a .fa-spin').fadeOut(1000);
-            handleError();
-
-        });
     }
     /**
      * Get api js command

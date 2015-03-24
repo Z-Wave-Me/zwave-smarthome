@@ -249,7 +249,7 @@ h1, .h1, h2, .h2, h3, .h3 {
 
 /* line 17, sass/globals/_body.scss */
 h1 {
-  font-size: 26px;
+  font-size: 22px;
   /*    text-shadow: 3px 1px 2px rgba(150, 150, 150, 1);*/
   /*    color: #2A6496;*/
 }
@@ -419,14 +419,14 @@ a:hover {
 
 /* Spinners
 -------------------------------------------------- */
-/* line 124, sass/globals/_body.scss */
+/* line 126, sass/globals/_body.scss */
 .module-spinner {
   display: none !important;
 }
 
 /* Images
 -------------------------------------------------- */
-/* line 130, sass/globals/_body.scss */
+/* line 132, sass/globals/_body.scss */
 .report-img {
   margin: 0 5px;
   width: 40px;
@@ -435,39 +435,39 @@ a:hover {
 
 /* tables
 -------------------------------------------------- */
-/* line 141, sass/globals/_body.scss */
+/* line 143, sass/globals/_body.scss */
 .table tbody tr td {
   border-bottom: 1px solid #dbdbdb;
 }
 
-/* line 150, sass/globals/_body.scss */
+/* line 152, sass/globals/_body.scss */
 .table-report {
   border: 0 !important;
 }
-/* line 152, sass/globals/_body.scss */
+/* line 154, sass/globals/_body.scss */
 .table-report td {
   vertical-align: middle;
 }
-/* line 156, sass/globals/_body.scss */
+/* line 158, sass/globals/_body.scss */
 .table-report tbody tr {
   background-color: white;
 }
 
 /* Tabs
 -------------------------------------------------- */
-/* line 163, sass/globals/_body.scss */
+/* line 165, sass/globals/_body.scss */
 .nav-tabs {
   border-bottom: 1px solid #dddddd;
 }
 
-/* line 166, sass/globals/_body.scss */
+/* line 168, sass/globals/_body.scss */
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
   color: #1a1a1a;
   background-color: #DDDDDD;
   border: #dddddd;
 }
 
-/* line 171, sass/globals/_body.scss */
+/* line 173, sass/globals/_body.scss */
 .nav-tabs > li.active > a i {
   color: #DA131F;
 }
@@ -477,35 +477,54 @@ background-color: lighten($app-body-bcg-color, 10%);;
 }*/
 /* Forms
 -------------------------------------------------- */
-/* line 179, sass/globals/_body.scss */
+/* line 181, sass/globals/_body.scss */
 fieldset {
   margin-bottom: 10px;
   background-color: #F6F6F6;
   padding: 10px;
 }
 
-/* line 185, sass/globals/_body.scss */
+/* line 187, sass/globals/_body.scss */
+.form-page fieldset {
+  background-color: #fff;
+}
+/* line 190, sass/globals/_body.scss */
+.form-page h3 {
+  font-size: 14px;
+  font-weight: bold;
+}
+/* line 194, sass/globals/_body.scss */
+.form-page .form-group {
+  border-top: solid 1px #d3d3d3;
+  padding-top: 10px;
+}
+/* line 198, sass/globals/_body.scss */
+.form-page label {
+  font-weight: normal;
+}
+
+/* line 203, sass/globals/_body.scss */
 .submit-entry {
   text-align: right;
 }
 
 /* Alpaca
 -------------------------------------------------- */
-/* line 191, sass/globals/_body.scss */
+/* line 209, sass/globals/_body.scss */
 .alpaca-message-invalidValueOfEnum {
   display: none !important;
 }
 
 /* Page
 -------------------------------------------------- */
-/* line 199, sass/globals/_body.scss */
+/* line 217, sass/globals/_body.scss */
 .page-header {
   padding: 0;
   margin: 0 0 20px 0;
   border-bottom: 0;
 }
 
-/* line 205, sass/globals/_body.scss */
+/* line 223, sass/globals/_body.scss */
 #main_content {
   margin-top: 70px;
   margin-bottom: 20px;
@@ -513,13 +532,13 @@ fieldset {
 
 /* Modal
 -------------------------------------------------- */
-/* line 211, sass/globals/_body.scss */
+/* line 229, sass/globals/_body.scss */
 .modal-tooltip {
   width: 40%;
   /* or whatever you wish */
 }
 
-/* line 214, sass/globals/_body.scss */
+/* line 232, sass/globals/_body.scss */
 .modal-vertical-centered {
   position: fixed;
   top: 15% !important;
@@ -543,7 +562,7 @@ vertical-align: middle;
 }*/
 /* Tooltip
 -------------------------------------------------- */
-/* line 239, sass/globals/_body.scss */
+/* line 257, sass/globals/_body.scss */
 .tooltip-inner {
   background-color: #F6F6F6;
   color: #000;
@@ -552,28 +571,28 @@ vertical-align: middle;
   text-align: left;
 }
 
-/* line 246, sass/globals/_body.scss */
+/* line 264, sass/globals/_body.scss */
 .tooltip-arrow {
   border-bottom-color: #f2f2f2;
 }
 
 /* Pagination
 -------------------------------------------------- */
-/* line 252, sass/globals/_body.scss */
+/* line 270, sass/globals/_body.scss */
 .pagination > li > a, .pagination > li > span {
   color: #DA131F;
   background-color: #FFF;
   border: 1px solid #d3d3d3;
 }
 
-/* line 258, sass/globals/_body.scss */
+/* line 276, sass/globals/_body.scss */
 .pagination > li > a:hover, .pagination > li > a:focus, .pagination > li > span:hover, .pagination > li > span:focus {
   color: #DA131F;
   background-color: #F6F6F6;
   border-color: #d3d3d3;
 }
 
-/* line 264, sass/globals/_body.scss */
+/* line 282, sass/globals/_body.scss */
 .pagination > .disabled > a, .pagination > .disabled > a:hover, .pagination > .disabled > a:focus {
   color: #777777;
   background-color: #FFF;
@@ -581,7 +600,7 @@ vertical-align: middle;
   cursor: not-allowed;
 }
 
-/* line 271, sass/globals/_body.scss */
+/* line 289, sass/globals/_body.scss */
 .pagination > .active > a, .pagination > .active > a:hover {
   color: #fff;
   background-color: #d3d3d3;
@@ -591,7 +610,7 @@ vertical-align: middle;
 /* Absolute Center CSS Spinner
 http://codepen.io/MattIn4D/pen/LiKFC
 -------------------------------------------------- */
-/* line 280, sass/globals/_body.scss */
+/* line 298, sass/globals/_body.scss */
 #loading {
   position: fixed;
   z-index: 999;
@@ -605,7 +624,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   right: 0;
   text-align: center;
 }
-/* line 292, sass/globals/_body.scss */
+/* line 310, sass/globals/_body.scss */
 #loading .loading-in {
   margin: auto;
   padding: 10px;
@@ -617,7 +636,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 
 /* Transparent Overlay */
-/* line 304, sass/globals/_body.scss */
+/* line 322, sass/globals/_body.scss */
 .loading-spin:before {
   content: '';
   display: block;
@@ -629,7 +648,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-/* line 315, sass/globals/_body.scss */
+/* line 333, sass/globals/_body.scss */
 .loading-fade {
   opacity: 0;
   -webkit-transition: opacity 4s;
@@ -1607,6 +1626,17 @@ padding-right: 5px;
 /* line 34, sass/modules/_configuration.scss */
 .spin-true .fa-spin {
   display: none;
+}
+
+/* Login
+-------------------------------------------------- */
+/* line 4, sass/modules/_login.scss */
+#page_login #main_navbar {
+  display: none !important;
+}
+/* line 7, sass/modules/_login.scss */
+#page_login .container {
+  max-width: 500px;
 }
 
 /*

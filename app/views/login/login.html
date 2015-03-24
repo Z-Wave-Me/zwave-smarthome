@@ -1,0 +1,27 @@
+<!-- Login view -->
+<div ng-controller="LoginController" class="mobile-padding">
+    <form name="form_login" id="form_login" class="form form-page" ng-submit="login(input)" novalidate>
+            <fieldset>
+                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('nav_login')"></span></h3>
+                <!-- login -->
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1"><i class="fa fa-chevron-down"></i></span>
+                        <input name="login" id="login" type="text" class="form-control" placeholder="{{_t('lb_login')}}" value="{{input.login}}" ng-model="input.login" />
+                    </div>
+                <!-- password -->
+                <div>
+                   <input name="password" id="password" type="password" class="form-control" placeholder="{{_t('lb_password')}}" value="" ng-model="input.password" />
+                </div>
+               
+            </fieldset>
+         <!-- keep me -->
+                <div>
+                        <input type="checkbox" name="keepme" value="true" id="keepme" ng-model="input.keepme" /> 
+                        <label ng-bind="_t('lb_keep_logged')"></label>
+                    </div>
+        
+         <div class="form-footer">
+                <button type="submit" class="btn btn-primary btn-block" ng-bind="_t('lb_login')">{{_t('apply_config_into_device')}}</button>
+            </div>
+         </form>
+</div>

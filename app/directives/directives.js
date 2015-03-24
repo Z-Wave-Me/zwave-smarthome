@@ -9,6 +9,19 @@ myApp.directive('testDir', function() {
         template: '<p>This is a test directive</p>'
     };
 });
+/**
+ * History go back
+ */
+myApp.directive('bbGoBack', ['$window', function($window) {
+        return {
+            restrict: 'A',
+            link: function (scope, elem, attrs) {
+                elem.bind('click', function () {
+                    $window.history.back();
+                });
+            }
+        };
+    }]);
 
 /**
  * Page loader directive

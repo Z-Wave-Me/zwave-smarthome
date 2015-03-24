@@ -1,0 +1,73 @@
+<!-- Home view -->
+<div ng-controller="ProfileDetailController">
+    <bb-loader></bb-loader>
+    <div ng-show="input">
+        {{input}}
+        <h2 class="page-subtitle subtitle-border"><span ng-bind="_t('lb_profile')"></span>: <span ng-bind="input.name"></span></h2>
+        <form name="form_profile" id="form_profile" class="form" ng-submit="store(input)" novalidate>
+            <div class="cfg-control-content">
+                <p class="network-zwave-title">
+                    <i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_login')"></span>
+                </p>
+                <div>
+                    <!-- login -->
+                    <div class="form-group">
+                        <input name="login" id="login" type="text" class="form-control" placeholder="{{_t('lb_login')}}" value="{{input.login}}" ng-model="input.login" />
+                    </div>
+                    <!-- password -->
+                    <div class="form-group">
+                        <input name="password" id="password" type="password" class="form-control" placeholder="{{_t('lb_password')}}" value="{{input.lpassword}}" ng-model="input.password" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="cfg-control-content">
+                <p class="network-zwave-title">
+                    <i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_access')"></span>
+                </p>
+                <div>
+
+                </div>
+            </div>
+
+
+            <div class="cfg-control-content">
+                <p class="network-zwave-title">
+                    <i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_settings')"></span>
+                </p>
+                <div>
+                    <!-- name -->
+                    <div class="form-group">
+                        <input name="name" id="name" type="text" class="form-control" placeholder="{{_t('lb_profile_name')}}" value="{{input.name}}" ng-model="input.name" />
+                    </div>
+                    <!-- lang -->
+                    <div class="form-group form-inline">
+                         <!-- lang -->
+                        <label>{{_t('lb_language')}}:</label>
+                        <select name="lang" class="form-control" ng-model="input.lang">
+                            <option ng-repeat="l in cfg.lang_list" value="{{l}}" ng-bind="l"></option>
+                        </select>
+                        <!-- colors -->
+                        <label>{{_t('lb_profile_color')}}: </label>
+                        <a href=""
+                           class="profile-color"
+                           ng-repeat="v in cfg.profile_colors" 
+                           ng-class="$index == 3 ? 'active' : ''"
+                           style="background-color: {{v}}">&nbsp;</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- active -->
+            <!--<div class="form-group">
+                <input type="checkbox" name="active" value="true" id="active" ng-model="input.active" ng-checked="input.active" /> <label ng-bind="_t('lb_active')"></label>
+            </div>-->
+            <div class="form-footer">
+                <button type="submit" class="btn btn-info" ng-bind="_t('lb_save')">{{_t('apply_config_into_device')}}</button>
+                <a href="#profiles" class="btn btn-default" ng-bind="_t('lb_cancel')"></a>
+            </div>
+        </form>
+
+    </div>
+
+</div> <!-- /ng-controller --> 
