@@ -1900,7 +1900,19 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
 /**
  * Login controller
  */
-myAppController.controller('LoginController', function($scope, dataFactory) {
+myAppController.controller('LoginController', function($scope,$cookies,$location, dataFactory, dataService) {
+    $scope.input = {
+        login: '',
+        password: '',
+        keepme: false
+    };
+    /**
+     * Login proccess
+     */
+    $scope.login = function(input) {
+       dataService.logInfo(input);
+       $location.path('/elements/dashboard/1' );
+    };
 
 });
 /**
