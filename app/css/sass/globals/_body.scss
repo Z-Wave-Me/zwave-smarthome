@@ -15,17 +15,31 @@ h1, .h1, h2, .h2, h3, .h3 {
     color: lighten($app-body-color, 15%);
 }
 h1 {
-    font-size: 22px;
+    font-size:20px;
     /*    text-shadow: 3px 1px 2px rgba(150, 150, 150, 1);*/
     /*    color: #2A6496;*/
 }
 
 h3 {
-    font-size: 20px;
+    font-size: 18px;
 }
 .page-header{
     margin: 0;
-    padding: 0 20px;
+    padding: 0 0 10px 0;
+    border: 0;
+}
+.header-control{
+    h1{
+        display: block;
+        width: 45%;
+        float: left;
+    }
+    .page-header-control{
+        display: block;
+        width: 45%;
+        float: right;
+        text-align: right;
+    }
 }
 .page-control{
     position: relative;
@@ -203,6 +217,17 @@ fieldset{
 .submit-entry{
     text-align: right;
 }
+.form-control-hidden{
+    display: none !important;
+}
+.form-control-img{
+    cursor: pointer;
+     border: solid 4px transparent;
+    
+}
+.control-active{
+    border: solid 4px black !important;
+}
 
 /* Alpaca
 -------------------------------------------------- */
@@ -212,14 +237,6 @@ fieldset{
 
 /* Page
 -------------------------------------------------- */
-
-
-.page-header {
-    padding: 0;
-    margin: 0 0 20px 0;
-    border-bottom: 0;
-}
-
 #main_content {
     margin-top: 70px; 
     margin-bottom: 20px;

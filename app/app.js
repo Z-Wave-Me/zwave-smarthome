@@ -40,9 +40,13 @@ myApp.config(['$routeProvider',
                 when('/profiles', {
                     templateUrl: 'app/views/profiles/profiles.html'
                 }).
-                //Profile detail
-                when('/profiles/:id', {
-                    templateUrl: 'app/views/profiles/profile.html'
+                //Admin
+                when('/admin', {
+                    templateUrl: 'app/views/admin/admin.html'
+                }).
+                //Admin detail
+                when('/admin/user/:id', {
+                    templateUrl: 'app/views/admin/admin_user.html'
                 }).
                 //My Access
                 when('/myaccess', {

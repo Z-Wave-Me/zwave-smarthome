@@ -1,9 +1,11 @@
-<!-- Home view -->
-<div ng-controller="ProfileDetailController">
+<!-- Admin user view -->
+<div ng-controller="AdminUserController">
     <bb-loader></bb-loader>
+     
     <div ng-show="input">
-        {{input}}
-        <h2 class="page-subtitle subtitle-border"><span ng-bind="_t('lb_profile')"></span>: <span ng-bind="input.name"></span></h2>
+        <div class="page-header">
+        <h1><span ng-bind="_t('lb_user')"></span>: <span ng-show="input.id > 0">(#{{input.id}})</span> <span ng-bind="input.name"></span></h1>
+    </div>
         <form name="form_profile" id="form_profile" class="form" ng-submit="store(input)" novalidate>
             <div class="cfg-control-content">
                 <p class="network-zwave-title">
@@ -63,8 +65,8 @@
                 <input type="checkbox" name="active" value="true" id="active" ng-model="input.active" ng-checked="input.active" /> <label ng-bind="_t('lb_active')"></label>
             </div>-->
             <div class="form-footer">
-                <button type="submit" class="btn btn-info" ng-bind="_t('lb_save')">{{_t('apply_config_into_device')}}</button>
-                <a href="#profiles" class="btn btn-default" ng-bind="_t('lb_cancel')"></a>
+                <button type="submit" class="btn btn-primary" ng-bind="_t('lb_save')">{{_t('apply_config_into_device')}}</button>
+                <a href="#admin" class="btn btn-default" ng-bind="_t('lb_cancel')"></a>
             </div>
         </form>
 

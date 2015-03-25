@@ -755,146 +755,6 @@ myAppController.controller('ProfileController', function($scope, $window, $cooki
     };
 });
 /**
- * Orofile detail
- */
-myAppController.controller('ProfileDetailController', function($scope, $routeParams, $filter, $location, $log, $timeout, dataFactory, dataService,myCache) {
-    $scope.id = $filter('toInt')($routeParams.id);
-    $scope.input = {
-        id: 0,
-        name: null,
-        active: true,
-        description: null,
-        positions: [],
-        lang: 'en'
-
-    };
-
-    /**
-     * Load data
-     */
-    $scope.loadData = function(id) {
-         
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataFactory.getApi('profiles','/' + id,true).then(function(response) {
-            dataService.logInfo(response.data.data);
-            $scope.input = response.data.data;
-            $scope.loading = false;
-        }, function(error) {
-            $scope.input = false;
-            $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-danger', message: $scope._t('error_load_data')};
-            dataService.showConnectionError(error);
-        });
-    };
-    if ($scope.id > 0) {
-        $scope.loadData($scope.id);
-    }
-
-    /**
-     * Create/Update an item
-     */
-    $scope.store = function(input) {
-        $scope.loading = {status:'loading-spin',icon:'fa-spinner fa-spin', message:$scope._t('updating')};
-        //var profileLang = (angular.fromJson($cookies.profileLang) ? angular.fromJson($cookies.profileLang) : []);
-
-        var inputData = {
-            id: input.id,
-            name: input.name,
-            active: input.active,
-            positions: $scope.input.positions,
-            lang: input.lang
-
-        };
-        dataFactory.storeApi('profiles',input.id,inputData).then(function(response) {
-            dataService.logInfo(response, 'Profile http response data');
-            $scope.loading = {status:'loading-fade',icon:'fa-check text-success', message:$scope._t('success_updated')};
-             myCache.remove('profiles');
-            dataFactory.getApi('profiles');
-             
-        }, function(error) {
-            alert($scope._t('error_update_data'));
-            $scope.loading = false;
-            dataService.logError(error);
-        });
-//        if (profileLang.length > 0) {
-//            angular.forEach(profileLang, function(v, k) {
-//                if (v['id'] != input.id) {
-//                    profileLang.push({'id': input.id, 'lang': input.lang});
-//                }
-//            });
-//        } else {
-//            profileLang.push({'id': input.id, 'lang': input.lang});
-//        }
-//         $cookies.profileLang = angular.toJson(profileLang);
-
-    };
-
-});
-/**
- * My Access
- */
-myAppController.controller('MyAccessController', function($scope, $routeParams, $filter, $location, $log, $timeout, dataFactory, dataService, myCache) {
-    $scope.id = 1;//$filter('toInt')($routeParams.id);
-    $scope.input = {
-        id: 0,
-        name: null,
-        active: true,
-        description: null,
-        positions: [],
-        lang: 'en'
-
-    };
-
-    /**
-     * Load data
-     */
-    $scope.loadData = function(id) {
-
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataFactory.getApi('profiles', '/' + id, true).then(function(response) {
-            dataService.logInfo(response.data.data);
-            $scope.input = response.data.data;
-            $scope.loading = false;
-        }, function(error) {
-            $scope.input = false;
-            $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-danger', message: $scope._t('error_load_data')};
-            dataService.showConnectionError(error);
-        });
-    };
-    if ($scope.id > 0) {
-        $scope.loadData($scope.id);
-    }
-
-    /**
-     * Create/Update an item
-     */
-    $scope.store = function(input) {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        //var profileLang = (angular.fromJson($cookies.profileLang) ? angular.fromJson($cookies.profileLang) : []);
-
-        var inputData = {
-            id: input.id,
-            name: input.name,
-            active: input.active,
-            positions: $scope.input.positions,
-            lang: input.lang
-
-        };
-        dataFactory.putApi('profiles', input.id, input).then(function(response) {
-            dataService.logInfo(response, 'Profile http response data');
-            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
-            myCache.remove('profiles');
-            dataFactory.getApi('profiles');
-
-        }, function(error) {
-            alert($scope._t('error_update_data'));
-            $scope.loading = false;
-            dataService.logError(error);
-        });
-
-    };
-
-});
-/**
  * App controller
  */
 myAppController.controller('AppController', function($scope, $window, $cookies, $timeout, $log, dataFactory, dataService, myCache) {
@@ -1898,9 +1758,194 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
     ;
 });
 /**
+ * Profile controller
+ */
+myAppController.controller('AdminController', function($scope, $window, $cookies, dataFactory, dataService, myCache) {
+    $scope.profiles = [];
+
+    /**
+     * Load data into collection
+     */
+    $scope.loadData = function() {
+        dataFactory.getApi('profiles').then(function(response) {
+            $scope.profiles = response.data.data;
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    };
+    $scope.loadData();
+
+    /**
+     * Delete an item
+     */
+    $scope.delete = function(target, input, dialog, except) {
+        if (input.id == except) {
+            return;
+        }
+        var confirm = true;
+        if (dialog) {
+            confirm = $window.confirm(dialog);
+        }
+
+        if (confirm) {
+            dataFactory.deleteApi('profiles', input.id).then(function(response) {
+                //$(target).fadeOut(2000);
+                myCache.remove('profiles');
+                $scope.loadData();
+
+            }, function(error) {
+                alert($scope._t('error_delete_data'));
+                $log.error('ERROR: ', error);
+            });
+        }
+    };
+});
+/**
+ * Orofile detail
+ */
+myAppController.controller('AdminUserController', function($scope, $routeParams, $filter, $location, $log, $timeout, dataFactory, dataService, myCache) {
+    $scope.id = $filter('toInt')($routeParams.id);
+    $scope.input = {
+        id: 0,
+        name: null,
+        active: true,
+        description: null,
+        positions: [],
+        lang: 'en'
+
+    };
+
+    /**
+     * Load data
+     */
+    $scope.loadData = function(id) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        dataFactory.getApi('profiles', '/' + id, true).then(function(response) {
+            dataService.logInfo(response.data.data);
+            $scope.input = response.data.data;
+            $scope.loading = false;
+        }, function(error) {
+            $scope.input = false;
+            $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-danger', message: $scope._t('error_load_data')};
+            dataService.showConnectionError(error);
+        });
+    };
+    if ($scope.id > 0) {
+        $scope.loadData($scope.id);
+    }
+
+    /**
+     * Create/Update an item
+     */
+    $scope.store = function(input) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        //var profileLang = (angular.fromJson($cookies.profileLang) ? angular.fromJson($cookies.profileLang) : []);
+
+        var inputData = {
+            id: input.id,
+            name: input.name,
+            active: input.active,
+            positions: $scope.input.positions,
+            lang: input.lang
+
+        };
+        dataFactory.storeApi('profiles', input.id, inputData).then(function(response) {
+            var id = $filter('hasNode')(response,'data.data.id');
+            //dataService.logInfo(response, 'Profile http response data');
+            if(id){
+                myCache.remove('profiles');
+                $scope.loadData(id);
+            }
+            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
+
+        }, function(error) {
+            alert($scope._t('error_update_data'));
+            $scope.loading = false;
+            dataService.logError(error);
+        });
+//        if (profileLang.length > 0) {
+//            angular.forEach(profileLang, function(v, k) {
+//                if (v['id'] != input.id) {
+//                    profileLang.push({'id': input.id, 'lang': input.lang});
+//                }
+//            });
+//        } else {
+//            profileLang.push({'id': input.id, 'lang': input.lang});
+//        }
+//         $cookies.profileLang = angular.toJson(profileLang);
+
+    };
+
+});
+/**
+ * My Access
+ */
+myAppController.controller('MyAccessController', function($scope, $routeParams, $filter, $location, $log, $timeout, dataFactory, dataService, myCache) {
+    $scope.id = 1;//$filter('toInt')($routeParams.id);
+    $scope.input = {
+        id: 0,
+        name: null,
+        active: true,
+        description: null,
+        positions: [],
+        lang: 'en'
+
+    };
+
+    /**
+     * Load data
+     */
+    $scope.loadData = function(id) {
+
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        dataFactory.getApi('profiles', '/' + id, true).then(function(response) {
+            dataService.logInfo(response.data.data);
+            $scope.input = response.data.data;
+            $scope.loading = false;
+        }, function(error) {
+            $scope.input = false;
+            $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-danger', message: $scope._t('error_load_data')};
+            dataService.showConnectionError(error);
+        });
+    };
+    if ($scope.id > 0) {
+        $scope.loadData($scope.id);
+    }
+
+    /**
+     * Create/Update an item
+     */
+    $scope.store = function(input) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        //var profileLang = (angular.fromJson($cookies.profileLang) ? angular.fromJson($cookies.profileLang) : []);
+
+//        var inputData = {
+//            id: input.id,
+//            name: input.name,
+//            active: input.active,
+//            positions: $scope.input.positions,
+//            lang: input.lang
+//
+//        };
+        dataFactory.putApi('profiles', input.id, input).then(function(response) {
+            dataService.logInfo(response, 'Profile http response data');
+            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
+            myCache.remove('profiles');
+            $scope.loadData(input.id);
+
+        }, function(error) {
+            alert($scope._t('error_update_data'));
+            $scope.loading = false;
+            dataService.logError(error);
+        });
+
+    };
+
+});
+/**
  * Login controller
  */
-myAppController.controller('LoginController', function($scope,$cookies,$location, dataFactory, dataService) {
+myAppController.controller('LoginController', function($scope, $cookies, $location, dataFactory, dataService) {
     $scope.input = {
         login: '',
         password: '',
@@ -1910,8 +1955,8 @@ myAppController.controller('LoginController', function($scope,$cookies,$location
      * Login proccess
      */
     $scope.login = function(input) {
-       dataService.logInfo(input);
-       $location.path('/elements/dashboard/1' );
+        dataService.logInfo(input);
+        $location.path('/elements/dashboard/1');
     };
 
 });
