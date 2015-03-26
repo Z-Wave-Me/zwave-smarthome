@@ -71,13 +71,13 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
     /**
      * Load base data (profiles, languages)
      */
-    $scope.navpPofiles = [];
-    $scope.loadBaseData = function() {
-        dataFactory.getApiData('profiles', function(data) {
-            $scope.navpPofiles = data.data;
-        });
-    };
-    $scope.loadBaseData();
+//    $scope.navpPofiles = [];
+//    $scope.loadBaseData = function() {
+//        dataFactory.getApiData('profiles', function(data) {
+//            $scope.navpPofiles = data.data;
+//        });
+//    };
+//    $scope.loadBaseData();
 
     /**
      * Get body ID
@@ -1830,7 +1830,7 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
  * Profile controller
  */
 myAppController.controller('AdminController', function($scope, $window, $cookies, dataFactory, dataService, myCache) {
-    $scope.profiles = [];
+    $scope.profiles = {};
 
     /**
      * Load data into collection
@@ -1838,6 +1838,7 @@ myAppController.controller('AdminController', function($scope, $window, $cookies
     $scope.loadData = function() {
         dataFactory.getApi('profiles').then(function(response) {
             $scope.profiles = response.data.data;
+            dataService.updateTimeTick();
         }, function(error) {
             dataService.showConnectionError(error);
         });
@@ -1949,7 +1950,7 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
 /**
  * My Access
  */
-myAppController.controller('MyAccessController', function($scope, $routeParams, $filter, $location, $log, $timeout, dataFactory, dataService, myCache) {
+myAppController.controller('MyAccessController', function($scope,dataFactory, dataService, myCache) {
     $scope.id =  $scope.profile.id;
     $scope.devices =  {};
     $scope.input = {
@@ -2043,7 +2044,7 @@ myAppController.controller('MyAccessController', function($scope, $routeParams, 
     
     /// --- Private functions --- ///
     /**
-     * Load profile
+     * Load devices
      */
     function loadDevices() {
         dataFactory.getApi('devices').then(function(response) {
