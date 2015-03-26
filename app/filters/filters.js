@@ -48,12 +48,12 @@ myApp.filter('cutText', function() {
  * Convert val to int
  */
 myApp.filter('toInt', function() {
-    return function(val,a) {
+    return function(val, a) {
         a = typeof a !== 'undefined' ? a : 10;
-        if(isNaN(val)){
-             return 0;
+        if (isNaN(val)) {
+            return 0;
         }
-        return parseInt(val,a);
+        return parseInt(val, a);
     };
 });
 
@@ -153,14 +153,14 @@ myApp.filter('hasNode', function() {
  * Get segment from url
  */
 myApp.filter('getUrlSegment', function($location) {
-  return function(segment) {
-     var ret = false;
-     var data = $location.path().split('/');
-    if(data[segment]) {
-      ret = data[segment];
-    }
-    return ret;
-  };
+    return function(segment) {
+        var ret = false;
+        var data = $location.path().split('/');
+        if (data[segment]) {
+            ret = data[segment];
+        }
+        return ret;
+    };
 });
 /**
  * Get current time
@@ -266,6 +266,29 @@ myApp.filter('getCurrentTime', function() {
     };
 });
 /**
+ * Get current time
+ */
+myApp.filter('unixStartOfDay', function() {
+    return function(input,value) {
+        var now = new Date();
+        var startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        var timestamp = (startOfDay / 1000) + 3600;
+        if(input && value){
+            switch(input){
+                case '+':
+                    timestamp += value;
+                    break;
+                case '-':
+                    timestamp -= value;
+                    break;
+                default:
+                    break;
+            }
+        }
+        return timestamp;
+    };
+});
+/**
  * If is today display h:m otherwise d:m:y
  */
 myApp.filter('isToday', function() {
@@ -289,7 +312,7 @@ myApp.filter('isToday', function() {
 
             var endDate = new Date();              // Today
             var nDays = diffDays(startDate, endDate) + 1;
-            var str = '' + nDays + ' days';
+            var str = '' + (nDays + 1) + ' days';
             if (nDays < 2) {
                 str = 'yesterday';
             }
@@ -405,13 +428,13 @@ myApp.filter('uri', function($location) {
  * Display device name
  */
 myApp.filter('deviceName', function() {
-    return function(deviceId,device) {
+    return function(deviceId, device) {
         var name = (deviceId == 1 ? 'RaZberry' : 'Device ' + '_' + deviceId);
         if (device === undefined) {
             return name;
         }
-        if(device.data.givenName.value != ''){
-             name = device.data.givenName.value;
+        if (device.data.givenName.value != '') {
+            name = device.data.givenName.value;
         }
         return name;
     };
@@ -422,7 +445,7 @@ myApp.filter('deviceName', function() {
  */
 myApp.filter('stringToSlug', function() {
     return function(str) {
-       str = str.replace(/^\s+|\s+$/g, ''); // trim
+        str = str.replace(/^\s+|\s+$/g, ''); // trim
         str = str.toLowerCase();
 
         // remove accents, swap ñ for n, etc

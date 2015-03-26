@@ -1,6 +1,12 @@
 <!-- Events view -->
 <div ng-controller="EventController">
-    
+    <button class="btn btn-default" ng-click="changeTime(1)" ng-disabled="timeFilter.day == 1">Today</button>
+    <button class="btn btn-default" ng-click="changeTime(2)" ng-disabled="timeFilter.day == 2">Yesterday</button>
+    <button class="btn btn-default" ng-click="changeTime(3)" ng-disabled="timeFilter.day == 3">3 days</button>
+    <button class="btn btn-default" ng-click="changeTime(4)" ng-disabled="timeFilter.day == 4">4 days</button>
+    <button class="btn btn-default" ng-click="changeTime(5)" ng-disabled="timeFilter.day == 5">5 days</button>
+    <button class="btn btn-default" ng-click="changeTime(6)" ng-disabled="timeFilter.day == 6">6 days</button>
+    <button class="btn btn-default" ng-click="changeTime(7)" ng-disabled="timeFilter.day == 7">7 days</button>
     <div class="table-responsive_">
         <table class="table table-condensed table-report table-events">
             <tbody>
@@ -28,7 +34,7 @@
                                 <li><a ng-href="#events/source/{{v.source}}" ng-bind="_t('lb_events_source')"></a></li> 
                                 <li><a ng-href="#events/type/{{v.type}}" ng-bind="_t('lb_events_type')"></a></li> 
                                 <li><a ng-href="#events/source_type?source={{v.source}}&type={{v.type}}" ng-bind="_t('lb_events_source_type')"></a></li> 
-                                 <li><a ng-href="#events" ng-bind="_t('lb_show_all')"></a></li>  
+                                <li><a ng-href="#events" ng-bind="_t('lb_show_all')"></a></li>  
                             </ul>
                         </div>
                     </td>
@@ -43,7 +49,7 @@
     <div id="footer">
         <div class="navbar navbar-default navbar-fixed-bottom">
             <div class="container">
-               <form class="form-inline" role="form">
+                <form class="form-inline" role="form">
                     <div class="btn-group dropup">
                         <button type="button" class="btn btn-default" ng-bind="_t('lb_filter_by')"></button>
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -64,8 +70,8 @@
                         </button>
                         <ul class="dropdown-menu">
                             <li><a ng-href="#events" ng-bind="_t('lb_hide_device_events')"></a></li> 
-                                <li><a ng-href="#events" ng-bind="_t('lb_hide_system_events')"></a></li> 
-                                <li><a href="#events" ng-click="deleteSystemEvents(_t('lb_delete_confirm'))" ng-bind="_t('lb_delete_system_events')"></a></li> 
+                            <li><a ng-href="#events" ng-bind="_t('lb_hide_system_events')"></a></li> 
+                            <li><a href="#events" ng-click="deleteSystemEvents(_t('lb_delete_confirm'))" ng-bind="_t('lb_delete_system_events')"></a></li> 
                         </ul>
                     </div>
                 </form>

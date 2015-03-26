@@ -259,20 +259,25 @@ h3 {
   font-size: 18px;
 }
 
-/* line 26, sass/globals/_body.scss */
+/* line 27, sass/globals/_body.scss */
+h4 {
+  font-size: 16px;
+}
+
+/* line 30, sass/globals/_body.scss */
 .page-header {
   margin: 0;
   padding: 0 0 10px 0;
   border: 0;
 }
 
-/* line 32, sass/globals/_body.scss */
+/* line 36, sass/globals/_body.scss */
 .header-control h1 {
   display: block;
   width: 45%;
   float: left;
 }
-/* line 37, sass/globals/_body.scss */
+/* line 41, sass/globals/_body.scss */
 .header-control .page-header-control {
   display: block;
   width: 45%;
@@ -280,7 +285,7 @@ h3 {
   text-align: right;
 }
 
-/* line 44, sass/globals/_body.scss */
+/* line 48, sass/globals/_body.scss */
 .page-control {
   position: relative;
   top: -15px;
@@ -290,12 +295,12 @@ h3 {
      }*/
 }
 
-/* line 52, sass/globals/_body.scss */
+/* line 56, sass/globals/_body.scss */
 .page-subtitle {
   font-size: 20px;
 }
 
-/* line 55, sass/globals/_body.scss */
+/* line 59, sass/globals/_body.scss */
 .subtitle-border {
   font-size: 18px;
   border-bottom: solid 1px #d3d3d3;
@@ -303,62 +308,62 @@ h3 {
   margin-bottom: 20px;
 }
 
-/* line 61, sass/globals/_body.scss */
+/* line 65, sass/globals/_body.scss */
 .entry-title, .entry-title a {
   font-size: 15px;
 }
 
-/* line 65, sass/globals/_body.scss */
+/* line 69, sass/globals/_body.scss */
 a {
   color: #4d4d4d;
 }
 
-/* line 68, sass/globals/_body.scss */
+/* line 72, sass/globals/_body.scss */
 a:hover {
   color: #ef4a54;
 }
 
-/* line 72, sass/globals/_body.scss */
+/* line 76, sass/globals/_body.scss */
 .text-supp {
   font-style: italic;
   color: #595959;
 }
 
-/* line 77, sass/globals/_body.scss */
+/* line 81, sass/globals/_body.scss */
 .perex {
   margin: 20px 0;
   padding: 20px 0 0 0;
   border-top: 1px dotted #9fd8ef;
 }
 
-/* line 83, sass/globals/_body.scss */
+/* line 87, sass/globals/_body.scss */
 .badge {
   padding: 7px;
   margin-right: 5px;
 }
 
-/* line 87, sass/globals/_body.scss */
+/* line 91, sass/globals/_body.scss */
 .label-more {
   cursor: pointer;
 }
 
-/* line 91, sass/globals/_body.scss */
+/* line 95, sass/globals/_body.scss */
 .more-info {
   color: #458EC5;
   font-weight: bold;
 }
 
-/* line 96, sass/globals/_body.scss */
+/* line 100, sass/globals/_body.scss */
 .btn-tooltip {
   cursor: help;
 }
 
-/* line 99, sass/globals/_body.scss */
+/* line 103, sass/globals/_body.scss */
 .app-border {
   border: solid 4px #fff;
 }
 
-/* line 102, sass/globals/_body.scss */
+/* line 106, sass/globals/_body.scss */
 .app-gradient {
   background: #f6f6f6;
   /* Old browsers */
@@ -378,7 +383,7 @@ a:hover {
   /* IE6-9 */
 }
 
-/* line 106, sass/globals/_body.scss */
+/* line 110, sass/globals/_body.scss */
 .app-gradient-green {
   background: #1e5799;
   /* Old browsers */
@@ -398,29 +403,29 @@ a:hover {
   /* IE6-9 */
 }
 
-/* line 110, sass/globals/_body.scss */
+/* line 114, sass/globals/_body.scss */
 .app-shadow {
   -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
   -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
   box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
 }
 
-/* line 114, sass/globals/_body.scss */
+/* line 118, sass/globals/_body.scss */
 .bcg-active.false {
   background-color: #f2e8e8;
 }
 
-/* line 118, sass/globals/_body.scss */
+/* line 122, sass/globals/_body.scss */
 .alert-hidden {
   display: none;
 }
 
-/* line 121, sass/globals/_body.scss */
+/* line 125, sass/globals/_body.scss */
 .alert-page {
   margin: 10px 0;
 }
 
-/* line 125, sass/globals/_body.scss */
+/* line 129, sass/globals/_body.scss */
 .alert-entry {
   text-align: center;
   position: absolute;
@@ -434,14 +439,14 @@ a:hover {
 
 /* Spinners
 -------------------------------------------------- */
-/* line 140, sass/globals/_body.scss */
+/* line 144, sass/globals/_body.scss */
 .module-spinner {
   display: none !important;
 }
 
 /* Images
 -------------------------------------------------- */
-/* line 146, sass/globals/_body.scss */
+/* line 150, sass/globals/_body.scss */
 .report-img {
   margin: 0 5px;
   width: 40px;
@@ -450,39 +455,39 @@ a:hover {
 
 /* tables
 -------------------------------------------------- */
-/* line 157, sass/globals/_body.scss */
+/* line 161, sass/globals/_body.scss */
 .table tbody tr td {
   border-bottom: 1px solid #dbdbdb;
 }
 
-/* line 166, sass/globals/_body.scss */
+/* line 170, sass/globals/_body.scss */
 .table-report {
   border: 0 !important;
 }
-/* line 168, sass/globals/_body.scss */
+/* line 172, sass/globals/_body.scss */
 .table-report td {
   vertical-align: middle;
 }
-/* line 172, sass/globals/_body.scss */
+/* line 176, sass/globals/_body.scss */
 .table-report tbody tr {
   background-color: white;
 }
 
 /* Tabs
 -------------------------------------------------- */
-/* line 179, sass/globals/_body.scss */
+/* line 183, sass/globals/_body.scss */
 .nav-tabs {
   border-bottom: 1px solid #dddddd;
 }
 
-/* line 182, sass/globals/_body.scss */
+/* line 186, sass/globals/_body.scss */
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
   color: #1a1a1a;
   background-color: #DDDDDD;
   border: #dddddd;
 }
 
-/* line 187, sass/globals/_body.scss */
+/* line 191, sass/globals/_body.scss */
 .nav-tabs > li.active > a i {
   color: #DA131F;
 }
@@ -492,63 +497,63 @@ background-color: lighten($app-body-bcg-color, 10%);;
 }*/
 /* Forms
 -------------------------------------------------- */
-/* line 195, sass/globals/_body.scss */
+/* line 199, sass/globals/_body.scss */
 fieldset {
   margin-bottom: 10px;
   background-color: #F6F6F6;
   padding: 10px;
 }
 
-/* line 201, sass/globals/_body.scss */
+/* line 205, sass/globals/_body.scss */
 .form-page fieldset {
   background-color: #fff;
 }
-/* line 204, sass/globals/_body.scss */
+/* line 208, sass/globals/_body.scss */
 .form-page h3 {
   font-size: 14px;
   font-weight: bold;
 }
-/* line 208, sass/globals/_body.scss */
+/* line 212, sass/globals/_body.scss */
 .form-page .form-group {
   border-top: solid 1px #d3d3d3;
   padding-top: 10px;
 }
-/* line 212, sass/globals/_body.scss */
+/* line 216, sass/globals/_body.scss */
 .form-page label {
   font-weight: normal;
 }
 
-/* line 217, sass/globals/_body.scss */
+/* line 221, sass/globals/_body.scss */
 .submit-entry {
   text-align: right;
 }
 
-/* line 220, sass/globals/_body.scss */
+/* line 224, sass/globals/_body.scss */
 .form-control-hidden {
   display: none !important;
 }
 
-/* line 223, sass/globals/_body.scss */
+/* line 227, sass/globals/_body.scss */
 .form-control-img {
   cursor: pointer;
   border: solid 4px transparent;
 }
 
-/* line 228, sass/globals/_body.scss */
+/* line 232, sass/globals/_body.scss */
 .control-active {
   border: solid 4px black !important;
 }
 
 /* Alpaca
 -------------------------------------------------- */
-/* line 234, sass/globals/_body.scss */
+/* line 238, sass/globals/_body.scss */
 .alpaca-message-invalidValueOfEnum {
   display: none !important;
 }
 
 /* Page
 -------------------------------------------------- */
-/* line 240, sass/globals/_body.scss */
+/* line 244, sass/globals/_body.scss */
 #main_content {
   margin-top: 70px;
   margin-bottom: 20px;
@@ -556,13 +561,13 @@ fieldset {
 
 /* Modal
 -------------------------------------------------- */
-/* line 246, sass/globals/_body.scss */
+/* line 250, sass/globals/_body.scss */
 .modal-tooltip {
   width: 40%;
   /* or whatever you wish */
 }
 
-/* line 249, sass/globals/_body.scss */
+/* line 253, sass/globals/_body.scss */
 .modal-vertical-centered {
   position: fixed;
   top: 15% !important;
@@ -586,7 +591,7 @@ vertical-align: middle;
 }*/
 /* Tooltip
 -------------------------------------------------- */
-/* line 274, sass/globals/_body.scss */
+/* line 278, sass/globals/_body.scss */
 .tooltip-inner {
   background-color: #F6F6F6;
   color: #000;
@@ -595,28 +600,28 @@ vertical-align: middle;
   text-align: left;
 }
 
-/* line 281, sass/globals/_body.scss */
+/* line 285, sass/globals/_body.scss */
 .tooltip-arrow {
   border-bottom-color: #f2f2f2;
 }
 
 /* Pagination
 -------------------------------------------------- */
-/* line 287, sass/globals/_body.scss */
+/* line 291, sass/globals/_body.scss */
 .pagination > li > a, .pagination > li > span {
   color: #DA131F;
   background-color: #FFF;
   border: 1px solid #d3d3d3;
 }
 
-/* line 293, sass/globals/_body.scss */
+/* line 297, sass/globals/_body.scss */
 .pagination > li > a:hover, .pagination > li > a:focus, .pagination > li > span:hover, .pagination > li > span:focus {
   color: #DA131F;
   background-color: #F6F6F6;
   border-color: #d3d3d3;
 }
 
-/* line 299, sass/globals/_body.scss */
+/* line 303, sass/globals/_body.scss */
 .pagination > .disabled > a, .pagination > .disabled > a:hover, .pagination > .disabled > a:focus {
   color: #777777;
   background-color: #FFF;
@@ -624,7 +629,7 @@ vertical-align: middle;
   cursor: not-allowed;
 }
 
-/* line 306, sass/globals/_body.scss */
+/* line 310, sass/globals/_body.scss */
 .pagination > .active > a, .pagination > .active > a:hover {
   color: #fff;
   background-color: #d3d3d3;
@@ -634,7 +639,7 @@ vertical-align: middle;
 /* Absolute Center CSS Spinner
 http://codepen.io/MattIn4D/pen/LiKFC
 -------------------------------------------------- */
-/* line 315, sass/globals/_body.scss */
+/* line 319, sass/globals/_body.scss */
 #loading {
   position: fixed;
   z-index: 999;
@@ -648,7 +653,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   right: 0;
   text-align: center;
 }
-/* line 327, sass/globals/_body.scss */
+/* line 331, sass/globals/_body.scss */
 #loading .loading-in {
   margin: auto;
   padding: 10px;
@@ -660,7 +665,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 
 /* Transparent Overlay */
-/* line 339, sass/globals/_body.scss */
+/* line 343, sass/globals/_body.scss */
 .loading-spin:before {
   content: '';
   display: block;
@@ -672,7 +677,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-/* line 350, sass/globals/_body.scss */
+/* line 354, sass/globals/_body.scss */
 .loading-fade {
   opacity: 0;
   -webkit-transition: opacity 4s;
@@ -1670,6 +1675,35 @@ padding-right: 5px;
 /* line 15, sass/modules/_admin.scss */
 .profile-lang {
   display: inline-block;
+}
+
+/* Myacces
+-------------------------------------------------- */
+/* line 23, sass/modules/_admin.scss */
+.device-assigned-block {
+  background-color: #FCF8E3;
+  padding: 10px;
+  border: 1px solid #faebcc;
+  margin: 10px 0;
+  color: #8a6d3b;
+  background-color: #fcf8e3;
+}
+
+/* line 32, sass/modules/_admin.scss */
+.btn-device-admin {
+  display: inline-block;
+  padding: 6px 12px;
+  margin: 0 5px 5px 0;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-color: #fff;
+  border: 1px solid #d3d3d3;
+  border-radius: 4px;
 }
 
 /* Login

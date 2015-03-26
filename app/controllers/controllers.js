@@ -535,11 +535,20 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
 /**
  * Event controller
  */
-myAppController.controller('EventController', function($scope, $routeParams, $interval, $window, dataFactory, dataService, myCache, paginationService, cfg) {
+myAppController.controller('EventController', function($scope, $routeParams, $interval, $window, $filter, dataFactory, dataService, myCache, paginationService, cfg) {
     $scope.collection = [];
     $scope.eventLevels = [];
     $scope.eventSources = [];
     $scope.currLevel = null;
+    $scope.timeFilter = {
+        since: $filter('unixStartOfDay')(),
+        to: $filter('unixStartOfDay')('+', 86400),
+        day: 1
+    };
+    $scope.timeFilter__ = {
+        since: 1427328000,
+        to: 1427414400
+    };
     $scope.currentPage = 1;
     $scope.pageSize = cfg.page_results_events;
     $scope.reset = function() {
@@ -555,15 +564,75 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
     /**
      * Load data into collection
      */
-    $scope.loadData = function() {
-        dataFactory.getApi('notifications').then(function(response) {
+    $scope.loadData = function(timeFilter) {
+        var urlParam = '?since=' + timeFilter.since + '&to=' + timeFilter.to + '&profile=' +  $scope.profile.id;
+        dataFactory.getApi('notifications', urlParam).then(function(response) {
             setData(response.data);
             dataService.updateTimeTick(response.data.data.updateTime);
         }, function(error) {
             dataService.showConnectionError(error);
         });
     };
-    $scope.loadData();
+    $scope.loadData($scope.timeFilter);
+    /**
+     * Change time
+     */
+    $scope.changeTime = function(day) {
+        switch (day) {
+            case 1:
+                 $scope.timeFilter = {
+                    since: $filter('unixStartOfDay')(),
+                    to: $filter('unixStartOfDay')('+', 86400),
+                    day: day
+                };
+                break;
+            case 2:
+                $scope.timeFilter = {
+                    since: $filter('unixStartOfDay')('-', 86400),
+                    to: $filter('unixStartOfDay')(),
+                    day: day
+                };
+                break;
+                case 3:
+                $scope.timeFilter = {
+                    since: $filter('unixStartOfDay')('-', (86400 * 2)),
+                    to: $filter('unixStartOfDay')('-', 86400),
+                    day: day
+                };
+                break;
+                case 4:
+                $scope.timeFilter = {
+                    since: $filter('unixStartOfDay')('-', (86400 * 3)),
+                    to: $filter('unixStartOfDay')('-', (86400 * 2)),
+                    day: day
+                };
+                break;
+                case 5:
+                $scope.timeFilter = {
+                    since: $filter('unixStartOfDay')('-', (86400 * 4)),
+                    to: $filter('unixStartOfDay')('-', (86400 * 3)),
+                    day: day
+                };
+                break;
+                case 6:
+                $scope.timeFilter = {
+                    since: $filter('unixStartOfDay')('-', (86400 * 5)),
+                    to: $filter('unixStartOfDay')('-', (86400 * 4)),
+                    day: day
+                };
+                break;
+                case 6:
+                $scope.timeFilter = {
+                    since: $filter('unixStartOfDay')('-', (86400 * 6)),
+                    to: $filter('unixStartOfDay')('-', (86400 * 5)),
+                    day: day
+                };
+                break;
+            default:
+                break;
+        }
+        $scope.loadData($scope.timeFilter);
+    };
 
     /**
      * Refresh data
@@ -583,7 +652,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
         $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
     };
 
-    $scope.refreshData();
+    //$scope.refreshData();
 
     /**
      * Watch for pagination change
@@ -1850,9 +1919,9 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
 
         };
         dataFactory.storeApi('profiles', input.id, inputData).then(function(response) {
-            var id = $filter('hasNode')(response,'data.data.id');
+            var id = $filter('hasNode')(response, 'data.data.id');
             //dataService.logInfo(response, 'Profile http response data');
-            if(id){
+            if (id) {
                 myCache.remove('profiles');
                 $scope.loadData(id);
             }
@@ -1881,14 +1950,19 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
  * My Access
  */
 myAppController.controller('MyAccessController', function($scope, $routeParams, $filter, $location, $log, $timeout, dataFactory, dataService, myCache) {
-    $scope.id = 1;//$filter('toInt')($routeParams.id);
+    $scope.id =  $scope.profile.id;
+    $scope.devices =  {};
     $scope.input = {
         id: 0,
-        name: null,
+        name: '',
         active: true,
-        description: null,
+        description: '',
         positions: [],
-        lang: 'en'
+        lang: 'en',
+        color: '',
+        hide_all_device_events:false,
+        hide_system_events:false,
+        hide_single_device_events:[]
 
     };
 
@@ -1896,10 +1970,10 @@ myAppController.controller('MyAccessController', function($scope, $routeParams, 
      * Load data
      */
     $scope.loadData = function(id) {
-
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('profiles', '/' + id, true).then(function(response) {
             dataService.logInfo(response.data.data);
+            loadDevices();
             $scope.input = response.data.data;
             $scope.loading = false;
         }, function(error) {
@@ -1911,6 +1985,32 @@ myAppController.controller('MyAccessController', function($scope, $routeParams, 
     if ($scope.id > 0) {
         $scope.loadData($scope.id);
     }
+    
+     /**
+     * Assign device to list
+     */
+    $scope.assignDevice = function(id, selector, assign) {
+        $(selector).toggleClass('hidden-device');
+        $('#device_assigned_' + id).toggleClass('hidden-device');
+        $scope.input.hide_single_device_events.push(assign);
+        return;
+
+    };
+    /**
+     * Remove device from the list
+     */
+    $scope.removeDevice = function(id, selector, deviceId) {
+        $(selector).toggleClass('hidden-device');
+        $('#device_unassigned_' + id).toggleClass('hidden-device');
+        var oldList = $scope.input.hide_single_device_events;
+        $scope.input.hide_single_device_events = [];
+        angular.forEach(oldList, function(v, k) {
+            if (v != deviceId) {
+                $scope.input.hide_single_device_events.push(v);
+            }
+        });
+        return;
+    };
 
     /**
      * Create/Update an item
@@ -1939,6 +2039,19 @@ myAppController.controller('MyAccessController', function($scope, $routeParams, 
             dataService.logError(error);
         });
 
+    };
+    
+    /// --- Private functions --- ///
+    /**
+     * Load profile
+     */
+    function loadDevices() {
+        dataFactory.getApi('devices').then(function(response) {
+             dataService.logInfo(response.data.data,'Devices');
+            $scope.devices = response.data.data.devices;
+        }, function(error) {
+           dataService.showConnectionError(error);
+        });
     };
 
 });
