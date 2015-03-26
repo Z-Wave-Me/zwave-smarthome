@@ -19,7 +19,15 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
     $scope.profile = {
         'id': 1,
         'name': 'Default',
-        'cssClass': 'profile-default',
+        'cssClass': 'profile-80ad80',
+        'active': true,
+        'lang': cfg.lang,
+        'positions': []
+    };
+    $scope.user = {
+        'id': 1,
+        'name': 'Default',
+        'cssClass': 'profile-80ad80',
         'active': true,
         'lang': cfg.lang,
         'positions': []
@@ -1873,15 +1881,21 @@ myAppController.controller('AdminController', function($scope, $window, $cookies
 /**
  * Orofile detail
  */
-myAppController.controller('AdminUserController', function($scope, $routeParams, $filter, $location, $log, $timeout, dataFactory, dataService, myCache) {
+myAppController.controller('AdminUserController', function($scope, $routeParams, $filter, dataFactory, dataService, myCache) {
     $scope.id = $filter('toInt')($routeParams.id);
     $scope.input = {
         id: 0,
-        name: null,
+        name: '',
         active: true,
-        description: null,
-        positions: [],
-        lang: 'en'
+        description: '',
+        //positions: [],
+        password: '',
+        login: '',
+        lang: 'en',
+        color: '',
+        hide_all_device_events:false,
+        hide_system_events:false,
+        hide_single_device_events:[]
 
     };
 
@@ -1911,15 +1925,15 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         //var profileLang = (angular.fromJson($cookies.profileLang) ? angular.fromJson($cookies.profileLang) : []);
 
-        var inputData = {
-            id: input.id,
-            name: input.name,
-            active: input.active,
-            positions: $scope.input.positions,
-            lang: input.lang
-
-        };
-        dataFactory.storeApi('profiles', input.id, inputData).then(function(response) {
+//        var inputData = {
+//            id: input.id,
+//            name: input.name,
+//            active: input.active,
+//            positions: $scope.input.positions,
+//            lang: input.lang
+//
+//        };
+        dataFactory.storeApi('profiles', input.id, input).then(function(response) {
             var id = $filter('hasNode')(response, 'data.data.id');
             //dataService.logInfo(response, 'Profile http response data');
             if (id) {
@@ -1958,7 +1972,8 @@ myAppController.controller('MyAccessController', function($scope,dataFactory, da
         name: '',
         active: true,
         description: '',
-        positions: [],
+        //positions: [],
+        password: '',
         lang: 'en',
         color: '',
         hide_all_device_events:false,

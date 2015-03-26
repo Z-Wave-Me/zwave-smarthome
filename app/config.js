@@ -8,7 +8,7 @@ var config_data = {
         'app_type': 'web',
         // Server base url
         'server_url': '/', 
-        //'server_url': 'http://192.168.10.119:8083/',
+        //'server_url': 'http://192.168.10.24:8083/',
         // Interval in miliseconds to refresh data
         'interval': 3000,
         // Interval in miliseconds (5 min) to clear history (json) cache
@@ -58,7 +58,7 @@ var config_data = {
             'ru': 'en_EN'
         },
         // List of profile colors
-        'profile_colors': ['#6C7A89', '#3071A9', '#449D44', '#31B0D5', '#F0AD4E', '#D9534F'],
+        'profile_colors': ['#6C7A89', '#3071A9', '#449D44', '#31B0D5', '#F0AD4E', '#D9534F','#dd976e'],
         // Chart colors
         'chart_colors': {
             fillColor: 'rgba(151,187,205,0.5)',
