@@ -180,7 +180,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
  * Test controller
  */
 myAppController.controller('TestController', function($scope, $routeParams, $filter, $location, $log, $timeout, dataFactory, dataService) {
-$scope.userImage = false;
+    $scope.userImage = false;
     $scope.uploadFile = function() {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('uploading')};
         var cmd = $scope.cfg.zwave_js_url + 'Upload_Image';
@@ -1647,53 +1647,6 @@ myAppController.controller('RoomConfigController', function($scope, $window, $in
         return;
 
     };
-
-    /**
-     * Upload image
-     */
-    $scope.uploadFile = function() {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('uploading')};
-        var cmd = $scope.cfg.zwave_js_url + 'Upload_Image';
-        var fd = new FormData();
-        fd.append('file_upload', $scope.myFile);
-        dataFactory.uploadApiFile(cmd, fd).then(function(response) {
-            dataService.logInfo(response, 'File upload')
-            $scope.input.user_image = response.data.img;
-            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_upload')};
-        }, function(error) {
-            dataService.logError(error, 'File upload')
-            $scope.loading = false;
-            alert($scope._t('error_upload'));
-        });
-    };
-    $scope.uploadImage = function($files) {
-        $scope.showProgress = true;
-        $scope.upload.showProgress = true;
-        var url = 'upload.php';
-        for (var i = 0; i < $files.length; i++) {
-            var $file = $files[i];
-            $upload.upload({
-                url: url,
-                fileFormDataName: 'config_backup',
-                file: $file
-            }).progress(function(evt) {
-                console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
-            }).success(function(data, status, headers, config) {
-                // file is uploaded successfully
-                console.log(data);
-            });
-        }
-        var countUp = function() {
-
-            $scope.upload.progressVal += 5;
-            if ($scope.upload.progressVal == 100) {
-                $interval.cancel(progress);
-                $scope.upload.showProgress = false;
-                $scope.upload.progressVal = 0;
-            }
-        };
-        var progress = $interval(countUp, 100);
-    };
 });
 /**
  * Config room detail controller
@@ -1707,8 +1660,8 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
         'default_img': '',
         'img_type': 'default'
     };
-    
-    
+
+
     $scope.devices = {};
     $scope.devicesAssigned = [];
     //$scope.devicesAvailable = [];
@@ -1722,9 +1675,8 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
     $scope.loadData = function(id) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('locations', '/' + id, true).then(function(response) {
-            dataService.logInfo(response.data.data);
             $scope.input = response.data.data;
-            //loadDevices();
+            loadDevices(id);
             $scope.loading = false;
         }, function(error) {
             $scope.input = false;
@@ -1735,7 +1687,7 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
     if ($scope.id > 0) {
         $scope.loadData($scope.id);
     }
-    
+
     /**
      * Upload image
      */
@@ -1746,34 +1698,51 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
         fd.append('file_upload', $scope.myFile);
         dataFactory.uploadApiFile(cmd, fd).then(function(response) {
             $scope.input.user_img = response.data.img;
-             $scope.input.img_type = 'user';
+            $scope.input.img_type = 'user';
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_upload')};
         }, function(error) {
             $scope.loading = false;
             alert($scope._t('error_upload'));
         });
     };
-    
+
     /**
-     * Create/Update an item
+     * Assign device to room
      */
-    $scope.type = function(type) {
-        console.log(type)
-        $scope.input.img_type == type;
+    $scope.assignDevice = function(deviceId) {
+        $scope.devicesAssigned.push(deviceId);
+        return;
 
     };
-    
+    /**
+     * Remove device from the room
+     */
+    $scope.removeDevice = function(deviceId) {
+        var oldList = $scope.devicesAssigned;
+        $scope.devicesAssigned = [];
+        $scope.devicesToRemove = [];
+        angular.forEach(oldList, function(v, k) {
+            if (v != deviceId) {
+                $scope.devicesAssigned.push(v);
+            } else {
+                $scope.devicesToRemove.push(v);
+            }
+        });
+        return;
+    };
 
     /**
      * Create/Update an item
      */
     $scope.store = function(input) {
-        dataService.logInfo(input, 'Room store')
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         dataFactory.storeApi('locations', input.id, input).then(function(response) {
             var id = $filter('hasNode')(response, 'data.data.id');
             if (id) {
+                saveRoomIdIntoDevice(response.data, $scope.devicesAssigned);
+                removeRoomIdFromDevice(response.data, $scope.devicesToRemove);
                 myCache.remove('locations');
+                myCache.remove('devices');
                 $scope.loadData(id);
             }
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
@@ -1785,20 +1754,55 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
         });
 
     };
-    
+
     /// --- Private functions --- ///
     /**
      * Load devices
      */
-    function loadDevices() {
+    function loadDevices(locationId) {
         dataFactory.getApi('devices').then(function(response) {
-            dataService.logInfo(response.data.data, 'Devices');
+             $scope.devicesAssigned = [];
             $scope.devices = response.data.data.devices;
-             $scope.devices = dataService.getDevices(response.data.data.devices, false, false, false, input.id);
-                $scope.devicesAssigned = dataService.getDevices(response.data.data.devices, {filter: "location", val: input.id});
+            angular.forEach($scope.devices, function(v, k) {
+                if(v.location == locationId){
+                    $scope.devicesAssigned.push(v.id);
+                    dataService.logInfo(v.id,'assigned device id');
+                }
+                
+            });
         }, function(error) {
             dataService.showConnectionError(error);
         });
+    }
+    ;
+
+    /**
+     * Save room id into device
+     */
+    function saveRoomIdIntoDevice(data, devices) {
+        angular.forEach(devices, function(v, k) {
+            dataFactory.storeApi('devices', v, {'location': data.data.id}).then(function(response) {
+            }, function(error) {
+
+            });
+        });
+        return;
+
+    }
+    ;
+
+    /**
+     * Remove room id from device
+     */
+    function removeRoomIdFromDevice(data, devices) {
+        angular.forEach(devices, function(v, k) {
+            dataFactory. putApi('devices', v, {'location': null}).then(function(response) {
+            }, function(error) {
+
+            });
+        });
+        return;
+
     }
     ;
 

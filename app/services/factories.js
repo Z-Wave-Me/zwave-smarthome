@@ -126,9 +126,9 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies,$window,
     // POST/PUT api data
     function storeApi(api, id, data) {
         return $http({
-            method: id > 0 ? 'put':'post',
+            method: id  ? 'put':'post',
             data: data,
-            url: cfg.server_url + cfg.api[api] + (id > 0 ? '/' + id : '')
+            url: cfg.server_url + cfg.api[api] + (id  ? '/' + id : '')
         }).then(function(response) {
             return response;
         }, function(response) {// something went wrong

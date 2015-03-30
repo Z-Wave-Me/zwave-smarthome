@@ -1,0 +1,85 @@
+<!-- Rooms view -->
+<div ng-controller="RoomConfigController">
+    <div class="clearfix text-center">
+        <div class="page-control">
+            <button type="button" 
+                    class="btn btn-success btn-new-item"
+                    ng-click="showModal('#modal_room', {'id': 0, 'title': null, 'icon': null})"
+                    ><i class="fa fa-plus"></i> {{_t('lb_add_room')}}</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3 col-sm-6 room-entry" id="panel_{{$index}}" ng-repeat="v in collection">
+            <div class="room-in">
+                <h3 class="entry-title"><span class="entry-title-text">{{v.title}}</span> 
+                    <a href="" 
+                       ng-click="showModal('#modal_room', input)"
+                       ><i class="fa fa-pencil"></i></a>&nbsp;
+                    <a href="" 
+                       ng-click="delete('#panel_' + $index, {'id': v.id}, _t('lb_delete_confirm'))"
+                       ><i class="fa fa-times"></i></a>
+                </h3>
+                <a href="" title="{{v.title}}" ng-click="showModal('#modal_room', {'id': v.id, 'title': v.title, 'icon': v.icon})">
+                    <img class="room-image img-circle" ng-src="storage/img/rooms/{{v.icon}}" ng-show="v.icon" alt="{{v.title}}" />
+                    <img class="room-image img-circle" ng-src="storage/img/placeholder-img.png" ng-show="!v.icon" alt="{{v.title}}" />
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal_room" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title"><span ng-bind="_t('lb_room')"></span>: <span ng-bind="input.title"></span></h4>
+                </div>
+                <div class="modal-body">
+                    <bb-loader></bb-loader>
+                    <div class="form-group">
+                        <input name="title" id="title" type="text" class="form-control" placeholder="{{_t('lb_room_name')}}" value="{{input.title}}" ng-model="input.title" />
+                    </div>
+                    <div class="clearfix">
+                        <h4 ng-bind="_t('lb_select_image')"></h4>
+                        <div class="modal-room-images" ng-repeat="v in defaultImages">
+                            <input type="radio" name="icon" value="{{v}}" ng-model="input.icon" ng-checked="input.icon == v" /><br />
+                            <img class="" ng-src="storage/img/rooms/{{v}}" alt="{{v}}" />
+                        </div>
+                    </div>
+                    <div class="form-inline clearfix">
+                       <h4 ng-bind="_t('lb_upload_image')"></h4>
+                        <div class="form-group modal-room-images">
+                            <input type="hidden" name="user_image" value="{{input.user_image}}" ng-model="input.user_image" />
+                        <img ng-src="{{userImageUrl + input.user_image}}" ng-if_="userImage"/>
+                         </div>
+                        <div class="form-group">
+                        <input type="file" class="form-control_" file-model="myFile" /><br />
+                        <button class="btn btn-success" id="btn_upload_img" ng-click="uploadFile()" ng-bind="_t('lb_upload_image')"></button>
+                         </div>
+                      
+                    </div>
+                    <div class="room-assigned-block">
+                        <h4>{{_t('lb_devices_in_room')}}</h4>
+                        <div class="btn-device" id="device_assigned_{{$index}}"  ng-class="d.location == input.id ? '': 'hidden - device'" ng-repeat="d in devices">{{d.title}} <a href="" ng-click="removeDevice($index, '#device_assigned_' + $index, d.id)"><i class="fa fa-times text-danger"></i></a></div>
+                    </div>
+                    <div class="room-available-block">
+                        <h4 ng-clic_k="goDevice = !goDevice">{{_t('lb_available_devices')}}</h4>
+                        <div ng-show_="goDevice">
+                            <div class="btn-device" id="device_unassigned_{{$index}}" ng-class="d.location != input.id ? '': 'hidden - device'" ng-repeat="d in devices">{{d.title}} 
+                                <a href="" ng-click="assignDevice($index, '#device_unassigned_' + $index, d)"><i class="fa fa-plus text-success"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" 
+                            class="btn btn-primary" 
+                            data-dismiss="modal"
+                            ng-click="store(input)">{{_t('lb_save')}}</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{_t('lb_cancel')}}</button>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.Modal -->
+</div> <!-- /ng-controller --> 
