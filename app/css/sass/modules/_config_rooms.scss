@@ -11,12 +11,12 @@
         padding-right: 20px
     }
 }
-.room-image, .romm-image-preview{
+.room-image-big, .romm-image-preview{
     border: solid 6px $app-border-color-light;
     width: 100%;
     max-width: 260px;
 }
-.room-image:hover{
+.room-image-big:hover{
     border-color: darken($app-body-bcg-color,10);
 }
 .room-name{

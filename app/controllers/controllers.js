@@ -528,20 +528,16 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
 /**
  * Event controller
  */
-myAppController.controller('EventController', function($scope, $routeParams, $interval, $window, $filter, dataFactory, dataService, myCache, paginationService, cfg) {
+myAppController.controller('EventController', function($scope, $routeParams, $interval, $window, $filter,$cookies, dataFactory, dataService, myCache, paginationService, cfg) {
     $scope.collection = [];
     $scope.eventLevels = [];
     $scope.eventSources = [];
     $scope.currLevel = null;
-    $scope.timeFilter = {
+    $scope.timeFilter = (angular.isDefined($cookies.events_timeFilter) ? $cookies.events_timeFilter : {
         since: $filter('unixStartOfDay')(),
         to: $filter('unixStartOfDay')('+', 86400),
         day: 1
-    };
-    $scope.timeFilter__ = {
-        since: 1427328000,
-        to: 1427414400
-    };
+    });
     $scope.currentPage = 1;
     $scope.pageSize = cfg.page_results_events;
     $scope.reset = function() {
@@ -557,16 +553,19 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
     /**
      * Load data into collection
      */
-    $scope.loadData = function(timeFilter) {
-        var urlParam = '?since=' + timeFilter.since + '&to=' + timeFilter.to + '&profile=' + $scope.profile.id;
-        dataFactory.getApi('notifications', urlParam).then(function(response) {
+    $scope.loadData = function() {
+        $scope.timeFilter = (angular.isDefined($cookies.events_timeFilter) ? angular.fromJson($cookies.events_timeFilter) : $scope.timeFilter);
+        dataService.logInfo($scope.timeFilter);
+        //var urlParam = '?since=' + timeFilter.since + '&to=' + timeFilter.to + '&profile=' + $scope.profile.id;
+        var urlParam = '?since=' +  $scope.timeFilter.since + '&profile=' + $scope.profile.id;
+        dataFactory.getApi('notifications', urlParam,true).then(function(response) {
             setData(response.data);
             dataService.updateTimeTick(response.data.data.updateTime);
         }, function(error) {
             dataService.showConnectionError(error);
         });
     };
-    $scope.loadData($scope.timeFilter);
+    $scope.loadData();
     /**
      * Change time
      */
@@ -614,7 +613,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
                     day: day
                 };
                 break;
-            case 6:
+            case 7:
                 $scope.timeFilter = {
                     since: $filter('unixStartOfDay')('-', (86400 * 6)),
                     to: $filter('unixStartOfDay')('-', (86400 * 5)),
@@ -624,6 +623,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
             default:
                 break;
         }
+        $cookies.events_timeFilter = angular.toJson($scope.timeFilter);
         $scope.loadData($scope.timeFilter);
     };
 
@@ -688,6 +688,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
      * Set events data
      */
     function setData(data) {
+        $scope.collection = [];
         $scope.eventLevels = dataService.getEventLevel(data.data.notifications, [{'key': null, 'val': 'all'}]);
         $scope.eventSources = dataService.getPairs(data.data.notifications, 'source', 'source');
         var filter = null;
@@ -695,7 +696,6 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
             $scope.currSource = $routeParams.val;
             $scope.currLevel = $routeParams.val;
             filter = $routeParams;
-            console.log(filter)
             angular.forEach(data.data.notifications, function(v, k) {
                 if (filter && angular.isDefined(v[filter.param])) {
                     if (v[filter.param] == filter.val) {
@@ -713,6 +713,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
         } else {
             $scope.collection = data.data.notifications;
         }
+        dataService.logInfo($scope.collection,'$scope.collection');
     }
     ;
 });
@@ -1490,24 +1491,10 @@ myAppController.controller('RoomController', function($scope, dataFactory) {
 /**
  * Room config controller
  */
-myAppController.controller('RoomConfigController', function($scope, $window, $interval, $upload, cfg, dataFactory, dataService) {
+myAppController.controller('RoomConfigController', function($scope, $window, dataFactory, dataService,myCache) {
     $scope.collection = [];
-    $scope.devicesAssigned = [];
-    //$scope.devicesAvailable = [];
-    $scope.devicesToRemove = [];
-    $scope.upload = {
-        'showProgress': false,
-        'progressVal': 0
-    };
-    $scope.defaultImages = $scope.cfg.room_images;
-    $scope.showProgress = false;
+    $scope.devices = [];
     $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.zwave_js_url + 'Load_Image/';
-    $scope.input = {
-        'id': 0,
-        'title': '',
-        'user_img': false,
-        'icon': ''
-    };
     $scope.reset = function() {
         $scope.collection = angular.copy([]);
     };
@@ -1515,138 +1502,72 @@ myAppController.controller('RoomConfigController', function($scope, $window, $in
     /**
      * Load data into collection
      */
-    dataFactory.setCache(true);
-    $scope.loadData = function() {
-        dataFactory.getApiData('locations', function(data) {
-            $scope.collection = data.data;
+    $scope.loadData = function(id) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        dataFactory.getApi('locations').then(function(response) {
+            $scope.collection  = response.data.data;
+            loadDevices();
+            $scope.loading = false;
+        }, function(error) {
+            $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-danger', message: $scope._t('error_load_data')};
+            dataService.showConnectionError(error);
         });
     };
     $scope.loadData();
-
-
-    /**
-     * Show modal window
-     */
-    $scope.showModal = function(target, input) {
-        $scope.loadDevices = function() {
-            dataFactory.getApiData('devices', function(data) {
-                $scope.devices = dataService.getDevices(data.data.devices, false, false, false, input.id);
-                $scope.devicesAssigned = dataService.getDevices(data.data.devices, {filter: "location", val: input.id});
-
-            });
-        };
-        $scope.loadDevices();
-        $scope.input = input;
-        $(target).modal();
-    };
-    /**
-     * Create/Update an item
-     */
-    $scope.store = function(input) {
-        var inputData = {
-            "id": input.id,
-            "title": input.title,
-            "icon": input.icon,
-            "user_image": input.user_image
-        };
-
-        if (input.id) {
-            dataFactory.putApiData('locations', input.id, inputData, function(data) {
-                $scope.collection.push = data.data;
-                $scope.saveRoomIdIntoDevice(data, $scope.devicesAssigned);
-                $scope.removeRoomIdFromDevice(data, $scope.devicesToRemove);
-                dataFactory.setCache(false);
-                $scope.loadData();
-            });
-        } else {
-            dataFactory.postApiData('locations', inputData, function(data) {
-                $scope.collection.push = data.data;
-                $scope.saveRoomIdIntoDevice(data, $scope.devicesAssigned);
-                $scope.removeRoomIdFromDevice(data, $scope.devicesToRemove);
-                dataFactory.setCache(false);
-                $scope.loadData();
-                //$route.reload();
-            });
-        }
-        return;
-
-    };
-    /**
+    
+     /**
      * Delete an item
      */
-    $scope.delete = function(target, input, dialog) {
+    $scope.delete = function(target, input, dialog, except) {
+        if (input.id == except) {
+            return;
+        }
         var confirm = true;
         if (dialog) {
             confirm = $window.confirm(dialog);
         }
+
         if (confirm) {
-            dataFactory.deleteApiData('locations', input.id, target);
-            dataFactory.getApiData('devices', function(data) {
-                var devices = dataService.getDevices(data.data.devices, {filter: "location", val: input.id});
-                $scope.removeRoomIdFromDevice({'error': null}, devices);
+            dataFactory.deleteApi('locations', input.id).then(function(response) {
+                //$(target).fadeOut(2000);
+                var devices = dataService.getData($scope.devices, {filter: 'location', val: input.id});
+                removeRoomIdFromDevice(devices);
+                myCache.remove('locations');
+                myCache.remove('devices');
+                $scope.loadData();
 
+            }, function(error) {
+                alert($scope._t('error_delete_data'));
+                dataService.logError(error);
             });
-            dataFactory.setCache(false);
-            $scope.loadData();
         }
     };
+    
+    /// --- Private functions --- ///
     /**
-     * Assign device to room
+     * Load devices
      */
-    $scope.assignDevice = function(id, selector, assign) {
-        $(selector).toggleClass('hidden-device');
-        $('#device_assigned_' + id).toggleClass('hidden-device');
-        $scope.devicesAssigned.push(assign);
-        return;
-
-    };
-    /**
-     * Remove device from the room
-     */
-    $scope.removeDevice = function(id, selector, deviceId) {
-        $(selector).toggleClass('hidden-device');
-        $('#device_unassigned_' + id).toggleClass('hidden-device');
-        var oldList = $scope.devicesAssigned;
-        $scope.devicesAssigned = [];
-        angular.forEach(oldList, function(v, k) {
-            if (v.id != deviceId) {
-                $scope.devicesAssigned.push(v);
-            } else {
-                $scope.devicesToRemove.push(v);
-            }
+    function loadDevices() {
+        dataFactory.getApi('devices').then(function(response) {
+            $scope.devices = response.data.data.devices;
+        }, function(error) {
+            //dataService.showConnectionError(error);
         });
-        return;
-    };
-
-    /**
-     * Save room id into device
-     */
-    $scope.saveRoomIdIntoDevice = function(data, devices) {
-        if (data.error == null) {
-            angular.forEach(devices, function(v, k) {
-                dataFactory.putApiData('devices', v.id, {'location': data.data.id}, function(data) {
-                    //console.log(data);
-                });
-            });
-        }
-        return;
-
-    };
+    }
+    ;
 
     /**
      * Remove room id from device
      */
-    $scope.removeRoomIdFromDevice = function(data, devices) {
-        if (data.error == null) {
-            angular.forEach(devices, function(v, k) {
-                dataFactory.putApiData('devices', v.id, {'location': null}, function(data) {
-                    // console.log(data);
-                });
-            });
-        }
+    function removeRoomIdFromDevice(devices) {
+        angular.forEach(devices, function(v, k) {
+            dataFactory. putApi('devices', v.id, {'location': null}).then(function(response) {
+            }, function(error) {});
+        });
         return;
 
-    };
+    }
+    ;
 });
 /**
  * Config room detail controller
@@ -1686,6 +1607,8 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
     };
     if ($scope.id > 0) {
         $scope.loadData($scope.id);
+    }else{
+        loadDevices(0);
     }
 
     /**
@@ -1751,6 +1674,7 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
             alert($scope._t('error_update_data'));
             $scope.loading = false;
             dataService.logError(error);
+           
         });
 
     };
@@ -1762,19 +1686,17 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
     function loadDevices(locationId) {
         dataFactory.getApi('devices').then(function(response) {
              $scope.devicesAssigned = [];
-            $scope.devices = response.data.data.devices;
+            $scope.devices = dataService.getDevices(response.data.data.devices, false, false, false, locationId > 0 ? locationId : 'post');
             angular.forEach($scope.devices, function(v, k) {
                 if(v.location == locationId){
                     $scope.devicesAssigned.push(v.id);
-                    dataService.logInfo(v.id,'assigned device id');
                 }
                 
             });
         }, function(error) {
             dataService.showConnectionError(error);
         });
-    }
-    ;
+    };
 
     /**
      * Save room id into device
@@ -1788,8 +1710,7 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
         });
         return;
 
-    }
-    ;
+    };
 
     /**
      * Remove room id from device
@@ -1803,8 +1724,7 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
         });
         return;
 
-    }
-    ;
+    };
 
 });
 /**
@@ -1988,7 +1908,7 @@ myAppController.controller('AdminController', function($scope, $window, $cookies
 
             }, function(error) {
                 alert($scope._t('error_delete_data'));
-                $log.error('ERROR: ', error);
+                dataService.logError(error);
             });
         }
     };

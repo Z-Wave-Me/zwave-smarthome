@@ -1178,7 +1178,7 @@ img.widget-promo-image {
   background: #F2DEDE;
 }
 /* line 21, sass/modules/_events.scss */
-.table-events .td-event-info {
+.table-events .td-event-device-info {
   background: #D9EDF7;
 }
 /* line 24, sass/modules/_events.scss */
@@ -1397,14 +1397,14 @@ padding-right: 5px;
 }
 
 /* line 14, sass/modules/_config_rooms.scss */
-.room-image, .romm-image-preview {
+.room-image-big, .romm-image-preview {
   border: solid 6px #fff;
   width: 100%;
   max-width: 260px;
 }
 
 /* line 19, sass/modules/_config_rooms.scss */
-.room-image:hover {
+.room-image-big:hover {
   border-color: #dddddd;
 }
 

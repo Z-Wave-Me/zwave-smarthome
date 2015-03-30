@@ -15,7 +15,7 @@
     "lb_events_source_type": "Only show events from this source and type",
     "lb_events_type": "Only show events from this type",
     "lb_show_all": "Show all",
-    "lb_notify_info": "Info",
+    "lb_notify_device-info": "Info",
     "lb_hide": "Hide",
     "lb_hide_device_events": "Hide all device events",
     "lb_hide_system_events": "Hide all system events",

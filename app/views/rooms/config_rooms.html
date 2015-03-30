@@ -1,48 +1,28 @@
 <!-- Rooms view -->
 <div ng-controller="RoomConfigController">
-    <div class="clearfix text-center">
-        <div class="page-control">
-            <button type="button" 
-                    class="btn btn-success btn-new-item"
-                    ng-click="showModal('#modal_room', {'id': 0, 'title': null, 'icon': null})"
-                    ><i class="fa fa-plus"></i> {{_t('lb_add_room')}}</button>
+     <bb-loader></bb-loader>
+     <div class="page-header header-control clearfix">
+        <h1 ng-bind="_t('nav_rooms')"></h1>
+        <div class="page-header-control">
+            <a type="button" class="btn btn-info" ng-href="#config-rooms/0"><i class="fa fa-plus"></i> {{_t('lb_add_room')}}</a>
         </div>
     </div>
-    
-     <table class="table table-report">
+    <table class="table table-report">
         <tbody>
             <tr ng-repeat="v in collection" id="row_{{v.id}}">
                  <td>
-                    <img class="report-img" ng-src="storage/img/icons/user.png" alt="{{v.name}}" /> 
+                      <img class="report-img img-circle" ng-src="storage/img/rooms/{{v.default_img}}" ng-show="v.img_type == 'default' && v.default_img" alt="{{v.name}}" />
+                      <img class="report-img img-circle" ng-src="{{userImageUrl + v.user_img}}" ng-show="v.img_type == 'user' && v.user_img" alt="{{v.name}}" />
+                      <img class="report-img img-circle" ng-src="storage/img/placeholder-img.png" ng-show="!v.default_img && !v.user_img" alt="{{v.name}}" />
                     <span class="report-message" ng-bind="v.title"></span>
                 </td>
                 <td class="text-right">
                     <a class="btn btn-default" href="#config-rooms/{{v.id}}"><i class="fa fa-pencil fa-lg text-info"></i></a>
                     <button class="btn btn-default" 
-                       ng-hide="v.id == 1"
-                       ng-click="delete('#row_' + v.id, {'id': v.id}, _t('lb_delete_confirm'), 1)"
+                       ng-click="delete('#row_' + v.id, null, _t('lb_delete_confirm'), 1)"
                        ><i class="fa fa-times fa-lg text-danger"></i></button>   
                 </td>
             </tr>
         </tbody>
     </table>
-
-    <div class="row">
-        <div class="col-md-3 col-sm-6 room-entry" id="panel_{{$index}}" ng-repeat="v in collection">
-            <div class="room-in">
-                <h3 class="entry-title"><span class="entry-title-text">{{v.title}}</span> 
-                    <a href="" 
-                       ng-click="showModal('#modal_room', input)"
-                       ><i class="fa fa-pencil"></i></a>&nbsp;
-                    <a href="" 
-                       ng-click="delete('#panel_' + $index, {'id': v.id}, _t('lb_delete_confirm'))"
-                       ><i class="fa fa-times"></i></a>
-                </h3>
-                <a href="" title="{{v.title}}" ng-click="showModal('#modal_room', {'id': v.id, 'title': v.title, 'icon': v.icon})">
-                    <img class="room-image img-circle" ng-src="storage/img/rooms/{{v.icon}}" ng-show="v.icon" alt="{{v.title}}" />
-                    <img class="room-image img-circle" ng-src="storage/img/placeholder-img.png" ng-show="!v.icon" alt="{{v.title}}" />
-                </a>
-            </div>
-        </div>
-    </div>
 </div> <!-- /ng-controller --> 

@@ -272,7 +272,7 @@ myApp.filter('unixStartOfDay', function() {
     return function(input,value) {
         var now = new Date();
         var startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-        var timestamp = (startOfDay / 1000) + 3600;
+        var timestamp = (startOfDay / 1000) + (3600 * 2);
         if(input && value){
             switch(input){
                 case '+':

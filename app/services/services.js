@@ -213,7 +213,10 @@ myAppService.service('dataService', function($filter, $log,myCache) {
             if (v.permanently_hidden || v.deviceType == 'battery') {
                 return;
             }
-            if (location) {
+            if (location === 'post' && v.location) {
+                 return;
+            }
+            if (location > 0) {
                 if (v.location != location && v.location) {
                     return;
                 }
