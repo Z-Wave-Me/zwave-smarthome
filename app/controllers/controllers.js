@@ -180,38 +180,23 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
  * Test controller
  */
 myAppController.controller('TestController', function($scope, $routeParams, $filter, $location, $log, $timeout, dataFactory, dataService) {
-    $scope.loading = false;
-    $scope.hideStuff = function() {
-        $scope.startFade = true;
-        $timeout(function() {
-            $scope.hidden = true;
-        }, 2000);
-
-    };
-    $scope.testLoader = function() {
-        $scope.loading = {icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        $timeout(function() {
-            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
-        }, 5000);
-        console.log($scope.loading)
-    };
-    $scope.showModuleImage = function() {
-        var cmd = 'fs.load("/blub/test_base64.jpg")';
-        dataFactory.getJSCmd(cmd).then(function(response) {
-            var x = response.data.replace(/["']/g, "");
-            //x = btoa(unescape(encodeURIComponent(x)));
-            console.log('blub: ', response.data.replace(/["']/g, ""));
-            $scope.getModuleImage = x;
+$scope.userImage = false;
+    $scope.uploadFile = function() {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('uploading')};
+        var cmd = $scope.cfg.zwave_js_url + 'Upload_Image';
+        var fd = new FormData();
+        fd.append('file_upload', $scope.myFile);
+        dataService.logInfo(fd, 'File upload')
+        dataFactory.uploadApiFile(cmd, fd).then(function(response) {
+            $scope.userImage = $scope.cfg.server_url + $scope.cfg.zwave_js_url + 'Load_Image/' + response.data.img
+            dataService.logInfo($scope.userImage, 'Image')
+            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_upload')};
         }, function(error) {
-            $log.error('ERROR: ', error);
+            dataService.logError(error, 'File upload')
+            $scope.loading = false;
+            alert($scope._t('error_upload'));
         });
     };
-    $scope.showModuleImage();
-    dataFactory.localData('test_base64.jpeg', function(response) {
-        console.log(response)
-        $scope.binImage2 = response;
-
-    });
 });
 /**
  * Home controller
@@ -573,7 +558,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
      * Load data into collection
      */
     $scope.loadData = function(timeFilter) {
-        var urlParam = '?since=' + timeFilter.since + '&to=' + timeFilter.to + '&profile=' +  $scope.profile.id;
+        var urlParam = '?since=' + timeFilter.since + '&to=' + timeFilter.to + '&profile=' + $scope.profile.id;
         dataFactory.getApi('notifications', urlParam).then(function(response) {
             setData(response.data);
             dataService.updateTimeTick(response.data.data.updateTime);
@@ -588,7 +573,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
     $scope.changeTime = function(day) {
         switch (day) {
             case 1:
-                 $scope.timeFilter = {
+                $scope.timeFilter = {
                     since: $filter('unixStartOfDay')(),
                     to: $filter('unixStartOfDay')('+', 86400),
                     day: day
@@ -601,35 +586,35 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
                     day: day
                 };
                 break;
-                case 3:
+            case 3:
                 $scope.timeFilter = {
                     since: $filter('unixStartOfDay')('-', (86400 * 2)),
                     to: $filter('unixStartOfDay')('-', 86400),
                     day: day
                 };
                 break;
-                case 4:
+            case 4:
                 $scope.timeFilter = {
                     since: $filter('unixStartOfDay')('-', (86400 * 3)),
                     to: $filter('unixStartOfDay')('-', (86400 * 2)),
                     day: day
                 };
                 break;
-                case 5:
+            case 5:
                 $scope.timeFilter = {
                     since: $filter('unixStartOfDay')('-', (86400 * 4)),
                     to: $filter('unixStartOfDay')('-', (86400 * 3)),
                     day: day
                 };
                 break;
-                case 6:
+            case 6:
                 $scope.timeFilter = {
                     since: $filter('unixStartOfDay')('-', (86400 * 5)),
                     to: $filter('unixStartOfDay')('-', (86400 * 4)),
                     day: day
                 };
                 break;
-                case 6:
+            case 6:
                 $scope.timeFilter = {
                     since: $filter('unixStartOfDay')('-', (86400 * 6)),
                     to: $filter('unixStartOfDay')('-', (86400 * 5)),
@@ -1516,10 +1501,12 @@ myAppController.controller('RoomConfigController', function($scope, $window, $in
     };
     $scope.defaultImages = $scope.cfg.room_images;
     $scope.showProgress = false;
+    $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.zwave_js_url + 'Load_Image/';
     $scope.input = {
-        'id': null,
-        'title': null,
-        'icon': null
+        'id': 0,
+        'title': '',
+        'user_img': false,
+        'icon': ''
     };
     $scope.reset = function() {
         $scope.collection = angular.copy([]);
@@ -1559,7 +1546,8 @@ myAppController.controller('RoomConfigController', function($scope, $window, $in
         var inputData = {
             "id": input.id,
             "title": input.title,
-            "icon": input.icon
+            "icon": input.icon,
+            "user_image": input.user_image
         };
 
         if (input.id) {
@@ -1663,6 +1651,21 @@ myAppController.controller('RoomConfigController', function($scope, $window, $in
     /**
      * Upload image
      */
+    $scope.uploadFile = function() {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('uploading')};
+        var cmd = $scope.cfg.zwave_js_url + 'Upload_Image';
+        var fd = new FormData();
+        fd.append('file_upload', $scope.myFile);
+        dataFactory.uploadApiFile(cmd, fd).then(function(response) {
+            dataService.logInfo(response, 'File upload')
+            $scope.input.user_image = response.data.img;
+            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_upload')};
+        }, function(error) {
+            dataService.logError(error, 'File upload')
+            $scope.loading = false;
+            alert($scope._t('error_upload'));
+        });
+    };
     $scope.uploadImage = function($files) {
         $scope.showProgress = true;
         $scope.upload.showProgress = true;
@@ -1691,6 +1694,114 @@ myAppController.controller('RoomConfigController', function($scope, $window, $in
         };
         var progress = $interval(countUp, 100);
     };
+});
+/**
+ * Config room detail controller
+ */
+myAppController.controller('RoomConfigEditController', function($scope, $routeParams, $filter, dataFactory, dataService, myCache) {
+    $scope.id = $filter('toInt')($routeParams.id);
+    $scope.input = {
+        'id': 0,
+        'title': '',
+        'user_img': '',
+        'default_img': '',
+        'img_type': 'default'
+    };
+    
+    
+    $scope.devices = {};
+    $scope.devicesAssigned = [];
+    //$scope.devicesAvailable = [];
+    $scope.devicesToRemove = [];
+    $scope.defaultImages = $scope.cfg.room_images;
+    $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.zwave_js_url + 'Load_Image/';
+
+    /**
+     * Load data
+     */
+    $scope.loadData = function(id) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        dataFactory.getApi('locations', '/' + id, true).then(function(response) {
+            dataService.logInfo(response.data.data);
+            $scope.input = response.data.data;
+            //loadDevices();
+            $scope.loading = false;
+        }, function(error) {
+            $scope.input = false;
+            $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-danger', message: $scope._t('error_load_data')};
+            dataService.showConnectionError(error);
+        });
+    };
+    if ($scope.id > 0) {
+        $scope.loadData($scope.id);
+    }
+    
+    /**
+     * Upload image
+     */
+    $scope.uploadFile = function() {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('uploading')};
+        var cmd = $scope.cfg.zwave_js_url + 'Upload_Image';
+        var fd = new FormData();
+        fd.append('file_upload', $scope.myFile);
+        dataFactory.uploadApiFile(cmd, fd).then(function(response) {
+            $scope.input.user_img = response.data.img;
+             $scope.input.img_type = 'user';
+            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_upload')};
+        }, function(error) {
+            $scope.loading = false;
+            alert($scope._t('error_upload'));
+        });
+    };
+    
+    /**
+     * Create/Update an item
+     */
+    $scope.type = function(type) {
+        console.log(type)
+        $scope.input.img_type == type;
+
+    };
+    
+
+    /**
+     * Create/Update an item
+     */
+    $scope.store = function(input) {
+        dataService.logInfo(input, 'Room store')
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        dataFactory.storeApi('locations', input.id, input).then(function(response) {
+            var id = $filter('hasNode')(response, 'data.data.id');
+            if (id) {
+                myCache.remove('locations');
+                $scope.loadData(id);
+            }
+            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
+
+        }, function(error) {
+            alert($scope._t('error_update_data'));
+            $scope.loading = false;
+            dataService.logError(error);
+        });
+
+    };
+    
+    /// --- Private functions --- ///
+    /**
+     * Load devices
+     */
+    function loadDevices() {
+        dataFactory.getApi('devices').then(function(response) {
+            dataService.logInfo(response.data.data, 'Devices');
+            $scope.devices = response.data.data.devices;
+             $scope.devices = dataService.getDevices(response.data.data.devices, false, false, false, input.id);
+                $scope.devicesAssigned = dataService.getDevices(response.data.data.devices, {filter: "location", val: input.id});
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    }
+    ;
+
 });
 /**
  * Network controller
@@ -1887,15 +1998,16 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
         id: 0,
         name: '',
         active: true,
+        role: 2,
         description: '',
         //positions: [],
         password: '',
         login: '',
         lang: 'en',
         color: '',
-        hide_all_device_events:false,
-        hide_system_events:false,
-        hide_single_device_events:[]
+        hide_all_device_events: false,
+        hide_system_events: false,
+        hide_single_device_events: []
 
     };
 
@@ -1964,9 +2076,9 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
 /**
  * My Access
  */
-myAppController.controller('MyAccessController', function($scope,dataFactory, dataService, myCache) {
-    $scope.id =  $scope.profile.id;
-    $scope.devices =  {};
+myAppController.controller('MyAccessController', function($scope, dataFactory, dataService, myCache) {
+    $scope.id = $scope.profile.id;
+    $scope.devices = {};
     $scope.input = {
         id: 0,
         name: '',
@@ -1976,9 +2088,9 @@ myAppController.controller('MyAccessController', function($scope,dataFactory, da
         password: '',
         lang: 'en',
         color: '',
-        hide_all_device_events:false,
-        hide_system_events:false,
-        hide_single_device_events:[]
+        hide_all_device_events: false,
+        hide_system_events: false,
+        hide_single_device_events: []
 
     };
 
@@ -2001,8 +2113,8 @@ myAppController.controller('MyAccessController', function($scope,dataFactory, da
     if ($scope.id > 0) {
         $scope.loadData($scope.id);
     }
-    
-     /**
+
+    /**
      * Assign device to list
      */
     $scope.assignDevice = function(id, selector, assign) {
@@ -2056,19 +2168,20 @@ myAppController.controller('MyAccessController', function($scope,dataFactory, da
         });
 
     };
-    
+
     /// --- Private functions --- ///
     /**
      * Load devices
      */
     function loadDevices() {
         dataFactory.getApi('devices').then(function(response) {
-             dataService.logInfo(response.data.data,'Devices');
+            dataService.logInfo(response.data.data, 'Devices');
             $scope.devices = response.data.data.devices;
         }, function(error) {
-           dataService.showConnectionError(error);
+            dataService.showConnectionError(error);
         });
-    };
+    }
+    ;
 
 });
 /**

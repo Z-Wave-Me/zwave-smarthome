@@ -29,6 +29,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies,$window,
         refreshApi: refreshApi,
         runExpertCmd: runExpertCmd,
         xmlToJson:  xmlToJson,
+        uploadApiFile:uploadApiFile,
         putCfgXml: putCfgXml,
         getJSCmd: getJSCmd,
         getApiData: getApiData, // Deprecated: Remove after getApi implementation
@@ -286,6 +287,26 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies,$window,
         });
         //};
         //apiDataInterval = $interval(refresh, cfg.interval);
+    }
+    
+     /**
+     * Upload file
+     */
+    function uploadApiFile(cmd, data) {
+        var uploadUrl = cfg.server_url + cmd;
+        return  $http.post(uploadUrl, data, {
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined}
+        }).then(function(response) {
+            if (typeof response.data === 'object') {
+                return response;
+            } else {// invalid response
+                return $q.reject(response);
+            }
+        }, function(response) {// something went wrong
+            return $q.reject(response);
+        });
+
     }
 
     // Get

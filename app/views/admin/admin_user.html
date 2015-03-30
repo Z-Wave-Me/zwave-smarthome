@@ -34,6 +34,12 @@
              <fieldset>
                 <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_settings')"></span></h3>
                 <div>
+                     <!-- role -->
+                    <div class="form-group form-inline">
+                        {{input.role}}
+                         <label><input type="radio" name="role" value="1" ng-model="input.role" ng-checked="input.role == 1" />{{_t('lb_admin')}}</label>
+                         <label><input type="radio" name="role" value="2" ng-model="input.role" ng-checked="input.role == 2" />{{_t('lb_user')}}</label>
+                    </div>
                     <!-- lang -->
                     <div class="form-group form-inline">
                         <label>{{_t('lb_language')}}:</label>

@@ -1,0 +1,60 @@
+<!-- Config rooms edit -->
+<div ng-controller="RoomConfigEditController">
+    <bb-loader></bb-loader>
+
+    <div ng-show="input">
+        <div class="page-header">
+            <h1><span ng-bind="_t('lb_room')"></span>: <span ng-show="input.id > 0">(#{{input.id}})</span> <span ng-bind="input.title"></span></h1>
+        </div>
+        <form name="form_profile" id="form_profile" class="form form-page" ng-submit="store(input)" novalidate>
+            <fieldset>
+                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_name')"></span></h3>
+                <div>
+                    <!-- name -->
+                    <div class="form-group">
+                        <input name="title" id="title" type="text" class="form-control" placeholder="{{_t('lb_room_name')}}" value="{{input.title}}" ng-model="input.title" />
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_select_image')"></span></h3>
+                <div class="clearfix">
+                    <div class="room-images">
+                         <!--<input type="radio" name="default_img" class="form-control-hidden" value="{{v}}" ng-model="input.default_img" ng-checked="input.default_img == v" />-->
+                        <img class="room-image form-control-img" 
+                             ng-repeat="v in defaultImages"
+                             ng-click="input.default_img = v;input.img_type = 'default'" 
+                             ng-class="input.img_type == 'default' && v == input.default_img ? 'control-active':''" 
+                             ng-src="storage/img/rooms/{{v}}" alt="{{v}}" />
+                        
+                         <!--<input type="radio" class="form-control-hidden" name="user_img" value="{{input.user_img}}" ng-model="input.user_img" ng-checked="input.img_type == 'user'" />-->
+                        <img class="room-image form-control-img" 
+                             ng-click="input.user_img = input.user_img;input.img_type = 'user'"
+                             ng-class="input.img_type == 'user' ? 'control-active':''" 
+                             ng-src="{{userImageUrl + input.user_img}}" 
+                             ng-if="input.user_img" />
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_upload_image')"></span></h3>
+                <div>
+                   
+                    <div class="form-group">
+                         <input type="file" class="form-control_" file-model="myFile" /> 
+                    </div>
+                    <div class="form-group">
+                      <button type="button" class="btn btn-success" id="btn_upload_img" ng-click="uploadFile()" ng-bind="_t('lb_upload_image')"></button>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="form-footer">
+                <button type="submit" class="btn btn-primary" ng-bind="_t('lb_save')">{{_t('apply_config_into_device')}}</button>
+                <a href="#admin" class="btn btn-default" ng-bind="_t('lb_cancel')"></a>
+            </div>
+        </form>
+
+    </div>
+
+</div> <!-- /ng-controller --> 

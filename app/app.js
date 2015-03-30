@@ -80,6 +80,9 @@ myApp.config(['$routeProvider',
                 when('/config-rooms', {
                     templateUrl: 'app/views/rooms/config_rooms.html'
                 }).
+                when('/config-rooms/:id', {
+                    templateUrl: 'app/views/rooms/config_rooms_edit.html'
+                }).
                 //Network
                 when('/network', {
                     templateUrl: 'app/views/network/network.html'

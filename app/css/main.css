@@ -1384,6 +1384,99 @@ padding-right: 5px;
   width: 100px;
 }
 
+/* Rooms list
+-------------------------------------------------- */
+/* line 6, sass/modules/_config_rooms.scss */
+.room-in {
+  text-align: center;
+  padding: 10px;
+}
+/* line 10, sass/modules/_config_rooms.scss */
+.room-in .entry-title-text {
+  padding-right: 20px;
+}
+
+/* line 14, sass/modules/_config_rooms.scss */
+.room-image, .romm-image-preview {
+  border: solid 6px #fff;
+  width: 100%;
+  max-width: 260px;
+}
+
+/* line 19, sass/modules/_config_rooms.scss */
+.room-image:hover {
+  border-color: #dddddd;
+}
+
+/* line 22, sass/modules/_config_rooms.scss */
+.room-name {
+  text-align: center;
+  padding: 0 10px;
+  line-height: 34px;
+}
+
+/* line 28, sass/modules/_config_rooms.scss */
+.panel-body-room img {
+  max-width: 100%;
+  border: solid 4px #323232;
+}
+
+/* line 33, sass/modules/_config_rooms.scss */
+.btn-device {
+  display: inline-block;
+  padding: 6px 12px;
+  margin: 0 5px 5px 0;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-image: none;
+  border: 1px solid #d3d3d3;
+  border-radius: 4px;
+}
+
+/* line 48, sass/modules/_config_rooms.scss */
+.room-assigned-block {
+  padding: 10px;
+  border: 1px solid #d3d3d3;
+  margin: 10px 0;
+}
+
+/* line 53, sass/modules/_config_rooms.scss */
+#modal_room .badge {
+  padding: 7px;
+}
+
+/* line 57, sass/modules/_config_rooms.scss */
+.hidden-device {
+  display: none;
+}
+
+/* line 60, sass/modules/_config_rooms.scss */
+.modal-room-images {
+  float: left;
+  width: 100px;
+  text-align: center;
+  margin: 10px;
+}
+/* line 65, sass/modules/_config_rooms.scss */
+.modal-room-images img {
+  width: 100px;
+}
+
+/* Rooms detail
+-------------------------------------------------- */
+/* line 72, sass/modules/_config_rooms.scss */
+.room-image {
+  display: inline-block;
+  max-width: 70px;
+  max-height: 70px;
+  margin: 5px;
+}
+
 /* Profile
 -------------------------------------------------- */
 /* line 3, sass/modules/_profile.scss */
