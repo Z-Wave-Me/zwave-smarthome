@@ -11,12 +11,15 @@
         padding-right: 20px
     }
 }
-.room-image, .romm-image-preview{
+
+.room-image-big{
     border: solid 6px $app-border-color-light;
-    width: 100%;
-    max-width: 260px;
+    //width: 100%;
+    width: 200px;
+    height:200px;
+    border-radius: 50%;
 }
-.room-image:hover{
+.room-image-big:hover{
     border-color: darken($app-body-bcg-color,10);
 }
 .room-name{
@@ -28,41 +31,4 @@
 .panel-body-room img{
     max-width: 100%;
     border: solid 4px #323232;
-}
-
-.btn-device {
-    display: inline-block;
-    padding: 6px 12px;
-    margin: 0 5px 5px 0;
-    margin-bottom: 0;
-    font-size: 14px;
-    font-weight: normal;
-    line-height: 1.42857143;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    background-image: none;
-    border: 1px solid $app-border-color;
-    border-radius: 4px;
-}
-.room-assigned-block{
-    padding: 10px;
-    border: 1px solid $app-border-color;
-    margin: 10px 0;
-}
-#modal_room .badge{
-    padding: 7px;
-
-}
-.hidden-device{
-    display: none;
-}
-.modal-room-images{
-    float: left;
-    width: 100px;
-    text-align: center;
-    margin: 10px;
-    img{
-        width: 100px;
-    }
 }

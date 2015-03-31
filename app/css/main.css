@@ -1158,32 +1158,52 @@ img.widget-promo-image {
 -------------------------------------------------- */
 /* line 4, sass/modules/_events.scss */
 .table-events .td-event-date {
-  width: 70px;
-  text-align: center;
+  width: 100px;
 }
 /* line 8, sass/modules/_events.scss */
 .table-events .td-event-date .fa {
   opacity: 0.5;
 }
 /* line 12, sass/modules/_events.scss */
-.table-events .td-event-error {
-  background: #FCF8E3;
-}
-/* line 15, sass/modules/_events.scss */
-.table-events .td-event-notification {
-  background: #DFF0D8;
-}
-/* line 18, sass/modules/_events.scss */
-.table-events .td-event-critical {
-  background: #F2DEDE;
-}
-/* line 21, sass/modules/_events.scss */
-.table-events .td-event-device-info {
+.table-events .td-event-core {
   background: #D9EDF7;
 }
+/* line 15, sass/modules/_events.scss */
+.table-events .td-event-module {
+  background: #D4D3C5;
+}
+/* line 18, sass/modules/_events.scss */
+.table-events .td-event-battery {
+  background: #F5C6F7;
+}
+/* line 21, sass/modules/_events.scss */
+.table-events .td-event-controller {
+  background: #FFE699;
+}
 /* line 24, sass/modules/_events.scss */
+.table-events .td-event-z-wave {
+  background: #a4d4ea;
+}
+/* line 27, sass/modules/_events.scss */
+.table-events .td-event-connection {
+  background: #DFF0D8;
+}
+/* line 30, sass/modules/_events.scss */
+.table-events .td-event-device-OnOff-change {
+  background: #FCF8E3;
+}
+/* line 33, sass/modules/_events.scss */
+.table-events .td-event-device-status-change {
+  background: #F2DEDE;
+}
+/* line 37, sass/modules/_events.scss */
 .table-events .td-action {
   width: 110px;
+  text-align: right;
+}
+/* line 41, sass/modules/_events.scss */
+.table-events .td-action .dropdown-menu a {
+  cursor: pointer;
 }
 
 /* Apps
@@ -1313,114 +1333,63 @@ padding-right: 5px;
   padding-right: 20px;
 }
 
-/* line 14, sass/modules/_rooms.scss */
-.room-image, .romm-image-preview {
+/* line 15, sass/modules/_rooms.scss */
+.room-image-big {
   border: solid 6px #fff;
-  width: 100%;
-  max-width: 260px;
-}
-
-/* line 19, sass/modules/_rooms.scss */
-.room-image:hover {
-  border-color: #dddddd;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
 }
 
 /* line 22, sass/modules/_rooms.scss */
-.room-name {
-  text-align: center;
-  padding: 0 10px;
-  line-height: 34px;
-}
-
-/* line 28, sass/modules/_rooms.scss */
-.panel-body-room img {
-  max-width: 100%;
-  border: solid 4px #323232;
-}
-
-/* line 33, sass/modules/_rooms.scss */
-.btn-device {
-  display: inline-block;
-  padding: 6px 12px;
-  margin: 0 5px 5px 0;
-  margin-bottom: 0;
-  font-size: 14px;
-  font-weight: normal;
-  line-height: 1.42857143;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  background-image: none;
-  border: 1px solid #d3d3d3;
-  border-radius: 4px;
-}
-
-/* line 48, sass/modules/_rooms.scss */
-.room-assigned-block {
-  padding: 10px;
-  border: 1px solid #d3d3d3;
-  margin: 10px 0;
-}
-
-/* line 53, sass/modules/_rooms.scss */
-#modal_room .badge {
-  padding: 7px;
-}
-
-/* line 57, sass/modules/_rooms.scss */
-.hidden-device {
-  display: none;
-}
-
-/* line 60, sass/modules/_rooms.scss */
-.modal-room-images {
-  float: left;
-  width: 100px;
-  text-align: center;
-  margin: 10px;
-}
-/* line 65, sass/modules/_rooms.scss */
-.modal-room-images img {
-  width: 100px;
-}
-
-/* Rooms list
--------------------------------------------------- */
-/* line 6, sass/modules/_config_rooms.scss */
-.room-in {
-  text-align: center;
-  padding: 10px;
-}
-/* line 10, sass/modules/_config_rooms.scss */
-.room-in .entry-title-text {
-  padding-right: 20px;
-}
-
-/* line 14, sass/modules/_config_rooms.scss */
-.room-image-big, .romm-image-preview {
-  border: solid 6px #fff;
-  width: 100%;
-  max-width: 260px;
-}
-
-/* line 19, sass/modules/_config_rooms.scss */
 .room-image-big:hover {
   border-color: #dddddd;
 }
 
-/* line 22, sass/modules/_config_rooms.scss */
+/* line 25, sass/modules/_rooms.scss */
 .room-name {
   text-align: center;
   padding: 0 10px;
   line-height: 34px;
 }
 
-/* line 28, sass/modules/_config_rooms.scss */
+/* line 31, sass/modules/_rooms.scss */
 .panel-body-room img {
   max-width: 100%;
   border: solid 4px #323232;
 }
 
+/* Rooms list
+-------------------------------------------------- */
+/*.room-entry{
+    //padding: 0;
+}
+.room-in{
+    text-align: center;
+    padding: 10px;
+   
+    .entry-title-text{
+        padding-right: 20px
+    }
+}
+.room-image-big, .romm-image-preview{
+    border: solid 6px $app-border-color-light;
+    width: 100%;
+    max-width: 260px;
+}
+.room-image-big:hover{
+    border-color: darken($app-body-bcg-color,10);
+}
+.room-name{
+    //position: absolute;
+    text-align: center;
+    padding: 0 10px;
+    line-height: 34px;
+}
+.panel-body-room img{
+    max-width: 100%;
+    border: solid 4px #323232;
+}*/
 /* line 33, sass/modules/_config_rooms.scss */
 .btn-device {
   display: inline-block;

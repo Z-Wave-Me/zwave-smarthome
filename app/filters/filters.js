@@ -242,6 +242,35 @@ myApp.filter('getElementIcon', function(cfg) {
 });
 
 /**
+ * Get event icon
+ */
+myApp.filter('getEventIcon', function() {
+    return function(input) {
+        var icon = '';
+        switch (input) {
+            case 'notification':
+                icon = 'fa-volume-off';
+                break;
+             case 'device-info':
+                icon = 'fa-info-circle';
+                break;
+             case 'warning':
+                icon = 'fa-exclamation-triangle';
+                break;
+            case 'error':
+                icon = 'fa-bug text-danger';
+                break
+            case 'critical':
+                icon = 'fa-minus-circle text-danger';
+                break
+            default:
+                break;
+        }
+        return icon;
+    };
+});
+
+/**
  * Get max level
  */
 myApp.filter('getMaxLevel', function() {
@@ -269,12 +298,12 @@ myApp.filter('getCurrentTime', function() {
  * Get current time
  */
 myApp.filter('unixStartOfDay', function() {
-    return function(input,value) {
+    return function(input, value) {
         var now = new Date();
         var startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
         var timestamp = (startOfDay / 1000) + (3600 * 2);
-        if(input && value){
-            switch(input){
+        if (input && value) {
+            switch (input) {
                 case '+':
                     timestamp += value;
                     break;
@@ -333,14 +362,11 @@ myApp.filter('isToday', function() {
 });
 
 /**
- * If is today from unix stamp display h:m otherwise d:m:y
+ * If is today display h:m otherwise d:m:y
  */
-myApp.filter('isTodayFromUnix', function() {
+myApp.filter('eventDate', function() {
     return function(input) {
-        if (isNaN(input)) {
-            return '';
-        }
-        var d = new Date(input * 1000);
+        var d = new Date(input);
         var day = d.getDate();
         var mon = d.getMonth() + 1; //Months are zero based
         var year = d.getFullYear();
@@ -349,12 +375,10 @@ myApp.filter('isTodayFromUnix', function() {
         var sec = (d.getSeconds() < 10 ? '0' + d.getSeconds() : d.getSeconds());
 
         if (d.toDateString() == (new Date()).toDateString()) {
-            //return hrs + ':' + min + ':' + sec;
             return hrs + ':' + min;
 
         } else {
-            //return day + '.' + mon + '.' + year + ' ' + hrs + ':' + min + ':' + sec;
-            return day + '.' + mon + '.' + year;
+            return day + '.' + mon + ' ' + hrs + ':' + min;
         }
     };
 });

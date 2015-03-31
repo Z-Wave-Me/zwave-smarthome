@@ -269,11 +269,11 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies,$window,
     }
 
     // Refresh api data
-    function refreshApi(api) {
+    function refreshApi(api,params) {
         //var refresh = function() {
         return $http({
             method: 'get',
-            url: cfg.server_url + cfg.api[api] + '?since=' + updatedTime
+            url: cfg.server_url + cfg.api[api] + '?since=' + updatedTime + (params ? params : '')
                     //cache: noCache || true
         }).then(function(response) {
             if (typeof response.data === 'object') {

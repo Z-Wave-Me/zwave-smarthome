@@ -8,7 +8,7 @@ var config_data = {
         'app_type': 'web',
         // Server base url
         'server_url': '/', 
-        //'server_url': 'http://192.168.10.24:8083/',
+        //'server_url': 'http://192.168.10.119:8083/',
         // Interval in miliseconds to refresh data
         'interval': 3000,
         // Interval in miliseconds (5 min) to clear history (json) cache
@@ -82,7 +82,7 @@ var config_data = {
         // Results per page
         'page_results': 12,
         // Results per events page
-        'page_results_events': 30
+        'page_results_events': 50
 
 
 
