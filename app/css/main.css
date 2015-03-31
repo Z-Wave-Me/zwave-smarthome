@@ -1165,43 +1165,31 @@ img.widget-promo-image {
   opacity: 0.5;
 }
 /* line 12, sass/modules/_events.scss */
-.table-events .td-event-core {
-  background: #D9EDF7;
-}
-/* line 15, sass/modules/_events.scss */
-.table-events .td-event-module {
-  background: #D4D3C5;
-}
-/* line 18, sass/modules/_events.scss */
-.table-events .td-event-battery {
-  background: #F5C6F7;
-}
-/* line 21, sass/modules/_events.scss */
-.table-events .td-event-controller {
-  background: #FFE699;
-}
-/* line 24, sass/modules/_events.scss */
-.table-events .td-event-z-wave {
-  background: #a4d4ea;
-}
-/* line 27, sass/modules/_events.scss */
-.table-events .td-event-connection {
-  background: #DFF0D8;
-}
-/* line 30, sass/modules/_events.scss */
-.table-events .td-event-device-OnOff-change {
+.table-events .td-event-warning {
   background: #FCF8E3;
 }
-/* line 33, sass/modules/_events.scss */
-.table-events .td-event-device-status-change {
+/* line 15, sass/modules/_events.scss */
+.table-events .td-event-notification {
+  background: #DFF0D8;
+}
+/* line 18, sass/modules/_events.scss */
+.table-events .td-event-error {
   background: #F2DEDE;
 }
-/* line 37, sass/modules/_events.scss */
+/* line 21, sass/modules/_events.scss */
+.table-events .td-event-critical {
+  background: #F2DEDE;
+}
+/* line 24, sass/modules/_events.scss */
+.table-events .td-event-device-info {
+  background: #D9EDF7;
+}
+/* line 27, sass/modules/_events.scss */
 .table-events .td-action {
   width: 110px;
   text-align: right;
 }
-/* line 41, sass/modules/_events.scss */
+/* line 31, sass/modules/_events.scss */
 .table-events .td-action .dropdown-menu a {
   cursor: pointer;
 }
@@ -1291,10 +1279,10 @@ padding-right: 5px;
   max-width: 130px;
   max-height: 130px;
   border: solid 4px #fff;
-  border-radius: 50%;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  border-radius: 50%;
+  /*        border-radius: 50%;
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          border-radius: 50%; */
 }
 /* line 88, sass/modules/_apps.scss */
 .app-detail-header-in .app-detail-body {

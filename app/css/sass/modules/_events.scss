@@ -9,31 +9,21 @@
             opacity: 0.5;
         }
     }
-     .td-event-core{
-        background: #D9EDF7;
-    }
-    .td-event-module{
-        background: #D4D3C5;
-    }
-     .td-event-battery{
-        background: #F5C6F7;
-    }
-    .td-event-controller{
-        background: #FFE699;
-    }
-    .td-event-z-wave{
-        background: #a4d4ea;
-    }
-    .td-event-connection{
-        background: #DFF0D8;
-    }
-    .td-event-device-OnOff-change{
+    .td-event-warning{
         background: #FCF8E3;
     }
-    .td-event-device-status-change{
+    .td-event-notification{
+        background: #DFF0D8;
+    }
+    .td-event-error{
+       background: #F2DEDE;
+    }
+    .td-event-critical{
         background: #F2DEDE;
     }
-    
+    .td-event-device-info{
+        background: #D9EDF7;
+    }
     .td-action{
        width: 110px;
        text-align: right;

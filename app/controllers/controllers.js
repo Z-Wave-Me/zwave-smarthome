@@ -256,13 +256,14 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     /**
      * Load data into collection
      */
-    dataFactory.setCache(true);
+    //dataFactory.setCache(true);
+    
     $scope.loadData = function() {
-        //getData(callback,api,cache,params)
-        dataFactory.getApiData('devices', function(data) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        dataFactory.getApi('devices').then(function(response) {
             var filter = null;
-            $scope.deviceType = dataService.getDeviceType(data.data.devices);
-            $scope.tags = dataService.getTags(data.data.devices);
+            $scope.deviceType = dataService.getDeviceType(response.data.data.devices);
+            $scope.tags = dataService.getTags(response.data.data.devices);
             loadProfile();
             // Loacations
             loadLocations();
@@ -292,8 +293,14 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
                         break;
                 }
             }
-            loadInstances(data.data.devices, filter);
+            loadInstances(response.data.data.devices, filter);
+            $scope.loading = false;
+            if(response.data.data.devices.length < 1){
+                 $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: $scope._t('no_data')};
+            }
 
+        }, function(error) {
+            dataService.showConnectionError(error);
         });
     };
     $scope.loadData();
@@ -313,7 +320,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
     };
 
-    $scope.refreshData();
+    //$scope.refreshData();
     /**
      * DEPRECATED
      */
@@ -636,7 +643,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
     $scope.refreshData = function() {
         var refresh = function() {
             dataFactory.refreshApi('notifications', '&profile=' + $scope.profile.id).then(function(response) {
-                //dataService.logInfo(response.data.data.notifications,'Refresh notifications');
+                dataService.logInfo(response.data.data.notifications,'Refresh notifications');
                 angular.forEach(response.data.data.notifications, function(v, k) {
                     $scope.collection.push(v);
                 });
@@ -647,7 +654,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
         };
         $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
     };
-    $scope.refreshData();
+    //$scope.refreshData();
     /**
      * Watch for pagination change
      */
@@ -842,6 +849,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     };
     $scope.proccessDownload = [];
     $scope.proccessDeleteModule = [];
+    $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.zwave_js_url + 'Load_Module_Media/';
     /**
      * Load data into collections
      */
@@ -1027,6 +1035,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
 myAppController.controller('AppLocalDetailController', function($scope, $routeParams, $log, dataFactory, dataService) {
     $scope.module = [];
     $scope.isOnline = null;
+     $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.zwave_js_url + 'Load_Module_Media/';
     /**
      * Load module detail
      */

@@ -2,7 +2,7 @@
 <div ng-controller="EventController">
     <bb-loader></bb-loader>
     <button class="btn btn-default" ng-click="changeTime(1)" ng-disabled="timeFilter.day == 1" ng-bind="_t('lb_today')"></button>
-    <button class="btn btn-default" ng-click="changeTime(2)" ng-disabled="timeFilter.day == 2" ng-bind="_t('lb_yesterday')">Yesterday</button>
+    <button class="btn btn-default" ng-click="changeTime(2)" ng-disabled="timeFilter.day == 2" ng-bind="_t('lb_yesterday')"></button>
     <button class="btn btn-default" ng-click="changeTime(3)" ng-disabled="timeFilter.day == 3">3 <span ng-bind="_t('lb_days')"></span></button>
     <button class="btn btn-default" ng-click="changeTime(4)" ng-disabled="timeFilter.day == 4">4 <span ng-bind="_t('lb_days')"></span></button>
     <button class="btn btn-default" ng-click="changeTime(5)" ng-disabled="timeFilter.day == 5">5 <span ng-bind="_t('lb_days')"></span></button>
@@ -13,14 +13,15 @@
             <tbody>
                 <tr dir-paginate="v in collection | orderBy: '-timestamp' | itemsPerPage: pageSize" current-page="currentPage" id="row_{{v.id}}">
                     
-                    <td class="td-event-date td-event-{{v.type}}">
+                    <td class="td-event-date td-event-{{v.level}}">
                         <span class="text-supp" title="{{v.timestamp| date:'dd.MM.yyyy H:mm'}}" ng-bind="v.timestamp | eventDate"></span>
                     </td>
                     <td>
                      <span class="text-supp"><i class="fa {{v.level|getEventIcon}}"></i> </span>
                     </td>
                     <td>
-                        <span class="report-message" ng-bind="v.message"></span>
+                        <span class="report-message" ng-bind="v.message"></span><br />
+                        {{v.type}}
                     </td>
                     <td class="td-action">
                         <div class="btn-group">

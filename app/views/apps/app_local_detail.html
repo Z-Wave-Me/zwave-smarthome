@@ -3,7 +3,8 @@
     <div class="app-border app-gradient app-shadow app-detail-header">
         <div class="app-detail-header-in">
             <div class="app-detail-img">
-                <img class="app-image-detail" src="storage/img/apps/appimage.jpg" alt="{{module.name}}"/>
+                <img class="app-image-detail" ng-src="{{moduleMediaUrl + module.moduleName + '/' + module.icon}}" ng-if="module.icon" alt="{{module.defaults.title}}" />
+                <img class="app-image-detail" ng-src="storage/img/placeholder-img.png" ng-if="!module.icon" alt="{{module.defaults.title}}" />
             </div>
         
         <div class="app-detail-body">
