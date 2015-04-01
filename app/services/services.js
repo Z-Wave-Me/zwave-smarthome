@@ -7,7 +7,7 @@ var myAppService = angular.module('myAppService', []);
 /**
  * Device service
  */
-myAppService.service('dataService', function($filter, $log,myCache) {
+myAppService.service('dataService', function($filter, $log,myCache,cfg) {
     /// --- Public functions --- ///
     /**
      * Get language line by key
@@ -55,6 +55,14 @@ myAppService.service('dataService', function($filter, $log,myCache) {
      */
     this.isMobile = function(a) {
         return isMobile(a);
+    };
+    
+    
+    /**
+     * Get user data
+     */
+    this.getUser = function(data) {
+        return getUser(data);
     };
 
     /**
@@ -167,6 +175,27 @@ myAppService.service('dataService', function($filter, $log,myCache) {
         } else {
             return false;
         }
+    }
+    
+     /**
+     * Get user data
+     */
+    function getUser(data) {
+        var user = {
+        id: 1,
+        name: 'Admin',
+        positions: [],
+        lang: cfg.lang,
+        color: '#dddddd_',
+        role: 1,
+        dashboard: [],
+        hide_rooms: [],
+        hide_all_device_events: false,
+        hide_system_events: false,
+        hide_single_device_events: []
+    };
+    return user;
+
     }
 
 

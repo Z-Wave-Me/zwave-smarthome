@@ -24,19 +24,8 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
         'lang': cfg.lang,
         'positions': []
     };
-    $scope.user = {
-        id: 1,
-        name: 'Admin',
-        positions: [],
-        lang: cfg.lang,
-        color: '#6494bc',
-        role: 2,
-        dashboard: [],
-        hide_rooms: [],
-        hide_all_device_events: false,
-        hide_system_events: false,
-        hide_single_device_events: []
-    };
+    $scope.user = dataService.getUser();
+    dataService.logInfo($scope.user);
     /**
      * Language settings
      */
@@ -1945,6 +1934,7 @@ myAppController.controller('AdminController', function($scope, $window, $cookies
  */
 myAppController.controller('AdminUserController', function($scope, $routeParams, $filter, dataFactory, dataService, myCache) {
     $scope.id = $filter('toInt')($routeParams.id);
+    $scope.rooms= {};
     $scope.input = {
         id: 0,
         name: '',
@@ -1968,7 +1958,8 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
     $scope.loadData = function(id) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('profiles', '/' + id, true).then(function(response) {
-            dataService.logInfo(response.data.data);
+            //dataService.logInfo(response.data.data);
+            loadRooms();
             $scope.input = response.data.data;
             $scope.loading = false;
         }, function(error) {
@@ -1980,6 +1971,29 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
     if ($scope.id > 0) {
         $scope.loadData($scope.id);
     }
+    
+    /**
+     * Assign room to list
+     */
+    $scope.assignRoom = function(assign) {
+        $scope.input.hide_rooms.push(assign);
+        return;
+
+    };
+    
+     /**
+     * Remove room from the list
+     */
+    $scope.removeRoom = function(roomId) {
+        var oldList = $scope.input.hide_rooms;
+        $scope.input.hide_rooms = [];
+        angular.forEach(oldList, function(v, k) {
+            if (v != roomId) {
+                $scope.input.hide_rooms.push(v);
+            }
+        });
+        return;
+    };
 
     /**
      * Create/Update an item
@@ -2022,6 +2036,20 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
 //         $cookies.profileLang = angular.toJson(profileLang);
 
     };
+    
+     /// --- Private functions --- ///
+    /**
+     * Load devices
+     */
+    function loadRooms() {
+        dataFactory.getApi('locations').then(function(response) {
+            dataService.logInfo(response.data.data, 'Rooms');
+            $scope.rooms = response.data.data;
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    }
+    ;
 
 });
 /**
@@ -2067,9 +2095,7 @@ myAppController.controller('MyAccessController', function($scope, dataFactory, d
     /**
      * Assign device to list
      */
-    $scope.assignDevice = function(id, selector, assign) {
-        $(selector).toggleClass('hidden-device');
-        $('#device_assigned_' + id).toggleClass('hidden-device');
+    $scope.assignDevice = function(assign) {
         $scope.input.hide_single_device_events.push(assign);
         return;
 
@@ -2077,9 +2103,7 @@ myAppController.controller('MyAccessController', function($scope, dataFactory, d
     /**
      * Remove device from the list
      */
-    $scope.removeDevice = function(id, selector, deviceId) {
-        $(selector).toggleClass('hidden-device');
-        $('#device_unassigned_' + id).toggleClass('hidden-device');
+    $scope.removeDevice = function(deviceId) {
         var oldList = $scope.input.hide_single_device_events;
         $scope.input.hide_single_device_events = [];
         angular.forEach(oldList, function(v, k) {
@@ -2095,7 +2119,6 @@ myAppController.controller('MyAccessController', function($scope, dataFactory, d
      */
     $scope.store = function(input) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        //var profileLang = (angular.fromJson($cookies.profileLang) ? angular.fromJson($cookies.profileLang) : []);
 
 //        var inputData = {
 //            id: input.id,
@@ -2125,7 +2148,6 @@ myAppController.controller('MyAccessController', function($scope, dataFactory, d
      */
     function loadDevices() {
         dataFactory.getApi('devices').then(function(response) {
-            dataService.logInfo(response.data.data, 'Devices');
             $scope.devices = response.data.data.devices;
         }, function(error) {
             dataService.showConnectionError(error);
