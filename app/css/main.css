@@ -872,7 +872,33 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 
 /** Profile colors */
-/* line 165, sass/globals/_navigation.scss */
+/* line 166, sass/globals/_navigation.scss */
+.profile-dddddd {
+  /* Visible */
+}
+/* line 11, sass/settings/_mixins.scss */
+.profile-dddddd .navbar-visible .navbar-visible-in .active {
+  background-color: white;
+}
+/* line 17, sass/settings/_mixins.scss */
+.profile-dddddd .navbar-inverse {
+  border-color: white;
+}
+
+/* line 169, sass/globals/_navigation.scss */
+.profile-6c7a89 {
+  /* Visible */
+}
+/* line 11, sass/settings/_mixins.scss */
+.profile-6c7a89 .navbar-visible .navbar-visible-in .active {
+  background-color: #a4adb7;
+}
+/* line 17, sass/settings/_mixins.scss */
+.profile-6c7a89 .navbar-inverse {
+  border-color: #a4adb7;
+}
+
+/* line 172, sass/globals/_navigation.scss */
 .profile-6494bc {
   /* Visible */
 }
@@ -885,7 +911,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-color: #abc5db;
 }
 
-/* line 168, sass/globals/_navigation.scss */
+/* line 175, sass/globals/_navigation.scss */
 .profile-80ad80 {
   /* Visible */
 }
@@ -898,7 +924,46 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-color: #bed5be;
 }
 
-/* line 172, sass/globals/_navigation.scss */
+/* line 178, sass/globals/_navigation.scss */
+.profile-31b0d5 {
+  /* Visible */
+}
+/* line 11, sass/settings/_mixins.scss */
+.profile-31b0d5 .navbar-visible .navbar-visible-in .active {
+  background-color: #86d0e6;
+}
+/* line 17, sass/settings/_mixins.scss */
+.profile-31b0d5 .navbar-inverse {
+  border-color: #86d0e6;
+}
+
+/* line 181, sass/globals/_navigation.scss */
+.profile-f0aD4e {
+  /* Visible */
+}
+/* line 11, sass/settings/_mixins.scss */
+.profile-f0aD4e .navbar-visible .navbar-visible-in .active {
+  background-color: #f8d9ac;
+}
+/* line 17, sass/settings/_mixins.scss */
+.profile-f0aD4e .navbar-inverse {
+  border-color: #f8d9ac;
+}
+
+/* line 184, sass/globals/_navigation.scss */
+.profile-d9534f {
+  /* Visible */
+}
+/* line 11, sass/settings/_mixins.scss */
+.profile-d9534f .navbar-visible .navbar-visible-in .active {
+  background-color: #eba5a3;
+}
+/* line 17, sass/settings/_mixins.scss */
+.profile-d9534f .navbar-inverse {
+  border-color: #eba5a3;
+}
+
+/* line 187, sass/globals/_navigation.scss */
 .profile-dd976e {
   /* Visible */
 }
