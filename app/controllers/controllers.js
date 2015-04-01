@@ -257,7 +257,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
      * Load data into collection
      */
     //dataFactory.setCache(true);
-    
+
     $scope.loadData = function() {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('devices').then(function(response) {
@@ -295,8 +295,8 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
             }
             loadInstances(response.data.data.devices, filter);
             $scope.loading = false;
-            if(response.data.data.devices.length < 1){
-                 $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: $scope._t('no_data')};
+            if (response.data.data.devices.length < 1) {
+                $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: $scope._t('no_data')};
             }
 
         }, function(error) {
@@ -540,11 +540,12 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
     $scope.eventLevels = [];
     $scope.eventSources = [];
     $scope.currLevel = null;
-    $scope.timeFilter = (angular.isDefined($cookies.events_timeFilter) ? $cookies.events_timeFilter : {
+    $scope.timeFilterDefault = {
         since: $filter('unixStartOfDay')(),
         to: $filter('unixStartOfDay')('+', 86400),
         day: 1
-    });
+    };
+    $scope.timeFilter = $scope.timeFilterDefault;
     $scope.currentPage = 1;
     $scope.pageSize = cfg.page_results_events;
     $scope.reset = function() {
@@ -555,6 +556,9 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
     // Cancel interval on page destroy
     $scope.$on('$destroy', function() {
         $interval.cancel($scope.apiDataInterval);
+        $cookies.events_timeFilter = angular.toJson($scope.timeFilterDefault);
+        //$cookies.events_timeFilter = false;
+        //$cookies.remove('events_timeFilter');
     });
 
     /**
@@ -563,7 +567,6 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
     $scope.loadData = function() {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         $scope.timeFilter = (angular.isDefined($cookies.events_timeFilter) ? angular.fromJson($cookies.events_timeFilter) : $scope.timeFilter);
-        //dataService.logInfo($scope.timeFilter);
         //var urlParam = '?since=' + timeFilter.since + '&to=' + timeFilter.to + '&profile=' + $scope.profile.id;
         var urlParam = '?since=' + $scope.timeFilter.since + '&profile=' + $scope.profile.id;
         dataFactory.getApi('notifications', urlParam).then(function(response) {
@@ -643,7 +646,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
     $scope.refreshData = function() {
         var refresh = function() {
             dataFactory.refreshApi('notifications', '&profile=' + $scope.profile.id).then(function(response) {
-                dataService.logInfo(response.data.data.notifications,'Refresh notifications');
+                dataService.logInfo(response.data.data.notifications, 'Refresh notifications');
                 angular.forEach(response.data.data.notifications, function(v, k) {
                     $scope.collection.push(v);
                 });
@@ -847,49 +850,62 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
         'categories': true,
         'serach': true
     };
-    $scope.proccessDownload = [];
-    $scope.proccessDeleteModule = [];
     $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.zwave_js_url + 'Load_Module_Media/';
+    $scope.onlineMediaUrl =  $scope.cfg.online_module_img_url;
     /**
-     * Load data into collections
+     * Load categories
      */
-    dataFactory.setCache(true);
-
     $scope.loadCategories = function() {
-        dataFactory.getApiData('modules_categories', function(data) {
-            $scope.categories = data.data;
+        dataFactory.getApi('modules_categories').then(function(response) {
+            $scope.categories = response.data.data;
+        }, function(error) {
+            dataService.showConnectionError(error);
         });
     };
     $scope.loadCategories();
+
+    /**
+     * Load local modules
+     */
     $scope.loadModules = function(filter) {
-        dataFactory.getApiData('modules', function(data) {
-            $scope.modules = dataService.getData(data.data, filter);
-            angular.forEach(data.data, function(v, k) {
+        dataFactory.getApi('modules').then(function(response) {
+            $scope.modules = dataService.getData(response.data.data, filter);
+            angular.forEach(response.data.data, function(v, k) {
                 $scope.modulesIds.push(v.id);
 
             });
+            $scope.loading = false;
+        }, function(error) {
+            $scope.loading = false;
+            dataService.showConnectionError(error);
         });
     };
-    $scope.loadOnlineModules = function(filter) {
-        dataFactory.localData('online.json', function(response) {
-            $scope.onlineModules = response;
-            angular.forEach(response, function(v, k) {
+
+    /**
+     * Load online modules
+     */
+    $scope.loadOnlineModules = function() {
+        dataFactory.getRemoteData($scope.cfg.online_module_url).then(function(response) {
+            $scope.onlineModules = response.data;
+            angular.forEach(response.data, function(v, k) {
                 if (v.modulename && v.modulename != '') {
                     $scope.onlineVersion[v.modulename] = v.version;
                 }
             });
+            $scope.loading = false;
+        }, function(error) {
+            $scope.loading = false;
+            dataService.showConnectionError(error);
         });
-//        dataFactory.getRemoteData($scope.cfg.online_module_url).then(function(response) {
-//            $scope.onlineModules = response.data;//dataService.getData(response.data, filter);
-//        }, function(error) {
-//            dataService.showConnectionError(error);
-//        });
-
     };
     $scope.loadInstances = function() {
-        dataFactory.getApiData('instances', function(data) {
-            $scope.instances = data.data;
-        }, null, true);
+        dataFactory.getApi('instances').then(function(response) {
+            $scope.instances = response.data.data;
+            $scope.loading = false;
+        }, function(error) {
+            $scope.loading = false;
+            dataService.showConnectionError(error);
+        });
     };
 
     /**
@@ -902,6 +918,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
 
     // Watch for tab change
     $scope.$watch('activeTab', function() {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         switch ($scope.activeTab) {
             case 'instance':
                 $scope.showInFooter.categories = false;
@@ -948,10 +965,18 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
      */
     $scope.activateInstance = function(input, activeStatus) {
         input.active = activeStatus;
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         if (input.id) {
-            dataFactory.putApiData('instances', input.id, input, function(data) {
-                myCache.remove('devices');
+            dataFactory.putApi('instances', input.id, input).then(function(response) {
+                dataService.logInfo(response, 'activateInstance');
+                $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
                 myCache.remove('instances');
+                $scope.loadInstances();
+
+            }, function(error) {
+                alert($scope._t('error_update_data'));
+                $scope.loading = false;
+                dataService.logError(error);
             });
         }
 
@@ -968,13 +993,13 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
         if (confirm) {
             dataFactory.deleteApi('instances', input.id).then(function(response) {
                 $(target).fadeOut(2000);
-
+                myCache.remove('instances');
+                myCache.remove('devices');
             }, function(error) {
                 alert($scope._t('error_delete_data'));
-                $log.error('ERROR: ', error);
+                dataService.logError(error);
             });
-            myCache.remove('instances');
-            myCache.remove('devices');
+
         }
     };
     /**
@@ -997,15 +1022,16 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
             confirm = $window.confirm(dialog);
         }
         if (confirm) {
-            $scope.proccessDeleteModule[input.id] = {icon: 'fa-spinner fa-spin'};
+            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
             dataFactory.deleteApi('modules', input.id).then(function(response) {
-                $scope.proccessDeleteModule[input.id] = {icon: false};
+                myCache.remove('modules');
                 $(target).fadeOut(2000);
+                $scope.loading = false;
 
             }, function(error) {
+                $scope.loading = false;
                 alert($scope._t('error_delete_data'));
-                $scope.proccessDeleteModule[input.id] = {icon: false};
-                $log.error('ERROR: ', error);
+                dataService.logError(error);
             });
         }
     };
@@ -1023,7 +1049,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
         }, function(error) {
             $scope.loading = false;
             alert($scope._t('error_no_module_download'));
-            $log.error('ERROR: ', error);
+            dataService.logError(error);
         });
 
     };
@@ -1035,45 +1061,29 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
 myAppController.controller('AppLocalDetailController', function($scope, $routeParams, $log, dataFactory, dataService) {
     $scope.module = [];
     $scope.isOnline = null;
-     $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.zwave_js_url + 'Load_Module_Media/';
+    $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.zwave_js_url + 'Load_Module_Media/';
     /**
      * Load module detail
      */
     $scope.loadModule = function(id) {
-        dataFactory.getApiData('modules', function(data) {
-            $scope.module = dataService.getRowBy(data.data, 'id', id);
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        dataFactory.getApi('modules', '/' + id).then(function(response) {
             loadOnlineModules(id);
+            $scope.module = response.data.data;
+            $scope.loading = false;
+        }, function(error) {
+            $scope.loading = false;
+            dataService.showConnectionError(error);
         });
     };
-    /**
-     * Load online modules
-     */
-    $scope.loadOnlineModules = function(moduleName) {
-        dataFactory.localData('online.json', function(response) {
-            var hasOnline = dataService.getRowBy(response, 'modulename', moduleName);
-
-            console.log(hasOnline)
-        });
-//        dataFactory.getRemoteData($scope.cfg.online_module_url).then(function(response) {
-//            $scope.onlineModules = response.data;//dataService.getData(response.data, filter);
-//        }, function(error) {
-//            dataService.showConnectionError(error);
-//        });
-
-    };
-
     $scope.loadModule($routeParams.id);
 
     /// --- Private functions --- ///
     function loadOnlineModules(moduleName) {
-//        dataFactory.getRemoteData($scope.cfg.online_module_url).then(function(response) {
-//             $scope.isOnline = dataService.getRowBy(response, 'modulename', moduleName);
-//        }, function(error) {
-//            $log.error('ERROR: ', error);
-//            //dataService.showConnectionError(error);
-//        });
-        dataFactory.localData('online.json', function(response) {
-            $scope.isOnline = dataService.getRowBy(response, 'modulename', moduleName);
+        dataFactory.getRemoteData($scope.cfg.online_module_url).then(function(response) {
+            $scope.isOnline = dataService.getRowBy(response.data, 'modulename', moduleName);
+        }, function(error) {
+            dataService.logError(error);
         });
     }
 
@@ -1083,28 +1093,24 @@ myAppController.controller('AppLocalDetailController', function($scope, $routePa
  */
 myAppController.controller('AppOnlineDetailController', function($scope, $routeParams, $log, $timeout, dataFactory, dataService) {
     $scope.module = [];
-    $scope.proccessDownload = {
-        icon: false,
-        message: false,
-        status: 'alert-hidden'
-    };
+    $scope.onlineMediaUrl =  $scope.cfg.online_module_img_url;
     /**
      * Load module detail
      */
     $scope.loadModule = function(id) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var param = parseInt(id, 10);
         var filter = 'id';
         if (isNaN(param)) {
             filter = 'modulename';
         }
-        dataFactory.localData('online.json', function(response) {
-            $scope.module = dataService.getRowBy(response, filter, id);
+        dataFactory.getRemoteData($scope.cfg.online_module_url).then(function(response) {
+            $scope.module = dataService.getRowBy(response.data, filter, id);
+            $scope.loading = false;
+        }, function(error) {
+            dataService.showConnectionError(error);
+            $scope.loading = false;
         });
-//        dataFactory.getRemoteData($scope.cfg.online_module_url).then(function(response) {
-//            $scope.module = dataService.getRowBy(response.data, filter, id);
-//        }, function(error) {
-//            dataService.showConnectionError(error);
-//        });
     };
 
     $scope.loadModule($routeParams.id);
@@ -1113,17 +1119,16 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
      * Download module
      */
     $scope.downloadModule = function(id, modulename) {
-        $scope.proccessDownload = {icon: 'fa-spinner fa-spin'};
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
         var cmd = 'Run/system("/opt/module_downloader.sh ' + id + ' ' + modulename + '")';
         dataFactory.getSystemCmd(cmd).then(function(response) {
-            $scope.proccessDownload = {icon: false, message: $scope._t('success_module_download'), status: 'alert-success'};
             $timeout(function() {
-                $scope.proccessDownload = {icon: false, message: false};
+                $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_module_download')};
             }, 3000);
         }, function(error) {
-            $scope.proccessDownload = {icon: false};
+            $scope.loading = false;
             alert($scope._t('error_no_module_download'));
-            $log.error('ERROR: ', error);
+            dataService.logError(error);
         });
 
     };
@@ -1470,9 +1475,9 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
 /**
  * Room controller
  */
-myAppController.controller('RoomController', function($scope, dataFactory,dataService) {
+myAppController.controller('RoomController', function($scope, dataFactory, dataService) {
     $scope.collection = [];
-     $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.zwave_js_url + 'Load_Image/';
+    $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.zwave_js_url + 'Load_Image/';
     $scope.reset = function() {
         $scope.collection = angular.copy([]);
     };
@@ -1490,12 +1495,12 @@ myAppController.controller('RoomController', function($scope, dataFactory,dataSe
         dataFactory.getApi('locations').then(function(response) {
             $scope.collection = response.data.data;
             $scope.loading = false;
-            if($scope.collection.length < 1){
-                 $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: $scope._t('no_data')};
+            if ($scope.collection.length < 1) {
+                $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: $scope._t('no_data')};
             }
-            
+
         }, function(error) {
-          
+
             dataService.showConnectionError(error);
         });
     };

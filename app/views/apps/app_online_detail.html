@@ -1,9 +1,11 @@
 <!-- AppOnlineDetailController -->
 <div ng-controller="AppOnlineDetailController">
+     <bb-loader></bb-loader>
     <div class="app-border app-gradient app-shadow app-detail-header">
         <div class="app-detail-header-in" ng-if="module">
             <div class="app-detail-img">
-                <img class="app-image-detail" src="storage/img/apps/appimage.jpg" alt="{{module.name}}"/>
+              <img class="app-image-detail" ng-src="{{onlineMediaUrl + module.icon}}" ng-if="module.icon" alt="{{module.title}}" />
+                <img class="app-image-detail" ng-src="storage/img/placeholder-img.png" ng-if="!module.icon" alt="{{module.title}}" />
             </div>
 
             <div class="app-detail-body">
@@ -27,11 +29,8 @@
                     <i class="fa fa-clock-o fa-lg"></i> <span ng-bind="module.last_updated"></span>
                 </p>
                 <div class="app-detail-control">
-                    <div class="alert alert-entry" ng-class="proccessDownload.status" ng-if="proccessDownload.message">
-                         <span ng-bind="proccessDownload.message"></span>
-                    </div>
                     <a href="" class="btn btn-default btn-lg" ng-click="downloadModule(module.id, module.modulename)">
-                        <i class="fa fa-lg text-success" ng-class="proccessDownload.icon ? proccessDownload.icon : 'fa-download'"></i> <span class="btn-name_">{{_t('lb_download')}}</span>
+                        <i class="fa fa-lg text-success fa-download"></i> <span class="btn-name_">{{_t('lb_download')}}</span>
                     </a> 
                 </div>
                 

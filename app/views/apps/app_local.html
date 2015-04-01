@@ -16,7 +16,7 @@
                         <i class="fa fa-plus fa-lg text-success"></i> <span class="btn-name" ng-bind="_t('lb_add_app')"></span>
                     </a>
                     <a href="" class="btn btn-default btn-sm" ng-click="deleteModule('#local_module_' + v.id, {'id': v.id}, _t('lb_delete_confirm'))" ng-if="!v.islocal">
-                        <i class="fa fa-lg text-danger" ng-class="proccessDeleteModule[v.id].icon? proccessDeleteModule[v.id].icon:'fa-remove'"></i> <span class="btn-name" ng-bind="_t('lb_remove')"></span></a> 
+                        <i class="fa fa-remove fa-lg text-danger"></i> <span class="btn-name" ng-bind="_t('lb_remove')"></span></a> 
                  </div>
                 </div>
         </div>
