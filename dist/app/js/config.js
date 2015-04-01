@@ -7,7 +7,7 @@ var config_data = {
         // Application type: web/app
         'app_type': 'web',
         // Server base url
-        abc
+        'server_url': '/', 
         //'server_url': 'http://192.168.10.119:8083/',
         // Interval in miliseconds to refresh data
         'interval': 3000,

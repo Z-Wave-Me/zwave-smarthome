@@ -179,7 +179,7 @@ module.exports = function(grunt) {
             options: {
               replacements: [{
                 pattern: /'server_url': (.*?) /ig,
-                replacement: 'abc'
+                replacement: '\'server_url\': \'/\''
               }]
             }
             }
@@ -199,6 +199,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-sass');
 
     // Default task(s).
-    grunt.registerTask('default', ['clean','concat','copy','cssmin','string-replace']);
+    grunt.registerTask('default', ['clean','concat','copy','cssmin']);
 
 };
