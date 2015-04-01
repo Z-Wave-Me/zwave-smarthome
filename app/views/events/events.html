@@ -20,8 +20,7 @@
                      <span class="text-supp"><i class="fa {{v.level|getEventIcon}}"></i> </span>
                     </td>
                     <td>
-                        <span class="report-message" ng-bind="v.message"></span><br />
-                        {{v.type}}
+                        <span class="report-message" ng-bind="v.message"></span>
                     </td>
                     <td class="td-action">
                         <div class="btn-group">
@@ -54,11 +53,6 @@
                                 
                             </ul>
                         </div>
-                    </td>
-                     <td>
-                        <a href=""ng-click="deleteEvent(v.id,'#row_' + v.id,_t('lb_delete_confirm'))" ng-if="v.level == 'error' || v.level == 'notification'">
-                         <i class="fa fa-times text-danger"></i>
-                        </a>
                     </td>
                 </tr>
             </tbody>

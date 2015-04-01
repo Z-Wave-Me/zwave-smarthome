@@ -15,7 +15,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
     $scope.cfg = cfg;
     $scope.loading = false;
     // Current profile
-    $scope.demoColor = ['#6494bc', '#80ad80', '#dd976e', '#6494bc', '#80ad80', '#dd976e', '#6494bc', '#80ad80', '#dd976e', '#6494bc', '#80ad80', '#dd976e'];
+    //$scope.demoColor = ['#6494bc', '#80ad80', '#dd976e', '#6494bc', '#80ad80', '#dd976e', '#6494bc', '#80ad80', '#dd976e', '#6494bc', '#80ad80', '#dd976e'];
     $scope.profile = {
         'id': 1,
         'name': 'Default',
@@ -25,12 +25,17 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
         'positions': []
     };
     $scope.user = {
-        'id': 1,
-        'name': 'Default',
-        'cssClass': 'profile-80ad80',
-        'active': true,
-        'lang': cfg.lang,
-        'positions': []
+        id: 1,
+        name: 'Admin',
+        positions: [],
+        lang: cfg.lang,
+        color: '#6494bc',
+        role: 2,
+        dashboard: [],
+        hide_rooms: [],
+        hide_all_device_events: false,
+        hide_system_events: false,
+        hide_single_device_events: []
     };
     /**
      * Language settings
