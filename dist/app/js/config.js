@@ -33,12 +33,16 @@ var config_data = {
         'api_url': 'ZAutomation/api/v1/',
         // ZWave api url
         'zwave_api_url': 'ZWaveAPI/',
+        // ZWave JS url
+        'zwave_js_url': 'JS/',
         // ZWave run JS url
         'zwave_jsrun_url': 'JS/Run/',
         // Local data path
         'local_data_url': 'storage/data/',
         // Online module url
         'online_module_url': 'http://hrix.net/modules_store/json_store.php',
+        // Online module img url
+        'online_module_img_url': 'http://hrix.net/modules_store/modules/',
         // Url to zddx xml files
         'zddx_url': 'ZDDX/',
         // Url to run ExpertUI cmd
@@ -58,7 +62,7 @@ var config_data = {
             'ru': 'en_EN'
         },
         // List of profile colors
-        'profile_colors': ['#6C7A89', '#3071A9', '#449D44', '#31B0D5', '#F0AD4E', '#D9534F'],
+        'profile_colors': ['#dddddd','#6c7a89', '#6494bc', '#80ad80', '#31b0d5', '#f0aD4e', '#d9534f','#dd976e'],
         // Chart colors
         'chart_colors': {
             fillColor: 'rgba(151,187,205,0.5)',
@@ -69,7 +73,7 @@ var config_data = {
         // Device vendors
         'device_vendors': ['zwave', 'enocean', 'ipcamera'],
         // Hidden apps
-        'hidden_apps': ['Cron', 'AnotherModuleID'],
+        'hidden_apps': ['AnotherModuleID'],
         // Room images
         'room_images': [
             'kitchen.jpg',
@@ -80,7 +84,7 @@ var config_data = {
         // Results per page
         'page_results': 12,
         // Results per events page
-        'page_results_events': 30
+        'page_results_events': 50
 
 
 

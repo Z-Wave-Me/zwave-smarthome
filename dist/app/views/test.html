@@ -1,17 +1,12 @@
 <!-- Test view -->
 <div ng-controller="TestController">
-    <h1>Test page</h1>
-    <img ng-src="data:image/jpg;base64,{{getModuleImage}}" />
-     <button ng-click="hideStuff()">Click me!</button>
-    <div class="default" ng-hide="hidden" ng-class="{fade: startFade}">This will get hidden!</div>
-    
     <bb-loader></bb-loader>
-    <div class="loading" ng-show="loading__">
-        <div class="loading-in">
-            <i class="fa fa-lg" ng-class="loading.icon"></i> <span ng-bind="loading.message"></span>
-        </div>
-    </div>
-    <button ng-click="testLoader()">Test me</button>
+    <h1>Test page</h1>
+    <img ng-src="{{userImage}}" ng-if="userImage"/>
+        <form name="form_firmware" id="form_firmware" class="form form-inline" ng-submit="uploadFile()" novalidate>
+            <input type="file" class="form-control_" file-model="myFile" />
+            <button type="submit" class="btn btn-primary" id="btn_save_note">Upload image</button>
+        </form>
 </div><!-- /ng-controller --> 
 <script type="text/ng-template" id="app/views/elements/directives/default_.html">
     <h1>My title Inline</h1>

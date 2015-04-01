@@ -3,7 +3,11 @@
     <div class="col-lg-4 col-md-6 col-sm-6 app-entry"  ng-repeat="v in onlineModules | filter:q">
         <div class="app-border app-gradient app-shadow app-entry-in" ng-class="modulesIds.indexOf(v.modulename) !== -1 ? 'app-gradient-green': ''">
             
-            <a href="#apps/online/{{v.id}}"><img class="app-image" src="storage/img/apps/app.png" alt="{{v.title}}"/></a>
+            <a href="#apps/online/{{v.id}}">
+                
+                <img class="app-image" ng-src="{{onlineMediaUrl + v.icon}}" alt="{{v.title}}" ng-if="v.icon" />
+                 <img class="app-image" ng-src="storage/img/placeholder-img.png" alt="{{v.title}}" ng-if="!v.icon" />
+            </a>
             <div class="app-body">
                 <h3 class="entry-title"><a href="#apps/online/{{v.id}}" ng-bind="v.title"></a>  &raquo;</h3>
              </div>

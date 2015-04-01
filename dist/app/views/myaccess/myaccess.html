@@ -1,0 +1,74 @@
+<!-- Home view -->
+<div ng-controller="MyAccessController" class="mobile-padding">
+    <bb-loader></bb-loader>
+    <div ng-show="input">
+        <h1 ng-bind="_t('nav_myaccess')"></h1>
+        <form name="form_profile" id="form_profile" class="form form-page" ng-submit="store(input)" novalidate>
+            <fieldset>
+                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_change_password')"></span></h3>
+                <!-- password -->
+                <div>
+                    <input name="password" id="password" type="password" class="form-control" placeholder="{{_t('lb_new_password')}}" value="" ng-model="input.password" />
+                </div>
+            </fieldset>
+            <fieldset>
+                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_settings')"></span></h3>
+                <div>
+                    <!-- lang -->
+                    <div class="form-group form-inline">
+                        <label>{{_t('lb_language')}}:</label>
+                        <span ng-repeat="v in cfg.lang_list" >
+                            <input class="form-control-hidden" type="radio" name="color" value="{{v}}" ng-model="input.lang" ng-checked="input.color == v" />
+                            <img class="form-control-img profile-lang" ng-click="input.lang = v" ng-class="v == input.lang ? 'control-active':''" ng-src="app/img/flags/{{v}}.png" alt="{{ v}}"/>
+                        </span>
+                        <span ng-bind="input.lang"></span>
+                    </div>
+                    <!-- colors -->
+                    <div class="form-group">
+                        <label>{{_t('lb_profile_color')}}: </label>
+                        <span ng-repeat="v in cfg.profile_colors" >
+                            <input class="form-control-hidden" type="radio" name="color" value="{{v}}" ng-model="input.color" ng-checked="input.color == v" />
+                            <span class="form-control-img profile-color" style="background-color: {{v}}" ng-click="input.color = v" ng-class="v == input.color ? 'control-active':''">&nbsp;</span> 
+                        </span>
+                        <span ng-bind="input.color"></span>
+                    </div>
+
+                </div>
+            </fieldset>
+            <fieldset>
+                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('nav_events')"></span></h3>
+                <div>
+                    <div>
+                        <input type="checkbox" name="hide_all_device_events" value="true" id="hide_all_device_events" ng-model="input.hide_all_device_events" ng-checked="input.hide_all_device_events" /> 
+                        <label ng-bind="_t('lb_hide_device_events')"></label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="hide_system_events" value="true" id="hide_system_events" ng-model="input.hide_system_events" ng-checked="input.hide_system_events" /> 
+                        <label ng-bind="_t('lb_hide_device_events')"></label>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_inband_filtering')"></span></h3>
+                <div class="device-assigned-block">
+                        <h4>{{_t('lb_hide_single_device_events')}}</h4>
+                        <div class="btn-device-admin" id="device_assigned_{{$index}}" ng-repeat="d in devices" ng-if="input.hide_single_device_events.indexOf(d.id) > -1"> 
+                            <a href="" ng-click="removeDevice($index, '#device_assigned_' + $index, d.id)">{{d.metrics.title}} <i class="fa fa-times text-danger"></i></a>
+                        </div>
+                    </div>
+                <div class="device-available-block">
+                    <h4>{{_t('lb_available_devices')}}</h4>
+                    <div class="btn-device-admin" id="device_unassigned_{{$index}}" ng-repeat="d in devices" ng-if="input.hide_single_device_events.indexOf(d.id) === -1">
+                        <a href="" ng-click="assignDevice($index, '#device_unassigned_' + $index, d.id)">{{d.metrics.title}} <i class="fa fa-plus text-success"></i></a>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="form-footer">
+                <button type="submit" class="btn btn-primary" ng-bind="_t('lb_save')">{{_t('apply_config_into_device')}}</button>
+                <button class="btn btn-default" ng-bind="_t('lb_cancel')" bb-go-back></button>
+            </div>
+        </form>
+
+    </div>
+
+</div> <!-- /ng-controller --> 
