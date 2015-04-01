@@ -9562,3 +9562,8716 @@ myAppController.controller('AboutController', function($scope, dataFactory) {
 
 
 "use strict";angular.module("colorpicker.module",[]).factory("Helper",function(){return{closestSlider:function(e){var o=e.matches||e.webkitMatchesSelector||e.mozMatchesSelector||e.msMatchesSelector;return o.bind(e)("I")?e.parentNode:e},getOffset:function(e,o){for(var t=0,n=0,r=0,i=0;e&&!isNaN(e.offsetLeft)&&!isNaN(e.offsetTop);)t+=e.offsetLeft,n+=e.offsetTop,o||"BODY"!==e.tagName?(r+=e.scrollLeft,i+=e.scrollTop):(r+=document.documentElement.scrollLeft||e.scrollLeft,i+=document.documentElement.scrollTop||e.scrollTop),e=e.offsetParent;return{top:n,left:t,scrollX:r,scrollY:i}},stringParsers:[{re:/rgba?\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*(?:,\s*(\d+(?:\.\d+)?)\s*)?\)/,parse:function(e){return[e[1],e[2],e[3],e[4]]}},{re:/rgba?\(\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*(?:,\s*(\d+(?:\.\d+)?)\s*)?\)/,parse:function(e){return[2.55*e[1],2.55*e[2],2.55*e[3],e[4]]}},{re:/#([a-fA-F0-9]{2})([a-fA-F0-9]{2})([a-fA-F0-9]{2})/,parse:function(e){return[parseInt(e[1],16),parseInt(e[2],16),parseInt(e[3],16)]}},{re:/#([a-fA-F0-9])([a-fA-F0-9])([a-fA-F0-9])/,parse:function(e){return[parseInt(e[1]+e[1],16),parseInt(e[2]+e[2],16),parseInt(e[3]+e[3],16)]}}]}}).factory("Color",["Helper",function(e){return{value:{h:1,s:1,b:1,a:1},rgb:function(){var e=this.toRGB();return"rgb("+e.r+","+e.g+","+e.b+")"},rgba:function(){var e=this.toRGB();return"rgba("+e.r+","+e.g+","+e.b+","+e.a+")"},hex:function(){return this.toHex()},RGBtoHSB:function(e,o,t,n){e/=255,o/=255,t/=255;var r,i,a,l;return a=Math.max(e,o,t),l=a-Math.min(e,o,t),r=0===l?null:a===e?(o-t)/l:a===o?(t-e)/l+2:(e-o)/l+4,r=(r+360)%6*60/360,i=0===l?0:l/a,{h:r||1,s:i,b:a,a:n||1}},setColor:function(o){o=o.toLowerCase();for(var t in e.stringParsers)if(e.stringParsers.hasOwnProperty(t)){var n=e.stringParsers[t],r=n.re.exec(o),i=r&&n.parse(r);if(i)return this.value=this.RGBtoHSB.apply(null,i),!1}},setHue:function(e){this.value.h=1-e},setSaturation:function(e){this.value.s=e},setLightness:function(e){this.value.b=1-e},setAlpha:function(e){this.value.a=parseInt(100*(1-e),10)/100},toRGB:function(e,o,t,n){e||(e=this.value.h,o=this.value.s,t=this.value.b),e*=360;var r,i,a,l,s;return e=e%360/60,s=t*o,l=s*(1-Math.abs(e%2-1)),r=i=a=t-s,e=~~e,r+=[s,l,0,0,l,s][e],i+=[l,s,s,l,0,0][e],a+=[0,0,l,s,s,l][e],{r:Math.round(255*r),g:Math.round(255*i),b:Math.round(255*a),a:n||this.value.a}},toHex:function(e,o,t,n){var r=this.toRGB(e,o,t,n);return"#"+(1<<24|parseInt(r.r,10)<<16|parseInt(r.g,10)<<8|parseInt(r.b,10)).toString(16).substr(1)}}}]).factory("Slider",["Helper",function(e){var o={maxLeft:0,maxTop:0,callLeft:null,callTop:null,knob:{top:0,left:0}},t={};return{getSlider:function(){return o},getLeftPosition:function(e){return Math.max(0,Math.min(o.maxLeft,o.left+((e.pageX||t.left)-t.left)))},getTopPosition:function(e){return Math.max(0,Math.min(o.maxTop,o.top+((e.pageY||t.top)-t.top)))},setSlider:function(n,r){var i=e.closestSlider(n.target),a=e.getOffset(i,r);o.knob=i.children[0].style,o.left=n.pageX-a.left-window.pageXOffset+a.scrollX,o.top=n.pageY-a.top-window.pageYOffset+a.scrollY,t={left:n.pageX,top:n.pageY}},setSaturation:function(e,t){o={maxLeft:100,maxTop:100,callLeft:"setSaturation",callTop:"setLightness"},this.setSlider(e,t)},setHue:function(e,t){o={maxLeft:0,maxTop:100,callLeft:!1,callTop:"setHue"},this.setSlider(e,t)},setAlpha:function(e,t){o={maxLeft:0,maxTop:100,callLeft:!1,callTop:"setAlpha"},this.setSlider(e,t)},setKnob:function(e,t){o.knob.top=e+"px",o.knob.left=t+"px"}}}]).directive("colorpicker",["$document","$compile","Color","Slider","Helper",function(e,o,t,n,r){return{require:"?ngModel",restrict:"A",link:function(i,a,l,s){var c,u=l.colorpicker?l.colorpicker:"hex",p=angular.isDefined(l.colorpickerPosition)?l.colorpickerPosition:"bottom",f=angular.isDefined(l.colorpickerInline)?l.colorpickerInline:!1,d=angular.isDefined(l.colorpickerFixedPosition)?l.colorpickerFixedPosition:!1,v=angular.isDefined(l.colorpickerParent)?a.parent():angular.element(document.body),h=angular.isDefined(l.colorpickerWithInput)?l.colorpickerWithInput:!1,g=h?'<input type="text" name="colorpicker-input">':"",m=f?"":'<button type="button" class="close close-colorpicker">&times;</button>',k='<div class="colorpicker dropdown"><div class="dropdown-menu"><colorpicker-saturation><i></i></colorpicker-saturation><colorpicker-hue><i></i></colorpicker-hue><colorpicker-alpha><i></i></colorpicker-alpha><colorpicker-preview></colorpicker-preview>'+g+m+"</div></div>",b=angular.element(k),x=t,w=b.find("colorpicker-hue"),L=b.find("colorpicker-saturation"),S=b.find("colorpicker-preview"),P=b.find("i");if(o(b)(i),h){var T=b.find("input");T.on("mousedown",function(e){e.stopPropagation()}).on("keyup",function(e){var o=this.value;a.val(o),s&&i.$apply(s.$setViewValue(o)),e.stopPropagation(),e.preventDefault()}),a.on("keyup",function(){T.val(a.val())})}var C=function(){e.on("mousemove",M),e.on("mouseup",y)};"rgba"===u&&(b.addClass("alpha"),c=b.find("colorpicker-alpha"),c.on("click",function(e){n.setAlpha(e,d),M(e)}).on("mousedown",function(e){n.setAlpha(e,d),C()})),w.on("click",function(e){n.setHue(e,d),M(e)}).on("mousedown",function(e){n.setHue(e,d),C()}),L.on("click",function(e){n.setSaturation(e,d),M(e)}).on("mousedown",function(e){n.setSaturation(e,d),C()}),d&&b.addClass("colorpicker-fixed-position"),b.addClass("colorpicker-position-"+p),"true"===f&&b.addClass("colorpicker-inline"),v.append(b),s&&(s.$render=function(){a.val(s.$viewValue)},i.$watch(l.ngModel,function(e){I(),h&&T.val(e)})),a.on("$destroy",function(){b.remove()});var H=function(){try{S.css("backgroundColor",x[u]())}catch(e){S.css("backgroundColor",x.toHex())}L.css("backgroundColor",x.toHex(x.value.h,1,1,1)),"rgba"===u&&(c.css.backgroundColor=x.toHex())},M=function(e){var o=n.getLeftPosition(e),t=n.getTopPosition(e),r=n.getSlider();n.setKnob(t,o),r.callLeft&&x[r.callLeft].call(x,o/100),r.callTop&&x[r.callTop].call(x,t/100),H();var l=x[u]();return a.val(l),s&&i.$apply(s.$setViewValue(l)),h&&T.val(l),!1},y=function(){e.off("mousemove",M),e.off("mouseup",y)},I=function(){x.setColor(a.val()),P.eq(0).css({left:100*x.value.s+"px",top:100-100*x.value.b+"px"}),P.eq(1).css("top",100*(1-x.value.h)+"px"),P.eq(2).css("top",100*(1-x.value.a)+"px"),H()},A=function(){var e,o=r.getOffset(a[0]);return angular.isDefined(l.colorpickerParent)&&(o.left=0,o.top=0),"top"===p?e={top:o.top-147,left:o.left}:"right"===p?e={top:o.top,left:o.left+126}:"bottom"===p?e={top:o.top+a[0].offsetHeight+2,left:o.left}:"left"===p&&(e={top:o.top,left:o.left-150}),{top:e.top+"px",left:e.left+"px"}},$=function(){D()};f===!1?a.on("click",function(){I(),b.addClass("colorpicker-visible").css(A()),e.on("mousedown",$)}):(I(),b.addClass("colorpicker-visible").css(A())),b.on("mousedown",function(e){e.stopPropagation(),e.preventDefault()});var B=function(e){s&&i.$emit(e,{name:l.ngModel,value:s.$modelValue})},D=function(){b.hasClass("colorpicker-visible")&&(b.removeClass("colorpicker-visible"),B("colorpicker-closed"),e.off("mousedown",$))};b.find("button").on("click",function(){D()})}}}]);
+// device filter for device select menu
+function devices_htmlSelect_filter(ZWaveAPIData,span,dev,type) {
+	// return true means to skip this node
+	switch(type) {
+		case 'srcnode':
+			// allow everything, since events can come from any device via timed_event
+			return false;
+
+			// skip virtual, controller or broadcast as event source
+			//return ( (ZWaveAPIData.devices[dev].data.isVirtual.value || dev == ZWaveAPIData.controller.data.nodeId.value || dev == 255));
+
+		case 'dstnode':
+			// skip not virtual, not controller and not broadcast as event destination
+			return (!(ZWaveAPIData.devices[dev].data.isVirtual.value || dev == ZWaveAPIData.controller.data.nodeId.value || dev == 255));
+
+		case 'device':
+			return ZWaveAPIData.devices[dev].data.isVirtual.value || dev == ZWaveAPIData.controller.data.nodeId.value;
+
+		case 'node':
+			// skip non-FLiRS sleeping in list of associations/wakeup node notifications/... in CC params of type node
+			return (!ZWaveAPIData.devices[dev].data.isListening.value && !ZWaveAPIData.devices[dev].data.sensor250.value && !ZWaveAPIData.devices[dev].data.sensor1000.value);
+
+		default:
+			return false;
+	}
+};
+
+// returns array with default values: first value from the enum, minimum value for range, empty string for string, first nodeId for node, default schedule for the climate_schedule
+function method_defaultValues(ZWaveAPIData,method) {
+     
+	function method_defaultValue(val) {
+		if ('enumof' in val['type']) {
+			if (val['type']['enumof'][0])
+				return method_defaultValue(val['type']['enumof'][0]); // take first item of enumof
+			else
+				return null;
+		}
+		if ('range' in val['type'])
+			return val['type']['range']['min'];
+		if ('fix' in val['type'])
+			return val['type']['fix']['value'];
+		if ('string' in val['type'])
+			return "";
+		if ('node' in val['type'])
+			for (var dev in ZWaveAPIData.devices) {
+				if (devices_htmlSelect_filter(ZWaveAPIData,null,dev,'node')) {
+					continue;
+				};
+				return parseInt(dev);
+			};
+		alert('method_defaultValue: unknown type of value');
+	};
+
+	var parameters = [];
+//	method.forEach(function(val,parameter_index){
+//		parameters[parameter_index] = method_defaultValue(val);
+//	});
+        angular.forEach(method,function(val,parameter_index){
+		parameters[parameter_index] = method_defaultValue(val);
+	});
+       
+	return parameters;
+};
+
+// represent array with number, string and array elements in reversible way: use eval('[' + return_value + ']') to rever back to an array
+function repr_array(arr) {
+	var repr='';
+	for (var indx in arr) {
+		if (repr != '')
+			repr += ',';
+		switch (typeof(arr[indx])) {
+			case 'number':
+				repr += arr[indx].toString();
+				break;
+			case 'string':
+				repr += "'" + arr[indx].replace(/'/g, "\'") + "'"; // " // just for joe to hilight syntax properly
+				break;
+			case 'object':
+				repr += '[' + repr_array(arr[indx]) + ']';
+				break;
+			default:
+				if (arr[indx] === null)
+					repr += 'null'; // for null object
+				else
+					error_msg('Unknown type of parameter: ' + typeof(arr[indx]));
+		}
+	};
+
+	return repr;
+};
+
+/*
+	Array unique
+*/
+function array_unique(arr) {
+	var newArray = new Array();
+
+	label:for (var i=0; i<arr.length;i++ ) {  
+		for (var j=0; j<newArray.length;j++ )
+			if (newArray[j] == arr[i]) 
+				continue label;
+		newArray[newArray.length] = arr[i];
+	}
+	return newArray;
+};
+var _methods_specs_rendered = null;
+function getMethodSpec(ZWaveAPIData,devId, instId, ccId, method) {
+	if (_methods_specs_rendered === null)
+        renderAllMethodSpec(ZWaveAPIData);
+	
+	try {
+		if (!(devId in _methods_specs_rendered))
+			_methods_specs_rendered[devId] = {};
+		if (!(instId in _methods_specs_rendered[devId]))
+			_methods_specs_rendered[devId][instId] = {};
+		if (!(ccId in _methods_specs_rendered[devId][instId]))
+			 _methods_specs_rendered[devId][instId][ccId] = renderMethodSpec(parseInt(ccId, 10), ZWaveAPIData.devices[devId].instances[instId].commandClasses[ccId].data);
+
+		var methods = _methods_specs_rendered[devId][instId][ccId];
+		if (method)
+			return methods[method];
+		else
+			return methods;
+	} catch(err) {
+		return null;
+	}
+}
+
+function renderAllMethodSpec(ZWaveAPIData) {
+	_methods_specs_rendered = {};
+	
+	for (var devId in ZWaveAPIData.devices) {
+		_methods_specs_rendered[devId] = {};
+		for (var instId in ZWaveAPIData.devices[devId].instances) {
+			_methods_specs_rendered[devId][instId] = {};
+			for (var ccId in ZWaveAPIData.devices[devId].instances[instId].commandClasses) {
+				_methods_specs_rendered[devId][instId][ccId] = renderMethodSpec(parseInt(ccId, 10), ZWaveAPIData.devices[devId].instances[instId].commandClasses[ccId].data);
+			}
+		}
+	}
+}
+
+function renderMethodSpec(ccId, data) {
+	switch (ccId) {
+
+		// PowerLevel
+		case 0x73:
+			return {
+				"Get": [],
+				"TestNodeGet": [],
+
+
+
+				"TestNodeSet": [
+					{
+						"label": "Node ID",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 232
+							}
+						}
+					},
+
+					{			
+						"label": "PowerLevel",
+						"type": {
+							"enumof": [
+								{
+									"label": "-9dbm ", "type":{
+										"fix": 	{
+											"value": 9
+										}
+									}
+								},
+								{
+									"label": "-8dbm ", "type":{
+										"fix": 	{
+											"value": 8
+										}
+									}
+								},
+								{
+									"label": "-7dbm ", "type":{
+										"fix": 	{
+											"value": 7
+										}
+									}
+								},
+								{
+									"label": "-6dbm ", "type":{
+										"fix": 	{
+											"value": 6
+										}
+									}
+								},
+								{
+									"label": "-5dbm ", "type":{
+										"fix": 	{
+											"value": 5
+										}
+									}
+								},
+								{
+									"label": "-4dbm ", "type":{
+										"fix": 	{
+											"value": 4
+										}
+									}
+								},
+								{
+									"label": "-3dbm ", "type":{
+										"fix": 	{
+											"value": 3
+										}
+									}
+								},
+								{
+									"label": "-2dbm ", "type":{
+										"fix": 	{
+											"value": 2
+										}
+									}
+								},
+								{
+									"label": "-1dbm ", "type":{
+										"fix": 	{
+											"value": 1
+										}
+									}
+								},
+								{
+									"label": "Normal ", "type":{
+										"fix": 	{
+											"value": 0
+										}
+									}
+								}
+							]
+						}				
+					},
+					{				
+						"label": "Number of pakets",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 1000
+							}
+						}					
+					
+					}
+				],
+
+
+				
+				"Set":[
+					{
+						"label": "PowerLevel",
+						"type": {
+							"enumof": [
+								{
+									"label": "-9dbm ", "type":{
+										"fix": 	{
+											"value": 9
+										}
+									}
+								},
+								{
+									"label": "-8dbm ", "type":{
+										"fix": 	{
+											"value": 8
+										}
+									}
+								},
+								{
+									"label": "-7dbm ", "type":{
+										"fix": 	{
+											"value": 7
+										}
+									}
+								},
+								{
+									"label": "-6dbm ", "type":{
+										"fix": 	{
+											"value": 6
+										}
+									}
+								},
+								{
+									"label": "-5dbm ", "type":{
+										"fix": 	{
+											"value": 5
+										}
+									}
+								},
+								{
+									"label": "-4dbm ", "type":{
+										"fix": 	{
+											"value": 4
+										}
+									}
+								},
+								{
+									"label": "-3dbm ", "type":{
+										"fix": 	{
+											"value": 3
+										}
+									}
+								},
+								{
+									"label": "-2dbm ", "type":{
+										"fix": 	{
+											"value": 2
+										}
+									}
+								},
+								{
+									"label": "-1dbm ", "type":{
+										"fix": 	{
+											"value": 1
+										}
+									}
+								},
+								{
+									"label": "Normal ", "type":{
+										"fix": 	{
+											"value": 0
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"label": "Timeout (s)",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 255
+							}
+						}
+					}
+				]
+			};
+
+
+	
+		//SwitchColor
+		case 0x33:
+			return {
+				"Get": [
+				       {
+						"label": "Color Capability",
+						"type": {
+							"enumof": (
+									function() {
+										try {
+											var arr = [];
+											var key;
+											for (key in data) {
+												var ikey = parseInt(key);
+												if (!isNaN(ikey))
+													arr.push({
+														"label": data[ikey].capabilityString.value,
+														"type": {
+															"fix": 	{
+																"value": ikey
+															}
+														}
+													});
+											};
+											return arr;
+										} catch(err) {}
+										return [];
+									}
+								)()
+						}
+					}
+				],
+				"Set": [
+				       {
+						"label": "Color Capability",
+						"type": {
+							"enumof": (
+									function() {
+										try {
+											var arr = [];
+											var key;
+											for (key in data) {
+												var ikey = parseInt(key);
+												if (!isNaN(ikey))
+													arr.push({
+														"label": data[ikey].capabilityString.value,
+														"type": {
+															"fix": 	{
+																"value": ikey
+															}
+														}
+													});
+											};
+											return arr;
+										} catch(err) {}
+										return [];
+									}
+								)()
+						}
+					},
+					{
+						"label": "Value",
+						"type": {
+							"range": {
+								"min": 	0,
+								"max": 	255
+							}
+						}
+					}
+				],
+				"StartStateChange": [
+					{
+						"label": "Color Capability",
+						"type": {
+							"enumof": (
+									function() {
+										try {
+											var arr = [];
+											var key;
+											for (key in data) {
+												var ikey = parseInt(key);
+												if (!isNaN(ikey))
+													arr.push({
+														"label": data[ikey].capabilityString.value,
+														"type": {
+															"fix": 	{
+																"value": ikey
+															}
+														}
+													});
+											};
+											return arr;
+										} catch(err) {}
+										return [];
+									}
+								)()
+						}
+					},
+					{
+						"label": "Direction",
+						"type": {
+							"enumof": [
+								{
+									"label": "Up",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "Down",
+									"type": {
+										"fix": 	{
+											"value": 1
+										}
+									}
+								}
+							]
+						}
+					},													
+				],
+				"StopStateChange": [
+					{
+						"label": "Color Capability",
+						"type": {
+							"enumof": (
+									function() {
+										try {
+											var arr = [];
+											var key;
+											for (key in data) {
+												var ikey = parseInt(key);
+												if (!isNaN(ikey))
+													arr.push({
+														"label": data[ikey].capabilityString.value,
+														"type": {
+															"fix": 	{
+																"value": ikey
+															}
+														}
+													});
+											};
+											return arr;
+										} catch(err) {}
+										return [];
+									}
+								)()
+						}
+					}								
+				]
+			};
+ 
+
+		// Schedule (incomplete)
+		case 0x53:
+			return {
+				"Get": [
+					{
+						"label": "Id",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 255
+							}
+						}
+					}
+				]
+			};
+		
+		// AssociationGroupInformation
+		case 0x59:
+			return {
+ 
+				"GetName": [
+					{
+						"label": "Group",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 255
+							}
+						}
+					}
+				],
+				"GetInfo": [
+					{
+						"label": "Group",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 255
+							}
+						}
+					}
+				],
+				"GetCommands": [
+					{
+						"label": "Group",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 255
+							}
+						}
+					}
+				]
+			};
+
+		// ZWavePlusInfo
+		case 0x5e:
+			return {
+				"Get": []
+			};
+		
+		case 0x85:
+			return {
+				"GroupingsGet": [],
+				"Get": [
+					{
+						"label": "Group",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 255
+							}
+						}
+					}
+				],
+				"Set": [
+					{
+						"label": "Group",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 255
+							}
+						}
+					},
+					{
+						"label": "Node",
+						"type": {
+							"node": {
+							}
+						}
+					}
+				],
+				"Remove": [
+					{
+						"label": "Group",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 255
+							}
+						}
+					},
+					{
+						"label": "Node",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 255
+							}
+						}
+					}
+				]
+			};
+	
+		// Version
+		case 0x86:
+			return {
+				/*
+				Version is not publically exported in Z-Way.C
+
+				"CommandClassVersionGet": [
+					{
+						"label":"CommandClass",
+						"type":	{
+							"range":	{
+								"min":	0x0001,
+								"max":	0xFFFF
+							}
+						}
+					}
+				]
+				*/
+			};
+
+		// UserCode
+		case 0x63:
+			return {
+				"Get": [
+					{
+						"label": "User",
+						"type":	{
+							"range": {
+								"min": 	0,
+								"max": 	99
+							}
+						}
+					}
+				],
+				"Set": [
+					{
+						"label": "User",
+						"type": {
+							"enumof": [
+								{
+									"label": "All usercodes",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "Id",
+									"type": {
+										"range": {
+											"min": 	1,
+											"max": 	99
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"label": "Code (4...10 Digits)",
+						"type": {
+							"string": {
+							}
+						}
+					},
+					{
+						"label": "Mode",
+						"type": {
+							"enumof": [
+								{
+									"label": "Not Set",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "Set",
+									"type": {
+										"fix": 	{
+											"value": 1
+										}
+									}
+								},
+								{
+									"label": "Reserved",
+									"type": {
+										"fix": 	{
+											"value": 2
+										}
+									}
+								}
+							]
+						}
+					}
+				]
+			};
+			
+		// Time Parameters
+		case 0x8B:
+			return {
+				"Get": [],
+				"Set": []
+			};
+			
+		// Thermostat SetPoint
+		case 0x43:
+			return {
+				"Get": [
+				       {
+						"label": "Type",
+						"type": {
+							"enumof": (
+									function() {
+										try {
+											var arr = [];
+											var key;
+											for (key in data) {
+												var ikey = parseInt(key);
+												if (!isNaN(ikey))
+													arr.push({
+														"label": data[ikey].modeName.value,
+														"type": {
+															"fix": 	{
+																"value": ikey
+															}
+														}
+													});
+											};
+											return arr;
+										} catch(err) {}
+										return [];
+									}
+								)()
+						}
+					}
+				],
+				"Set": [
+				       {
+						"label": "Type",
+						"type": {
+							"enumof": (
+									function() {
+										try {
+											var arr = [];
+											var key;
+											for (key in data) {
+												var ikey = parseInt(key);
+												if (!isNaN(ikey))
+													arr.push({
+														"label": data[ikey].modeName.value,
+														"type": {
+															"fix": 	{
+																"value": ikey
+															}
+														}
+													});
+											};
+											return arr;
+										} catch(err) {}
+										return [];
+									}
+								)()
+						}
+					},
+					{
+						"label": "Value",
+						"type": {
+							"range": {
+								"min": 	0,
+								"max": 	100
+							}
+						}
+					}
+				]
+			};
+
+		// Wakeup	
+		case 0x84:
+			return {
+				"Get": [],
+				"CapabilitiesGet": [],
+				"Set": [
+				       {
+						"label": "Wakeup time, seconds",
+						"type": {
+							"range": {
+								"min": 	(
+									function() {
+										try {
+											if (data.version.value >= 2 && data.min.value !== null)
+												return data.min.value;
+										} catch(err) {}
+										return 0;
+									}
+									)(),
+								"max": 	(
+									function() {
+										try {
+											if (data.version.value >= 2 && data.max.value !== null)
+												return data.max.value;
+										} catch(err) {}
+										return 256 * 256 * 256 - 1;
+									}
+									)()
+							}
+						}
+					},
+					{
+						"label": "to Node",
+						"type": {
+							"node": {}
+						}
+					}
+				],
+				"Sleep": []
+			};
+
+		// Time
+		case 0x8A:
+			return {
+				"TimeGet": [],
+				"DateGet": []
+			};
+
+		// ThermostatMode
+		case 0x40:
+			return {
+				"Get": [],
+				"Set": [
+					{
+						"label": "Type",
+						"type": {
+							"enumof": (
+									function() {
+										try {
+											var arr = [];
+											var key;
+											for (key in data) {
+												var ikey = parseInt(key);
+												if (!isNaN(ikey))
+													arr.push({
+														"label": data[ikey].modeName.value,
+														"type": {
+															"fix": 	{
+																"value": ikey
+															}
+														}
+													});
+											};
+											return arr;
+										} catch(err) {}
+										return [];
+									}
+								)()
+						}
+					}
+				]
+			};
+
+		// ThermostatFanMode
+		case 0x44:
+			return {
+				"Get": [],
+				"Set": [
+					{
+						"label": "Level",
+						"type": {
+							"enumof": [
+								{
+									"label": "Off",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "On",
+									"type": {
+										"fix": 	{
+											"value": 1
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"label": "Type",
+						"type": {
+							"enumof": (
+									function() {
+										try {
+											var arr = [];
+											var key;
+											for (key in data) {
+												var ikey = parseInt(key);
+												if (!isNaN(ikey))
+													arr.push({
+														"label": data[ikey].modeName.value,
+														"type": {
+															"fix": 	{
+																"value": ikey
+															}
+														}
+													});
+											};
+											return arr;
+										} catch(err) {}
+										return [];
+									}
+								)()
+						}
+					}
+				]
+			};
+
+		// ThermostatFanState
+		case 0x45: 
+			return {
+				"Get": []
+			};
+
+		// ThermostatOperatingState
+		case 0x42:
+			return {
+				"Get": [],
+				"LoggingGet" : [
+					{
+						"label": "States (bitmask)",
+						"type": {
+							"range": {
+								"min": 1,
+								"max": 99
+							}
+						}
+					}
+				]
+			};
+
+		// SwitchMultilevel
+		case 0x26:
+			return {
+				"Get": [],
+				"Set": [
+					{
+						"label": "Dimmer level",
+						"type": {
+							"enumof": [
+								{
+									"label": "Off",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "%",
+									"type": {
+										"range": {
+											"min": 0,
+											"max": 99
+										}
+									}
+								},
+								{
+									"label": "Full",
+									"type": {
+										"fix": 	{
+											"value": 99
+										}
+									}
+								},
+								{
+									"label": "On",
+									"type": {
+										"fix": 	{
+											"value": 255
+										}
+									}
+								}
+							]
+						}
+					}
+				],
+				"StartLevelChange": [
+				       {
+						"label": "Direction",
+						"type": {
+							"enumof": [
+								{
+									"label": "Up",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "Down",
+									"type": {
+										"fix": 	{
+											"value": 1
+										}
+									}
+								}
+							]
+						}
+					},
+				],
+				"StopLevelChange": [],
+				"SetWithDuration": [
+					{
+						"label": "Dimmer level",
+						"type": {
+							"enumof": [
+								{
+									"label": "Off",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "%",
+									"type": {
+										"range": {
+											"min": 0,
+											"max": 99
+										}
+									}
+								},
+								{
+									"label": "Full",
+									"type": {
+										"fix": 	{
+											"value": 99
+										}
+									}
+								},
+								{
+									"label": "On",
+									"type": {
+										"fix": 	{
+											"value": 255
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"label": "Duration",
+						"type": {
+							"enumof": [
+								{
+									"label": "immediately",
+									"type": {
+									"fix": 	{
+										"value": 0
+										}
+									}
+								},
+									{
+									"label": "in seconds",
+									"type": {
+										"range": {
+											"min": 	1,
+											"max": 127
+										}
+									}
+								},
+									{
+									"label": "in minutes",
+									"type": {
+										"range": {
+											"min": 	1,
+											"max": 127,
+											"shift": 127
+										}
+									}
+								},
+								{
+									"label": "use device default",
+									"type": {
+										"fix": 	{
+											"value": 255
+										}
+									}
+								}
+							]
+						}
+					}
+				],
+				"StartLevelChangeWithDurationV2": [
+					{
+						"label": "Direction",
+						"type": {
+							"enumof": [
+								{
+									"label": "Up",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "Down",
+									"type": {
+										"fix": 	{
+											"value": 1
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"label": "Duration",
+						"type": {
+							"enumof": [
+								{
+									"label": "immediately",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "in seconds",
+									"type": {
+										"range": {
+											"min": 	1,
+											"max": 127
+										}
+									}
+								},
+								{
+									"label": "in minutes",
+									"type": {
+										"range": {
+											"min": 	1,
+											"max": 127,
+										"shift": 	127
+										}
+									}
+								},
+								{
+									"label": "use device default",
+									"type": {
+										"fix": 	{
+											"value": 255
+										}
+									}
+								}
+							]
+						}
+					}
+				],
+				"SetMotorA": [
+					{
+						"label": "Status",
+						"type": {
+							"enumof": [
+								{
+									"label": "Close",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "Open",
+									"type": {
+										"fix": 	{
+											"value": 255
+										}
+									}
+								}
+							]
+						}
+					}
+				],
+				"StartLevelChangeMotorA": [
+					{
+						"label": "Start Move",
+						"type": {
+							"enumof": [
+								{
+									"label": "Up",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "Down",
+									"type": {
+										"fix": 	{
+											"value": 1
+										}
+									}
+								}
+							]
+						}
+					}
+				],
+				"StopLevelChangeMotorA": [],
+				"SetMotorB": [
+					{
+						"label": "Blind Position",
+						"type": {
+							"enumof": [
+								{
+									"label": "Close",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "%",
+									"type": {
+										"range": {
+											"min": 0,
+											"max": 99
+										}
+									}
+								},
+								{
+									"label": "Open",
+									"type": {
+										"fix": 	{
+											"value": 255
+										}
+									}
+								},
+								]
+						}
+					}
+				],
+				"StartLevelChangeMotorB": [
+					{
+						"label": "Start Move",
+						"type": {
+							"enumof": [
+								{
+									"label": "Up",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "Down",
+									"type": {
+										"fix": 	{
+											"value": 1
+										}
+									}
+								}
+							]
+						}
+					}
+				],
+				"StopLevelChange": []
+			};
+
+		// SwtichBinary
+		case 0x25:
+			return {
+				"Get": [],
+				"Set": [
+					{
+						"label": "Level",
+						"type": {
+							"enumof": [
+								{
+									"label": "Off",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "On",
+									"type": {
+										"fix": 	{
+											"value": 255
+										}
+									}
+								}
+							]
+						}
+					}
+				]
+			};
+
+		// SimpleAV
+		case 0x94:
+			return {
+				"SetEmpty": [
+					{
+						"label": "Key attribute",
+						"type": {
+							"enumof": [
+								{
+									"label": "Key Down",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "Key Up",
+									"type": {
+										"fix": 	{
+											"value": 1
+										}
+									}
+								},
+								{
+									"label": "Key Alive",
+									"type": {
+										"fix": 	{
+											"value": 2
+										}
+									}
+								},
+								]
+						}
+					},
+					{
+						"label": "Media item",
+						"type": {
+							"enumof": [
+								{
+									"label": "No",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "ID",
+									"type": {
+										"range": {
+											"min": 0,
+											"max": 0
+										}
+									}
+								},
+								]
+						}
+					},
+					{
+						"label": "Button",
+						"type": {
+							"enumof": []
+						}
+					},
+				],
+				"SetFull": [
+					{
+						"label": "Mute",
+						"type": {
+							"fix": 	{
+								"value": 0x0001
+							}
+						}
+					},
+					{
+						"label": "Volume down",
+						"type": {
+							"fix": 	{
+								"value": 0x0002
+							}
+						}
+					},
+					{
+						"label": "Volume up",
+						"type": {
+							"fix": 	{
+								"value": 0x0003
+									}
+								}
+							},
+							{
+						"label": "Channel up",
+						"type": {
+							"fix": 	{
+								"value": 0x0004
+							}
+						}
+					},
+					{
+						"label": "Channel down",
+						"type": {
+							"fix": 	{
+								"value": 0x0005
+							}
+						}
+					},
+					{
+						"label": "0",
+						"type": {
+							"fix": 	{
+								"value": 0x0006
+							}
+						}
+					},
+					{
+						"label": "1",
+						"type": {
+							"fix": 	{
+								"value": 0x0007
+							}
+						}
+					},
+					{
+						"label": "2",
+						"type": {
+							"fix": 	{
+								"value": 0x0008
+							}
+						}
+					},
+					{
+						"label": "3",
+						"type": {
+							"fix": 	{
+								"value": 0x0009
+							}
+						}
+					},
+					{
+						"label": "4",
+						"type": {
+							"fix": 	{
+								"value": 0x000A
+							}
+						}
+					},
+					{
+						"label": "5",
+						"type": {
+							"fix": 	{
+								"value": 0x000B
+							}
+						}
+					},
+					{
+						"label": "6",
+						"type": {
+							"fix": 	{
+								"value": 0x000C
+							}
+						}
+					},
+					{
+						"label": "7",
+						"type": {
+							"fix": 	{
+								"value": 0x000D
+							}
+						}
+					},
+					{
+						"label": "8",
+						"type": {
+							"fix": 	{
+								"value": 0x000E
+							}
+						}
+					},
+					{
+						"label": "9",
+						"type": {
+							"fix": 	{
+								"value": 0x000F
+							}
+						}
+					},
+					{
+						"label": "Last channel",
+						"type": {
+							"fix": 	{
+								"value": 0x0010
+							}
+						}
+					},
+					{
+						"label": "Display",
+						"type": {
+							"fix": 	{
+								"value": 0x0011
+							}
+						}
+					},
+					{
+						"label": "Favorite channel",
+						"type": {
+							"fix": 	{
+								"value": 0x0012
+							}
+						}
+					},
+					{
+						"label": "Play",
+						"type": {
+							"fix": 	{
+								"value": 0x0013
+							}
+						}
+					},
+					{
+						"label": "Stop",
+						"type": {
+							"fix": 	{
+								"value": 0x0014
+							}
+						}
+					},
+					{
+						"label": "Pause",
+						"type": {
+							"fix": 	{
+								"value": 0x0015
+							}
+						}
+					},
+					{
+						"label": "Fast forward",
+						"type": {
+							"fix": 	{
+								"value": 0x0016
+							}
+						}
+					},
+					{
+						"label": "Rewind",
+						"type": {
+							"fix": 	{
+								"value": 0x0017
+							}
+						}
+					},
+					{
+						"label": "Instant replay",
+						"type": {
+							"fix": 	{
+								"value": 0x0018
+							}
+						}
+					},
+					{
+						"label": "Record",
+						"type": {
+							"fix": 	{
+								"value": 0x0019
+							}
+						}
+					},
+					{
+						"label": "AC3",
+						"type": {
+							"fix": 	{
+								"value": 0x001A
+							}
+						}
+					},
+					{
+						"label": "PVR menu",
+						"type": {
+							"fix": 	{
+								"value": 0x001B
+							}
+						}
+					},
+					{
+						"label": "Guide",
+						"type": {
+							"fix": 	{
+								"value": 0x001C
+							}
+						}
+					},
+					{
+						"label": "Menu",
+						"type": {
+							"fix": 	{
+								"value": 0x001D
+							}
+						}
+					},
+					{
+						"label": "Menu up",
+						"type": {
+							"fix": 	{
+								"value": 0x001E
+							}
+						}
+					},
+					{
+						"label": "Menu down",
+						"type": {
+							"fix": 	{
+								"value": 0x001F
+							}
+						}
+					},
+					{
+						"label": "Menu left",
+						"type": {
+							"fix": 	{
+								"value": 0x0020
+							}
+						}
+					},
+					{
+						"label": "Menu right",
+						"type": {
+							"fix": 	{
+								"value": 0x0021
+							}
+						}
+					},
+					{
+						"label": "Page up",
+						"type": {
+							"fix": 	{
+								"value": 0x0022
+							}
+						}
+					},
+					{
+						"label": "Page down",
+						"type": {
+							"fix": 	{
+								"value": 0x0023
+							}
+						}
+					},
+					{
+						"label": "Select",
+						"type": {
+							"fix": 	{
+								"value": 0x0024
+							}
+						}
+					},
+					{
+						"label": "Exit",
+						"type": {
+							"fix": 	{
+								"value": 0x0025
+							}
+						}
+					},
+					{
+						"label": "Input",
+						"type": {
+							"fix": 	{
+								"value": 0x0026
+							}
+						}
+					},
+					{
+						"label": "Power",
+						"type": {
+							"fix": 	{
+								"value": 0x0027
+							}
+						}
+					},
+					{
+						"label": "Enter channel",
+						"type": {
+							"fix": 	{
+								"value": 0x0028
+							}
+						}
+					},
+					{
+						"label": "10",
+						"type": {
+							"fix": 	{
+								"value": 0x0029
+							}
+						}
+					},
+					{
+						"label": "11",
+						"type": {
+							"fix": 	{
+								"value": 0x002A
+							}
+						}
+					},
+					{
+						"label": "12",
+						"type": {
+							"fix": 	{
+								"value": 0x002B
+							}
+						}
+					},
+					{
+						"label": "13",
+						"type": {
+							"fix": 	{
+								"value": 0x002C
+							}
+						}
+					},
+					{
+						"label": "14",
+						"type": {
+							"fix": 	{
+								"value": 0x002D
+							}
+						}
+					},
+					{
+						"label": "15",
+						"type": {
+							"fix": 	{
+								"value": 0x002E
+							}
+						}
+					},
+					{
+						"label": "16",
+						"type": {
+							"fix": 	{
+								"value": 0x002F
+							}
+						}
+					},
+					{
+						"label": "+10",
+						"type": {
+							"fix": 	{
+								"value": 0x0030
+							}
+						}
+					},
+					{
+						"label": "+20",
+						"type": {
+							"fix": 	{
+								"value": 0x0031
+							}
+						}
+					},
+					{
+						"label": "+100",
+						"type": {
+							"fix": 	{
+								"value": 0x0032
+							}
+						}
+					},
+					{
+						"label": "-/--",
+						"type": {
+							"fix": 	{
+								"value": 0x0033
+							}
+						}
+					},
+					{
+						"label": "3-CH",
+						"type": {
+							"fix": 	{
+								"value": 0x0034
+							}
+						}
+					},
+					{
+						"label": "3D",
+						"type": {
+							"fix": 	{
+								"value": 0x0035
+							}
+						}
+					},
+					{
+						"label": "6-CH input",
+						"type": {
+							"fix": 	{
+								"value": 0x0036
+							}
+						}
+					},
+					{
+						"label": "A",
+						"type": {
+							"fix": 	{
+								"value": 0x0037
+							}
+						}
+					},
+					{
+						"label": "Add",
+						"type": {
+							"fix": 	{
+								"value": 0x0038
+							}
+						}
+					},
+					{
+						"label": "Alarm",
+						"type": {
+							"fix": 	{
+								"value": 0x0039
+							}
+						}
+					},
+					{
+						"label": "AM",
+						"type": {
+							"fix": 	{
+								"value": 0x003A
+							}
+						}
+					},
+					{
+						"label": "Analog",
+						"type": {
+							"fix": 	{
+								"value": 0x003B
+							}
+						}
+					},
+					{
+						"label": "Angle",
+						"type": {
+							"fix": 	{
+								"value": 0x003C
+							}
+						}
+					},
+					{
+						"label": "Antenna",
+						"type": {
+							"fix": 	{
+								"value": 0x003D
+							}
+						}
+					},
+					{
+						"label": "Antenna east",
+						"type": {
+							"fix": 	{
+								"value": 0x003E
+							}
+						}
+					},
+					{
+						"label": "Antenna west",
+						"type": {
+							"fix": 	{
+								"value": 0x003F
+							}
+						}
+					},
+					{
+						"label": "Aspect",
+						"type": {
+							"fix": 	{
+								"value": 0x0040
+							}
+						}
+					},
+					{
+						"label": "Audio 1",
+						"type": {
+							"fix": 	{
+								"value": 0x0041
+							}
+						}
+					},
+					{
+						"label": "Audio 2",
+						"type": {
+							"fix": 	{
+								"value": 0x0042
+							}
+						}
+					},
+					{
+						"label": "Audio 3",
+						"type": {
+							"fix": 	{
+								"value": 0x0043
+							}
+						}
+					},
+					{
+						"label": "Audio dubbing",
+						"type": {
+							"fix": 	{
+								"value": 0x0044
+							}
+						}
+					},
+					{
+						"label": "Audio level down",
+						"type": {
+							"fix": 	{
+								"value": 0x0045
+							}
+						}
+					},
+					{
+						"label": "Audio level up",
+						"type": {
+							"fix": 	{
+								"value": 0x0046
+							}
+						}
+					},
+					{
+						"label": "Auto/Manual",
+						"type": {
+							"fix": 	{
+								"value": 0x0047
+							}
+						}
+					},
+					{
+						"label": "Aux 1",
+						"type": {
+							"fix": 	{
+								"value": 0x0048
+							}
+						}
+					},
+					{
+						"label": "Aux 2",
+						"type": {
+							"fix": 	{
+								"value": 0x0049
+							}
+						}
+					},
+					{
+						"label": "B",
+						"type": {
+							"fix": 	{
+								"value": 0x004A
+							}
+						}
+					},
+					{
+						"label": "Back",
+						"type": {
+							"fix": 	{
+								"value": 0x004B
+							}
+						}
+					},
+					{
+						"label": "Background",
+						"type": {
+							"fix": 	{
+								"value": 0x004C
+							}
+						}
+					},
+					{
+						"label": "Balance",
+						"type": {
+							"fix": 	{
+								"value": 0x004D
+							}
+						}
+					},
+					{
+						"label": "Balance left",
+						"type": {
+							"fix": 	{
+								"value": 0x004E
+							}
+						}
+					},
+					{
+						"label": "Balance right",
+						"type": {
+							"fix": 	{
+								"value": 0x004F
+							}
+						}
+					},
+					{
+						"label": "Band",
+						"type": {
+							"fix": 	{
+								"value": 0x0050
+							}
+						}
+					},
+					{
+						"label": "Bandwidth",
+						"type": {
+							"fix": 	{
+								"value": 0x0051
+							}
+						}
+					},
+					{
+						"label": "Bass",
+						"type": {
+							"fix": 	{
+								"value": 0x0052
+							}
+						}
+					},
+					{
+						"label": "Bass down",
+						"type": {
+							"fix": 	{
+								"value": 0x0053
+							}
+						}
+					},
+					{
+						"label": "Bass up",
+						"type": {
+							"fix": 	{
+								"value": 0x0054
+							}
+						}
+					},
+					{
+						"label": "Blank",
+						"type": {
+							"fix": 	{
+								"value": 0x0055
+							}
+						}
+					},
+					{
+						"label": "Breeze mode",
+						"type": {
+							"fix": 	{
+								"value": 0x0056
+							}
+						}
+					},
+					{
+						"label": "Bright",
+						"type": {
+							"fix": 	{
+								"value": 0x0057
+							}
+						}
+					},
+					{
+						"label": "Brightness",
+						"type": {
+							"fix": 	{
+								"value": 0x0058
+							}
+						}
+					},
+					{
+						"label": "Brightness down",
+						"type": {
+							"fix": 	{
+								"value": 0x0059
+							}
+						}
+					},
+					{
+						"label": "Brightness up",
+						"type": {
+							"fix": 	{
+								"value": 0x005A
+							}
+						}
+					},
+					{
+						"label": "Buy",
+						"type": {
+							"fix": 	{
+								"value": 0x005B
+							}
+						}
+					},
+					{
+						"label": "C",
+						"type": {
+							"fix": 	{
+								"value": 0x005C
+							}
+						}
+					},
+					{
+						"label": "Camera",
+						"type": {
+							"fix": 	{
+								"value": 0x005D
+							}
+						}
+					},
+					{
+						"label": "Category down",
+						"type": {
+							"fix": 	{
+								"value": 0x005E
+							}
+						}
+					},
+					{
+						"label": "Category up",
+						"type": {
+							"fix": 	{
+								"value": 0x005F
+							}
+						}
+					},
+					{
+						"label": "Center",
+						"type": {
+							"fix": 	{
+								"value": 0x0060
+							}
+						}
+					},
+					{
+						"label": "Center down",
+						"type": {
+							"fix": 	{
+								"value": 0x0061
+							}
+						}
+					},
+					{
+						"label": "Center mode",
+						"type": {
+							"fix": 	{
+								"value": 0x0062
+							}
+						}
+					},
+					{
+						"label": "Center up",
+						"type": {
+							"fix": 	{
+								"value": 0x0063
+							}
+						}
+					},
+					{
+						"label": "Channel/Program",
+						"type": {
+							"fix": 	{
+								"value": 0x0064
+							}
+						}
+					},
+					{
+						"label": "Clear",
+						"type": {
+							"fix": 	{
+								"value": 0x0065
+							}
+						}
+					},
+					{
+						"label": "Close",
+						"type": {
+							"fix": 	{
+								"value": 0x0066
+							}
+						}
+					},
+					{
+						"label": "Closed caption",
+						"type": {
+							"fix": 	{
+								"value": 0x0067
+							}
+						}
+					},
+					{
+						"label": "Cold",
+						"type": {
+							"fix": 	{
+								"value": 0x0068
+							}
+						}
+					},
+					{
+						"label": "Color",
+						"type": {
+							"fix": 	{
+								"value": 0x0069
+							}
+						}
+					},
+					{
+						"label": "Color down",
+						"type": {
+							"fix": 	{
+								"value": 0x006A
+							}
+						}
+					},
+					{
+						"label": "Color up",
+						"type": {
+							"fix": 	{
+								"value": 0x006B
+							}
+						}
+					},
+					{
+						"label": "Component 1",
+						"type": {
+							"fix": 	{
+								"value": 0x006C
+							}
+						}
+					},
+					{
+						"label": "Component 2",
+						"type": {
+							"fix": 	{
+								"value": 0x006D
+							}
+						}
+					},
+					{
+						"label": "Component 3",
+						"type": {
+							"fix": 	{
+								"value": 0x006E
+							}
+						}
+					},
+					{
+						"label": "Concert",
+						"type": {
+							"fix": 	{
+								"value": 0x006F
+							}
+						}
+					},
+					{
+						"label": "Confirm",
+						"type": {
+							"fix": 	{
+								"value": 0x0070
+							}
+						}
+					},
+					{
+						"label": "Continue",
+						"type": {
+							"fix": 	{
+								"value": 0x0071
+							}
+						}
+					},
+					{
+						"label": "Contrast",
+						"type": {
+							"fix": 	{
+								"value": 0x0072
+							}
+						}
+					},
+					{
+						"label": "Contrast down",
+						"type": {
+							"fix": 	{
+								"value": 0x0073
+							}
+						}
+					},
+					{
+						"label": "Contrast up",
+						"type": {
+							"fix": 	{
+								"value": 0x0074
+							}
+						}
+					},
+					{
+						"label": "Counter",
+						"type": {
+							"fix": 	{
+								"value": 0x0075
+							}
+						}
+					},
+					{
+						"label": "Counter reset",
+						"type": {
+							"fix": 	{
+								"value": 0x0076
+							}
+						}
+					},
+					{
+						"label": "D",
+						"type": {
+							"fix": 	{
+								"value": 0x0077
+							}
+						}
+					},
+					{
+						"label": "Day down",
+						"type": {
+							"fix": 	{
+								"value": 0x0078
+							}
+						}
+					},
+					{
+						"label": "Day up",
+						"type": {
+							"fix": 	{
+								"value": 0x0079
+							}
+						}
+					},
+					{
+						"label": "Delay",
+						"type": {
+							"fix": 	{
+								"value": 0x007A
+							}
+						}
+					},
+					{
+						"label": "Delay down",
+						"type": {
+							"fix": 	{
+								"value": 0x007B
+							}
+						}
+					},
+					{
+						"label": "Delay up",
+						"type": {
+							"fix": 	{
+								"value": 0x007C
+							}
+						}
+					},
+					{
+						"label": "Delete",
+						"type": {
+							"fix": 	{
+								"value": 0x007D
+							}
+						}
+					},
+					{
+						"label": "Delimiter",
+						"type": {
+							"fix": 	{
+								"value": 0x007E
+							}
+						}
+					},
+					{
+						"label": "Digest",
+						"type": {
+							"fix": 	{
+								"value": 0x007F
+							}
+						}
+					},
+					{
+						"label": "Digital",
+						"type": {
+							"fix": 	{
+								"value": 0x0080
+							}
+						}
+					},
+					{
+						"label": "Dim",
+						"type": {
+							"fix": 	{
+								"value": 0x0081
+							}
+						}
+					},
+					{
+						"label": "Direct",
+						"type": {
+							"fix": 	{
+								"value": 0x0082
+							}
+						}
+					},
+					{
+						"label": "Disarm",
+						"type": {
+							"fix": 	{
+								"value": 0x0083
+							}
+						}
+					},
+					{
+						"label": "Disc",
+						"type": {
+							"fix": 	{
+								"value": 0x0084
+							}
+						}
+					},
+					{
+						"label": "Disc 1",
+						"type": {
+							"fix": 	{
+								"value": 0x0085
+							}
+						}
+					},
+					{
+						"label": "Disc 2",
+						"type": {
+							"fix": 	{
+								"value": 0x0086
+							}
+						}
+					},
+					{
+						"label": "Disc 3",
+						"type": {
+							"fix": 	{
+								"value": 0x0087
+							}
+						}
+					},
+					{
+						"label": "Disc 4",
+						"type": {
+							"fix": 	{
+								"value": 0x0088
+							}
+						}
+					},
+					{
+						"label": "Disc 5",
+						"type": {
+							"fix": 	{
+								"value": 0x0089
+							}
+						}
+					},
+					{
+						"label": "Disc 6",
+						"type": {
+							"fix": 	{
+								"value": 0x008A
+							}
+						}
+					},
+					{
+						"label": "Disc down",
+						"type": {
+							"fix": 	{
+								"value": 0x008B
+							}
+						}
+					},
+					{
+						"label": "Disc up",
+						"type": {
+							"fix": 	{
+								"value": 0x008C
+							}
+						}
+					},
+					{
+						"label": "Disco",
+						"type": {
+							"fix": 	{
+								"value": 0x008D
+							}
+						}
+					},
+					{
+						"label": "Edit",
+						"type": {
+							"fix": 	{
+								"value": 0x008E
+							}
+						}
+					},
+					{
+						"label": "Effect down",
+						"type": {
+							"fix": 	{
+								"value": 0x008F
+							}
+						}
+					},
+					{
+						"label": "Effect up",
+						"type": {
+							"fix": 	{
+								"value": 0x0090
+							}
+						}
+					},
+					{
+						"label": "Eject",
+						"type": {
+							"fix": 	{
+								"value": 0x0091
+							}
+						}
+					},
+					{
+						"label": "End",
+						"type": {
+							"fix": 	{
+								"value": 0x0092
+							}
+						}
+					},
+					{
+						"label": "EQ",
+						"type": {
+							"fix": 	{
+								"value": 0x0093
+							}
+						}
+					},
+					{
+						"label": "Fader",
+						"type": {
+							"fix": 	{
+								"value": 0x0094
+							}
+						}
+					},
+					{
+						"label": "Fan",
+						"type": {
+							"fix": 	{
+								"value": 0x0095
+							}
+						}
+					},
+					{
+						"label": "Fan high",
+						"type": {
+							"fix": 	{
+								"value": 0x0096
+							}
+						}
+					},
+					{
+						"label": "Fan low",
+						"type": {
+							"fix": 	{
+								"value": 0x0097
+							}
+						}
+					},
+					{
+						"label": "Fan medium",
+						"type": {
+							"fix": 	{
+								"value": 0x0098
+							}
+						}
+					},
+					{
+						"label": "Fan speed",
+						"type": {
+							"fix": 	{
+								"value": 0x0099
+							}
+						}
+					},
+					{
+						"label": "Fastext blue",
+						"type": {
+							"fix": 	{
+								"value": 0x009A
+							}
+						}
+					},
+					{
+						"label": "Fastext green",
+						"type": {
+							"fix": 	{
+								"value": 0x009B
+							}
+						}
+					},
+					{
+						"label": "Fastext purple",
+						"type": {
+							"fix": 	{
+								"value": 0x009C
+							}
+						}
+					},
+					{
+						"label": "Fastext red",
+						"type": {
+							"fix": 	{
+								"value": 0x009D
+							}
+						}
+					},
+					{
+						"label": "Fastext white",
+						"type": {
+							"fix": 	{
+								"value": 0x009E
+							}
+						}
+					},
+					{
+						"label": "Fastext yellow",
+						"type": {
+							"fix": 	{
+								"value": 0x009F
+							}
+						}
+					},
+					{
+						"label": "Favorite channel down",
+						"type": {
+							"fix": 	{
+								"value": 0x00A0
+							}
+						}
+					},
+					{
+						"label": "Favorite channel up",
+						"type": {
+							"fix": 	{
+								"value": 0x00A1
+							}
+						}
+					},
+					{
+						"label": "Finalize",
+						"type": {
+							"fix": 	{
+								"value": 0x00A2
+							}
+						}
+					},
+					{
+						"label": "Fine tune",
+						"type": {
+							"fix": 	{
+								"value": 0x00A3
+							}
+						}
+					},
+					{
+						"label": "Flat",
+						"type": {
+							"fix": 	{
+								"value": 0x00A4
+							}
+						}
+					},
+					{
+						"label": "FM",
+						"type": {
+							"fix": 	{
+								"value": 0x00A5
+							}
+						}
+					},
+					{
+						"label": "Focus down",
+						"type": {
+							"fix": 	{
+								"value": 0x00A6
+							}
+						}
+					},
+					{
+						"label": "Focus up",
+						"type": {
+							"fix": 	{
+								"value": 0x00A7
+							}
+						}
+					},
+					{
+						"label": "Freeze",
+						"type": {
+							"fix": 	{
+								"value": 0x00A8
+							}
+						}
+					},
+					{
+						"label": "Front",
+						"type": {
+							"fix": 	{
+								"value": 0x00A9
+							}
+						}
+					},
+					{
+						"label": "Game",
+						"type": {
+							"fix": 	{
+								"value": 0x00AA
+							}
+						}
+					},
+					{
+						"label": "GoTo",
+						"type": {
+							"fix": 	{
+								"value": 0x00AB
+							}
+						}
+					},
+					{
+						"label": "Hall",
+						"type": {
+							"fix": 	{
+								"value": 0x00AC
+							}
+						}
+					},
+					{
+						"label": "Heat",
+						"type": {
+							"fix": 	{
+								"value": 0x00AD
+							}
+						}
+					},
+					{
+						"label": "Help",
+						"type": {
+							"fix": 	{
+								"value": 0x00AE
+							}
+						}
+					},
+					{
+						"label": "Home",
+						"type": {
+							"fix": 	{
+								"value": 0x00AF
+							}
+						}
+					},
+					{
+						"label": "Index",
+						"type": {
+							"fix": 	{
+								"value": 0x00B0
+							}
+						}
+					},
+					{
+						"label": "Index forward",
+						"type": {
+							"fix": 	{
+								"value": 0x00B1
+							}
+						}
+					},
+					{
+						"label": "Index reverse",
+						"type": {
+							"fix": 	{
+								"value": 0x00B2
+							}
+						}
+					},
+					{
+						"label": "Interactive",
+						"type": {
+							"fix": 	{
+								"value": 0x00B3
+							}
+						}
+					},
+					{
+						"label": "Intro scan",
+						"type": {
+							"fix": 	{
+								"value": 0x00B4
+							}
+						}
+					},
+					{
+						"label": "Jazz",
+						"type": {
+							"fix": 	{
+								"value": 0x00B5
+							}
+						}
+					},
+					{
+						"label": "Karaoke",
+						"type": {
+							"fix": 	{
+								"value": 0x00B6
+							}
+						}
+					},
+					{
+						"label": "Keystone",
+						"type": {
+							"fix": 	{
+								"value": 0x00B7
+							}
+						}
+					},
+					{
+						"label": "Keystone down",
+						"type": {
+							"fix": 	{
+								"value": 0x00B8
+							}
+						}
+					},
+					{
+						"label": "Keystone up",
+						"type": {
+							"fix": 	{
+								"value": 0x00B9
+							}
+						}
+					},
+					{
+						"label": "Language",
+						"type": {
+							"fix": 	{
+								"value": 0x00BA
+							}
+						}
+					},
+					{
+						"label": "Left click",
+						"type": {
+							"fix": 	{
+								"value": 0x00BB
+							}
+						}
+					},
+					{
+						"label": "Level",
+						"type": {
+							"fix": 	{
+								"value": 0x00BC
+							}
+						}
+					},
+					{
+						"label": "Light",
+						"type": {
+							"fix": 	{
+								"value": 0x00BD
+							}
+						}
+					},
+					{
+						"label": "List",
+						"type": {
+							"fix": 	{
+								"value": 0x00BE
+							}
+						}
+					},
+					{
+						"label": "Live TV",
+						"type": {
+							"fix": 	{
+								"value": 0x00BF
+							}
+						}
+					},
+					{
+						"label": "Local/Dx",
+						"type": {
+							"fix": 	{
+								"value": 0x00C0
+							}
+						}
+					},
+					{
+						"label": "Loudness",
+						"type": {
+							"fix": 	{
+								"value": 0x00C1
+							}
+						}
+					},
+					{
+						"label": "Mail",
+						"type": {
+							"fix": 	{
+								"value": 0x00C2
+							}
+						}
+					},
+					{
+						"label": "Mark",
+						"type": {
+							"fix": 	{
+								"value": 0x00C3
+							}
+						}
+					},
+					{
+						"label": "Memory recall",
+						"type": {
+							"fix": 	{
+								"value": 0x00C4
+							}
+						}
+					},
+					{
+						"label": "Monitor",
+						"type": {
+							"fix": 	{
+								"value": 0x00C5
+							}
+						}
+					},
+					{
+						"label": "Movie",
+						"type": {
+							"fix": 	{
+								"value": 0x00C6
+							}
+						}
+					},
+					{
+						"label": "Multi room",
+						"type": {
+							"fix": 	{
+								"value": 0x00C7
+							}
+						}
+					},
+					{
+						"label": "Music",
+						"type": {
+							"fix": 	{
+								"value": 0x00C8
+							}
+						}
+					},
+					{
+						"label": "Music scan",
+						"type": {
+							"fix": 	{
+								"value": 0x00C9
+							}
+						}
+					},
+					{
+						"label": "Natural",
+						"type": {
+							"fix": 	{
+								"value": 0x00CA
+							}
+						}
+					},
+					{
+						"label": "Night",
+						"type": {
+							"fix": 	{
+								"value": 0x00CB
+							}
+						}
+					},
+					{
+						"label": "Noise reduction",
+						"type": {
+							"fix": 	{
+								"value": 0x00CC
+							}
+						}
+					},
+					{
+						"label": "Normalize",
+						"type": {
+							"fix": 	{
+								"value": 0x00CD
+							}
+						}
+					},
+					{
+						"label": "Discrete input CableTV",
+						"type": {
+							"fix": 	{
+								"value": 0x00CE
+							}
+						}
+					},
+					{
+						"label": "Discrete input CD 1",
+						"type": {
+							"fix": 	{
+								"value": 0x00CF
+							}
+						}
+					},
+					{
+						"label": "Discrete input CD 2",
+						"type": {
+							"fix": 	{
+								"value": 0x00D0
+							}
+						}
+					},
+					{
+						"label": "Discrete input CD Recorder",
+						"type": {
+							"fix": 	{
+								"value": 0x00D1
+							}
+						}
+					},
+					{
+						"label": "Discrete input DAT (Digital Audio Tape)",
+						"type": {
+							"fix": 	{
+								"value": 0x00D2
+							}
+						}
+					},
+					{
+						"label": "Discrete input DVD",
+						"type": {
+							"fix": 	{
+								"value": 0x00D3
+							}
+						}
+					},
+					{
+						"label": "Discrete input DVI",
+						"type": {
+							"fix": 	{
+								"value": 0x00D4
+							}
+						}
+					},
+					{
+						"label": "Discrete input HDTV",
+						"type": {
+							"fix": 	{
+								"value": 0x00D5
+							}
+						}
+					},
+					{
+						"label": "Discrete input LaserDisc",
+						"type": {
+							"fix": 	{
+								"value": 0x00D6
+							}
+						}
+					},
+					{
+						"label": "Discrete input MiniDisc",
+						"type": {
+							"fix": 	{
+								"value": 0x00D7
+							}
+						}
+					},
+					{
+						"label": "Discrete input PC",
+						"type": {
+							"fix": 	{
+								"value": 0x00D8
+							}
+						}
+					},
+					{
+						"label": "Discrete input Personal Video Recorder",
+						"type": {
+							"fix": 	{
+								"value": 0x00D9
+							}
+						}
+					},
+					{
+						"label": "Discrete input TV",
+						"type": {
+							"fix": 	{
+								"value": 0x00DA
+							}
+						}
+					},
+					{
+						"label": "Discrete input TV/VCR or TV/DVD",
+						"type": {
+							"fix": 	{
+								"value": 0x00DB
+							}
+						}
+					},
+					{
+						"label": "Discrete input VCR",
+						"type": {
+							"fix": 	{
+								"value": 0x00DC
+							}
+						}
+					},
+					{
+						"label": "One touch playback",
+						"type": {
+							"fix": 	{
+								"value": 0x00DD
+							}
+						}
+					},
+					{
+						"label": "One touch record",
+						"type": {
+							"fix": 	{
+								"value": 0x00DE
+							}
+						}
+					},
+					{
+						"label": "Open",
+						"type": {
+							"fix": 	{
+								"value": 0x00DF
+							}
+						}
+					},
+					{
+						"label": "Optical",
+						"type": {
+							"fix": 	{
+								"value": 0x00E0
+							}
+						}
+					},
+					{
+						"label": "Options",
+						"type": {
+							"fix": 	{
+								"value": 0x00E1
+							}
+						}
+					},
+					{
+						"label": "Orchestra",
+						"type": {
+							"fix": 	{
+								"value": 0x00E2
+							}
+						}
+					},
+					{
+						"label": "PAL/NTSC",
+						"type": {
+							"fix": 	{
+								"value": 0x00E3
+							}
+						}
+					},
+					{
+						"label": "Parental lock",
+						"type": {
+							"fix": 	{
+								"value": 0x00E4
+							}
+						}
+					},
+					{
+						"label": "PBC",
+						"type": {
+							"fix": 	{
+								"value": 0x00E5
+							}
+						}
+					},
+					{
+						"label": "Phono",
+						"type": {
+							"fix": 	{
+								"value": 0x00E6
+							}
+						}
+					},
+					{
+						"label": "Photos",
+						"type": {
+							"fix": 	{
+								"value": 0x00E7
+							}
+						}
+					},
+					{
+						"label": "Picture menu",
+						"type": {
+							"fix": 	{
+								"value": 0x00E8
+							}
+						}
+					},
+					{
+						"label": "Picture mode",
+						"type": {
+							"fix": 	{
+								"value": 0x00E9
+							}
+						}
+					},
+					{
+						"label": "Picture mute",
+						"type": {
+							"fix": 	{
+								"value": 0x00EA
+							}
+						}
+					},
+					{
+						"label": "PIP channel down",
+						"type": {
+							"fix": 	{
+								"value": 0x00EB
+							}
+						}
+					},
+					{
+						"label": "PIP channel up",
+						"type": {
+							"fix": 	{
+								"value": 0x00EC
+							}
+						}
+					},
+					{
+						"label": "PIP freeze",
+						"type": {
+							"fix": 	{
+								"value": 0x00ED
+							}
+						}
+					},
+					{
+						"label": "PIP input",
+						"type": {
+							"fix": 	{
+								"value": 0x00EE
+							}
+						}
+					},
+					{
+						"label": "PIP move",
+						"type": {
+							"fix": 	{
+								"value": 0x00EF
+							}
+						}
+					},
+					{
+						"label": "PIP Off",
+						"type": {
+							"fix": 	{
+								"value": 0x00F0
+							}
+						}
+					},
+					{
+						"label": "PIP On",
+						"type": {
+							"fix": 	{
+								"value": 0x00F1
+							}
+						}
+					},
+					{
+						"label": "PIP size",
+						"type": {
+							"fix": 	{
+								"value": 0x00F2
+							}
+						}
+					},
+					{
+						"label": "PIP split",
+						"type": {
+							"fix": 	{
+								"value": 0x00F3
+							}
+						}
+					},
+					{
+						"label": "PIP swap",
+						"type": {
+							"fix": 	{
+								"value": 0x00F4
+							}
+						}
+					},
+					{
+						"label": "Play mode",
+						"type": {
+							"fix": 	{
+								"value": 0x00F5
+							}
+						}
+					},
+					{
+						"label": "Play reverse",
+						"type": {
+							"fix": 	{
+								"value": 0x00F6
+							}
+						}
+					},
+					{
+						"label": "Power Off",
+						"type": {
+							"fix": 	{
+								"value": 0x00F7
+							}
+						}
+					},
+					{
+						"label": "Power On",
+						"type": {
+							"fix": 	{
+								"value": 0x00F8
+							}
+						}
+					},
+					{
+						"label": "PPV (Pay per view)",
+						"type": {
+							"fix": 	{
+								"value": 0x00F9
+							}
+						}
+					},
+					{
+						"label": "Preset",
+						"type": {
+							"fix": 	{
+								"value": 0x00FA
+							}
+						}
+					},
+					{
+						"label": "Program",
+						"type": {
+							"fix": 	{
+								"value": 0x00FB
+							}
+						}
+					},
+					{
+						"label": "Progressive scan",
+						"type": {
+							"fix": 	{
+								"value": 0x00FC
+							}
+						}
+					},
+					{
+						"label": "ProLogic",
+						"type": {
+							"fix": 	{
+								"value": 0x00FD
+							}
+						}
+					},
+					{
+						"label": "PTY",
+						"type": {
+							"fix": 	{
+								"value": 0x00FE
+							}
+						}
+					},
+					{
+						"label": "Quick skip",
+						"type": {
+							"fix": 	{
+								"value": 0x00FF
+							}
+						}
+					},
+					{
+						"label": "Random",
+						"type": {
+							"fix": 	{
+								"value": 0x0100
+							}
+						}
+					},
+					{
+						"label": "RDS",
+						"type": {
+							"fix": 	{
+								"value": 0x0101
+							}
+						}
+					},
+					{
+						"label": "Rear",
+						"type": {
+							"fix": 	{
+								"value": 0x0102
+							}
+						}
+					},
+					{
+						"label": "Rear volume down",
+						"type": {
+							"fix": 	{
+								"value": 0x0103
+							}
+						}
+					},
+					{
+						"label": "Rear volume up",
+						"type": {
+							"fix": 	{
+								"value": 0x0104
+							}
+						}
+					},
+					{
+						"label": "Record mute",
+						"type": {
+							"fix": 	{
+								"value": 0x0105
+							}
+						}
+					},
+					{
+						"label": "Record pause",
+						"type": {
+							"fix": 	{
+								"value": 0x0106
+							}
+						}
+					},
+					{
+						"label": "Repeat",
+						"type": {
+							"fix": 	{
+								"value": 0x0107
+							}
+						}
+					},
+					{
+						"label": "Repeat A-B",
+						"type": {
+							"fix": 	{
+								"value": 0x0108
+							}
+						}
+					},
+					{
+						"label": "Resume",
+						"type": {
+							"fix": 	{
+								"value": 0x0109
+							}
+						}
+					},
+					{
+						"label": "RGB",
+						"type": {
+							"fix": 	{
+								"value": 0x010A
+							}
+						}
+					},
+					{
+						"label": "Right click",
+						"type": {
+							"fix": 	{
+								"value": 0x010B
+							}
+						}
+					},
+					{
+						"label": "Rock",
+						"type": {
+							"fix": 	{
+								"value": 0x010C
+							}
+						}
+					},
+					{
+						"label": "Rotate left",
+						"type": {
+							"fix": 	{
+								"value": 0x010D
+							}
+						}
+					},
+					{
+						"label": "Rotate right",
+						"type": {
+							"fix": 	{
+								"value": 0x010E
+							}
+						}
+					},
+					{
+						"label": "SAT",
+						"type": {
+							"fix": 	{
+								"value": 0x010F
+							}
+						}
+					},
+					{
+						"label": "Scan",
+						"type": {
+							"fix": 	{
+								"value": 0x0110
+							}
+						}
+					},
+					{
+						"label": "Scart",
+						"type": {
+							"fix": 	{
+								"value": 0x0111
+							}
+						}
+					},
+					{
+						"label": "Scene",
+						"type": {
+							"fix": 	{
+								"value": 0x0112
+							}
+						}
+					},
+					{
+						"label": "Scroll",
+						"type": {
+							"fix": 	{
+								"value": 0x0113
+							}
+						}
+					},
+					{
+						"label": "Services",
+						"type": {
+							"fix": 	{
+								"value": 0x0114
+							}
+						}
+					},
+					{
+						"label": "Setup menu",
+						"type": {
+							"fix": 	{
+								"value": 0x0115
+							}
+						}
+					},
+					{
+						"label": "Sharp",
+						"type": {
+							"fix": 	{
+								"value": 0x0116
+							}
+						}
+					},
+					{
+						"label": "Sharpness",
+						"type": {
+							"fix": 	{
+								"value": 0x0117
+							}
+						}
+					},
+					{
+						"label": "Sharpness down",
+						"type": {
+							"fix": 	{
+								"value": 0x0118
+							}
+						}
+					},
+					{
+						"label": "Sharpness up",
+						"type": {
+							"fix": 	{
+								"value": 0x0119
+							}
+						}
+					},
+					{
+						"label": "Side A/B",
+						"type": {
+							"fix": 	{
+								"value": 0x011A
+							}
+						}
+					},
+					{
+						"label": "Skip forward",
+						"type": {
+							"fix": 	{
+								"value": 0x011B
+							}
+						}
+					},
+					{
+						"label": "Skip reverse",
+						"type": {
+							"fix": 	{
+								"value": 0x011C
+							}
+						}
+					},
+					{
+						"label": "Sleep",
+						"type": {
+							"fix": 	{
+								"value": 0x011D
+							}
+						}
+					},
+					{
+						"label": "Slow",
+						"type": {
+							"fix": 	{
+								"value": 0x011E
+							}
+						}
+					},
+					{
+						"label": "Slow forward",
+						"type": {
+							"fix": 	{
+								"value": 0x011F
+							}
+						}
+					},
+					{
+						"label": "Slow reverse",
+						"type": {
+							"fix": 	{
+								"value": 0x0120
+							}
+						}
+					},
+					{
+						"label": "Sound menu",
+						"type": {
+							"fix": 	{
+								"value": 0x0121
+							}
+						}
+					},
+					{
+						"label": "Sound mode",
+						"type": {
+							"fix": 	{
+								"value": 0x0122
+							}
+						}
+					},
+					{
+						"label": "Speed",
+						"type": {
+							"fix": 	{
+								"value": 0x0123
+							}
+						}
+					},
+					{
+						"label": "Speed down",
+						"type": {
+							"fix": 	{
+								"value": 0x0124
+							}
+						}
+					},
+					{
+						"label": "Speed up",
+						"type": {
+							"fix": 	{
+								"value": 0x0125
+							}
+						}
+					},
+					{
+						"label": "Sports",
+						"type": {
+							"fix": 	{
+								"value": 0x0126
+							}
+						}
+					},
+					{
+						"label": "Stadium",
+						"type": {
+							"fix": 	{
+								"value": 0x0127
+							}
+						}
+					},
+					{
+						"label": "Start",
+						"type": {
+							"fix": 	{
+								"value": 0x0128
+							}
+						}
+					},
+					{
+						"label": "Start ID erase",
+						"type": {
+							"fix": 	{
+								"value": 0x0129
+							}
+						}
+					},
+					{
+						"label": "Start ID renumber",
+						"type": {
+							"fix": 	{
+								"value": 0x012A
+							}
+						}
+					},
+					{
+						"label": "Start ID write",
+						"type": {
+							"fix": 	{
+								"value": 0x012B
+							}
+						}
+					},
+					{
+						"label": "Step",
+						"type": {
+							"fix": 	{
+								"value": 0x012C
+							}
+						}
+					},
+					{
+						"label": "Stereo/Mono",
+						"type": {
+							"fix": 	{
+								"value": 0x012D
+							}
+						}
+					},
+					{
+						"label": "Still forward",
+						"type": {
+							"fix": 	{
+								"value": 0x012E
+							}
+						}
+					},
+					{
+						"label": "Still reverse",
+						"type": {
+							"fix": 	{
+								"value": 0x012F
+							}
+						}
+					},
+					{
+						"label": "Subtitle",
+						"type": {
+							"fix": 	{
+								"value": 0x0130
+							}
+						}
+					},
+					{
+						"label": "Subwoofer down",
+						"type": {
+							"fix": 	{
+								"value": 0x0131
+							}
+						}
+					},
+					{
+						"label": "Subwoofer up",
+						"type": {
+							"fix": 	{
+								"value": 0x0132
+							}
+						}
+					},
+					{
+						"label": "Super bass",
+						"type": {
+							"fix": 	{
+								"value": 0x0133
+							}
+						}
+					},
+					{
+						"label": "Surround",
+						"type": {
+							"fix": 	{
+								"value": 0x0134
+							}
+						}
+					},
+					{
+						"label": "Surround mode",
+						"type": {
+							"fix": 	{
+								"value": 0x0135
+							}
+						}
+					},
+					{
+						"label": "S-Video",
+						"type": {
+							"fix": 	{
+								"value": 0x0136
+							}
+						}
+					},
+					{
+						"label": "Sweep",
+						"type": {
+							"fix": 	{
+								"value": 0x0137
+							}
+						}
+					},
+					{
+						"label": "Synchro record",
+						"type": {
+							"fix": 	{
+								"value": 0x0138
+							}
+						}
+					},
+					{
+						"label": "Tape 1",
+						"type": {
+							"fix": 	{
+								"value": 0x0139
+							}
+						}
+					},
+					{
+						"label": "Tape 1-2",
+						"type": {
+							"fix": 	{
+								"value": 0x013A
+							}
+						}
+					},
+					{
+						"label": "Tape 2",
+						"type": {
+							"fix": 	{
+								"value": 0x013B
+							}
+						}
+					},
+					{
+						"label": "Temperature down",
+						"type": {
+							"fix": 	{
+								"value": 0x013C
+							}
+						}
+					},
+					{
+						"label": "Temperature up",
+						"type": {
+							"fix": 	{
+								"value": 0x013D
+							}
+						}
+					},
+					{
+						"label": "Test tone",
+						"type": {
+							"fix": 	{
+								"value": 0x013E
+							}
+						}
+					},
+					{
+						"label": "Text (Teletext)",
+						"type": {
+							"fix": 	{
+								"value": 0x013F
+							}
+						}
+					},
+					{
+						"label": "Text expand",
+						"type": {
+							"fix": 	{
+								"value": 0x0140
+							}
+						}
+					},
+					{
+						"label": "Text hold",
+						"type": {
+							"fix": 	{
+								"value": 0x0141
+							}
+						}
+					},
+					{
+						"label": "Text index",
+						"type": {
+							"fix": 	{
+								"value": 0x0142
+							}
+						}
+					},
+					{
+						"label": "Text mix",
+						"type": {
+							"fix": 	{
+								"value": 0x0143
+							}
+						}
+					},
+					{
+						"label": "Text off",
+						"type": {
+							"fix": 	{
+								"value": 0x0144
+							}
+						}
+					},
+					{
+						"label": "Text reveal",
+						"type": {
+							"fix": 	{
+								"value": 0x0145
+							}
+						}
+					},
+					{
+						"label": "Text subpage",
+						"type": {
+							"fix": 	{
+								"value": 0x0146
+							}
+						}
+					},
+					{
+						"label": "Text timer page",
+						"type": {
+							"fix": 	{
+								"value": 0x0147
+							}
+						}
+					},
+					{
+						"label": "Text update",
+						"type": {
+							"fix": 	{
+								"value": 0x0148
+							}
+						}
+					},
+					{
+						"label": "Theater",
+						"type": {
+							"fix": 	{
+								"value": 0x0149
+							}
+						}
+					},
+					{
+						"label": "Theme",
+						"type": {
+							"fix": 	{
+								"value": 0x014A
+							}
+						}
+					},
+					{
+						"label": "Thumbs down",
+						"type": {
+							"fix": 	{
+								"value": 0x014B
+							}
+						}
+					},
+					{
+						"label": "Thumbs up",
+						"type": {
+							"fix": 	{
+								"value": 0x014C
+							}
+						}
+					},
+					{
+						"label": "Tilt down",
+						"type": {
+							"fix": 	{
+								"value": 0x014D
+							}
+						}
+					},
+					{
+						"label": "Tilt up",
+						"type": {
+							"fix": 	{
+								"value": 0x014E
+							}
+						}
+					},
+					{
+						"label": "Time",
+						"type": {
+							"fix": 	{
+								"value": 0x014F
+							}
+						}
+					},
+					{
+						"label": "Timer",
+						"type": {
+							"fix": 	{
+								"value": 0x0150
+							}
+						}
+					},
+					{
+						"label": "Timer down",
+						"type": {
+							"fix": 	{
+								"value": 0x0151
+							}
+						}
+					},
+					{
+						"label": "Timer up",
+						"type": {
+							"fix": 	{
+								"value": 0x0152
+							}
+						}
+					},
+					{
+						"label": "Tint",
+						"type": {
+							"fix": 	{
+								"value": 0x0153
+							}
+						}
+					},
+					{
+						"label": "Tint down",
+						"type": {
+							"fix": 	{
+								"value": 0x0154
+							}
+						}
+					},
+					{
+						"label": "Tint up",
+						"type": {
+							"fix": 	{
+								"value": 0x0155
+							}
+						}
+					},
+					{
+						"label": "Title",
+						"type": {
+							"fix": 	{
+								"value": 0x0156
+							}
+						}
+					},
+					{
+						"label": "Track",
+						"type": {
+							"fix": 	{
+								"value": 0x0157
+							}
+						}
+					},
+					{
+						"label": "Tracking",
+						"type": {
+							"fix": 	{
+								"value": 0x0158
+							}
+						}
+					},
+					{
+						"label": "Tracking down",
+						"type": {
+							"fix": 	{
+								"value": 0x0159
+							}
+						}
+					},
+					{
+						"label": "Tracking up",
+						"type": {
+							"fix": 	{
+								"value": 0x015A
+							}
+						}
+					},
+					{
+						"label": "Treble",
+						"type": {
+							"fix": 	{
+								"value": 0x015B
+							}
+						}
+					},
+					{
+						"label": "Treble down",
+						"type": {
+							"fix": 	{
+								"value": 0x015C
+							}
+						}
+					},
+					{
+						"label": "Treble up",
+						"type": {
+							"fix": 	{
+								"value": 0x015D
+							}
+						}
+					},
+					{
+						"label": "Tune down",
+						"type": {
+							"fix": 	{
+								"value": 0x015E
+							}
+						}
+					},
+					{
+						"label": "Tune up",
+						"type": {
+							"fix": 	{
+								"value": 0x015F
+							}
+						}
+					},
+					{
+						"label": "Tuner",
+						"type": {
+							"fix": 	{
+								"value": 0x0160
+							}
+						}
+					},
+					{
+						"label": "VCR Plus+",
+						"type": {
+							"fix": 	{
+								"value": 0x0161
+							}
+						}
+					},
+					{
+						"label": "Video 1",
+						"type": {
+							"fix": 	{
+								"value": 0x0162
+							}
+						}
+					},
+					{
+						"label": "Video 2",
+						"type": {
+							"fix": 	{
+								"value": 0x0163
+							}
+						}
+					},
+					{
+						"label": "Video 3",
+						"type": {
+							"fix": 	{
+								"value": 0x0164
+							}
+						}
+					},
+					{
+						"label": "Video 4",
+						"type": {
+							"fix": 	{
+								"value": 0x0165
+							}
+						}
+					},
+					{
+						"label": "Video 5",
+						"type": {
+							"fix": 	{
+								"value": 0x0166
+							}
+						}
+					},
+					{
+						"label": "View",
+						"type": {
+							"fix": 	{
+								"value": 0x0167
+							}
+						}
+					},
+					{
+						"label": "Voice",
+						"type": {
+							"fix": 	{
+								"value": 0x0168
+							}
+						}
+					},
+					{
+						"label": "Zoom",
+						"type": {
+							"fix": 	{
+								"value": 0x0169
+							}
+						}
+					},
+					{
+						"label": "Zoom in",
+						"type": {
+							"fix": 	{
+								"value": 0x016A
+							}
+						}
+					},
+					{
+						"label": "Zoom out",
+						"type": {
+							"fix": 	{
+								"value": 0x016B
+							}
+						}
+					},
+					{
+						"label": "eHome",
+						"type": {
+							"fix": 	{
+								"value": 0x016C
+							}
+						}
+					},
+					{
+						"label": "Details",
+						"type": {
+							"fix": 	{
+								"value": 0x016D
+							}
+						}
+					},
+					{
+						"label": "DVD menu",
+						"type": {
+							"fix": 	{
+								"value": 0x016E
+							}
+						}
+					},
+					{
+						"label": "My TV",
+						"type": {
+							"fix": 	{
+								"value": 0x016F
+							}
+						}
+					},
+					{
+						"label": "Recorded TV",
+						"type": {
+							"fix": 	{
+								"value": 0x0170
+							}
+						}
+					},
+					{
+						"label": "My videos",
+						"type": {
+							"fix": 	{
+								"value": 0x0171
+							}
+						}
+					},
+					{
+						"label": "DVD angle",
+						"type": {
+							"fix": 	{
+								"value": 0x0172
+							}
+						}
+					},
+					{
+						"label": "DVD audio",
+						"type": {
+							"fix": 	{
+								"value": 0x0173
+							}
+						}
+					},
+					{
+						"label": "DVD subtitle",
+						"type": {
+							"fix": 	{
+								"value": 0x0174
+							}
+						}
+					},
+					{
+						"label": "Radio",
+						"type": {
+							"fix": 	{
+								"value": 0x0175
+							}
+						}
+					},
+					{
+						"label": "#",
+						"type": {
+							"fix": 	{
+								"value": 0x0176
+							}
+						}
+					},
+					{
+						"label": "*",
+						"type": {
+							"fix": 	{
+								"value": 0x0177
+							}
+						}
+					},
+					{
+						"label": "OEM 1",
+						"type": {
+							"fix": 	{
+								"value": 0x0178
+							}
+						}
+					},
+					{
+						"label": "OEM 2",
+						"type": {
+							"fix": 	{
+								"value": 0x0179
+							}
+						}
+					},
+					{
+						"label": "Info",
+						"type": {
+							"fix": 	{
+								"value": 0x017A
+							}
+						}
+					},
+					{
+						"label": "CAPS NUM",
+						"type": {
+							"fix": 	{
+								"value": 0x017B
+							}
+						}
+					},
+					{
+						"label": "TV MODE",
+						"type": {
+							"fix": 	{
+								"value": 0x017C
+							}
+						}
+					},
+					{
+						"label": "SOURCE",
+						"type": {
+							"fix": 	{
+								"value": 0x017D
+							}
+						}
+					},
+					{
+						"label": "FILEMODE",
+						"type": {
+							"fix": 	{
+								"value": 0x017E
+							}
+						}
+					},
+					{
+						"label": "Time seek",
+						"type": {
+							"fix": 	{
+								"value": 0x017F
+							}
+						}
+					},
+					{
+						"label": "Mouse enable",
+						"type": {
+							"fix": 	{
+								"value": 0x0180
+							}
+						}
+					},
+					{
+						"label": "Mouse disable",
+						"type": {
+							"fix": 	{
+								"value": 0x0181
+							}
+						}
+					},
+					{
+						"label": "VOD",
+						"type": {
+							"fix": 	{
+								"value": 0x0182
+							}
+						}
+					},
+					{
+						"label": "Thumbs Up",
+						"type": {
+							"fix": 	{
+								"value": 0x0183
+							}
+						}
+					},
+					{
+						"label": "Thumbs Down",
+						"type": {
+							"fix": 	{
+								"value": 0x0184
+							}
+						}
+					},
+					{
+						"label": "Apps",
+						"type": {
+							"fix": 	{
+								"value": 0x0185
+							}
+						}
+					},
+					{
+						"label": "Mouse toggle",
+						"type": {
+							"fix": 	{
+								"value": 0x0186
+							}
+						}
+					},
+					{
+						"label": "TV Mode",
+						"type": {
+							"fix": 	{
+								"value": 0x0187
+							}
+						}
+					},
+					{
+						"label": "DVD Mode",
+						"type": {
+							"fix": 	{
+								"value": 0x0188
+							}
+						}
+					},
+					{
+						"label": "STB Mode",
+						"type": {
+							"fix": 	{
+								"value": 0x0189
+							}
+						}
+					},
+					{
+						"label": "AUX Mode",
+						"type": {
+							"fix": 	{
+								"value": 0x018A
+							}
+						}
+					},
+					{
+						"label": "BluRay Mode",
+						"type": {
+							"fix": 	{
+								"value": 0x018B
+							}
+						}
+					},
+					{
+						"label": "Reserved (Mode)",
+						"type": {
+							"fix": 	{
+								"value": 0x018C
+							}
+						}
+					},
+					{
+						"label": "Reserved (Mode)",
+						"type": {
+							"fix": 	{
+								"value": 0x018D
+							}
+						}
+					},
+					{
+						"label": "Reserved (Mode)",
+						"type": {
+							"fix": 	{
+								"value": 0x018E
+							}
+						}
+					},
+					{
+						"label": "Reserved (Mode)",
+						"type": {
+							"fix": 	{
+								"value": 0x018F
+							}
+						}
+					},
+					{
+						"label": "Reserved (Mode)",
+						"type": {
+							"fix": 	{
+								"value": 0x0190
+							}
+						}
+					},
+					{
+						"label": "Reserved (Mode)",
+						"type": {
+							"fix": 	{
+								"value": 0x0191
+							}
+						}
+					},
+					{
+						"label": "Reserved (Mode)",
+						"type": {
+							"fix": 	{
+								"value": 0x0192
+							}
+						}
+					},
+					{
+						"label": "Reserved (Mode)",
+						"type": {
+							"fix": 	{
+								"value": 0x0193
+							}
+						}
+					},
+					{
+						"label": "Standby 1",
+						"type": {
+							"fix": 	{
+								"value": 0x0194
+							}
+						}
+					},
+					{
+						"label": "Standby 2",
+						"type": {
+							"fix": 	{
+								"value": 0x0195
+							}
+						}
+					},
+					{
+						"label": "Standby 3",
+						"type": {
+							"fix": 	{
+								"value": 0x0196
+							}
+						}
+					},
+					{
+						"label": "HDMI 1",
+						"type": {
+							"fix": 	{
+								"value": 0x0197
+							}
+						}
+					},
+					{
+						"label": "HDMI 2",
+						"type": {
+							"fix": 	{
+								"value": 0x0198
+							}
+						}
+					},
+					{
+						"label": "HDMI 3",
+						"type": {
+							"fix": 	{
+								"value": 0x0199
+							}
+						}
+					},
+					{
+						"label": "HDMI 4",
+						"type": {
+							"fix": 	{
+								"value": 0x019A
+							}
+						}
+					},
+					{
+						"label": "HDMI 5",
+						"type": {
+							"fix": 	{
+								"value": 0x019B
+							}
+						}
+					},
+					{
+						"label": "HDMI 6",
+						"type": {
+							"fix": 	{
+								"value": 0x019C
+							}
+						}
+					},
+					{
+						"label": "HDMI 7",
+						"type": {
+							"fix": 	{
+								"value": 0x019D
+							}
+						}
+					},
+					{
+						"label": "HDMI 8",
+						"type": {
+							"fix": 	{
+								"value": 0x019E
+							}
+						}
+					},
+					{
+						"label": "HDMI 9",
+						"type": {
+							"fix": 	{
+								"value": 0x019F
+							}
+						}
+					},
+					{
+						"label": "USB 1",
+						"type": {
+							"fix": 	{
+								"value": 0x01A0
+							}
+						}
+					},
+					{
+						"label": "USB 2",
+						"type": {
+							"fix": 	{
+								"value": 0x01A1
+							}
+						}
+					},
+					{
+						"label": "USB 3",
+						"type": {
+							"fix": 	{
+								"value": 0x01A2
+							}
+						}
+					},
+					{
+						"label": "USB 4",
+						"type": {
+							"fix": 	{
+								"value": 0x01A3
+							}
+						}
+					},
+					{
+						"label": "USB 5",
+						"type": {
+							"fix": 	{
+								"value": 0x01A4
+							}
+						}
+					},
+					{
+						"label": "ZOOM 4:3 Normal",
+						"type": {
+							"fix": 	{
+								"value": 0x01A5
+							}
+						}
+					},
+					{
+						"label": "ZOOM 4:3 Zoom",
+						"type": {
+							"fix": 	{
+								"value": 0x01A6
+							}
+						}
+					},
+					{
+						"label": "ZOOM 16:9 Normal",
+						"type": {
+							"fix": 	{
+								"value": 0x01A7
+							}
+						}
+					},
+					{
+						"label": "ZOOM 16:9 Zoom",
+						"type": {
+							"fix": 	{
+								"value": 0x01A8
+							}
+						}
+					},
+					{
+						"label": "ZOOM 16:9 Wide 1",
+						"type": {
+							"fix": 	{
+								"value": 0x01A9
+							}
+						}
+					},
+					{
+						"label": "ZOOM 16:9 Wide 2",
+						"type": {
+							"fix": 	{
+								"value": 0x01AA
+							}
+						}
+					},
+					{
+						"label": "ZOOM 16:9 Wide 3",
+						"type": {
+							"fix": 	{
+								"value": 0x01AB
+							}
+						}
+					},
+					{
+						"label": "ZOOM Cinema",
+						"type": {
+							"fix": 	{
+								"value": 0x01AC
+							}
+						}
+					},
+					{
+						"label": "ZOOM 16:9 Default",
+						"type": {
+							"fix": 	{
+								"value": 0x01AD
+							}
+						}
+					},
+					{
+						"label": "Reserved (ZOOM mode)",
+						"type": {
+							"fix": 	{
+								"value": 0x01AE
+							}
+						}
+					},
+					{
+						"label": "Reserved (ZOOM mode)",
+						"type": {
+							"fix": 	{
+								"value": 0x01BF
+							}
+						}
+					},
+					{
+						"label": "Auto Zoom",
+						"type": {
+							"fix": 	{
+								"value": 0x01B0
+							}
+						}
+					},
+					{
+						"label": "ZOOM Set as Default Zoom",
+						"type": {
+							"fix": 	{
+								"value": 0x01B1
+							}
+						}
+					},
+					{
+						"label": "Mute On",
+						"type": {
+							"fix": 	{
+								"value": 0x01B2
+							}
+						}
+					},
+					{
+						"label": "Mute Off",
+						"type": {
+							"fix": 	{
+								"value": 0x01B3
+							}
+						}
+					},
+					{
+						"label": "AUDIO Mode AUDYSSEY AUDIO OFF",
+						"type": {
+							"fix": 	{
+								"value": 0x01B4
+							}
+						}
+					},
+					{
+						"label": "AUDIO Mode AUDYSSEY AUDIO LO",
+						"type": {
+							"fix": 	{
+								"value": 0x01B5
+							}
+						}
+					},
+					{
+						"label": "AUDIO Mode AUDYSSEY AUDIO MED",
+						"type": {
+							"fix": 	{
+								"value": 0x01B6
+							}
+						}
+					},
+					{
+						"label": "AUDIO Mode AUDYSSEY AUDIO HI",
+						"type": {
+							"fix": 	{
+								"value": 0x01B7
+							}
+						}
+					},
+					{
+						"label": "Reserved",
+						"type": {
+							"fix": 	{
+								"value": 0x01B8
+							}
+						}
+					},
+					{
+						"label": "Reserved",
+						"type": {
+							"fix": 	{
+								"value": 0x01B9
+							}
+						}
+					},
+					{
+						"label": "AUDIO Mode SRS SURROUND ON",
+						"type": {
+							"fix": 	{
+								"value": 0x01BA
+							}
+						}
+					},
+					{
+						"label": "AUDIO Mode SRS SURROUND OFF",
+						"type": {
+							"fix": 	{
+								"value": 0x01BB
+							}
+						}
+					},
+					{
+						"label": "Reserved",
+						"type": {
+							"fix": 	{
+								"value": 0x01BC
+							}
+						}
+					},
+					{
+						"label": "Reserved",
+						"type": {
+							"fix": 	{
+								"value": 0x01BD
+							}
+						}
+					},
+					{
+						"label": "Reserved",
+						"type": {
+							"fix": 	{
+								"value": 0x01BE
+							}
+						}
+					},
+					{
+						"label": "Picture Mode Home",
+						"type": {
+							"fix": 	{
+								"value": 0x01BF
+							}
+						}
+					},
+					{
+						"label": "Picture Mode Retail",
+						"type": {
+							"fix": 	{
+								"value": 0x01C0
+							}
+						}
+					},
+					{
+						"label": "Picture Mode Vivid",
+						"type": {
+							"fix": 	{
+								"value": 0x01C1
+							}
+						}
+					},
+					{
+						"label": "Picture Mode Standard",
+						"type": {
+							"fix": 	{
+								"value": 0x01C2
+							}
+						}
+					},
+					{
+						"label": "Picture Mode Theater",
+						"type": {
+							"fix": 	{
+								"value": 0x01C3
+							}
+						}
+					},
+					{
+						"label": "Picture Mode Sports",
+						"type": {
+							"fix": 	{
+								"value": 0x01C4
+							}
+						}
+					},
+					{
+						"label": "Picture Mode Energy savings",
+						"type": {
+							"fix": 	{
+								"value": 0x01C5
+							}
+						}
+					},
+					{
+						"label": "Picture Mode Custom",
+						"type": {
+							"fix": 	{
+								"value": 0x01C6
+							}
+						}
+					},
+					{
+						"label": "Cool",
+						"type": {
+							"fix": 	{
+								"value": 0x01C7
+							}
+						}
+					},
+					{
+						"label": "Medium",
+						"type": {
+							"fix": 	{
+								"value": 0x01C8
+							}
+						}
+					},
+					{
+						"label": "Warm_D65",
+						"type": {
+							"fix": 	{
+								"value": 0x01C9
+							}
+						}
+					},
+					{
+						"label": "CC ON",
+						"type": {
+							"fix": 	{
+								"value": 0x01CA
+							}
+						}
+					},
+					{
+						"label": "CC OFF",
+						"type": {
+							"fix": 	{
+								"value": 0x01CB
+							}
+						}
+					},
+					{
+						"label": "Video Mute ON",
+						"type": {
+							"fix": 	{
+								"value": 0x01CC
+							}
+						}
+					},
+					{
+						"label": "Video Mute OFF",
+						"type": {
+							"fix": 	{
+								"value": 0x01CD
+							}
+						}
+					},
+					{
+						"label": "Next Event",
+						"type": {
+							"fix": 	{
+								"value": 0x01CE
+							}
+						}
+					},
+					{
+						"label": "Previous Event",
+						"type": {
+							"fix": 	{
+								"value": 0x01CF
+							}
+						}
+					},
+					{
+						"label": "CEC device list",
+						"type": {
+							"fix": 	{
+								"value": 0x01D0
+							}
+						}
+					},
+					{
+						"label": "MTS SAP",
+						"type": {
+							"fix": 	{
+								"value": 0x01D1
+							}
+						}
+					},
+				]
+			};
+
+		// SensorMultilevel
+		case 0x31:
+			return {
+				"Get": [],
+			};
+
+		// SensroBinary
+		case 0x30:
+			return {
+				"Get": [],
+			};
+
+		// PowerLevel
+		case 0x73:
+			return {
+				"Get": [],
+				"TestAllNeighbours": [],
+				"TestToNode": [
+					{
+						"label": "Node ID",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 232
+							}
+						}
+					}
+				],
+				"Set":[
+					{
+						"label": "PowerLevel",
+						"type": {
+							"enumof": [
+								{
+									"label": "-9dbm ", "type":{
+										"fix": 	{
+											"value": 9
+										}
+									}
+								},
+								{
+									"label": "-8dbm ", "type":{
+										"fix": 	{
+											"value": 8
+										}
+									}
+								},
+								{
+									"label": "-7dbm ", "type":{
+										"fix": 	{
+											"value": 7
+										}
+									}
+								},
+								{
+									"label": "-6dbm ", "type":{
+										"fix": 	{
+											"value": 6
+										}
+									}
+								},
+								{
+									"label": "-5dbm ", "type":{
+										"fix": 	{
+											"value": 5
+										}
+									}
+								},
+								{
+									"label": "-4dbm ", "type":{
+										"fix": 	{
+											"value": 4
+										}
+									}
+								},
+								{
+									"label": "-3dbm ", "type":{
+										"fix": 	{
+											"value": 3
+										}
+									}
+								},
+								{
+									"label": "-2dbm ", "type":{
+										"fix": 	{
+											"value": 2
+										}
+									}
+								},
+								{
+									"label": "-1dbm ", "type":{
+										"fix": 	{
+											"value": 1
+										}
+									}
+								},
+								{
+									"label": "Normal ", "type":{
+										"fix": 	{
+											"value": 0
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"label": "Timeout (s)",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 255
+							}
+						}
+					}
+				]
+			};
+			
+		// Proprietary
+		case 0x88:
+			return {
+				"Get": [],
+				"Set": [
+					{
+						"label": "Data in format [1,2,3,..,0xa,..]",
+						"type": {
+							"string": {
+							}
+						}
+					}
+				]
+			};
+		
+		// MeterPulse
+		case 0x35:
+			return {
+				"Get": []
+			};
+		
+		// ManufacturerSpecific
+		case 0x72:
+			return {
+				"Get": []
+			};
+		
+		// Manufacturer Proprietary
+		case 0x91:
+			return {
+				"Send": [
+					{
+						"label": "Data in format [1,2,3,..,0xa,..]",
+						"type": {
+							"string": {
+							}
+						}
+					}
+				]
+			};
+
+		// SwitchAll
+		case 0x27:
+			return {
+				"SetOn": [],
+				"SetOff": [],
+				"Get": [],
+				"Set": [
+					{
+						"label": "Mode",
+						"type": {
+							"enumof": [
+								{
+									"label": "Not in switch all group",
+									"type": {
+										"fix": 	{
+											"value": 0x00
+										}
+									}
+								},
+								{
+									"label": "In switch all off group only",
+									"type": {
+										"fix": 	{
+											"value": 0x01
+										}
+									}
+								},
+								{
+									"label": "In switch all on group only",
+									"type": {
+										"fix": 	{
+											"value": 0x02
+										}
+									}
+								},
+								{
+									"label": "In switch all on and off groups",
+									"type": {
+										"fix": 	{
+											"value": 0xff
+										}
+									}
+								}
+							]
+						}
+					}
+				]
+			};
+
+		// SensorConfiguration
+		case 0x9e:
+			return	{
+				"Get": [],
+				"Set": [
+					{
+						"label": "Trigger",
+							"type": {
+							"enumof": [
+								{
+									"label": "Current",
+									"type": {
+										"fix": 	{
+											"value": 1
+										}
+									}
+								},
+								{
+									"label": "Default",
+									"type": {
+										"fix": 	{
+											"value": 2
+										}
+									}
+								},
+								{
+									"label": "Value",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								]
+						}
+					},
+					{
+						"label": "Value of Sensor",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 0xffff
+							}
+						}
+					}
+				]
+			};
+
+		// ScheduleEntryLock
+		case 0x4e:
+			return {
+				"WeekDayScheduleGet": [
+					{
+						"label": "User",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 99
+							}
+						}
+					}
+				],
+				"YearScheduleGet": [
+					{
+						"label": "User",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 99
+							}
+						}
+					}
+				],
+				"WeekDayScheduleSet": [
+					{
+						"label": "User",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 99
+							}
+						}
+					}
+				],
+				"YearScheduleSet": [
+					{
+						"label": "User",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 99
+							}
+						}
+					}
+				],
+				"Set": [
+					{
+						"label": "User",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 99
+							}
+						}
+					},
+					{
+						"label": "Level",
+						"type": {
+							"enumof": [
+								{
+									"label": "Disable",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "Enable",
+									"type": {
+										"fix": 	{
+											"value": 1
+										}
+									}
+								}
+							]
+						}
+					}
+				],
+
+				"AllSet": [
+					{
+						"label": "Level",
+						"type": {
+							"enumof": [
+								{
+									"label": "Disable",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "Enable",
+									"type": {
+										"fix": 	{
+											"value": 1
+										}
+									}
+								}
+							]
+						}
+					}
+				]
+			};
+
+		// SceneActivation
+		case 0x2B:
+			return {
+				"Set": [
+					{
+						"label": "Scene",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 255
+							}
+						}
+					},
+					{
+						"label": "Duration",
+						"type": {
+							"enumof": [
+								{
+									"label": "immediately",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "in seconds",
+									"type": {
+										"range": {
+											"min": 	1,
+											"max": 127
+										}
+									}
+								},
+								{
+									"label": "in minutes",
+									"type": {
+										"range": {
+											"min": 	1,
+											"max": 127,
+										"shift": 	127
+										}
+									}
+								},
+								{
+									"label": "use device default",
+									"type": {
+										"fix": 	{
+											"value": 255
+										}
+									}
+								}
+							]
+						}
+					}
+				]
+			};
+			
+		// SceneActuatorConf
+		case 0x2C:
+			return {
+				"Get": [
+					{
+						"label": "Scene",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 255
+							}
+						}
+					}
+				],
+				"Set": [
+					{
+						"label": "Scene",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 255
+							}
+						}
+					},
+					{
+						"label": "Level",
+						"type": {
+							"enumof": [
+								{
+									"label": "Off",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "%",
+									"type": {
+										"range": {
+											"min": 0,
+											"max": 99
+										}
+									}
+								},
+								{
+									"label": "Full",
+									"type": {
+										"fix": 	{
+											"value": 99
+										}
+									}
+								},
+								{
+									"label": "On",
+									"type": {
+										"fix": 	{
+											"value": 255
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"label": "Duration",
+						"type": {
+							"enumof": [
+								{
+									"label": "immediately",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "in seconds",
+									"type": {
+										"range": {
+											"min": 	1,
+											"max": 127
+										}
+									}
+								},
+								{
+									"label": "in minutes",
+									"type": {
+										"range": {
+											"min": 	1,
+											"max": 127,
+										"shift": 	127
+										}
+									}
+								},
+								{
+									"label": "use device default",
+									"type": {
+										"fix": 	{
+											"value": 255
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"label": "Level used",
+						"type": {
+							"enumof": [
+								{
+									"label": "Current in device",
+									"type": {
+										"fix": 	{
+											"value": 0,
+											},
+										}
+									},
+								{
+									"label": "Defined",
+									"type": {
+										"fix": 	{
+											"value": 1 << 7,
+										}
+									}
+								}
+							]
+						}
+					},
+				]
+			};
+
+		// Protection
+		case 0x75:
+			return {
+				"Get": [],
+				"ExclusiveGet": [],
+				"TimeoutGet": [],
+				"Set": (function () {
+					var ret = [
+						{
+							"label": "Local operations",
+								"type": {
+									"enumof": [
+										{
+											"label": "Unprotected",
+											"type": {
+												"fix": 	{
+													"value": 0
+												}
+											}
+										},
+										{
+											"label": "Protection by sequence",
+											"type": {
+												"fix": 	{
+													"value": 1
+												}
+											}
+										},
+										{
+											"label": "No operation possible",
+											"type": {
+												"fix": 	{
+													"value": 2
+												}
+											}
+										}
+									]
+								}
+							},
+						];
+
+					if (data.version.value >= 2)
+						ret.push({
+								"label": "RF operations",
+								"type": {
+									"enumof": [
+										{
+											"label": "Unprotected",
+											"type": {
+												"fix": 	{
+													"value": 0
+												}
+											}
+										},
+										{
+											"label": "No RF Control",
+											"type": {
+												"fix": 	{
+													"value": 1
+												}
+											}
+										},
+										{
+											"label": "No RF Communication",
+											"type": {
+												"fix": 	{
+													"value": 2
+												}
+											}
+										}
+									]
+								}
+							}
+						);
+						return ret;
+				})(),
+				
+				"TimeoutSet": [
+					 {
+						"label": "Time",
+						"type": {
+							"enumof": [
+								{
+									"label": "No",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "Sec",
+									"type": {
+										"range": {
+											"min": 0,
+											"max": 60
+										}
+									}
+								},
+								{
+									"label": "Min",
+									"type": {
+										"range": {
+											"min": 	2,
+											"max": 191,
+										"shift": 	63
+										}
+									}
+								},
+								{
+									"label": "Infinite",
+									"type": {
+										"fix": 	{
+											"value": 255
+										}
+									}
+								},
+								]
+						}
+					}
+				],
+				"ExclusivitySet": [
+					{
+						"label": "to node",
+						"type": {
+							"node": {}
+						}
+					}
+				]
+			};
+			
+		// SceneControllerConf
+		case 0x2d:
+			return {
+				"Get": [
+					{
+						"label": "Group",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 255
+							}
+						}
+					}
+				],
+				"Set": [
+					{
+						"label": "Group",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 255
+							}
+						}
+					},
+					{
+						"label": "Scene",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 255
+							}
+						}
+					},
+					{
+						"label": "DimmingDuration",
+						"type": {
+							"enumof": [
+								{
+									"label": "immediately",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "in seconds",
+									"type": {
+										"range": {
+											"min": 	1,
+											"max": 127
+										}
+									}
+								},
+								{
+									"label": "in minutes",
+									"type": {
+										"range": {
+											"min": 	1,
+											"max": 127,
+										"shift": 	127
+										}
+									}
+								},
+								{
+									"label": "use device default",
+									"type": {
+										"fix": 	{
+											"value": 255
+										}
+									}
+								}
+							]
+						}
+					}
+				]
+			};
+			
+		// Alarm
+		case 0x71:
+			var ret = {
+				"Get": [
+					{
+						"label": "Type",
+						"type": {
+							"enumof": (
+									function() {
+										try {
+											var arr = [];
+											var key;
+											for (key in data) {
+												var ikey = parseInt(key);
+												if (!isNaN(ikey))
+													arr.push({
+														"label": data[ikey].typeString.value,
+														"type": {
+															"fix": 	{
+																"value": ikey
+															}
+														}
+													});
+											};
+											return arr;
+										} catch(err) {}
+										return [];
+									}
+								)()
+						}
+					}
+				]
+			};
+			
+			if (data.version.value > 1) {
+				ret["Set"] = [
+					{
+						"label": "Type",
+						"type": {
+							"enumof": (
+									function() {
+										try {
+											var arr = [];
+											var key;
+											for (key in data) {
+												var ikey = parseInt(key);
+												if (!isNaN(ikey))
+													arr.push({
+														"label": data[ikey].typeString.value,
+														"type": {
+															"fix": 	{
+																"value": ikey
+															}
+														}
+													});
+											};
+											return arr;
+										} catch(err) {}
+										return [];
+									}
+								)()
+						}
+					},
+					{
+						"label": "Status",
+						"type": {
+							"enumof": [
+								{
+									"label": "Disable",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "Enable",
+									"type": {
+										"fix": 	{
+											"value": 255
+										}
+									}
+								}
+							]
+						}
+					}
+				];
+			}
+			
+			return ret;
+		
+		// AlarmSensor
+		case 0x9c:
+			return {
+				"Get": []
+			};
+		
+		// Battery
+		case 0x80:
+			return {
+				"Get": []
+			};
+
+		// MutiChannelAssociation
+		case 0x8e:
+			return {
+				"GroupingsGet": [],
+				"Get": [
+					{
+						"label": "Group",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 255
+							}
+						}
+					}
+				],
+				"Set": [
+					{
+						"label": "Group",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 255
+							}
+						}
+					},
+					{
+						"label": "Node",
+						"type": {
+							"node": {
+							}
+						}
+					},
+					{
+						"label": "instance",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 127
+							}
+						}
+					}
+				],
+				"Remove": [
+					{
+						"label": "Group",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 255
+							}
+						}
+					},
+					{
+						"label": "Node",
+						"type": {
+							"node": {
+							}
+						}
+					},
+					{
+						"label": "instance",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 127
+							}
+						}
+					}
+				]
+			};
+		
+		// Meter	
+		case 0x32:
+			return {
+				"Get": [],
+				"Reset": []
+			};
+
+		// AlarmSilence
+		case 0x9d:
+			return {
+				"Set": [
+					{
+						"label": "Mode",
+						"type": {
+							"enumof": [
+								{
+									"label": "Disable all",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "Disable all Sensor Alarms",
+									"type": {
+										"fix": 	{
+											"value": 1
+										}
+									}
+								},
+								{
+									"label": "Enable all",
+									"type": {
+										"fix": 	{
+											"value": 2
+										}
+									}
+								},
+								{
+									"label": "Enable all Sensor Alarms",
+									"type": {
+										"fix": 	{
+											"value": 3
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"label": "Duration in sec",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 256
+							}
+						}
+					},
+					{
+						"label": "Alarm",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 0xffff
+							}
+						}
+					}
+				]
+			};
+
+		// BasicWindowCovering
+		case 0x50:
+			return {
+				"Stop": [],
+				"Start": [
+					{
+						"label": "Direction",
+						"type": {
+							"enumof": [
+								{
+									"label": "Up",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "Down",
+									"type": {
+										"fix": 	{
+											"value": 255
+										}
+									}
+								}
+							]
+						}
+					}
+				]
+			};
+
+		// Configuration			
+		case 0x70:
+			return {
+				"Get": [
+					{
+						"label": "Parameter",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 255
+							}
+						}
+					}
+				],
+				"Set": [
+					{
+						"label": "Parameter",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 255
+							}
+						}
+					},
+					{
+						"label": "Value",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 4294967295
+							}
+						}
+					},
+					{
+						"label": "Size",
+						"type": {
+							"enumof": [
+								{
+									"label": "auto detect",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "1 byte",
+									"type": {
+										"fix": 	{
+											"value": 1
+										}
+									}
+								},
+								{
+									"label": "2 byte",
+									"type": {
+										"fix": 	{
+											"value": 2
+										}
+									}
+								},
+								{
+									"label": "4 byte",
+									"type": {
+										"fix": 	{
+											"value": 4
+										}
+									}
+								}
+							]
+						}
+					}
+				],
+				"SetDefault": [
+					{
+						"label": "Parameter",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 255
+							}
+						}
+					}
+				]
+			};
+
+		// Association
+		case 0x85:
+			return {
+				"GroupingsGet": [],
+				"Get": [
+					{
+						"label": "Group",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 255
+							}
+						}
+					}
+				],
+				"Set": [
+					{
+						"label": "Group",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 255
+							}
+						}
+					},
+					{
+						"label": "Node",
+						"type": {
+							"node": {
+							}
+						}
+					}
+				],
+				"Remove": [
+					{
+						"label": "Group",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 255
+							}
+						}
+					},
+					{
+						"label": "Node",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 255
+							}
+						}
+					}
+				]
+			};
+
+		// AssociationCommandConfiguration
+		case 0x9b:
+			return {
+				"Get": []
+			};
+		
+		// NodeNaming
+		case 0x77:
+			return {
+				"Get": [],
+				"GetName": [],
+				"GetLocation": [],
+				"SetName": [
+					{
+						"label": "Name",
+						"type": {
+							"string": {
+							}
+						}
+					}
+				],
+				"SetLocation": [
+					{
+						"label": "Location",
+						"type": {
+							"string": {
+							}
+						}
+					}
+				]
+			};
+			
+		// MeterTableMonitor
+		case 0x3d:
+			return {
+				"StatusDateGet": [
+					{
+						"label": "Index",
+						"type": {
+							"enumof": [
+								{
+									"label": "For all entries",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "",
+									"type": {
+										"range": 	{
+											"min": 1,
+											"max": 255
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"label": "Start (UNIX stamp)",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 100000000
+							}
+						}
+					},
+					{
+						"label": "Stop (UNIX stamp)",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 100000000
+							}
+						}
+					}
+				],
+				"StatusDepthGet": [
+					{
+						"label": "Index",
+						"type": {
+							"enumof": [
+								{
+									"label": "Current only",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "For all entries",
+									"type": {
+										"fix": 	{
+											"value": 255
+										}
+									}
+								},
+								{
+									"label": "",
+									"type": {
+										"range": 	{
+											"min": 1,
+											"max": 255
+										}
+									}
+								}
+							]
+						}
+					}
+				],
+				"CurrentDataGet": [
+					{
+						"label": "Index",
+						"type": {
+							"enumof": [
+								{
+									"label": "For all supported",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "",
+									"type": {
+										"range": 	{
+											"min": 1,
+											"max": 255
+										}
+									}
+								}
+							]
+						}
+					}
+				]
+			};
+
+		// Indicator			
+		case 0x87:
+			return {
+				"Get": [],
+				"Set": [
+					{
+						"label": "Active",
+						"type": {
+							"enumof": [
+								{
+									"label": "Off",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "On",
+									"type": {
+										"fix": 	{
+											"value": 255
+										}
+									}
+								}
+							]
+						}
+					}
+				]
+			};
+
+		/*
+		This UI requires special handling of form, so it is handled in a special tab in the UI
+		// FirmwareUpdateMD
+		case 0x7A:
+			return {
+				"Get": [],
+				"RequestUpdate": [
+					{
+						"label": "Path to File",
+						"type": {
+							"string": {
+							}
+						}
+					},
+					{
+						"label": "FirmwareId",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 65535
+							}
+						}
+					}
+				]
+			};
+		*/
+		
+		// DoorLockLogging
+		case 0x4c:
+			return {
+				"Get": [
+					{
+						"label": "Record",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 99
+							}
+						}
+					}
+				]
+			};
+
+		// DoorLock
+		case 0x62:
+			return {
+			 	"Get": [],
+				"Set": [
+					{
+						"label": "Mode",
+						"type": {
+							"enumof": [
+								{
+									"label": "Door Unsecured",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "Door Unsecured with timeout",
+									"type": {
+										"fix": 	{
+											"value": 0x1
+										}
+									}
+								},
+								{
+									"label": "Door Unsecured for inside Door Handles",
+									"type": {
+										"fix": 	{
+											"value": 0x10
+										}
+									}
+								},
+								{
+									"label": "Door Unsecured for inside Door Handles with timeout",
+									"type": {
+										"fix": 	{
+											"value": 0x11
+										}
+									}
+								},
+								{
+									"label": "Door Unsecured for outside Door Handles",
+									"type": {
+										"fix": 	{
+											"value": 0x20
+										}
+									}
+								},
+								{
+									"label": "Door Unsecured for outside Door Handles with timeout",
+									"type": {
+										"fix": 	{
+											"value": 0x21
+										}
+									}
+								},
+								{
+									"label": "Door Secured",
+									"type": {
+										"fix": 	{
+											"value": 0xff
+										}
+									}
+								}
+							]
+						}
+					}
+				],
+				"ConfigurationGet": [],
+				"ConfigurationSet": [
+					{
+						"label": "Timeout, minutes",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 254
+							}
+						}
+					},
+					{
+						"label": "Timeout, seconds",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 59
+							}
+						}
+					}
+				]
+			};
+
+		// Basic
+		case 0x20:
+			return {
+				"Get": [],
+				"Set": [
+					{
+						"label": "Level",
+						"type": {
+							"enumof": [
+								{
+									"label": "Off",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "Dimmer level",
+									"type": {
+										"range": {
+											"min": 0,
+											"max": 255
+										}
+									}
+								},
+								{
+									"label": "Max",
+									"type": {
+										"fix": 	{
+											"value": 99
+										}
+									}
+								},
+								{
+									"label": "On",
+									"type": {
+										"fix": 	{
+											"value": 255
+										}
+									}
+								}
+							]
+						}
+					}
+				]
+			};
+			
+		// ClimateControlSchedule	(incomplete Implementation, only overwrite but no schedule handling)
+		case 0x46:
+			return {
+				"OverrideGet": [],
+				"OverrideSet": [
+					{
+						"label": "Type",
+						"type": {
+							"enumof": [
+								{
+									"label": "No override",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},							
+								{
+									"label": "Permanently",
+									"type": {
+										"fix": 	{
+											"value": 1
+										}
+									}
+								},
+								{
+									"label": "Temporary",
+									"type": {
+										"fix": 	{
+											"value": 2
+										}
+									}
+								}
+							]
+						}
+					},
+					
+					{
+						"label": "State",
+						"type": {
+							"enumof": [
+								{
+									"label": "Unused",
+									"type": {
+										"fix": 	{
+											"value": 127
+										}
+									}
+								},
+								{
+									"label": "Energy Saving",
+									"type": {
+										"fix": 	{
+											"value": 122
+										}
+									}
+								},							
+								{
+									"label": "Frost Protection",
+									"type": {
+										"fix": 	{
+											"value": 121
+										}
+									}
+								},
+								{
+									"label": "Temperature Offset in 1/10K",
+									"type": {
+										"range": {
+											"min": -128,
+											"max": 120
+										}
+									}
+								},
+							]
+						}
+					},
+					
+					
+					
+					
+										
+				]								
+			};   
+
+		default: return {};
+	}
+}
+
+/*
+ Copyright 2011-2013 Abdulla Abdurakhmanov
+ Original sources are available at https://code.google.com/p/x2js/
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ */
+
+function X2JS(config) {
+	'use strict';
+		
+	var VERSION = "1.1.5";
+	
+	config = config || {};
+	initConfigDefaults();
+	initRequiredPolyfills();
+	
+	function initConfigDefaults() {
+		if(config.escapeMode === undefined) {
+			config.escapeMode = true;
+		}
+		config.attributePrefix = config.attributePrefix || "_";
+		config.arrayAccessForm = config.arrayAccessForm || "none";
+		config.emptyNodeForm = config.emptyNodeForm || "text";
+		if(config.enableToStringFunc === undefined) {
+			config.enableToStringFunc = true; 
+		}
+		config.arrayAccessFormPaths = config.arrayAccessFormPaths || []; 
+		if(config.skipEmptyTextNodesForObj === undefined) {
+			config.skipEmptyTextNodesForObj = true;
+		}
+		if(config.stripWhitespaces === undefined) {
+			config.stripWhitespaces = true;
+		}
+		config.datetimeAccessFormPaths = config.datetimeAccessFormPaths || [];
+	}
+
+	var DOMNodeTypes = {
+		ELEMENT_NODE 	   : 1,
+		TEXT_NODE    	   : 3,
+		CDATA_SECTION_NODE : 4,
+		COMMENT_NODE	   : 8,
+		DOCUMENT_NODE 	   : 9
+	};
+	
+	function initRequiredPolyfills() {
+		function pad(number) {
+	      var r = String(number);
+	      if ( r.length === 1 ) {
+	        r = '0' + r;
+	      }
+	      return r;
+	    }
+		// Hello IE8-
+		if(typeof String.prototype.trim !== 'function') {			
+			String.prototype.trim = function() {
+				return this.replace(/^\s+|^\n+|(\s|\n)+$/g, '');
+			}
+		}
+		if(typeof Date.prototype.toISOString !== 'function') {
+			// Implementation from http://stackoverflow.com/questions/2573521/how-do-i-output-an-iso-8601-formatted-string-in-javascript
+			Date.prototype.toISOString = function() {
+		      return this.getUTCFullYear()
+		        + '-' + pad( this.getUTCMonth() + 1 )
+		        + '-' + pad( this.getUTCDate() )
+		        + 'T' + pad( this.getUTCHours() )
+		        + ':' + pad( this.getUTCMinutes() )
+		        + ':' + pad( this.getUTCSeconds() )
+		        + '.' + String( (this.getUTCMilliseconds()/1000).toFixed(3) ).slice( 2, 5 )
+		        + 'Z';
+		    };
+		}
+	}
+	
+	function getNodeLocalName( node ) {
+		var nodeLocalName = node.localName;			
+		if(nodeLocalName == null) // Yeah, this is IE!! 
+			nodeLocalName = node.baseName;
+		if(nodeLocalName == null || nodeLocalName=="") // =="" is IE too
+			nodeLocalName = node.nodeName;
+		return nodeLocalName;
+	}
+	
+	function getNodePrefix(node) {
+		return node.prefix;
+	}
+		
+	function escapeXmlChars(str) {
+		if(typeof(str) == "string")
+			return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#x27;').replace(/\//g, '&#x2F;');
+		else
+			return str;
+	}
+
+	function unescapeXmlChars(str) {
+		return str.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#x27;/g, "'").replace(/&#x2F;/g, '\/');
+	}
+	
+	function toArrayAccessForm(obj, childName, path) {
+		switch(config.arrayAccessForm) {
+		case "property":
+			if(!(obj[childName] instanceof Array))
+				obj[childName+"_asArray"] = [obj[childName]];
+			else
+				obj[childName+"_asArray"] = obj[childName];
+			break;		
+		/*case "none":
+			break;*/
+		}
+		
+		if(!(obj[childName] instanceof Array) && config.arrayAccessFormPaths.length > 0) {
+			var idx = 0;
+			for(; idx < config.arrayAccessFormPaths.length; idx++) {
+				var arrayPath = config.arrayAccessFormPaths[idx];
+				if( typeof arrayPath === "string" ) {
+					if(arrayPath == path)
+						break;
+				}
+				else
+				if( arrayPath instanceof RegExp) {
+					if(arrayPath.test(path))
+						break;
+				}				
+				else
+				if( typeof arrayPath === "function") {
+					if(arrayPath(obj, childName, path))
+						break;
+				}
+			}
+			if(idx!=config.arrayAccessFormPaths.length) {
+				obj[childName] = [obj[childName]];
+			}
+		}
+	}
+	
+	function fromXmlDateTime(prop) {
+		// Implementation based up on http://stackoverflow.com/questions/8178598/xml-datetime-to-javascript-date-object
+		// Improved to support full spec and optional parts
+		var bits = prop.split(/[-T:+Z]/g);
+		
+		var d = new Date(bits[0], bits[1]-1, bits[2]);			
+		var secondBits = bits[5].split("\.");
+		d.setHours(bits[3], bits[4], secondBits[0]);
+		if(secondBits.length>1)
+			d.setMilliseconds(secondBits[1]);
+
+		// Get supplied time zone offset in minutes
+		if(bits[6] && bits[7]) {
+			var offsetMinutes = bits[6] * 60 + Number(bits[7]);
+			var sign = /\d\d-\d\d:\d\d$/.test(prop)? '-' : '+';
+
+			// Apply the sign
+			offsetMinutes = 0 + (sign == '-'? -1 * offsetMinutes : offsetMinutes);
+
+			// Apply offset and local timezone
+			d.setMinutes(d.getMinutes() - offsetMinutes - d.getTimezoneOffset())
+		}
+		else
+			if(prop.indexOf("Z", prop.length - 1) !== -1) {
+				d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds(), d.getMilliseconds()));					
+			}
+
+		// d is now a local time equivalent to the supplied time
+		return d;
+	}
+	
+	function checkFromXmlDateTimePaths(value, childName, fullPath) {
+		if(config.datetimeAccessFormPaths.length > 0) {
+			var path = fullPath.split("\.#")[0];
+			var idx = 0;
+			for(; idx < config.datetimeAccessFormPaths.length; idx++) {
+				var dtPath = config.datetimeAccessFormPaths[idx];
+				if( typeof dtPath === "string" ) {
+					if(dtPath == path)
+						break;
+				}
+				else
+				if( dtPath instanceof RegExp) {
+					if(dtPath.test(path))
+						break;
+				}				
+				else
+				if( typeof dtPath === "function") {
+					if(dtPath(obj, childName, path))
+						break;
+				}
+			}
+			if(idx!=config.datetimeAccessFormPaths.length) {
+				return fromXmlDateTime(value);
+			}
+			else
+				return value;
+		}
+		else
+			return value;
+	}
+
+	function parseDOMChildren( node, path ) {
+		if(node.nodeType == DOMNodeTypes.DOCUMENT_NODE) {
+			var result = new Object;
+			var nodeChildren = node.childNodes;
+			// Alternative for firstElementChild which is not supported in some environments
+			for(var cidx=0; cidx <nodeChildren.length; cidx++) {
+				var child = nodeChildren.item(cidx);
+				if(child.nodeType == DOMNodeTypes.ELEMENT_NODE) {
+					var childName = getNodeLocalName(child);
+					result[childName] = parseDOMChildren(child, childName);
+				}
+			}
+			return result;
+		}
+		else
+		if(node.nodeType == DOMNodeTypes.ELEMENT_NODE) {
+			var result = new Object;
+			result.__cnt=0;
+			
+			var nodeChildren = node.childNodes;
+			
+			// Children nodes
+			for(var cidx=0; cidx <nodeChildren.length; cidx++) {
+				var child = nodeChildren.item(cidx); // nodeChildren[cidx];
+				var childName = getNodeLocalName(child);
+				
+				if(child.nodeType!= DOMNodeTypes.COMMENT_NODE) {
+					result.__cnt++;
+					if(result[childName] == null) {
+						result[childName] = parseDOMChildren(child, path+"."+childName);
+						toArrayAccessForm(result, childName, path+"."+childName);					
+					}
+					else {
+						if(result[childName] != null) {
+							if( !(result[childName] instanceof Array)) {
+								result[childName] = [result[childName]];
+								toArrayAccessForm(result, childName, path+"."+childName);
+							}
+						}
+						(result[childName])[result[childName].length] = parseDOMChildren(child, path+"."+childName);
+					}
+				}								
+			}
+			
+			// Attributes
+			for(var aidx=0; aidx <node.attributes.length; aidx++) {
+				var attr = node.attributes.item(aidx); // [aidx];
+				result.__cnt++;
+				result[config.attributePrefix+attr.name]=attr.value;
+			}
+			
+			// Node namespace prefix
+			var nodePrefix = getNodePrefix(node);
+			if(nodePrefix!=null && nodePrefix!="") {
+				result.__cnt++;
+				result.__prefix=nodePrefix;
+			}
+			
+			if(result["#text"]!=null) {				
+				result.__text = result["#text"];
+				if(result.__text instanceof Array) {
+					result.__text = result.__text.join("\n");
+				}
+				if(config.escapeMode)
+					result.__text = unescapeXmlChars(result.__text);
+				if(config.stripWhitespaces)
+					result.__text = result.__text.trim();
+				delete result["#text"];
+				if(config.arrayAccessForm=="property")
+					delete result["#text_asArray"];
+				result.__text = checkFromXmlDateTimePaths(result.__text, childName, path+"."+childName);
+			}
+			if(result["#cdata-section"]!=null) {
+				result.__cdata = result["#cdata-section"];
+				delete result["#cdata-section"];
+				if(config.arrayAccessForm=="property")
+					delete result["#cdata-section_asArray"];
+			}
+			
+			if( result.__cnt == 1 && result.__text!=null  ) {
+				result = result.__text;
+			}
+			else
+			if( result.__cnt == 0 && config.emptyNodeForm=="text" ) {
+				result = '';
+			}
+			else
+			if ( result.__cnt > 1 && result.__text!=null && config.skipEmptyTextNodesForObj) {
+				if( (config.stripWhitespaces && result.__text=="") || (result.__text.trim()=="")) {
+					delete result.__text;
+				}
+			}
+			delete result.__cnt;			
+			
+			if( config.enableToStringFunc && (result.__text!=null || result.__cdata!=null )) {
+				result.toString = function() {
+					return (this.__text!=null? this.__text:'')+( this.__cdata!=null ? this.__cdata:'');
+				};
+			}
+			
+			return result;
+		}
+		else
+		if(node.nodeType == DOMNodeTypes.TEXT_NODE || node.nodeType == DOMNodeTypes.CDATA_SECTION_NODE) {
+			return node.nodeValue;
+		}	
+	}
+	
+	function startTag(jsonObj, element, attrList, closed) {
+		var resultStr = "<"+ ( (jsonObj!=null && jsonObj.__prefix!=null)? (jsonObj.__prefix+":"):"") + element;
+		if(attrList!=null) {
+			for(var aidx = 0; aidx < attrList.length; aidx++) {
+				var attrName = attrList[aidx];
+				var attrVal = jsonObj[attrName];
+				if(config.escapeMode)
+					attrVal=escapeXmlChars(attrVal);
+				resultStr+=" "+attrName.substr(config.attributePrefix.length)+"='"+attrVal+"'";
+			}
+		}
+		if(!closed)
+			resultStr+=">";
+		else
+			resultStr+="/>";
+		return resultStr;
+	}
+	
+	function endTag(jsonObj,elementName) {
+		return "</"+ (jsonObj.__prefix!=null? (jsonObj.__prefix+":"):"")+elementName+">";
+	}
+	
+	function endsWith(str, suffix) {
+	    return str.indexOf(suffix, str.length - suffix.length) !== -1;
+	}
+	
+	function jsonXmlSpecialElem ( jsonObj, jsonObjField ) {
+		if((config.arrayAccessForm=="property" && endsWith(jsonObjField.toString(),("_asArray"))) 
+				|| jsonObjField.toString().indexOf(config.attributePrefix)==0 
+				|| jsonObjField.toString().indexOf("__")==0
+				|| (jsonObj[jsonObjField] instanceof Function) )
+			return true;
+		else
+			return false;
+	}
+	
+	function jsonXmlElemCount ( jsonObj ) {
+		var elementsCnt = 0;
+		if(jsonObj instanceof Object ) {
+			for( var it in jsonObj  ) {
+				if(jsonXmlSpecialElem ( jsonObj, it) )
+					continue;			
+				elementsCnt++;
+			}
+		}
+		return elementsCnt;
+	}
+	
+	function parseJSONAttributes ( jsonObj ) {
+		var attrList = [];
+		if(jsonObj instanceof Object ) {
+			for( var ait in jsonObj  ) {
+				if(ait.toString().indexOf("__")== -1 && ait.toString().indexOf(config.attributePrefix)==0) {
+					attrList.push(ait);
+				}
+			}
+		}
+		return attrList;
+	}
+	
+	function parseJSONTextAttrs ( jsonTxtObj ) {
+		var result ="";
+		
+		if(jsonTxtObj.__cdata!=null) {										
+			result+="<![CDATA["+jsonTxtObj.__cdata+"]]>";					
+		}
+		
+		if(jsonTxtObj.__text!=null) {			
+			if(config.escapeMode)
+				result+=escapeXmlChars(jsonTxtObj.__text);
+			else
+				result+=jsonTxtObj.__text;
+		}
+		return result;
+	}
+	
+	function parseJSONTextObject ( jsonTxtObj ) {
+		var result ="";
+
+		if( jsonTxtObj instanceof Object ) {
+			result+=parseJSONTextAttrs ( jsonTxtObj );
+		}
+		else
+			if(jsonTxtObj!=null) {
+				if(config.escapeMode)
+					result+=escapeXmlChars(jsonTxtObj);
+				else
+					result+=jsonTxtObj;
+			}
+		
+		return result;
+	}
+	
+	function parseJSONArray ( jsonArrRoot, jsonArrObj, attrList ) {
+		var result = ""; 
+		if(jsonArrRoot.length == 0) {
+			result+=startTag(jsonArrRoot, jsonArrObj, attrList, true);
+		}
+		else {
+			for(var arIdx = 0; arIdx < jsonArrRoot.length; arIdx++) {
+				result+=startTag(jsonArrRoot[arIdx], jsonArrObj, parseJSONAttributes(jsonArrRoot[arIdx]), false);
+				result+=parseJSONObject(jsonArrRoot[arIdx]);
+				result+=endTag(jsonArrRoot[arIdx],jsonArrObj);						
+			}
+		}
+		return result;
+	}
+	
+	function parseJSONObject ( jsonObj ) {
+		var result = "";	
+
+		var elementsCnt = jsonXmlElemCount ( jsonObj );
+		
+		if(elementsCnt > 0) {
+			for( var it in jsonObj ) {
+				
+				if(jsonXmlSpecialElem ( jsonObj, it) )
+					continue;			
+				
+				var subObj = jsonObj[it];						
+				
+				var attrList = parseJSONAttributes( subObj )
+				
+				if(subObj == null || subObj == undefined) {
+					result+=startTag(subObj, it, attrList, true);
+				}
+				else
+				if(subObj instanceof Object) {
+					
+					if(subObj instanceof Array) {					
+						result+=parseJSONArray( subObj, it, attrList );					
+					}
+					else if(subObj instanceof Date) {
+						result+=startTag(subObj, it, attrList, false);
+						result+=subObj.toISOString();
+						result+=endTag(subObj,it);
+					}
+					else {
+						var subObjElementsCnt = jsonXmlElemCount ( subObj );
+						if(subObjElementsCnt > 0 || subObj.__text!=null || subObj.__cdata!=null) {
+							result+=startTag(subObj, it, attrList, false);
+							result+=parseJSONObject(subObj);
+							result+=endTag(subObj,it);
+						}
+						else {
+							result+=startTag(subObj, it, attrList, true);
+						}
+					}
+				}
+				else {
+					result+=startTag(subObj, it, attrList, false);
+					result+=parseJSONTextObject(subObj);
+					result+=endTag(subObj,it);
+				}
+			}
+		}
+		result+=parseJSONTextObject(jsonObj);
+		
+		return result;
+	}
+	
+	this.parseXmlString = function(xmlDocStr) {
+		var isIEParser = window.ActiveXObject || "ActiveXObject" in window;
+		if (xmlDocStr === undefined) {
+			return null;
+		}
+		var xmlDoc;
+		if (window.DOMParser) {
+			var parser=new window.DOMParser();			
+			var parsererrorNS = null;
+			// IE9+ now is here
+			if(!isIEParser) {
+				try {
+					parsererrorNS = parser.parseFromString("INVALID", "text/xml").childNodes[0].namespaceURI;
+				}
+				catch(err) {					
+					parsererrorNS = null;
+				}
+			}
+			try {
+				xmlDoc = parser.parseFromString( xmlDocStr, "text/xml" );
+				if( parsererrorNS!= null && xmlDoc.getElementsByTagNameNS(parsererrorNS, "parsererror").length > 0) {
+					//throw new Error('Error parsing XML: '+xmlDocStr);
+					xmlDoc = null;
+				}
+			}
+			catch(err) {
+				xmlDoc = null;
+			}
+		}
+		else {
+			// IE :(
+			if(xmlDocStr.indexOf("<?")==0) {
+				xmlDocStr = xmlDocStr.substr( xmlDocStr.indexOf("?>") + 2 );
+			}
+			xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
+			xmlDoc.async="false";
+			xmlDoc.loadXML(xmlDocStr);
+		}
+		return xmlDoc;
+	};
+	
+	this.asArray = function(prop) {
+		if(prop instanceof Array)
+			return prop;
+		else
+			return [prop];
+	};
+	
+	this.toXmlDateTime = function(dt) {
+		if(dt instanceof Date)
+			return dt.toISOString();
+		else
+		if(typeof(dt) === 'number' )
+			return new Date(dt).toISOString();
+		else	
+			return null;
+	};
+	
+	this.asDateTime = function(prop) {
+		if(typeof(prop) == "string") {
+			return fromXmlDateTime(prop);
+		}
+		else
+			return prop;
+	};
+
+	this.xml2json = function (xmlDoc) {
+		return parseDOMChildren ( xmlDoc );
+	};
+	
+	this.xml_str2json = function (xmlDocStr) {
+		var xmlDoc = this.parseXmlString(xmlDocStr);
+		if(xmlDoc!=null)
+			return this.xml2json(xmlDoc);
+		else
+			return null;
+	};
+
+	this.json2xml_str = function (jsonObj) {
+		return parseJSONObject ( jsonObj );
+	};
+
+	this.json2xml = function (jsonObj) {
+		var xmlDocStr = this.json2xml_str (jsonObj);
+		return this.parseXmlString(xmlDocStr);
+	};
+	
+	this.getVersion = function () {
+		return VERSION;
+	};
+	
+}
+
+/**
+ * ExpertUI directives
+ * @author Martin Vach
+ */
+
+
+myApp.directive('expertCommandInput', function($filter) {
+    // Get text input
+    function getText(label, value, min, max, name) {
+        var input = '';
+        var inName = $filter('stringToSlug')(name ? name : label);
+        input += '<label>' + label + '</label> ';
+        input += '<input class="form-control" name="' + inName + '" type="text" class="form-control" value="' + value + '" title=" min: ' + min + ', max: ' + max + '" />';
+        return input;
+    }
+    // Get node
+    function getNode(label, devices, currValue, name) {
+        var input = '';
+        var inName = $filter('stringToSlug')(name ? name : label);
+        
+        input += '<label>' + label + '</label> ';
+        input += '<select name="select_' + inName + '" class="form-control">';
+        input += '<option value="1">RaZberry</option>';
+        angular.forEach(devices, function(v, k) {
+            var selected = (v.id == currValue ? ' selected' : '');
+            input += '<option value="' + v.id + '"' + selected + '>' + v.name + '</option>';
+        });
+
+        input += '</select>';
+
+        return input;
+    }
+
+    // Get enumerators
+    function getEnum(label, enums, defaultValue, name, hideRadio,currValue) {
+        
+        var input = '';
+        if (!enums) {
+            return;
+        }
+        var inName = $filter('stringToSlug')(name ? name : label);
+        input += '<label>' + label + '</label><br />';
+        var cnt = 1;
+        var value = (currValue !== undefined ? currValue : defaultValue);
+        angular.forEach(enums.enumof, function(v, k) {
+            var title = v.label;
+            var type = v.type;
+            var enumVal =  $filter('hasNode')(v, 'type.fix.value');
+            var checked = (cnt == 1 ? ' checked="checked"' : '');
+            var isCurrent = (cnt == 1 ? ' commads-is-current' : '');
+
+            if ('fix' in type) {
+                if (defaultValue) {
+                    if (isNaN(parseInt(defaultValue, 10))) {
+                        isCurrent = (v.label == defaultValue ? ' commads-is-current' : '');
+                    } else {
+                         isCurrent = '';
+                    }
+                }
+                
+                if (!isNaN(parseInt(value, 10))) {
+                    checked = (enumVal == value ? ' checked="checked"' : '');
+                }
+                input += '<input name="radio_' + inName + '" class="commands-data-chbx" type="radio" value="' + type.fix.value + '"' + checked + ' /> <span class="commands-label' + isCurrent + '">' + title + '</span><br />';
+            } else if ('range' in type) {
+                var min = type.range.min;
+                var max = type.range.max;
+                var disabled = ' disabled="true"';
+                var setVal = (value ? value : min);
+                if (defaultValue) {
+                    if (defaultValue >= min && defaultValue <= max) {
+                        disabled = '';
+                        isCurrent = ' commads-is-current';
+                    }
+
+                } else {
+                    isCurrent = '';
+                }
+                if (value) {
+                    if (value >= min && value <= max) {
+                        checked = ' checked="checked"';
+                        disabled = '';
+                    }
+
+                } else {
+                    checked = '';
+                }
+                
+                if (hideRadio) {
+                    disabled = '';
+                }
+
+//                input += '<input name="radio_' + inName + '" class="commands-data-chbx" type="radio" value=""' + checked + ' /> ' + title + ' <input type="text" name="radio_' + inName + '_txt" class="form-control commands-data-txt-chbx" value="' + min + '" title=" min: ' + min + ', max: ' + max + '"'+ disabled + ' /><br />'; 
+                if (!hideRadio) {
+                    input += '<div><input name="radio_' + inName + '" class="commands-data-chbx" type="radio" value=""' + checked + ' /> <span class="commands-label' + isCurrent + '">' + title + '</span> <input type="text" name="radio_txt_' + inName + '" class="form-control commands-data-txt-chbx" value="' + setVal + '" title=" min: ' + min + ', max: ' + max + '"' + disabled + ' /></div>';
+                } else {
+                    input += '<input type="text" name="radio_txt_' + inName + '" class="form-control" value="' + setVal + '" title=" min: ' + min + ', max: ' + max + '" /><br />';
+                }
+
+
+            } else {
+                input = '';
+            }
+            cnt++;
+
+        });
+        return input;
+    }
+
+    // Get dropdown list
+    function getDropdown(label, enums, defaultValue, name,currValue) {
+        var input = '';
+        var cValue = (currValue !== undefined ? currValue : defaultValue);
+        var inName = $filter('stringToSlug')(name ? name : label);
+        input += '<label>' + label + '</label><br />';
+        input += '<select name="select_' + inName + '" class="form-control">';
+        var cnt = 1;
+        angular.forEach(enums.enumof, function(v, k) {
+            var title = v.label;
+            var type = v.type;
+            var value;
+            if ('fix' in type) {
+                value = type.fix.value;
+            } else if ('range' in type) {
+                value = type.range.min;
+            }
+
+            if (value) {
+                var selected = (type.fix.value == cValue ? ' selected' : '');
+            }
+            input += '<option value="' + value + '"' + selected + '> ' + title + '</option>';
+            cnt++;
+
+        });
+        input += '</select">';
+        return input;
+    }
+
+    // Get constant 
+    function getConstant(label, type, defaultValue, name,currValue) {
+        var input = '';
+        var inName = $filter('stringToSlug')(name ? name : label);
+        input += '<label>' + label + '</label><br />';
+        if (type.constant.length > 0) {
+            input += '<select name="select_' + inName + '" class="form-control">';
+            angular.forEach(type.constant, function(v, k) {
+
+                input += '<option value="' + v.type.constant.value + '"> ' + v.label + '</option>';
+            });
+
+
+            input += '</select">';
+        }
+        //console.log(type,defaultValue);
+        input += '<em>Constant type</em>';
+        return input;
+    }
+    // Get string
+    function getString(label, value, name) {
+        var input = '';
+        var inName = $filter('stringToSlug')(name ? name : label);
+        input += '<label>' + label + '</label> ';
+        input += '<input class="form-control" name="' + inName + '" type="text" class="form-control" value="' + value + '" />';
+        return input;
+    }
+    
+    // Get bitset
+    function getBitset(label, enums, defaultValue, name, hideRadio,currValue) {
+        
+        var input = 'Bitset';
+        
+        return input;
+    }
+
+    // Get default
+    function getDefault(label) {
+
+        var input = '';
+        input += '<label>' + label + '</label><br />';
+        return input;
+    }
+
+    return {
+        restrict: "E",
+        replace: true,
+        template: '<div class="form-group" ng-bind-html="input | toTrusted"></div>',
+        scope: {
+            collection: '=',
+            devices: '=',
+            getNodeDevices: '=',
+            values: '=',
+            isDropdown: '=',
+            defaultValue: '=',
+            showDefaultValue: '=',
+            currValue: '=',
+            currNodeValue: '=',
+            name: '=',
+            divId: '='
+        },
+        link: function(scope, element, attrs) {
+
+            var input = '';
+            if (!scope.collection) {
+                return;
+            }
+            var label = scope.collection.label;
+            var type = scope.collection.type;
+            var name = (scope.collection.name || scope.name);
+            var hideRadio = scope.collection.hideRadio;
+            if (scope.isDropdown) {
+                input = getDropdown(label, type, scope.defaultValue, name,scope.currValue);
+                scope.input = input;
+                return;
+            }
+            //if (label && type) {
+            if (type) {
+                if ('range' in type) {
+                    input = getText(label, scope.values, type.range.min, type.range.max, name);
+                } else if ('node' in type) {
+                    input = getNode(label, scope.getNodeDevices(), scope.currNodeValue, name);
+                } else if ('enumof' in type) {
+                    input = getEnum(label, type, scope.defaultValue, name, hideRadio,scope.currValue);
+                } else if ('bitset' in type) {
+                    input = getBitset(label, type, scope.defaultValue, name, hideRadio,scope.currValue);
+                } else if ('constant' in type) {
+                    input = getConstant(label, type, scope.defaultValue, name,scope.currValue);
+                } else if ('string' in type) {
+                    input = getString(label, scope.values, name,scope.currValue);
+                } else {
+                    input = getDefault(label);
+                }
+                scope.input = input;
+                return;
+            }
+
+        }
+
+    };
+});
+
+myApp.directive('configDefaultValue', function() {
+    return {
+        restrict: "E",
+        replace: true,
+        template: '<span class="default-value-format"> {{input}}</span>',
+        scope: {
+            collection: '=',
+            defaultValue: '=',
+            showDefaultValue: '='
+        },
+        link: function(scope, element, attrs) {
+            scope.input = scope.showDefaultValue;
+            var input = '';
+            if (!scope.collection) {
+                return;
+            }
+            var label = scope.collection.label;
+            var type = scope.collection.type;
+            var name = scope.collection.name;
+            var hideRadio = scope.collection.hideRadio;
+            
+            if (type) {
+                if ('range' in type) {
+                    //input = getText(label, scope.values, type.range.min, type.range.max, name);
+                } else if ('node' in type) {
+                    //input = getNode(label, scope.getNodeDevices(), 'null', name);
+                } else if ('enumof' in type) {
+                    input = getEnum(type, scope.defaultValue,scope.showDefaultValue);
+                   
+                } else if ('constant' in type) {
+                    //input = getConstant(label, type, scope.defaultValue, name);
+                } else if ('string' in type) {
+                    //input = getString(label, scope.values, name);
+                } else {
+                    input = scope.showDefaultValue;
+                }
+                scope.input = input;
+                
+                return;
+            }
+
+
+        }
+
+    };
+
+    // Get enumerators
+    function getEnum(enums, defaultValue,showDefaultValue) {
+        //console.log(enums)
+        var input = showDefaultValue;
+        if (!enums) {
+            return;
+        }
+        angular.forEach(enums.enumof, function(v, k) {
+          
+            var title = v.label ? v.label : showDefaultValue;
+            var type = v.type;
+             // debugger; 
+            if ('fix' in type) {
+                if (type.fix.value == showDefaultValue) {
+                    input = title;
+                    return;
+                }
+ 
+            } else if ('range' in type) {
+                var min = type.range.min;
+                var max = type.range.max;
+                var setVal = (defaultValue ? defaultValue : min);
+                if (setVal == showDefaultValue) {
+                    input = showDefaultValue;
+                    return;
+                }
+            }
+
+        });
+        
+        return input;
+    }
+});
+
+myApp.directive('configValueTitle', function() {
+    return {
+        restrict: "A",
+        //replace: true,
+        template: '<span title="{{showValue}}">{{input}}</span>',
+        scope: {
+            collection: '=',
+            showValue: '='
+        },
+        link: function(scope, element, attrs) {
+            scope.input = scope.showValue;
+            var input = '';
+            if (!scope.collection) {
+                return;
+            }
+            var type = scope.collection.type;
+            
+            if (type) {
+                if ('range' in type) {
+                    //input = getText(label, scope.values, type.range.min, type.range.max, name);
+                } else if ('node' in type) {
+                    //input = getNode(label, scope.getNodeDevices(), 'null', name);
+                } else if ('enumof' in type) {
+                    input = getEnum(type, scope.showValue);
+                   
+                } else if ('constant' in type) {
+                    //input = getConstant(label, type, scope.defaultValue, name);
+                } else if ('string' in type) {
+                    //input = getString(label, scope.values, name);
+                } else {
+                    input = scope.showValue;
+                }
+                scope.input = input;
+                
+                return;
+            }
+
+
+        }
+
+    };
+
+    // Get enumerators
+    function getEnum(enums, showValue) {
+        //console.log(enums)
+        var input = showValue;
+        if (!enums) {
+            return;
+        }
+        angular.forEach(enums.enumof, function(v, k) {
+          
+            var title = v.label ? v.label : showValue;
+            var type = v.type;
+             // debugger; 
+            if ('fix' in type) {
+                if (type.fix.value == showValue) {
+                    input = title;
+                    return;
+                }
+ 
+            } else if ('range' in type) {
+                var min = type.range.min;
+                var max = type.range.max;
+                var setVal = (showValue ? showValue : min);
+                if (setVal == showValue) {
+                    input = showValue;
+                    return;
+                }
+            }
+
+        });
+        
+        return input;
+    }
+});
+
+
+/**
+ * ExpertUI services
+ * @author Martin Vach
+ */
+myAppService.service('expertService', function($filter) {
+    /// --- Public functions --- ///
+    /**
+     * Get language line by key
+     */
+    this.getLangLine = function(key, languages) {
+        return getLangLine(key, languages);
+    };
+   /**
+     * Get config navigation devices
+     */
+    this.configGetNav = function(ZWaveAPIData) {
+        return configGetNav(ZWaveAPIData);
+    };
+    
+    /**
+     * Get language from zddx
+     */
+    this.configGetZddxLang = function(node, lang) {
+        return configGetZddxLang(node, lang);
+    };
+     /**
+     * Get xml config param
+     */
+    this.getCfgXmlParam = function(cfgXml, nodeId, instance, commandClass, command) {
+        return getCfgXmlParam(cfgXml, nodeId, instance, commandClass, command);
+    };
+    /**
+     * Config cont
+     */
+    this.configConfigCont = function(node, nodeId, zddXml, cfgXml, lang, languages) {
+        return configConfigCont(node, nodeId, zddXml, cfgXml, lang, languages);
+    };
+    /**
+     *  Switch all cont
+     */
+    this.configSwitchAllCont = function(node, nodeId, ZWaveAPIData, cfgXml) {
+        return configSwitchAllCont(node, nodeId, ZWaveAPIData, cfgXml);
+    };
+    /**
+     * Protection cont
+     */
+    this.configProtectionCont = function(node, nodeId, ZWaveAPIData, cfgXml) {
+        return configProtectionCont(node, nodeId, ZWaveAPIData, cfgXml);
+    };
+    /**
+     * Wakeup cont
+     */
+    this.configWakeupCont = function(node, nodeId, ZWaveAPIData, cfgXml) {
+        return configWakeupCont(node, nodeId, ZWaveAPIData, cfgXml);
+    };
+    
+    /**
+     *Build config XML file
+     */
+    this.buildCfgXml = function(data, cfgXml, id, commandclass) {
+        return buildCfgXml(data, cfgXml, id, commandclass);
+    };
+    
+    /// --- Private functions --- ///
+     /**
+     * Get language line by key
+     */
+    function getLangLine(key, languages) {
+        if (angular.isObject(languages)) {
+            if (angular.isDefined(languages[key])) {
+                return languages[key] !== '' ? languages[key] : key;
+            }
+        }
+        return key;
+    }
+    ;
+    
+    /**
+     *  Get config navigation devices
+     */
+    function configGetNav(ZWaveAPIData) {
+        var devices = [];
+        var controllerNodeId = ZWaveAPIData.controller.data.nodeId.value;
+        // Loop throught devices
+        angular.forEach(ZWaveAPIData.devices, function(node, nodeId) {
+            if (nodeId == 255 || nodeId == controllerNodeId || node.data.isVirtual.value) {
+                return;
+            }
+            var node = ZWaveAPIData.devices[nodeId];
+            // Set object
+            var obj = {};
+            obj['id'] = nodeId;
+            obj['name'] = $filter('deviceName')(nodeId, node);
+            devices.push(obj);
+        });
+        return devices;
+    }
+    
+    /**
+     *  Get language from zddx
+     */
+    function configGetZddxLang(langs, currLang) {
+        var label = null;
+        if (!langs) {
+            return label;
+        }
+
+        if (angular.isArray(langs)) {
+            angular.forEach(langs, function(lang, index) {
+                if (("__text" in lang) && (lang["_xml:lang"] == currLang)) {
+                    label = lang.__text;
+                    return false;
+                }
+                if (("__text" in lang) && (lang["_xml:lang"] == "en")) {
+                    label = lang.__text;
+                }
+            });
+        } else {
+            if (("__text" in langs)) {
+                label = langs.__text;
+            }
+        }
+        return label;
+    }
+    
+    /**
+     * Get xml config param
+     */
+    function getCfgXmlParam(cfgXml, nodeId, instance, commandClass, command) {
+        var cfg = $filter('hasNode')(cfgXml, 'config.devices.deviceconfiguration');
+        if (!cfg) {
+            return [];
+        }
+        // Get data for given device by id
+        var collection = [];
+        angular.forEach(cfg, function(v, k) {
+            //if (v['_id'] == nodeId && v['_instance'] == instance && v['_commandClass'] == commandClass && v['_command'] == command) {
+            if (v['_id'] == nodeId && v['_instance'] == instance && v['_commandclass'] == commandClass && v['_command'] == command) {
+//                if(!angular.isArray(v['_parameter'])){
+//                    return;
+//                }
+                var array = JSON.parse(v['_parameter']);
+                if (array.length > 2) {
+                    collection[array[0]] = array[1];
+                }
+                else if (array.length == 2) {
+                    collection = array;
+
+                }
+                else {
+                    collection[0] = array[0];
+                    return;
+                }
+            }
+
+        });
+        //console.log(collection)
+        return collection;
+
+    }
+    
+    /**
+     * Config cont
+     */
+    function configConfigCont(node, nodeId, zddXml, cfgXml, lang, languages) {
+        if (!0x70 in node.instances[0].commandClasses) {
+            return null;
+        }
+        if (!zddXml) {
+            return null;
+        }
+
+        if (!zddXml.ZWaveDevice.hasOwnProperty("configParams")) {
+            return null;
+        }
+        var config_cont = [];
+        var params = zddXml.ZWaveDevice.configParams['configParam'];
+        var lang = 'en';
+        var langs = {
+            "en": "1",
+            "de": "0"
+        };
+        if (angular.isDefined(langs[lang])) {
+            lang = lang;
+        }
+        var langId = langs[lang];
+        // Loop throught params
+        var parCnt = 0;
+        var cfgFile = getCfgXmlParam(cfgXml, nodeId, '0', '70', 'Set');
+        angular.forEach(params, function(conf_html, i) {
+            //console.log(zddXml);
+            if (!angular.isObject(conf_html)) {
+                return;
+            }
+
+            have_conf_params = true;
+            var conf = conf_html;
+            var conf_num = conf['_number'];
+            //console.log(cfgFile[conf_num])
+            var conf_size = conf['_size'];
+            var conf_name = configGetZddxLang($filter('hasNode')(conf, 'name.lang'), lang) || getLangLine('configuration_parameter', languages) + ' ' + conf_num;
+            var conf_description = configGetZddxLang($filter('hasNode')(conf, 'description.lang'), lang);
+            var conf_size = conf['_size'];
+            var conf_default_value = null;
+            var conf_type = conf['_type'];
+            var showDefaultValue = null;
+            var config_config_value;
+
+            // get value from the Z-Wave data
+            var config_zwave_value = null;
+
+            if (angular.isDefined(node.instances[0].commandClasses[0x70])) {
+                if (node.instances[0].commandClasses[0x70].data[conf_num] != null && node.instances[0].commandClasses[0x70].data[conf_num].val.value !== "") {
+                    config_zwave_value = node.instances[0].commandClasses[0x70].data[conf_num].val.value;
+                    conf_default = config_zwave_value;
+
+                }
+
+            }
+
+            // get default value
+            var conf_default = null;
+            if (conf['_default'] !== undefined) {
+                conf_default = parseInt(conf['_default'], 16);
+                showDefaultValue = conf_default;
+            }
+
+            // get default value from the config XML
+            if (cfgFile[conf_num] !== undefined) {
+                config_config_value = cfgFile[conf_num];
+            } else {
+                if (config_zwave_value !== null) {
+                    config_config_value = config_zwave_value;
+                } else {
+                    config_config_value = conf_default;
+                }
+            }
+
+            var isUpdated = true;
+            var updateTime = '';
+            if (angular.isDefined(node.instances[0].commandClasses[0x70])
+                    && angular.isDefined(node.instances[0].commandClasses[0x70].data[conf_num])) {
+                var uTime = node.instances[0].commandClasses[0x70].data[conf_num].updateTime;
+                var iTime = node.instances[0].commandClasses[0x70].data[conf_num].invalidateTime;
+                var updateTime = $filter('isTodayFromUnix')(uTime);
+                var isUpdated = (uTime > iTime ? true : false);
+            }
+
+            // Switch
+            var conf_method_descr;
+            //console.log(conf_name + ' --- ' + conf_type)
+            switch (conf_type) {
+                case 'constant':
+                case 'rangemapped':
+                    var param_struct_arr = [];
+                    var conf_param_options = '';
+
+                    angular.forEach(conf['value'], function(value_html, i) {
+                        var value = value_html;
+                        var value_from = parseInt(value['_from'], 16);
+                        var value_to = parseInt(value['_to'], 16);
+                        var value_description = null;
+                        if (angular.isDefined(value.description)) {
+                            value_description = configGetZddxLang($filter('hasNode')(value, 'description.lang'), lang);
+                        }
+                        if (angular.isDefined(value.lang)) {
+                            value_description = configGetZddxLang($filter('hasNode')(value, 'lang'), lang);
+
+                        }
+                        var value_repr = value_from; // representative value for the range
+                        if (conf_default !== null)
+                            if (value_from <= conf_default && conf_default <= value_to) {
+                                conf_default_value = value_description;
+                                value_repr = conf_default;
+                            }
+                        param_struct_arr.push({
+                            label: value_description,
+                            type: {
+                                fix: {
+                                    value: value_repr
+                                }
+                            }
+                        });
+                    });
+                    conf_method_descr = {
+                        nodeId: nodeId,
+                        label: 'Nº ' + conf_num + ' - ' + conf_name,
+                        type: {
+                            enumof: param_struct_arr
+                        },
+                        name: 'input_' + nodeId + '_' + conf_num,
+                        description: conf_description,
+                        updateTime: updateTime,
+                        isUpdated: isUpdated,
+                        defaultValue: conf_default_value,
+                        showDefaultValue: showDefaultValue,
+                        configCconfigValue: config_config_value,
+                        configZwaveValue: config_zwave_value,
+                        confNum: conf_num,
+                        confSize: conf_size
+                    };
+
+                    break;
+                case 'range':
+
+                    var param_struct_arr = [];
+                    var rangeParam = conf['value'];
+                    //console.log(rangeParam, conf_num);
+
+                    if (!rangeParam) {
+                        conf_method_descr = {
+                            nodeId: nodeId,
+                            label: 'Nº ' + conf_num + ' - ' + conf_name,
+                            type: {
+                                noval: null
+                            },
+                            name: 'input_' + nodeId + '_' + conf_num,
+                            description: conf_description,
+                            updateTime: updateTime,
+                            isUpdated: isUpdated,
+                            defaultValue: null,
+                            showDefaultValue: showDefaultValue,
+                            configCconfigValue: config_config_value,
+                            configZwaveValue: config_zwave_value,
+                            confNum: conf_num,
+                            confSize: conf_size
+                        };
+                        break;
+                    }
+                    angular.forEach(rangeParam, function(value_html, ri) {
+                        //console.log(ri);
+                        var value = value_html;
+
+                        if (ri == 'description') {
+                            //console.log(ri);
+                            var value_from = parseInt(rangeParam['_from'], 16);
+                            var value_to = parseInt(rangeParam['_to'], 16);
+
+                        } else {
+                            var value_from = parseInt(value['_from'], 16);
+                            var value_to = parseInt(value['_to'], 16);
+                        }
+                        var value_description = '';
+                        if (angular.isDefined(value.description)) {
+                            value_description = configGetZddxLang($filter('hasNode')(value, 'description.lang'), lang);
+                        }
+                        if (angular.isDefined(value.lang)) {
+                            value_description = configGetZddxLang($filter('hasNode')(value, 'lang'), lang);
+                        }
+                        //var value_description = deviceService.configGetZddxLang($filter('hasNode')(value, 'lang'), $scope.lang);
+
+                        if (conf_default !== null)
+                            conf_default_value = conf_default;
+
+
+                        if (value_from != value_to) {
+                            if (value_description != '') {
+                                var rangeVal = {
+                                    label: value_description,
+                                    type: {
+                                        range: {
+                                            min: value_from,
+                                            max: value_to
+                                        }
+                                    }
+                                };
+                                param_struct_arr.push(rangeVal);
+                            }
+                        }
+                        else // this is a fix value
+                        if (value_description != '') {
+                            param_struct_arr.push({
+                                label: value_description,
+                                type: {
+                                    fix: {
+                                        value: value_from
+                                    }
+                                }
+                            });
+                        }
+                    });
+
+                    if (param_struct_arr.length > 1)
+                        conf_method_descr = {
+                            nodeId: nodeId,
+                            label: 'Nº ' + conf_num + ' - ' + conf_name,
+                            type: {
+                                enumof: param_struct_arr
+                            },
+                            hideRadio: false,
+                            name: 'input_' + nodeId + '_' + conf_num,
+                            description: conf_description,
+                            updateTime: updateTime,
+                            isUpdated: isUpdated,
+                            defaultValue: conf_default_value,
+                            showDefaultValue: showDefaultValue,
+                            configCconfigValue: config_config_value,
+                            configZwaveValue: config_zwave_value,
+                            confNum: conf_num,
+                            confSize: conf_size
+                        };
+                    else if (param_struct_arr.length == 1) {
+
+                        conf_method_descr = {
+                            nodeId: nodeId,
+                            label: 'Nº ' + conf_num + ' - ' + conf_name,
+                            type: {
+                                enumof: param_struct_arr
+                            },
+                            name: 'input_' + nodeId + '_' + conf_num,
+                            hideRadio: true,
+                            description: conf_description,
+                            updateTime: updateTime,
+                            isUpdated: isUpdated,
+                            defaultValue: conf_default_value,
+                            showDefaultValue: showDefaultValue,
+                            configCconfigValue: config_config_value,
+                            configZwaveValue: config_zwave_value,
+                            confNum: conf_num,
+                            confSize: conf_size
+                        };
+                    }
+
+                    break;
+                case 'bitset':
+                    var param_struct_arr = [];
+                    var conf_param_options = '';
+                    var conf_default_value_arr = new Object;
+                    if (conf_default !== null) {
+                        var bit = 0;
+                        do {
+                            if ((1 << bit) & conf_default)
+                                conf_default_value_arr[bit] = 'Bit ' + bit + ' set';
+                        } while ((1 << (bit++)) < conf_default);
+                    }
+                    ;
+                    angular.forEach(conf['value'], function(value_html, i) {
+                        var value = value_html;
+                        var value_from = parseInt(value['_from'], 16);
+                        var value_to = parseInt(value['_to'], 16);
+                        var value_description = 'fdf';
+                        var value_description = '';
+                        if (conf_default !== null) {
+                            if (value_from == value_to) {
+                                if ((1 << value_from) & conf_default)
+                                    conf_default_value_arr[value_from] = value_description;
+                            } else {
+                                conf_default_value_arr[value_from] = (conf_default >> value_from) & ((1 << (value_to - value_from + 1)) - 1)
+                                for (var bit = value_from + 1; bit <= value_to; bit++)
+                                    delete conf_default_value_arr[bit];
+                            }
+                        }
+                        ;
+                        if (value_from == value_to)
+                            param_struct_arr.push({
+                                label: value_description,
+                                name: 'input_' + nodeId + '_' + conf_num,
+                                type: {
+                                    bitcheck: {
+                                        bit: value_from
+                                    }
+                                }
+                            });
+                        else
+                            param_struct_arr.push({
+                                label: value_description,
+                                name: 'input_' + nodeId + '_' + conf_num,
+                                type: {
+                                    bitrange: {
+                                        bit_from: value_from,
+                                        bit_to: value_to
+                                    }
+                                }
+                            });
+                    });
+                    if (conf_default !== null) {
+                        conf_default_value = '';
+                        for (var ii in conf_default_value_arr)
+                            conf_default_value += conf_default_value_arr[ii] + ', ';
+                        if (conf_default_value.length)
+                            conf_default_value = conf_default_value.substr(0, conf_default_value.length - 2);
+                    }
+                    conf_method_descr = {
+                        nodeId: nodeId,
+                        label: 'Nº ' + conf_num + ' - ' + conf_name,
+                        type: {
+                            bitset: param_struct_arr
+                        },
+                        name: 'input_' + nodeId + '_' + conf_num,
+                        description: conf_description,
+                        updateTime: updateTime,
+                        isUpdated: isUpdated,
+                        defaultValue: conf_default_value,
+                        showDefaultValue: showDefaultValue,
+                        configCconfigValue: config_config_value,
+                        configZwaveValue: config_zwave_value,
+                        confNum: conf_num,
+                        confSize: conf_size
+                    };
+                    break;
+                default:
+                    return;
+                    //conf_cont.append('<span>' + $.translate('unhandled_type_parameter') + ': ' + conf_type + '</span>');
+            }
+            ;
+
+            config_cont.push(conf_method_descr);
+            parCnt++;
+        });
+        //console.log(config_cont);
+        return config_cont;
+    }
+    
+      /**
+     * Switch all cont
+     */
+    function configSwitchAllCont(node, nodeId, ZWaveAPIData, cfgXml) {
+        var switchall_cont = false;
+        if (0x27 in node.instances[0].commandClasses) {
+            var cfgFile = getCfgXmlParam(cfgXml, nodeId, '0', '27', 'Set');
+            var uTime = node.instances[0].commandClasses[0x27].data.mode.updateTime;
+            var iTime = node.instances[0].commandClasses[0x27].data.mode.invalidateTime;
+            var updateTime = $filter('isTodayFromUnix')(uTime);
+            var isUpdated = (uTime > iTime ? true : false);
+            var gui_descr = getMethodSpec(ZWaveAPIData, nodeId, 0, 0x27, 'Set');
+            var conf_default_value = 0;
+            var switchall_conf_value;
+            if (cfgFile !== undefined) {
+                switchall_conf_value = cfgFile[0];
+            } else {
+                switchall_conf_value = 1;// by default switch all off group only
+            }
+            switchall_cont = {
+                'params': gui_descr,
+                'values': {0: switchall_conf_value},
+                name: 'switchall_' + nodeId + '_' + 0,
+                updateTime: updateTime,
+                isUpdated: isUpdated,
+                defaultValue: conf_default_value,
+                showDefaultValue: conf_default_value,
+                configCconfigValue: switchall_conf_value,
+                confNum: 0,
+                confSize: 0,
+                cmd: 'devices[' + nodeId + '].instances[0].commandClasses[0x27]'
+            };
+
+        }
+        ;
+        return switchall_cont;
+    }
+
+    /**
+     * Protection cont
+     */
+    function configProtectionCont(node, nodeId, ZWaveAPIData, cfgXml) {
+        var protection_cont = false;
+        if (0x75 in node.instances[0].commandClasses) {
+            var cfgFile = getCfgXmlParam(cfgXml, nodeId, '0', '75', 'Set');
+            var uTime = node.instances[0].commandClasses[0x75].data.state.updateTime;
+            var iTime = node.instances[0].commandClasses[0x75].data.state.invalidateTime;
+            var updateTime = $filter('isTodayFromUnix')(uTime);
+            var isUpdated = (uTime > iTime ? true : false);
+            var gui_descr = getMethodSpec(ZWaveAPIData, nodeId, 0, 0x75, 'Set');
+            var conf_default_value = 0;
+            var protection_conf_value;
+            //var protection_conf_rf_value;
+            // get default value from the config XML
+            if (cfgFile !== undefined) {
+                protection_conf_value = cfgFile[0];
+            } else {
+                protection_conf_value = 0;// by default switch all off group only
+            }
+
+            protection_cont = {
+                'params': gui_descr,
+                'values': {0: protection_conf_value},
+                name: 'protection_' + nodeId + '_' + 0,
+                updateTime: updateTime,
+                isUpdated: isUpdated,
+                defaultValue: conf_default_value,
+                showDefaultValue: conf_default_value,
+                configCconfigValue: protection_conf_value,
+                confNum: 0,
+                confSize: 0,
+                cmd: 'devices[' + nodeId + '].instances[0].commandClasses[0x75]'
+            };
+        }
+        ;
+        return protection_cont;
+    }
+    
+     /**
+     * Wakeup cont
+     */
+    function configWakeupCont(node, nodeId, ZWaveAPIData, cfgXml) {
+        var wakeup_cont = false;
+        if (0x84 in node.instances[0].commandClasses) {
+            var cfgFile = getCfgXmlParam(cfgXml, nodeId, '0', '84', 'Set');
+            var wakeup_zwave_min = (node.instances[0].commandClasses[0x84].data.version.value == 1) ? 0 : node.instances[0].commandClasses[0x84].data.min.value;
+            var wakeup_zwave_max = (node.instances[0].commandClasses[0x84].data.version.value == 1) ? 0xFFFFFF : node.instances[0].commandClasses[0x84].data.max.value;
+            var wakeup_zwave_value = node.instances[0].commandClasses[0x84].data.interval.value;
+            var wakeup_zwave_default_value = (node.instances[0].commandClasses[0x84].data.version.value == 1) ? 86400 : node.instances[0].commandClasses[0x84].data['default'].value; // default is a special keyword in JavaScript
+            var wakeup_zwave_nodeId = node.instances[0].commandClasses[0x84].data.nodeId.value;
+            var uTime = node.instances[0].commandClasses[0x84].data.updateTime;
+            var iTime = node.instances[0].commandClasses[0x84].data.invalidateTime;
+            var updateTime = $filter('isTodayFromUnix')(uTime);
+            var isUpdated = (uTime > iTime ? true : false);
+            if (wakeup_zwave_min !== '' && wakeup_zwave_max !== '') {
+                var gui_descr = getMethodSpec(ZWaveAPIData, nodeId, 0, 0x84, 'Set');
+                gui_descr[0].type.range.min = parseInt(wakeup_zwave_min, 10);
+                gui_descr[0].type.range.max = parseInt(wakeup_zwave_max, 10);
+                var wakeup_conf_value;
+                var wakeup_conf_node_value = 0;
+                if (angular.isArray(cfgFile) && cfgFile.length > 0) {
+                    wakeup_conf_value = cfgFile[0] || 0;
+                    wakeup_conf_node_value = cfgFile[1] || 0;
+                } else {
+                    if (wakeup_zwave_value != "" && wakeup_zwave_value != 0 && wakeup_zwave_nodeId != "") {
+                        // not defined in config: adopt devices values
+                        wakeup_conf_value = parseInt(wakeup_zwave_value, 10);
+                    } else {
+                        // values in device are missing. Use defaults
+                        wakeup_conf_value = parseInt(wakeup_zwave_default_value, 10);
+                    }
+                    ;
+                }
+                ;
+                wakeup_cont = {
+                    'params': gui_descr,
+                    'values': {"0": wakeup_conf_value},
+                    name: 'wakeup_' + nodeId + '_' + 0,
+                    updateTime: updateTime,
+                    isUpdated: isUpdated,
+                    defaultValue: wakeup_zwave_default_value,
+                    showDefaultValue: wakeup_zwave_default_value,
+                    configCconfigValue: wakeup_conf_value,
+                    configCconfigNodeValue: wakeup_conf_node_value,
+                    confNum: 0,
+                    confSize: 0,
+                    cmd: 'devices[' + nodeId + '].instances[0].commandClasses[0x84]'
+                };
+            } else {
+                //$('#wakeup_cont .cfg-block-content').append('<span>' + $scope._t('config_ui_wakeup_no_min_max') + '</span>');
+            }
+        }
+        ;
+        return wakeup_cont;
+    }
+    
+    /**
+     *Build config XML file
+     */
+    function buildCfgXml(data, cfgXml, id, commandclass) {
+        var hasCfgXml = false;
+         var assocCc = [133, 142];
+        var formData = [];
+        if (commandclass == '84') {
+            var par1 = JSON.parse(data[0]['parameter']);
+            var par2 = JSON.parse(data[1]['parameter']);
+            var wakeData = {
+                'id': id,
+                'instance': data[0]['instance'],
+                'commandclass': commandclass,
+                'command': data[0]['command'],
+                'parameter': '[' + par1 + ',' + par2 + ']'
+            };
+            formData.push(wakeData);
+        } else {
+            formData = data;
+        }
+        var xmlData = formData;
+        if (angular.isObject(cfgXml) && $filter('hasNode')(cfgXml, 'config.devices.deviceconfiguration')) {
+            hasCfgXml = cfgXml.config.devices.deviceconfiguration;
+            angular.forEach(hasCfgXml, function(v, k) {
+                var obj = {};
+                if (v['_id'] == id && v['_commandclass'] == commandclass) {
+                    return;
+                }
+                obj['id'] = v['_id'];
+                obj['instance'] = v['_instance'];
+                obj['commandclass'] = v['_commandclass'];
+                obj['command'] = v['_command'];
+                obj['parameter'] = v['_parameter'];
+                 obj['group'] = v['_group'];
+                xmlData.push(obj);
+
+            });
+        }
+        var ret = buildCfgXmlFile(xmlData);
+        return ret;
+
+    }
+    
+    /**
+     * Build cfg XML file
+     */
+    function buildCfgXmlFile(xmlData) {
+        var assocCc = [133, 142];
+       var xml = '<config><devices>' + "\n";
+
+        angular.forEach(xmlData, function(v, k) {
+            if (assocCc.indexOf( parseInt(v.commandclass,10)) > -1) {
+                xml += '<deviceconfiguration id="' + v.id + '" instance="' + v.instance + '" commandclass="' + v.commandclass + '" command="' + v.command + '" group="' + v.group + '" parameter="' + v.parameter + '"/>' + "\n";
+               
+            } else {
+                xml += '<deviceconfiguration id="' + v.id + '" instance="' + v.instance + '" commandclass="' + v.commandclass + '" command="' + v.command + '" parameter="' + v.parameter + '"/>' + "\n";
+            }
+
+        });
+        xml += '</devices></config>' + "\n";
+        return xml;
+
+    }
+});
+
+/**
+ * Device configuration controller from ExpertUI
+ * @author Martin Vach
+ */
+myAppController.controller('ConfigConfigurationController', function($scope, $routeParams, $location, $interval, $filter, $timeout, dataFactory, dataService, expertService) {
+    
+    $scope.devices = [];
+    $scope.deviceId = 0;
+    $scope.reset = function() {
+        $scope.devices = angular.copy([]);
+    };
+    $scope.apiDataInterval = null;
+    // Config vars
+    $scope.deviceZddx = [];
+    $scope.configCont;
+    $scope.switchAllCont;
+    $scope.protectionCont;
+    $scope.wakeupCont;
+    
+    // Cancel interval on page destroy
+    $scope.$on('$destroy', function() {
+        $interval.cancel($scope.apiDataInterval);
+    });
+
+    // Load data
+    $scope.load = function(nodeId) {
+        dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
+            var node = ZWaveAPIData.devices[nodeId];
+            if (!node) {
+                return;
+            }
+            $scope.ZWaveAPIData = ZWaveAPIData;
+            $scope.deviceId = nodeId;
+            $scope.deviceName = $filter('deviceName')(nodeId, node);
+            $scope.devices = expertService.configGetNav(ZWaveAPIData);
+            $scope.getNodeDevices = function() {
+                var devices = [];
+                angular.forEach($scope.devices, function(v, k) {
+                    if (devices_htmlSelect_filter($scope.ZWaveAPIData, 'span', v.id, 'node')) {
+                        return;
+                    }
+                    ;
+                    var obj = {};
+                    obj['id'] = v.id;
+                    obj['name'] = v.name;
+                    devices.push(obj);
+                });
+
+                return devices;
+            };
+            //$scope.getNodeDevices();
+            setData(ZWaveAPIData, nodeId);
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    };
+    $scope.load($routeParams.nodeId);
+    
+    /**
+     * Refresh data
+     */
+    $scope.refresh = function(nodeId) {
+        var refresh = function() {
+            dataFactory.joinedZwaveData().then(function(response) {
+                dataService.updateTimeTick(response.data.update.updateTime);
+                 setData(response.data.joined, nodeId,true);
+            }, function(error) {
+                dataService.showConnectionError(error);
+            });
+        };
+        $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
+    };
+
+    //$scope.refresh($routeParams.nodeId);
+
+    /**
+     * Update from device action
+     *
+     * @param {string} cmd
+     * @returns {undefined}
+     */
+    $scope.updateFromDevice = function(cmd) {
+         $scope.loading = {status:'loading-spin',icon:'fa-spinner fa-spin', message:$scope._t('updating')};
+        dataFactory.runExpertCmd(cmd, true).then(function(response) {
+            
+            //dataService.logInfo(response, 'Update from device');
+        }, function(error) {
+            dataService.logError(error, 'Update from device');
+            alert($scope._t('error_update_data'));
+        });
+        $scope.refresh($routeParams.nodeId);
+        $timeout(function() {
+             $scope.loading = {status:'loading-fade',icon:'fa-check text-success', message:$scope._t('success_updated')};
+            $interval.cancel($scope.apiDataInterval);
+        }, 7000);
+        return;
+    };
+
+    /**
+     * Update from device - configuration section
+     */
+    $scope.updateFromDeviceCfg = function(cmd, cfg, deviceId) {
+         $scope.loading = {status:'loading-spin',icon:'fa-spinner fa-spin', message:$scope._t('updating')};
+        angular.forEach(cfg, function(v, k) {
+            if (v.confNum) {
+                var request = cmd + '(' + v.confNum + ')';
+                dataFactory.runExpertCmd(request, true).then(function(response) {
+                }, function(error) {
+                    dataService.logError(error);
+                    return;
+                });
+            }
+
+        });
+        $scope.refresh(deviceId);
+        $timeout(function() {
+            $scope.loading = {status:'loading-fade',icon:'fa-check text-success', message:$scope._t('success_updated')};
+            $interval.cancel($scope.apiDataInterval);
+        }, 7000);
+        return;
+    };
+
+    /**
+     * Apply Config action
+     */
+    $scope.submitApplyConfigCfg = function(form, cmd, cfgValues, hasBattery, confNum) {
+         $scope.loading = {status:'loading-spin',icon:'fa-spinner fa-spin', message:$scope._t('updating')};
+        var xmlData = [];
+        var configValues = [];
+        if (hasBattery) {
+            alert($scope._t('conf_apply_battery'));
+        }
+        var data = $('#' + form).serializeArray();
+        var dataValues = [];
+        angular.forEach(data, function(v, k) {
+            if (v.value !== '') {
+                dataValues.push({"value": v.value, "name": v.name});
+            }
+
+        });
+
+        angular.forEach(dataValues, function(n, nk) {
+            var obj = {};
+            var parameter;
+            var lastNum = n.name.match(/\d+$/);
+            if (!lastNum) {
+                return;
+            }
+            var num = lastNum[0];
+            var confSize = 0;
+            //var lastNum = n.name.match(/\d+$/);
+            var value = n.value;
+            configValues.push(value)
+            angular.forEach(cfgValues, function(cv, ck) {
+                if (!cv) {
+                    return;
+                }
+                if (cv.confNum == num) {
+                    confSize = cv.confSize;
+                }
+
+
+            });
+            if (num > 0) {
+                parameter = num + ',' + value + ',' + confSize;
+            } else {
+                parameter = value;
+            }
+
+            obj['id'] = cmd['id'];
+            obj['instance'] = cmd['instance'];
+            obj['commandclass'] = cmd['commandclass'];
+            obj['command'] = cmd['command'];
+            obj['parameter'] = '[' + parameter + ']';
+            obj['parameterValues'] = parameter;
+            obj['confNum'] = num;
+
+            xmlData.push(obj);
+
+
+        });
+        
+        // Send command
+        var request = 'devices[' + cmd.id + '].instances[' + cmd.instance + '].commandClasses[0x' + cmd.commandclass + '].';
+        switch (cmd['commandclass']) {
+            case '70':// Config
+                angular.forEach(xmlData, function(v, k) {
+
+                    var configRequest = request;
+                    configRequest += cmd.command + '(' + v.parameterValues + ')';
+                    if (confNum) {
+                        if (confNum == v.confNum) {
+                            dataFactory.runExpertCmd(configRequest, true).then(function(response){}, function(error) {
+                                dataService.logError(error);
+                            });
+                        }
+                    } else {
+                        dataFactory.runExpertCmd(configRequest, true).then(function(response){},function(error) {
+                            dataService.logError(error);
+                        });
+                    }
+
+                });
+                break;
+            case '75':// Protection
+                request += cmd.command + '(' + configValues.join(",") + ')';
+                dataFactory.runExpertCmd(request, true).then(function(response){},function(error) {
+                    dataService.logError(error);
+                });
+                break;
+            case '84':// Wakeup
+                request += cmd.command + '(' + configValues.join(",") + ')';
+                dataFactory.runExpertCmd(request, true).then(function(response){},function(error) {
+                    dataService.logError(error);
+                });
+                break;
+            case '27':// Switch all
+                request += cmd.command + '(' + configValues.join(",") + ')';
+                dataFactory.runExpertCmd(request, true).then(function(response){},function(error) {
+                    dataService.logError(error);
+                });
+                break;
+            default:
+                break;
+        }
+        dataFactory.xmlToJson($scope.cfg.server_url + $scope.cfg.cfg_xml_url, true).then(function(cfgXml) {
+           var xmlFile = expertService.buildCfgXml(xmlData, cfgXml, cmd['id'], cmd['commandclass']);
+           dataFactory. putCfgXml(xmlFile).then(function(response){},function(error) {
+                    dataService.logError(error);
+                    alert($scope._t('error_update_data'));
+                });
+        }, function(error) {
+            dataService.logError(error);
+            alert($scope._t('error_update_data'));
+        });
+
+        $scope.refresh(cmd['id']);
+        $timeout(function() {
+            $scope.loading = {status:'loading-fade',icon:'fa-check text-success', message:$scope._t('success_updated')};
+            $interval.cancel($scope.apiDataInterval);
+        }, 7000);
+        return;
+    };
+
+
+    /// --- Private functions --- ///
+    /**
+     * Set zwave data
+     */
+    function setData(ZWaveAPIData, nodeId, refresh) {
+        var node = ZWaveAPIData.devices[nodeId];
+        $scope.showDevices = true;
+        //$scope.deviceNameId = $filter('deviceName')(nodeId, node) + ' (#' + nodeId + ')';
+        $scope.hasBattery = 0x80 in node.instances[0].commandClasses;
+        var zddXmlFile = null;
+        if (angular.isDefined(node.data.ZDDXMLFile)) {
+            zddXmlFile = node.data.ZDDXMLFile.value;
+            $scope.deviceZddxFile = node.data.ZDDXMLFile.value;
+        }
+
+        //$scope.interviewCommands = deviceService.configGetInterviewCommands(node, ZWaveAPIData.updateTime);
+        //$scope.interviewCommandsDevice = node.data;
+        if (zddXmlFile && zddXmlFile !== 'undefined') {
+            dataFactory.xmlToJson($scope.cfg.server_url + $scope.cfg.zddx_url + zddXmlFile).then(function(zddXml) {
+                setCont(node, nodeId, zddXml, ZWaveAPIData, refresh);
+            }, function(error) {
+                dataService.logError(error);
+            });
+
+        } else {
+            setCont(node, nodeId, null, ZWaveAPIData, refresh);
+        }
+    }
+
+    /**
+     * Set all conts
+     */
+    function setCont(node, nodeId, zddXml, ZWaveAPIData, refresh) {
+        if (!zddXml) {
+            $scope.noZddx = true;
+        }
+        dataFactory.xmlToJson($scope.cfg.server_url + $scope.cfg.cfg_xml_url, true).then(function(cfgXml) {
+            $scope.configCont = expertService.configConfigCont(node, nodeId, zddXml, cfgXml, $scope.lang, $scope.languages);
+            $scope.wakeupCont = expertService.configWakeupCont(node, nodeId, ZWaveAPIData, cfgXml);
+            $scope.protectionCont = expertService.configProtectionCont(node, nodeId, ZWaveAPIData, cfgXml);
+            $scope.switchAllCont = expertService.configSwitchAllCont(node, nodeId, ZWaveAPIData, cfgXml);
+        }, function(error) {
+            dataService.logError(error);
+        });
+    }
+});
+

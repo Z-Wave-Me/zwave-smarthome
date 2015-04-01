@@ -57,7 +57,14 @@ module.exports = function(grunt) {
                     'app/filters/filters.js',
                     'app/jquery/postrender.js',
                     'app/controllers/controllers.js',
-                    'app/modules/bootstrap-colorpicker-module.min.js'
+                    'app/modules/bootstrap-colorpicker-module.min.js',
+                    // ExpertUI configuration js
+                    'app/expertui/pyzw.js',
+                    'app/expertui/pyzw_zwave_ui.js',
+                    'vendor/xml/xml2json.js',
+                    'app/expertui/directives.js',
+                    'app/expertui/services.js',
+                    'app/expertui/configuration.js',
                 ],
                 dest: 'dist/app/js/build.js'
             }
