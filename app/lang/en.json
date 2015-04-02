@@ -63,6 +63,7 @@
     "lb_disable_rooms": "Disable access to rooms",
     "lb_available_rooms": "Available rooms",
     "lb_hide_events_device": "Hide events for this device",
+    "lb_hide_events_source": "Hide events of this Source",
     "---": "missing",
     "lb_show_all": "Show all",
     "lb_events_source_type": "Events of this Type and Source",

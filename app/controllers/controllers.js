@@ -427,7 +427,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.setRBGColor = function(id, color) {
         var array = color.match(/\((.*)\)/)[1].split(',');
         var cmd = id + '/command/exact?red=' + array[0] + '&green=' + array[1] + '&blue=' + array[2];
-       runCmd(cmd);
+        runCmd(cmd);
         myCache.remove('devices');
     };
     /**
@@ -537,6 +537,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
     $scope.collection = [];
     $scope.eventLevels = [];
     $scope.eventSources = [];
+    $scope.profileData = [];
     $scope.currLevel = null;
     $scope.timeFilterDefault = {
         since: $filter('unixStartOfDay')(),
@@ -554,7 +555,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
     // Cancel interval on page destroy
     $scope.$on('$destroy', function() {
         $interval.cancel($scope.apiDataInterval);
-        $cookies.events_timeFilter = angular.toJson($scope.timeFilterDefault);
+        //$cookies.events_timeFilter = angular.toJson($scope.timeFilterDefault);
         //$cookies.events_timeFilter = false;
         //$cookies.remove('events_timeFilter');
     });
@@ -565,11 +566,11 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
     $scope.loadData = function() {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         $scope.timeFilter = (angular.isDefined($cookies.events_timeFilter) ? angular.fromJson($cookies.events_timeFilter) : $scope.timeFilter);
-        //var urlParam = '?since=' + timeFilter.since + '&to=' + timeFilter.to + '&profile=' + $scope.user.id;
         var urlParam = '?since=' + $scope.timeFilter.since + '&profile=' + $scope.user.id;
-        dataFactory.getApi('notifications', urlParam).then(function(response) {
+        dataFactory.getApi('notifications', urlParam,true).then(function(response) {
             setData(response.data);
             dataService.updateTimeTick(response.data.data.updateTime);
+            loadProfile();
             $scope.loading = false;
         }, function(error) {
             $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-danger', message: $scope._t('error_load_data')};
@@ -644,7 +645,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
     $scope.refreshData = function() {
         var refresh = function() {
             dataFactory.refreshApi('notifications', '&profile=' + $scope.user.id).then(function(response) {
-                dataService.logInfo(response.data.data.notifications, 'Refresh notifications');
+                dataService.logInfo(response.data.data.notifications, 'Updating notifications');
                 angular.forEach(response.data.data.notifications, function(v, k) {
                     $scope.collection.push(v);
                 });
@@ -655,7 +656,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
         };
         $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
     };
-    //$scope.refreshData();
+    $scope.refreshData();
     /**
      * Watch for pagination change
      */
@@ -690,10 +691,11 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
     };
 
     /**
-     * Update data into collection
+     * Hide source events
      */
-    $scope.markAsRead = function(id) {
-        $('#row_' + id).fadeOut();
+    $scope.hideSourceEvents = function(deviceId) {
+        $scope.profileData.hide_single_device_events = dataService.setArrayValue($scope.profileData.hide_single_device_events, deviceId, true);
+        updateProfile($scope.profileData);
     };
 
     /// --- Private functions --- ///
@@ -729,6 +731,39 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
         //dataService.logInfo($scope.collection,'$scope.collection');
     }
     ;
+    /**
+     * Load profile
+     */
+    function loadProfile() {
+        $scope.profileData = [];
+        dataFactory.getApi('profiles', '/' + $scope.user.id).then(function(response) {
+            $scope.profileData = response.data.data;
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    }
+    ;
+    /**
+     * Update profile
+     */
+    function updateProfile(profileData) {
+         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        dataFactory.putApi('profiles', profileData.id, profileData).then(function(response) {
+            //dataService.logInfo(response, 'Updating Devices');
+            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
+             myCache.remove('notifications');
+            myCache.remove('profiles');
+            $scope.profileData = [];
+            $scope.input = [];
+            $scope.loadData();
+
+        }, function(error) {
+            alert($scope._t('error_update_data'));
+            $scope.loading = false;
+            dataService.logError(error);
+        });
+        return;
+    }
 });
 /**
  * Profile controller

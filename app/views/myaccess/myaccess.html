@@ -49,7 +49,8 @@
                 </div>
             </fieldset>
             <fieldset>
-                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_inband_filtering')"></span></h3>
+                <h3 ng-click="showDevices = !showDevices"><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_inband_filtering')"></span></h3>
+                 <div ng-if="showDevices">
                 <div class="device-assigned-block">
                         <h4>{{_t('lb_hide_single_device_events')}}</h4>
                         <div class="btn-device-admin" id="device_assigned_{{$index}}" ng-repeat="d in devices" ng-if="input.hide_single_device_events.indexOf(d.id) > -1"> 
@@ -62,6 +63,7 @@
                         <a href="" ng-click="assignDevice(d.id)">{{d.metrics.title}} <i class="fa fa-plus text-success"></i></a>
                     </div>
                 </div>
+               </div>
             </fieldset>
             <div class="form-footer">
                 <button type="submit" class="btn btn-primary" ng-bind="_t('lb_save')">{{_t('apply_config_into_device')}}</button>
