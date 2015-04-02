@@ -239,6 +239,9 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.$on('$destroy', function() {
         dataFactory.cancelApiDataInterval();
         $interval.cancel($scope.apiDataInterval);
+         $('.modal').remove();
+        $('.modal-backdrop').remove();
+        $('body').removeClass("modal-open");
     });
     /**
      * DEPRECATED
@@ -392,14 +395,15 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
 
     };
     /**
-     * Redirect to module config
+     * DEPRECATED
+     * Redirect from modal to url
      */
-    $scope.toModule = function(id, target) {
-        $('.modal').remove();
-        $('.modal-backdrop').remove();
-        $('body').removeClass("modal-open");
-        $location.path('module/put/' + id);
-    };
+//    $scope.redirectFromModal = function(url) {
+//        $('.modal').remove();
+//        $('.modal-backdrop').remove();
+//        $('body').removeClass("modal-open");
+//        $location.path(url);
+//    };
     /**
      * Run command
      */

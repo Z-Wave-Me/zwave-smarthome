@@ -36,8 +36,8 @@
                 <div>
                      <!-- role -->
                     <div class="form-group form-inline">
-                        <label><input type="radio" name="role" value="1" ng-model="input.role" ng-checked="input.role == 1" />{{_t('lb_admin')}}</label>
-                         <label><input type="radio" name="role" value="2" ng-model="input.role" ng-checked="input.role == 2" />{{_t('lb_user')}}</label>
+                        <label><input type="radio" name="role" value="1" ng-model="input.role" ng-checked="input.role == 1" /> {{_t('lb_admin')}}</label>
+                         <label><input type="radio" name="role" value="2" ng-model="input.role" ng-checked="input.role == 2" /> {{_t('lb_user')}}</label>
                     </div>
                     <!-- lang -->
                     <div class="form-group form-inline">
@@ -65,7 +65,6 @@
                 <p class="network-zwave-title">
                     <i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_rooms_access')"></span>
                 </p>
-                {{input.hide_rooms}}
                 <div>
                     <div class="device-assigned-block">
                         <h4>{{_t('lb_disable_rooms')}}</h4>

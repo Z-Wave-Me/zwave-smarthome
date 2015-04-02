@@ -404,11 +404,11 @@
                         <h4>{{_t('lb_configuration')}}</h4>
 
                         <div class="form-group" ng-show="input.cfg.hasInstance">
-                            <span ng-bind="_t('lb_gen_by_module')"></span> <button href="#module/put/{{input.cfg.hasInstance.id}}" class="btn btn-default btn-sm" ng-click="toModule(input.cfg.hasInstance.id, '#modal_widget')" ng-bind="input.cfg.hasInstance.moduleId"></button>
+                            <span ng-bind="_t('lb_gen_by_module')"></span> <a class="btn btn-default btn-sm" ng-href="#module/put/{{input.cfg.hasInstance.id}}" ng-bind="input.cfg.hasInstance.moduleId"></a>
                         </div>
                         <div class="form-group" ng-show="input.cfg.zwaveId">
                             <div ng-show="cfg.app_type == 'web'">
-                                <span ng-bind="_t('lb_gen_by')"></span> <a href="/expert/#/config/configuration/{{input.cfg.zwaveId}}" class="btn btn-default btn-sm">Z-Wave device #{{input.cfg.zwaveId}}</a>
+                                <span ng-bind="_t('lb_gen_by')"></span> <a href="#deviceconfig/{{input.cfg.zwaveId}}" class="btn btn-default btn-sm">Z-Wave device #{{input.cfg.zwaveId}}</a>
                             </div>
                             <div class="alert alert-warning" ng-show="cfg.app_type == 'app'">
                                 <span ng-bind="_t('lb_gen_by')"></span> <span ng-bind="_t('lb_zwave_device')"></span> <strong>#{{input.cfg.zwaveId}}</strong> {{_t('lb_no_link')}}
@@ -421,6 +421,7 @@
                                                ng-model="input.permanently_hidden" 
                                                ng-checked="input.permanently_hidden" 
                                                ng-confirm-click="This means that you can never use this element again. Are you sure?" /> <label ng-bind="_t('lb_permanently_hide')"></label>
+                            <br /><input type="checkbox" name="dashboard" value="{{input.dashboard}}" id="dashboard" ng-model="input.dashboard" ng-checked="input.dashboard" /> <label ng-bind="_t('lb_hide_events_device')"></label>
                         </div>
                     </fieldset>
                     <fieldset class="widget-cfg-block">
