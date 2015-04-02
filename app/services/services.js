@@ -128,7 +128,6 @@ myAppService.service('dataService', function($filter, $log,myCache,cfg) {
         return getModuleConfigInputs(module, params, namespaces);
     };
 
-
     /**
      * Set array value
      */

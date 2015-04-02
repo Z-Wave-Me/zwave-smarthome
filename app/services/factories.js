@@ -25,6 +25,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies,$window,
         postApi: postApi,
         putApi: putApi,
         storeApi: storeApi,
+         runApiCmd: runApiCmd,
         getRemoteData: getRemoteData,
         refreshApi: refreshApi,
         runExpertCmd: runExpertCmd,
@@ -149,6 +150,25 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies,$window,
             return $q.reject(response);
         });
 
+    }
+    
+     /**
+     * Run api command
+     */
+    function runApiCmd(cmd) {
+        return $http({
+            method: 'get',
+            url: cfg.server_url + cfg.api_url + "devices/" + cmd
+            //cache: noCache || true
+        }).then(function(response) {
+            if (response.data.code == 200) {
+                return response;
+            } else {// invalid response
+                return $q.reject(response);
+            }
+        }, function(response) {// something went wrong
+            return $q.reject(response);
+        });
     }
     
     // Run expert cmd
