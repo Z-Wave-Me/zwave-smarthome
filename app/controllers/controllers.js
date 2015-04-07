@@ -31,7 +31,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
     $scope.lang_list = cfg.lang_list;
     // Set language
     $scope.lang = ($scope.user ? $scope.user.lang : cfg.lang);
-    
+
     //$scope.lang = (angular.isDefined($scope.profile.lang) ? $scope.profile.lang : cfg.lang);
     // TODO: remove?
 //    $scope.changeLang = function(lang) {
@@ -50,7 +50,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
     $scope._t = function(key) {
         return dataService.getLangLine(key, $scope.languages);
     };
-    
+
     // Watch for lang change
     $scope.$watch('lang', function() {
         $scope.loadLang($scope.lang);
@@ -108,8 +108,8 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
     $scope.isActive = function(route) {
         return (route === $scope.getBodyId() ? 'active' : '');
     };
-    
-     /**
+
+    /**
      * Set time
      */
     $scope.setTime = function() {
@@ -124,7 +124,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
             $location.path(url);
         }
     };
-    
+
 });
 /**
  * Test controller
@@ -445,7 +445,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     function loadInstances(devices, filter) {
         dataFactory.getApi('instances').then(function(response) {
             $scope.collection = dataService.getDevices(devices, filter, $scope.profileData.positions, response.data.data);
-             dataService.updateTimeTick(response.data.data.updateTime);
+            dataService.updateTimeTick(response.data.data.updateTime);
         }, function(error) {
             dataService.showConnectionError(error);
         });
@@ -768,7 +768,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
 
             });
             $scope.loading = false;
-             dataService.updateTimeTick();
+            dataService.updateTimeTick();
         }, function(error) {
             $scope.loading = false;
             dataService.showConnectionError(error);
@@ -787,7 +787,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
                 }
             });
             $scope.loading = false;
-             dataService.updateTimeTick();
+            dataService.updateTimeTick();
         }, function(error) {
             $scope.loading = false;
             dataService.showConnectionError(error);
@@ -814,7 +814,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
 
     // Watch for tab change
     $scope.$watch('activeTab', function() {
-         dataService.showConnectionSpinner();
+        dataService.showConnectionSpinner();
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         switch ($scope.activeTab) {
             case 'instance':
@@ -963,13 +963,13 @@ myAppController.controller('AppLocalDetailController', function($scope, $routePa
      * Load module detail
      */
     $scope.loadModule = function(id) {
-         dataService.showConnectionSpinner();
+        dataService.showConnectionSpinner();
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('modules', '/' + id).then(function(response) {
             loadOnlineModules(id);
             $scope.module = response.data.data;
             $scope.loading = false;
-            
+
         }, function(error) {
             $scope.loading = false;
             dataService.showConnectionError(error);
@@ -997,7 +997,7 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
      * Load module detail
      */
     $scope.loadModule = function(id) {
-         dataService.showConnectionSpinner();
+        dataService.showConnectionSpinner();
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var param = parseInt(id, 10);
         var filter = 'id';
@@ -1189,15 +1189,16 @@ myAppController.controller('DeviceController', function($scope, $routeParams, da
      * Load z-wave devices
      */
     $scope.loadZwaveDevices = function(filter, lang) {
-        dataFactory.localData('device.' + lang + '.json', function(data) {
-            $scope.manufacturers = dataService.getPairs(data, 'brandname', 'brand_image', 'manufacturers');
+        dataService.showConnectionSpinner();
+        dataFactory.getApiLocal('device.' + lang + '.json').then(function(response) {
+            $scope.manufacturers = dataService.getPairs(response.data, 'brandname', 'brand_image', 'manufacturers');
             if (filter) {
-                console.log(filter)
-                $scope.zwaveDevices = dataService.getData(data, filter);
-                console.log($scope.zwaveDevices)
+                $scope.zwaveDevices = dataService.getData(response.data, filter);
                 $scope.manufacturer = filter.val;
             }
-
+            dataService.updateTimeTick();
+        }, function(error) {
+            dataService.showConnectionError(error);
         });
     };
 
@@ -1205,8 +1206,12 @@ myAppController.controller('DeviceController', function($scope, $routeParams, da
      * Load ip cameras
      */
     $scope.loadIpcameras = function() {
-        dataFactory.getApiData('modules', function(data) {
-            $scope.ipcameraDevices = dataService.getData(data.data, {filter: "category", val: "surveillance"});
+        dataService.showConnectionSpinner();
+        dataFactory.getApi('modules').then(function(response) {
+            $scope.ipcameraDevices = dataService.getData(response.data.data, {filter: "category", val: "surveillance"});
+            dataService.updateTimeTick();
+        }, function(error) {
+            dataService.showConnectionError(error);
         });
     };
 
@@ -1230,7 +1235,7 @@ myAppController.controller('DeviceController', function($scope, $routeParams, da
 /**
  * Device controller
  */
-myAppController.controller('IncludeController', function($scope, $routeParams, $timeout, dataFactory) {
+myAppController.controller('IncludeController', function($scope, $routeParams, $timeout, $interval,dataFactory, dataService) {
     $scope.device = {
         'data': null
     };
@@ -1272,18 +1277,31 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
      * Load data into collection
      */
     $scope.loadData = function(lang) {
-        // Get device from JSON
+        dataService.showConnectionSpinner();
         if (angular.isDefined($routeParams.device)) {
-            dataFactory.localData('device.' + lang + '.json', function(devices) {
-                angular.forEach(devices, function(v, k) {
+            dataFactory.getApiLocal('device.' + lang + '.json').then(function(response) {
+                angular.forEach(response.data, function(v, k) {
                     if (v.id == $routeParams.device) {
                         $scope.device.data = v;
                         return;
                     }
                 });
-
+                dataService.updateTimeTick();
+            }, function(error) {
+                dataService.showConnectionError(error);
+                return;
             });
+//            dataFactory.localData('device.' + lang + '.json', function(devices) {
+//                angular.forEach(devices, function(v, k) {
+//                    if (v.id == $routeParams.device) {
+//                        $scope.device.data = v;
+//                        return;
+//                    }
+//                });
+//
+//            });
         }
+        //return;
 
         // Get ZwaveApiData
         dataFactory.updateZwaveApiData(function(data) {
@@ -1307,6 +1325,38 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
     };
 
     $scope.loadData($scope.lang);
+
+    /**
+     * Refresh data
+     */
+    $scope.refreshData = function() {
+        var refresh = function() {
+            dataFactory.refreshZwaveApiData().then(function(response) {
+                var data = response.data;
+                if ('controller.data.controllerState' in data) {
+                    $scope.controllerState = data['controller.data.controllerState'].value;
+                    //console.log($scope.controllerState);
+                }
+                if ('controller.data.lastExcludedDevice' in data) {
+                    $scope.lastExcludedDevice = data['controller.data.lastExcludedDevice'].value;
+                }
+                if ('controller.data.lastIncludedDevice' in data) {
+                    var deviceIncId = data['controller.data.lastIncludedDevice'].value;
+                    if (deviceIncId != null) {
+                        var givenName = 'Device_' + deviceIncId;
+                        var cmd = 'devices[' + deviceIncId + '].data.givenName.value=\'' + givenName + '\'';
+                        dataFactory.runZwaveCmd(cmd);
+                        $scope.includedDeviceId = deviceIncId;
+                    }
+                }
+            }, function(error) {
+                dataService.showConnectionError(error);
+            });
+        };
+        $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
+    };
+
+    //$scope.refreshData();
 
     // Watch for last excluded device
     $scope.$watch('includedDeviceId', function() {
@@ -1395,7 +1445,7 @@ myAppController.controller('RoomController', function($scope, dataFactory, dataS
             if ($scope.collection.length < 1) {
                 $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: $scope._t('no_data')};
             }
-             dataService.updateTimeTick();
+            dataService.updateTimeTick();
         }, function(error) {
 
             dataService.showConnectionError(error);
@@ -1680,6 +1730,7 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
     };
 
     $scope.loadData = function() {
+        dataService.showConnectionSpinner();
         dataFactory.getApi('devices').then(function(response) {
             zwaveApiData(response.data.data.devices);
         }, function(error) {
@@ -1695,6 +1746,7 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
     function zwaveApiData(devices) {
 
         dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
+            dataService.updateTimeTick();
             if (!ZWaveAPIData.devices) {
                 return;
             }
@@ -1703,14 +1755,14 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
                 if (k == 1) {
                     return;
                 }
-                dataService.logInfo(k, 'Node ID')
+                //dataService.logInfo(k, 'Node ID')
                 $scope.zWaveDevices[k] = {
                     id: k,
                     title: v.data.givenName.value || 'Device ' + '_' + k,
                     elements: []
                 };
             });
-            dataService.logInfo($scope.zWaveDevices, 'Node ID')
+            //dataService.logInfo($scope.zWaveDevices, 'Node ID')
             var findZwaveStr = "ZWayVDev_zway_";
             angular.forEach(devices, function(v, k) {
                 var cmd;
@@ -1798,9 +1850,9 @@ myAppController.controller('AdminController', function($scope, $window, $cookies
      * Load data into collection
      */
     $scope.loadData = function() {
-          dataService.showConnectionSpinner();
+        dataService.showConnectionSpinner();
         dataFactory.getApi('profiles').then(function(response) {
-           $scope.profiles = response.data.data;
+            $scope.profiles = response.data.data;
             dataService.updateTimeTick();
         }, function(error) {
             dataService.showConnectionError(error);
@@ -1961,7 +2013,7 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
 /**
  * My Access
  */
-myAppController.controller('MyAccessController', function($scope,   $window,dataFactory, dataService, myCache) {
+myAppController.controller('MyAccessController', function($scope, $window, dataFactory, dataService, myCache) {
     $scope.id = $scope.user.id;
     $scope.devices = {};
     $scope.input = {
@@ -1978,7 +2030,7 @@ myAppController.controller('MyAccessController', function($scope,   $window,data
         hide_single_device_events: []
 
     };
-   
+
     /**
      * Load data
      */
@@ -1989,7 +2041,7 @@ myAppController.controller('MyAccessController', function($scope,   $window,data
             loadDevices();
             $scope.input = response.data.data;
             $scope.loading = false;
-             dataService.updateTimeTick();
+            dataService.updateTimeTick();
         }, function(error) {
             $scope.input = false;
             $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-danger', message: $scope._t('error_load_data')};
@@ -2046,35 +2098,15 @@ myAppController.controller('MyAccessController', function($scope,   $window,data
 
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
             myCache.remove('profiles');
-           
+
             var user = {
                 lang: data.lang,
                 color: data.color
             };
-            
-             dataService.setUser(user);
-              $window.location.reload();
-             //$route.reload();
-              //$scope.loadData(input.id);
-//            if (data.color) {
-//                $scope.profile.cssClass = 'profile-' + data.color.substring(1);
-//                data.cssClass = 'profile-' + data.color.substring(1);
-//            }
-//            if (data.name) {
-//                $scope.profile.name = data.name;
-//            }
-//            if (data.id) {
-//                $scope.profile.id = data.id;
-//            }
-//            if (data.lang) {
-//                $scope.profile.lang = data.lang;
-//            }
-//            if (data.positions) {
-//                $scope.profile.positions = data.positions;
-//            }
-//
-//            $cookies.profile = angular.toJson(data);
-//            $route.reload();
+
+            dataService.setUser(user);
+            $window.location.reload();
+            //$route.reload();
 
         }, function(error) {
             alert($scope._t('error_update_data'));
@@ -2121,7 +2153,7 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
  * Logout controller
  */
 myAppController.controller('LogoutController', function($scope, $cookies, $location, $timeout, dataService) {
-    
+
     /**
      * Logout proccess
      */
@@ -2129,9 +2161,9 @@ myAppController.controller('LogoutController', function($scope, $cookies, $locat
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('logout')};
         //$cookies.user = false;
         $timeout(function() {
-               $location.path('/login'); 
+            $location.path('/login');
         }, 2000);
-        
+
     };
     $scope.logout();
 

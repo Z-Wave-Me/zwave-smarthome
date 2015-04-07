@@ -65,6 +65,7 @@
     "lb_available_rooms": "Available rooms",
     "lb_hide_events_device": "Hide events for this device",
     "lb_hide_events_source": "Hide events of this Source",
+    "lb_hidden_events_device": "Hidden events of devices",
     "nav_logout":"Logout",
     "---": "missing",
     "lb_show_all": "Show all",

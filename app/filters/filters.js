@@ -405,7 +405,7 @@ myApp.filter('eventDate', function() {
             return hrs + ':' + min;
 
         } else {
-            return day + '.' + mon + ' ' + hrs + ':' + min;
+            return day + '.' + mon + '. -  ' + hrs + ':' + min;
         }
     };
 });

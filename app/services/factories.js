@@ -20,6 +20,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies,$window,
     var updatedTime = Math.round(+new Date() / 1000);
     var lang = (angular.isDefined($cookies.lang) ? $cookies.lang : cfg.lang);
     return({
+        getApiLocal: getApiLocal,
         getApi: getApi,
         deleteApi: deleteApi,
         postApi: postApi,
@@ -33,6 +34,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies,$window,
         uploadApiFile:uploadApiFile,
         putCfgXml: putCfgXml,
         getJSCmd: getJSCmd,
+        refreshZwaveApiData: refreshZwaveApiData,
         getApiData: getApiData, // Deprecated: Remove after getApi implementation
         postApiData: postApiData,
         putApiData: putApiData,
@@ -61,6 +63,25 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies,$window,
             url: cfg.local_data_url + file
         };
         return getApiHandle(callback, request, file);
+
+    }
+    
+    /**
+     * Gets api local data
+     */
+    function getApiLocal(file) {
+       return $http({
+            method: 'get',
+            url: cfg.local_data_url + file
+        }).then(function(response) {
+            if (typeof response.data === 'object') {
+                return response;
+            } else {// invalid response
+                return $q.reject(response);
+            }
+        }, function(response) {// something went wrong
+            return $q.reject(response);
+        });
 
     }
 
@@ -488,6 +509,27 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies,$window,
     }
     
     /**
+     * Refresh ZwaveApiData 
+     */
+    function refreshZwaveApiData() {
+         return $http({
+            method: 'get',
+            url: cfg.server_url + cfg.zwave_api_url + 'Data/' +  updatedTime
+        }).then(function(response) {
+            if (typeof response.data === 'object') {
+                 updatedTime = ($filter('hasNode')(response, 'data.updateTime') || Math.round(+new Date() / 1000));
+                return response;
+            } else {
+                // invalid response
+                return $q.reject(response);
+            }
+        }, function(response) {
+            // something went wrong
+            return $q.reject(response);
+        });
+    }
+    
+    /**
      * Get updated data and join with ZwaveData
      */
     function  joinedZwaveData() {
@@ -526,42 +568,6 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies,$window,
             return $q.reject(response);
         });
         return;
-        
-        
-        var refresh = function() {
-            //console.log(apiData);
-            var request = $http({
-                method: "POST",
-                //url: "storage/updated.json"
-                url: cfg.server_url + cfg.update_url + time
-            });
-            request.success(function(data) {
-                $('#update_time_tick').html($filter('getCurrentTime')(time));
-                if (!apiData || !data)
-                    return;
-                time = data.updateTime;
-                angular.forEach(data, function(obj, path) {
-                    if (!angular.isString(path)) {
-                        return;
-                    }
-                    var pobj = apiData;
-                    var pe_arr = path.split('.');
-                    for (var pe in pe_arr.slice(0, -1)) {
-                        pobj = pobj[pe_arr[pe]];
-                    }
-                    pobj[pe_arr.slice(-1)] = obj;
-                });
-                result = {
-                    "joined": apiData,
-                    "update": data
-                };
-                return callback(result);
-            }).error(function() {
-                handleError();
-
-            });
-        };
-        apiDataInterval = $interval(refresh, cfg.interval);
     }
 
 

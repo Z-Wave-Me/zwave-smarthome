@@ -449,7 +449,7 @@ a:hover {
 /* line 150, sass/globals/_body.scss */
 .report-img {
   margin: 0 5px;
-  width: 40px;
+  max-width: 32px;
   display: inline;
 }
 
