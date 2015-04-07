@@ -640,9 +640,9 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies,$window,
                 addErrorElement();
             }
             return $http(request).success(function(data) {
-                addTimeTickElement();
-                updateTimeTick($filter('hasNode')(data, 'data.updateTime'));
-                myCache.put(cacheName, data);
+//                addTimeTickElement();
+//                updateTimeTick($filter('hasNode')(data, 'data.updateTime'));
+//                myCache.put(cacheName, data);
                 return callback(data);
             }).error(function(data, status, headers, config, statusText) {
                 handleError(data, status, headers, config, statusText);

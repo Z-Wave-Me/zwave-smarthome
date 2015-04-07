@@ -66,7 +66,7 @@
                         <span class="divider-vertical"></span>
                         <a href="#home" title="{{_t('nav_home')}}" ng-class="isActive('dashboard')"><i class="fa fa-home"></i></a>
                         <a href="#elements" title="{{_t('nav_elements')}}" ng-class="isActive('elements')"><i class="fa fa-th"></i></a>
-                        <a href="#rooms" title="{{_t('nav_rooms')}}" ng-class="isActive('location')"><i class="fa fa-th-large"></i></a>
+                        <a href="#rooms" title="{{_t('nav_rooms')}}" ng-class="isActive('rooms')"><i class="fa fa-th-large"></i></a>
                         <a href="#events" title="{{_t('nav_events')}}" ng-class="isActive('events')"><i class="fa fa-list-ul"></i></a>
                         <span class="divider-vertical"></span> 
                          &nbsp;<span id="update_time_tick"></span>
@@ -87,13 +87,13 @@
                 </div>
                 <div id="nav_collapse" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right only-icon">
-                        <li class="dropdown">
+                         <!--<li class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown"><img class="lang-switch-current" ng-src="app/img/flags/{{lang}}.png" alt="{{ v }}"/> <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li ng-repeat="v in lang_list" class="lang-switch" ng-if="v != lang"><a href="" data-collapse-navbar ng-click="changeLang(v)"><img ng-src="app/img/flags/{{v}}.png" alt="{{ v }}"/> {{ v }}</a></li>
                             </ul>
                         </li>
-                        <!--<li class="divider-vertical remove-margin"></li>
+                       <li class="divider-vertical remove-margin"></li>
                         <li>
                             <a href="" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-user fa-lg"></i> {{profile.name| cutText:true:15}}

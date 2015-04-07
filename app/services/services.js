@@ -7,7 +7,7 @@ var myAppService = angular.module('myAppService', []);
 /**
  * Device service
  */
-myAppService.service('dataService', function($filter, $log,myCache,cfg) {
+myAppService.service('dataService', function($filter, $log, $cookies,myCache, cfg) {
     /// --- Public functions --- ///
     /**
      * Get language line by key
@@ -25,9 +25,9 @@ myAppService.service('dataService', function($filter, $log,myCache,cfg) {
      */
     this.showConnectionError = function(error) {
         $('#update_time_tick').html('<i class="fa fa-minus-circle fa-lg text-danger"></i>');
-        return this.logError(error,'Unable to recieve HTTP data');
+        return this.logError(error, 'Unable to recieve HTTP data');
     };
-    
+
     /**
      * Show connection spinner
      */
@@ -35,46 +35,53 @@ myAppService.service('dataService', function($filter, $log,myCache,cfg) {
         $('#update_time_tick').html('<i class="fa fa-spinner fa-spin fa-lg text-success"></i>');
         //return this.logError(error,'Unable to recieve HTTP data');
     };
-    
+
     /**
      * Update time tick
      */
     this.updateTimeTick = function(time) {
-       
+
         time = (time || Math.round(+new Date() / 1000));
         $('#update_time_tick').html('<i class="fa fa-clock-o text-success"></i> <span class="text-success">' + $filter('getCurrentTime')(time)) + '</span>';
     };
-    
-    
-     /**
+
+
+    /**
      * Log error
      */
-    this.logError = function(error,message) {
+    this.logError = function(error, message) {
         message = message || 'ERROR:';
         $log.error('---------- ' + message + ' ----------', error);
     };
-     /**
+    /**
      * Log info
      */
-    this.logInfo = function(info,message) {
+    this.logInfo = function(info, message) {
         message = message || 'INFO:';
         $log.info('---------- ' + message + ' ----------', info);
     };
-    
-    
+
+
     /**
      * Mobile device detect
      */
     this.isMobile = function(a) {
         return isMobile(a);
     };
-    
-    
+
+
     /**
      * Get user data
      */
     this.getUser = function(data) {
         return getUser(data);
+    };
+
+    /**
+     * Set user data
+     */
+    this.setUser = function(data) {
+        return setUser(data);
     };
 
     /**
@@ -167,7 +174,7 @@ myAppService.service('dataService', function($filter, $log,myCache,cfg) {
     this.getRowBy = function(data, key, val, cache) {
         return getRowBy(data, key, val, cache);
     };
-    
+
     /**
      * Get config navigation devices
      */
@@ -187,25 +194,45 @@ myAppService.service('dataService', function($filter, $log,myCache,cfg) {
             return false;
         }
     }
-    
-     /**
+
+    /**
      * Get user data
      */
     function getUser(data) {
+        if($cookies.user){
+            return angular.fromJson($cookies.user);
+        }else{
+            return setUser(cfg.user_default);
+        }
+//        var user = {
+//            id: 1,
+//            name: 'Admin',
+//            positions: [],
+//            lang: cfg.lang,
+//            color: '#dddddd_',
+//            role: 1,
+//            dashboard: [],
+//            hide_rooms: [],
+//            hide_all_device_events: false,
+//            hide_system_events: false,
+//            hide_single_device_events: []
+//        };
+//        return user;
+
+    }
+
+    /**
+     * Set user data
+     */
+    function setUser(data) {
         var user = {
-        id: 1,
-        name: 'Admin',
-        positions: [],
-        lang: cfg.lang,
-        color: '#dddddd_',
-        role: 1,
-        dashboard: [],
-        hide_rooms: [],
-        hide_all_device_events: false,
-        hide_system_events: false,
-        hide_single_device_events: []
-    };
-    return user;
+            id: data.id || 1,
+            role: data.role || 1,
+            lang: data.lang || cfg.user_default.lang,
+            color: data.color || cfg.user_default.color
+        };
+        $cookies.user = angular.toJson(user);
+        return user;
 
     }
 
@@ -254,7 +281,7 @@ myAppService.service('dataService', function($filter, $log,myCache,cfg) {
                 return;
             }
             if (location === 'post' && v.location) {
-                 return;
+                return;
             }
             if (location > 0) {
                 if (v.location != location && v.location) {
@@ -444,18 +471,18 @@ myAppService.service('dataService', function($filter, $log,myCache,cfg) {
         angular.forEach(data, function(v, k) {
             var time = $filter('date')(v.t, 'H:mm');
             //if (v.id > currTime && out.labels.indexOf(time) === -1) {
-        if (v.id > currTime) {
+            if (v.id > currTime) {
                 out.labels.push(time);
                 //out.labels.push($filter('date')(v.timestamp,'dd.MM.yyyy H:mm'));
                 out.datasets[0].data.push(v.l);
             }
 
         });
-        if(out.datasets[0].data.length > 1){
+        if (out.datasets[0].data.length > 1) {
             return out;
         }
         return null;
-        
+
     }
     ;
 

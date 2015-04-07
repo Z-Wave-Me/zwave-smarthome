@@ -9,13 +9,13 @@
     .navbar-visible{
         .navbar-visible-in{
             .active{
-                background-color:lighten($brand-color-secondary, 20%);
+                background-color:$brand-color-secondary;
             }
         }
     }
 
     .navbar-inverse {
-        border-color: lighten($brand-color-secondary, 20%);
+        border-color: $brand-color-secondary;
 
     }
 

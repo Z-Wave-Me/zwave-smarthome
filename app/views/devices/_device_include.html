@@ -4,12 +4,34 @@
         <a href="#devices/zwave"><i class="fa fa-chevron-circle-left fa-lg"></i> <span ng-bind="_t('btn_back')"></span></a>
 
     <p>
-     
+     <h2 class="page-subtitle"><span ng-bind="_t('lb_include_device')"></span> <strong ng-show="device.data" ng-bind="device.data.brandname + ' '  + device.data.name"></strong></h2> 
     <div class="device-perex clearfix"> 
         <img class="include-device-img" ng-src="storage/img/devices/{{device.data.product_image}}" alt="img" ng-show="device.data.product_image" /> 
-        <p ng-bind="_t('lb_include_device')"></p> 
-        <h2 class="page-subtitle"><strong ng-show="device.data" ng-bind="device.data.brandname + ' '  + device.data.name"></strong></h2> 
-       
+        {{_t('lb_inclusion_info')}} 
+        <a href="" 
+           ng-disabled="[1, 2, 3, 4, 20].indexOf(controllerState) > -1"
+           ng-show="[5, 6, 7].indexOf(controllerState) == -1"
+           ng-click="runZwaveCmd('controller.RemoveNodeFromNetwork(1)');
+                       clearStepStatus = true">
+            <strong ng-bind="_t('btn_exclusion_start')"></strong>
+        </a>
+    </div>
+    <div class="col-device-exclude">
+        <div class="alert alert-warning" ng-show="controllerState == 5">
+            <i class="fa fa-spinner fa-spin"></i> <span ng-bind="_t('lb_ready_exclude')"></span> <strong ng-bind="device.data.exc"></strong>
+            <button 
+                class="btn btn-danger"
+                ng-show="[5, 6, 7].indexOf(controllerState) > -1"
+                ng-click="runZwaveCmd('controller.RemoveNodeFromNetwork(0)')" 
+                ng-bind="_t('btn_exclusion_stop')"></button>
+        </div>
+        <div class="alert alert-success alert-dismissible" ng-show="lastExcludedDevice != null">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <i class="fa fa-check"></i> <span ng-bind="_t('lb_device_excluded')"></span>
+        </div>
+
+
+        <!--  <div class="device-statement" ng-show="device.data.exc"><strong>Exclusion:</strong> <span ng-bind="device.data.Exclusion"></span></div>-->
     </div>
     <div class="col-device app-border app-gradient app-shadow">
         <table class="table table-report table-inclusion">
@@ -18,39 +40,14 @@
                 <tr>
                     <td><span class="badge badge-number">1</span></td>
                     <td>
-                         <!-- Text -->
-                        <div ng-show="[5, 6, 7].indexOf(controllerState) == -1">
                         <span class="device-step-body">
                             <strong>{{_t('lb_preparation')}}: </strong>
-                            <span ng-bind="_t('lb_include_preparation')"></span> 
-                             <a href="" 
-                                ng-disabled="[1, 2, 3, 4, 20].indexOf(controllerState) > -1"
-                                
-                                ng-click="runZwaveCmd('controller.RemoveNodeFromNetwork(1)');
-                                            clearStepStatus = true">
-                                <strong ng-bind="_t('lb_include_preparation_start')"></strong>
-                            </a>
-                            <br /><span  ng-show="device.data.prep" ng-bind="device.data.prep"></span>
+                            <span ng-bind="_t('lb_include_preparation')"></span>
+                            <span  ng-show="device.data.prep" ng-bind="device.data.prep"></span>
                                      
                         </span>
-                        </div>
-                         <!-- Exclusion -->
-                        <div class="alert alert-warning" ng-show="controllerState == 5">
-                            <i class="fa fa-spinner fa-spin"></i> <span ng-bind="_t('lb_ready_exclude')"></span> <strong ng-bind="device.data.exc"></strong>
-                            <button 
-                                class="btn btn-danger"
-                                ng-show="[5, 6, 7].indexOf(controllerState) > -1"
-                                ng-click="runZwaveCmd('controller.RemoveNodeFromNetwork(0)')" 
-                                ng-bind="_t('btn_exclusion_stop')"></button>
-                        </div>
-                        <!-- last Excluded Device -->
-                         <div class="alert alert-success alert-dismissible" ng-show="lastExcludedDevice != null">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <i class="fa fa-check"></i> <span ng-bind="_t('lb_device_excluded')"></span>
-                        </div>
-
                     </td>
-                    <td>&nbsp;<!--<i class="fa fa-check fa-2x text-success"></i>--></td>
+                    <td><i class="fa fa-check fa-2x text-success"></i></td>
                 </tr>
 
                 <!-- 2 -->

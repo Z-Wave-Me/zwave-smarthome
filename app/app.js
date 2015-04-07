@@ -37,9 +37,9 @@ myApp.config(['$routeProvider',
                     templateUrl: 'app/views/events/events.html'
                 }).
                 //Profile
-                when('/profiles', {
-                    templateUrl: 'app/views/profiles/profiles.html'
-                }).
+//                when('/profiles', {
+//                    templateUrl: 'app/views/profiles/profiles.html'
+//                }).
                 //Admin
                 when('/admin', {
                     templateUrl: 'app/views/admin/admin.html'
