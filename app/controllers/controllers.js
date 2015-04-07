@@ -2113,7 +2113,27 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
     $scope.login = function(input) {
         dataService.logInfo(input);
         $location.path('/elements/dashboard/1');
+        //dataService.setUser($scope.cfg.user_default);
     };
+
+});
+/**
+ * Logout controller
+ */
+myAppController.controller('LogoutController', function($scope, $cookies, $location, $timeout, dataService) {
+    
+    /**
+     * Logout proccess
+     */
+    $scope.logout = function() {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('logout')};
+        //$cookies.user = false;
+        $timeout(function() {
+               $location.path('/login'); 
+        }, 2000);
+        
+    };
+    $scope.logout();
 
 });
 /**

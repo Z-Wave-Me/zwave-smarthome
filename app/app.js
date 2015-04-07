@@ -36,10 +36,6 @@ myApp.config(['$routeProvider',
                 when('/events/:param?/:val?', {
                     templateUrl: 'app/views/events/events.html'
                 }).
-                //Profile
-//                when('/profiles', {
-//                    templateUrl: 'app/views/profiles/profiles.html'
-//                }).
                 //Admin
                 when('/admin', {
                     templateUrl: 'app/views/admin/admin.html'
@@ -98,6 +94,10 @@ myApp.config(['$routeProvider',
                 //Login
                 when('/login', {
                     templateUrl: 'app/views/login/login.html'
+                }).
+                //Login
+                when('/logout', {
+                    templateUrl: 'app/views/login/logout.html'
                 }).
                 // Test
                 when('/test', {
