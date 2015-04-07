@@ -282,6 +282,33 @@ myApp.filter('getMaxLevel', function() {
 });
 
 /**
+ * Today from unix - ExpertUI filter
+ */
+myApp.filter('isTodayFromUnix', function() {
+    return function(input) {
+        if(isNaN(input)){
+            return '?';
+        }
+        var d = new Date(input * 1000);
+        var day = (d.getDate() < 10 ? '0' + d.getDate() : d.getDate());
+        var mon = d.getMonth() + 1; //Months are zero based
+        mon = ( mon < 10 ? '0' +  mon :  mon);
+        var year = d.getFullYear();
+        var hrs = (d.getHours() < 10 ? '0' + d.getHours() : d.getHours());
+        var min = (d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes());
+        var sec = (d.getSeconds() < 10 ? '0' + d.getSeconds() : d.getSeconds());
+
+        if (d.toDateString() == (new Date()).toDateString()) {
+            //return hrs + ':' + min + ':' + sec;
+            return hrs + ':' + min;
+
+        } else {
+            //return day + '.' + mon + '.' + year + ' ' + hrs + ':' + min + ':' + sec;
+            return day + '.' + mon + '.' + year;
+        }
+    };
+});
+/**
  * Get current time
  */
 myApp.filter('getCurrentTime', function() {
