@@ -256,6 +256,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     //dataFactory.setCache(true);
 
     $scope.loadData = function() {
+         dataService.showConnectionSpinner();
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('devices').then(function(response) {
             var filter = null;
@@ -564,6 +565,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
      * Load data into collection
      */
     $scope.loadData = function() {
+        dataService.showConnectionSpinner();
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         $scope.timeFilter = (angular.isDefined($cookies.events_timeFilter) ? angular.fromJson($cookies.events_timeFilter) : $scope.timeFilter);
         var urlParam = '?since=' + $scope.timeFilter.since + '&profile=' + $scope.user.id;
