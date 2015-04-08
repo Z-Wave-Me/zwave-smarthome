@@ -149,12 +149,6 @@ myAppController.controller('TestController', function($scope, $routeParams, $fil
     };
 });
 /**
- * Home controller
- */
-myAppController.controller('HomeController', function($scope, dataFactory, dataService) {
-
-});
-/**
  * Element controller
  */
 myAppController.controller('ElementController', function($scope, $routeParams, $interval, dataFactory, dataService, myCache) {
@@ -1055,9 +1049,10 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
 
     // Post new module instance
     $scope.postModule = function(id) {
-        dataFactory.getApiData('modules', function(module) {
-            dataFactory.getApiData('namespaces', function(namespaces) {
-                var formData = dataService.getModuleFormData(module.data, module.data.defaults, namespaces.data);
+        dataService.showConnectionSpinner();
+        dataFactory.getApi('modules', '/' + id + '?lang=' + $scope.lang).then(function(module) {
+         dataFactory.getApi('namespaces').then(function(namespaces) {
+                var formData = dataService.getModuleFormData(module.data.data, module.data.data.defaults, namespaces.data.data);
                 var langCode = (angular.isDefined(cfg.lang_codes[$scope.lang]) ? cfg.lang_codes[$scope.lang] : null);
                 $scope.input = {
                     'instanceId': 0,
@@ -1066,7 +1061,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                     'title': $filter('hasNode')(formData, 'data.title'),
                     'description': $filter('hasNode')(formData, 'data.description'),
                     'moduleTitle': $filter('hasNode')(formData, 'data.title'),
-                    'category': module.data.category
+                    'category': module.data.data.category
                 };
                 $scope.showForm = true;
                 if (!$filter('hasNode')(formData, 'options.fields') || !$filter('hasNode')(formData, 'schema.properties')) {
@@ -1075,8 +1070,16 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                 }
                 $.alpaca.setDefaultLocale(langCode);
                 $('#alpaca_data').alpaca(formData);
+                dataService.updateTimeTick();
+            }, function(error) {
+                alert($scope._t('error_load_data'));
+                dataService.logError(error);
             });
-        }, '/' + id + '?lang=' + $scope.lang);
+            
+         }, function(error) {
+                alert($scope._t('error_load_data'));
+                dataService.logError(error);
+            });
     };
 
     // Put module instance
@@ -1084,20 +1087,21 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
         if (id < 1) {
             return;
         }
-        dataFactory.getApiData('instances', function(data) {
-            var instance = data.data;
-            dataFactory.getApiData('modules', function(module) {
-                dataFactory.getApiData('namespaces', function(namespaces) {
-                    var formData = dataService.getModuleFormData(module.data, instance.params, namespaces.data);
+        dataService.showConnectionSpinner();
+         dataFactory.getApi('instances', '/' + id, true).then(function(instances) {
+            var instance = instances.data.data;
+            dataFactory.getApi('modules',  '/' + instance.moduleId + '?lang=' + $scope.lang).then(function(module) {
+            dataFactory.getApi('namespaces').then(function(namespaces) {
+                    var formData = dataService.getModuleFormData(module.data.data, instance.params, namespaces.data.data);
 
                     $scope.input = {
                         'instanceId': instance.id,
-                        'moduleId': module.data.id,
+                        'moduleId': module.data.data.id,
                         'active': instance.active,
                         'title': instance.title,
                         'description': instance.description,
                         'moduleTitle': instance.title,
-                        'category': module.data.category
+                        'category': module.data.data.category
                     };
                     $scope.showForm = true;
                     if (!$filter('hasNode')(formData, 'options.fields') || !$filter('hasNode')(formData, 'schema.properties')) {
@@ -1106,12 +1110,22 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                     }
 
                     $('#alpaca_data').alpaca(formData);
-
-
-                });
-            }, '/' + instance.moduleId + '?lang=' + $scope.lang);
-
-        }, '/' + id, true);
+                    
+                 dataService.updateTimeTick();
+             }, function(error) {
+                alert($scope._t('error_load_data'));
+                dataService.logError(error);
+            });
+             dataService.updateTimeTick();
+             }, function(error) {
+                alert($scope._t('error_load_data'));
+                dataService.logError(error);
+            });
+        }, function(error) {
+                alert($scope._t('error_load_data'));
+                dataService.logError(error);
+            });
+        
     };
     /**
      * Load data
@@ -1128,8 +1142,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
             break;
     }
     /**
-     * 
-     * Deprecated
+     * Store form data
      */
     $scope.store = function(data) {
         var defaults = ['instanceId', 'moduleId', 'active', 'title', 'description'];
@@ -1150,15 +1163,22 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
             'params': params
         };
         if (input.instanceId > 0) {
-            dataFactory.putApiData('instances', input.instanceId, inputData, function(data) {
+            dataFactory.putApi('instances', input.instanceId, inputData).then(function(response) {
                 myCache.remove('devices');
                 $location.path('/apps');
+
+            }, function(error) {
+                alert($scope._t('error_update_data'));
+                dataService.logError(error);
             });
         } else {
-
-            dataFactory.postApiData('instances', inputData, function(data) {
+            dataFactory.postApiData('instances', inputData).then(function(response) {
                 myCache.remove('devices');
                 $location.path('/apps');
+
+            }, function(error) {
+                alert($scope._t('error_update_data'));
+                dataService.logError(error);
             });
         }
     };
@@ -1236,6 +1256,7 @@ myAppController.controller('DeviceController', function($scope, $routeParams, da
  * Device controller
  */
 myAppController.controller('IncludeController', function($scope, $routeParams, $timeout, $interval, dataFactory, dataService) {
+     $scope.apiDataInterval = null;
     $scope.device = {
         'data': null
     };
@@ -1249,7 +1270,8 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
     $scope.clearStepStatus = false;
     // Cancel interval on page destroy
     $scope.$on('$destroy', function() {
-        dataFactory.cancelApiDataInterval();
+        $interval.cancel($scope.apiDataInterval);
+        //dataFactory.cancelApiDataInterval();
     });
     /**
      * Load data into collection

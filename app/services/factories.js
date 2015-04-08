@@ -39,7 +39,6 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies,$window,
         postApiData: postApiData,
         putApiData: putApiData,
         deleteApiData: deleteApiData,
-        localData: localData,
         setCache: setCache,
         runCmd: runCmd,
         getSystemCmd: getSystemCmd,
@@ -54,17 +53,6 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies,$window,
     });
 
     /// --- Public functions --- ///
-    /**
-     * Gets app local data
-     */
-    function localData(file, callback) {
-        var request = {
-            method: "get",
-            url: cfg.local_data_url + file
-        };
-        return getApiHandle(callback, request, file);
-
-    }
     
     /**
      * Gets api local data
