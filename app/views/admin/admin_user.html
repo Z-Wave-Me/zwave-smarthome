@@ -31,6 +31,17 @@
                 </div>
              </fieldset>
             
+            <fieldset>
+                 <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_default_ui')"></span></h3>
+                <div>
+                    <!-- Default UI -->
+                    <div class="form-group form-inline">
+                        <label><input type="radio" name="default_ui" value="1" ng-model="input.default_ui" ng-checked="input.default_ui == 1" /> {{_t('lb_ui_smarthome')}}</label>
+                         <label><input type="radio" name="default_ui" value="2" ng-model="input.default_ui" ng-checked="input.default_ui == 2" /> {{_t('lb_ui_expert')}}</label>
+                    </div>
+                </div>
+             </fieldset>
+            
              <fieldset>
                 <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_settings')"></span></h3>
                 <div>

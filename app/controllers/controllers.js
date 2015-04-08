@@ -1881,10 +1881,12 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
         password: '',
         login: '',
         lang: 'en',
-        color: '',
+        color: '#dddddd',
         hide_all_device_events: false,
         hide_system_events: false,
-        hide_single_device_events: []
+        hide_single_device_events: [],
+        hide_rooms: [],
+        default_ui: 1
 
     };
 
@@ -1896,7 +1898,6 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('profiles', '/' + id, true).then(function(response) {
             //dataService.logInfo(response.data.data);
-            loadRooms();
             $scope.input = response.data.data;
             $scope.loading = false;
             dataService.updateTimeTick();
@@ -1909,7 +1910,20 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
     if ($scope.id > 0) {
         $scope.loadData($scope.id);
     }
-
+    
+    /**
+     * Load Rooms
+     */
+    $scope.loadRooms = function() {
+        dataFactory.getApi('locations').then(function(response) {
+            dataService.logInfo(response.data.data, 'Rooms');
+            $scope.rooms = response.data.data;
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    }
+    ;
+    $scope.loadRooms();
     /**
      * Assign room to list
      */
@@ -1976,18 +1990,7 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
     };
 
     /// --- Private functions --- ///
-    /**
-     * Load devices
-     */
-    function loadRooms() {
-        dataFactory.getApi('locations').then(function(response) {
-            dataService.logInfo(response.data.data, 'Rooms');
-            $scope.rooms = response.data.data;
-        }, function(error) {
-            dataService.showConnectionError(error);
-        });
-    }
-    ;
+    
 
 });
 /**
@@ -2010,6 +2013,7 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
         hide_single_device_events: []
 
     };
+    $scope.newPassword = null;
 
     /**
      * Load data
@@ -2087,6 +2091,35 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
             dataService.setUser(user);
             $window.location.reload();
             //$route.reload();
+
+        }, function(error) {
+            alert($scope._t('error_update_data'));
+            $scope.loading = false;
+            dataService.logError(error);
+        });
+
+    };
+    
+    /**
+     * Change password
+     */
+    $scope.changePassword = function(newPassword) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+
+        var input = {
+            id:  $scope.id,
+            password: newPassword
+
+        };
+        
+        dataFactory.putApi('profiles', input.id, input).then(function(response) {
+            var data = response.data.data;
+            if (!data) {
+                alert($scope._t('error_update_data'));
+                $scope.loading = false;
+                return;
+            }
+            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
 
         }, function(error) {
             alert($scope._t('error_update_data'));
