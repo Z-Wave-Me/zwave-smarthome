@@ -2105,13 +2105,11 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
      */
     $scope.changePassword = function(newPassword) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-
         var input = {
             id:  $scope.id,
             password: newPassword
 
         };
-        
         dataFactory.putApi('profiles', input.id, input).then(function(response) {
             var data = response.data.data;
             if (!data) {
@@ -2150,7 +2148,8 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
     $scope.input = {
         login: '',
         password: '',
-        keepme: false
+        keepme: false,
+        default_ui: 1
     };
     /**
      * Login proccess
