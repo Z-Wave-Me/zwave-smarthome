@@ -613,16 +613,24 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies,$window,
      * Run ExpertUI command
      */
     function runZwaveCmd(cmd) {
-        var request = {
-            method: "get",
+        return $http({
+            method: 'get',
             url: cfg.server_url + cfg.zwave_api_url + "Run/" + cmd
-        };
-        return $http(request).success(function(data) {
-            console.log('SUCCESS:' + request.url);
-        }).error(function(data, status, headers, config, statusText) {
-            handleError(data, status, headers, config, statusText);
-
+        }).then(function(response) {
+           return response;
+        }, function(response) {// something went wrong
+            return $q.reject(response);
         });
+//        var request = {
+//            method: "get",
+//            url: cfg.server_url + cfg.zwave_api_url + "Run/" + cmd
+//        };
+//        return $http(request).success(function(data) {
+//            console.log('SUCCESS:' + request.url);
+//        }).error(function(data, status, headers, config, statusText) {
+//            handleError(data, status, headers, config, statusText);
+//
+//        });
     }
 
     /// --- Private functions --- ///

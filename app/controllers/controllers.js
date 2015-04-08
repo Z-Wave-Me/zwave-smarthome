@@ -1235,7 +1235,7 @@ myAppController.controller('DeviceController', function($scope, $routeParams, da
 /**
  * Device controller
  */
-myAppController.controller('IncludeController', function($scope, $routeParams, $timeout, $interval,dataFactory, dataService) {
+myAppController.controller('IncludeController', function($scope, $routeParams, $timeout, $interval, dataFactory, dataService) {
     $scope.device = {
         'data': null
     };
@@ -1247,28 +1247,6 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
     $scope.hasBattery = false;
     $scope.inclusionError = false;
     $scope.clearStepStatus = false;
-    $scope.messages = {
-        "nm_controller_state_0": "Controller is in normal mode",
-        "nm_controller_state_1": "Ready to include.",
-        "nm_controller_state_2": "Device found, please wait...",
-        "nm_controller_state_3": "Including device, please wait...",
-        "nm_controller_state_4": "Device included.",
-        "nm_controller_state_5": "Ready to exclude.",
-        "nm_controller_state_6": "Device found, please wait...",
-        "nm_controller_state_7": "Device excluded.",
-        "nm_controller_state_8": "Ready to be (re-)included in the network.",
-        "nm_controller_state_9": "(Re-)inclusion started.",
-        "nm_controller_state_10": "Controller found, please wait...",
-        "nm_controller_state_11": "(Re-)including myself in network, please wait...",
-        "nm_controller_state_12": "Controller was (re-)included in network.",
-        "nm_controller_state_13": "Ready to include new primary. Press a button on the device to be included.",
-        "nm_controller_state_14": "Device found, please wait...",
-        "nm_controller_state_15": "Including new primary, please wait...",
-        "nm_controller_state_16": "Device included as primary.",
-        "nm_controller_state_17": "Canceling.",
-        "nm_controller_state_18": "Replace Failed Node process started.",
-        "nm_controller_state_19": "Replace Failed Node ready to include replacement device."
-    };
     // Cancel interval on page destroy
     $scope.$on('$destroy', function() {
         dataFactory.cancelApiDataInterval();
@@ -1291,39 +1269,9 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
                 dataService.showConnectionError(error);
                 return;
             });
-//            dataFactory.localData('device.' + lang + '.json', function(devices) {
-//                angular.forEach(devices, function(v, k) {
-//                    if (v.id == $routeParams.device) {
-//                        $scope.device.data = v;
-//                        return;
-//                    }
-//                });
-//
-//            });
         }
-        //return;
-
-        // Get ZwaveApiData
-        dataFactory.updateZwaveApiData(function(data) {
-            if ('controller.data.controllerState' in data) {
-                $scope.controllerState = data['controller.data.controllerState'].value;
-                //console.log($scope.controllerState);
-            }
-            if ('controller.data.lastExcludedDevice' in data) {
-                $scope.lastExcludedDevice = data['controller.data.lastExcludedDevice'].value;
-            }
-            if ('controller.data.lastIncludedDevice' in data) {
-                var deviceIncId = data['controller.data.lastIncludedDevice'].value;
-                if (deviceIncId != null) {
-                    var givenName = 'Device_' + deviceIncId;
-                    var cmd = 'devices[' + deviceIncId + '].data.givenName.value=\'' + givenName + '\'';
-                    dataFactory.runZwaveCmd(cmd);
-                    $scope.includedDeviceId = deviceIncId;
-                }
-            }
-        });
+        return;
     };
-
     $scope.loadData($scope.lang);
 
     /**
@@ -1335,7 +1283,6 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
                 var data = response.data;
                 if ('controller.data.controllerState' in data) {
                     $scope.controllerState = data['controller.data.controllerState'].value;
-                    //console.log($scope.controllerState);
                 }
                 if ('controller.data.lastExcludedDevice' in data) {
                     $scope.lastExcludedDevice = data['controller.data.lastExcludedDevice'].value;
@@ -1345,10 +1292,14 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
                     if (deviceIncId != null) {
                         var givenName = 'Device_' + deviceIncId;
                         var cmd = 'devices[' + deviceIncId + '].data.givenName.value=\'' + givenName + '\'';
-                        dataFactory.runZwaveCmd(cmd);
+                        dataFactory.runZwaveCmd(cmd).then(function() {
+                        }, function(error) {
+                            dataService.logError(error);
+                        });
                         $scope.includedDeviceId = deviceIncId;
                     }
                 }
+                dataService.updateTimeTick(data.updateTime);
             }, function(error) {
                 dataService.showConnectionError(error);
             });
@@ -1356,14 +1307,16 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
         $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
     };
 
-    //$scope.refreshData();
+    $scope.refreshData();
 
-    // Watch for last excluded device
+    /**
+     * Watch for last excluded device
+     */
     $scope.$watch('includedDeviceId', function() {
         if ($scope.includedDeviceId) {
             var timeOut;
             timeOut = $timeout(function() {
-                dataFactory.getZwaveApiData(function(ZWaveAPIData) {
+                dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
                     var interviewDone = true;
                     var nodeId = $scope.includedDeviceId;
                     var instanceId = 0;
@@ -1405,6 +1358,8 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
                     }
 
                     $scope.includedDeviceId = null;
+                }, function(error) {
+                    dataService.showConnectionError(error);
                 });
 
             }, 15000);
@@ -1417,7 +1372,10 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
     $scope.runZwaveCmd = function(cmd) {
         $scope.lastIncludedDevice = null;
         $scope.lastExcludedDevice = null;
-        dataFactory.runZwaveCmd(cmd);
+        dataFactory.runZwaveCmd(cmd).then(function() {
+        }, function(error) {
+            dataService.logError(error);
+        });
 
     };
 

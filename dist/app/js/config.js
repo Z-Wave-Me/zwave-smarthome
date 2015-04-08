@@ -61,6 +61,13 @@ var config_data = {
             'de': 'de_AT',
             'ru': 'en_EN'
         },
+         // User default
+        'user_default': {
+            'id': 1,
+            'role': 1,
+            'color': '#dddddd',
+            'lang': 'en'
+        },
         // List of profile colors
         'profile_colors': ['#dddddd','#6c7a89', '#6494bc', '#80ad80', '#31b0d5', '#f0aD4e', '#d9534f','#dd976e'],
         // Chart colors
