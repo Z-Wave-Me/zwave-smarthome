@@ -15,8 +15,8 @@ myApp.directive('testDir', function() {
 myApp.directive('bbGoBack', ['$window', function($window) {
         return {
             restrict: 'A',
-            link: function (scope, elem, attrs) {
-                elem.bind('click', function () {
+            link: function(scope, elem, attrs) {
+                elem.bind('click', function() {
                     $window.history.back();
                 });
             }
@@ -76,7 +76,7 @@ myApp.directive('knob', function() {
     };
 });
 
-myApp.directive('myknob', ['$timeout', 'dataFactory', function($timeout, dataFactory) {
+myApp.directive('myknob', ['$timeout', 'dataFactory', function($timeout, dataFactory,dataService) {
         'use strict';
 
         return {
@@ -114,7 +114,9 @@ myApp.directive('myknob', ['$timeout', 'dataFactory', function($timeout, dataFac
          */
         function runCmdExact(id, val) {
             var cmd = id + '/command/exact?level=' + val;
-            dataFactory.runCmd(cmd);
+            dataFactory.runApiCmd(cmd).then(function(response) {}, function(error) {
+                dataService.logError(error);
+            });
             return;
         }
         ;
@@ -178,19 +180,19 @@ myApp.directive('ngConfirmClick', [
 /**
  * Upload file
  */
-myApp.directive('fileModel', ['$parse', function ($parse) {
-    return {
-        restrict: 'A',
-        link: function(scope, element, attrs) {
-            var model = $parse(attrs.fileModel);
-            var modelSetter = model.assign;
-            
-            element.bind('change', function(){
-                scope.$apply(function(){
-                    modelSetter(scope, element[0].files[0]);
+myApp.directive('fileModel', ['$parse', function($parse) {
+        return {
+            restrict: 'A',
+            link: function(scope, element, attrs) {
+                var model = $parse(attrs.fileModel);
+                var modelSetter = model.assign;
+
+                element.bind('change', function() {
+                    scope.$apply(function() {
+                        modelSetter(scope, element[0].files[0]);
+                    });
                 });
-            });
-        }
-    };
-}]);
+            }
+        };
+    }]);
 

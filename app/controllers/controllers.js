@@ -42,9 +42,12 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
     $scope.loadLang = function(lang) {
         // Is lang in language list?
         var lang = (cfg.lang_list.indexOf(lang) > -1 ? lang : cfg.lang);
-        dataFactory.getLanguageFile(function(data) {
-            $scope.languages = data;
-        }, lang);
+        dataFactory.getLanguageFile(lang).then(function(response) {
+                $scope.languages = response.data;
+            }, function(error) {
+                dataService.showConnectionError(error);
+                 dataService.logError(error);
+            });
     };
     // Get language lines
     $scope._t = function(key) {
@@ -188,8 +191,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
 
     // Cancel interval on page destroy
     $scope.$on('$destroy', function() {
-        dataFactory.cancelApiDataInterval();
-        $interval.cancel($scope.apiDataInterval);
+       $interval.cancel($scope.apiDataInterval);
         $('.modal').remove();
         $('.modal-backdrop').remove();
         $('body').removeClass("modal-open");
@@ -204,7 +206,6 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     /**
      * Load data into collection
      */
-    //dataFactory.setCache(true);
 
     $scope.loadData = function() {
         dataService.showConnectionSpinner();
@@ -1172,7 +1173,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                 dataService.logError(error);
             });
         } else {
-            dataFactory.postApiData('instances', inputData).then(function(response) {
+            dataFactory.postApi('instances', inputData).then(function(response) {
                 myCache.remove('devices');
                 $location.path('/apps');
 
@@ -1271,7 +1272,6 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
     // Cancel interval on page destroy
     $scope.$on('$destroy', function() {
         $interval.cancel($scope.apiDataInterval);
-        //dataFactory.cancelApiDataInterval();
     });
     /**
      * Load data into collection
