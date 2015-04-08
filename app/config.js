@@ -66,7 +66,8 @@ var config_data = {
             'id': 1,
             'role': 1,
             'color': '#dddddd',
-            'lang': 'en'
+            'lang': 'en',
+            'interval': 3000
         },
         // List of profile colors
         'profile_colors': ['#dddddd','#6c7a89', '#6494bc', '#80ad80', '#31b0d5', '#f0aD4e', '#d9534f','#dd976e'],

@@ -14,17 +14,9 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
      */
     $scope.cfg = cfg;
     $scope.loading = false;
-    // Current profile
-    //$scope.demoColor = ['#6494bc', '#80ad80', '#dd976e', '#6494bc', '#80ad80', '#dd976e', '#6494bc', '#80ad80', '#dd976e', '#6494bc', '#80ad80', '#dd976e'];
-    $scope.profile = {
-        'id': 1,
-        'name': 'Default',
-        'cssClass': 'profile-80ad80',
-        'active': true,
-        'lang': cfg.lang,
-        'positions': []
-    };
     $scope.user = dataService.getUser();
+    $scope.cfg.interval = ($scope.user.interval || $scope.cfg.interval);
+    
     /**
      * Language settings
      */
@@ -2010,7 +2002,8 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
         color: '',
         hide_all_device_events: false,
         hide_system_events: false,
-        hide_single_device_events: []
+        hide_single_device_events: [],
+        interval: 2000
 
     };
     $scope.newPassword = null;
@@ -2085,9 +2078,9 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
 
             var user = {
                 lang: data.lang,
-                color: data.color
+                color: data.color,
+                interval: input.interval
             };
-
             dataService.setUser(user);
             $window.location.reload();
             //$route.reload();

@@ -34,6 +34,12 @@
                         </span>
                         <span ng-bind="input.color"></span>
                     </div>
+                     <!-- interval -->
+                    <div class="form-group form-inline">
+                        <label>{{_t('lb_interval')}}: </label>
+                        <input name="interval" id="interval" type="text" class="form-control" placeholder="{{_t('lb_interval_placeholder')}}" value="{{input.interval}}" ng-model="input.interval" />
+                        ({{_t('miliseconds')}})
+                    </div>
 
                 </div>
             </fieldset>
