@@ -285,12 +285,14 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
 
     // Refresh api data
     function refreshApi(api, params) {
+        //console.log('?since=' + updatedTime)
         return $http({
             method: 'get',
             url: cfg.server_url + cfg.api[api] + '?since=' + updatedTime + (params ? params : '')
         }).then(function(response) {
             if (typeof response.data === 'object') {
                 updatedTime = ($filter('hasNode')(response.data, 'data.updateTime') || Math.round(+new Date() / 1000));
+                //console.log('Response update time:' + response.data.data.updateTime)
                 return response;
             } else {// invalid response
                 return $q.reject(response);

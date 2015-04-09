@@ -166,7 +166,7 @@ myApp.filter('getUrlSegment', function($location) {
  * Get current time
  */
 myApp.filter('getElementIcon', function(cfg) {
-    return function(input, device) {
+    return function(input, device,level) {
         var icon = cfg.img.icons + 'placeholder.png';
         if (input) {
             if ((/^http:\/\//.test(input))) {
@@ -174,21 +174,21 @@ myApp.filter('getElementIcon', function(cfg) {
             }
             switch (input) {
                 case 'door':
-                    icon = cfg.img.icons + (device.metrics.level == 'open' ? 'door-open.png' : 'door-closed.png');
+                    icon = cfg.img.icons + (level == 'open' ? 'door-open.png' : 'door-closed.png');
                     break;
 
                 case 'switch':
-                    icon = cfg.img.icons + (device.metrics.level == 'on' ? 'switch-on.png' : 'switch-off.png');
+                    icon = cfg.img.icons + (level == 'on' ? 'switch-on.png' : 'switch-off.png');
                     break;
 
                 case 'motion':
-                    icon = cfg.img.icons + (device.metrics.level == 'on' ? 'motion-on.png' : 'motion-off.png');
+                    icon = cfg.img.icons + (level == 'on' ? 'motion-on.png' : 'motion-off.png');
                     break;
 
                 case 'blinds':
-                    if (device.metrics.level == 0) {
+                    if (level == 0) {
                         icon = cfg.img.icons + 'blind-down.png';
-                    } else if (device.metrics.level >= 99) {
+                    } else if (level >= 99) {
                         icon = cfg.img.icons + 'blind-up.png';
                     } else {
                         icon = cfg.img.icons + 'blind-half.png';
@@ -196,9 +196,9 @@ myApp.filter('getElementIcon', function(cfg) {
                     break;
 
                 case 'multilevel':
-                    if (device.metrics.level == 0) {
+                    if (level == 0) {
                         icon = cfg.img.icons + 'dimmer-off.png';
-                    } else if (device.metrics.level >= 99) {
+                    } else if (level >= 99) {
                         icon = cfg.img.icons + 'dimmer-on.png';
                     } else {
                         icon = cfg.img.icons + 'dimmer-half.png';

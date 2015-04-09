@@ -7,7 +7,7 @@ var myAppService = angular.module('myAppService', []);
 /**
  * Device service
  */
-myAppService.service('dataService', function($filter, $log, $cookies,myCache, cfg) {
+myAppService.service('dataService', function($filter, $log, $cookies, myCache, cfg) {
     /// --- Public functions --- ///
     /**
      * Get language line by key
@@ -199,9 +199,9 @@ myAppService.service('dataService', function($filter, $log, $cookies,myCache, cf
      * Get user data
      */
     function getUser(data) {
-        if($cookies.user){
+        if ($cookies.user) {
             return angular.fromJson($cookies.user);
-        }else{
+        } else {
             return setUser(cfg.user_default);
         }
 //        var user = {
@@ -364,7 +364,7 @@ myAppService.service('dataService', function($filter, $log, $cookies,myCache, cf
                 updateDeviceTime(widgetId, v);
                 updateDeviceIcon(widgetId, v);
                 updateDeviceBtn(widgetId, v);
-
+                console.log('Update device ID: ' + v.id + ' - level: ' + v.metrics.level)
 
             });
         }
@@ -388,7 +388,7 @@ myAppService.service('dataService', function($filter, $log, $cookies,myCache, cf
             $(widgetId + ' .widget-level').html(val);
             $(widgetId + ' .widget-level-knob').val(val);
         }
-        console.log('Update device: ID: ' + v.id + ' - level: ' + val)
+        //console.log('Update device: ID: ' + v.id + ' - level: ' + val)
 
     }
 
@@ -400,18 +400,23 @@ myAppService.service('dataService', function($filter, $log, $cookies,myCache, cf
         if (time) {
             $(widgetId + ' .widget-update-time').html(time);
         }
-        console.log('Update device: ID: ' + v.id + ' - time: ' + time)
+        //console.log('Update device: ID: ' + v.id + ' - time: ' + time)
     }
 
     /**
      * Update device icon
      */
     function updateDeviceIcon(widgetId, v) {
-        var icon = $filter('getElementIcon')(v.metrics.icon, v);
+        
+        var icon = $filter('getElementIcon')(v.metrics.icon, v, v.metrics.level);
         if (icon) {
             $(widgetId + ' .widget-image').attr('src', icon);
         }
-        console.log('Update device: ID: ' + v.id + ' - icon: ' + icon)
+        //if (v.id == 'ZWayVDev_zway_14-0-37') {
+            //console.log('Level: ' + v.metrics.level)
+           //console.log('Update device: ' + v.id + ' - icon: ' + icon)
+        //}
+        
     }
 
     /**
@@ -446,7 +451,7 @@ myAppService.service('dataService', function($filter, $log, $cookies,myCache, cf
             $(widgetId + ' .widget-btn-on').removeClass('btn-primary').addClass('btn-default');
             $(widgetId + ' .widget-btn-off').removeClass('btn-default').addClass('btn-primary');
         }
-        console.log('Update device: ID: ' + v.id + ' - button ' + v.metrics.level)
+        //console.log('Update device: ID: ' + v.id + ' - button ' + v.metrics.level)
         //}
 
     }
