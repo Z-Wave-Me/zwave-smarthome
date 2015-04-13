@@ -464,11 +464,8 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
      * Process CMD
      */
     function runCmd(cmd) {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        dataFactory.runApiCmd(cmd).then(function(response) {
-            $scope.loading = false;
-
-        }, function(error) {
+        //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        dataFactory.runApiCmd(cmd).then(function(response) {}, function(error) {
             alert($scope._t('error_update_data'));
             $scope.loading = false;
             dataService.logError(error);

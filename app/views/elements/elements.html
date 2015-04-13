@@ -60,13 +60,13 @@
                                     <button 
                                         class="btn btn-sm widget-btn-off" 
                                         id="btn_off_{{ v.id}}"
-                                        data-ng-click="runCmd(v.id + '/command/off');levelVal[v.id] == 0;goHidden = false"
+                                        data-ng-click="levelVal[v.id] == 0;runCmd(v.id + '/command/off');goHidden = false"
                                         ng-class="levelVal[v.id] < 1 ? 'btn-primary': 'btn-default'"
                                         ng-bind="_t('lb_down')"></button>
                                     <button 
                                         class="btn btn-sm widget-btn-on" 
                                         id="btn_on_{{ v.id}}"
-                                        data-ng-click="runCmd(v.id + '/command/on');levelVal[v.id] == 99;goHidden = false"
+                                        data-ng-click="levelVal[v.id] == 99;runCmd(v.id + '/command/on');goHidden = false"
                                         ng-class="levelVal[v.id] > 0 ? 'btn-primary': 'btn-default'"
                                         ng-bind="_t('lb_up')"></button>
                                 </div>
@@ -84,13 +84,13 @@
                                     <button 
                                         class="btn btn-sm widget-btn-off" 
                                         id="btn_off_{{ v.id}}"
-                                        data-ng-click="runCmd(v.id + '/command/off');levelVal[v.id] = 'off'"
+                                        data-ng-click="levelVal[v.id] = 'off';runCmd(v.id + '/command/off')"
                                         ng-class="levelVal[v.id]=='off' ? 'btn-primary': 'btn-default'"
                                         ng-bind="_t('lb_off')"></button>
                                     <button 
                                         class="btn btn-sm widget-btn-on" 
                                         id="btn_on_{{ v.id}}"
-                                        data-ng-click="runCmd(v.id + '/command/on');levelVal[v.id] = 'on'"
+                                        data-ng-click="levelVal[v.id] = 'on';runCmd(v.id + '/command/on')"
                                         ng-class="levelVal[v.id]=='on' ? 'btn-primary': 'btn-default'"
                                         ng-bind="_t('lb_on')"></button>
                                 </div>
@@ -113,13 +113,13 @@
                                             class="btn widget-btn-off btn-sm" 
                                             id="btn_off_{{ v.id}}"
                                             ng-class="levelVal[v.id]=='off' ? 'btn-primary': 'btn-default'"
-                                            data-ng-click="runCmd(v.id + '/command/off');levelVal[v.id] = 'off'"
+                                            data-ng-click="levelVal[v.id] = 'off';runCmd(v.id + '/command/off')"
                                             ng-bind="_t('lb_off')"></button>
                                         <button 
                                             class="btn widget-btn-on btn-sm" 
                                             id="btn_on_{{ v.id}}"
                                             ng-class="levelVal[v.id]=='on' ? 'btn-primary': 'btn-default'"
-                                            data-ng-click="runCmd(v.id + '/command/on');levelVal[v.id] = 'on'"
+                                            data-ng-click="levelVal[v.id] = 'on';runCmd(v.id + '/command/on')"
                                             ng-bind="_t('lb_on')"></button>
                                     </div>
                                 </div><!-- /.widget-control .right --> 
@@ -132,13 +132,13 @@
                                     <button 
                                         class="btn widget-btn-off btn-sm"
                                         ng-class="levelVal[v.id]=='closed' ? 'btn-primary': 'btn-default'"
-                                        data-ng-click="runCmd(v.id + '/command/off');levelVal[v.id] = 'off'"
+                                        data-ng-click="levelVal[v.id] = 'off';runCmd(v.id + '/command/off')"
                                         ><i class="fa fa-lock"></i>
                                     </button>
                                     <button 
                                         class="btn widget-btn-on btn-sm"
                                         ng-class="levelVal[v.id]=='open' ? 'btn-primary': 'btn-default'"
-                                        data-ng-click="runCmd(v.id + '/command/on');levelVal[v.id] = 'on'"
+                                        data-ng-click="levelVal[v.id] = 'on';runCmd(v.id + '/command/on')"
                                         ><i class="fa fa-unlock"></i>
                                     </button>
                                 </div>
