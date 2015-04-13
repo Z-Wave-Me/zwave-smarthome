@@ -20,7 +20,8 @@
                      <span class="text-supp"><i class="fa {{v.level|getEventIcon}}"></i> </span>
                     </td>
                     <td>
-                        <span class="report-message" ng-bind="v.message"></span>
+                        <a href="#element/{{v.source}}" ng-bind="v.message" ng-if="v.source && v.message"></a>
+                        <span class="report-message" ng-bind="v.message" ng-if="!v.source && !v.message"></span>
                     </td>
                     <td class="td-action">
                         <div class="btn-group">

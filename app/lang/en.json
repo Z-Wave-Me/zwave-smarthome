@@ -59,7 +59,7 @@
     "lb_today": "Today",
     "lb_yesterday": "Yesterday",
     "lb_days": "days",
-    "no_data": "No data found",
+    "no_data": "Requested data does not exists",
     "lb_rooms_access": "Access to rooms",
     "lb_disable_rooms": "Disable access to rooms",
     "lb_available_rooms": "Available rooms",

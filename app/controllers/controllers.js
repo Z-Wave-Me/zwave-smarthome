@@ -16,7 +16,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
     $scope.loading = false;
     $scope.user = dataService.getUser();
     $scope.cfg.interval = ($scope.user.interval || $scope.cfg.interval);
-    
+
     /**
      * Language settings
      */
@@ -35,11 +35,11 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
         // Is lang in language list?
         var lang = (cfg.lang_list.indexOf(lang) > -1 ? lang : cfg.lang);
         dataFactory.getLanguageFile(lang).then(function(response) {
-                $scope.languages = response.data;
-            }, function(error) {
-                dataService.showConnectionError(error);
-                 dataService.logError(error);
-            });
+            $scope.languages = response.data;
+        }, function(error) {
+            dataService.showConnectionError(error);
+            dataService.logError(error);
+        });
     };
     // Get language lines
     $scope._t = function(key) {
@@ -183,7 +183,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
 
     // Cancel interval on page destroy
     $scope.$on('$destroy', function() {
-       $interval.cancel($scope.apiDataInterval);
+        $interval.cancel($scope.apiDataInterval);
         $('.modal').remove();
         $('.modal-backdrop').remove();
         $('body').removeClass("modal-open");
@@ -465,13 +465,183 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
      */
     function runCmd(cmd) {
         //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        dataFactory.runApiCmd(cmd).then(function(response) {}, function(error) {
+        dataFactory.runApiCmd(cmd).then(function(response) {
+        }, function(error) {
             alert($scope._t('error_update_data'));
             $scope.loading = false;
             dataService.logError(error);
         });
         return;
     }
+});
+/**
+ * Element detail controller controller
+ */
+myAppController.controller('ElementDetailController', function($scope, $routeParams, dataFactory, dataService,myCache) {
+    $scope.input = [];
+    $scope.rooms = [];
+    $scope.profileData = [];
+
+    /**
+     * Load data into collection
+     */
+
+    $scope.loadData = function(id) {
+        dataService.showConnectionSpinner();
+        dataFactory.getApi('devices', '/' + id).then(function(response) {
+
+            var devices = [];
+            devices[0] = response.data.data;
+            $scope.deviceType = dataService.getDeviceType(devices);
+            $scope.tags = dataService.getTags(devices);
+            //Profile
+            loadProfile();
+            // Loacations
+            loadLocations();
+            // Instances
+            loadInstances(devices);
+
+        }, function(error) {
+            alert($scope._t('error_load_data'));
+            dataService.showConnectionError(error);
+        });
+    };
+    $scope.loadData($routeParams.id);
+    
+    /**
+     * Add tag to list
+     */
+    $scope.addTag = function(tag) {
+        if (!tag || $scope.input.tags.indexOf(tag) > -1) {
+            return;
+        }
+        $scope.input.tags.push(tag);
+        $scope.addNewTag = null;
+        return;
+    };
+    /**
+     * Remove tag from list
+     */
+    $scope.removeTag = function(index) {
+        $scope.input.tags.splice(index, 1);
+    };
+    
+     /**
+     * Update an item
+     */
+    $scope.store = function(input) {
+        var inputData = {
+            'id': input.id,
+            'location': input.location,
+            'tags': dataService.setArrayValue(input.tags, 'dashboard', input.dashboard),
+            'permanently_hidden': input.permanently_hidden,
+            'metrics': input.metrics
+        };
+        inputData.metrics.title = input.title;
+        if (input.id) {
+            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+            dataFactory.putApi('devices', input.id, input).then(function(response) {
+                $scope.profileData.positions = dataService.setArrayValue($scope.profileData.positions, input.id, input.dashboard);
+                $scope.profileData.hide_single_device_events = dataService.setArrayValue($scope.profileData.hide_single_device_events, input.id, input.hide_events);
+                updateProfile($scope.profileData,input.id);
+
+            }, function(error) {
+                alert($scope._t('error_update_data'));
+                $scope.loading = false;
+                dataService.logError(error);
+            });
+        }
+
+    };
+
+    /// --- Private functions --- ///
+    /**
+     * Load profile
+     */
+    function loadProfile() {
+        $scope.profileData = [];
+        dataFactory.getApi('profiles', '/' + $scope.user.id).then(function(response) {
+            var profile = response.data.data;
+            $scope.profileData = {
+                'id': profile.id,
+                'name': profile.name,
+                'positions': profile.positions,
+                'hide_single_device_events': profile.hide_single_device_events
+            };
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    }
+    ;
+
+    /**
+     * Load locations
+     */
+    function loadLocations() {
+        dataFactory.getApi('locations').then(function(response) {
+            $scope.rooms = response.data.data;
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    }
+    ;
+    /**
+     * Load instances
+     */
+    function loadInstances(devices) {
+        dataFactory.getApi('instances').then(function(response) {
+            dataService.logInfo(devices)
+            var v = dataService.getDevices(devices, null, $scope.profileData.positions, response.data.data)[0];
+            dataService.logInfo(v)
+            if (v && $scope.profileData.hide_single_device_events && $scope.rooms) {
+              $scope.input = {
+                    'id': v.id,
+                    'title': v.title,
+                    'dashboard': v.onDashboard == true ? true : false,
+                    'location': v.location,
+                    'tags': v.tags,
+                    'deviceType': v.deviceType,
+                    'level': v.level,
+                    'metrics': v.metrics,
+                    'updateTime': v.updateTime,
+                    'cfg': v.cfg,
+                    'permanently_hidden': v.permanently_hidden,
+                    'rooms': $scope.rooms,
+                    'hide_events': ($scope.profileData.hide_single_device_events.indexOf(v.id) === -1 ? false : true)
+                };
+                 dataService.updateTimeTick(response.data.data.updateTime);
+            }else{
+                alert($scope._t('no_data'));
+                dataService.showConnectionError($scope._t('no_data'));
+            }
+
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    }
+    ;
+    
+    /**
+     * Update profile
+     */
+    function updateProfile(profileData,deviceId) {
+        dataFactory.putApi('profiles', profileData.id, profileData).then(function(response) {
+            //dataService.logInfo(response, 'Updating Devices');
+            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
+            myCache.remove('devices');
+            myCache.remove('profiles');
+            $scope.profileData = [];
+            $scope.input = [];
+            $scope.loadData(deviceId);
+
+        }, function(error) {
+            alert($scope._t('error_update_data'));
+            $scope.loading = false;
+            dataService.logError(error);
+        });
+        return;
+    }
+
 });
 /**
  * Event controller
@@ -1041,7 +1211,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
     $scope.postModule = function(id) {
         dataService.showConnectionSpinner();
         dataFactory.getApi('modules', '/' + id + '?lang=' + $scope.lang).then(function(module) {
-         dataFactory.getApi('namespaces').then(function(namespaces) {
+            dataFactory.getApi('namespaces').then(function(namespaces) {
                 var formData = dataService.getModuleFormData(module.data.data, module.data.data.defaults, namespaces.data.data);
                 var langCode = (angular.isDefined(cfg.lang_codes[$scope.lang]) ? cfg.lang_codes[$scope.lang] : null);
                 $scope.input = {
@@ -1065,11 +1235,11 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                 alert($scope._t('error_load_data'));
                 dataService.logError(error);
             });
-            
-         }, function(error) {
-                alert($scope._t('error_load_data'));
-                dataService.logError(error);
-            });
+
+        }, function(error) {
+            alert($scope._t('error_load_data'));
+            dataService.logError(error);
+        });
     };
 
     // Put module instance
@@ -1078,10 +1248,10 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
             return;
         }
         dataService.showConnectionSpinner();
-         dataFactory.getApi('instances', '/' + id, true).then(function(instances) {
+        dataFactory.getApi('instances', '/' + id, true).then(function(instances) {
             var instance = instances.data.data;
-            dataFactory.getApi('modules',  '/' + instance.moduleId + '?lang=' + $scope.lang).then(function(module) {
-            dataFactory.getApi('namespaces').then(function(namespaces) {
+            dataFactory.getApi('modules', '/' + instance.moduleId + '?lang=' + $scope.lang).then(function(module) {
+                dataFactory.getApi('namespaces').then(function(namespaces) {
                     var formData = dataService.getModuleFormData(module.data.data, instance.params, namespaces.data.data);
 
                     $scope.input = {
@@ -1100,22 +1270,22 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                     }
 
                     $('#alpaca_data').alpaca(formData);
-                    
-                 dataService.updateTimeTick();
-             }, function(error) {
-                alert($scope._t('error_load_data'));
-                dataService.logError(error);
-            });
-             dataService.updateTimeTick();
-             }, function(error) {
+
+                    dataService.updateTimeTick();
+                }, function(error) {
+                    alert($scope._t('error_load_data'));
+                    dataService.logError(error);
+                });
+                dataService.updateTimeTick();
+            }, function(error) {
                 alert($scope._t('error_load_data'));
                 dataService.logError(error);
             });
         }, function(error) {
-                alert($scope._t('error_load_data'));
-                dataService.logError(error);
-            });
-        
+            alert($scope._t('error_load_data'));
+            dataService.logError(error);
+        });
+
     };
     /**
      * Load data
@@ -1246,7 +1416,7 @@ myAppController.controller('DeviceController', function($scope, $routeParams, da
  * Device controller
  */
 myAppController.controller('IncludeController', function($scope, $routeParams, $timeout, $interval, dataFactory, dataService) {
-     $scope.apiDataInterval = null;
+    $scope.apiDataInterval = null;
     $scope.device = {
         'data': null
     };
@@ -1899,7 +2069,7 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
     if ($scope.id > 0) {
         $scope.loadData($scope.id);
     }
-    
+
     /**
      * Load Rooms
      */
@@ -1979,7 +2149,7 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
     };
 
     /// --- Private functions --- ///
-    
+
 
 });
 /**
@@ -2089,14 +2259,14 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
         });
 
     };
-    
+
     /**
      * Change password
      */
     $scope.changePassword = function(newPassword) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         var input = {
-            id:  $scope.id,
+            id: $scope.id,
             password: newPassword
 
         };

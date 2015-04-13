@@ -332,6 +332,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, myCache, c
                     'hasInstance': hasInstance
                 }
             };
+            
             if (filter) {
                 if (angular.isArray(obj[filter.filter])) {
                     if (obj[filter.filter].indexOf(filter.val) > -1) {

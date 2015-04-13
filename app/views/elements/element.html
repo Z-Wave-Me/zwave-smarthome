@@ -1,0 +1,71 @@
+<!-- Element view -->
+<div ng-controller="ElementDetailController">
+    <bb-loader></bb-loader>
+    <div ng-show="input">
+        <h1><span ng-bind="_t('lb_cfg_view')"></span> <span ng-bind="input.title"></span></h1>
+        <form name="form_element" id="form_element" class="form form-page" ng-submit="store(input)" novalidate>
+            <fieldset>
+                 <div class="form-group_">
+                        <label ng-bind="_t('lb_element_name')">{{}}:</label>
+                        <input name="title" id="title" type="text" class="form-control" value="{{input.title}}" placeholder="{{_t('lb_element_name')}}" ng-model="input.title" />
+                    </div>
+             </fieldset>
+            <fieldset>
+                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_configuration')"></span></h3>
+                <div>
+                    <!-- instance -->
+                     <div class="form-group" ng-show="input.cfg.hasInstance">
+                            <span ng-bind="_t('lb_gen_by_module')"></span> <a class="btn btn-default btn-sm" ng-href="#module/put/{{input.cfg.hasInstance.id}}" ng-bind="input.cfg.hasInstance.moduleId"></a>
+                        </div>
+                    <!-- zwave -->
+                        <div class="form-group" ng-show="input.cfg.zwaveId">
+                            <div ng-show="cfg.app_type == 'web'">
+                                <span ng-bind="_t('lb_gen_by')"></span> <a href="#deviceconfig/{{input.cfg.zwaveId}}" class="btn btn-default btn-sm">Z-Wave device #{{input.cfg.zwaveId}}</a>
+                            </div>
+                            <div class="alert alert-warning" ng-show="cfg.app_type == 'app'">
+                                <span ng-bind="_t('lb_gen_by')"></span> <span ng-bind="_t('lb_zwave_device')"></span> <strong>#{{input.cfg.zwaveId}}</strong> {{_t('lb_no_link')}}
+                            </div>
+
+                        </div>
+                    <!-- dashboard etc -->
+                    <div class="form-group">
+                            <input type="checkbox" name="dashboard" value="{{input.dashboard}}" id="dashboard" ng-model="input.dashboard" ng-checked="input.dashboard" /> <label ng-bind="_t('lb_add_dashboard')"></label>
+                            &nbsp;&nbsp;<input type="checkbox" name="permanently_hidden" id="permanently_hidden" value="" 
+                                               ng-model="input.permanently_hidden" 
+                                               ng-checked="input.permanently_hidden" 
+                                               ng-confirm-click="This means that you can never use this element again. Are you sure?" /> <label ng-bind="_t('lb_permanently_hide')"></label>
+                             <input type="checkbox" name="hide_events" value="{{input.id}}" id="hide_events" ng-model="input.hide_events" ng-checked="hide_events" /> <label ng-bind="_t('lb_hide_events_device')"></label>
+                        </div>
+                     <!-- interval -->
+                    <div class="form-group form-inline">
+                        <label>{{_t('lb_assign_room')}} </label>
+                         <select class="form-control" ng-model="input.location">
+                                <!-- <option value="">--- Select one ---</option>-->
+                                <option ng-repeat="v in rooms" ng-selected="input.location == v.id" value="{{v.id}}" ng-bind="v.title"></option>
+                            </select>
+                    </div>
+
+                </div>
+            </fieldset>
+            <fieldset>
+                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_tags')"></span></h3>
+                <div>
+                    <div class="form-group_">
+                            <div class="btn-device" id="tag_{{$index}}" ng-repeat="t in input.tags">{{t}} 
+                                <a href="" ng-click="removeTag($index)"><i class="fa fa-times text-danger"></i></a>
+                            </div>
+                        </div>
+                        <div class="form-group form-inline">
+                            <input name="add_tag" id="add_tag" type="text" class="form-control" value="" placeholder="{{_t('lb_add_tag')}}" ng-model="addNewTag" />
+                            <button type="button" class="btn btn-default" ng-click="addTag(addNewTag)"><i class="fa fa-plus text-success"></i></button>
+                        </div>
+                </div>
+            </fieldset>
+            <div class="form-footer">
+                 <button type="submit" class="btn btn-primary" ng-bind="_t('lb_save')"></button>
+                <button class="btn btn-default" ng-bind="_t('lb_cancel')" bb-go-back></button>
+            </div>
+        </form>
+    </div>
+    
+</div> <!-- /ng-controller --> 

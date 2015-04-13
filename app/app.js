@@ -28,6 +28,10 @@ myApp.config(['$routeProvider',
                 when('/elements/:filter?/:val?/:name?', {
                     templateUrl: 'app/views/elements/elements.html'
                 }).
+                 // Element
+                when('/element/:id', {
+                    templateUrl: 'app/views/elements/element.html'
+                }).
                 // Rooms
                 when('/rooms', {
                     templateUrl: 'app/views/rooms/rooms.html'
