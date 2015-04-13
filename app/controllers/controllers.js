@@ -327,8 +327,8 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     /**
      * Run command
      */
-    $scope.runCmd = function(cmd) {
-        runCmd(cmd);
+    $scope.runCmd = function(cmd,id) {
+        runCmd(cmd,id);
     };
     /**
      * Run command exact value
@@ -463,9 +463,11 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     /**
      * Process CMD
      */
-    function runCmd(cmd) {
+    function runCmd(cmd,id) {
+        var widgetId = '#Widget_' + id;
         //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         dataFactory.runApiCmd(cmd).then(function(response) {
+            $(widgetId + ' .widget-image').toggleClass('trans-true');
         }, function(error) {
             alert($scope._t('error_update_data'));
             $scope.loading = false;

@@ -327,6 +327,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, myCache, c
                 'creatorID': v.creatorId,
                 'updateTime': v.updateTime,
                 'onDashboard': onDashboard,
+                'imgTrans': false,
                 'cfg': {
                     'zwaveId': zwaveId,
                     'hasInstance': hasInstance
@@ -412,6 +413,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, myCache, c
         var icon = $filter('getElementIcon')(v.metrics.icon, v, v.metrics.level);
         if (icon) {
             $(widgetId + ' .widget-image').attr('src', icon);
+            $(widgetId + ' .widget-image').removeClass('trans-true');
         }
         //if (v.id == 'ZWayVDev_zway_14-0-37') {
             //console.log('Level: ' + v.metrics.level)

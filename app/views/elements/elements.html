@@ -5,11 +5,12 @@
     <div class="row">
         <div id="Widget_{{v.id}}" class="col-lg-4 col-md-6 col-sm-6 widget-entry" ng-repeat="v in collection| filter:q">
             <div class="widget-block {{v.deviceType}}" ng-switch="v.deviceType" ng-init="levelVal[v.id] = v.level">
+                
                 <!-- {{v.id}}: {{levelVal[v.id]}} icon {{v.icon}} -->
                 <div class="widget-block-in clearfix app-border app-gradient app-shadow">
                     <!-- Widget icon -->
                     <img ng-if="v.deviceType === 'text'" ng-show="v.metrics.img" class="widget-image" ng-src="{{v.metrics.img}}" alt="{{v.title}}"/>
-                    <img ng-if="v.deviceType !== 'text'" class="widget-image" ng-src="{{v.icon|getElementIcon:v:levelVal[v.id]}}" alt="{{v.title}}"/>
+                    <img id="widget_img_{{v.id}}" class="widget-image" ng-class_="imgTrans[v.id] == true ? 'trans-true':''" ng-if="v.deviceType !== 'text'"  ng-src="{{v.icon|getElementIcon:v:levelVal[v.id]}}" alt="{{v.title}}"/>
 
                     <!-- Widget header -->
                     <div class="widget-header">
@@ -85,13 +86,13 @@
                                     <button 
                                         class="btn btn-sm widget-btn-off" 
                                         id="btn_off_{{ v.id}}"
-                                        data-ng-click="levelVal[v.id] = 'off';runCmd(v.id + '/command/off')"
+                                        data-ng-click="levelVal[v.id] = 'off';runCmd(v.id + '/command/off',v.id)"
                                         ng-class="levelVal[v.id]=='off' ? 'btn-primary': 'btn-default'"
                                         ng-bind="_t('lb_off')"></button>
                                     <button 
                                         class="btn btn-sm widget-btn-on" 
                                         id="btn_on_{{ v.id}}"
-                                        data-ng-click="levelVal[v.id] = 'on';runCmd(v.id + '/command/on')"
+                                        data-ng-click="levelVal[v.id] = 'on';runCmd(v.id + '/command/on',v.id)"
                                         ng-class="levelVal[v.id]=='on' ? 'btn-primary': 'btn-default'"
                                         ng-bind="_t('lb_on')"></button>
                                 </div>
