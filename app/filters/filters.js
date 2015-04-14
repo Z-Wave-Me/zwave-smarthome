@@ -233,6 +233,9 @@ myApp.filter('getElementIcon', function(cfg) {
                 case 'battery':
                     icon = cfg.img.icons + 'battery.png';
                     break;
+                case 'luminosity':
+                    icon = cfg.img.icons + 'luminosity.png';
+                    break;
                 default:
                     break;
             }

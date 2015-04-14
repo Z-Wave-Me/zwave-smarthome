@@ -592,10 +592,8 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
      */
     function loadInstances(devices) {
         dataFactory.getApi('instances').then(function(response) {
-            dataService.logInfo(devices)
             var v = dataService.getDevices(devices, null, $scope.profileData.positions, response.data.data)[0];
-            dataService.logInfo(v)
-            if (v && $scope.profileData.hide_single_device_events && $scope.rooms) {
+            if (v) {
                 $scope.input = {
                     'id': v.id,
                     'title': v.title,
@@ -608,8 +606,8 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
                     'updateTime': v.updateTime,
                     'cfg': v.cfg,
                     'permanently_hidden': v.permanently_hidden,
-                    'rooms': $scope.rooms,
-                    'hide_events': ($scope.profileData.hide_single_device_events.indexOf(v.id) === -1 ? false : true)
+                    //'rooms': $scope.rooms,
+                    'hide_events': false
                 };
                 dataService.updateTimeTick(response.data.data.updateTime);
             } else {
@@ -628,13 +626,13 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
      */
     function updateProfile(profileData, deviceId) {
         dataFactory.putApi('profiles', profileData.id, profileData).then(function(response) {
-            //dataService.logInfo(response, 'Updating Devices');
-            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
-            myCache.remove('devices');
-            myCache.remove('profiles');
-            $scope.profileData = [];
-            $scope.input = [];
-            $scope.loadData(deviceId);
+            $scope.loading = false;
+            myCache.remove('devices/' + deviceId);
+            myCache.remove('profiles/' + $scope.user.id);
+             myCache.remove('locations');
+//            $scope.profileData = [];
+//            $scope.input = [];
+//            $scope.loadData(deviceId);
 
         }, function(error) {
             alert($scope._t('error_update_data'));
@@ -643,6 +641,8 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
         });
         return;
     }
+    
+     
 
 });
 /**
