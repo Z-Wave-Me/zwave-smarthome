@@ -1853,8 +1853,7 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
         'zwave': []
     };
 
-    $scope.zWaveDevices = {};
-
+    //$scope.zWaveDevices = {};
     $scope.testSort = [];
 
     $scope.notInterviewDevices = [];
@@ -1897,13 +1896,13 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
                     return;
                 }
                 //dataService.logInfo(k, 'Node ID')
-                $scope.zWaveDevices[k] = {
-                    id: k,
-                    title: v.data.givenName.value || 'Device ' + '_' + k,
-                    elements: []
-                };
+                //DEPRECATED
+//                $scope.zWaveDevices[k] = {
+//                    id: k,
+//                    title: v.data.givenName.value || 'Device ' + '_' + k,
+//                    elements: []
+//                };
             });
-            //dataService.logInfo($scope.zWaveDevices, 'Node ID')
             var findZwaveStr = "ZWayVDev_zway_";
             angular.forEach(devices, function(v, k) {
                 var cmd;
@@ -1923,12 +1922,13 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
                         var obj = {};
                         obj['id'] = v.id;
                         obj['nodeId'] = nodeId;
+                        obj['nodeName'] = node.data.givenName.value || 'Device ' + '_' + k,
                         obj['title'] = v.metrics.title;
                         obj['level'] = $filter('toInt')(v.metrics.level);
                         obj['metrics'] = v.metrics;
                         obj['messages'] = [];
                         $scope.devices.zwave.push(obj);
-                        $scope.zWaveDevices[nodeId]['elements'].push(obj);
+                        //$scope.zWaveDevices[nodeId]['elements'].push(obj);
                         // Batteries
                         if (v.deviceType === 'battery') {
                             $scope.devices.batteries.push(obj);

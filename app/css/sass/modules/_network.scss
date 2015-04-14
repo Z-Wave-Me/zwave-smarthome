@@ -1,17 +1,21 @@
 /* Network
 -------------------------------------------------- */
 
-    .network-zwave-device{
-        display: block;
-        margin-bottom: 5px;
-        img{
-            width: 20px;
-        }
+.network-zwave-device{
+    img{
+        max-width: 20px;
+        max-height: 20px;
+    } 
+    .network-node-name{
+        font-style: italic;
+        color: $header-link-color;
+        font-size: 12px;
     }
-    
-    .network-zwave-title{
-        cursor: pointer;
-    }
+}
+
+.network-zwave-title{
+    cursor: pointer;
+}
 
 .network-block{
     margin-bottom: 20px;

@@ -51,14 +51,22 @@
         </div>
         <!-- Z-Wave -->
         <div class="tab-pane" id="module_zwave" ng-class="activeTab == 'zwave' ? 'active' : ''">
-            <table class="table table-condensed table-report">
+        <table class="table table-report">
             <tbody>
-                <tr ng-repeat="v in devices.zwave | orderBy:'title':false" id="row_zwave_{{v.id}}">
-                    <td class="network-zwave-device">
-                        <img class="report-img" ng-src="{{v.metrics.icon|getElementIcon:e}}" alt="{{ v.title}}" /> <span ng-bind="v.title"></span>  <span class="network-node-name">(#{{v.nodeId}}) {{v.nodeName}}</span>
+                <tr ng-repeat="v in zWaveDevices | orderBy:'title':false" id="row_zwave_{{v.id}}" ng-if="v.elements">
+                    <td>
+                        <!-- <span class="text-supp">#{{v.id}}</span>
+                        <img class="report-img" ng-src="{{v.metrics.icon|getElementIcon:v}}" alt="{{ v.title}}" />-->
+                        <p class="network-zwave-title" ng-click="goElements = !goElements">
+                            <i class="fa" ng-class="goElements ? 'fa-chevron-up':'fa-chevron-down'"></i> <span ng-bind="v.title"></span>
+                        </p>
+                        <div ng-show="goElements">
+                        <span  class="network-zwave-device" ng-repeat="e in v.elements | orderBy:'title':false"><img class="report-img" ng-src="{{e.metrics.icon|getElementIcon:e}}" alt="{{ e.title}}" /> {{e.title}}</span> 
+                        </div>
+
                     </td>
                     <td class="text-right">
-                       <a class="btn btn-default" href="#deviceconfig/{{v.nodeId}}"><i class="fa fa-cog text-primary"></i> {{_t('lb_configuration')}}</a>
+                       <a class="btn btn-default" href="#deviceconfig/{{v.id}}"><i class="fa fa-cog text-primary"></i> {{_t('lb_device_configuration')}}</a>
                     </td>
                 </tr>
             </tbody>
