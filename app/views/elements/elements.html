@@ -133,14 +133,14 @@
                                 <div class="btn-group">
                                     <button 
                                         class="btn widget-btn-off btn-sm"
-                                        ng-class="levelVal[v.id]=='closed' ? 'btn-primary': 'btn-default'"
-                                        data-ng-click="levelVal[v.id] = 'off';runCmd(v.id + '/command/off',v.id)"
+                                        ng-class="levelVal[v.id]=='close' ? 'btn-primary': 'btn-default'"
+                                        data-ng-click="levelVal[v.id] = 'close';runCmd(v.id + '/command/off',v.id)"
                                         ><i class="fa fa-lock"></i>
                                     </button>
                                     <button 
                                         class="btn widget-btn-on btn-sm"
                                         ng-class="levelVal[v.id]=='open' ? 'btn-primary': 'btn-default'"
-                                        data-ng-click="levelVal[v.id] = 'on';runCmd(v.id + '/command/on',v.id)"
+                                        data-ng-click="levelVal[v.id] = 'open';runCmd(v.id + '/command/on',v.id)"
                                         ><i class="fa fa-unlock"></i>
                                     </button>
                                 </div>
