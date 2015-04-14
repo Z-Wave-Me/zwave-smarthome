@@ -73,6 +73,8 @@
      "lb_interval":"Pooling frequency",
      "lb_interval_placeholder":"Insert value in miliseconds",
      "miliseconds":"miliseconds",
+     "lb_low_battery":"Device has low battery",
+     
     "---": "missing",
     "lb_show_all": "Show all",
     "lb_events_source_type": "Events of this Type and Source",

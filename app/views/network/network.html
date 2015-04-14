@@ -24,12 +24,12 @@
     <div class="tab-content">
         <!-- Battery -->
         <div class="tab-pane" id="module_battery" ng-class="activeTab == 'battery' ? 'active' : ''">
-            <br />
+             <!-- <br />
             <p>
             <span ng-if="batteries.list.length > 0"><strong ng-bind="batteries.list.length"></strong> <span ng-bind="_t('lb_battery_devices')"></span>,</span>
             <span ng-if="batteries.cntLess20.length > 0"><strong ng-bind="batteries.cntLess20.length"></strong> <span ng-bind="_t('lb_battery_20')"></span>, </span> 
             <span ng-if="batteries.cnt0.length > 0"><strong  ng-bind="batteries.cnt0.length"></strong> <span ng-bind="_t('lb_battery_0')"></span> </span>
-        </p>
+        </p>-->
         <table class="table table-report table-condensed">
             <tbody>
                 <tr ng-repeat="v in devices.batteries| orderBy:'level':false" id="row_battery_{{ v.rowId}}">
@@ -40,9 +40,9 @@
 
                     </td>
                     <td>
-                        <span class="text-success" ng-show="v.metrics.level > 80">{{v.metrics.level}} %</span>
+                        <span class="text-success" ng-show="v.metrics.level >= 80">{{v.metrics.level}} %</span>
                         <span class="text-default" ng-show="v.metrics.level < 80 && v.metrics.level > 20">{{v.metrics.level}} %</span>
-                        <span class="text-danger" ng-show="v.metrics.level < 20"><i class="fa fa-exclamation-triangle"></i> {{v.metrics.level}} %</span>
+                        <span class="text-danger" ng-show="v.metrics.level <= 20"><i class="fa fa-exclamation-triangle"></i> {{v.metrics.level}} %</span>
 
                     </td>
                 </tr>
@@ -70,7 +70,7 @@
              <p>
                  <span ng-bind="_t('lb_solve_network_error')"></span> <a href="/expert/" class="alert-link"><strong ng-bind="_t('lb_zwui')"></strong> <i class="fa fa-external-link"></i></a>
              </p>
-            <table class="table table-report">
+            <table class="table table-condensed table-report">
             <tbody>
                 <tr ng-repeat="v in devices.failed | orderBy:'title':false" id="row_health_{{v.id}}" ng-show=" v.messages.length > 0">
                     <td>

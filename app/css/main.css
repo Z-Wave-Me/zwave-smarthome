@@ -449,7 +449,7 @@ a:hover {
 /* line 150, sass/globals/_body.scss */
 .report-img {
   margin: 0 5px;
-  max-width: 32px;
+  max-width: 26px;
   display: inline;
 }
 
@@ -1712,23 +1712,18 @@ padding-right: 5px;
 /* Network
 -------------------------------------------------- */
 /* line 5, sass/modules/_network.scss */
-.network-zwave-device img {
-  max-width: 20px;
-  max-height: 20px;
-}
-/* line 9, sass/modules/_network.scss */
 .network-zwave-device .network-node-name {
   font-style: italic;
   color: #5d5d5d;
   font-size: 12px;
 }
 
-/* line 16, sass/modules/_network.scss */
+/* line 12, sass/modules/_network.scss */
 .network-zwave-title {
   cursor: pointer;
 }
 
-/* line 20, sass/modules/_network.scss */
+/* line 16, sass/modules/_network.scss */
 .network-block {
   margin-bottom: 20px;
 }

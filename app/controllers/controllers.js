@@ -327,8 +327,8 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     /**
      * Run command
      */
-    $scope.runCmd = function(cmd,id) {
-        runCmd(cmd,id);
+    $scope.runCmd = function(cmd, id) {
+        runCmd(cmd, id);
     };
     /**
      * Run command exact value
@@ -463,7 +463,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     /**
      * Process CMD
      */
-    function runCmd(cmd,id) {
+    function runCmd(cmd, id) {
         var widgetId = '#Widget_' + id;
         //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         dataFactory.runApiCmd(cmd).then(function(response) {
@@ -479,7 +479,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
 /**
  * Element detail controller controller
  */
-myAppController.controller('ElementDetailController', function($scope, $routeParams, dataFactory, dataService,myCache) {
+myAppController.controller('ElementDetailController', function($scope, $routeParams, dataFactory, dataService, myCache) {
     $scope.input = [];
     $scope.rooms = [];
     $scope.profileData = [];
@@ -509,7 +509,7 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
         });
     };
     $scope.loadData($routeParams.id);
-    
+
     /**
      * Add tag to list
      */
@@ -527,8 +527,8 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
     $scope.removeTag = function(index) {
         $scope.input.tags.splice(index, 1);
     };
-    
-     /**
+
+    /**
      * Update an item
      */
     $scope.store = function(input) {
@@ -545,7 +545,7 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
             dataFactory.putApi('devices', input.id, input).then(function(response) {
                 $scope.profileData.positions = dataService.setArrayValue($scope.profileData.positions, input.id, input.dashboard);
                 $scope.profileData.hide_single_device_events = dataService.setArrayValue($scope.profileData.hide_single_device_events, input.id, input.hide_events);
-                updateProfile($scope.profileData,input.id);
+                updateProfile($scope.profileData, input.id);
 
             }, function(error) {
                 alert($scope._t('error_update_data'));
@@ -596,7 +596,7 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
             var v = dataService.getDevices(devices, null, $scope.profileData.positions, response.data.data)[0];
             dataService.logInfo(v)
             if (v && $scope.profileData.hide_single_device_events && $scope.rooms) {
-              $scope.input = {
+                $scope.input = {
                     'id': v.id,
                     'title': v.title,
                     'dashboard': v.onDashboard == true ? true : false,
@@ -611,8 +611,8 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
                     'rooms': $scope.rooms,
                     'hide_events': ($scope.profileData.hide_single_device_events.indexOf(v.id) === -1 ? false : true)
                 };
-                 dataService.updateTimeTick(response.data.data.updateTime);
-            }else{
+                dataService.updateTimeTick(response.data.data.updateTime);
+            } else {
                 alert($scope._t('no_data'));
                 dataService.showConnectionError($scope._t('no_data'));
             }
@@ -622,11 +622,11 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
         });
     }
     ;
-    
+
     /**
      * Update profile
      */
-    function updateProfile(profileData,deviceId) {
+    function updateProfile(profileData, deviceId) {
         dataFactory.putApi('profiles', profileData.id, profileData).then(function(response) {
             //dataService.logInfo(response, 'Updating Devices');
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
@@ -1916,9 +1916,9 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
                     ccId = cmd[2];
                     var node = ZWaveAPIData.devices[nodeId];
                     if (node) {
+                        var interviewDone = isInterviewDone(node, nodeId);
                         var isFailed = node.data.isFailed.value;
-                        var interviewDone = node.instances[iId].commandClasses[ccId].data.interviewDone.value;
-                        //var hasBattery = 0x80 in node.instances[0].commandClasses;
+                        var hasBattery = 0x80 in node.instances[0].commandClasses;
                         var obj = {};
                         obj['id'] = v.id;
                         obj['nodeId'] = nodeId;
@@ -1928,14 +1928,16 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
                         obj['metrics'] = v.metrics;
                         obj['messages'] = [];
                         $scope.devices.zwave.push(obj);
-                        //$scope.zWaveDevices[nodeId]['elements'].push(obj);
                         // Batteries
                         if (v.deviceType === 'battery') {
                             $scope.devices.batteries.push(obj);
                         }
-//                            if (hasBattery) {
-//                                $scope.devices.batteries.push(obj);
-//                            }
+                        if (hasBattery && interviewDone) {
+                            var batteryCharge = parseInt(node.instances[0].commandClasses[0x80].data.last.value);
+                            if (batteryCharge <= 20) {
+                                obj['messages'].push($scope._t('lb_low_battery') + ' (' +  batteryCharge + '%)');
+                            }
+                        }
                         // Not interview
                         if (!interviewDone) {
                             obj['messages'].push($scope._t('lb_not_configured'));
@@ -1944,8 +1946,6 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
                         if (isFailed) {
                             obj['messages'].push($scope._t('lb_is_failed'));
                         }
-                        //console.log(v.id + ': ' + nodeId + ', ' + iId + ', ' + ccId)
-                        //console.log('Interview done:' + interviewDone, 'isFailed:' + isFailed);
                         $scope.devices.failed.push(obj);
                     }
 
@@ -1978,6 +1978,24 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
         }, function(error) {
             dataService.showConnectionError(error);
         });
+    }
+    ;
+
+    /// --- Private functions --- ///
+    /**
+     * notInterviewDevices
+     */
+    function isInterviewDone(node, nodeId) {
+        for (var iId in node.instances) {
+            for (var ccId in node.instances[iId].commandClasses) {
+                var isDone = node.instances[iId].commandClasses[ccId].data.interviewDone.value;
+                if (isDone == false) {
+                    return false;
+                }
+            }
+        }
+        return true;
+
     }
     ;
 });
