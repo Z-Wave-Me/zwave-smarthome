@@ -1852,15 +1852,6 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
         'batteries': [],
         'zwave': []
     };
-
-    //$scope.zWaveDevices = {};
-    $scope.testSort = [];
-
-    $scope.notInterviewDevices = [];
-    $scope.reset = function() {
-        $scope.batteries = angular.copy([]);
-    };
-
     /**
      * Set tab
      */
@@ -1962,26 +1953,11 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
                 }
 
             }
-            //dataService.updateTimeTick(12345);
-            //$scope.devices.zwave = $filter('naturalSort')($scope.devices.zwave);
-//                $scope.devices.zwave.sort(function(a, b) {
-//                    var nameA = a.name.toLowerCase(), nameB = b.name.toLowerCase()
-//                    if (nameA < nameB){ //sort string ascending
-//                        return -1;
-//                    }
-//                    if (nameA > nameB){
-//                        return 1;
-//                    }
-//                    return 0; //default return value (no sorting)
-//                });
-            //console.log($scope.devices.zwave)
         }, function(error) {
             dataService.showConnectionError(error);
         });
     }
     ;
-
-    /// --- Private functions --- ///
     /**
      * notInterviewDevices
      */
