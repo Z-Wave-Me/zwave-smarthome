@@ -2288,62 +2288,72 @@ padding-right: 5px;
     padding: 0;
   }
   /* line 404, sass/settings/_mixins.scss */
-  .is-mobile-true .room-entry .entry-title {
-    font-size: 12px;
+  .is-mobile-true .room-entry .room-in {
+    position: relatvive;
   }
   /* line 407, sass/settings/_mixins.scss */
+  .is-mobile-true .room-entry .entry-title {
+    font-size: 12px;
+    position: absolute;
+    text-align: center;
+    left: 0;
+    right: 0;
+  }
+  /* line 414, sass/settings/_mixins.scss */
   .is-mobile-true .room-entry .entry-title-text {
     display: none;
   }
-  /* line 410, sass/settings/_mixins.scss */
+  /* line 417, sass/settings/_mixins.scss */
   .is-mobile-true .room-entry .app-border {
     border: solid 1px #d3d3d3;
   }
-  /* line 415, sass/settings/_mixins.scss */
-  .is-mobile-true .room-image {
-    max-width: 130px;
-  }
   /* line 422, sass/settings/_mixins.scss */
+  .is-mobile-true .room-image-big {
+    margin: 24px 0 0 0;
+    max-width: 130px;
+    max-height: 130px;
+  }
+  /* line 431, sass/settings/_mixins.scss */
   .is-mobile-true .profile-entry {
     float: left;
     width: 50%;
   }
-  /* line 425, sass/settings/_mixins.scss */
+  /* line 434, sass/settings/_mixins.scss */
   .is-mobile-true .profile-entry .entry-title {
     font-size: 12px;
   }
-  /* line 428, sass/settings/_mixins.scss */
+  /* line 437, sass/settings/_mixins.scss */
   .is-mobile-true .profile-entry .entry-title-text {
     display: none;
   }
-  /* line 436, sass/settings/_mixins.scss */
+  /* line 445, sass/settings/_mixins.scss */
   .is-mobile-true .device-manufacturers .col-sm-6 {
     float: left;
     width: 50%;
     padding: 0;
     margin: 0;
   }
-  /* line 443, sass/settings/_mixins.scss */
+  /* line 452, sass/settings/_mixins.scss */
   .is-mobile-true .device-manufacturers .vendor-list {
     width: 100%;
     margin: 0;
     border-color: #d3d3d3;
   }
-  /* line 454, sass/settings/_mixins.scss */
+  /* line 463, sass/settings/_mixins.scss */
   .is-mobile-true .vendor-image img {
     max-width: 70px !important;
     max-height: 50px !important;
   }
-  /* line 460, sass/settings/_mixins.scss */
+  /* line 469, sass/settings/_mixins.scss */
   .is-mobile-true .device-perex {
     padding: 10px;
     border-top: 0 none;
   }
-  /* line 464, sass/settings/_mixins.scss */
+  /* line 473, sass/settings/_mixins.scss */
   .is-mobile-true .row-device {
     margin-left: 0;
   }
-  /* line 466, sass/settings/_mixins.scss */
+  /* line 475, sass/settings/_mixins.scss */
   .is-mobile-true .row-device .col-device {
     margin: 0 0 20px 0;
     background-color: #fff;
@@ -2815,72 +2825,82 @@ padding-right: 5px;
     padding: 0;
   }
   /* line 404, sass/settings/_mixins.scss */
-  .room-entry .entry-title {
-    font-size: 12px;
+  .room-entry .room-in {
+    position: relatvive;
   }
   /* line 407, sass/settings/_mixins.scss */
+  .room-entry .entry-title {
+    font-size: 12px;
+    position: absolute;
+    text-align: center;
+    left: 0;
+    right: 0;
+  }
+  /* line 414, sass/settings/_mixins.scss */
   .room-entry .entry-title-text {
     display: none;
   }
-  /* line 410, sass/settings/_mixins.scss */
+  /* line 417, sass/settings/_mixins.scss */
   .room-entry .app-border {
     border: solid 1px #d3d3d3;
   }
 
-  /* line 415, sass/settings/_mixins.scss */
-  .room-image {
+  /* line 422, sass/settings/_mixins.scss */
+  .room-image-big {
+    margin: 24px 0 0 0;
     max-width: 130px;
+    max-height: 130px;
   }
 
   /* Profiles
   -------------------------------------------------- */
-  /* line 422, sass/settings/_mixins.scss */
+  /* line 431, sass/settings/_mixins.scss */
   .profile-entry {
     float: left;
     width: 50%;
   }
-  /* line 425, sass/settings/_mixins.scss */
+  /* line 434, sass/settings/_mixins.scss */
   .profile-entry .entry-title {
     font-size: 12px;
   }
-  /* line 428, sass/settings/_mixins.scss */
+  /* line 437, sass/settings/_mixins.scss */
   .profile-entry .entry-title-text {
     display: none;
   }
 
   /* Devices
   -------------------------------------------------- */
-  /* line 436, sass/settings/_mixins.scss */
+  /* line 445, sass/settings/_mixins.scss */
   .device-manufacturers .col-sm-6 {
     float: left;
     width: 50%;
     padding: 0;
     margin: 0;
   }
-  /* line 443, sass/settings/_mixins.scss */
+  /* line 452, sass/settings/_mixins.scss */
   .device-manufacturers .vendor-list {
     width: 100%;
     margin: 0;
     border-color: #d3d3d3;
   }
 
-  /* line 454, sass/settings/_mixins.scss */
+  /* line 463, sass/settings/_mixins.scss */
   .vendor-image img {
     max-width: 70px !important;
     max-height: 50px !important;
   }
 
-  /* line 460, sass/settings/_mixins.scss */
+  /* line 469, sass/settings/_mixins.scss */
   .device-perex {
     padding: 10px;
     border-top: 0 none;
   }
 
-  /* line 464, sass/settings/_mixins.scss */
+  /* line 473, sass/settings/_mixins.scss */
   .row-device {
     margin-left: 0;
   }
-  /* line 466, sass/settings/_mixins.scss */
+  /* line 475, sass/settings/_mixins.scss */
   .row-device .col-device {
     margin: 0 0 20px 0;
     background-color: #fff;

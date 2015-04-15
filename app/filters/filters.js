@@ -265,8 +265,7 @@ myApp.filter('getEventIcon', function() {
                 icon = 'device-status.png';
                 break
             case 'device-OnOff':
-                icon = (message == 'on'? 'device-on.png': 'device-off.png')
-                //icon = 'device-OnOff.png';
+                icon = (message == 'on'? 'device-on.png': 'device-off.png');
                 break
              case 'device-luminiscence':
                 icon = 'device-luminiscence.png';
