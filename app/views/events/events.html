@@ -17,9 +17,7 @@
                         <span class="text-supp" title="{{v.timestamp| date:'dd.MM.yyyy H:mm'}}" ng-bind="v.timestamp | eventDate"></span>
                     </td>
                     <td>
-                     <span class="text-supp"><i class="fa {{v.level|getEventIcon}}"></i> </span>
-                    </td>
-                    <td>
+                         <img id="event_img_{{v.id}}" class="report-img" ng-src="storage/img/events/{{v.type|getEventIcon}}" alt="{{v.type}}"/>
                         <a href="#element/{{v.source}}" ng-bind="v.message" ng-if="v.source && v.message"></a>
                         <span class="report-message" ng-bind="v.message" ng-if="!v.source && !v.message"></span>
                     </td>

@@ -250,22 +250,31 @@ myApp.filter('getElementIcon', function(cfg) {
  */
 myApp.filter('getEventIcon', function() {
     return function(input) {
-        var icon = '';
+        var icon = 'placeholder.png';
         switch (input) {
-            case 'notification':
-                icon = 'fa-volume-off';
+            case 'device-temperature':
+                icon = 'device-temperature.png';
                 break;
-             case 'device-info':
-                icon = 'fa-info-circle';
+             case 'device-electric':
+                icon = 'device-electric.png';
                 break;
-             case 'warning':
-                icon = 'fa-exclamation-triangle';
+             case 'device-power':
+                icon = 'device-power.png';
                 break;
-            case 'error':
-                icon = 'fa-bug text-danger';
+            case 'device-status':
+                icon = 'device-status.png';
                 break
-            case 'critical':
-                icon = 'fa-minus-circle text-danger';
+            case 'device-OnOff':
+                icon = 'device-OnOff.png';
+                break
+             case 'device-luminiscence':
+                icon = 'device-luminiscence.png';
+                break
+            case 'device':
+                icon = 'device.png';
+                break
+            case 'module':
+                icon = 'module.png';
                 break
             default:
                 break;
