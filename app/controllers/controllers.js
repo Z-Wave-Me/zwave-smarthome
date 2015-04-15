@@ -786,14 +786,14 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
     /**
      * Delete event
      */
-    $scope.deleteEvent = function(id, target, dialog) {
+    $scope.deleteEvent = function(id, params,target, dialog) {
         var confirm = true;
         if (dialog) {
             confirm = $window.confirm(dialog);
         }
         if (confirm) {
             $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
-            dataFactory.deleteApi('notifications', id).then(function(response) {
+            dataFactory.deleteApi('notifications',id,params).then(function(response) {
                 myCache.remove('notifications');
                 $scope.loading = false;
                 $(target).fadeOut(2000);

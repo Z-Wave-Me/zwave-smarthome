@@ -17,7 +17,7 @@
                         <span class="text-supp" title="{{v.timestamp| date:'dd.MM.yyyy H:mm'}}" ng-bind="v.timestamp | eventDate"></span>
                     </td>
                     <td>
-                         <img id="event_img_{{v.id}}" class="report-img" ng-src="storage/img/events/{{v.type|getEventIcon}}" alt="{{v.type}}"/>
+                        <img id="event_img_{{v.id}}" class="report-img" ng-src="storage/img/events/{{v.type|getEventIcon:v.message}}" alt="{{v.type}}"/>
                         <a href="#element/{{v.source}}" ng-bind="v.message" ng-if="v.source && v.message"></a>
                         <span class="report-message" ng-bind="v.message" ng-if="!v.source && !v.message"></span>
                     </td>
@@ -57,7 +57,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href=""ng-click="deleteEvent(v.id,'#row_' + v.id)" ng-if="v.level == 'error' || v.level == 'notification'">
+                                    <a href=""ng-click="deleteEvent(v.id,'?uid=' + v.h ,'#row_' + v.id)" ng-if="v.level == 'error' || v.level == 'notification'">
                                         <i class="fa fa-times text-danger"></i> <span  ng-bind="_t('lb_delete_event')" ></span>
                                     </a>
                                 </li>

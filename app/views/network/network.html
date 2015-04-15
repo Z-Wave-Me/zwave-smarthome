@@ -58,7 +58,7 @@
                         <img class="report-img" ng-src="{{v.metrics.icon|getElementIcon:e}}" alt="{{ v.title}}" /> <span ng-bind="v.title"></span>  <span class="network-node-name">(#{{v.nodeId}}) {{v.nodeName}}</span>
                     </td>
                     <td class="text-right">
-                       <a class="btn btn-default" href="#deviceconfig/{{v.nodeId}}"><i class="fa fa-cog text-primary"></i> {{_t('lb_configuration')}}</a>
+                       <a class="btn btn-default" href="#deviceconfig/{{v.nodeId}}"><i class="fa fa-cog text-primary"></i> <span class="btn-name" ng-bind="_t('lb_configuration')"></span></a>
                     </td>
                 </tr>
             </tbody>

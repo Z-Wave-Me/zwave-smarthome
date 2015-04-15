@@ -249,7 +249,7 @@ myApp.filter('getElementIcon', function(cfg) {
  * Get event icon
  */
 myApp.filter('getEventIcon', function() {
-    return function(input) {
+    return function(input,message) {
         var icon = 'placeholder.png';
         switch (input) {
             case 'device-temperature':
@@ -265,7 +265,8 @@ myApp.filter('getEventIcon', function() {
                 icon = 'device-status.png';
                 break
             case 'device-OnOff':
-                icon = 'device-OnOff.png';
+                icon = (message == 'on'? 'device-on.png': 'device-off.png')
+                //icon = 'device-OnOff.png';
                 break
              case 'device-luminiscence':
                 icon = 'device-luminiscence.png';

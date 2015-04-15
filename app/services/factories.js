@@ -137,10 +137,10 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
     }
 
     // Delete api data
-    function deleteApi(api, id) {
+    function deleteApi(api,id,params) {
         return $http({
             method: 'delete',
-            url: cfg.server_url + cfg.api[api] + "/" + id
+            url: cfg.server_url + cfg.api[api] + "/" + id + (params ? params : '')
         }).then(function(response) {
             return response;
         }, function(response) {// something went wrong
