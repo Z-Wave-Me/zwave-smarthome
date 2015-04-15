@@ -2040,7 +2040,7 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
         hide_all_device_events: false,
         hide_system_events: false,
         hide_single_device_events: [],
-        hide_rooms: [],
+        rooms: [],
         default_ui: 1
 
     };
@@ -2083,7 +2083,7 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
      * Assign room to list
      */
     $scope.assignRoom = function(assign) {
-        $scope.input.hide_rooms.push(assign);
+        $scope.input.rooms.push(assign);
         return;
 
     };
@@ -2092,11 +2092,11 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
      * Remove room from the list
      */
     $scope.removeRoom = function(roomId) {
-        var oldList = $scope.input.hide_rooms;
-        $scope.input.hide_rooms = [];
+        var oldList = $scope.input.rooms;
+        $scope.input.rooms = [];
         angular.forEach(oldList, function(v, k) {
             if (v != roomId) {
-                $scope.input.hide_rooms.push(v);
+                $scope.input.rooms.push(v);
             }
         });
         return;
@@ -2107,19 +2107,8 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
      */
     $scope.store = function(input) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        //var profileLang = (angular.fromJson($cookies.profileLang) ? angular.fromJson($cookies.profileLang) : []);
-
-//        var inputData = {
-//            id: input.id,
-//            name: input.name,
-//            active: input.active,
-//            positions: $scope.input.positions,
-//            lang: input.lang
-//
-//        };
         dataFactory.storeApi('profiles', input.id, input).then(function(response) {
             var id = $filter('hasNode')(response, 'data.data.id');
-            //dataService.logInfo(response, 'Profile http response data');
             if (id) {
                 myCache.remove('profiles');
                 $scope.loadData(id);
@@ -2131,16 +2120,6 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
             $scope.loading = false;
             dataService.logError(error);
         });
-//        if (profileLang.length > 0) {
-//            angular.forEach(profileLang, function(v, k) {
-//                if (v['id'] != input.id) {
-//                    profileLang.push({'id': input.id, 'lang': input.lang});
-//                }
-//            });
-//        } else {
-//            profileLang.push({'id': input.id, 'lang': input.lang});
-//        }
-//         $cookies.profileLang = angular.toJson(profileLang);
 
     };
 

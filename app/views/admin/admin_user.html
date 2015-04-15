@@ -74,18 +74,19 @@
 
             <fieldset>
                 <p class="network-zwave-title">
-                    <i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_rooms_access')"></span>
+                    <i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_allow_rooms')"></span>
                 </p>
                 <div>
                     <div class="device-assigned-block">
-                        <h4>{{_t('lb_disable_rooms')}}</h4>
-                        <div class="btn-device-admin" id="device_assigned_{{$index}}" ng-repeat="d in rooms" ng-if="input.hide_rooms.indexOf(d.id) > -1"> 
+                        <div class="btn-device-admin" id="device_assigned_{{$index}}" ng-repeat="d in rooms" ng-if="input.rooms.indexOf(d.id) > -1"> 
                             <a href="" ng-click="removeRoom(d.id)">{{d.title}} <i class="fa fa-times text-danger"></i></a>
                         </div>
                     </div>
                 <div class="device-available-block">
-                    <h4>{{_t('lb_available_rooms')}}</h4>
-                    <div class="btn-device-admin" id="device_unassigned_{{$index}}" ng-repeat="d in rooms" ng-if="input.hide_rooms.indexOf(d.id) === -1">
+                     <p class="network-zwave-title">
+                    <i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_available_rooms')"></span>
+                </p>
+                    <div class="btn-device-admin" id="device_unassigned_{{$index}}" ng-repeat="d in rooms" ng-if="input.rooms.indexOf(d.id) === -1">
                         <a href="" ng-click="assignRoom(d.id)">{{d.title}} <i class="fa fa-plus text-success"></i></a>
                     </div>
                 </div>
