@@ -1,7 +1,7 @@
 <!-- Rooms view -->
 <div ng-controller="RoomController">
     <bb-loader></bb-loader>
-    <div class="row">
+    <div class="row" ng-if="collection">
         <div class="col-md-3 col-sm-6 room-entry" id="panel_{{$index}}" ng-repeat="v in collection">
             <div class="room-in">
                 <h3 class="entry-title"><a href="#/elements/location/{{v.id}}/{{v.title}}">{{v.title}}</a></h3>
