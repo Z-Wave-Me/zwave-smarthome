@@ -27,10 +27,14 @@
     max-height: 70px !important;
 
 }
-/*.device-manufacturers{
-    background-color: #fff;
-    padding: 10px;
-}*/
+.device-manufacturers{
+    //background-color: #fff;
+    //padding: 10px;
+    .vendor-entry{
+        //padding-left: 15px;
+        padding-right: 0;
+    }
+}
 .manufacturer-logo{
     margin: 0 5px;
     max-width: 70px;
@@ -50,8 +54,8 @@
 }
 
 .col-device-vendor{
-    padding-left: 5px !important;
-    padding-right: 5px !important;
+    padding-left: 15px !important;
+    padding-right: 0 !important;
 }
 .vendor-list {
     display: block; 
@@ -71,9 +75,10 @@
     }
 }
 .device-perex{
-    font-size: 110%;
+    margin-bottom:10px;
+/*    font-size: 110%;
     padding: 10px 0;
-    border-top: solid 1px $app-border-color;
+    border-top: solid 1px $app-border-color;*/
 }
 
 .include-device-img{
@@ -111,5 +116,5 @@
 }
 
 .td-camera-action{
-     text-align: right;
-    }
+    text-align: right;
+}

@@ -148,7 +148,7 @@ a:hover {
 /* Images
 -------------------------------------------------- */
 .report-img{
-    margin: 0 5px;
+    margin: 0;
     max-width: 26px;
     display: inline;
 }
@@ -174,7 +174,14 @@ a:hover {
     }
     tbody{
         tr{
-            background-color: lighten($app-body-bcg-color, 15%); 
+           //background-color: lighten($app-body-bcg-color, 15%); 
+           background-color: #fff;
+        }
+        .td-img{
+            width: 30px;
+        }
+        .td-action{
+            text-align: right;
         }
     }
 }

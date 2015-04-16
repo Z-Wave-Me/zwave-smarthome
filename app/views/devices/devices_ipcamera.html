@@ -6,10 +6,10 @@
     <table class="table table-condensed table-report">
         <tbody>
             <tr ng-repeat="v in ipcameraDevices">
-                <td>
+                <td class="td-img">
                     <img class="report-img" ng-src="storage/img/icons/camera.png" alt="img" />
-                    <span ng-bind="v.defaults.title"></span>
                 </td>
+                <td ng-bind="v.defaults.title"></td>
                 <td class="td-camera-action">
                     <a href="#module/post/{{v.id}}" class="btn btn-default">{{_t('lb_include_device')}}</a>
 

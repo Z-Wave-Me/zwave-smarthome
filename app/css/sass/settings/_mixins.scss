@@ -198,15 +198,16 @@
     /* Images
     -------------------------------------------------- */
     .report-img{
-        margin: 0 5px 0 0;
-        display: inline;
+       // margin: 0 5px 0 0;
+        //display: inline;
     }
 
     /* tables
     -------------------------------------------------- */
     .table-report{
         tbody tr.bcg-active.true{
-            @include appGradient();
+            //@include appGradient();
+             background-color: #fff;
         }
         tbody tr.bcg-active.false{
             background-color: $app-bcg-active-false !important;
@@ -317,8 +318,8 @@
         font-size: 20px;
     }
     .apps-action-icons{
-    width: 40%;
-}
+        width: 40%;
+    }
     .app-entry{
         width: 100%;
         padding:  0;
@@ -444,12 +445,20 @@
     }
     /* Devices
     -------------------------------------------------- */
-    .device-manufacturers{
-        .col-sm-6{
+    .device-slect-type{
+        .vendor-entry{
             float: left;
-            width: 50%;
+            width: 33.33333%;
+            padding: 0 0 0 15px;
+            margin: 0 0 15px 0;
+        }
+    }
+    .device-manufacturers{
+        .col-device-vendor{
+            float: left;
+            width: 33.33333%;
             padding: 0;
-            margin: 0;
+            margin: 0 0 15px 0;
         }
 
         .vendor-list {
@@ -473,12 +482,10 @@
         padding: 10px;
         border-top: 0 none;
     }
-    .row-device {
-        margin-left: 0;
-        .col-device{
-            margin: 0 0 20px 0;
-            background-color: #fff;
+    .col-device{
+        padding: 0;
+        margin: 0 0 20px 0;
+        background-color: #fff;
 
-        }
     }
 }
