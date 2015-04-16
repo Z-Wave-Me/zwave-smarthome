@@ -265,7 +265,11 @@ myApp.filter('getEventIcon', function() {
                 icon = 'device-status.png';
                 break
             case 'device-OnOff':
-                icon = (message == 'on'? 'device-on.png': 'device-off.png');
+                if(angular.isObject(message)){
+                    icon = (message.l == 'on'? 'device-on.png': 'device-off.png'); 
+                }else{
+                    icon = 'device-on.png';
+                }
                 break
              case 'device-luminiscence':
                 icon = 'device-luminiscence.png';

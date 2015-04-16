@@ -3,17 +3,15 @@
 <img class="apps-image" ng-src="app/img/logo-ipcamera.png" alt="Logo" />
 </div>
 <div class="table-responsive_" ng-show="ipcameraDevices">
-    <table class="table table-report table-events">
+    <table class="table table-condensed table-report">
         <tbody>
             <tr ng-repeat="v in ipcameraDevices">
-                <td class="td-img">
+                <td>
                     <img class="report-img" ng-src="storage/img/icons/camera.png" alt="img" />
-                </td>
-                <td class="text-left">
                     <span ng-bind="v.defaults.title"></span>
                 </td>
-                <td class="td-action">
-                    <a href="#module/post/{{v.id}}" class="btn btn-primary">Include device</a>
+                <td class="td-camera-action">
+                    <a href="#module/post/{{v.id}}" class="btn btn-default">{{_t('lb_include_device')}}</a>
 
                 </td>
             </tr>

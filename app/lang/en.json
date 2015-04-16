@@ -76,6 +76,7 @@
      "miliseconds":"miliseconds",
      "lb_low_battery":"Device has low battery",
      "lb_source_cfg":"Source configuration",
+     "lb_status_now":"status is now",
     "---": "missing",
     "lb_show_all": "Show all",
     "lb_events_source_type": "Events of this Type and Source",
