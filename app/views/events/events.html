@@ -11,7 +11,7 @@
     <div class="table-responsive_">
         <table class="table table-condensed table-report table-events">
             <tbody>
-                <tr dir-paginate="v in collection | orderBy: '-timestamp' | itemsPerPage: pageSize" current-page="currentPage" id="row_{{v.id}}">
+                <tr class="td-event-{{v.level}}" dir-paginate="v in collection | orderBy: '-timestamp' | itemsPerPage: pageSize" current-page="currentPage" id="row_{{v.id}}">
                     
                     <td class="td-event-date td-event-{{v.level}}">
                         <span class="text-supp" title="{{v.timestamp| date:'dd.MM.yyyy H:mm'}}" ng-bind="v.timestamp | eventDate"></span>
