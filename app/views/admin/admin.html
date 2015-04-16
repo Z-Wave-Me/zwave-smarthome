@@ -6,14 +6,14 @@
             <a type="button" class="btn btn-info" ng-href="#admin/user/0"><i class="fa fa-plus"></i> {{_t('lb_add_user')}}</a>
         </div>
     </div>
-    <table class="table table-report">
+    <table id="table_cfg_admin" class="table table-condensed table-report">
         <tbody>
             <tr ng-repeat="v in profiles" id="row_{{v.id}}">
                  <td>
                     <img class="report-img" ng-src="storage/img/icons/user.png" alt="{{v.name}}" /> 
                     <span class="report-message" ng-bind="v.name"></span>
                 </td>
-                <td class="text-right">
+                <td class="td-action">
                     <a class="btn btn-default" href="#admin/user/{{v.id}}"><i class="fa fa-pencil fa-lg text-info"></i></a>
                     <button class="btn btn-default" 
                        ng-hide="v.id == 1"

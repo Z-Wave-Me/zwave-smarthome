@@ -198,7 +198,7 @@
     /* Images
     -------------------------------------------------- */
     .report-img{
-       // margin: 0 5px 0 0;
+        // margin: 0 5px 0 0;
         //display: inline;
     }
 
@@ -207,7 +207,7 @@
     .table-report{
         tbody tr.bcg-active.true{
             //@include appGradient();
-             background-color: #fff;
+            background-color: #fff;
         }
         tbody tr.bcg-active.false{
             background-color: $app-bcg-active-false !important;
@@ -223,6 +223,14 @@
     }
     .btn-name{
         display: none;
+    }
+    .td-action{
+        .btn{
+            padding: 4px 8px;
+            font-size: 13px;
+            //line-height: 1.42857;
+            //border-radius: 4px;
+        }
     }
 
     /* Tabs
@@ -317,9 +325,12 @@
     .tab-icon{
         font-size: 20px;
     }
-    .apps-action-icons{
-        width: 40%;
+    #table_apps_instance{
+        .td-action{
+            width: 40%;
+        }
     }
+
     .app-entry{
         width: 100%;
         padding:  0;
@@ -429,6 +440,12 @@
         max-height: 130px;
     }
 
+    #table_cfg_rooms{
+        .td-action{
+            width: 30%;
+        }
+    }
+
     /* Profiles
     -------------------------------------------------- */
 
@@ -443,6 +460,15 @@
         }
 
     }
+
+    /* Admin
+    -------------------------------------------------- */
+    #table_cfg_admin{
+        .td-action{
+            width: 30%;
+        }
+    }
+
     /* Devices
     -------------------------------------------------- */
     .device-slect-type{
