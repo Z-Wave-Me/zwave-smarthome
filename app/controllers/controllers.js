@@ -628,7 +628,7 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
             $scope.loading = false;
             myCache.remove('devices/' + deviceId);
             myCache.remove('profiles/' + $scope.user.id);
-             myCache.remove('locations');
+            myCache.remove('locations');
 //            $scope.profileData = [];
 //            $scope.input = [];
 //            $scope.loadData(deviceId);
@@ -640,8 +640,8 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
         });
         return;
     }
-    
-     
+
+
 
 });
 /**
@@ -786,14 +786,14 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
     /**
      * Delete event
      */
-    $scope.deleteEvent = function(id, params,target, dialog) {
+    $scope.deleteEvent = function(id, params, target, dialog) {
         var confirm = true;
         if (dialog) {
             confirm = $window.confirm(dialog);
         }
         if (confirm) {
             $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
-            dataFactory.deleteApi('notifications',id,params).then(function(response) {
+            dataFactory.deleteApi('notifications', id, params).then(function(response) {
                 myCache.remove('notifications');
                 $scope.loading = false;
                 $(target).fadeOut(2000);
@@ -887,6 +887,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     $scope.instances = [];
     $scope.modules = [];
     $scope.modulesIds = [];
+    $scope.moduleImgs = [];
     $scope.onlineModules = [];
     $scope.onlineVersion = [];
     $scope.categories = [];
@@ -920,6 +921,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
             $scope.modules = dataService.getData(response.data.data, filter);
             angular.forEach(response.data.data, function(v, k) {
                 $scope.modulesIds.push(v.id);
+                $scope.moduleImgs[v.id] = v.icon;
 
             });
             $scope.loading = false;
@@ -973,6 +975,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
         //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         switch ($scope.activeTab) {
             case 'instance':
+                $scope.loadModules();
                 $scope.showInFooter.categories = false;
                 $scope.loadInstances();
 
@@ -1135,7 +1138,7 @@ myAppController.controller('AppLocalDetailController', function($scope, $routePa
     function loadOnlineModules(moduleName) {
         dataFactory.getRemoteData($scope.cfg.online_module_url).then(function(response) {
             $scope.isOnline = dataService.getRowBy(response.data, 'modulename', moduleName);
-             dataService.updateTimeTick();
+            dataService.updateTimeTick();
         }, function(error) {
             dataService.logError(error);
         });
@@ -1266,6 +1269,8 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                         'title': instance.title,
                         'description': instance.description,
                         'moduleTitle': instance.title,
+                        'icon': $filter('hasNode')(module, 'data.data.icon'),
+                        'moduleName': $filter('hasNode')(module, 'data.data.moduleName'),
                         'category': module.data.data.category
                     };
                     $scope.showForm = true;
@@ -1658,7 +1663,7 @@ myAppController.controller('RoomConfigController', function($scope, $window, dat
     function loadDevices() {
         dataFactory.getApi('devices').then(function(response) {
             $scope.devices = response.data.data.devices;
-             dataService.updateTimeTick();
+            dataService.updateTimeTick();
         }, function(error) {
             dataService.showConnectionError(error);
         });
@@ -1712,7 +1717,7 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
             //$scope.loading = false;
         }, function(error) {
             $scope.input = false;
-           dataService.showConnectionError(error);
+            dataService.showConnectionError(error);
         });
     };
     if ($scope.id > 0) {
@@ -1917,7 +1922,7 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
                         obj['id'] = v.id;
                         obj['nodeId'] = nodeId;
                         obj['nodeName'] = node.data.givenName.value || 'Device ' + '_' + k,
-                        obj['title'] = v.metrics.title;
+                                obj['title'] = v.metrics.title;
                         obj['level'] = $filter('toInt')(v.metrics.level);
                         obj['metrics'] = v.metrics;
                         obj['messages'] = [];
@@ -1929,7 +1934,7 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
                         if (hasBattery && interviewDone) {
                             var batteryCharge = parseInt(node.instances[0].commandClasses[0x80].data.last.value);
                             if (batteryCharge <= 20) {
-                                obj['messages'].push($scope._t('lb_low_battery') + ' (' +  batteryCharge + '%)');
+                                obj['messages'].push($scope._t('lb_low_battery') + ' (' + batteryCharge + '%)');
                             }
                         }
                         // Not interview
