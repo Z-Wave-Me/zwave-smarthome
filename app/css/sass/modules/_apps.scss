@@ -68,6 +68,30 @@ padding-right: 5px;
 .app-image-list{
     max-width: 70px;
 }
+/* Alpaca page
+-------------------------------------------------- */
+.alpaca-perex{
+    margin: 0 0 20px 0;
+    padding: 0 0 10px 0;
+    border-bottom: dotted 1px $app-border-color; 
+}
+.app-image-alpaca{
+    max-width: 128px;
+    max-height: 128px;
+    float: left;
+    margin-right: 20px;
+    /*    -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;*/
+    border: solid 2px $app-border-color;
+
+}
+#alpaca_data{
+    padding: 20px;
+    margin: 0 0 20px 0;
+    background-color: darken($app-body-bcg-color, 3%);
+    border-radius: 4px;
+}
 /* Apps detail
 -------------------------------------------------- */
 .app-detail-header-in{
@@ -99,11 +123,3 @@ padding-right: 5px;
     }
 }
 
-/* Apps module
--------------------------------------------------- */
-#alpaca_data{
-    padding: 20px;
-    margin: 0 0 20px 0;
-    background-color: darken($app-body-bcg-color, 3%);
-    border-radius: 4px;
-}

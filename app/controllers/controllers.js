@@ -1197,6 +1197,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
     $scope.showForm = false;
     $scope.success = false;
     $scope.alpacaData = true;
+    $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.zwave_js_url + 'Load_Module_Media/';
     $scope.collection = {};
     $scope.input = {
         'instanceId': 0,
@@ -1222,8 +1223,11 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                     'title': $filter('hasNode')(formData, 'data.title'),
                     'description': $filter('hasNode')(formData, 'data.description'),
                     'moduleTitle': $filter('hasNode')(formData, 'data.title'),
+                    'icon': $filter('hasNode')(module, 'data.data.icon'),
+                    'moduleName': $filter('hasNode')(module, 'data.data.moduleName'),
                     'category': module.data.data.category
                 };
+                console.log($scope.input)
                 $scope.showForm = true;
                 if (!$filter('hasNode')(formData, 'options.fields') || !$filter('hasNode')(formData, 'schema.properties')) {
                     $scope.alpacaData = false;

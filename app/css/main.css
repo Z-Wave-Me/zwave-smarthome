@@ -1342,14 +1342,43 @@ padding-right: 5px;
   max-width: 70px;
 }
 
-/* Apps detail
+/* Alpaca page
 -------------------------------------------------- */
 /* line 73, sass/modules/_apps.scss */
+.alpaca-perex {
+  margin: 0 0 20px 0;
+  padding: 0 0 10px 0;
+  border-bottom: dotted 1px #d3d3d3;
+}
+
+/* line 78, sass/modules/_apps.scss */
+.app-image-alpaca {
+  max-width: 128px;
+  max-height: 128px;
+  float: left;
+  margin-right: 20px;
+  /*    -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%;*/
+  border: solid 2px #d3d3d3;
+}
+
+/* line 89, sass/modules/_apps.scss */
+#alpaca_data {
+  padding: 20px;
+  margin: 0 0 20px 0;
+  background-color: #eeeeee;
+  border-radius: 4px;
+}
+
+/* Apps detail
+-------------------------------------------------- */
+/* line 97, sass/modules/_apps.scss */
 .app-detail-header-in {
   position: relative;
   padding: 20px;
 }
-/* line 77, sass/modules/_apps.scss */
+/* line 101, sass/modules/_apps.scss */
 .app-detail-header-in .app-detail-img img {
   position: absolute;
   max-width: 130px;
@@ -1360,29 +1389,19 @@ padding-right: 5px;
           -moz-border-radius: 50%;
           border-radius: 50%; */
 }
-/* line 89, sass/modules/_apps.scss */
+/* line 113, sass/modules/_apps.scss */
 .app-detail-header-in .app-detail-body {
   padding-left: 150px;
 }
-/* line 92, sass/modules/_apps.scss */
+/* line 116, sass/modules/_apps.scss */
 .app-detail-header-in .app-detail-list, .app-detail-header-in .app-detail-perex {
   padding-bottom: 10px;
   margin-bottom: 10px;
   border-bottom: dotted 1px #d3d3d3;
 }
-/* line 97, sass/modules/_apps.scss */
+/* line 121, sass/modules/_apps.scss */
 .app-detail-header-in .app-detail-control {
   position: relative;
-}
-
-/* Apps module
--------------------------------------------------- */
-/* line 104, sass/modules/_apps.scss */
-#alpaca_data {
-  padding: 20px;
-  margin: 0 0 20px 0;
-  background-color: #eeeeee;
-  border-radius: 4px;
 }
 
 /* Rooms
@@ -1679,7 +1698,6 @@ padding-right: 5px;
 .include-device-img {
   float: left;
   margin-right: 20px;
-  border: solid 2px #d3d3d3;
 }
 
 /* line 92, sass/modules/_devices.scss */
