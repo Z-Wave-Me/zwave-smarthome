@@ -1,13 +1,15 @@
 <!-- Enocean devices view -->
 <div class="device-logo">
-<img class="apps-image" ng-src="app/img/logo-ipcamera.png" alt="Logo" />
+    <img class="apps-image" ng-src="app/img/logo-ipcamera.png" alt="Logo" />
 </div>
+
 <div class="table-responsive_" ng-show="ipcameraDevices">
     <table class="table table-condensed table-report">
         <tbody>
             <tr ng-repeat="v in ipcameraDevices">
                 <td class="td-img">
-                    <img class="report-img" ng-src="storage/img/icons/camera.png" alt="img" />
+                    <img class="report-img" ng-src="{{moduleMediaUrl + v.moduleName + '/' + v.icon}}" ng-if="v.icon" alt="img" />
+                    <img class="report-img" ng-src="storage/img/icons/camera.png" ng-if="!v.icon" alt="img" />
                 </td>
                 <td ng-bind="v.defaults.title"></td>
                 <td class="td-camera-action">
@@ -18,4 +20,4 @@
         </tbody>
     </table>
 </div>
-            
+

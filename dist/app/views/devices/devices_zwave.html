@@ -1,31 +1,35 @@
 <!-- Zwave device view -->
-<div class="device-logo">
-<img class="apps-image" ng-src="app/img/logo-z-wave.png" alt="Logo" />
-</div>
-<div class="text-center device-autodetect"><a href="#include" class="btn btn-success btn-lg btn-block"><i class="fa fa-lightbulb-o"></i> {{_t('lb_zwave_autodetect')}}</a></div>
-<div class="row device-manufacturers" ng-hide="zwaveDevices">
-    <div class="col-md-2 col-sm-6 col-device-vendor" ng-repeat="v in manufacturers">
-        <a href="" class="vendor-list" ng-click="setFilter({'filter': 'brandname', 'val': v.key})">
-            <p class="vendor-image"><img ng-src="{{v.val}}" alt="img" ng-show="v.val" /></p>
-        </a>
+<div class="mobile-padding">
+    <div class="device-logo">
+        <img class="apps-image" ng-src="app/img/logo-z-wave.png" alt="Logo" />
     </div>
-</div>
-<div class="table-responsive_" ng-show="manufacturer">
-    <h3 ng-bind="manufacturer"></h3> 
-    <table class="table table-report table-events">
-        <tbody>
-            <tr ng-repeat="(k,v) in zwaveDevices">
-                <td class="td-img">
-                   <img class="report-img" ng-src="storage/img/devices/{{v.product_image}}" alt="img" ng-show="v.product_image" />
-                </td>
-                <td class="text-left">
-                    <span ng-bind="v.name"></span> <!--<em ng-bind="v.ZManufacturersName"></em>-->
-                </td>
-                <td class="td-action">
-                    <a href="#include/{{v.id}}" class="btn btn-primary" ng-bind="_t('lb_include_device')"></a>
 
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+    <div class="text-center device-autodetect"><a href="#include" class="btn btn-default btn-lg btn-block"><i class="fa fa-compass"></i> {{_t('lb_zwave_autodetect')}}</a></div>
+    <div class="row device-manufacturers" ng-hide="zwaveDevices">
+        <div class="col-sm-2 col-device-vendor" ng-repeat="v in manufacturers">
+            <a href="" class="vendor-list" ng-click="setFilter({'filter': 'brandname', 'val': v.key})">
+                <p class="vendor-image"><img ng-src="{{v.val}}" alt="img" ng-show="v.val" /></p>
+            </a>
+        </div>
+    </div>
+ </div>
+    <div ng-if="manufacturer">
+        <h3 class="mobile-padding" ng-bind="manufacturer"></h3> 
+        <table class="table table-condensed table-report">
+            <tbody>
+                <tr ng-repeat="(k,v) in zwaveDevices">
+                    <td class="td-img">
+                        <img class="report-img" ng-src="storage/img/devices/{{v.product_image}}" alt="img" ng-show="v.product_image" />
+                    </td>
+                    <td class="text-left">
+                        <span ng-bind="v.name"></span> <!--<em ng-bind="v.ZManufacturersName"></em>-->
+                    </td>
+                    <td class="td-action">
+                        <a href="#include/{{v.id}}" class="btn btn-default"><i class="fa fa-plug"></i> <span class="btn-name" ng-bind="_t('lb_include_device')"></span></a>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+

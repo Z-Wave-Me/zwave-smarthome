@@ -1,23 +1,23 @@
 <!-- Enocean devices view -->
 <div class="device-logo">
-<img class="apps-image" ng-src="app/img/logo-ipcamera.png" alt="Logo" />
+    <img class="apps-image" ng-src="app/img/logo-ipcamera.png" alt="Logo" />
 </div>
+
 <div class="table-responsive_" ng-show="ipcameraDevices">
-    <table class="table table-report table-events">
+    <table class="table table-condensed table-report">
         <tbody>
             <tr ng-repeat="v in ipcameraDevices">
                 <td class="td-img">
-                    <img class="report-img" ng-src="storage/img/icons/camera.png" alt="img" />
+                    <img class="report-img" ng-src="{{moduleMediaUrl + v.moduleName + '/' + v.icon}}" ng-if="v.icon" alt="img" />
+                    <img class="report-img" ng-src="storage/img/icons/camera.png" ng-if="!v.icon" alt="img" />
                 </td>
-                <td class="text-left">
-                    <span ng-bind="v.defaults.title"></span>
-                </td>
-                <td class="td-action">
-                    <a href="#module/post/{{v.id}}" class="btn btn-primary">Include device</a>
+                <td ng-bind="v.defaults.title"></td>
+                <td class="td-camera-action">
+                    <a href="#module/post/{{v.id}}" class="btn btn-default">{{_t('lb_include_device')}}</a>
 
                 </td>
             </tr>
         </tbody>
     </table>
 </div>
-            
+

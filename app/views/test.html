@@ -2,11 +2,8 @@
 <div ng-controller="TestController">
     <bb-loader></bb-loader>
     <h1>Test page</h1>
-    <img ng-src="{{userImage}}" ng-if="userImage"/>
-        <form name="form_firmware" id="form_firmware" class="form form-inline" ng-submit="uploadFile()" novalidate>
-            <input type="file" class="form-control_" file-model="myFile" />
-            <button type="submit" class="btn btn-primary" id="btn_save_note">Upload image</button>
-        </form>
+    <img ng-src="{{'ZAutomation/api/v1/load/image/new_penguins.jpg'}}" />
+       
 </div><!-- /ng-controller --> 
 <script type="text/ng-template" id="app/views/elements/directives/default_.html">
     <h1>My title Inline</h1>

@@ -1354,7 +1354,7 @@ myAppController.controller('DeviceController', function($scope, $routeParams, da
     $scope.deviceVendor = false;
     $scope.manufacturers = [];
     $scope.manufacturer = false;
-
+    $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.zwave_js_url + 'Load_Module_Media/';
     $scope.ipcameraDevices = [];
 
     if (angular.isDefined($routeParams.type)) {

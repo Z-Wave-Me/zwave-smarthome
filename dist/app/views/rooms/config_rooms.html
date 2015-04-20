@@ -7,16 +7,16 @@
             <a type="button" class="btn btn-info" ng-href="#config-rooms/0"><i class="fa fa-plus"></i> {{_t('lb_add_room')}}</a>
         </div>
     </div>
-    <table class="table table-report">
+    <table id="table_cfg_rooms" class="table table-condensed table-report">
         <tbody>
             <tr ng-repeat="v in collection" id="row_{{v.id}}">
-                 <td>
+                <td class="td-img">
                       <img class="report-img img-circle" ng-src="storage/img/rooms/{{v.default_img}}" ng-if="v.img_type == 'default' && v.default_img" alt="{{v.name}}" />
                       <img class="report-img img-circle" ng-src="{{userImageUrl + v.user_img}}" ng-if="v.img_type == 'user' && v.user_img" alt="{{v.name}}" />
                       <img class="report-img img-circle" ng-src="storage/img/placeholder-img.png" ng-if="!v.default_img && !v.user_img" alt="{{v.name}}" />
-                    <span class="report-message" ng-bind="v.title"></span>
                 </td>
-                <td class="text-right">
+                 <td ng-bind="v.title"></td>
+                <td class="td-action">
                     <a class="btn btn-default" href="#config-rooms/{{v.id}}"><i class="fa fa-pencil fa-lg text-info"></i></a>
                     <button class="btn btn-default" 
                        ng-click="delete('#row_' + v.id, null, _t('lb_delete_confirm'), 1)"
