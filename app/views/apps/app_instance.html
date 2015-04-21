@@ -9,10 +9,10 @@
                     <!-- <img class="report-img" ng-src="storage/img/apps/app.png" alt="icon" />-->
                 </td>
                 <td>
-                    <span ng-show="!v.title">This</span><span ng-bind="v.title"></span> is a <strong ng-bind="v.moduleId"></strong>
+                   <a href="#module/put/{{v.id}}"><span ng-bind="v.title"></span> <span ng-bind="_t('lb_is')"></span> <strong ng-bind="v.moduleId"></strong></a>
                 </td>
                 <td class="td-action">
-                    <a href="#module/put/{{v.id}}" title="{{_t('lb_update')}}" class="btn btn-default btn-sm">
+                    <a href="#module/put/{{v.id}}" class="btn btn-default btn-sm">
                         <i class="fa fa-cog fa-lg"></i>
                     </a>
                     <button title="{{_t('lb_deactivate')}}" 
