@@ -128,7 +128,7 @@ myAppController.controller('TestController', function($scope, $routeParams, $fil
     $scope.userImage = false;
     $scope.uploadFile = function() {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('uploading')};
-        var cmd = $scope.cfg.zwave_js_url + 'Upload_Image';
+        var cmd = $scope.cfg.server_url + $scope.cfg.api_url + 'upload/image';
         var fd = new FormData();
         fd.append('file_upload', $scope.myFile);
         dataService.logInfo(fd, 'File upload')
@@ -626,6 +626,7 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
     function updateProfile(profileData, deviceId) {
         dataFactory.putApi('profiles', profileData.id, profileData).then(function(response) {
             $scope.loading = false;
+            myCache.remove('devices');
             myCache.remove('devices/' + deviceId);
             myCache.remove('profiles/' + $scope.user.id);
             myCache.remove('locations');
@@ -899,7 +900,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
         'categories': true,
         'serach': true
     };
-    $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.zwave_js_url + 'Load_Module_Media/';
+    $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
     $scope.onlineMediaUrl = $scope.cfg.online_module_img_url;
     /**
      * Load categories
@@ -1115,7 +1116,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
 myAppController.controller('AppLocalDetailController', function($scope, $routeParams, $log, dataFactory, dataService) {
     $scope.module = [];
     $scope.isOnline = null;
-    $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.zwave_js_url + 'Load_Module_Media/';
+    $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
     /**
      * Load module detail
      */
@@ -1200,7 +1201,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
     $scope.showForm = false;
     $scope.success = false;
     $scope.alpacaData = true;
-    $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.zwave_js_url + 'Load_Module_Media/';
+    $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
     $scope.collection = {};
     $scope.input = {
         'instanceId': 0,
@@ -1362,7 +1363,7 @@ myAppController.controller('DeviceController', function($scope, $routeParams, da
     $scope.deviceVendor = false;
     $scope.manufacturers = [];
     $scope.manufacturer = false;
-    $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.zwave_js_url + 'Load_Module_Media/';
+    $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
     $scope.ipcameraDevices = [];
 
     if (angular.isDefined($routeParams.type)) {
@@ -1576,7 +1577,7 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
  */
 myAppController.controller('RoomController', function($scope, dataFactory, dataService) {
     $scope.collection = [];
-    $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.zwave_js_url + 'Load_Image/';
+    $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/image/';
     $scope.reset = function() {
         $scope.collection = angular.copy([]);
     };
@@ -1607,7 +1608,8 @@ myAppController.controller('RoomController', function($scope, dataFactory, dataS
 myAppController.controller('RoomConfigController', function($scope, $window, dataFactory, dataService, myCache) {
     $scope.collection = [];
     $scope.devices = [];
-    $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.zwave_js_url + 'Load_Image/';
+    $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/image/';
+    
     $scope.reset = function() {
         $scope.collection = angular.copy([]);
     };
@@ -1630,19 +1632,16 @@ myAppController.controller('RoomConfigController', function($scope, $window, dat
     /**
      * Delete an item
      */
-    $scope.delete = function(target, input, dialog, except) {
-        if (input.id == except) {
-            return;
-        }
+    $scope.delete = function(target, roomId, dialog) {
+        
         var confirm = true;
         if (dialog) {
             confirm = $window.confirm(dialog);
         }
-
         if (confirm) {
-            dataFactory.deleteApi('locations', input.id).then(function(response) {
+            dataFactory.deleteApi('locations', roomId).then(function(response) {
                 //$(target).fadeOut(2000);
-                var devices = dataService.getData($scope.devices, {filter: 'location', val: input.id});
+                var devices = dataService.getData($scope.devices, {filter: 'location', val: roomId});
                 removeRoomIdFromDevice(devices);
                 myCache.remove('locations');
                 myCache.remove('devices');
@@ -1702,7 +1701,7 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
     //$scope.devicesAvailable = [];
     $scope.devicesToRemove = [];
     $scope.defaultImages = $scope.cfg.room_images;
-    $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.zwave_js_url + 'Load_Image/';
+    $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/image/';
 
     /**
      * Load data
@@ -1730,11 +1729,11 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
      */
     $scope.uploadFile = function() {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('uploading')};
-        var cmd = $scope.cfg.zwave_js_url + 'Upload_Image';
+        var cmd = $scope.cfg.api_url + 'upload/image';
         var fd = new FormData();
         fd.append('file_upload', $scope.myFile);
         dataFactory.uploadApiFile(cmd, fd).then(function(response) {
-            $scope.input.user_img = response.data.img;
+            $scope.input.user_img = response.data.data;
             $scope.input.img_type = 'user';
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_upload')};
         }, function(error) {

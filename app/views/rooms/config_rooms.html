@@ -19,7 +19,7 @@
                 <td class="td-action">
                     <a class="btn btn-default" href="#config-rooms/{{v.id}}"><i class="fa fa-pencil fa-lg text-info"></i></a>
                     <button class="btn btn-default" 
-                       ng-click="delete('#row_' + v.id, null, _t('lb_delete_confirm'), 1)"
+                       ng-click="delete('#row_' + v.id, v.id, _t('lb_delete_confirm'))"
                        ><i class="fa fa-times fa-lg text-danger"></i></button>   
                 </td>
             </tr>
