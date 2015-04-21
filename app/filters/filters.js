@@ -288,6 +288,33 @@ myApp.filter('getEventIcon', function() {
 });
 
 /**
+ * Get battery icon
+ */
+myApp.filter('getBatteryIcon', function() {
+    return function(input) {
+        var icon = 'battery.png';
+        if (isNaN(input)) {
+            return icon;
+        }
+        var level = parseInt(input);
+        if(level > 95){
+            icon = 'battery-100.png';
+        }else if(level >= 70 && level <= 95){
+            icon = 'battery-80.png';
+        }else if(level >= 50 && level < 70){
+            icon = 'battery-50.png';
+        }else if(level > 20 && level < 50){
+            icon = 'battery-30.png';
+        }else if(level >= 5 && level <= 20){
+            icon = 'battery-20.png';
+        }else{
+            icon = 'battery-0.png';
+        }
+        return icon;
+    };
+});
+
+/**
  * Get max level
  */
 myApp.filter('getMaxLevel', function() {
