@@ -34,7 +34,8 @@
             <tbody>
                 <tr ng-repeat="v in devices.batteries| orderBy:'level':false" id="row_battery_{{ v.rowId}}">
                     <td class="td-img">
-                        <img class="report-img" ng-src="storage/img/icons/battery.png" alt="icon" />
+                       
+                        <img class="report-img" ng-src="storage/img/batteries/{{v.metrics.level|getBatteryIcon}}" alt="img" />
                     </td>
                     <td ng-bind="v.metrics.title"></td>
                     <td>
