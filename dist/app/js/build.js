@@ -8513,7 +8513,6 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                     'moduleName': $filter('hasNode')(module, 'data.data.moduleName'),
                     'category': module.data.data.category
                 };
-                console.log($scope.input)
                 $scope.showForm = true;
                 if (!$filter('hasNode')(formData, 'options.fields') || !$filter('hasNode')(formData, 'schema.properties')) {
                     $scope.alpacaData = false;

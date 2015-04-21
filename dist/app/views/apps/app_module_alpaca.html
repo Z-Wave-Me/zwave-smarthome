@@ -2,7 +2,6 @@
 <div class="mobile-padding" id="page_module_update" ng-controller="AppModuleAlpacaController">
     <div class="alpaca-perex clearfix"> 
         <img class="app-image-alpaca" ng-src="{{moduleMediaUrl + input.moduleName + '/' + input.icon}}" ng-if="input.icon" alt="img" />
-                <img class="app-image-alpaca" ng-src="storage/img/placeholder-img.png" ng-if="!input.icon" alt="img" />
         <h1 ng-bind="input.moduleTitle"></h1>
         <p class="help-block">{{_t('lb_module_id')}}: {{input.moduleId}} | {{_t('lb_instance_id')}}: {{input.instanceId}} <!--| {{_t('lb_category')}}: {{_t(input.category)}}--></p>
        
