@@ -67,7 +67,8 @@ var config_data = {
             'role': 1,
             'color': '#dddddd',
             'lang': 'en',
-            'interval': 3000
+            'interval': 3000,
+            'expert_view': false
         },
         // List of profile colors
         'profile_colors': ['#dddddd','#6c7a89', '#6494bc', '#80ad80', '#31b0d5', '#f0aD4e', '#d9534f','#dd976e'],

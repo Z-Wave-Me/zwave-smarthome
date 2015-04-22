@@ -5628,25 +5628,12 @@ myAppService.service('dataService', function($filter, $log, $cookies, myCache, c
      * Get user data
      */
     function getUser(data) {
+        return setUser(cfg.user_default);
         if ($cookies.user) {
             return angular.fromJson($cookies.user);
         } else {
             return setUser(cfg.user_default);
         }
-//        var user = {
-//            id: 1,
-//            name: 'Admin',
-//            positions: [],
-//            lang: cfg.lang,
-//            color: '#dddddd_',
-//            role: 1,
-//            dashboard: [],
-//            hide_rooms: [],
-//            hide_all_device_events: false,
-//            hide_system_events: false,
-//            hide_single_device_events: []
-//        };
-//        return user;
 
     }
 
@@ -5655,8 +5642,9 @@ myAppService.service('dataService', function($filter, $log, $cookies, myCache, c
      */
     function setUser(data) {
         var user = {
-            id: data.id || 1,
-            role: data.role || 1,
+            id: data.id || cfg.user_default.id,
+            role: data.role ||  cfg.user_default.role,
+            expert_view: data.expert_view || cfg.user_default.expert_view,
             lang: data.lang || cfg.user_default.lang,
             color: data.color || cfg.user_default.color,
             interval: $filter('toInt')(data.interval) || cfg.user_default.interval
@@ -5671,26 +5659,27 @@ myAppService.service('dataService', function($filter, $log, $cookies, myCache, c
      * Get data or filtered data
      */
     function getData(data, filter) {
-        var collection = [];
-        if (filter) {
-            angular.forEach(data, function(v, k) {
-                if (angular.isArray(v[filter.filter])) {
-                    if (v[filter.filter].indexOf(filter.val) > -1) {
-                        collection.push(v);
-                    }
-                } else {
-                    if (v[filter.filter] == filter.val) {
-                        collection.push(v);
-                    }
-                }
-            });
-            return collection;
-        } else {
+        if (!filter) {
             return data;
         }
-
+        var collection = [];
+        var addToCollection = false;
+        angular.forEach(data, function(v, k) {
+            if (angular.isArray(v[filter.filter])) {
+                addToCollection = (filter.not ? v[filter.filter].indexOf(filter.val) === -1 : v[filter.filter].indexOf(filter.val) > -1);
+                if (addToCollection) {
+                    collection.push(v);
+                }
+            } else {
+                addToCollection = (filter.not ? v[filter.filter] != filter.val : v[filter.filter] == filter.val);
+                if (addToCollection) {
+                    collection.push(v);
+                }
+            }
+        });
+        return collection;
     }
-
+    
     /**
      * Get device data
      */
@@ -5762,7 +5751,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, myCache, c
                     'hasInstance': hasInstance
                 }
             };
-            
+
             if (filter) {
                 if (angular.isArray(obj[filter.filter])) {
                     if (obj[filter.filter].indexOf(filter.val) > -1) {
@@ -5838,17 +5827,17 @@ myAppService.service('dataService', function($filter, $log, $cookies, myCache, c
      * Update device icon
      */
     function updateDeviceIcon(widgetId, v) {
-        
+
         var icon = $filter('getElementIcon')(v.metrics.icon, v, v.metrics.level);
         if (icon) {
             $(widgetId + ' .widget-image').attr('src', icon);
             $(widgetId + ' .widget-image').removeClass('trans-true');
         }
         //if (v.id == 'ZWayVDev_zway_14-0-37') {
-            //console.log('Level: ' + v.metrics.level)
-           //console.log('Update device: ' + v.id + ' - icon: ' + icon)
+        //console.log('Level: ' + v.metrics.level)
+        //console.log('Update device: ' + v.id + ' - icon: ' + icon)
         //}
-        
+
     }
 
     /**
@@ -6748,6 +6737,15 @@ myApp.filter('toInt', function() {
             return 0;
         }
         return parseInt(val, a);
+    };
+});
+
+/**
+ * Get type of a Javascript variable
+ */
+myApp.filter('typeOf', function() {
+    return function(obj) {
+         return {}.toString.call(obj).split(' ')[1].slice(0, -1).toLowerCase();
     };
 });
 
@@ -8227,9 +8225,15 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     /**
      * Load local modules
      */
-    $scope.loadModules = function(filter) {
+    $scope.loadModules = function() {
+        var filter;
+        if ($scope.user.role === 1 && $scope.user.expert_view) {
+            filter = null;
+        } else {
+            filter = {filter: "status", val: "hidden", not: true};
+        }
         dataFactory.getApi('modules').then(function(response) {
-            $scope.modules = dataService.getData(response.data.data, filter);
+            $scope.modules = dataService.getData(response.data.data, filter, true);
             angular.forEach(response.data.data, function(v, k) {
                 $scope.modulesIds.push(v.id);
                 $scope.moduleImgs[v.id] = v.icon;
@@ -8262,8 +8266,14 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
         });
     };
     $scope.loadInstances = function() {
+        var filter;
+        if ($scope.user.role === 1 && $scope.user.expert_view) {
+            filter = null;
+        } else {
+            filter = {filter: "status", val: "hidden", not: true};
+        }
         dataFactory.getApi('instances').then(function(response) {
-            $scope.instances = response.data.data;
+            $scope.instances = dataService.getData(response.data.data, filter, true);
             $scope.loading = false;
             dataService.updateTimeTick();
         }, function(error) {
@@ -8569,6 +8579,13 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
         dataFactory.getApi('instances', '/' + id, true).then(function(instances) {
             var instance = instances.data.data;
             dataFactory.getApi('modules', '/' + instance.moduleId + '?lang=' + $scope.lang).then(function(module) {
+                if (module.data.data.status === 'hidden') {
+                    if (!$scope.user.expert_view) {
+                       dataService.updateTimeTick();
+                    return;
+                    }
+                   
+                } 
                 dataFactory.getApi('namespaces').then(function(namespaces) {
                     var formData = dataService.getModuleFormData(module.data.data, instance.params, namespaces.data.data);
 
@@ -8708,7 +8725,7 @@ myAppController.controller('DeviceController', function($scope, $routeParams, da
     $scope.loadIpcameras = function() {
         dataService.showConnectionSpinner();
         dataFactory.getApi('modules').then(function(response) {
-            $scope.ipcameraDevices = dataService.getData(response.data.data, {filter: "category", val: "surveillance"});
+            $scope.ipcameraDevices = dataService.getData(response.data.data, {filter: "status", val: "camera"});
             dataService.updateTimeTick();
         }, function(error) {
             dataService.showConnectionError(error);
@@ -8919,7 +8936,7 @@ myAppController.controller('RoomConfigController', function($scope, $window, dat
     $scope.collection = [];
     $scope.devices = [];
     $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/image/';
-    
+
     $scope.reset = function() {
         $scope.collection = angular.copy([]);
     };
@@ -8943,7 +8960,7 @@ myAppController.controller('RoomConfigController', function($scope, $window, dat
      * Delete an item
      */
     $scope.delete = function(target, roomId, dialog) {
-        
+
         var confirm = true;
         if (dialog) {
             confirm = $window.confirm(dialog);
@@ -9357,7 +9374,8 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
         hide_system_events: false,
         hide_single_device_events: [],
         rooms: [],
-        default_ui: 1
+        default_ui: 1,
+        expert_view: false
 
     };
 

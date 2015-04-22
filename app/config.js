@@ -8,7 +8,7 @@ var config_data = {
         'app_type': 'web',
         // Server base url
         'server_url': '/', 
-        //'server_url': 'http://192.168.10.41:8083/',
+        //'server_url': 'http://192.168.10.119:8083/',
         // Interval in miliseconds to refresh data
         'interval': 3000,
         // Interval in miliseconds (5 min) to clear history (json) cache
@@ -67,7 +67,8 @@ var config_data = {
             'role': 1,
             'color': '#dddddd',
             'lang': 'en',
-            'interval': 3000
+            'interval': 3000,
+            'expert_view': false
         },
         // List of profile colors
         'profile_colors': ['#dddddd','#6c7a89', '#6494bc', '#80ad80', '#31b0d5', '#f0aD4e', '#d9534f','#dd976e'],

@@ -31,24 +31,22 @@
                 </div>
              </fieldset>
             
-            <fieldset>
-                 <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_default_ui')"></span></h3>
-                <div>
-                    <!-- Default UI -->
-                    <div class="form-group form-inline">
-                        <label><input type="radio" name="default_ui" value="1" ng-model="input.default_ui" ng-checked="input.default_ui == 1" /> {{_t('lb_ui_smarthome')}}</label>
-                         <label><input type="radio" name="default_ui" value="2" ng-model="input.default_ui" ng-checked="input.default_ui == 2" /> {{_t('lb_ui_expert')}}</label>
-                    </div>
-                </div>
-             </fieldset>
-            
              <fieldset>
                 <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_settings')"></span></h3>
                 <div>
                      <!-- role -->
                     <div class="form-group form-inline">
-                        <label><input type="radio" name="role" value="1" ng-model="input.role" ng-checked="input.role == 1" /> {{_t('lb_admin')}}</label>
-                         <label><input type="radio" name="role" value="2" ng-model="input.role" ng-checked="input.role == 2" /> {{_t('lb_user')}}</label>
+                        <label>{{_t('lb_role')}}: </label> <input type="radio" name="role" value="1" ng-model="input.role" ng-checked="input.role == 1" /> {{_t('lb_admin')}}
+                         <input type="radio" name="role" value="2" ng-model="input.role" ng-checked="input.role == 2" /> {{_t('lb_user')}}
+                    </div>
+                     <!-- Default UI -->
+                    <div class="form-group form-inline">
+                        <label>{{_t('lb_default_ui')}}: </label> <input type="radio" name="default_ui" value="1" ng-model="input.default_ui" ng-checked="input.default_ui == 1" /> {{_t('lb_ui_smarthome')}}
+                         <input type="radio" name="default_ui" value="2" ng-model="input.default_ui" ng-checked="input.default_ui == 2" /> {{_t('lb_ui_expert')}}
+                    </div>
+                      <!-- Expert view -->
+                    <div class="form-group form-inline">
+                        <label> {{_t('lb_expert_view')}}: <input type="checkbox" name="expert_view" ng-model="input.expert_view" ng-checked="input.expert_view" /></label>
                     </div>
                     <!-- lang -->
                     <div class="form-group form-inline">
@@ -73,9 +71,7 @@
             </fieldset>
 
             <fieldset>
-                <p class="network-zwave-title">
-                    <i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_allow_rooms')"></span>
-                </p>
+                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_allow_rooms')"></span></h3>
                 <div>
                     <div class="device-assigned-block">
                         <div class="btn-device-admin" id="device_assigned_{{$index}}" ng-repeat="d in rooms" ng-if="input.rooms.indexOf(d.id) > -1"> 
@@ -83,9 +79,7 @@
                         </div>
                     </div>
                 <div class="device-available-block">
-                     <p class="network-zwave-title">
-                    <i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_available_rooms')"></span>
-                </p>
+                     <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_available_rooms')"></span></h3>
                     <div class="btn-device-admin" id="device_unassigned_{{$index}}" ng-repeat="d in rooms" ng-if="input.rooms.indexOf(d.id) === -1">
                         <a href="" ng-click="assignRoom(d.id)">{{d.title}} <i class="fa fa-plus text-success"></i></a>
                     </div>

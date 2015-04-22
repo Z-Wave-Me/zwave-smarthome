@@ -917,9 +917,15 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     /**
      * Load local modules
      */
-    $scope.loadModules = function(filter) {
+    $scope.loadModules = function() {
+        var filter;
+        if ($scope.user.role === 1 && $scope.user.expert_view) {
+            filter = null;
+        } else {
+            filter = {filter: "status", val: "hidden", not: true};
+        }
         dataFactory.getApi('modules').then(function(response) {
-            $scope.modules = dataService.getData(response.data.data, filter);
+            $scope.modules = dataService.getData(response.data.data, filter, true);
             angular.forEach(response.data.data, function(v, k) {
                 $scope.modulesIds.push(v.id);
                 $scope.moduleImgs[v.id] = v.icon;
@@ -952,8 +958,14 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
         });
     };
     $scope.loadInstances = function() {
+        var filter;
+        if ($scope.user.role === 1 && $scope.user.expert_view) {
+            filter = null;
+        } else {
+            filter = {filter: "status", val: "hidden", not: true};
+        }
         dataFactory.getApi('instances').then(function(response) {
-            $scope.instances = response.data.data;
+            $scope.instances = dataService.getData(response.data.data, filter, true);
             $scope.loading = false;
             dataService.updateTimeTick();
         }, function(error) {
@@ -1259,6 +1271,13 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
         dataFactory.getApi('instances', '/' + id, true).then(function(instances) {
             var instance = instances.data.data;
             dataFactory.getApi('modules', '/' + instance.moduleId + '?lang=' + $scope.lang).then(function(module) {
+                if (module.data.data.status === 'hidden') {
+                    if (!$scope.user.expert_view) {
+                       dataService.updateTimeTick();
+                    return;
+                    }
+                   
+                } 
                 dataFactory.getApi('namespaces').then(function(namespaces) {
                     var formData = dataService.getModuleFormData(module.data.data, instance.params, namespaces.data.data);
 
@@ -1398,7 +1417,7 @@ myAppController.controller('DeviceController', function($scope, $routeParams, da
     $scope.loadIpcameras = function() {
         dataService.showConnectionSpinner();
         dataFactory.getApi('modules').then(function(response) {
-            $scope.ipcameraDevices = dataService.getData(response.data.data, {filter: "category", val: "surveillance"});
+            $scope.ipcameraDevices = dataService.getData(response.data.data, {filter: "status", val: "camera"});
             dataService.updateTimeTick();
         }, function(error) {
             dataService.showConnectionError(error);
@@ -1609,7 +1628,7 @@ myAppController.controller('RoomConfigController', function($scope, $window, dat
     $scope.collection = [];
     $scope.devices = [];
     $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/image/';
-    
+
     $scope.reset = function() {
         $scope.collection = angular.copy([]);
     };
@@ -1633,7 +1652,7 @@ myAppController.controller('RoomConfigController', function($scope, $window, dat
      * Delete an item
      */
     $scope.delete = function(target, roomId, dialog) {
-        
+
         var confirm = true;
         if (dialog) {
             confirm = $window.confirm(dialog);

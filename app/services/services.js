@@ -199,25 +199,12 @@ myAppService.service('dataService', function($filter, $log, $cookies, myCache, c
      * Get user data
      */
     function getUser(data) {
+        return setUser(cfg.user_default);
         if ($cookies.user) {
             return angular.fromJson($cookies.user);
         } else {
             return setUser(cfg.user_default);
         }
-//        var user = {
-//            id: 1,
-//            name: 'Admin',
-//            positions: [],
-//            lang: cfg.lang,
-//            color: '#dddddd_',
-//            role: 1,
-//            dashboard: [],
-//            hide_rooms: [],
-//            hide_all_device_events: false,
-//            hide_system_events: false,
-//            hide_single_device_events: []
-//        };
-//        return user;
 
     }
 
@@ -226,8 +213,9 @@ myAppService.service('dataService', function($filter, $log, $cookies, myCache, c
      */
     function setUser(data) {
         var user = {
-            id: data.id || 1,
-            role: data.role || 1,
+            id: data.id || cfg.user_default.id,
+            role: data.role ||  cfg.user_default.role,
+            expert_view: data.expert_view || cfg.user_default.expert_view,
             lang: data.lang || cfg.user_default.lang,
             color: data.color || cfg.user_default.color,
             interval: $filter('toInt')(data.interval) || cfg.user_default.interval
@@ -242,26 +230,27 @@ myAppService.service('dataService', function($filter, $log, $cookies, myCache, c
      * Get data or filtered data
      */
     function getData(data, filter) {
-        var collection = [];
-        if (filter) {
-            angular.forEach(data, function(v, k) {
-                if (angular.isArray(v[filter.filter])) {
-                    if (v[filter.filter].indexOf(filter.val) > -1) {
-                        collection.push(v);
-                    }
-                } else {
-                    if (v[filter.filter] == filter.val) {
-                        collection.push(v);
-                    }
-                }
-            });
-            return collection;
-        } else {
+        if (!filter) {
             return data;
         }
-
+        var collection = [];
+        var addToCollection = false;
+        angular.forEach(data, function(v, k) {
+            if (angular.isArray(v[filter.filter])) {
+                addToCollection = (filter.not ? v[filter.filter].indexOf(filter.val) === -1 : v[filter.filter].indexOf(filter.val) > -1);
+                if (addToCollection) {
+                    collection.push(v);
+                }
+            } else {
+                addToCollection = (filter.not ? v[filter.filter] != filter.val : v[filter.filter] == filter.val);
+                if (addToCollection) {
+                    collection.push(v);
+                }
+            }
+        });
+        return collection;
     }
-
+    
     /**
      * Get device data
      */
@@ -333,7 +322,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, myCache, c
                     'hasInstance': hasInstance
                 }
             };
-            
+
             if (filter) {
                 if (angular.isArray(obj[filter.filter])) {
                     if (obj[filter.filter].indexOf(filter.val) > -1) {
@@ -409,17 +398,17 @@ myAppService.service('dataService', function($filter, $log, $cookies, myCache, c
      * Update device icon
      */
     function updateDeviceIcon(widgetId, v) {
-        
+
         var icon = $filter('getElementIcon')(v.metrics.icon, v, v.metrics.level);
         if (icon) {
             $(widgetId + ' .widget-image').attr('src', icon);
             $(widgetId + ' .widget-image').removeClass('trans-true');
         }
         //if (v.id == 'ZWayVDev_zway_14-0-37') {
-            //console.log('Level: ' + v.metrics.level)
-           //console.log('Update device: ' + v.id + ' - icon: ' + icon)
+        //console.log('Level: ' + v.metrics.level)
+        //console.log('Update device: ' + v.id + ' - icon: ' + icon)
         //}
-        
+
     }
 
     /**
