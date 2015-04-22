@@ -2047,7 +2047,8 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
         hide_system_events: false,
         hide_single_device_events: [],
         rooms: [],
-        default_ui: 1
+        default_ui: 1,
+        expert_view: false
 
     };
 

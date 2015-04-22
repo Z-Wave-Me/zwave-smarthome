@@ -81,6 +81,8 @@
      "lb_module_id": "Module ID",
      "lb_instance_id": "Instance ID",
      "lb_is": "is",
+     "lb_expert_view": "Expert view",
+     "lb_role": "Role",
     "---": "missing",
     "lb_show_all": "Show all",
     "lb_events_source_type": "Events of this Type and Source",
