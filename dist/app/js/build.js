@@ -5628,7 +5628,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, myCache, c
      * Get user data
      */
     function getUser(data) {
-        return setUser(cfg.user_default);
+        //return setUser(cfg.user_default);
         if ($cookies.user) {
             return angular.fromJson($cookies.user);
         } else {
