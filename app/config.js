@@ -10,7 +10,7 @@ var config_data = {
         'server_url': '/', 
         //'server_url': 'http://192.168.10.119:8083/',
         // Interval in miliseconds to refresh data
-        'interval': 3000,
+        'interval': 3000, 
         // Interval in miliseconds (5 min) to clear history (json) cache
         'history_cache_interval': 300000,
         // List of API links 
