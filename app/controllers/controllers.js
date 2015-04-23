@@ -2300,11 +2300,17 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
         default_ui: 1
     };
     /**
+     * Login language
+     */
+    $scope.loginLang = function(lang) {
+        $scope.loadLang(lang);
+    };
+    /**
      * Login proccess
      */
     $scope.login = function(input) {
         dataService.logInfo(input);
-        $location.path('/elements/dashboard/1');
+        //$location.path('/elements/dashboard/1');
         //dataService.setUser($scope.cfg.user_default);
     };
 

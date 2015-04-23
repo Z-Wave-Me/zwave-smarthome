@@ -1884,6 +1884,11 @@ padding-right: 5px;
 #page_login .container {
   max-width: 500px;
 }
+/* line 10, sass/modules/_login.scss */
+#page_login .login-lang {
+  text-align: right;
+  margin-bottom: 10px;
+}
 
 /*
  * The responsive style for the front-end
