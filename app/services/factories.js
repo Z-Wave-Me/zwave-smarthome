@@ -18,6 +18,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
     var updatedTime = Math.round(+new Date() / 1000);
     var lang = (angular.isDefined($cookies.lang) ? $cookies.lang : cfg.lang);
     return({
+        logInApi: logInApi,
         getApiLocal: getApiLocal,
         getApi: getApi,
         deleteApi: deleteApi,
@@ -41,6 +42,20 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
     });
 
     /// --- Public functions --- ///
+    
+    // Post api data
+    function logInApi(data) {
+        return $http({
+            method: "post",
+            data: data,
+            url: cfg.server_url + cfg.api['login']
+        }).then(function(response) {
+            return response;
+        }, function(response) {// something went wrong
+             //return response;
+            return $q.reject(response);
+        });
+    }
 
     /**
      * Gets api local data

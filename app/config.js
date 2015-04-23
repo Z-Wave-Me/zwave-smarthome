@@ -23,7 +23,8 @@ var config_data = {
             'modules_categories': 'ZAutomation/api/v1/modules/categories',
             'instances': 'ZAutomation/api/v1/instances',
             'namespaces': 'ZAutomation/api/v1/namespaces',
-            'history': 'ZAutomation/api/v1/history'
+            'history': 'ZAutomation/api/v1/history',
+            'login': 'ZAutomation/api/v1/profiles'
         },
         // List of image pathes
         'img': {

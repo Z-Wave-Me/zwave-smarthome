@@ -2310,6 +2310,26 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
      */
     $scope.login = function(input) {
         dataService.logInfo(input);
+        input.password = md5(input.password);
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        dataFactory.logInApi(input).then(function(response) {
+            dataService.logInfo(response, 'User logged in')
+            dataService.setUser(response.data.data);
+            if (input.keepme) {
+                dataService.logInfo(input, 'Remeber user')
+            }
+            $scope.loading = false;
+        }, function(error) {
+            var message = $scope._t('error_load_data');
+            if (error.status == 404) {
+                message = $scope._t('error_load_user');
+            }
+            alert(message);
+            $scope.loading = false;
+            dataService.logError(error.status);
+        });
+
+
         //$location.path('/elements/dashboard/1');
         //dataService.setUser($scope.cfg.user_default);
     };
