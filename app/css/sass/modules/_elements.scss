@@ -23,7 +23,15 @@
 }
 .widget-header{
     text-align: right;
-    padding: 5px 10px 0 0;
+    padding: 3px 0 0 0;
+    a{
+        display: inline-block;
+        padding: 0 5px 0 0;
+        color: lighten($header-link-color, 10%);
+    }
+     a:hover{
+        color: $brand-color-secondary;
+    }
 }
 
 
@@ -32,7 +40,7 @@
     padding: 0 5px 15px 84px;
     width: 100%;
     .entry-title{
-        padding-right: 30px;
+        padding: 5px 30px 0 0;
     }
     .widget-control-wrap{
         width: 100%;
@@ -51,7 +59,7 @@
         }
     }
     .widget-click-popup{
-        cursor: pointer;
+        //cursor: pointer;
     }
     //position:relative;
     .element-hidden{

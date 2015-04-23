@@ -125,23 +125,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
  * Test controller
  */
 myAppController.controller('TestController', function($scope, $routeParams, $filter, $location, $log, $timeout, dataFactory, dataService) {
-    $scope.userImage = false;
-    $scope.uploadFile = function() {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('uploading')};
-        var cmd = $scope.cfg.server_url + $scope.cfg.api_url + 'upload/image';
-        var fd = new FormData();
-        fd.append('file_upload', $scope.myFile);
-        dataService.logInfo(fd, 'File upload')
-        dataFactory.uploadApiFile(cmd, fd).then(function(response) {
-            $scope.userImage = $scope.cfg.server_url + $scope.cfg.zwave_js_url + 'Load_Image/' + response.data.img
-            dataService.logInfo($scope.userImage, 'Image')
-            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_upload')};
-        }, function(error) {
-            dataService.logError(error, 'File upload')
-            $scope.loading = false;
-            alert($scope._t('error_upload'));
-        });
-    };
+    
 });
 /**
  * Element controller

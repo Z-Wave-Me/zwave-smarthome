@@ -83,6 +83,8 @@ var config_data = {
         'device_vendors': ['zwave', 'enocean', 'ipcamera'],
         // Hidden apps
         'hidden_apps': ['AnotherModuleID'],
+        // Element control
+        'element_control': ['switchMultilevel','thermostat','sensorMultiline'],
         // Room images
         'room_images': [
             'kitchen.jpg',
