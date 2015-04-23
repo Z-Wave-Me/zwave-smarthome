@@ -80,7 +80,7 @@
      "lb_category": "Category",
      "lb_module_id": "Module ID",
      "lb_instance_id": "Instance ID",
-     "lb_is": "is",
+     "lb_use": "uses",
      "lb_expert_view": "Expert view",
      "lb_role": "Role",
     "---": "missing",

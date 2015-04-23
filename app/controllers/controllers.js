@@ -125,7 +125,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
  * Test controller
  */
 myAppController.controller('TestController', function($scope, $routeParams, $filter, $location, $log, $timeout, dataFactory, dataService) {
-    
+
 });
 /**
  * Element controller
@@ -1209,6 +1209,10 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
         'category': null
     };
 
+    $scope.onLoad = function() {
+        myCache.remove('instances');
+    };
+    $scope.onLoad();
     // Post new module instance
     $scope.postModule = function(id) {
         dataService.showConnectionSpinner();
@@ -1257,11 +1261,11 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
             dataFactory.getApi('modules', '/' + instance.moduleId + '?lang=' + $scope.lang).then(function(module) {
                 if (module.data.data.status === 'hidden') {
                     if (!$scope.user.expert_view) {
-                       dataService.updateTimeTick();
-                    return;
+                        dataService.updateTimeTick();
+                        return;
                     }
-                   
-                } 
+
+                }
                 dataFactory.getApi('namespaces').then(function(namespaces) {
                     var formData = dataService.getModuleFormData(module.data.data, instance.params, namespaces.data.data);
 
