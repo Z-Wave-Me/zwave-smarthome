@@ -14,20 +14,48 @@
 
                     <!-- Widget header -->
                     <div class="widget-header">
-                         <a class="widget-history" href="" ng-click="goHidden = !goHidden" ng-show="cfg.element_control.indexOf(v.deviceType) > -1"><i class="fa fa-pencil-square-o fa-lg"></i></a>
-                        <a class="widget-history" href="" ng-click="goHistory = !goHistory" ng-show="history[v.id]"><i class="fa fa-history fa-lg"></i></a>
+                        <a class="widget-history" href="" ng-click="goHistory = !goHistory" ng-show_="history[v.id]"><i class="fa fa-bar-chart"></i></a>
                         <a class="widget-config" href="#element/{{v.id}}"><i class="fa fa-cog fa-lg"></i></a>
+                        <!--<a class="widget-config" href="" 
+                           ng-click="showModal('#modal_widget', {
+                                       'id': v.id,
+                                               'title': v.title,
+                                               'dashboard': v.onDashboard == true ? true : false,
+                                               'location': v.location,
+                                               'tags': v.tags,
+                                               'deviceType': v.deviceType,
+                                               'level': v.level,
+                                               'metrics': v.metrics,
+                                               'updateTime': v.updateTime,
+                                               'cfg': v.cfg,
+                                               'permanently_hidden': v.permanently_hidden,
+                                               'rooms': rooms,
+                                               'hide_events': profileData.hide_single_device_events.indexOf(v.id) == -1 ? false : true
+                                       })"
+                           ><i class="fa fa-cog fa-lg"></i></a> -->
                     </div>
 
                     <!-- Widget body -->
-                    <div class="widget-body" ng-class="{'text-widget': v.deviceType == 'text','text-widget-no-img': v.deviceType == 'text' && v.metrics.img == ''}" ng-mouseleave="goHidden = false;goHistory = false;">
+                    <div class="widget-body" ng-class="{'text-widget': v.deviceType == 'text','text-widget-no-img': v.deviceType == 'text' && v.metrics.img == ''}" ng-click="goHidden = true;" ng-mouseleave="goHidden = false;">
                         
                         <h3 class="entry-title" title="{{v.title}}">{{v.title}}</h3>
+                        <!-- <h3 class="entry-title"><a href="" ng-click="showModal('#modal_promo', {'title': v.title})" ng-bind="v.title"></a> &raquo;</h3> -->
+                        <!--<i>{{v.icon}}, {{v.deviceType}}</i> -->
+                        
+                        <!-- Hidden sensorMultilevel -->
+                        <div class="col-sm-11 element-hidden hidden-history" ng-show="goHistory">
+                            <a class="hidden-close" href="" ng-click="goHistory = !goHistory"><i class="fa fa-times"></i></a>
+                            <p class="popup-title">{{v.title|cutText:true:30}}</p>
+                            <div>
+                                <canvas tc-chartjs-line chart-data="history[v.id]" chart-options="chartOptions" width="260" height="150"></canvas>
+                            </div>
+                        </div>
+                       
                         <div class="widget-control-wrap">
                              <!------------ switchMultilevel ------------>
                             <div ng-switch-when="switchMultilevel">
                                 <div class="widget-control control-left widget-click-popup">
-                                    <span class="widget-level" ng-bind="levelVal[v.id] | getMaxLevel"></span> %
+                                    <span class="widget-level" ng-bind="levelVal[v.id] | getMaxLevel"></span> % <i class="fa fa-caret-down"></i>
                                 </div>
                                 <div class="widget-control control-right" ng-if="v.metrics.icon == 'blinds'">
                                    <div class="btn-group">
@@ -77,6 +105,10 @@
                                     <span class="color-picker-show" style="background-color: {{rgbVal[v.id]}};">&nbsp;</span> <span>RGB <i class="fa fa-caret-down"></i></span>
                                 </div>
                                 <div class="widget-control control-right">
+                                    <!--<div class="btn-group" ng-show="showColor">
+                                     <button class="btn btn-primary btn-sm" ng-click="setRBGColor(v.id,rgbVal[v.id]);showColor = !showColor">Update</button>
+                                     <button class="btn btn-default btn-sm" ng-click="resetRBGColor(v.id,v.rgbColorsSDefault);showColor = !showColor">Cancel</button>
+                                      </div>--> 
                                     <div class="btn-group"> 
                                        
                                         <button 
@@ -142,7 +174,7 @@
                             <!-- sensorMultiline -->
                             <div ng-switch-when="sensorMultiline">
                                 <div class="widget-control control-left widget-click-popup">
-                                    <span class="widget-level" ng-bind="v.level"></span> <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span>
+                                    <span class="widget-level" ng-bind="v.level"></span> <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span> <i class="fa fa-caret-down"></i>
                                 </div>
 
                                 <div class="widget-control control-right">
@@ -153,9 +185,9 @@
                             </div>
 
                             <!-- thermostat -->
-                            <div class="widget-control control-left widget-click-popup" ng-switch-when="thermostat"><strong>{{levelVal[v.id]}} <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span></strong></div>
+                            <div class="widget-control control-left widget-click-popup" ng-switch-when="thermostat"><strong>{{levelVal[v.id]}} <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span></strong> <i class="fa fa-caret-down"></i></div>
                             <!-- switchMultilevelLinear -->
-                            <div class="widget-click-popup" ng-switch-when="switchMultilevelLinear"><strong>{{v.level}} <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span></strong></div>
+                            <div class="widget-click-popup" ng-switch-when="switchMultilevelLinear"><strong>{{v.level}} <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span></strong> <i class="fa fa-caret-down"></i></div>
                             <!-- camera -->
                             <div class="text-right"><a href="" class="btn btn-primary" ng-switch-when="camera" ng-click="showModal('#modal_camera', v)"><i class="fa fa-play"></i></a></div>
 
@@ -170,21 +202,9 @@
                             <div class="widget-control control-left widget-click-popup" ng-switch-default><span class="widget-level" ng-bind="v.level"></span> <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span></div>
 
                         </div><!-- /.widget-control-wrap --> 
-                        
-                        <!-- ------------------------------ Hidden windows ------------------------------ -->
-                        
-                         <!-- History -->
-                         <div class="col-sm-11 element-hidden hidden-history" ng-show="goHistory">
-                            <a class="hidden-close" href="" ng-click="goHistory = !goHistory"><i class="fa fa-times"></i></a>
-                            <p class="popup-title">{{v.title|cutText:true:30}}</p>
-                            <div>
-                                <canvas tc-chartjs-line chart-data="history[v.id]" chart-options="chartOptions" width="260" height="150"></canvas>
-                            </div>
-                        </div>
 
                         <!-- Hidden switchMultilevel -->
                         <div class="col-sm-11 element-hidden hidden-switch-multilevel animate-show" ng-switch-when="switchMultilevel" ng-show="goHidden">
-                             <a class="hidden-close" href="" ng-click="goHidden = false"><i class="fa fa-times"></i></a>
                             <div>
                                 <p class="text-center">{{v.title}} </p>
                                 <table>

@@ -6749,52 +6749,6 @@ myApp.filter('typeOf', function() {
     };
 });
 
-//myApp.filter('naturalSort',function(){
-//    function naturalSort (a, b) {
-//        var re = /(^-?[0-9]+(\.?[0-9]*)[df]?e?[0-9]?$|^0x[0-9a-f]+$|[0-9]+)/gi,
-//            sre = /(^[ ]*|[ ]*$)/g,
-//            dre = /(^([\w ]+,?[\w ]+)?[\w ]+,?[\w ]+\d+:\d+(:\d+)?[\w ]?|^\d{1,4}[\/\-]\d{1,4}[\/\-]\d{1,4}|^\w+, \w+ \d+, \d{4})/,
-//            hre = /^0x[0-9a-f]+$/i,
-//            ore = /^0/,
-//            i = function(s) { return naturalSort.insensitive && (''+s).toLowerCase() || ''+s },
-//            // convert all to strings strip whitespace
-//            x = i(a).replace(sre, '') || '',
-//            y = i(b).replace(sre, '') || '',
-//            // chunk/tokenize
-//            xN = x.replace(re, '\0$1\0').replace(/\0$/,'').replace(/^\0/,'').split('\0'),
-//            yN = y.replace(re, '\0$1\0').replace(/\0$/,'').replace(/^\0/,'').split('\0'),
-//            // numeric, hex or date detection
-//            xD = parseInt(x.match(hre)) || (xN.length != 1 && x.match(dre) && Date.parse(x)),
-//            yD = parseInt(y.match(hre)) || xD && y.match(dre) && Date.parse(y) || null,
-//            oFxNcL, oFyNcL;
-//        // first try and sort Hex codes or Dates
-//        if (yD)
-//            if ( xD < yD ) return -1;
-//        else if ( xD > yD ) return 1;
-//        // natural sorting through split numeric strings and default strings
-//        for(var cLoc=0, numS=Math.max(xN.length, yN.length); cLoc < numS; cLoc++) {
-//            // find floats not starting with '0', string or 0 if not defined (Clint Priest)
-//            oFxNcL = !(xN[cLoc] || '').match(ore) && parseFloat(xN[cLoc]) || xN[cLoc] || 0;
-//            oFyNcL = !(yN[cLoc] || '').match(ore) && parseFloat(yN[cLoc]) || yN[cLoc] || 0;
-//            // handle numeric vs string comparison - number < string - (Kyle Adams)
-//            if (isNaN(oFxNcL) !== isNaN(oFyNcL)) { return (isNaN(oFxNcL)) ? 1 : -1; }
-//            // rely on string comparison if different types - i.e. '02' < 2 != '02' < '2'
-//            else if (typeof oFxNcL !== typeof oFyNcL) {
-//                oFxNcL += '';
-//                oFyNcL += '';
-//            }
-//            if (oFxNcL < oFyNcL) return -1;
-//            if (oFxNcL > oFyNcL) return 1;
-//        }
-//        return 0;
-//    }
-//    return function(arrInput) {
-//        var arr = arrInput.sort(function(a, b) {
-//            return naturalSort(a.title,b.title);
-//        });
-//        return arr;
-//    }
-//});
 /**
  * Set the max dec. lenghth
  */
@@ -7433,23 +7387,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
  * Test controller
  */
 myAppController.controller('TestController', function($scope, $routeParams, $filter, $location, $log, $timeout, dataFactory, dataService) {
-    $scope.userImage = false;
-    $scope.uploadFile = function() {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('uploading')};
-        var cmd = $scope.cfg.server_url + $scope.cfg.api_url + 'upload/image';
-        var fd = new FormData();
-        fd.append('file_upload', $scope.myFile);
-        dataService.logInfo(fd, 'File upload')
-        dataFactory.uploadApiFile(cmd, fd).then(function(response) {
-            $scope.userImage = $scope.cfg.server_url + $scope.cfg.zwave_js_url + 'Load_Image/' + response.data.img
-            dataService.logInfo($scope.userImage, 'Image')
-            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_upload')};
-        }, function(error) {
-            dataService.logError(error, 'File upload')
-            $scope.loading = false;
-            alert($scope._t('error_upload'));
-        });
-    };
+    
 });
 /**
  * Element controller
