@@ -2353,7 +2353,7 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
                 dataService.logInfo(input, 'Remeber user')
             }
             $scope.loading = false;
-            $location.path('/elements/dashboard/1');
+            $location.path('/elements');
         }, function(error) {
             var message = $scope._t('error_load_data');
             if (error.status == 404) {

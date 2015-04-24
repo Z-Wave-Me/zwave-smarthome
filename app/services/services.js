@@ -205,8 +205,8 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
          if (user && user.id > 0) {
             return angular.fromJson($cookies.user);
         } else {
-           // return false;
-            return setUser(cfg.user_default);
+            return false;
+            //return setUser(cfg.user_default);
             
         }
 
