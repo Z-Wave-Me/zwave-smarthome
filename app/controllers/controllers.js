@@ -2196,14 +2196,14 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
 
     };
     $scope.newPassword = null;
-
+    console.log($scope.user)
     /**
      * Load data
      */
     $scope.loadData = function(id) {
         dataService.showConnectionSpinner();
         //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataFactory.getApi('profiles', '/' + id + '?userId=' + $scope.user.id, true).then(function(response) {
+        dataFactory.getApi('profiles', '/' + id + '?userId=' + $scope.user.sid, true).then(function(response) {
             loadDevices();
             $scope.input = response.data.data;
             //$scope.loading = false;

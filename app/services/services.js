@@ -205,8 +205,8 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
          if (user && user.id > 0) {
             return angular.fromJson($cookies.user);
         } else {
-            //return false;
-            return setUser(cfg.user_default);
+            return false;
+            //return setUser(cfg.user_default);
             
         }
 
@@ -222,6 +222,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
             expert_view: data.expert_view || cfg.user_default.expert_view,
             lang: data.lang || cfg.user_default.lang,
             color: data.color || cfg.user_default.color,
+            sid: data.sid || cfg.user_default.color,
             interval: $filter('toInt')(data.interval) || cfg.user_default.interval
         };
         $cookies.user = angular.toJson(user);
