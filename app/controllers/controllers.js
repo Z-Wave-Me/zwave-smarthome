@@ -387,7 +387,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
      */
     function loadProfile() {
         $scope.profileData = [];
-        dataFactory.getApi('profiles', '/' + $scope.user.id + '?userId=' + $scope.user.id).then(function(response) {
+        dataFactory.getApi('profiles', '/' + $scope.user.id + '?userId=' + $scope.user.sid).then(function(response) {
             var profile = response.data.data;
             $scope.profileData = {
                 'id': profile.id,
@@ -442,7 +442,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
      * Update profile
      */
     function updateProfile(profileData) {
-        dataFactory.putApi('profiles', profileData.id, profileData, '?userId=' + $scope.user.id).then(function(response) {
+        dataFactory.putApi('profiles', profileData.id, profileData, '?userId=' + $scope.user.sid).then(function(response) {
             //dataService.logInfo(response, 'Updating Devices');
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
             myCache.remove('devices');
@@ -561,7 +561,7 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
      */
     function loadProfile() {
         $scope.profileData = [];
-        dataFactory.getApi('profiles', '/' + $scope.user.id + '?userId=' + $scope.user.id).then(function(response) {
+        dataFactory.getApi('profiles', '/' + $scope.user.id + '?userId=' + $scope.user.sid).then(function(response) {
             var profile = response.data.data;
             $scope.profileData = {
                 'id': profile.id,
@@ -624,7 +624,7 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
      * Update profile
      */
     function updateProfile(profileData, deviceId) {
-        dataFactory.putApi('profiles', profileData.id, profileData, '?userId=' + $scope.user.id).then(function(response) {
+        dataFactory.putApi('profiles', profileData.id, profileData, '?userId=' + $scope.user.sid).then(function(response) {
             $scope.loading = false;
             myCache.remove('devices');
             myCache.remove('devices/' + deviceId);
@@ -853,7 +853,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
      */
     function loadProfile() {
         $scope.profileData = [];
-        dataFactory.getApi('profiles', '/' + $scope.user.id + '?userId=' + $scope.user.id).then(function(response) {
+        dataFactory.getApi('profiles', '/' + $scope.user.id + '?userId=' + $scope.user.sid).then(function(response) {
             $scope.profileData = response.data.data;
         }, function(error) {
             dataService.showConnectionError(error);
@@ -865,7 +865,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
      */
     function updateProfile(profileData) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        dataFactory.putApi('profiles', profileData.id, profileData, '?userId=' + $scope.user.id).then(function(response) {
+        dataFactory.putApi('profiles', profileData.id, profileData, '?userId=' + $scope.user.sid).then(function(response) {
             //dataService.logInfo(response, 'Updating Devices');
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
             myCache.remove('notifications');
@@ -2027,7 +2027,7 @@ myAppController.controller('AdminController', function($scope, $window, $cookies
      */
     $scope.loadData = function() {
         dataService.showConnectionSpinner();
-        dataFactory.getApi('profiles', '?userId=' + $scope.user.id).then(function(response) {
+        dataFactory.getApi('profiles', '?userId=' + $scope.user.sid).then(function(response) {
             $scope.profiles = response.data.data;
             dataService.updateTimeTick();
         }, function(error) {
@@ -2094,7 +2094,7 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
     $scope.loadData = function(id) {
         dataService.showConnectionSpinner();
         //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataFactory.getApi('profiles', '/' + id + '?userId=' + $scope.user.id, true).then(function(response) {
+        dataFactory.getApi('profiles', '/' + id + '?userId=' + $scope.user.sid, true).then(function(response) {
             //dataService.logInfo(response.data.data);
             $scope.input = response.data.data;
             //$scope.loading = false;
@@ -2153,7 +2153,7 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
             input.password = md5(input.password);
         }
         
-        dataFactory.storeApi('profiles', input.id, input, '?userId=' + $scope.user.id).then(function(response) {
+        dataFactory.storeApi('profiles', input.id, input, '?userId=' + $scope.user.sid).then(function(response) {
             var id = $filter('hasNode')(response, 'data.data.id');
             if (id) {
                 myCache.remove('profiles');
@@ -2254,7 +2254,7 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
 //            lang: input.lang
 //
 //        };
-        dataFactory.putApi('profiles', input.id, input, '?userId=' + $scope.user.id).then(function(response) {
+        dataFactory.putApi('profiles', input.id, input, '?userId=' + $scope.user.sid).then(function(response) {
             var data = response.data.data;
             if (!data) {
                 alert($scope._t('error_update_data'));
@@ -2292,7 +2292,7 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
             password: md5(newPassword)
 
         };
-        dataFactory.putApi('profiles', input.id, input, '?userId=' + $scope.user.id).then(function(response) {
+        dataFactory.putApi('profiles', input.id, input, '?userId=' + $scope.user.sid).then(function(response) {
             var data = response.data.data;
             if (!data) {
                 alert($scope._t('error_update_data'));
