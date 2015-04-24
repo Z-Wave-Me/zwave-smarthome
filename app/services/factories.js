@@ -111,11 +111,11 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
         });
     }
     // Post api data
-    function postApi(api, data) {
+    function postApi(api, data,params) {
         return $http({
             method: "post",
             data: data,
-            url: cfg.server_url + cfg.api[api]
+            url: cfg.server_url + cfg.api[api] + (params ? params : '')
         }).then(function(response) {
             return response;
         }, function(response) {// something went wrong
@@ -124,11 +124,11 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
     }
 
     // Put api data
-    function putApi(api, id, data) {
+    function putApi(api, id, data,params) {
         return $http({
             method: "put",
             data: data,
-            url: cfg.server_url + cfg.api[api] + "/" + id
+            url: cfg.server_url + cfg.api[api] + "/" + id  + (params ? params : '')
         }).then(function(response) {
             return response;
         }, function(response) {// something went wrong
@@ -138,11 +138,11 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
     }
 
     // POST/PUT api data
-    function storeApi(api, id, data) {
+    function storeApi(api, id, data,params) {
         return $http({
             method: id ? 'put' : 'post',
             data: data,
-            url: cfg.server_url + cfg.api[api] + (id ? '/' + id : '')
+            url: cfg.server_url + cfg.api[api] + (id ? '/' + id : '')  + (params ? params : '')
         }).then(function(response) {
             return response;
         }, function(response) {// something went wrong

@@ -7,7 +7,7 @@ var myAppService = angular.module('myAppService', []);
 /**
  * Device service
  */
-myAppService.service('dataService', function($filter, $log, $cookies, myCache, cfg) {
+myAppService.service('dataService', function($filter, $log, $cookies, $location, myCache, cfg) {
     /// --- Public functions --- ///
     /**
      * Get language line by key
@@ -200,10 +200,14 @@ myAppService.service('dataService', function($filter, $log, $cookies, myCache, c
      */
     function getUser(data) {
         //return setUser(cfg.user_default);
-        if ($cookies.user) {
+        var user = ($cookies.user !== 'undefined' ? angular.fromJson($cookies.user) : false);
+        
+         if (user && user.id > 0) {
             return angular.fromJson($cookies.user);
         } else {
+            //return false;
             return setUser(cfg.user_default);
+            
         }
 
     }
@@ -214,7 +218,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, myCache, c
     function setUser(data) {
         var user = {
             id: data.id || cfg.user_default.id,
-            role: data.role ||  cfg.user_default.role,
+            role: data.role || cfg.user_default.role,
             expert_view: data.expert_view || cfg.user_default.expert_view,
             lang: data.lang || cfg.user_default.lang,
             color: data.color || cfg.user_default.color,
@@ -250,7 +254,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, myCache, c
         });
         return collection;
     }
-    
+
     /**
      * Get device data
      */
