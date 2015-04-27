@@ -116,6 +116,14 @@ myApp.config(['$routeProvider',
  * App configuration
  */
 
+//myApp.config([
+//    "$routeProvider",
+//    "$httpProvider",
+//    function($routeProvider, $httpProvider){
+//        $httpProvider.defaults.headers.common['Access-Control-Allow-Headers'] = '*';
+//    }
+//]);
+
 var config_module = angular.module('myAppConfig', []);
 
 angular.forEach(config_data,function(key,value) {
