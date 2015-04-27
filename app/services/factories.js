@@ -102,7 +102,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
             method: 'get',
             url: cfg.server_url + cfg.api[api] + (params ? params : ''),
             headers: {
-                'Accept-Language': lang
+                 'Accept-Language': lang
                 //'Profile-SID': profileSID
                         //'Accept-Encoding': 'gzip, deflate',
                         //'Allow-compression': 'gz' 

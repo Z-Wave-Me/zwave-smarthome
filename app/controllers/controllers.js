@@ -1893,6 +1893,8 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
         'batteries': [],
         'zwave': []
     };
+    
+     $scope.zWaveDevices = {};
     /**
      * Set tab
      */
@@ -1926,14 +1928,18 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
                 if (k == 1) {
                     return;
                 }
-                //dataService.logInfo(k, 'Node ID')
+                
                 //DEPRECATED
-//                $scope.zWaveDevices[k] = {
-//                    id: k,
-//                    title: v.data.givenName.value || 'Device ' + '_' + k,
-//                    elements: []
-//                };
+                $scope.zWaveDevices[k] = {
+                    id: k,
+                    title: v.data.givenName.value || 'Device ' + '_' + k,
+                    icon: null,
+                    elements: [],
+                    messages: []
+                };
+               
             });
+             dataService.logInfo($scope.zWaveDevices, 'Node ID');
             var findZwaveStr = "ZWayVDev_zway_";
             angular.forEach(devices, function(v, k) {
                 var cmd;
@@ -1954,11 +1960,13 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
                         obj['id'] = v.id;
                         obj['nodeId'] = nodeId;
                         obj['nodeName'] = node.data.givenName.value || 'Device ' + '_' + k,
-                                obj['title'] = v.metrics.title;
+                        obj['title'] = v.metrics.title;
                         obj['level'] = $filter('toInt')(v.metrics.level);
                         obj['metrics'] = v.metrics;
                         obj['messages'] = [];
                         $scope.devices.zwave.push(obj);
+                         $scope.zWaveDevices[nodeId]['elements'].push(obj);
+                         $scope.zWaveDevices[nodeId]['icon'] = obj.metrics.icon;
                         // Batteries
                         if (v.deviceType === 'battery') {
                             $scope.devices.batteries.push(obj);
@@ -1966,15 +1974,18 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
                         if (hasBattery && interviewDone) {
                             var batteryCharge = parseInt(node.instances[0].commandClasses[0x80].data.last.value);
                             if (batteryCharge <= 20) {
+                                $scope.zWaveDevices[nodeId]['messages'].push($scope._t('lb_low_battery'));
                                 obj['messages'].push($scope._t('lb_low_battery') + ' (' + batteryCharge + '%)');
                             }
                         }
                         // Not interview
                         if (!interviewDone) {
+                            $scope.zWaveDevices[nodeId]['messages'].push($scope._t('lb_not_configured'));
                             obj['messages'].push($scope._t('lb_not_configured'));
                         }
                         // Is failed
                         if (isFailed) {
+                            $scope.zWaveDevices[nodeId]['messages'].push($scope._t('lb_is_failed'));
                             obj['messages'].push($scope._t('lb_is_failed'));
                         }
                         $scope.devices.failed.push(obj);
