@@ -18,12 +18,13 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
     $scope.cfg.interval = ($scope.user.interval || $scope.cfg.interval);
 
     $scope.isValidUser = function(role) {
+       
         if (!$scope.user || $scope.user.id < 1) {
-            $location.path('/login');
+           // $location.path('/login');
             return;
 
         }
-        if(role && $scope.user.role != role){
+        if (role && $scope.user.role != role) {
             $location.path('/elements/dashboard/1');
             return;
         }
@@ -137,7 +138,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
 /**
  * Test controller
  */
-myAppController.controller('TestController', function($scope, $routeParams, $filter, $location, $log, $cookies,$timeout, dataFactory, dataService) {
+myAppController.controller('TestController', function($scope, $routeParams, $filter, $location, $log, $cookies, $timeout, dataFactory, dataService) {
     $scope.isValidUser();
     console.log($cookies);
 });
@@ -479,7 +480,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
  * Element detail controller controller
  */
 myAppController.controller('ElementDetailController', function($scope, $routeParams, dataFactory, dataService, myCache) {
-     $scope.isValidUser();
+    $scope.isValidUser();
     $scope.input = [];
     $scope.rooms = [];
     $scope.profileData = [];
@@ -649,7 +650,7 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
  * Event controller
  */
 myAppController.controller('EventController', function($scope, $routeParams, $interval, $window, $filter, $cookies, dataFactory, dataService, myCache, paginationService, cfg) {
-     $scope.isValidUser();
+    $scope.isValidUser();
     $scope.collection = [];
     $scope.eventLevels = [];
     $scope.eventSources = [];
@@ -886,7 +887,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
  * App controller
  */
 myAppController.controller('AppController', function($scope, $window, $cookies, $timeout, $log, dataFactory, dataService, myCache) {
-     $scope.isValidUser();
+    $scope.isValidUser();
     $scope.instances = [];
     $scope.modules = [];
     $scope.modulesIds = [];
@@ -1128,7 +1129,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
  * App local detail controller
  */
 myAppController.controller('AppLocalDetailController', function($scope, $routeParams, $log, dataFactory, dataService) {
-     $scope.isValidUser();
+    $scope.isValidUser();
     $scope.module = [];
     $scope.isOnline = null;
     $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
@@ -1165,7 +1166,7 @@ myAppController.controller('AppLocalDetailController', function($scope, $routePa
  * App online detail controller
  */
 myAppController.controller('AppOnlineDetailController', function($scope, $routeParams, $timeout, dataFactory, dataService) {
-     $scope.isValidUser();
+    $scope.isValidUser();
     $scope.module = [];
     $scope.onlineMediaUrl = $scope.cfg.online_module_img_url;
     /**
@@ -1214,7 +1215,7 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
  * App controller - add module
  */
 myAppController.controller('AppModuleAlpacaController', function($scope, $routeParams, $filter, $location, dataFactory, dataService, myCache, cfg) {
-     $scope.isValidUser();
+    $scope.isValidUser();
     $scope.showForm = false;
     $scope.success = false;
     $scope.alpacaData = true;
@@ -1386,7 +1387,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
  * Device controller
  */
 myAppController.controller('DeviceController', function($scope, $routeParams, dataFactory, dataService) {
-     $scope.isValidUser();
+    $scope.isValidUser();
     $scope.zwaveDevices = [];
     $scope.zwaveDevicesFilter = false;
     $scope.deviceVendor = false;
@@ -1455,7 +1456,7 @@ myAppController.controller('DeviceController', function($scope, $routeParams, da
  * Device controller
  */
 myAppController.controller('IncludeController', function($scope, $routeParams, $timeout, $interval, dataFactory, dataService) {
-     $scope.isValidUser();
+    $scope.isValidUser();
     $scope.apiDataInterval = null;
     $scope.device = {
         'data': null
@@ -1606,7 +1607,7 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
  * Room controller
  */
 myAppController.controller('RoomController', function($scope, dataFactory, dataService) {
-     $scope.isValidUser();
+    $scope.isValidUser();
     $scope.collection = [];
     $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/image/';
     $scope.reset = function() {
@@ -1637,7 +1638,7 @@ myAppController.controller('RoomController', function($scope, dataFactory, dataS
  * Room config controller
  */
 myAppController.controller('RoomConfigController', function($scope, $window, dataFactory, dataService, myCache) {
-     $scope.isValidUser();
+    $scope.isValidUser();
     $scope.collection = [];
     $scope.devices = [];
     $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/image/';
@@ -1718,7 +1719,7 @@ myAppController.controller('RoomConfigController', function($scope, $window, dat
  * Config room detail controller
  */
 myAppController.controller('RoomConfigEditController', function($scope, $routeParams, $filter, dataFactory, dataService, myCache) {
-     $scope.isValidUser();
+    $scope.isValidUser();
     $scope.id = $filter('toInt')($routeParams.id);
     $scope.input = {
         'id': 0,
@@ -1881,7 +1882,7 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
  * Network controller
  */
 myAppController.controller('NetworkController', function($scope, $cookies, $filter, dataFactory, dataService) {
-     $scope.isValidUser();
+    $scope.isValidUser();
     $scope.activeTab = (angular.isDefined($cookies.tab_network) ? $cookies.tab_network : 'battery');
     $scope.batteries = {
         'list': [],
@@ -1893,8 +1894,8 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
         'batteries': [],
         'zwave': []
     };
-    
-     $scope.zWaveDevices = {};
+
+    $scope.zWaveDevices = {};
     /**
      * Set tab
      */
@@ -1928,7 +1929,7 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
                 if (k == 1) {
                     return;
                 }
-                
+
                 //DEPRECATED
                 $scope.zWaveDevices[k] = {
                     id: k,
@@ -1937,9 +1938,9 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
                     elements: [],
                     messages: []
                 };
-               
+
             });
-             dataService.logInfo($scope.zWaveDevices, 'Node ID');
+            dataService.logInfo($scope.zWaveDevices, 'Node ID');
             var findZwaveStr = "ZWayVDev_zway_";
             angular.forEach(devices, function(v, k) {
                 var cmd;
@@ -1960,13 +1961,13 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
                         obj['id'] = v.id;
                         obj['nodeId'] = nodeId;
                         obj['nodeName'] = node.data.givenName.value || 'Device ' + '_' + k,
-                        obj['title'] = v.metrics.title;
+                                obj['title'] = v.metrics.title;
                         obj['level'] = $filter('toInt')(v.metrics.level);
                         obj['metrics'] = v.metrics;
                         obj['messages'] = [];
                         $scope.devices.zwave.push(obj);
-                         $scope.zWaveDevices[nodeId]['elements'].push(obj);
-                         $scope.zWaveDevices[nodeId]['icon'] = obj.metrics.icon;
+                        $scope.zWaveDevices[nodeId]['elements'].push(obj);
+                        $scope.zWaveDevices[nodeId]['icon'] = obj.metrics.icon;
                         // Batteries
                         if (v.deviceType === 'battery') {
                             $scope.devices.batteries.push(obj);
@@ -2030,7 +2031,7 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
  * Profile controller
  */
 myAppController.controller('AdminController', function($scope, $window, $cookies, dataFactory, dataService, myCache) {
-     $scope.isValidUser(1);
+    $scope.isValidUser(1);
     $scope.profiles = {};
 
     /**
@@ -2076,7 +2077,7 @@ myAppController.controller('AdminController', function($scope, $window, $cookies
  * Orofile detail
  */
 myAppController.controller('AdminUserController', function($scope, $routeParams, $filter, dataFactory, dataService, myCache) {
-     $scope.isValidUser(1);
+    $scope.isValidUser(1);
     $scope.id = $filter('toInt')($routeParams.id);
     $scope.rooms = {};
     $scope.input = {
@@ -2160,10 +2161,10 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
      */
     $scope.store = function(input) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        if($scope.id == 0){
+        if ($scope.id == 0) {
             input.password = md5(input.password);
         }
-        
+
         dataFactory.storeApi('profiles', input.id, input, '?userId=' + $scope.user.sid).then(function(response) {
             var id = $filter('hasNode')(response, 'data.data.id');
             if (id) {
@@ -2188,7 +2189,7 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
  * My Access
  */
 myAppController.controller('MyAccessController', function($scope, $window, dataFactory, dataService, myCache) {
-     $scope.isValidUser();
+    $scope.isValidUser();
     $scope.id = $scope.user.id;
     $scope.devices = {};
     $scope.input = {
@@ -2337,13 +2338,18 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
 /**
  * Login controller
  */
-myAppController.controller('LoginController', function($scope, $cookies, $location, dataFactory, dataService) {
+myAppController.controller('LoginController', function($scope, $cookies, $location, $window,dataFactory, dataService) {
     $scope.input = {
         login: '',
         password: '',
         keepme: false,
         default_ui: 1
     };
+    if ($scope.user) {
+        $location.path('/elements');
+        return;
+    }
+    $cookies.user = undefined;
     /**
      * Login language
      */
@@ -2354,9 +2360,10 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
      * Login proccess
      */
     $scope.login = function(input) {
-        dataService.logInfo(input);
+        
+        //dataService.logInfo(input);
         input.password = md5(input.password);
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.logInApi(input).then(function(response) {
             dataService.logInfo(response, 'User logged in')
             dataService.setUser(response.data.data);
@@ -2364,7 +2371,9 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
                 dataService.logInfo(input, 'Remeber user')
             }
             $scope.loading = false;
-            $location.path('/elements');
+             //console.log($cookies.user)
+            $window.location.href = '#elements';
+            //$location.path('/elements');
         }, function(error) {
             var message = $scope._t('error_load_data');
             if (error.status == 404) {
@@ -2384,16 +2393,19 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
 /**
  * Logout controller
  */
-myAppController.controller('LogoutController', function($scope, $cookies, $location, $window,$timeout, dataService) {
-     $scope.isValidUser();
+myAppController.controller('LogoutController', function($scope, $cookies, $location, $window, $timeout, dataService) {
+    //$scope.isValidUser();
     /**
      * Logout proccess
      */
     $scope.logout = function() {
         //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('logout')};
         $cookies.user = undefined;
+        
+        //console.log($cookies.user)
+         $window.location.href = '#login';
         //$window.location.reload();
-        $location.path('/login');
+        //$location.path('/login');
 //        $timeout(function() {
 //            $location.path('/login');
 //        }, 2000);
