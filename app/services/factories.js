@@ -102,8 +102,8 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
             method: 'get',
             url: cfg.server_url + cfg.api[api] + (params ? params : ''),
             headers: {
-                 'Accept-Language': lang
-                //'Profile-SID': profileSID
+                'Accept-Language': lang,
+                'Profile-SID': profileSID
                         //'Accept-Encoding': 'gzip, deflate',
                         //'Allow-compression': 'gz' 
             }
@@ -123,7 +123,13 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
         return $http({
             method: "post",
             data: data,
-            url: cfg.server_url + cfg.api[api] + (params ? params : '')
+            url: cfg.server_url + cfg.api[api] + (params ? params : ''),
+			headers: {
+                'Accept-Language': lang,
+                'Profile-SID': profileSID
+                        //'Accept-Encoding': 'gzip, deflate',
+                        //'Allow-compression': 'gz' 
+            }
         }).then(function(response) {
             return response;
         }, function(response) {// something went wrong
@@ -136,7 +142,13 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
         return $http({
             method: "put",
             data: data,
-            url: cfg.server_url + cfg.api[api] + "/" + id + (params ? params : '')
+            url: cfg.server_url + cfg.api[api] + "/" + id + (params ? params : ''),
+			headers: {
+                'Accept-Language': lang,
+                'Profile-SID': profileSID
+                        //'Accept-Encoding': 'gzip, deflate',
+                        //'Allow-compression': 'gz' 
+            }
         }).then(function(response) {
             return response;
         }, function(response) {// something went wrong
@@ -150,7 +162,13 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
         return $http({
             method: id ? 'put' : 'post',
             data: data,
-            url: cfg.server_url + cfg.api[api] + (id ? '/' + id : '') + (params ? params : '')
+            url: cfg.server_url + cfg.api[api] + (id ? '/' + id : '') + (params ? params : ''),
+			headers: {
+                'Accept-Language': lang,
+                'Profile-SID': profileSID
+                        //'Accept-Encoding': 'gzip, deflate',
+                        //'Allow-compression': 'gz' 
+            }
         }).then(function(response) {
             return response;
         }, function(response) {// something went wrong
@@ -163,7 +181,13 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
     function deleteApi(api, id, params) {
         return $http({
             method: 'delete',
-            url: cfg.server_url + cfg.api[api] + "/" + id + (params ? params : '')
+            url: cfg.server_url + cfg.api[api] + "/" + id + (params ? params : ''),
+			headers: {
+                'Accept-Language': lang,
+                'Profile-SID': profileSID
+                        //'Accept-Encoding': 'gzip, deflate',
+                        //'Allow-compression': 'gz' 
+            }
         }).then(function(response) {
             return response;
         }, function(response) {// something went wrong
