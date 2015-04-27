@@ -14,9 +14,16 @@ myAppFactory.factory('myCache', function($cacheFactory) {
 /**
  * Main data factory
  */
-myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window, $filter, $timeout, $q, myCache, cfg) {
+myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window, $filter, $timeout, $q, myCache, dataService, cfg) {
     var updatedTime = Math.round(+new Date() / 1000);
     var lang = (angular.isDefined($cookies.lang) ? $cookies.lang : cfg.lang);
+
+    var profileSID = null;
+    var user = dataService.getUser();
+    if (user && user.sid) {
+        profileSID = user.sid;
+
+    }
     return({
         logInApi: logInApi,
         getApiLocal: getApiLocal,
@@ -42,7 +49,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
     });
 
     /// --- Public functions --- ///
-    
+
     // Post api data
     function logInApi(data) {
         return $http({
@@ -52,7 +59,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
         }).then(function(response) {
             return response;
         }, function(response) {// something went wrong
-             //return response;
+            //return response;
             return $q.reject(response);
         });
     }
@@ -95,7 +102,8 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
             method: 'get',
             url: cfg.server_url + cfg.api[api] + (params ? params : ''),
             headers: {
-                'Accept-Language': lang
+                'Accept-Language': lang,
+                'Profile-SID': profileSID
                         //'Accept-Encoding': 'gzip, deflate',
                         //'Allow-compression': 'gz' 
             }
@@ -111,7 +119,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
         });
     }
     // Post api data
-    function postApi(api, data,params) {
+    function postApi(api, data, params) {
         return $http({
             method: "post",
             data: data,
@@ -124,11 +132,11 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
     }
 
     // Put api data
-    function putApi(api, id, data,params) {
+    function putApi(api, id, data, params) {
         return $http({
             method: "put",
             data: data,
-            url: cfg.server_url + cfg.api[api] + "/" + id  + (params ? params : '')
+            url: cfg.server_url + cfg.api[api] + "/" + id + (params ? params : '')
         }).then(function(response) {
             return response;
         }, function(response) {// something went wrong
@@ -138,11 +146,11 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
     }
 
     // POST/PUT api data
-    function storeApi(api, id, data,params) {
+    function storeApi(api, id, data, params) {
         return $http({
             method: id ? 'put' : 'post',
             data: data,
-            url: cfg.server_url + cfg.api[api] + (id ? '/' + id : '')  + (params ? params : '')
+            url: cfg.server_url + cfg.api[api] + (id ? '/' + id : '') + (params ? params : '')
         }).then(function(response) {
             return response;
         }, function(response) {// something went wrong
@@ -152,7 +160,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
     }
 
     // Delete api data
-    function deleteApi(api,id,params) {
+    function deleteApi(api, id, params) {
         return $http({
             method: 'delete',
             url: cfg.server_url + cfg.api[api] + "/" + id + (params ? params : '')

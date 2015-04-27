@@ -2381,7 +2381,7 @@ myAppController.controller('LogoutController', function($scope, $cookies, $locat
     $scope.logout = function() {
         //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('logout')};
         $cookies.user = undefined;
-        $window.location.reload();
+        //$window.location.reload();
         $location.path('/login');
 //        $timeout(function() {
 //            $location.path('/login');
