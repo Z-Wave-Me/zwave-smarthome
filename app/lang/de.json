@@ -1,4 +1,5 @@
-{
+{   "missing": "---",
+    "redirect_to_expert": "Sie werden zur ExpertUI weitergeleitet.",
     "missing": "---",
     "lb_zwave_autodetect": "Z-Wave Gerät automatisch erkennen",
     "lb_device_configuration": "Gerätkonfiguration",
