@@ -18,9 +18,9 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
     $scope.cfg.interval = ($scope.user.interval || $scope.cfg.interval);
 
     $scope.isValidUser = function(role) {
-       
+
         if (!$scope.user || $scope.user.id < 1) {
-           // $location.path('/login');
+            $location.path('/login');
             return;
 
         }
@@ -1881,7 +1881,7 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
 /**
  * Network controller
  */
-myAppController.controller('NetworkController', function($scope, $cookies, $filter, dataFactory, dataService) {
+myAppController.controller('NetworkController', function($scope, $cookies, $filter,$window, dataFactory, dataService) {
     $scope.isValidUser();
     $scope.activeTab = (angular.isDefined($cookies.tab_network) ? $cookies.tab_network : 'battery');
     $scope.batteries = {
@@ -1940,7 +1940,7 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
                 };
 
             });
-            dataService.logInfo($scope.zWaveDevices, 'Node ID');
+            //dataService.logInfo($scope.zWaveDevices, 'Node ID');
             var findZwaveStr = "ZWayVDev_zway_";
             angular.forEach(devices, function(v, k) {
                 var cmd;
@@ -1961,7 +1961,7 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
                         obj['id'] = v.id;
                         obj['nodeId'] = nodeId;
                         obj['nodeName'] = node.data.givenName.value || 'Device ' + '_' + k,
-                                obj['title'] = v.metrics.title;
+                        obj['title'] = v.metrics.title;
                         obj['level'] = $filter('toInt')(v.metrics.level);
                         obj['metrics'] = v.metrics;
                         obj['messages'] = [];
@@ -1975,19 +1975,42 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
                         if (hasBattery && interviewDone) {
                             var batteryCharge = parseInt(node.instances[0].commandClasses[0x80].data.last.value);
                             if (batteryCharge <= 20) {
-                                $scope.zWaveDevices[nodeId]['messages'].push($scope._t('lb_low_battery'));
-                                obj['messages'].push($scope._t('lb_low_battery') + ' (' + batteryCharge + '%)');
+                                $scope.zWaveDevices[nodeId]['messages'].push({
+                                    type: 'battery',
+                                    error: $scope._t('lb_low_battery') + ' (' + batteryCharge + '%)'
+                                });
+                                obj['messages'].push({
+                                    type: 'battery',
+                                    error: $scope._t('lb_low_battery') + ' (' + batteryCharge + '%)'
+                                });
                             }
                         }
                         // Not interview
                         if (!interviewDone) {
-                            $scope.zWaveDevices[nodeId]['messages'].push($scope._t('lb_not_configured'));
-                            obj['messages'].push($scope._t('lb_not_configured'));
+                            $scope.zWaveDevices[nodeId]['messages'].push({
+                                    type: 'config',
+                                    error: $scope._t('lb_not_configured')
+                                    
+                                });
+                            
+                            obj['messages'].push({
+                                    type: 'config',
+                                    error: $scope._t('lb_not_configured')
+                                    
+                                });
                         }
-                        // Is failed
+                        // Is failed 
                         if (isFailed) {
-                            $scope.zWaveDevices[nodeId]['messages'].push($scope._t('lb_is_failed'));
-                            obj['messages'].push($scope._t('lb_is_failed'));
+                            $scope.zWaveDevices[nodeId]['messages'].push({
+                                    type: 'failed',
+                                    error:  $scope._t('lb_is_failed')
+                                    
+                                });
+                            obj['messages'].push({
+                                    type: 'failed',
+                                    error:  $scope._t('lb_is_failed')
+                                   
+                                });
                         }
                         $scope.devices.failed.push(obj);
                     }
@@ -2010,6 +2033,15 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
         });
     }
     ;
+    
+     /**
+     * Redirect to Expert
+     */
+    $scope.toExpert = function(url, dialog) {
+        if ($window.confirm(dialog)) {
+            $window.location.href = url;
+        }
+    };
     /**
      * notInterviewDevices
      */
@@ -2164,7 +2196,7 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
         if ($scope.id == 0) {
             input.password = md5(input.password);
         }
-        
+
         dataFactory.storeApi('profiles', input.id, input).then(function(response) {
             var id = $filter('hasNode')(response, 'data.data.id');
             if (id) {
@@ -2338,7 +2370,7 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
 /**
  * Login controller
  */
-myAppController.controller('LoginController', function($scope, $cookies, $location, $window,dataFactory, dataService) {
+myAppController.controller('LoginController', function($scope, $cookies, $location, $window, dataFactory, dataService) {
     $scope.input = {
         login: '',
         password: '',
@@ -2360,7 +2392,7 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
      * Login proccess
      */
     $scope.login = function(input) {
-        
+
         //dataService.logInfo(input);
         input.password = md5(input.password);
         //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
@@ -2371,8 +2403,8 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
                 dataService.logInfo(input, 'Remeber user')
             }
             $scope.loading = false;
-             //console.log($cookies.user)
-            $window.location.href = '#elements';
+            console.log($cookies.user)
+            //$window.location.href = '#elements';
             //$location.path('/elements');
         }, function(error) {
             var message = $scope._t('error_load_data');
@@ -2401,9 +2433,9 @@ myAppController.controller('LogoutController', function($scope, $cookies, $locat
     $scope.logout = function() {
         //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('logout')};
         $cookies.user = undefined;
-        
+
         //console.log($cookies.user)
-         $window.location.href = '#login';
+        $window.location.href = '#login';
         //$window.location.reload();
         //$location.path('/login');
 //        $timeout(function() {

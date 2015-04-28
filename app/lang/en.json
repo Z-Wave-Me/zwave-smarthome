@@ -1,5 +1,7 @@
 {
     "missing": "---",
+    "redirect_to_expert": "You will be redirected to ExpertUI",
+    "---": "missing",
     "lb_zwave_autodetect": "Autodetect new Z-Wave Device",
     "lb_device_configuration": "Device configuration",
     "error_module_delete": "Unable to delete module",
@@ -84,7 +86,6 @@
      "lb_expert_view": "Expert view",
      "lb_role": "Role",
      "error_load_user": "User not found. Please check your  login or password",
-    "---": "missing",
     "lb_show_all": "Show all",
     "lb_events_source_type": "Events of this Type and Source",
     "lb_events_type": "Events of this Type",
