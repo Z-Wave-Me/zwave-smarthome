@@ -16,6 +16,7 @@ myAppFactory.factory('myCache', function($cacheFactory) {
  */
 myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window, $filter, $timeout, $q, myCache, dataService, cfg) {
     var updatedTime = Math.round(+new Date() / 1000);
+    console.log(angular.isDefined($cookies.lang))
     var lang = (angular.isDefined($cookies.lang) ? $cookies.lang : cfg.lang);
 
     var profileSID = null;
@@ -88,6 +89,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
      */
     // Get api data
     function getApi(api, params, noCache) {
+        console.log(lang)
         // Cached data
         var cacheName = api + (params || '');
         var cached = myCache.get(cacheName);

@@ -25,7 +25,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
 
         }
         if (role && $scope.user.role != role) {
-            $location.path('/elements/dashboard/1');
+            $location.path('/elements');
             return;
         }
     };
@@ -37,6 +37,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
     $scope.lang_list = cfg.lang_list;
     // Set language
     $scope.lang = ($scope.user ? $scope.user.lang : cfg.lang);
+    $cookies.lang = $scope.lang;
 
     //$scope.lang = (angular.isDefined($scope.profile.lang) ? $scope.profile.lang : cfg.lang);
     // TODO: remove?
@@ -1215,7 +1216,7 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
  * App controller - add module
  */
 myAppController.controller('AppModuleAlpacaController', function($scope, $routeParams, $filter, $location, dataFactory, dataService, myCache, cfg) {
-    $scope.isValidUser();
+    $scope.isValidUser(1);
     $scope.showForm = false;
     $scope.success = false;
     $scope.alpacaData = true;
@@ -2395,17 +2396,20 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
 
         //dataService.logInfo(input);
         input.password = md5(input.password);
-        //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.logInApi(input).then(function(response) {
             dataService.logInfo(response, 'User logged in')
             dataService.setUser(response.data.data);
             if (input.keepme) {
                 dataService.logInfo(input, 'Remeber user')
             }
-            $scope.loading = false;
-            console.log($cookies.user)
+           
+            $scope.user = dataService.getUser();
+            $window.location.reload();
+             $scope.loading = false;
             //$window.location.href = '#elements';
-            //$location.path('/elements');
+            //$window.location.reload();
+            //$location.path('/myaccesss');
         }, function(error) {
             var message = $scope._t('error_load_data');
             if (error.status == 404) {
@@ -2431,13 +2435,13 @@ myAppController.controller('LogoutController', function($scope, $cookies, $locat
      * Logout proccess
      */
     $scope.logout = function() {
-        //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('logout')};
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('logout')};
         $cookies.user = undefined;
-
+         $scope.user = false;
         //console.log($cookies.user)
-        $window.location.href = '#login';
-        //$window.location.reload();
-        //$location.path('/login');
+        //$window.location.href = '#login';
+        $window.location.reload();
+        $location.path('/login');
 //        $timeout(function() {
 //            $location.path('/login');
 //        }, 2000);

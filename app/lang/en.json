@@ -73,7 +73,7 @@
     "lb_default_ui":"Default UI",
     "lb_ui_smarthome":"SmartHome",
     "lb_ui_expert":"ExpertUI",
-     "lb_interval":"Pooling frequency",
+     "lb_interval":"UI update rate",
      "lb_interval_placeholder":"Insert value in miliseconds",
      "miliseconds":"miliseconds",
      "lb_low_battery":"Device has low battery",
