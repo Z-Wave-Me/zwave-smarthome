@@ -733,8 +733,8 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 /* line 16, sass/globals/_navigation.scss */
 .navbar-visible .navbar-visible-in .header-logo img {
-  max-height: 25px;
-  max-width: 60px;
+  max-height: 40px;
+  max-width: 100px;
 }
 /* line 21, sass/globals/_navigation.scss */
 .navbar-visible .navbar-visible-in .divider-vertical {
