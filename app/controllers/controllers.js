@@ -2310,13 +2310,15 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
             myCache.remove('profiles');
 
-            var user = {
-                lang: data.lang,
-                color: data.color,
-                interval: input.interval
-            };
-            dataService.setUser(user);
-            $window.location.reload();
+//            var user = {
+//                lang: data.lang,
+//                color: data.color,
+//                interval: input.interval
+//                
+//                
+//            };
+            dataService.setUser(data);
+            $window.location.reload(); 
             //$route.reload();
 
         }, function(error) {
