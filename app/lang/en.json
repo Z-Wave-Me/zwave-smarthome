@@ -1,5 +1,7 @@
 {
     "missing": "---",
+    "redirect_to_expert": "You will be redirected to ExpertUI",
+    "---": "missing",
     "lb_zwave_autodetect": "Autodetect new Z-Wave Device",
     "lb_device_configuration": "Device configuration",
     "error_module_delete": "Unable to delete app",

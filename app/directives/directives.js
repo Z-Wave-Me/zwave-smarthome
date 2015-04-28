@@ -36,7 +36,6 @@ myApp.directive('bbLoader', function() {
     };
 });
 
-
 /**
  * Hide collapsed navi after click on mobile devices
  */
