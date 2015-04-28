@@ -684,7 +684,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
         dataService.showConnectionSpinner();
         //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         $scope.timeFilter = (angular.isDefined($cookies.events_timeFilter) ? angular.fromJson($cookies.events_timeFilter) : $scope.timeFilter);
-        var urlParam = '?since=' + $scope.timeFilter.since + '&profile=' + $scope.user.id;
+        var urlParam = '?since=' + $scope.timeFilter.since;
         dataFactory.getApi('notifications', urlParam, true).then(function(response) {
             setData(response.data);
             dataService.updateTimeTick(response.data.data.updateTime);
@@ -762,7 +762,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
      */
     $scope.refreshData = function() {
         var refresh = function() {
-            dataFactory.refreshApi('notifications', '&profile=' + $scope.user.id).then(function(response) {
+            dataFactory.refreshApi('notifications').then(function(response) {
                 dataService.logInfo(response.data.data.notifications, 'Updating notifications');
                 angular.forEach(response.data.data.notifications, function(v, k) {
                     $scope.collection.push(v);
