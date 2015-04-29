@@ -56,7 +56,7 @@ var config_data = {
         // Default language
         'lang': 'en',
         // List of supported languages
-        'lang_list': ["en", "de", "ru"],
+        'lang_list': ['en', 'de', 'ru','cn'],
         // List of language codes
         'lang_codes': {
             'en': 'en_EN',
