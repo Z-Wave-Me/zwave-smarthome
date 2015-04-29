@@ -436,6 +436,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
             myCache.remove('devices');
             myCache.remove('profiles');
+            myCache.remove('profiles/' + $scope.user.id);
             $scope.profileData = [];
             $scope.input = [];
             $scope.loadData();
