@@ -138,11 +138,11 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
     }
 
     // Put api data
-    function putApi(api, id, data, params) {
+    function putApi(api, id, data, params) { 
         return $http({
             method: "put",
             data: data,
-            url: cfg.server_url + cfg.api[api] + "/" + id + (params ? params : ''),
+            url: cfg.server_url + cfg.api[api] + (id ? '/' + id : '') + (params ? params : ''),
 			headers: {
                 'Accept-Language': lang,
                 'Profile-SID': profileSID

@@ -519,14 +519,6 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
      * Update an item
      */
     $scope.store = function(input) {
-        var inputData = {
-            'id': input.id,
-            'location': input.location,
-            'tags': dataService.setArrayValue(input.tags, 'dashboard', input.dashboard),
-            'permanently_hidden': input.permanently_hidden,
-            'metrics': input.metrics
-        };
-        inputData.metrics.title = input.title;
         if (input.id) {
             $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
             dataFactory.putApi('devices', input.id, input).then(function(response) {
