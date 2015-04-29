@@ -2,12 +2,12 @@
 <div ng-controller="ElementDetailController">
     <bb-loader></bb-loader>
     <div ng-show="input">
-        <h1><span ng-bind="_t('lb_cfg_view')"></span> <span ng-bind="input.title"></span></h1>
+        <h1><span ng-bind="_t('lb_cfg_view')"></span> <span ng-bind="input.metrics.title"></span></h1>
         <form name="form_element" id="form_element" class="form form-page" ng-submit="store(input)" novalidate>
             <fieldset>
                  <div class="form-group_">
                         <label ng-bind="_t('lb_element_name')">{{}}:</label>
-                        <input name="title" id="title" type="text" class="form-control" value="{{input.title}}" placeholder="{{_t('lb_element_name')}}" ng-model="input.title" />
+                        <input name="title" id="title" type="text" class="form-control" value="{{input.metrics.title}}" placeholder="{{_t('lb_element_name')}}" ng-model="input.title" />
                     </div>
              </fieldset>
             <fieldset>
@@ -30,10 +30,10 @@
                     <!-- dashboard etc -->
                     <div class="form-group">
                             <input type="checkbox" name="dashboard" value="{{input.dashboard}}" id="dashboard" ng-model="input.dashboard" ng-checked="input.dashboard" /> <label ng-bind="_t('lb_add_dashboard')"></label>
-                            &nbsp;&nbsp;<input type="checkbox" name="permanently_hidden" id="permanently_hidden" value="" 
+                            &nbsp;&nbsp;<span ng-if="user.role == 1"><input type="checkbox" name="permanently_hidden" id="permanently_hidden" value="" 
                                                ng-model="input.permanently_hidden" 
                                                ng-checked="input.permanently_hidden" 
-                                               ng-confirm-click="This means that you can never use this element again. Are you sure?" /> <label ng-bind="_t('lb_permanently_hide')"></label>
+                                               ng-confirm-click="This means that you can never use this element again. Are you sure?" /> <label ng-bind="_t('lb_permanently_hide')"></label></span>
                              <input type="checkbox" name="hide_events" value="{{input.id}}" id="hide_events" ng-model="input.hide_events" ng-checked="profileData.hide_single_device_events.indexOf(input.id) === -1 ? false : true" /> <label ng-bind="_t('lb_hide_events_device')"></label>
                         </div>
                      <!-- interval -->

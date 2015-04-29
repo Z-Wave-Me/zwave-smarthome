@@ -891,8 +891,8 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     /**
      * Load local modules
      */
-    $scope.loadModules = function() {
-        var filter;
+    $scope.loadModules = function(filter) {
+       // var filter;
 //        if ($scope.user.role === 1 && $scope.user.expert_view) {
 //            filter = null;
 //        } else {

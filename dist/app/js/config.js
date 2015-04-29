@@ -10,20 +10,22 @@ var config_data = {
         'server_url': '/', 
         //'server_url': 'http://192.168.10.119:8083/',
         // Interval in miliseconds to refresh data
-        'interval': 3000,
+        'interval': 3000, 
         // Interval in miliseconds (5 min) to clear history (json) cache
         'history_cache_interval': 300000,
         // List of API links 
         'api': {
             'devices': 'ZAutomation/api/v1/devices',
             'profiles': 'ZAutomation/api/v1/profiles',
+            'profiles_auth_update': 'ZAutomation/api/v1/auth/update',
             'locations': 'ZAutomation/api/v1/locations',
             'notifications': 'ZAutomation/api/v1/notifications',
             'modules': 'ZAutomation/api/v1/modules',
             'modules_categories': 'ZAutomation/api/v1/modules/categories',
             'instances': 'ZAutomation/api/v1/instances',
             'namespaces': 'ZAutomation/api/v1/namespaces',
-            'history': 'ZAutomation/api/v1/history'
+            'history': 'ZAutomation/api/v1/history',
+            'login': 'ZAutomation/api/v1/login'
         },
         // List of image pathes
         'img': {
@@ -54,7 +56,7 @@ var config_data = {
         // Default language
         'lang': 'en',
         // List of supported languages
-        'lang_list': ["en", "de", "ru"],
+        'lang_list': ['en', 'de', 'ru','cn'],
         // List of language codes
         'lang_codes': {
             'en': 'en_EN',

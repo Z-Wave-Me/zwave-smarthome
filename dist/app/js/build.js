@@ -4224,6 +4224,298 @@ a.options&&a.options.fields&&a.options.fields.item&&(i=a.options.fields.item);va
 }}),t.registerFieldClass("ckeditor",t.Fields.CKEditorField)}(jQuery),function(e){var t=e.alpaca;t.Fields.ColorField=t.Fields.TextField.extend({setup:function(){this.inputType="color",this.base()},getFieldType:function(){return"color"},getType:function(){return"string"},getTitle:function(){return"Color Field"},getDescription:function(){return"A color picker for selecting hexadecimal color values"}}),t.registerFieldClass("color",t.Fields.ColorField),t.registerDefaultSchemaFieldMapping("color","color")}(jQuery),function(e){var t=e.alpaca;t.Fields.CountryField=t.Fields.SelectField.extend({getFieldType:function(){return"country"},setup:function(){t.isUndefined(this.options.capitalize)&&(this.options.capitalize=!1),this.schema["enum"]=[],this.options.optionLabels=[];var e=this.view.getMessage("countries");if(e)for(var i in e){this.schema["enum"].push(i);var a=e[i];this.options.capitalize&&(a=a.toUpperCase()),this.options.optionLabels.push(a)}this.base()},getTitle:function(){return"Country Field"},getDescription:function(){return"Provides a dropdown selector of countries keyed by their ISO3 code.  The names of the countries are read from the I18N bundle for the current locale."},getSchemaOfOptions:function(){return t.merge(this.base(),{properties:{capitalize:{title:"Capitalize",description:"Whether the values should be capitalized",type:"boolean","default":!1,readonly:!0}}})},getOptionsForOptions:function(){return t.merge(this.base(),{fields:{capitalize:{type:"checkbox"}}})}}),t.registerFieldClass("country",t.Fields.CountryField),t.registerDefaultFormatFieldMapping("country","country")}(jQuery),function(e){var t=function(){var e={up:Math.ceil,down:function(e){return~~e},nearest:Math.round};return function(t){return e[t]}}(),i=e.alpaca;i.Fields.CurrencyField=i.Fields.TextField.extend({constructor:function(e,t,i,a,n,r,o){i=i||{};var s=this.getSchemaOfPriceFormatOptions().properties;for(var l in s){var c=s[l];l in i||(i[l]=c["default"]||void 0)}"undefined"!=typeof t&&(t=""+parseFloat(t).toFixed(i.centsLimit)),this.base(e,t,i,a,n,r,o)},getFieldType:function(){return"currency"},afterRenderControl:function(t,i){var a=this,n=this.getControlEl();this.base(t,function(){e(n).priceFormat(a.options),i()})},getValue:function(){var i=this.getControlEl(),a=e(i).is("input")?i.val():i.hmtl();if(this.options.unmask||"none"!==this.options.round){var n=function(){var e="";for(var t in a){var i=a[t];isNaN(i)?i===this.options.centsSeparator&&(e+="."):e+=i}return parseFloat(e)}.bind(this)();if("none"!==this.options.round&&(n=t(this.options.round)(n),!this.options.unmask)){for(var r=[],o=""+n,s=0,l=0;s<a.length;s++)r.push(isNaN(a[s])?a[s]:o[l++]||0);return r.join("")}return n}return a},getTitle:function(){return"Currency Field"},getDescription:function(){return"Provides an automatically formatted and configurable input for entering currency amounts."},getSchemaOfPriceFormatOptions:function(){return{properties:{allowNegative:{title:"Allow Negative",description:"Determines if negative numbers are allowed.",type:"boolean","default":!1},centsLimit:{title:"Cents Limit",description:"The limit of fractional digits.",type:"number","default":2,minimum:0},centsSeparator:{title:"Cents Separator",description:"The separator between whole and fractional amounts.",type:"text","default":"."},clearPrefix:{title:"Clear Prefix",description:"Determines if the prefix is cleared on blur.",type:"boolean","default":!1},clearSuffix:{title:"Clear Suffix",description:"Determines if the suffix is cleared on blur.",type:"boolean","default":!1},insertPlusSign:{title:"Plus Sign",description:"Determines if a plus sign should be inserted for positive values.",type:"boolean","default":!1},limit:{title:"Limit",description:"A limit of the length of the field.",type:"number","default":void 0,minimum:0},prefix:{title:"Prefix",description:"The prefix if any for the field.",type:"text","default":"$"},round:{title:"Round",description:"Determines if the field is rounded. (Rounding is done when getValue is called and is not reflected in the UI)",type:"string","enum":["up","down","nearest","none"],"default":"none"},suffix:{title:"Suffix",description:"The suffix if any for the field.",type:"text","default":""},thousandsSeparator:{title:"Thousands Separator",description:"The separator between thousands.",type:"string","default":","},unmask:{title:"Unmask",description:"If true then the resulting value for this field will be unmasked.  That is, the resulting value will be a float instead of a string (with the prefix, suffix, etc. removed).",type:"boolean","default":!0}}}},getSchemaOfOptions:function(){return i.merge(this.base(),this.getSchemaOfPriceFormatOptions())},getOptionsForOptions:function(){return i.merge(this.base(),{fields:{allowNegative:{type:"checkbox"},centsLimit:{type:"number"},centsSeparator:{type:"text"},clearPrefix:{type:"checkbox"},clearSuffix:{type:"checkbox"},insertPlusSign:{type:"checkbox"},limit:{type:"number"},prefix:{type:"text"},round:{type:"select"},suffix:{type:"text"},thousandsSeparator:{type:"string"},unmask:{type:"checkbox"}}})}}),i.registerFieldClass("currency",i.Fields.CurrencyField)}(jQuery),function(e){var t=e.alpaca;t.Fields.DateField=t.Fields.TextField.extend({getFieldType:function(){return"date"},setup:function(){var e=this;this.base(),e.options.picker||(e.options.picker={}),e.options.picker.pickDate=!0,e.options.picker.pickTime=!1,e.options.picker.useCurrent=!1},afterRenderControl:function(t,i){var a=this;this.base(t,function(){"display"!==a.view.type&&e.fn.datetimepicker&&(a.getControlEl().datetimepicker(a.options.picker),a.picker=a.getControlEl().data("DateTimePicker"),a.picker&&a.options.dateFormat&&(a.picker.format=a.options.dateFormat),a.picker&&(a.options.dateFormat=a.picker.format)),i()})},getDate:function(){try{return this.getControlEl().datetimepicker("getDate")}catch(e){return this.getValue()}},onChange:function(){this.base(),this.refreshValidationState()},isAutoFocusable:function(){return!1},handleValidate:function(){var e=this.base(),i=this.validation,a=this._validateDateFormat();return i.invalidDate={message:a?"":t.substituteTokens(this.view.getMessage("invalidDate"),[this.options.dateFormat]),status:a},e&&i.invalidDate.status},_validateDateFormat:function(){var e=this;if(e.options.dateFormat){var t=this.getControlEl().val();return t||e.isRequired()?moment(t,e.options.dateFormat,!0).isValid():!0}return!0},setValue:function(e){this.base(e),this.picker&&this.picker.setValue(e)},getValue:function(){var e=this.base();return this.picker&&this.picker.getDate()&&(e=this.picker.getDate()._i),e},destroy:function(){this.base(),this.picker=null},getTitle:function(){return"Date Field"},getDescription:function(){return"Date Field"},getSchemaOfSchema:function(){return t.merge(this.base(),{properties:{format:{title:"Format",description:"Property data format",type:"string","default":"date","enum":["date"],readonly:!0}}})},getOptionsForSchema:function(){return t.merge(this.base(),{fields:{format:{type:"text"}}})},getSchemaOfOptions:function(){return t.merge(this.base(),{properties:{dateFormat:{title:"Date Format",description:"Date format",type:"string"},picker:{title:"DatetimePicker options",description:"Options that are supported by the <a href='http://eonasdan.github.io/bootstrap-datetimepicker/'>Bootstrap DateTime Picker</a>.",type:"any"}}})},getOptionsForOptions:function(){return t.merge(this.base(),{fields:{dateFormat:{type:"text"},picker:{type:"any"}}})}}),t.registerMessages({invalidDate:"Invalid date for format {0}"}),t.registerFieldClass("date",t.Fields.DateField),t.registerDefaultFormatFieldMapping("date","date")}(jQuery),function(e){var t=e.alpaca;t.Fields.DatetimeField=t.Fields.DateField.extend({getFieldType:function(){return"datetime"},setup:function(){var e=this;this.base(),e.options.picker.pickDate=!0,e.options.picker.pickTime=!0,"undefined"==typeof e.options.picker.sideBySide&&(e.options.picker.sideBySide=!0)},setValue:function(e){e?(t.isNumber()&&(e=new Date(e)),this.base("[object Date]"===Object.prototype.toString.call(e)?e.getMonth()+1+"/"+e.getDate()+"/"+e.getFullYear()+" "+e.getHours()+":"+e.getMinutes():e)):this.base(e)},getDatetime:function(){return this.getDate()},getTitle:function(){return"Datetime Field"},getDescription:function(){return"Datetime Field based on Trent Richardson's <a href='http://trentrichardson.com/examples/timepicker/'>jQuery timepicker addon</a>."},getSchemaOfOptions:function(){return t.merge(this.base(),{properties:{picker:{title:"DatetimePicker options",description:"Options that are supported by the <a href='http://eonasdan.github.io/bootstrap-datetimepicker/'>Bootstrap DateTime Picker</a>.",type:"any"}}})},getOptionsForOptions:function(){return t.merge(this.base(),{fields:{picker:{type:"any"}}})}}),t.registerFieldClass("datetime",t.Fields.DatetimeField),t.registerDefaultFormatFieldMapping("datetime","datetime"),t.registerDefaultFormatFieldMapping("date-time","datetime")}(jQuery),function(e){var t=e.alpaca;t.Fields.EditorField=t.Fields.TextField.extend({getFieldType:function(){return"editor"},setup:function(){var e=this;this.base(),e.options.aceTheme||(e.options.aceTheme="ace/theme/chrome"),e.options.aceMode||(e.options.aceMode="ace/mode/json"),"undefined"==typeof e.options.beautify&&(e.options.beautify=!0),e.options.beautify&&this.data&&("ace/mode/json"===e.options.aceMode&&(t.isObject(this.data)?this.data=JSON.stringify(this.data,null,"    "):t.isString(this.data)&&(this.data=JSON.stringify(JSON.parse(this.data),null,"    "))),"ace/mode/html"===e.options.aceMode&&"undefined"!=typeof html_beautify&&(this.data=html_beautify(this.data)),"ace/mode/css"===e.options.aceMode&&"undefined"!=typeof css_beautify&&(this.data=css_beautify(this.data)),"ace/mode/javascript"===e.options.aceMode&&"undefined"!=typeof js_beautify&&(this.data=js_beautify(this.data))),"ace/mode/json"===e.options.aceMode&&(this.data&&"{}"!==this.data||(this.data="{\n	\n}"))},afterRenderControl:function(i,a){var n=this;this.base(i,function(){if(n.control){var i=n.options.aceHeight;i&&e(n.control).css("height",i);var r=n.options.aceWidth;r||(r="100%"),e(n.control).css("width",r)}var o=e(n.control)[0];if(!ace&&window.ace&&(ace=window.ace),ace){n.editor=ace.edit(o),n.editor.setOptions({maxLines:1/0}),n.editor.getSession().setUseWrapMode(!0);var s=n.options.aceTheme;n.editor.setTheme(s);var l=n.options.aceMode;if(n.editor.getSession().setMode(l),n.editor.renderer.setHScrollBarAlwaysVisible(!1),n.editor.setShowPrintMargin(!1),n.editor.setValue(n.data),n.editor.clearSelection(),n.editor.getSession().getUndoManager().reset(),n.options.aceFitContentHeight){var c=function(){var t=!1;0===n.editor.renderer.lineHeight&&(t=!0,n.editor.renderer.lineHeight=16);var i=n.editor.getSession().getScreenLength()*n.editor.renderer.lineHeight+n.editor.renderer.scrollBar.getWidth();e(n.control).height(i.toString()+"px"),n.editor.resize(),t&&window.setTimeout(function(){n.editor.clearSelection()},100)};c(),n.editor.getSession().on("change",c)}n.schema.readonly&&n.editor.setReadOnly(!0),e(o).bind("destroyed",function(){n.editor&&(n.editor.destroy(),n.editor=null)})}else t.logError("Editor Field is missing the 'ace' Cloud 9 Editor");a()})},destroy:function(){this.editor&&(this.editor.destroy(),this.editor=null),this.base()},getEditor:function(){return this.editor},handleValidate:function(){var e=this.base(),i=this.validation,a=this._validateWordCount();i.wordLimitExceeded={message:a?"":t.substituteTokens(this.view.getMessage("wordLimitExceeded"),[this.options.wordlimit]),status:a};var n=this._validateEditorAnnotations();return i.editorAnnotationsExist={message:n?"":this.view.getMessage("editorAnnotationsExist"),status:n},e&&i.wordLimitExceeded.status&&i.editorAnnotationsExist.status},_validateEditorAnnotations:function(){if(this.editor){var e=this.editor.getSession().getAnnotations();if(e&&e.length>0)return!1}return!0},_validateWordCount:function(){if(this.options.wordlimit&&this.options.wordlimit>-1){var e=this.editor.getValue();if(e){var t=e.split(" ").length;if(t>this.options.wordlimit)return!1}}return!0},onDependentReveal:function(){this.editor&&this.editor.resize()},setValue:function(e){var i=this;this.editor&&("object"==i.schema.type&&t.isObject(e)&&(e=JSON.stringify(e,null,"    ")),this.editor.setValue(e),i.editor.clearSelection()),this.base(e)},getValue:function(){var e=null;return this.editor&&(e=this.editor.getValue()),"object"==this.schema.type&&(e=e?JSON.parse(e):{}),e},getTitle:function(){return"Editor"},getDescription:function(){return"Editor"},getSchemaOfOptions:function(){return t.merge(this.base(),{properties:{aceTheme:{title:"ACE Editor Theme",description:"Specifies the theme to set onto the editor instance",type:"string","default":"ace/theme/twilight"},aceMode:{title:"ACE Editor Mode",description:"Specifies the mode to set onto the editor instance",type:"string","default":"ace/mode/javascript"},aceWidth:{title:"ACE Editor Height",description:"Specifies the width of the wrapping div around the editor",type:"string","default":"100%"},aceHeight:{title:"ACE Editor Height",description:"Specifies the height of the wrapping div around the editor",type:"string","default":"300px"},aceFitContentHeight:{title:"ACE Fit Content Height",description:"Configures the ACE Editor to auto-fit its height to the contents of the editor",type:"boolean","default":!1},wordlimit:{title:"Word Limit",description:"Limits the number of words allowed in the text area.",type:"number","default":-1}}})},getOptionsForOptions:function(){return t.merge(this.base(),{fields:{aceTheme:{type:"text"},aceMode:{type:"text"},wordlimit:{type:"integer"}}})}}),t.registerMessages({wordLimitExceeded:"The maximum word limit of {0} has been exceeded.",editorAnnotationsExist:"The editor has errors in it that must be corrected"}),t.registerFieldClass("editor",t.Fields.EditorField)}(jQuery),function(e){var t=e.alpaca;t.Fields.EmailField=t.Fields.TextField.extend({getFieldType:function(){return"email"},setup:function(){this.inputType="email",this.base(),this.schema.pattern||(this.schema.pattern=t.regexps.email)},handleValidate:function(){var e=this.base(),t=this.validation;return t.invalidPattern.status||(t.invalidPattern.message=this.view.getMessage("invalidEmail")),e},getTitle:function(){return"Email Field"},getDescription:function(){return"Email Field."},getSchemaOfSchema:function(){var e=this.schema&&this.schema.pattern?this.schema.pattern:t.regexps.email;return t.merge(this.base(),{properties:{pattern:{title:"Pattern",description:"Field Pattern in Regular Expression",type:"string","default":e,"enum":[e],readonly:!0},format:{title:"Format",description:"Property data format",type:"string","default":"email","enum":["email"],readonly:!0}}})},getOptionsForSchema:function(){return t.merge(this.base(),{fields:{format:{type:"text"}}})}}),t.registerMessages({invalidEmail:"Invalid Email address e.g. info@cloudcms.com"}),t.registerFieldClass("email",t.Fields.EmailField),t.registerDefaultFormatFieldMapping("email","email")}(jQuery),function(e){var t=e.alpaca;t.Fields.GridField=t.Fields.ArrayField.extend({getFieldType:function(){return"grid"},setup:function(){this.base(),"undefined"==typeof this.options.grid&&(this.options.grid={})},afterRenderContainer:function(t,i){var a=this;this.base(t,function(){var t=[],n=[];for(var r in a.options.fields){var o=a.options.fields[r],s=r;o.label&&(s=o.label),n.push(s)}t.push(n);for(var l=0;l<a.data.length;l++){var c=[];for(var d in a.data[l])c.push(a.data[l][d]);t.push(c)}var p=e(a.container).find(".alpaca-container-grid-holder"),u=a.options.grid;u.data=t,e(p).handsontable(u),i()})},getType:function(){return"array"},getTitle:function(){return"Grid Field"},getDescription:function(){return"Renders array items into a grid"}}),t.registerFieldClass("grid",t.Fields.GridField)}(jQuery),function(e){var t=e.alpaca;t.Fields.ImageField=t.Fields.TextField.extend({getFieldType:function(){return"image"},getTitle:function(){return"Image Field"},getDescription:function(){return"Image Field."}}),t.registerFieldClass("image",t.Fields.ImageField)}(jQuery),function(e){var t=e.alpaca;t.Fields.IntegerField=t.Fields.NumberField.extend({getFieldType:function(){return"integer"},getValue:function(){var e=this.base();return"undefined"==typeof e||""==e?e:parseInt(e,10)},onChange:function(){this.base(),this.slider&&this.slider.slider("value",this.getValue())},postRender:function(i){var a=this;this.base(function(){a.options.slider&&(t.isEmpty(a.schema.maximum)||t.isEmpty(a.schema.minimum)||a.control&&(a.control.after('<div id="slider"></div>'),a.slider=e("#slider",a.control.parent()).slider({value:a.getValue(),min:a.schema.minimum,max:a.schema.maximum,slide:function(e,t){a.setValue(t.value),a.refreshValidationState()}}))),i()})},handleValidate:function(){var e=this.base(),t=this.validation,i=this._validateInteger();return t.stringNotANumber={message:i?"":this.view.getMessage("stringNotAnInteger"),status:i},e},_validateInteger:function(){var e=this._getControlVal();if("number"==typeof e&&(e=""+e),t.isValEmpty(e))return!0;var i=t.testRegex(t.regexps.integer,e);if(!i)return!1;var a=this.getValue();return isNaN(a)?!1:!0},getType:function(){return"integer"},getTitle:function(){return"Integer Field"},getDescription:function(){return"Field for integers."},getSchemaOfSchema:function(){return t.merge(this.base(),{properties:{minimum:{title:"Minimum",description:"Minimum value of the property.",type:"integer"},maximum:{title:"Maximum",description:"Maximum value of the property.",type:"integer"},divisibleBy:{title:"Divisible By",description:"Property value must be divisible by this number.",type:"integer"}}})},getOptionsForSchema:function(){return t.merge(this.base(),{fields:{minimum:{helper:"Minimum value of the field.",type:"integer"},maximum:{helper:"Maximum value of the field.",type:"integer"},divisibleBy:{helper:"Property value must be divisible by this number.",type:"integer"}}})},getSchemaOfOptions:function(){return t.merge(this.base(),{properties:{slider:{title:"Slider",description:"Generate jQuery UI slider control with the field if true.",type:"boolean","default":!1}}})},getOptionsForOptions:function(){return t.merge(this.base(),{fields:{slider:{rightLabel:"Slider control ?",helper:"Generate slider control if selected.",type:"checkbox"}}})}}),t.registerMessages({stringNotAnInteger:"This value is not an integer."}),t.registerFieldClass("integer",t.Fields.IntegerField),t.registerDefaultSchemaFieldMapping("integer","integer")}(jQuery),function(e){var t=e.alpaca;t.Fields.IPv4Field=t.Fields.TextField.extend({getFieldType:function(){return"ipv4"},setup:function(){this.base(),this.schema.pattern||(this.schema.pattern=t.regexps.ipv4)},handleValidate:function(){var e=this.base(),t=this.validation;return t.invalidPattern.status||(t.invalidPattern.message=this.view.getMessage("invalidIPv4")),e},getTitle:function(){return"IP Address Field"},getDescription:function(){return"IP Address Field."},getSchemaOfSchema:function(){var e=this.schema&&this.schema.pattern?this.schema.pattern:t.regexps.ipv4;return t.merge(this.base(),{properties:{pattern:{title:"Pattern",description:"Field Pattern in Regular Expression",type:"string","default":e,readonly:!0},format:{title:"Format",description:"Property data format",type:"string","enum":["ip-address"],"default":"ip-address",readonly:!0}}})},getOptionsForSchema:function(){return t.merge(this.base(),{fields:{format:{type:"text"}}})}}),t.registerMessages({invalidIPv4:"Invalid IPv4 address, e.g. 192.168.0.1"}),t.registerFieldClass("ipv4",t.Fields.IPv4Field),t.registerDefaultFormatFieldMapping("ip-address","ipv4")}(jQuery),function(e){function t(e){if("string"==typeof e.data){var t=e.handler,i=e.data.toLowerCase().split(" ");e.handler=function(e){if(this===e.target||!/textarea|select/i.test(e.target.nodeName)&&"text"!==e.target.type){var a="keypress"!==e.type&&jQuery.hotkeys.specialKeys[e.which],n=String.fromCharCode(e.which).toLowerCase(),r="",o={};e.altKey&&"alt"!==a&&(r+="alt+"),e.ctrlKey&&"ctrl"!==a&&(r+="ctrl+"),e.metaKey&&!e.ctrlKey&&"meta"!==a&&(r+="meta+"),e.shiftKey&&"shift"!==a&&(r+="shift+"),a?o[r+a]=!0:(o[r+n]=!0,o[r+jQuery.hotkeys.shiftNums[n]]=!0,"shift+"===r&&(o[jQuery.hotkeys.shiftNums[n]]=!0));for(var s=0,l=i.length;l>s;s++)if(o[i[s]])return t.apply(this,arguments)}}}}var i=e.alpaca;i.Fields.JSONField=i.Fields.TextAreaField.extend({getFieldType:function(){return"json"},setValue:function(e){(i.isObject(e)||"object"==typeof e)&&(e=JSON.stringify(e,null,3)),this.base(e)},getValue:function(){var e=this.base();return e&&i.isString(e)&&(e=JSON.parse(e)),e},handleValidate:function(){var e=this.base(),t=this.validation,i=this._validateJSON();return t.stringNotAJSON={message:i.status?"":this.view.getMessage("stringNotAJSON")+" "+i.message,status:i.status},e&&t.stringNotAJSON.status},_validateJSON:function(){var e=this.control.val();if(i.isValEmpty(e))return{status:!0};try{var t=JSON.parse(e);return this.setValue(JSON.stringify(t,null,3)),{status:!0}}catch(a){return{status:!1,message:a.message}}},afterRenderControl:function(e,t){var i=this;this.base(e,function(){i.control&&(i.control.bind("keypress",function(e){var t=e.keyCode||e.wich;34===t&&i.control.insertAtCaret('"'),123===t&&i.control.insertAtCaret("}"),91===t&&i.control.insertAtCaret("]")}),i.control.bind("keypress","Ctrl+l",function(){i.getFieldEl().removeClass("alpaca-field-focused"),i.refreshValidationState()}),i.control.attr("title","Type Ctrl+L to format and validate the JSON string.")),t()})},getTitle:function(){return"JSON Editor"},getDescription:function(){return"Editor for JSON objects with basic validation and formatting."}}),i.registerMessages({stringNotAJSON:"This value is not a valid JSON string."}),i.registerFieldClass("json",i.Fields.JSONField),e.fn.insertAtCaret=function(e){return this.each(function(){if(document.selection)this.focus(),sel=document.selection.createRange(),sel.text=e,this.focus();else if(this.selectionStart||"0"==this.selectionStart){var t=this.selectionStart,i=this.selectionEnd,a=this.scrollTop;this.value=this.value.substring(0,t)+e+this.value.substring(i,this.value.length),this.focus(),this.selectionStart=t,this.selectionEnd=t,this.scrollTop=a}else this.value+=e,this.focus()})},jQuery.hotkeys={version:"0.8",specialKeys:{8:"backspace",9:"tab",13:"return",16:"shift",17:"ctrl",18:"alt",19:"pause",20:"capslock",27:"esc",32:"space",33:"pageup",34:"pagedown",35:"end",36:"home",37:"left",38:"up",39:"right",40:"down",45:"insert",46:"del",96:"0",97:"1",98:"2",99:"3",100:"4",101:"5",102:"6",103:"7",104:"8",105:"9",106:"*",107:"+",109:"-",110:".",111:"/",112:"f1",113:"f2",114:"f3",115:"f4",116:"f5",117:"f6",118:"f7",119:"f8",120:"f9",121:"f10",122:"f11",123:"f12",144:"numlock",145:"scroll",191:"/",224:"meta"},shiftNums:{"`":"~",1:"!",2:"@",3:"#",4:"$",5:"%",6:"^",7:"&",8:"*",9:"(",0:")","-":"_","=":"+",";":": ","'":'"',",":"<",".":">","/":"?","\\":"|"}},jQuery.each(["keydown","keyup","keypress"],function(){jQuery.event.special[this]={add:t}})}(jQuery),function(e){var t=e.alpaca;t.Fields.LowerCaseField=t.Fields.TextField.extend({getFieldType:function(){return"lowercase"},setValue:function(e){var t=e.toLowerCase();t!=this.getValue()&&this.base(t)},onKeyPress:function(e){this.base(e);var i=this;t.later(25,this,function(){var e=i.getValue();i.setValue(e)})},getTitle:function(){return"Lowercase Text"},getDescription:function(){return"Text field for lowercase text."}}),t.registerFieldClass("lowercase",t.Fields.LowerCaseField),t.registerDefaultFormatFieldMapping("lowercase","lowercase")}(jQuery),function(e){var t=e.alpaca;t.Fields.MapField=t.Fields.ArrayField.extend({getFieldType:function(){return"map"},getType:function(){return"object"},setup:function(){if(this.data&&t.isObject(this.data)){var i=[];e.each(this.data,function(e,a){var n=t.copyOf(a);n._key=e,i.push(n)}),this.data=i}this.base(),t.mergeObject(this.options,{forceRevalidation:!0}),t.isEmpty(this.data)},getValue:function(){if(0!==this.children.length||this.isRequired()){for(var e={},t=0;t<this.children.length;t++){var i=this.children[t].getValue(),a=i._key;a&&(delete i._key,e[a]=i)}return e}},handleValidate:function(){var e=this.base(),t=this.validation,i=this._validateMapKeysNotEmpty();t.keyMissing={message:i?"":this.view.getMessage("keyMissing"),status:i};var a=this._validateMapKeysUnique();return t.keyNotUnique={message:a?"":this.view.getMessage("keyNotUnique"),status:a},e&&t.keyMissing.status&&t.keyNotUnique.status},_validateMapKeysNotEmpty:function(){for(var e=!0,t=0;t<this.children.length;t++){var i=this.children[t].getValue(),a=i._key;if(!a){e=!1;break}}return e},_validateMapKeysUnique:function(){for(var e=!0,t={},i=0;i<this.children.length;i++){var a=this.children[i].getValue(),n=a._key;t[n]&&(e=!1),t[n]=n}return e},getTitle:function(){return"Map Field"},getDescription:function(){return"Field for objects with key/value pairs that share the same schema for values."}}),t.registerFieldClass("map",t.Fields.MapField),t.registerMessages({keyNotUnique:"Keys of map field are not unique.",keyMissing:"Map contains an empty key."})}(jQuery),function(e){var t=e.alpaca;t.Fields.PasswordField=t.Fields.TextField.extend({getFieldType:function(){return"password"},setup:function(){this.base(),this.schema.pattern||(this.schema.pattern=t.regexps.password)},handleValidate:function(){var e=this.base(),t=this.validation;return t.invalidPattern.status||(t.invalidPattern.message=this.view.getMessage("invalidPassword")),e},getTitle:function(){return"Password Field"},getDescription:function(){return"Password Field."},getSchemaOfSchema:function(){var e=this.schema&&this.schema.pattern?this.schema.pattern:/^[0-9a-zA-Z\x20-\x7E]*$/;return t.merge(this.base(),{properties:{pattern:{title:"Pattern",description:"Field Pattern in Regular Expression",type:"string","default":this.schema.pattern,"enum":[e],readonly:!0},format:{title:"Format",description:"Property data format",type:"string","default":"password","enum":["password"],readonly:!0}}})},getOptionsForSchema:function(){return t.merge(this.base(),{fields:{format:{type:"text"}}})}}),t.registerMessages({invalidPassword:"Invalid Password"}),t.registerFieldClass("password",t.Fields.PasswordField),t.registerDefaultFormatFieldMapping("password","password")}(jQuery),function(e){var t=e.alpaca;t.Fields.PersonalNameField=t.Fields.TextField.extend({getFieldType:function(){return"personalname"},setValue:function(e){for(var t="",i=0;i<e.length;i++)t+=0===i?e.charAt(i).toUpperCase():" "===e.charAt(i-1)||"-"===e.charAt(i-1)||"'"===e.charAt(i-1)?e.charAt(i).toUpperCase():e.charAt(i);t!=this.getValue()&&this.base(t)},onKeyPress:function(e){this.base(e);var i=this;t.later(25,this,function(){var e=i.getValue();i.setValue(e)})},getTitle:function(){return"Personal Name"},getDescription:function(){return"Text Field for personal name with captical letter for first letter & after hyphen, space or apostrophe."}}),t.registerFieldClass("personalname",t.Fields.PersonalNameField)}(jQuery),function(e){var t=e.alpaca;t.Fields.PhoneField=t.Fields.TextField.extend({setup:function(){this.inputType="tel",this.base(),this.schema.pattern||(this.schema.pattern=t.regexps.phone),t.isEmpty(this.options.maskString)&&(this.options.maskString="(999) 999-9999")},postRender:function(e){this.base(function(){e()})},handleValidate:function(){var e=this.base(),t=this.validation;return t.invalidPattern.status||(t.invalidPattern.message=this.view.getMessage("invalidPhone")),e},getFieldType:function(){return"phone"},getTitle:function(){return"Phone Field"},getDescription:function(){return"Phone Field."},getSchemaOfSchema:function(){var e=this.schema&&this.schema.pattern?this.schema.pattern:t.regexps.phone;return t.merge(this.base(),{properties:{pattern:{title:"Pattern",description:"Field Pattern in Regular Expression",type:"string","default":e,"enum":[e],readonly:!0},format:{title:"Format",description:"Property data format",type:"string","default":"phone","enum":["phone"],readonly:!0}}})},getOptionsForSchema:function(){return t.merge(this.base(),{fields:{format:{type:"text"}}})},getSchemaOfOptions:function(){return t.merge(this.base(),{properties:{maskString:{title:"Field Mask String",description:"Expression for field mask",type:"string","default":"(999) 999-9999"}}})}}),t.registerMessages({invalidPhone:"Invalid Phone Number, e.g. (123) 456-9999"}),t.registerFieldClass("phone",t.Fields.PhoneField),t.registerDefaultFormatFieldMapping("phone","phone")}(jQuery),function(e){var t=e.alpaca;t.Fields.SearchField=t.Fields.TextField.extend({setup:function(){this.inputType="search",this.base(),this.options.attributes.results=5},getFieldType:function(){return"search"},getType:function(){return"string"},getTitle:function(){return"Search Field"},getDescription:function(){return"A search box field"}}),t.registerFieldClass("search",t.Fields.SearchField),t.registerDefaultSchemaFieldMapping("search","search")}(jQuery),function(e){var t=e.alpaca;t.Fields.StateField=t.Fields.SelectField.extend({getFieldType:function(){return"state"},setup:function(){t.isUndefined(this.options.capitalize)&&(this.options.capitalize=!1),t.isUndefined(this.options.includeStates)&&(this.options.includeStates=!0),t.isUndefined(this.options.includeTerritories)&&(this.options.includeTerritories=!0),t.isUndefined(this.options.format)&&(this.options.format="name"),"name"===this.options.format||"code"===this.options.format||(t.logError("The configured state format: "+this.options.format+" is not a legal value [name, code]"),this.options.format="name");var e=t.retrieveUSHoldings(this.options.includeStates,this.options.includeTerritories,"code"===this.options.format,this.options.capitalize);this.schema["enum"]=e.keys,this.options.optionLabels=e.values,this.base()},getTitle:function(){return"State Field"},getDescription:function(){return"Provides a dropdown selector of states and/or territories in the United States, keyed by their two-character code."},getSchemaOfOptions:function(){return t.merge(this.base(),{properties:{format:{title:"Format",description:"How to represent the state values in the selector",type:"string","default":"name","enum":["name","code"],readonly:!0},capitalize:{title:"Capitalize",description:"Whether the values should be capitalized",type:"boolean","default":!1,readonly:!0},includeStates:{title:"Include States",description:"Whether to include the states of the United States",type:"boolean","default":!0,readonly:!0},includeTerritories:{title:"Include Territories",description:"Whether to include the territories of the United States",type:"boolean","default":!0,readonly:!0}}})},getOptionsForOptions:function(){return t.merge(this.base(),{fields:{format:{type:"text"},capitalize:{type:"checkbox"},includeStates:{type:"checkbox"},includeTerritories:{type:"checkbox"}}})}}),t.registerFieldClass("state",t.Fields.StateField),t.registerDefaultFormatFieldMapping("state","state"),t.retrieveUSHoldings=function(){var e=[];return e.push({name:"Arkansas",code:"AK",state:!0,territory:!1}),e.push({name:"Alabama",code:"AL",state:!0,territory:!1}),e.push({name:"American Samoa",code:"AS",state:!1,territory:!0}),e.push({name:"Arizona",code:"AR",state:!0,territory:!1}),e.push({name:"California",code:"CA",state:!0,territory:!1}),e.push({name:"Colorado",code:"CO",state:!0,territory:!1}),e.push({name:"Connecticut",code:"CT",state:!0,territory:!1}),e.push({name:"Delaware",code:"DE",state:!0,territory:!1}),e.push({name:"Distict of Columbia",code:"DC",state:!1,territory:!0}),e.push({name:"Federated States of Micronesia",code:"FM",state:!1,territory:!0}),e.push({name:"Florida",code:"FL",state:!0,territory:!1}),e.push({name:"Georgia",code:"GA",state:!0,territory:!1}),e.push({name:"Guam",code:"GU",state:!1,territory:!0}),e.push({name:"Georgia",code:"GA",state:!0,territory:!1}),e.push({name:"Hawaii",code:"HI",state:!0,territory:!1}),e.push({name:"Idaho",code:"ID",state:!0,territory:!1}),e.push({name:"Illinois",code:"IL",state:!0,territory:!1}),e.push({name:"Indiana",code:"IN",state:!0,territory:!1}),e.push({name:"Iowa",code:"IA",state:!0,territory:!1}),e.push({name:"Kansas",code:"KS",state:!0,territory:!1}),e.push({name:"Kentucky",code:"KY",state:!0,territory:!1}),e.push({name:"Louisiana",code:"LA",state:!0,territory:!1}),e.push({name:"Maine",code:"ME",state:!0,territory:!1}),e.push({name:"Marshall Islands",code:"MH",state:!1,territory:!0}),e.push({name:"Maryland",code:"MD",state:!0,territory:!1}),e.push({name:"Massachusetts",code:"MA",state:!0,territory:!1}),e.push({name:"Michigan",code:"MI",state:!0,territory:!1}),e.push({name:"Minnesota",code:"MN",state:!0,territory:!1}),e.push({name:"Mississippi",code:"MS",state:!0,territory:!1}),e.push({name:"Missouri",code:"MO",state:!0,territory:!1}),e.push({name:"Montana",code:"MT",state:!0,territory:!1}),e.push({name:"Nebraska",code:"NE",state:!0,territory:!1}),e.push({name:"Nevada",code:"NV",state:!0,territory:!1}),e.push({name:"New Hampshire",code:"NH",state:!0,territory:!1}),e.push({name:"New Jersey",code:"NJ",state:!0,territory:!1}),e.push({name:"New Mexico",code:"NM",state:!0,territory:!1}),e.push({name:"New York",code:"NY",state:!0,territory:!1}),e.push({name:"North Carolina",code:"NC",state:!0,territory:!1}),e.push({name:"North Dakota",code:"ND",state:!0,territory:!1}),e.push({name:"Northern Mariana Islands",code:"MP",state:!0,territory:!1}),e.push({name:"Ohio",code:"OH",state:!0,territory:!1}),e.push({name:"Oklahoma",code:"OK",state:!0,territory:!1}),e.push({name:"Oregon",code:"OR",state:!0,territory:!1}),e.push({name:"Palau",code:"PW",state:!1,territory:!0}),e.push({name:"Pennsylvania",code:"PA",state:!0,territory:!1}),e.push({name:"Puerto Rico",code:"PR",state:!1,territory:!0}),e.push({name:"Rhode Island",code:"RI",state:!0,territory:!1}),e.push({name:"South Carolina",code:"SC",state:!0,territory:!1}),e.push({name:"South Dakota",code:"SD",state:!0,territory:!1}),e.push({name:"Tennessee",code:"TN",state:!0,territory:!1}),e.push({name:"Texas",code:"TX",state:!0,territory:!1}),e.push({name:"Utah",code:"UT",state:!0,territory:!1}),e.push({name:"Vermont",code:"VT",state:!0,territory:!1}),e.push({name:"Virgin Islands",code:"VI",state:!1,territory:!0}),e.push({name:"Virginia",code:"VA",state:!0,territory:!1}),e.push({name:"Washington",code:"WA",state:!0,territory:!1}),e.push({name:"West Virginia",code:"WV",state:!0,territory:!1}),e.push({name:"Wisconsin",code:"WI",state:!0,territory:!1}),e.push({name:"Wyoming",code:"WY",state:!0,territory:!1}),function(t,i,a,n){for(var r={keys:[],values:[]},o=0;o<e.length;o++){var s=!1;
 if(e[o].state&&t?s=!0:e[o].territory&&i&&(s=!0),s){var l=e[o].code,c=e[o].name;a&&(c=e[o].code),n&&(c=c.toUpperCase()),r.keys.push(l),r.values.push(c)}}return r}}()}(jQuery),function(e){var t=e.alpaca;t.Fields.TableField=t.Fields.ArrayField.extend({getFieldType:function(){return"table"},afterRenderContainer:function(t,i){var a=this;this.base(t,function(){e(a.container).find("table").dataTable({}),i()})},getType:function(){return"array"},getTitle:function(){return"Table Field"},getDescription:function(){return"Renders array items into a table"}}),t.registerFieldClass("table",t.Fields.TableField)}(jQuery),function(e){var t=e.alpaca;t.Fields.TagField=t.Fields.LowerCaseField.extend({getFieldType:function(){return"tag"},setup:function(){this.base(),this.options.separator||(this.options.separator=",")},getValue:function(){var e=this.base();return""===e?[]:e.split(this.options.separator)},setValue:function(e){return""!==e?e?void this.base(e.join(this.options.separator)):void this.base(""):void 0},onBlur:function(t){this.base(t);var i=this.getValue(),a=[];e.each(i,function(e,t){""!==t.trim()&&a.push(t.trim())}),this.setValue(a)},getTitle:function(){return"Tag Field"},getDescription:function(){return"Text field for entering list of tags separated by delimiter."},getSchemaOfOptions:function(){return t.merge(this.base(),{properties:{separator:{title:"Separator",description:"Separator used to split tags.",type:"string","default":","}}})},getOptionsForOptions:function(){return t.merge(this.base(),{fields:{separator:{type:"text"}}})}}),t.registerFieldClass("tag",t.Fields.TagField)}(jQuery),function(e){var t=e.alpaca;t.REGEX_TIME=/^((0?[1-9]|1[012])(:[0-5]\d){0,2}(\ [AP]M))$|^([01]\d|2[0-3])(:[0-5]\d){0,2}$/,t.Fields.TimeField=t.Fields.TextField.extend({getFieldType:function(){return"time"},setup:function(){var e=this;this.base(),e.options.picker||(e.options.picker={})},afterRenderControl:function(t,i){var a=this;this.base(t,function(){e.fn.timepicker&&a.getControlEl().timepicker(a.options.picker),i()})},onChange:function(){this.base(),this.refreshValidationState()},isAutoFocusable:function(){return!1},handleValidate:function(){var e=this.base(),t=this.validation,i=this._validateTime();return t.invalidTime={message:i?"":this.view.getMessage("invalidTime"),status:i},e&&t.invalidTime.status},_validateTime:function(){var e=this.getControlEl().val();return e||this.isRequired()?t.REGEX_TIME.test(e):!0},setValue:function(t){var i=this;this.base(t),e.fn.timepicker&&i.getControlEl().timepicker("setTime",t)},getTitle:function(){return"Time Field"},getDescription:function(){return"Time Field"},getSchemaOfSchema:function(){return t.merge(this.base(),{properties:{format:{title:"Format",description:"Property data format",type:"string","default":"time","enum":["time"],readonly:!0}}})},getOptionsForSchema:function(){return t.merge(this.base(),{fields:{format:{type:"text"}}})},getSchemaOfOptions:function(){return t.merge(this.base(),{properties:{picker:{title:"DatetimePicker options",description:"Options that are supported by the <a href='https://github.com/m3wolf/bootstrap3-timepicker'>Bootstrap Time Picker</a>.",type:"any"}}})},getOptionsForOptions:function(){return t.merge(this.base(),{fields:{picker:{type:"any"}}})}}),t.registerMessages({invalidTime:"Invalid time"}),t.registerFieldClass("time",t.Fields.TimeField),t.registerDefaultFormatFieldMapping("time","time")}(jQuery),function(e){var t=e.alpaca;t.Fields.UploadField=t.Fields.TextField.extend({constructor:function(i,a,n,r,o,s){var l=this;this.base(i,a,n,r,o,s),this.wrapTemplate=function(i){return function(a){for(var n=a.files,r=a.formatFileSize,o=a.options,s=[],c=0;c<n.length;c++){var d={};d.options=l.options,d.file=t.cloneObject(n[c]),d.size=r(d.size),d.buttons=l.options.buttons;var p=t.tmpl(l.view.getTemplateDescriptor(i),d,l);s.push(p[0])}return s=e(s),e(s).each(function(){o.fileupload&&o.fileupload.autoUpload&&e(this).find("button.start").css("display","none"),l.handleWrapRow(this,o),e(this).find("button.delete").on("destroyed",function(){setTimeout(function(){l.refreshUIState(),l.onFileDelete(p),l.triggerWithPropagation("change")},250)})}),e(s)}}},getFieldType:function(){return"upload"},setup:function(){var e=this;this.base(),e.options.buttons||(e.options.buttons=[]),e.options.hideDeleteButton||e.options.buttons.push({key:"delete",isDelete:!0}),"undefined"==typeof e.options.multiple&&(e.options.multiple=!1),"undefined"==typeof e.options.showUploadPreview&&(e.options.showUploadPreview=!0),"undefined"==typeof e.options.showHeaders&&(e.options.showHeaders=!0),e.data||(e.data=[])},afterRenderControl:function(e,t){var i=this;this.base(e,function(){i.handlePostRender(function(){t()})})},getUploadTemplate:function(){return this.wrapTemplate("control-upload-partial-upload")},getDownloadTemplate:function(){return this.wrapTemplate("control-upload-partial-download")},handlePostRender:function(t){var i=this,a=this.control,n={};if(n.dataType="json",n.uploadTemplateId=null,n.uploadTemplate=this.getUploadTemplate(),n.downloadTemplateId=null,n.downloadTemplate=this.getDownloadTemplate(),n.filesContainer=e(a).find(".files"),n.dropZone=e(a).find(".fileupload-active-zone"),n.url="/",n.method="post",n.showUploadPreview=i.options.showUploadPreview,i.options.upload)for(var r in i.options.upload)n[r]=i.options.upload[r];i.options.multiple&&(e(a).find(".alpaca-fileupload-input").attr("multiple",!0),e(a).find(".alpaca-fileupload-input").attr("name",i.name+"_files[]")),e(a).find(".progress").css("display","none"),n.progressall=function(t,i){var n=!1;if(i.loaded<i.total&&(n=!0),n){e(a).find(".progress").css("display","block");var r=parseInt(i.loaded/i.total*100,10);e("#progress .progress-bar").css("width",r+"%")}else e(a).find(".progress").css("display","none")},i.applyConfiguration(n);var o=i.fileUpload=e(a).find(".alpaca-fileupload-input").fileupload(n);o.bindFirst("fileuploaddone",function(e,t){var a=i.options.enhanceFiles;a?a(n,t):i.enhanceFiles(n,t),t.files=t.result.files,setTimeout(function(){i.refreshUIState()},250)}),o.bindFirst("fileuploadsubmit",function(t,a){i.options.properties&&e.each(a.files,function(e,t){for(var n in i.options.properties){var r="property"+e+"__"+n,o=i.options.properties[n];o=i.applyTokenSubstitutions(o,e,t),a.formData||(a.formData={}),a.formData[r]=o}}),i.options.parameters&&e.each(a.files,function(e,t){for(var n in i.options.parameters){var r="param"+e+"__"+n,o=i.options.parameters[n];o=i.applyTokenSubstitutions(o,e,t),a.formData||(a.formData={}),a.formData[r]=o}})}),o.bind("fileuploaddone",function(e,t){var a=i.getValue(),n=function(e){return e==t.files.length?void i.setValue(a):void i.convertFileToDescriptor(t.files[e],function(t,i){i&&a.push(i),n(e+1)})};n(0)}),i.applyBindings(o,a),i.preload(o,a,function(n){if(n){var r=e(i.control).find(".alpaca-fileupload-input");e(r).fileupload("option","done").call(r,e.Event("done"),{result:{files:n}}),i.afterPreload(o,a,n,function(){t()})}else t()}),"undefined"!=typeof document&&e(document).bind("drop dragover",function(e){e.preventDefault()})},handleWrapRow:function(){},applyTokenSubstitutions:function(e,t,i){var a={index:t,name:i.name,size:i.size,url:i.url,thumbnailUrl:i.thumbnailUrl},n=-1,r=0;do if(n=e.indexOf("{",r),n>-1){var o=e.indexOf("}",n);if(o>-1){var s=e.substring(n+car.length,o),l=a[s];l&&(e=e.substring(0,n)+l+e.substring(o+1)),r=o+1}}while(n>-1);return e},removeValue:function(e){for(var t=this,i=t.getValue(),a=0;a<i.length;a++)if(i[a].id==e){i.splice(a,1);break}t.setValue(i)},applyConfiguration:function(){},applyBindings:function(){},convertFileToDescriptor:function(e,t){var i={id:e.id,name:e.name,size:e.size,url:e.url,thumbnailUrl:e.thumbnailUrl,deleteUrl:e.deleteUrl,deleteType:e.deleteType};t(null,i)},convertDescriptorToFile:function(e,t){var i={id:e.id,name:e.name,size:e.size,url:e.url,thumbnailUrl:e.thumbnailUrl,deleteUrl:e.deleteUrl,deleteType:e.deleteType};t(null,i)},enhanceFiles:function(){},preload:function(e,t,i){var a=this,n=[],r=a.getValue(),o=function(e){return e==r.length?void i(n):void a.convertDescriptorToFile(r[e],function(t,i){i&&n.push(i),o(e+1)})};o(0)},afterPreload:function(e,t,i,a){a()},getValue:function(){return this.data},setValue:function(e){e||(e=[]),this.data=e,this.updateObservable(),this.triggerUpdate()},reload:function(t){var i=this,a=this.getValue(),n=[],r=function(o){if(o===a.length){var s=e(i.control).find(".alpaca-fileupload-input");return e(s).fileupload("option","done").call(s,e.Event("done"),{result:{files:n}}),void t()}i.convertDescriptorToFile(a[o],function(e,t){t&&n.push(t),r(o+1)})};r(0)},plugin:function(){var t=this;return e(t.control).find(".alpaca-fileupload-input").data().blueimpFileupload},refreshUIState:function(){var t=this,i=t.plugin();if(i){var a=99999;t.options.upload&&"undefined"!=typeof t.options.upload.maxNumberOfFiles&&(a=t.options.upload.maxNumberOfFiles),i.options.getNumberOfFiles&&i.options.getNumberOfFiles()>=a?(e(t.control).find("span.btn.fileinput-button").prop("disabled",!0),e(t.control).find("span.btn.fileinput-button").attr("disabled","disabled"),e(t.control).find(".fileupload-active-zone p.dropzone-message").css("display","none")):(e(t.control).find("span.btn.fileinput-button").prop("disabled",!1),e(t.control).find("span.btn.fileinput-button").attr("disabled",null),e(t.control).find(".fileupload-active-zone p.dropzone-message").css("display","block"))}},onFileDelete:function(){},getTitle:function(){return"Upload Field"},getDescription:function(){return"Provides an upload field with support for thumbnail preview"},getType:function(){return"array"}}),t.registerFieldClass("upload",t.Fields.UploadField),function(e){function t(t){return s?t.data("events"):e._data(t[0]).events}function i(e,i,a){var n=t(e),r=n[i];if(!s){var o=a?r.splice(r.delegateCount-1,1)[0]:r.pop();return void r.splice(a?0:r.delegateCount||0,0,o)}a?n.live.unshift(n.live.pop()):r.unshift(r.pop())}function a(t,a,n){var r=a.split(/\s+/);t.each(function(){for(var t=0;t<r.length;++t){var a=e.trim(r[t]).match(/[^\.]+/i)[0];i(e(this),a,n)}})}var n=e.fn.jquery.split("."),r=parseInt(n[0]),o=parseInt(n[1]),s=1>r||1===r&&7>o;e.fn.bindFirst=function(){var t=e.makeArray(arguments),i=t.shift();return i&&(e.fn.bind.apply(this,arguments),a(this,i)),this}}(e)}(jQuery),function(e){var t=e.alpaca;t.Fields.UpperCaseField=t.Fields.TextField.extend({getFieldType:function(){return"uppercase"},setValue:function(e){var t=e.toUpperCase();t!=this.getValue()&&this.base(t)},onKeyPress:function(e){this.base(e);var i=this;t.later(25,this,function(){var e=i.getValue();i.setValue(e)})},getTitle:function(){return"Uppercase Text"},getDescription:function(){return"Text field for uppercase text."}}),t.registerFieldClass("uppercase",t.Fields.UpperCaseField),t.registerDefaultFormatFieldMapping("uppercase","uppercase")}(jQuery),function(e){var t=e.alpaca;t.Fields.URLField=t.Fields.TextField.extend({getFieldType:function(){return"url"},setup:function(){this.inputType="url",this.base(),this.schema.pattern=t.regexps.url,this.schema.format="uri"},handleValidate:function(){var e=this.base(),t=this.validation;return t.invalidPattern.status||(t.invalidPattern.message=this.view.getMessage("invalidURLFormat")),e},getTitle:function(){return"URL Field"},getDescription:function(){return"Provides a text control with validation for an internet web address."}}),t.registerMessages({invalidURLFormat:"The URL provided is not a valid web address."}),t.registerFieldClass("url",t.Fields.URLField),t.registerDefaultFormatFieldMapping("url","url")}(jQuery),function(e){var t=e.alpaca;t.Fields.ZipcodeField=t.Fields.TextField.extend({getFieldType:function(){return"zipcode"},setup:function(){this.base(),this.options.format=this.options.format?this.options.format:"nine","nine"===this.options.format?this.schema.pattern=t.regexps["zipcode-nine"]:"five"===this.options.format?this.schema.pattern=t.regexps["zipcode-five"]:(t.logError("The configured zipcode format: "+this.options.format+" is not a legal value [five, nine]"),this.options.format="nine",this.schema.pattern=t.regexps["zipcode-nine"]),"nine"===this.options.format?this.options.maskString="99999-9999":"five"===this.options.format&&(this.options.maskString="99999")},handleValidate:function(){var e=this.base(),t=this.validation;return t.invalidPattern.status||("nine"===this.options.format?t.invalidPattern.message=this.view.getMessage("invalidZipcodeFormatNine"):"five"===this.options.format&&(t.invalidPattern.message=this.view.getMessage("invalidZipcodeFormatFive"))),e},getSchemaOfOptions:function(){return t.merge(this.base(),{properties:{format:{title:"Format",description:"How to represent the zipcode field",type:"string","default":"five","enum":["five","nine"],readonly:!0}}})},getOptionsForOptions:function(){return t.merge(this.base(),{fields:{format:{type:"text"}}})},getTitle:function(){return"Zipcode Field"},getDescription:function(){return"Provides a five or nine-digital US zipcode control with validation."}}),t.registerMessages({invalidZipcodeFormatFive:"Invalid Five-Digit Zipcode (#####)",invalidZipcodeFormatNine:"Invalid Nine-Digit Zipcode (#####-####)"}),t.registerFieldClass("zipcode",t.Fields.ZipcodeField),t.registerDefaultFormatFieldMapping("zipcode","zipcode")}(jQuery),function(e){var t=e.alpaca;t.registerView({id:"base",title:"Abstract base view",messages:{countries:{afg:"Afghanistan",ala:"Aland Islands",alb:"Albania",dza:"Algeria",asm:"American Samoa",and:"Andorra",ago:"Angola",aia:"Anguilla",ata:"Antarctica",atg:"Antigua and Barbuda",arg:"Argentina",arm:"Armenia",abw:"Aruba",aus:"Australia",aut:"Austria",aze:"Azerbaijan",bhs:"Bahamas",bhr:"Bahrain",bgd:"Bangladesh",brb:"Barbados",blr:"Belarus",bel:"Belgium",blz:"Belize",ben:"Benin",bmu:"Bermuda",btn:"Bhutan",bol:"Bolivia",bih:"Bosnia and Herzegovina",bwa:"Botswana",bvt:"Bouvet Island",bra:"Brazil",iot:"British Indian Ocean Territory",brn:"Brunei Darussalam",bgr:"Bulgaria",bfa:"Burkina Faso",bdi:"Burundi",khm:"Cambodia",cmr:"Cameroon",can:"Canada",cpv:"Cape Verde",cym:"Cayman Islands",caf:"Central African Republic",tcd:"Chad",chl:"Chile",chn:"China",cxr:"Christmas Island",cck:"Cocos (Keeling), Islands",col:"Colombia",com:"Comoros",cog:"Congo",cod:"Congo, the Democratic Republic of the",cok:"Cook Islands",cri:"Costa Rica",hrv:"Croatia",cub:"Cuba",cyp:"Cyprus",cze:"Czech Republic",civ:"Cote d'Ivoire",dnk:"Denmark",dji:"Djibouti",dma:"Dominica",dom:"Dominican Republic",ecu:"Ecuador",egy:"Egypt",slv:"El Salvador",gnq:"Equatorial Guinea",eri:"Eritrea",est:"Estonia",eth:"Ethiopia",flk:"Falkland Islands (Malvinas),",fro:"Faroe Islands",fji:"Fiji",fin:"Finland",fra:"France",guf:"French Guiana",pyf:"French Polynesia",atf:"French Southern Territories",gab:"Gabon",gmb:"Gambia",geo:"Georgia",deu:"Germany",gha:"Ghana",gib:"Gibraltar",grc:"Greece",grl:"Greenland",grd:"Grenada",glp:"Guadeloupe",gum:"Guam",gtm:"Guatemala",ggy:"Guernsey",gin:"Guinea",gnb:"Guinea-Bissau",guy:"Guyana",hti:"Haiti",hmd:"Heard Island and McDonald Islands",vat:"Holy See (Vatican City State),",hnd:"Honduras",hkg:"Hong Kong",hun:"Hungary",isl:"Iceland",ind:"India",idn:"Indonesia",irn:"Iran, Islamic Republic of",irq:"Iraq",irl:"Ireland",imn:"Isle of Man",isr:"Israel",ita:"Italy",jam:"Jamaica",jpn:"Japan",jey:"Jersey",jor:"Jordan",kaz:"Kazakhstan",ken:"Kenya",kir:"Kiribati",prk:"Korea, Democratic People's Republic of",kor:"Korea, Republic of",kwt:"Kuwait",kgz:"Kyrgyzstan",lao:"Lao People's Democratic Republic",lva:"Latvia",lbn:"Lebanon",lso:"Lesotho",lbr:"Liberia",lby:"Libyan Arab Jamahiriya",lie:"Liechtenstein",ltu:"Lithuania",lux:"Luxembourg",mac:"Macao",mkd:"Macedonia, the former Yugoslav Republic of",mdg:"Madagascar",mwi:"Malawi",mys:"Malaysia",mdv:"Maldives",mli:"Mali",mlt:"Malta",mhl:"Marshall Islands",mtq:"Martinique",mrt:"Mauritania",mus:"Mauritius",myt:"Mayotte",mex:"Mexico",fsm:"Micronesia, Federated States of",mda:"Moldova, Republic of",mco:"Monaco",mng:"Mongolia",mne:"Montenegro",msr:"Montserrat",mar:"Morocco",moz:"Mozambique",mmr:"Myanmar",nam:"Namibia",nru:"Nauru",npl:"Nepal",nld:"Netherlands",ant:"Netherlands Antilles",ncl:"New Caledonia",nzl:"New Zealand",nic:"Nicaragua",ner:"Niger",nga:"Nigeria",niu:"Niue",nfk:"Norfolk Island",mnp:"Northern Mariana Islands",nor:"Norway",omn:"Oman",pak:"Pakistan",plw:"Palau",pse:"Palestinian Territory, Occupied",pan:"Panama",png:"Papua New Guinea",pry:"Paraguay",per:"Peru",phl:"Philippines",pcn:"Pitcairn",pol:"Poland",prt:"Portugal",pri:"Puerto Rico",qat:"Qatar",rou:"Romania",rus:"Russian Federation",rwa:"Rwanda",reu:"Reunion",blm:"Saint Barthelemy",shn:"Saint Helena",kna:"Saint Kitts and Nevis",lca:"Saint Lucia",maf:"Saint Martin (French part)",spm:"Saint Pierre and Miquelon",vct:"Saint Vincent and the Grenadines",wsm:"Samoa",smr:"San Marino",stp:"Sao Tome and Principe",sau:"Saudi Arabia",sen:"Senegal",srb:"Serbia",syc:"Seychelles",sle:"Sierra Leone",sgp:"Singapore",svk:"Slovakia",svn:"Slovenia",slb:"Solomon Islands",som:"Somalia",zaf:"South Africa",sgs:"South Georgia and the South Sandwich Islands",esp:"Spain",lka:"Sri Lanka",sdn:"Sudan",sur:"Suriname",sjm:"Svalbard and Jan Mayen",swz:"Swaziland",swe:"Sweden",che:"Switzerland",syr:"Syrian Arab Republic",twn:"Taiwan, Province of China",tjk:"Tajikistan",tza:"Tanzania, United Republic of",tha:"Thailand",tls:"Timor-Leste",tgo:"Togo",tkl:"Tokelau",ton:"Tonga",tto:"Trinidad and Tobago",tun:"Tunisia",tur:"Turkey",tkm:"Turkmenistan",tca:"Turks and Caicos Islands",tuv:"Tuvalu",uga:"Uganda",ukr:"Ukraine",are:"United Arab Emirates",gbr:"United Kingdom",usa:"United States",umi:"United States Minor Outlying Islands",ury:"Uruguay",uzb:"Uzbekistan",vut:"Vanuatu",ven:"Venezuela",vnm:"Viet Nam",vgb:"Virgin Islands, British",vir:"Virgin Islands, U.S.",wlf:"Wallis and Futuna",esh:"Western Sahara",yem:"Yemen",zmb:"Zambia",zwe:"Zimbabwe"},empty:"",required:"This field is required",valid:"",invalid:"This field is invalid",months:["January","February","March","April","May","June","July","August","September","October","November","December"],timeUnits:{SECOND:"seconds",MINUTE:"minutes",HOUR:"hours",DAY:"days",MONTH:"months",YEAR:"years"}}})}(jQuery),function(e){var t=e.alpaca;t.registerView({id:"base",messages:{zh_CN:{required:"&#27492;&#22495;&#24517;&#39035;",invalid:"&#27492;&#22495;&#19981;&#21512;&#26684;",months:["&#19968;&#26376;","&#20108;&#26376;","&#19977;&#26376;","&#22235;&#26376;","&#20116;&#26376;","&#20845;&#26376;","&#19971;&#26376;","&#20843;&#26376;","&#20061;&#26376;","&#21313;&#26376;","&#21313;&#19968;&#26376;","&#21313;&#20108;&#26376;"],timeUnits:{SECOND:"&#31186;",MINUTE:"&#20998;",HOUR:"&#26102;",DAY:"&#26085;",MONTH:"&#26376;",YEAR:"&#24180;"},notOptional:"&#27492;&#22495;&#38750;&#20219;&#36873;",disallowValue:"&#38750;&#27861;&#36755;&#20837;&#21253;&#25324; {0}.",invalidValueOfEnum:"&#20801;&#35768;&#36755;&#20837;&#21253;&#25324; {0}. [{1}]",notEnoughItems:"&#26368;&#23567;&#20010;&#25968; {0}",tooManyItems:"&#26368;&#22823;&#20010;&#25968; {0}",valueNotUnique:"&#36755;&#20837;&#20540;&#19981;&#29420;&#29305;",notAnArray:"&#19981;&#26159;&#25968;&#32452;",invalidDate:"&#26085;&#26399;&#26684;&#24335;&#22240;&#35813;&#26159; {0}",invalidEmail:"&#20234;&#22969;&#20799;&#26684;&#24335;&#19981;&#23545;, ex: info@cloudcms.com",stringNotAnInteger:"&#19981;&#26159;&#25972;&#25968;.",invalidIPv4:"&#19981;&#26159;&#21512;&#27861;IP&#22320;&#22336;, ex: 192.168.0.1",stringValueTooSmall:"&#26368;&#23567;&#20540;&#26159; {0}",stringValueTooLarge:"&#26368;&#22823;&#20540;&#26159; {0}",stringValueTooSmallExclusive:"&#20540;&#24517;&#39035;&#22823;&#20110; {0}",stringValueTooLargeExclusive:"&#20540;&#24517;&#39035;&#23567;&#20110; {0}",stringDivisibleBy:"&#20540;&#24517;&#39035;&#33021;&#34987; {0} &#25972;&#38500;",stringNotANumber:"&#19981;&#26159;&#25968;&#23383;.",invalidPassword:"&#38750;&#27861;&#23494;&#30721;",invalidPhone:"&#38750;&#27861;&#30005;&#35805;&#21495;&#30721;, ex: (123) 456-9999",invalidPattern:"&#27492;&#22495;&#39035;&#26377;&#26684;&#24335; {0}",stringTooShort:"&#27492;&#22495;&#33267;&#23569;&#38271;&#24230; {0}",stringTooLong:"&#27492;&#22495;&#26368;&#22810;&#38271;&#24230; {0}"}}})}(jQuery),function(e){var t=e.alpaca;t.registerView({id:"base",messages:{es_ES:{required:"Este campo es obligatorio",invalid:"Este campo es inválido",months:["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"],timeUnits:{SECOND:"segundos",MINUTE:"minutos",HOUR:"horas",DAY:"días",MONTH:"meses",YEAR:"años"},notOptional:"Este campo no es opcional.",disallowValue:"{0} son los valores rechazados.",invalidValueOfEnum:"Este campo debe tener uno de los valores adentro {0}. [{1}]",notEnoughItems:"El número mínimo de artículos es {0}",tooManyItems:"El número máximo de artículos es {0}",valueNotUnique:"Los valores no son únicos",notAnArray:"Este valor no es un arsenal",invalidDate:"Fecha inválida para el formato {0}",invalidEmail:"Email address inválido, ex: info@cloudcms.com",stringNotAnInteger:"Este valor no es un número entero.",invalidIPv4:"Dirección inválida IPv4, ex: 192.168.0.1",stringValueTooSmall:"El valor mínimo para este campo es {0}",stringValueTooLarge:"El valor míximo para este campo es {0}",stringValueTooSmallExclusive:"El valor de este campo debe ser mayor que {0}",stringValueTooLargeExclusive:"El valor de este campo debe ser menos que {0}",stringDivisibleBy:"El valor debe ser divisible cerca {0}",stringNotANumber:"Este valor no es un número.",invalidPassword:"Contraseña inválida",invalidPhone:"Número de teléfono inválido, ex: (123) 456-9999",invalidPattern:"Este campo debe tener patrón {0}",stringTooShort:"Este campo debe contener por lo menos {0} números o caracteres",stringTooLong:"Este campo debe contener a lo más {0} números o caracteres"}}})}(jQuery),function(e){var t=e.alpaca;t.registerView({id:"base",messages:{fr_FR:{required:"Ce champ est requis",invalid:"Ce champ est invalide",months:["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"],timeUnits:{SECOND:"secondes",MINUTE:"minutes",HOUR:"heures",DAY:"jours",MONTH:"mois",YEAR:"années"},notOptional:"Ce champ n'est pas optionnel.",disallowValue:"{0} sont des valeurs interdites.",invalidValueOfEnum:"Ce champ doit prendre une des valeurs suivantes : {0}. [{1}]",notEnoughItems:"Le nombre minimum d'éléments est {0}",tooManyItems:"Le nombre maximum d'éléments est {0}",valueNotUnique:"Les valeurs sont uniques",notAnArray:"Cette valeur n'est pas une liste",invalidDate:"Cette date ne correspond pas au format {0}",invalidEmail:"Adresse de courriel invalide, ex: info@cloudcms.com",stringNotAnInteger:"Cette valeur n'est pas un nombre entier.",invalidIPv4:"Adresse IPv4 invalide, ex: 192.168.0.1",stringValueTooSmall:"La valeur minimale pour ce champ est {0}",stringValueTooLarge:"La valeur maximale pour ce champ est {0}",stringValueTooSmallExclusive:"La valeur doit-être supérieure à {0}",stringValueTooLargeExclusive:"La valeur doit-être inférieure à {0}",stringDivisibleBy:"La valeur doit-être divisible par {0}",stringNotANumber:"Cette valeur n'est pas un nombre.",invalidPassword:"Mot de passe invalide",invalidPhone:"Numéro de téléphone invalide, ex: (123) 456-9999",invalidPattern:"Ce champ doit correspondre au motif {0}",stringTooShort:"Ce champ doit contenir au moins {0} caractères",stringTooLong:"Ce champ doit contenir au plus {0} caractères"}}})}(jQuery),function(e){var t=e.alpaca;t.registerView({id:"base",messages:{pl_PL:{required:"To pole jest wymagane",invalid:"To pole jest nieprawidłowe",months:["Styczeń","Luty","Marzec","Kwiecień","Maj","Czerwiec","Lipiec","Sierpień","Wrzesień","Październik","Listopad","Grudzień"],timeUnits:{SECOND:"sekundy",MINUTE:"minuty",HOUR:"godziny",DAY:"dni",MONTH:"miesiące",YEAR:"lata"},notOptional:"To pole nie jest opcjonalne",disallowValue:"Ta wartość nie jest dozwolona: {0}",invalidValueOfEnum:"To pole powinno zawierać jedną z następujących wartości: {0}. [{1}]",notEnoughItems:"Minimalna liczba elementów wynosi {0}",tooManyItems:"Maksymalna liczba elementów wynosi {0}",valueNotUnique:"Te wartości nie są unikalne",notAnArray:"Ta wartość nie jest tablicą",invalidDate:"Niepoprawny format daty: {0}",invalidEmail:"Niepoprawny adres email, n.p.: info@cloudcms.com",stringNotAnInteger:"Ta wartość nie jest liczbą całkowitą",invalidIPv4:"Niepoprawny adres IPv4, n.p.: 192.168.0.1",stringValueTooSmall:"Minimalna wartość dla tego pola wynosi {0}",stringValueTooLarge:"Maksymalna wartość dla tego pola wynosi {0}",stringValueTooSmallExclusive:"Wartość dla tego pola musi być większa niż {0}",stringValueTooLargeExclusive:"Wartość dla tego pola musi być mniejsza niż {0}",stringDivisibleBy:"Wartość musi być podzielna przez {0}",stringNotANumber:"Wartość nie jest liczbą",invalidPassword:"Niepoprawne hasło",invalidPhone:"Niepoprawny numer telefonu, n.p.: (123) 456-9999",invalidPattern:"To pole powinno mieć format {0}",stringTooShort:"To pole powinno zawierać co najmniej {0} znaków",stringTooLong:"To pole powinno zawierać najwyżej {0} znaków"}}})}(jQuery),function(e){var t=e.alpaca;t.registerView({id:"base",messages:{pt_BR:{required:"Este campo é obrigatório",invalid:"Este campo é inválido",months:["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"],timeUnits:{SECOND:"segundos",MINUTE:"minutos",HOUR:"horas",DAY:"dias",MONTH:"meses",YEAR:"anos"},notOptional:"Este campo não é opcional.",disallowValue:"{0} são valores proibidas.",invalidValueOfEnum:"Este campo deve ter um dos seguintes valores: {0}. [{1}]",notEnoughItems:"O número mínimo de elementos é {0}",tooManyItems:"O número máximo de elementos é {0}",valueNotUnique:"Os valores não são únicos",notAnArray:"Este valor não é uma lista",invalidDate:"Esta data não tem o formato {0}",invalidEmail:"Endereço de email inválida, ex: info@cloudcms.com",stringNotAnInteger:"Este valor não é um número inteiro.",invalidIPv4:"Endereço IPv4 inválida, ex: 192.168.0.1",stringValueTooSmall:"O valor mínimo para este campo é {0}",stringValueTooLarge:"O valor máximo para este campo é {0}",stringValueTooSmallExclusive:"O valor deste campo deve ser maior que {0}",stringValueTooLargeExclusive:"O valor deste campo deve ser menor que {0}",stringDivisibleBy:"O valor deve ser divisível por {0}",stringNotANumber:"Este valor não é um número.",invalidPassword:"Senha inválida",invalidPhone:"Número de telefone inválido, ex: (123) 456-9999",invalidPattern:"Este campo deve ter o padrão {0}",stringTooShort:"Este campo deve incluir pelo menos {0} caracteres",stringTooLong:"Este campo pode incluir no máximo {0} caracteres"}}})}(jQuery),function(e){var t=e.alpaca;t.registerView({id:"base",messages:{de_AT:{required:"Eingabe erforderlich",invalid:"Eingabe invalid",months:["Jänner","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"],timeUnits:{SECOND:"Sekunden",MINUTE:"Minuten",HOUR:"Stunden",DAY:"Tage",MONTH:"Monate",YEAR:"Jahre"},notOptional:"Dieses Feld ist nicht optional",disallowValue:"Diese Werte sind nicht erlaubt: {0}",invalidValueOfEnum:"Diese Feld sollte einen der folgenden Werte enthalten: {0}. [{1}]",notEnoughItems:"Die Mindestanzahl von Elementen ist {0}",tooManyItems:"Die Maximalanzahl von Elementen ist {0}",valueNotUnique:"Diese Werte sind nicht eindeutig",notAnArray:"Keine Liste von Werten",invalidDate:"Falsches Datumsformat: {0}",invalidEmail:"Ungültige e-Mail Adresse, z.B.: info@cloudcms.com",stringNotAnInteger:"Eingabe ist keine Ganz Zahl.",invalidIPv4:"Ungültige IPv4 Adresse, z.B.: 192.168.0.1",stringValueTooSmall:"Die Mindestanzahl von Zeichen ist {0}",stringValueTooLarge:"Die Maximalanzahl von Zeichen ist {0}",stringValueTooSmallExclusive:"Die Anzahl der Zeichen muss größer sein als {0}",stringValueTooLargeExclusive:"Die Anzahl der Zeichen muss kleiner sein als {0}",stringDivisibleBy:"Der Wert muss durch {0} dividierbar sein",stringNotANumber:"Die Eingabe ist keine Zahl",invalidPassword:"Ungültiges Passwort.",invalidPhone:"Ungültige Telefonnummer, z.B.: (123) 456-9999",invalidPattern:"Diese Feld stimmt nicht mit folgender Vorgabe überein {0}",stringTooShort:"Dieses Feld sollte mindestens {0} Zeichen enthalten",stringTooLong:"Dieses Feld sollte höchstens {0} Zeichen enthalten"}}})}(jQuery),function(e){var t=e.alpaca,i={};i.field=function(){},i.control=function(){},i.container=function(){},i.form=function(){},i.required=function(){},i.optional=function(){},i.readonly=function(){},i.disabled=function(){},i.enabled=function(){},i.clearValidity=function(){},i.invalid=function(){},i.valid=function(){},i.addMessage=function(){},i.removeMessages=function(){},i.enableButton=function(){},i.disableButton=function(){},i.arrayToolbar=function(i){var a=this,n=this.getId();if(i)e(this.getFieldEl()).find(".alpaca-array-toolbar[data-alpaca-array-toolbar-field-id='"+n+"']").remove();else{var r=this.view.getTemplateDescriptor("container-array-toolbar",a),o=t.tmpl(r,{actions:a.toolbar.actions,fieldId:a.getId(),toolbarStyle:a.options.toolbarStyle});e(this.getContainerEl()).before(o)}},i.arrayActionbars=function(i){var a=this,n=this.getId();if(i)e(this.getFieldEl()).find(".alpaca-array-actionbar[data-alpaca-array-actionbar-field-id='"+n+"']").remove();else{var r=this.view.getTemplateDescriptor("container-array-actionbar",a),o=this.getContainerEl().children(".alpaca-container-item");e(o).each(function(i){var n=t.tmpl(r,{actions:a.actionbar.actions,fieldId:a.getId(),itemIndex:i,actionbarStyle:a.options.actionbarStyle});"top"==a.options.actionbarStyle?e(this).children().first().before(n):"bottom"==a.options.actionbarStyle&&e(this).children().last().after(n)})}};var a={};a.commonIcon="",a.addIcon="",a.removeIcon="",a.upIcon="",a.downIcon="",a.containerExpandedIcon="",a.containerCollapsedIcon="",t.registerView({id:"web-display",parent:"base",type:"display",ui:"web",title:"Default HTML5 display view",displayReadonly:!0,templates:{},callbacks:i,styles:a,horizontal:!1}),t.registerView({id:"web-display-horizontal",parent:"web-display",horizontal:!0}),t.registerView({id:"web-edit",parent:"base",type:"edit",ui:"web",title:"Default HTML5 edit view",displayReadonly:!0,templates:{},callbacks:i,styles:a,horizontal:!1}),t.registerView({id:"web-edit-horizontal",parent:"web-edit",horizontal:!0}),t.registerView({id:"web-create",parent:"web-edit",type:"create",title:"Default HTML5 create view",displayReadonly:!1,templates:{},horizontal:!1}),t.registerView({id:"web-create-horizontal",parent:"web-create",horizontal:!0})}(jQuery),function(e){var t=e.alpaca,i={};i.commonIcon="",i.addIcon="glyphicon glyphicon-plus-sign",i.removeIcon="glyphicon glyphicon-minus-sign",i.upIcon="glyphicon glyphicon-chevron-up",i.downIcon="glyphicon glyphicon-chevron-down",i.containerExpandedIcon="glyphicon glyphicon-circle-arrow-down",i.containerCollapsedIcon="glyphicon glyphicon-circle-arrow-right";var a={};a.required=function(){var t=this.getFieldEl(),i=e(t).find("label.alpaca-control-label");e('<span class="alpaca-icon-required glyphicon glyphicon-star"></span>').prependTo(i)},a.invalid=function(){this.isControlField&&e(this.getFieldEl()).addClass("has-error")},a.valid=function(){e(this.getFieldEl()).removeClass("has-error")},a.control=function(){var t=this.getFieldEl(),i=this.getControlEl();if(e(t).find("input").addClass("form-control"),e(t).find("textarea").addClass("form-control"),e(t).find("select").addClass("form-control"),e(t).find("input[type=checkbox]").removeClass("form-control"),e(t).find("input[type=file]").removeClass("form-control"),e(t).find("input[type=radio]").removeClass("form-control"),"color"===this.inputType&&e(t).find("input").removeClass("form-control"),e(t).find("input[type=checkbox]").parent().parent().addClass("checkbox"),e(t).find("input[type=radio]").parent().parent().addClass("radio"),e(t).parents("form").hasClass("form-inline")&&(e(t).find("input[type=checkbox]").parent().addClass("checkbox-inline"),e(t).find("input[type=radio]").parent().addClass("radio-inline")),e(t).find("label.alpaca-control-label").addClass("control-label"),this.view.horizontal){e(t).find("label.alpaca-control-label").addClass("col-sm-3");
 var a=e("<div></div>");a.addClass("col-sm-9"),e(i).after(a),a.append(i),e(t).append("<div style='clear:both;'></div>")}},a.container=function(){var t=this.getContainerEl();this.view.horizontal&&e(t).addClass("form-horizontal")},a.form=function(){this.getFormEl()},a.enableButton=function(t){e(t).removeAttr("disabled")},a.disableButton=function(t){e(t).attr("disabled","disabled")},a.collapsible=function(){var i=this.getFieldEl(),a=e(i).find("legend").first(),n=e("[data-toggle='collapse']",a);if(e(n).length>0){var r=this.getContainerEl(),o=e(r).attr("id");o||(o=t.generateId(),e(r).attr("id",o)),e(r).addClass("collapse in"),e(n).attr("data-target","#"+o),e(n).mouseover(function(){e(this).css("cursor","pointer")})}},t.registerView({id:"bootstrap-display",parent:"web-display",type:"display",ui:"bootstrap",title:"Display View for Bootstrap 3",displayReadonly:!0,callbacks:a,styles:i,templates:{}}),t.registerView({id:"bootstrap-display-horizontal",parent:"bootstrap-display",horizontal:!0}),t.registerView({id:"bootstrap-edit",parent:"web-edit",type:"edit",ui:"bootstrap",title:"Edit View for Bootstrap 3",displayReadonly:!0,callbacks:a,styles:i,templates:{}}),t.registerView({id:"bootstrap-edit-horizontal",parent:"bootstrap-edit",horizontal:!0}),t.registerView({id:"bootstrap-create",parent:"bootstrap-edit",title:"Create View for Bootstrap 3",type:"create",displayReadonly:!1}),t.registerView({id:"bootstrap-create-horizontal",parent:"bootstrap-create",horizontal:!0})}(jQuery),Alpaca.defaultView="bootstrap",Alpaca});
+;!function(g) {
+	var $0 = [], // result
+		$1 = [], // tail
+		$2 = [], // blocks
+		$3 = [], // s1
+		$4 = ("0123456789abcdef").split(""), // hex
+		$5 = [], // s2
+		$6 = [], // state
+		$7 = false, // is state created
+		$8 = 0, // len_cache
+		$9 = 0, // len
+		BUF = [];
+
+	// use Int32Array if defined
+	if(g.Int32Array) {
+		$1 = new Int32Array(16);
+		$2 = new Int32Array(16);
+		$3 = new Int32Array(4);
+		$5 = new Int32Array(4);
+		$6 = new Int32Array(4);
+		BUF = new Int32Array(4);
+	}else{
+		var i;
+		for(i = 0;i < 16;i++) $1[i] = $2[i] = 0;
+		for(i = 0;i < 4;i++) $3[i] = $5[i] = $6[i] = BUF[i] = 0;
+	}
+
+	// fill s1
+	$3[0] = 128;
+	$3[1] = 32768;
+	$3[2] = 8388608;
+	$3[3] = -2147483648;
+
+	// fill s2
+	$5[0] = 0;
+	$5[1] = 8;
+	$5[2] = 16;
+	$5[3] = 24;
+
+	function encode(s) {
+		var utf = "",
+			enc = "",
+			start = 0,
+			end = 0;
+
+		for(var i = 0, j = s.length;i < j;i++) {
+			var c = s.charCodeAt(i);
+
+			if(c < 128) {
+				end++;
+				continue;
+			}else if(c < 2048)
+				enc = String.fromCharCode((c >> 6) | 192, (c & 63) | 128);
+			else
+				enc = String.fromCharCode((c >> 12) | 224, ((c >> 6) & 63) | 128, (c & 63) | 128);
+
+			if(end > start)
+				utf += s.slice(start, end);
+
+			utf += enc;
+			start = end = i + 1;
+		}
+
+		if(end > start)
+			utf += s.slice(start, j);
+
+		return utf;
+	}
+
+	function md5_update(s) {
+		var i, I;
+
+		s += "";
+		$7 = false;
+		$8 = $9 = s.length;
+
+		if($9 > 63) {
+			getBlocks(s.substring(0, 64));
+			md5cycle($2);
+			$7 = true;
+
+			for(i = 128;i <= $9;i += 64) {
+				getBlocks(s.substring(i - 64, i));
+				md5cycleAdd($2);
+			}
+
+			s = s.substring(i - 64);
+			$9 = s.length;
+		}
+
+		$1[0] = $1[1] = $1[2] = $1[3] =
+		$1[4] = $1[5] = $1[6] = $1[7] =
+		$1[8] = $1[9] = $1[10] = $1[11] =
+		$1[12] = $1[13] = $1[14] = $1[15] = 0;
+
+		for(i = 0;i < $9;i++) {
+			I = i & 3;
+			if(I === 0)
+				$1[i >> 2] = s.charCodeAt(i);
+			else
+				$1[i >> 2] |= s.charCodeAt(i) << $5[I];
+		}
+		$1[i >> 2] |= $3[i & 3];
+
+		if(i > 55) {
+			if($7) md5cycleAdd($1);
+			else {
+				md5cycle($1);
+				$7 = true;
+			}
+
+			return md5cycleAdd([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, $8 << 3, 0]);
+		}
+
+		$1[14] = $8 << 3;
+
+		if($7) md5cycleAdd($1);
+		else md5cycle($1);
+	}
+
+	function getBlocks(s) {
+		for(var i = 16;i--;) {
+			var I = i << 2;
+			$2[i] = s.charCodeAt(I) + (s.charCodeAt(I + 1) << 8) + (s.charCodeAt(I + 2) << 16) + (s.charCodeAt(I + 3) << 24);
+		}
+	}
+
+	function md5(data, ascii, arrayOutput) {
+		md5_update(ascii ? data : encode(data));
+
+		var tmp = $6[0];$0[1] = $4[tmp & 15];
+		$0[0] = $4[(tmp >>= 4) & 15];
+		$0[3] = $4[(tmp >>= 4) & 15];
+		$0[2] = $4[(tmp >>= 4) & 15];
+		$0[5] = $4[(tmp >>= 4) & 15];
+		$0[4] = $4[(tmp >>= 4) & 15];
+		$0[7] = $4[(tmp >>= 4) & 15];
+		$0[6] = $4[(tmp >>= 4) & 15];
+
+		tmp = $6[1];$0[9] = $4[tmp & 15];
+		$0[8] = $4[(tmp >>= 4) & 15];
+		$0[11] = $4[(tmp >>= 4) & 15];
+		$0[10] = $4[(tmp >>= 4) & 15];
+		$0[13] = $4[(tmp >>= 4) & 15];
+		$0[12] = $4[(tmp >>= 4) & 15];
+		$0[15] = $4[(tmp >>= 4) & 15];
+		$0[14] = $4[(tmp >>= 4) & 15];
+
+		tmp = $6[2];$0[17] = $4[tmp & 15];
+		$0[16] = $4[(tmp >>= 4) & 15];
+		$0[19] = $4[(tmp >>= 4) & 15];
+		$0[18] = $4[(tmp >>= 4) & 15];
+		$0[21] = $4[(tmp >>= 4) & 15];
+		$0[20] = $4[(tmp >>= 4) & 15];
+		$0[23] = $4[(tmp >>= 4) & 15];
+		$0[22] = $4[(tmp >>= 4) & 15];
+
+		tmp = $6[3];$0[25] = $4[tmp & 15];
+		$0[24] = $4[(tmp >>= 4) & 15];
+		$0[27] = $4[(tmp >>= 4) & 15];
+		$0[26] = $4[(tmp >>= 4) & 15];
+		$0[29] = $4[(tmp >>= 4) & 15];
+		$0[28] = $4[(tmp >>= 4) & 15];
+		$0[31] = $4[(tmp >>= 4) & 15];
+		$0[30] = $4[(tmp >>= 4) & 15];
+
+		return arrayOutput ? $0 : $0.join("");
+	}
+
+	function R(q, a, b, x, s1, s2, t) {
+		a += q + x + t;
+		return ((a << s1 | a >>> s2) + b) << 0;
+	}
+
+	function md5cycle(k) {
+		md5_rounds(0, 0, 0, 0, k);
+
+		$6[0] = (BUF[0] + 1732584193) << 0;
+		$6[1] = (BUF[1] - 271733879) << 0;
+		$6[2] = (BUF[2] - 1732584194) << 0;
+		$6[3] = (BUF[3] + 271733878) << 0;
+	}
+
+	function md5cycleAdd(k) {
+		md5_rounds($6[0], $6[1], $6[2], $6[3], k);
+
+		$6[0] = (BUF[0] + $6[0]) << 0;
+		$6[1] = (BUF[1] + $6[1]) << 0;
+		$6[2] = (BUF[2] + $6[2]) << 0;
+		$6[3] = (BUF[3] + $6[3]) << 0;
+	}
+
+	function md5_rounds(a, b, c, d, k) {
+		var bc, da;
+
+		if($7) {
+			a = R(((c ^ d) & b) ^ d, a, b, k[0], 7, 25, -680876936);
+			d = R(((b ^ c) & a) ^ c, d, a, k[1], 12, 20, -389564586);
+			c = R(((a ^ b) & d) ^ b, c, d, k[2], 17, 15, 606105819);
+			b = R(((d ^ a) & c) ^ a, b, c, k[3], 22, 10, -1044525330);
+		}else{
+			a = k[0] - 680876937;
+			a = ((a << 7 | a >>> 25) - 271733879) << 0;
+			d = k[1] - 117830708 + ((2004318071 & a) ^ -1732584194);
+			d = ((d << 12 | d >>> 20) + a) << 0;
+			c = k[2] - 1126478375 + (((a ^ -271733879) & d) ^ -271733879);
+			c = ((c << 17 | c >>> 15) + d) << 0;
+			b = k[3] - 1316259209 + (((d ^ a) & c) ^ a);
+			b = ((b << 22 | b >>> 10) + c) << 0;
+		}
+
+		a = R(((c ^ d) & b) ^ d, a, b, k[4], 7, 25, -176418897);
+		d = R(((b ^ c) & a) ^ c, d, a, k[5], 12, 20, 1200080426);
+		c = R(((a ^ b) & d) ^ b, c, d, k[6], 17, 15, -1473231341);
+		b = R(((d ^ a) & c) ^ a, b, c, k[7], 22, 10, -45705983);
+		a = R(((c ^ d) & b) ^ d, a, b, k[8], 7, 25, 1770035416);
+		d = R(((b ^ c) & a) ^ c, d, a, k[9], 12, 20, -1958414417);
+		c = R(((a ^ b) & d) ^ b, c, d, k[10], 17, 15, -42063);
+		b = R(((d ^ a) & c) ^ a, b, c, k[11], 22, 10, -1990404162);
+		a = R(((c ^ d) & b) ^ d, a, b, k[12], 7, 25, 1804603682);
+		d = R(((b ^ c) & a) ^ c, d, a, k[13], 12, 20, -40341101);
+		c = R(((a ^ b) & d) ^ b, c, d, k[14], 17, 15, -1502002290);
+		b = R(((d ^ a) & c) ^ a, b, c, k[15], 22, 10, 1236535329);
+
+		a = R(((b ^ c) & d) ^ c, a, b, k[1], 5, 27, -165796510);
+		d = R(((a ^ b) & c) ^ b, d, a, k[6], 9, 23, -1069501632);
+		c = R(((d ^ a) & b) ^ a, c, d, k[11], 14, 18, 643717713);
+		b = R(((c ^ d) & a) ^ d, b, c, k[0], 20, 12, -373897302);
+		a = R(((b ^ c) & d) ^ c, a, b, k[5], 5, 27, -701558691);
+		d = R(((a ^ b) & c) ^ b, d, a, k[10], 9, 23, 38016083);
+		c = R(((d ^ a) & b) ^ a, c, d, k[15], 14, 18, -660478335);
+		b = R(((c ^ d) & a) ^ d, b, c, k[4], 20, 12, -405537848);
+		a = R(((b ^ c) & d) ^ c, a, b, k[9], 5, 27, 568446438);
+		d = R(((a ^ b) & c) ^ b, d, a, k[14], 9, 23, -1019803690);
+		c = R(((d ^ a) & b) ^ a, c, d, k[3], 14, 18, -187363961);
+		b = R(((c ^ d) & a) ^ d, b, c, k[8], 20, 12, 1163531501);
+		a = R(((b ^ c) & d) ^ c, a, b, k[13], 5, 27, -1444681467);
+		d = R(((a ^ b) & c) ^ b, d, a, k[2], 9, 23, -51403784);
+		c = R(((d ^ a) & b) ^ a, c, d, k[7], 14, 18, 1735328473);
+		b = R(((c ^ d) & a) ^ d, b, c, k[12], 20, 12, -1926607734);
+
+		bc = b ^ c;
+		a = R(bc ^ d, a, b, k[5], 4, 28, -378558);
+		d = R(bc ^ a, d, a, k[8], 11, 21, -2022574463);
+		da = d ^ a;
+		c = R(da ^ b, c, d, k[11], 16, 16, 1839030562);
+		b = R(da ^ c, b, c, k[14], 23, 9, -35309556);
+		bc = b ^ c;
+		a = R(bc ^ d, a, b, k[1], 4, 28, -1530992060);
+		d = R(bc ^ a, d, a, k[4], 11, 21, 1272893353);
+		da = d ^ a;
+		c = R(da ^ b, c, d, k[7], 16, 16, -155497632);
+		b = R(da ^ c, b, c, k[10], 23, 9, -1094730640);
+		bc = b ^ c;
+		a = R(bc ^ d, a, b, k[13], 4, 28, 681279174);
+		d = R(bc ^ a, d, a, k[0], 11, 21, -358537222);
+		da = d ^ a;
+		c = R(da ^ b, c, d, k[3], 16, 16, -722521979);
+		b = R(da ^ c, b, c, k[6], 23, 9, 76029189);
+		bc = b ^ c;
+		a = R(bc ^ d, a, b, k[9], 4, 28, -640364487);
+		d = R(bc ^ a, d, a, k[12], 11, 21, -421815835);
+		da = d ^ a;
+		c = R(da ^ b, c, d, k[15], 16, 16, 530742520);
+		b = R(da ^ c, b, c, k[2], 23, 9, -995338651);
+
+		a = R(c ^ (b | ~d), a, b, k[0], 6, 26, -198630844);
+		d = R(b ^ (a | ~c), d, a, k[7], 10, 22, 1126891415);
+		c = R(a ^ (d | ~b), c, d, k[14], 15, 17, -1416354905);
+		b = R(d ^ (c | ~a), b, c, k[5], 21, 11, -57434055);
+		a = R(c ^ (b | ~d), a, b, k[12], 6, 26, 1700485571);
+		d = R(b ^ (a | ~c), d, a, k[3], 10, 22, -1894986606);
+		c = R(a ^ (d | ~b), c, d, k[10], 15, 17, -1051523);
+		b = R(d ^ (c | ~a), b, c, k[1], 21, 11, -2054922799);
+		a = R(c ^ (b | ~d), a, b, k[8], 6, 26, 1873313359);
+		d = R(b ^ (a | ~c), d, a, k[15], 10, 22, -30611744);
+		c = R(a ^ (d | ~b), c, d, k[6], 15, 17, -1560198380);
+		b = R(d ^ (c | ~a), b, c, k[13], 21, 11, 1309151649);
+		a = R(c ^ (b | ~d), a, b, k[4], 6, 26, -145523070);
+		d = R(b ^ (a | ~c), d, a, k[11], 10, 22, -1120210379);
+		c = R(a ^ (d | ~b), c, d, k[2], 15, 17, 718787259);
+		b = R(d ^ (c | ~a), b, c, k[9], 21, 11, -343485551);
+
+		BUF[0] = a;
+		BUF[1] = b;
+		BUF[2] = c;
+		BUF[3] = d;
+	}
+
+	g.md5 = g.md5 || md5;
+}(typeof global === "undefined" ? window : global);
+
 /*
  AngularJS v1.2.16
  (c) 2010-2014 Google, Inc. http://angularjs.org
@@ -4895,6 +5187,14 @@ myApp.config(['$routeProvider',
  * App configuration
  */
 
+//myApp.config([
+//    "$routeProvider",
+//    "$httpProvider",
+//    function($routeProvider, $httpProvider){
+//        $httpProvider.defaults.headers.common['Access-Control-Allow-Headers'] = '*';
+//    }
+//]);
+
 var config_module = angular.module('myAppConfig', []);
 
 angular.forEach(config_data,function(key,value) {
@@ -4964,10 +5264,18 @@ myAppFactory.factory('myCache', function($cacheFactory) {
 /**
  * Main data factory
  */
-myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window, $filter, $timeout, $q, myCache, cfg) {
+myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window, $filter, $timeout, $q, myCache, dataService, cfg) {
     var updatedTime = Math.round(+new Date() / 1000);
     var lang = (angular.isDefined($cookies.lang) ? $cookies.lang : cfg.lang);
+
+    var profileSID = null;
+    var user = dataService.getUser();
+    if (user && user.sid) {
+        profileSID = user.sid;
+
+    }
     return({
+        logInApi: logInApi,
         getApiLocal: getApiLocal,
         getApi: getApi,
         deleteApi: deleteApi,
@@ -4991,6 +5299,20 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
     });
 
     /// --- Public functions --- ///
+
+    // Post api data
+    function logInApi(data) {
+        return $http({
+            method: "post",
+            data: data,
+            url: cfg.server_url + cfg.api['login']
+        }).then(function(response) {
+            return response;
+        }, function(response) {// something went wrong
+            //return response;
+            return $q.reject(response);
+        });
+    }
 
     /**
      * Gets api local data
@@ -5030,7 +5352,8 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
             method: 'get',
             url: cfg.server_url + cfg.api[api] + (params ? params : ''),
             headers: {
-                'Accept-Language': lang
+                'Accept-Language': lang,
+                'Profile-SID': profileSID
                         //'Accept-Encoding': 'gzip, deflate',
                         //'Allow-compression': 'gz' 
             }
@@ -5046,11 +5369,17 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
         });
     }
     // Post api data
-    function postApi(api, data) {
+    function postApi(api, data, params) {
         return $http({
             method: "post",
             data: data,
-            url: cfg.server_url + cfg.api[api]
+            url: cfg.server_url + cfg.api[api] + (params ? params : ''),
+			headers: {
+                'Accept-Language': lang,
+                'Profile-SID': profileSID
+                        //'Accept-Encoding': 'gzip, deflate',
+                        //'Allow-compression': 'gz' 
+            }
         }).then(function(response) {
             return response;
         }, function(response) {// something went wrong
@@ -5059,11 +5388,17 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
     }
 
     // Put api data
-    function putApi(api, id, data) {
+    function putApi(api, id, data, params) { 
         return $http({
             method: "put",
             data: data,
-            url: cfg.server_url + cfg.api[api] + "/" + id
+            url: cfg.server_url + cfg.api[api] + (id ? '/' + id : '') + (params ? params : ''),
+			headers: {
+                'Accept-Language': lang,
+                'Profile-SID': profileSID
+                        //'Accept-Encoding': 'gzip, deflate',
+                        //'Allow-compression': 'gz' 
+            }
         }).then(function(response) {
             return response;
         }, function(response) {// something went wrong
@@ -5073,11 +5408,17 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
     }
 
     // POST/PUT api data
-    function storeApi(api, id, data) {
+    function storeApi(api, id, data, params) {
         return $http({
             method: id ? 'put' : 'post',
             data: data,
-            url: cfg.server_url + cfg.api[api] + (id ? '/' + id : '')
+            url: cfg.server_url + cfg.api[api] + (id ? '/' + id : '') + (params ? params : ''),
+			headers: {
+                'Accept-Language': lang,
+                'Profile-SID': profileSID
+                        //'Accept-Encoding': 'gzip, deflate',
+                        //'Allow-compression': 'gz' 
+            }
         }).then(function(response) {
             return response;
         }, function(response) {// something went wrong
@@ -5087,10 +5428,16 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
     }
 
     // Delete api data
-    function deleteApi(api,id,params) {
+    function deleteApi(api, id, params) {
         return $http({
             method: 'delete',
-            url: cfg.server_url + cfg.api[api] + "/" + id + (params ? params : '')
+            url: cfg.server_url + cfg.api[api] + "/" + id + (params ? params : ''),
+			headers: {
+                'Accept-Language': lang,
+                'Profile-SID': profileSID
+                        //'Accept-Encoding': 'gzip, deflate',
+                        //'Allow-compression': 'gz' 
+            }
         }).then(function(response) {
             return response;
         }, function(response) {// something went wrong
@@ -5436,7 +5783,7 @@ var myAppService = angular.module('myAppService', []);
 /**
  * Device service
  */
-myAppService.service('dataService', function($filter, $log, $cookies, myCache, cfg) {
+myAppService.service('dataService', function($filter, $log, $cookies, $location, myCache, cfg) {
     /// --- Public functions --- ///
     /**
      * Get language line by key
@@ -5629,10 +5976,14 @@ myAppService.service('dataService', function($filter, $log, $cookies, myCache, c
      */
     function getUser(data) {
         //return setUser(cfg.user_default);
-        if ($cookies.user) {
+        var user = ($cookies.user !== 'undefined' ? angular.fromJson($cookies.user) : false);
+        
+         if (user && user.id > 0) {
             return angular.fromJson($cookies.user);
         } else {
-            return setUser(cfg.user_default);
+            return false;
+            //return setUser(cfg.user_default);
+            
         }
 
     }
@@ -5643,10 +5994,11 @@ myAppService.service('dataService', function($filter, $log, $cookies, myCache, c
     function setUser(data) {
         var user = {
             id: data.id || cfg.user_default.id,
-            role: data.role ||  cfg.user_default.role,
+            role: data.role || cfg.user_default.role,
             expert_view: data.expert_view || cfg.user_default.expert_view,
             lang: data.lang || cfg.user_default.lang,
             color: data.color || cfg.user_default.color,
+            sid: data.sid || cfg.user_default.color,
             interval: $filter('toInt')(data.interval) || cfg.user_default.interval
         };
         $cookies.user = angular.toJson(user);
@@ -5679,7 +6031,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, myCache, c
         });
         return collection;
     }
-    
+
     /**
      * Get device data
      */
@@ -5751,7 +6103,6 @@ myAppService.service('dataService', function($filter, $log, $cookies, myCache, c
                     'hasInstance': hasInstance
                 }
             };
-
             if (filter) {
                 if (angular.isArray(obj[filter.filter])) {
                     if (obj[filter.filter].indexOf(filter.val) > -1) {
@@ -6180,7 +6531,6 @@ myApp.directive('bbLoader', function() {
                 + '</div></div>'
     };
 });
-
 
 /**
  * Hide collapsed navi after click on mobile devices
@@ -7279,19 +7629,28 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
     $scope.user = dataService.getUser();
     $scope.cfg.interval = ($scope.user.interval || $scope.cfg.interval);
 
+    $scope.isValidUser = function(role) {
+
+        if (!$scope.user || $scope.user.id < 1) {
+            $location.path('/login');
+            return;
+
+        }
+        if (role && $scope.user.role != role) {
+            $location.path('/elements');
+            return;
+        }
+    };
+
+
     /**
      * Language settings
      */
     $scope.lang_list = cfg.lang_list;
     // Set language
     $scope.lang = ($scope.user ? $scope.user.lang : cfg.lang);
+    $cookies.lang = $scope.lang;
 
-    //$scope.lang = (angular.isDefined($scope.profile.lang) ? $scope.profile.lang : cfg.lang);
-    // TODO: remove?
-//    $scope.changeLang = function(lang) {
-//        $cookies.lang = lang;
-//        $scope.lang = lang;
-//    };
     // Load language files
     $scope.loadLang = function(lang) {
         // Is lang in language list?
@@ -7386,13 +7745,15 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
 /**
  * Test controller
  */
-myAppController.controller('TestController', function($scope, $routeParams, $filter, $location, $log, $timeout, dataFactory, dataService) {
-    
+myAppController.controller('TestController', function($scope, $routeParams, $filter, $location, $log, $cookies, $timeout, dataFactory, dataService) {
+    $scope.isValidUser();
+    console.log($cookies);
 });
 /**
  * Element controller
  */
 myAppController.controller('ElementController', function($scope, $routeParams, $interval, dataFactory, dataService, myCache) {
+    $scope.isValidUser();
     $scope.apiDataInterval = null;
     $scope.collection = [];
     $scope.showFooter = true;
@@ -7434,12 +7795,6 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         $('.modal-backdrop').remove();
         $('body').removeClass("modal-open");
     });
-    /**
-     * DEPRECATED
-     */
-//    $scope.$watch('rgbVal', function() {
-//        console.log($scope.val)
-//    });
 
     /**
      * Load data into collection
@@ -7690,7 +8045,6 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
      */
     function updateProfile(profileData) {
         dataFactory.putApi('profiles', profileData.id, profileData).then(function(response) {
-            //dataService.logInfo(response, 'Updating Devices');
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
             myCache.remove('devices');
             myCache.remove('profiles');
@@ -7711,7 +8065,6 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
      */
     function runCmd(cmd, id) {
         var widgetId = '#Widget_' + id;
-        //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         dataFactory.runApiCmd(cmd).then(function(response) {
             $(widgetId + ' .widget-image').toggleClass('trans-true');
         }, function(error) {
@@ -7726,6 +8079,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
  * Element detail controller controller
  */
 myAppController.controller('ElementDetailController', function($scope, $routeParams, dataFactory, dataService, myCache) {
+    $scope.isValidUser();
     $scope.input = [];
     $scope.rooms = [];
     $scope.profileData = [];
@@ -7777,14 +8131,6 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
      * Update an item
      */
     $scope.store = function(input) {
-        var inputData = {
-            'id': input.id,
-            'location': input.location,
-            'tags': dataService.setArrayValue(input.tags, 'dashboard', input.dashboard),
-            'permanently_hidden': input.permanently_hidden,
-            'metrics': input.metrics
-        };
-        inputData.metrics.title = input.title;
         if (input.id) {
             $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
             dataFactory.putApi('devices', input.id, input).then(function(response) {
@@ -7876,9 +8222,6 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
             myCache.remove('devices/' + deviceId);
             myCache.remove('profiles/' + $scope.user.id);
             myCache.remove('locations');
-//            $scope.profileData = [];
-//            $scope.input = [];
-//            $scope.loadData(deviceId);
 
         }, function(error) {
             alert($scope._t('error_update_data'));
@@ -7895,6 +8238,7 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
  * Event controller
  */
 myAppController.controller('EventController', function($scope, $routeParams, $interval, $window, $filter, $cookies, dataFactory, dataService, myCache, paginationService, cfg) {
+    $scope.isValidUser();
     $scope.collection = [];
     $scope.eventLevels = [];
     $scope.eventSources = [];
@@ -7916,9 +8260,6 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
     // Cancel interval on page destroy
     $scope.$on('$destroy', function() {
         $interval.cancel($scope.apiDataInterval);
-        //$cookies.events_timeFilter = angular.toJson($scope.timeFilterDefault);
-        //$cookies.events_timeFilter = false;
-        //$cookies.remove('events_timeFilter');
     });
 
     /**
@@ -7926,17 +8267,15 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
      */
     $scope.loadData = function() {
         dataService.showConnectionSpinner();
-        //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         $scope.timeFilter = (angular.isDefined($cookies.events_timeFilter) ? angular.fromJson($cookies.events_timeFilter) : $scope.timeFilter);
-        var urlParam = '?since=' + $scope.timeFilter.since + '&profile=' + $scope.user.id;
+        var urlParam = '?since=' + $scope.timeFilter.since;
         dataFactory.getApi('notifications', urlParam, true).then(function(response) {
             setData(response.data);
             dataService.updateTimeTick(response.data.data.updateTime);
             loadProfile();
             $scope.loading = false;
         }, function(error) {
-            //$scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-danger', message: $scope._t('error_load_data')};
-            dataService.showConnectionError(error);
+             dataService.showConnectionError(error);
         });
     };
     $scope.loadData();
@@ -8006,7 +8345,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
      */
     $scope.refreshData = function() {
         var refresh = function() {
-            dataFactory.refreshApi('notifications', '&profile=' + $scope.user.id).then(function(response) {
+            dataFactory.refreshApi('notifications').then(function(response) {
                 dataService.logInfo(response.data.data.notifications, 'Updating notifications');
                 angular.forEach(response.data.data.notifications, function(v, k) {
                     $scope.collection.push(v);
@@ -8131,6 +8470,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
  * App controller
  */
 myAppController.controller('AppController', function($scope, $window, $cookies, $timeout, $log, dataFactory, dataService, myCache) {
+    $scope.isValidUser();
     $scope.instances = [];
     $scope.modules = [];
     $scope.modulesIds = [];
@@ -8165,11 +8505,11 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
      */
     $scope.loadModules = function() {
         var filter;
-        if ($scope.user.role === 1 && $scope.user.expert_view) {
-            filter = null;
-        } else {
-            filter = {filter: "status", val: "hidden", not: true};
-        }
+//        if ($scope.user.role === 1 && $scope.user.expert_view) {
+//            filter = null;
+//        } else {
+//            filter = {filter: "status", val: "hidden", not: true};
+//        }
         dataFactory.getApi('modules').then(function(response) {
             $scope.modules = dataService.getData(response.data.data, filter, true);
             angular.forEach(response.data.data, function(v, k) {
@@ -8205,11 +8545,11 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     };
     $scope.loadInstances = function() {
         var filter;
-        if ($scope.user.role === 1 && $scope.user.expert_view) {
-            filter = null;
-        } else {
-            filter = {filter: "status", val: "hidden", not: true};
-        }
+//        if ($scope.user.role === 1 && $scope.user.expert_view) {
+//            filter = null;
+//        } else {
+//            filter = {filter: "status", val: "hidden", not: true};
+//        }
         dataFactory.getApi('instances').then(function(response) {
             $scope.instances = dataService.getData(response.data.data, filter, true);
             $scope.loading = false;
@@ -8372,6 +8712,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
  * App local detail controller
  */
 myAppController.controller('AppLocalDetailController', function($scope, $routeParams, $log, dataFactory, dataService) {
+    $scope.isValidUser();
     $scope.module = [];
     $scope.isOnline = null;
     $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
@@ -8408,6 +8749,7 @@ myAppController.controller('AppLocalDetailController', function($scope, $routePa
  * App online detail controller
  */
 myAppController.controller('AppOnlineDetailController', function($scope, $routeParams, $timeout, dataFactory, dataService) {
+    $scope.isValidUser();
     $scope.module = [];
     $scope.onlineMediaUrl = $scope.cfg.online_module_img_url;
     /**
@@ -8456,6 +8798,7 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
  * App controller - add module
  */
 myAppController.controller('AppModuleAlpacaController', function($scope, $routeParams, $filter, $location, dataFactory, dataService, myCache, cfg) {
+    $scope.isValidUser(1);
     $scope.showForm = false;
     $scope.success = false;
     $scope.alpacaData = true;
@@ -8471,6 +8814,10 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
         'category': null
     };
 
+    $scope.onLoad = function() {
+        myCache.remove('instances');
+    };
+    $scope.onLoad();
     // Post new module instance
     $scope.postModule = function(id) {
         dataService.showConnectionSpinner();
@@ -8517,13 +8864,13 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
         dataFactory.getApi('instances', '/' + id, true).then(function(instances) {
             var instance = instances.data.data;
             dataFactory.getApi('modules', '/' + instance.moduleId + '?lang=' + $scope.lang).then(function(module) {
-                if (module.data.data.status === 'hidden') {
-                    if (!$scope.user.expert_view) {
-                       dataService.updateTimeTick();
-                    return;
-                    }
-                   
-                } 
+//                if (module.data.data.status === 'hidden') {
+//                    if (!$scope.user.expert_view) {
+//                        dataService.updateTimeTick();
+//                        return;
+//                    }
+//
+//                }
                 dataFactory.getApi('namespaces').then(function(namespaces) {
                     var formData = dataService.getModuleFormData(module.data.data, instance.params, namespaces.data.data);
 
@@ -8623,6 +8970,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
  * Device controller
  */
 myAppController.controller('DeviceController', function($scope, $routeParams, dataFactory, dataService) {
+    $scope.isValidUser();
     $scope.zwaveDevices = [];
     $scope.zwaveDevicesFilter = false;
     $scope.deviceVendor = false;
@@ -8691,6 +9039,7 @@ myAppController.controller('DeviceController', function($scope, $routeParams, da
  * Device controller
  */
 myAppController.controller('IncludeController', function($scope, $routeParams, $timeout, $interval, dataFactory, dataService) {
+    $scope.isValidUser();
     $scope.apiDataInterval = null;
     $scope.device = {
         'data': null
@@ -8841,6 +9190,7 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
  * Room controller
  */
 myAppController.controller('RoomController', function($scope, dataFactory, dataService) {
+    $scope.isValidUser();
     $scope.collection = [];
     $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/image/';
     $scope.reset = function() {
@@ -8852,10 +9202,8 @@ myAppController.controller('RoomController', function($scope, dataFactory, dataS
      */
     $scope.loadData = function() {
         dataService.showConnectionSpinner();
-        //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('locations').then(function(response) {
             $scope.collection = response.data.data;
-            //$scope.loading = false;
             if (Object.keys($scope.collection).length < 1) {
                 $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: $scope._t('no_data')};
             }
@@ -8871,6 +9219,7 @@ myAppController.controller('RoomController', function($scope, dataFactory, dataS
  * Room config controller
  */
 myAppController.controller('RoomConfigController', function($scope, $window, dataFactory, dataService, myCache) {
+    $scope.isValidUser();
     $scope.collection = [];
     $scope.devices = [];
     $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/image/';
@@ -8883,11 +9232,9 @@ myAppController.controller('RoomConfigController', function($scope, $window, dat
      * Load data into collection
      */
     $scope.loadData = function(id) {
-        //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('locations').then(function(response) {
             $scope.collection = response.data.data;
             loadDevices();
-            //$scope.loading = false;
         }, function(error) {
             dataService.showConnectionError(error);
         });
@@ -8905,7 +9252,6 @@ myAppController.controller('RoomConfigController', function($scope, $window, dat
         }
         if (confirm) {
             dataFactory.deleteApi('locations', roomId).then(function(response) {
-                //$(target).fadeOut(2000);
                 var devices = dataService.getData($scope.devices, {filter: 'location', val: roomId});
                 removeRoomIdFromDevice(devices);
                 myCache.remove('locations');
@@ -8951,6 +9297,7 @@ myAppController.controller('RoomConfigController', function($scope, $window, dat
  * Config room detail controller
  */
 myAppController.controller('RoomConfigEditController', function($scope, $routeParams, $filter, dataFactory, dataService, myCache) {
+    $scope.isValidUser();
     $scope.id = $filter('toInt')($routeParams.id);
     $scope.input = {
         'id': 0,
@@ -8959,8 +9306,6 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
         'default_img': '',
         'img_type': 'default'
     };
-
-
     $scope.devices = {};
     $scope.devicesAssigned = [];
     //$scope.devicesAvailable = [];
@@ -8972,12 +9317,10 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
      * Load data
      */
     $scope.loadData = function(id) {
-        //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataService.showConnectionSpinner();
         dataFactory.getApi('locations', '/' + id, true).then(function(response) {
             $scope.input = response.data.data;
             loadDevices(id);
-            //$scope.loading = false;
         }, function(error) {
             $scope.input = false;
             dataService.showConnectionError(error);
@@ -9112,7 +9455,8 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
 /**
  * Network controller
  */
-myAppController.controller('NetworkController', function($scope, $cookies, $filter, dataFactory, dataService) {
+myAppController.controller('NetworkController', function($scope, $cookies, $filter, $window, dataFactory, dataService) {
+    $scope.isValidUser();
     $scope.activeTab = (angular.isDefined($cookies.tab_network) ? $cookies.tab_network : 'battery');
     $scope.batteries = {
         'list': [],
@@ -9124,6 +9468,8 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
         'batteries': [],
         'zwave': []
     };
+
+    $scope.zWaveDevices = {};
     /**
      * Set tab
      */
@@ -9157,13 +9503,15 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
                 if (k == 1) {
                     return;
                 }
-                //dataService.logInfo(k, 'Node ID')
-                //DEPRECATED
-//                $scope.zWaveDevices[k] = {
-//                    id: k,
-//                    title: v.data.givenName.value || 'Device ' + '_' + k,
-//                    elements: []
-//                };
+
+                $scope.zWaveDevices[k] = {
+                    id: k,
+                    title: v.data.givenName.value || 'Device ' + '_' + k,
+                    icon: null,
+                    elements: [],
+                    messages: []
+                };
+
             });
             var findZwaveStr = "ZWayVDev_zway_";
             angular.forEach(devices, function(v, k) {
@@ -9190,6 +9538,8 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
                         obj['metrics'] = v.metrics;
                         obj['messages'] = [];
                         $scope.devices.zwave.push(obj);
+                        $scope.zWaveDevices[nodeId]['elements'].push(obj);
+                        $scope.zWaveDevices[nodeId]['icon'] = obj.metrics.icon;
                         // Batteries
                         if (v.deviceType === 'battery') {
                             $scope.devices.batteries.push(obj);
@@ -9197,16 +9547,42 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
                         if (hasBattery && interviewDone) {
                             var batteryCharge = parseInt(node.instances[0].commandClasses[0x80].data.last.value);
                             if (batteryCharge <= 20) {
-                                obj['messages'].push($scope._t('lb_low_battery') + ' (' + batteryCharge + '%)');
+                                $scope.zWaveDevices[nodeId]['messages'].push({
+                                    type: 'battery',
+                                    error: $scope._t('lb_low_battery') + ' (' + batteryCharge + '%)'
+                                });
+                                obj['messages'].push({
+                                    type: 'battery',
+                                    error: $scope._t('lb_low_battery') + ' (' + batteryCharge + '%)'
+                                });
                             }
                         }
                         // Not interview
                         if (!interviewDone) {
-                            obj['messages'].push($scope._t('lb_not_configured'));
+                            $scope.zWaveDevices[nodeId]['messages'].push({
+                                type: 'config',
+                                error: $scope._t('lb_not_configured')
+
+                            });
+
+                            obj['messages'].push({
+                                type: 'config',
+                                error: $scope._t('lb_not_configured')
+
+                            });
                         }
-                        // Is failed
+                        // Is failed 
                         if (isFailed) {
-                            obj['messages'].push($scope._t('lb_is_failed'));
+                            $scope.zWaveDevices[nodeId]['messages'].push({
+                                type: 'failed',
+                                error: $scope._t('lb_is_failed')
+
+                            });
+                            obj['messages'].push({
+                                type: 'failed',
+                                error: $scope._t('lb_is_failed')
+
+                            });
                         }
                         $scope.devices.failed.push(obj);
                     }
@@ -9229,6 +9605,15 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
         });
     }
     ;
+
+    /**
+     * Redirect to Expert
+     */
+    $scope.toExpert = function(url, dialog) {
+        if ($window.confirm(dialog)) {
+            $window.location.href = url;
+        }
+    };
     /**
      * notInterviewDevices
      */
@@ -9250,6 +9635,7 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
  * Profile controller
  */
 myAppController.controller('AdminController', function($scope, $window, $cookies, dataFactory, dataService, myCache) {
+    $scope.isValidUser(1);
     $scope.profiles = {};
 
     /**
@@ -9282,7 +9668,6 @@ myAppController.controller('AdminController', function($scope, $window, $cookies
             dataFactory.deleteApi('profiles', input.id).then(function(response) {
                 $(target).fadeOut(2000);
                 myCache.remove('profiles');
-                //$scope.loadData();
 
             }, function(error) {
                 alert($scope._t('error_delete_data'));
@@ -9295,6 +9680,7 @@ myAppController.controller('AdminController', function($scope, $window, $cookies
  * Orofile detail
  */
 myAppController.controller('AdminUserController', function($scope, $routeParams, $filter, dataFactory, dataService, myCache) {
+    $scope.isValidUser(1);
     $scope.id = $filter('toInt')($routeParams.id);
     $scope.rooms = {};
     $scope.input = {
@@ -9322,11 +9708,8 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
      */
     $scope.loadData = function(id) {
         dataService.showConnectionSpinner();
-        //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('profiles', '/' + id, true).then(function(response) {
-            //dataService.logInfo(response.data.data);
             $scope.input = response.data.data;
-            //$scope.loading = false;
             dataService.updateTimeTick();
         }, function(error) {
             $scope.input = false;
@@ -9378,6 +9761,10 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
      */
     $scope.store = function(input) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        if ($scope.id == 0) {
+            input.password = md5(input.password);
+        }
+
         dataFactory.storeApi('profiles', input.id, input).then(function(response) {
             var id = $filter('hasNode')(response, 'data.data.id');
             if (id) {
@@ -9402,6 +9789,7 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
  * My Access
  */
 myAppController.controller('MyAccessController', function($scope, $window, dataFactory, dataService, myCache) {
+    $scope.isValidUser();
     $scope.id = $scope.user.id;
     $scope.devices = {};
     $scope.input = {
@@ -9420,17 +9808,14 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
 
     };
     $scope.newPassword = null;
-
     /**
      * Load data
      */
     $scope.loadData = function(id) {
         dataService.showConnectionSpinner();
-        //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('profiles', '/' + id, true).then(function(response) {
             loadDevices();
             $scope.input = response.data.data;
-            //$scope.loading = false;
             dataService.updateTimeTick();
         }, function(error) {
             $scope.input = false;
@@ -9469,15 +9854,6 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
      */
     $scope.store = function(input) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-
-//        var inputData = {
-//            id: input.id,
-//            name: input.name,
-//            active: input.active,
-//            positions: $scope.input.positions,
-//            lang: input.lang
-//
-//        };
         dataFactory.putApi('profiles', input.id, input).then(function(response) {
             var data = response.data.data;
             if (!data) {
@@ -9488,13 +9864,7 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
 
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
             myCache.remove('profiles');
-
-            var user = {
-                lang: data.lang,
-                color: data.color,
-                interval: input.interval
-            };
-            dataService.setUser(user);
+            dataService.setUser(data);
             $window.location.reload();
             //$route.reload();
 
@@ -9513,10 +9883,10 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         var input = {
             id: $scope.id,
-            password: newPassword
+            password: md5(newPassword)
 
         };
-        dataFactory.putApi('profiles', input.id, input).then(function(response) {
+        dataFactory.putApi('profiles_auth_update', input.id, input).then(function(response) {
             var data = response.data.data;
             if (!data) {
                 alert($scope._t('error_update_data'));
@@ -9550,37 +9920,71 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
 /**
  * Login controller
  */
-myAppController.controller('LoginController', function($scope, $cookies, $location, dataFactory, dataService) {
+myAppController.controller('LoginController', function($scope, $cookies, $location, $window, dataFactory, dataService) {
     $scope.input = {
         login: '',
         password: '',
         keepme: false,
         default_ui: 1
     };
+    if ($scope.user) {
+        $location.path('/elements');
+        return;
+    }
+    $cookies.user = undefined;
+    /**
+     * Login language
+     */
+    $scope.loginLang = function(lang) {
+        $scope.loadLang(lang);
+    };
     /**
      * Login proccess
      */
     $scope.login = function(input) {
-        dataService.logInfo(input);
-        $location.path('/elements/dashboard/1');
-        //dataService.setUser($scope.cfg.user_default);
+
+        //dataService.logInfo(input);
+        input.password = md5(input.password);
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        dataFactory.logInApi(input).then(function(response) {
+            dataService.logInfo(response, 'User logged in')
+            dataService.setUser(response.data.data);
+            if (input.keepme) {
+                dataService.logInfo(input, 'Remeber user')
+            }
+
+            $scope.user = dataService.getUser();
+            $window.location.reload();
+            $scope.loading = false;
+            //$window.location.href = '#elements';
+            //$location.path('/myaccesss');
+        }, function(error) {
+            var message = $scope._t('error_load_data');
+            if (error.status == 404) {
+                message = $scope._t('error_load_user');
+            }
+            alert(message);
+            $scope.loading = false;
+            dataService.logError(error.status);
+        });
     };
 
 });
 /**
  * Logout controller
  */
-myAppController.controller('LogoutController', function($scope, $cookies, $location, $timeout, dataService) {
-
+myAppController.controller('LogoutController', function($scope, $cookies, $location, $window, $timeout, dataService) {
+    //$scope.isValidUser();
     /**
      * Logout proccess
      */
     $scope.logout = function() {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('logout')};
-        //$cookies.user = false;
-        $timeout(function() {
-            $location.path('/login');
-        }, 2000);
+        $cookies.user = undefined;
+        $scope.user = false;
+        //$window.location.href = '#login';
+        $window.location.reload();
+        $location.path('/login');
 
     };
     $scope.logout();
