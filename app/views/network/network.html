@@ -3,7 +3,7 @@
     
     <div class="tabs-container">
         <ul class="nav nav-tabs nav-tabs-3" role="tablist">
-            <li ng-class="activeTab == 'battery' ? 'active' : ''">
+            <li ng-class="activeTab == 'battery' ? 'active' : ''" ng-if="user.role == 1">
                 <a href="" title="{{_t('lb_battery_status')}}" data-target="#module_battery" data-toggle="tab" ng-click="setTab('battery')">
                     <i class="fa fa-bolt fa-lg tab-icon"></i> <span class="tab-name">{{_t('lb_battery_status')}}</span>
                 </a>
@@ -13,7 +13,7 @@
                     <i class="fa fa-wifi fa-lg tab-icon"></i> <span class="tab-name">{{_t('lb_zwave_devices')}}</span>
                 </a>
             </li>
-            <li ng-class="activeTab == 'health' ? 'active' : ''">
+            <li ng-class="activeTab == 'health' ? 'active' : ''" ng-if="user.role == 1">
                 <a href="" title="{{_t('nav_network_health')}}" data-target="#module_health" data-toggle="tab" ng-click="setTab('health')">
                     <i class="fa fa-cog fa-sitemap tab-icon"></i> <span class="tab-name">{{_t('lb_network_status')}}</span> 
                 </a>
