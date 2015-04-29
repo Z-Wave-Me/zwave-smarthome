@@ -515,10 +515,12 @@
                             <span class="caret"></span>
                             <span class="sr-only">Toggle Dropdown</span>
                         </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#elements" ng-bind="_t('lb_all')"></a></li>
-                            <li ng-repeat="v in tags"><a href="#elements/tags/{{v.key}}" ng-bind="v.key"></a></li>
-                        </ul>
+                        <div class="dropdown-menu drop-down-tags">
+                            <div>
+                            <a href="#elements" ng-bind="_t('lb_all')"></a>
+                                <a href="#elements/tags/{{v.key}}" ng-repeat="v in tags" ng-bind="v.key"></a>
+                                </div>
+                        </div>
                     </div>
                     <div class="input-group search-form hide-on-mobile">
                         <input type="text" ng-model="q" class="form-control">

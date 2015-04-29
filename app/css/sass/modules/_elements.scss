@@ -123,8 +123,18 @@
     width: 24px;
     height:24px;
 }
+.drop-down-tags{
+    div{
+       padding: 5px;  
+    }
+   
+   //min-width: 260px;
+}
 
-
+.drop-down-tags a{
+    display: inline-block;
+    margin: 0 5px;
+}
 
 
 /* Home widget

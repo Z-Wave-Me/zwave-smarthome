@@ -1166,13 +1166,24 @@ http://codepen.io/MattIn4D/pen/LiKFC
   height: 24px;
 }
 
+/* line 127, sass/modules/_elements.scss */
+.drop-down-tags div {
+  padding: 5px;
+}
+
+/* line 134, sass/modules/_elements.scss */
+.drop-down-tags a {
+  display: inline-block;
+  margin: 0 5px;
+}
+
 /* Home widget
 -------------------------------------------------- */
-/* line 133, sass/modules/_elements.scss */
+/* line 143, sass/modules/_elements.scss */
 .home-widget .widget-entry {
   padding: 0;
 }
-/* line 136, sass/modules/_elements.scss */
+/* line 146, sass/modules/_elements.scss */
 .home-widget .widget-entry .widget-block {
   margin: 0 !important;
   /*              border: solid 1px #e2e2e2;*/
@@ -1180,72 +1191,72 @@ http://codepen.io/MattIn4D/pen/LiKFC
 
 /* OpenWeather widget
 ----------------------------------------------------*/
-/* line 152, sass/modules/_elements.scss */
+/* line 162, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline table td {
   text-align: left;
   padding: 5px 0;
 }
 
-/* line 157, sass/modules/_elements.scss */
+/* line 167, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline table td:first-child {
   padding-left: 20px;
   vertical-align: top;
 }
 
-/* line 162, sass/modules/_elements.scss */
+/* line 172, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline h4 {
   display: inline;
 }
 
-/* line 166, sass/modules/_elements.scss */
+/* line 176, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline .text-center {
   margin: 10px 0;
 }
 
 /* Text widget
 -----------------------------------------------------*/
-/* line 172, sass/modules/_elements.scss */
+/* line 182, sass/modules/_elements.scss */
 .widget-body.text-widget h3 {
   font-weight: bold;
 }
 
-/* line 176, sass/modules/_elements.scss */
+/* line 186, sass/modules/_elements.scss */
 .widget-body.text-widget-no-img {
   padding-left: 15px;
 }
 
-/* line 180, sass/modules/_elements.scss */
+/* line 190, sass/modules/_elements.scss */
 .widget-control.text {
   width: 95%;
 }
 
-/* line 184, sass/modules/_elements.scss */
+/* line 194, sass/modules/_elements.scss */
 .text-widget-modal.modal-dialog {
   text-align: center;
 }
 
-/* line 188, sass/modules/_elements.scss */
+/* line 198, sass/modules/_elements.scss */
 img.widget-promo-image {
   max-height: 200px;
   margin-bottom: 10px;
 }
 
-/* line 193, sass/modules/_elements.scss */
+/* line 203, sass/modules/_elements.scss */
 .widget-promo-text {
   text-align: left;
 }
 
-/* line 197, sass/modules/_elements.scss */
+/* line 207, sass/modules/_elements.scss */
 .widget-control.text a {
   font-weight: normal;
 }
 
-/* line 201, sass/modules/_elements.scss */
+/* line 211, sass/modules/_elements.scss */
 .widget-control.text a:hover {
   text-decoration: none;
 }
 
-/* line 205, sass/modules/_elements.scss */
+/* line 215, sass/modules/_elements.scss */
 .widget-control.text a:after {
   content: "\f1ea";
   font-family: FontAwesome;
