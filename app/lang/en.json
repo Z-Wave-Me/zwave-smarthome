@@ -109,6 +109,7 @@
     "lb_not_configured": "Device is not configured",
     "lb_is_failed": "Device is failed",
     "lb_preparation": "Preparation",
+    "lb_inclusion_progress": "Inclusion process",
     "btn_inclusion_start": "Start inclusion",
     "btn_inclusion_stop": "Stop inclusion",
     "btn_exclusion_start": "Start exclusion",
