@@ -1515,7 +1515,10 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
                     var interviewDone = true;
                     var nodeId = $scope.includedDeviceId;
                     var instanceId = 0;
-                    var hasBattery = 0x80 in ZWaveAPIData.devices[nodeId].instances[0].commandClasses;
+                    var hasBattery = false;
+                    if(angular.isDefined(ZWaveAPIData.devices[nodeId].instances)){
+                        hasBattery = 0x80 in ZWaveAPIData.devices[nodeId].instances[0].commandClasses;
+                    }
                     var vendor = ZWaveAPIData.devices[nodeId].data.vendorString.value;
                     var deviceType = ZWaveAPIData.devices[nodeId].data.deviceTypeString.value;
                     $scope.hasBattery = hasBattery;
@@ -1530,14 +1533,14 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
                                     }
                                 }
                             } else {
-                                console.log('Interview false: 2')
+                                console.log('Interview false: 2') 
                                 interviewDone = false;
                             }
                         }
 
                     } else {
                         console.log('Interview false: 3')
-                        interviewDone = false;
+                        interviewDone = false; 
                     }
                     // Set device name
                     var deviceName = function(vendor, deviceType) {
@@ -1548,17 +1551,17 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
                     };
                     if (interviewDone) {
                         $scope.lastIncludedDevice = deviceName(vendor, deviceType) + ' ' + nodeId + '-' + instanceId;
-                         myCache.remove('devices');
+                        
                     } else {
                         $scope.inclusionError = true;
                     }
-
+                    myCache.remove('devices');
                     $scope.includedDeviceId = null;
                 }, function(error) {
                     dataService.showConnectionError(error);
                 });
 
-            }, 15000);
+            }, 20000);
         }
     });
 
