@@ -1428,7 +1428,7 @@ myAppController.controller('DeviceController', function($scope, $routeParams, da
 /**
  * Device controller
  */
-myAppController.controller('IncludeController', function($scope, $routeParams, $timeout, $interval, dataFactory, dataService) {
+myAppController.controller('IncludeController', function($scope, $routeParams, $timeout, $interval, dataFactory, dataService, myCache) {
     $scope.isValidUser();
     $scope.apiDataInterval = null;
     $scope.device = {
@@ -1548,6 +1548,7 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
                     };
                     if (interviewDone) {
                         $scope.lastIncludedDevice = deviceName(vendor, deviceType) + ' ' + nodeId + '-' + instanceId;
+                         myCache.remove('devices');
                     } else {
                         $scope.inclusionError = true;
                     }
@@ -1568,6 +1569,7 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
         $scope.lastIncludedDevice = null;
         $scope.lastExcludedDevice = null;
         dataFactory.runZwaveCmd(cmd).then(function() {
+            myCache.remove('devices');
         }, function(error) {
             dataService.logError(error);
         });
