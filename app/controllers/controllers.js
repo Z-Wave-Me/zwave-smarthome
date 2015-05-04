@@ -2349,7 +2349,7 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
             }
              $scope.loading = false;
             $scope.user = dataService.getUser();
-            $window.location.reload();
+            //$window.location.reload();
            
             //$window.location.href = '#elements';
             //$location.path('/myaccesss');
