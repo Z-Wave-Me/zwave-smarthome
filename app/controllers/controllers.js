@@ -522,6 +522,7 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
     $scope.store = function(input) {
         if (input.id) {
             $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+            input.location = parseInt(input.location,10);
             dataFactory.putApi('devices', input.id, input).then(function(response) {
                 $scope.profileData.positions = dataService.setArrayValue($scope.profileData.positions, input.id, input.dashboard);
                 $scope.profileData.hide_single_device_events = dataService.setArrayValue($scope.profileData.hide_single_device_events, input.id, input.hide_events);
@@ -2341,10 +2342,10 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
             if (input.keepme) {
                 dataService.logInfo(input, 'Remeber user')
             }
-
+             $scope.loading = false;
             $scope.user = dataService.getUser();
             $window.location.reload();
-            $scope.loading = false;
+           
             //$window.location.href = '#elements';
             //$location.path('/myaccesss');
         }, function(error) {
@@ -2363,17 +2364,17 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
  * Logout controller
  */
 myAppController.controller('LogoutController', function($scope, $cookies, $location, $window, $timeout, dataService) {
-    //$scope.isValidUser();
+    $scope.isValidUser();
     /**
      * Logout proccess
      */
     $scope.logout = function() {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('logout')};
+        //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('logout')};
         $cookies.user = undefined;
         $scope.user = false;
         //$window.location.href = '#login';
         $window.location.reload();
-        $location.path('/login');
+        //$location.path('/login');
 
     };
     $scope.logout();

@@ -355,7 +355,7 @@ myApp.filter('unixStartOfDay', function() {
  * If is today display h:m otherwise d:m:y
  */
 myApp.filter('isToday', function() {
-    return function(input, fromunix) {
+    return function(input, fromunix,days,yesterday) {
         if (fromunix) {
             var d = new Date(input * 1000);
             var startDate = new Date(input * 1000);  // 2000-01-01
@@ -375,9 +375,9 @@ myApp.filter('isToday', function() {
 
             var endDate = new Date();              // Today
             var nDays = diffDays(startDate, endDate) + 1;
-            var str = '' + (nDays + 1) + ' days';
+            var str = '' + (nDays + 1) + ' ' + days;
             if (nDays < 2) {
-                str = 'yesterday';
+                str = yesterday;
             }
             return str;
         }
