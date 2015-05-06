@@ -470,13 +470,15 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
     /**
      * Get updated data and join with ZwaveData
      */
-    function  joinedZwaveData() {
+    function  joinedZwaveData(ZWaveAPIData) {
         var time = Math.round(+new Date() / 1000);
-        var apiData = myCache.get('cache_zwaveapidata');
+         var cacheName = 'cache_zwaveapidata';
+        var apiData = myCache.get(cacheName) || ZWaveAPIData;
+        console.log(apiData)
         var result = {};
         return $http({
             method: 'post',
-            url: cfg.server_url + cfg.zwave_api_url + 'Data/' + time
+            url: cfg.server_url + cfg.zwave_api_url + 'Data/' + updatedTime
         }).then(function(response) {
             if (typeof response.data === 'object' && apiData) {
                 time = response.data.updateTime;
@@ -496,6 +498,8 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
                     "update": response.data
                 };
                 response.data = result;
+                updatedTime = ($filter('hasNode')(response, 'data.updateTime') || Math.round(+new Date() / 1000));
+                 myCache.put(cacheName, response.data);
                 return response;
             } else {
                 // invalid response
