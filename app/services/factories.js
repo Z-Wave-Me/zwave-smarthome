@@ -474,7 +474,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
         var time = Math.round(+new Date() / 1000);
          var cacheName = 'cache_zwaveapidata';
         var apiData = myCache.get(cacheName) || ZWaveAPIData;
-        console.log(apiData)
+        //console.log(apiData)
         var result = {};
         return $http({
             method: 'post',
@@ -499,7 +499,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
                 };
                 response.data = result;
                 updatedTime = ($filter('hasNode')(response, 'data.updateTime') || Math.round(+new Date() / 1000));
-                 myCache.put(cacheName, response.data);
+                 myCache.put(cacheName,apiData);
                 return response;
             } else {
                 // invalid response

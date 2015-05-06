@@ -1458,7 +1458,6 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
         dataService.showConnectionSpinner();
         if (angular.isDefined($routeParams.device)) {
             dataFactory.getApiLocal('device.' + lang + '.json').then(function(response) {
-                
                 angular.forEach(response.data, function(v, k) {
                     if (v.id == $routeParams.device) {
                         $scope.device.data = v;
@@ -1474,15 +1473,28 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
         return;
     };
     $scope.loadData($scope.lang);
+    
+     /**
+     * Load data into collection
+     */
+    $scope.loadZwaveApiData = function() {
+        dataFactory.loadZwaveApiData().then(function(response) {
+
+            }, function(error) {
+                dataService.showConnectionError(error);
+                return;
+            });
+        return;
+    };
+    $scope.loadZwaveApiData();
 
     /**
      * Refresh data
      */
     $scope.refreshData = function() {
         var refresh = function() {
-            dataFactory.refreshZwaveApiData().then(function(response) {
-                var data = response.data;
-
+            dataFactory.joinedZwaveData().then(function(response) {
+                var data = response.data.update;
                 if ('controller.data.controllerState' in data) {
                     $scope.controllerState = data['controller.data.controllerState'].value;
                 }
@@ -1523,7 +1535,7 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
                 var refresh = function() {
                      $scope.deviceFound = false;
                     $scope.checkInterview = true;
-                    dataFactory.loadZwaveApiData(true).then(function(response) {
+                    dataFactory.loadZwaveApiData().then(function(response) {
                     //dataFactory.joinedZwaveData($scope.zwaveApiData).then(function(response) {
                      //var ZWaveAPIData = response.data.joined;
                     var ZWaveAPIData = response;
@@ -2407,7 +2419,7 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
 /**
  * Login controller
  */
-myAppController.controller('LoginController', function($scope, $cookies, $location, $window, dataFactory, dataService) {
+myAppController.controller('LoginController', function($scope, $cookies, $location, $window, $routeParams,dataFactory, dataService) {
     $scope.input = {
         login: '',
         password: '',
@@ -2455,6 +2467,10 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
             dataService.logError(error.status);
         });
     };
+    
+    if($routeParams.login && $routeParams.password){
+        $scope.login($routeParams);
+    }
 
 });
 /**
