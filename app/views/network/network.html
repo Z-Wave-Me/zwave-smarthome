@@ -24,12 +24,6 @@
     <div class="tab-content">
         <!-- Battery -->
         <div class="tab-pane" id="module_battery" ng-class="activeTab == 'battery' ? 'active' : ''">
-             <!-- <br />
-            <p>
-            <span ng-if="batteries.list.length > 0"><strong ng-bind="batteries.list.length"></strong> <span ng-bind="_t('lb_battery_devices')"></span>,</span>
-            <span ng-if="batteries.cntLess20.length > 0"><strong ng-bind="batteries.cntLess20.length"></strong> <span ng-bind="_t('lb_battery_20')"></span>, </span> 
-            <span ng-if="batteries.cnt0.length > 0"><strong  ng-bind="batteries.cnt0.length"></strong> <span ng-bind="_t('lb_battery_0')"></span> </span>
-        </p>-->
         <table class="table table-report table-condensed">
             <tbody>
                 <tr ng-repeat="v in devices.batteries| orderBy:'level':false" id="row_battery_{{ v.rowId}}">
@@ -70,29 +64,9 @@
                 </tr>
             </tbody>
         </table>
-             <!--<table class="table table-condensed table-report">
-            <tbody>
-                <tr ng-repeat="v in devices.zwave | orderBy:'title':false" id="row_zwave_{{v.id}}">
-                    <td class="td-img">
-                        <img class="report-img" ng-src="{{v.metrics.icon|getElementIcon:e}}" alt="{{ v.title}}" />
-                    </td>
-                    <td class="network-zwave-device">
-                         <span ng-bind="v.title"></span>  <span class="network-node-name">(#{{v.nodeId}}) {{v.nodeName}}</span>
-                    </td>
-                    <td class="td-action">
-                       <a class="btn btn-default" href="#deviceconfig/{{v.nodeId}}"><i class="fa fa-cog text-primary"></i> <span class="btn-name" ng-bind="_t('lb_configuration')"></span></a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>-->
         </div>
         <!-- Health -->
         <div class="tab-pane" id="module_health" ng-class="activeTab == 'health' ? 'active' : ''">
-             <!--  <br />
-             <p class="mobile-padding">
-                 <span ng-bind="_t('lb_solve_network_error')"></span> <a href="/expert/" class="alert-link"><strong ng-bind="_t('lb_zwui')"></strong> <i class="fa fa-external-link"></i></a>
-             </p> -->
-             
              <table class="table table-condensed table-report">
             <tbody>
                 <tr ng-repeat="v in zWaveDevices | orderBy:'id':false" id="row_health_{{v.id}}" ng-if="v.messages">
@@ -105,28 +79,20 @@
                     </td>
                     <td>
                         <div class="text-danger" ng-repeat="m in v.messages|unique:true">
+                            <span ng-if="!isMobile">
                             <a class="text-danger" href="" ng-if="m.type == 'failed' || m.type == 'config'" ng-click="toExpert('/expert/#help/' + v.id,_t('redirect_to_expert'))" >
                                 <span  ng-bind="m.error"></span> <i class="fa fa-external-link"></i>
                             </a>
+                            </span>
+                            <span ng-if="isMobile">
+                            <span  class="text-danger" ng-if="m.type == 'failed' || m.type == 'config'" ng-bind="m.error"></span>
+                            </span>
                             <span ng-if="m.type == 'battery'" ng-bind="m.error"></span>
                         </div>
                     </td>
                 </tr>
             </tbody>
         </table>
-            <!--<table class="table table-condensed table-report">
-            <tbody>
-                <tr ng-repeat="v in devices.failed | orderBy:'title':false" id="row_health_{{v.id}}" ng-show=" v.messages.length > 0">
-                    <td class="td-img">
-                         <img class="report-img" ng-src="{{v.metrics.icon|getElementIcon:v}}" alt="{{ v.metrics.title}}" />
-                    </td>
-                    <td ng-bind="v.metrics.title"> </td>
-                    <td>
-                        <div class="text-danger" ng-repeat="message in v.messages" ng-bind="message"></div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>-->
            
         </div>
     </div>

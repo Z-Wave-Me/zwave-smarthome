@@ -19,11 +19,11 @@
                         </div>
                     <!-- zwave -->
                         <div class="form-group" ng-show="input.cfg.zwaveId">
-                            <div ng-show="cfg.app_type == 'web'">
-                                <span ng-bind="_t('lb_gen_by')"></span> <a href="#deviceconfig/{{input.cfg.zwaveId}}" class="btn btn-default btn-sm">Z-Wave device #{{input.cfg.zwaveId}}</a>
+                            <div ng-if="!isMobile">
+                                <span ng-bind="_t('lb_gen_by')"></span> <a href="#deviceconfig/{{input.cfg.zwaveId}}" class="btn btn-default btn-sm"><span ng-bind="_t('lb_zwave_device')"></span> #{{input.cfg.zwaveId}}</a>
                             </div>
-                            <div class="alert alert-warning" ng-show="cfg.app_type == 'app'">
-                                <span ng-bind="_t('lb_gen_by')"></span> <span ng-bind="_t('lb_zwave_device')"></span> <strong>#{{input.cfg.zwaveId}}</strong> {{_t('lb_no_link')}}
+                            <div ng-if="isMobile">
+                                <span ng-bind="_t('lb_gen_by')"></span> <span ng-bind="_t('lb_zwave_device')"></span> #{{input.cfg.zwaveId}}  <!--{{_t('lb_no_link')}}-->
                             </div>
 
                         </div>

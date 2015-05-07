@@ -136,8 +136,14 @@ a:hover {
     left: 50%;
     transform: translate(-50%, 0);
 }
-
-
+/* Hide element on mobile devices
+-------------------------------------------------- */
+.is-mobile-true{
+     .mobhidden{
+        display: none !important;
+    }
+    
+}
 
 /* Spinners
 -------------------------------------------------- */

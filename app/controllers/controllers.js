@@ -467,7 +467,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
 /**
  * Element detail controller controller
  */
-myAppController.controller('ElementDetailController', function($scope, $routeParams, dataFactory, dataService, myCache) {
+myAppController.controller('ElementDetailController', function($scope, $routeParams,$window, dataFactory, dataService, myCache) {
     $scope.isValidUser();
     $scope.input = [];
     $scope.rooms = [];
@@ -523,6 +523,7 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
         if (input.id) {
             $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
             input.location = parseInt(input.location, 10);
+            input.metrics.title = input.title;
             dataFactory.putApi('devices', input.id, input).then(function(response) {
                 $scope.profileData.positions = dataService.setArrayValue($scope.profileData.positions, input.id, input.dashboard);
                 $scope.profileData.hide_single_device_events = dataService.setArrayValue($scope.profileData.hide_single_device_events, input.id, input.hide_events);
@@ -612,6 +613,7 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
             myCache.remove('devices/' + deviceId);
             myCache.remove('profiles/' + $scope.user.id);
             myCache.remove('locations');
+            $window.history.back();
 
         }, function(error) {
             alert($scope._t('error_update_data'));
