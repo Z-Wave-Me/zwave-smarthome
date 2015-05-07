@@ -7760,6 +7760,8 @@ myAppController.controller('TestController', function($scope, $routeParams, $fil
  */
 myAppController.controller('ElementController', function($scope, $routeParams, $interval, dataFactory, dataService, myCache) {
     $scope.isValidUser();
+    $scope.goHidden = [];
+    $scope.goHistory = [];
     $scope.apiDataInterval = null;
     $scope.collection = [];
     $scope.showFooter = true;
