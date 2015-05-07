@@ -163,7 +163,7 @@ myApp.run(function($rootScope, $location, dataService) {
         if (next.requireLogin) {
             user = dataService.getUser();
             if (!user || user.id < 1) {
-                //alert("You need to be authenticated to see this page!");
+                //alert('You need to be authenticated to see this page!');
                 //event.preventDefault();
                 $location.path('/');
                 return;
@@ -172,6 +172,7 @@ myApp.run(function($rootScope, $location, dataService) {
                 if (next.roles.indexOf(user.role) === -1) {
                     alert('You have no permissions t see this page!');
                     $location.path('/elements');
+                    return;
                 }
             }
         }

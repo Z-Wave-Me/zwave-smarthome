@@ -2442,7 +2442,6 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
             dataService.logError(error.status);
         });
     };
-     console.log($routeParams)
     if($routeParams.login && $routeParams.password){
        
         $scope.login($routeParams);
