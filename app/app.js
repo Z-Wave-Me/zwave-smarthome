@@ -22,7 +22,8 @@ myApp.config(['$routeProvider',
         $routeProvider.
                 // Home
                 when('/', {
-                    redirectTo: '/elements/dashboard/1'
+                    //redirectTo: '/elements/dashboard/1'
+                    templateUrl: 'app/views/login/login.html'
                 }).
                 // Elements
                 when('/elements/:filter?/:val?/:name?', {

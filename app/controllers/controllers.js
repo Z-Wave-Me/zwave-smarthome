@@ -20,7 +20,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
     $scope.isValidUser = function(role) {
 
         if (!$scope.user || $scope.user.id < 1) {
-            $location.path('/login');
+            $location.path('/');
             return;
 
         }
@@ -85,7 +85,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
             }
 
         } else {
-            return path[1];
+            return path[1] || 'login';
         }
 
     };
@@ -2448,11 +2448,11 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
         input.password = md5(input.password);
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.logInApi(input).then(function(response) {
-            dataService.logInfo(response, 'User logged in')
+            //dataService.logInfo(response, 'User logged in')
             dataService.setUser(response.data.data);
-            if (input.keepme) {
-                dataService.logInfo(input, 'Remeber user')
-            }
+//            if (input.keepme) {
+//                dataService.logInfo(input, 'Remeber user')
+//            }
             $scope.loading = false;
             $scope.user = dataService.getUser();
             $window.location.reload();
@@ -2469,8 +2469,9 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
             dataService.logError(error.status);
         });
     };
-    
+     console.log($routeParams)
     if($routeParams.login && $routeParams.password){
+       
         $scope.login($routeParams);
     }
 

@@ -1900,10 +1900,6 @@ padding-right: 5px;
 
 /* Login
 -------------------------------------------------- */
-/* line 4, sass/modules/_login.scss */
-#page_login #main_navbar {
-  display: none !important;
-}
 /* line 7, sass/modules/_login.scss */
 #page_login .container {
   max-width: 500px;
