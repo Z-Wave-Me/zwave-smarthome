@@ -17,19 +17,6 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
     $scope.user = dataService.getUser();
     $scope.cfg.interval = ($scope.user.interval || $scope.cfg.interval);
 
-    $scope.isValidUser = function(role) {
-
-        if (!$scope.user || $scope.user.id < 1) {
-            $location.path('/');
-            return;
-
-        }
-        if (role && $scope.user.role != role) {
-            $location.path('/elements');
-            return;
-        }
-    };
-
 
     /**
      * Language settings
@@ -134,14 +121,13 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
  * Test controller
  */
 myAppController.controller('TestController', function($scope, $routeParams, $filter, $location, $log, $cookies, $timeout, dataFactory, dataService) {
-    $scope.isValidUser();
+  
     console.log($cookies);
 });
 /**
  * Element controller
  */
 myAppController.controller('ElementController', function($scope, $routeParams, $interval, dataFactory, dataService, myCache) {
-    $scope.isValidUser();
     $scope.goHidden = [];
     $scope.goHistory = [];
     $scope.apiDataInterval = null;
@@ -470,7 +456,6 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
  * Element detail controller controller
  */
 myAppController.controller('ElementDetailController', function($scope, $routeParams,$window, dataFactory, dataService, myCache) {
-    $scope.isValidUser();
     $scope.input = [];
     $scope.rooms = [];
     $scope.profileData = [];
@@ -632,7 +617,6 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
  * Event controller
  */
 myAppController.controller('EventController', function($scope, $routeParams, $interval, $window, $filter, $cookies, dataFactory, dataService, myCache, paginationService, cfg) {
-    $scope.isValidUser();
     $scope.collection = [];
     $scope.eventLevels = [];
     $scope.eventSources = [];
@@ -864,7 +848,6 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
  * App controller
  */
 myAppController.controller('AppController', function($scope, $window, $cookies, $timeout, $log, dataFactory, dataService, myCache) {
-    $scope.isValidUser();
     $scope.instances = [];
     $scope.modules = [];
     $scope.modulesIds = [];
@@ -1106,7 +1089,6 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
  * App local detail controller
  */
 myAppController.controller('AppLocalDetailController', function($scope, $routeParams, $log, dataFactory, dataService) {
-    $scope.isValidUser();
     $scope.module = [];
     $scope.isOnline = null;
     $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
@@ -1143,7 +1125,6 @@ myAppController.controller('AppLocalDetailController', function($scope, $routePa
  * App online detail controller
  */
 myAppController.controller('AppOnlineDetailController', function($scope, $routeParams, $timeout, dataFactory, dataService) {
-    $scope.isValidUser();
     $scope.module = [];
     $scope.onlineMediaUrl = $scope.cfg.online_module_img_url;
     /**
@@ -1192,7 +1173,6 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
  * App controller - add module
  */
 myAppController.controller('AppModuleAlpacaController', function($scope, $routeParams, $filter, $location, dataFactory, dataService, myCache, cfg) {
-    $scope.isValidUser(1);
     $scope.showForm = false;
     $scope.success = false;
     $scope.alpacaData = true;
@@ -1364,7 +1344,6 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
  * Device controller
  */
 myAppController.controller('DeviceController', function($scope, $routeParams, dataFactory, dataService) {
-    $scope.isValidUser();
     $scope.zwaveDevices = [];
     $scope.zwaveDevicesFilter = false;
     $scope.deviceVendor = false;
@@ -1433,7 +1412,6 @@ myAppController.controller('DeviceController', function($scope, $routeParams, da
  * Device controller
  */
 myAppController.controller('IncludeController', function($scope, $routeParams, $timeout, $interval, dataFactory, dataService, myCache) {
-    $scope.isValidUser();
     $scope.apiDataInterval = null;
     $scope.includeDataInterval = null;
     $scope.device = {
@@ -1693,7 +1671,6 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
  * Room controller
  */
 myAppController.controller('RoomController', function($scope, dataFactory, dataService) {
-    $scope.isValidUser();
     $scope.collection = [];
     $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/image/';
     $scope.reset = function() {
@@ -1722,7 +1699,6 @@ myAppController.controller('RoomController', function($scope, dataFactory, dataS
  * Room config controller
  */
 myAppController.controller('RoomConfigController', function($scope, $window, dataFactory, dataService, myCache) {
-    $scope.isValidUser();
     $scope.collection = [];
     $scope.devices = [];
     $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/image/';
@@ -1800,7 +1776,6 @@ myAppController.controller('RoomConfigController', function($scope, $window, dat
  * Config room detail controller
  */
 myAppController.controller('RoomConfigEditController', function($scope, $routeParams, $filter, dataFactory, dataService, myCache) {
-    $scope.isValidUser();
     $scope.id = $filter('toInt')($routeParams.id);
     $scope.input = {
         'id': 0,
@@ -1959,7 +1934,6 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
  * Network controller
  */
 myAppController.controller('NetworkController', function($scope, $cookies, $filter, $window, dataFactory, dataService) {
-    $scope.isValidUser();
     $scope.activeTab = (angular.isDefined($cookies.tab_network) ? $cookies.tab_network : 'battery');
     $scope.batteries = {
         'list': [],
@@ -2138,7 +2112,6 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
  * Profile controller
  */
 myAppController.controller('AdminController', function($scope, $window, $cookies, dataFactory, dataService, myCache) {
-    $scope.isValidUser(1);
     $scope.profiles = {};
 
     /**
@@ -2183,7 +2156,6 @@ myAppController.controller('AdminController', function($scope, $window, $cookies
  * Orofile detail
  */
 myAppController.controller('AdminUserController', function($scope, $routeParams, $filter, dataFactory, dataService, myCache) {
-    $scope.isValidUser(1);
     $scope.id = $filter('toInt')($routeParams.id);
     $scope.rooms = {};
     $scope.input = {
@@ -2292,7 +2264,6 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
  * My Access
  */
 myAppController.controller('MyAccessController', function($scope, $window, dataFactory, dataService, myCache) {
-    $scope.isValidUser();
     $scope.id = $scope.user.id;
     $scope.devices = {};
     $scope.input = {
@@ -2482,7 +2453,6 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
  * Logout controller
  */
 myAppController.controller('LogoutController', function($scope, $cookies, $location, $window, $timeout, dataService) {
-    $scope.isValidUser();
     /**
      * Logout proccess
      */
@@ -2496,12 +2466,6 @@ myAppController.controller('LogoutController', function($scope, $cookies, $locat
 
     };
     $scope.logout();
-
-});
-/**
- * About controller
- */
-myAppController.controller('AboutController', function($scope, dataFactory) {
 
 });
 
