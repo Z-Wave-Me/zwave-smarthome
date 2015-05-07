@@ -13,7 +13,7 @@ var config_data = {
         'interval': 3000, 
         // Interval in miliseconds (5 min) to clear history (json) cache
         'history_cache_interval': 300000,
-        // List of API links 
+        // List of API links  
         'api': {
             'devices': 'ZAutomation/api/v1/devices',
             'profiles': 'ZAutomation/api/v1/profiles',

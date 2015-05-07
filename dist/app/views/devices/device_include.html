@@ -81,10 +81,10 @@
                 <tr>
                     <td><span class="badge badge-number">3</span></td>
                     <td>
-                        <strong ng-hide="controllerState == 1 || includedDeviceId">Inclusion proccess</strong>
+                        <strong ng-hide_="controllerState == 1 || includedDeviceId" ng-bind="_t('lb_inclusion_progress')"></strong>
                         <div ng-show="!inclusionError">
                             <div class="alert alert-warning" ng-show="controllerState == 1"><i class="fa fa-spinner fa-spin"></i> <strong ng-bind="_t('lb_ready_include')"></strong> <span ng-bind="device.data.inc"></span></div>
-                            <div class="alert alert-warning" ng-show="includedDeviceId"><i class="fa fa-spinner fa-spin"></i> <span ng-bind="_t('lb_new_device_found')"></span></div>
+                            <div class="alert alert-warning" ng-show="deviceFound"><i class="fa fa-spinner fa-spin"></i> <span ng-bind="_t('lb_new_device_found')"></span></div>
                         </div>
                     </td>
                     <td>
@@ -97,9 +97,11 @@
                 <tr>
                     <td><span class="badge badge-number">4</span></td>
                     <td>
-                        <strong ng-hide="lastIncludedDevice">Configuration</strong>
+                        <strong ng-hide_="lastIncludedDevice" ng-bind="_t('lb_configuration')"></strong>
                         <div ng-show="!inclusionError">
+                            <div class="alert alert-warning" ng-show="checkInterview"><i class="fa fa-spinner fa-spin"></i> <strong ng-bind="_t('configuring_device')"></strong></div>
                             <div class="alert alert-success" ng-show="lastIncludedDevice"><i class="fa fa-check"></i> <strong ng-bind="_t('lb_new_device_configured')"></strong>:  <span ng-bind="lastIncludedDevice"></span></div>
+                            
                         </div>
                         <div ng-if="inclusionError">
                             <div class="alert alert-danger" ng-show="!hasBattery"><i class="fa fa-minus-circle"></i> <span ng-bind="_t('lb_include_device_mains_error')"></span></div>
