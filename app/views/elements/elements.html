@@ -14,13 +14,13 @@
 
                     <!-- Widget header -->
                     <div class="widget-header">
-                         <a class="widget-history" href="" ng-click="goHidden = !goHidden" ng-show="cfg.element_control.indexOf(v.deviceType) > -1"><i class="fa fa-pencil-square-o fa-lg"></i></a>
-                         <!-- <a class="widget-history" href="" ng-click="goHistory = !goHistory" ng-show="history[v.id]"><i class="fa fa-history fa-lg"></i></a>-->
+                         <a class="widget-history" href="" ng-click="goHidden[v.id] = !goHidden[v.id]" ng-show="cfg.element_control.indexOf(v.deviceType) > -1"><i class="fa fa-pencil-square-o fa-lg"></i></a>
+                         <!-- <a class="widget-history" href="" ng-click="goHistory[v.id] = !goHistory[v.id]" ng-show="history[v.id]"><i class="fa fa-history fa-lg"></i></a>-->
                         <a class="widget-config" href="#element/{{v.id}}"><i class="fa fa-cog fa-lg"></i></a>
                     </div>
 
                     <!-- Widget body -->
-                    <div class="widget-body" ng-class="{'text-widget': v.deviceType == 'text','text-widget-no-img': v.deviceType == 'text' && v.metrics.img == ''}" ng-mouseleave="goHidden = false;goHistory = false;">
+                    <div class="widget-body" ng-class="{'text-widget': v.deviceType == 'text','text-widget-no-img': v.deviceType == 'text' && v.metrics.img == ''}" ng-mouseleave="goHidden[v.id] = false;goHistory[v.id] = false;">
                         
                         <h3 class="entry-title" title="{{v.title}}">{{v.title}}</h3>
                         <div class="widget-control-wrap">
@@ -174,8 +174,8 @@
                         <!-- ------------------------------ Hidden windows ------------------------------ -->
                         
                          <!-- History -->
-                         <div class="col-sm-11 element-hidden hidden-history" ng-show="goHistory">
-                            <a class="hidden-close" href="" ng-click="goHistory = !goHistory"><i class="fa fa-times"></i></a>
+                         <div class="col-sm-11 element-hidden hidden-history" ng-show="goHistory[v.id]">
+                            <a class="hidden-close" href="" ng-click="goHistory[v.id] = !goHistory[v.id]"><i class="fa fa-times"></i></a>
                             <p class="popup-title">{{v.title|cutText:true:30}}</p>
                             <div>
                                 <canvas tc-chartjs-line chart-data="history[v.id]" chart-options="chartOptions" width="260" height="150"></canvas>
@@ -183,8 +183,8 @@
                         </div>
 
                         <!-- Hidden switchMultilevel -->
-                        <div class="col-sm-11 element-hidden hidden-switch-multilevel animate-show" ng-switch-when="switchMultilevel" ng-show="goHidden">
-                             <a class="hidden-close" href="" ng-click="goHidden = false"><i class="fa fa-times"></i></a>
+                        <div class="col-sm-11 element-hidden hidden-switch-multilevel animate-show" ng-switch-when="switchMultilevel" ng-show="goHidden[v.id]">
+                              <a class="hidden-close" href="" ng-click="goHidden[v.id] = !goHidden[v.id]"><i class="fa fa-times"></i></a>
                             <div>
                                 <p class="text-center">{{v.title}} </p>
                                 <table>
@@ -240,8 +240,8 @@
                         </div>
 
                         <!-- Hidden thermostat -->
-                        <div class="col-sm-11 element-hidden thermostat" ng-switch-when="thermostat" ng-show="goHidden">
-                            <a class="hidden-close" href="" ng-click="goHidden = false"><i class="fa fa-times"></i></a>
+                        <div class="col-sm-11 element-hidden thermostat" ng-switch-when="thermostat" ng-show="goHidden[v.id]">
+                            <a class="hidden-close" href="" ng-click="goHidden[v.id] = !goHidden[v.id]"><i class="fa fa-times"></i></a>
                             <div>
                                 <p class="text-center">{{v.title}} </p>
                                 <table>
@@ -298,8 +298,8 @@
                         </div>-->
 
                         <!-- Hidden sensorMultiline -->
-                        <div class="col-sm-11 element-hidden hidden-sensor-multiline"  ng-switch-when="sensorMultiline" ng-show="goHidden">
-                            <!-- <a class="hidden-close" href="" ng-click="goHidden = false;"><i class="fa fa-times"></i></a>-->
+                        <div class="col-sm-11 element-hidden hidden-sensor-multiline"  ng-switch-when="sensorMultiline" ng-show="goHidden[v.id]">
+                            <a class="hidden-close" href="" ng-click="goHidden[v.id] = !goHidden[v.id]"><i class="fa fa-times"></i></a>
                             <div class="text-center">
                                 <h4>{{v.title}}, {{v.metrics.country}}</h4>
                                 <img ng-src="{{v.metrics.flag}}">
@@ -346,7 +346,8 @@
 
 
                         <!-- Hidden switchMultilevelLinear -->
-                        <div class="col-sm-11 element-hidden hidden-sensor-multilevel-linear" ng-switch-when="switchMultilevelLinear" ng-show="goHidden">
+                        <div class="col-sm-11 element-hidden hidden-sensor-multilevel-linear" ng-switch-when="switchMultilevelLinear" ng-show="goHidden[v.id]">
+                             <a class="hidden-close" href="" ng-click="goHidden[v.id] = !goHidden[v.id]"><i class="fa fa-times"></i></a>
                             <p class="text-center">{{v.title}} </p>
                             <table>
                                 <tbody>
