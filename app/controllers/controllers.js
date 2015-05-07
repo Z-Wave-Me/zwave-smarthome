@@ -242,7 +242,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.refreshData = function() {
         var refresh = function() {
             dataFactory.refreshApi('devices').then(function(response) {
-                dataService.updateDevices(response.data, $scope.updateValues);
+                dataService.updateDevices(response.data);
                 dataService.updateTimeTick(response.data.data.updateTime);
             }, function(error) {
                 dataService.showConnectionError(error);
@@ -455,7 +455,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     function runCmd(cmd, id) {
         var widgetId = '#Widget_' + id;
         dataFactory.runApiCmd(cmd).then(function(response) {
-            $(widgetId + ' .widget-image').toggleClass('trans-true');
+            $(widgetId + ' .widget-image').addClass('trans-true');
         }, function(error) {
             alert($scope._t('error_update_data'));
             $scope.loading = false;
