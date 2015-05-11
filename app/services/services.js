@@ -83,6 +83,20 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     this.setUser = function(data) {
         return setUser(data);
     };
+    
+     /**
+     * Get last login
+     */
+    this.getLastLogin = function() {
+       return getLastLogin();
+   };
+    
+   /*
+    * Set last login
+    */
+   this.setLastLogin = function(val) {
+       return setLastLogin(val);
+   };
 
     /**
      * Get data or filtered data
@@ -215,7 +229,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     /**
      * Set user data
      */
-    function setUser(data) {
+    function setUser(data) { 
         var user = {
             id: data.id || cfg.user_default.id,
             role: data.role || cfg.user_default.role,
@@ -227,6 +241,22 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
         };
         $cookies.user = angular.toJson(user);
         return user;
+
+    }
+    
+    /**
+     * Get last login
+     */
+    function getLastLogin() {
+        return $cookies.lastLogin !== 'undefined' ? $cookies.lastLogin : false;
+
+    }
+    
+    /**
+     * Set last login
+     */
+    function setLastLogin(val) {
+        $cookies.lastLogin = val;
 
     }
 
@@ -359,7 +389,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                 updateDeviceTime(widgetId, v);
                 updateDeviceIcon(widgetId, v);
                 updateDeviceBtn(widgetId, v);
-                console.log('Update device ID: ' + v.id + ' - level: ' + v.metrics.level)
+                //console.log('Update device ID: ' + v.id + ' - level: ' + v.metrics.level)
 
             });
         }

@@ -1,4 +1,11 @@
 {
+    "missing": "---",
+    "redirect_to_expert": "You will be redirected to ExpertUI",
+    "configuring_device": "Configuring device, please wait...",
+    "welcome_1": "Welcome to Your Smart Home",
+    "welcome_2": "You can sign in with the login: \"admin\" and the password: \"admin\"",
+    "welcome_3": "Please do not forget to change your password in the menu \"My settings\".",
+    "---": "missing",
     "lb_zwave_autodetect": "Автоматически обнаружить Z-Wave устройство",
     "lb_device_configuration": "Настройка устройства",
     "error_module_delete": "Невозможно удалить модуль",

@@ -15,13 +15,14 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
     $scope.cfg = cfg;
     $scope.loading = false;
     $scope.user = dataService.getUser();
+    $scope.lastLogin = dataService.getLastLogin();
     $scope.cfg.interval = ($scope.user.interval || $scope.cfg.interval);
 
 
     /**
      * Language settings
      */
-    $scope.lang_list = cfg.lang_list;
+    $scope.lang_list = cfg.lang_list; 
     // Set language
     $scope.lang = ($scope.user ? $scope.user.lang : cfg.lang);
     $cookies.lang = $scope.lang;
@@ -2423,11 +2424,13 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
         dataFactory.logInApi(input).then(function(response) {
             //dataService.logInfo(response, 'User logged in')
             dataService.setUser(response.data.data);
+            dataService.setLastLogin(Math.round(+new Date() / 1000)); 
 //            if (input.keepme) {
 //                dataService.logInfo(input, 'Remeber user')
 //            }
             $scope.loading = false;
             $scope.user = dataService.getUser();
+            $scope.lastLogin = dataService.getLastLogin();
             $window.location.reload();
 
             //$window.location.href = '#elements';
