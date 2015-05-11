@@ -5912,6 +5912,20 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     this.setUser = function(data) {
         return setUser(data);
     };
+    
+     /**
+     * Get last login
+     */
+    this.getLastLogin = function() {
+       return getLastLogin();
+   };
+    
+   /*
+    * Set last login
+    */
+   this.setLastLogin = function(val) {
+       return setLastLogin(val);
+   };
 
     /**
      * Get data or filtered data
@@ -6044,7 +6058,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     /**
      * Set user data
      */
-    function setUser(data) {
+    function setUser(data) { 
         var user = {
             id: data.id || cfg.user_default.id,
             role: data.role || cfg.user_default.role,
@@ -6056,6 +6070,22 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
         };
         $cookies.user = angular.toJson(user);
         return user;
+
+    }
+    
+    /**
+     * Get last login
+     */
+    function getLastLogin() {
+        return $cookies.lastLogin !== 'undefined' ? $cookies.lastLogin : false;
+
+    }
+    
+    /**
+     * Set last login
+     */
+    function setLastLogin(val) {
+        $cookies.lastLogin = val;
 
     }
 
@@ -6188,7 +6218,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                 updateDeviceTime(widgetId, v);
                 updateDeviceIcon(widgetId, v);
                 updateDeviceBtn(widgetId, v);
-                console.log('Update device ID: ' + v.id + ' - level: ' + v.metrics.level)
+                //console.log('Update device ID: ' + v.id + ' - level: ' + v.metrics.level)
 
             });
         }
@@ -6580,7 +6610,7 @@ myApp.directive('bbLoader', function() {
         restrict: "E",
         replace: true,
         template: '<div id="loading" ng-show="loading" ng-class="loading.status"><div class="loading-in">'
-                + '<i class="fa fa-lg" ng-class="loading.icon"></i> <span ng-bind="loading.message"></span>'
+                + '<i class="fa fa-lg" ng-class="loading.icon"></i> <span ng-bind-html="loading.message|toTrusted"></span>'
                 + '</div></div>'
     };
 });
@@ -7680,6 +7710,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
     $scope.cfg = cfg;
     $scope.loading = false;
     $scope.user = dataService.getUser();
+    $scope.lastLogin = dataService.getLastLogin();
     $scope.cfg.interval = ($scope.user.interval || $scope.cfg.interval);
 
 
@@ -7786,7 +7817,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
  * Test controller
  */
 myAppController.controller('TestController', function($scope, $routeParams, $filter, $location, $log, $cookies, $timeout, dataFactory, dataService) {
-  
+
     console.log($cookies);
 });
 /**
@@ -7846,6 +7877,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('devices').then(function(response) {
             var filter = null;
+            $scope.loading = false;
             $scope.deviceType = dataService.getDeviceType(response.data.data.devices);
             $scope.tags = dataService.getTags(response.data.data.devices);
             loadProfile();
@@ -7859,6 +7891,10 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
                     case 'dashboard':
                         $scope.showFooter = false;
                         filter = {filter: "onDashboard", val: true};
+                        if (Object.keys(response.data.data.devices).length < 1) {
+                            $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: $scope._t('no_devices_dashboard')};
+                            return;
+                        }
                         break;
                     case 'deviceType':
                         filter = $routeParams;
@@ -7878,10 +7914,8 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
                 }
             }
             loadInstances(response.data.data.devices, filter);
-            $scope.loading = false;
-            if (Object.keys(response.data.data.devices).length < 1) {
-                $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: $scope._t('no_data')};
-            }
+
+
 
         }, function(error) {
             dataService.showConnectionError(error);
@@ -8073,7 +8107,12 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
      */
     function loadInstances(devices, filter) {
         dataFactory.getApi('instances').then(function(response) {
-            $scope.collection = dataService.getDevices(devices, filter, $scope.profileData.positions, response.data.data);
+            var collection = dataService.getDevices(devices, filter, $scope.profileData.positions, response.data.data);
+            if (collection.length < 1) {
+                $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: $scope._t('no_devices')};
+                return;
+            }
+             $scope.collection = collection;
             dataService.updateTimeTick(response.data.data.updateTime);
         }, function(error) {
             dataService.showConnectionError(error);
@@ -8120,7 +8159,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
 /**
  * Element detail controller controller
  */
-myAppController.controller('ElementDetailController', function($scope, $routeParams,$window, dataFactory, dataService, myCache) {
+myAppController.controller('ElementDetailController', function($scope, $routeParams, $window, dataFactory, dataService, myCache) {
     $scope.input = [];
     $scope.rooms = [];
     $scope.profileData = [];
@@ -9120,17 +9159,17 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
         return;
     };
     $scope.loadData($scope.lang);
-    
-     /**
+
+    /**
      * Load data into collection
      */
     $scope.loadZwaveApiData = function() {
         dataFactory.loadZwaveApiData().then(function(response) {
 
-            }, function(error) {
-                dataService.showConnectionError(error);
-                return;
-            });
+        }, function(error) {
+            dataService.showConnectionError(error);
+            return;
+        });
         return;
     };
     $scope.loadZwaveApiData();
@@ -9154,12 +9193,12 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
                         var givenName = 'Device_' + deviceIncId;
                         var cmd = 'devices[' + deviceIncId + '].data.givenName.value=\'' + givenName + '\'';
                         dataFactory.runZwaveCmd(cmd).then(function() {
-                             $scope.includedDeviceId = deviceIncId;
-                             $scope.deviceFound = true;
+                            $scope.includedDeviceId = deviceIncId;
+                            $scope.deviceFound = true;
                         }, function(error) {
                             dataService.showConnectionError(error);
                         });
-                       
+
                     }
                 }
                 dataService.updateTimeTick(data.updateTime);
@@ -9179,73 +9218,73 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
      */
     $scope.$watch('includedDeviceId', function() {
         if ($scope.includedDeviceId) {
-                var refresh = function() {
-                     $scope.deviceFound = false;
-                    $scope.checkInterview = true;
-                    dataFactory.loadZwaveApiData().then(function(response) {
+            var refresh = function() {
+                $scope.deviceFound = false;
+                $scope.checkInterview = true;
+                dataFactory.loadZwaveApiData().then(function(response) {
                     //dataFactory.joinedZwaveData($scope.zwaveApiData).then(function(response) {
-                     //var ZWaveAPIData = response.data.joined;
+                    //var ZWaveAPIData = response.data.joined;
                     var ZWaveAPIData = response;
-                        var nodeId = $scope.includedDeviceId;
-                        if (!ZWaveAPIData.devices[nodeId]) {
-                            return;
-                        }
-                        var interviewDone = true;
-                        var instanceId = 0;
-                        var hasBattery = false;
-                        if (angular.isDefined(ZWaveAPIData.devices[nodeId].instances)) {
-                            hasBattery = 0x80 in ZWaveAPIData.devices[nodeId].instances[0].commandClasses;
-                        }
-                        var vendor = ZWaveAPIData.devices[nodeId].data.vendorString.value;
-                        var deviceType = ZWaveAPIData.devices[nodeId].data.deviceTypeString.value;
-                        $scope.hasBattery = hasBattery;
+                    var nodeId = $scope.includedDeviceId;
+                    if (!ZWaveAPIData.devices[nodeId]) {
+                        return;
+                    }
+                    var interviewDone = true;
+                    var instanceId = 0;
+                    var hasBattery = false;
+                    if (angular.isDefined(ZWaveAPIData.devices[nodeId].instances)) {
+                        hasBattery = 0x80 in ZWaveAPIData.devices[nodeId].instances[0].commandClasses;
+                    }
+                    var vendor = ZWaveAPIData.devices[nodeId].data.vendorString.value;
+                    var deviceType = ZWaveAPIData.devices[nodeId].data.deviceTypeString.value;
+                    $scope.hasBattery = hasBattery;
 
-                        // Check interview
-                        if (ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value && ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value.length) {
-                            for (var iId in ZWaveAPIData.devices[nodeId].instances) {
-                                if (Object.keys(ZWaveAPIData.devices[nodeId].instances[iId].commandClasses).length > 0) {
-                                    for (var ccId in ZWaveAPIData.devices[nodeId].instances[iId].commandClasses) {
-                                        if (!ZWaveAPIData.devices[nodeId].instances[iId].commandClasses[ccId].data.interviewDone.value) {
-                                            //console.log('Interview false: 1')
-                                            interviewDone = false;
-                                        }
+                    // Check interview
+                    if (ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value && ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value.length) {
+                        for (var iId in ZWaveAPIData.devices[nodeId].instances) {
+                            if (Object.keys(ZWaveAPIData.devices[nodeId].instances[iId].commandClasses).length > 0) {
+                                for (var ccId in ZWaveAPIData.devices[nodeId].instances[iId].commandClasses) {
+                                    if (!ZWaveAPIData.devices[nodeId].instances[iId].commandClasses[ccId].data.interviewDone.value) {
+                                        //console.log('Interview false: 1')
+                                        interviewDone = false;
                                     }
-                                } else {
-                                    //console.log('Interview false: 2')
-                                    interviewDone = false;
                                 }
+                            } else {
+                                //console.log('Interview false: 2')
+                                interviewDone = false;
                             }
-
-                        } else {
-                            //console.log('Interview false: 3')
-                            interviewDone = false;
                         }
-                        // Set device name
-                        var deviceName = function(vendor, deviceType) {
-                            if (!vendor && deviceType) {
-                                return 'Device';
-                            }
-                            return vendor + ' ' + deviceType;
-                        };
-                        if (interviewDone) {
-                            $scope.lastIncludedDevice = deviceName(vendor, deviceType) + ' ' + nodeId + '-' + instanceId;
-                            myCache.remove('devices');
-                            $scope.includedDeviceId = null;
-                             $scope.checkInterview = false;
-                             $interval.cancel($scope.includeDataInterval);
 
-                        } else {
-                             $scope.checkInterview = true;
+                    } else {
+                        //console.log('Interview false: 3')
+                        interviewDone = false;
+                    }
+                    // Set device name
+                    var deviceName = function(vendor, deviceType) {
+                        if (!vendor && deviceType) {
+                            return 'Device';
                         }
-                        
+                        return vendor + ' ' + deviceType;
+                    };
+                    if (interviewDone) {
+                        $scope.lastIncludedDevice = deviceName(vendor, deviceType) + ' ' + nodeId + '-' + instanceId;
+                        myCache.remove('devices');
+                        $scope.includedDeviceId = null;
+                        $scope.checkInterview = false;
+                        $interval.cancel($scope.includeDataInterval);
 
-                    }, function(error) {
-                        $scope.inclusionError = true;
-                        dataService.showConnectionError(error);
-                    });
-                };
-                $scope.includeDataInterval = $interval(refresh, $scope.cfg.interval);
-           
+                    } else {
+                        $scope.checkInterview = true;
+                    }
+
+
+                }, function(error) {
+                    $scope.inclusionError = true;
+                    dataService.showConnectionError(error);
+                });
+            };
+            $scope.includeDataInterval = $interval(refresh, $scope.cfg.interval);
+
         }
     });
 
@@ -10059,7 +10098,7 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
 /**
  * Login controller
  */
-myAppController.controller('LoginController', function($scope, $cookies, $location, $window, $routeParams,dataFactory, dataService) {
+myAppController.controller('LoginController', function($scope, $cookies, $location, $window, $routeParams, dataFactory, dataService) {
     $scope.input = {
         login: '',
         password: '',
@@ -10088,11 +10127,13 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
         dataFactory.logInApi(input).then(function(response) {
             //dataService.logInfo(response, 'User logged in')
             dataService.setUser(response.data.data);
+            dataService.setLastLogin(Math.round(+new Date() / 1000));
 //            if (input.keepme) {
 //                dataService.logInfo(input, 'Remeber user')
 //            }
             $scope.loading = false;
             $scope.user = dataService.getUser();
+            $scope.lastLogin = dataService.getLastLogin();
             $window.location.reload();
 
             //$window.location.href = '#elements';
@@ -10107,8 +10148,8 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
             dataService.logError(error.status);
         });
     };
-    if($routeParams.login && $routeParams.password){
-       
+    if ($routeParams.login && $routeParams.password) {
+
         $scope.login($routeParams);
     }
 
