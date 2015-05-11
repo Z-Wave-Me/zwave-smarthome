@@ -31,7 +31,7 @@ myApp.directive('bbLoader', function() {
         restrict: "E",
         replace: true,
         template: '<div id="loading" ng-show="loading" ng-class="loading.status"><div class="loading-in">'
-                + '<i class="fa fa-lg" ng-class="loading.icon"></i> <span ng-bind="loading.message"></span>'
+                + '<i class="fa fa-lg" ng-class="loading.icon"></i> <span ng-bind-html="loading.message|toTrusted"></span>'
                 + '</div></div>'
     };
 });

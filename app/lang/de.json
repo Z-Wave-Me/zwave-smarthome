@@ -1,4 +1,8 @@
-{   "redirect_to_expert": "Sie werden zur ExpertUI weitergeleitet.",
+{   
+    "no_devices":"Keine Geräte vorhanden",
+    "no_devices_dashboard":"Es wurden bisher keine Geräte im Dashboard hinzugefügt",
+    "add_device":"Gerät anlernen?",
+    "redirect_to_expert": "Sie werden zur ExpertUI weitergeleitet.",
     "configuring_device": "Bitte warten Sie während das Gerät konfiguriert wird",
    "welcome_1": "Willkommen in Ihrem Smart Home",
     "welcome_2": "Sie können sich mit dem Login: \"admin\" und dem Passwort: \"admin\" anmelden.",
