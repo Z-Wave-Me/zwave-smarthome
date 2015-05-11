@@ -1118,6 +1118,10 @@ http://codepen.io/MattIn4D/pen/LiKFC
 .widget-body .widget-control.control-right .btn-group {
   float: right;
 }
+/* line 61, sass/modules/_elements.scss */
+.widget-body .widget-click-popup {
+  cursor: pointer;
+}
 /* line 65, sass/modules/_elements.scss */
 .widget-body .element-hidden {
   z-index: 10000;
