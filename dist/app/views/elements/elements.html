@@ -9,25 +9,25 @@
                 <!-- {{v.id}}: {{levelVal[v.id]}} icon {{v.icon}} -->
                 <div class="widget-block-in clearfix app-border app-gradient app-shadow">
                     <!-- Widget icon -->
-                    <img ng-if="v.deviceType === 'text'" ng-show="v.metrics.img" class="widget-image" ng-src="{{v.metrics.img}}" alt="{{v.title}}"/>
-                    <img id="widget_img_{{v.id}}" class="widget-image" ng-class_="imgTrans[v.id] == true ? 'trans-true':''" ng-if="v.deviceType !== 'text'"  ng-src="{{v.icon|getElementIcon:v:levelVal[v.id]}}" alt="{{v.title}}"/>
+                    <img ng-if="v.deviceType === 'text'" ng-show="v.metrics.img" class="widget-image" ng-src="{{v.metrics.img}}" alt="{{v.title}}" ng-click="goHidden[v.id] = !goHidden[v.id]" />
+                    <img id="widget_img_{{v.id}}" class="widget-image" ng-class_="imgTrans[v.id] == true ? 'trans-true':''" ng-if="v.deviceType !== 'text'"  ng-src="{{v.icon|getElementIcon:v:levelVal[v.id]}}" alt="img" ng-click="goHidden[v.id] = !goHidden[v.id]" />
 
                     <!-- Widget header -->
                     <div class="widget-header">
-                         <a class="widget-history" href="" ng-click="goHidden[v.id] = !goHidden[v.id]" ng-show="cfg.element_control.indexOf(v.deviceType) > -1"><i class="fa fa-pencil-square-o fa-lg"></i></a>
+                         <!--<a class="widget-history" href="" ng-click="goHidden[v.id] = !goHidden[v.id]" ng-show="cfg.element_control.indexOf(v.deviceType) > -1"><i class="fa fa-pencil-square-o fa-lg"></i></a>-->
                          <!-- <a class="widget-history" href="" ng-click="goHistory[v.id] = !goHistory[v.id]" ng-show="history[v.id]"><i class="fa fa-history fa-lg"></i></a>-->
                         <a class="widget-config" href="#element/{{v.id}}"><i class="fa fa-cog fa-lg"></i></a>
                     </div>
 
                     <!-- Widget body -->
-                    <div class="widget-body" ng-class="{'text-widget': v.deviceType == 'text','text-widget-no-img': v.deviceType == 'text' && v.metrics.img == ''}" ng-mouseleave="goHidden[v.id] = false;goHistory[v.id] = false;">
+                    <div class="widget-body" ng-class="{'text-widget': v.deviceType == 'text','text-widget-no-img': v.deviceType == 'text' && v.metrics.img == ''}" ng-mouseleave="goHidden[v.id] = false;goHistory[v.id] = false;" >
                         
-                        <h3 class="entry-title" title="{{v.title}}">{{v.title}}</h3>
+                        <h3 class="entry-title" title="{{v.title}}" ng-click="goHidden[v.id] = !goHidden[v.id]">{{v.title}}</h3>
                         <div class="widget-control-wrap">
                              <!------------ switchMultilevel ------------>
                             <div ng-switch-when="switchMultilevel">
-                                <div class="widget-control control-left widget-click-popup">
-                                    <span class="widget-level" ng-bind="levelVal[v.id] | getMaxLevel"></span> %
+                                <div class="widget-control control-left widget-click-popup" ng-click="goHidden[v.id] = !goHidden[v.id]">
+                                    <span class="widget-level" ng-bind="levelVal[v.id] | getMaxLevel"></span>% <i class="fa fa-caret-down"></i>
                                 </div>
                                 <div class="widget-control control-right" ng-if="v.metrics.icon == 'blinds'">
                                    <div class="btn-group">
@@ -141,8 +141,8 @@
 
                             <!-- sensorMultiline -->
                             <div ng-switch-when="sensorMultiline">
-                                <div class="widget-control control-left widget-click-popup">
-                                    <span class="widget-level" ng-bind="v.level"></span> <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span>
+                                <div class="widget-control control-left widget-click-popup" ng-click="goHidden[v.id] = !goHidden[v.id]">
+                                    <span class="widget-level" ng-bind="v.level"></span> <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span> <i class="fa fa-caret-down"></i>
                                 </div>
 
                                 <div class="widget-control control-right">
@@ -153,7 +153,9 @@
                             </div>
 
                             <!-- thermostat -->
-                            <div class="widget-control control-left widget-click-popup" ng-switch-when="thermostat"><strong>{{levelVal[v.id]}} <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span></strong></div>
+                            <div class="widget-control control-left widget-click-popup" ng-switch-when="thermostat" ng-click="goHidden[v.id] = !goHidden[v.id]">
+                                <strong>{{levelVal[v.id]}}<span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span> <i class="fa fa-caret-down"></i></strong>
+                            </div>
                             <!-- switchMultilevelLinear -->
                             <div class="widget-click-popup" ng-switch-when="switchMultilevelLinear"><strong>{{v.level}} <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span></strong></div>
                             <!-- camera -->
