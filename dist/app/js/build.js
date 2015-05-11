@@ -5135,7 +5135,7 @@ myApp.config(['$routeProvider',
                     requireLogin: true
                 }).
                 //Apps
-                when('/apps', {
+                when('/apps', { 
                     templateUrl: 'app/views/apps/apps.html',
                      requireLogin: true,
                     roles: [1]
@@ -5158,7 +5158,7 @@ myApp.config(['$routeProvider',
                     requireLogin: true,
                     roles: [1]
                 }).
-                //Devices
+                //Devices_
                 when('/devices/:type?', {
                     templateUrl: 'app/views/devices/devices.html',
                     requireLogin: true
