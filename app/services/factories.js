@@ -204,7 +204,10 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
     function runApiCmd(cmd) {
         return $http({
             method: 'get',
-            url: cfg.server_url + cfg.api_url + "devices/" + cmd
+            url: cfg.server_url + cfg.api_url + "devices/" + cmd,
+             headers: {
+                'Accept-Language': lang 
+            }
         }).then(function(response) {
             if (response.data.code == 200) {
                 return response;
@@ -318,7 +321,10 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
         // NOT Cached data
         return $http({
             method: 'get',
-            url: url
+            url: url,
+             headers: {
+                'Accept-Language': lang 
+            }
         }).then(function(response) {
             if (typeof response.data === 'object') {
                 myCache.put(cacheName, response);
@@ -336,7 +342,10 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
         //console.log('?since=' + updatedTime)
         return $http({
             method: 'get',
-            url: cfg.server_url + cfg.api[api] + '?since=' + updatedTime + (params ? params : '')
+            url: cfg.server_url + cfg.api[api] + '?since=' + updatedTime + (params ? params : ''),
+            headers: {
+                'Accept-Language': lang 
+            }
         }).then(function(response) {
             if (typeof response.data === 'object') {
                 updatedTime = ($filter('hasNode')(response.data, 'data.updateTime') || Math.round(+new Date() / 1000));
@@ -376,7 +385,10 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
     function getSystemCmd(cmd) {
         return $http({
             method: 'get',
-            url: cfg.server_url + cfg.zwave_api_url + cmd
+            url: cfg.server_url + cfg.zwave_api_url + cmd,
+             headers: {
+                'Accept-Language': lang 
+            }
         }).then(function(response) {
             //return response;
             if (typeof response.data === 'object') {
