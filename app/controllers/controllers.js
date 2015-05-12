@@ -1784,7 +1784,7 @@ myAppController.controller('RoomConfigController', function($scope, $window, dat
 /**
  * Config room detail controller
  */
-myAppController.controller('RoomConfigEditController', function($scope, $routeParams, $filter, dataFactory, dataService, myCache) {
+myAppController.controller('RoomConfigEditController', function($scope, $routeParams, $filter, $location,dataFactory, dataService, myCache) {
     $scope.id = $filter('toInt')($routeParams.id);
     $scope.input = {
         'id': 0,
@@ -1874,7 +1874,8 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
                 removeRoomIdFromDevice(response.data, $scope.devicesToRemove);
                 myCache.remove('locations');
                 myCache.remove('devices');
-                $scope.loadData(id);
+                //$scope.loadData(id);
+                $location.path('/config-rooms');
             }
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
 
