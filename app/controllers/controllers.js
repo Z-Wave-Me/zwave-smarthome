@@ -1484,8 +1484,10 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
      */
     $scope.refreshData = function() {
         var refresh = function() {
-            dataFactory.joinedZwaveData().then(function(response) {
-                var data = response.data.update;
+//            dataFactory.joinedZwaveData().then(function(response) {
+//                var data = response.data.update;
+                dataFactory.refreshZwaveApiData().then(function(response) {
+                var data = response.data;
                 if ('controller.data.controllerState' in data) {
                     $scope.controllerState = data['controller.data.controllerState'].value;
                 }
@@ -1526,10 +1528,10 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
             var refresh = function() {
                 $scope.deviceFound = false;
                 $scope.checkInterview = true;
-                dataFactory.loadZwaveApiData().then(function(response) {
+                dataFactory.loadZwaveApiData(true).then(function(ZWaveAPIData) {
                     //dataFactory.joinedZwaveData($scope.zwaveApiData).then(function(response) {
                     //var ZWaveAPIData = response.data.joined;
-                    var ZWaveAPIData = response;
+                    //var ZWaveAPIData = response;
                     var nodeId = $scope.includedDeviceId;
                     if (!ZWaveAPIData.devices[nodeId]) {
                         return;

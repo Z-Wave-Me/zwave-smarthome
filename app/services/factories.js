@@ -485,7 +485,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
     function  joinedZwaveData(ZWaveAPIData) {
         var time = Math.round(+new Date() / 1000);
          var cacheName = 'cache_zwaveapidata';
-        var apiData = myCache.get(cacheName) || ZWaveAPIData;
+        var apiData = myCache.get(cacheName) || ZWaveAPIData; 
         //console.log(apiData)
         var result = {};
         return $http({
