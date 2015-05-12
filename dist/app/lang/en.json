@@ -1,5 +1,7 @@
 {
     "missing": "---",
+    "lb_is_failed": "Device is failed",
+    "updated": "Updated at",
     "---": "missing",
     "no_devices":"Requested devices do not exist",
     "no_devices_dashboard":"There is no device in Dashboard",
@@ -114,7 +116,6 @@
     "lb_battery_20": "devices < 20 % battery level",
     "lb_battery_0": "at 0 % battery level",
     "lb_not_configured": "Device is not configured",
-    "lb_is_failed": "Device is failed",
     "lb_preparation": "Preparation",
     "lb_inclusion_progress": "Inclusion process",
     "btn_inclusion_start": "Start inclusion",

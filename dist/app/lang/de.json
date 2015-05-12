@@ -1,4 +1,6 @@
 {   
+    "updated": "Aktualisiert am",
+    "lb_is_failed": "Das Gerät ist fehlerhaft",
     "no_devices":"Keine Geräte vorhanden",
     "no_devices_dashboard":"Es wurden bisher keine Geräte im Dashboard hinzugefügt",
     "add_device":"Gerät anlernen?",
@@ -241,7 +243,7 @@
     "lb_down": "Unten",
     "lb_categories": "Kategorien",
     "lb_tags": "Tags",
-    "lb_all": "All",
+    "lb_all": "Alle",
     "lb_configuration_view": "Konfigurationsansicht",
     "switchBinary": "Ein/Aus-Schalter",
     "sensorMultilevel": "Analoger Sensor",

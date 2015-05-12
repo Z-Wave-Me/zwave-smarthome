@@ -59,7 +59,9 @@
                          
                     </td>
                     <td class="td-action" ng-if="user.role == 1">
-                       <a class="btn btn-default" href="#deviceconfig/{{v.id}}"><i class="fa fa-cog text-primary"></i> <span class="btn-name" ng-bind="_t('lb_configuration')"></span></a>
+                       <a class="btn btn-default" href="#deviceconfig/{{v.id}}" ng-if="v.cfg.length > 0">
+                           <i class="fa fa-cog text-primary"></i> <span class="btn-name" ng-bind="_t('lb_configuration')"></span>
+                       </a>
                     </td>
                 </tr>
             </tbody>
