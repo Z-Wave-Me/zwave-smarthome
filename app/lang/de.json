@@ -1,5 +1,6 @@
 {   
-    "no_devices":"Keine Geräte vorhanden",
+    "lb_is_failed": "Device is failed",
+    "no_devices":"Das Gerät ist fehlerhaft",
     "no_devices_dashboard":"Es wurden bisher keine Geräte im Dashboard hinzugefügt",
     "add_device":"Gerät anlernen?",
     "redirect_to_expert": "Sie werden zur ExpertUI weitergeleitet.",
