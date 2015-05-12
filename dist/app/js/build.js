@@ -18752,8 +18752,11 @@ myAppController.controller('ConfigConfigurationController', function($scope, $ro
      * @param {string} cmd
      * @returns {undefined}
      */
-    $scope.updateFromDevice = function(cmd) {
+    $scope.updateFromDevice = function(cmd,hasBattery) {
          $scope.loading = {status:'loading-spin',icon:'fa-spinner fa-spin', message:$scope._t('updating')};
+         if (hasBattery) {
+            alert($scope._t('conf_apply_battery'));
+        }
         dataFactory.runExpertCmd(cmd, true).then(function(response) {
             
             //dataService.logInfo(response, 'Update from device');

@@ -27,7 +27,7 @@
     "lb_delete_system_events": "Lösche alle Systemereignisse.",
     "lb_configuration_for": "Konfiguration für",
     "no_zddx_file": "Keine Konfigurationsdatei vorhanden.",
-    "btn_update_from_device": "Aktualisiere Gerätedaten ",
+    "btn_update_from_device": "Daten aus Gerät laden",
     "apply_config": "Gerätekonfiguration Speichern",
     "apply_config_into_device": "Parameter Speichern",
     "default_value_is": "Default Wert ist",

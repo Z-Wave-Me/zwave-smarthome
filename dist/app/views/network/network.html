@@ -32,8 +32,9 @@
                         <img class="report-img" ng-src="storage/img/batteries/{{v.metrics.level|getBatteryIcon}}" alt="img" />
                     </td>
                     <td class="network-zwave-device">
-                        <span class="network-node-name">(#{{v.nodeId}}) {{v.nodeName}}</span>
-                        <div  ng-bind="v.metrics.title"></div>
+                        <div>(#{{v.nodeId}}) {{v.nodeName}}</div>
+                        <!--<span class="network-node-name">(#{{v.nodeId}}) {{v.nodeName}}</span>
+                        <div  ng-bind="v.metrics.title"></div>-->
                     </td>
                     <td>
                         <span class="text-success" ng-show="v.metrics.level >= 80">{{v.metrics.level}} %</span>
