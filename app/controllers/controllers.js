@@ -417,7 +417,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
                 $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: $scope._t('no_devices')};
                 return;
             }
-             $scope.collection = collection;
+            $scope.collection = collection;
             dataService.updateTimeTick(response.data.data.updateTime);
         }, function(error) {
             dataService.showConnectionError(error);
@@ -1784,7 +1784,7 @@ myAppController.controller('RoomConfigController', function($scope, $window, dat
 /**
  * Config room detail controller
  */
-myAppController.controller('RoomConfigEditController', function($scope, $routeParams, $filter, $location,dataFactory, dataService, myCache) {
+myAppController.controller('RoomConfigEditController', function($scope, $routeParams, $filter, $location, dataFactory, dataService, myCache) {
     $scope.id = $filter('toInt')($routeParams.id);
     $scope.input = {
         'id': 0,
@@ -1995,6 +1995,7 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
                     id: k,
                     title: v.data.givenName.value || 'Device ' + '_' + k,
                     icon: null,
+                    cfg: [],
                     elements: [],
                     messages: []
                 };
@@ -2016,6 +2017,30 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
                         var interviewDone = isInterviewDone(node, nodeId);
                         var isFailed = node.data.isFailed.value;
                         var hasBattery = 0x80 in node.instances[0].commandClasses;
+                        // Has config file
+                        if (angular.isDefined(node.data.ZDDXMLFile) && node.data.ZDDXMLFile.value != '') {
+                            if ($scope.zWaveDevices[nodeId]['cfg'].indexOf('config') === -1) {
+                                $scope.zWaveDevices[nodeId]['cfg'].push('config');
+                            }
+                        }
+                        // Has wakeup
+                        if (0x84 in node.instances[0].commandClasses) {
+                            if ($scope.zWaveDevices[nodeId]['cfg'].indexOf('wakeup') === -1) {
+                                $scope.zWaveDevices[nodeId]['cfg'].push('wakeup');
+                            }
+                        }
+                        // Has SwitchAll
+                        if (0x27 in node.instances[0].commandClasses) {
+                            if ($scope.zWaveDevices[nodeId]['cfg'].indexOf('switchall') === -1) {
+                                $scope.zWaveDevices[nodeId]['cfg'].push('switchall');
+                            }
+                        }
+                        // Has protection
+                        if (0x75 in node.instances[0].commandClasses) {
+                            if ($scope.zWaveDevices[nodeId]['cfg'].indexOf('protection') === -1) {
+                                $scope.zWaveDevices[nodeId]['cfg'].push('protection');
+                            }
+                        }
                         var obj = {};
                         obj['id'] = v.id;
                         obj['nodeId'] = nodeId;
