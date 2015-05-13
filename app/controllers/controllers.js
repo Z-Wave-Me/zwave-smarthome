@@ -293,7 +293,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         if (input.id) {
             $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
             dataFactory.putApi('devices', input.id, input).then(function(response) {
-                $scope.profileData.positions = dataService.setArrayValue($scope.profileData.positions, input.id, input.dashboard);
+                $scope.profileData.dashboard = dataService.setArrayValue($scope.profileData.dashboard, input.id, input.dashboard);
                 $scope.profileData.hide_single_device_events = dataService.setArrayValue($scope.profileData.hide_single_device_events, input.id, input.hide_events);
                 updateProfile($scope.profileData);
 
@@ -374,7 +374,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
             $scope.profileData = {
                 'id': profile.id,
                 'name': profile.name,
-                'positions': profile.positions,
+                'dashboard': profile.dashboard,
                 'hide_single_device_events': profile.hide_single_device_events
             };
         }, function(error) {
@@ -412,7 +412,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
      */
     function loadInstances(devices, filter) {
         dataFactory.getApi('instances').then(function(response) {
-            var collection = dataService.getDevices(devices, filter, $scope.profileData.positions, response.data.data);
+            var collection = dataService.getDevices(devices, filter, $scope.profileData.dashboard, response.data.data);  
             if (collection.length < 1) {
                 $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: $scope._t('no_devices')};
                 return;
@@ -521,7 +521,7 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
             input.location = parseInt(input.location, 10);
             input.metrics.title = input.title;
             dataFactory.putApi('devices', input.id, input).then(function(response) {
-                $scope.profileData.positions = dataService.setArrayValue($scope.profileData.positions, input.id, input.dashboard);
+                $scope.profileData.dashboard = dataService.setArrayValue($scope.profileData.dashboard, input.id, input.dashboard);
                 $scope.profileData.hide_single_device_events = dataService.setArrayValue($scope.profileData.hide_single_device_events, input.id, input.hide_events);
                 updateProfile($scope.profileData, input.id);
 
@@ -545,7 +545,7 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
             $scope.profileData = {
                 'id': profile.id,
                 'name': profile.name,
-                'positions': profile.positions,
+                'dashboard': profile.dashboard,
                 'hide_single_device_events': profile.hide_single_device_events
             };
         }, function(error) {
@@ -570,7 +570,7 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
      */
     function loadInstances(devices) {
         dataFactory.getApi('instances').then(function(response) {
-            var v = dataService.getDevices(devices, null, $scope.profileData.positions, response.data.data)[0];
+            var v = dataService.getDevices(devices, null, $scope.profileData.dashboard, response.data.data)[0];
             if (v) {
                 $scope.input = {
                     'id': v.id,
