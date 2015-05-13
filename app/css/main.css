@@ -1032,6 +1032,443 @@ http://codepen.io/MattIn4D/pen/LiKFC
   margin-top: 10px;
 }
 
+/** Added to outer field elements to hide them **/
+/* line 2, sass/modules/_alpaca.scss */
+.alpaca-hidden {
+  display: none;
+}
+
+/** Added to every field outer element **/
+/** Added to every container outer field element **/
+/** Added to the optional label (or legend) accompanying any container **/
+/** Added to every container item field within a container **/
+/** Added to the first container item field within a container **/
+/** Added to the last container item field within a container **/
+/** Added to a container to indicate it is empty **/
+/** Added to the dom element holding the toolbar for an array **/
+/** Added to a button in the array toolbar that triggers an action **/
+/** Added to the dom element holding the actionbar for each array item **/
+/** Added to a button in an array item actionbar that triggers an action **/
+/** Added to every control outer field element **/
+/** Added to the optional label accompanying any control **/
+/** ******************************************************** **/
+/**                        STATE LABELS                      **/
+/** ******************************************************** **/
+/** Added to top-most control when rendering in display mode **/
+/** Added to top-most control when rendering in create mode **/
+/** Added to top-most control when rendering in edit mode **/
+/** Added to any field that is optional **/
+/** Added to any field that is required **/
+/** Added to any field that is readonly **/
+/** Added to the container that holds Alpaca field helper text **/
+/** Added to form containers that are rendering in horizontal mode **/
+/** Added to form containers that are rendering in vertical mode **/
+/** Added to the top most container element **/
+/** Added to fields that are valid **/
+/** Added to fields that have run through validation and are invalid **/
+/** Added to fields that have run through validation and are invalid but are currently hiding invalidation errors **/
+/* Added to additional DOM elements to mark validation messages */
+/** Added to messages that are for invalidation states that are current hidden (hideInitValidationError) **/
+/** Added to buttons that are marked disabled */
+/** ******************************************************** **/
+/**                           ICONS                          **/
+/** ******************************************************** **/
+/** Added to indicate hover state **/
+/** General purpose HTML clear **/
+/* line 211, sass/modules/_alpaca.scss */
+.alpaca-clear {
+  clear: both;
+}
+
+/* line 216, sass/modules/_alpaca.scss */
+.alpaca-float-right {
+  float: right;
+}
+
+/** ************************************** **/
+/** TWITTER TYPEAHEAD                      **/
+/** ************************************** **/
+/* line 226, sass/modules/_alpaca.scss */
+.twitter-typeahead .tt-dropdown-menu {
+  background-color: white;
+  border: 1px #ccc solid;
+  padding: 10px;
+  padding-top: 0px;
+  color: #999;
+  width: 100%;
+}
+
+/* line 236, sass/modules/_alpaca.scss */
+.twitter-typeahead .tt-dropdown-menu P {
+  font-size: 1em;
+}
+
+/* line 241, sass/modules/_alpaca.scss */
+.tt-suggestion.tt-is-under-cursor {
+  background-color: #ccc;
+  color: #333;
+}
+
+/* line 247, sass/modules/_alpaca.scss */
+.tt-dropdown-menu {
+  background-color: white;
+  border: 1px solid #cccccc;
+  width: 100%;
+}
+
+/** ************************************** **/
+/** EDITOR FIELD                           **/
+/** ************************************** **/
+/* line 261, sass/modules/_alpaca.scss */
+.alpaca-controlfield-editor {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  border: 1px #ccc solid;
+}
+
+/* line 269, sass/modules/_alpaca.scss */
+.alpaca-controlfield-editor .control-field-editor-el {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+/** ************************************** **/
+/** DATEPICKER (jQueryUI)                  **/
+/** ************************************** **/
+/* line 284, sass/modules/_alpaca.scss */
+#ui-datepicker-div {
+  display: none;
+  background-color: white;
+  z-index: 9999999 !important;
+  width: 22em !important;
+}
+
+/* Fix for Chrome issue with Button text */
+/* line 293, sass/modules/_alpaca.scss */
+.ui-button .ui-button-text {
+  white-space: nowrap;
+}
+
+/* line 297, sass/modules/_alpaca.scss */
+.ui-datepicker {
+  z-index: 100;
+}
+
+/** ************************************** **/
+/** FILE UPLOAD (jQueryUI)                 **/
+/** ************************************** **/
+/* line 313, sass/modules/_alpaca.scss */
+.alpaca-fileupload-container {
+  border: 1px #ccc solid;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* line 320, sass/modules/_alpaca.scss */
+.alpaca-fileupload-container .row {
+  margin-bottom: 10px;
+}
+
+/* line 325, sass/modules/_alpaca.scss */
+.alpaca-fileupload-well {
+  /*border: 1px #ccc solid;*/
+  padding: 10px;
+  border-radius: 5px;
+  min-height: 100px;
+}
+
+/* line 333, sass/modules/_alpaca.scss */
+.alpaca-fileupload-container table {
+  border: 1px #ccc solid;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* line 340, sass/modules/_alpaca.scss */
+.alpaca-fileupload-well p {
+  padding-top: 20px;
+  color: #888;
+}
+
+/** ************************************** **/
+/** ACE EDITOR                             **/
+/** ************************************** **/
+/* line 357, sass/modules/_alpaca.scss */
+.ace_editor {
+  border: 1px solid #cccccc;
+}
+
+/* line 365, sass/modules/_alpaca.scss */
+.has-error .multiselect {
+  border-color: #a94442;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+/* line 371, sass/modules/_alpaca.scss */
+.alpaca-container-label {
+  margin-top: 20px;
+}
+
+/* line 376, sass/modules/_alpaca.scss */
+legend.alpaca-container-label {
+  margin-top: 0px;
+}
+
+/* line 381, sass/modules/_alpaca.scss */
+.alpaca-array-toolbar {
+  margin-bottom: 10px;
+}
+
+/* line 386, sass/modules/_alpaca.scss */
+.alpaca-array-actionbar {
+  padding-bottom: 10px;
+  height: 40px;
+}
+
+/* line 392, sass/modules/_alpaca.scss */
+.alpaca-array-actionbar, .alpaca-array-actionbar.btn-group {
+  width: 100%;
+}
+
+/* line 397, sass/modules/_alpaca.scss */
+.alpaca-field-object {
+  border: 1px #ddd solid;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+/* line 404, sass/modules/_alpaca.scss */
+.alpaca-display h3 {
+  margin-top: 0px;
+}
+
+/* line 409, sass/modules/_alpaca.scss */
+.alpaca-field-object .alpaca-container .alpaca-field-object > .alpaca-container.alpaca-container-has-items {
+  border: 1px #ddd solid;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+/*
+.alpaca-field-array
+{
+    border: 1px #ddd solid;
+    border-radius: 4px;
+    padding: 10px;
+}
+*/
+/* line 425, sass/modules/_alpaca.scss */
+.alpaca-field-array > .alpaca-container.alpaca-container-has-items {
+  border: 1px #ddd solid;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+/* line 432, sass/modules/_alpaca.scss */
+.alpaca-container-item > .alpaca-container > .alpaca-field-object {
+  border: 0px;
+}
+
+/* line 437, sass/modules/_alpaca.scss */
+.alpaca-form-buttons-container {
+  margin-top: 10px;
+  text-align: right;
+}
+
+/* line 443, sass/modules/_alpaca.scss */
+.alpaca-container > .form-group {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+/* line 449, sass/modules/_alpaca.scss */
+.alpaca-field-hidden {
+  display: none;
+}
+
+/* line 454, sass/modules/_alpaca.scss */
+.alpaca-field-object.alpaca-top {
+  border: 0px;
+}
+
+/* line 459, sass/modules/_alpaca.scss */
+.alpaca-field-array.alpaca-top {
+  border: 0px;
+}
+
+/* line 464, sass/modules/_alpaca.scss */
+.alpaca-container-item:not(:first-child) {
+  margin-top: 10px;
+}
+
+/* line 469, sass/modules/_alpaca.scss */
+.alpaca-container .alpaca-container-item:last-child {
+  margin-bottom: 0px;
+}
+
+/* line 474, sass/modules/_alpaca.scss */
+.alpaca-field-object.alpaca-top .alpaca-container {
+  border: 0px;
+}
+
+/* line 479, sass/modules/_alpaca.scss */
+.alpaca-field-select .btn-group {
+  display: block;
+}
+
+/* line 484, sass/modules/_alpaca.scss */
+.alpaca-field-select .btn-group button.multiselect {
+  float: none;
+}
+
+/* line 489, sass/modules/_alpaca.scss */
+.bootstrap-timepicker-widget table td input {
+  width: 50px !important;
+}
+
+/** FIElDS **/
+/* line 497, sass/modules/_alpaca.scss */
+.alpaca-field.alpaca-field-upload .fileupload-active-zone {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+/* line 502, sass/modules/_alpaca.scss */
+.alpaca-field.alpaca-field-upload .template-download TD.error {
+  color: red;
+}
+
+/* line 507, sass/modules/_alpaca.scss */
+.alpaca-field.alpaca-field-address .alpaca-field-address-mapcanvas {
+  height: 250px;
+}
+
+/* line 512, sass/modules/_alpaca.scss */
+.alpaca-field.alpaca-field-image .alpaca-image-display {
+  margin-top: 20px;
+}
+
+/* line 517, sass/modules/_alpaca.scss */
+.alpaca-field-text-max-length-indicator {
+  color: #aaa;
+}
+
+/* line 522, sass/modules/_alpaca.scss */
+.alpaca-field-text-max-length-indicator.err {
+  color: #aa0000;
+}
+
+/** WIZARD **/
+/* line 531, sass/modules/_alpaca.scss */
+.alpaca-wizard .alpaca-wizard-nav li .chevron {
+  position: absolute;
+  top: 0;
+  right: -14px;
+  display: block;
+  border: 27px solid transparent;
+  border-right: 0;
+  border-left: 14px solid #d4d4d4;
+}
+
+/* line 542, sass/modules/_alpaca.scss */
+.alpaca-wizard .alpaca-wizard-nav li .chevron:before {
+  position: absolute;
+  top: -27px;
+  right: 1px;
+  display: block;
+  border: 27px solid transparent;
+  border-right: 0;
+  border-left: 14px solid #fcfcfc;
+  content: "";
+}
+
+/* line 554, sass/modules/_alpaca.scss */
+.alpaca-wizard .alpaca-wizard-nav li div.holder {
+  padding-left: 30px;
+  padding-right: 20px;
+  text-align: center;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+/* line 563, sass/modules/_alpaca.scss */
+.alpaca-wizard .alpaca-wizard-nav li:first-child div.holder {
+  padding-left: 10px;
+}
+
+/* line 568, sass/modules/_alpaca.scss */
+.alpaca-wizard .alpaca-wizard-nav li div.holder div.title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* line 575, sass/modules/_alpaca.scss */
+.alpaca-wizard .alpaca-wizard-nav li div.holder div.description {
+  color: #aaa;
+  font-size: 12px;
+}
+
+/* line 581, sass/modules/_alpaca.scss */
+.alpaca-wizard .alpaca-wizard-nav li.completed div.holder div.title {
+  color: #333;
+}
+
+/* line 586, sass/modules/_alpaca.scss */
+.alpaca-wizard .alpaca-wizard-nav li.completed div.holder div.description {
+  color: #333;
+}
+
+/* line 591, sass/modules/_alpaca.scss */
+.alpaca-wizard .alpaca-wizard-nav li.visited:hover {
+  cursor: pointer;
+}
+
+/* line 604, sass/modules/_alpaca.scss */
+.alpaca-wizard .alpaca-wizard-nav li.active:hover {
+  cursor: default;
+}
+
+/* line 609, sass/modules/_alpaca.scss */
+.alpaca-wizard .alpaca-wizard-nav li.active div.holder div.title {
+  color: #206199;
+}
+
+/* line 614, sass/modules/_alpaca.scss */
+.alpaca-wizard .alpaca-wizard-nav li.active div.holder div.description {
+  color: #206199;
+}
+
+/* line 619, sass/modules/_alpaca.scss */
+.alpaca-wizard .alpaca-wizard-nav li.disabled div.holder div.title {
+  color: #ccc;
+}
+
+/* line 624, sass/modules/_alpaca.scss */
+.alpaca-wizard .alpaca-wizard-nav li.disabled div.holder div.description {
+  color: #ccc;
+}
+
+/* line 629, sass/modules/_alpaca.scss */
+.alpaca-wizard .alpaca-wizard-nav .alpaca-wizard-back {
+  background-color: #fcfcfc;
+}
+
+/* line 634, sass/modules/_alpaca.scss */
+.alpaca-wizard .alpaca-wizard-buttons {
+  margin-top: 20px;
+}
+
+/* line 639, sass/modules/_alpaca.scss */
+.alpaca-wizard .alpaca-wizard-progress-bar {
+  margin-top: 20px;
+}
+
 /* Homepage styles */
 /* Elements
 -------------------------------------------------- */
