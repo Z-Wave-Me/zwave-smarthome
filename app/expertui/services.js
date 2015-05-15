@@ -135,26 +135,6 @@ myAppService.service('expertService', function($filter) {
         }
          //console.log(label)
         return label;
-
-
-
-
-        if (angular.isArray(langs)) {
-            angular.forEach(langs, function(lang, index) {
-                if (("__text" in lang) && (lang["_xml:lang"] == currLang)) {
-                    label = lang.__text;
-                    return false;
-                }
-                if (("__text" in lang) && (lang["_xml:lang"] == "en")) {
-                    label = lang.__text;
-                }
-            });
-        } else {
-            if (("__text" in langs)) {
-                label = langs.__text;
-            }
-        }
-        return label;
     }
 
     /**
