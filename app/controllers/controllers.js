@@ -267,6 +267,8 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         };
         $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
     };
+    
+    $scope.refreshData();
 
     /**
      * Load device history
