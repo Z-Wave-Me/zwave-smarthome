@@ -10,7 +10,7 @@
                 <div class="widget-block-in clearfix app-border app-gradient app-shadow">
                     <!-- Widget icon -->
                     <img ng-if="v.deviceType === 'text'" ng-show="v.metrics.img" class="widget-image" ng-src="{{v.metrics.img}}" alt="{{v.title}}" ng-click="goHidden[v.id] = !goHidden[v.id]" />
-                    <img id="widget_img_{{v.id}}" class="widget-image" ng-class_="imgTrans[v.id] == true ? 'trans-true':''" ng-if="v.deviceType !== 'text'"  ng-src="{{v.icon|getElementIcon:v:levelVal[v.id]}}" alt="img" ng-click="goHidden[v.id] = !goHidden[v.id]" />
+                    <img id="widget_img_{{v.id}}" class="widget-image" ng-if="v.deviceType !== 'text'"  ng-src="{{v.icon|getElementIcon:v:levelVal[v.id]}}" alt="img" ng-click="goHidden[v.id] = !goHidden[v.id]" />
 
                     <!-- Widget header -->
                     <div class="widget-header">

@@ -2,60 +2,10 @@
 <div ng-controller="TestController">
     <bb-loader></bb-loader>
     <h1>Test page</h1>
-    <div class="row">
-        
-        <div id="Widget_ZWayVDev_zway_12-0-67" class="col-lg-4 col-md-6 col-sm-6 widget-entry">
-            <div class="widget-block thermostat">
-                <div class="widget-block-in clearfix app-border app-gradient app-shadow">
-                    <!-- Widget icon -->
-                    <img id="widget_img_ZWayVDev_zway_12-0-67" class="widget-image ng-scope" alt="img" src="storage/img/icons/switch-off.png">
-
-                    <!-- Widget header -->
-                    <div class="widget-header">
-                        <a class="widget-history" href="" ng-click="goHistory = !goHistory"><i class="fa fa-bar-chart"></i></a>
-                        <a class="widget-config" href="#element/ZWayVDev_zway_12-0-67"><i class="fa fa-cog fa-lg"></i></a>
-                    </div>
-
-                    <!-- Widget body -->
-                    <div class="widget-body" ng-mouseleave="goHidden = false;goHistory = false;">
-                        
-                        <h3 class="entry-title ng-binding" title="Kitchen - Heating: Thermostat Control">Kitchen - Heating: Thermostat Control</h3>
-                       
-                       
-                        <div class="widget-control-wrap">
-                           <!-- thermostat -->
-                           <div class="widget-control control-left widget-click-popup"   ng-click="goHidden = !goHidden;">
-                               <strong>16 <span>°C</span></strong> <i class="fa fa-caret-down"></i>
-                           </div>
-                            <div class="text-right"></div>
-
-
-                        </div><!-- /.widget-control-wrap --> 
-                          <!-- Hidden windows -->
-                          <!-- History window -->
-                        <div class="col-sm-11 element-hidden hidden-history" ng-show="goHistory">
-                            <a class="hidden-close" href="" ng-click="goHistory = false"><i class="fa fa-times"></i></a>
-                            <p class="popup-title ng-binding">Kitchen - Heating: Thermostat …</p>
-                            <div>
-                                HISTORY data
-                            </div>
-                        </div>
-                          
-                        <div class="col-sm-11 element-hidden thermostat" ng-show="goHidden">
-                            <a class="hidden-close" href="" ng-click="goHidden = false"><i class="fa fa-times"></i></a>
-                            <div>
-                                <p class="text-center ng-binding">Kitchen - Heating: Thermostat Control hghgh hghg  </p>
-                                KNOB control
-                            </div>
-                        </div>
-                    </div><!-- /.panel-body -->
-                </div>
-            </div>
-
-
-        </div>
-        
-    </div>
+    <div infinite-scroll='loadMore()' infinite-scroll-distance='2'>
+        <p ng-repeat='i in images'>{{i.id}} | {{i.txt}}</p>
+    <!--<img  ng-src='http://placehold.it/225x250&text={{image}}'>-->
+  </div>
        
 </div><!-- /ng-controller --> 
 <script type="text/ng-template" id="app/views/elements/directives/default_.html">

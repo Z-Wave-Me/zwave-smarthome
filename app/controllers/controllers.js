@@ -122,8 +122,35 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
  * Test controller
  */
 myAppController.controller('TestController', function($scope, $routeParams, $filter, $location, $log, $cookies, $timeout, dataFactory, dataService) {
-
-    console.log($cookies);
+  $scope.data = [];
+  $scope.images = [];
+  
+  $scope.buildImages = function(n) {
+    for(var i = 1; i <= n; i++) {
+      $scope.data.push({
+          id: i,
+          txt: 'Image text ' + i
+      });
+    }
+  };
+  $scope.buildImages(100);
+  $scope.loadImages= function() {
+    //var last = $scope.images[$scope.images.length - 1];
+    for(var i = 0; i <= $scope.data.length; i++) {
+        if(i < 30){
+            $scope.images.push($scope.data[i]);
+        }
+      
+    }
+    console.log($scope.images);
+  };
+  $scope.loadImages();
+  $scope.loadMore = function() {
+    var last = $scope.images[$scope.images.length - 1];
+    for(var i = 1; i <= 30; i++) {
+      $scope.images.push(last + i);
+    }
+  };
 });
 /**
  * Element controller
