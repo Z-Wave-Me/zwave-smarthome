@@ -396,7 +396,7 @@ legend.alpaca-container-label
 
 .alpaca-field-object
 {
-    border: 1px #eee solid;
+    border: 1px #ddd solid;
     border-radius: 4px;
     padding: 10px;
 }
@@ -406,30 +406,28 @@ legend.alpaca-container-label
     margin-top: 0px;
 }
 
-/*
-.alpaca-field-object > .alpaca-container.alpaca-container-has-items
+.alpaca-field-object .alpaca-container .alpaca-field-object > .alpaca-container.alpaca-container-has-items
 {
-    border: 1px #eee solid;
+    border: 1px #ddd solid;
     border-radius: 4px;
     padding: 10px;
 }
-*/
 
+/*
 .alpaca-field-array
 {
-    border: 1px #eee solid;
-    border-radius: 4px;
-    padding: 10px;
-}
-
-/*
-.alpaca-field-array > .alpaca-container.alpaca-container-has-items
-{
-    border: 1px #eee solid;
+    border: 1px #ddd solid;
     border-radius: 4px;
     padding: 10px;
 }
 */
+
+.alpaca-field-array > .alpaca-container.alpaca-container-has-items
+{
+    border: 1px #ddd solid;
+    border-radius: 4px;
+    padding: 10px;
+}
 
 .alpaca-container-item > .alpaca-container > .alpaca-field-object
 {
