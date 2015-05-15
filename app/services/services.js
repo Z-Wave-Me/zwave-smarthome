@@ -289,15 +289,14 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     /**
      * Get device data
      */
-    function getDevices(data, filter, positions, instances, location) {
-
-        var obj;
+    function getDevices(data, filter, dashboard, instances, location) {
+       var obj;
         var collection = [];
         var onDashboard = false;
         var findZwaveStr = "ZWayVDev_zway_";
 
         angular.forEach(data, function(v, k) {
-            var instance;
+            var instance; 
             var hasInstance = false;
             var zwaveId = false;
             var level = $filter('numberFixedLen')(v.metrics.level);
@@ -313,10 +312,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                     return;
                 }
             }
-            if (positions && positions.indexOf(v.id) !== -1) {
-                var onDashboard = true;
-            }
-
+           
             if (v.id.indexOf(findZwaveStr) > -1) {
                 zwaveId = v.id.split(findZwaveStr)[1].split('-')[0];
             } else {
@@ -326,7 +322,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
 
                 }
             }
-            if (positions && positions.indexOf(v.id) !== -1) {
+            if (dashboard && dashboard.indexOf(v.id) !== -1) {
                 var onDashboard = true;
             }
 
@@ -352,6 +348,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                 'updateTime': v.updateTime,
                 'onDashboard': onDashboard,
                 'imgTrans': false,
+                'hasHistory': v.hasHistory, 
                 'cfg': {
                     'zwaveId': zwaveId,
                     'hasInstance': hasInstance

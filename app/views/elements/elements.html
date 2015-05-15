@@ -14,9 +14,8 @@
 
                     <!-- Widget header -->
                     <div class="widget-header">
-                         <!--<a class="widget-history" href="" ng-click="goHidden[v.id] = !goHidden[v.id]" ng-show="cfg.element_control.indexOf(v.deviceType) > -1"><i class="fa fa-pencil-square-o fa-lg"></i></a>-->
-                         <a class="widget-history" href="" ng-click="goHistory[v.id] = !goHistory[v.id]" ng-show="history[v.id]"><i class="fa fa-history fa-lg"></i></a>
-                        <a class="widget-config" href="#element/{{v.id}}"><i class="fa fa-cog fa-lg"></i></a>
+                        <a class="widget-history" href="" ng-click="loadDeviceHistory(v.id)" ng-if="v.hasHistory"><i class="fa fa-history fa-lg"></i></a>
+                         <a class="widget-config" href="#element/{{v.id}}"><i class="fa fa-cog fa-lg"></i></a>
                     </div>
 
                     <!-- Widget body -->
@@ -179,7 +178,10 @@
                          <div class="col-sm-11 element-hidden hidden-history" ng-show="goHistory[v.id]">
                             <a class="hidden-close" href="" ng-click="goHistory[v.id] = !goHistory[v.id]"><i class="fa fa-times"></i></a>
                             <p class="popup-title">{{v.title|cutText:true:30}}</p>
-                            <div>
+                            <div class="alert alert-warning" ng-if="!history[v.id].data">
+                                <i class="fa {{history[v.id].icon}}"></i> <span ng-bind="history[v.id].message"></span>
+                            </div>
+                            <div ng-if="history[v.id].data">
                                 <canvas tc-chartjs-line chart-data="history[v.id]" chart-options="chartOptions" width="260" height="150"></canvas>
                             </div>
                         </div>
@@ -372,80 +374,6 @@
 
         </div><!-- /.col -->
     </div>
-
-    <!-- Modal widget config -->
-    <div class="modal modal-vertical-centered fade" id="modal_widget" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title"><span ng-bind="_t('lb_cfg_view')"></span> <span ng-bind="input.title"></span></h4>
-                </div>
-                <div class="modal-body">
-                    <fieldset class="widget-cfg-block">
-                        <div class="form-group">
-                            <label for="title" ng-bind="_t('lb_element_name')"></label>
-                            <input name="title" id="title" type="text" class="form-control" value="{{input.title}}" placeholder="Element name" ng-model="input.title" />
-                        </div>
-                    </fieldset>
-                    <fieldset class="widget-cfg-block">
-                        <h4>{{_t('lb_configuration')}}</h4>
-
-                        <div class="form-group" ng-show="input.cfg.hasInstance">
-                            <span ng-bind="_t('lb_gen_by_module')"></span> <a class="btn btn-default btn-sm" ng-href="#module/put/{{input.cfg.hasInstance.id}}" ng-bind="input.cfg.hasInstance.moduleId"></a>
-                        </div>
-                        <div class="form-group" ng-show="input.cfg.zwaveId">
-                            <div ng-show="cfg.app_type == 'web'">
-                                <span ng-bind="_t('lb_gen_by')"></span> <a href="#deviceconfig/{{input.cfg.zwaveId}}" class="btn btn-default btn-sm">Z-Wave device #{{input.cfg.zwaveId}}</a>
-                            </div>
-                            <div class="alert alert-warning" ng-show="cfg.app_type == 'app'">
-                                <span ng-bind="_t('lb_gen_by')"></span> <span ng-bind="_t('lb_zwave_device')"></span> <strong>#{{input.cfg.zwaveId}}</strong> {{_t('lb_no_link')}}
-                            </div>
-
-                        </div>
-                        <div class="form-group">
-                            <input type="checkbox" name="dashboard" value="{{input.dashboard}}" id="dashboard" ng-model="input.dashboard" ng-checked="input.dashboard" /> <label ng-bind="_t('lb_add_dashboard')"></label>
-                            &nbsp;&nbsp;<input type="checkbox" name="permanently_hidden" id="permanently_hidden" value="" 
-                                               ng-model="input.permanently_hidden" 
-                                               ng-checked="input.permanently_hidden" 
-                                               ng-confirm-click="This means that you can never use this element again. Are you sure?" /> <label ng-bind="_t('lb_permanently_hide')"></label>
-                            <br /><input type="checkbox" name="hide_events" value="{{input.id}}" id="hide_events" ng-model="input.hide_events" ng-checked="hide_events" /> <label ng-bind="_t('lb_hide_events_device')"></label>
-                        </div>
-                    </fieldset>
-                    <fieldset class="widget-cfg-block">
-                        <div class="form-group">
-                            <h4 ng-bind="_t('lb_tags')"></h4>
-                            <div class="btn-device" id="tag_{{$index}}" ng-repeat="t in input.tags">{{t}} 
-                                <a href="" ng-click="removeTag($index)"><i class="fa fa-times text-danger"></i></a>
-                            </div>
-                        </div>
-                        <div class="form-group form-inline">
-                            <input name="add_tag" id="add_tag" type="text" class="form-control" value="" placeholder="{{_t('lb_add_tag')}}" ng-model="addNewTag" />
-                            <button type="button" class="btn btn-default" ng-click="addTag(addNewTag)"><i class="fa fa-plus text-success"></i></button>
-                        </div>
-                    </fieldset>
-                    <fieldset class="widget-cfg-block">
-
-                        <div class="form-group">
-                            <h4 ng-bind="_t('lb_assign_room')"></h4>
-                            <select class="form-control" ng-model="input.location">
-                                <!-- <option value="">--- Select one ---</option>-->
-                                <option ng-repeat="v in rooms" ng-selected="input.location == v.id" value="{{v.id}}" ng-bind="v.title"></option>
-                            </select>
-                        </div>
-                    </fieldset>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" 
-                            class="btn btn-primary" 
-                            data-dismiss="modal"
-                            ng-click="store(input)">{{_t('lb_save')}}</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">{{_t('lb_cancel')}}</button>
-                </div>
-            </div>
-        </div>
-    </div><!-- /.Modal -->
     
     <!-- Modal promo -->
     <div class="modal modal-vertical-centered fade" id="modal_promo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
