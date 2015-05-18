@@ -1,23 +1,42 @@
 <!-- Events view -->
 <div ng-controller="EventController">
     <bb-loader></bb-loader>
-    <button class="btn btn-default" ng-click="changeTime(1)" ng-disabled="timeFilter.day == 1" ng-bind="_t('lb_today')"></button>
-    <button class="btn btn-default" ng-click="changeTime(2)" ng-disabled="timeFilter.day == 2" ng-bind="_t('lb_yesterday')"></button>
-    <button class="btn btn-default" ng-click="changeTime(3)" ng-disabled="timeFilter.day == 3">3 <span ng-bind="_t('lb_days')"></span></button>
-    <button class="btn btn-default" ng-click="changeTime(4)" ng-disabled="timeFilter.day == 4">4 <span ng-bind="_t('lb_days')"></span></button>
-    <button class="btn btn-default" ng-click="changeTime(5)" ng-disabled="timeFilter.day == 5">5 <span ng-bind="_t('lb_days')"></span></button>
-    <button class="btn btn-default" ng-click="changeTime(6)" ng-disabled="timeFilter.day == 6">6 <span ng-bind="_t('lb_days')"></span></button>
-    <button class="btn btn-default" ng-click="changeTime(7)" ng-disabled="timeFilter.day == 7">7 <span ng-bind="_t('lb_days')"></span></button>
+    <div class="hide-on-mobile">
+        <button class="btn btn-default" ng-click="changeTime(1)" ng-disabled="timeFilter.day == 1" ng-bind="_t('lb_today')"></button>
+        <button class="btn btn-default" ng-click="changeTime(2)" ng-disabled="timeFilter.day == 2" ng-bind="_t('lb_yesterday')"></button>
+        <button class="btn btn-default" ng-click="changeTime(3)" ng-disabled="timeFilter.day == 3">3 <span ng-bind="_t('lb_days')"></span></button>
+        <button class="btn btn-default" ng-click="changeTime(4)" ng-disabled="timeFilter.day == 4">4 <span ng-bind="_t('lb_days')"></span></button>
+        <button class="btn btn-default" ng-click="changeTime(5)" ng-disabled="timeFilter.day == 5">5 <span ng-bind="_t('lb_days')"></span></button>
+        <button class="btn btn-default" ng-click="changeTime(6)" ng-disabled="timeFilter.day == 6">6 <span ng-bind="_t('lb_days')"></span></button>
+        <button class="btn btn-default" ng-click="changeTime(7)" ng-disabled="timeFilter.day == 7">7 <span ng-bind="_t('lb_days')"></span></button>
+    </div>
+    <div class="show-on-mobile mobile-padding">
+        <div class="btn-group">
+            <!--<button type="button" class="btn btn-default" ng-bind="_t('lb_filter_by')"></button>-->
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                 <span class="sr-only_"><i class="fa fa-calendar"></i></span>
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li ng-repeat="v in dayCount" ng-class="timeFilter.day == v.key ? 'active':''">
+                    <a href="" ng-click="changeTime(v.key)" ng-bind="v.val"></a> 
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
     <div class="table-responsive_">
         <table class="table table-condensed table-report table-events">
             <tbody>
                 <tr class="td-event-{{v.level}}" dir-paginate="v in collection | orderBy: '-timestamp' | itemsPerPage: pageSize" current-page="currentPage" id="row_{{v.id}}">
-                    
-                    <td class="td-event-date td-event-{{v.level}}">
-                        <span class="text-supp" title="{{v.timestamp| date:'dd.MM.yyyy H:mm'}}" ng-bind="v.timestamp | eventDate"></span>
+
+                    <td class="td-event-icon td-event-{{v.level}}">
+                        <img id="event_img_{{v.id}}" class="report-img" ng-src="storage/img/events/{{v.type|getEventIcon:v.message}}" alt="{{v.type}}"/>
+
                     </td>
                     <td>
-                        <img id="event_img_{{v.id}}" class="report-img" ng-src="storage/img/events/{{v.type|getEventIcon:v.message}}" alt="{{v.type}}"/>
+                        <span class="text-supp event-date" title="{{v.timestamp| date:'dd.MM.yyyy H:mm'}}" ng-bind="v.timestamp | eventDate"></span> <span class="hide-on-mobile">|</span> 
                         <a href="#element/{{v.source}}" ng-if="v.source && v.message">
                             <span ng-if="v.message | hasNode:'l'"> <span ng-bind="v.message.dev"></span> {{_t('lb_is')}} <strong ng-bind="v.message.l"></strong></span>
                             <span ng-if="!(v.message | hasNode:'l')" ng-bind="v.message"></span>
@@ -34,7 +53,7 @@
                             <ul class="dropdown-menu pull-right">
                                 <!--<li><a href="" ng-click="markAsRead(v.id)" ng-bind="_t('lb_mark_read')"></a></li>-->
                                 <li>
-                                   <a ng-href="#events"> <i class="fa fa-eye"></i> <span ng-bind="_t('lb_show_all')"></span></a>
+                                    <a ng-href="#events"> <i class="fa fa-eye"></i> <span ng-bind="_t('lb_show_all')"></span></a>
                                 </li>
                                 <li>
                                     <a ng-href="#events/source/{{v.source}}"><i class="fa fa-check"></i> <span ng-bind="_t('lb_events_source')"></span></a>
@@ -49,22 +68,22 @@
                                 </li>
                                 <li ng-if="v.source && v.message">
                                     <a href="#element/{{v.source}}">
-                                     <i class="fa fa-cog"></i> <span ng-bind="_t('lb_source_cfg')"></span>   
+                                        <i class="fa fa-cog"></i> <span ng-bind="_t('lb_source_cfg')"></span>   
                                     </a>
                                 </li> 
                                 <li>
-                                    
+
                                     <a href=""ng-click="hideSourceEvents(v.source)" 
                                        ng-if="profileData.hide_single_device_events.indexOf(v.source) === -1">
                                         <i class="fa fa-minus-circle text-danger"></i> <span  ng-bind="_t('lb_hide_events_source')" ></span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href=""ng-click="deleteEvent(v.id,'?uid=' + v.h ,'#row_' + v.id)" ng-if="v.level == 'error' || v.level == 'notification'">
+                                    <a href=""ng-click="deleteEvent(v.id, '?uid=' + v.h, '#row_' + v.id)" ng-if="v.level == 'error' || v.level == 'notification'">
                                         <i class="fa fa-times text-danger"></i> <span  ng-bind="_t('lb_delete_event')" ></span>
                                     </a>
                                 </li>
-                                
+
                             </ul>
                         </div>
                     </td>
@@ -92,18 +111,18 @@
                             </li>
                         </ul>
                     </div>
-                     <!--<div class="btn-group dropup">
-                        <button type="button" class="btn btn-default" ng-bind="_t('lb_hide')"></button>
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            <span class="caret"></span>
-                            <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a ng-href="#events" ng-bind="_t('lb_hide_device_events')"></a></li> 
-                            <li><a ng-href="#events" ng-bind="_t('lb_hide_system_events')"></a></li> 
-                            <li><a href="#events" ng-click="deleteSystemEvents(_t('lb_delete_confirm'))" ng-bind="_t('lb_delete_system_events')"></a></li> 
-                        </ul>
-                    </div> --> 
+                    <!--<div class="btn-group dropup">
+                       <button type="button" class="btn btn-default" ng-bind="_t('lb_hide')"></button>
+                       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                           <span class="caret"></span>
+                           <span class="sr-only">Toggle Dropdown</span>
+                       </button>
+                       <ul class="dropdown-menu">
+                           <li><a ng-href="#events" ng-bind="_t('lb_hide_device_events')"></a></li> 
+                           <li><a ng-href="#events" ng-bind="_t('lb_hide_system_events')"></a></li> 
+                           <li><a href="#events" ng-click="deleteSystemEvents(_t('lb_delete_confirm'))" ng-bind="_t('lb_delete_system_events')"></a></li> 
+                       </ul>
+                   </div> --> 
                 </form>
             </div>
         </div>

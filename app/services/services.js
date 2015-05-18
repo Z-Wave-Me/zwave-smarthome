@@ -329,6 +329,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
             if (v.metrics.color) {
                 rgbColors = 'rgb(' + v.metrics.color.r + ',' + v.metrics.color.g + ',' + v.metrics.color.b + ')';
             }
+            //console.log('Device id %s has history %s',v.id,v.hasHistory)
             obj = {
                 'id': v.id,
                 'zwaveId': zwaveId,
@@ -348,7 +349,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                 'updateTime': v.updateTime,
                 'onDashboard': onDashboard,
                 'imgTrans': false,
-                'hasHistory': v.hasHistory, 
+                'hasHistory': (v.hasHistory === true ? true : false), 
                 'cfg': {
                     'zwaveId': zwaveId,
                     'hasInstance': hasInstance

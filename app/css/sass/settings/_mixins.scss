@@ -58,6 +58,9 @@
     .hide-on-mobile{
         display:none;
     }
+    .show-on-mobile{
+        display:block;
+    }
     .header-logo{
         display: none !important;
     }
@@ -296,17 +299,8 @@
 
     /* Eevents
     -------------------------------------------------- */
-    .event-entry{
-        .event-img{
-            width: 24px;
-            height: 24px;
-        }
-        .event-message{
-            /*            display: block;*/
-        }
-        .event-action{
-            text-align: right;
-        }
+    .event-date{
+        display: block;
     }
 
     /* Apps

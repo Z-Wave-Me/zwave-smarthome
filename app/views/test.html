@@ -2,8 +2,8 @@
 <div ng-controller="TestController">
     <bb-loader></bb-loader>
     <h1>Test page</h1>
-    <div infinite-scroll='loadMore()' infinite-scroll-distance='2'>
-        <p ng-repeat='i in images'>{{i.id}} | {{i.txt}}</p>
+    <div infinite-scroll='loadMore()'>
+        <p ng-repeat='i in test'>{{$index}} | dfdf</p> 
     <!--<img  ng-src='http://placehold.it/225x250&text={{image}}'>-->
   </div>
        
