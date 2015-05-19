@@ -235,6 +235,12 @@
             //border-radius: 4px;
         }
     }
+    .btn-sm, .btn-group-sm > .btn {
+        padding: 4px 8px;
+        font-size: 12px;
+        line-height: 1.4;
+        border-radius: 3px;
+    }
 
     /* Tabs
     -------------------------------------------------- */
@@ -257,17 +263,17 @@
         text-align: left;
         padding: 10px;
     }
-    .widget-image{
+    .widget-image{ 
         top: 10px;
-        left: 10px;
-        width: 48px;
-        height: 48px;
+        left: 5px;
+        width: 42px;
+        height: 42px;
     }
     .widget-body{
         margin-top: -15px;
-        padding: 0 5px 15px 64px;
+        padding: 0 5px 15px 50px;
         .entry-title{
-            padding-right: 30px;
+            padding-right: 40px;
         }
     }
 
@@ -308,11 +314,11 @@
     .tabs-container{
         text-align: center;
     }
-/*    .nav-tabs{
-        display: block;
-        text-align: center;
-        padding: 0 25%;
-    }*/
+    /*    .nav-tabs{
+            display: block;
+            text-align: center;
+            padding: 0 25%;
+        }*/
     .nav-tabs-3{
         text-align: center;
     }
