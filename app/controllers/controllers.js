@@ -203,24 +203,32 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     });
 
     /**
+     * DEPRECATED
      * Load data into collection
      */
-    $scope.loadProfile = function loadProfile() {
-        $scope.profileData = [];
-        dataFactory.getApi('profiles', '/' + $scope.user.id).then(function(response) {
-            var profile = response.data.data;
-            $scope.profileData = {
-                'id': profile.id,
-                'name': profile.name,
-                'dashboard': profile.dashboard,
-                'hide_single_device_events': profile.hide_single_device_events
-            };
-        }, function(error) {
-            dataService.showConnectionError(error);
-        });
-    }
-    ;
-    $scope.loadProfile();
+//    $scope.loadProfile = function loadProfile() {
+//         $scope.profileData = {
+//                'id': $scope.user.id,
+//                'name': $scope.user.name,
+//                'dashboard':$scope.user.dashboard,
+//                'hide_single_device_events': $scope.user.hide_single_device_events
+//            };
+//            return;
+//        $scope.profileData = [];
+//        dataFactory.getApi('profiles', '/' + $scope.user.id).then(function(response) {
+//            var profile = response.data.data;
+//            $scope.profileData = {
+//                'id': profile.id,
+//                'name': profile.name,
+//                'dashboard': profile.dashboard,
+//                'hide_single_device_events': profile.hide_single_device_events
+//            };
+//        }, function(error) {
+//            dataService.showConnectionError(error);
+//        });
+//    }
+//    ;
+//    $scope.loadProfile();
 
     /**
      * Load data into collection
@@ -268,7 +276,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
 //            loadInstances(response.data.data.devices, filter);
 //            return;
 
-            var collection = dataService.getDevices(response.data.data.devices, filter, $scope.profileData.dashboard, null);
+            var collection = dataService.getDevices(response.data.data.devices, filter, $scope.user.dashboard, null);
             if (collection.length < 1) {
                 $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: $scope._t('no_devices')};
                 return;
@@ -2469,6 +2477,7 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
 //            }
             $scope.loading = false;
             $scope.user = dataService.getUser();
+            console.log($scope.user)
             $scope.lastLogin = dataService.getLastLogin();
             $window.location.reload();
 

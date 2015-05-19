@@ -237,6 +237,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
             lang: data.lang || cfg.user_default.lang,
             color: data.color || cfg.user_default.color,
             sid: data.sid || cfg.user_default.color,
+            dashboard: data.dashboard || [],
             interval: $filter('toInt')(data.interval) || cfg.user_default.interval
         };
         $cookies.user = angular.toJson(user);
