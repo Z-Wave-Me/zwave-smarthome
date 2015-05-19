@@ -212,35 +212,17 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     /**
      * Get user data
      */
-    function getUser(data) {
-        //return setUser(cfg.user_default);
+    function getUser() {
         var user = ($cookies.user !== 'undefined' ? angular.fromJson($cookies.user) : false);
-        
-         if (user && user.id > 0) {
-            return angular.fromJson($cookies.user);
-        } else {
-            return false;
-            //return setUser(cfg.user_default);
-            
-        }
-
+        return user;
     }
 
     /**
      * Set user data
      */
-    function setUser(data) { 
-        var user = {
-            id: data.id || cfg.user_default.id,
-            role: data.role || cfg.user_default.role,
-            expert_view: data.expert_view || cfg.user_default.expert_view,
-            lang: data.lang || cfg.user_default.lang,
-            color: data.color || cfg.user_default.color,
-            sid: data.sid || cfg.user_default.color,
-            interval: $filter('toInt')(data.interval) || cfg.user_default.interval
-        };
-        $cookies.user = angular.toJson(user);
-        return user;
+    function setUser(data) {
+        $cookies.user = angular.toJson(data);
+        return data;
 
     }
     
@@ -484,6 +466,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      * Get chart data
      */
     function getChartData(data, colors) {
+       
         if (!angular.isObject(data, colors)) {
             return null;
         }
