@@ -7759,7 +7759,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
     $scope.loading = false;
     $scope.user = dataService.getUser();
     $scope.lastLogin = dataService.getLastLogin();
-    $scope.cfg.interval = ($filter('toInt')($scope.user.interval) || $scope.cfg.interval);
+    $scope.cfg.interval = ($scope.user ? $filter('toInt')($scope.user.interval) : $scope.cfg.interval);
 
 
     /**
