@@ -16,7 +16,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
     $scope.loading = false;
     $scope.user = dataService.getUser();
     $scope.lastLogin = dataService.getLastLogin();
-    $scope.cfg.interval = ($scope.user.interval || $scope.cfg.interval);
+    $scope.cfg.interval = ($filter('toInt')($scope.user.interval) || $scope.cfg.interval);
 
 
     /**
@@ -169,7 +169,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.historyStatus = [];
     $scope.levelVal = [];
     $scope.rgbVal = [];
-    $scope.profileData = [];
+    //$scope.profileData = [];
     $scope.chartOptions = {
         // Chart.js options can go here.
         //responsive: true
@@ -2477,7 +2477,6 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
 //            }
             $scope.loading = false;
             $scope.user = dataService.getUser();
-            console.log($scope.user)
             $scope.lastLogin = dataService.getLastLogin();
             $window.location.reload();
 
