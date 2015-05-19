@@ -34,7 +34,7 @@
                                                ng-model="input.permanently_hidden" 
                                                ng-checked="input.permanently_hidden" 
                                                ng-confirm-click="This means that you can never use this element again. Are you sure?" /> <label ng-bind="_t('lb_permanently_hide')"></label></span>
-                             <input type="checkbox" name="hide_events" value="{{input.id}}" id="hide_events" ng-model="input.hide_events" ng-checked="profileData.hide_single_device_events.indexOf(input.id) === -1 ? false : true" /> <label ng-bind="_t('lb_hide_events_device')"></label>
+                             <input type="checkbox" name="hide_events" value="{{input.id}}" id="hide_events" ng-model="input.hide_events" ng-checked="user.hide_single_device_events.indexOf(input.id) === -1 ? false : true" /> <label ng-bind="_t('lb_hide_events_device')"></label>
                         </div>
                      <!-- interval -->
                     <div class="form-group form-inline">
