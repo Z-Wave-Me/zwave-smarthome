@@ -484,6 +484,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      * Get chart data
      */
     function getChartData(data, colors) {
+       
         if (!angular.isObject(data, colors)) {
             return null;
         }

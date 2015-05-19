@@ -305,11 +305,11 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         $scope.goHistory[deviceId] = !$scope.goHistory[deviceId];
         $scope.history[deviceId] = {data: false, icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('history', '/' + deviceId).then(function(response) {
-            if (!response.data.deviceHistory) {
+            if (!response.data.data.deviceHistory) { 
                 $scope.history[deviceId] = {data: false, icon: 'fa-exclamation-triangle text-warning', message: $scope._t('no_data')};
                 return;
             }
-            var data = dataService.getChartData(response.data.deviceHistory, $scope.cfg.chart_colors);
+            var data = dataService.getChartData(response.data.data.deviceHistory, $scope.cfg.chart_colors); 
             $scope.history[deviceId] = {data: data};
 //            angular.forEach(response.data.data.history, function(v, k) {
 //                $scope.history[v.id] = dataService.getChartData(v.mH, $scope.cfg.chart_colors);
@@ -892,6 +892,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
      * Load local modules
      */
     $scope.loadModules = function(filter) {
+        console.log(filter)
         // var filter;
 //        if ($scope.user.role === 1 && $scope.user.expert_view) {
 //            filter = null;

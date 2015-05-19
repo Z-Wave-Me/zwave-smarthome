@@ -44,12 +44,12 @@
                 <div class="form-inline" role="form">
                     <select class="form-control" ng-model="category" ng-show="showInFooter.categories">
                         <option value="" ng-bind="_t('lb_all')"></option>
-                        <option ng-repeat="v in categories" value="{{v.id}}" ng-selected="category == v.id" ng-bind="v.name">
+                        <option ng-repeat="v in categories" value="{{v.id}}" ng-if="v.id != 'surveillance'" ng-selected="category == v.id" ng-bind="v.name">
                         </option>
                     </select>
                     <div class="input-group search-form hide-on-mobile">
                         <input type="text" ng-model="q" class="form-control">
-                        <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                        <span class="input-group-addon"><i class="fa fa-search"></i></span> 
                     </div>
                 </div>
             </div>

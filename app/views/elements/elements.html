@@ -182,7 +182,7 @@
                                 <i class="fa {{history[v.id].icon}}"></i> <span ng-bind="history[v.id].message"></span>
                             </div>
                             <div ng-if="history[v.id].data">
-                                <canvas tc-chartjs-line chart-data="history[v.id]" chart-options="chartOptions" width="260" height="150"></canvas>
+                                <canvas tc-chartjs-line chart-data="history[v.id].data" chart-options="chartOptions" width="260" height="150"></canvas>
                             </div>
                         </div>
 
