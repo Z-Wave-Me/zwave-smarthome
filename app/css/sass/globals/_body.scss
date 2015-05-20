@@ -245,7 +245,9 @@ fieldset{
 }
 
 .submit-entry{
-    text-align: right;
+    display: block;
+    margin: 10px 0 0 0;
+    text-align: center;
 }
 .form-control-hidden{
     display: none !important;

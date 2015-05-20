@@ -10,6 +10,9 @@ padding-right: 5px;
     position:relative;
     height: 100px;
     margin: 10px 0;
+    background-color: #fff;
+    border: solid 1px $app-border-color;
+    border-radius: 3px;
 
 }
 
@@ -19,9 +22,9 @@ padding-right: 5px;
     top: 10px;
     left: 10px;
     /*    margin: 10px 20px 10px 10px;*/
-    max-width: 64px;
-    max-height: 64px;
-    border: solid 4px #fff;
+    max-width: 54px;
+    max-height: 54px;
+    //border: solid 4px #fff;
     border-radius: 50%;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;

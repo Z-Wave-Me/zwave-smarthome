@@ -64,9 +64,7 @@
     .header-logo{
         display: none !important;
     }
-    .navbar-toggle{
-        margin-right: 30px !important;
-    }
+
     .container{
         max-width:none;
         width: 100%;
@@ -115,9 +113,10 @@
         padding-right: 25px;
         padding-left: 25px;
     }
-
-    .navbar-toggle {
+    .navbar-toggle{
+        margin-right: 30px !important;
         padding: 5px 6px;
+        border: 0;
     }
     .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
         background-color: transparent;
@@ -218,6 +217,12 @@
 
 
     }
+    /* Pagination
+    -------------------------------------------------- */
+    .pagination {
+  margin:0;
+}
+
 
     /* Forms
     -------------------------------------------------- */
@@ -257,6 +262,7 @@
         box-shadow:        none;
         border: 0;
         border-bottom: solid 1px #ccc;
+        // @include appGradient();
     }
     .widget-block-in{
         /*   border: solid 1px red;*/
@@ -265,8 +271,8 @@
         //padding: 10px;
     }
     .widget-image{ 
-/*        top: 10px;
-        left: 10px;*/
+        /*        top: 10px;
+                left: 10px;*/
         width: 42px;
         height: 42px;
     }
@@ -274,7 +280,7 @@
         margin-top: -15px;
         padding: 0 5px 15px 64px;
         .entry-title{
-             padding: 35px 10px 0 0;
+            padding: 35px 10px 0 0;
             //padding-right: 50px;
         }
     }
@@ -307,6 +313,14 @@
 
     /* Eevents
     -------------------------------------------------- */
+    .table-events{
+        .td-event-icon {
+            padding-left: 10px;
+        }
+        .td-action{
+            padding-right: 10px;
+        }
+    }
     .event-date{
         display: block;
     }
@@ -339,32 +353,35 @@
     .app-entry{
         width: 100%;
         padding:  0;
-        border-bottom: dotted 1px $app-border-color; 
-        @include appGradient();
+        margin: 0;
+        background-color: #fff;
+        border-bottom: solid 1px $app-border-color; 
+        //@include appGradient();
     }
     .app-entry-in{
         border: 0;
         height: auto;
         text-align: left;
-        padding: 0;
+        padding: 0 10px;
+        margin: 0;
         background: none;
 
     }
 
     .app-image{
-        top: 0;
+        top: 8px;
         left: 10px;
-        width: 48px;
-        height: 48px;
+        width: 36px;
+        height: 36px;
     }
     .app-body{
         height: 54px;
         margin:0;
-        padding: 0 5px 15px 64px;
+        padding: 0 5px 15px 50px;
         .entry-title{
             position: absolute;
             z-index: 10;
-            padding: 10px 90px 0 0;
+            padding: 10px 50px 0 0;
         }
     }
     .app-footer{
