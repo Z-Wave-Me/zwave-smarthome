@@ -2654,7 +2654,7 @@ padding-right: 5px;
     -moz-box-shadow: none;
     box-shadow: none;
     border: 0;
-    border-bottom: solid 2px #ccc;
+    border-bottom: solid 1px #ccc;
   }
   /* line 261, sass/settings/_mixins.scss */
   .is-mobile-true .widget-block-in {
@@ -3161,7 +3161,7 @@ padding-right: 5px;
     -moz-box-shadow: none;
     box-shadow: none;
     border: 0;
-    border-bottom: solid 2px #ccc;
+    border-bottom: solid 1px #ccc;
   }
 
   /* line 261, sass/settings/_mixins.scss */

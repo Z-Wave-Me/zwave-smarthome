@@ -20,7 +20,7 @@
 
                     <!-- Widget body -->
                     <div class="widget-body" ng-class="{'text-widget': v.deviceType == 'text','text-widget-no-img': v.deviceType == 'text' && v.metrics.img == ''}" ng-mouseleave="goHidden[v.id] = false;goHistory[v.id] = false;" >
-                       
+                        {{v.deviceType}} | {{v.metrics.icon}} | {{v.level}}
                         <h3 ng-if="v.deviceType === 'text'" class="entry-title" title="{{v.title}}" ng-click="goHidden[v.id] = !goHidden[v.id]">{{v.title|cutText:true:29}}</h3>
                         <h3 ng-if="v.deviceType !== 'text'" class="entry-title" title="{{v.title}}" ng-click="goHidden[v.id] = !goHidden[v.id]">{{v.title}}</h3>
                         <div class="widget-control-wrap">
