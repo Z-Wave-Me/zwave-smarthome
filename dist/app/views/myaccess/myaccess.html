@@ -74,7 +74,7 @@
                 </div> --> 
                
             </fieldset>
-            <div class="form-footer">
+           <div class="submit-entry">
                 <button type="submit" class="btn btn-primary" ng-bind="_t('lb_save')"></button>
                 <button class="btn btn-default" ng-bind="_t('lb_cancel')" bb-go-back></button>
             </div>
@@ -86,7 +86,7 @@
                 <!-- password -->
                 <div class="form-inline">
                     <input name="password" id="password" type="password" class="form-control" placeholder="{{_t('lb_new_password')}}" value="" ng-model="newPassword" />
-                    <button type="submit" class="btn btn-primary" ng-bind="_t('lb_change_password')"></button>
+                    <span class="submit-entry"><button type="submit" class="btn btn-primary" ng-bind="_t('lb_change_password')"></button></span>
                 </div>
             </fieldset>
             </form>

@@ -6234,7 +6234,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
             $(widgetId + ' .widget-level').html(val);
             $(widgetId + ' .widget-level-knob').val(val);
         }
-        //console.log(Math.round(+new Date() / 1000) + ' Update device: ID: ' + v.id + ' - level: ' + val)
+        console.log(Math.round(+new Date() / 1000) + ' Update device: ID: ' + v.id + ' - level: ' + val)
 
     }
 
@@ -7301,7 +7301,7 @@ myApp.filter('getElementIcon', function(cfg) {
             }
             switch (input) {
                 case 'door':
-                    icon = cfg.img.icons + (level == 'open' ? 'door-open.png' : 'door-closed.png');
+                    icon = cfg.img.icons + (level == 'on' ? 'door-open.png' : 'door-closed.png');
                     break;
 
                 case 'switch':

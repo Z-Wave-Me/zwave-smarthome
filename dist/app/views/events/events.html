@@ -1,6 +1,7 @@
 <!-- Events view -->
 <div ng-controller="EventController">
     <bb-loader></bb-loader>
+    <div class="events-header">
     <div class="hide-on-mobile">
         <button class="btn btn-default" ng-click="changeTime(1)" ng-disabled="timeFilter.day == 1" ng-bind="_t('lb_today')"></button>
         <button class="btn btn-default" ng-click="changeTime(2)" ng-disabled="timeFilter.day == 2" ng-bind="_t('lb_yesterday')"></button>
@@ -17,15 +18,14 @@
                  <span class="sr-only_"><i class="fa fa-calendar"></i></span>
                 <span class="caret"></span>
             </button>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu pull-right">
                 <li ng-repeat="v in dayCount" ng-class="timeFilter.day == v.key ? 'active':''">
                     <a href="" ng-click="changeTime(v.key)" ng-bind="v.val"></a> 
                 </li>
             </ul>
         </div>
-
     </div>
-
+    </div>
     <div class="table-responsive_">
         <table class="table table-condensed table-report table-events">
             <tbody>
@@ -90,7 +90,7 @@
                 </tr>
             </tbody>
         </table>
-        <div class="text-center" ng-if="collection.length > 0">
+        <div class="text-center mobile-padding" ng-if="collection.length > 0">
             <dir-pagination-controls boundary-links="true"></dir-pagination-controls>
         </div>
     </div>
