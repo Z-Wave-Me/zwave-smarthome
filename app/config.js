@@ -3,7 +3,7 @@ var config_data = {
         //Application name
         'app_name': 'HAUI',
         // Application version
-        'app_version': '0.1',
+        'app_version': '1.0.0',
         // Application type: web/app
         'app_type': 'web',
         // Server base url
