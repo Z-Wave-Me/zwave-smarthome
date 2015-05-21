@@ -46,7 +46,8 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
         getLanguageFile: getLanguageFile,
         loadZwaveApiData: loadZwaveApiData,
         joinedZwaveData: joinedZwaveData,
-        runZwaveCmd: runZwaveCmd
+        runZwaveCmd: runZwaveCmd,
+        postReport: postReport
     });
 
     /// --- Public functions --- ///
@@ -537,6 +538,26 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
         }, function(response) {// something went wrong
             return $q.reject(response);
         });
+    }
+    
+    /**
+     * Post report data
+     */
+    function postReport(data) {
+        return $http({
+            method: "POST",
+            //dataType: "text", 
+            url: cfg.post_report_url,
+            data: $.param(data),
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            }
+        }).then(function(response) {
+            return response;
+        }, function(response) {// something went wrong
+            return $q.reject(response);
+        });
+        return;
     }
 });
 

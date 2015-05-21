@@ -1,4 +1,9 @@
 {   
+    "lb_submit": "Senden",
+    "sending": "Wird gesendet...",
+    "success_send_report": "Bericht wurde erfolgreich gesendet",
+    "error_send_report": "Bericht konnte nicht gesendet werden",
+    "nav_report": "Fehler melden",
     "updated": "Aktualisiert am",
     "lb_is_failed": "Das Gerät ist fehlerhaft",
     "no_devices":"Keine Geräte vorhanden",
