@@ -5189,6 +5189,10 @@ myApp.config(['$routeProvider',
                     templateUrl: 'app/views/expertui/configuration.html',
                     requireLogin: true
                 }).
+                //Report
+                when('/report', {
+                    templateUrl: 'app/views/report/report.html'
+                }).
                 //Login
                 when('/login', {
                     templateUrl: 'app/views/login/login.html'
@@ -5344,7 +5348,8 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
         getLanguageFile: getLanguageFile,
         loadZwaveApiData: loadZwaveApiData,
         joinedZwaveData: joinedZwaveData,
-        runZwaveCmd: runZwaveCmd
+        runZwaveCmd: runZwaveCmd,
+        postReport: postReport
     });
 
     /// --- Public functions --- ///
@@ -5835,6 +5840,26 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
         }, function(response) {// something went wrong
             return $q.reject(response);
         });
+    }
+    
+    /**
+     * Post report data
+     */
+    function postReport(data) {
+        return $http({
+            method: "POST",
+            //dataType: "text", 
+            url: cfg.post_report_url,
+            data: $.param(data),
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            }
+        }).then(function(response) {
+            return response;
+        }, function(response) {// something went wrong
+            return $q.reject(response);
+        });
+        return;
     }
 });
 
@@ -8021,11 +8046,11 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         $scope.goHistory[deviceId] = !$scope.goHistory[deviceId];
         $scope.history[deviceId] = {data: false, icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('history', '/' + deviceId).then(function(response) {
-            if (!response.data.data.deviceHistory) { 
+            if (!response.data.data.deviceHistory) {
                 $scope.history[deviceId] = {data: false, icon: 'fa-exclamation-triangle text-warning', message: $scope._t('no_data')};
                 return;
             }
-            var data = dataService.getChartData(response.data.data.deviceHistory, $scope.cfg.chart_colors); 
+            var data = dataService.getChartData(response.data.data.deviceHistory, $scope.cfg.chart_colors);
             $scope.history[deviceId] = {data: data};
         }, function(error) {
             $scope.history[deviceId] = {data: false, icon: 'fa-exclamation-triangle text-warning', message: $scope._t('no_data')};
@@ -8303,7 +8328,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
      * Change time
      */
     $scope.changeTime = function(day) {
-         switch (day) {
+        switch (day) {
             case 1:
                 $scope.timeFilter = {
                     since: $filter('unixStartOfDay')(),
@@ -10047,6 +10072,70 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
         });
     }
     ;
+
+});
+/**
+ * Report controller
+ */
+myAppController.controller('ReportController', function($scope, $cookies, $location, $window, $timeout, dataFactory, dataService) {
+    $scope.ZwaveApiData = false;
+    $scope.input = {
+        browser_agent: '',
+        browser_version: '',
+         browser_info: '',
+        shui_version: '',
+        zwave_vesion: '',
+        controller_info: '',
+        remote_id: '',
+        remote_activated: 0,
+        remote_support_activated: 0,
+        zwave_binding: 0,
+        content: null
+    };
+
+    $scope.loadZwaveApiData = function() {
+        //dataService.showConnectionSpinner();
+        dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
+            $scope.ZwaveApiData = ZWaveAPIData;
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    };
+
+    $scope.loadZwaveApiData();
+
+    /**
+     * Create/Update an item
+     */
+    $scope.store = function(input) {
+        if(input.content == ''){
+            return;
+        }
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('sending')};
+        if ($scope.ZwaveApiData) {
+            input.zwave_binding = 1;
+            input.zwave_vesion = $scope.ZwaveApiData.controller.data.softwareRevisionVersion.value;
+            input.controller_info = JSON.stringify($scope.ZwaveApiData.controller.data);
+        }
+        input.browser_agent = $window.navigator.appCodeName;
+        input.browser_version = $window.navigator.appVersion;
+        input.browser_info = 'PLATFORM: ' + $window.navigator.platform + '\nUSER-AGENT: ' + $window.navigator.userAgent;
+        input.shui_version = $scope.cfg.app_version;
+        //input.remote_activated = 1;
+        //input.remote_support_activated = 1;
+        //input.remote_id = '???';
+
+        //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        dataFactory.postReport(input).then(function(response) {
+            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_send_report')};
+            input.content = null;
+        }, function(error) {
+            alert($scope._t('error_send_report'));
+            $scope.loading = false;
+            dataService.logError(error);
+        });
+
+    };
 
 });
 /**
