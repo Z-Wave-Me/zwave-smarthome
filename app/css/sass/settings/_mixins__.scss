@@ -64,9 +64,7 @@
     .header-logo{
         display: none !important;
     }
-    .navbar-toggle{
-        margin-right: 30px !important;
-    }
+
     .container{
         max-width:none;
         width: 100%;
@@ -115,9 +113,10 @@
         padding-right: 25px;
         padding-left: 25px;
     }
-
-    .navbar-toggle {
+    .navbar-toggle{
+        margin-right: 30px !important;
         padding: 5px 6px;
+        border: 0;
     }
     .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
         background-color: transparent;
@@ -218,6 +217,12 @@
 
 
     }
+    /* Pagination
+    -------------------------------------------------- */
+    .pagination {
+        margin:0;
+    }
+
 
     /* Forms
     -------------------------------------------------- */
@@ -235,11 +240,16 @@
             //border-radius: 4px;
         }
     }
+
+
     .btn-sm, .btn-group-sm > .btn {
         padding: 4px 8px;
         font-size: 12px;
         line-height: 1.4;
         border-radius: 3px;
+    }
+    .submit-entry{
+        text-align: center;
     }
 
     /* Tabs
@@ -255,27 +265,44 @@
         -webkit-box-shadow: none;
         -moz-box-shadow:    none;
         box-shadow:        none;
-        border-bottom: solid 1px #ccc;
+        border: 0;
+        border-bottom: solid 2px #ccc;
+        // @include appGradient();
     }
     .widget-block-in{
         /*   border: solid 1px red;*/
+        //min-height: $app-el-block-h;
         height: auto;
         text-align: left;
-        padding: 10px;
+        //padding: 10px;
     }
     .widget-image{ 
-        top: 10px;
-        left: 5px;
+        /*        top: 10px;*/
+        left: 15px;
         width: 42px;
         height: 42px;
     }
     .widget-body{
-        margin-top: -15px;
-        padding: 0 5px 15px 50px;
+        margin-top: -25px;
+        padding: 0 5px 15px 64px;
         .entry-title{
-            padding-right: 40px;
+            padding: 40px 15px 0 0;
+            //padding-right: 50px;
         }
     }
+    .widget-footer{
+        margin: 10px 0 0 0;
+        position: static;
+        .widget-footer-in{
+            padding: 0 10px 0 15px;
+        }
+        .btn{
+            margin: 0;
+            height: 34px;
+            //border-radius: 0;
+        }
+    }
+
 
     #modal_camera {
         //width: 100%;
@@ -287,6 +314,7 @@
         }
 
     }
+
 
     /*    .element-camera-control{
             text-align: right;
@@ -305,6 +333,14 @@
 
     /* Eevents
     -------------------------------------------------- */
+    .table-events{
+        .td-event-icon {
+            padding-left: 10px;
+        }
+        .td-action{
+            padding-right: 10px;
+        }
+    }
     .event-date{
         display: block;
     }
@@ -337,32 +373,35 @@
     .app-entry{
         width: 100%;
         padding:  0;
-        border-bottom: dotted 1px $app-border-color; 
-        @include appGradient();
+        margin: 0;
+        background-color: #fff;
+        border-bottom: solid 1px $app-border-color; 
+        //@include appGradient();
     }
     .app-entry-in{
         border: 0;
         height: auto;
         text-align: left;
-        padding: 0;
+        padding: 0 10px;
+        margin: 0;
         background: none;
 
     }
 
     .app-image{
-        top: 0;
+        top: 8px;
         left: 10px;
-        width: 48px;
-        height: 48px;
+        width: 36px;
+        height: 36px;
     }
     .app-body{
         height: 54px;
         margin:0;
-        padding: 0 5px 15px 64px;
+        padding: 0 5px 15px 50px;
         .entry-title{
             position: absolute;
             z-index: 10;
-            padding: 10px 90px 0 0;
+            padding: 10px 50px 0 0;
         }
     }
     .app-footer{

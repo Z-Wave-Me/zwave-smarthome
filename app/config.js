@@ -45,6 +45,9 @@ var config_data = {
         'online_module_url': 'http://hrix.net/modules_store/json_store.php',
         // Online module img url
         'online_module_img_url': 'http://hrix.net/modules_store/modules/',
+        // Post report url
+        //'post_report_url': 'http://dev.dev/zwave-api/report/post-report.php',
+        'post_report_url': ' http://zwave.eu/api/report/post-report.php',
         // Url to zddx xml files
         'zddx_url': 'ZDDX/',
         // Url to run ExpertUI cmd

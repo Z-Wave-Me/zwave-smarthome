@@ -118,6 +118,10 @@ myApp.config(['$routeProvider',
                     templateUrl: 'app/views/expertui/configuration.html',
                     requireLogin: true
                 }).
+                //Report
+                when('/report', {
+                    templateUrl: 'app/views/report/report.html'
+                }).
                 //Login
                 when('/login', {
                     templateUrl: 'app/views/login/login.html'

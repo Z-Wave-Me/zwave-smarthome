@@ -2,9 +2,6 @@
 -------------------------------------------------- */
 .widget-block{  
     margin-bottom: 20px;
-    background-color: #fff;
-    border: solid 1px $app-border-color;
-    border-radius: 3px;
 }
 .widget-block-in{
     height: $app-el-block-h;
@@ -13,25 +10,37 @@
 }
 .widget-image{
     position: absolute;
-    top: 14px;
+    top: 10px;
     left: 10px;
     /*    margin: 10px 20px 10px 10px;*/
-    width: 52px;
-    height: 52px;
-    //border: solid 4px #fff;
+    width: 64px;
+    height: 64px;
+    border: solid 4px #fff;
     border-radius: 50%;
 }
 .trans-true{
     opacity: 0.3;
 }
+.widget-header{
+    text-align: right;
+    padding: 3px 0 0 0;
+    a{
+        display: inline-block;
+        padding: 0 5px 0 0;
+        color: lighten($header-link-color, 10%);
+    }
+     a:hover{
+        color: $brand-color-secondary;
+    }
+}
 
 
 .widget-body{
     margin-top: -5px;
-    padding: 0 5px 15px 74px;
+    padding: 0 5px 15px 84px;
     width: 100%;
     .entry-title{
-        padding: 25px 10px 0 0;
+        padding: 5px 30px 0 0;
     }
     .widget-control-wrap{
         width: 100%;
@@ -75,14 +84,14 @@
         top: 10px;
         left: 93%;
     }
-
-    /*    .element-hidden.hidden-history{
-            width: 100%;
-            height: 300%; 
-            left: 50%;
-            margin-left:-50%;
-            top: 50%;
-        }*/
+    
+/*    .element-hidden.hidden-history{
+        width: 100%;
+        height: 300%; 
+        left: 50%;
+        margin-left:-50%;
+        top: 50%;
+    }*/
 
     .element-hidden.hidden-sensor-multiline{
         height: $app-el-hidden-h + 20;
@@ -95,35 +104,6 @@
             vertical-align: middle;
             text-align: center;
         }
-    }
-}
-.widget-footer{
-    height: 40px;
-    width: 100%;
-    //font-size: 90%;
-    position: absolute;
-    bottom: 0px;
-    background-color: lighten($app-body-bcg-color, 1%);;
-    .widget-footer-in{
-        padding: 5px 10px;
-    }
-    .widget-footer-left{
-        line-height: 30px;
-        width: 48%;
-        float: left;
-        a{
-            display: inline-block;
-            padding: 0 5px 0 0;
-            color: lighten($header-link-color, 10%);
-        }
-        a:hover{
-            color: $brand-color-secondary;
-        }
-    }
-    .widget-footer-right{
-        width: 48%;
-        float: right;
-        text-align: right;
     }
 }
 
@@ -145,10 +125,10 @@
 }
 .drop-down-tags{
     div{
-        padding: 5px;  
+       padding: 5px;  
     }
-
-    //min-width: 260px;
+   
+   //min-width: 260px;
 }
 
 .drop-down-tags a{
@@ -237,7 +217,7 @@ img.widget-promo-image {
     font-family: FontAwesome;
     font-style: normal;
     font-weight: normal;
-    /*--adjust as necessary--*/
+/*--adjust as necessary--*/
     padding-left: 4px;
     position: absolute;
 }

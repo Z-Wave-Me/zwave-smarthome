@@ -14,7 +14,7 @@
 // Partials
 @import "globals/_body";
 @import "globals/_navigation";
-@import "globals/_footer";
+@import "globals/_footer"; 
 
 // Modules
 @import "modules/_alpaca";
@@ -30,6 +30,7 @@
 @import "modules/_configuration";
 @import "modules/_admin";
 @import "modules/_login";
+@import "modules/_report";
 
 // Responsive
 @import "globals/_responsive";
