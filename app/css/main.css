@@ -1722,6 +1722,39 @@ img.widget-promo-image {
   position: absolute;
 }
 
+/* MultilevelSensor widget
+-----------------------------------------------------*/
+/* line 247, sass/modules/_elements.scss */
+.widget-body .element-hidden.hidden-sensor-multiline.multiline-sensor {
+  padding: 10px 0;
+  height: auto;
+}
+
+/* line 252, sass/modules/_elements.scss */
+.hidden-sensor-multiline .widget-image {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 25px;
+  height: 25px;
+}
+
+/* line 260, sass/modules/_elements.scss */
+.widget-body .hidden-sensor-multiline.multiline-sensor table td:first-child {
+  padding-left: 5px;
+}
+
+/* line 264, sass/modules/_elements.scss */
+.widget-body .hidden-sensor-multiline.multiline-sensor table td {
+  width: inherit;
+  padding: 5px 5px 5px 10px;
+}
+
+/* line 269, sass/modules/_elements.scss */
+.widget-body .hidden-sensor-multiline.multiline-sensor table tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
 /* Events
 -------------------------------------------------- */
 /* line 3, sass/modules/_events.scss */
