@@ -1,5 +1,6 @@
 {
     "missing": "---",
+     "lb_email": "E-mail",
     "remote_access_manage": "Remote Access Management",
     "remote_access_info": "In case you have privacy concerns you can turn off the find.zwave.me service",
     "remote_access_id": "Remoteaccess – ID",

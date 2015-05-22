@@ -1,4 +1,5 @@
 {   
+    "lb_email": "Email",
    "remote_access_manage": "Fernzugriff-verwaltung",
     "remote_access_info": "Sie koennen den Dienst find.zwave.me abschalten, wenn Sie Datenschutzbedenken haben",
     "remote_access_id": "Fernzugriffs – ID",
