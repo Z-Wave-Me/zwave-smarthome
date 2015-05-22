@@ -1,5 +1,13 @@
 {
     "missing": "---",
+    "lb_email": "E-mail",
+    "remote_access_manage": "Remote Access Management",
+    "remote_access_info": "In case you have privacy concerns you can turn off the find.zwave.me service",
+    "remote_access_id": "Remoteaccess – ID",
+    "remote_access_password": "Remoteaccesss – Password",
+    "remote_access": "Enable Remote-Access",
+    "remote_access_support": "Enable Remote-Access Support",
+    "lb_remote_access": "Remote Access Management ",
     "lb_submit": "Submit",
     "sending": "Sending...",
     "success_send_report": "Report was successfully send",
