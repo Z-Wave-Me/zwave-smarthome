@@ -29,8 +29,8 @@
                                 <div class="widget-control control-left widget-click-popup" ng-click="goHidden[v.id] = !goHidden[v.id]">
                                     <span class="widget-level" ng-bind="levelVal[v.id] | getMaxLevel"></span>% <i class="fa fa-caret-down"></i>
                                 </div>
-                                <div class="widget-control control-right" ng-if="v.metrics.icon == 'blinds'">
-                                   <div class="btn-group">
+                                <div class="widget-control control-right">
+                                   <div class="btn-group" ng-if="v.metrics.icon == 'blinds'">
                                     <button 
                                         class="btn btn-sm widget-btn-off" 
                                         id="btn_off_{{ v.id}}"
@@ -43,12 +43,9 @@
                                         data-ng-click="levelVal[v.id] == 99;runCmd(v.id + '/command/on',v.id);goHidden = false"
                                         ng-class="levelVal[v.id] > 0 ? 'btn-primary': 'btn-default'"
                                         ng-bind="_t('lb_up')"></button>
-                                </div>
-                                 </div>
-                                
-                                <div class="widget-control control-right" ng-if="v.metrics.icon == 'multilevel'">
-                                   <div class="btn-group">
-                                   <button 
+                                    </div>
+                                     <div class="btn-group" ng-if="v.metrics.icon == 'multilevel'">
+                                    <button 
                                         class="btn btn-sm widget-btn-off" 
                                         id="btn_off_{{ v.id}}"
                                         data-ng-click="levelVal[v.id] == 0;runCmd(v.id + '/command/off',v.id);goHidden = false"
@@ -60,8 +57,7 @@
                                         data-ng-click="levelVal[v.id] == 99;runCmd(v.id + '/command/on',v.id);goHidden = false"
                                         ng-class="levelVal[v.id] > 0 ? 'btn-primary': 'btn-default'"
                                         ng-bind="_t('lb_on')"></button>
-                                </div>
-                                 </div>
+                                    </div>
                                  </div>
                                
                             </div>
@@ -177,7 +173,7 @@
                             <!-- switchMultilevelLinear -->
                             <div class="widget-click-popup" ng-switch-when="switchMultilevelLinear"><strong>{{v.level}} <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span></strong></div>
                             <!-- camera -->
-                            <div class="text-right"><a href="" class="btn btn-primary btn-sm" ng-switch-when="camera" ng-click="showModal('#modal_camera', v)"><i class="fa fa-play"></i></a></div>
+                            <div class="text-right"><a href="" class="btn btn-primary" ng-switch-when="camera" ng-click="showModal('#modal_camera', v)"><i class="fa fa-play"></i></a></div>
 
                             <!-- text -->
                             <div ng-switch-when="text">
