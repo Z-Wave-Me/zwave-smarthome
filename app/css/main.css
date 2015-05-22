@@ -1597,27 +1597,25 @@ legend.alpaca-container-label {
   width: 100%;
   position: absolute;
   bottom: 0px;
-  border-top: dotted 1px #d3d3d3;
+  background-color: #f9f9f9;
+  /*    .btn-default {
+          color: $header-link-color;
+          background-color: $header-color-secondary;
+          border-color: #5288b4;
+      }*/
 }
 /* line 114, sass/modules/_elements.scss */
 .widget-footer .btn {
   margin: 3px 0 0 0;
-  border: 0;
 }
 /* line 120, sass/modules/_elements.scss */
 .widget-footer .btn-primary {
   color: #fff;
   background-color: #aaaaaa;
-  border-color: #5288b4;
+  border-color: #c4c4c4;
   -webkit-box-shadow: inset 0px 0px 6px 0px rgba(0, 0, 0, 0.44);
   -moz-box-shadow: inset 0px 0px 6px 0px rgba(0, 0, 0, 0.44);
   box-shadow: inset 0px 0px 6px 0px rgba(0, 0, 0, 0.44);
-}
-/* line 128, sass/modules/_elements.scss */
-.widget-footer .btn-default {
-  color: #5d5d5d;
-  background-color: #DDDDDD;
-  border-color: #5288b4;
 }
 /* line 133, sass/modules/_elements.scss */
 .widget-footer .widget-footer-in {
