@@ -1,4 +1,5 @@
 {   
+    "lb_email": "Email",
     "lb_submit": "Senden",
     "sending": "Wird gesendet...",
     "success_send_report": "Bericht wurde erfolgreich gesendet",

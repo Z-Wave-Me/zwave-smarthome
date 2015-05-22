@@ -7,8 +7,13 @@
             <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('nav_report')"></span></h3>
             <!-- content -->
                 <div class="form-group">
-                    <textarea name="content" id="content" class="form-control report-content" ng-model="input.content"> </textarea>
+                    <textarea name="content" id="content" class="form-control report-content" ng-model="input.content"></textarea>
                 </div>
+            <!-- email -->
+                 <div class="form-group form-inline">
+                        <label>{{_t('lb_email')}}: </label>
+                        <input name="email" id="email" type="text" class="form-control" value="{{input.email}}" ng-model="input.email" />
+                    </div>
         </fieldset>
         <div class="submit-entry">
             <button type="submit" class="btn btn-primary" ng-bind="_t('lb_submit')"></button>

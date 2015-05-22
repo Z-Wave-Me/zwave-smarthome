@@ -2322,6 +2322,7 @@ myAppController.controller('ReportController', function($scope, $cookies, $locat
         remote_activated: 0,
         remote_support_activated: 0,
         zwave_binding: 0,
+         email: null,
         content: null
     };
     $scope.loadZwaveApiData = function() {
@@ -2361,6 +2362,7 @@ myAppController.controller('ReportController', function($scope, $cookies, $locat
         dataFactory.postReport(input).then(function(response) {
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_send_report')};
             input.content = null;
+            input.email = null;
         }, function(error) {
             alert($scope._t('error_send_report'));
             $scope.loading = false;

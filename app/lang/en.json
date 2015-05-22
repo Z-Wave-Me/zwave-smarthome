@@ -1,5 +1,6 @@
 {
     "missing": "---",
+     "lb_email": "E-mail",
     "lb_submit": "Submit",
     "sending": "Sending...",
     "success_send_report": "Report was successfully send",
