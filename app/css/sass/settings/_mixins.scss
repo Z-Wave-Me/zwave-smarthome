@@ -56,7 +56,7 @@
 // Mobile layout
 @mixin appMobileLayout() {
     .hide-on-mobile{
-        display:none;
+        display:none !important;
     }
     .show-on-mobile{
         display:block;
@@ -64,7 +64,9 @@
     .header-logo{
         display: none !important;
     }
-
+    .navbar-toggle{
+        margin-right: 30px !important;
+    }
     .container{
         max-width:none;
         width: 100%;
@@ -113,10 +115,9 @@
         padding-right: 25px;
         padding-left: 25px;
     }
-    .navbar-toggle{
-        margin-right: 30px !important;
+
+    .navbar-toggle {
         padding: 5px 6px;
-        border: 0;
     }
     .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
         background-color: transparent;
@@ -217,12 +218,6 @@
 
 
     }
-    /* Pagination
-    -------------------------------------------------- */
-    .pagination {
-        margin:0;
-    }
-
 
     /* Forms
     -------------------------------------------------- */
@@ -240,16 +235,11 @@
             //border-radius: 4px;
         }
     }
-
-
     .btn-sm, .btn-group-sm > .btn {
         padding: 4px 8px;
         font-size: 12px;
         line-height: 1.4;
         border-radius: 3px;
-    }
-    .submit-entry{
-        text-align: center;
     }
 
     /* Tabs
@@ -265,44 +255,27 @@
         -webkit-box-shadow: none;
         -moz-box-shadow:    none;
         box-shadow:        none;
-        border: 0;
-        border-bottom: solid 2px #ccc;
-        // @include appGradient();
+        border-bottom: solid 1px #ccc;
     }
     .widget-block-in{
         /*   border: solid 1px red;*/
-        //min-height: $app-el-block-h;
         height: auto;
         text-align: left;
-        //padding: 10px;
+        padding: 10px;
     }
     .widget-image{ 
-        /*        top: 10px;*/
-        left: 15px;
+        top: 10px;
+        left: 5px;
         width: 42px;
         height: 42px;
     }
     .widget-body{
-        margin-top: -25px;
-        padding: 0 5px 15px 64px;
+        margin-top: -15px;
+        padding: 0 5px 15px 50px;
         .entry-title{
-            padding: 40px 15px 0 0;
-            //padding-right: 50px;
+            padding-right: 40px;
         }
     }
-    .widget-footer{
-        margin: 10px 0 0 0;
-        position: static;
-        .widget-footer-in{
-            padding: 0 10px 0 15px;
-        }
-        .btn{
-            margin: 0;
-            height: 34px;
-            //border-radius: 0;
-        }
-    }
-
 
     #modal_camera {
         //width: 100%;
@@ -314,7 +287,6 @@
         }
 
     }
-
 
     /*    .element-camera-control{
             text-align: right;
@@ -333,14 +305,6 @@
 
     /* Eevents
     -------------------------------------------------- */
-    .table-events{
-        .td-event-icon {
-            padding-left: 10px;
-        }
-        .td-action{
-            padding-right: 10px;
-        }
-    }
     .event-date{
         display: block;
     }
@@ -373,35 +337,32 @@
     .app-entry{
         width: 100%;
         padding:  0;
-        margin: 0;
-        background-color: #fff;
-        border-bottom: solid 1px $app-border-color; 
-        //@include appGradient();
+        border-bottom: dotted 1px $app-border-color; 
+        @include appGradient();
     }
     .app-entry-in{
         border: 0;
         height: auto;
         text-align: left;
-        padding: 0 10px;
-        margin: 0;
+        padding: 0;
         background: none;
 
     }
 
     .app-image{
-        top: 8px;
+        top: 0;
         left: 10px;
-        width: 36px;
-        height: 36px;
+        width: 48px;
+        height: 48px;
     }
     .app-body{
         height: 54px;
         margin:0;
-        padding: 0 5px 15px 50px;
+        padding: 0 5px 15px 64px;
         .entry-title{
             position: absolute;
             z-index: 10;
-            padding: 10px 50px 0 0;
+            padding: 10px 90px 0 0;
         }
     }
     .app-footer{
