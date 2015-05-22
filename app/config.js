@@ -7,8 +7,8 @@ var config_data = {
         // Application type: web/app
         'app_type': 'web',
         // Server base url
-        'server_url': '/', 
-        //'server_url': 'http://192.168.10.119:8083/',
+        //'server_url': '/', 
+        'server_url': 'http://192.168.10.119:8083/',
         // Interval in miliseconds to refresh data
         'interval': 3000, 
         // Interval in miliseconds (5 min) to clear history (json) cache
@@ -18,6 +18,7 @@ var config_data = {
             'devices': 'ZAutomation/api/v1/devices',
             'profiles': 'ZAutomation/api/v1/profiles',
             'profiles_auth_update': 'ZAutomation/api/v1/auth/update',
+            'remote_access': 'ZAutomation/api/v1/remote',
             'locations': 'ZAutomation/api/v1/locations',
             'notifications': 'ZAutomation/api/v1/notifications',
             'modules': 'ZAutomation/api/v1/modules',

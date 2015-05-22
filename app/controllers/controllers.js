@@ -2196,6 +2196,13 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
         interval: 2000
 
     };
+    $scope.remote = {
+        id: null,
+        password: null,
+        access: false,
+        support: false
+
+    };
     $scope.newPassword = null;
     /**
      * Load data
@@ -2256,6 +2263,22 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
             dataService.setUser(data);
             $window.location.reload();
             //$route.reload();
+
+        }, function(error) {
+            alert($scope._t('error_update_data'));
+            $scope.loading = false;
+            dataService.logError(error);
+        });
+
+    };
+    
+     /**
+     * Remote access
+     */
+    $scope.remoteAccess = function(remote) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        dataFactory.postApi('remote_access', remote).then(function(response) {
+            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
 
         }, function(error) {
             alert($scope._t('error_update_data'));

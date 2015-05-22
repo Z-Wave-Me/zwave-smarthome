@@ -1,4 +1,10 @@
 {   
+   "remote_access_manage": "Fernzugriff-verwaltung",
+    "remote_access_info": "Sie koennen den Dienst find.zwave.me abschalten, wenn Sie Datenschutzbedenken haben",
+    "remote_access_id": "Fernzugriffs – ID",
+    "remote_access_password": "Fernzugriffs – Passwort",
+    "remote_access": "Fernzugriff aktivieren",
+    "remote_access_support": "Fernzugriff für Support aktivieren",
     "lb_submit": "Senden",
     "sending": "Wird gesendet...",
     "success_send_report": "Bericht wurde erfolgreich gesendet",
