@@ -1,5 +1,9 @@
 {
     "missing": "---",
+    "lb_remote_access_manage": "Remote Access Management",
+    "lb_remote_access_id": "Remoteaccess – ID",
+    "lb_remote_access": "Remote Access Management ",
+    "lb_remote_access": "Remote Access Management ",
     "lb_submit": "Submit",
     "sending": "Sending...",
     "success_send_report": "Report was successfully send",
