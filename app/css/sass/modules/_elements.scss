@@ -1,5 +1,10 @@
 /* Elements
 -------------------------------------------------- */
+
+.widget-entry{
+    padding-left: 10px;
+    padding-right: 10px;
+}
 .widget-block{  
     margin-bottom: 20px;
     background-color: #fff;
@@ -13,11 +18,11 @@
 }
 .widget-image{
     position: absolute;
-    top: 14px;
+    top: 10px;
     left: 10px;
     /*    margin: 10px 20px 10px 10px;*/
-    width: 52px;
-    height: 52px;
+    width: 44px;
+    height: 44px;
     //border: solid 4px #fff;
     border-radius: 50%;
 }
@@ -31,15 +36,16 @@
     padding: 0 5px 15px 74px;
     width: 100%;
     .entry-title{
-        padding: 25px 10px 0 0;
+        padding: 15px 10px 0 0;
+        margin-bottom: 5px;
     }
     .widget-control-wrap{
         width: 100%;
     }
-    .widget-control{
+/*    .widget-control{
         width: 50%;
         float: left;
-    }
+    }*/
     .widget-control.control-left{
         font-weight: bold;
     }
@@ -98,32 +104,53 @@
     }
 }
 .widget-footer{
-    height: 40px;
+    height: 35px;
     width: 100%;
     //font-size: 90%;
     position: absolute;
     bottom: 0px;
-    background-color: lighten($app-body-bcg-color, 1%);;
-    .widget-footer-in{
-        padding: 5px 10px;
+    border-top: dotted 1px $app-border-color;
+    //background-color: lighten($app-body-bcg-color, 1%);;
+    .btn{
+        //height: 34px;
+        margin: 3px 0 0 0;
+        border: 0;
+        //border-radius: 0;
     }
-    .widget-footer-left{
+    .btn-primary {
+        color: #fff;
+        background-color: darken($header-color-secondary, 20%);
+        border-color: #5288b4;
+       -webkit-box-shadow: inset 0px 0px 6px 0px rgba(0,0,0,0.44);
+-moz-box-shadow: inset 0px 0px 6px 0px rgba(0,0,0,0.44);
+box-shadow: inset 0px 0px 6px 0px rgba(0,0,0,0.44);
+    }
+    .btn-default {
+        color: $header-link-color;
+        background-color: $header-color-secondary;
+        border-color: #5288b4;
+    }
+    .widget-footer-in{
+        padding: 0 10px;
+    }
+    .widget-footer-cfg{
         line-height: 30px;
         width: 48%;
-        float: left;
+        float: right;
+        text-align: right;
         a{
             display: inline-block;
-            padding: 0 5px 0 0;
+            padding: 0 0 0 5px;
             color: lighten($header-link-color, 10%);
         }
         a:hover{
             color: $brand-color-secondary;
         }
     }
-    .widget-footer-right{
+    .widget-footer-ctrl{
         width: 48%;
-        float: right;
-        text-align: right;
+        float: left;
+        text-align: left;
     }
 }
 

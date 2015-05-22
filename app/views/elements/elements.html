@@ -6,7 +6,7 @@
         <div id="Widget_{{v.id}}" class="col-lg-4 col-md-6 col-sm-6 widget-entry" ng-repeat="v in collection| filter:q">
             <div class="widget-block {{v.deviceType}}" ng-switch="v.deviceType" ng-init="levelVal[v.id] = v.level">
                 
-                <div class="widget-block-in clearfix">
+                <div class="widget-block-in clearfix _app-shadow">
                     <!-- Widget icon -->
                     <img ng-if="v.deviceType === 'text'" ng-show="v.metrics.img" class="widget-image" ng-src="{{v.metrics.img}}" alt="{{v.title}}" ng-click="goHidden[v.id] = !goHidden[v.id]" />
                     <img id="widget_img_{{v.id}}" class="widget-image" ng-if="v.deviceType !== 'text'"  ng-src="{{v.icon|getElementIcon:v:levelVal[v.id]}}" alt="img" ng-click="goHidden[v.id] = !goHidden[v.id]" />
@@ -52,9 +52,9 @@
                             </div>
                             <!-- switchMultilevelLinear -->
                             <div class="widget-click-popup" ng-switch-when="switchMultilevelLinear"><strong>{{v.level}} <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span></strong></div>
-                            <!-- camera -->
+                            <!-- camera 
                             <div class="widget-control control-left"><a href="" ng-switch-when="camera" ng-click="showModal('#modal_camera', v)"><i class="fa fa-play fa-lg"></i></a></div>
-
+                            -->
                             <!-- text -->
                             <div ng-switch-when="text">
                                 <div class="widget-control control-left widget-click-popup text">
@@ -262,13 +262,13 @@
                     
                      <div class="widget-footer">
                          <div class="widget-footer-in clearfix">
-                             <div class="widget-footer-left">
-                                 <a class="widget-config" href="#element/{{v.id}}"><i class="fa fa-cog fa-lg"></i></a>
+                             <div class="widget-footer-cfg">
                                 <a class="widget-history" href="" ng-click="loadDeviceHistory(v.id)" ng-if="v.hasHistory"><i class="fa fa-history fa-lg"></i></a>
+                                 <a class="widget-config" href="#element/{{v.id}}"><i class="fa fa-cog fa-lg"></i></a>
                             </div>
                               
                              <!------------ switchMultilevel ------------>
-                              <div class="widget-footer-right" ng-switch-when="switchMultilevel">
+                              <div class="widget-footer-ctrl" ng-switch-when="switchMultilevel">
                                <div class="btn-group" ng-if="v.metrics.icon == 'blinds'">
                                     <button 
                                         class="btn btn-sm widget-btn-off" 
@@ -300,7 +300,7 @@
                             </div>
                             
                              <!------------ switchBinary ------------>
-                            <div class="widget-footer-right" ng-switch-when="switchBinary">
+                            <div class="widget-footer-ctrl" ng-switch-when="switchBinary">
                                 <div class="btn-group">
                                     <button 
                                         class="btn btn-sm widget-btn-off" 
@@ -318,7 +318,7 @@
                            </div>
                             
                             <!------------ switchRGBW ------------>
-                            <div class="widget-footer-right" ng-switch-when="switchRGBW">
+                            <div class="widget-footer-ctrl" ng-switch-when="switchRGBW">
                                <div class="btn-group"> 
                                     <button 
                                             class="btn widget-btn-off btn-sm" 
@@ -336,7 +336,7 @@
                            </div>
                             
                             <!------------ doorlock ------------>
-                            <div class="widget-footer-right" ng-switch-when="doorlock">
+                            <div class="widget-footer-ctrl" ng-switch-when="doorlock">
                                 <div class="btn-group">
                                     <button 
                                         class="btn widget-btn-off btn-sm"
@@ -354,7 +354,7 @@
                            </div>
                             
                             <!------------ toggleButton ------------>
-                            <div class="widget-footer-right" ng-switch-when="toggleButton">
+                            <div class="widget-footer-ctrl" ng-switch-when="toggleButton">
                                 <div class="btn-group">
                                     <button 
                                         class="btn btn-primary btn-sm" 
@@ -365,17 +365,21 @@
                            </div>
                             
                             <!------------ sensorMultilevel  ------------>
-                            <div class="widget-footer-right" ng-switch-when="sensorMultilevel">
+                            <div class="widget-footer-ctrl" ng-switch-when="sensorMultilevel">
                                <div class="btn-group">
                                     <button class="btn btn-default btn-sm" ng-click="runCmd(v.id + '/command/update')"> <i class="fa fa-clock-o"></i> <span class="widget-update-time">{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span></button>
                                 </div>
                            </div>
                             
                             <!------------ sensorMultiline  ------------>
-                            <div class="widget-footer-right" ng-switch-when="sensorMultiline">
+                            <div class="widget-footer-ctrl" ng-switch-when="sensorMultiline">
                                <div class="btn-group">
                                 <button class="btn btn-default btn-sm" ng-click="runCmd(v.id + '/command/update')"> <i class="fa fa-clock-o"></i> <span class="widget-update-time">{{v.updateTime|isToday:true}}</span></button>
                             </div>
+                           </div>
+                             <!------------ camera  ------------>
+                            <div class="widget-footer-ctrl" ng-switch-when="camera">
+                               <button class="btn btn-default btn-sm" ng-click="showModal('#modal_camera', v)"> <i class="fa fa-play fa-lg"></i></button>
                            </div>
                         </div>
                     </div>

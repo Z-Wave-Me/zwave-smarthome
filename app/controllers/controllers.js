@@ -2324,11 +2324,11 @@ myAppController.controller('ReportController', function($scope, $cookies, $locat
         zwave_binding: 0,
         content: null
     };
-
     $scope.loadZwaveApiData = function() {
-        //dataService.showConnectionSpinner();
+        dataService.showConnectionSpinner();
         dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
             $scope.ZwaveApiData = ZWaveAPIData;
+            dataService.updateTimeTick();
         }, function(error) {
             dataService.showConnectionError(error);
         });
