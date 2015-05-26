@@ -1,5 +1,6 @@
 {
     "missing": "---",
+     "local_access": "Local Access",
      "lb_email": "E-mail",
     "remote_access_manage": "Remote Access Management",
     "remote_access_info": "access your controller from outside the home.",
