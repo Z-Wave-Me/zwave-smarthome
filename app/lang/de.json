@@ -6,7 +6,7 @@
     "remote_access_id": "Geräte ID",
     "remote_access_password": "Geräte Password beim Dienst find.zwave.me",
     "remote_access": "Fernzugriff aktiviert",
-     "remote_access_warning": "Bitte denken Sie daran, sich nach einer anderen Möglichkeit umzuschauen, um Ihre Z-Box in Ihrem Netzwerk zu finden. Denn in Zukunft wird auch der Weiterleitungsservice von find.zwave.me eingestellt.",
+     "remote_access_warning": "Bitte stellen Sie sicher, dass Sie die IP Adresse ihres Geraetes immer finden. find.zwave.me wird nicht mehr funktionieren. Dies kann zu Problemen führen.",
     "remote_access_support": "Fernzugriff für Fernwartung/Support aktiviert",
     "lb_submit": "Senden",
     "sending": "Wird gesendet...",

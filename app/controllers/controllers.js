@@ -2292,6 +2292,9 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
      * Change password
      */
     $scope.changePassword = function(newPassword) {
+        if(!newPassword || newPassword == ''){
+            return;
+        }
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         var input = {
             id: $scope.id,
