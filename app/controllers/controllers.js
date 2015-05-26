@@ -1823,7 +1823,7 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
 /**
  * Network controller
  */
-myAppController.controller('NetworkController', function($scope, $cookies, $filter, $window, dataFactory, dataService) {
+myAppController.controller('NetworkController', function($scope, $cookies, $filter, $window, dataFactory, dataService, myCache) {
     $scope.activeTab = (angular.isDefined($cookies.tab_network) ? $cookies.tab_network : 'battery');
     $scope.batteries = {
         'list': [],
@@ -1837,6 +1837,8 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
     };
 
     $scope.zWaveDevices = {};
+
+    $scope.hiddenDevices = [];
     /**
      * Set tab
      */
@@ -1844,7 +1846,9 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
         $scope.activeTab = tabId;
         $cookies.tab_network = tabId;
     };
-
+    /**
+     * Load data
+     */
     $scope.loadData = function() {
         dataService.showConnectionSpinner();
         dataFactory.getApi('devices').then(function(response) {
@@ -1854,6 +1858,54 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
         });
     };
     $scope.loadData();
+
+    /**
+     * Add/Remove device in list
+     */
+    $scope.hiddenList = function(deviceId, checked) {
+        if (checked) {
+            if ($scope.hiddenDevices.indexOf(deviceId) === -1) {
+                $scope.hiddenDevices.push(deviceId);
+            }
+        } else {
+            for (var i = 0; i <= $scope.hiddenDevices.length; i++) {
+                var v = $scope.hiddenDevices[i];
+                if (v === deviceId) {
+                    $scope.hiddenDevices.splice(i, 1);
+                }
+            }
+        }
+    };
+
+    /**
+     * Update devices with status hidden
+     */
+    $scope.handleHidden = function() {
+        var devices = [];
+        for (var i = 0; i <= $scope.devices.zwave.length; i++) {
+            var v = $scope.devices.zwave[i];
+            if(!v){
+                continue;
+            }
+            var isHidden = false;
+            if ($scope.hiddenDevices.indexOf(v.id) !== -1) {
+                isHidden = true;
+            }
+            devices[v.id] = isHidden;
+        }
+        
+         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+            dataFactory.postApi('hide_devices', {data: devices}).then(function(response) {
+                  myCache.remove('devices');
+                   $scope.loadData();
+                   $scope.loading = false;
+            }, function(error) {
+                alert($scope._t('error_update_data'));
+                $scope.loading = false;
+                dataService.logError(error);
+            });
+       
+    };
 
     /// --- Private functions --- ///
     /**
@@ -2271,8 +2323,8 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
         });
 
     };
-    
-     /**
+
+    /**
      * Remote access
      */
     $scope.remoteAccess = function(remote) {
@@ -2292,7 +2344,7 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
      * Change password
      */
     $scope.changePassword = function(newPassword) {
-        if(!newPassword || newPassword == ''){
+        if (!newPassword || newPassword == '') {
             return;
         }
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
@@ -2340,7 +2392,7 @@ myAppController.controller('ReportController', function($scope, $cookies, $locat
     $scope.input = {
         browser_agent: '',
         browser_version: '',
-         browser_info: '',
+        browser_info: '',
         shui_version: '',
         zwave_vesion: '',
         controller_info: '',
@@ -2348,7 +2400,7 @@ myAppController.controller('ReportController', function($scope, $cookies, $locat
         remote_activated: 0,
         remote_support_activated: 0,
         zwave_binding: 0,
-         email: null,
+        email: null,
         content: null
     };
     $scope.loadZwaveApiData = function() {
@@ -2367,7 +2419,7 @@ myAppController.controller('ReportController', function($scope, $cookies, $locat
      * Create/Update an item
      */
     $scope.store = function(input) {
-        if(input.content == ''){
+        if (input.content == '') {
             return;
         }
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('sending')};

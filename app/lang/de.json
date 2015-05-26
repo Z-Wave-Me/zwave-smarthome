@@ -1,4 +1,5 @@
 {   
+     "hide_selected_devices": "Hide selected devices",
      "local_access": "Lokaler Zugriff",
     "lb_email": "Email",
    "remote_access_manage": "Verwaltung des Fernzugriffes",

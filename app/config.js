@@ -16,6 +16,7 @@ var config_data = {
         // List of API links  
         'api': {
             'devices': 'ZAutomation/api/v1/devices',
+            'hide_devices': 'ZAutomation/api/v1/hidedevices',
             'profiles': 'ZAutomation/api/v1/profiles',
             'profiles_auth_update': 'ZAutomation/api/v1/auth/update',
             'remote_access': 'ZAutomation/api/v1/remote',

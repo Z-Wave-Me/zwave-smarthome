@@ -1,5 +1,6 @@
 {
     "missing": "---",
+    "hide_selected_devices": "Hide selected devices",
      "local_access": "Local Access",
      "lb_email": "E-mail",
     "remote_access_manage": "Remote Access Management",
