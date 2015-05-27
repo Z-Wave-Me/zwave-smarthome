@@ -1838,7 +1838,7 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
 
     $scope.zWaveDevices = {};
 
-    $scope.hiddenDevices = [];
+    //$scope.hiddenDevices = [];
     /**
      * Set tab
      */
@@ -1858,44 +1858,18 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
         });
     };
     $scope.loadData();
-
-    /**
-     * Add/Remove device in list
+    
+     /**
+     * Set device visibility
      */
-    $scope.hiddenList = function(deviceId, checked) {
-        if (checked) {
-            if ($scope.hiddenDevices.indexOf(deviceId) === -1) {
-                $scope.hiddenDevices.push(deviceId);
-            }
-        } else {
-            for (var i = 0; i <= $scope.hiddenDevices.length; i++) {
-                var v = $scope.hiddenDevices[i];
-                if (v === deviceId) {
-                    $scope.hiddenDevices.splice(i, 1);
-                }
-            }
-        }
-    };
-
-    /**
-     * Update devices with status hidden
-     */
-    $scope.handleHidden = function() {
-        var devices = [];
-        for (var i = 0; i <= $scope.devices.zwave.length; i++) {
-            var v = $scope.devices.zwave[i];
-            if(!v){
-                continue;
-            }
-            var isHidden = false;
-            if ($scope.hiddenDevices.indexOf(v.id) !== -1) {
-                isHidden = true;
-            }
-            devices[v.id] = isHidden;
-        }
+    $scope.setVisibility = function(deviceId,visibility) {
+       var input = {
+           id: deviceId,
+           visibility: visibility
+       };
         
          $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-            dataFactory.postApi('hide_devices', {data: devices}).then(function(response) {
+            dataFactory.putApi('devices', deviceId, input).then(function(response) {
                   myCache.remove('devices');
                    $scope.loadData();
                    $scope.loading = false;
@@ -1906,6 +1880,56 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
             });
        
     };
+
+    /**
+     * DEPRECATED
+     * Add/Remove device in list
+     */
+//    $scope.hiddenList = function(deviceId, checked) {
+//        if (checked) {
+//            if ($scope.hiddenDevices.indexOf(deviceId) === -1) {
+//                $scope.hiddenDevices.push(deviceId);
+//            }
+//        } else {
+//            for (var i = 0; i <= $scope.hiddenDevices.length; i++) {
+//                var v = $scope.hiddenDevices[i];
+//                if (v === deviceId) {
+//                    $scope.hiddenDevices.splice(i, 1);
+//                }
+//            }
+//        }
+//    };
+
+    /**
+     * DEPRECATED
+     * Update devices with status hidden
+     */
+//    $scope.handleHidden = function() {
+//        var devices = [];
+//        for (var i = 0; i <= $scope.devices.zwave.length; i++) {
+//            var v = $scope.devices.zwave[i];
+//            if(!v){
+//                continue;
+//            }
+//            var isHidden = false;
+//            if ($scope.hiddenDevices.indexOf(v.id) !== -1) {
+//                isHidden = true;
+//            }
+//            devices[v.id] = isHidden;
+//        }
+//        
+//         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+//            dataFactory.postApi('hide_devices', {data: devices}).then(function(response) {
+//                  myCache.remove('devices');
+//                   $scope.loadData();
+//                   $scope.loading = false;
+//            }, function(error) {
+//                alert($scope._t('error_update_data'));
+//                $scope.loading = false;
+//                dataService.logError(error);
+//            });
+//       
+//    };
 
     /// --- Private functions --- ///
     /**
