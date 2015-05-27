@@ -33,9 +33,9 @@
                     <td class="network-zwave-device">
                         <a href="" ng-click="goEdit[v.id] = !goEdit[v.id]"><strong>(#{{v.id}}) {{v.title}}</strong> <i class="fa fa-pencil text-primary"></i></a>
                         <div  class="network-zwave-device bcg-active" ng-repeat="e in v.elements | orderBy:'title':false" ng-class="e.visibility ? 'false': 'true'">
-                            <div ng-if="!goEdit[v.id]">
+                             <!--<div ng-if="!goEdit[v.id]">
                                 <span ng-bind="e.title"></span>
-                            </div>
+                            </div> -->
                             <div class="form-inline" ng-if="goEdit[v.id]" ng-init="devicesModel[e.id] = e.title">
                                 <div>
                                      <div ng-bind="devicesModel[e.id]"></div>
@@ -46,6 +46,7 @@
                                          ng-bind="e.visibility ? _t('hide_device') : _t('show_device')"
                                          ng-class="e.visibility ? 'btn-info' : 'btn-danger'"> </button>
                                  </div>
+                                <br />
                              </div>
                            
                             
