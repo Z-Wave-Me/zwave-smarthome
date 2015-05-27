@@ -1023,18 +1023,24 @@ http://codepen.io/MattIn4D/pen/LiKFC
 
 /* Footer
 -------------------------------------------------- */
-/* line 3, sass/globals/_footer.scss */
-#footer {
+/* line 4, sass/globals/_footer.scss */
+#mobile_footer .navbar {
+  z-index: 1020 !important;
+}
+
+/* line 10, sass/globals/_footer.scss */
+#footer, #mobile_footer {
+  position: relative;
   text-align: center;
   height: 60px;
 }
-/* line 7, sass/globals/_footer.scss */
-#footer .navbar {
+/* line 14, sass/globals/_footer.scss */
+#footer .navbar, #mobile_footer .navbar {
   border-top: solid 4px #DDDDDD;
   background-color: #E9E9E9;
 }
-/* line 11, sass/globals/_footer.scss */
-#footer .container {
+/* line 18, sass/globals/_footer.scss */
+#footer .container, #mobile_footer .container {
   margin-top: 10px;
 }
 
@@ -2448,493 +2454,19 @@ padding-right: 5px;
 =            Bootstrap 3 Media Queries             =
 ==================================================*/
 /*==========  Detected mobile devices  ==========*/
-@media (max-width: 2000px) {
-  /* line 42, sass/globals/_responsive.scss */
-  .show-on-mobile {
-    display: none;
-  }
-
-  /* line 45, sass/globals/_responsive.scss */
-  .is-mobile-true {
-   /* Body
-  -------------------------------------------------- */
-    /* Typo
-    -------------------------------------------------- */
-    /* Images
-    -------------------------------------------------- */
-    /* tables
-    -------------------------------------------------- */
-    /* Forms
-    -------------------------------------------------- */
-    /* Tabs
-    -------------------------------------------------- */
-    /* Elements
-    -------------------------------------------------- */
-    /*    .element-camera-control{
-            text-align: right;
-        }*/
-    /* Home */
-    /* Eevents
-    -------------------------------------------------- */
-    /* Apps
-    -------------------------------------------------- */
-    /*    .nav-tabs{
-            display: block;
-            text-align: center;
-            padding: 0 25%;
-        }*/
-    /* Apps detail
-    -------------------------------------------------- */
-    /* Rooms
-    -------------------------------------------------- */
-    /* Profiles
-    -------------------------------------------------- */
-    /* Admin
-    -------------------------------------------------- */
-    /* Devices
-    -------------------------------------------------- */
-  }
-  /* line 58, sass/settings/_mixins.scss */
-  .is-mobile-true .hide-on-mobile {
-    display: none !important;
-  }
-  /* line 61, sass/settings/_mixins.scss */
-  .is-mobile-true .show-on-mobile {
-    display: block;
-  }
-  /* line 64, sass/settings/_mixins.scss */
-  .is-mobile-true .header-logo {
-    display: none !important;
-  }
-  /* line 67, sass/settings/_mixins.scss */
-  .is-mobile-true .navbar-toggle {
-    margin-right: 30px !important;
-  }
-  /* line 70, sass/settings/_mixins.scss */
-  .is-mobile-true .container {
-    max-width: none;
-    width: 100%;
-  }
-  /* line 77, sass/settings/_mixins.scss */
-  .is-mobile-true .navbar-visible-in .header-logo img {
-    max-height: 20px !important;
-    max-width: 40px !important;
-  }
-  /* line 82, sass/settings/_mixins.scss */
-  .is-mobile-true .navbar-visible-in a {
-    padding: 0 8px !important;
-  }
-  /* line 88, sass/settings/_mixins.scss */
-  .is-mobile-true .navbar {
-    margin-bottom: 0;
-  }
-  /* line 92, sass/settings/_mixins.scss */
-  .is-mobile-true .navi-time {
-    padding-left: 6px !important;
-    font-size: 90%;
-  }
-  /* line 96, sass/settings/_mixins.scss */
-  .is-mobile-true .row {
-    padding-right: 0;
-    margin-right: 0;
-  }
-  /* line 101, sass/settings/_mixins.scss */
-  .is-mobile-true .col-sm-6 {
-    padding-right: 0;
-  }
-  /* line 104, sass/settings/_mixins.scss */
-  .is-mobile-true #nav_collapse .dropdown-menu {
-    position: static;
-    float: none;
-    width: auto;
-    margin-top: 0;
-    background-color: transparent;
-    border: 0;
-    box-shadow: none;
-    display: block !important;
-  }
-  /* line 114, sass/settings/_mixins.scss */
-  .is-mobile-true .navbar-collapse {
-    padding-right: 25px;
-    padding-left: 25px;
-  }
-  /* line 119, sass/settings/_mixins.scss */
-  .is-mobile-true .navbar-toggle {
-    padding: 5px 6px;
-  }
-  /* line 122, sass/settings/_mixins.scss */
-  .is-mobile-true .navbar-inverse .navbar-toggle:hover, .is-mobile-true .navbar-inverse .navbar-toggle:focus {
-    background-color: transparent;
-  }
-  /* line 126, sass/settings/_mixins.scss */
-  .is-mobile-true .navbar-inverse .navbar-toggle {
-    border-color: #5d5d5d;
-  }
-  /* line 130, sass/settings/_mixins.scss */
-  .is-mobile-true .navbar-inverse .navbar-toggle .icon-bar {
-    background-color: #5d5d5d;
-  }
-  /* line 133, sass/settings/_mixins.scss */
-  .is-mobile-true .navbar-inverse .navbar-collapse, .is-mobile-true .navbar-inverse .navbar-form {
-    border-color: #DDDDDD;
-  }
-  /* line 136, sass/settings/_mixins.scss */
-  .is-mobile-true .navbar-inverse .navbar-nav .open .dropdown-menu .divider {
-    background-color: #d3d3d3;
-  }
-  /* line 139, sass/settings/_mixins.scss */
-  .is-mobile-true .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a, .is-mobile-true .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:hover, .is-mobile-true .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:focus {
-    color: #5d5d5d;
-    background-color: #DDDDDD;
-  }
-  /* line 143, sass/settings/_mixins.scss */
-  .is-mobile-true #main_content {
-    padding: 0;
-  }
-  /* line 146, sass/settings/_mixins.scss */
-  .is-mobile-true .navbar .divider-vertical {
-    display: none;
-  }
-  /* line 150, sass/settings/_mixins.scss */
-  .is-mobile-true .dropdown > .dropdown-menu::before,
-  .is-mobile-true .dropdown > .dropdown-menu::after,
-  .is-mobile-true .navbar .divider-vertical {
-    display: none;
-  }
-  /* line 158, sass/settings/_mixins.scss */
-  .is-mobile-true h1 {
-    font-size: 18px;
-  }
-  /* line 162, sass/settings/_mixins.scss */
-  .is-mobile-true #main_content {
-    margin-top: 60px;
-    margin-bottom: 10px;
-  }
-  /* line 166, sass/settings/_mixins.scss */
-  .is-mobile-true .mobile-padding {
-    padding: 0 15px;
-  }
-  /* line 168, sass/settings/_mixins.scss */
-  .is-mobile-true .mobile-padding .page-header {
-    padding: 0;
-  }
-  /* line 173, sass/settings/_mixins.scss */
-  .is-mobile-true .page-header {
-    margin: 0 0 10px 0;
-    padding: 0 15px;
-  }
-  /* line 177, sass/settings/_mixins.scss */
-  .is-mobile-true .row-page {
-    margin: 0;
-  }
-  /* line 181, sass/settings/_mixins.scss */
-  .is-mobile-true .app-shadow {
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-  }
-  /* line 186, sass/settings/_mixins.scss */
-  .is-mobile-true .app-border {
-    border: 0;
-  }
-  /* line 194, sass/settings/_mixins.scss */
-  .is-mobile-true .page-subtitle {
-    padding: 0 10px;
-    font-size: 16px;
-    font-weight: bold;
-    border-bottom: solid 1px #DDDDDD;
-    padding-bottom: 10px;
-  }
-  /* line 211, sass/settings/_mixins.scss */
-  .is-mobile-true .table-report tbody tr.bcg-active.true {
-    background-color: #fff;
-  }
-  /* line 215, sass/settings/_mixins.scss */
-  .is-mobile-true .table-report tbody tr.bcg-active.false {
-    background-color: #f2e8e8 !important;
-  }
-  /* line 224, sass/settings/_mixins.scss */
-  .is-mobile-true .form-control-sm {
-    width: 100%;
-  }
-  /* line 227, sass/settings/_mixins.scss */
-  .is-mobile-true .btn-new-item {
-    float: none !important;
-  }
-  /* line 230, sass/settings/_mixins.scss */
-  .is-mobile-true .btn-name {
-    display: none;
-  }
-  /* line 234, sass/settings/_mixins.scss */
-  .is-mobile-true .td-action .btn {
-    padding: 4px 8px;
-    font-size: 13px;
-  }
-  /* line 241, sass/settings/_mixins.scss */
-  .is-mobile-true .btn-sm, .is-mobile-true .btn-group-sm > .btn {
-    padding: 4px 8px;
-    font-size: 12px;
-    line-height: 1.4;
-    border-radius: 3px;
-  }
-  /* line 253, sass/settings/_mixins.scss */
-  .is-mobile-true .widget-entry {
-    width: 100%;
-  }
-  /* line 256, sass/settings/_mixins.scss */
-  .is-mobile-true .widget-block {
-    margin: 0;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-    border-bottom: solid 1px #ccc;
-  }
-  /* line 263, sass/settings/_mixins.scss */
-  .is-mobile-true .widget-block-in {
-    /*   border: solid 1px red;*/
-    height: auto;
-    text-align: left;
-    padding: 10px;
-  }
-  /* line 269, sass/settings/_mixins.scss */
-  .is-mobile-true .widget-image {
-    top: 10px;
-    left: 5px;
-    width: 42px;
-    height: 42px;
-  }
-  /* line 275, sass/settings/_mixins.scss */
-  .is-mobile-true .widget-body {
-    margin-top: -15px;
-    padding: 0 5px 15px 50px;
-  }
-  /* line 278, sass/settings/_mixins.scss */
-  .is-mobile-true .widget-body .entry-title {
-    padding-right: 40px;
-  }
-  /* line 285, sass/settings/_mixins.scss */
-  .is-mobile-true #modal_camera .modal-dialog {
-    margin: 0;
-  }
-  /* line 287, sass/settings/_mixins.scss */
-  .is-mobile-true #modal_camera .modal-dialog .modal-body {
-    padding: 0;
-  }
-  /* line 301, sass/settings/_mixins.scss */
-  .is-mobile-true .home-widget .widget-entry .widget-block-in {
-    border: 0;
-    padding: 0;
-  }
-  /* line 311, sass/settings/_mixins.scss */
-  .is-mobile-true .event-date {
-    display: block;
-  }
-  /* line 317, sass/settings/_mixins.scss */
-  .is-mobile-true .tabs-container {
-    text-align: center;
-  }
-  /* line 325, sass/settings/_mixins.scss */
-  .is-mobile-true .nav-tabs-3 {
-    text-align: center;
-  }
-  /* line 328, sass/settings/_mixins.scss */
-  .is-mobile-true .tab-name {
-    display: none;
-  }
-  /* line 331, sass/settings/_mixins.scss */
-  .is-mobile-true .tab-icon {
-    font-size: 20px;
-  }
-  /* line 335, sass/settings/_mixins.scss */
-  .is-mobile-true #table_apps_instance .td-action {
-    width: 40%;
-  }
-  /* line 340, sass/settings/_mixins.scss */
-  .is-mobile-true .app-entry {
-    width: 100%;
-    padding: 0;
-    border-bottom: dotted 1px #d3d3d3;
-    background: #f6f6f6;
-    /* Old browsers */
-    background: -moz-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f6f6f6), color-stop(77%, #ffffff));
-    /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* IE10+ */
-    background: linear-gradient(to bottom, #f6f6f6 0%, #ffffff 77%);
-    /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6f6f6', endColorstr='#ffffff',GradientType=0 );
-    /* IE6-9 */
-  }
-  /* line 346, sass/settings/_mixins.scss */
-  .is-mobile-true .app-entry-in {
-    border: 0;
-    height: auto;
-    text-align: left;
-    padding: 0;
-    background: none;
-  }
-  /* line 355, sass/settings/_mixins.scss */
-  .is-mobile-true .app-image {
-    top: 0;
-    left: 10px;
-    width: 48px;
-    height: 48px;
-  }
-  /* line 361, sass/settings/_mixins.scss */
-  .is-mobile-true .app-body {
-    height: 54px;
-    margin: 0;
-    padding: 0 5px 15px 64px;
-  }
-  /* line 365, sass/settings/_mixins.scss */
-  .is-mobile-true .app-body .entry-title {
-    position: absolute;
-    z-index: 10;
-    padding: 10px 90px 0 0;
-  }
-  /* line 371, sass/settings/_mixins.scss */
-  .is-mobile-true .app-footer {
-    /*        display: block;
-             position: static;*/
-  }
-  /* line 377, sass/settings/_mixins.scss */
-  .is-mobile-true .app-image {
-    /*        width: 100%;*/
-    /*    max-width: 100px;*/
-    margin: 0;
-  }
-  /* line 383, sass/settings/_mixins.scss */
-  .is-mobile-true #table_apps_active .btn {
-    font-size: 12px;
-  }
-  /* line 388, sass/settings/_mixins.scss */
-  .is-mobile-true .app-image-list {
-    max-width: 50px;
-  }
-  /* line 394, sass/settings/_mixins.scss */
-  .is-mobile-true .app-detail-header-in {
-    position: static;
-    padding: 0 15px 15px 15px;
-    background: none;
-  }
-  /* line 398, sass/settings/_mixins.scss */
-  .is-mobile-true .app-detail-header-in .app-detail-img {
-    text-align: center;
-    margin: 0 auto;
-  }
-  /* line 401, sass/settings/_mixins.scss */
-  .is-mobile-true .app-detail-header-in .app-detail-img .app-image-detail {
-    position: static;
-  }
-  /* line 406, sass/settings/_mixins.scss */
-  .is-mobile-true .app-detail-header-in .app-detail-body {
-    padding-left: 0;
-  }
-  /* line 408, sass/settings/_mixins.scss */
-  .is-mobile-true .app-detail-header-in .app-detail-body .page-subtitle {
-    margin-top: 10px;
-    text-align: center;
-  }
-  /* line 413, sass/settings/_mixins.scss */
-  .is-mobile-true .app-detail-header-in .app-detail-control {
-    text-align: center;
-  }
-  /* line 421, sass/settings/_mixins.scss */
-  .is-mobile-true .room-entry {
-    float: left;
-    width: 50%;
-    padding: 0;
-  }
-  /* line 425, sass/settings/_mixins.scss */
-  .is-mobile-true .room-entry .room-in {
-    position: relatvive;
-  }
-  /* line 428, sass/settings/_mixins.scss */
-  .is-mobile-true .room-entry .entry-title {
-    font-size: 12px;
-    position: absolute;
-    text-align: center;
-    left: 0;
-    right: 0;
-  }
-  /* line 435, sass/settings/_mixins.scss */
-  .is-mobile-true .room-entry .entry-title-text {
-    display: none;
-  }
-  /* line 438, sass/settings/_mixins.scss */
-  .is-mobile-true .room-entry .app-border {
-    border: solid 1px #d3d3d3;
-  }
-  /* line 443, sass/settings/_mixins.scss */
-  .is-mobile-true .room-image-big {
-    margin: 24px 0 0 0;
-    max-width: 130px;
-    max-height: 130px;
-  }
-  /* line 450, sass/settings/_mixins.scss */
-  .is-mobile-true #table_cfg_rooms .td-action {
-    width: 30%;
-  }
-  /* line 458, sass/settings/_mixins.scss */
-  .is-mobile-true .profile-entry {
-    float: left;
-    width: 50%;
-  }
-  /* line 461, sass/settings/_mixins.scss */
-  .is-mobile-true .profile-entry .entry-title {
-    font-size: 12px;
-  }
-  /* line 464, sass/settings/_mixins.scss */
-  .is-mobile-true .profile-entry .entry-title-text {
-    display: none;
-  }
-  /* line 473, sass/settings/_mixins.scss */
-  .is-mobile-true #table_cfg_admin .td-action {
-    width: 30%;
-  }
-  /* line 481, sass/settings/_mixins.scss */
-  .is-mobile-true .device-slect-type .vendor-entry {
-    float: left;
-    width: 33.33333%;
-    padding: 0 0 0 15px;
-    margin: 0 0 15px 0;
-  }
-  /* line 489, sass/settings/_mixins.scss */
-  .is-mobile-true .device-manufacturers .col-device-vendor {
-    float: left;
-    width: 33.33333%;
-    padding: 0;
-    margin: 0 0 15px 0;
-  }
-  /* line 496, sass/settings/_mixins.scss */
-  .is-mobile-true .device-manufacturers .vendor-list {
-    width: 100%;
-    margin: 0;
-    border-color: #d3d3d3;
-  }
-  /* line 507, sass/settings/_mixins.scss */
-  .is-mobile-true .vendor-image img {
-    max-width: 70px !important;
-    max-height: 50px !important;
-  }
-  /* line 513, sass/settings/_mixins.scss */
-  .is-mobile-true .device-perex {
-    padding: 10px;
-    border-top: 0 none;
-  }
-  /* line 517, sass/settings/_mixins.scss */
-  .is-mobile-true .col-device {
-    padding: 0;
-    margin: 0 0 20px 0;
-    background-color: #fff;
-  }
+/* line 40, sass/globals/_responsive.scss */
+.show-on-mobile {
+  display: none;
 }
+
+/*@media (max-width: 2000px) {
+    .show-on-mobile{
+        display: none;
+    }
+    .is-mobile-true{
+        @include appMobileLayout();
+    } 
+}*/
 /*==========  Mobile First Method  ==========*/
 /* Custom, iPhone Retina */
 /* Extra Small Devices, Phones */
@@ -2946,12 +2478,12 @@ padding-right: 5px;
 /* Medium Devices, Desktops */
 /* Small Devices, Tablets */
 @media only screen and (max-width: 768px) {
-  /* line 94, sass/globals/_responsive.scss */
+  /* line 96, sass/globals/_responsive.scss */
   .show-on-pc {
     display: none;
   }
 
-  /* line 97, sass/globals/_responsive.scss */
+  /* line 99, sass/globals/_responsive.scss */
   .show-on-mobile {
     display: block !important;
   }
@@ -3505,7 +3037,7 @@ padding-right: 5px;
 /* Custom, iPhone Retina */
 /* Custom, iPhone Retina */
 @media only screen and (min-width: 768px) and (max-width: 992px) {
-  /* line 120, sass/globals/_responsive.scss */
+  /* line 122, sass/globals/_responsive.scss */
   .hide-navi-text {
     display: none !important;
   }

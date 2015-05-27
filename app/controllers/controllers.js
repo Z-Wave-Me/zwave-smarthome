@@ -1835,7 +1835,7 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
         'batteries': [],
         'zwave': []
     };
-
+    $scope.goEdit = [];
     $scope.zWaveDevices = {};
 
     //$scope.hiddenDevices = [];

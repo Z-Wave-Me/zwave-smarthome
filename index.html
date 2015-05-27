@@ -11,13 +11,13 @@
         <link media="screen" type="text/css" rel="stylesheet" href="app/css/font-awesome-4.2.0/css/font-awesome.min.css">
         <!-- App css -->
         <link media="screen" type="text/css" rel="stylesheet" href="app/css/main.css">
-         <!-- App config -->
+        <!-- App config -->
         <script src="app/config.js"></script>
         <!-- jQuery js -->
         <script src="vendor/jquery/jquery-1.11.1.js"></script>
         <!-- Vendors js -->
         <script src="vendor/chartjs/Chart.js"></script>
-         <!-- <script src="vendor/upload/angular-file-upload-shim.js"></script> -->
+        <!-- <script src="vendor/upload/angular-file-upload-shim.js"></script> -->
         <!--  <script src="vendor/gridster/jquery.gridster.js"></script> -->
         <script src="vendor/knob/jquery.knob.js"></script>
         <script src="vendor/bootstrap-switch/bootstrap-switch.js"></script>
@@ -33,18 +33,18 @@
         <!-- Bootstrap js -->
         <script src="vendor/bootstrap/bootstrap.js"></script>
         <!-- XML js -->
-         <!--<script src="vendor/xml/xml2json.js"></script>-->
+        <!--<script src="vendor/xml/xml2json.js"></script>-->
         <!-- App js -->
         <script src="app/app.js"></script>
         <script src="app/services/factories.js"></script>
         <script src="app/services/services.js"></script>
         <script src="app/directives/directives.js"></script>
-         <script src="app/directives/dir-pagination.js"></script>
-         <script src="app/directives/directives-elements.js"></script>
-         <script src="app/directives/tc-angular-chartjs.js"></script>
-         <!--<script src="app/directives/bsSwitch.js"></script>-->
-         <!--<script src="app/directives/angular-slider.js"></script>-->
-         <script src="app/filters/filters.js"></script>
+        <script src="app/directives/dir-pagination.js"></script>
+        <script src="app/directives/directives-elements.js"></script>
+        <script src="app/directives/tc-angular-chartjs.js"></script>
+        <!--<script src="app/directives/bsSwitch.js"></script>-->
+        <!--<script src="app/directives/angular-slider.js"></script>-->
+        <script src="app/filters/filters.js"></script>
         <script src="app/jquery/postrender.js"></script>
         <script src="app/controllers/controllers.js"></script>
         <script src="app/modules/bootstrap-colorpicker-module.js"></script>
@@ -62,7 +62,7 @@
                 <div class="navbar-visible">
                     <div class="navbar-visible-in">
                         <a href="#home" title="{{_t('nav_home')}}" class="header-logo">
-                           <img src="app/img/app-logo.png" class="header-logo" alt="App logo" />
+                            <img src="app/img/app-logo.png" class="header-logo" alt="App logo" />
                         </a>
                         <span class="divider-vertical"></span>
                         <a href="#home" title="{{_t('nav_home')}}" ng-class="isActive('dashboard')"><i class="fa fa-home"></i></a>
@@ -70,8 +70,8 @@
                         <a href="#rooms" title="{{_t('nav_rooms')}}" ng-class="isActive('rooms')"><i class="fa fa-th-large"></i></a>
                         <a href="#events" title="{{_t('nav_events')}}" ng-class="isActive('events')"><i class="fa fa-list-ul"></i></a>
                         <span class="divider-vertical"></span> 
-                         &nbsp;<span id="update_time_tick"></span>
-                         <span class="mobile-icon" ng-if="isMobile"><i class="fa fa-mobile fa-lg"></i></span> 
+                        &nbsp;<span id="update_time_tick"></span>
+                        <span class="mobile-icon" ng-if="isMobile"><i class="fa fa-mobile fa-lg"></i></span> 
                     </div>
                 </div>
                 <div class="navbar-header">
@@ -111,5 +111,13 @@
         <!-- Ang Content Container -->
         <div id="main_content" class="container" ng-view></div>
         <div class="clearfix"></div>
+
+        <div id="mobile_footer" ng-if="isMobile">
+            <div class="navbar navbar-default navbar-fixed-bottom">
+                <div class="container">
+                    &nbsp;
+                </div>
+            </div>
+        </div>
     </body>
 </html>

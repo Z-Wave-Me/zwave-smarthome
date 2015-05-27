@@ -1,7 +1,14 @@
 /* Footer
 -------------------------------------------------- */
-#footer {
+#mobile_footer {
+     .navbar{
+        z-index: 1020 !important;
+    }
+   
     
+}
+#footer,#mobile_footer {
+    position: relative;
     text-align: center;
     height: 60px;
     .navbar{

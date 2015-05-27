@@ -37,15 +37,17 @@
 ==================================================*/
 
 /*==========  Detected mobile devices  ==========*/
-
-@media (max-width: 2000px) {
+.show-on-mobile{
+        display: none;
+    }
+/*@media (max-width: 2000px) {
     .show-on-mobile{
         display: none;
     }
     .is-mobile-true{
         @include appMobileLayout();
     } 
-}
+}*/
 
 
 /*==========  Mobile First Method  ==========*/

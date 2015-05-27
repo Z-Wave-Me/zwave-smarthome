@@ -68,5 +68,13 @@
         <!-- Ang Content Container -->
         <div id="main_content" class="container" ng-view></div>
         <div class="clearfix"></div>
+        
+        <div id="mobile_footer" ng-if="isMobile">
+            <div class="navbar navbar-default navbar-fixed-bottom">
+                <div class="container">
+                    &nbsp;
+                </div>
+            </div>
+        </div>
     </body>
 </html>
