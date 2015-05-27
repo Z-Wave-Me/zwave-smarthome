@@ -221,8 +221,8 @@
 
     /* Forms
     -------------------------------------------------- */
-    .form-control-sm{
-    width: 100%;
+    .form-control-sm,.form-control-md{
+    width: 100% !important;
 }
     .btn-new-item{
         float: none !important;

@@ -245,7 +245,11 @@ fieldset{
 }
 
 .form-control-sm{
-    width: 30%;
+    width: 30% !important;
+}
+
+.form-control-md{
+    width: 50% !important;
 }
 
 .submit-entry{

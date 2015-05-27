@@ -558,41 +558,46 @@ fieldset {
 
 /* line 247, sass/globals/_body.scss */
 .form-control-sm {
-  width: 30%;
+  width: 30% !important;
 }
 
 /* line 251, sass/globals/_body.scss */
+.form-control-md {
+  width: 50% !important;
+}
+
+/* line 255, sass/globals/_body.scss */
 .submit-entry {
   display: block;
   margin: 10px 0 0 0;
 }
 
-/* line 255, sass/globals/_body.scss */
+/* line 259, sass/globals/_body.scss */
 .form-control-hidden {
   display: none !important;
 }
 
-/* line 258, sass/globals/_body.scss */
+/* line 262, sass/globals/_body.scss */
 .form-control-img {
   cursor: pointer;
   border: solid 4px transparent;
 }
 
-/* line 263, sass/globals/_body.scss */
+/* line 267, sass/globals/_body.scss */
 .control-active {
   border: solid 4px black !important;
 }
 
 /* Alpaca
 -------------------------------------------------- */
-/* line 269, sass/globals/_body.scss */
+/* line 273, sass/globals/_body.scss */
 .alpaca-message-invalidValueOfEnum {
   display: none !important;
 }
 
 /* Page
 -------------------------------------------------- */
-/* line 275, sass/globals/_body.scss */
+/* line 279, sass/globals/_body.scss */
 #main_content {
   margin-top: 70px;
   margin-bottom: 20px;
@@ -600,13 +605,13 @@ fieldset {
 
 /* Modal
 -------------------------------------------------- */
-/* line 281, sass/globals/_body.scss */
+/* line 285, sass/globals/_body.scss */
 .modal-tooltip {
   width: 40%;
   /* or whatever you wish */
 }
 
-/* line 284, sass/globals/_body.scss */
+/* line 288, sass/globals/_body.scss */
 .modal-vertical-centered {
   position: fixed;
   top: 15% !important;
@@ -630,7 +635,7 @@ vertical-align: middle;
 }*/
 /* Tooltip
 -------------------------------------------------- */
-/* line 309, sass/globals/_body.scss */
+/* line 313, sass/globals/_body.scss */
 .tooltip-inner {
   background-color: #F6F6F6;
   color: #000;
@@ -639,28 +644,28 @@ vertical-align: middle;
   text-align: left;
 }
 
-/* line 316, sass/globals/_body.scss */
+/* line 320, sass/globals/_body.scss */
 .tooltip-arrow {
   border-bottom-color: #f2f2f2;
 }
 
 /* Pagination
 -------------------------------------------------- */
-/* line 322, sass/globals/_body.scss */
+/* line 326, sass/globals/_body.scss */
 .pagination > li > a, .pagination > li > span {
   color: #DA131F;
   background-color: #FFF;
   border: 1px solid #d3d3d3;
 }
 
-/* line 328, sass/globals/_body.scss */
+/* line 332, sass/globals/_body.scss */
 .pagination > li > a:hover, .pagination > li > a:focus, .pagination > li > span:hover, .pagination > li > span:focus {
   color: #DA131F;
   background-color: #F6F6F6;
   border-color: #d3d3d3;
 }
 
-/* line 334, sass/globals/_body.scss */
+/* line 338, sass/globals/_body.scss */
 .pagination > .disabled > a, .pagination > .disabled > a:hover, .pagination > .disabled > a:focus {
   color: #777777;
   background-color: #FFF;
@@ -668,7 +673,7 @@ vertical-align: middle;
   cursor: not-allowed;
 }
 
-/* line 341, sass/globals/_body.scss */
+/* line 345, sass/globals/_body.scss */
 .pagination > .active > a, .pagination > .active > a:hover {
   color: #fff;
   background-color: #d3d3d3;
@@ -678,7 +683,7 @@ vertical-align: middle;
 /* Absolute Center CSS Spinner
 http://codepen.io/MattIn4D/pen/LiKFC
 -------------------------------------------------- */
-/* line 350, sass/globals/_body.scss */
+/* line 354, sass/globals/_body.scss */
 #loading {
   position: fixed;
   z-index: 999;
@@ -692,7 +697,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   right: 0;
   text-align: center;
 }
-/* line 362, sass/globals/_body.scss */
+/* line 366, sass/globals/_body.scss */
 #loading .loading-in {
   margin: auto;
   padding: 10px;
@@ -704,7 +709,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 
 /* Transparent Overlay */
-/* line 374, sass/globals/_body.scss */
+/* line 378, sass/globals/_body.scss */
 .loading-spin:before {
   content: '';
   display: block;
@@ -716,7 +721,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-/* line 385, sass/globals/_body.scss */
+/* line 389, sass/globals/_body.scss */
 .loading-fade {
   opacity: 0;
   -webkit-transition: opacity 4s;
@@ -2689,8 +2694,8 @@ padding-right: 5px;
   /* Forms
   -------------------------------------------------- */
   /* line 224, sass/settings/_mixins.scss */
-  .form-control-sm {
-    width: 100%;
+  .form-control-sm, .form-control-md {
+    width: 100% !important;
   }
 
   /* line 227, sass/settings/_mixins.scss */

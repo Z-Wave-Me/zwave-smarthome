@@ -1,5 +1,7 @@
 {   
-     "hide_selected_devices": "Hide selected devices",
+     "rename_device": "Rename device",
+    "show_device": "Sshow device",
+    "hide_device": "Hide device",
      "local_access": "Lokaler Zugriff",
     "lb_email": "Email",
    "remote_access_manage": "Verwaltung des Fernzugriffes",

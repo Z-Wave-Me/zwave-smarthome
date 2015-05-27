@@ -1,5 +1,8 @@
 {
     "missing": "---",
+     "rename_device": "Rename device",
+    "show_device": "Sshow device",
+    "hide_device": "Hide device",
      "hide_selected_devices": "Hide selected devices",
      "local_access": "Local Access",
      "lb_email": "E-mail",

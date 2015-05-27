@@ -1838,7 +1838,7 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
     $scope.goEdit = [];
     $scope.zWaveDevices = {};
 
-    //$scope.hiddenDevices = [];
+    $scope.devicesModel = [];
     /**
      * Set tab
      */
@@ -1866,6 +1866,30 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
        var input = {
            id: deviceId,
            visibility: visibility
+       };
+        
+         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+            dataFactory.putApi('devices', deviceId, input).then(function(response) {
+                  myCache.remove('devices');
+                   $scope.loadData();
+                   $scope.loading = false;
+            }, function(error) {
+                alert($scope._t('error_update_data'));
+                $scope.loading = false;
+                dataService.logError(error);
+            });
+       
+    };
+    
+     /**
+     * Set device visibility
+     */
+    $scope.renameDevice = function(deviceId,title) {
+       var input = {
+           id: deviceId,
+           metrics: {
+               title: title
+           }
        };
         
          $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
