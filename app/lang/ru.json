@@ -1,7 +1,8 @@
 {
     "missing": "---",
+     "devices_to_room": "Assign all devices to room",
      "rename_device": "Rename device",
-    "show_device": "Sshow device",
+    "show_device": "Show device",
     "hide_device": "Hide device",
      "hide_selected_devices": "Hide selected devices",
      "local_access": "Local Access",

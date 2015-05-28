@@ -331,6 +331,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                 'updateTime': v.updateTime,
                 'onDashboard': onDashboard,
                 'imgTrans': false,
+                'visibility': v.visibility,
                 'hasHistory': (v.hasHistory === true ? true : false), 
                 'cfg': {
                     'zwaveId': zwaveId,

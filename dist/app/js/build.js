@@ -5184,6 +5184,12 @@ myApp.config(['$routeProvider',
                     templateUrl: 'app/views/network/network.html',
                     requireLogin: true
                 }).
+                //Network config
+                when('/network/config/:nodeId', {
+                    templateUrl: 'app/views/network/config.html',
+                    requireLogin: true,
+                     roles: [1]
+                }).
                 //Device configuration
                 when('/deviceconfig/:nodeId', {
                     templateUrl: 'app/views/expertui/configuration.html',
@@ -6197,6 +6203,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                 'updateTime': v.updateTime,
                 'onDashboard': onDashboard,
                 'imgTrans': false,
+                'visibility': v.visibility,
                 'hasHistory': (v.hasHistory === true ? true : false), 
                 'cfg': {
                     'zwaveId': zwaveId,
@@ -9606,7 +9613,10 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
     $scope.goEdit = [];
     $scope.zWaveDevices = {};
 
-    $scope.devicesModel = [];
+//    $scope.modelName = [];
+//    $scope.modelRoom = {};
+//
+//    $scope.rooms = [];
     /**
      * Set tab
      */
@@ -9614,6 +9624,8 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
         $scope.activeTab = tabId;
         $cookies.tab_network = tabId;
     };
+
+
     /**
      * Load data
      */
@@ -9621,57 +9633,94 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
         dataService.showConnectionSpinner();
         dataFactory.getApi('devices').then(function(response) {
             zwaveApiData(response.data.data.devices);
+            loadLocations();
+
         }, function(error) {
             dataService.showConnectionError(error);
         });
     };
     $scope.loadData();
-    
-     /**
+
+    /**
+     * DEPRECATED
+     * Assign devices to room
+     */
+//    $scope.devicesToRoom = function(roomId, devices) {
+//        if (!roomId) {
+//            return;
+//        }
+//        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+//        for (var i = 0; i <= devices.length; i++) {
+//            var v = devices[i];
+//            if (!v) {
+//                continue;
+//            }
+//            var input = {
+//                id: v.id,
+//                location: roomId
+//            };
+//            dataFactory.putApi('devices', v.id, input).then(function(response) {
+//            }, function(error) {
+//                alert($scope._t('error_update_data'));
+//                $scope.loading = false;
+//                dataService.logError(error);
+//                return;
+//            });
+//        }
+//        myCache.remove('devices');
+//        $scope.loadData();
+//        $scope.loading = false;
+//        return;
+//
+//    };
+
+    /**
+     * DEPRECATED
      * Set device visibility
      */
-    $scope.setVisibility = function(deviceId,visibility) {
-       var input = {
-           id: deviceId,
-           visibility: visibility
-       };
-        
-         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-            dataFactory.putApi('devices', deviceId, input).then(function(response) {
-                  myCache.remove('devices');
-                   $scope.loadData();
-                   $scope.loading = false;
-            }, function(error) {
-                alert($scope._t('error_update_data'));
-                $scope.loading = false;
-                dataService.logError(error);
-            });
-       
-    };
-    
-     /**
+//    $scope.setVisibility = function(deviceId, visibility) {
+//        var input = {
+//            id: deviceId,
+//            visibility: visibility
+//        };
+//
+//        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+//        dataFactory.putApi('devices', deviceId, input).then(function(response) {
+//            myCache.remove('devices');
+//            $scope.loadData();
+//            $scope.loading = false;
+//        }, function(error) {
+//            alert($scope._t('error_update_data'));
+//            $scope.loading = false;
+//            dataService.logError(error);
+//        });
+//
+//    };
+
+    /**
+     * DEPRECATED
      * Set device visibility
      */
-    $scope.renameDevice = function(deviceId,title) {
-       var input = {
-           id: deviceId,
-           metrics: {
-               title: title
-           }
-       };
-        
-         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-            dataFactory.putApi('devices', deviceId, input).then(function(response) {
-                  myCache.remove('devices');
-                   $scope.loadData();
-                   $scope.loading = false;
-            }, function(error) {
-                alert($scope._t('error_update_data'));
-                $scope.loading = false;
-                dataService.logError(error);
-            });
-       
-    };
+//    $scope.renameDevice = function(deviceId, title) {
+//        var input = {
+//            id: deviceId,
+//            metrics: {
+//                title: title
+//            }
+//        };
+//
+//        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+//        dataFactory.putApi('devices', deviceId, input).then(function(response) {
+//            myCache.remove('devices');
+//            $scope.loadData();
+//            $scope.loading = false;
+//        }, function(error) {
+//            alert($scope._t('error_update_data'));
+//            $scope.loading = false;
+//            dataService.logError(error);
+//        });
+//
+//    };
 
     /**
      * DEPRECATED
@@ -9724,6 +9773,17 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
 //    };
 
     /// --- Private functions --- ///
+    /**
+     * Load locations
+     */
+    function loadLocations() {
+        dataFactory.getApi('locations').then(function(response) {
+            $scope.rooms = response.data.data;
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    }
+    ;
     /**
      * Get zwaveApiData
      */
@@ -9791,6 +9851,7 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
                         }
                         var obj = {};
                         obj['id'] = v.id;
+                        obj['visibility'] = v.visibility;
                         obj['nodeId'] = nodeId;
                         obj['nodeName'] = node.data.givenName.value || 'Device ' + '_' + k,
                                 obj['title'] = v.metrics.title;
@@ -9890,6 +9951,140 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
 
     }
     ;
+});
+/**
+ * Profile controller
+ */
+myAppController.controller('NetworkConfigController', function($scope, $routeParams, $filter, dataFactory, dataService, myCache) {
+    $scope.zWaveDevice = [];
+    $scope.devices = [];
+    $scope.dev = [];
+    $scope.rooms = [];
+    $scope.modelRoom;
+
+    /**
+     * Load data
+     */
+    $scope.loadData = function(nodeId) {
+        dataService.showConnectionSpinner();
+        dataFactory.getApi('devices').then(function(response) {
+            zwaveApiData(nodeId, response.data.data.devices);
+            loadLocations();
+
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    };
+    $scope.loadData($routeParams.nodeId);
+    
+     /**
+     * Assign devices to room
+     */
+    $scope.devicesToRoom = function(roomId, devices) { 
+        if (!roomId) {
+            return;
+        }
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        for (var i = 0; i <= devices.length; i++) {
+            var v = devices[i];
+            if (!v) {
+                continue;
+            }
+            var input = {
+                id: v.id,
+                location: roomId
+            };
+            dataFactory.putApi('devices', v.id, input).then(function(response) {
+            }, function(error) {
+                alert($scope._t('error_update_data'));
+                $scope.loading = false;
+                dataService.logError(error);
+                return;
+            });
+        }
+        myCache.remove('devices');
+        $scope.loadData();
+        $scope.loading = false;
+        return;
+
+    };
+    /**
+     * Update device
+     */
+    $scope.updateDevice = function(input) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        dataFactory.putApi('devices', input.id, input).then(function(response) {
+            myCache.remove('devices');
+            $scope.loadData($routeParams.nodeId);
+            $scope.loading = false;
+        }, function(error) {
+            alert($scope._t('error_update_data'));
+            $scope.loading = false;
+            dataService.logError(error);
+        });
+
+    };
+
+    /// --- Private functions --- ///
+    /**
+     * Load locations
+     */
+    function loadLocations() {
+        dataFactory.getApi('locations').then(function(response) {
+            $scope.rooms = response.data.data;
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    }
+    ;
+    /**
+     * Get zwaveApiData
+     */
+    function zwaveApiData(nodeId, devices) {
+        dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
+            dataService.updateTimeTick();
+            var node = ZWaveAPIData.devices[nodeId];
+            if (!node) {
+                return;
+            }
+
+            $scope.zWaveDevice = {
+                id: nodeId,
+                title: node.data.givenName.value || 'Device ' + '_' + nodeId
+            };
+            if ($scope.devices.length > 0) {
+                $scope.devices = angular.copy([]);
+            }
+            var findZwaveStr = "ZWayVDev_zway_";
+            angular.forEach(devices, function(v, k) {
+//                var cmd;
+//                var nodeId;
+//                var iId;
+//                var ccId;
+                if (v.id.indexOf(findZwaveStr) === -1) {
+                    return;
+                }
+                var cmd = v.id.split(findZwaveStr)[1].split('-');
+                var zwaveId = cmd[0];
+                var iId = cmd[1];
+                var ccId = cmd[2];
+                if (zwaveId == nodeId) {
+                    var obj = {};
+                    obj['id'] = v.id;
+                    obj['visibility'] = v.visibility;
+                    obj['level'] = $filter('toInt')(v.metrics.level);
+                    obj['metrics'] = v.metrics;
+                    $scope.devices.push(obj);
+                }
+
+            });
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    }
+    ;
+
+
 });
 /**
  * Profile controller

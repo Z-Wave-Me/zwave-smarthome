@@ -1,6 +1,7 @@
 {   
+     "devices_to_room": "Assign all devices to room",
      "rename_device": "Rename device",
-    "show_device": "Sshow device",
+    "show_device": "Show device",
     "hide_device": "Hide device",
      "local_access": "Lokaler Zugriff",
     "lb_email": "Email",

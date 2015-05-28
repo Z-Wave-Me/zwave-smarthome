@@ -113,6 +113,12 @@ myApp.config(['$routeProvider',
                     templateUrl: 'app/views/network/network.html',
                     requireLogin: true
                 }).
+                //Network config
+                when('/network/config/:nodeId', {
+                    templateUrl: 'app/views/network/config.html',
+                    requireLogin: true,
+                     roles: [1]
+                }).
                 //Device configuration
                 when('/deviceconfig/:nodeId', {
                     templateUrl: 'app/views/expertui/configuration.html',
