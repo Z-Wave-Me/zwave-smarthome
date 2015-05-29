@@ -1,10 +1,12 @@
 {
     "missing": "---",
+    "automated_konfiguration": "Automated konfiguration",
+     "manual_konfiguration": "Manual konfiguration",
      "hardware_konfiguration": "Hardware konfiguration",
     "ok": "OK",
     "devices_to_room": "Assign all elements to room",
     "rename_element": "Rename element",
-    "show_element": "Show element",
+    "show_element": "Unhide element",
     "hide_element": "Hide element",
      "local_access": "Local Access",
      "lb_email": "E-mail",
