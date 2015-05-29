@@ -2285,12 +2285,28 @@ padding-right: 5px;
   font-size: 12px;
 }
 
-/* line 12, sass/modules/_network.scss */
+/* line 11, sass/modules/_network.scss */
+.network-zwave-title {
+  font-weight: bold;
+}
+
+/* line 14, sass/modules/_network.scss */
+.network-hidden-true {
+  color: #a8a8a8;
+}
+
+/* line 17, sass/modules/_network.scss */
+.network-zwave-element {
+  padding-left: 10px;
+  margin-bottom: 5px;
+}
+
+/* line 22, sass/modules/_network.scss */
 .network-zwave-title {
   cursor: pointer;
 }
 
-/* line 16, sass/modules/_network.scss */
+/* line 26, sass/modules/_network.scss */
 .network-block {
   margin-bottom: 20px;
 }

@@ -471,7 +471,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
         if (!angular.isObject(data, colors)) {
             return null;
         }
-        var currTime = (Math.round(+new Date() / 1000) - 3600);
+        var currTime = (Math.round(+new Date() / 1000) - 86400);
         var out = {
             labels: [],
             datasets: [{
@@ -482,10 +482,13 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                     data: []
                 }]
         };
+        var cnt = 0;
         angular.forEach(data, function(v, k) {
-            var time = $filter('date')(v.t, 'H:mm');
+            cnt++;
+            var time = $filter('date')(v.id * 1000, 'H:mm');
             //if (v.id > currTime && out.labels.indexOf(time) === -1) {
-            if (v.id > currTime) {
+            //if (v.id > currTime && (cnt % 2)) {
+            if (v.id > currTime && (cnt % 2)) {
                 out.labels.push(time);
                 //out.labels.push($filter('date')(v.timestamp,'dd.MM.yyyy H:mm'));
                 out.datasets[0].data.push(v.l);
