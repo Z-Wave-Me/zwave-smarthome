@@ -2080,7 +2080,7 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
                         obj['permanently_hidden'] = v.permanently_hidden;
                         obj['nodeId'] = nodeId;
                         obj['nodeName'] = node.data.givenName.value || 'Device ' + '_' + k,
-                        obj['title'] = v.metrics.title;
+                                obj['title'] = v.metrics.title;
                         obj['level'] = $filter('toInt')(v.metrics.level);
                         obj['metrics'] = v.metrics;
                         obj['messages'] = [];
@@ -2202,11 +2202,11 @@ myAppController.controller('NetworkConfigController', function($scope, $routePar
         });
     };
     $scope.loadData($routeParams.nodeId);
-    
-     /**
+
+    /**
      * Assign devices to room
      */
-    $scope.devicesToRoom = function(roomId, devices) { 
+    $scope.devicesToRoom = function(roomId, devices) {
         if (!roomId) {
             return;
         }
@@ -2276,8 +2276,33 @@ myAppController.controller('NetworkConfigController', function($scope, $routePar
 
             $scope.zWaveDevice = {
                 id: nodeId,
-                title: node.data.givenName.value || 'Device ' + '_' + nodeId
+                title: node.data.givenName.value || 'Device ' + '_' + nodeId,
+                cfg: []
             };
+            // Has config file
+            if (angular.isDefined(node.data.ZDDXMLFile) && node.data.ZDDXMLFile.value != '') {
+                if ($scope.zWaveDevice['cfg'].indexOf('config') === -1) {
+                    $scope.zWaveDevice['cfg'].push('config');
+                }
+            }
+            // Has wakeup
+            if (0x84 in node.instances[0].commandClasses) { 
+                if ($scope.zWaveDevice['cfg'].indexOf('wakeup') === -1) {
+                    $scope.zWaveDevice['cfg'].push('wakeup');
+                }
+            }
+            // Has SwitchAll
+            if (0x27 in node.instances[0].commandClasses) {
+                if ($scope.zWaveDevice['cfg'].indexOf('switchall') === -1) {
+                    $scope.zWaveDevice['cfg'].push('switchall');
+                }
+            }
+            // Has protection
+            if (0x75 in node.instances[0].commandClasses) {
+                if ($scope.zWaveDevice['cfg'].indexOf('protection') === -1) {
+                    $scope.zWaveDevice['cfg'].push('protection'); 
+                }
+            }
             if ($scope.devices.length > 0) {
                 $scope.devices = angular.copy([]);
             }
@@ -2297,6 +2322,7 @@ myAppController.controller('NetworkConfigController', function($scope, $routePar
                 if (zwaveId == nodeId) {
                     var obj = {};
                     obj['id'] = v.id;
+                    obj['permanently_hidden'] = v.permanently_hidden;
                     obj['visibility'] = v.visibility;
                     obj['level'] = $filter('toInt')(v.metrics.level);
                     obj['metrics'] = v.metrics;
