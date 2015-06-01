@@ -53,25 +53,34 @@
 
                 </div>
             </fieldset>
-            <fieldset>
+            <fieldset  ng-if="user.role == 1">
                 <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_tags')"></span></h3>
-                <div>
-                    <div class="form-group_">
+                
+                    <div class="form-group_ clearfix">
                         <div class="btn-device" id="tag_{{$index}}" ng-repeat="t in input.tags">{{t}} 
                             <a href="" ng-click="removeTag($index)"><i class="fa fa-times text-danger"></i></a>
                         </div>
                     </div>
-                    <div class="form-group form-inline">
-                        <input name="add_tag" id="add_tag" type="text" class="form-control" value="" placeholder="{{_t('lb_add_tag')}}" ng-model="addNewTag" />
-                        <button type="button" class="btn btn-default" ng-click="addTag(addNewTag)"><i class="fa fa-plus text-success"></i></button>
+                <br />
+                
+                    <div class="form-group_">
+                    <div class="btn-group dropup form-inline">
+                       <input name="add_tag" id="add_tag" type="text" class="form-control" value="" placeholder="{{_t('lb_add_tag')}}" ng-model="searchText" ng-keyup="searchMe(searchText);" data-toggle="dropdown" />
+                        <button type="button" class="btn btn-default btn-tag" ng-click="addTag(searchText)"><i class="fa fa-plus text-success"></i></button>
+                        <ul class="dropdown-menu" ng-if="autoCompletePanel">
+                            <li href="" ng-click="addTag(v)" ng-repeat="v in suggestions"><a href=""><span ng-bind="v"></span> <i class="fa fa-plus text-success"></i></a></li>
+                        </ul>
+                       
                     </div>
                 </div>
+
+
             </fieldset>
-                <!-- Submit -->
-                <div class="submit-entry">
-                    <button type="submit" class="btn btn-primary" ng-bind="_t('lb_save')"></button>
-                    <button type="button" class="btn btn-default" ng-bind="_t('lb_cancel')" bb-go-back></button>
-                </div>
+            <!-- Submit -->
+            <div class="submit-entry">
+                <button type="submit" class="btn btn-primary" ng-bind="_t('lb_save')"></button>
+                <button type="button" class="btn btn-default" ng-bind="_t('lb_cancel')" bb-go-back></button>
+            </div>
         </form>
     </div>
 

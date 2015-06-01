@@ -136,16 +136,22 @@
     margin: 0 5px;
 }
 
+/* Element detail
+----------------------------------------------------*/
+.btn-tag{
+    float: none !important;
+    border-radius: 4px !important;
+}
 
 /* Home widget
 -------------------------------------------------- */
-.home-widget{
+/*.home-widget{
     .widget-entry{
         padding: 0;
 
         .widget-block{
             margin: 0 !important;
-            /*              border: solid 1px #e2e2e2;*/
+                          border: solid 1px #e2e2e2;
         }
     }
 }
@@ -155,7 +161,7 @@
 
 .hidden-sensor-multilevel-linear{}
 
-.hidden-camera{}
+.hidden-camera{}*/
 
 /* OpenWeather widget
 ----------------------------------------------------*/

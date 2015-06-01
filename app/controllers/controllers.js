@@ -122,36 +122,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
  * Test controller
  */
 myAppController.controller('TestController', function($scope, $routeParams, $filter, $location, $log, $cookies, $timeout, dataFactory, dataService) {
-    $scope.page = 1;
-    $scope.test = [];
-    $scope.data = [];
-    $scope.collection = [];
-    for (var i = 1; i <= 300; i++) {
-        $scope.test.push(i);
-    }
-
-    dataFactory.getApi('devices').then(function(response) {
-        for (var i = 1; i <= response.data.data.devices.length; i++) {
-            $scope.data.push(response.data.data.devices[i]);
-            $scope.collection.push($scope.data.slice(0, 50));
-        }
-//      $scope.data = response.data.data.devices;
-//             $scope.collection.push($scope.data.slice(0,50));
-        console.log($scope.data)
-
-    }, function(error) {
-        dataService.showConnectionError(error);
-    });
-
-    $scope.loadMore = function() {
-        $scope.page += 1;
-        console.log($scope.page)
-        $scope.collection.push($scope.data.slice($scope.collection.length + 1, 50));
-//    var last = $scope.images[$scope.collection.length - 1];
-//    for(var i = 1; i <= 30; i++) {
-//      $scope.collection.push(last + i); 
-//    }
-    };
+    
 });
 /**
  * Element controller
@@ -377,6 +348,12 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
 myAppController.controller('ElementDetailController', function($scope, $routeParams, $window, dataFactory, dataService, myCache) {
     $scope.input = [];
     $scope.rooms = [];
+    $scope.tagList = [];
+    $scope.searchText = '';
+    $scope.suggestions = [];
+    $scope.autoCompletePanel = false;
+    
+   
     /**
      * Load data into collection
      */
@@ -400,14 +377,54 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
     $scope.loadData($routeParams.id);
 
     /**
+     * Load tag list
+     */
+    $scope.loadTagList = function() {
+        dataService.showConnectionSpinner();
+        dataFactory.getApi('devices').then(function(response) {
+            angular.forEach(response.data.data.devices, function(v, k) {
+                if (v.tags) {
+                    angular.forEach(v.tags, function(t, kt) {
+                        if ($scope.tagList.indexOf(t) === -1) {
+                            $scope.tagList.push(t);
+                        }
+                       
+                    });
+                }
+            });
+
+        }, function(error) {
+            alert($scope._t('error_load_data'));
+            dataService.showConnectionError(error); 
+        });
+    };
+    $scope.loadTagList();
+    
+     
+    
+    $scope.itemsSelectedArr = [];
+    //$scope.itemsArr = [];
+    
+    $scope.searchMe = function(search) {
+        $scope.suggestions = [];
+        $scope.autoCompletePanel = false;
+        if (search.length > 2) {
+            var foundText = containsText($scope.tagList,search);
+            $scope.autoCompletePanel = (foundText) ? true : false;
+        }
+    };
+    
+
+    /**
      * Add tag to list
      */
     $scope.addTag = function(tag) {
+        $scope.searchText = '';
+        $scope.autoCompletePanel = false;
         if (!tag || $scope.input.tags.indexOf(tag) > -1) {
             return;
         }
         $scope.input.tags.push(tag);
-        $scope.addNewTag = null;
         return;
     };
     /**
@@ -415,6 +432,7 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
      */
     $scope.removeTag = function(index) {
         $scope.input.tags.splice(index, 1);
+        $scope.autoCompletePanel = false;
     };
 
     /**
@@ -502,6 +520,23 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
         });
         return;
     }
+    
+    /// --- Private functions --- ///
+    /**
+     * Load locations
+     */
+    function containsText(n,search) {
+        var gotText = false;
+        for (var i in n) {
+            var re = new RegExp(search, "ig");
+            var s = re.test(n[i]);
+            if (s) {
+                $scope.suggestions.push(n[i]);
+                gotText = true;
+            }
+        }
+        return gotText;
+    };
 });
 /**
  * Event controller
@@ -1298,7 +1333,7 @@ myAppController.controller('DeviceController', function($scope, $routeParams, da
 /**
  * Device controller
  */
-myAppController.controller('IncludeController', function($scope, $routeParams, $timeout, $interval, $filter,dataFactory, dataService, myCache) {
+myAppController.controller('IncludeController', function($scope, $routeParams, $timeout, $interval, $filter, dataFactory, dataService, myCache) {
     $scope.apiDataInterval = null;
     $scope.includeDataInterval = null;
     $scope.device = {
@@ -1314,9 +1349,9 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
     $scope.hasBattery = false;
     $scope.inclusionError = false;
     $scope.clearStepStatus = false;
-    
+
     $scope.nodeId = null;
-     $scope.updateDevices = false;
+    $scope.updateDevices = false;
     $scope.zWaveDevice = [];
     $scope.devices = [];
     $scope.dev = [];
@@ -1419,7 +1454,7 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
                     //var ZWaveAPIData = response.data.joined;
                     //var ZWaveAPIData = response;
                     var nodeId = $scope.includedDeviceId;
-                     var node = ZWaveAPIData.devices[nodeId];
+                    var node = ZWaveAPIData.devices[nodeId];
                     if (!node) {
                         return;
                     }
@@ -1470,7 +1505,7 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
                         $scope.nodeId = nodeId;
                         $scope.loadLocations();
                         $scope.loadElements(nodeId);
-                        
+
 
                     } else {
                         $scope.checkInterview = true;
@@ -1486,14 +1521,14 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
 
         }
     });
-    
-     /**
+
+    /**
      * Watch for last excluded device
      */
     $scope.$watch('updateDevices', function() {
-        if($scope.nodeId){
+        if ($scope.nodeId) {
             $scope.updateDevices = false;
-           $scope.loadElements($scope.nodeId);
+            $scope.loadElements($scope.nodeId);
         }
     });
 
@@ -1510,7 +1545,7 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
         });
 
     };
-    
+
     /**
      * Load data
      */
@@ -1524,7 +1559,7 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
             dataService.showConnectionError(error);
         });
     };
-    
+
     /**
      * Load locations
      */
@@ -1536,7 +1571,7 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
         });
     }
     ;
-   
+
 
     /**
      * Assign devices to room
@@ -1588,7 +1623,7 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
     };
 
     /// --- Private functions --- ///
-    
+
     /**
      * Get zwaveApiData
      */
@@ -1612,7 +1647,7 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
                 }
             }
             // Has wakeup
-            if (0x84 in node.instances[0].commandClasses) { 
+            if (0x84 in node.instances[0].commandClasses) {
                 if ($scope.zWaveDevice['cfg'].indexOf('wakeup') === -1) {
                     $scope.zWaveDevice['cfg'].push('wakeup');
                 }
@@ -1626,7 +1661,7 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
             // Has protection
             if (0x75 in node.instances[0].commandClasses) {
                 if ($scope.zWaveDevice['cfg'].indexOf('protection') === -1) {
-                    $scope.zWaveDevice['cfg'].push('protection'); 
+                    $scope.zWaveDevice['cfg'].push('protection');
                 }
             }
             if ($scope.devices.length > 0) {
@@ -2390,7 +2425,7 @@ myAppController.controller('NetworkConfigController', function($scope, $routePar
                 }
             }
             // Has wakeup
-            if (0x84 in node.instances[0].commandClasses) { 
+            if (0x84 in node.instances[0].commandClasses) {
                 if ($scope.zWaveDevice['cfg'].indexOf('wakeup') === -1) {
                     $scope.zWaveDevice['cfg'].push('wakeup');
                 }
@@ -2404,7 +2439,7 @@ myAppController.controller('NetworkConfigController', function($scope, $routePar
             // Has protection
             if (0x75 in node.instances[0].commandClasses) {
                 if ($scope.zWaveDevice['cfg'].indexOf('protection') === -1) {
-                    $scope.zWaveDevice['cfg'].push('protection'); 
+                    $scope.zWaveDevice['cfg'].push('protection');
                 }
             }
             if ($scope.devices.length > 0) {

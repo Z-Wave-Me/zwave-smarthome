@@ -382,7 +382,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     function updateDeviceLevel(widgetId, v) {
         var level = $filter('numberFixedLen')(v.metrics.level);
         var val;
-        if (level) {
+        if (level !== undefined) {
             switch (v.deviceType) {
                 case 'switchMultilevel':
                     val = $filter('getMaxLevel')(level);
