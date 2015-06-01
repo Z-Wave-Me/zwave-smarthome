@@ -1,8 +1,8 @@
 {
     "missing": "---",
-    "automated_konfiguration": "Automated konfiguration",
-     "manual_konfiguration": "Manual konfiguration",
-     "hardware_konfiguration": "Hardware konfiguration",
+    "automated_konfiguration": "Automated configuration",
+     "manual_konfiguration": "Manual configuration",
+     "hardware_konfiguration": "Hardware configuration",
     "ok": "OK",
     "devices_to_room": "Assign all elements to room",
     "rename_element": "Rename element",
