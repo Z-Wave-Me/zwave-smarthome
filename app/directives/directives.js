@@ -252,12 +252,15 @@ myApp.directive('infiniteScroll', [
         };
     }
 ]);
-myApp.directive('ngsearchtext', function () {
+/**
+ * Key event directive
+ */
+myApp.directive('bbKeyEvent', function () {
     return function (scope, element, attrs) {
         element.bind("keyup", function (event) {
             if (event.which !== 13) {
                 scope.$apply(function () {
-                    scope.$eval(attrs.ngsearchtext);
+                    scope.$eval(attrs.bbKeyEvent);
                 });
 
                 event.preventDefault();

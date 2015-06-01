@@ -65,7 +65,7 @@
                 
                     <div class="form-group_">
                     <div class="btn-group dropup form-inline">
-                       <input name="add_tag" id="add_tag" type="text" class="form-control" value="" placeholder="{{_t('lb_add_tag')}}" ng-model="searchText" ng-keyup="searchMe(searchText);" data-toggle="dropdown" />
+                       <input name="add_tag" id="add_tag" type="text" class="form-control" value="" placeholder="{{_t('lb_add_tag')}}" ng-model="searchText" bb-key-event="searchMe(searchText);" data-toggle="dropdown" />
                         <button type="button" class="btn btn-default btn-tag" ng-click="addTag(searchText)"><i class="fa fa-plus text-success"></i></button>
                         <ul class="dropdown-menu" ng-if="autoCompletePanel">
                             <li href="" ng-click="addTag(v)" ng-repeat="v in suggestions"><a href=""><span ng-bind="v"></span> <i class="fa fa-plus text-success"></i></a></li>
