@@ -2,8 +2,6 @@ var config_data = {
     'cfg': {
         //Application name
         'app_name': 'HAUI',
-        // Application logo
-        'app_logo': 'app-logo.png',
         // Application version
         'app_version': '1.0.0',
         // Application type: web/app
