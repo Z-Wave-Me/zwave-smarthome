@@ -24,16 +24,23 @@
             </h3>
                 <div>
                         <input type="text" name="fdf" class="form-control form-control-md" ng-model="dev[e.id].metrics.title" value="{{dev[e.id].metrics.title}}" />
-                         <button class="btn btn-primary" ng-click="updateDevice(dev[e.id])" ng-bind="_t('rename_device')"></button> 
+                         <button class="btn btn-primary" ng-click="updateDevice(dev[e.id])" ng-bind="_t('rename_element')"></button> 
                          <button class="btn" 
-                             ng-click="updateDevice({id: e.id,visibility: e.visibility ? false : true})" 
-                             ng-bind="e.visibility ? _t('hide_device') : _t('show_device')"
-                             ng-class="e.visibility ? 'btn-info' : 'btn-danger'"> </button>
+                             ng-click="updateDevice({id: e.id,permanently_hidden: e.permanently_hidden ? false : true})" 
+                             ng-bind="e.permanently_hidden ? _t('show_element') : _t('hide_element')"
+                             ng-class="e.permanently_hidden ? 'btn-danger' : 'btn-info'"> </button>
                  </div>
             </div>
         </fieldset>
+        <fieldset ng-if="zWaveDevice.cfg.length > 0">
+            <div class="form-group form-inline">
+                <a class="btn btn-primary" href="#deviceconfig/{{zWaveDevice.id}}">
+                           <i class="fa fa-wrench"></i> <span class="btn-name" ng-bind="_t('hardware_konfiguration')"></span>
+                       </a>
+            </div>
+        </fieldset>
         <div class="submit-entry">
-            <button class="btn btn-default" ng-bind="_t('lb_cancel')" bb-go-back></button>
+            <button class="btn btn-default" ng-bind="_t('ok')" bb-go-back></button>
         </div>
     </form>
 </div>

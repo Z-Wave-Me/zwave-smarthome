@@ -1,5 +1,6 @@
 <!-- Include -->
 <div ng-controller="IncludeController">
+     <bb-loader></bb-loader> 
    <!-- <p class="text-center">
         <a href="#devices/zwave"><i class="fa fa-chevron-circle-left fa-lg"></i> <span ng-bind="_t('btn_back')"></span></a>
 
@@ -84,7 +85,7 @@
                         <strong ng-hide_="controllerState == 1 || includedDeviceId" ng-bind="_t('lb_inclusion_progress')"></strong>
                         <div ng-show="!inclusionError">
                             <div class="alert alert-warning" ng-show="controllerState == 1"><i class="fa fa-spinner fa-spin"></i> <strong ng-bind="_t('lb_ready_include')"></strong> <span ng-bind="device.data.inc"></span></div>
-                            <div class="alert alert-warning" ng-show="deviceFound"><i class="fa fa-spinner fa-spin"></i> <span ng-bind="_t('lb_new_device_found')"></span></div>
+                            <div class="alert alert-warning" ng-show="deviceFound"><i class="fa fa-spinner fa-spin"></i> <span ng-bind="_t('lb_new_device_found')"></span> <span>(#{{includedDeviceId}})</span></div>
                         </div>
                     </td>
                     <td>
@@ -97,9 +98,9 @@
                 <tr>
                     <td><span class="badge badge-number">4</span></td>
                     <td>
-                        <strong ng-hide_="lastIncludedDevice" ng-bind="_t('lb_configuration')"></strong>
+                        <strong ng-hide_="lastIncludedDevice" ng-bind="_t('automated_konfiguration')"></strong>
                         <div ng-show="!inclusionError">
-                            <div class="alert alert-warning" ng-show="checkInterview"><i class="fa fa-spinner fa-spin"></i> <strong ng-bind="_t('configuring_device')"></strong></div>
+                            <div class="alert alert-warning" ng-show="checkInterview"><i class="fa fa-spinner fa-spin"></i> <strong ng-bind="_t('configuring_device')"></strong> <span>(#{{includedDeviceId}})</span></div>
                             <div class="alert alert-success" ng-show="lastIncludedDevice"><i class="fa fa-check"></i> <strong ng-bind="_t('lb_new_device_configured')"></strong>:  <span ng-bind="lastIncludedDevice"></span></div>
                             
                         </div>
@@ -113,6 +114,55 @@
                         <i class="fa fa-check fa-2x text-success" ng-show="(!clearStepStatus || !inclusionError) && lastIncludedDevice"></i> 
                         <i class="fa fa-times fa-2x text-danger" ng-show="inclusionError && !clearStepStatus"></i>
                     </td>
+                </tr>
+                 <!-- 5 -->
+                <tr>
+                    <td><span class="badge badge-number">5</span></td>
+                    <td colspan="2">
+                        <strong ng-hide_="lastIncludedDevice" ng-bind="_t('manual_konfiguration')"></strong>
+                            <form name="form_network_config" id="form_profile" class="form form-page" ng-if="nodeId" novalidate>
+                                 <!--<p>(#{{zWaveDevice.id}}) {{zWaveDevice.title}}</p>-->
+                                <fieldset ng-if="rooms">
+                                    <!-- Rooms -->
+                                    <div class="form-group form-inline">
+                                        <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('devices_to_room')"></span></h3>
+                                        <select class="form-control" ng-model="modelRoom">
+                                            <option value="">------</option>
+                                            <option ng-repeat="v in rooms" ng-selected_="input.location == v.id" value="{{v.id}}" ng-bind="v.title"></option>
+                                        </select>
+                                        <button class="btn btn-primary" ng-click="devicesToRoom(modelRoom, devices)" ng-bind="_t('lb_save')"></button> 
+
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                <div class="form-group form-inline" ng-repeat="e in devices | orderBy:'title':false" ng-init="dev[e.id] = e">
+
+                                    <h3>
+                                        <img id="widget_img_{{v.id}}" class="report-img" ng-src="{{e.metrics.icon|getElementIcon:e:e.level}}" alt="img" />
+                                         <span ng-bind="dev[e.id].metrics.title"></span>
+                                    </h3>
+                                        <div>
+                                                <input type="text" name="fdf" class="form-control form-control-md" ng-model="dev[e.id].metrics.title" value="{{dev[e.id].metrics.title}}" />
+                                                 <button class="btn btn-primary" ng-click="updateDevice(dev[e.id])" ng-bind="_t('rename_element')"></button> 
+                                                 <button class="btn" 
+                                                     ng-click="updateDevice({id: e.id,permanently_hidden: e.permanently_hidden ? false : true})" 
+                                                     ng-bind="e.permanently_hidden ? _t('show_element') : _t('hide_element')"
+                                                     ng-class="e.permanently_hidden ? 'btn-danger' : 'btn-info'"> </button>
+                                         </div>
+                                    </div>
+                                </fieldset>
+                                <fieldset ng-if="zWaveDevice.cfg.length > 0">
+                                    <div class="form-group form-inline">
+                                        <a class="btn btn-primary" href="#deviceconfig/{{zWaveDevice.id}}">
+                                                   <i class="fa fa-wrench"></i> <span class="btn-name" ng-bind="_t('hardware_konfiguration')"></span>
+                                               </a>
+                                    </div>
+                                </fieldset>
+                                <!--<div class="submit-entry">
+                                    <button class="btn btn-default" ng-bind="_t('ok')" bb-go-back></button>
+                                </div>-->
+                            </form>
+                     </td>
                 </tr>
             </tbody>
         </table>

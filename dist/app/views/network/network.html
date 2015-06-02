@@ -26,24 +26,28 @@
         <div class="tab-pane" id="module_zwave" ng-class="activeTab == 'zwave' ? 'active' : ''">
             <table class="table table-condensed table-report">
             <tbody>
-                 <tr ng-repeat="v in zWaveDevices | orderBy:'id':false" id="row_zwave_{{v.id}}" ng-if="v.elements">
-                    <td class="td-img">
+                 <tr ng-repeat="v in zWaveDevices | orderBy:'title':false" id="row_zwave_{{v.id}}" ng-if="v.elements">
+                    <!--<td class="td-img">
                         <img class="report-img" ng-src="{{v.icon|getElementIcon:e}}" alt="{{ v.title}}" />
-                    </td>
+                    </td>-->
                     <td class="network-zwave-device">
-                        <a ng-href="#network/config/{{v.id}}" ng-if="user.role == 1"><strong>(#{{v.id}}) {{v.title}}</strong> <i class="fa fa-pencil text-primary"></i></a>
-                        <span ng-if="user.role > 1"><strong>(#{{v.id}}) {{v.title}}</strong></span>
-                        
-                        <div class="network-zwave-device" ng-repeat="e in v.elements | orderBy:'title':false">
-                            <div class="bcg-active" ng-class="e.visibility ? 'true': 'false'">
-                                <span ng-bind="e.title"></span>
-                            </div>
+                         <!--<a ng-href="#network/config/{{v.id}}" ng-if="user.role == 1"><strong>(#{{v.id}}) {{v.title}}</strong> <i class="fa fa-pencil text-primary"></i></a>
+                        <span ng-if="user.role > 1"><strong>(#{{v.id}}) {{v.title}}</strong></span>-->
+                        <a href="" class="network-zwave-title" ng-if="user.role == 1" ng-click="goEdit[v.id] = !goEdit[v.id]">
+                            <i class="fa" ng-class="goEdit[v.id] ? 'fa-chevron-up': 'fa-chevron-down'"></i> {{v.title}} (#{{v.id}}) 
+                        </a>
+                        <div class="network-zwave-element" ng-repeat="e in v.elements | orderBy:'title':false" ng-if="goEdit[v.id]">
+                            <img class="report-img" ng-src="{{e.metrics.icon|getElementIcon:e:e.level}}" alt="img" /> 
+                                <span class="network-hidden-{{e.permanently_hidden}}" ng-bind="e.title"></span>
                           </div>
                     </td>
                     <td class="td-action" ng-if="user.role == 1">
-                       <a class="btn btn-default" href="#deviceconfig/{{v.id}}" ng-if="v.cfg.length > 0">
+                        <a class="btn btn-default" href="#network/config/{{v.id}}" ng-if_="v.cfg.length > 0">
                            <i class="fa fa-cog text-primary"></i> <span class="btn-name" ng-bind="_t('lb_configuration')"></span>
                        </a>
+                       <!--<a class="btn btn-default" href="#deviceconfig/{{v.id}}" ng-if="v.cfg.length > 0">
+                           <i class="fa fa-cog text-primary"></i> <span class="btn-name" ng-bind="_t('lb_configuration')"></span>
+                       </a>-->
                     </td>
                 </tr>
             </tbody>
