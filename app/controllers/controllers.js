@@ -769,6 +769,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
  */
 myAppController.controller('AppController', function($scope, $window, $cookies, $timeout, $log, dataFactory, dataService, myCache) {
     $scope.instances = [];
+    $scope.hasImage = [];
     $scope.modules = [];
     $scope.modulesIds = [];
     $scope.moduleImgs = [];
@@ -801,7 +802,6 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
      * Load local modules
      */
     $scope.loadModules = function(filter) {
-        console.log(filter)
         // var filter;
 //        if ($scope.user.role === 1 && $scope.user.expert_view) {
 //            filter = null;
@@ -1710,7 +1710,7 @@ myAppController.controller('RoomController', function($scope, dataFactory, dataS
      */
     $scope.loadData = function() {
         dataService.showConnectionSpinner();
-        dataFactory.getApi('locations_').then(function(response) {
+        dataFactory.getApi('locations').then(function(response) {
             $scope.collection = response.data.data;
             if (Object.keys($scope.collection).length < 1) {
                 $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: $scope._t('no_data')};
