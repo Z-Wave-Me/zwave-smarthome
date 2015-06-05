@@ -1710,7 +1710,7 @@ myAppController.controller('RoomController', function($scope, dataFactory, dataS
      */
     $scope.loadData = function() {
         dataService.showConnectionSpinner();
-        dataFactory.getApi('locations').then(function(response) {
+        dataFactory.getApi('locations_').then(function(response) {
             $scope.collection = response.data.data;
             if (Object.keys($scope.collection).length < 1) {
                 $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: $scope._t('no_data')};
@@ -2858,10 +2858,11 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
         keepme: false,
         default_ui: 1
     };
-    if ($scope.user) {
-        $location.path('/elements');
-        return;
-    }
+//    if ($scope.user) {
+//        $location.path('/elements');
+//        return;
+//    }
+    $scope.user = undefined;
     $cookies.user = undefined;
     /**
      * Login language
@@ -2898,7 +2899,7 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
             }
             alert(message);
             $scope.loading = false;
-            dataService.logError(error.status);
+            dataService.logError(error);
         });
     };
     if ($routeParams.login && $routeParams.password) {
