@@ -19,7 +19,7 @@ var config_data = {
             'hide_devices': 'ZAutomation/api/v1/hidedevices',
             'profiles': 'ZAutomation/api/v1/profiles',
             'profiles_auth_update': 'ZAutomation/api/v1/auth/update',
-            'remote_access': 'ZAutomation/api/v1/remote',
+            //'remote_access': 'ZAutomation/api/v1/remote',
             'locations': 'ZAutomation/api/v1/locations',
             'notifications': 'ZAutomation/api/v1/notifications',
             'modules': 'ZAutomation/api/v1/modules',

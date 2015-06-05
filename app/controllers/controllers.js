@@ -122,7 +122,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
  * Test controller
  */
 myAppController.controller('TestController', function($scope, $routeParams, $filter, $location, $log, $cookies, $timeout, dataFactory, dataService) {
-    
+
 });
 /**
  * Element controller
@@ -352,8 +352,8 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
     $scope.searchText = '';
     $scope.suggestions = [];
     $scope.autoCompletePanel = false;
-    
-   
+
+
     /**
      * Load data into collection
      */
@@ -388,32 +388,32 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
                         if ($scope.tagList.indexOf(t) === -1) {
                             $scope.tagList.push(t);
                         }
-                       
+
                     });
                 }
             });
 
         }, function(error) {
             alert($scope._t('error_load_data'));
-            dataService.showConnectionError(error); 
+            dataService.showConnectionError(error);
         });
     };
     $scope.loadTagList();
-    
-     
-    
+
+
+
     $scope.itemsSelectedArr = [];
     //$scope.itemsArr = [];
-    
+
     $scope.searchMe = function(search) {
         $scope.suggestions = [];
         $scope.autoCompletePanel = false;
         if (search.length > 2) {
-            var foundText = containsText($scope.tagList,search);
+            var foundText = containsText($scope.tagList, search);
             $scope.autoCompletePanel = (foundText) ? true : false;
         }
     };
-    
+
 
     /**
      * Add tag to list
@@ -520,12 +520,12 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
         });
         return;
     }
-    
+
     /// --- Private functions --- ///
     /**
      * Load locations
      */
-    function containsText(n,search) {
+    function containsText(n, search) {
         var gotText = false;
         for (var i in n) {
             var re = new RegExp(search, "ig");
@@ -536,7 +536,8 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
             }
         }
         return gotText;
-    };
+    }
+    ;
 });
 /**
  * Event controller
@@ -2646,13 +2647,8 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
         interval: 2000
 
     };
-    $scope.remote = {
-        id: null,
-        password: null,
-        access: true,
-        support: false
-
-    };
+    $scope.remoteAccess = false;
+    $scope.newRemoteAccessPassword = null;
     $scope.newPassword = null;
     /**
      * Load data
@@ -2672,6 +2668,21 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
     if ($scope.id > 0) {
         $scope.loadData($scope.id);
     }
+
+    /**
+     * Load Remote access data
+     */
+    $scope.loadRemoteAccess = function() {
+        dataFactory.getApi('instances', '/RemoteAccess').then(function(response) {
+            //if(response.data.data.active === true){
+                 $scope.remoteAccess = response.data.data[0];
+            //}
+           }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    };
+
+    $scope.loadRemoteAccess();
 
     /**
      * Assign device to list
@@ -2725,9 +2736,12 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
     /**
      * Remote access
      */
-    $scope.remoteAccess = function(remote) {
+    $scope.putRemoteAccess = function(input,newRemoteAccessPassword) {
+        if(newRemoteAccessPassword){
+            input.params.pass = newRemoteAccessPassword;
+        }
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataFactory.postApi('remote_access', remote).then(function(response) {
+        dataFactory.putApi('instances', input.id, input).then(function(response) {
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
 
         }, function(error) {
@@ -2802,7 +2816,7 @@ myAppController.controller('ReportController', function($scope, $cookies, $locat
         email: null,
         content: null
     };
-    
+
     /**
      * Load ZwaveApiData
      */
@@ -2821,10 +2835,10 @@ myAppController.controller('ReportController', function($scope, $cookies, $locat
      * Load Remote access data
      */
     $scope.loadRemoteAccess = function() {
-        dataFactory.getApi('instances','/RemoteAccess').then(function(response) {
+        dataFactory.getApi('instances', '/RemoteAccess').then(function(response) {
             $scope.remoteAccess = response.data.data;
         }, function(error) {
-           dataService.showConnectionError(error);
+            dataService.showConnectionError(error);
         });
     };
 
