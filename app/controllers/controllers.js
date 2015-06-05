@@ -2891,10 +2891,10 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
         keepme: false,
         default_ui: 1
     };
-//    if ($scope.user) {
-//        $location.path('/elements');
-//        return;
-//    }
+    if ($scope.user) {
+        $location.path('/elements');
+        return;
+    }
     $scope.user = undefined;
     $cookies.user = undefined;
     /**

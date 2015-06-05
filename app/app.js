@@ -212,9 +212,9 @@ myApp.config(function($provide, $httpProvider) {
             },
             // On response failture
             responseError: function(rejection) {
-               if(rejection.status == 401){
-                    $location.path('/');
-                }
+               //if(rejection.status == 401){
+                    //$location.path('/');
+                //}
                 //
                 // Return the promise rejection.
                 return $q.reject(rejection);
@@ -223,7 +223,7 @@ myApp.config(function($provide, $httpProvider) {
     });
 
     // Add the interceptor to the $httpProvider.
-    $httpProvider.interceptors.push('MyHttpInterceptor');
+    //$httpProvider.interceptors.push('MyHttpInterceptor');
 
 });
 
