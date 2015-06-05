@@ -2787,6 +2787,7 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
  */
 myAppController.controller('ReportController', function($scope, $cookies, $location, $window, $timeout, dataFactory, dataService) {
     $scope.ZwaveApiData = false;
+    $scope.remoteAccess = false;
     $scope.input = {
         browser_agent: '',
         browser_version: '',
@@ -2801,6 +2802,10 @@ myAppController.controller('ReportController', function($scope, $cookies, $locat
         email: null,
         content: null
     };
+    
+    /**
+     * Load ZwaveApiData
+     */
     $scope.loadZwaveApiData = function() {
         dataService.showConnectionSpinner();
         dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
@@ -2812,6 +2817,18 @@ myAppController.controller('ReportController', function($scope, $cookies, $locat
     };
 
     $scope.loadZwaveApiData();
+    /**
+     * Load Remote access data
+     */
+    $scope.loadRemoteAccess = function() {
+        dataFactory.getApi('instances','/RemoteAccess').then(function(response) {
+            $scope.remoteAccess = response.data.data;
+        }, function(error) {
+           dataService.showConnectionError(error);
+        });
+    };
+
+    $scope.loadRemoteAccess();
 
     /**
      * Create/Update an item
@@ -2826,14 +2843,16 @@ myAppController.controller('ReportController', function($scope, $cookies, $locat
             input.zwave_vesion = $scope.ZwaveApiData.controller.data.softwareRevisionVersion.value;
             input.controller_info = JSON.stringify($scope.ZwaveApiData.controller.data);
         }
+        if ($scope.remoteAccess) {
+            input.remote_activated = $scope.remoteAccess.params.actStatus ? 1 : 0;
+            input.remote_support_activated = $scope.remoteAccess.params.sshStatus ? 1 : 0;
+            input.remote_id = $scope.remoteAccess.params.userId;
+
+        }
         input.browser_agent = $window.navigator.appCodeName;
         input.browser_version = $window.navigator.appVersion;
         input.browser_info = 'PLATFORM: ' + $window.navigator.platform + '\nUSER-AGENT: ' + $window.navigator.userAgent;
         input.shui_version = $scope.cfg.app_version;
-        //input.remote_activated = 1;
-        //input.remote_support_activated = 1;
-        //input.remote_id = '???';
-
         //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         dataFactory.postReport(input).then(function(response) {
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_send_report')};
