@@ -207,7 +207,8 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
             method: 'get',
             url: cfg.server_url + cfg.api_url + "devices/" + cmd,
              headers: {
-                'Accept-Language': lang 
+                'Accept-Language': lang,
+                'Profile-SID': profileSID
             }
         }).then(function(response) {
             if (response.data.code == 200) {
@@ -345,7 +346,8 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
             method: 'get',
             url: cfg.server_url + cfg.api[api] + '?since=' + updatedTime + (params ? params : ''),
             headers: {
-                'Accept-Language': lang 
+                'Accept-Language': lang,
+                'Profile-SID': profileSID
             }
         }).then(function(response) {
             if (typeof response.data === 'object') {
@@ -367,7 +369,10 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
         var uploadUrl = cfg.server_url + cmd;
         return  $http.post(uploadUrl, data, {
             transformRequest: angular.identity,
-            headers: {'Content-Type': undefined}
+            headers: {
+                'Content-Type': undefined,
+                'Profile-SID': profileSID
+            }
         }).then(function(response) {
             if (typeof response.data === 'object') {
                 return response;
@@ -388,7 +393,8 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
             method: 'get',
             url: cfg.server_url + cfg.zwave_api_url + cmd,
              headers: {
-                'Accept-Language': lang 
+                'Accept-Language': lang ,
+                'Profile-SID': profileSID
             }
         }).then(function(response) {
             //return response;
@@ -550,7 +556,8 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
             url: cfg.post_report_url,
             data: $.param(data),
             headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
+                "Content-Type": "application/x-www-form-urlencoded",
+                'Profile-SID': profileSID
             }
         }).then(function(response) {
             return response;
