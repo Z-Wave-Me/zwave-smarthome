@@ -1,4 +1,9 @@
 {   
+    "error_0": "Unknown error",
+    "error_401": "Unauthorized",
+    "error_403": "Forbidden",
+    "error_404": "Not Found",
+    "error_500": "Internal Server Error",
     "automated_konfiguration": "Automated konfiguration",
      "manual_konfiguration": "Manual konfiguration",
     "hardware_konfiguration": "Hardware konfiguration",
