@@ -5208,12 +5208,16 @@ myApp.config(['$routeProvider',
                     templateUrl: 'app/views/login/logout.html',
                     requireLogin: true
                 }).
+                // Error page
+                when('/error/:code?', {
+                    templateUrl: 'app/views/error.html'
+                }).
                 // Test
                 when('/test', {
                     templateUrl: 'app/views/test.html'
                 }).
                 otherwise({
-                    redirectTo: '/elements/dashboard/1'
+                    redirectTo: '/error/404'
                 });
     }]);
 
@@ -5260,39 +5264,33 @@ myApp.run(function($rootScope, $location, dataService) {
     });
 });
 
-
-
 // Intercepting HTTP calls with AngularJS.
 myApp.config(function($provide, $httpProvider) {
     $httpProvider.defaults.timeout = 5000;
     // Intercept http calls.
-    $provide.factory('MyHttpInterceptor', function($q) {
+    $provide.factory('MyHttpInterceptor', function($q,$location) {
         return {
             // On request success
             request: function(config) {
-                //console.log(config); // Contains the data about the request before it is sent.
-
                 // Return the config or wrap it in a promise if blank.
                 return config || $q.when(config);
             },
             // On request failure
             requestError: function(rejection) {
-                console.log(rejection); // Contains the data about the error on the request.
-
                 // Return the promise rejection.
                 return $q.reject(rejection);
             },
             // On response success
             response: function(response) {
-                //console.log(response.data); // Contains the data from the response.
-
                 // Return the response or promise.
                 return response || $q.when(response);
             },
             // On response failture
             responseError: function(rejection) {
-                // console.log(rejection); // Contains the data about the error.
-
+               //if(rejection.status == 401){
+                    //$location.path('/');
+                //}
+                //
                 // Return the promise rejection.
                 return $q.reject(rejection);
             }
@@ -7919,7 +7917,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
  * Test controller
  */
 myAppController.controller('TestController', function($scope, $routeParams, $filter, $location, $log, $cookies, $timeout, dataFactory, dataService) {
-    
+
 });
 /**
  * Element controller
@@ -8149,8 +8147,8 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
     $scope.searchText = '';
     $scope.suggestions = [];
     $scope.autoCompletePanel = false;
-    
-   
+
+
     /**
      * Load data into collection
      */
@@ -8185,32 +8183,32 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
                         if ($scope.tagList.indexOf(t) === -1) {
                             $scope.tagList.push(t);
                         }
-                       
+
                     });
                 }
             });
 
         }, function(error) {
             alert($scope._t('error_load_data'));
-            dataService.showConnectionError(error); 
+            dataService.showConnectionError(error);
         });
     };
     $scope.loadTagList();
-    
-     
-    
+
+
+
     $scope.itemsSelectedArr = [];
     //$scope.itemsArr = [];
-    
+
     $scope.searchMe = function(search) {
         $scope.suggestions = [];
         $scope.autoCompletePanel = false;
         if (search.length > 2) {
-            var foundText = containsText($scope.tagList,search);
+            var foundText = containsText($scope.tagList, search);
             $scope.autoCompletePanel = (foundText) ? true : false;
         }
     };
-    
+
 
     /**
      * Add tag to list
@@ -8317,12 +8315,12 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
         });
         return;
     }
-    
+
     /// --- Private functions --- ///
     /**
      * Load locations
      */
-    function containsText(n,search) {
+    function containsText(n, search) {
         var gotText = false;
         for (var i in n) {
             var re = new RegExp(search, "ig");
@@ -8333,7 +8331,8 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
             }
         }
         return gotText;
-    };
+    }
+    ;
 });
 /**
  * Event controller
@@ -8566,6 +8565,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
  */
 myAppController.controller('AppController', function($scope, $window, $cookies, $timeout, $log, dataFactory, dataService, myCache) {
     $scope.instances = [];
+    $scope.hasImage = [];
     $scope.modules = [];
     $scope.modulesIds = [];
     $scope.moduleImgs = [];
@@ -8598,7 +8598,6 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
      * Load local modules
      */
     $scope.loadModules = function(filter) {
-        console.log(filter)
         // var filter;
 //        if ($scope.user.role === 1 && $scope.user.expert_view) {
 //            filter = null;
@@ -9103,7 +9102,7 @@ myAppController.controller('DeviceController', function($scope, $routeParams, da
     $scope.loadIpcameras = function() {
         dataService.showConnectionSpinner();
         dataFactory.getApi('modules').then(function(response) {
-            $scope.ipcameraDevices = dataService.getData(response.data.data, {filter: "status", val: "camera"});
+            $scope.ipcameraDevices = dataService.getData(response.data.data, {filter: "state", val: "camera"});
             dataService.updateTimeTick();
         }, function(error) {
             dataService.showConnectionError(error);
@@ -10443,13 +10442,8 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
         interval: 2000
 
     };
-    $scope.remote = {
-        id: null,
-        password: null,
-        access: true,
-        support: false
-
-    };
+    $scope.remoteAccess = false;
+    $scope.newRemoteAccessPassword = null;
     $scope.newPassword = null;
     /**
      * Load data
@@ -10469,6 +10463,21 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
     if ($scope.id > 0) {
         $scope.loadData($scope.id);
     }
+
+    /**
+     * Load Remote access data
+     */
+    $scope.loadRemoteAccess = function() {
+        dataFactory.getApi('instances', '/RemoteAccess').then(function(response) {
+            //if(response.data.data.active === true){
+                 $scope.remoteAccess = response.data.data[0];
+            //}
+           }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    };
+
+    $scope.loadRemoteAccess();
 
     /**
      * Assign device to list
@@ -10522,9 +10531,12 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
     /**
      * Remote access
      */
-    $scope.remoteAccess = function(remote) {
+    $scope.putRemoteAccess = function(input,newRemoteAccessPassword) {
+        if(newRemoteAccessPassword){
+            input.params.pass = newRemoteAccessPassword;
+        }
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataFactory.postApi('remote_access', remote).then(function(response) {
+        dataFactory.putApi('instances', input.id, input).then(function(response) {
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
 
         }, function(error) {
@@ -10584,6 +10596,7 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
  */
 myAppController.controller('ReportController', function($scope, $cookies, $location, $window, $timeout, dataFactory, dataService) {
     $scope.ZwaveApiData = false;
+    $scope.remoteAccess = false;
     $scope.input = {
         browser_agent: '',
         browser_version: '',
@@ -10598,6 +10611,10 @@ myAppController.controller('ReportController', function($scope, $cookies, $locat
         email: null,
         content: null
     };
+
+    /**
+     * Load ZwaveApiData
+     */
     $scope.loadZwaveApiData = function() {
         dataService.showConnectionSpinner();
         dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
@@ -10609,6 +10626,18 @@ myAppController.controller('ReportController', function($scope, $cookies, $locat
     };
 
     $scope.loadZwaveApiData();
+    /**
+     * Load Remote access data
+     */
+    $scope.loadRemoteAccess = function() {
+        dataFactory.getApi('instances', '/RemoteAccess').then(function(response) {
+            $scope.remoteAccess = response.data.data;
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    };
+
+    $scope.loadRemoteAccess();
 
     /**
      * Create/Update an item
@@ -10623,14 +10652,16 @@ myAppController.controller('ReportController', function($scope, $cookies, $locat
             input.zwave_vesion = $scope.ZwaveApiData.controller.data.softwareRevisionVersion.value;
             input.controller_info = JSON.stringify($scope.ZwaveApiData.controller.data);
         }
+        if ($scope.remoteAccess.length > 0) {
+            input.remote_activated = $scope.remoteAccess.params.actStatus ? 1 : 0;
+            input.remote_support_activated = $scope.remoteAccess.params.sshStatus ? 1 : 0;
+            input.remote_id = $scope.remoteAccess.params.userId;
+
+        }
         input.browser_agent = $window.navigator.appCodeName;
         input.browser_version = $window.navigator.appVersion;
         input.browser_info = 'PLATFORM: ' + $window.navigator.platform + '\nUSER-AGENT: ' + $window.navigator.userAgent;
         input.shui_version = $scope.cfg.app_version;
-        //input.remote_activated = 1;
-        //input.remote_support_activated = 1;
-        //input.remote_id = '???';
-
         //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         dataFactory.postReport(input).then(function(response) {
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_send_report')};
@@ -10659,6 +10690,7 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
         $location.path('/elements');
         return;
     }
+    $scope.user = undefined;
     $cookies.user = undefined;
     /**
      * Login language
@@ -10695,7 +10727,7 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
             }
             alert(message);
             $scope.loading = false;
-            dataService.logError(error.status);
+            dataService.logError(error);
         });
     };
     if ($routeParams.login && $routeParams.password) {
@@ -10721,6 +10753,30 @@ myAppController.controller('LogoutController', function($scope, $cookies, $locat
 
     };
     $scope.logout();
+
+});
+/**
+ * Error controller
+ */
+myAppController.controller('ErrorController', function($scope, $routeParams) {
+    $scope.errorCfg = {
+        code: false,
+        icon: 'fa-warning',
+        link: null
+    };
+    /**
+     * Logout proccess
+     */
+    $scope.loadError = function(code) {
+        console.log('error code: ',code)
+        if(code){
+            $scope.errorCfg.code = code;
+        }else{
+           $scope.errorCfg.code = 0; 
+        }
+
+    };
+    $scope.loadError($routeParams.code);
 
 });
 
