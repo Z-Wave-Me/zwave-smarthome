@@ -2973,7 +2973,6 @@ myAppController.controller('ErrorController', function($scope, $routeParams) {
      * Logout proccess
      */
     $scope.loadError = function(code) {
-        console.log('error code: ',code)
         if(code){
             $scope.errorCfg.code = code;
         }else{

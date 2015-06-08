@@ -96,7 +96,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
 
         if (!noCache && cached) {
             var deferred = $q.defer();
-            deferred.resolve(cached); // <-- Can I do this?
+            deferred.resolve(cached);
             return deferred.promise;
         }
 
@@ -129,8 +129,6 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
 			headers: {
                 'Accept-Language': lang,
                 'Profile-SID': profileSID
-                        //'Accept-Encoding': 'gzip, deflate',
-                        //'Allow-compression': 'gz' 
             }
         }).then(function(response) {
             return response;
@@ -147,9 +145,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
             url: cfg.server_url + cfg.api[api] + (id ? '/' + id : '') + (params ? params : ''),
 			headers: {
                 'Accept-Language': lang,
-                'Profile-SID': profileSID
-                        //'Accept-Encoding': 'gzip, deflate',
-                        //'Allow-compression': 'gz' 
+                'Profile-SID': profileSID 
             }
         }).then(function(response) {
             return response;
@@ -168,8 +164,6 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
 			headers: {
                 'Accept-Language': lang,
                 'Profile-SID': profileSID
-                        //'Accept-Encoding': 'gzip, deflate',
-                        //'Allow-compression': 'gz' 
             }
         }).then(function(response) {
             return response;
@@ -187,8 +181,6 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
 			headers: {
                 'Accept-Language': lang,
                 'Profile-SID': profileSID
-                        //'Accept-Encoding': 'gzip, deflate',
-                        //'Allow-compression': 'gz' 
             }
         }).then(function(response) {
             return response;
@@ -245,7 +237,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
 
         if (!noCache && cached) {
             var deferred = $q.defer();
-            deferred.resolve(cached); // <-- Can I do this?
+            deferred.resolve(cached); 
             return deferred.promise;
         }
         // NOT Cached data
@@ -272,7 +264,6 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
     function putCfgXml(data) {
         return $http({
             method: "PUT",
-            //dataType: "text", 
             url: cfg.server_url + cfg.cfg_xml_url,
             data: data,
             headers: {
@@ -317,7 +308,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
 
         if (!noCache && cached) {
             var deferred = $q.defer();
-            deferred.resolve(cached); // <-- Can I do this?
+            deferred.resolve(cached);
             return deferred.promise;
         }
         // NOT Cached data
@@ -352,7 +343,6 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
         }).then(function(response) {
             if (typeof response.data === 'object') {
                 updatedTime = ($filter('hasNode')(response.data, 'data.updateTime') || Math.round(+new Date() / 1000));
-                //console.log('Response update time:' + response.data.data.updateTime)
                 return response;
             } else {// invalid response
                 return $q.reject(response);
@@ -397,7 +387,6 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
                 'Profile-SID': profileSID
             }
         }).then(function(response) {
-            //return response;
             if (typeof response.data === 'object') {
                 return response;
             } else {// invalid response
@@ -418,7 +407,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
 
         if (cached) {
             var deferred = $q.defer();
-            deferred.resolve(cached); // <-- Can I do this?
+            deferred.resolve(cached); 
             return deferred.promise;
         }
         return $http({
@@ -428,7 +417,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
             if (typeof response.data === 'object') {
                 myCache.put(langFile, response);
                 return response;
-            } else {// invalid response
+            } else {
                 return $q.reject(response);
             }
         }, function(response) {// something went wrong
@@ -445,7 +434,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
         var cached = myCache.get(cacheName);
         if (!noCache && cached) {
             var deferred = $q.defer();
-            deferred.resolve(cached); // <-- Can I do this?
+            deferred.resolve(cached);
             return deferred.promise;
         }
         return $http({
@@ -552,7 +541,6 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
     function postReport(data) {
         return $http({
             method: "POST",
-            //dataType: "text", 
             url: cfg.post_report_url,
             data: $.param(data),
             headers: {
