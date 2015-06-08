@@ -1307,7 +1307,7 @@ myAppController.controller('DeviceController', function($scope, $routeParams, da
     $scope.loadIpcameras = function() {
         dataService.showConnectionSpinner();
         dataFactory.getApi('modules').then(function(response) {
-            $scope.ipcameraDevices = dataService.getData(response.data.data, {filter: "status", val: "camera"});
+            $scope.ipcameraDevices = dataService.getData(response.data.data, {filter: "state", val: "camera"});
             dataService.updateTimeTick();
         }, function(error) {
             dataService.showConnectionError(error);
