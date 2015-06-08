@@ -2857,7 +2857,7 @@ myAppController.controller('ReportController', function($scope, $cookies, $locat
             input.zwave_vesion = $scope.ZwaveApiData.controller.data.softwareRevisionVersion.value;
             input.controller_info = JSON.stringify($scope.ZwaveApiData.controller.data);
         }
-        if ($scope.remoteAccess) {
+        if ($scope.remoteAccess.length > 0) {
             input.remote_activated = $scope.remoteAccess.params.actStatus ? 1 : 0;
             input.remote_support_activated = $scope.remoteAccess.params.sshStatus ? 1 : 0;
             input.remote_id = $scope.remoteAccess.params.userId;
@@ -2958,6 +2958,30 @@ myAppController.controller('LogoutController', function($scope, $cookies, $locat
 
     };
     $scope.logout();
+
+});
+/**
+ * Error controller
+ */
+myAppController.controller('ErrorController', function($scope, $routeParams) {
+    $scope.errorCfg = {
+        code: false,
+        icon: 'fa-warning',
+        link: null
+    };
+    /**
+     * Logout proccess
+     */
+    $scope.loadError = function(code) {
+        console.log('error code: ',code)
+        if(code){
+            $scope.errorCfg.code = code;
+        }else{
+           $scope.errorCfg.code = 0; 
+        }
+
+    };
+    $scope.loadError($routeParams.code);
 
 });
 

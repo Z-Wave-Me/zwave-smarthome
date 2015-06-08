@@ -99,7 +99,7 @@ var config_data = {
             'sleeping_room.jpg',
             'living_room.jpg'
         ],
-         // List of the events clicakble levels
+         // List of the clicakble levels
         'events_clickable': [
             'device-info'
         ],

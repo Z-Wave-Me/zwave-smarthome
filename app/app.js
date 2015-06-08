@@ -137,12 +137,16 @@ myApp.config(['$routeProvider',
                     templateUrl: 'app/views/login/logout.html',
                     requireLogin: true
                 }).
+                // Error page
+                when('/error/:code?', {
+                    templateUrl: 'app/views/error.html'
+                }).
                 // Test
                 when('/test', {
                     templateUrl: 'app/views/test.html'
                 }).
                 otherwise({
-                    redirectTo: '/elements/dashboard/1'
+                    redirectTo: '/error/404'
                 });
     }]);
 
