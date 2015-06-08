@@ -5850,8 +5850,8 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
             url: cfg.post_report_url,
             data: $.param(data),
             headers: {
-                "Content-Type": "application/x-www-form-urlencoded",
-                'Profile-SID': profileSID
+                "Content-Type": "application/x-www-form-urlencoded"
+                //'Profile-SID': profileSID 
             }
         }).then(function(response) {
             return response;
