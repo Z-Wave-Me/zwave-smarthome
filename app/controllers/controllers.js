@@ -2603,7 +2603,7 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
     $scope.store = function(input) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         if ($scope.id == 0) {
-            input.password = md5(input.password);
+            input.password = input.password;
         }
 
         dataFactory.storeApi('profiles', input.id, input).then(function(response) {
@@ -2762,7 +2762,7 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         var input = {
             id: $scope.id,
-            password: md5(newPassword)
+            password: newPassword
 
         };
         dataFactory.putApi('profiles_auth_update', input.id, input).then(function(response) {
@@ -2909,7 +2909,7 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
     $scope.login = function(input) {
 
         //dataService.logInfo(input);
-        input.password = md5(input.password);
+        input.password = input.password;
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.logInApi(input).then(function(response) {
             //dataService.logInfo(response, 'User logged in')
