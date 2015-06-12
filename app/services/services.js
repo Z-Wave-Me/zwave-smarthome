@@ -485,17 +485,18 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
         var cnt = 0;
         angular.forEach(data, function(v, k) {
             cnt++;
-            var time = $filter('date')(((v.id + 3600) * 1000), 'H:mm');
+            var time = $filter('date')(((v.id) * 1000), 'H:mm');
             //if (v.id > currTime && out.labels.indexOf(time) === -1) {
             //if (v.id > currTime && (cnt % 2)) {
-            if (v.id > currTime && (cnt % 2)) {
+            if (v.id > currTime && (cnt % 2) === 0) {
                 out.labels.push(time);
                 //out.labels.push($filter('date')(v.timestamp,'dd.MM.yyyy H:mm'));
                 out.datasets[0].data.push(v.l);
             }
 
         });
-        if (out.datasets[0].data.length > 1) {
+        if (out.datasets[0].data.length > 0) {
+            console.log(out.datasets[0].data)
             return out;
         }
         return null;
