@@ -2,23 +2,8 @@
 <div ng-controller="TestController">
     <bb-loader></bb-loader>
     <h1>Test page</h1>
-    
-  {{searchText}}
-        <ul class="sel">
-            <li class="con" ng-repeat="selItem in itemsSelectedArr">{{selItem}} <a href="javascript:void(0);" ng-click="itemSelectedDelet(selItem);">X</a>
-
-            </li>
-            <li>
-                <input type="text" ng-model="searchText" ng-keyup="searchMe(searchText);" />
-            </li>
-        </ul>
-        <br class="clearall" />
-        <br/>
-        <div class="autocompletepanel" ng-show="itemsDisplaPanel">
-            <div ng-repeat="item in itemsArr"> <a href="javascript:void(0);" ng-click="itemSelectedData(item);">{{item}}</a>
-
-            </div>
-        </div>
+    <div ng-if="interviewCfg.stop < interviewCfg.time">Message when WAIT</div>
+    <div ng-if="interviewCfg.stop > interviewCfg.time">Message when STOP</div>
        
 </div><!-- /ng-controller --> 
 <script type="text/ng-template" id="app/views/elements/directives/default_.html">
