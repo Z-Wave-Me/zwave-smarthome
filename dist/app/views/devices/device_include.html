@@ -1,11 +1,7 @@
 <!-- Include -->
 <div ng-controller="IncludeController">
      <bb-loader></bb-loader> 
-   <!-- <p class="text-center">
-        <a href="#devices/zwave"><i class="fa fa-chevron-circle-left fa-lg"></i> <span ng-bind="_t('btn_back')"></span></a>
-
-    <p>-->
-     
+      <!-- interviewCfg {{interviewCfg}}-->
     <div class="device-perex clearfix"> 
         <img class="include-device-img" ng-src="storage/img/devices/{{device.data.product_image}}" alt="img" ng-show="device.data.product_image" /> 
         <p ng-bind="_t('lb_include_device')"></p> 
@@ -99,7 +95,7 @@
                     <td><span class="badge badge-number">4</span></td>
                     <td>
                         <strong ng-hide_="lastIncludedDevice" ng-bind="_t('automated_konfiguration')"></strong>
-                        <div ng-show="!inclusionError">
+                        <div ng-show="!inclusionError" ng-hide="(interviewCfg.stop > interviewCfg.time) && (interviewCfg.commandClassesCnt > interviewCfg.isDone.length)">
                             <div class="alert alert-warning" ng-show="checkInterview"><i class="fa fa-spinner fa-spin"></i> <strong ng-bind="_t('configuring_device')"></strong> <span>(#{{includedDeviceId}})</span></div>
                             <div class="alert alert-success" ng-show="lastIncludedDevice"><i class="fa fa-check"></i> <strong ng-bind="_t('lb_new_device_configured')"></strong>:  <span ng-bind="lastIncludedDevice"></span></div>
                             
@@ -107,7 +103,9 @@
                         <div ng-if="inclusionError">
                             <div class="alert alert-danger" ng-show="!hasBattery"><i class="fa fa-minus-circle"></i> <span ng-bind="_t('lb_include_device_mains_error')"></span></div>
                             <div class="alert alert-danger" ng-show="hasBattery"><i class="fa fa-minus-circle"></i> <span ng-bind="_t('lb_include_device_battery_error')"></span> <span ng-bind="device.data.wake"></span></div>
-
+                        </div>
+                        <div class="alert alert-warning" ng-if="((interviewCfg.stop > interviewCfg.time) && (interviewCfg.commandClassesCnt > interviewCfg.isDone.length))">
+                            <i class="fa fa-info-circle"></i> <strong ng-bind="_t('inclusion_interview_not_complete')"></strong> <span>(#{{includedDeviceId}})</span>
                         </div>
                     </td>
                     <td>

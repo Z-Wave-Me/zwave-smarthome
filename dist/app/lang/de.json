@@ -1,4 +1,5 @@
 {   
+    "inclusion_interview_not_complete": "Device found but the configuration is not complete",
     "error_0": "Unknown error",
     "error_401": "Unauthorized",
     "error_403": "Forbidden",
