@@ -20,10 +20,14 @@ var myApp = angular.module('myApp', [
 myApp.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
-                // Home
+                // Login
                 when('/', {
                     //redirectTo: '/elements/dashboard/1'
                     templateUrl: 'app/views/login/login.html'
+                }).
+                 // Home
+                when('/home', {
+                   redirectTo: '/elements/dashboard/1'
                 }).
                 // Elements
                 when('/elements/:filter?/:val?/:name?', {

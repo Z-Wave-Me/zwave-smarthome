@@ -945,7 +945,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
         }
         if (confirm) {
             dataFactory.deleteApi('instances', input.id).then(function(response) {
-                $(target).fadeOut(2000);
+                $(target).fadeOut(500);
                 myCache.remove('instances');
                 myCache.remove('devices');
             }, function(error) {
@@ -1350,6 +1350,13 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
     $scope.hasBattery = false;
     $scope.inclusionError = false;
     $scope.clearStepStatus = false;
+    $scope.notInterviewDone = [];
+    $scope.interviewCfg = {
+        checkInterview: [],
+        commandClassesCnt: 0,
+        isDone: [],
+        notDone: []
+    };
 
     $scope.nodeId = null;
     $scope.updateDevices = false;
@@ -1460,23 +1467,53 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
                         return;
                     }
                     var interviewDone = true;
-                    var instanceId = 0;
+                    //var instanceId = 0;
                     var hasBattery = false;
                     if (angular.isDefined(ZWaveAPIData.devices[nodeId].instances)) {
                         hasBattery = 0x80 in ZWaveAPIData.devices[nodeId].instances[0].commandClasses;
                     }
-                    var vendor = ZWaveAPIData.devices[nodeId].data.vendorString.value;
-                    var deviceType = ZWaveAPIData.devices[nodeId].data.deviceTypeString.value;
+                    //var vendor = ZWaveAPIData.devices[nodeId].data.vendorString.value;
+                    //var deviceType = ZWaveAPIData.devices[nodeId].data.deviceTypeString.value;
                     $scope.hasBattery = hasBattery;
-
+                   
+                    console.log('CHECK interview -----------------------------------------------------')
                     // Check interview
                     if (ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value && ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value.length) {
                         for (var iId in ZWaveAPIData.devices[nodeId].instances) {
                             if (Object.keys(ZWaveAPIData.devices[nodeId].instances[iId].commandClasses).length > 0) {
+                                $scope.interviewCfg.commandClassesCnt = Object.keys(ZWaveAPIData.devices[nodeId].instances[iId].commandClasses).length; 
+                                $scope.interviewCfg.checkInterview.push(ZWaveAPIData.updateTime);
+                                console.log($scope.interviewCfg.checkInterview)
                                 for (var ccId in ZWaveAPIData.devices[nodeId].instances[iId].commandClasses) {
+                                    var notInterviewClass = 'devices.' + nodeId + '.instances.' + iId + '.commandClasses.' + ccId + '.data.interviewDone.value';
+                                    // Interview is not done
                                     if (!ZWaveAPIData.devices[nodeId].instances[iId].commandClasses[ccId].data.interviewDone.value) {
-                                        //console.log('Interview false: 1')
+                                         //console.log('NOT done ---')
+                                        
+                                        //console.log(notInterviewClass);
+                                        /*var isDoneIndex = $scope.interviewCfg.isDone.indexOf(notInterviewClass);
+                                        if(isDoneIndex === -1){
+                                            $scope.interviewCfg.isDone.splice(notDoneIndex, 1);
+                                        }
+                                        if(notInterviewClass != null && $scope.interviewCfg.notDone.indexOf(notInterviewClass) === -1){
+                                            $scope.interviewCfg.notDone.push(notInterviewClass);
+                                        }*/
+                                        //console.log($scope.interviewCfg)
+                                        //console.log('NOT DONE: ' + $scope.interviewCfg)
                                         interviewDone = false;
+                                    }else{  // Interview is done
+                                        //console.log('DONE ---') 
+                                       // var doneIndex = $scope.notInterviewDone.indexOf(notInterviewClass);
+                                       /*var notDoneIndex = $scope.interviewCfg.notDone.indexOf(notInterviewClass);
+                                        if(notDoneIndex === -1){
+                                            $scope.interviewCfg.notDone.splice(notDoneIndex, 1);
+                                        }*/
+                                        //$scope.interviewCfg.isDone.push(notInterviewClass); 
+                                        if($scope.interviewCfg.isDone.indexOf(notInterviewClass) === -1){
+                                            $scope.interviewCfg.isDone.push(notInterviewClass); 
+                                        }
+                                        //console.log($scope.interviewCfg)
+
                                     }
                                 }
                             } else {
@@ -1532,6 +1569,18 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
             $scope.loadElements($scope.nodeId);
         }
     });
+    
+    /**
+     * Watch for last excluded device
+     */
+    $scope.$watch('interviewCfg', function() {
+        console.log($scope.interviewCfg)
+        if($scope.interviewCfg.commandClassesCnt > 0){
+             console.log('commandClassesCnt')
+        }
+        
+    });
+
 
     /**
      * Run ExpertUI command
