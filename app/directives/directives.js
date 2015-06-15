@@ -9,6 +9,15 @@ myApp.directive('testDir', function() {
         template: '<p>This is a test directive</p>'
     };
 });
+
+myApp.directive('logIt', function() {
+    return {
+        link: function(scope, elem, attrs) {
+             console.log(attrs.logIt);
+        }
+    };
+    }
+);
 /**
  * History go back
  */

@@ -16,8 +16,16 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
     $scope.loading = false;
     $scope.user = dataService.getUser();
     $scope.lastLogin = dataService.getLastLogin();
-    $scope.cfg.interval = ($filter('toInt')($scope.user.interval) >= 1000 ? $filter('toInt')($scope.user.interval) : $scope.cfg.interval);
+    //$scope.cfg.interval = ($filter('toInt')($scope.user.interval) >= 1000 ? $filter('toInt')($scope.user.interval) : $scope.cfg.interval);
+    $scope.setPollInterval = function() {
+        if (!$scope.user) {
+            $scope.cfg.interval = $scope.cfg.interval;
+        } else {
+            $scope.cfg.interval = ($filter('toInt')($scope.user.interval) >= 1000 ? $filter('toInt')($scope.user.interval) : $scope.cfg.interval);
+        }
 
+    };
+    $scope.setPollInterval(); 
 
     /**
      * Language settings
@@ -122,28 +130,13 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
  * Test controller
  */
 myAppController.controller('TestController', function($scope, $routeParams, $filter, $location, $log, $cookies, $timeout, $interval, dataFactory, dataService) {
-    $scope.interviewCfg = {
-        checkInterview: [],
-        commandClassesCnt: 0,
-        time: 0,
-        stop: 0,
-        isDone: [],
-        notDone: []
-    };
-    $scope.check = {
-        stop: 123
-    };
-    var refresh = function() {
-        var a = new Date();
-        if ($scope.interviewCfg.stop === 0) {
-            $scope.interviewCfg.time = (Math.round(+new Date() / 1000)) + 10;
-        }
-        $scope.interviewCfg.stop = (Math.round(+new Date() / 1000));
-        if ($scope.interviewCfg.stop > $scope.interviewCfg.time) {
-            $interval.cancel(refresh);
-        }
-    };
-    $interval(refresh, 1000);
+    dataFactory.getRemoteData('http://zwave.eu/api/test/headers/index.php?code=401').then(function(response) {
+
+        dataService.updateTimeTick();
+    }, function(error) {
+
+        dataService.showConnectionError(error);
+    });
 
 });
 /**
@@ -2992,12 +2985,13 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
         keepme: false,
         default_ui: 1
     };
-    if ($scope.user) {
+    if(dataService.getUser()){
         $location.path('/elements');
         return;
     }
-    $scope.user = undefined;
-    $cookies.user = undefined;
+//    $scope.user = null;
+//    $cookies.user = null;
+
     /**
      * Login language
      */
@@ -3064,11 +3058,10 @@ myAppController.controller('LogoutController', function($scope, $cookies, $locat
 /**
  * Error controller
  */
-myAppController.controller('ErrorController', function($scope, $routeParams) {
+myAppController.controller('ErrorController', function($scope, $routeParams,$cookies,$window) {
     $scope.errorCfg = {
         code: false,
-        icon: 'fa-warning',
-        link: null
+        icon: 'fa-warning'
     };
     /**
      * Logout proccess

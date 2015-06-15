@@ -3,7 +3,7 @@
     "inclusion_interview_not_complete": "Device found but the configuration is not complete",
     "error_0": "Unknown error",
     "error_401": "Unauthorized",
-    "error_403": "Forbidden",
+    "error_403": "Forbidden. You have no permissions to see this page!",
     "error_404": "Not Found",
     "error_500": "Internal Server Error",
     "automated_konfiguration": "Automated configuration",

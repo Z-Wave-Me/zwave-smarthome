@@ -319,12 +319,13 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
                 'Accept-Language': lang 
             }
         }).then(function(response) {
-            if (typeof response.data === 'object') {
+            return $q.reject(response);
+            /*if (typeof response.data === 'object') {
                 myCache.put(cacheName, response);
                 return response;
             } else {// invalid response
                 return $q.reject(response);
-            }
+            }*/
         }, function(response) {// something went wrong
             return $q.reject(response);
         });

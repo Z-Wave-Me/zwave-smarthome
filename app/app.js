@@ -188,8 +188,9 @@ myApp.run(function($rootScope, $location, dataService) {
             }
             if (next.roles && angular.isArray(next.roles)) {
                 if (next.roles.indexOf(user.role) === -1) {
-                    alert('You have no permissions t see this page!');
-                    $location.path('/elements');
+                    //alert('You have no permissions to see this page!');
+                    //$location.path('/elements');
+                     $location.path('/error/403');
                     return;
                 }
             }
@@ -201,7 +202,7 @@ myApp.run(function($rootScope, $location, dataService) {
 myApp.config(function($provide, $httpProvider) {
     $httpProvider.defaults.timeout = 5000;
     // Intercept http calls.
-    $provide.factory('MyHttpInterceptor', function($q,$location) {
+    $provide.factory('MyHttpInterceptor', function($q,$location,$cookies) {
         return {
             // On request success
             request: function(config) {
@@ -220,18 +221,23 @@ myApp.config(function($provide, $httpProvider) {
             },
             // On response failture
             responseError: function(rejection) {
-               //if(rejection.status == 401){
-                    //$location.path('/');
-                //}
-                //
-                // Return the promise rejection.
+               if(rejection.status == 401){
+                   $cookies.user = undefined;
+                    $location.path('/');
+                }else if(rejection.status == 403){
+                    $location.path('/error/403');
+                }else{
+                    // Return the promise rejection.
                 return $q.reject(rejection);
+                }
+                //
+                
             }
         };
     });
 
     // Add the interceptor to the $httpProvider.
-    //$httpProvider.interceptors.push('MyHttpInterceptor');
+    $httpProvider.interceptors.push('MyHttpInterceptor');
 
 });
 
