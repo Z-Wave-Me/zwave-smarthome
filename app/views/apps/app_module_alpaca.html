@@ -39,7 +39,9 @@
                     ng-hide="alpacaData">{{_t('lb_save')}} <i class="fa fa-spinner fa-spin module-spinner"></i></button>
                     <button type="submit" 
                     id="btn_module_submit"
-                    class="btn btn-primary" 
+                    class="btn btn-primary"
+                    data-sid="{{user.sid}}"
+                    data-lang="{{lang}}"
                     ng-show="alpacaData">{{_t('lb_save')}} <i class="fa fa-spinner fa-spin module-spinner"></i></button>
             <a href="#apps" class="btn btn-default">{{_t('lb_cancel')}}</a>
         </div>
