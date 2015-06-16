@@ -2,8 +2,8 @@
 <div ng-controller="TestController">
     <bb-loader></bb-loader>
     <h1>Test page</h1>
-    <div ng-if="interviewCfg.stop < interviewCfg.time">Message when WAIT</div>
-    <div ng-if="interviewCfg.stop > interviewCfg.time">Message when STOP</div>
+    <div>Message when SHOW</div>
+    <div ng-if="elementAccess(cfg.role_access.admin)">Message when HIDE</div>
        
 </div><!-- /ng-controller --> 
 <script type="text/ng-template" id="app/views/elements/directives/default_.html">

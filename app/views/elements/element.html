@@ -32,7 +32,7 @@
                         <div>
                             <input type="checkbox" name="dashboard" value="{{input.dashboard}}" id="dashboard" ng-model="input.dashboard" ng-checked="input.dashboard" /> <label ng-bind="_t('lb_add_dashboard')"></label>
                         </div>
-                        <div ng-if="user.role == 1">
+                        <div ng-if="elementAccess(cfg.role_access.admin)">
                             <input type="checkbox" name="permanently_hidden" id="permanently_hidden" value="" 
                                    ng-model="input.permanently_hidden" 
                                    ng-checked="input.permanently_hidden" 
@@ -53,7 +53,7 @@
 
                 </div>
             </fieldset>
-            <fieldset  ng-if="user.role == 1">
+            <fieldset  ng-if="elementAccess(cfg.role_access.admin)">
                 <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_tags')"></span></h3>
                 
                     <div class="form-group_ clearfix">

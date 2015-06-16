@@ -65,7 +65,8 @@ myApp.config(['$routeProvider', function($routeProvider) {
                 //My Access
                 when('/myaccess', {
                     templateUrl: 'app/views/myaccess/myaccess.html',
-                    requireLogin: true
+                    requireLogin: true,
+                    roles: cfg.role_access.myaccess
                 }).
                 //Apps
                 when('/apps', { 
@@ -136,7 +137,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
                 }).
                 //Login
                 when('/login', {
-                    templateUrl: 'app/views/login/login.html'
+                    templateUrl: 'app/views/login/login.html',
                 }).
                 //Login
                 when('/logout', {

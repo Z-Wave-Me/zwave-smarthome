@@ -71,10 +71,13 @@ var config_data = {
             apps_online: [1],
             module: [1],
             devices: [1],
+            myaccess: [1],
             devices_include: [1],
             config_rooms: [1],
             config_rooms_id: [1],
-            network_config_id: [1]
+            network: [1],
+            network_config_id: [1],
+            logout: [1,2,3,4]
         },
         // List of language codes
         'lang_codes': {

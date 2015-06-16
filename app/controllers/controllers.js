@@ -25,7 +25,19 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
         }
 
     };
-    $scope.setPollInterval(); 
+    $scope.setPollInterval();
+
+    $scope.elementAccess = function(roles,mobile) {
+        // Hide on mobile devices
+        if (mobile) {
+            return false;
+        }
+        // Hide for restricted roles
+        if (angular.isArray(roles) && roles.indexOf($scope.user.role) === -1) {
+            return false;
+        }
+        return true;
+    };
 
     /**
      * Language settings
@@ -130,17 +142,16 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
  * Test controller
  */
 myAppController.controller('TestController', function($scope, $routeParams, $filter, $location, $log, $cookies, $timeout, $interval, dataFactory, dataService) {
-    $scope.roles = [1,2,3]
-    $scope.testHeader = function(){
+    $scope.testHeader = function() {
         dataFactory.getRemoteData('http://zwave.eu/api/test/headers/index.php?code=401').then(function(response) {
 
-        dataService.updateTimeTick();
-    }, function(error) {
+            dataService.updateTimeTick();
+        }, function(error) {
 
-        dataService.showConnectionError(error);
-    });
+            dataService.showConnectionError(error);
+        });
     };
-    
+
 
 });
 /**
@@ -1419,7 +1430,7 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
         dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
             var refresh = function() {
                 dataFactory.joinedZwaveData(ZWaveAPIData).then(function(response) {
-                    checkController(response.data.update,response.data.joined);
+                    checkController(response.data.update, response.data.joined);
                     dataService.updateTimeTick(response.data.update.updateTime);
                 }, function(error) {
                     dataService.showConnectionError(error);
@@ -1627,7 +1638,7 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
     /**
      * Check controller data data
      */
-    function checkController(data,ZWaveAPIData) {
+    function checkController(data, ZWaveAPIData) {
         //var data = response.data;
         if ('controller.data.controllerState' in data) {
             $scope.controllerState = data['controller.data.controllerState'].value;
@@ -2989,7 +3000,7 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
         keepme: false,
         default_ui: 1
     };
-    if(dataService.getUser()){
+    if (dataService.getUser()) {
         $location.path('/elements');
         return;
     }
@@ -3062,7 +3073,7 @@ myAppController.controller('LogoutController', function($scope, $cookies, $locat
 /**
  * Error controller
  */
-myAppController.controller('ErrorController', function($scope, $routeParams,$cookies,$window) {
+myAppController.controller('ErrorController', function($scope, $routeParams, $cookies, $window) {
     $scope.errorCfg = {
         code: false,
         icon: 'fa-warning'

@@ -8,12 +8,12 @@
                     <i class="fa fa-wifi fa-lg tab-icon"></i> <span class="tab-name">{{_t('lb_zwave_devices')}}</span>
                 </a>
             </li>
-            <li ng-class="activeTab == 'battery' ? 'active' : ''" ng-if="user.role == 1">
+            <li ng-class="activeTab == 'battery' ? 'active' : ''" ng-if="elementAccess(cfg.role_access.network)">
                 <a href="" title="{{_t('lb_battery_status')}}" data-target="#module_battery" data-toggle="tab" ng-click="setTab('battery')">
                     <i class="fa fa-bolt fa-lg tab-icon"></i> <span class="tab-name">{{_t('lb_battery_status')}}</span>
                 </a>
             </li>
-            <li ng-class="activeTab == 'health' ? 'active' : ''" ng-if="user.role == 1">
+            <li ng-class="activeTab == 'health' ? 'active' : ''" ng-if="elementAccess(cfg.role_access.network)">
                 <a href="" title="{{_t('nav_network_health')}}" data-target="#module_health" data-toggle="tab" ng-click="setTab('health')">
                     <i class="fa fa-cog fa-sitemap tab-icon"></i> <span class="tab-name">{{_t('lb_network_status')}}</span> 
                 </a>
@@ -27,13 +27,8 @@
             <table class="table table-condensed table-report">
             <tbody>
                  <tr ng-repeat="v in zWaveDevices | orderBy:'title':false" id="row_zwave_{{v.id}}" ng-if="v.elements">
-                    <!--<td class="td-img">
-                        <img class="report-img" ng-src="{{v.icon|getElementIcon:e}}" alt="{{ v.title}}" />
-                    </td>-->
-                    <td class="network-zwave-device">
-                         <!--<a ng-href="#network/config/{{v.id}}" ng-if="user.role == 1"><strong>(#{{v.id}}) {{v.title}}</strong> <i class="fa fa-pencil text-primary"></i></a>
-                        <span ng-if="user.role > 1"><strong>(#{{v.id}}) {{v.title}}</strong></span>-->
-                        <a href="" class="network-zwave-title" ng-if="user.role == 1" ng-click="goEdit[v.id] = !goEdit[v.id]">
+                     <td class="network-zwave-device">
+                        <a href="" class="network-zwave-title" ng-click="goEdit[v.id] = !goEdit[v.id]">
                             <i class="fa" ng-class="goEdit[v.id] ? 'fa-chevron-up': 'fa-chevron-down'"></i> {{v.title}} (#{{v.id}}) 
                         </a>
                         <div class="network-zwave-element" ng-repeat="e in v.elements | orderBy:'title':false" ng-if="goEdit[v.id]">
@@ -41,13 +36,10 @@
                                 <span class="network-hidden-{{e.permanently_hidden}}" ng-bind="e.title"></span>
                           </div>
                     </td>
-                    <td class="td-action" ng-if="user.role == 1">
+                    <td class="td-action" ng-if="elementAccess(cfg.role_access.network)">
                         <a class="btn btn-default" href="#network/config/{{v.id}}" ng-if_="v.cfg.length > 0">
                            <i class="fa fa-cog text-primary"></i> <span class="btn-name" ng-bind="_t('lb_configuration')"></span>
                        </a>
-                       <!--<a class="btn btn-default" href="#deviceconfig/{{v.id}}" ng-if="v.cfg.length > 0">
-                           <i class="fa fa-cog text-primary"></i> <span class="btn-name" ng-bind="_t('lb_configuration')"></span>
-                       </a>-->
                     </td>
                 </tr>
             </tbody>
@@ -64,8 +56,6 @@
                     </td>
                     <td class="network-zwave-device">
                         <div>(#{{v.nodeId}}) {{v.nodeName}}</div>
-                        <!--<span class="network-node-name">(#{{v.nodeId}}) {{v.nodeName}}</span>
-                        <div  ng-bind="v.metrics.title"></div>-->
                     </td>
                     <td>
                         <span class="text-success" ng-show="v.metrics.level >= 80">{{v.metrics.level}} %</span>
