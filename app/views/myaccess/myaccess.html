@@ -79,13 +79,14 @@
                 <button class="btn btn-default" ng-bind="_t('lb_cancel')" bb-go-back></button>
             </div>
         </form>
-        
-         <!-- ///////////////////////////// Remote accessForm ///////////////////////////// -->
-        <form name="form_remote" id="form_remote" class="form form-page" ng-submit="putRemoteAccess(remoteAccess,newRemoteAccessPassword)" novalidate ng-if="elementAccess(cfg.role_access.remote_access) && remoteAccess">
+        <!-- ///////////////////////////// Remote accessForm ///////////////////////////// -->
+        <form name="form_remote" id="form_remote" class="form form-page" ng-submit="putRemoteAccess(remoteAccess,newRemoteAccessPassword)"  ng-if="elementAccess(cfg.role_access.remote_access)" novalidate>
             <fieldset>
-                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('remote_access_manage')"></span></h3>
+                 <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('remote_access_manage')"></span></h3>
                 <p ng-bind="_t('remote_access_info')"></p>
-
+                <div class="alert alert-warning" ng-if="!remoteAccess" ng-bind="_t('remote_access_not_installed')"></div>
+                 <div class="alert alert-warning" ng-if="remoteAccess && !remoteAccess.active" ng-bind="_t('remote_access_not_active')"></div>
+                <div ng-if="remoteAccess">
                 <div class="form-group">
                     <!-- Remote access ID -->
                      <p class="form-control-static">
@@ -113,6 +114,7 @@
                 <div class="submit-entry">
                     <button type="submit" class="btn btn-primary" ng-bind="_t('lb_submit')"></button>
                 </div>
+             </div>
             </fieldset>
         </form>
          

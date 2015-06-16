@@ -2759,7 +2759,6 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
     $scope.remoteAccess = false;
     $scope.newRemoteAccessPassword = null;
     $scope.newPassword = null;
-    console.log($scope.user)
     /**
      * Load data
      */
@@ -2776,7 +2775,7 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
         });
     };
     if ($scope.id > 0) {
-        $scope.loadData($scope.id);
+        $scope.loadData($scope.id); 
     }
 
     /**
@@ -2790,8 +2789,8 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
             //if(response.data.data.active === true){
             $scope.remoteAccess = response.data.data[0];
             //}
-        }, function(error) {
-            dataService.showConnectionError(error);
+        }, function(error) { 
+           // dataService.showConnectionError(error);
         });
     };
 
@@ -2948,6 +2947,9 @@ myAppController.controller('ReportController', function($scope, $cookies, $locat
      * Load Remote access data
      */
     $scope.loadRemoteAccess = function() {
+         if(!$scope.elementAccess($scope.cfg.role_access.remote_access)){
+            return;
+        }
         dataFactory.getApi('instances', '/RemoteAccess').then(function(response) {
             $scope.remoteAccess = response.data.data;
         }, function(error) {
