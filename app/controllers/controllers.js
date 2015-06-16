@@ -3043,7 +3043,7 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
             //$location.path('/myaccesss');
         }, function(error) {
             var message = $scope._t('error_load_data');
-            if (error.status == 404) {
+            if (error.status == 401) {
                 message = $scope._t('error_load_user');
             }
             alert(message);
