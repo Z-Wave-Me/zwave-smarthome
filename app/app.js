@@ -17,8 +17,8 @@ var myApp = angular.module('myApp', [
 ]);
 
 //Define Routing for app
-myApp.config(['$routeProvider',
-    function($routeProvider) {
+myApp.config(['$routeProvider', function($routeProvider) {
+        var cfg = config_data.cfg;
         $routeProvider.
                 // Login
                 when('/', {
@@ -42,8 +42,8 @@ myApp.config(['$routeProvider',
                 // Rooms
                 when('/rooms', {
                     templateUrl: 'app/views/rooms/rooms.html',
-                    requireLogin: true
-                            //roles: [1,2]
+                    requireLogin: true,
+                    roles: cfg.role_access.rooms
                 }).
                 // Events
                 when('/events/:param?/:val?', {
@@ -54,13 +54,13 @@ myApp.config(['$routeProvider',
                 when('/admin', {
                     templateUrl: 'app/views/admin/admin.html',
                     requireLogin: true,
-                    roles: [1]
+                    roles: cfg.role_access.admin
                 }).
                 //Admin detail
                 when('/admin/user/:id', {
                     templateUrl: 'app/views/admin/admin_user.html',
                     requireLogin: true,
-                    roles: [1]
+                    roles: cfg.role_access.admin_user
                 }).
                 //My Access
                 when('/myaccess', {
@@ -71,46 +71,48 @@ myApp.config(['$routeProvider',
                 when('/apps', { 
                     templateUrl: 'app/views/apps/apps.html',
                      requireLogin: true,
-                    roles: [1]
+                    roles: cfg.role_access.apps
                 }).
                 //Apps - local detail
                 when('/apps/local/:id', {
                     templateUrl: 'app/views/apps/app_local_detail.html',
                     requireLogin: true,
-                    roles: [1]
+                    roles: cfg.role_access.apps_local
                 }).
                 //Apps - online detail
                 when('/apps/online/:id', {
                     templateUrl: 'app/views/apps/app_online_detail.html',
                     requireLogin: true,
-                    roles: [1]
+                   roles: cfg.role_access.apps_online
                 }).
                 //Module
                 when('/module/:action/:id', {
                     templateUrl: 'app/views/apps/app_module_alpaca.html',
                     requireLogin: true,
-                    roles: [1]
+                    roles: cfg.role_access.module
                 }).
                 //Devices_
                 when('/devices/:type?', {
                     templateUrl: 'app/views/devices/devices.html',
-                    requireLogin: true
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
                 }).
                 //Include Devices
                 when('/include/:device?', {
                     templateUrl: 'app/views/devices/device_include.html',
-                    requireLogin: true
+                    requireLogin: true,
+                    roles: cfg.role_access.devices_include
                 }).
                 //Rooms
                 when('/config-rooms', {
                     templateUrl: 'app/views/rooms/config_rooms.html',
                     requireLogin: true,
-                    roles: [1]
+                    roles: cfg.role_access.config_rooms
                 }).
                 when('/config-rooms/:id', {
                     templateUrl: 'app/views/rooms/config_rooms_edit.html',
                     requireLogin: true,
-                    roles: [1]
+                    roles: cfg.role_access.config_rooms_id
                 }).
                 //Network
                 when('/network', {
@@ -121,7 +123,7 @@ myApp.config(['$routeProvider',
                 when('/network/config/:nodeId', {
                     templateUrl: 'app/views/network/config.html',
                     requireLogin: true,
-                     roles: [1]
+                    roles: cfg.role_access.network_config_id
                 }).
                 //Device configuration
                 when('/deviceconfig/:nodeId', {

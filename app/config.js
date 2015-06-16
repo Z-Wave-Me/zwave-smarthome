@@ -62,6 +62,20 @@ var config_data = {
         'lang': 'en',
         // List of supported languages
         'lang_list': ['en', 'de', 'ru','cn'],
+        // Role access
+        'role_access': {
+            admin: [1],
+            admin_user: [1],
+            apps: [1],
+            apps_local: [1],
+            apps_online: [1],
+            module: [1],
+            devices: [1],
+            devices_include: [1],
+            config_rooms: [1],
+            config_rooms_id: [1],
+            network_config_id: [1]
+        },
         // List of language codes
         'lang_codes': {
             'en': 'en_EN',

@@ -130,13 +130,17 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
  * Test controller
  */
 myAppController.controller('TestController', function($scope, $routeParams, $filter, $location, $log, $cookies, $timeout, $interval, dataFactory, dataService) {
-    dataFactory.getRemoteData('http://zwave.eu/api/test/headers/index.php?code=401').then(function(response) {
+    $scope.roles = [1,2,3]
+    $scope.testHeader = function(){
+        dataFactory.getRemoteData('http://zwave.eu/api/test/headers/index.php?code=401').then(function(response) {
 
         dataService.updateTimeTick();
     }, function(error) {
 
         dataService.showConnectionError(error);
     });
+    };
+    
 
 });
 /**
