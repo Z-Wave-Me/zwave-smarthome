@@ -81,7 +81,7 @@
         </form>
         
          <!-- ///////////////////////////// Remote accessForm ///////////////////////////// -->
-        <form name="form_remote" id="form_remote" class="form form-page" ng-submit="putRemoteAccess(remoteAccess,newRemoteAccessPassword)" novalidate ng-if="remoteAccess">
+        <form name="form_remote" id="form_remote" class="form form-page" ng-submit="putRemoteAccess(remoteAccess,newRemoteAccessPassword)" novalidate ng-if="elementAccess(cfg.role_access.remote_access) && remoteAccess">
             <fieldset>
                 <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('remote_access_manage')"></span></h3>
                 <p ng-bind="_t('remote_access_info')"></p>
@@ -120,10 +120,10 @@
         <form name="form_password" id="form_password" class="form form-page" ng-submit="changePassword(newPassword)" novalidate>
             <fieldset>
                 <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('local_access')"></span></h3>
-                <!-- login -->
+                <!-- login
                 <p class="form-control-static">
                     <span ng-bind="_t('lb_login')"></span>: <strong ng-bind="user.login"></strong>
-                 </p>
+                 </p> -->
                 <!-- password -->
                 <div>
                     <label>{{_t('lb_new_password')}}: </label>
