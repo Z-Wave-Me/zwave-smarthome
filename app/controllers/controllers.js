@@ -858,6 +858,8 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
      * Load online modules
      */
     $scope.loadOnlineModules = function() {
+        return;
+        // Uncomment after integration
         dataFactory.getRemoteData($scope.cfg.online_module_url).then(function(response) {
             $scope.onlineModules = response.data;
             angular.forEach(response.data, function(v, k) {
