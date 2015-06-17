@@ -955,6 +955,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
             dataFactory.putApi('instances', input.id, input).then(function(response) {
                 $scope.loading = false;
                 myCache.remove('instances');
+                myCache.remove('instances/' + input.moduleId);
                 myCache.remove('devices');
                 $scope.loadInstances();
 
@@ -2759,8 +2760,8 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
 
     };
     $scope.remoteAccess = false;
-    $scope.newRemoteAccessPassword = null;
     $scope.newPassword = null;
+    $scope.alert = {message: false, status: 'is-hidden', icon: false};
     /**
      * Load data
      */
@@ -2788,11 +2789,22 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
             return;
         }
         dataFactory.getApi('instances', '/RemoteAccess').then(function(response) {
-            //if(response.data.data.active === true){
-            $scope.remoteAccess = response.data.data[0];
-            //}
-        }, function(error) { 
-           // dataService.showConnectionError(error);
+            var remoteAccess  = response.data.data[0];
+            if(Object.keys(remoteAccess).length < 1){
+                $scope.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-warning'};
+            }
+           if(!remoteAccess.active){
+                $scope.alert = {message: $scope._t('remote_access_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                return;
+            }
+            if(!remoteAccess.params.userId ){
+                $scope.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-warning'};
+                return;
+            }
+            remoteAccess.params.pass = null;
+            $scope.remoteAccess = remoteAccess;
+        }, function(error) {
+            $scope.alert = {message: $scope._t('remote_access_not_installed'), status: 'alert-danger', icon: 'fa-warning'};
         });
     };
 
@@ -2850,11 +2862,8 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
     /**
      * Remote access
      */
-    $scope.putRemoteAccess = function(input, newRemoteAccessPassword) {
-        if (newRemoteAccessPassword) {
-            input.params.pass = newRemoteAccessPassword;
-        }
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+    $scope.putRemoteAccess = function(input) {
+         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.putApi('instances', input.id, input).then(function(response) {
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
 
