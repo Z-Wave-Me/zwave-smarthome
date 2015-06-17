@@ -244,7 +244,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
             }
             var collection = dataService.getDevices(response.data.data.devices, filter, $scope.user.dashboard, null);
             if (collection.length < 1) {
-                $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: $scope._t('no_devices')};
+                $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: $scope._t('no_devices') + ' <a href="#devices">' + $scope._t('lb_include_device') +'</a>'};
                 return;
             }
             $scope.collection = collection;
@@ -3045,7 +3045,7 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
             //$location.path('/myaccesss');
         }, function(error) {
             var message = $scope._t('error_load_data');
-            if (error.status == 401) {
+            if (error.status == 404) {
                 message = $scope._t('error_load_user');
             }
             alert(message);

@@ -32,7 +32,7 @@
     "nav_report": "Report Problem",
     "lb_is_failed": "Device is failed",
     "updated": "Updated at",
-    "no_devices": "Requested devices do not exist",
+    "no_devices": "There are no devices installed.",
     "no_devices_dashboard": "There is no device in Dashboard",
     "add_device": "Add device?",
     "redirect_to_expert": "You will be redirected to ExpertUI",

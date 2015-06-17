@@ -184,7 +184,7 @@ myApp.run(function($rootScope, $location, dataService) {
         var user;
         if (next.requireLogin) {
             user = dataService.getUser();
-            if (!user || user.id < 1) {
+            if (!user) {
                 //alert('You need to be authenticated to see this page!');
                 //event.preventDefault();
                 $location.path('/');

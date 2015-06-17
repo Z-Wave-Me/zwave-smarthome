@@ -354,16 +354,18 @@ http://codepen.io/MattIn4D/pen/LiKFC
 #loading{
     position: fixed;
     z-index: 999;
-    width: 260px;
+    width: 70%;
     height: 50px;
     overflow: show;
-    margin: 25% auto auto auto;
+    margin: 70px auto auto auto;
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
     text-align: center;
     .loading-in{
+         position: relative;
+         z-index: 1000;
         margin: auto;
         padding: 10px;
         background-color: #fff;
@@ -371,6 +373,10 @@ http://codepen.io/MattIn4D/pen/LiKFC
         -webkit-border-radius: 5px;
         -moz-border-radius: 5px;
         border-radius: 5px;
+    }
+    a{
+        font-weight: bold;
+        text-decoration: underline;
     }
 }
 

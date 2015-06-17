@@ -687,10 +687,10 @@ http://codepen.io/MattIn4D/pen/LiKFC
 #loading {
   position: fixed;
   z-index: 999;
-  width: 260px;
+  width: 70%;
   height: 50px;
   overflow: show;
-  margin: 25% auto auto auto;
+  margin: 70px auto auto auto;
   top: 0;
   left: 0;
   bottom: 0;
@@ -699,6 +699,8 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 /* line 366, sass/globals/_body.scss */
 #loading .loading-in {
+  position: relative;
+  z-index: 1000;
   margin: auto;
   padding: 10px;
   background-color: #fff;
@@ -707,9 +709,14 @@ http://codepen.io/MattIn4D/pen/LiKFC
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
+/* line 377, sass/globals/_body.scss */
+#loading a {
+  font-weight: bold;
+  text-decoration: underline;
+}
 
 /* Transparent Overlay */
-/* line 378, sass/globals/_body.scss */
+/* line 384, sass/globals/_body.scss */
 .loading-spin:before {
   content: '';
   display: block;
@@ -721,7 +728,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-/* line 389, sass/globals/_body.scss */
+/* line 395, sass/globals/_body.scss */
 .loading-fade {
   opacity: 0;
   -webkit-transition: opacity 4s;
