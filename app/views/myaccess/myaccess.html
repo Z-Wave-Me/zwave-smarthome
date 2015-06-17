@@ -100,9 +100,9 @@
 
                     <div class="form-group">
                         <div>
-                            <input type="checkbox" name="remote_access" value="true" id="remote_access" ng-model="remoteAccess.params.status" ng-checked="remoteAccess.params.status" /> 
+                            <input type="checkbox" name="remote_access" value="true" id="remote_access" ng-model="remoteAccess.params.zbwStatus" ng-checked="remoteAccess.params.zbwStatus" /> 
                             <label ng-bind="_t('remote_access')"></label>
-                            <div class="alert alert-warning" ng-bind="_t('remote_access_warning')" ng-if="!remoteAccess.params.status"></div>
+                            <div class="alert alert-warning" ng-bind="_t('remote_access_warning')" ng-if="!remoteAccess.params.zbwStatus"></div>
                         </div>
                         <div>
                             <input type="checkbox" name="remote_support" value="true" id="remote_support" ng-model="remoteAccess.params.sshStatus" ng-checked="remoteAccess.params.sshStatus" /> 
