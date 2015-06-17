@@ -496,7 +496,6 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
 
         });
         if (out.datasets[0].data.length > 0) {
-            console.log(out.datasets[0].data)
             return out;
         }
         return null;
