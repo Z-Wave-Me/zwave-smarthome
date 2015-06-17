@@ -13,10 +13,10 @@ myApp.directive('testDir', function() {
 myApp.directive('logIt', function() {
     return {
         link: function(scope, elem, attrs) {
-             console.log(attrs.logIt);
+            console.log(attrs.logIt);
         }
     };
-    }
+}
 );
 /**
  * History go back
@@ -42,6 +42,20 @@ myApp.directive('bbLoader', function() {
         template: '<div id="loading" ng-show="loading" ng-class="loading.status"><div class="loading-in">'
                 + '<i class="fa fa-lg" ng-class="loading.icon"></i> <span ng-bind-html="loading.message|toTrusted"></span>'
                 + '</div></div>'
+    };
+});
+
+/**
+ * Alert directive
+ */
+myApp.directive('bbAlert', function() {
+    return {
+        restrict: "E",
+        replace: true,
+        scope: {alert: '='},
+        template: '<div class="alert" ng-if="alert.message" ng-class="alert.status">'
+                + '<i class="fa fa-lg" ng-class="alert.icon"></i> <span ng-bind-html="alert.message|toTrusted"></span>'
+                + '</div>'
     };
 });
 
@@ -264,11 +278,11 @@ myApp.directive('infiniteScroll', [
 /**
  * Key event directive
  */
-myApp.directive('bbKeyEvent', function () {
-    return function (scope, element, attrs) {
-        element.bind("keyup", function (event) {
+myApp.directive('bbKeyEvent', function() {
+    return function(scope, element, attrs) {
+        element.bind("keyup", function(event) {
             if (event.which !== 13) {
-                scope.$apply(function () {
+                scope.$apply(function() {
                     scope.$eval(attrs.bbKeyEvent);
                 });
 

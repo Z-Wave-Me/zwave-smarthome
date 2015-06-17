@@ -84,9 +84,7 @@
             <fieldset>
                 <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('remote_access_manage')"></span></h3>
                 <p ng-bind="_t('remote_access_info')"></p>
-                <div class="alert alert-dismissible" ng-if="alert.message" ng-class="alert.status">
-                    <i class="fa fa-lg" ng-class="alert.icon"></i> <span ng-bind="alert.message"></span>
-                </div>
+                <bb-alert alert="alert"></bb-alert>
                 <div ng-if="remoteAccess">
                     <div class="form-group">
                         <!-- Remote access ID -->
