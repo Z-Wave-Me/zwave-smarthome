@@ -3044,14 +3044,12 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
             dataService.setUser(user);
             dataService.setLastLogin(Math.round(+new Date() / 1000));
             $scope.loading = false;
-            $scope.user = dataService.getUser();
-            $scope.lastLogin = dataService.getLastLogin();
+            //$scope.user = dataService.getUser();
+            //$scope.lastLogin = dataService.getLastLogin();
              //console.log('SID from json:' + response.data.data.sid)
             //console.log('SID from cookie:' + dataService.getUserSid())
-            $window.location.reload();
-
-            //$window.location.href = '#elements';
-            //$location.path('/myaccesss');
+             $window.location.href = '#/elements';
+        $window.location.reload();
         }, function(error) {
             var message = $scope._t('error_load_data');
             if (error.status == 404) {
@@ -3078,9 +3076,9 @@ myAppController.controller('LogoutController', function($scope, $cookies, $locat
      */
     $scope.logout = function() {
         //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('logout')};
-        $cookies.user = undefined;
-        $scope.user = false;
-        //$window.location.href = '#login';
+        dataService.setUser(null);
+        dataService.setUserSid(null);
+        $window.location.href = '#/';
         $window.location.reload();
         //$location.path('/login');
 
