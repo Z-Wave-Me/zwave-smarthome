@@ -99,6 +99,26 @@
                 <a href="#admin" class="btn btn-default" ng-bind="_t('lb_cancel')"></a>
             </div>
         </form>
+        
+        <!-- ///////////////////////////// Change login and password Form ///////////////////////////// -->
+        <form name="form_password" id="form_password" class="form form-page" ng-if="id > 0" ng-submit="changeAuth(auth)" novalidate>
+            <fieldset>
+                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('local_access')"></span></h3>
+                <!-- login -->
+                    <div class="form-group">
+                         <label ng-bind="_t('lb_login')"></label>
+                        <input name="login" id="login" type="text" class="form-control form-control-sm" value="" ng-model="auth.login" />
+                    </div>
+                <!-- password -->
+                <div>
+                    <label ng-bind="_t('lb_new_password')"></label>
+                    <input name="password" id="password" type="password" class="form-control form-control-sm" value="" ng-model="auth.password" />
+                </div>
+                <div class="submit-entry">
+                    <button type="submit" class="btn btn-primary" ng-bind="_t('lb_submit')"></button>
+                </div>
+            </fieldset>
+        </form>
 
     </div>
 

@@ -2657,6 +2657,11 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
         expert_view: false
 
     };
+    $scope.auth = {
+        login: null,
+        password: null
+
+    };
 
     /**
      * Load data
@@ -2719,12 +2724,43 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
         if ($scope.id == 0) {
             input.password = input.password;
         }
-
+        input.role = parseInt(input.role,10);
         dataFactory.storeApi('profiles', input.id, input).then(function(response) {
             var id = $filter('hasNode')(response, 'data.data.id');
             if (id) {
                 myCache.remove('profiles');
                 $scope.loadData(id);
+            }
+            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
+
+        }, function(error) {
+            alert($scope._t('error_update_data'));
+            $scope.loading = false;
+            dataService.logError(error);
+        });
+
+    };
+    
+     /**
+     * Change auth data
+     */
+    $scope.changeAuth = function(auth) {
+        if (!auth.login && !auth.password) {
+            return;
+        }
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        var input = {
+            id: $scope.id,
+            login: auth.login,
+            password: auth.password
+
+        };
+        dataFactory.putApi('profiles_auth_update', input.id, input).then(function(response) {
+            var data = response.data.data;
+            if (!data) {
+                alert($scope._t('error_update_data'));
+                $scope.loading = false;
+                return;
             }
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
 

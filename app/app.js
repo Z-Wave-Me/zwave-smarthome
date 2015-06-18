@@ -232,15 +232,16 @@ myApp.config(function($provide, $httpProvider) {
                   
                    //$cookies.user = undefined;
                    if(path[1] !== ''){
-                        console.log('APP path: ' + path)
                         dataService.logOut();
                    }
+                   return $q.reject(rejection);
                     
                 }else if(rejection.status == 403){
                     $location.path('/error/403');
+                    return $q.reject(rejection);
                 }else{
                     // Return the promise rejection.
-                return $q.reject(rejection);
+                    return $q.reject(rejection);
                 }
                 //
                 

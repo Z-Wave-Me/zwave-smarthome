@@ -116,8 +116,9 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
             } else {// invalid response
                 return $q.reject(response);
             }
+            
         }, function(response) {// something went wrong
-            return $q.reject(response);
+           return $q.reject(response);
         });
     }
     // Post api data
@@ -319,15 +320,10 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
                 'Accept-Language': lang 
             }
         }).then(function(response) {
-            return $q.reject(response);
-            /*if (typeof response.data === 'object') {
-                myCache.put(cacheName, response);
-                return response;
-            } else {// invalid response
-                return $q.reject(response);
-            }*/
-        }, function(response) {// something went wrong
-            return $q.reject(response);
+             return response;
+        }, function(error) {// something went wrong
+            
+            return $q.reject(error);
         });
     }
 
