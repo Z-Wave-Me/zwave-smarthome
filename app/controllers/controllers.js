@@ -14,7 +14,9 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
      */
     $scope.cfg = cfg;
     $scope.loading = false;
+    $scope.alert = {message: false, status: 'is-hidden', icon: false};
     $scope.user = dataService.getUser();
+    $scope.userSid = dataService.getUserSid();
     $scope.lastLogin = dataService.getLastLogin();
     //$scope.cfg.interval = ($filter('toInt')($scope.user.interval) >= 1000 ? $filter('toInt')($scope.user.interval) : $scope.cfg.interval);
     $scope.setPollInterval = function() {
@@ -1042,7 +1044,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
 /**
  * App local detail controller
  */
-myAppController.controller('AppLocalDetailController', function($scope, $routeParams, $log, dataFactory, dataService) {
+myAppController.controller('AppLocalDetailController', function($scope, $routeParams, $log,$location, dataFactory, dataService) {
     $scope.module = [];
     $scope.isOnline = null;
     $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
@@ -1071,6 +1073,7 @@ myAppController.controller('AppLocalDetailController', function($scope, $routePa
             dataService.updateTimeTick();
         }, function(error) {
             dataService.logError(error);
+             $location.path('/error/404');
         });
     }
 
@@ -2759,7 +2762,7 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
     };
     $scope.remoteAccess = false;
     $scope.newPassword = null;
-    $scope.alert = {message: false, status: 'is-hidden', icon: false};
+    
     /**
      * Load data
      */
@@ -3019,8 +3022,6 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
         $location.path('/elements');
         return;
     }
-//    $scope.user = null;
-//    $cookies.user = null;
 
     /**
      * Login language
@@ -3037,15 +3038,16 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
         input.password = input.password;
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.logInApi(input).then(function(response) {
-            //dataService.logInfo(response, 'User logged in')
-            dataService.setUser(response.data.data);
+            var user = response.data.data;
+            dataService.setUserSid(user.sid);
+            delete user['sid'];
+            dataService.setUser(user);
             dataService.setLastLogin(Math.round(+new Date() / 1000));
-//            if (input.keepme) {
-//                dataService.logInfo(input, 'Remeber user')
-//            }
             $scope.loading = false;
             $scope.user = dataService.getUser();
             $scope.lastLogin = dataService.getLastLogin();
+             //console.log('SID from json:' + response.data.data.sid)
+            //console.log('SID from cookie:' + dataService.getUserSid())
             $window.location.reload();
 
             //$window.location.href = '#elements';
@@ -3055,8 +3057,9 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
             if (error.status == 404) {
                 message = $scope._t('error_load_user');
             }
-            alert(message);
+            //alert(message);
             $scope.loading = false;
+            $scope.alert = {message: message, status: 'alert-danger', icon: 'fa-warning'};
             dataService.logError(error);
         });
     };

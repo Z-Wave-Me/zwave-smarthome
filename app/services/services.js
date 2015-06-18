@@ -85,6 +85,18 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     };
     
      /**
+     * Get user SID (token)
+     */
+    this.getUserSid = function() {
+        return getUserSid();
+    };
+    /**
+     * Set user SID (token)
+     */
+    this.setUserSid = function(sid) {
+        return setUserSid(sid);
+    };
+     /**
      * Get last login
      */
     this.getLastLogin = function() {
@@ -223,6 +235,20 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     function setUser(data) {
         $cookies.user = angular.toJson(data);
         return data;
+
+    }
+    /**
+     * Get user SID (token)
+     */
+    function getUserSid() {
+         return $cookies.userSid;
+
+    }
+    /**
+     * Set user SID (token)
+     */
+    function setUserSid(sid) {
+        $cookies.userSid = sid;
 
     }
     

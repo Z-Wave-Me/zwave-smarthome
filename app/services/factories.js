@@ -17,11 +17,9 @@ myAppFactory.factory('myCache', function($cacheFactory) {
 myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window, $filter, $timeout, $q, myCache, dataService, cfg) {
     var updatedTime = Math.round(+new Date() / 1000);
     var lang = cfg.lang;
-
-    var profileSID = null;
+    var profileSID = dataService.getUserSid();
     var user = dataService.getUser();
     if (user && user.sid) {
-        profileSID = user.sid;
         lang = user.lang;
 
     }
