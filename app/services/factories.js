@@ -99,7 +99,6 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
             deferred.resolve(cached);
             return deferred.promise;
         }
-
         return $http({
             method: 'get',
             url: cfg.server_url + cfg.api[api] + (params ? params : ''),
@@ -110,6 +109,9 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
                         //'Allow-compression': 'gz' 
             }
         }).then(function(response) {
+            if(!angular.isDefined(response.data)){
+                return $q.reject(response);
+            }
             if (typeof response.data === 'object') {
                 myCache.put(cacheName, response);
                 return response;

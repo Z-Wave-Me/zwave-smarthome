@@ -372,7 +372,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
 /**
  * Element detail controller controller
  */
-myAppController.controller('ElementDetailController', function($scope, $routeParams, $window, dataFactory, dataService, myCache) {
+myAppController.controller('ElementDetailController', function($scope, $routeParams, $window, $location,dataFactory, dataService, myCache) {
     $scope.input = [];
     $scope.rooms = [];
     $scope.tagList = [];
@@ -397,7 +397,8 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
             loadInstances(devices);
 
         }, function(error) {
-            alert($scope._t('error_load_data'));
+            $location.path('/error/404');
+            //alert($scope._t('error_load_data'));
             dataService.showConnectionError(error);
         });
     };
@@ -3087,7 +3088,7 @@ myAppController.controller('LogoutController', function($scope, $cookies, $locat
 /**
  * Error controller
  */
-myAppController.controller('ErrorController', function($scope, $routeParams, $cookies, $window) {
+myAppController.controller('ErrorController', function($scope, $routeParams, dataService) {
     $scope.errorCfg = {
         code: false,
         icon: 'fa-warning'
@@ -3101,6 +3102,7 @@ myAppController.controller('ErrorController', function($scope, $routeParams, $co
         } else {
             $scope.errorCfg.code = 0;
         }
+        dataService.showConnectionError(code);
 
     };
     $scope.loadError($routeParams.code);
