@@ -210,6 +210,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('devices').then(function(response) {
             var filter = null;
+            var notFound = $scope._t('no_devices') + ' <a href="#devices">' + $scope._t('lb_include_device') +'</a>'
             $scope.loading = false;
             $scope.deviceType = dataService.getDeviceType(response.data.data.devices);
             $scope.tags = dataService.getTags(response.data.data.devices);
@@ -219,11 +220,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
                     case 'dashboard':
                         $scope.showFooter = false;
                         filter = {filter: "onDashboard", val: true};
-                        if (Object.keys(response.data.data.devices).length < 1) {
-                            $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: $scope._t('no_devices_dashboard')};
-                            dataService.updateTimeTick(response.data.data.updateTime);
-                            return;
-                        }
+                         notFound = $scope._t('no_devices_dashboard');
                         break;
                     case 'deviceType':
                         filter = $routeParams;
@@ -244,7 +241,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
             }
             var collection = dataService.getDevices(response.data.data.devices, filter, $scope.user.dashboard, null);
             if (collection.length < 1) {
-                $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: $scope._t('no_devices') + ' <a href="#devices">' + $scope._t('lb_include_device') +'</a>'};
+                $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: notFound};
                 return;
             }
             $scope.collection = collection;
