@@ -1195,7 +1195,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
         dataFactory.getApi('instances', '/' + id, true).then(function(instances) {
             var instance = instances.data.data;
             dataFactory.getApi('modules', '/' + instance.moduleId + '?lang=' + $scope.lang).then(function(module) {
-//                if (module.data.data.status === 'hidden') {
+//                if (module.data.data.state === 'hidden') {
 //                    if (!$scope.user.expert_view) {
 //                        dataService.updateTimeTick();
 //                        return;

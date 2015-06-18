@@ -91,6 +91,8 @@
     "lb_profile_name_insert": "插入应用名字",
     "lb_admin": "管理员",
     "lb_user": "用户",
+    "lb_local": "Local User (access only via localhost / 127.0.0.1)",
+    "lb_anonymous": "Anonymous User",
     "error_upload": "无法上传文件",
     "success_upload": "文件上传成功",
     "lb_upload_image": "上传图片",

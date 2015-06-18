@@ -86,6 +86,8 @@
     "nav_admin": "Nutzerverwaltung",
     "lb_add_user": "Neuer Benutzer",
     "lb_user": "Benutzer",
+    "lb_local": "Lokaler Benutzer (Zugang nur über localhost bzw. 127.0.0.1 möglich)",
+    "lb_anonymous": "Anonymer Benutzer",
     "lb_hide_single_device_events": "Verberge Ereignisse von folgenden Geräten:",
     "lb_profile_name_insert": "Benutzername",
     "lb_admin": "Admin",
