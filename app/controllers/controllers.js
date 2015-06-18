@@ -2064,7 +2064,7 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
      */
     function removeRoomIdFromDevice(data, devices) {
         angular.forEach(devices, function(v, k) {
-            dataFactory.putApi('devices', v, {'location': null}).then(function(response) {
+            dataFactory.putApi('devices', v, {'location': 0}).then(function(response) {
             }, function(error) {
 
             });
