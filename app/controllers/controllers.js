@@ -3050,6 +3050,7 @@ myAppController.controller('ReportController', function($scope, $cookies, $locat
  */
 myAppController.controller('LoginController', function($scope, $cookies, $location, $window, $routeParams, dataFactory, dataService) {
     $scope.input = {
+        form: true,
         login: '',
         password: '',
         keepme: false,
@@ -3072,18 +3073,20 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
     $scope.login = function(input) {
         input.password = input.password;
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        $scope.alert = {message: false};
         dataFactory.logInApi(input).then(function(response) {
             var user = response.data.data;
             dataService.setUserSid(user.sid);
             delete user['sid'];
             dataService.setUser(user);
             dataService.setLastLogin(Math.round(+new Date() / 1000));
-            $scope.loading = false;
+            //$scope.loading = false;
+             $scope.input.form = false;
             $window.location.href = '#/elements';
             $window.location.reload();
         }, function(error) {
             var message = $scope._t('error_load_data');
-            if (error.status == 404) {
+            if (error.status == 401) {
                 message = $scope._t('error_load_user');
             }
             $scope.loading = false;

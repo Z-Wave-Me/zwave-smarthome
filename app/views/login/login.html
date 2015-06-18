@@ -1,6 +1,7 @@
 <!-- Login view -->
 <div ng-controller="LoginController" class="mobile-padding">
     <bb-loader></bb-loader>
+    <div ng-if="input.form">
     <div class="login-lang">
        <a href="" ng-repeat="v in cfg.lang_list" class="lang-item" ng-click="loginLang(v)">
         <img ng-src="app/img/flags/{{v}}.png" alt="{{v}}"/>
@@ -43,4 +44,5 @@
             <button type="submit" class="btn btn-primary btn-block" ng-bind="_t('lb_login')">{{_t('apply_config_into_device')}}</button>
         </div>
     </form>
+    </div>
 </div>
