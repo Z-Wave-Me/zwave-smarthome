@@ -7,7 +7,7 @@ var myAppService = angular.module('myAppService', []);
 /**
  * Device service
  */
-myAppService.service('dataService', function($filter, $log, $cookies, $location, myCache, cfg) {
+myAppService.service('dataService', function($filter, $log, $cookies, $location, $window,myCache, cfg) {
     /// --- Public functions --- ///
     /**
      * Get language line by key
@@ -109,6 +109,14 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
    this.setLastLogin = function(val) {
        return setLastLogin(val);
    };
+   
+   /**
+     * Logout
+     */
+    this.logOut = function() {
+        return logOut();
+
+    };
 
     /**
      * Get data or filtered data
@@ -265,6 +273,17 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      */
     function setLastLogin(val) {
         $cookies.lastLogin = val;
+
+    }
+    
+    /**
+     * Logout
+     */
+    function logOut() {
+        setUser(null);
+        setUserSid(null);
+        $window.location.href = '#/';
+        $window.location.reload();
 
     }
 

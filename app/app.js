@@ -138,7 +138,8 @@ myApp.config(['$routeProvider', function($routeProvider) {
                 }).
                 //Login
                 when('/login', {
-                    templateUrl: 'app/views/login/login.html',
+                    redirectTo: '/'
+                    //templateUrl: 'app/views/login/login.html',
                 }).
                 //Login
                 when('/logout', {
@@ -206,7 +207,8 @@ myApp.run(function($rootScope, $location, dataService) {
 myApp.config(function($provide, $httpProvider) {
     $httpProvider.defaults.timeout = 5000;
     // Intercept http calls.
-    $provide.factory('MyHttpInterceptor', function($q,$location,$cookies) {
+    $provide.factory('MyHttpInterceptor', function($q,$location,dataService) {
+         var path = $location.path().split('/');
         return {
             // On request success
             request: function(config) {
@@ -225,9 +227,15 @@ myApp.config(function($provide, $httpProvider) {
             },
             // On response failture
             responseError: function(rejection) {
+                
                if(rejection.status == 401){
-                   $cookies.user = undefined;
-                    $location.path('/');
+                  
+                   //$cookies.user = undefined;
+                   if(path[1] !== ''){
+                        console.log('APP path: ' + path)
+                        dataService.logOut();
+                   }
+                    
                 }else if(rejection.status == 403){
                     $location.path('/error/403');
                 }else{

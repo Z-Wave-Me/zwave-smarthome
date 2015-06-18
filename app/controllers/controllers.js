@@ -153,6 +153,7 @@ myAppController.controller('TestController', function($scope, $routeParams, $fil
             dataService.showConnectionError(error);
         });
     };
+    //$scope.testHeader();
 
 
 });
@@ -3033,8 +3034,6 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
      * Login proccess
      */
     $scope.login = function(input) {
-
-        //dataService.logInfo(input);
         input.password = input.password;
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.logInApi(input).then(function(response) {
@@ -3044,25 +3043,19 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
             dataService.setUser(user);
             dataService.setLastLogin(Math.round(+new Date() / 1000));
             $scope.loading = false;
-            //$scope.user = dataService.getUser();
-            //$scope.lastLogin = dataService.getLastLogin();
-             //console.log('SID from json:' + response.data.data.sid)
-            //console.log('SID from cookie:' + dataService.getUserSid())
-             $window.location.href = '#/elements';
-        $window.location.reload();
+            $window.location.href = '#/elements';
+            $window.location.reload();
         }, function(error) {
             var message = $scope._t('error_load_data');
             if (error.status == 404) {
                 message = $scope._t('error_load_user');
             }
-            //alert(message);
             $scope.loading = false;
             $scope.alert = {message: message, status: 'alert-danger', icon: 'fa-warning'};
             dataService.logError(error);
         });
     };
     if ($routeParams.login && $routeParams.password) {
-
         $scope.login($routeParams);
     }
 
@@ -3071,17 +3064,8 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
  * Logout controller
  */
 myAppController.controller('LogoutController', function($scope, $cookies, $location, $window, $timeout, dataService) {
-    /**
-     * Logout proccess
-     */
     $scope.logout = function() {
-        //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('logout')};
-        dataService.setUser(null);
-        dataService.setUserSid(null);
-        $window.location.href = '#/';
-        $window.location.reload();
-        //$location.path('/login');
-
+        dataService.logOut();
     };
     $scope.logout();
 
