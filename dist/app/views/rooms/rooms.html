@@ -1,7 +1,7 @@
 <!-- Rooms view -->
 <div ng-controller="RoomController" class="mobile-padding">
     <bb-loader></bb-loader>
-    <div class="row" ng-if="collection">
+    <div class="row">
         <div class="col-md-3 col-sm-6 room-entry" id="panel_{{$index}}" ng-repeat="v in collection">
             <div class="room-in">
                 <h3 class="entry-title"><a href="#/elements/location/{{v.id}}/{{v.title}}">{{v.title}}</a></h3>
@@ -12,5 +12,14 @@
                 </a>
             </div>
         </div>
+        <div class="col-md-3 col-sm-6 room-entry" id="panel_new_room" ng-if="elementAccess(cfg.role_access.config_rooms)">
+            <div class="room-in">
+                <h3 class="entry-title"><a href="#config-rooms/0" ng-bind="_t('lb_add_room')"></a></h3>
+                <a href="#config-rooms/0">
+                    <img class="room-image-big img-circle" src="storage/img/rooms/new_room.jpg" alt="{{_t('lb_add_room')}}" />
+                </a>
+            </div>
+        </div>
+        
     </div>
 </div> <!-- /ng-controller --> 

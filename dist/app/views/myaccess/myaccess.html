@@ -79,51 +79,52 @@
                 <button class="btn btn-default" ng-bind="_t('lb_cancel')" bb-go-back></button>
             </div>
         </form>
-        
-         <!-- ///////////////////////////// Remote accessForm ///////////////////////////// -->
-        <form name="form_remote" id="form_remote" class="form form-page" ng-submit="putRemoteAccess(remoteAccess,newRemoteAccessPassword)" novalidate ng-if="remoteAccess">
+        <!-- ///////////////////////////// Remote accessForm ///////////////////////////// -->
+        <form name="form_remote" id="form_remote" class="form form-page" ng-submit="putRemoteAccess(remoteAccess, newRemoteAccessPassword)"  ng-if="elementAccess(cfg.role_access.remote_access)" novalidate>
             <fieldset>
                 <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('remote_access_manage')"></span></h3>
                 <p ng-bind="_t('remote_access_info')"></p>
-
-                <div class="form-group">
-                    <!-- Remote access ID -->
-                     <p class="form-control-static">
-                         <span ng-bind="_t('remote_access_id')"></span>: <strong ng-bind="remoteAccess.params.userId"></strong>
-                    </p>
-                    <!-- Remote access password -->
-                    <p>
-                        <label>{{_t('remote_access_password')}}: </label>
-                        <input name="remote_password" id="remote_password" type="password" class="form-control form-control-sm" value="" ng-model="newRemoteAccessPassword" />
-                    </p>
-                </div>
-
-                <div class="form-group">
-                    <div>
-                        <input type="checkbox" name="remote_access" value="true" id="remote_access" ng-model="remoteAccess.params.status" ng-checked="remoteAccess.params.status" /> 
-                        <label ng-bind="_t('remote_access')"></label>
-                        <div class="alert alert-warning" ng-bind="_t('remote_access_warning')" ng-if="!remoteAccess.params.status"></div>
+                <bb-alert alert="alert"></bb-alert>
+                <div ng-if="remoteAccess">
+                    <div class="form-group">
+                        <!-- Remote access ID -->
+                        <p class="form-control-static">
+                            <span ng-bind="_t('remote_access_id')"></span>: <strong ng-bind="remoteAccess.params.userId"></strong>
+                        </p>
+                        <!-- Remote access password -->
+                        <p>
+                            <label>{{_t('remote_access_password')}}: </label>
+                            <input name="remote_password" id="remote_password" type="password" class="form-control form-control-sm" value="" ng-model="remoteAccess.params.pass" />
+                        </p>
                     </div>
-                    <div>
-                        <input type="checkbox" name="remote_support" value="true" id="remote_support" ng-model="remoteAccess.params.sshStatus" ng-checked="remoteAccess.params.sshStatus" /> 
-                        <label ng-bind="_t('remote_access_support')"></label>
-                    </div>
-                </div>
 
-                <div class="submit-entry">
-                    <button type="submit" class="btn btn-primary" ng-bind="_t('lb_submit')"></button>
+                    <div class="form-group">
+                        <div>
+                            <input type="checkbox" name="remote_access" value="true" id="remote_access" ng-model="remoteAccess.params.zbwStatus" ng-checked="remoteAccess.params.zbwStatus" /> 
+                            <label ng-bind="_t('remote_access')"></label>
+                            <div class="alert alert-warning" ng-bind="_t('remote_access_warning')" ng-if="!remoteAccess.params.zbwStatus"></div>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="remote_support" value="true" id="remote_support" ng-model="remoteAccess.params.sshStatus" ng-checked="remoteAccess.params.sshStatus" /> 
+                            <label ng-bind="_t('remote_access_support')"></label>
+                        </div>
+                    </div>
+
+                    <div class="submit-entry">
+                        <button type="submit" class="btn btn-primary" ng-bind="_t('lb_submit')"></button>
+                    </div>
                 </div>
             </fieldset>
         </form>
-         
-          <!-- ///////////////////////////// Change password Form ///////////////////////////// -->
+
+        <!-- ///////////////////////////// Change password Form ///////////////////////////// -->
         <form name="form_password" id="form_password" class="form form-page" ng-submit="changePassword(newPassword)" novalidate>
             <fieldset>
                 <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('local_access')"></span></h3>
-                <!-- login -->
+                <!-- login
                 <p class="form-control-static">
                     <span ng-bind="_t('lb_login')"></span>: <strong ng-bind="user.login"></strong>
-                 </p>
+                 </p> -->
                 <!-- password -->
                 <div>
                     <label>{{_t('lb_new_password')}}: </label>

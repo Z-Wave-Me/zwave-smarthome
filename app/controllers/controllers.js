@@ -502,29 +502,14 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
      * Load instances
      */
     function loadInstances(devices) {
+        if(!$scope.elementAccess($scope.cfg.role_access.apps)){
+            var v = dataService.getDevices(devices, null, $scope.user.dashboard, false)[0];
+            setInput(v,devices.updateTime); 
+            return;
+        }
         dataFactory.getApi('instances').then(function(response) {
             var v = dataService.getDevices(devices, null, $scope.user.dashboard, response.data.data)[0];
-            if (v) {
-                $scope.input = {
-                    'id': v.id,
-                    'title': v.title,
-                    'dashboard': v.onDashboard == true ? true : false,
-                    'location': v.location,
-                    'tags': v.tags,
-                    'deviceType': v.deviceType,
-                    'level': v.level,
-                    'metrics': v.metrics,
-                    'updateTime': v.updateTime,
-                    'cfg': v.cfg,
-                    'permanently_hidden': v.permanently_hidden,
-                    //'rooms': $scope.rooms,
-                    'hide_events': false
-                };
-                dataService.updateTimeTick(response.data.data.updateTime);
-            } else {
-                alert($scope._t('no_data'));
-                dataService.showConnectionError($scope._t('no_data'));
-            }
+            setInput(v,response.data.data.updateTime); 
 
         }, function(error) {
             dataService.showConnectionError(error);
@@ -553,6 +538,33 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
     }
 
     /// --- Private functions --- ///
+     /**
+     * Set input
+     */
+    function setInput(v,updateTime) {
+        if (v) {
+                $scope.input = {
+                    'id': v.id,
+                    'title': v.title,
+                    'dashboard': v.onDashboard == true ? true : false,
+                    'location': v.location,
+                    'tags': v.tags,
+                    'deviceType': v.deviceType,
+                    'level': v.level,
+                    'metrics': v.metrics,
+                    'updateTime': v.updateTime,
+                    'cfg': v.cfg,
+                    'permanently_hidden': v.permanently_hidden,
+                    //'rooms': $scope.rooms,
+                    'hide_events': false
+                };
+                dataService.updateTimeTick(updateTime);
+            } else {
+                alert($scope._t('no_data'));
+                dataService.showConnectionError($scope._t('no_data'));
+            }
+    }
+    ;
     /**
      * Load locations
      */

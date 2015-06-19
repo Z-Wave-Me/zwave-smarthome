@@ -38,11 +38,11 @@
                     <td>
                         <span class="text-supp event-date" title="{{v.timestamp| date:'dd.MM.yyyy H:mm'}}" ng-bind="v.timestamp | eventDate"></span> <span class="hide-on-mobile">|</span>
                         <span  ng-if="v.source && v.message">
-                        <a ng-href="#element/{{v.source}}" ng-if="cfg.events_clickable.indexOf(v.level) > -1">
+                        <a ng-href="#element/{{v.source}}" ng-if="elementAccess(cfg.role_access.element) && (cfg.events_clickable.indexOf(v.level) > -1)">
                             <span ng-if="v.message | hasNode:'l'"> <span ng-bind="v.message.dev"></span> {{_t('lb_is')}} <strong ng-bind="v.message.l"></strong></span>
                             <span ng-if="!(v.message | hasNode:'l')" ng-bind="v.message"></span>
                          </a>
-                         <span  ng-if="cfg.events_clickable.indexOf(v.level) === -1">
+                         <span  ng-if="!elementAccess(cfg.role_access.element) || (cfg.events_clickable.indexOf(v.level) === -1)">
                             <span ng-if="v.message | hasNode:'l'"> <span ng-bind="v.message.dev"></span> {{_t('lb_is')}} <strong ng-bind="v.message.l"></strong></span>
                             <span ng-if="!(v.message | hasNode:'l')" ng-bind="v.message"></span>
                          </span>
@@ -72,7 +72,7 @@
                                         <i class="fa fa-check-circle"></i> <span ng-bind="_t('lb_events_source_type')"></span>
                                     </a>
                                 </li>
-                                <li ng-if="v.source && v.message">
+                                <li ng-if="elementAccess(cfg.role_access.element) && (cfg.events_clickable.indexOf(v.level) > -1) && (v.source && v.message)">
                                     <a href="#element/{{v.source}}">
                                         <i class="fa fa-cog"></i> <span ng-bind="_t('lb_source_cfg')"></span>   
                                     </a>

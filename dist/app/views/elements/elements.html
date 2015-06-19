@@ -15,7 +15,7 @@
                     <!-- Widget header -->
                     <div class="widget-header">
                         <a class="widget-history" href="" ng-click="loadDeviceHistory(v.id)" ng-if="v.hasHistory"><i class="fa fa-history fa-lg"></i></a>
-                        <a class="widget-config" href="#element/{{v.id}}"><i class="fa fa-cog fa-lg"></i></a>
+                        <a class="widget-config" href="#element/{{v.id}}" ng-if="elementAccess(cfg.role_access.element)"><i class="fa fa-cog fa-lg"></i></a>
                     </div>
 
                     <!-- Widget body -->
@@ -452,8 +452,7 @@
                             </p>
 
                             <div class="camera-img">
-                                <!--<img ng-src="storage/img/test.jpg">-->
-                                <img class="text-center camera-img" src="{{input.metrics.url}}">
+                                <img class="text-center camera-img" ng-src="{{input.metrics.url}}">
                             </div>
 
                         </div>

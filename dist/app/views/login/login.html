@@ -1,6 +1,7 @@
 <!-- Login view -->
 <div ng-controller="LoginController" class="mobile-padding">
     <bb-loader></bb-loader>
+    <div ng-if="input.form">
     <div class="login-lang">
        <a href="" ng-repeat="v in cfg.lang_list" class="lang-item" ng-click="loginLang(v)">
         <img ng-src="app/img/flags/{{v}}.png" alt="{{v}}"/>
@@ -13,6 +14,7 @@
         <div class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i> <span  ng-bind="_t('welcome_3')"></span></div>
         
     </div>
+    <bb-alert alert="alert"></bb-alert>
     
     <form name="form_login" id="form_login" class="form form-page" ng-submit="login(input)" novalidate>
         <fieldset>
@@ -32,14 +34,15 @@
                 <label><input type="radio" name="default_ui" value="2" ng-model="input.default_ui" ng-checked="input.default_ui == 2" /> {{_t('lb_ui_expert')}}</label>
             </div>-->
              <!-- keep me -->
-        <div class="form-group">
+        <!--<div class="form-group">
             <input type="checkbox" name="keepme" value="true" id="keepme" ng-model="input.keepme" /> 
             <label ng-bind="_t('lb_keep_logged')"></label>
-        </div>
+        </div>-->
 
         </fieldset>
        <div class="form-footer">
             <button type="submit" class="btn btn-primary btn-block" ng-bind="_t('lb_login')">{{_t('apply_config_into_device')}}</button>
         </div>
     </form>
+    </div>
 </div>

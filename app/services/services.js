@@ -339,8 +339,8 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                     return;
                 }
             }
-           
-            if (v.id.indexOf(findZwaveStr) > -1) {
+           if(instances){
+               if (v.id.indexOf(findZwaveStr) > -1) {
                 zwaveId = v.id.split(findZwaveStr)[1].split('-')[0];
             } else {
                 instance = getRowBy(instances, 'id', v.creatorId);
@@ -349,6 +349,8 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
 
                 }
             }
+           }
+            
             if (dashboard && dashboard.indexOf(v.id) !== -1) {
                 var onDashboard = true;
             }

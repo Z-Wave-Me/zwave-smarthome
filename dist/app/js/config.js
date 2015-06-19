@@ -19,7 +19,6 @@ var config_data = {
             'hide_devices': 'ZAutomation/api/v1/hidedevices',
             'profiles': 'ZAutomation/api/v1/profiles',
             'profiles_auth_update': 'ZAutomation/api/v1/auth/update',
-            //'remote_access': 'ZAutomation/api/v1/remote',
             'locations': 'ZAutomation/api/v1/locations',
             'notifications': 'ZAutomation/api/v1/notifications',
             'modules': 'ZAutomation/api/v1/modules',
@@ -62,6 +61,26 @@ var config_data = {
         'lang': 'en',
         // List of supported languages
         'lang_list': ['en', 'de', 'ru','cn'],
+        // Role access
+        'role_access': {
+            admin: [1],
+            admin_user: [1],
+            apps: [1,3],
+            apps_local: [1,3],
+            apps_online: [1,3],
+            module: [1,3],
+            devices: [1,3],
+            myaccess: [1,2,3],
+            remote_access: [1,3],
+            devices_include: [1,3],
+            rooms: [1,2,3],
+            element: [1,2,3],
+            config_rooms: [1,3],
+            config_rooms_id: [1,3],
+            network: [1,3],
+            network_config_id: [1,3],
+            logout: [1,2,3,4]
+        },
         // List of language codes
         'lang_codes': {
             'en': 'en_EN',
@@ -99,7 +118,7 @@ var config_data = {
             'sleeping_room.jpg',
             'living_room.jpg'
         ],
-         // List of the clicakble levels
+         // List of the clicakble event levels
         'events_clickable': [
             'device-info'
         ],
