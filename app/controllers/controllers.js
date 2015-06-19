@@ -57,7 +57,6 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
             $scope.languages = response.data;
         }, function(error) {
             dataService.showConnectionError(error);
-            dataService.logError(error);
         });
     };
     // Get language lines
@@ -160,7 +159,7 @@ myAppController.controller('TestController', function($scope, $routeParams, $fil
 /**
  * Element controller
  */
-myAppController.controller('ElementController', function($scope, $routeParams, $interval, dataFactory, dataService, myCache) {
+myAppController.controller('ElementController', function($scope, $routeParams, $interval,  $location,dataFactory, dataService, myCache) {
     $scope.goHidden = [];
     $scope.goHistory = [];
     $scope.apiDataInterval = null;
@@ -250,7 +249,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
             $scope.collection = collection;
             dataService.updateTimeTick(response.data.data.updateTime);
         }, function(error) {
-            dataService.showConnectionError(error);
+             $location.path('/error/' + error.status);
         });
     };
     $scope.loadData();
@@ -287,7 +286,6 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
             $scope.history[deviceId] = {data: data};
         }, function(error) {
             $scope.history[deviceId] = {data: false, icon: 'fa-exclamation-triangle text-warning', message: $scope._t('no_data')};
-            dataService.logError(error);
         });
 
     };
@@ -367,7 +365,6 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         }, function(error) {
             alert($scope._t('error_update_data'));
             $scope.loading = false;
-            dataService.logError(error);
         });
         return;
     }
@@ -400,9 +397,7 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
             loadInstances(devices);
 
         }, function(error) {
-            $location.path('/error/404');
-            //alert($scope._t('error_load_data'));
-            dataService.showConnectionError(error);
+            $location.path('/error/' + error.status);
         });
     };
     $scope.loadData($routeParams.id);
@@ -482,7 +477,6 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
             }, function(error) {
                 alert($scope._t('error_update_data'));
                 $scope.loading = false;
-                dataService.logError(error);
             });
         }
 
@@ -532,7 +526,6 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
         }, function(error) {
             alert($scope._t('error_update_data'));
             $scope.loading = false;
-            dataService.logError(error);
         });
         return;
     }
@@ -585,7 +578,7 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
 /**
  * Event controller
  */
-myAppController.controller('EventController', function($scope, $routeParams, $interval, $window, $filter, $cookies, dataFactory, dataService, myCache, paginationService, cfg) {
+myAppController.controller('EventController', function($scope, $routeParams, $interval, $window, $filter, $cookies, $location,dataFactory, dataService, myCache, paginationService, cfg) {
     $scope.collection = [];
     $scope.eventLevels = [];
     $scope.dayCount = [
@@ -631,7 +624,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
             dataService.updateTimeTick(response.data.data.updateTime);
             $scope.loading = false;
         }, function(error) {
-            dataService.showConnectionError(error);
+            $location.path('/error/' + error.status);
         });
     };
     $scope.loadData();
@@ -742,7 +735,6 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
             }, function(error) {
                 $scope.loading = false;
                 alert($scope._t('error_delete_data'));
-                dataService.logError(error);
             });
         }
     };
@@ -803,7 +795,6 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
         }, function(error) {
             alert($scope._t('error_update_data'));
             $scope.loading = false;
-            dataService.logError(error);
         });
         return;
     }
@@ -975,7 +966,6 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
             }, function(error) {
                 alert($scope._t('error_update_data'));
                 $scope.loading = false;
-                dataService.logError(error);
             });
         }
 
@@ -996,7 +986,6 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
                 myCache.remove('devices');
             }, function(error) {
                 alert($scope._t('error_delete_data'));
-                dataService.logError(error);
             });
 
         }
@@ -1030,7 +1019,6 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
             }, function(error) {
                 $scope.loading = false;
                 alert($scope._t('error_delete_data'));
-                dataService.logError(error);
             });
         }
     };
@@ -1048,7 +1036,6 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
         }, function(error) {
             $scope.loading = false;
             alert($scope._t('error_no_module_download'));
-            dataService.logError(error);
         });
 
     };
@@ -1074,7 +1061,7 @@ myAppController.controller('AppLocalDetailController', function($scope, $routePa
 
         }, function(error) {
             $scope.loading = false;
-            dataService.showConnectionError(error);
+            $location.path('/error/' + error.status);
         });
     };
     $scope.loadModule($routeParams.id);
@@ -1084,10 +1071,7 @@ myAppController.controller('AppLocalDetailController', function($scope, $routePa
         dataFactory.getRemoteData($scope.cfg.online_module_url).then(function(response) {
             $scope.isOnline = dataService.getRowBy(response.data, 'modulename', moduleName);
             dataService.updateTimeTick();
-        }, function(error) {
-            dataService.logError(error);
-             $location.path('/error/404');
-        });
+        }, function(error) {});
     }
 
 });
@@ -1133,7 +1117,6 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
         }, function(error) {
             $scope.loading = false;
             alert($scope._t('error_no_module_download'));
-            dataService.logError(error);
         });
 
     };
@@ -1194,8 +1177,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
             });
 
         }, function(error) {
-            alert($scope._t('error_load_data'));
-            dataService.showConnectionError(error);
+            $location.path('/error/' + error.status);
         });
     };
 
@@ -1248,8 +1230,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                 dataService.showConnectionError(error);
             });
         }, function(error) {
-            alert($scope._t('error_load_data'));
-            dataService.showConnectionError(error);
+             $location.path('/error/' + error.status);
         });
 
     };
@@ -1295,7 +1276,6 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
 
             }, function(error) {
                 alert($scope._t('error_update_data'));
-                dataService.logError(error);
             });
         } else {
             dataFactory.postApi('instances', inputData).then(function(response) {
@@ -1304,7 +1284,6 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
 
             }, function(error) {
                 alert($scope._t('error_update_data'));
-                dataService.logError(error);
             });
         }
     };
@@ -1569,9 +1548,7 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
         $scope.lastExcludedDevice = null;
         dataFactory.runZwaveCmd(cmd).then(function() {
             myCache.remove('devices');
-        }, function(error) {
-            dataService.logError(error);
-        });
+        }, function(error) {});
 
     };
 
@@ -1623,7 +1600,6 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
             }, function(error) {
                 alert($scope._t('error_update_data'));
                 $scope.loading = false;
-                dataService.logError(error);
                 return;
             });
         }
@@ -1646,7 +1622,6 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
         }, function(error) {
             alert($scope._t('error_update_data'));
             $scope.loading = false;
-            dataService.logError(error);
         });
 
     };
@@ -1825,7 +1800,7 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
 /**
  * Room controller
  */
-myAppController.controller('RoomController', function($scope, dataFactory, dataService) {
+myAppController.controller('RoomController', function($scope,$location, dataFactory, dataService) {
     $scope.collection = [];
     $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/image/';
     $scope.reset = function() {
@@ -1844,8 +1819,7 @@ myAppController.controller('RoomController', function($scope, dataFactory, dataS
             }
             dataService.updateTimeTick();
         }, function(error) {
-
-            dataService.showConnectionError(error);
+            $location.path('/error/' + error.status);
         });
     };
     $scope.loadData();
@@ -1853,7 +1827,7 @@ myAppController.controller('RoomController', function($scope, dataFactory, dataS
 /**
  * Room config controller
  */
-myAppController.controller('RoomConfigController', function($scope, $window, dataFactory, dataService, myCache) {
+myAppController.controller('RoomConfigController', function($scope, $window,  $location,dataFactory, dataService, myCache) {
     $scope.collection = [];
     $scope.devices = [];
     $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/image/';
@@ -1870,7 +1844,7 @@ myAppController.controller('RoomConfigController', function($scope, $window, dat
             $scope.collection = response.data.data;
             loadDevices();
         }, function(error) {
-            dataService.showConnectionError(error);
+            $location.path('/error/' + error.status);
         });
     };
     $scope.loadData();
@@ -1894,7 +1868,6 @@ myAppController.controller('RoomConfigController', function($scope, $window, dat
 
             }, function(error) {
                 alert($scope._t('error_delete_data'));
-                dataService.logError(error);
             });
         }
     };
@@ -1955,7 +1928,7 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
             loadDevices(id);
         }, function(error) {
             $scope.input = false;
-            dataService.showConnectionError(error);
+            $location.path('/error/' + error.status);
         });
     };
     if ($scope.id > 0) {
@@ -2029,7 +2002,6 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
         }, function(error) {
             alert($scope._t('error_update_data'));
             $scope.loading = false;
-            dataService.logError(error);
 
         });
 
@@ -2090,7 +2062,7 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
 /**
  * Network controller
  */
-myAppController.controller('NetworkController', function($scope, $cookies, $filter, $window, dataFactory, dataService, myCache) {
+myAppController.controller('NetworkController', function($scope, $cookies, $filter, $window,$location, dataFactory, dataService, myCache) {
     $scope.activeTab = (angular.isDefined($cookies.tab_network) ? $cookies.tab_network : 'battery');
     $scope.batteries = {
         'list': [],
@@ -2128,7 +2100,7 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
             loadLocations();
 
         }, function(error) {
-            dataService.showConnectionError(error);
+            $location.path('/error/' + error.status);
         });
     };
     $scope.loadData();
@@ -2415,7 +2387,7 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
 
             }
         }, function(error) {
-            dataService.showConnectionError(error);
+            $location.path('/error/' + error.status);
         });
     }
     ;
@@ -2448,7 +2420,7 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
 /**
  * Profile controller
  */
-myAppController.controller('NetworkConfigController', function($scope, $routeParams, $filter, dataFactory, dataService, myCache) {
+myAppController.controller('NetworkConfigController', function($scope, $routeParams, $filter, $location,dataFactory, dataService, myCache) {
     $scope.zWaveDevice = [];
     $scope.devices = [];
     $scope.dev = [];
@@ -2465,7 +2437,7 @@ myAppController.controller('NetworkConfigController', function($scope, $routePar
             loadLocations();
 
         }, function(error) {
-            dataService.showConnectionError(error);
+            $location.path('/error/' + error.status);
         });
     };
     $scope.loadData($routeParams.nodeId);
@@ -2491,8 +2463,7 @@ myAppController.controller('NetworkConfigController', function($scope, $routePar
             }, function(error) {
                 alert($scope._t('error_update_data'));
                 $scope.loading = false;
-                dataService.logError(error);
-                return;
+                 return;
             });
         }
         myCache.remove('devices');
@@ -2513,7 +2484,6 @@ myAppController.controller('NetworkConfigController', function($scope, $routePar
         }, function(error) {
             alert($scope._t('error_update_data'));
             $scope.loading = false;
-            dataService.logError(error);
         });
 
     };
@@ -2538,6 +2508,7 @@ myAppController.controller('NetworkConfigController', function($scope, $routePar
             dataService.updateTimeTick();
             var node = ZWaveAPIData.devices[nodeId];
             if (!node) {
+                 $location.path('/error/404');
                 return;
             }
 
@@ -2594,7 +2565,7 @@ myAppController.controller('NetworkConfigController', function($scope, $routePar
 
             });
         }, function(error) {
-            dataService.showConnectionError(error);
+            $location.path('/error/404');
         });
     }
     ;
@@ -2604,7 +2575,7 @@ myAppController.controller('NetworkConfigController', function($scope, $routePar
 /**
  * Profile controller
  */
-myAppController.controller('AdminController', function($scope, $window, $cookies, dataFactory, dataService, myCache) {
+myAppController.controller('AdminController', function($scope, $window, $location, dataFactory, dataService, myCache) {
     $scope.profiles = {};
 
     /**
@@ -2616,7 +2587,7 @@ myAppController.controller('AdminController', function($scope, $window, $cookies
             $scope.profiles = response.data.data;
             dataService.updateTimeTick();
         }, function(error) {
-            dataService.showConnectionError(error);
+            $location.path('/error/' + error.status);
         });
     };
     $scope.loadData();
@@ -2640,7 +2611,6 @@ myAppController.controller('AdminController', function($scope, $window, $cookies
 
             }, function(error) {
                 alert($scope._t('error_delete_data'));
-                dataService.logError(error);
             });
         }
     };
@@ -2648,7 +2618,7 @@ myAppController.controller('AdminController', function($scope, $window, $cookies
 /**
  * Orofile detail
  */
-myAppController.controller('AdminUserController', function($scope, $routeParams, $filter, dataFactory, dataService, myCache) {
+myAppController.controller('AdminUserController', function($scope, $routeParams, $filter,$location, dataFactory, dataService, myCache) {
     $scope.id = $filter('toInt')($routeParams.id);
     $scope.rooms = {};
     $scope.input = {
@@ -2684,8 +2654,7 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
             dataService.updateTimeTick();
         }, function(error) {
             $scope.input = false;
-            $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-danger', message: $scope._t('error_load_data')};
-            dataService.showConnectionError(error);
+             $location.path('/error/' + error.status);
         });
     };
     if ($scope.id > 0) {
@@ -2747,7 +2716,6 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
         }, function(error) {
             alert($scope._t('error_update_data'));
             $scope.loading = false;
-            dataService.logError(error);
         });
 
     };
@@ -2778,7 +2746,6 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
         }, function(error) {
             alert($scope._t('error_update_data'));
             $scope.loading = false;
-            dataService.logError(error);
         });
 
     };
@@ -2790,7 +2757,7 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
 /**
  * My Access
  */
-myAppController.controller('MyAccessController', function($scope, $window, dataFactory, dataService, myCache) {
+myAppController.controller('MyAccessController', function($scope, $window, $location,dataFactory, dataService, myCache) {
     $scope.id = $scope.user.id;
     $scope.devices = {};
     $scope.input = {
@@ -2822,8 +2789,8 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
             dataService.updateTimeTick();
         }, function(error) {
             $scope.input = false;
-            $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-danger', message: $scope._t('error_load_data')};
-            dataService.showConnectionError(error);
+            $scope.loading = false;
+           $location.path('/error/' + error.status);
         });
     };
     if ($scope.id > 0) {
@@ -2903,7 +2870,6 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
         }, function(error) {
             alert($scope._t('error_update_data'));
             $scope.loading = false;
-            dataService.logError(error);
         });
 
     };
@@ -2919,7 +2885,6 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
         }, function(error) {
             alert($scope._t('error_update_data'));
             $scope.loading = false;
-            dataService.logError(error);
         });
 
     };
@@ -2949,7 +2914,6 @@ myAppController.controller('MyAccessController', function($scope, $window, dataF
         }, function(error) {
             alert($scope._t('error_update_data'));
             $scope.loading = false;
-            dataService.logError(error);
         });
 
     };
@@ -3050,7 +3014,6 @@ myAppController.controller('ReportController', function($scope, $cookies, $locat
         }, function(error) {
             alert($scope._t('error_send_report'));
             $scope.loading = false;
-            dataService.logError(error);
         });
 
     };
@@ -3102,7 +3065,6 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
             }
             $scope.loading = false;
             $scope.alert = {message: message, status: 'alert-danger', icon: 'fa-warning'};
-            dataService.logError(error);
         });
     };
     if ($routeParams.login && $routeParams.password) {

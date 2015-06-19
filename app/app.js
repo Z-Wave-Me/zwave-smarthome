@@ -227,7 +227,7 @@ myApp.config(function($provide, $httpProvider) {
             },
             // On response failture
             responseError: function(rejection) {
-                
+                dataService.logError(rejection);
                if(rejection.status == 401){
                   
                    //$cookies.user = undefined;
