@@ -1,7 +1,7 @@
 {
     "missing": "---",
-    "remote_access_not_active": "Remote Access Management is not activated. Please active it in Apps-Active tab.",
-    "remote_access_not_installed": "Remote Access Management is not installed.",
+    "remote_access_not_active": "Remote Access Management is not activated. Please activate it in Apps-Active tab.",
+    "remote_access_not_installed": "Remote Access Management is not installed. Please add new 'Remote Access' ( Apps > local > Remote Access > +New App ) app in local Apps.",
     "inclusion_interview_not_complete": "Device found but the configuration is not complete",
     "error_0": "Unknown error",
     "error_401": "Unauthorized",

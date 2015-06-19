@@ -52,14 +52,14 @@
                 <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('nav_devices')"></span></h3>
                 <div class="device-assigned-block">
                         <h4>{{_t('lb_devices_in_room')}}</h4>
-                        <div class="btn-device-admin" id="device_assigned_{{$index}}" ng-repeat="d in devices" ng-if="devicesAssigned.indexOf(d.id) > -1"> 
-                            <a href="" ng-click="removeDevice(d.id)">{{d.metrics.title}} <i class="fa fa-times text-danger"></i></a>
+                        <div class="btn-device-admin" id="device_assigned_{{$index}}" ng-repeat="d in devices" ng-if="devicesAssigned.indexOf(d.id) > -1 && d.location !== 0"> 
+                            <a href="" ng-click="removeDevice(d)">{{d.metrics.title}} <i class="fa fa-times text-danger"></i></a>
                         </div>
                     </div>
                 <div class="device-available-block">
                     <h4>{{_t('lb_available_devices')}}</h4>
-                    <div class="btn-device-admin" id="device_unassigned_{{$index}}" ng-repeat="d in devices" ng-if="devicesAssigned.indexOf(d.id) === -1">
-                        <a href="" ng-click="assignDevice(d.id)">{{d.metrics.title}} <i class="fa fa-plus text-success"></i></a>
+                    <div class="btn-device-admin" id="device_unassigned_{{$index}}" ng-repeat="d in devices" ng-if="devicesAssigned.indexOf(d.id) === -1 || d.location === 0">
+                        <a href="" ng-click="assignDevice(d)">{{d.metrics.title}} <i class="fa fa-plus text-success"></i></a>
                     </div>
                 </div>
             </fieldset>
