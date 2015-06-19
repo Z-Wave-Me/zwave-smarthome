@@ -1910,15 +1910,14 @@ myAppController.controller('RoomConfigController', function($scope, $window, dat
         }, function(error) {
             dataService.showConnectionError(error);
         });
-    }
-    ;
+    };
 
     /**
      * Remove room id from device
      */
     function removeRoomIdFromDevice(devices) {
         angular.forEach(devices, function(v, k) {
-            dataFactory.putApi('devices', v.id, {'location': null}).then(function(response) {
+            dataFactory.putApi('devices', v.id, {'location': 0}).then(function(response) {
             }, function(error) {
             });
         });
@@ -1986,22 +1985,24 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
     /**
      * Assign device to room
      */
-    $scope.assignDevice = function(deviceId) {
-        $scope.devicesAssigned.push(deviceId);
+    $scope.assignDevice = function(device) {
+        device.location = null;
+        $scope.devicesAssigned.push(device.id);
         return;
-
     };
+
     /**
      * Remove device from the room
      */
-    $scope.removeDevice = function(deviceId) {
+    $scope.removeDevice = function(device) {
         var oldList = $scope.devicesAssigned;
         $scope.devicesAssigned = [];
-        $scope.devicesToRemove = [];
+        $scope.devicesToRemove = $scope.devicesToRemove.length > 0 ? $scope.devicesToRemove : [];
         angular.forEach(oldList, function(v, k) {
-            if (v != deviceId) {
+            if (v != device.id) {
                 $scope.devicesAssigned.push(v);
             } else {
+                device.location = 0;
                 $scope.devicesToRemove.push(v);
             }
         });
@@ -2075,7 +2076,7 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
      */
     function removeRoomIdFromDevice(data, devices) {
         angular.forEach(devices, function(v, k) {
-            dataFactory.putApi('devices', v, {'location': null}).then(function(response) {
+            dataFactory.putApi('devices', v, {'location': 0}).then(function(response) {
             }, function(error) {
 
             });
@@ -2655,8 +2656,6 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
         name: '',
         active: true,
         role: 2,
-        description: '',
-        //positions: [],
         password: '',
         login: '',
         lang: 'en',
@@ -2664,7 +2663,7 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
         hide_all_device_events: false,
         hide_system_events: false,
         hide_single_device_events: [],
-        rooms: [],
+        rooms: [0],
         default_ui: 1,
         expert_view: false
 
