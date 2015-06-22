@@ -87,14 +87,14 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      /**
      * Get user SID (token)
      */
-    this.getProfileSID = function() {
-        return getProfileSID();
+    this.getZWAYSession = function() {
+        return getZWAYSession();
     };
     /**
      * Set user SID (token)
      */
-    this.setProfileSID = function(sid) {
-        return setProfileSID(sid);
+    this.setZWAYSession = function(sid) {
+        return setZWAYSession(sid);
     };
      /**
      * Get last login
@@ -248,15 +248,15 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     /**
      * Get user SID (token)
      */
-    function getProfileSID() {
-         return $cookies.ProfileSID;
+    function getZWAYSession() {
+         return $cookies.ZWAYSession;
 
     }
     /**
      * Set user SID (token)
      */
-    function setProfileSID(sid) {
-        $cookies.ProfileSID = sid;
+    function setZWAYSession(sid) {
+        $cookies.ZWAYSession = sid;
 
     }
     
@@ -281,7 +281,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      */
     function logOut() {
         setUser(null);
-        setProfileSID(null);
+        setZWAYSession(null);
         $window.location.href = '#/';
         $window.location.reload();
 

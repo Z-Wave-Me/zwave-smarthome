@@ -51,7 +51,6 @@ module.exports = function(grunt) {
                     'app/services/services.js',
                     'app/directives/directives.js',
                      'app/directives/dir-pagination.js',
-                     'app/directives/directives-elements.js',
                      'app/directives/tc-angular-chartjs.js',
                     //'app/directives/bsSwitch.js',
                     //'app/directives/angular-slider.j',
