@@ -289,7 +289,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
 
 
     /**
-     * Get data or filtered data
+     * Get API data or filtered data
      */
     function getData(data, filter) {
         if (!filter) {

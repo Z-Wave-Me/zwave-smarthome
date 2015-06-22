@@ -26,13 +26,12 @@ var postRenderAlpaca = function(renderedForm) {
             beforeSend: function() {
                 console.log(data);
                 return; 
-                $('.module-spinner').show();
+                //$('.module-spinner').show();
             },
             success: function(response) {
                  $('.module-spinner').fadeOut();
-                 //if(type == 'POST'){
-                     window.location.replace("#apps");
-                //}
+                 window.location.replace("#apps");
+                 window.location.reload(true);
             },
             error: function(xhr, ajaxOptions, thrownError) {
                  $('.module-spinner').fadeOut();
