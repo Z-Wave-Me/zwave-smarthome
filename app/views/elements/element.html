@@ -32,11 +32,11 @@
                         <div>
                             <input type="checkbox" name="dashboard" value="{{input.dashboard}}" id="dashboard" ng-model="input.dashboard" ng-checked="input.dashboard" /> <label ng-bind="_t('lb_add_dashboard')"></label>
                         </div>
-                        <div ng-if="elementAccess(cfg.role_access.admin) && input.cfg.zwaveId">
+                        <div ng-if="elementAccess(cfg.role_access.admin) && input.cfg.zwaveId"> 
                             <input type="checkbox" name="permanently_hidden" id="permanently_hidden" value="" 
                                    ng-model="input.permanently_hidden" 
-                                   ng-checked="input.permanently_hidden" 
-                                   ng-confirm-click="This means that you can never use this element again. Are you sure?" /> <label ng-bind="_t('lb_permanently_hide')"></label>
+                                   ng-checked="input.permanently_hidden"   
+                                   _ng-confirm-click_="This means that you can never use this element again. Are you sure?" /> <label ng-bind="_t('lb_permanently_hide')"></label>
                         </div>
                         <div>
                             <input type="checkbox" name="hide_events" value="{{input.id}}" id="hide_events" ng-model="input.hide_events" ng-checked="user.hide_single_device_events.indexOf(input.id) === -1 ? false : true" /> <label ng-bind="_t('lb_hide_events_device')"></label>
