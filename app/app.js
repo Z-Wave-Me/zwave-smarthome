@@ -134,7 +134,8 @@ myApp.config(['$routeProvider', function($routeProvider) {
                 }).
                 //Report
                 when('/report', {
-                    templateUrl: 'app/views/report/report.html'
+                    templateUrl: 'app/views/report/report.html',
+                    requireLogin: true
                 }).
                 //Login
                 when('/login', {
