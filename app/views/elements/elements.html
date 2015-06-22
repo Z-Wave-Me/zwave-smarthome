@@ -87,7 +87,12 @@
 
                             <!------------ switchRGBW ------------>
                             <div  ng-switch-when="switchRGBW" ng-init="rgbVal[v.id] = v.rgbColors">
-                                <div cmdurl="{{cfg.server_url + cfg.api_url}}devices/{{v.id}}/command/exact" class="widget-control control-left widget-click-popup" colorpicker="rgb" ng-model="rgbVal[v.id]" ng-click="showColor = !showColor">
+                                <div class="widget-control control-left widget-click-popup" 
+                                     colorpicker="rgb" ng-model="rgbVal[v.id]"
+                                     cmdurl="{{cfg.server_url + cfg.api_url}}devices/{{v.id}}/command/exact"
+                                     sid="{{ZWAYSession}}"
+                                     lang="{{lang}}"
+                                     ng-click="showColor = !showColor">
                                     <span class="color-picker-show" style="background-color: {{rgbVal[v.id]}};">&nbsp;</span> <span>RGB <i class="fa fa-caret-down"></i></span>
                                 </div>
                                 <div class="widget-control control-right">

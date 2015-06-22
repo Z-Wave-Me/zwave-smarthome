@@ -20,7 +20,7 @@ var postRenderAlpaca = function(renderedForm) {
             dataType: 'json',
             headers: {
                 'Accept-Language': lang,
-                'Profile-SID': sid
+                'ZWAYSession': sid
             },
             data: JSON.stringify(data),
             beforeSend: function() {

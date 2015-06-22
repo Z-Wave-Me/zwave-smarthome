@@ -415,13 +415,19 @@ angular.module('colorpicker.module', [])
 
                         var mouseup = function() {
                             /*** Custom update ***/
+                            var lang = attrs.cmdurl;
+                            var sid = attrs.sid;
                             var url = attrs.cmdurl;
                             var color = pickerColor[thisFormat]();
                             var array = color.match(/\((.*)\)/)[1].split(',');
                             var cmd = url + '?red=' + array[0] + '&green=' + array[1] + '&blue=' + array[2];
                             $.ajax({
                                 type: "GET",
-                                url: cmd
+                                url: cmd,
+                                headers: {
+                                    'Accept-Language': lang,
+                                    'ZWAYSession': sid
+                                },
                             });
                             //console.log('RGB change', cmd)
                             /*** END - Custom update ***/

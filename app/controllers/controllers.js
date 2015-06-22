@@ -8,7 +8,7 @@ var myAppController = angular.module('myAppController', []);
 /**
  * Base controller
  */
-myAppController.controller('BaseController', function($scope, $cookies, $filter, $location, $route, cfg, dataFactory, dataService) {
+myAppController.controller('BaseController', function($scope, $cookies, $filter, $location, cfg, dataFactory, dataService) {
     /**
      * Global scopes
      */
@@ -805,7 +805,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
 /**
  * App controller
  */
-myAppController.controller('AppController', function($scope, $window, $cookies, $timeout, $log, dataFactory, dataService, myCache) {
+myAppController.controller('AppController', function($scope, $window, $cookies, $timeout, dataFactory, dataService, myCache) {
     $scope.instances = [];
     $scope.hasImage = [];
     $scope.modules = [];
@@ -1047,7 +1047,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
 /**
  * App local detail controller
  */
-myAppController.controller('AppLocalDetailController', function($scope, $routeParams, $log,$location, dataFactory, dataService) {
+myAppController.controller('AppLocalDetailController', function($scope, $routeParams, $location, dataFactory, dataService) {
     $scope.module = [];
     $scope.isOnline = null;
     $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
@@ -1363,7 +1363,7 @@ myAppController.controller('DeviceController', function($scope, $routeParams, da
 /**
  * Device controller
  */
-myAppController.controller('IncludeController', function($scope, $routeParams, $timeout, $interval, $filter, dataFactory, dataService, myCache) {
+myAppController.controller('IncludeController', function($scope, $routeParams, $interval, $filter, dataFactory, dataService, myCache) {
     $scope.apiDataInterval = null;
     $scope.includeDataInterval = null;
     $scope.device = {
@@ -1637,9 +1637,12 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
         //var data = response.data;
         if ('controller.data.controllerState' in data) {
             $scope.controllerState = data['controller.data.controllerState'].value;
+            console.log('controllerState: ',$scope.controllerState)
         }
+        
         if ('controller.data.lastExcludedDevice' in data) {
             $scope.lastExcludedDevice = data['controller.data.lastExcludedDevice'].value;
+             console.log('lastExcludedDevice: ',$scope.lastExcludedDevice)
         }
         if ('controller.data.lastIncludedDevice' in data) {
             var deviceIncId = data['controller.data.lastIncludedDevice'].value;
@@ -1817,9 +1820,9 @@ myAppController.controller('RoomController', function($scope,$location, dataFact
         dataService.showConnectionSpinner();
         dataFactory.getApi('locations').then(function(response) {
             $scope.collection = response.data.data;
-            if (Object.keys($scope.collection).length < 1) {
-                $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: $scope._t('no_data')};
-            }
+//            if (Object.keys($scope.collection).length < 1) {
+//                $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: $scope._t('no_data')};
+//            }
             dataService.updateTimeTick();
         }, function(error) {
             $location.path('/error/' + error.status);
@@ -2938,7 +2941,7 @@ myAppController.controller('MyAccessController', function($scope, $window, $loca
 /**
  * Report controller
  */
-myAppController.controller('ReportController', function($scope, $cookies, $location, $window, $timeout, dataFactory, dataService) {
+myAppController.controller('ReportController', function($scope, $window, dataFactory, dataService) {
     $scope.ZwaveApiData = false;
     $scope.remoteAccess = false;
     $scope.input = {
@@ -2978,7 +2981,7 @@ myAppController.controller('ReportController', function($scope, $cookies, $locat
             return;
         }
         dataFactory.getApi('instances', '/RemoteAccess').then(function(response) {
-            $scope.remoteAccess = response.data.data;
+            $scope.remoteAccess = response.data.data[0];
         }, function(error) {
             dataService.showConnectionError(error);
         });
@@ -2990,7 +2993,7 @@ myAppController.controller('ReportController', function($scope, $cookies, $locat
      * Create/Update an item
      */
     $scope.store = function(input) {
-        if (input.content == '') {
+       if (input.content == '') {
             return;
         }
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('sending')};
@@ -2999,7 +3002,7 @@ myAppController.controller('ReportController', function($scope, $cookies, $locat
             input.zwave_vesion = $scope.ZwaveApiData.controller.data.softwareRevisionVersion.value;
             input.controller_info = JSON.stringify($scope.ZwaveApiData.controller.data);
         }
-        if ($scope.remoteAccess.length > 0) {
+        if (Object.keys($scope.remoteAccess).length > 0) {
             input.remote_activated = $scope.remoteAccess.params.actStatus ? 1 : 0;
             input.remote_support_activated = $scope.remoteAccess.params.sshStatus ? 1 : 0;
             input.remote_id = $scope.remoteAccess.params.userId;
@@ -3025,7 +3028,7 @@ myAppController.controller('ReportController', function($scope, $cookies, $locat
 /**
  * Login controller
  */
-myAppController.controller('LoginController', function($scope, $cookies, $location, $window, $routeParams, dataFactory, dataService) {
+myAppController.controller('LoginController', function($scope, $location, $window, $routeParams, dataFactory, dataService) {
     $scope.input = {
         form: true,
         login: '',
@@ -3078,7 +3081,7 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
 /**
  * Logout controller
  */
-myAppController.controller('LogoutController', function($scope, $cookies, $location, $window, $timeout, dataService) {
+myAppController.controller('LogoutController', function($scope, dataService) {
     $scope.logout = function() {
         dataService.logOut();
     };

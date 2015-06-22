@@ -102,7 +102,7 @@ myAppFactory.factory('dataFactory', function($http,$filter, $q, myCache, dataSer
             url: cfg.server_url + cfg.api[api] + (params ? params : ''),
             headers: {
                 'Accept-Language': lang,
-                'Profile-SID': ZWAYSession
+                'ZWAYSession': ZWAYSession
                         //'Accept-Encoding': 'gzip, deflate',
                         //'Allow-compression': 'gz' 
             }
@@ -129,7 +129,7 @@ myAppFactory.factory('dataFactory', function($http,$filter, $q, myCache, dataSer
             url: cfg.server_url + cfg.api[api] + (params ? params : ''),
 			headers: {
                 'Accept-Language': lang,
-                'Profile-SID': ZWAYSession
+                'ZWAYSession': ZWAYSession
             }
         }).then(function(response) {
             return response;
@@ -146,7 +146,7 @@ myAppFactory.factory('dataFactory', function($http,$filter, $q, myCache, dataSer
             url: cfg.server_url + cfg.api[api] + (id ? '/' + id : '') + (params ? params : ''),
 			headers: {
                 'Accept-Language': lang,
-                'Profile-SID': ZWAYSession 
+                'ZWAYSession': ZWAYSession 
             }
         }).then(function(response) {
             return response;
@@ -164,7 +164,7 @@ myAppFactory.factory('dataFactory', function($http,$filter, $q, myCache, dataSer
             url: cfg.server_url + cfg.api[api] + (id ? '/' + id : '') + (params ? params : ''),
 			headers: {
                 'Accept-Language': lang,
-                'Profile-SID': ZWAYSession
+                'ZWAYSession': ZWAYSession
             }
         }).then(function(response) {
             return response;
@@ -181,7 +181,7 @@ myAppFactory.factory('dataFactory', function($http,$filter, $q, myCache, dataSer
             url: cfg.server_url + cfg.api[api] + "/" + id + (params ? params : ''),
 			headers: {
                 'Accept-Language': lang,
-                'Profile-SID': ZWAYSession
+                'ZWAYSession': ZWAYSession
             }
         }).then(function(response) {
             return response;
@@ -201,7 +201,7 @@ myAppFactory.factory('dataFactory', function($http,$filter, $q, myCache, dataSer
             url: cfg.server_url + cfg.api_url + "devices/" + cmd,
              headers: {
                 'Accept-Language': lang,
-                'Profile-SID': ZWAYSession
+                'ZWAYSession': ZWAYSession
             }
         }).then(function(response) {
             if (response.data.code == 200) {
@@ -335,7 +335,7 @@ myAppFactory.factory('dataFactory', function($http,$filter, $q, myCache, dataSer
             url: cfg.server_url + cfg.api[api] + '?since=' + updatedTime + (params ? params : ''),
             headers: {
                 'Accept-Language': lang,
-                'Profile-SID': ZWAYSession
+                'ZWAYSession': ZWAYSession
             }
         }).then(function(response) {
             if (typeof response.data === 'object') {
@@ -358,7 +358,7 @@ myAppFactory.factory('dataFactory', function($http,$filter, $q, myCache, dataSer
             transformRequest: angular.identity,
             headers: {
                 'Content-Type': undefined,
-                'Profile-SID': ZWAYSession
+                'ZWAYSession': ZWAYSession
             }
         }).then(function(response) {
             if (typeof response.data === 'object') {
@@ -381,7 +381,7 @@ myAppFactory.factory('dataFactory', function($http,$filter, $q, myCache, dataSer
             url: cfg.server_url + cfg.zwave_api_url + cmd,
              headers: {
                 'Accept-Language': lang ,
-                'Profile-SID': ZWAYSession
+                'ZWAYSession': ZWAYSession
             }
         }).then(function(response) {
             if (typeof response.data === 'object') {
@@ -542,7 +542,7 @@ myAppFactory.factory('dataFactory', function($http,$filter, $q, myCache, dataSer
             data: $.param(data),
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
-                //'Profile-SID': ZWAYSession 
+                //'ZWAYSession': ZWAYSession 
             }
         }).then(function(response) {
             return response;
