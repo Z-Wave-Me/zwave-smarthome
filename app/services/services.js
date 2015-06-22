@@ -87,14 +87,14 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      /**
      * Get user SID (token)
      */
-    this.getUserSid = function() {
-        return getUserSid();
+    this.getProfileSID = function() {
+        return getProfileSID();
     };
     /**
      * Set user SID (token)
      */
-    this.setUserSid = function(sid) {
-        return setUserSid(sid);
+    this.setProfileSID = function(sid) {
+        return setProfileSID(sid);
     };
      /**
      * Get last login
@@ -248,15 +248,15 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     /**
      * Get user SID (token)
      */
-    function getUserSid() {
-         return $cookies.userSid;
+    function getProfileSID() {
+         return $cookies.ProfileSID;
 
     }
     /**
      * Set user SID (token)
      */
-    function setUserSid(sid) {
-        $cookies.userSid = sid;
+    function setProfileSID(sid) {
+        $cookies.ProfileSID = sid;
 
     }
     
@@ -281,7 +281,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      */
     function logOut() {
         setUser(null);
-        setUserSid(null);
+        setProfileSID(null);
         $window.location.href = '#/';
         $window.location.reload();
 

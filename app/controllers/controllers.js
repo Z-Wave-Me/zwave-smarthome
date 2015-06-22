@@ -16,7 +16,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
     $scope.loading = false;
     $scope.alert = {message: false, status: 'is-hidden', icon: false};
     $scope.user = dataService.getUser();
-    $scope.userSid = dataService.getUserSid();
+    $scope.ProfileSID = dataService.getProfileSID();
     $scope.lastLogin = dataService.getLastLogin();
     //$scope.cfg.interval = ($filter('toInt')($scope.user.interval) >= 1000 ? $filter('toInt')($scope.user.interval) : $scope.cfg.interval);
     $scope.setPollInterval = function() {
@@ -3050,7 +3050,7 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
         $scope.alert = {message: false};
         dataFactory.logInApi(input).then(function(response) {
             var user = response.data.data;
-            dataService.setUserSid(user.sid);
+            dataService.setProfileSID(user.sid);
             delete user['sid'];
             dataService.setUser(user);
             dataService.setLastLogin(Math.round(+new Date() / 1000));

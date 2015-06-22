@@ -14,10 +14,10 @@ myAppFactory.factory('myCache', function($cacheFactory) {
 /**
  * Main data factory
  */
-myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window, $filter, $timeout, $q, myCache, dataService, cfg) {
+myAppFactory.factory('dataFactory', function($http,$filter, $q, myCache, dataService, cfg) {
     var updatedTime = Math.round(+new Date() / 1000);
     var lang = cfg.lang;
-    var profileSID = dataService.getUserSid();
+    var profileSID = dataService.getProfileSID();
     var user = dataService.getUser();
     if (user && user.sid) {
         lang = user.lang;
