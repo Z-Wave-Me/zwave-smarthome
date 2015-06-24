@@ -5205,7 +5205,8 @@ myApp.config(['$routeProvider', function($routeProvider) {
                 }).
                 //Report
                 when('/report', {
-                    templateUrl: 'app/views/report/report.html'
+                    templateUrl: 'app/views/report/report.html',
+                    requireLogin: true
                 }).
                 //Login
                 when('/login', {
@@ -5343,10 +5344,10 @@ myAppFactory.factory('myCache', function($cacheFactory) {
 /**
  * Main data factory
  */
-myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window, $filter, $timeout, $q, myCache, dataService, cfg) {
+myAppFactory.factory('dataFactory', function($http,$filter, $q, myCache, dataService, cfg) {
     var updatedTime = Math.round(+new Date() / 1000);
     var lang = cfg.lang;
-    var profileSID = dataService.getUserSid();
+    var ZWAYSession = dataService.getZWAYSession();
     var user = dataService.getUser();
     if (user && user.sid) {
         lang = user.lang;
@@ -5431,7 +5432,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
             url: cfg.server_url + cfg.api[api] + (params ? params : ''),
             headers: {
                 'Accept-Language': lang,
-                'Profile-SID': profileSID
+                'ZWAYSession': ZWAYSession
                         //'Accept-Encoding': 'gzip, deflate',
                         //'Allow-compression': 'gz' 
             }
@@ -5458,7 +5459,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
             url: cfg.server_url + cfg.api[api] + (params ? params : ''),
 			headers: {
                 'Accept-Language': lang,
-                'Profile-SID': profileSID
+                'ZWAYSession': ZWAYSession
             }
         }).then(function(response) {
             return response;
@@ -5475,7 +5476,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
             url: cfg.server_url + cfg.api[api] + (id ? '/' + id : '') + (params ? params : ''),
 			headers: {
                 'Accept-Language': lang,
-                'Profile-SID': profileSID 
+                'ZWAYSession': ZWAYSession 
             }
         }).then(function(response) {
             return response;
@@ -5493,7 +5494,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
             url: cfg.server_url + cfg.api[api] + (id ? '/' + id : '') + (params ? params : ''),
 			headers: {
                 'Accept-Language': lang,
-                'Profile-SID': profileSID
+                'ZWAYSession': ZWAYSession
             }
         }).then(function(response) {
             return response;
@@ -5510,7 +5511,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
             url: cfg.server_url + cfg.api[api] + "/" + id + (params ? params : ''),
 			headers: {
                 'Accept-Language': lang,
-                'Profile-SID': profileSID
+                'ZWAYSession': ZWAYSession
             }
         }).then(function(response) {
             return response;
@@ -5530,7 +5531,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
             url: cfg.server_url + cfg.api_url + "devices/" + cmd,
              headers: {
                 'Accept-Language': lang,
-                'Profile-SID': profileSID
+                'ZWAYSession': ZWAYSession
             }
         }).then(function(response) {
             if (response.data.code == 200) {
@@ -5664,7 +5665,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
             url: cfg.server_url + cfg.api[api] + '?since=' + updatedTime + (params ? params : ''),
             headers: {
                 'Accept-Language': lang,
-                'Profile-SID': profileSID
+                'ZWAYSession': ZWAYSession
             }
         }).then(function(response) {
             if (typeof response.data === 'object') {
@@ -5687,7 +5688,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
             transformRequest: angular.identity,
             headers: {
                 'Content-Type': undefined,
-                'Profile-SID': profileSID
+                'ZWAYSession': ZWAYSession
             }
         }).then(function(response) {
             if (typeof response.data === 'object') {
@@ -5710,7 +5711,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
             url: cfg.server_url + cfg.zwave_api_url + cmd,
              headers: {
                 'Accept-Language': lang ,
-                'Profile-SID': profileSID
+                'ZWAYSession': ZWAYSession
             }
         }).then(function(response) {
             if (typeof response.data === 'object') {
@@ -5871,7 +5872,7 @@ myAppFactory.factory('dataFactory', function($http, $interval, $cookies, $window
             data: $.param(data),
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
-                //'Profile-SID': profileSID 
+                //'ZWAYSession': ZWAYSession 
             }
         }).then(function(response) {
             return response;
@@ -5972,14 +5973,14 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      /**
      * Get user SID (token)
      */
-    this.getUserSid = function() {
-        return getUserSid();
+    this.getZWAYSession = function() {
+        return getZWAYSession();
     };
     /**
      * Set user SID (token)
      */
-    this.setUserSid = function(sid) {
-        return setUserSid(sid);
+    this.setZWAYSession = function(sid) {
+        return setZWAYSession(sid);
     };
      /**
      * Get last login
@@ -6133,15 +6134,15 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     /**
      * Get user SID (token)
      */
-    function getUserSid() {
-         return $cookies.userSid;
+    function getZWAYSession() {
+         return $cookies.ZWAYSession;
 
     }
     /**
      * Set user SID (token)
      */
-    function setUserSid(sid) {
-        $cookies.userSid = sid;
+    function setZWAYSession(sid) {
+        $cookies.ZWAYSession = sid;
 
     }
     
@@ -6166,7 +6167,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      */
     function logOut() {
         setUser(null);
-        setUserSid(null);
+        setZWAYSession(null);
         $window.location.href = '#/';
         $window.location.reload();
 
@@ -6174,7 +6175,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
 
 
     /**
-     * Get data or filtered data
+     * Get API data or filtered data
      */
     function getData(data, filter) {
         if (!filter) {
@@ -7193,43 +7194,6 @@ myApp.directive('dirPaginate', function($compile, $parse, $timeout, paginationSe
         };
     });
 /**
- * Application directives
- * @author Martin Vach
- */
-/*
- * Default element
- */
-myApp.directive('elDefault', function() {
-    return {
-        restrict: 'E',
-         replace: true,
-        templateUrl: "app/views/elements/directives/default.html",
-        scope: {
-            v: '=',
-            levelVal: '=',
-            'runCmd': '='
-        },
-        link: function (scope, elem, attr) {}
-    };
-});
-
-/*
- * switchBinary element
- */
-myApp.directive('elSwitchBinary', function() {
-    return {
-        restrict: 'E',
-         replace: true,
-        templateUrl: "app/views/elements/directives/switchBinary.html",
-        scope: {
-            v: '=',
-            levelVal: '='
-        },
-        link: function (scope, elem, attr) {}
-    };
-});
-
-/**
  * tc-angular-chartjs - v1.0.2 - 2014-07-17
  * Copyright (c) 2014 Carl Craig <carlcraig@3c-studios.com>
  * Dual licensed with the Apache-2.0 or MIT license.
@@ -7843,19 +7807,18 @@ var postRenderAlpaca = function(renderedForm) {
             dataType: 'json',
             headers: {
                 'Accept-Language': lang,
-                'Profile-SID': sid
+                'ZWAYSession': sid
             },
             data: JSON.stringify(data),
             beforeSend: function() {
                 console.log(data);
                 return; 
-                $('.module-spinner').show();
+                //$('.module-spinner').show();
             },
             success: function(response) {
                  $('.module-spinner').fadeOut();
-                 //if(type == 'POST'){
-                     window.location.replace("#apps");
-                //}
+                 window.location.replace("#apps");
+                 window.location.reload(true);
             },
             error: function(xhr, ajaxOptions, thrownError) {
                  $('.module-spinner').fadeOut();
@@ -7896,7 +7859,7 @@ var myAppController = angular.module('myAppController', []);
 /**
  * Base controller
  */
-myAppController.controller('BaseController', function($scope, $cookies, $filter, $location, $route, cfg, dataFactory, dataService) {
+myAppController.controller('BaseController', function($scope, $cookies, $filter, $location, cfg, dataFactory, dataService) {
     /**
      * Global scopes
      */
@@ -7904,7 +7867,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
     $scope.loading = false;
     $scope.alert = {message: false, status: 'is-hidden', icon: false};
     $scope.user = dataService.getUser();
-    $scope.userSid = dataService.getUserSid();
+    $scope.ZWAYSession = dataService.getZWAYSession();
     $scope.lastLogin = dataService.getLastLogin();
     //$scope.cfg.interval = ($filter('toInt')($scope.user.interval) >= 1000 ? $filter('toInt')($scope.user.interval) : $scope.cfg.interval);
     $scope.setPollInterval = function() {
@@ -7918,6 +7881,9 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
     $scope.setPollInterval();
 
     $scope.elementAccess = function(roles,mobile) {
+        if(!$scope.user){
+            return false;
+        }
         // Hide on mobile devices
         if (mobile) {
             return false;
@@ -8690,7 +8656,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
 /**
  * App controller
  */
-myAppController.controller('AppController', function($scope, $window, $cookies, $timeout, $log, dataFactory, dataService, myCache) {
+myAppController.controller('AppController', function($scope, $window, $cookies, $timeout, dataFactory, dataService, myCache) {
     $scope.instances = [];
     $scope.hasImage = [];
     $scope.modules = [];
@@ -8932,7 +8898,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
 /**
  * App local detail controller
  */
-myAppController.controller('AppLocalDetailController', function($scope, $routeParams, $log,$location, dataFactory, dataService) {
+myAppController.controller('AppLocalDetailController', function($scope, $routeParams, $location, dataFactory, dataService) {
     $scope.module = [];
     $scope.isOnline = null;
     $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
@@ -9248,7 +9214,7 @@ myAppController.controller('DeviceController', function($scope, $routeParams, da
 /**
  * Device controller
  */
-myAppController.controller('IncludeController', function($scope, $routeParams, $timeout, $interval, $filter, dataFactory, dataService, myCache) {
+myAppController.controller('IncludeController', function($scope, $routeParams, $interval, $filter, dataFactory, dataService, myCache) {
     $scope.apiDataInterval = null;
     $scope.includeDataInterval = null;
     $scope.device = {
@@ -9522,9 +9488,12 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
         //var data = response.data;
         if ('controller.data.controllerState' in data) {
             $scope.controllerState = data['controller.data.controllerState'].value;
+            console.log('controllerState: ',$scope.controllerState)
         }
+        
         if ('controller.data.lastExcludedDevice' in data) {
             $scope.lastExcludedDevice = data['controller.data.lastExcludedDevice'].value;
+             console.log('lastExcludedDevice: ',$scope.lastExcludedDevice)
         }
         if ('controller.data.lastIncludedDevice' in data) {
             var deviceIncId = data['controller.data.lastIncludedDevice'].value;
@@ -9702,9 +9671,9 @@ myAppController.controller('RoomController', function($scope,$location, dataFact
         dataService.showConnectionSpinner();
         dataFactory.getApi('locations').then(function(response) {
             $scope.collection = response.data.data;
-            if (Object.keys($scope.collection).length < 1) {
-                $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: $scope._t('no_data')};
-            }
+//            if (Object.keys($scope.collection).length < 1) {
+//                $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: $scope._t('no_data')};
+//            }
             dataService.updateTimeTick();
         }, function(error) {
             $location.path('/error/' + error.status);
@@ -10823,7 +10792,7 @@ myAppController.controller('MyAccessController', function($scope, $window, $loca
 /**
  * Report controller
  */
-myAppController.controller('ReportController', function($scope, $cookies, $location, $window, $timeout, dataFactory, dataService) {
+myAppController.controller('ReportController', function($scope, $window, dataFactory, dataService) {
     $scope.ZwaveApiData = false;
     $scope.remoteAccess = false;
     $scope.input = {
@@ -10863,7 +10832,7 @@ myAppController.controller('ReportController', function($scope, $cookies, $locat
             return;
         }
         dataFactory.getApi('instances', '/RemoteAccess').then(function(response) {
-            $scope.remoteAccess = response.data.data;
+            $scope.remoteAccess = response.data.data[0];
         }, function(error) {
             dataService.showConnectionError(error);
         });
@@ -10875,7 +10844,7 @@ myAppController.controller('ReportController', function($scope, $cookies, $locat
      * Create/Update an item
      */
     $scope.store = function(input) {
-        if (input.content == '') {
+       if (input.content == '') {
             return;
         }
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('sending')};
@@ -10884,7 +10853,7 @@ myAppController.controller('ReportController', function($scope, $cookies, $locat
             input.zwave_vesion = $scope.ZwaveApiData.controller.data.softwareRevisionVersion.value;
             input.controller_info = JSON.stringify($scope.ZwaveApiData.controller.data);
         }
-        if ($scope.remoteAccess.length > 0) {
+        if (Object.keys($scope.remoteAccess).length > 0) {
             input.remote_activated = $scope.remoteAccess.params.actStatus ? 1 : 0;
             input.remote_support_activated = $scope.remoteAccess.params.sshStatus ? 1 : 0;
             input.remote_id = $scope.remoteAccess.params.userId;
@@ -10910,7 +10879,7 @@ myAppController.controller('ReportController', function($scope, $cookies, $locat
 /**
  * Login controller
  */
-myAppController.controller('LoginController', function($scope, $cookies, $location, $window, $routeParams, dataFactory, dataService) {
+myAppController.controller('LoginController', function($scope, $location, $window, $routeParams, dataFactory, dataService) {
     $scope.input = {
         form: true,
         login: '',
@@ -10938,7 +10907,7 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
         $scope.alert = {message: false};
         dataFactory.logInApi(input).then(function(response) {
             var user = response.data.data;
-            dataService.setUserSid(user.sid);
+            dataService.setZWAYSession(user.sid);
             delete user['sid'];
             dataService.setUser(user);
             dataService.setLastLogin(Math.round(+new Date() / 1000));
@@ -10963,7 +10932,7 @@ myAppController.controller('LoginController', function($scope, $cookies, $locati
 /**
  * Logout controller
  */
-myAppController.controller('LogoutController', function($scope, $cookies, $location, $window, $timeout, dataService) {
+myAppController.controller('LogoutController', function($scope, dataService) {
     $scope.logout = function() {
         dataService.logOut();
     };

@@ -241,6 +241,10 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      * Set user data
      */
     function setUser(data) {
+         if(!data){
+            delete $cookies['user'];
+            return;
+        }
         $cookies.user = angular.toJson(data);
         return data;
 
@@ -256,6 +260,10 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      * Set user SID (token)
      */
     function setZWAYSession(sid) {
+        if(!sid){
+            delete $cookies['ZWAYSession'];
+            return;
+        }
         $cookies.ZWAYSession = sid;
 
     }
@@ -282,6 +290,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     function logOut() {
         setUser(null);
         setZWAYSession(null);
+        document.cookie = 'ZWAYSession=; path=/; expires=' + new Date(0).toUTCString();
         $window.location.href = '#/';
         $window.location.reload();
 

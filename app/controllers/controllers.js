@@ -447,13 +447,13 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
     /**
      * Add tag to list
      */
-    $scope.addTag = function(tag) {
-        $scope.searchText = '';
+    $scope.addTag = function(searchText) {
+       $scope.searchText = '';
         $scope.autoCompletePanel = false;
-        if (!tag || $scope.input.tags.indexOf(tag) > -1) {
+        if (!searchText || $scope.input.tags.indexOf(searchText) > -1) {
             return;
         }
-        $scope.input.tags.push(tag);
+        $scope.input.tags.push(searchText);
         return;
     };
     /**
@@ -2465,6 +2465,7 @@ myAppController.controller('NetworkConfigController', function($scope, $routePar
                 id: v.id,
                 location: roomId
             };
+            
             dataFactory.putApi('devices', v.id, input).then(function(response) {
             }, function(error) {
                 alert($scope._t('error_update_data'));
@@ -2473,7 +2474,7 @@ myAppController.controller('NetworkConfigController', function($scope, $routePar
             });
         }
         myCache.remove('devices');
-        $scope.loadData();
+        $scope.loadData($routeParams.nodeId);
         $scope.loading = false;
         return;
 
@@ -3028,7 +3029,7 @@ myAppController.controller('ReportController', function($scope, $window, dataFac
 /**
  * Login controller
  */
-myAppController.controller('LoginController', function($scope, $location, $window, $routeParams, dataFactory, dataService) {
+myAppController.controller('LoginController', function($scope, $location, $window, $routeParams,$document,$cookies, dataFactory, dataService) {
     $scope.input = {
         form: true,
         login: '',
@@ -3040,7 +3041,13 @@ myAppController.controller('LoginController', function($scope, $location, $windo
         $location.path('/elements');
         return;
     }
-
+    
+   // var bareDomain = $window.location.host
+    //console.log(bareDomain)
+//document.cookie = 'ZWAYSession=; Domain=' + bareDomain + '; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+//delete $cookies['ZWAYSession'];
+//$document.cookie = 'ZWAYSession=; path=/; expires=' + new Date(0).toUTCString();
+//console.log($document.cookie)
     /**
      * Login language
      */
@@ -3056,8 +3063,8 @@ myAppController.controller('LoginController', function($scope, $location, $windo
         $scope.alert = {message: false};
         dataFactory.logInApi(input).then(function(response) {
             var user = response.data.data;
-            dataService.setZWAYSession(user.sid);
-            delete user['sid'];
+            dataService.setZWAYSession(user.sid);  
+            //delete user['sid'];
             dataService.setUser(user);
             dataService.setLastLogin(Math.round(+new Date() / 1000));
             //$scope.loading = false;
