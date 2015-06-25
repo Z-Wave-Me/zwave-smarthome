@@ -6744,9 +6744,10 @@ myApp.directive('bbValidator', function($window) {
         replace: true,
         scope: {
             inputName: '=',
-            trans: '='
+            trans: '=',
+            hasBlur: '='
         },
-        template: '<p class="valid-error" ng-show="inputName.$invalid && !inputName.$pristine">{{trans}}</p>'
+        template: '<div class="valid-error text-danger" ng-if="inputName.$invalid && !inputName.$pristine && hasBlur">*{{trans}}</div>'
     };
 });
 
@@ -10868,12 +10869,9 @@ myAppController.controller('ReportController', function($scope, $window, dataFac
      * Create/Update an item
      */
     $scope.store = function(form,input) {
-//         console.log(form)
-//        if(form.$invalid){
-//            return;
-//        }
-//        //console.log(input)
-//        return;
+        if(form.$invalid){
+            return;
+        }
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('sending')};
         if ($scope.ZwaveApiData) {
             input.zwave_binding = 1;
@@ -10893,8 +10891,12 @@ myAppController.controller('ReportController', function($scope, $window, dataFac
         //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         dataFactory.postReport(input).then(function(response) {
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_send_report')};
-            input.content = null;
-            input.email = null;
+             $window.location.reload();
+//            $scope.form.$setPristine();
+//           input.content = null;
+//            input.email = null;
+            
+            
         }, function(error) {
             alert($scope._t('error_send_report'));
             $scope.loading = false;
