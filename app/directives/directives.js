@@ -60,6 +60,21 @@ myApp.directive('bbAlert', function() {
 });
 
 /**
+ * Show validation error
+ */
+myApp.directive('bbValidator', function($window) {
+    return {
+        restrict: "E",
+        replace: true,
+        scope: {
+            inputName: '=',
+            trans: '='
+        },
+        template: '<p class="valid-error" ng-show="inputName.$invalid && !inputName.$pristine">{{trans}}</p>'
+    };
+});
+
+/**
  * Hide collapsed navi after click on mobile devices
  */
 myApp.directive('collapseNavbar', function() {

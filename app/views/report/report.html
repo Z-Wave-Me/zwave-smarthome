@@ -2,17 +2,19 @@
 <div ng-controller="ReportController" class="mobile-padding">
     <bb-loader></bb-loader>
     <!--<h1 ng-bind="_t('nav_report')"></h1> -->
-    <form name="form_report" id="form_profile" class="form form-page" ng-submit="store(input)" novalidate>
+    <form name="form_report" id="form_profile" class="form form-page" ng-submit="store(form_report,input)" novalidate>
         <fieldset>
             <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('nav_report')"></span></h3>
             <!-- content -->
                 <div class="form-group">
-                    <textarea name="content" id="content" class="form-control report-content" ng-model="input.content"></textarea>
+                    <textarea name="content" id="content" class="form-control report-content" ng-model="input.content" ng-required="true"></textarea>
+                    <!-- <bb-validator input-name='form_report.content' trans='_t("field_required")'></bb-validator> -->
                 </div>
             <!-- email -->
                  <div class="form-group form-inline">
                         <label>{{_t('lb_email')}}: </label>
-                        <input name="email" id="email" type="text" class="form-control" value="{{input.email}}" ng-model="input.email" />
+                        <input name="email" id="email" type="text" class="form-control" value="{{input.email}}" ng-model="input.email" ng-required="true" />
+                        <!-- <bb-validator input-name='form_report.email' trans='_t("email_invalid")'></bb-validator> -->
                     </div>
         </fieldset>
         <div class="submit-entry">

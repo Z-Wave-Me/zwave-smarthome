@@ -6127,6 +6127,10 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      * Set user data
      */
     function setUser(data) {
+         if(!data){
+            delete $cookies['user'];
+            return;
+        }
         $cookies.user = angular.toJson(data);
         return data;
 
@@ -6142,6 +6146,10 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      * Set user SID (token)
      */
     function setZWAYSession(sid) {
+        if(!sid){
+            delete $cookies['ZWAYSession'];
+            return;
+        }
         $cookies.ZWAYSession = sid;
 
     }
@@ -6168,6 +6176,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     function logOut() {
         setUser(null);
         setZWAYSession(null);
+        document.cookie = 'ZWAYSession=; path=/; expires=' + new Date(0).toUTCString();
         $window.location.href = '#/';
         $window.location.reload();
 
@@ -6724,6 +6733,21 @@ myApp.directive('bbAlert', function() {
         template: '<div class="alert" ng-if="alert.message" ng-class="alert.status">'
                 + '<i class="fa fa-lg" ng-class="alert.icon"></i> <span ng-bind-html="alert.message|toTrusted"></span>'
                 + '</div>'
+    };
+});
+
+/**
+ * Show validation error
+ */
+myApp.directive('bbValidator', function($window) {
+    return {
+        restrict: "E",
+        replace: true,
+        scope: {
+            inputName: '=',
+            trans: '='
+        },
+        template: '<p class="valid-error" ng-show="inputName.$invalid && !inputName.$pristine">{{trans}}</p>'
     };
 });
 
@@ -8298,13 +8322,13 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
     /**
      * Add tag to list
      */
-    $scope.addTag = function(tag) {
-        $scope.searchText = '';
+    $scope.addTag = function(searchText) {
+       $scope.searchText = '';
         $scope.autoCompletePanel = false;
-        if (!tag || $scope.input.tags.indexOf(tag) > -1) {
+        if (!searchText || $scope.input.tags.indexOf(searchText) > -1) {
             return;
         }
-        $scope.input.tags.push(tag);
+        $scope.input.tags.push(searchText);
         return;
     };
     /**
@@ -10316,6 +10340,7 @@ myAppController.controller('NetworkConfigController', function($scope, $routePar
                 id: v.id,
                 location: roomId
             };
+            
             dataFactory.putApi('devices', v.id, input).then(function(response) {
             }, function(error) {
                 alert($scope._t('error_update_data'));
@@ -10324,7 +10349,7 @@ myAppController.controller('NetworkConfigController', function($scope, $routePar
             });
         }
         myCache.remove('devices');
-        $scope.loadData();
+        $scope.loadData($routeParams.nodeId);
         $scope.loading = false;
         return;
 
@@ -10843,10 +10868,13 @@ myAppController.controller('ReportController', function($scope, $window, dataFac
     /**
      * Create/Update an item
      */
-    $scope.store = function(input) {
-       if (input.content == '') {
-            return;
-        }
+    $scope.store = function(form,input) {
+//         console.log(form)
+//        if(form.$invalid){
+//            return;
+//        }
+//        //console.log(input)
+//        return;
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('sending')};
         if ($scope.ZwaveApiData) {
             input.zwave_binding = 1;
@@ -10879,7 +10907,7 @@ myAppController.controller('ReportController', function($scope, $window, dataFac
 /**
  * Login controller
  */
-myAppController.controller('LoginController', function($scope, $location, $window, $routeParams, dataFactory, dataService) {
+myAppController.controller('LoginController', function($scope, $location, $window, $routeParams,$document,$cookies, dataFactory, dataService) {
     $scope.input = {
         form: true,
         login: '',
@@ -10891,7 +10919,13 @@ myAppController.controller('LoginController', function($scope, $location, $windo
         $location.path('/elements');
         return;
     }
-
+    
+   // var bareDomain = $window.location.host
+    //console.log(bareDomain)
+//document.cookie = 'ZWAYSession=; Domain=' + bareDomain + '; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+//delete $cookies['ZWAYSession'];
+//$document.cookie = 'ZWAYSession=; path=/; expires=' + new Date(0).toUTCString();
+//console.log($document.cookie)
     /**
      * Login language
      */
@@ -10907,8 +10941,8 @@ myAppController.controller('LoginController', function($scope, $location, $windo
         $scope.alert = {message: false};
         dataFactory.logInApi(input).then(function(response) {
             var user = response.data.data;
-            dataService.setZWAYSession(user.sid);
-            delete user['sid'];
+            dataService.setZWAYSession(user.sid);  
+            //delete user['sid'];
             dataService.setUser(user);
             dataService.setLastLogin(Math.round(+new Date() / 1000));
             //$scope.loading = false;

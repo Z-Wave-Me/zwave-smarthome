@@ -79,12 +79,12 @@
                                 </li> 
                                 <li>
 
-                                    <a href=""ng-click="hideSourceEvents(v.source)" 
+                                    <a href="" ng-click="hideSourceEvents(v.source)" 
                                        ng-if="user.hide_single_device_events.indexOf(v.source) === -1">
                                         <i class="fa fa-minus-circle text-danger"></i> <span  ng-bind="_t('lb_hide_events_source')" ></span>
                                     </a>
                                 </li>
-                                <li>
+                                <li ng-if="elementAccess(cfg.role_access.event_delete)">
                                     <a href=""ng-click="deleteEvent(v.id, '?uid=' + v.h, '#row_' + v.id)" ng-if="v.level == 'error' || v.level == 'notification'">
                                         <i class="fa fa-times text-danger"></i> <span  ng-bind="_t('lb_delete_event')" ></span>
                                     </a>

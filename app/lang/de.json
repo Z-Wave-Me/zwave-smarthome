@@ -1,4 +1,6 @@
 {   
+    "field_required": "This field is required",
+    "email_invalid": "Please add valid email address",
     "remote_access_not_active": "Der Remote-Zugriff ist nicht aktiviert. Bitte aktivieren Sie Ihn unter 'Anwendungen > Aktiv-Tab'.",
     "remote_access_not_installed": "Der Remote-Zugriff konnte nicht gefunden werden. Bitte fügen Sie Ihn über 'Anwendungen > Lokal > Remote-Zugriff > +Neue App' hinzu.",
     "inclusion_interview_not_complete": "Das Gerät wurde gefunden, aber die Konfiguration ist nicht vollständig.",

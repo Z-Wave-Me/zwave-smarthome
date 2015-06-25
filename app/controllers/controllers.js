@@ -2993,10 +2993,13 @@ myAppController.controller('ReportController', function($scope, $window, dataFac
     /**
      * Create/Update an item
      */
-    $scope.store = function(input) {
-       if (input.content == '') {
-            return;
-        }
+    $scope.store = function(form,input) {
+//         console.log(form)
+//        if(form.$invalid){
+//            return;
+//        }
+//        //console.log(input)
+//        return;
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('sending')};
         if ($scope.ZwaveApiData) {
             input.zwave_binding = 1;

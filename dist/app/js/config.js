@@ -75,6 +75,7 @@ var config_data = {
             devices_include: [1,3],
             rooms: [1,2,3],
             element: [1,2,3],
+            event_delete: [1,3],
             config_rooms: [1,3],
             config_rooms_id: [1,3],
             network: [1,3],
