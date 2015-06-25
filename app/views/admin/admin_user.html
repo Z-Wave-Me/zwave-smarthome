@@ -106,7 +106,7 @@
                 <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('local_access')"></span></h3>
                 <!-- login -->
                     <div class="form-group">
-                         <label ng-bind="_t('lb_login')"></label>
+                        <label>{{_t('lb_login')}}: <strong>{{input.login}}</strong></label>
                         <input name="login" id="login" type="text" class="form-control form-control-sm" value="" ng-model="auth.login" />
                     </div>
                 <!-- password -->
