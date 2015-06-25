@@ -264,7 +264,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
             delete $cookies['ZWAYSession'];
             return;
         }
-        //$cookies.ZWAYSession = sid;
+        $cookies.ZWAYSession = sid;
 
     }
     
@@ -290,7 +290,6 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     function logOut() {
         setUser(null);
         setZWAYSession(null);
-        //document.cookie = 'ZWAYSession=; path=/; expires=' + new Date(0).toUTCString();
         $window.location.href = '#/';
         $window.location.reload();
 
