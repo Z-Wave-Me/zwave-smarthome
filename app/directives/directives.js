@@ -68,9 +68,10 @@ myApp.directive('bbValidator', function($window) {
         replace: true,
         scope: {
             inputName: '=',
-            trans: '='
+            trans: '=',
+            hasBlur: '='
         },
-        template: '<p class="valid-error" ng-show="inputName.$invalid && !inputName.$pristine">{{trans}}</p>'
+        template: '<div class="valid-error text-danger" ng-if="inputName.$invalid && !inputName.$pristine && hasBlur">*{{trans}}</div>'
     };
 });
 
