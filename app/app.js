@@ -94,8 +94,26 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     roles: cfg.role_access.module
                 }).
                 //Devices_
-                when('/devices/:type?', {
+                when('/devices', {
                     templateUrl: 'app/views/devices/devices.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
+                }).
+                //Zwave device
+                when('/devices/zwave/:brandname?', {
+                    templateUrl: 'app/views/devices/devices_zwave.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
+                }).
+                //IP camera device
+                when('/devices/ipcamera', {
+                    templateUrl: 'app/views/devices/devices_ipcamera.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
+                }).
+                //IP camera device
+                when('/devices/enocean', {
+                    templateUrl: 'app/views/devices/devices_enocean.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices
                 }).
