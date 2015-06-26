@@ -96,6 +96,11 @@ a:hover {
     color: #458EC5;
     font-weight: bold;
 }
+.info-lert{
+    font-size: 95%;
+    font-style: italic;
+    margin: 5px 0;
+}
 
 .btn-tooltip{
     cursor: help;
@@ -175,6 +180,7 @@ a:hover {
 }
 .table-report{
     border: 0 !important;
+    margin-bottom: 0 !important;
     td{
         vertical-align: middle;
     }
