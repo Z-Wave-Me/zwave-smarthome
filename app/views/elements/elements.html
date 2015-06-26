@@ -183,7 +183,7 @@
                             <!-- text -->
                             <div ng-switch-when="text">
                                 <div class="widget-control control-left widget-click-popup text">
-                                    <a href="" ng-click="showModal('#modal_promo', {'type': v.deviceType, 'title': v.title, 'text': v.metrics.text, 'url': v.metrics.img})" ng-bind="v.metrics.text|cutText:true:60"></a>
+                                    <a href="" ng-click="showModal('#modal_promo', {'type': v.deviceType, 'title': v.title, 'text': v.metrics.text, 'url': v.metrics.img})" ng-bind="v.metrics.text|stripTags|cutText:true:60"></a>
                                 </div>
                             </div>
 
@@ -429,7 +429,7 @@
                 </div>
                 <div class="modal-body">
                     <img class="widget-promo-image" ng-show="input.url" ng-src="{{input.url}}" alt="input.title"/>
-                    <div class="widget-promo-text" ng-bind="input.text"></div>
+                    <div class="widget-promo-text" ng-bind-html="input.text|toTrusted"></div>
                 </div>
             </div>
         </div>

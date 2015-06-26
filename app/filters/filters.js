@@ -17,7 +17,9 @@ myApp.filter('toTrusted', ['$sce', function($sce) {
  * Strip HTML tags from input
  */
 myApp.filter('stripTags', function() {
-    return String(input).replace(/<[^>]+>/gm, '');
+    return function(text) {
+      return String(text).replace(/<[^>]+>/gm, '');
+    };
 });
 /**
  * Cut text into x chars
