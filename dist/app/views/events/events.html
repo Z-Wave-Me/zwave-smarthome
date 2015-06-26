@@ -96,6 +96,7 @@
                 </tr>
             </tbody>
         </table>
+        <div class="info-lert" ng-if="user.hide_all_device_events || user.hide_system_events"><i class="fa fa-info-circle text-info"></i> <span ng-bind="_t('events_hidden')"></span></div>
         <div class="text-center mobile-padding" ng-if="collection.length > 0">
             <dir-pagination-controls boundary-links="true"></dir-pagination-controls>
         </div>
