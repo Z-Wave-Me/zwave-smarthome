@@ -1307,75 +1307,9 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
 
 });
 /**
- * DEPRECATED
  * Device controller
  */
-//myAppController.controller('DeviceController', function($scope, $routeParams, dataFactory, dataService) {
-//    $scope.zwaveDevices = [];
-//    $scope.zwaveDevicesFilter = false;
-//    $scope.deviceVendor = false;
-//    $scope.manufacturers = [];
-//    $scope.manufacturer = false;
-//    $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
-//    $scope.ipcameraDevices = [];
-//
-//    if (angular.isDefined($routeParams.type)) {
-//        $scope.deviceVendor = $routeParams.type;
-//    }
-//    /**
-//     * Set filter
-//     */
-//    $scope.setFilter = function(filter) {
-//        $scope.zwaveDevicesFilter = filter;
-//    };
-//    /**
-//     * Load z-wave devices
-//     */
-//    $scope.loadZwaveDevices = function(filter, lang) {
-//        dataService.showConnectionSpinner();
-//        dataFactory.getApiLocal('device.' + lang + '.json').then(function(response) {
-//            $scope.manufacturers = dataService.getPairs(response.data, 'brandname', 'brand_image', 'manufacturers');
-//            if (filter) {
-//                $scope.zwaveDevices = dataService.getData(response.data, filter);
-//                $scope.manufacturer = filter.val;
-//            }
-//            dataService.updateTimeTick();
-//        }, function(error) {
-//            dataService.showConnectionError(error);
-//        });
-//    };
-//
-//    /**
-//     * Load ip cameras
-//     */
-//    $scope.loadIpcameras = function() {
-//        dataService.showConnectionSpinner();
-//        dataFactory.getApi('modules').then(function(response) {
-//            $scope.ipcameraDevices = dataService.getData(response.data.data, {filter: "state", val: "camera"});
-//            dataService.updateTimeTick();
-//        }, function(error) {
-//            dataService.showConnectionError(error);
-//        });
-//    };
-//
-//    $scope.$watch('deviceVendor', function() {
-//        switch ($scope.deviceVendor) {
-//            case 'zwave':
-//                $scope.$watch('zwaveDevicesFilter', function() {
-//                    $scope.loadZwaveDevices($scope.zwaveDevicesFilter, $scope.lang);
-//                });
-//                break;
-//            case 'ipcamera':
-//                $scope.loadIpcameras();
-//                break;
-//            case 'enocean':
-//                break;
-//            default:
-//                break;
-//        }
-//    });
-//});
-
+myAppController.controller('DeviceController', function($scope, $routeParams, dataFactory, dataService) {});
 /**
  * Device Zwave  controller
  */
@@ -1430,25 +1364,57 @@ myAppController.controller('DeviceIpCameraController', function($scope, dataFact
     };
      $scope.loadData();
 });
-
 /**
  * Device Enocean  controller
  */
 myAppController.controller('DeviceEnoceanController', function($scope, dataFactory, dataService) {
     $scope.enoceanDevices = [];
+    $scope.inclusion = {
+        status: false,
+        icon: 'fa-plug'
+    };
     /**
-     * Load ip cameras
+     * Load data
      */
-    $scope.loadData = function() {
+    $scope.loadData = function() { 
         dataService.showConnectionSpinner();
-        dataFactory.getApi('modules').then(function(response) {
-            //$scope.ipcameraDevices = dataService.getData(response.data.data, {filter: "state", val: "camera"});
+        // Demo data
+         dataFactory.getApiLocal('enocean.json').then(function(response) {
+            $scope.enoceanDevices = response.data;
             dataService.updateTimeTick();
         }, function(error) {
             dataService.showConnectionError(error);
         });
+        return;
+        /*dataFactory.getApi('modules').then(function(response) {
+            //$scope.ipcameraDevices = dataService.getData(response.data.data, {filter: "state", val: "camera"});
+            dataService.updateTimeTick();
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });*/
     };
     $scope.loadData();
+    
+    /**
+     * Inclusion start
+     */
+    $scope.inclusionStart = function(cmd) { 
+        $scope.inclusion.status = true;
+        $scope.inclusion.icon = 'fa-spinner fa-spin';
+    };
+    
+    /**
+     * Inclusion stop
+     */
+    $scope.inclusionStop = function(cmd) { 
+         $scope.inclusion.status = false;
+         $scope.inclusion.icon = 'fa-plug';
+    };
+    /**
+     * Delete device
+     */
+    $scope.deleteDevice = function(id) {
+    };
 });
 /**
  * Device controller
