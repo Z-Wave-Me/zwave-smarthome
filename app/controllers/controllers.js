@@ -156,6 +156,19 @@ myAppController.controller('TestController', function($scope, $routeParams, $fil
         });
     };
     //$scope.testHeader();
+    var master = {
+        email: null,
+        content: null
+    };
+    $scope.input = master;
+    $scope.store = function(form,input){
+        console.log($scope.input)
+       // console.log(input)
+        //var original = $scope.input;
+        $scope.input= angular.copy($scope.master);
+             $scope.form_report.$setPristine();
+        console.log(master)
+    };
 
 
 });
