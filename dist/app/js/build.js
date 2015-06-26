@@ -8488,7 +8488,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
     $scope.apiDataInterval = null;
 
     // Cancel interval on page destroy
-    $scope.$on('$destroy', function() {
+    $scope.$on('$destroy', function() { 
         $interval.cancel($scope.apiDataInterval);
     });
 

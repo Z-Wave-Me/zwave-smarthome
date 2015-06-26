@@ -1,4 +1,5 @@
 {   
+    "events_hidden": "Einige Benachrichtigungen werden ausgeblendet. Sie können diese im Menü unter \"Meine Einstellungen\" wieder einblenden.",
     "field_required": "Ist notwendig",
     "email_invalid": "Bitte eine gültige E-Mail-Adresse angeben",
     "remote_access_not_active": "Der Remote-Zugriff ist nicht aktiviert. Bitte aktivieren Sie Ihn unter 'Anwendungen > Aktiv-Tab'.",
