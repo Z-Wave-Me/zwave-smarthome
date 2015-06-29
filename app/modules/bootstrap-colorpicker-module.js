@@ -427,7 +427,7 @@ angular.module('colorpicker.module', [])
                                 headers: {
                                     'Accept-Language': lang,
                                     'ZWAYSession': sid
-                                },
+                                }
                             });
                             //console.log('RGB change', cmd)
                             /*** END - Custom update ***/

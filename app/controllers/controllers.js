@@ -1309,11 +1309,12 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
 /**
  * Device controller
  */
-myAppController.controller('DeviceController', function($scope, $routeParams, dataFactory, dataService) {});
+myAppController.controller('DeviceController', function($scope, $routeParams, dataFactory, dataService) {
+});
 /**
  * Device Zwave  controller
  */
-myAppController.controller('DeviceZwaveController', function($scope, $routeParams,dataFactory, dataService) {
+myAppController.controller('DeviceZwaveController', function($scope, $routeParams, dataFactory, dataService) {
     $scope.zwaveDevices = [];
     $scope.zwaveDevicesFilter = false;
     $scope.deviceVendor = false;
@@ -1362,59 +1363,109 @@ myAppController.controller('DeviceIpCameraController', function($scope, dataFact
             dataService.showConnectionError(error);
         });
     };
-     $scope.loadData();
+    $scope.loadData();
 });
 /**
  * Device Enocean  controller
  */
-myAppController.controller('DeviceEnoceanController', function($scope, dataFactory, dataService) {
+myAppController.controller('DeviceEnoceanController', function($scope, $interval, dataFactory, dataService) {
     $scope.enoceanDevices = [];
     $scope.inclusion = {
         status: false,
         icon: 'fa-plug'
     };
+    $scope.apiDataInterval = null;
+     // Cancel interval on page destroy
+    $scope.$on('$destroy', function() {
+        $interval.cancel($scope.apiDataInterval);
+    });
     /**
      * Load data
      */
-    $scope.loadData = function() { 
+    $scope.loadData = function() {
         dataService.showConnectionSpinner();
         // Demo data
-         dataFactory.getApiLocal('enocean.json').then(function(response) {
+        dataFactory.getApiLocal('enocean.json').then(function(response) {
             $scope.enoceanDevices = response.data;
             dataService.updateTimeTick();
         }, function(error) {
             dataService.showConnectionError(error);
         });
         return;
-        /*dataFactory.getApi('modules').then(function(response) {
-            //$scope.ipcameraDevices = dataService.getData(response.data.data, {filter: "state", val: "camera"});
+        // Live data
+        dataFactory.loadEnoceanDevices().then(function(response) {
+            $scope.enoceanDevices = response.data;
             dataService.updateTimeTick();
         }, function(error) {
             dataService.showConnectionError(error);
-        });*/
+        });
     };
     $scope.loadData();
     
+     /**
+     * Refresh data
+     */
+    $scope.refreshData = function() {
+        var refresh = function() {
+            dataFactory.refreshEnoceanDevices().then(function(response) {
+            }, function(error) {
+                dataService.showConnectionError(error);
+            });
+        };
+        $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
+    };
+
+    //$scope.refreshData();
+
     /**
      * Inclusion start
      */
-    $scope.inclusionStart = function(cmd) { 
+    $scope.inclusionStart = function(cmd) {
         $scope.inclusion.status = true;
         $scope.inclusion.icon = 'fa-spinner fa-spin';
+
+        // Run CMD
+        var alertError = {message: $scope._t('lb_include_enocean_error')};
+        var alertSuccess = {message: $scope._t('lb_device_included')};
+        //runCmd(cmd, alertError,alertSuccess);
     };
-    
+
     /**
      * Inclusion stop
      */
-    $scope.inclusionStop = function(cmd) { 
-         $scope.inclusion.status = false;
-         $scope.inclusion.icon = 'fa-plug';
+    $scope.inclusionStop = function(cmd) {
+        var alertError = {message: $scope._t('lb_include_enocean_error')};
+        runCmd(cmd, alertError);
     };
     /**
      * Delete device
      */
-    $scope.deleteDevice = function(id) {
+    $scope.deleteDevice = function(cmd, target) {
+        var alertError = {message: $scope._t('error_delete_data')};
+        runCmd(cmd, alertError);
     };
+
+    /**
+     * Process CMD
+     */
+    function runCmd(cmd, alertError, alertSuccess) {
+        // Run CMD
+        dataFactory.runEnoceanCmd(cmd).then(function(response) {
+            dataService.updateTimeTick();
+            if (alertSuccess) {
+                $scope.alert = {message: alertSuccess.message, status: 'alert-success', icon: 'fa-check'};
+            }
+        }, function(error) {
+            dataService.showConnectionError(error);
+            if (alertError) {
+                $scope.alert = {message: alertError.message, status: 'alert-danger', icon: 'fa-warning'};
+            }
+
+        });
+        $scope.inclusion.status = false;
+        $scope.inclusion.icon = 'fa-plug';
+        return;
+    }
 });
 /**
  * Device controller

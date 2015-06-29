@@ -1,5 +1,6 @@
 {
     "missing": "---",
+    "lb_include_enocean_error": "Could not complete the inclusion.",
     "events_hidden": "Some types of the events are hidden. You can change it in the \"My Settings\" ",
     "field_required": "This field is required",
     "email_invalid": "Please add valid email address",
@@ -284,9 +285,9 @@
     "lb_all": "All",
     "lb_configuration_view": "Configuration view",
     "switchBinary": "On/Off Switch",
-    "sensorMultilevel": "Dimmer/Motor Control",
+    "sensorMultilevel": "Analog Sensor",
     "sensorMultiline": "Informer",
-    "switchMultilevel": "Analog Sensor",
+    "switchMultilevel": "Dimmer/Motor Control",
     "sensorBinary": "Alarm Device",
     "thermostat": "Thermostat",
     "camera": "Camera",
