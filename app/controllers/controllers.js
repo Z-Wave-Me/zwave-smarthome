@@ -2080,7 +2080,7 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
             $scope.devicesAssigned = [];
             $scope.devices = dataService.getDevices(response.data.data.devices, false, false, false, locationId > 0 ? locationId : 'post');
             angular.forEach($scope.devices, function(v, k) {
-                if (v.location == locationId) {
+                if (v.location == locationId && v.location !== 0) {
                     $scope.devicesAssigned.push(v.id);
                 }
 
