@@ -6,5 +6,58 @@
     <p class="alert alert-warning">
         This hardware does not support "EnOcean devices".
     </p>
+     <div>
+        <div>
+            <button class="btn btn-success"
+                    ng-disabled="inclusion.status"
+                    ng-click="inclusionStart('controller.AddNodeToNetwork(1)')"
+                    ><i class="fa {{inclusion.icon}}"></i> <span ng-bind="_t('btn_inclusion_start')"></span></button>
+            <button 
+                class="btn btn-danger"
+                ng-if="inclusion.status"
+                ng-click="inclusionStop('controller.RemoveNodeFromNetwork(0)')" 
+                ng-bind="_t('btn_inclusion_stop')"></button>
+        </div>
+        <table class="table table-condensed table-report">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>rorg</th>
+                    <th>funcId</th>
+                    <th>typeId</th>
+                    <th>&nbsp;</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="v in enoceanDevices">
+                    <!--<td class="td-img">
+                        <img class="report-img" ng-src="storage/img/devices/{{v.product_image}}" alt="img" ng-show="v.product_image" />
+                    </td>--> 
+                    <td class="text-left">
+                        <span ng-bind="v.id"></span>
+                    </td>
+                    <td class="text-left">
+                        <span ng-bind="v.data.rorg"></span>
+                    </td>
+                    <td class="text-left">
+                        <span ng-bind="v.data.funcId"></span>
+                    </td>
+                    <td class="text-left">
+                        <span ng-bind="v.data.typeId"></span>
+                    </td>
+                    <td class="td-action">
+                        <button title="{{_t('lb_remove')}}" 
+                                class="btn btn-default btn-sm"
+                                ng-disabled="inclusion.status"
+                                ng-click="deleteDevice(v.id)"
+                                >
+                            <i class="fa fa-remove fa-lg text-danger"></i> <span class="btn-name" ng-bind="_t('lb_remove')"></span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div> <!-- /ng-controller --> 
 
