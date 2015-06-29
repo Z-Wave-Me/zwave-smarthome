@@ -1369,16 +1369,33 @@ myAppController.controller('DeviceIpCameraController', function($scope, dataFact
  * Device Enocean  controller
  */
 myAppController.controller('DeviceEnoceanController', function($scope, $interval, dataFactory, dataService) {
+     $scope.enoceanProfiles = [];
     $scope.enoceanDevices = [];
     $scope.inclusion = {
         status: false,
         icon: 'fa-plug'
     };
     $scope.apiDataInterval = null;
+    
      // Cancel interval on page destroy
     $scope.$on('$destroy', function() {
         $interval.cancel($scope.apiDataInterval);
     });
+    
+    /**
+     * Load data
+     */
+    $scope.loadProfile = function() {
+        dataFactory.xmlToJson($scope.cfg.server_url + 'config/Profiles.xml').then(function(response) {
+            $scope.enoceanProfiles = response.Profiles.Profile;
+            console.log($scope.enoceanProfiles)
+            //dataService.updateTimeTick();
+        }, function(error) {
+            //dataService.showConnectionError(error);
+        });
+    };
+    $scope.loadProfile();
+    
     /**
      * Load data
      */

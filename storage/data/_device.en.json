@@ -531,44 +531,5 @@
         "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/aeon%20labs%20logo.png",
         "product_image": "640-0086-0002-004a-03-03-5c-01-02.png",
         "prep": "Insert the battery"
-    },
-    {
-        "id": "566-0149-0012-0104-03-03-67-01-07",
-        "name": "Universal Relay Switch",
-        "desc": "Z-Wave in-wall Switch designed for being installed in junction boxes, flush mount boxes and near lights",
-        "productcode": "UBS104",
-        "wake": "",
-        "inc": "Normal Inclusion: press the B button on device once or three times, or alternatively press the external switch once",
-        "exc": "Press the B button on device once or three times, or press external the number of times configured with parameter 65",
-        "brandname": "WiDom",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/WiDom.png",
-        "product_image": "566-0149-0012-0104-03-03-67-01-07.png",
-        "prep": "Press B and R buttons at the same time and then release R: if it stays ON for 2 seconds and OFF for 6 seconds it is not included and ready to be included"
-    },
-    {
-        "id": "593-0149-0000-0000-03-03-67-01-07",
-        "name": "Universal Roller Shutter",
-        "desc": "Z-Wave in-wall blind Control designed for being installed behind a standard switch",
-        "productcode": "UMS1.04",
-        "wake": "",
-        "inc": "Normal Inclusion: press the B button on device once or three times, or alternatively press the external switch once",
-        "exc": "Press the B button on device once or three times or external switch after having enabled the learning mode with parameter 65",
-        "brandname": "WiDom",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/WiDom.png",
-        "product_image": "593-0149-0000-0000-03-03-67-01-07.png",
-        "prep": ""
-    },
-    {
-        "id": "669-0149-1214-0304-03-03-99-01-31",
-        "name": "Energy Driven Switch",
-        "desc": "Insert Module with advanced meter capabilities for active energy management",
-        "productcode": "WPS1.04C",
-        "wake": "",
-        "inc": "Single click the button on the device",
-        "exc": "Triple click the button on the device",
-        "brandname": "WiDom",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/WiDom.png",
-        "product_image": "669-0149-1214-0304-03-03-99-01-31.png",
-        "prep": ""
     }
 ]
