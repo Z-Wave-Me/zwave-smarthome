@@ -1,6 +1,6 @@
 <!-- Devicess view -->
 <div ng-controller="DeviceController">
-    <div class="device-container_  mobile-padding" ng-hide="cfg.device_vendors.indexOf(deviceVendor) > -1">
+    <div class="device-container_  mobile-padding">
          <h1 ng-bind="_t('lb_select_device_type')"></h1>
         <div class="row device-slect-type">
             <div class="col-sm-4 vendor-entry">
@@ -13,24 +13,5 @@
                 <a href="#devices/enocean" class="vendor-list"><p class="vendor-image"><img class="apps-image" ng-src="app/img/logo-enocean.png" alt="Logo" /></p></a>
             </div>
         </div>
-    </div>
-    <!--<p class="text-center" ng-show="cfg.device_vendors.indexOf(deviceVendor) > -1">
-        <a href="#devices"><i class="fa fa-chevron-circle-left fa-lg"></i> {{_t('btn_back')}}</a>
-     <p>-->
-    <div ng-switch="deviceVendor">
-        <!-- Z wave devices -->
-        <div ng-switch-when="zwave">
-            <div class="device-container_" ng-include="'app/views/devices/devices_zwave.html'"></div>
-        </div>
-        <!-- IP camera devices -->
-        <div ng-switch-when="ipcamera">
-            <div class="device-container_" ng-include="'app/views/devices/devices_ipcamera.html'"></div>
-        </div>
-        <!-- Enocean devices -->
-        <div ng-switch-when="enocean">
-            <div class="device-container_" ng-include="'app/views/devices/devices_enocean.html'"></div>
-        </div>
-        
-          
     </div>
 </div> <!-- /ng-controller --> 

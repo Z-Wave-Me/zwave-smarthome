@@ -38,13 +38,16 @@ myAppFactory.factory('dataFactory', function($http,$filter, $q, myCache, dataSer
         xmlToJson: xmlToJson,
         uploadApiFile: uploadApiFile,
         putCfgXml: putCfgXml,
-        getJSCmd: getJSCmd,
+        //getJSCmd: getJSCmd,
         refreshZwaveApiData: refreshZwaveApiData,
         getSystemCmd: getSystemCmd,
         getLanguageFile: getLanguageFile,
         loadZwaveApiData: loadZwaveApiData,
         joinedZwaveData: joinedZwaveData,
         runZwaveCmd: runZwaveCmd,
+        loadEnoceanDevices: loadEnoceanDevices,
+        runEnoceanCmd: runEnoceanCmd,
+        refreshEnoceanDevices: refreshEnoceanDevices,
         postReport: postReport
     });
 
@@ -281,21 +284,21 @@ myAppFactory.factory('dataFactory', function($http,$filter, $q, myCache, dataSer
     /**
      * Get api js command
      */
-    function getJSCmd(cmd) {
-        return $http({
-            method: 'get',
-            url: cfg.server_url + cfg.zwave_jsrun_url + cmd
-        }).then(function(response) {
-            //return response;
-            if (typeof response.data === 'string') {
-                return response;
-            } else {// invalid response
-                return $q.reject(response);
-            }
-        }, function(response) {// something went wrong
-            return $q.reject(response);
-        });
-    }
+//    function getJSCmd(cmd) {
+//        return $http({
+//            method: 'get',
+//            url: cfg.server_url + cfg.zwave_jsrun_url + cmd
+//        }).then(function(response) {
+//            //return response;
+//            if (typeof response.data === 'string') {
+//                return response;
+//            } else {// invalid response
+//                return $q.reject(response);
+//            }
+//        }, function(response) {// something went wrong
+//            return $q.reject(response);
+//        });
+//    }
 
 
     /**
@@ -532,6 +535,72 @@ myAppFactory.factory('dataFactory', function($http,$filter, $q, myCache, dataSer
         });
     }
     
+    //getEnoceanData: getEnoceanData,
+        //runEnoceanCmd: runEnoceanCmd,
+        
+    /**
+     * Load Enocean devices 
+     */
+    function loadEnoceanDevices(noCache) {
+        // Cached data
+        var cacheName = 'cache_enocean';
+        var cached = myCache.get(cacheName);
+        if (!noCache && cached) {
+            var deferred = $q.defer();
+            deferred.resolve(cached);
+            return deferred.promise;
+        }
+        return $http({
+            method: 'get',
+            url: cfg.server_url + cfg.enocean_run_url + 'devices'
+        }).then(function(response) {
+            if (typeof response.data === 'object') {
+                myCache.put(cacheName, response.data);
+                return response.data;
+            } else {
+                // invalid response
+                return $q.reject(response);
+            }
+        }, function(response) {
+            // something went wrong
+            return $q.reject(response);
+        });
+    }
+    /**
+     * Run Enocean command
+     */
+    function runEnoceanCmd(cmd) {
+        return $http({
+            method: 'get',
+            url: cfg.server_url + cfg.enocean_run_url + cmd
+        }).then(function(response) {
+            return response;
+        }, function(response) {// something went wrong
+            return $q.reject(response);
+        });
+    }
+    
+    // Refresh Enocean devices 
+    function refreshEnoceanDevices() {
+        //console.log('?since=' + updatedTime)
+        return $http({
+            method: 'get',
+            url: cfg.server_url + cfg.enocean_run_url + 'data(' + updatedTime + ')',
+            /*headers: {
+                'Accept-Language': lang,
+                'ZWAYSession': ZWAYSession
+            }*/
+        }).then(function(response) {
+            if (typeof response.data === 'object') {
+                updatedTime = ($filter('hasNode')(response.data, 'data.updateTime') || Math.round(+new Date() / 1000));
+                return response;
+            } else {// invalid response
+                return $q.reject(response);
+            }
+        }, function(response) {// something went wrong
+            return $q.reject(response);
+        });
+    }
     /**
      * Post report data
      */

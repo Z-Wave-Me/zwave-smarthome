@@ -6,16 +6,17 @@
     <p class="alert alert-warning">
         This hardware does not support "EnOcean devices".
     </p>
+    <bb-alert alert="alert"></bb-alert>
      <div>
         <div>
             <button class="btn btn-success"
                     ng-disabled="inclusion.status"
-                    ng-click="inclusionStart('controller.AddNodeToNetwork(1)')"
+                    ng-click="inclusionStart('controller.data.promisc=true')"
                     ><i class="fa {{inclusion.icon}}"></i> <span ng-bind="_t('btn_inclusion_start')"></span></button>
             <button 
                 class="btn btn-danger"
                 ng-if="inclusion.status"
-                ng-click="inclusionStop('controller.RemoveNodeFromNetwork(0)')" 
+                ng-click="inclusionStop('controller.data.promisc=false')" 
                 ng-bind="_t('btn_inclusion_stop')"></button>
         </div>
         <table class="table table-condensed table-report">
@@ -30,7 +31,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="v in enoceanDevices">
+                <tr id="enocean_row_{{v.id}}" ng-repeat="v in enoceanDevices">
                     <!--<td class="td-img">
                         <img class="report-img" ng-src="storage/img/devices/{{v.product_image}}" alt="img" ng-show="v.product_image" />
                     </td>--> 
@@ -50,7 +51,7 @@
                         <button title="{{_t('lb_remove')}}" 
                                 class="btn btn-default btn-sm"
                                 ng-disabled="inclusion.status"
-                                ng-click="deleteDevice(v.id)"
+                                ng-click="deleteDevice('controller.removeDevice(' + v.id + ')','#enocean_row_' + v.id)"
                                 >
                             <i class="fa fa-remove fa-lg text-danger"></i> <span class="btn-name" ng-bind="_t('lb_remove')"></span>
                         </button>

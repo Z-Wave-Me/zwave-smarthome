@@ -38,8 +38,8 @@ var config_data = {
         'zwave_api_url': 'ZWaveAPI/',
         // ZWave JS url
         'zwave_js_url': 'JS/',
-        // ZWave run JS url
-        'zwave_jsrun_url': 'JS/Run/',
+        // ZWave run JS url - DEPRECATED
+        //'zwave_jsrun_url': 'JS/Run/',
         // Local data path
         'local_data_url': 'storage/data/',
         // Online module url
@@ -53,6 +53,8 @@ var config_data = {
         'zddx_url': 'ZDDX/',
         // Url to run ExpertUI cmd
         'zwaveapi_run_url': 'ZWaveAPI/Run/',
+        // Url to run Enocean cmd
+        'enocean_run_url': 'EnOceanAPI/Run/',
         // Url to config XML file
         'cfg_xml_url': 'config/Configuration.xml',
         // Language directory

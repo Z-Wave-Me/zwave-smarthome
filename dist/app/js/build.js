@@ -5165,8 +5165,26 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     roles: cfg.role_access.module
                 }).
                 //Devices_
-                when('/devices/:type?', {
+                when('/devices', {
                     templateUrl: 'app/views/devices/devices.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
+                }).
+                //Zwave device
+                when('/devices/zwave/:brandname?', {
+                    templateUrl: 'app/views/devices/devices_zwave.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
+                }).
+                //IP camera device
+                when('/devices/ipcamera', {
+                    templateUrl: 'app/views/devices/devices_ipcamera.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
+                }).
+                //IP camera device
+                when('/devices/enocean', {
+                    templateUrl: 'app/views/devices/devices_enocean.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices
                 }).
@@ -5368,13 +5386,16 @@ myAppFactory.factory('dataFactory', function($http,$filter, $q, myCache, dataSer
         xmlToJson: xmlToJson,
         uploadApiFile: uploadApiFile,
         putCfgXml: putCfgXml,
-        getJSCmd: getJSCmd,
+        //getJSCmd: getJSCmd,
         refreshZwaveApiData: refreshZwaveApiData,
         getSystemCmd: getSystemCmd,
         getLanguageFile: getLanguageFile,
         loadZwaveApiData: loadZwaveApiData,
         joinedZwaveData: joinedZwaveData,
         runZwaveCmd: runZwaveCmd,
+        loadEnoceanDevices: loadEnoceanDevices,
+        runEnoceanCmd: runEnoceanCmd,
+        refreshEnoceanDevices: refreshEnoceanDevices,
         postReport: postReport
     });
 
@@ -5611,21 +5632,21 @@ myAppFactory.factory('dataFactory', function($http,$filter, $q, myCache, dataSer
     /**
      * Get api js command
      */
-    function getJSCmd(cmd) {
-        return $http({
-            method: 'get',
-            url: cfg.server_url + cfg.zwave_jsrun_url + cmd
-        }).then(function(response) {
-            //return response;
-            if (typeof response.data === 'string') {
-                return response;
-            } else {// invalid response
-                return $q.reject(response);
-            }
-        }, function(response) {// something went wrong
-            return $q.reject(response);
-        });
-    }
+//    function getJSCmd(cmd) {
+//        return $http({
+//            method: 'get',
+//            url: cfg.server_url + cfg.zwave_jsrun_url + cmd
+//        }).then(function(response) {
+//            //return response;
+//            if (typeof response.data === 'string') {
+//                return response;
+//            } else {// invalid response
+//                return $q.reject(response);
+//            }
+//        }, function(response) {// something went wrong
+//            return $q.reject(response);
+//        });
+//    }
 
 
     /**
@@ -5862,6 +5883,72 @@ myAppFactory.factory('dataFactory', function($http,$filter, $q, myCache, dataSer
         });
     }
     
+    //getEnoceanData: getEnoceanData,
+        //runEnoceanCmd: runEnoceanCmd,
+        
+    /**
+     * Load Enocean devices 
+     */
+    function loadEnoceanDevices(noCache) {
+        // Cached data
+        var cacheName = 'cache_enocean';
+        var cached = myCache.get(cacheName);
+        if (!noCache && cached) {
+            var deferred = $q.defer();
+            deferred.resolve(cached);
+            return deferred.promise;
+        }
+        return $http({
+            method: 'get',
+            url: cfg.server_url + cfg.enocean_run_url + 'devices'
+        }).then(function(response) {
+            if (typeof response.data === 'object') {
+                myCache.put(cacheName, response.data);
+                return response.data;
+            } else {
+                // invalid response
+                return $q.reject(response);
+            }
+        }, function(response) {
+            // something went wrong
+            return $q.reject(response);
+        });
+    }
+    /**
+     * Run Enocean command
+     */
+    function runEnoceanCmd(cmd) {
+        return $http({
+            method: 'get',
+            url: cfg.server_url + cfg.enocean_run_url + cmd
+        }).then(function(response) {
+            return response;
+        }, function(response) {// something went wrong
+            return $q.reject(response);
+        });
+    }
+    
+    // Refresh Enocean devices 
+    function refreshEnoceanDevices() {
+        //console.log('?since=' + updatedTime)
+        return $http({
+            method: 'get',
+            url: cfg.server_url + cfg.enocean_run_url + 'data(' + updatedTime + ')',
+            /*headers: {
+                'Accept-Language': lang,
+                'ZWAYSession': ZWAYSession
+            }*/
+        }).then(function(response) {
+            if (typeof response.data === 'object') {
+                updatedTime = ($filter('hasNode')(response.data, 'data.updateTime') || Math.round(+new Date() / 1000));
+                return response;
+            } else {// invalid response
+                return $q.reject(response);
+            }
+        }, function(response) {// something went wrong
+            return $q.reject(response);
+        });
+    }
     /**
      * Post report data
      */
@@ -7906,8 +7993,8 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
     };
     $scope.setPollInterval();
 
-    $scope.elementAccess = function(roles,mobile) {
-        if(!$scope.user){
+    $scope.elementAccess = function(roles, mobile) {
+        if (!$scope.user) {
             return false;
         }
         // Hide on mobile devices
@@ -8033,13 +8120,26 @@ myAppController.controller('TestController', function($scope, $routeParams, $fil
         });
     };
     //$scope.testHeader();
+    var master = {
+        email: null,
+        content: null
+    };
+    $scope.input = master;
+    $scope.store = function(form, input) {
+        console.log($scope.input)
+        // console.log(input)
+        //var original = $scope.input;
+        $scope.input = angular.copy($scope.master);
+        $scope.form_report.$setPristine();
+        console.log(master)
+    };
 
 
 });
 /**
  * Element controller
  */
-myAppController.controller('ElementController', function($scope, $routeParams, $interval,  $location,dataFactory, dataService, myCache) {
+myAppController.controller('ElementController', function($scope, $routeParams, $interval, $location, dataFactory, dataService, myCache) {
     $scope.goHidden = [];
     $scope.goHistory = [];
     $scope.apiDataInterval = null;
@@ -8092,7 +8192,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('devices').then(function(response) {
             var filter = null;
-            var notFound = $scope._t('no_devices') + ' <a href="#devices">' + $scope._t('lb_include_device') +'</a>'
+            var notFound = $scope._t('no_devices') + ' <a href="#devices">' + $scope._t('lb_include_device') + '</a>'
             $scope.loading = false;
             $scope.deviceType = dataService.getDeviceType(response.data.data.devices);
             $scope.tags = dataService.getTags(response.data.data.devices);
@@ -8102,7 +8202,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
                     case 'dashboard':
                         $scope.showFooter = false;
                         filter = {filter: "onDashboard", val: true};
-                         notFound = $scope._t('no_devices_dashboard');
+                        notFound = $scope._t('no_devices_dashboard');
                         break;
                     case 'deviceType':
                         filter = $routeParams;
@@ -8129,7 +8229,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
             $scope.collection = collection;
             dataService.updateTimeTick(response.data.data.updateTime);
         }, function(error) {
-             $location.path('/error/' + error.status);
+            $location.path('/error/' + error.status);
         });
     };
     $scope.loadData();
@@ -8252,7 +8352,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
 /**
  * Element detail controller controller
  */
-myAppController.controller('ElementDetailController', function($scope, $routeParams, $window, $location,dataFactory, dataService, myCache) {
+myAppController.controller('ElementDetailController', function($scope, $routeParams, $window, $location, dataFactory, dataService, myCache) {
     $scope.input = [];
     $scope.rooms = [];
     $scope.tagList = [];
@@ -8325,7 +8425,7 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
      * Add tag to list
      */
     $scope.addTag = function(searchText) {
-       $scope.searchText = '';
+        $scope.searchText = '';
         $scope.autoCompletePanel = false;
         if (!searchText || $scope.input.tags.indexOf(searchText) > -1) {
             return;
@@ -8376,14 +8476,14 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
      * Load instances
      */
     function loadInstances(devices) {
-        if(!$scope.elementAccess($scope.cfg.role_access.apps)){
+        if (!$scope.elementAccess($scope.cfg.role_access.apps)) {
             var v = dataService.getDevices(devices, null, $scope.user.dashboard, false)[0];
-            setInput(v,devices.updateTime); 
+            setInput(v, devices.updateTime);
             return;
         }
         dataFactory.getApi('instances').then(function(response) {
             var v = dataService.getDevices(devices, null, $scope.user.dashboard, response.data.data)[0];
-            setInput(v,response.data.data.updateTime); 
+            setInput(v, response.data.data.updateTime);
 
         }, function(error) {
             dataService.showConnectionError(error);
@@ -8411,31 +8511,31 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
     }
 
     /// --- Private functions --- ///
-     /**
+    /**
      * Set input
      */
-    function setInput(v,updateTime) {
+    function setInput(v, updateTime) {
         if (v) {
-                $scope.input = {
-                    'id': v.id,
-                    'title': v.title,
-                    'dashboard': v.onDashboard == true ? true : false,
-                    'location': v.location,
-                    'tags': v.tags,
-                    'deviceType': v.deviceType,
-                    'level': v.level,
-                    'metrics': v.metrics,
-                    'updateTime': v.updateTime,
-                    'cfg': v.cfg,
-                    'permanently_hidden': v.permanently_hidden,
-                    //'rooms': $scope.rooms,
-                    'hide_events': false
-                };
-                dataService.updateTimeTick(updateTime);
-            } else {
-                alert($scope._t('no_data'));
-                dataService.showConnectionError($scope._t('no_data'));
-            }
+            $scope.input = {
+                'id': v.id,
+                'title': v.title,
+                'dashboard': v.onDashboard == true ? true : false,
+                'location': v.location,
+                'tags': v.tags,
+                'deviceType': v.deviceType,
+                'level': v.level,
+                'metrics': v.metrics,
+                'updateTime': v.updateTime,
+                'cfg': v.cfg,
+                'permanently_hidden': v.permanently_hidden,
+                //'rooms': $scope.rooms,
+                'hide_events': false
+            };
+            dataService.updateTimeTick(updateTime);
+        } else {
+            alert($scope._t('no_data'));
+            dataService.showConnectionError($scope._t('no_data'));
+        }
     }
     ;
     /**
@@ -8458,7 +8558,7 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
 /**
  * Event controller
  */
-myAppController.controller('EventController', function($scope, $routeParams, $interval, $window, $filter, $cookies, $location,dataFactory, dataService, myCache, paginationService, cfg) {
+myAppController.controller('EventController', function($scope, $routeParams, $interval, $window, $filter, $cookies, $location, dataFactory, dataService, myCache, paginationService, cfg) {
     $scope.collection = [];
     $scope.eventLevels = [];
     $scope.dayCount = [
@@ -8488,7 +8588,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
     $scope.apiDataInterval = null;
 
     // Cancel interval on page destroy
-    $scope.$on('$destroy', function() { 
+    $scope.$on('$destroy', function() {
         $interval.cancel($scope.apiDataInterval);
     });
 
@@ -8951,7 +9051,8 @@ myAppController.controller('AppLocalDetailController', function($scope, $routePa
         dataFactory.getRemoteData($scope.cfg.online_module_url).then(function(response) {
             $scope.isOnline = dataService.getRowBy(response.data, 'modulename', moduleName);
             dataService.updateTimeTick();
-        }, function(error) {});
+        }, function(error) {
+        });
     }
 
 });
@@ -9110,7 +9211,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                 dataService.showConnectionError(error);
             });
         }, function(error) {
-             $location.path('/error/' + error.status);
+            $location.path('/error/' + error.status);
         });
 
     };
@@ -9173,17 +9274,16 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
  * Device controller
  */
 myAppController.controller('DeviceController', function($scope, $routeParams, dataFactory, dataService) {
+});
+/**
+ * Device Zwave  controller
+ */
+myAppController.controller('DeviceZwaveController', function($scope, $routeParams, dataFactory, dataService) {
     $scope.zwaveDevices = [];
     $scope.zwaveDevicesFilter = false;
     $scope.deviceVendor = false;
     $scope.manufacturers = [];
     $scope.manufacturer = false;
-    $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
-    $scope.ipcameraDevices = [];
-
-    if (angular.isDefined($routeParams.type)) {
-        $scope.deviceVendor = $routeParams.type;
-    }
     /**
      * Set filter
      */
@@ -9193,24 +9293,32 @@ myAppController.controller('DeviceController', function($scope, $routeParams, da
     /**
      * Load z-wave devices
      */
-    $scope.loadZwaveDevices = function(filter, lang) {
+    $scope.loadData = function(brandname, lang) {
         dataService.showConnectionSpinner();
         dataFactory.getApiLocal('device.' + lang + '.json').then(function(response) {
             $scope.manufacturers = dataService.getPairs(response.data, 'brandname', 'brand_image', 'manufacturers');
-            if (filter) {
-                $scope.zwaveDevices = dataService.getData(response.data, filter);
-                $scope.manufacturer = filter.val;
+            if (brandname) {
+                console.log({'filter': 'brandname', 'val': brandname})
+                $scope.zwaveDevices = dataService.getData(response.data, {'filter': 'brandname', 'val': brandname});
+                $scope.manufacturer = brandname;
             }
             dataService.updateTimeTick();
         }, function(error) {
             dataService.showConnectionError(error);
         });
     };
-
+    $scope.loadData($routeParams.brandname, $scope.lang);
+});
+/**
+ * Device IP camerae  controller
+ */
+myAppController.controller('DeviceIpCameraController', function($scope, dataFactory, dataService) {
+    $scope.ipcameraDevices = [];
+    $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
     /**
      * Load ip cameras
      */
-    $scope.loadIpcameras = function() {
+    $scope.loadData = function() {
         dataService.showConnectionSpinner();
         dataFactory.getApi('modules').then(function(response) {
             $scope.ipcameraDevices = dataService.getData(response.data.data, {filter: "state", val: "camera"});
@@ -9219,23 +9327,109 @@ myAppController.controller('DeviceController', function($scope, $routeParams, da
             dataService.showConnectionError(error);
         });
     };
-
-    $scope.$watch('deviceVendor', function() {
-        switch ($scope.deviceVendor) {
-            case 'zwave':
-                $scope.$watch('zwaveDevicesFilter', function() {
-                    $scope.loadZwaveDevices($scope.zwaveDevicesFilter, $scope.lang);
-                });
-                break;
-            case 'ipcamera':
-                $scope.loadIpcameras();
-                break;
-            case 'enocean':
-                break;
-            default:
-                break;
-        }
+    $scope.loadData();
+});
+/**
+ * Device Enocean  controller
+ */
+myAppController.controller('DeviceEnoceanController', function($scope, $interval, dataFactory, dataService) {
+    $scope.enoceanDevices = [];
+    $scope.inclusion = {
+        status: false,
+        icon: 'fa-plug'
+    };
+    $scope.apiDataInterval = null;
+     // Cancel interval on page destroy
+    $scope.$on('$destroy', function() {
+        $interval.cancel($scope.apiDataInterval);
     });
+    /**
+     * Load data
+     */
+    $scope.loadData = function() {
+        dataService.showConnectionSpinner();
+        // Demo data
+        dataFactory.getApiLocal('enocean.json').then(function(response) {
+            $scope.enoceanDevices = response.data;
+            dataService.updateTimeTick();
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+        return;
+        // Live data
+        dataFactory.loadEnoceanDevices().then(function(response) {
+            $scope.enoceanDevices = response.data;
+            dataService.updateTimeTick();
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    };
+    $scope.loadData();
+    
+     /**
+     * Refresh data
+     */
+    $scope.refreshData = function() {
+        var refresh = function() {
+            dataFactory.refreshEnoceanDevices().then(function(response) {
+            }, function(error) {
+                dataService.showConnectionError(error);
+            });
+        };
+        $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
+    };
+
+    //$scope.refreshData();
+
+    /**
+     * Inclusion start
+     */
+    $scope.inclusionStart = function(cmd) {
+        $scope.inclusion.status = true;
+        $scope.inclusion.icon = 'fa-spinner fa-spin';
+
+        // Run CMD
+        var alertError = {message: $scope._t('lb_include_enocean_error')};
+        var alertSuccess = {message: $scope._t('lb_device_included')};
+        //runCmd(cmd, alertError,alertSuccess);
+    };
+
+    /**
+     * Inclusion stop
+     */
+    $scope.inclusionStop = function(cmd) {
+        var alertError = {message: $scope._t('lb_include_enocean_error')};
+        runCmd(cmd, alertError);
+    };
+    /**
+     * Delete device
+     */
+    $scope.deleteDevice = function(cmd, target) {
+        var alertError = {message: $scope._t('error_delete_data')};
+        runCmd(cmd, alertError);
+    };
+
+    /**
+     * Process CMD
+     */
+    function runCmd(cmd, alertError, alertSuccess) {
+        // Run CMD
+        dataFactory.runEnoceanCmd(cmd).then(function(response) {
+            dataService.updateTimeTick();
+            if (alertSuccess) {
+                $scope.alert = {message: alertSuccess.message, status: 'alert-success', icon: 'fa-check'};
+            }
+        }, function(error) {
+            dataService.showConnectionError(error);
+            if (alertError) {
+                $scope.alert = {message: alertError.message, status: 'alert-danger', icon: 'fa-warning'};
+            }
+
+        });
+        $scope.inclusion.status = false;
+        $scope.inclusion.icon = 'fa-plug';
+        return;
+    }
 });
 /**
  * Device controller
@@ -9428,7 +9622,8 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
         $scope.lastExcludedDevice = null;
         dataFactory.runZwaveCmd(cmd).then(function() {
             myCache.remove('devices');
-        }, function(error) {});
+        }, function(error) {
+        });
 
     };
 
@@ -9514,12 +9709,12 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
         //var data = response.data;
         if ('controller.data.controllerState' in data) {
             $scope.controllerState = data['controller.data.controllerState'].value;
-            console.log('controllerState: ',$scope.controllerState)
+            console.log('controllerState: ', $scope.controllerState)
         }
-        
+
         if ('controller.data.lastExcludedDevice' in data) {
             $scope.lastExcludedDevice = data['controller.data.lastExcludedDevice'].value;
-             console.log('lastExcludedDevice: ',$scope.lastExcludedDevice)
+            console.log('lastExcludedDevice: ', $scope.lastExcludedDevice)
         }
         if ('controller.data.lastIncludedDevice' in data) {
             var deviceIncId = data['controller.data.lastIncludedDevice'].value;
@@ -9683,7 +9878,7 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
 /**
  * Room controller
  */
-myAppController.controller('RoomController', function($scope,$location, dataFactory, dataService) {
+myAppController.controller('RoomController', function($scope, $location, dataFactory, dataService) {
     $scope.collection = [];
     $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/image/';
     $scope.reset = function() {
@@ -9710,7 +9905,7 @@ myAppController.controller('RoomController', function($scope,$location, dataFact
 /**
  * Room config controller
  */
-myAppController.controller('RoomConfigController', function($scope, $window,  $location,dataFactory, dataService, myCache) {
+myAppController.controller('RoomConfigController', function($scope, $window, $location, dataFactory, dataService, myCache) {
     $scope.collection = [];
     $scope.devices = [];
     $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/image/';
@@ -9766,7 +9961,8 @@ myAppController.controller('RoomConfigController', function($scope, $window,  $l
         }, function(error) {
             dataService.showConnectionError(error);
         });
-    };
+    }
+    ;
 
     /**
      * Remove room id from device
@@ -9945,7 +10141,7 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
 /**
  * Network controller
  */
-myAppController.controller('NetworkController', function($scope, $cookies, $filter, $window,$location, dataFactory, dataService, myCache) {
+myAppController.controller('NetworkController', function($scope, $cookies, $filter, $window, $location, dataFactory, dataService, myCache) {
     $scope.activeTab = (angular.isDefined($cookies.tab_network) ? $cookies.tab_network : 'battery');
     $scope.batteries = {
         'list': [],
@@ -10303,7 +10499,7 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
 /**
  * Profile controller
  */
-myAppController.controller('NetworkConfigController', function($scope, $routeParams, $filter, $location,dataFactory, dataService, myCache) {
+myAppController.controller('NetworkConfigController', function($scope, $routeParams, $filter, $location, dataFactory, dataService, myCache) {
     $scope.zWaveDevice = [];
     $scope.devices = [];
     $scope.dev = [];
@@ -10342,12 +10538,12 @@ myAppController.controller('NetworkConfigController', function($scope, $routePar
                 id: v.id,
                 location: roomId
             };
-            
+
             dataFactory.putApi('devices', v.id, input).then(function(response) {
             }, function(error) {
                 alert($scope._t('error_update_data'));
                 $scope.loading = false;
-                 return;
+                return;
             });
         }
         myCache.remove('devices');
@@ -10392,7 +10588,7 @@ myAppController.controller('NetworkConfigController', function($scope, $routePar
             dataService.updateTimeTick();
             var node = ZWaveAPIData.devices[nodeId];
             if (!node) {
-                 $location.path('/error/404');
+                $location.path('/error/404');
                 return;
             }
 
@@ -10502,7 +10698,7 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
 /**
  * Orofile detail
  */
-myAppController.controller('AdminUserController', function($scope, $routeParams, $filter,$location, dataFactory, dataService, myCache) {
+myAppController.controller('AdminUserController', function($scope, $routeParams, $filter, $location, dataFactory, dataService, myCache) {
     $scope.id = $filter('toInt')($routeParams.id);
     $scope.rooms = {};
     $scope.input = {
@@ -10538,7 +10734,7 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
             dataService.updateTimeTick();
         }, function(error) {
             $scope.input = false;
-             $location.path('/error/' + error.status);
+            $location.path('/error/' + error.status);
         });
     };
     if ($scope.id > 0) {
@@ -10588,7 +10784,7 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
         if ($scope.id == 0) {
             input.password = input.password;
         }
-        input.role = parseInt(input.role,10);
+        input.role = parseInt(input.role, 10);
         dataFactory.storeApi('profiles', input.id, input).then(function(response) {
             var id = $filter('hasNode')(response, 'data.data.id');
             if (id) {
@@ -10603,8 +10799,8 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
         });
 
     };
-    
-     /**
+
+    /**
      * Change auth data
      */
     $scope.changeAuth = function(auth) {
@@ -10641,7 +10837,7 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
 /**
  * My Access
  */
-myAppController.controller('MyAccessController', function($scope, $window, $location,dataFactory, dataService, myCache) {
+myAppController.controller('MyAccessController', function($scope, $window, $location, dataFactory, dataService, myCache) {
     $scope.id = $scope.user.id;
     $scope.devices = {};
     $scope.input = {
@@ -10661,7 +10857,7 @@ myAppController.controller('MyAccessController', function($scope, $window, $loca
     };
     $scope.remoteAccess = false;
     $scope.newPassword = null;
-    
+
     /**
      * Load data
      */
@@ -10674,30 +10870,30 @@ myAppController.controller('MyAccessController', function($scope, $window, $loca
         }, function(error) {
             $scope.input = false;
             $scope.loading = false;
-           $location.path('/error/' + error.status);
+            $location.path('/error/' + error.status);
         });
     };
     if ($scope.id > 0) {
-        $scope.loadData($scope.id); 
+        $scope.loadData($scope.id);
     }
 
     /**
      * Load Remote access data
      */
     $scope.loadRemoteAccess = function() {
-        if(!$scope.elementAccess($scope.cfg.role_access.remote_access)){
+        if (!$scope.elementAccess($scope.cfg.role_access.remote_access)) {
             return;
         }
         dataFactory.getApi('instances', '/RemoteAccess').then(function(response) {
-            var remoteAccess  = response.data.data[0];
-            if(Object.keys(remoteAccess).length < 1){
+            var remoteAccess = response.data.data[0];
+            if (Object.keys(remoteAccess).length < 1) {
                 $scope.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-warning'};
             }
-           if(!remoteAccess.active){
+            if (!remoteAccess.active) {
                 $scope.alert = {message: $scope._t('remote_access_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
                 return;
             }
-            if(!remoteAccess.params.userId ){
+            if (!remoteAccess.params.userId) {
                 $scope.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-warning'};
                 return;
             }
@@ -10762,7 +10958,7 @@ myAppController.controller('MyAccessController', function($scope, $window, $loca
      * Remote access
      */
     $scope.putRemoteAccess = function(input) {
-         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.putApi('instances', input.id, input).then(function(response) {
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
 
@@ -10855,7 +11051,7 @@ myAppController.controller('ReportController', function($scope, $window, dataFac
      * Load Remote access data
      */
     $scope.loadRemoteAccess = function() {
-         if(!$scope.elementAccess($scope.cfg.role_access.remote_access)){
+        if (!$scope.elementAccess($scope.cfg.role_access.remote_access)) {
             return;
         }
         dataFactory.getApi('instances', '/RemoteAccess').then(function(response) {
@@ -10870,8 +11066,8 @@ myAppController.controller('ReportController', function($scope, $window, dataFac
     /**
      * Create/Update an item
      */
-    $scope.store = function(form,input) {
-        if(form.$invalid){
+    $scope.store = function(form, input) {
+        if (form.$invalid) {
             return;
         }
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('sending')};
@@ -10893,12 +11089,12 @@ myAppController.controller('ReportController', function($scope, $window, dataFac
         //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         dataFactory.postReport(input).then(function(response) {
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_send_report')};
-             $window.location.reload();
+            $window.location.reload();
 //            $scope.form.$setPristine();
 //           input.content = null;
 //            input.email = null;
-            
-            
+
+
         }, function(error) {
             alert($scope._t('error_send_report'));
             $scope.loading = false;
@@ -10910,7 +11106,7 @@ myAppController.controller('ReportController', function($scope, $window, dataFac
 /**
  * Login controller
  */
-myAppController.controller('LoginController', function($scope, $location, $window, $routeParams,$document,$cookies, dataFactory, dataService) {
+myAppController.controller('LoginController', function($scope, $location, $window, $routeParams, $document, $cookies, dataFactory, dataService) {
     $scope.input = {
         form: true,
         login: '',
@@ -10922,8 +11118,8 @@ myAppController.controller('LoginController', function($scope, $location, $windo
         $location.path('/elements');
         return;
     }
-    
-   // var bareDomain = $window.location.host
+
+    // var bareDomain = $window.location.host
     //console.log(bareDomain)
 //document.cookie = 'ZWAYSession=; Domain=' + bareDomain + '; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 //delete $cookies['ZWAYSession'];
@@ -10944,12 +11140,12 @@ myAppController.controller('LoginController', function($scope, $location, $windo
         $scope.alert = {message: false};
         dataFactory.logInApi(input).then(function(response) {
             var user = response.data.data;
-            dataService.setZWAYSession(user.sid);  
+            dataService.setZWAYSession(user.sid);
             //delete user['sid'];
             dataService.setUser(user);
             dataService.setLastLogin(Math.round(+new Date() / 1000));
             //$scope.loading = false;
-             $scope.input.form = false;
+            $scope.input.form = false;
             $window.location.href = '#/elements';
             $window.location.reload();
         }, function(error) {
@@ -11001,7 +11197,575 @@ myAppController.controller('ErrorController', function($scope, $routeParams, dat
 });
 
 
-"use strict";angular.module("colorpicker.module",[]).factory("Helper",function(){return{closestSlider:function(e){var o=e.matches||e.webkitMatchesSelector||e.mozMatchesSelector||e.msMatchesSelector;return o.bind(e)("I")?e.parentNode:e},getOffset:function(e,o){for(var t=0,n=0,r=0,i=0;e&&!isNaN(e.offsetLeft)&&!isNaN(e.offsetTop);)t+=e.offsetLeft,n+=e.offsetTop,o||"BODY"!==e.tagName?(r+=e.scrollLeft,i+=e.scrollTop):(r+=document.documentElement.scrollLeft||e.scrollLeft,i+=document.documentElement.scrollTop||e.scrollTop),e=e.offsetParent;return{top:n,left:t,scrollX:r,scrollY:i}},stringParsers:[{re:/rgba?\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*(?:,\s*(\d+(?:\.\d+)?)\s*)?\)/,parse:function(e){return[e[1],e[2],e[3],e[4]]}},{re:/rgba?\(\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*(?:,\s*(\d+(?:\.\d+)?)\s*)?\)/,parse:function(e){return[2.55*e[1],2.55*e[2],2.55*e[3],e[4]]}},{re:/#([a-fA-F0-9]{2})([a-fA-F0-9]{2})([a-fA-F0-9]{2})/,parse:function(e){return[parseInt(e[1],16),parseInt(e[2],16),parseInt(e[3],16)]}},{re:/#([a-fA-F0-9])([a-fA-F0-9])([a-fA-F0-9])/,parse:function(e){return[parseInt(e[1]+e[1],16),parseInt(e[2]+e[2],16),parseInt(e[3]+e[3],16)]}}]}}).factory("Color",["Helper",function(e){return{value:{h:1,s:1,b:1,a:1},rgb:function(){var e=this.toRGB();return"rgb("+e.r+","+e.g+","+e.b+")"},rgba:function(){var e=this.toRGB();return"rgba("+e.r+","+e.g+","+e.b+","+e.a+")"},hex:function(){return this.toHex()},RGBtoHSB:function(e,o,t,n){e/=255,o/=255,t/=255;var r,i,a,l;return a=Math.max(e,o,t),l=a-Math.min(e,o,t),r=0===l?null:a===e?(o-t)/l:a===o?(t-e)/l+2:(e-o)/l+4,r=(r+360)%6*60/360,i=0===l?0:l/a,{h:r||1,s:i,b:a,a:n||1}},setColor:function(o){o=o.toLowerCase();for(var t in e.stringParsers)if(e.stringParsers.hasOwnProperty(t)){var n=e.stringParsers[t],r=n.re.exec(o),i=r&&n.parse(r);if(i)return this.value=this.RGBtoHSB.apply(null,i),!1}},setHue:function(e){this.value.h=1-e},setSaturation:function(e){this.value.s=e},setLightness:function(e){this.value.b=1-e},setAlpha:function(e){this.value.a=parseInt(100*(1-e),10)/100},toRGB:function(e,o,t,n){e||(e=this.value.h,o=this.value.s,t=this.value.b),e*=360;var r,i,a,l,s;return e=e%360/60,s=t*o,l=s*(1-Math.abs(e%2-1)),r=i=a=t-s,e=~~e,r+=[s,l,0,0,l,s][e],i+=[l,s,s,l,0,0][e],a+=[0,0,l,s,s,l][e],{r:Math.round(255*r),g:Math.round(255*i),b:Math.round(255*a),a:n||this.value.a}},toHex:function(e,o,t,n){var r=this.toRGB(e,o,t,n);return"#"+(1<<24|parseInt(r.r,10)<<16|parseInt(r.g,10)<<8|parseInt(r.b,10)).toString(16).substr(1)}}}]).factory("Slider",["Helper",function(e){var o={maxLeft:0,maxTop:0,callLeft:null,callTop:null,knob:{top:0,left:0}},t={};return{getSlider:function(){return o},getLeftPosition:function(e){return Math.max(0,Math.min(o.maxLeft,o.left+((e.pageX||t.left)-t.left)))},getTopPosition:function(e){return Math.max(0,Math.min(o.maxTop,o.top+((e.pageY||t.top)-t.top)))},setSlider:function(n,r){var i=e.closestSlider(n.target),a=e.getOffset(i,r);o.knob=i.children[0].style,o.left=n.pageX-a.left-window.pageXOffset+a.scrollX,o.top=n.pageY-a.top-window.pageYOffset+a.scrollY,t={left:n.pageX,top:n.pageY}},setSaturation:function(e,t){o={maxLeft:100,maxTop:100,callLeft:"setSaturation",callTop:"setLightness"},this.setSlider(e,t)},setHue:function(e,t){o={maxLeft:0,maxTop:100,callLeft:!1,callTop:"setHue"},this.setSlider(e,t)},setAlpha:function(e,t){o={maxLeft:0,maxTop:100,callLeft:!1,callTop:"setAlpha"},this.setSlider(e,t)},setKnob:function(e,t){o.knob.top=e+"px",o.knob.left=t+"px"}}}]).directive("colorpicker",["$document","$compile","Color","Slider","Helper",function(e,o,t,n,r){return{require:"?ngModel",restrict:"A",link:function(i,a,l,s){var c,u=l.colorpicker?l.colorpicker:"hex",p=angular.isDefined(l.colorpickerPosition)?l.colorpickerPosition:"bottom",f=angular.isDefined(l.colorpickerInline)?l.colorpickerInline:!1,d=angular.isDefined(l.colorpickerFixedPosition)?l.colorpickerFixedPosition:!1,v=angular.isDefined(l.colorpickerParent)?a.parent():angular.element(document.body),h=angular.isDefined(l.colorpickerWithInput)?l.colorpickerWithInput:!1,g=h?'<input type="text" name="colorpicker-input">':"",m=f?"":'<button type="button" class="close close-colorpicker">&times;</button>',k='<div class="colorpicker dropdown"><div class="dropdown-menu"><colorpicker-saturation><i></i></colorpicker-saturation><colorpicker-hue><i></i></colorpicker-hue><colorpicker-alpha><i></i></colorpicker-alpha><colorpicker-preview></colorpicker-preview>'+g+m+"</div></div>",b=angular.element(k),x=t,w=b.find("colorpicker-hue"),L=b.find("colorpicker-saturation"),S=b.find("colorpicker-preview"),P=b.find("i");if(o(b)(i),h){var T=b.find("input");T.on("mousedown",function(e){e.stopPropagation()}).on("keyup",function(e){var o=this.value;a.val(o),s&&i.$apply(s.$setViewValue(o)),e.stopPropagation(),e.preventDefault()}),a.on("keyup",function(){T.val(a.val())})}var C=function(){e.on("mousemove",M),e.on("mouseup",y)};"rgba"===u&&(b.addClass("alpha"),c=b.find("colorpicker-alpha"),c.on("click",function(e){n.setAlpha(e,d),M(e)}).on("mousedown",function(e){n.setAlpha(e,d),C()})),w.on("click",function(e){n.setHue(e,d),M(e)}).on("mousedown",function(e){n.setHue(e,d),C()}),L.on("click",function(e){n.setSaturation(e,d),M(e)}).on("mousedown",function(e){n.setSaturation(e,d),C()}),d&&b.addClass("colorpicker-fixed-position"),b.addClass("colorpicker-position-"+p),"true"===f&&b.addClass("colorpicker-inline"),v.append(b),s&&(s.$render=function(){a.val(s.$viewValue)},i.$watch(l.ngModel,function(e){I(),h&&T.val(e)})),a.on("$destroy",function(){b.remove()});var H=function(){try{S.css("backgroundColor",x[u]())}catch(e){S.css("backgroundColor",x.toHex())}L.css("backgroundColor",x.toHex(x.value.h,1,1,1)),"rgba"===u&&(c.css.backgroundColor=x.toHex())},M=function(e){var o=n.getLeftPosition(e),t=n.getTopPosition(e),r=n.getSlider();n.setKnob(t,o),r.callLeft&&x[r.callLeft].call(x,o/100),r.callTop&&x[r.callTop].call(x,t/100),H();var l=x[u]();return a.val(l),s&&i.$apply(s.$setViewValue(l)),h&&T.val(l),!1},y=function(){e.off("mousemove",M),e.off("mouseup",y)},I=function(){x.setColor(a.val()),P.eq(0).css({left:100*x.value.s+"px",top:100-100*x.value.b+"px"}),P.eq(1).css("top",100*(1-x.value.h)+"px"),P.eq(2).css("top",100*(1-x.value.a)+"px"),H()},A=function(){var e,o=r.getOffset(a[0]);return angular.isDefined(l.colorpickerParent)&&(o.left=0,o.top=0),"top"===p?e={top:o.top-147,left:o.left}:"right"===p?e={top:o.top,left:o.left+126}:"bottom"===p?e={top:o.top+a[0].offsetHeight+2,left:o.left}:"left"===p&&(e={top:o.top,left:o.left-150}),{top:e.top+"px",left:e.left+"px"}},$=function(){D()};f===!1?a.on("click",function(){I(),b.addClass("colorpicker-visible").css(A()),e.on("mousedown",$)}):(I(),b.addClass("colorpicker-visible").css(A())),b.on("mousedown",function(e){e.stopPropagation(),e.preventDefault()});var B=function(e){s&&i.$emit(e,{name:l.ngModel,value:s.$modelValue})},D=function(){b.hasClass("colorpicker-visible")&&(b.removeClass("colorpicker-visible"),B("colorpicker-closed"),e.off("mousedown",$))};b.find("button").on("click",function(){D()})}}}]);
+'use strict';
+
+angular.module('colorpicker.module', [])
+        .factory('Helper', function() {
+            return {
+                closestSlider: function(elem) {
+                    var matchesSelector = elem.matches || elem.webkitMatchesSelector || elem.mozMatchesSelector || elem.msMatchesSelector;
+                    if (matchesSelector.bind(elem)('I')) {
+                        return elem.parentNode;
+                    }
+                    return elem;
+                },
+                getOffset: function(elem, fixedPosition) {
+                    var
+                            x = 0,
+                            y = 0,
+                            scrollX = 0,
+                            scrollY = 0;
+                    while (elem && !isNaN(elem.offsetLeft) && !isNaN(elem.offsetTop)) {
+                        x += elem.offsetLeft;
+                        y += elem.offsetTop;
+                        if (!fixedPosition && elem.tagName === 'BODY') {
+                            scrollX += document.documentElement.scrollLeft || elem.scrollLeft;
+                            scrollY += document.documentElement.scrollTop || elem.scrollTop;
+                        } else {
+                            scrollX += elem.scrollLeft;
+                            scrollY += elem.scrollTop;
+                        }
+                        elem = elem.offsetParent;
+                    }
+                    return {
+                        top: y,
+                        left: x,
+                        scrollX: scrollX,
+                        scrollY: scrollY
+                    };
+                },
+                // a set of RE's that can match strings and generate color tuples. https://github.com/jquery/jquery-color/
+                stringParsers: [
+                    {
+                        re: /rgba?\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*(?:,\s*(\d+(?:\.\d+)?)\s*)?\)/,
+                        parse: function(execResult) {
+                            return [
+                                execResult[1],
+                                execResult[2],
+                                execResult[3],
+                                execResult[4]
+                            ];
+                        }
+                    },
+                    {
+                        re: /rgba?\(\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*(?:,\s*(\d+(?:\.\d+)?)\s*)?\)/,
+                        parse: function(execResult) {
+                            return [
+                                2.55 * execResult[1],
+                                2.55 * execResult[2],
+                                2.55 * execResult[3],
+                                execResult[4]
+                            ];
+                        }
+                    },
+                    {
+                        re: /#([a-fA-F0-9]{2})([a-fA-F0-9]{2})([a-fA-F0-9]{2})/,
+                        parse: function(execResult) {
+                            return [
+                                parseInt(execResult[1], 16),
+                                parseInt(execResult[2], 16),
+                                parseInt(execResult[3], 16)
+                            ];
+                        }
+                    },
+                    {
+                        re: /#([a-fA-F0-9])([a-fA-F0-9])([a-fA-F0-9])/,
+                        parse: function(execResult) {
+                            return [
+                                parseInt(execResult[1] + execResult[1], 16),
+                                parseInt(execResult[2] + execResult[2], 16),
+                                parseInt(execResult[3] + execResult[3], 16)
+                            ];
+                        }
+                    }
+                ]
+            };
+        })
+        .factory('Color', ['Helper', function(Helper) {
+                return {
+                    value: {
+                        h: 1,
+                        s: 1,
+                        b: 1,
+                        a: 1
+                    },
+                    // translate a format from Color object to a string
+                    'rgb': function() {
+                        var rgb = this.toRGB();
+                        return 'rgb(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ')';
+                    },
+                    'rgba': function() {
+                        var rgb = this.toRGB();
+                        return 'rgba(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ',' + rgb.a + ')';
+                    },
+                    'hex': function() {
+                        return  this.toHex();
+                    },
+                    // HSBtoRGB from RaphaelJS
+                    RGBtoHSB: function(r, g, b, a) {
+                        r /= 255;
+                        g /= 255;
+                        b /= 255;
+
+                        var H, S, V, C;
+                        V = Math.max(r, g, b);
+                        C = V - Math.min(r, g, b);
+                        H = (C === 0 ? null :
+                                V === r ? (g - b) / C :
+                                V === g ? (b - r) / C + 2 :
+                                (r - g) / C + 4
+                                );
+                        H = ((H + 360) % 6) * 60 / 360;
+                        S = C === 0 ? 0 : C / V;
+                        return {h: H || 1, s: S, b: V, a: a || 1};
+                    },
+                    //parse a string to HSB
+                    setColor: function(val) {
+                        val = val.toLowerCase();
+                        for (var key in Helper.stringParsers) {
+                            if (Helper.stringParsers.hasOwnProperty(key)) {
+                                var parser = Helper.stringParsers[key];
+                                var match = parser.re.exec(val),
+                                        values = match && parser.parse(match);
+                                if (values) {
+                                    this.value = this.RGBtoHSB.apply(null, values);
+                                    return false;
+                                }
+                            }
+                        }
+                    },
+                    setHue: function(h) {
+                        this.value.h = 1 - h;
+                    },
+                    setSaturation: function(s) {
+                        this.value.s = s;
+                    },
+                    setLightness: function(b) {
+                        this.value.b = 1 - b;
+                    },
+                    setAlpha: function(a) {
+                        this.value.a = parseInt((1 - a) * 100, 10) / 100;
+                    },
+                    // HSBtoRGB from RaphaelJS
+                    // https://github.com/DmitryBaranovskiy/raphael/
+                    toRGB: function(h, s, b, a) {
+                        if (!h) {
+                            h = this.value.h;
+                            s = this.value.s;
+                            b = this.value.b;
+                        }
+                        h *= 360;
+                        var R, G, B, X, C;
+                        h = (h % 360) / 60;
+                        C = b * s;
+                        X = C * (1 - Math.abs(h % 2 - 1));
+                        R = G = B = b - C;
+
+                        h = ~~h;
+                        R += [C, X, 0, 0, X, C][h];
+                        G += [X, C, C, X, 0, 0][h];
+                        B += [0, 0, X, C, C, X][h];
+                        return {
+                            r: Math.round(R * 255),
+                            g: Math.round(G * 255),
+                            b: Math.round(B * 255),
+                            a: a || this.value.a
+                        };
+                    },
+                    toHex: function(h, s, b, a) {
+                        var rgb = this.toRGB(h, s, b, a);
+                        return '#' + ((1 << 24) | (parseInt(rgb.r, 10) << 16) | (parseInt(rgb.g, 10) << 8) | parseInt(rgb.b, 10)).toString(16).substr(1);
+                    }
+                };
+            }])
+        .factory('Slider', ['Helper', function(Helper) {
+                var
+                        slider = {
+                            maxLeft: 0,
+                            maxTop: 0,
+                            callLeft: null,
+                            callTop: null,
+                            knob: {
+                                top: 0,
+                                left: 0
+                            }
+                        },
+                pointer = {};
+
+                return {
+                    getSlider: function() {
+                        return slider;
+                    },
+                    getLeftPosition: function(event) {
+                        return Math.max(0, Math.min(slider.maxLeft, slider.left + ((event.pageX || pointer.left) - pointer.left)));
+                    },
+                    getTopPosition: function(event) {
+                        return Math.max(0, Math.min(slider.maxTop, slider.top + ((event.pageY || pointer.top) - pointer.top)));
+                    },
+                    setSlider: function(event, fixedPosition) {
+                        var
+                                target = Helper.closestSlider(event.target),
+                                targetOffset = Helper.getOffset(target, fixedPosition);
+                        slider.knob = target.children[0].style;
+                        slider.left = event.pageX - targetOffset.left - window.pageXOffset + targetOffset.scrollX;
+                        slider.top = event.pageY - targetOffset.top - window.pageYOffset + targetOffset.scrollY;
+
+                        pointer = {
+                            left: event.pageX,
+                            top: event.pageY
+                        };
+                    },
+                    setSaturation: function(event, fixedPosition) {
+                        slider = {
+                            maxLeft: 100,
+                            maxTop: 100,
+                            callLeft: 'setSaturation',
+                            callTop: 'setLightness'
+                        };
+                        this.setSlider(event, fixedPosition);
+                    },
+                    setHue: function(event, fixedPosition) {
+                        slider = {
+                            maxLeft: 0,
+                            maxTop: 100,
+                            callLeft: false,
+                            callTop: 'setHue'
+                        };
+                        this.setSlider(event, fixedPosition);
+                    },
+                    setAlpha: function(event, fixedPosition) {
+                        slider = {
+                            maxLeft: 0,
+                            maxTop: 100,
+                            callLeft: false,
+                            callTop: 'setAlpha'
+                        };
+                        this.setSlider(event, fixedPosition);
+                    },
+                    setKnob: function(top, left) {
+                        slider.knob.top = top + 'px';
+                        slider.knob.left = left + 'px';
+                    }
+                };
+            }])
+        .directive('colorpicker', ['$document', '$compile', 'Color', 'Slider', 'Helper', function($document, $compile, Color, Slider, Helper) {
+                return {
+                    require: '?ngModel',
+                    restrict: 'A',
+                    link: function($scope, elem, attrs, ngModel) {
+                        var
+                                thisFormat = attrs.colorpicker ? attrs.colorpicker : 'hex',
+                                position = angular.isDefined(attrs.colorpickerPosition) ? attrs.colorpickerPosition : 'bottom',
+                                inline = angular.isDefined(attrs.colorpickerInline) ? attrs.colorpickerInline : false,
+                                fixedPosition = angular.isDefined(attrs.colorpickerFixedPosition) ? attrs.colorpickerFixedPosition : false,
+                                target = angular.isDefined(attrs.colorpickerParent) ? elem.parent() : angular.element(document.body),
+                                withInput = angular.isDefined(attrs.colorpickerWithInput) ? attrs.colorpickerWithInput : false,
+                                inputTemplate = withInput ? '<input type="text" name="colorpicker-input">' : '',
+                                closeButton = !inline ? '<button type="button" class="close close-colorpicker">&times;</button>' : '',
+                                template =
+                                '<div class="colorpicker dropdown">' +
+                                '<div class="dropdown-menu">' +
+                                '<colorpicker-saturation><i></i></colorpicker-saturation>' +
+                                '<colorpicker-hue><i></i></colorpicker-hue>' +
+                                '<colorpicker-alpha><i></i></colorpicker-alpha>' +
+                                '<colorpicker-preview></colorpicker-preview>' +
+                                inputTemplate +
+                                closeButton +
+                                '</div>' +
+                                '</div>',
+                                colorpickerTemplate = angular.element(template),
+                                pickerColor = Color,
+                                sliderAlpha,
+                                sliderHue = colorpickerTemplate.find('colorpicker-hue'),
+                                sliderSaturation = colorpickerTemplate.find('colorpicker-saturation'),
+                                colorpickerPreview = colorpickerTemplate.find('colorpicker-preview'),
+                                pickerColorPointers = colorpickerTemplate.find('i');
+
+                        $compile(colorpickerTemplate)($scope);
+
+                        if (withInput) {
+                            var pickerColorInput = colorpickerTemplate.find('input');
+                            pickerColorInput
+                                    .on('mousedown', function(event) {
+                                        event.stopPropagation();
+                                    })
+                                    .on('keyup', function(event) {
+                                        var newColor = this.value;
+                                        elem.val(newColor);
+                                        if (ngModel) {
+                                            $scope.$apply(ngModel.$setViewValue(newColor));
+                                        }
+                                        event.stopPropagation();
+                                        event.preventDefault();
+                                    });
+                            elem.on('keyup', function() {
+                                pickerColorInput.val(elem.val());
+                            });
+                        }
+
+                        var bindMouseEvents = function() {
+                            $document.on('mousemove', mousemove);
+                            $document.on('mouseup', mouseup);
+                        };
+
+                        if (thisFormat === 'rgba') {
+                            colorpickerTemplate.addClass('alpha');
+                            sliderAlpha = colorpickerTemplate.find('colorpicker-alpha');
+                            sliderAlpha
+                                    .on('click', function(event) {
+                                        Slider.setAlpha(event, fixedPosition);
+                                        mousemove(event);
+                                    })
+                                    .on('mousedown', function(event) {
+                                        Slider.setAlpha(event, fixedPosition);
+                                        bindMouseEvents();
+                                    });
+                        }
+
+                        sliderHue
+                                .on('click', function(event) {
+                                    Slider.setHue(event, fixedPosition);
+                                    mousemove(event);
+                                })
+                                .on('mousedown', function(event) {
+                                    Slider.setHue(event, fixedPosition);
+                                    bindMouseEvents();
+                                });
+
+                        sliderSaturation
+                                .on('click', function(event) {
+                                    Slider.setSaturation(event, fixedPosition);
+                                    mousemove(event);
+                                    if (angular.isDefined(attrs.colorpickerCloseOnSelect)) {
+                                        hideColorpickerTemplate();
+                                    }
+                                })
+                                .on('mousedown', function(event) {
+                                    Slider.setSaturation(event, fixedPosition);
+                                    bindMouseEvents();
+                                });
+
+                        if (fixedPosition) {
+                            colorpickerTemplate.addClass('colorpicker-fixed-position');
+                        }
+
+                        colorpickerTemplate.addClass('colorpicker-position-' + position);
+                        if (inline === 'true') {
+                            colorpickerTemplate.addClass('colorpicker-inline');
+                        }
+
+                        target.append(colorpickerTemplate);
+
+                        if (ngModel) {
+                            ngModel.$render = function() {
+                                elem.val(ngModel.$viewValue);
+                            };
+                            $scope.$watch(attrs.ngModel, function(newVal) {
+                                update();
+
+                                if (withInput) {
+                                    pickerColorInput.val(newVal);
+                                }
+                            });
+                        }
+
+                        elem.on('$destroy', function() {
+                            colorpickerTemplate.remove();
+                        });
+
+                        var previewColor = function() {
+                            try {
+                                colorpickerPreview.css('backgroundColor', pickerColor[thisFormat]());
+                            } catch (e) {
+                                colorpickerPreview.css('backgroundColor', pickerColor.toHex());
+                            }
+                            sliderSaturation.css('backgroundColor', pickerColor.toHex(pickerColor.value.h, 1, 1, 1));
+                            if (thisFormat === 'rgba') {
+                                sliderAlpha.css.backgroundColor = pickerColor.toHex();
+                            }
+                        };
+
+                        var mousemove = function(event) {
+                            var
+                                    left = Slider.getLeftPosition(event),
+                                    top = Slider.getTopPosition(event),
+                                    slider = Slider.getSlider();
+
+                            Slider.setKnob(top, left);
+
+                            if (slider.callLeft) {
+                                pickerColor[slider.callLeft].call(pickerColor, left / 100);
+                            }
+                            if (slider.callTop) {
+                                pickerColor[slider.callTop].call(pickerColor, top / 100);
+                            }
+                            previewColor();
+                            var newColor = pickerColor[thisFormat]();
+                            elem.val(newColor);
+
+                            if (ngModel) {
+                                $scope.$apply(ngModel.$setViewValue(newColor));
+                            }
+                            if (withInput) {
+                                pickerColorInput.val(newColor);
+                            }
+                            return false;
+                        };
+
+                        var mouseup = function() {
+                            /*** Custom update ***/
+                            var lang = attrs.cmdurl;
+                            var sid = attrs.sid;
+                            var url = attrs.cmdurl;
+                            var color = pickerColor[thisFormat]();
+                            var array = color.match(/\((.*)\)/)[1].split(',');
+                            var cmd = url + '?red=' + array[0] + '&green=' + array[1] + '&blue=' + array[2];
+                            $.ajax({
+                                type: "GET",
+                                url: cmd,
+                                headers: {
+                                    'Accept-Language': lang,
+                                    'ZWAYSession': sid
+                                }
+                            });
+                            //console.log('RGB change', cmd)
+                            /*** END - Custom update ***/
+                            $document.off('mousemove', mousemove);
+                            $document.off('mouseup', mouseup);
+                        };
+
+                        var update = function() {
+
+                            pickerColor.setColor(elem.val());
+                            pickerColorPointers.eq(0).css({
+                                left: pickerColor.value.s * 100 + 'px',
+                                top: 100 - pickerColor.value.b * 100 + 'px'
+                            });
+                            pickerColorPointers.eq(1).css('top', 100 * (1 - pickerColor.value.h) + 'px');
+                            pickerColorPointers.eq(2).css('top', 100 * (1 - pickerColor.value.a) + 'px');
+                            previewColor();
+                        };
+
+                        var getColorpickerTemplatePosition = function() {
+                            var
+                                    positionValue,
+                                    positionOffset = Helper.getOffset(elem[0]);
+
+                            if (angular.isDefined(attrs.colorpickerParent)) {
+                                positionOffset.left = 0;
+                                positionOffset.top = 0;
+                            }
+
+                            if (position === 'top') {
+                                positionValue = {
+                                    'top': positionOffset.top - 147,
+                                    'left': positionOffset.left
+                                };
+                            } else if (position === 'right') {
+                                positionValue = {
+                                    'top': positionOffset.top,
+                                    'left': positionOffset.left + 126
+                                };
+                            } else if (position === 'bottom') {
+                                positionValue = {
+                                    'top': positionOffset.top + elem[0].offsetHeight + 2,
+                                    'left': positionOffset.left
+                                };
+                            } else if (position === 'left') {
+                                positionValue = {
+                                    'top': positionOffset.top,
+                                    'left': positionOffset.left - 150
+                                };
+                            }
+                            return {
+                                'top': positionValue.top + 'px',
+                                'left': positionValue.left + 'px'
+                            };
+                        };
+
+                        var documentMousedownHandler = function() {
+                            hideColorpickerTemplate();
+                        };
+
+                        var showColorpickerTemplate = function() {
+
+                            if (!colorpickerTemplate.hasClass('colorpicker-visible')) {
+                                update();
+                                colorpickerTemplate
+                                        .addClass('colorpicker-visible')
+                                        .css(getColorpickerTemplatePosition());
+
+                                if (inline === false) {
+                                    // register global mousedown event to hide the colorpicker
+                                    $document.on('mousedown', documentMousedownHandler);
+                                }
+
+                                if (attrs.colorpickerIsOpen) {
+                                    $scope[attrs.colorpickerIsOpen] = true;
+                                    if (!$scope.$$phase) {
+                                        $scope.$digest(); //trigger the watcher to fire
+                                    }
+                                }
+                            }
+
+                        };
+
+                        if (inline === false) {
+                            elem.on('click', showColorpickerTemplate);
+                        } else {
+                            showColorpickerTemplate();
+                        }
+
+                        colorpickerTemplate.on('mousedown', function(event) {
+                            event.stopPropagation();
+                            event.preventDefault();
+                        });
+
+                        var emitEvent = function(name) {
+                            if (ngModel) {
+                                $scope.$emit(name, {
+                                    name: attrs.ngModel,
+                                    value: ngModel.$modelValue
+                                });
+                            }
+                        };
+
+                        var hideColorpickerTemplate = function() {
+                            if (colorpickerTemplate.hasClass('colorpicker-visible')) {
+                                colorpickerTemplate.removeClass('colorpicker-visible');
+                                emitEvent('colorpicker-closed');
+                                // unregister the global mousedown event
+                                $document.off('mousedown', documentMousedownHandler);
+
+                                if (attrs.colorpickerIsOpen) {
+                                    $scope[attrs.colorpickerIsOpen] = false;
+                                    if (!$scope.$$phase) {
+                                        $scope.$digest(); //trigger the watcher to fire
+                                    }
+                                }
+                            }
+                        };
+
+                        colorpickerTemplate.find('button').on('click', function() {
+                            hideColorpickerTemplate();
+                        });
+
+                        if (attrs.colorpickerIsOpen) {
+                            $scope.$watch(attrs.colorpickerIsOpen, function(shouldBeOpen) {
+
+                                if (shouldBeOpen === true) {
+                                    showColorpickerTemplate();
+                                } else if (shouldBeOpen === false) {
+                                    hideColorpickerTemplate();
+                                }
+
+                            });
+                        }
+
+                    }
+                };
+            }]);
+
 // device filter for device select menu
 function devices_htmlSelect_filter(ZWaveAPIData,span,dev,type) {
 	// return true means to skip this node
