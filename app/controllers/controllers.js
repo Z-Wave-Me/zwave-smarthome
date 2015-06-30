@@ -169,7 +169,24 @@ myAppController.controller('TestController', function($scope, $routeParams, $fil
         $scope.form_report.$setPristine();
         console.log(master)
     };
-
+//    
+//    $scope.fruitArraySource = ['Mango', 'Apple'];
+//    $scope.fruitArrayDestination = ['Orange', 'Grapes'];
+//    console.log($scope.fruitArrayDestination)
+//    angular.copy($scope.fruitArraySource, $scope.fruitArrayDestination);
+//    console.log($scope.fruitArrayDestination)
+    
+     $scope.fruitArraySourceEx = {id: 25};
+    $scope.fruitArrayDestinationEx = {val: 'myName'};
+    $scope.fruitArrayDestinationExA = {val: 'myNameRew'};
+    $scope.fruitArrayDestinationExB = {blabla: 'ABC'};
+    
+angular.extend($scope.fruitArrayDestinationEx,$scope.fruitArraySourceEx);
+console.log($scope.fruitArrayDestinationEx)
+angular.extend($scope.fruitArrayDestinationEx,$scope.fruitArraySourceEx,$scope.fruitArrayDestinationExA);
+console.log($scope.fruitArrayDestinationEx)
+angular.extend($scope.fruitArrayDestinationEx,$scope.fruitArraySourceEx,$scope.fruitArrayDestinationExA,$scope.fruitArrayDestinationExB);
+console.log($scope.fruitArrayDestinationEx)
 
 });
 /**
@@ -1334,8 +1351,7 @@ myAppController.controller('DeviceZwaveController', function($scope, $routeParam
         dataFactory.getApiLocal('device.' + lang + '.json').then(function(response) {
             $scope.manufacturers = dataService.getPairs(response.data, 'brandname', 'brand_image', 'manufacturers');
             if (brandname) {
-                console.log({'filter': 'brandname', 'val': brandname})
-                $scope.zwaveDevices = dataService.getData(response.data, {'filter': 'brandname', 'val': brandname});
+               $scope.zwaveDevices = dataService.getData(response.data, {'filter': 'brandname', 'val': brandname});
                 $scope.manufacturer = brandname;
             }
             dataService.updateTimeTick();
