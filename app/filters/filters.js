@@ -134,7 +134,7 @@ myApp.filter('getElementIcon', function(cfg) {
     return function(input, device,level) {
         var icon = cfg.img.icons + 'placeholder.png';
         if (input) {
-            if ((/^http:\/\//.test(input))) {
+            if ((/^https?:\/\//.test(input))) {
                 return input;
             }
             switch (input) {
