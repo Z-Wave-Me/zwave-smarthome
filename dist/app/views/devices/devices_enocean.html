@@ -7,54 +7,28 @@
         This hardware does not support "EnOcean devices".
     </p>
     <bb-alert alert="alert"></bb-alert>
-     <div>
-        <div>
-            <button class="btn btn-success"
-                    ng-disabled="inclusion.status"
-                    ng-click="inclusionStart('controller.data.promisc=true')"
-                    ><i class="fa {{inclusion.icon}}"></i> <span ng-bind="_t('btn_inclusion_start')"></span></button>
-            <button 
-                class="btn btn-danger"
-                ng-if="inclusion.status"
-                ng-click="inclusionStop('controller.data.promisc=false')" 
-                ng-bind="_t('btn_inclusion_stop')"></button>
-        </div>
+    <div>
+       
         <table class="table table-condensed table-report">
-            <thead>
-                <tr>
-                    <th>id</th>
-                    <th>rorg</th>
-                    <th>funcId</th>
-                    <th>typeId</th>
-                    <th>&nbsp;</th>
-
-                </tr>
-            </thead>
             <tbody>
-                <tr id="enocean_row_{{v.id}}" ng-repeat="v in enoceanDevices">
-                    <!--<td class="td-img">
-                        <img class="report-img" ng-src="storage/img/devices/{{v.product_image}}" alt="img" ng-show="v.product_image" />
-                    </td>--> 
-                    <td class="text-left">
-                        <span ng-bind="v.id"></span>
+                <tr id="enocean_row_{{v.id}}" 
+                    ng-repeat="v in enoceanDevices track by v.id" 
+                    ng-init="idProfileDevice[v.id] = v.data.rorg.value + '_' + v.data.funcId.value + '_' + v.data.typeId.value;">
+                     <td class="td-img">
+                        <img class="report-img" ng-src="storage/img/enocean/D50001.jpg" alt="img" />
                     </td>
-                    <td class="text-left">
-                        <span ng-bind="v.data.rorg"></span>
+                    <td class="text-left" ng-init="hasProfile = enoceanProfiles[idProfileDevice[v.id]];">
+                        <span ng-if="hasProfile" ng-bind="hasProfile._typeDescription"></span> <span>(#{{v.id}})</span> 
                     </td>
-                    <td class="text-left">
-                        <span ng-bind="v.data.funcId"></span>
-                    </td>
-                    <td class="text-left">
-                        <span ng-bind="v.data.typeId"></span>
-                    </td>
+
                     <td class="td-action">
-                        <button title="{{_t('lb_remove')}}" 
+                        <a href="#include-enocean/{{v.id}}" class="btn btn-default"><i class="fa fa-plug text-primary"></i> <span class="btn-name" ng-bind="_t('teach_in')"></span></a>
+                        <!--<button title="{{_t('lb_remove')}}" 
                                 class="btn btn-default btn-sm"
-                                ng-disabled="inclusion.status"
-                                ng-click="deleteDevice('controller.removeDevice(' + v.id + ')','#enocean_row_' + v.id)"
+                                ng-click="deleteDevice(v.id, '#enocean_row_' + v.id)"
                                 >
                             <i class="fa fa-remove fa-lg text-danger"></i> <span class="btn-name" ng-bind="_t('lb_remove')"></span>
-                        </button>
+                        </button>--> 
                     </td>
                 </tr>
             </tbody>

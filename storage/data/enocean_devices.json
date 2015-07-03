@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "vendor": "Encoean GmbH",
+    "name": "Door/Window Sensor",
+    "description": "",
+    "image": "enocean_1.jpg",
+    "rorg": "0xd5",
+    "funcId": "0x00",
+    "typeId": "0x01",
+    "inclusion": "Hit button behind hole or move magent to device and away"
+  },
+  {
+    "id": 2,
+    "vendor": "Eltako Electronics",
+    "name": "Wireless Pushbutton",
+    "description": "",
+    "image": "eltako_FT4-rw.jpg",
+    "rorg": "0xf6",
+    "funcId": "0x02",
+    "typeId": "0x01",
+    "inclusion": ""
+  },
+  {
+    "id": 3,
+    "vendor": "Eltako Electronics",
+    "name": "Wireless Window/Door contact",
+    "description": "",
+    "image": "eltako_FTKB-rw.jpg",
+    "rorg": "0xd5",
+    "funcId": "0x00",
+    "typeId": "0x01",
+    "inclusion": ""
+  }
+]

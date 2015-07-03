@@ -1,6 +1,10 @@
 {
     "missing": "---",
-    "lb_include_enocean_error": "Could not complete the inclusion.",
+    "inclusion_proces_done": "New Device found and is ready to be used",
+    "inclusion_process": "Including device, please wait...",
+    "inclusion_suspended": "The inclusion has been suspended.",
+    "inclusion_error": "Something went wrong during the inclusion. Please try to repeat the process.",
+     "teach_in": "Teach-In",
     "events_hidden": "Some types of the events are hidden. You can change it in the \"My Settings\" ",
     "field_required": "This field is required",
     "email_invalid": "Please add valid email address",

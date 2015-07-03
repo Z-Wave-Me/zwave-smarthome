@@ -117,9 +117,15 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     requireLogin: true,
                     roles: cfg.role_access.devices
                 }).
-                //Include Devices
+                //Include Zwave device
                 when('/include/:device?', {
                     templateUrl: 'app/views/devices/device_include.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices_include
+                }).
+                        //Include Enocean device
+                when('/include-enocean/:device?', {
+                    templateUrl: 'app/views/devices/device_include_enocean.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices_include
                 }).

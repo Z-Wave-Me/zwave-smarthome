@@ -1,0 +1,59 @@
+<!-- Include Enocean -->
+<div ng-controller="IncludeEnoceanController">
+    <bb-loader></bb-loader>
+    <div class="device-perex clearfix"> 
+        <img class="include-device-img" ng-src="storage/img/enocean/D50001.jpg" alt="img" /> 
+        <p ng-bind="_t('teach_in')"></p> 
+        <h1><strong ng-bind="device.id"></strong></h1>
+        <div class="alert" ng-if="inclusion.message" ng-class="inclusion.status">
+            <i class="fa fa-lg" ng-class="inclusion.icon"></i> <span ng-bind-html="inclusion.message | toTrusted"></span>
+            <button 
+                class="btn btn-danger btn-sm"
+                ng-if="!inclusion.done && inclusion.promisc"
+                ng-click="runCmd('controller.data.promisc=false')">
+                <span ng-bind="_t('btn_inclusion_stop')"></span>
+            </button>
+            <button class="btn btn-success btn-sm"
+                ng-if="!inclusion.done && !inclusion.promisc"
+                ng-click="runCmd('controller.data.promisc=true')"
+                ><span ng-bind="_t('btn_inclusion_start')"></span></button>
+        </div>
+
+    </div>
+    
+     <table class="table table-condensed table-report" ng-if="enoceanDevices">
+            <tbody>
+                <tr id="enocean_row_{{v.id}}" 
+                    ng-repeat="v in enoceanDevices track by v.id" 
+                    ng-init="idProfileDevice[v.id] = v.data.rorg.value + '_' + v.data.funcId.value + '_' + v.data.typeId.value;">
+                     <td class="td-img">
+                        <img class="report-img" ng-src="storage/img/enocean/D50001.jpg" alt="img" />
+                    </td>
+                    <td class="text-left" ng-init="hasProfile = enoceanProfiles[idProfileDevice[v.id]];">
+                        {{hasProfile}}
+                        <span ng-if="hasProfile" ng-bind="hasProfile._typeDescription"></span> <span>(#{{v.id}})</span> 
+                    </td>
+
+                    <td class="td-action">
+                        <button title="{{_t('lb_remove')}}" 
+                                class="btn btn-default btn-sm"
+                                ng-click="deleteDevice(v.id, '#enocean_row_' + v.id)"
+                                >
+                            <i class="fa fa-remove fa-lg text-danger"></i> <span class="btn-name" ng-bind="_t('lb_remove')"></span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+    <!-- interviewCfg {{interviewCfg}}-->
+    <div>
+        <!--<button class="btn btn-success"
+                ng-disabled="inclusion.status"
+                ng-click="inclusionStart('controller.data.promisc=true')"
+                ><i class="fa {{inclusion.icon}}"></i> <span ng-bind="_t('btn_inclusion_start')"></span></button>-->
+    </div>
+
+</div>
+
