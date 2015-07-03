@@ -2,13 +2,13 @@
 <div ng-controller="DeviceZwaveController">
 <div class="mobile-padding">
     <div class="device-logo">
-        <img class="apps-image" ng-src="app/img/logo-z-wave.png" alt="Logo" />
+        <a href="#devices/zwave"><img class="apps-image" ng-src="app/img/logo-z-wave.png" alt="Logo" /></a>
     </div>
 
     <div class="text-center device-autodetect"><a href="#include" class="btn btn-default btn-lg btn-block"><i class="fa fa-compass"></i> {{_t('lb_zwave_autodetect')}}</a></div>
     <div class="row device-manufacturers" ng-hide="zwaveDevices">
         <div class="col-sm-2 col-device-vendor" ng-repeat="v in manufacturers">
-            <a ng-href="#devices/zwave/{{v.key}}" class="vendor-list" ng-click_="setFilter({'filter': 'brandname', 'val': v.key})">
+            <a ng-href="#devices/zwave/{{v.key}}" class="vendor-list">
                 <p class="vendor-image"><img ng-src="{{v.val}}" alt="img" ng-show="v.val" /></p>
             </a>
         </div>
