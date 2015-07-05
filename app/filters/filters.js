@@ -137,7 +137,11 @@ myApp.filter('getElementIcon', function(cfg) {
             if ((/^https?:\/\//.test(input))) {
                 return input;
             } else if ((/\.(png|gif|jpe?g)$/).test(input)) {
-                return cfg.img.icons + input;
+                if (input.indexOf('/') > -1) {
+                    return input;
+                } else {
+                    return cfg.img.icons +' input;
+                }
             }
             switch (input) {
                 case 'door':
