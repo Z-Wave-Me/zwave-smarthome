@@ -140,7 +140,7 @@ myApp.filter('getElementIcon', function(cfg) {
                 if (input.indexOf('/') > -1) {
                     return input;
                 } else {
-                    return cfg.img.icons +' input;
+                    return cfg.img.icons + input;
                 }
             }
             switch (input) {
