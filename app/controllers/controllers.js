@@ -1831,7 +1831,7 @@ myAppController.controller('DeviceEnoceanController', function($scope, $routePar
      * Load Remote access data
      */
     $scope.loadEnOceanModule = function() {
-        dataFactory.getApi('instances', '/EnOcean').then(function(response) {
+        dataFactory.getApi('instances', '/EnOcean').then(function(response) { 
             var module = response.data.data[0];
             if (Object.keys(module).length < 1) {
                 $scope.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-warning'};
@@ -1948,7 +1948,7 @@ myAppController.controller('IncludeEnoceanController', function($scope, $interva
             }
 
             dataService.updateTimeTick();
-            $scope.inclusion = {done: false, promisc: true, message: $scope._t('lb_ready_include') + ' ' + ($scope.device.inclusion ? $scope.device.inclusion : '') , status: 'alert-warning', icon: 'fa-spinner fa-spin'};
+            $scope.inclusion = {done: false, promisc: true, message: $scope._t('teachin_ready') + ' ' + ($scope.device.inclusion ? $scope.device.inclusion : '') , status: 'alert-warning', icon: 'fa-spinner fa-spin'};
             $scope.runCmd('controller.data.promisc=true');
 
         }, function(error) {
@@ -1967,8 +1967,8 @@ myAppController.controller('IncludeEnoceanController', function($scope, $interva
      */
     $scope.setProfileManualy = function(profile) {
         $scope.device = angular.fromJson(profile);
-        $scope.inclusion = {done: false, promisc: true, message: $scope._t('lb_ready_include'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
-        $scope.runCmd('controller.data.promisc=true');
+        $scope.inclusion = {done: false, promisc: true, message: $scope._t('teachin_ready'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
+        $scope.runCmd('controller.data.promisc=true'); 
     };
 
     /**
@@ -1980,9 +1980,9 @@ myAppController.controller('IncludeEnoceanController', function($scope, $interva
                 if ('controller.data.promisc' in response.data) {
                     var pomisc = response.data['controller.data.promisc'].value;
                     if (pomisc === true) {
-                        $scope.inclusion = {done: false, promisc: true, message: $scope._t('lb_ready_include') + ' ' + ($scope.device.inclusion ? $scope.device.inclusion : ''), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
+                        $scope.inclusion = {done: false, promisc: true, message: $scope._t('teachin_ready') + ' ' + ($scope.device.inclusion ? $scope.device.inclusion : ''), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
                     } else {
-                        $scope.inclusion = {done: false, promisc: false, message: $scope._t('inclusion_suspended'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                        $scope.inclusion = {done: false, promisc: false, message: $scope._t('teachin_canceled'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
                     }
                     return;
                 }

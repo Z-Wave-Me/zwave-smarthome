@@ -25,12 +25,12 @@
                 class="btn btn-danger btn-sm"
                 ng-if="!inclusion.done && inclusion.promisc"
                 ng-click="runCmd('controller.data.promisc=false')">
-                <span ng-bind="_t('btn_inclusion_stop')"></span>
+                <span ng-bind="_t('stop_teachin')"></span>
             </button>
             <button class="btn btn-success btn-sm"
                 ng-if="!inclusion.done && !inclusion.promisc"
                 ng-click="runCmd('controller.data.promisc=true')"
-                ><span ng-bind="_t('btn_inclusion_start')"></span></button>
+                ><span ng-bind="_t('start_teachin')"></span></button>
         </div>
     <div  ng-if="enoceanDevices">
         <p ng-bind="_t('device_list')"></p>
