@@ -1,17 +1,23 @@
 <!-- Include Enocean -->
-<div ng-controller="IncludeEnoceanController">
+<div ng-controller="IncludeEnoceanController" class="mobile-padding"> 
     <bb-loader></bb-loader>
     <div class="device-perex clearfix" ng-if="!autoinclusion">
         <h1 ng-bind="_t('select_profile')"></h1>
         <select name="enoceanProfiles" class="form-control" ng-model="profile.set" ng-change="setProfileManualy(profile.set)">
-            <option value="{{abc}}" ng-repeat="v in enoceanProfiles" ng-init="abc = {rorg:v._rorg,funcId: v._func,typeId: v._type}">{{v._funcDescription}} | rorg: {{v._rorg}} | func: {{v._func}} | type: {{v._type}}</option>
+            <option value="{{manProfile}}" ng-repeat="v in enoceanProfiles" ng-init="manProfile = {rorg:v._rorg,funcId: v._func,typeId: v._type}">{{v._funcDescription}} | rorg: {{v._rorg}} | func: {{v._func}} | type: {{v._type}}</option>
         </select>
      </div>
-    <div class="device-perex clearfix" ng-if="autoinclusion"> 
-        <img class="include-device-img" ng-src="storage/img/enocean/devices/{{device.image}}" alt="img" ng-if="device.image" /> 
+    
+    <div class="device-perex clearfix" ng-if="autoinclusion">
+        <div class="include-device-img">
+           <img ng-src="storage/img/enocean/devices/{{device.image}}" alt="img" ng-if="device.image" />  
+        </div>
+        
+        <div class="include-device-txt">
         <p ng-bind="_t('teach_in')"></p> 
-        <h2><strong ng-bind="device.name"></strong></h2>
+        <h1 ng-bind="device.name"></h1>
         <p ng-if="device.description" ng-bind="device.description"></p>
+        </div>
      </div>
     <div class="alert" ng-if="inclusion.message" ng-class="inclusion.status">
             <i class="fa fa-lg" ng-class="inclusion.icon"></i> <span ng-bind-html="inclusion.message | toTrusted"></span>

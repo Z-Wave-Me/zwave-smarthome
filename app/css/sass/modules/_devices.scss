@@ -84,9 +84,11 @@
 .include-device-img{
     float: left;
     margin-right: 20px;
-    //border-radius: 50%;
-    //border: solid 2px $app-border-color;
-
+ }
+.include-device-img img{
+    max-width: 200px;
+    max-height: 200px;
+     border: solid 2px $app-border-color;
 }
 
 .col-device{

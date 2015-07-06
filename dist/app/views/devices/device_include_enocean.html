@@ -1,11 +1,25 @@
 <!-- Include Enocean -->
-<div ng-controller="IncludeEnoceanController">
+<div ng-controller="IncludeEnoceanController" class="mobile-padding"> 
     <bb-loader></bb-loader>
-    <div class="device-perex clearfix"> 
-        <img class="include-device-img" ng-src="storage/img/enocean/D50001.jpg" alt="img" /> 
+    <div class="device-perex clearfix" ng-if="!autoinclusion">
+        <h1 ng-bind="_t('select_profile')"></h1>
+        <select name="enoceanProfiles" class="form-control" ng-model="profile.set" ng-change="setProfileManualy(profile.set)">
+            <option value="{{manProfile}}" ng-repeat="v in enoceanProfiles" ng-init="manProfile = {rorg:v._rorg,funcId: v._func,typeId: v._type}">{{v._funcDescription}} | rorg: {{v._rorg}} | func: {{v._func}} | type: {{v._type}}</option>
+        </select>
+     </div>
+    
+    <div class="device-perex clearfix" ng-if="autoinclusion">
+        <div class="include-device-img">
+           <img ng-src="storage/img/enocean/devices/{{device.image}}" alt="img" ng-if="device.image" />  
+        </div>
+        
+        <div class="include-device-txt">
         <p ng-bind="_t('teach_in')"></p> 
-        <h1><strong ng-bind="device.id"></strong></h1>
-        <div class="alert" ng-if="inclusion.message" ng-class="inclusion.status">
+        <h1 ng-bind="device.name"></h1>
+        <p ng-if="device.description" ng-bind="device.description"></p>
+        </div>
+     </div>
+    <div class="alert" ng-if="inclusion.message" ng-class="inclusion.status">
             <i class="fa fa-lg" ng-class="inclusion.icon"></i> <span ng-bind-html="inclusion.message | toTrusted"></span>
             <button 
                 class="btn btn-danger btn-sm"
@@ -18,26 +32,19 @@
                 ng-click="runCmd('controller.data.promisc=true')"
                 ><span ng-bind="_t('btn_inclusion_start')"></span></button>
         </div>
-
-    </div>
-    
-     <table class="table table-condensed table-report" ng-if="enoceanDevices">
+    <div  ng-if="enoceanDevices">
+        <p ng-bind="_t('device_list')"></p>
+    <table class="table table-condensed table-report">
             <tbody>
-                <tr id="enocean_row_{{v.id}}" 
-                    ng-repeat="v in enoceanDevices track by v.id" 
-                    ng-init="idProfileDevice[v.id] = v.data.rorg.value + '_' + v.data.funcId.value + '_' + v.data.typeId.value;">
-                     <td class="td-img">
-                        <img class="report-img" ng-src="storage/img/enocean/D50001.jpg" alt="img" />
-                    </td>
-                    <td class="text-left" ng-init="hasProfile = enoceanProfiles[idProfileDevice[v.id]];">
-                        {{hasProfile}}
-                        <span ng-if="hasProfile" ng-bind="hasProfile._typeDescription"></span> <span>(#{{v.id}})</span> 
+                <tr id="enocean_row_{{v.id}}" ng-repeat="v in enoceanDevices track by v.id">
+                     <td class="text-left">
+                        <span ng-if="v.profile" ng-bind="v.profile._funcDescription"></span>  <span>(#{{v.id}})</span> 
                     </td>
 
                     <td class="td-action">
                         <button title="{{_t('lb_remove')}}" 
                                 class="btn btn-default btn-sm"
-                                ng-click="deleteDevice(v.id, '#enocean_row_' + v.id)"
+                                ng-click="deleteDevice(v.id, '#enocean_row_' + v.id,_t('lb_delete_confirm'))"
                                 >
                             <i class="fa fa-remove fa-lg text-danger"></i> <span class="btn-name" ng-bind="_t('lb_remove')"></span>
                         </button>
@@ -45,15 +52,6 @@
                 </tr>
             </tbody>
         </table>
-
-
-    <!-- interviewCfg {{interviewCfg}}-->
-    <div>
-        <!--<button class="btn btn-success"
-                ng-disabled="inclusion.status"
-                ng-click="inclusionStart('controller.data.promisc=true')"
-                ><i class="fa {{inclusion.icon}}"></i> <span ng-bind="_t('btn_inclusion_start')"></span></button>-->
-    </div>
-
+        </div>
 </div>
 

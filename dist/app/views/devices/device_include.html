@@ -3,10 +3,13 @@
      <bb-loader></bb-loader> 
       <!-- interviewCfg {{interviewCfg}}-->
     <div class="device-perex clearfix"> 
-        <img class="include-device-img" ng-src="storage/img/devices/{{device.data.product_image}}" alt="img" ng-show="device.data.product_image" /> 
-        <p ng-bind="_t('lb_include_device')"></p> 
+         <div class="include-device-img">
+          <img class="include-device-img" ng-src="storage/img/devices/{{device.data.product_image}}" alt="img" ng-show="device.data.product_image" /> 
+        </div>
+        <div class="include-device-txt">
+            <p ng-bind="_t('lb_include_device')"></p> 
         <h1><strong ng-show="device.data" ng-bind="device.data.brandname + ' '  + device.data.name"></strong></h1> 
-       
+        </div>
     </div>
     <div class="col-device app-border app-gradient app-shadow">
         <table class="table table-report table-inclusion">

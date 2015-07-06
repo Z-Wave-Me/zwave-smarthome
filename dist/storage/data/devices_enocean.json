@@ -2,6 +2,7 @@
   {
     "id": 1,
     "vendor": "Encoean GmbH",
+    "vendorLogo": "enocean.png",
     "name": "Door/Window Sensor",
     "description": "",
     "image": "enocean_1.jpg",
@@ -13,8 +14,9 @@
   {
     "id": 2,
     "vendor": "Eltako Electronics",
-    "name": "Wireless Pushbutton",
-    "description": "",
+    "vendorLogo": "eltako_electronics.jpg",
+    "name": "Wireless Pushbutton FT4-rw",
+    "description": "Wa",
     "image": "eltako_FT4-rw.jpg",
     "rorg": "0xf6",
     "funcId": "0x02",
@@ -24,7 +26,8 @@
   {
     "id": 3,
     "vendor": "Eltako Electronics",
-    "name": "Wireless Window/Door contact",
+    "name": "Wireless Window/Door contact FTKB-rw",
+    "vendorLogo": "eltako_electronics.jpg",
     "description": "",
     "image": "eltako_FTKB-rw.jpg",
     "rorg": "0xd5",

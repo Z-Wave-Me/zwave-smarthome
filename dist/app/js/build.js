@@ -5183,7 +5183,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     roles: cfg.role_access.devices
                 }).
                 //IP camera device
-                when('/devices/enocean', {
+                when('/devices/enocean/:brandname?', {
                     templateUrl: 'app/views/devices/devices_enocean.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices
@@ -9303,16 +9303,9 @@ myAppController.controller('DeviceController', function($scope, $routeParams, da
  */
 myAppController.controller('DeviceZwaveController', function($scope, $routeParams, dataFactory, dataService) {
     $scope.zwaveDevices = [];
-    $scope.zwaveDevicesFilter = false;
     $scope.deviceVendor = false;
     $scope.manufacturers = [];
     $scope.manufacturer = false;
-    /**
-     * Set filter
-     */
-    $scope.setFilter = function(filter) {
-        $scope.zwaveDevicesFilter = filter;
-    };
     /**
      * Load z-wave devices
      */
@@ -9798,53 +9791,74 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
 /**
  * Device Enocean  controller
  */
-myAppController.controller('DeviceEnoceanController', function($scope, $interval, dataFactory, dataService) {
-    $scope.enoceanProfiles = {};
+myAppController.controller('DeviceEnoceanController', function($scope, $routeParams, $location,dataFactory, dataService) {
+     $scope.hasEnOcean = false;
     $scope.enoceanDevices = [];
-    $scope.idProfileDevice = [];
+    $scope.manufacturers = [];
+    $scope.manufacturer = false;
     
-
     /**
-     * Load data
+     * Load Remote access data
      */
-    $scope.loadProfile = function() {
-        dataFactory.xmlToJson($scope.cfg.server_url + 'config/Profiles.xml').then(function(response) {
-            var setId;
-            angular.forEach(response.Profiles.Profile, function(v, k) {
-                setId = parseInt(v._rorg) + '_' + parseInt(v._func) + '_' + parseInt(v._type);
-                $scope.enoceanProfiles[setId] = v;
-            });
-            //dataService.updateTimeTick();
+    $scope.loadEnOceanModule = function() {
+        dataFactory.getApi('instances', '/EnOcean').then(function(response) {
+            var module = response.data.data[0];
+            if (Object.keys(module).length < 1) {
+                $scope.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-warning'};
+                return;
+            }
+            if (!module.active) {
+                $scope.alert = {message: $scope._t('enocean_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                return;
+            }
+           $scope.hasEnOcean = true;
         }, function(error) {
-            //dataService.showConnectionError(error);
+           if(error.status == 404){
+              $scope.alert = {message: $scope._t('enocean_nosupport'), status: 'alert-danger', icon: 'fa-warning'}; 
+           }else{
+               $location.path('/error/' + error.status);
+           }
+            
         });
     };
-    $scope.loadProfile();
+
+    $scope.loadEnOceanModule();
+
 
     /**
-     * Load data
+     * Load z-wave devices
      */
-    $scope.loadData = function() {
+    $scope.loadData = function(brandname) {
         dataService.showConnectionSpinner();
-        dataFactory.loadEnoceanDevices().then(function(response) {
-            $scope.enoceanDevices = response;
+        dataFactory.getApiLocal('devices_enocean.json').then(function(response) {
+            $scope.manufacturers = dataService.getPairs(response.data, 'vendor', 'vendorLogo', 'manufacturers_enocean');
+            if (brandname) {
+                $scope.enoceanDevices = dataService.getData(response.data, {'filter': 'vendor', 'val': brandname});
+                $scope.manufacturer = brandname;
+            }
             dataService.updateTimeTick();
         }, function(error) {
             dataService.showConnectionError(error);
         });
     };
-    $scope.loadData();
-    
+    $scope.loadData($routeParams.brandname);
+
 });
 /**
  * Include Enocean  controller
  */
-myAppController.controller('IncludeEnoceanController', function($scope, $interval, $routeParams, $location, dataFactory, dataService) {
-    $scope.deviceId = 81048201;
-    $scope.enoceanProfiles = {};
+myAppController.controller('IncludeEnoceanController', function($scope, $interval, $routeParams, $location, $window, dataFactory, dataService, myCache) {
     $scope.device = [];
-     $scope.enoceanDevices = [];
-    $scope.idProfileDevice = [];
+    $scope.enoceanDevices = {};
+    $scope.enoceanProfiles = {};
+    
+    $scope.profile = {
+        set: null,
+        rorg: null,
+        funcId: null,
+        typeId: null
+    };
+    $scope.autoinclusion = false;
     $scope.inclusion = {
         promisc: false,
         done: false,
@@ -9852,58 +9866,99 @@ myAppController.controller('IncludeEnoceanController', function($scope, $interva
         status: 'is-hidden',
         icon: false
     };
-    //$scope.alert = {message: false, status: 'is-hidden', icon: false};
     $scope.apiDataInterval = null;
-    $scope.findDeviceInterval = null;
 
     // Cancel interval on page destroy
     $scope.$on('$destroy', function() {
         $interval.cancel($scope.apiDataInterval);
         $interval.cancel($scope.findDeviceInterval);
+        //$scope.runCmd('controller.data.promisc=false');
     });
 
     /**
-     * Load data
+     * Load profiles
+     */
+    $scope.loadProfiles = function() {
+        dataFactory.xmlToJson($scope.cfg.server_url + 'config/Profiles.xml', true).then(function(response) {
+            $scope.enoceanProfiles = response.Profiles.Profile;
+        }, function(error) {
+        });
+    }
+    ;
+    $scope.loadProfiles();
+
+    /**
+     * Load enocean data
+     */
+    $scope.loadData = function() {
+        dataService.showConnectionSpinner();
+        dataFactory.loadEnoceanDevices(true).then(function(response) {
+            loadProfiles(response);
+            dataService.updateTimeTick();
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    };
+    $scope.loadData();
+
+    /**
+     * Load single device
      */
     $scope.loadDevice = function() {
         dataService.showConnectionSpinner();
-        dataFactory.loadEnoceanDevices().then(function(response) {
-            var device = response[$routeParams.device];
-            if (!device) {
+        dataFactory.getApiLocal('devices_enocean.json').then(function(response) {
+            angular.forEach(response.data, function(v, k) {
+                if (v.id == $routeParams.device) {
+                    $scope.device = v;
+                    return;
+                }
+            });
+            if (!$scope.device) {
                 $location.path('/error/404');
             }
-            $scope.device = device;
 
             dataService.updateTimeTick();
-            $scope.refreshData();
-            $scope.inclusion = {promisc: true, message: $scope._t('lb_ready_include'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
-           $scope.runCmd('controller.data.promisc=true');
+            $scope.inclusion = {done: false, promisc: true, message: $scope._t('lb_ready_include') + ' ' + ($scope.device.inclusion ? $scope.device.inclusion : '') , status: 'alert-warning', icon: 'fa-spinner fa-spin'};
+            $scope.runCmd('controller.data.promisc=true');
 
         }, function(error) {
             $location.path('/error/' + error.status);
         });
     };
-    $scope.loadDevice();
-    
+    if ($routeParams.device) {
+        $scope.loadDevice();
+        $scope.autoinclusion = true;
+    } else {
+
+    }
+
+    /**
+     * Set profile from dropdown
+     */
+    $scope.setProfileManualy = function(profile) {
+        $scope.device = angular.fromJson(profile);
+        $scope.inclusion = {done: false, promisc: true, message: $scope._t('lb_ready_include'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
+        $scope.runCmd('controller.data.promisc=true');
+    };
+
     /**
      * Refresh data
      */
     $scope.refreshData = function() {
-        var id = '81048201';
         var refresh = function() {
             dataFactory.refreshEnoceanDevices().then(function(response) {
-                console.log(response.data)
                 if ('controller.data.promisc' in response.data) {
                     var pomisc = response.data['controller.data.promisc'].value;
                     if (pomisc === true) {
-                        $scope.inclusion = {promisc: true, message: $scope._t('lb_ready_include'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
+                        $scope.inclusion = {done: false, promisc: true, message: $scope._t('lb_ready_include') + ' ' + ($scope.device.inclusion ? $scope.device.inclusion : ''), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
                     } else {
-                        $scope.inclusion = {promisc: false, message: $scope._t('inclusion_suspended'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                        $scope.inclusion = {done: false, promisc: false, message: $scope._t('inclusion_suspended'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
                     }
                     return;
                 }
-                if (('devices.'+ $scope.deviceId +'.data.funcId' in response.data) && ('devices.'+ $scope.deviceId +'.data.typeId' in response.data)) {
+                if ('devices' in response.data) {
                     $scope.findDevice();
+                    return;
                 }
             }, function(error) {
                 dataService.showConnectionError(error);
@@ -9912,60 +9967,36 @@ myAppController.controller('IncludeEnoceanController', function($scope, $interva
         $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
     };
 
+    $scope.refreshData();
+
     /**
      * Find last included device
      */
     $scope.findDevice = function() {
-        var refresh = function() {
-            var rorg = 213;
-            dataFactory.loadEnoceanDevices().then(function(response) {
+            var rorg = parseInt($scope.device.rorg);
+            dataFactory.loadEnoceanDevices(true).then(function(response) {
+                //console.log('LOOKING rorg: ',rorg)
                 angular.forEach(response, function(v, k) {
-                    if (v.data.rorg.value == rorg) {
+                    if (angular.isDefined($scope.enoceanDevices[v.id])) {
+                        return;
+                    }
+                   // if (v.data.rorg.value == rorg) {
+                        //console.log(v.id);
                         $scope.inclusion = {done: true, promisc: false, message: $scope._t('inclusion_proces_done'), status: 'alert-success', icon: 'fa-check'};
                         $scope.runCmd('controller.data.promisc=false');
-                        $scope.runCmd('devices["8104820a"].data.funcId=02');
-                        $scope.runCmd('devices["8104820a"].data.typeId=01');
-                        $interval.cancel($scope.apiDataInterval);
-                        $interval.cancel($scope.findDeviceInterval);
-                        $scope.loadProfile();
+                        $scope.runCmd('devices["' + v.id + '"].data.funcId=' + $scope.device.funcId);
+                        $scope.runCmd('devices["' + v.id + '"].data.typeId=' + +$scope.device.typeId);
+                        //$interval.cancel($scope.apiDataInterval);
                         $scope.loadData();
-                    }
+                        $interval.cancel($scope.apiDataInterval);
+                    //}
                 });
 
             }, function(error) {
-                $scope.inclusion = {promisc: false, message: $scope._t('inclusion_error'), status: 'alert-danger', icon: 'fa-warning'};
+                $scope.inclusion = {done: false, promisc: false, message: $scope._t('inclusion_error'), status: 'alert-danger', icon: 'fa-warning'};
             });
-        };
-        $scope.findDeviceInterval = $interval(refresh, $scope.cfg.interval);
-    };
 
-    $scope.loadProfile = function() {
-        dataFactory.xmlToJson($scope.cfg.server_url + 'config/Profiles.xml').then(function(response) {
-            var setId;
-            angular.forEach(response.Profiles.Profile, function(v, k) {
-                setId = parseInt(v._rorg) + '_' + parseInt(v._func) + '_' + parseInt(v._type);
-                $scope.enoceanProfiles[setId] = v;
-            });
-            //dataService.updateTimeTick();
-        }, function(error) {
-            //dataService.showConnectionError(error);
-        });
     };
-    //$scope.loadProfile();
-    
-    /**
-     * Load enocean data
-     */
-    $scope.loadData = function() {
-        dataService.showConnectionSpinner();
-        dataFactory.loadEnoceanDevices().then(function(response) {
-            $scope.enoceanDevices = response;
-            dataService.updateTimeTick();
-        }, function(error) {
-            dataService.showConnectionError(error);
-        });
-    };
-    //$scope.loadData();
 
     /**
      * Run CMD
@@ -9976,7 +10007,7 @@ myAppController.controller('IncludeEnoceanController', function($scope, $interva
             dataService.updateTimeTick();
         }, function(error) {
             dataService.showConnectionError(error);
-            $scope.inclusion = {promisc: false, message: $scope._t('inclusion_error'), status: 'alert-danger', icon: 'fa-warning'};
+            $scope.inclusion = {done: false, promisc: false, message: $scope._t('inclusion_error'), status: 'alert-danger', icon: 'fa-warning'};
 
         });
         return;
@@ -9984,18 +10015,66 @@ myAppController.controller('IncludeEnoceanController', function($scope, $interva
     /**
      * Delete device
      */
-    $scope.deleteDevice = function(id, target) {
-        var cmd = 'zeno.devices["' + id + '"]';
-        $scope.alert = {message: false};
-        dataFactory.runEnoceanCmd(cmd).then(function(response) {
-            $(target).fadeOut(500);
-            dataService.updateTimeTick();
-        }, function(error) {
-            dataService.showConnectionError(error);
-            $scope.alert = {message: $scope._t('error_delete_data'), status: 'alert-danger', icon: 'fa-warning'};
+    $scope.deleteDevice = function(id, target, dialog) {
+        var confirm = true;
+        var cmd = 'delete devices["' + id + '"]';
+        if (dialog) {
+            confirm = $window.confirm(dialog);
+        }
+        if (confirm) {
+            dataFactory.runEnoceanCmd(cmd).then(function(response) {
+                $(target).fadeOut(500);
+                //myCache.remove('instances');
+                // myCache.remove('devices');
+            }, function(error) {
+                alert($scope._t('error_delete_data'));
+            });
 
-        });
+        }
     };
+
+    /// --- Private functions --- ///
+    /**
+     * Load profile
+     */
+    function loadProfiles(devices) {
+        dataFactory.xmlToJson($scope.cfg.server_url + 'config/Profiles.xml', true).then(function(response) {
+            setDevices(devices, response.Profiles.Profile);
+        }, function(error) {
+            setDevices(devices, false);
+        });
+    }
+    ;
+    /**
+     * Set devices
+     */
+    function setDevices(devices, profiles) {
+        angular.forEach(devices, function(v, k) {
+            $scope.enoceanDevices[v.id] = {
+                id: v.id,
+                data: v.data,
+                profile: assignProfile(v.data, profiles)
+            };
+        });
+        //console.log($scope.deviceCollection)
+    }
+    ;
+    /**
+     * Assign profile to device
+     */
+    function assignProfile(device, profiles) {
+        var profile = false;
+        var deviceProfileId = device.rorg.value + '_' + device.funcId.value + '_' + device.typeId.value;
+        angular.forEach(profiles, function(v, k) {
+            var profileId = parseInt(v._rorg) + '_' + parseInt(v._func) + '_' + parseInt(v._type);
+            if (deviceProfileId == profileId) {
+                profile = v;
+                return;
+            }
+        });
+        return profile;
+    }
+    ;
 });
 /**
  * Room controller
