@@ -112,7 +112,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     roles: cfg.role_access.devices
                 }).
                 //IP camera device
-                when('/devices/enocean', {
+                when('/devices/enocean/:brandname?', {
                     templateUrl: 'app/views/devices/devices_enocean.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices
