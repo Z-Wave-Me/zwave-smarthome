@@ -14,8 +14,7 @@
         </div>
     </div>
     <!-- inclusion -->
-    <div class="device-perex clearfix" ng-if_="!autoinclusion">
-        <div class="col-device app-border app-gradient app-shadow">
+    <div class="col-device app-border app-gradient app-shadow">
             <table class="table table-report table-inclusion">
                 <tbody>
                     <!-- 1 -->
@@ -44,7 +43,10 @@
                             <strong ng-hide_="controllerState == 1 || includedDeviceId" ng-bind="_t('select_profile')"></strong>
                             <div ng-if="lastIncludedDevice">
                                 <select name="enoceanProfiles" class="form-control" ng-model="profile.set" ng-change="setProfileManualy(profile.set)">
-                                    <option value="{{manProfile}}" ng-repeat="v in enoceanProfiles" ng-init="manProfile = {rorg:v._rorg,funcId: v._func,typeId: v._type}">{{v._funcDescription}} | rorg: {{v._rorg}} | func: {{v._func}} | type: {{v._type}}</option>
+                                    <option value="{{manProfile}}" 
+                                            ng-repeat="v in enoceanProfiles | orderBy:'_funcDescription'" 
+                                            ng-init="manProfile = {rorg:v._rorg,funcId: v._func,typeId: v._type}"
+                                            ng-if="lastIncludedDevice.rorg == v.rorgInt">{{v._funcDescription}} | rorg: {{v._rorg}} | func: {{v._func}} | type: {{v._type}}</option>
                                 </select>
                             </div>
                         </td>
@@ -55,28 +57,17 @@
                         <td>
                             <strong ng-bind="_t('manual_konfiguration')"></strong>
                             <form name="form_enocean_config" id="form_enocean_config" class="form form-page" ng-if="inclusion.config" novalidate>
-                                <p>{{lastIncludedDevice.profile._funcDescription}} (#{{lastIncludedDevice.id}})</p>
+                                 <!-- <p>{{lastIncludedDevice.profile._funcDescription}} (#{{lastIncludedDevice.id}})</p> -->
                                     <!-- Name -->
                                     <fieldset>
                                          <div class="form-group form-inline">
                                         <input type="text" name="enocean_name" id="enocean_name" class="form-control form-control-md" 
-                                               ng-model="dev[e.id].metrics.title" value="{{lastIncludedDevice.profile._funcDescription}} (#{{lastIncludedDevice.id}})" />
+                                               ng-model="lastIncludedDevice.name" value="{{lastIncludedDevice.name}}" />
                                         <button class="btn btn-primary" ng-click="updateDevice(dev[e.id])" ng-bind="_t('rename_device')"></button>
                                     </div>
                                     </fieldset>
-                                    <fieldset ng-if="rooms">
-                                    <!-- Rooms -->
-                                    <div class="form-group form-inline">
-                                        <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('devices_to_room')"></span></h3>
-                                        <select class="form-control" ng-model="modelRoom">
-                                            <option value="">------</option>
-                                            <option ng-repeat="v in rooms" ng-selected_="input.location == v.id" value="{{v.id}}" ng-bind="v.title"></option>
-                                        </select>
-                                        <button class="btn btn-primary" ng-click="devicesToRoom(modelRoom, apiDevices)" ng-bind="_t('lb_save')"></button> 
-
-                                    </div>
-                                </fieldset>
-                                <fieldset>
+                                    
+                                <fieldset ng-if="apiDevices">
                                 <div class="form-group form-inline" ng-repeat="e in apiDevices | orderBy:'title':false" ng-init="dev[e.id] = e">
 
                                     <h3>
@@ -93,41 +84,33 @@
                                          </div>
                                     </div>
                                 </fieldset>
-                                   
+                                <fieldset ng-if="rooms" ng-if="apiDevices">
+                                    <!-- Rooms -->
+                                    <div class="form-group form-inline">
+                                        <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('devices_to_room')"></span></h3>
+                                        <select class="form-control" ng-model="modelRoom">
+                                            <option value="">------</option>
+                                            <option ng-repeat="v in rooms" ng-selected_="input.location == v.id" value="{{v.id}}" ng-bind="v.title"></option>
+                                        </select>
+                                        <button class="btn btn-primary" ng-click="devicesToRoom(modelRoom, apiDevices)" ng-bind="_t('lb_save')"></button> 
+
+                                    </div>
+                                </fieldset>
+                                    <fieldset>
+                                <div class="form-group form-inline">
+                                        <p><a href="#manage-enocean" class="btn btn-default"><i class="fa fa-edit"></i> {{_t('manage_enocean_devices')}}</a></p>   
+                                    </div>
+                                </fieldset>
+                                
                                 <!--<div class="submit-entry">
                                     <button class="btn btn-default" ng-bind="_t('ok')" bb-go-back></button>
                                 </div>-->
                             </form>
+                            
                         </td>
                     </tr>
                 </tbody>
             </table>
 
         </div>
-
-
-    </div>
-
-    <div  ng-if="enoceanDevices_">
-        <p ng-bind="_t('device_list')"></p>
-        <table class="table table-condensed table-report">
-            <tbody>
-                <tr id="enocean_row_{{v.id}}" ng-repeat="v in enoceanDevices track by v.id">
-                    <td class="text-left">
-                        <span ng-if="v.profile" ng-bind="v.profile._funcDescription"></span>  <span>(#{{v.id}})</span>
-                    </td>
-
-                    <td class="td-action">
-                        <button title="{{_t('lb_remove')}}"
-                                class="btn btn-default btn-sm"
-                                ng-click="deleteDevice(v.id, '#enocean_row_' + v.id, _t('lb_delete_confirm'))"
-                                >
-                            <i class="fa fa-remove fa-lg text-danger"></i> <span class="btn-name" ng-bind="_t('lb_remove')"></span>
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
+</div> <!-- /ng-controller --> 
