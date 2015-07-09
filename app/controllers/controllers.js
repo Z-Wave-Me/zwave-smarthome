@@ -871,11 +871,11 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
      */
     $scope.loadModules = function(filter) {
         // var filter;
-//        if ($scope.user.role === 1 && $scope.user.expert_view) {
-//            filter = null;
-//        } else {
-//            filter = {filter: "status", val: "hidden", not: true};
-//        }
+        if ($scope.user.role === 1 && $scope.user.expert_view) {
+            filter = null;
+        } else {
+            filter = {filter: "state", val: "hidden", not: true};
+        }
         dataFactory.getApi('modules').then(function(response) {
             $scope.modules = dataService.getData(response.data.data, filter, true);
             angular.forEach(response.data.data, function(v, k) {
@@ -913,11 +913,11 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     };
     $scope.loadInstances = function() {
         var filter;
-//        if ($scope.user.role === 1 && $scope.user.expert_view) {
-//            filter = null;
-//        } else {
-//            filter = {filter: "status", val: "hidden", not: true};
-//        }
+        if ($scope.user.role === 1 && $scope.user.expert_view) {
+            filter = null;
+        } else {
+            filter = {filter: "state", val: "hidden", not: true};
+        }
         dataFactory.getApi('instances').then(function(response) {
             $scope.instances = dataService.getData(response.data.data, filter, true);
             $scope.loading = false;
@@ -1224,13 +1224,13 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
         dataFactory.getApi('instances', '/' + id, true).then(function(instances) {
             var instance = instances.data.data;
             dataFactory.getApi('modules', '/' + instance.moduleId + '?lang=' + $scope.lang).then(function(module) {
-//                if (module.data.data.state === 'hidden') {
-//                    if (!$scope.user.expert_view) {
-//                        dataService.updateTimeTick();
-//                        return;
-//                    }
-//
-//                }
+                if (module.data.data.state === 'hidden') {
+                    if (!$scope.user.expert_view) {
+                        dataService.updateTimeTick();
+                        return;
+                    }
+
+                }
                 dataFactory.getApi('namespaces').then(function(namespaces) {
                     var formData = dataService.getModuleFormData(module.data.data, instance.params, namespaces.data.data);
 
@@ -1366,7 +1366,7 @@ myAppController.controller('DeviceIpCameraController', function($scope, dataFact
     $scope.loadData = function() {
         dataService.showConnectionSpinner();
         dataFactory.getApi('modules').then(function(response) {
-            $scope.ipcameraDevices = dataService.getData(response.data.data, {filter: "state", val: "camera"});
+            $scope.ipcameraDevices = dataService.getData(response.data.data, {filter: "category", val: "surveillance"});
             dataService.updateTimeTick();
         }, function(error) {
             dataService.showConnectionError(error);

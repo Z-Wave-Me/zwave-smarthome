@@ -1,5 +1,6 @@
 {
     "missing": "---",
+    "lb_expert_app_view":"Show experts apps",
     "enocean_not_active": "EnOcean module is not activated. Please activate it in Apps-Active tab.",
     "enocean_nosupport": "This hardware does not support EnOcean devices",
     "device_list": "List of installed devices",
@@ -43,6 +44,7 @@
     "success_send_report": "Report was successfully send",
     "error_send_report": "Unable to send report",
     "nav_report": "Report Problem",
+    "nav_expertUi":"Go to ExpertUI",
     "lb_is_failed": "Device is failed",
     "updated": "Updated at",
     "no_devices": "There are no devices installed.",

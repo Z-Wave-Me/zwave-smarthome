@@ -1,4 +1,5 @@
 {   
+    "lb_expert_app_view":"Zeige Experten-Apps",
     "enocean_not_active": "EnOcean module is not activated. Please activate it in Apps-Active tab.",
     "enocean_nosupport": "This hardware does not support EnOcean devices",
     "device_list": "List of installed devices",
@@ -97,6 +98,7 @@
     "lb_password": "Passwort",
     "lb_keep_logged": "Ich möchte angemeldet bleiben.",
     "nav_admin": "Nutzerverwaltung",
+    "nav_expertUi":"Öffne ExpertUI",
     "lb_add_user": "Neuer Benutzer",
     "lb_user": "Benutzer",
     "lb_local": "Lokaler Benutzer (Zugang nur über localhost bzw. 127.0.0.1 möglich)",

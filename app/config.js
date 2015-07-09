@@ -73,6 +73,7 @@ var config_data = {
             module: [1,3],
             devices: [1,3],
             myaccess: [1,2,3],
+            expert_view: [1,3],
             remote_access: [1,3],
             devices_include: [1,3],
             rooms: [1,2,3],

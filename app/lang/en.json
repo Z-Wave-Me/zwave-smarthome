@@ -1,5 +1,6 @@
 {
     "missing": "---",
+    "lb_expert_app_view":"Show experts apps",
     "teachin_ready": "Ready to Teach-In.",
     "teachin_canceled": "The Teach-In process has been cancelled.",
     "start_teachin": "Start Teach-In", 
@@ -104,6 +105,7 @@
     "lb_password": "Password",
     "lb_keep_logged": "Keep me logged in",
     "nav_admin": "User management",
+    "nav_expertUi":"Go to ExpertUI",
     "lb_add_user": "Add user",
     "lb_local": "Local User (access only via localhost / 127.0.0.1)",
     "lb_anonymous": "Anonymous User",
@@ -140,7 +142,7 @@
     "lb_module_id": "App ID",
     "lb_instance_id": "Instance ID",
     "lb_use": "uses app",
-    "lb_expert_view": "Expert view",
+    "lb_expert_view": "Expert View",
     "lb_role": "Role",
     "error_load_user": "User not found. Please check your  login or password",
     "---": "missing",
