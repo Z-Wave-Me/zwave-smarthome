@@ -23,10 +23,10 @@
                                  ng-if="input.rorg == v.rorgInt">{{v._funcDescription}} | rorg: {{v._rorg}} | func: {{v._func}} | type: {{v._type}}</option>
                                 </select>
                 </div>
-             <div class="submit-entry">
-                    <button type="submit" class="btn btn-primary" ng-bind="_t('lb_save')"></button>
-                </div>
         </fieldset>
+        <fieldset class="submit-entry">
+                    <button type="submit" class="btn btn-primary" ng-bind="_t('lb_save')"></button>
+                </fieldset>
     </form>
     
     <form name="form_enocean_config" id="form_enocean_config" class="form form-page" novalidate ng-if="apiDevices">

@@ -534,78 +534,84 @@ background-color: lighten($app-body-bcg-color, 10%);;
 
 /* Forms
 -------------------------------------------------- */
-/* line 230, sass/globals/_body.scss */
-fieldset {
-  margin-bottom: 10px;
-  background-color: #F6F6F6;
-  padding: 10px;
-}
-
-/* line 235, sass/globals/_body.scss */
+/* line 231, sass/globals/_body.scss */
 .form-page {
   margin-bottom: 20px;
+  background-color: #fff;
+  border: solid 4px #eeeeee;
 }
-/* line 237, sass/globals/_body.scss */
+/* line 235, sass/globals/_body.scss */
 .form-page fieldset {
   background-color: #fff;
 }
-/* line 240, sass/globals/_body.scss */
+/* line 238, sass/globals/_body.scss */
 .form-page h3 {
   font-size: 14px;
   font-weight: bold;
 }
-/* line 244, sass/globals/_body.scss */
+/* line 242, sass/globals/_body.scss */
 .form-page .form-group {
   border-top: solid 1px #d3d3d3;
   padding-top: 10px;
 }
-/* line 248, sass/globals/_body.scss */
+/* line 246, sass/globals/_body.scss */
 .form-page label {
   font-weight: normal;
 }
 
-/* line 253, sass/globals/_body.scss */
+/* line 251, sass/globals/_body.scss */
+fieldset {
+  background-color: #F6F6F6;
+  padding: 10px;
+}
+
+/* line 257, sass/globals/_body.scss */
 .form-control-sm {
   width: 30% !important;
 }
 
-/* line 257, sass/globals/_body.scss */
+/* line 261, sass/globals/_body.scss */
 .form-control-md {
   width: 50% !important;
 }
 
-/* line 261, sass/globals/_body.scss */
+/* line 265, sass/globals/_body.scss */
 .submit-entry {
   display: block;
   margin: 10px 0 0 0;
 }
 
-/* line 265, sass/globals/_body.scss */
+/* line 269, sass/globals/_body.scss */
+fieldset.submit-entry {
+  margin: 0 !important;
+}
+
+/* line 272, sass/globals/_body.scss */
 .form-control-hidden {
   display: none !important;
 }
 
-/* line 268, sass/globals/_body.scss */
+/* line 275, sass/globals/_body.scss */
 .form-control-img {
   cursor: pointer;
   border: solid 4px transparent;
 }
 
-/* line 273, sass/globals/_body.scss */
+/* line 280, sass/globals/_body.scss */
 .control-active {
   border: solid 4px black !important;
 }
 
 /* Alpaca
 -------------------------------------------------- */
-/* line 279, sass/globals/_body.scss */
+/* line 286, sass/globals/_body.scss */
 .alpaca-message-invalidValueOfEnum {
   display: none !important;
 }
 
 /* Page
 -------------------------------------------------- */
-/* line 285, sass/globals/_body.scss */
+/* line 292, sass/globals/_body.scss */
 #main_content {
   margin-top: 70px;
   margin-bottom: 20px;
@@ -613,13 +619,13 @@ fieldset {
 
 /* Modal
 -------------------------------------------------- */
-/* line 291, sass/globals/_body.scss */
+/* line 298, sass/globals/_body.scss */
 .modal-tooltip {
   width: 40%;
   /* or whatever you wish */
 }
 
-/* line 294, sass/globals/_body.scss */
+/* line 301, sass/globals/_body.scss */
 .modal-vertical-centered {
   position: fixed;
   top: 15% !important;
@@ -643,7 +649,7 @@ vertical-align: middle;
 }*/
 /* Tooltip
 -------------------------------------------------- */
-/* line 319, sass/globals/_body.scss */
+/* line 326, sass/globals/_body.scss */
 .tooltip-inner {
   background-color: #F6F6F6;
   color: #000;
@@ -652,28 +658,28 @@ vertical-align: middle;
   text-align: left;
 }
 
-/* line 326, sass/globals/_body.scss */
+/* line 333, sass/globals/_body.scss */
 .tooltip-arrow {
   border-bottom-color: #f2f2f2;
 }
 
 /* Pagination
 -------------------------------------------------- */
-/* line 332, sass/globals/_body.scss */
+/* line 339, sass/globals/_body.scss */
 .pagination > li > a, .pagination > li > span {
   color: #DA131F;
   background-color: #FFF;
   border: 1px solid #d3d3d3;
 }
 
-/* line 338, sass/globals/_body.scss */
+/* line 345, sass/globals/_body.scss */
 .pagination > li > a:hover, .pagination > li > a:focus, .pagination > li > span:hover, .pagination > li > span:focus {
   color: #DA131F;
   background-color: #F6F6F6;
   border-color: #d3d3d3;
 }
 
-/* line 344, sass/globals/_body.scss */
+/* line 351, sass/globals/_body.scss */
 .pagination > .disabled > a, .pagination > .disabled > a:hover, .pagination > .disabled > a:focus {
   color: #777777;
   background-color: #FFF;
@@ -681,7 +687,7 @@ vertical-align: middle;
   cursor: not-allowed;
 }
 
-/* line 351, sass/globals/_body.scss */
+/* line 358, sass/globals/_body.scss */
 .pagination > .active > a, .pagination > .active > a:hover {
   color: #fff;
   background-color: #d3d3d3;
@@ -691,7 +697,7 @@ vertical-align: middle;
 /* Absolute Center CSS Spinner
 http://codepen.io/MattIn4D/pen/LiKFC
 -------------------------------------------------- */
-/* line 360, sass/globals/_body.scss */
+/* line 367, sass/globals/_body.scss */
 #loading {
   position: fixed;
   z-index: 999;
@@ -705,7 +711,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   right: 0;
   text-align: center;
 }
-/* line 372, sass/globals/_body.scss */
+/* line 379, sass/globals/_body.scss */
 #loading .loading-in {
   position: relative;
   z-index: 1000;
@@ -717,14 +723,14 @@ http://codepen.io/MattIn4D/pen/LiKFC
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 383, sass/globals/_body.scss */
+/* line 390, sass/globals/_body.scss */
 #loading a {
   font-weight: bold;
   text-decoration: underline;
 }
 
 /* Transparent Overlay */
-/* line 390, sass/globals/_body.scss */
+/* line 397, sass/globals/_body.scss */
 .loading-spin:before {
   content: '';
   display: block;
@@ -736,7 +742,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-/* line 401, sass/globals/_body.scss */
+/* line 408, sass/globals/_body.scss */
 .loading-fade {
   opacity: 0;
   -webkit-transition: opacity 4s;
