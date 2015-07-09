@@ -92,7 +92,7 @@
     "lb_hide_system_events": "Hide all system events",
     "lb_delete_system_events": "Delete all system events",
     "lb_configuration_for": "Configuration for",
-    "no_zddx_file": "No configuration file",
+    "no_zddx_file": "Device has no (other) configurable parameters",
     "btn_update_from_device": "Update from Device",
     "apply_config": "Save into Device",
     "apply_config_into_device": "Save this parameter",
