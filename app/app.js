@@ -123,9 +123,21 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     requireLogin: true,
                     roles: cfg.role_access.devices_include
                 }).
-                        //Include Enocean device
+                //Include Enocean device
                 when('/include-enocean/:device?', {
                     templateUrl: 'app/views/devices/device_include_enocean.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices_include
+                }).
+                //Manage Enocean device
+                when('/manage-enocean', {
+                    templateUrl: 'app/views/devices/device_manage_enocean.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices_include
+                }).
+                //Edite Enocean device
+                when('/edit-enocean/:deviceId', {
+                    templateUrl: 'app/views/devices/device_edit_enocean.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices_include
                 }).

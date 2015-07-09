@@ -570,5 +570,31 @@
         "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/WiDom.png",
         "product_image": "669-0149-1214-0304-03-03-99-01-31.png",
         "prep": ""
+    },
+    {
+        "id": "725-0154-0100-0201-03-04-05-01-00",
+        "name": "Popp Smoke Detector",
+        "desc": "Z-Wave Smoke Sensor with indoor siren function",
+        "productcode": "POPE004001",
+        "wake": "",
+        "inc": " Pushing the internal button for 1 sec. includes and excludes the device. ",
+        "exc": " Pushing the internal button for 1 sec. includes and excludes the device. ",
+        "brandname": "Popp",
+        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/PoppLogo150px.png",
+        "product_image": "725-0154-0100-0201-03-04-05-01-00.png",
+        "prep": ""
+    },
+    {
+        "id": "717-0154-0001-0001-03-04-05-01-00",
+        "name": "Z-Weather",
+        "desc": "Z-Weather continually measures the wind speed and can, for example, trigger closing of the awning and blinds if it \r\nis too windy. It also measures the amount of rotation, enabling calculation of the \r\nwind yield per day or per year. In addition, Z-Weather includes sensors for humidity, \r\ntemperature, air pressure and dew point, essentially providing the core sensors of \r\na weather station.",
+        "productcode": "POPE005206",
+        "wake": "Der Z-Weather erwacht von Zeit zu Zeit aus dem Stand-by-Modus sobald der Knopf \r\ngedr\u00fcckt wird oder folgende au\u00dferplanm\u00e4\u00dfige Situationen eintreten: \r\n- Windst\u00e4ke von mehr als 6 m\/s (22 Km\/h)\r\n- Zum Ende der Morgend\u00e4mmerung, wenn es hell wird \r\n- Zum Ende der Avendd\u00e4mmerung, wenn es dunkel wird\r\n",
+        "inc": "Press  the  button  3  times  within  1.5  seconds.\r\nZ-Weather  sends  a  NIF  (Network  Information  Frame)  and  waits  4  seconds  for  \r\ninclusion  to  the  Z-Wave  network.  If  no  controller  includes  Z-Weather,  it  goes  to \r\nsleep after 4 seconds. Make sure to first instruct the inclusion controller to add a \r\nnode and then press the Z-Weather button 3 times to add the device to the network.",
+        "exc": "Press  the  button  3  times  within  1.5  seconds.\r\nZ-Weather  sends  a  NIF  (Network  Information  Frame)  and  waits  4  seconds  for  \r\ninclusion  to  the  Z-Wave  network.  If  no  controller  includes  Z-Weather,  it  goes  to \r\nsleep after 4 seconds. Make sure to first instruct the inclusion controller to add a \r\nnode and then press the Z-Weather button 3 times to add the device to the network.",
+        "brandname": "Popp",
+        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/PoppLogo150px.png",
+        "product_image": "717-0154-0001-0001-03-04-05-01-00.png",
+        "prep": ""
     }
 ]

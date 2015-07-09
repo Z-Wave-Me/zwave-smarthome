@@ -123,18 +123,7 @@
                         <strong ng-hide_="lastIncludedDevice" ng-bind="_t('manual_konfiguration')"></strong>
                             <form name="form_network_config" id="form_profile" class="form form-page" ng-if="nodeId" novalidate>
                                  <!--<p>(#{{zWaveDevice.id}}) {{zWaveDevice.title}}</p>-->
-                                <fieldset ng-if="rooms">
-                                    <!-- Rooms -->
-                                    <div class="form-group form-inline">
-                                        <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('devices_to_room')"></span></h3>
-                                        <select class="form-control" ng-model="modelRoom">
-                                            <option value="">------</option>
-                                            <option ng-repeat="v in rooms" ng-selected_="input.location == v.id" value="{{v.id}}" ng-bind="v.title"></option>
-                                        </select>
-                                        <button class="btn btn-primary" ng-click="devicesToRoom(modelRoom, devices)" ng-bind="_t('lb_save')"></button> 
-
-                                    </div>
-                                </fieldset>
+                                
                                 <fieldset>
                                 <div class="form-group form-inline" ng-repeat="e in devices | orderBy:'title':false" ng-init="dev[e.id] = e">
 
@@ -150,6 +139,18 @@
                                                      ng-bind="e.permanently_hidden ? _t('show_element') : _t('hide_element')"
                                                      ng-class="e.permanently_hidden ? 'btn-danger' : 'btn-info'"> </button>
                                          </div>
+                                    </div>
+                                </fieldset>
+                                 <fieldset ng-if="rooms">
+                                    <!-- Rooms -->
+                                    <div class="form-group form-inline">
+                                        <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('devices_to_room')"></span></h3>
+                                        <select class="form-control" ng-model="modelRoom">
+                                            <option value="">------</option>
+                                            <option ng-repeat="v in rooms" ng-selected_="input.location == v.id" value="{{v.id}}" ng-bind="v.title"></option>
+                                        </select>
+                                        <button class="btn btn-primary" ng-click="devicesToRoom(modelRoom, devices)" ng-bind="_t('lb_save')"></button> 
+
                                     </div>
                                 </fieldset>
                                 <fieldset ng-if="zWaveDevice.cfg.length > 0">
@@ -168,5 +169,5 @@
             </tbody>
         </table>
     </div>
-</div>
+</div> <!-- /ng-controller --> 
 

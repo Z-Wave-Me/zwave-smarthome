@@ -215,6 +215,13 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     this.configGetNav = function(ZWaveAPIData) {
         return configGetNav(ZWaveAPIData);
     };
+    
+     /**
+     * Set EnOcean profile
+     */
+    this.setEnoProfile = function(data) {
+        return setEnoProfile(data);
+    };
 
     /// --- Private functions --- ///
 
@@ -786,4 +793,20 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
         });
         return collection;
     }
+    
+    /**
+     * Set EnOcean profile
+     */
+    function setEnoProfile(data){
+        var profile = {};
+        angular.forEach(data, function(v, k) {
+                var profileId = parseInt(v._rorg, 16) + '_' + parseInt(v._func, 16) + '_' + parseInt(v._type, 16);
+                profile[profileId] = v;
+                profile[profileId]['id'] = profileId;
+                profile[profileId]['rorgInt'] = parseInt(v._rorg, 16);
+                profile[profileId]['funcInt'] = parseInt(v._func, 16);
+                profile[profileId]['typeInt'] = parseInt(v._type, 16);
+            });
+        return profile;
+    };
 });
