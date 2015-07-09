@@ -6,6 +6,9 @@
     <bb-alert alert="alert"></bb-alert>
     <div ng-if="hasEnOcean">
         <div class="text-center device-autodetect">
+            <a href="#manage-enocean" class="btn btn-default"><i class="fa fa-edit"></i> {{_t('manage_enocean_devices')}}</a>
+        </div>
+        <div class="text-center device-autodetect">
             <a href="#include-enocean" class="btn btn-default btn-lg btn-block"><i class="fa fa-wrench"></i> {{_t('inclusion_manualy')}}</a>
         </div>
         <div class="row device-manufacturers" ng-hide="enoceanDevices">

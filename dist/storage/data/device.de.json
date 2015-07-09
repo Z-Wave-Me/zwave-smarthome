@@ -570,5 +570,31 @@
         "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/WiDom.png",
         "product_image": "669-0149-1214-0304-03-03-99-01-31.png",
         "prep": ""
+    },
+    {
+        "id": "725-0154-0100-0201-03-04-05-01-00",
+        "name": "Popp Smoke Detector",
+        "desc": "Z-Wave Rauchmelder mit Innensirene",
+        "productcode": "POPE004001",
+        "wake": "",
+        "inc": "Durch Dr\u00fccken des Innentasters f\u00fcr 1 Sekunde wird das Ger\u00e4t\r\nins Z-Wave Netz eingebunden (inkludiert) oder getrennt (exkludiert).",
+        "exc": "Durch Dr\u00fccken des Innentasters f\u00fcr 1 Sekunde wird das Ger\u00e4t\r\nins Z-Wave Netz eingebunden (inkludiert) oder getrennt (exkludiert).",
+        "brandname": "Popp",
+        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/PoppLogo150px.png",
+        "product_image": "725-0154-0100-0201-03-04-05-01-00.png",
+        "prep": ""
+    },
+    {
+        "id": "717-0154-0001-0001-03-04-05-01-00",
+        "name": "Z-Weather",
+        "desc": "Z-Weather misst kontinuierlich die Windgeschwindigkeit und kann u. a. das Schlie\u00dfen von Markisen \r\noder Jalousien veranlassen, wenn es zu windig sein sollte. Er misst zudem den \r\nDrehungsgrad f\u00fcr die Berechnung des Tages- oder Jahres-Windertrages. Dar\u00fcber \r\nhinaus enth\u00e4lt der Z-Weather Sensoren f\u00fcr Temperatur, Luftdruck, Luftfeuchtigkeit \r\nund Taupunkt, die die Kernsensoren einer Wetterstation wesentlich unterst\u00fctzen.  ",
+        "productcode": "POPE005206",
+        "wake": "Z-Weather  wakes  up  regularly  from  time  to  time,  if  the  button  is  pressed  or  \r\nunscheduled on the following events: \r\n- wind speed is higher than 6 m\/s (22 Km\/h), \r\n- at the end of the dawn if it becomes bright, \r\n- at the end of the dusk if it becomes bright",
+        "inc": "Dr\u00fccken  Sie  den  Knopf  3-mal  innerhalb  von  1,5  Sekunden\r\nZ-Weather sendet einen NIF (Network Information Frame) und wartet 4 Sekunden auf die Inklusion ins Z-Wave Funknetz. Sollte der \r\nZ-Weather nach 4 Sekunden nicht vom Controller inkludiert werden, schaltet sich \r\ndas Ger\u00e4t ab. Achten Sie bei der ersten Anweisung an den Inklusionskontroller  \r\ndarauf,  einen  Knotenpunkt  beizuf\u00fcgen  und  anschlie\u00dfend  den  Knopf  des  \r\nZ-Weather 3-mal zu dr\u00fccken, um das Ger\u00e4t ins Netzwerk einzubinden.",
+        "exc": "Dr\u00fccken  Sie  den  Knopf  3-mal  innerhalb  von  1,5  Sekunden\r\nZ-Weather sendet einen NIF (Network Information Frame) und wartet 4 Sekunden auf die Inklusion ins Z-Wave Funknetz. Sollte der \r\nZ-Weather nach 4 Sekunden nicht vom Controller inkludiert werden, schaltet sich \r\ndas Ger\u00e4t ab. Achten Sie bei der ersten Anweisung an den Inklusionskontroller  \r\ndarauf,  einen  Knotenpunkt  beizuf\u00fcgen  und  anschlie\u00dfend  den  Knopf  des  \r\nZ-Weather 3-mal zu dr\u00fccken, um das Ger\u00e4t ins Netzwerk einzubinden.",
+        "brandname": "Popp",
+        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/PoppLogo150px.png",
+        "product_image": "717-0154-0001-0001-03-04-05-01-00.png",
+        "prep": ""
     }
 ]

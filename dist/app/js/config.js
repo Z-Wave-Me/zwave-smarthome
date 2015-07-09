@@ -57,6 +57,10 @@ var config_data = {
         'enocean_run_url': 'EnOceanAPI/Run/',
         // Url to config XML file
         'cfg_xml_url': 'config/Configuration.xml',
+         // Url to get a license key
+        'license_url': 'http://store.zwaveeurope.com/license/utility_uzb.php',
+         // Url to update capabilities
+        'license_load_url': '/ZWaveAPI/ZMELicense',
         // Language directory
         'lang_dir': 'app/lang/',
         // Default language

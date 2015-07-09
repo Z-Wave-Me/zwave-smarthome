@@ -121,13 +121,13 @@
                                     <button 
                                         class="btn widget-btn-off btn-sm"
                                         ng-class="levelVal[v.id]=='close' ? 'btn-primary': 'btn-default'"
-                                        data-ng-click="levelVal[v.id] = 'close'; runCmd(v.id + '/command/off', v.id)"
+                                        data-ng-click="levelVal[v.id] = 'close'; runCmd(v.id + '/command/close', v.id)"
                                         ><i class="fa fa-lock"></i>
                                     </button>
                                     <button 
                                         class="btn widget-btn-on btn-sm"
                                         ng-class="levelVal[v.id]=='open' ? 'btn-primary': 'btn-default'"
-                                        data-ng-click="levelVal[v.id] = 'open'; runCmd(v.id + '/command/on', v.id)"
+                                        data-ng-click="levelVal[v.id] = 'open'; runCmd(v.id + '/command/open', v.id)"
                                         ><i class="fa fa-unlock"></i>
                                     </button>
                                 </div>
