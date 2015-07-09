@@ -48,6 +48,8 @@ myAppFactory.factory('dataFactory', function($http,$filter, $q, myCache, dataSer
         loadEnoceanDevices: loadEnoceanDevices,
         runEnoceanCmd: runEnoceanCmd,
         refreshEnoceanDevices: refreshEnoceanDevices,
+         getLicense: getLicense,
+        zmeCapabilities: zmeCapabilities,
         postReport: postReport
     });
 
@@ -600,6 +602,55 @@ myAppFactory.factory('dataFactory', function($http,$filter, $q, myCache, dataSer
         }, function(response) {// something went wrong
             return $q.reject(response);
         });
+    }
+    
+    /**
+     * Get license key
+     */
+    function getLicense(data) {
+        return $http({
+            method: 'post',
+            url: cfg.license_url,
+            data: $.param(data),
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            }
+        }).then(function(response) {
+            if (response.data.license.length > 1) {
+                return response.data.license;
+            } else {
+                // invalid response
+                return $q.reject(response);
+            }
+        }, function(response) {
+            // something went wrong
+            return $q.reject(response);
+        });
+    }
+
+    /**
+     * Set ZME Capabilities
+     */
+    function zmeCapabilities(data) {
+//        return $q.reject(data); // Test error response
+//        var deferred = $q.defer();
+//        deferred.resolve(data);
+//        return deferred.promise;// Test success response
+
+        return $http({
+            method: 'POST',
+            url: cfg.server_url + cfg.license_load_url,
+            data: $.param({license: data.toString()}),
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            }
+        }).then(function(response) {
+            return response;
+        }, function(response) {
+            // something went wrong
+            return $q.reject(response);
+        });
+
     }
     /**
      * Post report data

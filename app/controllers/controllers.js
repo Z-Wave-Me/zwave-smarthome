@@ -2122,12 +2122,12 @@ myAppController.controller('IncludeEnoceanController', function($scope, $interva
                 if (v.id == id) {
                     // if (v.data.rorg.value == rorg) {
                     var config = false;
-                    var name = '(#' + v.id +')';
+                    var name = '(#' + v.id + ')';
                     var profile = assignProfile(v.data);
                     if (profile) {
-                        name = profile._funcDescription +  ' (#' + v.id +')';
+                        name = profile._funcDescription + ' (#' + v.id + ')';
                     }
-                    
+
                     $scope.runCmd('controller.data.promisc=false');
                     $scope.lastIncludedDevice = {
                         id: v.id,
@@ -2254,10 +2254,10 @@ myAppController.controller('IncludeEnoceanController', function($scope, $interva
      */
     function assignProfile(device, profiles) {
         var profile = false;
-        var deviceProfileId =  parseInt($scope.device.rorg,16) + '_' + parseInt($scope.device.funcId,16) + '_' +  parseInt($scope.device.typeId,16);
+        var deviceProfileId = parseInt($scope.device.rorg, 16) + '_' + parseInt($scope.device.funcId, 16) + '_' + parseInt($scope.device.typeId, 16);
         angular.forEach($scope.enoceanProfiles, function(v, k) {
             var profileId = parseInt(v._rorg) + '_' + parseInt(v._func) + '_' + parseInt(v._type);
-            
+
             if (deviceProfileId == v.id) {
                 console.log(v.id)
                 profile = v;
@@ -3597,7 +3597,7 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
 /**
  * My Access
  */
-myAppController.controller('MyAccessController', function($scope, $window, $location, dataFactory, dataService, myCache) {
+myAppController.controller('MyAccessController', function($scope, $window, $location, $timeout, dataFactory, dataService, myCache) {
     $scope.id = $scope.user.id;
     $scope.devices = {};
     $scope.input = {
@@ -3618,6 +3618,21 @@ myAppController.controller('MyAccessController', function($scope, $window, $loca
     $scope.remoteAccess = false;
     $scope.newPassword = null;
 
+    // Licence
+    $scope.controllerUuid = null;
+    $scope.proccessLicence = false;
+    $scope.proccessVerify = {
+        'message': false,
+        'status': 'is-hidden'
+    };
+    $scope.proccessUpdate = {
+        'message': false,
+        'status': 'is-hidden'
+    };
+    $scope.inputLicence = {
+        "scratch_id": null
+    };
+
     /**
      * Load data
      */
@@ -3636,6 +3651,21 @@ myAppController.controller('MyAccessController', function($scope, $window, $loca
     if ($scope.id > 0) {
         $scope.loadData($scope.id);
     }
+    
+    /**
+     * Load ZwaveApiData
+     */
+    $scope.loadZwaveApiData = function() {
+        dataService.showConnectionSpinner();
+        dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
+            $scope.controllerUuid = ZWaveAPIData.controller.data.uuid.value;
+            dataService.updateTimeTick();
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    };
+
+    $scope.loadZwaveApiData();
 
     /**
      * Load Remote access data
@@ -3713,6 +3743,63 @@ myAppController.controller('MyAccessController', function($scope, $window, $loca
         });
 
     };
+
+    /**
+     * Get license key
+     */
+    $scope.getLicense = function(inputLicence) {
+        // Clear messages
+        $scope.proccessVerify.message = false;
+        $scope.proccessUpdate.message = false;
+        if (!inputLicence.scratch_id) {
+            return;
+        }
+
+        $scope.proccessVerify = {'message': $scope._t('verifying_licence_key'), 'status': 'fa fa-spinner fa-spin'};
+        $scope.proccessLicence = true;
+        var input = {
+            'uuid': $scope.controllerUuid,
+            'scratch': inputLicence.scratch_id
+        };
+
+//        $timeout(function() {
+//            $scope.proccessVerify = {'message': $scope._t('success_licence_key'), 'status': 'fa fa-check text-success'};
+//            updateCapabilities();
+//        }, 3000);
+        dataFactory.getLicense(input).then(function(response) {
+            $scope.proccessVerify = {'message': $scope._t('success_licence_key'), 'status': 'fa fa-check text-success'};
+            // Update capabilities
+            updateCapabilities(response);
+          }, function(error) {
+            var message = $scope._t('error_no_licence_key');
+            if (error.status == 404) {
+                var message = $scope._t('error_404_licence_key');
+            }
+            $scope.proccessVerify = {'message': message, 'status': 'fa fa-exclamation-triangle text-danger'};
+            $scope.proccessLicence = false;
+
+        });
+        return;
+    };
+
+    /**
+     * Update capabilities
+     */
+    function updateCapabilities(data) {
+        $scope.proccessUpdate = {'message': $scope._t('upgrading_capabilities'), 'status': 'fa fa-spinner fa-spin'};
+//        $timeout(function() {
+//             $scope.proccessUpdate = {'message': $scope._t('success_capabilities'), 'status': 'fa fa-check text-success'};
+//             $scope.proccessLicence = false;
+//        }, 3000);
+        dataFactory.zmeCapabilities(data).then(function(response) {
+            $scope.proccessUpdate = {'message': $scope._t('success_capabilities'), 'status': 'fa fa-check text-success'};
+             $scope.proccessLicence = false;
+        }, function(error) {
+            $scope.proccessUpdate = {'message': $scope._t('error_no_capabilities'), 'status': 'fa fa-exclamation-triangle text-danger'};
+             $scope.proccessLicence = false;
+        });
+    }
+    ;
 
     /**
      * Remote access
