@@ -5,12 +5,6 @@
     </div>
     <bb-alert alert="alert"></bb-alert>
     <div ng-if="hasEnOcean">
-        <div class="text-center device-autodetect">
-            <a href="#manage-enocean" class="btn btn-default"><i class="fa fa-edit"></i> {{_t('manage_enocean_devices')}}</a>
-        </div>
-        <div class="text-center device-autodetect">
-            <a href="#include-enocean" class="btn btn-default btn-lg btn-block"><i class="fa fa-wrench"></i> {{_t('inclusion_manualy')}}</a>
-        </div>
         <div class="row device-manufacturers" ng-hide="enoceanDevices">
             <div class="col-sm-2 col-device-vendor" ng-repeat="v in manufacturers">
                 <a ng-href="#devices/enocean/{{v.key}}" class="vendor-list">
@@ -31,7 +25,7 @@
                         </td>
 
                         <td class="td-action">
-                            <a href="#include-enocean/{{v.id}}" class="btn btn-default"><i class="fa fa-plug text-primary"></i> <span class="btn-name" ng-bind="_t('teach_in')"></span></a>
+                            <a href="#enocean/teachin/{{v.id}}" class="btn btn-default"><i class="fa fa-plug text-primary"></i> <span class="btn-name" ng-bind="_t('teach_in')"></span></a>
                         </td>
                     </tr>
                 </tbody>

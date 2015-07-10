@@ -3,7 +3,7 @@
     <div class="col-lg-4 col-md-6 col-sm-6 app-entry"
          id="local_module_{{v.id}}" 
          ng-repeat="v in modules| filter:q" 
-         ng-if="v.state !== 'camera'" ng-init="moduleName = v.moduleName || v.id">
+         ng-if="v.category !== 'surveillance'" ng-init="moduleName = v.moduleName || v.id">
        <div class="app-border app-gradient app-shadow app-entry-in" ng-class="onlineVersion[v.id] && onlineVersion[v.id] != v.version ? 'app-gradient-green': ''">
            <a href="#apps/local/{{v.id}}">
                 <img class="app-image" ng-src="{{moduleMediaUrl + moduleName + '/' + v.icon}}" ng-if="v.icon" alt="{{v.defaults.title}}" />

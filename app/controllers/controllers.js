@@ -1933,7 +1933,7 @@ myAppController.controller('EnoceanDeviceController', function($scope, $routePar
 /**
  * EnOcean teach In controller
  */
-myAppController.controller('EnoceanTeachinController', function($scope, $routeParams, $interval, $filter, dataFactory, dataService, myCache) {
+myAppController.controller('EnoceanTeachinController', function($scope, $routeParams, $interval, $location, dataFactory, dataService, myCache) {
     $scope.device = [];
     $scope.includedDevices = [];
     $scope.lastIncludedDevice = [];
@@ -2313,7 +2313,7 @@ myAppController.controller('EnoceanManageController', function($scope, $location
         if (confirm) {
             dataFactory.runEnoceanCmd(cmd).then(function(response) {
                 $(target).fadeOut(500);
-                $scope.loadData();
+                //$scope.loadData();
             }, function(error) {
                 alert($scope._t('error_delete_data'));
             });

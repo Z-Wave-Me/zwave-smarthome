@@ -1,4 +1,5 @@
 {   
+   "lb_expert_app_view":"Zeige Experten-Apps",
    "licence_upgrade": "Lizenzerweiterung",
     "licence_upgrade_info":"Ihr genutzter Z-Wave transceiver besitzt eine firmareinterne Funktionsverwaltung. Damit können bestimmte Funktionen und Begrenzungen wie die maximal Anzahl steuerbarer Geräte aktiviert oder deaktiviert werden.",
     "licence_key_insert": "Lizenzschlüssel eingeben",
@@ -117,6 +118,7 @@
     "lb_password": "Passwort",
     "lb_keep_logged": "Ich möchte angemeldet bleiben.",
     "nav_admin": "Nutzerverwaltung",
+    "nav_expertUi":"Öffne ExpertUI",
     "lb_add_user": "Neuer Benutzer",
     "lb_user": "Benutzer",
     "lb_local": "Lokaler Benutzer (Zugang nur über localhost bzw. 127.0.0.1 möglich)",

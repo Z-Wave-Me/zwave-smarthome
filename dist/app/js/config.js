@@ -1,7 +1,7 @@
 var config_data = {
     'cfg': {
         //Application name
-        'app_name': 'HAUI',
+        'app_name': 'SHUI',
         // Application version
         'app_version': '1.0.1',
         // Application type: web/app
@@ -55,6 +55,8 @@ var config_data = {
         'zwaveapi_run_url': 'ZWaveAPI/Run/',
         // Url to run Enocean cmd
         'enocean_run_url': 'EnOceanAPI/Run/',
+        // Url to data Enocean cmd
+        'enocean_data_url': 'EnOceanAPI/Data',
         // Url to config XML file
         'cfg_xml_url': 'config/Configuration.xml',
          // Url to get a license key
@@ -79,6 +81,7 @@ var config_data = {
             module: [1,3],
             devices: [1,3],
             myaccess: [1,2,3],
+            expert_view: [1,3],
             remote_access: [1,3],
             devices_include: [1,3],
             rooms: [1,2,3],
