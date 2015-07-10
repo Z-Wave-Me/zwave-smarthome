@@ -1,0 +1,15 @@
+<div ng-controller="EnoceanControllerController" class="mobile-padding">
+    <bb-loader></bb-loader> 
+     <!-- Enocean navigation -->
+    <div ng-include="'app/views/enocean/navi.html'"></div>
+    <div class="tab-content">
+        <table class="table table-report table-condensed">
+            <tbody>
+                <tr ng-repeat="(k,v) in controller" id="row_controller_{{ v}}" ng-if="controllerShow.indexOf(k) > -1">
+                    <td style="width: 30%;" ng-bind="k"></td>
+                    <td ng-bind="v.value"></td>
+                </tr>
+            </tbody>
+        </table>
+     </div>
+</div> <!-- /ng-controller --> 

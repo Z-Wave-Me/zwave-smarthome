@@ -123,23 +123,35 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     requireLogin: true,
                     roles: cfg.role_access.devices_include
                 }).
-                //Include Enocean device
-                when('/include-enocean/:device?', {
-                    templateUrl: 'app/views/devices/device_include_enocean.html',
+                //Enocean Devices
+                /*when('/enocean/devices/:brandname?', {
+                    templateUrl: 'app/views/enocean/devices.html',
                     requireLogin: true,
-                    roles: cfg.role_access.devices_include
+                    roles: cfg.role_access.devices
+                }).*/
+                //Enocean Teach-In
+                when('/enocean/teachin/:device', {
+                    templateUrl: 'app/views/enocean/teachin.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
                 }).
-                //Manage Enocean device
-                when('/manage-enocean', {
-                    templateUrl: 'app/views/devices/device_manage_enocean.html',
+                //Enocean devices
+                when('/enocean/manage', {
+                    templateUrl: 'app/views/enocean/manage.html',
                     requireLogin: true,
-                    roles: cfg.role_access.devices_include
+                    roles: cfg.role_access.devices
                 }).
-                //Edite Enocean device
-                when('/edit-enocean/:deviceId', {
-                    templateUrl: 'app/views/devices/device_edit_enocean.html',
+                //Enocean device manage
+                when('/enocean/manage/:deviceId', {
+                    templateUrl: 'app/views/enocean/manage_detail.html',
                     requireLogin: true,
-                    roles: cfg.role_access.devices_include
+                    roles: cfg.role_access.devices
+                }).
+                //Enocean controller
+                when('/enocean/controller', {
+                    templateUrl: 'app/views/enocean/controller.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
                 }).
                 //Rooms
                 when('/config-rooms', {

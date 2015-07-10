@@ -47,6 +47,7 @@ myAppFactory.factory('dataFactory', function($http,$filter, $q, myCache, dataSer
         runZwaveCmd: runZwaveCmd,
         loadEnoceanDevices: loadEnoceanDevices,
         runEnoceanCmd: runEnoceanCmd,
+        dataEnoceanCmd: dataEnoceanCmd,
         refreshEnoceanDevices: refreshEnoceanDevices,
          getLicense: getLicense,
         zmeCapabilities: zmeCapabilities,
@@ -575,6 +576,20 @@ myAppFactory.factory('dataFactory', function($http,$filter, $q, myCache, dataSer
         return $http({
             method: 'get',
             url: cfg.server_url + cfg.enocean_run_url + cmd
+        }).then(function(response) {
+            return response;
+        }, function(response) {// something went wrong
+            return $q.reject(response);
+        });
+    }
+    
+    /**
+     * Data Enocean command
+     */
+    function dataEnoceanCmd() {
+        return $http({
+            method: 'get',
+            url: cfg.server_url + cfg.enocean_data_url
         }).then(function(response) {
             return response;
         }, function(response) {// something went wrong
