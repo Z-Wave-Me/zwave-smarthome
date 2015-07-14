@@ -60,7 +60,7 @@ var config_data = {
         // Default language
         'lang': 'en',
         // List of supported languages
-        'lang_list': ['en', 'de', 'ru','cn'],
+        'lang_list': ['en', 'de', 'ru','cn', 'fr'],
         // Role access
         'role_access': {
             admin: [1],
@@ -86,7 +86,8 @@ var config_data = {
         'lang_codes': {
             'en': 'en_EN',
             'de': 'de_AT',
-            'ru': 'en_EN'
+            'ru': 'en_EN',
+            'fr': 'fr_FR'
         },
          // User default
         'user_default': {
