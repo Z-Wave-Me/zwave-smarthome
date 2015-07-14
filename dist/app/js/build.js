@@ -8961,11 +8961,16 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
      */
     $scope.loadModules = function(filter) {
         // var filter;
-        if ($scope.user.role === 1 && $scope.user.expert_view) {
-            filter = null;
+        if ($scope.cfg.app_type === 'default') {
+            if ($scope.user.role === 1 && $scope.user.expert_view) {
+                filter = null;
+            } else {
+                filter = {filter: "state", val: "hidden", not: true};
+            }
         } else {
             filter = {filter: "state", val: "hidden", not: true};
         }
+        //filter = {filter: "state", val: "hidden", not: true};
         dataFactory.getApi('modules').then(function(response) {
             $scope.modules = dataService.getData(response.data.data, filter, true);
             angular.forEach(response.data.data, function(v, k) {
@@ -9003,8 +9008,12 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     };
     $scope.loadInstances = function() {
         var filter;
-        if ($scope.user.role === 1 && $scope.user.expert_view) {
-            filter = null;
+         if ($scope.cfg.app_type === 'default') {
+            if ($scope.user.role === 1 && $scope.user.expert_view) {
+                filter = null;
+            } else {
+                filter = {filter: "state", val: "hidden", not: true};
+            }
         } else {
             filter = {filter: "state", val: "hidden", not: true};
         }
@@ -10034,11 +10043,11 @@ myAppController.controller('EnoceanTeachinController', function($scope, $routePa
     $scope.rooms = [];
     $scope.modelRoom;
     /*$scope.profile = {
-        set: null,
-        rorg: null,
-        funcId: null,
-        typeId: null
-    };*/
+     set: null,
+     rorg: null,
+     funcId: null,
+     typeId: null
+     };*/
     //$scope.autoinclusion = false;
     $scope.inclusion = {
         promisc: false,
@@ -10153,7 +10162,7 @@ myAppController.controller('EnoceanTeachinController', function($scope, $routePa
             $location.path('/error/' + error.status);
         });
     };
-    
+
     $scope.loadDevice();
 
     /**
@@ -10220,7 +10229,7 @@ myAppController.controller('EnoceanTeachinController', function($scope, $routePa
                         profile: profile
                     };
 
-                    
+
                     $scope.runCmd('devices["' + v.id + '"].data.funcId=' + $scope.device.funcId);
                     $scope.runCmd('devices["' + v.id + '"].data.typeId=' + +$scope.device.typeId);
                     $interval.cancel($scope.apiDataInterval);
@@ -10299,7 +10308,7 @@ myAppController.controller('EnoceanTeachinController', function($scope, $routePa
         return;
 
     };
-    
+
     /**
      * Assign profile to device
      */
@@ -10323,8 +10332,8 @@ myAppController.controller('EnoceanTeachinController', function($scope, $routePa
  * EnOcean manage  controller
  */
 myAppController.controller('EnoceanManageController', function($scope, $location, $window, dataFactory, dataService) {
-     $scope.activeTab = 'manage';
-     $scope.goEdit = [];
+    $scope.activeTab = 'manage';
+    $scope.goEdit = [];
     $scope.apiDevices = [];
     $scope.enoceanDevices = {};
 
@@ -10474,7 +10483,7 @@ myAppController.controller('EnoceanManageController', function($scope, $location
  * EnOcean manage detail  controller
  */
 myAppController.controller('EnoceanManageDetailController', function($scope, $routeParams, $location, $filter, dataFactory, dataService, myCache) {
-     $scope.nodeId = $routeParams.deviceId;
+    $scope.nodeId = $routeParams.deviceId;
     $scope.enoceanDevice = [];
     $scope.enoceanProfiles = {};
     $scope.input = {};
@@ -10691,11 +10700,11 @@ myAppController.controller('EnoceanManageDetailController', function($scope, $ro
  * EnOcean controller info controller
  */
 myAppController.controller('EnoceanControllerController', function($scope, $location, dataFactory, dataService) {
-     $scope.activeTab = 'controller';
-     $scope.controller = false;
-     $scope.controllerShow = ['APIVersion','AppDescription','AppVersion','ChipID','ChipVersion'];
-     
-     /**
+    $scope.activeTab = 'controller';
+    $scope.controller = false;
+    $scope.controllerShow = ['APIVersion', 'AppDescription', 'AppVersion', 'ChipID', 'ChipVersion'];
+
+    /**
      * Load enocean data
      */
     $scope.loadData = function() {
@@ -11725,7 +11734,7 @@ myAppController.controller('MyAccessController', function($scope, $window, $loca
     if ($scope.id > 0) {
         $scope.loadData($scope.id);
     }
-    
+
     /**
      * Load ZwaveApiData
      */
@@ -11844,7 +11853,7 @@ myAppController.controller('MyAccessController', function($scope, $window, $loca
             $scope.proccessVerify = {'message': $scope._t('success_licence_key'), 'status': 'fa fa-check text-success'};
             // Update capabilities
             updateCapabilities(response);
-          }, function(error) {
+        }, function(error) {
             var message = $scope._t('error_no_licence_key');
             if (error.status == 404) {
                 var message = $scope._t('error_404_licence_key');
@@ -11867,10 +11876,10 @@ myAppController.controller('MyAccessController', function($scope, $window, $loca
 //        }, 3000);
         dataFactory.zmeCapabilities(data).then(function(response) {
             $scope.proccessUpdate = {'message': $scope._t('success_capabilities'), 'status': 'fa fa-check text-success'};
-             $scope.proccessLicence = false;
+            $scope.proccessLicence = false;
         }, function(error) {
             $scope.proccessUpdate = {'message': $scope._t('error_no_capabilities'), 'status': 'fa fa-exclamation-triangle text-danger'};
-             $scope.proccessLicence = false;
+            $scope.proccessLicence = false;
         });
     }
     ;
