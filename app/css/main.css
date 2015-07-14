@@ -770,95 +770,96 @@ http://codepen.io/MattIn4D/pen/LiKFC
 .navbar-visible {
   position: relative;
 }
-/* line 12, sass/globals/_navigation.scss */
-.navbar-visible .navbar-visible-in {
+
+/* line 13, sass/globals/_navigation.scss */
+.navbar-visible-in {
   line-height: 50px;
   position: absolute;
 }
-/* line 16, sass/globals/_navigation.scss */
-.navbar-visible .navbar-visible-in .divider-vertical {
+/* line 17, sass/globals/_navigation.scss */
+.navbar-visible-in .divider-vertical {
   height: 50px;
 }
-/* line 19, sass/globals/_navigation.scss */
-.navbar-visible .navbar-visible-in a {
+/* line 20, sass/globals/_navigation.scss */
+.navbar-visible-in a {
   display: inline-block;
   padding: 0 15px;
   color: #5d5d5d;
   line-height: 50px;
 }
-/* line 24, sass/globals/_navigation.scss */
-.navbar-visible .navbar-visible-in a .fa {
+/* line 25, sass/globals/_navigation.scss */
+.navbar-visible-in a .fa {
   font-size: 140%;
 }
-/* line 28, sass/globals/_navigation.scss */
-.navbar-visible .navbar-visible-in a:hover {
+/* line 29, sass/globals/_navigation.scss */
+.navbar-visible-in a:hover {
   color: #DA131F;
 }
-/* line 31, sass/globals/_navigation.scss */
-.navbar-visible .navbar-visible-in .active {
+/* line 32, sass/globals/_navigation.scss */
+.navbar-visible-in .active {
   background-color: #DDDDDD;
   color: #fff;
 }
 
-/* line 40, sass/globals/_navigation.scss */
+/* line 41, sass/globals/_navigation.scss */
 .header-logo img {
   max-height: 40px;
   max-width: 100px;
 }
 
-/* line 46, sass/globals/_navigation.scss */
+/* line 47, sass/globals/_navigation.scss */
 .navi-time {
   padding-left: 10px;
 }
 
-/* line 49, sass/globals/_navigation.scss */
+/* line 50, sass/globals/_navigation.scss */
 .mobile-icon {
   padding-left: 7px;
   color: #5d5d5d;
 }
 
-/* line 53, sass/globals/_navigation.scss */
+/* line 54, sass/globals/_navigation.scss */
 .lang-switch {
   text-transform: uppercase;
 }
 
-/* line 56, sass/globals/_navigation.scss */
+/* line 57, sass/globals/_navigation.scss */
 .lang-switch-current {
   display: inline-block;
   width: 24px;
   height: 24px;
 }
 
-/* line 62, sass/globals/_navigation.scss */
+/* line 63, sass/globals/_navigation.scss */
 .navbar-inverse {
   background-color: #E9E9E9;
   border-color: transparent;
   border-bottom: solid 4px #DDDDDD;
   color: #DDDDDD;
 }
-/* line 68, sass/globals/_navigation.scss */
+/* line 69, sass/globals/_navigation.scss */
 .navbar-inverse .navbar-nav .dropdown-toggle {
   color: #5d5d5d;
 }
-/* line 71, sass/globals/_navigation.scss */
+/* line 72, sass/globals/_navigation.scss */
 .navbar-inverse .navbar-nav .dropdown-toggle:hover {
   color: #5d5d5d;
 }
 
-/* line 77, sass/globals/_navigation.scss */
+/* line 78, sass/globals/_navigation.scss */
 .navbar-inverse_ .navbar-nav .dropdown-toggle {
   color: #DDDDDD;
 }
 
 /* Collapse */
-/* line 82, sass/globals/_navigation.scss */
+/* line 83, sass/globals/_navigation.scss */
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > .active > a:focus {
   background-color: #DDDDDD;
 }
 
-/* line 88, sass/globals/_navigation.scss */
+/* line 89, sass/globals/_navigation.scss */
 .navbar-inverse .navbar-nav > .open > a,
 .navbar-inverse .navbar-nav > .open > a:hover,
 .navbar-inverse .navbar-nav > .open > a:focus {
@@ -866,7 +867,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   color: #DA131F;
 }
 
-/* line 95, sass/globals/_navigation.scss */
+/* line 96, sass/globals/_navigation.scss */
 .navbar-inverse .dropdown-menu > .active > a,
 .navbar-inverse .dropdown-menu > .active > a:hover,
 .navbar-inverse .dropdown-menu > .active > a:focus {
@@ -874,14 +875,14 @@ http://codepen.io/MattIn4D/pen/LiKFC
   color: #5d5d5d;
 }
 
-/* line 104, sass/globals/_navigation.scss */
+/* line 105, sass/globals/_navigation.scss */
 .navbar-inverse .dropdown-menu > li > a:hover,
 .navbar-inverse .dropdown-menu > li > a:focus {
   background-color: #DDDDDD;
   color: #DA131F;
 }
 
-/* line 110, sass/globals/_navigation.scss */
+/* line 111, sass/globals/_navigation.scss */
 .navbar .divider-vertical {
   height: 50px;
   /*    margin: 0 9px;*/
@@ -889,22 +890,22 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-right: 1px solid white;
 }
 
-/* line 116, sass/globals/_navigation.scss */
+/* line 117, sass/globals/_navigation.scss */
 .dropdown-menu {
   border: 1px solid #DDDDDD;
 }
-/* line 119, sass/globals/_navigation.scss */
+/* line 120, sass/globals/_navigation.scss */
 .dropdown-menu .divider {
   background-color: #DDDDDD;
 }
 
-/* line 124, sass/globals/_navigation.scss */
+/* line 125, sass/globals/_navigation.scss */
 .navbar-nav > li > a {
   padding-top: 15px;
   padding-bottom: 10px;
 }
 
-/* line 129, sass/globals/_navigation.scss */
+/* line 130, sass/globals/_navigation.scss */
 .dropdown > .dropdown-menu::before, .dropdown > .dropdown-menu::after {
   content: '';
   display: inline-block;
@@ -918,7 +919,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   right: 12px;
 }
 
-/* line 143, sass/globals/_navigation.scss */
+/* line 144, sass/globals/_navigation.scss */
 .dropdown > .dropdown-menu::after {
   border-left-width: 6px;
   border-right-width: 6px;
@@ -933,23 +934,23 @@ http://codepen.io/MattIn4D/pen/LiKFC
     left: auto;
     right: 13px;
 }*/
-/* line 159, sass/globals/_navigation.scss */
+/* line 160, sass/globals/_navigation.scss */
 .only-icon .only-icon-menu i {
   font-size: 18px;
 }
 
-/* line 163, sass/globals/_navigation.scss */
+/* line 164, sass/globals/_navigation.scss */
 .only-icon-menu span {
   display: none;
 }
 
-/* line 167, sass/globals/_navigation.scss */
+/* line 168, sass/globals/_navigation.scss */
 .dropdown-menu a i {
   padding-right: 10px;
 }
 
 /** Profile colors */
-/* line 172, sass/globals/_navigation.scss */
+/* line 173, sass/globals/_navigation.scss */
 .profile-dddddd {
   /* Visible */
 }
@@ -962,7 +963,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-color: #dddddd;
 }
 
-/* line 175, sass/globals/_navigation.scss */
+/* line 176, sass/globals/_navigation.scss */
 .profile-6c7a89 {
   /* Visible */
 }
@@ -975,7 +976,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-color: #6c7a89;
 }
 
-/* line 178, sass/globals/_navigation.scss */
+/* line 179, sass/globals/_navigation.scss */
 .profile-6494bc {
   /* Visible */
 }
@@ -988,7 +989,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-color: #6494bc;
 }
 
-/* line 181, sass/globals/_navigation.scss */
+/* line 182, sass/globals/_navigation.scss */
 .profile-80ad80 {
   /* Visible */
 }
@@ -1001,7 +1002,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-color: #80ad80;
 }
 
-/* line 184, sass/globals/_navigation.scss */
+/* line 185, sass/globals/_navigation.scss */
 .profile-31b0d5 {
   /* Visible */
 }
@@ -1014,7 +1015,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-color: #31b0d5;
 }
 
-/* line 187, sass/globals/_navigation.scss */
+/* line 188, sass/globals/_navigation.scss */
 .profile-f0aD4e {
   /* Visible */
 }
@@ -1027,7 +1028,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-color: #f0aD4e;
 }
 
-/* line 190, sass/globals/_navigation.scss */
+/* line 191, sass/globals/_navigation.scss */
 .profile-d9534f {
   /* Visible */
 }
@@ -1040,7 +1041,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-color: #d9534f;
 }
 
-/* line 193, sass/globals/_navigation.scss */
+/* line 194, sass/globals/_navigation.scss */
 .profile-dd976e {
   /* Visible */
 }
@@ -3142,3 +3143,91 @@ padding-right: 5px;
 
 /* WD css
 -------------------------------------------------- */
+/* Typo
+-------------------------------------------------- */
+/* line 5, sass/globals/_app_wd.scss */
+a:hover {
+  color: #0096f1;
+}
+
+/* Navigation
+-------------------------------------------------- */
+/* line 11, sass/globals/_app_wd.scss */
+.app-type-wd {
+  /* Tabs
+  -------------------------------------------------- */
+}
+/* line 12, sass/globals/_app_wd.scss */
+.app-type-wd .navbar-inverse {
+  background-color: #0066A4;
+  color: #00376D;
+}
+/* line 18, sass/globals/_app_wd.scss */
+.app-type-wd .navbar-inverse .navbar-nav .dropdown-toggle {
+  color: #fff;
+}
+/* line 21, sass/globals/_app_wd.scss */
+.app-type-wd .navbar-inverse .navbar-nav .dropdown-toggle:hover {
+  color: #fff;
+}
+/* line 27, sass/globals/_app_wd.scss */
+.app-type-wd navbar-inverse .navbar-nav > .open > a,
+.app-type-wd .navbar-inverse .navbar-nav > .open > a:hover,
+.app-type-wd .navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: #00376D;
+  color: #16a4f7;
+}
+/* line 34, sass/globals/_app_wd.scss */
+.app-type-wd .navbar-inverse .dropdown-menu > .active > a,
+.app-type-wd .navbar-inverse .dropdown-menu > .active > a:hover,
+.app-type-wd .navbar-inverse .dropdown-menu > .active > a:focus {
+  background-color: #0066A4;
+  color: #fff;
+}
+/* line 40, sass/globals/_app_wd.scss */
+.app-type-wd .navbar-inverse .dropdown-menu > li > a:hover,
+.app-type-wd .navbar-inverse .dropdown-menu > li > a:focus {
+  background-color: #16a4f7;
+  color: #fff;
+}
+/* line 47, sass/globals/_app_wd.scss */
+.app-type-wd .navbar-visible-in .divider-vertical {
+  height: 50px;
+}
+/* line 50, sass/globals/_app_wd.scss */
+.app-type-wd .navbar-visible-in a {
+  color: #fff;
+}
+/* line 53, sass/globals/_app_wd.scss */
+.app-type-wd .navbar-visible-in a:hover {
+  color: #16a4f7;
+}
+/* line 56, sass/globals/_app_wd.scss */
+.app-type-wd .navbar-visible-in .active {
+  background-color: #00376D;
+  color: #fff;
+}
+/* line 63, sass/globals/_app_wd.scss */
+.app-type-wd .header-logo img {
+  max-height: 40px;
+  max-width: 70px;
+}
+/* line 70, sass/globals/_app_wd.scss */
+.app-type-wd #update_time_tick .text-success {
+  color: #fff;
+}
+/* line 76, sass/globals/_app_wd.scss */
+.app-type-wd .navbar .divider-vertical {
+  border-left: 1px solid #001d3a;
+  border-right: 1px solid #005eba;
+}
+/* line 84, sass/globals/_app_wd.scss */
+.app-type-wd .nav-tabs > li.active > a,
+.app-type-wd .nav-tabs > li.active > a:hover,
+.app-type-wd .nav-tabs > li.active > a:focus {
+  color: #0066A4;
+}
+/* line 90, sass/globals/_app_wd.scss */
+.app-type-wd .nav-tabs > li.active > a i {
+  color: #0066A4;
+}
