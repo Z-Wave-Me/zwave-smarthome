@@ -5,7 +5,7 @@ var config_data = {
         // Application version
         'app_version': '1.0.1',
         // Application type: web/app
-        'app_type': 'web',
+        'app_type': 'default',
         // Server base url
         'server_url': '/', 
         //'server_url': 'http://192.168.10.119:8083/',
