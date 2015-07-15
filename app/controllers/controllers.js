@@ -203,6 +203,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.rooms = [];
     $scope.history = [];
     $scope.historyStatus = [];
+    $scope.multilineSensor = false;
     $scope.levelVal = [];
     $scope.rgbVal = [];
     $scope.chartOptions = {
@@ -312,23 +313,42 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         $scope.history[deviceId] = {data: false, icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('history', '/' + deviceId + '?show=24', true).then(function(response) {
             if (!response.data.data.deviceHistory) {
-                $scope.history[deviceId] = {data: false, icon: 'fa-exclamation-triangle text-warning', message: $scope._t('no_data')};
+                $scope.history[deviceId] = {data: false, icon: 'fa-info-circle text-warning', message: $scope._t('no_data')};
                 return;
             }
             var data = dataService.getChartData(response.data.data.deviceHistory, $scope.cfg.chart_colors);
             $scope.history[deviceId] = {data: data};
         }, function(error) {
-            $scope.history[deviceId] = {data: false, icon: 'fa-exclamation-triangle text-warning', message: $scope._t('no_data')};
+            $scope.history[deviceId] = {data: false, icon: 'fa-exclamation-triangle text-danger', message: $scope._t('error_load_data')};
         });
 
     };
 
     /**
-     * Show modal window
+     * Show camera modal window
      */
     $scope.showModal = function(target, input) {
         $scope.input = input;
         $(target).modal();
+    };
+    
+     /**
+     * Show Multiline Sensor modal window
+     */
+    $scope.loadMultilineSensor = function(target, id,input) {
+        $(target).modal();
+        $scope.input = input;
+        $scope.multilineSensor = {data: false, icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+         dataFactory.getApi('devices', '/' + id,true).then(function(response) {
+            if(response.data.data.metrics.sensors){
+                $scope.multilineSensor = {data: response.data.data};
+            }else{
+                $scope.multilineSensor = {data: false, icon: 'fa-info-circle text-warning', message: $scope._t('no_data')};
+            }
+        }, function(error) {
+            $scope.multilineSensor = {data: false, icon: 'fa-exclamation-triangle text-danger', message: $scope._t('error_load_data')};
+        });
+        
     };
     /**
      * Run command
