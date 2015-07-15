@@ -900,7 +900,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
      * Load online modules
      */
     $scope.loadOnlineModules = function() {
-        return;
+        //return;
         // Uncomment after integration
         dataFactory.getRemoteData($scope.cfg.online_module_url).then(function(response) {
             $scope.onlineModules = response.data;
@@ -959,11 +959,11 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
             case 'hidden':
                 $scope.showInFooter.categories = false;
                 break;
-            case 'online':
-                $scope.loadOnlineModules();
-                $scope.loadModules();
-                $scope.showInFooter.categories = false;
-                break;
+//            case 'online':
+//                $scope.loadOnlineModules();
+//                $scope.loadModules();
+//                $scope.showInFooter.categories = false;
+//                break;
             default:
                 $scope.showInFooter.categories = true;
                 $scope.$watch('category', function() {
