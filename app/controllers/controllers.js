@@ -1960,6 +1960,13 @@ myAppController.controller('EnoceanDeviceController', function($scope, $routePar
 //    $scope.loadData($routeParams.brandname);
 });
 /**
+ * EnOcean manual controller
+ */
+myAppController.controller('EnoceanManualController', function($scope, $routeParams, dataFactory, dataService) {
+    $scope.activeTab = 'manual';
+    
+});
+/**
  * EnOcean teach In controller
  */
 myAppController.controller('EnoceanTeachinController', function($scope, $routeParams, $interval, $location, dataFactory, dataService, myCache) {
@@ -2413,6 +2420,7 @@ myAppController.controller('EnoceanManageController', function($scope, $location
  * EnOcean manage detail  controller
  */
 myAppController.controller('EnoceanManageDetailController', function($scope, $routeParams, $location, $filter, dataFactory, dataService, myCache) {
+    $scope.activeTab = 'manage';
     $scope.nodeId = $routeParams.deviceId;
     $scope.enoceanDevice = [];
     $scope.enoceanProfiles = {};

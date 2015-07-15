@@ -153,6 +153,12 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     requireLogin: true,
                     roles: cfg.role_access.devices
                 }).
+                //Enocean manual
+                when('/enocean/manual', {
+                    templateUrl: 'app/views/enocean/manual.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
+                }).
                 //Rooms
                 when('/config-rooms', {
                     templateUrl: 'app/views/rooms/config_rooms.html',
