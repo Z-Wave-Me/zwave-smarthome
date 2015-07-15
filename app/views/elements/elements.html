@@ -9,7 +9,7 @@
                 <!-- {{v.id}}: {{levelVal[v.id]}} icon {{v.icon}} -->
                 <div class="widget-block-in clearfix app-border app-gradient app-shadow">
                     <!-- Widget icon -->
-                    <img ng-if="v.deviceType === 'text'" ng-show="v.metrics.img" class="widget-image" ng-src="{{v.metrics.img}}" alt="{{v.title}}" ng-click="goHidden[v.id] = !goHidden[v.id]" />
+                    <img ng-if="v.deviceType === 'text'" ng-show="v.metrics.icon" class="widget-image" ng-src="{{v.metrics.icon}}" alt="{{v.title}}" ng-click="goHidden[v.id] = !goHidden[v.id]" />
                     <img id="widget_img_{{v.id}}" class="widget-image" ng-if="v.deviceType !== 'text'"  ng-src="{{v.icon|getElementIcon:v:levelVal[v.id]}}" alt="img" ng-click="goHidden[v.id] = !goHidden[v.id]" />
 
                     <!-- Widget header -->
@@ -19,7 +19,7 @@
                     </div>
 
                     <!-- Widget body -->
-                    <div class="widget-body" ng-class="{'text-widget': v.deviceType == 'text','text-widget-no-img': v.deviceType == 'text' && v.metrics.img == ''}" ng-mouseleave="goHidden[v.id] = false; goHistory[v.id] = false;" >
+                    <div class="widget-body" ng-class="{'text-widget': v.deviceType == 'text','text-widget-no-img': v.deviceType == 'text' && v.metrics.icon == ''}" ng-mouseleave="goHidden[v.id] = false; goHistory[v.id] = false;" >
 
                         <h3 ng-if="v.deviceType === 'text'" class="entry-title" title="{{v.title}}" ng-click="goHidden[v.id] = !goHidden[v.id]">{{v.title|cutText:true:29}}</h3>
                         <h3 ng-if="v.deviceType !== 'text'" class="entry-title" title="{{v.title}}" ng-click="goHidden[v.id] = !goHidden[v.id]">{{v.title}}</h3>
@@ -214,7 +214,7 @@
                             <!-- text -->
                             <div ng-switch-when="text">
                                 <div class="widget-control control-left widget-click-popup text">
-                                    <a href="" ng-click="showModal('#modal_promo', {'type': v.deviceType, 'title': v.title, 'text': v.metrics.text, 'url': v.metrics.img})" ng-bind="v.metrics.text|stripTags|cutText:true:60"></a>
+                                    <a href="" ng-click="showModal('#modal_promo', {'type': v.deviceType, 'title': v.title, 'text': v.metrics.text, 'url': v.metrics.icon})" ng-bind="v.metrics.text|stripTags|cutText:true:60"></a>
                                 </div>
                             </div>
 
