@@ -96,8 +96,8 @@
                 <p><a ng-href="{{cfg.buy_licence_key}}" class="btn btn-info">{{_t('btn_licence_buy')}}</a></p>
                 -->
                 <!-- password -->
-                 <div class="form-group form-inline">
-                     <p>{{_t('licence_upgrade_key')}}</p>
+                <div class="form-group form-inline">
+                    <p>{{_t('licence_upgrade_key')}}</p>
                     <label>{{_t('licence_key_insert')}}:</label>
                     <input
                         class="form-control form-control-sm" 
@@ -107,19 +107,19 @@
                         value="" 
                         ng-model="inputLicence.scratch_id" />
                     <button type="submit" class="btn btn-primary" ng-bind="_t('btn_licence_verify')" ng-disabled="proccessLicence"></button>
-               
-                <div><br />
-                     <p ng-if="proccessVerify.message">
-                    <i class="fa-lg" ng-class="proccessVerify.status"></i> <strong ng-bind="proccessVerify.message"></strong>
-                    </p>
-                    <p ng-if="proccessUpdate.message">
-                        <i class="fa-lg" ng-class="proccessUpdate.status"></i> <strong ng-bind="proccessUpdate.message"></strong>
-                    </p>
+
+                    <div><br />
+                        <p ng-if="proccessVerify.message">
+                            <i class="fa-lg" ng-class="proccessVerify.status"></i> <strong ng-bind="proccessVerify.message"></strong>
+                        </p>
+                        <p ng-if="proccessUpdate.message">
+                            <i class="fa-lg" ng-class="proccessUpdate.status"></i> <strong ng-bind="proccessUpdate.message"></strong>
+                        </p>
+                    </div>
                 </div>
-                     </div>
             </fieldset> 
         </form>
-        
+
         <!-- ///////////////////////////// Remote accessForm ///////////////////////////// -->
         <form name="form_remote" id="form_remote" class="form form-page" ng-submit="putRemoteAccess(remoteAccess, newRemoteAccessPassword)"  ng-if="elementAccess(cfg.role_access.remote_access)" novalidate>
             <fieldset>
@@ -153,8 +153,8 @@
                 </div>
             </fieldset>
             <fieldset class="submit-entry">
-                        <button type="submit" class="btn btn-primary" ng-bind="_t('lb_submit')"></button>
-                    </fieldset>
+                <button type="submit" class="btn btn-primary" ng-bind="_t('lb_submit')"></button>
+            </fieldset>
         </form>
 
         <!-- ///////////////////////////// Change password Form ///////////////////////////// -->
@@ -164,17 +164,51 @@
                 <!-- login  -->
                 <p class="form-control-static">
                     <span ng-bind="_t('lb_login')"></span>: <strong ng-bind="input.login"></strong>
-                 </p>
+                </p>
                 <!-- password -->
                 <div>
                     <label>{{_t('lb_new_password')}}: </label>
                     <input name="password" id="password" type="password" class="form-control form-control-sm" value="" ng-model="newPassword" />
                 </div>
-               
+
             </fieldset>
-             <fieldset class="submit-entry">
-                    <button type="submit" class="btn btn-primary" ng-bind="_t('lb_submit')"></button>
-                </fieldset>
+            <fieldset class="submit-entry">
+                <button type="submit" class="btn btn-primary" ng-bind="_t('lb_submit')"></button>
+            </fieldset>
+        </form>
+
+        <!-- ///////////////////////////// Back up and Restore ///////////////////////////// -->
+        <form name="form_restore" id="form_restore" class="form form-page" ng-submit="changePassword(newPassword)" novalidate>
+            <fieldset>
+                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('nm_backup_title')"></span></h3>
+                <!-- Restore -->
+                <a class="btn btn-primary" href="{{cfg.server_url}}ZWaveAPI/Backup" ng-if="!goRestore">{{_t('nm_backup_download')}}</a>
+                <!-- Restore -->
+                <button class="btn btn-info" ng-click="goRestore = !goRestore" ng-bind="goRestore ? _t('lb_cancel') : _t('nm_restore_backup_upload')"></button>
+
+            </fieldset>
+            <fieldset ng-if="goRestore">
+                <div class="alert alert-warning">
+                    <input type="checkbox" name="restore_confirm" value="1" id="restore_confirm" ng-click="goRestoreUpload = !goRestoreUpload" /> <span ng-bind="_t('are_you_sure_restore')"></span>
+                </div>
+                <div ng-if="goRestoreUpload">
+                    <input 
+                        type="checkbox" 
+                        name="restore_chip_info"
+                        id="restore_chip_info" 
+                        value="1" 
+                        ng-true-value="1" 
+                        ng-false-value="0" 
+                        ng-model="modelRestoreChipInfo" /> {{_t('restore_backup_chip')}}
+
+                    <div class="form-group">
+                        <input type="file" class="form-control_" file-model="myFile" /><br /> 
+                       <button type="button" class="btn btn-success" id="btn_upload_img" ng-click="uploadFile()"><i class="fa fa-download"></i> {{_t('nm_restore_pick_up')}}</button>
+                    </div>
+
+                </div>
+
+            </fieldset>
         </form>
 
     </div>

@@ -1,5 +1,8 @@
 <div ng-controller="EnoceanManageDetailController" class="mobile-padding">
     <bb-loader></bb-loader> 
+    <!-- Enocean navigation -->
+    <div ng-include="'app/views/enocean/navi.html'"></div>
+     <div class="tab-content">
     <div class="page-header">
         <h1><span ng-bind="_t('enocean_device')"></span>: {{input.name}} (#{{input.id}})</h1>
     </div>
@@ -61,4 +64,5 @@
      <div class="submit-entry">
             <button class="btn btn-default" ng-bind="_t('ok')" bb-go-back></button>
         </div>
+   </div>
 </div> <!-- /ng-controller --> 
