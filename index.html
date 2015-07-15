@@ -88,10 +88,10 @@
                                 <li ng-class="isActive('devices')" ng-if="elementAccess(cfg.role_access.devices)"><a href="#devices" data-collapse-navbar><i class="fa fa-cogs"></i> {{_t('nav_devices')}}</a></li>
                                 <li ng-class="isActive('config-rooms')" ng-if="elementAccess(cfg.role_access.config_rooms)"><a href="#config-rooms" data-collapse-navbar><i class="fa fa-building-o"></i> {{_t('nav_rooms')}}</a></li>
                                 <li ng-class="isActive('network')"><a href="#network" data-collapse-navbar><i class="fa fa-sitemap"></i> {{_t('nav_network_health')}}</a></li>
-                                <li ng-class="isActive('myaccess')" ng-if="elementAccess(cfg.role_access.myaccess)"><a href="#myaccess" data-collapse-navbar><i class="fa fa-key"></i> {{_t('nav_myaccess')}}</a></li>
+                                <li ng-class="isActive('myaccess')" ng-if="elementAccess(cfg.role_access.myaccess)"><a href="#myaccess" data-collapse-navbar><i class="fa fa-user"></i> {{_t('nav_myaccess')}}</a></li>
+                                <li ng-class="isActive('admin')" ng-if="elementAccess(cfg.role_access.admin)"><a href="#admin" data-collapse-navbar><i class="fa fa-wrench"></i> {{_t('management')}}</a></li>
                                 <li class="divider"></li>
                                 <li ng-class="isActive('report')"><a href="#report" data-collapse-navbar><i class="fa fa-bug"></i> {{_t('nav_report')}}</a></li>
-                                <li ng-class="isActive('admin')" ng-if="elementAccess(cfg.role_access.admin)"><a href="#admin" data-collapse-navbar><i class="fa fa-users"></i> {{_t('nav_admin')}}</a></li>
                                 <li ng-class="isActive('expertUi')" ng-if="elementAccess(cfg.role_access.admin) && cfg.app_type === 'default'"><a href="/expert" target="_blank" data-collapse-navbar><i class="fa fa-external-link"></i> {{_t('nav_expertUi')}}</a></li>
                                 <li ng-if="elementAccess(null,isMobile)"><a href="#logout" data-collapse-navbar><i class="fa fa-sign-out"></i> {{_t('nav_logout')}}</a></li>
                             </ul>

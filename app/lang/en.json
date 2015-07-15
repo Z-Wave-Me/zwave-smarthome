@@ -7,6 +7,7 @@
     "are_you_sure_restore": "Are your sure ot overwrite the network configuration. Have you created a backup?",
     "restore_backup_chip": "Also restore network topology information (please read the user manual first!)",
     "nm_restore_pick_up": "Pick up the file",
+    "management": "Management",
     "enocean_manual": "Manual",
     "controller_info": "Controller info",
     "manage": "Manage",
