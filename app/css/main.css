@@ -607,16 +607,9 @@ fieldset.submit-entry {
   border: solid 4px black !important;
 }
 
-/* Alpaca
--------------------------------------------------- */
-/* line 289, sass/globals/_body.scss */
-.alpaca-message-invalidValueOfEnum {
-  display: none !important;
-}
-
 /* Page
 -------------------------------------------------- */
-/* line 295, sass/globals/_body.scss */
+/* line 289, sass/globals/_body.scss */
 #main_content {
   margin-top: 70px;
   margin-bottom: 20px;
@@ -624,13 +617,13 @@ fieldset.submit-entry {
 
 /* Modal
 -------------------------------------------------- */
-/* line 301, sass/globals/_body.scss */
+/* line 295, sass/globals/_body.scss */
 .modal-tooltip {
   width: 40%;
   /* or whatever you wish */
 }
 
-/* line 304, sass/globals/_body.scss */
+/* line 298, sass/globals/_body.scss */
 .modal-vertical-centered {
   position: fixed;
   top: 15% !important;
@@ -654,7 +647,7 @@ vertical-align: middle;
 }*/
 /* Tooltip
 -------------------------------------------------- */
-/* line 329, sass/globals/_body.scss */
+/* line 323, sass/globals/_body.scss */
 .tooltip-inner {
   background-color: #F6F6F6;
   color: #000;
@@ -663,28 +656,28 @@ vertical-align: middle;
   text-align: left;
 }
 
-/* line 336, sass/globals/_body.scss */
+/* line 330, sass/globals/_body.scss */
 .tooltip-arrow {
   border-bottom-color: #f2f2f2;
 }
 
 /* Pagination
 -------------------------------------------------- */
-/* line 342, sass/globals/_body.scss */
+/* line 336, sass/globals/_body.scss */
 .pagination > li > a, .pagination > li > span {
   color: #DA131F;
   background-color: #FFF;
   border: 1px solid #d3d3d3;
 }
 
-/* line 348, sass/globals/_body.scss */
+/* line 342, sass/globals/_body.scss */
 .pagination > li > a:hover, .pagination > li > a:focus, .pagination > li > span:hover, .pagination > li > span:focus {
   color: #DA131F;
   background-color: #F6F6F6;
   border-color: #d3d3d3;
 }
 
-/* line 354, sass/globals/_body.scss */
+/* line 348, sass/globals/_body.scss */
 .pagination > .disabled > a, .pagination > .disabled > a:hover, .pagination > .disabled > a:focus {
   color: #777777;
   background-color: #FFF;
@@ -692,7 +685,7 @@ vertical-align: middle;
   cursor: not-allowed;
 }
 
-/* line 361, sass/globals/_body.scss */
+/* line 355, sass/globals/_body.scss */
 .pagination > .active > a, .pagination > .active > a:hover {
   color: #fff;
   background-color: #d3d3d3;
@@ -702,7 +695,7 @@ vertical-align: middle;
 /* Absolute Center CSS Spinner
 http://codepen.io/MattIn4D/pen/LiKFC
 -------------------------------------------------- */
-/* line 370, sass/globals/_body.scss */
+/* line 364, sass/globals/_body.scss */
 #loading {
   position: fixed;
   z-index: 999;
@@ -716,7 +709,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   right: 0;
   text-align: center;
 }
-/* line 382, sass/globals/_body.scss */
+/* line 376, sass/globals/_body.scss */
 #loading .loading-in {
   position: relative;
   z-index: 1000;
@@ -728,14 +721,14 @@ http://codepen.io/MattIn4D/pen/LiKFC
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 393, sass/globals/_body.scss */
+/* line 387, sass/globals/_body.scss */
 #loading a {
   font-weight: bold;
   text-decoration: underline;
 }
 
 /* Transparent Overlay */
-/* line 400, sass/globals/_body.scss */
+/* line 394, sass/globals/_body.scss */
 .loading-spin:before {
   content: '';
   display: block;
@@ -747,7 +740,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-/* line 411, sass/globals/_body.scss */
+/* line 405, sass/globals/_body.scss */
 .loading-fade {
   opacity: 0;
   -webkit-transition: opacity 4s;
@@ -770,94 +763,96 @@ http://codepen.io/MattIn4D/pen/LiKFC
 .navbar-visible {
   position: relative;
 }
-/* line 12, sass/globals/_navigation.scss */
-.navbar-visible .navbar-visible-in {
+
+/* line 13, sass/globals/_navigation.scss */
+.navbar-visible-in {
   line-height: 50px;
   position: absolute;
 }
-/* line 16, sass/globals/_navigation.scss */
-.navbar-visible .navbar-visible-in .header-logo img {
-  max-height: 40px;
-  max-width: 100px;
-}
-/* line 21, sass/globals/_navigation.scss */
-.navbar-visible .navbar-visible-in .divider-vertical {
+/* line 17, sass/globals/_navigation.scss */
+.navbar-visible-in .divider-vertical {
   height: 50px;
 }
-/* line 24, sass/globals/_navigation.scss */
-.navbar-visible .navbar-visible-in a {
+/* line 20, sass/globals/_navigation.scss */
+.navbar-visible-in a {
   display: inline-block;
   padding: 0 15px;
   color: #5d5d5d;
   line-height: 50px;
 }
-/* line 29, sass/globals/_navigation.scss */
-.navbar-visible .navbar-visible-in a .fa {
+/* line 25, sass/globals/_navigation.scss */
+.navbar-visible-in a .fa {
   font-size: 140%;
 }
-/* line 33, sass/globals/_navigation.scss */
-.navbar-visible .navbar-visible-in a:hover {
+/* line 29, sass/globals/_navigation.scss */
+.navbar-visible-in a:hover {
   color: #DA131F;
 }
-/* line 36, sass/globals/_navigation.scss */
-.navbar-visible .navbar-visible-in .active {
+/* line 32, sass/globals/_navigation.scss */
+.navbar-visible-in .active {
   background-color: #DDDDDD;
   color: #fff;
 }
 
-/* line 44, sass/globals/_navigation.scss */
+/* line 41, sass/globals/_navigation.scss */
+.header-logo img {
+  max-height: 40px;
+  max-width: 100px;
+}
+
+/* line 47, sass/globals/_navigation.scss */
 .navi-time {
   padding-left: 10px;
 }
 
-/* line 47, sass/globals/_navigation.scss */
+/* line 50, sass/globals/_navigation.scss */
 .mobile-icon {
   padding-left: 7px;
   color: #5d5d5d;
 }
 
-/* line 51, sass/globals/_navigation.scss */
+/* line 54, sass/globals/_navigation.scss */
 .lang-switch {
   text-transform: uppercase;
 }
 
-/* line 54, sass/globals/_navigation.scss */
+/* line 57, sass/globals/_navigation.scss */
 .lang-switch-current {
   display: inline-block;
   width: 24px;
   height: 24px;
 }
 
-/* line 60, sass/globals/_navigation.scss */
+/* line 63, sass/globals/_navigation.scss */
 .navbar-inverse {
   background-color: #E9E9E9;
   border-color: transparent;
   border-bottom: solid 4px #DDDDDD;
   color: #DDDDDD;
 }
-/* line 66, sass/globals/_navigation.scss */
+/* line 69, sass/globals/_navigation.scss */
 .navbar-inverse .navbar-nav .dropdown-toggle {
   color: #5d5d5d;
 }
-/* line 69, sass/globals/_navigation.scss */
+/* line 72, sass/globals/_navigation.scss */
 .navbar-inverse .navbar-nav .dropdown-toggle:hover {
   color: #5d5d5d;
 }
 
-/* line 75, sass/globals/_navigation.scss */
+/* line 78, sass/globals/_navigation.scss */
 .navbar-inverse_ .navbar-nav .dropdown-toggle {
   color: #DDDDDD;
 }
 
 /* Collapse */
-/* line 80, sass/globals/_navigation.scss */
+/* line 83, sass/globals/_navigation.scss */
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > .active > a:focus {
   background-color: #DDDDDD;
 }
 
-/* line 86, sass/globals/_navigation.scss */
+/* line 89, sass/globals/_navigation.scss */
 .navbar-inverse .navbar-nav > .open > a,
 .navbar-inverse .navbar-nav > .open > a:hover,
 .navbar-inverse .navbar-nav > .open > a:focus {
@@ -865,7 +860,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   color: #DA131F;
 }
 
-/* line 93, sass/globals/_navigation.scss */
+/* line 96, sass/globals/_navigation.scss */
 .navbar-inverse .dropdown-menu > .active > a,
 .navbar-inverse .dropdown-menu > .active > a:hover,
 .navbar-inverse .dropdown-menu > .active > a:focus {
@@ -873,14 +868,14 @@ http://codepen.io/MattIn4D/pen/LiKFC
   color: #5d5d5d;
 }
 
-/* line 102, sass/globals/_navigation.scss */
+/* line 105, sass/globals/_navigation.scss */
 .navbar-inverse .dropdown-menu > li > a:hover,
 .navbar-inverse .dropdown-menu > li > a:focus {
   background-color: #DDDDDD;
   color: #DA131F;
 }
 
-/* line 108, sass/globals/_navigation.scss */
+/* line 111, sass/globals/_navigation.scss */
 .navbar .divider-vertical {
   height: 50px;
   /*    margin: 0 9px;*/
@@ -888,22 +883,22 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-right: 1px solid white;
 }
 
-/* line 114, sass/globals/_navigation.scss */
+/* line 117, sass/globals/_navigation.scss */
 .dropdown-menu {
   border: 1px solid #DDDDDD;
 }
-/* line 117, sass/globals/_navigation.scss */
+/* line 120, sass/globals/_navigation.scss */
 .dropdown-menu .divider {
   background-color: #DDDDDD;
 }
 
-/* line 122, sass/globals/_navigation.scss */
+/* line 125, sass/globals/_navigation.scss */
 .navbar-nav > li > a {
   padding-top: 15px;
   padding-bottom: 10px;
 }
 
-/* line 127, sass/globals/_navigation.scss */
+/* line 130, sass/globals/_navigation.scss */
 .dropdown > .dropdown-menu::before, .dropdown > .dropdown-menu::after {
   content: '';
   display: inline-block;
@@ -917,7 +912,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   right: 12px;
 }
 
-/* line 141, sass/globals/_navigation.scss */
+/* line 144, sass/globals/_navigation.scss */
 .dropdown > .dropdown-menu::after {
   border-left-width: 6px;
   border-right-width: 6px;
@@ -932,23 +927,23 @@ http://codepen.io/MattIn4D/pen/LiKFC
     left: auto;
     right: 13px;
 }*/
-/* line 157, sass/globals/_navigation.scss */
+/* line 160, sass/globals/_navigation.scss */
 .only-icon .only-icon-menu i {
   font-size: 18px;
 }
 
-/* line 161, sass/globals/_navigation.scss */
+/* line 164, sass/globals/_navigation.scss */
 .only-icon-menu span {
   display: none;
 }
 
-/* line 165, sass/globals/_navigation.scss */
+/* line 168, sass/globals/_navigation.scss */
 .dropdown-menu a i {
   padding-right: 10px;
 }
 
 /** Profile colors */
-/* line 170, sass/globals/_navigation.scss */
+/* line 173, sass/globals/_navigation.scss */
 .profile-dddddd {
   /* Visible */
 }
@@ -961,7 +956,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-color: #dddddd;
 }
 
-/* line 173, sass/globals/_navigation.scss */
+/* line 176, sass/globals/_navigation.scss */
 .profile-6c7a89 {
   /* Visible */
 }
@@ -974,7 +969,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-color: #6c7a89;
 }
 
-/* line 176, sass/globals/_navigation.scss */
+/* line 179, sass/globals/_navigation.scss */
 .profile-6494bc {
   /* Visible */
 }
@@ -987,7 +982,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-color: #6494bc;
 }
 
-/* line 179, sass/globals/_navigation.scss */
+/* line 182, sass/globals/_navigation.scss */
 .profile-80ad80 {
   /* Visible */
 }
@@ -1000,7 +995,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-color: #80ad80;
 }
 
-/* line 182, sass/globals/_navigation.scss */
+/* line 185, sass/globals/_navigation.scss */
 .profile-31b0d5 {
   /* Visible */
 }
@@ -1013,7 +1008,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-color: #31b0d5;
 }
 
-/* line 185, sass/globals/_navigation.scss */
+/* line 188, sass/globals/_navigation.scss */
 .profile-f0aD4e {
   /* Visible */
 }
@@ -1026,7 +1021,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-color: #f0aD4e;
 }
 
-/* line 188, sass/globals/_navigation.scss */
+/* line 191, sass/globals/_navigation.scss */
 .profile-d9534f {
   /* Visible */
 }
@@ -1039,7 +1034,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-color: #d9534f;
 }
 
-/* line 191, sass/globals/_navigation.scss */
+/* line 194, sass/globals/_navigation.scss */
 .profile-dd976e {
   /* Visible */
 }
@@ -1075,8 +1070,44 @@ http://codepen.io/MattIn4D/pen/LiKFC
   margin-top: 10px;
 }
 
+/* Custom
+-------------------------------------------------- */
+/* line 3, sass/modules/_alpaca.scss */
+.alpaca-message-invalidValueOfEnum {
+  display: none !important;
+}
+
+/* line 6, sass/modules/_alpaca.scss */
+.alpaca-fieldset-legend {
+  font-size: 16px;
+}
+
+/* line 10, sass/modules/_alpaca.scss */
+.alpaca-fieldset-legend-button {
+  margin-right: 5px;
+}
+
+/* line 14, sass/modules/_alpaca.scss */
+.alpaca-fieldset-array-item-toolbar {
+  display: inline-block !important;
+}
+
+/* line 17, sass/modules/_alpaca.scss */
+.help-block.alpaca-controlfield-message-text {
+  display: inline-block !important;
+}
+
+/* line 20, sass/modules/_alpaca.scss */
+.alpaca-controlfield-container .has-error .form-control {
+  border-color: #ccc !important;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+/* Default
+-------------------------------------------------- */
 /** Added to outer field elements to hide them **/
-/* line 2, sass/modules/_alpaca.scss */
+/* line 29, sass/modules/_alpaca.scss */
 .alpaca-hidden {
   display: none;
 }
@@ -1118,12 +1149,12 @@ http://codepen.io/MattIn4D/pen/LiKFC
 /** ******************************************************** **/
 /** Added to indicate hover state **/
 /** General purpose HTML clear **/
-/* line 211, sass/modules/_alpaca.scss */
+/* line 238, sass/modules/_alpaca.scss */
 .alpaca-clear {
   clear: both;
 }
 
-/* line 216, sass/modules/_alpaca.scss */
+/* line 243, sass/modules/_alpaca.scss */
 .alpaca-float-right {
   float: right;
 }
@@ -1131,7 +1162,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
 /** ************************************** **/
 /** TWITTER TYPEAHEAD                      **/
 /** ************************************** **/
-/* line 226, sass/modules/_alpaca.scss */
+/* line 253, sass/modules/_alpaca.scss */
 .twitter-typeahead .tt-dropdown-menu {
   background-color: white;
   border: 1px #ccc solid;
@@ -1141,18 +1172,18 @@ http://codepen.io/MattIn4D/pen/LiKFC
   width: 100%;
 }
 
-/* line 236, sass/modules/_alpaca.scss */
+/* line 263, sass/modules/_alpaca.scss */
 .twitter-typeahead .tt-dropdown-menu P {
   font-size: 1em;
 }
 
-/* line 241, sass/modules/_alpaca.scss */
+/* line 268, sass/modules/_alpaca.scss */
 .tt-suggestion.tt-is-under-cursor {
   background-color: #ccc;
   color: #333;
 }
 
-/* line 247, sass/modules/_alpaca.scss */
+/* line 274, sass/modules/_alpaca.scss */
 .tt-dropdown-menu {
   background-color: white;
   border: 1px solid #cccccc;
@@ -1162,7 +1193,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
 /** ************************************** **/
 /** EDITOR FIELD                           **/
 /** ************************************** **/
-/* line 261, sass/modules/_alpaca.scss */
+/* line 288, sass/modules/_alpaca.scss */
 .alpaca-controlfield-editor {
   position: relative;
   width: 100%;
@@ -1170,7 +1201,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border: 1px #ccc solid;
 }
 
-/* line 269, sass/modules/_alpaca.scss */
+/* line 296, sass/modules/_alpaca.scss */
 .alpaca-controlfield-editor .control-field-editor-el {
   position: absolute;
   top: 0;
@@ -1182,7 +1213,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
 /** ************************************** **/
 /** DATEPICKER (jQueryUI)                  **/
 /** ************************************** **/
-/* line 284, sass/modules/_alpaca.scss */
+/* line 311, sass/modules/_alpaca.scss */
 #ui-datepicker-div {
   display: none;
   background-color: white;
@@ -1191,12 +1222,12 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 
 /* Fix for Chrome issue with Button text */
-/* line 293, sass/modules/_alpaca.scss */
+/* line 320, sass/modules/_alpaca.scss */
 .ui-button .ui-button-text {
   white-space: nowrap;
 }
 
-/* line 297, sass/modules/_alpaca.scss */
+/* line 324, sass/modules/_alpaca.scss */
 .ui-datepicker {
   z-index: 100;
 }
@@ -1204,19 +1235,19 @@ http://codepen.io/MattIn4D/pen/LiKFC
 /** ************************************** **/
 /** FILE UPLOAD (jQueryUI)                 **/
 /** ************************************** **/
-/* line 313, sass/modules/_alpaca.scss */
+/* line 340, sass/modules/_alpaca.scss */
 .alpaca-fileupload-container {
   border: 1px #ccc solid;
   padding: 10px;
   border-radius: 5px;
 }
 
-/* line 320, sass/modules/_alpaca.scss */
+/* line 347, sass/modules/_alpaca.scss */
 .alpaca-fileupload-container .row {
   margin-bottom: 10px;
 }
 
-/* line 325, sass/modules/_alpaca.scss */
+/* line 352, sass/modules/_alpaca.scss */
 .alpaca-fileupload-well {
   /*border: 1px #ccc solid;*/
   padding: 10px;
@@ -1224,14 +1255,14 @@ http://codepen.io/MattIn4D/pen/LiKFC
   min-height: 100px;
 }
 
-/* line 333, sass/modules/_alpaca.scss */
+/* line 360, sass/modules/_alpaca.scss */
 .alpaca-fileupload-container table {
   border: 1px #ccc solid;
   padding: 10px;
   border-radius: 5px;
 }
 
-/* line 340, sass/modules/_alpaca.scss */
+/* line 367, sass/modules/_alpaca.scss */
 .alpaca-fileupload-well p {
   padding-top: 20px;
   color: #888;
@@ -1240,57 +1271,57 @@ http://codepen.io/MattIn4D/pen/LiKFC
 /** ************************************** **/
 /** ACE EDITOR                             **/
 /** ************************************** **/
-/* line 357, sass/modules/_alpaca.scss */
+/* line 384, sass/modules/_alpaca.scss */
 .ace_editor {
   border: 1px solid #cccccc;
 }
 
-/* line 365, sass/modules/_alpaca.scss */
+/* line 392, sass/modules/_alpaca.scss */
 .has-error .multiselect {
   border-color: #a94442;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
 
-/* line 371, sass/modules/_alpaca.scss */
+/* line 398, sass/modules/_alpaca.scss */
 .alpaca-container-label {
   margin-top: 20px;
 }
 
-/* line 376, sass/modules/_alpaca.scss */
+/* line 403, sass/modules/_alpaca.scss */
 legend.alpaca-container-label {
   margin-top: 0px;
 }
 
-/* line 381, sass/modules/_alpaca.scss */
+/* line 408, sass/modules/_alpaca.scss */
 .alpaca-array-toolbar {
   margin-bottom: 10px;
 }
 
-/* line 386, sass/modules/_alpaca.scss */
+/* line 413, sass/modules/_alpaca.scss */
 .alpaca-array-actionbar {
   padding-bottom: 10px;
   height: 40px;
 }
 
-/* line 392, sass/modules/_alpaca.scss */
+/* line 419, sass/modules/_alpaca.scss */
 .alpaca-array-actionbar, .alpaca-array-actionbar.btn-group {
   width: 100%;
 }
 
-/* line 397, sass/modules/_alpaca.scss */
+/* line 424, sass/modules/_alpaca.scss */
 .alpaca-field-object {
   border: 1px #ddd solid;
   border-radius: 4px;
   padding: 10px;
 }
 
-/* line 404, sass/modules/_alpaca.scss */
+/* line 431, sass/modules/_alpaca.scss */
 .alpaca-display h3 {
   margin-top: 0px;
 }
 
-/* line 409, sass/modules/_alpaca.scss */
+/* line 436, sass/modules/_alpaca.scss */
 .alpaca-field-object .alpaca-container .alpaca-field-object > .alpaca-container.alpaca-container-has-items {
   border: 1px #ddd solid;
   border-radius: 4px;
@@ -1305,109 +1336,109 @@ legend.alpaca-container-label {
     padding: 10px;
 }
 */
-/* line 425, sass/modules/_alpaca.scss */
+/* line 452, sass/modules/_alpaca.scss */
 .alpaca-field-array > .alpaca-container.alpaca-container-has-items {
   border: 1px #ddd solid;
   border-radius: 4px;
   padding: 10px;
 }
 
-/* line 432, sass/modules/_alpaca.scss */
+/* line 459, sass/modules/_alpaca.scss */
 .alpaca-container-item > .alpaca-container > .alpaca-field-object {
   border: 0px;
 }
 
-/* line 437, sass/modules/_alpaca.scss */
+/* line 464, sass/modules/_alpaca.scss */
 .alpaca-form-buttons-container {
   margin-top: 10px;
   text-align: right;
 }
 
-/* line 443, sass/modules/_alpaca.scss */
+/* line 470, sass/modules/_alpaca.scss */
 .alpaca-container > .form-group {
   margin-left: 0px;
   margin-right: 0px;
 }
 
-/* line 449, sass/modules/_alpaca.scss */
+/* line 476, sass/modules/_alpaca.scss */
 .alpaca-field-hidden {
   display: none;
 }
 
-/* line 454, sass/modules/_alpaca.scss */
+/* line 481, sass/modules/_alpaca.scss */
 .alpaca-field-object.alpaca-top {
   border: 0px;
 }
 
-/* line 459, sass/modules/_alpaca.scss */
+/* line 486, sass/modules/_alpaca.scss */
 .alpaca-field-array.alpaca-top {
   border: 0px;
 }
 
-/* line 464, sass/modules/_alpaca.scss */
+/* line 491, sass/modules/_alpaca.scss */
 .alpaca-container-item:not(:first-child) {
   margin-top: 10px;
 }
 
-/* line 469, sass/modules/_alpaca.scss */
+/* line 496, sass/modules/_alpaca.scss */
 .alpaca-container .alpaca-container-item:last-child {
   margin-bottom: 0px;
 }
 
-/* line 474, sass/modules/_alpaca.scss */
+/* line 501, sass/modules/_alpaca.scss */
 .alpaca-field-object.alpaca-top .alpaca-container {
   border: 0px;
 }
 
-/* line 479, sass/modules/_alpaca.scss */
+/* line 506, sass/modules/_alpaca.scss */
 .alpaca-field-select .btn-group {
   display: block;
 }
 
-/* line 484, sass/modules/_alpaca.scss */
+/* line 511, sass/modules/_alpaca.scss */
 .alpaca-field-select .btn-group button.multiselect {
   float: none;
 }
 
-/* line 489, sass/modules/_alpaca.scss */
+/* line 516, sass/modules/_alpaca.scss */
 .bootstrap-timepicker-widget table td input {
   width: 50px !important;
 }
 
 /** FIElDS **/
-/* line 497, sass/modules/_alpaca.scss */
+/* line 524, sass/modules/_alpaca.scss */
 .alpaca-field.alpaca-field-upload .fileupload-active-zone {
   margin-top: 50px;
   margin-bottom: 50px;
 }
 
-/* line 502, sass/modules/_alpaca.scss */
+/* line 529, sass/modules/_alpaca.scss */
 .alpaca-field.alpaca-field-upload .template-download TD.error {
   color: red;
 }
 
-/* line 507, sass/modules/_alpaca.scss */
+/* line 534, sass/modules/_alpaca.scss */
 .alpaca-field.alpaca-field-address .alpaca-field-address-mapcanvas {
   height: 250px;
 }
 
-/* line 512, sass/modules/_alpaca.scss */
+/* line 539, sass/modules/_alpaca.scss */
 .alpaca-field.alpaca-field-image .alpaca-image-display {
   margin-top: 20px;
 }
 
-/* line 517, sass/modules/_alpaca.scss */
+/* line 544, sass/modules/_alpaca.scss */
 .alpaca-field-text-max-length-indicator {
   color: #aaa;
 }
 
-/* line 522, sass/modules/_alpaca.scss */
+/* line 549, sass/modules/_alpaca.scss */
 .alpaca-field-text-max-length-indicator.err {
   color: #aa0000;
 }
 
 /** WIZARD **/
-/* line 531, sass/modules/_alpaca.scss */
+/* line 558, sass/modules/_alpaca.scss */
 .alpaca-wizard .alpaca-wizard-nav li .chevron {
   position: absolute;
   top: 0;
@@ -1418,7 +1449,7 @@ legend.alpaca-container-label {
   border-left: 14px solid #d4d4d4;
 }
 
-/* line 542, sass/modules/_alpaca.scss */
+/* line 569, sass/modules/_alpaca.scss */
 .alpaca-wizard .alpaca-wizard-nav li .chevron:before {
   position: absolute;
   top: -27px;
@@ -1430,7 +1461,7 @@ legend.alpaca-container-label {
   content: "";
 }
 
-/* line 554, sass/modules/_alpaca.scss */
+/* line 581, sass/modules/_alpaca.scss */
 .alpaca-wizard .alpaca-wizard-nav li div.holder {
   padding-left: 30px;
   padding-right: 20px;
@@ -1439,75 +1470,75 @@ legend.alpaca-container-label {
   padding-bottom: 6px;
 }
 
-/* line 563, sass/modules/_alpaca.scss */
+/* line 590, sass/modules/_alpaca.scss */
 .alpaca-wizard .alpaca-wizard-nav li:first-child div.holder {
   padding-left: 10px;
 }
 
-/* line 568, sass/modules/_alpaca.scss */
+/* line 595, sass/modules/_alpaca.scss */
 .alpaca-wizard .alpaca-wizard-nav li div.holder div.title {
   font-size: 18px;
   font-weight: 600;
   color: #333;
 }
 
-/* line 575, sass/modules/_alpaca.scss */
+/* line 602, sass/modules/_alpaca.scss */
 .alpaca-wizard .alpaca-wizard-nav li div.holder div.description {
   color: #aaa;
   font-size: 12px;
 }
 
-/* line 581, sass/modules/_alpaca.scss */
+/* line 608, sass/modules/_alpaca.scss */
 .alpaca-wizard .alpaca-wizard-nav li.completed div.holder div.title {
   color: #333;
 }
 
-/* line 586, sass/modules/_alpaca.scss */
+/* line 613, sass/modules/_alpaca.scss */
 .alpaca-wizard .alpaca-wizard-nav li.completed div.holder div.description {
   color: #333;
 }
 
-/* line 591, sass/modules/_alpaca.scss */
+/* line 618, sass/modules/_alpaca.scss */
 .alpaca-wizard .alpaca-wizard-nav li.visited:hover {
   cursor: pointer;
 }
 
-/* line 604, sass/modules/_alpaca.scss */
+/* line 631, sass/modules/_alpaca.scss */
 .alpaca-wizard .alpaca-wizard-nav li.active:hover {
   cursor: default;
 }
 
-/* line 609, sass/modules/_alpaca.scss */
+/* line 636, sass/modules/_alpaca.scss */
 .alpaca-wizard .alpaca-wizard-nav li.active div.holder div.title {
   color: #206199;
 }
 
-/* line 614, sass/modules/_alpaca.scss */
+/* line 641, sass/modules/_alpaca.scss */
 .alpaca-wizard .alpaca-wizard-nav li.active div.holder div.description {
   color: #206199;
 }
 
-/* line 619, sass/modules/_alpaca.scss */
+/* line 646, sass/modules/_alpaca.scss */
 .alpaca-wizard .alpaca-wizard-nav li.disabled div.holder div.title {
   color: #ccc;
 }
 
-/* line 624, sass/modules/_alpaca.scss */
+/* line 651, sass/modules/_alpaca.scss */
 .alpaca-wizard .alpaca-wizard-nav li.disabled div.holder div.description {
   color: #ccc;
 }
 
-/* line 629, sass/modules/_alpaca.scss */
+/* line 656, sass/modules/_alpaca.scss */
 .alpaca-wizard .alpaca-wizard-nav .alpaca-wizard-back {
   background-color: #fcfcfc;
 }
 
-/* line 634, sass/modules/_alpaca.scss */
+/* line 661, sass/modules/_alpaca.scss */
 .alpaca-wizard .alpaca-wizard-buttons {
   margin-top: 20px;
 }
 
-/* line 639, sass/modules/_alpaca.scss */
+/* line 666, sass/modules/_alpaca.scss */
 .alpaca-wizard .alpaca-wizard-progress-bar {
   margin-top: 20px;
 }
@@ -3130,4 +3161,102 @@ padding-right: 5px;
   .hide-navi-text {
     display: none !important;
   }
+}
+/* POPP css
+-------------------------------------------------- */
+/* line 5, sass/globals/_app_popp.scss */
+.app-type-popp .header-logo img {
+  max-height: 40px;
+  max-width: 70px;
+}
+
+/* WD css
+-------------------------------------------------- */
+/* Typo
+-------------------------------------------------- */
+/* line 5, sass/globals/_app_wd.scss */
+a:hover {
+  color: #0096f1;
+}
+
+/* Navigation
+-------------------------------------------------- */
+/* line 11, sass/globals/_app_wd.scss */
+.app-type-wd {
+  /* Tabs
+  -------------------------------------------------- */
+}
+/* line 12, sass/globals/_app_wd.scss */
+.app-type-wd .navbar-inverse {
+  background-color: #0066A4;
+  color: #00376D;
+}
+/* line 18, sass/globals/_app_wd.scss */
+.app-type-wd .navbar-inverse .navbar-nav .dropdown-toggle {
+  color: #fff;
+}
+/* line 21, sass/globals/_app_wd.scss */
+.app-type-wd .navbar-inverse .navbar-nav .dropdown-toggle:hover {
+  color: #fff;
+}
+/* line 27, sass/globals/_app_wd.scss */
+.app-type-wd navbar-inverse .navbar-nav > .open > a,
+.app-type-wd .navbar-inverse .navbar-nav > .open > a:hover,
+.app-type-wd .navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: #00376D;
+  color: #16a4f7;
+}
+/* line 34, sass/globals/_app_wd.scss */
+.app-type-wd .navbar-inverse .dropdown-menu > .active > a,
+.app-type-wd .navbar-inverse .dropdown-menu > .active > a:hover,
+.app-type-wd .navbar-inverse .dropdown-menu > .active > a:focus {
+  background-color: #0066A4;
+  color: #fff;
+}
+/* line 40, sass/globals/_app_wd.scss */
+.app-type-wd .navbar-inverse .dropdown-menu > li > a:hover,
+.app-type-wd .navbar-inverse .dropdown-menu > li > a:focus {
+  background-color: #16a4f7;
+  color: #fff;
+}
+/* line 47, sass/globals/_app_wd.scss */
+.app-type-wd .navbar-visible-in .divider-vertical {
+  height: 50px;
+}
+/* line 50, sass/globals/_app_wd.scss */
+.app-type-wd .navbar-visible-in a {
+  color: #fff;
+}
+/* line 53, sass/globals/_app_wd.scss */
+.app-type-wd .navbar-visible-in a:hover {
+  color: #16a4f7;
+}
+/* line 56, sass/globals/_app_wd.scss */
+.app-type-wd .navbar-visible-in .active {
+  background-color: #00376D;
+  color: #fff;
+}
+/* line 63, sass/globals/_app_wd.scss */
+.app-type-wd .header-logo img {
+  max-height: 40px;
+  max-width: 70px;
+}
+/* line 70, sass/globals/_app_wd.scss */
+.app-type-wd #update_time_tick .text-success {
+  color: #fff;
+}
+/* line 76, sass/globals/_app_wd.scss */
+.app-type-wd .navbar .divider-vertical {
+  border-left: 1px solid #001d3a;
+  border-right: 1px solid #005eba;
+}
+/* line 84, sass/globals/_app_wd.scss */
+.app-type-wd .nav-tabs > li.active > a,
+.app-type-wd .nav-tabs > li.active > a:hover,
+.app-type-wd .nav-tabs > li.active > a:focus {
+  color: #0066A4;
+}
+/* line 90, sass/globals/_app_wd.scss */
+.app-type-wd .nav-tabs > li.active > a i {
+  color: #0066A4;
 }
