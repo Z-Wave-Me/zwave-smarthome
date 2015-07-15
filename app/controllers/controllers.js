@@ -3438,6 +3438,7 @@ myAppController.controller('NetworkConfigController', function($scope, $routePar
  */
 myAppController.controller('AdminController', function($scope, $window, $location, dataFactory, dataService, myCache) {
     $scope.profiles = {};
+    $scope.remoteAccess = false;
 
     /**
      * Load data into collection
@@ -3474,6 +3475,50 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
                 alert($scope._t('error_delete_data'));
             });
         }
+    };
+    
+    /**
+     * Load Remote access data
+     */
+    $scope.loadRemoteAccess = function() {
+        if (!$scope.elementAccess($scope.cfg.role_access.remote_access)) {
+            return;
+        }
+        dataFactory.getApi('instances', '/RemoteAccess').then(function(response) {
+            var remoteAccess = response.data.data[0];
+            if (Object.keys(remoteAccess).length < 1) {
+                $scope.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-warning'};
+            }
+            if (!remoteAccess.active) {
+                $scope.alert = {message: $scope._t('remote_access_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                return;
+            }
+            if (!remoteAccess.params.userId) {
+                $scope.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-warning'};
+                return;
+            }
+            remoteAccess.params.pass = null;
+            $scope.remoteAccess = remoteAccess;
+        }, function(error) {
+            $scope.alert = {message: $scope._t('remote_access_not_installed'), status: 'alert-danger', icon: 'fa-warning'};
+        });
+    };
+
+    $scope.loadRemoteAccess();
+    
+     /**
+     * PUT Remote access
+     */
+    $scope.putRemoteAccess = function(input) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        dataFactory.putApi('instances', input.id, input).then(function(response) {
+            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
+
+        }, function(error) {
+            alert($scope._t('error_update_data'));
+            $scope.loading = false;
+        });
+
     };
 });
 /**
