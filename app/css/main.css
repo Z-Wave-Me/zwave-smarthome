@@ -2863,11 +2863,11 @@ padding-right: 5px;
   }
 
   /* line 286, sass/settings/_mixins.scss */
-  #modal_camera .modal-dialog {
+  .modal-no-padding .modal-dialog {
     margin: 0;
   }
   /* line 288, sass/settings/_mixins.scss */
-  #modal_camera .modal-dialog .modal-body {
+  .modal-no-padding .modal-dialog .modal-body {
     padding: 0;
   }
 

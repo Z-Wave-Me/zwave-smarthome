@@ -173,6 +173,24 @@
 
                             <!-- sensorMultiline -->
                             <div ng-switch-when="sensorMultiline">
+                                <!-- has sensors -->
+                                <div class="widget-control control-left widget-click-popup" ng-click="loadMultilineSensor('#modal_multiline', v.id,v)" ng-if="v.metrics.sensors">
+                                    <span class="widget-level" ng-bind="v.level"></span> <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span> <i class="fa fa-caret-down"></i>
+                                </div>
+                                
+                                <!-- no sensors -->
+                                 <div class="widget-control control-left widget-click-popup" ng-click="goHidden[v.id] = !goHidden[v.id]" ng-if="!v.metrics.sensors">
+                                    <span class="widget-level" ng-bind="v.level"></span> <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span> <i class="fa fa-caret-down"></i>
+                                </div>
+
+                                <div class="widget-control control-right">
+                                    <div class="btn-group">
+                                        <button class="btn btn-default btn-sm" ng-click="runCmd(v.id + '/command/update')"> <i class="fa fa-clock-o"></i> <span class="widget-update-time">{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span></button>
+                                    </div>
+                                </div><!-- /.widget-control .right -->
+                            </div> 
+                            
+                            <!-- <div ng-switch-when="sensorMultiline>______">
                                 <div class="widget-control control-left widget-click-popup" ng-click="goHidden[v.id] = !goHidden[v.id]">
                                     <span class="widget-level" ng-bind="v.level"></span> <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span> <i class="fa fa-caret-down"></i>
                                 </div>
@@ -181,8 +199,8 @@
                                     <div class="btn-group">
                                         <button class="btn btn-default btn-sm" ng-click="runCmd(v.id + '/command/update')"> <i class="fa fa-clock-o"></i> <span class="widget-update-time">{{v.updateTime|isToday:true}}</span></button>
                                     </div>
-                                </div><!-- /.widget-control .right -->
-                            </div>
+                                </div>
+                            </div> /.widget-control .right -->
 
                             <!-- thermostat -->
                             <div class="widget-control control-left widget-click-popup" ng-switch-when="thermostat" ng-click="goHidden[v.id] = !goHidden[v.id]">
@@ -337,7 +355,6 @@
                         <!-- Hidden sensorMultiline -->
                         <div class="col-sm-11 element-hidden hidden-sensor-multiline" ng-class="v.metrics.sensors? 'multiline-sensor' : ''" ng-switch-when="sensorMultiline" ng-show="goHidden[v.id]">
                             <a class="hidden-close" href="" ng-click="goHidden[v.id] = !goHidden[v.id]"><i class="fa fa-times"></i></a>
-                            <div ng-if="!v.metrics.sensors">
                                 <div class="text-center">
                                     <h4>{{v.title}}, {{v.metrics.country}}</h4>
                                     <img ng-src="{{v.metrics.flag}}">
@@ -380,29 +397,6 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                            </div>
-                            <div ng-if="v.metrics.sensors">
-                                <div class="text-center">
-                                    <h4>{{v.title}}</h4>
-                                    <img ng-src="{{v.metrics.flag}}">
-                                </div>
-                                <table class="table-condensed">
-                                    <tbody>
-                                    <colgroup>
-                                        <col width="10%">
-                                        <col width="90%">
-                                    </colgroup>
-                                    <tr ng-repeat="n in v.metrics.sensors">
-                                        <td>
-                                            <img id="widget_multiline_img_{{n.id}}" class="widget-image" ng-src="{{n.metrics.icon|getElementIcon:n:levelVal[n.id]}}" alt="img"/></td>
-                                        <td><span ng-bind="n.metrics.title"/><br>
-                                            <b><span ng-bind="n.metrics.level | numberFixedLen"/> <span ng-show="n.metrics.scaleTitle" ng-bind="n.metrics.scaleTitle"/></b>
-                                        </td>
-                                        <!--<td><span ng-bind="v.metrics.zwaveOpenWeather.main.humidity"/><span> %</span></td>-->
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
                         </div>
 
 
@@ -449,9 +443,8 @@
     </div><!-- /.Modal -->
 
     <!-- Modal camera -->
-    <div class="modal modal-vertical-centered fade" id="modal_camera" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="table_"><div class="table-cell_">
-                <div class="modal-dialog modal-dialog-center">
+    <div class="modal modal-vertical-centered modal-no-padding fade" id="modal_camera" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-center">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -476,8 +469,43 @@
                         </div>
                     </div>
                 </div>
-            </div></div> <!-- /.Modal vertical align -->
     </div><!-- /.Modal -->
+    
+    <!-- Modal multiline -->
+    <div class="modal modal-vertical-centered modal-no-padding fade" id="modal_multiline" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-center">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" ng-bind="input.title"></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-warning" ng-if="!multilineSensor.data">
+                        <i class="fa {{multilineSensor.icon}}"></i> <span ng-bind="multilineSensor.message"></span>
+                    </div>
+                    <div ng-if="multilineSensor.data">
+                        <table class="table table-report table-condensed">
+                             <tbody>
+                             <tr ng-repeat="n in multilineSensor.data.metrics.sensors">
+                                  <td class="td-img">
+                                     <img id="widget_multiline_img_{{n.id}}" class="report-img" ng-src="{{n.metrics.icon|getElementIcon:n:levelVal[n.id]}}" alt="img" />
+                                 </td>
+                                 <td>
+                                     <span ng-bind="n.metrics.title"/></span><br />
+                                  </td>
+                                 <td>
+                                     <strong ng-bind="n.metrics.level|numberFixedLen"></strong> <strong ng-show="n.metrics.scaleTitle" ng-bind="n.metrics.scaleTitle"></strong>
+                                 </td>
+                             </tr>
+                             </tbody>
+                         </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.Modal multiline -->
+    
     <!-- Elements footer view -->
     <div id="footer" ng-show="showFooter">
         <div class="navbar navbar-default navbar-fixed-bottom">

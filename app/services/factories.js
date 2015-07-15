@@ -19,7 +19,7 @@ myAppFactory.factory('dataFactory', function($http,$filter, $q, myCache, dataSer
     var lang = cfg.lang;
     var ZWAYSession = dataService.getZWAYSession();
     var user = dataService.getUser();
-    if (user && user.sid) {
+    if (user) {
         lang = user.lang;
 
     }
