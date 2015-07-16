@@ -1891,6 +1891,7 @@ myAppController.controller('DeviceEnoceanController', function($scope, $routePar
         dataService.showConnectionSpinner();
         dataFactory.getApiLocal('devices_enocean.json').then(function(response) {
             $scope.manufacturers = dataService.getPairs(response.data, 'vendor', 'vendorLogo', 'manufacturers_enocean');
+            console.log($scope.manufacturers)
             if (brandname) {
                 $scope.enoceanDevices = dataService.getData(response.data, {'filter': 'vendor', 'val': brandname});
                 $scope.manufacturer = brandname;
