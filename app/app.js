@@ -112,11 +112,11 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     roles: cfg.role_access.devices
                 }).
                 //IP camera device
-                when('/devices/enocean/:brandname?', {
+               /* when('/devices/enocean/:brandname?', {
                     templateUrl: 'app/views/devices/devices_enocean.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices
-                }).
+                }).*/
                 //Include Zwave device
                 when('/include/:device?', {
                     templateUrl: 'app/views/devices/device_include.html',
@@ -124,11 +124,11 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     roles: cfg.role_access.devices_include
                 }).
                 //Enocean Devices
-                /*when('/enocean/devices/:brandname?', {
+                when('/enocean/devices/:brandname?', {
                     templateUrl: 'app/views/enocean/devices.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices
-                }).*/
+                }).
                 //Enocean Teach-In
                 when('/enocean/teachin/:device', {
                     templateUrl: 'app/views/enocean/teachin.html',
@@ -153,9 +153,9 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     requireLogin: true,
                     roles: cfg.role_access.devices
                 }).
-                //Enocean manual
-                when('/enocean/manual', {
-                    templateUrl: 'app/views/enocean/manual.html',
+                //Enocean assign profile
+                when('/enocean/assign', {
+                    templateUrl: 'app/views/enocean/assign.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices
                 }).

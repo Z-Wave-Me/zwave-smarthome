@@ -87,38 +87,6 @@
                 <button class="btn btn-default" ng-bind="_t('lb_cancel')" bb-go-back></button>
             </fieldset>
         </form>
-        <!-- ///////////////////////////// Licence key ///////////////////////////// -->
-        <form name="form_licence" id="form_password" class="form form-page" ng-submit="getLicense(inputLicence)" ng-if="elementAccess(cfg.role_access.admin)" novalidate>
-            <fieldset>
-                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('licence_upgrade')"></span></h3>
-                <!--
-                <p class="form-control-static" ng-bind="_t('licence_upgrade_info')"></p>
-                <p><a ng-href="{{cfg.buy_licence_key}}" class="btn btn-info">{{_t('btn_licence_buy')}}</a></p>
-                -->
-                <!-- password -->
-                <div class="form-group form-inline">
-                    <p>{{_t('licence_upgrade_key')}}</p>
-                    <label>{{_t('licence_key_insert')}}:</label>
-                    <input
-                        class="form-control form-control-sm" 
-                        type="text" 
-                        name="scratch_id"
-                        id="scratch_id" 
-                        value="" 
-                        ng-model="inputLicence.scratch_id" />
-                    <button type="submit" class="btn btn-primary" ng-bind="_t('btn_licence_verify')" ng-disabled="proccessLicence"></button>
-
-                    <div><br />
-                        <p ng-if="proccessVerify.message">
-                            <i class="fa-lg" ng-class="proccessVerify.status"></i> <strong ng-bind="proccessVerify.message"></strong>
-                        </p>
-                        <p ng-if="proccessUpdate.message">
-                            <i class="fa-lg" ng-class="proccessUpdate.status"></i> <strong ng-bind="proccessUpdate.message"></strong>
-                        </p>
-                    </div>
-                </div>
-            </fieldset> 
-        </form>
 
         <!-- ///////////////////////////// Change password Form ///////////////////////////// -->
         <form name="form_password" id="form_password" class="form form-page" ng-submit="changePassword(newPassword)" novalidate>
@@ -139,9 +107,6 @@
                 <button type="submit" class="btn btn-primary" ng-bind="_t('lb_submit')"></button>
             </fieldset>
         </form>
-
-        
-
-    </div>
+ </div>
 
 </div> <!-- /ng-controller --> 

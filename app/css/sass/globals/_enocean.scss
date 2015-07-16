@@ -1,0 +1,71 @@
+/* Enocean css
+-------------------------------------------------- */
+$eno-color-primary: #0355a8;
+#page_enocean.app-type-default{
+
+    background-color: lighten($eno-color-primary, 65%);
+    color: $app-body-color;
+    //@include appGradient();
+
+    /* TYPO */
+    a:hover {
+        color: #0096f1;
+    }
+    /* Tables */
+    tbody{
+        tr{
+            td{
+                //border-top: 1px solid lighten($app-border-color, 20%); 
+                //border-top: 4px solid $app-body-bcg-color;
+                border-bottom: 1px solid lighten($eno-color-primary, 50%); 
+            }
+        }
+    }
+    /* IMAGES */
+    .include-device-img img {
+        border: lighten($eno-color-primary, 40%);
+    }
+    .vendor-list {
+  border-color: lighten($eno-color-primary, 50%);
+}
+    /* BUTTONS */
+    .btn-default {
+        border-color: lighten($eno-color-primary, 50%);
+    }
+    /** FORMS */
+    .form-page {
+        border-color: lighten($eno-color-primary, 60%);
+    }
+
+    .form-control {
+        border-color: lighten($eno-color-primary, 50%);
+    }
+    .form-page .form-group {
+        border-color: lighten($eno-color-primary, 50%);
+    }
+
+
+    /* Tabs
+    -------------------------------------------------- */
+    .nav-tabs {
+        border-color: lighten($eno-color-primary, 53%);
+    }
+    .nav-tabs-3 li a {
+        background-color: lighten($eno-color-primary, 60%);
+    }
+    .nav-tabs > li.active > a, 
+    .nav-tabs > li.active > a:hover, 
+        .nav-tabs > li.active > a:focus {
+        color:  #0066A4;
+        background-color: lighten($eno-color-primary, 53%);
+    }
+
+    .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+        border-color: lighten($eno-color-primary, 53%);
+    }
+
+    .nav-tabs > li.active > a i {
+        color:  #0066A4;
+    }
+
+}

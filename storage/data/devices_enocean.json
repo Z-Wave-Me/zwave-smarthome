@@ -94,18 +94,6 @@
     "funcId": "0x08",
     "typeId": "0x01",
     "inclusion": "Move little blue magnet to the marking on the enclosure and away"
-  },
-{
-    "id": 8,
-    "vendor": "Eltako Electronics",
-    "name": "FABH65",
-    "vendorLogo": "eltako_electronics.jpg",
-    "description": "Outdoor Motion detector/Light Sensor",
-    "image": "FABH65.jpg",
-    "rorg": "0xa5",
-    "funcId": "0x08",
-    "typeId": "0x01",
-    "inclusion": "Move little blue magnet to the marking on the enclosure and away"
   },  
  {
     "id": 9,

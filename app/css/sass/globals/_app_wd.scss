@@ -1,14 +1,11 @@
 /* WD css
 -------------------------------------------------- */
-/* Typo
--------------------------------------------------- */
-a:hover {
-  color: #0096f1;
-}
-
-/* Navigation
--------------------------------------------------- */
 .app-type-wd{
+    /* TYPO */
+    a:hover {
+        color: #0096f1;
+    }
+     /* Navi */
     .navbar-inverse {
         background-color: #0066A4;
         //border-color: transparent;
@@ -83,9 +80,9 @@ a:hover {
     -------------------------------------------------- */
     .nav-tabs > li.active > a, 
     .nav-tabs > li.active > a:hover, 
-    .nav-tabs > li.active > a:focus {
-    color:  #0066A4;
-}
+        .nav-tabs > li.active > a:focus {
+        color:  #0066A4;
+    }
 
     .nav-tabs > li.active > a i {
         color:  #0066A4;
