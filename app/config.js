@@ -5,12 +5,12 @@ var config_data = {
         // Application version
         'app_version': '1.0.1',
         // Application type: default/popp/wd
-        'app_type': 'default', 
+        'app_type': 'default',
         // Server base url
-        'server_url': '/', 
+        'server_url': '/',
         //'server_url': 'http://192.168.10.119:8083/',
         // Interval in miliseconds to refresh data
-        'interval': 3000, 
+        'interval': 3000,
         // Interval in miliseconds (5 min) to clear history (json) cache
         'history_cache_interval': 300000,
         // List of API links  
@@ -59,47 +59,48 @@ var config_data = {
         'enocean_data_url': 'EnOceanAPI/Data',
         // Url to config XML file
         'cfg_xml_url': 'config/Configuration.xml',
-         // Url to get a license key
+        // Url to get a license key
         'license_url': 'http://store.zwaveeurope.com/license/utility_uzb.php',
-         // Buy licence key url
+        // Buy licence key url
         'buy_licence_key': 'http://www.zwave.me/index.php?id=41',
-         // Url to update capabilities
+        // Url to update capabilities
         'license_load_url': '/ZWaveAPI/ZMELicense',
         // Language directory
         'lang_dir': 'app/lang/',
         // Default language
         'lang': 'en',
         // List of supported languages
-        'lang_list': ['en', 'de', 'ru','cn'],
+        'lang_list': ['en', 'de', 'ru', 'cn', 'fr'],
         // Role access
         'role_access': {
             admin: [1],
             admin_user: [1],
-            apps: [1,3],
-            apps_local: [1,3],
-            apps_online: [1,3],
-            module: [1,3],
-            devices: [1,3],
-            myaccess: [1,2,3],
-            expert_view: [1,3],
-            remote_access: [1,3],
-            devices_include: [1,3],
-            rooms: [1,2,3],
-            element: [1,2,3],
-            event_delete: [1,3],
-            config_rooms: [1,3],
-            config_rooms_id: [1,3],
-            network: [1,3],
-            network_config_id: [1,3],
-            logout: [1,2,3,4]
+            apps: [1, 3],
+            apps_local: [1, 3],
+            apps_online: [1, 3],
+            module: [1, 3],
+            devices: [1, 3],
+            myaccess: [1, 2, 3],
+            expert_view: [1, 3],
+            remote_access: [1, 3],
+            devices_include: [1, 3],
+            rooms: [1, 2, 3],
+            element: [1, 2, 3],
+            event_delete: [1, 3],
+            config_rooms: [1, 3],
+            config_rooms_id: [1, 3],
+            network: [1, 3],
+            network_config_id: [1, 3],
+            logout: [1, 2, 3, 4]
         },
         // List of language codes
         'lang_codes': {
             'en': 'en_EN',
             'de': 'de_AT',
-            'ru': 'en_EN'
+            'ru': 'en_EN',
+            'fr': 'fr_FR'
         },
-         // User default
+        // User default
         'user_default': {
             'id': 1,
             'role': 1,
@@ -109,7 +110,7 @@ var config_data = {
             'expert_view': false
         },
         // List of profile colors
-        'profile_colors': ['#dddddd','#6c7a89', '#6494bc', '#80ad80', '#31b0d5', '#f0aD4e', '#d9534f','#dd976e'],
+        'profile_colors': ['#dddddd', '#6c7a89', '#6494bc', '#80ad80', '#31b0d5', '#f0aD4e', '#d9534f', '#dd976e'],
         // Chart colors
         'chart_colors': {
             fillColor: 'rgba(151,187,205,0.5)',
@@ -122,7 +123,7 @@ var config_data = {
         // Hidden apps
         'hidden_apps': ['AnotherModuleID'],
         // Element control
-        'element_control': ['switchMultilevel','thermostat','sensorMultiline'],
+        'element_control': ['switchMultilevel', 'thermostat', 'sensorMultiline'],
         // Room images
         'room_images': [
             'kitchen.jpg',
@@ -130,7 +131,7 @@ var config_data = {
             'sleeping_room.jpg',
             'living_room.jpg'
         ],
-         // List of the clicakble event levels
+        // List of the clicakble event levels
         'events_clickable': [
             'device-info'
         ],

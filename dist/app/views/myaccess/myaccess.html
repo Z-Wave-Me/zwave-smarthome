@@ -44,7 +44,7 @@
                 </div>
             </fieldset>
             <!-- Expert view -->
-            <fieldset ng-if="elementAccess(cfg.role_access.expert_view) && cfg.app_type === 'default'">
+            <fieldset ng-if="elementAccess(cfg.role_access.expert_view)">
                 <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_expert_view')"></span></h3>                  
                 <div class="form-group form-inline">
                     <input type="checkbox" name="expert_view" ng-model="input.expert_view" ng-checked="input.expert_view" />
