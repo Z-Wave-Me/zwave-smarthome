@@ -8,7 +8,7 @@
         "inc": "Tripple Click one of the Rocker buttons",
         "exc": "Tripple Click one of the Rocker buttons",
         "brandname": "Z-Wave.Me",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Z-WaveMe.png",
+        "brand_image": "Z-WaveMe.png",
         "product_image": "117-0115-1000-0001-06-03-16-01-03.png",
         "prep": "A red\/green blinking indicates that the device is in factory default and ready to be included"
     },
@@ -21,7 +21,7 @@
         "inc": "Short Click on Button 1 until red\/green LED blinks",
         "exc": "Push all four buttons for 5 seconds until the green LEDs starts blinking slowly (Management Mode). Now hit button 2",
         "brandname": "Z-Wave.Me",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Z-WaveMe.png",
+        "brand_image": "Z-WaveMe.png",
         "product_image": "211-0115-0100-0001-03-03-2a-01-02.png",
         "prep": "Short Click on Button 1 must start red\/green blinking ot indicate that the device is in factory default an ready to be included"
     },
@@ -34,7 +34,7 @@
         "inc": "Short Click on Button 1 until red\/green LED blinks",
         "exc": "Push all four buttons for 5 seconds until the green LEDs starts blinking slowly (Management Mode). Now hit button 2",
         "brandname": "Z-Wave.Me",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Z-WaveMe.png",
+        "brand_image": "Z-WaveMe.png",
         "product_image": "554-0115-0100-0101-03-03-5c-01-00.png",
         "prep": "Short Click on Button 1 must start red\/green blinking ot indicate that the device is in factory default an ready to be included"
     },
@@ -47,7 +47,7 @@
         "inc": "Tripple Click the button on device",
         "exc": "Tripple Click the button on device",
         "brandname": "Z-Wave.Me",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Z-WaveMe.png",
+        "brand_image": "Z-WaveMe.png",
         "product_image": "322-0115-1100-0001-03-03-2a-01-00.png",
         "prep": "A red\/green blinking indicates that the device is in factory default and ready to be included"
     },
@@ -60,7 +60,7 @@
         "inc": "Tripple Press little button on device using a screw driver",
         "exc": "Tripple Press little button on device using a screw driver",
         "brandname": "Fibaro",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Fibaro.png",
+        "brand_image": "Fibaro.png",
         "product_image": "351-010f-0400-0109-03-03-2a-01-09.png",
         "prep": "The device should already be installed in the wall box"
     },
@@ -73,7 +73,7 @@
         "inc": "Triple press the little button inside the enclosure",
         "exc": "Triple press the little button inside the enclosure",
         "brandname": "Fibaro",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Fibaro.png",
+        "brand_image": "Fibaro.png",
         "product_image": "430-010f-0700-1000-03-03-2a-02-01.png",
         "prep": "Insert the battery"
     },
@@ -86,7 +86,7 @@
         "inc": "Triple press the button on the enclosure",
         "exc": "Triple press the button on the enclosure",
         "brandname": "Fibaro",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Fibaro.png",
+        "brand_image": "Fibaro.png",
         "product_image": "441-010f-0501-0102-03-03-28-03-31.png",
         "prep": "Connect your power supply with the device"
     },
@@ -99,7 +99,7 @@
         "inc": "Triple press the button on the enclosure",
         "exc": "Triple press the button on the enclosure",
         "brandname": "Fibaro",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Fibaro.png",
+        "brand_image": "Fibaro.png",
         "product_image": "476-010f-0600-1000-03-03-34-16-16.png",
         "prep": " "
     },
@@ -112,7 +112,7 @@
         "inc": "Triple press the little button inside the enclosure",
         "exc": "Triple press the little button inside the enclosure",
         "brandname": "Fibaro",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Fibaro.png",
+        "brand_image": "Fibaro.png",
         "product_image": "518-010f-0b00-1001-03-03-67-24-24.png",
         "prep": "Insert the battery"
     },
@@ -125,7 +125,7 @@
         "inc": "Triple press the little button inside the enclosure",
         "exc": "Triple press the little button inside the enclosure",
         "brandname": "Fibaro",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Fibaro.png",
+        "brand_image": "Fibaro.png",
         "product_image": "540-010f-0800-1001-03-03-43-02-04.png",
         "prep": "Insert the battery"
     },
@@ -138,7 +138,7 @@
         "inc": "Triple press the button on the enclosure",
         "exc": "Triple press the button on the enclosure",
         "brandname": "Fibaro",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Fibaro.png",
+        "brand_image": "Fibaro.png",
         "product_image": "552-010f-0000-0000-03-03-67-02-05.png",
         "prep": "Insert the battery"
     },
@@ -151,7 +151,7 @@
         "inc": "Triple press the little button inside the enclosure",
         "exc": "",
         "brandname": "Philio",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Philio.png",
+        "brand_image": "philio.png",
         "product_image": "477-013c-0002-0002-06-03-29-01-00.png",
         "prep": "Insert the battery"
     },
@@ -164,7 +164,7 @@
         "inc": "Triple press the little button on the enclosure",
         "exc": "Triple press the little button inside the enclosure",
         "brandname": "Philio",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Philio.png",
+        "brand_image": "philio.png",
         "product_image": "360-013c-0001-0001-03-03-29-01-01.png",
         "prep": ""
     },
@@ -177,7 +177,7 @@
         "inc": "Tripple Click on Button",
         "exc": "Tripple Click on Button",
         "brandname": "Philio",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Philio.png",
+        "brand_image": "philio.png",
         "product_image": "453-013c-0001-0003-00-03-41-01-00.png",
         "prep": "The device should already be installed in the wall box"
     },
@@ -190,7 +190,7 @@
         "inc": "Click the little button behind the small hole in the back side fo the enclosure",
         "exc": "Click the little button behind the small hole in the back side fo the enclosure",
         "brandname": "Vision",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/vision.png",
+        "brand_image": "vision.png",
         "product_image": "142-0109-2002-0201-06-02-4e-03-0a.png",
         "prep": "Insert the battery"
     },
@@ -203,7 +203,7 @@
         "inc": "Click the tamper switch button inside the device",
         "exc": "Click the tamper switch button inside the device",
         "brandname": "Vision",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/vision.png",
+        "brand_image": "vision.png",
         "product_image": "147-0109-2001-0101-06-02-4e-03-0a.png",
         "prep": "Insert the battery"
     },
@@ -216,7 +216,7 @@
         "inc": "Press the program switch for at least 1 secondand release.",
         "exc": "Press the program switch for at least 1 secondand release.",
         "brandname": "Vision",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/vision.png",
+        "brand_image": "vision.png",
         "product_image": "194-0109-2009-0901-06-03-22-01-41.png",
         "prep": "Insert the battery"
     },
@@ -229,7 +229,7 @@
         "inc": "Press button C - 8 - 8 - 8 and turn the Turn Piece from inside manually",
         "exc": "Press button C - 8 - 8 - 8 and turn the Turn Piece from inside manually",
         "brandname": "Vision",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/vision.png",
+        "brand_image": "vision.png",
         "product_image": "317-0109-2006-0620-03-03-40-05-05.png",
         "prep": "Insert the battery"
     },
@@ -242,7 +242,7 @@
         "inc": "Press the program switch once.",
         "exc": "Press the program switch once.",
         "brandname": "Vision",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/vision.png",
+        "brand_image": "vision.png",
         "product_image": "498-0109-2012-1203-06-03-41-01-74.png",
         "prep": "Connect your power supply with the device"
     },
@@ -255,7 +255,7 @@
         "inc": "Press the program swith once.",
         "exc": "Press the program swith once.",
         "brandname": "Vision",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/vision.png",
+        "brand_image": "vision.png",
         "product_image": "582-0109-2004-0404-03-03-95-14-08.png",
         "prep": "Insert the battery"
     },
@@ -268,7 +268,7 @@
         "inc": "Tripple Click one of the Rocker buttons",
         "exc": "Tripple Click one of the Rocker buttons",
         "brandname": "TKBHOME",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/TKB.png",
+        "brand_image": "TKB.png",
         "product_image": "341-0118-0102-1020-06-02-61-01-03.png",
         "prep": "The device should already be installed in the wall box"
     },
@@ -281,7 +281,7 @@
         "inc": "Button triple press",
         "exc": "Button triple press",
         "brandname": "Popp",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/PoppLogo150px.png",
+        "brand_image": "PoppLogo150px.png",
         "product_image": "447-0154-1100-0002-06-03-2a-01-00.png",
         "prep": ""
     },
@@ -294,7 +294,7 @@
         "inc": "Binding button triple press",
         "exc": "Binding button triple press",
         "brandname": "Everspring",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Everspring.png",
+        "brand_image": "Everspring.png",
         "product_image": "22-0060-000d-0001-06-02-40-01-04.png",
         "prep": "Insert the battery"
     },
@@ -307,7 +307,7 @@
         "inc": "Push Tampering Switch.",
         "exc": "Push Tampering Switch.",
         "brandname": "Everspring",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Everspring.png",
+        "brand_image": "Everspring.png",
         "product_image": "25-0060-0002-0001-06-02-40-01-03.png",
         "prep": "Insert the battery"
     },
@@ -320,7 +320,7 @@
         "inc": "Single Press button",
         "exc": "Single Press button",
         "brandname": "Everspring",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Everspring.png",
+        "brand_image": "Everspring.png",
         "product_image": "395-0060-0004-0002-00-03-22-00-00.png",
         "prep": ""
     },
@@ -333,7 +333,7 @@
         "inc": "Single Press button",
         "exc": "Single Press button",
         "brandname": "Everspring",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Everspring.png",
+        "brand_image": "Everspring.png",
         "product_image": "57-0060-0004-0001-04-02-18-00-01.png",
         "prep": ""
     },
@@ -346,7 +346,7 @@
         "inc": "Tripple press C\/F button",
         "exc": "Tripple press C\/F button",
         "brandname": "Everspring",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Everspring.png",
+        "brand_image": "Everspring.png",
         "product_image": "589-0060-0006-0001-03-03-34-02-00.png",
         "prep": "Insert the battery"
     },
@@ -359,7 +359,7 @@
         "inc": "Push Tampering Switch.",
         "exc": "Push Tampering Switch.",
         "brandname": "Everspring",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Everspring.png",
+        "brand_image": "Everspring.png",
         "product_image": "59-0060-0101-0001-06-02-09-01-00.png",
         "prep": "Insert the battery"
     },
@@ -372,7 +372,7 @@
         "inc": "Push Button behind hole for 5 Seconds",
         "exc": "Push Button behind hole for 5 Seconds",
         "brandname": "Eurotronic",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Eurotronic.png",
+        "brand_image": "Eurotronic.png",
         "product_image": "422-0148-0001-0001-03-03-2a-00-04.png",
         "prep": "Device must be munted on radiator"
     },
@@ -385,7 +385,7 @@
         "inc": "Short push middle button",
         "exc": "Short push middle button",
         "brandname": "Danfoss",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Danfoss.png",
+        "brand_image": "Danfoss.png",
         "product_image": "426-0002-0005-0003-06-02-43-02-33.png",
         "prep": "Device must be munted on radiator"
     },
@@ -398,7 +398,7 @@
         "inc": "Touch the User Button until you hear two beeps",
         "exc": "Touch the User Button until you hear two beeps",
         "brandname": "Danalock",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Polycontrol.png",
+        "brand_image": "Polycontrol.png",
         "product_image": "630-010e-0008-0001-03-03-99-01-01.png",
         "prep": "Insert the battery"
     },
@@ -411,7 +411,7 @@
         "inc": "Click Button",
         "exc": "Click Button",
         "brandname": "Aeotec",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/aeon%20labs%20logo.png",
+        "brand_image": "aeon%20labs%20logo.png",
         "product_image": "596-0086-0004-0050-03-03-5c-01-17.png",
         "prep": ""
     },
@@ -424,7 +424,7 @@
         "inc": "Press the learn-button",
         "exc": "Press the learn-button",
         "brandname": "Aeotec",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/aeon%20labs%20logo.png",
+        "brand_image": "aeon%20labs%20logo.png",
         "product_image": "609-0086-0001-0058-02-03-53-01-02.png",
         "prep": "Insert the battery"
     },
@@ -437,7 +437,7 @@
         "inc": "Z-Wave Button press",
         "exc": "Z-Wave Button press",
         "brandname": "Aeotec",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/aeon%20labs%20logo.png",
+        "brand_image": "aeon%20labs%20logo.png",
         "product_image": "618-0086-0002-0059-03-03-5c-01-0c.png",
         "prep": "Insert the battery"
     },
@@ -450,7 +450,7 @@
         "inc": "Press the Z-Wave Button on the device",
         "exc": "Press the Z-Wave Button on the device",
         "brandname": "Aeotec",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/aeon%20labs%20logo.png",
+        "brand_image": "aeon%20labs%20logo.png",
         "product_image": "637-0086-0000-0000-00-00-00-00-00.png",
         "prep": "Insert the battery"
     },
@@ -463,7 +463,7 @@
         "inc": "Click trigger and let Repeater into Learn Mode which can pairing into z-wave network or remove from z-wave network.",
         "exc": "Click trigger and let Repeater into Learn Mode which can pairing into z-wave network or remove from z-wave network.",
         "brandname": "Aeotec",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/aeon%20labs%20logo.png",
+        "brand_image": "aeon%20labs%20logo.png",
         "product_image": "638-0086-0004-0025-06-03-40-01-03.png",
         "prep": ""
     },
@@ -476,7 +476,7 @@
         "inc": "Single Click on Button inside enclosure ",
         "exc": "Single Click on Button inside enclosure ",
         "brandname": "Aeotec",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/aeon%20labs%20logo.png",
+        "brand_image": "aeon%20labs%20logo.png",
         "product_image": "519-0086-0002-001c-03-03-43-01-05.png",
         "prep": ""
     },
@@ -489,7 +489,7 @@
         "inc": "Tamper switch press",
         "exc": "Tamper switch press",
         "brandname": "Aeotec",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/aeon%20labs%20logo.png",
+        "brand_image": "aeon%20labs%20logo.png",
         "product_image": "16-0086-0002-0004-06-02-40-01-03.png",
         "prep": "Insert the battery"
     },
@@ -502,7 +502,7 @@
         "inc": "Press and hold the button labled \"Learn\" for 3 seconds",
         "exc": "Press and hold the button labled \"Learn\" for 3 seconds",
         "brandname": "Aeotec",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/aeon%20labs%20logo.png",
+        "brand_image": "aeon%20labs%20logo.png",
         "product_image": "224-0086-0001-0003-00-02-30-00-00.png",
         "prep": "Insert the battery"
     },
@@ -515,7 +515,7 @@
         "inc": "Hit the button",
         "exc": "Hit the button",
         "brandname": "Aeotec",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/aeon%20labs%20logo.png",
+        "brand_image": "aeon%20labs%20logo.png",
         "product_image": "225-0086-0003-0006-00-02-4e-00-00.png",
         "prep": ""
     },
@@ -528,7 +528,7 @@
         "inc": "Z-Wave Button press",
         "exc": "Z-Wave Button press",
         "brandname": "Aeotec",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/aeon%20labs%20logo.png",
+        "brand_image": "aeon%20labs%20logo.png",
         "product_image": "640-0086-0002-004a-03-03-5c-01-02.png",
         "prep": "Insert the battery"
     },
@@ -541,8 +541,8 @@
         "inc": "Normal Inclusion: press the B button on device once or three times, or alternatively press the external switch once",
         "exc": "Press the B button on device once or three times, or press external the number of times configured with parameter 65",
         "brandname": "WiDom",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/WiDom.png",
-        "product_image": "566-0149-0012-0104-03-03-67-01-07.png",
+        "brand_image": "WiDom.png",
+        "product_image": "",
         "prep": "Press B and R buttons at the same time and then release R: if it stays ON for 2 seconds and OFF for 6 seconds it is not included and ready to be included"
     },
     {
@@ -554,8 +554,8 @@
         "inc": "Normal Inclusion: press the B button on device once or three times, or alternatively press the external switch once",
         "exc": "Press the B button on device once or three times or external switch after having enabled the learning mode with parameter 65",
         "brandname": "WiDom",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/WiDom.png",
-        "product_image": "593-0149-0000-0000-03-03-67-01-07.png",
+        "brand_image": "WiDom.png",
+        "product_image": "",
         "prep": ""
     },
     {
@@ -567,8 +567,8 @@
         "inc": "Single click the button on the device",
         "exc": "Triple click the button on the device",
         "brandname": "WiDom",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/WiDom.png",
-        "product_image": "669-0149-1214-0304-03-03-99-01-31.png",
+        "brand_image": "WiDom.png",
+        "product_image": "",
         "prep": ""
     },
     {
@@ -580,7 +580,7 @@
         "inc": " Pushing the internal button for 1 sec. includes and excludes the device. ",
         "exc": " Pushing the internal button for 1 sec. includes and excludes the device. ",
         "brandname": "Popp",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/PoppLogo150px.png",
+        "brand_image": "PoppLogo150px.png",
         "product_image": "725-0154-0100-0201-03-04-05-01-00.png",
         "prep": ""
     },
@@ -593,7 +593,7 @@
         "inc": "Press  the  button  3  times  within  1.5  seconds.\r\nZ-Weather  sends  a  NIF  (Network  Information  Frame)  and  waits  4  seconds  for  \r\ninclusion  to  the  Z-Wave  network.  If  no  controller  includes  Z-Weather,  it  goes  to \r\nsleep after 4 seconds. Make sure to first instruct the inclusion controller to add a \r\nnode and then press the Z-Weather button 3 times to add the device to the network.",
         "exc": "Press  the  button  3  times  within  1.5  seconds.\r\nZ-Weather  sends  a  NIF  (Network  Information  Frame)  and  waits  4  seconds  for  \r\ninclusion  to  the  Z-Wave  network.  If  no  controller  includes  Z-Weather,  it  goes  to \r\nsleep after 4 seconds. Make sure to first instruct the inclusion controller to add a \r\nnode and then press the Z-Weather button 3 times to add the device to the network.",
         "brandname": "Popp",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/PoppLogo150px.png",
+        "brand_image": "PoppLogo150px.png",
         "product_image": "717-0154-0001-0001-03-04-05-01-00.png",
         "prep": ""
     }

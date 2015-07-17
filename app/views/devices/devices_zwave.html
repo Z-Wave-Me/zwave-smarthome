@@ -9,7 +9,7 @@
     <div class="row device-manufacturers" ng-hide="zwaveDevices">
         <div class="col-sm-2 col-device-vendor" ng-repeat="v in manufacturers">
             <a ng-href="#devices/zwave/{{v.key}}" class="vendor-list">
-                <p class="vendor-image"><img ng-src="{{v.val}}" alt="img" ng-show="v.val" /></p>
+                <p class="vendor-image"><img ng-src="storage/img/zwave/vendors/{{v.val}}" alt="img" ng-show="v.val" /></p>
             </a>
         </div>
     </div>
@@ -20,7 +20,7 @@
             <tbody>
                 <tr ng-repeat="(k,v) in zwaveDevices">
                     <td class="td-img">
-                        <img class="report-img" ng-src="storage/img/devices/{{v.product_image}}" alt="img" ng-show="v.product_image" />
+                        <img class="report-img" ng-src="storage/img/zwave/devices/{{v.product_image}}" alt="img" ng-show="v.product_image" />
                     </td>
                     <td class="text-left">
                         <span ng-bind="v.name"></span> <!--<em ng-bind="v.ZManufacturersName"></em>-->
