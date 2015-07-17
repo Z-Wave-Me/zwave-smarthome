@@ -978,11 +978,11 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
             case 'hidden':
                 $scope.showInFooter.categories = false;
                 break;
-            case 'online':
-                $scope.loadOnlineModules();
-                $scope.loadModules();
-                $scope.showInFooter.categories = false;
-                break;
+//            case 'online':
+//                $scope.loadOnlineModules();
+//                $scope.loadModules();
+//                $scope.showInFooter.categories = false;
+//                break;
             default:
                 $scope.showInFooter.categories = true;
                 $scope.$watch('category', function() {
