@@ -942,12 +942,17 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     };
     $scope.loadInstances = function() {
         var filter;
-        if ($scope.cfg.app_type === 'default') {
-            if ($scope.user.role === 1 && $scope.user.expert_view) {
-                filter = null;
-            } else {
-                filter = {filter: "state", val: "hidden", not: true};
-            }
+//        if ($scope.cfg.app_type === 'default') {
+//            if ($scope.user.role === 1 && $scope.user.expert_view) {
+//                filter = null;
+//            } else {
+//                filter = {filter: "state", val: "hidden", not: true};
+//            }
+//        } else {
+//            filter = {filter: "state", val: "hidden", not: true};
+//        }
+        if ($scope.user.role === 1 && $scope.user.expert_view) {
+            filter = null;
         } else {
             filter = {filter: "state", val: "hidden", not: true};
         }

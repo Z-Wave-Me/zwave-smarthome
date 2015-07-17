@@ -207,6 +207,9 @@ myApp.filter('getElementIcon', function(cfg) {
                 case 'luminosity':
                     icon = cfg.img.icons + 'luminosity.png';
                     break;
+                case 'new':
+                    icon = cfg.img.icons + 'new.png';
+                    break;
                 default:
                     break;
             }
