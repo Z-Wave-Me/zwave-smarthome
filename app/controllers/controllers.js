@@ -2514,8 +2514,7 @@ myAppController.controller('EnoceanTeachinController', function($scope, $routePa
             var profileId = parseInt(v._rorg) + '_' + parseInt(v._func) + '_' + parseInt(v._type);
 
             if (deviceProfileId == v.id) {
-                console.log(v.id)
-                profile = v;
+                 profile = v;
                 return;
             }
         });

@@ -1,7 +1,9 @@
 <div ng-controller="EnoceanDeviceController" class="mobile-padding">
     <bb-loader></bb-loader> 
     <!-- Enocean navigation -->
-    <div ng-include="'app/views/enocean/navi.html'"></div>
+    <div class="device-logo">
+        <a href="#enocean/devices"><img class="apps-image" ng-src="app/img/logo-enocean.png" alt="Logo" /></a>
+    </div>
     <div class="tab-content">
         <bb-alert alert="alert"></bb-alert>
         <div ng-if="hasEnOcean">
