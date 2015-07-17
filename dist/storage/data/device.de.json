@@ -8,7 +8,7 @@
         "inc": "Dreifachklick auf Schaltfl\u00e4che",
         "exc": "Dreifachklick auf Schaltfl\u00e4che",
         "brandname": "Z-Wave.Me",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Z-WaveMe.png",
+        "brand_image": "Z-WaveMe.png",
         "product_image": "117-0115-1000-0001-06-03-16-01-03.png",
         "prep": "Eine rot\/gr\u00fcn blinkende LED zeigt an, dass sich das Ger\u00e4t im Auslieferungszustand befindet und damit inkludiert werden kann."
     },
@@ -21,7 +21,7 @@
         "inc": "Kurzes Dr\u00fccken der Taste 1, die LED beginnt rot\/gr\u00fcn zu Blinken",
         "exc": "Alle vier Tasten gedr\u00fcckt halten, bis die gr\u00fcne LED anf\u00e4ngt, langsam zu blinken (Management Mode). Danach kurz Taste 1 dr\u00fccken",
         "brandname": "Z-Wave.Me",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Z-WaveMe.png",
+        "brand_image": "Z-WaveMe.png",
         "product_image": "211-0115-0100-0001-03-03-2a-01-02.png",
         "prep": "Wenn die Taste 1  kurz gedr\u00fcckt wird, zeigt ein rot\/gr\u00fcnes Blinken an wenn das Ger\u00e4t im Auslieferungszstand ist und damit inkludiert werden kann"
     },
@@ -34,7 +34,7 @@
         "inc": "Kurzes Dr\u00fccken der Taste 1, die LED beginnt rot\/gr\u00fcn zu Blinken",
         "exc": "Alle vier Tasten gedr\u00fcckt halten, bis die gr\u00fcne LED anf\u00e4ngt, langsam zu blinken (Management Mode). Danach kurz Taste 1 dr\u00fccken",
         "brandname": "Z-Wave.Me",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Z-WaveMe.png",
+        "brand_image": "Z-WaveMe.png",
         "product_image": "554-0115-0100-0101-03-03-5c-01-00.png",
         "prep": "Wenn die Taste 1  kurz gedr\u00fcckt wird, zeigt ein rot\/gr\u00fcnes Blinken an wenn das Ger\u00e4t im Ausleiferungszstand ist und damit inkludiert werden kann"
     },
@@ -47,7 +47,7 @@
         "inc": "Dreifachklick auf Taster",
         "exc": "Dreifachklick auf Taster",
         "brandname": "Z-Wave.Me",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Z-WaveMe.png",
+        "brand_image": "Z-WaveMe.png",
         "product_image": "322-0115-1100-0001-03-03-2a-01-00.png",
         "prep": "Eine rot\/gr\u00fcn blinkende LED zeigt an, da\u00a7 sich das Ger\u00e4t im Auslieferungszustand befindet und damit inkludiert werden kann."
     },
@@ -60,7 +60,7 @@
         "inc": "Dreifach den kleinen Taster mit einem Schraubendreher dr\u0178cken",
         "exc": "Dreifach den kleinen Taster mit einem Schraubendreher dr\u0178cken",
         "brandname": "Fibaro",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Fibaro.png",
+        "brand_image": "Fibaro.png",
         "product_image": "351-010f-0400-0109-03-03-2a-01-09.png",
         "prep": "Das Ger_t sollte bereits in der Wanddose installiert sein"
     },
@@ -73,7 +73,7 @@
         "inc": "Dreifach-Klick auf kleinen Taster im Geh\u00e4use",
         "exc": "Dreifach-Klick auf kleinen Taster im Geh\u00e4use",
         "brandname": "Fibaro",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Fibaro.png",
+        "brand_image": "Fibaro.png",
         "product_image": "430-010f-0700-1000-03-03-2a-02-01.png",
         "prep": "Legen sie die Batterie ein."
     },
@@ -86,7 +86,7 @@
         "inc": "Dreifach-Klick auf kleinen Taster im Geh\u00e4use",
         "exc": "Dreifach-Klick auf kleinen Taster im Geh\u00e4use",
         "brandname": "Fibaro",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Fibaro.png",
+        "brand_image": "Fibaro.png",
         "product_image": "441-010f-0501-0102-03-03-28-03-31.png",
         "prep": "Verbinden Sie Ihre Stromversorgung mit dem Ger\u00e4t"
     },
@@ -99,7 +99,7 @@
         "inc": "Dreifach-Klick auf Taster am Geh\u00e4use",
         "exc": "Dreifach-Klick auf Taster am Geh\u00e4use",
         "brandname": "Fibaro",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Fibaro.png",
+        "brand_image": "Fibaro.png",
         "product_image": "476-010f-0600-1000-03-03-34-16-16.png",
         "prep": " "
     },
@@ -112,7 +112,7 @@
         "inc": "Dreifach-Klick auf kleinen Taster im Geh\u00e4use",
         "exc": "Dreifach-Klick auf kleinen Taster im Geh\u00e4use",
         "brandname": "Fibaro",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Fibaro.png",
+        "brand_image": "Fibaro.png",
         "product_image": "518-010f-0b00-1001-03-03-67-24-24.png",
         "prep": "Legen sie die Batterie ein."
     },
@@ -125,7 +125,7 @@
         "inc": "Dreifach-Klick auf kleinen Taster im Geh\u00e4use",
         "exc": "Dreifach-Klick auf kleinen Taster im Geh\u00e4use",
         "brandname": "Fibaro",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Fibaro.png",
+        "brand_image": "Fibaro.png",
         "product_image": "540-010f-0800-1001-03-03-43-02-04.png",
         "prep": "Legen sie die Batterie ein."
     },
@@ -138,7 +138,7 @@
         "inc": "Dreifach-Klick auf Taster am Geh\u00e4use",
         "exc": "Dreifach-Klick auf Taster am Geh\u00e4use",
         "brandname": "Fibaro",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Fibaro.png",
+        "brand_image": "Fibaro.png",
         "product_image": "552-010f-0000-0000-03-03-67-02-05.png",
         "prep": "Legen sie die Batterie ein."
     },
@@ -151,7 +151,7 @@
         "inc": "Dr\u00fccken Sie den An\/Aus Schalter dreimal innerhalb von 1,5 Sekunden",
         "exc": "",
         "brandname": "Philio",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Philio.png",
+        "brand_image": "philio.png",
         "product_image": "477-013c-0002-0002-06-03-29-01-00.png",
         "prep": "Legen sie die Batterie ein."
     },
@@ -164,7 +164,7 @@
         "inc": "Dreifach-Klick auf Taster am Geh\u00e4use 3mal",
         "exc": "",
         "brandname": "Philio",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Philio.png",
+        "brand_image": "philio.png",
         "product_image": "360-013c-0001-0001-03-03-29-01-01.png",
         "prep": ""
     },
@@ -177,7 +177,7 @@
         "inc": "Dreifachklick auf Taste",
         "exc": "Dreifachklick auf Taste",
         "brandname": "Philio",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Philio.png",
+        "brand_image": "philio.png",
         "product_image": "453-013c-0001-0003-00-03-41-01-00.png",
         "prep": "Das Ger_t sollte bereits in der Wanddose installiert sein"
     },
@@ -190,7 +190,7 @@
         "inc": "Dr\u00fccken Sie den kleinen Programmiertaster an der Ger\u00e4ter\u00fcckseite hinter dem kleinen Lock ein mal",
         "exc": "Dr\u00fccken Sie den kleinen Programmiertaster an der Ger\u00e4ter\u00fcckseite hinter dem kleinen Lock ein mal",
         "brandname": "Vision",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/vision.png",
+        "brand_image": "vision.png",
         "product_image": "142-0109-2002-0201-06-02-4e-03-0a.png",
         "prep": "Legen sie die Batterie ein."
     },
@@ -203,7 +203,7 @@
         "inc": "Dr\u00fccken Sie den kleinen Taster innen im Geh\u00e4use",
         "exc": "Dr\u00fccken Sie den kleinen Taster innen im Geh\u00e4use",
         "brandname": "Vision",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/vision.png",
+        "brand_image": "vision.png",
         "product_image": "147-0109-2001-0101-06-02-4e-03-0a.png",
         "prep": "Legen sie die Batterie ein."
     },
@@ -216,7 +216,7 @@
         "inc": "Dr\u00fccken Sie den Programmierstaster einmal",
         "exc": "Dr\u00fccken Sie den Programmierstaster einmal",
         "brandname": "Vision",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/vision.png",
+        "brand_image": "vision.png",
         "product_image": "194-0109-2009-0901-06-03-22-01-41.png",
         "prep": "Legen sie die Batterie ein."
     },
@@ -229,7 +229,7 @@
         "inc": "W\u00e4hlen Sie die Tastenfolge C + 8 + 8 + 8. Danach drehen Sie den T\u00fcrgriff auf der Innenseite einmal",
         "exc": "W\u00e4hlen Sie die Tastenfolge C + 8 + 8 + 8. Danach drehen Sie den T\u00fcrgriff auf der Innenseite einmal",
         "brandname": "Vision",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/vision.png",
+        "brand_image": "vision.png",
         "product_image": "317-0109-2006-0620-03-03-40-05-05.png",
         "prep": "Legen sie die Batterie ein."
     },
@@ -242,7 +242,7 @@
         "inc": "Programmiertaster einmal dr\u00fccken",
         "exc": "Programmiertaster einmal dr\u00fccken",
         "brandname": "Vision",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/vision.png",
+        "brand_image": "vision.png",
         "product_image": "498-0109-2012-1203-06-03-41-01-74.png",
         "prep": "Verbinden Sie Ihre Stromversorgung mit dem Ger\u00e4t"
     },
@@ -255,7 +255,7 @@
         "inc": "Programmiertaster einmal dr\u00fccken",
         "exc": "Programmiertaster einmal dr\u00fccken",
         "brandname": "Vision",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/vision.png",
+        "brand_image": "vision.png",
         "product_image": "582-0109-2004-0404-03-03-95-14-08.png",
         "prep": "Legen sie die Batterie ein."
     },
@@ -268,7 +268,7 @@
         "inc": "Dreifachklick auf Schaltfl\u00e4che",
         "exc": "Dreifachklick auf Schaltfl\u00e4che",
         "brandname": "TKBHOME",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/TKB.png",
+        "brand_image": "TKB.png",
         "product_image": "341-0118-0102-1020-06-02-61-01-03.png",
         "prep": "Das Ger\u00e4t sollte bereits in der Wanddose installiert sein"
     },
@@ -281,7 +281,7 @@
         "inc": "Dreifachklick auf Taster",
         "exc": "Dreifachklick auf Taster",
         "brandname": "Popp",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/PoppLogo150px.png",
+        "brand_image": "PoppLogo150px.png",
         "product_image": "447-0154-1100-0002-06-03-2a-01-00.png",
         "prep": ""
     },
@@ -294,7 +294,7 @@
         "inc": "Dreifach Binding-Taster dr\u00fccken",
         "exc": "Dreifach Binding-Taster dr\u00fccken",
         "brandname": "Everspring",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Everspring.png",
+        "brand_image": "Everspring.png",
         "product_image": "22-0060-000d-0001-06-02-40-01-04.png",
         "prep": "Legen sie die Batterie ein."
     },
@@ -307,7 +307,7 @@
         "inc": "Manipulationschutzschalter dr\u00fccken",
         "exc": "Manipulationschutzschalter dr\u00fccken",
         "brandname": "Everspring",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Everspring.png",
+        "brand_image": "Everspring.png",
         "product_image": "25-0060-0002-0001-06-02-40-01-03.png",
         "prep": "Legen sie die Batterie ein."
     },
@@ -320,7 +320,7 @@
         "inc": "Einfacher Tastendruck",
         "exc": "Einfacher Tastendruck",
         "brandname": "Everspring",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Everspring.png",
+        "brand_image": "Everspring.png",
         "product_image": "395-0060-0004-0002-00-03-22-00-00.png",
         "prep": ""
     },
@@ -333,7 +333,7 @@
         "inc": "Einfacher Tastendruck",
         "exc": "Einfacher Tastendruck",
         "brandname": "Everspring",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Everspring.png",
+        "brand_image": "Everspring.png",
         "product_image": "57-0060-0004-0001-04-02-18-00-01.png",
         "prep": ""
     },
@@ -346,7 +346,7 @@
         "inc": "C\/F Taste dreifach",
         "exc": "C\/F Taste dreifach",
         "brandname": "Everspring",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Everspring.png",
+        "brand_image": "Everspring.png",
         "product_image": "589-0060-0006-0001-03-03-34-02-00.png",
         "prep": "Legen sie die Batterie ein."
     },
@@ -359,7 +359,7 @@
         "inc": "Manipulationschutzschalter dr\u00fccken",
         "exc": "Manipulationschutzschalter dr\u00fccken",
         "brandname": "Everspring",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Everspring.png",
+        "brand_image": "Everspring.png",
         "product_image": "59-0060-0101-0001-06-02-09-01-00.png",
         "prep": "Legen sie die Batterie ein."
     },
@@ -372,7 +372,7 @@
         "inc": "Taster hinter Geh_useaussparung kurz gedr\u00d9cken",
         "exc": "Taster hinter Geh_useaussparung kurz gedr\u00d9cken",
         "brandname": "Eurotronic",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Eurotronic.png",
+        "brand_image": "Eurotronic.png",
         "product_image": "422-0148-0001-0001-03-03-2a-00-04.png",
         "prep": "Ger\u00e4t muss bereits am Heizk\u00f6rper montiert sein"
     },
@@ -385,7 +385,7 @@
         "inc": "Kurzer Druck Mitteltaste",
         "exc": "Kurzer Druck Mitteltaste",
         "brandname": "Danfoss",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Danfoss.png",
+        "brand_image": "Danfoss.png",
         "product_image": "426-0002-0005-0003-06-02-43-02-33.png",
         "prep": "Ger\u00e4t muss bereits am Heizk\u00f6rper montiert sein"
     },
@@ -398,7 +398,7 @@
         "inc": "Zentrale Taste(Mulde) dr\u00fccken bis ein Doppel-Piep zu h\u00f6ren ist.",
         "exc": "Zentrale Taste(Mulde) dr\u00fccken bis ein Doppel-Piep zu h\u00f6ren ist.",
         "brandname": "Danalock",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/Polycontrol.png",
+        "brand_image": "Polycontrol.png",
         "product_image": "630-010e-0008-0001-03-03-99-01-01.png",
         "prep": "Legen sie die Batterie ein."
     },
@@ -411,7 +411,7 @@
         "inc": "Dr\u00fccke Taste",
         "exc": "Dr\u00fccke Taste",
         "brandname": "Aeotec",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/aeon%20labs%20logo.png",
+        "brand_image": "aeon%20labs%20logo.png",
         "product_image": "596-0086-0004-0050-03-03-5c-01-17.png",
         "prep": ""
     },
@@ -424,7 +424,7 @@
         "inc": "Dr\u00fccken derLlearn-Taste",
         "exc": "Dr\u00fccken der Learn-Taste",
         "brandname": "Aeotec",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/aeon%20labs%20logo.png",
+        "brand_image": "aeon%20labs%20logo.png",
         "product_image": "609-0086-0001-0058-02-03-53-01-02.png",
         "prep": "Legen sie die Batterie ein."
     },
@@ -437,7 +437,7 @@
         "inc": "einfaches Dr\u00fccken des Z-Wave Taste",
         "exc": "einfaches Dr\u00fccken des Z-Wave Taste",
         "brandname": "Aeotec",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/aeon%20labs%20logo.png",
+        "brand_image": "aeon%20labs%20logo.png",
         "product_image": "618-0086-0002-0059-03-03-5c-01-0c.png",
         "prep": "Legen sie die Batterie ein."
     },
@@ -450,7 +450,7 @@
         "inc": "Dr\u00fccken Sie den Z-Wave Taster am Ger\u00e4t",
         "exc": "Dr\u00fccken Sie den Z-Wave Taster am Ger\u00e4t",
         "brandname": "Aeotec",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/aeon%20labs%20logo.png",
+        "brand_image": "aeon%20labs%20logo.png",
         "product_image": "637-0086-0000-0000-00-00-00-00-00.png",
         "prep": "Legen sie die Batterie ein."
     },
@@ -463,7 +463,7 @@
         "inc": "Dr\u00fccke Sie den Wippschalter um das Ger\u00e4t in den inklusions\/exklusions-modus zu setzen.",
         "exc": "Dr\u00fccke Sie den Wippschalter um das Ger\u00e4t in den inklusions\/exklusions-modus zu setzen.",
         "brandname": "Aeotec",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/aeon%20labs%20logo.png",
+        "brand_image": "aeon%20labs%20logo.png",
         "product_image": "638-0086-0004-0025-06-03-40-01-03.png",
         "prep": ""
     },
@@ -476,7 +476,7 @@
         "inc": "Taster hinter Abdeckung einmal dr\u00fccken",
         "exc": "Taster hinter Abdeckung einmal dr\u00fccken",
         "brandname": "Aeotec",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/aeon%20labs%20logo.png",
+        "brand_image": "aeon%20labs%20logo.png",
         "product_image": "519-0086-0002-001c-03-03-43-01-05.png",
         "prep": ""
     },
@@ -489,7 +489,7 @@
         "inc": "Manipulationsschutzschalter dr\u00fccken",
         "exc": "Manipulationsschutzschalter dr\u00fccken",
         "brandname": "Aeotec",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/aeon%20labs%20logo.png",
+        "brand_image": "aeon%20labs%20logo.png",
         "product_image": "16-0086-0002-0004-06-02-40-01-03.png",
         "prep": "Legen sie die Batterie ein."
     },
@@ -502,7 +502,7 @@
         "inc": "Taste \"Learn\" f\u00fcr drei Sekunden gedr\u00fcckt halten",
         "exc": "Taste \"Learn\" f\u00fcr drei Sekunden gedr\u00fcckt halten",
         "brandname": "Aeotec",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/aeon%20labs%20logo.png",
+        "brand_image": "aeon%20labs%20logo.png",
         "product_image": "224-0086-0001-0003-00-02-30-00-00.png",
         "prep": "Legen sie die Batterie ein."
     },
@@ -515,7 +515,7 @@
         "inc": "Taste dr\u00fccken",
         "exc": "Taste dr\u00fccken",
         "brandname": "Aeotec",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/aeon%20labs%20logo.png",
+        "brand_image": "aeon%20labs%20logo.png",
         "product_image": "225-0086-0003-0006-00-02-4e-00-00.png",
         "prep": ""
     },
@@ -528,7 +528,7 @@
         "inc": "Bet\u00e4tigen des Z-Wave Knopfes",
         "exc": "Bet\u00e4tigen des Z-Wave Knopfes",
         "brandname": "Aeotec",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/aeon%20labs%20logo.png",
+        "brand_image": "aeon%20labs%20logo.png",
         "product_image": "640-0086-0002-004a-03-03-5c-01-02.png",
         "prep": "Legen sie die Batterie ein."
     },
@@ -541,8 +541,8 @@
         "inc": "",
         "exc": "",
         "brandname": "WiDom",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/WiDom.png",
-        "product_image": "566-0149-0012-0104-03-03-67-01-07.png",
+        "brand_image": "WiDom.png",
+        "product_image": "",
         "prep": ""
     },
     {
@@ -554,8 +554,8 @@
         "inc": "",
         "exc": "",
         "brandname": "WiDom",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/WiDom.png",
-        "product_image": "593-0149-0000-0000-03-03-67-01-07.png",
+        "brand_image": "WiDom.png",
+        "product_image": "",
         "prep": ""
     },
     {
@@ -567,8 +567,8 @@
         "inc": "",
         "exc": "",
         "brandname": "WiDom",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/WiDom.png",
-        "product_image": "669-0149-1214-0304-03-03-99-01-31.png",
+        "brand_image": "WiDom.png",
+        "product_image": "",
         "prep": ""
     },
     {
@@ -580,7 +580,7 @@
         "inc": "Durch Dr\u00fccken des Innentasters f\u00fcr 1 Sekunde wird das Ger\u00e4t\r\nins Z-Wave Netz eingebunden (inkludiert) oder getrennt (exkludiert).",
         "exc": "Durch Dr\u00fccken des Innentasters f\u00fcr 1 Sekunde wird das Ger\u00e4t\r\nins Z-Wave Netz eingebunden (inkludiert) oder getrennt (exkludiert).",
         "brandname": "Popp",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/PoppLogo150px.png",
+        "brand_image": "PoppLogo150px.png",
         "product_image": "725-0154-0100-0201-03-04-05-01-00.png",
         "prep": ""
     },
@@ -593,7 +593,7 @@
         "inc": "Dr\u00fccken  Sie  den  Knopf  3-mal  innerhalb  von  1,5  Sekunden\r\nZ-Weather sendet einen NIF (Network Information Frame) und wartet 4 Sekunden auf die Inklusion ins Z-Wave Funknetz. Sollte der \r\nZ-Weather nach 4 Sekunden nicht vom Controller inkludiert werden, schaltet sich \r\ndas Ger\u00e4t ab. Achten Sie bei der ersten Anweisung an den Inklusionskontroller  \r\ndarauf,  einen  Knotenpunkt  beizuf\u00fcgen  und  anschlie\u00dfend  den  Knopf  des  \r\nZ-Weather 3-mal zu dr\u00fccken, um das Ger\u00e4t ins Netzwerk einzubinden.",
         "exc": "Dr\u00fccken  Sie  den  Knopf  3-mal  innerhalb  von  1,5  Sekunden\r\nZ-Weather sendet einen NIF (Network Information Frame) und wartet 4 Sekunden auf die Inklusion ins Z-Wave Funknetz. Sollte der \r\nZ-Weather nach 4 Sekunden nicht vom Controller inkludiert werden, schaltet sich \r\ndas Ger\u00e4t ab. Achten Sie bei der ersten Anweisung an den Inklusionskontroller  \r\ndarauf,  einen  Knotenpunkt  beizuf\u00fcgen  und  anschlie\u00dfend  den  Knopf  des  \r\nZ-Weather 3-mal zu dr\u00fccken, um das Ger\u00e4t ins Netzwerk einzubinden.",
         "brandname": "Popp",
-        "brand_image": "http:\/\/store.zwaveeurope.com\/images\/manufacturers\/PoppLogo150px.png",
+        "brand_image": "PoppLogo150px.png",
         "product_image": "717-0154-0001-0001-03-04-05-01-00.png",
         "prep": ""
     }
