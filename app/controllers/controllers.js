@@ -890,12 +890,17 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
      */
     $scope.loadModules = function(filter) {
         // var filter;
-        if ($scope.cfg.app_type === 'default') {
-            if ($scope.user.role === 1 && $scope.user.expert_view) {
-                filter = null;
-            } else {
-                filter = {filter: "state", val: "hidden", not: true};
-            }
+//        if ($scope.cfg.app_type === 'default') {
+//            if ($scope.user.role === 1 && $scope.user.expert_view) {
+//                filter = null;
+//            } else {
+//                filter = {filter: "state", val: "hidden", not: true};
+//            }
+//        } else {
+//            filter = {filter: "state", val: "hidden", not: true};
+//        }
+        if ($scope.user.role === 1 && $scope.user.expert_view) {
+            filter = null;
         } else {
             filter = {filter: "state", val: "hidden", not: true};
         }
@@ -3890,14 +3895,14 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
             $timeout(function() {
                 $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('restore_done_reload_ui')};
                 //$interval.cancel($scope.zwaveDataInterval);
-                 $window.location.reload();
+                $window.location.reload();
             }, 20000);
         }, function(error) {
             $scope.loading = false;
             alert($scope._t('restore_backup_failed'));
         });
     };
-    
+
     /**
      * Cancel restore
      */
