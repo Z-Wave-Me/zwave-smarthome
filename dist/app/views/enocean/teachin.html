@@ -1,4 +1,7 @@
 <div ng-controller="EnoceanTeachinController" class="mobile-padding">
+    <div class="device-logo">
+        <a href="#enocean/devices"><img class="apps-image" ng-src="app/img/logo-enocean.png" alt="Logo" /></a>
+    </div>
     <bb-loader></bb-loader> 
     <!-- Auto inclusion -->
     <div class="device-perex clearfix">
@@ -39,7 +42,7 @@
                     <tr>
                         <td><span class="badge badge-number">2</span></td>
                         <td>
-                            <strong ng-bind="_t('manual_konfiguration')"></strong>
+                            <strong ng-bind="_t('lb_settings')"></strong>
                             <form name="form_enocean_config" id="form_enocean_config" class="form form-page" ng-if="inclusion.config" novalidate>
                                  <!-- <p>{{lastIncludedDevice.profile._funcDescription}} (#{{lastIncludedDevice.id}})</p> -->
                                     <!-- Name 
@@ -68,9 +71,9 @@
                                          </div>
                                     </div>
                                 </fieldset>
-                                <fieldset ng-if="rooms" ng-if="apiDevices">
+                                <fieldset ng-if="apiDevices">
                                     <!-- Rooms -->
-                                    <div class="form-group form-inline">
+                                    <div class="form-group form-inline" ng-if="rooms" >
                                         <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('devices_to_room')"></span></h3>
                                         <select class="form-control" ng-model="modelRoom">
                                             <option value="">------</option>
@@ -78,11 +81,6 @@
                                         </select>
                                         <button class="btn btn-primary" ng-click="devicesToRoom(modelRoom, apiDevices)" ng-bind="_t('lb_save')"></button> 
 
-                                    </div>
-                                </fieldset>
-                                    <fieldset>
-                                <div class="form-group form-inline">
-                                        <p><a href="#enocean/manage" class="btn btn-default"><i class="fa fa-edit"></i> {{_t('manage_enocean_devices')}}</a></p>   
                                     </div>
                                 </fieldset>
                                 
@@ -96,5 +94,8 @@
                 </tbody>
             </table>
 
+        </div>
+    <div class="submit-entry save-continue">
+        <a href="#enocean/manage" class="btn btn-info">{{_t('manage_enocean_devices')}} <i class="fa fa-chevron-right"></i></a>
         </div>
 </div> <!-- /ng-controller --> 

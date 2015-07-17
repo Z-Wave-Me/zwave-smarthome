@@ -44,7 +44,7 @@
                 </div>
             </fieldset>
             <!-- Expert view -->
-            <fieldset ng-if="elementAccess(cfg.role_access.expert_view) && cfg.app_type === 'default'">
+            <fieldset ng-if="elementAccess(cfg.role_access.expert_view)">
                 <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_expert_view')"></span></h3>                  
                 <div class="form-group form-inline">
                     <input type="checkbox" name="expert_view" ng-model="input.expert_view" ng-checked="input.expert_view" />
@@ -87,75 +87,6 @@
                 <button class="btn btn-default" ng-bind="_t('lb_cancel')" bb-go-back></button>
             </fieldset>
         </form>
-        <!-- ///////////////////////////// Licence key ///////////////////////////// -->
-        <form name="form_licence" id="form_password" class="form form-page" ng-submit="getLicense(inputLicence)" ng-if="elementAccess(cfg.role_access.admin)" novalidate>
-            <fieldset>
-                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('licence_upgrade')"></span></h3>
-                <!--
-                <p class="form-control-static" ng-bind="_t('licence_upgrade_info')"></p>
-                <p><a ng-href="{{cfg.buy_licence_key}}" class="btn btn-info">{{_t('btn_licence_buy')}}</a></p>
-                -->
-                <!-- password -->
-                 <div class="form-group form-inline">
-                     <p>{{_t('licence_upgrade_key')}}</p>
-                    <label>{{_t('licence_key_insert')}}:</label>
-                    <input
-                        class="form-control form-control-sm" 
-                        type="text" 
-                        name="scratch_id"
-                        id="scratch_id" 
-                        value="" 
-                        ng-model="inputLicence.scratch_id" />
-                    <button type="submit" class="btn btn-primary" ng-bind="_t('btn_licence_verify')" ng-disabled="proccessLicence"></button>
-               
-                <div><br />
-                     <p ng-if="proccessVerify.message">
-                    <i class="fa-lg" ng-class="proccessVerify.status"></i> <strong ng-bind="proccessVerify.message"></strong>
-                    </p>
-                    <p ng-if="proccessUpdate.message">
-                        <i class="fa-lg" ng-class="proccessUpdate.status"></i> <strong ng-bind="proccessUpdate.message"></strong>
-                    </p>
-                </div>
-                     </div>
-            </fieldset> 
-        </form>
-        
-        <!-- ///////////////////////////// Remote accessForm ///////////////////////////// -->
-        <form name="form_remote" id="form_remote" class="form form-page" ng-submit="putRemoteAccess(remoteAccess, newRemoteAccessPassword)"  ng-if="elementAccess(cfg.role_access.remote_access)" novalidate>
-            <fieldset>
-                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('remote_access_manage')"></span></h3>
-                <p ng-bind="_t('remote_access_info')"></p>
-                <bb-alert alert="alert"></bb-alert>
-                <div ng-if="remoteAccess">
-                    <div class="form-group">
-                        <!-- Remote access ID -->
-                        <p class="form-control-static">
-                            <span ng-bind="_t('remote_access_id')"></span>: <strong ng-bind="remoteAccess.params.userId"></strong>
-                        </p>
-                        <!-- Remote access password -->
-                        <p>
-                            <label>{{_t('remote_access_password')}}: </label>
-                            <input name="remote_password" id="remote_password" type="password" class="form-control form-control-sm" value="" ng-model="remoteAccess.params.pass" />
-                        </p>
-                    </div>
-
-                    <div class="form-group">
-                        <div>
-                            <input type="checkbox" name="remote_access" value="true" id="remote_access" ng-model="remoteAccess.params.zbwStatus" ng-checked="remoteAccess.params.zbwStatus" /> 
-                            <label ng-bind="_t('remote_access')"></label>
-                            <div class="alert alert-warning" ng-bind="_t('remote_access_warning')" ng-if="!remoteAccess.params.zbwStatus"></div>
-                        </div>
-                        <div>
-                            <input type="checkbox" name="remote_support" value="true" id="remote_support" ng-model="remoteAccess.params.sshStatus" ng-checked="remoteAccess.params.sshStatus" /> 
-                            <label ng-bind="_t('remote_access_support')"></label>
-                        </div>
-                    </div>
-                </div>
-            </fieldset>
-            <fieldset class="submit-entry">
-                        <button type="submit" class="btn btn-primary" ng-bind="_t('lb_submit')"></button>
-                    </fieldset>
-        </form>
 
         <!-- ///////////////////////////// Change password Form ///////////////////////////// -->
         <form name="form_password" id="form_password" class="form form-page" ng-submit="changePassword(newPassword)" novalidate>
@@ -164,19 +95,18 @@
                 <!-- login  -->
                 <p class="form-control-static">
                     <span ng-bind="_t('lb_login')"></span>: <strong ng-bind="input.login"></strong>
-                 </p>
+                </p>
                 <!-- password -->
                 <div>
                     <label>{{_t('lb_new_password')}}: </label>
                     <input name="password" id="password" type="password" class="form-control form-control-sm" value="" ng-model="newPassword" />
                 </div>
-               
-            </fieldset>
-             <fieldset class="submit-entry">
-                    <button type="submit" class="btn btn-primary" ng-bind="_t('lb_submit')"></button>
-                </fieldset>
-        </form>
 
-    </div>
+            </fieldset>
+            <fieldset class="submit-entry">
+                <button type="submit" class="btn btn-primary" ng-bind="_t('lb_submit')"></button>
+            </fieldset>
+        </form>
+ </div>
 
 </div> <!-- /ng-controller --> 
