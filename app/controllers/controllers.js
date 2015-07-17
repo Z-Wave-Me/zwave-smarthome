@@ -978,11 +978,11 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
             case 'hidden':
                 $scope.showInFooter.categories = false;
                 break;
-//            case 'online':
-//                $scope.loadOnlineModules();
-//                $scope.loadModules();
-//                $scope.showInFooter.categories = false;
-//                break;
+            case 'online':
+                $scope.loadOnlineModules();
+                $scope.loadModules();
+                $scope.showInFooter.categories = false;
+                break;
             default:
                 $scope.showInFooter.categories = true;
                 $scope.$watch('category', function() {
@@ -1086,10 +1086,12 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     /**
      * Download module
      */
-    $scope.downloadModule = function(id, modulename) {
+    $scope.downloadModule = function(id) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
-        var cmd = 'Run/system("/opt/module_downloader.sh ' + id + ' ' + modulename + '")';
-        dataFactory.getSystemCmd(cmd).then(function(response) {
+        var data = {
+            moduleUrl: $scope.cfg.online_module_download_url + id + '.tar.gz'
+        };
+        dataFactory.installOnlineModule(data).then(function(response) {
             $timeout(function() {
                 $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_module_download')};
             }, 3000);
@@ -1169,13 +1171,16 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
     /**
      * Download module
      */
-    $scope.downloadModule = function(id, modulename) {
+    $scope.downloadModule = function(id) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
-        var cmd = 'Run/system("/opt/module_downloader.sh ' + id + ' ' + modulename + '")';
-        dataFactory.getSystemCmd(cmd).then(function(response) {
+        var data = {
+            moduleUrl: $scope.cfg.online_module_download_url + id + '.tar.gz'
+        };
+        dataFactory.installOnlineModule(data).then(function(response) {
             $timeout(function() {
                 $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_module_download')};
             }, 3000);
+
         }, function(error) {
             $scope.loading = false;
             alert($scope._t('error_no_module_download'));
@@ -1513,7 +1518,7 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
                     //var deviceType = ZWaveAPIData.devices[nodeId].data.deviceTypeString.value;
                     $scope.hasBattery = hasBattery;
 
-                    console.log('CHECK interview -----------------------------------------------------')
+                    //console.log('CHECK interview -----------------------------------------------------')
                     // Check interview
                     if (ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value && ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value.length) {
                         for (var iId in ZWaveAPIData.devices[nodeId].instances) {
@@ -1680,12 +1685,12 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
         //var data = response.data;
         if ('controller.data.controllerState' in data) {
             $scope.controllerState = data['controller.data.controllerState'].value;
-            console.log('controllerState: ', $scope.controllerState)
+            //console.log('controllerState: ', $scope.controllerState)
         }
 
         if ('controller.data.lastExcludedDevice' in data) {
             $scope.lastExcludedDevice = data['controller.data.lastExcludedDevice'].value;
-            console.log('lastExcludedDevice: ', $scope.lastExcludedDevice)
+            //console.log('lastExcludedDevice: ', $scope.lastExcludedDevice)
         }
         if ('controller.data.lastIncludedDevice' in data) {
             var deviceIncId = data['controller.data.lastIncludedDevice'].value;
@@ -2566,7 +2571,7 @@ myAppController.controller('EnoceanManageController', function($scope, $location
         dataFactory.loadEnoceanDevices(true).then(function(response) {
             dataService.updateTimeTick();
             if (Object.keys(response).length < 1) {
-                $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: $scope._t('no_devices')};
+                $scope.loading = {status: 'loading-fade', icon: 'fa-exclamation-circle text-warning', message: $scope._t('no_devices')};
                 return;
             }
             setDevices(response, enoceanProfiles);

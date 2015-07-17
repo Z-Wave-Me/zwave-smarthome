@@ -52,6 +52,7 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
         getLicense: getLicense,
         zmeCapabilities: zmeCapabilities,
         postReport: postReport,
+        installOnlineModule: installOnlineModule,
         restoreFromBck: restoreFromBck
     });
 
@@ -679,6 +680,27 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
                         //'ZWAYSession': ZWAYSession 
+            }
+        }).then(function(response) {
+            return response;
+        }, function(response) {// something went wrong
+            return $q.reject(response);
+        });
+        return;
+    }
+    
+    /**
+     * Install online module
+     */
+    function installOnlineModule(data) {
+        return $http({
+            method: "POST",
+             url: cfg.server_url + cfg.api['online_install'],
+            data: $.param(data),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                 'Accept-Language': lang,
+                'ZWAYSession': ZWAYSession
             }
         }).then(function(response) {
             return response;

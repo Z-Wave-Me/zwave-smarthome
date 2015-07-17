@@ -23,6 +23,7 @@ var config_data = {
             'notifications': 'ZAutomation/api/v1/notifications',
             'modules': 'ZAutomation/api/v1/modules',
             'modules_categories': 'ZAutomation/api/v1/modules/categories',
+            'online_install': 'ZAutomation/api/v1/modules/install',
             'instances': 'ZAutomation/api/v1/instances',
             'namespaces': 'ZAutomation/api/v1/namespaces',
             'history': 'ZAutomation/api/v1/history',
@@ -46,6 +47,8 @@ var config_data = {
         'online_module_url': 'http://hrix.net/modules_store/json_store.php',
         // Online module img url
         'online_module_img_url': 'http://hrix.net/modules_store/modules/',
+        // Online module download url
+        'online_module_download_url': 'http://hrix.net/modules_store/modules/',
         // Post report url
         //'post_report_url': 'http://dev.dev/zwave-api/report/post-report.php',
         'post_report_url': ' http://zwave.eu/api/report/post-report.php',
