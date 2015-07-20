@@ -225,15 +225,16 @@ background-color: lighten($app-body-bcg-color, 10%);;
 .nav-tabs-3 li a {
   background-color:#eeeeee;
 }
+.tab-content{
+    padding-top: 10px;
+}
 /* Forms
 -------------------------------------------------- */
-fieldset{
-    margin-bottom: 10px;
-    background-color: $app-body-bcg-color;
-    padding: 10px;
-}
+
 .form-page{
     margin-bottom: 20px;
+    background-color: #fff;
+    border: solid 4px darken($app-body-bcg-color,3%);
     fieldset{
         background-color: #fff;
     }
@@ -250,6 +251,12 @@ fieldset{
     }
 }
 
+fieldset{
+    //margin-bottom: 10px;
+    background-color: $app-body-bcg-color;
+    padding: 10px;
+}
+
 .form-control-sm{
     width: 30% !important;
 }
@@ -262,6 +269,9 @@ fieldset{
     display: block;
     margin: 10px 0 0 0;
 }
+fieldset.submit-entry{
+    margin: 0 !important;
+}
 .form-control-hidden{
     display: none !important;
 }
@@ -272,12 +282,6 @@ fieldset{
 }
 .control-active{
     border: solid 4px black !important;
-}
-
-/* Alpaca
--------------------------------------------------- */
-.alpaca-message-invalidValueOfEnum{
-    display: none !important; 
 }
 
 /* Page

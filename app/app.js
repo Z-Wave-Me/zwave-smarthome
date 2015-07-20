@@ -112,16 +112,52 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     roles: cfg.role_access.devices
                 }).
                 //IP camera device
-                when('/devices/enocean', {
+               /* when('/devices/enocean/:brandname?', {
                     templateUrl: 'app/views/devices/devices_enocean.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices
-                }).
-                //Include Devices
+                }).*/
+                //Include Zwave device
                 when('/include/:device?', {
                     templateUrl: 'app/views/devices/device_include.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices_include
+                }).
+                //Enocean Devices
+                when('/enocean/devices/:brandname?', {
+                    templateUrl: 'app/views/enocean/devices.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
+                }).
+                //Enocean Teach-In
+                when('/enocean/teachin/:device', {
+                    templateUrl: 'app/views/enocean/teachin.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
+                }).
+                //Enocean devices
+                when('/enocean/manage', {
+                    templateUrl: 'app/views/enocean/manage.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
+                }).
+                //Enocean device manage
+                when('/enocean/manage/:deviceId', {
+                    templateUrl: 'app/views/enocean/manage_detail.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
+                }).
+                //Enocean controller
+                when('/enocean/controller', {
+                    templateUrl: 'app/views/enocean/controller.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
+                }).
+                //Enocean assign profile
+                when('/enocean/assign', {
+                    templateUrl: 'app/views/enocean/assign.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
                 }).
                 //Rooms
                 when('/config-rooms', {

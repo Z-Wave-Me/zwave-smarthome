@@ -9,15 +9,11 @@
     /* Visible */
 .navbar-visible{
     position: relative;
+}
     .navbar-visible-in{
         line-height: 50px;
         position: absolute;
-         .header-logo{
-            img{
-                max-height: 40px;
-                max-width: 100px;
-            }
-        }
+         
         .divider-vertical{
             height: 50px;
         }
@@ -39,7 +35,14 @@
              //color: $brand-color-secondary;
         }
     }
-}
+
+
+.header-logo{
+            img{
+                max-height: 40px;
+                max-width: 100px;
+            }
+        }
 
 .navi-time{
     padding-left: 10px;

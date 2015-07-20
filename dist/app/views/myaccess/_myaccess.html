@@ -1,0 +1,216 @@
+<!-- Home view -->
+<div ng-controller="MyAccessController" class="mobile-padding">
+    <bb-loader></bb-loader>
+    <div ng-show="input">
+        <h1 ng-bind="_t('nav_myaccess')"></h1>
+        <form name="form_profile" id="form_profile" class="form form-page" ng-submit="store(input)" novalidate>
+            <fieldset>
+                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_name')"></span></h3>
+                <div>
+                    <!-- name -->
+                    <div class="form-group">
+                        <input name="name" id="name" type="text" class="form-control" placeholder="{{_t('lb_profile_name_insert')}}" value="{{input.name}}" ng-model="input.name" />
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_settings')"></span></h3>
+                <div>
+                    <!-- lang -->
+                    <div class="form-group form-inline">
+                        <label>{{_t('lb_language')}}:</label>
+                        <span ng-repeat="v in cfg.lang_list" >
+                            <input class="form-control-hidden" type="radio" name="color" value="{{v}}" ng-model="input.lang" ng-checked="input.color == v" />
+                            <img class="form-control-img profile-lang" ng-click="input.lang = v" ng-class="v == input.lang ? 'control-active':''" ng-src="app/img/flags/{{v}}.png" alt="{{ v}}"/>
+                        </span>
+                        <span ng-bind="input.lang"></span>
+                    </div>
+                    <!-- colors -->
+                    <div class="form-group">
+                        <label>{{_t('lb_profile_color')}}: </label>
+                        <span ng-repeat="v in cfg.profile_colors" >
+                            <input class="form-control-hidden" type="radio" name="color" value="{{v}}" ng-model="input.color" ng-checked="input.color == v" />
+                            <span class="form-control-img profile-color" style="background-color: {{v}}" ng-click="input.color = v" ng-class="v == input.color ? 'control-active':''">&nbsp;</span> 
+                        </span>
+                        <span ng-bind="input.color"></span>
+                    </div>
+                    <!-- interval -->
+                    <div class="form-group form-inline">
+                        <label>{{_t('lb_interval')}}: </label>
+                        <input name="interval" id="interval" type="text" class="form-control" placeholder="{{_t('lb_interval_placeholder')}}" value="{{input.interval}}" ng-model="input.interval" />
+                        ({{_t('miliseconds')}})
+                    </div>
+
+                </div>
+            </fieldset>
+            <!-- Expert view -->
+            <fieldset ng-if="elementAccess(cfg.role_access.expert_view) && cfg.app_type === 'default'">
+                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_expert_view')"></span></h3>                  
+                <div class="form-group form-inline">
+                    <input type="checkbox" name="expert_view" ng-model="input.expert_view" ng-checked="input.expert_view" />
+                    <label ng-bind="_t('lb_expert_app_view')"></label>
+                </div>
+            </fieldset>
+            <fieldset>
+                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('nav_events')"></span></h3>
+                <div>
+                    <div>
+                        <input type="checkbox" name="hide_all_device_events" value="true" id="hide_all_device_events" ng-model="input.hide_all_device_events" ng-checked="input.hide_all_device_events" /> 
+                        <label ng-bind="_t('lb_hide_device_events')"></label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="hide_system_events" value="true" id="hide_system_events" ng-model="input.hide_system_events" ng-checked="input.hide_system_events" /> 
+                        <label ng-bind="_t('lb_hide_system_events')"></label>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_hidden_events_device')"></span></h3>
+                <div class="device-assigned-block_">
+                    <div class="btn-device-admin" id="device_assigned_{{$index}}" ng-repeat="d in devices" ng-if="input.hide_single_device_events.indexOf(d.id) > -1"> 
+                        <a href="" ng-click="removeDevice(d.id)">{{d.metrics.title}} <i class="fa fa-times text-danger"></i></a>
+                    </div>
+                </div>
+                <!--<div class="device-available-block">
+                    
+                    <h3 ng-click="showDevices = !showDevices"><i class="fa fa-chevron-down"></i> {{_t('lb_available_devices')}}</h3>
+                    <div ng-if="showDevices">
+                    <div class="btn-device-admin" id="device_unassigned_{{$index}}" ng-repeat="d in devices" ng-if="input.hide_single_device_events.indexOf(d.id) === -1">
+                        <a href="" ng-click="assignDevice(d.id)">{{d.metrics.title}} <i class="fa fa-plus text-success"></i></a>
+                    </div>
+                    </div>
+                </div> --> 
+
+            </fieldset>
+            <fieldset class="submit-entry">
+                <button type="submit" class="btn btn-primary" ng-bind="_t('lb_save')"></button>
+                <button class="btn btn-default" ng-bind="_t('lb_cancel')" bb-go-back></button>
+            </fieldset>
+        </form>
+        <!-- ///////////////////////////// Licence key ///////////////////////////// -->
+        <form name="form_licence" id="form_password" class="form form-page" ng-submit="getLicense(inputLicence)" ng-if="elementAccess(cfg.role_access.admin)" novalidate>
+            <fieldset>
+                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('licence_upgrade')"></span></h3>
+                <!--
+                <p class="form-control-static" ng-bind="_t('licence_upgrade_info')"></p>
+                <p><a ng-href="{{cfg.buy_licence_key}}" class="btn btn-info">{{_t('btn_licence_buy')}}</a></p>
+                -->
+                <!-- password -->
+                <div class="form-group form-inline">
+                    <p>{{_t('licence_upgrade_key')}}</p>
+                    <label>{{_t('licence_key_insert')}}:</label>
+                    <input
+                        class="form-control form-control-sm" 
+                        type="text" 
+                        name="scratch_id"
+                        id="scratch_id" 
+                        value="" 
+                        ng-model="inputLicence.scratch_id" />
+                    <button type="submit" class="btn btn-primary" ng-bind="_t('btn_licence_verify')" ng-disabled="proccessLicence"></button>
+
+                    <div><br />
+                        <p ng-if="proccessVerify.message">
+                            <i class="fa-lg" ng-class="proccessVerify.status"></i> <strong ng-bind="proccessVerify.message"></strong>
+                        </p>
+                        <p ng-if="proccessUpdate.message">
+                            <i class="fa-lg" ng-class="proccessUpdate.status"></i> <strong ng-bind="proccessUpdate.message"></strong>
+                        </p>
+                    </div>
+                </div>
+            </fieldset> 
+        </form>
+
+        <!-- ///////////////////////////// Remote accessForm ///////////////////////////// -->
+        <form name="form_remote" id="form_remote" class="form form-page" ng-submit="putRemoteAccess(remoteAccess, newRemoteAccessPassword)"  ng-if="elementAccess(cfg.role_access.remote_access)" novalidate>
+            <fieldset>
+                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('remote_access_manage')"></span></h3>
+                <p ng-bind="_t('remote_access_info')"></p>
+                <bb-alert alert="alert"></bb-alert>
+                <div ng-if="remoteAccess">
+                    <div class="form-group">
+                        <!-- Remote access ID -->
+                        <p class="form-control-static">
+                            <span ng-bind="_t('remote_access_id')"></span>: <strong ng-bind="remoteAccess.params.userId"></strong>
+                        </p>
+                        <!-- Remote access password -->
+                        <p>
+                            <label>{{_t('remote_access_password')}}: </label>
+                            <input name="remote_password" id="remote_password" type="password" class="form-control form-control-sm" value="" ng-model="remoteAccess.params.pass" />
+                        </p>
+                    </div>
+
+                    <div class="form-group">
+                        <div>
+                            <input type="checkbox" name="remote_access" value="true" id="remote_access" ng-model="remoteAccess.params.zbwStatus" ng-checked="remoteAccess.params.zbwStatus" /> 
+                            <label ng-bind="_t('remote_access')"></label>
+                            <div class="alert alert-warning" ng-bind="_t('remote_access_warning')" ng-if="!remoteAccess.params.zbwStatus"></div>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="remote_support" value="true" id="remote_support" ng-model="remoteAccess.params.sshStatus" ng-checked="remoteAccess.params.sshStatus" /> 
+                            <label ng-bind="_t('remote_access_support')"></label>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset class="submit-entry">
+                <button type="submit" class="btn btn-primary" ng-bind="_t('lb_submit')"></button>
+            </fieldset>
+        </form>
+
+        <!-- ///////////////////////////// Change password Form ///////////////////////////// -->
+        <form name="form_password" id="form_password" class="form form-page" ng-submit="changePassword(newPassword)" novalidate>
+            <fieldset>
+                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('my_local_access')"></span></h3>
+                <!-- login  -->
+                <p class="form-control-static">
+                    <span ng-bind="_t('lb_login')"></span>: <strong ng-bind="input.login"></strong>
+                </p>
+                <!-- password -->
+                <div>
+                    <label>{{_t('lb_new_password')}}: </label>
+                    <input name="password" id="password" type="password" class="form-control form-control-sm" value="" ng-model="newPassword" />
+                </div>
+
+            </fieldset>
+            <fieldset class="submit-entry">
+                <button type="submit" class="btn btn-primary" ng-bind="_t('lb_submit')"></button>
+            </fieldset>
+        </form>
+
+        <!-- ///////////////////////////// Back up and Restore ///////////////////////////// -->
+        <form name="form_restore" id="form_restore" class="form form-page" ng-submit="changePassword(newPassword)" novalidate>
+            <fieldset>
+                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('nm_backup_title')"></span></h3>
+                <!-- Restore -->
+                <a class="btn btn-primary" href="{{cfg.server_url}}ZWaveAPI/Backup" ng-if="!goRestore">{{_t('nm_backup_download')}}</a>
+                <!-- Restore -->
+                <button class="btn btn-info" ng-click="goRestore = !goRestore" ng-bind="goRestore ? _t('lb_cancel') : _t('nm_restore_backup_upload')"></button>
+
+            </fieldset>
+            <fieldset ng-if="goRestore">
+                <div class="alert alert-warning">
+                    <input type="checkbox" name="restore_confirm" value="1" id="restore_confirm" ng-click="goRestoreUpload = !goRestoreUpload" /> <span ng-bind="_t('are_you_sure_restore')"></span>
+                </div>
+                <div ng-if="goRestoreUpload">
+                    <input 
+                        type="checkbox" 
+                        name="restore_chip_info"
+                        id="restore_chip_info" 
+                        value="1" 
+                        ng-true-value="1" 
+                        ng-false-value="0" 
+                        ng-model="modelRestoreChipInfo" /> {{_t('restore_backup_chip')}}
+
+                    <div class="form-group">
+                        <input type="file" class="form-control_" file-model="myFile" /><br /> 
+                       <button type="button" class="btn btn-success" id="btn_upload_img" ng-click="uploadFile()"><i class="fa fa-download"></i> {{_t('nm_restore_pick_up')}}</button>
+                    </div>
+
+                </div>
+
+            </fieldset>
+        </form>
+
+    </div>
+
+</div> <!-- /ng-controller --> 

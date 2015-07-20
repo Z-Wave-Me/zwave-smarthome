@@ -1,5 +1,13 @@
 /* Admin
 -------------------------------------------------- */
+.admin-entry{
+    margin-bottom: 20px;
+    border-bottom: solid 1px $app-border-color;
+}
+.admin-entry-title{
+    font-size: 18px;
+    cursor: pointer;
+}
 .user-image{
      max-width: 40px;
        border-radius: 50%;

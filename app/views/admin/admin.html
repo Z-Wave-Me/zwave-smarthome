@@ -1,26 +1,156 @@
 <!-- Home view -->
-<div ng-controller="AdminController">
-    <div class="page-header header-control clearfix">
-        <h1 ng-bind="_t('nav_admin')"></h1>
-        <div class="page-header-control">
-            <a type="button" class="btn btn-info" ng-href="#admin/user/0"><i class="fa fa-plus"></i> {{_t('lb_add_user')}}</a>
+<div ng-controller="AdminController" class="mobile-padding">
+     <bb-loader></bb-loader>
+     <!-- ///////////////////////////// User management ///////////////////////////// -->
+    <div class="admin-entry">
+        <h2 class="admin-entry-title" ng-click="goUser = !goUser">
+            <i class="fa" ng-class="goUser ? 'fa-minus':'fa-plus'"></i> <span ng-bind="_t('nav_admin')"></span>
+        </h2>
+        <div class="admin-entry-ctrl" ng-class="" ng-if="goUser">
+            <div class="page-header-control text-right">
+                <a type="button" class="btn btn-info" ng-href="#admin/user/0"><i class="fa fa-plus"></i> {{_t('lb_add_user')}}</a>
+            </div>
+            <table id="table_cfg_admin" class="table table-condensed table-report">
+                <tbody>
+                    <tr ng-repeat="v in profiles" id="row_{{v.id}}">
+                        <td>
+                            <img class="report-img" ng-src="storage/img/icons/user.png" alt="{{v.name}}" /> 
+                            <span class="report-message" ng-bind="v.name"></span>
+                        </td>
+                        <td class="td-action">
+                            <a class="btn btn-default" href="#admin/user/{{v.id}}"><i class="fa fa-pencil fa-lg text-info"></i></a>
+                            <button class="btn btn-default" 
+                                    ng-hide="v.id == 1"
+                                    ng-click="delete('#row_' + v.id, {'id': v.id}, _t('lb_delete_confirm'), 1)"
+                                    ><i class="fa fa-times fa-lg text-danger"></i></button>   
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
-    <table id="table_cfg_admin" class="table table-condensed table-report">
-        <tbody>
-            <tr ng-repeat="v in profiles" id="row_{{v.id}}">
-                 <td>
-                    <img class="report-img" ng-src="storage/img/icons/user.png" alt="{{v.name}}" /> 
-                    <span class="report-message" ng-bind="v.name"></span>
-                </td>
-                <td class="td-action">
-                    <a class="btn btn-default" href="#admin/user/{{v.id}}"><i class="fa fa-pencil fa-lg text-info"></i></a>
-                    <button class="btn btn-default" 
-                       ng-hide="v.id == 1"
-                       ng-click="delete('#row_' + v.id, {'id': v.id}, _t('lb_delete_confirm'), 1)"
-                       ><i class="fa fa-times fa-lg text-danger"></i></button>   
-                </td>
-            </tr>
-        </tbody>
-    </table>
+     
+      <!-- ///////////////////////////// Remote accessForm ///////////////////////////// -->
+      <div class="admin-entry">
+        <h2 class="admin-entry-title" ng-click="goRemote = !goRemote">
+            <i class="fa" ng-class="goRemote ? 'fa-minus':'fa-plus'"></i> <span ng-bind="_t('remote_access_manage')"></span>
+        </h2>
+        <div class="admin-entry-ctrl" ng-class="" ng-if="goRemote">
+            <form name="form_remote" id="form_remote" class="form form-page" ng-submit="putRemoteAccess(remoteAccess, newRemoteAccessPassword)" novalidate>
+            <fieldset>
+                <p ng-bind="_t('remote_access_info')"></p>
+                <bb-alert alert="alert"></bb-alert>
+                <div ng-if="remoteAccess">
+                    <div class="form-group">
+                        <!-- Remote access ID -->
+                        <p class="form-control-static">
+                            <span ng-bind="_t('remote_access_id')"></span>: <strong ng-bind="remoteAccess.params.userId"></strong>
+                        </p>
+                        <!-- Remote access password -->
+                        <p>
+                            <label>{{_t('remote_access_password')}}: </label>
+                            <input name="remote_password" id="remote_password" type="password" class="form-control form-control-sm" value="" ng-model="remoteAccess.params.pass" />
+                        </p>
+                    </div>
+
+                    <div class="form-group">
+                        <div>
+                            <input type="checkbox" name="remote_access" value="true" id="remote_access" ng-model="remoteAccess.params.zbwStatus" ng-checked="remoteAccess.params.zbwStatus" /> 
+                            <label ng-bind="_t('remote_access')"></label>
+                            <div class="alert alert-warning" ng-bind="_t('remote_access_warning')" ng-if="!remoteAccess.params.zbwStatus"></div>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="remote_support" value="true" id="remote_support" ng-model="remoteAccess.params.sshStatus" ng-checked="remoteAccess.params.sshStatus" /> 
+                            <label ng-bind="_t('remote_access_support')"></label>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset class="submit-entry">
+                <button type="submit" class="btn btn-primary" ng-bind="_t('lb_submit')"></button>
+            </fieldset>
+        </form>
+        </div>
+    </div>
+      
+     <!-- ///////////////////////////// Licence key ///////////////////////////// -->
+    <div class="admin-entry">
+        <h2 class="admin-entry-title" ng-click="goLicence = !goLicence">
+            <i class="fa" ng-class="goLicence ? 'fa-minus':'fa-plus'"></i> <span ng-bind="_t('licence_upgrade')"></span>
+        </h2>
+        <div class="admin-entry-ctrl" ng-class="" ng-if="goLicence">
+           <form name="form_licence" id="form_password" class="form form-page" ng-submit="getLicense(inputLicence)" novalidate>
+            <fieldset>
+                 <!--
+                <p class="form-control-static" ng-bind="_t('licence_upgrade_info')"></p>
+                <p><a ng-href="{{cfg.buy_licence_key}}" class="btn btn-info">{{_t('btn_licence_buy')}}</a></p>
+                -->
+                <!-- password -->
+                <div class="form-group_ form-inline">
+                    <p>{{_t('licence_upgrade_key')}}</p>
+                    <label>{{_t('licence_key_insert')}}:</label>
+                    <input
+                        class="form-control form-control-sm" 
+                        type="text" 
+                        name="scratch_id"
+                        id="scratch_id" 
+                        value="" 
+                        ng-model="inputLicence.scratch_id" />
+                    <button type="submit" class="btn btn-primary" ng-bind="_t('btn_licence_verify')" ng-disabled="proccessLicence"></button>
+
+                    <div><br />
+                        <p ng-if="proccessVerify.message">
+                            <i class="fa-lg" ng-class="proccessVerify.status"></i> <strong ng-bind="proccessVerify.message"></strong>
+                        </p>
+                        <p ng-if="proccessUpdate.message">
+                            <i class="fa-lg" ng-class="proccessUpdate.status"></i> <strong ng-bind="proccessUpdate.message"></strong>
+                        </p>
+                    </div>
+                </div>
+            </fieldset> 
+        </form>
+            
+        </div>
+    </div>
+    
+    <!-- ///////////////////////////// Back up and Restore ///////////////////////////// -->
+    <div class="admin-entry" ng-if="blabla == 128">
+        <h2 class="admin-entry-title" ng-click="goBackRestore = !goBackRestore">
+            <i class="fa" ng-class="goBackRestore ? 'fa-minus':'fa-plus'"></i> <span ng-bind="_t('nm_backup_title')"></span>
+        </h2>
+        <div class="admin-entry-ctrl" ng-class="" ng-show="goBackRestore">
+            <form name="form_restore" id="form_restore" class="form form-page" novalidate>
+            <fieldset>
+                <!-- Restore -->
+                <a class="btn btn-primary" href="{{cfg.server_url}}ZWaveAPI/Backup" ng-if="!goRestore">{{_t('nm_backup_download')}}</a>
+                <!-- Restore -->
+                <button class="btn btn-info" ng-hide="goRestoreUpload" ng-click="goRestore = !goRestore" ng-bind="_t('nm_restore_backup_upload')"></button>
+                 
+
+            </fieldset>
+            <fieldset ng-show="goRestore">
+                <div class="alert alert-warning">
+                    <input type="checkbox" name="restore_confirm" value="1" id="restore_confirm" ng-click="goRestoreUpload = !goRestoreUpload" /> <span ng-bind="_t('are_you_sure_restore')"></span>
+                </div>
+                <div ng-show="goRestoreUpload">
+                    <input 
+                        type="checkbox" 
+                        name="restore_chip_info"
+                        id="restore_chip_info" 
+                        ng-true-value="1" 
+                        ng-false-value="0" 
+                        ng-model="restoreBck.chip" /> {{_t('restore_backup_chip')}}
+
+                    <div class="form-group">
+                        <input type="file" class="form-control_" file-model="myFile" /><br /> 
+                       <button type="button" class="btn btn-success" id="btn_upload_img" ng-click="uploadFile(restoreBck)"><i class="fa fa-download"></i> {{_t('nm_restore_pick_up')}}</button>
+                       <button class="btn btn-default" ng-if="goRestore" ng-click="cancelRestore()" ng-bind="_t('lb_cancel')"></button>
+                    </div>
+
+                </div>
+
+            </fieldset>
+        </form>
+        </div>
+    </div>
 </div> <!-- /ng-controller --> 

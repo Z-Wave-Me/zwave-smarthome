@@ -134,8 +134,14 @@ myApp.filter('getElementIcon', function(cfg) {
     return function(input, device,level) {
         var icon = cfg.img.icons + 'placeholder.png';
         if (input) {
-            if ((/^http:\/\//.test(input))) {
+            if ((/^https?:\/\//.test(input))) {
                 return input;
+            } else if ((/\.(png|gif|jpe?g)$/).test(input)) {
+                if (input.indexOf('/') > -1) {
+                    return input;
+                } else {
+                    return cfg.img.icons + input;
+                }
             }
             switch (input) {
                 case 'door':
@@ -200,6 +206,9 @@ myApp.filter('getElementIcon', function(cfg) {
                     break;
                 case 'luminosity':
                     icon = cfg.img.icons + 'luminosity.png';
+                    break;
+                case 'new':
+                    icon = cfg.img.icons + 'new.png';
                     break;
                 default:
                     break;

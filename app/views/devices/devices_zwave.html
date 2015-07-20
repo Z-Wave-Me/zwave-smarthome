@@ -2,14 +2,14 @@
 <div ng-controller="DeviceZwaveController">
 <div class="mobile-padding">
     <div class="device-logo">
-        <img class="apps-image" ng-src="app/img/logo-z-wave.png" alt="Logo" />
+        <a href="#devices/zwave"><img class="apps-image" ng-src="app/img/logo-z-wave.png" alt="Logo" /></a>
     </div>
 
     <div class="text-center device-autodetect"><a href="#include" class="btn btn-default btn-lg btn-block"><i class="fa fa-compass"></i> {{_t('lb_zwave_autodetect')}}</a></div>
     <div class="row device-manufacturers" ng-hide="zwaveDevices">
         <div class="col-sm-2 col-device-vendor" ng-repeat="v in manufacturers">
-            <a ng-href="#devices/zwave/{{v.key}}" class="vendor-list" ng-click_="setFilter({'filter': 'brandname', 'val': v.key})">
-                <p class="vendor-image"><img ng-src="{{v.val}}" alt="img" ng-show="v.val" /></p>
+            <a ng-href="#devices/zwave/{{v.key}}" class="vendor-list">
+                <p class="vendor-image"><img ng-src="storage/img/zwave/vendors/{{v.val}}" alt="img" ng-show="v.val" /></p>
             </a>
         </div>
     </div>
@@ -20,7 +20,7 @@
             <tbody>
                 <tr ng-repeat="(k,v) in zwaveDevices">
                     <td class="td-img">
-                        <img class="report-img" ng-src="storage/img/devices/{{v.product_image}}" alt="img" ng-show="v.product_image" />
+                        <img class="report-img" ng-src="storage/img/zwave/devices/{{v.product_image}}" alt="img" ng-show="v.product_image" />
                     </td>
                     <td class="text-left">
                         <span ng-bind="v.name"></span> <!--<em ng-bind="v.ZManufacturersName"></em>-->

@@ -222,9 +222,9 @@
     /* Forms
     -------------------------------------------------- */
     .form-control-sm,.form-control-md{
-    width: 100% !important;
-    display: block !important;
-}
+        width: 100% !important;
+        display: block !important;
+    }
     .btn-new-item{
         float: none !important;
     }
@@ -281,7 +281,7 @@
         }
     }
 
-    #modal_camera {
+    .modal-no-padding {
         //width: 100%;
         .modal-dialog {
             margin: 0; 
@@ -520,5 +520,19 @@
         margin: 0 0 20px 0;
         background-color: #fff;
 
+    }
+
+    .include-device-img{
+        float: none;
+        margin: 0;
+        text-align: center;
+    }
+    .include-device-img img{
+        max-width: 120px;
+        max-height: 120px;
+    }
+    .include-device-txt{
+        margin-top: 20px;
+         text-align: center;
     }
 }

@@ -1,3 +1,30 @@
+/* Custom
+-------------------------------------------------- */
+.alpaca-message-invalidValueOfEnum{
+    display: none !important; 
+}
+.alpaca-fieldset-legend{
+    font-size: 16px;
+}
+
+.alpaca-fieldset-legend-button{
+    margin-right: 5px;
+}
+
+.alpaca-fieldset-array-item-toolbar{
+    display: inline-block !important;
+}
+.help-block.alpaca-controlfield-message-text{
+    display: inline-block !important;
+}
+.alpaca-controlfield-container .has-error .form-control {
+  border-color: #ccc !important;
+ -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+/* Default
+-------------------------------------------------- */
 /** Added to outer field elements to hide them **/
 .alpaca-hidden
 {
