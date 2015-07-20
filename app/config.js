@@ -67,7 +67,7 @@ var config_data = {
         // Buy licence key url
         'buy_licence_key': 'http://www.zwave.me/index.php?id=41',
         // Url to update capabilities
-        'license_load_url': '/ZWaveAPI/ZMELicense',
+        'license_load_url': 'ZWaveAPI/ZMELicense',
         // Language directory
         'lang_dir': 'app/lang/',
         // Default language
