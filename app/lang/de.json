@@ -14,7 +14,7 @@
     "management": "Management",
     "controller_info": "Controller info",
     "manage": "Manage",
-   "lb_expert_app_view":"Zeige Experten-Apps",
+   "lb_expert_app_view":"Zeige System-Apps",
    "licence_upgrade": "Lizenzerweiterung",
     "licence_upgrade_info":"Ihr genutzter Z-Wave Transceiver besitzt eine firwareinterne Funktionsverwaltung. Damit können bestimmte Funktionen und Begrenzungen wie die maximal Anzahl steuerbarer Geräte aktiviert oder deaktiviert werden.",
     "licence_key_insert": "Lizenzschlüssel eingeben",
