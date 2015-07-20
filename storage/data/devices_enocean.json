@@ -490,29 +490,5 @@
     "funcId": "0x02",
     "typeId": "0x05",
     "inclusion": ""
-  },
-  {
-    "id": 42,
-    "vendor": "NodOn",
-    "name": "Smart Plug ON/OFF ASP-2-1-x0",
-    "vendorLogo": "nodon.png",
-    "description": "",
-    "image": "NodOn_ASP-2-1-x0.png",
-    "rorg": "0xd2",
-    "funcId": "0x01",
-    "typeId": "0x0a",
-    "inclusion": ""
-  },
-  {
-    "id": 43,
-    "vendor": "NodOn",
-    "name": "Smart Plug ON/OFF Metering ASP-2-1-x1",
-    "vendorLogo": "nodon.png",
-    "description": "",
-    "image": "NodOn_ASP-2-1-x1.png",
-    "rorg": "0xd2",
-    "funcId": "0x01",
-    "typeId": "0x0b",
-    "inclusion": ""
   }
 ]
