@@ -430,5 +430,89 @@
     "funcId": "0x00",
     "typeId": "0x01",
     "inclusion": "Move Magnet"
+  },
+  {
+    "id": 37,
+    "vendor": "NodOn",
+    "name": "Wall Switch CWS-2-1-xx",
+    "vendorLogo": "nodon.png",
+    "description": "",
+    "image": "NodOn_CWS-2-1-xx.png",
+    "rorg": "0xf6",
+    "funcId": "0x02",
+    "typeId": "0x01",
+    "inclusion": ""
+  },
+  {
+    "id": 38,
+    "vendor": "NodOn",
+    "name": "The Soft Remote CRC-2-6-xx",
+    "vendorLogo": "nodon.png",
+    "description": "",
+    "image": "NodOn_CRC-2-6-xx.png",
+    "rorg": "0xf6",
+    "funcId": "0x02",
+    "typeId": "0x02",
+    "inclusion": ""
+  },
+  {
+    "id": 39,
+    "vendor": "NodOn",
+    "name": "Card Switch CCS-2-1-01",
+    "vendorLogo": "nodon.png",
+    "description": "",
+    "image": "NodOn_CCS-2-1-01.png",
+    "rorg": "0xf6",
+    "funcId": "0x04",
+    "typeId": "0x01",
+    "inclusion": ""
+  },
+  {
+    "id": 40,
+    "vendor": "NodOn",
+    "name": "Door / Window Sensor SDO-2-1-xx",
+    "vendorLogo": "nodon.png",
+    "description": "",
+    "image": "NodOn_SDO-2-1-xx.png",
+    "rorg": "0xd5",
+    "funcId": "0x00",
+    "typeId": "0x01",
+    "inclusion": ""
+  },
+  {
+    "id": 41,
+    "vendor": "NodOn",
+    "name": "Temperature Sensor STP-2-1-xx",
+    "vendorLogo": "nodon.png",
+    "description": "",
+    "image": "NodOn_STP-2-1-xx.png",
+    "rorg": "0xa5",
+    "funcId": "0x02",
+    "typeId": "0x05",
+    "inclusion": ""
+  },
+  {
+    "id": 42,
+    "vendor": "NodOn",
+    "name": "Smart Plug ON/OFF ASP-2-1-x0",
+    "vendorLogo": "nodon.png",
+    "description": "",
+    "image": "NodOn_ASP-2-1-x0.png",
+    "rorg": "0xd2",
+    "funcId": "0x01",
+    "typeId": "0x0a",
+    "inclusion": ""
+  },
+  {
+    "id": 43,
+    "vendor": "NodOn",
+    "name": "Smart Plug ON/OFF Metering ASP-2-1-x1",
+    "vendorLogo": "nodon.png",
+    "description": "",
+    "image": "NodOn_ASP-2-1-x1.png",
+    "rorg": "0xd2",
+    "funcId": "0x01",
+    "typeId": "0x0b",
+    "inclusion": ""
   }
 ]
