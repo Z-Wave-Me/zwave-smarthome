@@ -15,7 +15,7 @@
     "management": "Management",
     "controller_info": "Controller info",
     "manage": "Manage",
-     "lb_expert_app_view":"Show experts apps",
+     "lb_expert_app_view":"Show System Apps",
      "enocean_not_active": "EnOcean module is not activated. Please activate it in Apps-Active tab.",
     "enocean_nosupport": "This hardware does not support EnOcean devices",
     "device_list": "List of installed devices",
