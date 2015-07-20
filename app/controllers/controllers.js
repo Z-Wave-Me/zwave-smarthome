@@ -1096,10 +1096,10 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     /**
      * Download module
      */
-    $scope.downloadModule = function(id) {
+    $scope.downloadModule = function(modulename) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
         var data = {
-            moduleUrl: $scope.cfg.online_module_download_url + id + '.tar.gz'
+            moduleUrl: $scope.cfg.online_module_download_url + modulename + '.tar.gz'
         };
         dataFactory.installOnlineModule(data).then(function(response) {
             $timeout(function() {
