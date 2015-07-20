@@ -9,8 +9,14 @@
                 <!-- {{v.id}}: {{levelVal[v.id]}} icon {{v.icon}} -->
                 <div class="widget-block-in clearfix app-border app-gradient app-shadow">
                     <!-- Widget icon -->
-                    <img ng-if="v.deviceType === 'text'" ng-show="v.metrics.icon" class="widget-image" ng-src="{{v.metrics.icon}}" alt="{{v.title}}" ng-click="goHidden[v.id] = !goHidden[v.id]" />
-                    <img id="widget_img_{{v.id}}" class="widget-image" ng-if="v.deviceType !== 'text'"  ng-src="{{v.icon|getElementIcon:v:levelVal[v.id]}}" alt="img" ng-click="goHidden[v.id] = !goHidden[v.id]" />
+                    <!-- icon of widget type text -->
+                    <img id="widget_img_{{v.id}}" ng-if="v.deviceType === 'text'" ng-show="v.metrics.icon" class="widget-image" ng-src="{{v.metrics.icon}}" alt="{{v.title}}" ng-click="showModal('#modal_promo', {'type': v.deviceType, 'title': v.title, 'text': v.metrics.text, 'url': v.metrics.icon})" />
+
+                    <!-- icon of widget type sensorMultiline -->
+                    <img id="widget_img_{{v.id}}" ng-if="v.deviceType === 'sensorMultiline'" class="widget-image" ng-src="{{v.icon|getElementIcon:v:levelVal[v.id]}}" alt="{{v.title}}" ng-click="loadMultilineSensor('#modal_multiline', v.id,v)"/>
+
+                    <!-- default icon -->
+                    <img id="widget_img_{{v.id}}" class="widget-image" ng-if="v.deviceType !== 'text' && v.deviceType !== 'sensorMultiline'"  ng-src="{{v.icon|getElementIcon:v:levelVal[v.id]}}" alt="img" ng-click="goHidden[v.id] = !goHidden[v.id]" />
 
                     <!-- Widget header -->
                     <div class="widget-header">
@@ -20,9 +26,16 @@
 
                     <!-- Widget body -->
                     <div class="widget-body" ng-class="{'text-widget': v.deviceType == 'text','text-widget-no-img': v.deviceType == 'text' && v.metrics.icon == ''}" ng-mouseleave="goHidden[v.id] = false; goHistory[v.id] = false;" >
+                        
+                        <!-- title of widget type text -->
+                        <h3 ng-if="v.deviceType === 'text'" class="entry-title" title="{{v.title}}" ng-click="showModal('#modal_promo', {'type': v.deviceType, 'title': v.title, 'text': v.metrics.text, 'url': v.metrics.icon})">{{v.title|cutText:true:29}}</h3>
+                        
+                        <!-- title of widget type sensorMultiline -->
+                        <h3 ng-if="v.deviceType === 'sensorMultiline'" class="entry-title" title="{{v.title}}" ng-click="loadMultilineSensor('#modal_multiline', v.id,v)">{{v.title}}</h3>
 
-                        <h3 ng-if="v.deviceType === 'text'" class="entry-title" title="{{v.title}}" ng-click="goHidden[v.id] = !goHidden[v.id]">{{v.title|cutText:true:29}}</h3>
-                        <h3 ng-if="v.deviceType !== 'text'" class="entry-title" title="{{v.title}}" ng-click="goHidden[v.id] = !goHidden[v.id]">{{v.title}}</h3>
+                        <!-- default title -->
+                        <h3 ng-if="v.deviceType !== 'text' && v.deviceType !== 'sensorMultiline'" class="entry-title" title="{{v.title}}" ng-click="goHidden[v.id] = !goHidden[v.id]">{{v.title}}</h3>
+
                         <div class="widget-control-wrap">
                             <!------------ switchMultilevel ------------>
                             <div ng-switch-when="switchMultilevel">
@@ -174,12 +187,12 @@
                             <!-- sensorMultiline -->
                             <div ng-switch-when="sensorMultiline">
                                 <!-- has sensors -->
-                                <div class="widget-control control-left widget-click-popup" ng-click="loadMultilineSensor('#modal_multiline', v.id,v)" ng-if="v.metrics.sensors">
+                                <div class="widget-control control-left widget-click-popup" ng-click="loadMultilineSensor('#modal_multiline', v.id,v)" ng-if="v.metrics.hasOwnProperty('sensors')">
                                     <span class="widget-level" ng-bind="v.level"></span> <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span> <i class="fa fa-caret-down"></i>
                                 </div>
                                 
                                 <!-- no sensors -->
-                                 <div class="widget-control control-left widget-click-popup" ng-click="goHidden[v.id] = !goHidden[v.id]" ng-if="!v.metrics.sensors">
+                                 <div class="widget-control control-left widget-click-popup" ng-click="goHidden[v.id] = !goHidden[v.id]" ng-if="!v.metrics.hasOwnProperty('sensors')">
                                     <span class="widget-level" ng-bind="v.level"></span> <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span> <i class="fa fa-caret-down"></i>
                                 </div>
 
