@@ -43,10 +43,13 @@
                 max-width: 100px;
             }
         }
-
+.navi-time-link{
+    cursor: pointer;
+}
 .navi-time{
     padding-left: 10px;
 }
+
 .mobile-icon{
      padding-left: 7px;
     color: $header-link-color;

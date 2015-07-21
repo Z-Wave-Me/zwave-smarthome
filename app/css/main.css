@@ -800,59 +800,64 @@ http://codepen.io/MattIn4D/pen/LiKFC
   max-width: 100px;
 }
 
-/* line 47, sass/globals/_navigation.scss */
+/* line 46, sass/globals/_navigation.scss */
+.navi-time-link {
+  cursor: pointer;
+}
+
+/* line 49, sass/globals/_navigation.scss */
 .navi-time {
   padding-left: 10px;
 }
 
-/* line 50, sass/globals/_navigation.scss */
+/* line 53, sass/globals/_navigation.scss */
 .mobile-icon {
   padding-left: 7px;
   color: #5d5d5d;
 }
 
-/* line 54, sass/globals/_navigation.scss */
+/* line 57, sass/globals/_navigation.scss */
 .lang-switch {
   text-transform: uppercase;
 }
 
-/* line 57, sass/globals/_navigation.scss */
+/* line 60, sass/globals/_navigation.scss */
 .lang-switch-current {
   display: inline-block;
   width: 24px;
   height: 24px;
 }
 
-/* line 63, sass/globals/_navigation.scss */
+/* line 66, sass/globals/_navigation.scss */
 .navbar-inverse {
   background-color: #E9E9E9;
   border-color: transparent;
   border-bottom: solid 4px #DDDDDD;
   color: #DDDDDD;
 }
-/* line 69, sass/globals/_navigation.scss */
+/* line 72, sass/globals/_navigation.scss */
 .navbar-inverse .navbar-nav .dropdown-toggle {
   color: #5d5d5d;
 }
-/* line 72, sass/globals/_navigation.scss */
+/* line 75, sass/globals/_navigation.scss */
 .navbar-inverse .navbar-nav .dropdown-toggle:hover {
   color: #5d5d5d;
 }
 
-/* line 78, sass/globals/_navigation.scss */
+/* line 81, sass/globals/_navigation.scss */
 .navbar-inverse_ .navbar-nav .dropdown-toggle {
   color: #DDDDDD;
 }
 
 /* Collapse */
-/* line 83, sass/globals/_navigation.scss */
+/* line 86, sass/globals/_navigation.scss */
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > .active > a:focus {
   background-color: #DDDDDD;
 }
 
-/* line 89, sass/globals/_navigation.scss */
+/* line 92, sass/globals/_navigation.scss */
 .navbar-inverse .navbar-nav > .open > a,
 .navbar-inverse .navbar-nav > .open > a:hover,
 .navbar-inverse .navbar-nav > .open > a:focus {
@@ -860,7 +865,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   color: #DA131F;
 }
 
-/* line 96, sass/globals/_navigation.scss */
+/* line 99, sass/globals/_navigation.scss */
 .navbar-inverse .dropdown-menu > .active > a,
 .navbar-inverse .dropdown-menu > .active > a:hover,
 .navbar-inverse .dropdown-menu > .active > a:focus {
@@ -868,14 +873,14 @@ http://codepen.io/MattIn4D/pen/LiKFC
   color: #5d5d5d;
 }
 
-/* line 105, sass/globals/_navigation.scss */
+/* line 108, sass/globals/_navigation.scss */
 .navbar-inverse .dropdown-menu > li > a:hover,
 .navbar-inverse .dropdown-menu > li > a:focus {
   background-color: #DDDDDD;
   color: #DA131F;
 }
 
-/* line 111, sass/globals/_navigation.scss */
+/* line 114, sass/globals/_navigation.scss */
 .navbar .divider-vertical {
   height: 50px;
   /*    margin: 0 9px;*/
@@ -883,22 +888,22 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-right: 1px solid white;
 }
 
-/* line 117, sass/globals/_navigation.scss */
+/* line 120, sass/globals/_navigation.scss */
 .dropdown-menu {
   border: 1px solid #DDDDDD;
 }
-/* line 120, sass/globals/_navigation.scss */
+/* line 123, sass/globals/_navigation.scss */
 .dropdown-menu .divider {
   background-color: #DDDDDD;
 }
 
-/* line 125, sass/globals/_navigation.scss */
+/* line 128, sass/globals/_navigation.scss */
 .navbar-nav > li > a {
   padding-top: 15px;
   padding-bottom: 10px;
 }
 
-/* line 130, sass/globals/_navigation.scss */
+/* line 133, sass/globals/_navigation.scss */
 .dropdown > .dropdown-menu::before, .dropdown > .dropdown-menu::after {
   content: '';
   display: inline-block;
@@ -912,7 +917,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   right: 12px;
 }
 
-/* line 144, sass/globals/_navigation.scss */
+/* line 147, sass/globals/_navigation.scss */
 .dropdown > .dropdown-menu::after {
   border-left-width: 6px;
   border-right-width: 6px;
@@ -927,22 +932,22 @@ http://codepen.io/MattIn4D/pen/LiKFC
     left: auto;
     right: 13px;
 }*/
-/* line 160, sass/globals/_navigation.scss */
+/* line 163, sass/globals/_navigation.scss */
 .only-icon .only-icon-menu i {
   font-size: 18px;
 }
 
-/* line 164, sass/globals/_navigation.scss */
+/* line 167, sass/globals/_navigation.scss */
 .only-icon-menu span {
   display: none;
 }
 
-/* line 168, sass/globals/_navigation.scss */
+/* line 171, sass/globals/_navigation.scss */
 .dropdown-menu a i {
   padding-right: 10px;
 }
 
-/* line 172, sass/globals/_navigation.scss */
+/* line 175, sass/globals/_navigation.scss */
 .navi-app-info {
   font-size: 90%;
   color: #5d5d5d;
@@ -951,7 +956,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 
 /** Profile colors */
-/* line 180, sass/globals/_navigation.scss */
+/* line 183, sass/globals/_navigation.scss */
 .profile-dddddd {
   /* Visible */
 }
@@ -964,7 +969,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-color: #dddddd;
 }
 
-/* line 183, sass/globals/_navigation.scss */
+/* line 186, sass/globals/_navigation.scss */
 .profile-6c7a89 {
   /* Visible */
 }
@@ -977,7 +982,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-color: #6c7a89;
 }
 
-/* line 186, sass/globals/_navigation.scss */
+/* line 189, sass/globals/_navigation.scss */
 .profile-6494bc {
   /* Visible */
 }
@@ -990,7 +995,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-color: #6494bc;
 }
 
-/* line 189, sass/globals/_navigation.scss */
+/* line 192, sass/globals/_navigation.scss */
 .profile-80ad80 {
   /* Visible */
 }
@@ -1003,7 +1008,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-color: #80ad80;
 }
 
-/* line 192, sass/globals/_navigation.scss */
+/* line 195, sass/globals/_navigation.scss */
 .profile-31b0d5 {
   /* Visible */
 }
@@ -1016,7 +1021,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-color: #31b0d5;
 }
 
-/* line 195, sass/globals/_navigation.scss */
+/* line 198, sass/globals/_navigation.scss */
 .profile-f0aD4e {
   /* Visible */
 }
@@ -1029,7 +1034,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-color: #f0aD4e;
 }
 
-/* line 198, sass/globals/_navigation.scss */
+/* line 201, sass/globals/_navigation.scss */
 .profile-d9534f {
   /* Visible */
 }
@@ -1042,7 +1047,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-color: #d9534f;
 }
 
-/* line 201, sass/globals/_navigation.scss */
+/* line 204, sass/globals/_navigation.scss */
 .profile-dd976e {
   /* Visible */
 }

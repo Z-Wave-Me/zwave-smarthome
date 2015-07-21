@@ -26,7 +26,7 @@
                         <a href="#rooms" title="{{_t('nav_rooms')}}" ng-class="isActive('rooms')"><i class="fa fa-th-large"></i></a>
                         <a href="#events" title="{{_t('nav_events')}}" ng-class="isActive('events')"><i class="fa fa-list-ul"></i></a>
                         <span class="divider-vertical"></span> 
-                         &nbsp;<span id="update_time_tick"></span>
+                        &nbsp;<span id="update_time_tick" ng-click="reloadData()"></span>
                          <span class="mobile-icon" ng-if="isMobile"><i class="fa fa-mobile fa-lg"></i></span> 
                     </div>
                 </div>

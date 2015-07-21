@@ -8,7 +8,7 @@ var myAppController = angular.module('myAppController', []);
 /**
  * Base controller
  */
-myAppController.controller('BaseController', function($scope, $cookies, $filter, $location, cfg, dataFactory, dataService) {
+myAppController.controller('BaseController', function($scope, $cookies, $filter, $location, $route,cfg, dataFactory, dataService,myCache) {
     /**
      * Global scopes
      */
@@ -129,6 +129,15 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
      */
     $scope.setTime = function() {
         dataService.updateTimeTick();
+    };
+    $scope.setTime();
+    
+     /**
+     *Reload data
+     */
+    $scope.reloadData = function() {
+        myCache.removeAll();
+        $route.reload();
     };
     $scope.setTime();
     /**

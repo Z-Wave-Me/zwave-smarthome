@@ -42,7 +42,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     this.updateTimeTick = function(time) {
 
         time = (time || Math.round(+new Date() / 1000));
-        $('#update_time_tick').html('<i class="fa fa-clock-o text-success"></i> <span class="text-success">' + $filter('getCurrentTime')(time)) + '</span>';
+        $('#update_time_tick').html('<span class="navi-time-link"><i class="fa fa-clock-o text-success"></i> <span class="text-success">' + $filter('getCurrentTime')(time)) + '</span></span>';
     };
 
 
