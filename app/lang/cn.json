@@ -1,5 +1,6 @@
 {
      "missing": "---",
+     "ui_version": "UI version",
      "continue": "Continue",
     "save_continue": "Save and continue",
     "assign_profile": "Assign profile",
