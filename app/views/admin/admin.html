@@ -74,7 +74,7 @@
     </div>
       
      <!-- ///////////////////////////// Licence key ///////////////////////////// -->
-    <div class="admin-entry">
+    <div class="admin-entry" ng-if="controllerUuid"> 
         <h2 class="admin-entry-title" ng-click="goLicence = !goLicence">
             <i class="fa" ng-class="goLicence ? 'fa-minus':'fa-plus'"></i> <span ng-bind="_t('licence_upgrade')"></span>
         </h2>
