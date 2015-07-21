@@ -16,7 +16,11 @@
                     <img id="widget_img_{{v.id}}" ng-if="v.deviceType === 'sensorMultiline'" class="widget-image" ng-src="{{v.icon|getElementIcon:v:levelVal[v.id]}}" alt="{{v.title}}" ng-click="loadMultilineSensor('#modal_multiline', v.id,v)"/>
 
                     <!-- default icon -->
-                    <img id="widget_img_{{v.id}}" class="widget-image" ng-if="v.deviceType !== 'text' && v.deviceType !== 'sensorMultiline'"  ng-src="{{v.icon|getElementIcon:v:levelVal[v.id]}}" alt="img" ng-click="goHidden[v.id] = !goHidden[v.id]" />
+                    <img id="widget_img_{{v.id}}" class="widget-image" ng-if="cfg.element_update_icon.indexOf(v.deviceType) === -1 && v.deviceType !== 'text' && v.deviceType !== 'sensorMultiline'" ng-src="{{v.icon|getElementIcon:v:levelVal[v.id]}}" alt="img" />
+                     <!-- with update cmd -->
+                    <a href="" ng-click="runCmd(v.id + '/command/update')" ng-if="cfg.element_update_icon.indexOf(v.deviceType) > -1">
+                         <img id="widget_img_{{v.id}}" class="widget-image  widget-img-update" ng-src="{{v.icon|getElementIcon:v:levelVal[v.id]}}" alt="img" />
+                    </a>
 
                     <!-- Widget header -->
                     <div class="widget-header">
