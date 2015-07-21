@@ -94,6 +94,8 @@
                                 <li ng-class="isActive('report')"><a href="#report" data-collapse-navbar><i class="fa fa-bug"></i> {{_t('nav_report')}}</a></li>
                                 <li ng-class="isActive('expertUi')" ng-if="elementAccess(cfg.role_access.admin) && cfg.app_type === 'default'"><a href="/expert" target="_blank" data-collapse-navbar><i class="fa fa-external-link"></i> {{_t('nav_expertUi')}}</a></li>
                                 <li ng-if="elementAccess(null,isMobile)"><a href="#logout" data-collapse-navbar><i class="fa fa-sign-out"></i> {{_t('nav_logout')}}</a></li>
+                                <li class="divider"></li>
+                                 <li class="navi-app-info">{{_t('ui_version')}}: {{cfg.app_version}}</li>
                             </ul>
                         </li>
                     </ul>

@@ -942,8 +942,16 @@ http://codepen.io/MattIn4D/pen/LiKFC
   padding-right: 10px;
 }
 
+/* line 172, sass/globals/_navigation.scss */
+.navi-app-info {
+  font-size: 90%;
+  color: #5d5d5d;
+  font-style: italic;
+  padding: 3px 20px;
+}
+
 /** Profile colors */
-/* line 173, sass/globals/_navigation.scss */
+/* line 180, sass/globals/_navigation.scss */
 .profile-dddddd {
   /* Visible */
 }
@@ -956,7 +964,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-color: #dddddd;
 }
 
-/* line 176, sass/globals/_navigation.scss */
+/* line 183, sass/globals/_navigation.scss */
 .profile-6c7a89 {
   /* Visible */
 }
@@ -969,7 +977,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-color: #6c7a89;
 }
 
-/* line 179, sass/globals/_navigation.scss */
+/* line 186, sass/globals/_navigation.scss */
 .profile-6494bc {
   /* Visible */
 }
@@ -982,7 +990,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-color: #6494bc;
 }
 
-/* line 182, sass/globals/_navigation.scss */
+/* line 189, sass/globals/_navigation.scss */
 .profile-80ad80 {
   /* Visible */
 }
@@ -995,7 +1003,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-color: #80ad80;
 }
 
-/* line 185, sass/globals/_navigation.scss */
+/* line 192, sass/globals/_navigation.scss */
 .profile-31b0d5 {
   /* Visible */
 }
@@ -1008,7 +1016,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-color: #31b0d5;
 }
 
-/* line 188, sass/globals/_navigation.scss */
+/* line 195, sass/globals/_navigation.scss */
 .profile-f0aD4e {
   /* Visible */
 }
@@ -1021,7 +1029,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-color: #f0aD4e;
 }
 
-/* line 191, sass/globals/_navigation.scss */
+/* line 198, sass/globals/_navigation.scss */
 .profile-d9534f {
   /* Visible */
 }
@@ -1034,7 +1042,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-color: #d9534f;
 }
 
-/* line 194, sass/globals/_navigation.scss */
+/* line 201, sass/globals/_navigation.scss */
 .profile-dd976e {
   /* Visible */
 }

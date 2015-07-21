@@ -169,6 +169,13 @@ padding-bottom: 10px;
     padding-right: 10px;
 }
 
+.navi-app-info{
+    font-size: 90%;
+        color: $header-link-color;
+        font-style: italic;
+        padding: 3px 20px;
+}
+
 /** Profile colors */
 .profile-dddddd{
      @include appProfileColors(#dddddd);
