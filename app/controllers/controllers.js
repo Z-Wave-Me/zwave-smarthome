@@ -8,7 +8,7 @@ var myAppController = angular.module('myAppController', []);
 /**
  * Base controller
  */
-myAppController.controller('BaseController', function($scope, $cookies, $filter, $location, $route,cfg, dataFactory, dataService,myCache) {
+myAppController.controller('BaseController', function($scope, $cookies, $filter, $location, $route, cfg, dataFactory, dataService, myCache) {
     /**
      * Global scopes
      */
@@ -131,8 +131,8 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
         dataService.updateTimeTick();
     };
     $scope.setTime();
-    
-     /**
+
+    /**
      *Reload data
      */
     $scope.reloadData = function() {
@@ -3720,7 +3720,10 @@ myAppController.controller('NetworkConfigController', function($scope, $routePar
 myAppController.controller('AdminController', function($scope, $window, $location, $timeout, $interval, dataFactory, dataService, myCache) {
     $scope.profiles = {};
     $scope.remoteAccess = false;
-
+    $scope.controllerInfo = {
+        uuid: null,
+        softwareRevisionVersion: null
+    };
     // Licence
     $scope.controllerUuid = null;
     $scope.proccessLicence = false;
@@ -3751,6 +3754,11 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
     $scope.loadZwaveApiData = function() {
         dataService.showConnectionSpinner();
         dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
+            $scope.controllerInfo = {
+                uuid: ZWaveAPIData.controller.data.uuid.value,
+                softwareRevisionVersion: ZWaveAPIData.controller.data.softwareRevisionVersion.value,
+                 softwareLatestVersion: 'v2.0.1'
+            };
             $scope.controllerUuid = ZWaveAPIData.controller.data.uuid.value;
             dataService.updateTimeTick();
         }, function(error) {
@@ -3915,6 +3923,13 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
             $scope.loading = false;
             alert($scope._t('restore_backup_failed'));
         });
+    };
+    
+    /**
+     * Update firmware
+     */
+    $scope.updateFirmware = function(input) {
+       console.log($scope.controllerInfo)
     };
 
     /**

@@ -153,4 +153,26 @@
         </form>
         </div>
     </div>
+    
+    <!-- ///////////////////////////// Firmware update ///////////////////////////// -->
+    <div class="admin-entry"> 
+        <h2 class="admin-entry-title" ng-click="goFirmware = !goFirmware">
+            <i class="fa" ng-class="goFirmware ? 'fa-minus':'fa-plus'"></i> <span ng-bind="_t('firmware_update')"></span>
+        </h2>
+        <div class="admin-entry-ctrl" ng-class="" ng-if_="goFirmware">
+           <form name="form_firmware" id="form_firmware" class="form form-page" ng-submit="updateFirmware()" novalidate>
+            <fieldset>
+                <!-- Last version -->
+                <p class="form-control-static">
+                    <span ng-bind="_t('current_firmware')"></span>: <strong ng-bind="controllerInfo.softwareRevisionVersion"></strong>
+                </p>
+                <div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i> {{_t('firmware_update_war')}}</div>
+            </fieldset> 
+                <fieldset class="submit-entry">
+                <button type="submit" class="btn btn-primary">{{_t('update_to_latest')}} ({{controllerInfo.softwareLatestVersion}})</button>
+            </fieldset>
+        </form>
+            
+        </div>
+    </div>
 </div> <!-- /ng-controller --> 
