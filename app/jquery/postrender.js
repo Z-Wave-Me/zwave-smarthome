@@ -31,7 +31,7 @@ var postRenderAlpaca = function(renderedForm) {
             success: function(response) {
                  $('.module-spinner').fadeOut();
                  window.location.replace("#apps");
-                 window.location.reload(true);
+                 //window.location.reload(true);
             },
             error: function(xhr, ajaxOptions, thrownError) {
                  $('.module-spinner').fadeOut();
