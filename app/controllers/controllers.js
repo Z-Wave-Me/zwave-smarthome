@@ -863,7 +863,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
 /**
  * App controller
  */
-myAppController.controller('AppController', function($scope, $window, $cookies, $timeout, dataFactory, dataService, myCache) {
+myAppController.controller('AppController', function($scope, $window, $cookies, $timeout, $route, dataFactory, dataService, myCache) {
     $scope.instances = [];
     $scope.hasImage = [];
     $scope.modules = [];
@@ -997,11 +997,11 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
             case 'hidden':
                 $scope.showInFooter.categories = false;
                 break;
-//            case 'online':
-//                $scope.loadOnlineModules();
-//                $scope.loadModules();
-//                $scope.showInFooter.categories = false;
-//                break;
+            case 'online':
+                $scope.loadOnlineModules();
+                $scope.loadModules();
+                $scope.showInFooter.categories = false;
+                break;
             default:
                 $scope.showInFooter.categories = true;
                 $scope.$watch('category', function() {
@@ -1113,6 +1113,8 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
         dataFactory.installOnlineModule(data).then(function(response) {
             $timeout(function() {
                 $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_module_download')};
+                 myCache.removeAll();
+                 $route.reload();
             }, 3000);
 
         }, function(error) {
