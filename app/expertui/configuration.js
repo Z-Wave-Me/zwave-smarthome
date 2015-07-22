@@ -267,7 +267,7 @@ myAppController.controller('ConfigConfigurationController', function($scope, $ro
             dataFactory.xmlToJson($scope.cfg.server_url + $scope.cfg.zddx_url + zddXmlFile).then(function(zddXml) {
                 setCont(node, nodeId, zddXml, ZWaveAPIData, refresh);
             }, function(error) {
-                dataService.logError(error);
+                 setCont(node, nodeId, null, ZWaveAPIData, refresh);
             });
 
         } else {
@@ -291,7 +291,7 @@ myAppController.controller('ConfigConfigurationController', function($scope, $ro
                 $location.path('/error/404');
             }
         }, function(error) {
-            dataService.logError(error);
+            $location.path('/error/'+ error.status);
         });
     }
 });

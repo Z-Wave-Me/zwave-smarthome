@@ -74,9 +74,9 @@
     </div>
       
      <!-- ///////////////////////////// Licence key ///////////////////////////// -->
-    <div class="admin-entry" ng-if="controllerUuid"> 
+    <div class="admin-entry" ng-if="controllerUuid && hostName !== 'find.zwave.me'"> 
         <h2 class="admin-entry-title" ng-click="goLicence = !goLicence">
-            <i class="fa" ng-class="goLicence ? 'fa-minus':'fa-plus'"></i> <span ng-bind="_t('licence_upgrade')"></span>
+            <i class="fa" ng-class="goLicence ? 'fa-minus':'fa-plus'"></i> <span ng-bind="_t('licence_upgrade')"></span> 
         </h2>
         <div class="admin-entry-ctrl" ng-class="" ng-if="goLicence">
            <form name="form_licence" id="form_password" class="form form-page" ng-submit="getLicense(inputLicence)" novalidate>
@@ -159,7 +159,7 @@
         <h2 class="admin-entry-title" ng-click="goFirmware = !goFirmware">
             <i class="fa" ng-class="goFirmware ? 'fa-minus':'fa-plus'"></i> <span ng-bind="_t('firmware_update')"></span>
         </h2>
-        <div class="admin-entry-ctrl" ng-class="" ng-if_="goFirmware">
+        <div class="admin-entry-ctrl" ng-class="" ng-if="goFirmware">
            <form name="form_firmware" id="form_firmware" class="form form-page" ng-submit="updateFirmware()" novalidate>
             <fieldset>
                 <!-- Last version -->

@@ -16,6 +16,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
     $scope.loading = false;
     $scope.alert = {message: false, status: 'is-hidden', icon: false};
     $scope.user = dataService.getUser();
+    $scope.hostName = $location.host();
     $scope.ZWAYSession = dataService.getZWAYSession();
     $scope.lastLogin = dataService.getLastLogin();
     $scope.setPollInterval = function() {
