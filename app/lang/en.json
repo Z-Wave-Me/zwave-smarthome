@@ -1,6 +1,9 @@
 {
     "missing": "---",
     "firmware_update": "Firmware update",
+    "updating_firmware": "Updating firmware. Please wait...",
+    "firmware_success": "Firmware is successfully updated",
+    "firmware_error": "Unable to update firmware",
     "current_firmware": "The current firmware version is",
     "update_to_latest": "Update to lastest",
     "firmware_update_war": "Please make sure to keep your device powered during the whole firmware update process. The firmware version is complete once this dialog shows the new firmware version number.",

@@ -451,16 +451,23 @@ a:hover {
   display: none !important;
 }
 
-/* Spinners
+/* Alert
 -------------------------------------------------- */
 /* line 155, sass/globals/_body.scss */
+.alert {
+  margin: 7px 0;
+}
+
+/* Spinners
+-------------------------------------------------- */
+/* line 161, sass/globals/_body.scss */
 .module-spinner {
   display: none !important;
 }
 
 /* Images
 -------------------------------------------------- */
-/* line 161, sass/globals/_body.scss */
+/* line 167, sass/globals/_body.scss */
 .report-img {
   margin: 0;
   max-width: 26px;
@@ -469,47 +476,47 @@ a:hover {
 
 /* tables
 -------------------------------------------------- */
-/* line 172, sass/globals/_body.scss */
+/* line 178, sass/globals/_body.scss */
 .table tbody tr td {
   border-bottom: 1px solid #dbdbdb;
 }
 
-/* line 181, sass/globals/_body.scss */
+/* line 187, sass/globals/_body.scss */
 .table-report {
   border: 0 !important;
   margin-bottom: 0 !important;
 }
-/* line 184, sass/globals/_body.scss */
+/* line 190, sass/globals/_body.scss */
 .table-report td {
   vertical-align: middle;
 }
-/* line 188, sass/globals/_body.scss */
+/* line 194, sass/globals/_body.scss */
 .table-report tbody tr {
   background-color: #fff;
 }
-/* line 192, sass/globals/_body.scss */
+/* line 198, sass/globals/_body.scss */
 .table-report tbody .td-img {
   width: 30px;
 }
-/* line 195, sass/globals/_body.scss */
+/* line 201, sass/globals/_body.scss */
 .table-report tbody .td-action {
   text-align: right;
 }
 
 /* Tabs
 -------------------------------------------------- */
-/* line 202, sass/globals/_body.scss */
+/* line 208, sass/globals/_body.scss */
 .nav-tabs {
   border-bottom: 2px solid #dddddd;
 }
 
-/* line 206, sass/globals/_body.scss */
+/* line 212, sass/globals/_body.scss */
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
   color: #1a1a1a;
   background-color: #DDDDDD;
 }
 
-/* line 211, sass/globals/_body.scss */
+/* line 217, sass/globals/_body.scss */
 .nav-tabs > li.active > a i {
   color: #DA131F;
 }
@@ -517,99 +524,99 @@ a:hover {
 /*.nav > li > a:hover, .nav > li > a:focus {
 background-color: lighten($app-body-bcg-color, 10%);;
 }*/
-/* line 218, sass/globals/_body.scss */
+/* line 224, sass/globals/_body.scss */
 .nav-tabs-3 {
   text-align: center;
 }
 
-/* line 222, sass/globals/_body.scss */
+/* line 228, sass/globals/_body.scss */
 .nav-tabs-3 > li {
   width: 33.33333%;
 }
 
-/* line 225, sass/globals/_body.scss */
+/* line 231, sass/globals/_body.scss */
 .nav-tabs-3 li a {
   background-color: #eeeeee;
 }
 
-/* line 228, sass/globals/_body.scss */
+/* line 234, sass/globals/_body.scss */
 .tab-content {
   padding-top: 10px;
 }
 
 /* Forms
 -------------------------------------------------- */
-/* line 234, sass/globals/_body.scss */
+/* line 240, sass/globals/_body.scss */
 .form-page {
   margin-bottom: 20px;
   background-color: #fff;
   border: solid 4px #eeeeee;
 }
-/* line 238, sass/globals/_body.scss */
+/* line 244, sass/globals/_body.scss */
 .form-page fieldset {
   background-color: #fff;
 }
-/* line 241, sass/globals/_body.scss */
+/* line 247, sass/globals/_body.scss */
 .form-page h3 {
   font-size: 14px;
   font-weight: bold;
 }
-/* line 245, sass/globals/_body.scss */
+/* line 251, sass/globals/_body.scss */
 .form-page .form-group {
   border-top: solid 1px #d3d3d3;
   padding-top: 10px;
 }
-/* line 249, sass/globals/_body.scss */
+/* line 255, sass/globals/_body.scss */
 .form-page label {
   font-weight: normal;
 }
 
-/* line 254, sass/globals/_body.scss */
+/* line 260, sass/globals/_body.scss */
 fieldset {
   background-color: #F6F6F6;
   padding: 10px;
 }
 
-/* line 260, sass/globals/_body.scss */
+/* line 266, sass/globals/_body.scss */
 .form-control-sm {
   width: 30% !important;
 }
 
-/* line 264, sass/globals/_body.scss */
+/* line 270, sass/globals/_body.scss */
 .form-control-md {
   width: 50% !important;
 }
 
-/* line 268, sass/globals/_body.scss */
+/* line 274, sass/globals/_body.scss */
 .submit-entry {
   display: block;
   margin: 10px 0 0 0;
 }
 
-/* line 272, sass/globals/_body.scss */
+/* line 278, sass/globals/_body.scss */
 fieldset.submit-entry {
   margin: 0 !important;
 }
 
-/* line 275, sass/globals/_body.scss */
+/* line 281, sass/globals/_body.scss */
 .form-control-hidden {
   display: none !important;
 }
 
-/* line 278, sass/globals/_body.scss */
+/* line 284, sass/globals/_body.scss */
 .form-control-img {
   cursor: pointer;
   border: solid 4px transparent;
 }
 
-/* line 283, sass/globals/_body.scss */
+/* line 289, sass/globals/_body.scss */
 .control-active {
   border: solid 4px black !important;
 }
 
 /* Page
 -------------------------------------------------- */
-/* line 289, sass/globals/_body.scss */
+/* line 295, sass/globals/_body.scss */
 #main_content {
   margin-top: 70px;
   margin-bottom: 20px;
@@ -617,13 +624,13 @@ fieldset.submit-entry {
 
 /* Modal
 -------------------------------------------------- */
-/* line 295, sass/globals/_body.scss */
+/* line 301, sass/globals/_body.scss */
 .modal-tooltip {
   width: 40%;
   /* or whatever you wish */
 }
 
-/* line 298, sass/globals/_body.scss */
+/* line 304, sass/globals/_body.scss */
 .modal-vertical-centered {
   position: fixed;
   top: 15% !important;
@@ -647,7 +654,7 @@ vertical-align: middle;
 }*/
 /* Tooltip
 -------------------------------------------------- */
-/* line 323, sass/globals/_body.scss */
+/* line 329, sass/globals/_body.scss */
 .tooltip-inner {
   background-color: #F6F6F6;
   color: #000;
@@ -656,28 +663,28 @@ vertical-align: middle;
   text-align: left;
 }
 
-/* line 330, sass/globals/_body.scss */
+/* line 336, sass/globals/_body.scss */
 .tooltip-arrow {
   border-bottom-color: #f2f2f2;
 }
 
 /* Pagination
 -------------------------------------------------- */
-/* line 336, sass/globals/_body.scss */
+/* line 342, sass/globals/_body.scss */
 .pagination > li > a, .pagination > li > span {
   color: #DA131F;
   background-color: #FFF;
   border: 1px solid #d3d3d3;
 }
 
-/* line 342, sass/globals/_body.scss */
+/* line 348, sass/globals/_body.scss */
 .pagination > li > a:hover, .pagination > li > a:focus, .pagination > li > span:hover, .pagination > li > span:focus {
   color: #DA131F;
   background-color: #F6F6F6;
   border-color: #d3d3d3;
 }
 
-/* line 348, sass/globals/_body.scss */
+/* line 354, sass/globals/_body.scss */
 .pagination > .disabled > a, .pagination > .disabled > a:hover, .pagination > .disabled > a:focus {
   color: #777777;
   background-color: #FFF;
@@ -685,7 +692,7 @@ vertical-align: middle;
   cursor: not-allowed;
 }
 
-/* line 355, sass/globals/_body.scss */
+/* line 361, sass/globals/_body.scss */
 .pagination > .active > a, .pagination > .active > a:hover {
   color: #fff;
   background-color: #d3d3d3;
@@ -695,7 +702,7 @@ vertical-align: middle;
 /* Absolute Center CSS Spinner
 http://codepen.io/MattIn4D/pen/LiKFC
 -------------------------------------------------- */
-/* line 364, sass/globals/_body.scss */
+/* line 370, sass/globals/_body.scss */
 #loading {
   position: fixed;
   z-index: 999;
@@ -709,7 +716,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   right: 0;
   text-align: center;
 }
-/* line 376, sass/globals/_body.scss */
+/* line 382, sass/globals/_body.scss */
 #loading .loading-in {
   position: relative;
   z-index: 1000;
@@ -721,14 +728,14 @@ http://codepen.io/MattIn4D/pen/LiKFC
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 387, sass/globals/_body.scss */
+/* line 393, sass/globals/_body.scss */
 #loading a {
   font-weight: bold;
   text-decoration: underline;
 }
 
 /* Transparent Overlay */
-/* line 394, sass/globals/_body.scss */
+/* line 400, sass/globals/_body.scss */
 .loading-spin:before {
   content: '';
   display: block;
@@ -740,7 +747,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-/* line 405, sass/globals/_body.scss */
+/* line 411, sass/globals/_body.scss */
 .loading-fade {
   opacity: 0;
   -webkit-transition: opacity 4s;

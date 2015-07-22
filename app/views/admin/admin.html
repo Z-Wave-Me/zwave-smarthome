@@ -154,7 +154,7 @@
         </div>
     </div>
     
-    <!-- ///////////////////////////// Firmware update ///////////////////////////// -->
+    <!-- ///////////////////////////// Firmware update ///////////////////////////// --> 
     <div class="admin-entry"> 
         <h2 class="admin-entry-title" ng-click="goFirmware = !goFirmware">
             <i class="fa" ng-class="goFirmware ? 'fa-minus':'fa-plus'"></i> <span ng-bind="_t('firmware_update')"></span>
@@ -163,10 +163,19 @@
            <form name="form_firmware" id="form_firmware" class="form form-page" ng-submit="updateFirmware()" novalidate>
             <fieldset>
                 <!-- Last version -->
-                <p class="form-control-static">
+                <h3 class="form-control-static">
                     <span ng-bind="_t('current_firmware')"></span>: <strong ng-bind="controllerInfo.softwareRevisionVersion"></strong>
-                </p>
-                <div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i> {{_t('firmware_update_war')}}</div>
+                </h3>
+                <div><i class="fa fa-exclamation-circle"></i> <em>{{_t('firmware_update_war')}}</em></div>
+                 <bb-alert alert="alertProgress"></bb-alert>
+                <div  ng-if="progressBar.show">
+                   <div class="progress">
+                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="{{progressBar.val}}" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;width: {{progressBar.val}}%;">
+                     {{progressBar.val}}%
+                   </div>
+                 </div>
+                </div>
+                
             </fieldset> 
                 <fieldset class="submit-entry">
                 <button type="submit" class="btn btn-primary">{{_t('update_to_latest')}} ({{controllerInfo.softwareLatestVersion}})</button>

@@ -3726,6 +3726,13 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
         uuid: null,
         softwareRevisionVersion: null
     };
+    // Firmware
+    $scope.alertProgress = {message: false, status: 'is-hidden', icon: false};
+    $scope.progressBar = {
+        show: false,
+        val: 0
+        
+    };
     // Licence
     $scope.controllerUuid = null;
     $scope.proccessLicence = false;
@@ -3868,11 +3875,6 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
             'uuid': $scope.controllerUuid,
             'scratch': inputLicence.scratch_id
         };
-
-//        $timeout(function() {
-//            $scope.proccessVerify = {'message': $scope._t('success_licence_key'), 'status': 'fa fa-check text-success'};
-//            updateCapabilities();
-//        }, 3000);
         dataFactory.getLicense(input).then(function(response) {
             $scope.proccessVerify = {'message': $scope._t('success_licence_key'), 'status': 'fa fa-check text-success'};
             // Update capabilities
@@ -3931,7 +3933,21 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
      * Update firmware
      */
     $scope.updateFirmware = function(input) {
-       console.log($scope.controllerInfo)
+        $scope.progressBar.show = true;
+        $scope.progressBar.val = 0;
+        var refresh = function() {
+           $scope.alertProgress = {message: $scope._t('updating_firmware'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
+            $scope.progressBar.val += 10;
+            if($scope.progressBar.val >= 100){
+                $scope.progressBar.val = 100;
+                $interval.cancel(progressInterval);
+                $scope.alertProgress = {message: $scope._t('firmware_success'), status: 'alert-success', icon: 'fa-check'};
+                //$scope.alertProgress = {message: $scope._t('firmware_error'), status: 'alert-danger', icon: 'fa-warning'};
+                 $scope.progressBar.show = false;
+            }
+            console.log($scope.progressBar);
+        };
+        var progressInterval = $interval(refresh, 500);
     };
 
     /**
