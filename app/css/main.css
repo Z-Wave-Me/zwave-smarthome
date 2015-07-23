@@ -511,112 +511,123 @@ a:hover {
 }
 
 /* line 212, sass/globals/_body.scss */
+.nav-tabs > li > a:hover {
+  color: #1a1a1a;
+  text-decoration: underline;
+}
+
+/* line 218, sass/globals/_body.scss */
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
   color: #1a1a1a;
   background-color: #DDDDDD;
 }
 
-/* line 217, sass/globals/_body.scss */
+/* line 223, sass/globals/_body.scss */
+.nav-tabs > li.active > a {
+  font-weight: bold;
+}
+
+/* line 226, sass/globals/_body.scss */
 .nav-tabs > li.active > a i {
-  color: #DA131F;
+  color: #aaaaaa;
 }
 
 /*.nav > li > a:hover, .nav > li > a:focus {
 background-color: lighten($app-body-bcg-color, 10%);;
 }*/
-/* line 224, sass/globals/_body.scss */
+/* line 235, sass/globals/_body.scss */
 .nav-tabs-3 {
   text-align: center;
 }
 
-/* line 228, sass/globals/_body.scss */
+/* line 239, sass/globals/_body.scss */
 .nav-tabs-3 > li {
   width: 33.33333%;
 }
 
-/* line 231, sass/globals/_body.scss */
+/* line 242, sass/globals/_body.scss */
 .nav-tabs-3 li a {
   background-color: #eeeeee;
 }
 
-/* line 234, sass/globals/_body.scss */
+/* line 245, sass/globals/_body.scss */
 .tab-content {
   padding-top: 10px;
 }
 
 /* Forms
 -------------------------------------------------- */
-/* line 240, sass/globals/_body.scss */
+/* line 251, sass/globals/_body.scss */
 .form-page {
   margin-bottom: 20px;
   background-color: #fff;
   border: solid 4px #eeeeee;
 }
-/* line 244, sass/globals/_body.scss */
+/* line 255, sass/globals/_body.scss */
 .form-page fieldset {
   background-color: #fff;
 }
-/* line 247, sass/globals/_body.scss */
+/* line 258, sass/globals/_body.scss */
 .form-page h3 {
   font-size: 14px;
   font-weight: bold;
 }
-/* line 251, sass/globals/_body.scss */
+/* line 262, sass/globals/_body.scss */
 .form-page .form-group {
   border-top: solid 1px #d3d3d3;
   padding-top: 10px;
 }
-/* line 255, sass/globals/_body.scss */
+/* line 266, sass/globals/_body.scss */
 .form-page label {
   font-weight: normal;
 }
 
-/* line 260, sass/globals/_body.scss */
+/* line 271, sass/globals/_body.scss */
 fieldset {
   background-color: #F6F6F6;
   padding: 10px;
 }
 
-/* line 266, sass/globals/_body.scss */
+/* line 277, sass/globals/_body.scss */
 .form-control-sm {
   width: 30% !important;
 }
 
-/* line 270, sass/globals/_body.scss */
+/* line 281, sass/globals/_body.scss */
 .form-control-md {
   width: 50% !important;
 }
 
-/* line 274, sass/globals/_body.scss */
+/* line 285, sass/globals/_body.scss */
 .submit-entry {
   display: block;
   margin: 10px 0 0 0;
 }
 
-/* line 278, sass/globals/_body.scss */
+/* line 289, sass/globals/_body.scss */
 fieldset.submit-entry {
   margin: 0 !important;
 }
 
-/* line 281, sass/globals/_body.scss */
+/* line 292, sass/globals/_body.scss */
 .form-control-hidden {
   display: none !important;
 }
 
-/* line 284, sass/globals/_body.scss */
+/* line 295, sass/globals/_body.scss */
 .form-control-img {
   cursor: pointer;
   border: solid 4px transparent;
 }
 
-/* line 289, sass/globals/_body.scss */
+/* line 300, sass/globals/_body.scss */
 .control-active {
   border: solid 4px black !important;
 }
 
 /* Page
 -------------------------------------------------- */
-/* line 295, sass/globals/_body.scss */
+/* line 306, sass/globals/_body.scss */
 #main_content {
   margin-top: 70px;
   margin-bottom: 20px;
@@ -624,13 +635,13 @@ fieldset.submit-entry {
 
 /* Modal
 -------------------------------------------------- */
-/* line 301, sass/globals/_body.scss */
+/* line 312, sass/globals/_body.scss */
 .modal-tooltip {
   width: 40%;
   /* or whatever you wish */
 }
 
-/* line 304, sass/globals/_body.scss */
+/* line 315, sass/globals/_body.scss */
 .modal-vertical-centered {
   position: fixed;
   top: 15% !important;
@@ -654,7 +665,7 @@ vertical-align: middle;
 }*/
 /* Tooltip
 -------------------------------------------------- */
-/* line 329, sass/globals/_body.scss */
+/* line 340, sass/globals/_body.scss */
 .tooltip-inner {
   background-color: #F6F6F6;
   color: #000;
@@ -663,28 +674,28 @@ vertical-align: middle;
   text-align: left;
 }
 
-/* line 336, sass/globals/_body.scss */
+/* line 347, sass/globals/_body.scss */
 .tooltip-arrow {
   border-bottom-color: #f2f2f2;
 }
 
 /* Pagination
 -------------------------------------------------- */
-/* line 342, sass/globals/_body.scss */
+/* line 353, sass/globals/_body.scss */
 .pagination > li > a, .pagination > li > span {
   color: #DA131F;
   background-color: #FFF;
   border: 1px solid #d3d3d3;
 }
 
-/* line 348, sass/globals/_body.scss */
+/* line 359, sass/globals/_body.scss */
 .pagination > li > a:hover, .pagination > li > a:focus, .pagination > li > span:hover, .pagination > li > span:focus {
   color: #DA131F;
   background-color: #F6F6F6;
   border-color: #d3d3d3;
 }
 
-/* line 354, sass/globals/_body.scss */
+/* line 365, sass/globals/_body.scss */
 .pagination > .disabled > a, .pagination > .disabled > a:hover, .pagination > .disabled > a:focus {
   color: #777777;
   background-color: #FFF;
@@ -692,7 +703,7 @@ vertical-align: middle;
   cursor: not-allowed;
 }
 
-/* line 361, sass/globals/_body.scss */
+/* line 372, sass/globals/_body.scss */
 .pagination > .active > a, .pagination > .active > a:hover {
   color: #fff;
   background-color: #d3d3d3;
@@ -702,7 +713,7 @@ vertical-align: middle;
 /* Absolute Center CSS Spinner
 http://codepen.io/MattIn4D/pen/LiKFC
 -------------------------------------------------- */
-/* line 370, sass/globals/_body.scss */
+/* line 381, sass/globals/_body.scss */
 #loading {
   position: fixed;
   z-index: 999;
@@ -716,7 +727,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   right: 0;
   text-align: center;
 }
-/* line 382, sass/globals/_body.scss */
+/* line 393, sass/globals/_body.scss */
 #loading .loading-in {
   position: relative;
   z-index: 1000;
@@ -728,14 +739,14 @@ http://codepen.io/MattIn4D/pen/LiKFC
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 393, sass/globals/_body.scss */
+/* line 404, sass/globals/_body.scss */
 #loading a {
   font-weight: bold;
   text-decoration: underline;
 }
 
 /* Transparent Overlay */
-/* line 400, sass/globals/_body.scss */
+/* line 411, sass/globals/_body.scss */
 .loading-spin:before {
   content: '';
   display: block;
@@ -747,7 +758,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-/* line 411, sass/globals/_body.scss */
+/* line 422, sass/globals/_body.scss */
 .loading-fade {
   opacity: 0;
   -webkit-transition: opacity 4s;
@@ -793,101 +804,102 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 /* line 29, sass/globals/_navigation.scss */
 .navbar-visible-in a:hover {
-  color: #DA131F;
+  background-color: #d0d0d0;
 }
-/* line 32, sass/globals/_navigation.scss */
+/* line 34, sass/globals/_navigation.scss */
 .navbar-visible-in .active {
   background-color: #DDDDDD;
-  color: #fff;
+  color: #f7f7f7;
 }
 
-/* line 41, sass/globals/_navigation.scss */
+/* line 44, sass/globals/_navigation.scss */
 .header-logo img {
   max-height: 40px;
   max-width: 100px;
 }
 
-/* line 46, sass/globals/_navigation.scss */
+/* line 49, sass/globals/_navigation.scss */
 .navi-time-link {
   cursor: pointer;
 }
 
-/* line 49, sass/globals/_navigation.scss */
+/* line 52, sass/globals/_navigation.scss */
 .navi-time {
   padding-left: 10px;
 }
 
-/* line 53, sass/globals/_navigation.scss */
+/* line 56, sass/globals/_navigation.scss */
 .mobile-icon {
   padding-left: 7px;
   color: #5d5d5d;
 }
 
-/* line 57, sass/globals/_navigation.scss */
+/* line 60, sass/globals/_navigation.scss */
 .lang-switch {
   text-transform: uppercase;
 }
 
-/* line 60, sass/globals/_navigation.scss */
+/* line 63, sass/globals/_navigation.scss */
 .lang-switch-current {
   display: inline-block;
   width: 24px;
   height: 24px;
 }
 
-/* line 66, sass/globals/_navigation.scss */
+/* line 69, sass/globals/_navigation.scss */
 .navbar-inverse {
   background-color: #E9E9E9;
   border-color: transparent;
   border-bottom: solid 4px #DDDDDD;
   color: #DDDDDD;
 }
-/* line 72, sass/globals/_navigation.scss */
+/* line 75, sass/globals/_navigation.scss */
 .navbar-inverse .navbar-nav .dropdown-toggle {
   color: #5d5d5d;
 }
-/* line 75, sass/globals/_navigation.scss */
+/* line 78, sass/globals/_navigation.scss */
 .navbar-inverse .navbar-nav .dropdown-toggle:hover {
   color: #5d5d5d;
 }
 
-/* line 81, sass/globals/_navigation.scss */
+/* line 84, sass/globals/_navigation.scss */
 .navbar-inverse_ .navbar-nav .dropdown-toggle {
   color: #DDDDDD;
 }
 
 /* Collapse */
-/* line 86, sass/globals/_navigation.scss */
+/* line 89, sass/globals/_navigation.scss */
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > .active > a:focus {
   background-color: #DDDDDD;
 }
 
-/* line 92, sass/globals/_navigation.scss */
+/* line 95, sass/globals/_navigation.scss */
 .navbar-inverse .navbar-nav > .open > a,
 .navbar-inverse .navbar-nav > .open > a:hover,
 .navbar-inverse .navbar-nav > .open > a:focus {
   background-color: #DDDDDD;
-  color: #DA131F;
+  color: white;
 }
 
-/* line 99, sass/globals/_navigation.scss */
+/* line 103, sass/globals/_navigation.scss */
 .navbar-inverse .dropdown-menu > .active > a,
 .navbar-inverse .dropdown-menu > .active > a:hover,
 .navbar-inverse .dropdown-menu > .active > a:focus {
   background-color: #DDDDDD;
-  color: #5d5d5d;
+  color: #2a2a2a;
+  font-weight: bold;
 }
 
-/* line 108, sass/globals/_navigation.scss */
+/* line 113, sass/globals/_navigation.scss */
 .navbar-inverse .dropdown-menu > li > a:hover,
 .navbar-inverse .dropdown-menu > li > a:focus {
   background-color: #DDDDDD;
-  color: #DA131F;
+  color: black;
 }
 
-/* line 114, sass/globals/_navigation.scss */
+/* line 119, sass/globals/_navigation.scss */
 .navbar .divider-vertical {
   height: 50px;
   /*    margin: 0 9px;*/
@@ -895,22 +907,22 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-right: 1px solid white;
 }
 
-/* line 120, sass/globals/_navigation.scss */
+/* line 125, sass/globals/_navigation.scss */
 .dropdown-menu {
   border: 1px solid #DDDDDD;
 }
-/* line 123, sass/globals/_navigation.scss */
+/* line 128, sass/globals/_navigation.scss */
 .dropdown-menu .divider {
   background-color: #DDDDDD;
 }
 
-/* line 128, sass/globals/_navigation.scss */
+/* line 133, sass/globals/_navigation.scss */
 .navbar-nav > li > a {
   padding-top: 15px;
   padding-bottom: 10px;
 }
 
-/* line 133, sass/globals/_navigation.scss */
+/* line 138, sass/globals/_navigation.scss */
 .dropdown > .dropdown-menu::before, .dropdown > .dropdown-menu::after {
   content: '';
   display: inline-block;
@@ -924,7 +936,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   right: 12px;
 }
 
-/* line 147, sass/globals/_navigation.scss */
+/* line 152, sass/globals/_navigation.scss */
 .dropdown > .dropdown-menu::after {
   border-left-width: 6px;
   border-right-width: 6px;
@@ -939,22 +951,22 @@ http://codepen.io/MattIn4D/pen/LiKFC
     left: auto;
     right: 13px;
 }*/
-/* line 163, sass/globals/_navigation.scss */
+/* line 168, sass/globals/_navigation.scss */
 .only-icon .only-icon-menu i {
   font-size: 18px;
 }
 
-/* line 167, sass/globals/_navigation.scss */
+/* line 172, sass/globals/_navigation.scss */
 .only-icon-menu span {
   display: none;
 }
 
-/* line 171, sass/globals/_navigation.scss */
+/* line 176, sass/globals/_navigation.scss */
 .dropdown-menu a i {
   padding-right: 10px;
 }
 
-/* line 175, sass/globals/_navigation.scss */
+/* line 180, sass/globals/_navigation.scss */
 .navi-app-info {
   font-size: 90%;
   color: #5d5d5d;
@@ -963,108 +975,180 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 
 /** Profile colors */
-/* line 183, sass/globals/_navigation.scss */
+/* line 188, sass/globals/_navigation.scss */
 .profile-dddddd {
   /* Visible */
 }
 /* line 11, sass/settings/_mixins.scss */
 .profile-dddddd .navbar-visible .navbar-visible-in .active {
   background-color: #dddddd;
+  color: white;
 }
-/* line 17, sass/settings/_mixins.scss */
+/* line 18, sass/settings/_mixins.scss */
 .profile-dddddd .navbar-inverse {
   border-color: #dddddd;
 }
+/* line 20, sass/settings/_mixins.scss */
+.profile-dddddd .navbar-inverse .navbar-nav > .open > a, .profile-dddddd .navbar-inverse .navbar-nav > .open > a:hover, .profile-dddddd .navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: #dddddd;
+}
+/* line 25, sass/settings/_mixins.scss */
+.profile-dddddd .nav-tabs > li.active > a i {
+  color: #aaaaaa;
+}
 
-/* line 186, sass/globals/_navigation.scss */
+/* line 191, sass/globals/_navigation.scss */
 .profile-6c7a89 {
   /* Visible */
 }
 /* line 11, sass/settings/_mixins.scss */
 .profile-6c7a89 .navbar-visible .navbar-visible-in .active {
   background-color: #6c7a89;
+  color: #c0c7ce;
 }
-/* line 17, sass/settings/_mixins.scss */
+/* line 18, sass/settings/_mixins.scss */
 .profile-6c7a89 .navbar-inverse {
   border-color: #6c7a89;
 }
+/* line 20, sass/settings/_mixins.scss */
+.profile-6c7a89 .navbar-inverse .navbar-nav > .open > a, .profile-6c7a89 .navbar-inverse .navbar-nav > .open > a:hover, .profile-6c7a89 .navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: #6c7a89;
+}
+/* line 25, sass/settings/_mixins.scss */
+.profile-6c7a89 .nav-tabs > li.active > a i {
+  color: #3f4750;
+}
 
-/* line 189, sass/globals/_navigation.scss */
+/* line 194, sass/globals/_navigation.scss */
 .profile-6494bc {
   /* Visible */
 }
 /* line 11, sass/settings/_mixins.scss */
 .profile-6494bc .navbar-visible .navbar-visible-in .active {
   background-color: #6494bc;
+  color: #cfdeea;
 }
-/* line 17, sass/settings/_mixins.scss */
+/* line 18, sass/settings/_mixins.scss */
 .profile-6494bc .navbar-inverse {
   border-color: #6494bc;
 }
+/* line 20, sass/settings/_mixins.scss */
+.profile-6494bc .navbar-inverse .navbar-nav > .open > a, .profile-6494bc .navbar-inverse .navbar-nav > .open > a:hover, .profile-6494bc .navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: #6494bc;
+}
+/* line 25, sass/settings/_mixins.scss */
+.profile-6494bc .nav-tabs > li.active > a i {
+  color: #386082;
+}
 
-/* line 192, sass/globals/_navigation.scss */
+/* line 197, sass/globals/_navigation.scss */
 .profile-80ad80 {
   /* Visible */
 }
 /* line 11, sass/settings/_mixins.scss */
 .profile-80ad80 .navbar-visible .navbar-visible-in .active {
   background-color: #80ad80;
+  color: #dde9dd;
 }
-/* line 17, sass/settings/_mixins.scss */
+/* line 18, sass/settings/_mixins.scss */
 .profile-80ad80 .navbar-inverse {
   border-color: #80ad80;
 }
+/* line 20, sass/settings/_mixins.scss */
+.profile-80ad80 .navbar-inverse .navbar-nav > .open > a, .profile-80ad80 .navbar-inverse .navbar-nav > .open > a:hover, .profile-80ad80 .navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: #80ad80;
+}
+/* line 25, sass/settings/_mixins.scss */
+.profile-80ad80 .nav-tabs > li.active > a i {
+  color: #4e794e;
+}
 
-/* line 195, sass/globals/_navigation.scss */
+/* line 200, sass/globals/_navigation.scss */
 .profile-31b0d5 {
   /* Visible */
 }
 /* line 11, sass/settings/_mixins.scss */
 .profile-31b0d5 .navbar-visible .navbar-visible-in .active {
   background-color: #31b0d5;
+  color: #b0e1ef;
 }
-/* line 17, sass/settings/_mixins.scss */
+/* line 18, sass/settings/_mixins.scss */
 .profile-31b0d5 .navbar-inverse {
   border-color: #31b0d5;
 }
+/* line 20, sass/settings/_mixins.scss */
+.profile-31b0d5 .navbar-inverse .navbar-nav > .open > a, .profile-31b0d5 .navbar-inverse .navbar-nav > .open > a:hover, .profile-31b0d5 .navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: #31b0d5;
+}
+/* line 25, sass/settings/_mixins.scss */
+.profile-31b0d5 .nav-tabs > li.active > a i {
+  color: #1b6d85;
+}
 
-/* line 198, sass/globals/_navigation.scss */
+/* line 203, sass/globals/_navigation.scss */
 .profile-f0aD4e {
   /* Visible */
 }
 /* line 11, sass/settings/_mixins.scss */
 .profile-f0aD4e .navbar-visible .navbar-visible-in .active {
   background-color: #f0aD4e;
+  color: #fceedb;
 }
-/* line 17, sass/settings/_mixins.scss */
+/* line 18, sass/settings/_mixins.scss */
 .profile-f0aD4e .navbar-inverse {
   border-color: #f0aD4e;
 }
+/* line 20, sass/settings/_mixins.scss */
+.profile-f0aD4e .navbar-inverse .navbar-nav > .open > a, .profile-f0aD4e .navbar-inverse .navbar-nav > .open > a:hover, .profile-f0aD4e .navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: #f0aD4e;
+}
+/* line 25, sass/settings/_mixins.scss */
+.profile-f0aD4e .nav-tabs > li.active > a i {
+  color: #c77c11;
+}
 
-/* line 201, sass/globals/_navigation.scss */
+/* line 206, sass/globals/_navigation.scss */
 .profile-d9534f {
   /* Visible */
 }
 /* line 11, sass/settings/_mixins.scss */
 .profile-d9534f .navbar-visible .navbar-visible-in .active {
   background-color: #d9534f;
+  color: #f4cecd;
 }
-/* line 17, sass/settings/_mixins.scss */
+/* line 18, sass/settings/_mixins.scss */
 .profile-d9534f .navbar-inverse {
   border-color: #d9534f;
 }
+/* line 20, sass/settings/_mixins.scss */
+.profile-d9534f .navbar-inverse .navbar-nav > .open > a, .profile-d9534f .navbar-inverse .navbar-nav > .open > a:hover, .profile-d9534f .navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: #d9534f;
+}
+/* line 25, sass/settings/_mixins.scss */
+.profile-d9534f .nav-tabs > li.active > a i {
+  color: #a02622;
+}
 
-/* line 204, sass/globals/_navigation.scss */
+/* line 209, sass/globals/_navigation.scss */
 .profile-dd976e {
   /* Visible */
 }
 /* line 11, sass/settings/_mixins.scss */
 .profile-dd976e .navbar-visible .navbar-visible-in .active {
   background-color: #dd976e;
+  color: #faf0ea;
 }
-/* line 17, sass/settings/_mixins.scss */
+/* line 18, sass/settings/_mixins.scss */
 .profile-dd976e .navbar-inverse {
   border-color: #dd976e;
+}
+/* line 20, sass/settings/_mixins.scss */
+.profile-dd976e .navbar-inverse .navbar-nav > .open > a, .profile-dd976e .navbar-inverse .navbar-nav > .open > a:hover, .profile-dd976e .navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: #dd976e;
+}
+/* line 25, sass/settings/_mixins.scss */
+.profile-dd976e .nav-tabs > li.active > a i {
+  color: #ba602b;
 }
 
 /* Footer
@@ -2625,65 +2709,65 @@ padding-right: 5px;
     display: block !important;
   }
 
-  /* line 58, sass/settings/_mixins.scss */
+  /* line 66, sass/settings/_mixins.scss */
   .hide-on-mobile {
     display: none !important;
   }
 
-  /* line 61, sass/settings/_mixins.scss */
+  /* line 69, sass/settings/_mixins.scss */
   .show-on-mobile {
     display: block;
   }
 
-  /* line 64, sass/settings/_mixins.scss */
+  /* line 72, sass/settings/_mixins.scss */
   .header-logo {
     display: none !important;
   }
 
-  /* line 67, sass/settings/_mixins.scss */
+  /* line 75, sass/settings/_mixins.scss */
   .navbar-toggle {
     margin-right: 30px !important;
   }
 
-  /* line 70, sass/settings/_mixins.scss */
+  /* line 78, sass/settings/_mixins.scss */
   .container {
     max-width: none;
     width: 100%;
   }
 
-  /* line 77, sass/settings/_mixins.scss */
+  /* line 85, sass/settings/_mixins.scss */
   .navbar-visible-in .header-logo img {
     max-height: 20px !important;
     max-width: 40px !important;
   }
-  /* line 82, sass/settings/_mixins.scss */
+  /* line 90, sass/settings/_mixins.scss */
   .navbar-visible-in a {
     padding: 0 8px !important;
   }
 
-  /* line 88, sass/settings/_mixins.scss */
+  /* line 96, sass/settings/_mixins.scss */
   .navbar {
     margin-bottom: 0;
   }
 
-  /* line 92, sass/settings/_mixins.scss */
+  /* line 100, sass/settings/_mixins.scss */
   .navi-time {
     padding-left: 6px !important;
     font-size: 90%;
   }
 
-  /* line 96, sass/settings/_mixins.scss */
+  /* line 104, sass/settings/_mixins.scss */
   .row {
     padding-right: 0;
     margin-right: 0;
   }
 
-  /* line 101, sass/settings/_mixins.scss */
+  /* line 109, sass/settings/_mixins.scss */
   .col-sm-6 {
     padding-right: 0;
   }
 
-  /* line 104, sass/settings/_mixins.scss */
+  /* line 112, sass/settings/_mixins.scss */
   #nav_collapse .dropdown-menu {
     position: static;
     float: none;
@@ -2695,59 +2779,59 @@ padding-right: 5px;
     display: block !important;
   }
 
-  /* line 114, sass/settings/_mixins.scss */
+  /* line 122, sass/settings/_mixins.scss */
   .navbar-collapse {
     padding-right: 25px;
     padding-left: 25px;
   }
 
-  /* line 119, sass/settings/_mixins.scss */
+  /* line 127, sass/settings/_mixins.scss */
   .navbar-toggle {
     padding: 5px 6px;
   }
 
-  /* line 122, sass/settings/_mixins.scss */
+  /* line 130, sass/settings/_mixins.scss */
   .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
     background-color: transparent;
   }
 
-  /* line 126, sass/settings/_mixins.scss */
+  /* line 134, sass/settings/_mixins.scss */
   .navbar-inverse .navbar-toggle {
     border-color: #5d5d5d;
   }
 
-  /* line 130, sass/settings/_mixins.scss */
+  /* line 138, sass/settings/_mixins.scss */
   .navbar-inverse .navbar-toggle .icon-bar {
     background-color: #5d5d5d;
   }
 
-  /* line 133, sass/settings/_mixins.scss */
+  /* line 141, sass/settings/_mixins.scss */
   .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
     border-color: #DDDDDD;
   }
 
-  /* line 136, sass/settings/_mixins.scss */
+  /* line 144, sass/settings/_mixins.scss */
   .navbar-inverse .navbar-nav .open .dropdown-menu .divider {
     background-color: #d3d3d3;
   }
 
-  /* line 139, sass/settings/_mixins.scss */
+  /* line 147, sass/settings/_mixins.scss */
   .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a, .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:focus {
     color: #5d5d5d;
     background-color: #DDDDDD;
   }
 
-  /* line 143, sass/settings/_mixins.scss */
+  /* line 151, sass/settings/_mixins.scss */
   #main_content {
     padding: 0;
   }
 
-  /* line 146, sass/settings/_mixins.scss */
+  /* line 154, sass/settings/_mixins.scss */
   .navbar .divider-vertical {
     display: none;
   }
 
-  /* line 150, sass/settings/_mixins.scss */
+  /* line 158, sass/settings/_mixins.scss */
   .dropdown > .dropdown-menu::before,
   .dropdown > .dropdown-menu::after,
   .navbar .divider-vertical {
@@ -2756,52 +2840,52 @@ padding-right: 5px;
 
  /* Body
 -------------------------------------------------- */
-  /* line 158, sass/settings/_mixins.scss */
+  /* line 166, sass/settings/_mixins.scss */
   h1 {
     font-size: 18px;
   }
 
-  /* line 162, sass/settings/_mixins.scss */
+  /* line 170, sass/settings/_mixins.scss */
   #main_content {
     margin-top: 60px;
     margin-bottom: 10px;
   }
 
-  /* line 166, sass/settings/_mixins.scss */
+  /* line 174, sass/settings/_mixins.scss */
   .mobile-padding {
     padding: 0 15px;
   }
-  /* line 168, sass/settings/_mixins.scss */
+  /* line 176, sass/settings/_mixins.scss */
   .mobile-padding .page-header {
     padding: 0;
   }
 
-  /* line 173, sass/settings/_mixins.scss */
+  /* line 181, sass/settings/_mixins.scss */
   .page-header {
     margin: 0 0 10px 0;
     padding: 0 15px;
   }
 
-  /* line 177, sass/settings/_mixins.scss */
+  /* line 185, sass/settings/_mixins.scss */
   .row-page {
     margin: 0;
   }
 
-  /* line 181, sass/settings/_mixins.scss */
+  /* line 189, sass/settings/_mixins.scss */
   .app-shadow {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
   }
 
-  /* line 186, sass/settings/_mixins.scss */
+  /* line 194, sass/settings/_mixins.scss */
   .app-border {
     border: 0;
   }
 
   /* Typo
   -------------------------------------------------- */
-  /* line 194, sass/settings/_mixins.scss */
+  /* line 202, sass/settings/_mixins.scss */
   .page-subtitle {
     padding: 0 10px;
     font-size: 16px;
@@ -2814,40 +2898,40 @@ padding-right: 5px;
   -------------------------------------------------- */
   /* tables
   -------------------------------------------------- */
-  /* line 211, sass/settings/_mixins.scss */
+  /* line 219, sass/settings/_mixins.scss */
   .table-report tbody tr.bcg-active.true {
     background-color: #fff;
   }
-  /* line 215, sass/settings/_mixins.scss */
+  /* line 223, sass/settings/_mixins.scss */
   .table-report tbody tr.bcg-active.false {
     background-color: #f2e8e8 !important;
   }
 
   /* Forms
   -------------------------------------------------- */
-  /* line 224, sass/settings/_mixins.scss */
+  /* line 232, sass/settings/_mixins.scss */
   .form-control-sm, .form-control-md {
     width: 100% !important;
     display: block !important;
   }
 
-  /* line 228, sass/settings/_mixins.scss */
+  /* line 236, sass/settings/_mixins.scss */
   .btn-new-item {
     float: none !important;
   }
 
-  /* line 231, sass/settings/_mixins.scss */
+  /* line 239, sass/settings/_mixins.scss */
   .btn-name {
     display: none;
   }
 
-  /* line 235, sass/settings/_mixins.scss */
+  /* line 243, sass/settings/_mixins.scss */
   .td-action .btn {
     padding: 4px 8px;
     font-size: 13px;
   }
 
-  /* line 242, sass/settings/_mixins.scss */
+  /* line 250, sass/settings/_mixins.scss */
   .btn-sm, .btn-group-sm > .btn {
     padding: 4px 8px;
     font-size: 12px;
@@ -2859,12 +2943,12 @@ padding-right: 5px;
   -------------------------------------------------- */
   /* Elements
   -------------------------------------------------- */
-  /* line 254, sass/settings/_mixins.scss */
+  /* line 262, sass/settings/_mixins.scss */
   .widget-entry {
     width: 100%;
   }
 
-  /* line 257, sass/settings/_mixins.scss */
+  /* line 265, sass/settings/_mixins.scss */
   .widget-block {
     margin: 0;
     -webkit-box-shadow: none;
@@ -2873,7 +2957,7 @@ padding-right: 5px;
     border-bottom: solid 1px #ccc;
   }
 
-  /* line 264, sass/settings/_mixins.scss */
+  /* line 272, sass/settings/_mixins.scss */
   .widget-block-in {
     /*   border: solid 1px red;*/
     height: auto;
@@ -2881,7 +2965,7 @@ padding-right: 5px;
     padding: 10px;
   }
 
-  /* line 270, sass/settings/_mixins.scss */
+  /* line 278, sass/settings/_mixins.scss */
   .widget-image {
     top: 10px;
     left: 5px;
@@ -2889,21 +2973,21 @@ padding-right: 5px;
     height: 42px;
   }
 
-  /* line 276, sass/settings/_mixins.scss */
+  /* line 284, sass/settings/_mixins.scss */
   .widget-body {
     margin-top: -15px;
     padding: 0 5px 15px 50px;
   }
-  /* line 279, sass/settings/_mixins.scss */
+  /* line 287, sass/settings/_mixins.scss */
   .widget-body .entry-title {
     padding-right: 40px;
   }
 
-  /* line 286, sass/settings/_mixins.scss */
+  /* line 294, sass/settings/_mixins.scss */
   .modal-no-padding .modal-dialog {
     margin: 0;
   }
-  /* line 288, sass/settings/_mixins.scss */
+  /* line 296, sass/settings/_mixins.scss */
   .modal-no-padding .modal-dialog .modal-body {
     padding: 0;
   }
@@ -2912,7 +2996,7 @@ padding-right: 5px;
           text-align: right;
       }*/
   /* Home */
-  /* line 302, sass/settings/_mixins.scss */
+  /* line 310, sass/settings/_mixins.scss */
   .home-widget .widget-entry .widget-block-in {
     border: 0;
     padding: 0;
@@ -2920,14 +3004,14 @@ padding-right: 5px;
 
   /* Eevents
   -------------------------------------------------- */
-  /* line 312, sass/settings/_mixins.scss */
+  /* line 320, sass/settings/_mixins.scss */
   .event-date {
     display: block;
   }
 
   /* Apps
   -------------------------------------------------- */
-  /* line 318, sass/settings/_mixins.scss */
+  /* line 326, sass/settings/_mixins.scss */
   .tabs-container {
     text-align: center;
   }
@@ -2937,27 +3021,27 @@ padding-right: 5px;
           text-align: center;
           padding: 0 25%;
       }*/
-  /* line 326, sass/settings/_mixins.scss */
+  /* line 334, sass/settings/_mixins.scss */
   .nav-tabs-3 {
     text-align: center;
   }
 
-  /* line 329, sass/settings/_mixins.scss */
+  /* line 337, sass/settings/_mixins.scss */
   .tab-name {
     display: none;
   }
 
-  /* line 332, sass/settings/_mixins.scss */
+  /* line 340, sass/settings/_mixins.scss */
   .tab-icon {
     font-size: 20px;
   }
 
-  /* line 336, sass/settings/_mixins.scss */
+  /* line 344, sass/settings/_mixins.scss */
   #table_apps_instance .td-action {
     width: 40%;
   }
 
-  /* line 341, sass/settings/_mixins.scss */
+  /* line 349, sass/settings/_mixins.scss */
   .app-entry {
     width: 100%;
     padding: 0;
@@ -2980,7 +3064,7 @@ padding-right: 5px;
     /* IE6-9 */
   }
 
-  /* line 347, sass/settings/_mixins.scss */
+  /* line 355, sass/settings/_mixins.scss */
   .app-entry-in {
     border: 0;
     height: auto;
@@ -2989,7 +3073,7 @@ padding-right: 5px;
     background: none;
   }
 
-  /* line 356, sass/settings/_mixins.scss */
+  /* line 364, sass/settings/_mixins.scss */
   .app-image {
     top: 0;
     left: 10px;
@@ -2997,86 +3081,86 @@ padding-right: 5px;
     height: 48px;
   }
 
-  /* line 362, sass/settings/_mixins.scss */
+  /* line 370, sass/settings/_mixins.scss */
   .app-body {
     height: 54px;
     margin: 0;
     padding: 0 5px 15px 64px;
   }
-  /* line 366, sass/settings/_mixins.scss */
+  /* line 374, sass/settings/_mixins.scss */
   .app-body .entry-title {
     position: absolute;
     z-index: 10;
     padding: 10px 90px 0 0;
   }
 
-  /* line 372, sass/settings/_mixins.scss */
+  /* line 380, sass/settings/_mixins.scss */
   .app-footer {
     /*        display: block;
              position: static;*/
   }
 
-  /* line 378, sass/settings/_mixins.scss */
+  /* line 386, sass/settings/_mixins.scss */
   .app-image {
     /*        width: 100%;*/
     /*    max-width: 100px;*/
     margin: 0;
   }
 
-  /* line 384, sass/settings/_mixins.scss */
+  /* line 392, sass/settings/_mixins.scss */
   #table_apps_active .btn {
     font-size: 12px;
   }
 
-  /* line 389, sass/settings/_mixins.scss */
+  /* line 397, sass/settings/_mixins.scss */
   .app-image-list {
     max-width: 50px;
   }
 
   /* Apps detail
   -------------------------------------------------- */
-  /* line 395, sass/settings/_mixins.scss */
+  /* line 403, sass/settings/_mixins.scss */
   .app-detail-header-in {
     position: static;
     padding: 0 15px 15px 15px;
     background: none;
   }
-  /* line 399, sass/settings/_mixins.scss */
+  /* line 407, sass/settings/_mixins.scss */
   .app-detail-header-in .app-detail-img {
     text-align: center;
     margin: 0 auto;
   }
-  /* line 402, sass/settings/_mixins.scss */
+  /* line 410, sass/settings/_mixins.scss */
   .app-detail-header-in .app-detail-img .app-image-detail {
     position: static;
   }
-  /* line 407, sass/settings/_mixins.scss */
+  /* line 415, sass/settings/_mixins.scss */
   .app-detail-header-in .app-detail-body {
     padding-left: 0;
   }
-  /* line 409, sass/settings/_mixins.scss */
+  /* line 417, sass/settings/_mixins.scss */
   .app-detail-header-in .app-detail-body .page-subtitle {
     margin-top: 10px;
     text-align: center;
   }
-  /* line 414, sass/settings/_mixins.scss */
+  /* line 422, sass/settings/_mixins.scss */
   .app-detail-header-in .app-detail-control {
     text-align: center;
   }
 
   /* Rooms
   -------------------------------------------------- */
-  /* line 422, sass/settings/_mixins.scss */
+  /* line 430, sass/settings/_mixins.scss */
   .room-entry {
     float: left;
     width: 50%;
     padding: 0;
   }
-  /* line 426, sass/settings/_mixins.scss */
+  /* line 434, sass/settings/_mixins.scss */
   .room-entry .room-in {
     position: relatvive;
   }
-  /* line 429, sass/settings/_mixins.scss */
+  /* line 437, sass/settings/_mixins.scss */
   .room-entry .entry-title {
     font-size: 12px;
     position: absolute;
@@ -3084,53 +3168,53 @@ padding-right: 5px;
     left: 0;
     right: 0;
   }
-  /* line 436, sass/settings/_mixins.scss */
+  /* line 444, sass/settings/_mixins.scss */
   .room-entry .entry-title-text {
     display: none;
   }
-  /* line 439, sass/settings/_mixins.scss */
+  /* line 447, sass/settings/_mixins.scss */
   .room-entry .app-border {
     border: solid 1px #d3d3d3;
   }
 
-  /* line 444, sass/settings/_mixins.scss */
+  /* line 452, sass/settings/_mixins.scss */
   .room-image-big {
     margin: 24px 0 0 0;
     max-width: 130px;
     max-height: 130px;
   }
 
-  /* line 451, sass/settings/_mixins.scss */
+  /* line 459, sass/settings/_mixins.scss */
   #table_cfg_rooms .td-action {
     width: 30%;
   }
 
   /* Profiles
   -------------------------------------------------- */
-  /* line 459, sass/settings/_mixins.scss */
+  /* line 467, sass/settings/_mixins.scss */
   .profile-entry {
     float: left;
     width: 50%;
   }
-  /* line 462, sass/settings/_mixins.scss */
+  /* line 470, sass/settings/_mixins.scss */
   .profile-entry .entry-title {
     font-size: 12px;
   }
-  /* line 465, sass/settings/_mixins.scss */
+  /* line 473, sass/settings/_mixins.scss */
   .profile-entry .entry-title-text {
     display: none;
   }
 
   /* Admin
   -------------------------------------------------- */
-  /* line 474, sass/settings/_mixins.scss */
+  /* line 482, sass/settings/_mixins.scss */
   #table_cfg_admin .td-action {
     width: 30%;
   }
 
   /* Devices
   -------------------------------------------------- */
-  /* line 482, sass/settings/_mixins.scss */
+  /* line 490, sass/settings/_mixins.scss */
   .device-slect-type .vendor-entry {
     float: left;
     width: 33.33333%;
@@ -3138,53 +3222,53 @@ padding-right: 5px;
     margin: 0 0 15px 0;
   }
 
-  /* line 490, sass/settings/_mixins.scss */
+  /* line 498, sass/settings/_mixins.scss */
   .device-manufacturers .col-device-vendor {
     float: left;
     width: 33.33333%;
     padding: 0;
     margin: 0 0 15px 0;
   }
-  /* line 497, sass/settings/_mixins.scss */
+  /* line 505, sass/settings/_mixins.scss */
   .device-manufacturers .vendor-list {
     width: 100%;
     margin: 0;
     border-color: #d3d3d3;
   }
 
-  /* line 508, sass/settings/_mixins.scss */
+  /* line 516, sass/settings/_mixins.scss */
   .vendor-image img {
     max-width: 70px !important;
     max-height: 50px !important;
   }
 
-  /* line 514, sass/settings/_mixins.scss */
+  /* line 522, sass/settings/_mixins.scss */
   .device-perex {
     padding: 10px;
     border-top: 0 none;
   }
 
-  /* line 518, sass/settings/_mixins.scss */
+  /* line 526, sass/settings/_mixins.scss */
   .col-device {
     padding: 0;
     margin: 0 0 20px 0;
     background-color: #fff;
   }
 
-  /* line 525, sass/settings/_mixins.scss */
+  /* line 533, sass/settings/_mixins.scss */
   .include-device-img {
     float: none;
     margin: 0;
     text-align: center;
   }
 
-  /* line 530, sass/settings/_mixins.scss */
+  /* line 538, sass/settings/_mixins.scss */
   .include-device-img img {
     max-width: 120px;
     max-height: 120px;
   }
 
-  /* line 534, sass/settings/_mixins.scss */
+  /* line 542, sass/settings/_mixins.scss */
   .include-device-txt {
     margin-top: 20px;
     text-align: center;

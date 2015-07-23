@@ -209,13 +209,24 @@ a:hover {
     border-bottom: 2px solid darken($app-body-bcg-color, 10%);
 }
 
+.nav-tabs > li > a:hover {
+    color:  lighten($brand-color-primary, 10%);
+   text-decoration: underline;
+    //border: darken($app-body-bcg-color, 10%);
+}
+
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
     color:  lighten($brand-color-primary, 10%);
     background-color: $header-color-secondary;
     //border: darken($app-body-bcg-color, 10%);
 }
+.nav-tabs > li.active > a{
+    font-weight: bold;
+}
 .nav-tabs > li.active > a i {
-    color:  $brand-color-secondary;
+    //color:  $brand-color-secondary;
+    // background-color:$header-color-secondary;
+             color: darken($header-color-secondary, 20%);
 }
 /*.nav > li > a:hover, .nav > li > a:focus {
 background-color: lighten($app-body-bcg-color, 10%);;

@@ -27,11 +27,14 @@
             }
         }
         a:hover{
-            color: $brand-color-secondary;
+           background-color: darken($header-color-secondary, 5%);
+           
+           // color: #fff;
         }
         .active{
             background-color:$header-color-secondary;
-            color: #fff;
+             color: lighten($header-color-secondary, 10%);
+             //color: darken($header-link-color,20%);
              //color: $brand-color-secondary;
         }
     }
@@ -93,7 +96,8 @@
 .navbar-inverse .navbar-nav>.open>a:hover, 
 .navbar-inverse .navbar-nav>.open>a:focus {
     background-color: $header-color-secondary;
-    color: $brand-color-secondary;
+    //color: darken($header-link-color,20%);
+     color: lighten($header-color-secondary, 30%);
 }
 
 .navbar-inverse .dropdown-menu>.active>a,
@@ -101,14 +105,15 @@
 .navbar-inverse .dropdown-menu>.active>a:focus {
 
     background-color:$header-color-secondary;
-             color: $header-link-color;;
+             color: darken($header-link-color,20%);
+             font-weight: bold;
 
 }
 
 .navbar-inverse .dropdown-menu>li>a:hover, 
 .navbar-inverse .dropdown-menu>li>a:focus {
    background-color: $header-color-secondary;
-   color: $brand-color-secondary;
+   color: darken($header-link-color,50%);
 }
 
 .navbar .divider-vertical {

@@ -10,15 +10,23 @@
         .navbar-visible-in{
             .active{
                 background-color:$brand-color-secondary;
+                color: lighten($brand-color-secondary, 30%);
             }
         }
     }
 
     .navbar-inverse {
         border-color: $brand-color-secondary;
-
+        .navbar-nav>.open>a, .navbar-nav>.open>a:hover,.navbar-nav>.open>a:focus {
+            background-color: $brand-color-secondary;
+        }
     }
-
+    
+    .nav-tabs > li.active > a i {
+    //color:  $brand-color-secondary;
+    // background-color:$header-color-secondary;
+             color: darken($brand-color-secondary, 20%);
+}
 }
 // Gradient
 @mixin appGradient() {
@@ -533,6 +541,6 @@
     }
     .include-device-txt{
         margin-top: 20px;
-         text-align: center;
+        text-align: center;
     }
 }
