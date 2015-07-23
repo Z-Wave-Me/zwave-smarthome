@@ -36,11 +36,11 @@ module.exports = function(grunt) {
                     'vendor/alpaca/alpaca.min.js',
                     'vendor/md5/md5.js',
                     // Angular
-                    'vendor/angular/angular-1.2.16/angular.min.js',
+                    'vendor/angular/angular-1.2.28/angular.min.js',
                     'vendor/upload/angular-file-upload.js',
-                    'vendor/angular/angular-1.2.16/angular-route.min.js',
+                    'vendor/angular/angular-1.2.28/angular-route.min.js',
                     //'vendor/angular/angular-1.2.16/angular-resource.js',
-                    'vendor/angular/angular-1.2.16/angular-cookies.min.js',
+                    'vendor/angular/angular-1.2.28/angular-cookies.min.js',
                      // Bootstrap
                     'vendor/bootstrap/bootstrap.min.js',
                     // APP

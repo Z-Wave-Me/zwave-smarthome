@@ -26,7 +26,7 @@
                         <a href="#rooms" title="{{_t('nav_rooms')}}" ng-class="isActive('rooms')"><i class="fa fa-th-large"></i></a>
                         <a href="#events" title="{{_t('nav_events')}}" ng-class="isActive('events')"><i class="fa fa-list-ul"></i></a>
                         <span class="divider-vertical"></span> 
-                         &nbsp;<span id="update_time_tick"></span>
+                        &nbsp;<span id="update_time_tick" ng-click="reloadData()"></span>
                          <span class="mobile-icon" ng-if="isMobile"><i class="fa fa-mobile fa-lg"></i></span> 
                     </div>
                 </div>
@@ -51,6 +51,8 @@
                                 <li ng-class="isActive('report')"><a href="#report" data-collapse-navbar><i class="fa fa-bug"></i> {{_t('nav_report')}}</a></li>
                                 <li ng-class="isActive('expertUi')" ng-if="elementAccess(cfg.role_access.admin) && cfg.app_type === 'default'"><a href="/expert" target="_blank" data-collapse-navbar><i class="fa fa-external-link"></i> {{_t('nav_expertUi')}}</a></li>
                                 <li ng-if="elementAccess(null,isMobile)"><a href="#logout" data-collapse-navbar><i class="fa fa-sign-out"></i> {{_t('nav_logout')}}</a></li>
+                                 <li class="divider"></li>
+                                 <li class="navi-app-info">{{_t('ui_version')}}: {{cfg.app_version}}</li>
                             </ul>
                         </li>
                     </ul>

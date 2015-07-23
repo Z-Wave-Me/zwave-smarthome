@@ -33,7 +33,7 @@
         color: lighten($header-link-color, 10%);
     }
      a:hover{
-        color: $brand-color-secondary;
+        color: darken($header-link-color, 10%);
     }
 }
 

@@ -888,14 +888,14 @@ http://codepen.io/MattIn4D/pen/LiKFC
 .navbar-inverse .dropdown-menu > .active > a:hover,
 .navbar-inverse .dropdown-menu > .active > a:focus {
   background-color: #DDDDDD;
-  color: #2a2a2a;
+  color: #4b4b4b;
   font-weight: bold;
 }
 
 /* line 113, sass/globals/_navigation.scss */
 .navbar-inverse .dropdown-menu > li > a:hover,
 .navbar-inverse .dropdown-menu > li > a:focus {
-  background-color: #DDDDDD;
+  background-color: #f7f7f7;
   color: black;
 }
 
@@ -1697,7 +1697,7 @@ legend.alpaca-container-label {
 }
 /* line 35, sass/modules/_elements.scss */
 .widget-header a:hover {
-  color: #DA131F;
+  color: #444444;
 }
 
 /* line 41, sass/modules/_elements.scss */

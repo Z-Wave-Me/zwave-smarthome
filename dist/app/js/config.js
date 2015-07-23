@@ -138,6 +138,12 @@ var config_data = {
         'events_clickable': [
             'device-info'
         ],
+        // List of the categories of elements with update command
+        'element_update_icon': [
+            'switchBinary',
+            'switchMultilevel',
+            'doorlock'
+        ],
         // Results per page
         'page_results': 12,
         // Results per events page

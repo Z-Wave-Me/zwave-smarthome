@@ -105,14 +105,14 @@
 .navbar-inverse .dropdown-menu>.active>a:focus {
 
     background-color:$header-color-secondary;
-             color: darken($header-link-color,20%);
+             color: darken($header-link-color,7%);
              font-weight: bold;
 
 }
 
 .navbar-inverse .dropdown-menu>li>a:hover, 
 .navbar-inverse .dropdown-menu>li>a:focus {
-   background-color: $header-color-secondary;
+   background-color: lighten($header-color-secondary,10%);
    color: darken($header-link-color,50%);
 }
 
