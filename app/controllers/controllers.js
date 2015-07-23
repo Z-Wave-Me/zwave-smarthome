@@ -215,6 +215,8 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.multilineSensor = false;
     $scope.levelVal = [];
     $scope.rgbVal = [];
+    $scope.goMutiLineHistory = [];
+    $scope.multiLineHistory = [];
     $scope.chartOptions = {
         // Chart.js options can go here.
         //responsive: true
@@ -332,6 +334,24 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         });
 
     };
+    /**
+     * Load multiline device history
+     */
+    $scope.loadMultiLineDeviceHistory = function(deviceId) {
+        $scope.goMutiLineHistory[deviceId] = !$scope.goHistory[deviceId];
+        $scope.multiLineHistory[deviceId] = {data: false, icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        dataFactory.getApi('history', '/' + deviceId + '?show=24', true).then(function(response) {
+            if (!response.data.data.deviceHistory) {
+                $scope.multiLineHistory[deviceId] = {data: false, icon: 'fa-info-circle text-warning', message: $scope._t('no_data')};
+                return;
+            }
+            var data = dataService.getChartData(response.data.data.deviceHistory, $scope.cfg.chart_colors);
+            $scope.multiLineHistory[deviceId] = {data: data};
+        }, function(error) {
+            $scope.multiLineHistory[deviceId] = {data: false, icon: 'fa-exclamation-triangle text-danger', message: $scope._t('error_load_data')};
+        });
+
+    };
 
     /**
      * Show camera modal window
@@ -351,6 +371,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         dataFactory.getApi('devices', '/' + id, true).then(function(response) {
             if (response.data.data.metrics.sensors) {
                 $scope.multilineSensor = {data: response.data.data};
+                console.log($scope.multilineSensor)
             } else {
                 $scope.multilineSensor = {data: false, icon: 'fa-info-circle text-warning', message: $scope._t('no_data')};
             }
@@ -1114,8 +1135,8 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
         dataFactory.installOnlineModule(data).then(function(response) {
             $timeout(function() {
                 $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_module_download')};
-                 myCache.removeAll();
-                 $route.reload();
+                myCache.removeAll();
+                $route.reload();
             }, 3000);
 
         }, function(error) {
@@ -3732,19 +3753,19 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
     $scope.progressBar = {
         process: false,
         val: 0
-        
+
     };
-     $scope.firmware = {
+    $scope.firmware = {
         alert: {message: false, status: 'is-hidden', icon: false},
         process: false,
         val: 0
-        
+
     };
     // Factory default
     $scope.factoryDefault = {
         alert: {message: false, status: 'is-hidden', icon: false},
         process: false
-        
+
     };
     // Licence
     $scope.controllerUuid = null;
@@ -3779,7 +3800,7 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
             $scope.controllerInfo = {
                 uuid: ZWaveAPIData.controller.data.uuid.value,
                 softwareRevisionVersion: ZWaveAPIData.controller.data.softwareRevisionVersion.value,
-                 softwareLatestVersion: 'v2.0.1'
+                softwareLatestVersion: 'v2.0.1'
             };
             $scope.controllerUuid = ZWaveAPIData.controller.data.uuid.value;
             dataService.updateTimeTick();
@@ -3941,7 +3962,7 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
             alert($scope._t('restore_backup_failed'));
         });
     };
-    
+
     /**
      * Update firmware
      */
@@ -3949,9 +3970,9 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
         $scope.firmware.process = true;
         $scope.firmware.val = 0;
         var refresh = function() {
-           $scope.firmware.alert = {message: $scope._t('updating_firmware'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
+            $scope.firmware.alert = {message: $scope._t('updating_firmware'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
             $scope.firmware.val += 10;
-            if($scope.firmware.val >= 100){
+            if ($scope.firmware.val >= 100) {
                 $scope.firmware.val = 100;
                 $interval.cancel(progressInterval);
                 $scope.firmware.alert = {message: $scope._t('firmware_success'), status: 'alert-success', icon: 'fa-check'};
@@ -3962,22 +3983,22 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
         };
         var progressInterval = $interval(refresh, 500);
     };
-    
+
     /**
      * Back to Factory default
      */
     $scope.backFactoryDefault = function(input) {
-        var cnt = 0; 
+        var cnt = 0;
         $scope.factoryDefault.process = true;
         var refresh = function() {
             $scope.factoryDefault.alert = {message: $scope._t('returning_factory_default'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
             cnt += 1;
-            if(cnt >= 10){
+            if (cnt >= 10) {
                 $interval.cancel(interval);
-                 $scope.factoryDefault.alert = {message: $scope._t('factory_default_success'), status: 'alert-success', icon: 'fa-check'};
+                $scope.factoryDefault.alert = {message: $scope._t('factory_default_success'), status: 'alert-success', icon: 'fa-check'};
                 //$scope.factoryDefault.alert = {message: $scope._t('factory_default_error'), status: 'alert-danger', icon: 'fa-warning'};
                 $scope.factoryDefault.process = false;
-              }
+            }
             console.log($scope.factoryDefault);
         };
         var interval = $interval(refresh, 1000);
