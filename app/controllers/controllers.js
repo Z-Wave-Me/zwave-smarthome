@@ -3730,8 +3730,20 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
     // Firmware
     $scope.alertProgress = {message: false, status: 'is-hidden', icon: false};
     $scope.progressBar = {
-        show: false,
+        process: false,
         val: 0
+        
+    };
+     $scope.firmware = {
+        alert: {message: false, status: 'is-hidden', icon: false},
+        process: false,
+        val: 0
+        
+    };
+    // Factory default
+    $scope.factoryDefault = {
+        alert: {message: false, status: 'is-hidden', icon: false},
+        process: false
         
     };
     // Licence
@@ -3934,21 +3946,41 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
      * Update firmware
      */
     $scope.updateFirmware = function(input) {
-        $scope.progressBar.show = true;
-        $scope.progressBar.val = 0;
+        $scope.firmware.process = true;
+        $scope.firmware.val = 0;
         var refresh = function() {
-           $scope.alertProgress = {message: $scope._t('updating_firmware'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
-            $scope.progressBar.val += 10;
-            if($scope.progressBar.val >= 100){
-                $scope.progressBar.val = 100;
+           $scope.firmware.alert = {message: $scope._t('updating_firmware'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
+            $scope.firmware.val += 10;
+            if($scope.firmware.val >= 100){
+                $scope.firmware.val = 100;
                 $interval.cancel(progressInterval);
-                $scope.alertProgress = {message: $scope._t('firmware_success'), status: 'alert-success', icon: 'fa-check'};
+                $scope.firmware.alert = {message: $scope._t('firmware_success'), status: 'alert-success', icon: 'fa-check'};
                 //$scope.alertProgress = {message: $scope._t('firmware_error'), status: 'alert-danger', icon: 'fa-warning'};
-                 $scope.progressBar.show = false;
+                $scope.firmware.process = false;
             }
             console.log($scope.progressBar);
         };
         var progressInterval = $interval(refresh, 500);
+    };
+    
+    /**
+     * Back to Factory default
+     */
+    $scope.backFactoryDefault = function(input) {
+        var cnt = 0; 
+        $scope.factoryDefault.process = true;
+        var refresh = function() {
+            $scope.factoryDefault.alert = {message: $scope._t('returning_factory_default'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
+            cnt += 1;
+            if(cnt >= 10){
+                $interval.cancel(interval);
+                 $scope.factoryDefault.alert = {message: $scope._t('factory_default_success'), status: 'alert-success', icon: 'fa-check'};
+                //$scope.factoryDefault.alert = {message: $scope._t('factory_default_error'), status: 'alert-danger', icon: 'fa-warning'};
+                $scope.factoryDefault.process = false;
+              }
+            console.log($scope.factoryDefault);
+        };
+        var interval = $interval(refresh, 1000);
     };
 
     /**

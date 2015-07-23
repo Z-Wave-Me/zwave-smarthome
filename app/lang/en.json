@@ -1,5 +1,11 @@
 {
     "missing": "---",
+    "factory_default": "Factory default",
+    "factory_default_war": "This will not impact the Z-Wave network but the modules and names of elements only. ",
+    "back_factory_default": "Back to Factory Default",
+    "returning_factory_default": "Returning system to Factory default...",
+    "factory_default_success": "System successfully returned to Factory Default.",
+    "factory_default_error": "Unable to return the system to Factory Default.",
     "firmware_update": "Firmware update",
     "updating_firmware": "Updating firmware. Please wait...",
     "firmware_success": "Firmware is successfully updated",
