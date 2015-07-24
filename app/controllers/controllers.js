@@ -164,6 +164,8 @@ myAppController.controller('TestController', function($scope, $routeParams, $fil
             dataService.showConnectionError(error);
         });
     };
+    
+    $( "#result_load" ).load( "http://192.168.10.119:8084/cgi-bin/main.cgi" );
     //$scope.testHeader();
     var master = {
         email: null,
@@ -371,7 +373,6 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         dataFactory.getApi('devices', '/' + id, true).then(function(response) {
             if (response.data.data.metrics.sensors) {
                 $scope.multilineSensor = {data: response.data.data};
-                console.log($scope.multilineSensor)
             } else {
                 $scope.multilineSensor = {data: false, icon: 'fa-info-circle text-warning', message: $scope._t('no_data')};
             }

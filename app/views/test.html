@@ -3,26 +3,10 @@
     <bb-loader></bb-loader>
     <h1>Test page</h1>
     {{fruitArrayDestinationEx}}
-    <form name="form_report" id="form_profile" class="form form-page" ng-submit="store(form_report,input)" novalidate>
-        <fieldset>
-            <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('nav_report')"></span></h3>
-            <!-- content -->
-                <div class="form-group">
-                    <textarea name="content" id="content" class="form-control report-content" ng-blur="contentBlur = true" ng-model="input.content" ng-required="true"></textarea>
-                    <bb-validator input-name='form_report.content' trans='_t("field_required")' has-blur='contentBlur'></bb-validator> 
-                </div>
-            <!-- email -->
-                 <div class="form-group form-inline">
-                        <label>{{_t('lb_email')}}: </label>
-                        <input name="email" id="email" type="email" class="form-control" value="{{input.email}}" ng-blur="emailBlur = true" ng-model="input.email" ng-required="true" />
-                        <bb-validator input-name='form_report.email' trans='_t("email_invalid")' has-blur='emailBlur'></bb-validator> 
-                    </div>
-        </fieldset>
-        <div class="submit-entry">
-            <button type="submit" class="btn btn-primary" ng-bind="_t('lb_submit')" ng-disabled="form_report.$invalid"></button>
-            <button class="btn btn-default" ng-bind="_t('lb_cancel')" bb-go-back></button>
-        </div>
-    </form>
+    <div id="result_load"></div>
+    <iframe src="http://192.168.10.119:8084/cgi-bin/main.cgi"></iframe>
+    
+    
        
 </div><!-- /ng-controller --> 
 <script type="text/ng-template" id="app/views/elements/directives/default_.html">
