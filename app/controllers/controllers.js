@@ -3746,21 +3746,16 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
     $scope.remoteAccess = false;
     $scope.controllerInfo = {
         uuid: null,
-        softwareRevisionVersion: null
+        softwareRevisionVersion: null,
+        softwareLatestVersion: null
     };
     // Firmware
-    $scope.alertProgress = {message: false, status: 'is-hidden', icon: false};
-    $scope.progressBar = {
-        process: false,
-        val: 0
-
-    };
-    $scope.firmware = {
-        alert: {message: false, status: 'is-hidden', icon: false},
-        process: false,
-        val: 0
-
-    };
+//    $scope.firmware = {
+//        alert: {message: false, status: 'is-hidden', icon: false},
+//        process: false,
+//        val: 0
+//
+//    };
     // Factory default
     $scope.factoryDefault = {
         alert: {message: false, status: 'is-hidden', icon: false},
@@ -3768,7 +3763,7 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
 
     };
     // Licence
-    $scope.controllerUuid = null;
+    //$scope.controllerUuid = null;
     $scope.proccessLicence = false;
     $scope.proccessVerify = {
         'message': false,
@@ -3799,10 +3794,9 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
         dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
             $scope.controllerInfo = {
                 uuid: ZWaveAPIData.controller.data.uuid.value,
-                softwareRevisionVersion: ZWaveAPIData.controller.data.softwareRevisionVersion.value,
-                softwareLatestVersion: 'v2.0.1'
+                softwareRevisionVersion: ZWaveAPIData.controller.data.softwareRevisionVersion.value
             };
-            $scope.controllerUuid = ZWaveAPIData.controller.data.uuid.value;
+            //$scope.controllerUuid = ZWaveAPIData.controller.data.uuid.value;
             dataService.updateTimeTick();
         }, function(error) {
             dataService.showConnectionError(error);
@@ -3906,7 +3900,7 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
         $scope.proccessVerify = {'message': $scope._t('verifying_licence_key'), 'status': 'fa fa-spinner fa-spin'};
         $scope.proccessLicence = true;
         var input = {
-            'uuid': $scope.controllerUuid,
+            'uuid': $scope.controllerInfo.uuid,
             'scratch': inputLicence.scratch_id
         };
         dataFactory.getLicense(input).then(function(response) {
@@ -3964,25 +3958,26 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
     };
 
     /**
+     * DEPRECATED
      * Update firmware
      */
-    $scope.updateFirmware = function(input) {
-        $scope.firmware.process = true;
-        $scope.firmware.val = 0;
-        var refresh = function() {
-            $scope.firmware.alert = {message: $scope._t('updating_firmware'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
-            $scope.firmware.val += 10;
-            if ($scope.firmware.val >= 100) {
-                $scope.firmware.val = 100;
-                $interval.cancel(progressInterval);
-                $scope.firmware.alert = {message: $scope._t('firmware_success'), status: 'alert-success', icon: 'fa-check'};
-                //$scope.alertProgress = {message: $scope._t('firmware_error'), status: 'alert-danger', icon: 'fa-warning'};
-                $scope.firmware.process = false;
-            }
-            console.log($scope.progressBar);
-        };
-        var progressInterval = $interval(refresh, 500);
-    };
+//    $scope.updateFirmware = function(input) {
+//        $scope.firmware.process = true;
+//        $scope.firmware.val = 0;
+//        var refresh = function() {
+//            $scope.firmware.alert = {message: $scope._t('updating_firmware'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
+//            $scope.firmware.val += 10;
+//            if ($scope.firmware.val >= 100) {
+//                $scope.firmware.val = 100;
+//                $interval.cancel(progressInterval);
+//                $scope.firmware.alert = {message: $scope._t('firmware_success'), status: 'alert-success', icon: 'fa-check'};
+//                //$scope.alertProgress = {message: $scope._t('firmware_error'), status: 'alert-danger', icon: 'fa-warning'};
+//                $scope.firmware.process = false;
+//            }
+//            console.log($scope.progressBar);
+//        };
+//        var progressInterval = $interval(refresh, 500);
+//    };
 
     /**
      * Back to Factory default
@@ -4390,7 +4385,7 @@ myAppController.controller('ReportController', function($scope, $window, dataFac
         input.shui_version = $scope.cfg.app_version;
         //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         dataFactory.postReport(input).then(function(response) {
-            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_send_report')};
+            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_send_report') + ' ' + input.email};
             $window.location.reload();
 //            $scope.form.$setPristine();
 //           input.content = null;
