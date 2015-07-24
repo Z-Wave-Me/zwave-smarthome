@@ -74,7 +74,7 @@
     </div>
       
      <!-- ///////////////////////////// Licence key ///////////////////////////// -->
-    <div class="admin-entry" ng-if="controllerUuid && hostName !== 'find.zwave.me'"> 
+    <div class="admin-entry" ng-if="controllerInfo.uuid && hostName !== 'find.zwave.me'"> 
         <h2 class="admin-entry-title" ng-click="goLicence = !goLicence">
             <i class="fa" ng-class="goLicence ? 'fa-minus':'fa-plus'"></i> <span ng-bind="_t('licence_upgrade')"></span> 
         </h2>
@@ -155,18 +155,20 @@
     </div>
     
     <!-- ///////////////////////////// Firmware update ///////////////////////////// --> 
-    <div class="admin-entry"> 
+    <div class="admin-entry" ng-if="hostName !== 'find.zwave.me'"> 
         <h2 class="admin-entry-title" ng-click="goFirmware = !goFirmware">
             <i class="fa" ng-class="goFirmware ? 'fa-minus':'fa-plus'"></i> <span ng-bind="_t('firmware_update')"></span>
         </h2>
         <div class="admin-entry-ctrl" ng-class="" ng-if="goFirmware">
            <form name="form_firmware" id="form_firmware" class="form form-page" ng-submit="updateFirmware()" novalidate>
             <fieldset>
-                <!-- Last version -->
-                <h3 class="form-control-static">
+                <!-- Currentt version -->
+                <p class="form-control-static">
                     <span ng-bind="_t('current_firmware')"></span>: <strong ng-bind="controllerInfo.softwareRevisionVersion"></strong>
-                </h3>
-                <div><i class="fa fa-exclamation-circle"></i> <em>{{_t('firmware_update_war')}}</em></div>
+                </p>
+                <a class="btn btn-primary" href="http://{{hostName}}:8084/cgi-bin/main.cgi" target="_blank">{{_t('update_to_latest')}} {{controllerInfo.softwareLatestVersion}}</a>
+              </fieldset>
+                 <!--<div><i class="fa fa-exclamation-circle"></i> <em>{{_t('firmware_update_war')}}</em></div>
                  <bb-alert alert="firmware.alert"></bb-alert>
                 <div  ng-if="firmware.process">
                    <div class="progress">
@@ -177,15 +179,15 @@
                 </div>
                 
             </fieldset> 
-                <fieldset class="submit-entry">
-                <button type="submit" class="btn btn-primary" ng-disabled="firmware.process">{{_t('update_to_latest')}} ({{controllerInfo.softwareLatestVersion}})</button>
-            </fieldset>
+               <fieldset class="submit-entry">
+                <a class="btn btn-primary" href="http://{{hostName}}:8084/cgi-bin/main.cgi">{{_t('update_to_latest')}} {{controllerInfo.softwareLatestVersion}}</a>
+            </fieldset>-->
         </form>
             
         </div>
     </div>
     
-    <!-- ///////////////////////////// Factory default ///////////////////////////// --> 
+    <!-- ///////////////////////////// Factory default ///////////////////////////// 
     <div class="admin-entry"> 
         <h2 class="admin-entry-title" ng-click="goFactory = !goFactory">
             <i class="fa" ng-class="goFactory ? 'fa-minus':'fa-plus'"></i> <span ng-bind="_t('factory_default')"></span>
@@ -203,5 +205,5 @@
         </form>
             
         </div>
-    </div>
+    </div>--> 
 </div> <!-- /ng-controller --> 
