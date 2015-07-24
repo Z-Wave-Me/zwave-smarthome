@@ -164,41 +164,33 @@ myAppController.controller('TestController', function($scope, $routeParams, $fil
             dataService.showConnectionError(error);
         });
     };
-    
-    $( "#result_load" ).load( "http://192.168.10.119:8084/cgi-bin/main.cgi" );
-    //$scope.testHeader();
-    var master = {
-        email: null,
-        content: null
+    $scope.dest = {
+        1:{id: 1,val: 10},
+        2:{id: 2,val: 20},
+        3:{id: 3,val: 30}
+        
+        
     };
-    $scope.input = master;
-    $scope.store = function(form, input) {
-        console.log($scope.input)
-        // console.log(input)
-        //var original = $scope.input;
-        $scope.input = angular.copy($scope.master);
-        $scope.form_report.$setPristine();
-        console.log(master)
+    $scope.src = {
+        //id: 0,
+        val:0
     };
-//
-//    $scope.fruitArraySource = ['Mango', 'Apple'];
-//    $scope.fruitArrayDestination = ['Orange', 'Grapes'];
-//    console.log($scope.fruitArrayDestination)
-//    angular.copy($scope.fruitArraySource, $scope.fruitArrayDestination);
-//    console.log($scope.fruitArrayDestination)
-
-    $scope.fruitArraySourceEx = {id: 25};
-    $scope.fruitArrayDestinationEx = {val: 'myName'};
-    $scope.fruitArrayDestinationExA = {val: 'myNameRew'};
-    $scope.fruitArrayDestinationExB = {blabla: 'ABC'};
-
-    angular.extend($scope.fruitArrayDestinationEx, $scope.fruitArraySourceEx);
-    console.log($scope.fruitArrayDestinationEx)
-    angular.extend($scope.fruitArrayDestinationEx, $scope.fruitArraySourceEx, $scope.fruitArrayDestinationExA);
-    console.log($scope.fruitArrayDestinationEx)
-    angular.extend($scope.fruitArrayDestinationEx, $scope.fruitArraySourceEx, $scope.fruitArrayDestinationExA, $scope.fruitArrayDestinationExB);
-    console.log($scope.fruitArrayDestinationEx)
-
+    //var result = angular.extend(dest,src);
+        var cnt = 0;
+        var val;
+        var refresh = function() {
+            cnt++;
+            //$scope.src.id += 1;
+            val = Math.floor(Math.random() * (3 - 1+ 1)) + 1;
+            
+             $scope.src.val = val;
+             angular.extend($scope.dest[val],$scope.src);
+        
+             console.log(val)
+        };
+        $interval(refresh, 1000);
+         
+//    };
 });
 /**
  * Element controller

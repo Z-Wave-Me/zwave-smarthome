@@ -2,10 +2,15 @@
 <div ng-controller="TestController">
     <bb-loader></bb-loader>
     <h1>Test page</h1>
-    {{fruitArrayDestinationEx}}
-    <div id="result_load"></div>
-    <iframe src="http://192.168.10.119:8084/cgi-bin/main.cgi"></iframe>
-    
+    <table id="table_cfg_admin" class="table table-condensed table-report">
+                <tbody>
+                    <tr ng-repeat="v in dest" id="row_{{v.id}}">
+                        <td>{{v.id}}</td>
+                        <td class="td-action">{{v.val}}</td>
+                    </tr>
+                </tbody>
+            </table>
+    {{dest}}
     
        
 </div><!-- /ng-controller --> 
