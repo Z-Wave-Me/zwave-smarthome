@@ -352,25 +352,29 @@
         border-bottom: dotted 1px $app-border-color; 
         @include appGradient();
     }
+    .app-entry-green{
+        @include appGradientGreen();
+    }
     .app-entry-in{
         border: 0;
         height: auto;
         text-align: left;
         padding: 0;
         background: none;
+        margin: 0;
 
     }
 
     .app-image{
-        top: 0;
+        top: 5px;
         left: 10px;
-        width: 48px;
-        height: 48px;
+        width: 40px;
+        height: 40px;
     }
     .app-body{
         height: 54px;
         margin:0;
-        padding: 0 5px 15px 64px;
+        padding: 5px 5px 15px 64px;
         .entry-title{
             position: absolute;
             z-index: 10;

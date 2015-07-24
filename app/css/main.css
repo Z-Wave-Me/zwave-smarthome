@@ -3076,102 +3076,123 @@ padding-right: 5px;
   }
 
   /* line 355, sass/settings/_mixins.scss */
+  .app-entry-green {
+    background: #1e5799;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #1e5799 0%, #dcf4e0 0%, #f6f6f6 99%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #1e5799), color-stop(0%, #dcf4e0), color-stop(99%, #f6f6f6));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #1e5799 0%, #dcf4e0 0%, #f6f6f6 99%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #1e5799 0%, #dcf4e0 0%, #f6f6f6 99%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #1e5799 0%, #dcf4e0 0%, #f6f6f6 99%);
+    /* IE10+ */
+    background: linear-gradient(to bottom, #1e5799 0%, #dcf4e0 0%, #f6f6f6 99%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#f6f6f6',GradientType=0 );
+    /* IE6-9 */
+  }
+
+  /* line 358, sass/settings/_mixins.scss */
   .app-entry-in {
     border: 0;
     height: auto;
     text-align: left;
     padding: 0;
     background: none;
+    margin: 0;
   }
 
-  /* line 364, sass/settings/_mixins.scss */
+  /* line 368, sass/settings/_mixins.scss */
   .app-image {
-    top: 0;
+    top: 5px;
     left: 10px;
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
   }
 
-  /* line 370, sass/settings/_mixins.scss */
+  /* line 374, sass/settings/_mixins.scss */
   .app-body {
     height: 54px;
     margin: 0;
-    padding: 0 5px 15px 64px;
+    padding: 5px 5px 15px 64px;
   }
-  /* line 374, sass/settings/_mixins.scss */
+  /* line 378, sass/settings/_mixins.scss */
   .app-body .entry-title {
     position: absolute;
     z-index: 10;
     padding: 10px 90px 0 0;
   }
 
-  /* line 380, sass/settings/_mixins.scss */
+  /* line 384, sass/settings/_mixins.scss */
   .app-footer {
     /*        display: block;
              position: static;*/
   }
 
-  /* line 386, sass/settings/_mixins.scss */
+  /* line 390, sass/settings/_mixins.scss */
   .app-image {
     /*        width: 100%;*/
     /*    max-width: 100px;*/
     margin: 0;
   }
 
-  /* line 392, sass/settings/_mixins.scss */
+  /* line 396, sass/settings/_mixins.scss */
   #table_apps_active .btn {
     font-size: 12px;
   }
 
-  /* line 397, sass/settings/_mixins.scss */
+  /* line 401, sass/settings/_mixins.scss */
   .app-image-list {
     max-width: 50px;
   }
 
   /* Apps detail
   -------------------------------------------------- */
-  /* line 403, sass/settings/_mixins.scss */
+  /* line 407, sass/settings/_mixins.scss */
   .app-detail-header-in {
     position: static;
     padding: 0 15px 15px 15px;
     background: none;
   }
-  /* line 407, sass/settings/_mixins.scss */
+  /* line 411, sass/settings/_mixins.scss */
   .app-detail-header-in .app-detail-img {
     text-align: center;
     margin: 0 auto;
   }
-  /* line 410, sass/settings/_mixins.scss */
+  /* line 414, sass/settings/_mixins.scss */
   .app-detail-header-in .app-detail-img .app-image-detail {
     position: static;
   }
-  /* line 415, sass/settings/_mixins.scss */
+  /* line 419, sass/settings/_mixins.scss */
   .app-detail-header-in .app-detail-body {
     padding-left: 0;
   }
-  /* line 417, sass/settings/_mixins.scss */
+  /* line 421, sass/settings/_mixins.scss */
   .app-detail-header-in .app-detail-body .page-subtitle {
     margin-top: 10px;
     text-align: center;
   }
-  /* line 422, sass/settings/_mixins.scss */
+  /* line 426, sass/settings/_mixins.scss */
   .app-detail-header-in .app-detail-control {
     text-align: center;
   }
 
   /* Rooms
   -------------------------------------------------- */
-  /* line 430, sass/settings/_mixins.scss */
+  /* line 434, sass/settings/_mixins.scss */
   .room-entry {
     float: left;
     width: 50%;
     padding: 0;
   }
-  /* line 434, sass/settings/_mixins.scss */
+  /* line 438, sass/settings/_mixins.scss */
   .room-entry .room-in {
     position: relatvive;
   }
-  /* line 437, sass/settings/_mixins.scss */
+  /* line 441, sass/settings/_mixins.scss */
   .room-entry .entry-title {
     font-size: 12px;
     position: absolute;
@@ -3179,53 +3200,53 @@ padding-right: 5px;
     left: 0;
     right: 0;
   }
-  /* line 444, sass/settings/_mixins.scss */
+  /* line 448, sass/settings/_mixins.scss */
   .room-entry .entry-title-text {
     display: none;
   }
-  /* line 447, sass/settings/_mixins.scss */
+  /* line 451, sass/settings/_mixins.scss */
   .room-entry .app-border {
     border: solid 1px #d3d3d3;
   }
 
-  /* line 452, sass/settings/_mixins.scss */
+  /* line 456, sass/settings/_mixins.scss */
   .room-image-big {
     margin: 24px 0 0 0;
     max-width: 130px;
     max-height: 130px;
   }
 
-  /* line 459, sass/settings/_mixins.scss */
+  /* line 463, sass/settings/_mixins.scss */
   #table_cfg_rooms .td-action {
     width: 30%;
   }
 
   /* Profiles
   -------------------------------------------------- */
-  /* line 467, sass/settings/_mixins.scss */
+  /* line 471, sass/settings/_mixins.scss */
   .profile-entry {
     float: left;
     width: 50%;
   }
-  /* line 470, sass/settings/_mixins.scss */
+  /* line 474, sass/settings/_mixins.scss */
   .profile-entry .entry-title {
     font-size: 12px;
   }
-  /* line 473, sass/settings/_mixins.scss */
+  /* line 477, sass/settings/_mixins.scss */
   .profile-entry .entry-title-text {
     display: none;
   }
 
   /* Admin
   -------------------------------------------------- */
-  /* line 482, sass/settings/_mixins.scss */
+  /* line 486, sass/settings/_mixins.scss */
   #table_cfg_admin .td-action {
     width: 30%;
   }
 
   /* Devices
   -------------------------------------------------- */
-  /* line 490, sass/settings/_mixins.scss */
+  /* line 494, sass/settings/_mixins.scss */
   .device-slect-type .vendor-entry {
     float: left;
     width: 33.33333%;
@@ -3233,53 +3254,53 @@ padding-right: 5px;
     margin: 0 0 15px 0;
   }
 
-  /* line 498, sass/settings/_mixins.scss */
+  /* line 502, sass/settings/_mixins.scss */
   .device-manufacturers .col-device-vendor {
     float: left;
     width: 33.33333%;
     padding: 0;
     margin: 0 0 15px 0;
   }
-  /* line 505, sass/settings/_mixins.scss */
+  /* line 509, sass/settings/_mixins.scss */
   .device-manufacturers .vendor-list {
     width: 100%;
     margin: 0;
     border-color: #d3d3d3;
   }
 
-  /* line 516, sass/settings/_mixins.scss */
+  /* line 520, sass/settings/_mixins.scss */
   .vendor-image img {
     max-width: 70px !important;
     max-height: 50px !important;
   }
 
-  /* line 522, sass/settings/_mixins.scss */
+  /* line 526, sass/settings/_mixins.scss */
   .device-perex {
     padding: 10px;
     border-top: 0 none;
   }
 
-  /* line 526, sass/settings/_mixins.scss */
+  /* line 530, sass/settings/_mixins.scss */
   .col-device {
     padding: 0;
     margin: 0 0 20px 0;
     background-color: #fff;
   }
 
-  /* line 533, sass/settings/_mixins.scss */
+  /* line 537, sass/settings/_mixins.scss */
   .include-device-img {
     float: none;
     margin: 0;
     text-align: center;
   }
 
-  /* line 538, sass/settings/_mixins.scss */
+  /* line 542, sass/settings/_mixins.scss */
   .include-device-img img {
     max-width: 120px;
     max-height: 120px;
   }
 
-  /* line 542, sass/settings/_mixins.scss */
+  /* line 546, sass/settings/_mixins.scss */
   .include-device-txt {
     margin-top: 20px;
     text-align: center;
