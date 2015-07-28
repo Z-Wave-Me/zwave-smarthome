@@ -144,16 +144,16 @@ a:hover {
 /* Hide element on is-mobile-true devices
 -------------------------------------------------- */
 .is-mobile-true{
-     .mobhidden{
+    .mobhidden{
         display: none !important;
     }
-    
+
 }
 
 /* Alert
 -------------------------------------------------- */
 .alert {
- margin: 7px 0;
+    margin: 7px 0;
 }
 
 /* Spinners
@@ -192,8 +192,8 @@ a:hover {
     }
     tbody{
         tr{
-           //background-color: lighten($app-body-bcg-color, 15%); 
-           background-color: #fff;
+            //background-color: lighten($app-body-bcg-color, 15%); 
+            background-color: #fff;
         }
         .td-img{
             width: 30px;
@@ -211,7 +211,7 @@ a:hover {
 
 .nav-tabs > li > a:hover {
     color:  lighten($brand-color-primary, 10%);
-   text-decoration: underline;
+    text-decoration: underline;
     //border: darken($app-body-bcg-color, 10%);
 }
 
@@ -226,21 +226,21 @@ a:hover {
 .nav-tabs > li.active > a i {
     //color:  $brand-color-secondary;
     // background-color:$header-color-secondary;
-             color: darken($header-color-secondary, 20%);
+    color: darken($header-color-secondary, 20%);
 }
 /*.nav > li > a:hover, .nav > li > a:focus {
 background-color: lighten($app-body-bcg-color, 10%);;
 }*/
 
 .nav-tabs-3{
-  text-align: center;
+    text-align: center;
 }
- 
+
 .nav-tabs-3 > li {
-  width: 33.33333%;
+    width: 33.33333%;
 }
 .nav-tabs-3 li a {
-  background-color:#eeeeee;
+    background-color:#eeeeee;
 }
 .tab-content{
     padding-top: 10px;
@@ -294,8 +294,8 @@ fieldset.submit-entry{
 }
 .form-control-img{
     cursor: pointer;
-     border: solid 4px transparent;
-    
+    border: solid 4px transparent;
+
 }
 .control-active{
     border: solid 4px black !important;
@@ -315,6 +315,20 @@ fieldset.submit-entry{
 .modal-vertical-centered {
     position: fixed;
     top: 15% !important;
+}
+
+.modal-vertical-centered {
+    position: fixed;
+    top: 15% !important;
+}
+.modal-firmware-iframe{
+    width: 100%;
+  //height: 100%;
+    padding:0;
+    .modal-content {
+        height: 100%;
+        border-radius: 0;
+    }
 }
 
 
@@ -391,8 +405,8 @@ http://codepen.io/MattIn4D/pen/LiKFC
     right: 0;
     text-align: center;
     .loading-in{
-         position: relative;
-         z-index: 1000;
+        position: relative;
+        z-index: 1000;
         margin: auto;
         padding: 10px;
         background-color: #fff;

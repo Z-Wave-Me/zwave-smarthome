@@ -166,7 +166,7 @@
                 <p class="form-control-static">
                     <span ng-bind="_t('current_firmware')"></span>: <strong ng-bind="controllerInfo.softwareRevisionVersion"></strong>
                 </p>
-                <a class="btn btn-primary" href="http://{{hostName}}:8084/cgi-bin/main.cgi" target="_blank">{{_t('update_to_latest')}} {{controllerInfo.softwareLatestVersion}}</a>
+                <a class="btn btn-primary" href="" target="_blank" ng-click="showModal('#modal_firmware')">{{_t('update_to_latest')}} {{controllerInfo.softwareLatestVersion}}</a>
               </fieldset>
                  <!--<div><i class="fa fa-exclamation-circle"></i> <em>{{_t('firmware_update_war')}}</em></div>
                  <bb-alert alert="firmware.alert"></bb-alert>
@@ -205,5 +205,22 @@
         </form>
             
         </div>
-    </div>--> 
+    </div>-->
+    
+    <!-- Modal multiline -->
+    <div class="modal fade" id="modal_firmware" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-firmware-iframe">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" ng-bind="_t('firmware_update')"></h4>
+                </div>
+                <div class="modal-body">
+                    
+                    <iframe ng-src="{{firmwareUpdateUrl}}" height="600" style="width: 100%; "></iframe>
+                   
+                    </div>
+                </div>
+            </div>
+    </div><!-- /.Modal multiline -->
 </div> <!-- /ng-controller --> 

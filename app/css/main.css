@@ -647,6 +647,23 @@ fieldset.submit-entry {
   top: 15% !important;
 }
 
+/* line 320, sass/globals/_body.scss */
+.modal-vertical-centered {
+  position: fixed;
+  top: 15% !important;
+}
+
+/* line 324, sass/globals/_body.scss */
+.modal-firmware-iframe {
+  width: 100%;
+  padding: 0;
+}
+/* line 328, sass/globals/_body.scss */
+.modal-firmware-iframe .modal-content {
+  height: 100%;
+  border-radius: 0;
+}
+
 /*.modal-vertical-centered {
   transform: translate(0, 25%) !important;
   -ms-transform: translate(0, 25%) !important;  IE 9 
@@ -665,7 +682,7 @@ vertical-align: middle;
 }*/
 /* Tooltip
 -------------------------------------------------- */
-/* line 340, sass/globals/_body.scss */
+/* line 354, sass/globals/_body.scss */
 .tooltip-inner {
   background-color: #F6F6F6;
   color: #000;
@@ -674,28 +691,28 @@ vertical-align: middle;
   text-align: left;
 }
 
-/* line 347, sass/globals/_body.scss */
+/* line 361, sass/globals/_body.scss */
 .tooltip-arrow {
   border-bottom-color: #f2f2f2;
 }
 
 /* Pagination
 -------------------------------------------------- */
-/* line 353, sass/globals/_body.scss */
+/* line 367, sass/globals/_body.scss */
 .pagination > li > a, .pagination > li > span {
   color: #DA131F;
   background-color: #FFF;
   border: 1px solid #d3d3d3;
 }
 
-/* line 359, sass/globals/_body.scss */
+/* line 373, sass/globals/_body.scss */
 .pagination > li > a:hover, .pagination > li > a:focus, .pagination > li > span:hover, .pagination > li > span:focus {
   color: #DA131F;
   background-color: #F6F6F6;
   border-color: #d3d3d3;
 }
 
-/* line 365, sass/globals/_body.scss */
+/* line 379, sass/globals/_body.scss */
 .pagination > .disabled > a, .pagination > .disabled > a:hover, .pagination > .disabled > a:focus {
   color: #777777;
   background-color: #FFF;
@@ -703,7 +720,7 @@ vertical-align: middle;
   cursor: not-allowed;
 }
 
-/* line 372, sass/globals/_body.scss */
+/* line 386, sass/globals/_body.scss */
 .pagination > .active > a, .pagination > .active > a:hover {
   color: #fff;
   background-color: #d3d3d3;
@@ -713,7 +730,7 @@ vertical-align: middle;
 /* Absolute Center CSS Spinner
 http://codepen.io/MattIn4D/pen/LiKFC
 -------------------------------------------------- */
-/* line 381, sass/globals/_body.scss */
+/* line 395, sass/globals/_body.scss */
 #loading {
   position: fixed;
   z-index: 999;
@@ -727,7 +744,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   right: 0;
   text-align: center;
 }
-/* line 393, sass/globals/_body.scss */
+/* line 407, sass/globals/_body.scss */
 #loading .loading-in {
   position: relative;
   z-index: 1000;
@@ -739,14 +756,14 @@ http://codepen.io/MattIn4D/pen/LiKFC
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 404, sass/globals/_body.scss */
+/* line 418, sass/globals/_body.scss */
 #loading a {
   font-weight: bold;
   text-decoration: underline;
 }
 
 /* Transparent Overlay */
-/* line 411, sass/globals/_body.scss */
+/* line 425, sass/globals/_body.scss */
 .loading-spin:before {
   content: '';
   display: block;
@@ -758,7 +775,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-/* line 422, sass/globals/_body.scss */
+/* line 436, sass/globals/_body.scss */
 .loading-fade {
   opacity: 0;
   -webkit-transition: opacity 4s;

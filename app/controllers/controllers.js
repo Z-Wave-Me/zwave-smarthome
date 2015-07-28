@@ -3782,7 +3782,7 @@ myAppController.controller('NetworkConfigController', function($scope, $routePar
 /**
  * Profile controller
  */
-myAppController.controller('AdminController', function($scope, $window, $location, $timeout, $interval, dataFactory, dataService, myCache) {
+myAppController.controller('AdminController', function($scope, $window, $location, $timeout, $interval,$sce,dataFactory, dataService, myCache) {
     $scope.profiles = {};
     $scope.remoteAccess = false;
     $scope.controllerInfo = {
@@ -3826,6 +3826,8 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
     $scope.$on('$destroy', function() {
         $interval.cancel($scope.zwaveDataInterval);
     });
+    
+    $scope.firmwareUpdateUrl = $sce.trustAsResourceUrl('http://' + $scope.hostName + ':8084/cgi-bin/main.cgi');
 
     /**
      * Load razberry latest version
@@ -4057,6 +4059,12 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
         $scope.goRestore = false;
         $scope.goRestoreUpload = false;
 
+    };
+     /**
+     * Show modal window
+     */
+    $scope.showModal = function(target) {
+        $(target).modal();
     };
 
     /**
