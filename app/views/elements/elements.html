@@ -189,7 +189,7 @@
                             </div>
 
                             <!-- sensorMultiline -->
-                            <div ng-switch-when="sensorMultiline">
+                            <div ng-switch-when="sensorMultiline"> 
                                 <!-- has sensors -->
                                 <div class="widget-control control-left widget-click-popup" ng-click="loadMultilineSensor('#modal_multiline', v.id,v)" ng-if="v.metrics.hasOwnProperty('sensors')">
                                     <span class="widget-level" ng-bind="v.level"></span> <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span> <i class="fa fa-caret-down"></i>
@@ -514,8 +514,8 @@
                                      <strong ng-bind="n.metrics.level|numberFixedLen"></strong> <strong ng-show="n.metrics.scaleTitle" ng-bind="n.metrics.scaleTitle"></strong>
                                  </td>
                                  <td class="text-right">
-                                     <a class="widget-history" href="" ng-click="loadMultiLineDeviceHistory(n.id)" ng-if="v.hasHistory"><i class="fa fa-history fa-lg"></i></a>&nbsp;
-                                     <button class="btn btn-default btn-sm" ng-click="runCmd(n.id + '/command/update')" ng-if="cfg.element_update_icon.indexOf(n.deviceType) > -1"> <i class="fa fa-clock-o"></i> <span class="widget-update-time">{{n.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span></button>
+                                     <a class="widget-history" href="" ng-click="loadMultiLineDeviceHistory(n.id)" ng-if="n.hasHistory"><i class="fa fa-history fa-lg"></i></a>&nbsp;
+                                     <button class="btn btn-default btn-sm" ng-click="runCmd(n.id + '/command/update')" ng-if="cfg.element_update_time_btn.indexOf(n.deviceType) > -1"> <i class="fa fa-clock-o"></i> <span class="widget-update-time">{{n.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span></button>
                                      <div class="element-hidden hidden-history" ng-if="goMutiLineHistory[n.id]">
                                         <a class="hidden-close" href="" ng-click="goMutiLineHistory[n.id] = !goMutiLineHistory[n.id]"><i class="fa fa-times"></i></a>
                                         <p class="text-left">{{n.metrics.title|cutText:true:30}}</p>

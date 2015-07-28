@@ -146,6 +146,11 @@ var config_data = {
             'switchMultilevel',
             'doorlock'
         ],
+        'element_update_time_btn': [
+            'sensorMultilevel',
+            'sensorBinary',
+            'sensorMultiline'
+        ],
         // Results per page
         'page_results': 12,
         // Results per events page
