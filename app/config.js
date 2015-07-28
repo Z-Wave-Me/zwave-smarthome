@@ -146,6 +146,7 @@ var config_data = {
             'switchMultilevel',
             'doorlock'
         ],
+        // List of the elements with update time button
         'element_update_time_btn': [
             'sensorMultilevel',
             'sensorBinary',

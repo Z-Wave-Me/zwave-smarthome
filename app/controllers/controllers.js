@@ -933,6 +933,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     $scope.hasImage = [];
     $scope.modules = [];
     $scope.modulesIds = [];
+    $scope.modulesCats = [];
     $scope.moduleImgs = [];
     $scope.onlineModules = [];
     $scope.onlineVersion = [];
@@ -962,27 +963,24 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     /**
      * Load local modules
      */
-    $scope.loadModules = function(filter) {
-        // var filter;
-//        if ($scope.cfg.app_type === 'default') {
-//            if ($scope.user.role === 1 && $scope.user.expert_view) {
-//                filter = null;
-//            } else {
-//                filter = {filter: "state", val: "hidden", not: true};
-//            }
-//        } else {
-//            filter = {filter: "state", val: "hidden", not: true};
-//        }
+    $scope.loadModules = function(query) {
+        var filter = null;
         if ($scope.user.role === 1 && $scope.user.expert_view) {
             filter = null;
         } else {
             filter = {filter: "state", val: "hidden", not: true};
         }
-        //filter = {filter: "state", val: "hidden", not: true};
         dataFactory.getApi('modules').then(function(response) {
-            $scope.modules = dataService.getData(response.data.data, filter, true);
-            angular.forEach(response.data.data, function(v, k) {
+            var modulesFiltered = dataService.getData(response.data.data, filter, true);
+             $scope.modules = dataService.getData(modulesFiltered, query, true);
+            angular.forEach(modulesFiltered, function(v, k) {
                 $scope.modulesIds.push(v.id);
+                if($scope.modulesCats.indexOf(v.category) === -1){
+                    if(v.category !== 'surveillance'){
+                        $scope.modulesCats.push(v.category);
+                    }
+                }
+                
                 $scope.moduleImgs[v.id] = v.icon;
 
             });
