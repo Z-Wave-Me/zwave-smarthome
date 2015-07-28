@@ -1,5 +1,6 @@
 {
     "missing": "---",
+     "---": "missing",
     "factory_default": "Factory default",
     "factory_default_war": "This will not impact the Z-Wave network but the modules and names of elements only. ",
     "back_factory_default": "Back to Factory Default",
@@ -10,7 +11,6 @@
     "current_firmware": "The current firmware version is",
     "update_to_latest": "Update to lastest",
     "ui_version": "UI version",
-    "---": "missing",
     "continue": "Continue",
     "save_continue": "Save and continue",
     "assign_profile": "Assign profile",
