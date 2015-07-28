@@ -164,33 +164,83 @@ myAppController.controller('TestController', function($scope, $routeParams, $fil
             dataService.showConnectionError(error);
         });
     };
-    $scope.dest = {
-        1:{id: 1,val: 10},
-        2:{id: 2,val: 20},
-        3:{id: 3,val: 30}
-        
-        
+
+    /**
+     * Load data into collection
+     */
+    $scope.dest = {};
+    $scope.loadData = function() {
+        dataFactory.getApi('devices').then(function(response) {
+            angular.forEach(response.data.data.devices, function(v, k) {
+                $scope.dest[v.id] = v;
+            });
+            console.log($scope.dest)
+        }, function(error) {
+        });
     };
-    $scope.src = {
-        //id: 0,
-        val:0
-    };
-    //var result = angular.extend(dest,src);
-        var cnt = 0;
-        var val;
+    $scope.loadData();
+
+    /**
+     * Refresh data
+     */
+    $scope.src = {};
+    $scope.refreshData = function() {
+        var interval;
         var refresh = function() {
-            cnt++;
-            //$scope.src.id += 1;
-            val = Math.floor(Math.random() * (3 - 1+ 1)) + 1;
-            
-             $scope.src.val = val;
-             angular.extend($scope.dest[val],$scope.src);
-        
-             console.log(val)
+            dataFactory.refreshApi('devices').then(function(response) {
+                //$scope.src = response.data.data.devices;
+                angular.forEach(response.data.data.devices, function(v, k) {
+                    $scope.src[v.id] = v;
+                    console.log('DEST ORIGINAL: ' + $scope.dest[v.id].metrics.level)
+                    //angular.extend($scope.dest[v.id],$scope.src[v.id]);
+                    angular.extend($scope.dest[v.id]['metrics'], $scope.src[v.id]['metrics']);
+                    console.log('SRC: ' + $scope.src[v.id].metrics.level)
+                    console.log('DEST NEW: ' + $scope.dest[v.id].metrics.level)
+                    console.log('--------------------------------------------')
+
+                });
+                //console.log($scope.dest)
+
+            }, function(error) {
+                dataService.showConnectionError(error);
+            });
         };
-        $interval(refresh, 1000);
-         
+        interval = $interval(refresh, 1000);
+    };
+
+    $scope.refreshData();
+
+
+
+
+
+//    $scope.dest = {
+//        1:{id: 1,val: 10},
+//        2:{id: 2,val: 20},
+//        3:{id: 3,val: 30}
+//        
+//        
 //    };
+//    $scope.src = {
+//        //id: 0,
+//        val:0
+//    };
+//    //var result = angular.extend(dest,src);
+//        var cnt = 0;
+//        var val;
+//        var refresh = function() {
+//            cnt++;
+//            //$scope.src.id += 1;
+//            val = Math.floor(Math.random() * (3 - 1+ 1)) + 1;
+//            
+//             $scope.src.val = val + 10;
+//             angular.extend($scope.dest[val],$scope.src);
+//        
+//             console.log(val)
+//        };
+//        $interval(refresh, 1000);
+//         
+////    };
 });
 /**
  * Element controller
@@ -3780,15 +3830,24 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
     });
 
     /**
+     * Load razberry latest version
+     */
+    $scope.loadRazLatest = function() {
+        dataFactory.getRemoteData($scope.cfg.raz_latest_version_url).then(function(response) {
+            $scope.controllerInfo.softwareLatestVersion = response;
+        }, function(error) {
+        });
+    };
+    //$scope.loadRazLatest();
+
+    /**
      * Load ZwaveApiData
      */
     $scope.loadZwaveApiData = function() {
         dataService.showConnectionSpinner();
         dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
-            $scope.controllerInfo = {
-                uuid: ZWaveAPIData.controller.data.uuid.value,
-                softwareRevisionVersion: ZWaveAPIData.controller.data.softwareRevisionVersion.value
-            };
+            $scope.controllerInfo.uuid = ZWaveAPIData.controller.data.uuid.value;
+            $scope.controllerInfo.softwareRevisionVersion = ZWaveAPIData.controller.data.softwareRevisionVersion.value;
             //$scope.controllerUuid = ZWaveAPIData.controller.data.uuid.value;
             dataService.updateTimeTick();
         }, function(error) {
@@ -3811,7 +3870,6 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
         });
     };
     $scope.loadData();
-
     /**
      * Delete an item
      */

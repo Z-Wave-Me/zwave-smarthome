@@ -3,16 +3,15 @@
     <bb-loader></bb-loader>
     <h1>Test page</h1>
     <table id="table_cfg_admin" class="table table-condensed table-report">
-                <tbody>
-                    <tr ng-repeat="v in dest" id="row_{{v.id}}">
-                        <td>{{v.id}}</td>
-                        <td class="td-action">{{v.val}}</td>
-                    </tr>
-                </tbody>
-            </table>
-    {{dest}}
-    
-       
+        <tbody>
+            <tr ng-repeat="v in dest track by v.id" id="row_{{v.id}}" ng-if="v.deviceType === 'switchMultilevel'">
+                <td>{{v.id}}</td>
+                <td class="td-action">{{v.metrics.level}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
 </div><!-- /ng-controller --> 
 <script type="text/ng-template" id="app/views/elements/directives/default_.html">
     <h1>My title Inline</h1>
