@@ -11,8 +11,8 @@ var myApp = angular.module('myApp', [
     'myAppController',
     'myAppFactory',
     'myAppService',
-    'colorpicker.module',
-    'angularFileUpload'
+    'colorpicker.module'
+    //'angularFileUpload'
 
 ]);
 

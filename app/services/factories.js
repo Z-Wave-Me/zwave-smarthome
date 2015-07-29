@@ -10,6 +10,12 @@ var myAppFactory = angular.module('myAppFactory', []);
 myAppFactory.factory('myCache', function($cacheFactory) {
     return $cacheFactory('myData');
 });
+/**
+ * Underscore
+ */
+myAppFactory.factory('_', function() {
+        return window._; // assumes underscore has already been loaded on the page
+});
 
 /**
  * Main data factory

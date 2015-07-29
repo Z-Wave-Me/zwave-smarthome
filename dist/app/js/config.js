@@ -52,6 +52,8 @@ var config_data = {
         // Post report url
         //'post_report_url': 'http://dev.dev/zwave-api/report/post-report.php',
         'post_report_url': ' http://zwave.eu/api/report/post-report.php',
+        // Razberry latest version
+        'raz_latest_version_url': 'http://razberry.z-wave.me/z-way/razberry/latest/VERSION',
         // Url to zddx xml files
         'zddx_url': 'ZDDX/',
         // Url to run ExpertUI cmd
@@ -143,6 +145,12 @@ var config_data = {
             'switchBinary',
             'switchMultilevel',
             'doorlock'
+        ],
+        // List of the elements with update time button
+        'element_update_time_btn': [
+            'sensorMultilevel',
+            'sensorBinary',
+            'sensorMultiline'
         ],
         // Results per page
         'page_results': 12,

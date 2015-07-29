@@ -154,7 +154,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
 /**
  * Test controller
  */
-myAppController.controller('TestController', function($scope, $routeParams, $filter, $location, $log, $cookies, $timeout, $interval, dataFactory, dataService) {
+myAppController.controller('TestController', function($scope, $routeParams, $filter, $location, $log, $cookies, $timeout, $interval, dataFactory, dataService,_) {
     $scope.testHeader = function() {
         dataFactory.getRemoteData('http://zwave.eu/api/test/headers/index.php?code=401').then(function(response) {
 
@@ -164,6 +164,8 @@ myAppController.controller('TestController', function($scope, $routeParams, $fil
             dataService.showConnectionError(error);
         });
     };
+    
+   console.log(_.max([1,2,3,4])) ; //It will return 4, which is the maximum value in the array
 
     /**
      * Load data into collection

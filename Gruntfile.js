@@ -27,6 +27,7 @@ module.exports = function(grunt) {
                 src: [
                     // Vendors
                     'vendor/jquery/jquery-1.11.1.min.js',
+                    'vendor/underscore/underscore-1.8.3/underscore-min.js',
                     'vendor/chartjs/Chart.js',
                     //'vendor/upload/angular-file-upload-shim.js',
                     //'vendor/gridster/jquery.gridster.js',
@@ -34,10 +35,10 @@ module.exports = function(grunt) {
                     //'vendor/bootstrap-switch/bootstrap-switch.js',
                     'vendor/handlebars/handlebars.min.js',
                     'vendor/alpaca/alpaca.min.js',
-                    'vendor/md5/md5.js',
+                    //'vendor/md5/md5.js',
                     // Angular
                     'vendor/angular/angular-1.2.28/angular.min.js',
-                    'vendor/upload/angular-file-upload.js',
+                    'vendor/upload/angular-file-upload.min.js',
                     'vendor/angular/angular-1.2.28/angular-route.min.js',
                     //'vendor/angular/angular-1.2.16/angular-resource.js',
                     'vendor/angular/angular-1.2.28/angular-cookies.min.js',
