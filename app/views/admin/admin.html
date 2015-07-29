@@ -74,7 +74,7 @@
     </div>
       
      <!-- ///////////////////////////// Licence key ///////////////////////////// -->
-    <div class="admin-entry" ng-if="controllerInfo.uuid && hostName !== 'find.zwave.me'"> 
+    <div class="admin-entry" ng-if="controllerInfo.uuid && hostName !== 'find.zwave.me' && !isMobile"> 
         <h2 class="admin-entry-title" ng-click="goLicence = !goLicence">
             <i class="fa" ng-class="goLicence ? 'fa-minus':'fa-plus'"></i> <span ng-bind="_t('licence_upgrade')"></span> 
         </h2>
@@ -155,7 +155,7 @@
     </div>
     
     <!-- ///////////////////////////// Firmware update ///////////////////////////// --> 
-    <div class="admin-entry" ng-if="hostName !== 'find.zwave.me'"> 
+    <div class="admin-entry" ng-if="hostName !== 'find.zwave.me' && !isMobile"> 
         <h2 class="admin-entry-title" ng-click="goFirmware = !goFirmware">
             <i class="fa" ng-class="goFirmware ? 'fa-minus':'fa-plus'"></i> <span ng-bind="_t('firmware_update')"></span>
         </h2>

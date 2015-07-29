@@ -154,7 +154,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
 /**
  * Test controller
  */
-myAppController.controller('TestController', function($scope, $routeParams, $filter, $location, $log, $cookies, $timeout, $interval, dataFactory, dataService,_) {
+myAppController.controller('TestController', function($scope, $routeParams, $filter, $location, $log, $cookies, $timeout, $interval, dataFactory, dataService, _) {
     $scope.testHeader = function() {
         dataFactory.getRemoteData('http://zwave.eu/api/test/headers/index.php?code=401').then(function(response) {
 
@@ -164,19 +164,28 @@ myAppController.controller('TestController', function($scope, $routeParams, $fil
             dataService.showConnectionError(error);
         });
     };
-    
-   console.log(_.max([1,2,3,4])) ; //It will return 4, which is the maximum value in the array
 
     /**
      * Load data into collection
      */
     $scope.dest = {};
     $scope.loadData = function() {
-        dataFactory.getApi('devices').then(function(response) {
-            angular.forEach(response.data.data.devices, function(v, k) {
+        dataFactory.getApi('modules').then(function(response) {
+            var devices = response.data.data;
+            console.log(devices)
+            var filtered = _.where(devices, {category: 'security'});
+            console.log(filtered)
+            var pluck = _.uniq(_.pluck(devices, 'deviceType'));
+            //console.log(pluck)
+            // var stooge = {name: 'moe', luckyNumbers: [13, 27, 34]};
+            //var clone = {luckyNumbers: [13, 27, 34],name: 'moe'};
+            //console.log(stooge == clone);
+            //console.log(_.isEqual(stooge, clone));
+
+            angular.forEach(devices, function(v, k) {
                 $scope.dest[v.id] = v;
             });
-            console.log($scope.dest)
+            //console.log($scope.dest)
         }, function(error) {
         });
     };
@@ -210,7 +219,7 @@ myAppController.controller('TestController', function($scope, $routeParams, $fil
         interval = $interval(refresh, 1000);
     };
 
-    $scope.refreshData();
+    //$scope.refreshData();
 
 
 
@@ -930,7 +939,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
 /**
  * App controller
  */
-myAppController.controller('AppController', function($scope, $window, $cookies, $timeout, $route, dataFactory, dataService, myCache) {
+myAppController.controller('AppController', function($scope, $window, $cookies, $timeout, $route, dataFactory, dataService, myCache, _) {
     $scope.instances = [];
     $scope.hasImage = [];
     $scope.modules = [];
@@ -973,19 +982,25 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
             filter = {filter: "state", val: "hidden", not: true};
         }
         dataFactory.getApi('modules').then(function(response) {
-            var modulesFiltered = dataService.getData(response.data.data, filter, true);
-             $scope.modules = dataService.getData(modulesFiltered, query, true);
-            angular.forEach(modulesFiltered, function(v, k) {
-                $scope.modulesIds.push(v.id);
-                if($scope.modulesCats.indexOf(v.category) === -1){
-                    if(v.category !== 'surveillance'){
-                        $scope.modulesCats.push(v.category);
-                    }
+            var modulesFiltered = _.filter(response.data.data, function(item) {
+                var isHidden = false;
+                if (item.state === 'hidden' && ($scope.user.role !== 1 && $scope.user.expert_view !== true)) {
+                    isHidden = true;
                 }
-                
-                $scope.moduleImgs[v.id] = v.icon;
+                if (item.category === 'surveillance') {
+                    isHidden = true;
+                }
 
+                if (!isHidden) {
+                    $scope.modulesIds.push(item.id);
+                    $scope.moduleImgs[item.id] = item.icon;
+                    if (item.category && $scope.modulesCats.indexOf(item.category) === -1) {
+                        $scope.modulesCats.push(item.category);
+                    }
+                    return item;
+                }
             });
+            $scope.modules = _.where(modulesFiltered, query);
             $scope.loading = false;
             dataService.updateTimeTick();
         }, function(error) {
@@ -1014,24 +1029,14 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
             dataService.showConnectionError(error);
         });
     };
+    /**
+     * Load instances
+     */
     $scope.loadInstances = function() {
-        var filter;
-//        if ($scope.cfg.app_type === 'default') {
-//            if ($scope.user.role === 1 && $scope.user.expert_view) {
-//                filter = null;
-//            } else {
-//                filter = {filter: "state", val: "hidden", not: true};
-//            }
-//        } else {
-//            filter = {filter: "state", val: "hidden", not: true};
-//        }
-        if ($scope.user.role === 1 && $scope.user.expert_view) {
-            filter = null;
-        } else {
-            filter = {filter: "state", val: "hidden", not: true};
-        }
         dataFactory.getApi('instances').then(function(response) {
-            $scope.instances = dataService.getData(response.data.data, filter, true);
+            $scope.instances = _.reject(response.data.data, function(v) {
+                return v.state === 'hidden' && ($scope.user.role !== 1 && $scope.user.expert_view !== true);
+            });
             $scope.loading = false;
             dataService.updateTimeTick();
         }, function(error) {
@@ -1073,10 +1078,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
                     $scope.modules = angular.copy([]);
                     var filter = false;
                     if ($scope.category != '') {
-                        filter = {
-                            'filter': 'category',
-                            'val': $scope.category
-                        };
+                        filter = {category: $scope.category};
                     }
                     $scope.loadModules(filter);
                     $scope.loadOnlineModules();
@@ -1450,7 +1452,7 @@ myAppController.controller('DeviceController', function($scope, $routeParams, da
 /**
  * Device Zwave  controller
  */
-myAppController.controller('DeviceZwaveController', function($scope, $routeParams, dataFactory, dataService) {
+myAppController.controller('DeviceZwaveController', function($scope, $routeParams, dataFactory, dataService, _) {
     $scope.zwaveDevices = [];
     $scope.deviceVendor = false;
     $scope.manufacturers = [];
@@ -1461,9 +1463,11 @@ myAppController.controller('DeviceZwaveController', function($scope, $routeParam
     $scope.loadData = function(brandname, lang) {
         dataService.showConnectionSpinner();
         dataFactory.getApiLocal('device.' + lang + '.json').then(function(response) {
-            $scope.manufacturers = dataService.getPairs(response.data, 'brandname', 'brand_image', 'manufacturers');
-            if (brandname) {
-                $scope.zwaveDevices = dataService.getData(response.data, {'filter': 'brandname', 'val': brandname});
+            $scope.manufacturers = _.uniq(response.data, function(item) {
+                return [item.brand_image, item.brandname].sort().join(',');
+            });
+             if (brandname) {
+                $scope.zwaveDevices = _.where(response.data, {brandname: brandname});
                 $scope.manufacturer = brandname;
             }
             dataService.updateTimeTick();
@@ -3784,7 +3788,7 @@ myAppController.controller('NetworkConfigController', function($scope, $routePar
 /**
  * Profile controller
  */
-myAppController.controller('AdminController', function($scope, $window, $location, $timeout, $interval,$sce,dataFactory, dataService, myCache) {
+myAppController.controller('AdminController', function($scope, $window, $location, $timeout, $interval, $sce, dataFactory, dataService, myCache) {
     $scope.profiles = {};
     $scope.remoteAccess = false;
     $scope.controllerInfo = {
@@ -3828,7 +3832,7 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
     $scope.$on('$destroy', function() {
         $interval.cancel($scope.zwaveDataInterval);
     });
-    
+
     $scope.firmwareUpdateUrl = $sce.trustAsResourceUrl('http://' + $scope.hostName + ':8084/cgi-bin/main.cgi');
 
     /**
@@ -4062,7 +4066,7 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
         $scope.goRestoreUpload = false;
 
     };
-     /**
+    /**
      * Show modal window
      */
     $scope.showModal = function(target) {
