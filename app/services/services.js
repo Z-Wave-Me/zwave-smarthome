@@ -7,7 +7,7 @@ var myAppService = angular.module('myAppService', []);
 /**
  * Device service
  */
-myAppService.service('dataService', function($filter, $log, $cookies, $location, $window,myCache, cfg) {
+myAppService.service('dataService', function($filter, $log, $cookies, $location, $window,myCache, cfg,_) {
     /// --- Public functions --- ///
     /**
      * Get language line by key
@@ -119,11 +119,12 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     };
 
     /**
+     * DEPRECATED - replaced with underscore _where
      * Get data or filtered data
      */
-    this.getData = function(data, filter) {
-        return getData(data, filter);
-    };
+//    this.getData = function(data, filter) {
+//        return getData(data, filter);
+//    };
 
     /**
      * Get device data
@@ -161,11 +162,12 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     };
 
     /**
+     * DEPRECATED
      * Get instances
      */
-    this.getInstances = function(data, modules) {
-        return getInstances(data, modules);
-    };
+//    this.getInstances = function(data, modules) {
+//        return getInstances(data, modules);
+//    };
 
     /**
      * Get module form data
@@ -196,18 +198,20 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     };
 
     /**
+     * DEPRECATED - replaced by underscore _.uniq
      * Get pairs
      */
-    this.getPairs = function(data, key, val, cache) {
-        return getPairs(data, key, val, cache);
-    };
+//    this.getPairs = function(data, key, val, cache) {
+//        return getPairs(data, key, val, cache);
+//    };
 
     /**
+     * DEPRECATED - replaced with underscore _.findWhere
      * Get row by
      */
-    this.getRowBy = function(data, key, val, cache) {
-        return getRowBy(data, key, val, cache);
-    };
+//    this.getRowBy = function(data, key, val, cache) {
+//        return getRowBy(data, key, val, cache);
+//    };
 
     /**
      * Get config navigation devices
@@ -304,29 +308,30 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
 
 
     /**
+     * DEPRECATED - replaced with underscore _where
      * Get API data or filtered data
      */
-    function getData(data, filter) {
-        if (!filter) {
-            return data;
-        }
-        var collection = [];
-        var addToCollection = false;
-        angular.forEach(data, function(v, k) {
-            if (angular.isArray(v[filter.filter])) {
-                addToCollection = (filter.not ? v[filter.filter].indexOf(filter.val) === -1 : v[filter.filter].indexOf(filter.val) > -1);
-                if (addToCollection) {
-                    collection.push(v);
-                }
-            } else {
-                addToCollection = (filter.not ? v[filter.filter] != filter.val : v[filter.filter] == filter.val);
-                if (addToCollection) {
-                    collection.push(v);
-                }
-            }
-        });
-        return collection;
-    }
+//    function getData(data, filter) {
+//        if (!filter) {
+//            return data;
+//        }
+//        var collection = [];
+//        var addToCollection = false;
+//        angular.forEach(data, function(v, k) {
+//            if (angular.isArray(v[filter.filter])) {
+//                addToCollection = (filter.not ? v[filter.filter].indexOf(filter.val) === -1 : v[filter.filter].indexOf(filter.val) > -1);
+//                if (addToCollection) {
+//                    collection.push(v);
+//                }
+//            } else {
+//                addToCollection = (filter.not ? v[filter.filter] != filter.val : v[filter.filter] == filter.val);
+//                if (addToCollection) {
+//                    collection.push(v);
+//                }
+//            }
+//        });
+//        return collection;
+//    }
 
     /**
      * Get device data
@@ -358,7 +363,8 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                if (v.id.indexOf(findZwaveStr) > -1) {
                 zwaveId = v.id.split(findZwaveStr)[1].split('-')[0];
             } else {
-                instance = getRowBy(instances, 'id', v.creatorId);
+                //instance = getRowBy(instances, 'id', v.creatorId);
+                instance = _.findWhere(instances, {id: v.creatorId});
                 if (instance && instance['moduleId'] != 'ZWave') {
                     hasInstance = instance;
 
@@ -566,37 +572,38 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     ;
 
     /**
+     * DEPRECATED
      * Get instances data
      */
-    function getInstances(data, modules) {
-        var collection = [];
-        var moduleOptions;
-        var module;
-        var moduleTitle;
-        var params;
-        angular.forEach(data, function(v, k) {
-            params = (!v.params ? [] : v.params);
-            module = getRowBy(modules, 'id', v.moduleId);
-            if (module) {
-                moduleTitle = $filter('hasNode')(module, 'defaults.title');
-                moduleOptions = getModuleConfigOptions(module, params);
-            }
-
-            collection.push({
-                'id': v.id,
-                'moduleId': v.moduleId,
-                'title': v.title,
-                'moduleTitle': moduleTitle,
-                'params': params,
-                'description': v.description,
-                'moduleData': module,
-                'moduleOptions': moduleOptions,
-                'moduleInput': getModuleConfigInputs(module, params)
-            });
-
-        });
-        return collection;
-    }
+//    function getInstances(data, modules) {
+//        var collection = [];
+//        var moduleOptions;
+//        var module;
+//        var moduleTitle;
+//        var params;
+//        angular.forEach(data, function(v, k) {
+//            params = (!v.params ? [] : v.params);
+//            module = getRowBy(modules, 'id', v.moduleId);
+//            if (module) {
+//                moduleTitle = $filter('hasNode')(module, 'defaults.title');
+//                moduleOptions = getModuleConfigOptions(module, params);
+//            }
+//
+//            collection.push({
+//                'id': v.id,
+//                'moduleId': v.moduleId,
+//                'title': v.title,
+//                'moduleTitle': moduleTitle,
+//                'params': params,
+//                'description': v.description,
+//                'moduleData': module,
+//                'moduleOptions': moduleOptions,
+//                'moduleInput': getModuleConfigInputs(module, params)
+//            });
+//
+//        });
+//        return collection;
+//    }
 
     /**
      * Get module form data
@@ -753,46 +760,48 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     }
 
     /**
+     *  DEPRECATED - replaced by underscore _.uniq
      * Get pairs - key => value
      */
-    function getPairs(data, key, val, cache) {
-        var ret;
-        var collection = [];
-        var cached = myCache.get(cache);
-        // Cached data
-        if (cached) {
-            return cached;
-        }
-
-        // Load data
-        angular.forEach(data, function(v, k) {
-            if (v[val] != '') {
-                collection.push({
-                    'key': v[key],
-                    'val': v[val]
-                });
-            }
-
-        });
-        ret = $filter('unique')(collection, 'key');
-        myCache.put(cache, ret);
-        return ret;
-    }
+//    function getPairs(data, key, val, cache) {
+//        var ret;
+//        var collection = [];
+//        var cached = myCache.get(cache);
+//        // Cached data
+//        if (cached) {
+//            return cached;
+//        }
+//
+//        // Load data
+//        angular.forEach(data, function(v, k) {
+//            if (v[val] != '') {
+//                collection.push({
+//                    'key': v[key],
+//                    'val': v[val]
+//                });
+//            }
+//
+//        });
+//        ret = $filter('unique')(collection, 'key');
+//        myCache.put(cache, ret);
+//        return ret;
+//    }
 
     /**
+     * DEPRECATED - replaced with underscore _.findWhere
      * Get 1 row by - key => value
      */
-    function getRowBy(data, key, val) {
-        var collection = null;
-        angular.forEach(data, function(v, k) {
-            if (v[key] == val) {
-                collection = v;
-                return;
-            }
-
-        });
-        return collection;
-    }
+//    function getRowBy(data, key, val) {
+//        var collection = null;
+//        angular.forEach(data, function(v, k) {
+//            if (v[key] == val) {
+//                collection = v;
+//                return;
+//            }
+//
+//        });
+//        return collection;
+//    }
     
     /**
      * Set EnOcean profile

@@ -715,7 +715,7 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
 /**
  * Event controller
  */
-myAppController.controller('EventController', function($scope, $routeParams, $interval, $window, $filter, $cookies, $location, dataFactory, dataService, myCache, paginationService, cfg) {
+myAppController.controller('EventController', function($scope, $routeParams, $interval, $window, $filter, $cookies, $location, dataFactory, dataService, myCache, paginationService,cfg,_) {
     $scope.collection = [];
     $scope.eventLevels = [];
     $scope.dayCount = [
@@ -891,7 +891,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
     function setData(data) {
         $scope.collection = [];
         $scope.eventLevels = dataService.getEventLevel(data.data.notifications, [{'key': null, 'val': 'all'}]);
-        $scope.eventSources = dataService.getPairs(data.data.notifications, 'source', 'source');
+        //$scope.eventSources = dataService.getPairs(data.data.notifications, 'source', 'source');
         var filter = null;
         if (angular.isDefined($routeParams.param) && angular.isDefined($routeParams.val)) {
             $scope.currSource = $routeParams.val;
@@ -1195,7 +1195,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
 /**
  * App local detail controller
  */
-myAppController.controller('AppLocalDetailController', function($scope, $routeParams, $location, dataFactory, dataService) {
+myAppController.controller('AppLocalDetailController', function($scope, $routeParams, $location, dataFactory, dataService,_) {
     $scope.module = [];
     $scope.isOnline = null;
     $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
@@ -1220,7 +1220,7 @@ myAppController.controller('AppLocalDetailController', function($scope, $routePa
     /// --- Private functions --- ///
     function loadOnlineModules(moduleName) {
         dataFactory.getRemoteData($scope.cfg.online_module_url).then(function(response) {
-            $scope.isOnline = dataService.getRowBy(response.data, 'modulename', moduleName);
+            $scope.isOnline = _.findWhere(response.data, {modulename: moduleName});
             dataService.updateTimeTick();
         }, function(error) {
         });
@@ -1230,7 +1230,7 @@ myAppController.controller('AppLocalDetailController', function($scope, $routePa
 /**
  * App online detail controller
  */
-myAppController.controller('AppOnlineDetailController', function($scope, $routeParams, $timeout, dataFactory, dataService) {
+myAppController.controller('AppOnlineDetailController', function($scope, $routeParams, $timeout,  $location,dataFactory, dataService,_) {
     $scope.module = [];
     $scope.onlineMediaUrl = $scope.cfg.online_module_img_url;
     /**
@@ -1238,19 +1238,20 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
      */
     $scope.loadModule = function(id) {
         dataService.showConnectionSpinner();
-        //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        var param = parseInt(id, 10);
-        var filter = 'id';
+       var param = parseInt(id, 10);
+        var filter = {id: id};
         if (isNaN(param)) {
-            filter = 'modulename';
+            filter = {modulename: id};
         }
         dataFactory.getRemoteData($scope.cfg.online_module_url).then(function(response) {
-            $scope.module = dataService.getRowBy(response.data, filter, id);
-            //$scope.loading = false;
+            $scope.module = _.findWhere(response.data, filter);
+            if(!$scope.module){
+                $location.path('/error/404');
+                return;
+            }
             dataService.updateTimeTick();
         }, function(error) {
-            dataService.showConnectionError(error);
-            $scope.loading = false;
+             $location.path('/error/' + error.status);
         });
     };
 
@@ -1463,10 +1464,8 @@ myAppController.controller('DeviceZwaveController', function($scope, $routeParam
     $scope.loadData = function(brandname, lang) {
         dataService.showConnectionSpinner();
         dataFactory.getApiLocal('device.' + lang + '.json').then(function(response) {
-            $scope.manufacturers = _.uniq(response.data, function(item) {
-                return [item.brand_image, item.brandname].sort().join(',');
-            });
-             if (brandname) {
+            $scope.manufacturers = _.uniq(response.data, 'brandname');
+            if (brandname) {
                 $scope.zwaveDevices = _.where(response.data, {brandname: brandname});
                 $scope.manufacturer = brandname;
             }
@@ -1480,7 +1479,7 @@ myAppController.controller('DeviceZwaveController', function($scope, $routeParam
 /**
  * Device IP camerae  controller
  */
-myAppController.controller('DeviceIpCameraController', function($scope, dataFactory, dataService) {
+myAppController.controller('DeviceIpCameraController', function($scope, dataFactory, dataService,_) {
     $scope.ipcameraDevices = [];
     $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
     /**
@@ -1489,7 +1488,7 @@ myAppController.controller('DeviceIpCameraController', function($scope, dataFact
     $scope.loadData = function() {
         dataService.showConnectionSpinner();
         dataFactory.getApi('modules').then(function(response) {
-            $scope.ipcameraDevices = dataService.getData(response.data.data, {filter: "category", val: "surveillance"});
+            $scope.ipcameraDevices = _.where(response.data.data, {category: 'surveillance'});
             dataService.updateTimeTick();
         }, function(error) {
             dataService.showConnectionError(error);
@@ -1942,65 +1941,66 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
 
 });
 /**
+ * DEPRECATED
  * Device Enocean  controller
  */
-myAppController.controller('DeviceEnoceanController', function($scope, $routeParams, $location, dataFactory, dataService) {
-    $scope.hasEnOcean = false;
-    $scope.enoceanDevices = [];
-    $scope.manufacturers = [];
-    $scope.manufacturer = false;
-
-    /**
-     * Load Remote access data
-     */
-    $scope.loadEnOceanModule = function() {
-        dataFactory.getApi('instances', '/EnOcean').then(function(response) {
-            var module = response.data.data[0];
-            if (Object.keys(module).length < 1) {
-                $scope.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-warning'};
-                return;
-            }
-            if (!module.active) {
-                $scope.alert = {message: $scope._t('enocean_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
-                return;
-            }
-            $scope.hasEnOcean = true;
-        }, function(error) {
-            if (error.status == 404) {
-                $scope.alert = {message: $scope._t('enocean_nosupport'), status: 'alert-danger', icon: 'fa-warning'};
-            } else {
-                $location.path('/error/' + error.status);
-            }
-
-        });
-    };
-
-    $scope.loadEnOceanModule();
-
-
-    /**
-     * Load z-wave devices
-     */
-    $scope.loadData = function(brandname) {
-        dataService.showConnectionSpinner();
-        dataFactory.getApiLocal('devices_enocean.json').then(function(response) {
-            $scope.manufacturers = dataService.getPairs(response.data, 'vendor', 'vendorLogo', 'manufacturers_enocean');
-            if (brandname) {
-                $scope.enoceanDevices = dataService.getData(response.data, {'filter': 'vendor', 'val': brandname});
-                $scope.manufacturer = brandname;
-            }
-            dataService.updateTimeTick();
-        }, function(error) {
-            dataService.showConnectionError(error);
-        });
-    };
-    $scope.loadData($routeParams.brandname);
-
-});
+//myAppController.controller('DeviceEnoceanController', function($scope, $routeParams, $location, dataFactory, dataService) {
+//    $scope.hasEnOcean = false;
+//    $scope.enoceanDevices = [];
+//    $scope.manufacturers = [];
+//    $scope.manufacturer = false;
+//
+//    /**
+//     * Load Remote access data
+//     */
+//    $scope.loadEnOceanModule = function() {
+//        dataFactory.getApi('instances', '/EnOcean').then(function(response) {
+//            var module = response.data.data[0];
+//            if (Object.keys(module).length < 1) {
+//                $scope.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-warning'};
+//                return;
+//            }
+//            if (!module.active) {
+//                $scope.alert = {message: $scope._t('enocean_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+//                return;
+//            }
+//            $scope.hasEnOcean = true;
+//        }, function(error) {
+//            if (error.status == 404) {
+//                $scope.alert = {message: $scope._t('enocean_nosupport'), status: 'alert-danger', icon: 'fa-warning'};
+//            } else {
+//                $location.path('/error/' + error.status);
+//            }
+//
+//        });
+//    };
+//
+//    $scope.loadEnOceanModule();
+//
+//
+//    /**
+//     * Load z-wave devices
+//     */
+//    $scope.loadData = function(brandname) {
+//        dataService.showConnectionSpinner();
+//        dataFactory.getApiLocal('devices_enocean.json').then(function(response) {
+//            $scope.manufacturers = dataService.getPairs(response.data, 'vendor', 'vendorLogo', 'manufacturers_enocean');
+//            if (brandname) {
+//                $scope.enoceanDevices = dataService.getData(response.data, {'filter': 'vendor', 'val': brandname});
+//                $scope.manufacturer = brandname;
+//            }
+//            dataService.updateTimeTick();
+//        }, function(error) {
+//            dataService.showConnectionError(error);
+//        });
+//    };
+//    $scope.loadData($routeParams.brandname);
+//
+//});
 /**
  * EnOcean devices controller
  */
-myAppController.controller('EnoceanDeviceController', function($scope, $routeParams, dataFactory, dataService) {
+myAppController.controller('EnoceanDeviceController', function($scope, $routeParams, dataFactory, dataService,_) {
     $scope.activeTab = 'devices';
     $scope.hasEnOcean = false;
     $scope.enoceanDevices = [];
@@ -2041,9 +2041,10 @@ myAppController.controller('EnoceanDeviceController', function($scope, $routePar
     $scope.loadData = function(brandname) {
         dataService.showConnectionSpinner();
         dataFactory.getApiLocal('devices_enocean.json').then(function(response) {
-            $scope.manufacturers = dataService.getPairs(response.data, 'vendor', 'vendorLogo', 'manufacturers_enocean');
+            //$scope.manufacturers = dataService.getPairs(response.data, 'vendor', 'vendorLogo', 'manufacturers_enocean');
+            $scope.manufacturers = _.uniq(response.data, 'vendor');
             if (brandname) {
-                $scope.enoceanDevices = dataService.getData(response.data, {'filter': 'vendor', 'val': brandname});
+                $scope.enoceanDevices = _.where(response.data, {vendor: brandname});
                 $scope.manufacturer = brandname;
             }
             dataService.updateTimeTick();
@@ -3038,7 +3039,7 @@ myAppController.controller('RoomController', function($scope, $location, dataFac
 /**
  * Room config controller
  */
-myAppController.controller('RoomConfigController', function($scope, $window, $location, dataFactory, dataService, myCache) {
+myAppController.controller('RoomConfigController', function($scope, $window, $location, dataFactory, dataService, myCache,_) {
     $scope.collection = [];
     $scope.devices = [];
     $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/image/';
@@ -3071,7 +3072,7 @@ myAppController.controller('RoomConfigController', function($scope, $window, $lo
         }
         if (confirm) {
             dataFactory.deleteApi('locations', roomId).then(function(response) {
-                var devices = dataService.getData($scope.devices, {filter: 'location', val: roomId});
+                var devices = _.where($scope.devices, {location: roomId});
                 removeRoomIdFromDevice(devices);
                 myCache.remove('locations');
                 myCache.remove('devices');
