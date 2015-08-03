@@ -140,7 +140,6 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
         myCache.removeAll();
         $route.reload();
     };
-    $scope.setTime();
     /**
      * Redirect to given url
      */
@@ -148,6 +147,12 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
         if (url) {
             $location.path(url);
         }
+    };
+    /**
+     * Get hidden apps array by app_type
+     */
+    $scope.getHiddenApps = function() {
+        return cfg.custom_cfg[cfg.app_type].hidden_apps || [];
     };
 
 });
@@ -984,8 +989,13 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
         dataFactory.getApi('modules').then(function(response) {
             var modulesFiltered = _.filter(response.data.data, function(item) {
                 var isHidden = false;
-                if (item.state === 'hidden' && ($scope.user.role !== 1 && $scope.user.expert_view !== true)) {
-                    isHidden = true;
+                if ($scope.getHiddenApps().indexOf(item.moduleName) > -1) {
+                     if($scope.user.role !== 1){
+                         isHidden = true;
+                     }else{
+                         isHidden = ($scope.user.expert_view ? false : true);
+                     }
+                    
                 }
                 if (item.category === 'surveillance') {
                     isHidden = true;
@@ -1035,7 +1045,17 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     $scope.loadInstances = function() {
         dataFactory.getApi('instances').then(function(response) {
             $scope.instances = _.reject(response.data.data, function(v) {
-                return v.state === 'hidden' && ($scope.user.role !== 1 && $scope.user.expert_view !== true);
+               //return v.state === 'hidden' && ($scope.user.role !== 1 && $scope.user.expert_view !== true);
+                if ($scope.getHiddenApps().indexOf(v.moduleId) > -1) {
+                     if($scope.user.role !== 1){
+                        return true;
+                     }else{
+                         return ($scope.user.expert_view ? false : true);
+                     }
+                    
+                }else{
+                    return false;
+                }
             });
             $scope.loading = false;
             dataService.updateTimeTick();
@@ -1940,63 +1960,6 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
 
 
 });
-/**
- * DEPRECATED
- * Device Enocean  controller
- */
-//myAppController.controller('DeviceEnoceanController', function($scope, $routeParams, $location, dataFactory, dataService) {
-//    $scope.hasEnOcean = false;
-//    $scope.enoceanDevices = [];
-//    $scope.manufacturers = [];
-//    $scope.manufacturer = false;
-//
-//    /**
-//     * Load Remote access data
-//     */
-//    $scope.loadEnOceanModule = function() {
-//        dataFactory.getApi('instances', '/EnOcean').then(function(response) {
-//            var module = response.data.data[0];
-//            if (Object.keys(module).length < 1) {
-//                $scope.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-warning'};
-//                return;
-//            }
-//            if (!module.active) {
-//                $scope.alert = {message: $scope._t('enocean_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
-//                return;
-//            }
-//            $scope.hasEnOcean = true;
-//        }, function(error) {
-//            if (error.status == 404) {
-//                $scope.alert = {message: $scope._t('enocean_nosupport'), status: 'alert-danger', icon: 'fa-warning'};
-//            } else {
-//                $location.path('/error/' + error.status);
-//            }
-//
-//        });
-//    };
-//
-//    $scope.loadEnOceanModule();
-//
-//
-//    /**
-//     * Load z-wave devices
-//     */
-//    $scope.loadData = function(brandname) {
-//        dataService.showConnectionSpinner();
-//        dataFactory.getApiLocal('devices_enocean.json').then(function(response) {
-//            $scope.manufacturers = dataService.getPairs(response.data, 'vendor', 'vendorLogo', 'manufacturers_enocean');
-//            if (brandname) {
-//                $scope.enoceanDevices = dataService.getData(response.data, {'filter': 'vendor', 'val': brandname});
-//                $scope.manufacturer = brandname;
-//            }
-//            dataService.updateTimeTick();
-//        }, function(error) {
-//            dataService.showConnectionError(error);
-//        });
-//    };
-//    $scope.loadData($routeParams.brandname);
-//
-//});
 /**
  * EnOcean devices controller
  */
