@@ -21,9 +21,9 @@
                         <span ng-bind="_t('lb_gen_by_module')"></span> <a class="btn btn-default btn-sm" ng-href="#module/put/{{input.cfg.hasInstance.id}}" ng-bind="input.cfg.hasInstance.moduleId"></a>
                     </div>
                     <!-- zwave -->
-                    <div class="form-group" ng-if="input.cfg.zwaveId">
+                    <div class="form-group" ng-if="input.cfg.zwaveId"> 
                         <div ng-if="!isMobile">
-                            <span ng-bind="_t('lb_gen_by')"></span> <a href="#deviceconfig/{{input.cfg.zwaveId}}" class="btn btn-default btn-sm"><span ng-bind="_t('lb_zwave_device')"></span> #{{input.cfg.zwaveId}}</a>
+                           <span ng-bind="_t('lb_gen_by')"></span> <a href="#network/config/{{input.cfg.zwaveId}}" class="btn btn-default btn-sm"><span ng-bind="_t('lb_zwave_device')"></span> #{{input.cfg.zwaveId}}</a>
                         </div>
                         <div ng-if="isMobile">
                             <span ng-bind="_t('lb_gen_by')"></span> <span ng-bind="_t('lb_zwave_device')"></span> #{{input.cfg.zwaveId}}  <!--{{_t('lb_no_link')}}-->
