@@ -1,4 +1,5 @@
 {
+    "element_id": "Element ID",
     "factory_default": "Factory default",
     "factory_default_war": "This will not impact the Z-Wave network but the modules and names of elements only. ",
     "back_factory_default": "Back to Factory Default",
