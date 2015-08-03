@@ -9,8 +9,8 @@
         <div ng-if="hasEnOcean">
             <div class="row device-manufacturers" ng-hide="enoceanDevices">
                 <div class="col-sm-2 col-device-vendor" ng-repeat="v in manufacturers">
-                    <a ng-href="#enocean/devices/{{v.key}}" class="vendor-list">
-                        <p class="vendor-image"><img ng-src="storage/img/enocean/vendors/{{v.val}}" alt="img" ng-show="v.val" /></p>
+                    <a ng-href="#enocean/devices/{{v.vendor}}" class="vendor-list">
+                        <p class="vendor-image"><img ng-src="storage/img/enocean/vendors/{{v.vendorLogo}}" alt="img" ng-show="v.vendorLogo" /></p>
                     </a>
                 </div>
             </div>

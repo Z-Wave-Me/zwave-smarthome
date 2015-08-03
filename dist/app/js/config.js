@@ -125,8 +125,6 @@ var config_data = {
         },
         // Device vendors
         'device_vendors': ['zwave', 'enocean', 'ipcamera'],
-        // Hidden apps
-        'hidden_apps': ['AnotherModuleID'],
         // Element control
         'element_control': ['switchMultilevel', 'thermostat', 'sensorMultiline'],
         // Room images
@@ -155,9 +153,61 @@ var config_data = {
         // Results per page
         'page_results': 12,
         // Results per events page
-        'page_results_events': 50
-
-
-
+        'page_results_events': 50,
+        
+        // ---------------------------------- Custom config for specifics app_type ---------------------------------- //
+        'custom_cfg': {
+            'default': {
+                hidden_apps: [
+                    'Cron',
+                    'BatteryPolling',
+                    'CustomUserCode',
+                    'CustomUserCodeLoader',
+                    'HTTPDevice',
+                    'InbandNotifications',
+                    'Notification',
+                    'NotificationSMSru',
+                    'RemoteAccess',
+                    'SecurityMode',
+                    'SensorValueLogging',
+                    'SensorsPollingLogging',
+                    'YandexProbki'
+                ]
+            },
+            'popp': {
+                'hidden_apps': [
+                    'Cron',
+                    'BatteryPolling',
+                    'CustomUserCode',
+                    'CustomUserCodeLoader',
+                    'HTTPDevice',
+                    'InbandNotifications',
+                    'Notification',
+                    'NotificationSMSru',
+                    'RemoteAccess',
+                    'SecurityMode',
+                    'SensorValueLogging',
+                    'SensorsPollingLogging',
+                    'YandexProbki'
+                ]
+            },
+            'wd': {
+                'hidden_apps': [
+                    'Cron',
+                    'BatteryPolling',
+                    'CustomUserCode',
+                    'CustomUserCodeLoader',
+                    'HTTPDevice',
+                    'InbandNotifications',
+                    'Notification',
+                    'NotificationSMSru',
+                    'RemoteAccess',
+                    'SecurityMode',
+                    'SensorValueLogging',
+                    'SensorsPollingLogging',
+                    'YandexProbki'
+                ]
+            }
+        }
     }
 };

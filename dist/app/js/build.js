@@ -5615,7 +5615,7 @@ var myAppService = angular.module('myAppService', []);
 /**
  * Device service
  */
-myAppService.service('dataService', function($filter, $log, $cookies, $location, $window,myCache, cfg) {
+myAppService.service('dataService', function($filter, $log, $cookies, $location, $window,myCache, cfg,_) {
     /// --- Public functions --- ///
     /**
      * Get language line by key
@@ -5727,11 +5727,12 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     };
 
     /**
+     * DEPRECATED - replaced with underscore _where
      * Get data or filtered data
      */
-    this.getData = function(data, filter) {
-        return getData(data, filter);
-    };
+//    this.getData = function(data, filter) {
+//        return getData(data, filter);
+//    };
 
     /**
      * Get device data
@@ -5769,11 +5770,12 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     };
 
     /**
+     * DEPRECATED
      * Get instances
      */
-    this.getInstances = function(data, modules) {
-        return getInstances(data, modules);
-    };
+//    this.getInstances = function(data, modules) {
+//        return getInstances(data, modules);
+//    };
 
     /**
      * Get module form data
@@ -5804,18 +5806,20 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     };
 
     /**
+     * DEPRECATED - replaced by underscore _.uniq
      * Get pairs
      */
-    this.getPairs = function(data, key, val, cache) {
-        return getPairs(data, key, val, cache);
-    };
+//    this.getPairs = function(data, key, val, cache) {
+//        return getPairs(data, key, val, cache);
+//    };
 
     /**
+     * DEPRECATED - replaced with underscore _.findWhere
      * Get row by
      */
-    this.getRowBy = function(data, key, val, cache) {
-        return getRowBy(data, key, val, cache);
-    };
+//    this.getRowBy = function(data, key, val, cache) {
+//        return getRowBy(data, key, val, cache);
+//    };
 
     /**
      * Get config navigation devices
@@ -5912,29 +5916,30 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
 
 
     /**
+     * DEPRECATED - replaced with underscore _where
      * Get API data or filtered data
      */
-    function getData(data, filter) {
-        if (!filter) {
-            return data;
-        }
-        var collection = [];
-        var addToCollection = false;
-        angular.forEach(data, function(v, k) {
-            if (angular.isArray(v[filter.filter])) {
-                addToCollection = (filter.not ? v[filter.filter].indexOf(filter.val) === -1 : v[filter.filter].indexOf(filter.val) > -1);
-                if (addToCollection) {
-                    collection.push(v);
-                }
-            } else {
-                addToCollection = (filter.not ? v[filter.filter] != filter.val : v[filter.filter] == filter.val);
-                if (addToCollection) {
-                    collection.push(v);
-                }
-            }
-        });
-        return collection;
-    }
+//    function getData(data, filter) {
+//        if (!filter) {
+//            return data;
+//        }
+//        var collection = [];
+//        var addToCollection = false;
+//        angular.forEach(data, function(v, k) {
+//            if (angular.isArray(v[filter.filter])) {
+//                addToCollection = (filter.not ? v[filter.filter].indexOf(filter.val) === -1 : v[filter.filter].indexOf(filter.val) > -1);
+//                if (addToCollection) {
+//                    collection.push(v);
+//                }
+//            } else {
+//                addToCollection = (filter.not ? v[filter.filter] != filter.val : v[filter.filter] == filter.val);
+//                if (addToCollection) {
+//                    collection.push(v);
+//                }
+//            }
+//        });
+//        return collection;
+//    }
 
     /**
      * Get device data
@@ -5966,7 +5971,8 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                if (v.id.indexOf(findZwaveStr) > -1) {
                 zwaveId = v.id.split(findZwaveStr)[1].split('-')[0];
             } else {
-                instance = getRowBy(instances, 'id', v.creatorId);
+                //instance = getRowBy(instances, 'id', v.creatorId);
+                instance = _.findWhere(instances, {id: v.creatorId});
                 if (instance && instance['moduleId'] != 'ZWave') {
                     hasInstance = instance;
 
@@ -6174,37 +6180,38 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     ;
 
     /**
+     * DEPRECATED
      * Get instances data
      */
-    function getInstances(data, modules) {
-        var collection = [];
-        var moduleOptions;
-        var module;
-        var moduleTitle;
-        var params;
-        angular.forEach(data, function(v, k) {
-            params = (!v.params ? [] : v.params);
-            module = getRowBy(modules, 'id', v.moduleId);
-            if (module) {
-                moduleTitle = $filter('hasNode')(module, 'defaults.title');
-                moduleOptions = getModuleConfigOptions(module, params);
-            }
-
-            collection.push({
-                'id': v.id,
-                'moduleId': v.moduleId,
-                'title': v.title,
-                'moduleTitle': moduleTitle,
-                'params': params,
-                'description': v.description,
-                'moduleData': module,
-                'moduleOptions': moduleOptions,
-                'moduleInput': getModuleConfigInputs(module, params)
-            });
-
-        });
-        return collection;
-    }
+//    function getInstances(data, modules) {
+//        var collection = [];
+//        var moduleOptions;
+//        var module;
+//        var moduleTitle;
+//        var params;
+//        angular.forEach(data, function(v, k) {
+//            params = (!v.params ? [] : v.params);
+//            module = getRowBy(modules, 'id', v.moduleId);
+//            if (module) {
+//                moduleTitle = $filter('hasNode')(module, 'defaults.title');
+//                moduleOptions = getModuleConfigOptions(module, params);
+//            }
+//
+//            collection.push({
+//                'id': v.id,
+//                'moduleId': v.moduleId,
+//                'title': v.title,
+//                'moduleTitle': moduleTitle,
+//                'params': params,
+//                'description': v.description,
+//                'moduleData': module,
+//                'moduleOptions': moduleOptions,
+//                'moduleInput': getModuleConfigInputs(module, params)
+//            });
+//
+//        });
+//        return collection;
+//    }
 
     /**
      * Get module form data
@@ -6361,46 +6368,48 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     }
 
     /**
+     *  DEPRECATED - replaced by underscore _.uniq
      * Get pairs - key => value
      */
-    function getPairs(data, key, val, cache) {
-        var ret;
-        var collection = [];
-        var cached = myCache.get(cache);
-        // Cached data
-        if (cached) {
-            return cached;
-        }
-
-        // Load data
-        angular.forEach(data, function(v, k) {
-            if (v[val] != '') {
-                collection.push({
-                    'key': v[key],
-                    'val': v[val]
-                });
-            }
-
-        });
-        ret = $filter('unique')(collection, 'key');
-        myCache.put(cache, ret);
-        return ret;
-    }
+//    function getPairs(data, key, val, cache) {
+//        var ret;
+//        var collection = [];
+//        var cached = myCache.get(cache);
+//        // Cached data
+//        if (cached) {
+//            return cached;
+//        }
+//
+//        // Load data
+//        angular.forEach(data, function(v, k) {
+//            if (v[val] != '') {
+//                collection.push({
+//                    'key': v[key],
+//                    'val': v[val]
+//                });
+//            }
+//
+//        });
+//        ret = $filter('unique')(collection, 'key');
+//        myCache.put(cache, ret);
+//        return ret;
+//    }
 
     /**
+     * DEPRECATED - replaced with underscore _.findWhere
      * Get 1 row by - key => value
      */
-    function getRowBy(data, key, val) {
-        var collection = null;
-        angular.forEach(data, function(v, k) {
-            if (v[key] == val) {
-                collection = v;
-                return;
-            }
-
-        });
-        return collection;
-    }
+//    function getRowBy(data, key, val) {
+//        var collection = null;
+//        angular.forEach(data, function(v, k) {
+//            if (v[key] == val) {
+//                collection = v;
+//                return;
+//            }
+//
+//        });
+//        return collection;
+//    }
     
     /**
      * Set EnOcean profile
@@ -7772,7 +7781,6 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
         myCache.removeAll();
         $route.reload();
     };
-    $scope.setTime();
     /**
      * Redirect to given url
      */
@@ -7781,12 +7789,18 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
             $location.path(url);
         }
     };
+    /**
+     * Get hidden apps array by app_type
+     */
+    $scope.getHiddenApps = function() {
+        return cfg.custom_cfg[cfg.app_type].hidden_apps || [];
+    };
 
 });
 /**
  * Test controller
  */
-myAppController.controller('TestController', function($scope, $routeParams, $filter, $location, $log, $cookies, $timeout, $interval, dataFactory, dataService,_) {
+myAppController.controller('TestController', function($scope, $routeParams, $filter, $location, $log, $cookies, $timeout, $interval, dataFactory, dataService, _) {
     $scope.testHeader = function() {
         dataFactory.getRemoteData('http://zwave.eu/api/test/headers/index.php?code=401').then(function(response) {
 
@@ -7796,19 +7810,28 @@ myAppController.controller('TestController', function($scope, $routeParams, $fil
             dataService.showConnectionError(error);
         });
     };
-    
-   console.log(_.max([1,2,3,4])) ; //It will return 4, which is the maximum value in the array
 
     /**
      * Load data into collection
      */
     $scope.dest = {};
     $scope.loadData = function() {
-        dataFactory.getApi('devices').then(function(response) {
-            angular.forEach(response.data.data.devices, function(v, k) {
+        dataFactory.getApi('modules').then(function(response) {
+            var devices = response.data.data;
+            console.log(devices)
+            var filtered = _.where(devices, {category: 'security'});
+            console.log(filtered)
+            var pluck = _.uniq(_.pluck(devices, 'deviceType'));
+            //console.log(pluck)
+            // var stooge = {name: 'moe', luckyNumbers: [13, 27, 34]};
+            //var clone = {luckyNumbers: [13, 27, 34],name: 'moe'};
+            //console.log(stooge == clone);
+            //console.log(_.isEqual(stooge, clone));
+
+            angular.forEach(devices, function(v, k) {
                 $scope.dest[v.id] = v;
             });
-            console.log($scope.dest)
+            //console.log($scope.dest)
         }, function(error) {
         });
     };
@@ -7842,7 +7865,7 @@ myAppController.controller('TestController', function($scope, $routeParams, $fil
         interval = $interval(refresh, 1000);
     };
 
-    $scope.refreshData();
+    //$scope.refreshData();
 
 
 
@@ -8338,7 +8361,7 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
 /**
  * Event controller
  */
-myAppController.controller('EventController', function($scope, $routeParams, $interval, $window, $filter, $cookies, $location, dataFactory, dataService, myCache, paginationService, cfg) {
+myAppController.controller('EventController', function($scope, $routeParams, $interval, $window, $filter, $cookies, $location, dataFactory, dataService, myCache, paginationService,cfg,_) {
     $scope.collection = [];
     $scope.eventLevels = [];
     $scope.dayCount = [
@@ -8514,7 +8537,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
     function setData(data) {
         $scope.collection = [];
         $scope.eventLevels = dataService.getEventLevel(data.data.notifications, [{'key': null, 'val': 'all'}]);
-        $scope.eventSources = dataService.getPairs(data.data.notifications, 'source', 'source');
+        //$scope.eventSources = dataService.getPairs(data.data.notifications, 'source', 'source');
         var filter = null;
         if (angular.isDefined($routeParams.param) && angular.isDefined($routeParams.val)) {
             $scope.currSource = $routeParams.val;
@@ -8562,7 +8585,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
 /**
  * App controller
  */
-myAppController.controller('AppController', function($scope, $window, $cookies, $timeout, $route, dataFactory, dataService, myCache) {
+myAppController.controller('AppController', function($scope, $window, $cookies, $timeout, $route, dataFactory, dataService, myCache, _) {
     $scope.instances = [];
     $scope.hasImage = [];
     $scope.modules = [];
@@ -8605,19 +8628,30 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
             filter = {filter: "state", val: "hidden", not: true};
         }
         dataFactory.getApi('modules').then(function(response) {
-            var modulesFiltered = dataService.getData(response.data.data, filter, true);
-             $scope.modules = dataService.getData(modulesFiltered, query, true);
-            angular.forEach(modulesFiltered, function(v, k) {
-                $scope.modulesIds.push(v.id);
-                if($scope.modulesCats.indexOf(v.category) === -1){
-                    if(v.category !== 'surveillance'){
-                        $scope.modulesCats.push(v.category);
-                    }
+            var modulesFiltered = _.filter(response.data.data, function(item) {
+                var isHidden = false;
+                if ($scope.getHiddenApps().indexOf(item.moduleName) > -1) {
+                     if($scope.user.role !== 1){
+                         isHidden = true;
+                     }else{
+                         isHidden = ($scope.user.expert_view ? false : true);
+                     }
+                    
                 }
-                
-                $scope.moduleImgs[v.id] = v.icon;
+                if (item.category === 'surveillance') {
+                    isHidden = true;
+                }
 
+                if (!isHidden) {
+                    $scope.modulesIds.push(item.id);
+                    $scope.moduleImgs[item.id] = item.icon;
+                    if (item.category && $scope.modulesCats.indexOf(item.category) === -1) {
+                        $scope.modulesCats.push(item.category);
+                    }
+                    return item;
+                }
             });
+            $scope.modules = _.where(modulesFiltered, query);
             $scope.loading = false;
             dataService.updateTimeTick();
         }, function(error) {
@@ -8646,24 +8680,24 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
             dataService.showConnectionError(error);
         });
     };
+    /**
+     * Load instances
+     */
     $scope.loadInstances = function() {
-        var filter;
-//        if ($scope.cfg.app_type === 'default') {
-//            if ($scope.user.role === 1 && $scope.user.expert_view) {
-//                filter = null;
-//            } else {
-//                filter = {filter: "state", val: "hidden", not: true};
-//            }
-//        } else {
-//            filter = {filter: "state", val: "hidden", not: true};
-//        }
-        if ($scope.user.role === 1 && $scope.user.expert_view) {
-            filter = null;
-        } else {
-            filter = {filter: "state", val: "hidden", not: true};
-        }
         dataFactory.getApi('instances').then(function(response) {
-            $scope.instances = dataService.getData(response.data.data, filter, true);
+            $scope.instances = _.reject(response.data.data, function(v) {
+               //return v.state === 'hidden' && ($scope.user.role !== 1 && $scope.user.expert_view !== true);
+                if ($scope.getHiddenApps().indexOf(v.moduleId) > -1) {
+                     if($scope.user.role !== 1){
+                        return true;
+                     }else{
+                         return ($scope.user.expert_view ? false : true);
+                     }
+                    
+                }else{
+                    return false;
+                }
+            });
             $scope.loading = false;
             dataService.updateTimeTick();
         }, function(error) {
@@ -8705,10 +8739,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
                     $scope.modules = angular.copy([]);
                     var filter = false;
                     if ($scope.category != '') {
-                        filter = {
-                            'filter': 'category',
-                            'val': $scope.category
-                        };
+                        filter = {category: $scope.category};
                     }
                     $scope.loadModules(filter);
                     $scope.loadOnlineModules();
@@ -8825,7 +8856,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
 /**
  * App local detail controller
  */
-myAppController.controller('AppLocalDetailController', function($scope, $routeParams, $location, dataFactory, dataService) {
+myAppController.controller('AppLocalDetailController', function($scope, $routeParams, $location, dataFactory, dataService,_) {
     $scope.module = [];
     $scope.isOnline = null;
     $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
@@ -8850,7 +8881,7 @@ myAppController.controller('AppLocalDetailController', function($scope, $routePa
     /// --- Private functions --- ///
     function loadOnlineModules(moduleName) {
         dataFactory.getRemoteData($scope.cfg.online_module_url).then(function(response) {
-            $scope.isOnline = dataService.getRowBy(response.data, 'modulename', moduleName);
+            $scope.isOnline = _.findWhere(response.data, {modulename: moduleName});
             dataService.updateTimeTick();
         }, function(error) {
         });
@@ -8860,7 +8891,7 @@ myAppController.controller('AppLocalDetailController', function($scope, $routePa
 /**
  * App online detail controller
  */
-myAppController.controller('AppOnlineDetailController', function($scope, $routeParams, $timeout, dataFactory, dataService) {
+myAppController.controller('AppOnlineDetailController', function($scope, $routeParams, $timeout,  $location,dataFactory, dataService,_) {
     $scope.module = [];
     $scope.onlineMediaUrl = $scope.cfg.online_module_img_url;
     /**
@@ -8868,19 +8899,20 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
      */
     $scope.loadModule = function(id) {
         dataService.showConnectionSpinner();
-        //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        var param = parseInt(id, 10);
-        var filter = 'id';
+       var param = parseInt(id, 10);
+        var filter = {id: id};
         if (isNaN(param)) {
-            filter = 'modulename';
+            filter = {modulename: id};
         }
         dataFactory.getRemoteData($scope.cfg.online_module_url).then(function(response) {
-            $scope.module = dataService.getRowBy(response.data, filter, id);
-            //$scope.loading = false;
+            $scope.module = _.findWhere(response.data, filter);
+            if(!$scope.module){
+                $location.path('/error/404');
+                return;
+            }
             dataService.updateTimeTick();
         }, function(error) {
-            dataService.showConnectionError(error);
-            $scope.loading = false;
+             $location.path('/error/' + error.status);
         });
     };
 
@@ -9082,7 +9114,7 @@ myAppController.controller('DeviceController', function($scope, $routeParams, da
 /**
  * Device Zwave  controller
  */
-myAppController.controller('DeviceZwaveController', function($scope, $routeParams, dataFactory, dataService) {
+myAppController.controller('DeviceZwaveController', function($scope, $routeParams, dataFactory, dataService, _) {
     $scope.zwaveDevices = [];
     $scope.deviceVendor = false;
     $scope.manufacturers = [];
@@ -9093,9 +9125,9 @@ myAppController.controller('DeviceZwaveController', function($scope, $routeParam
     $scope.loadData = function(brandname, lang) {
         dataService.showConnectionSpinner();
         dataFactory.getApiLocal('device.' + lang + '.json').then(function(response) {
-            $scope.manufacturers = dataService.getPairs(response.data, 'brandname', 'brand_image', 'manufacturers');
+            $scope.manufacturers = _.uniq(response.data, 'brandname');
             if (brandname) {
-                $scope.zwaveDevices = dataService.getData(response.data, {'filter': 'brandname', 'val': brandname});
+                $scope.zwaveDevices = _.where(response.data, {brandname: brandname});
                 $scope.manufacturer = brandname;
             }
             dataService.updateTimeTick();
@@ -9108,7 +9140,7 @@ myAppController.controller('DeviceZwaveController', function($scope, $routeParam
 /**
  * Device IP camerae  controller
  */
-myAppController.controller('DeviceIpCameraController', function($scope, dataFactory, dataService) {
+myAppController.controller('DeviceIpCameraController', function($scope, dataFactory, dataService,_) {
     $scope.ipcameraDevices = [];
     $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
     /**
@@ -9117,7 +9149,7 @@ myAppController.controller('DeviceIpCameraController', function($scope, dataFact
     $scope.loadData = function() {
         dataService.showConnectionSpinner();
         dataFactory.getApi('modules').then(function(response) {
-            $scope.ipcameraDevices = dataService.getData(response.data.data, {filter: "category", val: "surveillance"});
+            $scope.ipcameraDevices = _.where(response.data.data, {category: 'surveillance'});
             dataService.updateTimeTick();
         }, function(error) {
             dataService.showConnectionError(error);
@@ -9570,65 +9602,9 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
 
 });
 /**
- * Device Enocean  controller
- */
-myAppController.controller('DeviceEnoceanController', function($scope, $routeParams, $location, dataFactory, dataService) {
-    $scope.hasEnOcean = false;
-    $scope.enoceanDevices = [];
-    $scope.manufacturers = [];
-    $scope.manufacturer = false;
-
-    /**
-     * Load Remote access data
-     */
-    $scope.loadEnOceanModule = function() {
-        dataFactory.getApi('instances', '/EnOcean').then(function(response) {
-            var module = response.data.data[0];
-            if (Object.keys(module).length < 1) {
-                $scope.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-warning'};
-                return;
-            }
-            if (!module.active) {
-                $scope.alert = {message: $scope._t('enocean_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
-                return;
-            }
-            $scope.hasEnOcean = true;
-        }, function(error) {
-            if (error.status == 404) {
-                $scope.alert = {message: $scope._t('enocean_nosupport'), status: 'alert-danger', icon: 'fa-warning'};
-            } else {
-                $location.path('/error/' + error.status);
-            }
-
-        });
-    };
-
-    $scope.loadEnOceanModule();
-
-
-    /**
-     * Load z-wave devices
-     */
-    $scope.loadData = function(brandname) {
-        dataService.showConnectionSpinner();
-        dataFactory.getApiLocal('devices_enocean.json').then(function(response) {
-            $scope.manufacturers = dataService.getPairs(response.data, 'vendor', 'vendorLogo', 'manufacturers_enocean');
-            if (brandname) {
-                $scope.enoceanDevices = dataService.getData(response.data, {'filter': 'vendor', 'val': brandname});
-                $scope.manufacturer = brandname;
-            }
-            dataService.updateTimeTick();
-        }, function(error) {
-            dataService.showConnectionError(error);
-        });
-    };
-    $scope.loadData($routeParams.brandname);
-
-});
-/**
  * EnOcean devices controller
  */
-myAppController.controller('EnoceanDeviceController', function($scope, $routeParams, dataFactory, dataService) {
+myAppController.controller('EnoceanDeviceController', function($scope, $routeParams, dataFactory, dataService,_) {
     $scope.activeTab = 'devices';
     $scope.hasEnOcean = false;
     $scope.enoceanDevices = [];
@@ -9669,9 +9645,10 @@ myAppController.controller('EnoceanDeviceController', function($scope, $routePar
     $scope.loadData = function(brandname) {
         dataService.showConnectionSpinner();
         dataFactory.getApiLocal('devices_enocean.json').then(function(response) {
-            $scope.manufacturers = dataService.getPairs(response.data, 'vendor', 'vendorLogo', 'manufacturers_enocean');
+            //$scope.manufacturers = dataService.getPairs(response.data, 'vendor', 'vendorLogo', 'manufacturers_enocean');
+            $scope.manufacturers = _.uniq(response.data, 'vendor');
             if (brandname) {
-                $scope.enoceanDevices = dataService.getData(response.data, {'filter': 'vendor', 'val': brandname});
+                $scope.enoceanDevices = _.where(response.data, {vendor: brandname});
                 $scope.manufacturer = brandname;
             }
             dataService.updateTimeTick();
@@ -10666,7 +10643,7 @@ myAppController.controller('RoomController', function($scope, $location, dataFac
 /**
  * Room config controller
  */
-myAppController.controller('RoomConfigController', function($scope, $window, $location, dataFactory, dataService, myCache) {
+myAppController.controller('RoomConfigController', function($scope, $window, $location, dataFactory, dataService, myCache,_) {
     $scope.collection = [];
     $scope.devices = [];
     $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/image/';
@@ -10699,7 +10676,7 @@ myAppController.controller('RoomConfigController', function($scope, $window, $lo
         }
         if (confirm) {
             dataFactory.deleteApi('locations', roomId).then(function(response) {
-                var devices = dataService.getData($scope.devices, {filter: 'location', val: roomId});
+                var devices = _.where($scope.devices, {location: roomId});
                 removeRoomIdFromDevice(devices);
                 myCache.remove('locations');
                 myCache.remove('devices');
@@ -11416,7 +11393,7 @@ myAppController.controller('NetworkConfigController', function($scope, $routePar
 /**
  * Profile controller
  */
-myAppController.controller('AdminController', function($scope, $window, $location, $timeout, $interval,$sce,dataFactory, dataService, myCache) {
+myAppController.controller('AdminController', function($scope, $window, $location, $timeout, $interval, $sce, dataFactory, dataService, myCache) {
     $scope.profiles = {};
     $scope.remoteAccess = false;
     $scope.controllerInfo = {
@@ -11460,7 +11437,7 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
     $scope.$on('$destroy', function() {
         $interval.cancel($scope.zwaveDataInterval);
     });
-    
+
     $scope.firmwareUpdateUrl = $sce.trustAsResourceUrl('http://' + $scope.hostName + ':8084/cgi-bin/main.cgi');
 
     /**
@@ -11694,7 +11671,7 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
         $scope.goRestoreUpload = false;
 
     };
-     /**
+    /**
      * Show modal window
      */
     $scope.showModal = function(target) {

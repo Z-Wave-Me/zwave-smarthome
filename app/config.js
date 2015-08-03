@@ -158,7 +158,8 @@ var config_data = {
         // ---------------------------------- Custom config for specifics app_type ---------------------------------- //
         'custom_cfg': {
             'default': {
-                hidden_apps: ['Cron',
+                hidden_apps: [
+                    'Cron',
                     'BatteryPolling',
                     'CustomUserCode',
                     'CustomUserCodeLoader',
