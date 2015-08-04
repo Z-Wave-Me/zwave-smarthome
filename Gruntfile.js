@@ -33,8 +33,8 @@ module.exports = function(grunt) {
                     //'vendor/gridster/jquery.gridster.js',
                     'vendor/knob/jquery.knob.js',
                     //'vendor/bootstrap-switch/bootstrap-switch.js',
-                    'vendor/handlebars/handlebars.min.js',
-                    'vendor/alpaca/alpaca.min.js',
+                    'vendor/handlebars/handlebars-v3.0.3.min.js',
+                    'vendor/alpaca/1.5.13/alpaca.min.js',
                     //'vendor/md5/md5.js',
                     // Angular
                     'vendor/angular/angular-1.2.28/angular.min.js',
