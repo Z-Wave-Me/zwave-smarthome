@@ -4,8 +4,6 @@ var config_data = {
         'app_name': 'SHUI',
         // Application version
         'app_version': '1.0.1',
-        // Application type: default/popp/wd
-        'app_type': 'default',
         // Server base url
         'server_url': '/',
         //'server_url': 'http://192.168.10.119:8083/',
@@ -156,8 +154,12 @@ var config_data = {
         'page_results_events': 50,
         
         // ---------------------------------- Custom config for specifics app_type ---------------------------------- //
+        // Application type: default/popp/wd
+        'app_type': 'default',
+        // Config
         'custom_cfg': {
-            'default': {
+           'default': {
+               'logo': 'app/img/app-logo-default.png',
                 hidden_apps: [
                     'Cron',
                     'BatteryPolling',
@@ -175,6 +177,7 @@ var config_data = {
                 ]
             },
             'popp': {
+                'logo': 'app/img/app-logo-popp.png',
                 'hidden_apps': [
                     'Cron',
                     'BatteryPolling',
@@ -192,6 +195,7 @@ var config_data = {
                 ]
             },
             'wd': {
+                'logo': 'app/img/app-logo-wd.png',
                 'hidden_apps': [
                     'Cron',
                     'BatteryPolling',

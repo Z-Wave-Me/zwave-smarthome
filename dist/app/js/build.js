@@ -7697,10 +7697,24 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
         }
     };
     /**
+     * Get app logo
+     */
+    $scope.getAppLogo = function() {
+        var logo = 'app/img/app-logo-default.png';
+        if(cfg.custom_cfg[cfg.app_type]){
+            logo = cfg.custom_cfg[cfg.app_type].logo || logo;
+        }
+        return logo;
+    };
+    /**
      * Get hidden apps array by app_type
      */
     $scope.getHiddenApps = function() {
-        return cfg.custom_cfg[cfg.app_type].hidden_apps || [];
+        var apps = [];
+        if(cfg.custom_cfg[cfg.app_type]){
+            apps = cfg.custom_cfg[cfg.app_type].hidden_apps || [];
+        }
+        return apps;
     };
 
 });
@@ -9056,7 +9070,26 @@ myAppController.controller('DeviceIpCameraController', function($scope, dataFact
     $scope.loadData = function() {
         dataService.showConnectionSpinner();
         dataFactory.getApi('modules').then(function(response) {
-            $scope.ipcameraDevices = _.where(response.data.data, {category: 'surveillance'});
+            $scope.ipcameraDevices = _.filter(response.data.data, function(item) {
+                var isHidden = false;
+                if ($scope.getHiddenApps().indexOf(item.moduleName) > -1) {
+                     if($scope.user.role !== 1){
+                         isHidden = true;
+                     }else{
+                         isHidden = ($scope.user.expert_view ? false : true);
+                     }
+                    
+                }
+                if (item.category !== 'surveillance') {
+                    isHidden = true;
+                }
+
+                if (!isHidden) {
+                    return item;
+                }
+            });
+            //$scope.ipcameraDevices = _.where(modulesFiltered, query);
+            //$scope.ipcameraDevices = _.where(response.data.data, {category: 'surveillance'});
             dataService.updateTimeTick();
         }, function(error) {
             dataService.showConnectionError(error);
