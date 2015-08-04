@@ -52,7 +52,7 @@
                 <tr ng-repeat="v in devices.batteries| orderBy:'level':false" id="row_battery_{{ v.rowId}}">
                     <td class="td-img">
                        
-                        <img class="report-img" ng-src="storage/img/batteries/{{v.metrics.level|getBatteryIcon}}" alt="img" />
+                        <img class="report-img" ng-src="storage/img/icons/{{v.metrics.level|getBatteryIcon}}" alt="img" />
                     </td>
                     <td class="network-zwave-device">
                         <div>(#{{v.nodeId}}) {{v.nodeName}}</div>
