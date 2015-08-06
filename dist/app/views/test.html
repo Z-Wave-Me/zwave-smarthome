@@ -1,7 +1,80 @@
 <!-- Test view -->
 <div ng-controller="TestController">
    <h1>Test page</h1>
-   <div infinite-scroll='loadDevices()' infinite-scroll-distance='2'>
+   <div class="row">
+   <div id="Widget_Multiline_13" class="col-lg-4 col-md-6 col-sm-6 widget-entry ng-scope">
+            <div class="widget-block sensorMultiline">
+                    <div class="widget-block-in clearfix app-border app-gradient app-shadow">
+                   <img id="widget_img_Multiline_13" class="widget-image" src="storage/img/icons/lock-closed.png" alt="img">
+                    <!-- Widget header -->
+                   <div class="widget-header">
+                        <a class="widget-config" href=""><i class="fa fa-cog fa-lg"></i></a>
+                    </div>
+
+                    <!-- Widget body -->
+                    <div class="widget-body">
+                        <h3 class="entry-title">Door Lock Control</h3>
+                        <div class="widget-control-wrap">
+                            <div> 
+                               <div class="widget-control control-left widget-click-popup" ng-click="loadDoorLock('#modal_doorlock', v.id,v)">
+                                    <span class="widget-level">Closed at</span> <span>09:03</span> <i class="fa fa-caret-down"></i>
+                                </div>
+                                <!-- <div class="widget-control control-right">
+                                    <div class="btn-group">
+                                        <button class="btn btn-default btn-sm"> <i class="fa fa-clock-o"></i> <span class="widget-update-time ng-binding">09:03</span></button>
+                                    </div>
+                                </div>.widget-control .right -->
+                            </div>
+
+                        </div><!-- /.widget-control-wrap --> 
+                    </div><!-- /.panel-body -->
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+   
+   <!-- Modal door lock -->
+    <div class="modal modal-vertical-centered modal-no-padding fade" id="modal_doorlock" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-center">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" ng-bind="input.title"></h4>
+                </div>
+                <div class="modal-body ">
+                    <div class="alert alert-warning" ng-if="!doorLock.data">
+                        <i class="fa {{doorLock.icon}}"></i> <span ng-bind="doorLock.message"></span>
+                    </div>
+                    <div class="multiline-entry" ng-if="doorLock.data">
+                        <table class="table table-report table-condensed">
+                           <tbody>
+                             <tr class="bcg-active" ng-repeat="n in doorLock.data.metrics.events| orderBy: '-updateTime'" ng-class="n.state ? 'true': 'false'">
+                                  <td class="td-img">
+                                     <img class="report-img" ng-src="storage/img/icons/lock-{{n.level}}.png" alt="img" />
+                                 </td>
+                                 <td>
+                                      <i class="fa fa-check" ng-class="n.state ? 'fa-check text-success': 'fa-exclamation-triangle text-danger'"></i> <span ng-bind="n.name"/></span> <strong ng-bind="n.level"></strong> by <span ng-bind="n.user"/></span>
+                                  </td>
+                                  <td class="text-right_">
+                                      <i class="fa fa-clock-o"></i> <span ng-bind="n.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')"></span>
+                                 </td>
+                                 <td class="text-right_">
+                                    <i class="fa fa-key"></i> <span ng-bind="n.code"></span>
+                                 </td>
+                                  <td class="text-right">
+                                   <a class="btn btn-default btn-sm" href="">Assign code</a>
+                                 </td>
+                             </tr>
+                             </tbody>
+                         </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div><!-- /.Modal multiline -->
+    <!--<div infinite-scroll='loadDevices()' infinite-scroll-distance='2'>
     <img ng-repeat='v in devices' ng-src='http://placehold.it/225x250&text={{$index}}'>
   </div>
   <!--<div infinite-scroll='loadMore()' infinite-scroll-distance='2'>

@@ -7095,7 +7095,7 @@ myApp.filter('getElementIcon', function(cfg) {
             }
             switch (input) {
                 case 'door':
-                    icon = cfg.img.icons + (level == 'on' ? 'door-open.png' : 'door-closed.png');
+                    icon = cfg.img.icons + (level == 'open' ? 'door-open.png' : 'door-closed.png');
                     break;
 
                 case 'switch':
@@ -7730,6 +7730,30 @@ myAppController.controller('TestController', function($scope, $routeParams, $fil
 
             dataService.showConnectionError(error);
         });
+    };
+    
+    
+    /**
+     * Show door lock modal window
+     */
+    $scope.loadDoorLock = function(target, id, input) {
+        $(target).modal();
+        $scope.input = {
+            title: 'Door Lock Control'
+        };
+        $scope.doorLock = {data: false, icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        //dataFactory.getApi('devices', '/' + id, true).then(function(response) {
+         dataFactory.getApiLocal('door_lock.json').then(function(response) {
+             console.log(response)
+            if (response.data.data.metrics.events) {
+                $scope.doorLock = {data: response.data.data};
+            } else {
+                $scope.doorLock = {data: false, icon: 'fa-info-circle text-warning', message: $scope._t('no_data')};
+            }
+        }, function(error) {
+            $scope.doorLock = {data: false, icon: 'fa-exclamation-triangle text-danger', message: $scope._t('error_load_data')};
+        });
+
     };
 
      $scope.images = [1, 2, 3, 4, 5, 6, 7, 8];

@@ -1,0 +1,64 @@
+{
+    "data": {
+        "creatorId": 13,
+        "deviceType": "sensorMultiline",
+        "h": 1087972116,
+        "hasHistory": false,
+        "id": "DoorLock_13",
+        "location": 1,
+        "metrics": {
+            "title": "Door Lock Control",
+            "events": [{
+                    "id": "ZWayVDev_zway_4-0-50-0",
+                     "name": "Door Lock 1",
+                    "user": "Barack Obama",
+                    "state": true,
+                    "code": "C888",
+                    "level": "closed",
+                    "updateTime": 1438847769
+                }, {
+                    "id": "ZWayVDev_zway_4-0-50-2",
+                     "name": "Door Lock 1",
+                    "user": "Angela Merkel",
+                    "state": true,
+                    "code": "C25896",
+                    "level": "opened",
+                    "updateTime": 1438607281
+                }, {
+                    "id": "ZWayVDev_zway_6-0-49-4",
+                     "name": "Door Lock 2",
+                    "user": "Vladimir Putin",
+                    "state": true,
+                    "code": "C222",
+                    "level": "closed",
+                    "updateTime": 1438848925
+                }, {
+                    "id": "ZWayVDev_zway_6-0-50-0",
+                     "name": "Door Lock 1",
+                    "user": "Joe Doe",
+                    "state": true,
+                    "code": "C45896",
+                    "level": "closed",
+                    "updateTime": 1437559884
+                }, {
+                    "id": "ZWayVDev_zway_6-0-50-2",
+                     "name": "Door Lock 3",
+                    "user": "Karl May",
+                    "state": false,
+                    "code": "C1478",
+                    "level": "opened",
+                    "updateTime": 1437983761
+                }],
+            "icon": "meter",
+            "level": 4.2399996,
+            "scaleTitle": "kWh"
+        },
+        "permanently_hidden": false,
+        "tags": ["Livingroom"],
+        "visibility": true,
+        "updateTime": 1438847769
+    },
+    "code": 200,
+    "message": "200 OK",
+    "error": null
+}
