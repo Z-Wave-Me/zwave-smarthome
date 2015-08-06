@@ -30,8 +30,6 @@
                     </div><!-- /.panel-body -->
                 </div>
             </div>
-
-
         </div>
     </div>
    
@@ -55,14 +53,15 @@
                                      <img class="report-img" ng-src="storage/img/icons/lock-{{n.level}}.png" alt="img" />
                                  </td>
                                  <td>
-                                      <i class="fa fa-check" ng-class="n.state ? 'fa-check text-success': 'fa-exclamation-triangle text-danger'"></i> <span ng-bind="n.name"/></span> <strong ng-bind="n.level"></strong> by <span ng-bind="n.user"/></span>
+                                      <i class="fa" ng-class="n.state ? '': 'fa-exclamation-triangle text-danger'"></i> <span ng-bind="n.name"/></span> <strong ng-bind="n.level"></strong> by <span ng-bind="n.user"/></span>
                                   </td>
                                   <td class="text-right_">
                                       <i class="fa fa-clock-o"></i> <span ng-bind="n.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')"></span>
                                  </td>
                                  <td class="text-right_">
-                                    <i class="fa fa-key"></i> <span ng-bind="n.code"></span>
+                                     <i class="fa" ng-class="n.policy == 'pernament'? 'fa-star text-success': 'fa-star-half-o text-info'"></i> <span ng-bind="n.code"></span>
                                  </td>
+                                
                                   <td class="text-right">
                                    <a class="btn btn-default btn-sm" href="">Assign code</a>
                                  </td>
