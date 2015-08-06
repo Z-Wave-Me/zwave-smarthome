@@ -1,21 +1,10 @@
 <!-- Test view -->
 <div ng-controller="TestController">
-    <bb-loader></bb-loader>
-    <h1>Test page</h1>
-    <table id="table_cfg_admin" class="table table-condensed table-report">
-        <tbody>
-            <tr ng-repeat="v in dest track by v.id" id="row_{{v.id}}" ng-if="v.deviceType === 'switchMultilevel'">
-                <td>{{v.id}}</td>
-                <td class="td-action">{{v.metrics.level}}</td>
-            </tr>
-        </tbody>
-    </table>
-
-
+   <h1>Test page</h1>
+   <div infinite-scroll='loadDevices()' infinite-scroll-distance='2'>
+    <img ng-repeat='v in devices' ng-src='http://placehold.it/225x250&text={{$index}}'>
+  </div>
+  <!--<div infinite-scroll='loadMore()' infinite-scroll-distance='2'>
+    <img ng-repeat='image in images' ng-src='http://placehold.it/225x250&text={{image}}'>
+  </div>--> 
 </div><!-- /ng-controller --> 
-<script type="text/ng-template" id="app/views/elements/directives/default_.html">
-    <h1>My title Inline</h1>
-</script>
-<script type="text/ng-template" id="app/views/elements/directives/prasopes.html">
-    <h1>My title Inline Prasopes</h1>
-</script>

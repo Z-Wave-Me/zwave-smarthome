@@ -184,100 +184,59 @@ myAppController.controller('TestController', function($scope, $routeParams, $fil
         });
     };
 
-    /**
+     $scope.images = [1, 2, 3, 4, 5, 6, 7, 8];
+
+  $scope.loadMore = function() {
+    var last = $scope.images[$scope.images.length - 1];
+    console.log(last)
+    for(var i = 1; i <= 8; i++) {
+      $scope.images.push(last + i);
+    }
+  };
+  
+  /**
      * Load data into collection
      */
-    $scope.dest = {};
-    $scope.loadData = function() {
-        dataFactory.getApi('modules').then(function(response) {
-            var devices = response.data.data;
-            console.log(devices)
-            var filtered = _.where(devices, {category: 'security'});
-            console.log(filtered)
-            var pluck = _.uniq(_.pluck(devices, 'deviceType'));
-            //console.log(pluck)
-            // var stooge = {name: 'moe', luckyNumbers: [13, 27, 34]};
-            //var clone = {luckyNumbers: [13, 27, 34],name: 'moe'};
-            //console.log(stooge == clone);
-            //console.log(_.isEqual(stooge, clone));
-
-            angular.forEach(devices, function(v, k) {
-                $scope.dest[v.id] = v;
-            });
-            //console.log($scope.dest)
-        }, function(error) {
-        });
+    $scope.devicesMaster = [];
+    $scope.devices = [];
+     $scope.cnt = 0;
+    $scope.end = 16;
+     $scope.scroll = {
+         start: 0,
+         end: 20,
+         cnt: 0,
+         itemCnt: 0
+     };
+    $scope.loadDevices = function() {
+        dataFactory.getApi('devices').then(function(response) {
+             $scope.scroll.cnt += 1;
+             $scope.scroll.itemCnt = _.size(response.data.data.devices);
+             var test = _.has(response.data.data.devices[0], 'id');
+             console.log(test)
+            $scope.devicesMaster = response.data.data.devices;
+           if($scope.scroll.cnt > 2){
+                //$scope.end += 1;
+                  $scope.scroll.end =  ( $scope.scroll.end >=  $scope.scroll.itemCnt ?  $scope.scroll.itemCnt : $scope.scroll.end += 1);
+            }
+            $scope.devices = $scope.devicesMaster.slice($scope.scroll.start,$scope.scroll.end);
+            console.log($scope.scroll.cnt)
+            console.log($scope.scroll.end)
+        }, function(error) {});
     };
-    $scope.loadData();
-
-    /**
-     * Refresh data
-     */
-    $scope.src = {};
-    $scope.refreshData = function() {
-        var interval;
-        var refresh = function() {
-            dataFactory.refreshApi('devices').then(function(response) {
-                //$scope.src = response.data.data.devices;
-                angular.forEach(response.data.data.devices, function(v, k) {
-                    $scope.src[v.id] = v;
-                    console.log('DEST ORIGINAL: ' + $scope.dest[v.id].metrics.level)
-                    //angular.extend($scope.dest[v.id],$scope.src[v.id]);
-                    angular.extend($scope.dest[v.id]['metrics'], $scope.src[v.id]['metrics']);
-                    console.log('SRC: ' + $scope.src[v.id].metrics.level)
-                    console.log('DEST NEW: ' + $scope.dest[v.id].metrics.level)
-                    console.log('--------------------------------------------')
-
-                });
-                //console.log($scope.dest)
-
-            }, function(error) {
-                dataService.showConnectionError(error);
-            });
-        };
-        interval = $interval(refresh, 1000);
+    //$scope.loadDevices();
+    
+     $scope.loadMoreData = function() {
+        //console.log($scope.devices)
     };
-
-    //$scope.refreshData();
-
-
-
-
-
-//    $scope.dest = {
-//        1:{id: 1,val: 10},
-//        2:{id: 2,val: 20},
-//        3:{id: 3,val: 30}
-//        
-//        
-//    };
-//    $scope.src = {
-//        //id: 0,
-//        val:0
-//    };
-//    //var result = angular.extend(dest,src);
-//        var cnt = 0;
-//        var val;
-//        var refresh = function() {
-//            cnt++;
-//            //$scope.src.id += 1;
-//            val = Math.floor(Math.random() * (3 - 1+ 1)) + 1;
-//            
-//             $scope.src.val = val + 10;
-//             angular.extend($scope.dest[val],$scope.src);
-//        
-//             console.log(val)
-//        };
-//        $interval(refresh, 1000);
-//         
-////    };
+    $scope.loadMoreData();
+  
 });
 /**
  * Element controller
  */
 myAppController.controller('ElementController', function($scope, $routeParams, $interval, $location, dataFactory, dataService, myCache) {
     $scope.goHidden = [];
-    $scope.goHistory = [];
+    $scope.goHistory = []; 
     $scope.apiDataInterval = null;
     $scope.collection = [];
     $scope.showFooter = true;
