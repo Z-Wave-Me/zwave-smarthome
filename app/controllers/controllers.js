@@ -191,7 +191,7 @@ myAppController.controller('TestController', function($scope, $routeParams, $fil
     $scope.loadDoorLock = function(target, id, input) {
         $(target).modal();
         $scope.input = {
-            title: 'Door Lock Control'
+            title: 'Door Lock 1'
         };
         $scope.doorLock = {data: false, icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         //dataFactory.getApi('devices', '/' + id, true).then(function(response) {

@@ -13,17 +13,20 @@
 
                     <!-- Widget body -->
                     <div class="widget-body">
-                        <h3 class="entry-title">Door Lock Control</h3>
+                        <h3 class="entry-title">Door Lock 1</h3>
                         <div class="widget-control-wrap">
                             <div> 
                                <div class="widget-control control-left widget-click-popup" ng-click="loadDoorLock('#modal_doorlock', v.id,v)">
                                     <span class="widget-level">Closed at</span> <span>09:03</span> <i class="fa fa-caret-down"></i>
                                 </div>
-                                <!-- <div class="widget-control control-right">
+                                <div class="widget-control control-right">
                                     <div class="btn-group">
-                                        <button class="btn btn-default btn-sm"> <i class="fa fa-clock-o"></i> <span class="widget-update-time ng-binding">09:03</span></button>
-                                    </div>
-                                </div>.widget-control .right -->
+                                    <button class="btn widget-btn-off btn-sm btn-primary"><i class="fa fa-lock"></i>
+                                    </button>
+                                    <button class="btn widget-btn-on btn-sm btn-default"><i class="fa fa-unlock"></i>
+                                    </button>
+                                </div>
+                                </div>
                             </div>
 
                         </div><!-- /.widget-control-wrap --> 
@@ -48,22 +51,15 @@
                     <div class="multiline-entry" ng-if="doorLock.data">
                         <table class="table table-report table-condensed">
                            <tbody>
-                             <tr class="bcg-active" ng-repeat="n in doorLock.data.metrics.events| orderBy: '-updateTime'" ng-class="n.state ? 'true': 'false'">
+                             <tr class="bcg-success {{n.success}}" ng-repeat="n in doorLock.data.metrics.events| orderBy: '-updateTime'">
                                   <td class="td-img">
                                      <img class="report-img" ng-src="storage/img/icons/lock-{{n.level}}.png" alt="img" />
                                  </td>
                                  <td>
-                                      <i class="fa" ng-class="n.state ? '': 'fa-exclamation-triangle text-danger'"></i> <span ng-bind="n.name"/></span> <strong ng-bind="n.level"></strong> by <span ng-bind="n.user"/></span>
+                                      <strong ng-if="!n.success">not</strong> <strong ng-bind="n.level"></strong> <span ng-if="n.user">by {{n.user}}</span>
                                   </td>
-                                  <td class="text-right_">
-                                      <i class="fa fa-clock-o"></i> <span ng-bind="n.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')"></span>
-                                 </td>
-                                 <td class="text-right_">
-                                     <i class="fa" ng-class="n.policy == 'pernament'? 'fa-star text-success': 'fa-star-half-o text-info'"></i> <span ng-bind="n.code"></span>
-                                 </td>
-                                
-                                  <td class="text-right">
-                                   <a class="btn btn-default btn-sm" href="">Assign code</a>
+                                 <td class="text-left">
+                                     <i class="fa fa-clock-o"></i> <span ng-bind="n.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')"></span>
                                  </td>
                              </tr>
                              </tbody>
