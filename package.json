@@ -17,6 +17,7 @@
     "grunt-contrib-uglify": "~0.5.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-mkdir": "^0.1.2",
+    "grunt-remove": "^0.1.0",
     "grunt-string-replace": "^1.0.0"
   },
   "directories": {

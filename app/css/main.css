@@ -1209,16 +1209,21 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 
 /* line 14, sass/modules/_alpaca.scss */
+.alpaca-array-actionbar {
+  display: inline-block !important;
+}
+
+/* line 18, sass/modules/_alpaca.scss */
 .alpaca-fieldset-array-item-toolbar {
   display: inline-block !important;
 }
 
-/* line 17, sass/modules/_alpaca.scss */
+/* line 21, sass/modules/_alpaca.scss */
 .help-block.alpaca-controlfield-message-text {
   display: inline-block !important;
 }
 
-/* line 20, sass/modules/_alpaca.scss */
+/* line 24, sass/modules/_alpaca.scss */
 .alpaca-controlfield-container .has-error .form-control {
   border-color: #ccc !important;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
@@ -1228,7 +1233,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
 /* Default
 -------------------------------------------------- */
 /** Added to outer field elements to hide them **/
-/* line 29, sass/modules/_alpaca.scss */
+/* line 33, sass/modules/_alpaca.scss */
 .alpaca-hidden {
   display: none;
 }
@@ -1270,12 +1275,12 @@ http://codepen.io/MattIn4D/pen/LiKFC
 /** ******************************************************** **/
 /** Added to indicate hover state **/
 /** General purpose HTML clear **/
-/* line 238, sass/modules/_alpaca.scss */
+/* line 242, sass/modules/_alpaca.scss */
 .alpaca-clear {
   clear: both;
 }
 
-/* line 243, sass/modules/_alpaca.scss */
+/* line 247, sass/modules/_alpaca.scss */
 .alpaca-float-right {
   float: right;
 }
@@ -1283,7 +1288,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
 /** ************************************** **/
 /** TWITTER TYPEAHEAD                      **/
 /** ************************************** **/
-/* line 253, sass/modules/_alpaca.scss */
+/* line 257, sass/modules/_alpaca.scss */
 .twitter-typeahead .tt-dropdown-menu {
   background-color: white;
   border: 1px #ccc solid;
@@ -1293,18 +1298,18 @@ http://codepen.io/MattIn4D/pen/LiKFC
   width: 100%;
 }
 
-/* line 263, sass/modules/_alpaca.scss */
+/* line 267, sass/modules/_alpaca.scss */
 .twitter-typeahead .tt-dropdown-menu P {
   font-size: 1em;
 }
 
-/* line 268, sass/modules/_alpaca.scss */
+/* line 272, sass/modules/_alpaca.scss */
 .tt-suggestion.tt-is-under-cursor {
   background-color: #ccc;
   color: #333;
 }
 
-/* line 274, sass/modules/_alpaca.scss */
+/* line 278, sass/modules/_alpaca.scss */
 .tt-dropdown-menu {
   background-color: white;
   border: 1px solid #cccccc;
@@ -1314,7 +1319,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
 /** ************************************** **/
 /** EDITOR FIELD                           **/
 /** ************************************** **/
-/* line 288, sass/modules/_alpaca.scss */
+/* line 292, sass/modules/_alpaca.scss */
 .alpaca-controlfield-editor {
   position: relative;
   width: 100%;
@@ -1322,7 +1327,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border: 1px #ccc solid;
 }
 
-/* line 296, sass/modules/_alpaca.scss */
+/* line 300, sass/modules/_alpaca.scss */
 .alpaca-controlfield-editor .control-field-editor-el {
   position: absolute;
   top: 0;
@@ -1334,7 +1339,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
 /** ************************************** **/
 /** DATEPICKER (jQueryUI)                  **/
 /** ************************************** **/
-/* line 311, sass/modules/_alpaca.scss */
+/* line 315, sass/modules/_alpaca.scss */
 #ui-datepicker-div {
   display: none;
   background-color: white;
@@ -1343,12 +1348,12 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 
 /* Fix for Chrome issue with Button text */
-/* line 320, sass/modules/_alpaca.scss */
+/* line 324, sass/modules/_alpaca.scss */
 .ui-button .ui-button-text {
   white-space: nowrap;
 }
 
-/* line 324, sass/modules/_alpaca.scss */
+/* line 328, sass/modules/_alpaca.scss */
 .ui-datepicker {
   z-index: 100;
 }
@@ -1356,19 +1361,19 @@ http://codepen.io/MattIn4D/pen/LiKFC
 /** ************************************** **/
 /** FILE UPLOAD (jQueryUI)                 **/
 /** ************************************** **/
-/* line 340, sass/modules/_alpaca.scss */
+/* line 344, sass/modules/_alpaca.scss */
 .alpaca-fileupload-container {
   border: 1px #ccc solid;
   padding: 10px;
   border-radius: 5px;
 }
 
-/* line 347, sass/modules/_alpaca.scss */
+/* line 351, sass/modules/_alpaca.scss */
 .alpaca-fileupload-container .row {
   margin-bottom: 10px;
 }
 
-/* line 352, sass/modules/_alpaca.scss */
+/* line 356, sass/modules/_alpaca.scss */
 .alpaca-fileupload-well {
   /*border: 1px #ccc solid;*/
   padding: 10px;
@@ -1376,14 +1381,14 @@ http://codepen.io/MattIn4D/pen/LiKFC
   min-height: 100px;
 }
 
-/* line 360, sass/modules/_alpaca.scss */
+/* line 364, sass/modules/_alpaca.scss */
 .alpaca-fileupload-container table {
   border: 1px #ccc solid;
   padding: 10px;
   border-radius: 5px;
 }
 
-/* line 367, sass/modules/_alpaca.scss */
+/* line 371, sass/modules/_alpaca.scss */
 .alpaca-fileupload-well p {
   padding-top: 20px;
   color: #888;
@@ -1392,57 +1397,57 @@ http://codepen.io/MattIn4D/pen/LiKFC
 /** ************************************** **/
 /** ACE EDITOR                             **/
 /** ************************************** **/
-/* line 384, sass/modules/_alpaca.scss */
+/* line 388, sass/modules/_alpaca.scss */
 .ace_editor {
   border: 1px solid #cccccc;
 }
 
-/* line 392, sass/modules/_alpaca.scss */
+/* line 396, sass/modules/_alpaca.scss */
 .has-error .multiselect {
   border-color: #a94442;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
 
-/* line 398, sass/modules/_alpaca.scss */
+/* line 402, sass/modules/_alpaca.scss */
 .alpaca-container-label {
   margin-top: 20px;
 }
 
-/* line 403, sass/modules/_alpaca.scss */
+/* line 407, sass/modules/_alpaca.scss */
 legend.alpaca-container-label {
   margin-top: 0px;
 }
 
-/* line 408, sass/modules/_alpaca.scss */
+/* line 412, sass/modules/_alpaca.scss */
 .alpaca-array-toolbar {
   margin-bottom: 10px;
 }
 
-/* line 413, sass/modules/_alpaca.scss */
+/* line 417, sass/modules/_alpaca.scss */
 .alpaca-array-actionbar {
   padding-bottom: 10px;
   height: 40px;
 }
 
-/* line 419, sass/modules/_alpaca.scss */
+/* line 423, sass/modules/_alpaca.scss */
 .alpaca-array-actionbar, .alpaca-array-actionbar.btn-group {
   width: 100%;
 }
 
-/* line 424, sass/modules/_alpaca.scss */
+/* line 428, sass/modules/_alpaca.scss */
 .alpaca-field-object {
   border: 1px #ddd solid;
   border-radius: 4px;
   padding: 10px;
 }
 
-/* line 431, sass/modules/_alpaca.scss */
+/* line 435, sass/modules/_alpaca.scss */
 .alpaca-display h3 {
   margin-top: 0px;
 }
 
-/* line 436, sass/modules/_alpaca.scss */
+/* line 440, sass/modules/_alpaca.scss */
 .alpaca-field-object .alpaca-container .alpaca-field-object > .alpaca-container.alpaca-container-has-items {
   border: 1px #ddd solid;
   border-radius: 4px;
@@ -1457,109 +1462,109 @@ legend.alpaca-container-label {
     padding: 10px;
 }
 */
-/* line 452, sass/modules/_alpaca.scss */
+/* line 456, sass/modules/_alpaca.scss */
 .alpaca-field-array > .alpaca-container.alpaca-container-has-items {
   border: 1px #ddd solid;
   border-radius: 4px;
   padding: 10px;
 }
 
-/* line 459, sass/modules/_alpaca.scss */
+/* line 463, sass/modules/_alpaca.scss */
 .alpaca-container-item > .alpaca-container > .alpaca-field-object {
   border: 0px;
 }
 
-/* line 464, sass/modules/_alpaca.scss */
+/* line 468, sass/modules/_alpaca.scss */
 .alpaca-form-buttons-container {
   margin-top: 10px;
   text-align: right;
 }
 
-/* line 470, sass/modules/_alpaca.scss */
+/* line 474, sass/modules/_alpaca.scss */
 .alpaca-container > .form-group {
   margin-left: 0px;
   margin-right: 0px;
 }
 
-/* line 476, sass/modules/_alpaca.scss */
+/* line 480, sass/modules/_alpaca.scss */
 .alpaca-field-hidden {
   display: none;
 }
 
-/* line 481, sass/modules/_alpaca.scss */
+/* line 485, sass/modules/_alpaca.scss */
 .alpaca-field-object.alpaca-top {
   border: 0px;
 }
 
-/* line 486, sass/modules/_alpaca.scss */
+/* line 490, sass/modules/_alpaca.scss */
 .alpaca-field-array.alpaca-top {
   border: 0px;
 }
 
-/* line 491, sass/modules/_alpaca.scss */
+/* line 495, sass/modules/_alpaca.scss */
 .alpaca-container-item:not(:first-child) {
   margin-top: 10px;
 }
 
-/* line 496, sass/modules/_alpaca.scss */
+/* line 500, sass/modules/_alpaca.scss */
 .alpaca-container .alpaca-container-item:last-child {
   margin-bottom: 0px;
 }
 
-/* line 501, sass/modules/_alpaca.scss */
+/* line 505, sass/modules/_alpaca.scss */
 .alpaca-field-object.alpaca-top .alpaca-container {
   border: 0px;
 }
 
-/* line 506, sass/modules/_alpaca.scss */
+/* line 510, sass/modules/_alpaca.scss */
 .alpaca-field-select .btn-group {
   display: block;
 }
 
-/* line 511, sass/modules/_alpaca.scss */
+/* line 515, sass/modules/_alpaca.scss */
 .alpaca-field-select .btn-group button.multiselect {
   float: none;
 }
 
-/* line 516, sass/modules/_alpaca.scss */
+/* line 520, sass/modules/_alpaca.scss */
 .bootstrap-timepicker-widget table td input {
   width: 50px !important;
 }
 
 /** FIElDS **/
-/* line 524, sass/modules/_alpaca.scss */
+/* line 528, sass/modules/_alpaca.scss */
 .alpaca-field.alpaca-field-upload .fileupload-active-zone {
   margin-top: 50px;
   margin-bottom: 50px;
 }
 
-/* line 529, sass/modules/_alpaca.scss */
+/* line 533, sass/modules/_alpaca.scss */
 .alpaca-field.alpaca-field-upload .template-download TD.error {
   color: red;
 }
 
-/* line 534, sass/modules/_alpaca.scss */
+/* line 538, sass/modules/_alpaca.scss */
 .alpaca-field.alpaca-field-address .alpaca-field-address-mapcanvas {
   height: 250px;
 }
 
-/* line 539, sass/modules/_alpaca.scss */
+/* line 543, sass/modules/_alpaca.scss */
 .alpaca-field.alpaca-field-image .alpaca-image-display {
   margin-top: 20px;
 }
 
-/* line 544, sass/modules/_alpaca.scss */
+/* line 548, sass/modules/_alpaca.scss */
 .alpaca-field-text-max-length-indicator {
   color: #aaa;
 }
 
-/* line 549, sass/modules/_alpaca.scss */
+/* line 553, sass/modules/_alpaca.scss */
 .alpaca-field-text-max-length-indicator.err {
   color: #aa0000;
 }
 
 /** WIZARD **/
-/* line 558, sass/modules/_alpaca.scss */
+/* line 562, sass/modules/_alpaca.scss */
 .alpaca-wizard .alpaca-wizard-nav li .chevron {
   position: absolute;
   top: 0;
@@ -1570,7 +1575,7 @@ legend.alpaca-container-label {
   border-left: 14px solid #d4d4d4;
 }
 
-/* line 569, sass/modules/_alpaca.scss */
+/* line 573, sass/modules/_alpaca.scss */
 .alpaca-wizard .alpaca-wizard-nav li .chevron:before {
   position: absolute;
   top: -27px;
@@ -1582,7 +1587,7 @@ legend.alpaca-container-label {
   content: "";
 }
 
-/* line 581, sass/modules/_alpaca.scss */
+/* line 585, sass/modules/_alpaca.scss */
 .alpaca-wizard .alpaca-wizard-nav li div.holder {
   padding-left: 30px;
   padding-right: 20px;
@@ -1591,75 +1596,75 @@ legend.alpaca-container-label {
   padding-bottom: 6px;
 }
 
-/* line 590, sass/modules/_alpaca.scss */
+/* line 594, sass/modules/_alpaca.scss */
 .alpaca-wizard .alpaca-wizard-nav li:first-child div.holder {
   padding-left: 10px;
 }
 
-/* line 595, sass/modules/_alpaca.scss */
+/* line 599, sass/modules/_alpaca.scss */
 .alpaca-wizard .alpaca-wizard-nav li div.holder div.title {
   font-size: 18px;
   font-weight: 600;
   color: #333;
 }
 
-/* line 602, sass/modules/_alpaca.scss */
+/* line 606, sass/modules/_alpaca.scss */
 .alpaca-wizard .alpaca-wizard-nav li div.holder div.description {
   color: #aaa;
   font-size: 12px;
 }
 
-/* line 608, sass/modules/_alpaca.scss */
+/* line 612, sass/modules/_alpaca.scss */
 .alpaca-wizard .alpaca-wizard-nav li.completed div.holder div.title {
   color: #333;
 }
 
-/* line 613, sass/modules/_alpaca.scss */
+/* line 617, sass/modules/_alpaca.scss */
 .alpaca-wizard .alpaca-wizard-nav li.completed div.holder div.description {
   color: #333;
 }
 
-/* line 618, sass/modules/_alpaca.scss */
+/* line 622, sass/modules/_alpaca.scss */
 .alpaca-wizard .alpaca-wizard-nav li.visited:hover {
   cursor: pointer;
 }
 
-/* line 631, sass/modules/_alpaca.scss */
+/* line 635, sass/modules/_alpaca.scss */
 .alpaca-wizard .alpaca-wizard-nav li.active:hover {
   cursor: default;
 }
 
-/* line 636, sass/modules/_alpaca.scss */
+/* line 640, sass/modules/_alpaca.scss */
 .alpaca-wizard .alpaca-wizard-nav li.active div.holder div.title {
   color: #206199;
 }
 
-/* line 641, sass/modules/_alpaca.scss */
+/* line 645, sass/modules/_alpaca.scss */
 .alpaca-wizard .alpaca-wizard-nav li.active div.holder div.description {
   color: #206199;
 }
 
-/* line 646, sass/modules/_alpaca.scss */
+/* line 650, sass/modules/_alpaca.scss */
 .alpaca-wizard .alpaca-wizard-nav li.disabled div.holder div.title {
   color: #ccc;
 }
 
-/* line 651, sass/modules/_alpaca.scss */
+/* line 655, sass/modules/_alpaca.scss */
 .alpaca-wizard .alpaca-wizard-nav li.disabled div.holder div.description {
   color: #ccc;
 }
 
-/* line 656, sass/modules/_alpaca.scss */
+/* line 660, sass/modules/_alpaca.scss */
 .alpaca-wizard .alpaca-wizard-nav .alpaca-wizard-back {
   background-color: #fcfcfc;
 }
 
-/* line 661, sass/modules/_alpaca.scss */
+/* line 665, sass/modules/_alpaca.scss */
 .alpaca-wizard .alpaca-wizard-buttons {
   margin-top: 20px;
 }
 
-/* line 666, sass/modules/_alpaca.scss */
+/* line 670, sass/modules/_alpaca.scss */
 .alpaca-wizard .alpaca-wizard-progress-bar {
   margin-top: 20px;
 }

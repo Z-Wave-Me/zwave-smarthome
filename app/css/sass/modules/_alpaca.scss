@@ -1,14 +1,18 @@
 /* Custom
 -------------------------------------------------- */
-.alpaca-message-invalidValueOfEnum{
+.alpaca-message-invalidValueOfEnum{ 
     display: none !important; 
 }
 .alpaca-fieldset-legend{
-    font-size: 16px;
+    font-size: 16px; 
 }
 
 .alpaca-fieldset-legend-button{
     margin-right: 5px;
+}
+
+.alpaca-array-actionbar{
+    display: inline-block !important;
 }
 
 .alpaca-fieldset-array-item-toolbar{

@@ -207,7 +207,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
                 }).
                 // Test
                 when('/test', {
-                    templateUrl: 'app/views/test.html'
+                    templateUrl: 'app/views/_test/test.html'
                 }).
                 otherwise({
                     redirectTo: '/error/404'

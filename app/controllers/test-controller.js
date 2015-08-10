@@ -23,7 +23,7 @@ myAppController.controller('TestController', function($scope, $routeParams, $fil
         };
         $scope.doorLock = {data: false, icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         //dataFactory.getApi('devices', '/' + id, true).then(function(response) {
-         dataFactory.getApiLocal('door_lock.json').then(function(response) {
+         dataFactory.getApiLocal('_test/door_lock.json').then(function(response) {
              console.log(response)
             if (response.data.data.metrics.events) {
                 $scope.doorLock = {data: response.data.data};

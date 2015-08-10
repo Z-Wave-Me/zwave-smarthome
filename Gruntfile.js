@@ -77,6 +77,8 @@ module.exports = function(grunt) {
                 files: [
                     {
                         src: [
+                            '!app/views/_test/**',
+                            'app/img/**',
                            'app/img/**',
                             'app/views/**',
                             'app/lang/**'
@@ -122,6 +124,16 @@ module.exports = function(grunt) {
                ]
             }
         },
+        remove: {
+            options: {
+              trace: true
+            },
+            //fileList: ['path_to_file_1.extension', 'path_to_file_2.extension'],
+            dirList: [
+                'dist/app/views/_test/', 
+                'dist/storage/data/_test/'
+            ]
+         },
         
         // HTML min
         htmlmin: {
@@ -199,6 +211,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
     grunt.loadNpmTasks('grunt-string-replace');
     grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-remove');
 
     // Default task(s).
     grunt.registerTask('default', ['clean','concat','copy','cssmin']);
