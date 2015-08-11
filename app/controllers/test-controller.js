@@ -24,7 +24,6 @@ myAppController.controller('TestController', function($scope, $routeParams, $fil
         $scope.doorLock = {data: false, icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         //dataFactory.getApi('devices', '/' + id, true).then(function(response) {
          dataFactory.getApiLocal('_test/door_lock.json').then(function(response) {
-             console.log(response)
             if (response.data.data.metrics.events) {
                 $scope.doorLock = {data: response.data.data};
             } else {
@@ -37,6 +36,28 @@ myAppController.controller('TestController', function($scope, $routeParams, $fil
     };
     
      /**
+     * Show door lock manage modal window
+     */
+    $scope.loadDoorLockManage = function(target, id, input) {
+        $(target).modal();
+         $scope.doorLockManage = {data: false, icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        
+         dataFactory.getApi('instances', '/DoorLockUser', true).then(function(response) {
+             console.log(response)
+            if (response.data.data[0]) {
+                $scope.doorLockManage = {data: response.data.data[0].params.keys};
+            } else {
+                $scope.doorLockManage = {data: false, icon: 'fa-info-circle text-warning', message: $scope._t('no_data')};
+            }
+        }, function(error) {
+            $scope.doorLockManage = {data: false, icon: 'fa-exclamation-triangle text-danger', message: $scope._t('error_load_data')};
+        });
+        
+
+    };
+    $scope.climateElementModes = ['off','esave','per_room'];
+    
+     /**
      * Show climate modal window
      */
     $scope.loadClimateControl = function(target, id, input) {
@@ -47,6 +68,7 @@ myAppController.controller('TestController', function($scope, $routeParams, $fil
         $scope.climateControl = {data: false, icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         $scope.climateControlModes = ['off','esave','comfort','time_driven'];
         $scope.climateControlMode = {};
+        $scope.changeClimateControlProcess = {};
         //dataFactory.getApi('devices', '/' + id, true).then(function(response) {
          dataFactory.getApiLocal('_test/climate_control.json').then(function(response) {
             
@@ -66,8 +88,12 @@ myAppController.controller('TestController', function($scope, $routeParams, $fil
      */
     $scope.changeClimateControlMode = function(id) {
         //console.log($scope.climateControl.data.metrics.rooms);
+        $scope.changeClimateControlProcess[id] = true;
         var room = _.findWhere($scope.climateControl.data.metrics.rooms,{id: id})
         console.log(room.title + ' changing mode to: ',$scope.climateControlMode[id])
+         $timeout(function() {
+                 $scope.changeClimateControlProcess[id] = false;
+            }, 3000);
 
     };
 
