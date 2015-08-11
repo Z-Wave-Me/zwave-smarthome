@@ -149,7 +149,30 @@
                                     </button>
                                 </div>
                             </div><!-- /.widget-control .right --> 
-
+                            
+                            <!-- doorLockControl -->
+                             <div ng-switch-when="doorLockControl">
+                                <div class="widget-control control-left widget-click-popup" ng-click="loadDoorLock('#modal_doorlock', v.id,v)">
+                                    <span class="widget-level">Closed at</span> <span>{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span> <i class="fa fa-caret-down"></i>
+                                </div>
+                                <div class="widget-control control-right"> 
+                                    <div class="btn-group">
+                                        <button 
+                                            class="btn widget-btn-off btn-sm"
+                                            ng-class="levelVal[v.id]=='close' ? 'btn-primary': 'btn-default'"
+                                            data-ng-click="levelVal[v.id] = 'closed'; runCmd(v.id + '/command/close', v.id)"
+                                            ><i class="fa fa-lock"></i>
+                                        </button>
+                                        <button 
+                                            class="btn widget-btn-on btn-sm"
+                                            ng-class="levelVal[v.id]=='open' ? 'btn-primary': 'btn-default'"
+                                            data-ng-click="levelVal[v.id] = 'open'; runCmd(v.id + '/command/open', v.id)"
+                                            ><i class="fa fa-unlock"></i>
+                                        </button>
+                                    </div>
+                                    </div><!-- /.widget-control .right --> 
+                             </div>
+                            
                             <!-- toggleButton -->
                             <div class="widget-control control-right" ng-switch-when="toggleButton">
                                 <div class="btn-group">
@@ -526,6 +549,40 @@
                                             <canvas tc-chartjs-line chart-data="multiLineHistory[n.id].data" chart-options="chartOptions" width="260" height="150"></canvas>
                                         </div>
                                     </div>
+                                 </td>
+                             </tr>
+                             </tbody>
+                         </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div><!-- /.Modal multiline -->
+    
+    <!-- Modal door lock -->
+    <div class="modal modal-vertical-centered modal-no-padding fade" id="modal_doorlock" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-center">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" ng-bind="input.title"></h4>
+                </div>
+                <div class="modal-body ">
+                    <div class="alert alert-warning" ng-if="!doorLock.data">
+                        <i class="fa {{doorLock.icon}}"></i> <span ng-bind="doorLock.message"></span>
+                    </div>
+                    <div class="multiline-entry" ng-if="doorLock.data">
+                        <table class="table table-report table-condensed">
+                           <tbody>
+                             <tr class="bcg-success {{n.success}}" ng-repeat="n in doorLock.data.metrics.events| orderBy: '-updateTime'">
+                                  <td class="td-img">
+                                     <img class="report-img" ng-src="storage/img/icons/lock-{{n.level}}.png" alt="img" />
+                                 </td>
+                                 <td>
+                                      <strong ng-if="!n.success">not</strong> <strong ng-bind="n.level"></strong> <span ng-if="n.user">by {{n.user}}</span>
+                                  </td>
+                                 <td class="text-left">
+                                     <i class="fa fa-clock-o"></i> <span ng-bind="n.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')"></span>
                                  </td>
                              </tr>
                              </tbody>

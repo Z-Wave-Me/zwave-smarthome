@@ -185,6 +185,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.history = [];
     $scope.historyStatus = [];
     $scope.multilineSensor = false;
+    $scope.doorLock = false;
     $scope.levelVal = [];
     $scope.rgbVal = [];
     $scope.goMutiLineHistory = [];
@@ -348,6 +349,26 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
             }
         }, function(error) {
             $scope.multilineSensor = {data: false, icon: 'fa-exclamation-triangle text-danger', message: $scope._t('error_load_data')};
+        });
+
+    };
+    
+    /**
+     * Show door lock modal window
+     */
+    $scope.loadDoorLock = function(target, id, input) {
+        $(target).modal();
+        $scope.input = input;
+        $scope.doorLock = {data: false, icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        //dataFactory.getApi('devices', '/' + id, true).then(function(response) {
+          dataFactory.getApi('devices', '/' + id, true).then(function(response) {
+             if (response.data.data.metrics.events) {
+                $scope.doorLock = {data: response.data.data};
+            } else {
+                $scope.doorLock = {data: false, icon: 'fa-info-circle text-warning', message: $scope._t('no_data')};
+            }
+        }, function(error) {
+            $scope.doorLock = {data: false, icon: 'fa-exclamation-triangle text-danger', message: $scope._t('error_load_data')};
         });
 
     };

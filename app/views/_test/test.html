@@ -1,13 +1,14 @@
 <!-- Test view -->
 <div ng-controller="TestController">
-   <h1>Test page</h1>
-   <div class="row">
-   <div id="Widget_Multiline_13" class="col-lg-4 col-md-6 col-sm-6 widget-entry ng-scope">
+    <h1>Test page</h1>
+    <div class="row">
+        <!--------------------------------- Door lock control --------------------------------->
+        <div id="Widget_Multiline_13" class="col-lg-4 col-md-6 col-sm-6 widget-entry">
             <div class="widget-block sensorMultiline">
-                    <div class="widget-block-in clearfix app-border app-gradient app-shadow">
-                   <img id="widget_img_Multiline_13" class="widget-image" src="storage/img/icons/lock-closed.png" alt="img">
+                <div class="widget-block-in clearfix app-border app-gradient app-shadow">
+                    <img id="widget_img_Multiline_13" class="widget-image" src="storage/img/icons/lock-closed.png" alt="img">
                     <!-- Widget header -->
-                   <div class="widget-header">
+                    <div class="widget-header">
                         <a class="widget-config" href=""><i class="fa fa-cog fa-lg"></i></a>
                     </div>
 
@@ -16,16 +17,47 @@
                         <h3 class="entry-title">Door Lock 1</h3>
                         <div class="widget-control-wrap">
                             <div> 
-                               <div class="widget-control control-left widget-click-popup" ng-click="loadDoorLock('#modal_doorlock', v.id,v)">
+                                <div class="widget-control control-left widget-click-popup" ng-click="loadDoorLock('#modal_doorlock', v.id, v)">
                                     <span class="widget-level">Closed at</span> <span>09:03</span> <i class="fa fa-caret-down"></i>
                                 </div>
                                 <div class="widget-control control-right">
                                     <div class="btn-group">
-                                    <button class="btn widget-btn-off btn-sm btn-primary"><i class="fa fa-lock"></i>
-                                    </button>
-                                    <button class="btn widget-btn-on btn-sm btn-default"><i class="fa fa-unlock"></i>
-                                    </button>
+                                        <button class="btn widget-btn-off btn-sm btn-primary"><i class="fa fa-lock"></i>
+                                        </button>
+                                        <button class="btn widget-btn-on btn-sm btn-default"><i class="fa fa-unlock"></i>
+                                        </button>
+                                    </div>
                                 </div>
+                            </div>
+
+                        </div><!-- /.widget-control-wrap --> 
+                    </div><!-- /.panel-body -->
+                </div>
+            </div>
+        </div>
+        
+        <!--------------------------------- Climate control --------------------------------->
+        <div id="Widget_Multiline_14" class="col-lg-4 col-md-6 col-sm-6 widget-entry">
+            <div class="widget-block sensorMultiline">
+                <div class="widget-block-in clearfix app-border app-gradient app-shadow">
+                    <img id="widget_img_Multiline_13" class="widget-image" src="storage/img/icons/temperature.png" alt="img">
+                    <!-- Widget header -->
+                    <div class="widget-header">
+                        <a class="widget-config" href=""><i class="fa fa-cog fa-lg"></i></a>
+                    </div>
+
+                    <!-- Widget body -->
+                    <div class="widget-body">
+                        <h3 class="entry-title">Climate Control 1</h3>
+                        <div class="widget-control-wrap">
+                            <div> 
+                                <div class="widget-control control-left widget-click-popup" ng-click="loadClimateControl('#modal_climate_control')">
+                                    <span class="widget-level">Click here</span> <i class="fa fa-caret-down"></i>
+                                </div>
+                                <div class="widget-control control-right">
+                                    <div class="btn-group">
+                                        <button class="btn btn-default btn-sm"> <i class="fa fa-clock-o"></i> <span class="widget-update-time">09:50</span></button>
+                                    </div>
                                 </div>
                             </div>
 
@@ -35,8 +67,8 @@
             </div>
         </div>
     </div>
-   
-   <!-- Modal door lock -->
+
+    <!--------------------------------- Modal door lock --------------------------------->
     <div class="modal modal-vertical-centered modal-no-padding fade" id="modal_doorlock" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-center">
             <div class="modal-content">
@@ -50,29 +82,73 @@
                     </div>
                     <div class="multiline-entry" ng-if="doorLock.data">
                         <table class="table table-report table-condensed">
-                           <tbody>
-                             <tr class="bcg-success {{n.success}}" ng-repeat="n in doorLock.data.metrics.events| orderBy: '-updateTime'">
-                                  <td class="td-img">
-                                     <img class="report-img" ng-src="storage/img/icons/lock-{{n.level}}.png" alt="img" />
-                                 </td>
-                                 <td>
-                                      <strong ng-if="!n.success">not</strong> <strong ng-bind="n.level"></strong> <span ng-if="n.user">by {{n.user}}</span>
-                                  </td>
-                                 <td class="text-left">
-                                     <i class="fa fa-clock-o"></i> <span ng-bind="n.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')"></span>
-                                 </td>
-                             </tr>
-                             </tbody>
-                         </table>
-                        </div>
+                            <tbody>
+                                <tr class="bcg-success {{n.success}}" ng-repeat="n in doorLock.data.metrics.events| orderBy: '-updateTime'">
+                                    <td class="td-img">
+                                        <img class="report-img" ng-src="storage/img/icons/lock-{{n.level}}.png" alt="img" />
+                                    </td>
+                                    <td>
+                                        <strong ng-if="!n.success">not</strong> <strong ng-bind="n.level"></strong> <span ng-if="n.user">by {{n.user}}</span>
+                                    </td>
+                                    <td class="text-left">
+                                        <i class="fa fa-clock-o"></i> <span ng-bind="n.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')"></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-    </div><!-- /.Modal multiline -->
+        </div>
+    </div><!-- /.Modal door lock -->
+    
+    <!--------------------------------- Modal climate control --------------------------------->
+    <div class="modal modal-vertical-centered modal-no-padding fade" id="modal_climate_control" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-center">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" ng-bind="input.title"></h4>
+                </div>
+                <div class="modal-body ">
+                    <div class="alert alert-warning" ng-if="!climateControl.data">
+                        <i class="fa {{climateControl.icon}}"></i> <span ng-bind="climateControl.message"></span>
+                    </div>
+                    <div class="multiline-entry" ng-if="climateControl.data">
+                       <table class="table table-report table-condensed">
+                            <tbody>
+                                <tr class="bcg-success" ng-repeat="n in climateControl.data.metrics.rooms">
+                                    <td class="td-img">
+                                        <img class="report-img" ng-src="storage/img/rooms/{{n.default_img}}" alt="img" />
+                                    </td>
+                                    <td ng-bind="n.title"></td>
+                                    <td class="text-success">
+                                        <span ng-bind="n.level"></span> <span ng-bind="n.scaleTitle"></span>
+                                    </td>
+                                    <td class="text-primary">
+                                        <span ng-bind="n.modeLevel"></span> <span ng-bind="n.scaleTitle"></span>
+                                    </td>
+                                    <td class="text-left">
+                                        <select class="form-control" 
+                                                name="changeMode_{{n.id}}" 
+                                                id="changeMode_{{n.id}}"
+                                                ng-model="climateControlMode[n.id]" 
+                                                ng-change="changeClimateControlMode(n.id)">
+                                            <option value="{{m}}" ng-repeat="m in climateControlModes" ng-selected="n.mode == m" ng-bind="_t(m)"></option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.Modal climate -->
     <!--<div infinite-scroll='loadDevices()' infinite-scroll-distance='2'>
     <img ng-repeat='v in devices' ng-src='http://placehold.it/225x250&text={{$index}}'>
   </div>
-  <!--<div infinite-scroll='loadMore()' infinite-scroll-distance='2'>
-    <img ng-repeat='image in images' ng-src='http://placehold.it/225x250&text={{image}}'>
-  </div>--> 
+    <!--<div infinite-scroll='loadMore()' infinite-scroll-distance='2'>
+      <img ng-repeat='image in images' ng-src='http://placehold.it/225x250&text={{image}}'>
+    </div>--> 
 </div><!-- /ng-controller --> 
