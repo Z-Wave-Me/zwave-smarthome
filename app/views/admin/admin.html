@@ -167,6 +167,7 @@
                     <span ng-bind="_t('current_firmware')"></span>: <strong ng-bind="controllerInfo.softwareRevisionVersion"></strong>
                 </p>
                 <a class="btn btn-primary" href="" target="_blank" ng-click="showModal('#modal_firmware')">{{_t('update_to_latest')}} {{controllerInfo.softwareLatestVersion}}</a>
+                <p class="help-text"><i class="fa fa-question-circle text-info"></i> {{_t('firmware_update_info')}}</p>
               </fieldset>
                  <!--<div><i class="fa fa-exclamation-circle"></i> <em>{{_t('firmware_update_war')}}</em></div>
                  <bb-alert alert="firmware.alert"></bb-alert>

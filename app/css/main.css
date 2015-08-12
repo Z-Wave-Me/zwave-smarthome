@@ -354,7 +354,7 @@ a:hover {
 }
 
 /* line 99, sass/globals/_body.scss */
-.info-lert {
+.help-text {
   font-size: 95%;
   font-style: italic;
   margin: 5px 0;
