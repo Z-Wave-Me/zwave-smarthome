@@ -1,5 +1,5 @@
 <!-- Config rooms edit -->
-<div ng-controller="RoomConfigEditController">
+<div ng-controller="RoomConfigEditController" class="mobile-padding">
     <bb-loader></bb-loader>
 
     <div ng-show="input">
@@ -40,8 +40,8 @@
             <fieldset>
                 <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_upload_image')"></span></h3>
                 <div>
-                   <bb-help-text trans="_t('room_image_upload_info')"></bb-help-text>
-                    <div class="form-group">
+                  <div class="form-group">
+                       <bb-help-text trans="_t('room_image_upload_info')"></bb-help-text>
                          <input type="file" class="form-control_" file-model="myFile" /><br /> 
                           <button type="button" class="btn btn-success" id="btn_upload_img" ng-click="uploadFile()" ng-bind="_t('lb_upload_image')"></button>
                     </div>
