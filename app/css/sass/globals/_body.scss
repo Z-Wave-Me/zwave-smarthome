@@ -97,8 +97,12 @@ a:hover {
     font-weight: bold;
 }
 .help-text{
+    display: inline;
     font-size: 95%;
     font-style: italic;
+}
+.help-text.block{
+    display: block;
     margin: 5px 0;
 }
 

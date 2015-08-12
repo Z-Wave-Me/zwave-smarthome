@@ -60,6 +60,21 @@ myApp.directive('bbAlert', function() {
 });
 
 /**
+ * Help text directive
+ */
+myApp.directive('bbHelpText', function() {
+    return {
+        restrict: "E",
+        replace: true,
+        scope: {
+            trans: '=',
+             display: '='
+        },
+        template: '<span class="help-text" ng-class="display"><i class="fa fa-question-circle text-info"></i> {{trans}}</span>'
+    };
+});
+
+/**
  * Show validation error
  */
 myApp.directive('bbValidator', function($window) {
