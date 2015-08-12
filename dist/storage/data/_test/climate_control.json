@@ -1,0 +1,68 @@
+{
+    "data": {
+        "creatorId": 13,
+        "deviceType": "sensorMultiline",
+        "h": 1087972116,
+        "hasHistory": false,
+        "id": "ClimateControl_1",
+        "location": 1,
+        "metrics": {
+            "title": "Climate Control 1",
+            "rooms": [{
+                    "id": 1,
+                    "title": "Living Room",
+                    "user_img": "",
+                    "default_img": "living_room.jpg",
+                    "img_type": "default",
+                    "mode": "off",
+                    "modeLevel": 22,
+                    "level": 21,
+                    "scaleTitle": "°C",
+                    "updateTime": 1438847769
+                }, {
+                    "id": 2,
+                    "title": "Kitchen",
+                    "user_img": "",
+                    "default_img": "kitchen.jpg",
+                    "img_type": "default",
+                    "mode": "esave",
+                     "modeLevel": 17,
+                    "level": 18,
+                    "scaleTitle": "°C",
+                    "updateTime": 1438607281
+                }, {
+                    "id": 3,
+                    "title": "Bedroom",
+                    "user_img": "",
+                    "default_img": "sleeping_room.jpg",
+                    "img_type": "default",
+                    "mode": "comfort",
+                     "modeLevel": 20,
+                    "level": 20,
+                    "scaleTitle": "°C",
+                    "updateTime": 1438848925
+                }, {
+                    "id": 4,
+                    "title": "Bathroom",
+                    "user_img": "",
+                    "default_img": "bathroom.jpg",
+                    "img_type": "default",
+                    "mode": "time_driven",
+                    "modeLevel": 19,
+                    "level": 19,
+                    "scaleTitle": "°C",
+                    "updateTime": 1437559884
+                }],
+            "icon": "meter",
+            "level": "",
+            "scaleTitle": "kWh"
+        },
+        "permanently_hidden": false,
+        "tags": ["Livingroom"],
+        "visibility": true,
+        "updateTime": 1438847769
+    },
+    "code": 200,
+    "message": "200 OK",
+    "error": null
+}

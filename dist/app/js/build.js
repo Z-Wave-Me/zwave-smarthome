@@ -6397,6 +6397,22 @@ myApp.directive('bbAlert', function() {
 });
 
 /**
+ * Help text directive
+ */
+myApp.directive('bbHelpText', function() {
+    return {
+        restrict: "E",
+        replace: true,
+        scope: {
+            trans: '=',
+            display: '=',
+            icon: '='
+        },
+        template: '<span class="help-text" ng-class="display"><i class="fa text-info" ng-class="icon ? icon : \' fa-info-circle\'"></i> {{trans}}</span>'
+    };
+});
+
+/**
  * Show validation error
  */
 myApp.directive('bbValidator', function($window) {
@@ -7097,6 +7113,10 @@ myApp.filter('getElementIcon', function(cfg) {
                 case 'door':
                     icon = cfg.img.icons + (level == 'open' ? 'door-open.png' : 'door-closed.png');
                     break;
+                 case 'doorlockcontrol':
+                     icon = cfg.img.icons + 'lock-closed.png';
+                    break;
+                    
 
                 case 'switch':
                     icon = cfg.img.icons + (level == 'on' ? 'switch-on.png' : 'switch-off.png');
@@ -7733,6 +7753,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.history = [];
     $scope.historyStatus = [];
     $scope.multilineSensor = false;
+    $scope.doorLock = false;
     $scope.levelVal = [];
     $scope.rgbVal = [];
     $scope.goMutiLineHistory = [];
@@ -7896,6 +7917,26 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
             }
         }, function(error) {
             $scope.multilineSensor = {data: false, icon: 'fa-exclamation-triangle text-danger', message: $scope._t('error_load_data')};
+        });
+
+    };
+    
+    /**
+     * Show door lock modal window
+     */
+    $scope.loadDoorLock = function(target, id, input) {
+        $(target).modal();
+        $scope.input = input;
+        $scope.doorLock = {data: false, icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        //dataFactory.getApi('devices', '/' + id, true).then(function(response) {
+          dataFactory.getApi('devices', '/' + id, true).then(function(response) {
+             if (response.data.data.metrics.events) {
+                $scope.doorLock = {data: response.data.data};
+            } else {
+                $scope.doorLock = {data: false, icon: 'fa-info-circle text-warning', message: $scope._t('no_data')};
+            }
+        }, function(error) {
+            $scope.doorLock = {data: false, icon: 'fa-exclamation-triangle text-danger', message: $scope._t('error_load_data')};
         });
 
     };

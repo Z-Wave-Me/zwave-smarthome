@@ -50,6 +50,7 @@
                         <p>
                             <label>{{_t('remote_access_password')}}: </label>
                             <input name="remote_password" id="remote_password" type="password" class="form-control form-control-sm" value="" ng-model="remoteAccess.params.pass" />
+                            <bb-help-text trans="_t('keep_password_empty')"></bb-help-text>
                         </p>
                     </div>
 
@@ -167,6 +168,7 @@
                     <span ng-bind="_t('current_firmware')"></span>: <strong ng-bind="controllerInfo.softwareRevisionVersion"></strong>
                 </p>
                 <a class="btn btn-primary" href="" target="_blank" ng-click="showModal('#modal_firmware')">{{_t('update_to_latest')}} {{controllerInfo.softwareLatestVersion}}</a>
+                 <bb-help-text trans="_t('firmware_update_info')"></bb-help-text>
               </fieldset>
                  <!--<div><i class="fa fa-exclamation-circle"></i> <em>{{_t('firmware_update_war')}}</em></div>
                  <bb-alert alert="firmware.alert"></bb-alert>

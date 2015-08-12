@@ -18,7 +18,10 @@
                 <div>
                     <!-- instance -->
                     <div class="form-group" ng-show="input.cfg.hasInstance">
-                        <span ng-bind="_t('lb_gen_by_module')"></span> <a class="btn btn-default btn-sm" ng-href="#module/put/{{input.cfg.hasInstance.id}}" ng-bind="input.cfg.hasInstance.moduleId"></a>
+                        <span ng-bind="_t('lb_gen_by_module')"></span> <a class="btn btn-default btn-sm" ng-href="#module/put/{{input.cfg.hasInstance.id}}">
+                            <strong ng-bind="input.cfg.hasInstance.title"></strong> - <span ng-bind="input.cfg.hasInstance.module"></span>
+                                
+                        </a>
                     </div>
                     <!-- zwave -->
                     <div class="form-group" ng-if="input.cfg.zwaveId"> 
