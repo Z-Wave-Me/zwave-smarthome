@@ -97,13 +97,14 @@ a:hover {
     font-weight: bold;
 }
 .help-text{
-    display: inline;
+    display: block;
     font-size: 95%;
     font-style: italic;
+     margin: 5px 0;
 }
-.help-text.block{
-    display: block;
-    margin: 5px 0;
+.help-text.inline{
+    display: inline;
+   
 }
 
 .btn-tooltip{
