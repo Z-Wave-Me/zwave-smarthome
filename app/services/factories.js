@@ -51,10 +51,9 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
         loadZwaveApiData: loadZwaveApiData,
         joinedZwaveData: joinedZwaveData,
         runZwaveCmd: runZwaveCmd,
-        loadEnoceanDevices: loadEnoceanDevices,
+        loadEnoceanApiData: loadEnoceanApiData,
+        refreshEnoceanApiData: refreshEnoceanApiData,
         runEnoceanCmd: runEnoceanCmd,
-        dataEnoceanCmd: dataEnoceanCmd,
-        refreshEnoceanDevices: refreshEnoceanDevices,
         getLicense: getLicense,
         zmeCapabilities: zmeCapabilities,
         postReport: postReport,
@@ -546,15 +545,13 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
         });
     }
 
-    //getEnoceanData: getEnoceanData,
-    //runEnoceanCmd: runEnoceanCmd,
-
+    
     /**
-     * Load Enocean devices 
+     * Load EnOcean api data (holder)
      */
-    function loadEnoceanDevices(noCache) {
+    function loadEnoceanApiData(noCache) {
         // Cached data
-        var cacheName = 'cache_enocean';
+        var cacheName = 'cache_enocean_data';
         var cached = myCache.get(cacheName);
         if (!noCache && cached) {
             var deferred = $q.defer();
@@ -563,17 +560,17 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
         }
         return $http({
             method: 'get',
-            url: cfg.server_url + cfg.enocean_run_url + 'devices'
+            url: cfg.server_url + cfg.enocean_data_url + 0
         }).then(function(response) {
-            if (typeof response.data === 'object') {
-                myCache.put(cacheName, response.data);
-                return response.data;
+            //return response;
+            if (typeof response === 'object') {
+                myCache.put(cacheName, response);
+                return response;
             } else {
                 // invalid response
                 return $q.reject(response);
             }
-        }, function(response) {
-            // something went wrong
+        }, function(response) {// something went wrong
             return $q.reject(response);
         });
     }
@@ -591,26 +588,12 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
         });
     }
 
-    /**
-     * Data Enocean command
-     */
-    function dataEnoceanCmd() {
-        return $http({
-            method: 'get',
-            url: cfg.server_url + cfg.enocean_data_url
-        }).then(function(response) {
-            return response;
-        }, function(response) {// something went wrong
-            return $q.reject(response);
-        });
-    }
-
-    // Refresh Enocean devices 
-    function refreshEnoceanDevices() {
+    // Refresh Enocean data holder
+    function refreshEnoceanApiData() {
         //console.log('?since=' + updatedTime)
         return $http({
             method: 'get',
-            url: cfg.server_url + cfg.enocean_run_url + 'data(' + updatedTime + ')',
+             url: cfg.server_url + cfg.enocean_data_url + updatedTime
             /*headers: {
              'Accept-Language': lang,
              'ZWAYSession': ZWAYSession

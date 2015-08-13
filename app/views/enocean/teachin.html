@@ -53,6 +53,9 @@
                                         <button class="btn btn-primary" ng-click="updateDevice(dev[e.id])" ng-bind="_t('rename_device')"></button>
                                     </div>
                                     </fieldset> -->
+                                <div class="alert alert-warning" ng-if="apiDevices.length < 1">
+                                <i class="fa fa-lg fa-exclamation-circle"></i> <span ng-bind="_t('enocean_no_settings')"></span>
+                                </div>
                                     
                                 <fieldset ng-if="apiDevices">
                                 <div class="form-group form-inline" ng-repeat="e in apiDevices | orderBy:'title':false" ng-init="dev[e.id] = e">

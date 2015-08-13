@@ -153,7 +153,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
      */
     $scope.getAppLogo = function() {
         var logo = 'app/img/app-logo-default.png';
-        if(cfg.custom_cfg[cfg.app_type]){
+        if (cfg.custom_cfg[cfg.app_type]) {
             logo = cfg.custom_cfg[cfg.app_type].logo || logo;
         }
         return logo;
@@ -163,7 +163,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
      */
     $scope.getHiddenApps = function() {
         var apps = [];
-        if(cfg.custom_cfg[cfg.app_type]){
+        if (cfg.custom_cfg[cfg.app_type]) {
             apps = cfg.custom_cfg[cfg.app_type].hidden_apps || [];
         }
         return apps;
@@ -175,7 +175,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
  */
 myAppController.controller('ElementController', function($scope, $routeParams, $interval, $location, dataFactory, dataService, myCache) {
     $scope.goHidden = [];
-    $scope.goHistory = []; 
+    $scope.goHistory = [];
     $scope.apiDataInterval = null;
     $scope.collection = [];
     $scope.showFooter = true;
@@ -352,7 +352,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         });
 
     };
-    
+
     /**
      * Show door lock modal window
      */
@@ -361,8 +361,8 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         $scope.input = input;
         $scope.doorLock = {data: false, icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         //dataFactory.getApi('devices', '/' + id, true).then(function(response) {
-          dataFactory.getApi('devices', '/' + id, true).then(function(response) {
-             if (response.data.data.metrics.events) {
+        dataFactory.getApi('devices', '/' + id, true).then(function(response) {
+            if (response.data.data.metrics.events) {
                 $scope.doorLock = {data: response.data.data};
             } else {
                 $scope.doorLock = {data: false, icon: 'fa-info-circle text-warning', message: $scope._t('no_data')};
@@ -653,7 +653,7 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
 /**
  * Event controller
  */
-myAppController.controller('EventController', function($scope, $routeParams, $interval, $window, $filter, $cookies, $location, dataFactory, dataService, myCache, paginationService,cfg,_) {
+myAppController.controller('EventController', function($scope, $routeParams, $interval, $window, $filter, $cookies, $location, dataFactory, dataService, myCache, paginationService, cfg, _) {
     $scope.collection = [];
     $scope.eventLevels = [];
     $scope.dayCount = [
@@ -876,7 +876,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
 });
 /**
  * App controller
- */ 
+ */
 myAppController.controller('AppController', function($scope, $window, $cookies, $timeout, $route, dataFactory, dataService, myCache, _) {
     $scope.instances = [];
     $scope.hasImage = [];
@@ -923,12 +923,12 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
             var modulesFiltered = _.filter(response.data.data, function(item) {
                 var isHidden = false;
                 if ($scope.getHiddenApps().indexOf(item.moduleName) > -1) {
-                     if($scope.user.role !== 1){
-                         isHidden = true;
-                     }else{
-                         isHidden = ($scope.user.expert_view ? false : true);
-                     }
-                    
+                    if ($scope.user.role !== 1) {
+                        isHidden = true;
+                    } else {
+                        isHidden = ($scope.user.expert_view ? false : true);
+                    }
+
                 }
                 if (item.category === 'surveillance') {
                     isHidden = true;
@@ -978,15 +978,15 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     $scope.loadInstances = function() {
         dataFactory.getApi('instances').then(function(response) {
             $scope.instances = _.reject(response.data.data, function(v) {
-               //return v.state === 'hidden' && ($scope.user.role !== 1 && $scope.user.expert_view !== true);
+                //return v.state === 'hidden' && ($scope.user.role !== 1 && $scope.user.expert_view !== true);
                 if ($scope.getHiddenApps().indexOf(v.moduleId) > -1) {
-                     if($scope.user.role !== 1){
+                    if ($scope.user.role !== 1) {
                         return true;
-                     }else{
-                         return ($scope.user.expert_view ? false : true);
-                     }
-                    
-                }else{
+                    } else {
+                        return ($scope.user.expert_view ? false : true);
+                    }
+
+                } else {
                     return false;
                 }
             });
@@ -1148,7 +1148,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
 /**
  * App local detail controller
  */
-myAppController.controller('AppLocalDetailController', function($scope, $routeParams, $location, dataFactory, dataService,_) {
+myAppController.controller('AppLocalDetailController', function($scope, $routeParams, $location, dataFactory, dataService, _) {
     $scope.module = [];
     $scope.isOnline = null;
     $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
@@ -1183,7 +1183,7 @@ myAppController.controller('AppLocalDetailController', function($scope, $routePa
 /**
  * App online detail controller
  */
-myAppController.controller('AppOnlineDetailController', function($scope, $routeParams, $timeout,  $location,dataFactory, dataService,_) {
+myAppController.controller('AppOnlineDetailController', function($scope, $routeParams, $timeout, $location, dataFactory, dataService, _) {
     $scope.module = [];
     $scope.onlineMediaUrl = $scope.cfg.online_module_img_url;
     /**
@@ -1191,20 +1191,20 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
      */
     $scope.loadModule = function(id) {
         dataService.showConnectionSpinner();
-       var param = parseInt(id, 10);
+        var param = parseInt(id, 10);
         var filter = {id: id};
         if (isNaN(param)) {
             filter = {modulename: id};
         }
         dataFactory.getRemoteData($scope.cfg.online_module_url).then(function(response) {
             $scope.module = _.findWhere(response.data, filter);
-            if(!$scope.module){
+            if (!$scope.module) {
                 $location.path('/error/404');
                 return;
             }
             dataService.updateTimeTick();
         }, function(error) {
-             $location.path('/error/' + error.status);
+            $location.path('/error/' + error.status);
         });
     };
 
@@ -1432,7 +1432,7 @@ myAppController.controller('DeviceZwaveController', function($scope, $routeParam
 /**
  * Device IP camerae  controller
  */
-myAppController.controller('DeviceIpCameraController', function($scope, dataFactory, dataService,_) {
+myAppController.controller('DeviceIpCameraController', function($scope, dataFactory, dataService, _) {
     $scope.ipcameraDevices = [];
     $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
     /**
@@ -1444,12 +1444,12 @@ myAppController.controller('DeviceIpCameraController', function($scope, dataFact
             $scope.ipcameraDevices = _.filter(response.data.data, function(item) {
                 var isHidden = false;
                 if ($scope.getHiddenApps().indexOf(item.moduleName) > -1) {
-                     if($scope.user.role !== 1){
-                         isHidden = true;
-                     }else{
-                         isHidden = ($scope.user.expert_view ? false : true);
-                     }
-                    
+                    if ($scope.user.role !== 1) {
+                        isHidden = true;
+                    } else {
+                        isHidden = ($scope.user.expert_view ? false : true);
+                    }
+
                 }
                 if (item.category !== 'surveillance') {
                     isHidden = true;
@@ -1915,7 +1915,7 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
 /**
  * EnOcean devices controller
  */
-myAppController.controller('EnoceanDeviceController', function($scope, $routeParams, dataFactory, dataService,_) {
+myAppController.controller('EnoceanDeviceController', function($scope, $routeParams, dataFactory, dataService, _) {
     $scope.activeTab = 'devices';
     $scope.hasEnOcean = false;
     $scope.enoceanDevices = [];
@@ -2004,12 +2004,11 @@ myAppController.controller('EnoceanAssignController', function($scope, $interval
      */
     $scope.loadIncludedDevices = function() {
         dataService.showConnectionSpinner();
-        dataFactory.loadEnoceanDevices(true).then(function(response) {
+        dataFactory.loadEnoceanApiData(true).then(function(response) {
             dataService.updateTimeTick();
-            angular.forEach(response, function(v, k) {
-                $scope.includedDevices.push(v.id);
+            angular.forEach(response.data.devices, function(v, k) {
+                $scope.includedDevices.push(k);
             });
-
         }, function(error) {
             dataService.showConnectionError(error);
         });
@@ -2090,7 +2089,7 @@ myAppController.controller('EnoceanAssignController', function($scope, $interval
     $scope.refreshData = function() {
         var refresh = function() {
             var findStr = 'devices';
-            dataFactory.refreshEnoceanDevices().then(function(response) {
+            dataFactory.refreshEnoceanApiData().then(function(response) {
                 if ('controller.data.promisc' in response.data) {
                     var pomisc = response.data['controller.data.promisc'].value;
                     if (pomisc === true) {
@@ -2103,14 +2102,20 @@ myAppController.controller('EnoceanAssignController', function($scope, $interval
 
                 if ('devices' in response.data) {
                     angular.forEach(response.data.devices, function(v, k) {
-                        $scope.findDevice(k);
+                        if ($scope.cfg.enocean_black_list.indexOf(k) === -1) {
+                            $scope.findDevice(k);
+                        }
+
                     });
                     return;
                 }
                 angular.forEach(response.data, function(v, k) {
                     var array = k.split('.');
                     if (array.indexOf(findStr) > -1) {
-                        $scope.findDevice(array[1]);
+                        if ($scope.cfg.enocean_black_list.indexOf(array[1]) === -1) {
+                            $scope.findDevice(array[1]);
+                        }
+
                     }
                 });
             }, function(error) {
@@ -2125,21 +2130,23 @@ myAppController.controller('EnoceanAssignController', function($scope, $interval
     /**
      * Find last included device
      */
-    $scope.findDevice = function(id) {
+    $scope.findDevice = function(lastId) {
+         var id = lastId.replace(/^(x)/, "");
+         
         var rorg = parseInt($scope.device.rorg);
-        dataFactory.loadEnoceanDevices(true).then(function(response) {
-            angular.forEach(response, function(v, k) {
-                if (v.id == id) {
+         dataFactory.loadEnoceanApiData(true).then(function(response) {
+            angular.forEach(response.data.devices, function(v, k) {
+                if (k == id) {
                     // if (v.data.rorg.value == rorg) {
-                    var name = '(#' + v.id + ')';
+                    var name = '(#' + k + ')';
                     var profile = assignProfile(v.data);
                     if (profile) {
-                        name = profile._funcDescription + ' (#' + v.id + ')';
+                        name = profile._funcDescription + ' (#' + k + ')';
                     }
 
                     $scope.runCmd('controller.data.promisc=false');
                     $scope.lastIncludedDevice = {
-                        id: v.id,
+                        id: k,
                         rorg: v.data.rorg.value,
                         name: name,
                         data: v.data,
@@ -2147,9 +2154,9 @@ myAppController.controller('EnoceanAssignController', function($scope, $interval
                         profile: profile
                     };
 
-
-                    $scope.runCmd('devices["' + v.id + '"].data.funcId=' + $scope.device.funcId);
-                    $scope.runCmd('devices["' + v.id + '"].data.typeId=' + +$scope.device.typeId);
+                    console.log(id)
+                    $scope.runCmd('devices["' + k + '"].data.funcId=' + $scope.device.funcId);
+                    $scope.runCmd('devices["' + k + '"].data.typeId=' + +$scope.device.typeId);
                     $interval.cancel($scope.apiDataInterval);
                     $scope.inclusion = {done: true, config: true, promisc: false, message: $scope._t('inclusion_proces_done'), status: 'alert-success', icon: 'fa-check'};
                     $scope.loadApiDevices();
@@ -2278,12 +2285,11 @@ myAppController.controller('EnoceanTeachinController', function($scope, $routePa
      */
     $scope.loadIncludedDevices = function() {
         dataService.showConnectionSpinner();
-        dataFactory.loadEnoceanDevices(true).then(function(response) {
+        dataFactory.loadEnoceanApiData(true).then(function(response) {
             dataService.updateTimeTick();
-            angular.forEach(response, function(v, k) {
-                $scope.includedDevices.push(v.id);
+            angular.forEach(response.data.devices, function(v, k) {
+                $scope.includedDevices.push(k);
             });
-
         }, function(error) {
             dataService.showConnectionError(error);
         });
@@ -2377,7 +2383,7 @@ myAppController.controller('EnoceanTeachinController', function($scope, $routePa
     $scope.refreshData = function() {
         var refresh = function() {
             var findStr = 'devices';
-            dataFactory.refreshEnoceanDevices().then(function(response) {
+            dataFactory.refreshEnoceanApiData().then(function(response) {
                 if ('controller.data.promisc' in response.data) {
                     var pomisc = response.data['controller.data.promisc'].value;
                     if (pomisc === true) {
@@ -2387,17 +2393,23 @@ myAppController.controller('EnoceanTeachinController', function($scope, $routePa
                     }
                     return;
                 }
-
+                //console.log(response.data)
                 if ('devices' in response.data) {
                     angular.forEach(response.data.devices, function(v, k) {
-                        $scope.findDevice(k);
+                        if ($scope.cfg.enocean_black_list.indexOf(k) === -1) {
+                            $scope.findDevice(k);
+                        }
+
                     });
                     return;
                 }
                 angular.forEach(response.data, function(v, k) {
                     var array = k.split('.');
                     if (array.indexOf(findStr) > -1) {
-                        $scope.findDevice(array[1]);
+                        if ($scope.cfg.enocean_black_list.indexOf(array[1]) === -1) {
+                            $scope.findDevice(array[1]);
+                        }
+
                     }
                 });
             }, function(error) {
@@ -2412,32 +2424,33 @@ myAppController.controller('EnoceanTeachinController', function($scope, $routePa
     /**
      * Find last included device
      */
-    $scope.findDevice = function(id) {
+    $scope.findDevice = function(lastId) {
+        var id = lastId.replace(/^(x)/, "");
         var rorg = parseInt($scope.device.rorg);
-        dataFactory.loadEnoceanDevices(true).then(function(response) {
-            angular.forEach(response, function(v, k) {
-                if (v.id == id) {
+        dataFactory.loadEnoceanApiData(true).then(function(response) {
+            angular.forEach(response.data.devices, function(v, k) {
+                //console.log('id ',id)
+                //console.log('k: ',k)
+                if (k == id) {
                     // if (v.data.rorg.value == rorg) {
                     var config = false;
-                    var name = '(#' + v.id + ')';
+                    var name = '(#' + k + ')';
                     var profile = assignProfile(v.data);
                     if (profile) {
-                        name = profile._funcDescription + ' (#' + v.id + ')';
+                        name = profile._funcDescription + ' (#' + k + ')';
                     }
 
                     $scope.runCmd('controller.data.promisc=false');
                     $scope.lastIncludedDevice = {
-                        id: v.id,
+                        id: k,
                         rorg: v.data.rorg.value,
                         name: name,
                         data: v.data,
                         deviceProfileId: v.data.rorg.value + '_' + v.data.funcId.value + '_' + v.data.typeId.value,
                         profile: profile
                     };
-
-
-                    $scope.runCmd('devices["' + v.id + '"].data.funcId=' + $scope.device.funcId);
-                    $scope.runCmd('devices["' + v.id + '"].data.typeId=' + +$scope.device.typeId);
+                    $scope.runCmd('devices["' + k + '"].data.funcId=' + $scope.device.funcId);
+                    $scope.runCmd('devices["' + k + '"].data.typeId=' + +$scope.device.typeId);
                     $interval.cancel($scope.apiDataInterval);
                     $scope.inclusion = {done: true, config: true, promisc: false, message: $scope._t('inclusion_proces_done'), status: 'alert-success', icon: 'fa-check'};
                     $scope.loadApiDevices();
@@ -2574,13 +2587,14 @@ myAppController.controller('EnoceanManageController', function($scope, $location
     $scope.loadData = function(enoceanProfiles) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataService.showConnectionSpinner();
-        dataFactory.loadEnoceanDevices(true).then(function(response) {
+        dataFactory.loadEnoceanApiData(true).then(function(response) {
             dataService.updateTimeTick();
-            if (Object.keys(response).length < 1) {
+            if (Object.keys(response.data.devices).length < 1) {
                 $scope.loading = {status: 'loading-fade', icon: 'fa-exclamation-circle text-warning', message: $scope._t('no_devices')};
                 return;
             }
-            setDevices(response, enoceanProfiles);
+
+            setDevices(response.data.devices, enoceanProfiles);
             $scope.loading = false;
 
         }, function(error) {
@@ -2630,15 +2644,22 @@ myAppController.controller('EnoceanManageController', function($scope, $location
      * Set devices
      */
     function setDevices(devices, profiles) {
-
+        // console.log(profiles)
         angular.forEach(devices, function(v, k) {
-            $scope.enoceanDevices[v.id] = {
-                id: v.id,
+            if ($scope.cfg.enocean_black_list.indexOf(k) > -1) {
+                return;
+            };
+            $scope.enoceanDevices[k] = {
+                id: k,
                 data: v.data,
                 profile: assignProfile(v.data, profiles),
-                elements: getElements($scope.apiDevices, v.id)
+                elements: getElements($scope.apiDevices, k)
+
             };
+
         });
+
+        //console.log($scope.enoceanDevices)
     }
     ;
     /**
@@ -2648,6 +2669,8 @@ myAppController.controller('EnoceanManageController', function($scope, $location
         var profile = false;
         var deviceProfileId = device.rorg.value + '_' + device.funcId.value + '_' + device.typeId.value;
         angular.forEach(profiles, function(v, k) {
+            //console.log('deviceProfileId: ' + deviceProfileId)
+            //console.log('v.id: ' + v.id)
             //var profileId = parseInt(v._rorg) + '_' + parseInt(v._func) + '_' + parseInt(v._type);
             if (deviceProfileId == v.id) {
                 profile = v;
@@ -2729,7 +2752,7 @@ myAppController.controller('EnoceanManageDetailController', function($scope, $ro
             }
             dataService.updateTimeTick();
             $scope.input = {
-                id: device.id,
+                id: device.id.replace(/^(x)/, ""),
                 rorg: device.data.rorg.value,
                 name: name,
                 deviceProfileId: device.data.rorg.value + '_' + device.data.funcId.value + '_' + device.data.typeId.value,
@@ -2915,7 +2938,7 @@ myAppController.controller('EnoceanControllerController', function($scope, $loca
      */
     $scope.loadData = function() {
         dataService.showConnectionSpinner();
-        dataFactory.dataEnoceanCmd().then(function(response) {
+        dataFactory.loadEnoceanApiData(true).then(function(response) {
             $scope.controller = response.data.controller.data;
             dataService.updateTimeTick();
         }, function(error) {
@@ -2954,7 +2977,7 @@ myAppController.controller('RoomController', function($scope, $location, dataFac
 /**
  * Room config controller
  */
-myAppController.controller('RoomConfigController', function($scope, $window, $location, dataFactory, dataService, myCache,_) {
+myAppController.controller('RoomConfigController', function($scope, $window, $location, dataFactory, dataService, myCache, _) {
     $scope.collection = [];
     $scope.devices = [];
     $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/image/';

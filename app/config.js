@@ -59,7 +59,9 @@ var config_data = {
         // Url to run Enocean cmd
         'enocean_run_url': 'EnOceanAPI/Run/',
         // Url to data Enocean cmd
-        'enocean_data_url': 'EnOceanAPI/Data',
+        'enocean_data_url': 'EnOceanAPI/Data/',
+        // EnOcean device black list
+        'enocean_black_list': ['81048201'],
         // Url to config XML file
         'cfg_xml_url': 'config/Configuration.xml',
         // Url to get a license key
