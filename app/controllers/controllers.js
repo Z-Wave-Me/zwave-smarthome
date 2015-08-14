@@ -1257,8 +1257,8 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
     // Post new module instance
     $scope.postModule = function(id) {
         dataService.showConnectionSpinner();
-        dataFactory.getApi('modules', '/' + id + '?lang=' + $scope.lang).then(function(module) {
-            dataFactory.getApi('namespaces').then(function(namespaces) {
+        dataFactory.getApi('modules', '/' + id + '?lang=' + $scope.lang,true).then(function(module) {
+            dataFactory.getApi('namespaces',null,true).then(function(namespaces) {
                 var formData = dataService.getModuleFormData(module.data.data, module.data.data.defaults, namespaces.data.data);
                 var langCode = (angular.isDefined(cfg.lang_codes[$scope.lang]) ? cfg.lang_codes[$scope.lang] : null);
                 $scope.input = {
@@ -1298,7 +1298,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
         dataService.showConnectionSpinner();
         dataFactory.getApi('instances', '/' + id, true).then(function(instances) {
             var instance = instances.data.data;
-            dataFactory.getApi('modules', '/' + instance.moduleId + '?lang=' + $scope.lang).then(function(module) {
+            dataFactory.getApi('modules', '/' + instance.moduleId + '?lang=' + $scope.lang,true).then(function(module) {
                 if (module.data.data.state === 'hidden') {
                     if (!$scope.user.expert_view) {
                         dataService.updateTimeTick();
@@ -1306,7 +1306,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                     }
 
                 }
-                dataFactory.getApi('namespaces').then(function(namespaces) {
+                dataFactory.getApi('namespaces',null,true).then(function(namespaces) {
                     var formData = dataService.getModuleFormData(module.data.data, instance.params, namespaces.data.data);
 
                     $scope.input = {
@@ -4445,7 +4445,7 @@ myAppController.controller('LoginController', function($scope, $location, $windo
             dataService.setLastLogin(Math.round(+new Date() / 1000));
             //$scope.loading = false;
             $scope.input.form = false;
-            $window.location.href = '#/elements';
+            //$window.location.href = '#/elements';
             $window.location.reload();
         }, function(error) {
             var message = $scope._t('error_load_data');
