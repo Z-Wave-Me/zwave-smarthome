@@ -257,6 +257,22 @@
                                     <a href="" ng-click="showModal('#modal_promo', {'type': v.deviceType, 'title': v.title, 'text': v.metrics.text, 'url': v.metrics.icon})" ng-bind="v.metrics.text|stripTags|cutText:true:60"></a>
                                 </div>
                             </div>
+                            
+                            <!-- switchControl -->
+                            <div ng-switch-when="switchControl">
+                                <div class="widget-control control-left">
+                                    <i class="fa fa-clock-o"></i> <span class="widget-update-time">{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span>
+                                    
+                                </div>
+                                 <div class="widget-control control-right">
+                                    <div class="btn-group">
+                                        
+                                        <!-- <button class="btn btn-default btn-sm"> <i class="fa fa-clock-o"></i> <span class="widget-update-time">{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span></button> -->
+                                        <button class="btn btn-primary btn-sm"><strong class="widget-level" ng-bind="v.level"></strong></button>
+                                        <!--<button class="btn btn-default btn-sm" ng-click="runCmd(v.id + '/command/update')"> <i class="fa fa-clock-o"></i> <span class="widget-update-time">{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span></button>  -->
+                                    </div>
+                                </div><!-- /.widget-control .right -->
+                            </div>
 
                             <!-- Default -->
                             <div class="widget-control control-left widget-click-popup" ng-switch-default><span class="widget-level" ng-bind="v.level"></span> <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span></div>

@@ -1,5 +1,6 @@
 {
     "missing": "---",
+     "enocean_no_settings": "There is no settings for this device",
     "room_image_upload_info": "The uploaded image must be smaller than 600 kB and in one of the following formats: JPEG, GIF. The recommended dimension of the uploaded images is 200 x 200 pixels.",
     "keep_password_empty": "Keep empty if you do not want to change the Password",
     "firmware_update_info": "This will open new window. To update firmware, click on tab Advanced -> Firmware and continue according to the instruction.",
