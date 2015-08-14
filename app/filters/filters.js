@@ -133,6 +133,7 @@ myApp.filter('getUrlSegment', function($location) {
 myApp.filter('getElementIcon', function(cfg) {
     return function(input, device,level) {
         var icon = cfg.img.icons + 'placeholder.png';
+        
         if (input) {
             if ((/^https?:\/\//.test(input))) {
                 return input;
@@ -218,6 +219,14 @@ myApp.filter('getElementIcon', function(cfg) {
                     break;
             }
 
+        }else{
+           switch (device.deviceType) {
+                case 'switchControl':
+                    icon = cfg.img.icons + 'switch-control.png';
+                    break;
+                default:
+                    break;
+              }
         }
         return icon;
     };
