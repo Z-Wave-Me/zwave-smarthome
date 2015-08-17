@@ -267,7 +267,10 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
             $scope.collection = collection;
             dataService.updateTimeTick(response.data.data.updateTime);
         }, function(error) {
-            $location.path('/error/' + error.status);
+            //console.log('After login: ',$routeParams.login)
+              if (!angular.isDefined($routeParams.login)) {
+                $location.path('/error/' + error.status);
+              }
         });
     };
     $scope.loadData();
@@ -2138,10 +2141,10 @@ myAppController.controller('EnoceanAssignController', function($scope, $interval
             angular.forEach(response.data.devices, function(v, k) {
                 if (k == id) {
                     // if (v.data.rorg.value == rorg) {
-                    var name = '(#' + k + ')';
+                    var name = 'Device ' + k;
                     var profile = assignProfile(v.data);
                     if (profile) {
-                        name = profile._funcDescription + ' (#' + k + ')';
+                         name = profile._funcDescription + ' ' + k;
                     }
 
                     $scope.runCmd('controller.data.promisc=false');
@@ -2154,9 +2157,9 @@ myAppController.controller('EnoceanAssignController', function($scope, $interval
                         profile: profile
                     };
 
-                    console.log(id)
-                    $scope.runCmd('devices["' + k + '"].data.funcId=' + $scope.device.funcId);
-                    $scope.runCmd('devices["' + k + '"].data.typeId=' + +$scope.device.typeId);
+                    $scope.runCmd('devices["x' + k + '"].data.givenName=\'' + name + '\'');
+                    $scope.runCmd('devices["x' + k + '"].data.funcId=' + $scope.device.funcId);
+                    $scope.runCmd('devices["x' + k + '"].data.typeId=' + +$scope.device.typeId);
                     $interval.cancel($scope.apiDataInterval);
                     $scope.inclusion = {done: true, config: true, promisc: false, message: $scope._t('inclusion_proces_done'), status: 'alert-success', icon: 'fa-check'};
                     $scope.loadApiDevices();
@@ -2434,10 +2437,10 @@ myAppController.controller('EnoceanTeachinController', function($scope, $routePa
                 if (k == id) {
                     // if (v.data.rorg.value == rorg) {
                     var config = false;
-                    var name = '(#' + k + ')';
+                    var name = 'Device ' + k;
                     var profile = assignProfile(v.data);
                     if (profile) {
-                        name = profile._funcDescription + ' (#' + k + ')';
+                        name = profile._funcDescription + ' ' + k;
                     }
 
                     $scope.runCmd('controller.data.promisc=false');
@@ -2449,8 +2452,9 @@ myAppController.controller('EnoceanTeachinController', function($scope, $routePa
                         deviceProfileId: v.data.rorg.value + '_' + v.data.funcId.value + '_' + v.data.typeId.value,
                         profile: profile
                     };
-                    $scope.runCmd('devices["' + k + '"].data.funcId=' + $scope.device.funcId);
-                    $scope.runCmd('devices["' + k + '"].data.typeId=' + +$scope.device.typeId);
+                    $scope.runCmd('devices["x' + k + '"].data.givenName=\'' + name + '\'');
+                    $scope.runCmd('devices["x' + k + '"].data.funcId=' + $scope.device.funcId);  
+                    $scope.runCmd('devices["x' + k + '"].data.typeId=' + +$scope.device.typeId);
                     $interval.cancel($scope.apiDataInterval);
                     $scope.inclusion = {done: true, config: true, promisc: false, message: $scope._t('inclusion_proces_done'), status: 'alert-success', icon: 'fa-check'};
                     $scope.loadApiDevices();
@@ -2651,6 +2655,7 @@ myAppController.controller('EnoceanManageController', function($scope, $location
             };
             $scope.enoceanDevices[k] = {
                 id: k,
+                givenName: v.data.givenName.value,
                 data: v.data,
                 profile: assignProfile(v.data, profiles),
                 elements: getElements($scope.apiDevices, k)
@@ -2740,7 +2745,8 @@ myAppController.controller('EnoceanManageDetailController', function($scope, $ro
         dataService.showConnectionSpinner();
         dataFactory.runEnoceanCmd('zeno.devices["' + $routeParams.deviceId + '"]').then(function(response) {
             if (response.data == 'null') {
-                $location.path('/error/404');
+                  console.log('ERROR')
+                //$location.path('/error/404');
                 return;
             }
             var device = response.data;
@@ -2754,14 +2760,15 @@ myAppController.controller('EnoceanManageDetailController', function($scope, $ro
             $scope.input = {
                 id: device.id.replace(/^(x)/, ""),
                 rorg: device.data.rorg.value,
-                name: name,
+                name: device.data.givenName.value||name,
                 deviceProfileId: device.data.rorg.value + '_' + device.data.funcId.value + '_' + device.data.typeId.value,
                 profile: profile,
                 profileId: ''
 
             };
         }, function(error) {
-            $location.path('/error/' + error.status);
+          
+            //$location.path('/error/' + error.status);
         });
     };
     $scope.loadData();
@@ -2802,15 +2809,18 @@ myAppController.controller('EnoceanManageDetailController', function($scope, $ro
      * Store device data
      */
     $scope.store = function(input) {
+        console.log(input)
+         if (input.name == '') {
+             return;
+         }
+        $scope.runCmd('devices["' + $scope.nodeId + '"].data.givenName=\'' + input.name + '\'');
         if (input.profileId) {
             var device = angular.fromJson(input.profileId);
             $scope.runCmd('devices["' + $scope.nodeId + '"].data.funcId=' + device.funcId);
             $scope.runCmd('devices["' + $scope.nodeId + '"].data.typeId=' + device.typeId);
 
         }
-        if (input.name) {
-            //$scope.runCmd('devices["' + $scope.nodeId + '"].data.name=' + input.name);
-        }
+       
         $scope.loadData();
         $scope.loadApiDevices();
 
@@ -4405,7 +4415,7 @@ myAppController.controller('ReportController', function($scope, $window, dataFac
 /**
  * Login controller
  */
-myAppController.controller('LoginController', function($scope, $location, $window, $routeParams, $document, $cookies, dataFactory, dataService) {
+myAppController.controller('LoginController', function($scope, $location, $window, $routeParams, dataFactory, dataService) {
     $scope.input = {
         form: true,
         login: '',
@@ -4413,17 +4423,10 @@ myAppController.controller('LoginController', function($scope, $location, $windo
         keepme: false,
         default_ui: 1
     };
-    if (dataService.getUser()) {
-        $location.path('/elements');
-        return;
-    }
-
-    // var bareDomain = $window.location.host
-    //console.log(bareDomain)
-//document.cookie = 'ZWAYSession=; Domain=' + bareDomain + '; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-//delete $cookies['ZWAYSession'];
-//$document.cookie = 'ZWAYSession=; path=/; expires=' + new Date(0).toUTCString();
-//console.log($document.cookie)
+//    if (dataService.getUser()) {
+//        $location.path('/elements');
+//        return;
+//    }
     /**
      * Login language
      */
@@ -4440,12 +4443,11 @@ myAppController.controller('LoginController', function($scope, $location, $windo
         dataFactory.logInApi(input).then(function(response) {
             var user = response.data.data;
             dataService.setZWAYSession(user.sid);
-            //delete user['sid'];
             dataService.setUser(user);
             dataService.setLastLogin(Math.round(+new Date() / 1000));
             //$scope.loading = false;
             $scope.input.form = false;
-            //$window.location.href = '#/elements';
+            $window.location.href = '#/elements?login';
             $window.location.reload();
         }, function(error) {
             var message = $scope._t('error_load_data');
@@ -4456,6 +4458,9 @@ myAppController.controller('LoginController', function($scope, $location, $windo
             $scope.alert = {message: message, status: 'alert-danger', icon: 'fa-warning'};
         });
     };
+    /**
+     * Login from url
+     */
     if ($routeParams.login && $routeParams.password) {
         $scope.login($routeParams);
     }

@@ -260,12 +260,7 @@ myApp.run(function($rootScope, $location, dataService) {
 
 // Intercepting HTTP calls with AngularJS.
 myApp.config(function($provide, $httpProvider) {
-    $httpProvider.defaults.timeout = 5000;
-//    $httpProvider.defaults.timeout = 5000;
-//    $httpProvider.defaults.headers.common = {};
-//  $httpProvider.defaults.headers.post = {};
-//  $httpProvider.defaults.headers.put = {};
-//  $httpProvider.defaults.headers.patch = {}; 
+    $httpProvider.defaults.timeout = 5000; 
     // Intercept http calls.
     $provide.factory('MyHttpInterceptor', function($q,$location,dataService) {
          var path = $location.path().split('/');

@@ -10,7 +10,7 @@
                     <tr id="enocean_row_{{v.id}}" ng-repeat="v in enoceanDevices track by v.id">
                         <td class="text-left">
                             <a href="" class="network-zwave-title" ng-click="goEdit[v.id] = !goEdit[v.id]">
-                                <i class="fa" ng-class="goEdit[v.id] ? 'fa-chevron-up': 'fa-chevron-down'"></i> <span ng-if="v.profile" ng-bind="v.profile._funcDescription"></span> (#{{v.id}}) 
+                                <i class="fa" ng-class="goEdit[v.id] ? 'fa-chevron-up': 'fa-chevron-down'"></i> <span ng-bind="v.givenName"></span> (#{{v.id}}) 
                             </a>
                             <div class="network-zwave-element" ng-repeat="e in v.elements| orderBy:'title':false" ng-if="goEdit[v.id]">
                                 <img class="report-img" ng-src="{{e.metrics.icon|getElementIcon:e:e.level}}" alt="img" /> 
@@ -19,7 +19,7 @@
                         </td>
 
                         <td class="td-action">
-                            <a href="#enocean/manage/{{v.id}}" class="btn btn-default"><i class="fa fa-cog text-primary"></i> <span class="btn-name" ng-bind="_t('lb_configuration')"></span></a>
+                            <a href="#enocean/manage/x{{v.id}}" class="btn btn-default"><i class="fa fa-cog text-primary"></i> <span class="btn-name" ng-bind="_t('lb_configuration')"></span></a>
                             <button title="{{_t('lb_remove')}}"
                                     class="btn btn-default"
                                     ng-click="deleteDevice(v.id, '#enocean_row_' + v.id, _t('lb_delete_confirm'))"
