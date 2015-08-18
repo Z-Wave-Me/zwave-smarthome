@@ -291,7 +291,11 @@ myAppController.controller('ConfigConfigurationController', function($scope, $ro
                 $location.path('/error/404');
             }
         }, function(error) {
-            $location.path('/error/'+ error.status);
+            //$location.path('/error/'+ error.status);
+            $scope.configCont = expertService.configConfigCont(node, nodeId, zddXml, null, $scope.lang, $scope.languages);
+            $scope.wakeupCont = expertService.configWakeupCont(node, nodeId, ZWaveAPIData, null);
+            $scope.protectionCont = expertService.configProtectionCont(node, nodeId, ZWaveAPIData, null);
+            $scope.switchAllCont = expertService.configSwitchAllCont(node, nodeId, ZWaveAPIData, null);
         });
     }
 });
