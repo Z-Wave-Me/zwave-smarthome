@@ -45,14 +45,14 @@
                             <strong ng-bind="_t('lb_settings')"></strong>
                             <form name="form_enocean_config" id="form_enocean_config" class="form form-page" ng-if="inclusion.config" novalidate>
                                  <!-- <p>{{lastIncludedDevice.profile._funcDescription}} (#{{lastIncludedDevice.id}})</p> -->
-                                    <!-- Name 
+                                    <!-- Name  -->
                                     <fieldset>
                                          <div class="form-group form-inline">
                                         <input type="text" name="enocean_name" id="enocean_name" class="form-control form-control-md" 
                                                ng-model="lastIncludedDevice.name" value="{{lastIncludedDevice.name}}" />
-                                        <button class="btn btn-primary" ng-click="updateDevice(dev[e.id])" ng-bind="_t('rename_device')"></button>
+                                        <button class="btn btn-primary" ng-click="runCmd('devices[\'x' + lastIncludedDevice.id + '\'].data.givenName=\'' + lastIncludedDevice.name + '\'')" ng-bind="_t('rename_device')"></button>
                                     </div>
-                                    </fieldset> -->
+                                    </fieldset>
                                 <div class="alert alert-warning" ng-if="apiDevices.length < 1">
                                 <i class="fa fa-lg fa-exclamation-circle"></i> <span ng-bind="_t('enocean_no_settings')"></span>
                                 </div>

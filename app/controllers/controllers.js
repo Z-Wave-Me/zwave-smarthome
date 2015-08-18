@@ -2049,7 +2049,6 @@ myAppController.controller('EnoceanAssignController', function($scope, $interval
      */
     $scope.loadApiDevices = function() {
         dataFactory.getApi('devices').then(function(response) {
-            console.log(response)
             $scope.apiDevices = [];
             var findZenoStr = "ZEnoVDev_zeno_x";
             angular.forEach(response.data.data.devices, function(v, k) {
@@ -2246,7 +2245,6 @@ myAppController.controller('EnoceanAssignController', function($scope, $interval
         var deviceProfileId = parseInt($scope.device.rorg, 16) + '_' + parseInt($scope.device.funcId, 16) + '_' + parseInt($scope.device.typeId, 16);
         angular.forEach($scope.enoceanProfiles, function(v, k) {
             if (deviceProfileId == v.id) {
-                console.log(v.id)
                 profile = v;
                 return;
             }
