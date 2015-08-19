@@ -20,7 +20,8 @@
             <tbody>
                 <tr ng-repeat="(k,v) in zwaveDevices">
                     <td class="td-img">
-                        <img class="report-img" ng-src="storage/img/zwave/devices/{{v.product_image}}" alt="img" ng-show="v.product_image" />
+                        <img class="report-img" ng-src="storage/img/zwave/devices/{{v.product_image}}" alt="img" ng-if="v.product_image" />
+                        <img class="report-img" ng-src="storage/img/zwave/vendors/{{v.brand_image}}" alt="img" ng-if="!v.product_image" />
                     </td>
                     <td class="text-left">
                         <span ng-bind="v.name"></span> <!--<em ng-bind="v.ZManufacturersName"></em>-->
