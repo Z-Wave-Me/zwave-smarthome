@@ -8,7 +8,7 @@
 /**
  * Login controller
  */
-myAppController.controller('LoginController', function($scope, $location, $window, $routeParams, dataFactory, dataService) {
+myAppController.controller('LoginController', function($scope, $location, $window, $routeParams, $cookies,dataFactory, dataService) {
     $scope.input = {
         form: true,
         login: '',
@@ -16,6 +16,7 @@ myAppController.controller('LoginController', function($scope, $location, $windo
         keepme: false,
         default_ui: 1
     };
+    $scope.loginLang = angular.isDefined($cookies.lang) ? $cookies.lang : $scope.cfg.lang;
 //    if (dataService.getUser()) {
 //        $location.path('/elements');
 //        return;
@@ -23,7 +24,9 @@ myAppController.controller('LoginController', function($scope, $location, $windo
     /**
      * Login language
      */
-    $scope.loginLang = function(lang) {
+    $scope.setLoginLang = function(lang) {
+        $scope.loginLang = lang;
+        $cookies.lang = lang;
         $scope.loadLang(lang);
     };
     /**
@@ -35,6 +38,9 @@ myAppController.controller('LoginController', function($scope, $location, $windo
         $scope.alert = {message: false};
         dataFactory.logInApi(input).then(function(response) {
             var user = response.data.data;
+             if($scope.loginLang){
+                 user.lang = $scope.loginLang;
+             }
             dataService.setZWAYSession(user.sid);
             dataService.setUser(user);
             dataService.setLastLogin(Math.round(+new Date() / 1000));

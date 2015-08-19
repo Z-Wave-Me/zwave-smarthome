@@ -6,7 +6,7 @@
 /**
  * My Access
  */
-myAppController.controller('MyAccessController', function($scope, $window, $location, dataFactory, dataService, myCache) {
+myAppController.controller('MyAccessController', function($scope, $window, $location,$cookies,dataFactory, dataService, myCache) {
     $scope.id = $scope.user.id;
     $scope.devices = {};
     $scope.input = {
@@ -81,6 +81,7 @@ myAppController.controller('MyAccessController', function($scope, $window, $loca
             }
 
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
+            $cookies.lang = input.lang;
             myCache.remove('profiles');
             dataService.setUser(data);
             $window.location.reload();

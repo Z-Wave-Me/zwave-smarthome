@@ -49,7 +49,15 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
      */
     $scope.lang_list = cfg.lang_list;
     // Set language
-    $scope.lang = ($scope.user ? $scope.user.lang : cfg.lang);
+    //$scope.lang = cfg.lang;
+     $scope.getLang = function(){
+         if($scope.user){
+             $scope.lang = $scope.user.lang;
+         }else{
+            $scope.lang = angular.isDefined($cookies.lang) ? $cookies.lang : cfg.lang
+         }
+     };
+    $scope.getLang();
     $cookies.lang = $scope.lang;
 
     // Load language files
