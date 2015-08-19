@@ -214,13 +214,13 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
     ;
 
     /**
-     * Upload image
+     * Upload backup file
      */
-    $scope.uploadFile = function(input) {
+    $scope.uploadBackupFile = function(input) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('restore_wait')};
         var fd = new FormData();
-        fd.append('config_backup', $scope.myFile);
-        dataFactory.restoreFromBck(fd, input.chip).then(function(response) {
+        fd.append('file_upload', $scope.myFile);
+        dataFactory.restoreFromBck(fd).then(function(response) {
             $timeout(function() {
                 $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('restore_done_reload_ui')};
                 //$interval.cancel($scope.zwaveDataInterval);

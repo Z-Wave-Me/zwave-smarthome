@@ -5473,18 +5473,19 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
     /**
      * Restore from backup
      */
-    function restoreFromBck(data,chip) {
-        var uploadUrl = cfg.server_url + cfg.zwave_api_url + 'Restore?restore_chip_info=' + chip;
+    function restoreFromBck(data) {
+        var uploadUrl = cfg.server_url + cfg.api['restore'];
         return  $http.post(uploadUrl, data, {
             transformRequest: angular.identity,
             headers: {
-                'Content-Type': undefined
+                'Content-Type': undefined,
+                'ZWAYSession': ZWAYSession
             }
         }).then(function(response) {
-            if (response.data && response.data.replace(/(<([^>]+)>)/ig, "") === "null") {
+            if (typeof response.data === 'object') {
                 return response;
-            }else {//Error
-                 return $q.reject(response);
+            } else {// invalid response
+                return $q.reject(response);
             }
         }, function(response) {// something went wrong
             return $q.reject(response);
@@ -11575,13 +11576,13 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
     ;
 
     /**
-     * Upload image
+     * Upload backup file
      */
-    $scope.uploadFile = function(input) {
+    $scope.uploadBackupFile = function(input) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('restore_wait')};
         var fd = new FormData();
-        fd.append('config_backup', $scope.myFile);
-        dataFactory.restoreFromBck(fd, input.chip).then(function(response) {
+        fd.append('file_upload', $scope.myFile);
+        dataFactory.restoreFromBck(fd).then(function(response) {
             $timeout(function() {
                 $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('restore_done_reload_ui')};
                 //$interval.cancel($scope.zwaveDataInterval);

@@ -702,18 +702,19 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
     /**
      * Restore from backup
      */
-    function restoreFromBck(data,chip) {
-        var uploadUrl = cfg.server_url + cfg.zwave_api_url + 'Restore?restore_chip_info=' + chip;
+    function restoreFromBck(data) {
+        var uploadUrl = cfg.server_url + cfg.api['restore'];
         return  $http.post(uploadUrl, data, {
             transformRequest: angular.identity,
             headers: {
-                'Content-Type': undefined
+                'Content-Type': undefined,
+                'ZWAYSession': ZWAYSession
             }
         }).then(function(response) {
-            if (response.data && response.data.replace(/(<([^>]+)>)/ig, "") === "null") {
+            if (typeof response.data === 'object') {
                 return response;
-            }else {//Error
-                 return $q.reject(response);
+            } else {// invalid response
+                return $q.reject(response);
             }
         }, function(response) {// something went wrong
             return $q.reject(response);

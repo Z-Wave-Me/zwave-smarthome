@@ -115,11 +115,11 @@
     </div>
     
     <!-- ///////////////////////////// Back up and Restore ///////////////////////////// -->
-    <div class="admin-entry" ng-if="blabla == 128"> 
+    <div class="admin-entry"> 
         <h2 class="admin-entry-title" ng-click="goBackRestore = !goBackRestore">
             <i class="fa" ng-class="goBackRestore ? 'fa-minus':'fa-plus'"></i> <span ng-bind="_t('nm_backup_title')"></span>
         </h2>
-        <div class="admin-entry-ctrl" ng-class="" ng-show_="goBackRestore">
+        <div class="admin-entry-ctrl" ng-class="" ng-show="goBackRestore">
             <form name="form_restore" id="form_restore" class="form form-page" novalidate>
             <fieldset>
                 <!-- Backup -->
@@ -129,14 +129,14 @@
                  
 
             </fieldset>
-            <fieldset ng-show_="goRestore">
+            <fieldset ng-show="goRestore">
                 <div class="alert alert-warning">
                     <input type="checkbox" name="restore_confirm" value="1" id="restore_confirm" ng-click="goRestoreUpload = !goRestoreUpload" /> <span ng-bind="_t('are_you_sure_restore')"></span>
                 </div>
-                <div ng-show_="goRestoreUpload">
+                <div ng-show="goRestoreUpload">
                     <div class="form-group">
                         <input type="file" class="form-control_" file-model="myFile" /><br /> 
-                       <button type="button" class="btn btn-success" id="btn_upload_img" ng-click="uploadFile(restoreBck)"><i class="fa fa-download"></i> {{_t('nm_restore_pick_up')}}</button>
+                       <button type="button" class="btn btn-success" id="btn_upload_img" ng-click="uploadBackupFile(restoreBck)"><i class="fa fa-download"></i> {{_t('nm_restore_pick_up')}}</button>
                        <button class="btn btn-default" ng-if="goRestore" ng-click="cancelRestore()" ng-bind="_t('lb_cancel')"></button>
                     </div>
 
@@ -202,7 +202,7 @@
     </div>-->
     
     <!-- Modal multiline -->
-    <div class="modal fade" id="modal_firmware" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modal_firmware" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-if="goFirmware">
         <div class="modal-dialog modal-firmware-iframe">
             <div class="modal-content">
                 <div class="modal-header">
