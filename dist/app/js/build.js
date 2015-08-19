@@ -7557,7 +7557,7 @@ function postRenderAlpacaData(renderedForm) {
     return $.extend(inputData, alpacaData);
 }
 /**
- * Application controllers
+ * Application base controller
  * @author Martin Vach
  */
 
@@ -7728,6 +7728,42 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
     };
 
 });
+
+/**
+ * Application controllers
+ * @author Martin Vach
+ */
+
+/**
+ * Error controller
+ */
+myAppController.controller('ErrorController', function($scope, $routeParams, dataService) {
+    $scope.errorCfg = {
+        code: false,
+        icon: 'fa-warning'
+    };
+    /**
+     * Logout proccess
+     */
+    $scope.loadError = function(code) {
+        if (code) {
+            $scope.errorCfg.code = code;
+        } else {
+            $scope.errorCfg.code = 0;
+        }
+        dataService.showConnectionError(code);
+
+    };
+    $scope.loadError($routeParams.code);
+
+});
+
+
+/**
+ * Application Element controller
+ * @author Martin Vach
+ */
+
 /**
  * Element controller
  */
@@ -8212,6 +8248,11 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
     ;
 });
 /**
+ * Application Event controller
+ * @author Martin Vach
+ */
+
+/**
  * Event controller
  */
 myAppController.controller('EventController', function($scope, $routeParams, $interval, $window, $filter, $cookies, $location, dataFactory, dataService, myCache, paginationService, cfg, _) {
@@ -8435,6 +8476,11 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
         return;
     }
 });
+/**
+ * Application App controller
+ * @author Martin Vach
+ */
+
 /**
  * App controller
  */
@@ -8960,6 +9006,11 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
 
 });
 /**
+ * Application Device controller
+ * @author Martin Vach
+ */
+
+/**
  * Device controller
  */
 myAppController.controller('DeviceController', function($scope, $routeParams, dataFactory, dataService) {
@@ -9030,7 +9081,7 @@ myAppController.controller('DeviceIpCameraController', function($scope, dataFact
     $scope.loadData();
 });
 /**
- * Device controller
+ * Device Include controller
  */
 myAppController.controller('IncludeController', function($scope, $routeParams, $interval, $filter, dataFactory, dataService, myCache) {
     $scope.apiDataInterval = null;
@@ -9473,6 +9524,12 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
 
 
 });
+/**
+ * Application EnOcean controller
+ * @author Martin Vach
+ */
+
+
 /**
  * EnOcean devices controller
  */
@@ -10516,6 +10573,11 @@ myAppController.controller('EnoceanControllerController', function($scope, $loca
     $scope.loadData();
 });
 /**
+ * Application Room controller
+ * @author Martin Vach
+ */
+
+/**
  * Room controller
  */
 myAppController.controller('RoomController', function($scope, $location, dataFactory, dataService) {
@@ -10778,6 +10840,11 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
     ;
 
 });
+/**
+ * Application Network controller
+ * @author Martin Vach
+ */
+
 /**
  * Network controller
  */
@@ -11293,6 +11360,11 @@ myAppController.controller('NetworkConfigController', function($scope, $routePar
 
 });
 /**
+ * Application Admin controller
+ * @author Martin Vach
+ */
+
+/**
  * Profile controller
  */
 myAppController.controller('AdminController', function($scope, $window, $location, $timeout, $interval, $sce, dataFactory, dataService, myCache) {
@@ -11747,6 +11819,11 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
 
 });
 /**
+ * Application My Access controller
+ * @author Martin Vach
+ */
+
+/**
  * My Access
  */
 myAppController.controller('MyAccessController', function($scope, $window, $location, dataFactory, dataService, myCache) {
@@ -11880,6 +11957,11 @@ myAppController.controller('MyAccessController', function($scope, $window, $loca
 
 });
 /**
+ * Application Bug Report controller
+ * @author Martin Vach
+ */
+
+/**
  * Report controller
  */
 myAppController.controller('ReportController', function($scope, $window, dataFactory, dataService) {
@@ -11971,6 +12053,13 @@ myAppController.controller('ReportController', function($scope, $window, dataFac
 
 });
 /**
+ * Application Auth controller
+ * @author Martin Vach
+ */
+
+
+
+/**
  * Login controller
  */
 myAppController.controller('LoginController', function($scope, $location, $window, $routeParams, dataFactory, dataService) {
@@ -12034,31 +12123,6 @@ myAppController.controller('LogoutController', function($scope, dataService) {
     $scope.logout();
 
 });
-/**
- * Error controller
- */
-myAppController.controller('ErrorController', function($scope, $routeParams, dataService) {
-    $scope.errorCfg = {
-        code: false,
-        icon: 'fa-warning'
-    };
-    /**
-     * Logout proccess
-     */
-    $scope.loadError = function(code) {
-        if (code) {
-            $scope.errorCfg.code = code;
-        } else {
-            $scope.errorCfg.code = 0;
-        }
-        dataService.showConnectionError(code);
-
-    };
-    $scope.loadError($routeParams.code);
-
-});
-
-
 'use strict';
 
 angular.module('colorpicker.module', [])
@@ -21356,7 +21420,11 @@ myAppController.controller('ConfigConfigurationController', function($scope, $ro
                 $location.path('/error/404');
             }
         }, function(error) {
-            $location.path('/error/'+ error.status);
+            //$location.path('/error/'+ error.status);
+            $scope.configCont = expertService.configConfigCont(node, nodeId, zddXml, null, $scope.lang, $scope.languages);
+            $scope.wakeupCont = expertService.configWakeupCont(node, nodeId, ZWaveAPIData, null);
+            $scope.protectionCont = expertService.configProtectionCont(node, nodeId, ZWaveAPIData, null);
+            $scope.switchAllCont = expertService.configSwitchAllCont(node, nodeId, ZWaveAPIData, null);
         });
     }
 });

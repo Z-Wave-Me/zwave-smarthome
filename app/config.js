@@ -11,7 +11,7 @@ var config_data = {
         'interval': 3000,
         // Interval in miliseconds (5 min) to clear history (json) cache
         'history_cache_interval': 300000,
-        // List of API links  
+        // List of API URLs 
         'api': {
             'devices': 'ZAutomation/api/v1/devices',
             'hide_devices': 'ZAutomation/api/v1/hidedevices',
@@ -25,7 +25,9 @@ var config_data = {
             'instances': 'ZAutomation/api/v1/instances',
             'namespaces': 'ZAutomation/api/v1/namespaces',
             'history': 'ZAutomation/api/v1/history',
-            'login': 'ZAutomation/api/v1/login'
+            'login': 'ZAutomation/api/v1/login',
+            'backup': 'ZAutomation/api/v1/backup',
+            'restore': 'ZAutomation/api/v1/restore'
         },
         // List of image pathes
         'img': {
