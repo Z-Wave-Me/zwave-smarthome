@@ -54,7 +54,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
          if($scope.user){
              $scope.lang = $scope.user.lang;
          }else{
-            $scope.lang = angular.isDefined($cookies.lang) ? $cookies.lang : cfg.lang
+            $scope.lang = angular.isDefined($cookies.lang) ? $cookies.lang : cfg.lang;
          }
      };
     $scope.getLang();

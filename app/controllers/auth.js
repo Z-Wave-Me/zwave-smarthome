@@ -16,7 +16,8 @@ myAppController.controller('LoginController', function($scope, $location, $windo
         keepme: false,
         default_ui: 1
     };
-    $scope.loginLang = angular.isDefined($cookies.lang) ? $cookies.lang : $scope.cfg.lang;
+    $scope.loginLang = ($scope.lastLogin != undefined && angular.isDefined($cookies.lang)) ? $cookies.lang : false;
+    //if(!$scope.lastLogin )
 //    if (dataService.getUser()) {
 //        $location.path('/elements');
 //        return;
