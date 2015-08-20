@@ -67,7 +67,7 @@
     "description": "Universal Switch Insert 4C",
     "image": "PTM250.jpg",
     "rorg": "0xf6",
-    "funcId": "0x03",
+    "funcId": "0x02",
     "typeId": "0x01",
     "inclusion": "Hit one rocker"
   },
