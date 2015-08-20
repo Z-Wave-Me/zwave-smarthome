@@ -6,7 +6,7 @@
 /**
  * Profile controller
  */
-myAppController.controller('AdminController', function($scope, $window, $location, $timeout, $interval, $sce, dataFactory, dataService, myCache) {
+myAppController.controller('AdminController', function($scope, $window, $location, $timeout, $interval, $sce, $cookies,dataFactory, dataService, myCache) {
     $scope.profiles = {};
     $scope.remoteAccess = false;
     $scope.controllerInfo = {
@@ -21,12 +21,7 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
 //        val: 0
 //
 //    };
-    // Factory default
-    $scope.factoryDefault = {
-        alert: {message: false, status: 'is-hidden', icon: false},
-        process: false
-
-    };
+    
     // Licence
     //$scope.controllerUuid = null;
     $scope.proccessLicence = false;
@@ -80,6 +75,8 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
     };
 
     $scope.loadZwaveApiData();
+    
+    /************************************** User management **************************************/
 
     /**
      * Load data into collection
@@ -116,6 +113,8 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
             });
         }
     };
+    
+    /************************************** Remote access **************************************/
 
     /**
      * Load Remote access data
@@ -160,6 +159,8 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
         });
 
     };
+    
+    /************************************** Licence **************************************/
 
     /**
      * Get license key
@@ -212,6 +213,26 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
         });
     }
     ;
+    
+    /************************************** Backup, Restore, Factory default **************************************/
+    // Backup, restore, Factory default
+    $scope.backupRestore = {
+        activeTab: (angular.isDefined($cookies.tab_admin_backup) ? $cookies.tab_admin_backup : 'backup')
+
+    };
+    $scope.factoryDefault = {
+        alert: {message: false, status: 'is-hidden', icon: false},
+        process: false
+
+    };
+    
+    /**
+     * Set tab
+     */
+    $scope.setBackupTab = function(tabId) {
+        $scope.backupRestore.activeTab = tabId;
+        $cookies.tab_admin_backup = tabId;
+    };
 
     /**
      * Upload backup file
@@ -231,6 +252,39 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
             alert($scope._t('restore_backup_failed'));
         });
     };
+    
+    /**
+     * Cancel restore
+     */
+    $scope.cancelRestore = function() {
+        $("#restore_confirm").attr('checked', false);
+        $("#restore_chip_info").attr('checked', false);
+        $scope.goRestore = false;
+        $scope.goRestoreUpload = false;
+
+    };
+    
+    /**
+     * Back to Factory default
+     */
+    $scope.backFactoryDefault = function(input) {
+        var cnt = 0;
+        $scope.factoryDefault.process = true;
+        var refresh = function() {
+            $scope.factoryDefault.alert = {message: $scope._t('returning_factory_default'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
+            cnt += 1;
+            if (cnt >= 10) {
+                $interval.cancel(interval);
+                $scope.factoryDefault.alert = {message: $scope._t('factory_default_success'), status: 'alert-success', icon: 'fa-check'};
+                //$scope.factoryDefault.alert = {message: $scope._t('factory_default_error'), status: 'alert-danger', icon: 'fa-warning'};
+                $scope.factoryDefault.process = false;
+            }
+            console.log($scope.factoryDefault);
+        };
+        var interval = $interval(refresh, 1000);
+    };
+
+    
 
     /**
      * DEPRECATED
@@ -254,36 +308,7 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
 //        var progressInterval = $interval(refresh, 500);
 //    };
 
-    /**
-     * Back to Factory default
-     */
-    $scope.backFactoryDefault = function(input) {
-        var cnt = 0;
-        $scope.factoryDefault.process = true;
-        var refresh = function() {
-            $scope.factoryDefault.alert = {message: $scope._t('returning_factory_default'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
-            cnt += 1;
-            if (cnt >= 10) {
-                $interval.cancel(interval);
-                $scope.factoryDefault.alert = {message: $scope._t('factory_default_success'), status: 'alert-success', icon: 'fa-check'};
-                //$scope.factoryDefault.alert = {message: $scope._t('factory_default_error'), status: 'alert-danger', icon: 'fa-warning'};
-                $scope.factoryDefault.process = false;
-            }
-            console.log($scope.factoryDefault);
-        };
-        var interval = $interval(refresh, 1000);
-    };
-
-    /**
-     * Cancel restore
-     */
-    $scope.cancelRestore = function() {
-        $("#restore_confirm").attr('checked', false);
-        $("#restore_chip_info").attr('checked', false);
-        $scope.goRestore = false;
-        $scope.goRestoreUpload = false;
-
-    };
+    
     /**
      * Show modal window
      */

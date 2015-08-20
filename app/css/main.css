@@ -570,7 +570,7 @@ background-color: lighten($app-body-bcg-color, 10%);;
   border: solid 4px #eeeeee;
 }
 /* line 260, sass/globals/_body.scss */
-.form-page fieldset {
+.form-page fieldset, .form-page .fieldset {
   background-color: #fff;
 }
 /* line 263, sass/globals/_body.scss */

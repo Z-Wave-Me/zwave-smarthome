@@ -257,8 +257,8 @@ background-color: lighten($app-body-bcg-color, 10%);;
     margin-bottom: 20px;
     background-color: #fff;
     border: solid 4px darken($app-body-bcg-color,3%);
-    fieldset{
-        background-color: #fff;
+    fieldset,.fieldset{
+        background-color: #fff; 
     }
     h3{
         font-size: 14px;
