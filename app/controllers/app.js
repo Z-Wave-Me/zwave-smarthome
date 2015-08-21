@@ -279,8 +279,23 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
  */
 myAppController.controller('AppLocalDetailController', function($scope, $routeParams, $location, dataFactory, dataService, _) {
     $scope.module = [];
+     $scope.categoryName = '';
     $scope.isOnline = null;
     $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
+    /**
+     * Load categories
+     */
+    $scope.loadCategories = function(id) {
+        dataFactory.getApi('modules_categories').then(function(response) {
+           var category = _.findWhere(response.data.data, {id: id});
+           if(category){
+               $scope.categoryName = category.name;
+           }
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    };
+   
     /**
      * Load module detail
      */
@@ -290,8 +305,8 @@ myAppController.controller('AppLocalDetailController', function($scope, $routePa
         dataFactory.getApi('modules', '/' + id).then(function(response) {
             loadOnlineModules(id);
             $scope.module = response.data.data;
+             $scope.loadCategories(response.data.data.category);
             //$scope.loading = false;
-
         }, function(error) {
             $scope.loading = false;
             $location.path('/error/' + error.status);
