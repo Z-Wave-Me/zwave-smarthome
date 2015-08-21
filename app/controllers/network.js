@@ -108,7 +108,7 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
                         obj['permanently_hidden'] = v.permanently_hidden;
                         obj['nodeId'] = nodeId;
                         obj['nodeName'] = node.data.givenName.value || 'Device ' + '_' + k,
-                        obj['title'] = v.metrics.title;
+                                obj['title'] = v.metrics.title;
                         obj['deviceType'] = v.deviceType;
                         obj['level'] = $filter('toInt')(v.metrics.level);
                         obj['metrics'] = v.metrics;
@@ -216,9 +216,13 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
 myAppController.controller('NetworkConfigController', function($scope, $routeParams, $filter, $location, dataFactory, dataService, myCache) {
     $scope.zWaveDevice = [];
     $scope.devices = [];
-    $scope.dev = [];
+    //$scope.dev = [];
+    $scope.formInput = {
+        elements: {},
+        room: undefined
+    };
     $scope.rooms = [];
-    $scope.modelRoom;
+    //$scope.modelRoom;
 
     /**
      * Load data
@@ -266,8 +270,24 @@ myAppController.controller('NetworkConfigController', function($scope, $routePar
         return;
 
     };
+
     /**
-     * Update device
+     * Update all devices
+     */
+    $scope.updateAllDevices = function(input) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+       angular.forEach($scope.formInput.elements, function(v, k) {
+                var errors = 0;
+                dataFactory.putApi('devices', v.id, v).then(function(response) {
+                }, function(error) {});
+        });
+        myCache.remove('devices');
+       $scope.loadData($routeParams.nodeId);
+       $scope.loading = false;
+
+    };
+    /**
+     * Update single device
      */
     $scope.updateDevice = function(input) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
@@ -354,6 +374,7 @@ myAppController.controller('NetworkConfigController', function($scope, $routePar
                     obj['visibility'] = v.visibility;
                     obj['level'] = $filter('toInt')(v.metrics.level);
                     obj['metrics'] = v.metrics;
+                    $scope.formInput.elements[v.id] = obj;
                     $scope.devices.push(obj);
                 }
 

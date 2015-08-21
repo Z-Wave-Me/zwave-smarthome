@@ -491,7 +491,7 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
             }
             var findZwaveStr = "ZWayVDev_zway_";
             angular.forEach(devices, function(v, k) {
-                if (v.id.indexOf(findZwaveStr) === -1) {
+                if (v.id.indexOf(findZwaveStr) === -1 || v.deviceType === 'battery') {
                     return;
                 }
                 var cmd = v.id.split(findZwaveStr)[1].split('-');
