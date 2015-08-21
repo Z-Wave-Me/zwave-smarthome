@@ -218,6 +218,10 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
     // Backup, restore, Factory default
     $scope.backupRestore = {
         activeTab: (angular.isDefined($cookies.tab_admin_backup) ? $cookies.tab_admin_backup : 'backup'),
+        restore: {
+           alert: {message: false, status: 'is-hidden', icon: false},
+            process: false
+        },
         factory: {
            alert: {message: false, status: 'is-hidden', icon: false},
             process: false
@@ -242,7 +246,21 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
      * Upload backup file
      */
     $scope.uploadBackupFile = function(input) {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('restore_wait')};
+        var cnt = 0;
+         $scope.backupRestore.restore.process = true;
+        var refresh = function() {
+            $scope.backupRestore.restore.alert = {message: $scope._t('restore_wait'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
+            cnt += 1;
+            if (cnt >= 10) {
+                $interval.cancel(interval);
+                $scope.backupRestore.restore.alert = {message: $scope._t('factory_default_success'), status: 'alert-success', icon: 'fa-check'};
+                //$scope.backupRestore.restore.alert = {message: $scope._t('factory_default_error'), status: 'alert-danger', icon: 'fa-warning'};
+                $scope.backupRestore.restore.process = false;
+            }
+        };
+        var interval = $interval(refresh, 1000);
+        return;
+        /*$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('restore_wait')};
         var fd = new FormData();
         fd.append('file_upload', $scope.myFile);
         dataFactory.restoreFromBck(fd).then(function(response) {
@@ -254,7 +272,7 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
         }, function(error) {
             $scope.loading = false;
             alert($scope._t('restore_backup_failed'));
-        });
+        });*/
     };
     
     /**
@@ -280,10 +298,9 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
             if (cnt >= 10) {
                 $interval.cancel(interval);
                 $scope.backupRestore.factory.alert = {message: $scope._t('factory_default_success'), status: 'alert-success', icon: 'fa-check'};
-                //$scope.factoryDefault.alert = {message: $scope._t('factory_default_error'), status: 'alert-danger', icon: 'fa-warning'};
+                //$scope.backupRestore.factory.alert = {message: $scope._t('factory_default_error'), status: 'alert-danger', icon: 'fa-warning'};
                 $scope.backupRestore.factory.process = false;
             }
-            console.log($scope.factoryDefault);
         };
         var interval = $interval(refresh, 1000);
     };

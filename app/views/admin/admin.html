@@ -115,7 +115,7 @@
     </div>
     
     <!-- ///////////////////////////// Back up and Restore ///////////////////////////// -->
-    <div class="admin-entry"> 
+    <div class="admin-entry" ng-if="blblbla"> 
         <h2 class="admin-entry-title" ng-click="goBackRestore = !goBackRestore;cancelRestore()">
             <i class="fa" ng-class="goBackRestore ? 'fa-minus':'fa-plus'"></i> <span ng-bind="_t('nm_backup_title')"></span>
         </h2>
@@ -146,6 +146,7 @@
                 <div class="tab-pane" id="tab_backup" ng-class="backupRestore.activeTab == 'backup' ? 'active' : ''">
                      <div class="form-page">
                         <div class="fieldset">
+                             <bb-help-text trans="_t('backup_info')"></bb-help-text>
                           <a class="btn btn-primary" href="{{cfg.server_url + cfg.api.backup}}" target="_blank">{{_t('nm_backup_download')}}</a>
                        </div>
                      </div>
@@ -154,10 +155,11 @@
                 <div class="tab-pane" id="tab_restore" ng-class="backupRestore.activeTab == 'restore' ? 'active' : ''">
                     <form name="form_restore" id="form_restore" class="form form-page" novalidate>
                         <fieldset>
-                            <div class="alert alert-warning">
+                            <div class="alert alert-warning" ng-hide="backupRestore.restore.process">
                                 <input type="checkbox" name="restore_confirm" value="1" id="restore_confirm" ng-click="goRestoreUpload = !goRestoreUpload" /> <span ng-bind="_t('are_you_sure_restore')"></span>
                             </div>
-                            <div ng-show="goRestoreUpload">
+                            <bb-alert alert="backupRestore.restore.alert"></bb-alert>
+                            <div ng-show="goRestoreUpload" ng-hide="backupRestore.restore.process">
                                 <div class="form-group">
                                     <input type="file" class="form-control_" file-model="myFile" /><br /> 
                                    <button type="button" class="btn btn-success" id="btn_upload_img" ng-click="uploadBackupFile(restoreBck)"><i class="fa fa-download"></i> {{_t('nm_restore_pick_up')}}</button>
@@ -175,11 +177,9 @@
                         <fieldset>
                              <bb-help-text trans="_t('factory_default_war')"></bb-help-text>
                              <bb-alert alert="backupRestore.factory.alert"></bb-alert>
+                             <button type="submit" class="btn btn-primary" ng-disabled="backupRestore.factory.process">{{_t('back_factory_default')}}</button>
 
                         </fieldset> 
-                            <fieldset class="submit-entry">
-                            <button type="submit" class="btn btn-primary" ng-disabled="backupRestore.factory.process">{{_t('back_factory_default')}}</button>
-                        </fieldset>
                     </form>
                 </div>
             </div>
