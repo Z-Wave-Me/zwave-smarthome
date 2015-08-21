@@ -264,12 +264,16 @@ myAppController.controller('NetworkController', function($scope, $cookies, $filt
                         obj['nodeId'] = nodeId;
                         obj['nodeName'] = node.data.givenName.value || 'Device ' + '_' + k,
                                 obj['title'] = v.metrics.title;
+                        obj['deviceType'] = v.deviceType;
                         obj['level'] = $filter('toInt')(v.metrics.level);
                         obj['metrics'] = v.metrics;
                         obj['messages'] = [];
-                        $scope.devices.zwave.push(obj);
-                        $scope.zWaveDevices[nodeId]['elements'].push(obj);
-                        $scope.zWaveDevices[nodeId]['icon'] = obj.metrics.icon;
+                        if (v.deviceType !== 'battery') {
+                            $scope.devices.zwave.push(obj);
+                            $scope.zWaveDevices[nodeId]['elements'].push(obj);
+                            $scope.zWaveDevices[nodeId]['icon'] = obj.metrics.icon;
+                        }
+
                         // Batteries
                         if (v.deviceType === 'battery') {
                             $scope.devices.batteries.push(obj);
@@ -491,7 +495,7 @@ myAppController.controller('NetworkConfigController', function($scope, $routePar
             }
             var findZwaveStr = "ZWayVDev_zway_";
             angular.forEach(devices, function(v, k) {
-                if (v.id.indexOf(findZwaveStr) === -1) {
+                if (v.id.indexOf(findZwaveStr) === -1 || v.deviceType === 'battery') {
                     return;
                 }
                 var cmd = v.id.split(findZwaveStr)[1].split('-');
