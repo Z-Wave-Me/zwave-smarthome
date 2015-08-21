@@ -1,5 +1,7 @@
 {
     "missing": "---",
+      "---": "missing",
+    "device_exists": "Device already exists. Uninstall the device and then reinstall it.",
     "backup": "Backup",
      "enocean_no_settings": "There is no settings for this device",
     "room_image_upload_info": "The uploaded image must be smaller than 600 kB and in one of the following formats: JPEG, GIF. The recommended dimension of the uploaded images is 200 x 200 pixels.",
@@ -10,7 +12,6 @@
     "comfort": "Comfort",
     "time_driven": "Time-driven",
     "per_room": "per Room",
-     "---": "missing",
     "element_id": "Element ID",
     "factory_default": "Factory default",
     "factory_default_war": "This will not impact the Z-Wave network but the modules and names of elements only. ",
