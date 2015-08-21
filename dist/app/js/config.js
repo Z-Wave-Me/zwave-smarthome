@@ -144,7 +144,8 @@ var config_data = {
         'element_update_icon': [
             'switchBinary',
             'switchMultilevel',
-            'doorlock'
+            'doorlock',
+            'switchControl'
         ],
         // List of the elements with update time button
         'element_update_time_btn': [

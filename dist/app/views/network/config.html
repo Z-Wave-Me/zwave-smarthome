@@ -1,4 +1,4 @@
-<!-- Logoutview -->
+<!-- Network config view -->
 <div ng-controller="NetworkConfigController" class="mobile-padding">
     <bb-loader></bb-loader> 
     <h1>(#{{zWaveDevice.id}}) {{zWaveDevice.title}}</h1>
@@ -7,11 +7,11 @@
             <!-- Rooms -->
             <div class="form-group form-inline">
                 <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('devices_to_room')"></span></h3>
-                <select class="form-control" ng-model="modelRoom">
+                <select class="form-control" ng-model="formInput.room">
                     <option value="">------</option>
                     <option ng-repeat="v in rooms" ng-selected_="input.location == v.id" value="{{v.id}}" ng-bind="v.title"></option>
                 </select>
-                <button class="btn btn-primary" ng-click="devicesToRoom(modelRoom, devices)" ng-bind="_t('lb_save')"></button> 
+                <button class="btn btn-primary" ng-click="devicesToRoom(formInput.room, devices)" ng-bind="_t('lb_save')"></button> 
 
             </div>
         </fieldset>
@@ -20,27 +20,27 @@
             
             <h3>
                 <img id="widget_img_{{v.id}}" class="report-img" ng-src="{{e.metrics.icon|getElementIcon:e:e.level}}" alt="img" />
-                 <span ng-bind="dev[e.id].metrics.title"></span>
+                 <span ng-bind="formInput.elements[e.id].metrics.title"></span>
             </h3>
                 <div>
-                        <input type="text" name="fdf" class="form-control form-control-md" ng-model="dev[e.id].metrics.title" value="{{dev[e.id].metrics.title}}" />
-                         <button class="btn btn-primary" ng-click="updateDevice(dev[e.id])" ng-bind="_t('rename_element')"></button> 
+                        <input type="text" name="fdf" class="form-control form-control-md" ng-model="formInput.elements[e.id].metrics.title" value="{{formInput.elements[e.id].metrics.title}}" />
+                         <!-- <button class="btn btn-primary" ng-click="updateDevice(dev[e.id])" ng-bind="_t('rename_element')"></button> --> 
                          <button class="btn" 
                              ng-click="updateDevice({id: e.id,permanently_hidden: e.permanently_hidden ? false : true})" 
                              ng-bind="e.permanently_hidden ? _t('show_element') : _t('hide_element')"
                              ng-class="e.permanently_hidden ? 'btn-danger' : 'btn-info'"> </button>
                  </div>
             </div>
-        </fieldset>
-        <fieldset ng-if="zWaveDevice.cfg.length > 0">
-            <div class="form-group form-inline">
-                <a class="btn btn-primary" href="#deviceconfig/{{zWaveDevice.id}}">
-                           <i class="fa fa-wrench"></i> <span class="btn-name" ng-bind="_t('hardware_konfiguration')"></span>
-                       </a>
-            </div>
+            
+             <button class="btn btn-primary" ng-click="updateAllDevices(dev)" ng-bind="_t('lb_save')"></button>
         </fieldset>
         <fieldset class="submit-entry">
-            <button class="btn btn-default" ng-bind="_t('ok')" bb-go-back></button>
+            <div class="form-group form-inline">
+             <a class="btn btn-primary" href="#deviceconfig/{{zWaveDevice.id}}" ng-if="zWaveDevice.cfg.length > 0">
+                           <i class="fa fa-wrench"></i> <span class="btn-name" ng-bind="_t('hardware_konfiguration')"></span>
+                       </a>
+            <button class="btn btn-default" ng-bind="_t('lb_cancel')" bb-go-back></button>
+            </div>
         </fieldset>
     </form>
 </div>

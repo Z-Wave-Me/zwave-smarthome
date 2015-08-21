@@ -10,12 +10,12 @@
         
         <div class="app-detail-body">
             <h2 class="page-subtitle" ng-bind="module.defaults.title"></h2>
-            <p class="app-detail-perex" ng-bind="module.defaults.description"></p>
+            <p class="app-detail-perex" ng-bind-html="module.defaults.description|toTrusted"></p>
             <p class="app-detail-list" ng-show="module.dependencies.length > 0">
                 <i class="fa fa-sitemap fa-lg"></i> <strong>{{_t('lb_instance_of')}}:</strong> <span ng-repeat="i in module.dependencies">{{i}}, </span>
             </p>
             <p class="app-detail-list" ng-show="module.category">
-                <i class="fa fa-list fa-lg"></i> <span ng-bind="module.category"></span>
+                <i class="fa fa-list fa-lg"></i> <span ng-bind="categoryName"></span>
             </p>
             <p class="app-detail-list" ng-show="module.author">
                 <i class="fa fa-user fa-lg"></i>

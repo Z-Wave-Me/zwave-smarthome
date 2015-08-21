@@ -18,7 +18,7 @@
                     <!-- default icon -->
                     <img id="widget_img_{{v.id}}" class="widget-image" ng-if="cfg.element_update_icon.indexOf(v.deviceType) === -1 && v.deviceType !== 'text' && v.deviceType !== 'sensorMultiline'" ng-src="{{v.icon|getElementIcon:v:levelVal[v.id]}}" alt="img" />
                      <!-- with update cmd -->
-                    <a href="" ng-click="runCmd(v.id + '/command/update')" ng-if="cfg.element_update_icon.indexOf(v.deviceType) > -1">
+                    <a href="" ng-click="runCmd(v.id + '/command/' + (v.deviceType ==='switchControl' ? 'on' : 'update'))" ng-if="cfg.element_update_icon.indexOf(v.deviceType) > -1">
                          <img id="widget_img_{{v.id}}" class="widget-image  widget-img-update" ng-src="{{v.icon|getElementIcon:v:levelVal[v.id]}}" alt="img" />
                     </a>
 
@@ -265,12 +265,12 @@
                                     
                                 </div>
                                  <div class="widget-control control-right">
-                                    <div class="btn-group">
-                                        
-                                        <!-- <button class="btn btn-default btn-sm"> <i class="fa fa-clock-o"></i> <span class="widget-update-time">{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span></button> -->
-                                        <button class="btn btn-primary btn-sm"><strong class="widget-level" ng-bind="v.level"></strong></button>
-                                        <!--<button class="btn btn-default btn-sm" ng-click="runCmd(v.id + '/command/update')"> <i class="fa fa-clock-o"></i> <span class="widget-update-time">{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span></button>  -->
+                                      <div class="btn-group">
+                                        <button class="btn btn-primary btn-sm"><strong class="widget-level" ng-click="runCmd(v.id + '/command/on')" ng-bind_="v.level">on</strong></button>
                                     </div>
+                                    <!--<div class="btn-group">
+                                        <button class="btn btn-primary btn-sm"><strong class="widget-level" ng-bind="v.level"></strong></button>
+                                    </div>-->
                                 </div><!-- /.widget-control .right -->
                             </div>
 
