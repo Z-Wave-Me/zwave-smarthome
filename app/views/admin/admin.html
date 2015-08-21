@@ -116,7 +116,7 @@
     
     <!-- ///////////////////////////// Back up and Restore ///////////////////////////// -->
     <div class="admin-entry"> 
-        <h2 class="admin-entry-title" ng-click="goBackRestore = !goBackRestore">
+        <h2 class="admin-entry-title" ng-click="goBackRestore = !goBackRestore;cancelRestore()">
             <i class="fa" ng-class="goBackRestore ? 'fa-minus':'fa-plus'"></i> <span ng-bind="_t('nm_backup_title')"></span>
         </h2>
         <div class="admin-entry-ctrl" ng-class="" ng-show_="goBackRestore">
@@ -141,48 +141,48 @@
             </div>
             
             <!-- Tab panes -->
-            <div class="tab-content">
+            <div class="tab-content tab-content-form">
                 <!-- Backup -->
                 <div class="tab-pane" id="tab_backup" ng-class="backupRestore.activeTab == 'backup' ? 'active' : ''">
                      <div class="form-page">
                         <div class="fieldset">
-                          <a class="btn btn-primary" href="{{cfg.server_url + cfg.api.backup}}" ng-if="!goRestore">{{_t('nm_backup_download')}}</a>
+                          <a class="btn btn-primary" href="{{cfg.server_url + cfg.api.backup}}" target="_blank">{{_t('nm_backup_download')}}</a>
                        </div>
                      </div>
                 </div>
                 <!-- Restore -->
                 <div class="tab-pane" id="tab_restore" ng-class="backupRestore.activeTab == 'restore' ? 'active' : ''">
-                    Restore
+                    <form name="form_restore" id="form_restore" class="form form-page" novalidate>
+                        <fieldset>
+                            <div class="alert alert-warning">
+                                <input type="checkbox" name="restore_confirm" value="1" id="restore_confirm" ng-click="goRestoreUpload = !goRestoreUpload" /> <span ng-bind="_t('are_you_sure_restore')"></span>
+                            </div>
+                            <div ng-show="goRestoreUpload">
+                                <div class="form-group">
+                                    <input type="file" class="form-control_" file-model="myFile" /><br /> 
+                                   <button type="button" class="btn btn-success" id="btn_upload_img" ng-click="uploadBackupFile(restoreBck)"><i class="fa fa-download"></i> {{_t('nm_restore_pick_up')}}</button>
+                                   <button class="btn btn-default" ng-click="cancelRestore()" ng-bind="_t('lb_cancel')"></button>
+                                </div>
+
+                            </div>
+
+                        </fieldset>
+                    </form>
                 </div>
                 <!-- Factory -->
                 <div class="tab-pane" id="tab_factory" ng-class="backupRestore.activeTab == 'factory' ? 'active' : ''">
-                    Factory
+                     <form name="form_factory" id="form_factory" class="form form-page" ng-submit="backFactoryDefault()" novalidate>
+                        <fieldset>
+                             <bb-help-text trans="_t('factory_default_war')"></bb-help-text>
+                             <bb-alert alert="backupRestore.factory.alert"></bb-alert>
+
+                        </fieldset> 
+                            <fieldset class="submit-entry">
+                            <button type="submit" class="btn btn-primary" ng-disabled="backupRestore.factory.process">{{_t('back_factory_default')}}</button>
+                        </fieldset>
+                    </form>
                 </div>
             </div>
-            <form name="form_restore" id="form_restore" class="form form-page" novalidate>
-            <fieldset>
-                <!-- Backup -->
-                <a class="btn btn-primary" href="{{cfg.server_url + cfg.api.backup}}" ng-if="!goRestore">{{_t('nm_backup_download')}}</a>
-                <!-- Restore -->
-                <button class="btn btn-info" ng-hide="goRestoreUpload" ng-click="goRestore = !goRestore" ng-bind="_t('nm_restore_backup_upload')"></button>
-                 
-
-            </fieldset>
-            <fieldset ng-show="goRestore">
-                <div class="alert alert-warning">
-                    <input type="checkbox" name="restore_confirm" value="1" id="restore_confirm" ng-click="goRestoreUpload = !goRestoreUpload" /> <span ng-bind="_t('are_you_sure_restore')"></span>
-                </div>
-                <div ng-show="goRestoreUpload">
-                    <div class="form-group">
-                        <input type="file" class="form-control_" file-model="myFile" /><br /> 
-                       <button type="button" class="btn btn-success" id="btn_upload_img" ng-click="uploadBackupFile(restoreBck)"><i class="fa fa-download"></i> {{_t('nm_restore_pick_up')}}</button>
-                       <button class="btn btn-default" ng-if="goRestore" ng-click="cancelRestore()" ng-bind="_t('lb_cancel')"></button>
-                    </div>
-
-                </div>
-
-            </fieldset>
-        </form>
         </div>
     </div>
     

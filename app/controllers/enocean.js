@@ -224,6 +224,10 @@ myAppController.controller('EnoceanAssignController', function($scope, $interval
      */
     $scope.findDevice = function(lastId) {
          var id = lastId.replace(/^(x)/, "");
+         if($scope.includedDevices.indexOf(id) > -1){
+             $scope.inclusion = {done: false, promisc: false, message: '<a href="#enocean/manage"><strong>' + $scope._t('device_exists') + '</strong></a>', status: 'alert-warning', icon: 'fa-exclamation-circle'};
+            return;
+        }
          
         var rorg = parseInt($scope.device.rorg);
          dataFactory.loadEnoceanApiData(true).then(function(response) {
@@ -518,13 +522,15 @@ myAppController.controller('EnoceanTeachinController', function($scope, $routePa
      */
     $scope.findDevice = function(lastId) {
         var id = lastId.replace(/^(x)/, "");
+        if($scope.includedDevices.indexOf(id) > -1){
+            $scope.inclusion = {done: false, promisc: false, message: '<a href="#enocean/manage"><strong>' + $scope._t('device_exists') + '</strong></a>', status: 'alert-warning', icon: 'fa-exclamation-circle'};
+            return;
+        }
         var rorg = parseInt($scope.device.rorg);
         dataFactory.loadEnoceanApiData(true).then(function(response) {
             angular.forEach(response.data.devices, function(v, k) {
-                //console.log('id ',id)
-                //console.log('k: ',k)
-                if (k == id) {
-                    // if (v.data.rorg.value == rorg) {
+               if (k === id) {
+                     // if (v.data.rorg.value == rorg) {
                     var config = false;
                     var name = 'Device ' + k;
                     var profile = assignProfile(v.data);
