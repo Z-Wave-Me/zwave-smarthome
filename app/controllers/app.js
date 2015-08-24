@@ -274,6 +274,281 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     };
 
 });
+
+/**
+ * IN PROGRESS
+ * App local controller
+ */
+myAppController.controller('AppLocalController', function($scope, $window, $cookies, $timeout, $route, dataFactory, dataService, myCache, _) {
+    $scope.instances = [];
+    $scope.hasImage = [];
+    $scope.modules = [];
+    $scope.modulesIds = [];
+    $scope.modulesCats = [];
+    $scope.moduleImgs = [];
+    $scope.onlineModules = [];
+    $scope.onlineVersion = [];
+    $scope.categories = [];
+    $scope.activeTab = (angular.isDefined($cookies.tab_app) ? $cookies.tab_app : 'local');
+    $scope.category = '';
+    $scope.showFooter = true;
+    $scope.modalLocal = {};
+    $scope.showInFooter = {
+        'categories': true,
+        'serach': true
+    };
+    $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
+    $scope.onlineMediaUrl = $scope.cfg.online_module_img_url;
+    /**
+     * Load categories
+     */
+    $scope.loadCategories = function() {
+        dataFactory.getApi('modules_categories').then(function(response) {
+            $scope.categories = response.data.data;
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    };
+    $scope.loadCategories();
+
+    /**
+     * Load local modules
+     */
+    $scope.loadModules = function(query) {
+        var filter = null;
+        if ($scope.user.role === 1 && $scope.user.expert_view) {
+            filter = null;
+        } else {
+            filter = {filter: "state", val: "hidden", not: true};
+        }
+        dataFactory.getApi('modules').then(function(response) {
+            var modulesFiltered = _.filter(response.data.data, function(item) {
+                var isHidden = false;
+                if ($scope.getHiddenApps().indexOf(item.moduleName) > -1) {
+                    if ($scope.user.role !== 1) {
+                        isHidden = true;
+                    } else {
+                        isHidden = ($scope.user.expert_view ? false : true);
+                    }
+
+                }
+                if (item.category === 'surveillance') {
+                    isHidden = true;
+                }
+
+                if (!isHidden) {
+                    $scope.modulesIds.push(item.id);
+                    $scope.moduleImgs[item.id] = item.icon;
+                    if (item.category && $scope.modulesCats.indexOf(item.category) === -1) {
+                        $scope.modulesCats.push(item.category);
+                    }
+                    return item;
+                }
+            });
+            $scope.modules = _.where(modulesFiltered, query);
+            $scope.loading = false;
+            dataService.updateTimeTick();
+        }, function(error) {
+            $scope.loading = false;
+            dataService.showConnectionError(error);
+        });
+    };
+    
+     $scope.loadModules(filter);
+
+    /**
+     * Load online modules
+     */
+    $scope.loadOnlineModules = function() {
+        //return;
+        // Uncomment after integration
+        dataFactory.getRemoteData($scope.cfg.online_module_url).then(function(response) {
+            $scope.onlineModules = response.data;
+            angular.forEach(response.data, function(v, k) {
+                if (v.modulename && v.modulename != '') {
+                    $scope.onlineVersion[v.modulename] = v.version;
+                }
+            });
+            $scope.loading = false;
+            dataService.updateTimeTick();
+        }, function(error) {
+            $scope.loading = false;
+            dataService.showConnectionError(error);
+        });
+    };
+    /**
+     * Load instances
+     */
+    $scope.loadInstances = function() {
+        dataFactory.getApi('instances').then(function(response) {
+            $scope.instances = _.reject(response.data.data, function(v) {
+                //return v.state === 'hidden' && ($scope.user.role !== 1 && $scope.user.expert_view !== true);
+                if ($scope.getHiddenApps().indexOf(v.moduleId) > -1) {
+                    if ($scope.user.role !== 1) {
+                        return true;
+                    } else {
+                        return ($scope.user.expert_view ? false : true);
+                    }
+
+                } else {
+                    return false;
+                }
+            });
+            $scope.loading = false;
+            dataService.updateTimeTick();
+        }, function(error) {
+            $scope.loading = false;
+            dataService.showConnectionError(error);
+        });
+    };
+
+    /**
+     * Set tab
+     */
+    $scope.setTab = function(tabId) {
+        $scope.activeTab = tabId;
+        $cookies.tab_app = tabId;
+    };
+
+    // Watch for tab change
+    $scope.$watch('activeTab', function() {
+        dataService.showConnectionSpinner();
+        //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        switch ($scope.activeTab) {
+            case 'instance':
+                $scope.loadModules();
+                $scope.showInFooter.categories = false;
+                $scope.loadInstances();
+
+                break;
+            case 'hidden':
+                $scope.showInFooter.categories = false;
+                break;
+            case 'online':
+                $scope.loadOnlineModules();
+                $scope.loadModules();
+                $scope.showInFooter.categories = false;
+                break;
+            default:
+                $scope.showInFooter.categories = true;
+                $scope.$watch('category', function() {
+                    $scope.modules = angular.copy([]);
+                    var filter = false;
+                    if ($scope.category != '') {
+                        filter = {category: $scope.category};
+                    }
+                    $scope.loadModules(filter);
+                    $scope.loadOnlineModules();
+                    $scope.loadInstances();
+                });
+                break;
+        }
+    });
+
+    /**
+     * Show modal window
+     */
+    $scope.showModal = function(target, input) {
+        $scope.modalLocal = input;
+        $(target).modal();
+    };
+
+    /**
+     * Ictivate instance
+     */
+    $scope.activateInstance = function(input, activeStatus) {
+        input.active = activeStatus;
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        if (input.id) {
+            dataFactory.putApi('instances', input.id, input).then(function(response) {
+                $scope.loading = false;
+                myCache.remove('instances');
+                myCache.remove('instances/' + input.moduleId);
+                myCache.remove('devices');
+                $scope.loadInstances();
+
+            }, function(error) {
+                alert($scope._t('error_update_data'));
+                $scope.loading = false;
+            });
+        }
+
+    };
+
+    /**
+     * Delete instance
+     */
+    $scope.deleteInstance = function(target, input, dialog) {
+        var confirm = true;
+        if (dialog) {
+            confirm = $window.confirm(dialog);
+        }
+        if (confirm) {
+            dataFactory.deleteApi('instances', input.id).then(function(response) {
+                $(target).fadeOut(500);
+                myCache.remove('instances');
+                myCache.remove('devices');
+            }, function(error) {
+                alert($scope._t('error_delete_data'));
+            });
+
+        }
+    };
+    /**
+     * Delete module
+     */
+    $scope.deleteModule = function(target, input, dialog) {
+        var hasInstance = false;
+        angular.forEach($scope.instances, function(v, k) {
+            if (input.id == v.moduleId)
+                hasInstance = $scope._t('error_module_delete_active') + v.title;
+            return;
+
+        });
+        if (hasInstance) {
+            alert(hasInstance);
+            return;
+        }
+        var confirm = true;
+        if (dialog) {
+            confirm = $window.confirm(dialog);
+        }
+        if (confirm) {
+            //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
+            dataFactory.deleteApi('modules', input.id).then(function(response) {
+                myCache.remove('modules');
+                $(target).fadeOut(2000);
+                //$scope.loading = false;
+
+            }, function(error) {
+                $scope.loading = false;
+                alert($scope._t('error_delete_data'));
+            });
+        }
+    };
+    /**
+     * Download module
+     */
+    $scope.downloadModule = function(modulename) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
+        var data = {
+            moduleUrl: $scope.cfg.online_module_download_url + modulename + '.tar.gz'
+        };
+        dataFactory.installOnlineModule(data).then(function(response) {
+            $timeout(function() {
+                $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_module_download')};
+                myCache.removeAll();
+                $route.reload();
+            }, 3000);
+
+        }, function(error) {
+            $scope.loading = false;
+            alert($scope._t('error_no_module_download'));
+        });
+
+    };
+
+});
 /**
  * App local detail controller
  */
