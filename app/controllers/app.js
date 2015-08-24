@@ -85,13 +85,26 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
      * Load online modules
      */
     $scope.loadOnlineModules = function() {
-        //return;
-        // Uncomment after integration
+        
         dataFactory.getRemoteData($scope.cfg.online_module_url).then(function(response) {
-            $scope.onlineModules = response.data;
-            angular.forEach(response.data, function(v, k) {
-                if (v.modulename && v.modulename != '') {
-                    $scope.onlineVersion[v.modulename] = v.version;
+//            $scope.onlineModules = response.data;
+//            angular.forEach(response.data, function(v, k) {
+//                if (v.modulename && v.modulename != '') {
+//                    $scope.onlineVersion[v.modulename] = v.version;
+//                }
+//            });
+            $scope.onlineModules = _.filter(response.data, function(item) {
+                var isHidden = false;
+                if ($scope.getHiddenApps().indexOf(item.modulename) > -1) {
+                    if ($scope.user.role !== 1) {
+                        isHidden = true;
+                    } else {
+                        isHidden = ($scope.user.expert_view ? false : true);
+                    }
+                }
+
+                if (!isHidden) {
+                    return item;
                 }
             });
             $scope.loading = false;
