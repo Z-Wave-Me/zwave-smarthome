@@ -71,7 +71,7 @@ myApp.directive('bbHelp', function(dataFactory,cfg) {
 //            lang: '&',
 //            file: '='
 //        },
-        template: '<span><a href="" ng-click="clickMe(file)"><i class="fa fa-question-circle fa-lg text-info"></i> Lang: {{lang}}</a>'
+        template: '<span><a href="" ng-click="clickMe(file)"><i class="fa fa-question-circle fa-lg text-info"></i></a>'
                 + '<div class="modal modal-vertical-centered fade" id="help_{{file}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'
                 + '<div class="modal-dialog modal-dialog-center"><div class="modal-content">'
                 + '<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button></div>'
@@ -83,6 +83,7 @@ myApp.directive('bbHelp', function(dataFactory,cfg) {
             scope.file = attrs.file;
             scope.helpData = null;
             scope.clickMe = function(file) {
+                var defaultLang = 'en';
                 var lang = attrs.lang;
                 var helpFile = scope.file + '.' + lang + '.html';
                 $('#help_' + scope.file).modal();
@@ -91,7 +92,7 @@ myApp.directive('bbHelp', function(dataFactory,cfg) {
                     scope.helpData = response.data;
                 }, function(error) {
                     // Load help file for default language
-                    helpFile = scope.file + '.' + lang + '.html';
+                    helpFile = scope.file + '.' + defaultLang + '.html';
                     dataFactory.getHelp(helpFile).then(function(response) {
                         scope.helpData = response.data;
                     }, function(error) {
