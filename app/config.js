@@ -43,6 +43,8 @@ var config_data = {
         //'zwave_jsrun_url': 'JS/Run/',
         // Local data path
         'local_data_url': 'storage/data/',
+        // Help data path
+        'help_data_url': 'storage/help/',
         // Online module url
         'online_module_url': 'http://hrix.net/modules_store/json_store.php',
         // Online module img url

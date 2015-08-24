@@ -76,7 +76,7 @@ myAppController.controller('DeviceIpCameraController', function($scope, dataFact
 /**
  * Device Include controller
  */
-myAppController.controller('IncludeController', function($scope, $routeParams, $interval, $filter, dataFactory, dataService, myCache) {
+myAppController.controller('IncludeController', function($scope, $routeParams, $interval, $filter,$route, dataFactory, dataService, myCache) {
     $scope.apiDataInterval = null;
     $scope.includeDataInterval = null;
     $scope.device = {
@@ -254,6 +254,15 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
      * Watch for last excluded device
      */
     //$scope.$watch('interviewCfg', function() {});
+    
+    /**
+     * Retry inclusion
+     */
+    $scope.retryInclusion = function() {
+         myCache.removeAll();
+        $route.reload();
+        $scope.runZwaveCmd('controller.RemoveNodeFromNetwork(1)');
+    };
 
 
     /**

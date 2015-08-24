@@ -58,7 +58,8 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
         zmeCapabilities: zmeCapabilities,
         postReport: postReport,
         installOnlineModule: installOnlineModule,
-        restoreFromBck: restoreFromBck
+        restoreFromBck: restoreFromBck,
+        getHelp:getHelp
     });
 
     /// --- Public functions --- ///
@@ -716,6 +717,22 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
             } else {// invalid response
                 return $q.reject(response);
             }
+        }, function(response) {// something went wrong
+            return $q.reject(response);
+        });
+
+    }
+    
+    
+     /**
+     * Get help file
+     */
+    function getHelp(file) {
+        return $http({
+            method: 'get',
+            url: cfg.help_data_url + file
+        }).then(function(response) {
+            return response;
         }, function(response) {// something went wrong
             return $q.reject(response);
         });
