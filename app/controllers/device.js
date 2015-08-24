@@ -261,7 +261,7 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
     $scope.retryInclusion = function() {
          myCache.removeAll();
         $route.reload();
-        $scope.runZwaveCmd('controller.AddNodeToNetwork(0)');
+        $scope.runZwaveCmd('controller.RemoveNodeFromNetwork(1)');
     };
 
 
