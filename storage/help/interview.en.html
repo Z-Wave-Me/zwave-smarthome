@@ -1,0 +1,9 @@
+<h3>Interview is not complete</h3>
+<p>Right after inclusion Z-Way determines the functions and capabilities of the new device by sending a lot of requests to the very device. The message „Interview is not complete“ indicates that Z-Way did not receive all the information requested. There are multiple reasons for this:</p>
+<ul>
+    <li>Z-Way is just too busy and needs more time. You should wait up to 30 seconds.</li>
+    <li>The new device is battery operated and went into deep sleep mode too fast to complete the interview. Just wake up the battery-operated device following the instructions for manual wakeup in the devices manual. Usually this completes the interview.</li>
+    <li>The device has a malfunction and can’t complete the interview. This must not happen for certified Z-wave devices but may sometimes happen for uncertified test and evaluation devices.</li> 
+</ul>
+<p>It is also possible that some wireless interference impacted the interview process. You can go to the Expert UI - “Interview” page and review the process of the interview by clicking the button “Show Interview Results”. All incomplete command classes offer a button to re-do the interview for this command class only. Doing this sometimes helps to finish interview. It is also possible to re-do the whole interview process by hitting the button “Force re-Interview”.</p>
+<p><em>Note: If the reason for an incomplete interview is a failed secure command class you must re-include the device. The secure communication must be established within 10 seconds after inclusion.</em></p>
