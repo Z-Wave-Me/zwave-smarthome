@@ -41,7 +41,7 @@
                         <h3 ng-if="v.deviceType !== 'text' && v.deviceType !== 'sensorMultiline'" class="entry-title" title="{{v.title}}" ng-click="goHidden[v.id] = !goHidden[v.id]">{{v.title}}</h3>
 
                         <div class="widget-control-wrap">
-                            <!------------ switchMultilevel ------------>
+                            <!-- ////////// switchMultilevel ////////// -->
                             <div ng-switch-when="switchMultilevel">
                                 <div class="widget-control control-left widget-click-popup" ng-click="goHidden[v.id] = !goHidden[v.id]">
                                     <span class="widget-level" ng-bind="levelVal[v.id] | getMaxLevel"></span>% <i class="fa fa-caret-down"></i>
@@ -79,7 +79,7 @@
 
                             </div>
 
-                            <!------------ switchBinary ------------>
+                            <!-- ////////// switchBinary ////////// -->
                             <div ng-switch-when="switchBinary">
                                 <div class="widget-control control-left widget-click-popup-chart">
 
@@ -102,7 +102,7 @@
                                 </div>
                             </div><!-- /.widget-control .right --> 
 
-                            <!------------ switchRGBW ------------>
+                            <!-- ////////// switchRGBW ////////// -->
                             <div  ng-switch-when="switchRGBW" ng-init="rgbVal[v.id] = v.rgbColors">
                                 <div class="widget-control control-left widget-click-popup" 
                                      colorpicker="rgb" ng-model="rgbVal[v.id]"
@@ -130,9 +130,9 @@
                                     </div>
                                 </div><!-- /.widget-control .right --> 
                             </div><!-- /switchRGBW --> 
-                            <!------------ /switchRGBW ------------>
+                            <!-- ////////// /switchRGBW ////////// -->
 
-                            <!-- doorlock -->
+                           <!-- ////////// doorlock ////////// -->
                             <div class="widget-control control-right" ng-switch-when="doorlock">
                                 <div class="btn-group">
                                     <button 
@@ -148,9 +148,10 @@
                                         ><i class="fa fa-unlock"></i>
                                     </button>
                                 </div>
-                            </div><!-- /.widget-control .right --> 
+                            </div><!-- /.widget-control .right -->
+                             <!-- ////////// /doorlock ////////// -->
                             
-                            <!-- doorLockControl -->
+                            <!-- ////////// doorLockControl ////////// -->
                              <div ng-switch-when="doorLockControl">
                                 <div class="widget-control control-left widget-click-popup" ng-click="loadDoorLock('#modal_doorlock', v.id,v)">
                                     <span class="widget-level">Closed at</span> <span>{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span> <i class="fa fa-caret-down"></i>
@@ -172,8 +173,9 @@
                                     </div>
                                     </div><!-- /.widget-control .right --> 
                              </div>
+                            <!-- ////////// /doorLockControl ////////// -->
                             
-                            <!-- toggleButton -->
+                            <!-- ////////// toggleButton ////////// -->
                             <div class="widget-control control-right" ng-switch-when="toggleButton">
                                 <div class="btn-group">
                                     <button 
@@ -183,9 +185,10 @@
                                         ><i class="fa fa-power-off fa-lg"></i></button>
                                     <!--<a href=""><i class="fa fa-toggle-on fa-2x text-primary"></i></a> -->
                                 </div>
-                            </div><!-- /.widget-control .right --> 
+                            </div><!-- /.widget-control .right -->
+                            <!-- ////////// /toggleButton ////////// -->
 
-                            <!-- sensorMultilevel -->
+                            <!-- ////////// sensorMultilevel ////////// -->
                             <div  ng-switch-when="sensorMultilevel">
                                 <div class="widget-control control-left widget-click-popup">
                                     <span class="widget-level" ng-bind="v.level"></span> <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span>
@@ -197,8 +200,9 @@
                                     </div>
                                 </div><!-- /.widget-control .right -->
                             </div>
+                            <!-- ////////// /sensorMultilevel ////////// -->
 
-                            <!-- sensorBinary -->
+                            <!-- ////////// sensorBinary ////////// -->
                             <div  ng-switch-when="sensorBinary">
                                 <div class="widget-control control-left widget-click-popup">
                                     <span class="widget-level" ng-bind="v.level"></span> <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span>
@@ -210,8 +214,9 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- ////////// /sensorBinary ////////// -->
 
-                            <!-- sensorMultiline -->
+                            <!-- ////////// sensorMultiline ////////// -->
                             <div ng-switch-when="sensorMultiline"> 
                                 <!-- has sensors -->
                                 <div class="widget-control control-left widget-click-popup" ng-click="loadMultilineSensor('#modal_multiline', v.id,v)" ng-if="v.metrics.hasOwnProperty('sensors')">
@@ -229,6 +234,7 @@
                                     </div>
                                 </div><!-- /.widget-control .right -->
                             </div> 
+                            <!-- ////////// /sensorMultiline ////////// -->
                             
                             <!-- <div ng-switch-when="sensorMultiline>______">
                                 <div class="widget-control control-left widget-click-popup" ng-click="goHidden[v.id] = !goHidden[v.id]">
@@ -242,40 +248,67 @@
                                 </div>
                             </div> /.widget-control .right -->
 
-                            <!-- thermostat -->
+                            <!-- ////////// thermostat ////////// -->
                             <div class="widget-control control-left widget-click-popup" ng-switch-when="thermostat" ng-click="goHidden[v.id] = !goHidden[v.id]">
                                 <strong>{{levelVal[v.id]}}<span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span> <i class="fa fa-caret-down"></i></strong>
                             </div>
-                            <!-- switchMultilevelLinear -->
+                             <!-- ////////// /thermostat ////////// -->
+                            
+                            <!-- ////////// switchMultilevelLinear ////////// -->
                             <div class="widget-click-popup" ng-switch-when="switchMultilevelLinear"><strong>{{v.level}} <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span></strong></div>
-                            <!-- camera -->
+                            <!-- ////////// /switchMultilevelLinear ////////// -->
+                            
+                            <!-- ////////// camera ////////// -->
                             <div class="text-right"><a href="" class="btn btn-primary" ng-switch-when="camera" ng-click="showModal('#modal_camera', v)"><i class="fa fa-play"></i></a></div>
+                            <!-- ////////// camera ////////// -->
 
-                            <!-- text -->
+                            <!-- ////////// text ////////// -->
                             <div ng-switch-when="text">
                                 <div class="widget-control control-left widget-click-popup text">
                                     <a href="" ng-click="showModal('#modal_promo', {'type': v.deviceType, 'title': v.title, 'text': v.metrics.text, 'url': v.metrics.icon})" ng-bind="v.metrics.text|stripTags|cutText:true:60"></a>
                                 </div>
                             </div>
+                            <!-- ////////// /text ////////// -->
                             
-                            <!-- switchControl -->
+                            <!-- ////////// switchControl ////////// -->
                             <div ng-switch-when="switchControl">
+                                <div class="widget-control control-left"></div>
+                                 <div class="widget-control control-right">
+                                    <div class="btn-group">
+                                        <button 
+                                            class="btn btn-sm widget-btn-off" 
+                                            id="btn_off_{{ v.id}}"
+                                            data-ng-click="levelVal[v.id] = 'off'; runCmd(v.id + '/command/off', v.id)"
+                                            ng-class="levelVal[v.id]=='off' ? 'btn-primary': 'btn-default'"
+                                            ng-bind="_t('lb_off')"></button>
+                                        <button 
+                                            class="btn btn-sm widget-btn-on" 
+                                            id="btn_on_{{ v.id}}"
+                                            data-ng-click="levelVal[v.id] = 'on'; runCmd(v.id + '/command/on', v.id)"
+                                            ng-class="levelVal[v.id]=='on' ? 'btn-primary': 'btn-default'"
+                                            ng-bind="_t('lb_on')"></button>
+                                    </div>
+                                </div><!-- /.widget-control .right -->
+                            </div>
+                            <!-- ////////// /switchControl ////////// -->
+                             
+                            <!-- ////////// buttonControl ////////// -->
+                            <div ng-switch-when="buttonControl">
                                 <div class="widget-control control-left">
                                     <i class="fa fa-clock-o"></i> <span class="widget-update-time">{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span>
                                     
                                 </div>
                                  <div class="widget-control control-right">
                                       <div class="btn-group">
-                                        <button class="btn btn-primary btn-sm"><strong class="widget-level" ng-click="runCmd(v.id + '/command/on')" ng-bind_="v.level">on</strong></button>
+                                        <button class="btn btn-sm btn-primary widget-btn-on" ng-click="runCmd(v.id + '/command/on')"  ng-bind="_t('lb_on')"></button>
                                     </div>
-                                    <!--<div class="btn-group">
-                                        <button class="btn btn-primary btn-sm"><strong class="widget-level" ng-bind="v.level"></strong></button>
-                                    </div>-->
                                 </div><!-- /.widget-control .right -->
                             </div>
+                            <!-- ////////// / buttonControl ////////// -->
 
-                            <!-- Default -->
+                            <!-- ////////// Default ////////// -->
                             <div class="widget-control control-left widget-click-popup" ng-switch-default><span class="widget-level" ng-bind="v.level"></span> <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span></div>
+                            <!-- ////////// /Default ////////// -->
 
                         </div><!-- /.widget-control-wrap --> 
 

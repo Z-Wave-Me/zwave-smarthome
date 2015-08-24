@@ -1,0 +1,31 @@
+<!-- Online app view -->
+<div ng-controller="AppLocalController">
+<div class="row row-page" id="_page_app_local">
+    <div class="col-lg-4 col-md-6 col-sm-6 app-entry"
+         id="local_module_{{v.id}}" 
+         ng-repeat="v in modules| filter:q" 
+         ng-class="onlineVersion[v.id] && onlineVersion[v.id] != v.version ? 'app-entry-green': ''"
+         ng-if="v.category !== 'surveillance'" ng-init="moduleName = v.moduleName || v.id">
+       <div class="app-border app-gradient app-shadow app-entry-in" ng-class="onlineVersion[v.id] && onlineVersion[v.id] != v.version ? 'app-gradient-green': ''">
+           <a href="#apps/local/{{v.id}}">
+                <img class="app-image" ng-src="{{moduleMediaUrl + moduleName + '/' + v.icon}}" ng-if="v.icon" alt="{{v.defaults.title}}" />
+                <img class="app-image" ng-src="storage/img/placeholder-img.png" ng-if="!v.icon" alt="{{v.defaults.title}}" />
+             </a>
+            
+            <div class="app-body">
+                <h3 class="entry-title"><a href="#apps/local/{{v.id}}" ng-bind="v.defaults.title"></a>  &raquo;</h3>
+             </div>
+            <div class="app-footer">
+                <div class="app-footer-in">
+                    <a href="#module/post/{{v.id}}" class="btn btn-default btn-sm">
+                        <i class="fa fa-plus fa-lg text-success"></i> <span class="btn-name" ng-bind="_t('lb_add_app')"></span>
+                    </a>
+                    <!--<a href="" class="btn btn-default btn-sm" ng-click="deleteModule('#local_module_' + v.id, {'id': v.id}, _t('lb_delete_confirm'))" ng-if="!v.islocal">
+                        <i class="fa fa-remove fa-lg text-danger"></i> <span class="btn-name" ng-bind="_t('lb_remove')"></span>
+                    </a> -->
+                 </div>
+                </div>
+        </div>
+    </div>
+</div>
+</div> <!-- /ng-controller --> 

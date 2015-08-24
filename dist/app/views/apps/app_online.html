@@ -9,11 +9,19 @@
                  <img class="app-image" ng-src="storage/img/placeholder-img.png" alt="{{v.title}}" ng-if="!v.icon" />
             </a>
             <div class="app-body">
-                <h3 class="entry-title"><a href="#apps/online/{{v.id}}" ng-bind="v.title"></a>  &raquo;</h3>
+                <h3 class="entry-title">
+                    <a href="#apps/online/{{v.id}}" ng-if="modulesIds.indexOf(v.modulename) === -1">{{v.title}}  &raquo;</a>
+                     <span ng-if="modulesIds.indexOf(v.modulename) !== -1" ng-bind="v.title"></span>
+                </h3>
              </div>
             <div class="app-footer">
                 <div class="app-footer-in">
-                    <a href="" class="btn btn-default btn-sm" ng-click="downloadModule(v.modulename)"><i class="fa fa-download fa-lg text-success"></i> <span class="btn-name_">{{_t('lb_download')}}</span></a> 
+                    <button href="" class="btn btn-default btn-sm" ng-click="downloadModule(v.modulename)" ng-if="modulesIds.indexOf(v.modulename) === -1">
+                        <i class="fa fa-download fa-lg text-success"></i> <span class="btn-name_">{{_t('lb_download')}}</span>
+                    </button> 
+                    <button class="btn btn-default btn-sm" disabled ng-if="modulesIds.indexOf(v.modulename) !== -1">
+                        <i class="fa fa-download fa-lg"></i> <span class="btn-name_">{{_t('installed')}}</span>
+                    </button> 
                  </div>
                 </div>
         </div>

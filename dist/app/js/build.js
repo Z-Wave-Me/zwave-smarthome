@@ -4535,6 +4535,12 @@ myApp.config(['$routeProvider', function($routeProvider) {
                      requireLogin: true,
                     roles: cfg.role_access.apps
                 }).
+                 //Apps
+                when('/apps/local', { 
+                    templateUrl: 'app/views/apps/apps_local.html',
+                     requireLogin: true,
+                    roles: cfg.role_access.apps
+                }).
                 //Apps - local detail
                 when('/apps/local/:id', {
                     templateUrl: 'app/views/apps/app_local_detail.html',
@@ -4829,7 +4835,8 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
         zmeCapabilities: zmeCapabilities,
         postReport: postReport,
         installOnlineModule: installOnlineModule,
-        restoreFromBck: restoreFromBck
+        restoreFromBck: restoreFromBck,
+        getHelp:getHelp
     });
 
     /// --- Public functions --- ///
@@ -5487,6 +5494,22 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
             } else {// invalid response
                 return $q.reject(response);
             }
+        }, function(response) {// something went wrong
+            return $q.reject(response);
+        });
+
+    }
+    
+    
+     /**
+     * Get help file
+     */
+    function getHelp(file) {
+        return $http({
+            method: 'get',
+            url: cfg.help_data_url + file
+        }).then(function(response) {
+            return response;
         }, function(response) {// something went wrong
             return $q.reject(response);
         });
@@ -6376,6 +6399,50 @@ myApp.directive('bbAlert', function() {
                 + ' <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'
                 + '<i class="fa fa-lg" ng-class="alert.icon"></i> <span ng-bind-html="alert.message|toTrusted"></span>'
                 + '</div>'
+    };
+});
+
+/**
+ * Help directive
+ */
+myApp.directive('bbHelp', function(dataFactory,cfg) {
+    return {
+        restrict: "E",
+        replace: true,
+//        scope: {
+//            lang: '&',
+//            file: '='
+//        },
+        template: '<span><a href="" ng-click="clickMe(file)"><i class="fa fa-question-circle fa-lg text-info"></i></a>'
+                + '<div class="modal modal-vertical-centered fade" id="help_{{file}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'
+                + '<div class="modal-dialog modal-dialog-center"><div class="modal-content">'
+                + '<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button></div>'
+                + ' <div class="modal-body" ng-bind-html="helpData|toTrusted"></div>'
+                + '</div></div>'
+                + '</div>'
+                + '</span>',
+        link: function(scope, elem, attrs) {
+            scope.file = attrs.file;
+            scope.helpData = null;
+            scope.clickMe = function(file) {
+                var defaultLang = 'en';
+                var lang = attrs.lang;
+                var helpFile = scope.file + '.' + lang + '.html';
+                $('#help_' + scope.file).modal();
+                // Load help file for given language
+                dataFactory.getHelp(helpFile).then(function(response) {
+                    scope.helpData = response.data;
+                }, function(error) {
+                    // Load help file for default language
+                    helpFile = scope.file + '.' + defaultLang + '.html';
+                    dataFactory.getHelp(helpFile).then(function(response) {
+                        scope.helpData = response.data;
+                    }, function(error) {
+                        //helpFile = file + '.' + cfg.lang + '.html';
+                    });
+                });
+            };
+        }
     };
 });
 
@@ -8573,6 +8640,294 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
      * Load online modules
      */
     $scope.loadOnlineModules = function() {
+        
+        dataFactory.getRemoteData($scope.cfg.online_module_url).then(function(response) {
+//            $scope.onlineModules = response.data;
+//            angular.forEach(response.data, function(v, k) {
+//                if (v.modulename && v.modulename != '') {
+//                    $scope.onlineVersion[v.modulename] = v.version;
+//                }
+//            });
+            $scope.onlineModules = _.filter(response.data, function(item) {
+                var isHidden = false;
+                if ($scope.getHiddenApps().indexOf(item.modulename) > -1) {
+                    if ($scope.user.role !== 1) {
+                        isHidden = true;
+                    } else {
+                        isHidden = ($scope.user.expert_view ? false : true);
+                    }
+                }
+
+                if (!isHidden) {
+                    return item;
+                }
+            });
+            $scope.loading = false;
+            dataService.updateTimeTick();
+        }, function(error) {
+            $scope.loading = false;
+            dataService.showConnectionError(error);
+        });
+    };
+    /**
+     * Load instances
+     */
+    $scope.loadInstances = function() {
+        dataFactory.getApi('instances').then(function(response) {
+            $scope.instances = _.reject(response.data.data, function(v) {
+                //return v.state === 'hidden' && ($scope.user.role !== 1 && $scope.user.expert_view !== true);
+                if ($scope.getHiddenApps().indexOf(v.moduleId) > -1) {
+                    if ($scope.user.role !== 1) {
+                        return true;
+                    } else {
+                        return ($scope.user.expert_view ? false : true);
+                    }
+
+                } else {
+                    return false;
+                }
+            });
+            $scope.loading = false;
+            dataService.updateTimeTick();
+        }, function(error) {
+            $scope.loading = false;
+            dataService.showConnectionError(error);
+        });
+    };
+
+    /**
+     * Set tab
+     */
+    $scope.setTab = function(tabId) {
+        $scope.activeTab = tabId;
+        $cookies.tab_app = tabId;
+    };
+
+    // Watch for tab change
+    $scope.$watch('activeTab', function() {
+        dataService.showConnectionSpinner();
+        //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        switch ($scope.activeTab) {
+            case 'instance':
+                $scope.loadModules();
+                $scope.showInFooter.categories = false;
+                $scope.loadInstances();
+
+                break;
+            case 'hidden':
+                $scope.showInFooter.categories = false;
+                break;
+            case 'online':
+                $scope.loadOnlineModules();
+                $scope.loadModules();
+                $scope.showInFooter.categories = false;
+                break;
+            default:
+                $scope.showInFooter.categories = true;
+                $scope.$watch('category', function() {
+                    $scope.modules = angular.copy([]);
+                    var filter = false;
+                    if ($scope.category != '') {
+                        filter = {category: $scope.category};
+                    }
+                    $scope.loadModules(filter);
+                    $scope.loadOnlineModules();
+                    $scope.loadInstances();
+                });
+                break;
+        }
+    });
+
+    /**
+     * Show modal window
+     */
+    $scope.showModal = function(target, input) {
+        $scope.modalLocal = input;
+        $(target).modal();
+    };
+
+    /**
+     * Ictivate instance
+     */
+    $scope.activateInstance = function(input, activeStatus) {
+        input.active = activeStatus;
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        if (input.id) {
+            dataFactory.putApi('instances', input.id, input).then(function(response) {
+                $scope.loading = false;
+                myCache.remove('instances');
+                myCache.remove('instances/' + input.moduleId);
+                myCache.remove('devices');
+                $scope.loadInstances();
+
+            }, function(error) {
+                alert($scope._t('error_update_data'));
+                $scope.loading = false;
+            });
+        }
+
+    };
+
+    /**
+     * Delete instance
+     */
+    $scope.deleteInstance = function(target, input, dialog) {
+        var confirm = true;
+        if (dialog) {
+            confirm = $window.confirm(dialog);
+        }
+        if (confirm) {
+            dataFactory.deleteApi('instances', input.id).then(function(response) {
+                $(target).fadeOut(500);
+                myCache.remove('instances');
+                myCache.remove('devices');
+            }, function(error) {
+                alert($scope._t('error_delete_data'));
+            });
+
+        }
+    };
+    /**
+     * Delete module
+     */
+    $scope.deleteModule = function(target, input, dialog) {
+        var hasInstance = false;
+        angular.forEach($scope.instances, function(v, k) {
+            if (input.id == v.moduleId)
+                hasInstance = $scope._t('error_module_delete_active') + v.title;
+            return;
+
+        });
+        if (hasInstance) {
+            alert(hasInstance);
+            return;
+        }
+        var confirm = true;
+        if (dialog) {
+            confirm = $window.confirm(dialog);
+        }
+        if (confirm) {
+            //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
+            dataFactory.deleteApi('modules', input.id).then(function(response) {
+                myCache.remove('modules');
+                $(target).fadeOut(2000);
+                //$scope.loading = false;
+
+            }, function(error) {
+                $scope.loading = false;
+                alert($scope._t('error_delete_data'));
+            });
+        }
+    };
+    /**
+     * Download module
+     */
+    $scope.downloadModule = function(modulename) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
+        var data = {
+            moduleUrl: $scope.cfg.online_module_download_url + modulename + '.tar.gz'
+        };
+        dataFactory.installOnlineModule(data).then(function(response) {
+            $timeout(function() {
+                $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_module_download')};
+                myCache.removeAll();
+                $route.reload();
+            }, 3000);
+
+        }, function(error) {
+            $scope.loading = false;
+            alert($scope._t('error_no_module_download'));
+        });
+
+    };
+
+});
+
+/**
+ * IN PROGRESS
+ * App local controller
+ */
+myAppController.controller('AppLocalController', function($scope, $window, $cookies, $timeout, $route, dataFactory, dataService, myCache, _) {
+    $scope.instances = [];
+    $scope.hasImage = [];
+    $scope.modules = [];
+    $scope.modulesIds = [];
+    $scope.modulesCats = [];
+    $scope.moduleImgs = [];
+    $scope.onlineModules = [];
+    $scope.onlineVersion = [];
+    $scope.categories = [];
+    $scope.activeTab = (angular.isDefined($cookies.tab_app) ? $cookies.tab_app : 'local');
+    $scope.category = '';
+    $scope.showFooter = true;
+    $scope.modalLocal = {};
+    $scope.showInFooter = {
+        'categories': true,
+        'serach': true
+    };
+    $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
+    $scope.onlineMediaUrl = $scope.cfg.online_module_img_url;
+    /**
+     * Load categories
+     */
+    $scope.loadCategories = function() {
+        dataFactory.getApi('modules_categories').then(function(response) {
+            $scope.categories = response.data.data;
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    };
+    $scope.loadCategories();
+
+    /**
+     * Load local modules
+     */
+    $scope.loadModules = function(query) {
+        var filter = null;
+        if ($scope.user.role === 1 && $scope.user.expert_view) {
+            filter = null;
+        } else {
+            filter = {filter: "state", val: "hidden", not: true};
+        }
+        dataFactory.getApi('modules').then(function(response) {
+            var modulesFiltered = _.filter(response.data.data, function(item) {
+                var isHidden = false;
+                if ($scope.getHiddenApps().indexOf(item.moduleName) > -1) {
+                    if ($scope.user.role !== 1) {
+                        isHidden = true;
+                    } else {
+                        isHidden = ($scope.user.expert_view ? false : true);
+                    }
+
+                }
+                if (item.category === 'surveillance') {
+                    isHidden = true;
+                }
+
+                if (!isHidden) {
+                    $scope.modulesIds.push(item.id);
+                    $scope.moduleImgs[item.id] = item.icon;
+                    if (item.category && $scope.modulesCats.indexOf(item.category) === -1) {
+                        $scope.modulesCats.push(item.category);
+                    }
+                    return item;
+                }
+            });
+            $scope.modules = _.where(modulesFiltered, query);
+            $scope.loading = false;
+            dataService.updateTimeTick();
+        }, function(error) {
+            $scope.loading = false;
+            dataService.showConnectionError(error);
+        });
+    };
+    
+     $scope.loadModules(filter);
+
+    /**
+     * Load online modules
+     */
+    $scope.loadOnlineModules = function() {
         //return;
         // Uncomment after integration
         dataFactory.getRemoteData($scope.cfg.online_module_url).then(function(response) {
@@ -9108,7 +9463,7 @@ myAppController.controller('DeviceIpCameraController', function($scope, dataFact
 /**
  * Device Include controller
  */
-myAppController.controller('IncludeController', function($scope, $routeParams, $interval, $filter, dataFactory, dataService, myCache) {
+myAppController.controller('IncludeController', function($scope, $routeParams, $interval, $filter,$route, dataFactory, dataService, myCache) {
     $scope.apiDataInterval = null;
     $scope.includeDataInterval = null;
     $scope.device = {
@@ -9286,6 +9641,15 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
      * Watch for last excluded device
      */
     //$scope.$watch('interviewCfg', function() {});
+    
+    /**
+     * Retry inclusion
+     */
+    $scope.retryInclusion = function() {
+         myCache.removeAll();
+        $route.reload();
+        $scope.runZwaveCmd('controller.RemoveNodeFromNetwork(1)');
+    };
 
 
     /**

@@ -1,5 +1,7 @@
 {
     "missing": "---",
+    "installed": "Installed",
+     "retry": "Retry",
       "---": "missing",
     "device_exists": "Device already exists. Uninstall the device and then reinstall it.",
     "backup": "Backup",
