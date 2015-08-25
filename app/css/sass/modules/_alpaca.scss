@@ -439,8 +439,8 @@ legend.alpaca-container-label
 
 .alpaca-field-object .alpaca-container .alpaca-field-object > .alpaca-container.alpaca-container-has-items
 {
-    border: 1px #ddd solid;
-    border-radius: 4px;
+    /*border: 1px #ddd solid;
+    border-radius: 4px;*/
     padding: 10px;
 }
 
@@ -672,3 +672,7 @@ legend.alpaca-container-label
     margin-top: 20px;
 }
 
+.alpaca-icon-required.glyphicon.glyphicon-star
+{
+    display: none;
+}
