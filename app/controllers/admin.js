@@ -329,7 +329,7 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
 //        var progressInterval = $interval(refresh, 500);
 //    };
 
-    
+    /************************************** Firmware **************************************/
     /**
      * Show modal window
      */
