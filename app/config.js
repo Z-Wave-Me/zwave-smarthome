@@ -172,7 +172,6 @@ var config_data = {
                     'BatteryPolling',
                     'CustomUserCode',
                     'CustomUserCodeLoader',
-                    'HTTPDevice',
                     'InbandNotifications',
                     'Notification',
                     'NotificationSMSru',
@@ -180,17 +179,22 @@ var config_data = {
                     'SecurityMode',
                     'SensorValueLogging',
                     'SensorsPollingLogging',
-                    'YandexProbki'
+                    'YandexProbki',
+                    'CodeDevice',
+                    'InfoWidget',
+                    'SensorsPolling',
+                    'SwitchControlGenerator',
+                    'ZWave'
                 ]
             },
             'popp': {
                 'logo': 'app/img/app-logo-popp.png',
                 'hidden_apps': [
                     'Cron',
+					'CodeDevice',
                     'BatteryPolling',
                     'CustomUserCode',
                     'CustomUserCodeLoader',
-                    'HTTPDevice',
                     'InbandNotifications',
                     'Notification',
                     'NotificationSMSru',
@@ -198,7 +202,11 @@ var config_data = {
                     'SecurityMode',
                     'SensorValueLogging',
                     'SensorsPollingLogging',
-                    'YandexProbki'
+                    'YandexProbki',
+                    'InfoWidget',
+                    'SensorsPolling',
+                    'SwitchControlGenerator',
+                    'ZWave'
                 ]
             },
             'wd': {
@@ -206,9 +214,9 @@ var config_data = {
                 'hidden_apps': [
                     'Cron',
                     'BatteryPolling',
+					'CodeDevice',
                     'CustomUserCode',
                     'CustomUserCodeLoader',
-                    'HTTPDevice',
                     'InbandNotifications',
                     'Notification',
                     'NotificationSMSru',
@@ -216,7 +224,11 @@ var config_data = {
                     'SecurityMode',
                     'SensorValueLogging',
                     'SensorsPollingLogging',
-                    'YandexProbki'
+                    'YandexProbki',
+                    'InfoWidget',
+                    'SensorsPolling',
+                    'SwitchControlGenerator',
+                    'ZWave'
                 ]
             }
         }
