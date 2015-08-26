@@ -2,15 +2,12 @@
 <div class="row row-page" id="_page_app_local">
     <div class="col-lg-4 col-md-6 col-sm-6 app-entry"   ng-class="modulesIds.indexOf(v.modulename) !== -1 ? 'app-entry-green': ''" ng-repeat="v in onlineModules | filter:q">
         <div class="app-border app-gradient app-shadow app-entry-in" ng-class="modulesIds.indexOf(v.modulename) !== -1 ? 'app-gradient-green': ''">
-            
-            <a href="#apps/online/{{v.id}}">
-                
-                <img class="app-image" ng-src="{{onlineMediaUrl + v.icon}}" alt="{{v.title}}" ng-if="v.icon" />
-                 <img class="app-image" ng-src="storage/img/placeholder-img.png" alt="{{v.title}}" ng-if="!v.icon" />
-            </a>
+            <img class="app-image" alt="{{v.title}}" 
+                     ng-src="{{v.icon ? onlineMediaUrl + v.icon : 'storage/img/placeholder-img.png'}}" 
+                     ng-click="redirectToRoute(modulesIds.indexOf(v.modulename) !== -1 ? false : 'apps/online/' + v.modulename)" />
             <div class="app-body">
                 <h3 class="entry-title">
-                    <a href="#apps/online/{{v.id}}" ng-if="modulesIds.indexOf(v.modulename) === -1">{{v.title}}  &raquo;</a>
+                    <a href="#apps/online/{{v.modulename}}" ng-if="modulesIds.indexOf(v.modulename) === -1">{{v.title}}  &raquo;</a>
                      <span ng-if="modulesIds.indexOf(v.modulename) !== -1" ng-bind="v.title"></span>
                 </h3>
              </div>
@@ -20,7 +17,7 @@
                         <i class="fa fa-download fa-lg text-success"></i> <span class="btn-name_">{{_t('lb_download')}}</span>
                     </button> 
                     <button class="btn btn-default btn-sm" disabled ng-if="modulesIds.indexOf(v.modulename) !== -1">
-                        <i class="fa fa-download fa-lg"></i> <span class="btn-name_">{{_t('installed')}}</span>
+                        <i class="fa fa-check fa-lg"></i> <span class="btn-name_">{{_t('installed')}}</span>
                     </button> 
                  </div>
                 </div>

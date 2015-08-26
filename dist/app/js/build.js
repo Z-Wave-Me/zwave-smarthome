@@ -8890,8 +8890,11 @@ myAppController.controller('AppLocalDetailController', function($scope, $routePa
  * App online detail controller
  */
 myAppController.controller('AppOnlineDetailController', function($scope, $routeParams, $timeout, $location, dataFactory, dataService, _) {
+    $scope.local = {
+        installed: false
+    };
     $scope.module = [];
-     $scope.categoryName = '';
+    $scope.categoryName = '';
     $scope.onlineMediaUrl = $scope.cfg.online_module_img_url;
     
     /**
@@ -8906,6 +8909,15 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
         }, function(error) {
             dataService.showConnectionError(error);
         });
+    };
+    /**
+     * Load local modules
+     */
+    $scope.loadModules = function(query) {
+       dataFactory.getApi('modules').then(function(response) {
+           $scope.local.installed = _.findWhere(response.data.data, query);
+           console.log($scope.local)
+        }, function(error) {});
     };
     /**
      * Load module detail
@@ -8923,7 +8935,8 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
                 $location.path('/error/404');
                 return;
             }
-             $scope.loadCategories($scope.module.category);
+            $scope.loadModules({moduleName: id});
+            $scope.loadCategories($scope.module.category);
             dataService.updateTimeTick();
         }, function(error) {
             $location.path('/error/' + error.status);
@@ -9198,7 +9211,7 @@ myAppController.controller('DeviceIpCameraController', function($scope, dataFact
 /**
  * Device Include controller
  */
-myAppController.controller('IncludeController', function($scope, $routeParams, $interval, $filter,$route, dataFactory, dataService, myCache) {
+myAppController.controller('DeviceIncludeController', function($scope, $routeParams, $interval, $filter,$route, dataFactory, dataService, myCache) {
     $scope.apiDataInterval = null;
     $scope.includeDataInterval = null;
     $scope.device = {
@@ -9226,6 +9239,11 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
     $scope.zWaveDevice = [];
     $scope.devices = [];
     $scope.dev = [];
+    
+    $scope.formInput = {
+        elements: {},
+        room: undefined
+    };
     $scope.rooms = [];
     $scope.modelRoom;
     // Cancel interval on page destroy
@@ -9457,6 +9475,21 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
         return;
 
     };
+     /**
+     * Update all devices
+     */
+    $scope.updateAllDevices = function() {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+       angular.forEach($scope.formInput.elements, function(v, k) {
+                dataFactory.putApi('devices', v.id, v).then(function(response) {
+                }, function(error) {});
+        });
+        myCache.remove('devices');
+        $scope.updateDevices = true;
+       //$scope.loadData($routeParams.nodeId);
+       $scope.loading = false;
+
+    };
     /**
      * Update device
      */
@@ -9636,6 +9669,7 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
                     obj['visibility'] = v.visibility;
                     obj['level'] = $filter('toInt')(v.metrics.level);
                     obj['metrics'] = v.metrics;
+                    $scope.formInput.elements[v.id] = obj;
                     $scope.devices.push(obj);
                 }
 
@@ -11246,7 +11280,7 @@ myAppController.controller('NetworkConfigController', function($scope, $routePar
     /**
      * Update all devices
      */
-    $scope.updateAllDevices = function(input) {
+    $scope.updateAllDevices = function() {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
        angular.forEach($scope.formInput.elements, function(v, k) {
                 var errors = 0;
@@ -11951,6 +11985,7 @@ myAppController.controller('MyAccessController', function($scope, $window, $loca
             myCache.remove('profiles');
             dataService.setUser(data);
             $window.location.reload();
+            $window.history.back();
             //$route.reload();
 
         }, function(error) {
@@ -11981,6 +12016,7 @@ myAppController.controller('MyAccessController', function($scope, $window, $loca
                 return;
             }
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
+            $window.history.back();
 
         }, function(error) {
             alert($scope._t('error_update_data'));
