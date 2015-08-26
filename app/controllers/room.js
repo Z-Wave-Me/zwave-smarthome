@@ -6,11 +6,11 @@
 /**
  * Room controller
  */
-myAppController.controller('RoomController', function($scope, $location, dataFactory, dataService) {
+myAppController.controller('RoomController', function($scope, $location, dataFactory, dataService,_) {
     $scope.collection = [];
     $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/image/';
-    $scope.reset = function() {
-        $scope.collection = angular.copy([]);
+    $scope.devices = {
+        count: {}
     };
 
     /**
@@ -24,11 +24,23 @@ myAppController.controller('RoomController', function($scope, $location, dataFac
 //                $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: $scope._t('no_data')};
 //            }
             dataService.updateTimeTick();
+             $scope.loadDevices();
         }, function(error) {
             $location.path('/error/' + error.status);
         });
     };
     $scope.loadData();
+    
+    /**
+     * Load devices
+     */
+    $scope.loadDevices = function() {
+        dataFactory.getApi('devices').then(function(response) {
+            $scope.devices.count = _.groupBy(response.data.data.devices, 'location');
+            console.log($scope.devices.count)
+        }, function(error) {});
+    }
+    ;
 });
 /**
  * Room config controller

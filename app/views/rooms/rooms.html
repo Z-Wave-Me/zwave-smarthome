@@ -2,14 +2,22 @@
 <div ng-controller="RoomController" class="mobile-padding">
     <bb-loader></bb-loader>
     <div class="row">
-        <div class="col-md-3 col-sm-6 room-entry" id="panel_{{$index}}" ng-repeat="v in collection">
+        <div class="col-md-3 col-sm-6 room-entry has-device-{{devices.count[v.id].length||'false'}}" id="panel_{{$index}}" ng-repeat="v in collection">
             <div class="room-in">
-                <h3 class="entry-title"><a href="#/elements/location/{{v.id}}/{{v.title}}">{{v.title}}</a></h3>
-                <a href="#/elements/location/{{v.id}}/{{v.title}}">
+                <h3 class="entry-title">
+                    <a href="#/elements/location/{{v.id}}/{{v.title}}" ng-if="devices.count[v.id].length">{{v.title}} ({{devices.count[v.id].length||0}})</a>
+                    <span ng-if="!devices.count[v.id].length">{{v.title}} ({{devices.count[v.id].length||0}})</span>
+                </h3>
+                <a href="#/elements/location/{{v.id}}/{{v.title}}" ng-if="devices.count[v.id].length">
                     <img class="room-image-big img-circle" ng-src="storage/img/rooms/{{v.default_img}}" ng-if="v.img_type == 'default' && v.default_img" alt="{{v.name}}" />
                       <img class="room-image-big img-circle" ng-src="{{userImageUrl + v.user_img}}" ng-if="v.img_type == 'user' && v.user_img" alt="{{v.name}}" />
                       <img class="room-image-big img-circle" ng-src="storage/img/placeholder-img.png" ng-if="!v.default_img && !v.user_img" alt="{{v.name}}" />
                 </a>
+                 <span ng-if="!devices.count[v.id].length">
+                    <img class="room-image-big img-circle" ng-src="storage/img/rooms/{{v.default_img}}" ng-if="v.img_type == 'default' && v.default_img" alt="{{v.name}}" />
+                      <img class="room-image-big img-circle" ng-src="{{userImageUrl + v.user_img}}" ng-if="v.img_type == 'user' && v.user_img" alt="{{v.name}}" />
+                      <img class="room-image-big img-circle" ng-src="storage/img/placeholder-img.png" ng-if="!v.default_img && !v.user_img" alt="{{v.name}}" />
+                </span>
             </div>
         </div>
         <div class="col-md-3 col-sm-6 room-entry" id="panel_new_room" ng-if="elementAccess(cfg.role_access.config_rooms)">

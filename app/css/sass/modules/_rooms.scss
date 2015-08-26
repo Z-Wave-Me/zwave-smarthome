@@ -6,7 +6,9 @@
 .room-in{
     text-align: center;
     padding: 10px;
-   
+    a{
+        font-weight: bold;
+    }
     .entry-title-text{
         padding-right: 20px
     }
@@ -22,6 +24,17 @@
 .room-image-big:hover{
     border-color: darken($app-body-bcg-color,10);
 }
+
+.has-device-false{
+    .room-image-big{
+         opacity: 0.5;
+    }
+    .room-image-big:hover{
+          border: solid 6px $app-border-color-light !important;
+    }
+   
+} 
+
 .room-name{
     //position: absolute;
     text-align: center;

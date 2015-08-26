@@ -2189,12 +2189,16 @@ padding-right: 5px;
   text-align: center;
   padding: 10px;
 }
-/* line 10, sass/modules/_rooms.scss */
+/* line 9, sass/modules/_rooms.scss */
+.room-in a {
+  font-weight: bold;
+}
+/* line 12, sass/modules/_rooms.scss */
 .room-in .entry-title-text {
   padding-right: 20px;
 }
 
-/* line 15, sass/modules/_rooms.scss */
+/* line 17, sass/modules/_rooms.scss */
 .room-image-big {
   border: solid 6px #fff;
   width: 200px;
@@ -2202,19 +2206,28 @@ padding-right: 5px;
   border-radius: 50%;
 }
 
-/* line 22, sass/modules/_rooms.scss */
+/* line 24, sass/modules/_rooms.scss */
 .room-image-big:hover {
   border-color: #dddddd;
 }
 
-/* line 25, sass/modules/_rooms.scss */
+/* line 29, sass/modules/_rooms.scss */
+.has-device-false .room-image-big {
+  opacity: 0.5;
+}
+/* line 32, sass/modules/_rooms.scss */
+.has-device-false .room-image-big:hover {
+  border: solid 6px #fff !important;
+}
+
+/* line 38, sass/modules/_rooms.scss */
 .room-name {
   text-align: center;
   padding: 0 10px;
   line-height: 34px;
 }
 
-/* line 31, sass/modules/_rooms.scss */
+/* line 44, sass/modules/_rooms.scss */
 .panel-body-room img {
   max-width: 100%;
   border: solid 4px #323232;
