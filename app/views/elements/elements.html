@@ -3,7 +3,7 @@
     <bb-loader></bb-loader>
     <h1 ng-if="headline" ng-bind="headline"></h1>
     <div class="row">
-        <div ng-if="v.visibility === true" id="Widget_{{v.id}}" class="col-lg-4 col-md-6 col-sm-6 widget-entry" ng-repeat="v in collection| filter:q">
+        <div ng-if="v.visibility === true" id="Widget_{{v.id}}" class="col-lg-4 col-md-6 col-sm-6 widget-entry" ng-repeat="v in collection| filter:q | orderBy: 'title'">
             <div class="widget-block {{v.deviceType}}" ng-switch="v.deviceType" ng-init="levelVal[v.id] = v.level">
 
                 <!-- {{v.id}}: {{levelVal[v.id]}} icon {{v.icon}} -->
