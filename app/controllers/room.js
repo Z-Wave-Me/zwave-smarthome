@@ -37,7 +37,6 @@ myAppController.controller('RoomController', function($scope, $location, dataFac
     $scope.loadDevices = function() {
         dataFactory.getApi('devices').then(function(response) {
             $scope.devices.count = _.groupBy(response.data.data.devices, 'location');
-            console.log($scope.devices.count)
         }, function(error) {});
     }
     ;
