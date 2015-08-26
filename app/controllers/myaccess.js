@@ -85,6 +85,7 @@ myAppController.controller('MyAccessController', function($scope, $window, $loca
             myCache.remove('profiles');
             dataService.setUser(data);
             $window.location.reload();
+            $window.history.back();
             //$route.reload();
 
         }, function(error) {
@@ -115,6 +116,7 @@ myAppController.controller('MyAccessController', function($scope, $window, $loca
                 return;
             }
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
+            $window.history.back();
 
         }, function(error) {
             alert($scope._t('error_update_data'));

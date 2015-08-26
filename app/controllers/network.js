@@ -274,7 +274,7 @@ myAppController.controller('NetworkConfigController', function($scope, $routePar
     /**
      * Update all devices
      */
-    $scope.updateAllDevices = function(input) {
+    $scope.updateAllDevices = function() {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
        angular.forEach($scope.formInput.elements, function(v, k) {
                 var errors = 0;

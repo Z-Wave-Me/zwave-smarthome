@@ -341,8 +341,11 @@ myAppController.controller('AppLocalDetailController', function($scope, $routePa
  * App online detail controller
  */
 myAppController.controller('AppOnlineDetailController', function($scope, $routeParams, $timeout, $location, dataFactory, dataService, _) {
+    $scope.local = {
+        installed: false
+    };
     $scope.module = [];
-     $scope.categoryName = '';
+    $scope.categoryName = '';
     $scope.onlineMediaUrl = $scope.cfg.online_module_img_url;
     
     /**
@@ -357,6 +360,15 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
         }, function(error) {
             dataService.showConnectionError(error);
         });
+    };
+    /**
+     * Load local modules
+     */
+    $scope.loadModules = function(query) {
+       dataFactory.getApi('modules').then(function(response) {
+           $scope.local.installed = _.findWhere(response.data.data, query);
+           console.log($scope.local)
+        }, function(error) {});
     };
     /**
      * Load module detail
@@ -374,7 +386,8 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
                 $location.path('/error/404');
                 return;
             }
-             $scope.loadCategories($scope.module.category);
+            $scope.loadModules({moduleName: id});
+            $scope.loadCategories($scope.module.category);
             dataService.updateTimeTick();
         }, function(error) {
             $location.path('/error/' + error.status);

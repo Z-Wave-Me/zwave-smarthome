@@ -76,7 +76,7 @@ myAppController.controller('DeviceIpCameraController', function($scope, dataFact
 /**
  * Device Include controller
  */
-myAppController.controller('IncludeController', function($scope, $routeParams, $interval, $filter,$route, dataFactory, dataService, myCache) {
+myAppController.controller('DeviceIncludeController', function($scope, $routeParams, $interval, $filter,$route, dataFactory, dataService, myCache) {
     $scope.apiDataInterval = null;
     $scope.includeDataInterval = null;
     $scope.device = {
@@ -104,6 +104,11 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
     $scope.zWaveDevice = [];
     $scope.devices = [];
     $scope.dev = [];
+    
+    $scope.formInput = {
+        elements: {},
+        room: undefined
+    };
     $scope.rooms = [];
     $scope.modelRoom;
     // Cancel interval on page destroy
@@ -335,6 +340,21 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
         return;
 
     };
+     /**
+     * Update all devices
+     */
+    $scope.updateAllDevices = function() {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+       angular.forEach($scope.formInput.elements, function(v, k) {
+                dataFactory.putApi('devices', v.id, v).then(function(response) {
+                }, function(error) {});
+        });
+        myCache.remove('devices');
+        $scope.updateDevices = true;
+       //$scope.loadData($routeParams.nodeId);
+       $scope.loading = false;
+
+    };
     /**
      * Update device
      */
@@ -514,6 +534,7 @@ myAppController.controller('IncludeController', function($scope, $routeParams, $
                     obj['visibility'] = v.visibility;
                     obj['level'] = $filter('toInt')(v.metrics.level);
                     obj['metrics'] = v.metrics;
+                    $scope.formInput.elements[v.id] = obj;
                     $scope.devices.push(obj);
                 }
 
