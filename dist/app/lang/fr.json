@@ -1,4 +1,7 @@
 {
+     "installed": "Installed",
+    "retry": "Retry",
+    "lb_your_notes": "Chambre pour vos notes ...",
     "backup_info": "This will create a file that you can save to your computer.",
     "device_exists": "Device already exists. Uninstall the device and then reinstall it.",
     "backup": "Backup",
