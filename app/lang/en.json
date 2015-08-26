@@ -1,8 +1,8 @@
 {
     "missing": "---",
     "installed": "Installed",
-     "retry": "Retry",
-      "---": "missing",
+    "retry": "Retry",
+    "lb_your_notes": "Room for your notes ...",
     "device_exists": "Device already exists. Uninstall the device and then reinstall it.",
     "backup": "Backup",
      "enocean_no_settings": "There is no settings for this device",
