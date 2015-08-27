@@ -155,6 +155,11 @@ var config_data = {
             'sensorBinary',
             'sensorMultiline'
         ],
+        // List of the find hosts
+        'find_hosts': [
+            'find.zwave.me',
+            'find.popp.eu'
+        ],
         // Results per page
         'page_results': 12,
         // Results per events page
