@@ -146,7 +146,7 @@ myApp.filter('getElementIcon', function(cfg) {
             }
             switch (input) {
                 case 'door':
-                    icon = cfg.img.icons + (level == 'open' ? 'door-open.png' : 'door-closed.png');
+                    icon = cfg.img.icons + (level == 'open' || level == 'on' ? 'door-open.png' : 'door-closed.png');
                     break;
                  case 'doorlockcontrol':
                      icon = cfg.img.icons + 'lock-closed.png';
