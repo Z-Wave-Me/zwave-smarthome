@@ -162,7 +162,7 @@ var config_data = {
         
         // ---------------------------------- Custom config for specifics app_type ---------------------------------- //
         // Application type: default/popp/wd
-        'app_type': 'popp',
+        'app_type': 'default',
         // Config
         'custom_cfg': {
            'default': {
@@ -210,7 +210,7 @@ var config_data = {
                 ]
             },
             'wd': {
-                'logo': 'app/img/app-logo-default.png',
+                'logo': 'app/img/app-logo-wd.png',
                 'hidden_apps': [
                     'Cron',
                     'BatteryPolling',
