@@ -75,7 +75,7 @@
     </div>
       
      <!-- ///////////////////////////// Licence key ///////////////////////////// -->
-     <div class="admin-entry" ng-if="controllerInfo.uuid && (hostName === 'find.zwave.me' || cfg.app_type === 'default' || isMobile)">  
+     <div class="admin-entry" ng-if="controllerInfo.uuid && hostName !== 'find.zwave.me' && cfg.app_type === 'default' && !isMobile">
         <h2 class="admin-entry-title" ng-click="goLicence = !goLicence">
             <i class="fa" ng-class="goLicence ? 'fa-minus':'fa-plus'"></i> <span ng-bind="_t('licence_upgrade')"></span> 
         </h2>
