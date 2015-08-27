@@ -565,7 +565,7 @@
         <div class="modal-dialog modal-dialog-center">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeMultilineSensor()">&times;</button>
                     <h4 class="modal-title" ng-bind="input.title"></h4>
                 </div>
                 <div class="modal-body ">
@@ -575,7 +575,7 @@
                     <div class="multiline-entry" ng-if="multilineSensor.data">
                         <table class="table table-report table-condensed">
                              <tbody>
-                             <tr ng-repeat="n in multilineSensor.data.metrics.sensors">
+                             <tr ng-repeat="n in multilineSensor.data track by n.id">
                                   <td class="td-img">
                                      <img id="widget_multiline_img_{{n.id}}" class="report-img" ng-src="{{n.metrics.icon|getElementIcon:n:levelVal[n.id]}}" alt="img" />
                                  </td>
