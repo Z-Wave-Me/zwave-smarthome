@@ -7842,6 +7842,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.goHidden = [];
     $scope.goHistory = [];
     $scope.apiDataInterval = null;
+    $scope.multilineSensorInterval = null;
     $scope.collection = [];
     $scope.showFooter = true;
     $scope.deviceType = [];
@@ -7882,6 +7883,8 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     // Cancel interval on page destroy
     $scope.$on('$destroy', function() {
         $interval.cancel($scope.apiDataInterval);
+        $interval.cancel($scope.multilineSensorInterval);
+
         $('.modal').remove();
         $('.modal-backdrop').remove();
         $('body').removeClass("modal-open");
@@ -7933,9 +7936,9 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
             dataService.updateTimeTick(response.data.data.updateTime);
         }, function(error) {
             //console.log('After login: ',$routeParams.login)
-              if (!angular.isDefined($routeParams.login)) {
+            if (!angular.isDefined($routeParams.login)) {
                 $location.path('/error/' + error.status);
-              }
+            }
         });
     };
     $scope.loadData();
@@ -8011,7 +8014,8 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         $scope.multilineSensor = {data: false, icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('devices', '/' + id, true).then(function(response) {
             if (response.data.data.metrics.sensors) {
-                $scope.multilineSensor = {data: response.data.data};
+                $scope.multilineSensor = {data: response.data.data.metrics.sensors};
+                $scope.refreshMultilineSensor(id);
             } else {
                 $scope.multilineSensor = {data: false, icon: 'fa-info-circle text-warning', message: $scope._t('no_data')};
             }
@@ -8019,6 +8023,28 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
             $scope.multilineSensor = {data: false, icon: 'fa-exclamation-triangle text-danger', message: $scope._t('error_load_data')};
         });
 
+    };
+
+    /**
+     * Refresh multiline sensor data
+     */
+    $scope.refreshMultilineSensor = function(id) {
+        var refresh = function() {
+            dataFactory.getApi('devices', '/' + id, true).then(function(response) {
+                if (response.data.data.metrics.sensors) {
+                    angular.extend($scope.multilineSensor.data, response.data.data.metrics.sensors);
+                    //$scope.multilineSensor.data = {data: response.data.data.metrics.sensors};
+                }
+            }, function(error) {});
+        };
+        $scope.multilineSensorInterval = $interval(refresh, $scope.cfg.interval);
+    };
+    
+     /**
+     * Close multiline sensor window
+     */
+    $scope.closeMultilineSensor = function() {
+         $interval.cancel($scope.multilineSensorInterval);
     };
 
     /**
@@ -8599,6 +8625,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
         }
         dataFactory.getApi('modules').then(function(response) {
             var modulesFiltered = _.filter(response.data.data, function(item) {
+                $scope.modulesIds.push(item.id);
                 var isHidden = false;
                 if ($scope.getHiddenApps().indexOf(item.moduleName) > -1) {
                     if ($scope.user.role !== 1) {
