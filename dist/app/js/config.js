@@ -166,7 +166,7 @@ var config_data = {
         'page_results_events': 50,
         
         // ---------------------------------- Custom config for specifics app_type ---------------------------------- //
-        // Application type: default/popp/wd
+        // Application type : default/popp/wd
         'app_type': 'default',
         // Config
         'custom_cfg': {
