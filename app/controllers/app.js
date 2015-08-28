@@ -31,7 +31,11 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
      */
     $scope.loadCategories = function() {
         dataFactory.getApi('modules_categories').then(function(response) {
-            $scope.categories = response.data.data;
+            var cat = response.data.data;
+            if(cat){
+               $scope.categories = cat[$scope.lang] || cat[$scope.cfg.lang]; 
+            }
+             
         }, function(error) {
             dataService.showConnectionError(error);
         });
@@ -301,7 +305,11 @@ myAppController.controller('AppLocalDetailController', function($scope, $routePa
      */
     $scope.loadCategories = function(id) {
         dataFactory.getApi('modules_categories').then(function(response) {
-           var category = _.findWhere(response.data.data, {id: id});
+            var cat = response.data.data;
+            if(!cat){
+                return;
+            }
+           var category = _.findWhere(cat[$scope.lang] || cat[$scope.cfg.lang], {id: id});
            if(category){
                $scope.categoryName = category.name;
            }
@@ -354,7 +362,11 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
      */
     $scope.loadCategories = function(id) {
         dataFactory.getApi('modules_categories').then(function(response) {
-           var category = _.findWhere(response.data.data, {id: id});
+           var cat = response.data.data;
+            if(!cat){
+                return;
+            }
+           var category = _.findWhere(cat[$scope.lang] || cat[$scope.cfg.lang], {id: id});
            if(category){
                $scope.categoryName = category.name;
            }
@@ -368,7 +380,6 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
     $scope.loadModules = function(query) {
        dataFactory.getApi('modules').then(function(response) {
            $scope.local.installed = _.findWhere(response.data.data, query);
-           console.log($scope.local)
         }, function(error) {});
     };
     /**

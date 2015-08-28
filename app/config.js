@@ -77,7 +77,7 @@ var config_data = {
         // Language directory
         'lang_dir': 'app/lang/',
         // Default language
-        'lang': 'en',
+        'lang': 'en',// !!!!Do not change it
         // List of supported languages
         'lang_list': ['en', 'de', 'ru', 'cn', 'fr'],
         // Role access
