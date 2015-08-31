@@ -506,9 +506,12 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
                         return;
                     }
                     var pobj = apiData;
+                    if(pobj){
+                        return;
+                    }
                     var pe_arr = path.split('.');
                     for (var pe in pe_arr.slice(0, -1)) {
-                        pobj = pobj[pe_arr[pe]];
+                        pobj = pobj[pe_arr[pe]]; 
                     }
                     pobj[pe_arr.slice(-1)] = obj;
                 });

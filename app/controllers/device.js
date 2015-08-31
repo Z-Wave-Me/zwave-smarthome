@@ -144,22 +144,32 @@ myAppController.controller('DeviceIncludeController', function($scope, $routePar
      * Load data into collection
      */
     $scope.loadZwaveApiData = function() {
-        dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
-            var refresh = function() {
-                dataFactory.joinedZwaveData(ZWaveAPIData).then(function(response) {
-                    checkController(response.data.update, response.data.joined);
-                    dataService.updateTimeTick(response.data.update.updateTime);
+        
+        var refresh = function() {
+                dataFactory.refreshZwaveApiData().then(function(response) {
+                    checkController(response.data);
+                    dataService.updateTimeTick(response.data.updateTime);
                 }, function(error) {
                     dataService.showConnectionError(error);
                     return;
                 });
             };
             $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
-        }, function(error) {
-            dataService.showConnectionError(error);
-            return;
-        });
-        return;
+//        dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
+//            var refresh = function() {
+//                dataFactory.joinedZwaveData(ZWaveAPIData).then(function(response) {
+//                    checkController(response.data.update, response.data.joined);
+//                    dataService.updateTimeTick(response.data.update.updateTime);
+//                }, function(error) {
+//                    dataService.showConnectionError(error);
+//                    return;
+//                });
+//            };
+//            $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
+//        }, function(error) {
+//            dataService.showConnectionError(error);
+//            return;
+//        });
     };
     $scope.loadZwaveApiData();
     /**
@@ -232,6 +242,7 @@ myAppController.controller('DeviceIncludeController', function($scope, $routePar
 
                     } else {
                         $scope.checkInterview = true;
+                        //$interval.cancel($scope.includeDataInterval);
                     }
 
 
@@ -380,12 +391,12 @@ myAppController.controller('DeviceIncludeController', function($scope, $routePar
         //var data = response.data;
         if ('controller.data.controllerState' in data) {
             $scope.controllerState = data['controller.data.controllerState'].value;
-            //console.log('controllerState: ', $scope.controllerState)
+            console.log('controllerState: ', $scope.controllerState)
         }
 
         if ('controller.data.lastExcludedDevice' in data) {
             $scope.lastExcludedDevice = data['controller.data.lastExcludedDevice'].value;
-            //console.log('lastExcludedDevice: ', $scope.lastExcludedDevice)
+            console.log('lastExcludedDevice: ', $scope.lastExcludedDevice)
         }
         if ('controller.data.lastIncludedDevice' in data) {
             var deviceIncId = data['controller.data.lastIncludedDevice'].value;
