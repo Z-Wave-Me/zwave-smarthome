@@ -145,9 +145,11 @@ myAppController.controller('DeviceIncludeController', function($scope, $routePar
      */
     $scope.loadZwaveApiData = function() {
         
-        var refresh = function() {
+         dataFactory.loadZwaveApiData(true).then(function(ZWaveAPIData) {
+              $scope.controllerState = ZWaveAPIData.controller.data.controllerState.value;
+            var refresh = function() {
                 dataFactory.refreshZwaveApiData().then(function(response) {
-                    checkController(response.data);
+                    checkController(response.data, response.data);
                     dataService.updateTimeTick(response.data.updateTime);
                 }, function(error) {
                     dataService.showConnectionError(error);
@@ -155,6 +157,12 @@ myAppController.controller('DeviceIncludeController', function($scope, $routePar
                 });
             };
             $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
+        }, function(error) {
+            dataService.showConnectionError(error);
+            return;
+        });
+        
+        
 //        dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
 //            var refresh = function() {
 //                dataFactory.joinedZwaveData(ZWaveAPIData).then(function(response) {
@@ -242,7 +250,6 @@ myAppController.controller('DeviceIncludeController', function($scope, $routePar
 
                     } else {
                         $scope.checkInterview = true;
-                        //$interval.cancel($scope.includeDataInterval);
                     }
 
 
@@ -288,7 +295,10 @@ myAppController.controller('DeviceIncludeController', function($scope, $routePar
         $scope.lastIncludedDevice = null;
         $scope.lastExcludedDevice = null;
         dataFactory.runZwaveCmd(cmd).then(function() {
-            myCache.remove('devices');
+            //myCache.remove('devices');
+            myCache.removeAll();
+            //console.log('Reload...')
+        $route.reload();
         }, function(error) {
         });
 

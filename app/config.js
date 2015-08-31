@@ -167,7 +167,7 @@ var config_data = {
         
         // ---------------------------------- Custom config for specifics app_type ---------------------------------- //
         // Application type : default/popp/wd
-        'app_type': 'wd',
+        'app_type': 'default',
         // Config
         'custom_cfg': {
            'default': {
