@@ -1,17 +1,61 @@
 <!-- Devicess view -->
 <div ng-controller="DeviceController">
     <div class="device-container_  mobile-padding">
-         <h1 ng-bind="_t('lb_select_device_type')"></h1>
-        <div class="row device-slect-type">
-            <div class="col-sm-4 vendor-entry">
-                <a href="#devices/zwave" class="vendor-list"><p class="vendor-image"><img class="apps-image" ng-src="app/img/logo-z-wave.png" alt="Logo" /></p></a>
-            </div>
-            <div class="col-sm-4 vendor-entry">
-               <a href="#devices/ipcamera" class="vendor-list"><p class="vendor-image"><img class="apps-image" ng-src="app/img/logo-ipcamera.png" alt="Logo" /></p></a>
-            </div>
-            <div class="col-sm-4 vendor-entry">
-                <a href="#enocean/devices" class="vendor-list"><p class="vendor-image"><img class="apps-image" ng-src="app/img/logo-enocean.png" alt="Logo" /></p></a>
-            </div>
-        </div>
+        <h1 ng-bind="_t('lb_select_device_type')"></h1>
+        <table class="table table-condensed table-report">
+            <tbody>
+                <tr>
+                    <td>
+                        <img class="apps-image" ng-src="app/img/logo-z-wave.png" alt="Logo" />
+                    </td>
+                    <td>
+                        <a class="btn btn-default" href="#devices/zwave">
+                            <i class="fa fa-plus text-primary"></i> <span class="btn-name" ng-bind="_t('add_new')"></span>
+                        </a>
+                    </td>
+                    <td>
+                       <a class="btn btn-default" href="#network">
+                            <i class="fa fa-edit text-primary"></i> <span class="btn-name" ng-bind="_t('manage')"></span>
+                        </a> 
+                    </td>
+                    <td>
+                        <a class="btn btn-default" href="/expert" target="_blank" ng-if="elementAccess(cfg.role_access.admin) && cfg.app_type === 'default'">
+                            <i class="fa fa-external-link text-primary"></i> <span class="btn-name" ng-bind="_t('nav_expertUi')"></span>
+                        </a> 
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img class="apps-image" ng-src="app/img/logo-ipcamera.png" alt="Logo" />
+                    </td>
+                    <td>
+                        <a class="btn btn-default" href="#devices/ipcamera">
+                            <i class="fa fa-plus text-primary"></i> <span class="btn-name" ng-bind="_t('add_new')"></span>
+                        </a>
+                    </td>
+                    <td colspan="2">
+                         <a class="btn btn-default" href="">
+                            <i class="fa fa-edit text-primary"></i> <span class="btn-name" ng-bind="_t('manage')"></span>
+                        </a> 
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img class="apps-image" ng-src="app/img/logo-enocean.png" alt="Logo" />
+                    </td>
+                    <td>
+                          <a class="btn btn-default" href="#enocean/devices">
+                            <i class="fa fa-plus text-primary"></i> <span class="btn-name" ng-bind="_t('add_new')"></span>
+                        </a>
+                    </td>
+                    <td colspan="2">
+                         <a class="btn btn-default" href="#enocean/manage">
+                            <i class="fa fa-edit text-primary"></i> <span class="btn-name" ng-bind="_t('manage')"></span>
+                        </a> 
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div> <!-- /ng-controller --> 
