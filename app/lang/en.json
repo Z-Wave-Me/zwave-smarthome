@@ -44,7 +44,7 @@
     "manage": "Manage",
     "lb_expert_app_view":"Show System Apps",
     "licence_upgrade": "License Upgrade",
-    "licence_upgrade_info": "Your Z-Wave transceiver contains an firmware internal capability management that can enable/disable certain functions for the hardware. This include the maximum number of devices controllable or other function enhancements.",
+    "licence_upgrade_info": "Your Z-Wave transceiver contains a firmware internal capability management that can enable/disable certain functions for the hardware. This include the maximum number of devices controllable or other function enhancements.",
     "licence_key_insert": "Insert your license key",
      "licence_upgrade_key":"If you have acquired a licensing key for such an function enhancement you may include this key here to extend the functions and capabilities of  Z-Way.",
      "btn_licence_buy": "Buy extension",
