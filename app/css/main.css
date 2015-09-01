@@ -2377,40 +2377,24 @@ padding-right: 5px;
 
 /* Devices
 -------------------------------------------------- */
-/* line 3, sass/modules/_devices.scss */
-.device-container {
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto 20px auto;
-  text-align: center;
-  padding: 10px;
-  background: #f6f6f6;
-  /* Old browsers */
-  background: -moz-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-  /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f6f6f6), color-stop(77%, #ffffff));
-  /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-  /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-  /* Opera 11.10+ */
-  background: -ms-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-  /* IE10+ */
-  background: linear-gradient(to bottom, #f6f6f6 0%, #ffffff 77%);
-  /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6f6f6', endColorstr='#ffffff',GradientType=0 );
-  /* IE6-9 */
-}
-/* line 11, sass/modules/_devices.scss */
-.device-container .list-group-item {
-  text-align: left;
-  background-color: transparent;
-  margin: 0;
-  border: 0;
-  border-radius: 0;
-  border-top: solid 1px #d3d3d3;
-}
+/*.device-container{
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 20px auto;
+    text-align: center;
+    padding: 10px;
+    @include appGradient();
 
+    .list-group-item{
+        text-align: left;
+        background-color: transparent;
+        margin: 0;
+        border: 0;
+        border-radius: 0;
+        border-top: solid 1px $app-border-color;
+
+    }
+}*/
 /* line 21, sass/modules/_devices.scss */
 .device-logo {
   text-align: center;
@@ -2423,41 +2407,41 @@ padding-right: 5px;
   max-height: 70px !important;
 }
 
-/* line 33, sass/modules/_devices.scss */
+/* line 31, sass/modules/_devices.scss */
+.device-type-logo {
+  max-width: 80px;
+  max-height: 80px;
+}
+
+/* line 38, sass/modules/_devices.scss */
+.table-devices td {
+  vertical-align: middle !important;
+}
+
+/* line 45, sass/modules/_devices.scss */
 .device-manufacturers .vendor-entry {
   padding-right: 0;
 }
 
-/* line 38, sass/modules/_devices.scss */
+/* line 50, sass/modules/_devices.scss */
 .manufacturer-logo {
   margin: 0 5px;
   max-width: 70px;
   display: inline;
 }
 
-/* line 44, sass/modules/_devices.scss */
-.device-image {
-  border-radius: 50%;
-  border: solid 4px #fff;
-}
-
-/* line 48, sass/modules/_devices.scss */
-.device-image:hover {
-  border-color: #F6F6F6;
-}
-
-/* line 52, sass/modules/_devices.scss */
+/* line 56, sass/modules/_devices.scss */
 .device-autodetect {
   margin: 0 0 20px 0;
 }
 
-/* line 56, sass/modules/_devices.scss */
+/* line 60, sass/modules/_devices.scss */
 .col-device-vendor {
   padding-left: 15px !important;
   padding-right: 0 !important;
 }
 
-/* line 60, sass/modules/_devices.scss */
+/* line 64, sass/modules/_devices.scss */
 .vendor-list {
   display: block;
   margin: 0 0 10px 0;
@@ -2465,19 +2449,19 @@ padding-right: 5px;
   text-align: center;
   border: solid 1px #d3d3d3;
 }
-/* line 67, sass/modules/_devices.scss */
+/* line 71, sass/modules/_devices.scss */
 .vendor-list .vendor-image {
   line-height: 80px;
   margin: 0 !important;
 }
-/* line 70, sass/modules/_devices.scss */
+/* line 74, sass/modules/_devices.scss */
 .vendor-list .vendor-image img {
   vertical-align: middle;
   max-width: 80px;
   max-height: 60px;
 }
 
-/* line 77, sass/modules/_devices.scss */
+/* line 81, sass/modules/_devices.scss */
 .device-perex {
   margin-bottom: 10px;
   /*    font-size: 110%;
@@ -2485,40 +2469,40 @@ padding-right: 5px;
       border-top: solid 1px $app-border-color;*/
 }
 
-/* line 84, sass/modules/_devices.scss */
+/* line 88, sass/modules/_devices.scss */
 .include-device-img {
   float: left;
   margin-right: 20px;
 }
 
-/* line 88, sass/modules/_devices.scss */
+/* line 92, sass/modules/_devices.scss */
 .include-device-img img {
   max-width: 200px;
   max-height: 200px;
   border: solid 2px #d3d3d3;
 }
 
-/* line 94, sass/modules/_devices.scss */
+/* line 98, sass/modules/_devices.scss */
 .col-device {
   padding: 20px;
 }
-/* line 97, sass/modules/_devices.scss */
+/* line 101, sass/modules/_devices.scss */
 .col-device .device-statement {
   margin: 10px 0;
   padding: 10px 0;
   border-bottom: solid 1px #d3d3d3;
 }
 
-/* line 103, sass/modules/_devices.scss */
+/* line 107, sass/modules/_devices.scss */
 .table-inclusion td {
   vertical-align: middle !important;
 }
-/* line 105, sass/modules/_devices.scss */
+/* line 109, sass/modules/_devices.scss */
 .table-inclusion td .alert {
   margin-bottom: 0;
 }
 
-/* line 110, sass/modules/_devices.scss */
+/* line 114, sass/modules/_devices.scss */
 .badge-number {
   display: inline-block;
   text-align: center;
@@ -2529,7 +2513,7 @@ padding-right: 5px;
   border-radius: 50%;
 }
 
-/* line 120, sass/modules/_devices.scss */
+/* line 124, sass/modules/_devices.scss */
 .td-camera-action {
   text-align: right;
 }

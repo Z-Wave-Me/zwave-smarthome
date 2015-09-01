@@ -101,25 +101,30 @@ myApp.config(['$routeProvider', function($routeProvider) {
                 }).
                 //Zwave device
                 when('/devices/zwave/:brandname?', {
-                    templateUrl: 'app/views/devices/devices_zwave.html',
+                    templateUrl: 'app/views/zwave/zwave_add.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices
                 }).
+                //Network
+                when('/network', {
+                    templateUrl: 'app/views/zwave/zwave_manage.html',
+                    requireLogin: true
+                }).
+                //Network config
+                when('/network/config/:nodeId', {
+                    templateUrl: 'app/views/zwave/zwave_manage_config.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.network_config_id
+                }).
                 //IP camera device
-                when('/devices/ipcamera', {
-                    templateUrl: 'app/views/devices/devices_ipcamera.html',
+                when('/camera/add', {
+                    templateUrl: 'app/views/camera/camera_add.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices
                 }).
-                //IP camera device
-               /* when('/devices/enocean/:brandname?', {
-                    templateUrl: 'app/views/devices/devices_enocean.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.devices
-                }).*/
                 //Include Zwave device
                 when('/include/:device?', {
-                    templateUrl: 'app/views/devices/device_include.html',
+                    templateUrl: 'app/views/zwave/zwave_include.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices_include
                 }).
@@ -169,17 +174,6 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     templateUrl: 'app/views/rooms/config_rooms_edit.html',
                     requireLogin: true,
                     roles: cfg.role_access.config_rooms_id
-                }).
-                //Network
-                when('/network', {
-                    templateUrl: 'app/views/network/network.html',
-                    requireLogin: true
-                }).
-                //Network config
-                when('/network/config/:nodeId', {
-                    templateUrl: 'app/views/network/config.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.network_config_id
                 }).
                 //Device configuration
                 when('/deviceconfig/:nodeId', {

@@ -1,9 +1,5 @@
 <!-- IP camera devices view -->
 <div ng-controller="DeviceIpCameraController">
-<div class="device-logo">
-    <img class="apps-image" ng-src="app/img/logo-ipcamera.png" alt="Logo" />
-</div>
-
 <div class="table-responsive_" ng-show="ipcameraDevices">
     <table class="table table-condensed table-report">
         <tbody>
@@ -21,5 +17,6 @@
         </tbody>
     </table>
 </div>
+    <div class="device-logo" ng-include="'app/views/camera/camera_nav.html'"></div>
     </div> <!-- /ng-controller --> 
 

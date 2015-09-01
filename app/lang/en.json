@@ -1,8 +1,9 @@
 {
     "newtrans": "---",
+    "add_new": "Add new",
+     "---": "newtrans",
     "installed": "Installed",
     "retry": "Retry",
-     "---": "newtrans",
     "lb_your_notes": "Room for your notes ...",
     "backup_info": "This will create a file that you can save to your computer.",
     "device_exists": "Device already exists. Uninstall the device and then reinstall it.",

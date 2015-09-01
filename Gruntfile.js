@@ -63,6 +63,8 @@ module.exports = function(grunt) {
                     'app/controllers/event.js',
                     'app/controllers/app.js',
                     'app/controllers/device.js',
+                    'app/controllers/zwave.js',
+                    'app/controllers/camera.js',
                     'app/controllers/enocean.js',
                     'app/controllers/room.js',
                     'app/controllers/network.js',
