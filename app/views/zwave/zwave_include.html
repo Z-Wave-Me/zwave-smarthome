@@ -1,5 +1,5 @@
 <!-- Include -->
-<div ng-controller="DeviceIncludeController">
+<div ng-controller="ZwaveIncludeController">
      <bb-loader></bb-loader> 
       <!-- interviewCfg {{interviewCfg}}-->
     <div class="device-perex clearfix"> 
@@ -177,7 +177,7 @@
         </table>
     </div>
        <div class="submit-entry save-continue" ng-if_="nodeId">
-        <a href="#network" class="btn btn-info">{{_t('continue')}} <i class="fa fa-chevron-right"></i></a>
+        <a href="#zwave/manage" class="btn btn-info">{{_t('continue')}} <i class="fa fa-chevron-right"></i></a>
         </div>
      <div class="device-logo" ng-include="'app/views/zwave/zwave_nav.html'"></div>
 </div> <!-- /ng-controller --> 

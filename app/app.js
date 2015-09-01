@@ -100,33 +100,39 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     roles: cfg.role_access.devices
                 }).
                 //Zwave device
-                when('/devices/zwave/:brandname?', {
+                when('/zwave/add/:brandname?', {
                     templateUrl: 'app/views/zwave/zwave_add.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices
                 }).
+                //Include Zwave device
+                when('/zwave/include/:device?', {
+                    templateUrl: 'app/views/zwave/zwave_include.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices_include
+                }).
                 //Network
-                when('/network', {
+                when('/zwave/manage', {
                     templateUrl: 'app/views/zwave/zwave_manage.html',
                     requireLogin: true
                 }).
                 //Network config
-                when('/network/config/:nodeId', {
-                    templateUrl: 'app/views/zwave/zwave_manage_config.html',
+                when('/zwave/manage/:nodeId', {
+                    templateUrl: 'app/views/zwave/zwave_manage_id.html',
                     requireLogin: true,
                     roles: cfg.role_access.network_config_id
                 }).
-                //IP camera device
+                //Camera add
                 when('/camera/add', {
                     templateUrl: 'app/views/camera/camera_add.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices
                 }).
-                //Include Zwave device
-                when('/include/:device?', {
-                    templateUrl: 'app/views/zwave/zwave_include.html',
+                //Camera manage
+                when('/camera/manage', {
+                    templateUrl: 'app/views/camera/camera_manage.html',
                     requireLogin: true,
-                    roles: cfg.role_access.devices_include
+                    roles: cfg.role_access.devices
                 }).
                 //Enocean Devices
                 when('/enocean/devices/:brandname?', {

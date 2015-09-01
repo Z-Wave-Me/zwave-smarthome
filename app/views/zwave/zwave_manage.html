@@ -1,5 +1,5 @@
 <!-- Network view -->
-<div ng-controller="NetworkController">
+<div ng-controller="ZwaveManageController">
     <bb-loader></bb-loader>
     <div class="tabs-container">
         <ul class="nav nav-tabs nav-tabs-3" role="tablist">
@@ -37,7 +37,7 @@
                           </div>
                     </td>
                     <td class="td-action" ng-if="elementAccess(cfg.role_access.network)">
-                        <a class="btn btn-default" href="#network/config/{{v.id}}" ng-if_="v.cfg.length > 0">
+                        <a class="btn btn-default" href="#zwave/manage/{{v.id}}" ng-if_="v.cfg.length > 0">
                            <i class="fa fa-cog text-primary"></i> <span class="btn-name" ng-bind="_t('lb_configuration')"></span>
                        </a>
                     </td>

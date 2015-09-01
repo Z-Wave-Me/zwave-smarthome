@@ -1,5 +1,5 @@
-<!-- Network config view -->
-<div ng-controller="NetworkConfigController" class="mobile-padding">
+<!-- Zwave manage config view -->
+<div ng-controller="ZwaveManageIdController" class="mobile-padding">
     <bb-loader></bb-loader> 
     <h1>(#{{zWaveDevice.id}}) {{zWaveDevice.title}}</h1>
     <form name="form_network_config" id="form_profile" class="form form-page" novalidate>
@@ -43,5 +43,5 @@
             </div>
         </fieldset>
     </form>
-    <div class="device-logo" ng-include="'app/views/devices/nav_zwave.html'"></div>
+    <div class="device-logo" ng-include="'app/views/zwave/zwave_nav.html'"></div>
 </div>

@@ -1,29 +1,29 @@
 <!-- Zwave device view -->
-<div ng-controller="DeviceZwaveController">
+<div ng-controller="ZwaveAddController">
 <div class="mobile-padding">
-   <div class="text-center device-autodetect"><a href="#include" class="btn btn-default btn-lg btn-block"><i class="fa fa-compass"></i> {{_t('lb_zwave_autodetect')}}</a></div>
+   <div class="text-center device-autodetect"><a href="#zwave/include" class="btn btn-default btn-lg btn-block"><i class="fa fa-compass"></i> {{_t('lb_zwave_autodetect')}}</a></div>
     <div class="row device-manufacturers" ng-hide="zwaveDevices">
         <div class="col-sm-2 col-device-vendor" ng-repeat="v in manufacturers">
-            <a ng-href="#devices/zwave/{{v.brandname}}" class="vendor-list">
+            <a ng-href="#zwave/add/{{v.brandname}}" class="vendor-list">
                 <p class="vendor-image"><img ng-src="storage/img/zwave/vendors/{{v.brand_image}}" alt="img" ng-show="v.brandname" /></p>
             </a>
         </div>
     </div>
  </div>
     <div ng-if="manufacturer">
-        <h3 class="mobile-padding" ng-bind="manufacturer"></h3> 
-        <table class="table table-condensed table-report">
+        <h3 class="mobile-padding"> <a class="btn btn-default" href="" bb-go-back><i class="fa fa-arrow-left"></i></a> <span ng-bind="manufacturer"></span></h3> 
+        <table class="table table-condensed table-report table-products">
             <tbody>
                 <tr ng-repeat="(k,v) in zwaveDevices">
                     <td class="td-img">
-                        <img class="report-img" ng-src="storage/img/zwave/devices/{{v.product_image}}" alt="img" ng-if="v.product_image" />
-                        <img class="report-img" ng-src="storage/img/zwave/vendors/{{v.brand_image}}" alt="img" ng-if="!v.product_image" />
+                        <img class="product-img" ng-src="storage/img/zwave/devices/{{v.product_image}}" alt="img" ng-if="v.product_image" />
+                        <img class="product-img" ng-src="storage/img/zwave/vendors/{{v.brand_image}}" alt="img" ng-if="!v.product_image" />
                     </td>
                     <td class="text-left">
                         <span ng-bind="v.name"></span> <!--<em ng-bind="v.ZManufacturersName"></em>-->
                     </td>
                     <td class="td-action">
-                        <a href="#include/{{v.id}}" class="btn btn-default"><i class="fa fa-plug text-primary"></i> <span class="btn-name" ng-bind="_t('lb_include_device')"></span></a>
+                        <a href="#zwave/include/{{v.id}}" class="btn btn-default"><i class="fa fa-plug text-primary"></i> <span class="btn-name" ng-bind="_t('lb_include_device')"></span></a>
 
                     </td>
                 </tr>

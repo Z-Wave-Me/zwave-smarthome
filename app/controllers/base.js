@@ -8,7 +8,7 @@ var myAppController = angular.module('myAppController', []);
 /**
  * Base controller
  */
-myAppController.controller('BaseController', function($scope, $cookies, $filter, $location, $route, cfg, dataFactory, dataService, myCache) {
+myAppController.controller('BaseController', function($scope, $cookies, $filter, $location, $route,$window, cfg, dataFactory, dataService, myCache) {
     /**
      * Global scopes
      */
@@ -175,6 +175,15 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
             apps = cfg.custom_cfg[cfg.app_type].hidden_apps || [];
         }
         return apps;
+    };
+    
+    /**
+     * Redirect to Expert
+     */
+    $scope.toExpert = function(url, dialog) {
+        if ($window.confirm(dialog)) {
+            $window.location.href = url;
+        }
     };
 
 });

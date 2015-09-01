@@ -479,60 +479,73 @@ a:hover {
   display: inline;
 }
 
+/* line 178, sass/globals/_body.scss */
+.product-img {
+  margin: 0;
+  max-width: 100px;
+  max-height: 70px;
+  display: inline;
+}
+
 /* tables
 -------------------------------------------------- */
-/* line 183, sass/globals/_body.scss */
+/* line 190, sass/globals/_body.scss */
 .table tbody tr td {
   border-bottom: 1px solid #dbdbdb;
 }
 
-/* line 192, sass/globals/_body.scss */
+/* line 199, sass/globals/_body.scss */
 .table-report {
   border: 0 !important;
   margin-bottom: 0 !important;
 }
-/* line 195, sass/globals/_body.scss */
+/* line 202, sass/globals/_body.scss */
 .table-report td {
   vertical-align: middle;
 }
-/* line 199, sass/globals/_body.scss */
+/* line 206, sass/globals/_body.scss */
 .table-report tbody tr {
   background-color: #fff;
 }
-/* line 203, sass/globals/_body.scss */
+/* line 210, sass/globals/_body.scss */
 .table-report tbody .td-img {
   width: 30px;
 }
-/* line 206, sass/globals/_body.scss */
+/* line 213, sass/globals/_body.scss */
 .table-report tbody .td-action {
   text-align: right;
 }
 
+/* line 219, sass/globals/_body.scss */
+.table-products td {
+  vertical-align: middle !important;
+}
+
 /* Tabs
 -------------------------------------------------- */
-/* line 213, sass/globals/_body.scss */
+/* line 225, sass/globals/_body.scss */
 .nav-tabs {
   border-bottom: 2px solid #dddddd;
 }
 
-/* line 217, sass/globals/_body.scss */
+/* line 229, sass/globals/_body.scss */
 .nav-tabs > li > a:hover {
   color: #1a1a1a;
   text-decoration: underline;
 }
 
-/* line 223, sass/globals/_body.scss */
+/* line 235, sass/globals/_body.scss */
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
   color: #1a1a1a;
   background-color: #DDDDDD;
 }
 
-/* line 228, sass/globals/_body.scss */
+/* line 240, sass/globals/_body.scss */
 .nav-tabs > li.active > a {
   font-weight: bold;
 }
 
-/* line 231, sass/globals/_body.scss */
+/* line 243, sass/globals/_body.scss */
 .nav-tabs > li.active > a i {
   color: #aaaaaa;
 }
@@ -540,104 +553,104 @@ a:hover {
 /*.nav > li > a:hover, .nav > li > a:focus {
 background-color: lighten($app-body-bcg-color, 10%);;
 }*/
-/* line 240, sass/globals/_body.scss */
+/* line 252, sass/globals/_body.scss */
 .nav-tabs-3 {
   text-align: center;
 }
 
-/* line 244, sass/globals/_body.scss */
+/* line 256, sass/globals/_body.scss */
 .nav-tabs-3 > li {
   width: 33.33333%;
 }
 
-/* line 247, sass/globals/_body.scss */
+/* line 259, sass/globals/_body.scss */
 .nav-tabs-3 li a {
   background-color: #eeeeee;
 }
 
-/* line 250, sass/globals/_body.scss */
+/* line 262, sass/globals/_body.scss */
 .tab-content {
   padding-top: 10px;
 }
 
-/* line 253, sass/globals/_body.scss */
+/* line 265, sass/globals/_body.scss */
 .tab-content-form {
   padding: 0;
 }
 
 /* Forms
 -------------------------------------------------- */
-/* line 259, sass/globals/_body.scss */
+/* line 271, sass/globals/_body.scss */
 .form-page {
   margin-bottom: 20px;
   background-color: #fff;
   border: solid 4px #eeeeee;
 }
-/* line 263, sass/globals/_body.scss */
+/* line 275, sass/globals/_body.scss */
 .form-page fieldset, .form-page .fieldset {
   background-color: #fff;
 }
-/* line 266, sass/globals/_body.scss */
+/* line 278, sass/globals/_body.scss */
 .form-page h3 {
   font-size: 14px;
   font-weight: bold;
 }
-/* line 270, sass/globals/_body.scss */
+/* line 282, sass/globals/_body.scss */
 .form-page .form-group {
   border-top: solid 1px #d3d3d3;
   padding-top: 10px;
 }
-/* line 274, sass/globals/_body.scss */
+/* line 286, sass/globals/_body.scss */
 .form-page label {
   font-weight: normal;
 }
 
-/* line 279, sass/globals/_body.scss */
+/* line 291, sass/globals/_body.scss */
 fieldset, .fieldset {
   background-color: #F6F6F6;
   padding: 10px;
 }
 
-/* line 285, sass/globals/_body.scss */
+/* line 297, sass/globals/_body.scss */
 .form-control-sm {
   width: 30% !important;
 }
 
-/* line 289, sass/globals/_body.scss */
+/* line 301, sass/globals/_body.scss */
 .form-control-md {
   width: 50% !important;
 }
 
-/* line 293, sass/globals/_body.scss */
+/* line 305, sass/globals/_body.scss */
 .submit-entry {
   display: block;
   margin: 10px 0 0 0;
 }
 
-/* line 297, sass/globals/_body.scss */
+/* line 309, sass/globals/_body.scss */
 fieldset.submit-entry {
   margin: 0 !important;
 }
 
-/* line 300, sass/globals/_body.scss */
+/* line 312, sass/globals/_body.scss */
 .form-control-hidden {
   display: none !important;
 }
 
-/* line 303, sass/globals/_body.scss */
+/* line 315, sass/globals/_body.scss */
 .form-control-img {
   cursor: pointer;
   border: solid 4px transparent;
 }
 
-/* line 308, sass/globals/_body.scss */
+/* line 320, sass/globals/_body.scss */
 .control-active {
   border: solid 4px black !important;
 }
 
 /* Page
 -------------------------------------------------- */
-/* line 314, sass/globals/_body.scss */
+/* line 326, sass/globals/_body.scss */
 #main_content {
   margin-top: 70px;
   margin-bottom: 20px;
@@ -645,30 +658,30 @@ fieldset.submit-entry {
 
 /* Modal
 -------------------------------------------------- */
-/* line 320, sass/globals/_body.scss */
+/* line 332, sass/globals/_body.scss */
 .modal-tooltip {
   width: 40%;
   /* or whatever you wish */
 }
 
-/* line 323, sass/globals/_body.scss */
+/* line 335, sass/globals/_body.scss */
 .modal-vertical-centered {
   position: fixed;
   top: 15% !important;
 }
 
-/* line 328, sass/globals/_body.scss */
+/* line 340, sass/globals/_body.scss */
 .modal-vertical-centered {
   position: fixed;
   top: 15% !important;
 }
 
-/* line 332, sass/globals/_body.scss */
+/* line 344, sass/globals/_body.scss */
 .modal-firmware-iframe {
   width: 100%;
   padding: 0;
 }
-/* line 336, sass/globals/_body.scss */
+/* line 348, sass/globals/_body.scss */
 .modal-firmware-iframe .modal-content {
   height: 100%;
   border-radius: 0;
@@ -692,7 +705,7 @@ vertical-align: middle;
 }*/
 /* Tooltip
 -------------------------------------------------- */
-/* line 362, sass/globals/_body.scss */
+/* line 374, sass/globals/_body.scss */
 .tooltip-inner {
   background-color: #F6F6F6;
   color: #000;
@@ -701,28 +714,28 @@ vertical-align: middle;
   text-align: left;
 }
 
-/* line 369, sass/globals/_body.scss */
+/* line 381, sass/globals/_body.scss */
 .tooltip-arrow {
   border-bottom-color: #f2f2f2;
 }
 
 /* Pagination
 -------------------------------------------------- */
-/* line 375, sass/globals/_body.scss */
+/* line 387, sass/globals/_body.scss */
 .pagination > li > a, .pagination > li > span {
   color: #DA131F;
   background-color: #FFF;
   border: 1px solid #d3d3d3;
 }
 
-/* line 381, sass/globals/_body.scss */
+/* line 393, sass/globals/_body.scss */
 .pagination > li > a:hover, .pagination > li > a:focus, .pagination > li > span:hover, .pagination > li > span:focus {
   color: #DA131F;
   background-color: #F6F6F6;
   border-color: #d3d3d3;
 }
 
-/* line 387, sass/globals/_body.scss */
+/* line 399, sass/globals/_body.scss */
 .pagination > .disabled > a, .pagination > .disabled > a:hover, .pagination > .disabled > a:focus {
   color: #777777;
   background-color: #FFF;
@@ -730,7 +743,7 @@ vertical-align: middle;
   cursor: not-allowed;
 }
 
-/* line 394, sass/globals/_body.scss */
+/* line 406, sass/globals/_body.scss */
 .pagination > .active > a, .pagination > .active > a:hover {
   color: #fff;
   background-color: #d3d3d3;
@@ -740,7 +753,7 @@ vertical-align: middle;
 /* Absolute Center CSS Spinner
 http://codepen.io/MattIn4D/pen/LiKFC
 -------------------------------------------------- */
-/* line 403, sass/globals/_body.scss */
+/* line 415, sass/globals/_body.scss */
 #loading {
   position: fixed;
   z-index: 999;
@@ -754,7 +767,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   right: 0;
   text-align: center;
 }
-/* line 415, sass/globals/_body.scss */
+/* line 427, sass/globals/_body.scss */
 #loading .loading-in {
   position: relative;
   z-index: 1000;
@@ -766,14 +779,14 @@ http://codepen.io/MattIn4D/pen/LiKFC
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 426, sass/globals/_body.scss */
+/* line 438, sass/globals/_body.scss */
 #loading a {
   font-weight: bold;
   text-decoration: underline;
 }
 
 /* Transparent Overlay */
-/* line 433, sass/globals/_body.scss */
+/* line 445, sass/globals/_body.scss */
 .loading-spin:before {
   content: '';
   display: block;
@@ -785,7 +798,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-/* line 444, sass/globals/_body.scss */
+/* line 456, sass/globals/_body.scss */
 .loading-fade {
   opacity: 0;
   -webkit-transition: opacity 4s;
@@ -2413,35 +2426,35 @@ padding-right: 5px;
   max-height: 80px;
 }
 
-/* line 38, sass/modules/_devices.scss */
-.table-devices td {
-  vertical-align: middle !important;
+/* line 37, sass/modules/_devices.scss */
+.expert-link {
+  padding-right: 20px;
 }
 
-/* line 45, sass/modules/_devices.scss */
+/* line 43, sass/modules/_devices.scss */
 .device-manufacturers .vendor-entry {
   padding-right: 0;
 }
 
-/* line 50, sass/modules/_devices.scss */
+/* line 48, sass/modules/_devices.scss */
 .manufacturer-logo {
   margin: 0 5px;
   max-width: 70px;
   display: inline;
 }
 
-/* line 56, sass/modules/_devices.scss */
+/* line 54, sass/modules/_devices.scss */
 .device-autodetect {
   margin: 0 0 20px 0;
 }
 
-/* line 60, sass/modules/_devices.scss */
+/* line 58, sass/modules/_devices.scss */
 .col-device-vendor {
   padding-left: 15px !important;
   padding-right: 0 !important;
 }
 
-/* line 64, sass/modules/_devices.scss */
+/* line 62, sass/modules/_devices.scss */
 .vendor-list {
   display: block;
   margin: 0 0 10px 0;
@@ -2449,19 +2462,19 @@ padding-right: 5px;
   text-align: center;
   border: solid 1px #d3d3d3;
 }
-/* line 71, sass/modules/_devices.scss */
+/* line 69, sass/modules/_devices.scss */
 .vendor-list .vendor-image {
   line-height: 80px;
   margin: 0 !important;
 }
-/* line 74, sass/modules/_devices.scss */
+/* line 72, sass/modules/_devices.scss */
 .vendor-list .vendor-image img {
   vertical-align: middle;
   max-width: 80px;
   max-height: 60px;
 }
 
-/* line 81, sass/modules/_devices.scss */
+/* line 79, sass/modules/_devices.scss */
 .device-perex {
   margin-bottom: 10px;
   /*    font-size: 110%;
@@ -2469,40 +2482,40 @@ padding-right: 5px;
       border-top: solid 1px $app-border-color;*/
 }
 
-/* line 88, sass/modules/_devices.scss */
+/* line 86, sass/modules/_devices.scss */
 .include-device-img {
   float: left;
   margin-right: 20px;
 }
 
-/* line 92, sass/modules/_devices.scss */
+/* line 90, sass/modules/_devices.scss */
 .include-device-img img {
   max-width: 200px;
   max-height: 200px;
   border: solid 2px #d3d3d3;
 }
 
-/* line 98, sass/modules/_devices.scss */
+/* line 96, sass/modules/_devices.scss */
 .col-device {
   padding: 20px;
 }
-/* line 101, sass/modules/_devices.scss */
+/* line 99, sass/modules/_devices.scss */
 .col-device .device-statement {
   margin: 10px 0;
   padding: 10px 0;
   border-bottom: solid 1px #d3d3d3;
 }
 
-/* line 107, sass/modules/_devices.scss */
+/* line 105, sass/modules/_devices.scss */
 .table-inclusion td {
   vertical-align: middle !important;
 }
-/* line 109, sass/modules/_devices.scss */
+/* line 107, sass/modules/_devices.scss */
 .table-inclusion td .alert {
   margin-bottom: 0;
 }
 
-/* line 114, sass/modules/_devices.scss */
+/* line 112, sass/modules/_devices.scss */
 .badge-number {
   display: inline-block;
   text-align: center;
@@ -2513,7 +2526,7 @@ padding-right: 5px;
   border-radius: 50%;
 }
 
-/* line 124, sass/modules/_devices.scss */
+/* line 122, sass/modules/_devices.scss */
 .td-camera-action {
   text-align: right;
 }

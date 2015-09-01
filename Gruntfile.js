@@ -67,7 +67,6 @@ module.exports = function(grunt) {
                     'app/controllers/camera.js',
                     'app/controllers/enocean.js',
                     'app/controllers/room.js',
-                    'app/controllers/network.js',
                     'app/controllers/admin.js',
                     'app/controllers/myaccess.js',
                     'app/controllers/report.js',

@@ -175,6 +175,13 @@ a:hover {
     display: inline;
 }
 
+.product-img{
+    margin: 0;
+    max-width: 100px;
+     max-height: 70px;
+    display: inline;
+}
+
 /* tables
 -------------------------------------------------- */
 .table{
@@ -206,6 +213,11 @@ a:hover {
         .td-action{
             text-align: right;
         }
+    }
+}
+.table-products{
+    td{
+        vertical-align: middle !important;
     }
 }
 /* Tabs

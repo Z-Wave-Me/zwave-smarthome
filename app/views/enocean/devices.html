@@ -1,9 +1,6 @@
 <div ng-controller="EnoceanDeviceController" class="mobile-padding">
     <bb-loader></bb-loader> 
-    <!-- Enocean navigation -->
-    <div class="device-logo">
-        <a href="#enocean/devices"><img class="apps-image" ng-src="app/img/logo-enocean.png" alt="Logo" /></a>
-    </div>
+    
     <div class="tab-content">
         <bb-alert alert="alert"></bb-alert>
         <div ng-if="hasEnOcean">
@@ -15,12 +12,12 @@
                 </div>
             </div>
             <div ng-if="manufacturer">
-                <h3 class="mobile-padding" ng-bind="manufacturer"></h3> 
-                <table class="table table-condensed table-report">
+                <h3 class="mobile-padding"><a class="btn btn-default btn-back" href="" bb-go-back><i class="fa fa-arrow-left"></i></a> <span ng-bind="manufacturer"></span></h3> 
+                <table class="table table-condensed table-report table-products">
                     <tbody>
                         <tr ng-repeat="v in enoceanDevices track by v.id">
                             <td class="td-img">
-                                <img class="report-img" ng-src="storage/img/enocean/devices/{{v.image}}" alt="img" />
+                                <img class="product-img" ng-src="storage/img/enocean/devices/{{v.image}}" alt="img" />
                             </td>
                             <td class="text-left">
                                 <span ng-bind="v.name"></span>
@@ -35,4 +32,5 @@
             </div>
         </div>
     </div>
+    <div class="device-logo" ng-include="'app/views/enocean/enocean_nav.html'"></div>
 </div> <!-- /ng-controller --> 
