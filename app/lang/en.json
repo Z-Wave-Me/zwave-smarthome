@@ -1,8 +1,8 @@
 {
     "newtrans": "---",
+     "---": "newtrans",
     "manage_with_expertui": "Manage with ExpertUI",
     "add_new": "Add new",
-     "---": "newtrans",
     "installed": "Installed",
     "retry": "Retry",
     "lb_your_notes": "Room for your notes ...",
