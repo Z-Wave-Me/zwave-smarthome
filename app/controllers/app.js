@@ -11,6 +11,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     $scope.hasImage = [];
     $scope.modules = [];
     $scope.modulesIds = [];
+      $scope.cameraIds = [];
     $scope.modulesCats = [];
     $scope.moduleImgs = [];
     $scope.onlineModules = [];
@@ -65,11 +66,12 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
 
                 }
                 if (item.category === 'surveillance') {
+                    $scope.cameraIds.push(item.id);
                     isHidden = true;
                 }
 
                 if (!isHidden) {
-                    $scope.modulesIds.push(item.id);
+                    //$scope.modulesIds.push(item.id);
                     $scope.moduleImgs[item.id] = item.icon;
                     if (item.category && $scope.modulesCats.indexOf(item.category) === -1) {
                         $scope.modulesCats.push(item.category);
@@ -135,7 +137,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
 
                 } else {
                     return false;
-                }
+                  }
             });
             $scope.loading = false;
             dataService.updateTimeTick();
