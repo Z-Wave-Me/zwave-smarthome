@@ -484,6 +484,7 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
                 'metrics': v.metrics,
                 'updateTime': v.updateTime,
                 'cfg': v.cfg,
+                 'appType': v.appType,
                 'permanently_hidden': v.permanently_hidden,
                 //'rooms': $scope.rooms,
                 'hide_events': false
