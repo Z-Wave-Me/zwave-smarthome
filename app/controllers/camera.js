@@ -33,7 +33,6 @@ myAppController.controller('CameraAddController', function($scope, dataFactory, 
                     return item;
                 }
             });
-            console.log($scope.ipcameraDevices)
             dataService.updateTimeTick();
         }, function(error) {
             dataService.showConnectionError(error);
@@ -100,7 +99,6 @@ myAppController.controller('CameraManageController', function($scope, $route,$wi
                 }
                 return true;
             });
-             console.log( $scope.instances)
             $scope.loading = false;
             dataService.updateTimeTick();
         }, function(error) {
