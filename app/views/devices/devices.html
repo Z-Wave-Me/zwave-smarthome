@@ -33,17 +33,20 @@
                         </a> 
                     </td>
                 </tr>
-                <tr>
+                <tr ng-if="enocean.installed">
                     <td>
                         <img class="device-type-logo" ng-src="app/img/logo-enocean.png" alt="Logo" />
                     </td>
                      <td class="td-action">
+                          <bb-alert-text alert="enocean.alert"></bb-alert-text>
+                          <div ng-if="enocean.active">
                           <a class="btn btn-default" href="#enocean/devices">
                             <i class="fa fa-plus text-success"></i> <span class="btn-name" ng-bind="_t('add_new')"></span>
                         </a>
                          <a class="btn btn-default" href="#enocean/manage">
                             <i class="fa fa-edit text-primary"></i> <span class="btn-name" ng-bind="_t('manage')"></span>
                         </a> 
+                        </div>
                     </td>
                 </tr>
             </tbody>

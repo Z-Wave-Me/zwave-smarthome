@@ -61,6 +61,20 @@ myApp.directive('bbAlert', function() {
 });
 
 /**
+ * Alerttext  directive
+ */
+myApp.directive('bbAlertText', function() {
+    return {
+        restrict: "E",
+        replace: true,
+        scope: {alert: '='},
+        template: '<span class="alert" ng-if="alert.message" ng-class="alert.status">'
+                + '<i class="fa fa-lg" ng-class="alert.icon"></i> <span ng-bind-html="alert.message|toTrusted"></span>'
+                + '</span>'
+    };
+});
+
+/**
  * Help directive
  */
 myApp.directive('bbHelp', function(dataFactory,cfg) {
