@@ -156,7 +156,7 @@
     "uploading": "Uploading...",
     "deleting": "Deleting...",
     "logout": "Logout...",
-    "lb_change_password": "User password",
+    "lb_change_password": "Submit password",
     "lb_new_password": "Insert new password",
     "lb_settings": "Settings",
     "lb_inband_filtering": "Inband filtering",

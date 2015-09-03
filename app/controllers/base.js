@@ -185,5 +185,12 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
             $window.location.href = url;
         }
     };
+     /**
+     * Expand/collapse element
+     */
+     $scope.expand = {};
+    $scope.expandElement = function(key) {
+        $scope.expand[key] = !$scope.expand[key];
+    };
 
 });

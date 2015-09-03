@@ -28,19 +28,20 @@
                          <button class="btn" 
                              ng-click="updateDevice({id: e.id,permanently_hidden: e.permanently_hidden ? false : true})" 
                              ng-bind="e.permanently_hidden ? _t('show_element') : _t('hide_element')"
-                             ng-class="e.permanently_hidden ? 'btn-danger' : 'btn-info'"> </button>
+                             ng-class="e.permanently_hidden ? 'btn-danger' : 'btn-primary'"> </button>
                  </div>
             </div>
             
-             <button class="btn btn-primary" ng-click="updateAllDevices()" ng-bind="_t('lb_save')"></button>
-        </fieldset>
-        <fieldset class="submit-entry">
-            <div class="form-group form-inline">
+             <div class="form-group form-inline">
              <a class="btn btn-primary" href="#deviceconfig/{{zWaveDevice.id}}" ng-if="zWaveDevice.cfg.length > 0">
                            <i class="fa fa-wrench"></i> <span class="btn-name" ng-bind="_t('hardware_konfiguration')"></span>
                        </a>
-            <button class="btn btn-default" ng-bind="_t('lb_cancel')" bb-go-back></button>
             </div>
+        </fieldset>
+        <fieldset class="submit-entry">
+            <button type="button" class="btn btn-default" bb-go-back><i class="fa fa-times  text-danger"></i> <span ng-bind="_t('lb_cancel')"></span></button>
+            <button type="button" class="btn btn-submit" ng-click="updateAllDevices()"><i class="fa fa-check"></i> <span ng-bind="_t('lb_save')"></span></button>
+            
         </fieldset>
     </form>
     <div class="device-logo" ng-include="'app/views/zwave/zwave_nav.html'"></div>
