@@ -91,7 +91,7 @@
      "manual_konfiguration": "Manual configuration",
      "hardware_konfiguration": "Hardware configuration",
     "ok": "OK",
-    "devices_to_room": "Assign all elements to room",
+    "devices_to_room": "Move all elements to room",
     "rename_element": "Rename element",
     "show_element": "Unhide element",
     "hide_element": "Hide element",

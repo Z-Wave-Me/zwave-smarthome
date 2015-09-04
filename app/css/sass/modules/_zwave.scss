@@ -11,8 +11,11 @@
 .network-zwave-title{
     font-weight: bold;
 }
-.network-hidden-true{
+.zwave-hidden-true{
     color: #a8a8a8;
+    input{
+        color: #a8a8a8;
+    }
 }
 .network-zwave-element{
     padding-left: 10px;

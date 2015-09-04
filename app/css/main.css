@@ -2558,35 +2558,39 @@ padding-right: 5px;
 
 /* Network
 -------------------------------------------------- */
-/* line 5, sass/modules/_network.scss */
+/* line 5, sass/modules/_zwave.scss */
 .network-zwave-device .network-node-name {
   font-style: italic;
   color: #5d5d5d;
   font-size: 12px;
 }
 
-/* line 11, sass/modules/_network.scss */
+/* line 11, sass/modules/_zwave.scss */
 .network-zwave-title {
   font-weight: bold;
 }
 
-/* line 14, sass/modules/_network.scss */
-.network-hidden-true {
+/* line 14, sass/modules/_zwave.scss */
+.zwave-hidden-true {
+  color: #a8a8a8;
+}
+/* line 16, sass/modules/_zwave.scss */
+.zwave-hidden-true input {
   color: #a8a8a8;
 }
 
-/* line 17, sass/modules/_network.scss */
+/* line 20, sass/modules/_zwave.scss */
 .network-zwave-element {
   padding-left: 10px;
   margin-bottom: 5px;
 }
 
-/* line 22, sass/modules/_network.scss */
+/* line 25, sass/modules/_zwave.scss */
 .network-zwave-title {
   cursor: pointer;
 }
 
-/* line 26, sass/modules/_network.scss */
+/* line 29, sass/modules/_zwave.scss */
 .network-block {
   margin-bottom: 20px;
 }

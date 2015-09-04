@@ -32,7 +32,7 @@ myAppController.controller('ZwaveAddController', function($scope, $routeParams, 
 /**
  * Zwave include controller
  */
-myAppController.controller('ZwaveIncludeController', function($scope, $routeParams, $interval, $filter,$route, dataFactory, dataService, myCache) {
+myAppController.controller('ZwaveIncludeController', function($scope, $routeParams, $interval, $filter, $route, dataFactory, dataService, myCache) {
     $scope.apiDataInterval = null;
     $scope.includeDataInterval = null;
     $scope.device = {
@@ -60,7 +60,7 @@ myAppController.controller('ZwaveIncludeController', function($scope, $routePara
     $scope.zWaveDevice = [];
     $scope.devices = [];
     $scope.dev = [];
-    
+
     $scope.formInput = {
         elements: {},
         room: undefined
@@ -100,9 +100,9 @@ myAppController.controller('ZwaveIncludeController', function($scope, $routePara
      * Load data into collection
      */
     $scope.loadZwaveApiData = function() {
-        
-         dataFactory.loadZwaveApiData(true).then(function(ZWaveAPIData) {
-              $scope.controllerState = ZWaveAPIData.controller.data.controllerState.value;
+
+        dataFactory.loadZwaveApiData(true).then(function(ZWaveAPIData) {
+            $scope.controllerState = ZWaveAPIData.controller.data.controllerState.value;
             var refresh = function() {
                 dataFactory.refreshZwaveApiData().then(function(response) {
                     checkController(response.data, response.data);
@@ -117,8 +117,8 @@ myAppController.controller('ZwaveIncludeController', function($scope, $routePara
             dataService.showConnectionError(error);
             return;
         });
-        
-        
+
+
 //        dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
 //            var refresh = function() {
 //                dataFactory.joinedZwaveData(ZWaveAPIData).then(function(response) {
@@ -233,12 +233,12 @@ myAppController.controller('ZwaveIncludeController', function($scope, $routePara
      * Watch for last excluded device
      */
     //$scope.$watch('interviewCfg', function() {});
-    
+
     /**
      * Retry inclusion
      */
     $scope.retryInclusion = function() {
-         myCache.removeAll();
+        myCache.removeAll();
         $route.reload();
         $scope.runZwaveCmd('controller.RemoveNodeFromNetwork(1)');
     };
@@ -254,7 +254,7 @@ myAppController.controller('ZwaveIncludeController', function($scope, $routePara
             //myCache.remove('devices');
             myCache.removeAll();
             //console.log('Reload...')
-        $route.reload();
+            $route.reload();
         }, function(error) {
         });
 
@@ -317,19 +317,20 @@ myAppController.controller('ZwaveIncludeController', function($scope, $routePara
         return;
 
     };
-     /**
+    /**
      * Update all devices
      */
     $scope.updateAllDevices = function() {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-       angular.forEach($scope.formInput.elements, function(v, k) {
-                dataFactory.putApi('devices', v.id, v).then(function(response) {
-                }, function(error) {});
+        angular.forEach($scope.formInput.elements, function(v, k) {
+            dataFactory.putApi('devices', v.id, v).then(function(response) {
+            }, function(error) {
+            });
         });
         myCache.remove('devices');
         $scope.updateDevices = true;
-       //$scope.loadData($routeParams.nodeId);
-       $scope.loading = false;
+        //$scope.loadData($routeParams.nodeId);
+        $scope.loading = false;
 
     };
     /**
@@ -706,7 +707,7 @@ myAppController.controller('ZwaveManageController', function($scope, $cookies, $
     }
     ;
 
-    
+
     /**
      * notInterviewDevices
      */
@@ -727,16 +728,15 @@ myAppController.controller('ZwaveManageController', function($scope, $cookies, $
 /**
  * Profile controller
  */
-myAppController.controller('ZwaveManageIdController', function($scope, $routeParams, $filter, $location, dataFactory, dataService, myCache) {
+myAppController.controller('ZwaveManageIdController', function($scope, $window,$routeParams,$timeout, $filter, $location, $interval, dataFactory, dataService, myCache) {
     $scope.zWaveDevice = [];
     $scope.devices = [];
-    //$scope.dev = [];
     $scope.formInput = {
         elements: {},
-        room: undefined
+        room: undefined,
+        deviceName: ''
     };
     $scope.rooms = [];
-    //$scope.modelRoom;
 
     /**
      * Load data
@@ -754,72 +754,33 @@ myAppController.controller('ZwaveManageIdController', function($scope, $routePar
     $scope.loadData($routeParams.nodeId);
 
     /**
-     * Assign devices to room
-     */
-    $scope.devicesToRoom = function(roomId, devices) {
-        if (!roomId) {
-            return;
-        }
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        for (var i = 0; i <= devices.length; i++) {
-            var v = devices[i];
-            if (!v) {
-                continue;
-            }
-            var input = {
-                id: v.id,
-                location: roomId
-            };
-
-            dataFactory.putApi('devices', v.id, input).then(function(response) {
-            }, function(error) {
-                alert($scope._t('error_update_data'));
-                $scope.loading = false;
-                return;
-            });
-        }
-        myCache.remove('devices');
-        $scope.loadData($routeParams.nodeId);
-        $scope.loading = false;
-        return;
-
-    };
-
-    /**
      * Update all devices
      */
-    $scope.updateAllDevices = function() {
+    $scope.updateAllDevices = function(input) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-       angular.forEach($scope.formInput.elements, function(v, k) {
-                var errors = 0;
-                dataFactory.putApi('devices', v.id, v).then(function(response) {
-                }, function(error) {});
+        
+        // Update element
+        angular.forEach(input.elements, function(v, k) {
+            if (input.room) {
+                angular.extend(v, {location: parseInt(input.room)})
+            }
+            dataFactory.putApi('devices', v.id, v).then(function(response) {
+            }, function(error) {
+            });
         });
-        myCache.remove('devices');
-       $scope.loadData($routeParams.nodeId);
-       $scope.loading = false;
-
-    };
-    /**
-     * Update single device
-     */
-    $scope.updateDevice = function(input) {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        dataFactory.putApi('devices', input.id, input).then(function(response) {
-            myCache.remove('devices');
-            $scope.loadData($routeParams.nodeId);
-            $scope.loading = false;
-        }, function(error) {
-            alert($scope._t('error_update_data'));
-            $scope.loading = false;
-        });
-
+        //Update device name
+        var cmd = 'devices[' +$scope.zWaveDevice.id + '].data.givenName.value=\'' + input.deviceName + '\'';
+        dataFactory.runZwaveCmd(cmd).then(function() {}, function(error) {});
+        myCache.removeAll();
+        $timeout(function() {
+               $scope.loading = false;
+           $window.history.back();
+           }, 3000);
     };
 
     /// --- Private functions --- ///
-    /**
-     * Load locations
-     */
+
+
     function loadLocations() {
         dataFactory.getApi('locations').then(function(response) {
             $scope.rooms = response.data.data;
@@ -832,7 +793,7 @@ myAppController.controller('ZwaveManageIdController', function($scope, $routePar
      * Get zwaveApiData
      */
     function zwaveApiData(nodeId, devices) {
-        dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
+        dataFactory.loadZwaveApiData(true).then(function(ZWaveAPIData) {
             dataService.updateTimeTick();
             var node = ZWaveAPIData.devices[nodeId];
             if (!node) {
@@ -842,9 +803,9 @@ myAppController.controller('ZwaveManageIdController', function($scope, $routePar
 
             $scope.zWaveDevice = {
                 id: nodeId,
-                title: node.data.givenName.value || 'Device ' + '_' + nodeId,
                 cfg: []
             };
+            $scope.formInput.deviceName = node.data.givenName.value || 'Device ' + '_' + nodeId;
             // Has config file
             if (angular.isDefined(node.data.ZDDXMLFile) && node.data.ZDDXMLFile.value != '') {
                 if ($scope.zWaveDevice['cfg'].indexOf('config') === -1) {
@@ -888,6 +849,7 @@ myAppController.controller('ZwaveManageIdController', function($scope, $routePar
                     obj['visibility'] = v.visibility;
                     obj['level'] = $filter('toInt')(v.metrics.level);
                     obj['metrics'] = v.metrics;
+                    obj['location'] = v.location;
                     $scope.formInput.elements[v.id] = obj;
                     $scope.devices.push(obj);
                 }
