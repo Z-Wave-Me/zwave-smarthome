@@ -117,7 +117,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     requireLogin: true
                 }).
                 //Network config
-                when('/zwave/manage/:nodeId', {
+                when('/zwave/manage/:nodeId/:nohistory?', {
                     templateUrl: 'app/views/zwave/zwave_manage_id.html',
                     requireLogin: true,
                     roles: cfg.role_access.network_config_id

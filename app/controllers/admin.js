@@ -7,6 +7,15 @@
  * Profile controller
  */
 myAppController.controller('AdminController', function($scope, $window, $location, $timeout, $interval, $sce, $cookies,dataFactory, dataService, myCache) {
+    //Set elements to expand/collapse
+    angular.copy({
+        user: false,
+        remote: false,
+        licence: false,
+        firmware: false,
+        backup: false
+    },$scope.expand);
+    
     $scope.profiles = {};
     $scope.remoteAccess = false;
     $scope.controllerInfo = {
@@ -14,16 +23,6 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
         softwareRevisionVersion: null,
         softwareLatestVersion: null
     };
-    // Firmware
-//    $scope.firmware = {
-//        alert: {message: false, status: 'is-hidden', icon: false},
-//        process: false,
-//        val: 0
-//
-//    };
-    
-    // Licence
-    //$scope.controllerUuid = null;
     $scope.proccessLicence = false;
     $scope.proccessVerify = {
         'message': false,
@@ -44,9 +43,11 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
     // Cancel interval on page destroy
     $scope.$on('$destroy', function() {
         $interval.cancel($scope.zwaveDataInterval);
+        angular.copy({},$scope.expand);
     });
 
     $scope.firmwareUpdateUrl = $sce.trustAsResourceUrl('http://' + $scope.hostName + ':8084/cgi-bin/main.cgi');
+    
 
     /**
      * Load razberry latest version

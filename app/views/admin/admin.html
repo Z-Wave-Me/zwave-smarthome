@@ -3,39 +3,41 @@
      <bb-loader></bb-loader>
      <!-- ///////////////////////////// User management ///////////////////////////// -->
     <div class="admin-entry">
-        <h2 class="admin-entry-title" ng-click="goUser = !goUser">
-            <i class="fa" ng-class="goUser ? 'fa-minus':'fa-plus'"></i> <span ng-bind="_t('nav_admin')"></span>
+        <h2 class="admin-entry-title" ng-click="expandElement('user')">
+            <i class="fa" ng-class="expand.user ? 'fa-minus':'fa-plus'"></i> <span ng-bind="_t('nav_admin')"></span>
         </h2>
-        <div class="admin-entry-ctrl" ng-class="" ng-if="goUser">
-            <div class="page-header-control text-right">
-                <a type="button" class="btn btn-info" ng-href="#admin/user/0"><i class="fa fa-plus"></i> {{_t('lb_add_user')}}</a>
-            </div>
-            <table id="table_cfg_admin" class="table table-condensed table-report">
-                <tbody>
-                    <tr ng-repeat="v in profiles" id="row_{{v.id}}">
-                        <td>
-                            <img class="report-img" ng-src="storage/img/icons/user.png" alt="{{v.name}}" /> 
-                            <span class="report-message" ng-bind="v.name"></span>
-                        </td>
-                        <td class="td-action">
-                            <a class="btn btn-default" href="#admin/user/{{v.id}}"><i class="fa fa-pencil fa-lg text-info"></i></a>
-                            <button class="btn btn-default" 
-                                    ng-hide="v.id == 1"
-                                    ng-click="delete('#row_' + v.id, {'id': v.id}, _t('lb_delete_confirm'), 1)"
-                                    ><i class="fa fa-times fa-lg text-danger"></i></button>   
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="admin-entry-ctrl" ng-class="" ng-if="expand.user">
+             <table id="table_cfg_admin" class="table table-condensed table-report">
+                    <tbody>
+                        <tr ng-repeat="v in profiles" id="row_{{v.id}}">
+                            <td>
+                                <img class="report-img" ng-src="storage/img/icons/user.png" alt="{{v.name}}" /> 
+                                <span class="report-message" ng-bind="v.name"></span>
+                            </td>
+                            <td class="td-action">
+                                <a class="btn btn-default" href="#admin/user/{{v.id}}"><i class="fa fa-pencil fa-lg text-info"></i></a>
+                                <button class="btn btn-default" 
+                                        ng-hide="v.id == 1"
+                                        ng-click="delete('#row_' + v.id, {'id': v.id}, _t('lb_delete_confirm'), 1)"
+                                        ><i class="fa fa-times fa-lg text-danger"></i></button>   
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="fieldset submit-entry">
+                   <button type="button" class="btn btn-default" ng-click="expandElement('user')"><i class="fa fa-times  text-danger"></i> <span ng-bind="_t('lb_cancel')"></span></button>
+                     <a class="btn btn-submit" ng-href="#admin/user/0"><i class="fa fa-plus"></i> {{_t('lb_add_user')}}</a>
+                </div>
         </div>
     </div>
      
       <!-- ///////////////////////////// Remote accessForm ///////////////////////////// -->
       <div class="admin-entry">
-        <h2 class="admin-entry-title" ng-click="goRemote = !goRemote">
-            <i class="fa" ng-class="goRemote ? 'fa-minus':'fa-plus'"></i> <span ng-bind="_t('remote_access_manage')"></span>
+        <h2 class="admin-entry-title" ng-click="expandElement('remote')">
+            <i class="fa" ng-class="expand.remote ? 'fa-minus':'fa-plus'"></i> <span ng-bind="_t('remote_access_manage')"></span>
         </h2>
-        <div class="admin-entry-ctrl" ng-class="" ng-if="goRemote">
+          
+        <div class="admin-entry-ctrl" ng-class="" ng-if="expand.remote">
             <form name="form_remote" id="form_remote" class="form form-page" ng-submit="putRemoteAccess(remoteAccess, newRemoteAccessPassword)" novalidate>
             <fieldset>
                 <p ng-bind="_t('remote_access_info')"></p>
@@ -68,18 +70,20 @@
                 </div>
             </fieldset>
             <fieldset class="submit-entry">
-                <button type="submit" class="btn btn-primary" ng-bind="_t('lb_submit')"></button>
+               <button type="button" class="btn btn-default" ng-click="expandElement('remote')"><i class="fa fa-times  text-danger"></i> <span ng-bind="_t('lb_cancel')"></span></button>
+                 <button type="submit" class="btn btn-submit"><i class="fa fa-check"></i> <span ng-bind="_t('lb_save')"></span></button>
             </fieldset>
         </form>
         </div>
+         
     </div>
       
      <!-- ///////////////////////////// Licence key ///////////////////////////// -->
      <div class="admin-entry" ng-if="controllerInfo.uuid && cfg.find_hosts.indexOf(hostName) === -1 && cfg.app_type !== 'popp' && !isMobile">
-        <h2 class="admin-entry-title" ng-click="goLicence = !goLicence">
-            <i class="fa" ng-class="goLicence ? 'fa-minus':'fa-plus'"></i> <span ng-bind="_t('licence_upgrade')"></span> 
+        <h2 class="admin-entry-title" ng-click="expandElement('licence')">
+            <i class="fa" ng-class="expand.licence ? 'fa-minus':'fa-plus'"></i> <span ng-bind="_t('licence_upgrade')"></span> 
         </h2>
-        <div class="admin-entry-ctrl" ng-class="" ng-if="goLicence">
+        <div class="admin-entry-ctrl" ng-class="" ng-if="expand.licence">
            <form name="form_licence" id="form_password" class="form form-page" ng-submit="getLicense(inputLicence)" novalidate>
             <fieldset>
                  <!--
@@ -87,7 +91,6 @@
                 <p><a ng-href="{{cfg.buy_licence_key}}" class="btn btn-info">{{_t('btn_licence_buy')}}</a></p>
                 -->
                 <!-- password -->
-                <div class="form-group_ form-inline">
                     <p>{{_t('licence_upgrade_key')}}</p>
                     <label>{{_t('licence_key_insert')}}:</label>
                     <input
@@ -97,7 +100,6 @@
                         id="scratch_id" 
                         value="" 
                         ng-model="inputLicence.scratch_id" />
-                    <button type="submit" class="btn btn-primary" ng-bind="_t('btn_licence_verify')" ng-disabled="proccessLicence"></button>
 
                     <div><br />
                         <p ng-if="proccessVerify.message">
@@ -107,8 +109,15 @@
                             <i class="fa-lg" ng-class="proccessUpdate.status"></i> <strong ng-bind="proccessUpdate.message"></strong>
                         </p>
                     </div>
-                </div>
             </fieldset> 
+            <fieldset class="submit-entry">
+               <button type="button" class="btn btn-default" ng-click="expandElement('licence')" ng-disabled="proccessLicence">
+                   <i class="fa fa-times  text-danger"></i> <span ng-bind="_t('lb_cancel')"></span>
+               </button>
+                 <button type="submit" class="btn btn-submit" ng-disabled="proccessLicence">
+                     <i class="fa fa-share"></i> <span ng-bind="_t('btn_licence_verify')"></span>
+                 </button>
+            </fieldset>
         </form>
             
         </div>
@@ -116,8 +125,8 @@
     
     <!-- ///////////////////////////// Back up and Restore ///////////////////////////// -->
     <div class="admin-entry" ng-if="blblbla"> 
-        <h2 class="admin-entry-title" ng-click="goBackRestore = !goBackRestore;cancelRestore()">
-            <i class="fa" ng-class="goBackRestore ? 'fa-minus':'fa-plus'"></i> <span ng-bind="_t('nm_backup_title')"></span>
+        <h2 class="admin-entry-title" ng-click="expandElement('backup');cancelRestore()">
+            <i class="fa" ng-class="expand.backup ? 'fa-minus':'fa-plus'"></i> <span ng-bind="_t('nm_backup_title')"></span>
         </h2>
         <div class="admin-entry-ctrl" ng-class="" ng-show_="goBackRestore">
             <div class="tabs-container">
@@ -188,33 +197,27 @@
     
     <!-- ///////////////////////////// Firmware update ///////////////////////////// --> 
     <div class="admin-entry" ng-if="cfg.find_hosts.indexOf(hostName) === -1 && cfg.app_type !== 'wd' && !isMobile"> 
-        <h2 class="admin-entry-title" ng-click="goFirmware = !goFirmware">
-            <i class="fa" ng-class="goFirmware ? 'fa-minus':'fa-plus'"></i> <span ng-bind="_t('firmware_update')"></span>
+        <h2 class="admin-entry-title" ng-click="expandElement('firmware')">
+            <i class="fa" ng-class="expand.firmware ? 'fa-minus':'fa-plus'"></i> <span ng-bind="_t('firmware_update')"></span>
         </h2>
-        <div class="admin-entry-ctrl" ng-class="" ng-if="goFirmware">
+        <div class="admin-entry-ctrl" ng-if="expand.firmware">
            <form name="form_firmware" id="form_firmware" class="form form-page" ng-submit="updateFirmware()" novalidate>
             <fieldset>
                 <!-- Currentt version -->
+                
                 <p class="form-control-static">
                     <span ng-bind="_t('current_firmware')"></span>: <strong ng-bind="controllerInfo.softwareRevisionVersion"></strong>
                 </p>
-                <a class="btn btn-primary" href="" target="_blank" ng-click="showModal('#modal_firmware')">{{_t('update_to_latest')}} {{controllerInfo.softwareLatestVersion}}</a>
-                 <bb-help-text trans="_t('firmware_update_info')"></bb-help-text>
-              </fieldset>
-                 <!--<div><i class="fa fa-exclamation-circle"></i> <em>{{_t('firmware_update_war')}}</em></div>
-                 <bb-alert alert="firmware.alert"></bb-alert>
-                <div  ng-if="firmware.process">
-                   <div class="progress">
-                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="{{firmware.val}}" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;width: {{firmware.val}}%;">
-                     {{firmware.val}}%
-                   </div>
-                 </div>
-                </div>
                 
-            </fieldset> 
+                <div class="form-group">
+                 <bb-help-text trans="_t('firmware_update_info')"></bb-help-text>
+                 </div>
+              </fieldset>
                <fieldset class="submit-entry">
-                <a class="btn btn-primary" href="http://{{hostName}}:8084/cgi-bin/main.cgi">{{_t('update_to_latest')}} {{controllerInfo.softwareLatestVersion}}</a>
-            </fieldset>-->
+               <button type="button" class="btn btn-default" ng-click="expandElement('firmware')"><i class="fa fa-times  text-danger"></i> <span ng-bind="_t('lb_cancel')"></span></button>
+                 <button type="button" class="btn btn-submit" ng-click="showModal('#modal_firmware')"><i class="fa fa-level-up"></i> <span ng-bind="_t('update_to_latest')"></span></button>
+            </fieldset>
+               
         </form>
             
         </div>

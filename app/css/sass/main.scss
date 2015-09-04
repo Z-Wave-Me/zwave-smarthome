@@ -26,11 +26,11 @@
 @import "modules/_config_rooms";
 @import "modules/_profile";
 @import "modules/_devices";
-@import "modules/_network";
+@import "modules/_zwave";
 @import "modules/_configuration";
 @import "modules/_admin";
 @import "modules/_login";
-@import "modules/_report";
+@import "modules/_report"; 
 
 // Responsive
 @import "globals/_responsive";
