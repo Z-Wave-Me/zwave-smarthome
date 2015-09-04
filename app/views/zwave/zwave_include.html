@@ -129,55 +129,16 @@
                 <tr>
                     <td><span class="badge badge-number">5</span></td>
                     <td colspan="2">
-                        <strong ng-hide_="lastIncludedDevice" ng-bind="_t('manual_konfiguration')"></strong>
-                            <form name="form_network_config" id="form_profile" class="form form-page" ng-if="nodeId" novalidate>
-                                 <!--<p>(#{{zWaveDevice.id}}) {{zWaveDevice.title}}</p>-->
-                                 <fieldset ng-if="rooms">
-                                    <!-- Rooms -->
-                                    <div class="form-group form-inline">
-                                        <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('devices_to_room')"></span></h3>
-                                        <select class="form-control" ng-model="formInput.room">
-                                            <option value="">------</option>
-                                            <option ng-repeat="v in rooms" ng-selected_="input.location == v.id" value="{{v.id}}" ng-bind="v.title"></option>
-                                        </select>
-                                        <button class="btn btn-primary" ng-click="devicesToRoom(formInput.room, devices)" ng-bind="_t('lb_save')"></button> 
-
-                                    </div>
-                                </fieldset>
-                                <fieldset>
-                                <div class="form-group form-inline" ng-repeat="e in devices | orderBy:'title':false" ng-init="dev[e.id] = e">
-
-                                    <h3>
-                                        <img id="widget_img_{{v.id}}" class="report-img" ng-src="{{e.metrics.icon|getElementIcon:e:e.level}}" alt="img" />
-                                         <span ng-bind="formInput.elements[e.id].metrics.title"></span>
-                                    </h3>
-                                        <div>
-                                                <input type="text" name="fdf" class="form-control form-control-md" ng-model="formInput.elements[e.id].metrics.title" value="{{formInput.elements[e.id].metrics.title}}" />
-                                                 <!--<button class="btn btn-primary" ng-click="updateDevice(dev[e.id])" ng-bind="_t('rename_element')"></button> --> 
-                                                 <button class="btn" 
-                                                     ng-click="updateDevice({id: e.id,permanently_hidden: e.permanently_hidden ? false : true})" 
-                                                     ng-bind="e.permanently_hidden ? _t('show_element') : _t('hide_element')"
-                                                     ng-class="e.permanently_hidden ? 'btn-danger' : 'btn-info'"> </button>
-                                         </div>
-                                    </div>
-                                    <button class="btn btn-primary" ng-click="updateAllDevices()" ng-bind="_t('lb_save')"></button>
-                                </fieldset>
-                                
-                               <!-- <fieldset ng-if="zWaveDevice.cfg.length > 0">
-                                    <div class="form-group form-inline">
-                                        <a class="btn btn-primary" href="#deviceconfig/{{zWaveDevice.id}}">
-                                                   <i class="fa fa-wrench"></i> <span class="btn-name" ng-bind="_t('hardware_konfiguration')"></span>
-                                               </a>
-                                    </div>
-                                </fieldset>-->
-                            </form>
+                        <strong ng-bind="_t('manual_konfiguration')"></strong>
+                        <div class="alert alert-warning" ng-show="nodeId > 0"><i class="fa fa-spinner fa-spin"></i> <strong ng-bind="_t('manual_config_prepare')"></strong></div>
                      </td>
                 </tr>
             </tbody>
         </table>
     </div>
-       <div class="submit-entry save-continue" ng-if_="nodeId">
-        <a href="#zwave/manage" class="btn btn-info">{{_t('continue')}} <i class="fa fa-chevron-right"></i></a>
+       <div class="fieldset submit-entry">
+           <button type="button" class="btn btn-default" bb-go-back><i class="fa fa-times  text-danger"></i> <span ng-bind="_t('lb_cancel')"></span></button>
+         <!-- <a href="#zwave/manage" class="btn btn-info">{{_t('continue')}} <i class="fa fa-chevron-right"></i></a> --> 
         </div>
      <div class="device-logo" ng-include="'app/views/zwave/zwave_nav.html'"></div>
 </div> <!-- /ng-controller --> 
