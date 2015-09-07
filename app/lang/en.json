@@ -114,7 +114,7 @@
     "lb_is_failed": "Device is failed",
     "updated": "Updated at",
     "no_devices": "There are no devices installed.",
-    "no_devices_dashboard": "There are no devices on dashboard",
+    "no_devices_dashboard": "There are no devices on dashboard. Please select an element from the elemnt list, click on the \"Settings\" icon (Gear) and in the settings window select \"Add to dashboard\"",
     "add_device": "Add device?",
     "redirect_to_expert": "You will be redirected to ExpertUI",
     "configuring_device": "Configuring device, please wait...",

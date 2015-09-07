@@ -31,6 +31,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.knobopt = {
         width: 100
     };
+    $scope.alertabc = false;
 
     $scope.slider = {
         modelMax: 38
@@ -66,8 +67,13 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('devices').then(function(response) {
             var filter = null;
-            var notFound = $scope._t('no_devices') + ' <a href="#devices">' + $scope._t('lb_include_device') + '</a>'
+            var notFound = $scope._t('error_404');
             $scope.loading = false;
+            if (response.data.data.devices.length < 1) {
+                notFound = $scope._t('no_devices') + ' <a href="#devices"><strong>' + $scope._t('lb_include_device') + '</strong></a>';
+                $scope.alert = {message: notFound, status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                return;
+            }
             $scope.deviceType = dataService.getDeviceType(response.data.data.devices);
             $scope.tags = dataService.getTags(response.data.data.devices);
             // Filter
@@ -92,12 +98,18 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
                         }
                         break;
                     default:
-                        break;
+                       break;
                 }
             }
             var collection = dataService.getDevices(response.data.data.devices, filter, $scope.user.dashboard, null);
             if (collection.length < 1) {
-                $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: notFound};
+                if($routeParams.filter === 'dashboard'){
+                    $scope.collection = dataService.getDevices(response.data.data.devices, null, $scope.user.dashboard, null);
+                    $scope.alert = {message: notFound, status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                    return;
+                }
+                //$scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: notFound};
+                $scope.alert = {message: notFound, status: 'alert-warning', icon: 'fa-exclamation-circle'};
                 return;
             }
             $scope.collection = collection;
