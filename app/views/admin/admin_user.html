@@ -95,8 +95,9 @@
         </form>
         
         <!-- ///////////////////////////// Change login and password Form ///////////////////////////// -->
+        <div ng-if="id > 0">
         <h2 class="form-title" ng-bind="_t('local_access')"></h2>
-        <form name="form_password" id="form_password" class="form form-page" ng-if="id > 0" ng-submit="changeAuth(auth)" novalidate>
+        <form name="form_password" id="form_password" class="form form-page" ng-submit="changeAuth(auth)" novalidate>
             <fieldset>
                 <!-- login -->
                     <div class="form-group">
@@ -114,7 +115,7 @@
                  <button type="submit" class="btn btn-submit"><i class="fa fa-check"></i> <span ng-bind="_t('lb_submit')"></span></button>
             </fieldset>
         </form>
-
+        </div>
     </div>
 
 </div> <!-- /ng-controller --> 
