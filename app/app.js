@@ -11,7 +11,8 @@ var myApp = angular.module('myApp', [
     'myAppController',
     'myAppFactory',
     'myAppService',
-    'colorpicker.module'
+    'colorpicker.module',
+    'dndLists'
     //'angularFileUpload'
 
 ]);
@@ -37,6 +38,12 @@ myApp.config(['$routeProvider', function($routeProvider) {
                 // Element
                 when('/element/:id', {
                     templateUrl: 'app/views/elements/element.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.element
+                }).
+                 // Element - drag & drop
+                when('/dragdrop', {
+                    templateUrl: 'app/views/elements/dragdrop.html',
                     requireLogin: true,
                     roles: cfg.role_access.element
                 }).

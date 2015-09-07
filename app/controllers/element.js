@@ -4,6 +4,67 @@
  */
 
 /**
+ * DragDrop controller
+ */
+myAppController.controller('DragDropController', function($scope, dataFactory) {
+    $scope.models = {
+        selected: null,
+        list: []
+    };
+
+    // Generate initial model
+    for (var i = 1; i <= 5; ++i) {
+        $scope.models.list.push({label: "Item A" + i});
+    }
+
+    $scope.itemMoved = function(index) {
+        $scope.models.list.splice(index, 1);
+        angular.forEach($scope.models.list, function(v, k) {
+            console.log((k + 1) + ': ', v.label)
+
+        });
+        console.log(index)
+    };
+
+    // Model to JSON for demo purpose
+    $scope.$watch('models', function(model) {
+        //console.log(model)
+        $scope.modelAsJson = angular.toJson(model, true);
+    }, true);
+
+    $scope.elements = {
+        selected: null,
+        list: []
+    };
+    ;
+    /**
+     * Load data into collection
+     */
+    $scope.loadData = function() {
+        dataFactory.getApi('devices').then(function(response) {
+            $scope.elements.list = response.data.data.devices;
+        }, function(error) {
+        });
+    };
+    $scope.loadData();
+
+    $scope.elementMoved = function(index) {
+        $scope.elements.list.splice(index, 1);
+        var sorting = [];
+        angular.forEach($scope.elements.list, function(v, k) {
+           sorting[v.id] = (k+1);
+            dataFactory.putApi('devices', v.id, {position: index}).then(function(response) {
+                //console.log((k + 1) + ': ', v.metrics.title);
+            }, function(error) {
+            });
+         });
+          console.log(sorting)
+        //console.log(index)
+    };
+
+});
+
+/**
  * Element controller
  */
 myAppController.controller('ElementController', function($scope, $routeParams, $interval, $location, dataFactory, dataService, myCache) {
@@ -98,12 +159,12 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
                         }
                         break;
                     default:
-                       break;
+                        break;
                 }
             }
             var collection = dataService.getDevices(response.data.data.devices, filter, $scope.user.dashboard, null);
             if (collection.length < 1) {
-                if($routeParams.filter === 'dashboard'){
+                if ($routeParams.filter === 'dashboard') {
                     $scope.collection = dataService.getDevices(response.data.data.devices, null, $scope.user.dashboard, null);
                     $scope.alert = {message: notFound, status: 'alert-warning', icon: 'fa-exclamation-circle'};
                     return;
@@ -215,16 +276,17 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
                     angular.extend($scope.multilineSensor.data, response.data.data.metrics.sensors);
                     //$scope.multilineSensor.data = {data: response.data.data.metrics.sensors};
                 }
-            }, function(error) {});
+            }, function(error) {
+            });
         };
         $scope.multilineSensorInterval = $interval(refresh, $scope.cfg.interval);
     };
-    
-     /**
+
+    /**
      * Close multiline sensor window
      */
     $scope.closeMultilineSensor = function() {
-         $interval.cancel($scope.multilineSensorInterval);
+        $interval.cancel($scope.multilineSensorInterval);
     };
 
     /**
@@ -496,7 +558,7 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
                 'metrics': v.metrics,
                 'updateTime': v.updateTime,
                 'cfg': v.cfg,
-                 'appType': v.appType,
+                'appType': v.appType,
                 'permanently_hidden': v.permanently_hidden,
                 //'rooms': $scope.rooms,
                 'hide_events': false
