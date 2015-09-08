@@ -20,7 +20,9 @@ h1 {
 }
 
 h2 {
-    font-size:20px;
+    
+    font-size:18px;
+     margin: 10px 0 3px 0;
 }
 h2.form-title {
     font-size:18px;
@@ -226,6 +228,13 @@ a:hover {
     td{
         vertical-align: middle !important;
     }
+}
+
+.td20{
+    width: 20%;
+}
+.td30{
+    width: 30%;
 }
 /* Tabs
 -------------------------------------------------- */

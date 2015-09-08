@@ -48,6 +48,7 @@
                                 <li ng-class="isActive('admin')" ng-if="elementAccess(cfg.role_access.admin)"><a href="#admin" data-collapse-navbar><i class="fa fa-wrench"></i> {{_t('management')}}</a></li>
                                 <li class="divider"></li>
                                 <li ng-class="isActive('report')"><a href="#report" data-collapse-navbar><i class="fa fa-bug"></i> {{_t('nav_report')}}</a></li>
+                                <li ng-class="isActive('info')"><a href="#info" data-collapse-navbar><i class="fa fa-info-circle"></i> {{_t('info')}}</a></li>
                                 <li ng-if="elementAccess(null,isMobile)"><a href="#logout" data-collapse-navbar><i class="fa fa-sign-out"></i> {{_t('nav_logout')}}</a></li>
                                  <li class="divider"></li>
                                  <li class="navi-app-info">{{_t('ui_version')}}: {{cfg.app_version}}</li>

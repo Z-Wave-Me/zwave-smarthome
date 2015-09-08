@@ -70,6 +70,7 @@ module.exports = function(grunt) {
                     'app/controllers/admin.js',
                     'app/controllers/myaccess.js',
                     'app/controllers/report.js',
+                    'app/controllers/info.js'
                     'app/controllers/auth.js',
                     //'app/modules/bootstrap-colorpicker-module.min.js',
                     'app/modules/bootstrap-colorpicker-module.js',
