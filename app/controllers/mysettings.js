@@ -1,12 +1,12 @@
 /**
- * Application My Access controller
+ * Application MySettings controller
  * @author Martin Vach
  */
 
 /**
  * My Access
  */
-myAppController.controller('MyAccessController', function($scope, $window, $location,$cookies,dataFactory, dataService, myCache) {
+myAppController.controller('MySettingsController', function($scope, $window, $location,$cookies,dataFactory, dataService, myCache) {
     $scope.id = $scope.user.id;
     $scope.devices = {};
     $scope.input = {

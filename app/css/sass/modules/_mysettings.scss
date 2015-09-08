@@ -1,0 +1,17 @@
+/* My settings
+-------------------------------------------------- */
+.profile-color{
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin: 0 10px 0 0;
+    
+}
+.profile-color:hover{
+    text-decoration: none;
+    
+}
+.profile-color.active{
+   border: solid 2px #000;
+    
+}

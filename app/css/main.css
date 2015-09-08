@@ -498,75 +498,104 @@ a:hover {
   display: inline;
 }
 
+/* Device assigned block
+-------------------------------------------------- */
+/* line 196, sass/globals/_body.scss */
+.device-assigned-block {
+  background-color: #FCF8E3;
+  padding: 10px;
+  border: 1px solid #faebcc;
+  margin: 10px 0;
+  color: #8a6d3b;
+  background-color: #fcf8e3;
+}
+
+/* line 205, sass/globals/_body.scss */
+.btn-device-admin {
+  display: inline-block;
+  padding: 6px 12px;
+  margin: 0 5px 5px 0;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-color: #fff;
+  border: 1px solid #d3d3d3;
+  border-radius: 4px;
+}
+
 /* tables
 -------------------------------------------------- */
-/* line 199, sass/globals/_body.scss */
+/* line 226, sass/globals/_body.scss */
 .table tbody tr td {
   border-bottom: 1px solid #dbdbdb;
 }
 
-/* line 208, sass/globals/_body.scss */
+/* line 235, sass/globals/_body.scss */
 .table-report {
   border: 0 !important;
   margin-bottom: 0 !important;
 }
-/* line 211, sass/globals/_body.scss */
+/* line 238, sass/globals/_body.scss */
 .table-report td {
   vertical-align: middle;
 }
-/* line 215, sass/globals/_body.scss */
+/* line 242, sass/globals/_body.scss */
 .table-report tbody tr {
   background-color: #fff;
 }
-/* line 219, sass/globals/_body.scss */
+/* line 246, sass/globals/_body.scss */
 .table-report tbody .td-img {
   width: 30px;
 }
-/* line 222, sass/globals/_body.scss */
+/* line 249, sass/globals/_body.scss */
 .table-report tbody .td-action {
   text-align: right;
 }
 
-/* line 228, sass/globals/_body.scss */
+/* line 255, sass/globals/_body.scss */
 .table-products td {
   vertical-align: middle !important;
 }
 
-/* line 233, sass/globals/_body.scss */
+/* line 260, sass/globals/_body.scss */
 .td20 {
   width: 20%;
 }
 
-/* line 236, sass/globals/_body.scss */
+/* line 263, sass/globals/_body.scss */
 .td30 {
   width: 30%;
 }
 
 /* Tabs
 -------------------------------------------------- */
-/* line 241, sass/globals/_body.scss */
+/* line 268, sass/globals/_body.scss */
 .nav-tabs {
   border-bottom: 2px solid #dddddd;
 }
 
-/* line 245, sass/globals/_body.scss */
+/* line 272, sass/globals/_body.scss */
 .nav-tabs > li > a:hover {
   color: #1a1a1a;
   text-decoration: underline;
 }
 
-/* line 251, sass/globals/_body.scss */
+/* line 278, sass/globals/_body.scss */
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
   color: #1a1a1a;
   background-color: #DDDDDD;
 }
 
-/* line 256, sass/globals/_body.scss */
+/* line 283, sass/globals/_body.scss */
 .nav-tabs > li.active > a {
   font-weight: bold;
 }
 
-/* line 259, sass/globals/_body.scss */
+/* line 286, sass/globals/_body.scss */
 .nav-tabs > li.active > a i {
   color: #aaaaaa;
 }
@@ -574,75 +603,75 @@ a:hover {
 /*.nav > li > a:hover, .nav > li > a:focus {
 background-color: lighten($app-body-bcg-color, 10%);;
 }*/
-/* line 268, sass/globals/_body.scss */
+/* line 295, sass/globals/_body.scss */
 .nav-tabs-3 {
   text-align: center;
 }
 
-/* line 272, sass/globals/_body.scss */
+/* line 299, sass/globals/_body.scss */
 .nav-tabs-3 > li {
   width: 33.33333%;
 }
 
-/* line 275, sass/globals/_body.scss */
+/* line 302, sass/globals/_body.scss */
 .nav-tabs-3 li a {
   background-color: #eeeeee;
 }
 
-/* line 278, sass/globals/_body.scss */
+/* line 305, sass/globals/_body.scss */
 .tab-content {
   padding-top: 10px;
 }
 
-/* line 281, sass/globals/_body.scss */
+/* line 308, sass/globals/_body.scss */
 .tab-content-form {
   padding: 0;
 }
 
 /* Forms
 -------------------------------------------------- */
-/* line 287, sass/globals/_body.scss */
+/* line 314, sass/globals/_body.scss */
 .form-page {
   margin-bottom: 20px;
   background-color: #fff;
   border: solid 4px #e9e9e9;
 }
-/* line 291, sass/globals/_body.scss */
+/* line 318, sass/globals/_body.scss */
 .form-page fieldset, .form-page .fieldset {
   background-color: #fff;
 }
-/* line 294, sass/globals/_body.scss */
+/* line 321, sass/globals/_body.scss */
 .form-page h3 {
   font-size: 14px;
   font-weight: bold;
 }
-/* line 298, sass/globals/_body.scss */
+/* line 325, sass/globals/_body.scss */
 .form-page .form-group {
   border-top: solid 1px #d3d3d3;
   padding-top: 10px;
 }
-/* line 302, sass/globals/_body.scss */
+/* line 329, sass/globals/_body.scss */
 .form-page label {
   font-weight: normal;
 }
 
-/* line 307, sass/globals/_body.scss */
+/* line 334, sass/globals/_body.scss */
 fieldset, .fieldset {
   background-color: #F6F6F6;
   padding: 10px;
 }
 
-/* line 313, sass/globals/_body.scss */
+/* line 340, sass/globals/_body.scss */
 .form-control-sm {
   width: 30% !important;
 }
 
-/* line 317, sass/globals/_body.scss */
+/* line 344, sass/globals/_body.scss */
 .form-control-md {
   width: 50% !important;
 }
 
-/* line 321, sass/globals/_body.scss */
+/* line 348, sass/globals/_body.scss */
 .submit-entry {
   text-align: right;
   display: block;
@@ -650,7 +679,7 @@ fieldset, .fieldset {
   border-top: solid 1px #c6c6c6;
 }
 
-/* line 328, sass/globals/_body.scss */
+/* line 355, sass/globals/_body.scss */
 .submit-entry .btn-submit {
   color: #fff;
   border: solid 2px green;
@@ -658,35 +687,35 @@ fieldset, .fieldset {
   padding: 6px 50px;
 }
 
-/* line 334, sass/globals/_body.scss */
+/* line 361, sass/globals/_body.scss */
 .submit-entry .btn-submit:hover {
   background-color: #80AD80;
 }
 
-/* line 337, sass/globals/_body.scss */
+/* line 364, sass/globals/_body.scss */
 fieldset.submit-entry {
   margin: 0 !important;
 }
 
-/* line 340, sass/globals/_body.scss */
+/* line 367, sass/globals/_body.scss */
 .form-control-hidden {
   display: none !important;
 }
 
-/* line 343, sass/globals/_body.scss */
+/* line 370, sass/globals/_body.scss */
 .form-control-img {
   cursor: pointer;
   border: solid 4px transparent;
 }
 
-/* line 348, sass/globals/_body.scss */
+/* line 375, sass/globals/_body.scss */
 .control-active {
   border: solid 4px black !important;
 }
 
 /* Page
 -------------------------------------------------- */
-/* line 354, sass/globals/_body.scss */
+/* line 381, sass/globals/_body.scss */
 #main_content {
   margin-top: 70px;
   margin-bottom: 20px;
@@ -694,30 +723,30 @@ fieldset.submit-entry {
 
 /* Modal
 -------------------------------------------------- */
-/* line 360, sass/globals/_body.scss */
+/* line 387, sass/globals/_body.scss */
 .modal-tooltip {
   width: 40%;
   /* or whatever you wish */
 }
 
-/* line 363, sass/globals/_body.scss */
+/* line 390, sass/globals/_body.scss */
 .modal-vertical-centered {
   position: fixed;
   top: 15% !important;
 }
 
-/* line 368, sass/globals/_body.scss */
+/* line 395, sass/globals/_body.scss */
 .modal-vertical-centered {
   position: fixed;
   top: 15% !important;
 }
 
-/* line 372, sass/globals/_body.scss */
+/* line 399, sass/globals/_body.scss */
 .modal-firmware-iframe {
   width: 100%;
   padding: 0;
 }
-/* line 376, sass/globals/_body.scss */
+/* line 403, sass/globals/_body.scss */
 .modal-firmware-iframe .modal-content {
   height: 100%;
   border-radius: 0;
@@ -741,7 +770,7 @@ vertical-align: middle;
 }*/
 /* Tooltip
 -------------------------------------------------- */
-/* line 402, sass/globals/_body.scss */
+/* line 429, sass/globals/_body.scss */
 .tooltip-inner {
   background-color: #F6F6F6;
   color: #000;
@@ -750,28 +779,28 @@ vertical-align: middle;
   text-align: left;
 }
 
-/* line 409, sass/globals/_body.scss */
+/* line 436, sass/globals/_body.scss */
 .tooltip-arrow {
   border-bottom-color: #f2f2f2;
 }
 
 /* Pagination
 -------------------------------------------------- */
-/* line 415, sass/globals/_body.scss */
+/* line 442, sass/globals/_body.scss */
 .pagination > li > a, .pagination > li > span {
   color: #DA131F;
   background-color: #FFF;
   border: 1px solid #d3d3d3;
 }
 
-/* line 421, sass/globals/_body.scss */
+/* line 448, sass/globals/_body.scss */
 .pagination > li > a:hover, .pagination > li > a:focus, .pagination > li > span:hover, .pagination > li > span:focus {
   color: #DA131F;
   background-color: #F6F6F6;
   border-color: #d3d3d3;
 }
 
-/* line 427, sass/globals/_body.scss */
+/* line 454, sass/globals/_body.scss */
 .pagination > .disabled > a, .pagination > .disabled > a:hover, .pagination > .disabled > a:focus {
   color: #777777;
   background-color: #FFF;
@@ -779,7 +808,7 @@ vertical-align: middle;
   cursor: not-allowed;
 }
 
-/* line 434, sass/globals/_body.scss */
+/* line 461, sass/globals/_body.scss */
 .pagination > .active > a, .pagination > .active > a:hover {
   color: #fff;
   background-color: #d3d3d3;
@@ -789,7 +818,7 @@ vertical-align: middle;
 /* Absolute Center CSS Spinner
 http://codepen.io/MattIn4D/pen/LiKFC
 -------------------------------------------------- */
-/* line 443, sass/globals/_body.scss */
+/* line 470, sass/globals/_body.scss */
 #loading {
   position: fixed;
   z-index: 999;
@@ -803,7 +832,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   right: 0;
   text-align: center;
 }
-/* line 455, sass/globals/_body.scss */
+/* line 482, sass/globals/_body.scss */
 #loading .loading-in {
   position: relative;
   z-index: 1000;
@@ -815,14 +844,14 @@ http://codepen.io/MattIn4D/pen/LiKFC
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 466, sass/globals/_body.scss */
+/* line 493, sass/globals/_body.scss */
 #loading a {
   font-weight: bold;
   text-decoration: underline;
 }
 
 /* Transparent Overlay */
-/* line 473, sass/globals/_body.scss */
+/* line 500, sass/globals/_body.scss */
 .loading-spin:before {
   content: '';
   display: block;
@@ -834,7 +863,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-/* line 484, sass/globals/_body.scss */
+/* line 511, sass/globals/_body.scss */
 .loading-fade {
   opacity: 0;
   -webkit-transition: opacity 4s;
@@ -2369,57 +2398,22 @@ padding-right: 5px;
   margin: 5px;
 }
 
-/* Profile
+/* My settings
 -------------------------------------------------- */
-/* line 3, sass/modules/_profile.scss */
-.profile-entry {
-  padding: 0;
-  background-color: #E9E9E9;
+/* line 3, sass/modules/_mysettings.scss */
+.profile-color {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  margin: 0 10px 0 0;
 }
 
-/* line 7, sass/modules/_profile.scss */
-.profile-in {
-  text-align: center;
-  padding: 10px;
-  border: solid 1px white;
-  /*    .entry-title{
-          color: #fff;
-          a{
-              color: #fff; 
-          }
-      }*/
-}
-/* line 18, sass/modules/_profile.scss */
-.profile-in .entry-title-text {
-  padding-right: 20px;
-}
-
-/* line 22, sass/modules/_profile.scss */
-.profile-image {
-  border: solid 6px #fff;
-  width: 100%;
-  max-width: 96px;
-}
-
-/* line 27, sass/modules/_profile.scss */
-.profile-image:hover {
-  border-color: #d3d3d3;
-}
-
-/*.profile-color{
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    margin: 0 10px 10px 0;
-     border: solid 2px transparent;
-    
-}*/
-/* line 39, sass/modules/_profile.scss */
+/* line 10, sass/modules/_mysettings.scss */
 .profile-color:hover {
   text-decoration: none;
 }
 
-/* line 43, sass/modules/_profile.scss */
+/* line 14, sass/modules/_mysettings.scss */
 .profile-color.active {
   border: solid 2px #000;
 }
@@ -2675,45 +2669,8 @@ padding-right: 5px;
 }
 
 /* line 16, sass/modules/_management.scss */
-.profile-color {
-  display: inline-block;
-  width: 24px;
-  height: 24px;
-  margin: 0 10px 0 0;
-}
-
-/* line 23, sass/modules/_management.scss */
 .profile-lang {
   display: inline-block;
-}
-
-/* Myacces
--------------------------------------------------- */
-/* line 31, sass/modules/_management.scss */
-.device-assigned-block {
-  background-color: #FCF8E3;
-  padding: 10px;
-  border: 1px solid #faebcc;
-  margin: 10px 0;
-  color: #8a6d3b;
-  background-color: #fcf8e3;
-}
-
-/* line 40, sass/modules/_management.scss */
-.btn-device-admin {
-  display: inline-block;
-  padding: 6px 12px;
-  margin: 0 5px 5px 0;
-  margin-bottom: 0;
-  font-size: 14px;
-  font-weight: normal;
-  line-height: 1.42857143;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  background-color: #fff;
-  border: 1px solid #d3d3d3;
-  border-radius: 4px;
 }
 
 /* Login

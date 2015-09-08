@@ -72,7 +72,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
                 }).
                 //My Access
                 when('/myaccess', {
-                    templateUrl: 'app/views/myaccess/myaccess.html',
+                    templateUrl: 'app/views/mysettings/mysettings.html',
                     requireLogin: true,
                     roles: cfg.role_access.myaccess
                 }).

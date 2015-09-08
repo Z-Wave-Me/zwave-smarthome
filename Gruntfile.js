@@ -68,7 +68,7 @@ module.exports = function(grunt) {
                     'app/controllers/enocean.js',
                     'app/controllers/room.js',
                     'app/controllers/management.js',
-                    'app/controllers/myaccess.js',
+                    'app/controllers/mysettings.js',
                     'app/controllers/report.js',
                     'app/controllers/info.js',
                     'app/controllers/auth.js',
