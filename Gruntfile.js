@@ -42,6 +42,7 @@ module.exports = function(grunt) {
                     'vendor/angular/angular-1.2.28/angular-route.min.js',
                     //'vendor/angular/angular-1.2.16/angular-resource.js',
                     'vendor/angular/angular-1.2.28/angular-cookies.min.js',
+                    'vendor/dragdrop/angular-drag-and-drop-lists.js',
                      // Bootstrap
                     'vendor/bootstrap/bootstrap.min.js',
                     // APP
@@ -108,7 +109,7 @@ module.exports = function(grunt) {
             fonts: {
                 files: [
                     {src: ['app/fonts/**'], dest: 'dist/'},
-                    {expand:true,src: ['app/css/font-awesome-4.2.0/fonts/*'], dest: 'dist/app/fonts/',flatten: true}
+                    {expand:true,src: ['app/css/font-awesome-4.4.0/fonts/*'], dest: 'dist/app/fonts/',flatten: true}
                 ]
             },
             angmap: {

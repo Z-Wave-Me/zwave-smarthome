@@ -1,15 +1,11 @@
-<!-- Online app view -->
-<div class="table-responsive_">
-    <table id="table_apps_instance" class="table table-condensed table-report">
+<!-- Camera manage view -->
+<div ng-controller="CameraManageController">
+    <table id="table_apps_instance" class="table table-condensed table-report table-products">
         <tbody>
-            <tr class="bcg-active"
-                id="instance_{{$index}}" 
-                ng-repeat="v in instances|orderBy:'title' track by v.id" 
-                ng-class="v.active ? 'true': 'false'"
-                ng-if="cameraIds.indexOf(v.moduleId) === -1">
+            <tr class="bcg-active" ng-repeat="v in instances |orderBy:'title' track by v.id" id="instance_{{$index}}" ng-class="v.active ? 'true': 'false'">
                 <td class="td-img">
-                    <img class="report-img" ng-src="{{moduleMediaUrl + v.moduleId + '/' + moduleImgs[v.moduleId]}}" ng-if="moduleImgs[v.moduleId]" alt="img" />
-                    <img class="report-img" ng-src="storage/img/placeholder-img.png" ng-if="!moduleImgs[v.moduleId]" alt="img" />
+                    <img class="product-img" ng-src="{{modules.mediaUrl + v.moduleId + '/' + modules.imgs[v.moduleId]}}" ng-if="modules.imgs[v.moduleId]" alt="img" />
+                    <img class="product-img" ng-src="storage/img/placeholder-img.png" ng-if="!modules.imgs[v.moduleId]" alt="img" />
                     <!-- <img class="report-img" ng-src="storage/img/apps/app.png" alt="icon" />-->
                 </td>
                 <td>
@@ -43,4 +39,6 @@
             </tr>
         </tbody>
     </table>
-</div>
+    <div class="device-logo" ng-include="'app/views/camera/camera_nav.html'"></div>
+</div> <!-- /ng-controller --> 
+

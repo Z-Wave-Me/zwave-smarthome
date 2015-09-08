@@ -1,5 +1,8 @@
 {
-     "installed": "Installiert",
+    "manual_config_prepare": "Preparing for manual configuration. Please wait...",
+    "manage_with_expertui": "Manage with ExpertUI",
+    "add_new": "Add new",
+    "installed": "Installiert",
     "retry": "Wiederholen",
     "lb_your_notes": "Platz für Ihre Notizen ...",
     "backup_info": "Es wird eine Datei erzeugt, die auf ihren Computer gespeuichert werden sollte.",
@@ -108,7 +111,7 @@
     "updated": "Aktualisiert am",
     "lb_is_failed": "Das Gerät ist fehlerhaft",
     "no_devices": "Keine Geräte vorhanden",
-    "no_devices_dashboard": "Es wurden bisher keine Geräte im Dashboard hinzugefügt",
+    "no_devices_dashboard": "Es befinden sich keine Geräte auf Ihrem Dashboard. Bitte wählen Sie ein Element von der Elementeübersicht aus, klicken dort auf das \"Einstellungen\" Icon (Zahnrad) und anschließend in dem Einstellungsdialog auf \"Zum Dashboard hinzufügen\"",
     "add_device": "Gerät anlernen?",
     "redirect_to_expert": "Sie werden zur ExpertUI weitergeleitet.",
     "configuring_device": "Bitte warten Sie während das Gerät konfiguriert wird",

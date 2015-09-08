@@ -1,0 +1,33 @@
+<!-- Logoutview -->
+<div ng-controller="InfoController" class="mobile-padding">
+    <h2>{{_t('Software info')}}</h2>
+    <table class="table table-report">
+        <tbody>
+            <tr>
+                <td>Firmware version</td>
+                <td class="td20">{{input.firmwareVersion}}</td>
+            </tr>
+            <tr>
+                <td>UI version</td>
+                <td class="td20">{{input.uiVersion}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <h2>{{_t('Devices/App info')}}</h2>
+    <table class="table table-report">
+        <tbody>
+            <tr>
+                <td>Z-Wave device installed</td>
+                <td class="td20">25</td>
+            </tr>
+            <tr>
+                <td>Local apps installed</td>
+                <td class="td20">8</td>
+            </tr>
+            <tr>
+                <td>On-Line apps installed</td>
+                <td class="td20">6</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

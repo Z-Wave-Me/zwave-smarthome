@@ -4452,6 +4452,545 @@ function(){return{}}});n.directive("ngView",x);n.directive("ngView",z);x.$inject
 ["$cookies",function(e){return{get:function(b){return(b=e[b])?f.fromJson(b):b},put:function(b,c){e[b]=f.toJson(c)},remove:function(b){delete e[b]}}}])})(window,window.angular);
 //# sourceMappingURL=angular-cookies.min.js.map
 
+/**
+ * angular-drag-and-drop-lists v1.3.0
+ *
+ * Copyright (c) 2014 Marcel Juenemann mail@marcel-juenemann.de
+ * Copyright (c) 2014-2015 Google Inc.
+ * https://github.com/marceljuenemann/angular-drag-and-drop-lists
+ *
+ * License: MIT
+ */
+angular.module('dndLists', [])
+
+  /**
+   * Use the dnd-draggable attribute to make your element draggable
+   *
+   * Attributes:
+   * - dnd-draggable      Required attribute. The value has to be an object that represents the data
+   *                      of the element. In case of a drag and drop operation the object will be
+   *                      serialized and unserialized on the receiving end.
+   * - dnd-selected       Callback that is invoked when the element was clicked but not dragged.
+   *                      The original click event will be provided in the local event variable.
+   * - dnd-effect-allowed Use this attribute to limit the operations that can be performed. Options:
+   *                      - "move": The drag operation will move the element. This is the default.
+   *                      - "copy": The drag operation will copy the element. Shows a copy cursor.
+   *                      - "copyMove": The user can choose between copy and move by pressing the
+   *                        ctrl or shift key. *Not supported in IE:* In Internet Explorer this
+   *                        option will be the same as "copy". *Not fully supported in Chrome on
+   *                        Windows:* In the Windows version of Chrome the cursor will always be the
+   *                        move cursor. However, when the user drops an element and has the ctrl
+   *                        key pressed, we will perform a copy anyways.
+   *                      - HTML5 also specifies the "link" option, but this library does not
+   *                        actively support it yet, so use it at your own risk.
+   * - dnd-moved          Callback that is invoked when the element was moved. Usually you will
+   *                      remove your element from the original list in this callback, since the
+   *                      directive is not doing that for you automatically. The original dragend
+   *                      event will be provided in the local event variable.
+   * - dnd-canceled       Callback that is invoked if the element was dragged, but the operation was
+   *                      canceled and the element was not dropped. The original dragend event will
+   *                      be provided in the local event variable.
+   * - dnd-copied         Same as dnd-moved, just that it is called when the element was copied
+   *                      instead of moved. The original dragend event will be provided in the local
+   *                      event variable.
+   * - dnd-dragstart      Callback that is invoked when the element was dragged. The original
+   *                      dragstart event will be provided in the local event variable.
+   * - dnd-dragend        Callback that is invoked when the drag operation ended. Available local
+   *                      variables are event and dropEffect.
+   * - dnd-type           Use this attribute if you have different kinds of items in your
+   *                      application and you want to limit which items can be dropped into which
+   *                      lists. Combine with dnd-allowed-types on the dnd-list(s). This attribute
+   *                      should evaluate to a string, although this restriction is not enforced.
+   * - dnd-disable-if     You can use this attribute to dynamically disable the draggability of the
+   *                      element. This is useful if you have certain list items that you don't want
+   *                      to be draggable, or if you want to disable drag & drop completely without
+   *                      having two different code branches (e.g. only allow for admins).
+   *                      **Note**: If your element is not draggable, the user is probably able to
+   *                      select text or images inside of it. Since a selection is always draggable,
+   *                      this breaks your UI. You most likely want to disable user selection via
+   *                      CSS (see user-select).
+   *
+   * CSS classes:
+   * - dndDragging        This class will be added to the element while the element is being
+   *                      dragged. It will affect both the element you see while dragging and the
+   *                      source element that stays at it's position. Do not try to hide the source
+   *                      element with this class, because that will abort the drag operation.
+   * - dndDraggingSource  This class will be added to the element after the drag operation was
+   *                      started, meaning it only affects the original element that is still at
+   *                      it's source position, and not the "element" that the user is dragging with
+   *                      his mouse pointer.
+   */
+  .directive('dndDraggable', ['$parse', '$timeout', 'dndDropEffectWorkaround', 'dndDragTypeWorkaround',
+                      function($parse,   $timeout,   dndDropEffectWorkaround,   dndDragTypeWorkaround) {
+    return function(scope, element, attr) {
+      // Set the HTML5 draggable attribute on the element
+      element.attr("draggable", "true");
+
+      // If the dnd-disable-if attribute is set, we have to watch that
+      if (attr.dndDisableIf) {
+        scope.$watch(attr.dndDisableIf, function(disabled) {
+          element.attr("draggable", !disabled);
+        });
+      }
+
+      /**
+       * When the drag operation is started we have to prepare the dataTransfer object,
+       * which is the primary way we communicate with the target element
+       */
+      element.on('dragstart', function(event) {
+        event = event.originalEvent || event;
+
+        // Serialize the data associated with this element. IE only supports the Text drag type
+        event.dataTransfer.setData("Text", angular.toJson(scope.$eval(attr.dndDraggable)));
+
+        // Only allow actions specified in dnd-effect-allowed attribute
+        event.dataTransfer.effectAllowed = attr.dndEffectAllowed || "move";
+
+        // Add CSS classes. See documentation above
+        element.addClass("dndDragging");
+        $timeout(function() { element.addClass("dndDraggingSource"); }, 0);
+
+        // Workarounds for stupid browsers, see description below
+        dndDropEffectWorkaround.dropEffect = "none";
+        dndDragTypeWorkaround.isDragging = true;
+
+        // Save type of item in global state. Usually, this would go into the dataTransfer
+        // typename, but we have to use "Text" there to support IE
+        dndDragTypeWorkaround.dragType = attr.dndType ? scope.$eval(attr.dndType) : undefined;
+
+        // Invoke callback
+        $parse(attr.dndDragstart)(scope, {event: event});
+
+        event.stopPropagation();
+      });
+
+      /**
+       * The dragend event is triggered when the element was dropped or when the drag
+       * operation was aborted (e.g. hit escape button). Depending on the executed action
+       * we will invoke the callbacks specified with the dnd-moved or dnd-copied attribute.
+       */
+      element.on('dragend', function(event) {
+        event = event.originalEvent || event;
+
+        // Invoke callbacks. Usually we would use event.dataTransfer.dropEffect to determine
+        // the used effect, but Chrome has not implemented that field correctly. On Windows
+        // it always sets it to 'none', while Chrome on Linux sometimes sets it to something
+        // else when it's supposed to send 'none' (drag operation aborted).
+        var dropEffect = dndDropEffectWorkaround.dropEffect;
+        scope.$apply(function() {
+          switch (dropEffect) {
+            case "move":
+              $parse(attr.dndMoved)(scope, {event: event});
+              break;
+            case "copy":
+              $parse(attr.dndCopied)(scope, {event: event});
+              break;
+            case "none":
+              $parse(attr.dndCanceled)(scope, {event: event});
+              break;
+          }
+          $parse(attr.dndDragend)(scope, {event: event, dropEffect: dropEffect});
+        });
+
+        // Clean up
+        element.removeClass("dndDragging");
+        $timeout(function() { element.removeClass("dndDraggingSource"); }, 0);
+        dndDragTypeWorkaround.isDragging = false;
+        event.stopPropagation();
+      });
+
+      /**
+       * When the element is clicked we invoke the callback function
+       * specified with the dnd-selected attribute.
+       */
+      element.on('click', function(event) {
+        if (!attr.dndSelected) return;
+
+        event = event.originalEvent || event;
+        scope.$apply(function() {
+          $parse(attr.dndSelected)(scope, {event: event});
+        });
+
+        // Prevent triggering dndSelected in parant elements.
+        event.stopPropagation();
+      });
+
+      /**
+       * Workaround to make element draggable in IE9
+       */
+      element.on('selectstart', function() {
+        if (this.dragDrop) this.dragDrop();
+      });
+    };
+  }])
+
+  /**
+   * Use the dnd-list attribute to make your list element a dropzone. Usually you will add a single
+   * li element as child with the ng-repeat directive. If you don't do that, we will not be able to
+   * position the dropped element correctly. If you want your list to be sortable, also add the
+   * dnd-draggable directive to your li element(s). Both the dnd-list and it's direct children must
+   * have position: relative CSS style, otherwise the positioning algorithm will not be able to
+   * determine the correct placeholder position in all browsers.
+   *
+   * Attributes:
+   * - dnd-list             Required attribute. The value has to be the array in which the data of
+   *                        the dropped element should be inserted.
+   * - dnd-allowed-types    Optional array of allowed item types. When used, only items that had a
+   *                        matching dnd-type attribute will be dropable.
+   * - dnd-disable-if       Optional boolean expresssion. When it evaluates to true, no dropping
+   *                        into the list is possible. Note that this also disables rearranging
+   *                        items inside the list.
+   * - dnd-horizontal-list  Optional boolean expresssion. When it evaluates to true, the positioning
+   *                        algorithm will use the left and right halfs of the list items instead of
+   *                        the upper and lower halfs.
+   * - dnd-dragover         Optional expression that is invoked when an element is dragged over the
+   *                        list. If the expression is set, but does not return true, the element is
+   *                        not allowed to be dropped. The following variables will be available:
+   *                        - event: The original dragover event sent by the browser.
+   *                        - index: The position in the list at which the element would be dropped.
+   *                        - type: The dnd-type set on the dnd-draggable, or undefined if unset.
+   * - dnd-drop             Optional expression that is invoked when an element is dropped over the
+   *                        list. If the expression is set, it must return the object that will be
+   *                        inserted into the list. If it returns false, the drop will be aborted
+   *                        and the event is propagated. The following variables will be available:
+   *                        - event: The original drop event sent by the browser.
+   *                        - index: The position in the list at which the element would be dropped.
+   *                        - item: The transferred object.
+   *                        - type: The dnd-type set on the dnd-draggable, or undefined if unset.
+   * - dnd-inserted         Optional expression that is invoked after a drop if the element was
+   *                        actually inserted into the list. The same local variables as for
+   *                        dnd-drop will be available. Note that for reorderings inside the same
+   *                        list the old element will still be in the list due to the fact that
+   *                        dnd-moved was not called yet.
+   * - dnd-external-sources Optional boolean expression. When it evaluates to true, the list accepts
+   *                        drops from sources outside of the current browser tab. This allows to
+   *                        drag and drop accross different browser tabs. Note that this will allow
+   *                        to drop arbitrary text into the list, thus it is highly recommended to
+   *                        implement the dnd-drop callback to check the incoming element for
+   *                        sanity. Furthermore, the dnd-type of external sources can not be
+   *                        determined, therefore do not rely on restrictions of dnd-allowed-type.
+   *
+   * CSS classes:
+   * - dndPlaceholder       When an element is dragged over the list, a new placeholder child
+   *                        element will be added. This element is of type li and has the class
+   *                        dndPlaceholder set. Alternatively, you can define your own placeholder
+   *                        by creating a child element with dndPlaceholder class.
+   * - dndDragover          Will be added to the list while an element is dragged over the list.
+   */
+  .directive('dndList', ['$parse', '$timeout', 'dndDropEffectWorkaround', 'dndDragTypeWorkaround',
+                 function($parse,   $timeout,   dndDropEffectWorkaround,   dndDragTypeWorkaround) {
+    return function(scope, element, attr) {
+      // While an element is dragged over the list, this placeholder element is inserted
+      // at the location where the element would be inserted after dropping
+      var placeholder = getPlaceholderElement();
+      var placeholderNode = placeholder[0];
+      var listNode = element[0];
+      placeholder.remove();
+
+      var horizontal = attr.dndHorizontalList && scope.$eval(attr.dndHorizontalList);
+      var externalSources = attr.dndExternalSources && scope.$eval(attr.dndExternalSources);
+
+      /**
+       * The dragover event is triggered "every few hundred milliseconds" while an element
+       * is being dragged over our list, or over an child element.
+       */
+      element.on('dragover', function(event) {
+        event = event.originalEvent || event;
+
+        if (!isDropAllowed(event)) return true;
+
+        // First of all, make sure that the placeholder is shown
+        // This is especially important if the list is empty
+        if (placeholderNode.parentNode != listNode) {
+          element.append(placeholder);
+        }
+
+        if (event.target !== listNode) {
+          // Try to find the node direct directly below the list node.
+          var listItemNode = event.target;
+          while (listItemNode.parentNode !== listNode && listItemNode.parentNode) {
+            listItemNode = listItemNode.parentNode;
+          }
+
+          if (listItemNode.parentNode === listNode && listItemNode !== placeholderNode) {
+            // If the mouse pointer is in the upper half of the child element,
+            // we place it before the child element, otherwise below it.
+            if (isMouseInFirstHalf(event, listItemNode)) {
+              listNode.insertBefore(placeholderNode, listItemNode);
+            } else {
+              listNode.insertBefore(placeholderNode, listItemNode.nextSibling);
+            }
+          }
+        } else {
+          // This branch is reached when we are dragging directly over the list element.
+          // Usually we wouldn't need to do anything here, but the IE does not fire it's
+          // events for the child element, only for the list directly. Therefore we repeat
+          // the positioning algorithm for IE here.
+          if (isMouseInFirstHalf(event, placeholderNode, true)) {
+            // Check if we should move the placeholder element one spot towards the top.
+            // Note that display none elements will have offsetTop and offsetHeight set to
+            // zero, therefore we need a special check for them.
+            while (placeholderNode.previousElementSibling
+                 && (isMouseInFirstHalf(event, placeholderNode.previousElementSibling, true)
+                 || placeholderNode.previousElementSibling.offsetHeight === 0)) {
+              listNode.insertBefore(placeholderNode, placeholderNode.previousElementSibling);
+            }
+          } else {
+            // Check if we should move the placeholder element one spot towards the bottom
+            while (placeholderNode.nextElementSibling &&
+                 !isMouseInFirstHalf(event, placeholderNode.nextElementSibling, true)) {
+              listNode.insertBefore(placeholderNode,
+                  placeholderNode.nextElementSibling.nextElementSibling);
+            }
+          }
+        }
+
+        // At this point we invoke the callback, which still can disallow the drop.
+        // We can't do this earlier because we want to pass the index of the placeholder.
+        if (attr.dndDragover && !invokeCallback(attr.dndDragover, event, getPlaceholderIndex())) {
+          return stopDragover();
+        }
+
+        element.addClass("dndDragover");
+        event.preventDefault();
+        event.stopPropagation();
+        return false;
+      });
+
+      /**
+       * When the element is dropped, we use the position of the placeholder element as the
+       * position where we insert the transferred data. This assumes that the list has exactly
+       * one child element per array element.
+       */
+      element.on('drop', function(event) {
+        event = event.originalEvent || event;
+
+        if (!isDropAllowed(event)) return true;
+
+        // The default behavior in Firefox is to interpret the dropped element as URL and
+        // forward to it. We want to prevent that even if our drop is aborted.
+        event.preventDefault();
+
+        // Unserialize the data that was serialized in dragstart. According to the HTML5 specs,
+        // the "Text" drag type will be converted to text/plain, but IE does not do that.
+        var data = event.dataTransfer.getData("Text") || event.dataTransfer.getData("text/plain");
+        var transferredObject;
+        try {
+          transferredObject = JSON.parse(data);
+        } catch(e) {
+          return stopDragover();
+        }
+
+        // Invoke the callback, which can transform the transferredObject and even abort the drop.
+        var index = getPlaceholderIndex();
+        if (attr.dndDrop) {
+          transferredObject = invokeCallback(attr.dndDrop, event, index, transferredObject);
+          if (!transferredObject) {
+            return stopDragover();
+          }
+        }
+
+        // Retrieve the JSON array and insert the transferred object into it.
+        var targetArray = scope.$eval(attr.dndList);
+        scope.$apply(function() {
+          targetArray.splice(index, 0, transferredObject);
+        });
+        invokeCallback(attr.dndInserted, event, index, transferredObject);
+
+        // In Chrome on Windows the dropEffect will always be none...
+        // We have to determine the actual effect manually from the allowed effects
+        if (event.dataTransfer.dropEffect === "none") {
+          if (event.dataTransfer.effectAllowed === "copy" ||
+              event.dataTransfer.effectAllowed === "move") {
+            dndDropEffectWorkaround.dropEffect = event.dataTransfer.effectAllowed;
+          } else {
+            dndDropEffectWorkaround.dropEffect = event.ctrlKey ? "copy" : "move";
+          }
+        } else {
+          dndDropEffectWorkaround.dropEffect = event.dataTransfer.dropEffect;
+        }
+
+        // Clean up
+        stopDragover();
+        event.stopPropagation();
+        return false;
+      });
+
+      /**
+       * We have to remove the placeholder when the element is no longer dragged over our list. The
+       * problem is that the dragleave event is not only fired when the element leaves our list,
+       * but also when it leaves a child element -- so practically it's fired all the time. As a
+       * workaround we wait a few milliseconds and then check if the dndDragover class was added
+       * again. If it is there, dragover must have been called in the meantime, i.e. the element
+       * is still dragging over the list. If you know a better way of doing this, please tell me!
+       */
+      element.on('dragleave', function(event) {
+        event = event.originalEvent || event;
+
+        element.removeClass("dndDragover");
+        $timeout(function() {
+          if (!element.hasClass("dndDragover")) {
+            placeholder.remove();
+          }
+        }, 100);
+      });
+
+      /**
+       * Checks whether the mouse pointer is in the first half of the given target element.
+       *
+       * In Chrome we can just use offsetY, but in Firefox we have to use layerY, which only
+       * works if the child element has position relative. In IE the events are only triggered
+       * on the listNode instead of the listNodeItem, therefore the mouse positions are
+       * relative to the parent element of targetNode.
+       */
+      function isMouseInFirstHalf(event, targetNode, relativeToParent) {
+        var mousePointer = horizontal ? (event.offsetX || event.layerX)
+                                      : (event.offsetY || event.layerY);
+        var targetSize = horizontal ? targetNode.offsetWidth : targetNode.offsetHeight;
+        var targetPosition = horizontal ? targetNode.offsetLeft : targetNode.offsetTop;
+        targetPosition = relativeToParent ? targetPosition : 0;
+        return mousePointer < targetPosition + targetSize / 2;
+      }
+
+      /**
+       * Tries to find a child element that has the dndPlaceholder class set. If none was found, a
+       * new li element is created.
+       */
+      function getPlaceholderElement() {
+        var placeholder;
+        angular.forEach(element.children(), function(childNode) {
+          var child = angular.element(childNode);
+          if (child.hasClass('dndPlaceholder')) {
+            placeholder = child;
+          }
+        });
+        return placeholder || angular.element("<li class='dndPlaceholder'></li>");
+      }
+
+      /**
+       * We use the position of the placeholder node to determine at which position of the array the
+       * object needs to be inserted
+       */
+      function getPlaceholderIndex() {
+        return Array.prototype.indexOf.call(listNode.children, placeholderNode);
+      }
+
+      /**
+       * Checks various conditions that must be fulfilled for a drop to be allowed
+       */
+      function isDropAllowed(event) {
+        // Disallow drop from external source unless it's allowed explicitly.
+        if (!dndDragTypeWorkaround.isDragging && !externalSources) return false;
+
+        // Check mimetype. Usually we would use a custom drag type instead of Text, but IE doesn't
+        // support that.
+        if (!hasTextMimetype(event.dataTransfer.types)) return false;
+
+        // Now check the dnd-allowed-types against the type of the incoming element. For drops from
+        // external sources we don't know the type, so it will need to be checked via dnd-drop.
+        if (attr.dndAllowedTypes && dndDragTypeWorkaround.isDragging) {
+          var allowed = scope.$eval(attr.dndAllowedTypes);
+          if (angular.isArray(allowed) && allowed.indexOf(dndDragTypeWorkaround.dragType) === -1) {
+            return false;
+          }
+        }
+
+        // Check whether droping is disabled completely
+        if (attr.dndDisableIf && scope.$eval(attr.dndDisableIf)) return false;
+
+        return true;
+      }
+
+      /**
+       * Small helper function that cleans up if we aborted a drop.
+       */
+      function stopDragover() {
+        placeholder.remove();
+        element.removeClass("dndDragover");
+        return true;
+      }
+
+      /**
+       * Invokes a callback with some interesting parameters and returns the callbacks return value.
+       */
+      function invokeCallback(expression, event, index, item) {
+        return $parse(expression)(scope, {
+          event: event,
+          index: index,
+          item: item || undefined,
+          external: !dndDragTypeWorkaround.isDragging,
+          type: dndDragTypeWorkaround.isDragging ? dndDragTypeWorkaround.dragType : undefined
+        });
+      }
+
+      /**
+       * Check if the dataTransfer object contains a drag type that we can handle. In old versions
+       * of IE the types collection will not even be there, so we just assume a drop is possible.
+       */
+      function hasTextMimetype(types) {
+        if (!types) return true;
+        for (var i = 0; i < types.length; i++) {
+          if (types[i] === "Text" || types[i] === "text/plain") return true;
+        }
+
+        return false;
+      }
+    };
+  }])
+
+  /**
+   * Use the dnd-nodrag attribute inside of dnd-draggable elements to prevent them from starting
+   * drag operations. This is especially useful if you want to use input elements inside of
+   * dnd-draggable elements or create specific handle elements.
+   */
+  .directive('dndNodrag', function() {
+    return function(scope, element, attr) {
+      // Set as draggable so that we can cancel the events explicitly
+      element.attr("draggable", "true");
+
+      /**
+       * Since the element is draggable, the browser's default operation is to drag it on dragstart.
+       * We will prevent that and also stop the event from bubbling up.
+       */
+      element.on('dragstart', function(event) {
+        event = event.originalEvent || event;
+
+        // If a child element already reacted to dragstart and set a dataTransfer object, we will
+        // allow that. For example, this is the case for user selections inside of input elements.
+        if (!(event.dataTransfer.types && event.dataTransfer.types.length)) {
+          event.preventDefault();
+        }
+        event.stopPropagation();
+      });
+
+      /**
+       * Stop propagation of dragend events, otherwise dnd-moved might be triggered and the element
+       * would be removed.
+       */
+      element.on('dragend', function(event) {
+        event = event.originalEvent || event;
+        event.stopPropagation();
+      });
+    };
+  })
+
+  /**
+   * This workaround handles the fact that Internet Explorer does not support drag types other than
+   * "Text" and "URL". That means we can not know whether the data comes from one of our elements or
+   * is just some other data like a text selection. As a workaround we save the isDragging flag in
+   * here. When a dropover event occurs, we only allow the drop if we are already dragging, because
+   * that means the element is ours.
+   */
+  .factory('dndDragTypeWorkaround', function(){ return {} })
+
+  /**
+   * Chrome on Windows does not set the dropEffect field, which we need in dragend to determine
+   * whether a drag operation was successful. Therefore we have to maintain it in this global
+   * variable. The bug report for that has been open for years:
+   * https://code.google.com/p/chromium/issues/detail?id=39399
+   */
+  .factory('dndDropEffectWorkaround', function(){ return {} });
+
 /*!
  * Bootstrap v3.2.0 (http://getbootstrap.com)
  * Copyright 2011-2014 Twitter, Inc.
@@ -4471,7 +5010,8 @@ var myApp = angular.module('myApp', [
     'myAppController',
     'myAppFactory',
     'myAppService',
-    'colorpicker.module'
+    'colorpicker.module',
+    'dndLists'
     //'angularFileUpload'
 
 ]);
@@ -4500,6 +5040,12 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     requireLogin: true,
                     roles: cfg.role_access.element
                 }).
+                 // Element - drag & drop
+                when('/dragdrop', {
+                    templateUrl: 'app/views/elements/dragdrop.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.element
+                }).
                 // Rooms
                 when('/rooms', {
                     templateUrl: 'app/views/rooms/rooms.html',
@@ -4513,19 +5059,19 @@ myApp.config(['$routeProvider', function($routeProvider) {
                 }).
                 //Admin
                 when('/admin', {
-                    templateUrl: 'app/views/admin/admin.html',
+                    templateUrl: 'app/views/management/management.html',
                     requireLogin: true,
                     roles: cfg.role_access.admin
                 }).
                 //Admin detail
                 when('/admin/user/:id', {
-                    templateUrl: 'app/views/admin/admin_user.html',
+                    templateUrl: 'app/views/management/management_user.html',
                     requireLogin: true,
                     roles: cfg.role_access.admin_user
                 }).
                 //My Access
                 when('/myaccess', {
-                    templateUrl: 'app/views/myaccess/myaccess.html',
+                    templateUrl: 'app/views/mysettings/mysettings.html',
                     requireLogin: true,
                     roles: cfg.role_access.myaccess
                 }).
@@ -4560,28 +5106,39 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     roles: cfg.role_access.devices
                 }).
                 //Zwave device
-                when('/devices/zwave/:brandname?', {
-                    templateUrl: 'app/views/devices/devices_zwave.html',
+                when('/zwave/add/:brandname?', {
+                    templateUrl: 'app/views/zwave/zwave_add.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices
                 }).
-                //IP camera device
-                when('/devices/ipcamera', {
-                    templateUrl: 'app/views/devices/devices_ipcamera.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.devices
-                }).
-                //IP camera device
-               /* when('/devices/enocean/:brandname?', {
-                    templateUrl: 'app/views/devices/devices_enocean.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.devices
-                }).*/
                 //Include Zwave device
-                when('/include/:device?', {
-                    templateUrl: 'app/views/devices/device_include.html',
+                when('/zwave/include/:device?', {
+                    templateUrl: 'app/views/zwave/zwave_include.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices_include
+                }).
+                //Network
+                when('/zwave/manage', {
+                    templateUrl: 'app/views/zwave/zwave_manage.html',
+                    requireLogin: true
+                }).
+                //Network config
+                when('/zwave/manage/:nodeId/:nohistory?', {
+                    templateUrl: 'app/views/zwave/zwave_manage_id.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.network_config_id
+                }).
+                //Camera add
+                when('/camera/add', {
+                    templateUrl: 'app/views/camera/camera_add.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
+                }).
+                //Camera manage
+                when('/camera/manage', {
+                    templateUrl: 'app/views/camera/camera_manage.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
                 }).
                 //Enocean Devices
                 when('/enocean/devices/:brandname?', {
@@ -4630,17 +5187,6 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     requireLogin: true,
                     roles: cfg.role_access.config_rooms_id
                 }).
-                //Network
-                when('/network', {
-                    templateUrl: 'app/views/network/network.html',
-                    requireLogin: true
-                }).
-                //Network config
-                when('/network/config/:nodeId', {
-                    templateUrl: 'app/views/network/config.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.network_config_id
-                }).
                 //Device configuration
                 when('/deviceconfig/:nodeId', {
                     templateUrl: 'app/views/expertui/configuration.html',
@@ -4649,6 +5195,11 @@ myApp.config(['$routeProvider', function($routeProvider) {
                 //Report
                 when('/report', {
                     templateUrl: 'app/views/report/report.html',
+                    requireLogin: true
+                }).
+                //Info
+                when('/info', {
+                    templateUrl: 'app/views/info/info.html',
                     requireLogin: true
                 }).
                 //Login
@@ -5524,7 +6075,7 @@ var myAppService = angular.module('myAppService', []);
 /**
  * Device service
  */
-myAppService.service('dataService', function($filter, $log, $cookies, $location, $window,myCache, cfg,_) {
+myAppService.service('dataService', function($filter, $log, $cookies, $location, $window, myCache, cfg, _) {
     /// --- Public functions --- ///
     /**
      * Get language line by key
@@ -5600,8 +6151,8 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     this.setUser = function(data) {
         return setUser(data);
     };
-    
-     /**
+
+    /**
      * Get user SID (token)
      */
     this.getZWAYSession = function() {
@@ -5613,21 +6164,21 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     this.setZWAYSession = function(sid) {
         return setZWAYSession(sid);
     };
-     /**
+    /**
      * Get last login
      */
     this.getLastLogin = function() {
-       return getLastLogin();
-   };
-    
-   /*
-    * Set last login
-    */
-   this.setLastLogin = function(val) {
-       return setLastLogin(val);
-   };
-   
-   /**
+        return getLastLogin();
+    };
+
+    /*
+     * Set last login
+     */
+    this.setLastLogin = function(val) {
+        return setLastLogin(val);
+    };
+
+    /**
      * Logout
      */
     this.logOut = function() {
@@ -5736,8 +6287,8 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     this.configGetNav = function(ZWaveAPIData) {
         return configGetNav(ZWaveAPIData);
     };
-    
-     /**
+
+    /**
      * Set EnOcean profile
      */
     this.setEnoProfile = function(data) {
@@ -5769,7 +6320,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      * Set user data
      */
     function setUser(data) {
-         if(!data){
+        if (!data) {
             delete $cookies['user'];
             return;
         }
@@ -5781,21 +6332,21 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      * Get user SID (token)
      */
     function getZWAYSession() {
-         return $cookies.ZWAYSession;
+        return $cookies.ZWAYSession;
 
     }
     /**
      * Set user SID (token)
      */
     function setZWAYSession(sid) {
-        if(!sid){
+        if (!sid) {
             delete $cookies['ZWAYSession'];
             return;
         }
         $cookies.ZWAYSession = sid;
 
     }
-    
+
     /**
      * Get last login
      */
@@ -5803,7 +6354,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
         return $cookies.lastLogin !== 'undefined' ? $cookies.lastLogin : false;
 
     }
-    
+
     /**
      * Set last login
      */
@@ -5811,7 +6362,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
         $cookies.lastLogin = val;
 
     }
-    
+
     /**
      * Logout
      */
@@ -5854,17 +6405,19 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      * Get device data
      */
     function getDevices(data, filter, dashboard, instances, location) {
-       var obj;
+        var obj;
         var collection = [];
         var onDashboard = false;
         var findZwaveStr = "ZWayVDev_zway_";
+        var findZenoStr = "ZEnoVDev_zeno_x";
 
         angular.forEach(data, function(v, k) {
-            var instance; 
+            var instance;
             var hasInstance = false;
             var zwaveId = false;
             var level = $filter('numberFixedLen')(v.metrics.level);
             var rgbColors = false;
+            var appType = {};
             if (v.permanently_hidden || v.deviceType == 'battery') {
                 return;
             }
@@ -5876,19 +6429,23 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                     return;
                 }
             }
-           if(instances){
-               if (v.id.indexOf(findZwaveStr) > -1) {
-                zwaveId = v.id.split(findZwaveStr)[1].split('-')[0];
-            } else {
-                //instance = getRowBy(instances, 'id', v.creatorId);
-                instance = _.findWhere(instances, {id: v.creatorId});
-                if (instance && instance['moduleId'] != 'ZWave') {
-                    hasInstance = instance;
+            if (instances) {
+                if (v.id.indexOf(findZwaveStr) > -1) {
+                    zwaveId = v.id.split(findZwaveStr)[1].split('-')[0];
+                    appType['zwave'] = zwaveId.replace(/[^0-9]/g,'');
+                } else if(v.id.indexOf(findZenoStr) > -1){
+                    appType['enocean'] = v.id.split(findZenoStr)[1].split('_')[0];
+                }else {
+                    //instance = getRowBy(instances, 'id', v.creatorId);
+                    instance = _.findWhere(instances, {id: v.creatorId});
+                    if (instance && instance['moduleId'] != 'ZWave') {
+                        hasInstance = instance;
+                        appType['instance'] = instance;
 
+                    }
                 }
             }
-           }
-            
+
             if (dashboard && dashboard.indexOf(v.id) !== -1) {
                 var onDashboard = true;
             }
@@ -5917,11 +6474,12 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                 'onDashboard': onDashboard,
                 'imgTrans': false,
                 'visibility': v.visibility,
-                'hasHistory': (v.hasHistory === true ? true : false), 
+                'hasHistory': (v.hasHistory === true ? true : false),
                 'cfg': {
                     'zwaveId': zwaveId,
                     'hasInstance': hasInstance
-                }
+                },
+                'appType': appType
             };
             if (filter) {
                 if (angular.isArray(obj[filter.filter])) {
@@ -6052,7 +6610,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      * Get chart data
      */
     function getChartData(data, colors) {
-       
+
         if (!angular.isObject(data, colors)) {
             return null;
         }
@@ -6319,22 +6877,23 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
 //        });
 //        return collection;
 //    }
-    
+
     /**
      * Set EnOcean profile
      */
-    function setEnoProfile(data){
+    function setEnoProfile(data) {
         var profile = {};
         angular.forEach(data, function(v, k) {
-                var profileId = parseInt(v._rorg, 16) + '_' + parseInt(v._func, 16) + '_' + parseInt(v._type, 16);
-                profile[profileId] = v;
-                profile[profileId]['id'] = profileId;
-                profile[profileId]['rorgInt'] = parseInt(v._rorg, 16);
-                profile[profileId]['funcInt'] = parseInt(v._func, 16);
-                profile[profileId]['typeInt'] = parseInt(v._type, 16);
-            });
+            var profileId = parseInt(v._rorg, 16) + '_' + parseInt(v._func, 16) + '_' + parseInt(v._type, 16);
+            profile[profileId] = v;
+            profile[profileId]['id'] = profileId;
+            profile[profileId]['rorgInt'] = parseInt(v._rorg, 16);
+            profile[profileId]['funcInt'] = parseInt(v._func, 16);
+            profile[profileId]['typeInt'] = parseInt(v._type, 16);
+        });
         return profile;
-    };
+    }
+    ;
 });
 
 /**
@@ -6396,6 +6955,20 @@ myApp.directive('bbAlert', function() {
                 + ' <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'
                 + '<i class="fa fa-lg" ng-class="alert.icon"></i> <span ng-bind-html="alert.message|toTrusted"></span>'
                 + '</div>'
+    };
+});
+
+/**
+ * Alerttext  directive
+ */
+myApp.directive('bbAlertText', function() {
+    return {
+        restrict: "E",
+        replace: true,
+        scope: {alert: '='},
+        template: '<span class="alert" ng-if="alert.message" ng-class="alert.status">'
+                + '<i class="fa fa-lg" ng-class="alert.icon"></i> <span ng-bind-html="alert.message|toTrusted"></span>'
+                + '</span>'
     };
 });
 
@@ -7632,7 +8205,7 @@ var myAppController = angular.module('myAppController', []);
 /**
  * Base controller
  */
-myAppController.controller('BaseController', function($scope, $cookies, $filter, $location, $route, cfg, dataFactory, dataService, myCache) {
+myAppController.controller('BaseController', function($scope, $cookies, $filter, $location, $route,$window, cfg, dataFactory, dataService, myCache) {
     /**
      * Global scopes
      */
@@ -7800,6 +8373,22 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
         }
         return apps;
     };
+    
+    /**
+     * Redirect to Expert
+     */
+    $scope.toExpert = function(url, dialog) {
+        if ($window.confirm(dialog)) {
+            $window.location.href = url;
+        }
+    };
+     /**
+     * Expand/collapse element
+     */
+     $scope.expand = {};
+    $scope.expandElement = function(key) {
+        $scope.expand[key] = !$scope.expand[key];
+    };
 
 });
 
@@ -7839,6 +8428,67 @@ myAppController.controller('ErrorController', function($scope, $routeParams, dat
  */
 
 /**
+ * DragDrop controller
+ */
+myAppController.controller('DragDropController', function($scope, dataFactory) {
+    $scope.models = {
+        selected: null,
+        list: []
+    };
+
+    // Generate initial model
+    for (var i = 1; i <= 5; ++i) {
+        $scope.models.list.push({label: "Item A" + i});
+    }
+
+    $scope.itemMoved = function(index) {
+        $scope.models.list.splice(index, 1);
+        angular.forEach($scope.models.list, function(v, k) {
+            console.log((k + 1) + ': ', v.label)
+
+        });
+        console.log(index)
+    };
+
+    // Model to JSON for demo purpose
+    $scope.$watch('models', function(model) {
+        //console.log(model)
+        $scope.modelAsJson = angular.toJson(model, true);
+    }, true);
+
+    $scope.elements = {
+        selected: null,
+        list: []
+    };
+    ;
+    /**
+     * Load data into collection
+     */
+    $scope.loadData = function() {
+        dataFactory.getApi('devices').then(function(response) {
+            $scope.elements.list = response.data.data.devices;
+        }, function(error) {
+        });
+    };
+    $scope.loadData();
+
+    $scope.elementMoved = function(index) {
+        $scope.elements.list.splice(index, 1);
+        var sorting = [];
+        angular.forEach($scope.elements.list, function(v, k) {
+           sorting[v.id] = (k+1);
+            dataFactory.putApi('devices', v.id, {position: index}).then(function(response) {
+                //console.log((k + 1) + ': ', v.metrics.title);
+            }, function(error) {
+            });
+         });
+          console.log(sorting)
+        //console.log(index)
+    };
+
+});
+
+/**
  * Element controller
  */
 myAppController.controller('ElementController', function($scope, $routeParams, $interval, $location, dataFactory, dataService, myCache) {
@@ -7866,6 +8516,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.knobopt = {
         width: 100
     };
+    $scope.alertabc = false;
 
     $scope.slider = {
         modelMax: 38
@@ -7901,8 +8552,13 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('devices').then(function(response) {
             var filter = null;
-            var notFound = $scope._t('no_devices') + ' <a href="#devices">' + $scope._t('lb_include_device') + '</a>'
+            var notFound = $scope._t('error_404');
             $scope.loading = false;
+            if (response.data.data.devices.length < 1) {
+                notFound = $scope._t('no_devices') + ' <a href="#devices"><strong>' + $scope._t('lb_include_device') + '</strong></a>';
+                $scope.alert = {message: notFound, status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                return;
+            }
             $scope.deviceType = dataService.getDeviceType(response.data.data.devices);
             $scope.tags = dataService.getTags(response.data.data.devices);
             // Filter
@@ -7932,7 +8588,13 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
             }
             var collection = dataService.getDevices(response.data.data.devices, filter, $scope.user.dashboard, null);
             if (collection.length < 1) {
-                $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: notFound};
+                if ($routeParams.filter === 'dashboard') {
+                    $scope.collection = dataService.getDevices(response.data.data.devices, null, $scope.user.dashboard, null);
+                    $scope.alert = {message: notFound, status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                    return;
+                }
+                //$scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: notFound};
+                $scope.alert = {message: notFound, status: 'alert-warning', icon: 'fa-exclamation-circle'};
                 return;
             }
             $scope.collection = collection;
@@ -8038,16 +8700,17 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
                     angular.extend($scope.multilineSensor.data, response.data.data.metrics.sensors);
                     //$scope.multilineSensor.data = {data: response.data.data.metrics.sensors};
                 }
-            }, function(error) {});
+            }, function(error) {
+            });
         };
         $scope.multilineSensorInterval = $interval(refresh, $scope.cfg.interval);
     };
-    
-     /**
+
+    /**
      * Close multiline sensor window
      */
     $scope.closeMultilineSensor = function() {
-         $interval.cancel($scope.multilineSensorInterval);
+        $interval.cancel($scope.multilineSensorInterval);
     };
 
     /**
@@ -8319,6 +8982,7 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
                 'metrics': v.metrics,
                 'updateTime': v.updateTime,
                 'cfg': v.cfg,
+                'appType': v.appType,
                 'permanently_hidden': v.permanently_hidden,
                 //'rooms': $scope.rooms,
                 'hide_events': false
@@ -8589,6 +9253,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     $scope.hasImage = [];
     $scope.modules = [];
     $scope.modulesIds = [];
+      $scope.cameraIds = [];
     $scope.modulesCats = [];
     $scope.moduleImgs = [];
     $scope.onlineModules = [];
@@ -8643,11 +9308,12 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
 
                 }
                 if (item.category === 'surveillance') {
+                    $scope.cameraIds.push(item.id);
                     isHidden = true;
                 }
 
                 if (!isHidden) {
-                    $scope.modulesIds.push(item.id);
+                    //$scope.modulesIds.push(item.id);
                     $scope.moduleImgs[item.id] = item.icon;
                     if (item.category && $scope.modulesCats.indexOf(item.category) === -1) {
                         $scope.modulesCats.push(item.category);
@@ -8713,7 +9379,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
 
                 } else {
                     return false;
-                }
+                  }
             });
             $scope.loading = false;
             dataService.updateTimeTick();
@@ -9182,12 +9848,41 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
 /**
  * Device controller
  */
-myAppController.controller('DeviceController', function($scope, $routeParams, dataFactory, dataService) {
+myAppController.controller('DeviceController', function($scope, dataFactory) {
+    $scope.enocean = {
+        installed: false,
+        active: false,
+        alert: {message: false}
+    };
+     /**
+     * Load Remote access data
+     */
+    $scope.loadEnOceanModule = function() {
+        dataFactory.getApi('instances',false,true).then(function(response) {
+            var module = _.findWhere(response.data.data,{moduleId:'EnOcean'});
+            if(!module){
+                return;
+            }
+            $scope.enocean.installed = true;
+            if (!module.active) {
+                $scope.enocean.alert = {message: $scope._t('enocean_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                return;
+            }
+            $scope.enocean.active = true;
+        });
+    };
+
+    $scope.loadEnOceanModule();
 });
 /**
- * Device Zwave  controller
+ * Application Zwave controller
+ * @author Martin Vach
  */
-myAppController.controller('DeviceZwaveController', function($scope, $routeParams, dataFactory, dataService, _) {
+
+/**
+ * Zwave add controller
+ */
+myAppController.controller('ZwaveAddController', function($scope, $routeParams, dataFactory, dataService, _) {
     $scope.zwaveDevices = [];
     $scope.deviceVendor = false;
     $scope.manufacturers = [];
@@ -9211,48 +9906,9 @@ myAppController.controller('DeviceZwaveController', function($scope, $routeParam
     $scope.loadData($routeParams.brandname, $scope.lang);
 });
 /**
- * Device IP camerae  controller
+ * Zwave include controller
  */
-myAppController.controller('DeviceIpCameraController', function($scope, dataFactory, dataService, _) {
-    $scope.ipcameraDevices = [];
-    $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
-    /**
-     * Load ip cameras
-     */
-    $scope.loadData = function() {
-        dataService.showConnectionSpinner();
-        dataFactory.getApi('modules').then(function(response) {
-            $scope.ipcameraDevices = _.filter(response.data.data, function(item) {
-                var isHidden = false;
-                if ($scope.getHiddenApps().indexOf(item.moduleName) > -1) {
-                    if ($scope.user.role !== 1) {
-                        isHidden = true;
-                    } else {
-                        isHidden = ($scope.user.expert_view ? false : true);
-                    }
-
-                }
-                if (item.category !== 'surveillance') {
-                    isHidden = true;
-                }
-
-                if (!isHidden) {
-                    return item;
-                }
-            });
-            //$scope.ipcameraDevices = _.where(modulesFiltered, query);
-            //$scope.ipcameraDevices = _.where(response.data.data, {category: 'surveillance'});
-            dataService.updateTimeTick();
-        }, function(error) {
-            dataService.showConnectionError(error);
-        });
-    };
-    $scope.loadData();
-});
-/**
- * Device Include controller
- */
-myAppController.controller('DeviceIncludeController', function($scope, $routeParams, $interval, $filter,$route, dataFactory, dataService, myCache) {
+myAppController.controller('ZwaveIncludeController', function($scope, $routeParams, $interval, $timeout, $route, $location, dataFactory, dataService, myCache) {
     $scope.apiDataInterval = null;
     $scope.includeDataInterval = null;
     $scope.device = {
@@ -9281,12 +9937,6 @@ myAppController.controller('DeviceIncludeController', function($scope, $routePar
     $scope.devices = [];
     $scope.dev = [];
     
-    $scope.formInput = {
-        elements: {},
-        room: undefined
-    };
-    $scope.rooms = [];
-    $scope.modelRoom;
     // Cancel interval on page destroy
     $scope.$on('$destroy', function() {
         $interval.cancel($scope.apiDataInterval);
@@ -9320,9 +9970,9 @@ myAppController.controller('DeviceIncludeController', function($scope, $routePar
      * Load data into collection
      */
     $scope.loadZwaveApiData = function() {
-        
-         dataFactory.loadZwaveApiData(true).then(function(ZWaveAPIData) {
-              $scope.controllerState = ZWaveAPIData.controller.data.controllerState.value;
+
+        dataFactory.loadZwaveApiData(true).then(function(ZWaveAPIData) {
+            $scope.controllerState = ZWaveAPIData.controller.data.controllerState.value;
             var refresh = function() {
                 dataFactory.refreshZwaveApiData().then(function(response) {
                     checkController(response.data, response.data);
@@ -9337,23 +9987,6 @@ myAppController.controller('DeviceIncludeController', function($scope, $routePar
             dataService.showConnectionError(error);
             return;
         });
-        
-        
-//        dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
-//            var refresh = function() {
-//                dataFactory.joinedZwaveData(ZWaveAPIData).then(function(response) {
-//                    checkController(response.data.update, response.data.joined);
-//                    dataService.updateTimeTick(response.data.update.updateTime);
-//                }, function(error) {
-//                    dataService.showConnectionError(error);
-//                    return;
-//                });
-//            };
-//            $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
-//        }, function(error) {
-//            dataService.showConnectionError(error);
-//            return;
-//        });
     };
     $scope.loadZwaveApiData();
     /**
@@ -9415,13 +10048,15 @@ myAppController.controller('DeviceIncludeController', function($scope, $routePar
                     }
                     if (interviewDone) {
                         $scope.lastIncludedDevice = node.data.givenName.value || 'Device ' + '_' + nodeId;
-                        myCache.remove('devices');
+                         myCache.remove('devices');
                         $scope.includedDeviceId = null;
                         $scope.checkInterview = false;
                         $interval.cancel($scope.includeDataInterval);
                         $scope.nodeId = nodeId;
-                        $scope.loadLocations();
-                        $scope.loadElements(nodeId);
+                        $timeout(function() {
+                            $location.path('/zwave/manage/' + nodeId + '/nohistory');
+
+                        }, 3000);
 
 
                     } else {
@@ -9442,23 +10077,13 @@ myAppController.controller('DeviceIncludeController', function($scope, $routePar
     /**
      * Watch for last excluded device
      */
-    $scope.$watch('updateDevices', function() {
-        if ($scope.nodeId) {
-            $scope.updateDevices = false;
-            $scope.loadElements($scope.nodeId);
-        }
-    });
-
-    /**
-     * Watch for last excluded device
-     */
     //$scope.$watch('interviewCfg', function() {});
-    
+
     /**
      * Retry inclusion
      */
     $scope.retryInclusion = function() {
-         myCache.removeAll();
+        myCache.removeAll();
         $route.reload();
         $scope.runZwaveCmd('controller.RemoveNodeFromNetwork(1)');
     };
@@ -9474,7 +10099,7 @@ myAppController.controller('DeviceIncludeController', function($scope, $routePar
             //myCache.remove('devices');
             myCache.removeAll();
             //console.log('Reload...')
-        $route.reload();
+            $route.reload();
         }, function(error) {
         });
 
@@ -9493,81 +10118,7 @@ myAppController.controller('DeviceIncludeController', function($scope, $routePar
             dataService.showConnectionError(error);
         });
     };
-
-    /**
-     * Load locations
-     */
-    $scope.loadLocations = function() {
-        dataFactory.getApi('locations').then(function(response) {
-            $scope.rooms = response.data.data;
-        }, function(error) {
-            dataService.showConnectionError(error);
-        });
-    }
-    ;
-
-
-    /**
-     * Assign devices to room
-     */
-    $scope.devicesToRoom = function(roomId, devices) {
-        if (!roomId) {
-            return;
-        }
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        for (var i = 0; i <= devices.length; i++) {
-            var v = devices[i];
-            if (!v) {
-                continue;
-            }
-            var input = {
-                id: v.id,
-                location: roomId
-            };
-            dataFactory.putApi('devices', v.id, input).then(function(response) {
-            }, function(error) {
-                alert($scope._t('error_update_data'));
-                $scope.loading = false;
-                return;
-            });
-        }
-        myCache.remove('devices');
-        $scope.loadData();
-        $scope.loading = false;
-        return;
-
-    };
-     /**
-     * Update all devices
-     */
-    $scope.updateAllDevices = function() {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-       angular.forEach($scope.formInput.elements, function(v, k) {
-                dataFactory.putApi('devices', v.id, v).then(function(response) {
-                }, function(error) {});
-        });
-        myCache.remove('devices');
-        $scope.updateDevices = true;
-       //$scope.loadData($routeParams.nodeId);
-       $scope.loading = false;
-
-    };
-    /**
-     * Update device
-     */
-    $scope.updateDevice = function(input) {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        dataFactory.putApi('devices', input.id, input).then(function(response) {
-            myCache.remove('devices');
-            //$scope.loadData($scope.nodeId);
-            $scope.updateDevices = true;
-            $scope.loading = false;
-        }, function(error) {
-            alert($scope._t('error_update_data'));
-            $scope.loading = false;
-        });
-
-    };
+   
 
     /// --- Private functions --- ///
     /**
@@ -9672,22 +10223,303 @@ myAppController.controller('DeviceIncludeController', function($scope, $routePar
 //    }
 //    ;
 
+
+
+});
+/**
+ * Zwave manage controller
+ */
+myAppController.controller('ZwaveManageController', function($scope, $cookies, $filter, $window, $location, dataFactory, dataService, myCache) {
+    $scope.activeTab = (angular.isDefined($cookies.tab_network) ? $cookies.tab_network : 'battery');
+    $scope.batteries = {
+        'list': [],
+        'cntLess20': [],
+        'cnt0': []
+    };
+    $scope.devices = {
+        'failed': [],
+        'batteries': [],
+        'zwave': []
+    };
+    $scope.goEdit = [];
+    $scope.zWaveDevices = {};
+
+//    $scope.modelName = [];
+//    $scope.modelRoom = {};
+//
+//    $scope.rooms = [];
+    /**
+     * Set tab
+     */
+    $scope.setTab = function(tabId) {
+        $scope.activeTab = tabId;
+        $cookies.tab_network = tabId;
+    };
+
+
+    /**
+     * Load data
+     */
+    $scope.loadData = function() {
+        dataService.showConnectionSpinner();
+        dataFactory.getApi('devices').then(function(response) {
+            zwaveApiData(response.data.data.devices);
+            loadLocations();
+
+        }, function(error) {
+            $location.path('/error/' + error.status);
+        });
+    };
+    $scope.loadData();
+
+    /// --- Private functions --- ///
+    /**
+     * Load locations
+     */
+    function loadLocations() {
+        dataFactory.getApi('locations').then(function(response) {
+            $scope.rooms = response.data.data;
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    }
+    ;
     /**
      * Get zwaveApiData
      */
-    function zwaveApiData(nodeId, devices) {
+    function zwaveApiData(devices) {
         dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
+            dataService.updateTimeTick();
+            if (!ZWaveAPIData.devices) {
+                return;
+            }
+
+            angular.forEach(ZWaveAPIData.devices, function(v, k) {
+                if (k == 1) {
+                    return;
+                }
+
+                $scope.zWaveDevices[k] = {
+                    id: k,
+                    title: v.data.givenName.value || 'Device ' + '_' + k,
+                    icon: null,
+                    cfg: [],
+                    elements: [],
+                    messages: []
+                };
+
+            });
+            var findZwaveStr = "ZWayVDev_zway_";
+            angular.forEach(devices, function(v, k) {
+                var cmd;
+                var nodeId;
+                var iId;
+                var ccId;
+                if (v.id.indexOf(findZwaveStr) > -1) {
+                    cmd = v.id.split(findZwaveStr)[1].split('-');
+                    nodeId = cmd[0];
+                    iId = cmd[1];
+                    ccId = cmd[2];
+                    var node = ZWaveAPIData.devices[nodeId];
+                    if (node) {
+                        var interviewDone = isInterviewDone(node, nodeId);
+                        var isFailed = node.data.isFailed.value;
+                        var hasBattery = 0x80 in node.instances[0].commandClasses;
+                        var obj = {};
+                        obj['id'] = v.id;
+                        obj['visibility'] = v.visibility;
+                        obj['permanently_hidden'] = v.permanently_hidden;
+                        obj['nodeId'] = nodeId;
+                        obj['nodeName'] = node.data.givenName.value || 'Device ' + '_' + k,
+                                obj['title'] = v.metrics.title;
+                        obj['deviceType'] = v.deviceType;
+                        obj['level'] = $filter('toInt')(v.metrics.level);
+                        obj['metrics'] = v.metrics;
+                        obj['messages'] = [];
+                        if (v.deviceType !== 'battery') {
+                            $scope.devices.zwave.push(obj);
+                            $scope.zWaveDevices[nodeId]['elements'].push(obj);
+                            $scope.zWaveDevices[nodeId]['icon'] = obj.metrics.icon;
+                        }
+
+                        // Batteries
+                        if (v.deviceType === 'battery') {
+                            $scope.devices.batteries.push(obj);
+                        }
+                        if (hasBattery && interviewDone) {
+                            var batteryCharge = parseInt(node.instances[0].commandClasses[0x80].data.last.value);
+                            if (batteryCharge <= 20) {
+                                $scope.zWaveDevices[nodeId]['messages'].push({
+                                    type: 'battery',
+                                    error: $scope._t('lb_low_battery') + ' (' + batteryCharge + '%)'
+                                });
+                                obj['messages'].push({
+                                    type: 'battery',
+                                    error: $scope._t('lb_low_battery') + ' (' + batteryCharge + '%)'
+                                });
+                            }
+                        }
+                        // Not interview
+                        if (!interviewDone) {
+                            $scope.zWaveDevices[nodeId]['messages'].push({
+                                type: 'config',
+                                error: $scope._t('lb_not_configured')
+
+                            });
+
+                            obj['messages'].push({
+                                type: 'config',
+                                error: $scope._t('lb_not_configured')
+
+                            });
+                        }
+                        // Is failed
+                        if (isFailed) {
+                            $scope.zWaveDevices[nodeId]['messages'].push({
+                                type: 'failed',
+                                error: $scope._t('lb_is_failed')
+
+                            });
+                            obj['messages'].push({
+                                type: 'failed',
+                                error: $scope._t('lb_is_failed')
+
+                            });
+                        }
+                        $scope.devices.failed.push(obj);
+                    }
+
+                }
+            });
+            // Count device batteries
+            for (i = 0; i < $scope.devices.batteries.length; ++i) {
+                var battery = $scope.devices.batteries[i];
+                if (battery.level < 1) {
+                    $scope.batteries.cnt0.push(battery.id);
+                }
+                if (battery.level > 0 && battery.level < 20) {
+                    $scope.batteries.cntLess20.push(battery.id);
+                }
+
+            }
+        }, function(error) {
+            $location.path('/error/' + error.status);
+        });
+    }
+    ;
+
+
+    /**
+     * notInterviewDevices
+     */
+    function isInterviewDone(node, nodeId) {
+        for (var iId in node.instances) {
+            for (var ccId in node.instances[iId].commandClasses) {
+                var isDone = node.instances[iId].commandClasses[ccId].data.interviewDone.value;
+                if (isDone == false) {
+                    return false;
+                }
+            }
+        }
+        return true;
+
+    }
+    ;
+});
+/**
+ * Zwave manage detail controller
+ */
+myAppController.controller('ZwaveManageIdController', function($scope, $window, $routeParams, $timeout, $filter, $location, dataFactory, dataService, myCache) {
+    $scope.zwaveConfig = {
+        nodeId: $routeParams.nodeId,
+        nohistory: $routeParams.nohistory
+    };
+
+    $scope.zWaveDevice = [];
+    $scope.devices = [];
+    $scope.formInput = {
+        elements: {},
+        room: 0,
+        deviceName: ''
+    };
+    $scope.rooms = [];
+
+    /**
+     * Load data
+     */
+    $scope.loadConfigData = function(nodeId) {
+        dataService.showConnectionSpinner();
+        dataFactory.getApi('devices').then(function(response) {
+           zwaveConfigApiData(nodeId, response.data.data.devices);
+            loadConfigLocations();
+
+        }, function(error) {
+            $location.path('/error/' + error.status);
+        });
+    };
+    $scope.loadConfigData($scope.zwaveConfig.nodeId);
+
+    /**
+     * Update all devices
+     */
+    $scope.updateAllDevices = function(input) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+
+        // Update element
+        angular.forEach(input.elements, function(v, k) {
+            if (input.room) {
+                angular.extend(v, {location: parseInt(input.room)})
+            }
+            dataFactory.putApi('devices', v.id, v).then(function(response) {
+            }, function(error) {
+            });
+        });
+        //Update device name
+        var cmd = 'devices[' + $scope.zWaveDevice.id + '].data.givenName.value=\'' + input.deviceName + '\'';
+        dataFactory.runZwaveCmd(cmd).then(function() {
+        }, function(error) {
+        });
+        myCache.removeAll();
+        $timeout(function() {
+            $scope.loading = false;
+           
+            if(angular.isDefined($routeParams.nohistory)) {
+                $location.path('/zwave/manage');
+            } else {
+                $window.history.back();
+            }
+
+        }, 3000);
+    };
+
+    /// --- Private functions --- ///
+
+
+    function loadConfigLocations() {
+        dataFactory.getApi('locations').then(function(response) {
+            $scope.rooms = response.data.data;
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    }
+    ;
+    /**
+     * Get zwaveApiData
+     */
+    function zwaveConfigApiData(nodeId, devices) {
+        dataFactory.loadZwaveApiData(true).then(function(ZWaveAPIData) {
             dataService.updateTimeTick();
             var node = ZWaveAPIData.devices[nodeId];
             if (!node) {
+               // $location.path('/error/404');
                 return;
             }
 
             $scope.zWaveDevice = {
                 id: nodeId,
-                title: node.data.givenName.value || 'Device ' + '_' + nodeId,
                 cfg: []
             };
+            $scope.formInput.deviceName = node.data.givenName.value || 'Device ' + '_' + nodeId;
             // Has config file
             if (angular.isDefined(node.data.ZDDXMLFile) && node.data.ZDDXMLFile.value != '') {
                 if ($scope.zWaveDevice['cfg'].indexOf('config') === -1) {
@@ -9731,19 +10563,174 @@ myAppController.controller('DeviceIncludeController', function($scope, $routePar
                     obj['visibility'] = v.visibility;
                     obj['level'] = $filter('toInt')(v.metrics.level);
                     obj['metrics'] = v.metrics;
+                    obj['location'] = v.location;
                     $scope.formInput.elements[v.id] = obj;
                     $scope.devices.push(obj);
                 }
 
             });
         }, function(error) {
-            dataService.showConnectionError(error);
+            $location.path('/error/404');
         });
     }
     ;
 
-
 });
+
+/**
+ * Application Camera controller
+ * @author Martin Vach
+ */
+
+/**
+ * Camera add controller
+ */
+myAppController.controller('CameraAddController', function($scope, dataFactory, dataService, _) {
+    $scope.ipcameraDevices = [];
+    $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
+    /**
+     * Load ip cameras
+     */
+    $scope.loadData = function() {
+        dataService.showConnectionSpinner();
+        dataFactory.getApi('modules').then(function(response) {
+            $scope.ipcameraDevices = _.filter(response.data.data, function(item) {
+                var isHidden = false;
+                if ($scope.getHiddenApps().indexOf(item.moduleName) > -1) {
+                    if ($scope.user.role !== 1) {
+                        isHidden = true;
+                    } else {
+                        isHidden = ($scope.user.expert_view ? false : true);
+                    }
+
+                }
+                if (item.category !== 'surveillance') {
+                    isHidden = true;
+                }
+
+                if (!isHidden) {
+                    return item;
+                }
+            });
+            dataService.updateTimeTick();
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    };
+    $scope.loadData();
+});
+
+/**
+ * Camera manage controller
+ */
+myAppController.controller('CameraManageController', function($scope, $route,$window, dataFactory, dataService, myCache, _) {
+    $scope.instances = [];
+    $scope.modules = {
+        mediaUrl: $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/',
+        collection: [],
+        ids: [],
+        imgs: []
+    };
+    
+
+    /**
+     * Load local modules
+     */
+    $scope.loadModules = function() {
+        dataFactory.getApi('modules').then(function(response) {
+            var modulesFiltered = _.filter(response.data.data, function(item) {
+                var isHidden = false;
+                if ($scope.getHiddenApps().indexOf(item.moduleName) > -1) {
+                    if ($scope.user.role !== 1) {
+                        isHidden = true;
+                    } else {
+                        isHidden = ($scope.user.expert_view ? false : true);
+                    }
+
+                }
+                if (item.category !== 'surveillance') {
+                    isHidden = true;
+                }
+
+                if (!isHidden) {
+                   $scope.modules.ids.push(item.id);
+                   $scope.modules.imgs[item.id] = item.icon;
+                   return item;
+                }
+            });
+            $scope.modules.collection = modulesFiltered;
+             $scope.loadInstances();
+            dataService.updateTimeTick();
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    };
+     $scope.loadModules();
+     
+     /**
+     * Load instances
+     */
+    $scope.loadInstances = function() {
+        dataFactory.getApi('instances').then(function(response) {
+            $scope.instances = _.reject(response.data.data, function(v) {
+                if ($scope.modules.ids.indexOf(v.moduleId) > -1) {
+                   return false;
+                }
+                return true;
+            });
+            $scope.loading = false;
+            dataService.updateTimeTick();
+        }, function(error) {
+            $scope.loading = false;
+            dataService.showConnectionError(error);
+        });
+    };
+    
+     /**
+     * Ictivate instance
+     */
+    $scope.activateInstance = function(input, activeStatus) {
+        input.active = activeStatus;
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        if (input.id) {
+            dataFactory.putApi('instances', input.id, input).then(function(response) {
+                $scope.loading = false;
+                myCache.remove('instances');
+                myCache.remove('instances/' + input.moduleId);
+                myCache.remove('devices');
+                //$route.reload();
+                $scope.loadInstances();
+
+            }, function(error) {
+                alert($scope._t('error_update_data'));
+                $scope.loading = false;
+            });
+        }
+
+    };
+    
+    /**
+     * Delete instance
+     */
+    $scope.deleteInstance = function(target, input, dialog) {
+        var confirm = true;
+        if (dialog) {
+            confirm = $window.confirm(dialog);
+        }
+        if (confirm) {
+            dataFactory.deleteApi('instances', input.id).then(function(response) {
+                $(target).fadeOut(500);
+                myCache.remove('instances');
+                myCache.remove('devices');
+            }, function(error) {
+                alert($scope._t('error_delete_data'));
+            });
+
+        }
+    };
+   
+});
+
 /**
  * Application EnOcean controller
  * @author Martin Vach
@@ -11078,403 +12065,23 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
 
 });
 /**
- * Application Network controller
+ * Application Management controller
  * @author Martin Vach
  */
 
 /**
- * Network controller
+ * Management controller
  */
-myAppController.controller('NetworkController', function($scope, $cookies, $filter, $window, $location, dataFactory, dataService, myCache) {
-    $scope.activeTab = (angular.isDefined($cookies.tab_network) ? $cookies.tab_network : 'battery');
-    $scope.batteries = {
-        'list': [],
-        'cntLess20': [],
-        'cnt0': []
-    };
-    $scope.devices = {
-        'failed': [],
-        'batteries': [],
-        'zwave': []
-    };
-    $scope.goEdit = [];
-    $scope.zWaveDevices = {};
-
-//    $scope.modelName = [];
-//    $scope.modelRoom = {};
-//
-//    $scope.rooms = [];
-    /**
-     * Set tab
-     */
-    $scope.setTab = function(tabId) {
-        $scope.activeTab = tabId;
-        $cookies.tab_network = tabId;
-    };
-
-
-    /**
-     * Load data
-     */
-    $scope.loadData = function() {
-        dataService.showConnectionSpinner();
-        dataFactory.getApi('devices').then(function(response) {
-            zwaveApiData(response.data.data.devices);
-            loadLocations();
-
-        }, function(error) {
-            $location.path('/error/' + error.status);
-        });
-    };
-    $scope.loadData();
-
-    /// --- Private functions --- ///
-    /**
-     * Load locations
-     */
-    function loadLocations() {
-        dataFactory.getApi('locations').then(function(response) {
-            $scope.rooms = response.data.data;
-        }, function(error) {
-            dataService.showConnectionError(error);
-        });
-    }
-    ;
-    /**
-     * Get zwaveApiData
-     */
-    function zwaveApiData(devices) {
-        dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
-            dataService.updateTimeTick();
-            if (!ZWaveAPIData.devices) {
-                return;
-            }
-
-            angular.forEach(ZWaveAPIData.devices, function(v, k) {
-                if (k == 1) {
-                    return;
-                }
-
-                $scope.zWaveDevices[k] = {
-                    id: k,
-                    title: v.data.givenName.value || 'Device ' + '_' + k,
-                    icon: null,
-                    cfg: [],
-                    elements: [],
-                    messages: []
-                };
-
-            });
-            var findZwaveStr = "ZWayVDev_zway_";
-            angular.forEach(devices, function(v, k) {
-                var cmd;
-                var nodeId;
-                var iId;
-                var ccId;
-                if (v.id.indexOf(findZwaveStr) > -1) {
-                    cmd = v.id.split(findZwaveStr)[1].split('-');
-                    nodeId = cmd[0];
-                    iId = cmd[1];
-                    ccId = cmd[2];
-                    var node = ZWaveAPIData.devices[nodeId];
-                    if (node) {
-                        var interviewDone = isInterviewDone(node, nodeId);
-                        var isFailed = node.data.isFailed.value;
-                        var hasBattery = 0x80 in node.instances[0].commandClasses;
-                        var obj = {};
-                        obj['id'] = v.id;
-                        obj['visibility'] = v.visibility;
-                        obj['permanently_hidden'] = v.permanently_hidden;
-                        obj['nodeId'] = nodeId;
-                        obj['nodeName'] = node.data.givenName.value || 'Device ' + '_' + k,
-                                obj['title'] = v.metrics.title;
-                        obj['deviceType'] = v.deviceType;
-                        obj['level'] = $filter('toInt')(v.metrics.level);
-                        obj['metrics'] = v.metrics;
-                        obj['messages'] = [];
-                        if (v.deviceType !== 'battery') {
-                            $scope.devices.zwave.push(obj);
-                            $scope.zWaveDevices[nodeId]['elements'].push(obj);
-                            $scope.zWaveDevices[nodeId]['icon'] = obj.metrics.icon;
-                        }
-
-                        // Batteries
-                        if (v.deviceType === 'battery') {
-                            $scope.devices.batteries.push(obj);
-                        }
-                        if (hasBattery && interviewDone) {
-                            var batteryCharge = parseInt(node.instances[0].commandClasses[0x80].data.last.value);
-                            if (batteryCharge <= 20) {
-                                $scope.zWaveDevices[nodeId]['messages'].push({
-                                    type: 'battery',
-                                    error: $scope._t('lb_low_battery') + ' (' + batteryCharge + '%)'
-                                });
-                                obj['messages'].push({
-                                    type: 'battery',
-                                    error: $scope._t('lb_low_battery') + ' (' + batteryCharge + '%)'
-                                });
-                            }
-                        }
-                        // Not interview
-                        if (!interviewDone) {
-                            $scope.zWaveDevices[nodeId]['messages'].push({
-                                type: 'config',
-                                error: $scope._t('lb_not_configured')
-
-                            });
-
-                            obj['messages'].push({
-                                type: 'config',
-                                error: $scope._t('lb_not_configured')
-
-                            });
-                        }
-                        // Is failed
-                        if (isFailed) {
-                            $scope.zWaveDevices[nodeId]['messages'].push({
-                                type: 'failed',
-                                error: $scope._t('lb_is_failed')
-
-                            });
-                            obj['messages'].push({
-                                type: 'failed',
-                                error: $scope._t('lb_is_failed')
-
-                            });
-                        }
-                        $scope.devices.failed.push(obj);
-                    }
-
-                }
-            });
-            // Count device batteries
-            for (i = 0; i < $scope.devices.batteries.length; ++i) {
-                var battery = $scope.devices.batteries[i];
-                if (battery.level < 1) {
-                    $scope.batteries.cnt0.push(battery.id);
-                }
-                if (battery.level > 0 && battery.level < 20) {
-                    $scope.batteries.cntLess20.push(battery.id);
-                }
-
-            }
-        }, function(error) {
-            $location.path('/error/' + error.status);
-        });
-    }
-    ;
-
-    /**
-     * Redirect to Expert
-     */
-    $scope.toExpert = function(url, dialog) {
-        if ($window.confirm(dialog)) {
-            $window.location.href = url;
-        }
-    };
-    /**
-     * notInterviewDevices
-     */
-    function isInterviewDone(node, nodeId) {
-        for (var iId in node.instances) {
-            for (var ccId in node.instances[iId].commandClasses) {
-                var isDone = node.instances[iId].commandClasses[ccId].data.interviewDone.value;
-                if (isDone == false) {
-                    return false;
-                }
-            }
-        }
-        return true;
-
-    }
-    ;
-});
-/**
- * Profile controller
- */
-myAppController.controller('NetworkConfigController', function($scope, $routeParams, $filter, $location, dataFactory, dataService, myCache) {
-    $scope.zWaveDevice = [];
-    $scope.devices = [];
-    //$scope.dev = [];
-    $scope.formInput = {
-        elements: {},
-        room: undefined
-    };
-    $scope.rooms = [];
-    //$scope.modelRoom;
-
-    /**
-     * Load data
-     */
-    $scope.loadData = function(nodeId) {
-        dataService.showConnectionSpinner();
-        dataFactory.getApi('devices').then(function(response) {
-            zwaveApiData(nodeId, response.data.data.devices);
-            loadLocations();
-
-        }, function(error) {
-            $location.path('/error/' + error.status);
-        });
-    };
-    $scope.loadData($routeParams.nodeId);
-
-    /**
-     * Assign devices to room
-     */
-    $scope.devicesToRoom = function(roomId, devices) {
-        if (!roomId) {
-            return;
-        }
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        for (var i = 0; i <= devices.length; i++) {
-            var v = devices[i];
-            if (!v) {
-                continue;
-            }
-            var input = {
-                id: v.id,
-                location: roomId
-            };
-
-            dataFactory.putApi('devices', v.id, input).then(function(response) {
-            }, function(error) {
-                alert($scope._t('error_update_data'));
-                $scope.loading = false;
-                return;
-            });
-        }
-        myCache.remove('devices');
-        $scope.loadData($routeParams.nodeId);
-        $scope.loading = false;
-        return;
-
-    };
-
-    /**
-     * Update all devices
-     */
-    $scope.updateAllDevices = function() {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-       angular.forEach($scope.formInput.elements, function(v, k) {
-                var errors = 0;
-                dataFactory.putApi('devices', v.id, v).then(function(response) {
-                }, function(error) {});
-        });
-        myCache.remove('devices');
-       $scope.loadData($routeParams.nodeId);
-       $scope.loading = false;
-
-    };
-    /**
-     * Update single device
-     */
-    $scope.updateDevice = function(input) {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        dataFactory.putApi('devices', input.id, input).then(function(response) {
-            myCache.remove('devices');
-            $scope.loadData($routeParams.nodeId);
-            $scope.loading = false;
-        }, function(error) {
-            alert($scope._t('error_update_data'));
-            $scope.loading = false;
-        });
-
-    };
-
-    /// --- Private functions --- ///
-    /**
-     * Load locations
-     */
-    function loadLocations() {
-        dataFactory.getApi('locations').then(function(response) {
-            $scope.rooms = response.data.data;
-        }, function(error) {
-            dataService.showConnectionError(error);
-        });
-    }
-    ;
-    /**
-     * Get zwaveApiData
-     */
-    function zwaveApiData(nodeId, devices) {
-        dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
-            dataService.updateTimeTick();
-            var node = ZWaveAPIData.devices[nodeId];
-            if (!node) {
-                $location.path('/error/404');
-                return;
-            }
-
-            $scope.zWaveDevice = {
-                id: nodeId,
-                title: node.data.givenName.value || 'Device ' + '_' + nodeId,
-                cfg: []
-            };
-            // Has config file
-            if (angular.isDefined(node.data.ZDDXMLFile) && node.data.ZDDXMLFile.value != '') {
-                if ($scope.zWaveDevice['cfg'].indexOf('config') === -1) {
-                    $scope.zWaveDevice['cfg'].push('config');
-                }
-            }
-            // Has wakeup
-            if (0x84 in node.instances[0].commandClasses) {
-                if ($scope.zWaveDevice['cfg'].indexOf('wakeup') === -1) {
-                    $scope.zWaveDevice['cfg'].push('wakeup');
-                }
-            }
-            // Has SwitchAll
-            if (0x27 in node.instances[0].commandClasses) {
-                if ($scope.zWaveDevice['cfg'].indexOf('switchall') === -1) {
-                    $scope.zWaveDevice['cfg'].push('switchall');
-                }
-            }
-            // Has protection
-            if (0x75 in node.instances[0].commandClasses) {
-                if ($scope.zWaveDevice['cfg'].indexOf('protection') === -1) {
-                    $scope.zWaveDevice['cfg'].push('protection');
-                }
-            }
-            if ($scope.devices.length > 0) {
-                $scope.devices = angular.copy([]);
-            }
-            var findZwaveStr = "ZWayVDev_zway_";
-            angular.forEach(devices, function(v, k) {
-                if (v.id.indexOf(findZwaveStr) === -1 || v.deviceType === 'battery') {
-                    return;
-                }
-                var cmd = v.id.split(findZwaveStr)[1].split('-');
-                var zwaveId = cmd[0];
-                var iId = cmd[1];
-                var ccId = cmd[2];
-                if (zwaveId == nodeId) {
-                    var obj = {};
-                    obj['id'] = v.id;
-                    obj['permanently_hidden'] = v.permanently_hidden;
-                    obj['visibility'] = v.visibility;
-                    obj['level'] = $filter('toInt')(v.metrics.level);
-                    obj['metrics'] = v.metrics;
-                    $scope.formInput.elements[v.id] = obj;
-                    $scope.devices.push(obj);
-                }
-
-            });
-        }, function(error) {
-            $location.path('/error/404');
-        });
-    }
-    ;
-
-
-});
-/**
- * Application Admin controller
- * @author Martin Vach
- */
-
-/**
- * Profile controller
- */
-myAppController.controller('AdminController', function($scope, $window, $location, $timeout, $interval, $sce, $cookies,dataFactory, dataService, myCache) {
+myAppController.controller('ManagementController', function($scope, $window, $location, $timeout, $interval, $sce, $cookies,dataFactory, dataService, myCache) {
+    //Set elements to expand/collapse
+    angular.copy({
+        user: false,
+        remote: false,
+        licence: false,
+        firmware: false,
+        backup: false
+    },$scope.expand);
+    
     $scope.profiles = {};
     $scope.remoteAccess = false;
     $scope.controllerInfo = {
@@ -11482,16 +12089,6 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
         softwareRevisionVersion: null,
         softwareLatestVersion: null
     };
-    // Firmware
-//    $scope.firmware = {
-//        alert: {message: false, status: 'is-hidden', icon: false},
-//        process: false,
-//        val: 0
-//
-//    };
-    
-    // Licence
-    //$scope.controllerUuid = null;
     $scope.proccessLicence = false;
     $scope.proccessVerify = {
         'message': false,
@@ -11512,9 +12109,11 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
     // Cancel interval on page destroy
     $scope.$on('$destroy', function() {
         $interval.cancel($scope.zwaveDataInterval);
+        angular.copy({},$scope.expand);
     });
 
     $scope.firmwareUpdateUrl = $sce.trustAsResourceUrl('http://' + $scope.hostName + ':8084/cgi-bin/main.cgi');
+    
 
     /**
      * Load razberry latest version
@@ -11833,9 +12432,9 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
 //    $scope.refreshZwaveApiData();
 });
 /**
- * Orofile detail
+ * User detail
  */
-myAppController.controller('AdminUserController', function($scope, $routeParams, $filter, $location, dataFactory, dataService, myCache) {
+myAppController.controller('ManagementUserController', function($scope, $routeParams, $filter, $location, dataFactory, dataService, myCache) {
     $scope.id = $filter('toInt')($routeParams.id);
     $scope.rooms = {};
     $scope.input = {
@@ -11972,14 +12571,14 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
 
 });
 /**
- * Application My Access controller
+ * Application MySettings controller
  * @author Martin Vach
  */
 
 /**
  * My Access
  */
-myAppController.controller('MyAccessController', function($scope, $window, $location,$cookies,dataFactory, dataService, myCache) {
+myAppController.controller('MySettingsController', function($scope, $window, $location,$cookies,dataFactory, dataService, myCache) {
     $scope.id = $scope.user.id;
     $scope.devices = {};
     $scope.input = {
@@ -12206,6 +12805,19 @@ myAppController.controller('ReportController', function($scope, $window, dataFac
         });
 
     };
+
+});
+/**
+ * Application info controller
+ * @author Martin Vach
+ */
+
+myAppController.controller('InfoController', function($scope, $location, $window, $routeParams, $cookies,dataFactory, dataService) {
+    $scope.input = {
+        firmwareVersion: 'v2.0.2-rc8',
+        uiVersion: $scope.cfg.app_version,
+    };
+    
 
 });
 /**

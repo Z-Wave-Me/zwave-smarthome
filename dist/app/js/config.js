@@ -3,7 +3,7 @@ var config_data = {
         //Application name
         'app_name': 'SHUI',
         // Application version
-        'app_version': '1.0.1',
+        'app_version': '1.0.2',
         // Server base url
         'server_url': '/',
         //'server_url': 'http://192.168.10.119:8083/',
@@ -196,7 +196,7 @@ var config_data = {
                 'logo': 'app/img/app-logo-popp.png',
                 'hidden_apps': [
                     'Cron',
-					'CodeDevice',
+                    'CodeDevice',
                     'BatteryPolling',
                     'CustomUserCode',
                     'CustomUserCodeLoader',
@@ -219,7 +219,7 @@ var config_data = {
                 'hidden_apps': [
                     'Cron',
                     'BatteryPolling',
-					'CodeDevice',
+                    'CodeDevice',
                     'CustomUserCode',
                     'CustomUserCodeLoader',
                     'InbandNotifications',
