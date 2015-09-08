@@ -375,11 +375,13 @@ myAppController.controller('ZwaveManageController', function($scope, $cookies, $
     /**
      * Set tab
      */
-    $scope.setTab = function(tabId) {
+    $scope.setTab = function() {
+         var path = $location.path().split('/').pop();
+         var tabId = (path === 'manage'? 'devices':path);
         $scope.activeTab = tabId;
         $cookies.tab_network = tabId;
     };
-
+    $scope.setTab()
 
     /**
      * Load data

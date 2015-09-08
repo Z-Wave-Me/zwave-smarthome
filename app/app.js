@@ -106,7 +106,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     requireLogin: true,
                     roles: cfg.role_access.devices
                 }).
-                //Zwave device
+                //Zwave add
                 when('/zwave/add/:brandname?', {
                     templateUrl: 'app/views/zwave/zwave_add.html',
                     requireLogin: true,
@@ -118,9 +118,24 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     requireLogin: true,
                     roles: cfg.role_access.devices_include
                 }).
-                //Network
+                //Zwave Manage
                 when('/zwave/manage', {
-                    templateUrl: 'app/views/zwave/zwave_manage.html',
+                    templateUrl: 'app/views/zwave/zwave_devices.html',
+                    requireLogin: true
+                }).
+                //Zwave devices
+                when('/zwave/devices', {
+                    templateUrl: 'app/views/zwave/zwave_devices.html',
+                    requireLogin: true
+                }).
+                //Zwave battery
+                when('/zwave/batteries', {
+                    templateUrl: 'app/views/zwave/zwave_batteries.html',
+                    requireLogin: true
+                }).
+                //Zwave Network
+                when('/zwave/network', {
+                    templateUrl: 'app/views/zwave/zwave_network.html',
                     requireLogin: true
                 }).
                 //Network config
