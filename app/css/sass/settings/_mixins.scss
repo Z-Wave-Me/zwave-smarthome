@@ -63,6 +63,9 @@
 
 // Mobile layout
 @mixin appMobileLayout() {
+    body{
+        font-size: 16px;
+    }
     .hide-on-mobile{
         display:none !important;
     }
@@ -81,6 +84,7 @@
 
     }
     .navbar-visible-in{
+        font-size: 17px;
         .header-logo{
             img{
                 max-height: 20px !important;
@@ -110,6 +114,7 @@
         padding-right: 0;
     }
     #nav_collapse .dropdown-menu {
+         font-size: 17px;
         position: static;
         float: none;
         width: auto;
@@ -199,6 +204,9 @@
 
     /* Typo
     -------------------------------------------------- */
+    .entry-title{
+        font-size: 16px;
+    }
     .page-subtitle{
         padding: 0 10px;
         font-size: 16px;
@@ -209,6 +217,7 @@
     /* Images
     -------------------------------------------------- */
     .report-img{
+        max-width: 36px;
         // margin: 0 5px 0 0;
         //display: inline;
     }
@@ -236,20 +245,23 @@
     .btn-new-item{
         float: none !important;
     }
+    .btn{
+        font-size:16px;
+    }
     .btn-name{
         display: none;
     }
     .td-action{
         .btn{
             padding: 4px 8px;
-            font-size: 13px;
+            font-size: 16px;
             //line-height: 1.42857;
             //border-radius: 4px;
         }
     }
     .btn-sm, .btn-group-sm > .btn {
         padding: 4px 8px;
-        font-size: 12px;
+        font-size: 16px;
         line-height: 1.4;
         border-radius: 3px;
     }
@@ -258,8 +270,11 @@
     padding: 6px 12px;
 }
 
-    /* Tabs
+    /* Dropdowns
     -------------------------------------------------- */
+    .dropdown-menu{
+        font-size: 17px;
+    }
 
     /* Elements
     -------------------------------------------------- */
@@ -443,7 +458,7 @@
             position: relatvive;
         }
         .entry-title{
-            font-size: 12px;
+            //font-size: 12px;
             position: absolute;
             text-align: center;
             left: 0;
@@ -467,21 +482,6 @@
         .td-action{
             width: 30%;
         }
-    }
-
-    /* Profiles
-    -------------------------------------------------- */
-
-    .profile-entry{
-        float:left;
-        width: 50%;
-        .entry-title{
-            font-size: 12px;
-        }
-        .entry-title-text{
-            display: none;
-        }
-
     }
 
     /* Admin
