@@ -76,8 +76,11 @@
                         </a>
                         <span class="divider-vertical"></span>
                         <a href="#home" title="{{_t('nav_home')}}" ng-class="isActive('dashboard')"><i class="fa fa-home"></i></a>
+                        <span class="divider-vertical"></span>
                         <a href="#elements" title="{{_t('nav_elements')}}" ng-class="isActive('elements')"><i class="fa fa-clone"></i></a>
+                        <span class="divider-vertical"></span>
                         <a href="#rooms" title="{{_t('nav_rooms')}}" ng-class="isActive('rooms')" ng-if="elementAccess(cfg.role_access.rooms)"><i class="fa fa fa-building-o"></i></a>
+                        <span class="divider-vertical"></span>
                         <a href="#events" title="{{_t('nav_events')}}" ng-class="isActive('events')"><i class="fa fa-calendar"></i></a>
                         <span class="divider-vertical"></span> 
                         &nbsp;<span id="update_time_tick" ng-click="reloadData()"></span>

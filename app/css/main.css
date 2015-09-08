@@ -319,9 +319,11 @@ h4 {
   margin-bottom: 20px;
 }
 
-/*.entry-title,.entry-title a{
-    font-size: 15px;
-}*/
+/* line 74, sass/globals/_body.scss */
+.entry-title {
+  font-size: 15px;
+}
+
 /* line 78, sass/globals/_body.scss */
 a {
   color: #4d4d4d;

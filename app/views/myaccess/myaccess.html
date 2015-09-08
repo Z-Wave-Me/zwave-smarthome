@@ -2,7 +2,7 @@
 <div ng-controller="MyAccessController" class="mobile-padding">
     <bb-loader></bb-loader>
     <div ng-show="input">
-        <h2 class="form-title" ng-bind="_t('nav_myaccess')"></h2>
+        <h2 ng-bind="_t('nav_myaccess')"></h2>
         <form name="form_profile" id="form_profile" class="form form-page" ng-submit="store(input)" novalidate>
             <fieldset>
                 <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_name')"></span></h3>
@@ -89,7 +89,7 @@
         </form>
 
         <!-- ///////////////////////////// Change password Form ///////////////////////////// -->
-        <h2 class="form-title" ng-bind="_t('my_local_access')"></h2>
+        <h2 ng-bind="_t('my_local_access')"></h2>
         <form name="form_password" id="form_password" class="form form-page" ng-submit="changePassword(newPassword)" novalidate>
             <fieldset>
                 <!-- login  -->
