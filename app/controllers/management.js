@@ -1,12 +1,12 @@
 /**
- * Application Admin controller
+ * Application Management controller
  * @author Martin Vach
  */
 
 /**
- * Profile controller
+ * Management controller
  */
-myAppController.controller('AdminController', function($scope, $window, $location, $timeout, $interval, $sce, $cookies,dataFactory, dataService, myCache) {
+myAppController.controller('ManagementController', function($scope, $window, $location, $timeout, $interval, $sce, $cookies,dataFactory, dataService, myCache) {
     //Set elements to expand/collapse
     angular.copy({
         user: false,
@@ -366,9 +366,9 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
 //    $scope.refreshZwaveApiData();
 });
 /**
- * Orofile detail
+ * User detail
  */
-myAppController.controller('AdminUserController', function($scope, $routeParams, $filter, $location, dataFactory, dataService, myCache) {
+myAppController.controller('ManagementUserController', function($scope, $routeParams, $filter, $location, dataFactory, dataService, myCache) {
     $scope.id = $filter('toInt')($routeParams.id);
     $scope.rooms = {};
     $scope.input = {

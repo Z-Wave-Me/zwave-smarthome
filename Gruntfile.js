@@ -67,10 +67,10 @@ module.exports = function(grunt) {
                     'app/controllers/camera.js',
                     'app/controllers/enocean.js',
                     'app/controllers/room.js',
-                    'app/controllers/admin.js',
+                    'app/controllers/management.js',
                     'app/controllers/myaccess.js',
                     'app/controllers/report.js',
-                    'app/controllers/info.js'
+                    'app/controllers/info.js',
                     'app/controllers/auth.js',
                     //'app/modules/bootstrap-colorpicker-module.min.js',
                     'app/modules/bootstrap-colorpicker-module.js',

@@ -2656,25 +2656,25 @@ padding-right: 5px;
 
 /* Admin
 -------------------------------------------------- */
-/* line 3, sass/modules/_admin.scss */
+/* line 3, sass/modules/_management.scss */
 .admin-entry {
   margin-bottom: 20px;
   border-bottom: solid 1px #d3d3d3;
 }
 
-/* line 7, sass/modules/_admin.scss */
+/* line 7, sass/modules/_management.scss */
 .admin-entry-title {
   font-size: 18px;
   cursor: pointer;
 }
 
-/* line 11, sass/modules/_admin.scss */
+/* line 11, sass/modules/_management.scss */
 .user-image {
   max-width: 40px;
   border-radius: 50%;
 }
 
-/* line 16, sass/modules/_admin.scss */
+/* line 16, sass/modules/_management.scss */
 .profile-color {
   display: inline-block;
   width: 24px;
@@ -2682,14 +2682,14 @@ padding-right: 5px;
   margin: 0 10px 0 0;
 }
 
-/* line 23, sass/modules/_admin.scss */
+/* line 23, sass/modules/_management.scss */
 .profile-lang {
   display: inline-block;
 }
 
 /* Myacces
 -------------------------------------------------- */
-/* line 31, sass/modules/_admin.scss */
+/* line 31, sass/modules/_management.scss */
 .device-assigned-block {
   background-color: #FCF8E3;
   padding: 10px;
@@ -2699,7 +2699,7 @@ padding-right: 5px;
   background-color: #fcf8e3;
 }
 
-/* line 40, sass/modules/_admin.scss */
+/* line 40, sass/modules/_management.scss */
 .btn-device-admin {
   display: inline-block;
   padding: 6px 12px;
