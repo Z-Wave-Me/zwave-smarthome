@@ -149,7 +149,9 @@ myApp.directive('bbValidator', function($window) {
         template: '<div class="valid-error text-danger" ng-if="inputName.$invalid && !inputName.$pristine && hasBlur">*{{trans}}</div>'
     };
 });
-
+/**
+ * Load script into view
+ */
 myApp.directive('bbScript', function($parse, $rootScope, $compile) {
     return {
         restrict: 'E',
