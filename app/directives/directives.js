@@ -150,6 +150,21 @@ myApp.directive('bbValidator', function($window) {
     };
 });
 
+myApp.directive('bbScript', function($parse, $rootScope, $compile) {
+    return {
+        restrict: 'E',
+        terminal: true,
+        link: function(scope, element, attr) {
+            if (attr.ngSrc) {
+                 var domElem = '<script src="'+attr.ngSrc+'" async defer></script>';
+                 $(element).append($compile(domElem)(scope));
+
+
+            }
+        }
+    };
+});
+
 /**
  * Hide collapsed navi after click on mobile devices
  */
