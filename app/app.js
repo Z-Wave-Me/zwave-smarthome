@@ -118,15 +118,16 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     requireLogin: true,
                     roles: cfg.role_access.devices_include
                 }).
-                //Zwave Manage
-                when('/zwave/manage', {
-                    templateUrl: 'app/views/zwave/zwave_devices.html',
-                    requireLogin: true
-                }).
                 //Zwave devices
                 when('/zwave/devices', {
                     templateUrl: 'app/views/zwave/zwave_devices.html',
                     requireLogin: true
+                }).
+                //Zwave devices config
+                when('/zwave/devices/:nodeId/:nohistory?', {
+                    templateUrl: 'app/views/zwave/zwave_manage_id.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.network_config_id
                 }).
                 //Zwave battery
                 when('/zwave/batteries', {
@@ -137,12 +138,6 @@ myApp.config(['$routeProvider', function($routeProvider) {
                 when('/zwave/network', {
                     templateUrl: 'app/views/zwave/zwave_network.html',
                     requireLogin: true
-                }).
-                //Network config
-                when('/zwave/manage/:nodeId/:nohistory?', {
-                    templateUrl: 'app/views/zwave/zwave_manage_id.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.network_config_id
                 }).
                 //Camera add
                 when('/camera/add', {

@@ -178,7 +178,7 @@ myAppController.controller('ZwaveIncludeController', function($scope, $routePara
                         $interval.cancel($scope.includeDataInterval);
                         $scope.nodeId = nodeId;
                         $timeout(function() {
-                            $location.path('/zwave/manage/' + nodeId + '/nohistory');
+                            $location.path('/zwave/devices/' + nodeId + '/nohistory');
 
                         }, 3000);
 
@@ -610,7 +610,7 @@ myAppController.controller('ZwaveManageIdController', function($scope, $window, 
             $scope.loading = false;
            
             if(angular.isDefined($routeParams.nohistory)) {
-                $location.path('/zwave/manage');
+                $location.path('/zwave/devices');
             } else {
                 $window.history.back();
             }
