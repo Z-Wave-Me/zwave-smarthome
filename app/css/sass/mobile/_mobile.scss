@@ -99,7 +99,7 @@
     .show-on-mobile{
         display: block !important;
     }
-    
+    @include mHeader();
     @include appMobileLayout();
 }
 

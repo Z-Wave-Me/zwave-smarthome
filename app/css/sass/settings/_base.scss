@@ -1,3 +1,13 @@
+// Mobile device font-size scale
+$m-font-scale: 1.4;
+// Font size
+$app-body-font-size: 14px;
+$app-navi-font-size: 14px;
+$app-subnavi-font-size: 15px;
+$app-btn-font-size: 15px;
+
+// Icon size
+$app-btn-icon-size: $app-btn-font-size * 1.2;
 // Main color
 $brand-color-primary: #000;
 $brand-color-secondary: #DA131F;
@@ -33,6 +43,7 @@ $app-loader-fade:  4s;
 $pagination-bcg-color: #FFF;
 $pagination-active-bcg-color: #d3d3d3;
 $pagination-border-color:  #d3d3d3;
+
 //== Bootstrap Colors
 //
 //## Gray and brand colors for use across Bootstrap.

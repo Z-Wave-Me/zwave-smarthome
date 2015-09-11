@@ -1256,6 +1256,337 @@ http://codepen.io/MattIn4D/pen/LiKFC
   color: #ba602b;
 }
 
+/* Header
+-------------------------------------------------- */
+/* line 3, sass/globals/_header.scss */
+#header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  font-size: 14px;
+  margin-bottom: 20px;
+  color: #DDDDDD;
+}
+/* line 12, sass/globals/_header.scss */
+#header .container {
+  padding: 0;
+}
+/* line 15, sass/globals/_header.scss */
+#header .divider-vertical {
+  height: 50px;
+  border-left: 1px solid #c4c4c4;
+  border-right: 1px solid white;
+}
+
+/* Main navigation
+-------------------------------------------------- */
+/* line 24, sass/globals/_header.scss */
+#main_navigation_wrap {
+  background-color: #E9E9E9;
+  border-bottom: solid 4px #DDDDDD;
+  height: 50px;
+}
+
+/* line 29, sass/globals/_header.scss */
+#main_navigation {
+  position: relative;
+  line-height: 50px;
+}
+/* line 32, sass/globals/_header.scss */
+#main_navigation a {
+  display: inline-block;
+  padding: 0 15px;
+  color: #5d5d5d;
+  line-height: 50px;
+}
+/* line 38, sass/globals/_header.scss */
+#main_navigation a:hover {
+  background-color: #d0d0d0;
+}
+/* line 41, sass/globals/_header.scss */
+#main_navigation .active {
+  background-color: #DDDDDD;
+  color: #f7f7f7;
+}
+/* line 45, sass/globals/_header.scss */
+#main_navigation .fa-main-navi {
+  font-size: 21px;
+}
+
+/* line 49, sass/globals/_header.scss */
+#header_logo {
+  max-height: 40px;
+  max-width: 100px;
+}
+
+/* line 53, sass/globals/_header.scss */
+#navigation_left {
+  position: absolute;
+}
+
+/* line 57, sass/globals/_header.scss */
+#navigation_right {
+  float: right;
+}
+
+/* line 60, sass/globals/_header.scss */
+.navi-time-link {
+  cursor: pointer;
+}
+
+/* line 63, sass/globals/_header.scss */
+.navi-time {
+  padding-left: 10px;
+}
+
+/* line 67, sass/globals/_header.scss */
+.mobile-icon {
+  padding-left: 7px;
+  color: #5d5d5d;
+}
+/* line 70, sass/globals/_header.scss */
+.mobile-icon .fa {
+  font-size: 15px;
+}
+
+/** Profile colors */
+/* line 77, sass/globals/_header.scss */
+.profile-dddddd {
+  /* Visible */
+}
+/* line 11, sass/settings/_mixins.scss */
+.profile-dddddd .navbar-visible .navbar-visible-in .active {
+  background-color: #dddddd;
+  color: white;
+}
+/* line 18, sass/settings/_mixins.scss */
+.profile-dddddd .navbar-inverse {
+  border-color: #dddddd;
+}
+/* line 20, sass/settings/_mixins.scss */
+.profile-dddddd .navbar-inverse .navbar-nav > .open > a, .profile-dddddd .navbar-inverse .navbar-nav > .open > a:hover, .profile-dddddd .navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: #dddddd;
+}
+/* line 25, sass/settings/_mixins.scss */
+.profile-dddddd .nav-tabs > li.active > a i {
+  color: #aaaaaa;
+}
+
+/* line 80, sass/globals/_header.scss */
+.profile-6c7a89 {
+  /* Visible */
+}
+/* line 11, sass/settings/_mixins.scss */
+.profile-6c7a89 .navbar-visible .navbar-visible-in .active {
+  background-color: #6c7a89;
+  color: #c0c7ce;
+}
+/* line 18, sass/settings/_mixins.scss */
+.profile-6c7a89 .navbar-inverse {
+  border-color: #6c7a89;
+}
+/* line 20, sass/settings/_mixins.scss */
+.profile-6c7a89 .navbar-inverse .navbar-nav > .open > a, .profile-6c7a89 .navbar-inverse .navbar-nav > .open > a:hover, .profile-6c7a89 .navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: #6c7a89;
+}
+/* line 25, sass/settings/_mixins.scss */
+.profile-6c7a89 .nav-tabs > li.active > a i {
+  color: #3f4750;
+}
+
+/* line 83, sass/globals/_header.scss */
+.profile-6494bc {
+  /* Visible */
+}
+/* line 11, sass/settings/_mixins.scss */
+.profile-6494bc .navbar-visible .navbar-visible-in .active {
+  background-color: #6494bc;
+  color: #cfdeea;
+}
+/* line 18, sass/settings/_mixins.scss */
+.profile-6494bc .navbar-inverse {
+  border-color: #6494bc;
+}
+/* line 20, sass/settings/_mixins.scss */
+.profile-6494bc .navbar-inverse .navbar-nav > .open > a, .profile-6494bc .navbar-inverse .navbar-nav > .open > a:hover, .profile-6494bc .navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: #6494bc;
+}
+/* line 25, sass/settings/_mixins.scss */
+.profile-6494bc .nav-tabs > li.active > a i {
+  color: #386082;
+}
+
+/* line 86, sass/globals/_header.scss */
+.profile-80ad80 {
+  /* Visible */
+}
+/* line 11, sass/settings/_mixins.scss */
+.profile-80ad80 .navbar-visible .navbar-visible-in .active {
+  background-color: #80ad80;
+  color: #dde9dd;
+}
+/* line 18, sass/settings/_mixins.scss */
+.profile-80ad80 .navbar-inverse {
+  border-color: #80ad80;
+}
+/* line 20, sass/settings/_mixins.scss */
+.profile-80ad80 .navbar-inverse .navbar-nav > .open > a, .profile-80ad80 .navbar-inverse .navbar-nav > .open > a:hover, .profile-80ad80 .navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: #80ad80;
+}
+/* line 25, sass/settings/_mixins.scss */
+.profile-80ad80 .nav-tabs > li.active > a i {
+  color: #4e794e;
+}
+
+/* line 89, sass/globals/_header.scss */
+.profile-31b0d5 {
+  /* Visible */
+}
+/* line 11, sass/settings/_mixins.scss */
+.profile-31b0d5 .navbar-visible .navbar-visible-in .active {
+  background-color: #31b0d5;
+  color: #b0e1ef;
+}
+/* line 18, sass/settings/_mixins.scss */
+.profile-31b0d5 .navbar-inverse {
+  border-color: #31b0d5;
+}
+/* line 20, sass/settings/_mixins.scss */
+.profile-31b0d5 .navbar-inverse .navbar-nav > .open > a, .profile-31b0d5 .navbar-inverse .navbar-nav > .open > a:hover, .profile-31b0d5 .navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: #31b0d5;
+}
+/* line 25, sass/settings/_mixins.scss */
+.profile-31b0d5 .nav-tabs > li.active > a i {
+  color: #1b6d85;
+}
+
+/* line 92, sass/globals/_header.scss */
+.profile-f0aD4e {
+  /* Visible */
+}
+/* line 11, sass/settings/_mixins.scss */
+.profile-f0aD4e .navbar-visible .navbar-visible-in .active {
+  background-color: #f0aD4e;
+  color: #fceedb;
+}
+/* line 18, sass/settings/_mixins.scss */
+.profile-f0aD4e .navbar-inverse {
+  border-color: #f0aD4e;
+}
+/* line 20, sass/settings/_mixins.scss */
+.profile-f0aD4e .navbar-inverse .navbar-nav > .open > a, .profile-f0aD4e .navbar-inverse .navbar-nav > .open > a:hover, .profile-f0aD4e .navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: #f0aD4e;
+}
+/* line 25, sass/settings/_mixins.scss */
+.profile-f0aD4e .nav-tabs > li.active > a i {
+  color: #c77c11;
+}
+
+/* line 95, sass/globals/_header.scss */
+.profile-d9534f {
+  /* Visible */
+}
+/* line 11, sass/settings/_mixins.scss */
+.profile-d9534f .navbar-visible .navbar-visible-in .active {
+  background-color: #d9534f;
+  color: #f4cecd;
+}
+/* line 18, sass/settings/_mixins.scss */
+.profile-d9534f .navbar-inverse {
+  border-color: #d9534f;
+}
+/* line 20, sass/settings/_mixins.scss */
+.profile-d9534f .navbar-inverse .navbar-nav > .open > a, .profile-d9534f .navbar-inverse .navbar-nav > .open > a:hover, .profile-d9534f .navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: #d9534f;
+}
+/* line 25, sass/settings/_mixins.scss */
+.profile-d9534f .nav-tabs > li.active > a i {
+  color: #a02622;
+}
+
+/* line 98, sass/globals/_header.scss */
+.profile-dd976e {
+  /* Visible */
+}
+/* line 11, sass/settings/_mixins.scss */
+.profile-dd976e .navbar-visible .navbar-visible-in .active {
+  background-color: #dd976e;
+  color: #faf0ea;
+}
+/* line 18, sass/settings/_mixins.scss */
+.profile-dd976e .navbar-inverse {
+  border-color: #dd976e;
+}
+/* line 20, sass/settings/_mixins.scss */
+.profile-dd976e .navbar-inverse .navbar-nav > .open > a, .profile-dd976e .navbar-inverse .navbar-nav > .open > a:hover, .profile-dd976e .navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: #dd976e;
+}
+/* line 25, sass/settings/_mixins.scss */
+.profile-dd976e .nav-tabs > li.active > a i {
+  color: #ba602b;
+}
+
+/* Subnavigation
+-------------------------------------------------- */
+/* line 104, sass/globals/_header.scss */
+#sub_navigation {
+  position: relative;
+}
+/* line 106, sass/globals/_header.scss */
+#sub_navigation .container {
+  background-color: #fff;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+}
+
+/* line 114, sass/globals/_header.scss */
+#sub_navigation_in ul {
+  padding: 20px;
+  list-style: none;
+  text-align: center;
+  margin: 0;
+}
+/* line 119, sass/globals/_header.scss */
+#sub_navigation_in ul li {
+  display: inline-block;
+  margin: 0 5px 20px 5px;
+}
+/* line 122, sass/globals/_header.scss */
+#sub_navigation_in ul li a {
+  font-size: 15px;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  line-height: 1.42857;
+  border-radius: 4px;
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+}
+/* line 138, sass/globals/_header.scss */
+#sub_navigation_in ul .active a {
+  background-color: #DDDDDD;
+}
+/* line 142, sass/globals/_header.scss */
+#sub_navigation_in ul .fa {
+  padding-right: 7px;
+  font-size: 18px;
+}
+
+/* line 151, sass/globals/_header.scss */
+#sub_navigation_close {
+  text-align: right;
+  border-top: solid 1px #d3d3d3;
+  padding: 5px 10px 5px 5px;
+}
+/* line 155, sass/globals/_header.scss */
+#sub_navigation_close .fa {
+  font-size: 18px;
+}
+
 /* Footer
 -------------------------------------------------- */
 /* line 4, sass/globals/_footer.scss */
@@ -2692,17 +3023,21 @@ padding-right: 5px;
   min-height: 200px;
 }
 
+/* Mobile global
+-------------------------------------------------- */
+/* Mobile header
+-------------------------------------------------- */
 /*
  * The responsive style for the front-end
  */
 /* Global settings
 -------------------------------------------------- */
-/* line 7, sass/globals/_responsive.scss */
+/* line 7, sass/mobile/_mobile.scss */
 .clearfix {
   *zoom: 1;
 }
 
-/* line 10, sass/globals/_responsive.scss */
+/* line 10, sass/mobile/_mobile.scss */
 .clearfix:before,
 .clearfix:after {
   display: table;
@@ -2710,12 +3045,12 @@ padding-right: 5px;
   line-height: 0;
 }
 
-/* line 16, sass/globals/_responsive.scss */
+/* line 16, sass/mobile/_mobile.scss */
 .clearfix:after {
   clear: both;
 }
 
-/* line 19, sass/globals/_responsive.scss */
+/* line 19, sass/mobile/_mobile.scss */
 .hide-text {
   font: 0/0 a;
   color: transparent;
@@ -2724,7 +3059,7 @@ padding-right: 5px;
   border: 0;
 }
 
-/* line 26, sass/globals/_responsive.scss */
+/* line 26, sass/mobile/_mobile.scss */
 .input-block-level {
   display: block;
   width: 100%;
@@ -2738,7 +3073,7 @@ padding-right: 5px;
 =            Bootstrap 3 Media Queries             =
 ==================================================*/
 /*==========  Detected mobile devices  ==========*/
-/* line 40, sass/globals/_responsive.scss */
+/* line 40, sass/mobile/_mobile.scss */
 .show-on-mobile {
   display: none;
 }
@@ -2762,14 +3097,19 @@ padding-right: 5px;
 /* Medium Devices, Desktops */
 /* Small Devices, Tablets */
 @media only screen and (max-width: 768px) {
-  /* line 96, sass/globals/_responsive.scss */
+  /* line 96, sass/mobile/_mobile.scss */
   .show-on-pc {
     display: none;
   }
 
-  /* line 99, sass/globals/_responsive.scss */
+  /* line 99, sass/mobile/_mobile.scss */
   .show-on-mobile {
     display: block !important;
+  }
+
+  /* line 11, sass/mobile/_mixins.scss */
+  #header #header_logo, #header .divider-vertical {
+    display: none !important;
   }
 
   /* line 66, sass/settings/_mixins.scss */
@@ -3380,7 +3720,7 @@ padding-right: 5px;
 /* Custom, iPhone Retina */
 /* Custom, iPhone Retina */
 @media only screen and (min-width: 768px) and (max-width: 992px) {
-  /* line 122, sass/globals/_responsive.scss */
+  /* line 122, sass/mobile/_mobile.scss */
   .hide-navi-text {
     display: none !important;
   }

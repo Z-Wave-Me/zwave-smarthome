@@ -14,6 +14,7 @@
 // Partials
 @import "globals/_body";
 @import "globals/_navigation";
+@import "globals/_header";
 @import "globals/_footer"; 
 
 // Modules
@@ -32,8 +33,9 @@
 @import "modules/_login";
 @import "modules/_report"; 
 
-// Responsive
-@import "globals/_responsive";
+// Mobile
+@import "mobile/_mixins";
+@import "mobile/_mobile";
 // Enocean
 @import "globals/_enocean";
 

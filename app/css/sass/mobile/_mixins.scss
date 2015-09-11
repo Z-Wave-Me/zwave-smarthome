@@ -1,0 +1,17 @@
+/* Mobile global
+-------------------------------------------------- */
+@mixin mGlobal() {
+
+}
+/* Mobile header
+-------------------------------------------------- */
+@mixin mHeader() {
+    #header{
+        // Hide elements
+        #header_logo,.divider-vertical{
+            display: none !important;
+        }
+    }
+
+
+}
