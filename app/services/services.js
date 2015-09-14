@@ -467,7 +467,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                     break;
             }
             $(widgetId + ' .widget-level').html(val);
-            $(widgetId + ' .widget-level-knob').val(val).change();
+            $(widgetId + ' .widget-level-knob').val(val).trigger('change', false);
         }
         console.log(Math.round(+new Date() / 1000) + ' Update device: ID: ' + v.id + ' - level: ' + val)
 
