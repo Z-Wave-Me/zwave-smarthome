@@ -6,16 +6,20 @@
     right: 0;
     left: 0;
     z-index: 1030;
-    font-size: $app-navi-font-size;
     margin-bottom: 20px;
     color: $header-color-secondary;
+    font-size: $app-navi-font-size; 
     .container{
         padding: 0;
     }
     .divider-vertical {
-        height: 50px;
+        height: $header-h;
         border-left: 1px solid darken($header-color-secondary, 10%);
         border-right: 1px solid lighten($header-color-secondary, 15%);
+    }
+    
+    .fa{
+       font-size: $app-navi-icon-size;  
     }
 }
 
@@ -24,16 +28,16 @@
 #main_navigation_wrap{
     background-color: $header-color-primary;
     border-bottom: solid 4px $header-color-secondary;
-    height: 50px;
+    height: $header-h;
 }
 #main_navigation{
     position: relative;
-    line-height: 50px;
+    line-height: $header-h;
     a{
         display: inline-block;
         padding: 0 15px;
         color: $header-link-color;
-        line-height: 50px;
+        line-height: $header-h;
     }
     a:hover{
         background-color: darken($header-color-secondary, 5%);
@@ -42,9 +46,15 @@
         background-color:$header-color-secondary;
         color: lighten($header-color-secondary, 10%);
     }
-     .fa-main-navi{
-            font-size: $app-navi-font-size * 1.5; 
+    #update_time_tick{
+        font-size: $app-body-font-size;
+        .fa{
+            font-size: $app-body-font-size; 
         }
+    }
+    .fa-mobile{
+        font-size: $app-body-font-size;
+    }
 }
 #header_logo{
     max-height: 40px;
@@ -68,10 +78,9 @@
     padding-left: 7px;
     color: $header-link-color;
     .fa{
-        font-size:$app-btn-font-size;
+      font-size: $app-body-font-size;   
     }
 }
-
 
 /** Profile colors */
 .profile-dddddd{
@@ -120,7 +129,6 @@
             display: inline-block;
             margin: 0 5px 20px 5px;
             a{
-                font-size: $app-subnavi-font-size;
                 text-align: center;
                 vertical-align: middle;
                 border: 1px solid transparent;
@@ -128,7 +136,7 @@
                 padding: 6px 12px;
                 line-height: 1.42857;
                 border-radius: 4px;
-                color: #333;
+                color: $header-link-color;
                 background-color: #fff;
                 border-color: #ccc;
             }
@@ -141,7 +149,6 @@
         }
         .fa{
             padding-right: 7px;
-            font-size: $app-subnavi-font-size * 1.2;
         }
 
     }
@@ -152,7 +159,4 @@
     text-align: right;
     border-top: solid 1px $app-border-color;
     padding: 5px 10px 5px 5px;
-    .fa{
-       font-size:  $app-subnavi-font-size * 1.2;  
-    }
 }

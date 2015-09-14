@@ -1,0 +1,59 @@
+/* Form
+-------------------------------------------------- */
+.form-control {
+    font-size: $app-body-font-size;
+}
+
+.form-page{
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: solid 4px darken($app-body-bcg-color,5%);
+    fieldset,.fieldset{
+        background-color: #fff; 
+    }
+    h3{}
+    .form-group{
+        border-top: solid 1px $app-border-color;
+        padding-top: 10px;
+    }
+    label{
+        font-weight: normal;
+    }
+}
+
+fieldset, .fieldset{
+    //margin-bottom: 10px;
+    background-color: $app-body-bcg-color;
+    padding: 10px;
+}
+
+.form-control-sm{
+    width: 30% !important;
+}
+
+.form-control-md{
+    width: 50% !important;
+}
+
+.submit-entry{
+    text-align: right;
+    display: block;
+    //margin: 10px 0 0 0;
+    background-color: darken($app-body-bcg-color,5%) !important;
+     border-top: solid 1px darken($app-border-color,5%);
+}
+
+fieldset.submit-entry{
+    margin: 0 !important;
+}
+.form-control-hidden{
+    display: none !important;
+}
+.form-control-img{
+    cursor: pointer;
+    border: solid 4px transparent;
+
+}
+.control-active{
+    border: solid 4px black !important;
+}

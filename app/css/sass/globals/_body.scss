@@ -4,7 +4,14 @@ html {}
 body {
     background-color: $app-body-bcg-color;
     color: $app-body-color;
-    //@include appGradient();
+   font-size: $app-body-font-size;
+}
+
+/* Page
+-------------------------------------------------- */
+#main_content {
+    margin-top: $header-h + 20px; 
+    margin-bottom: 20px;
 }
 
 /* Typo
@@ -14,65 +21,24 @@ h1, .h1, h2, .h2, h3, .h3 {
    color: lighten($app-body-color, 15%);
 }
 h1 {
-    font-size:22px;
-    /*    text-shadow: 3px 1px 2px rgba(150, 150, 150, 1);*/
-    /*    color: #2A6496;*/
+    font-size:$app-h1-font-size;
 }
 
 h2 {
     
-    font-size:18px;
+    font-size: $app-h2-font-size;
      margin: 10px 0 3px 0;
-}
-h2.form-title {
-    font-size:18px;
-    margin-bottom: 3px;
 }
 
 h3 {
-    font-size: 18px;
+    font-size: $app-h3-font-size;
 }
 
 h4 {
-    font-size: 16px;
-}
-.page-header{
-    margin: 0;
-    padding: 0 0 10px 0;
-    border: 0;
-}
-.header-control{
-    h1{
-        display: block;
-        width: 45%;
-        float: left;
-    }
-    .page-header-control{
-        display: block;
-        width: 45%;
-        float: right;
-        text-align: right;
-    }
-}
-.page-control{
-    position: relative;
-    top: -15px;
-    /*   .btn-new-item{
-           background-color: $brand-color-secondary;
-           border: 0;
-       }*/
-}
-.page-subtitle{
-    font-size: 20px;
-}
-.subtitle-border{
-    font-size: 18px;
-    border-bottom: solid 1px $app-border-color;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
+    font-size: $app-h4-font-size;
 }
 .entry-title{
-    font-size: 15px;
+    font-size: $app-h4-font-size;
 }
 
 a {
@@ -85,12 +51,6 @@ a:hover {
 .text-supp{
     font-style: italic;
     color: lighten($app-body-color, 30%);
-}
-
-.perex{
-    margin: 20px 0;
-    padding: 20px 0 0 0;
-    border-top: 1px dotted #9fd8ef;
 }
 
 .badge{
@@ -138,23 +98,6 @@ a:hover {
     background-color: $app-bcg-active-false;
 }
 
-.alert-hidden{
-    display: none;
-}
-.alert-page{
-    margin: 10px 0;
-}
-
-.alert-entry{
-    text-align: center;
-    position: absolute;
-    width: 80%;
-    max-width: 300px;
-    z-index: 100;
-    padding: 7px;
-    left: 50%;
-    transform: translate(-50%, 0);
-}
 /* Hide element on is-mobile-true devices
 -------------------------------------------------- */
 .is-mobile-true{
@@ -162,12 +105,6 @@ a:hover {
         display: none !important;
     }
 
-}
-
-/* Alert
--------------------------------------------------- */
-.alert {
-    margin: 7px 0;
 }
 
 /* Spinners
@@ -218,193 +155,9 @@ a:hover {
   border-radius: 4px;
 }
 
-/* tables
--------------------------------------------------- */
-.table{
-    tbody{
-        tr{
-            td{
-                //border-top: 1px solid lighten($app-border-color, 20%); 
-                //border-top: 4px solid $app-body-bcg-color;
-                border-bottom: 1px solid lighten($app-border-color, 3%); 
-            }
-        }
-    }
 
-}
-.table-report{
-    border: 0 !important;
-    margin-bottom: 0 !important;
-    td{
-        vertical-align: middle;
-    }
-    tbody{
-        tr{
-            //background-color: lighten($app-body-bcg-color, 15%); 
-            background-color: #fff;
-        }
-        .td-img{
-            width: 30px;
-        }
-        .td-action{
-            text-align: right;
-        }
-    }
-}
-.table-products{
-    td{
-        vertical-align: middle !important;
-    }
-}
 
-.td20{
-    width: 20%;
-}
-.td30{
-    width: 30%;
-}
-/* Tabs
--------------------------------------------------- */
-.nav-tabs {
-    border-bottom: 2px solid darken($app-body-bcg-color, 10%);
-}
 
-.nav-tabs > li > a:hover {
-    color:  lighten($brand-color-primary, 10%);
-    text-decoration: underline;
-    //border: darken($app-body-bcg-color, 10%);
-}
-
-.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
-    color:  lighten($brand-color-primary, 10%);
-    background-color: $header-color-secondary;
-    //border: darken($app-body-bcg-color, 10%);
-}
-.nav-tabs > li.active > a{
-    font-weight: bold;
-}
-.nav-tabs > li.active > a i {
-    //color:  $brand-color-secondary;
-    // background-color:$header-color-secondary;
-    color: darken($header-color-secondary, 20%);
-}
-/*.nav > li > a:hover, .nav > li > a:focus {
-background-color: lighten($app-body-bcg-color, 10%);;
-}*/
-
-.nav-tabs-3{
-    text-align: center;
-}
-
-.nav-tabs-3 > li {
-    width: 33.33333%;
-}
-.nav-tabs-3 li a {
-    background-color:#eeeeee;
-}
-.tab-content{
-    padding-top: 10px;
-}
-.tab-content-form{
-    padding: 0;
-}
-/* Forms
--------------------------------------------------- */
-
-.form-page{
-    margin-bottom: 20px;
-    background-color: #fff;
-    border: solid 4px darken($app-body-bcg-color,5%);
-    fieldset,.fieldset{
-        background-color: #fff; 
-    }
-    h3{
-        font-size: 14px;
-        font-weight: bold;
-    }
-    .form-group{
-        border-top: solid 1px $app-border-color;
-        padding-top: 10px;
-    }
-    label{
-        font-weight: normal;
-    }
-}
-
-fieldset, .fieldset{
-    //margin-bottom: 10px;
-    background-color: $app-body-bcg-color;
-    padding: 10px;
-}
-
-.form-control-sm{
-    width: 30% !important;
-}
-
-.form-control-md{
-    width: 50% !important;
-}
-
-.submit-entry{
-    text-align: right;
-    display: block;
-    //margin: 10px 0 0 0;
-    background-color: darken($app-body-bcg-color,5%) !important;
-     border-top: solid 1px darken($app-border-color,5%);
-}
-.submit-entry .btn-submit{
-    color: #fff;
-    border: solid 2px green;
-    background-color: #629862;
-    padding: 6px 50px;
-}
-.submit-entry .btn-submit:hover {
-    background-color: #80AD80;
-}
-fieldset.submit-entry{
-    margin: 0 !important;
-}
-.form-control-hidden{
-    display: none !important;
-}
-.form-control-img{
-    cursor: pointer;
-    border: solid 4px transparent;
-
-}
-.control-active{
-    border: solid 4px black !important;
-}
-
-/* Page
--------------------------------------------------- */
-#main_content {
-    margin-top: 70px; 
-    margin-bottom: 20px;
-}
-/* Modal
--------------------------------------------------- */
-.modal-tooltip {
-    width: 40%; /* or whatever you wish */
-}
-.modal-vertical-centered {
-    position: fixed;
-    top: 15% !important;
-}
-
-.modal-vertical-centered {
-    position: fixed;
-    top: 15% !important;
-}
-.modal-firmware-iframe{
-    width: 100%;
-  //height: 100%;
-    padding:0;
-    .modal-content {
-        height: 100%;
-        border-radius: 0;
-    }
-}
 
 
 //.modal-vertical.fade.in { top: 50%; transform: translateY(-50%); }
@@ -436,85 +189,3 @@ vertical-align: middle;
 .tooltip-arrow {
     border-bottom-color: #f2f2f2;
 }
-
-/* Pagination
--------------------------------------------------- */
-.pagination > li > a, .pagination > li > span {
-    color: $brand-color-secondary;
-    background-color: $pagination-bcg-color;
-    border: 1px solid $pagination-border-color;
-}
-
-.pagination > li > a:hover, .pagination > li > a:focus, .pagination > li > span:hover, .pagination > li > span:focus {
-    color: $brand-color-secondary;
-    background-color: $app-body-bcg-color;
-    border-color:$pagination-border-color;
-}
-
-.pagination > .disabled > a, .pagination > .disabled > a:hover, .pagination > .disabled > a:focus {
-    color: #777777;
-    background-color: $pagination-bcg-color;
-    border-color: $pagination-border-color;
-    cursor: not-allowed;
-}
-
-.pagination > .active > a, .pagination > .active > a:hover {
-    color: #fff;
-    background-color: $pagination-active-bcg-color;
-    border-color: $pagination-border-color;
-}
-
-/* Absolute Center CSS Spinner
-http://codepen.io/MattIn4D/pen/LiKFC
--------------------------------------------------- */
-#loading{
-    position: fixed;
-    z-index: 999;
-    width: 260px;
-    height: 50px;
-    overflow: show;
-    margin: 80px auto auto auto;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    text-align: center;
-    .loading-in{
-        position: relative;
-        z-index: 1000;
-        margin: auto;
-        padding: 10px;
-        background-color: #fff;
-        border: solid 2px $app-border-color;
-        -webkit-border-radius: 5px;
-        -moz-border-radius: 5px;
-        border-radius: 5px;
-    }
-    a{
-        font-weight: bold;
-        text-decoration: underline;
-    }
-}
-
-/* Transparent Overlay */
-.loading-spin:before {
-    content: '';
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.1);
-}
-
-.loading-fade{
-    opacity: 0;
-    -webkit-transition: opacity $app-loader-fade;
-    -moz-transition: opacity $app-loader-fade;
-    -ms-transition: opacity $app-loader-fade;
-    -o-transition: opacity $app-loader-fade; 
-    transition: opacity $app-loader-fade;
-
-}
-

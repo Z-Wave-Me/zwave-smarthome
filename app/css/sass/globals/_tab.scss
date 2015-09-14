@@ -1,0 +1,45 @@
+/* Tab
+-------------------------------------------------- */
+.nav-tabs {
+    border-bottom: 2px solid darken($app-body-bcg-color, 10%);
+}
+
+.nav-tabs > li > a {
+    font-size: $app-navi-font-size;
+    .fa{
+        font-size: $app-navi-icon-size;
+    }
+}
+
+.nav-tabs > li > a:hover {
+    color:  lighten($brand-color-primary, 10%);
+    text-decoration: underline;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+    color:  lighten($brand-color-primary, 10%);
+    background-color: $header-color-secondary;
+}
+.nav-tabs > li.active > a{
+    font-weight: bold;
+}
+.nav-tabs > li.active > a i {
+    color: darken($header-color-secondary, 20%);
+}
+
+.nav-tabs-3{
+    text-align: center;
+}
+
+.nav-tabs-3 > li {
+    width: 33.33333%;
+}
+.nav-tabs-3 li a {
+    background-color:#eeeeee;
+}
+.tab-content{
+    padding-top: 10px;
+}
+.tab-content-form{
+    padding: 0;
+}

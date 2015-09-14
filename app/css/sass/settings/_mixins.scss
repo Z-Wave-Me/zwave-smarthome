@@ -171,11 +171,6 @@
     h1{
         font-size: 18px;
     }
-
-    #main_content {
-        margin-top: 60px;
-        margin-bottom: 10px;
-    }
     .mobile-padding{
         padding: 0 15px;
         .page-header{
@@ -242,33 +237,7 @@
         width: 100% !important;
         display: block !important;
     }
-    .btn-new-item{
-        float: none !important;
-    }
-    .btn{
-        font-size:16px;
-    }
-    .btn-name{
-        display: none;
-    }
-    .td-action{
-        .btn{
-            padding: 4px 8px;
-            font-size: 16px;
-            //line-height: 1.42857;
-            //border-radius: 4px;
-        }
-    }
-    .btn-sm, .btn-group-sm > .btn {
-        padding: 4px 8px;
-        font-size: 16px;
-        line-height: 1.4;
-        border-radius: 3px;
-    }
     
-    .submit-entry .btn-submit{
-    padding: 6px 12px;
-}
 
     /* Dropdowns
     -------------------------------------------------- */
@@ -340,112 +309,7 @@
         display: block;
     }
 
-    /* Apps
-    -------------------------------------------------- */
-    .tabs-container{
-        text-align: center;
-    }
-    /*    .nav-tabs{
-            display: block;
-            text-align: center;
-            padding: 0 25%;
-        }*/
-    .nav-tabs-3{
-        text-align: center;
-    }
-    .tab-name{
-        display: none;
-    }
-    .tab-icon{
-        font-size: 20px;
-    }
-    #table_apps_instance{
-        .td-action{
-            width: 40%;
-        }
-    }
-
-    .app-entry{
-        width: 100%;
-        padding:  0;
-        border-bottom: dotted 1px $app-border-color; 
-        @include appGradient();
-    }
-    .app-entry-green{
-        @include appGradientGreen();
-    }
-    .app-entry-in{
-        border: 0;
-        height: auto;
-        text-align: left;
-        padding: 0;
-        background: none;
-        margin: 0;
-
-    }
-
-    .app-image{
-        top: 5px;
-        left: 10px;
-        width: 40px;
-        height: 40px;
-    }
-    .app-body{
-        height: 54px;
-        margin:0;
-        padding: 5px 5px 15px 64px;
-        .entry-title{
-            position: absolute;
-            z-index: 10;
-            padding: 10px 90px 0 0;
-        }
-    }
-    .app-footer{
-        //display: none;
-        /*        display: block;
-                 position: static;*/
-    }
-
-    .app-image{
-        /*        width: 100%;*/
-        /*    max-width: 100px;*/
-        margin: 0;
-    }
-    #table_apps_active{
-        .btn{
-            font-size: 12px;
-        }
-
-    }
-    .app-image-list{
-        max-width: 50px;
-    }
-
-    /* Apps detail
-    -------------------------------------------------- */
-    .app-detail-header-in{
-        position:static;
-        padding: 0 15px 15px 15px;
-        background: none;
-        .app-detail-img{
-            text-align: center;
-            margin: 0 auto;
-            .app-image-detail{
-                position:static;
-            }
-        }
-
-        .app-detail-body{
-            padding-left: 0;
-            .page-subtitle{
-                margin-top: 10px;
-                text-align: center;
-            }
-        }
-        .app-detail-control{
-            text-align: center;
-        }
-    }
+    
 
     /* Rooms
     -------------------------------------------------- */
