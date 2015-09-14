@@ -14,7 +14,16 @@
 // Partials
 @import "globals/_body";
 @import "globals/_navigation";
-@import "globals/_footer"; 
+@import "globals/_header";
+@import "globals/_footer";
+@import "globals/_table"; 
+@import "globals/_button"; 
+@import "globals/_form";
+@import "globals/_tab"; 
+@import "globals/_loader";
+@import "globals/_alert";
+@import "globals/_modal";
+@import "globals/_pagination"; 
 
 // Modules
 @import "modules/_alpaca"; 
@@ -32,8 +41,10 @@
 @import "modules/_login";
 @import "modules/_report"; 
 
-// Responsive
-@import "globals/_responsive";
+// Mobile
+@import "mobile/_mixins";
+@import "mobile/_modules";
+@import "mobile/_mobile";
 // Enocean
 @import "globals/_enocean";
 

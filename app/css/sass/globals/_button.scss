@@ -1,0 +1,18 @@
+/* Button
+-------------------------------------------------- */
+.btn,.btn-device-admin {
+    font-size: $app-btn-font-size;
+    .fa{
+        font-size: $app-btn-icon-size; 
+    }
+}
+
+.btn-submit{
+    color: #fff;
+    border: solid 2px green;
+    background-color: #629862;
+    padding: 6px 50px;
+}
+.btn-submit:hover {
+    background-color: #80AD80;
+}

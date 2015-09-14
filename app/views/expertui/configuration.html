@@ -10,7 +10,7 @@
         <!-- config_cont -->
         <div class="cfg-block" id="config_cont" ng-if="configCont">
 
-             <h2 class="form-title">{{_t('configurations_list')}}</h2>
+             <h2>{{_t('configurations_list')}}</h2>
             <div class="alert-list">
         <p class="text-danger text-alert-list" ng-repeat="v in configCont" ng-if="v.configCconfigValue != v.configZwaveValue">{{v.label}}: {{_t('value_changed_to')}} <strong config-value-title collection='v' show_value='v.configCconfigValue'></strong> {{_t('value_not_stored_indevice')}}</p>
     </div>
@@ -70,7 +70,7 @@
         </div>
         <!-- wakeup_cont -->
         <div class="cfg-block" id="wakeup_cont" ng-if="wakeupCont">
-             <h2 class="form-title">{{_t('wakeup_list')}}</h2>
+             <h2>{{_t('wakeup_list')}}</h2>
             <div class="cfg-block-content" ng-init="formName = 'form_wakeup'">
                 <form 
                     name="{{formName}}" 
@@ -118,7 +118,7 @@
         </div>
         <!-- switchall_cont -->
         <div class="cfg-block" id="switchall_cont" ng-if="switchAllCont">
-            <h2 class="form-title">{{_t('switchall_list')}}</h2>
+            <h2>{{_t('switchall_list')}}</h2>
             <div class="cfg-block-content" ng-init="formName = 'form_switch_all'">
                 <form 
                     name="{{formName}}" 
@@ -159,7 +159,7 @@
         </div>
         <!-- protection_cont -->
         <div class="cfg-block" id="protection_cont" ng-if="protectionCont">
-            <h2 class="form-title">{{_t('protection_list')}}</h2>
+            <h2>{{_t('protection_list')}}</h2>
             <div class="cfg-block-content" ng-init="formName = 'form_protection_list'">
                 <form 
                     name="{{formName}}" 

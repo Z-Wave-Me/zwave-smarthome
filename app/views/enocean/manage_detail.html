@@ -3,9 +3,7 @@
     <!-- Enocean navigation -->
     <div ng-include="'app/views/enocean/navi.html'"></div>
      <div class="tab-content">
-    <div class="page-header">
-        <h1><span ng-bind="_t('enocean_device')"></span>: {{input.name}} (#{{input.id}})</h1>
-    </div>
+    <h2><span ng-bind="_t('enocean_device')"></span>: {{input.name}} (#{{input.id}})</h2>
     <form name="form_enocean_edit" id="form_enocean_edit" class="form form-page" ng-submit="store(input)" novalidate>
         <fieldset>
                 <!-- name  -->

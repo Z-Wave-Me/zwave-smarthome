@@ -2,7 +2,7 @@
 <div ng-controller="ElementDetailController" class="mobile-padding">
     <bb-loader></bb-loader>
     <div ng-show="input">
-        <h2 class="form-title"><span ng-bind="_t('lb_cfg_view')"></span>: <span ng-bind="input.metrics.title"></span></h2>
+        <h2><span ng-bind="_t('lb_cfg_view')"></span>: <span ng-bind="input.metrics.title"></span></h2>
         <form name="form_element" id="form_element" class="form form-page" ng-submit="store(input)" novalidate>
             <fieldset ng-if="elementAccess(cfg.role_access.admin)">
                 <p class="form-control-static">

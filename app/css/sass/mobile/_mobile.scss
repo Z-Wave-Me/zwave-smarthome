@@ -37,6 +37,9 @@
 ==================================================*/
 
 /*==========  Detected mobile devices  ==========*/
+.m-only{
+    display: none;
+}
 .show-on-mobile{
         display: none;
     }
@@ -99,8 +102,19 @@
     .show-on-mobile{
         display: block !important;
     }
-    
     @include appMobileLayout();
+    @include mBody();
+    @include mHeader();
+    @include mFooter();
+    @include mTable();
+    @include mButton();
+    @include mForm();
+    @include mLoader();
+    @include mAlert();
+    @include mTab();
+    @include mModal();
+    @include mPagination();
+    @include mApps();
 }
 
 /* Extra Small Devices, Phones */ 
