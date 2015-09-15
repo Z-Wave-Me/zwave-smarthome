@@ -165,7 +165,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
             var collection = dataService.getDevices(response.data.data.devices, filter, $scope.user.dashboard, null);
             if (collection.length < 1) {
                 if ($routeParams.filter === 'dashboard') {
-                    $scope.collection = dataService.getDevices(response.data.data.devices, null, $scope.user.dashboard, null);
+                    //$scope.collection = dataService.getDevices(response.data.data.devices, null, $scope.user.dashboard, null);
                     $scope.alert = {message: notFound, status: 'alert-warning', icon: 'fa-exclamation-circle'};
                     return;
                 }
