@@ -1,0 +1,266 @@
+/* Mobile Elements
+-------------------------------------------------- */
+@mixin mElements{
+    .widget-entry{
+        width: 100%;
+    }
+    .widget-block{ 
+        margin: 0;
+        -webkit-box-shadow: none;
+        -moz-box-shadow:    none;
+        box-shadow:        none;
+        border-bottom: solid 1px #ccc;
+    }
+    .widget-block-in{
+        /*   border: solid 1px red;*/
+        height: auto;
+        text-align: left;
+        padding: 10px;
+    }
+    .widget-image{ 
+        top: 10px;
+        left: 5px;
+        width: 42px;
+        height: 42px;
+    }
+    .widget-body{
+        margin-top: -15px;
+        padding: 0 5px 15px 50px;
+        .entry-title{
+            padding-right: 40px;
+        }
+    }
+
+    .modal-no-padding {
+        //width: 100%;
+        .modal-dialog {
+            margin: 0; 
+            .modal-body {
+                padding: 0;
+            }  
+        }
+
+    }
+
+    /*    .element-camera-control{
+            text-align: right;
+        }*/
+
+    /* Home */
+    .home-widget{
+        .widget-entry{
+            .widget-block-in{
+                border: 0;
+                padding: 0;
+
+            }
+        }
+    }
+}
+
+/* Mobile Rooms
+-------------------------------------------------- */
+@mixin mRooms() {
+    
+    .room-entry{
+        float:left;
+        width: 50%;
+        padding: 0;
+        .room-in{
+            position: relatvive;
+        }
+        .entry-title{
+            //font-size: 12px;
+            position: absolute;
+            text-align: center;
+            left: 0;
+            right:0;
+        }
+        .entry-title-text{
+            display: none;
+        }
+        .app-border{
+            border: solid 1px $app-border-color;
+        }
+
+    }
+    .room-image-big{
+        margin: 24px 0 0 0;
+        max-width: 130px;
+        max-height: 130px;
+    }
+
+    #table_cfg_rooms{
+        .td-action{
+            width: 30%;
+        }
+    }
+}
+/* Mobile Events
+-------------------------------------------------- */
+@mixin mEvents() {
+     .event-date{
+        display: block;
+    }
+}
+/* Mobile Apps
+-------------------------------------------------- */
+@mixin mApps() {
+    // Apps
+/*    .tabs-container{
+        text-align: center;
+    }*/
+    /*    .nav-tabs{
+            display: block;
+            text-align: center;
+            padding: 0 25%;
+        }*/
+   
+    
+/*    .tab-icon{
+        font-size: 20px;
+    }*/
+    #table_apps_instance{
+        .td-action{
+            width: 40%;
+        }
+    }
+
+    .app-entry{
+        width: 100%;
+        padding:  0;
+        border-bottom: dotted 1px $app-border-color; 
+        @include appGradient();
+    }
+    .app-entry-green{
+        @include appGradientGreen();
+    }
+    .app-entry-in{
+        border: 0;
+        height: auto;
+        text-align: left;
+        padding: 0;
+        background: none;
+        margin: 0;
+
+    }
+
+    .app-image{
+        top: 10px;
+        left: 10px;
+        width: 40px;
+        height: 40px;
+    }
+    .app-body{
+        height: 64px;
+        margin:0;
+        padding: 5px 5px 15px 64px;
+        .entry-title{
+            position: absolute;
+            z-index: 10;
+            padding: 10px 90px 0 0;
+        }
+    }
+    .app-footer-in{
+        .btn{
+            margin-top: -20px;
+        }
+    }
+
+/*    .app-image{
+         margin: 0;
+    }*/
+
+    // Apps detail
+    .app-detail-header-in{
+        position:static;
+        padding: 0 15px 15px 15px;
+        background: none;
+        .app-detail-img{
+            text-align: center;
+            margin: 0 auto;
+            .app-image-detail{
+                position:static;
+            }
+        }
+
+        .app-detail-body{
+            padding-left: 0;
+        }
+        .app-detail-control{
+            text-align: center;
+        }
+    }
+}
+
+/* Mobile devices
+-------------------------------------------------- */
+@mixin mDevices() {
+    .device-slect-type{
+        .vendor-entry{
+            float: left;
+            width: 33.33333%;
+            padding: 0 0 0 15px;
+            margin: 0 0 15px 0;
+        }
+    }
+    .device-manufacturers{
+        .col-device-vendor{
+            float: left;
+            width: 33.33333%;
+            padding: 0;
+            margin: 0 0 15px 0;
+        }
+
+        .vendor-list {
+            width: 100%;
+            margin: 0;
+            border-color: $app-border-color;
+        }
+
+
+
+    }
+
+    .vendor-image{
+        img {
+            max-width: 70px !important;
+            max-height: 50px !important;
+        }
+    }
+
+    .device-perex{
+        padding: 10px;
+        border-top: 0 none;
+    }
+    .col-device{
+        padding: 0;
+        margin: 0 0 20px 0;
+        background-color: #fff;
+
+    }
+
+    .include-device-img{
+        float: none;
+        margin: 0;
+        text-align: center;
+    }
+    .include-device-img img{
+        max-width: 120px;
+        max-height: 120px;
+    }
+    .include-device-txt{
+        margin-top: 20px;
+        text-align: center;
+    }
+}
+
+/* Mobile Management
+-------------------------------------------------- */
+@mixin mManagement() {
+    #table_cfg_admin{
+        .td-action{
+            width: 30%;
+        }
+    }
+}

@@ -1,0 +1,62 @@
+//
+// Mixins
+// --------------------------------------------------
+
+
+// Profile colors
+@mixin appProfileColors($brand-color-secondary) {
+    /* Visible */ 
+    .navbar-visible{
+        .navbar-visible-in{
+            .active{
+                background-color:$brand-color-secondary;
+                color: lighten($brand-color-secondary, 30%);
+            }
+        }
+    }
+
+    .navbar-inverse {
+        border-color: $brand-color-secondary;
+        .navbar-nav>.open>a, .navbar-nav>.open>a:hover,.navbar-nav>.open>a:focus {
+            background-color: $brand-color-secondary;
+        }
+    }
+    
+    .nav-tabs > li.active > a i {
+    //color:  $brand-color-secondary;
+    // background-color:$header-color-secondary;
+             color: darken($brand-color-secondary, 20%);
+}
+}
+// Gradient
+@mixin appGradient() {
+    background: #f6f6f6; /* Old browsers */
+    background: -moz-linear-gradient(top,  #f6f6f6 0%, #ffffff 77%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f6f6f6), color-stop(77%,#ffffff)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #f6f6f6 0%,#ffffff 77%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #f6f6f6 0%,#ffffff 77%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #f6f6f6 0%,#ffffff 77%); /* IE10+ */
+    background: linear-gradient(to bottom,  #f6f6f6 0%,#ffffff 77%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6f6f6', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+
+}
+
+// Gradient
+@mixin appGradientGreen() {
+    background: #1e5799; /* Old browsers */
+    background: -moz-linear-gradient(top,  #1e5799 0%, #dcf4e0 0%, #f6f6f6 99%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#1e5799), color-stop(0%,#dcf4e0), color-stop(99%,#f6f6f6)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #1e5799 0%,#dcf4e0 0%,#f6f6f6 99%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #1e5799 0%,#dcf4e0 0%,#f6f6f6 99%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #1e5799 0%,#dcf4e0 0%,#f6f6f6 99%); /* IE10+ */
+    background: linear-gradient(to bottom,  #1e5799 0%,#dcf4e0 0%,#f6f6f6 99%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#f6f6f6',GradientType=0 ); /* IE6-9 */
+
+}
+
+// Shadow
+@mixin appBoxShadow() {
+    -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+    -moz-box-shadow:    1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+    box-shadow:         1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+}

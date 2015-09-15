@@ -8,6 +8,31 @@
         margin-top: $header-h + 45px;
         margin-bottom: 10px;
     }
+    
+     .hide-on-mobile{
+        display:none !important;
+    }
+    .show-on-mobile{
+        display:block;
+    }
+    .navbar-toggle{
+        margin-right: 30px !important;
+    }
+    .container{
+        max-width:none;
+        width: 100%;
+
+    }
+    .row {
+        padding-right: 0;
+        margin-right: 0;
+
+    }
+    .col-sm-6{
+        padding-right: 0;
+    }
+    
+    
     // Typo
     h1 {
         font-size:$app-h1-font-size * $m-font-scale;
@@ -26,6 +51,35 @@
     }
     .entry-title{
         font-size: $app-body-font-size  * $m-font-scale;
+    }
+    
+    // Settings
+    .mobile-padding{
+        padding: 0 15px;
+        .page-header{
+            padding: 0;
+        }
+    }
+    .row-page{
+        margin: 0;
+    }
+
+    .app-shadow{
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+    }
+    .app-border{
+        border: 0;
+
+    }
+
+}
+/* Mobile images
+-------------------------------------------------- */
+@mixin mImg() {
+    .report-img{
+        max-width: 36px;
     }
 }
 /* Mobile header
@@ -109,18 +163,23 @@
 /* Mobile footer
 -------------------------------------------------- */
 @mixin mFooter() {
-    .is-mobile-true{
-        #mobile_footer{
-            padding-right: 60px !important;
-        }
-    }
 
 }
 
 /* Mobile table
 -------------------------------------------------- */
 @mixin mTable() {
+    .table-report{
+        tbody tr.bcg-active.true{
+            //@include appGradient();
+            background-color: #fff;
+        }
+        tbody tr.bcg-active.false{
+            background-color: $app-bcg-active-false !important;
+        }
 
+
+    }
 }
 
 /* Mobile buttons
@@ -170,6 +229,12 @@
         -webkit-transform: scale($m-font-scale, $m-font-scale); 
         -o-transform: scale($m-font-scale, $m-font-scale); 
     }
+    
+    .form-control-sm,.form-control-md{
+        width: 100% !important;
+        display: block !important;
+    }
+    
 }
 /* Mobile tabs
 -------------------------------------------------- */
@@ -186,6 +251,17 @@
     .nav-tabs-3{
         text-align: center;
     }
+}
+
+/* Mobile Dropdown
+-------------------------------------------------- */
+@mixin mDropdown() {
+    .dropdown-menu {
+   font-size: $app-body-font-size * $m-font-scale;
+   .fa{
+       font-size: $app-navi-icon-size * $m-font-scale;
+   }
+}
 }
 /* Mobile loader
 -------------------------------------------------- */
