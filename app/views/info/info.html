@@ -1,7 +1,9 @@
 <!-- Logoutview -->
 <div ng-controller="InfoController" class="mobile-padding">
     <bb-loader></bb-loader>
-    <bb-alert alert="alert"></bb-alert>
+    <button type="button" class="btn btn-success" ng-click="getAlertifyMessage('success')">Get success message</button>
+     <button type="button" class="btn btn-warning" ng-click="getAlertifyMessage('warning')">Get warning message</button>
+     <button type="button" class="btn btn-danger" ng-click="getAlertifyMessage('error')">Get error message</button>
     <h2>{{_t('Software info')}}</h2>
     <table class="table table-report">
         <tbody>

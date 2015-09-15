@@ -205,5 +205,12 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
     $scope.expandElement = function(key) {
         $scope.expand[key] = !$scope.expand[key];
     };
+    
+     /**
+     * Alertify defaults
+     */
+    alertify.defaults.glossary.title = 'SmartHome';
+    alertify.defaults.glossary.ok = $scope._t('ok');
+    alertify.defaults.glossary.cancel = $scope._t('lb_cancel');
 
 });
