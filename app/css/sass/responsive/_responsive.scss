@@ -42,6 +42,15 @@
 }
 .show-on-mobile{
         display: none;
+ }
+ 
+  .is-mobile-true{
+       #footer, #mobile_footer{
+            .container{
+              padding-right: 70px; 
+            }
+            
+        }
     }
 /*@media (max-width: 2000px) {
     .show-on-mobile{
@@ -102,19 +111,24 @@
     .show-on-mobile{
         display: block !important;
     }
-    @include appMobileLayout();
     @include mBody();
-    @include mHeader();
+    @include mHeader(); 
     @include mFooter();
+    @include mImg();
     @include mTable();
     @include mButton();
     @include mForm();
     @include mLoader();
     @include mAlert();
     @include mTab();
+     @include mDropdown();
     @include mModal();
     @include mPagination();
+    @include mElements();
+    @include mRooms();
+    @include mEvents();
     @include mApps();
+    @include mManagement();
 }
 
 /* Extra Small Devices, Phones */ 

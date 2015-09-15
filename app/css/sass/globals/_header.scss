@@ -114,6 +114,7 @@
     position: relative;
     .container{
         background-color: #fff;
+         background-color: lighten($app-body-bcg-color, 2%);
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
     }
 

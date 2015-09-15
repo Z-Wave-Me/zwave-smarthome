@@ -1,6 +1,6 @@
 // Settings
-@import "settings/_base";
-@import "settings/_mixins";
+@import "globals/_variables";
+@import "globals/_mixins";
 // CSS3
 @import "css3/_box-shadow.scss"; 
 // Core Bootstrap variables and mixins
@@ -13,14 +13,15 @@
 @import "vendor/_colorpicker";
 // Partials
 @import "globals/_body";
-@import "globals/_navigation";
+//@import "globals/_navigation";
 @import "globals/_header";
 @import "globals/_footer";
 @import "globals/_table"; 
 @import "globals/_button"; 
 @import "globals/_form";
 @import "globals/_tab"; 
-@import "globals/_loader";
+@import "globals/_dropdown"; 
+@import "globals/_loader"; 
 @import "globals/_alert";
 @import "globals/_modal";
 @import "globals/_pagination"; 
@@ -41,10 +42,6 @@
 @import "modules/_login";
 @import "modules/_report"; 
 
-// Mobile
-@import "mobile/_mixins";
-@import "mobile/_modules";
-@import "mobile/_mobile";
 // Enocean
 @import "globals/_enocean";
 
@@ -56,3 +53,8 @@
 
 // WD
 //@import "globals/_app_wd";
+
+// Mobile
+@import "responsive/_mixins";
+@import "responsive/_modules";
+@import "responsive/_responsive"; 
