@@ -1,0 +1,95 @@
+/* Page navigation
+-------------------------------------------------- */
+.page-navi{
+    font-size: $app-navi-font-size; 
+    position: relative;
+    width: 100%;
+    height: 100%;
+    .fa{
+       font-size: $app-navi-icon-size;  
+    }
+    .page-navi-in{
+        position: absolute;
+        background-color: lighten($app-body-bcg-color, 2%);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+        width: 80%;
+        top:0;
+        left:0;
+        z-index: 100;
+        //opacity:.9;
+
+        ul{
+            // padding: 20px;
+
+            list-style: none;
+            text-align: left;
+            margin: 0;
+            padding: 20px 20px 0 20px; 
+
+            li{
+                display: inline-block;
+                 padding: 10px 0;
+                //float: left;
+                //height: $app-navi-font-size * 2;
+                // background-color: #fff;
+                //border:solid 1px #ccc;
+                //line-height: $app-navi-font-size * 2;
+                //margin: 0 5px 20px 5px;
+                .page-navi-icon{
+                    //display: inline-block;
+                    //width: $app-navi-font-size * 2;
+                    //height: $app-navi-font-size * 2;
+                    // background-color: $header-color-secondary;
+                    //text-align: center;
+                    //border-radius: 50%;
+                }
+                a{
+                    text-align: left;
+                    vertical-align: middle;
+                    padding: 0 10px;
+                    color: $header-link-color;
+
+                }
+
+            }
+            .active{
+                a{
+                   font-weight: bold;
+                   text-decoration: underline;
+                }
+            }
+            .fa{
+                //padding-right: 7px;
+            }
+
+        }
+        // Navi colors
+        #cat_basic_gateway_modules{.fa{color: #dddddd;}}
+        #cat_legacy_products_workaround{.fa{color: #6c7a89;}}
+        #cat_support_external_ui{.fa{color: #6494bc;}} 
+        #cat_support_external_dev{.fa{color: #80ad80;}} 
+        #cat_automation_basic{.fa{color: #31b0d5;}}
+        #cat_device_enhancements{.fa{color: #f0aD4e;}}
+        #cat_developers_stuff{.fa{color: #d9534f;}} 
+        #cat_complex_applications{.fa{color: #dd976e;}} 
+        #cat_automation{.fa{color: #dddddd;}}
+        #cat_security{.fa{color: #6c7a89;}}
+        #cat_peripherals{.fa{color: #6494bc;}}
+        #cat_logging{.fa{color: #31b0d5;}}
+        #cat_scripting{.fa{color: #f0aD4e;}}
+        #cat_devices{.fa{color: #d9534f;}} 
+        #cat_scheduling{.fa{color: #dd976e;}} 
+        #cat_climate{.fa{color: #dddddd;}}
+        #cat_environment{.fa{color: #6c7a89;}}
+        #cat_scenes{.fa{color: #6494bc;}} 
+        #cat_notifications{.fa{color: #80ad80;}} 
+        #cat_tagging{.fa{color: #31b0d5;}}
+
+        .page-navi-close{
+            text-align: right;
+            border-top: solid 1px $app-border-color;
+            margin: 10px 0;
+            padding: 5px 10px 5px 5px;
+        }
+    }
+}

@@ -841,6 +841,141 @@ vertical-align: middle;
   margin-top: 10px;
 }
 
+/* Page navigation
+-------------------------------------------------- */
+/* line 3, sass/globals/_navi.scss */
+.page-navi {
+  font-size: 16px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+/* line 8, sass/globals/_navi.scss */
+.page-navi .fa {
+  font-size: 19.2px;
+}
+/* line 11, sass/globals/_navi.scss */
+.page-navi .page-navi-in {
+  position: absolute;
+  background-color: #fbfbfb;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  width: 80%;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+/* line 21, sass/globals/_navi.scss */
+.page-navi .page-navi-in ul {
+  list-style: none;
+  text-align: left;
+  margin: 0;
+  padding: 20px 20px 0 20px;
+}
+/* line 29, sass/globals/_navi.scss */
+.page-navi .page-navi-in ul li {
+  display: inline-block;
+  padding: 10px 0;
+}
+/* line 46, sass/globals/_navi.scss */
+.page-navi .page-navi-in ul li a {
+  text-align: left;
+  vertical-align: middle;
+  padding: 0 10px;
+  color: #5d5d5d;
+}
+/* line 56, sass/globals/_navi.scss */
+.page-navi .page-navi-in ul .active a {
+  font-weight: bold;
+  text-decoration: underline;
+}
+/* line 67, sass/globals/_navi.scss */
+.page-navi .page-navi-in #cat_basic_gateway_modules .fa {
+  color: #dddddd;
+}
+/* line 68, sass/globals/_navi.scss */
+.page-navi .page-navi-in #cat_legacy_products_workaround .fa {
+  color: #6c7a89;
+}
+/* line 69, sass/globals/_navi.scss */
+.page-navi .page-navi-in #cat_support_external_ui .fa {
+  color: #6494bc;
+}
+/* line 70, sass/globals/_navi.scss */
+.page-navi .page-navi-in #cat_support_external_dev .fa {
+  color: #80ad80;
+}
+/* line 71, sass/globals/_navi.scss */
+.page-navi .page-navi-in #cat_automation_basic .fa {
+  color: #31b0d5;
+}
+/* line 72, sass/globals/_navi.scss */
+.page-navi .page-navi-in #cat_device_enhancements .fa {
+  color: #f0aD4e;
+}
+/* line 73, sass/globals/_navi.scss */
+.page-navi .page-navi-in #cat_developers_stuff .fa {
+  color: #d9534f;
+}
+/* line 74, sass/globals/_navi.scss */
+.page-navi .page-navi-in #cat_complex_applications .fa {
+  color: #dd976e;
+}
+/* line 75, sass/globals/_navi.scss */
+.page-navi .page-navi-in #cat_automation .fa {
+  color: #dddddd;
+}
+/* line 76, sass/globals/_navi.scss */
+.page-navi .page-navi-in #cat_security .fa {
+  color: #6c7a89;
+}
+/* line 77, sass/globals/_navi.scss */
+.page-navi .page-navi-in #cat_peripherals .fa {
+  color: #6494bc;
+}
+/* line 78, sass/globals/_navi.scss */
+.page-navi .page-navi-in #cat_logging .fa {
+  color: #31b0d5;
+}
+/* line 79, sass/globals/_navi.scss */
+.page-navi .page-navi-in #cat_scripting .fa {
+  color: #f0aD4e;
+}
+/* line 80, sass/globals/_navi.scss */
+.page-navi .page-navi-in #cat_devices .fa {
+  color: #d9534f;
+}
+/* line 81, sass/globals/_navi.scss */
+.page-navi .page-navi-in #cat_scheduling .fa {
+  color: #dd976e;
+}
+/* line 82, sass/globals/_navi.scss */
+.page-navi .page-navi-in #cat_climate .fa {
+  color: #dddddd;
+}
+/* line 83, sass/globals/_navi.scss */
+.page-navi .page-navi-in #cat_environment .fa {
+  color: #6c7a89;
+}
+/* line 84, sass/globals/_navi.scss */
+.page-navi .page-navi-in #cat_scenes .fa {
+  color: #6494bc;
+}
+/* line 85, sass/globals/_navi.scss */
+.page-navi .page-navi-in #cat_notifications .fa {
+  color: #80ad80;
+}
+/* line 86, sass/globals/_navi.scss */
+.page-navi .page-navi-in #cat_tagging .fa {
+  color: #31b0d5;
+}
+/* line 88, sass/globals/_navi.scss */
+.page-navi .page-navi-in .page-navi-close {
+  text-align: right;
+  border-top: solid 1px #d3d3d3;
+  margin: 10px 0;
+  padding: 5px 10px 5px 5px;
+}
+
 /* Table
 -------------------------------------------------- */
 /* line 6, sass/globals/_table.scss */
@@ -3828,6 +3963,8 @@ padding-right: 5px;
 -------------------------------------------------- */
 /* Mobile header
 -------------------------------------------------- */
+/* Mobile page navigation
+-------------------------------------------------- */
 /* Mobile footer
 -------------------------------------------------- */
 /* Mobile table
@@ -3952,7 +4089,7 @@ padding-right: 5px;
 
   /* line 4, sass/responsive/_mixins.scss */
   body {
-    font-size: 19.6px;
+    font-size: 22.4px;
   }
 
   /* line 7, sass/responsive/_mixins.scss */
@@ -3995,27 +4132,27 @@ padding-right: 5px;
 
   /* line 37, sass/responsive/_mixins.scss */
   h1 {
-    font-size: 31.36px;
+    font-size: 35.84px;
   }
 
   /* line 41, sass/responsive/_mixins.scss */
   h2 {
-    font-size: 27.44px;
+    font-size: 31.36px;
   }
 
   /* line 45, sass/responsive/_mixins.scss */
   h3 {
-    font-size: 23.52px;
+    font-size: 26.88px;
   }
 
   /* line 49, sass/responsive/_mixins.scss */
   h4 {
-    font-size: 21.56px;
+    font-size: 24.64px;
   }
 
   /* line 52, sass/responsive/_mixins.scss */
   .entry-title {
-    font-size: 19.6px;
+    font-size: 22.4px;
   }
 
   /* line 57, sass/responsive/_mixins.scss */
@@ -4046,7 +4183,7 @@ padding-right: 5px;
 
   /* line 88, sass/responsive/_mixins.scss */
   #header {
-    font-size: 22.4px;
+    font-size: 25.6px;
   }
   /* line 91, sass/responsive/_mixins.scss */
   #header #header_logo, #header .divider-vertical {
@@ -4054,7 +4191,7 @@ padding-right: 5px;
   }
   /* line 94, sass/responsive/_mixins.scss */
   #header .fa {
-    font-size: 26.88px;
+    font-size: 30.72px;
   }
 
   /* line 99, sass/responsive/_mixins.scss */
@@ -4103,7 +4240,7 @@ padding-right: 5px;
   #sub_navigation_in ul li a {
     display: block;
     position: relative;
-    font-size: 22.4px;
+    font-size: 25.6px;
     text-align: left;
     padding: 10px 20px;
     border-radius: 0;
@@ -4126,30 +4263,70 @@ padding-right: 5px;
     border: 0;
   }
 
+  /* line 167, sass/responsive/_mixins.scss */
+  .page-navi {
+    font-size: 22.4px;
+  }
+  /* line 169, sass/responsive/_mixins.scss */
+  .page-navi .fa {
+    font-size: 22.4px;
+  }
+  /* line 172, sass/responsive/_mixins.scss */
+  .page-navi .page-navi-in {
+    width: 100%;
+  }
+  /* line 175, sass/responsive/_mixins.scss */
+  .page-navi .page-navi-in ul li {
+    display: block;
+    border-bottom: solid 1px #d3d3d3;
+  }
+  /* line 178, sass/responsive/_mixins.scss */
+  .page-navi .page-navi-in ul li a {
+    display: block;
+    position: relative;
+    text-align: left;
+    padding: 5px 0;
+  }
+  /* line 189, sass/responsive/_mixins.scss */
+  .page-navi .page-navi-in ul .active a {
+    background-color: #DDDDDD;
+  }
+  /* line 193, sass/responsive/_mixins.scss */
+  .page-navi .page-navi-in ul .page-navi-icon {
+    position: absolute;
+    right: 1%;
+    display: inline-block;
+  }
+  /* line 201, sass/responsive/_mixins.scss */
+  .page-navi .page-navi-in .page-navi-close {
+    border: 0;
+    padding: 5px 30px 5px 5px;
+  }
+
   /* line 81, sass/responsive/_mixins.scss */
   .report-img {
     max-width: 36px;
   }
 
-  /* line 173, sass/responsive/_mixins.scss */
+  /* line 219, sass/responsive/_mixins.scss */
   .table-report tbody tr.bcg-active.true {
     background-color: #fff;
   }
-  /* line 177, sass/responsive/_mixins.scss */
+  /* line 223, sass/responsive/_mixins.scss */
   .table-report tbody tr.bcg-active.false {
     background-color: #f2e8e8 !important;
   }
 
-  /* line 188, sass/responsive/_mixins.scss */
+  /* line 234, sass/responsive/_mixins.scss */
   .btn, .btn-device-admin {
-    font-size: 21px;
+    font-size: 24px;
   }
-  /* line 190, sass/responsive/_mixins.scss */
+  /* line 236, sass/responsive/_mixins.scss */
   .btn .fa, .btn-device-admin .fa {
-    font-size: 25.2px;
+    font-size: 28.8px;
   }
 
-  /* line 194, sass/responsive/_mixins.scss */
+  /* line 240, sass/responsive/_mixins.scss */
   .btn-name {
     display: none;
   }
@@ -4165,65 +4342,65 @@ padding-right: 5px;
   /*    .submit-entry .btn-submit{
           padding: 6px 12px;
       }*/
-  /* line 214, sass/responsive/_mixins.scss */
+  /* line 260, sass/responsive/_mixins.scss */
   .form-control {
-    font-size: 19.6px;
+    font-size: 22.4px;
   }
 
-  /* line 217, sass/responsive/_mixins.scss */
+  /* line 263, sass/responsive/_mixins.scss */
   input[type=checkbox] {
-    -ms-transform: scale(1.4);
+    -ms-transform: scale(1.6);
     /* IE */
-    -moz-transform: scale(1.4);
+    -moz-transform: scale(1.6);
     /* FF */
-    -webkit-transform: scale(1.4);
+    -webkit-transform: scale(1.6);
     /* Safari and Chrome */
-    -o-transform: scale(1.4);
+    -o-transform: scale(1.6);
     /* Opera */
     padding: 10px;
   }
 
-  /* line 225, sass/responsive/_mixins.scss */
+  /* line 271, sass/responsive/_mixins.scss */
   input[type=radio] {
-    transform: scale(1.4, 1.4);
-    -moz-transform: scale(1.4, 1.4);
-    -ms-transform: scale(1.4, 1.4);
-    -webkit-transform: scale(1.4, 1.4);
-    -o-transform: scale(1.4, 1.4);
+    transform: scale(1.6, 1.6);
+    -moz-transform: scale(1.6, 1.6);
+    -ms-transform: scale(1.6, 1.6);
+    -webkit-transform: scale(1.6, 1.6);
+    -o-transform: scale(1.6, 1.6);
   }
 
-  /* line 233, sass/responsive/_mixins.scss */
+  /* line 279, sass/responsive/_mixins.scss */
   .form-control-sm, .form-control-md {
     width: 100% !important;
     display: block !important;
   }
 
-  /* line 242, sass/responsive/_mixins.scss */
+  /* line 288, sass/responsive/_mixins.scss */
   .nav-tabs > li > a {
-    font-size: 22.4px;
+    font-size: 25.6px;
   }
-  /* line 244, sass/responsive/_mixins.scss */
+  /* line 290, sass/responsive/_mixins.scss */
   .nav-tabs > li > a .fa {
-    font-size: 26.88px;
+    font-size: 30.72px;
   }
 
-  /* line 248, sass/responsive/_mixins.scss */
+  /* line 294, sass/responsive/_mixins.scss */
   .tab-name {
     display: none;
   }
 
-  /* line 251, sass/responsive/_mixins.scss */
+  /* line 297, sass/responsive/_mixins.scss */
   .nav-tabs-3 {
     text-align: center;
   }
 
-  /* line 259, sass/responsive/_mixins.scss */
+  /* line 305, sass/responsive/_mixins.scss */
   .dropdown-menu {
-    font-size: 19.6px;
+    font-size: 22.4px;
   }
-  /* line 261, sass/responsive/_mixins.scss */
+  /* line 307, sass/responsive/_mixins.scss */
   .dropdown-menu .fa {
-    font-size: 26.88px;
+    font-size: 30.72px;
   }
 
   /* line 4, sass/responsive/_modules.scss */
@@ -4459,7 +4636,7 @@ padding-right: 5px;
 /* Custom, iPhone Retina */
 /* Custom, iPhone Retina */
 @media only screen and (min-width: 768px) and (max-width: 992px) {
-  /* line 150, sass/responsive/_responsive.scss */
+  /* line 151, sass/responsive/_responsive.scss */
   .hide-navi-text {
     display: none !important;
   }

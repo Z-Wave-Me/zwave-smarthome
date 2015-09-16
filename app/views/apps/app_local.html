@@ -1,19 +1,39 @@
 <!-- Online app view -->
+<div class="form-inline">
+    <a class="btn btn-default" href="" ng-click="expandElement('appsCategories')"><i class="fa fa-chevron-down text-success" ng-class="expand.appsCategories ? 'fa-chevron-up': 'fa-chevron-down'"></i> Select category</a>
+    <a class="btn btn-default" href="" ng-click="resetFilter('/apps')" ng-if="currentCategory.id"><i class="fa fa-refresh text-danger"></i> Reset filter</a>
+    <div class="input-group search-form hide-on-mobile">
+        <input type="text" ng-model="q" class="form-control" value="{{q}}">
+        <span class="input-group-addon"><i class="fa fa-search"></i></span> 
+    </div>
+</div>
+<div class="page-navi" ng-if="expand.appsCategories">
+    <div class="page-navi-in">
+        <ul>
+            <li id="cat_{{v.id}}" ng-repeat="v in categories" ng-if="modulesCats.indexOf(v.id) > -1" ng-class="currentCategory.id == v.id ? 'active': ''">
+                <a href="#apps/category/{{v.id}}">{{v.name}} <span class="page-navi-icon"><i class="fa fa-chevron-right"></i></span></a>
+            </li>
+        </ul>
+        <div class="page-navi-close">
+            <a class="btn btn-default" href="" ng-click="expandElement('appsCategories')"><i class="fa fa-chevron-up  text-danger"></i> {{_t('collapse')}}</a>
+        </div>
+    </div>
+</div>
 <div class="row row-page" id="_page_app_local">
     <div class="col-lg-4 col-md-6 col-sm-6 app-entry"
          id="local_module_{{v.id}}" 
          ng-repeat="v in modules|orderBy:'defaults.title' | filter:q  track by v.id" 
          ng-class="onlineVersion[v.id] && onlineVersion[v.id] != v.version ? 'app-entry-green': ''"
          ng-init="moduleName = v.moduleName || v.id">
-       <div class="app-border app-gradient app-shadow app-entry-in" ng-class="onlineVersion[v.id] && onlineVersion[v.id] != v.version ? 'app-gradient-green': ''">
-           <a href="#apps/local/{{v.id}}">
+        <div class="app-border app-gradient app-shadow app-entry-in" ng-class="onlineVersion[v.id] && onlineVersion[v.id] != v.version ? 'app-gradient-green': ''">
+            <a href="#apps/local/{{v.id}}">
                 <img class="app-image" ng-src="{{moduleMediaUrl + moduleName + '/' + v.icon}}" ng-if="v.icon" alt="{{v.defaults.title}}" />
                 <img class="app-image" ng-src="storage/img/placeholder-img.png" ng-if="!v.icon" alt="{{v.defaults.title}}" />
-             </a>
-            
+            </a>
+
             <div class="app-body">
                 <h3 class="entry-title"><a href="#apps/local/{{v.id}}" ng-bind="v.defaults.title"></a>  &raquo;</h3>
-             </div>
+            </div>
             <div class="app-footer">
                 <div class="app-footer-in">
                     <a href="#module/post/{{v.id}}" class="btn btn-default">
@@ -22,8 +42,8 @@
                     <!--<a href="" class="btn btn-default btn-sm" ng-click="deleteModule('#local_module_' + v.id, {'id': v.id}, _t('lb_delete_confirm'))" ng-if="!v.islocal">
                         <i class="fa fa-remove fa-lg text-danger"></i> <span class="btn-name" ng-bind="_t('lb_remove')"></span>
                     </a> -->
-                 </div>
                 </div>
+            </div>
         </div>
     </div>
 </div>

@@ -114,6 +114,7 @@
     @include mBody();
     @include mHeader(); 
     @include mFooter();
+     @include mNavi();
     @include mImg();
     @include mTable();
     @include mButton();

@@ -8,8 +8,8 @@
         margin-top: $header-h + 45px;
         margin-bottom: 10px;
     }
-    
-     .hide-on-mobile{
+
+    .hide-on-mobile{
         display:none !important;
     }
     .show-on-mobile{
@@ -31,8 +31,8 @@
     .col-sm-6{
         padding-right: 0;
     }
-    
-    
+
+
     // Typo
     h1 {
         font-size:$app-h1-font-size * $m-font-scale;
@@ -52,7 +52,7 @@
     .entry-title{
         font-size: $app-body-font-size  * $m-font-scale;
     }
-    
+
     // Settings
     .mobile-padding{
         padding: 0 15px;
@@ -160,6 +160,52 @@
 
 }
 
+
+/* Mobile page navigation
+-------------------------------------------------- */
+@mixin mNavi() {
+    .page-navi{
+        font-size: $app-body-font-size * $m-font-scale;
+        .fa{
+            font-size: $app-body-font-size * $m-font-scale;  
+        }
+        .page-navi-in{
+             width: 100%;
+           ul{
+               li{
+                    display: block;
+                    border-bottom: solid 1px $app-border-color;
+                    a{
+                        display: block;
+                    position:relative;
+                    //font-size: $app-navi-font-size * $m-font-scale;
+                    text-align: left;
+                    padding: 5px 0;
+
+                    }
+
+                }
+                .active{
+                    a{
+                        background-color: $header-color-secondary;
+                    }
+                }
+                 .page-navi-icon{
+                    position: absolute;
+                    right: 1%;
+                    display: inline-block;
+                }
+
+            }
+
+            .page-navi-close{
+                 border: 0;
+                padding: 5px 30px 5px 5px;
+            }
+        }
+    }
+}
+
 /* Mobile footer
 -------------------------------------------------- */
 @mixin mFooter() {
@@ -229,12 +275,12 @@
         -webkit-transform: scale($m-font-scale, $m-font-scale); 
         -o-transform: scale($m-font-scale, $m-font-scale); 
     }
-    
+
     .form-control-sm,.form-control-md{
         width: 100% !important;
         display: block !important;
     }
-    
+
 }
 /* Mobile tabs
 -------------------------------------------------- */
@@ -257,11 +303,11 @@
 -------------------------------------------------- */
 @mixin mDropdown() {
     .dropdown-menu {
-   font-size: $app-body-font-size * $m-font-scale;
-   .fa{
-       font-size: $app-navi-icon-size * $m-font-scale;
-   }
-}
+        font-size: $app-body-font-size * $m-font-scale;
+        .fa{
+            font-size: $app-navi-icon-size * $m-font-scale;
+        }
+    }
 }
 /* Mobile loader
 -------------------------------------------------- */

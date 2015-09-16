@@ -6,7 +6,11 @@
 /**
  * App controller
  */
-myAppController.controller('AppController', function($scope, $window, $cookies, $timeout, $route, dataFactory, dataService, myCache, _) {
+myAppController.controller('AppController', function($scope, $window, $cookies, $timeout, $route,$routeParams,$location, dataFactory, dataService, myCache, _) {
+    //Set elements to expand/collapse
+    angular.copy({
+        appsCategories: false
+    },$scope.expand);
     $scope.instances = [];
     $scope.hasImage = [];
     $scope.modules = [];
@@ -18,7 +22,11 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     $scope.onlineVersion = [];
     $scope.categories = [];
     $scope.activeTab = (angular.isDefined($cookies.tab_app) ? $cookies.tab_app : 'local');
-    $scope.category = '';
+    //$scope.category = '';
+    $scope.currentCategory = {
+        id: false,
+        title: ''
+    };
     $scope.showFooter = true;
     $scope.modalLocal = {};
     $scope.showInFooter = {
@@ -27,6 +35,10 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     };
     $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
     $scope.onlineMediaUrl = $scope.cfg.online_module_img_url;
+    
+    $scope.$on('$destroy', function() {
+        angular.copy({},$scope.expand);
+    });
     /**
      * Load categories
      */
@@ -154,6 +166,10 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
         $scope.activeTab = tabId;
         $cookies.tab_app = tabId;
     };
+    
+    if (angular.isDefined($routeParams.category)) {
+                          $scope.currentCategory.id = $routeParams.category;
+                     }
 
     // Watch for tab change
     $scope.$watch('activeTab', function() {
@@ -176,11 +192,12 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
                 break;
             default:
                 $scope.showInFooter.categories = true;
-                $scope.$watch('category', function() {
+                $scope.$watch('currentCategory', function() {
                     $scope.modules = angular.copy([]);
                     var filter = false;
-                    if ($scope.category != '') {
-                        filter = {category: $scope.category};
+                     
+                    if ($scope.currentCategory.id) {
+                        filter = {category: $scope.currentCategory.id};
                     }
                     $scope.loadModules(filter);
                     $scope.loadOnlineModules();
@@ -196,6 +213,17 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     $scope.showModal = function(target, input) {
         $scope.modalLocal = input;
         $(target).modal();
+    };
+    
+     /**
+     * Reset filter
+     */
+    $scope.resetFilter = function(path) {
+        $route.reload();
+        if(path){
+           $location.path(path); 
+        }
+         
     };
 
     /**
