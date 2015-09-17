@@ -1,0 +1,197 @@
+/* Page navigation
+-------------------------------------------------- */
+.page-control{
+    text-align: right;
+  }   
+.page-navi{
+    font-size: $app-navi-font-size; 
+    position: relative;
+    width: 100%;
+    height: 100%;
+    .fa{
+       font-size: $app-navi-icon-size;  
+    }
+    .page-navi-in{
+        position: absolute;
+        background-color: lighten($app-body-bcg-color, 2%);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+        width: 100%;
+        top:0;
+        left:0;
+        z-index: 100;
+        //opacity:.9;
+
+        ul{
+            // padding: 20px;
+
+            list-style: none;
+            text-align: left;
+            margin: 0;
+            //padding: 20px 20px 0 20px; 
+            padding: 0;
+
+            li{
+                display: inline-block;
+                width: 33.33%;
+                 padding: 10px 0;
+                  border: solid 4px lighten($app-body-bcg-color, 2%);
+                //float: left;
+                //height: $app-navi-font-size * 2;
+                // background-color: #fff;
+                //border:solid 1px #ccc;
+                //line-height: $app-navi-font-size * 2;
+                //margin: 0 5px 20px 5px;
+                .page-navi-icon{
+                    display: none;
+                    //display: inline-block;
+                    //width: $app-navi-font-size * 2;
+                    //height: $app-navi-font-size * 2;
+                    // background-color: $header-color-secondary;
+                    //text-align: center;
+                    //border-radius: 50%;
+                }
+                a{
+                    text-align: left;
+                    padding: 0 10px;
+                    vertical-align: middle;
+                    display: block;
+                    color: #fff;
+
+                }
+
+            }
+            .active{
+                a{
+                   font-weight: bold;
+                   text-decoration: underline;
+                }
+            }
+            .fa{
+                //padding-right: 7px;
+            }
+
+        }
+        // Navi colors
+        // Navi colors
+        .page-cat-basic_gateway_modules{background-color: #dd976e;}
+        .page-cat-legacy_products_workaround{background-color: #6c7a89;}
+        .page-cat-support_external_ui{background-color: #6494bc;} 
+        .page-cat-support_external_dev{background-color: #80ad80;} 
+        .page-cat-automation_basic{background-color: #31b0d5;}
+        .page-cat-device_enhancements{background-color: #f0aD4e;}
+        .page-cat-developers_stuff{background-color: #d9534f;} 
+        .page-cat-complex_applications{background-color: #dd976e;} 
+        .page-cat-automation{background-color: #dddddd;}
+        .page-cat-security{background-color: #6c7a89;}
+        .page-cat-peripherals{background-color: #6494bc;}
+        .page-cat-logging{background-color: #31b0d5;}
+        .page-cat-scripting{background-color: #f0aD4e;}
+        .page-cat-devices{background-color: #d9534f;} 
+        .page-cat-scheduling{background-color: #dd976e;} 
+        .page-cat-climate{background-color: #dddddd;}
+        .page-cat-environment{background-color: #6c7a89;}
+        .page-cat-scenes{background-color: #6494bc;} 
+        .page-cat-notifications{background-color: #80ad80;} 
+        .page-cat-tagging{background-color: #31b0d5;}
+/*        #cat_basic_gateway_modules{.fa{color: #dddddd;}}
+        #cat_legacy_products_workaround{.fa{color: #6c7a89;}}
+        #cat_support_external_ui{.fa{color: #6494bc;}} 
+        #cat_support_external_dev{.fa{color: #80ad80;}} 
+        #cat_automation_basic{.fa{color: #31b0d5;}}
+        #cat_device_enhancements{.fa{color: #f0aD4e;}}
+        #cat_developers_stuff{.fa{color: #d9534f;}} 
+        #cat_complex_applications{.fa{color: #dd976e;}} 
+        #cat_automation{.fa{color: #dddddd;}}
+        #cat_security{.fa{color: #6c7a89;}}
+        #cat_peripherals{.fa{color: #6494bc;}}
+        #cat_logging{.fa{color: #31b0d5;}}
+        #cat_scripting{.fa{color: #f0aD4e;}}
+        #cat_devices{.fa{color: #d9534f;}} 
+        #cat_scheduling{.fa{color: #dd976e;}} 
+        #cat_climate{.fa{color: #dddddd;}}
+        #cat_environment{.fa{color: #6c7a89;}}
+        #cat_scenes{.fa{color: #6494bc;}} 
+        #cat_notifications{.fa{color: #80ad80;}} 
+        #cat_tagging{.fa{color: #31b0d5;}}*/
+
+        .page-navi-close{
+            text-align: right;
+            border-top: solid 1px $app-border-color;
+            margin: 10px 0;
+            padding: 5px 10px 5px 5px;
+        }
+    }
+}
+.page-menu{
+    font-size: $app-navi-font-size;
+   
+    .fa{
+       font-size: $app-navi-icon-size;  
+    }
+   
+       
+
+        ul{
+            // padding: 20px;
+
+            list-style: none;
+            text-align: left;
+            margin: 0;
+            padding:0; 
+
+            li{
+                display: block;
+                float: left;
+                width: 33.33%;
+                 padding: 10px 0;
+                 border: solid 4px $app-body-bcg-color;
+                .page-navi-icon{
+                    
+                }
+                a{
+                    padding: 0 10px;
+                    text-align: left;
+                    width: 100%;
+                    height: 100%;
+                    vertical-align: middle;
+                    display: block;
+                   // color: $header-link-color;
+                     color: #fff;
+
+                }
+
+            }
+            .active{
+                a{
+                   font-weight: bold;
+                   text-decoration: underline;
+                }
+            }
+            .fa{
+                padding-right: 5px;
+            }
+
+        }
+        // Navi colors
+        .page-menu-basic_gateway_modules{background-color: #dd976e;}
+        .page-menu-legacy_products_workaround{background-color: #6c7a89;}
+        .page-menu-support_external_ui{background-color: #6494bc;} 
+        .page-menu-support_external_dev{background-color: #80ad80;} 
+        .page-menu-automation_basic{background-color: #31b0d5;}
+        .page-menu-device_enhancements{background-color: #f0aD4e;}
+        .page-menu-developers_stuff{background-color: #d9534f;} 
+        .page-menu-complex_applications{background-color: #dd976e;} 
+        .page-menu-automation{background-color: #dddddd;}
+        .page-menu-security{background-color: #6c7a89;}
+        .page-menu-peripherals{background-color: #6494bc;}
+        .page-menu-logging{background-color: #31b0d5;}
+        .page-menu-scripting{background-color: #f0aD4e;}
+        .page-menu-devices{background-color: #d9534f;} 
+        .page-menu-scheduling{background-color: #dd976e;} 
+        .page-menu-climate{background-color: #dddddd;}
+        .page-menu-environment{background-color: #6c7a89;}
+        .page-menu-scenes{background-color: #6494bc;} 
+        .page-menu-notifications{background-color: #80ad80;} 
+        .page-menu-tagging{background-color: #31b0d5;}
+    
+}

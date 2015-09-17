@@ -122,30 +122,28 @@
 }
 #sub_navigation_in{
     ul{
-        padding: 20px;
+        padding: 0;
         list-style: none;
-        text-align: center;
         margin: 0;
         li{
             display: inline-block;
-            margin: 0 5px 20px 5px;
+            width: 33%;
+            padding: 10px 0;
+           border: solid 4px lighten($app-body-bcg-color, 2%);
             a{
-                text-align: center;
-                vertical-align: middle;
-                border: 1px solid transparent;
-                white-space: nowrap;
-                padding: 6px 12px;
-                line-height: 1.42857;
-                border-radius: 4px;
-                color: $header-link-color;
-                background-color: #fff;
-                border-color: #ccc;
+                text-align: left;
+                    padding: 0 10px;
+                    vertical-align: middle;
+                    display: block;
+                     color: $header-link-color;
+                    //color: #fff;
             }
 
         }
         .active{
             a{
-                background-color: $header-color-secondary;
+               font-weight: bold;
+                   text-decoration: underline;
             }
         }
         .fa{
@@ -153,6 +151,14 @@
         }
 
     }
+    .subnavi-apps {background-color: lighten(#dd976e, 30%);.fa{color: #dd976e;}} 
+        .subnavi-devices {background-color: lighten(#6c7a89,30%);.fa{color: #6c7a89;}}
+        .subnavi-config-rooms {background-color: lighten(#6494bc,30%);.fa{color: #6494bc;}} 
+        .subnavi-myaccess {background-color: lighten(#80ad80,30%);.fa{color: #80ad80;}} 
+        .subnavi-admin {background-color: lighten(#31b0d5,30%);.fa{color: #31b0d5;}}
+        .subnavi-report {background-color: lighten(#f0aD4e,30%);.fa{color: #f0aD4e;}}
+        .subnavi-info {background-color: lighten(#d9534f,30%);.fa{color: #d9534f;}} 
+        .subnavi-logout {background-color: lighten(#6494bc,30%);.fa{color: #6494bc;}}
 
 }
 

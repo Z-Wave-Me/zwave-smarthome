@@ -1,19 +1,61 @@
 <!-- Online app view -->
+<div class="page-control form-inline">
+    <a class="btn btn-default" href="" ng-click="expandNavi('appsCategories')"><i class="fa fa-chevron-down text-success" ng-class="naviExpanded.appsCategories ? 'fa-chevron-up': 'fa-chevron-down'"></i> Select category</a>
+    <div class="input-group search-form hide-on-mobile">
+        <input type="text" ng-model="q" class="form-control" value="{{q}}">
+        <span class="input-group-addon"><i class="fa fa-search"></i></span> 
+    </div>
+    <a class="btn btn-default" href="" ng-click="resetFilter('/apps')" ng-if="currentCategory.id"><i class="fa fa-refresh text-danger"></i> Reset filter</a>
+</div>
+<div class="page-navi" ng-if="naviExpanded.appsCategories">
+    <div class="page-navi-in">
+        <ul>
+            <li class="page-cat-{{v.id}}" ng-repeat="v in categories" ng-if="modulesCats.indexOf(v.id) > -1" ng-class="currentCategory.id == v.id ? 'active': ''">
+                <a href="#apps/category/{{v.id}}" ng-switch="v.id">
+                    <i class="fa fa-cube" ng-switch-when="basic_gateway_modules"></i>
+                <i class="fa fa-wrench" ng-switch-when="legacy_products_workaround"></i>
+                 <i class="fa fa-object-group" ng-switch-when="support_external_ui"></i>
+                 <i class="fa fa-cubes" ng-switch-when="support_external_dev"></i>
+                 <i class="fa fa-refresh" ng-switch-when="automation_basic"></i>
+                 <i class="fa fa-caret-square-o-up" ng-switch-when="device_enhancements"></i>
+                 <i class="fa fa-file-code-o" ng-switch-when="developers_stuff"></i>
+                 <i class="fa fa-link" ng-switch-when="complex_applications"></i>
+                 <i class="fa fa-chevron-right" ng-switch-when="automation"></i>
+                 <i class="fa fa-shield" ng-switch-when="security"></i>
+                 <i class="fa fa-bolt" ng-switch-when="peripherals"></i>
+                 <i class="fa fa-chevron-right" ng-switch-when="logging"></i>
+                 <i class="fa fa-chevron-right" ng-switch-when="scripting"></i>
+                 <i class="fa fa-cogs" ng-switch-when="devices"></i>
+                 <i class="fa fa-chevron-right" ng-switch-when="scheduling"></i>
+                 <i class="fa fa-chevron-right" ng-switch-when="climate"></i>
+                 <i class="fa fa-chevron-right" ng-switch-when="environment"></i>
+                 <i class="fa fa-chevron-right" ng-switch-when="scenes"></i>
+                 <i class="fa fa-calendar" ng-switch-when="notifications"></i>
+                 <i class="fa fa-tags" ng-switch-when="tagging"></i> 
+                    {{v.name}} <span class="page-navi-icon"><i class="fa fa-chevron-right"></i></span>
+                </a>
+            </li>
+        </ul>
+        <div class="page-navi-close">
+            <a class="btn btn-default" href="" ng-click="expandNavi('appsCategories')"><i class="fa fa-chevron-up  text-danger"></i> {{_t('collapse')}}</a>
+        </div>
+    </div>
+</div>
 <div class="row row-page" id="_page_app_local">
     <div class="col-lg-4 col-md-6 col-sm-6 app-entry"
          id="local_module_{{v.id}}" 
          ng-repeat="v in modules|orderBy:'defaults.title' | filter:q  track by v.id" 
          ng-class="onlineVersion[v.id] && onlineVersion[v.id] != v.version ? 'app-entry-green': ''"
          ng-init="moduleName = v.moduleName || v.id">
-       <div class="app-border app-gradient app-shadow app-entry-in" ng-class="onlineVersion[v.id] && onlineVersion[v.id] != v.version ? 'app-gradient-green': ''">
-           <a href="#apps/local/{{v.id}}">
+        <div class="app-border app-gradient app-shadow app-entry-in" ng-class="onlineVersion[v.id] && onlineVersion[v.id] != v.version ? 'app-gradient-green': ''">
+            <a href="#apps/local/{{v.id}}">
                 <img class="app-image" ng-src="{{moduleMediaUrl + moduleName + '/' + v.icon}}" ng-if="v.icon" alt="{{v.defaults.title}}" />
                 <img class="app-image" ng-src="storage/img/placeholder-img.png" ng-if="!v.icon" alt="{{v.defaults.title}}" />
-             </a>
-            
+            </a>
+
             <div class="app-body">
                 <h3 class="entry-title"><a href="#apps/local/{{v.id}}" ng-bind="v.defaults.title"></a>  &raquo;</h3>
-             </div>
+            </div>
             <div class="app-footer">
                 <div class="app-footer-in">
                     <a href="#module/post/{{v.id}}" class="btn btn-default">
@@ -22,8 +64,8 @@
                     <!--<a href="" class="btn btn-default btn-sm" ng-click="deleteModule('#local_module_' + v.id, {'id': v.id}, _t('lb_delete_confirm'))" ng-if="!v.islocal">
                         <i class="fa fa-remove fa-lg text-danger"></i> <span class="btn-name" ng-bind="_t('lb_remove')"></span>
                     </a> -->
-                 </div>
                 </div>
+            </div>
         </div>
     </div>
 </div>
