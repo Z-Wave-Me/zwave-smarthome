@@ -36,6 +36,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
     $scope.onlineMediaUrl = $scope.cfg.online_module_img_url;
     
+    // On page destroy
     $scope.$on('$destroy', function() {
         angular.copy({},$scope.expand);
     });
@@ -103,7 +104,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     /**
      * Load online modules
      */
-    $scope.loadOnlineModules = function() {
+    $scope.loadOnlineModules = function(filter) {
         
         dataFactory.getRemoteData($scope.cfg.online_module_url).then(function(response) {
 //            $scope.onlineModules = response.data;
@@ -126,6 +127,9 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
                     return item;
                 }
             });
+            if(!filter){
+                $scope.onlineModules = [];
+            }
             $scope.loading = false;
             dataService.updateTimeTick();
         }, function(error) {
@@ -186,8 +190,14 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
                 $scope.showInFooter.categories = false;
                 break;
             case 'online':
-                $scope.loadOnlineModules();
-                $scope.loadModules();
+                var filter = false;
+                     
+                    if ($scope.currentCategory.id) {
+                        filter = {category: $scope.currentCategory.id};
+                         
+                    }
+               $scope.loadOnlineModules(filter);
+                            $scope.loadModules(filter);
                 $scope.showInFooter.categories = false;
                 break;
             default:

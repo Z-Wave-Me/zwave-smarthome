@@ -779,39 +779,100 @@ vertical-align: middle;
 
 /* line 124, sass/globals/_header.scss */
 #sub_navigation_in ul {
-  padding: 20px;
+  padding: 0;
   list-style: none;
-  text-align: center;
   margin: 0;
 }
-/* line 129, sass/globals/_header.scss */
+/* line 128, sass/globals/_header.scss */
 #sub_navigation_in ul li {
   display: inline-block;
-  margin: 0 5px 20px 5px;
+  width: 33%;
+  padding: 10px 0;
+  border: solid 4px #fbfbfb;
 }
-/* line 132, sass/globals/_header.scss */
+/* line 133, sass/globals/_header.scss */
 #sub_navigation_in ul li a {
-  text-align: center;
+  text-align: left;
+  padding: 0 10px;
   vertical-align: middle;
-  border: 1px solid transparent;
-  white-space: nowrap;
-  padding: 6px 12px;
-  line-height: 1.42857;
-  border-radius: 4px;
+  display: block;
   color: #5d5d5d;
-  background-color: #fff;
-  border-color: #ccc;
 }
-/* line 147, sass/globals/_header.scss */
+/* line 144, sass/globals/_header.scss */
 #sub_navigation_in ul .active a {
-  background-color: #DDDDDD;
+  font-weight: bold;
+  text-decoration: underline;
 }
-/* line 151, sass/globals/_header.scss */
+/* line 149, sass/globals/_header.scss */
 #sub_navigation_in ul .fa {
   padding-right: 7px;
 }
-
+/* line 154, sass/globals/_header.scss */
+#sub_navigation_in .subnavi-apps {
+  background-color: #faf0ea;
+}
+/* line 154, sass/globals/_header.scss */
+#sub_navigation_in .subnavi-apps .fa {
+  color: #dd976e;
+}
+/* line 155, sass/globals/_header.scss */
+#sub_navigation_in .subnavi-devices {
+  background-color: #c0c7ce;
+}
+/* line 155, sass/globals/_header.scss */
+#sub_navigation_in .subnavi-devices .fa {
+  color: #6c7a89;
+}
+/* line 156, sass/globals/_header.scss */
+#sub_navigation_in .subnavi-config-rooms {
+  background-color: #cfdeea;
+}
+/* line 156, sass/globals/_header.scss */
+#sub_navigation_in .subnavi-config-rooms .fa {
+  color: #6494bc;
+}
+/* line 157, sass/globals/_header.scss */
+#sub_navigation_in .subnavi-myaccess {
+  background-color: #dde9dd;
+}
+/* line 157, sass/globals/_header.scss */
+#sub_navigation_in .subnavi-myaccess .fa {
+  color: #80ad80;
+}
+/* line 158, sass/globals/_header.scss */
+#sub_navigation_in .subnavi-admin {
+  background-color: #b0e1ef;
+}
+/* line 158, sass/globals/_header.scss */
+#sub_navigation_in .subnavi-admin .fa {
+  color: #31b0d5;
+}
 /* line 159, sass/globals/_header.scss */
+#sub_navigation_in .subnavi-report {
+  background-color: #fceedb;
+}
+/* line 159, sass/globals/_header.scss */
+#sub_navigation_in .subnavi-report .fa {
+  color: #f0aD4e;
+}
+/* line 160, sass/globals/_header.scss */
+#sub_navigation_in .subnavi-info {
+  background-color: #f4cecd;
+}
+/* line 160, sass/globals/_header.scss */
+#sub_navigation_in .subnavi-info .fa {
+  color: #d9534f;
+}
+/* line 161, sass/globals/_header.scss */
+#sub_navigation_in .subnavi-logout {
+  background-color: #cfdeea;
+}
+/* line 161, sass/globals/_header.scss */
+#sub_navigation_in .subnavi-logout .fa {
+  color: #6494bc;
+}
+
+/* line 165, sass/globals/_header.scss */
 #sub_navigation_close {
   text-align: right;
   border-top: solid 1px #d3d3d3;
@@ -844,136 +905,291 @@ vertical-align: middle;
 /* Page navigation
 -------------------------------------------------- */
 /* line 3, sass/globals/_navi.scss */
+.page-control {
+  text-align: right;
+}
+
+/* line 6, sass/globals/_navi.scss */
 .page-navi {
   font-size: 16px;
   position: relative;
   width: 100%;
   height: 100%;
 }
-/* line 8, sass/globals/_navi.scss */
+/* line 11, sass/globals/_navi.scss */
 .page-navi .fa {
   font-size: 19.2px;
 }
-/* line 11, sass/globals/_navi.scss */
+/* line 14, sass/globals/_navi.scss */
 .page-navi .page-navi-in {
   position: absolute;
   background-color: #fbfbfb;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-  width: 80%;
+  width: 100%;
   top: 0;
   left: 0;
   z-index: 100;
+  /*        #cat_basic_gateway_modules{.fa{color: #dddddd;}}
+          #cat_legacy_products_workaround{.fa{color: #6c7a89;}}
+          #cat_support_external_ui{.fa{color: #6494bc;}} 
+          #cat_support_external_dev{.fa{color: #80ad80;}} 
+          #cat_automation_basic{.fa{color: #31b0d5;}}
+          #cat_device_enhancements{.fa{color: #f0aD4e;}}
+          #cat_developers_stuff{.fa{color: #d9534f;}} 
+          #cat_complex_applications{.fa{color: #dd976e;}} 
+          #cat_automation{.fa{color: #dddddd;}}
+          #cat_security{.fa{color: #6c7a89;}}
+          #cat_peripherals{.fa{color: #6494bc;}}
+          #cat_logging{.fa{color: #31b0d5;}}
+          #cat_scripting{.fa{color: #f0aD4e;}}
+          #cat_devices{.fa{color: #d9534f;}} 
+          #cat_scheduling{.fa{color: #dd976e;}} 
+          #cat_climate{.fa{color: #dddddd;}}
+          #cat_environment{.fa{color: #6c7a89;}}
+          #cat_scenes{.fa{color: #6494bc;}} 
+          #cat_notifications{.fa{color: #80ad80;}} 
+          #cat_tagging{.fa{color: #31b0d5;}}*/
 }
-/* line 21, sass/globals/_navi.scss */
+/* line 24, sass/globals/_navi.scss */
 .page-navi .page-navi-in ul {
   list-style: none;
   text-align: left;
   margin: 0;
-  padding: 20px 20px 0 20px;
+  padding: 0;
 }
-/* line 29, sass/globals/_navi.scss */
+/* line 33, sass/globals/_navi.scss */
 .page-navi .page-navi-in ul li {
   display: inline-block;
+  width: 33.33%;
   padding: 10px 0;
+  border: solid 4px #fbfbfb;
 }
-/* line 46, sass/globals/_navi.scss */
+/* line 44, sass/globals/_navi.scss */
+.page-navi .page-navi-in ul li .page-navi-icon {
+  display: none;
+}
+/* line 53, sass/globals/_navi.scss */
 .page-navi .page-navi-in ul li a {
   text-align: left;
-  vertical-align: middle;
   padding: 0 10px;
-  color: #5d5d5d;
+  vertical-align: middle;
+  display: block;
+  color: #fff;
 }
-/* line 56, sass/globals/_navi.scss */
+/* line 64, sass/globals/_navi.scss */
 .page-navi .page-navi-in ul .active a {
   font-weight: bold;
   text-decoration: underline;
 }
-/* line 67, sass/globals/_navi.scss */
-.page-navi .page-navi-in #cat_basic_gateway_modules .fa {
-  color: #dddddd;
-}
-/* line 68, sass/globals/_navi.scss */
-.page-navi .page-navi-in #cat_legacy_products_workaround .fa {
-  color: #6c7a89;
-}
-/* line 69, sass/globals/_navi.scss */
-.page-navi .page-navi-in #cat_support_external_ui .fa {
-  color: #6494bc;
-}
-/* line 70, sass/globals/_navi.scss */
-.page-navi .page-navi-in #cat_support_external_dev .fa {
-  color: #80ad80;
-}
-/* line 71, sass/globals/_navi.scss */
-.page-navi .page-navi-in #cat_automation_basic .fa {
-  color: #31b0d5;
-}
-/* line 72, sass/globals/_navi.scss */
-.page-navi .page-navi-in #cat_device_enhancements .fa {
-  color: #f0aD4e;
-}
-/* line 73, sass/globals/_navi.scss */
-.page-navi .page-navi-in #cat_developers_stuff .fa {
-  color: #d9534f;
-}
-/* line 74, sass/globals/_navi.scss */
-.page-navi .page-navi-in #cat_complex_applications .fa {
-  color: #dd976e;
-}
-/* line 75, sass/globals/_navi.scss */
-.page-navi .page-navi-in #cat_automation .fa {
-  color: #dddddd;
-}
 /* line 76, sass/globals/_navi.scss */
-.page-navi .page-navi-in #cat_security .fa {
-  color: #6c7a89;
+.page-navi .page-navi-in .page-cat-basic_gateway_modules {
+  background-color: #dd976e;
 }
 /* line 77, sass/globals/_navi.scss */
-.page-navi .page-navi-in #cat_peripherals .fa {
-  color: #6494bc;
+.page-navi .page-navi-in .page-cat-legacy_products_workaround {
+  background-color: #6c7a89;
 }
 /* line 78, sass/globals/_navi.scss */
-.page-navi .page-navi-in #cat_logging .fa {
-  color: #31b0d5;
+.page-navi .page-navi-in .page-cat-support_external_ui {
+  background-color: #6494bc;
 }
 /* line 79, sass/globals/_navi.scss */
-.page-navi .page-navi-in #cat_scripting .fa {
-  color: #f0aD4e;
+.page-navi .page-navi-in .page-cat-support_external_dev {
+  background-color: #80ad80;
 }
 /* line 80, sass/globals/_navi.scss */
-.page-navi .page-navi-in #cat_devices .fa {
-  color: #d9534f;
+.page-navi .page-navi-in .page-cat-automation_basic {
+  background-color: #31b0d5;
 }
 /* line 81, sass/globals/_navi.scss */
-.page-navi .page-navi-in #cat_scheduling .fa {
-  color: #dd976e;
+.page-navi .page-navi-in .page-cat-device_enhancements {
+  background-color: #f0aD4e;
 }
 /* line 82, sass/globals/_navi.scss */
-.page-navi .page-navi-in #cat_climate .fa {
-  color: #dddddd;
+.page-navi .page-navi-in .page-cat-developers_stuff {
+  background-color: #d9534f;
 }
 /* line 83, sass/globals/_navi.scss */
-.page-navi .page-navi-in #cat_environment .fa {
-  color: #6c7a89;
+.page-navi .page-navi-in .page-cat-complex_applications {
+  background-color: #dd976e;
 }
 /* line 84, sass/globals/_navi.scss */
-.page-navi .page-navi-in #cat_scenes .fa {
-  color: #6494bc;
+.page-navi .page-navi-in .page-cat-automation {
+  background-color: #dddddd;
 }
 /* line 85, sass/globals/_navi.scss */
-.page-navi .page-navi-in #cat_notifications .fa {
-  color: #80ad80;
+.page-navi .page-navi-in .page-cat-security {
+  background-color: #6c7a89;
 }
 /* line 86, sass/globals/_navi.scss */
-.page-navi .page-navi-in #cat_tagging .fa {
-  color: #31b0d5;
+.page-navi .page-navi-in .page-cat-peripherals {
+  background-color: #6494bc;
+}
+/* line 87, sass/globals/_navi.scss */
+.page-navi .page-navi-in .page-cat-logging {
+  background-color: #31b0d5;
 }
 /* line 88, sass/globals/_navi.scss */
+.page-navi .page-navi-in .page-cat-scripting {
+  background-color: #f0aD4e;
+}
+/* line 89, sass/globals/_navi.scss */
+.page-navi .page-navi-in .page-cat-devices {
+  background-color: #d9534f;
+}
+/* line 90, sass/globals/_navi.scss */
+.page-navi .page-navi-in .page-cat-scheduling {
+  background-color: #dd976e;
+}
+/* line 91, sass/globals/_navi.scss */
+.page-navi .page-navi-in .page-cat-climate {
+  background-color: #dddddd;
+}
+/* line 92, sass/globals/_navi.scss */
+.page-navi .page-navi-in .page-cat-environment {
+  background-color: #6c7a89;
+}
+/* line 93, sass/globals/_navi.scss */
+.page-navi .page-navi-in .page-cat-scenes {
+  background-color: #6494bc;
+}
+/* line 94, sass/globals/_navi.scss */
+.page-navi .page-navi-in .page-cat-notifications {
+  background-color: #80ad80;
+}
+/* line 95, sass/globals/_navi.scss */
+.page-navi .page-navi-in .page-cat-tagging {
+  background-color: #31b0d5;
+}
+/* line 117, sass/globals/_navi.scss */
 .page-navi .page-navi-in .page-navi-close {
   text-align: right;
   border-top: solid 1px #d3d3d3;
   margin: 10px 0;
   padding: 5px 10px 5px 5px;
+}
+
+/* line 125, sass/globals/_navi.scss */
+.page-menu {
+  font-size: 16px;
+}
+/* line 128, sass/globals/_navi.scss */
+.page-menu .fa {
+  font-size: 19.2px;
+}
+/* line 134, sass/globals/_navi.scss */
+.page-menu ul {
+  list-style: none;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+}
+/* line 142, sass/globals/_navi.scss */
+.page-menu ul li {
+  display: block;
+  float: left;
+  width: 33.33%;
+  padding: 10px 0;
+  border: solid 4px #F6F6F6;
+}
+/* line 151, sass/globals/_navi.scss */
+.page-menu ul li a {
+  padding: 0 10px;
+  text-align: left;
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+  display: block;
+  color: #fff;
+}
+/* line 165, sass/globals/_navi.scss */
+.page-menu ul .active a {
+  font-weight: bold;
+  text-decoration: underline;
+}
+/* line 170, sass/globals/_navi.scss */
+.page-menu ul .fa {
+  padding-right: 5px;
+}
+/* line 176, sass/globals/_navi.scss */
+.page-menu .page-menu-basic_gateway_modules {
+  background-color: #dd976e;
+}
+/* line 177, sass/globals/_navi.scss */
+.page-menu .page-menu-legacy_products_workaround {
+  background-color: #6c7a89;
+}
+/* line 178, sass/globals/_navi.scss */
+.page-menu .page-menu-support_external_ui {
+  background-color: #6494bc;
+}
+/* line 179, sass/globals/_navi.scss */
+.page-menu .page-menu-support_external_dev {
+  background-color: #80ad80;
+}
+/* line 180, sass/globals/_navi.scss */
+.page-menu .page-menu-automation_basic {
+  background-color: #31b0d5;
+}
+/* line 181, sass/globals/_navi.scss */
+.page-menu .page-menu-device_enhancements {
+  background-color: #f0aD4e;
+}
+/* line 182, sass/globals/_navi.scss */
+.page-menu .page-menu-developers_stuff {
+  background-color: #d9534f;
+}
+/* line 183, sass/globals/_navi.scss */
+.page-menu .page-menu-complex_applications {
+  background-color: #dd976e;
+}
+/* line 184, sass/globals/_navi.scss */
+.page-menu .page-menu-automation {
+  background-color: #dddddd;
+}
+/* line 185, sass/globals/_navi.scss */
+.page-menu .page-menu-security {
+  background-color: #6c7a89;
+}
+/* line 186, sass/globals/_navi.scss */
+.page-menu .page-menu-peripherals {
+  background-color: #6494bc;
+}
+/* line 187, sass/globals/_navi.scss */
+.page-menu .page-menu-logging {
+  background-color: #31b0d5;
+}
+/* line 188, sass/globals/_navi.scss */
+.page-menu .page-menu-scripting {
+  background-color: #f0aD4e;
+}
+/* line 189, sass/globals/_navi.scss */
+.page-menu .page-menu-devices {
+  background-color: #d9534f;
+}
+/* line 190, sass/globals/_navi.scss */
+.page-menu .page-menu-scheduling {
+  background-color: #dd976e;
+}
+/* line 191, sass/globals/_navi.scss */
+.page-menu .page-menu-climate {
+  background-color: #dddddd;
+}
+/* line 192, sass/globals/_navi.scss */
+.page-menu .page-menu-environment {
+  background-color: #6c7a89;
+}
+/* line 193, sass/globals/_navi.scss */
+.page-menu .page-menu-scenes {
+  background-color: #6494bc;
+}
+/* line 194, sass/globals/_navi.scss */
+.page-menu .page-menu-notifications {
+  background-color: #80ad80;
+}
+/* line 195, sass/globals/_navi.scss */
+.page-menu .page-menu-tagging {
+  background-color: #31b0d5;
 }
 
 /* Table
@@ -4075,14 +4291,13 @@ padding-right: 5px;
 /*==========  Non-Mobile First Method  ==========*/
 /* Large Devices, Wide Screens */
 /* Medium Devices, Desktops */
-/* Small Devices, Tablets */
-@media only screen and (max-width: 768px) {
-  /* line 108, sass/responsive/_responsive.scss */
+@media only screen and (max-width: 992px), (orientation: portrait) {
+  /* line 104, sass/responsive/_responsive.scss */
   .show-on-pc {
     display: none;
   }
 
-  /* line 111, sass/responsive/_responsive.scss */
+  /* line 107, sass/responsive/_responsive.scss */
   .show-on-mobile {
     display: block !important;
   }
@@ -4233,10 +4448,13 @@ padding-right: 5px;
   /* line 128, sass/responsive/_mixins.scss */
   #sub_navigation_in ul li {
     display: block;
+    width: 100%;
     margin: 0;
+    background-color: #fbfbfb !important;
+    border: 0;
     border-bottom: solid 1px #d3d3d3;
   }
-  /* line 132, sass/responsive/_mixins.scss */
+  /* line 135, sass/responsive/_mixins.scss */
   #sub_navigation_in ul li a {
     display: block;
     position: relative;
@@ -4244,63 +4462,206 @@ padding-right: 5px;
     text-align: left;
     padding: 10px 20px;
     border-radius: 0;
-    background-color: transparent;
+    color: #5d5d5d;
     border: 0 none;
   }
-  /* line 144, sass/responsive/_mixins.scss */
-  #sub_navigation_in ul li .active a {
-    background-color: #DDDDDD;
+  /* line 147, sass/responsive/_mixins.scss */
+  #sub_navigation_in ul li .active {
+    /*                    a{
+                            background-color: $header-color-secondary;
+                        }*/
   }
-  /* line 149, sass/responsive/_mixins.scss */
+  /* line 153, sass/responsive/_mixins.scss */
   #sub_navigation_in ul li .m-only {
     position: absolute;
     right: 1%;
     display: inline-block;
   }
+  /* line 160, sass/responsive/_mixins.scss */
+  #sub_navigation_in .subnavi-apps .fa {
+    color: #dd976e;
+  }
+  /* line 161, sass/responsive/_mixins.scss */
+  #sub_navigation_in .subnavi-devices .fa {
+    color: #6c7a89;
+  }
+  /* line 162, sass/responsive/_mixins.scss */
+  #sub_navigation_in .subnavi-config-rooms .fa {
+    color: #6494bc;
+  }
+  /* line 163, sass/responsive/_mixins.scss */
+  #sub_navigation_in .subnavi-myaccess .fa {
+    color: #80ad80;
+  }
+  /* line 164, sass/responsive/_mixins.scss */
+  #sub_navigation_in .subnavi-admin .fa {
+    color: #31b0d5;
+  }
+  /* line 165, sass/responsive/_mixins.scss */
+  #sub_navigation_in .subnavi-report .fa {
+    color: #f0aD4e;
+  }
+  /* line 166, sass/responsive/_mixins.scss */
+  #sub_navigation_in .subnavi-info .fa {
+    color: #d9534f;
+  }
+  /* line 167, sass/responsive/_mixins.scss */
+  #sub_navigation_in .subnavi-logout .fa {
+    color: #6494bc;
+  }
 
-  /* line 157, sass/responsive/_mixins.scss */
+  /* line 169, sass/responsive/_mixins.scss */
   #sub_navigation_close {
     border: 0;
   }
 
-  /* line 167, sass/responsive/_mixins.scss */
+  /* line 179, sass/responsive/_mixins.scss */
   .page-navi {
-    font-size: 22.4px;
+    font-size: 25.6px;
   }
-  /* line 169, sass/responsive/_mixins.scss */
+  /* line 181, sass/responsive/_mixins.scss */
   .page-navi .fa {
-    font-size: 22.4px;
+    font-size: 25.6px;
   }
-  /* line 172, sass/responsive/_mixins.scss */
+  /* line 184, sass/responsive/_mixins.scss */
   .page-navi .page-navi-in {
     width: 100%;
   }
-  /* line 175, sass/responsive/_mixins.scss */
+  /* line 187, sass/responsive/_mixins.scss */
   .page-navi .page-navi-in ul li {
     display: block;
+    width: 100%;
+    background-color: #fbfbfb !important;
+    border: 0;
     border-bottom: solid 1px #d3d3d3;
   }
-  /* line 178, sass/responsive/_mixins.scss */
+  /* line 194, sass/responsive/_mixins.scss */
   .page-navi .page-navi-in ul li a {
     display: block;
     position: relative;
     text-align: left;
-    padding: 5px 0;
+    padding: 0 10px;
+    color: #5d5d5d;
   }
-  /* line 189, sass/responsive/_mixins.scss */
-  .page-navi .page-navi-in ul .active a {
-    background-color: #DDDDDD;
+  /* line 205, sass/responsive/_mixins.scss */
+  .page-navi .page-navi-in ul .active {
+    /*                    a{
+                            background-color: $header-color-secondary;
+                        }*/
   }
-  /* line 193, sass/responsive/_mixins.scss */
+  /* line 210, sass/responsive/_mixins.scss */
   .page-navi .page-navi-in ul .page-navi-icon {
     position: absolute;
     right: 1%;
-    display: inline-block;
+    display: inline-block !important;
   }
-  /* line 201, sass/responsive/_mixins.scss */
+  /* line 218, sass/responsive/_mixins.scss */
+  .page-navi .page-navi-in .page-cat-basic_gateway_modules .fa {
+    color: #dd976e;
+  }
+  /* line 219, sass/responsive/_mixins.scss */
+  .page-navi .page-navi-in .page-cat-legacy_products_workaround .fa {
+    color: #6c7a89;
+  }
+  /* line 220, sass/responsive/_mixins.scss */
+  .page-navi .page-navi-in .page-cat-support_external_ui .fa {
+    color: #6494bc;
+  }
+  /* line 221, sass/responsive/_mixins.scss */
+  .page-navi .page-navi-in .page-cat-support_external_dev .fa {
+    color: #80ad80;
+  }
+  /* line 222, sass/responsive/_mixins.scss */
+  .page-navi .page-navi-in .page-cat-automation_basic .fa {
+    color: #31b0d5;
+  }
+  /* line 223, sass/responsive/_mixins.scss */
+  .page-navi .page-navi-in .page-cat-device_enhancements .fa {
+    color: #f0aD4e;
+  }
+  /* line 224, sass/responsive/_mixins.scss */
+  .page-navi .page-navi-in .page-cat-developers_stuff .fa {
+    color: #d9534f;
+  }
+  /* line 225, sass/responsive/_mixins.scss */
+  .page-navi .page-navi-in .page-cat-complex_applications .fa {
+    color: #dd976e;
+  }
+  /* line 226, sass/responsive/_mixins.scss */
+  .page-navi .page-navi-in .page-cat-automation .fa {
+    color: #dddddd;
+  }
+  /* line 227, sass/responsive/_mixins.scss */
+  .page-navi .page-navi-in .page-cat-security .fa {
+    color: #6c7a89;
+  }
+  /* line 228, sass/responsive/_mixins.scss */
+  .page-navi .page-navi-in .page-cat-peripherals .fa {
+    color: #6494bc;
+  }
+  /* line 229, sass/responsive/_mixins.scss */
+  .page-navi .page-navi-in .page-cat-logging .fa {
+    color: #31b0d5;
+  }
+  /* line 230, sass/responsive/_mixins.scss */
+  .page-navi .page-navi-in .page-cat-scripting .fa {
+    color: #f0aD4e;
+  }
+  /* line 231, sass/responsive/_mixins.scss */
+  .page-navi .page-navi-in .page-cat-devices .fa {
+    color: #d9534f;
+  }
+  /* line 232, sass/responsive/_mixins.scss */
+  .page-navi .page-navi-in .page-cat-scheduling .fa {
+    color: #dd976e;
+  }
+  /* line 233, sass/responsive/_mixins.scss */
+  .page-navi .page-navi-in .page-cat-climate .fa {
+    color: #dddddd;
+  }
+  /* line 234, sass/responsive/_mixins.scss */
+  .page-navi .page-navi-in .page-cat-environment .fa {
+    color: #6c7a89;
+  }
+  /* line 235, sass/responsive/_mixins.scss */
+  .page-navi .page-navi-in .page-cat-scenes .fa {
+    color: #6494bc;
+  }
+  /* line 236, sass/responsive/_mixins.scss */
+  .page-navi .page-navi-in .page-cat-notifications .fa {
+    color: #80ad80;
+  }
+  /* line 237, sass/responsive/_mixins.scss */
+  .page-navi .page-navi-in .page-cat-tagging .fa {
+    color: #31b0d5;
+  }
+  /* line 239, sass/responsive/_mixins.scss */
   .page-navi .page-navi-in .page-navi-close {
     border: 0;
     padding: 5px 30px 5px 5px;
+  }
+
+  /* line 245, sass/responsive/_mixins.scss */
+  .page-menu {
+    font-size: 22.4px;
+  }
+  /* line 247, sass/responsive/_mixins.scss */
+  .page-menu .fa {
+    font-size: 22.4px;
+  }
+  /* line 251, sass/responsive/_mixins.scss */
+  .page-menu ul {
+    list-style: none;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+  }
+  /* line 259, sass/responsive/_mixins.scss */
+  .page-menu ul li {
+    width: 100%;
+    float: none;
+    border: 0;
+    border-bottom: solid 1px #F6F6F6;
   }
 
   /* line 81, sass/responsive/_mixins.scss */
@@ -4308,25 +4669,25 @@ padding-right: 5px;
     max-width: 36px;
   }
 
-  /* line 219, sass/responsive/_mixins.scss */
+  /* line 284, sass/responsive/_mixins.scss */
   .table-report tbody tr.bcg-active.true {
     background-color: #fff;
   }
-  /* line 223, sass/responsive/_mixins.scss */
+  /* line 288, sass/responsive/_mixins.scss */
   .table-report tbody tr.bcg-active.false {
     background-color: #f2e8e8 !important;
   }
 
-  /* line 234, sass/responsive/_mixins.scss */
+  /* line 299, sass/responsive/_mixins.scss */
   .btn, .btn-device-admin {
     font-size: 24px;
   }
-  /* line 236, sass/responsive/_mixins.scss */
+  /* line 301, sass/responsive/_mixins.scss */
   .btn .fa, .btn-device-admin .fa {
     font-size: 28.8px;
   }
 
-  /* line 240, sass/responsive/_mixins.scss */
+  /* line 305, sass/responsive/_mixins.scss */
   .btn-name {
     display: none;
   }
@@ -4342,12 +4703,13 @@ padding-right: 5px;
   /*    .submit-entry .btn-submit{
           padding: 6px 12px;
       }*/
-  /* line 260, sass/responsive/_mixins.scss */
+  /* line 325, sass/responsive/_mixins.scss */
   .form-control {
     font-size: 22.4px;
+    padding: 22.4px 19.2px !important;
   }
 
-  /* line 263, sass/responsive/_mixins.scss */
+  /* line 329, sass/responsive/_mixins.scss */
   input[type=checkbox] {
     -ms-transform: scale(1.6);
     /* IE */
@@ -4358,9 +4720,10 @@ padding-right: 5px;
     -o-transform: scale(1.6);
     /* Opera */
     padding: 10px;
+    margin: 0 10px 0;
   }
 
-  /* line 271, sass/responsive/_mixins.scss */
+  /* line 338, sass/responsive/_mixins.scss */
   input[type=radio] {
     transform: scale(1.6, 1.6);
     -moz-transform: scale(1.6, 1.6);
@@ -4369,36 +4732,36 @@ padding-right: 5px;
     -o-transform: scale(1.6, 1.6);
   }
 
-  /* line 279, sass/responsive/_mixins.scss */
+  /* line 346, sass/responsive/_mixins.scss */
   .form-control-sm, .form-control-md {
     width: 100% !important;
     display: block !important;
   }
 
-  /* line 288, sass/responsive/_mixins.scss */
+  /* line 355, sass/responsive/_mixins.scss */
   .nav-tabs > li > a {
     font-size: 25.6px;
   }
-  /* line 290, sass/responsive/_mixins.scss */
+  /* line 357, sass/responsive/_mixins.scss */
   .nav-tabs > li > a .fa {
     font-size: 30.72px;
   }
 
-  /* line 294, sass/responsive/_mixins.scss */
+  /* line 361, sass/responsive/_mixins.scss */
   .tab-name {
     display: none;
   }
 
-  /* line 297, sass/responsive/_mixins.scss */
+  /* line 364, sass/responsive/_mixins.scss */
   .nav-tabs-3 {
     text-align: center;
   }
 
-  /* line 305, sass/responsive/_mixins.scss */
+  /* line 372, sass/responsive/_mixins.scss */
   .dropdown-menu {
     font-size: 22.4px;
   }
-  /* line 307, sass/responsive/_mixins.scss */
+  /* line 374, sass/responsive/_mixins.scss */
   .dropdown-menu .fa {
     font-size: 30.72px;
   }
@@ -4632,11 +4995,12 @@ padding-right: 5px;
     width: 30%;
   }
 }
+/* Small Devices, Tablets */
 /* Extra Small Devices, Phones */
 /* Custom, iPhone Retina */
 /* Custom, iPhone Retina */
 @media only screen and (min-width: 768px) and (max-width: 992px) {
-  /* line 151, sass/responsive/_responsive.scss */
+  /* line 152, sass/responsive/_responsive.scss */
   .hide-navi-text {
     display: none !important;
   }

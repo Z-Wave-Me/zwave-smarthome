@@ -126,8 +126,11 @@
             text-align: left;
             margin:0;
             li{
-                display: block;
+                 display: block;
+                     width: 100%;
                 margin: 0; 
+               background-color: lighten($app-body-bcg-color, 2%) !important;
+                    border: 0;
                 border-bottom: solid 1px $app-border-color;
                 a{
                     display: block;
@@ -137,13 +140,14 @@
                     padding: 10px 20px;
                     //line-height: 1.42857;
                     border-radius: 0;
-                    background-color: transparent;
+                    
+                    color: $header-link-color;
                     border: 0 none;
                 }
                 .active{
-                    a{
+/*                    a{
                         background-color: $header-color-secondary;
-                    }
+                    }*/
                 }
 
                 .m-only{
@@ -153,6 +157,14 @@
                 }
             }
         }
+        .subnavi-apps .fa{color: #dd976e;}
+        .subnavi-devices .fa{color: #6c7a89;}
+        .subnavi-config-rooms .fa{color: #6494bc;} 
+        .subnavi-myaccess .fa{color: #80ad80;} 
+        .subnavi-admin .fa{color: #31b0d5;}
+        .subnavi-report .fa{color: #f0aD4e;}
+        .subnavi-info .fa{color: #d9534f;} 
+        .subnavi-logout .fa{color: #6494bc;}
     }
     #sub_navigation_close{
         border: 0;
@@ -165,43 +177,96 @@
 -------------------------------------------------- */
 @mixin mNavi() {
     .page-navi{
-        font-size: $app-body-font-size * $m-font-scale;
+        font-size: $app-navi-font-size * $m-font-scale;
         .fa{
-            font-size: $app-body-font-size * $m-font-scale;  
+            font-size: $app-navi-font-size * $m-font-scale;  
         }
         .page-navi-in{
-             width: 100%;
-           ul{
-               li{
+            width: 100%;
+            ul{
+                li{
                     display: block;
-                    border-bottom: solid 1px $app-border-color;
+                     width: 100%;
+                   
+                    background-color: lighten($app-body-bcg-color, 2%) !important;
+                    border: 0;
+                     border-bottom: solid 1px $app-border-color;
                     a{
                         display: block;
-                    position:relative;
-                    //font-size: $app-navi-font-size * $m-font-scale;
-                    text-align: left;
-                    padding: 5px 0;
+                        position:relative;
+                        //font-size: $app-navi-font-size * $m-font-scale;
+                        text-align: left;
+                        padding:0 10px;
+                        color: $header-link-color;
 
                     }
 
                 }
                 .active{
-                    a{
+/*                    a{
                         background-color: $header-color-secondary;
-                    }
+                    }*/
                 }
-                 .page-navi-icon{
+                .page-navi-icon{
                     position: absolute;
                     right: 1%;
-                    display: inline-block;
+                    display: inline-block !important;
                 }
 
             }
+            
+            .page-cat-basic_gateway_modules .fa{color: #dd976e;}
+        .page-cat-legacy_products_workaround .fa{color: #6c7a89;}
+        .page-cat-support_external_ui .fa{color: #6494bc;} 
+        .page-cat-support_external_dev .fa{color: #80ad80;} 
+        .page-cat-automation_basic .fa{color: #31b0d5;}
+        .page-cat-device_enhancements .fa{color: #f0aD4e;}
+        .page-cat-developers_stuff .fa{color: #d9534f;} 
+        .page-cat-complex_applications .fa{color: #dd976e;} 
+        .page-cat-automation .fa{color: #dddddd;}
+        .page-cat-security .fa{color: #6c7a89;}
+        .page-cat-peripherals .fa{color: #6494bc;}
+        .page-cat-logging .fa{color: #31b0d5;}
+        .page-cat-scripting .fa{color: #f0aD4e;}
+        .page-cat-devices .fa{color: #d9534f;} 
+        .page-cat-scheduling .fa{color: #dd976e;} 
+        .page-cat-climate .fa{color: #dddddd;}
+        .page-cat-environment .fa{color: #6c7a89;}
+        .page-cat-scenes .fa{color: #6494bc;} 
+        .page-cat-notifications .fa{color: #80ad80;} 
+        .page-cat-tagging .fa{color: #31b0d5;}
 
             .page-navi-close{
-                 border: 0;
+                border: 0;
                 padding: 5px 30px 5px 5px;
             }
+        }
+    }
+    .page-menu{
+        font-size: $app-body-font-size * $m-font-scale;
+        .fa{
+            font-size: $app-body-font-size * $m-font-scale;  
+        }
+        
+        ul{
+            // padding: 20px;
+
+            list-style: none;
+            text-align: left;
+            margin: 0;
+            padding:0; 
+
+            li{
+                 width: 100%;
+                 float: none;
+                 border: 0;
+                  border-bottom: solid 1px $app-body-bcg-color;
+                .page-navi-icon{}
+                a{}
+
+            }
+            .fa{}
+
         }
     }
 }
@@ -259,6 +324,7 @@
 @mixin mForm() {
     .form-control {
         font-size: $app-body-font-size * $m-font-scale;
+        padding: ($app-body-font-size * $m-font-scale) (12px  * $m-font-scale) !important;
     }
     input[type=checkbox]{
         -ms-transform: scale($m-font-scale); /* IE */
@@ -266,6 +332,7 @@
         -webkit-transform: scale($m-font-scale); /* Safari and Chrome */
         -o-transform: scale($m-font-scale); /* Opera */
         padding: 10px;
+        margin: 0 10px 0;
     }
 
     input[type=radio] { 

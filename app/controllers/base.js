@@ -189,22 +189,31 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
      /**
      * Expand/collapse navigation
      */
-    $scope.navigation = false;
-    $scope.expandNavigation= function(status) {
+    $scope.naviExpanded = {};
+    $scope.expandNavi = function(key,status) {
         if(typeof status === 'boolean'){
-           $scope.navigation = status; 
+           $scope.naviExpanded[key] = status;
         }else{
-            $scope.navigation = !$scope.navigation; 
+             $scope.naviExpanded[key] = !($scope.naviExpanded[key]);
         }
        
+       event.stopPropagation();
     };
+    // Collaps element/menu when clicking outside
+    window.onclick = function() {
+          if ($scope.naviExpanded) {
+                angular.copy({},$scope.naviExpanded);
+                $scope.$apply();
+          }
+      };
      /**
      * Expand/collapse element
      */
-     $scope.expand = {};
+    $scope.expand = {};
     $scope.expandElement = function(key) {
-        $scope.expand[key] = !$scope.expand[key];
+        $scope.expand[key] = !($scope.expand[key]);
     };
+    
     
      /**
      * Alertify defaults

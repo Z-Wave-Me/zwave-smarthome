@@ -100,11 +100,7 @@
 }
 
 /* Medium Devices, Desktops */
-@media only screen and (max-width : 992px) {
-}
-
-/* Small Devices, Tablets */
-@media only screen and (max-width : 768px) {
+@media only screen and (max-width : 992px),(orientation:portrait)   {
     .show-on-pc{
         display: none;
     }
@@ -130,6 +126,11 @@
     @include mEvents();
     @include mApps();
     @include mManagement();
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px){
+    
 }
 
 /* Extra Small Devices, Phones */ 

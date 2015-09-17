@@ -1,21 +1,43 @@
 <!-- Online app view -->
-<div class="form-inline">
-    <a class="btn btn-default" href="" ng-click="expandElement('appsCategories')"><i class="fa fa-chevron-down text-success" ng-class="expand.appsCategories ? 'fa-chevron-up': 'fa-chevron-down'"></i> Select category</a>
-    <a class="btn btn-default" href="" ng-click="resetFilter('/apps')" ng-if="currentCategory.id"><i class="fa fa-refresh text-danger"></i> Reset filter</a>
+<div class="page-control form-inline">
+    <a class="btn btn-default" href="" ng-click="expandNavi('appsCategories')"><i class="fa fa-chevron-down text-success" ng-class="naviExpanded.appsCategories ? 'fa-chevron-up': 'fa-chevron-down'"></i> Select category</a>
     <div class="input-group search-form hide-on-mobile">
         <input type="text" ng-model="q" class="form-control" value="{{q}}">
         <span class="input-group-addon"><i class="fa fa-search"></i></span> 
     </div>
+    <a class="btn btn-default" href="" ng-click="resetFilter('/apps')" ng-if="currentCategory.id"><i class="fa fa-refresh text-danger"></i> Reset filter</a>
 </div>
-<div class="page-navi" ng-if="expand.appsCategories">
+<div class="page-navi" ng-if="naviExpanded.appsCategories">
     <div class="page-navi-in">
         <ul>
-            <li id="cat_{{v.id}}" ng-repeat="v in categories" ng-if="modulesCats.indexOf(v.id) > -1" ng-class="currentCategory.id == v.id ? 'active': ''">
-                <a href="#apps/category/{{v.id}}">{{v.name}} <span class="page-navi-icon"><i class="fa fa-chevron-right"></i></span></a>
+            <li class="page-cat-{{v.id}}" ng-repeat="v in categories" ng-if="modulesCats.indexOf(v.id) > -1" ng-class="currentCategory.id == v.id ? 'active': ''">
+                <a href="#apps/category/{{v.id}}" ng-switch="v.id">
+                    <i class="fa fa-cube" ng-switch-when="basic_gateway_modules"></i>
+                <i class="fa fa-wrench" ng-switch-when="legacy_products_workaround"></i>
+                 <i class="fa fa-object-group" ng-switch-when="support_external_ui"></i>
+                 <i class="fa fa-cubes" ng-switch-when="support_external_dev"></i>
+                 <i class="fa fa-refresh" ng-switch-when="automation_basic"></i>
+                 <i class="fa fa-caret-square-o-up" ng-switch-when="device_enhancements"></i>
+                 <i class="fa fa-file-code-o" ng-switch-when="developers_stuff"></i>
+                 <i class="fa fa-link" ng-switch-when="complex_applications"></i>
+                 <i class="fa fa-chevron-right" ng-switch-when="automation"></i>
+                 <i class="fa fa-shield" ng-switch-when="security"></i>
+                 <i class="fa fa-bolt" ng-switch-when="peripherals"></i>
+                 <i class="fa fa-chevron-right" ng-switch-when="logging"></i>
+                 <i class="fa fa-chevron-right" ng-switch-when="scripting"></i>
+                 <i class="fa fa-cogs" ng-switch-when="devices"></i>
+                 <i class="fa fa-chevron-right" ng-switch-when="scheduling"></i>
+                 <i class="fa fa-chevron-right" ng-switch-when="climate"></i>
+                 <i class="fa fa-chevron-right" ng-switch-when="environment"></i>
+                 <i class="fa fa-chevron-right" ng-switch-when="scenes"></i>
+                 <i class="fa fa-calendar" ng-switch-when="notifications"></i>
+                 <i class="fa fa-tags" ng-switch-when="tagging"></i> 
+                    {{v.name}} <span class="page-navi-icon"><i class="fa fa-chevron-right"></i></span>
+                </a>
             </li>
         </ul>
         <div class="page-navi-close">
-            <a class="btn btn-default" href="" ng-click="expandElement('appsCategories')"><i class="fa fa-chevron-up  text-danger"></i> {{_t('collapse')}}</a>
+            <a class="btn btn-default" href="" ng-click="expandNavi('appsCategories')"><i class="fa fa-chevron-up  text-danger"></i> {{_t('collapse')}}</a>
         </div>
     </div>
 </div>
