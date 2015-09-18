@@ -4268,7 +4268,7 @@ padding-right: 5px;
 
   /* line 4, sass/responsive/_mixins.scss */
   body {
-    font-size: 22.4px;
+    font-size: 16.8px;
   }
 
   /* line 7, sass/responsive/_mixins.scss */
@@ -4311,27 +4311,27 @@ padding-right: 5px;
 
   /* line 37, sass/responsive/_mixins.scss */
   h1 {
-    font-size: 35.84px;
+    font-size: 26.88px;
   }
 
   /* line 41, sass/responsive/_mixins.scss */
   h2 {
-    font-size: 31.36px;
+    font-size: 23.52px;
   }
 
   /* line 45, sass/responsive/_mixins.scss */
   h3 {
-    font-size: 26.88px;
+    font-size: 20.16px;
   }
 
   /* line 49, sass/responsive/_mixins.scss */
   h4 {
-    font-size: 24.64px;
+    font-size: 18.48px;
   }
 
   /* line 52, sass/responsive/_mixins.scss */
   .entry-title {
-    font-size: 22.4px;
+    font-size: 16.8px;
   }
 
   /* line 57, sass/responsive/_mixins.scss */
@@ -4362,7 +4362,7 @@ padding-right: 5px;
 
   /* line 88, sass/responsive/_mixins.scss */
   #header {
-    font-size: 25.6px;
+    font-size: 19.2px;
   }
   /* line 91, sass/responsive/_mixins.scss */
   #header #header_logo, #header .divider-vertical {
@@ -4370,7 +4370,7 @@ padding-right: 5px;
   }
   /* line 94, sass/responsive/_mixins.scss */
   #header .fa {
-    font-size: 30.72px;
+    font-size: 23.04px;
   }
 
   /* line 99, sass/responsive/_mixins.scss */
@@ -4433,7 +4433,7 @@ padding-right: 5px;
   #sub_navigation_in ul li a {
     display: block;
     position: relative;
-    font-size: 25.6px;
+    font-size: 19.2px;
     text-align: left;
     padding: 10px 20px;
     border-radius: 0;
@@ -4454,11 +4454,11 @@ padding-right: 5px;
 
   /* line 173, sass/responsive/_mixins.scss */
   .page-navi {
-    font-size: 25.6px;
+    font-size: 19.2px;
   }
   /* line 175, sass/responsive/_mixins.scss */
   .page-navi .fa {
-    font-size: 25.6px;
+    font-size: 19.2px;
   }
   /* line 178, sass/responsive/_mixins.scss */
   .page-navi .page-navi-in {
@@ -4580,11 +4580,11 @@ padding-right: 5px;
 
   /* line 239, sass/responsive/_mixins.scss */
   .page-menu {
-    font-size: 22.4px;
+    font-size: 16.8px;
   }
   /* line 241, sass/responsive/_mixins.scss */
   .page-menu .fa {
-    font-size: 22.4px;
+    font-size: 16.8px;
   }
   /* line 245, sass/responsive/_mixins.scss */
   .page-menu ul {
@@ -4617,11 +4617,11 @@ padding-right: 5px;
 
   /* line 293, sass/responsive/_mixins.scss */
   .btn, .btn-device-admin {
-    font-size: 24px;
+    font-size: 18px;
   }
   /* line 295, sass/responsive/_mixins.scss */
   .btn .fa, .btn-device-admin .fa {
-    font-size: 28.8px;
+    font-size: 21.6px;
   }
 
   /* line 299, sass/responsive/_mixins.scss */
@@ -4642,19 +4642,19 @@ padding-right: 5px;
       }*/
   /* line 319, sass/responsive/_mixins.scss */
   .form-control {
-    font-size: 22.4px;
-    padding: 22.4px 19.2px !important;
+    font-size: 16.8px;
+    padding: 16.8px 14.4px !important;
   }
 
   /* line 323, sass/responsive/_mixins.scss */
   input[type=checkbox] {
-    -ms-transform: scale(1.6);
+    -ms-transform: scale(1.2);
     /* IE */
-    -moz-transform: scale(1.6);
+    -moz-transform: scale(1.2);
     /* FF */
-    -webkit-transform: scale(1.6);
+    -webkit-transform: scale(1.2);
     /* Safari and Chrome */
-    -o-transform: scale(1.6);
+    -o-transform: scale(1.2);
     /* Opera */
     padding: 10px;
     margin: 0 10px 0;
@@ -4662,11 +4662,11 @@ padding-right: 5px;
 
   /* line 332, sass/responsive/_mixins.scss */
   input[type=radio] {
-    transform: scale(1.6, 1.6);
-    -moz-transform: scale(1.6, 1.6);
-    -ms-transform: scale(1.6, 1.6);
-    -webkit-transform: scale(1.6, 1.6);
-    -o-transform: scale(1.6, 1.6);
+    transform: scale(1.2, 1.2);
+    -moz-transform: scale(1.2, 1.2);
+    -ms-transform: scale(1.2, 1.2);
+    -webkit-transform: scale(1.2, 1.2);
+    -o-transform: scale(1.2, 1.2);
   }
 
   /* line 340, sass/responsive/_mixins.scss */
@@ -4677,11 +4677,11 @@ padding-right: 5px;
 
   /* line 349, sass/responsive/_mixins.scss */
   .nav-tabs > li > a {
-    font-size: 25.6px;
+    font-size: 19.2px;
   }
   /* line 351, sass/responsive/_mixins.scss */
   .nav-tabs > li > a .fa {
-    font-size: 30.72px;
+    font-size: 23.04px;
   }
 
   /* line 355, sass/responsive/_mixins.scss */
@@ -4696,11 +4696,11 @@ padding-right: 5px;
 
   /* line 366, sass/responsive/_mixins.scss */
   .dropdown-menu {
-    font-size: 22.4px;
+    font-size: 16.8px;
   }
   /* line 368, sass/responsive/_mixins.scss */
   .dropdown-menu .fa {
-    font-size: 30.72px;
+    font-size: 23.04px;
   }
 
   /* line 4, sass/responsive/_modules.scss */

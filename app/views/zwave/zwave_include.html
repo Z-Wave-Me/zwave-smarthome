@@ -61,7 +61,7 @@
                         <button class="btn btn-success btn-lg"
                                 ng-disabled="[5, 6, 7, 20].indexOf(controllerState) > -1"
                                 ng-show="[1, 2, 3, 4].indexOf(controllerState) == -1"
-                                ng-click="setSecureInclusion(secureInclusion);runZwaveCmd('controller.AddNodeToNetwork(1)');success2 = !success2"
+                                ng-click="startInclusion(device.secureInclusion,'controller.AddNodeToNetwork(1)');success2 = !success2"
                                 ><i class="fa fa-plug"></i> <span ng-bind="_t('btn_inclusion_start')"></span></button>
                         <button 
                             class="btn btn-danger btn-lg"
@@ -112,7 +112,7 @@
                            <button 
                             class="btn btn-success"
                             id="btn_nm_include_stop"
-                            ng-click="setSecureInclusion(secureInclusion);retryInclusion('controller.AddNodeToNetwork(0)')">
+                            ng-click="setSecureInclusion(device.secureInclusion);retryInclusion('controller.AddNodeToNetwork(0)')">
                                <i class="fa fa-refresh"></i> <span  ng-bind="_t('retry')"></span></button>
                               <bb-help file="interview" lang="{{lang}}"></bb-help>
                         </div>
