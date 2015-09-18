@@ -38,6 +38,7 @@ myAppController.controller('ZwaveIncludeController', function($scope, $routePara
     $scope.device = {
         'data': null
     };
+    $scope.secureInclusion = true;
     $scope.controllerState = 0;
     $scope.zwaveApiData = [];
     $scope.includedDeviceId = null;
@@ -66,6 +67,17 @@ myAppController.controller('ZwaveIncludeController', function($scope, $routePara
         $interval.cancel($scope.apiDataInterval);
         $interval.cancel($scope.includeDataInterval);
     });
+    
+     /**
+     * Set secure inclusion
+     */
+    $scope.setSecureInclusion = function(status) {
+        var cmd = 'controller.data.secureInclusion=' + status;
+        dataFactory.runZwaveCmd(cmd).then(function() {
+        }, function() {});
+
+    };
+     //$scope.setSecureInclusion(true);
 
     /**
      * Load data into collection
@@ -77,6 +89,9 @@ myAppController.controller('ZwaveIncludeController', function($scope, $routePara
                 angular.forEach(response.data, function(v, k) {
                     if (v.id == $routeParams.device) {
                         $scope.device.data = v;
+                        if(v.inclusion_type === 'unsecure'){
+                            $scope.secureInclusion = false; 
+                        }
                         return;
                     }
                 });
@@ -172,7 +187,8 @@ myAppController.controller('ZwaveIncludeController', function($scope, $routePara
                     }
                     if (interviewDone) {
                         $scope.lastIncludedDevice = node.data.givenName.value || 'Device ' + '_' + nodeId;
-                         myCache.remove('devices');
+                        $scope.setSecureInclusion(true);
+                        myCache.remove('devices');
                         $scope.includedDeviceId = null;
                         $scope.checkInterview = false;
                         $interval.cancel($scope.includeDataInterval);
@@ -207,6 +223,7 @@ myAppController.controller('ZwaveIncludeController', function($scope, $routePara
      * Retry inclusion
      */
     $scope.retryInclusion = function() {
+        //$scope.setSecureInclusion(true);
         myCache.removeAll();
         $route.reload();
         $scope.runZwaveCmd('controller.RemoveNodeFromNetwork(1)');
@@ -228,6 +245,7 @@ myAppController.controller('ZwaveIncludeController', function($scope, $routePara
         });
 
     };
+    
 
     /**
      * Load data
@@ -253,6 +271,9 @@ myAppController.controller('ZwaveIncludeController', function($scope, $routePara
         if ('controller.data.controllerState' in data) {
             $scope.controllerState = data['controller.data.controllerState'].value;
             console.log('controllerState: ', $scope.controllerState)
+            if($scope.controllerState === 1 && $scope.device.data.inclusion_type === 'unsecure'){
+               console.log('controller.data.secureInclusion=false') ;
+            }
         }
 
         if ('controller.data.lastExcludedDevice' in data) {
