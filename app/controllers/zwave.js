@@ -271,9 +271,6 @@ myAppController.controller('ZwaveIncludeController', function($scope, $routePara
         if ('controller.data.controllerState' in data) {
             $scope.controllerState = data['controller.data.controllerState'].value;
             console.log('controllerState: ', $scope.controllerState)
-            if($scope.controllerState === 1 && $scope.device.data.inclusion_type === 'unsecure'){
-               console.log('controller.data.secureInclusion=false') ;
-            }
         }
 
         if ('controller.data.lastExcludedDevice' in data) {
