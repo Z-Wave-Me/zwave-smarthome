@@ -771,108 +771,72 @@ vertical-align: middle;
   position: relative;
 }
 /* line 115, sass/globals/_header.scss */
-#sub_navigation .container {
+#sub_navigation .container_ {
+  width: 33%;
+  background-color: #fff;
+  background-color: #fbfbfb;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  margin: 0;
+}
+
+/* line 125, sass/globals/_header.scss */
+#sub_navigation_in {
+  /*    .subnavi-apps {background-color: lighten(#dd976e, 30%);.fa{color: #dd976e;}} 
+          .subnavi-devices {background-color: lighten(#6c7a89,30%);.fa{color: #6c7a89;}}
+          .subnavi-config-rooms {background-color: lighten(#6494bc,30%);.fa{color: #6494bc;}} 
+          .subnavi-myaccess {background-color: lighten(#80ad80,30%);.fa{color: #80ad80;}} 
+          .subnavi-admin {background-color: lighten(#31b0d5,30%);.fa{color: #31b0d5;}}
+          .subnavi-report {background-color: lighten(#f0aD4e,30%);.fa{color: #f0aD4e;}}
+          .subnavi-info {background-color: lighten(#d9534f,30%);.fa{color: #d9534f;}} 
+          .subnavi-logout {background-color: lighten(#6494bc,30%);.fa{color: #6494bc;}}*/
+  /*        .subnavi-apps {.subnavi-arrow{color: #dd976e;}} 
+          .subnavi-devices {.subnavi-arrow{color: #6c7a89;}}
+          .subnavi-config-rooms {.subnavi-arrow{color: #6494bc;}} 
+          .subnavi-myaccess {.subnavi-arrow{color: #80ad80;}} 
+          .subnavi-admin {.subnavi-arrow{color: #31b0d5;}}
+          .subnavi-report {.subnavi-arrow{color: #f0aD4e;}}
+          .subnavi-info {.subnavi-arrow{color: #d9534f;}} 
+          .subnavi-logout {.subnavi-arrow{color: #6494bc;}}*/
+}
+/* line 126, sass/globals/_header.scss */
+#sub_navigation_in ul {
+  padding: 0;
+  list-style: none;
+  margin: 0 0 0 66%;
   background-color: #fff;
   background-color: #fbfbfb;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
 }
-
-/* line 124, sass/globals/_header.scss */
-#sub_navigation_in ul {
-  padding: 0;
-  list-style: none;
-  margin: 0;
-}
-/* line 128, sass/globals/_header.scss */
+/* line 136, sass/globals/_header.scss */
 #sub_navigation_in ul li {
-  display: inline-block;
-  width: 33%;
   padding: 10px 0;
-  border: solid 4px #fbfbfb;
+  border-bottom: solid 1px #d3d3d3;
 }
-/* line 133, sass/globals/_header.scss */
+/* line 142, sass/globals/_header.scss */
 #sub_navigation_in ul li a {
-  text-align: left;
+  display: block;
+  position: relative;
   padding: 0 10px;
   vertical-align: middle;
-  display: block;
   color: #5d5d5d;
 }
-/* line 144, sass/globals/_header.scss */
+/* line 152, sass/globals/_header.scss */
+#sub_navigation_in ul li .subnavi-arrow {
+  position: absolute;
+  right: 1%;
+  display: inline-block;
+}
+/* line 160, sass/globals/_header.scss */
 #sub_navigation_in ul .active a {
   font-weight: bold;
   text-decoration: underline;
 }
-/* line 149, sass/globals/_header.scss */
+/* line 165, sass/globals/_header.scss */
 #sub_navigation_in ul .fa {
   padding-right: 7px;
 }
-/* line 154, sass/globals/_header.scss */
-#sub_navigation_in .subnavi-apps {
-  background-color: #faf0ea;
-}
-/* line 154, sass/globals/_header.scss */
-#sub_navigation_in .subnavi-apps .fa {
-  color: #dd976e;
-}
-/* line 155, sass/globals/_header.scss */
-#sub_navigation_in .subnavi-devices {
-  background-color: #c0c7ce;
-}
-/* line 155, sass/globals/_header.scss */
-#sub_navigation_in .subnavi-devices .fa {
-  color: #6c7a89;
-}
-/* line 156, sass/globals/_header.scss */
-#sub_navigation_in .subnavi-config-rooms {
-  background-color: #cfdeea;
-}
-/* line 156, sass/globals/_header.scss */
-#sub_navigation_in .subnavi-config-rooms .fa {
-  color: #6494bc;
-}
-/* line 157, sass/globals/_header.scss */
-#sub_navigation_in .subnavi-myaccess {
-  background-color: #dde9dd;
-}
-/* line 157, sass/globals/_header.scss */
-#sub_navigation_in .subnavi-myaccess .fa {
-  color: #80ad80;
-}
-/* line 158, sass/globals/_header.scss */
-#sub_navigation_in .subnavi-admin {
-  background-color: #b0e1ef;
-}
-/* line 158, sass/globals/_header.scss */
-#sub_navigation_in .subnavi-admin .fa {
-  color: #31b0d5;
-}
-/* line 159, sass/globals/_header.scss */
-#sub_navigation_in .subnavi-report {
-  background-color: #fceedb;
-}
-/* line 159, sass/globals/_header.scss */
-#sub_navigation_in .subnavi-report .fa {
-  color: #f0aD4e;
-}
-/* line 160, sass/globals/_header.scss */
-#sub_navigation_in .subnavi-info {
-  background-color: #f4cecd;
-}
-/* line 160, sass/globals/_header.scss */
-#sub_navigation_in .subnavi-info .fa {
-  color: #d9534f;
-}
-/* line 161, sass/globals/_header.scss */
-#sub_navigation_in .subnavi-logout {
-  background-color: #cfdeea;
-}
-/* line 161, sass/globals/_header.scss */
-#sub_navigation_in .subnavi-logout .fa {
-  color: #6494bc;
-}
 
-/* line 165, sass/globals/_header.scss */
+/* line 190, sass/globals/_header.scss */
 #sub_navigation_close {
   text-align: right;
   border-top: solid 1px #d3d3d3;
@@ -4438,6 +4402,17 @@ padding-right: 5px;
     margin-right: 15px;
   }
 
+  /* line 122, sass/responsive/_mixins.scss */
+  #sub_navigation_in {
+    /*        .subnavi-apps .fa{color: #dd976e;}
+            .subnavi-devices .fa{color: #6c7a89;}
+            .subnavi-config-rooms .fa{color: #6494bc;} 
+            .subnavi-myaccess .fa{color: #80ad80;} 
+            .subnavi-admin .fa{color: #31b0d5;}
+            .subnavi-report .fa{color: #f0aD4e;}
+            .subnavi-info .fa{color: #d9534f;} 
+            .subnavi-logout .fa{color: #6494bc;}*/
+  }
   /* line 123, sass/responsive/_mixins.scss */
   #sub_navigation_in ul {
     padding: 0;
@@ -4450,8 +4425,8 @@ padding-right: 5px;
     display: block;
     width: 100%;
     margin: 0;
-    background-color: #fbfbfb !important;
-    border: 0;
+    /*               background-color: lighten($app-body-bcg-color, 2%) !important;
+                        border: 0;*/
     border-bottom: solid 1px #d3d3d3;
   }
   /* line 135, sass/responsive/_mixins.scss */
@@ -4471,63 +4446,25 @@ padding-right: 5px;
                             background-color: $header-color-secondary;
                         }*/
   }
-  /* line 153, sass/responsive/_mixins.scss */
-  #sub_navigation_in ul li .m-only {
-    position: absolute;
-    right: 1%;
-    display: inline-block;
-  }
-  /* line 160, sass/responsive/_mixins.scss */
-  #sub_navigation_in .subnavi-apps .fa {
-    color: #dd976e;
-  }
-  /* line 161, sass/responsive/_mixins.scss */
-  #sub_navigation_in .subnavi-devices .fa {
-    color: #6c7a89;
-  }
-  /* line 162, sass/responsive/_mixins.scss */
-  #sub_navigation_in .subnavi-config-rooms .fa {
-    color: #6494bc;
-  }
-  /* line 163, sass/responsive/_mixins.scss */
-  #sub_navigation_in .subnavi-myaccess .fa {
-    color: #80ad80;
-  }
-  /* line 164, sass/responsive/_mixins.scss */
-  #sub_navigation_in .subnavi-admin .fa {
-    color: #31b0d5;
-  }
-  /* line 165, sass/responsive/_mixins.scss */
-  #sub_navigation_in .subnavi-report .fa {
-    color: #f0aD4e;
-  }
-  /* line 166, sass/responsive/_mixins.scss */
-  #sub_navigation_in .subnavi-info .fa {
-    color: #d9534f;
-  }
-  /* line 167, sass/responsive/_mixins.scss */
-  #sub_navigation_in .subnavi-logout .fa {
-    color: #6494bc;
-  }
 
-  /* line 169, sass/responsive/_mixins.scss */
+  /* line 163, sass/responsive/_mixins.scss */
   #sub_navigation_close {
     border: 0;
   }
 
-  /* line 179, sass/responsive/_mixins.scss */
+  /* line 173, sass/responsive/_mixins.scss */
   .page-navi {
     font-size: 25.6px;
   }
-  /* line 181, sass/responsive/_mixins.scss */
+  /* line 175, sass/responsive/_mixins.scss */
   .page-navi .fa {
     font-size: 25.6px;
   }
-  /* line 184, sass/responsive/_mixins.scss */
+  /* line 178, sass/responsive/_mixins.scss */
   .page-navi .page-navi-in {
     width: 100%;
   }
-  /* line 187, sass/responsive/_mixins.scss */
+  /* line 181, sass/responsive/_mixins.scss */
   .page-navi .page-navi-in ul li {
     display: block;
     width: 100%;
@@ -4535,7 +4472,7 @@ padding-right: 5px;
     border: 0;
     border-bottom: solid 1px #d3d3d3;
   }
-  /* line 194, sass/responsive/_mixins.scss */
+  /* line 188, sass/responsive/_mixins.scss */
   .page-navi .page-navi-in ul li a {
     display: block;
     position: relative;
@@ -4543,120 +4480,120 @@ padding-right: 5px;
     padding: 0 10px;
     color: #5d5d5d;
   }
-  /* line 205, sass/responsive/_mixins.scss */
+  /* line 199, sass/responsive/_mixins.scss */
   .page-navi .page-navi-in ul .active {
     /*                    a{
                             background-color: $header-color-secondary;
                         }*/
   }
-  /* line 210, sass/responsive/_mixins.scss */
+  /* line 204, sass/responsive/_mixins.scss */
   .page-navi .page-navi-in ul .page-navi-icon {
     position: absolute;
     right: 1%;
     display: inline-block !important;
   }
-  /* line 218, sass/responsive/_mixins.scss */
+  /* line 212, sass/responsive/_mixins.scss */
   .page-navi .page-navi-in .page-cat-basic_gateway_modules .fa {
     color: #dd976e;
   }
-  /* line 219, sass/responsive/_mixins.scss */
+  /* line 213, sass/responsive/_mixins.scss */
   .page-navi .page-navi-in .page-cat-legacy_products_workaround .fa {
     color: #6c7a89;
   }
-  /* line 220, sass/responsive/_mixins.scss */
+  /* line 214, sass/responsive/_mixins.scss */
   .page-navi .page-navi-in .page-cat-support_external_ui .fa {
     color: #6494bc;
   }
-  /* line 221, sass/responsive/_mixins.scss */
+  /* line 215, sass/responsive/_mixins.scss */
   .page-navi .page-navi-in .page-cat-support_external_dev .fa {
     color: #80ad80;
   }
-  /* line 222, sass/responsive/_mixins.scss */
+  /* line 216, sass/responsive/_mixins.scss */
   .page-navi .page-navi-in .page-cat-automation_basic .fa {
     color: #31b0d5;
   }
-  /* line 223, sass/responsive/_mixins.scss */
+  /* line 217, sass/responsive/_mixins.scss */
   .page-navi .page-navi-in .page-cat-device_enhancements .fa {
     color: #f0aD4e;
   }
-  /* line 224, sass/responsive/_mixins.scss */
+  /* line 218, sass/responsive/_mixins.scss */
   .page-navi .page-navi-in .page-cat-developers_stuff .fa {
     color: #d9534f;
   }
-  /* line 225, sass/responsive/_mixins.scss */
+  /* line 219, sass/responsive/_mixins.scss */
   .page-navi .page-navi-in .page-cat-complex_applications .fa {
     color: #dd976e;
   }
-  /* line 226, sass/responsive/_mixins.scss */
+  /* line 220, sass/responsive/_mixins.scss */
   .page-navi .page-navi-in .page-cat-automation .fa {
     color: #dddddd;
   }
-  /* line 227, sass/responsive/_mixins.scss */
+  /* line 221, sass/responsive/_mixins.scss */
   .page-navi .page-navi-in .page-cat-security .fa {
     color: #6c7a89;
   }
-  /* line 228, sass/responsive/_mixins.scss */
+  /* line 222, sass/responsive/_mixins.scss */
   .page-navi .page-navi-in .page-cat-peripherals .fa {
     color: #6494bc;
   }
-  /* line 229, sass/responsive/_mixins.scss */
+  /* line 223, sass/responsive/_mixins.scss */
   .page-navi .page-navi-in .page-cat-logging .fa {
     color: #31b0d5;
   }
-  /* line 230, sass/responsive/_mixins.scss */
+  /* line 224, sass/responsive/_mixins.scss */
   .page-navi .page-navi-in .page-cat-scripting .fa {
     color: #f0aD4e;
   }
-  /* line 231, sass/responsive/_mixins.scss */
+  /* line 225, sass/responsive/_mixins.scss */
   .page-navi .page-navi-in .page-cat-devices .fa {
     color: #d9534f;
   }
-  /* line 232, sass/responsive/_mixins.scss */
+  /* line 226, sass/responsive/_mixins.scss */
   .page-navi .page-navi-in .page-cat-scheduling .fa {
     color: #dd976e;
   }
-  /* line 233, sass/responsive/_mixins.scss */
+  /* line 227, sass/responsive/_mixins.scss */
   .page-navi .page-navi-in .page-cat-climate .fa {
     color: #dddddd;
   }
-  /* line 234, sass/responsive/_mixins.scss */
+  /* line 228, sass/responsive/_mixins.scss */
   .page-navi .page-navi-in .page-cat-environment .fa {
     color: #6c7a89;
   }
-  /* line 235, sass/responsive/_mixins.scss */
+  /* line 229, sass/responsive/_mixins.scss */
   .page-navi .page-navi-in .page-cat-scenes .fa {
     color: #6494bc;
   }
-  /* line 236, sass/responsive/_mixins.scss */
+  /* line 230, sass/responsive/_mixins.scss */
   .page-navi .page-navi-in .page-cat-notifications .fa {
     color: #80ad80;
   }
-  /* line 237, sass/responsive/_mixins.scss */
+  /* line 231, sass/responsive/_mixins.scss */
   .page-navi .page-navi-in .page-cat-tagging .fa {
     color: #31b0d5;
   }
-  /* line 239, sass/responsive/_mixins.scss */
+  /* line 233, sass/responsive/_mixins.scss */
   .page-navi .page-navi-in .page-navi-close {
     border: 0;
     padding: 5px 30px 5px 5px;
   }
 
-  /* line 245, sass/responsive/_mixins.scss */
+  /* line 239, sass/responsive/_mixins.scss */
   .page-menu {
     font-size: 22.4px;
   }
-  /* line 247, sass/responsive/_mixins.scss */
+  /* line 241, sass/responsive/_mixins.scss */
   .page-menu .fa {
     font-size: 22.4px;
   }
-  /* line 251, sass/responsive/_mixins.scss */
+  /* line 245, sass/responsive/_mixins.scss */
   .page-menu ul {
     list-style: none;
     text-align: left;
     margin: 0;
     padding: 0;
   }
-  /* line 259, sass/responsive/_mixins.scss */
+  /* line 253, sass/responsive/_mixins.scss */
   .page-menu ul li {
     width: 100%;
     float: none;
@@ -4669,25 +4606,25 @@ padding-right: 5px;
     max-width: 36px;
   }
 
-  /* line 284, sass/responsive/_mixins.scss */
+  /* line 278, sass/responsive/_mixins.scss */
   .table-report tbody tr.bcg-active.true {
     background-color: #fff;
   }
-  /* line 288, sass/responsive/_mixins.scss */
+  /* line 282, sass/responsive/_mixins.scss */
   .table-report tbody tr.bcg-active.false {
     background-color: #f2e8e8 !important;
   }
 
-  /* line 299, sass/responsive/_mixins.scss */
+  /* line 293, sass/responsive/_mixins.scss */
   .btn, .btn-device-admin {
     font-size: 24px;
   }
-  /* line 301, sass/responsive/_mixins.scss */
+  /* line 295, sass/responsive/_mixins.scss */
   .btn .fa, .btn-device-admin .fa {
     font-size: 28.8px;
   }
 
-  /* line 305, sass/responsive/_mixins.scss */
+  /* line 299, sass/responsive/_mixins.scss */
   .btn-name {
     display: none;
   }
@@ -4703,13 +4640,13 @@ padding-right: 5px;
   /*    .submit-entry .btn-submit{
           padding: 6px 12px;
       }*/
-  /* line 325, sass/responsive/_mixins.scss */
+  /* line 319, sass/responsive/_mixins.scss */
   .form-control {
     font-size: 22.4px;
     padding: 22.4px 19.2px !important;
   }
 
-  /* line 329, sass/responsive/_mixins.scss */
+  /* line 323, sass/responsive/_mixins.scss */
   input[type=checkbox] {
     -ms-transform: scale(1.6);
     /* IE */
@@ -4723,7 +4660,7 @@ padding-right: 5px;
     margin: 0 10px 0;
   }
 
-  /* line 338, sass/responsive/_mixins.scss */
+  /* line 332, sass/responsive/_mixins.scss */
   input[type=radio] {
     transform: scale(1.6, 1.6);
     -moz-transform: scale(1.6, 1.6);
@@ -4732,36 +4669,36 @@ padding-right: 5px;
     -o-transform: scale(1.6, 1.6);
   }
 
-  /* line 346, sass/responsive/_mixins.scss */
+  /* line 340, sass/responsive/_mixins.scss */
   .form-control-sm, .form-control-md {
     width: 100% !important;
     display: block !important;
   }
 
-  /* line 355, sass/responsive/_mixins.scss */
+  /* line 349, sass/responsive/_mixins.scss */
   .nav-tabs > li > a {
     font-size: 25.6px;
   }
-  /* line 357, sass/responsive/_mixins.scss */
+  /* line 351, sass/responsive/_mixins.scss */
   .nav-tabs > li > a .fa {
     font-size: 30.72px;
   }
 
-  /* line 361, sass/responsive/_mixins.scss */
+  /* line 355, sass/responsive/_mixins.scss */
   .tab-name {
     display: none;
   }
 
-  /* line 364, sass/responsive/_mixins.scss */
+  /* line 358, sass/responsive/_mixins.scss */
   .nav-tabs-3 {
     text-align: center;
   }
 
-  /* line 372, sass/responsive/_mixins.scss */
+  /* line 366, sass/responsive/_mixins.scss */
   .dropdown-menu {
     font-size: 22.4px;
   }
-  /* line 374, sass/responsive/_mixins.scss */
+  /* line 368, sass/responsive/_mixins.scss */
   .dropdown-menu .fa {
     font-size: 30.72px;
   }

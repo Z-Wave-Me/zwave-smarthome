@@ -112,10 +112,12 @@
 -------------------------------------------------- */
 #sub_navigation{
     position: relative;
-    .container{
+        .container_{
+        width: 33%;
         background-color: #fff;
          background-color: lighten($app-body-bcg-color, 2%);
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+        margin:0;
     }
 
    
@@ -124,20 +126,34 @@
     ul{
         padding: 0;
         list-style: none;
-        margin: 0;
+        margin: 0 0 0 66%;
+        background-color: #fff;
+         background-color: lighten($app-body-bcg-color, 2%);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+        //opacity: 0.9;
+        //margin:0;
+        //float: right;
         li{
-            display: inline-block;
-            width: 33%;
+            //display: inline-block;
+            //width: 33%;
             padding: 10px 0;
-           border: solid 4px lighten($app-body-bcg-color, 2%);
+            border-bottom: solid 1px $app-border-color;
+           //border: solid 4px lighten($app-body-bcg-color, 2%);
             a{
-                text-align: left;
+                display: block;
+                    position:relative;
                     padding: 0 10px;
                     vertical-align: middle;
-                    display: block;
+                   
                      color: $header-link-color;
                     //color: #fff;
             }
+            
+            .subnavi-arrow{
+                    position: absolute;
+                    right: 1%;
+                    display: inline-block;
+                }
 
         }
         .active{
@@ -151,14 +167,23 @@
         }
 
     }
-    .subnavi-apps {background-color: lighten(#dd976e, 30%);.fa{color: #dd976e;}} 
+/*    .subnavi-apps {background-color: lighten(#dd976e, 30%);.fa{color: #dd976e;}} 
         .subnavi-devices {background-color: lighten(#6c7a89,30%);.fa{color: #6c7a89;}}
         .subnavi-config-rooms {background-color: lighten(#6494bc,30%);.fa{color: #6494bc;}} 
         .subnavi-myaccess {background-color: lighten(#80ad80,30%);.fa{color: #80ad80;}} 
         .subnavi-admin {background-color: lighten(#31b0d5,30%);.fa{color: #31b0d5;}}
         .subnavi-report {background-color: lighten(#f0aD4e,30%);.fa{color: #f0aD4e;}}
         .subnavi-info {background-color: lighten(#d9534f,30%);.fa{color: #d9534f;}} 
-        .subnavi-logout {background-color: lighten(#6494bc,30%);.fa{color: #6494bc;}}
+        .subnavi-logout {background-color: lighten(#6494bc,30%);.fa{color: #6494bc;}}*/
+/*        .subnavi-apps {.subnavi-arrow{color: #dd976e;}} 
+        .subnavi-devices {.subnavi-arrow{color: #6c7a89;}}
+        .subnavi-config-rooms {.subnavi-arrow{color: #6494bc;}} 
+        .subnavi-myaccess {.subnavi-arrow{color: #80ad80;}} 
+        .subnavi-admin {.subnavi-arrow{color: #31b0d5;}}
+        .subnavi-report {.subnavi-arrow{color: #f0aD4e;}}
+        .subnavi-info {.subnavi-arrow{color: #d9534f;}} 
+        .subnavi-logout {.subnavi-arrow{color: #6494bc;}}*/
+        
 
 }
 

@@ -129,8 +129,8 @@
                  display: block;
                      width: 100%;
                 margin: 0; 
-               background-color: lighten($app-body-bcg-color, 2%) !important;
-                    border: 0;
+/*               background-color: lighten($app-body-bcg-color, 2%) !important;
+                    border: 0;*/
                 border-bottom: solid 1px $app-border-color;
                 a{
                     display: block;
@@ -149,22 +149,16 @@
                         background-color: $header-color-secondary;
                     }*/
                 }
-
-                .m-only{
-                    position: absolute;
-                    right: 1%;
-                    display: inline-block;
-                }
             }
         }
-        .subnavi-apps .fa{color: #dd976e;}
+/*        .subnavi-apps .fa{color: #dd976e;}
         .subnavi-devices .fa{color: #6c7a89;}
         .subnavi-config-rooms .fa{color: #6494bc;} 
         .subnavi-myaccess .fa{color: #80ad80;} 
         .subnavi-admin .fa{color: #31b0d5;}
         .subnavi-report .fa{color: #f0aD4e;}
         .subnavi-info .fa{color: #d9534f;} 
-        .subnavi-logout .fa{color: #6494bc;}
+        .subnavi-logout .fa{color: #6494bc;}*/
     }
     #sub_navigation_close{
         border: 0;
