@@ -360,7 +360,7 @@
     "sensorMultilevel": "Analog Sensor",
     "sensorMultiline": "Informer",
     "switchMultilevel": "Dimmer/Motor Control",
-    "sensorBinary": "Alarm Device",
+    "sensorBinary": "Binary Sensor",
     "thermostat": "Thermostat",
     "camera": "Camera",
     "toggleButton": "Button toggle",
