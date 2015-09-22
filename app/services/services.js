@@ -507,6 +507,15 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     function updateDeviceBtn(widgetId, v) {
         var status = false;
         switch (v.deviceType) {
+            case 'sensorMultiline':
+                if(v.metrics.multilineType == 'fireProtection'){
+                    if (v.metrics.state== 'armed') {
+                        status = 'on';
+                    } else {
+                        status = 'off';
+                    }
+                }
+                break;
             case 'doorlock':
                 if (v.metrics.level == 'open') {
                     status = 'on';

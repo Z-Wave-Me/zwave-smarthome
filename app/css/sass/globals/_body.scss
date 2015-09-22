@@ -128,6 +128,14 @@ a:hover {
     @include appGradientGreen();
 }
 
+.app-gradient-red{
+    @include appGradientRed();
+}
+
+.app-gradient-yellow{
+    @include appGradientYellow();
+}
+
 .app-shadow{
     @include appBoxShadow();
 }
