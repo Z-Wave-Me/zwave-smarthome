@@ -508,7 +508,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
         var status = false;
         switch (v.deviceType) {
             case 'sensorMultiline':
-                if(v.metrics.multilineType == 'fireProtection'){
+                if(v.metrics.multilineType == 'protection'){
                     if (v.metrics.state== 'armed') {
                         status = 'on';
                     } else {

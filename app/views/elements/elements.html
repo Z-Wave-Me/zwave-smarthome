@@ -39,7 +39,7 @@
                         <h3 ng-if="v.deviceType === 'sensorMultiline' && v.metrics.multilineType == 'multilineSensor'" class="entry-title" title="{{v.title}}" ng-click="loadMultilineSensor('#modal_multiline', v.id,v,'sensors')">{{v.title}}</h3>
 
                         <!-- title of widget type sensorMultiline FireProtection-->
-                        <h3 ng-if="v.deviceType === 'sensorMultiline' && v.metrics.multilineType == 'fireProtection'" class="entry-title" title="{{v.title}}" ng-click="loadMultilineSensor('#modal_multiline', v.id,v,'smokeSensors')">{{v.title}}</h3>
+                        <h3 ng-if="v.deviceType === 'sensorMultiline' && v.metrics.multilineType == 'protection'" class="entry-title" title="{{v.title}}" ng-click="loadMultilineSensor('#modal_multiline', v.id,v,'sensors')">{{v.title}}</h3>
 
                         <!-- title of widget type sensorMultiline OpenWeather-->
                         <h3 ng-if="v.deviceType === 'sensorMultiline' && v.metrics.multilineType == 'openWeather'" class="entry-title" title="{{v.title}}" ng-click="goHidden[v.id] = !goHidden[v.id]">{{v.title}}</h3>
@@ -230,12 +230,12 @@
                                     <span class="widget-level" ng-bind="v.level"></span> <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span> <i class="fa fa-caret-down"></i>
                                 </div>
 
-                                <!-- FireProtection sensorMultiline -->
-                                <div class="widget-control control-left widget-click-popup" ng-click="loadMultilineSensor('#modal_multiline', v.id,v,'smokeSensors')" ng-if="v.metrics.multilineType == 'fireProtection'">
+                                <!-- Protection sensorMultiline -->
+                                <div class="widget-control control-left widget-click-popup" ng-click="loadMultilineSensor('#modal_multiline', v.id,v,'sensors')" ng-if="v.metrics.multilineType == 'protection'">
                                     <span class="widget-level" ng-bind="v.level"></span> </span> <i class="fa fa-caret-down"></i>
                                     <!-- <i ng-if="v.metrics.state == 'armed' && v.metrics.level == 'OK'" class="fa fa-eye"></i> -->
                                 </div>
-                                <div class="widget-control control-right" ng-if="v.metrics.multilineType === 'fireProtection'">
+                                <div class="widget-control control-right" ng-if="v.metrics.multilineType === 'protection'">
                                     <div class="btn-group">
                                         <button 
                                             class="btn btn-sm widget-btn-off" 
@@ -258,7 +258,7 @@
                                     <span class="widget-level" ng-bind="v.level"></span> <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span> <i class="fa fa-caret-down"></i>
                                 </div>
 
-                                <div class="widget-control control-right" ng-if="v.metrics.multilineType !== 'fireProtection'">
+                                <div class="widget-control control-right" ng-if="v.metrics.multilineType !== 'protection'">
                                     <div class="btn-group">
                                         <button class="btn btn-default btn-sm" ng-click="runCmd(v.id + '/command/update')"> <i class="fa fa-clock-o"></i> <span class="widget-update-time">{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span></button>
                                     </div>
@@ -605,7 +605,7 @@
                     <div class="multiline-entry" ng-if="multilineSensors.data">
                         <table class="table table-report table-condensed">
                              <tbody>
-                             <!-- <tr class="text-right" ng-if="multiLineDev.data.metrics.multilineType == 'fireProtection'">
+                             <!-- <tr class="text-right" ng-if="multiLineDev.data.metrics.multilineType == 'protection'">
                                 <td>
                                     <button class="btn btn-default btn-sm" ng-click="runCmd(multiLineDev.data.id + '/command/update')"> <i class="fa fa-clock-o"></i> <span class="widget-update-time">{{multiLineDev.data.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span></button>
                                 </td>
