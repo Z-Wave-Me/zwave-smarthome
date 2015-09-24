@@ -2087,6 +2087,13 @@ img.widget-promo-image {
   background-color: #f9f9f9;
 }
 
+/* ToggleButton widget
+--------------------------------------------------------*/
+/* line 283, sass/modules/_elements.scss */
+.toggleButton .widget-body div.widget-control.control-right.ng-scope > div > button.btn.btn-default.btn-sm {
+  cursor: default;
+}
+
 /* Events
 -------------------------------------------------- */
 /* line 3, sass/modules/_events.scss */

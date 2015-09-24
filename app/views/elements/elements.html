@@ -190,6 +190,7 @@
                                         id="btn_off_{{ v.id}}"
                                         data-ng-click="runCmd(v.id + '/command/on')"
                                         ><i class="fa fa-power-off fa-lg"></i></button>
+                                        <button class="btn btn-default btn-sm"> <i class="fa fa-clock-o"></i> <span class="widget-update-time">{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span></button>
                                     <!--<a href=""><i class="fa fa-toggle-on fa-2x text-primary"></i></a> -->
                                 </div>
                             </div><!-- /.widget-control .right -->
