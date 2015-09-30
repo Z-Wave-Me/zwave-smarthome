@@ -184,14 +184,13 @@
                             
                             <!-- ////////// toggleButton ////////// -->
                             <div class="widget-control control-right" ng-switch-when="toggleButton">
-                                <div class="btn-group">
-                                    <button 
-                                        class="btn btn-primary btn-sm" 
-                                        id="btn_off_{{ v.id}}"
-                                        data-ng-click="runCmd(v.id + '/command/on')"
-                                        ><i class="fa fa-power-off fa-lg"></i></button>
-                                        <button class="btn btn-default btn-sm"> <i class="fa fa-clock-o"></i> <span class="widget-update-time">{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span></button>
-                                    <!--<a href=""><i class="fa fa-toggle-on fa-2x text-primary"></i></a> -->
+                                <div class="widget-control control-left">
+                                    <i class="fa fa-clock-o"></i> <span class="widget-update-time">{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span>                                    
+                                </div>
+                                 <div class="widget-control control-right">
+                                      <div class="btn-group">
+                                         <button class="btn btn-sm btn-primary widget-btn-on" ng-click="runCmd(v.id + '/command/on')"  ng-bind="_t('lb_on')"/>
+                                    </div>
                                 </div>
                             </div><!-- /.widget-control .right -->
                             <!-- ////////// /toggleButton ////////// -->
@@ -324,7 +323,7 @@
                             <!-- ////////// /switchControl ////////// -->
                              
                             <!-- ////////// buttonControl ////////// -->
-                            <div ng-switch-when="buttonControl">
+                            <!-- <div ng-switch-when="buttonControl">
                                 <div class="widget-control control-left">
                                     <i class="fa fa-clock-o"></i> <span class="widget-update-time">{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span>
                                     
@@ -334,7 +333,7 @@
                                         <button class="btn btn-sm btn-primary widget-btn-on" ng-click="runCmd(v.id + '/command/on')"  ng-bind="_t('lb_on')"></button>
                                     </div>
                                 </div><!-- /.widget-control .right -->
-                            </div>
+                            <!-- </div> -->
                             <!-- ////////// / buttonControl ////////// -->
 
                             <!-- ////////// Default ////////// -->
