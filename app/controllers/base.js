@@ -218,8 +218,8 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
      /**
      * Alertify defaults
      */
-    alertify.defaults.glossary.title = 'SmartHome';
-    alertify.defaults.glossary.ok = $scope._t('OK');
-    alertify.defaults.glossary.cancel = $scope._t('CANCEL');
+    alertify.defaults.glossary.title = cfg.app_name;
+    alertify.defaults.glossary.ok = 'OK';
+    alertify.defaults.glossary.cancel = 'CANCEL';
 
 });

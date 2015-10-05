@@ -223,13 +223,14 @@
         </div>
     </div>
     
-     <!-- ///////////////////////////// Store management ///////////////////////////// -->
+     <!-- ///////////////////////////// App Store access ///////////////////////////// -->
     <div class="admin-entry" ng-controller="ManagementAppStoreController"> 
-        <h2 class="admin-entry-title" ng-click="expandElement('appatore')">
-            <i class="fa" ng-class="expand.appatore ? 'fa-minus':'fa-plus'"></i> <span ng-bind="_t('app_store_management')"></span>
+        <h2 class="admin-entry-title" ng-click="expandElement('appstore')">
+            <i class="fa" ng-class="expand.appatore ? 'fa-minus':'fa-plus'"></i> <span ng-bind="_t('app_store_access')"></span>
         </h2>
-        <div class="admin-entry-ctrl" ng-if="expand.appatore">
+        <div class="admin-entry-ctrl" ng-if="expand.appstore">
            <form name="form_appatore" id="form_appatore" class="form form-inline form-page" ng-submit="appStoreAddToken()" novalidate>
+            <fieldset>{{_t('app_store_access_info')}}</fieldset>
             <fieldset>
                 <input name="appstore_token" id="appstore_token" class="form-control" value="" ng-model="appStore.input.token" />
                  <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> <span ng-bind="_t('add_token')"></span></button>

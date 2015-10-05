@@ -1,7 +1,7 @@
 var config_data = {
     'cfg': {
         //Application name
-        'app_name': 'SHUI',
+        'app_name': 'SmartHome UI',
         // Application version
         'app_version': '1.0.2',
         // Server base url
