@@ -127,9 +127,9 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
                     return item;
                 }
             });
-            if(!filter){
+            /*if(!filter){
                 $scope.onlineModules = [];
-            }
+            }*/
             $scope.loading = false;
             dataService.updateTimeTick();
         }, function(error) {
@@ -185,9 +185,6 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
                 $scope.showInFooter.categories = false;
                 $scope.loadInstances();
 
-                break;
-            case 'hidden':
-                $scope.showInFooter.categories = false;
                 break;
             case 'online':
                 var filter = false;

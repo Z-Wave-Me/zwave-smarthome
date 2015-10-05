@@ -1,5 +1,5 @@
 <!-- Online app view -->
- <h3 ng-if="currentCategory.id"> <a class="btn btn-default" href="#apps"><i class="fa fa-arrow-left"></i></a> Category name</h3> 
+ <!-- <h3 ng-if="currentCategory.id"> <a class="btn btn-default" href="#apps"><i class="fa fa-arrow-left"></i></a> Category name</h3> 
 <div class="page-menu clearfix" ng-if="!currentCategory.id">
 <ul>
     <li class="page-menu-{{v.id}}" ng-repeat="v in categories" ng-if="modulesCats.indexOf(v.id) > -1" ng-class="currentCategory.id == v.id ? 'active': ''">
@@ -28,7 +28,7 @@
             </span> {{v.name}}</a>
     </li>
 </ul>
- </div>
+ </div> -->
 <div class="row row-page" id="_page_app_local">
     <div class="col-lg-4 col-md-6 col-sm-6 app-entry" 
          ng-class="modulesIds.indexOf(v.modulename) !== -1 ? 'app-entry-green': ''" 
