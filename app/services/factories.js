@@ -57,6 +57,7 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
         getLicense: getLicense,
         zmeCapabilities: zmeCapabilities,
         postReport: postReport,
+        getOnlineModules: getOnlineModules,
         installOnlineModule: installOnlineModule,
         restoreFromBck: restoreFromBck,
         getHelp:getHelp
@@ -315,7 +316,6 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
     /**
      * Get remote data
      */
-    // Get
     function getRemoteData(url, noCache) {
         // Cached data
         var cacheName = 'cache_' + url;
@@ -680,6 +680,36 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
             return $q.reject(response);
         });
         return;
+    }
+    
+    /**
+     * Get online modules
+     */
+    function getOnlineModules(data,noCache) {
+        // Cached data
+        var cacheName = 'cache_' + cfg.online_module_url;
+        var cached = myCache.get(cacheName);
+
+        if (!noCache && cached) {
+            var deferred = $q.defer();
+            deferred.resolve(cached);
+            return deferred.promise;
+        }
+        // NOT Cached data
+        return $http({
+            method: 'post',
+            url: cfg.online_module_url,
+            data: $.param(data),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Accept-Language': lang
+            }
+        }).then(function(response) {
+            return response;
+        }, function(error) {// something went wrong
+
+            return $q.reject(error);
+        });
     }
     
     /**

@@ -106,7 +106,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
      */
     $scope.loadOnlineModules = function(filter) {
         
-        dataFactory.getRemoteData($scope.cfg.online_module_url).then(function(response) {
+        dataFactory.getOnlineModules({token:['f2ghx58vbg','6fghtz1c2s8f']}).then(function(response) {
 //            $scope.onlineModules = response.data;
 //            angular.forEach(response.data, function(v, k) {
 //                if (v.modulename && v.modulename != '') {
