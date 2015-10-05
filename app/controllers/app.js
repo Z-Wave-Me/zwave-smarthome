@@ -429,7 +429,7 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
         if (isNaN(param)) {
             filter = {modulename: id};
         }
-        dataFactory.getRemoteData($scope.cfg.online_module_url).then(function(response) {
+        dataFactory.getOnlineModules({token:['f2ghx58vbg','6fghtz1c2s8f']},true).then(function(response) {
             $scope.module = _.findWhere(response.data, filter);
             if (!$scope.module) {
                 $location.path('/error/404');
