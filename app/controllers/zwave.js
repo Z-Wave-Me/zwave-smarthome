@@ -243,7 +243,11 @@ myAppController.controller('ZwaveIncludeController', function($scope, $routePara
         dataFactory.runZwaveCmd(cmd).then(function() {
         }, function(error) {
         });
-        $scope.setBlacklist();
+//        $timeout(function() {
+//             $scope.setBlacklist();
+//
+//                        }, 3000);
+       
 
     };
     
