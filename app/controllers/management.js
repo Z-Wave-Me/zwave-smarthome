@@ -6,7 +6,7 @@
 /**
  * Management controller
  */
-myAppController.controller('ManagementController', function($scope, $window, $location, $timeout, $interval, $sce, $cookies,dataFactory, dataService, myCache) {
+myAppController.controller('ManagementController', function($scope, $window, $location, $timeout, $interval, $sce, $cookies, dataFactory, dataService, myCache) {
     //Set elements to expand/collapse
     angular.copy({
         user: false,
@@ -14,8 +14,8 @@ myAppController.controller('ManagementController', function($scope, $window, $lo
         licence: false,
         firmware: false,
         backup: false
-    },$scope.expand);
-    
+    }, $scope.expand);
+
     $scope.profiles = {};
     $scope.remoteAccess = false;
     $scope.controllerInfo = {
@@ -43,11 +43,11 @@ myAppController.controller('ManagementController', function($scope, $window, $lo
     // Cancel interval on page destroy
     $scope.$on('$destroy', function() {
         $interval.cancel($scope.zwaveDataInterval);
-        angular.copy({},$scope.expand);
+        angular.copy({}, $scope.expand);
     });
 
     $scope.firmwareUpdateUrl = $sce.trustAsResourceUrl('http://' + $scope.hostName + ':8084/cgi-bin/main.cgi');
-    
+
 
     /**
      * Load razberry latest version
@@ -76,7 +76,7 @@ myAppController.controller('ManagementController', function($scope, $window, $lo
     };
 
     $scope.loadZwaveApiData();
-    
+
     /************************************** User management **************************************/
 
     /**
@@ -114,7 +114,7 @@ myAppController.controller('ManagementController', function($scope, $window, $lo
             });
         }
     };
-    
+
     /************************************** Remote access **************************************/
 
     /**
@@ -160,7 +160,7 @@ myAppController.controller('ManagementController', function($scope, $window, $lo
         });
 
     };
-    
+
     /************************************** Licence **************************************/
 
     /**
@@ -214,17 +214,17 @@ myAppController.controller('ManagementController', function($scope, $window, $lo
         });
     }
     ;
-    
+
     /************************************** Backup, Restore, Factory default **************************************/
     // Backup, restore, Factory default
     $scope.backupRestore = {
         activeTab: (angular.isDefined($cookies.tab_admin_backup) ? $cookies.tab_admin_backup : 'backup'),
         restore: {
-           alert: {message: false, status: 'is-hidden', icon: false},
+            alert: {message: false, status: 'is-hidden', icon: false},
             process: false
         },
         factory: {
-           alert: {message: false, status: 'is-hidden', icon: false},
+            alert: {message: false, status: 'is-hidden', icon: false},
             process: false
         }
 
@@ -234,7 +234,7 @@ myAppController.controller('ManagementController', function($scope, $window, $lo
         process: false
 
     };
-    
+
     /**
      * Set tab
      */
@@ -248,7 +248,7 @@ myAppController.controller('ManagementController', function($scope, $window, $lo
      */
     $scope.uploadBackupFile = function(input) {
         var cnt = 0;
-         $scope.backupRestore.restore.process = true;
+        $scope.backupRestore.restore.process = true;
         var refresh = function() {
             $scope.backupRestore.restore.alert = {message: $scope._t('restore_wait'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
             cnt += 1;
@@ -262,20 +262,20 @@ myAppController.controller('ManagementController', function($scope, $window, $lo
         var interval = $interval(refresh, 1000);
         return;
         /*$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('restore_wait')};
-        var fd = new FormData();
-        fd.append('file_upload', $scope.myFile);
-        dataFactory.restoreFromBck(fd).then(function(response) {
-            $timeout(function() {
-                $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('restore_done_reload_ui')};
-                //$interval.cancel($scope.zwaveDataInterval);
-                $window.location.reload();
-            }, 20000);
-        }, function(error) {
-            $scope.loading = false;
-            alert($scope._t('restore_backup_failed'));
-        });*/
+         var fd = new FormData();
+         fd.append('file_upload', $scope.myFile);
+         dataFactory.restoreFromBck(fd).then(function(response) {
+         $timeout(function() {
+         $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('restore_done_reload_ui')};
+         //$interval.cancel($scope.zwaveDataInterval);
+         $window.location.reload();
+         }, 20000);
+         }, function(error) {
+         $scope.loading = false;
+         alert($scope._t('restore_backup_failed'));
+         });*/
     };
-    
+
     /**
      * Cancel restore
      */
@@ -286,13 +286,13 @@ myAppController.controller('ManagementController', function($scope, $window, $lo
         $scope.goRestoreUpload = false;
 
     };
-    
+
     /**
      * Back to Factory default
      */
     $scope.backFactoryDefault = function(input) {
         var cnt = 0;
-         $scope.backupRestore.factory.process = true;
+        $scope.backupRestore.factory.process = true;
         var refresh = function() {
             $scope.backupRestore.factory.alert = {message: $scope._t('returning_factory_default'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
             cnt += 1;
@@ -306,7 +306,7 @@ myAppController.controller('ManagementController', function($scope, $window, $lo
         var interval = $interval(refresh, 1000);
     };
 
-    
+
 
     /**
      * DEPRECATED
@@ -498,6 +498,70 @@ myAppController.controller('ManagementUserController', function($scope, $routePa
             $scope.loading = false;
         });
 
+    };
+
+    /// --- Private functions --- ///
+
+
+});
+/**
+ * App Store controller
+ */
+myAppController.controller('ManagementAppStoreController', function($scope, $routeParams, $filter, $location, dataFactory, dataService, myCache) {
+    $scope.appStore = {
+        input: {
+            token: ''
+        },
+        tokens: {}
+
+    };
+
+    /**
+     * Load data
+     */
+    $scope.appStoreLoadData = function() {
+        dataService.showConnectionSpinner();
+        var tokens = [
+            {id: 1, name: 'fab2cd5cv'},
+            {id: 2, name: '2df454ddf'},
+            {id: 3, name: 'fdf125dfd'}
+        ];
+        angular.extend($scope.appStore.tokens, tokens);
+
+//        dataFactory.getApi('profiles', '/' + id, true).then(function(response) {
+//            $scope.input = response.data.data;
+//            dataService.updateTimeTick();
+//        }, function(error) {
+//            $scope.input = false;
+//            $location.path('/error/' + error.status);
+//        });
+    };
+    $scope.appStoreLoadData();
+    /**
+     * Create/Update an item
+     */
+    $scope.appStoreAddToken = function() {
+        console.log('Saving new token: ' + $scope.appStore.input.token);
+        $scope.appStore.input.token = '';
+         $scope.appStoreLoadData();
+
+    };
+
+    /**
+     * Remove a token from the list
+     */
+    $scope.appStoreRemoveToken = function(id,message) {
+        //alertify.alert("Message");
+        // confirm dialog
+        alertify.confirm(message, function() {
+             console.log('Removing token id: ' + id);
+              $scope.appStoreLoadData()
+        }, function() {
+            // user clicked "cancel"
+            return;
+        });
+
+        return;
     };
 
     /// --- Private functions --- ///
