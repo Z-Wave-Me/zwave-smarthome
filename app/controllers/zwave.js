@@ -458,7 +458,7 @@ myAppController.controller('ZwaveManageController', function($scope, $cookies, $
             if (!ZWaveAPIData.devices) {
                 return;
             }
-
+            
             angular.forEach(ZWaveAPIData.devices, function(v, k) {
                 if (k == 1) {
                     return;
@@ -474,14 +474,15 @@ myAppController.controller('ZwaveManageController', function($scope, $cookies, $
                 };
 
             });
-            var findZwaveStr = "ZWayVDev_zway_";
+
             angular.forEach(devices, function(v, k) {
                 var cmd;
                 var nodeId;
                 var iId;
                 var ccId;
-                if (v.id.indexOf(findZwaveStr) > -1) {
-                    cmd = v.id.split(findZwaveStr)[1].split('-');
+                var findZwaveStr = v.id.split('_');
+                if (findZwaveStr[0] === 'ZWayVDev' && findZwaveStr[1] === 'zway') {
+                    cmd = findZwaveStr[findZwaveStr.length - 1].split('-');
                     nodeId = cmd[0];
                     iId = cmd[1];
                     ccId = cmd[2];
@@ -503,7 +504,7 @@ myAppController.controller('ZwaveManageController', function($scope, $cookies, $
                         obj['messages'] = [];
                         if (v.deviceType !== 'battery') {
                             $scope.devices.zwave.push(obj);
-                            $scope.zWaveDevices[nodeId]['elements'].push(obj);
+                            $scope.zWaveDevices[nodeId]['elements'].push(obj);                                                                                 
                             $scope.zWaveDevices[nodeId]['icon'] = obj.metrics.icon;
                         }
 
@@ -712,12 +713,13 @@ myAppController.controller('ZwaveManageIdController', function($scope, $window, 
             if ($scope.devices.length > 0) {
                 $scope.devices = angular.copy([]);
             }
-            var findZwaveStr = "ZWayVDev_zway_";
+
             angular.forEach(devices, function(v, k) {
-                if (v.id.indexOf(findZwaveStr) === -1 || v.deviceType === 'battery') {
+                var findZwaveStr = v.id.split('_');
+                if ((findZwaveStr[0] !== 'ZWayVDev' && findZwaveStr[1] !== 'zway') || v.deviceType === 'battery') {
                     return;
                 }
-                var cmd = v.id.split(findZwaveStr)[1].split('-');
+                var cmd = findZwaveStr[findZwaveStr.length - 1].split('-');
                 var zwaveId = cmd[0];
                 var iId = cmd[1];
                 var ccId = cmd[2];
