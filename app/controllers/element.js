@@ -310,6 +310,47 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         });
 
     };
+    
+    /**
+     * Multiline climateControl
+     */
+    $scope.climateElementModes = ['off', 'esave', 'per_room'];
+    /**
+     * Show climate modal window
+     */
+    $scope.loadClimateControl = function(target, id, input) {
+        $(target).modal();
+        $scope.input = input;
+        $scope.climateControl = {data: false, icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        $scope.climateControlModes = ['off', 'esave', 'comfort', 'time_driven'];
+        $scope.climateControlMode = {};
+        $scope.changeClimateControlProcess = {};
+        //dataFactory.getApiLocal('_test/climate_control.json').then(function(response) {
+         dataFactory.getApi('devices', '/' + id, true).then(function(response) {
+            if (response.data.data.metrics.rooms) {
+                $scope.climateControl = {data: response.data.data};
+            } else {
+                $scope.climateControl = {data: false, icon: 'fa-info-circle text-warning', message: $scope._t('no_data')};
+            }
+        }, function(error) {
+            $scope.climateControl = {data: false, icon: 'fa-exclamation-triangle text-danger', message: $scope._t('error_load_data')};
+        });
+
+    };
+
+    /**
+     * Change climate control mode
+     */
+    $scope.changeClimateControlMode = function(id) {
+        //console.log($scope.climateControl.data.metrics.rooms);
+        $scope.changeClimateControlProcess[id] = true;
+        var room = _.findWhere($scope.climateControl.data.metrics.rooms, {id: id})
+        console.log(room.title + ' changing mode to: ', $scope.climateControlMode[id])
+        $timeout(function() {
+            $scope.changeClimateControlProcess[id] = false;
+        }, 3000);
+
+    };
     /**
      * Run command
      */
