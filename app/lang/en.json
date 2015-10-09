@@ -1,5 +1,8 @@
 {
     "newtrans": "---",
+    "lb_disarm": "Disarmed",
+    "lb_arm": "Armed",
+    "manual_config_prepare": "Preparing for manual configuration. Please wait...",
     "app_store_access":"App Store Access",
     "app_store_access_info":"The App Store contains apps from different sources and on different maturity levels. On default you will only see mature and approved apps for download. Adding different Tokens may open you the access to apps not shared to the public yet and apps that are in alpha or beta state. The developers will usually give you can access token you can add to the list of tokens below",
     "add_token":"Add token",

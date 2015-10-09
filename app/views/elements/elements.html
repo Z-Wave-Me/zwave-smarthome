@@ -8,13 +8,13 @@
             <div class="widget-block {{v.deviceType}}" ng-switch="v.deviceType" ng-init="levelVal[v.id] = v.level">
 
                 <!-- {{v.id}}: {{levelVal[v.id]}} icon {{v.icon}} -->
-                <div class="widget-block-in clearfix app-border app-gradient app-shadow">
+                <div class="widget-block-in clearfix app-border app-gradient app-shadow" ng-class="v.level === 'ALERT'? 'app-gradient-red' :  (v.level === 'OK!'? 'app-gradient-yellow' : (v.level === 'OK'? 'app-gradient-green' : ''))">
                     <!-- Widget icon -->
                     <!-- icon of widget type text -->
                     <img id="widget_img_{{v.id}}" ng-if="v.deviceType === 'text'" ng-show="v.metrics.icon" class="widget-image" ng-src="{{v.metrics.icon}}" alt="{{v.title}}" ng-click="showModal('#modal_promo', {'type': v.deviceType, 'title': v.title, 'text': v.metrics.text, 'url': v.metrics.icon})" />
 
                     <!-- icon of widget type sensorMultiline -->
-                    <img id="widget_img_{{v.id}}" ng-if="v.deviceType === 'sensorMultiline'" class="widget-image" ng-src="{{v.icon|getElementIcon:v:levelVal[v.id]}}" alt="{{v.title}}" ng-click="loadMultilineSensor('#modal_multiline', v.id,v)"/>
+                    <img id="widget_img_{{v.id}}" ng-if="v.deviceType === 'sensorMultiline'" class="widget-image" ng-src="{{v.icon|getElementIcon:v:levelVal[v.id]}}" alt="{{v.title}}" ng-click="loadMultilineSensor('#modal_multiline', v.id,v,'sensors')"/>
 
                     <!-- default icon -->
                     <img id="widget_img_{{v.id}}" class="widget-image" ng-if="cfg.element_update_icon.indexOf(v.deviceType) === -1 && v.deviceType !== 'text' && v.deviceType !== 'sensorMultiline'" ng-src="{{v.icon|getElementIcon:v:levelVal[v.id]}}" alt="img" />
@@ -35,8 +35,14 @@
                         <!-- title of widget type text -->
                         <h3 ng-if="v.deviceType === 'text'" class="entry-title" title="{{v.title}}" ng-click="showModal('#modal_promo', {'type': v.deviceType, 'title': v.title, 'text': v.metrics.text, 'url': v.metrics.icon})">{{v.title|cutText:true:29}}</h3>
                         
-                        <!-- title of widget type sensorMultiline -->
-                        <h3 ng-if="v.deviceType === 'sensorMultiline'" class="entry-title" title="{{v.title}}" ng-click="loadMultilineSensor('#modal_multiline', v.id,v)">{{v.title}}</h3>
+                        <!-- title of widget type sensorMultiline MultilineSensor-->
+                        <h3 ng-if="v.deviceType === 'sensorMultiline' && v.metrics.multilineType == 'multilineSensor'" class="entry-title" title="{{v.title}}" ng-click="loadMultilineSensor('#modal_multiline', v.id,v,'sensors')">{{v.title}}</h3>
+
+                        <!-- title of widget type sensorMultiline FireProtection-->
+                        <h3 ng-if="v.deviceType === 'sensorMultiline' && v.metrics.multilineType == 'protection'" class="entry-title" title="{{v.title}}" ng-click="loadMultilineSensor('#modal_multiline', v.id,v,'sensors')">{{v.title}}</h3>
+
+                        <!-- title of widget type sensorMultiline OpenWeather-->
+                        <h3 ng-if="v.deviceType === 'sensorMultiline' && v.metrics.multilineType == 'openWeather'" class="entry-title" title="{{v.title}}" ng-click="goHidden[v.id] = !goHidden[v.id]">{{v.title}}</h3>
 
                         <!-- default title -->
                         <h3 ng-if="v.deviceType !== 'text' && v.deviceType !== 'sensorMultiline'" class="entry-title" title="{{v.title}}" ng-click="goHidden[v.id] = !goHidden[v.id]">{{v.title}}</h3>
@@ -178,13 +184,13 @@
                             
                             <!-- ////////// toggleButton ////////// -->
                             <div class="widget-control control-right" ng-switch-when="toggleButton">
-                                <div class="btn-group">
-                                    <button 
-                                        class="btn btn-primary btn-sm" 
-                                        id="btn_off_{{ v.id}}"
-                                        data-ng-click="runCmd(v.id + '/command/on')"
-                                        ><i class="fa fa-power-off fa-lg"></i></button>
-                                    <!--<a href=""><i class="fa fa-toggle-on fa-2x text-primary"></i></a> -->
+                                <div class="widget-control control-left">
+                                    <i class="fa fa-clock-o"></i> <span class="widget-update-time">{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span>                                    
+                                </div>
+                                 <div class="widget-control control-right">
+                                      <div class="btn-group">
+                                         <button class="btn btn-sm btn-primary widget-btn-on" ng-click="runCmd(v.id + '/command/on')"  ng-bind="_t('lb_on')"/>
+                                    </div>
                                 </div>
                             </div><!-- /.widget-control .right -->
                             <!-- ////////// /toggleButton ////////// -->
@@ -219,17 +225,40 @@
 
                             <!-- ////////// sensorMultiline ////////// -->
                             <div ng-switch-when="sensorMultiline"> 
-                                <!-- has sensors -->
-                                <div class="widget-control control-left widget-click-popup" ng-click="loadMultilineSensor('#modal_multiline', v.id,v)" ng-if="v.metrics.hasOwnProperty('sensors')">
-                                    <span class="widget-level" ng-bind="v.level"></span> <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span> <i class="fa fa-caret-down"></i>
-                                </div>
-                                
-                                <!-- no sensors -->
-                                 <div class="widget-control control-left widget-click-popup" ng-click="goHidden[v.id] = !goHidden[v.id]" ng-if="!v.metrics.hasOwnProperty('sensors')">
+                                <!-- MultilineSensor sensorMultiline -->
+                                <div class="widget-control control-left widget-click-popup" ng-click="loadMultilineSensor('#modal_multiline', v.id,v,'sensors')" ng-if="v.metrics.multilineType == 'multilineSensor'">
                                     <span class="widget-level" ng-bind="v.level"></span> <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span> <i class="fa fa-caret-down"></i>
                                 </div>
 
-                                <div class="widget-control control-right">
+                                <!-- Protection sensorMultiline -->
+                                <div class="widget-control control-left widget-click-popup" ng-click="loadMultilineSensor('#modal_multiline', v.id,v,'sensors')" ng-if="v.metrics.multilineType == 'protection'">
+                                    <span class="widget-level" ng-bind="v.level"></span> </span> <i class="fa fa-caret-down"></i>
+                                    <!-- <i ng-if="v.metrics.state == 'armed' && v.metrics.level == 'OK'" class="fa fa-eye"></i> -->
+                                </div>
+                                <div class="widget-control control-right" ng-if="v.metrics.multilineType === 'protection'">
+                                    <div class="btn-group">
+                                        <button 
+                                            class="btn btn-sm widget-btn-off" 
+                                            id="btn_off_{{ v.id}}"
+                                            data-ng-click="v.metrics.state =='disarmed'; runCmd(v.id + '/command/disarm', v.id)"
+                                            ng-class="v.metrics.state =='disarmed' ? 'btn-primary': 'btn-default'"
+                                            ng-bind="_t('lb_disarm')"></button>
+                                        <button 
+                                            class="btn btn-sm widget-btn-on" 
+                                            id="btn_on_{{ v.id}}"
+                                            data-ng-click="v.metrics.state =='armed'; runCmd(v.id + '/command/arm', v.id)"
+                                            ng-class="v.metrics.state =='armed' ? 'btn-primary': 'btn-default'"
+                                            ng-bind="_t('lb_arm')"></button>
+                                        <!-- <button class="btn btn-default btn-sm" ng-click="runCmd(v.id + '/command/update')"> <i class="fa fa-clock-o"></i> <span class="widget-update-time">{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span></button> -->
+                                    </div>
+                                </div>
+                                
+                                <!-- OpenWeather sensorMultiline -->
+                                 <div class="widget-control control-left widget-click-popup" ng-click="goHidden[v.id] = !goHidden[v.id]" ng-if="v.metrics.multilineType === 'openWeather'">
+                                    <span class="widget-level" ng-bind="v.level"></span> <span ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span> <i class="fa fa-caret-down"></i>
+                                </div>
+
+                                <div class="widget-control control-right" ng-if="v.metrics.multilineType !== 'protection'">
                                     <div class="btn-group">
                                         <button class="btn btn-default btn-sm" ng-click="runCmd(v.id + '/command/update')"> <i class="fa fa-clock-o"></i> <span class="widget-update-time">{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span></button>
                                     </div>
@@ -294,7 +323,7 @@
                             <!-- ////////// /switchControl ////////// -->
                              
                             <!-- ////////// buttonControl ////////// -->
-                            <div ng-switch-when="buttonControl">
+                            <!-- <div ng-switch-when="buttonControl">
                                 <div class="widget-control control-left">
                                     <i class="fa fa-clock-o"></i> <span class="widget-update-time">{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span>
                                     
@@ -304,7 +333,7 @@
                                         <button class="btn btn-sm btn-primary widget-btn-on" ng-click="runCmd(v.id + '/command/on')"  ng-bind="_t('lb_on')"></button>
                                     </div>
                                 </div><!-- /.widget-control .right -->
-                            </div>
+                            <!-- </div> -->
                             <!-- ////////// / buttonControl ////////// -->
 
                             <!-- ////////// Default ////////// -->
@@ -570,13 +599,18 @@
                     <h4 class="modal-title" ng-bind="input.title"></h4>
                 </div>
                 <div class="modal-body ">
-                    <div class="alert alert-warning" ng-if="!multilineSensor.data">
-                        <i class="fa {{multilineSensor.icon}}"></i> <span ng-bind="multilineSensor.message"></span>
+                    <div class="alert alert-warning" ng-if="!multilineSensors.data">
+                        <i class="fa {{multilineSensors.icon}}"></i> <span ng-bind="multilineSensors.message"></span>
                     </div>
-                    <div class="multiline-entry" ng-if="multilineSensor.data">
+                    <div class="multiline-entry" ng-if="multilineSensors.data">
                         <table class="table table-report table-condensed">
                              <tbody>
-                             <tr ng-repeat="n in multilineSensor.data track by n.id">
+                             <!-- <tr class="text-right" ng-if="multiLineDev.data.metrics.multilineType == 'protection'">
+                                <td>
+                                    <button class="btn btn-default btn-sm" ng-click="runCmd(multiLineDev.data.id + '/command/update')"> <i class="fa fa-clock-o"></i> <span class="widget-update-time">{{multiLineDev.data.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span></button>
+                                </td>
+                             </tr> -->
+                             <tr ng-repeat="n in multilineSensors.data track by n.id" ng-class="n.metrics.level === 'on'?'app-gradient-red' : ''">
                                   <td class="td-img">
                                      <img id="widget_multiline_img_{{n.id}}" class="report-img" ng-src="{{n.metrics.icon|getElementIcon:n:levelVal[n.id]}}" alt="img" />
                                  </td>
