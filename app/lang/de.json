@@ -1,4 +1,6 @@
 {
+    "lb_disarm": "Entschärft",
+    "lb_arm": "Scharf",
     "app_store_access":"App Store - Zugriff ",
     "app_store_access_info":"Der App Store bietet Apps von verschiedenen Anbietern und in verschiedenem Reifegrad. Standardmäßig werden nur stabile und genehmigte Apps angezeigt. Durch Hinzufügen von Schlüsselwörtern - die Sie von anderen Anbietern erhalten - können Sie auch auf deren private Apps oder Entwicklerversionen zugreifen.",
     "add_token":"Add token",

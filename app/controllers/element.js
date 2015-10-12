@@ -71,7 +71,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.goHidden = [];
     $scope.goHistory = [];
     $scope.apiDataInterval = null;
-    $scope.multilineSensorInterval = null;
+    $scope.multilineSensorsInterval = null;
     $scope.collection = [];
     $scope.showFooter = true;
     $scope.deviceType = [];
@@ -79,7 +79,8 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.rooms = [];
     $scope.history = [];
     $scope.historyStatus = [];
-    $scope.multilineSensor = false;
+    $scope.multilineDev = false;
+    $scope.multilineSensors = false;
     $scope.doorLock = false;
     $scope.levelVal = [];
     $scope.rgbVal = [];
@@ -113,7 +114,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     // Cancel interval on page destroy
     $scope.$on('$destroy', function() {
         $interval.cancel($scope.apiDataInterval);
-        $interval.cancel($scope.multilineSensorInterval);
+        $interval.cancel($scope.multilineSensorsInterval);
 
         $('.modal').remove();
         $('.modal-backdrop').remove();
@@ -249,19 +250,20 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     /**
      * Show Multiline Sensor modal window
      */
-    $scope.loadMultilineSensor = function(target, id, input) {
+    $scope.loadMultilineSensor = function(target, id, input, sensors) {
         $(target).modal();
         $scope.input = input;
-        $scope.multilineSensor = {data: false, icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        $scope.multilineSensors = {data: false, icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('devices', '/' + id, true).then(function(response) {
-            if (response.data.data.metrics.sensors) {
-                $scope.multilineSensor = {data: response.data.data.metrics.sensors};
-                $scope.refreshMultilineSensor(id);
+            if (response.data.data.metrics[sensors]) {
+                $scope.multiLineDev = {data: response.data.data};
+                $scope.multilineSensors = {data: response.data.data.metrics[sensors]};
+                $scope.refreshMultilineSensors(id, sensors);
             } else {
-                $scope.multilineSensor = {data: false, icon: 'fa-info-circle text-warning', message: $scope._t('no_data')};
+                $scope.multilineSensors = {data: false, icon: 'fa-info-circle text-warning', message: $scope._t('no_data')};
             }
         }, function(error) {
-            $scope.multilineSensor = {data: false, icon: 'fa-exclamation-triangle text-danger', message: $scope._t('error_load_data')};
+            $scope.multilineSensors = {data: false, icon: 'fa-exclamation-triangle text-danger', message: $scope._t('error_load_data')};
         });
 
     };
@@ -269,24 +271,24 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     /**
      * Refresh multiline sensor data
      */
-    $scope.refreshMultilineSensor = function(id) {
+    $scope.refreshMultilineSensors = function(id, sensors) {
         var refresh = function() {
             dataFactory.getApi('devices', '/' + id, true).then(function(response) {
-                if (response.data.data.metrics.sensors) {
-                    angular.extend($scope.multilineSensor.data, response.data.data.metrics.sensors);
+                if (response.data.data.metrics[sensors]) {
+                    angular.extend($scope.multilineSensors.data, response.data.data.metrics[sensors]);
                     //$scope.multilineSensor.data = {data: response.data.data.metrics.sensors};
                 }
             }, function(error) {
             });
         };
-        $scope.multilineSensorInterval = $interval(refresh, $scope.cfg.interval);
+        $scope.multilineSensorsInterval = $interval(refresh, $scope.cfg.interval);
     };
 
     /**
      * Close multiline sensor window
      */
     $scope.closeMultilineSensor = function() {
-        $interval.cancel($scope.multilineSensorInterval);
+        $interval.cancel($scope.multilineSensorsInterval);
     };
 
     /**
@@ -306,6 +308,47 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         }, function(error) {
             $scope.doorLock = {data: false, icon: 'fa-exclamation-triangle text-danger', message: $scope._t('error_load_data')};
         });
+
+    };
+    
+    /**
+     * Multiline climateControl
+     */
+    $scope.climateElementModes = ['off', 'esave', 'per_room'];
+    /**
+     * Show climate modal window
+     */
+    $scope.loadClimateControl = function(target, id, input) {
+        $(target).modal();
+        $scope.input = input;
+        $scope.climateControl = {data: false, icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        $scope.climateControlModes = ['off', 'esave', 'comfort', 'time_driven'];
+        $scope.climateControlMode = {};
+        $scope.changeClimateControlProcess = {};
+        //dataFactory.getApiLocal('_test/climate_control.json').then(function(response) {
+         dataFactory.getApi('devices', '/' + id, true).then(function(response) {
+            if (response.data.data.metrics.rooms) {
+                $scope.climateControl = {data: response.data.data};
+            } else {
+                $scope.climateControl = {data: false, icon: 'fa-info-circle text-warning', message: $scope._t('no_data')};
+            }
+        }, function(error) {
+            $scope.climateControl = {data: false, icon: 'fa-exclamation-triangle text-danger', message: $scope._t('error_load_data')};
+        });
+
+    };
+
+    /**
+     * Change climate control mode
+     */
+    $scope.changeClimateControlMode = function(id) {
+        //console.log($scope.climateControl.data.metrics.rooms);
+        $scope.changeClimateControlProcess[id] = true;
+        var room = _.findWhere($scope.climateControl.data.metrics.rooms, {id: id})
+        console.log(room.title + ' changing mode to: ', $scope.climateControlMode[id])
+        $timeout(function() {
+            $scope.changeClimateControlProcess[id] = false;
+        }, 3000);
 
     };
     /**

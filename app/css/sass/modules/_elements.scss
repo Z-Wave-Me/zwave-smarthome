@@ -276,3 +276,10 @@ img.widget-promo-image {
 .widget-body .hidden-sensor-multiline.multiline-sensor table tr:nth-child(odd) {
     background-color: #f9f9f9;
 }
+
+/* ToggleButton widget
+--------------------------------------------------------*/
+
+.toggleButton .widget-body div.widget-control.control-right.ng-scope > div > button.btn.btn-default.btn-sm {
+    cursor: default;
+}

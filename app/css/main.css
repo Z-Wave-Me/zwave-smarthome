@@ -377,41 +377,81 @@ a:hover {
 }
 
 /* line 93, sass/globals/_body.scss */
+.app-gradient-red {
+  background: #e04747;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #e04747 0%, #fefefe 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e04747), color-stop(100%, #fefefe));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #e04747 0%, #fefefe 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #e04747 0%, #fefefe 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #e04747 0%, #fefefe 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #e04747 0%, #fefefe 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e04747', endColorstr='#fefefe',GradientType=0 );
+  /* IE6-9 */
+}
+
+/* line 97, sass/globals/_body.scss */
+.app-gradient-yellow {
+  background: #e1f24d;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #e1f24d 0%, #fefefe 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e1f24d), color-stop(100%, #fefefe));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #e1f24d 0%, #fefefe 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #e1f24d 0%, #fefefe 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #e1f24d 0%, #fefefe 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #e1f24d 0%, #fefefe 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e1f24d', endColorstr='#fefefe',GradientType=0 );
+  /* IE6-9 */
+}
+
+/* line 101, sass/globals/_body.scss */
 .app-shadow {
   -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
   -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
   box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
 }
 
-/* line 97, sass/globals/_body.scss */
+/* line 105, sass/globals/_body.scss */
 .bcg-active.false {
   background-color: #f2e8e8;
 }
 
 /* Hide element on is-mobile-true devices
 -------------------------------------------------- */
-/* line 104, sass/globals/_body.scss */
+/* line 112, sass/globals/_body.scss */
 .is-mobile-true .mobhidden {
   display: none !important;
 }
 
 /* Spinners
 -------------------------------------------------- */
-/* line 112, sass/globals/_body.scss */
+/* line 120, sass/globals/_body.scss */
 .module-spinner {
   display: none !important;
 }
 
 /* Images
 -------------------------------------------------- */
-/* line 118, sass/globals/_body.scss */
+/* line 126, sass/globals/_body.scss */
 .report-img {
   margin: 0;
   max-width: 26px;
   display: inline;
 }
 
-/* line 124, sass/globals/_body.scss */
+/* line 132, sass/globals/_body.scss */
 .product-img {
   margin: 0;
   max-width: 100px;
@@ -421,7 +461,7 @@ a:hover {
 
 /* Device assigned block
 -------------------------------------------------- */
-/* line 133, sass/globals/_body.scss */
+/* line 141, sass/globals/_body.scss */
 .device-assigned-block {
   background-color: #FCF8E3;
   padding: 10px;
@@ -431,7 +471,7 @@ a:hover {
   background-color: #fcf8e3;
 }
 
-/* line 142, sass/globals/_body.scss */
+/* line 150, sass/globals/_body.scss */
 .btn-device-admin {
   display: inline-block;
   padding: 6px 12px;
@@ -466,7 +506,7 @@ vertical-align: middle;
 }*/
 /* Tooltip
 -------------------------------------------------- */
-/* line 182, sass/globals/_body.scss */
+/* line 190, sass/globals/_body.scss */
 .tooltip-inner {
   background-color: #F6F6F6;
   color: #000;
@@ -475,7 +515,7 @@ vertical-align: middle;
   text-align: left;
 }
 
-/* line 189, sass/globals/_body.scss */
+/* line 197, sass/globals/_body.scss */
 .tooltip-arrow {
   border-bottom-color: #f2f2f2;
 }
@@ -3375,6 +3415,13 @@ img.widget-promo-image {
 /* line 276, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline.multiline-sensor table tr:nth-child(odd) {
   background-color: #f9f9f9;
+}
+
+/* ToggleButton widget
+--------------------------------------------------------*/
+/* line 283, sass/modules/_elements.scss */
+.toggleButton .widget-body div.widget-control.control-right.ng-scope > div > button.btn.btn-default.btn-sm {
+  cursor: default;
 }
 
 /* Events
