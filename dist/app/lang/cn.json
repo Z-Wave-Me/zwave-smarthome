@@ -142,6 +142,7 @@
     "nav_myaccess": "我的设置",
     "nav_login": "登陆",
     "lb_login": "登陆",
+    "lb_enter": "登陆",
     "lb_password": "密码",
     "lb_keep_logged": "保持登陆状态",
     "nav_admin": "管理员",

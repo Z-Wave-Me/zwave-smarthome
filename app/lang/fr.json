@@ -162,6 +162,7 @@
     "nav_myaccess": "Mes Réglages",
     "nav_login": "Se connecter",
     "lb_login": "Identifiant",
+    "lb_enter": "Identifiant",
     "lb_password": "Mot de passe",
     "lb_keep_logged": "Rester connecter",
     "nav_admin": "Gestion des utilisateurs",
