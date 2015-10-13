@@ -47,7 +47,7 @@ myAppController.controller('LoginController', function($scope, $location, $windo
             dataService.setLastLogin(Math.round(+new Date() / 1000));
             //$scope.loading = false;
             $scope.input.form = false;
-            $window.location.href = '#/elements?login';
+            $window.location.href = '#/elements/dashboard/1?login';
             $window.location.reload();
         }, function(error) {
             var message = $scope._t('error_load_data');

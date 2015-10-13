@@ -3093,26 +3093,51 @@ legend.alpaca-container-label {
 }
 
 /* Homepage styles */
+/* Welcome
+-------------------------------------------------- */
+/* line 5, sass/modules/_elements.scss */
+.welcome-promo .welcome-img {
+  max-width: 200px;
+  border: 0 !important;
+}
+/* line 9, sass/modules/_elements.scss */
+.welcome-promo h2 {
+  margin-top: 40px;
+}
+
+/* line 13, sass/modules/_elements.scss */
+.welcome-alert {
+  padding: 20px;
+}
+/* line 15, sass/modules/_elements.scss */
+.welcome-alert h2, .welcome-alert .btn-block {
+  margin: 20px 0;
+}
+/* line 18, sass/modules/_elements.scss */
+.welcome-alert .welcome-help {
+  font-size: 115%;
+}
+
 /* Elements
 -------------------------------------------------- */
-/* line 3, sass/modules/_elements.scss */
+/* line 24, sass/modules/_elements.scss */
 .widget-block {
   margin-bottom: 20px;
 }
 
-/* line 6, sass/modules/_elements.scss */
+/* line 27, sass/modules/_elements.scss */
 .widget-block-in {
   height: 110px;
   position: relative;
   text-align: left;
 }
 
-/* line 12, sass/modules/_elements.scss */
+/* line 33, sass/modules/_elements.scss */
 .multiline-entry {
   position: relative;
 }
 
-/* line 15, sass/modules/_elements.scss */
+/* line 36, sass/modules/_elements.scss */
 .widget-image {
   position: absolute;
   top: 10px;
@@ -3124,33 +3149,33 @@ legend.alpaca-container-label {
   border-radius: 50%;
 }
 
-/* line 25, sass/modules/_elements.scss */
+/* line 46, sass/modules/_elements.scss */
 .widget-img-update {
   border-color: #d3d3d3;
 }
 
-/* line 28, sass/modules/_elements.scss */
+/* line 49, sass/modules/_elements.scss */
 .trans-true {
   opacity: 0.3;
 }
 
-/* line 31, sass/modules/_elements.scss */
+/* line 52, sass/modules/_elements.scss */
 .widget-header {
   text-align: right;
   padding: 3px 0 0 0;
 }
-/* line 34, sass/modules/_elements.scss */
+/* line 55, sass/modules/_elements.scss */
 .widget-header a {
   display: inline-block;
   padding: 0 5px 0 0;
   color: #767676;
 }
-/* line 39, sass/modules/_elements.scss */
+/* line 60, sass/modules/_elements.scss */
 .widget-header a:hover {
   color: #444444;
 }
 
-/* line 45, sass/modules/_elements.scss */
+/* line 66, sass/modules/_elements.scss */
 .widget-body {
   margin-top: -5px;
   padding: 0 5px 15px 84px;
@@ -3163,56 +3188,56 @@ legend.alpaca-container-label {
           top: 50%;
       }*/
 }
-/* line 49, sass/modules/_elements.scss */
+/* line 70, sass/modules/_elements.scss */
 .widget-body .entry-title {
   padding: 5px 30px 0 0;
 }
-/* line 52, sass/modules/_elements.scss */
+/* line 73, sass/modules/_elements.scss */
 .widget-body .widget-control-wrap {
   width: 100%;
 }
-/* line 55, sass/modules/_elements.scss */
+/* line 76, sass/modules/_elements.scss */
 .widget-body .widget-control {
   width: 50%;
   float: left;
 }
-/* line 59, sass/modules/_elements.scss */
+/* line 80, sass/modules/_elements.scss */
 .widget-body .widget-control.control-left {
   font-weight: bold;
 }
-/* line 62, sass/modules/_elements.scss */
+/* line 83, sass/modules/_elements.scss */
 .widget-body .widget-control.control-right {
   float: right;
 }
-/* line 64, sass/modules/_elements.scss */
+/* line 85, sass/modules/_elements.scss */
 .widget-body .widget-control.control-right .btn-group {
   float: right;
 }
-/* line 68, sass/modules/_elements.scss */
+/* line 89, sass/modules/_elements.scss */
 .widget-body .widget-click-popup {
   cursor: pointer;
 }
-/* line 81, sass/modules/_elements.scss */
+/* line 102, sass/modules/_elements.scss */
 .widget-body .element-hidden.hidden-sensor-multiline {
   height: 220px;
 }
-/* line 85, sass/modules/_elements.scss */
+/* line 106, sass/modules/_elements.scss */
 .widget-body table {
   width: 100%;
 }
-/* line 87, sass/modules/_elements.scss */
+/* line 108, sass/modules/_elements.scss */
 .widget-body table td {
   width: 50%;
   vertical-align: middle;
   text-align: center;
 }
 
-/* line 94, sass/modules/_elements.scss */
+/* line 115, sass/modules/_elements.scss */
 .multiline-entry {
   position: relative;
 }
 
-/* line 99, sass/modules/_elements.scss */
+/* line 120, sass/modules/_elements.scss */
 .widget-body .element-hidden, .multiline-entry .element-hidden {
   z-index: 10000;
   overflow: hidden;
@@ -3230,58 +3255,58 @@ legend.alpaca-container-label {
   background-color: #fff;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
 }
-/* line 116, sass/modules/_elements.scss */
+/* line 137, sass/modules/_elements.scss */
 .widget-body .hidden-close, .multiline-entry .hidden-close {
   position: absolute;
   top: 10px;
   left: 93%;
 }
 
-/* line 123, sass/modules/_elements.scss */
+/* line 144, sass/modules/_elements.scss */
 .element-camera-control {
   text-align: center;
 }
 
-/* line 126, sass/modules/_elements.scss */
+/* line 147, sass/modules/_elements.scss */
 .camera-img {
   text-align: center;
 }
-/* line 128, sass/modules/_elements.scss */
+/* line 149, sass/modules/_elements.scss */
 .camera-img img {
   width: 100%;
   display: inline-block;
 }
 
-/* line 134, sass/modules/_elements.scss */
+/* line 155, sass/modules/_elements.scss */
 .color-picker-show {
   display: inline-block;
   width: 24px;
   height: 24px;
 }
 
-/* line 140, sass/modules/_elements.scss */
+/* line 161, sass/modules/_elements.scss */
 .drop-down-tags div {
   padding: 5px;
 }
 
-/* line 147, sass/modules/_elements.scss */
+/* line 168, sass/modules/_elements.scss */
 .drop-down-tags a {
   display: inline-block;
   margin: 0 5px;
 }
 
-/* line 152, sass/modules/_elements.scss */
+/* line 173, sass/modules/_elements.scss */
 .bcg-success.false {
   color: #a8a8a8;
 }
-/* line 154, sass/modules/_elements.scss */
+/* line 175, sass/modules/_elements.scss */
 .bcg-success.false .report-img {
   opacity: 0.4;
 }
 
 /* Element detail
 ----------------------------------------------------*/
-/* line 162, sass/modules/_elements.scss */
+/* line 183, sass/modules/_elements.scss */
 .btn-tag {
   float: none !important;
   border-radius: 4px !important;
@@ -3308,72 +3333,72 @@ legend.alpaca-container-label {
 .hidden-camera{}*/
 /* OpenWeather widget
 ----------------------------------------------------*/
-/* line 189, sass/modules/_elements.scss */
+/* line 210, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline table td {
   text-align: left;
   padding: 5px 0;
 }
 
-/* line 194, sass/modules/_elements.scss */
+/* line 215, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline table td:first-child {
   padding-left: 20px;
   vertical-align: top;
 }
 
-/* line 199, sass/modules/_elements.scss */
+/* line 220, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline h4 {
   display: inline;
 }
 
-/* line 203, sass/modules/_elements.scss */
+/* line 224, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline .text-center {
   margin: 10px 0;
 }
 
 /* Text widget
 -----------------------------------------------------*/
-/* line 209, sass/modules/_elements.scss */
+/* line 230, sass/modules/_elements.scss */
 .widget-body.text-widget h3 {
   font-weight: bold;
 }
 
-/* line 213, sass/modules/_elements.scss */
+/* line 234, sass/modules/_elements.scss */
 .widget-body.text-widget-no-img {
   padding-left: 15px;
 }
 
-/* line 217, sass/modules/_elements.scss */
+/* line 238, sass/modules/_elements.scss */
 .widget-control.text {
   width: 95%;
 }
 
-/* line 221, sass/modules/_elements.scss */
+/* line 242, sass/modules/_elements.scss */
 .text-widget-modal.modal-dialog {
   text-align: center;
 }
 
-/* line 225, sass/modules/_elements.scss */
+/* line 246, sass/modules/_elements.scss */
 img.widget-promo-image {
   max-height: 200px;
   margin-bottom: 10px;
 }
 
-/* line 230, sass/modules/_elements.scss */
+/* line 251, sass/modules/_elements.scss */
 .widget-promo-text {
   text-align: left;
 }
 
-/* line 234, sass/modules/_elements.scss */
+/* line 255, sass/modules/_elements.scss */
 .widget-control.text a {
   font-weight: normal;
 }
 
-/* line 238, sass/modules/_elements.scss */
+/* line 259, sass/modules/_elements.scss */
 .widget-control.text a:hover {
   text-decoration: none;
 }
 
-/* line 242, sass/modules/_elements.scss */
+/* line 263, sass/modules/_elements.scss */
 .widget-control.text a:after {
   content: "\f1ea";
   font-family: FontAwesome;
@@ -3386,13 +3411,13 @@ img.widget-promo-image {
 
 /* MultilevelSensor widget
 -----------------------------------------------------*/
-/* line 254, sass/modules/_elements.scss */
+/* line 275, sass/modules/_elements.scss */
 .widget-body .element-hidden.hidden-sensor-multiline.multiline-sensor {
   padding: 10px 0;
   height: auto;
 }
 
-/* line 259, sass/modules/_elements.scss */
+/* line 280, sass/modules/_elements.scss */
 .hidden-sensor-multiline .widget-image {
   position: relative;
   top: 0;
@@ -3401,25 +3426,25 @@ img.widget-promo-image {
   height: 25px;
 }
 
-/* line 267, sass/modules/_elements.scss */
+/* line 288, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline.multiline-sensor table td:first-child {
   padding-left: 5px;
 }
 
-/* line 271, sass/modules/_elements.scss */
+/* line 292, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline.multiline-sensor table td {
   width: inherit;
   padding: 5px 5px 5px 10px;
 }
 
-/* line 276, sass/modules/_elements.scss */
+/* line 297, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline.multiline-sensor table tr:nth-child(odd) {
   background-color: #f9f9f9;
 }
 
 /* ToggleButton widget
 --------------------------------------------------------*/
-/* line 283, sass/modules/_elements.scss */
+/* line 304, sass/modules/_elements.scss */
 .toggleButton .widget-body div.widget-control.control-right.ng-scope > div > button.btn.btn-default.btn-sm {
   cursor: default;
 }

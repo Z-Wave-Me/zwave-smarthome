@@ -68,6 +68,7 @@ myAppController.controller('DragDropController', function($scope, dataFactory) {
  * Element controller
  */
 myAppController.controller('ElementController', function($scope, $routeParams, $interval, $location, dataFactory, dataService, myCache) {
+    $scope.welcome = false;
     $scope.goHidden = [];
     $scope.goHistory = [];
     $scope.apiDataInterval = null;
@@ -127,7 +128,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.loadData = function() {
         dataService.showConnectionSpinner();
         //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataFactory.getApi('devices').then(function(response) {
+        dataFactory.getApi('devices',null,true).then(function(response) {
             var filter = null;
             var notFound = $scope._t('error_404');
             $scope.loading = false;
@@ -144,7 +145,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
                     case 'dashboard':
                         $scope.showFooter = false;
                         filter = {filter: "onDashboard", val: true};
-                        notFound = $scope._t('no_devices_dashboard');
+                        //notFound = $scope._t('no_devices_dashboard');
                         break;
                     case 'deviceType':
                         filter = $routeParams;
@@ -165,13 +166,24 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
             }
             var collection = dataService.getDevices(response.data.data.devices, filter, $scope.user.dashboard, null);
             if (collection.length < 1) {
-                if ($routeParams.filter === 'dashboard') {
-                    //$scope.collection = dataService.getDevices(response.data.data.devices, null, $scope.user.dashboard, null);
-                    $scope.alert = {message: notFound, status: 'alert-warning', icon: 'fa-exclamation-circle'};
-                    return;
+                switch($routeParams.filter){
+                   case 'dashboard':
+                         $scope.welcome = true;
+                        break;
+                     case 'location':
+                         if($scope.user.role === 1){
+                             $location.path('/config-rooms/' + filter.val);
+                         }else{
+                            $scope.alert = {message: notFound, status: 'alert-warning', icon: 'fa-exclamation-circle'}; 
+                         }
+                        break;
+                    default:
+                        $scope.alert = {message: notFound, status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                        break;
                 }
+                
                 //$scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: notFound};
-                $scope.alert = {message: notFound, status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                
                 return;
             }
             $scope.collection = collection;
