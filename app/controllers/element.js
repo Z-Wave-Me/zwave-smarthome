@@ -68,6 +68,7 @@ myAppController.controller('DragDropController', function($scope, dataFactory) {
  * Element controller
  */
 myAppController.controller('ElementController', function($scope, $routeParams, $interval, $location, dataFactory, dataService, myCache) {
+    $scope.welcome = false;
     $scope.goHidden = [];
     $scope.goHistory = [];
     $scope.apiDataInterval = null;
@@ -144,7 +145,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
                     case 'dashboard':
                         $scope.showFooter = false;
                         filter = {filter: "onDashboard", val: true};
-                        notFound = $scope._t('no_devices_dashboard');
+                        //notFound = $scope._t('no_devices_dashboard');
                         break;
                     case 'deviceType':
                         filter = $routeParams;
@@ -166,8 +167,9 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
             var collection = dataService.getDevices(response.data.data.devices, filter, $scope.user.dashboard, null);
             if (collection.length < 1) {
                 if ($routeParams.filter === 'dashboard') {
+                    $scope.welcome = true;
                     //$scope.collection = dataService.getDevices(response.data.data.devices, null, $scope.user.dashboard, null);
-                    $scope.alert = {message: notFound, status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                    //$scope.alert = {message: notFound, status: 'alert-warning', icon: 'fa-exclamation-circle'};
                     return;
                 }
                 //$scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: notFound};

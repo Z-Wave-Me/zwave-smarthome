@@ -1,3 +1,24 @@
+/* Welcome
+-------------------------------------------------- */
+.welcome-promo{
+     
+    .welcome-img{
+        max-width: 200px;
+        border: 0 !important;
+    }
+    h2{
+        margin-top: 40px;
+    }
+}
+.welcome-alert{
+    padding: 20px;
+    h2,.btn-block{
+      margin: 20px 0; 
+    }
+    .welcome-help{
+        font-size: 115%;
+    }
+}
 /* Elements
 -------------------------------------------------- */
 .widget-block{  
