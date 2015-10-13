@@ -640,7 +640,7 @@
                              </tr> -->
                              <tr ng-repeat="n in multilineSensors.data track by n.id" ng-class="n.metrics.level === 'on'?'app-gradient-red' : ''">
                                   <td class="td-img">
-                                     <img id="widget_multiline_img_{{n.id}}" class="report-img" ng-src="{{n.metrics.icon|getElementIcon:n:levelVal[n.id]}}" alt="img" />
+                                     <img id="widget_multiline_img_{{n.id}}" class="report-img" ng-src="{{n.metrics.icon|getElementIcon:n:n.metrics.level}}" alt="img" />
                                  </td>
                                  <td>
                                      <span ng-bind="n.metrics.title"/></span><br />
