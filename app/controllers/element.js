@@ -128,7 +128,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.loadData = function() {
         dataService.showConnectionSpinner();
         //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataFactory.getApi('devices').then(function(response) {
+        dataFactory.getApi('devices',null,true).then(function(response) {
             var filter = null;
             var notFound = $scope._t('error_404');
             $scope.loading = false;
@@ -164,7 +164,6 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
                         break;
                 }
             }
-            console.log(filter)
             var collection = dataService.getDevices(response.data.data.devices, filter, $scope.user.dashboard, null);
             if (collection.length < 1) {
                 switch($routeParams.filter){

@@ -467,20 +467,20 @@
                                             </td>
                                             <td>
                                                 <button class="btn btn-primary"
-                                                        data-ng-click="runCmdExact(v.id, '+', 6, 28)"
+                                                        data-ng-click="runCmdExact(v.id, '+', v.scaleTitle === '°F'? 41 : 5, v.scaleTitle === '°F'? 104 : 40)"
                                                         >
                                                     <i class="fa fa-angle-up fa-lg"></i>
                                                 </button>&nbsp;
                                                 <button class="btn btn-info"
-                                                        data-ng-click="runCmdExact(v.id, 40, 6, 28)"
+                                                        data-ng-click="runCmdExact(v.id, 40, v.scaleTitle === '°F'? 41 : 5, v.scaleTitle === '°F'? 104 : 40)"
                                                         ><i class="fa fa-angle-double-up fa-lg"></i>
                                                 </button><br /><br />
                                                 <button class="btn btn-primary"
-                                                        data-ng-click="runCmdExact(v.id, '-', 6, 28)"
+                                                        data-ng-click="runCmdExact(v.id, '-', v.scaleTitle === '°F'? 41 : 5, v.scaleTitle === '°F'? 104 : 40)"
                                                         ><i class="fa fa-angle-down fa-lg"></i>
                                                 </button>&nbsp;
                                                 <button class="btn btn-info"
-                                                        data-ng-click="runCmdExact(v.id, 5, 0, 28)"
+                                                        data-ng-click="runCmdExact(v.id, 5, 0, v.scaleTitle === '°F'? 104 : 40)"
                                                         >
                                                     <i class="fa fa-angle-double-down fa-lg"></i>
                                                 </button>
