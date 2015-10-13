@@ -164,16 +164,27 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
                         break;
                 }
             }
+            console.log(filter)
             var collection = dataService.getDevices(response.data.data.devices, filter, $scope.user.dashboard, null);
             if (collection.length < 1) {
-                if ($routeParams.filter === 'dashboard') {
-                    $scope.welcome = true;
-                    //$scope.collection = dataService.getDevices(response.data.data.devices, null, $scope.user.dashboard, null);
-                    //$scope.alert = {message: notFound, status: 'alert-warning', icon: 'fa-exclamation-circle'};
-                    return;
+                switch($routeParams.filter){
+                   case 'dashboard':
+                         $scope.welcome = true;
+                        break;
+                     case 'location':
+                         if($scope.user.role === 1){
+                             $location.path('/config-rooms/' + filter.val);
+                         }else{
+                            $scope.alert = {message: notFound, status: 'alert-warning', icon: 'fa-exclamation-circle'}; 
+                         }
+                        break;
+                    default:
+                        $scope.alert = {message: notFound, status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                        break;
                 }
+                
                 //$scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: notFound};
-                $scope.alert = {message: notFound, status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                
                 return;
             }
             $scope.collection = collection;
