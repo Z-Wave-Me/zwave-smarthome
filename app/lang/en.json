@@ -1,5 +1,6 @@
 {
     "newtrans": "---",
+    "globalRoom": "Unassigned",
     "lb_disarm": "Disarmed",
     "lb_arm": "Armed",
     "manual_config_prepare": "Preparing for manual configuration. Please wait...",

@@ -51,8 +51,7 @@
             <div class="form-group form-inline">
                 <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('devices_to_room')"></span></h3>
                 <select class="form-control" ng-model="modelRoom">
-                    <option value="">------</option>
-                    <option ng-repeat="v in rooms" ng-selected_="input.location == v.id" value="{{v.id}}" ng-bind="v.title"></option>
+                    <option ng-repeat="v in rooms" value="{{v.id}}" ng-bind="(v.id === 0 ? _t(v.title) : v.title)"></option>
                 </select>
                 <button class="btn btn-primary" ng-click="devicesToRoom(modelRoom, apiDevices)" ng-bind="_t('lb_save')"></button> 
 

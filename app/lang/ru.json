@@ -1,4 +1,5 @@
 {
+    "globalRoom": "Unassigned",
     "lb_disarm": "Disarm",
     "lb_arm": "Arm",
     "manual_config_prepare": "Подготовка к настройке вручную. Пожалуйста подождите...",
