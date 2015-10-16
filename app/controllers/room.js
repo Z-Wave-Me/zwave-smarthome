@@ -140,6 +140,7 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
     $scope.devicesToRemove = [];
     $scope.defaultImages = $scope.cfg.room_images;
     $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/image/';
+    $scope.myFile = false;
 
     /**
      * Load data
@@ -163,11 +164,12 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
     /**
      * Upload image
      */
-    $scope.uploadFile = function() {
+    $scope.uploadFile = function(files) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('uploading')};
         var cmd = $scope.cfg.api_url + 'upload/image';
         var fd = new FormData();
-        fd.append('file_upload', $scope.myFile);
+        //fd.append('file_upload', $scope.myFile);
+         fd.append('file_upload', files[0]);
         dataFactory.uploadApiFile(cmd, fd).then(function(response) {
             $scope.input.user_img = response.data.data;
             $scope.input.img_type = 'user';

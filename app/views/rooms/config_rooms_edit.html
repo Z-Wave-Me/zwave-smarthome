@@ -40,8 +40,9 @@
                 <div>
                   <div class="form-group">
                        <bb-help-text trans="_t('room_image_upload_info')"></bb-help-text>
-                         <input type="file" class="form-control_" file-model="myFile" /><br /> 
-                         <button type="button" class="btn btn-primary" id="btn_upload_img" ng-click="uploadFile()"><i class="fa fa-upload"></i> <span ng-bind="_t('lb_upload_image')"></span></button>
+                         <!--<input type="file" class="form-control_" file-model="myFile" /><br />-->  
+                         <input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)"/>
+                         <!--<button type="button" class="btn btn-primary" id="btn_upload_img" ng-click="uploadFile()"><i class="fa fa-upload"></i> <span ng-bind="_t('lb_upload_image')"></span></button>-->  
                     </div>
                 </div>
             </fieldset>
