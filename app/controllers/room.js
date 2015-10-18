@@ -6,7 +6,7 @@
 /**
  * Room controller
  */
-myAppController.controller('RoomController', function($scope, $location, dataFactory, dataService,_) {
+myAppController.controller('RoomController', function($scope, $location, dataFactory, dataService, _) {
     $scope.collection = [];
     $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/image/';
     $scope.devices = {
@@ -24,20 +24,21 @@ myAppController.controller('RoomController', function($scope, $location, dataFac
 //                $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: $scope._t('no_data')};
 //            }
             dataService.updateTimeTick();
-             $scope.loadDevices();
+            $scope.loadDevices();
         }, function(error) {
             $location.path('/error/' + error.status);
         });
     };
     $scope.loadData();
-    
+
     /**
      * Load devices
      */
     $scope.loadDevices = function() {
         dataFactory.getApi('devices').then(function(response) {
             $scope.devices.count = _.groupBy(response.data.data.devices, 'location');
-        }, function(error) {});
+        }, function(error) {
+        });
     }
     ;
 });
@@ -58,7 +59,11 @@ myAppController.controller('RoomConfigController', function($scope, $window, $lo
      */
     $scope.loadData = function(id) {
         dataFactory.getApi('locations').then(function(response) {
-            $scope.collection = response.data.data;
+           $scope.collection = _.filter(response.data.data, function(v) {
+                if (v.id !== 0) {
+                    return v;
+                }
+            });
             loadDevices();
         }, function(error) {
             $location.path('/error/' + error.status);
@@ -135,6 +140,7 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
     $scope.devicesToRemove = [];
     $scope.defaultImages = $scope.cfg.room_images;
     $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/image/';
+    $scope.myFile = false;
 
     /**
      * Load data
@@ -158,11 +164,12 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
     /**
      * Upload image
      */
-    $scope.uploadFile = function() {
+    $scope.uploadFile = function(files) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('uploading')};
         var cmd = $scope.cfg.api_url + 'upload/image';
         var fd = new FormData();
-        fd.append('file_upload', $scope.myFile);
+        //fd.append('file_upload', $scope.myFile);
+         fd.append('file_upload', files[0]);
         dataFactory.uploadApiFile(cmd, fd).then(function(response) {
             $scope.input.user_img = response.data.data;
             $scope.input.img_type = 'user';

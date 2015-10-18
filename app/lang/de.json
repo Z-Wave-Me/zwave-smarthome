@@ -1,4 +1,13 @@
 {
+    "software_info": "Software info",
+    "firmware_version": "Firmware version",
+    "ui_version": "UI version",
+    "welcome_no_devices": "There are no devices on dashboard",
+    "welcome_step1": "Go to sections  elements",
+    "welcome_step2": "Select an element from the list and click on the Gear icon",
+    "welcome_step3": "In the settings window check \"Add to dashboard\"",
+    "welcome_go": "Add devices to dashboard",
+    "globalRoom": "Nicht Zuwiesen",
     "lb_disarm": "Entschärft",
     "lb_arm": "Scharf",
     "app_store_access":"App Store - Zugriff ",

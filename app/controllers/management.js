@@ -416,7 +416,12 @@ myAppController.controller('ManagementUserController', function($scope, $routePa
      */
     $scope.loadRooms = function() {
         dataFactory.getApi('locations').then(function(response) {
-            $scope.rooms = response.data.data;
+            //$scope.rooms = response.data.data;
+            $scope.rooms = _.filter(response.data.data, function(v) {
+                if (v.id !== 0) {
+                    return v;
+                }
+            });
         }, function(error) {
             dataService.showConnectionError(error);
         });
