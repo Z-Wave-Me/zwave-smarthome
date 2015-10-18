@@ -511,7 +511,7 @@ myApp.filter('uri', function($location) {
  */
 myApp.filter('deviceName', function() {
     return function(deviceId, device) {
-        var name = (deviceId == 1 ? 'RaZberry' : 'Device ' + '_' + deviceId);
+        var name = (deviceId == 1 ? 'Z-Way' : 'Device ' + '_' + deviceId);
         if (device === undefined) {
             return name;
         }
