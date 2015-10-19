@@ -1,4 +1,6 @@
 {
+     "select_category": "Select category",
+    "clear_all_filters": "Clear all filters",
     "software_info": "Software info",
     "firmware_version": "Firmware version",
     "ui_version": "UI version",
