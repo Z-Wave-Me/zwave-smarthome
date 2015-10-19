@@ -545,7 +545,7 @@ myAppController.controller('ManagementAppStoreController', function($scope, $rou
             $scope.appStore.input.token = '';
             $scope.appStoreLoadData();
         }, function(error) {
-            alertify.alert('error_update_data');
+            alertify.alert($scope._t('error_update_data'));
         });
 
     };
@@ -558,7 +558,7 @@ myAppController.controller('ManagementAppStoreController', function($scope, $rou
             dataFactory.deleteApi('tokens', id).then(function(response) {
                 $scope.appStoreLoadData();
             }, function(error) {
-                alertify.alert('error_delete_data');
+                alertify.alert($scope._t('error_delete_data'));
             });
         });
         return;
