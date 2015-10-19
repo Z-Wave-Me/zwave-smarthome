@@ -532,40 +532,40 @@ myAppController.controller('ManagementAppStoreController', function($scope, $rou
             {id: 3, name: 'fdf125dfd'}
         ];
         angular.extend($scope.appStore.tokens, tokens);
-
-//        dataFactory.getApi('profiles', '/' + id, true).then(function(response) {
-//            $scope.input = response.data.data;
-//            dataService.updateTimeTick();
-//        }, function(error) {
-//            $scope.input = false;
-//            $location.path('/error/' + error.status);
-//        });
+        return;
+        dataFactory.getApi('tokens', null, true).then(function(response) {
+            angular.extend($scope.appStore.tokens, response.data.data);
+        }, function(error) {});
     };
     $scope.appStoreLoadData();
+    
     /**
      * Create/Update an item
      */
     $scope.appStoreAddToken = function() {
-        console.log('Saving new token: ' + $scope.appStore.input.token);
-        $scope.appStore.input.token = '';
-         $scope.appStoreLoadData();
+        if ($scope.appStore.input.token === '') {
+            return;
+        }
+        dataFactory.storeApi('tokens', false, $scope.appStore.input).then(function(response) {
+            $scope.appStore.input.token = '';
+            $scope.appStoreLoadData();
+        }, function(error) {
+            alertify.alert($scope._t('error_update_data'));
+        });
 
     };
 
     /**
      * Remove a token from the list
      */
-    $scope.appStoreRemoveToken = function(id,message) {
-        //alertify.alert("Message");
-        // confirm dialog
+    $scope.appStoreRemoveToken = function(id, message) {
         alertify.confirm(message, function() {
-             console.log('Removing token id: ' + id);
-              $scope.appStoreLoadData()
-        }, function() {
-            // user clicked "cancel"
-            return;
+            dataFactory.deleteApi('tokens', id).then(function(response) {
+                $scope.appStoreLoadData();
+            }, function(error) {
+                alertify.alert($scope._t('error_delete_data'));
+            });
         });
-
         return;
     };
 
