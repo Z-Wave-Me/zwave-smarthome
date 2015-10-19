@@ -305,9 +305,17 @@ myApp.filter('getBatteryIcon', function() {
  * Get max level
  */
 myApp.filter('getMaxLevel', function() {
-    return function(input) {
-        var maxLevel = 100;
-        var levelVal = (input < 100 ? input : 99);
+    return function(input,icon) {
+        var levelVal = 100;
+         switch (icon) {
+            case 'multilevel':
+                levelVal = (input < 255 ? input : 255);
+                break;
+             
+            default:
+                levelVal = (input < 100 ? input : 100);
+                break;
+        }
         return levelVal;
     };
 });

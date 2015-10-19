@@ -345,6 +345,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
 
         angular.forEach(data, function(v, k) {
             var instance;
+            var minMax = {min: 0, max: 100};
             var hasInstance = false;
             var zwaveId = false;
             var level = $filter('numberFixedLen')(v.metrics.level);
@@ -364,10 +365,10 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
             if (instances) {
                 if (v.id.indexOf(findZwaveStr) > -1) {
                     zwaveId = v.id.split(findZwaveStr)[1].split('-')[0];
-                    appType['zwave'] = zwaveId.replace(/[^0-9]/g,'');
-                } else if(v.id.indexOf(findZenoStr) > -1){
+                    appType['zwave'] = zwaveId.replace(/[^0-9]/g, '');
+                } else if (v.id.indexOf(findZenoStr) > -1) {
                     appType['enocean'] = v.id.split(findZenoStr)[1].split('_')[0];
-                }else {
+                } else {
                     //instance = getRowBy(instances, 'id', v.creatorId);
                     instance = _.findWhere(instances, {id: v.creatorId});
                     if (instance && instance['moduleId'] != 'ZWave') {
@@ -384,6 +385,14 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
 
             if (v.metrics.color) {
                 rgbColors = 'rgb(' + v.metrics.color.r + ',' + v.metrics.color.g + ',' + v.metrics.color.b + ')';
+            }
+            // Create min/max value
+            switch (v.metrics.icon) {
+                case 'multilevel':
+                    minMax = {min: 0, max: 255};
+                    break;
+                default:
+                    break;
             }
             //console.log('Device id %s has history %s',v.id,v.hasHistory)
             obj = {
@@ -407,6 +416,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                 'imgTrans': false,
                 'visibility': v.visibility,
                 'hasHistory': (v.hasHistory === true ? true : false),
+                'minMax': minMax,
                 'cfg': {
                     'zwaveId': zwaveId,
                     'hasInstance': hasInstance
@@ -508,8 +518,8 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
         var status = false;
         switch (v.deviceType) {
             case 'sensorMultiline':
-                if(v.metrics.multilineType == 'protection'){
-                    if (v.metrics.state== 'armed') {
+                if (v.metrics.multilineType == 'protection') {
+                    if (v.metrics.state == 'armed') {
                         status = 'on';
                     } else {
                         status = 'off';

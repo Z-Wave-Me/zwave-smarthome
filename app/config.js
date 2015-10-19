@@ -163,6 +163,10 @@ var config_data = {
             'find.zwave.me',
             'find.popp.eu' 
         ],
+        // List of the find hosts
+        'knob_255': [
+            'multilevel'
+        ],
         // Results per page
         'page_results': 12,
         // Results per events page
