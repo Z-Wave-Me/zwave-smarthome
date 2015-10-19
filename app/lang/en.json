@@ -1,9 +1,11 @@
 {
     "newtrans": "---",
+    "select_category": "Select category",
+    "clear_all_filters": "Clear all filters",
+     "---": "newtrans",
     "software_info": "Software info",
     "firmware_version": "Firmware version",
     "ui_version": "UI version",
-    "---": "newtrans",
     "welcome_no_devices": "There are no devices on dashboard",
     "welcome_step1": "Go to sections  elements",
     "welcome_step2": "Select an element from the list and click on the Gear icon",

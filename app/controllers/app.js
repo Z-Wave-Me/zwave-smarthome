@@ -25,7 +25,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     //$scope.category = '';
     $scope.currentCategory = {
         id: false,
-        title: ''
+        name: ''
     };
     $scope.showFooter = true;
     $scope.modalLocal = {};
@@ -48,6 +48,12 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
             var cat = response.data.data;
             if(cat){
                $scope.categories = cat[$scope.lang] || cat[$scope.cfg.lang]; 
+              
+               if($routeParams.category){
+                  var currCat = _.findWhere($scope.categories,{id: $routeParams.category});
+                  angular.extend($scope.currentCategory,{name: currCat.name});
+               }
+              
             }
              
         }, function(error) {
