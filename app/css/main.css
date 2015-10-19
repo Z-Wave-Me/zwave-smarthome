@@ -4475,6 +4475,26 @@ padding-right: 5px;
   /* line 178, sass/responsive/_mixins.scss */
   .page-navi .page-navi-in {
     width: 100%;
+    /*            .page-cat-basic_gateway_modules .fa{color: #dd976e;}
+            .page-cat-legacy_products_workaround .fa{color: #6c7a89;}
+            .page-cat-support_external_ui .fa{color: #6494bc;} 
+            .page-cat-support_external_dev .fa{color: #80ad80;} 
+            .page-cat-automation_basic .fa{color: #31b0d5;}
+            .page-cat-device_enhancements .fa{color: #f0aD4e;}
+            .page-cat-developers_stuff .fa{color: #d9534f;} 
+            .page-cat-complex_applications .fa{color: #dd976e;} 
+            .page-cat-automation .fa{color: #dddddd;}
+            .page-cat-security .fa{color: #6c7a89;}
+            .page-cat-peripherals .fa{color: #6494bc;}
+            .page-cat-logging .fa{color: #31b0d5;}
+            .page-cat-scripting .fa{color: #f0aD4e;}
+            .page-cat-devices .fa{color: #d9534f;} 
+            .page-cat-scheduling .fa{color: #dd976e;} 
+            .page-cat-climate .fa{color: #dddddd;}
+            .page-cat-environment .fa{color: #6c7a89;}
+            .page-cat-scenes .fa{color: #6494bc;} 
+            .page-cat-notifications .fa{color: #80ad80;} 
+            .page-cat-tagging .fa{color: #31b0d5;}*/
   }
   /* line 181, sass/responsive/_mixins.scss */
   .page-navi .page-navi-in ul li {
@@ -4503,86 +4523,6 @@ padding-right: 5px;
     position: absolute;
     right: 1%;
     display: inline-block !important;
-  }
-  /* line 212, sass/responsive/_mixins.scss */
-  .page-navi .page-navi-in .page-cat-basic_gateway_modules .fa {
-    color: #dd976e;
-  }
-  /* line 213, sass/responsive/_mixins.scss */
-  .page-navi .page-navi-in .page-cat-legacy_products_workaround .fa {
-    color: #6c7a89;
-  }
-  /* line 214, sass/responsive/_mixins.scss */
-  .page-navi .page-navi-in .page-cat-support_external_ui .fa {
-    color: #6494bc;
-  }
-  /* line 215, sass/responsive/_mixins.scss */
-  .page-navi .page-navi-in .page-cat-support_external_dev .fa {
-    color: #80ad80;
-  }
-  /* line 216, sass/responsive/_mixins.scss */
-  .page-navi .page-navi-in .page-cat-automation_basic .fa {
-    color: #31b0d5;
-  }
-  /* line 217, sass/responsive/_mixins.scss */
-  .page-navi .page-navi-in .page-cat-device_enhancements .fa {
-    color: #f0aD4e;
-  }
-  /* line 218, sass/responsive/_mixins.scss */
-  .page-navi .page-navi-in .page-cat-developers_stuff .fa {
-    color: #d9534f;
-  }
-  /* line 219, sass/responsive/_mixins.scss */
-  .page-navi .page-navi-in .page-cat-complex_applications .fa {
-    color: #dd976e;
-  }
-  /* line 220, sass/responsive/_mixins.scss */
-  .page-navi .page-navi-in .page-cat-automation .fa {
-    color: #dddddd;
-  }
-  /* line 221, sass/responsive/_mixins.scss */
-  .page-navi .page-navi-in .page-cat-security .fa {
-    color: #6c7a89;
-  }
-  /* line 222, sass/responsive/_mixins.scss */
-  .page-navi .page-navi-in .page-cat-peripherals .fa {
-    color: #6494bc;
-  }
-  /* line 223, sass/responsive/_mixins.scss */
-  .page-navi .page-navi-in .page-cat-logging .fa {
-    color: #31b0d5;
-  }
-  /* line 224, sass/responsive/_mixins.scss */
-  .page-navi .page-navi-in .page-cat-scripting .fa {
-    color: #f0aD4e;
-  }
-  /* line 225, sass/responsive/_mixins.scss */
-  .page-navi .page-navi-in .page-cat-devices .fa {
-    color: #d9534f;
-  }
-  /* line 226, sass/responsive/_mixins.scss */
-  .page-navi .page-navi-in .page-cat-scheduling .fa {
-    color: #dd976e;
-  }
-  /* line 227, sass/responsive/_mixins.scss */
-  .page-navi .page-navi-in .page-cat-climate .fa {
-    color: #dddddd;
-  }
-  /* line 228, sass/responsive/_mixins.scss */
-  .page-navi .page-navi-in .page-cat-environment .fa {
-    color: #6c7a89;
-  }
-  /* line 229, sass/responsive/_mixins.scss */
-  .page-navi .page-navi-in .page-cat-scenes .fa {
-    color: #6494bc;
-  }
-  /* line 230, sass/responsive/_mixins.scss */
-  .page-navi .page-navi-in .page-cat-notifications .fa {
-    color: #80ad80;
-  }
-  /* line 231, sass/responsive/_mixins.scss */
-  .page-navi .page-navi-in .page-cat-tagging .fa {
-    color: #31b0d5;
   }
   /* line 233, sass/responsive/_mixins.scss */
   .page-navi .page-navi-in .page-navi-close {
