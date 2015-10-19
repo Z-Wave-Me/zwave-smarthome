@@ -933,6 +933,26 @@ vertical-align: middle;
   top: 0;
   left: 0;
   z-index: 100;
+  /*        .page-cat-basic_gateway_modules{background-color: #dd976e;}
+          .page-cat-legacy_products_workaround{background-color: #6c7a89;}
+          .page-cat-support_external_ui{background-color: #6494bc;} 
+          .page-cat-support_external_dev{background-color: #80ad80;} 
+          .page-cat-automation_basic{background-color: #31b0d5;}
+          .page-cat-device_enhancements{background-color: #f0aD4e;}
+          .page-cat-developers_stuff{background-color: #d9534f;} 
+          .page-cat-complex_applications{background-color: #dd976e;} 
+          .page-cat-automation{background-color: #dddddd;}
+          .page-cat-security{background-color: #6c7a89;}
+          .page-cat-peripherals{background-color: #6494bc;}
+          .page-cat-logging{background-color: #31b0d5;}
+          .page-cat-scripting{background-color: #f0aD4e;}
+          .page-cat-devices{background-color: #d9534f;} 
+          .page-cat-scheduling{background-color: #dd976e;} 
+          .page-cat-climate{background-color: #dddddd;}
+          .page-cat-environment{background-color: #6c7a89;}
+          .page-cat-scenes{background-color: #6494bc;} 
+          .page-cat-notifications{background-color: #80ad80;} 
+          .page-cat-tagging{background-color: #31b0d5;}*/
   /*        #cat_basic_gateway_modules{.fa{color: #dddddd;}}
           #cat_legacy_products_workaround{.fa{color: #6c7a89;}}
           #cat_support_external_ui{.fa{color: #6494bc;}} 
@@ -967,6 +987,7 @@ vertical-align: middle;
   width: 33.33%;
   padding: 10px 0;
   border: solid 4px #fbfbfb;
+  background-color: #ddd;
 }
 /* line 44, sass/globals/_navi.scss */
 .page-navi .page-navi-in ul li .page-navi-icon {
@@ -978,92 +999,11 @@ vertical-align: middle;
   padding: 0 10px;
   vertical-align: middle;
   display: block;
-  color: #fff;
 }
 /* line 64, sass/globals/_navi.scss */
 .page-navi .page-navi-in ul .active a {
   font-weight: bold;
   text-decoration: underline;
-}
-/* line 76, sass/globals/_navi.scss */
-.page-navi .page-navi-in .page-cat-basic_gateway_modules {
-  background-color: #dd976e;
-}
-/* line 77, sass/globals/_navi.scss */
-.page-navi .page-navi-in .page-cat-legacy_products_workaround {
-  background-color: #6c7a89;
-}
-/* line 78, sass/globals/_navi.scss */
-.page-navi .page-navi-in .page-cat-support_external_ui {
-  background-color: #6494bc;
-}
-/* line 79, sass/globals/_navi.scss */
-.page-navi .page-navi-in .page-cat-support_external_dev {
-  background-color: #80ad80;
-}
-/* line 80, sass/globals/_navi.scss */
-.page-navi .page-navi-in .page-cat-automation_basic {
-  background-color: #31b0d5;
-}
-/* line 81, sass/globals/_navi.scss */
-.page-navi .page-navi-in .page-cat-device_enhancements {
-  background-color: #f0aD4e;
-}
-/* line 82, sass/globals/_navi.scss */
-.page-navi .page-navi-in .page-cat-developers_stuff {
-  background-color: #d9534f;
-}
-/* line 83, sass/globals/_navi.scss */
-.page-navi .page-navi-in .page-cat-complex_applications {
-  background-color: #dd976e;
-}
-/* line 84, sass/globals/_navi.scss */
-.page-navi .page-navi-in .page-cat-automation {
-  background-color: #dddddd;
-}
-/* line 85, sass/globals/_navi.scss */
-.page-navi .page-navi-in .page-cat-security {
-  background-color: #6c7a89;
-}
-/* line 86, sass/globals/_navi.scss */
-.page-navi .page-navi-in .page-cat-peripherals {
-  background-color: #6494bc;
-}
-/* line 87, sass/globals/_navi.scss */
-.page-navi .page-navi-in .page-cat-logging {
-  background-color: #31b0d5;
-}
-/* line 88, sass/globals/_navi.scss */
-.page-navi .page-navi-in .page-cat-scripting {
-  background-color: #f0aD4e;
-}
-/* line 89, sass/globals/_navi.scss */
-.page-navi .page-navi-in .page-cat-devices {
-  background-color: #d9534f;
-}
-/* line 90, sass/globals/_navi.scss */
-.page-navi .page-navi-in .page-cat-scheduling {
-  background-color: #dd976e;
-}
-/* line 91, sass/globals/_navi.scss */
-.page-navi .page-navi-in .page-cat-climate {
-  background-color: #dddddd;
-}
-/* line 92, sass/globals/_navi.scss */
-.page-navi .page-navi-in .page-cat-environment {
-  background-color: #6c7a89;
-}
-/* line 93, sass/globals/_navi.scss */
-.page-navi .page-navi-in .page-cat-scenes {
-  background-color: #6494bc;
-}
-/* line 94, sass/globals/_navi.scss */
-.page-navi .page-navi-in .page-cat-notifications {
-  background-color: #80ad80;
-}
-/* line 95, sass/globals/_navi.scss */
-.page-navi .page-navi-in .page-cat-tagging {
-  background-color: #31b0d5;
 }
 /* line 117, sass/globals/_navi.scss */
 .page-navi .page-navi-in .page-navi-close {
