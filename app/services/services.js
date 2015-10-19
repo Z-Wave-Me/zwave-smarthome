@@ -387,8 +387,8 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                 rgbColors = 'rgb(' + v.metrics.color.r + ',' + v.metrics.color.g + ',' + v.metrics.color.b + ')';
             }
             // Create min/max value
-            switch (v.metrics.icon) {
-                case 'multilevel':
+            switch (v.probeType) {
+                case 'test':
                     minMax = {min: 0, max: 255};
                     break;
                 default:
@@ -409,6 +409,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                 'probeTitle': v.metrics.probeTitle,
                 'scaleTitle': v.metrics.scaleTitle,
                 'deviceType': v.deviceType,
+                'v.probeType':v.probeType,
                 'location': v.location,
                 'creatorID': v.creatorId,
                 'updateTime': v.updateTime,
