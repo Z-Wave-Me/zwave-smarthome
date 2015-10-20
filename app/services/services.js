@@ -172,8 +172,8 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     /**
      * Get module form data
      */
-    this.getModuleFormData = function(module, data, namespaces) {
-        return getModuleFormData(module, data, namespaces);
+    this.getModuleFormData = function(module, data) {
+        return getModuleFormData(module, data);
     };
 
     /**
@@ -635,71 +635,16 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     /**
      * Get module form data
      */
-    function getModuleFormData(module, data, namespaces) {
-        var bind = setModuleFormData(module.options, module.schema, namespaces);
+    function getModuleFormData(module, data) {
         var collection = {
-            'options': bind.options,
-            'schema': bind.schema,
+            'options': module.options,
+            'schema': module.schema,
             'data': data,
             'postRender': postRenderAlpaca
         };
         return collection;
     }
 
-    /**
-     * Set module form data
-     */
-    function setModuleFormData(options, schema, namespaces) {
-        var collection = {
-            'options': replaceModuleFormData(options, 'optionLabels', namespaces, 'deviceName'),
-            'schema': replaceModuleFormData(schema, 'enum', namespaces, 'deviceId')
-        };
-        return collection;
-    }
-    /**
-     * Replace module object
-     */
-    function replaceModuleFormData(obj, key, namespaces, namespaceKey) {
-        var objects = [];
-        for (var i in obj) {
-            if (!obj.hasOwnProperty(i))
-                continue;
-            if (typeof obj[i] == 'object') {
-                objects = objects.concat(replaceModuleFormData(obj[i], key, namespaces, namespaceKey));
-            } else if (i == key && !angular.isArray(obj[key])) {
-                obj[key] = buildArrayFromNamespaces(obj[key], namespaces, namespaceKey);
-            }
-        }
-        return obj;
-    }
-
-
-    /**
-     * Build an array from namespaces
-     */
-    function buildArrayFromNamespaces(enums, namespaces, namespaceKey) {
-
-        var collection = [];
-        var namesp = enums.split(',');
-        if (!angular.isArray(namesp)) {
-            return false;
-        }
-        angular.forEach(namesp, function(v, k) {
-            var id = v.split(':');
-            if (!angular.isArray(id)) {
-                return false;
-            }
-            angular.forEach(namespaces, function(nm, km) {
-                if (nm.id == id[1]) {
-                    angular.forEach(nm.params, function(i, n) {
-                        collection.push(i[namespaceKey]);
-                    });
-                }
-            });
-        });
-
-        return collection;
-    }
     /**
      * Get device type
      */

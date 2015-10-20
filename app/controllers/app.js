@@ -499,32 +499,27 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
     $scope.postModule = function(id) {
         dataService.showConnectionSpinner();
         dataFactory.getApi('modules', '/' + id + '?lang=' + $scope.lang,true).then(function(module) {
-            dataFactory.getApi('namespaces',null,true).then(function(namespaces) {
-                var formData = dataService.getModuleFormData(module.data.data, module.data.data.defaults, namespaces.data.data);
-                var langCode = (angular.isDefined(cfg.lang_codes[$scope.lang]) ? cfg.lang_codes[$scope.lang] : null);
-                $scope.input = {
-                    'instanceId': 0,
-                    'moduleId': id,
-                    'active': true,
-                    'title': $filter('hasNode')(formData, 'data.title'),
-                    'description': $filter('hasNode')(formData, 'data.description'),
-                    'moduleTitle': $filter('hasNode')(formData, 'data.title'),
-                    'icon': $filter('hasNode')(module, 'data.data.icon'),
-                    'moduleName': $filter('hasNode')(module, 'data.data.moduleName'),
-                    'category': module.data.data.category
-                };
-                $scope.showForm = true;
-                if (!$filter('hasNode')(formData, 'options.fields') || !$filter('hasNode')(formData, 'schema.properties')) {
-                    $scope.alpacaData = false;
-                    return;
-                }
-                $.alpaca.setDefaultLocale(langCode);
-                $('#alpaca_data').alpaca(formData);
-                dataService.updateTimeTick();
-            }, function(error) {
-                alert($scope._t('error_load_data'));
-                dataService.showConnectionError(error);
-            });
+            var formData = dataService.getModuleFormData(module.data.data, module.data.data.defaults);
+            var langCode = (angular.isDefined(cfg.lang_codes[$scope.lang]) ? cfg.lang_codes[$scope.lang] : null);
+            $scope.input = {
+                'instanceId': 0,
+                'moduleId': id,
+                'active': true,
+                'title': $filter('hasNode')(formData, 'data.title'),
+                'description': $filter('hasNode')(formData, 'data.description'),
+                'moduleTitle': $filter('hasNode')(formData, 'data.title'),
+                'icon': $filter('hasNode')(module, 'data.data.icon'),
+                'moduleName': $filter('hasNode')(module, 'data.data.moduleName'),
+                'category': module.data.data.category
+            };
+            $scope.showForm = true;
+            if (!$filter('hasNode')(formData, 'options.fields') || !$filter('hasNode')(formData, 'schema.properties')) {
+                $scope.alpacaData = false;
+                return;
+            }
+            $.alpaca.setDefaultLocale(langCode);
+            $('#alpaca_data').alpaca(formData);
+            dataService.updateTimeTick();
 
         }, function(error) {
             $location.path('/error/' + error.status);
@@ -547,33 +542,27 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                     }
 
                 }
-                dataFactory.getApi('namespaces',null,true).then(function(namespaces) {
-                    var formData = dataService.getModuleFormData(module.data.data, instance.params, namespaces.data.data);
+                var formData = dataService.getModuleFormData(module.data.data, instance.params);
 
-                    $scope.input = {
-                        'instanceId': instance.id,
-                        'moduleId': module.data.data.id,
-                        'active': instance.active,
-                        'title': instance.title,
-                        'description': instance.description,
-                        'moduleTitle': instance.title,
-                        'icon': $filter('hasNode')(module, 'data.data.icon'),
-                        'moduleName': $filter('hasNode')(module, 'data.data.moduleName'),
-                        'category': module.data.data.category
-                    };
-                    $scope.showForm = true;
-                    if (!$filter('hasNode')(formData, 'options.fields') || !$filter('hasNode')(formData, 'schema.properties')) {
-                        $scope.alpacaData = false;
-                        return;
-                    }
+                $scope.input = {
+                    'instanceId': instance.id,
+                    'moduleId': module.data.data.id,
+                    'active': instance.active,
+                    'title': instance.title,
+                    'description': instance.description,
+                    'moduleTitle': instance.title,
+                    'icon': $filter('hasNode')(module, 'data.data.icon'),
+                    'moduleName': $filter('hasNode')(module, 'data.data.moduleName'),
+                    'category': module.data.data.category
+                };
+                $scope.showForm = true;
+                if (!$filter('hasNode')(formData, 'options.fields') || !$filter('hasNode')(formData, 'schema.properties')) {
+                    $scope.alpacaData = false;
+                    return;
+                }
 
-                    $('#alpaca_data').alpaca(formData);
+                $('#alpaca_data').alpaca(formData);
 
-                    dataService.updateTimeTick();
-                }, function(error) {
-                    alert($scope._t('error_load_data'));
-                    dataService.showConnectionError(error);
-                });
                 dataService.updateTimeTick();
             }, function(error) {
                 alert($scope._t('error_load_data'));
