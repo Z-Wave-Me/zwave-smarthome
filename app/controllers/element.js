@@ -429,7 +429,8 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         dataFactory.runApiCmd(cmd).then(function(response) {
             $(widgetId + ' .widget-image').addClass('trans-true');
         }, function(error) {
-            alert($scope._t('error_update_data'));
+            //alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
         });
         return;
@@ -486,8 +487,7 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
             });
 
         }, function(error) {
-            alert($scope._t('error_load_data'));
-            dataService.showConnectionError(error);
+            dataService.showConnectionError(error); 
         });
     };
     $scope.loadTagList();
@@ -541,7 +541,7 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
                 updateProfile($scope.user, input.id);
 
             }, function(error) {
-                alert($scope._t('error_update_data'));
+                alertify.alert($scope._t('error_update_data'));
                 $scope.loading = false;
             });
         }
@@ -590,7 +590,7 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
             $window.history.back();
 
         }, function(error) {
-            alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
         });
         return;
@@ -620,7 +620,7 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
             };
             dataService.updateTimeTick(updateTime);
         } else {
-            alert($scope._t('no_data'));
+            alertify.alert($scope._t('no_data'));
             dataService.showConnectionError($scope._t('no_data'));
         }
     }
