@@ -54,7 +54,7 @@
                             <!-- ////////// switchMultilevel ////////// -->
                             <div ng-switch-when="switchMultilevel">
                                 <div class="widget-control control-left widget-click-popup" ng-click="goHidden[v.id] = !goHidden[v.id]">
-                                    <span class="widget-level" ng-bind="levelVal[v.id] | getMaxLevel"></span>% <i class="fa fa-caret-down"></i>
+                                    <span class="widget-level" ng-bind="levelVal[v.id] | getMaxLevel:v.probeType"></span>% <i class="fa fa-caret-down"></i>
                                 </div>
                                 <div class="widget-control control-right">
                                     <div class="btn-group" ng-if="v.metrics.icon == 'blinds'">
@@ -81,7 +81,7 @@
                                         <button 
                                             class="btn btn-sm widget-btn-on" 
                                             id="btn_on_{{ v.id}}"
-                                            data-ng-click="levelVal[v.id] == 99; runCmd(v.id + '/command/on', v.id); goHidden = false"
+                                            data-ng-click="levelVal[v.id] == 255; runCmd(v.id + '/command/on', v.id); goHidden = false"
                                             ng-class="levelVal[v.id] > 0 ? 'btn-primary': 'btn-default'"
                                             ng-bind="_t('lb_on')"></button>
                                     </div>
@@ -397,41 +397,54 @@
                                                 <input 
                                                     type="text" 
                                                     id="knob_{{v.id}}"
-                                                    value="{{levelVal[v.id]|getMaxLevel}}" 
+                                                    value="{{levelVal[v.id]|getMaxLevel:v.probeType}}" 
                                                     class="dial widget-level-knob" 
                                                     data-width="100" 
                                                     data-height="100" 
                                                     data-min="0"
-                                                    data-max="99" 
+                                                    data-max="255" 
                                                     knob-id="v.id" 
                                                     knob-data="v.level" 
                                                     knob-options="knobopt" 
-                                                    ng-model="levelVal[v.id]" myknob />  
+                                                    ng-model="levelVal[v.id]" myknob ng-if="cfg.knob_255.indexOf(v.probeType) > - 1" /> 
+                                                <input 
+                                                    type="text" 
+                                                    id="knob_{{v.id}}"
+                                                    value="{{levelVal[v.id]|getMaxLevel:v.probeType}}" 
+                                                    class="dial widget-level-knob" 
+                                                    data-width="100" 
+                                                    data-height="100" 
+                                                    data-min="0"
+                                                    data-max="100" 
+                                                    knob-id="v.id" 
+                                                    knob-data="v.level" 
+                                                    knob-options="knobopt" 
+                                                    ng-model="levelVal[v.id]" myknob ng-if="cfg.knob_255.indexOf(v.probeType) === - 1" />
                                                 <!--<input type="text" value="v.level" class="dial" data-width="100" data-height="100" ng-model="levelVal[v.id]" knob /> -->  
                                             </td>
                                             <td>
                                                 <button class="btn btn-primary"
-                                                        data-ng-click="runCmdExact(v.id, '+', 1, 99)"
+                                                        data-ng-click="runCmdExact(v.id, '+', 1, v.minMax.max)"
                                                         >
                                                     <i class="fa fa-angle-up fa-lg"></i>
                                                 </button>&nbsp;
                                                 <button class="btn btn-info"
-                                                        data-ng-click="runCmdExact(v.id, 255, 0, 255)"
+                                                        data-ng-click="runCmdExact(v.id, v.minMax.max, v.minMax.min, v.minMax.max)"
                                                         ><i class="fa fa-angle-double-up fa-lg"></i>
                                                 </button><br /><br />
                                                 <button class="btn btn-primary"
-                                                        data-ng-click="runCmdExact(v.id, '-', 1, 99)"
+                                                        data-ng-click="runCmdExact(v.id, '-', 1, v.minMax.max)"
                                                         ><i class="fa fa-angle-down fa-lg"></i>
                                                 </button>&nbsp;
                                                 <button class="btn btn-info"
-                                                        data-ng-click="runCmdExact(v.id, 0, 0, 255)"
+                                                        data-ng-click="runCmdExact(v.id, v.minMax.min, v.minMax.min, v.minMax.max)"
                                                         >
                                                     <i class="fa fa-angle-double-down fa-lg"></i>
                                                 </button>
                                             </td>
                                             <td>
                                                 <button class="btn btn-info"
-                                                        data-ng-click="runCmdExact(v.id, 99, 0, 99)"
+                                                        data-ng-click="runCmdExact(v.id, v.minMax.max, v.minMax.min, v.minMax.max)"
                                                         ng-bind="_t('lb_full')">
                                                 </button>
                                             </td>
@@ -462,7 +475,19 @@
                                                     knob-id="v.id" 
                                                     knob-data="v.level" 
                                                     knob-options="knobopt" 
-                                                    ng-model="levelVal[v.id]" myknob />  
+                                                    ng-model="levelVal[v.id]" myknob ng-if="v.scaleTitle !== '°F'" />  
+                                                <input 
+                                                    type="text" 
+                                                    value="v.level" 
+                                                    class="dial" 
+                                                    data-width="100" 
+                                                    data-height="100" 
+                                                    data-min="40"
+                                                    data-max="104" 
+                                                    knob-id="v.id" 
+                                                    knob-data="v.level" 
+                                                    knob-options="knobopt" 
+                                                    ng-model="levelVal[v.id]" myknob ng-if="v.scaleTitle === '°F'" />  
                                                 <!--<input type="text" value="v.level" class="dial" data-width="100" data-height="100" ng-model="levelVal[v.id]" knob /> -->  
                                             </td>
                                             <td>

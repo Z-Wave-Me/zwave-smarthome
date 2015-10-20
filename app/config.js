@@ -164,6 +164,10 @@ var config_data = {
             'find.zwave.me',
             'find.popp.eu' 
         ],
+        // List of range values 0 - 255
+        'knob_255': [
+            'multilevel'
+        ],
         // Results per page
         'page_results': 12,
         // Results per events page
