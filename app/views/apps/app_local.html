@@ -1,11 +1,11 @@
 <!-- Online app view -->
 <div class="page-control form-inline">
-    <a class="btn btn-default" href="" ng-click="expandNavi('appsCategories')"><i class="fa fa-chevron-down text-success" ng-class="naviExpanded.appsCategories ? 'fa-chevron-up': 'fa-chevron-down'"></i> Select category</a>
+    <a class="btn btn-default" href="" ng-click="expandNavi('appsCategories')"><i class="fa fa-chevron-down text-success" ng-class="naviExpanded.appsCategories ? 'fa-chevron-up': 'fa-chevron-down'"></i> <span ng-bind="currentCategory.name || _t('select_category')"></span></a>
     <div class="input-group search-form hide-on-mobile">
         <input type="text" ng-model="q" class="form-control" value="{{q}}">
         <span class="input-group-addon"><i class="fa fa-search"></i></span> 
     </div>
-    <a class="btn btn-default" href="" ng-click="resetFilter('/apps')" ng-if="currentCategory.id"><i class="fa fa-refresh text-danger"></i> Reset filter</a>
+    <a class="btn btn-default" href="" ng-click="resetFilter('/apps')" ng-if="currentCategory.id"><i class="fa fa-refresh text-danger"></i> {{_t('clear_all_filters')}}</a>
 </div>
 <div class="page-navi" ng-if="naviExpanded.appsCategories">
     <div class="page-navi-in">
@@ -36,9 +36,9 @@
                 </a>
             </li>
         </ul>
-        <div class="page-navi-close">
+        <!--<div class="page-navi-close">
             <a class="btn btn-default" href="" ng-click="expandNavi('appsCategories')"><i class="fa fa-chevron-up  text-danger"></i> {{_t('collapse')}}</a>
-        </div>
+        </div>-->
     </div>
 </div>
 <div class="row row-page" id="_page_app_local">

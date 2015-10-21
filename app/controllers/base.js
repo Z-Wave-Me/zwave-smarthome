@@ -13,6 +13,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
      * Global scopes
      */
     $scope.cfg = cfg;
+    $scope.languages = {};
     $scope.loading = false;
     $scope.alert = {message: false, status: 'is-hidden', icon: false};
     $scope.user = dataService.getUser();
@@ -65,7 +66,8 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
         // Is lang in language list?
         var lang = (cfg.lang_list.indexOf(lang) > -1 ? lang : cfg.lang);
         dataFactory.getLanguageFile(lang).then(function(response) {
-            $scope.languages = response.data;
+            //$scope.languages = response.data;
+             angular.extend($scope.languages, response.data);
         }, function(error) {
             dataService.showConnectionError(error);
         });

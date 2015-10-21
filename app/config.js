@@ -27,7 +27,8 @@ var config_data = {
             'history': 'ZAutomation/api/v1/history',
             'login': 'ZAutomation/api/v1/login',
             'backup': 'ZAutomation/api/v1/backup',
-            'restore': 'ZAutomation/api/v1/restore'
+            'restore': 'ZAutomation/api/v1/restore',
+            'tokens': 'ZAutomation/api/v1/tokens'
         },
         // List of image pathes
         'img': {
@@ -82,7 +83,7 @@ var config_data = {
         // Default language
         'lang': 'en',// !!!!Do not change it
         // List of supported languages
-        'lang_list': ['en', 'de', 'ru', 'cn', 'fr'],
+        'lang_list': ['en', 'de', 'ru', 'cn', 'fr','cz','sk'],
         // Role access
         'role_access': {
             admin: [1],
@@ -162,6 +163,10 @@ var config_data = {
         'find_hosts': [
             'find.zwave.me',
             'find.popp.eu' 
+        ],
+        // List of range values 0 - 255
+        'knob_255': [
+            'multilevel'
         ],
         // Results per page
         'page_results': 12,

@@ -305,9 +305,17 @@ myApp.filter('getBatteryIcon', function() {
  * Get max level
  */
 myApp.filter('getMaxLevel', function() {
-    return function(input) {
-        var maxLevel = 100;
-        var levelVal = (input < 100 ? input : 99);
+    return function(input,probeType) {
+        var levelVal = 100;
+         switch (probeType) {
+            case 'test':
+                levelVal = (input < 255 ? input : 255);
+                break;
+             
+            default:
+                levelVal = (input < 100 ? input : 100);
+                break;
+        }
         return levelVal;
     };
 });
@@ -511,7 +519,7 @@ myApp.filter('uri', function($location) {
  */
 myApp.filter('deviceName', function() {
     return function(deviceId, device) {
-        var name = (deviceId == 1 ? 'RaZberry' : 'Device ' + '_' + deviceId);
+        var name = (deviceId == 1 ? 'Z-Way' : 'Device ' + '_' + deviceId);
         if (device === undefined) {
             return name;
         }
