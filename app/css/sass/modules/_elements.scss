@@ -90,6 +90,25 @@
         cursor: pointer;
     }
     
+     .widget-btn-off, .widget-btn-on{
+          .fa{
+            color: lighten($app-body-color, 50%);
+        }
+        .widget-btn-label{
+            display: none;
+        }
+    }
+    .widget-btn-off.btn-primary, .widget-btn-on.btn-primary{
+        .fa{
+            color: #fff !important;
+        }
+    }
+/*    .widget-btn-on-off{
+        .btn-primary{
+            
+        }
+    }*/
+    
     
 /*    .element-hidden.hidden-history{
         width: 100%;
