@@ -26,6 +26,7 @@
 
                     <!-- Widget header -->
                     <div class="widget-header">
+                        <a class="widget-room" ng-href="#elements/location/{{v.location}}" ng-if="v.location !== 0"><i class="fa fa-building-o"></i> {{rooms[v.location].title|cutText:true:30}}</a>
                         <a class="widget-history" href="" ng-click="loadDeviceHistory(v.id)" ng-if="v.hasHistory"><i class="fa fa-history fa-lg"></i></a>
                         <a class="widget-config" href="#element/{{v.id}}" ng-if="elementAccess(cfg.role_access.element)"><i class="fa fa-cog fa-lg"></i></a>
                     </div> 
@@ -186,7 +187,7 @@
                             <!-- ////////// /doorLockControl ////////// -->
                             
                             <!-- ////////// toggleButton ////////// -->
-                            <div class="widget-control control-right" ng-switch-when="toggleButton">
+                            <div ng-switch-when="toggleButton">
                                 <div class="widget-control control-left">
                                     <i class="fa fa-clock-o"></i> <span class="widget-update-time">{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span>                                    
                                 </div>

@@ -67,7 +67,7 @@ myAppController.controller('DragDropController', function($scope, dataFactory) {
 /**
  * Element controller
  */
-myAppController.controller('ElementController', function($scope, $routeParams, $interval, $location, dataFactory, dataService, myCache) {
+myAppController.controller('ElementController', function($scope, $routeParams, $interval, $location, dataFactory, dataService, myCache,_) {
     $scope.welcome = false;
     $scope.goHidden = [];
     $scope.goHistory = [];
@@ -77,7 +77,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.showFooter = true;
     $scope.deviceType = [];
     $scope.tags = [];
-    $scope.rooms = [];
+    $scope.rooms = {};
     $scope.history = [];
     $scope.historyStatus = [];
     $scope.multilineDev = false;
@@ -121,6 +121,19 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         $('.modal-backdrop').remove();
         $('body').removeClass("modal-open");
     });
+    
+     /**
+     * Load locations
+     */
+    $scope.loadLocations = function() {
+        dataFactory.getApi('locations').then(function(response) {
+            angular.extend($scope.rooms,_.indexBy(response.data.data, 'id'));
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    }
+    ;
+     $scope.loadLocations();
 
     /**
      * Load data into collection
@@ -129,6 +142,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         dataService.showConnectionSpinner();
         //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('devices',null,true).then(function(response) {
+            
             var filter = null;
             var notFound = $scope._t('error_404');
             $scope.loading = false;
@@ -156,8 +170,8 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
                     case 'location':
                         $scope.showFooter = false;
                         filter = $routeParams;
-                        if (angular.isDefined($routeParams.name)) {
-                            $scope.headline = $scope._t('lb_devices_room') + ' ' + $routeParams.name;
+                        if (angular.isDefined($routeParams.val)&& !_.isEmpty($scope.rooms)) {
+                            $scope.headline = $scope._t('lb_devices_room') + ' ' + $scope.rooms[$routeParams.val].title;
                         }
                         break;
                     default:
@@ -213,7 +227,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     };
 
     $scope.refreshData();
-
+    
     /**
      * Load device history
      */

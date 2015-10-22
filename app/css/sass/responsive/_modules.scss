@@ -14,20 +14,21 @@
     .widget-block-in{
         /*   border: solid 1px red;*/
         height: auto;
+        min-height: 120px;
         text-align: left;
         padding: 10px;
     }
     .widget-image{ 
-        top: 10px;
+        top: 40px;
         left: 5px;
-        width: 42px;
-        height: 42px;
+/*        width: 42px;
+        height: 42px;*/
     }
     .widget-body{
         margin-top: -15px;
-        padding: 0 5px 15px 50px;
+        padding: 0 5px 15px 80px;
         .entry-title{
-            padding-right: 40px;
+            padding: 15px 40px 0 0;
         }
     }
 
