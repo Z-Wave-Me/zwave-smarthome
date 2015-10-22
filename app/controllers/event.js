@@ -28,6 +28,14 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
         day: 1
     };
     $scope.timeFilter = $scope.timeFilterDefault;
+     $scope.devices = {
+         find: {
+             id: false,
+             title: false,
+             data: {}
+         },
+         data: {}
+     };
     $scope.currentPage = 1;
     $scope.pageSize = cfg.page_results_events;
     $scope.reset = function() {
@@ -39,6 +47,30 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
     $scope.$on('$destroy', function() {
         $interval.cancel($scope.apiDataInterval);
     });
+    
+      /**
+     * Load devices
+     */
+    $scope.loadDevices = function() {
+        dataFactory.getApi('devices',null,true).then(function(response) {
+            var data = _.indexBy(response.data.data.devices, 'id');
+            angular.extend($scope.devices.data,data);
+            if (angular.isDefined($routeParams.param) && angular.isDefined($routeParams.val)) {
+            console.log($routeParams)
+            if($routeParams.param === 'source' && !_.isEmpty(data) && data[$routeParams.val]){
+                //var device = data[$routeParams.val];
+                 //angular.extend($scope.devices,{current:$scope.devices.data[$routeParams.val]});
+                  angular.extend($scope.devices.find,{id:$routeParams.val},{title:data[$routeParams.val].metrics.title});
+                  console.log($scope.devices) 
+            }
+        }
+            //console.log($scope.devices.data) 
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    }
+    ;
+     $scope.loadDevices();
 
     /**
      * Load data into collection

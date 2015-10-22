@@ -2,7 +2,23 @@
 <div ng-controller="EventController">
     <bb-loader></bb-loader>
     <div class="events-header">
-    <div class="hide-on-mobile">
+      <div class="btn-group">
+            <button type="button" class="btn btn-default">
+                  <span ng-if="devices.find.title"><i class="fa fa-check"></i> {{devices.find.title}}</span>
+                  <span ng-if="!devices.find.title">{{_t('select_element')}}</span>
+            </button>
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu pull-right">
+                <!--<li><a href="" ng-click="markAsRead(v.id)" ng-bind="_t('lb_mark_read')"></a></li>-->
+                <li ng-repeat="v in devices.data">
+                     <a ng-href="#events/source/{{v.id}}">{{v.metrics.title}}</a>
+                </li>
+             </ul>
+        </div>
+    <span class="hide-on-mobile">
         <button class="btn btn-default" ng-click="changeTime(1)" ng-disabled="timeFilter.day == 1" ng-bind="_t('lb_today')"></button>
         <button class="btn btn-default" ng-click="changeTime(2)" ng-disabled="timeFilter.day == 2" ng-bind="_t('lb_yesterday')"></button>
         <button class="btn btn-default" ng-click="changeTime(3)" ng-disabled="timeFilter.day == 3">3 <span ng-bind="_t('lb_days')"></span></button>
@@ -10,7 +26,7 @@
         <button class="btn btn-default" ng-click="changeTime(5)" ng-disabled="timeFilter.day == 5">5 <span ng-bind="_t('lb_days')"></span></button>
         <button class="btn btn-default" ng-click="changeTime(6)" ng-disabled="timeFilter.day == 6">6 <span ng-bind="_t('lb_days')"></span></button>
         <button class="btn btn-default" ng-click="changeTime(7)" ng-disabled="timeFilter.day == 7">7 <span ng-bind="_t('lb_days')"></span></button>
-    </div>
+    </span>
     <div class="show-on-mobile mobile-padding">
         <div class="btn-group">
             <!--<button type="button" class="btn btn-default" ng-bind="_t('lb_filter_by')"></button>-->
