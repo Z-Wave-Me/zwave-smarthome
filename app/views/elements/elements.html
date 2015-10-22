@@ -321,7 +321,9 @@
                             <!-- ////////// /switchMultilevelLinear ////////// -->
                             
                             <!-- ////////// camera ////////// -->
-                            <div class="text-right"><a href="" class="btn btn-primary" ng-switch-when="camera" ng-click="showModal('#modal_camera', v)"><i class="fa fa-play"></i></a></div>
+                            <div class="text-right" ng-switch-when="camera">
+                                <a href="" class="btn btn-default" ng-click="showModal('#modal_camera', v)"><i class="fa fa-video-camera text-primary"></i></a>
+                            </div>
                             <!-- ////////// camera ////////// -->
 
                             <!-- ////////// text ////////// -->
