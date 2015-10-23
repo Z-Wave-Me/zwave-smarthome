@@ -228,7 +228,7 @@
         <h2 class="admin-entry-title" ng-click="expandElement('appstore')">
             <i class="fa" ng-class="expand.appatore ? 'fa-minus':'fa-plus'"></i> <span ng-bind="_t('app_store_access')"></span>
         </h2>
-        <div class="admin-entry-ctrl" ng-if="expand.appstore">
+        <div class="admin-entry-ctrl" ng-if_="expand.appstore">
            <form name="form_appatore" id="form_appatore" class="form form-inline form-page" ng-submit="appStoreAddToken()" novalidate>
             <fieldset>{{_t('app_store_access_info')}}</fieldset>
             <fieldset>
@@ -238,11 +238,11 @@
             <fieldset>
                 <table class="table table-condensed table-report">
                     <tbody>
-                        <tr ng-repeat="v in appStore.tokens track by v.id">
-                            <td>{{v.name}}</td>
+                        <tr ng-repeat="v in appStore.tokens track by $index">
+                            <td>{{v}}</td>
                             <td class="td-action">
                                 <button class="btn btn-default" type="button" 
-                                        ng-click="appStoreRemoveToken(v.id,_t('lb_delete_confirm'))"
+                                        ng-click="appStoreRemoveToken(v,_t('lb_delete_confirm'))"
                                         ><i class="fa fa-times fa-lg text-danger"></i></button>   
                             </td>
                         </tr>

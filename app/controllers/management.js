@@ -306,30 +306,6 @@ myAppController.controller('ManagementController', function($scope, $window, $lo
         var interval = $interval(refresh, 1000);
     };
 
-
-
-    /**
-     * DEPRECATED
-     * Update firmware
-     */
-//    $scope.updateFirmware = function(input) {
-//        $scope.firmware.process = true;
-//        $scope.firmware.val = 0;
-//        var refresh = function() {
-//            $scope.firmware.alert = {message: $scope._t('updating_firmware'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
-//            $scope.firmware.val += 10;
-//            if ($scope.firmware.val >= 100) {
-//                $scope.firmware.val = 100;
-//                $interval.cancel(progressInterval);
-//                $scope.firmware.alert = {message: $scope._t('firmware_success'), status: 'alert-success', icon: 'fa-check'};
-//                //$scope.alertProgress = {message: $scope._t('firmware_error'), status: 'alert-danger', icon: 'fa-warning'};
-//                $scope.firmware.process = false;
-//            }
-//            console.log($scope.progressBar);
-//        };
-//        var progressInterval = $interval(refresh, 500);
-//    };
-
     /************************************** Firmware **************************************/
     /**
      * Show modal window
@@ -337,33 +313,6 @@ myAppController.controller('ManagementController', function($scope, $window, $lo
     $scope.showModal = function(target) {
         $(target).modal();
     };
-
-    /**
-     * Refresh ZWAVE api data
-     */
-//    $scope.refreshZwaveApiData = function() {
-//        var refresh = function() {
-//            dataFactory.refreshZwaveApiData().then(function(response) {
-//                if ('controller.data.controllerState' in response.data) {
-//                    var state = response.data['controller.data.controllerState'].value;
-//                    if (state == 20) {
-//                        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('restore_wait')};
-//                        $timeout(function() {
-//                            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('restore_done_reload_ui')};
-//                             $interval.cancel($scope.zwaveDataInterval);
-//                        }, 20000);
-//                    }
-//                }
-//               
-//            }, function(error) {
-//                dataService.showConnectionError(error);
-//                return;
-//            });
-//        };
-//        $scope.zwaveDataInterval = $interval(refresh, $scope.cfg.interval);
-//        return;
-//    };
-//    $scope.refreshZwaveApiData();
 });
 /**
  * User detail
@@ -517,22 +466,15 @@ myAppController.controller('ManagementAppStoreController', function($scope, $rou
     };
 
     /**
-     * Load data
+     * Load tokens
      */
-    $scope.appStoreLoadData = function() {
+    $scope.appStoreLoadTokens = function() {
         dataService.showConnectionSpinner();
-        var tokens = [
-            {id: 1, name: 'fab2cd5cv'},
-            {id: 2, name: '2df454ddf'},
-            {id: 3, name: 'fdf125dfd'}
-        ];
-        angular.extend($scope.appStore.tokens, tokens);
-        return;
         dataFactory.getApi('tokens', null, true).then(function(response) {
-            angular.extend($scope.appStore.tokens, response.data.data);
+            angular.extend($scope.appStore.tokens, response.data.data.tokens);
         }, function(error) {});
     };
-    $scope.appStoreLoadData();
+    $scope.appStoreLoadTokens();
     
     /**
      * Create/Update an item
@@ -541,11 +483,15 @@ myAppController.controller('ManagementAppStoreController', function($scope, $rou
         if ($scope.appStore.input.token === '') {
             return;
         }
-        dataFactory.storeApi('tokens', false, $scope.appStore.input).then(function(response) {
+        dataFactory. putApiFormdata('tokens', $scope.appStore.input).then(function(response) {
             $scope.appStore.input.token = '';
             $scope.appStoreLoadData();
         }, function(error) {
-            alertify.alert($scope._t('error_update_data'));
+            var message = $scope._t('error_update_data');
+            if(error.status === 409){
+                message = $scope._t('notunique_token') + ' - ' + $scope.appStore.input.token;
+            }
+            alertify.alert( message);
         });
 
     };
@@ -553,9 +499,9 @@ myAppController.controller('ManagementAppStoreController', function($scope, $rou
     /**
      * Remove a token from the list
      */
-    $scope.appStoreRemoveToken = function(id, message) {
+    $scope.appStoreRemoveToken = function(token, message) {
         alertify.confirm(message, function() {
-            dataFactory.deleteApi('tokens', id).then(function(response) {
+            dataFactory.deleteApiFormdata('tokens', {token: token}).then(function(response) {
                 $scope.appStoreLoadData();
             }, function(error) {
                 alertify.alert($scope._t('error_delete_data'));
