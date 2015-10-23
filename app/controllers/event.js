@@ -7,6 +7,9 @@
  * Event controller
  */
 myAppController.controller('EventController', function($scope, $routeParams, $interval, $window, $filter, $cookies, $location, dataFactory, dataService, myCache, paginationService, cfg, _) {
+    $scope.page = {
+        title: false
+    };
     $scope.collection = [];
     $scope.eventLevels = [];
     $scope.dayCount = [
@@ -56,12 +59,9 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
             var data = _.indexBy(response.data.data.devices, 'id');
             angular.extend($scope.devices.data,data);
             if (angular.isDefined($routeParams.param) && angular.isDefined($routeParams.val)) {
-            console.log($routeParams)
             if($routeParams.param === 'source' && !_.isEmpty(data) && data[$routeParams.val]){
-                //var device = data[$routeParams.val];
-                 //angular.extend($scope.devices,{current:$scope.devices.data[$routeParams.val]});
-                  angular.extend($scope.devices.find,{id:$routeParams.val},{title:data[$routeParams.val].metrics.title});
-                  console.log($scope.devices) 
+                angular.extend($scope.devices.find,{id:$routeParams.val},{title:data[$routeParams.val].metrics.title});
+                  angular.extend($scope.page,{title:data[$routeParams.val].metrics.title});
             }
         }
             //console.log($scope.devices.data) 

@@ -1350,6 +1350,14 @@ fieldset.submit-entry {
   font-size: 19.2px;
 }
 
+/* line 10, sass/globals/_dropdown.scss */
+.dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {
+  color: #8c8c8c;
+  text-decoration: none;
+  outline: 0;
+  background-color: #DDDDDD;
+}
+
 /* Absolute Center CSS Spinner
 http://codepen.io/MattIn4D/pen/LiKFC
 -------------------------------------------------- */
@@ -3418,7 +3426,6 @@ img.widget-promo-image {
 /* line 3, sass/modules/_events.scss */
 .events-header {
   margin-bottom: 10px;
-  text-align: right;
 }
 
 /* line 8, sass/modules/_events.scss */

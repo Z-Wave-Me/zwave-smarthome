@@ -1,6 +1,7 @@
 {
     "newtrans": "---",
-     "select_element": "Select element",
+    "device_no_event": "This device does not have an event",
+    "error_type": "Error type",
      "---": "newtrans",
     "select_category": "Select category",
     "clear_all_filters": "Clear all filters",
