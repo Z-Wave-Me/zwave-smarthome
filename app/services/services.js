@@ -637,12 +637,34 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      */
     function getModuleFormData(module, data) {
         var collection = {
-            'options': module.options,
+            'options': replaceModuleFormData(module.options, 'click'),
             'schema': module.schema,
             'data': data,
             'postRender': postRenderAlpaca
         };
         return collection;
+    }
+
+    /**
+     * Replace module object
+     */
+    function replaceModuleFormData(obj, key) {
+        var objects = [];
+        for (var i in obj) {
+            if (!obj.hasOwnProperty(i))
+                continue;
+            if (typeof obj[i] == 'object') {
+                objects = objects.concat(replaceModuleFormData(obj[i], key));
+            } else if (i == key && 
+                        !angular.isArray(obj[key]) && 
+                                typeof obj[key] === 'string' && 
+                                    obj[key].indexOf("function") === 0) {
+                // overwrite old string with function                
+                // we can only pass a function as string in JSON ==> doing a real function
+                obj[key] = new Function('return ' + obj[key])();
+            }
+        }
+        return obj;
     }
 
     /**
