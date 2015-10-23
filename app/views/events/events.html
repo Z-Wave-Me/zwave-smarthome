@@ -37,11 +37,7 @@
                     </td>
                     <td class="td-action">
                         <div class="btn-group">
-                            <button type="button" class="btn btn-default" ng-bind_="_t('lb_action')"><i class="fa fa-tasks"></i></button>
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                <span class="caret"></span>
-                                <span class="sr-only">Toggle Dropdown</span>
-                            </button>
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-down"></i></button>
                             <ul class="dropdown-menu pull-right">
                                 <!--<li><a href="" ng-click="markAsRead(v.id)" ng-bind="_t('lb_mark_read')"></a></li>-->
                                 <li>
@@ -98,8 +94,7 @@
                      <div class="btn-group dropup">
                         <button type="button" class="btn btn-default" ng-bind="_t('error_type')"></button>
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            <span class="caret"></span>
-                            <span class="sr-only">Toggle Dropdown</span>
+                             <i class="fa fa-caret-up"></i>
                         </button>
                         <ul class="dropdown-menu">
                             <li ng-repeat="v in eventLevels" ng-class="v.key == currLevel ? 'active':''">
@@ -109,12 +104,10 @@
                     </div>
                     <div class="btn-group dropup">
                         <button type="button" class="btn btn-default">
-                              <!--<span ng-if="devices.find.title"><i class="fa fa-check"></i> {{devices.find.title|cutText:true:30}}</span>--> 
                               <span ng-if_="!devices.find.title">{{_t('lb_device')}}</span>
                         </button>
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            <span class="caret"></span>
-                            <span class="sr-only">Toggle Dropdown</span>
+                            <i class="fa fa-caret-up"></i>
                         </button>
                         <ul class="dropdown-menu pull-right">
                             <!--<li><a href="" ng-click="markAsRead(v.id)" ng-bind="_t('lb_mark_read')"></a></li>-->
