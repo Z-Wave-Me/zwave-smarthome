@@ -34,8 +34,10 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
         getApiLocal: getApiLocal,
         getApi: getApi,
         deleteApi: deleteApi,
+        deleteApiFormdata: deleteApiFormdata,
         postApi: postApi,
         putApi: putApi,
+        putApiFormdata:putApiFormdata,
         storeApi: storeApi,
         runApiCmd: runApiCmd,
         getRemoteData: getRemoteData,
@@ -170,6 +172,24 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
             return $q.reject(response);
         });
     }
+    // Put api data as form data
+    function putApiFormdata(api, data, params) {
+        return $http({
+            method: "put",
+            data: $.param(data),
+            url: cfg.server_url + cfg.api[api] + (params ? params : ''),
+            headers: {
+                 'Content-Type': 'application/x-www-form-urlencoded',
+                'Accept-Language': lang,
+                'ZWAYSession': ZWAYSession
+            }
+        }).then(function(response) {
+            return response;
+        }, function(response) {// something went wrong
+
+            return $q.reject(response);
+        });
+    }
 
     // POST/PUT api data
     function storeApi(api, id, data, params) {
@@ -195,6 +215,26 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
             method: 'delete',
             url: cfg.server_url + cfg.api[api] + "/" + id + (params ? params : ''),
             headers: {
+                'Accept-Language': lang,
+                'ZWAYSession': ZWAYSession
+            }
+        }).then(function(response) {
+            return response;
+        }, function(response) {// something went wrong
+
+            return $q.reject(response);
+        });
+
+    }
+    
+     // Delete api data as form data
+    function deleteApiFormdata(api, data, params) {
+        return $http({
+            method: 'delete',
+            url: cfg.server_url + cfg.api[api] + (params ? params : ''),
+             data: $.param(data),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
                 'Accept-Language': lang,
                 'ZWAYSession': ZWAYSession
             }
