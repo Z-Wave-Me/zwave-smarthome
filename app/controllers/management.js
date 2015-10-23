@@ -95,24 +95,19 @@ myAppController.controller('ManagementController', function($scope, $window, $lo
     /**
      * Delete an item
      */
-    $scope.delete = function(target, input, dialog, except) {
+    $scope.delete = function(target, input, message, except) {
         if (input.id == except) {
             return;
         }
-        var confirm = true;
-        if (dialog) {
-            confirm = $window.confirm(dialog);
-        }
-
-        if (confirm) {
+        alertify.confirm(message, function() {
             dataFactory.deleteApi('profiles', input.id).then(function(response) {
                 $(target).fadeOut(2000);
                 myCache.remove('profiles');
 
             }, function(error) {
-                alert($scope._t('error_delete_data'));
+                alertify.alert($scope._t('error_delete_data'));
             });
-        }
+        });
     };
 
     /************************************** Remote access **************************************/
@@ -155,7 +150,7 @@ myAppController.controller('ManagementController', function($scope, $window, $lo
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
 
         }, function(error) {
-            alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
         });
 
@@ -413,7 +408,7 @@ myAppController.controller('ManagementUserController', function($scope, $routePa
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
 
         }, function(error) {
-            alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
         });
 
@@ -436,14 +431,14 @@ myAppController.controller('ManagementUserController', function($scope, $routePa
         dataFactory.putApi('profiles_auth_update', input.id, input).then(function(response) {
             var data = response.data.data;
             if (!data) {
-                alert($scope._t('error_update_data'));
+                alertify.alert($scope._t('error_update_data'));
                 $scope.loading = false;
                 return;
             }
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
 
         }, function(error) {
-            alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
         });
 
