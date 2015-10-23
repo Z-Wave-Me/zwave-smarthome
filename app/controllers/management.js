@@ -485,7 +485,7 @@ myAppController.controller('ManagementAppStoreController', function($scope, $rou
         }
         dataFactory. putApiFormdata('tokens', $scope.appStore.input).then(function(response) {
             $scope.appStore.input.token = '';
-            $scope.appStoreLoadData();
+            $scope.appStoreLoadTokens();
         }, function(error) {
             var message = $scope._t('error_update_data');
             if(error.status === 409){
@@ -502,7 +502,7 @@ myAppController.controller('ManagementAppStoreController', function($scope, $rou
     $scope.appStoreRemoveToken = function(token, message) {
         alertify.confirm(message, function() {
             dataFactory.deleteApiFormdata('tokens', {token: token}).then(function(response) {
-                $scope.appStoreLoadData();
+                $scope.appStoreLoadTokens();
             }, function(error) {
                 alertify.alert($scope._t('error_delete_data'));
             });
