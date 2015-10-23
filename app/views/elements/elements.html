@@ -26,7 +26,7 @@
 
                     <!-- Widget header -->
                     <div class="widget-header">
-                        <a class="widget-room" ng-href="#elements/location/{{v.location}}" ng-if="v.location !== 0"><i class="fa fa-building-o"></i> {{rooms[v.location].title|cutText:true:30}}</a>
+                         <!--<a class="widget-room" ng-href="#elements/location/{{v.location}}" ng-if="v.location !== 0"><i class="fa fa-building-o"></i> {{rooms[v.location].title|cutText:true:30}}</a> -->
                         <a class="widget-history" href="" ng-click="loadDeviceHistory(v.id)" ng-if="v.hasHistory"><i class="fa fa-history fa-lg"></i></a>
                         <a class="widget-config" href="#element/{{v.id}}" ng-if="elementAccess(cfg.role_access.element)"><i class="fa fa-cog fa-lg"></i></a>
                     </div> 
@@ -35,21 +35,24 @@
                     <div class="widget-body" ng-class="{'text-widget': v.deviceType == 'text','text-widget-no-img': v.deviceType == 'text' && v.metrics.icon == ''}" ng-mouseleave="goHidden[v.id] = false; goHistory[v.id] = false;" >
                         
                         <!-- title of widget type text -->
-                        <h3 ng-if="v.deviceType === 'text'" class="entry-title" title="{{v.title}}" ng-click="showModal('#modal_promo', {'type': v.deviceType, 'title': v.title, 'text': v.metrics.text, 'url': v.metrics.icon})">{{v.title|cutText:true:29}}</h3>
+                        <h3 ng-if="v.deviceType === 'text'" class="entry-title" title="{{v.title}}" ng-click="showModal('#modal_promo', {'type': v.deviceType, 'title': v.title, 'text': v.metrics.text, 'url': v.metrics.icon})">{{v.title|cutText:true:25}}</h3>
                         
                         <!-- title of widget type sensorMultiline MultilineSensor-->
-                        <h3 ng-if="v.deviceType === 'sensorMultiline' && v.metrics.multilineType == 'multilineSensor'" class="entry-title" title="{{v.title}}" ng-click="loadMultilineSensor('#modal_multiline', v.id,v,'sensors')">{{v.title}}</h3>
+                        <h3 ng-if="v.deviceType === 'sensorMultiline' && v.metrics.multilineType == 'multilineSensor'" class="entry-title" title="{{v.title}}" ng-click="loadMultilineSensor('#modal_multiline', v.id,v,'sensors')">{{v.title|cutText:true:25}}</h3>
 
                         <!-- title of widget type sensorMultiline FireProtection-->
-                        <h3 ng-if="v.deviceType === 'sensorMultiline' && v.metrics.multilineType == 'protection'" class="entry-title" title="{{v.title}}" ng-click="loadMultilineSensor('#modal_multiline', v.id,v,'sensors')">{{v.title}}</h3>
+                        <h3 ng-if="v.deviceType === 'sensorMultiline' && v.metrics.multilineType == 'protection'" class="entry-title" title="{{v.title}}" ng-click="loadMultilineSensor('#modal_multiline', v.id,v,'sensors')">{{v.title|cutText:true:25}}</h3>
                         <!-- title of widget type sensorMultiline multilineType-->
-                        <h3 ng-if="v.deviceType === 'sensorMultiline' && v.metrics.multilineType == 'climateControl'" class="entry-title" title="{{v.title}}">{{v.title}}</h3>
+                        <h3 ng-if="v.deviceType === 'sensorMultiline' && v.metrics.multilineType == 'climateControl'" class="entry-title" title="{{v.title}}">{{v.title|cutText:true:25}}</h3>
 
                         <!-- title of widget type sensorMultiline OpenWeather-->
-                        <h3 ng-if="v.deviceType === 'sensorMultiline' && v.metrics.multilineType == 'openWeather'" class="entry-title" title="{{v.title}}" ng-click="goHidden[v.id] = !goHidden[v.id]">{{v.title}}</h3>
+                        <h3 ng-if="v.deviceType === 'sensorMultiline' && v.metrics.multilineType == 'openWeather'" class="entry-title" title="{{v.title}}" ng-click="goHidden[v.id] = !goHidden[v.id]">{{v.title|cutText:true:25}}</h3>
 
                         <!-- default title -->
-                        <h3 ng-if="v.deviceType !== 'text' && v.deviceType !== 'sensorMultiline'" class="entry-title" title="{{v.title}}" ng-click="goHidden[v.id] = !goHidden[v.id]">{{v.title}}</h3>
+                        <h3 ng-if="v.deviceType !== 'text' && v.deviceType !== 'sensorMultiline'" class="entry-title" title="{{v.title}}" ng-click="goHidden[v.id] = !goHidden[v.id]">{{v.title|cutText:true:25}}</h3>
+                        <span class="widget-room">
+                            <span class="label label-default" ng-if="v.location !== 0">{{rooms[v.location].title|cutText:true:25}}</span>&nbsp;
+                        </span>
 
                         <div class="widget-control-wrap">
                             <!-- ////////// switchMultilevel ////////// -->

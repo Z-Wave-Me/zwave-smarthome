@@ -19,15 +19,16 @@
         padding: 10px;
     }
     .widget-image{ 
-        top: 40px;
-        left: 5px;
+        top: 20px;
+        //left: 5px;
 /*        width: 42px;
         height: 42px;*/
     }
     .widget-body{
-        margin-top: -15px;
+        margin-top: -20px;
         padding: 0 5px 15px 80px;
         .entry-title{
+            display: inline;
             padding: 15px 40px 0 0;
         }
     }

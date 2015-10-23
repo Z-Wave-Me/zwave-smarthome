@@ -35,8 +35,8 @@
 }
 .widget-image{
     position: absolute;
-    top: 30px;
-    left: 10px;
+    top: 10px;
+    left: 5px;
     /*    margin: 10px 20px 10px 10px;*/
     width: 64px;
     height: 64px;
@@ -62,20 +62,20 @@
      a:hover{
         color: darken($header-link-color, 10%);
     }
-    .widget-room{
-        position: absolute;
-        left: 5px;
-        top:3px;
-    }
 }
 
 
 .widget-body{
-    margin-top: 5px;
+    margin-top: -5px;
     padding: 0 5px 15px 84px;
     width: 100%;
     .entry-title{
         padding: 5px 30px 0 0;
+        margin-bottom: 0;
+    }
+    .widget-room{
+        display: inline-block;
+        margin-bottom: 8px;
     }
     .widget-control-wrap{
         width: 100%;
@@ -86,6 +86,7 @@
     }
     .widget-control.control-left{
         font-weight: bold;
+        font-size: $app-navi-font-size;
     }
     .widget-control.control-right{
         float: right;
