@@ -2,7 +2,7 @@
 <div ng-controller="ElementDetailController" class="mobile-padding">
     <bb-loader></bb-loader>
     <div ng-show="input">
-        <h2 class="form-title"><span ng-bind="_t('lb_cfg_view')"></span>: <span ng-bind="input.metrics.title"></span></h2>
+        <h2><span ng-bind="_t('lb_cfg_view')"></span>: <span ng-bind="input.metrics.title"></span></h2>
         <form name="form_element" id="form_element" class="form form-page" ng-submit="store(input)" novalidate>
             <fieldset ng-if="elementAccess(cfg.role_access.admin)">
                 <p class="form-control-static">
@@ -25,7 +25,7 @@
                     </div>
                     <!-- zwave -->
                     <div class="form-group" ng-if="input.appType.zwave">
-                        <span ng-bind="_t('lb_gen_by')"></span> <a href="#zwave/manage/{{input.appType.zwave}}" class="btn btn-default btn-sm"><span ng-bind="_t('lb_zwave_device')"></span> #{{input.appType.zwave}}</a>
+                        <span ng-bind="_t('lb_gen_by')"></span> <a href="#zwave/devices/{{input.appType.zwave}}" class="btn btn-default btn-sm"><span ng-bind="_t('lb_zwave_device')"></span> #{{input.appType.zwave}}</a>
                     </div>
                     <!-- enocean -->
                     <div class="form-group" ng-if="input.appType.enocean">
@@ -52,7 +52,7 @@
                         <label>{{_t('lb_assign_room')}} </label>
                         <select class="form-control" ng-model="input.location">
                             <!-- <option value="">--- Select one ---</option>-->
-                            <option ng-repeat="v in rooms" ng-selected="input.location == v.id" value="{{v.id}}" ng-bind="v.title"></option>
+                            <option ng-repeat="v in rooms" ng-selected="input.location == v.id" value="{{v.id}}" ng-bind="(v.id === 0 ? _t(v.title) : v.title)"></option>
                         </select>
                     </div>
 

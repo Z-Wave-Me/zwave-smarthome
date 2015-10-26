@@ -1,7 +1,7 @@
 var config_data = {
     'cfg': {
         //Application name
-        'app_name': 'SHUI',
+        'app_name': 'SmartHome UI',
         // Application version
         'app_version': '1.0.2',
         // Server base url
@@ -27,7 +27,8 @@ var config_data = {
             'history': 'ZAutomation/api/v1/history',
             'login': 'ZAutomation/api/v1/login',
             'backup': 'ZAutomation/api/v1/backup',
-            'restore': 'ZAutomation/api/v1/restore'
+            'restore': 'ZAutomation/api/v1/restore',
+            'tokens': 'ZAutomation/api/v1/modules/tokens'
         },
         // List of image pathes
         'img': {
@@ -46,11 +47,14 @@ var config_data = {
         // Help data path
         'help_data_url': 'storage/help/',
         // Online module url
-        'online_module_url': 'http://hrix.net/modules_store/json_store.php',
+         'online_module_url': 'http://hrix.net/module_store_int/json_store.php',
+        //'online_module_url': 'http://hrix.net/modules_store/json_store.php',
         // Online module img url
-        'online_module_img_url': 'http://hrix.net/modules_store/modules/',
+        'online_module_img_url': 'http://hrix.net/module_store_int/modules/',
+        //'online_module_img_url': 'http://hrix.net/modules_store/modules/',
         // Online module download url
-        'online_module_download_url': 'http://hrix.net/modules_store/modules/',
+        'online_module_download_url': 'http://hrix.net/module_store_int/modules/',
+        //'online_module_download_url': 'http://hrix.net/modules_store/modules/',
         // Post report url
         //'post_report_url': 'http://dev.dev/zwave-api/report/post-report.php',
         'post_report_url': ' http://zwave.eu/api/report/post-report.php',
@@ -79,7 +83,7 @@ var config_data = {
         // Default language
         'lang': 'en',// !!!!Do not change it
         // List of supported languages
-        'lang_list': ['en', 'de', 'ru', 'cn', 'fr'],
+        'lang_list': ['en', 'de', 'ru', 'cn', 'fr','cz','sk'],
         // Role access
         'role_access': {
             admin: [1],
@@ -159,6 +163,10 @@ var config_data = {
         'find_hosts': [
             'find.zwave.me',
             'find.popp.eu' 
+        ],
+        // List of range values 0 - 255
+        'knob_255': [
+            'multilevel'
         ],
         // Results per page
         'page_results': 12,

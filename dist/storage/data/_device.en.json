@@ -10,8 +10,7 @@
         "brandname": "Z-Wave.Me",
         "brand_image": "Z-WaveMe.png",
         "product_image": "117-0115-1000-0001-06-03-16-01-03.png",
-        "prep": "A red\/green blinking indicates that the device is in factory default and ready to be included",
-        "inclusion_type": "secure"
+        "prep": "A red\/green blinking indicates that the device is in factory default and ready to be included"
     },
     {
         "id": "211-0115-0100-0001-03-03-2a-01-02",
@@ -24,8 +23,7 @@
         "brandname": "Z-Wave.Me",
         "brand_image": "Z-WaveMe.png",
         "product_image": "211-0115-0100-0001-03-03-2a-01-02.png",
-        "prep": "Short Click on Button 1 must start red\/green blinking ot indicate that the device is in factory default an ready to be included",
-        "inclusion_type": "secure"
+        "prep": "Short Click on Button 1 must start red\/green blinking ot indicate that the device is in factory default an ready to be included"
     },
     {
         "id": "554-0115-0100-0101-03-03-5c-01-00",
@@ -38,8 +36,7 @@
         "brandname": "Z-Wave.Me",
         "brand_image": "Z-WaveMe.png",
         "product_image": "554-0115-0100-0101-03-03-5c-01-00.png",
-        "prep": "Short Click on Button 1 must start red\/green blinking ot indicate that the device is in factory default an ready to be included",
-        "inclusion_type": "secure"
+        "prep": "Short Click on Button 1 must start red\/green blinking ot indicate that the device is in factory default an ready to be included"
     },
     {
         "id": "322-0115-1100-0001-03-03-2a-01-00",
@@ -52,8 +49,7 @@
         "brandname": "Z-Wave.Me",
         "brand_image": "Z-WaveMe.png",
         "product_image": "322-0115-1100-0001-03-03-2a-01-00.png",
-        "prep": "A red\/green blinking indicates that the device is in factory default and ready to be included",
-        "inclusion_type": "secure"
+        "prep": "A red\/green blinking indicates that the device is in factory default and ready to be included"
     },
     {
         "id": "351-010f-0400-0109-03-03-2a-01-09",
@@ -66,8 +62,7 @@
         "brandname": "Fibaro",
         "brand_image": "Fibaro.png",
         "product_image": "351-010f-0400-0109-03-03-2a-01-09.png",
-        "prep": "The device should already be installed in the wall box",
-        "inclusion_type": "secure"
+        "prep": "The device should already be installed in the wall box"
     },
     {
         "id": "430-010f-0700-1000-03-03-2a-02-01",
@@ -80,8 +75,7 @@
         "brandname": "Fibaro",
         "brand_image": "Fibaro.png",
         "product_image": "430-010f-0700-1000-03-03-2a-02-01.png",
-        "prep": "Insert the battery",
-        "inclusion_type": "secure"
+        "prep": "Insert the battery"
     },
     {
         "id": "441-010f-0501-0102-03-03-28-03-31",
@@ -94,8 +88,7 @@
         "brandname": "Fibaro",
         "brand_image": "Fibaro.png",
         "product_image": "441-010f-0501-0102-03-03-28-03-31.png",
-        "prep": "Connect your power supply with the device",
-        "inclusion_type": "secure"
+        "prep": "Connect your power supply with the device"
     },
     {
         "id": "476-010f-0600-1000-03-03-34-16-16",
@@ -108,8 +101,7 @@
         "brandname": "Fibaro",
         "brand_image": "Fibaro.png",
         "product_image": "476-010f-0600-1000-03-03-34-16-16.png",
-        "prep": " ",
-        "inclusion_type": "secure"
+        "prep": " "
     },
     {
         "id": "518-010f-0b00-1001-03-03-67-24-24",
@@ -122,8 +114,7 @@
         "brandname": "Fibaro",
         "brand_image": "Fibaro.png",
         "product_image": "518-010f-0b00-1001-03-03-67-24-24.png",
-        "prep": "Insert the battery",
-        "inclusion_type": "secure"
+        "prep": "Insert the battery"
     },
     {
         "id": "540-010f-0800-1001-03-03-43-02-04",
@@ -136,8 +127,7 @@
         "brandname": "Fibaro",
         "brand_image": "Fibaro.png",
         "product_image": "540-010f-0800-1001-03-03-43-02-04.png",
-        "prep": "Insert the battery",
-        "inclusion_type": "secure"
+        "prep": "Insert the battery"
     },
     {
         "id": "552-010f-0000-0000-03-03-67-02-05",
@@ -150,8 +140,7 @@
         "brandname": "Fibaro",
         "brand_image": "Fibaro.png",
         "product_image": "552-010f-0000-0000-03-03-67-02-05.png",
-        "prep": "Insert the battery",
-        "inclusion_type": "secure"
+        "prep": "Insert the battery"
     },
     {
         "id": "477-013c-0002-0002-06-03-29-01-00",
@@ -164,8 +153,7 @@
         "brandname": "Philio",
         "brand_image": "philio.png",
         "product_image": "477-013c-0002-0002-06-03-29-01-00.png",
-        "prep": "Insert the battery",
-        "inclusion_type": "secure"
+        "prep": "Insert the battery"
     },
     {
         "id": "360-013c-0001-0001-03-03-29-01-01",
@@ -178,8 +166,7 @@
         "brandname": "Philio",
         "brand_image": "philio.png",
         "product_image": "360-013c-0001-0001-03-03-29-01-01.png",
-        "prep": "",
-        "inclusion_type": "secure"
+        "prep": ""
     },
     {
         "id": "453-013c-0001-0003-00-03-41-01-00",
@@ -192,8 +179,7 @@
         "brandname": "Philio",
         "brand_image": "philio.png",
         "product_image": "453-013c-0001-0003-00-03-41-01-00.png",
-        "prep": "The device should already be installed in the wall box",
-        "inclusion_type": "secure"
+        "prep": "The device should already be installed in the wall box"
     },
     {
         "id": "142-0109-2002-0201-06-02-4e-03-0a",
@@ -206,8 +192,7 @@
         "brandname": "Vision",
         "brand_image": "vision.png",
         "product_image": "142-0109-2002-0201-06-02-4e-03-0a.png",
-        "prep": "Insert the battery",
-        "inclusion_type": "secure"
+        "prep": "Insert the battery"
     },
     {
         "id": "147-0109-2001-0101-06-02-4e-03-0a",
@@ -220,8 +205,7 @@
         "brandname": "Vision",
         "brand_image": "vision.png",
         "product_image": "147-0109-2001-0101-06-02-4e-03-0a.png",
-        "prep": "Insert the battery",
-        "inclusion_type": "secure"
+        "prep": "Insert the battery"
     },
     {
         "id": "194-0109-2009-0901-06-03-22-01-41",
@@ -234,8 +218,7 @@
         "brandname": "Vision",
         "brand_image": "vision.png",
         "product_image": "194-0109-2009-0901-06-03-22-01-41.png",
-        "prep": "Insert the battery",
-        "inclusion_type": "secure"
+        "prep": "Insert the battery"
     },
     {
         "id": "317-0109-2006-0620-03-03-40-05-05",
@@ -248,8 +231,7 @@
         "brandname": "Vision",
         "brand_image": "vision.png",
         "product_image": "317-0109-2006-0620-03-03-40-05-05.png",
-        "prep": "Insert the battery",
-        "inclusion_type": "secure"
+        "prep": "Insert the battery"
     },
     {
         "id": "498-0109-2012-1203-06-03-41-01-74",
@@ -262,8 +244,7 @@
         "brandname": "Vision",
         "brand_image": "vision.png",
         "product_image": "498-0109-2012-1203-06-03-41-01-74.png",
-        "prep": "Connect your power supply with the device",
-        "inclusion_type": "secure"
+        "prep": "Connect your power supply with the device"
     },
     {
         "id": "582-0109-2004-0404-03-03-95-14-08",
@@ -276,8 +257,7 @@
         "brandname": "Vision",
         "brand_image": "vision.png",
         "product_image": "582-0109-2004-0404-03-03-95-14-08.png",
-        "prep": "Insert the battery",
-        "inclusion_type": "secure"
+        "prep": "Insert the battery"
     },
     {
         "id": "341-0118-0102-1020-06-02-61-01-03",
@@ -290,8 +270,7 @@
         "brandname": "TKBHOME",
         "brand_image": "TKB.png",
         "product_image": "341-0118-0102-1020-06-02-61-01-03.png",
-        "prep": "The device should already be installed in the wall box",
-        "inclusion_type": "secure"
+        "prep": "The device should already be installed in the wall box"
     },
     {
         "id": "447-0154-1100-0002-06-03-2a-01-00",
@@ -304,8 +283,7 @@
         "brandname": "Popp",
         "brand_image": "PoppLogo150px.png",
         "product_image": "447-0154-1100-0002-06-03-2a-01-00.png",
-        "prep": "",
-        "inclusion_type": "secure"
+        "prep": ""
     },
     {
         "id": "22-0060-000d-0001-06-02-40-01-04",
@@ -318,8 +296,7 @@
         "brandname": "Everspring",
         "brand_image": "Everspring.png",
         "product_image": "22-0060-000d-0001-06-02-40-01-04.png",
-        "prep": "Insert the battery",
-        "inclusion_type": "secure"
+        "prep": "Insert the battery"
     },
     {
         "id": "25-0060-0002-0001-06-02-40-01-03",
@@ -332,8 +309,7 @@
         "brandname": "Everspring",
         "brand_image": "Everspring.png",
         "product_image": "25-0060-0002-0001-06-02-40-01-03.png",
-        "prep": "Insert the battery",
-        "inclusion_type": "secure"
+        "prep": "Insert the battery"
     },
     {
         "id": "395-0060-0004-0002-00-03-22-00-00",
@@ -346,8 +322,7 @@
         "brandname": "Everspring",
         "brand_image": "Everspring.png",
         "product_image": "395-0060-0004-0002-00-03-22-00-00.png",
-        "prep": "",
-        "inclusion_type": "secure"
+        "prep": ""
     },
     {
         "id": "57-0060-0004-0001-04-02-18-00-01",
@@ -360,8 +335,7 @@
         "brandname": "Everspring",
         "brand_image": "Everspring.png",
         "product_image": "57-0060-0004-0001-04-02-18-00-01.png",
-        "prep": "",
-        "inclusion_type": "secure"
+        "prep": ""
     },
     {
         "id": "589-0060-0006-0001-03-03-34-02-00",
@@ -374,8 +348,7 @@
         "brandname": "Everspring",
         "brand_image": "Everspring.png",
         "product_image": "589-0060-0006-0001-03-03-34-02-00.png",
-        "prep": "Insert the battery",
-        "inclusion_type": "secure"
+        "prep": "Insert the battery"
     },
     {
         "id": "59-0060-0101-0001-06-02-09-01-00",
@@ -388,8 +361,7 @@
         "brandname": "Everspring",
         "brand_image": "Everspring.png",
         "product_image": "59-0060-0101-0001-06-02-09-01-00.png",
-        "prep": "Insert the battery",
-        "inclusion_type": "secure"
+        "prep": "Insert the battery"
     },
     {
         "id": "422-0148-0001-0001-03-03-2a-00-04",
@@ -402,8 +374,7 @@
         "brandname": "Eurotronic",
         "brand_image": "Eurotronic.png",
         "product_image": "422-0148-0001-0001-03-03-2a-00-04.png",
-        "prep": "Device must be munted on radiator",
-        "inclusion_type": "secure"
+        "prep": "Device must be munted on radiator"
     },
     {
         "id": "426-0002-0005-0003-06-02-43-02-33",
@@ -416,8 +387,7 @@
         "brandname": "Danfoss",
         "brand_image": "Danfoss.png",
         "product_image": "426-0002-0005-0003-06-02-43-02-33.png",
-        "prep": "Device must be munted on radiator",
-        "inclusion_type": "secure"
+        "prep": "Device must be munted on radiator"
     },
     {
         "id": "630-010e-0008-0001-03-03-99-01-01",
@@ -430,8 +400,7 @@
         "brandname": "Danalock",
         "brand_image": "Polycontrol.png",
         "product_image": "630-010e-0008-0001-03-03-99-01-01.png",
-        "prep": "Insert the battery",
-        "inclusion_type": "secure"
+        "prep": "Insert the battery"
     },
     {
         "id": "596-0086-0004-0050-03-03-5c-01-17",
@@ -444,8 +413,7 @@
         "brandname": "Aeotec",
         "brand_image": "aeon%20labs%20logo.png",
         "product_image": "596-0086-0004-0050-03-03-5c-01-17.png",
-        "prep": "",
-        "inclusion_type": "secure"
+        "prep": ""
     },
     {
         "id": "609-0086-0001-0058-02-03-53-01-02",
@@ -458,8 +426,7 @@
         "brandname": "Aeotec",
         "brand_image": "aeon%20labs%20logo.png",
         "product_image": "609-0086-0001-0058-02-03-53-01-02.png",
-        "prep": "Insert the battery",
-        "inclusion_type": "secure"
+        "prep": "Insert the battery"
     },
     {
         "id": "618-0086-0002-0059-03-03-5c-01-0c",
@@ -472,8 +439,7 @@
         "brandname": "Aeotec",
         "brand_image": "aeon%20labs%20logo.png",
         "product_image": "618-0086-0002-0059-03-03-5c-01-0c.png",
-        "prep": "Insert the battery",
-        "inclusion_type": "secure"
+        "prep": "Insert the battery"
     },
     {
         "id": "637-0086-0000-0000-00-00-00-00-00",
@@ -486,8 +452,7 @@
         "brandname": "Aeotec",
         "brand_image": "aeon%20labs%20logo.png",
         "product_image": "637-0086-0000-0000-00-00-00-00-00.png",
-        "prep": "Insert the battery",
-        "inclusion_type": "secure"
+        "prep": "Insert the battery"
     },
     {
         "id": "638-0086-0004-0025-06-03-40-01-03",
@@ -500,8 +465,7 @@
         "brandname": "Aeotec",
         "brand_image": "aeon%20labs%20logo.png",
         "product_image": "638-0086-0004-0025-06-03-40-01-03.png",
-        "prep": "",
-        "inclusion_type": "secure"
+        "prep": ""
     },
     {
         "id": "519-0086-0002-001c-03-03-43-01-05",
@@ -514,8 +478,7 @@
         "brandname": "Aeotec",
         "brand_image": "aeon%20labs%20logo.png",
         "product_image": "519-0086-0002-001c-03-03-43-01-05.png",
-        "prep": "",
-        "inclusion_type": "secure"
+        "prep": ""
     },
     {
         "id": "16-0086-0002-0004-06-02-40-01-03",
@@ -528,8 +491,7 @@
         "brandname": "Aeotec",
         "brand_image": "aeon%20labs%20logo.png",
         "product_image": "16-0086-0002-0004-06-02-40-01-03.png",
-        "prep": "Insert the battery",
-        "inclusion_type": "secure"
+        "prep": "Insert the battery"
     },
     {
         "id": "224-0086-0001-0003-00-02-30-00-00",
@@ -542,8 +504,7 @@
         "brandname": "Aeotec",
         "brand_image": "aeon%20labs%20logo.png",
         "product_image": "224-0086-0001-0003-00-02-30-00-00.png",
-        "prep": "Insert the battery",
-        "inclusion_type": "secure"
+        "prep": "Insert the battery"
     },
     {
         "id": "225-0086-0003-0006-00-02-4e-00-00",
@@ -556,8 +517,7 @@
         "brandname": "Aeotec",
         "brand_image": "aeon%20labs%20logo.png",
         "product_image": "225-0086-0003-0006-00-02-4e-00-00.png",
-        "prep": "",
-        "inclusion_type": "secure"
+        "prep": ""
     },
     {
         "id": "640-0086-0002-004a-03-03-5c-01-02",
@@ -570,8 +530,7 @@
         "brandname": "Aeotec",
         "brand_image": "aeon%20labs%20logo.png",
         "product_image": "640-0086-0002-004a-03-03-5c-01-02.png",
-        "prep": "Insert the battery",
-        "inclusion_type": "secure"
+        "prep": "Insert the battery"
     },
     {
         "id": "566-0149-0012-0104-03-03-67-01-07",
@@ -584,8 +543,7 @@
         "brandname": "WiDom",
         "brand_image": "WiDom.png",
         "product_image": "566-0149-0012-0104-03-03-67-01-07.png",
-        "prep": "Press B and R buttons at the same time and then release R: if it stays ON for 2 seconds and OFF for 6 seconds it is not included and ready to be included",
-        "inclusion_type": "secure"
+        "prep": "Press B and R buttons at the same time and then release R: if it stays ON for 2 seconds and OFF for 6 seconds it is not included and ready to be included"
     },
     {
         "id": "593-0149-0000-0000-03-03-67-01-07",
@@ -598,8 +556,7 @@
         "brandname": "WiDom",
         "brand_image": "WiDom.png",
         "product_image": "593-0149-0000-0000-03-03-67-01-07.png",
-        "prep": "",
-        "inclusion_type": "secure"
+        "prep": ""
     },
     {
         "id": "669-0149-1214-0304-03-03-99-01-31",
@@ -612,8 +569,7 @@
         "brandname": "WiDom",
         "brand_image": "WiDom.png",
         "product_image": "669-0149-1214-0304-03-03-99-01-31.png",
-        "prep": "",
-        "inclusion_type": "secure"
+        "prep": ""
     },
     {
         "id": "725-0154-0100-0201-03-04-05-01-00",
@@ -626,8 +582,7 @@
         "brandname": "Popp",
         "brand_image": "PoppLogo150px.png",
         "product_image": "725-0154-0100-0201-03-04-05-01-00.png",
-        "prep": "",
-        "inclusion_type": "secure"
+        "prep": ""
     },
     {
         "id": "717-0154-0001-0001-03-04-05-01-00",
@@ -640,21 +595,6 @@
         "brandname": "Popp",
         "brand_image": "PoppLogo150px.png",
         "product_image": "717-0154-0001-0001-03-04-05-01-00.png",
-        "prep": "",
-        "inclusion_type": "secure"
-    },
-    {
-        "id": "phi_pst02_1A",
-        "name": "Slim Multi-Sensor PST02-1A",
-        "desc": "Multisensor",
-        "productcode": "PHI_PST02-1A",
-        "wake": "Triple press the tamper-switch",
-        "inc": "Triple press the tamperswitch",
-        "exc": "",
-        "brandname": "Philio",
-        "brand_image": "philio.png",
-        "product_image": "477-013c-0002-0002-06-03-29-01-00.png",
-        "prep": "Insert the battery",
-        "inclusion_type": "unsecure"
+        "prep": ""
     }
 ]

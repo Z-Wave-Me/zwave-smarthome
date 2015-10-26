@@ -331,7 +331,6 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
 
             return $q.reject(response);
         });
-        return;
     }
     /**
      * Get api js command
@@ -571,7 +570,6 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
             // something went wrong
             return $q.reject(response);
         });
-        return;
     }
 
 
@@ -719,7 +717,6 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
         }, function(response) {// something went wrong
             return $q.reject(response);
         });
-        return;
     }
     
     /**
@@ -770,7 +767,6 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
         }, function(response) {// something went wrong
             return $q.reject(response);
         });
-        return;
     }
 
     /**

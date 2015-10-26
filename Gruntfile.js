@@ -35,6 +35,7 @@ module.exports = function(grunt) {
                     //'vendor/bootstrap-switch/bootstrap-switch.js',
                     'vendor/handlebars/handlebars-v3.0.3.min.js',
                     'vendor/alpaca/1.5.13/alpaca.min.js',
+                    'vendor/alertify/alertify.min.js',
                     //'vendor/md5/md5.js',
                     // Angular
                     'vendor/angular/angular-1.2.28/angular.min.js',

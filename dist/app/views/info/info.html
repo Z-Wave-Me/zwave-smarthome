@@ -1,19 +1,20 @@
 <!-- Logoutview -->
 <div ng-controller="InfoController" class="mobile-padding">
-    <h2>{{_t('Software info')}}</h2>
+    <bb-loader></bb-loader>
+    <h2>{{_t('software_info')}}</h2>
     <table class="table table-report">
         <tbody>
             <tr>
-                <td>Firmware version</td>
-                <td class="td20">{{input.firmwareVersion}}</td>
+                <td>{{_t('firmware_version')}}</td>
+                <td class="td20">{{input.software.firmwareVersion}}</td>
             </tr>
             <tr>
-                <td>UI version</td>
-                <td class="td20">{{input.uiVersion}}</td>
+                <td>{{_t('ui_version')}}</td>
+                <td class="td20">{{input.software.uiVersion}}</td>
             </tr>
         </tbody>
     </table>
-    <h2>{{_t('Devices/App info')}}</h2>
+    <!--<h2>{{_t('Devices/App info')}}</h2>
     <table class="table table-report">
         <tbody>
             <tr>
@@ -29,5 +30,5 @@
                 <td class="td20">6</td>
             </tr>
         </tbody>
-    </table>
+    </table>-->
 </div>

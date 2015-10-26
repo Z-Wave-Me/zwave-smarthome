@@ -1,0 +1,17 @@
+ <ul class="nav nav-tabs nav-tabs-3" role="tablist">
+    <li ng-class="activeTab == 'devices' ? 'active' : ''">
+        <a href="#zwave/devices" title="{{_t('lb_zwave_devices')}}">
+            <i class="fa fa-wifi fa-lg tab-icon"></i> <span class="tab-name">{{_t('lb_zwave_devices')}}</span>
+        </a>
+    </li>
+    <li ng-class="activeTab == 'batteries' ? 'active' : ''" ng-if="elementAccess(cfg.role_access.network)">
+        <a href="#zwave/batteries" title="{{_t('lb_battery_status')}}">
+            <i class="fa fa-bolt fa-lg tab-icon"></i> <span class="tab-name">{{_t('lb_battery_status')}}</span>
+        </a>
+    </li>
+    <li ng-class="activeTab == 'network' ? 'active' : ''" ng-if="elementAccess(cfg.role_access.network)">
+        <a href="#zwave/network" title="{{_t('nav_network_health')}}">
+            <i class="fa fa-sitemap tab-icon"></i> <span class="tab-name">{{_t('lb_network_status')}}</span> 
+        </a>
+    </li>
+</ul>

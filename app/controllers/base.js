@@ -192,14 +192,14 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
      * Expand/collapse navigation
      */
     $scope.naviExpanded = {};
-    $scope.expandNavi = function(key,status) {
+    $scope.expandNavi = function(key,$event,status) {
         if(typeof status === 'boolean'){
            $scope.naviExpanded[key] = status;
         }else{
              $scope.naviExpanded[key] = !($scope.naviExpanded[key]);
         }
        
-       event.stopPropagation();
+       $event.stopPropagation();
     };
     // Collaps element/menu when clicking outside
     window.onclick = function() {

@@ -3,7 +3,7 @@
     <bb-loader></bb-loader>
      
     <div ng-show="input">
-        <h2 class="form-title"><span ng-bind="_t('lb_user')"></span>: <span ng-show="input.id > 0">(#{{input.id}})</span> <span ng-bind="input.name"></span></h2>
+        <h2><span ng-bind="_t('lb_user')"></span>: <span ng-show="input.id > 0">(#{{input.id}})</span> <span ng-bind="input.name"></span></h2>
         <form name="form_profile" id="form_profile" class="form form-page" ng-submit="store(input)" novalidate>
             <fieldset>
                  <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_name')"></span></h3>
@@ -96,7 +96,7 @@
         
         <!-- ///////////////////////////// Change login and password Form ///////////////////////////// -->
         <div ng-if="id > 0">
-        <h2 class="form-title" ng-bind="_t('local_access')"></h2>
+        <h2 ng-bind="_t('local_access')"></h2>
         <form name="form_password" id="form_password" class="form form-page" ng-submit="changeAuth(auth)" novalidate>
             <fieldset>
                 <!-- login -->
