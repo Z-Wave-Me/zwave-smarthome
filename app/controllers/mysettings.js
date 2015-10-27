@@ -85,7 +85,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $lo
             myCache.remove('profiles');
             dataService.setUser(data);
             $window.location.reload();
-            $window.history.back();
+            //$window.history.back();
             //$route.reload();
 
         }, function(error) {
