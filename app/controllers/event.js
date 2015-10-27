@@ -181,12 +181,8 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
     /**
      * Delete event
      */
-    $scope.deleteEvent = function(id, params, target, dialog) {
-        var confirm = true;
-        if (dialog) {
-            confirm = $window.confirm(dialog);
-        }
-        if (confirm) {
+    $scope.deleteEvent = function(id, params, target, message) {
+       alertify.confirm(message, function() {
             $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
             dataFactory.deleteApi('notifications', id, params).then(function(response) {
                 myCache.remove('notifications');
@@ -196,7 +192,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
                 $scope.loading = false;
                 alertify.alert($scope._t('error_delete_data'));
             });
-        }
+        });
     };
 
     /**

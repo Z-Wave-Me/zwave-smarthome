@@ -721,13 +721,9 @@ myAppController.controller('EnoceanManageController', function($scope, $location
     /**
      * Delete device
      */
-    $scope.deleteDevice = function(id, target, dialog) {
-        var confirm = true;
+    $scope.deleteDevice = function(id, target, message) {
         var cmd = 'delete devices["' + id + '"]';
-        if (dialog) {
-            confirm = $window.confirm(dialog);
-        }
-        if (confirm) {
+        alertify.confirm(message, function() {
             dataFactory.runEnoceanCmd(cmd).then(function(response) {
                 $(target).fadeOut(500);
                 //$scope.loadData();
@@ -735,7 +731,7 @@ myAppController.controller('EnoceanManageController', function($scope, $location
                 alertify.alert($scope._t('error_delete_data'));
             });
 
-        }
+        });
     };
 
     /// --- Private functions --- ///

@@ -182,10 +182,10 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
     /**
      * Redirect to Expert
      */
-    $scope.toExpert = function(url, dialog) {
-        if ($window.confirm(dialog)) {
+    $scope.toExpert = function(url, message) {
+        alertify.confirm(message, function() {
             $window.location.href = url;
-        }
+         });
     };
     
      /**

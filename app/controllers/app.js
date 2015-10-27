@@ -264,12 +264,8 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     /**
      * Delete instance
      */
-    $scope.deleteInstance = function(target, input, dialog) {
-        var confirm = true;
-        if (dialog) {
-            confirm = $window.confirm(dialog);
-        }
-        if (confirm) {
+    $scope.deleteInstance = function(target, input, message) {
+        alertify.confirm(message, function() {
             dataFactory.deleteApi('instances', input.id).then(function(response) {
                 $(target).fadeOut(500);
                 myCache.remove('instances');
@@ -278,12 +274,12 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
                 alertify.alert($scope._t('error_delete_data'));
             });
 
-        }
+         });
     };
     /**
      * Delete module
      */
-    $scope.deleteModule = function(target, input, dialog) {
+    $scope.deleteModule = function(target, input, message) {
         var hasInstance = false;
         angular.forEach($scope.instances, function(v, k) {
             if (input.id == v.moduleId)
@@ -295,11 +291,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
             alertify.alert(hasInstance);
             return;
         }
-        var confirm = true;
-        if (dialog) {
-            confirm = $window.confirm(dialog);
-        }
-        if (confirm) {
+       alertify.confirm(message, function() {
             //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
             dataFactory.deleteApi('modules', input.id).then(function(response) {
                 myCache.remove('modules');
@@ -310,7 +302,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
                 $scope.loading = false;
                 alertify.alert($scope._t('error_delete_data'));
             });
-        }
+         });
     };
     /**
      * Download module

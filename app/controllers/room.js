@@ -59,7 +59,7 @@ myAppController.controller('RoomConfigController', function($scope, $window, $lo
      */
     $scope.loadData = function(id) {
         dataFactory.getApi('locations').then(function(response) {
-           $scope.collection = _.filter(response.data.data, function(v) {
+            $scope.collection = _.filter(response.data.data, function(v) {
                 if (v.id !== 0) {
                     return v;
                 }
@@ -74,13 +74,9 @@ myAppController.controller('RoomConfigController', function($scope, $window, $lo
     /**
      * Delete an item
      */
-    $scope.delete = function(target, roomId, dialog) {
+    $scope.delete = function(target, roomId, message) {
 
-        var confirm = true;
-        if (dialog) {
-            confirm = $window.confirm(dialog);
-        }
-        if (confirm) {
+        alertify.confirm(message, function() {
             dataFactory.deleteApi('locations', roomId).then(function(response) {
                 var devices = _.where($scope.devices, {location: roomId});
                 removeRoomIdFromDevice(devices);
@@ -91,7 +87,7 @@ myAppController.controller('RoomConfigController', function($scope, $window, $lo
             }, function(error) {
                 alertify.alert($scope._t('error_delete_data'));
             });
-        }
+        });
     };
 
     /// --- Private functions --- ///
@@ -169,7 +165,7 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
         var cmd = $scope.cfg.api_url + 'upload/image';
         var fd = new FormData();
         //fd.append('file_upload', $scope.myFile);
-         fd.append('file_upload', files[0]);
+        fd.append('file_upload', files[0]);
         dataFactory.uploadApiFile(cmd, fd).then(function(response) {
             $scope.input.user_img = response.data.data;
             $scope.input.img_type = 'user';

@@ -133,12 +133,8 @@ myAppController.controller('CameraManageController', function($scope, $route,$wi
     /**
      * Delete instance
      */
-    $scope.deleteInstance = function(target, input, dialog) {
-        var confirm = true;
-        if (dialog) {
-            confirm = $window.confirm(dialog);
-        }
-        if (confirm) {
+    $scope.deleteInstance = function(target, input, message) {
+         alertify.confirm(message, function() {
             dataFactory.deleteApi('instances', input.id).then(function(response) {
                 $(target).fadeOut(500);
                 myCache.remove('instances');
@@ -147,7 +143,7 @@ myAppController.controller('CameraManageController', function($scope, $route,$wi
                 alertify.alert($scope._t('error_delete_data'));
             });
 
-        }
+       });
     };
    
 });
