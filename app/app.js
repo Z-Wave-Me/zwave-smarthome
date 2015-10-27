@@ -268,16 +268,12 @@ myApp.run(function($rootScope, $location, dataService) {
         if (next.requireLogin) {
             user = dataService.getUser();
             if (!user) {
-                //alert('You need to be authenticated to see this page!');
-                //event.preventDefault();
                 $location.path('/');
                 return;
             }
             if (next.roles && angular.isArray(next.roles)) {
                 if (next.roles.indexOf(user.role) === -1) {
-                    //alert('You have no permissions to see this page!');
-                    //$location.path('/elements');
-                     $location.path('/error/403');
+                    $location.path('/error/403');
                     return;
                 }
             }

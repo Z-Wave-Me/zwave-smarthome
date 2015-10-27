@@ -82,14 +82,14 @@ myAppController.controller('ConfigConfigurationController', function($scope, $ro
     $scope.updateFromDevice = function(cmd,hasBattery) {
          $scope.loading = {status:'loading-spin',icon:'fa-spinner fa-spin', message:$scope._t('updating')};
          if (hasBattery) {
-            alert($scope._t('conf_apply_battery'));
+            alertify.alert($scope._t('conf_apply_battery'));
         }
         dataFactory.runExpertCmd(cmd, true).then(function(response) {
             
             //dataService.logInfo(response, 'Update from device');
         }, function(error) {
             dataService.logError(error, 'Update from device');
-            alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_update_data'));
         });
         $scope.refresh($routeParams.nodeId);
         $timeout(function() {
@@ -131,7 +131,7 @@ myAppController.controller('ConfigConfigurationController', function($scope, $ro
         var xmlData = [];
         var configValues = [];
         if (hasBattery) {
-            alert($scope._t('conf_apply_battery'));
+            alertify.alert($scope._t('conf_apply_battery'));
         }
         var data = $('#' + form).serializeArray();
         var dataValues = [];
@@ -230,11 +230,11 @@ myAppController.controller('ConfigConfigurationController', function($scope, $ro
            var xmlFile = expertService.buildCfgXml(xmlData, cfgXml, cmd['id'], cmd['commandclass']);
            dataFactory. putCfgXml(xmlFile).then(function(response){},function(error) {
                     dataService.logError(error);
-                    alert($scope._t('error_update_data'));
+                    alertify.alert($scope._t('error_update_data'));
                 });
         }, function(error) {
             dataService.logError(error);
-            alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_update_data'));
         });
 
         $scope.refresh(cmd['id']);

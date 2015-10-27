@@ -194,7 +194,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
                 $(target).fadeOut(2000);
             }, function(error) {
                 $scope.loading = false;
-                alert($scope._t('error_delete_data'));
+                alertify.alert($scope._t('error_delete_data'));
             });
         }
     };
@@ -253,7 +253,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
             $scope.loadData();
 
         }, function(error) {
-            alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
         });
         return;

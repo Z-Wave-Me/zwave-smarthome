@@ -254,7 +254,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
                 $scope.loadInstances();
 
             }, function(error) {
-                alert($scope._t('error_update_data'));
+                alertify.alert($scope._t('error_update_data'));
                 $scope.loading = false;
             });
         }
@@ -275,7 +275,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
                 myCache.remove('instances');
                 myCache.remove('devices');
             }, function(error) {
-                alert($scope._t('error_delete_data'));
+                alertify.alert($scope._t('error_delete_data'));
             });
 
         }
@@ -292,7 +292,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
 
         });
         if (hasInstance) {
-            alert(hasInstance);
+            alertify.alert(hasInstance);
             return;
         }
         var confirm = true;
@@ -308,7 +308,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
 
             }, function(error) {
                 $scope.loading = false;
-                alert($scope._t('error_delete_data'));
+                alertify.alert($scope._t('error_delete_data'));
             });
         }
     };
@@ -329,7 +329,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
 
         }, function(error) {
             $scope.loading = false;
-            alert($scope._t('error_no_module_download'));
+            alertify.alert($scope._t('error_no_module_download'));
         });
 
     };
@@ -466,7 +466,7 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
 
         }, function(error) {
             $scope.loading = false;
-            alert($scope._t('error_no_module_download'));
+            alertify.alert($scope._t('error_no_module_download'));
         });
 
     };
@@ -565,7 +565,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
 
                 dataService.updateTimeTick();
             }, function(error) {
-                alert($scope._t('error_load_data'));
+                alertify.alert($scope._t('error_load_data'));
                 dataService.showConnectionError(error);
             });
         }, function(error) {
@@ -614,7 +614,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                 $location.path('/apps');
 
             }, function(error) {
-                alert($scope._t('error_update_data'));
+                alertify.alert($scope._t('error_update_data'));
             });
         } else {
             dataFactory.postApi('instances', inputData).then(function(response) {
@@ -622,7 +622,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                 $location.path('/apps');
 
             }, function(error) {
-                alert($scope._t('error_update_data'));
+                alertify.alert($scope._t('error_update_data'));
             });
         }
     };

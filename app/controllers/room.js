@@ -89,7 +89,7 @@ myAppController.controller('RoomConfigController', function($scope, $window, $lo
                 $scope.loadData();
 
             }, function(error) {
-                alert($scope._t('error_delete_data'));
+                alertify.alert($scope._t('error_delete_data'));
             });
         }
     };
@@ -176,7 +176,7 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_upload')};
         }, function(error) {
             $scope.loading = false;
-            alert($scope._t('error_upload'));
+            alertify.alert($scope._t('error_upload'));
         });
     };
 
@@ -225,7 +225,7 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
 
         }, function(error) {
-            alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
 
         });

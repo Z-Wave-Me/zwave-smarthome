@@ -87,7 +87,7 @@ myAppController.controller('ReportController', function($scope, $window, dataFac
 
 
         }, function(error) {
-            alert($scope._t('error_send_report'));
+            alertify.alert($scope._t('error_send_report'));
             $scope.loading = false;
         });
 

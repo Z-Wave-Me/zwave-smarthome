@@ -123,7 +123,7 @@ myAppController.controller('CameraManageController', function($scope, $route,$wi
                 $scope.loadInstances();
 
             }, function(error) {
-                alert($scope._t('error_update_data'));
+                alertify.alert($scope._t('error_update_data'));
                 $scope.loading = false;
             });
         }
@@ -144,7 +144,7 @@ myAppController.controller('CameraManageController', function($scope, $route,$wi
                 myCache.remove('instances');
                 myCache.remove('devices');
             }, function(error) {
-                alert($scope._t('error_delete_data'));
+                alertify.alert($scope._t('error_delete_data'));
             });
 
         }

@@ -267,7 +267,6 @@ myAppController.controller('ManagementController', function($scope, $window, $lo
          }, 20000);
          }, function(error) {
          $scope.loading = false;
-         alert($scope._t('restore_backup_failed'));
          });*/
     };
 

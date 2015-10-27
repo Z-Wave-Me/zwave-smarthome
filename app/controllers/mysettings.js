@@ -75,7 +75,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $lo
         dataFactory.putApi('profiles', input.id, input).then(function(response) {
             var data = response.data.data;
             if (!data) {
-                alert($scope._t('error_update_data'));
+                alertify.alert($scope._t('error_update_data'));
                 $scope.loading = false;
                 return;
             }
@@ -89,7 +89,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $lo
             //$route.reload();
 
         }, function(error) {
-            alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
         });
 
@@ -111,7 +111,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $lo
         dataFactory.putApi('profiles_auth_update', input.id, input).then(function(response) {
             var data = response.data.data;
             if (!data) {
-                alert($scope._t('error_update_data'));
+                alertify.alert($scope._t('error_update_data'));
                 $scope.loading = false;
                 return;
             }
@@ -119,7 +119,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $lo
             $window.history.back();
 
         }, function(error) {
-            alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
         });
 

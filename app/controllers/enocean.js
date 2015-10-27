@@ -293,7 +293,7 @@ myAppController.controller('EnoceanAssignController', function($scope, $interval
             $scope.loadApiDevices();
             $scope.loading = false;
         }, function(error) {
-            alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
         });
 
@@ -318,7 +318,7 @@ myAppController.controller('EnoceanAssignController', function($scope, $interval
 
             dataFactory.putApi('devices', v.id, input).then(function(response) {
             }, function(error) {
-                alert($scope._t('error_update_data'));
+                alertify.alert($scope._t('error_update_data'));
                 $scope.loading = false;
                 return;
             });
@@ -590,7 +590,7 @@ myAppController.controller('EnoceanTeachinController', function($scope, $routePa
             $scope.loadApiDevices();
             $scope.loading = false;
         }, function(error) {
-            alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
         });
 
@@ -615,7 +615,7 @@ myAppController.controller('EnoceanTeachinController', function($scope, $routePa
 
             dataFactory.putApi('devices', v.id, input).then(function(response) {
             }, function(error) {
-                alert($scope._t('error_update_data'));
+                alertify.alert($scope._t('error_update_data'));
                 $scope.loading = false;
                 return;
             });
@@ -732,7 +732,7 @@ myAppController.controller('EnoceanManageController', function($scope, $location
                 $(target).fadeOut(500);
                 //$scope.loadData();
             }, function(error) {
-                alert($scope._t('error_delete_data'));
+                alertify.alert($scope._t('error_delete_data'));
             });
 
         }
@@ -929,7 +929,7 @@ myAppController.controller('EnoceanManageDetailController', function($scope, $ro
             $scope.loadApiDevices();
             $scope.loading = false;
         }, function(error) {
-            alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
         });
 
@@ -955,7 +955,7 @@ myAppController.controller('EnoceanManageDetailController', function($scope, $ro
 
             dataFactory.putApi('devices', v.id, input).then(function(response) {
             }, function(error) {
-                alert($scope._t('error_update_data'));
+                alertify.alert($scope._t('error_update_data'));
                 $scope.loading = false;
                 return;
             });

@@ -443,7 +443,6 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         dataFactory.runApiCmd(cmd).then(function(response) {
             $(widgetId + ' .widget-image').addClass('trans-true');
         }, function(error) {
-            //alert($scope._t('error_update_data'));
             alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
         });
