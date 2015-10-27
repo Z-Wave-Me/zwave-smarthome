@@ -5278,16 +5278,12 @@ myApp.run(function($rootScope, $location, dataService) {
         if (next.requireLogin) {
             user = dataService.getUser();
             if (!user) {
-                //alert('You need to be authenticated to see this page!');
-                //event.preventDefault();
                 $location.path('/');
                 return;
             }
             if (next.roles && angular.isArray(next.roles)) {
                 if (next.roles.indexOf(user.role) === -1) {
-                    //alert('You have no permissions to see this page!');
-                    //$location.path('/elements');
-                     $location.path('/error/403');
+                    $location.path('/error/403');
                     return;
                 }
             }
@@ -8483,10 +8479,10 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
     /**
      * Redirect to Expert
      */
-    $scope.toExpert = function(url, dialog) {
-        if ($window.confirm(dialog)) {
+    $scope.toExpert = function(url, message) {
+        alertify.confirm(message, function() {
             $window.location.href = url;
-        }
+         });
     };
     
      /**
@@ -9002,7 +8998,6 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         dataFactory.runApiCmd(cmd).then(function(response) {
             $(widgetId + ' .widget-image').addClass('trans-true');
         }, function(error) {
-            //alert($scope._t('error_update_data'));
             alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
         });
@@ -9398,12 +9393,8 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
     /**
      * Delete event
      */
-    $scope.deleteEvent = function(id, params, target, dialog) {
-        var confirm = true;
-        if (dialog) {
-            confirm = $window.confirm(dialog);
-        }
-        if (confirm) {
+    $scope.deleteEvent = function(id, params, target, message) {
+       alertify.confirm(message, function() {
             $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
             dataFactory.deleteApi('notifications', id, params).then(function(response) {
                 myCache.remove('notifications');
@@ -9411,9 +9402,9 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
                 $(target).fadeOut(2000);
             }, function(error) {
                 $scope.loading = false;
-                alert($scope._t('error_delete_data'));
+                alertify.alert($scope._t('error_delete_data'));
             });
-        }
+        });
     };
 
     /**
@@ -9470,7 +9461,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
             $scope.loadData();
 
         }, function(error) {
-            alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
         });
         return;
@@ -9732,7 +9723,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
                 $scope.loadInstances();
 
             }, function(error) {
-                alert($scope._t('error_update_data'));
+                alertify.alert($scope._t('error_update_data'));
                 $scope.loading = false;
             });
         }
@@ -9742,26 +9733,22 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     /**
      * Delete instance
      */
-    $scope.deleteInstance = function(target, input, dialog) {
-        var confirm = true;
-        if (dialog) {
-            confirm = $window.confirm(dialog);
-        }
-        if (confirm) {
+    $scope.deleteInstance = function(target, input, message) {
+        alertify.confirm(message, function() {
             dataFactory.deleteApi('instances', input.id).then(function(response) {
                 $(target).fadeOut(500);
                 myCache.remove('instances');
                 myCache.remove('devices');
             }, function(error) {
-                alert($scope._t('error_delete_data'));
+                alertify.alert($scope._t('error_delete_data'));
             });
 
-        }
+         });
     };
     /**
      * Delete module
      */
-    $scope.deleteModule = function(target, input, dialog) {
+    $scope.deleteModule = function(target, input, message) {
         var hasInstance = false;
         angular.forEach($scope.instances, function(v, k) {
             if (input.id == v.moduleId)
@@ -9770,14 +9757,10 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
 
         });
         if (hasInstance) {
-            alert(hasInstance);
+            alertify.alert(hasInstance);
             return;
         }
-        var confirm = true;
-        if (dialog) {
-            confirm = $window.confirm(dialog);
-        }
-        if (confirm) {
+       alertify.confirm(message, function() {
             //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
             dataFactory.deleteApi('modules', input.id).then(function(response) {
                 myCache.remove('modules');
@@ -9786,9 +9769,9 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
 
             }, function(error) {
                 $scope.loading = false;
-                alert($scope._t('error_delete_data'));
+                alertify.alert($scope._t('error_delete_data'));
             });
-        }
+         });
     };
     /**
      * Download module
@@ -9807,7 +9790,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
 
         }, function(error) {
             $scope.loading = false;
-            alert($scope._t('error_no_module_download'));
+            alertify.alert($scope._t('error_no_module_download'));
         });
 
     };
@@ -9944,7 +9927,7 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
 
         }, function(error) {
             $scope.loading = false;
-            alert($scope._t('error_no_module_download'));
+            alertify.alert($scope._t('error_no_module_download'));
         });
 
     };
@@ -10043,7 +10026,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
 
                 dataService.updateTimeTick();
             }, function(error) {
-                alert($scope._t('error_load_data'));
+                alertify.alert($scope._t('error_load_data'));
                 dataService.showConnectionError(error);
             });
         }, function(error) {
@@ -10092,7 +10075,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                 $location.path('/apps');
 
             }, function(error) {
-                alert($scope._t('error_update_data'));
+                alertify.alert($scope._t('error_update_data'));
             });
         } else {
             dataFactory.postApi('instances', inputData).then(function(response) {
@@ -10100,7 +10083,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                 $location.path('/apps');
 
             }, function(error) {
-                alert($scope._t('error_update_data'));
+                alertify.alert($scope._t('error_update_data'));
             });
         }
     };
@@ -11011,7 +10994,7 @@ myAppController.controller('CameraManageController', function($scope, $route,$wi
                 $scope.loadInstances();
 
             }, function(error) {
-                alert($scope._t('error_update_data'));
+                alertify.alert($scope._t('error_update_data'));
                 $scope.loading = false;
             });
         }
@@ -11021,21 +11004,17 @@ myAppController.controller('CameraManageController', function($scope, $route,$wi
     /**
      * Delete instance
      */
-    $scope.deleteInstance = function(target, input, dialog) {
-        var confirm = true;
-        if (dialog) {
-            confirm = $window.confirm(dialog);
-        }
-        if (confirm) {
+    $scope.deleteInstance = function(target, input, message) {
+         alertify.confirm(message, function() {
             dataFactory.deleteApi('instances', input.id).then(function(response) {
                 $(target).fadeOut(500);
                 myCache.remove('instances');
                 myCache.remove('devices');
             }, function(error) {
-                alert($scope._t('error_delete_data'));
+                alertify.alert($scope._t('error_delete_data'));
             });
 
-        }
+       });
     };
    
 });
@@ -11335,7 +11314,7 @@ myAppController.controller('EnoceanAssignController', function($scope, $interval
             $scope.loadApiDevices();
             $scope.loading = false;
         }, function(error) {
-            alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
         });
 
@@ -11360,7 +11339,7 @@ myAppController.controller('EnoceanAssignController', function($scope, $interval
 
             dataFactory.putApi('devices', v.id, input).then(function(response) {
             }, function(error) {
-                alert($scope._t('error_update_data'));
+                alertify.alert($scope._t('error_update_data'));
                 $scope.loading = false;
                 return;
             });
@@ -11632,7 +11611,7 @@ myAppController.controller('EnoceanTeachinController', function($scope, $routePa
             $scope.loadApiDevices();
             $scope.loading = false;
         }, function(error) {
-            alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
         });
 
@@ -11657,7 +11636,7 @@ myAppController.controller('EnoceanTeachinController', function($scope, $routePa
 
             dataFactory.putApi('devices', v.id, input).then(function(response) {
             }, function(error) {
-                alert($scope._t('error_update_data'));
+                alertify.alert($scope._t('error_update_data'));
                 $scope.loading = false;
                 return;
             });
@@ -11763,21 +11742,17 @@ myAppController.controller('EnoceanManageController', function($scope, $location
     /**
      * Delete device
      */
-    $scope.deleteDevice = function(id, target, dialog) {
-        var confirm = true;
+    $scope.deleteDevice = function(id, target, message) {
         var cmd = 'delete devices["' + id + '"]';
-        if (dialog) {
-            confirm = $window.confirm(dialog);
-        }
-        if (confirm) {
+        alertify.confirm(message, function() {
             dataFactory.runEnoceanCmd(cmd).then(function(response) {
                 $(target).fadeOut(500);
                 //$scope.loadData();
             }, function(error) {
-                alert($scope._t('error_delete_data'));
+                alertify.alert($scope._t('error_delete_data'));
             });
 
-        }
+        });
     };
 
     /// --- Private functions --- ///
@@ -11971,7 +11946,7 @@ myAppController.controller('EnoceanManageDetailController', function($scope, $ro
             $scope.loadApiDevices();
             $scope.loading = false;
         }, function(error) {
-            alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
         });
 
@@ -11997,7 +11972,7 @@ myAppController.controller('EnoceanManageDetailController', function($scope, $ro
 
             dataFactory.putApi('devices', v.id, input).then(function(response) {
             }, function(error) {
-                alert($scope._t('error_update_data'));
+                alertify.alert($scope._t('error_update_data'));
                 $scope.loading = false;
                 return;
             });
@@ -12155,7 +12130,7 @@ myAppController.controller('RoomConfigController', function($scope, $window, $lo
      */
     $scope.loadData = function(id) {
         dataFactory.getApi('locations').then(function(response) {
-           $scope.collection = _.filter(response.data.data, function(v) {
+            $scope.collection = _.filter(response.data.data, function(v) {
                 if (v.id !== 0) {
                     return v;
                 }
@@ -12170,13 +12145,9 @@ myAppController.controller('RoomConfigController', function($scope, $window, $lo
     /**
      * Delete an item
      */
-    $scope.delete = function(target, roomId, dialog) {
+    $scope.delete = function(target, roomId, message) {
 
-        var confirm = true;
-        if (dialog) {
-            confirm = $window.confirm(dialog);
-        }
-        if (confirm) {
+        alertify.confirm(message, function() {
             dataFactory.deleteApi('locations', roomId).then(function(response) {
                 var devices = _.where($scope.devices, {location: roomId});
                 removeRoomIdFromDevice(devices);
@@ -12185,9 +12156,9 @@ myAppController.controller('RoomConfigController', function($scope, $window, $lo
                 $scope.loadData();
 
             }, function(error) {
-                alert($scope._t('error_delete_data'));
+                alertify.alert($scope._t('error_delete_data'));
             });
-        }
+        });
     };
 
     /// --- Private functions --- ///
@@ -12265,14 +12236,14 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
         var cmd = $scope.cfg.api_url + 'upload/image';
         var fd = new FormData();
         //fd.append('file_upload', $scope.myFile);
-         fd.append('file_upload', files[0]);
+        fd.append('file_upload', files[0]);
         dataFactory.uploadApiFile(cmd, fd).then(function(response) {
             $scope.input.user_img = response.data.data;
             $scope.input.img_type = 'user';
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_upload')};
         }, function(error) {
             $scope.loading = false;
-            alert($scope._t('error_upload'));
+            alertify.alert($scope._t('error_upload'));
         });
     };
 
@@ -12321,7 +12292,7 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
 
         }, function(error) {
-            alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
 
         });
@@ -12649,7 +12620,6 @@ myAppController.controller('ManagementController', function($scope, $window, $lo
          }, 20000);
          }, function(error) {
          $scope.loading = false;
-         alert($scope._t('restore_backup_failed'));
          });*/
     };
 
@@ -12973,7 +12943,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $lo
         dataFactory.putApi('profiles', input.id, input).then(function(response) {
             var data = response.data.data;
             if (!data) {
-                alert($scope._t('error_update_data'));
+                alertify.alert($scope._t('error_update_data'));
                 $scope.loading = false;
                 return;
             }
@@ -12987,7 +12957,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $lo
             //$route.reload();
 
         }, function(error) {
-            alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
         });
 
@@ -13009,7 +12979,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $lo
         dataFactory.putApi('profiles_auth_update', input.id, input).then(function(response) {
             var data = response.data.data;
             if (!data) {
-                alert($scope._t('error_update_data'));
+                alertify.alert($scope._t('error_update_data'));
                 $scope.loading = false;
                 return;
             }
@@ -13017,7 +12987,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $lo
             $window.history.back();
 
         }, function(error) {
-            alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
         });
 
@@ -13126,7 +13096,7 @@ myAppController.controller('ReportController', function($scope, $window, dataFac
 
 
         }, function(error) {
-            alert($scope._t('error_send_report'));
+            alertify.alert($scope._t('error_send_report'));
             $scope.loading = false;
         });
 
@@ -22327,14 +22297,14 @@ myAppController.controller('ConfigConfigurationController', function($scope, $ro
     $scope.updateFromDevice = function(cmd,hasBattery) {
          $scope.loading = {status:'loading-spin',icon:'fa-spinner fa-spin', message:$scope._t('updating')};
          if (hasBattery) {
-            alert($scope._t('conf_apply_battery'));
+            alertify.alert($scope._t('conf_apply_battery'));
         }
         dataFactory.runExpertCmd(cmd, true).then(function(response) {
             
             //dataService.logInfo(response, 'Update from device');
         }, function(error) {
             dataService.logError(error, 'Update from device');
-            alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_update_data'));
         });
         $scope.refresh($routeParams.nodeId);
         $timeout(function() {
@@ -22376,7 +22346,7 @@ myAppController.controller('ConfigConfigurationController', function($scope, $ro
         var xmlData = [];
         var configValues = [];
         if (hasBattery) {
-            alert($scope._t('conf_apply_battery'));
+            alertify.alert($scope._t('conf_apply_battery'));
         }
         var data = $('#' + form).serializeArray();
         var dataValues = [];
@@ -22475,11 +22445,11 @@ myAppController.controller('ConfigConfigurationController', function($scope, $ro
            var xmlFile = expertService.buildCfgXml(xmlData, cfgXml, cmd['id'], cmd['commandclass']);
            dataFactory. putCfgXml(xmlFile).then(function(response){},function(error) {
                     dataService.logError(error);
-                    alert($scope._t('error_update_data'));
+                    alertify.alert($scope._t('error_update_data'));
                 });
         }, function(error) {
             dataService.logError(error);
-            alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_update_data'));
         });
 
         $scope.refresh(cmd['id']);
