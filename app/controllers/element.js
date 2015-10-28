@@ -65,6 +65,27 @@ myAppController.controller('DragDropController', function($scope, dataFactory) {
 });
 
 /**
+ * Test controller
+ */
+myAppController.controller('ElementTestController', function($scope, dataFactory) {
+    $scope.elements = {
+        data: []
+    };
+    /**
+     * Load data into collection
+     */
+    $scope.loadData = function() {
+        dataFactory.getApi('devices').then(function(response) {
+            angular.extend($scope.elements.data,response.data.data.devices);
+            console.log($scope.elements.data)
+        }, function(error) {
+        });
+    };
+    $scope.loadData();
+
+});
+
+/**
  * Element controller
  */
 myAppController.controller('ElementController', function($scope, $routeParams, $interval, $location, dataFactory, dataService, myCache,_) {
