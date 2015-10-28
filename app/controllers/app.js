@@ -15,13 +15,14 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     $scope.hasImage = [];
     $scope.modules = [];
     $scope.modulesIds = [];
-      $scope.cameraIds = [];
+    $scope.cameraIds = [];
     $scope.modulesCats = [];
     $scope.moduleImgs = [];
     $scope.onlineModules = [];
     $scope.onlineVersion = [];
     $scope.categories = [];
     $scope.activeTab = (angular.isDefined($cookies.tab_app) ? $cookies.tab_app : 'local');
+    $scope.tokens = {};
     //$scope.category = '';
     $scope.currentCategory = {
         id: false,
@@ -40,6 +41,15 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     $scope.$on('$destroy', function() {
         angular.copy({},$scope.expand);
     });
+     /**
+     * Load tokens
+     */
+    $scope.loadTokens = function() {
+    dataFactory.getApi('tokens', null, true).then(function(response) {
+            angular.extend($scope.tokens, response.data.data.tokens);
+        }, function(error) {});
+     };
+    $scope.loadTokens();
     /**
      * Load categories
      */
@@ -111,8 +121,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
      * Load online modules
      */
     $scope.loadOnlineModules = function(filter) {
-        
-        dataFactory.getOnlineModules({token:['f2ghx58vbg','6fghtz1c2s8f']}).then(function(response) {
+        dataFactory.getOnlineModules({token:_.values($scope.tokens)}).then(function(response) {
 //            $scope.onlineModules = response.data;
 //            angular.forEach(response.data, function(v, k) {
 //                if (v.modulename && v.modulename != '') {
@@ -391,6 +400,17 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
     $scope.module = [];
     $scope.categoryName = '';
     $scope.onlineMediaUrl = $scope.cfg.online_module_img_url;
+    $scope.tokens = {};
+    
+    /**
+     * Load tokens
+     */
+    $scope.loadTokens = function() {
+    dataFactory.getApi('tokens', null, true).then(function(response) {
+            angular.extend($scope.tokens, response.data.data.tokens);
+        }, function(error) {});
+     };
+    $scope.loadTokens();
     
     /**
      * Load categories
@@ -427,7 +447,7 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
         if (isNaN(param)) {
             filter = {modulename: id};
         }
-        dataFactory.getOnlineModules({token:['f2ghx58vbg','6fghtz1c2s8f']},true).then(function(response) {
+        dataFactory.getOnlineModules({token:_.values($scope.tokens)},true).then(function(response) {
             $scope.module = _.findWhere(response.data, filter);
             if (!$scope.module) {
                 $location.path('/error/404');

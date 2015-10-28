@@ -482,7 +482,7 @@ myAppController.controller('ManagementAppStoreController', function($scope, $rou
         if ($scope.appStore.input.token === '') {
             return;
         }
-        dataFactory. putApiFormdata('tokens', $scope.appStore.input).then(function(response) {
+        dataFactory.putApiFormdata('tokens', $scope.appStore.input).then(function(response) {
             $scope.appStore.input.token = '';
             $scope.appStoreLoadTokens();
         }, function(error) {
