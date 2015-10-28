@@ -21,7 +21,8 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     $scope.onlineModules = [];
     $scope.onlineVersion = [];
     $scope.categories = [];
-    $scope.activeTab = (angular.isDefined($cookies.tab_app) ? $cookies.tab_app : 'local');
+    //$scope.activeTab = (angular.isDefined($cookies.tab_app) ? $cookies.tab_app : 'local');
+    $scope.activeTab = 'local';
     $scope.tokens = {};
     //$scope.category = '';
     $scope.currentCategory = {
@@ -209,7 +210,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
                          
                     }
                $scope.loadOnlineModules(filter);
-                            $scope.loadModules(filter);
+                $scope.loadModules(filter);
                 $scope.showInFooter.categories = false;
                 break;
             default:
