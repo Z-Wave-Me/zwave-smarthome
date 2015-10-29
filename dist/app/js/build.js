@@ -9491,8 +9491,8 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     $scope.onlineModules = [];
     $scope.onlineVersion = [];
     $scope.categories = [];
-    //$scope.activeTab = (angular.isDefined($cookies.tab_app) ? $cookies.tab_app : 'local');
-    $scope.activeTab = 'local';
+    $scope.activeTab = (angular.isDefined($cookies.tab_app) ? $cookies.tab_app : 'local');
+    //$scope.activeTab = 'local';
     $scope.tokens = {};
     //$scope.category = '';
     $scope.currentCategory = {
@@ -9515,12 +9515,13 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
      /**
      * Load tokens
      */
-    $scope.loadTokens = function() {
+    $scope.loadTokens = function(filter) {
     dataFactory.getApi('tokens', null, true).then(function(response) {
             angular.extend($scope.tokens, response.data.data.tokens);
+             $scope.loadOnlineModules(filter);
         }, function(error) {});
      };
-    $scope.loadTokens();
+    
     /**
      * Load categories
      */
@@ -9599,7 +9600,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
 //                    $scope.onlineVersion[v.modulename] = v.version;
 //                }
 //            });
-            $scope.onlineModules = _.filter(response.data, function(item) {
+            $scope.onlineModules = _.filter(response.data.data, function(item) {
                 var isHidden = false;
                 if ($scope.getHiddenApps().indexOf(item.modulename) > -1) {
                     if ($scope.user.role !== 1) {
@@ -9679,9 +9680,12 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
                         filter = {category: $scope.currentCategory.id};
                          
                     }
-               $scope.loadOnlineModules(filter);
+                    
+                $scope.loadTokens(filter);
+               
                 $scope.loadModules(filter);
                 $scope.showInFooter.categories = false;
+                
                 break;
             default:
                 $scope.showInFooter.categories = true;
@@ -9879,6 +9883,7 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
     $scope.loadTokens = function() {
     dataFactory.getApi('tokens', null, true).then(function(response) {
             angular.extend($scope.tokens, response.data.data.tokens);
+            $scope.loadModule($routeParams.id);
         }, function(error) {});
      };
     $scope.loadTokens();
@@ -9919,7 +9924,7 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
             filter = {modulename: id};
         }
         dataFactory.getOnlineModules({token:_.values($scope.tokens)},true).then(function(response) {
-            $scope.module = _.findWhere(response.data, filter);
+            $scope.module = _.findWhere(response.data.data, filter);
             if (!$scope.module) {
                 $location.path('/error/404');
                 return;
@@ -9932,7 +9937,7 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
         });
     };
 
-    $scope.loadModule($routeParams.id);
+    
 
     /**
      * Download module
