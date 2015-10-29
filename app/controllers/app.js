@@ -13,15 +13,22 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     },$scope.expand);
     $scope.instances = [];
     $scope.hasImage = [];
-    $scope.modules = [];
-    $scope.modulesIds = [];
-      $scope.cameraIds = [];
+    //$scope.modules = [];
+     $scope.localModules = {
+         data: {},
+         all: {},
+         ids: []
+     };
+    //$scope.modulesIds = [];
+    $scope.cameraIds = [];
     $scope.modulesCats = [];
     $scope.moduleImgs = [];
     $scope.onlineModules = [];
     $scope.onlineVersion = [];
     $scope.categories = [];
     $scope.activeTab = (angular.isDefined($cookies.tab_app) ? $cookies.tab_app : 'local');
+    //$scope.activeTab = 'local';
+    $scope.tokens = {};
     //$scope.category = '';
     $scope.currentCategory = {
         id: false,
@@ -40,6 +47,16 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     $scope.$on('$destroy', function() {
         angular.copy({},$scope.expand);
     });
+     /**
+     * Load tokens
+     */
+    $scope.loadTokens = function(filter) {
+    dataFactory.getApi('tokens', null, true).then(function(response) {
+            angular.extend($scope.tokens, response.data.data.tokens);
+             $scope.loadOnlineModules(filter);
+        }, function(error) {});
+     };
+    
     /**
      * Load categories
      */
@@ -74,7 +91,9 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
         }
         dataFactory.getApi('modules').then(function(response) {
             var modulesFiltered = _.filter(response.data.data, function(item) {
-                $scope.modulesIds.push(item.id);
+               //$scope.localModules.ids.push(item.id);
+               $scope.localModules.ids.push(item.id);
+                $scope.localModules.all[item.id] = item;
                 var isHidden = false;
                 if ($scope.getHiddenApps().indexOf(item.moduleName) > -1) {
                     if ($scope.user.role !== 1) {
@@ -98,7 +117,8 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
                     return item;
                 }
             });
-            $scope.modules = _.where(modulesFiltered, query);
+            $scope.localModules.data =  _.where(modulesFiltered, query);
+            //$scope.modules = _.where(modulesFiltered, query);
             $scope.loading = false;
             dataService.updateTimeTick();
         }, function(error) {
@@ -111,16 +131,16 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
      * Load online modules
      */
     $scope.loadOnlineModules = function(filter) {
-        
-        dataFactory.getOnlineModules({token:['f2ghx58vbg','6fghtz1c2s8f']}).then(function(response) {
+        dataFactory.getOnlineModules({token:_.values($scope.tokens)}).then(function(response) {
 //            $scope.onlineModules = response.data;
 //            angular.forEach(response.data, function(v, k) {
 //                if (v.modulename && v.modulename != '') {
 //                    $scope.onlineVersion[v.modulename] = v.version;
 //                }
 //            });
-            $scope.onlineModules = _.filter(response.data, function(item) {
+            $scope.onlineModules = _.filter(response.data.data, function(item) {
                 var isHidden = false;
+                $scope.onlineVersion[item.modulename] = item.version;
                 if ($scope.getHiddenApps().indexOf(item.modulename) > -1) {
                     if ($scope.user.role !== 1) {
                         isHidden = true;
@@ -199,14 +219,18 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
                         filter = {category: $scope.currentCategory.id};
                          
                     }
-               $scope.loadOnlineModules(filter);
-                            $scope.loadModules(filter);
+                    
+                $scope.loadTokens(filter);
+               
+                $scope.loadModules(filter);
                 $scope.showInFooter.categories = false;
+                
                 break;
             default:
                 $scope.showInFooter.categories = true;
                 $scope.$watch('currentCategory', function() {
-                    $scope.modules = angular.copy([]);
+                    //$scope.modules = angular.copy([]);
+                    $scope.localModules.data = angular.copy([]);
                     var filter = false;
                      
                     if ($scope.currentCategory.id) {
@@ -391,6 +415,18 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
     $scope.module = [];
     $scope.categoryName = '';
     $scope.onlineMediaUrl = $scope.cfg.online_module_img_url;
+    $scope.tokens = {};
+    
+    /**
+     * Load tokens
+     */
+    $scope.loadTokens = function() {
+    dataFactory.getApi('tokens', null, true).then(function(response) {
+            angular.extend($scope.tokens, response.data.data.tokens);
+            $scope.loadModule($routeParams.id);
+        }, function(error) {});
+     };
+    $scope.loadTokens();
     
     /**
      * Load categories
@@ -427,8 +463,8 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
         if (isNaN(param)) {
             filter = {modulename: id};
         }
-        dataFactory.getOnlineModules({token:['f2ghx58vbg','6fghtz1c2s8f']},true).then(function(response) {
-            $scope.module = _.findWhere(response.data, filter);
+        dataFactory.getOnlineModules({token:_.values($scope.tokens)},true).then(function(response) {
+            $scope.module = _.findWhere(response.data.data, filter);
             if (!$scope.module) {
                 $location.path('/error/404');
                 return;
@@ -441,7 +477,7 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
         });
     };
 
-    $scope.loadModule($routeParams.id);
+    
 
     /**
      * Download module
