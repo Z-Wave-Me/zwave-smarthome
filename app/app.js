@@ -41,12 +41,6 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     requireLogin: true,
                     roles: cfg.role_access.element
                 }).
-                 // Element - test page
-                when('/elementstest', {
-                    templateUrl: 'app/views/elements/test.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.element
-                }).
                  // Element - drag & drop
                 when('/dragdrop', {
                     templateUrl: 'app/views/elements/dragdrop.html',
