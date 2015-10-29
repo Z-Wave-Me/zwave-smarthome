@@ -9483,8 +9483,13 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     },$scope.expand);
     $scope.instances = [];
     $scope.hasImage = [];
-    $scope.modules = [];
-    $scope.modulesIds = [];
+    //$scope.modules = [];
+     $scope.localModules = {
+         data: {},
+         all: {},
+         ids: []
+     };
+    //$scope.modulesIds = [];
     $scope.cameraIds = [];
     $scope.modulesCats = [];
     $scope.moduleImgs = [];
@@ -9556,7 +9561,9 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
         }
         dataFactory.getApi('modules').then(function(response) {
             var modulesFiltered = _.filter(response.data.data, function(item) {
-                $scope.modulesIds.push(item.id);
+               //$scope.localModules.ids.push(item.id);
+               $scope.localModules.ids.push(item.id);
+                $scope.localModules.all[item.id] = item;
                 var isHidden = false;
                 if ($scope.getHiddenApps().indexOf(item.moduleName) > -1) {
                     if ($scope.user.role !== 1) {
@@ -9580,7 +9587,8 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
                     return item;
                 }
             });
-            $scope.modules = _.where(modulesFiltered, query);
+            $scope.localModules.data =  _.where(modulesFiltered, query);
+            //$scope.modules = _.where(modulesFiltered, query);
             $scope.loading = false;
             dataService.updateTimeTick();
         }, function(error) {
@@ -9602,6 +9610,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
 //            });
             $scope.onlineModules = _.filter(response.data.data, function(item) {
                 var isHidden = false;
+                $scope.onlineVersion[item.modulename] = item.version;
                 if ($scope.getHiddenApps().indexOf(item.modulename) > -1) {
                     if ($scope.user.role !== 1) {
                         isHidden = true;
@@ -9690,7 +9699,8 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
             default:
                 $scope.showInFooter.categories = true;
                 $scope.$watch('currentCategory', function() {
-                    $scope.modules = angular.copy([]);
+                    //$scope.modules = angular.copy([]);
+                    $scope.localModules.data = angular.copy([]);
                     var filter = false;
                      
                     if ($scope.currentCategory.id) {
