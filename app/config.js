@@ -47,8 +47,8 @@ var config_data = {
         // Help data path
         'help_data_url': 'storage/help/',
         // Online module url
-         //'online_module_url': 'http://hrix.net/modules_new/api/json_store.php',  
-        'online_module_url': 'http://hrix.net/module_store_int/json_store.php',
+         //'online_module_url': 'http://hrix.net/modules_new/api/json_store.php',
+        'online_module_url': 'http://hrix.net/modules_new/?uri=api-modules',
         // Online module img url
         'online_module_img_url': 'http://hrix.net/modules_new/modules/',
         //'online_module_img_url': 'http://hrix.net/modules_store/modules/',

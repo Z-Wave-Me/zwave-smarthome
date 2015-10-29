@@ -130,7 +130,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
 //                    $scope.onlineVersion[v.modulename] = v.version;
 //                }
 //            });
-            $scope.onlineModules = _.filter(response.data, function(item) {
+            $scope.onlineModules = _.filter(response.data.data, function(item) {
                 var isHidden = false;
                 if ($scope.getHiddenApps().indexOf(item.modulename) > -1) {
                     if ($scope.user.role !== 1) {
@@ -454,7 +454,7 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
             filter = {modulename: id};
         }
         dataFactory.getOnlineModules({token:_.values($scope.tokens)},true).then(function(response) {
-            $scope.module = _.findWhere(response.data, filter);
+            $scope.module = _.findWhere(response.data.data, filter);
             if (!$scope.module) {
                 $location.path('/error/404');
                 return;
