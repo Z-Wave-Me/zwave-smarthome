@@ -171,9 +171,9 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
                         $scope.showFooter = false;
                         filter = $routeParams;
                         if (angular.isDefined($routeParams.val)&& !_.isEmpty($scope.rooms)) {
-                            $scope.headline = $scope._t('lb_devices_room') + ' ' + $scope.rooms[$routeParams.val].title;
+                            $scope.headline = $scope._t('lb_devices_room') + ' ' + ($routeParams.val == 0 ? $scope._t($scope.rooms[$routeParams.val].title) : $scope.rooms[$routeParams.val].title) ;
                         }
-                        break;
+                        break; 
                     default:
                         break;
                 }

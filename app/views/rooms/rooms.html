@@ -4,10 +4,10 @@
     <div class="row">
         <div class="col-md-3 col-sm-6 room-entry has-device-{{devices.count[v.id].length||'false'}}" 
              id="panel_{{$index}}"
-             ng-hide="v.id === 0 && !devices.count[v.id].length"
+             ng-hide="v.id === 0 && !devices.count[v.id]"
              ng-repeat="v in collection">
             <div class="room-in" ng-init="room_title = (v.id == 0 ? _t(v.title) : v.title)">
-                <h3 class="entry-title">
+                 <h3 class="entry-title">
                     <a href="#/elements/location/{{v.id}}/{{room_title}}" ng-if="devices.count[v.id].length">{{room_title}} ({{devices.count[v.id].length||0}})</a>
                     <span ng-if="!devices.count[v.id].length">{{room_title}} ({{devices.count[v.id].length||0}})</span>
                 </h3>
