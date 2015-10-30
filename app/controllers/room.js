@@ -41,7 +41,6 @@ myAppController.controller('RoomController', function($scope, $location, dataFac
                     .reject(function(v){ return v.deviceType == 'battery' || v.permanently_hidden == true; })
                     .groupBy('location')
                     .value();
-            console.log($scope.devices.count)
         }, function(error) {
         });
     }

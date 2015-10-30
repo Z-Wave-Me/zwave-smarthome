@@ -8727,9 +8727,9 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
                         $scope.showFooter = false;
                         filter = $routeParams;
                         if (angular.isDefined($routeParams.val)&& !_.isEmpty($scope.rooms)) {
-                            $scope.headline = $scope._t('lb_devices_room') + ' ' + $scope.rooms[$routeParams.val].title;
+                            $scope.headline = $scope._t('lb_devices_room') + ' ' + ($routeParams.val == 0 ? $scope._t($scope.rooms[$routeParams.val].title) : $scope.rooms[$routeParams.val].title) ;
                         }
-                        break;
+                        break; 
                     default:
                         break;
                 }
@@ -12144,7 +12144,11 @@ myAppController.controller('RoomController', function($scope, $location, dataFac
      */
     $scope.loadDevices = function() {
         dataFactory.getApi('devices').then(function(response) {
-            $scope.devices.count = _.groupBy(response.data.data.devices, 'location');
+            $scope.devices.count = _.chain(response.data.data.devices)
+                    .flatten()
+                    .reject(function(v){ return v.deviceType == 'battery' || v.permanently_hidden == true; })
+                    .groupBy('location')
+                    .value();
         }, function(error) {
         });
     }
