@@ -46,11 +46,11 @@
             <div class="app-footer">
                 <div class="app-footer-in">
                     <!-- Download -->
-                    <button href="" class="btn btn-default btn-sm" ng-click="downloadModule(v.modulename)" ng-if="localModules.ids.indexOf(v.modulename) === -1">
+                    <button href="" class="btn btn-default btn-sm" ng-click="downloadModule(v.modulename,'online_install')" ng-if="localModules.ids.indexOf(v.modulename) === -1">
                         <i class="fa fa-download fa-lg text-success"></i> <span class="btn-name_">{{_t('lb_download')}}</span>
                     </button> 
                      <!-- Update -->
-                    <button href="" class="btn btn-default btn-sm" ng-click="downloadModule(v.modulename)" ng-if="localModules.ids.indexOf(v.modulename) !== -1 && localModules.all[v.modulename].version != v.version">
+                    <button href="" class="btn btn-default btn-sm" ng-click="downloadModule(v.modulename,'online_update')" ng-if="localModules.ids.indexOf(v.modulename) !== -1 && localModules.all[v.modulename].version != v.version">
                         <i class="fa fa-level-up fa-lg text-primary"></i> <span class="btn-name_">{{_t('update_to_latest')}}</span>
                     </button> 
                       <!-- Installed -->

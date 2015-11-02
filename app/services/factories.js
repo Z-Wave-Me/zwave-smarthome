@@ -753,10 +753,10 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
     /**
      * Install online module
      */
-    function installOnlineModule(data) {
+    function installOnlineModule(data,api) {
         return $http({
             method: "POST",
-             url: cfg.server_url + cfg.api['online_install'],
+             url: cfg.server_url + cfg.api[api],
             data: $.param(data),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',

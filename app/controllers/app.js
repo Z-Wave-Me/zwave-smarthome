@@ -331,12 +331,12 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     /**
      * Download module
      */
-    $scope.downloadModule = function(modulename) {
+    $scope.downloadModule = function(modulename,api) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
         var data = {
             moduleUrl: $scope.cfg.online_module_download_url + modulename + '.tar.gz'
         };
-        dataFactory.installOnlineModule(data).then(function(response) {
+        dataFactory.installOnlineModule(data,api).then(function(response) {
             $timeout(function() {
                 $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_module_download')};
                 myCache.removeAll();
