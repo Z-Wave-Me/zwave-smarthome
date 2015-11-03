@@ -334,7 +334,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     $scope.downloadModule = function(modulename,api) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
         var data = {
-            moduleUrl: $scope.cfg.online_module_download_url + modulename + '.tar.gz'
+            moduleUrl: $scope.cfg.online_module_download_url + modulename
         };
         dataFactory.installOnlineModule(data,api).then(function(response) {
             $timeout(function() {
