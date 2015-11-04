@@ -1,10 +1,18 @@
 <!-- Online app view -->
- <!-- <h3 ng-if="currentCategory.id"> <a class="btn btn-default" href="#apps"><i class="fa fa-arrow-left"></i></a> Category name</h3> 
-<div class="page-menu clearfix" ng-if="!currentCategory.id">
-<ul>
-    <li class="page-menu-{{v.id}}" ng-repeat="v in categories" ng-if="modulesCats.indexOf(v.id) > -1" ng-class="currentCategory.id == v.id ? 'active': ''">
-        <a href="#apps/category/{{v.id}}"><span class="page-menu-icon" ng-switch="v.id">
-                <i class="fa fa-cube" ng-switch-when="basic_gateway_modules"></i>
+ <div class="page-control form-inline">
+    <a class="btn btn-default" href="" ng-click="expandNavi('appsCategories',$event)"><i class="fa fa-chevron-down text-success" ng-class="naviExpanded.appsCategories ? 'fa-chevron-up': 'fa-chevron-down'"></i> <span ng-bind="currentCategory.name || _t('select_category')"></span></a>
+    <div class="input-group search-form hide-on-mobile_">
+        <input type="text" ng-model="q" class="form-control" value="{{q}}">
+        <span class="input-group-addon"><i class="fa fa-search"></i></span> 
+    </div>
+    <a class="btn btn-default" href="" ng-click="resetFilter('/apps')" ng-if="currentCategory.id"><i class="fa fa-refresh text-danger"></i> <span class="btn-name">{{_t('clear_all_filters')}}</span> </a>
+</div>
+<div class="page-navi" ng-if="naviExpanded.appsCategories">
+    <div class="page-navi-in">
+        <ul>
+            <li class="page-cat-{{v.id}}" ng-repeat="v in categories" ng-if="modulesCats.indexOf(v.id) > -1" ng-class="currentCategory.id == v.id ? 'active': ''">
+                <a href="#apps/category/{{v.id}}" ng-switch="v.id">
+                    <i class="fa fa-cube" ng-switch-when="basic_gateway_modules"></i>
                 <i class="fa fa-wrench" ng-switch-when="legacy_products_workaround"></i>
                  <i class="fa fa-object-group" ng-switch-when="support_external_ui"></i>
                  <i class="fa fa-cubes" ng-switch-when="support_external_dev"></i>
@@ -23,12 +31,13 @@
                  <i class="fa fa-chevron-right" ng-switch-when="environment"></i>
                  <i class="fa fa-chevron-right" ng-switch-when="scenes"></i>
                  <i class="fa fa-calendar" ng-switch-when="notifications"></i>
-                 <i class="fa fa-tags" ng-switch-when="tagging"></i>
-                 
-            </span> {{v.name}}</a>
-    </li>
-</ul>
- </div> -->
+                 <i class="fa fa-tags" ng-switch-when="tagging"></i> 
+                    {{v.name}} <span class="page-navi-icon"><i class="fa fa-chevron-right"></i></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
 <div class="row row-page" id="_page_app_local">
     <div class="col-lg-4 col-md-6 col-sm-6 app-entry" 
          ng-class="localModules.ids.indexOf(v.modulename) !== -1 ? 'app-entry-green': ''" 
