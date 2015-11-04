@@ -8775,6 +8775,10 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
             dataFactory.refreshApi('devices').then(function(response) {
                 dataService.updateDevices(response.data);
                 dataService.updateTimeTick(response.data.data.updateTime);
+                if(response.data.data.structureChanged === true){
+                      $scope.loadData();
+                }
+               
             }, function(error) {
                 dataService.showConnectionError(error);
             });
