@@ -722,16 +722,16 @@
                         <table class="table table-report table-condensed">
                             <tbody>
                                 <tr class="bcg-success" ng-repeat="n in climateControl.data.metrics.rooms">
-                                    <td class="td-img">
+                                    <!--<td class="td-img">
                                         <img class="report-img" ng-src="storage/img/rooms/{{n.default_img}}" alt="img" />
-                                    </td>
+                                    </td> -->
                                     <td ng-bind="n.roomName"></td>
                                     <td class="text-success">
                                         Act. <span ng-bind="n.mainSensor"></span> <span ng-bind="n.scaleTitle"></span>
                                     </td>
-                                    <td class="text-primary">
+                                    <!--<td class="text-primary">
                                         Set <span ng-bind="n.comfort"></span> <span ng-bind="n.scaleTitle"></span>
-                                    </td>
+                                    </td> -->
                                     <td class="text-right">
                                         <i class="fa fa-spinner fa-spin" ng-if="changeClimateControlProcess[n.id]"></i>&nbsp;
                                     </td>
