@@ -6097,10 +6097,10 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
     /**
      * Install online module
      */
-    function installOnlineModule(data) {
+    function installOnlineModule(data,api) {
         return $http({
             method: "POST",
-             url: cfg.server_url + cfg.api['online_install'],
+             url: cfg.server_url + cfg.api[api],
             data: $.param(data),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -9476,19 +9476,19 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
 /**
  * App controller
  */
-myAppController.controller('AppController', function($scope, $window, $cookies, $timeout, $route,$routeParams,$location, dataFactory, dataService, myCache, _) {
+myAppController.controller('AppController', function($scope, $window, $cookies, $timeout, $route, $routeParams, $location, dataFactory, dataService, myCache, _) {
     //Set elements to expand/collapse
     angular.copy({
         appsCategories: false
-    },$scope.expand);
+    }, $scope.expand);
     $scope.instances = [];
     $scope.hasImage = [];
     //$scope.modules = [];
-     $scope.localModules = {
-         data: {},
-         all: {},
-         ids: []
-     };
+    $scope.localModules = {
+        data: {},
+        all: {},
+        ids: []
+    };
     //$scope.modulesIds = [];
     $scope.cameraIds = [];
     $scope.modulesCats = [];
@@ -9512,37 +9512,38 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     };
     $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
     $scope.onlineMediaUrl = $scope.cfg.online_module_img_url;
-    
+
     // On page destroy
     $scope.$on('$destroy', function() {
-        angular.copy({},$scope.expand);
+        angular.copy({}, $scope.expand);
     });
-     /**
+    /**
      * Load tokens
      */
     $scope.loadTokens = function(filter) {
-    dataFactory.getApi('tokens', null, true).then(function(response) {
+        dataFactory.getApi('tokens', null, true).then(function(response) {
             angular.extend($scope.tokens, response.data.data.tokens);
-             $scope.loadOnlineModules(filter);
-        }, function(error) {});
-     };
-    
+            $scope.loadOnlineModules(filter);
+        }, function(error) {
+        });
+    };
+
     /**
      * Load categories
      */
     $scope.loadCategories = function() {
         dataFactory.getApi('modules_categories').then(function(response) {
             var cat = response.data.data;
-            if(cat){
-               $scope.categories = cat[$scope.lang] || cat[$scope.cfg.lang]; 
-              
-               if($routeParams.category){
-                  var currCat = _.findWhere($scope.categories,{id: $routeParams.category});
-                  angular.extend($scope.currentCategory,{name: currCat.name});
-               }
-              
+            if (cat) {
+                $scope.categories = cat[$scope.lang] || cat[$scope.cfg.lang];
+
+                if ($routeParams.category) {
+                    var currCat = _.findWhere($scope.categories, {id: $routeParams.category});
+                    angular.extend($scope.currentCategory, {name: currCat.name});
+                }
+
             }
-             
+
         }, function(error) {
             dataService.showConnectionError(error);
         });
@@ -9561,8 +9562,8 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
         }
         dataFactory.getApi('modules').then(function(response) {
             var modulesFiltered = _.filter(response.data.data, function(item) {
-               //$scope.localModules.ids.push(item.id);
-               $scope.localModules.ids.push(item.id);
+                //$scope.localModules.ids.push(item.id);
+                $scope.localModules.ids.push(item.id);
                 $scope.localModules.all[item.id] = item;
                 var isHidden = false;
                 if ($scope.getHiddenApps().indexOf(item.moduleName) > -1) {
@@ -9587,7 +9588,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
                     return item;
                 }
             });
-            $scope.localModules.data =  _.where(modulesFiltered, query);
+            $scope.localModules.data = _.where(modulesFiltered, query);
             //$scope.modules = _.where(modulesFiltered, query);
             $scope.loading = false;
             dataService.updateTimeTick();
@@ -9601,31 +9602,26 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
      * Load online modules
      */
     $scope.loadOnlineModules = function(filter) {
-        dataFactory.getOnlineModules({token:_.values($scope.tokens)}).then(function(response) {
-//            $scope.onlineModules = response.data;
-//            angular.forEach(response.data, function(v, k) {
-//                if (v.modulename && v.modulename != '') {
-//                    $scope.onlineVersion[v.modulename] = v.version;
-//                }
-//            });
-            $scope.onlineModules = _.filter(response.data.data, function(item) {
-                var isHidden = false;
-                $scope.onlineVersion[item.modulename] = item.version;
-                if ($scope.getHiddenApps().indexOf(item.modulename) > -1) {
-                    if ($scope.user.role !== 1) {
-                        isHidden = true;
-                    } else {
-                        isHidden = ($scope.user.expert_view ? false : true);
-                    }
-                }
+         dataFactory.getOnlineModules({token: _.values($scope.tokens)}).then(function(response) {
+             $scope.onlineModules = _.chain(response.data.data)
+                    .flatten()
+                    .filter(function(item) {
+                        var isHidden = false;
+                        $scope.onlineVersion[item.modulename] = item.version;
+                        if ($scope.getHiddenApps().indexOf(item.modulename) > -1) {
+                            if ($scope.user.role !== 1) {
+                                isHidden = true;
+                            } else {
+                                isHidden = ($scope.user.expert_view ? false : true);
+                            }
+                        }
 
-                if (!isHidden) {
-                    return item;
-                }
-            });
-            /*if(!filter){
-                $scope.onlineModules = [];
-            }*/
+                        if (!isHidden) {
+                            return item;
+                        }
+                    })
+                    .where(filter) 
+                    .value();
             $scope.loading = false;
             dataService.updateTimeTick();
         }, function(error) {
@@ -9649,7 +9645,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
 
                 } else {
                     return false;
-                  }
+                }
             });
             $scope.loading = false;
             dataService.updateTimeTick();
@@ -9666,10 +9662,10 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
         $scope.activeTab = tabId;
         $cookies.tab_app = tabId;
     };
-    
+
     if (angular.isDefined($routeParams.category)) {
-                          $scope.currentCategory.id = $routeParams.category;
-                     }
+        $scope.currentCategory.id = $routeParams.category;
+    }
 
     // Watch for tab change
     $scope.$watch('activeTab', function() {
@@ -9684,17 +9680,18 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
                 break;
             case 'online':
                 var filter = false;
-                     
-                    if ($scope.currentCategory.id) {
-                        filter = {category: $scope.currentCategory.id};
-                         
-                    }
-                    
+
+                if ($scope.currentCategory.id) {
+                    filter = {category: $scope.currentCategory.id};
+                    //console.log(filter)
+
+                }
+
                 $scope.loadTokens(filter);
-               
+
                 $scope.loadModules(filter);
                 $scope.showInFooter.categories = false;
-                
+
                 break;
             default:
                 $scope.showInFooter.categories = true;
@@ -9702,7 +9699,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
                     //$scope.modules = angular.copy([]);
                     $scope.localModules.data = angular.copy([]);
                     var filter = false;
-                     
+
                     if ($scope.currentCategory.id) {
                         filter = {category: $scope.currentCategory.id};
                     }
@@ -9721,16 +9718,16 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
         $scope.modalLocal = input;
         $(target).modal();
     };
-    
-     /**
+
+    /**
      * Reset filter
      */
     $scope.resetFilter = function(path) {
         $route.reload();
-        if(path){
-           $location.path(path); 
+        if (path) {
+            $location.path(path);
         }
-         
+
     };
 
     /**
@@ -9768,7 +9765,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
                 alertify.alert($scope._t('error_delete_data'));
             });
 
-         });
+        });
     };
     /**
      * Delete module
@@ -9785,7 +9782,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
             alertify.alert(hasInstance);
             return;
         }
-       alertify.confirm(message, function() {
+        alertify.confirm(message, function() {
             //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
             dataFactory.deleteApi('modules', input.id).then(function(response) {
                 myCache.remove('modules');
@@ -9796,17 +9793,17 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
                 $scope.loading = false;
                 alertify.alert($scope._t('error_delete_data'));
             });
-         });
+        });
     };
     /**
      * Download module
      */
-    $scope.downloadModule = function(modulename) {
+    $scope.downloadModule = function(modulename, api) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
         var data = {
-            moduleUrl: $scope.cfg.online_module_download_url + modulename + '.tar.gz'
+            moduleUrl: $scope.cfg.online_module_download_url + modulename
         };
-        dataFactory.installOnlineModule(data).then(function(response) {
+        dataFactory.installOnlineModule(data, api).then(function(response) {
             $timeout(function() {
                 $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_module_download')};
                 myCache.removeAll();
@@ -9826,7 +9823,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
  */
 myAppController.controller('AppLocalDetailController', function($scope, $routeParams, $location, dataFactory, dataService, _) {
     $scope.module = [];
-     $scope.categoryName = '';
+    $scope.categoryName = '';
     $scope.isOnline = null;
     $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
     /**
@@ -9835,18 +9832,18 @@ myAppController.controller('AppLocalDetailController', function($scope, $routePa
     $scope.loadCategories = function(id) {
         dataFactory.getApi('modules_categories').then(function(response) {
             var cat = response.data.data;
-            if(!cat){
+            if (!cat) {
                 return;
             }
-           var category = _.findWhere(cat[$scope.lang] || cat[$scope.cfg.lang], {id: id});
-           if(category){
-               $scope.categoryName = category.name;
-           }
+            var category = _.findWhere(cat[$scope.lang] || cat[$scope.cfg.lang], {id: id});
+            if (category) {
+                $scope.categoryName = category.name;
+            }
         }, function(error) {
             dataService.showConnectionError(error);
         });
     };
-   
+
     /**
      * Load module detail
      */
@@ -9856,7 +9853,7 @@ myAppController.controller('AppLocalDetailController', function($scope, $routePa
         dataFactory.getApi('modules', '/' + id).then(function(response) {
             loadOnlineModules(id);
             $scope.module = response.data.data;
-             $scope.loadCategories(response.data.data.category);
+            $scope.loadCategories(response.data.data.category);
             //$scope.loading = false;
         }, function(error) {
             $scope.loading = false;
@@ -9886,31 +9883,32 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
     $scope.categoryName = '';
     $scope.onlineMediaUrl = $scope.cfg.online_module_img_url;
     $scope.tokens = {};
-    
+
     /**
      * Load tokens
      */
     $scope.loadTokens = function() {
-    dataFactory.getApi('tokens', null, true).then(function(response) {
+        dataFactory.getApi('tokens', null, true).then(function(response) {
             angular.extend($scope.tokens, response.data.data.tokens);
             $scope.loadModule($routeParams.id);
-        }, function(error) {});
-     };
+        }, function(error) {
+        });
+    };
     $scope.loadTokens();
-    
+
     /**
      * Load categories
      */
     $scope.loadCategories = function(id) {
         dataFactory.getApi('modules_categories').then(function(response) {
-           var cat = response.data.data;
-            if(!cat){
+            var cat = response.data.data;
+            if (!cat) {
                 return;
             }
-           var category = _.findWhere(cat[$scope.lang] || cat[$scope.cfg.lang], {id: id});
-           if(category){
-               $scope.categoryName = category.name;
-           }
+            var category = _.findWhere(cat[$scope.lang] || cat[$scope.cfg.lang], {id: id});
+            if (category) {
+                $scope.categoryName = category.name;
+            }
         }, function(error) {
             dataService.showConnectionError(error);
         });
@@ -9919,9 +9917,10 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
      * Load local modules
      */
     $scope.loadModules = function(query) {
-       dataFactory.getApi('modules').then(function(response) {
-           $scope.local.installed = _.findWhere(response.data.data, query);
-        }, function(error) {});
+        dataFactory.getApi('modules').then(function(response) {
+            $scope.local.installed = _.findWhere(response.data.data, query);
+        }, function(error) {
+        });
     };
     /**
      * Load module detail
@@ -9933,7 +9932,7 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
         if (isNaN(param)) {
             filter = {modulename: id};
         }
-        dataFactory.getOnlineModules({token:_.values($scope.tokens)},true).then(function(response) {
+        dataFactory.getOnlineModules({token: _.values($scope.tokens)}, true).then(function(response) {
             $scope.module = _.findWhere(response.data.data, filter);
             if (!$scope.module) {
                 $location.path('/error/404');
@@ -9947,7 +9946,7 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
         });
     };
 
-    
+
 
     /**
      * Download module
@@ -9996,7 +9995,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
     // Post new module instance
     $scope.postModule = function(id) {
         dataService.showConnectionSpinner();
-        dataFactory.getApi('modules', '/' + id + '?lang=' + $scope.lang,true).then(function(module) {
+        dataFactory.getApi('modules', '/' + id + '?lang=' + $scope.lang, true).then(function(module) {
             var formData = dataService.getModuleFormData(module.data.data, module.data.data.defaults);
             var langCode = (angular.isDefined(cfg.lang_codes[$scope.lang]) ? cfg.lang_codes[$scope.lang] : null);
             $scope.input = {
@@ -10032,7 +10031,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
         dataService.showConnectionSpinner();
         dataFactory.getApi('instances', '/' + id, true).then(function(instances) {
             var instance = instances.data.data;
-            dataFactory.getApi('modules', '/' + instance.moduleId + '?lang=' + $scope.lang,true).then(function(module) {
+            dataFactory.getApi('modules', '/' + instance.moduleId + '?lang=' + $scope.lang, true).then(function(module) {
                 if (module.data.data.state === 'hidden') {
                     if (!$scope.user.expert_view) {
                         dataService.updateTimeTick();
