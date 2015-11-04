@@ -33,7 +33,7 @@
                     <!-- Widget body -->
                     <div class="widget-body" ng-class="{'text-widget': v.deviceType == 'text','text-widget-no-img': v.deviceType == 'text' && v.metrics.icon == ''}" ng-mouseleave="goHidden[v.id] = false; goHistory[v.id] = false;" >
                         <div class="widget-content-wrap">
-                        <span class="widget-room" ng-if="v.location !== 0">{{rooms[v.location].title|cutText:true:25}}</span>
+                            <span class="widget-room"><span ng-if="v.location !== 0">{{rooms[v.location].title|cutText:true:25}}</span>&nbsp;</span>
                         <!-- title of widget type text -->
                         <h3 ng-if="v.deviceType === 'text'" class="entry-title" title="{{v.title}}" ng-click="showModal('#modal_promo', {'type': v.deviceType, 'title': v.title, 'text': v.metrics.text, 'url': v.metrics.icon})">{{v.title|cutText:true:25}}</h3>
                         
@@ -237,7 +237,7 @@
                                 <!-- climateControl sensorMultiline -->
                                 <div ng-if="v.metrics.multilineType === 'climateControl'">
                                     <div class="widget-control control-right widget-click-popup">
-                                       <span class="widget-level" ng-click="loadClimateControl('#modal_climate_control', v.id,v)">Room settings</span> <i class="fa fa-caret-down"></i>
+                                       <strong ng-click="loadClimateControl('#modal_climate_control', v.id,v)">{{_t('room_settings')}}</strong> <i class="fa fa-caret-down"></i>
                                    </div><!-- /.widget-control .left -->
                                      <div class="widget-control control-left">
                                         <select class="form-control" 

@@ -1,6 +1,8 @@
 {
     "newtrans": "---",
-     "---": "newtrans",
+    "---": "newtrans",
+    "room_settings":"Room settings",
+     "ipcamera":"IP Camera",
     "notunique_token":"The given token already exits",
     "device_no_event": "This device does not have an event",
     "error_type": "Error type",
