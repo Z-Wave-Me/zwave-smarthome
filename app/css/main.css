@@ -3135,7 +3135,7 @@ legend.alpaca-container-label {
 }
 /* line 76, sass/modules/_elements.scss */
 .widget-body .widget-room {
-  display: inline-block;
+  display: block;
   font-size: 11.9px;
   color: #737373;
 }
@@ -3194,6 +3194,7 @@ legend.alpaca-container-label {
   padding: 7px 10px;
   border: 0 none;
   color: #737373;
+  font-size: 11.9px;
   background-color: transparent;
 }
 /* line 133, sass/modules/_elements.scss */
@@ -4809,17 +4810,22 @@ padding-right: 5px;
   /* line 39, sass/responsive/_modules.scss */
   .widget-body .btn-widget-time, .widget-body .txt-widget-time {
     padding: 0;
+    font-size: 14.28px;
   }
   /* line 42, sass/responsive/_modules.scss */
+  .widget-body .btn-widget-time .fa, .widget-body .txt-widget-time .fa {
+    font-size: 14.28px;
+  }
+  /* line 46, sass/responsive/_modules.scss */
   .widget-body .widget-control.control-left.text {
     padding-left: 0;
   }
 
-  /* line 49, sass/responsive/_modules.scss */
+  /* line 53, sass/responsive/_modules.scss */
   .modal-no-padding .modal-dialog {
     margin: 0;
   }
-  /* line 51, sass/responsive/_modules.scss */
+  /* line 55, sass/responsive/_modules.scss */
   .modal-no-padding .modal-dialog .modal-body {
     padding: 0;
   }
@@ -4828,51 +4834,51 @@ padding-right: 5px;
           text-align: right;
       }*/
   /* Home */
-  /* line 65, sass/responsive/_modules.scss */
+  /* line 69, sass/responsive/_modules.scss */
   .home-widget .widget-entry .widget-block-in {
     border: 0;
     padding: 0;
   }
 
-  /* line 78, sass/responsive/_modules.scss */
+  /* line 82, sass/responsive/_modules.scss */
   .room-entry {
     float: left;
     width: 50%;
     padding: 0;
   }
-  /* line 82, sass/responsive/_modules.scss */
+  /* line 86, sass/responsive/_modules.scss */
   .room-entry .room-in {
     position: relatvive;
   }
-  /* line 85, sass/responsive/_modules.scss */
+  /* line 89, sass/responsive/_modules.scss */
   .room-entry .entry-title {
     position: absolute;
     text-align: center;
     left: 0;
     right: 0;
   }
-  /* line 92, sass/responsive/_modules.scss */
+  /* line 96, sass/responsive/_modules.scss */
   .room-entry .entry-title-text {
     display: none;
   }
-  /* line 95, sass/responsive/_modules.scss */
+  /* line 99, sass/responsive/_modules.scss */
   .room-entry .app-border {
     border: solid 1px #d3d3d3;
   }
 
-  /* line 100, sass/responsive/_modules.scss */
+  /* line 104, sass/responsive/_modules.scss */
   .room-image-big {
     margin: 24px 0 0 0;
     max-width: 130px;
     max-height: 130px;
   }
 
-  /* line 107, sass/responsive/_modules.scss */
+  /* line 111, sass/responsive/_modules.scss */
   #table_cfg_rooms .td-action {
     width: 30%;
   }
 
-  /* line 115, sass/responsive/_modules.scss */
+  /* line 119, sass/responsive/_modules.scss */
   .event-date {
     display: block;
   }
@@ -4888,12 +4894,12 @@ padding-right: 5px;
   /*    .tab-icon{
           font-size: 20px;
       }*/
-  /* line 137, sass/responsive/_modules.scss */
+  /* line 141, sass/responsive/_modules.scss */
   #table_apps_instance .td-action {
     width: 40%;
   }
 
-  /* line 142, sass/responsive/_modules.scss */
+  /* line 146, sass/responsive/_modules.scss */
   .app-entry {
     width: 100%;
     padding: 0;
@@ -4916,7 +4922,7 @@ padding-right: 5px;
     /* IE6-9 */
   }
 
-  /* line 148, sass/responsive/_modules.scss */
+  /* line 152, sass/responsive/_modules.scss */
   .app-entry-green {
     background: #1e5799;
     /* Old browsers */
@@ -4936,7 +4942,7 @@ padding-right: 5px;
     /* IE6-9 */
   }
 
-  /* line 151, sass/responsive/_modules.scss */
+  /* line 155, sass/responsive/_modules.scss */
   .app-entry-in {
     border: 0;
     height: auto;
@@ -4946,7 +4952,7 @@ padding-right: 5px;
     margin: 0;
   }
 
-  /* line 161, sass/responsive/_modules.scss */
+  /* line 165, sass/responsive/_modules.scss */
   .app-image {
     top: 10px;
     left: 10px;
@@ -4954,20 +4960,20 @@ padding-right: 5px;
     height: 40px;
   }
 
-  /* line 167, sass/responsive/_modules.scss */
+  /* line 171, sass/responsive/_modules.scss */
   .app-body {
     height: 64px;
     margin: 0;
     padding: 5px 5px 15px 64px;
   }
-  /* line 171, sass/responsive/_modules.scss */
+  /* line 175, sass/responsive/_modules.scss */
   .app-body .entry-title {
     position: absolute;
     z-index: 10;
     padding: 10px 90px 0 0;
   }
 
-  /* line 178, sass/responsive/_modules.scss */
+  /* line 182, sass/responsive/_modules.scss */
   .app-footer-in .btn {
     margin-top: -20px;
   }
@@ -4975,31 +4981,31 @@ padding-right: 5px;
   /*    .app-image{
            margin: 0;
       }*/
-  /* line 188, sass/responsive/_modules.scss */
+  /* line 192, sass/responsive/_modules.scss */
   .app-detail-header-in {
     position: static;
     padding: 0 15px 15px 15px;
     background: none;
   }
-  /* line 192, sass/responsive/_modules.scss */
+  /* line 196, sass/responsive/_modules.scss */
   .app-detail-header-in .app-detail-img {
     text-align: center;
     margin: 0 auto;
   }
-  /* line 195, sass/responsive/_modules.scss */
+  /* line 199, sass/responsive/_modules.scss */
   .app-detail-header-in .app-detail-img .app-image-detail {
     position: static;
   }
-  /* line 200, sass/responsive/_modules.scss */
+  /* line 204, sass/responsive/_modules.scss */
   .app-detail-header-in .app-detail-body {
     padding-left: 0;
   }
-  /* line 203, sass/responsive/_modules.scss */
+  /* line 207, sass/responsive/_modules.scss */
   .app-detail-header-in .app-detail-control {
     text-align: center;
   }
 
-  /* line 275, sass/responsive/_modules.scss */
+  /* line 279, sass/responsive/_modules.scss */
   #table_cfg_admin .td-action {
     width: 30%;
   }

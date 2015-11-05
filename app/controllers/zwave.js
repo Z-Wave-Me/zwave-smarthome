@@ -91,10 +91,10 @@ myAppController.controller('ZwaveIncludeController', function($scope, $routePara
      * Set black list
      */
     $scope.setBlacklist = function() {
-        dataFactory.getApi('include_blacklist').then(function(response) {
+        dataFactory.getRemoteData($scope.cfg.blacklist_url).then(function(response) {
             $scope.device.blacklist = response.data.data;
-
-            console.log('$scope.device.blacklist[entryOnBlacklist]', $scope.device.blacklist['entryOnBlacklist']);
+            console.log($scope.device.blacklist)
+            //console.log('$scope.device.blacklist[entryOnBlacklist]', $scope.device.blacklist['entryOnBlacklist']);
             if(!$scope.device.blacklist['entryOnBlacklist']){
                 // do nothing
                 return;
@@ -112,6 +112,7 @@ myAppController.controller('ZwaveIncludeController', function($scope, $routePara
         });
     };
     
+     //$scope.setBlacklist();
     /**
      * Load data into collection
      */
@@ -288,11 +289,11 @@ myAppController.controller('ZwaveIncludeController', function($scope, $routePara
         }, function(error) {
         });
 
-        if ($scope.device.blacklist === null) {
-            $timeout(function(){
-                $scope.setBlacklist();
-            }, 1500);
-        }
+//        if ($scope.device.blacklist === null) {
+//            $timeout(function(){
+//                //$scope.setBlacklist();
+//            }, 1500);
+//        }
     };
     
     /**

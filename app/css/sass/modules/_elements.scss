@@ -74,7 +74,7 @@
         padding: 0 5px 15px 84px;
     }
     .widget-room{
-        display: inline-block;
+        display: block;
         font-size:$app-body-font-size * 0.85;
         color: lighten($app-body-color, 40%);
         //margin-bottom: 8px;
@@ -127,7 +127,7 @@
         padding: 7px 10px;
         border: 0 none;
         color: lighten($app-body-color, 40%);
-        //font-size: $app-body-font-size * 0.85;
+        font-size: $app-body-font-size * 0.85;
         background-color: transparent;
     }
     .txt-widget-time{

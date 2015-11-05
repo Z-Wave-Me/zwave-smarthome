@@ -34,14 +34,18 @@
         .widget-content-wrap{
 
             padding: 0 5px 15px 0;
-           
+
         }
-         .btn-widget-time, .txt-widget-time{
-                padding: 0;
+        .btn-widget-time, .txt-widget-time{
+            padding: 0;
+             font-size: ($app-body-font-size * 0.85)  * $m-font-scale;
+            .fa {
+                font-size: ($app-body-font-size * 0.85)  * $m-font-scale;
             }
-            .widget-control.control-left.text{
-        padding-left: 0;
-    }
+        }
+        .widget-control.control-left.text{
+            padding-left: 0;
+        }
     }
 
     .modal-no-padding {

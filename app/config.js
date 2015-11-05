@@ -48,16 +48,14 @@ var config_data = {
         // Help data path
         'help_data_url': 'storage/help/',
         // Online module url
-         //'online_module_url': 'http://hrix.net/modules_new/api/json_store.php',
         'online_module_url': 'http://hrix.net/modules_new/?uri=api-modules',
         // Online module img url
         'online_module_img_url': 'http://hrix.net/modules_new/modules/',
-        //'online_module_img_url': 'http://hrix.net/modules_store/modules/',
         // Online module download url
         'online_module_download_url': 'http://hrix.net/modules_new/modules/',
-        //'online_module_download_url': 'http://hrix.net/modules_store/modules/',
+        // Online module download url
+        'blacklist_url': 'http://hrix.net/blacklist.json',
         // Post report url
-        //'post_report_url': 'http://dev.dev/zwave-api/report/post-report.php',
         'post_report_url': ' http://zwave.eu/api/report/post-report.php',
         // Razberry latest version
         'raz_latest_version_url': 'http://razberry.z-wave.me/z-way/razberry/latest/VERSION',
