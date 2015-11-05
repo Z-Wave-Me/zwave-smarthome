@@ -9480,7 +9480,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
 /**
  * App controller
  */
-myAppController.controller('AppController', function($scope, $window, $cookies, $timeout, $route, $routeParams, $location, dataFactory, dataService, myCache, _) {
+myAppController.controller('AppController', function($scope, $filter, $cookies, $timeout, $route, $routeParams, $location, dataFactory, dataService, myCache, _) {
     //Set elements to expand/collapse
     angular.copy({
         appsCategories: false
@@ -9566,6 +9566,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
         }
         dataFactory.getApi('modules').then(function(response) {
             var modulesFiltered = _.filter(response.data.data, function(item) {
+                
                 //$scope.localModules.ids.push(item.id);
                 $scope.localModules.ids.push(item.id);
                 $scope.localModules.all[item.id] = item;
@@ -9584,6 +9585,12 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
                 }
 
                 if (!isHidden) {
+                     var findLocationStr = item.location.split('/');
+                     if (findLocationStr[0] === 'userModules') {
+                         angular.extend(item,{custom: true});
+                     }else{
+                         angular.extend(item,{custom: false});
+                     }
                     //$scope.modulesIds.push(item.id);
                     $scope.moduleImgs[item.id] = item.icon;
                     if (item.category && $scope.modulesCats.indexOf(item.category) === -1) {
@@ -9593,6 +9600,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
                 }
             });
             $scope.localModules.data = _.where(modulesFiltered, query);
+            //console.log($scope.localModules.data);
             //$scope.modules = _.where(modulesFiltered, query);
             $scope.loading = false;
             dataService.updateTimeTick();
@@ -9606,8 +9614,8 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
      * Load online modules
      */
     $scope.loadOnlineModules = function(filter) {
-         dataFactory.getOnlineModules({token: _.values($scope.tokens)}).then(function(response) {
-             $scope.onlineModules = _.chain(response.data.data)
+        dataFactory.getOnlineModules({token: _.values($scope.tokens)}).then(function(response) {
+            $scope.onlineModules = _.chain(response.data.data)
                     .flatten()
                     .filter(function(item) {
                         var isHidden = false;
@@ -9619,12 +9627,14 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
                                 isHidden = ($scope.user.expert_view ? false : true);
                             }
                         }
-
+                         angular.extend(item,{file: item.modulename});
+                         var findNameStr = item.modulename.split('.');
+                         item['modulename'] = findNameStr[0];
                         if (!isHidden) {
                             return item;
                         }
                     })
-                    .where(filter) 
+                    .where(filter)
                     .value();
             $scope.loading = false;
             dataService.updateTimeTick();
@@ -9772,53 +9782,91 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
         });
     };
     /**
-     * Delete module
+     * Install module
      */
-    $scope.deleteModule = function(target, input, message) {
-        var hasInstance = false;
-        angular.forEach($scope.instances, function(v, k) {
-            if (input.id == v.moduleId)
-                hasInstance = $scope._t('error_module_delete_active') + v.title;
-            return;
-
-        });
-        if (hasInstance) {
-            alertify.alert(hasInstance);
-            return;
-        }
-        alertify.confirm(message, function() {
-            //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
-            dataFactory.deleteApi('modules', input.id).then(function(response) {
-                myCache.remove('modules');
-                $(target).fadeOut(2000);
-                //$scope.loading = false;
-
-            }, function(error) {
-                $scope.loading = false;
-                alertify.alert($scope._t('error_delete_data'));
-            });
-        });
-    };
-    /**
-     * Download module
-     */
-    $scope.downloadModule = function(modulename, api) {
+    $scope.installModule = function(modulename) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
         var data = {
             moduleUrl: $scope.cfg.online_module_download_url + modulename
         };
-        dataFactory.installOnlineModule(data, api).then(function(response) {
+        dataFactory.installOnlineModule(data, 'online_install').then(function(response) {
             $timeout(function() {
-                $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_module_download')};
+                $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t(response.data.data.key)};
                 myCache.removeAll();
                 $route.reload();
             }, 3000);
 
         }, function(error) {
             $scope.loading = false;
-            alertify.alert($scope._t('error_no_module_download'));
+            var message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error.key) + ' ' + error.data.error.request : $scope._t('error_no_module_download'));
+            alertify.alert(message);
         });
 
+    };
+    /**
+     * Update module
+     */
+    $scope.updateModule = function(modulename, confirm) {
+        alertify.confirm(confirm, function() {
+            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
+            var data = {
+                moduleUrl: $scope.cfg.online_module_download_url + modulename
+            };
+            dataFactory.installOnlineModule(data, 'online_update').then(function(response) {
+                $timeout(function() {
+                    $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t(response.data.data.key)};
+                    myCache.removeAll();
+                    $route.reload();
+                }, 3000);
+
+            }, function(error) {
+                $scope.loading = false;
+                var message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error.key) + ' ' + error.data.error.request : $scope._t('error_no_module_download'));
+                alertify.alert(message);
+            });
+        });
+
+
+    };
+    
+     /**
+     * Delete module
+     */
+    $scope.deleteModule = function(input, message,target) {
+        
+        alertify.confirm(message, function() {
+            //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
+            dataFactory.deleteApi('online_delete',input.id).then(function(response) {
+               $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t(response.data.data.key)};
+                    myCache.removeAll();
+                    $route.reload();
+
+            }, function(error) {
+               var message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error.key) + ' ' + error.data.error.request : $scope._t('error_delete_data'));
+                $scope.loading = false;
+                alertify.alert(message);
+            });
+        });
+    };
+    
+       /**
+     * Reset module
+     */
+    $scope.resetModule = function(input, message,target) {
+        
+        alertify.confirm(message, function() {
+            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
+            dataFactory.postApi('online_reset', input,'/' + input.id).then(function(response) {
+                $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t(response.data.data.key)};
+                    myCache.removeAll();
+                    $route.reload();
+
+            }, function(error) {
+                var message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error.key) + ' ' + error.data.error.request : $scope._t('error_delete_data'));
+                $scope.loading = false;
+                alertify.alert(message);
+            });
+        });
     };
 
 });
@@ -10256,10 +10304,10 @@ myAppController.controller('ZwaveIncludeController', function($scope, $routePara
      * Set black list
      */
     $scope.setBlacklist = function() {
-        dataFactory.getApi('include_blacklist').then(function(response) {
+        dataFactory.getRemoteData($scope.cfg.blacklist_url).then(function(response) {
             $scope.device.blacklist = response.data.data;
-
-            console.log('$scope.device.blacklist[entryOnBlacklist]', $scope.device.blacklist['entryOnBlacklist']);
+            console.log($scope.device.blacklist)
+            //console.log('$scope.device.blacklist[entryOnBlacklist]', $scope.device.blacklist['entryOnBlacklist']);
             if(!$scope.device.blacklist['entryOnBlacklist']){
                 // do nothing
                 return;
@@ -10277,6 +10325,7 @@ myAppController.controller('ZwaveIncludeController', function($scope, $routePara
         });
     };
     
+     //$scope.setBlacklist();
     /**
      * Load data into collection
      */
@@ -10453,11 +10502,11 @@ myAppController.controller('ZwaveIncludeController', function($scope, $routePara
         }, function(error) {
         });
 
-        if ($scope.device.blacklist === null) {
-            $timeout(function(){
-                $scope.setBlacklist();
-            }, 1500);
-        }
+//        if ($scope.device.blacklist === null) {
+//            $timeout(function(){
+//                //$scope.setBlacklist();
+//            }, 1500);
+//        }
     };
     
     /**
