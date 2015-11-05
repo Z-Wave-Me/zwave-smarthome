@@ -1,0 +1,35 @@
+<!-- Zwave network view -->
+<div ng-controller="ZwaveManageController">
+    <!-- Zwave navigation -->
+    <div ng-include="'app/views/zwave/navi.html'"></div>
+    <div class="tab-pane" id="module_health">
+        <table class="table table-condensed table-report">
+            <tbody>
+                <tr ng-repeat="v in zWaveDevices| orderBy:'id':false" id="row_health_{{v.id}}" ng-if="v.messages">
+                    <td class="td-img">
+                        <img class="report-img" ng-src="{{v.icon|getElementIcon:e}}" alt="{{ v.title}}" />
+                    </td>
+                    <td class="network-zwave-device">
+                        <span class="network-node-name">(#{{v.id}}) {{v.title}}</span>
+                        <div  class="network-zwave-device" ng-repeat="e in v.elements| orderBy:'title':false" ng-bind="e.title"></div>
+                    </td>
+                    <td>
+                        <div class="text-danger" ng-repeat="m in v.messages|unique:true">
+                            <span ng-if="!isMobile">
+                                <a class="text-danger" href="" ng-if="m.type == 'failed' || m.type == 'config'" ng-click="toExpert('/expert/#help/' + v.id, _t('redirect_to_expert'))" >
+                                    <span  ng-bind="m.error"></span> <i class="fa fa-external-link"></i>
+                                </a>
+                            </span>
+                            <span ng-if="isMobile">
+                                <span  class="text-danger" ng-if="m.type == 'failed' || m.type == 'config'" ng-bind="m.error"></span>
+                            </span>
+                            <span ng-if="m.type == 'battery'" ng-bind="m.error"></span>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+ 
+    </div>
+    <div class="device-logo" ng-include="'app/views/zwave/zwave_nav.html'"></div>
+</div> <!-- /ng-controller --> 

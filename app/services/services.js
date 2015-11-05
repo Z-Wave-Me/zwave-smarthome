@@ -7,7 +7,7 @@ var myAppService = angular.module('myAppService', []);
 /**
  * Device service
  */
-myAppService.service('dataService', function($filter, $log, $cookies, $location, $window,myCache, cfg,_) {
+myAppService.service('dataService', function($filter, $log, $cookies, $location, $window, myCache, cfg, _) {
     /// --- Public functions --- ///
     /**
      * Get language line by key
@@ -83,8 +83,8 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     this.setUser = function(data) {
         return setUser(data);
     };
-    
-     /**
+
+    /**
      * Get user SID (token)
      */
     this.getZWAYSession = function() {
@@ -96,21 +96,21 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     this.setZWAYSession = function(sid) {
         return setZWAYSession(sid);
     };
-     /**
+    /**
      * Get last login
      */
     this.getLastLogin = function() {
-       return getLastLogin();
-   };
-    
-   /*
-    * Set last login
-    */
-   this.setLastLogin = function(val) {
-       return setLastLogin(val);
-   };
-   
-   /**
+        return getLastLogin();
+    };
+
+    /*
+     * Set last login
+     */
+    this.setLastLogin = function(val) {
+        return setLastLogin(val);
+    };
+
+    /**
      * Logout
      */
     this.logOut = function() {
@@ -172,8 +172,8 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     /**
      * Get module form data
      */
-    this.getModuleFormData = function(module, data, namespaces) {
-        return getModuleFormData(module, data, namespaces);
+    this.getModuleFormData = function(module, data) {
+        return getModuleFormData(module, data);
     };
 
     /**
@@ -219,8 +219,8 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     this.configGetNav = function(ZWaveAPIData) {
         return configGetNav(ZWaveAPIData);
     };
-    
-     /**
+
+    /**
      * Set EnOcean profile
      */
     this.setEnoProfile = function(data) {
@@ -252,7 +252,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      * Set user data
      */
     function setUser(data) {
-         if(!data){
+        if (!data) {
             delete $cookies['user'];
             return;
         }
@@ -264,21 +264,21 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      * Get user SID (token)
      */
     function getZWAYSession() {
-         return $cookies.ZWAYSession;
+        return $cookies.ZWAYSession;
 
     }
     /**
      * Set user SID (token)
      */
     function setZWAYSession(sid) {
-        if(!sid){
+        if (!sid) {
             delete $cookies['ZWAYSession'];
             return;
         }
         $cookies.ZWAYSession = sid;
 
     }
-    
+
     /**
      * Get last login
      */
@@ -286,7 +286,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
         return $cookies.lastLogin !== 'undefined' ? $cookies.lastLogin : false;
 
     }
-    
+
     /**
      * Set last login
      */
@@ -294,7 +294,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
         $cookies.lastLogin = val;
 
     }
-    
+
     /**
      * Logout
      */
@@ -337,17 +337,20 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      * Get device data
      */
     function getDevices(data, filter, dashboard, instances, location) {
-       var obj;
+        var obj;
         var collection = [];
         var onDashboard = false;
         var findZwaveStr = "ZWayVDev_zway_";
+        var findZenoStr = "ZEnoVDev_zeno_x";
 
         angular.forEach(data, function(v, k) {
-            var instance; 
+            var instance;
+            var minMax = {min: 0, max: 100};
             var hasInstance = false;
             var zwaveId = false;
             var level = $filter('numberFixedLen')(v.metrics.level);
             var rgbColors = false;
+            var appType = {};
             if (v.permanently_hidden || v.deviceType == 'battery') {
                 return;
             }
@@ -359,25 +362,37 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                     return;
                 }
             }
-           if(instances){
-               if (v.id.indexOf(findZwaveStr) > -1) {
-                zwaveId = v.id.split(findZwaveStr)[1].split('-')[0];
-            } else {
-                //instance = getRowBy(instances, 'id', v.creatorId);
-                instance = _.findWhere(instances, {id: v.creatorId});
-                if (instance && instance['moduleId'] != 'ZWave') {
-                    hasInstance = instance;
+            if (instances) {
+                if (v.id.indexOf(findZwaveStr) > -1) {
+                    zwaveId = v.id.split(findZwaveStr)[1].split('-')[0];
+                    appType['zwave'] = zwaveId.replace(/[^0-9]/g, '');
+                } else if (v.id.indexOf(findZenoStr) > -1) {
+                    appType['enocean'] = v.id.split(findZenoStr)[1].split('_')[0];
+                } else {
+                    //instance = getRowBy(instances, 'id', v.creatorId);
+                    instance = _.findWhere(instances, {id: v.creatorId});
+                    if (instance && instance['moduleId'] != 'ZWave') {
+                        hasInstance = instance;
+                        appType['instance'] = instance;
 
+                    }
                 }
             }
-           }
-            
+
             if (dashboard && dashboard.indexOf(v.id) !== -1) {
                 var onDashboard = true;
             }
 
             if (v.metrics.color) {
                 rgbColors = 'rgb(' + v.metrics.color.r + ',' + v.metrics.color.g + ',' + v.metrics.color.b + ')';
+            }
+            // Create min/max value
+            switch (v.probeType) {
+                case 'test':
+                    minMax = {min: 0, max: 255};
+                    break;
+                default:
+                    break;
             }
             //console.log('Device id %s has history %s',v.id,v.hasHistory)
             obj = {
@@ -394,17 +409,20 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                 'probeTitle': v.metrics.probeTitle,
                 'scaleTitle': v.metrics.scaleTitle,
                 'deviceType': v.deviceType,
+                'v.probeType':v.probeType,
                 'location': v.location,
                 'creatorID': v.creatorId,
                 'updateTime': v.updateTime,
                 'onDashboard': onDashboard,
                 'imgTrans': false,
                 'visibility': v.visibility,
-                'hasHistory': (v.hasHistory === true ? true : false), 
+                'hasHistory': (v.hasHistory === true ? true : false),
+                'minMax': minMax,
                 'cfg': {
                     'zwaveId': zwaveId,
                     'hasInstance': hasInstance
-                }
+                },
+                'appType': appType
             };
             if (filter) {
                 if (angular.isArray(obj[filter.filter])) {
@@ -460,7 +478,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                     break;
             }
             $(widgetId + ' .widget-level').html(val);
-            $(widgetId + ' .widget-level-knob').val(val);
+            $(widgetId + ' .widget-level-knob').val(val).trigger('change', false);
         }
         console.log(Math.round(+new Date() / 1000) + ' Update device: ID: ' + v.id + ' - level: ' + val)
 
@@ -500,6 +518,15 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     function updateDeviceBtn(widgetId, v) {
         var status = false;
         switch (v.deviceType) {
+            case 'sensorMultiline':
+                if (v.metrics.multilineType == 'protection') {
+                    if (v.metrics.state == 'armed') {
+                        status = 'on';
+                    } else {
+                        status = 'off';
+                    }
+                }
+                break;
             case 'doorlock':
                 if (v.metrics.level == 'open') {
                     status = 'on';
@@ -535,7 +562,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      * Get chart data
      */
     function getChartData(data, colors) {
-       
+
         if (!angular.isObject(data, colors)) {
             return null;
         }
@@ -608,11 +635,10 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     /**
      * Get module form data
      */
-    function getModuleFormData(module, data, namespaces) {
-        var bind = setModuleFormData(module.options, module.schema, namespaces);
+    function getModuleFormData(module, data) {
         var collection = {
-            'options': bind.options,
-            'schema': bind.schema,
+            'options': replaceModuleFormData(module.options, 'click'),
+            'schema': module.schema,
             'data': data,
             'postRender': postRenderAlpaca
         };
@@ -620,59 +646,27 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     }
 
     /**
-     * Set module form data
-     */
-    function setModuleFormData(options, schema, namespaces) {
-        var collection = {
-            'options': replaceModuleFormData(options, 'optionLabels', namespaces, 'deviceName'),
-            'schema': replaceModuleFormData(schema, 'enum', namespaces, 'deviceId')
-        };
-        return collection;
-    }
-    /**
      * Replace module object
      */
-    function replaceModuleFormData(obj, key, namespaces, namespaceKey) {
+    function replaceModuleFormData(obj, key) {
         var objects = [];
         for (var i in obj) {
             if (!obj.hasOwnProperty(i))
                 continue;
             if (typeof obj[i] == 'object') {
-                objects = objects.concat(replaceModuleFormData(obj[i], key, namespaces, namespaceKey));
-            } else if (i == key && !angular.isArray(obj[key])) {
-                obj[key] = buildArrayFromNamespaces(obj[key], namespaces, namespaceKey);
+                objects = objects.concat(replaceModuleFormData(obj[i], key));
+            } else if (i == key && 
+                        !angular.isArray(obj[key]) && 
+                                typeof obj[key] === 'string' && 
+                                    obj[key].indexOf("function") === 0) {
+                // overwrite old string with function                
+                // we can only pass a function as string in JSON ==> doing a real function
+                obj[key] = new Function('return ' + obj[key])();
             }
         }
         return obj;
     }
 
-
-    /**
-     * Build an array from namespaces
-     */
-    function buildArrayFromNamespaces(enums, namespaces, namespaceKey) {
-
-        var collection = [];
-        var namesp = enums.split(',');
-        if (!angular.isArray(namesp)) {
-            return false;
-        }
-        angular.forEach(namesp, function(v, k) {
-            var id = v.split(':');
-            if (!angular.isArray(id)) {
-                return false;
-            }
-            angular.forEach(namespaces, function(nm, km) {
-                if (nm.id == id[1]) {
-                    angular.forEach(nm.params, function(i, n) {
-                        collection.push(i[namespaceKey]);
-                    });
-                }
-            });
-        });
-
-        return collection;
-    }
     /**
      * Get device type
      */
@@ -802,20 +796,21 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
 //        });
 //        return collection;
 //    }
-    
+
     /**
      * Set EnOcean profile
      */
-    function setEnoProfile(data){
+    function setEnoProfile(data) {
         var profile = {};
         angular.forEach(data, function(v, k) {
-                var profileId = parseInt(v._rorg, 16) + '_' + parseInt(v._func, 16) + '_' + parseInt(v._type, 16);
-                profile[profileId] = v;
-                profile[profileId]['id'] = profileId;
-                profile[profileId]['rorgInt'] = parseInt(v._rorg, 16);
-                profile[profileId]['funcInt'] = parseInt(v._func, 16);
-                profile[profileId]['typeInt'] = parseInt(v._type, 16);
-            });
+            var profileId = parseInt(v._rorg, 16) + '_' + parseInt(v._func, 16) + '_' + parseInt(v._type, 16);
+            profile[profileId] = v;
+            profile[profileId]['id'] = profileId;
+            profile[profileId]['rorgInt'] = parseInt(v._rorg, 16);
+            profile[profileId]['funcInt'] = parseInt(v._func, 16);
+            profile[profileId]['typeInt'] = parseInt(v._type, 16);
+        });
         return profile;
-    };
+    }
+    ;
 });

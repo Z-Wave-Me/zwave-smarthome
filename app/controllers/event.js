@@ -7,6 +7,9 @@
  * Event controller
  */
 myAppController.controller('EventController', function($scope, $routeParams, $interval, $window, $filter, $cookies, $location, dataFactory, dataService, myCache, paginationService, cfg, _) {
+    $scope.page = {
+        title: false
+    };
     $scope.collection = [];
     $scope.eventLevels = [];
     $scope.dayCount = [
@@ -28,6 +31,14 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
         day: 1
     };
     $scope.timeFilter = $scope.timeFilterDefault;
+     $scope.devices = {
+         find: {
+             id: false,
+             title: false,
+             data: {}
+         },
+         data: {}
+     };
     $scope.currentPage = 1;
     $scope.pageSize = cfg.page_results_events;
     $scope.reset = function() {
@@ -39,6 +50,27 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
     $scope.$on('$destroy', function() {
         $interval.cancel($scope.apiDataInterval);
     });
+    
+      /**
+     * Load devices
+     */
+    $scope.loadDevices = function() {
+        dataFactory.getApi('devices',null,true).then(function(response) {
+            var data = _.indexBy(response.data.data.devices, 'id');
+            angular.extend($scope.devices.data,data);
+            if (angular.isDefined($routeParams.param) && angular.isDefined($routeParams.val)) {
+            if($routeParams.param === 'source' && !_.isEmpty(data) && data[$routeParams.val]){
+                angular.extend($scope.devices.find,{id:$routeParams.val},{title:data[$routeParams.val].metrics.title});
+                  angular.extend($scope.page,{title:data[$routeParams.val].metrics.title});
+            }
+        }
+            //console.log($scope.devices.data) 
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    }
+    ;
+     $scope.loadDevices();
 
     /**
      * Load data into collection
@@ -149,12 +181,8 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
     /**
      * Delete event
      */
-    $scope.deleteEvent = function(id, params, target, dialog) {
-        var confirm = true;
-        if (dialog) {
-            confirm = $window.confirm(dialog);
-        }
-        if (confirm) {
+    $scope.deleteEvent = function(id, params, target, message) {
+       alertify.confirm(message, function() {
             $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
             dataFactory.deleteApi('notifications', id, params).then(function(response) {
                 myCache.remove('notifications');
@@ -162,9 +190,9 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
                 $(target).fadeOut(2000);
             }, function(error) {
                 $scope.loading = false;
-                alert($scope._t('error_delete_data'));
+                alertify.alert($scope._t('error_delete_data'));
             });
-        }
+        });
     };
 
     /**
@@ -221,7 +249,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
             $scope.loadData();
 
         }, function(error) {
-            alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
         });
         return;

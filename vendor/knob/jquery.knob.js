@@ -2,7 +2,7 @@
 /**
  * Downward compatible, touchable dial
  *
- * Version: 1.2.10
+ * Version: 1.2.11
  * Requires: jQuery v1.7+
  *
  * Copyright (c) 2012 Anthony Terrien
@@ -11,7 +11,10 @@
  * Thanks to vor, eskimoblood, spiffistan, FabrizioC
  */
 (function (factory) {
-    if (typeof define === 'function' && define.amd) {
+    if (typeof exports === 'object') {
+        // CommonJS
+        module.exports = factory(require('jquery'));
+    } else if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
         define(['jquery'], factory);
     } else {
@@ -153,10 +156,10 @@
 
                     $this.bind(
                         'change blur',
-                        function () {
+                        function (event, triggerRelease) {
                             var val = {};
                             val[k] = $this.val();
-                            s.val(val);
+                            s.val(s._validate(val), triggerRelease);
                         }
                     );
                 });
@@ -169,8 +172,8 @@
                 this.v === '' && (this.v = this.o.min);
                 this.$.bind(
                     'change blur',
-                    function () {
-                        s.val(s._validate(s.o.parse(s.$.val())));
+                    function (event, triggerRelease) {
+                        s.val(s._validate(s.o.parse(s.$.val())), triggerRelease);
                     }
                 );
 
@@ -452,7 +455,8 @@
         };
 
         this._validate = function (v) {
-            return (~~ (((v < 0) ? -0.5 : 0.5) + (v/this.o.step))) * this.o.step;
+            var val = (~~ (((v < 0) ? -0.5 : 0.5) + (v/this.o.step))) * this.o.step;
+            return Math.round(val * 100) / 100;
         };
 
         // Abstract methods
@@ -549,7 +553,7 @@
                 a += this.PI2;
             }
 
-            ret = ~~ (0.5 + (a * (this.o.max - this.o.min) / this.angleArc)) + this.o.min;
+            ret = (a * (this.o.max - this.o.min) / this.angleArc) + this.o.min;
 
             this.o.stopper && (ret = max(min(ret, this.o.max), this.o.min));
 
@@ -567,14 +571,17 @@
                     var ori = e.originalEvent,
                         deltaX = ori.detail || ori.wheelDeltaX,
                         deltaY = ori.detail || ori.wheelDeltaY,
-                        v = s._validate(s.o.parse(s.$.val()))
+                        initialV = s._validate(s.o.parse(s.$.val())),
+                        v = initialV
                             + (
-                                deltaX > 0 || deltaY > 0
+                                deltaY > 0
                                 ? s.o.step
-                                : deltaX < 0 || deltaY < 0 ? -s.o.step : 0
+                                : deltaY < 0 ? -s.o.step : 0
                               );
 
                     v = max(min(v, s.o.max), s.o.min);
+
+                    if (initialV === v) return;
 
                     s.val(v, false);
 
@@ -587,13 +594,13 @@
                         }, 100);
 
                         // Handle mousewheel releases
-                        if (!mwTimerRelease) {
+                        /*if (!mwTimerRelease) {
                             mwTimerRelease = setTimeout(function () {
                                 if (mwTimerStop)
                                     s.rH(v);
                                 mwTimerRelease = null;
                             }, 200);
-                        }
+                        }*/
                     }
                 },
                 kval,
@@ -635,7 +642,7 @@
                                 var v = s.o.parse(s.$.val()) + kv[kc] * m;
                                 s.o.stopper && (v = max(min(v, s.o.max), s.o.min));
 
-                                s.change(v);
+                                s.change(s._validate(v));
                                 s._draw();
 
                                 // long time keydown speed-up

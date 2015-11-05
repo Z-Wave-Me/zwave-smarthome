@@ -1,0 +1,143 @@
+<!-- Include -->
+<div ng-controller="ZwaveIncludeController">
+     <bb-loader></bb-loader> 
+      <!-- interviewCfg {{interviewCfg}}-->
+    <div class="device-perex clearfix"> 
+         <div class="include-device-img">
+          <img class="include-device-img" ng-src="storage/img/zwave/devices/{{device.data.product_image}}" alt="img" ng-show="device.data.product_image" /> 
+        </div>
+        <div class="include-device-txt">
+            <p ng-bind="_t('lb_include_device')"></p> 
+        <h1><strong ng-show="device.data" ng-bind="device.data.brandname + ' '  + device.data.name"></strong></h1> 
+        </div>
+    </div>
+     <!--<bb-help file="interview" lang="{{lang}}"></bb-help>-->
+    <div class="col-device app-border app-gradient app-shadow">
+        <table class="table table-report table-inclusion">
+            <tbody>
+                <!-- 1 -->
+                <tr>
+                    <td><span class="badge badge-number">1</span></td>
+                    <td>
+                         <!-- Text -->
+                        <div ng-show="[5, 6, 7].indexOf(controllerState) == -1">
+                        <span class="device-step-body">
+                            <strong>{{_t('lb_preparation')}}: </strong>
+                            <span ng-bind="_t('lb_include_preparation')"></span> 
+                             <a href="" 
+                                ng-disabled="[1, 2, 3, 4, 20].indexOf(controllerState) > -1"
+                                
+                                ng-click="runZwaveCmd('controller.RemoveNodeFromNetwork(1)');
+                                            clearStepStatus = true">
+                                <strong ng-bind="_t('lb_include_preparation_start')"></strong>
+                            </a>
+                            <br /><span  ng-show="device.data.prep" ng-bind="device.data.prep"></span>
+                                     
+                        </span>
+                        </div>
+                         <!-- Exclusion -->
+                        <div class="alert alert-warning" ng-show="controllerState == 5">
+                            <i class="fa fa-spinner fa-spin"></i> <span ng-bind="_t('lb_ready_exclude')"></span> <strong ng-bind="device.data.exc"></strong>
+                            <button 
+                                class="btn btn-danger"
+                                ng-show="[5, 6, 7].indexOf(controllerState) > -1"
+                                ng-click="runZwaveCmd('controller.RemoveNodeFromNetwork(0)')" 
+                                ng-bind="_t('btn_exclusion_stop')"></button>
+                        </div>
+                        <!-- last Excluded Device -->
+                         <div class="alert alert-success alert-dismissible" ng-show="lastExcludedDevice != null">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <i class="fa fa-check"></i> <span ng-bind="_t('lb_device_excluded')"></span>
+                        </div>
+
+                    </td>
+                    <td>&nbsp;<!--<i class="fa fa-check fa-2x text-success"></i>--></td>
+                </tr>
+
+                <!-- 2 -->
+                <tr>
+                    <td><span class="badge  badge-number">2</span></td>
+                    <td>
+                        <button class="btn btn-success btn-lg"
+                                ng-disabled="[5, 6, 7, 20].indexOf(controllerState) > -1"
+                                ng-show="[1, 2, 3, 4].indexOf(controllerState) == -1"
+                                ng-click="startInclusion('controller.AddNodeToNetwork(1)');success2 = !success2"
+                                ><i class="fa fa-plug"></i> <span ng-bind="_t('btn_inclusion_start')"></span></button>
+                        <button 
+                            class="btn btn-danger btn-lg"
+                            id="btn_nm_include_stop"
+                            ng-show="[1, 2, 3, 4].indexOf(controllerState) > -1"
+                            ng-click="runZwaveCmd('controller.AddNodeToNetwork(0)');setSecureInclusion(true);success2 = !success2"
+                            ng-bind="_t('btn_inclusion_stop')"></button>
+                    </td>
+                    <td>
+                        <i class="fa fa-check fa-2x text-success" ng-show="(!clearStepStatus || !inclusionError) && (success2)"></i> 
+                        <i class="fa fa-times fa-2x text-danger" ng-show="inclusionError && !clearStepStatus"></i>
+                    </td>
+                </tr>
+
+                <!-- 3 -->
+                <tr>
+                    <td><span class="badge badge-number">3</span></td>
+                    <td>
+                        <strong ng-hide_="controllerState == 1 || includedDeviceId" ng-bind="_t('lb_inclusion_progress')"></strong>
+                        <div ng-show="!inclusionError">
+                            <div class="alert alert-warning" ng-show="controllerState == 1"><i class="fa fa-spinner fa-spin"></i> <strong ng-bind="_t('lb_ready_include')"></strong> <span ng-bind="device.data.inc"></span></div>
+                            <div class="alert alert-warning" ng-show="deviceFound"><i class="fa fa-spinner fa-spin"></i> <span ng-bind="_t('lb_new_device_found')"></span> <span>(#{{includedDeviceId}})</span></div>
+                        </div>
+                    </td>
+                    <td>
+                        <i class="fa fa-check fa-2x text-success" ng-show="(!clearStepStatus || !inclusionError) && (includedDeviceId || lastIncludedDevice)"></i> 
+                        <i class="fa fa-times fa-2x text-danger" ng-show="inclusionError && !clearStepStatus"></i>
+                    </td>
+                </tr>
+
+                <!-- 4 -->
+                <tr>
+                    <td><span class="badge badge-number">4</span></td>
+                    <td>
+                        <strong ng-hide_="lastIncludedDevice" ng-bind="_t('automated_konfiguration')"></strong>
+                        <div ng-hide="[1, 2, 3, 4].indexOf(controllerState) > -1">
+                        <div ng-show="!inclusionError" ng-hide="(interviewCfg.stop > interviewCfg.time) && (interviewCfg.commandClassesCnt > interviewCfg.isDone.length)">
+                            <div class="alert alert-warning" ng-show="checkInterview"><i class="fa fa-spinner fa-spin"></i> <strong ng-bind="_t('configuring_device')"></strong> <span>(#{{includedDeviceId}})</span></div>
+                            <div class="alert alert-success" ng-show="lastIncludedDevice"><i class="fa fa-check"></i> <strong ng-bind="_t('lb_new_device_configured')"></strong>:  <span ng-bind="lastIncludedDevice"></span></div>
+                            
+                        </div>
+                        <div ng-if="inclusionError">
+                            <div class="alert alert-danger" ng-show="!hasBattery"><i class="fa fa-minus-circle"></i> <span ng-bind="_t('lb_include_device_mains_error')"></span></div>
+                            <div class="alert alert-danger" ng-show="hasBattery"><i class="fa fa-minus-circle"></i> <span ng-bind="_t('lb_include_device_battery_error')"></span> <span ng-bind="device.data.wake"></span></div>
+                        </div>
+                        <div class="alert alert-warning" ng-if="((interviewCfg.stop > interviewCfg.time) && (interviewCfg.commandClassesCnt > interviewCfg.isDone.length))">
+                            <i class="fa fa-info-circle"></i> <strong ng-bind="_t('inclusion_interview_not_complete')"></strong> 
+                           <button 
+                            class="btn btn-success"
+                            id="btn_nm_include_stop"
+                            ng-click="retryInclusion('controller.RemoveNodeFromNetwork(1)',true)">
+                               <i class="fa fa-refresh"></i> <span  ng-bind="_t('retry')"></span></button>
+                              <bb-help file="interview" lang="{{lang}}"></bb-help>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                        <i class="fa fa-check fa-2x text-success" ng-show="(!clearStepStatus || !inclusionError) && lastIncludedDevice"></i> 
+                        <i class="fa fa-times fa-2x text-danger" ng-show="inclusionError && !clearStepStatus"></i>
+                    </td>
+                </tr>
+                 <!-- 5 -->
+                <tr>
+                    <td><span class="badge badge-number">5</span></td>
+                    <td colspan="2">
+                        <strong ng-bind="_t('manual_konfiguration')"></strong>
+                        <div class="alert alert-warning" ng-show="nodeId > 0"><i class="fa fa-spinner fa-spin"></i> <strong ng-bind="_t('manual_config_prepare')"></strong></div>
+                     </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+       <div class="fieldset submit-entry">
+           <button type="button" class="btn btn-default" bb-go-back><i class="fa fa-times  text-danger"></i> <span ng-bind="_t('lb_cancel')"></span></button>
+         <!-- <a href="#zwave/devices" class="btn btn-info">{{_t('continue')}} <i class="fa fa-chevron-right"></i></a> --> 
+        </div>
+     <div class="device-logo" ng-include="'app/views/zwave/zwave_nav.html'"></div>
+</div> <!-- /ng-controller --> 
+

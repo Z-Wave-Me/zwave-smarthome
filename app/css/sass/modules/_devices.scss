@@ -1,6 +1,6 @@
 /* Devices
 -------------------------------------------------- */
-.device-container{
+/*.device-container{
     width: 100%;
     max-width: 600px;
     margin: 0 auto 20px auto;
@@ -17,7 +17,7 @@
         border-top: solid 1px $app-border-color;
 
     }
-}
+}*/
 .device-logo{
     text-align: center;
     margin: 0 0 20px 0;
@@ -26,6 +26,16 @@
     max-width: 100px !important;
     max-height: 70px !important;
 
+}
+
+.device-type-logo{
+    //vertical-align: middle;
+    max-width: 80px;
+    max-height: 80px;
+}
+
+.expert-link{
+    padding-right: 20px;
 }
 .device-manufacturers{
     //background-color: #fff;
@@ -39,14 +49,6 @@
     margin: 0 5px;
     max-width: 70px;
     display: inline;
-}
-
-.device-image{
-    border-radius: 50%;
-    border: solid 4px #fff;
-}
-.device-image:hover{
-    border-color: $app-body-bcg-color;
 }
 
 .device-autodetect{

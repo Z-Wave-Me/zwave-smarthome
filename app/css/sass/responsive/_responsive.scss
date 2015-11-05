@@ -1,0 +1,155 @@
+/*
+ * The responsive style for the front-end
+ */
+
+/* Global settings
+-------------------------------------------------- */
+.clearfix {
+    *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    content: "";
+    line-height: 0;
+}
+.clearfix:after {
+    clear: both;
+}
+.hide-text {
+    font: 0/0 a;
+    color: transparent;
+    text-shadow: none;
+    background-color: transparent;
+    border: 0;
+}
+.input-block-level {
+    display: block;
+    width: 100%;
+    min-height: 30px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/*==================================================
+=            Bootstrap 3 Media Queries             =
+==================================================*/
+
+/*==========  Detected mobile devices  ==========*/
+.m-only{
+    display: none;
+}
+.show-on-mobile{
+        display: none;
+ }
+ 
+  .is-mobile-true{
+       #footer, #mobile_footer{
+            .container{
+              padding-right: 70px; 
+            }
+            
+        }
+    }
+/*@media (max-width: 2000px) {
+    .show-on-mobile{
+        display: none;
+    }
+    .is-mobile-true{
+        @include appMobileLayout();
+    } 
+}*/
+
+
+/*==========  Mobile First Method  ==========*/
+
+/* Custom, iPhone Retina */ 
+@media only screen and (min-width : 320px) {
+
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (min-width : 480px) {
+
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+
+}
+
+
+
+/*==========  Non-Mobile First Method  ==========*/
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px),(orientation:portrait)   {
+    .show-on-pc{
+        display: none;
+    }
+    .show-on-mobile{
+        display: block !important;
+    }
+    @include mBody();
+    @include mHeader(); 
+    @include mFooter();
+     @include mNavi();
+    @include mImg();
+    @include mTable();
+    @include mButton();
+    @include mForm();
+    @include mLoader();
+    @include mAlert();
+    @include mTab();
+     @include mDropdown();
+    @include mModal();
+    @include mPagination();
+    @include mElements();
+    @include mRooms();
+    @include mEvents();
+    @include mApps();
+    @include mManagement();
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px){
+    
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (max-width : 480px) {
+
+}
+
+/* Custom, iPhone Retina */ 
+@media only screen and (max-width : 320px) {
+
+}
+
+/* Custom, iPhone Retina */ 
+@media only screen and (max-width : 320px) {
+
+}
+
+@media only screen and (min-width: 768px) and (max-width : 992px) {
+    .hide-navi-text{
+        display: none !important;
+    }
+}

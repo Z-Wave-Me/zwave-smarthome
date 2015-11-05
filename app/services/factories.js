@@ -34,8 +34,10 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
         getApiLocal: getApiLocal,
         getApi: getApi,
         deleteApi: deleteApi,
+        deleteApiFormdata: deleteApiFormdata,
         postApi: postApi,
         putApi: putApi,
+        putApiFormdata:putApiFormdata,
         storeApi: storeApi,
         runApiCmd: runApiCmd,
         getRemoteData: getRemoteData,
@@ -57,6 +59,7 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
         getLicense: getLicense,
         zmeCapabilities: zmeCapabilities,
         postReport: postReport,
+        getOnlineModules: getOnlineModules,
         installOnlineModule: installOnlineModule,
         restoreFromBck: restoreFromBck,
         getHelp:getHelp
@@ -169,6 +172,24 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
             return $q.reject(response);
         });
     }
+    // Put api data as form data
+    function putApiFormdata(api, data, params) {
+        return $http({
+            method: "put",
+            data: $.param(data),
+            url: cfg.server_url + cfg.api[api] + (params ? params : ''),
+            headers: {
+                 'Content-Type': 'application/x-www-form-urlencoded',
+                'Accept-Language': lang,
+                'ZWAYSession': ZWAYSession
+            }
+        }).then(function(response) {
+            return response;
+        }, function(response) {// something went wrong
+
+            return $q.reject(response);
+        });
+    }
 
     // POST/PUT api data
     function storeApi(api, id, data, params) {
@@ -194,6 +215,26 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
             method: 'delete',
             url: cfg.server_url + cfg.api[api] + "/" + id + (params ? params : ''),
             headers: {
+                'Accept-Language': lang,
+                'ZWAYSession': ZWAYSession
+            }
+        }).then(function(response) {
+            return response;
+        }, function(response) {// something went wrong
+
+            return $q.reject(response);
+        });
+
+    }
+    
+     // Delete api data as form data
+    function deleteApiFormdata(api, data, params) {
+        return $http({
+            method: 'delete',
+            url: cfg.server_url + cfg.api[api] + (params ? params : ''),
+             data: $.param(data),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
                 'Accept-Language': lang,
                 'ZWAYSession': ZWAYSession
             }
@@ -290,7 +331,6 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
 
             return $q.reject(response);
         });
-        return;
     }
     /**
      * Get api js command
@@ -315,7 +355,6 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
     /**
      * Get remote data
      */
-    // Get
     function getRemoteData(url, noCache) {
         // Cached data
         var cacheName = 'cache_' + url;
@@ -450,7 +489,8 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
         }
         return $http({
             method: 'get',
-            url: cfg.server_url + cfg.zwave_api_url + 'Data/0'
+            url: cfg.server_url + cfg.zwave_api_url + 'Data/0',
+            headers: {'ZWAYSession': ZWAYSession}
         }).then(function(response) {
             if (typeof response.data === 'object') {
                 myCache.put(cacheName, response.data);
@@ -531,7 +571,6 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
             // something went wrong
             return $q.reject(response);
         });
-        return;
     }
 
 
@@ -679,16 +718,45 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
         }, function(response) {// something went wrong
             return $q.reject(response);
         });
-        return;
+    }
+    
+    /**
+     * Get online modules
+     */
+    function getOnlineModules(data,noCache) {
+        // Cached data
+        var cacheName = 'cache_' + cfg.online_module_url;
+        var cached = myCache.get(cacheName);
+
+        if (!noCache && cached) {
+            var deferred = $q.defer();
+            deferred.resolve(cached);
+            return deferred.promise;
+        }
+        // NOT Cached data
+        return $http({
+            method: 'post',
+            url: cfg.online_module_url,
+            data: $.param(data),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Accept-Language': lang
+            }
+        }).then(function(response) {
+            return response;
+        }, function(error) {// something went wrong
+
+            return $q.reject(error);
+        });
     }
     
     /**
      * Install online module
      */
-    function installOnlineModule(data) {
+    function installOnlineModule(data,api) {
         return $http({
             method: "POST",
-             url: cfg.server_url + cfg.api['online_install'],
+             url: cfg.server_url + cfg.api[api],
             data: $.param(data),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -700,7 +768,6 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
         }, function(response) {// something went wrong
             return $q.reject(response);
         });
-        return;
     }
 
     /**

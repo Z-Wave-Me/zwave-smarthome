@@ -3,9 +3,7 @@
     <bb-loader></bb-loader>
 
     <div ng-show="input">
-        <div class="page-header">
-            <h1><span ng-bind="_t('lb_room')"></span>: <span ng-show="input.id > 0">(#{{input.id}})</span> <span ng-bind="input.title"></span></h1>
-        </div>
+        <h2><span ng-bind="_t('lb_room')"></span>: <span ng-show="input.id > 0">(#{{input.id}})</span> <span ng-bind="input.title"></span></h2>
         <form name="form_profile" id="form_profile" class="form form-page" ng-submit="store(input)" novalidate>
             <fieldset>
                 <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_name')"></span></h3>
@@ -37,13 +35,14 @@
                     </div>
                 </div>
             </fieldset>
-            <fieldset>
+            <fieldset ng-if="!isMobile">
                 <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_upload_image')"></span></h3>
                 <div>
                   <div class="form-group">
                        <bb-help-text trans="_t('room_image_upload_info')"></bb-help-text>
-                         <input type="file" class="form-control_" file-model="myFile" /><br /> 
-                          <button type="button" class="btn btn-success" id="btn_upload_img" ng-click="uploadFile()" ng-bind="_t('lb_upload_image')"></button>
+                         <!--<input type="file" class="form-control_" file-model="myFile" /><br />-->  
+                         <input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)"/>
+                         <!--<button type="button" class="btn btn-primary" id="btn_upload_img" ng-click="uploadFile()"><i class="fa fa-upload"></i> <span ng-bind="_t('lb_upload_image')"></span></button>-->  
                     </div>
                 </div>
             </fieldset>
@@ -64,8 +63,8 @@
                 </div>
             </fieldset>
             <fieldset class="submit-entry">
-                <button type="submit" class="btn btn-primary" ng-bind="_t('lb_save')">{{_t('apply_config_into_device')}}</button>
-                <a href="#config-rooms" class="btn btn-default" ng-bind="_t('lb_cancel')"></a>
+                 <button type="button" class="btn btn-default" bb-go-back><i class="fa fa-times  text-danger"></i> <span ng-bind="_t('lb_cancel')"></span></button>
+                 <button type="submit" class="btn btn-submit"><i class="fa fa-check"></i> <span ng-bind="_t('lb_save')"></span></button>
             </fieldset>
         </form>
 

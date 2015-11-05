@@ -8,11 +8,12 @@ var myAppController = angular.module('myAppController', []);
 /**
  * Base controller
  */
-myAppController.controller('BaseController', function($scope, $cookies, $filter, $location, $route, cfg, dataFactory, dataService, myCache) {
+myAppController.controller('BaseController', function($scope, $cookies, $filter, $location, $route,$window, cfg, dataFactory, dataService, myCache) {
     /**
      * Global scopes
      */
     $scope.cfg = cfg;
+    $scope.languages = {};
     $scope.loading = false;
     $scope.alert = {message: false, status: 'is-hidden', icon: false};
     $scope.user = dataService.getUser();
@@ -65,7 +66,8 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
         // Is lang in language list?
         var lang = (cfg.lang_list.indexOf(lang) > -1 ? lang : cfg.lang);
         dataFactory.getLanguageFile(lang).then(function(response) {
-            $scope.languages = response.data;
+            //$scope.languages = response.data;
+             angular.extend($scope.languages, response.data);
         }, function(error) {
             dataService.showConnectionError(error);
         });
@@ -176,5 +178,50 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
         }
         return apps;
     };
+    
+    /**
+     * Redirect to Expert
+     */
+    $scope.toExpert = function(url, message) {
+        alertify.confirm(message, function() {
+            $window.location.href = url;
+         });
+    };
+    
+     /**
+     * Expand/collapse navigation
+     */
+    $scope.naviExpanded = {};
+    $scope.expandNavi = function(key,$event,status) {
+        if(typeof status === 'boolean'){
+           $scope.naviExpanded[key] = status;
+        }else{
+             $scope.naviExpanded[key] = !($scope.naviExpanded[key]);
+        }
+       
+       $event.stopPropagation();
+    };
+    // Collaps element/menu when clicking outside
+    window.onclick = function() {
+          if ($scope.naviExpanded) {
+                angular.copy({},$scope.naviExpanded);
+                $scope.$apply();
+          }
+      };
+     /**
+     * Expand/collapse element
+     */
+    $scope.expand = {};
+    $scope.expandElement = function(key) {
+        $scope.expand[key] = !($scope.expand[key]);
+    };
+    
+    
+     /**
+     * Alertify defaults
+     */
+    alertify.defaults.glossary.title = cfg.app_name;
+    alertify.defaults.glossary.ok = 'OK';
+    alertify.defaults.glossary.cancel = 'CANCEL';
 
 });

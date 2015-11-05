@@ -1,17 +1,53 @@
 <!-- Devicess view -->
 <div ng-controller="DeviceController">
-    <div class="device-container_  mobile-padding">
-         <h1 ng-bind="_t('lb_select_device_type')"></h1>
-        <div class="row device-slect-type">
-            <div class="col-sm-4 vendor-entry">
-                <a href="#devices/zwave" class="vendor-list"><p class="vendor-image"><img class="apps-image" ng-src="app/img/logo-z-wave.png" alt="Logo" /></p></a>
-            </div>
-            <div class="col-sm-4 vendor-entry">
-               <a href="#devices/ipcamera" class="vendor-list"><p class="vendor-image"><img class="apps-image" ng-src="app/img/logo-ipcamera.png" alt="Logo" /></p></a>
-            </div>
-            <div class="col-sm-4 vendor-entry">
-                <a href="#enocean/devices" class="vendor-list"><p class="vendor-image"><img class="apps-image" ng-src="app/img/logo-enocean.png" alt="Logo" /></p></a>
-            </div>
-        </div>
-    </div>
+        <h2  class="mobile-padding" ng-bind="_t('lb_select_device_type')"></h2>
+        <table class="table table-report table-products">
+            <tbody>
+                <tr>
+                    <td>
+                        <img class="device-type-logo" ng-src="app/img/logo-zwave.png" alt="Logo" />
+                    </td>
+                    <td class="td-action">
+                         <a class="expert-link" href="" ng-click="toExpert('/expert',_t('redirect_to_expert'))" ng-if="elementAccess(cfg.role_access.admin,isMobile) && cfg.app_type === 'default'">
+                            <span ng-bind="_t('manage_with_expertui')"></span> <i class="fa fa-external-link"></i> 
+                        </a>
+                        <a class="btn btn-default" href="#zwave/add">
+                            <i class="fa fa-plus text-success"></i> <span class="btn-name" ng-bind="_t('add_new')"></span>
+                        </a>
+                        <a class="btn btn-default" href="#zwave/devices">
+                            <i class="fa fa-edit text-primary"></i> <span class="btn-name" ng-bind="_t('manage')"></span>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img class="device-type-logo" ng-src="app/img/logo-camera.png" alt="Logo" /> {{_t('ipcamera')}}
+                    </td>
+                   <td class="td-action">
+                        <a class="btn btn-default" href="#camera/add">
+                            <i class="fa fa-plus text-success"></i> <span class="btn-name" ng-bind="_t('add_new')"></span>
+                        </a>
+                       <a class="btn btn-default" href="#camera/manage">
+                            <i class="fa fa-edit text-primary"></i> <span class="btn-name" ng-bind="_t('manage')"></span>
+                        </a> 
+                    </td>
+                </tr>
+                <tr ng-if="enocean.installed">
+                    <td>
+                        <img class="device-type-logo" ng-src="app/img/logo-enocean.png" alt="Logo" />
+                    </td>
+                     <td class="td-action">
+                          <bb-alert-text alert="enocean.alert"></bb-alert-text>
+                          <div ng-if="enocean.active">
+                          <a class="btn btn-default" href="#enocean/devices">
+                            <i class="fa fa-plus text-success"></i> <span class="btn-name" ng-bind="_t('add_new')"></span>
+                        </a>
+                         <a class="btn btn-default" href="#enocean/manage">
+                            <i class="fa fa-edit text-primary"></i> <span class="btn-name" ng-bind="_t('manage')"></span>
+                        </a> 
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 </div> <!-- /ng-controller --> 

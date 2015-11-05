@@ -61,6 +61,20 @@ myApp.directive('bbAlert', function() {
 });
 
 /**
+ * Alerttext  directive
+ */
+myApp.directive('bbAlertText', function() {
+    return {
+        restrict: "E",
+        replace: true,
+        scope: {alert: '='},
+        template: '<span class="alert" ng-if="alert.message" ng-class="alert.status">'
+                + '<i class="fa fa-lg" ng-class="alert.icon"></i> <span ng-bind-html="alert.message|toTrusted"></span>'
+                + '</span>'
+    };
+});
+
+/**
  * Help directive
  */
 myApp.directive('bbHelp', function(dataFactory,cfg) {
@@ -133,6 +147,23 @@ myApp.directive('bbValidator', function($window) {
             hasBlur: '='
         },
         template: '<div class="valid-error text-danger" ng-if="inputName.$invalid && !inputName.$pristine && hasBlur">*{{trans}}</div>'
+    };
+});
+/**
+ * Load script into view
+ */
+myApp.directive('bbScript', function($parse, $rootScope, $compile) {
+    return {
+        restrict: 'E',
+        terminal: true,
+        link: function(scope, element, attr) {
+            if (attr.ngSrc) {
+                 var domElem = '<script src="'+attr.ngSrc+'" async defer></script>';
+                 $(element).append($compile(domElem)(scope));
+
+
+            }
+        }
     };
 });
 

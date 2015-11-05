@@ -1,0 +1,27 @@
+<!-- Zwave battery view -->
+<div ng-controller="ZwaveManageController">
+    <!-- Zwave navigation -->
+    <div ng-include="'app/views/zwave/navi.html'"></div>
+    <div class="tab-pane" id="module_battery">
+        <table class="table table-report table-condensed">
+            <tbody>
+                <tr ng-repeat="v in devices.batteries| orderBy:'level':false" id="row_battery_{{ v.rowId}}">
+                    <td class="td-img">
+
+                        <img class="report-img" ng-src="storage/img/icons/{{v.metrics.level|getBatteryIcon}}" alt="img" />
+                    </td>
+                    <td class="network-zwave-device">
+                        <div>(#{{v.nodeId}}) {{v.nodeName}}</div>
+                    </td>
+                    <td>
+                        <span class="text-success" ng-show="v.metrics.level >= 80">{{v.metrics.level}} %</span>
+                        <span class="text-default" ng-show="v.metrics.level < 80 && v.metrics.level > 20">{{v.metrics.level}} %</span>
+                        <span class="text-danger" ng-show="v.metrics.level <= 20"><i class="fa fa-exclamation-triangle"></i> {{v.metrics.level}} %</span>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="device-logo" ng-include="'app/views/zwave/zwave_nav.html'"></div>
+</div> <!-- /ng-controller --> 

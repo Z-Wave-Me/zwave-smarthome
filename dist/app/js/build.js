@@ -3393,7 +3393,7 @@ if(k&&j[k]&&(e||j[k].data)||void 0!==d||"string"!=typeof b)return k||(k=i?a[h]=c
 /**
  * Downward compatible, touchable dial
  *
- * Version: 1.2.10
+ * Version: 1.2.11
  * Requires: jQuery v1.7+
  *
  * Copyright (c) 2012 Anthony Terrien
@@ -3402,7 +3402,10 @@ if(k&&j[k]&&(e||j[k].data)||void 0!==d||"string"!=typeof b)return k||(k=i?a[h]=c
  * Thanks to vor, eskimoblood, spiffistan, FabrizioC
  */
 (function (factory) {
-    if (typeof define === 'function' && define.amd) {
+    if (typeof exports === 'object') {
+        // CommonJS
+        module.exports = factory(require('jquery'));
+    } else if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
         define(['jquery'], factory);
     } else {
@@ -3544,10 +3547,10 @@ if(k&&j[k]&&(e||j[k].data)||void 0!==d||"string"!=typeof b)return k||(k=i?a[h]=c
 
                     $this.bind(
                         'change blur',
-                        function () {
+                        function (event, triggerRelease) {
                             var val = {};
                             val[k] = $this.val();
-                            s.val(val);
+                            s.val(s._validate(val), triggerRelease);
                         }
                     );
                 });
@@ -3560,8 +3563,8 @@ if(k&&j[k]&&(e||j[k].data)||void 0!==d||"string"!=typeof b)return k||(k=i?a[h]=c
                 this.v === '' && (this.v = this.o.min);
                 this.$.bind(
                     'change blur',
-                    function () {
-                        s.val(s._validate(s.o.parse(s.$.val())));
+                    function (event, triggerRelease) {
+                        s.val(s._validate(s.o.parse(s.$.val())), triggerRelease);
                     }
                 );
 
@@ -3843,7 +3846,8 @@ if(k&&j[k]&&(e||j[k].data)||void 0!==d||"string"!=typeof b)return k||(k=i?a[h]=c
         };
 
         this._validate = function (v) {
-            return (~~ (((v < 0) ? -0.5 : 0.5) + (v/this.o.step))) * this.o.step;
+            var val = (~~ (((v < 0) ? -0.5 : 0.5) + (v/this.o.step))) * this.o.step;
+            return Math.round(val * 100) / 100;
         };
 
         // Abstract methods
@@ -3940,7 +3944,7 @@ if(k&&j[k]&&(e||j[k].data)||void 0!==d||"string"!=typeof b)return k||(k=i?a[h]=c
                 a += this.PI2;
             }
 
-            ret = ~~ (0.5 + (a * (this.o.max - this.o.min) / this.angleArc)) + this.o.min;
+            ret = (a * (this.o.max - this.o.min) / this.angleArc) + this.o.min;
 
             this.o.stopper && (ret = max(min(ret, this.o.max), this.o.min));
 
@@ -3958,14 +3962,17 @@ if(k&&j[k]&&(e||j[k].data)||void 0!==d||"string"!=typeof b)return k||(k=i?a[h]=c
                     var ori = e.originalEvent,
                         deltaX = ori.detail || ori.wheelDeltaX,
                         deltaY = ori.detail || ori.wheelDeltaY,
-                        v = s._validate(s.o.parse(s.$.val()))
+                        initialV = s._validate(s.o.parse(s.$.val())),
+                        v = initialV
                             + (
-                                deltaX > 0 || deltaY > 0
+                                deltaY > 0
                                 ? s.o.step
-                                : deltaX < 0 || deltaY < 0 ? -s.o.step : 0
+                                : deltaY < 0 ? -s.o.step : 0
                               );
 
                     v = max(min(v, s.o.max), s.o.min);
+
+                    if (initialV === v) return;
 
                     s.val(v, false);
 
@@ -3978,13 +3985,13 @@ if(k&&j[k]&&(e||j[k].data)||void 0!==d||"string"!=typeof b)return k||(k=i?a[h]=c
                         }, 100);
 
                         // Handle mousewheel releases
-                        if (!mwTimerRelease) {
+                        /*if (!mwTimerRelease) {
                             mwTimerRelease = setTimeout(function () {
                                 if (mwTimerStop)
                                     s.rH(v);
                                 mwTimerRelease = null;
                             }, 200);
-                        }
+                        }*/
                     }
                 },
                 kval,
@@ -4026,7 +4033,7 @@ if(k&&j[k]&&(e||j[k].data)||void 0!==d||"string"!=typeof b)return k||(k=i?a[h]=c
                                 var v = s.o.parse(s.$.val()) + kv[kc] * m;
                                 s.o.stopper && (v = max(min(v, s.o.max), s.o.min));
 
-                                s.change(v);
+                                s.change(s._validate(v));
                                 s._draw();
 
                                 // long time keydown speed-up
@@ -4208,6 +4215,10 @@ e.options.picker.format&&(e.options.dateFormat=e.options.picker.format),e.option
 
 t.Fields.TableField=t.Fields.ArrayField.extend({setup:function(){var i=this;i.options||(i.options={}),"undefined"==typeof i.options.animate&&(i.options.animate=!1),"undefined"==typeof this.options.toolbarSticky&&(this.options.toolbarSticky=!0),this.base(),this.options.items.type||(this.options.items.type="tablerow"),this.options.datatable&&(this.options.datatables=this.options.datatable),"undefined"==typeof this.options.datatables&&(this.options.datatables={paging:!1,lengthChange:!1,info:!1,searching:!1,ordering:!0}),"undefined"==typeof this.options.showActionsColumn&&(this.options.showActionsColumn=!0,this.options.readonly&&(this.options.showActionsColumn=!1),this.isDisplayOnly()&&(this.options.showActionsColumn=!1)),this.options.datatables.columns=[],e.fn.dataTableExt&&!e.fn.DataTable.ext.type.search.alpaca&&(e.fn.DataTable.ext.order.alpaca=function(i,n){return this.api().column(n,{order:"index"}).nodes().map(function(i,n){var a=e(i).children().attr("data-alpaca-field-id");return t.fieldInstances[a].getValue()})},e.fn.dataTableExt.afnFiltering.push(function(i,n,a,r,s){var o=e(i.nTableWrapper).find(".dataTables_filter input[type='search']").val();if(!o)return!0;o=""+o,o=e.trim(o),o=o.toLowerCase();for(var l=!1,u=0;u<r.length;u++){var c=r[u];if(c){var d=c.indexOf("data-alpaca-field-id=");if(d>-1){var p=e(c).attr("data-alpaca-field-id"),h=t.fieldInstances[p].getValue();if(h&&(h=""+h,h=h.toLowerCase(),h.indexOf(o)>-1)){l=!0;break}}}}return l}))},getFieldType:function(){return"table"},prepareContainerModel:function(e){var t=this;t.base(function(i){if(i.headers=[],t.schema.items&&t.schema.items.properties)for(var n in t.schema.items.properties){var a={};a.id=n,a.title=t.schema.items.properties[n].title,a.hidden=!1,t.options.items&&t.options.items.fields&&t.options.items.fields[n]&&(t.options.items.fields[n].label&&(a.title=t.options.items.fields[n].label),"hidden"===t.options.items.fields[n].type&&(a.hidden=!0)),i.headers.push(a)}e(i)})},afterRenderContainer:function(t,i){var n=this;this.base(t,function(){n.cleanupDomInjections();var t=e(this.container).find("table");if(n.applyStyle("table",t),n.options.datatables&&e.fn.DataTable){for(var a in n.schema.items.properties)n.options.datatables.columns.push({orderable:!0,orderDataType:"alpaca"});n.options.showActionsColumn&&n.options.datatables.columns.push({orderable:!1,name:"actions"}),e(this.container).find("table").DataTable(n.options.datatables)}e(t).find("thead > tr > th[data-header-id]").each(function(){var t=e(this).attr("data-header-id"),i=n.schema.items.properties[t],a=null;n.options.items.fields&&n.options.items.fields[t]&&(a=n.options.items.fields[t]),i.required||a&&a.required?n.fireCallback("tableHeaderRequired",i,a,this):n.fireCallback("tableHeaderOptional",i,a,this)}),i()}.bind(n))},cleanupDomInjections:function(){var i=function(t){var i=e(t).parent(),n=e(t).children(),a=e(t).attr("class").split(/\s+/);e.each(a,function(t,n){"alpaca-merge-up"===n||e(i).addClass(n)}),e.each(e(t)[0].attributes,function(){this.name&&0===this.name.indexOf("data-")&&e(i).attr(this.name,this.value)}),n.length>0?e(t).replaceWith(n):e(t).remove()};this.getFieldEl().find("tr > .alpaca-field").each(function(){i(this)}),this.getFieldEl().find("tr > .alpaca-container").each(function(){i(this)});var n=this.getFieldEl().find("."+t.MARKER_CLASS_ARRAY_ITEM_ACTIONBAR);n.length>0&&n.each(function(){var t=e("<td class='actionbar' nowrap='nowrap'></td>");e(this).before(t),e(t).append(this)}),this.getFieldEl().find(".alpaca-merge-up").each(function(){i(this)})},doResolveItemContainer:function(){var t=this;return e(t.container).find("table tbody")},doAfterAddItem:function(e){var t=this;t.cleanupDomInjections()},doAfterRemoveItem:function(e){var t=this;t.cleanupDomInjections()},getType:function(){return"array"},getTitle:function(){return"Table Field"},getDescription:function(){return"Renders array items into a table"},getSchemaOfOptions:function(){return t.merge(this.base(),{properties:{datatables:{title:"DataTables Configuration",description:"Optional configuration to be passed to the underlying DataTables Plugin.",type:"object"},showActionsColumn:{title:"Show Actions Column","default":!0,description:"Whether to show or hide the actions column.",type:"boolean"}}})},getOptionsForOptions:function(){return t.merge(this.base(),{fields:{datatables:{type:"object"},showActionsColumn:{type:"checkbox"}}})}}),t.registerFieldClass("table",t.Fields.TableField)}(jQuery),function(e){var t=e.alpaca;t.Fields.TableRowField=t.Fields.ObjectField.extend({prepareContainerModel:function(e){var t=this;this.base(function(i){i.options.showActionsColumn=t.parent.options.showActionsColumn;for(var n=0;n<i.items.length;n++)"hidden"===i.items[n].options.type&&(i.items[n].hidden=!0);e(i)})},getFieldType:function(){return"tablerow"},getType:function(){return"object"},getTitle:function(){return"Table Row Field"},getDescription:function(){return"Renders object items into a table row"}}),t.registerFieldClass("tablerow",t.Fields.TableRowField)}(jQuery),function(e){var t=e.alpaca;t.Fields.TagField=t.Fields.LowerCaseField.extend({getFieldType:function(){return"tag"},setup:function(){this.base(),this.options.separator||(this.options.separator=",")},getControlValue:function(){var e=this.base();return""===e?[]:e.split(this.options.separator)},setValue:function(e){return""!==e?e?void this.base(e.join(this.options.separator)):void this.base(""):void 0},onBlur:function(t){this.base(t);var i=this.getValue(),n=[];e.each(i,function(e,t){""!==t.trim()&&n.push(t.trim())}),this.setValue(n)},getTitle:function(){return"Tag Field"},getDescription:function(){return"Text field for entering list of tags separated by delimiter."},getSchemaOfOptions:function(){return t.merge(this.base(),{properties:{separator:{title:"Separator",description:"Separator used to split tags.",type:"string","default":","}}})},getOptionsForOptions:function(){return t.merge(this.base(),{fields:{separator:{type:"text"}}})}}),t.registerFieldClass("tag",t.Fields.TagField)}(jQuery),function(e){var t=e.alpaca;t.Fields.TimeField=t.Fields.DateField.extend({getFieldType:function(){return"time"},getDefaultFormat:function(){return"h:mm:ss a"},setup:function(){this.base()},getTitle:function(){return"Time Field"},getDescription:function(){return"Time Field"}}),t.registerMessages({invalidTime:"Invalid time"}),t.registerFieldClass("time",t.Fields.TimeField),t.registerDefaultFormatFieldMapping("time","time")}(jQuery),function(e){var t=e.alpaca;t.Fields.TinyMCEField=t.Fields.TextAreaField.extend({getFieldType:function(){return"tinymce"},setup:function(){var e=this;this.data||(this.data=""),e.options.toolbar||(e.options.toolbar="insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"),this.base()},setValue:function(e){var t=this;this.base(e),t.editor&&t.editor.setContent(e)},getControlValue:function(){var e=this,t=null;return e.editor&&(t=e.editor.getContent()),t},initControlEvents:function(){var e=this;setTimeout(function(){e.editor.on("click",function(t){e.onClick.call(e,t),e.trigger("click",t)}),e.editor.on("change",function(t){e.onChange(),e.triggerWithPropagation("change",t)}),e.editor.on("blur",function(t){e.onBlur(),e.trigger("blur",t)}),e.editor.on("focus",function(t){e.onFocus.call(e,t),e.trigger("focus",t)}),e.editor.on("keypress",function(t){e.onKeyPress.call(e,t),e.trigger("keypress",t)}),e.editor.on("keyup",function(t){e.onKeyUp.call(e,t),e.trigger("keyup",t)}),e.editor.on("keydown",function(t){e.onKeyDown.call(e,t),e.trigger("keydown",t)})},525)},afterRenderControl:function(e,t){var i=this;this.base(e,function(){if(!i.isDisplayOnly()&&i.control){var e=i.control[0].id;setTimeout(function(){tinyMCE.init({init_instance_callback:function(e){i.editor=e,t()},selector:"#"+e,toolbar:i.options.toolbar})},500)}})},destroy:function(){this.editor&&(this.editor.remove(),this.editor=null),this.base()},getTitle:function(){return"TinyMCE Editor"},getDescription:function(){return"Provides an instance of a TinyMCE control for use in editing HTML."},getSchemaOfOptions:function(){return t.merge(this.base(),{properties:{toolbar:{title:"TinyMCE toolbar options",description:"Toolbar options for TinyMCE plugin.",type:"string"}}})},getOptionsForOptions:function(){return t.merge(this.base(),{fields:{toolbar:{type:"text"}}})}}),t.registerFieldClass("tinymce",t.Fields.TinyMCEField)}(jQuery),function(e){var t=e.alpaca;t.Fields.UploadField=t.Fields.TextField.extend({constructor:function(i,n,a,r,s,o){var l=this;this.base(i,n,a,r,s,o),this.wrapTemplate=function(i){return function(n){for(var a=n.files,r=n.formatFileSize,s=n.options,o=[],u=0;u<a.length;u++){var c={};c.options=l.options,c.file=t.cloneObject(a[u]),c.size=r(c.size),c.buttons=l.options.buttons,c.view=l.view,c.fileIndex=u;var d=t.tmpl(l.view.getTemplateDescriptor(i),c,l);o.push(d[0])}return o=e(o),e(o).each(function(){s.fileupload&&s.fileupload.autoUpload&&e(this).find("button.start").css("display","none"),l.handleWrapRow(this,s);var t=e(this);e(this).find("button.delete").on("click",function(){var i=e(t).find("button.delete"),n=e(i).attr("data-file-index"),r=a[n];l.onFileDelete.call(l,t,i,r),l.triggerWithPropagation("change"),setTimeout(function(){l.refreshUIState()},200)})}),e(o)}}},getFieldType:function(){return"upload"},setup:function(){var e=this;this.base(),e.options.renderButtons=!1,e.options.buttons||(e.options.buttons=[]),e.options.hideDeleteButton||e.options.buttons.push({key:"delete",isDelete:!0}),"undefined"==typeof e.options.multiple&&(e.options.multiple=!1),"undefined"==typeof e.options.showUploadPreview&&(e.options.showUploadPreview=!0),"undefined"==typeof e.options.showHeaders&&(e.options.showHeaders=!0),e.data||(e.data=[]),e.options.upload||(e.options.upload={}),"undefined"==typeof e.options.maxNumberOfFiles&&(e.options.upload.maxNumberOfFiles?(e.options.maxNumberOfFiles=e.options.upload.maxNumberOfFiles,1===e.options.maxNumberOfFiles?e.options.multiple=!1:e.options.maxNumberOfFiles>1&&(e.options.multiple=!0)):(e.options.maxNumberOfFiles=1,"boolean"==typeof e.options.multiple&&e.options.multiple&&(e.options.maxNumberOfFiles=-1)),e.options.maxNumberOfFiles&&(e.options.upload.maxNumberOfFiles=e.options.maxNumberOfFiles)),"undefined"==typeof e.options.maxFileSize&&(e.options.maxFileSize=e.options.upload.maxFileSize?e.options.upload.maxFileSize:-1,e.options.maxFileSize&&(e.options.upload.maxFileSize=e.options.maxFileSize)),"undefined"==typeof e.options.fileTypes&&(e.options.fileTypes=e.options.upload.acceptFileTypes?e.options.upload.acceptFileTypes:null,e.options.fileTypes&&(e.options.upload.acceptFileTypes=e.options.fileTypes)),e.options.errorHandler||(e.options.errorHandler=function(e){alert(e.join("\n"))});var i=e.determineCsrfToken();i&&(e.options.upload||(e.options.upload={}),e.options.upload.headers||(e.options.upload.headers={}),e.options.upload.headers[t.CSRF_HEADER_NAME]=i)},determineCsrfToken:function(){var e=t.CSRF_TOKEN;if(!e)for(var i=0;i<t.CSRF_COOKIE_NAMES.length;i++){var n=t.CSRF_COOKIE_NAMES[i],a=t.readCookie(n);if(a){e=a;break}}return e},prepareControlModel:function(e){var t=this;t.base(function(i){i.chooseButtonLabel=t.options.chooseButtonLabel,i.chooseButtonLabel||(i.chooseButtonLabel=t.getMessage("chooseFiles"),1===t.options.maxNumberOfFiles&&(i.chooseButtonLabel=t.getMessage("chooseFile"))),i.dropZoneMessage=t.options.dropZoneMessage,i.dropZoneMessage||(i.dropZoneMessage=t.getMessage("dropZoneSingle"),1===i.maxNumberOfFiles&&(i.dropZoneMessage=t.getMessage("dropZoneMultiple"))),e(i)})},afterRenderControl:function(e,t){var i=this;this.base(e,function(){i.handlePostRender(function(){t()})})},getUploadTemplate:function(){return this.wrapTemplate("control-upload-partial-upload")},getDownloadTemplate:function(){return this.wrapTemplate("control-upload-partial-download")},handlePostRender:function(t){var i=this,n=this.control,a={};if(a.dataType="json",a.uploadTemplateId=null,a.uploadTemplate=this.getUploadTemplate(),a.downloadTemplateId=null,a.downloadTemplate=this.getDownloadTemplate(),a.filesContainer=e(n).find(".files"),a.dropZone=e(n).find(".fileupload-active-zone"),a.url="/",a.method="post",a.showUploadPreview=i.options.showUploadPreview,i.options.upload)for(var r in i.options.upload)a[r]=i.options.upload[r];i.options.multiple&&(e(n).find(".alpaca-fileupload-input").attr("multiple",!0),e(n).find(".alpaca-fileupload-input").attr("name",i.name+"_files[]")),e(n).find(".progress").css("display","none"),a.progressall=function(t,i){var a=!1;if(i.loaded<i.total&&(a=!0),a){e(n).find(".progress").css("display","block");var r=parseInt(i.loaded/i.total*100,10);e("#progress .progress-bar").css("width",r+"%")}else e(n).find(".progress").css("display","none")},a.add=function(e,t){for(var n=[],a=0;a<t.originalFiles.length;a++){if(i.options.fileTypes){var r=i.options.fileTypes;"string"==typeof i.options.fileTypes&&(r=new RegExp(i.options.fileTypes)),r.test(t.originalFiles[a].type)||n.push("Not an accepted file type: "+t.originalFiles[a].type)}i.options.maxFileSize>-1&&t.originalFiles[a].size>i.options.maxFileSize&&n.push("Filesize is too big: "+t.originalFiles[a].size)}n.length>0?i.options.errorHandler(n):t.submit()},i.applyConfiguration(a);var s=i.fileUpload=e(n).find(".alpaca-fileupload-input").fileupload(a);s.bindFirst("fileuploaddone",function(e,t){var n=i.options.enhanceFiles;n?n(a,t):i.enhanceFiles(a,t),t.files=t.result.files,setTimeout(function(){i.refreshUIState()},250)}),s.bindFirst("fileuploadsubmit",function(t,n){i.options.properties&&e.each(n.files,function(e,t){for(var a in i.options.properties){var r="property"+e+"__"+a,s=i.options.properties[a];s=i.applyTokenSubstitutions(s,e,t),n.formData||(n.formData={}),n.formData[r]=s}}),i.options.parameters&&e.each(n.files,function(e,t){for(var a in i.options.parameters){var r="param"+e+"__"+a,s=i.options.parameters[a];s=i.applyTokenSubstitutions(s,e,t),n.formData||(n.formData={}),n.formData[r]=s}})}),s.bind("fileuploaddone",function(e,t){var n=i.getValue(),a=function(e){return e===t.files.length?void i.setValue(n):void i.convertFileToDescriptor(t.files[e],function(t,i){i&&n.push(i),a(e+1)})};a(0)}),s.bind("fileuploadfail",function(e,t){t.errorThrown&&i.onUploadFail(t)}),s.bind("fileuploadalways",function(e,t){i.refreshUIState()}),i.applyBindings(s,n),i.preload(s,n,function(a){if(a){var r=e(i.control).find(".alpaca-fileupload-input");e(r).fileupload("option","done").call(r,e.Event("done"),{result:{files:a}}),i.afterPreload(s,n,a,function(){t()})}else t()}),"undefined"!=typeof document&&e(document).bind("drop dragover",function(e){e.preventDefault()})},handleWrapRow:function(e,t){},applyTokenSubstitutions:function(e,t,i){var n={index:t,name:i.name,size:i.size,url:i.url,thumbnailUrl:i.thumbnailUrl},a=-1,r=0;do if(a=e.indexOf("{",r),a>-1){var s=e.indexOf("}",a);if(s>-1){var o=e.substring(a+car.length,s),l=n[o];l&&(e=e.substring(0,a)+l+e.substring(s+1)),r=s+1}}while(a>-1);return e},removeValue:function(e){for(var t=this,i=t.getValue(),n=0;n<i.length;n++)if(i[n].id==e){i.splice(n,1);break}t.setValue(i)},applyConfiguration:function(e){},applyBindings:function(e){},convertFileToDescriptor:function(e,t){var i={id:e.id,name:e.name,size:e.size,url:e.url,thumbnailUrl:e.thumbnailUrl,deleteUrl:e.deleteUrl,deleteType:e.deleteType};t(null,i)},convertDescriptorToFile:function(e,t){var i={id:e.id,name:e.name,size:e.size,url:e.url,thumbnailUrl:e.thumbnailUrl,deleteUrl:e.deleteUrl,deleteType:e.deleteType};t(null,i)},enhanceFiles:function(e,t){},preload:function(e,t,i){var n=this,a=[],r=n.getValue(),s=function(e){return e==r.length?void i(a):void n.convertDescriptorToFile(r[e],function(t,i){i&&a.push(i),s(e+1)})};s(0)},afterPreload:function(e,t,i,n){var a=this;a.refreshUIState(),n()},getControlValue:function(){return this.data},setValue:function(e){e||(e=[]),this.data=e,this.updateObservable(),this.triggerUpdate()},reload:function(t){var i=this,n=this.getValue(),a=[],r=function(s){if(s===n.length){var o=e(i.control).find(".alpaca-fileupload-input");return e(o).fileupload("option","done").call(o,e.Event("done"),{result:{files:a}}),i.refreshValidationState(),void t()}i.convertDescriptorToFile(n[s],function(e,t){t&&a.push(t),r(s+1)})};r(0)},plugin:function(){var t=this;return e(t.control).find(".alpaca-fileupload-input").data().blueimpFileupload},refreshUIState:function(){var e=this,t=e.plugin();if(t){var i=e.options.maxNumberOfFiles;e.refreshButtons(t.options.getNumberOfFiles&&t.options.getNumberOfFiles()>=i?!1:!0)}},refreshButtons:function(t){var i=this;e(i.control).find(".btn.fileinput-button").prop("disabled",!0),e(i.control).find(".btn.fileinput-button").attr("disabled","disabled"),e(i.control).find(".fileupload-active-zone p.dropzone-message").css("display","none"),t&&(e(i.control).find(".btn.fileinput-button").prop("disabled",!1),e(i.control).find(".btn.fileinput-button").attr("disabled",null),e(i.control).find(".fileupload-active-zone p.dropzone-message").css("display","block"))},onFileDelete:function(i,n,a){var r=this,s=a.deleteUrl,o=a.deleteType,l={method:o,url:s,headers:{}},u=r.determineCsrfToken();u&&(l.headers[t.CSRF_HEADER_NAME]=u),e.ajax(l)},onUploadFail:function(e){for(var t=this,i=0;i<e.files.length;i++)e.files[i].error=e.errorThrown;t.options.uploadFailHandler&&t.options.uploadFailHandler.call(t,e)},disable:function(){e(this.field).find(".fileinput-button").prop("disabled",!0),e(this.field).find(".fileinput-button").attr("disabled","disabled"),e(this.field).find(".alpaca-fileupload-well").css("visibility","hidden")},enable:function(){e(this.field).find(".fileinput-button").prop("disabled",!1),e(this.field).find(".fileinput-button").removeAttr("disabled"),e(this.field).find(".alpaca-fileupload-well").css("visibility","visible")},getTitle:function(){return"Upload Field"},getDescription:function(){return"Provides an upload field with support for thumbnail preview"},getType:function(){return"array"},getSchemaOfOptions:function(){return t.merge(this.base(),{properties:{maxNumberOfFiles:{title:"Maximum Number of Files",description:"The maximum number of files to allow to be uploaded.  If greater than zero, the maximum number will be constrained.  If -1, then no limit is imposed.",type:"number","default":1},maxFileSize:{title:"Maximum File Size (in bytes)",description:"The maximum file size allowed per upload.  If greater than zero, the maximum file size will be limited to the given size in bytes.  If -1, then no limit is imposed.",type:"number","default":-1},fileTypes:{title:"File Types",description:"A regular expression limiting the file types that can be uploaded based on filename",type:"string"},multiple:{title:"Multiple",description:"Whether to allow multiple file uploads.  If maxNumberOfFiles is not specified, multiple will toggle between 1 and unlimited.",type:"boolean","default":!1},showUploadPreview:{title:"Show Upload Preview",description:"Whether to show thumbnails for uploaded assets (requires preview support)",type:"boolean","default":!0},errorHandler:{title:"Error Handler",description:"Optional function handler to be called when there is an error uploading one or more files.  This handler is typically used to instantiate a modal or other UI element to inform the end user.",type:"function"},uploadFailHandler:{title:"Upload Fail Handler",description:"Optional function handler to be called when one or more files fails to upload.  This function is responsible for parsing the underlying xHR request and populating the error message state.",type:"function"}}})}}),t.registerFieldClass("upload",t.Fields.UploadField),t.registerMessages({chooseFile:"Choose file...",chooseFiles:"Choose files...",dropZoneSingle:"Click the Choose button or Drag and Drop a file here to upload...",dropZoneMultiple:"Click the Choose button or Drag and Drop files here to upload..."}),function(e){function t(t){return o?t.data("events"):e._data(t[0]).events}function i(e,i,n){var a=t(e),r=a[i];if(!o){var s=n?r.splice(r.delegateCount-1,1)[0]:r.pop();return void r.splice(n?0:r.delegateCount||0,0,s)}n?a.live.unshift(a.live.pop()):r.unshift(r.pop())}function n(t,n,a){var r=n.split(/\s+/);t.each(function(){for(var t=0;t<r.length;++t){var n=e.trim(r[t]).match(/[^\.]+/i)[0];i(e(this),n,a)}})}var a=e.fn.jquery.split("."),r=parseInt(a[0]),s=parseInt(a[1]),o=1>r||1===r&&7>s;e.fn.bindFirst=function(){var t=e.makeArray(arguments),i=t.shift();return i&&(e.fn.bind.apply(this,arguments),n(this,i)),this}}(e)}(jQuery),function(e){var t=e.alpaca;t.Fields.UpperCaseField=t.Fields.TextField.extend({getFieldType:function(){return"uppercase"},setup:function(){this.base(),this.data&&(this.data=this.data.toUpperCase())},setValue:function(e){var i=null;e&&t.isString(e)&&(i=e.toUpperCase()),i!=this.getValue()&&this.base(i)},onKeyPress:function(e){this.base(e);var i=this;t.later(25,this,function(){var e=i.getValue();i.setValue(e)})},getTitle:function(){return"Uppercase Text"},getDescription:function(){return"Text field for uppercase text."}}),t.registerFieldClass("uppercase",t.Fields.UpperCaseField),t.registerDefaultFormatFieldMapping("uppercase","uppercase")}(jQuery),function(e){var t=e.alpaca;t.Fields.URLField=t.Fields.TextField.extend({getFieldType:function(){return"url"},setup:function(){this.inputType="url",this.base(),"undefined"==typeof this.options.allowIntranet&&(this.options.allowIntranet=!1),this.schema.pattern=this.options.allowIntranet?t.regexps["intranet-url"]:t.regexps.url,this.schema.format="uri"},handleValidate:function(){var e=this.base(),t=this.validation;return t.invalidPattern.status||(t.invalidPattern.message=this.getMessage("invalidURLFormat")),e},getSchemaOfOptions:function(){return t.merge(this.base(),{properties:{allowIntranet:{title:"Allow intranet",description:"Allows URLs with unqualified hostnames"}}})},getOptionsForOptions:function(){return t.merge(this.base(),{fields:{allowIntranet:{type:"checkbox"}}})},getTitle:function(){return"URL Field"},getDescription:function(){return"Provides a text control with validation for an internet web address."}}),t.registerMessages({invalidURLFormat:"The URL provided is not a valid web address."}),t.registerFieldClass("url",t.Fields.URLField),t.registerDefaultFormatFieldMapping("url","url")}(jQuery),function(e){var t=e.alpaca;t.Fields.ZipcodeField=t.Fields.TextField.extend({getFieldType:function(){return"zipcode"},setup:function(){this.base(),this.options.format=this.options.format?this.options.format:"nine","nine"===this.options.format?this.schema.pattern=t.regexps["zipcode-nine"]:"five"===this.options.format?this.schema.pattern=t.regexps["zipcode-five"]:(t.logError("The configured zipcode format: "+this.options.format+" is not a legal value [five, nine]"),this.options.format="nine",this.schema.pattern=t.regexps["zipcode-nine"]),"nine"===this.options.format?this.options.maskString="99999-9999":"five"===this.options.format&&(this.options.maskString="99999")},handleValidate:function(){var e=this.base(),t=this.validation;return t.invalidPattern.status||("nine"===this.options.format?t.invalidPattern.message=this.getMessage("invalidZipcodeFormatNine"):"five"===this.options.format&&(t.invalidPattern.message=this.getMessage("invalidZipcodeFormatFive"))),e},getSchemaOfOptions:function(){return t.merge(this.base(),{properties:{format:{title:"Format",description:"How to represent the zipcode field",type:"string","default":"five","enum":["five","nine"],readonly:!0}}})},getOptionsForOptions:function(){return t.merge(this.base(),{fields:{format:{type:"text"}}})},getTitle:function(){return"Zipcode Field"},getDescription:function(){return"Provides a five or nine-digital US zipcode control with validation."}}),t.registerMessages({invalidZipcodeFormatFive:"Invalid Five-Digit Zipcode (#####)",invalidZipcodeFormatNine:"Invalid Nine-Digit Zipcode (#####-####)"}),t.registerFieldClass("zipcode",t.Fields.ZipcodeField),t.registerDefaultFormatFieldMapping("zipcode","zipcode")}(jQuery),function(e){var t=e.alpaca;t.registerView({id:"base",title:"Abstract base view",messages:{countries:{afg:"Afghanistan",ala:"Aland Islands",alb:"Albania",dza:"Algeria",asm:"American Samoa",and:"Andorra",ago:"Angola",aia:"Anguilla",ata:"Antarctica",atg:"Antigua and Barbuda",arg:"Argentina",arm:"Armenia",abw:"Aruba",aus:"Australia",aut:"Austria",aze:"Azerbaijan",bhs:"Bahamas",bhr:"Bahrain",bgd:"Bangladesh",brb:"Barbados",blr:"Belarus",bel:"Belgium",blz:"Belize",ben:"Benin",bmu:"Bermuda",btn:"Bhutan",bol:"Bolivia",bih:"Bosnia and Herzegovina",bwa:"Botswana",bvt:"Bouvet Island",bra:"Brazil",iot:"British Indian Ocean Territory",brn:"Brunei Darussalam",bgr:"Bulgaria",bfa:"Burkina Faso",bdi:"Burundi",khm:"Cambodia",cmr:"Cameroon",can:"Canada",cpv:"Cape Verde",cym:"Cayman Islands",caf:"Central African Republic",tcd:"Chad",chl:"Chile",chn:"China",cxr:"Christmas Island",cck:"Cocos (Keeling), Islands",col:"Colombia",com:"Comoros",cog:"Congo",cod:"Congo, the Democratic Republic of the",cok:"Cook Islands",cri:"Costa Rica",hrv:"Croatia",cub:"Cuba",cyp:"Cyprus",cze:"Czech Republic",civ:"Cote d'Ivoire",dnk:"Denmark",dji:"Djibouti",dma:"Dominica",dom:"Dominican Republic",ecu:"Ecuador",egy:"Egypt",slv:"El Salvador",gnq:"Equatorial Guinea",eri:"Eritrea",est:"Estonia",eth:"Ethiopia",flk:"Falkland Islands (Malvinas),",fro:"Faroe Islands",fji:"Fiji",fin:"Finland",fra:"France",guf:"French Guiana",pyf:"French Polynesia",atf:"French Southern Territories",gab:"Gabon",gmb:"Gambia",geo:"Georgia",deu:"Germany",gha:"Ghana",gib:"Gibraltar",grc:"Greece",grl:"Greenland",grd:"Grenada",glp:"Guadeloupe",gum:"Guam",gtm:"Guatemala",ggy:"Guernsey",gin:"Guinea",gnb:"Guinea-Bissau",guy:"Guyana",hti:"Haiti",hmd:"Heard Island and McDonald Islands",vat:"Holy See (Vatican City State),",hnd:"Honduras",hkg:"Hong Kong",hun:"Hungary",isl:"Iceland",ind:"India",idn:"Indonesia",irn:"Iran, Islamic Republic of",irq:"Iraq",irl:"Ireland",imn:"Isle of Man",isr:"Israel",ita:"Italy",jam:"Jamaica",jpn:"Japan",jey:"Jersey",jor:"Jordan",kaz:"Kazakhstan",ken:"Kenya",kir:"Kiribati",prk:"Korea, Democratic People's Republic of",kor:"Korea, Republic of",kwt:"Kuwait",kgz:"Kyrgyzstan",lao:"Lao People's Democratic Republic",lva:"Latvia",lbn:"Lebanon",lso:"Lesotho",lbr:"Liberia",lby:"Libyan Arab Jamahiriya",lie:"Liechtenstein",ltu:"Lithuania",lux:"Luxembourg",mac:"Macao",mkd:"Macedonia, the former Yugoslav Republic of",mdg:"Madagascar",mwi:"Malawi",mys:"Malaysia",mdv:"Maldives",mli:"Mali",mlt:"Malta",mhl:"Marshall Islands",mtq:"Martinique",mrt:"Mauritania",mus:"Mauritius",myt:"Mayotte",mex:"Mexico",fsm:"Micronesia, Federated States of",mda:"Moldova, Republic of",mco:"Monaco",mng:"Mongolia",mne:"Montenegro",msr:"Montserrat",mar:"Morocco",moz:"Mozambique",mmr:"Myanmar",nam:"Namibia",nru:"Nauru",npl:"Nepal",nld:"Netherlands",ant:"Netherlands Antilles",ncl:"New Caledonia",nzl:"New Zealand",nic:"Nicaragua",ner:"Niger",nga:"Nigeria",niu:"Niue",nfk:"Norfolk Island",mnp:"Northern Mariana Islands",nor:"Norway",omn:"Oman",pak:"Pakistan",plw:"Palau",pse:"Palestinian Territory, Occupied",pan:"Panama",png:"Papua New Guinea",pry:"Paraguay",per:"Peru",phl:"Philippines",pcn:"Pitcairn",pol:"Poland",prt:"Portugal",pri:"Puerto Rico",qat:"Qatar",rou:"Romania",rus:"Russian Federation",rwa:"Rwanda",reu:"Reunion",blm:"Saint Barthelemy",shn:"Saint Helena",kna:"Saint Kitts and Nevis",lca:"Saint Lucia",maf:"Saint Martin (French part)",spm:"Saint Pierre and Miquelon",vct:"Saint Vincent and the Grenadines",wsm:"Samoa",smr:"San Marino",stp:"Sao Tome and Principe",sau:"Saudi Arabia",sen:"Senegal",srb:"Serbia",syc:"Seychelles",sle:"Sierra Leone",sgp:"Singapore",svk:"Slovakia",svn:"Slovenia",slb:"Solomon Islands",som:"Somalia",zaf:"South Africa",sgs:"South Georgia and the South Sandwich Islands",esp:"Spain",lka:"Sri Lanka",sdn:"Sudan",sur:"Suriname",sjm:"Svalbard and Jan Mayen",swz:"Swaziland",swe:"Sweden",che:"Switzerland",syr:"Syrian Arab Republic",twn:"Taiwan, Province of China",tjk:"Tajikistan",tza:"Tanzania, United Republic of",tha:"Thailand",tls:"Timor-Leste",tgo:"Togo",tkl:"Tokelau",ton:"Tonga",tto:"Trinidad and Tobago",tun:"Tunisia",tur:"Turkey",tkm:"Turkmenistan",tca:"Turks and Caicos Islands",tuv:"Tuvalu",uga:"Uganda",ukr:"Ukraine",are:"United Arab Emirates",gbr:"United Kingdom",usa:"United States",umi:"United States Minor Outlying Islands",ury:"Uruguay",uzb:"Uzbekistan",vut:"Vanuatu",ven:"Venezuela",vnm:"Viet Nam",vgb:"Virgin Islands, British",vir:"Virgin Islands, U.S.",wlf:"Wallis and Futuna",esh:"Western Sahara",yem:"Yemen",zmb:"Zambia",zwe:"Zimbabwe"},empty:"",required:"This field is required",valid:"",invalid:"This field is invalid",months:["January","February","March","April","May","June","July","August","September","October","November","December"],timeUnits:{SECOND:"seconds",MINUTE:"minutes",HOUR:"hours",DAY:"days",MONTH:"months",YEAR:"years"}}})}(jQuery),function(e){var t=e.alpaca;t.registerView({id:"base",messages:{zh_CN:{required:"&#27492;&#22495;&#24517;&#39035;",invalid:"&#27492;&#22495;&#19981;&#21512;&#26684;",months:["&#19968;&#26376;","&#20108;&#26376;","&#19977;&#26376;","&#22235;&#26376;","&#20116;&#26376;","&#20845;&#26376;","&#19971;&#26376;","&#20843;&#26376;","&#20061;&#26376;","&#21313;&#26376;","&#21313;&#19968;&#26376;","&#21313;&#20108;&#26376;"],timeUnits:{SECOND:"&#31186;",MINUTE:"&#20998;",HOUR:"&#26102;",DAY:"&#26085;",MONTH:"&#26376;",YEAR:"&#24180;"},notOptional:"&#27492;&#22495;&#38750;&#20219;&#36873;",disallowValue:"&#38750;&#27861;&#36755;&#20837;&#21253;&#25324; {0}.",invalidValueOfEnum:"&#20801;&#35768;&#36755;&#20837;&#21253;&#25324; {0}. [{1}]",notEnoughItems:"&#26368;&#23567;&#20010;&#25968; {0}",tooManyItems:"&#26368;&#22823;&#20010;&#25968; {0}",valueNotUnique:"&#36755;&#20837;&#20540;&#19981;&#29420;&#29305;",notAnArray:"&#19981;&#26159;&#25968;&#32452;",invalidDate:"&#26085;&#26399;&#26684;&#24335;&#22240;&#35813;&#26159; {0}",invalidEmail:"&#20234;&#22969;&#20799;&#26684;&#24335;&#19981;&#23545;, ex: info@cloudcms.com",stringNotAnInteger:"&#19981;&#26159;&#25972;&#25968;.",invalidIPv4:"&#19981;&#26159;&#21512;&#27861;IP&#22320;&#22336;, ex: 192.168.0.1",stringValueTooSmall:"&#26368;&#23567;&#20540;&#26159; {0}",stringValueTooLarge:"&#26368;&#22823;&#20540;&#26159; {0}",stringValueTooSmallExclusive:"&#20540;&#24517;&#39035;&#22823;&#20110; {0}",stringValueTooLargeExclusive:"&#20540;&#24517;&#39035;&#23567;&#20110; {0}",stringDivisibleBy:"&#20540;&#24517;&#39035;&#33021;&#34987; {0} &#25972;&#38500;",stringNotANumber:"&#19981;&#26159;&#25968;&#23383;.",invalidPassword:"&#38750;&#27861;&#23494;&#30721;",invalidPhone:"&#38750;&#27861;&#30005;&#35805;&#21495;&#30721;, ex: (123) 456-9999",invalidPattern:"&#27492;&#22495;&#39035;&#26377;&#26684;&#24335; {0}",stringTooShort:"&#27492;&#22495;&#33267;&#23569;&#38271;&#24230; {0}",stringTooLong:"&#27492;&#22495;&#26368;&#22810;&#38271;&#24230; {0}"}}})}(jQuery),function(e){var t=e.alpaca;t.registerView({id:"base",messages:{es_ES:{required:"Este campo es obligatorio",invalid:"Este campo es inválido",months:["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"],timeUnits:{SECOND:"segundos",MINUTE:"minutos",HOUR:"horas",DAY:"días",MONTH:"meses",YEAR:"años"},notOptional:"Este campo no es opcional.",disallowValue:"{0} son los valores rechazados.",invalidValueOfEnum:"Este campo debe tener uno de los valores adentro {0}. [{1}]",notEnoughItems:"El número mínimo de artículos es {0}",tooManyItems:"El número máximo de artículos es {0}",valueNotUnique:"Los valores no son únicos",notAnArray:"Este valor no es un arsenal",invalidDate:"Fecha inválida para el formato {0}",invalidEmail:"Email address inválido, ex: info@cloudcms.com",stringNotAnInteger:"Este valor no es un número entero.",invalidIPv4:"Dirección inválida IPv4, ex: 192.168.0.1",stringValueTooSmall:"El valor mínimo para este campo es {0}",stringValueTooLarge:"El valor máximo para este campo es {0}",stringValueTooSmallExclusive:"El valor de este campo debe ser mayor que {0}",stringValueTooLargeExclusive:"El valor de este campo debe ser menos que {0}",
 stringDivisibleBy:"El valor debe ser divisible cerca {0}",stringNotANumber:"Este valor no es un número.",invalidPassword:"Contraseña inválida",invalidPhone:"Número de teléfono inválido, ex: (123) 456-9999",invalidPattern:"Este campo debe tener patrón {0}",stringTooShort:"Este campo debe contener por lo menos {0} números o caracteres",stringTooLong:"Este campo debe contener a lo más {0} números o caracteres",noneLabel:"Ninguno",addItemButtonLabel:"Añadir",addButtonLabel:"Añadir",removeButtonLabel:"Quitar",upButtonLabel:"Arriba",downButtonLabel:"Abajo"}}})}(jQuery),function(e){var t=e.alpaca;t.registerView({id:"base",messages:{fr_FR:{required:"Ce champ est requis",invalid:"Ce champ est invalide",months:["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"],timeUnits:{SECOND:"secondes",MINUTE:"minutes",HOUR:"heures",DAY:"jours",MONTH:"mois",YEAR:"années"},notOptional:"Ce champ n'est pas optionnel.",disallowValue:"{0} sont des valeurs interdites.",invalidValueOfEnum:"Ce champ doit prendre une des valeurs suivantes : {0}. [{1}]",notEnoughItems:"Le nombre minimum d'éléments est {0}",tooManyItems:"Le nombre maximum d'éléments est {0}",valueNotUnique:"Les valeurs sont uniques",notAnArray:"Cette valeur n'est pas une liste",invalidDate:"Cette date ne correspond pas au format {0}",invalidEmail:"Adresse de courriel invalide, ex: info@cloudcms.com",stringNotAnInteger:"Cette valeur n'est pas un nombre entier.",invalidIPv4:"Adresse IPv4 invalide, ex: 192.168.0.1",stringValueTooSmall:"La valeur minimale pour ce champ est {0}",stringValueTooLarge:"La valeur maximale pour ce champ est {0}",stringValueTooSmallExclusive:"La valeur doit-être supérieure à {0}",stringValueTooLargeExclusive:"La valeur doit-être inférieure à {0}",stringDivisibleBy:"La valeur doit-être divisible par {0}",stringNotANumber:"Cette valeur n'est pas un nombre.",invalidPassword:"Mot de passe invalide",invalidPhone:"Numéro de téléphone invalide, ex: (123) 456-9999",invalidPattern:"Ce champ doit correspondre au motif {0}",stringTooShort:"Ce champ doit contenir au moins {0} caractères",stringTooLong:"Ce champ doit contenir au plus {0} caractères"}}})}(jQuery),function(e){var t=e.alpaca;t.registerView({id:"base",messages:{hr_HR:{required:"Polje je obavezno",invalid:"Pogrešna vrijednost",months:["Siječanj","Veljača","Ožujak","Travanj","Svibanj","Lipanj","Srpanj","Kolovoz","Rujan","Listopad","Studeni","Prosinac"],timeUnits:{SECOND:"sekunda",MINUTE:"minuta",HOUR:"sati",DAY:"dan",MONTH:"mjesec",YEAR:"godina"},notOptional:"Polje nije opciono.",disallowValue:"{0} vrijednost nije dozvoljena.",invalidValueOfEnum:"Moguće vrijednosti : {0}. [{1}]",notEnoughItems:"Odaberite najmanje {0}",tooManyItems:"Odaberite najviše {0}",valueNotUnique:"Vrijednost nije jedinstvena",notAnArray:"Vrijednost nije popis",invalidDate:"Datum nije u formatu {0}",invalidEmail:"E-mail adresa nije u ispravnom formatu, npr: ime.prezime@internet.com",stringNotAnInteger:"Vrijednost nije cijeli broj.",invalidIPv4:"IPv4 adresa nije ispravna, npr: 192.168.0.1",stringValueTooSmall:"Vrijednost je ispod dopuštenog {0}",stringValueTooLarge:"Vrijednost je iznad dopuštenog {0}",stringValueTooSmallExclusive:"Vrijednost mora biti veća od {0}",stringValueTooLargeExclusive:"Vrijednost mora biti manja od {0}",stringDivisibleBy:"Vrijednost mora biti djeljiva sa {0}",stringNotANumber:"Vrijednost nije broj.",invalidPassword:"Neispravna lozinka",invalidPhone:"Telefon nije ispravan, npr: (123) 456-9999",invalidPattern:"Pogrešan uzorak {0}",stringTooShort:"Polje mora imati namjanje {0} znakova",stringTooLong:"Polje mora imati najviše {0} znakova"}}})}(jQuery),function(e){var t=e.alpaca;t.registerView({id:"base",messages:{it_IT:{required:"Questo campo è obbligatorio",invalid:"Questo campo è invalido",months:["Gennaio","Febbraio","Marzo","Aprile","Maggio","Giugno","Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre"],timeUnits:{SECOND:"secondi",MINUTE:"minuti",HOUR:"ore",DAY:"giorni",MONTH:"mesi",YEAR:"anni"},notOptional:"Questo campo non è opzionale",disallowValue:"{0} sono valori invalidi",invalidValueOfEnum:"Questo campo deve avere uno dei seguenti valori {0} (valore attuale: {1})",notEnoughItems:"Il numero minimo di elementi richiesti è {0}",tooManyItems:"Il numero massimo di elementi ammessi è {0}",valueNotUnique:"I valori non sono univoci",notAnArray:"Questo valore non è di tipo array",invalidDate:"Data invalida per il formato {0}",invalidEmail:"Indirizzo email invalido, si attendono valori del tipo: info@cloudcms.com",stringNotAnInteger:"Questo valore non è un numero intero",invalidIPv4:"Indirizzo IPv4 invalido, si attendono valori del tipo: 192.168.0.1",stringValueTooSmall:"Il valore minimo per questo campo è {0}",stringValueTooLarge:"Il valore massimo per questo campo è {0}",stringValueTooSmallExclusive:"Il valore di questo campo deve essere maggiore di {0}",stringValueTooLargeExclusive:"Il valore di questo campo deve essere minore di {0}",stringDivisibleBy:"Il valore di questo campo deve essere divisibile per {0}",stringNotANumber:"Questo valore non è un numero",invalidPassword:"Password invalida",invalidPhone:"Numero di telefono invalido, si attendono valori del tipo: (123) 456-9999",invalidPattern:"Questo campo deve avere la seguente struttura: {0}",stringTooShort:"Questo campo non deve contenere meno di {0} caratteri",stringTooLong:"Questo campo non deve contenere più di {0} caratteri",noneLabel:"Nessuno",addItemButtonLabel:"Aggiungi",addButtonLabel:"Aggiungi",removeButtonLabel:"Rimuovi",upButtonLabel:"Su",downButtonLabel:"Giù"}}})}(jQuery),function(e){var t=e.alpaca;t.registerView({id:"base",messages:{ja_JP:{required:"この項目は必須です",invalid:"この項目は正しい値ではありません",months:["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"],timeUnits:{SECOND:"秒",MINUTE:"分",HOUR:"時",DAY:"日",MONTH:"月",YEAR:"年"},notOptional:"この項目は任意の回答項目ではありません",disallowValue:"{0} は禁止されている値です",invalidValueOfEnum:"この項目は {0} の中から選ばなければなりません。現在の値は {1} です",notEnoughItems:"項目数は {0} 以上必要です",tooManyItems:"項目数は {0} 以下でなければなりません",valueNotUnique:"値が一意ではありません",notAnArray:"この項目の値が配列でありません",stringValueTooSmall:"この項目の最小値は {0} です",stringValueTooLarge:"この項目の最大値は {0} です",stringValueTooSmallExclusive:"この項目の値は {0} より小さくなければなりません",stringValueTooLargeExclusive:"この項目の値は {0} より大きくなければなりません",stringDivisibleBy:"値は {0} によって割り切れなければなりません",stringNotANumber:"この項目の値が数値ではありません",stringValueNotMultipleOf:"値が {0} の倍数ではありません",stringNotAnInteger:"この項目の値が整数ではありません",stringNotAJSON:"値が正しい JSON 形式の文字列ではありません",stringTooShort:"この項目は {0} 文字以上必要です",stringTooLong:"この項目は {0} 文字以下でなければなりません",invalidTime:"時間が正しくありません",invalidDate:"日付が {0} ではありません",invalidEmail:"メールアドレスが正しくありません。例えば info@cloudcms.com のような形式です",invalidIPv4:"IPv4 アドレスが正しくありません。例えば 192.168.0.1 のような形式です",invalidPassword:"パスワードが正しくありません",invalidPhone:"電話番号が正しくありません。例えば (123) 456-9999 のような形式です",invalidPattern:"この項目は {0} のパターンでなければなりません",invalidURLFormat:"URL が正しい形式ではありません",keyMissing:"地図が空のキーを含んでいます",keyNotUnique:"地図のキーが一意ではありません",ObjecttooFewProperties:"プロパティが足りません ({0} が必要です)",tooManyProperties:"プロパティ ({0}) の最大数を超えています",wordLimitExceeded:"{0} の単語数の制限を超えています",editorAnnotationsExist:"エディタが修正すべきエラーを報告しています",invalidZipcodeFormatFive:"5桁の Zipcode (#####) ではありません",invalidZipcodeFormatNine:"9桁の Zipcode (#####-####) ではありません"}}})}(jQuery),function(e){var t=e.alpaca;t.registerView({id:"base",messages:{pl_PL:{required:"To pole jest wymagane",invalid:"To pole jest nieprawidłowe",months:["Styczeń","Luty","Marzec","Kwiecień","Maj","Czerwiec","Lipiec","Sierpień","Wrzesień","Październik","Listopad","Grudzień"],timeUnits:{SECOND:"sekundy",MINUTE:"minuty",HOUR:"godziny",DAY:"dni",MONTH:"miesiące",YEAR:"lata"},notOptional:"To pole nie jest opcjonalne",disallowValue:"Ta wartość nie jest dozwolona: {0}",invalidValueOfEnum:"To pole powinno zawierać jedną z następujących wartości: {0}. [{1}]",notEnoughItems:"Minimalna liczba elementów wynosi {0}",tooManyItems:"Maksymalna liczba elementów wynosi {0}",valueNotUnique:"Te wartości nie są unikalne",notAnArray:"Ta wartość nie jest tablicą",invalidDate:"Niepoprawny format daty: {0}",invalidEmail:"Niepoprawny adres email, n.p.: info@cloudcms.com",stringNotAnInteger:"Ta wartość nie jest liczbą całkowitą",invalidIPv4:"Niepoprawny adres IPv4, n.p.: 192.168.0.1",stringValueTooSmall:"Minimalna wartość dla tego pola wynosi {0}",stringValueTooLarge:"Maksymalna wartość dla tego pola wynosi {0}",stringValueTooSmallExclusive:"Wartość dla tego pola musi być większa niż {0}",stringValueTooLargeExclusive:"Wartość dla tego pola musi być mniejsza niż {0}",stringDivisibleBy:"Wartość musi być podzielna przez {0}",stringNotANumber:"Wartość nie jest liczbą",invalidPassword:"Niepoprawne hasło",invalidPhone:"Niepoprawny numer telefonu, n.p.: (123) 456-9999",invalidPattern:"To pole powinno mieć format {0}",stringTooShort:"To pole powinno zawierać co najmniej {0} znaków",stringTooLong:"To pole powinno zawierać najwyżej {0} znaków"}}})}(jQuery),function(e){var t=e.alpaca;t.registerView({id:"base",messages:{pt_BR:{required:"Este campo é obrigatório",invalid:"Este campo é inválido",months:["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"],timeUnits:{SECOND:"segundos",MINUTE:"minutos",HOUR:"horas",DAY:"dias",MONTH:"meses",YEAR:"anos"},notOptional:"Este campo não é opcional.",disallowValue:"{0} são valores proibidas.",invalidValueOfEnum:"Este campo deve ter um dos seguintes valores: {0}. [{1}]",notEnoughItems:"O número mínimo de elementos é {0}",tooManyItems:"O número máximo de elementos é {0}",valueNotUnique:"Os valores não são únicos",notAnArray:"Este valor não é uma lista",invalidDate:"Esta data não tem o formato {0}",invalidEmail:"Endereço de email inválida, ex: info@cloudcms.com",stringNotAnInteger:"Este valor não é um número inteiro.",invalidIPv4:"Endereço IPv4 inválida, ex: 192.168.0.1",stringValueTooSmall:"O valor mínimo para este campo é {0}",stringValueTooLarge:"O valor máximo para este campo é {0}",stringValueTooSmallExclusive:"O valor deste campo deve ser maior que {0}",stringValueTooLargeExclusive:"O valor deste campo deve ser menor que {0}",stringDivisibleBy:"O valor deve ser divisível por {0}",stringNotANumber:"Este valor não é um número.",invalidPassword:"Senha inválida",invalidPhone:"Número de telefone inválido, ex: (123) 456-9999",invalidPattern:"Este campo deve ter o padrão {0}",stringTooShort:"Este campo deve incluir pelo menos {0} caracteres",stringTooLong:"Este campo pode incluir no máximo {0} caracteres"}}})}(jQuery),function(e){var t=e.alpaca;t.registerView({id:"base",messages:{de_AT:{required:"Eingabe erforderlich",invalid:"Eingabe invalid",months:["Jänner","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"],timeUnits:{SECOND:"Sekunden",MINUTE:"Minuten",HOUR:"Stunden",DAY:"Tage",MONTH:"Monate",YEAR:"Jahre"},notOptional:"Dieses Feld ist nicht optional",disallowValue:"Diese Werte sind nicht erlaubt: {0}",invalidValueOfEnum:"Diese Feld sollte einen der folgenden Werte enthalten: {0}. [{1}]",notEnoughItems:"Die Mindestanzahl von Elementen ist {0}",tooManyItems:"Die Maximalanzahl von Elementen ist {0}",valueNotUnique:"Diese Werte sind nicht eindeutig",notAnArray:"Keine Liste von Werten",invalidDate:"Falsches Datumsformat: {0}",invalidEmail:"Ungültige e-Mail Adresse, z.B.: info@cloudcms.com",stringNotAnInteger:"Eingabe ist keine Ganz Zahl.",invalidIPv4:"Ungültige IPv4 Adresse, z.B.: 192.168.0.1",stringValueTooSmall:"Die Mindestanzahl von Zeichen ist {0}",stringValueTooLarge:"Die Maximalanzahl von Zeichen ist {0}",stringValueTooSmallExclusive:"Die Anzahl der Zeichen muss größer sein als {0}",stringValueTooLargeExclusive:"Die Anzahl der Zeichen muss kleiner sein als {0}",stringDivisibleBy:"Der Wert muss durch {0} dividierbar sein",stringNotANumber:"Die Eingabe ist keine Zahl",invalidPassword:"Ungültiges Passwort.",invalidPhone:"Ungültige Telefonnummer, z.B.: (123) 456-9999",invalidPattern:"Diese Feld stimmt nicht mit folgender Vorgabe überein {0}",stringTooShort:"Dieses Feld sollte mindestens {0} Zeichen enthalten",stringTooLong:"Dieses Feld sollte höchstens {0} Zeichen enthalten"}}})}(jQuery),function(e){var t=e.alpaca,i={};i.field=function(){},i.control=function(){},i.container=function(){},i.form=function(){},i.required=function(){},i.optional=function(){},i.readonly=function(){},i.disabled=function(){},i.enabled=function(){},i.clearValidity=function(){},i.invalid=function(e){},i.valid=function(){},i.addMessage=function(e,t,i,n){},i.removeMessages=function(){},i.enableButton=function(e){},i.disableButton=function(e){},i.arrayToolbar=function(i){var n=this;if(i){var a=e(n.getFieldEl()).find(".alpaca-array-toolbar[data-alpaca-array-toolbar-field-id='"+n.getId()+"']");if(a.length>0){var r=e("<div class='"+t.MARKER_CLASS_ARRAY_TOOLBAR+"' "+t.MARKER_DATA_ARRAY_TOOLBAR_FIELD_ID+"='"+n.getId()+"'></div>");a.before(r),a.remove()}}else{var r=e(n.getContainerEl()).find("."+t.MARKER_CLASS_ARRAY_TOOLBAR+"["+t.MARKER_DATA_ARRAY_TOOLBAR_FIELD_ID+"='"+n.getId()+"']");if(r.length>0){var s=n.view.getTemplateDescriptor("container-array-toolbar",n);if(s){var o=t.tmpl(s,{actions:n.toolbar.actions,id:n.getId(),toolbarStyle:n.options.toolbarStyle,view:n.view});e(r).before(o),e(r).remove()}}}},i.arrayActionbars=function(i){for(var n=this,a=0;a<n.children.length;a++){var r=n.children[a],s=r.getId();if(i){var o=e(n.getFieldEl()).find(".alpaca-array-actionbar[data-alpaca-array-actionbar-field-id='"+s+"']");if(o.length>0){var l=e("<div class='"+t.MARKER_CLASS_ARRAY_ITEM_ACTIONBAR+"' "+t.MARKER_DATA_ARRAY_ITEM_KEY+"='"+r.name+"'></div>");o.before(l),o.remove()}}else{var l=e(n.getFieldEl()).find("."+t.MARKER_CLASS_ARRAY_ITEM_ACTIONBAR+"["+t.MARKER_DATA_ARRAY_ITEM_KEY+"='"+r.name+"']");if(l.length>0){var u=n.view.getTemplateDescriptor("container-array-actionbar",n);if(u){var c=t.tmpl(u,{actions:n.actionbar.actions,name:r.name,parentFieldId:n.getId(),fieldId:r.getId(),itemIndex:a,actionbarStyle:n.options.actionbarStyle,view:n.view});e(l).before(c),e(l).remove()}}}}},i.autocomplete=function(){};var n={};n.button="",n.smallButton="",n.addIcon="",n.removeIcon="",n.upIcon="",n.downIcon="",n.expandedIcon="",n.collapsedIcon="",n.table="",t.registerView({id:"web-display",parent:"base",type:"display",ui:"web",title:"Default HTML5 display view",displayReadonly:!0,templates:{},callbacks:i,styles:n,horizontal:!1}),t.registerView({id:"web-display-horizontal",parent:"web-display",horizontal:!0}),t.registerView({id:"web-edit",parent:"base",type:"edit",ui:"web",title:"Default HTML5 edit view",displayReadonly:!0,templates:{},callbacks:i,styles:n,horizontal:!1}),t.registerView({id:"web-edit-horizontal",parent:"web-edit",horizontal:!0}),t.registerView({id:"web-create",parent:"web-edit",type:"create",title:"Default HTML5 create view",displayReadonly:!1,templates:{},horizontal:!1}),t.registerView({id:"web-create-horizontal",parent:"web-create",horizontal:!0})}(jQuery),function(e){var t=e.alpaca,i={};i.button="btn btn-default",i.smallButton="btn btn-default btn-sm",i.addIcon="glyphicon glyphicon-plus-sign",i.removeIcon="glyphicon glyphicon-minus-sign",i.upIcon="glyphicon glyphicon-chevron-up",i.downIcon="glyphicon glyphicon-chevron-down",i.expandedIcon="glyphicon glyphicon-circle-arrow-down",i.collapsedIcon="glyphicon glyphicon-circle-arrow-right",i.table="table table-striped table-bordered table-hover";var n={};n.required=function(){var t=this.getFieldEl(),i=e(t).find("label.alpaca-control-label");e('<span class="alpaca-icon-required glyphicon glyphicon-star"></span>').prependTo(i)},n.invalid=function(){this.isControlField&&e(this.getFieldEl()).addClass("has-error")},n.valid=function(){e(this.getFieldEl()).removeClass("has-error")},n.control=function(){var t=this.getFieldEl(),i=this.getControlEl();if(e(t).find("input").addClass("form-control"),e(t).find("textarea").addClass("form-control"),e(t).find("select").addClass("form-control"),e(t).find("input[type=checkbox]").removeClass("form-control"),e(t).find("input[type=file]").removeClass("form-control"),e(t).find("input[type=radio]").removeClass("form-control"),"color"===this.inputType&&e(t).find("input").removeClass("form-control"),e(t).find("input[type=checkbox]").parent().parent().addClass("checkbox"),e(t).find("input[type=radio]").parent().parent().addClass("radio"),e(t).parents("form").hasClass("form-inline")&&(e(t).find("input[type=checkbox]").parent().addClass("checkbox-inline"),e(t).find("input[type=radio]").parent().addClass("radio-inline")),e(t).find("label.alpaca-control-label").addClass("control-label"),this.view.horizontal){e(t).find("label.alpaca-control-label").addClass("col-sm-3");var n=e("<div></div>");n.addClass("col-sm-9"),e(i).after(n),n.append(i),e(t).append("<div style='clear:both;'></div>")}},n.container=function(){var t=this.getContainerEl();this.view.horizontal&&e(t).addClass("form-horizontal")},n.form=function(){this.getFormEl()},n.enableButton=function(t){e(t).removeAttr("disabled")},n.disableButton=function(t){e(t).attr("disabled","disabled")},n.collapsible=function(){var i=this.getFieldEl(),n=e(i).find("legend").first(),a=e("[data-toggle='collapse']",n);if(e(a).length>0){var r=this.getContainerEl(),s=e(r).attr("id");s||(s=t.generateId(),e(r).attr("id",s)),e(r).addClass("collapse in"),e(a).attr("data-target")||e(a).attr("data-target","#"+s),e(a).mouseover(function(t){e(this).css("cursor","pointer")})}},n.tableHeaderRequired=function(t,i,n){e('<span class="alpaca-icon-required glyphicon glyphicon-star"></span>').prependTo(n)},n.tableHeaderOptional=function(e,t,i){},t.registerView({id:"bootstrap-display",parent:"web-display",type:"display",ui:"bootstrap",title:"Display View for Bootstrap 3",displayReadonly:!0,callbacks:n,styles:i,templates:{}}),t.registerView({id:"bootstrap-display-horizontal",parent:"bootstrap-display",horizontal:!0}),t.registerView({id:"bootstrap-edit",parent:"web-edit",type:"edit",ui:"bootstrap",title:"Edit View for Bootstrap 3",displayReadonly:!0,callbacks:n,styles:i,templates:{}}),t.registerView({id:"bootstrap-edit-horizontal",parent:"bootstrap-edit",horizontal:!0}),t.registerView({id:"bootstrap-create",parent:"bootstrap-edit",title:"Create View for Bootstrap 3",type:"create",displayReadonly:!1}),t.registerView({id:"bootstrap-create-horizontal",parent:"bootstrap-create",horizontal:!0})}(jQuery),Alpaca.defaultView="bootstrap",Alpaca});
+/*! alertifyjs - v1.4.1 - Mohammad Younes <Mohammad@alertifyjs.com> (http://alertifyjs.com) */
+!function(a){"use strict";function b(a,b){a.className+=" "+b}function c(a,b){for(var c=b.split(" "),d=0;d<c.length;d+=1)a.className=a.className.replace(" "+c[d],"")}function d(){return"rtl"===a.getComputedStyle(document.body).direction}function e(){return document.documentElement&&document.documentElement.scrollTop||document.body.scrollTop}function f(){return document.documentElement&&document.documentElement.scrollLeft||document.body.scrollLeft}function g(a){for(;a.lastChild;)a.removeChild(a.lastChild)}function h(a,b){return function(){if(arguments.length>0){for(var c=[],d=0;d<arguments.length;d+=1)c.push(arguments[d]);return c.push(a),b.apply(a,c)}return b.apply(a,[null,a])}}function i(a,b){return{index:a,button:b,cancel:!1}}function j(){function a(a,b){for(var c in b)b.hasOwnProperty(c)&&(a[c]=b[c]);return a}function b(a){var b=d[a].dialog;return b&&"function"==typeof b.__init&&b.__init(b),b}function c(b,c,e,f){var g={dialog:null,factory:c};return void 0!==f&&(g.factory=function(){return a(new d[f].factory,new c)}),e||(g.dialog=a(new g.factory,q)),d[b]=g}var d={};return{defaults:l,dialog:function(d,e,f,g){if("function"!=typeof e)return b(d);if(this.hasOwnProperty(d))throw new Error("alertify.dialog: name already exists");var h=c(d,e,f,g);f?this[d]=function(){if(0===arguments.length)return h.dialog;var b=a(new h.factory,q);return b&&"function"==typeof b.__init&&b.__init(b),b.main.apply(b,arguments),b.show.apply(b)}:this[d]=function(){if(h.dialog&&"function"==typeof h.dialog.__init&&h.dialog.__init(h.dialog),0===arguments.length)return h.dialog;var a=h.dialog;return a.main.apply(h.dialog,arguments),a.show.apply(h.dialog)}},closeAll:function(a){for(var b=m.slice(0),c=0;c<b.length;c+=1){var d=b[c];(void 0===a||a!==d)&&d.close()}},setting:function(a,c,d){if("notifier"===a)return r.setting(c,d);var e=b(a);return e?e.setting(c,d):void 0},set:function(a,b,c){return this.setting(a,b,c)},get:function(a,b){return this.setting(a,b)},notify:function(a,b,c,d){return r.create(b,d).push(a,c)},message:function(a,b,c){return r.create(null,c).push(a,b)},success:function(a,b,c){return r.create("success",c).push(a,b)},error:function(a,b,c){return r.create("error",c).push(a,b)},warning:function(a,b,c){return r.create("warning",c).push(a,b)},dismissAll:function(){r.dismissAll()}}}var k={ENTER:13,ESC:27,F1:112,F12:123,LEFT:37,RIGHT:39},l={modal:!0,basic:!1,frameless:!1,movable:!0,resizable:!0,closable:!0,closableByDimmer:!0,maximizable:!0,startMaximized:!1,pinnable:!0,pinned:!0,padding:!0,overflow:!0,maintainFocus:!0,transition:"pulse",autoReset:!0,notifier:{delay:5,position:"bottom-right"},glossary:{title:"AlertifyJS",ok:"OK",cancel:"Cancel",acccpt:"Accept",deny:"Deny",confirm:"Confirm",decline:"Decline",close:"Close",maximize:"Maximize",restore:"Restore"},theme:{input:"ajs-input",ok:"ajs-ok",cancel:"ajs-cancel"}},m=[],n=function(){return document.addEventListener?function(a,b,c,d){a.addEventListener(b,c,d===!0)}:document.attachEvent?function(a,b,c){a.attachEvent("on"+b,c)}:void 0}(),o=function(){return document.removeEventListener?function(a,b,c,d){a.removeEventListener(b,c,d===!0)}:document.detachEvent?function(a,b,c){a.detachEvent("on"+b,c)}:void 0}(),p=function(){var a,b,c=!1,d={animation:"animationend",OAnimation:"oAnimationEnd oanimationend",msAnimation:"MSAnimationEnd",MozAnimation:"animationend",WebkitAnimation:"webkitAnimationEnd"};for(a in d)if(void 0!==document.documentElement.style[a]){b=d[a],c=!0;break}return{type:b,supported:c}}(),q=function(){function j(a){if(!a.__internal){delete a.__init,null===ua&&document.body.setAttribute("tabindex","0");var c;"function"==typeof a.setup?(c=a.setup(),c.options=c.options||{},c.focus=c.focus||{}):c={buttons:[],focus:{element:null,select:!1},options:{}},"object"!=typeof a.hooks&&(a.hooks={});var d=[];if(Array.isArray(c.buttons))for(var e=0;e<c.buttons.length;e+=1){var f=c.buttons[e],g={};for(var i in f)f.hasOwnProperty(i)&&(g[i]=f[i]);d.push(g)}var j=a.__internal={isOpen:!1,activeElement:document.body,timerIn:void 0,timerOut:void 0,buttons:d,focus:c.focus,options:{title:void 0,modal:void 0,basic:void 0,frameless:void 0,pinned:void 0,movable:void 0,resizable:void 0,autoReset:void 0,closable:void 0,closableByDimmer:void 0,maximizable:void 0,startMaximized:void 0,pinnable:void 0,transition:void 0,padding:void 0,overflow:void 0,onshow:void 0,onclose:void 0,onfocus:void 0},resetHandler:void 0,beginMoveHandler:void 0,beginResizeHandler:void 0,bringToFrontHandler:void 0,modalClickHandler:void 0,buttonsClickHandler:void 0,commandsClickHandler:void 0,transitionInHandler:void 0,transitionOutHandler:void 0},k={};k.root=document.createElement("div"),k.root.className=xa.base+" "+xa.hidden+" ",k.root.innerHTML=wa.dimmer+wa.modal,k.dimmer=k.root.firstChild,k.modal=k.root.lastChild,k.modal.innerHTML=wa.dialog,k.dialog=k.modal.firstChild,k.dialog.innerHTML=wa.reset+wa.commands+wa.header+wa.body+wa.footer+wa.resizeHandle+wa.reset,k.reset=[],k.reset.push(k.dialog.firstChild),k.reset.push(k.dialog.lastChild),k.commands={},k.commands.container=k.reset[0].nextSibling,k.commands.pin=k.commands.container.firstChild,k.commands.maximize=k.commands.pin.nextSibling,k.commands.close=k.commands.maximize.nextSibling,k.header=k.commands.container.nextSibling,k.body=k.header.nextSibling,k.body.innerHTML=wa.content,k.content=k.body.firstChild,k.footer=k.body.nextSibling,k.footer.innerHTML=wa.buttons.auxiliary+wa.buttons.primary,k.resizeHandle=k.footer.nextSibling,k.buttons={},k.buttons.auxiliary=k.footer.firstChild,k.buttons.primary=k.buttons.auxiliary.nextSibling,k.buttons.primary.innerHTML=wa.button,k.buttonTemplate=k.buttons.primary.firstChild,k.buttons.primary.removeChild(k.buttonTemplate);for(var l=0;l<a.__internal.buttons.length;l+=1){var m=a.__internal.buttons[l];ta.indexOf(m.key)<0&&ta.push(m.key),m.element=k.buttonTemplate.cloneNode(),m.element.innerHTML=m.text,"string"==typeof m.className&&""!==m.className&&b(m.element,m.className);for(var n in m.attrs)"className"!==n&&m.attrs.hasOwnProperty(n)&&m.element.setAttribute(n,m.attrs[n]);"auxiliary"===m.scope?k.buttons.auxiliary.appendChild(m.element):k.buttons.primary.appendChild(m.element)}a.elements=k,j.resetHandler=h(a,T),j.beginMoveHandler=h(a,X),j.beginResizeHandler=h(a,ba),j.bringToFrontHandler=h(a,x),j.modalClickHandler=h(a,N),j.buttonsClickHandler=h(a,P),j.commandsClickHandler=h(a,B),j.transitionInHandler=h(a,U),j.transitionOutHandler=h(a,V),a.set("title",void 0===c.options.title?s.defaults.glossary.title:c.options.title),a.set("modal",void 0===c.options.modal?s.defaults.modal:c.options.modal),a.set("basic",void 0===c.options.basic?s.defaults.basic:c.options.basic),a.set("frameless",void 0===c.options.frameless?s.defaults.frameless:c.options.frameless),a.set("movable",void 0===c.options.movable?s.defaults.movable:c.options.movable),a.set("resizable",void 0===c.options.resizable?s.defaults.resizable:c.options.resizable),a.set("autoReset",void 0===c.options.autoReset?s.defaults.autoReset:c.options.autoReset),a.set("closable",void 0===c.options.closable?s.defaults.closable:c.options.closable),a.set("closableByDimmer",void 0===c.options.closableByDimmer?s.defaults.closableByDimmer:c.options.closableByDimmer),a.set("maximizable",void 0===c.options.maximizable?s.defaults.maximizable:c.options.maximizable),a.set("startMaximized",void 0===c.options.startMaximized?s.defaults.startMaximized:c.options.startMaximized),a.set("pinnable",void 0===c.options.pinnable?s.defaults.pinnable:c.options.pinnable),a.set("pinned",void 0===c.options.pinned?s.defaults.pinned:c.options.pinned),a.set("transition",void 0===c.options.transition?s.defaults.transition:c.options.transition),a.set("padding",void 0===c.options.padding?s.defaults.padding:c.options.padding),a.set("overflow",void 0===c.options.overflow?s.defaults.overflow:c.options.overflow),"function"==typeof a.build&&a.build()}document.body.appendChild(a.elements.root)}function l(){ra=a.scrollX,sa=a.scrollY}function q(){a.scrollTo(ra,sa)}function r(){for(var a=0,d=0;d<m.length;d+=1){var e=m[d];(e.isModal()||e.isMaximized())&&(a+=1)}0===a?c(document.body,xa.noOverflow):a>0&&document.body.className.indexOf(xa.noOverflow)<0&&b(document.body,xa.noOverflow)}function t(a,d,e){"string"==typeof e&&c(a.elements.root,xa.prefix+e),b(a.elements.root,xa.prefix+d),ua=a.elements.root.offsetWidth}function u(a){a.get("modal")?(c(a.elements.root,xa.modeless),a.isOpen()&&(ka(a),J(a),r())):(b(a.elements.root,xa.modeless),a.isOpen()&&(ja(a),J(a),r()))}function v(a){a.get("basic")?b(a.elements.root,xa.basic):c(a.elements.root,xa.basic)}function w(a){a.get("frameless")?b(a.elements.root,xa.frameless):c(a.elements.root,xa.frameless)}function x(a,b){for(var c=m.indexOf(b),d=c+1;d<m.length;d+=1)if(m[d].isModal())return;return document.body.lastChild!==b.elements.root&&(document.body.appendChild(b.elements.root),m.splice(m.indexOf(b),1),m.push(b),S(b)),!1}function y(a,d,e,f){switch(d){case"title":a.setHeader(f);break;case"modal":u(a);break;case"basic":v(a);break;case"frameless":w(a);break;case"pinned":K(a);break;case"closable":M(a);break;case"maximizable":L(a);break;case"pinnable":G(a);break;case"movable":_(a);break;case"resizable":fa(a);break;case"transition":t(a,f,e);break;case"padding":f?c(a.elements.root,xa.noPadding):a.elements.root.className.indexOf(xa.noPadding)<0&&b(a.elements.root,xa.noPadding);break;case"overflow":f?c(a.elements.root,xa.noOverflow):a.elements.root.className.indexOf(xa.noOverflow)<0&&b(a.elements.root,xa.noOverflow);break;case"transition":t(a,f,e)}"function"==typeof a.hooks.onupdate&&a.hooks.onupdate.call(a,d,e,f)}function z(a,b,c,d,e){var f={op:void 0,items:[]};if("undefined"==typeof e&&"string"==typeof d)f.op="get",b.hasOwnProperty(d)?(f.found=!0,f.value=b[d]):(f.found=!1,f.value=void 0);else{var g;if(f.op="set","object"==typeof d){var h=d;for(var i in h)b.hasOwnProperty(i)?(b[i]!==h[i]&&(g=b[i],b[i]=h[i],c.call(a,i,g,h[i])),f.items.push({key:i,value:h[i],found:!0})):f.items.push({key:i,value:h[i],found:!1})}else{if("string"!=typeof d)throw new Error("args must be a string or object");b.hasOwnProperty(d)?(b[d]!==e&&(g=b[d],b[d]=e,c.call(a,d,g,e)),f.items.push({key:d,value:e,found:!0})):f.items.push({key:d,value:e,found:!1})}}return f}function A(a){var b;O(a,function(a){return b=a.invokeOnClose===!0}),!b&&a.isOpen()&&a.close()}function B(a,b){var c=a.srcElement||a.target;switch(c){case b.elements.commands.pin:b.isPinned()?D(b):C(b);break;case b.elements.commands.maximize:b.isMaximized()?F(b):E(b);break;case b.elements.commands.close:A(b)}return!1}function C(a){a.set("pinned",!0)}function D(a){a.set("pinned",!1)}function E(a){b(a.elements.root,xa.maximized),a.isOpen()&&r()}function F(a){c(a.elements.root,xa.maximized),a.isOpen()&&r()}function G(a){a.get("pinnable")?b(a.elements.root,xa.pinnable):c(a.elements.root,xa.pinnable)}function H(a){var b=f();a.elements.modal.style.marginTop=e()+"px",a.elements.modal.style.marginLeft=b+"px",a.elements.modal.style.marginRight=-b+"px"}function I(a){var b=parseInt(a.elements.modal.style.marginTop,10),c=parseInt(a.elements.modal.style.marginLeft,10);if(a.elements.modal.style.marginTop="",a.elements.modal.style.marginLeft="",a.elements.modal.style.marginRight="",a.isOpen()){var d=0,g=0;""!==a.elements.dialog.style.top&&(d=parseInt(a.elements.dialog.style.top,10)),a.elements.dialog.style.top=d+(b-e())+"px",""!==a.elements.dialog.style.left&&(g=parseInt(a.elements.dialog.style.left,10)),a.elements.dialog.style.left=g+(c-f())+"px"}}function J(a){a.get("modal")||a.get("pinned")?I(a):H(a)}function K(a){a.get("pinned")?(c(a.elements.root,xa.unpinned),a.isOpen()&&I(a)):(b(a.elements.root,xa.unpinned),a.isOpen()&&!a.isModal()&&H(a))}function L(a){a.get("maximizable")?b(a.elements.root,xa.maximizable):c(a.elements.root,xa.maximizable)}function M(a){a.get("closable")?(b(a.elements.root,xa.closable),pa(a)):(c(a.elements.root,xa.closable),qa(a))}function N(a,b){var c=a.srcElement||a.target;return ya||c!==b.elements.modal||b.get("closableByDimmer")!==!0||A(b),ya=!1,!1}function O(a,b){for(var c=0;c<a.__internal.buttons.length;c+=1){var d=a.__internal.buttons[c];if(!d.element.disabled&&b(d)){var e=i(c,d);"function"==typeof a.callback&&a.callback.apply(a,[e]),e.cancel===!1&&a.close();break}}}function P(a,b){var c=a.srcElement||a.target;O(b,function(a){return a.element===c&&(za=!0)})}function Q(a){if(za)return void(za=!1);var b=m[m.length-1],c=a.keyCode;return 0===b.__internal.buttons.length&&c===k.ESC&&b.get("closable")===!0?(A(b),!1):ta.indexOf(c)>-1?(O(b,function(a){return a.key===c}),!1):void 0}function R(a){var b=m[m.length-1],c=a.keyCode;if(c===k.LEFT||c===k.RIGHT){for(var d=b.__internal.buttons,e=0;e<d.length;e+=1)if(document.activeElement===d[e].element)switch(c){case k.LEFT:return void d[(e||d.length)-1].element.focus();case k.RIGHT:return void d[(e+1)%d.length].element.focus()}}else if(c<k.F12+1&&c>k.F1-1&&ta.indexOf(c)>-1)return a.preventDefault(),a.stopPropagation(),O(b,function(a){return a.key===c}),!1}function S(a,b){if(b)b.focus();else{var c=a.__internal.focus,d=c.element;switch(typeof c.element){case"number":a.__internal.buttons.length>c.element&&(d=a.get("basic")===!0?a.elements.reset[0]:a.__internal.buttons[c.element].element);break;case"string":d=a.elements.body.querySelector(c.element);break;case"function":d=c.element.call(a)}"undefined"!=typeof d&&null!==d||0!==a.__internal.buttons.length||(d=a.elements.reset[0]),d&&d.focus&&(d.focus(),c.select&&d.select&&d.select())}}function T(a,b){if(!b)for(var c=m.length-1;c>-1;c-=1)if(m[c].isModal()){b=m[c];break}if(b&&b.isModal()){var d,e=a.srcElement||a.target,f=e===b.elements.reset[1]||0===b.__internal.buttons.length&&e===document.body;f&&(b.get("maximizable")?d=b.elements.commands.maximize:b.get("closable")&&(d=b.elements.commands.close)),void 0===d&&("number"==typeof b.__internal.focus.element?e===b.elements.reset[0]?d=b.elements.buttons.auxiliary.firstChild||b.elements.buttons.primary.firstChild:f&&(d=b.elements.reset[0]):e===b.elements.reset[0]&&(d=b.elements.buttons.primary.lastChild||b.elements.buttons.auxiliary.lastChild)),S(b,d)}}function U(a,b){clearTimeout(b.__internal.timerIn),S(b),q(),za=!1,"function"==typeof b.get("onfocus")&&b.get("onfocus").call(b),o(b.elements.dialog,p.type,b.__internal.transitionInHandler),c(b.elements.root,xa.animationIn)}function V(a,b){clearTimeout(b.__internal.timerOut),o(b.elements.dialog,p.type,b.__internal.transitionOutHandler),$(b),ea(b),b.isMaximized()&&!b.get("startMaximized")&&F(b),s.defaults.maintainFocus&&b.__internal.activeElement&&(b.__internal.activeElement.focus(),b.__internal.activeElement=null)}function W(a,b){b.style.left=a[Da]-Ba+"px",b.style.top=a[Ea]-Ca+"px"}function X(a,c){if(null===Fa&&!c.isMaximized()&&c.get("movable")){var d;if("touchstart"===a.type?(a.preventDefault(),d=a.targetTouches[0],Da="clientX",Ea="clientY"):0===a.button&&(d=a),d){Aa=c,Ba=d[Da],Ca=d[Ea];var e=c.elements.dialog;return b(e,xa.capture),e.style.left&&(Ba-=parseInt(e.style.left,10)),e.style.top&&(Ca-=parseInt(e.style.top,10)),W(d,e),b(document.body,xa.noSelection),!1}}}function Y(a){if(Aa){var b;"touchmove"===a.type?(a.preventDefault(),b=a.targetTouches[0]):0===a.button&&(b=a),b&&W(b,Aa.elements.dialog)}}function Z(){if(Aa){var a=Aa.elements.dialog;Aa=null,c(document.body,xa.noSelection),c(a,xa.capture)}}function $(a){Aa=null;var b=a.elements.dialog;b.style.left=b.style.top=""}function _(a){a.get("movable")?(b(a.elements.root,xa.movable),a.isOpen()&&la(a)):($(a),c(a.elements.root,xa.movable),a.isOpen()&&ma(a))}function aa(a,b,c){var e=b,f=0,g=0;do f+=e.offsetLeft,g+=e.offsetTop;while(e=e.offsetParent);var h,i;c===!0?(h=a.pageX,i=a.pageY):(h=a.clientX,i=a.clientY);var j=d();if(j&&(h=document.body.offsetWidth-h,isNaN(Ga)||(f=document.body.offsetWidth-f-b.offsetWidth)),b.style.height=i-g+Ja+"px",b.style.width=h-f+Ja+"px",!isNaN(Ga)){var k=.5*Math.abs(b.offsetWidth-Ha);j&&(k*=-1),b.offsetWidth>Ha?b.style.left=Ga+k+"px":b.offsetWidth>=Ia&&(b.style.left=Ga-k+"px")}}function ba(a,c){if(!c.isMaximized()){var d;if("touchstart"===a.type?(a.preventDefault(),d=a.targetTouches[0]):0===a.button&&(d=a),d){Fa=c,Ja=c.elements.resizeHandle.offsetHeight/2;var e=c.elements.dialog;return b(e,xa.capture),Ga=parseInt(e.style.left,10),e.style.height=e.offsetHeight+"px",e.style.minHeight=c.elements.header.offsetHeight+c.elements.footer.offsetHeight+"px",e.style.width=(Ha=e.offsetWidth)+"px","none"!==e.style.maxWidth&&(e.style.minWidth=(Ia=e.offsetWidth)+"px"),e.style.maxWidth="none",b(document.body,xa.noSelection),!1}}}function ca(a){if(Fa){var b;"touchmove"===a.type?(a.preventDefault(),b=a.targetTouches[0]):0===a.button&&(b=a),b&&aa(b,Fa.elements.dialog,!Fa.get("modal")&&!Fa.get("pinned"))}}function da(){if(Fa){var a=Fa.elements.dialog;Fa=null,c(document.body,xa.noSelection),c(a,xa.capture),ya=!0}}function ea(a){Fa=null;var b=a.elements.dialog;"none"===b.style.maxWidth&&(b.style.maxWidth=b.style.minWidth=b.style.width=b.style.height=b.style.minHeight=b.style.left="",Ga=Number.Nan,Ha=Ia=Ja=0)}function fa(a){a.get("resizable")?(b(a.elements.root,xa.resizable),a.isOpen()&&na(a)):(ea(a),c(a.elements.root,xa.resizable),a.isOpen()&&oa(a))}function ga(){for(var a=0;a<m.length;a+=1){var b=m[a];b.get("autoReset")&&($(b),ea(b))}}function ha(b){1===m.length&&(n(a,"resize",ga),n(document.body,"keyup",Q),n(document.body,"keydown",R),n(document.body,"focus",T),n(document.documentElement,"mousemove",Y),n(document.documentElement,"touchmove",Y),n(document.documentElement,"mouseup",Z),n(document.documentElement,"touchend",Z),n(document.documentElement,"mousemove",ca),n(document.documentElement,"touchmove",ca),n(document.documentElement,"mouseup",da),n(document.documentElement,"touchend",da)),n(b.elements.commands.container,"click",b.__internal.commandsClickHandler),n(b.elements.footer,"click",b.__internal.buttonsClickHandler),n(b.elements.reset[0],"focus",b.__internal.resetHandler),n(b.elements.reset[1],"focus",b.__internal.resetHandler),za=!0,n(b.elements.dialog,p.type,b.__internal.transitionInHandler),b.get("modal")||ja(b),b.get("resizable")&&na(b),b.get("movable")&&la(b)}function ia(b){1===m.length&&(o(a,"resize",ga),o(document.body,"keyup",Q),o(document.body,"keydown",R),o(document.body,"focus",T),o(document.documentElement,"mousemove",Y),o(document.documentElement,"mouseup",Z),o(document.documentElement,"mousemove",ca),o(document.documentElement,"mouseup",da)),o(b.elements.commands.container,"click",b.__internal.commandsClickHandler),o(b.elements.footer,"click",b.__internal.buttonsClickHandler),o(b.elements.reset[0],"focus",b.__internal.resetHandler),o(b.elements.reset[1],"focus",b.__internal.resetHandler),n(b.elements.dialog,p.type,b.__internal.transitionOutHandler),b.get("modal")||ka(b),b.get("movable")&&ma(b),b.get("resizable")&&oa(b)}function ja(a){n(a.elements.dialog,"focus",a.__internal.bringToFrontHandler,!0)}function ka(a){o(a.elements.dialog,"focus",a.__internal.bringToFrontHandler,!0)}function la(a){n(a.elements.header,"mousedown",a.__internal.beginMoveHandler),n(a.elements.header,"touchstart",a.__internal.beginMoveHandler)}function ma(a){o(a.elements.header,"mousedown",a.__internal.beginMoveHandler),o(a.elements.header,"touchstart",a.__internal.beginMoveHandler)}function na(a){n(a.elements.resizeHandle,"mousedown",a.__internal.beginResizeHandler),n(a.elements.resizeHandle,"touchstart",a.__internal.beginResizeHandler)}function oa(a){o(a.elements.resizeHandle,"mousedown",a.__internal.beginResizeHandler),o(a.elements.resizeHandle,"touchstart",a.__internal.beginResizeHandler)}function pa(a){n(a.elements.modal,"click",a.__internal.modalClickHandler)}function qa(a){o(a.elements.modal,"click",a.__internal.modalClickHandler)}var ra,sa,ta=[],ua=null,va=a.navigator.userAgent.indexOf("Safari")>-1&&a.navigator.userAgent.indexOf("Chrome")<0,wa={dimmer:'<div class="ajs-dimmer"></div>',modal:'<div class="ajs-modal" tabindex="0"></div>',dialog:'<div class="ajs-dialog" tabindex="0"></div>',reset:'<button class="ajs-reset"></button>',commands:'<div class="ajs-commands"><button class="ajs-pin"></button><button class="ajs-maximize"></button><button class="ajs-close"></button></div>',header:'<div class="ajs-header"></div>',body:'<div class="ajs-body"></div>',content:'<div class="ajs-content"></div>',footer:'<div class="ajs-footer"></div>',buttons:{primary:'<div class="ajs-primary ajs-buttons"></div>',auxiliary:'<div class="ajs-auxiliary ajs-buttons"></div>'},button:'<button class="ajs-button"></button>',resizeHandle:'<div class="ajs-handle"></div>'},xa={base:"alertify",prefix:"ajs-",hidden:"ajs-hidden",noSelection:"ajs-no-selection",noOverflow:"ajs-no-overflow",noPadding:"ajs-no-padding",modeless:"ajs-modeless",movable:"ajs-movable",resizable:"ajs-resizable",capture:"ajs-capture",fixed:"ajs-fixed",closable:"ajs-closable",maximizable:"ajs-maximizable",maximize:"ajs-maximize",restore:"ajs-restore",pinnable:"ajs-pinnable",unpinned:"ajs-unpinned",pin:"ajs-pin",maximized:"ajs-maximized",animationIn:"ajs-in",animationOut:"ajs-out",shake:"ajs-shake",basic:"ajs-basic",frameless:"ajs-frameless"},ya=!1,za=!1,Aa=null,Ba=0,Ca=0,Da="pageX",Ea="pageY",Fa=null,Ga=Number.Nan,Ha=0,Ia=0,Ja=0;return{__init:j,isOpen:function(){return this.__internal.isOpen},isModal:function(){return this.elements.root.className.indexOf(xa.modeless)<0},isMaximized:function(){return this.elements.root.className.indexOf(xa.maximized)>-1},isPinned:function(){return this.elements.root.className.indexOf(xa.unpinned)<0},maximize:function(){return this.isMaximized()||E(this),this},restore:function(){return this.isMaximized()&&F(this),this},pin:function(){return this.isPinned()||C(this),this},unpin:function(){return this.isPinned()&&D(this),this},moveTo:function(a,b){if(!isNaN(a)&&!isNaN(b)){var c=this.elements.dialog,e=c,f=0,g=0;c.style.left&&(f-=parseInt(c.style.left,10)),c.style.top&&(g-=parseInt(c.style.top,10));do f+=e.offsetLeft,g+=e.offsetTop;while(e=e.offsetParent);var h=a-f,i=b-g;d()&&(h*=-1),c.style.left=h+"px",c.style.top=i+"px"}return this},resizeTo:function(a,b){var c=parseFloat(a),d=parseFloat(b),e=/(\d*\.\d+|\d+)%/;if(!isNaN(c)&&!isNaN(d)&&this.get("resizable")===!0){(""+a).match(e)&&(c=c/100*document.documentElement.clientWidth),(""+b).match(e)&&(d=d/100*document.documentElement.clientHeight);var f=this.elements.dialog;"none"!==f.style.maxWidth&&(f.style.minWidth=(Ia=f.offsetWidth)+"px"),f.style.maxWidth="none",f.style.minHeight=this.elements.header.offsetHeight+this.elements.footer.offsetHeight+"px",f.style.width=c+"px",f.style.height=d+"px"}return this},setting:function(a,b){var c=this,d=z(this,this.__internal.options,function(a,b,d){y(c,a,b,d)},a,b);if("get"===d.op)return d.found?d.value:"undefined"!=typeof this.settings?z(this,this.settings,this.settingUpdated||function(){},a,b).value:void 0;if("set"===d.op){if(d.items.length>0)for(var e=this.settingUpdated||function(){},f=0;f<d.items.length;f+=1){var g=d.items[f];g.found||"undefined"==typeof this.settings||z(this,this.settings,e,g.key,g.value)}return this}},set:function(a,b){return this.setting(a,b),this},get:function(a){return this.setting(a)},setHeader:function(b){return"string"==typeof b?(g(this.elements.header),this.elements.header.innerHTML=b):b instanceof a.HTMLElement&&this.elements.header.firstChild!==b&&(g(this.elements.header),this.elements.header.appendChild(b)),this},setContent:function(b){return"string"==typeof b?(g(this.elements.content),this.elements.content.innerHTML=b):b instanceof a.HTMLElement&&this.elements.content.firstChild!==b&&(g(this.elements.content),this.elements.content.appendChild(b)),this},showModal:function(a){return this.show(!0,a)},show:function(a,d){if(j(this),this.__internal.isOpen){$(this),ea(this),b(this.elements.dialog,xa.shake);var e=this;setTimeout(function(){c(e.elements.dialog,xa.shake)},200)}else{if(this.__internal.isOpen=!0,m.push(this),s.defaults.maintainFocus&&(this.__internal.activeElement=document.activeElement),"function"==typeof this.prepare&&this.prepare(),ha(this),void 0!==a&&this.set("modal",a),l(),r(),"string"==typeof d&&""!==d&&(this.__internal.className=d,b(this.elements.root,d)),this.get("startMaximized")?this.maximize():this.isMaximized()&&F(this),J(this),c(this.elements.root,xa.animationOut),b(this.elements.root,xa.animationIn),clearTimeout(this.__internal.timerIn),this.__internal.timerIn=setTimeout(this.__internal.transitionInHandler,p.supported?1e3:100),va){var f=this.elements.root;f.style.display="none",setTimeout(function(){f.style.display="block"},0)}ua=this.elements.root.offsetWidth,c(this.elements.root,xa.hidden),"function"==typeof this.hooks.onshow&&this.hooks.onshow.call(this),"function"==typeof this.get("onshow")&&this.get("onshow").call(this)}return this},close:function(){return this.__internal.isOpen&&(ia(this),c(this.elements.root,xa.animationIn),b(this.elements.root,xa.animationOut),clearTimeout(this.__internal.timerOut),this.__internal.timerOut=setTimeout(this.__internal.transitionOutHandler,p.supported?1e3:100),b(this.elements.root,xa.hidden),ua=this.elements.modal.offsetWidth,"undefined"!=typeof this.__internal.className&&""!==this.__internal.className&&c(this.elements.root,this.__internal.className),"function"==typeof this.hooks.onclose&&this.hooks.onclose.call(this),"function"==typeof this.get("onclose")&&this.get("onclose").call(this),m.splice(m.indexOf(this),1),this.__internal.isOpen=!1,r()),this},closeOthers:function(){return s.closeAll(this),this}}}(),r=function(){function d(a){a.__internal||(a.__internal={position:s.defaults.notifier.position,delay:s.defaults.notifier.delay},l=document.createElement("DIV"),i(a)),l.parentNode!==document.body&&document.body.appendChild(l)}function e(a){a.__internal.pushed=!0,m.push(a)}function f(a){m.splice(m.indexOf(a),1),a.__internal.pushed=!1}function i(a){switch(l.className=q.base,a.__internal.position){case"top-right":b(l,q.top+" "+q.right);break;case"top-left":b(l,q.top+" "+q.left);break;case"bottom-left":b(l,q.bottom+" "+q.left);break;default:case"bottom-right":b(l,q.bottom+" "+q.right)}}function j(d,i){function j(a,b){b.dismiss(!0)}function m(a,b){o(b.element,p.type,m),l.removeChild(b.element)}function s(a){return a.__internal||(a.__internal={pushed:!1,delay:void 0,timer:void 0,clickHandler:void 0,transitionEndHandler:void 0,transitionTimeout:void 0},a.__internal.clickHandler=h(a,j),a.__internal.transitionEndHandler=h(a,m)),a}function t(a){clearTimeout(a.__internal.timer),clearTimeout(a.__internal.transitionTimeout)}return s({element:d,push:function(a,c){if(!this.__internal.pushed){e(this),t(this);var d,f;switch(arguments.length){case 0:f=this.__internal.delay;break;case 1:"number"==typeof a?f=a:(d=a,f=this.__internal.delay);break;case 2:d=a,f=c}return"undefined"!=typeof d&&this.setContent(d),r.__internal.position.indexOf("top")<0?l.appendChild(this.element):l.insertBefore(this.element,l.firstChild),k=this.element.offsetWidth,b(this.element,q.visible),n(this.element,"click",this.__internal.clickHandler),this.delay(f)}return this},ondismiss:function(){},callback:i,dismiss:function(a){return this.__internal.pushed&&(t(this),("function"!=typeof this.ondismiss||this.ondismiss.call(this)!==!1)&&(o(this.element,"click",this.__internal.clickHandler),"undefined"!=typeof this.element&&this.element.parentNode===l&&(this.__internal.transitionTimeout=setTimeout(this.__internal.transitionEndHandler,p.supported?1e3:100),c(this.element,q.visible),"function"==typeof this.callback&&this.callback.call(this,a)),f(this))),this},delay:function(a){if(t(this),this.__internal.delay="undefined"==typeof a||isNaN(+a)?r.__internal.delay:+a,this.__internal.delay>0){var b=this;this.__internal.timer=setTimeout(function(){b.dismiss()},1e3*this.__internal.delay)}return this},setContent:function(b){return"string"==typeof b?(g(this.element),this.element.innerHTML=b):b instanceof a.HTMLElement&&this.element.firstChild!==b&&(g(this.element),this.element.appendChild(b)),this},dismissOthers:function(){return r.dismissAll(this),this}})}var k,l,m=[],q={base:"alertify-notifier",message:"ajs-message",top:"ajs-top",right:"ajs-right",bottom:"ajs-bottom",left:"ajs-left",visible:"ajs-visible",hidden:"ajs-hidden"};return{setting:function(a,b){if(d(this),"undefined"==typeof b)return this.__internal[a];switch(a){case"position":this.__internal.position=b,i(this);break;case"delay":this.__internal.delay=b}return this},set:function(a,b){return this.setting(a,b),this},get:function(a){return this.setting(a)},create:function(a,b){d(this);var c=document.createElement("div");return c.className=q.message+("string"==typeof a&&""!==a?" ajs-"+a:""),j(c,b)},dismissAll:function(a){for(var b=m.slice(0),c=0;c<b.length;c+=1){var d=b[c];(void 0===a||a!==d)&&d.dismiss()}}}}(),s=new j;s.dialog("alert",function(){return{main:function(a,b,c){var d,e,f;switch(arguments.length){case 1:e=a;break;case 2:"function"==typeof b?(e=a,f=b):(d=a,e=b);break;case 3:d=a,e=b,f=c}return this.set("title",d),this.set("message",e),this.set("onok",f),this},setup:function(){return{buttons:[{text:s.defaults.glossary.ok,key:k.ESC,invokeOnClose:!0,className:s.defaults.theme.ok}],focus:{element:0,select:!1},options:{maximizable:!1,resizable:!1}}},build:function(){},prepare:function(){},setMessage:function(a){this.setContent(a)},settings:{message:void 0,onok:void 0,label:void 0},settingUpdated:function(a,b,c){switch(a){case"message":this.setMessage(c);break;case"label":this.__internal.buttons[0].element&&(this.__internal.buttons[0].element.innerHTML=c)}},callback:function(a){if("function"==typeof this.get("onok")){var b=this.get("onok").call(this,a);"undefined"!=typeof b&&(a.cancel=!b)}}}}),s.dialog("confirm",function(){function a(a){null!==c.timer&&(clearInterval(c.timer),c.timer=null,a.__internal.buttons[c.index].element.innerHTML=c.text)}function b(b,d,e){a(b),c.duration=e,c.index=d,c.text=b.__internal.buttons[d].element.innerHTML,c.timer=setInterval(h(b,c.task),1e3),c.task(null,b)}var c={timer:null,index:null,text:null,duration:null,task:function(b,d){if(d.isOpen()){if(d.__internal.buttons[c.index].element.innerHTML=c.text+" (&#8207;"+c.duration+"&#8207;) ",c.duration-=1,-1===c.duration){a(d);var e=d.__internal.buttons[c.index],f=i(c.index,e);"function"==typeof d.callback&&d.callback.apply(d,[f]),f.close!==!1&&d.close()}}else a(d)}};return{main:function(a,b,c,d){var e,f,g,h;switch(arguments.length){case 1:f=a;break;case 2:f=a,g=b;break;case 3:f=a,g=b,h=c;break;case 4:e=a,f=b,g=c,h=d}return this.set("title",e),this.set("message",f),this.set("onok",g),this.set("oncancel",h),this},setup:function(){return{buttons:[{text:s.defaults.glossary.ok,key:k.ENTER,className:s.defaults.theme.ok},{text:s.defaults.glossary.cancel,key:k.ESC,invokeOnClose:!0,className:s.defaults.theme.cancel}],focus:{element:0,select:!1},options:{maximizable:!1,resizable:!1}}},build:function(){},prepare:function(){},setMessage:function(a){this.setContent(a)},settings:{message:null,labels:null,onok:null,oncancel:null,defaultFocus:null,reverseButtons:null},settingUpdated:function(a,b,c){switch(a){case"message":this.setMessage(c);break;case"labels":"ok"in c&&this.__internal.buttons[0].element&&(this.__internal.buttons[0].text=c.ok,this.__internal.buttons[0].element.innerHTML=c.ok),"cancel"in c&&this.__internal.buttons[1].element&&(this.__internal.buttons[1].text=c.cancel,this.__internal.buttons[1].element.innerHTML=c.cancel);break;case"reverseButtons":this.elements.buttons.primary.appendChild(c===!0?this.__internal.buttons[0].element:this.__internal.buttons[1].element);break;case"defaultFocus":this.__internal.focus.element="ok"===c?0:1}},callback:function(b){a(this);var c;switch(b.index){case 0:"function"==typeof this.get("onok")&&(c=this.get("onok").call(this,b),"undefined"!=typeof c&&(b.cancel=!c));break;case 1:"function"==typeof this.get("oncancel")&&(c=this.get("oncancel").call(this,b),"undefined"!=typeof c&&(b.cancel=!c))}},autoOk:function(a){return b(this,0,a),this},autoCancel:function(a){return b(this,1,a),this}}}),s.dialog("prompt",function(){var b=document.createElement("INPUT"),c=document.createElement("P");
+
+return{main:function(a,b,c,d,e){var f,g,h,i,j;switch(arguments.length){case 1:g=a;break;case 2:g=a,h=b;break;case 3:g=a,h=b,i=c;break;case 4:g=a,h=b,i=c,j=d;break;case 5:f=a,g=b,h=c,i=d,j=e}return this.set("title",f),this.set("message",g),this.set("value",h),this.set("onok",i),this.set("oncancel",j),this},setup:function(){return{buttons:[{text:s.defaults.glossary.ok,key:k.ENTER,className:s.defaults.theme.ok},{text:s.defaults.glossary.cancel,key:k.ESC,invokeOnClose:!0,className:s.defaults.theme.cancel}],focus:{element:b,select:!0},options:{maximizable:!1,resizable:!1}}},build:function(){b.className=s.defaults.theme.input,b.setAttribute("type","text"),b.value=this.get("value"),this.elements.content.appendChild(c),this.elements.content.appendChild(b)},prepare:function(){},setMessage:function(b){"string"==typeof b?(g(c),c.innerHTML=b):b instanceof a.HTMLElement&&c.firstChild!==b&&(g(c),c.appendChild(b))},settings:{message:void 0,labels:void 0,onok:void 0,oncancel:void 0,value:"",type:"text",reverseButtons:void 0},settingUpdated:function(a,c,d){switch(a){case"message":this.setMessage(d);break;case"value":b.value=d;break;case"type":switch(d){case"text":case"color":case"date":case"datetime-local":case"email":case"month":case"number":case"password":case"search":case"tel":case"time":case"week":b.type=d;break;default:b.type="text"}break;case"labels":d.ok&&this.__internal.buttons[0].element&&(this.__internal.buttons[0].element.innerHTML=d.ok),d.cancel&&this.__internal.buttons[1].element&&(this.__internal.buttons[1].element.innerHTML=d.cancel);break;case"reverseButtons":this.elements.buttons.primary.appendChild(d===!0?this.__internal.buttons[0].element:this.__internal.buttons[1].element)}},callback:function(a){var c;switch(a.index){case 0:this.settings.value=b.value,"function"==typeof this.get("onok")&&(c=this.get("onok").call(this,a,this.settings.value),"undefined"!=typeof c&&(a.cancel=!c));break;case 1:"function"==typeof this.get("oncancel")&&(c=this.get("oncancel").call(this,a),"undefined"!=typeof c&&(a.cancel=!c))}}}}),"object"==typeof module&&"object"==typeof module.exports?module.exports=s:"function"==typeof define&&define.amd?define([],function(){return s}):a.alertify||(a.alertify=s)}("undefined"!=typeof window?window:this);
 /*
  AngularJS v1.2.28
  (c) 2010-2014 Google, Inc. http://angularjs.org
@@ -4452,6 +4463,545 @@ function(){return{}}});n.directive("ngView",x);n.directive("ngView",z);x.$inject
 ["$cookies",function(e){return{get:function(b){return(b=e[b])?f.fromJson(b):b},put:function(b,c){e[b]=f.toJson(c)},remove:function(b){delete e[b]}}}])})(window,window.angular);
 //# sourceMappingURL=angular-cookies.min.js.map
 
+/**
+ * angular-drag-and-drop-lists v1.3.0
+ *
+ * Copyright (c) 2014 Marcel Juenemann mail@marcel-juenemann.de
+ * Copyright (c) 2014-2015 Google Inc.
+ * https://github.com/marceljuenemann/angular-drag-and-drop-lists
+ *
+ * License: MIT
+ */
+angular.module('dndLists', [])
+
+  /**
+   * Use the dnd-draggable attribute to make your element draggable
+   *
+   * Attributes:
+   * - dnd-draggable      Required attribute. The value has to be an object that represents the data
+   *                      of the element. In case of a drag and drop operation the object will be
+   *                      serialized and unserialized on the receiving end.
+   * - dnd-selected       Callback that is invoked when the element was clicked but not dragged.
+   *                      The original click event will be provided in the local event variable.
+   * - dnd-effect-allowed Use this attribute to limit the operations that can be performed. Options:
+   *                      - "move": The drag operation will move the element. This is the default.
+   *                      - "copy": The drag operation will copy the element. Shows a copy cursor.
+   *                      - "copyMove": The user can choose between copy and move by pressing the
+   *                        ctrl or shift key. *Not supported in IE:* In Internet Explorer this
+   *                        option will be the same as "copy". *Not fully supported in Chrome on
+   *                        Windows:* In the Windows version of Chrome the cursor will always be the
+   *                        move cursor. However, when the user drops an element and has the ctrl
+   *                        key pressed, we will perform a copy anyways.
+   *                      - HTML5 also specifies the "link" option, but this library does not
+   *                        actively support it yet, so use it at your own risk.
+   * - dnd-moved          Callback that is invoked when the element was moved. Usually you will
+   *                      remove your element from the original list in this callback, since the
+   *                      directive is not doing that for you automatically. The original dragend
+   *                      event will be provided in the local event variable.
+   * - dnd-canceled       Callback that is invoked if the element was dragged, but the operation was
+   *                      canceled and the element was not dropped. The original dragend event will
+   *                      be provided in the local event variable.
+   * - dnd-copied         Same as dnd-moved, just that it is called when the element was copied
+   *                      instead of moved. The original dragend event will be provided in the local
+   *                      event variable.
+   * - dnd-dragstart      Callback that is invoked when the element was dragged. The original
+   *                      dragstart event will be provided in the local event variable.
+   * - dnd-dragend        Callback that is invoked when the drag operation ended. Available local
+   *                      variables are event and dropEffect.
+   * - dnd-type           Use this attribute if you have different kinds of items in your
+   *                      application and you want to limit which items can be dropped into which
+   *                      lists. Combine with dnd-allowed-types on the dnd-list(s). This attribute
+   *                      should evaluate to a string, although this restriction is not enforced.
+   * - dnd-disable-if     You can use this attribute to dynamically disable the draggability of the
+   *                      element. This is useful if you have certain list items that you don't want
+   *                      to be draggable, or if you want to disable drag & drop completely without
+   *                      having two different code branches (e.g. only allow for admins).
+   *                      **Note**: If your element is not draggable, the user is probably able to
+   *                      select text or images inside of it. Since a selection is always draggable,
+   *                      this breaks your UI. You most likely want to disable user selection via
+   *                      CSS (see user-select).
+   *
+   * CSS classes:
+   * - dndDragging        This class will be added to the element while the element is being
+   *                      dragged. It will affect both the element you see while dragging and the
+   *                      source element that stays at it's position. Do not try to hide the source
+   *                      element with this class, because that will abort the drag operation.
+   * - dndDraggingSource  This class will be added to the element after the drag operation was
+   *                      started, meaning it only affects the original element that is still at
+   *                      it's source position, and not the "element" that the user is dragging with
+   *                      his mouse pointer.
+   */
+  .directive('dndDraggable', ['$parse', '$timeout', 'dndDropEffectWorkaround', 'dndDragTypeWorkaround',
+                      function($parse,   $timeout,   dndDropEffectWorkaround,   dndDragTypeWorkaround) {
+    return function(scope, element, attr) {
+      // Set the HTML5 draggable attribute on the element
+      element.attr("draggable", "true");
+
+      // If the dnd-disable-if attribute is set, we have to watch that
+      if (attr.dndDisableIf) {
+        scope.$watch(attr.dndDisableIf, function(disabled) {
+          element.attr("draggable", !disabled);
+        });
+      }
+
+      /**
+       * When the drag operation is started we have to prepare the dataTransfer object,
+       * which is the primary way we communicate with the target element
+       */
+      element.on('dragstart', function(event) {
+        event = event.originalEvent || event;
+
+        // Serialize the data associated with this element. IE only supports the Text drag type
+        event.dataTransfer.setData("Text", angular.toJson(scope.$eval(attr.dndDraggable)));
+
+        // Only allow actions specified in dnd-effect-allowed attribute
+        event.dataTransfer.effectAllowed = attr.dndEffectAllowed || "move";
+
+        // Add CSS classes. See documentation above
+        element.addClass("dndDragging");
+        $timeout(function() { element.addClass("dndDraggingSource"); }, 0);
+
+        // Workarounds for stupid browsers, see description below
+        dndDropEffectWorkaround.dropEffect = "none";
+        dndDragTypeWorkaround.isDragging = true;
+
+        // Save type of item in global state. Usually, this would go into the dataTransfer
+        // typename, but we have to use "Text" there to support IE
+        dndDragTypeWorkaround.dragType = attr.dndType ? scope.$eval(attr.dndType) : undefined;
+
+        // Invoke callback
+        $parse(attr.dndDragstart)(scope, {event: event});
+
+        event.stopPropagation();
+      });
+
+      /**
+       * The dragend event is triggered when the element was dropped or when the drag
+       * operation was aborted (e.g. hit escape button). Depending on the executed action
+       * we will invoke the callbacks specified with the dnd-moved or dnd-copied attribute.
+       */
+      element.on('dragend', function(event) {
+        event = event.originalEvent || event;
+
+        // Invoke callbacks. Usually we would use event.dataTransfer.dropEffect to determine
+        // the used effect, but Chrome has not implemented that field correctly. On Windows
+        // it always sets it to 'none', while Chrome on Linux sometimes sets it to something
+        // else when it's supposed to send 'none' (drag operation aborted).
+        var dropEffect = dndDropEffectWorkaround.dropEffect;
+        scope.$apply(function() {
+          switch (dropEffect) {
+            case "move":
+              $parse(attr.dndMoved)(scope, {event: event});
+              break;
+            case "copy":
+              $parse(attr.dndCopied)(scope, {event: event});
+              break;
+            case "none":
+              $parse(attr.dndCanceled)(scope, {event: event});
+              break;
+          }
+          $parse(attr.dndDragend)(scope, {event: event, dropEffect: dropEffect});
+        });
+
+        // Clean up
+        element.removeClass("dndDragging");
+        $timeout(function() { element.removeClass("dndDraggingSource"); }, 0);
+        dndDragTypeWorkaround.isDragging = false;
+        event.stopPropagation();
+      });
+
+      /**
+       * When the element is clicked we invoke the callback function
+       * specified with the dnd-selected attribute.
+       */
+      element.on('click', function(event) {
+        if (!attr.dndSelected) return;
+
+        event = event.originalEvent || event;
+        scope.$apply(function() {
+          $parse(attr.dndSelected)(scope, {event: event});
+        });
+
+        // Prevent triggering dndSelected in parant elements.
+        event.stopPropagation();
+      });
+
+      /**
+       * Workaround to make element draggable in IE9
+       */
+      element.on('selectstart', function() {
+        if (this.dragDrop) this.dragDrop();
+      });
+    };
+  }])
+
+  /**
+   * Use the dnd-list attribute to make your list element a dropzone. Usually you will add a single
+   * li element as child with the ng-repeat directive. If you don't do that, we will not be able to
+   * position the dropped element correctly. If you want your list to be sortable, also add the
+   * dnd-draggable directive to your li element(s). Both the dnd-list and it's direct children must
+   * have position: relative CSS style, otherwise the positioning algorithm will not be able to
+   * determine the correct placeholder position in all browsers.
+   *
+   * Attributes:
+   * - dnd-list             Required attribute. The value has to be the array in which the data of
+   *                        the dropped element should be inserted.
+   * - dnd-allowed-types    Optional array of allowed item types. When used, only items that had a
+   *                        matching dnd-type attribute will be dropable.
+   * - dnd-disable-if       Optional boolean expresssion. When it evaluates to true, no dropping
+   *                        into the list is possible. Note that this also disables rearranging
+   *                        items inside the list.
+   * - dnd-horizontal-list  Optional boolean expresssion. When it evaluates to true, the positioning
+   *                        algorithm will use the left and right halfs of the list items instead of
+   *                        the upper and lower halfs.
+   * - dnd-dragover         Optional expression that is invoked when an element is dragged over the
+   *                        list. If the expression is set, but does not return true, the element is
+   *                        not allowed to be dropped. The following variables will be available:
+   *                        - event: The original dragover event sent by the browser.
+   *                        - index: The position in the list at which the element would be dropped.
+   *                        - type: The dnd-type set on the dnd-draggable, or undefined if unset.
+   * - dnd-drop             Optional expression that is invoked when an element is dropped over the
+   *                        list. If the expression is set, it must return the object that will be
+   *                        inserted into the list. If it returns false, the drop will be aborted
+   *                        and the event is propagated. The following variables will be available:
+   *                        - event: The original drop event sent by the browser.
+   *                        - index: The position in the list at which the element would be dropped.
+   *                        - item: The transferred object.
+   *                        - type: The dnd-type set on the dnd-draggable, or undefined if unset.
+   * - dnd-inserted         Optional expression that is invoked after a drop if the element was
+   *                        actually inserted into the list. The same local variables as for
+   *                        dnd-drop will be available. Note that for reorderings inside the same
+   *                        list the old element will still be in the list due to the fact that
+   *                        dnd-moved was not called yet.
+   * - dnd-external-sources Optional boolean expression. When it evaluates to true, the list accepts
+   *                        drops from sources outside of the current browser tab. This allows to
+   *                        drag and drop accross different browser tabs. Note that this will allow
+   *                        to drop arbitrary text into the list, thus it is highly recommended to
+   *                        implement the dnd-drop callback to check the incoming element for
+   *                        sanity. Furthermore, the dnd-type of external sources can not be
+   *                        determined, therefore do not rely on restrictions of dnd-allowed-type.
+   *
+   * CSS classes:
+   * - dndPlaceholder       When an element is dragged over the list, a new placeholder child
+   *                        element will be added. This element is of type li and has the class
+   *                        dndPlaceholder set. Alternatively, you can define your own placeholder
+   *                        by creating a child element with dndPlaceholder class.
+   * - dndDragover          Will be added to the list while an element is dragged over the list.
+   */
+  .directive('dndList', ['$parse', '$timeout', 'dndDropEffectWorkaround', 'dndDragTypeWorkaround',
+                 function($parse,   $timeout,   dndDropEffectWorkaround,   dndDragTypeWorkaround) {
+    return function(scope, element, attr) {
+      // While an element is dragged over the list, this placeholder element is inserted
+      // at the location where the element would be inserted after dropping
+      var placeholder = getPlaceholderElement();
+      var placeholderNode = placeholder[0];
+      var listNode = element[0];
+      placeholder.remove();
+
+      var horizontal = attr.dndHorizontalList && scope.$eval(attr.dndHorizontalList);
+      var externalSources = attr.dndExternalSources && scope.$eval(attr.dndExternalSources);
+
+      /**
+       * The dragover event is triggered "every few hundred milliseconds" while an element
+       * is being dragged over our list, or over an child element.
+       */
+      element.on('dragover', function(event) {
+        event = event.originalEvent || event;
+
+        if (!isDropAllowed(event)) return true;
+
+        // First of all, make sure that the placeholder is shown
+        // This is especially important if the list is empty
+        if (placeholderNode.parentNode != listNode) {
+          element.append(placeholder);
+        }
+
+        if (event.target !== listNode) {
+          // Try to find the node direct directly below the list node.
+          var listItemNode = event.target;
+          while (listItemNode.parentNode !== listNode && listItemNode.parentNode) {
+            listItemNode = listItemNode.parentNode;
+          }
+
+          if (listItemNode.parentNode === listNode && listItemNode !== placeholderNode) {
+            // If the mouse pointer is in the upper half of the child element,
+            // we place it before the child element, otherwise below it.
+            if (isMouseInFirstHalf(event, listItemNode)) {
+              listNode.insertBefore(placeholderNode, listItemNode);
+            } else {
+              listNode.insertBefore(placeholderNode, listItemNode.nextSibling);
+            }
+          }
+        } else {
+          // This branch is reached when we are dragging directly over the list element.
+          // Usually we wouldn't need to do anything here, but the IE does not fire it's
+          // events for the child element, only for the list directly. Therefore we repeat
+          // the positioning algorithm for IE here.
+          if (isMouseInFirstHalf(event, placeholderNode, true)) {
+            // Check if we should move the placeholder element one spot towards the top.
+            // Note that display none elements will have offsetTop and offsetHeight set to
+            // zero, therefore we need a special check for them.
+            while (placeholderNode.previousElementSibling
+                 && (isMouseInFirstHalf(event, placeholderNode.previousElementSibling, true)
+                 || placeholderNode.previousElementSibling.offsetHeight === 0)) {
+              listNode.insertBefore(placeholderNode, placeholderNode.previousElementSibling);
+            }
+          } else {
+            // Check if we should move the placeholder element one spot towards the bottom
+            while (placeholderNode.nextElementSibling &&
+                 !isMouseInFirstHalf(event, placeholderNode.nextElementSibling, true)) {
+              listNode.insertBefore(placeholderNode,
+                  placeholderNode.nextElementSibling.nextElementSibling);
+            }
+          }
+        }
+
+        // At this point we invoke the callback, which still can disallow the drop.
+        // We can't do this earlier because we want to pass the index of the placeholder.
+        if (attr.dndDragover && !invokeCallback(attr.dndDragover, event, getPlaceholderIndex())) {
+          return stopDragover();
+        }
+
+        element.addClass("dndDragover");
+        event.preventDefault();
+        event.stopPropagation();
+        return false;
+      });
+
+      /**
+       * When the element is dropped, we use the position of the placeholder element as the
+       * position where we insert the transferred data. This assumes that the list has exactly
+       * one child element per array element.
+       */
+      element.on('drop', function(event) {
+        event = event.originalEvent || event;
+
+        if (!isDropAllowed(event)) return true;
+
+        // The default behavior in Firefox is to interpret the dropped element as URL and
+        // forward to it. We want to prevent that even if our drop is aborted.
+        event.preventDefault();
+
+        // Unserialize the data that was serialized in dragstart. According to the HTML5 specs,
+        // the "Text" drag type will be converted to text/plain, but IE does not do that.
+        var data = event.dataTransfer.getData("Text") || event.dataTransfer.getData("text/plain");
+        var transferredObject;
+        try {
+          transferredObject = JSON.parse(data);
+        } catch(e) {
+          return stopDragover();
+        }
+
+        // Invoke the callback, which can transform the transferredObject and even abort the drop.
+        var index = getPlaceholderIndex();
+        if (attr.dndDrop) {
+          transferredObject = invokeCallback(attr.dndDrop, event, index, transferredObject);
+          if (!transferredObject) {
+            return stopDragover();
+          }
+        }
+
+        // Retrieve the JSON array and insert the transferred object into it.
+        var targetArray = scope.$eval(attr.dndList);
+        scope.$apply(function() {
+          targetArray.splice(index, 0, transferredObject);
+        });
+        invokeCallback(attr.dndInserted, event, index, transferredObject);
+
+        // In Chrome on Windows the dropEffect will always be none...
+        // We have to determine the actual effect manually from the allowed effects
+        if (event.dataTransfer.dropEffect === "none") {
+          if (event.dataTransfer.effectAllowed === "copy" ||
+              event.dataTransfer.effectAllowed === "move") {
+            dndDropEffectWorkaround.dropEffect = event.dataTransfer.effectAllowed;
+          } else {
+            dndDropEffectWorkaround.dropEffect = event.ctrlKey ? "copy" : "move";
+          }
+        } else {
+          dndDropEffectWorkaround.dropEffect = event.dataTransfer.dropEffect;
+        }
+
+        // Clean up
+        stopDragover();
+        event.stopPropagation();
+        return false;
+      });
+
+      /**
+       * We have to remove the placeholder when the element is no longer dragged over our list. The
+       * problem is that the dragleave event is not only fired when the element leaves our list,
+       * but also when it leaves a child element -- so practically it's fired all the time. As a
+       * workaround we wait a few milliseconds and then check if the dndDragover class was added
+       * again. If it is there, dragover must have been called in the meantime, i.e. the element
+       * is still dragging over the list. If you know a better way of doing this, please tell me!
+       */
+      element.on('dragleave', function(event) {
+        event = event.originalEvent || event;
+
+        element.removeClass("dndDragover");
+        $timeout(function() {
+          if (!element.hasClass("dndDragover")) {
+            placeholder.remove();
+          }
+        }, 100);
+      });
+
+      /**
+       * Checks whether the mouse pointer is in the first half of the given target element.
+       *
+       * In Chrome we can just use offsetY, but in Firefox we have to use layerY, which only
+       * works if the child element has position relative. In IE the events are only triggered
+       * on the listNode instead of the listNodeItem, therefore the mouse positions are
+       * relative to the parent element of targetNode.
+       */
+      function isMouseInFirstHalf(event, targetNode, relativeToParent) {
+        var mousePointer = horizontal ? (event.offsetX || event.layerX)
+                                      : (event.offsetY || event.layerY);
+        var targetSize = horizontal ? targetNode.offsetWidth : targetNode.offsetHeight;
+        var targetPosition = horizontal ? targetNode.offsetLeft : targetNode.offsetTop;
+        targetPosition = relativeToParent ? targetPosition : 0;
+        return mousePointer < targetPosition + targetSize / 2;
+      }
+
+      /**
+       * Tries to find a child element that has the dndPlaceholder class set. If none was found, a
+       * new li element is created.
+       */
+      function getPlaceholderElement() {
+        var placeholder;
+        angular.forEach(element.children(), function(childNode) {
+          var child = angular.element(childNode);
+          if (child.hasClass('dndPlaceholder')) {
+            placeholder = child;
+          }
+        });
+        return placeholder || angular.element("<li class='dndPlaceholder'></li>");
+      }
+
+      /**
+       * We use the position of the placeholder node to determine at which position of the array the
+       * object needs to be inserted
+       */
+      function getPlaceholderIndex() {
+        return Array.prototype.indexOf.call(listNode.children, placeholderNode);
+      }
+
+      /**
+       * Checks various conditions that must be fulfilled for a drop to be allowed
+       */
+      function isDropAllowed(event) {
+        // Disallow drop from external source unless it's allowed explicitly.
+        if (!dndDragTypeWorkaround.isDragging && !externalSources) return false;
+
+        // Check mimetype. Usually we would use a custom drag type instead of Text, but IE doesn't
+        // support that.
+        if (!hasTextMimetype(event.dataTransfer.types)) return false;
+
+        // Now check the dnd-allowed-types against the type of the incoming element. For drops from
+        // external sources we don't know the type, so it will need to be checked via dnd-drop.
+        if (attr.dndAllowedTypes && dndDragTypeWorkaround.isDragging) {
+          var allowed = scope.$eval(attr.dndAllowedTypes);
+          if (angular.isArray(allowed) && allowed.indexOf(dndDragTypeWorkaround.dragType) === -1) {
+            return false;
+          }
+        }
+
+        // Check whether droping is disabled completely
+        if (attr.dndDisableIf && scope.$eval(attr.dndDisableIf)) return false;
+
+        return true;
+      }
+
+      /**
+       * Small helper function that cleans up if we aborted a drop.
+       */
+      function stopDragover() {
+        placeholder.remove();
+        element.removeClass("dndDragover");
+        return true;
+      }
+
+      /**
+       * Invokes a callback with some interesting parameters and returns the callbacks return value.
+       */
+      function invokeCallback(expression, event, index, item) {
+        return $parse(expression)(scope, {
+          event: event,
+          index: index,
+          item: item || undefined,
+          external: !dndDragTypeWorkaround.isDragging,
+          type: dndDragTypeWorkaround.isDragging ? dndDragTypeWorkaround.dragType : undefined
+        });
+      }
+
+      /**
+       * Check if the dataTransfer object contains a drag type that we can handle. In old versions
+       * of IE the types collection will not even be there, so we just assume a drop is possible.
+       */
+      function hasTextMimetype(types) {
+        if (!types) return true;
+        for (var i = 0; i < types.length; i++) {
+          if (types[i] === "Text" || types[i] === "text/plain") return true;
+        }
+
+        return false;
+      }
+    };
+  }])
+
+  /**
+   * Use the dnd-nodrag attribute inside of dnd-draggable elements to prevent them from starting
+   * drag operations. This is especially useful if you want to use input elements inside of
+   * dnd-draggable elements or create specific handle elements.
+   */
+  .directive('dndNodrag', function() {
+    return function(scope, element, attr) {
+      // Set as draggable so that we can cancel the events explicitly
+      element.attr("draggable", "true");
+
+      /**
+       * Since the element is draggable, the browser's default operation is to drag it on dragstart.
+       * We will prevent that and also stop the event from bubbling up.
+       */
+      element.on('dragstart', function(event) {
+        event = event.originalEvent || event;
+
+        // If a child element already reacted to dragstart and set a dataTransfer object, we will
+        // allow that. For example, this is the case for user selections inside of input elements.
+        if (!(event.dataTransfer.types && event.dataTransfer.types.length)) {
+          event.preventDefault();
+        }
+        event.stopPropagation();
+      });
+
+      /**
+       * Stop propagation of dragend events, otherwise dnd-moved might be triggered and the element
+       * would be removed.
+       */
+      element.on('dragend', function(event) {
+        event = event.originalEvent || event;
+        event.stopPropagation();
+      });
+    };
+  })
+
+  /**
+   * This workaround handles the fact that Internet Explorer does not support drag types other than
+   * "Text" and "URL". That means we can not know whether the data comes from one of our elements or
+   * is just some other data like a text selection. As a workaround we save the isDragging flag in
+   * here. When a dropover event occurs, we only allow the drop if we are already dragging, because
+   * that means the element is ours.
+   */
+  .factory('dndDragTypeWorkaround', function(){ return {} })
+
+  /**
+   * Chrome on Windows does not set the dropEffect field, which we need in dragend to determine
+   * whether a drag operation was successful. Therefore we have to maintain it in this global
+   * variable. The bug report for that has been open for years:
+   * https://code.google.com/p/chromium/issues/detail?id=39399
+   */
+  .factory('dndDropEffectWorkaround', function(){ return {} });
+
 /*!
  * Bootstrap v3.2.0 (http://getbootstrap.com)
  * Copyright 2011-2014 Twitter, Inc.
@@ -4471,7 +5021,8 @@ var myApp = angular.module('myApp', [
     'myAppController',
     'myAppFactory',
     'myAppService',
-    'colorpicker.module'
+    'colorpicker.module',
+    'dndLists'
     //'angularFileUpload'
 
 ]);
@@ -4500,6 +5051,12 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     requireLogin: true,
                     roles: cfg.role_access.element
                 }).
+                 // Element - drag & drop
+                when('/dragdrop', {
+                    templateUrl: 'app/views/elements/dragdrop.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.element
+                }).
                 // Rooms
                 when('/rooms', {
                     templateUrl: 'app/views/rooms/rooms.html',
@@ -4513,24 +5070,29 @@ myApp.config(['$routeProvider', function($routeProvider) {
                 }).
                 //Admin
                 when('/admin', {
-                    templateUrl: 'app/views/admin/admin.html',
+                    templateUrl: 'app/views/management/management.html',
                     requireLogin: true,
                     roles: cfg.role_access.admin
                 }).
                 //Admin detail
                 when('/admin/user/:id', {
-                    templateUrl: 'app/views/admin/admin_user.html',
+                    templateUrl: 'app/views/management/management_user.html',
                     requireLogin: true,
                     roles: cfg.role_access.admin_user
                 }).
                 //My Access
                 when('/myaccess', {
-                    templateUrl: 'app/views/myaccess/myaccess.html',
+                    templateUrl: 'app/views/mysettings/mysettings.html',
                     requireLogin: true,
                     roles: cfg.role_access.myaccess
                 }).
                 //Apps
                 when('/apps', { 
+                    templateUrl: 'app/views/apps/apps.html',
+                     requireLogin: true,
+                    roles: cfg.role_access.apps
+                }).
+                 when('/apps/category/:category', { 
                     templateUrl: 'app/views/apps/apps.html',
                      requireLogin: true,
                     roles: cfg.role_access.apps
@@ -4559,29 +5121,50 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     requireLogin: true,
                     roles: cfg.role_access.devices
                 }).
-                //Zwave device
-                when('/devices/zwave/:brandname?', {
-                    templateUrl: 'app/views/devices/devices_zwave.html',
+                //Zwave add
+                when('/zwave/add/:brandname?', {
+                    templateUrl: 'app/views/zwave/zwave_add.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices
                 }).
-                //IP camera device
-                when('/devices/ipcamera', {
-                    templateUrl: 'app/views/devices/devices_ipcamera.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.devices
-                }).
-                //IP camera device
-               /* when('/devices/enocean/:brandname?', {
-                    templateUrl: 'app/views/devices/devices_enocean.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.devices
-                }).*/
                 //Include Zwave device
-                when('/include/:device?', {
-                    templateUrl: 'app/views/devices/device_include.html',
+                when('/zwave/include/:device?', {
+                    templateUrl: 'app/views/zwave/zwave_include.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices_include
+                }).
+                //Zwave devices
+                when('/zwave/devices', {
+                    templateUrl: 'app/views/zwave/zwave_devices.html',
+                    requireLogin: true
+                }).
+                //Zwave devices config
+                when('/zwave/devices/:nodeId/:nohistory?', {
+                    templateUrl: 'app/views/zwave/zwave_manage_id.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.network_config_id
+                }).
+                //Zwave battery
+                when('/zwave/batteries', {
+                    templateUrl: 'app/views/zwave/zwave_batteries.html',
+                    requireLogin: true
+                }).
+                //Zwave Network
+                when('/zwave/network', {
+                    templateUrl: 'app/views/zwave/zwave_network.html',
+                    requireLogin: true
+                }).
+                //Camera add
+                when('/camera/add', {
+                    templateUrl: 'app/views/camera/camera_add.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
+                }).
+                //Camera manage
+                when('/camera/manage', {
+                    templateUrl: 'app/views/camera/camera_manage.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
                 }).
                 //Enocean Devices
                 when('/enocean/devices/:brandname?', {
@@ -4630,17 +5213,6 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     requireLogin: true,
                     roles: cfg.role_access.config_rooms_id
                 }).
-                //Network
-                when('/network', {
-                    templateUrl: 'app/views/network/network.html',
-                    requireLogin: true
-                }).
-                //Network config
-                when('/network/config/:nodeId', {
-                    templateUrl: 'app/views/network/config.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.network_config_id
-                }).
                 //Device configuration
                 when('/deviceconfig/:nodeId', {
                     templateUrl: 'app/views/expertui/configuration.html',
@@ -4649,6 +5221,11 @@ myApp.config(['$routeProvider', function($routeProvider) {
                 //Report
                 when('/report', {
                     templateUrl: 'app/views/report/report.html',
+                    requireLogin: true
+                }).
+                //Info
+                when('/info', {
+                    templateUrl: 'app/views/info/info.html',
                     requireLogin: true
                 }).
                 //Login
@@ -4701,16 +5278,12 @@ myApp.run(function($rootScope, $location, dataService) {
         if (next.requireLogin) {
             user = dataService.getUser();
             if (!user) {
-                //alert('You need to be authenticated to see this page!');
-                //event.preventDefault();
                 $location.path('/');
                 return;
             }
             if (next.roles && angular.isArray(next.roles)) {
                 if (next.roles.indexOf(user.role) === -1) {
-                    //alert('You have no permissions to see this page!');
-                    //$location.path('/elements');
-                     $location.path('/error/403');
+                    $location.path('/error/403');
                     return;
                 }
             }
@@ -4805,8 +5378,10 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
         getApiLocal: getApiLocal,
         getApi: getApi,
         deleteApi: deleteApi,
+        deleteApiFormdata: deleteApiFormdata,
         postApi: postApi,
         putApi: putApi,
+        putApiFormdata:putApiFormdata,
         storeApi: storeApi,
         runApiCmd: runApiCmd,
         getRemoteData: getRemoteData,
@@ -4828,6 +5403,7 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
         getLicense: getLicense,
         zmeCapabilities: zmeCapabilities,
         postReport: postReport,
+        getOnlineModules: getOnlineModules,
         installOnlineModule: installOnlineModule,
         restoreFromBck: restoreFromBck,
         getHelp:getHelp
@@ -4940,6 +5516,24 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
             return $q.reject(response);
         });
     }
+    // Put api data as form data
+    function putApiFormdata(api, data, params) {
+        return $http({
+            method: "put",
+            data: $.param(data),
+            url: cfg.server_url + cfg.api[api] + (params ? params : ''),
+            headers: {
+                 'Content-Type': 'application/x-www-form-urlencoded',
+                'Accept-Language': lang,
+                'ZWAYSession': ZWAYSession
+            }
+        }).then(function(response) {
+            return response;
+        }, function(response) {// something went wrong
+
+            return $q.reject(response);
+        });
+    }
 
     // POST/PUT api data
     function storeApi(api, id, data, params) {
@@ -4965,6 +5559,26 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
             method: 'delete',
             url: cfg.server_url + cfg.api[api] + "/" + id + (params ? params : ''),
             headers: {
+                'Accept-Language': lang,
+                'ZWAYSession': ZWAYSession
+            }
+        }).then(function(response) {
+            return response;
+        }, function(response) {// something went wrong
+
+            return $q.reject(response);
+        });
+
+    }
+    
+     // Delete api data as form data
+    function deleteApiFormdata(api, data, params) {
+        return $http({
+            method: 'delete',
+            url: cfg.server_url + cfg.api[api] + (params ? params : ''),
+             data: $.param(data),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
                 'Accept-Language': lang,
                 'ZWAYSession': ZWAYSession
             }
@@ -5061,7 +5675,6 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
 
             return $q.reject(response);
         });
-        return;
     }
     /**
      * Get api js command
@@ -5086,7 +5699,6 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
     /**
      * Get remote data
      */
-    // Get
     function getRemoteData(url, noCache) {
         // Cached data
         var cacheName = 'cache_' + url;
@@ -5221,7 +5833,8 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
         }
         return $http({
             method: 'get',
-            url: cfg.server_url + cfg.zwave_api_url + 'Data/0'
+            url: cfg.server_url + cfg.zwave_api_url + 'Data/0',
+            headers: {'ZWAYSession': ZWAYSession}
         }).then(function(response) {
             if (typeof response.data === 'object') {
                 myCache.put(cacheName, response.data);
@@ -5302,7 +5915,6 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
             // something went wrong
             return $q.reject(response);
         });
-        return;
     }
 
 
@@ -5450,16 +6062,45 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
         }, function(response) {// something went wrong
             return $q.reject(response);
         });
-        return;
+    }
+    
+    /**
+     * Get online modules
+     */
+    function getOnlineModules(data,noCache) {
+        // Cached data
+        var cacheName = 'cache_' + cfg.online_module_url;
+        var cached = myCache.get(cacheName);
+
+        if (!noCache && cached) {
+            var deferred = $q.defer();
+            deferred.resolve(cached);
+            return deferred.promise;
+        }
+        // NOT Cached data
+        return $http({
+            method: 'post',
+            url: cfg.online_module_url,
+            data: $.param(data),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Accept-Language': lang
+            }
+        }).then(function(response) {
+            return response;
+        }, function(error) {// something went wrong
+
+            return $q.reject(error);
+        });
     }
     
     /**
      * Install online module
      */
-    function installOnlineModule(data) {
+    function installOnlineModule(data,api) {
         return $http({
             method: "POST",
-             url: cfg.server_url + cfg.api['online_install'],
+             url: cfg.server_url + cfg.api[api],
             data: $.param(data),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -5471,7 +6112,6 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
         }, function(response) {// something went wrong
             return $q.reject(response);
         });
-        return;
     }
 
     /**
@@ -5524,7 +6164,7 @@ var myAppService = angular.module('myAppService', []);
 /**
  * Device service
  */
-myAppService.service('dataService', function($filter, $log, $cookies, $location, $window,myCache, cfg,_) {
+myAppService.service('dataService', function($filter, $log, $cookies, $location, $window, myCache, cfg, _) {
     /// --- Public functions --- ///
     /**
      * Get language line by key
@@ -5600,8 +6240,8 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     this.setUser = function(data) {
         return setUser(data);
     };
-    
-     /**
+
+    /**
      * Get user SID (token)
      */
     this.getZWAYSession = function() {
@@ -5613,21 +6253,21 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     this.setZWAYSession = function(sid) {
         return setZWAYSession(sid);
     };
-     /**
+    /**
      * Get last login
      */
     this.getLastLogin = function() {
-       return getLastLogin();
-   };
-    
-   /*
-    * Set last login
-    */
-   this.setLastLogin = function(val) {
-       return setLastLogin(val);
-   };
-   
-   /**
+        return getLastLogin();
+    };
+
+    /*
+     * Set last login
+     */
+    this.setLastLogin = function(val) {
+        return setLastLogin(val);
+    };
+
+    /**
      * Logout
      */
     this.logOut = function() {
@@ -5689,8 +6329,8 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     /**
      * Get module form data
      */
-    this.getModuleFormData = function(module, data, namespaces) {
-        return getModuleFormData(module, data, namespaces);
+    this.getModuleFormData = function(module, data) {
+        return getModuleFormData(module, data);
     };
 
     /**
@@ -5736,8 +6376,8 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     this.configGetNav = function(ZWaveAPIData) {
         return configGetNav(ZWaveAPIData);
     };
-    
-     /**
+
+    /**
      * Set EnOcean profile
      */
     this.setEnoProfile = function(data) {
@@ -5769,7 +6409,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      * Set user data
      */
     function setUser(data) {
-         if(!data){
+        if (!data) {
             delete $cookies['user'];
             return;
         }
@@ -5781,21 +6421,21 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      * Get user SID (token)
      */
     function getZWAYSession() {
-         return $cookies.ZWAYSession;
+        return $cookies.ZWAYSession;
 
     }
     /**
      * Set user SID (token)
      */
     function setZWAYSession(sid) {
-        if(!sid){
+        if (!sid) {
             delete $cookies['ZWAYSession'];
             return;
         }
         $cookies.ZWAYSession = sid;
 
     }
-    
+
     /**
      * Get last login
      */
@@ -5803,7 +6443,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
         return $cookies.lastLogin !== 'undefined' ? $cookies.lastLogin : false;
 
     }
-    
+
     /**
      * Set last login
      */
@@ -5811,7 +6451,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
         $cookies.lastLogin = val;
 
     }
-    
+
     /**
      * Logout
      */
@@ -5854,17 +6494,20 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      * Get device data
      */
     function getDevices(data, filter, dashboard, instances, location) {
-       var obj;
+        var obj;
         var collection = [];
         var onDashboard = false;
         var findZwaveStr = "ZWayVDev_zway_";
+        var findZenoStr = "ZEnoVDev_zeno_x";
 
         angular.forEach(data, function(v, k) {
-            var instance; 
+            var instance;
+            var minMax = {min: 0, max: 100};
             var hasInstance = false;
             var zwaveId = false;
             var level = $filter('numberFixedLen')(v.metrics.level);
             var rgbColors = false;
+            var appType = {};
             if (v.permanently_hidden || v.deviceType == 'battery') {
                 return;
             }
@@ -5876,25 +6519,37 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                     return;
                 }
             }
-           if(instances){
-               if (v.id.indexOf(findZwaveStr) > -1) {
-                zwaveId = v.id.split(findZwaveStr)[1].split('-')[0];
-            } else {
-                //instance = getRowBy(instances, 'id', v.creatorId);
-                instance = _.findWhere(instances, {id: v.creatorId});
-                if (instance && instance['moduleId'] != 'ZWave') {
-                    hasInstance = instance;
+            if (instances) {
+                if (v.id.indexOf(findZwaveStr) > -1) {
+                    zwaveId = v.id.split(findZwaveStr)[1].split('-')[0];
+                    appType['zwave'] = zwaveId.replace(/[^0-9]/g, '');
+                } else if (v.id.indexOf(findZenoStr) > -1) {
+                    appType['enocean'] = v.id.split(findZenoStr)[1].split('_')[0];
+                } else {
+                    //instance = getRowBy(instances, 'id', v.creatorId);
+                    instance = _.findWhere(instances, {id: v.creatorId});
+                    if (instance && instance['moduleId'] != 'ZWave') {
+                        hasInstance = instance;
+                        appType['instance'] = instance;
 
+                    }
                 }
             }
-           }
-            
+
             if (dashboard && dashboard.indexOf(v.id) !== -1) {
                 var onDashboard = true;
             }
 
             if (v.metrics.color) {
                 rgbColors = 'rgb(' + v.metrics.color.r + ',' + v.metrics.color.g + ',' + v.metrics.color.b + ')';
+            }
+            // Create min/max value
+            switch (v.probeType) {
+                case 'test':
+                    minMax = {min: 0, max: 255};
+                    break;
+                default:
+                    break;
             }
             //console.log('Device id %s has history %s',v.id,v.hasHistory)
             obj = {
@@ -5911,17 +6566,20 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                 'probeTitle': v.metrics.probeTitle,
                 'scaleTitle': v.metrics.scaleTitle,
                 'deviceType': v.deviceType,
+                'v.probeType':v.probeType,
                 'location': v.location,
                 'creatorID': v.creatorId,
                 'updateTime': v.updateTime,
                 'onDashboard': onDashboard,
                 'imgTrans': false,
                 'visibility': v.visibility,
-                'hasHistory': (v.hasHistory === true ? true : false), 
+                'hasHistory': (v.hasHistory === true ? true : false),
+                'minMax': minMax,
                 'cfg': {
                     'zwaveId': zwaveId,
                     'hasInstance': hasInstance
-                }
+                },
+                'appType': appType
             };
             if (filter) {
                 if (angular.isArray(obj[filter.filter])) {
@@ -5977,7 +6635,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                     break;
             }
             $(widgetId + ' .widget-level').html(val);
-            $(widgetId + ' .widget-level-knob').val(val);
+            $(widgetId + ' .widget-level-knob').val(val).trigger('change', false);
         }
         console.log(Math.round(+new Date() / 1000) + ' Update device: ID: ' + v.id + ' - level: ' + val)
 
@@ -6017,6 +6675,15 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     function updateDeviceBtn(widgetId, v) {
         var status = false;
         switch (v.deviceType) {
+            case 'sensorMultiline':
+                if (v.metrics.multilineType == 'protection') {
+                    if (v.metrics.state == 'armed') {
+                        status = 'on';
+                    } else {
+                        status = 'off';
+                    }
+                }
+                break;
             case 'doorlock':
                 if (v.metrics.level == 'open') {
                     status = 'on';
@@ -6052,7 +6719,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      * Get chart data
      */
     function getChartData(data, colors) {
-       
+
         if (!angular.isObject(data, colors)) {
             return null;
         }
@@ -6125,11 +6792,10 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     /**
      * Get module form data
      */
-    function getModuleFormData(module, data, namespaces) {
-        var bind = setModuleFormData(module.options, module.schema, namespaces);
+    function getModuleFormData(module, data) {
         var collection = {
-            'options': bind.options,
-            'schema': bind.schema,
+            'options': replaceModuleFormData(module.options, 'click'),
+            'schema': module.schema,
             'data': data,
             'postRender': postRenderAlpaca
         };
@@ -6137,59 +6803,27 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     }
 
     /**
-     * Set module form data
-     */
-    function setModuleFormData(options, schema, namespaces) {
-        var collection = {
-            'options': replaceModuleFormData(options, 'optionLabels', namespaces, 'deviceName'),
-            'schema': replaceModuleFormData(schema, 'enum', namespaces, 'deviceId')
-        };
-        return collection;
-    }
-    /**
      * Replace module object
      */
-    function replaceModuleFormData(obj, key, namespaces, namespaceKey) {
+    function replaceModuleFormData(obj, key) {
         var objects = [];
         for (var i in obj) {
             if (!obj.hasOwnProperty(i))
                 continue;
             if (typeof obj[i] == 'object') {
-                objects = objects.concat(replaceModuleFormData(obj[i], key, namespaces, namespaceKey));
-            } else if (i == key && !angular.isArray(obj[key])) {
-                obj[key] = buildArrayFromNamespaces(obj[key], namespaces, namespaceKey);
+                objects = objects.concat(replaceModuleFormData(obj[i], key));
+            } else if (i == key && 
+                        !angular.isArray(obj[key]) && 
+                                typeof obj[key] === 'string' && 
+                                    obj[key].indexOf("function") === 0) {
+                // overwrite old string with function                
+                // we can only pass a function as string in JSON ==> doing a real function
+                obj[key] = new Function('return ' + obj[key])();
             }
         }
         return obj;
     }
 
-
-    /**
-     * Build an array from namespaces
-     */
-    function buildArrayFromNamespaces(enums, namespaces, namespaceKey) {
-
-        var collection = [];
-        var namesp = enums.split(',');
-        if (!angular.isArray(namesp)) {
-            return false;
-        }
-        angular.forEach(namesp, function(v, k) {
-            var id = v.split(':');
-            if (!angular.isArray(id)) {
-                return false;
-            }
-            angular.forEach(namespaces, function(nm, km) {
-                if (nm.id == id[1]) {
-                    angular.forEach(nm.params, function(i, n) {
-                        collection.push(i[namespaceKey]);
-                    });
-                }
-            });
-        });
-
-        return collection;
-    }
     /**
      * Get device type
      */
@@ -6319,22 +6953,23 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
 //        });
 //        return collection;
 //    }
-    
+
     /**
      * Set EnOcean profile
      */
-    function setEnoProfile(data){
+    function setEnoProfile(data) {
         var profile = {};
         angular.forEach(data, function(v, k) {
-                var profileId = parseInt(v._rorg, 16) + '_' + parseInt(v._func, 16) + '_' + parseInt(v._type, 16);
-                profile[profileId] = v;
-                profile[profileId]['id'] = profileId;
-                profile[profileId]['rorgInt'] = parseInt(v._rorg, 16);
-                profile[profileId]['funcInt'] = parseInt(v._func, 16);
-                profile[profileId]['typeInt'] = parseInt(v._type, 16);
-            });
+            var profileId = parseInt(v._rorg, 16) + '_' + parseInt(v._func, 16) + '_' + parseInt(v._type, 16);
+            profile[profileId] = v;
+            profile[profileId]['id'] = profileId;
+            profile[profileId]['rorgInt'] = parseInt(v._rorg, 16);
+            profile[profileId]['funcInt'] = parseInt(v._func, 16);
+            profile[profileId]['typeInt'] = parseInt(v._type, 16);
+        });
         return profile;
-    };
+    }
+    ;
 });
 
 /**
@@ -6396,6 +7031,20 @@ myApp.directive('bbAlert', function() {
                 + ' <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'
                 + '<i class="fa fa-lg" ng-class="alert.icon"></i> <span ng-bind-html="alert.message|toTrusted"></span>'
                 + '</div>'
+    };
+});
+
+/**
+ * Alerttext  directive
+ */
+myApp.directive('bbAlertText', function() {
+    return {
+        restrict: "E",
+        replace: true,
+        scope: {alert: '='},
+        template: '<span class="alert" ng-if="alert.message" ng-class="alert.status">'
+                + '<i class="fa fa-lg" ng-class="alert.icon"></i> <span ng-bind-html="alert.message|toTrusted"></span>'
+                + '</span>'
     };
 });
 
@@ -6472,6 +7121,23 @@ myApp.directive('bbValidator', function($window) {
             hasBlur: '='
         },
         template: '<div class="valid-error text-danger" ng-if="inputName.$invalid && !inputName.$pristine && hasBlur">*{{trans}}</div>'
+    };
+});
+/**
+ * Load script into view
+ */
+myApp.directive('bbScript', function($parse, $rootScope, $compile) {
+    return {
+        restrict: 'E',
+        terminal: true,
+        link: function(scope, element, attr) {
+            if (attr.ngSrc) {
+                 var domElem = '<script src="'+attr.ngSrc+'" async defer></script>';
+                 $(element).append($compile(domElem)(scope));
+
+
+            }
+        }
     };
 });
 
@@ -7318,9 +7984,17 @@ myApp.filter('getBatteryIcon', function() {
  * Get max level
  */
 myApp.filter('getMaxLevel', function() {
-    return function(input) {
-        var maxLevel = 100;
-        var levelVal = (input < 100 ? input : 99);
+    return function(input,probeType) {
+        var levelVal = 100;
+         switch (probeType) {
+            case 'test':
+                levelVal = (input < 255 ? input : 255);
+                break;
+             
+            default:
+                levelVal = (input < 100 ? input : 100);
+                break;
+        }
         return levelVal;
     };
 });
@@ -7524,7 +8198,7 @@ myApp.filter('uri', function($location) {
  */
 myApp.filter('deviceName', function() {
     return function(deviceId, device) {
-        var name = (deviceId == 1 ? 'RaZberry' : 'Device ' + '_' + deviceId);
+        var name = (deviceId == 1 ? 'Z-Way' : 'Device ' + '_' + deviceId);
         if (device === undefined) {
             return name;
         }
@@ -7632,11 +8306,12 @@ var myAppController = angular.module('myAppController', []);
 /**
  * Base controller
  */
-myAppController.controller('BaseController', function($scope, $cookies, $filter, $location, $route, cfg, dataFactory, dataService, myCache) {
+myAppController.controller('BaseController', function($scope, $cookies, $filter, $location, $route,$window, cfg, dataFactory, dataService, myCache) {
     /**
      * Global scopes
      */
     $scope.cfg = cfg;
+    $scope.languages = {};
     $scope.loading = false;
     $scope.alert = {message: false, status: 'is-hidden', icon: false};
     $scope.user = dataService.getUser();
@@ -7689,7 +8364,8 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
         // Is lang in language list?
         var lang = (cfg.lang_list.indexOf(lang) > -1 ? lang : cfg.lang);
         dataFactory.getLanguageFile(lang).then(function(response) {
-            $scope.languages = response.data;
+            //$scope.languages = response.data;
+             angular.extend($scope.languages, response.data);
         }, function(error) {
             dataService.showConnectionError(error);
         });
@@ -7800,6 +8476,51 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
         }
         return apps;
     };
+    
+    /**
+     * Redirect to Expert
+     */
+    $scope.toExpert = function(url, message) {
+        alertify.confirm(message, function() {
+            $window.location.href = url;
+         });
+    };
+    
+     /**
+     * Expand/collapse navigation
+     */
+    $scope.naviExpanded = {};
+    $scope.expandNavi = function(key,$event,status) {
+        if(typeof status === 'boolean'){
+           $scope.naviExpanded[key] = status;
+        }else{
+             $scope.naviExpanded[key] = !($scope.naviExpanded[key]);
+        }
+       
+       $event.stopPropagation();
+    };
+    // Collaps element/menu when clicking outside
+    window.onclick = function() {
+          if ($scope.naviExpanded) {
+                angular.copy({},$scope.naviExpanded);
+                $scope.$apply();
+          }
+      };
+     /**
+     * Expand/collapse element
+     */
+    $scope.expand = {};
+    $scope.expandElement = function(key) {
+        $scope.expand[key] = !($scope.expand[key]);
+    };
+    
+    
+     /**
+     * Alertify defaults
+     */
+    alertify.defaults.glossary.title = cfg.app_name;
+    alertify.defaults.glossary.ok = 'OK';
+    alertify.defaults.glossary.cancel = 'CANCEL';
 
 });
 
@@ -7839,21 +8560,84 @@ myAppController.controller('ErrorController', function($scope, $routeParams, dat
  */
 
 /**
+ * DragDrop controller
+ */
+myAppController.controller('DragDropController', function($scope, dataFactory) {
+    $scope.models = {
+        selected: null,
+        list: []
+    };
+
+    // Generate initial model
+    for (var i = 1; i <= 5; ++i) {
+        $scope.models.list.push({label: "Item A" + i});
+    }
+
+    $scope.itemMoved = function(index) {
+        $scope.models.list.splice(index, 1);
+        angular.forEach($scope.models.list, function(v, k) {
+            console.log((k + 1) + ': ', v.label)
+
+        });
+        console.log(index)
+    };
+
+    // Model to JSON for demo purpose
+    $scope.$watch('models', function(model) {
+        //console.log(model)
+        $scope.modelAsJson = angular.toJson(model, true);
+    }, true);
+
+    $scope.elements = {
+        selected: null,
+        list: []
+    };
+    ;
+    /**
+     * Load data into collection
+     */
+    $scope.loadData = function() {
+        dataFactory.getApi('devices').then(function(response) {
+            $scope.elements.list = response.data.data.devices;
+        }, function(error) {
+        });
+    };
+    $scope.loadData();
+
+    $scope.elementMoved = function(index) {
+        $scope.elements.list.splice(index, 1);
+        var sorting = [];
+        angular.forEach($scope.elements.list, function(v, k) {
+           sorting[v.id] = (k+1);
+            dataFactory.putApi('devices', v.id, {position: index}).then(function(response) {
+                //console.log((k + 1) + ': ', v.metrics.title);
+            }, function(error) {
+            });
+         });
+          console.log(sorting)
+        //console.log(index)
+    };
+
+});
+
+/**
  * Element controller
  */
-myAppController.controller('ElementController', function($scope, $routeParams, $interval, $location, dataFactory, dataService, myCache) {
+myAppController.controller('ElementController', function($scope, $routeParams, $interval, $location, dataFactory, dataService, myCache,_) {
+    $scope.welcome = false;
     $scope.goHidden = [];
     $scope.goHistory = [];
     $scope.apiDataInterval = null;
-    $scope.multilineSensorInterval = null;
+    $scope.multilineSensorsInterval = null;
     $scope.collection = [];
     $scope.showFooter = true;
     $scope.deviceType = [];
     $scope.tags = [];
-    $scope.rooms = [];
+    $scope.rooms = {};
     $scope.history = [];
     $scope.historyStatus = [];
-    $scope.multilineSensor = false;
+    $scope.multilineDev = false;
+    $scope.multilineSensors = false;
     $scope.doorLock = false;
     $scope.levelVal = [];
     $scope.rgbVal = [];
@@ -7866,6 +8650,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.knobopt = {
         width: 100
     };
+    $scope.alertabc = false;
 
     $scope.slider = {
         modelMax: 38
@@ -7886,12 +8671,25 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     // Cancel interval on page destroy
     $scope.$on('$destroy', function() {
         $interval.cancel($scope.apiDataInterval);
-        $interval.cancel($scope.multilineSensorInterval);
+        $interval.cancel($scope.multilineSensorsInterval);
 
         $('.modal').remove();
         $('.modal-backdrop').remove();
         $('body').removeClass("modal-open");
     });
+    
+     /**
+     * Load locations
+     */
+    $scope.loadLocations = function() {
+        dataFactory.getApi('locations').then(function(response) {
+            angular.extend($scope.rooms,_.indexBy(response.data.data, 'id'));
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    }
+    ;
+     $scope.loadLocations();
 
     /**
      * Load data into collection
@@ -7899,10 +8697,16 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.loadData = function() {
         dataService.showConnectionSpinner();
         //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataFactory.getApi('devices').then(function(response) {
+        dataFactory.getApi('devices',null,true).then(function(response) {
+            
             var filter = null;
-            var notFound = $scope._t('no_devices') + ' <a href="#devices">' + $scope._t('lb_include_device') + '</a>'
+            var notFound = $scope._t('error_404');
             $scope.loading = false;
+            if (response.data.data.devices.length < 1) {
+                notFound = $scope._t('no_devices') + ' <a href="#devices"><strong>' + $scope._t('lb_include_device') + '</strong></a>';
+                $scope.alert = {message: notFound, status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                return;
+            }
             $scope.deviceType = dataService.getDeviceType(response.data.data.devices);
             $scope.tags = dataService.getTags(response.data.data.devices);
             // Filter
@@ -7911,7 +8715,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
                     case 'dashboard':
                         $scope.showFooter = false;
                         filter = {filter: "onDashboard", val: true};
-                        notFound = $scope._t('no_devices_dashboard');
+                        //notFound = $scope._t('no_devices_dashboard');
                         break;
                     case 'deviceType':
                         filter = $routeParams;
@@ -7922,17 +8726,34 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
                     case 'location':
                         $scope.showFooter = false;
                         filter = $routeParams;
-                        if (angular.isDefined($routeParams.name)) {
-                            $scope.headline = $scope._t('lb_devices_room') + ' ' + $routeParams.name;
+                        if (angular.isDefined($routeParams.val)&& !_.isEmpty($scope.rooms)) {
+                            $scope.headline = $scope._t('lb_devices_room') + ' ' + ($routeParams.val == 0 ? $scope._t($scope.rooms[$routeParams.val].title) : $scope.rooms[$routeParams.val].title) ;
                         }
-                        break;
+                        break; 
                     default:
                         break;
                 }
             }
             var collection = dataService.getDevices(response.data.data.devices, filter, $scope.user.dashboard, null);
             if (collection.length < 1) {
-                $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: notFound};
+                switch($routeParams.filter){
+                   case 'dashboard':
+                         $scope.welcome = true;
+                        break;
+                     case 'location':
+                         if($scope.user.role === 1){
+                             $location.path('/config-rooms/' + filter.val);
+                         }else{
+                            $scope.alert = {message: notFound, status: 'alert-warning', icon: 'fa-exclamation-circle'}; 
+                         }
+                        break;
+                    default:
+                        $scope.alert = {message: notFound, status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                        break;
+                }
+                
+                //$scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: notFound};
+                
                 return;
             }
             $scope.collection = collection;
@@ -7954,6 +8775,10 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
             dataFactory.refreshApi('devices').then(function(response) {
                 dataService.updateDevices(response.data);
                 dataService.updateTimeTick(response.data.data.updateTime);
+                if(response.data.data.structureChanged === true){
+                      $scope.loadData();
+                }
+               
             }, function(error) {
                 dataService.showConnectionError(error);
             });
@@ -7962,7 +8787,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     };
 
     $scope.refreshData();
-
+    
     /**
      * Load device history
      */
@@ -8011,19 +8836,20 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     /**
      * Show Multiline Sensor modal window
      */
-    $scope.loadMultilineSensor = function(target, id, input) {
+    $scope.loadMultilineSensor = function(target, id, input, sensors) {
         $(target).modal();
         $scope.input = input;
-        $scope.multilineSensor = {data: false, icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        $scope.multilineSensors = {data: false, icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('devices', '/' + id, true).then(function(response) {
-            if (response.data.data.metrics.sensors) {
-                $scope.multilineSensor = {data: response.data.data.metrics.sensors};
-                $scope.refreshMultilineSensor(id);
+            if (response.data.data.metrics[sensors]) {
+                $scope.multiLineDev = {data: response.data.data};
+                $scope.multilineSensors = {data: response.data.data.metrics[sensors]};
+                $scope.refreshMultilineSensors(id, sensors);
             } else {
-                $scope.multilineSensor = {data: false, icon: 'fa-info-circle text-warning', message: $scope._t('no_data')};
+                $scope.multilineSensors = {data: false, icon: 'fa-info-circle text-warning', message: $scope._t('no_data')};
             }
         }, function(error) {
-            $scope.multilineSensor = {data: false, icon: 'fa-exclamation-triangle text-danger', message: $scope._t('error_load_data')};
+            $scope.multilineSensors = {data: false, icon: 'fa-exclamation-triangle text-danger', message: $scope._t('error_load_data')};
         });
 
     };
@@ -8031,23 +8857,24 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     /**
      * Refresh multiline sensor data
      */
-    $scope.refreshMultilineSensor = function(id) {
+    $scope.refreshMultilineSensors = function(id, sensors) {
         var refresh = function() {
             dataFactory.getApi('devices', '/' + id, true).then(function(response) {
-                if (response.data.data.metrics.sensors) {
-                    angular.extend($scope.multilineSensor.data, response.data.data.metrics.sensors);
+                if (response.data.data.metrics[sensors]) {
+                    angular.extend($scope.multilineSensors.data, response.data.data.metrics[sensors]);
                     //$scope.multilineSensor.data = {data: response.data.data.metrics.sensors};
                 }
-            }, function(error) {});
+            }, function(error) {
+            });
         };
-        $scope.multilineSensorInterval = $interval(refresh, $scope.cfg.interval);
+        $scope.multilineSensorsInterval = $interval(refresh, $scope.cfg.interval);
     };
-    
-     /**
+
+    /**
      * Close multiline sensor window
      */
     $scope.closeMultilineSensor = function() {
-         $interval.cancel($scope.multilineSensorInterval);
+        $interval.cancel($scope.multilineSensorsInterval);
     };
 
     /**
@@ -8067,6 +8894,47 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         }, function(error) {
             $scope.doorLock = {data: false, icon: 'fa-exclamation-triangle text-danger', message: $scope._t('error_load_data')};
         });
+
+    };
+    
+    /**
+     * Multiline climateControl
+     */
+    $scope.climateElementModes = ['off', 'esave', 'per_room'];
+    /**
+     * Show climate modal window
+     */
+    $scope.loadClimateControl = function(target, id, input) {
+        $(target).modal();
+        $scope.input = input;
+        $scope.climateControl = {data: false, icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        $scope.climateControlModes = ['off', 'esave', 'comfort', 'time_driven'];
+        $scope.climateControlMode = {};
+        $scope.changeClimateControlProcess = {};
+        //dataFactory.getApiLocal('_test/climate_control.json').then(function(response) {
+         dataFactory.getApi('devices', '/' + id, true).then(function(response) {
+            if (response.data.data.metrics.rooms) {
+                $scope.climateControl = {data: response.data.data};
+            } else {
+                $scope.climateControl = {data: false, icon: 'fa-info-circle text-warning', message: $scope._t('no_data')};
+            }
+        }, function(error) {
+            $scope.climateControl = {data: false, icon: 'fa-exclamation-triangle text-danger', message: $scope._t('error_load_data')};
+        });
+
+    };
+
+    /**
+     * Change climate control mode
+     */
+    $scope.changeClimateControlMode = function(id) {
+        //console.log($scope.climateControl.data.metrics.rooms);
+        $scope.changeClimateControlProcess[id] = true;
+        var room = _.findWhere($scope.climateControl.data.metrics.rooms, {id: id})
+        console.log(room.title + ' changing mode to: ', $scope.climateControlMode[id])
+        $timeout(function() {
+            $scope.changeClimateControlProcess[id] = false;
+        }, 3000);
 
     };
     /**
@@ -8135,7 +9003,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         dataFactory.runApiCmd(cmd).then(function(response) {
             $(widgetId + ' .widget-image').addClass('trans-true');
         }, function(error) {
-            alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
         });
         return;
@@ -8192,8 +9060,7 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
             });
 
         }, function(error) {
-            alert($scope._t('error_load_data'));
-            dataService.showConnectionError(error);
+            dataService.showConnectionError(error); 
         });
     };
     $scope.loadTagList();
@@ -8247,7 +9114,7 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
                 updateProfile($scope.user, input.id);
 
             }, function(error) {
-                alert($scope._t('error_update_data'));
+                alertify.alert($scope._t('error_update_data'));
                 $scope.loading = false;
             });
         }
@@ -8296,7 +9163,7 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
             $window.history.back();
 
         }, function(error) {
-            alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
         });
         return;
@@ -8319,13 +9186,14 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
                 'metrics': v.metrics,
                 'updateTime': v.updateTime,
                 'cfg': v.cfg,
+                'appType': v.appType,
                 'permanently_hidden': v.permanently_hidden,
                 //'rooms': $scope.rooms,
                 'hide_events': false
             };
             dataService.updateTimeTick(updateTime);
         } else {
-            alert($scope._t('no_data'));
+            alertify.alert($scope._t('no_data'));
             dataService.showConnectionError($scope._t('no_data'));
         }
     }
@@ -8356,6 +9224,9 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
  * Event controller
  */
 myAppController.controller('EventController', function($scope, $routeParams, $interval, $window, $filter, $cookies, $location, dataFactory, dataService, myCache, paginationService, cfg, _) {
+    $scope.page = {
+        title: false
+    };
     $scope.collection = [];
     $scope.eventLevels = [];
     $scope.dayCount = [
@@ -8377,6 +9248,14 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
         day: 1
     };
     $scope.timeFilter = $scope.timeFilterDefault;
+     $scope.devices = {
+         find: {
+             id: false,
+             title: false,
+             data: {}
+         },
+         data: {}
+     };
     $scope.currentPage = 1;
     $scope.pageSize = cfg.page_results_events;
     $scope.reset = function() {
@@ -8388,6 +9267,27 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
     $scope.$on('$destroy', function() {
         $interval.cancel($scope.apiDataInterval);
     });
+    
+      /**
+     * Load devices
+     */
+    $scope.loadDevices = function() {
+        dataFactory.getApi('devices',null,true).then(function(response) {
+            var data = _.indexBy(response.data.data.devices, 'id');
+            angular.extend($scope.devices.data,data);
+            if (angular.isDefined($routeParams.param) && angular.isDefined($routeParams.val)) {
+            if($routeParams.param === 'source' && !_.isEmpty(data) && data[$routeParams.val]){
+                angular.extend($scope.devices.find,{id:$routeParams.val},{title:data[$routeParams.val].metrics.title});
+                  angular.extend($scope.page,{title:data[$routeParams.val].metrics.title});
+            }
+        }
+            //console.log($scope.devices.data) 
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    }
+    ;
+     $scope.loadDevices();
 
     /**
      * Load data into collection
@@ -8498,12 +9398,8 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
     /**
      * Delete event
      */
-    $scope.deleteEvent = function(id, params, target, dialog) {
-        var confirm = true;
-        if (dialog) {
-            confirm = $window.confirm(dialog);
-        }
-        if (confirm) {
+    $scope.deleteEvent = function(id, params, target, message) {
+       alertify.confirm(message, function() {
             $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
             dataFactory.deleteApi('notifications', id, params).then(function(response) {
                 myCache.remove('notifications');
@@ -8511,9 +9407,9 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
                 $(target).fadeOut(2000);
             }, function(error) {
                 $scope.loading = false;
-                alert($scope._t('error_delete_data'));
+                alertify.alert($scope._t('error_delete_data'));
             });
-        }
+        });
     };
 
     /**
@@ -8570,7 +9466,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
             $scope.loadData();
 
         }, function(error) {
-            alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
         });
         return;
@@ -8584,18 +9480,34 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
 /**
  * App controller
  */
-myAppController.controller('AppController', function($scope, $window, $cookies, $timeout, $route, dataFactory, dataService, myCache, _) {
+myAppController.controller('AppController', function($scope, $window, $cookies, $timeout, $route, $routeParams, $location, dataFactory, dataService, myCache, _) {
+    //Set elements to expand/collapse
+    angular.copy({
+        appsCategories: false
+    }, $scope.expand);
     $scope.instances = [];
     $scope.hasImage = [];
-    $scope.modules = [];
-    $scope.modulesIds = [];
+    //$scope.modules = [];
+    $scope.localModules = {
+        data: {},
+        all: {},
+        ids: []
+    };
+    //$scope.modulesIds = [];
+    $scope.cameraIds = [];
     $scope.modulesCats = [];
     $scope.moduleImgs = [];
     $scope.onlineModules = [];
     $scope.onlineVersion = [];
     $scope.categories = [];
     $scope.activeTab = (angular.isDefined($cookies.tab_app) ? $cookies.tab_app : 'local');
-    $scope.category = '';
+    //$scope.activeTab = 'local';
+    $scope.tokens = {};
+    //$scope.category = '';
+    $scope.currentCategory = {
+        id: false,
+        name: ''
+    };
     $scope.showFooter = true;
     $scope.modalLocal = {};
     $scope.showInFooter = {
@@ -8604,16 +9516,38 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     };
     $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
     $scope.onlineMediaUrl = $scope.cfg.online_module_img_url;
+
+    // On page destroy
+    $scope.$on('$destroy', function() {
+        angular.copy({}, $scope.expand);
+    });
+    /**
+     * Load tokens
+     */
+    $scope.loadTokens = function(filter) {
+        dataFactory.getApi('tokens', null, true).then(function(response) {
+            angular.extend($scope.tokens, response.data.data.tokens);
+            $scope.loadOnlineModules(filter);
+        }, function(error) {
+        });
+    };
+
     /**
      * Load categories
      */
     $scope.loadCategories = function() {
         dataFactory.getApi('modules_categories').then(function(response) {
             var cat = response.data.data;
-            if(cat){
-               $scope.categories = cat[$scope.lang] || cat[$scope.cfg.lang]; 
+            if (cat) {
+                $scope.categories = cat[$scope.lang] || cat[$scope.cfg.lang];
+
+                if ($routeParams.category) {
+                    var currCat = _.findWhere($scope.categories, {id: $routeParams.category});
+                    angular.extend($scope.currentCategory, {name: currCat.name});
+                }
+
             }
-             
+
         }, function(error) {
             dataService.showConnectionError(error);
         });
@@ -8632,7 +9566,9 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
         }
         dataFactory.getApi('modules').then(function(response) {
             var modulesFiltered = _.filter(response.data.data, function(item) {
-                $scope.modulesIds.push(item.id);
+                //$scope.localModules.ids.push(item.id);
+                $scope.localModules.ids.push(item.id);
+                $scope.localModules.all[item.id] = item;
                 var isHidden = false;
                 if ($scope.getHiddenApps().indexOf(item.moduleName) > -1) {
                     if ($scope.user.role !== 1) {
@@ -8643,11 +9579,12 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
 
                 }
                 if (item.category === 'surveillance') {
+                    $scope.cameraIds.push(item.id);
                     isHidden = true;
                 }
 
                 if (!isHidden) {
-                    $scope.modulesIds.push(item.id);
+                    //$scope.modulesIds.push(item.id);
                     $scope.moduleImgs[item.id] = item.icon;
                     if (item.category && $scope.modulesCats.indexOf(item.category) === -1) {
                         $scope.modulesCats.push(item.category);
@@ -8655,7 +9592,8 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
                     return item;
                 }
             });
-            $scope.modules = _.where(modulesFiltered, query);
+            $scope.localModules.data = _.where(modulesFiltered, query);
+            //$scope.modules = _.where(modulesFiltered, query);
             $scope.loading = false;
             dataService.updateTimeTick();
         }, function(error) {
@@ -8667,29 +9605,27 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     /**
      * Load online modules
      */
-    $scope.loadOnlineModules = function() {
-        
-        dataFactory.getRemoteData($scope.cfg.online_module_url).then(function(response) {
-//            $scope.onlineModules = response.data;
-//            angular.forEach(response.data, function(v, k) {
-//                if (v.modulename && v.modulename != '') {
-//                    $scope.onlineVersion[v.modulename] = v.version;
-//                }
-//            });
-            $scope.onlineModules = _.filter(response.data, function(item) {
-                var isHidden = false;
-                if ($scope.getHiddenApps().indexOf(item.modulename) > -1) {
-                    if ($scope.user.role !== 1) {
-                        isHidden = true;
-                    } else {
-                        isHidden = ($scope.user.expert_view ? false : true);
-                    }
-                }
+    $scope.loadOnlineModules = function(filter) {
+         dataFactory.getOnlineModules({token: _.values($scope.tokens)}).then(function(response) {
+             $scope.onlineModules = _.chain(response.data.data)
+                    .flatten()
+                    .filter(function(item) {
+                        var isHidden = false;
+                        $scope.onlineVersion[item.modulename] = item.version;
+                        if ($scope.getHiddenApps().indexOf(item.modulename) > -1) {
+                            if ($scope.user.role !== 1) {
+                                isHidden = true;
+                            } else {
+                                isHidden = ($scope.user.expert_view ? false : true);
+                            }
+                        }
 
-                if (!isHidden) {
-                    return item;
-                }
-            });
+                        if (!isHidden) {
+                            return item;
+                        }
+                    })
+                    .where(filter) 
+                    .value();
             $scope.loading = false;
             dataService.updateTimeTick();
         }, function(error) {
@@ -8731,6 +9667,10 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
         $cookies.tab_app = tabId;
     };
 
+    if (angular.isDefined($routeParams.category)) {
+        $scope.currentCategory.id = $routeParams.category;
+    }
+
     // Watch for tab change
     $scope.$watch('activeTab', function() {
         dataService.showConnectionSpinner();
@@ -8742,21 +9682,30 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
                 $scope.loadInstances();
 
                 break;
-            case 'hidden':
-                $scope.showInFooter.categories = false;
-                break;
             case 'online':
-                $scope.loadOnlineModules();
-                $scope.loadModules();
+                var filter = false;
+
+                if ($scope.currentCategory.id) {
+                    filter = {category: $scope.currentCategory.id};
+                    //console.log(filter)
+
+                }
+
+                $scope.loadTokens(filter);
+
+                $scope.loadModules(filter);
                 $scope.showInFooter.categories = false;
+
                 break;
             default:
                 $scope.showInFooter.categories = true;
-                $scope.$watch('category', function() {
-                    $scope.modules = angular.copy([]);
+                $scope.$watch('currentCategory', function() {
+                    //$scope.modules = angular.copy([]);
+                    $scope.localModules.data = angular.copy([]);
                     var filter = false;
-                    if ($scope.category != '') {
-                        filter = {category: $scope.category};
+
+                    if ($scope.currentCategory.id) {
+                        filter = {category: $scope.currentCategory.id};
                     }
                     $scope.loadModules(filter);
                     $scope.loadOnlineModules();
@@ -8775,6 +9724,17 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     };
 
     /**
+     * Reset filter
+     */
+    $scope.resetFilter = function(path) {
+        $route.reload();
+        if (path) {
+            $location.path(path);
+        }
+
+    };
+
+    /**
      * Ictivate instance
      */
     $scope.activateInstance = function(input, activeStatus) {
@@ -8789,7 +9749,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
                 $scope.loadInstances();
 
             }, function(error) {
-                alert($scope._t('error_update_data'));
+                alertify.alert($scope._t('error_update_data'));
                 $scope.loading = false;
             });
         }
@@ -8799,26 +9759,22 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
     /**
      * Delete instance
      */
-    $scope.deleteInstance = function(target, input, dialog) {
-        var confirm = true;
-        if (dialog) {
-            confirm = $window.confirm(dialog);
-        }
-        if (confirm) {
+    $scope.deleteInstance = function(target, input, message) {
+        alertify.confirm(message, function() {
             dataFactory.deleteApi('instances', input.id).then(function(response) {
                 $(target).fadeOut(500);
                 myCache.remove('instances');
                 myCache.remove('devices');
             }, function(error) {
-                alert($scope._t('error_delete_data'));
+                alertify.alert($scope._t('error_delete_data'));
             });
 
-        }
+        });
     };
     /**
      * Delete module
      */
-    $scope.deleteModule = function(target, input, dialog) {
+    $scope.deleteModule = function(target, input, message) {
         var hasInstance = false;
         angular.forEach($scope.instances, function(v, k) {
             if (input.id == v.moduleId)
@@ -8827,14 +9783,10 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
 
         });
         if (hasInstance) {
-            alert(hasInstance);
+            alertify.alert(hasInstance);
             return;
         }
-        var confirm = true;
-        if (dialog) {
-            confirm = $window.confirm(dialog);
-        }
-        if (confirm) {
+        alertify.confirm(message, function() {
             //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
             dataFactory.deleteApi('modules', input.id).then(function(response) {
                 myCache.remove('modules');
@@ -8843,19 +9795,19 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
 
             }, function(error) {
                 $scope.loading = false;
-                alert($scope._t('error_delete_data'));
+                alertify.alert($scope._t('error_delete_data'));
             });
-        }
+        });
     };
     /**
      * Download module
      */
-    $scope.downloadModule = function(modulename) {
+    $scope.downloadModule = function(modulename, api) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
         var data = {
-            moduleUrl: $scope.cfg.online_module_download_url + modulename + '.tar.gz'
+            moduleUrl: $scope.cfg.online_module_download_url + modulename
         };
-        dataFactory.installOnlineModule(data).then(function(response) {
+        dataFactory.installOnlineModule(data, api).then(function(response) {
             $timeout(function() {
                 $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_module_download')};
                 myCache.removeAll();
@@ -8864,7 +9816,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
 
         }, function(error) {
             $scope.loading = false;
-            alert($scope._t('error_no_module_download'));
+            alertify.alert($scope._t('error_no_module_download'));
         });
 
     };
@@ -8875,7 +9827,7 @@ myAppController.controller('AppController', function($scope, $window, $cookies, 
  */
 myAppController.controller('AppLocalDetailController', function($scope, $routeParams, $location, dataFactory, dataService, _) {
     $scope.module = [];
-     $scope.categoryName = '';
+    $scope.categoryName = '';
     $scope.isOnline = null;
     $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
     /**
@@ -8884,18 +9836,18 @@ myAppController.controller('AppLocalDetailController', function($scope, $routePa
     $scope.loadCategories = function(id) {
         dataFactory.getApi('modules_categories').then(function(response) {
             var cat = response.data.data;
-            if(!cat){
+            if (!cat) {
                 return;
             }
-           var category = _.findWhere(cat[$scope.lang] || cat[$scope.cfg.lang], {id: id});
-           if(category){
-               $scope.categoryName = category.name;
-           }
+            var category = _.findWhere(cat[$scope.lang] || cat[$scope.cfg.lang], {id: id});
+            if (category) {
+                $scope.categoryName = category.name;
+            }
         }, function(error) {
             dataService.showConnectionError(error);
         });
     };
-   
+
     /**
      * Load module detail
      */
@@ -8905,7 +9857,7 @@ myAppController.controller('AppLocalDetailController', function($scope, $routePa
         dataFactory.getApi('modules', '/' + id).then(function(response) {
             loadOnlineModules(id);
             $scope.module = response.data.data;
-             $scope.loadCategories(response.data.data.category);
+            $scope.loadCategories(response.data.data.category);
             //$scope.loading = false;
         }, function(error) {
             $scope.loading = false;
@@ -8934,20 +9886,33 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
     $scope.module = [];
     $scope.categoryName = '';
     $scope.onlineMediaUrl = $scope.cfg.online_module_img_url;
-    
+    $scope.tokens = {};
+
+    /**
+     * Load tokens
+     */
+    $scope.loadTokens = function() {
+        dataFactory.getApi('tokens', null, true).then(function(response) {
+            angular.extend($scope.tokens, response.data.data.tokens);
+            $scope.loadModule($routeParams.id);
+        }, function(error) {
+        });
+    };
+    $scope.loadTokens();
+
     /**
      * Load categories
      */
     $scope.loadCategories = function(id) {
         dataFactory.getApi('modules_categories').then(function(response) {
-           var cat = response.data.data;
-            if(!cat){
+            var cat = response.data.data;
+            if (!cat) {
                 return;
             }
-           var category = _.findWhere(cat[$scope.lang] || cat[$scope.cfg.lang], {id: id});
-           if(category){
-               $scope.categoryName = category.name;
-           }
+            var category = _.findWhere(cat[$scope.lang] || cat[$scope.cfg.lang], {id: id});
+            if (category) {
+                $scope.categoryName = category.name;
+            }
         }, function(error) {
             dataService.showConnectionError(error);
         });
@@ -8956,9 +9921,10 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
      * Load local modules
      */
     $scope.loadModules = function(query) {
-       dataFactory.getApi('modules').then(function(response) {
-           $scope.local.installed = _.findWhere(response.data.data, query);
-        }, function(error) {});
+        dataFactory.getApi('modules').then(function(response) {
+            $scope.local.installed = _.findWhere(response.data.data, query);
+        }, function(error) {
+        });
     };
     /**
      * Load module detail
@@ -8970,8 +9936,8 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
         if (isNaN(param)) {
             filter = {modulename: id};
         }
-        dataFactory.getRemoteData($scope.cfg.online_module_url).then(function(response) {
-            $scope.module = _.findWhere(response.data, filter);
+        dataFactory.getOnlineModules({token: _.values($scope.tokens)}, true).then(function(response) {
+            $scope.module = _.findWhere(response.data.data, filter);
             if (!$scope.module) {
                 $location.path('/error/404');
                 return;
@@ -8984,7 +9950,7 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
         });
     };
 
-    $scope.loadModule($routeParams.id);
+
 
     /**
      * Download module
@@ -9001,7 +9967,7 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
 
         }, function(error) {
             $scope.loading = false;
-            alert($scope._t('error_no_module_download'));
+            alertify.alert($scope._t('error_no_module_download'));
         });
 
     };
@@ -9033,33 +9999,28 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
     // Post new module instance
     $scope.postModule = function(id) {
         dataService.showConnectionSpinner();
-        dataFactory.getApi('modules', '/' + id + '?lang=' + $scope.lang,true).then(function(module) {
-            dataFactory.getApi('namespaces',null,true).then(function(namespaces) {
-                var formData = dataService.getModuleFormData(module.data.data, module.data.data.defaults, namespaces.data.data);
-                var langCode = (angular.isDefined(cfg.lang_codes[$scope.lang]) ? cfg.lang_codes[$scope.lang] : null);
-                $scope.input = {
-                    'instanceId': 0,
-                    'moduleId': id,
-                    'active': true,
-                    'title': $filter('hasNode')(formData, 'data.title'),
-                    'description': $filter('hasNode')(formData, 'data.description'),
-                    'moduleTitle': $filter('hasNode')(formData, 'data.title'),
-                    'icon': $filter('hasNode')(module, 'data.data.icon'),
-                    'moduleName': $filter('hasNode')(module, 'data.data.moduleName'),
-                    'category': module.data.data.category
-                };
-                $scope.showForm = true;
-                if (!$filter('hasNode')(formData, 'options.fields') || !$filter('hasNode')(formData, 'schema.properties')) {
-                    $scope.alpacaData = false;
-                    return;
-                }
-                $.alpaca.setDefaultLocale(langCode);
-                $('#alpaca_data').alpaca(formData);
-                dataService.updateTimeTick();
-            }, function(error) {
-                alert($scope._t('error_load_data'));
-                dataService.showConnectionError(error);
-            });
+        dataFactory.getApi('modules', '/' + id + '?lang=' + $scope.lang, true).then(function(module) {
+            var formData = dataService.getModuleFormData(module.data.data, module.data.data.defaults);
+            var langCode = (angular.isDefined(cfg.lang_codes[$scope.lang]) ? cfg.lang_codes[$scope.lang] : null);
+            $scope.input = {
+                'instanceId': 0,
+                'moduleId': id,
+                'active': true,
+                'title': $filter('hasNode')(formData, 'data.title'),
+                'description': $filter('hasNode')(formData, 'data.description'),
+                'moduleTitle': $filter('hasNode')(formData, 'data.title'),
+                'icon': $filter('hasNode')(module, 'data.data.icon'),
+                'moduleName': $filter('hasNode')(module, 'data.data.moduleName'),
+                'category': module.data.data.category
+            };
+            $scope.showForm = true;
+            if (!$filter('hasNode')(formData, 'options.fields') || !$filter('hasNode')(formData, 'schema.properties')) {
+                $scope.alpacaData = false;
+                return;
+            }
+            $.alpaca.setDefaultLocale(langCode);
+            $('#alpaca_data').alpaca(formData);
+            dataService.updateTimeTick();
 
         }, function(error) {
             $location.path('/error/' + error.status);
@@ -9074,7 +10035,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
         dataService.showConnectionSpinner();
         dataFactory.getApi('instances', '/' + id, true).then(function(instances) {
             var instance = instances.data.data;
-            dataFactory.getApi('modules', '/' + instance.moduleId + '?lang=' + $scope.lang,true).then(function(module) {
+            dataFactory.getApi('modules', '/' + instance.moduleId + '?lang=' + $scope.lang, true).then(function(module) {
                 if (module.data.data.state === 'hidden') {
                     if (!$scope.user.expert_view) {
                         dataService.updateTimeTick();
@@ -9082,36 +10043,30 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                     }
 
                 }
-                dataFactory.getApi('namespaces',null,true).then(function(namespaces) {
-                    var formData = dataService.getModuleFormData(module.data.data, instance.params, namespaces.data.data);
+                var formData = dataService.getModuleFormData(module.data.data, instance.params);
 
-                    $scope.input = {
-                        'instanceId': instance.id,
-                        'moduleId': module.data.data.id,
-                        'active': instance.active,
-                        'title': instance.title,
-                        'description': instance.description,
-                        'moduleTitle': instance.title,
-                        'icon': $filter('hasNode')(module, 'data.data.icon'),
-                        'moduleName': $filter('hasNode')(module, 'data.data.moduleName'),
-                        'category': module.data.data.category
-                    };
-                    $scope.showForm = true;
-                    if (!$filter('hasNode')(formData, 'options.fields') || !$filter('hasNode')(formData, 'schema.properties')) {
-                        $scope.alpacaData = false;
-                        return;
-                    }
+                $scope.input = {
+                    'instanceId': instance.id,
+                    'moduleId': module.data.data.id,
+                    'active': instance.active,
+                    'title': instance.title,
+                    'description': instance.description,
+                    'moduleTitle': instance.title,
+                    'icon': $filter('hasNode')(module, 'data.data.icon'),
+                    'moduleName': $filter('hasNode')(module, 'data.data.moduleName'),
+                    'category': module.data.data.category
+                };
+                $scope.showForm = true;
+                if (!$filter('hasNode')(formData, 'options.fields') || !$filter('hasNode')(formData, 'schema.properties')) {
+                    $scope.alpacaData = false;
+                    return;
+                }
 
-                    $('#alpaca_data').alpaca(formData);
+                $('#alpaca_data').alpaca(formData);
 
-                    dataService.updateTimeTick();
-                }, function(error) {
-                    alert($scope._t('error_load_data'));
-                    dataService.showConnectionError(error);
-                });
                 dataService.updateTimeTick();
             }, function(error) {
-                alert($scope._t('error_load_data'));
+                alertify.alert($scope._t('error_load_data'));
                 dataService.showConnectionError(error);
             });
         }, function(error) {
@@ -9160,7 +10115,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                 $location.path('/apps');
 
             }, function(error) {
-                alert($scope._t('error_update_data'));
+                alertify.alert($scope._t('error_update_data'));
             });
         } else {
             dataFactory.postApi('instances', inputData).then(function(response) {
@@ -9168,7 +10123,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                 $location.path('/apps');
 
             }, function(error) {
-                alert($scope._t('error_update_data'));
+                alertify.alert($scope._t('error_update_data'));
             });
         }
     };
@@ -9182,12 +10137,41 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
 /**
  * Device controller
  */
-myAppController.controller('DeviceController', function($scope, $routeParams, dataFactory, dataService) {
+myAppController.controller('DeviceController', function($scope, dataFactory) {
+    $scope.enocean = {
+        installed: false,
+        active: false,
+        alert: {message: false}
+    };
+     /**
+     * Load Remote access data
+     */
+    $scope.loadEnOceanModule = function() {
+        dataFactory.getApi('instances',false,true).then(function(response) {
+            var module = _.findWhere(response.data.data,{moduleId:'EnOcean'});
+            if(!module){
+                return;
+            }
+            $scope.enocean.installed = true;
+            if (!module.active) {
+                $scope.enocean.alert = {message: $scope._t('enocean_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                return;
+            }
+            $scope.enocean.active = true;
+        });
+    };
+
+    $scope.loadEnOceanModule();
 });
 /**
- * Device Zwave  controller
+ * Application Zwave controller
+ * @author Martin Vach
  */
-myAppController.controller('DeviceZwaveController', function($scope, $routeParams, dataFactory, dataService, _) {
+
+/**
+ * Zwave add controller
+ */
+myAppController.controller('ZwaveAddController', function($scope, $routeParams, dataFactory, dataService, _) {
     $scope.zwaveDevices = [];
     $scope.deviceVendor = false;
     $scope.manufacturers = [];
@@ -9211,53 +10195,19 @@ myAppController.controller('DeviceZwaveController', function($scope, $routeParam
     $scope.loadData($routeParams.brandname, $scope.lang);
 });
 /**
- * Device IP camerae  controller
+ * Zwave include controller
  */
-myAppController.controller('DeviceIpCameraController', function($scope, dataFactory, dataService, _) {
-    $scope.ipcameraDevices = [];
-    $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
-    /**
-     * Load ip cameras
-     */
-    $scope.loadData = function() {
-        dataService.showConnectionSpinner();
-        dataFactory.getApi('modules').then(function(response) {
-            $scope.ipcameraDevices = _.filter(response.data.data, function(item) {
-                var isHidden = false;
-                if ($scope.getHiddenApps().indexOf(item.moduleName) > -1) {
-                    if ($scope.user.role !== 1) {
-                        isHidden = true;
-                    } else {
-                        isHidden = ($scope.user.expert_view ? false : true);
-                    }
-
-                }
-                if (item.category !== 'surveillance') {
-                    isHidden = true;
-                }
-
-                if (!isHidden) {
-                    return item;
-                }
-            });
-            //$scope.ipcameraDevices = _.where(modulesFiltered, query);
-            //$scope.ipcameraDevices = _.where(response.data.data, {category: 'surveillance'});
-            dataService.updateTimeTick();
-        }, function(error) {
-            dataService.showConnectionError(error);
-        });
-    };
-    $scope.loadData();
-});
-/**
- * Device Include controller
- */
-myAppController.controller('DeviceIncludeController', function($scope, $routeParams, $interval, $filter,$route, dataFactory, dataService, myCache) {
+myAppController.controller('ZwaveIncludeController', function($scope, $routeParams, $interval, $timeout, $route, $location, dataFactory, dataService, myCache) {
     $scope.apiDataInterval = null;
     $scope.includeDataInterval = null;
+    $scope.excludeDataInterval = null;
     $scope.device = {
-        'data': null
+        secureInclusion: true,
+        blacklist: null,
+        id: null,
+        data: null
     };
+    $scope.secureInclusion = true;
     $scope.controllerState = 0;
     $scope.zwaveApiData = [];
     $scope.includedDeviceId = null;
@@ -9280,39 +10230,77 @@ myAppController.controller('DeviceIncludeController', function($scope, $routePar
     $scope.zWaveDevice = [];
     $scope.devices = [];
     $scope.dev = [];
-    
-    $scope.formInput = {
-        elements: {},
-        room: undefined
-    };
-    $scope.rooms = [];
-    $scope.modelRoom;
+
     // Cancel interval on page destroy
     $scope.$on('$destroy', function() {
         $interval.cancel($scope.apiDataInterval);
         $interval.cancel($scope.includeDataInterval);
+        $interval.cancel($scope.excludeDataInterval);
     });
 
+    if (angular.isDefined($routeParams.device)) {
+        $scope.device.id = $routeParams.device;
+    }
+
+    /**
+     * Set secure inclusion
+     */
+    $scope.setSecureInclusion = function(status) {
+        var cmd = 'controller.data.secureInclusion=' + status;
+        dataFactory.runZwaveCmd(cmd).then(function() {
+        }, function() {
+        });
+    };
+
+    /**
+     * Set black list
+     */
+    $scope.setBlacklist = function() {
+        dataFactory.getApi('include_blacklist').then(function(response) {
+            $scope.device.blacklist = response.data.data;
+
+            console.log('$scope.device.blacklist[entryOnBlacklist]', $scope.device.blacklist['entryOnBlacklist']);
+            if(!$scope.device.blacklist['entryOnBlacklist']){
+                // do nothing
+                return;
+            } else {
+                if ($scope.controllerState === 1){
+                    console.log('setBlacklist: $scope.controllerState',$scope.controllerState);
+                    console.log('Abort in clusion process ...');
+                    //$scope.stopInclusion('controller.AddNodeToNetwork(0)');
+                }
+                $scope.device.secureInclusion = false;
+                console.log('setBlacklist: $scope.device.secureInclusion',$scope.device.secureInclusion);
+                $scope.retryInclusion('controller.RemoveNodeFromNetwork(1)',$scope.device.secureInclusion);
+            }
+        }, function(error) {
+        });
+    };
+    
     /**
      * Load data into collection
      */
     $scope.loadData = function(lang) {
-        dataService.showConnectionSpinner();
-        if (angular.isDefined($routeParams.device)) {
-            dataFactory.getApiLocal('device.' + lang + '.json').then(function(response) {
-                angular.forEach(response.data, function(v, k) {
-                    if (v.id == $routeParams.device) {
-                        $scope.device.data = v;
-                        return;
-                    }
-                });
-
-            }, function(error) {
-                dataService.showConnectionError(error);
-                return;
-            });
+       if (!$scope.device.id) {
+            return;
         }
-        return;
+         dataService.showConnectionSpinner();
+        dataFactory.getApiLocal('device.' + lang + '.json').then(function(response) {
+            angular.forEach(response.data, function(v, k) {
+                if (v.id == $scope.device.id) {
+                    $scope.device.data = v;
+                    if (v.inclusion_type === 'unsecure') {
+                        $scope.secureInclusion = false;
+                    }
+                    return;
+                }
+            });
+
+        }, function(error) {
+            dataService.showConnectionError(error);
+            return;
+        });
+
     };
     $scope.loadData($scope.lang);
 
@@ -9320,9 +10308,9 @@ myAppController.controller('DeviceIncludeController', function($scope, $routePar
      * Load data into collection
      */
     $scope.loadZwaveApiData = function() {
-        
-         dataFactory.loadZwaveApiData(true).then(function(ZWaveAPIData) {
-              $scope.controllerState = ZWaveAPIData.controller.data.controllerState.value;
+
+        dataFactory.loadZwaveApiData(true).then(function(ZWaveAPIData) {
+            $scope.controllerState = ZWaveAPIData.controller.data.controllerState.value;
             var refresh = function() {
                 dataFactory.refreshZwaveApiData().then(function(response) {
                     checkController(response.data, response.data);
@@ -9337,27 +10325,40 @@ myAppController.controller('DeviceIncludeController', function($scope, $routePar
             dataService.showConnectionError(error);
             return;
         });
-        
-        
-//        dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
-//            var refresh = function() {
-//                dataFactory.joinedZwaveData(ZWaveAPIData).then(function(response) {
-//                    checkController(response.data.update, response.data.joined);
-//                    dataService.updateTimeTick(response.data.update.updateTime);
-//                }, function(error) {
-//                    dataService.showConnectionError(error);
-//                    return;
-//                });
-//            };
-//            $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
-//        }, function(error) {
-//            dataService.showConnectionError(error);
-//            return;
-//        });
     };
     $scope.loadZwaveApiData();
+
     /**
      * Watch for last excluded device
+     */
+    $scope.$watch('lastExcludedDevice', function() {
+        console.log('watch: $scope.device.blacklist', $scope.device.blacklist);
+        console.log('watch: $scope.lastExcludedDevice:', $scope.lastExcludedDevice);
+        console.log('watch: $scope.device.secureInclusion', $scope.device.secureInclusion);
+        if (!!$scope.lastExcludedDevice) {
+            var refresh = function() {
+                console.log('refresh: $scope.device.secureInclusion', $scope.device.secureInclusion);
+                var includeSecure = $scope.device.secureInclusion;
+                console.log('includeSecure', includeSecure);
+                console.log('set unsecure condition:', $scope.lastExcludedDevice && !includeSecure);
+                if ($scope.lastExcludedDevice && !includeSecure) {
+                    console.log('set unsecure ...');
+                    $scope.setSecureInclusion(includeSecure);
+                    $interval.cancel($scope.excludeDataInterval);
+                }
+
+                console.log('refresh: $scope.controllerState', $scope.controllerState);
+                if($scope.controllerState === 0){
+                    console.log('remove interval ...');
+                    $interval.cancel($scope.excludeDataInterval);
+                }
+            };
+            $scope.excludeDataInterval = $interval(refresh, $scope.cfg.interval);
+        }
+    });
+    
+    /**
+     * Watch for last included device
      */
     $scope.$watch('includedDeviceId', function() {
         if ($scope.includedDeviceId) {
@@ -9415,19 +10416,22 @@ myAppController.controller('DeviceIncludeController', function($scope, $routePar
                     }
                     if (interviewDone) {
                         $scope.lastIncludedDevice = node.data.givenName.value || 'Device ' + '_' + nodeId;
+                        $scope.setSecureInclusion(true);
+                        $scope.secureInclusion = true;
+                        console.log('interview: $scope.secureInclusion',$scope.secureInclusion);
                         myCache.remove('devices');
                         $scope.includedDeviceId = null;
                         $scope.checkInterview = false;
                         $interval.cancel($scope.includeDataInterval);
                         $scope.nodeId = nodeId;
-                        $scope.loadLocations();
-                        $scope.loadElements(nodeId);
+                        $timeout(function() {
+                            $location.path('/zwave/devices/' + nodeId + '/nohistory');
 
+                        }, 3000);
 
                     } else {
                         $scope.checkInterview = true;
                     }
-
 
                 }, function(error) {
                     $scope.inclusionError = true;
@@ -9440,27 +10444,41 @@ myAppController.controller('DeviceIncludeController', function($scope, $routePar
     });
 
     /**
-     * Watch for last excluded device
+     * Start inclusion proccess
      */
-    $scope.$watch('updateDevices', function() {
-        if ($scope.nodeId) {
-            $scope.updateDevices = false;
-            $scope.loadElements($scope.nodeId);
-        }
-    });
+     $scope.startInclusion = function(cmd) {
+        console.log('$scope.device.secureInclusion',$scope.device.secureInclusion);
+        //$scope.setSecureInclusion($scope.secureInclusion);
+        dataFactory.runZwaveCmd(cmd).then(function() {
+        }, function(error) {
+        });
 
-    /**
-     * Watch for last excluded device
-     */
-    //$scope.$watch('interviewCfg', function() {});
+        if ($scope.device.blacklist === null) {
+            $timeout(function(){
+                $scope.setBlacklist();
+            }, 1500);
+        }
+    };
     
+    /**
+     * Stopinclusion proccess
+     */
+     $scope.stopInclusion = function(cmd) {
+        dataFactory.runZwaveCmd(cmd).then(function() {
+        }, function(error) {
+        });
+
+    };
+
     /**
      * Retry inclusion
      */
-    $scope.retryInclusion = function() {
-         myCache.removeAll();
+    $scope.retryInclusion = function(cmd, type) {
+        console.log('retry: secure?', type);
+        myCache.removeAll();
+        console.log('retry after remove: secure?', type);
         $route.reload();
-        $scope.runZwaveCmd('controller.RemoveNodeFromNetwork(1)');
+        $scope.runZwaveCmd(cmd);
     };
 
 
@@ -9474,11 +10492,12 @@ myAppController.controller('DeviceIncludeController', function($scope, $routePar
             //myCache.remove('devices');
             myCache.removeAll();
             //console.log('Reload...')
-        $route.reload();
+            $route.reload();
         }, function(error) {
         });
 
     };
+
 
     /**
      * Load data
@@ -9494,80 +10513,6 @@ myAppController.controller('DeviceIncludeController', function($scope, $routePar
         });
     };
 
-    /**
-     * Load locations
-     */
-    $scope.loadLocations = function() {
-        dataFactory.getApi('locations').then(function(response) {
-            $scope.rooms = response.data.data;
-        }, function(error) {
-            dataService.showConnectionError(error);
-        });
-    }
-    ;
-
-
-    /**
-     * Assign devices to room
-     */
-    $scope.devicesToRoom = function(roomId, devices) {
-        if (!roomId) {
-            return;
-        }
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        for (var i = 0; i <= devices.length; i++) {
-            var v = devices[i];
-            if (!v) {
-                continue;
-            }
-            var input = {
-                id: v.id,
-                location: roomId
-            };
-            dataFactory.putApi('devices', v.id, input).then(function(response) {
-            }, function(error) {
-                alert($scope._t('error_update_data'));
-                $scope.loading = false;
-                return;
-            });
-        }
-        myCache.remove('devices');
-        $scope.loadData();
-        $scope.loading = false;
-        return;
-
-    };
-     /**
-     * Update all devices
-     */
-    $scope.updateAllDevices = function() {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-       angular.forEach($scope.formInput.elements, function(v, k) {
-                dataFactory.putApi('devices', v.id, v).then(function(response) {
-                }, function(error) {});
-        });
-        myCache.remove('devices');
-        $scope.updateDevices = true;
-       //$scope.loadData($routeParams.nodeId);
-       $scope.loading = false;
-
-    };
-    /**
-     * Update device
-     */
-    $scope.updateDevice = function(input) {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        dataFactory.putApi('devices', input.id, input).then(function(response) {
-            myCache.remove('devices');
-            //$scope.loadData($scope.nodeId);
-            $scope.updateDevices = true;
-            $scope.loading = false;
-        }, function(error) {
-            alert($scope._t('error_update_data'));
-            $scope.loading = false;
-        });
-
-    };
 
     /// --- Private functions --- ///
     /**
@@ -9577,12 +10522,12 @@ myAppController.controller('DeviceIncludeController', function($scope, $routePar
         //var data = response.data;
         if ('controller.data.controllerState' in data) {
             $scope.controllerState = data['controller.data.controllerState'].value;
-            console.log('controllerState: ', $scope.controllerState)
+            console.log('controllerState: ', $scope.controllerState);
         }
 
         if ('controller.data.lastExcludedDevice' in data) {
             $scope.lastExcludedDevice = data['controller.data.lastExcludedDevice'].value;
-            console.log('lastExcludedDevice: ', $scope.lastExcludedDevice)
+            console.log('lastExcludedDevice: ', $scope.lastExcludedDevice);
         }
         if ('controller.data.lastIncludedDevice' in data) {
             var deviceIncId = data['controller.data.lastIncludedDevice'].value;
@@ -9599,95 +10544,313 @@ myAppController.controller('DeviceIncludeController', function($scope, $routePar
 
             }
         }
+        if ('controller.data.secureInclusion' in data) {
+            $scope.secureInclusion = data['controller.data.secureInclusion'].value;
+            console.log('secureInclusion: ', $scope.secureInclusion);
+        }
     }
     ;
 
-    /**
-     * Get last included device
-     */
-//    function getLastIncluded(nodeId, ZWaveAPIData) {
-//        if (!$scope.includedDeviceId) {
-//            return;
-//        }
-//        $scope.deviceFound = false;
-//        $scope.checkInterview = true;
-//        var node = ZWaveAPIData.devices[nodeId];
-//        if (!node) {
-//            return;
-//        }
-//        var interviewDone = true;
-//        //var instanceId = 0;
-//        var hasBattery = false;
-//        if (angular.isDefined(ZWaveAPIData.devices[nodeId].instances)) {
-//            hasBattery = 0x80 in ZWaveAPIData.devices[nodeId].instances[0].commandClasses;
-//        }
-//        $scope.hasBattery = hasBattery;
-//
-//        console.log('CHECK interview NEW -----------------------------------------------------')
-//        // Check interview
-//        if (ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value && ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value.length) {
-//             console.log('ZWaveAPIData.devices[nodeId].instances',ZWaveAPIData.devices[nodeId].instances)
-//            for (var iId in ZWaveAPIData.devices[nodeId].instances) {
-//                if (Object.keys(ZWaveAPIData.devices[nodeId].instances[iId].commandClasses).length > 0) {
-//                     console.log('ZWaveAPIData.devices[nodeId].instances[iId].commandClasses).length > 0 -----------------------------------------------------')
-//                    $scope.interviewCfg.commandClassesCnt = Object.keys(ZWaveAPIData.devices[nodeId].instances[iId].commandClasses).length;
-//                    if ($scope.interviewCfg.stop === 0) {
-//                        // Wait 20 seconds after interview start check
-//                        $scope.interviewCfg.time = (Math.round(+new Date() / 1000)) + 20;
-//                    }
-//                    $scope.interviewCfg.stop = (Math.round(+new Date() / 1000));
-//                    for (var ccId in ZWaveAPIData.devices[nodeId].instances[iId].commandClasses) {
-//                        var notInterviewClass = 'devices.' + nodeId + '.instances.' + iId + '.commandClasses.' + ccId + '.data.interviewDone.value';
-//                        // Interview is not done
-//                        if (!ZWaveAPIData.devices[nodeId].instances[iId].commandClasses[ccId].data.interviewDone.value) {
-//                            interviewDone = false;
-//                        } else {  // Interview is done
-//                            if ($scope.interviewCfg.isDone.indexOf(notInterviewClass) === -1) {
-//                                $scope.interviewCfg.isDone.push(notInterviewClass);
-//                            }
-//                        }
-//                    }
-//                } else {
-//                    interviewDone = false;
-//                }
-//            }
-//
-//        } else {
-//            interviewDone = false;
-//        }
-//        if (interviewDone) {
-//            $scope.lastIncludedDevice = node.data.givenName.value || 'Device ' + '_' + nodeId;
-//            myCache.remove('devices');
-//            $scope.includedDeviceId = null;
-//            $scope.checkInterview = false;
-//            //$interval.cancel($scope.includeDataInterval);
-//            $scope.nodeId = nodeId;
-//            $scope.loadLocations();
-//            $scope.loadElements(nodeId);
-//
-//
-//        } else {
-//            $scope.checkInterview = true;
-//        }
-//    }
-//    ;
 
+
+});
+/**
+ * Zwave manage controller
+ */
+myAppController.controller('ZwaveManageController', function($scope, $cookies, $filter, $window, $location, dataFactory, dataService, myCache) {
+    $scope.activeTab = (angular.isDefined($cookies.tab_network) ? $cookies.tab_network : 'battery');
+    $scope.batteries = {
+        'list': [],
+        'cntLess20': [],
+        'cnt0': []
+    };
+    $scope.devices = {
+        'failed': [],
+        'batteries': [],
+        'zwave': []
+    };
+    $scope.goEdit = [];
+    $scope.zWaveDevices = {};
+
+//    $scope.modelName = [];
+//    $scope.modelRoom = {};
+//
+//    $scope.rooms = [];
+    /**
+     * Set tab
+     */
+    $scope.setTab = function() {
+        var path = $location.path().split('/').pop();
+        var tabId = (path === 'manage' ? 'devices' : path);
+        $scope.activeTab = tabId;
+        $cookies.tab_network = tabId;
+    };
+    $scope.setTab()
+
+    /**
+     * Load data
+     */
+    $scope.loadData = function() {
+        dataService.showConnectionSpinner();
+        dataFactory.getApi('devices').then(function(response) {
+            zwaveApiData(response.data.data.devices);
+            loadLocations();
+
+        }, function(error) {
+            $location.path('/error/' + error.status);
+        });
+    };
+    $scope.loadData();
+
+    /// --- Private functions --- ///
+    /**
+     * Load locations
+     */
+    function loadLocations() {
+        dataFactory.getApi('locations').then(function(response) {
+            $scope.rooms = response.data.data;
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    }
+    ;
     /**
      * Get zwaveApiData
      */
-    function zwaveApiData(nodeId, devices) {
+    function zwaveApiData(devices) {
         dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
+            dataService.updateTimeTick();
+            if (!ZWaveAPIData.devices) {
+                return;
+            }
+            
+            angular.forEach(ZWaveAPIData.devices, function(v, k) {
+                if (k == 1) {
+                    return;
+                }
+
+                $scope.zWaveDevices[k] = {
+                    id: k,
+                    title: v.data.givenName.value || 'Device ' + '_' + k,
+                    icon: null,
+                    cfg: [],
+                    elements: [],
+                    messages: []
+                };
+
+            });
+
+            angular.forEach(devices, function(v, k) {
+                var cmd;
+                var nodeId;
+                var iId;
+                var ccId;
+                var findZwaveStr = v.id.split('_');
+                if (findZwaveStr[0] === 'ZWayVDev' && findZwaveStr[1] === 'zway') {
+                    cmd = findZwaveStr[findZwaveStr.length - 1].split('-');
+                    nodeId = cmd[0];
+                    iId = cmd[1];
+                    ccId = cmd[2];
+                    var node = ZWaveAPIData.devices[nodeId];
+                    if (node) {
+                        var interviewDone = isInterviewDone(node, nodeId);
+                        var isFailed = node.data.isFailed.value;
+                        var hasBattery = 0x80 in node.instances[0].commandClasses;
+                        var obj = {};
+                        obj['id'] = v.id;
+                        obj['visibility'] = v.visibility;
+                        obj['permanently_hidden'] = v.permanently_hidden;
+                        obj['nodeId'] = nodeId;
+                        obj['nodeName'] = node.data.givenName.value || 'Device ' + '_' + k,
+                                obj['title'] = v.metrics.title;
+                        obj['deviceType'] = v.deviceType;
+                        obj['level'] = $filter('toInt')(v.metrics.level);
+                        obj['metrics'] = v.metrics;
+                        obj['messages'] = [];
+                        if (v.deviceType !== 'battery') {
+                            $scope.devices.zwave.push(obj);
+                            $scope.zWaveDevices[nodeId]['elements'].push(obj);                                                                                 
+                            $scope.zWaveDevices[nodeId]['icon'] = obj.metrics.icon;
+                        }
+
+                        // Batteries
+                        if (v.deviceType === 'battery') {
+                            $scope.devices.batteries.push(obj);
+                        }
+                        if (hasBattery && interviewDone) {
+                            var batteryCharge = parseInt(node.instances[0].commandClasses[0x80].data.last.value);
+                            if (batteryCharge <= 20) {
+                                $scope.zWaveDevices[nodeId]['messages'].push({
+                                    type: 'battery',
+                                    error: $scope._t('lb_low_battery') + ' (' + batteryCharge + '%)'
+                                });
+                                obj['messages'].push({
+                                    type: 'battery',
+                                    error: $scope._t('lb_low_battery') + ' (' + batteryCharge + '%)'
+                                });
+                            }
+                        }
+                        // Not interview
+                        if (!interviewDone) {
+                            $scope.zWaveDevices[nodeId]['messages'].push({
+                                type: 'config',
+                                error: $scope._t('lb_not_configured')
+
+                            });
+
+                            obj['messages'].push({
+                                type: 'config',
+                                error: $scope._t('lb_not_configured')
+
+                            });
+                        }
+                        // Is failed
+                        if (isFailed) {
+                            $scope.zWaveDevices[nodeId]['messages'].push({
+                                type: 'failed',
+                                error: $scope._t('lb_is_failed')
+
+                            });
+                            obj['messages'].push({
+                                type: 'failed',
+                                error: $scope._t('lb_is_failed')
+
+                            });
+                        }
+                        $scope.devices.failed.push(obj);
+                    }
+
+                }
+            });
+            // Count device batteries
+            for (i = 0; i < $scope.devices.batteries.length; ++i) {
+                var battery = $scope.devices.batteries[i];
+                if (battery.level < 1) {
+                    $scope.batteries.cnt0.push(battery.id);
+                }
+                if (battery.level > 0 && battery.level < 20) {
+                    $scope.batteries.cntLess20.push(battery.id);
+                }
+
+            }
+        }, function(error) {
+            $location.path('/error/' + error.status);
+        });
+    }
+    ;
+
+
+    /**
+     * notInterviewDevices
+     */
+    function isInterviewDone(node, nodeId) {
+        for (var iId in node.instances) {
+            for (var ccId in node.instances[iId].commandClasses) {
+                var isDone = node.instances[iId].commandClasses[ccId].data.interviewDone.value;
+                if (isDone == false) {
+                    return false;
+                }
+            }
+        }
+        return true;
+
+    }
+    ;
+});
+/**
+ * Zwave manage detail controller
+ */
+myAppController.controller('ZwaveManageIdController', function($scope, $window, $routeParams, $timeout, $filter, $location, dataFactory, dataService, myCache) {
+    $scope.zwaveConfig = {
+        nodeId: $routeParams.nodeId,
+        nohistory: $routeParams.nohistory
+    };
+
+    $scope.zWaveDevice = [];
+    $scope.devices = [];
+    $scope.formInput = {
+        elements: {},
+        room: 0,
+        deviceName: ''
+    };
+    $scope.rooms = [];
+
+    /**
+     * Load data
+     */
+    $scope.loadConfigData = function(nodeId) {
+        dataService.showConnectionSpinner();
+        dataFactory.getApi('devices').then(function(response) {
+            zwaveConfigApiData(nodeId, response.data.data.devices);
+            loadConfigLocations();
+
+        }, function(error) {
+            $location.path('/error/' + error.status);
+        });
+    };
+    $scope.loadConfigData($scope.zwaveConfig.nodeId);
+
+    /**
+     * Update all devices
+     */
+    $scope.updateAllDevices = function(input) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+
+        // Update element
+        angular.forEach(input.elements, function(v, k) {
+            if (input.room) {
+                angular.extend(v, {location: parseInt(input.room)})
+            }
+            dataFactory.putApi('devices', v.id, v).then(function(response) {
+            }, function(error) {
+            });
+        });
+        //Update device name
+        var cmd = 'devices[' + $scope.zWaveDevice.id + '].data.givenName.value=\'' + input.deviceName + '\'';
+        dataFactory.runZwaveCmd(cmd).then(function() {
+        }, function(error) {
+        });
+        myCache.removeAll();
+        $timeout(function() {
+            $scope.loading = false;
+
+            if (angular.isDefined($routeParams.nohistory)) {
+                $location.path('/zwave/devices');
+            } else {
+                $window.history.back();
+            }
+
+        }, 3000);
+    };
+
+    /// --- Private functions --- ///
+
+
+    function loadConfigLocations() {
+        dataFactory.getApi('locations').then(function(response) {
+            $scope.rooms = response.data.data;
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    }
+    ;
+    /**
+     * Get zwaveApiData
+     */
+    function zwaveConfigApiData(nodeId, devices) {
+        dataFactory.loadZwaveApiData(true).then(function(ZWaveAPIData) {
             dataService.updateTimeTick();
             var node = ZWaveAPIData.devices[nodeId];
             if (!node) {
+                // $location.path('/error/404');
                 return;
             }
 
             $scope.zWaveDevice = {
                 id: nodeId,
-                title: node.data.givenName.value || 'Device ' + '_' + nodeId,
                 cfg: []
             };
+            $scope.formInput.deviceName = node.data.givenName.value || 'Device ' + '_' + nodeId;
             // Has config file
             if (angular.isDefined(node.data.ZDDXMLFile) && node.data.ZDDXMLFile.value != '') {
                 if ($scope.zWaveDevice['cfg'].indexOf('config') === -1) {
@@ -9715,12 +10878,13 @@ myAppController.controller('DeviceIncludeController', function($scope, $routePar
             if ($scope.devices.length > 0) {
                 $scope.devices = angular.copy([]);
             }
-            var findZwaveStr = "ZWayVDev_zway_";
+
             angular.forEach(devices, function(v, k) {
-                if (v.id.indexOf(findZwaveStr) === -1 || v.deviceType === 'battery') {
+                var findZwaveStr = v.id.split('_');
+                if ((findZwaveStr[0] !== 'ZWayVDev' && findZwaveStr[1] !== 'zway') || v.deviceType === 'battery') {
                     return;
                 }
-                var cmd = v.id.split(findZwaveStr)[1].split('-');
+                var cmd = findZwaveStr[findZwaveStr.length - 1].split('-');
                 var zwaveId = cmd[0];
                 var iId = cmd[1];
                 var ccId = cmd[2];
@@ -9731,19 +10895,170 @@ myAppController.controller('DeviceIncludeController', function($scope, $routePar
                     obj['visibility'] = v.visibility;
                     obj['level'] = $filter('toInt')(v.metrics.level);
                     obj['metrics'] = v.metrics;
+                    obj['location'] = v.location;
                     $scope.formInput.elements[v.id] = obj;
                     $scope.devices.push(obj);
                 }
 
             });
         }, function(error) {
-            dataService.showConnectionError(error);
+            $location.path('/error/404');
         });
     }
     ;
 
-
 });
+
+/**
+ * Application Camera controller
+ * @author Martin Vach
+ */
+
+/**
+ * Camera add controller
+ */
+myAppController.controller('CameraAddController', function($scope, dataFactory, dataService, _) {
+    $scope.ipcameraDevices = [];
+    $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
+    /**
+     * Load ip cameras
+     */
+    $scope.loadData = function() {
+        dataService.showConnectionSpinner();
+        dataFactory.getApi('modules').then(function(response) {
+            $scope.ipcameraDevices = _.filter(response.data.data, function(item) {
+                var isHidden = false;
+                if ($scope.getHiddenApps().indexOf(item.moduleName) > -1) {
+                    if ($scope.user.role !== 1) {
+                        isHidden = true;
+                    } else {
+                        isHidden = ($scope.user.expert_view ? false : true);
+                    }
+
+                }
+                if (item.category !== 'surveillance') {
+                    isHidden = true;
+                }
+
+                if (!isHidden) {
+                    return item;
+                }
+            });
+            dataService.updateTimeTick();
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    };
+    $scope.loadData();
+});
+
+/**
+ * Camera manage controller
+ */
+myAppController.controller('CameraManageController', function($scope, $route,$window, dataFactory, dataService, myCache, _) {
+    $scope.instances = [];
+    $scope.modules = {
+        mediaUrl: $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/',
+        collection: [],
+        ids: [],
+        imgs: []
+    };
+    
+
+    /**
+     * Load local modules
+     */
+    $scope.loadModules = function() {
+        dataFactory.getApi('modules').then(function(response) {
+            var modulesFiltered = _.filter(response.data.data, function(item) {
+                var isHidden = false;
+                if ($scope.getHiddenApps().indexOf(item.moduleName) > -1) {
+                    if ($scope.user.role !== 1) {
+                        isHidden = true;
+                    } else {
+                        isHidden = ($scope.user.expert_view ? false : true);
+                    }
+
+                }
+                if (item.category !== 'surveillance') {
+                    isHidden = true;
+                }
+
+                if (!isHidden) {
+                   $scope.modules.ids.push(item.id);
+                   $scope.modules.imgs[item.id] = item.icon;
+                   return item;
+                }
+            });
+            $scope.modules.collection = modulesFiltered;
+             $scope.loadInstances();
+            dataService.updateTimeTick();
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    };
+     $scope.loadModules();
+     
+     /**
+     * Load instances
+     */
+    $scope.loadInstances = function() {
+        dataFactory.getApi('instances').then(function(response) {
+            $scope.instances = _.reject(response.data.data, function(v) {
+                if ($scope.modules.ids.indexOf(v.moduleId) > -1) {
+                   return false;
+                }
+                return true;
+            });
+            $scope.loading = false;
+            dataService.updateTimeTick();
+        }, function(error) {
+            $scope.loading = false;
+            dataService.showConnectionError(error);
+        });
+    };
+    
+     /**
+     * Ictivate instance
+     */
+    $scope.activateInstance = function(input, activeStatus) {
+        input.active = activeStatus;
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        if (input.id) {
+            dataFactory.putApi('instances', input.id, input).then(function(response) {
+                $scope.loading = false;
+                myCache.remove('instances');
+                myCache.remove('instances/' + input.moduleId);
+                myCache.remove('devices');
+                //$route.reload();
+                $scope.loadInstances();
+
+            }, function(error) {
+                alertify.alert($scope._t('error_update_data'));
+                $scope.loading = false;
+            });
+        }
+
+    };
+    
+    /**
+     * Delete instance
+     */
+    $scope.deleteInstance = function(target, input, message) {
+         alertify.confirm(message, function() {
+            dataFactory.deleteApi('instances', input.id).then(function(response) {
+                $(target).fadeOut(500);
+                myCache.remove('instances');
+                myCache.remove('devices');
+            }, function(error) {
+                alertify.alert($scope._t('error_delete_data'));
+            });
+
+       });
+    };
+   
+});
+
 /**
  * Application EnOcean controller
  * @author Martin Vach
@@ -10039,7 +11354,7 @@ myAppController.controller('EnoceanAssignController', function($scope, $interval
             $scope.loadApiDevices();
             $scope.loading = false;
         }, function(error) {
-            alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
         });
 
@@ -10064,7 +11379,7 @@ myAppController.controller('EnoceanAssignController', function($scope, $interval
 
             dataFactory.putApi('devices', v.id, input).then(function(response) {
             }, function(error) {
-                alert($scope._t('error_update_data'));
+                alertify.alert($scope._t('error_update_data'));
                 $scope.loading = false;
                 return;
             });
@@ -10336,7 +11651,7 @@ myAppController.controller('EnoceanTeachinController', function($scope, $routePa
             $scope.loadApiDevices();
             $scope.loading = false;
         }, function(error) {
-            alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
         });
 
@@ -10361,7 +11676,7 @@ myAppController.controller('EnoceanTeachinController', function($scope, $routePa
 
             dataFactory.putApi('devices', v.id, input).then(function(response) {
             }, function(error) {
-                alert($scope._t('error_update_data'));
+                alertify.alert($scope._t('error_update_data'));
                 $scope.loading = false;
                 return;
             });
@@ -10467,21 +11782,17 @@ myAppController.controller('EnoceanManageController', function($scope, $location
     /**
      * Delete device
      */
-    $scope.deleteDevice = function(id, target, dialog) {
-        var confirm = true;
+    $scope.deleteDevice = function(id, target, message) {
         var cmd = 'delete devices["' + id + '"]';
-        if (dialog) {
-            confirm = $window.confirm(dialog);
-        }
-        if (confirm) {
+        alertify.confirm(message, function() {
             dataFactory.runEnoceanCmd(cmd).then(function(response) {
                 $(target).fadeOut(500);
                 //$scope.loadData();
             }, function(error) {
-                alert($scope._t('error_delete_data'));
+                alertify.alert($scope._t('error_delete_data'));
             });
 
-        }
+        });
     };
 
     /// --- Private functions --- ///
@@ -10675,7 +11986,7 @@ myAppController.controller('EnoceanManageDetailController', function($scope, $ro
             $scope.loadApiDevices();
             $scope.loading = false;
         }, function(error) {
-            alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
         });
 
@@ -10701,7 +12012,7 @@ myAppController.controller('EnoceanManageDetailController', function($scope, $ro
 
             dataFactory.putApi('devices', v.id, input).then(function(response) {
             }, function(error) {
-                alert($scope._t('error_update_data'));
+                alertify.alert($scope._t('error_update_data'));
                 $scope.loading = false;
                 return;
             });
@@ -10806,7 +12117,7 @@ myAppController.controller('EnoceanControllerController', function($scope, $loca
 /**
  * Room controller
  */
-myAppController.controller('RoomController', function($scope, $location, dataFactory, dataService,_) {
+myAppController.controller('RoomController', function($scope, $location, dataFactory, dataService, _) {
     $scope.collection = [];
     $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/image/';
     $scope.devices = {
@@ -10824,20 +12135,25 @@ myAppController.controller('RoomController', function($scope, $location, dataFac
 //                $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: $scope._t('no_data')};
 //            }
             dataService.updateTimeTick();
-             $scope.loadDevices();
+            $scope.loadDevices();
         }, function(error) {
             $location.path('/error/' + error.status);
         });
     };
     $scope.loadData();
-    
+
     /**
      * Load devices
      */
     $scope.loadDevices = function() {
         dataFactory.getApi('devices').then(function(response) {
-            $scope.devices.count = _.groupBy(response.data.data.devices, 'location');
-        }, function(error) {});
+            $scope.devices.count = _.chain(response.data.data.devices)
+                    .flatten()
+                    .reject(function(v){ return v.deviceType == 'battery' || v.permanently_hidden == true; })
+                    .groupBy('location')
+                    .value();
+        }, function(error) {
+        });
     }
     ;
 });
@@ -10858,7 +12174,11 @@ myAppController.controller('RoomConfigController', function($scope, $window, $lo
      */
     $scope.loadData = function(id) {
         dataFactory.getApi('locations').then(function(response) {
-            $scope.collection = response.data.data;
+            $scope.collection = _.filter(response.data.data, function(v) {
+                if (v.id !== 0) {
+                    return v;
+                }
+            });
             loadDevices();
         }, function(error) {
             $location.path('/error/' + error.status);
@@ -10869,13 +12189,9 @@ myAppController.controller('RoomConfigController', function($scope, $window, $lo
     /**
      * Delete an item
      */
-    $scope.delete = function(target, roomId, dialog) {
+    $scope.delete = function(target, roomId, message) {
 
-        var confirm = true;
-        if (dialog) {
-            confirm = $window.confirm(dialog);
-        }
-        if (confirm) {
+        alertify.confirm(message, function() {
             dataFactory.deleteApi('locations', roomId).then(function(response) {
                 var devices = _.where($scope.devices, {location: roomId});
                 removeRoomIdFromDevice(devices);
@@ -10884,9 +12200,9 @@ myAppController.controller('RoomConfigController', function($scope, $window, $lo
                 $scope.loadData();
 
             }, function(error) {
-                alert($scope._t('error_delete_data'));
+                alertify.alert($scope._t('error_delete_data'));
             });
-        }
+        });
     };
 
     /// --- Private functions --- ///
@@ -10935,6 +12251,7 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
     $scope.devicesToRemove = [];
     $scope.defaultImages = $scope.cfg.room_images;
     $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/image/';
+    $scope.myFile = false;
 
     /**
      * Load data
@@ -10958,18 +12275,19 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
     /**
      * Upload image
      */
-    $scope.uploadFile = function() {
+    $scope.uploadFile = function(files) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('uploading')};
         var cmd = $scope.cfg.api_url + 'upload/image';
         var fd = new FormData();
-        fd.append('file_upload', $scope.myFile);
+        //fd.append('file_upload', $scope.myFile);
+        fd.append('file_upload', files[0]);
         dataFactory.uploadApiFile(cmd, fd).then(function(response) {
             $scope.input.user_img = response.data.data;
             $scope.input.img_type = 'user';
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_upload')};
         }, function(error) {
             $scope.loading = false;
-            alert($scope._t('error_upload'));
+            alertify.alert($scope._t('error_upload'));
         });
     };
 
@@ -11018,7 +12336,7 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
 
         }, function(error) {
-            alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
 
         });
@@ -11078,403 +12396,23 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
 
 });
 /**
- * Application Network controller
+ * Application Management controller
  * @author Martin Vach
  */
 
 /**
- * Network controller
+ * Management controller
  */
-myAppController.controller('NetworkController', function($scope, $cookies, $filter, $window, $location, dataFactory, dataService, myCache) {
-    $scope.activeTab = (angular.isDefined($cookies.tab_network) ? $cookies.tab_network : 'battery');
-    $scope.batteries = {
-        'list': [],
-        'cntLess20': [],
-        'cnt0': []
-    };
-    $scope.devices = {
-        'failed': [],
-        'batteries': [],
-        'zwave': []
-    };
-    $scope.goEdit = [];
-    $scope.zWaveDevices = {};
+myAppController.controller('ManagementController', function($scope, $window, $location, $timeout, $interval, $sce, $cookies, dataFactory, dataService, myCache) {
+    //Set elements to expand/collapse
+    angular.copy({
+        user: false,
+        remote: false,
+        licence: false,
+        firmware: false,
+        backup: false
+    }, $scope.expand);
 
-//    $scope.modelName = [];
-//    $scope.modelRoom = {};
-//
-//    $scope.rooms = [];
-    /**
-     * Set tab
-     */
-    $scope.setTab = function(tabId) {
-        $scope.activeTab = tabId;
-        $cookies.tab_network = tabId;
-    };
-
-
-    /**
-     * Load data
-     */
-    $scope.loadData = function() {
-        dataService.showConnectionSpinner();
-        dataFactory.getApi('devices').then(function(response) {
-            zwaveApiData(response.data.data.devices);
-            loadLocations();
-
-        }, function(error) {
-            $location.path('/error/' + error.status);
-        });
-    };
-    $scope.loadData();
-
-    /// --- Private functions --- ///
-    /**
-     * Load locations
-     */
-    function loadLocations() {
-        dataFactory.getApi('locations').then(function(response) {
-            $scope.rooms = response.data.data;
-        }, function(error) {
-            dataService.showConnectionError(error);
-        });
-    }
-    ;
-    /**
-     * Get zwaveApiData
-     */
-    function zwaveApiData(devices) {
-        dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
-            dataService.updateTimeTick();
-            if (!ZWaveAPIData.devices) {
-                return;
-            }
-
-            angular.forEach(ZWaveAPIData.devices, function(v, k) {
-                if (k == 1) {
-                    return;
-                }
-
-                $scope.zWaveDevices[k] = {
-                    id: k,
-                    title: v.data.givenName.value || 'Device ' + '_' + k,
-                    icon: null,
-                    cfg: [],
-                    elements: [],
-                    messages: []
-                };
-
-            });
-            var findZwaveStr = "ZWayVDev_zway_";
-            angular.forEach(devices, function(v, k) {
-                var cmd;
-                var nodeId;
-                var iId;
-                var ccId;
-                if (v.id.indexOf(findZwaveStr) > -1) {
-                    cmd = v.id.split(findZwaveStr)[1].split('-');
-                    nodeId = cmd[0];
-                    iId = cmd[1];
-                    ccId = cmd[2];
-                    var node = ZWaveAPIData.devices[nodeId];
-                    if (node) {
-                        var interviewDone = isInterviewDone(node, nodeId);
-                        var isFailed = node.data.isFailed.value;
-                        var hasBattery = 0x80 in node.instances[0].commandClasses;
-                        var obj = {};
-                        obj['id'] = v.id;
-                        obj['visibility'] = v.visibility;
-                        obj['permanently_hidden'] = v.permanently_hidden;
-                        obj['nodeId'] = nodeId;
-                        obj['nodeName'] = node.data.givenName.value || 'Device ' + '_' + k,
-                                obj['title'] = v.metrics.title;
-                        obj['deviceType'] = v.deviceType;
-                        obj['level'] = $filter('toInt')(v.metrics.level);
-                        obj['metrics'] = v.metrics;
-                        obj['messages'] = [];
-                        if (v.deviceType !== 'battery') {
-                            $scope.devices.zwave.push(obj);
-                            $scope.zWaveDevices[nodeId]['elements'].push(obj);
-                            $scope.zWaveDevices[nodeId]['icon'] = obj.metrics.icon;
-                        }
-
-                        // Batteries
-                        if (v.deviceType === 'battery') {
-                            $scope.devices.batteries.push(obj);
-                        }
-                        if (hasBattery && interviewDone) {
-                            var batteryCharge = parseInt(node.instances[0].commandClasses[0x80].data.last.value);
-                            if (batteryCharge <= 20) {
-                                $scope.zWaveDevices[nodeId]['messages'].push({
-                                    type: 'battery',
-                                    error: $scope._t('lb_low_battery') + ' (' + batteryCharge + '%)'
-                                });
-                                obj['messages'].push({
-                                    type: 'battery',
-                                    error: $scope._t('lb_low_battery') + ' (' + batteryCharge + '%)'
-                                });
-                            }
-                        }
-                        // Not interview
-                        if (!interviewDone) {
-                            $scope.zWaveDevices[nodeId]['messages'].push({
-                                type: 'config',
-                                error: $scope._t('lb_not_configured')
-
-                            });
-
-                            obj['messages'].push({
-                                type: 'config',
-                                error: $scope._t('lb_not_configured')
-
-                            });
-                        }
-                        // Is failed
-                        if (isFailed) {
-                            $scope.zWaveDevices[nodeId]['messages'].push({
-                                type: 'failed',
-                                error: $scope._t('lb_is_failed')
-
-                            });
-                            obj['messages'].push({
-                                type: 'failed',
-                                error: $scope._t('lb_is_failed')
-
-                            });
-                        }
-                        $scope.devices.failed.push(obj);
-                    }
-
-                }
-            });
-            // Count device batteries
-            for (i = 0; i < $scope.devices.batteries.length; ++i) {
-                var battery = $scope.devices.batteries[i];
-                if (battery.level < 1) {
-                    $scope.batteries.cnt0.push(battery.id);
-                }
-                if (battery.level > 0 && battery.level < 20) {
-                    $scope.batteries.cntLess20.push(battery.id);
-                }
-
-            }
-        }, function(error) {
-            $location.path('/error/' + error.status);
-        });
-    }
-    ;
-
-    /**
-     * Redirect to Expert
-     */
-    $scope.toExpert = function(url, dialog) {
-        if ($window.confirm(dialog)) {
-            $window.location.href = url;
-        }
-    };
-    /**
-     * notInterviewDevices
-     */
-    function isInterviewDone(node, nodeId) {
-        for (var iId in node.instances) {
-            for (var ccId in node.instances[iId].commandClasses) {
-                var isDone = node.instances[iId].commandClasses[ccId].data.interviewDone.value;
-                if (isDone == false) {
-                    return false;
-                }
-            }
-        }
-        return true;
-
-    }
-    ;
-});
-/**
- * Profile controller
- */
-myAppController.controller('NetworkConfigController', function($scope, $routeParams, $filter, $location, dataFactory, dataService, myCache) {
-    $scope.zWaveDevice = [];
-    $scope.devices = [];
-    //$scope.dev = [];
-    $scope.formInput = {
-        elements: {},
-        room: undefined
-    };
-    $scope.rooms = [];
-    //$scope.modelRoom;
-
-    /**
-     * Load data
-     */
-    $scope.loadData = function(nodeId) {
-        dataService.showConnectionSpinner();
-        dataFactory.getApi('devices').then(function(response) {
-            zwaveApiData(nodeId, response.data.data.devices);
-            loadLocations();
-
-        }, function(error) {
-            $location.path('/error/' + error.status);
-        });
-    };
-    $scope.loadData($routeParams.nodeId);
-
-    /**
-     * Assign devices to room
-     */
-    $scope.devicesToRoom = function(roomId, devices) {
-        if (!roomId) {
-            return;
-        }
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        for (var i = 0; i <= devices.length; i++) {
-            var v = devices[i];
-            if (!v) {
-                continue;
-            }
-            var input = {
-                id: v.id,
-                location: roomId
-            };
-
-            dataFactory.putApi('devices', v.id, input).then(function(response) {
-            }, function(error) {
-                alert($scope._t('error_update_data'));
-                $scope.loading = false;
-                return;
-            });
-        }
-        myCache.remove('devices');
-        $scope.loadData($routeParams.nodeId);
-        $scope.loading = false;
-        return;
-
-    };
-
-    /**
-     * Update all devices
-     */
-    $scope.updateAllDevices = function() {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-       angular.forEach($scope.formInput.elements, function(v, k) {
-                var errors = 0;
-                dataFactory.putApi('devices', v.id, v).then(function(response) {
-                }, function(error) {});
-        });
-        myCache.remove('devices');
-       $scope.loadData($routeParams.nodeId);
-       $scope.loading = false;
-
-    };
-    /**
-     * Update single device
-     */
-    $scope.updateDevice = function(input) {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        dataFactory.putApi('devices', input.id, input).then(function(response) {
-            myCache.remove('devices');
-            $scope.loadData($routeParams.nodeId);
-            $scope.loading = false;
-        }, function(error) {
-            alert($scope._t('error_update_data'));
-            $scope.loading = false;
-        });
-
-    };
-
-    /// --- Private functions --- ///
-    /**
-     * Load locations
-     */
-    function loadLocations() {
-        dataFactory.getApi('locations').then(function(response) {
-            $scope.rooms = response.data.data;
-        }, function(error) {
-            dataService.showConnectionError(error);
-        });
-    }
-    ;
-    /**
-     * Get zwaveApiData
-     */
-    function zwaveApiData(nodeId, devices) {
-        dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
-            dataService.updateTimeTick();
-            var node = ZWaveAPIData.devices[nodeId];
-            if (!node) {
-                $location.path('/error/404');
-                return;
-            }
-
-            $scope.zWaveDevice = {
-                id: nodeId,
-                title: node.data.givenName.value || 'Device ' + '_' + nodeId,
-                cfg: []
-            };
-            // Has config file
-            if (angular.isDefined(node.data.ZDDXMLFile) && node.data.ZDDXMLFile.value != '') {
-                if ($scope.zWaveDevice['cfg'].indexOf('config') === -1) {
-                    $scope.zWaveDevice['cfg'].push('config');
-                }
-            }
-            // Has wakeup
-            if (0x84 in node.instances[0].commandClasses) {
-                if ($scope.zWaveDevice['cfg'].indexOf('wakeup') === -1) {
-                    $scope.zWaveDevice['cfg'].push('wakeup');
-                }
-            }
-            // Has SwitchAll
-            if (0x27 in node.instances[0].commandClasses) {
-                if ($scope.zWaveDevice['cfg'].indexOf('switchall') === -1) {
-                    $scope.zWaveDevice['cfg'].push('switchall');
-                }
-            }
-            // Has protection
-            if (0x75 in node.instances[0].commandClasses) {
-                if ($scope.zWaveDevice['cfg'].indexOf('protection') === -1) {
-                    $scope.zWaveDevice['cfg'].push('protection');
-                }
-            }
-            if ($scope.devices.length > 0) {
-                $scope.devices = angular.copy([]);
-            }
-            var findZwaveStr = "ZWayVDev_zway_";
-            angular.forEach(devices, function(v, k) {
-                if (v.id.indexOf(findZwaveStr) === -1 || v.deviceType === 'battery') {
-                    return;
-                }
-                var cmd = v.id.split(findZwaveStr)[1].split('-');
-                var zwaveId = cmd[0];
-                var iId = cmd[1];
-                var ccId = cmd[2];
-                if (zwaveId == nodeId) {
-                    var obj = {};
-                    obj['id'] = v.id;
-                    obj['permanently_hidden'] = v.permanently_hidden;
-                    obj['visibility'] = v.visibility;
-                    obj['level'] = $filter('toInt')(v.metrics.level);
-                    obj['metrics'] = v.metrics;
-                    $scope.formInput.elements[v.id] = obj;
-                    $scope.devices.push(obj);
-                }
-
-            });
-        }, function(error) {
-            $location.path('/error/404');
-        });
-    }
-    ;
-
-
-});
-/**
- * Application Admin controller
- * @author Martin Vach
- */
-
-/**
- * Profile controller
- */
-myAppController.controller('AdminController', function($scope, $window, $location, $timeout, $interval, $sce, $cookies,dataFactory, dataService, myCache) {
     $scope.profiles = {};
     $scope.remoteAccess = false;
     $scope.controllerInfo = {
@@ -11482,16 +12420,6 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
         softwareRevisionVersion: null,
         softwareLatestVersion: null
     };
-    // Firmware
-//    $scope.firmware = {
-//        alert: {message: false, status: 'is-hidden', icon: false},
-//        process: false,
-//        val: 0
-//
-//    };
-    
-    // Licence
-    //$scope.controllerUuid = null;
     $scope.proccessLicence = false;
     $scope.proccessVerify = {
         'message': false,
@@ -11512,9 +12440,11 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
     // Cancel interval on page destroy
     $scope.$on('$destroy', function() {
         $interval.cancel($scope.zwaveDataInterval);
+        angular.copy({}, $scope.expand);
     });
 
     $scope.firmwareUpdateUrl = $sce.trustAsResourceUrl('http://' + $scope.hostName + ':8084/cgi-bin/main.cgi');
+
 
     /**
      * Load razberry latest version
@@ -11543,7 +12473,7 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
     };
 
     $scope.loadZwaveApiData();
-    
+
     /************************************** User management **************************************/
 
     /**
@@ -11562,26 +12492,21 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
     /**
      * Delete an item
      */
-    $scope.delete = function(target, input, dialog, except) {
+    $scope.delete = function(target, input, message, except) {
         if (input.id == except) {
             return;
         }
-        var confirm = true;
-        if (dialog) {
-            confirm = $window.confirm(dialog);
-        }
-
-        if (confirm) {
+        alertify.confirm(message, function() {
             dataFactory.deleteApi('profiles', input.id).then(function(response) {
                 $(target).fadeOut(2000);
                 myCache.remove('profiles');
 
             }, function(error) {
-                alert($scope._t('error_delete_data'));
+                alertify.alert($scope._t('error_delete_data'));
             });
-        }
+        });
     };
-    
+
     /************************************** Remote access **************************************/
 
     /**
@@ -11622,12 +12547,12 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
 
         }, function(error) {
-            alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
         });
 
     };
-    
+
     /************************************** Licence **************************************/
 
     /**
@@ -11681,17 +12606,17 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
         });
     }
     ;
-    
+
     /************************************** Backup, Restore, Factory default **************************************/
     // Backup, restore, Factory default
     $scope.backupRestore = {
         activeTab: (angular.isDefined($cookies.tab_admin_backup) ? $cookies.tab_admin_backup : 'backup'),
         restore: {
-           alert: {message: false, status: 'is-hidden', icon: false},
+            alert: {message: false, status: 'is-hidden', icon: false},
             process: false
         },
         factory: {
-           alert: {message: false, status: 'is-hidden', icon: false},
+            alert: {message: false, status: 'is-hidden', icon: false},
             process: false
         }
 
@@ -11701,7 +12626,7 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
         process: false
 
     };
-    
+
     /**
      * Set tab
      */
@@ -11715,7 +12640,7 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
      */
     $scope.uploadBackupFile = function(input) {
         var cnt = 0;
-         $scope.backupRestore.restore.process = true;
+        $scope.backupRestore.restore.process = true;
         var refresh = function() {
             $scope.backupRestore.restore.alert = {message: $scope._t('restore_wait'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
             cnt += 1;
@@ -11729,20 +12654,19 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
         var interval = $interval(refresh, 1000);
         return;
         /*$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('restore_wait')};
-        var fd = new FormData();
-        fd.append('file_upload', $scope.myFile);
-        dataFactory.restoreFromBck(fd).then(function(response) {
-            $timeout(function() {
-                $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('restore_done_reload_ui')};
-                //$interval.cancel($scope.zwaveDataInterval);
-                $window.location.reload();
-            }, 20000);
-        }, function(error) {
-            $scope.loading = false;
-            alert($scope._t('restore_backup_failed'));
-        });*/
+         var fd = new FormData();
+         fd.append('file_upload', $scope.myFile);
+         dataFactory.restoreFromBck(fd).then(function(response) {
+         $timeout(function() {
+         $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('restore_done_reload_ui')};
+         //$interval.cancel($scope.zwaveDataInterval);
+         $window.location.reload();
+         }, 20000);
+         }, function(error) {
+         $scope.loading = false;
+         });*/
     };
-    
+
     /**
      * Cancel restore
      */
@@ -11753,13 +12677,13 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
         $scope.goRestoreUpload = false;
 
     };
-    
+
     /**
      * Back to Factory default
      */
     $scope.backFactoryDefault = function(input) {
         var cnt = 0;
-         $scope.backupRestore.factory.process = true;
+        $scope.backupRestore.factory.process = true;
         var refresh = function() {
             $scope.backupRestore.factory.alert = {message: $scope._t('returning_factory_default'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
             cnt += 1;
@@ -11773,30 +12697,6 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
         var interval = $interval(refresh, 1000);
     };
 
-    
-
-    /**
-     * DEPRECATED
-     * Update firmware
-     */
-//    $scope.updateFirmware = function(input) {
-//        $scope.firmware.process = true;
-//        $scope.firmware.val = 0;
-//        var refresh = function() {
-//            $scope.firmware.alert = {message: $scope._t('updating_firmware'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
-//            $scope.firmware.val += 10;
-//            if ($scope.firmware.val >= 100) {
-//                $scope.firmware.val = 100;
-//                $interval.cancel(progressInterval);
-//                $scope.firmware.alert = {message: $scope._t('firmware_success'), status: 'alert-success', icon: 'fa-check'};
-//                //$scope.alertProgress = {message: $scope._t('firmware_error'), status: 'alert-danger', icon: 'fa-warning'};
-//                $scope.firmware.process = false;
-//            }
-//            console.log($scope.progressBar);
-//        };
-//        var progressInterval = $interval(refresh, 500);
-//    };
-
     /************************************** Firmware **************************************/
     /**
      * Show modal window
@@ -11804,38 +12704,11 @@ myAppController.controller('AdminController', function($scope, $window, $locatio
     $scope.showModal = function(target) {
         $(target).modal();
     };
-
-    /**
-     * Refresh ZWAVE api data
-     */
-//    $scope.refreshZwaveApiData = function() {
-//        var refresh = function() {
-//            dataFactory.refreshZwaveApiData().then(function(response) {
-//                if ('controller.data.controllerState' in response.data) {
-//                    var state = response.data['controller.data.controllerState'].value;
-//                    if (state == 20) {
-//                        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('restore_wait')};
-//                        $timeout(function() {
-//                            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('restore_done_reload_ui')};
-//                             $interval.cancel($scope.zwaveDataInterval);
-//                        }, 20000);
-//                    }
-//                }
-//               
-//            }, function(error) {
-//                dataService.showConnectionError(error);
-//                return;
-//            });
-//        };
-//        $scope.zwaveDataInterval = $interval(refresh, $scope.cfg.interval);
-//        return;
-//    };
-//    $scope.refreshZwaveApiData();
 });
 /**
- * Orofile detail
+ * User detail
  */
-myAppController.controller('AdminUserController', function($scope, $routeParams, $filter, $location, dataFactory, dataService, myCache) {
+myAppController.controller('ManagementUserController', function($scope, $routeParams, $filter, $location, dataFactory, dataService, myCache) {
     $scope.id = $filter('toInt')($routeParams.id);
     $scope.rooms = {};
     $scope.input = {
@@ -11883,7 +12756,12 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
      */
     $scope.loadRooms = function() {
         dataFactory.getApi('locations').then(function(response) {
-            $scope.rooms = response.data.data;
+            //$scope.rooms = response.data.data;
+            $scope.rooms = _.filter(response.data.data, function(v) {
+                if (v.id !== 0) {
+                    return v;
+                }
+            });
         }, function(error) {
             dataService.showConnectionError(error);
         });
@@ -11931,7 +12809,7 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
 
         }, function(error) {
-            alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
         });
 
@@ -11954,14 +12832,14 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
         dataFactory.putApi('profiles_auth_update', input.id, input).then(function(response) {
             var data = response.data.data;
             if (!data) {
-                alert($scope._t('error_update_data'));
+                alertify.alert($scope._t('error_update_data'));
                 $scope.loading = false;
                 return;
             }
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
 
         }, function(error) {
-            alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
         });
 
@@ -11972,14 +12850,75 @@ myAppController.controller('AdminUserController', function($scope, $routeParams,
 
 });
 /**
- * Application My Access controller
+ * App Store controller
+ */
+myAppController.controller('ManagementAppStoreController', function($scope, $routeParams, $filter, $location, dataFactory, dataService, myCache) {
+    $scope.appStore = {
+        input: {
+            token: ''
+        },
+        tokens: {}
+
+    };
+
+    /**
+     * Load tokens
+     */
+    $scope.appStoreLoadTokens = function() {
+        dataService.showConnectionSpinner();
+        dataFactory.getApi('tokens', null, true).then(function(response) {
+            angular.extend($scope.appStore.tokens, response.data.data.tokens);
+        }, function(error) {});
+    };
+    $scope.appStoreLoadTokens();
+    
+    /**
+     * Create/Update an item
+     */
+    $scope.appStoreAddToken = function() {
+        if ($scope.appStore.input.token === '') {
+            return;
+        }
+        dataFactory.putApiFormdata('tokens', $scope.appStore.input).then(function(response) {
+            $scope.appStore.input.token = '';
+            $scope.appStoreLoadTokens();
+        }, function(error) {
+            var message = $scope._t('error_update_data');
+            if(error.status === 409){
+                message = $scope._t('notunique_token') + ' - ' + $scope.appStore.input.token;
+            }
+            alertify.alert( message);
+        });
+
+    };
+
+    /**
+     * Remove a token from the list
+     */
+    $scope.appStoreRemoveToken = function(token, message) {
+        alertify.confirm(message, function() {
+            dataFactory.deleteApiFormdata('tokens', {token: token}).then(function(response) {
+                angular.extend($scope.appStore,response.data.data);;
+            }, function(error) {
+                alertify.alert($scope._t('error_delete_data'));
+            });
+        });
+        return;
+    };
+
+    /// --- Private functions --- ///
+
+
+});
+/**
+ * Application MySettings controller
  * @author Martin Vach
  */
 
 /**
  * My Access
  */
-myAppController.controller('MyAccessController', function($scope, $window, $location,$cookies,dataFactory, dataService, myCache) {
+myAppController.controller('MySettingsController', function($scope, $window, $location,$cookies,dataFactory, dataService, myCache) {
     $scope.id = $scope.user.id;
     $scope.devices = {};
     $scope.input = {
@@ -12048,7 +12987,7 @@ myAppController.controller('MyAccessController', function($scope, $window, $loca
         dataFactory.putApi('profiles', input.id, input).then(function(response) {
             var data = response.data.data;
             if (!data) {
-                alert($scope._t('error_update_data'));
+                alertify.alert($scope._t('error_update_data'));
                 $scope.loading = false;
                 return;
             }
@@ -12062,7 +13001,7 @@ myAppController.controller('MyAccessController', function($scope, $window, $loca
             //$route.reload();
 
         }, function(error) {
-            alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
         });
 
@@ -12084,7 +13023,7 @@ myAppController.controller('MyAccessController', function($scope, $window, $loca
         dataFactory.putApi('profiles_auth_update', input.id, input).then(function(response) {
             var data = response.data.data;
             if (!data) {
-                alert($scope._t('error_update_data'));
+                alertify.alert($scope._t('error_update_data'));
                 $scope.loading = false;
                 return;
             }
@@ -12092,7 +13031,7 @@ myAppController.controller('MyAccessController', function($scope, $window, $loca
             $window.history.back();
 
         }, function(error) {
-            alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
         });
 
@@ -12201,12 +13140,40 @@ myAppController.controller('ReportController', function($scope, $window, dataFac
 
 
         }, function(error) {
-            alert($scope._t('error_send_report'));
+            alertify.alert($scope._t('error_send_report'));
             $scope.loading = false;
         });
 
     };
 
+});
+/**
+ * Application info controller
+ * @author Martin Vach
+ */
+
+myAppController.controller('InfoController', function($scope, dataFactory,dataService) {
+    $scope.input = {
+        software: {
+            firmwareVersion: '',
+            uiVersion: $scope.cfg.app_version
+        }
+    };
+    
+    /**
+     * Load ZwaveApiData
+     */
+    $scope.loadZwaveApiData = function() {
+        dataService.showConnectionSpinner();
+        dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
+            angular.extend($scope.input.software,{firmwareVersion: ZWaveAPIData.controller.data.softwareRevisionVersion.value});
+            dataService.updateTimeTick();
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    };
+
+    $scope.loadZwaveApiData();
 });
 /**
  * Application Auth controller
@@ -12257,7 +13224,8 @@ myAppController.controller('LoginController', function($scope, $location, $windo
             dataService.setLastLogin(Math.round(+new Date() / 1000));
             //$scope.loading = false;
             $scope.input.form = false;
-            $window.location.href = '#/elements?login';
+            //$window.location.href = '#/elements/dashboard/1?login';
+            $location.path('/elements/dashboard/1?login');
             $window.location.reload();
         }, function(error) {
             var message = $scope._t('error_load_data');
@@ -20186,7 +21154,7 @@ myApp.directive('expertCommandInput', function($filter) {
         
         input += '<label>' + label + '</label> ';
         input += '<select name="select_' + inName + '" class="form-control">';
-        input += '<option value="1">RaZberry</option>';
+        input += '<option value="1">Z-Way</option>';
         angular.forEach(devices, function(v, k) {
             var selected = (v.id == currValue ? ' selected' : '');
             input += '<option value="' + v.id + '"' + selected + '>' + v.name + '</option>';
@@ -21374,14 +22342,14 @@ myAppController.controller('ConfigConfigurationController', function($scope, $ro
     $scope.updateFromDevice = function(cmd,hasBattery) {
          $scope.loading = {status:'loading-spin',icon:'fa-spinner fa-spin', message:$scope._t('updating')};
          if (hasBattery) {
-            alert($scope._t('conf_apply_battery'));
+            alertify.alert($scope._t('conf_apply_battery'));
         }
         dataFactory.runExpertCmd(cmd, true).then(function(response) {
             
             //dataService.logInfo(response, 'Update from device');
         }, function(error) {
             dataService.logError(error, 'Update from device');
-            alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_update_data'));
         });
         $scope.refresh($routeParams.nodeId);
         $timeout(function() {
@@ -21423,7 +22391,7 @@ myAppController.controller('ConfigConfigurationController', function($scope, $ro
         var xmlData = [];
         var configValues = [];
         if (hasBattery) {
-            alert($scope._t('conf_apply_battery'));
+            alertify.alert($scope._t('conf_apply_battery'));
         }
         var data = $('#' + form).serializeArray();
         var dataValues = [];
@@ -21522,11 +22490,11 @@ myAppController.controller('ConfigConfigurationController', function($scope, $ro
            var xmlFile = expertService.buildCfgXml(xmlData, cfgXml, cmd['id'], cmd['commandclass']);
            dataFactory. putCfgXml(xmlFile).then(function(response){},function(error) {
                     dataService.logError(error);
-                    alert($scope._t('error_update_data'));
+                    alertify.alert($scope._t('error_update_data'));
                 });
         }, function(error) {
             dataService.logError(error);
-            alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_update_data'));
         });
 
         $scope.refresh(cmd['id']);

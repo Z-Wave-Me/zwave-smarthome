@@ -1,0 +1,22 @@
+<!-- Camera add view -->
+<div ng-controller="CameraAddController">
+    <div ng-show="ipcameraDevices">
+        <table class="table table-condensed table-report table-products">
+            <tbody>
+                <tr ng-repeat="v in ipcameraDevices | orderBy:'defaults.title' track by v.moduleName ">
+                    <td class="td-img">
+                        <img class="product-img" ng-src="{{moduleMediaUrl + v.moduleName + '/' + v.icon}}" ng-if="v.icon" alt="img" />
+                        <img class="product-img" ng-src="storage/img/icons/camera.png" ng-if="!v.icon" alt="img" />
+                    </td>
+                    <td ng-bind="v.defaults.title"></td>
+                    <td class="td-camera-action">
+                        <a href="#module/post/{{v.id}}" class="btn btn-default"><i class="fa fa-plug text-primary"></i> {{_t('lb_include_device')}}</a>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="device-logo" ng-include="'app/views/camera/camera_nav.html'"></div>
+</div> <!-- /ng-controller --> 
+

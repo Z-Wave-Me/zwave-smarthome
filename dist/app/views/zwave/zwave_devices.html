@@ -1,0 +1,28 @@
+<!-- Zwave device view -->
+<div ng-controller="ZwaveManageController">
+    <!-- Zwave navigation -->
+    <div ng-include="'app/views/zwave/navi.html'"></div>
+    <div class="tab-pane" id="module_zwave">
+            <table class="table table-condensed table-report">
+            <tbody>
+                 <tr ng-repeat="v in zWaveDevices | orderBy:'title':false" id="row_zwave_{{v.id}}" ng-if="v.elements">
+                     <td class="network-zwave-device">
+                        <a href="" class="network-zwave-title" ng-click="goEdit[v.id] = !goEdit[v.id]">
+                            <i class="fa" ng-class="goEdit[v.id] ? 'fa-chevron-up': 'fa-chevron-down'"></i> {{v.title}} (#{{v.id}}) 
+                        </a>
+                        <div class="network-zwave-element" ng-repeat="e in v.elements | orderBy:'title':false" ng-if="goEdit[v.id]">
+                            <img class="report-img" ng-src="{{e.metrics.icon|getElementIcon:e:e.level}}" alt="img" /> 
+                                <span class="zwave-hidden-{{e.permanently_hidden}}" ng-bind="e.title"></span>
+                          </div>
+                    </td>
+                    <td class="td-action" ng-if="elementAccess(cfg.role_access.network)">
+                        <a class="btn btn-default" href="#zwave/devices/{{v.id}}" ng-if_="v.cfg.length > 0">
+                           <i class="fa fa-cog text-primary"></i> <span class="btn-name" ng-bind="_t('lb_configuration')"></span>
+                       </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+    <div class="device-logo" ng-include="'app/views/zwave/zwave_nav.html'"></div>
+</div> <!-- /ng-controller --> 
