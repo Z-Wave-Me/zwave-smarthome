@@ -23,6 +23,8 @@ var config_data = {
             'modules_categories': 'ZAutomation/api/v1/modules/categories',
             'online_install': 'ZAutomation/api/v1/modules/install',
             'online_update': 'ZAutomation/api/v1/modules/update',
+            'online_delete': 'ZAutomation/api/v1/modules/delete',
+            'online_reset': 'ZAutomation/api/v1/modules/reset',
             'instances': 'ZAutomation/api/v1/instances',
             'namespaces': 'ZAutomation/api/v1/namespaces',
             'history': 'ZAutomation/api/v1/history',

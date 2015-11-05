@@ -1409,11 +1409,11 @@ http://codepen.io/MattIn4D/pen/LiKFC
 /* line 45, sass/globals/_loader.scss */
 .loading-fade {
   opacity: 0;
-  -webkit-transition: opacity 4s;
-  -moz-transition: opacity 4s;
-  -ms-transition: opacity 4s;
-  -o-transition: opacity 4s;
-  transition: opacity 4s;
+  -webkit-transition: opacity 7s;
+  -moz-transition: opacity 7s;
+  -ms-transition: opacity 7s;
+  -o-transition: opacity 7s;
+  transition: opacity 7s;
 }
 
 /**
