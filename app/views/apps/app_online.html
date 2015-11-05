@@ -47,7 +47,6 @@
                  ng-src="{{v.icon ? onlineMediaUrl + v.icon : 'storage/img/placeholder-img.png'}}" 
                  ng-click="redirectToRoute(localModules.ids.indexOf(v.modulename) !== -1 ? false : 'apps/online/' + v.modulename)" />
             <div class="app-body">
-                 Online version: {{v.version}} | Local version: {{localModules.all[v.modulename].version }}
                 <h3 class="entry-title">
                     <a href="#apps/online/{{v.modulename}}" ng-if="localModules.ids.indexOf(v.modulename) === -1">{{v.title}}  &raquo;</a>
                     <span ng-if="localModules.ids.indexOf(v.modulename) !== -1" ng-bind="v.title"></span>

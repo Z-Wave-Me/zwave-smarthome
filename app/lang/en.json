@@ -1,5 +1,6 @@
 {
     "newtrans": "---",
+    "---": "newtrans",
     "reset": "Reset",
     "app_installation_successful": "The app was successfully installed.",
     "app_installation_successful_but_restart_necessary": "The app was successfully installed. Please restart your Raspberry.",
@@ -18,7 +19,6 @@
     "app_reset_confirm": "All App instnces will be deleted",
     "app_reset_successful_to_version": "The app was successfully reset",
     "app_is_still_reseted": "App is already reset.",
-    "---": "newtrans",
     "room_settings": "Room settings",
     "ipcamera": "IP Camera",
     "notunique_token": "The given token already exits",
