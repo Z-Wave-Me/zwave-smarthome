@@ -190,16 +190,16 @@
                             <!-- ////////// toggleButton ////////// -->
                             <div ng-switch-when="toggleButton">
                                 <div class="widget-control control-right">
-                                    <span class="widget-level"><i class="fa fa-clock-o"></i> <span class="widget-update-time">{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span></span>                                                                     
-                                </div>
-                                 <div class="widget-control control-left">
-                                      <div class="btn-group">
+                                    <div class="btn-group">
                                          <button 
-                                             class="btn btn-sm btn-primary widget-btn-on" 
+                                             class="btn btn-sm btn-default" 
                                              ng-click="runCmd(v.id + '/command/on')"  title="{{_t('lb_on')}}">
-                                            <span class="widget-btn-symbol">I</span> <span class="widget-btn-label">{{_t('lb_on')}}</span>
+                                            <span class="widget-btn-label-on">{{_t('lb_on')}}</span>
                                          </button>
                                     </div>
+                                </div>
+                                 <div class="widget-control control-left">
+                                   <button class="btn btn-default txt-widget-time"><i class="fa fa-clock-o"></i> <span class="widget-update-time">{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span></button>    
                                 </div>
                             </div><!-- /.widget-control .right -->
                             <!-- ////////// /toggleButton ////////// -->
@@ -340,8 +340,7 @@
                             
                             <!-- ////////// switchControl ////////// -->
                             <div ng-switch-when="switchControl">
-                                <div class="widget-control control-right"></div>
-                                 <div class="widget-control control-left">
+                                <div class="widget-control control-right"> 
                                     <div class="btn-group">
                                         <button 
                                             class="btn btn-sm widget-btn-off" 
@@ -356,6 +355,9 @@
                                             ng-class="levelVal[v.id]=='on' ? 'btn-primary': 'btn-default'"
                                             title="{{_t('lb_on')}}"><span class="widget-btn-symbol">I</span> <span class="widget-btn-label">{{_t('lb_on')}}</span></button>
                                     </div>
+                                </div>
+                                 <div class="widget-control control-left">
+                                    
                                 </div><!-- /.widget-control .right -->
                             </div>
                             <!-- ////////// /switchControl ////////// -->
