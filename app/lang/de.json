@@ -1,4 +1,5 @@
 {
+    "goahead": "Fortfahren",
     "reset": "Reset",
     "app_installation_successful": "Die Applikation wurde erfolgreich installiert.",
     "app_installation_successful_but_restart_necessary": "Die Applikation wurde erfolgreich installiert. Starten Sie ihr Gerät bitte neu.",
@@ -17,7 +18,7 @@
     "app_reset_confirm": "Alle Instanzen der Applikation werden entfernt.",
     "app_reset_successful_to_version": "Die Applikation wurde erfolgreich zurückgesetzt",
     "app_is_still_reseted": "Die Applikation ist bereits zurückgesetzt",
-    "room_settings":"Raumeinstellungen",
+    "room_settings":"Raum",
     "ipcamera":"IP Kamera",
     "notunique_token":"Der eingebene Schlüssel existiert bereits",
     "device_no_event": "Dieses Gerät hat keine Events",

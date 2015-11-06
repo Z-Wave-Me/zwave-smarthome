@@ -185,7 +185,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
     $scope.toExpert = function(url, message) {
         alertify.confirm(message, function() {
             $window.location.href = url;
-         });
+         }).set('labels', {ok:$scope._t('goahead')});
     };
     
      /**

@@ -67,11 +67,11 @@
 
 .widget-body{
     margin-top: -5px;
-    //padding: 0 5px 15px 84px;
+    padding: 0 5px 15px 74px;
     width: 100%;
     .widget-content-wrap{
         //min-height: 50px;
-        padding: 0 5px 15px 84px;
+        padding: 0 5px 15px 0;
     }
     .widget-room{
         display: block;
@@ -89,11 +89,25 @@
         width: 100%;
     }
     .widget-control{ 
+        //padding-left: 74px;
         width: 50%;
         float: left;
         .btn{
             // padding: 3px 9px;
         }
+        .fa-caret-down{
+            font-size: $app-body-font-size * 1.4;
+            color: #6494BC;
+        }
+        select {
+            overflow:hidden;
+            padding: 3px;
+            max-width: 150px;
+        }
+        option {
+            overflow:hidden;
+        }
+
     }
     .widget-control.control-right{
         float: right;
@@ -124,7 +138,7 @@
         font-size: $app-body-font-size * 1.1;
     }
     .btn-widget-time,.txt-widget-time{
-        padding: 7px 10px;
+        padding: 7px 0 0 0;
         border: 0 none;
         color: lighten($app-body-color, 40%);
         font-size: $app-body-font-size * 0.85;
@@ -137,10 +151,10 @@
     .txt-widget-time:focus {
         outline: 0;
     }
-     .txt-widget-time:active {
+    .txt-widget-time:active {
         box-shadow: 0;
     }
-   
+
     .btn-widget-time:hover{
         //background-color: transparent;
     }
@@ -162,12 +176,12 @@
         .widget-btn-label{
             display: none;
         }
-       
+
     }
-     .widget-btn-label-on{
-         color: lighten($app-body-color, 30%);
-            text-transform: lowercase;
-        }
+    .widget-btn-label-on{
+        color: lighten($app-body-color, 30%);
+        text-transform: lowercase;
+    }
     .widget-btn-off.btn-primary{
         background-color: #fff !important;
         border-color: #ccc;
