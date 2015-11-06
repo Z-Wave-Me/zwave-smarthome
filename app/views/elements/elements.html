@@ -56,7 +56,7 @@
                             <!-- ////////// switchMultilevel ////////// -->
                             <div ng-switch-when="switchMultilevel">
                                 <div class="widget-control control-right widget-click-popup" ng-click="goHidden[v.id] = !goHidden[v.id]">
-                                    <span class="widget-level" ng-bind="levelVal[v.id] | getMaxLevel:v.probeType"></span><span class="widget-scale" ng-bind="v.scaleTitle"></span> <i class="fa fa-caret-down"></i>
+                                     <i class="fa fa-caret-down"></i> <span class="widget-level" ng-bind="levelVal[v.id] | getMaxLevel:v.probeType"></span><span class="widget-scale" ng-bind="v.scaleTitle"></span>
                                 </div>
                                 <div class="widget-control control-left">
                                     <div class="btn-group" ng-if="v.metrics.icon == 'blinds'">
@@ -166,7 +166,7 @@
                             <!-- ////////// doorLockControl ////////// -->
                              <div ng-switch-when="doorLockControl">
                                 <div class="widget-control control-right widget-click-popup" ng-click="loadDoorLock('#modal_doorlock', v.id,v)">
-                                    <span class="widget-level">Closed at</span> <span>{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span> <i class="fa fa-caret-down"></i>
+                                    <i class="fa fa-caret-down"></i> <span class="widget-level">Closed at</span> <span>{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span>
                                 </div>
                                 <div class="widget-control control-left"> 
                                     <div class="btn-group">
@@ -237,7 +237,7 @@
                                 <!-- climateControl sensorMultiline -->
                                 <div ng-if="v.metrics.multilineType === 'climateControl'">
                                     <div class="widget-control control-right widget-click-popup">
-                                       <strong ng-click="loadClimateControl('#modal_climate_control', v.id,v)">{{_t('room_settings')}}</strong> <i class="fa fa-caret-down"></i>
+                                       <i class="fa fa-caret-down"></i> <strong ng-click="loadClimateControl('#modal_climate_control', v.id,v)">{{_t('room_settings')}}</strong>
                                    </div><!-- /.widget-control .left -->
                                      <div class="widget-control control-left">
                                         <select class="form-control" 
@@ -250,7 +250,7 @@
                                 <!-- MultilineSensor sensorMultiline -->
                                 <div ng-if="v.metrics.multilineType === 'multilineSensor'">
                                     <div class="widget-control control-right widget-click-popup" ng-click="loadMultilineSensor('#modal_multiline', v.id,v,'sensors')">
-                                        <span class="widget-level" ng-bind="v.level"></span> <span class="widget-scale" ng-bind="v.scaleTitle"></span> <i class="fa fa-caret-down"></i>
+                                        <i class="fa fa-caret-down"></i> <span class="widget-level" ng-bind="v.level"></span> <span class="widget-scale" ng-bind="v.scaleTitle"></span>
                                     </div><!-- /.widget-control .left -->
                                      <div class="widget-control control-left">
                                         <div class="btn-group">
@@ -262,7 +262,7 @@
                                 <!-- Protection sensorMultiline -->
                                 <div ng-if="v.metrics.multilineType === 'protection'">
                                     <div class="widget-control control-right widget-click-popup" ng-click="loadMultilineSensor('#modal_multiline', v.id,v,'sensors')">
-                                        <span class="widget-level" ng-bind="v.level"></span> <i class="fa fa-caret-down"></i>
+                                         <i class="fa fa-caret-down"></i> <span class="widget-level" ng-bind="v.level"></span>
                                         <!-- <i ng-if="v.metrics.state == 'armed' && v.metrics.level == 'OK'" class="fa fa-eye"></i> -->
                                     </div><!-- /.widget-control .left -->
                                     <div class="widget-control control-left">
@@ -287,7 +287,7 @@
                                 <!-- OpenWeather sensorMultiline -->
                                 <div ng-if="v.metrics.multilineType === 'openWeather'">
                                     <div class="widget-control control-right widget-click-popup" ng-click="goHidden[v.id] = !goHidden[v.id]" ng-if="v.metrics.multilineType === 'openWeather'">
-                                       <span class="widget-level" ng-bind="v.level"></span> <span class="widget-scale" ng-bind="v.scaleTitle"></span> <i class="fa fa-caret-down"></i>
+                                       <i class="fa fa-caret-down"></i> <span class="widget-level" ng-bind="v.level"></span> <span class="widget-scale" ng-bind="v.scaleTitle"></span>
                                    </div><!-- /.widget-control .left -->
 
                                    <div class="widget-control control-left">
@@ -314,7 +314,7 @@
 
                             <!-- ////////// thermostat ////////// -->
                             <div class="widget-control control-right widget-click-popup" ng-switch-when="thermostat" ng-click="goHidden[v.id] = !goHidden[v.id]">
-                                <span class="widget-level">{{levelVal[v.id]}}</span> <span class="widget-scale" ng-bind="v.scaleTitle"></span> <i class="fa fa-caret-down"></i>
+                                 <i class="fa fa-caret-down"></i> <span class="widget-level">{{levelVal[v.id]}}</span> <span class="widget-scale" ng-bind="v.scaleTitle"></span>
                             </div>
                              <!-- ////////// /thermostat ////////// -->
                             
