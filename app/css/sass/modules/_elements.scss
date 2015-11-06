@@ -98,6 +98,15 @@
             font-size: $app-body-font-size * 1.4;
             color: #6494BC;
         }
+        select {
+            overflow:hidden;
+            padding: 3px;
+            max-width: 150px;
+        }
+        option {
+            overflow:hidden;
+        }
+
     }
     .widget-control.control-right{
         float: right;
@@ -141,10 +150,10 @@
     .txt-widget-time:focus {
         outline: 0;
     }
-     .txt-widget-time:active {
+    .txt-widget-time:active {
         box-shadow: 0;
     }
-   
+
     .btn-widget-time:hover{
         //background-color: transparent;
     }
@@ -166,12 +175,12 @@
         .widget-btn-label{
             display: none;
         }
-       
+
     }
-     .widget-btn-label-on{
-         color: lighten($app-body-color, 30%);
-            text-transform: lowercase;
-        }
+    .widget-btn-label-on{
+        color: lighten($app-body-color, 30%);
+        text-transform: lowercase;
+    }
     .widget-btn-off.btn-primary{
         background-color: #fff !important;
         border-color: #ccc;
