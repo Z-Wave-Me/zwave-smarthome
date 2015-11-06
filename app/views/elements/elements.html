@@ -56,7 +56,7 @@
                             <!-- ////////// switchMultilevel ////////// -->
                             <div ng-switch-when="switchMultilevel">
                                 <div class="widget-control control-right widget-click-popup" ng-click="goHidden[v.id] = !goHidden[v.id]">
-                                    <span class="widget-level" ng-bind="levelVal[v.id] | getMaxLevel:v.probeType"></span><span class="widget-scale">%</span> <i class="fa fa-caret-down"></i>
+                                    <span class="widget-level" ng-bind="levelVal[v.id] | getMaxLevel:v.probeType"></span><span class="widget-scale" ng-bind="v.scaleTitle"></span> <i class="fa fa-caret-down"></i>
                                 </div>
                                 <div class="widget-control control-left">
                                     <div class="btn-group" ng-if="v.metrics.icon == 'blinds'">
@@ -207,7 +207,7 @@
                             <!-- ////////// sensorMultilevel ////////// -->
                             <div  ng-switch-when="sensorMultilevel">
                                 <div class="widget-control control-right widget-click-popup">
-                                    <span class="widget-level" ng-bind="v.level"></span> <span class="widget-scale" ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span>
+                                    <span class="widget-level" ng-bind="v.level"></span> <span class="widget-scale" ng-bind="v.scaleTitle"></span>
                                 </div>
 
                                 <div class="widget-control control-left">
@@ -221,7 +221,7 @@
                             <!-- ////////// sensorBinary ////////// -->
                             <div  ng-switch-when="sensorBinary">
                                 <div class="widget-control control-right widget-click-popup">
-                                    <span class="widget-level" ng-bind="v.level"></span> <span class="widget-scale" ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span>
+                                    <span class="widget-level" ng-bind="v.level"></span> <span class="widget-scale" ng-bind="v.scaleTitle"></span>
                                 </div>
 
                                 <div class="widget-control control-left">
@@ -250,7 +250,7 @@
                                 <!-- MultilineSensor sensorMultiline -->
                                 <div ng-if="v.metrics.multilineType === 'multilineSensor'">
                                     <div class="widget-control control-right widget-click-popup" ng-click="loadMultilineSensor('#modal_multiline', v.id,v,'sensors')">
-                                        <span class="widget-level" ng-bind="v.level"></span> <span class="widget-scale" ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span> <i class="fa fa-caret-down"></i>
+                                        <span class="widget-level" ng-bind="v.level"></span> <span class="widget-scale" ng-bind="v.scaleTitle"></span> <i class="fa fa-caret-down"></i>
                                     </div><!-- /.widget-control .left -->
                                      <div class="widget-control control-left">
                                         <div class="btn-group">
@@ -287,7 +287,7 @@
                                 <!-- OpenWeather sensorMultiline -->
                                 <div ng-if="v.metrics.multilineType === 'openWeather'">
                                     <div class="widget-control control-right widget-click-popup" ng-click="goHidden[v.id] = !goHidden[v.id]" ng-if="v.metrics.multilineType === 'openWeather'">
-                                       <span class="widget-level" ng-bind="v.level"></span> <span class="widget-scale" ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span> <i class="fa fa-caret-down"></i>
+                                       <span class="widget-level" ng-bind="v.level"></span> <span class="widget-scale" ng-bind="v.scaleTitle"></span> <i class="fa fa-caret-down"></i>
                                    </div><!-- /.widget-control .left -->
 
                                    <div class="widget-control control-left">
@@ -314,13 +314,13 @@
 
                             <!-- ////////// thermostat ////////// -->
                             <div class="widget-control control-right widget-click-popup" ng-switch-when="thermostat" ng-click="goHidden[v.id] = !goHidden[v.id]">
-                                <span class="widget-level">{{levelVal[v.id]}}</span> <span class="widget-scale" ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span> <i class="fa fa-caret-down"></i>
+                                <span class="widget-level">{{levelVal[v.id]}}</span> <span class="widget-scale" ng-bind="v.scaleTitle"></span> <i class="fa fa-caret-down"></i>
                             </div>
                              <!-- ////////// /thermostat ////////// -->
                             
                             <!-- ////////// switchMultilevelLinear ////////// -->
                             <div class="widget-control control-right widget-click-popup" ng-switch-when="switchMultilevelLinear">
-                                 <span class="widget-level">{{v.level}}</span> <span class="widget-scale" ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span>
+                                 <span class="widget-level">{{v.level}}</span> <span class="widget-scale" ng-bind="v.scaleTitle"></span>
                             </div>
                             <!-- ////////// /switchMultilevelLinear ////////// -->
                             
@@ -377,7 +377,9 @@
                             <!-- ////////// / buttonControl ////////// -->
 
                             <!-- ////////// Default ////////// -->
-                            <div class="widget-control control-right widget-click-popup" ng-switch-default><span class="widget-level" ng-bind="v.level"></span> <span class="widget-scale" ng-show="v.scaleTitle" ng-bind="v.scaleTitle"></span></div>
+                            <div class="widget-control control-right widget-click-popup" ng-switch-default>
+                                <span class="widget-level" ng-bind="v.level"></span> <span class="widget-scale" ng-bind="v.scaleTitle"></span>
+                            </div>
                             <!-- ////////// /Default ////////// -->
 
                         </div><!-- /.widget-control-wrap --> 

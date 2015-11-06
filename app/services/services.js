@@ -453,6 +453,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
             angular.forEach(devices, function(v, k) {
                 widgetId = '#Widget_' + v.id;
                 updateDeviceLevel(widgetId, v);
+                 updateDeviceScale(widgetId, v);
                 updateDeviceTime(widgetId, v);
                 updateDeviceIcon(widgetId, v);
                 updateDeviceBtn(widgetId, v);
@@ -460,7 +461,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
 
             });
         }
-
+       
     }
     /**
      * Update device level
@@ -482,6 +483,17 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
         }
         console.log(Math.round(+new Date() / 1000) + ' Update device: ID: ' + v.id + ' - level: ' + val)
 
+    }
+    
+     /**
+     * Update device scale
+     */
+    function updateDeviceScale(widgetId, v) {
+        if(angular.isDefined(v.metrics.scaleTitle) && v.metrics.scaleTitle !==''){
+             $(widgetId + ' .widget-scale').html(v.metrics.scaleTitle);
+        }
+       
+        //console.log('Update device: ID: ' + v.id + ' - scale: ' + v.metrics.scaleTitle)
     }
 
     /**
