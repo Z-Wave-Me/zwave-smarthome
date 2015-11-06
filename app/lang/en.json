@@ -20,7 +20,7 @@
     "app_reset_confirm": "All App instnces will be deleted",
     "app_reset_successful_to_version": "The app was successfully reset",
     "app_is_still_reseted": "App is already reset.",
-    "room_settings": "Room settings",
+    "room_settings": "Room",
     "ipcamera": "IP Camera",
     "notunique_token": "The given token already exits",
     "device_no_event": "This device does not have an event",

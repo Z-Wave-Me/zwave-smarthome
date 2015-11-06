@@ -240,13 +240,36 @@
                                        <i class="fa fa-caret-down"></i> <strong ng-click="loadClimateControl('#modal_climate_control', v.id,v)">{{_t('room_settings')}}</strong>
                                    </div><!-- /.widget-control .left -->
                                      <div class="widget-control control-left">
-                                        <select class="form-control" 
+                                        <!--<select class="form-control" 
                                                 name="changeElementMode_1" 
                                                 id="changeElementMode_1"
                                                 ng-model="element.input[v.id]"
                                                 ng-change="changeClimateElementlMode({cmd: v.id + '/command/' + element.input[v.id],widgetId: '#Widget_' + v.id})">
                                             <option value="{{m}}" ng-repeat="m in climateElementModes" ng-bind="_t(m)"></option>
-                                        </select>
+                                        </select> -->
+                                         <div class="btn-group">
+                                            <button 
+                                                class="btn btn-sm widget-btn-on" 
+                                                id="btn_off_{{ v.id}}"
+                                                data-ng-click="v.metrics.state =='disarmed'; runCmd(v.id + '/command/disarm', v.id)"
+                                                ng-class="v.metrics.state =='disarmed' ? 'btn-primary': 'btn-default'"
+                                               title="{{_t(climateElementModes[0])}}"><i class="fa fa-asterisk"></i>
+                                            </button>
+                                             <button 
+                                                class="btn btn-sm widget-btn-on" 
+                                                id="btn_off_{{ v.id}}"
+                                                data-ng-click="v.metrics.state =='disarmed'; runCmd(v.id + '/command/disarm', v.id)"
+                                                ng-class="'btn-primary'"
+                                               title="{{_t(climateElementModes[1])}}"><i class="fa fa-eur"></i>
+                                            </button>
+                                            <button 
+                                                class="btn btn-sm widget-btn-on" 
+                                                id="btn_on_{{ v.id}}"
+                                                data-ng-click="v.metrics.state =='armed'; runCmd(v.id + '/command/arm', v.id)"
+                                                ng-class="v.metrics.state =='armed' ? 'btn-primary': 'btn-default'"
+                                                title="{{_t(climateElementModes[2])}}"><i class="fa fa-building"></i>
+                                            </button>
+                                        </div>
                                      </div><!-- /.widget-control .right -->
                                 </div>
                                 <!-- MultilineSensor sensorMultiline -->
