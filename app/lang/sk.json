@@ -1,4 +1,5 @@
 {
+    "goahead": "Go Ahead",
     "reset": "Reset",
     "app_installation_successful": "The app was successfully installed.",
     "app_installation_successful_but_restart_necessary": "The app was successfully installed. Please restart your Raspberry.",

@@ -1,4 +1,5 @@
 {
+    "goahead": "Fortfahren",
     "reset": "Reset",
     "app_installation_successful": "Die Applikation wurde erfolgreich installiert.",
     "app_installation_successful_but_restart_necessary": "Die Applikation wurde erfolgreich installiert. Starten Sie ihr Gerät bitte neu.",
