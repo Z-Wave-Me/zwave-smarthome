@@ -212,6 +212,15 @@ myApp.filter('getElementIcon', function(cfg) {
                 case 'luminosity':
                     icon = cfg.img.icons + 'luminosity.png';
                     break;
+                case 'humidity':
+                    icon = cfg.img.icons + 'humidity.png';
+                    break;
+                case 'ultraviolet':
+                    icon = cfg.img.icons + 'ultraviolet.png';
+                    break;
+                case 'barometer':
+                    icon = cfg.img.icons + 'barometer.png';
+                    break;
                 case 'new':
                     icon = cfg.img.icons + 'new.png';
                     break;
