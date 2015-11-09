@@ -56,7 +56,7 @@
                             <!-- ////////// switchMultilevel ////////// -->
                             <div ng-switch-when="switchMultilevel">
                                 <div class="widget-control control-right widget-click-popup" ng-click="goHidden[v.id] = !goHidden[v.id]">
-                                     <i class="fa fa-caret-down"></i> <span class="widget-level" ng-bind="levelVal[v.id] | getMaxLevel:v.probeType"></span><span class="widget-scale" ng-bind="v.scaleTitle"></span>
+                                     <i class="fa fa-caret-down"></i> <span class="widget-level" ng-bind="levelVal[v.id] | getMaxLevel:v.probeType"></span><span class="widget-scale">%</span>
                                 </div>
                                 <div class="widget-control control-left">
                                     <div class="btn-group" ng-if="v.metrics.icon == 'blinds'">
