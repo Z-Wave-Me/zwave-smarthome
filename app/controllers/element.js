@@ -348,6 +348,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
      * Multiline climateControl
      */
     $scope.climateElementModes = ['frostProtection', 'energySave', 'comfort','schedule'];
+    $scope.climatePerRoom = {};
     /**
      * Show climate modal window
      */

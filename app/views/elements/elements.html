@@ -237,28 +237,29 @@
                                 <!-- climateControl sensorMultiline -->
                                 <div ng-if="v.metrics.multilineType === 'climateControl'">
                                     <div class="widget-control control-right widget-click-popup">
-                                       <i class="fa fa-caret-down"></i> <strong ng-click="loadClimateControl('#modal_climate_control', v.id,v)">{{_t('lb_settings')}}</strong>
+                                        <span ng-if="climatePerRoom[v.id]"><i class="fa fa-caret-down"></i> <strong ng-click="loadClimateControl('#modal_climate_control', v.id,v)">{{_t('lb_settings')}}</strong></span>
+                                        <span class="text-disabled" ng-if="!climatePerRoom[v.id]"><i class="fa fa-caret-down"></i> <strong>{{_t('lb_settings')}}</strong></span>
                                    </div><!-- /.widget-control .left -->
                                      <div class="widget-control control-left">
                                          <div class="btn-group">
                                             <button 
                                                 class="btn btn-sm widget-btn" 
                                                 id="btn_off_{{ v.id}}"
-                                                ng-click="runCmd(v.id + '/command/' + climateElementModes[0] +'?room=null', false)"
+                                                ng-click="runCmd(v.id + '/command/' + climateElementModes[0] +'?room=null', false);climatePerRoom[v.id] = false"
                                                 ng-class="'btn-default'"
                                                title="{{_t(climateElementModes[0])}}"><i class="fa fa-asterisk text-primary"></i>
                                             </button>
                                              <button 
                                                 class="btn btn-sm widget-btn" 
                                                 id="btn_off_{{ v.id}}"
-                                               ng-click="runCmd(v.id + '/command/' + climateElementModes[1] +'?room=null',false)"
+                                               ng-click="runCmd(v.id + '/command/' + climateElementModes[1] +'?room=null',false);climatePerRoom[v.id] = false"
                                                 ng-class="'btn-default'"
                                                title="{{_t(climateElementModes[1])}}"><i class="fa fa-eur text-success"></i>
                                             </button>
                                             <button 
                                                 class="btn btn-sm widget-btn" 
                                                 id="btn_on_{{ v.id}}"
-                                                ng-click="runCmd(v.id + '/command/' + climateElementModes[2] +'?room=null', false)"
+                                                ng-click="runCmd(v.id + '/command/' + climateElementModes[2] +'?room=null', false);climatePerRoom[v.id] = true"
                                                 ng-class="'btn-default'"
                                                 title="{{_t(climateElementModes[2])}}"><i class="fa fa-building text-warning"></i>
                                             </button>
@@ -764,7 +765,7 @@
                                                 id="changeMode_{{n.roomName}}"
                                                 ng-model="climateControlMode" 
                                                 ng-disabled="changeClimateControlProcess[n.roomName]"
-                                                ng-change="changeClimateControlMode({cmd: n.mainSensor + '/command/' + climateControlMode +'?room=' + n.roomName, roomName: n.roomName})">
+                                                ng-change="changeClimateControlMode({cmd: input.id + '/command/' + climateControlMode +'?room=' + n.roomName, roomName: n.roomName})">
                                             <option value="{{m}}" ng-repeat="m in climateElementModes" ng-selected="n.mode == m" ng-bind="_t(m)"></option>
                                         </select>
                                     </td>
