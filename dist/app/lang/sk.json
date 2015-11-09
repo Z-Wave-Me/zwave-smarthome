@@ -1,4 +1,6 @@
 {
+    "frostProtection":  "Frost Protection",
+    "goahead": "Go Ahead",
     "reset": "Reset",
     "app_installation_successful": "The app was successfully installed.",
     "app_installation_successful_but_restart_necessary": "The app was successfully installed. Please restart your Raspberry.",
@@ -55,9 +57,9 @@
     "keep_password_empty": "Nechajte prázdne ak nechcete zmeniť Heslo.",
     "firmware_update_info": "Otvorí sa nové okno. Ak chcete aktualizovať firmvér, kliknite na možnosť Pokročilé -> Firmvér a pokračujte podľa inštrukcií.",
     "off": "Off",
-    "esave": "E-Uložiť",
+    "energySave": "E-Uložiť",
     "comfort": "Komfort",
-    "time_driven": "Časovo-riadený",
+    "schedule": "Časovo-riadený",
     "per_room": "za Izbu",
     "element_id": "Element ID",
     "factory_default": "Predvolené nastavenia",

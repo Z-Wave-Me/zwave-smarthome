@@ -1,4 +1,6 @@
 {
+     "frostProtection":  "Frost Protection",
+    "goahead": "Go Ahead",
     "reset": "Reset",
     "app_installation_successful": "The app was successfully installed.",
     "app_installation_successful_but_restart_necessary": "The app was successfully installed. Please restart your Raspberry.",
@@ -49,9 +51,9 @@
     "keep_password_empty": "Keep empty if you do not want to change the Password",
     "firmware_update_info": "This will open new window. To update firmware, click on tab Advanced -> Firmware and continue according to the instruction.",
     "off": "Off",
-    "esave": "E-Save",
+    "energySave": "E-Save",
     "comfort": "Comfort",
-    "time_driven": "Time-driven",
+    "schedule": "Time-driven",
     "per_room": "per Room",
     "element_id": "Element ID",
     "factory_default": "Factory default",

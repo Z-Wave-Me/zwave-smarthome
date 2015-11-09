@@ -1,4 +1,5 @@
 {
+     "frostProtection":  "Frost Protection",
     "goahead": "Fortfahren",
     "reset": "Reset",
     "app_installation_successful": "Die Applikation wurde erfolgreich installiert.",
@@ -55,9 +56,9 @@
     "keep_password_empty": "Wenn kein neues Passwort gesetzt wird, bleibt das alte bestehen.",
     "firmware_update_info": "Dies öffnet ein neues Fenster. Um die Firmware zu  aktualisieren bitte auf Reiter 'Advanced' klicken und dann 'Firmware Update' wählen.",
     "off": "Aus (Frostschutz)",
-    "esave": "Energiespar",
+    "energySave": "Energiespar",
     "comfort": "Komfort",
-    "time_driven": "Zeitgesteuert",
+    "schedule": "Zeitgesteuert",
     "per_room": "pro Raum",
      "element_id": "Gerätenummer",
     "factory_default": "Auslieferungszustand",

@@ -7903,6 +7903,15 @@ myApp.filter('getElementIcon', function(cfg) {
                 case 'luminosity':
                     icon = cfg.img.icons + 'luminosity.png';
                     break;
+                case 'humidity':
+                    icon = cfg.img.icons + 'humidity.png';
+                    break;
+                case 'ultraviolet':
+                    icon = cfg.img.icons + 'ultraviolet.png';
+                    break;
+                case 'barometer':
+                    icon = cfg.img.icons + 'barometer.png';
+                    break;
                 case 'new':
                     icon = cfg.img.icons + 'new.png';
                     break;
@@ -8495,7 +8504,7 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
     $scope.toExpert = function(url, message) {
         alertify.confirm(message, function() {
             $window.location.href = url;
-         });
+         }).set('labels', {ok:$scope._t('goahead')});
     };
     
      /**
@@ -8641,6 +8650,9 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.goHistory = [];
     $scope.apiDataInterval = null;
     $scope.multilineSensorsInterval = null;
+     $scope.element = {
+         input: {}
+     };
     $scope.collection = [];
     $scope.showFooter = true;
     $scope.deviceType = [];
@@ -8912,7 +8924,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     /**
      * Multiline climateControl
      */
-    $scope.climateElementModes = ['off', 'esave', 'per_room'];
+    $scope.climateElementModes = ['frostProtection', 'energySave', 'comfort','schedule'];
     /**
      * Show climate modal window
      */
@@ -8920,8 +8932,8 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         $(target).modal();
         $scope.input = input;
         $scope.climateControl = {data: false, icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        $scope.climateControlModes = ['off', 'esave', 'comfort', 'time_driven'];
-        $scope.climateControlMode = {};
+        $scope.climateControlModes = ['off', 'esave', 'comfort', 'schedule'];
+        $scope.climateControlMode = '';
         $scope.changeClimateControlProcess = {};
         //dataFactory.getApiLocal('_test/climate_control.json').then(function(response) {
          dataFactory.getApi('devices', '/' + id, true).then(function(response) {
@@ -8935,18 +8947,31 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         });
 
     };
+    /**
+     * Change climate element mode
+     */
+    $scope.changeClimateElementlMode = function(input) {
+         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+         dataFactory.runApiCmd(input.cmd).then(function(response) {
+           $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
+        }, function(error) {
+            alertify.alert($scope._t('error_update_data'));
+            $scope.loading = false;
+        });
+
+    };
 
     /**
      * Change climate control mode
      */
-    $scope.changeClimateControlMode = function(id) {
-        //console.log($scope.climateControl.data.metrics.rooms);
-        $scope.changeClimateControlProcess[id] = true;
-        var room = _.findWhere($scope.climateControl.data.metrics.rooms, {id: id})
-        console.log(room.title + ' changing mode to: ', $scope.climateControlMode[id])
-        $timeout(function() {
-            $scope.changeClimateControlProcess[id] = false;
-        }, 3000);
+    $scope.changeClimateControlMode = function(input) {
+        $scope.changeClimateControlProcess[input.roomName] = true;
+        dataFactory.runApiCmd(input.cmd).then(function(response) {
+            $scope.changeClimateControlProcess[input.roomName] = false;
+        }, function(error) {
+            alertify.alert($scope._t('error_update_data'));
+           $scope.changeClimateControlProcess[input.roomName] = false;
+        });
 
     };
     /**

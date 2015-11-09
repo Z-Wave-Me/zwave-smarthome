@@ -347,7 +347,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     /**
      * Multiline climateControl
      */
-    $scope.climateElementModes = ['off', 'esave', 'per_room'];
+    $scope.climateElementModes = ['frostProtection', 'energySave', 'comfort','schedule'];
     /**
      * Show climate modal window
      */
@@ -355,7 +355,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         $(target).modal();
         $scope.input = input;
         $scope.climateControl = {data: false, icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        $scope.climateControlModes = ['off', 'esave', 'comfort', 'time_driven'];
+        $scope.climateControlModes = ['off', 'esave', 'comfort', 'schedule'];
         $scope.climateControlMode = '';
         $scope.changeClimateControlProcess = {};
         //dataFactory.getApiLocal('_test/climate_control.json').then(function(response) {
@@ -461,7 +461,10 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     function runCmd(cmd, id) {
         var widgetId = '#Widget_' + id;
         dataFactory.runApiCmd(cmd).then(function(response) {
-            $(widgetId + ' .widget-image').addClass('trans-true');
+            if(id){
+                $(widgetId + ' .widget-image').addClass('trans-true'); 
+            }
+           
         }, function(error) {
             alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
