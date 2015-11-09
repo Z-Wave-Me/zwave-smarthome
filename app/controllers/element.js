@@ -73,7 +73,8 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.goHistory = [];
     $scope.apiDataInterval = null;
     $scope.multilineSensorsInterval = null;
-     $scope.element = {
+     $scope.elements = {
+         all: {},
          input: {}
      };
     $scope.collection = [];
@@ -81,6 +82,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.deviceType = [];
     $scope.tags = [];
     $scope.rooms = {};
+    $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/image/';
     $scope.history = [];
     $scope.historyStatus = [];
     $scope.multilineDev = false;
@@ -203,7 +205,9 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
                 
                 return;
             }
-            $scope.collection = collection;
+            angular.extend($scope.elements.all,_.indexBy(collection,'id'));
+            angular.extend($scope.collection,collection);
+            //$scope.collection = collection;
             dataService.updateTimeTick(response.data.data.updateTime);
         }, function(error) {
             //console.log('After login: ',$routeParams.login)

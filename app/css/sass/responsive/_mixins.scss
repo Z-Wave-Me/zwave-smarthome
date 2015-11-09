@@ -126,11 +126,11 @@
             text-align: left;
             margin:0;
             li{
-                 display: block;
-                     width: 100%;
+                display: block;
+                width: 100%;
                 margin: 0; 
-/*               background-color: lighten($app-body-bcg-color, 2%) !important;
-                    border: 0;*/
+                /*               background-color: lighten($app-body-bcg-color, 2%) !important;
+                                    border: 0;*/
                 border-bottom: solid 1px $app-border-color;
                 a{
                     display: block;
@@ -140,25 +140,25 @@
                     padding: 10px 20px;
                     //line-height: 1.42857;
                     border-radius: 0;
-                    
+
                     color: $header-link-color;
                     border: 0 none;
                 }
                 .active{
-/*                    a{
-                        background-color: $header-color-secondary;
-                    }*/
+                    /*                    a{
+                                            background-color: $header-color-secondary;
+                                        }*/
                 }
             }
         }
-/*        .subnavi-apps .fa{color: #dd976e;}
-        .subnavi-devices .fa{color: #6c7a89;}
-        .subnavi-config-rooms .fa{color: #6494bc;} 
-        .subnavi-myaccess .fa{color: #80ad80;} 
-        .subnavi-admin .fa{color: #31b0d5;}
-        .subnavi-report .fa{color: #f0aD4e;}
-        .subnavi-info .fa{color: #d9534f;} 
-        .subnavi-logout .fa{color: #6494bc;}*/
+        /*        .subnavi-apps .fa{color: #dd976e;}
+                .subnavi-devices .fa{color: #6c7a89;}
+                .subnavi-config-rooms .fa{color: #6494bc;} 
+                .subnavi-myaccess .fa{color: #80ad80;} 
+                .subnavi-admin .fa{color: #31b0d5;}
+                .subnavi-report .fa{color: #f0aD4e;}
+                .subnavi-info .fa{color: #d9534f;} 
+                .subnavi-logout .fa{color: #6494bc;}*/
     }
     #sub_navigation_close{
         border: 0;
@@ -180,11 +180,11 @@
             ul{
                 li{
                     display: block;
-                     width: 100%;
-                   
+                    width: 100%;
+
                     background-color: lighten($app-body-bcg-color, 2%) !important;
                     border: 0;
-                     border-bottom: solid 1px $app-border-color;
+                    border-bottom: solid 1px $app-border-color;
                     a{
                         display: block;
                         position:relative;
@@ -197,9 +197,9 @@
 
                 }
                 .active{
-/*                    a{
-                        background-color: $header-color-secondary;
-                    }*/
+                    /*                    a{
+                                            background-color: $header-color-secondary;
+                                        }*/
                 }
                 .page-navi-icon{
                     position: absolute;
@@ -208,27 +208,6 @@
                 }
 
             }
-            
-/*            .page-cat-basic_gateway_modules .fa{color: #dd976e;}
-        .page-cat-legacy_products_workaround .fa{color: #6c7a89;}
-        .page-cat-support_external_ui .fa{color: #6494bc;} 
-        .page-cat-support_external_dev .fa{color: #80ad80;} 
-        .page-cat-automation_basic .fa{color: #31b0d5;}
-        .page-cat-device_enhancements .fa{color: #f0aD4e;}
-        .page-cat-developers_stuff .fa{color: #d9534f;} 
-        .page-cat-complex_applications .fa{color: #dd976e;} 
-        .page-cat-automation .fa{color: #dddddd;}
-        .page-cat-security .fa{color: #6c7a89;}
-        .page-cat-peripherals .fa{color: #6494bc;}
-        .page-cat-logging .fa{color: #31b0d5;}
-        .page-cat-scripting .fa{color: #f0aD4e;}
-        .page-cat-devices .fa{color: #d9534f;} 
-        .page-cat-scheduling .fa{color: #dd976e;} 
-        .page-cat-climate .fa{color: #dddddd;}
-        .page-cat-environment .fa{color: #6c7a89;}
-        .page-cat-scenes .fa{color: #6494bc;} 
-        .page-cat-notifications .fa{color: #80ad80;} 
-        .page-cat-tagging .fa{color: #31b0d5;}*/
 
             .page-navi-close{
                 border: 0;
@@ -241,7 +220,7 @@
         .fa{
             font-size: $app-body-font-size * $m-font-scale;  
         }
-        
+
         ul{
             // padding: 20px;
 
@@ -251,10 +230,10 @@
             padding:0; 
 
             li{
-                 width: 100%;
-                 float: none;
-                 border: 0;
-                  border-bottom: solid 1px $app-body-bcg-color;
+                width: 100%;
+                float: none;
+                border: 0;
+                border-bottom: solid 1px $app-body-bcg-color;
                 .page-navi-icon{}
                 a{}
 
@@ -263,6 +242,14 @@
 
         }
     }
+    .dropdown-menu-bottom{
+         max-height: 180px;
+         min-width:auto;
+  //width:100%;
+    }
+/*    .dropdown-menu-bottom.open { position: static; }
+.dropdown-menu-bottom.open, .dropdown-menu-bottom .dropdown-menu {display:table; width: 100%; text-align: center; left:0; right:0; }
+.dropdown-menu>li { display: table-cell; }*/
 }
 
 /* Mobile footer
