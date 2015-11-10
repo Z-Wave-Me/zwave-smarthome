@@ -123,6 +123,12 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     requireLogin: true,
                     roles: cfg.role_access.devices_include
                 }).
+                //Include Zwave device
+                when('/zwave/exclude/:id', {
+                    templateUrl: 'app/views/zwave/zwave_exclude.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices_include
+                }).
                 //Zwave devices
                 when('/zwave/devices', {
                     templateUrl: 'app/views/zwave/zwave_devices.html',

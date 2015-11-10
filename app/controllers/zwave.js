@@ -437,6 +437,14 @@ myAppController.controller('ZwaveManageController', function($scope, $cookies, $
         });
     };
     $scope.loadData();
+    
+    /**
+     * Exclude device
+     */
+    $scope.excludeDevice = function() {
+        console.log('Excluding device')
+    };
+   
 
     /// --- Private functions --- ///
     /**
@@ -592,6 +600,32 @@ myAppController.controller('ZwaveManageController', function($scope, $cookies, $
 
     }
     ;
+});
+/**
+ * Zwave exclude controller
+ */
+myAppController.controller('ZwaveExcludeController', function($scope, $routeParams, dataFactory, dataService, _) {
+    $scope.zwaveDevices = [];
+    $scope.deviceVendor = false;
+    $scope.manufacturers = [];
+    $scope.manufacturer = false;
+    /**
+     * Load z-wave devices
+     */
+    $scope.loadData = function(brandname, lang) {
+        dataService.showConnectionSpinner();
+        dataFactory.getApiLocal('device.' + lang + '.json').then(function(response) {
+            $scope.manufacturers = _.uniq(response.data, 'brandname');
+            if (brandname) {
+                $scope.zwaveDevices = _.where(response.data, {brandname: brandname});
+                $scope.manufacturer = brandname;
+            }
+            dataService.updateTimeTick();
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    };
+   // $scope.loadData($routeParams.brandname, $scope.lang);
 });
 /**
  * Zwave manage detail controller

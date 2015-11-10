@@ -19,6 +19,12 @@
                         <a class="btn btn-default" href="#zwave/devices/{{v.id}}" ng-if_="v.cfg.length > 0">
                            <i class="fa fa-cog text-primary"></i> <span class="btn-name" ng-bind="_t('lb_configuration')"></span>
                        </a>
+                        <button title="{{_t('lb_remove')}}"
+                                    class="btn btn-default"
+                                    ng-click="excludeDevice(v.id, '#enocean_row_' + v.id, _t('lb_delete_confirm'))"
+                                    >
+                                <i class="fa fa-remove fa-lg text-danger"></i>
+                            </button>
                     </td>
                 </tr>
             </tbody>
