@@ -132,7 +132,7 @@
     }
     .widget-level{
         font-weight: bold;
-        font-size: $app-body-font-size * 1.8;
+        font-size: $app-body-font-size * 1.6;
     }
     .widget-scale{
         font-size: $app-body-font-size * 1.1;
@@ -162,7 +162,7 @@
         cursor: pointer;
     }
 
-    .widget-btn-off, .widget-btn-on{
+    .widget-btn-off, .widget-btn-on,.widget-btn-full{
         padding: 5px 17px;
         //@include appGradient();
         .fa{
@@ -177,6 +177,9 @@
             display: none;
         }
 
+    }
+    .widget-btn-full{
+         padding: 5px 10px;
     }
     .widget-btn-label-on{
         color: lighten($app-body-color, 30%);
@@ -194,12 +197,12 @@
             color: #d9534f !important;
         }
     }
-    .widget-btn-on.btn-primary{
+    .widget-btn-on.btn-primary,.widget-btn-full.btn-primary{
         background-color: #fff !important;
         border-color: #ccc;
         @include box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
         .fa{
-            color: #80AD80 !important;
+            color: #6494BC !important;
         }
         .widget-btn-symbol{
             color: #80AD80 !important;
@@ -250,6 +253,14 @@
 /* Specifics element style
 ----------------------------------------------------*/
 .sensorMultiline{
+    .control-left{
+        width: 60% !important; 
+    }
+    .control-right{
+        width: 40%; 
+    }
+}
+.switchMultilevel.dimmer{
     .control-left{
         width: 60% !important; 
     }

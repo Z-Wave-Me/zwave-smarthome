@@ -6,7 +6,7 @@
     <div class="dashboard-welcome" ng-if="welcome" ng-include="'app/views/elements/welcome.html'"></div>
     <div class="row">
         <div ng-if="v.visibility === true" id="Widget_{{v.id}}" class="col-lg-4 col-md-6 col-sm-6 widget-entry" ng-repeat="v in collection| filter:q | orderBy: 'title' track by v.id">
-            <div class="widget-block {{v.deviceType}}" ng-switch="v.deviceType" ng-init="levelVal[v.id] = v.level">
+            <div class="widget-block {{v.deviceType}} {{v.probeType}}" ng-switch="v.deviceType" ng-init="levelVal[v.id] = v.level">
 
                 <!-- {{v.id}}: {{levelVal[v.id]}} icon {{v.icon}} -->
                 <div class="widget-block-in clearfix app-border app-gradient app-shadow" ng-class="v.level === 'ALERT'? 'app-gradient-red' :  (v.level === 'OK!'? 'app-gradient-yellow' : (v.level === 'OK'? 'app-gradient-green' : ''))">
@@ -77,15 +77,21 @@
                                         <button 
                                             class="btn btn-sm widget-btn-off" 
                                             id="btn_off_{{ v.id}}"
-                                            data-ng-click="levelVal[v.id] == 0; runCmd(v.id + '/command/off', v.id); goHidden = false"
+                                            data-ng-click="levelVal[v.id] == v.minMax.min; runCmd(v.id + '/command/off', v.id); goHidden = false"
                                             ng-class="levelVal[v.id] < 1 ? 'btn-primary': 'btn-default'"
                                             title="{{_t('lb_off')}}"><span class="widget-btn-symbol">0</span> <span class="widget-btn-label">{{_t('lb_off')}}</span></button>
                                         <button 
                                             class="btn btn-sm widget-btn-on" 
                                             id="btn_on_{{ v.id}}"
-                                            data-ng-click="levelVal[v.id] == 255; runCmd(v.id + '/command/on', v.id); goHidden = false"
+                                            data-ng-click="levelVal[v.id] == v.minMax.min; runCmd(v.id + '/command/on', v.id); goHidden = false"
                                             ng-class="levelVal[v.id] > 0 ? 'btn-primary': 'btn-default'"
                                             title="{{_t('lb_on')}}"><span class="widget-btn-symbol">I</span> <span class="widget-btn-label">{{_t('lb_on')}}</span></button>
+                                            <button 
+                                            class="btn btn-sm widget-btn-full" 
+                                            id="btn_on_{{ v.id}}"
+                                            data-ng-click="levelVal[v.id] == v.minMax.max; runCmdExact(v.id, v.minMax.max, v.minMax.min, v.minMax.max); goHidden = false"
+                                            ng-class="levelVal[v.id] == v.minMax.max ? 'btn-primary': 'btn-default'"
+                                            title="{{_t('lb_on')}}"><i class="fa fa-arrow-up text-primary"></i> <span class="widget-btn-label">{{_t('lb_full')}}</span></button>
                                     </div>
                                 </div>
 
