@@ -4118,23 +4118,39 @@ padding-right: 5px;
 -------------------------------------------------- */
 /* line 3, sass/modules/_management.scss */
 .admin-entry {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   border-bottom: solid 1px #d3d3d3;
 }
 
 /* line 7, sass/modules/_management.scss */
 .admin-entry-title {
-  font-size: 18px;
+  font-size: 16px;
+  position: relative;
+  vertical-align: middle;
+  margin: 10px 0;
+  color: #5d5d5d;
   cursor: pointer;
 }
+/* line 15, sass/modules/_management.scss */
+.admin-entry-title .fa {
+  padding-right: 7px;
+  font-size: 19.2px;
+}
+/* line 19, sass/modules/_management.scss */
+.admin-entry-title .subnavi-arrow {
+  position: absolute;
+  right: 1%;
+  display: inline-block;
+  padding: 0;
+}
 
-/* line 11, sass/modules/_management.scss */
+/* line 26, sass/modules/_management.scss */
 .user-image {
   max-width: 40px;
   border-radius: 50%;
 }
 
-/* line 16, sass/modules/_management.scss */
+/* line 31, sass/modules/_management.scss */
 .profile-lang {
   display: inline-block;
 }
