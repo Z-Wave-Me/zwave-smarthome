@@ -219,11 +219,6 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     templateUrl: 'app/views/report/report.html',
                     requireLogin: true
                 }).
-                //Info
-                when('/info', {
-                    templateUrl: 'app/views/info/info.html',
-                    requireLogin: true
-                }).
                 //Login
                 when('/login', {
                     redirectTo: '/'

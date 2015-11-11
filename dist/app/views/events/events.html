@@ -96,7 +96,7 @@
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                              <i class="fa fa-caret-up"></i>
                         </button>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu dropdown-menu-bottomr">
                             <li ng-repeat="v in eventLevels" ng-class="v.key == currLevel ? 'active':''">
                                 <a href="#events/level/{{v.key}}"><i class="fa fa-check" ng-if="v.key == currLevel"></i> {{_t('lb_notify_' + v.val)}}</a> 
                             </li>
@@ -109,25 +109,13 @@
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-caret-up"></i>
                         </button>
-                        <ul class="dropdown-menu pull-right">
+                        <ul class="dropdown-menu dropdown-menu-bottom pull-right">
                             <!--<li><a href="" ng-click="markAsRead(v.id)" ng-bind="_t('lb_mark_read')"></a></li>-->
                             <li ng-repeat="v in devices.data" ng-class="v.id===devices.find.id ? 'active':''">
                                 <a ng-href="#events/source/{{v.id}}"><i class="fa fa-check" ng-if="v.id===devices.find.id"></i> {{v.metrics.title}}</a>
                             </li>
                          </ul>
                     </div>
-                    <!--<div class="btn-group dropup">
-                       <button type="button" class="btn btn-default" ng-bind="_t('lb_hide')"></button>
-                       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                           <span class="caret"></span>
-                           <span class="sr-only">Toggle Dropdown</span>
-                       </button>
-                       <ul class="dropdown-menu">
-                           <li><a ng-href="#events" ng-bind="_t('lb_hide_device_events')"></a></li> 
-                           <li><a ng-href="#events" ng-bind="_t('lb_hide_system_events')"></a></li> 
-                           <li><a href="#events" ng-click="deleteSystemEvents(_t('lb_delete_confirm'))" ng-bind="_t('lb_delete_system_events')"></a></li> 
-                       </ul>
-                   </div> --> 
                 </form>
             </div>
         </div>
