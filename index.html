@@ -57,7 +57,6 @@
         <script src="app/controllers/management.js"></script> 
         <script src="app/controllers/mysettings.js"></script>
         <script src="app/controllers/report.js"></script>
-        <script src="app/controllers/info.js"></script> 
         <script src="app/controllers/auth.js"></script> 
         <script src="app/modules/bootstrap-colorpicker-module.js"></script>
         <!-- ExpertUI configuration js -->
@@ -121,10 +120,6 @@
                         <!-- Report -->
                         <li class="subnavi-report" ng-class="isActive('report')">
                             <a href="#report"><i class="fa fa-bug"></i> {{_t('nav_report')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                        </li>
-                        <!-- Info -->
-                        <li class="subnavi-info" ng-class="isActive('info')">
-                            <a href="#info"><i class="fa fa-info-circle"></i> {{_t('info')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
                         </li>
                         <!-- Logout -->
                         <li class="subnavi-logout" ng-if="elementAccess(null, isMobile)">
