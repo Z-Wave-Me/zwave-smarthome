@@ -95,32 +95,32 @@ myAppController.controller('ZwaveIncludeController', function($scope, $routePara
             $scope.device.blacklist = response.data.data;
             console.log($scope.device.blacklist)
             //console.log('$scope.device.blacklist[entryOnBlacklist]', $scope.device.blacklist['entryOnBlacklist']);
-            if(!$scope.device.blacklist['entryOnBlacklist']){
+            if (!$scope.device.blacklist['entryOnBlacklist']) {
                 // do nothing
                 return;
             } else {
-                if ($scope.controllerState === 1){
-                    console.log('setBlacklist: $scope.controllerState',$scope.controllerState);
+                if ($scope.controllerState === 1) {
+                    console.log('setBlacklist: $scope.controllerState', $scope.controllerState);
                     console.log('Abort in clusion process ...');
                     //$scope.stopInclusion('controller.AddNodeToNetwork(0)');
                 }
                 $scope.device.secureInclusion = false;
-                console.log('setBlacklist: $scope.device.secureInclusion',$scope.device.secureInclusion);
-                $scope.retryInclusion('controller.RemoveNodeFromNetwork(1)',$scope.device.secureInclusion);
+                console.log('setBlacklist: $scope.device.secureInclusion', $scope.device.secureInclusion);
+                $scope.retryInclusion('controller.RemoveNodeFromNetwork(1)', $scope.device.secureInclusion);
             }
         }, function(error) {
         });
     };
-    
-     //$scope.setBlacklist();
+
+    //$scope.setBlacklist();
     /**
      * Load data into collection
      */
     $scope.loadData = function(lang) {
-       if (!$scope.device.id) {
+        if (!$scope.device.id) {
             return;
         }
-         dataService.showConnectionSpinner();
+        dataService.showConnectionSpinner();
         dataFactory.getApiLocal('device.' + lang + '.json').then(function(response) {
             angular.forEach(response.data, function(v, k) {
                 if (v.id == $scope.device.id) {
@@ -184,7 +184,7 @@ myAppController.controller('ZwaveIncludeController', function($scope, $routePara
                 }
 
                 console.log('refresh: $scope.controllerState', $scope.controllerState);
-                if($scope.controllerState === 0){
+                if ($scope.controllerState === 0) {
                     console.log('remove interval ...');
                     $interval.cancel($scope.excludeDataInterval);
                 }
@@ -192,7 +192,7 @@ myAppController.controller('ZwaveIncludeController', function($scope, $routePara
             $scope.excludeDataInterval = $interval(refresh, $scope.cfg.interval);
         }
     });
-    
+
     /**
      * Watch for last included device
      */
@@ -254,7 +254,7 @@ myAppController.controller('ZwaveIncludeController', function($scope, $routePara
                         $scope.lastIncludedDevice = node.data.givenName.value || 'Device ' + '_' + nodeId;
                         $scope.setSecureInclusion(true);
                         $scope.secureInclusion = true;
-                        console.log('interview: $scope.secureInclusion',$scope.secureInclusion);
+                        console.log('interview: $scope.secureInclusion', $scope.secureInclusion);
                         myCache.remove('devices');
                         $scope.includedDeviceId = null;
                         $scope.checkInterview = false;
@@ -282,8 +282,8 @@ myAppController.controller('ZwaveIncludeController', function($scope, $routePara
     /**
      * Start inclusion proccess
      */
-     $scope.startInclusion = function(cmd) {
-        console.log('$scope.device.secureInclusion',$scope.device.secureInclusion);
+    $scope.startInclusion = function(cmd) {
+        console.log('$scope.device.secureInclusion', $scope.device.secureInclusion);
         //$scope.setSecureInclusion($scope.secureInclusion);
         dataFactory.runZwaveCmd(cmd).then(function() {
         }, function(error) {
@@ -295,11 +295,11 @@ myAppController.controller('ZwaveIncludeController', function($scope, $routePara
 //            }, 1500);
 //        }
     };
-    
+
     /**
      * Stopinclusion proccess
      */
-     $scope.stopInclusion = function(cmd) {
+    $scope.stopInclusion = function(cmd) {
         dataFactory.runZwaveCmd(cmd).then(function() {
         }, function(error) {
         });
@@ -437,14 +437,7 @@ myAppController.controller('ZwaveManageController', function($scope, $cookies, $
         });
     };
     $scope.loadData();
-    
-    /**
-     * Exclude device
-     */
-    $scope.excludeDevice = function() {
-        console.log('Excluding device')
-    };
-   
+
 
     /// --- Private functions --- ///
     /**
@@ -467,7 +460,7 @@ myAppController.controller('ZwaveManageController', function($scope, $cookies, $
             if (!ZWaveAPIData.devices) {
                 return;
             }
-            
+
             angular.forEach(ZWaveAPIData.devices, function(v, k) {
                 if (k == 1) {
                     return;
@@ -513,7 +506,7 @@ myAppController.controller('ZwaveManageController', function($scope, $cookies, $
                         obj['messages'] = [];
                         if (v.deviceType !== 'battery') {
                             $scope.devices.zwave.push(obj);
-                            $scope.zWaveDevices[nodeId]['elements'].push(obj);                                                                                 
+                            $scope.zWaveDevices[nodeId]['elements'].push(obj);
                             $scope.zWaveDevices[nodeId]['icon'] = obj.metrics.icon;
                         }
 
@@ -604,28 +597,98 @@ myAppController.controller('ZwaveManageController', function($scope, $cookies, $
 /**
  * Zwave exclude controller
  */
-myAppController.controller('ZwaveExcludeController', function($scope, $routeParams, dataFactory, dataService, _) {
-    $scope.zwaveDevices = [];
-    $scope.deviceVendor = false;
-    $scope.manufacturers = [];
-    $scope.manufacturer = false;
+myAppController.controller('ZwaveExcludeController', function($scope, $location, $routeParams, $interval, dataFactory, dataService, _) {
+    $scope.zWaveDevice = {
+        controllerState: 0,
+        lastExcludedDevice: 0,
+        id: null,
+        name: null,
+        apiDataInterval: null,
+        removeNode: false,
+        removeNodeProcess: false,
+        find: {}
+    };
+    // Cancel interval on page destroy
+    $scope.$on('$destroy', function() {
+        $interval.cancel($scope.zWaveDevice.apiDataInterval);
+       $scope.zWaveDevice.removeNode = false;
+        $scope.runZwaveCmd('controller.RemoveNodeFromNetwork(0)');
+    });
     /**
      * Load z-wave devices
      */
-    $scope.loadData = function(brandname, lang) {
-        dataService.showConnectionSpinner();
-        dataFactory.getApiLocal('device.' + lang + '.json').then(function(response) {
-            $scope.manufacturers = _.uniq(response.data, 'brandname');
-            if (brandname) {
-                $scope.zwaveDevices = _.where(response.data, {brandname: brandname});
-                $scope.manufacturer = brandname;
+    $scope.loadZwaveApiData = function() {
+        dataFactory.loadZwaveApiData(true).then(function(ZWaveAPIData) {
+            var node = ZWaveAPIData.devices[$routeParams.id];
+            if (!node) {
+                $location.path('/error/404');
             }
-            dataService.updateTimeTick();
+            $scope.zWaveDevice.controllerState = ZWaveAPIData.controller.data.controllerState.value;
+            $scope.zWaveDevice.id = $routeParams.id;
+            $scope.zWaveDevice.name = node.data.givenName.value || 'Device ' + '_' + $routeParams.id;
+            return;
+
         }, function(error) {
-            dataService.showConnectionError(error);
+            $location.path('/error/404');
         });
     };
-   // $scope.loadData($routeParams.brandname, $scope.lang);
+    $scope.loadZwaveApiData();
+
+    /**
+     *  Refresh z-wave devices
+     */
+    $scope.refreshZwaveApiData = function() {
+
+        dataFactory.loadZwaveApiData(true).then(function(ZWaveAPIData) {
+            var refresh = function() {
+                dataFactory.refreshZwaveApiData().then(function(response) {
+                    console.log(response.data)
+                    //var data = response.data;
+                    if ('controller.data.controllerState' in response.data) {
+                        $scope.zWaveDevice.controllerState =response.data['controller.data.controllerState'].value;
+                        console.log('controllerState: ', $scope.zWaveDevice.controllerState);
+                    }
+
+                    if ('controller.data.lastExcludedDevice' in response.data) {
+                       $scope.zWaveDevice.lastExcludedDevice = response.data['controller.data.lastExcludedDevice'].value;
+                        console.log('lastExcludedDevice: ', $scope.zWaveDevice.lastExcludedDevice);
+                    }
+                }, function(error) {
+                    dataService.showConnectionError(error);
+                    return;
+                });
+            };
+            $scope.zWaveDevice.apiDataInterval = $interval(refresh, $scope.cfg.interval);
+        }, function(error) {
+            dataService.showConnectionError(error);
+            return;
+        });
+    };
+    $scope.refreshZwaveApiData();
+
+    /**
+     * Run ExpertUI command
+     */
+    $scope.runZwaveCmd = function(cmd) {
+        dataFactory.runZwaveCmd(cmd).then(function() {
+            //myCache.remove('devices');
+            //myCache.removeAll();
+            //console.log('Reload...')
+            //$route.reload();
+        }, function(error) {
+        });
+
+    };
+    /**
+     * Run ExpertUI command - remove failed node
+     */
+    $scope.removeFailedNode = function(cmd) {
+         dataFactory.runZwaveCmd(cmd).then(function() {
+            $scope.zWaveDevice.removeNodeProcess = true;
+        }, function(error) {
+        });
+
+    };
 });
 /**
  * Zwave manage detail controller
