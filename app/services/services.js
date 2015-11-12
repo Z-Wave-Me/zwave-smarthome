@@ -345,7 +345,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
 
         angular.forEach(data, function(v, k) {
             var instance;
-            var minMax = {min: 0, max: 100};
+            var minMax = {min: 0, max: 99};
             var hasInstance = false;
             var zwaveId = false;
             var level = $filter('numberFixedLen')(v.metrics.level);
@@ -409,7 +409,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                 'probeTitle': v.metrics.probeTitle,
                 'scaleTitle': v.metrics.scaleTitle,
                 'deviceType': v.deviceType,
-                'v.probeType':v.probeType,
+                'probeType': v.probeType,
                 'location': v.location,
                 'creatorID': v.creatorId,
                 'updateTime': v.updateTime,
@@ -453,7 +453,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
             angular.forEach(devices, function(v, k) {
                 widgetId = '#Widget_' + v.id;
                 updateDeviceLevel(widgetId, v);
-                 updateDeviceScale(widgetId, v);
+                updateDeviceScale(widgetId, v);
                 updateDeviceTime(widgetId, v);
                 updateDeviceIcon(widgetId, v);
                 updateDeviceBtn(widgetId, v);
@@ -461,7 +461,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
 
             });
         }
-       
+
     }
     /**
      * Update device level
@@ -484,15 +484,15 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
         console.log(Math.round(+new Date() / 1000) + ' Update device: ID: ' + v.id + ' - level: ' + val)
 
     }
-    
-     /**
+
+    /**
      * Update device scale
      */
     function updateDeviceScale(widgetId, v) {
-        if(angular.isDefined(v.metrics.scaleTitle) && v.metrics.scaleTitle !==''){
-             $(widgetId + ' .widget-scale').html(v.metrics.scaleTitle);
+        if (angular.isDefined(v.metrics.scaleTitle) && v.metrics.scaleTitle !== '') {
+            $(widgetId + ' .widget-scale').html(v.metrics.scaleTitle);
         }
-       
+
         //console.log('Update device: ID: ' + v.id + ' - scale: ' + v.metrics.scaleTitle)
     }
 
@@ -529,6 +529,15 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      */
     function updateDeviceBtn(widgetId, v) {
         var status = false;
+        var minMax = {min: 0, max: 99};
+        // Create min/max value
+        switch (v.probeType) {
+            case 'test':
+                minMax = {min: 0, max: 255};
+                break;
+            default:
+                break;
+        }
         switch (v.deviceType) {
             case 'sensorMultiline':
                 if (v.metrics.multilineType == 'protection') {
@@ -541,6 +550,15 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                 break;
             case 'doorlock':
                 if (v.metrics.level == 'open') {
+                    status = 'on';
+                } else {
+                    status = 'off';
+                }
+                break;
+            case 'switchMultilevel':
+                if (v.metrics.level === minMax.max) {
+                    status = 'full';
+                } else if (v.metrics.level > minMax.min && v.metrics.level < minMax.max) {
                     status = 'on';
                 } else {
                     status = 'off';
@@ -561,7 +579,12 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
         if (status == 'on') {
             $(widgetId + ' .widget-btn-on').removeClass('btn-default').addClass('btn-primary');
             $(widgetId + ' .widget-btn-off').removeClass('btn-primary').addClass('btn-default');
-        } else {
+        } else if (status == 'full') {
+             $(widgetId + ' .widget-btn-full').removeClass('btn-default').addClass('btn-primary');
+            $(widgetId + ' .widget-btn-on').removeClass('btn-default').addClass('btn-primary');
+            $(widgetId + ' .widget-btn-off').removeClass('btn-primary').addClass('btn-default');
+        }
+        else {
             $(widgetId + ' .widget-btn-on').removeClass('btn-primary').addClass('btn-default');
             $(widgetId + ' .widget-btn-off').removeClass('btn-default').addClass('btn-primary');
         }
@@ -667,10 +690,10 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                 continue;
             if (typeof obj[i] == 'object') {
                 objects = objects.concat(replaceModuleFormData(obj[i], key));
-            } else if (i == key && 
-                        !angular.isArray(obj[key]) && 
-                                typeof obj[key] === 'string' && 
-                                    obj[key].indexOf("function") === 0) {
+            } else if (i == key &&
+                    !angular.isArray(obj[key]) &&
+                    typeof obj[key] === 'string' &&
+                    obj[key].indexOf("function") === 0) {
                 // overwrite old string with function                
                 // we can only pass a function as string in JSON ==> doing a real function
                 obj[key] = new Function('return ' + obj[key])();

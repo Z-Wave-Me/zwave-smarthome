@@ -3215,7 +3215,7 @@ legend.alpaca-container-label {
 /* line 133, sass/modules/_elements.scss */
 .widget-body .widget-level {
   font-weight: bold;
-  font-size: 25.2px;
+  font-size: 22.4px;
 }
 /* line 137, sass/modules/_elements.scss */
 .widget-body .widget-scale {
@@ -3247,78 +3247,82 @@ legend.alpaca-container-label {
   cursor: pointer;
 }
 /* line 165, sass/modules/_elements.scss */
-.widget-body .widget-btn-off, .widget-body .widget-btn-on {
+.widget-body .widget-btn-off, .widget-body .widget-btn-on, .widget-body .widget-btn-full {
   padding: 5px 17px;
 }
 /* line 168, sass/modules/_elements.scss */
-.widget-body .widget-btn-off .fa, .widget-body .widget-btn-on .fa {
+.widget-body .widget-btn-off .fa, .widget-body .widget-btn-on .fa, .widget-body .widget-btn-full .fa {
   color: #d9d9d9;
 }
 /* line 171, sass/modules/_elements.scss */
-.widget-body .widget-btn-off .widget-btn-symbol, .widget-body .widget-btn-on .widget-btn-symbol {
+.widget-body .widget-btn-off .widget-btn-symbol, .widget-body .widget-btn-on .widget-btn-symbol, .widget-body .widget-btn-full .widget-btn-symbol {
   color: #d9d9d9;
   font-weight: bold;
 }
 /* line 176, sass/modules/_elements.scss */
-.widget-body .widget-btn-off .widget-btn-label, .widget-body .widget-btn-on .widget-btn-label {
+.widget-body .widget-btn-off .widget-btn-label, .widget-body .widget-btn-on .widget-btn-label, .widget-body .widget-btn-full .widget-btn-label {
   display: none;
 }
 /* line 181, sass/modules/_elements.scss */
+.widget-body .widget-btn-full {
+  padding: 5px 10px;
+}
+/* line 184, sass/modules/_elements.scss */
 .widget-body .widget-btn-label-on {
   color: #595959;
   text-transform: lowercase;
 }
-/* line 185, sass/modules/_elements.scss */
+/* line 188, sass/modules/_elements.scss */
 .widget-body .widget-btn-off.btn-primary {
   background-color: #fff !important;
   border-color: #ccc;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-/* line 190, sass/modules/_elements.scss */
+/* line 193, sass/modules/_elements.scss */
 .widget-body .widget-btn-off.btn-primary .fa {
   color: #d9534f !important;
 }
-/* line 193, sass/modules/_elements.scss */
+/* line 196, sass/modules/_elements.scss */
 .widget-body .widget-btn-off.btn-primary .widget-btn-symbol {
   color: #d9534f !important;
 }
-/* line 197, sass/modules/_elements.scss */
-.widget-body .widget-btn-on.btn-primary {
+/* line 200, sass/modules/_elements.scss */
+.widget-body .widget-btn-on.btn-primary, .widget-body .widget-btn-full.btn-primary {
   background-color: #fff !important;
   border-color: #ccc;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-/* line 201, sass/modules/_elements.scss */
-.widget-body .widget-btn-on.btn-primary .fa {
-  color: #80AD80 !important;
-}
 /* line 204, sass/modules/_elements.scss */
-.widget-body .widget-btn-on.btn-primary .widget-btn-symbol {
+.widget-body .widget-btn-on.btn-primary .fa, .widget-body .widget-btn-full.btn-primary .fa {
+  color: #6494BC !important;
+}
+/* line 207, sass/modules/_elements.scss */
+.widget-body .widget-btn-on.btn-primary .widget-btn-symbol, .widget-body .widget-btn-full.btn-primary .widget-btn-symbol {
   color: #80AD80 !important;
 }
-/* line 208, sass/modules/_elements.scss */
+/* line 211, sass/modules/_elements.scss */
 .widget-body .element-hidden.hidden-sensor-multiline {
   height: 220px;
 }
-/* line 212, sass/modules/_elements.scss */
+/* line 215, sass/modules/_elements.scss */
 .widget-body table {
   width: 100%;
 }
-/* line 214, sass/modules/_elements.scss */
+/* line 217, sass/modules/_elements.scss */
 .widget-body table td {
   width: 50%;
   vertical-align: middle;
   text-align: center;
 }
 
-/* line 221, sass/modules/_elements.scss */
+/* line 224, sass/modules/_elements.scss */
 .multiline-entry {
   position: relative;
 }
 
-/* line 226, sass/modules/_elements.scss */
+/* line 229, sass/modules/_elements.scss */
 .widget-body .element-hidden, .multiline-entry .element-hidden {
   z-index: 10000;
   overflow: hidden;
@@ -3336,7 +3340,7 @@ legend.alpaca-container-label {
   background-color: #fff;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
 }
-/* line 243, sass/modules/_elements.scss */
+/* line 246, sass/modules/_elements.scss */
 .widget-body .hidden-close, .multiline-entry .hidden-close {
   position: absolute;
   top: 10px;
@@ -3345,60 +3349,69 @@ legend.alpaca-container-label {
 
 /* Specifics element style
 ----------------------------------------------------*/
-/* line 253, sass/modules/_elements.scss */
+/* line 256, sass/modules/_elements.scss */
 .sensorMultiline .control-left {
   width: 60% !important;
 }
-/* line 256, sass/modules/_elements.scss */
+/* line 259, sass/modules/_elements.scss */
 .sensorMultiline .control-right {
   width: 40%;
 }
 
-/* line 261, sass/modules/_elements.scss */
+/* line 264, sass/modules/_elements.scss */
+.switchMultilevel.dimmer .control-left {
+  width: 60% !important;
+}
+/* line 267, sass/modules/_elements.scss */
+.switchMultilevel.dimmer .control-right {
+  width: 40%;
+}
+
+/* line 272, sass/modules/_elements.scss */
 .element-camera-control {
   text-align: center;
 }
 
-/* line 264, sass/modules/_elements.scss */
+/* line 275, sass/modules/_elements.scss */
 .camera-img {
   text-align: center;
 }
-/* line 266, sass/modules/_elements.scss */
+/* line 277, sass/modules/_elements.scss */
 .camera-img img {
   width: 100%;
   display: inline-block;
 }
 
-/* line 272, sass/modules/_elements.scss */
+/* line 283, sass/modules/_elements.scss */
 .color-picker-show {
   display: inline-block;
   width: 24px;
   height: 24px;
 }
 
-/* line 278, sass/modules/_elements.scss */
+/* line 289, sass/modules/_elements.scss */
 .drop-down-tags div {
   padding: 5px;
 }
 
-/* line 285, sass/modules/_elements.scss */
+/* line 296, sass/modules/_elements.scss */
 .drop-down-tags a {
   display: inline-block;
   margin: 0 5px;
 }
 
-/* line 290, sass/modules/_elements.scss */
+/* line 301, sass/modules/_elements.scss */
 .bcg-success.false {
   color: #a8a8a8;
 }
-/* line 292, sass/modules/_elements.scss */
+/* line 303, sass/modules/_elements.scss */
 .bcg-success.false .report-img {
   opacity: 0.4;
 }
 
 /* Element detail
 ----------------------------------------------------*/
-/* line 300, sass/modules/_elements.scss */
+/* line 311, sass/modules/_elements.scss */
 .btn-tag {
   float: none !important;
   border-radius: 4px !important;
@@ -3425,72 +3438,72 @@ legend.alpaca-container-label {
 .hidden-camera{}*/
 /* OpenWeather widget
 ----------------------------------------------------*/
-/* line 327, sass/modules/_elements.scss */
+/* line 338, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline table td {
   text-align: left;
   padding: 5px 0;
 }
 
-/* line 332, sass/modules/_elements.scss */
+/* line 343, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline table td:first-child {
   padding-left: 20px;
   vertical-align: top;
 }
 
-/* line 337, sass/modules/_elements.scss */
+/* line 348, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline h4 {
   display: inline;
 }
 
-/* line 341, sass/modules/_elements.scss */
+/* line 352, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline .text-center {
   margin: 10px 0;
 }
 
 /* Text widget
 -----------------------------------------------------*/
-/* line 347, sass/modules/_elements.scss */
+/* line 358, sass/modules/_elements.scss */
 .widget-body.text-widget h3 {
   font-weight: bold;
 }
 
-/* line 351, sass/modules/_elements.scss */
+/* line 362, sass/modules/_elements.scss */
 .widget-body.text-widget-no-img {
   padding-left: 15px;
 }
 
-/* line 355, sass/modules/_elements.scss */
+/* line 366, sass/modules/_elements.scss */
 .widget-control.text {
   width: 95%;
 }
 
-/* line 359, sass/modules/_elements.scss */
+/* line 370, sass/modules/_elements.scss */
 .text-widget-modal.modal-dialog {
   text-align: center;
 }
 
-/* line 363, sass/modules/_elements.scss */
+/* line 374, sass/modules/_elements.scss */
 img.widget-promo-image {
   max-height: 200px;
   margin-bottom: 10px;
 }
 
-/* line 368, sass/modules/_elements.scss */
+/* line 379, sass/modules/_elements.scss */
 .widget-promo-text {
   text-align: left;
 }
 
-/* line 372, sass/modules/_elements.scss */
+/* line 383, sass/modules/_elements.scss */
 .widget-control.text a {
   font-weight: normal;
 }
 
-/* line 376, sass/modules/_elements.scss */
+/* line 387, sass/modules/_elements.scss */
 .widget-control.text a:hover {
   text-decoration: none;
 }
 
-/* line 380, sass/modules/_elements.scss */
+/* line 391, sass/modules/_elements.scss */
 .widget-control.text a:after {
   content: "\f1ea";
   font-family: FontAwesome;
@@ -3503,13 +3516,13 @@ img.widget-promo-image {
 
 /* MultilevelSensor widget
 -----------------------------------------------------*/
-/* line 392, sass/modules/_elements.scss */
+/* line 403, sass/modules/_elements.scss */
 .widget-body .element-hidden.hidden-sensor-multiline.multiline-sensor {
   padding: 10px 0;
   height: auto;
 }
 
-/* line 397, sass/modules/_elements.scss */
+/* line 408, sass/modules/_elements.scss */
 .hidden-sensor-multiline .widget-image {
   position: relative;
   top: 0;
@@ -3518,25 +3531,25 @@ img.widget-promo-image {
   height: 25px;
 }
 
-/* line 405, sass/modules/_elements.scss */
+/* line 416, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline.multiline-sensor table td:first-child {
   padding-left: 5px;
 }
 
-/* line 409, sass/modules/_elements.scss */
+/* line 420, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline.multiline-sensor table td {
   width: inherit;
   padding: 5px 5px 5px 10px;
 }
 
-/* line 414, sass/modules/_elements.scss */
+/* line 425, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline.multiline-sensor table tr:nth-child(odd) {
   background-color: #f9f9f9;
 }
 
 /* ToggleButton widget
 --------------------------------------------------------*/
-/* line 421, sass/modules/_elements.scss */
+/* line 432, sass/modules/_elements.scss */
 .toggleButton .widget-body div.widget-control.control-right.ng-scope > div > button.btn.btn-default.btn-sm {
   cursor: default;
 }
@@ -4105,23 +4118,39 @@ padding-right: 5px;
 -------------------------------------------------- */
 /* line 3, sass/modules/_management.scss */
 .admin-entry {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   border-bottom: solid 1px #d3d3d3;
 }
 
 /* line 7, sass/modules/_management.scss */
 .admin-entry-title {
-  font-size: 18px;
+  font-size: 16px;
+  position: relative;
+  vertical-align: middle;
+  margin: 10px 0;
+  color: #5d5d5d;
   cursor: pointer;
 }
+/* line 15, sass/modules/_management.scss */
+.admin-entry-title .fa {
+  padding-right: 7px;
+  font-size: 19.2px;
+}
+/* line 19, sass/modules/_management.scss */
+.admin-entry-title .subnavi-arrow {
+  position: absolute;
+  right: 1%;
+  display: inline-block;
+  padding: 0;
+}
 
-/* line 11, sass/modules/_management.scss */
+/* line 26, sass/modules/_management.scss */
 .user-image {
   max-width: 40px;
   border-radius: 50%;
 }
 
-/* line 16, sass/modules/_management.scss */
+/* line 31, sass/modules/_management.scss */
 .profile-lang {
   display: inline-block;
 }
