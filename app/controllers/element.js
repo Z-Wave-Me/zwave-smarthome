@@ -73,7 +73,8 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.goHistory = [];
     $scope.apiDataInterval = null;
     $scope.multilineSensorsInterval = null;
-     $scope.element = {
+     $scope.elements = {
+         all: {},
          input: {}
      };
     $scope.collection = [];
@@ -81,6 +82,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.deviceType = [];
     $scope.tags = [];
     $scope.rooms = {};
+    $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/image/';
     $scope.history = [];
     $scope.historyStatus = [];
     $scope.multilineDev = false;
@@ -203,7 +205,9 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
                 
                 return;
             }
-            $scope.collection = collection;
+            angular.extend($scope.elements.all,_.indexBy(collection,'id'));
+            angular.extend($scope.collection,collection);
+            //$scope.collection = collection;
             dataService.updateTimeTick(response.data.data.updateTime);
         }, function(error) {
             //console.log('After login: ',$routeParams.login)
@@ -347,7 +351,8 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     /**
      * Multiline climateControl
      */
-    $scope.climateElementModes = ['off', 'esave', 'per_room'];
+    $scope.climateElementModes = ['frostProtection', 'energySave', 'comfort','schedule'];
+    $scope.climatePerRoom = {};
     /**
      * Show climate modal window
      */
@@ -355,7 +360,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         $(target).modal();
         $scope.input = input;
         $scope.climateControl = {data: false, icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        $scope.climateControlModes = ['off', 'esave', 'comfort', 'time_driven'];
+        $scope.climateControlModes = ['off', 'esave', 'comfort', 'schedule'];
         $scope.climateControlMode = '';
         $scope.changeClimateControlProcess = {};
         //dataFactory.getApiLocal('_test/climate_control.json').then(function(response) {
@@ -461,7 +466,10 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     function runCmd(cmd, id) {
         var widgetId = '#Widget_' + id;
         dataFactory.runApiCmd(cmd).then(function(response) {
-            $(widgetId + ' .widget-image').addClass('trans-true');
+            if(id){
+                $(widgetId + ' .widget-image').addClass('trans-true'); 
+            }
+           
         }, function(error) {
             alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;

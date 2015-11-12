@@ -327,16 +327,23 @@ a:hover {
 }
 
 /* line 79, sass/globals/_body.scss */
+.text-disabled {
+  pointer-events: none;
+  color: #737373;
+  opacity: 0.5;
+}
+
+/* line 85, sass/globals/_body.scss */
 .btn-tooltip {
   cursor: help;
 }
 
-/* line 82, sass/globals/_body.scss */
+/* line 88, sass/globals/_body.scss */
 .app-border {
   border: solid 4px #fff;
 }
 
-/* line 85, sass/globals/_body.scss */
+/* line 91, sass/globals/_body.scss */
 .app-gradient {
   background: #f6f6f6;
   /* Old browsers */
@@ -356,7 +363,7 @@ a:hover {
   /* IE6-9 */
 }
 
-/* line 89, sass/globals/_body.scss */
+/* line 95, sass/globals/_body.scss */
 .app-gradient-green {
   background: #1e5799;
   /* Old browsers */
@@ -376,7 +383,7 @@ a:hover {
   /* IE6-9 */
 }
 
-/* line 93, sass/globals/_body.scss */
+/* line 99, sass/globals/_body.scss */
 .app-gradient-red {
   background: #e04747;
   /* Old browsers */
@@ -396,7 +403,7 @@ a:hover {
   /* IE6-9 */
 }
 
-/* line 97, sass/globals/_body.scss */
+/* line 103, sass/globals/_body.scss */
 .app-gradient-yellow {
   background: #e1f24d;
   /* Old browsers */
@@ -416,42 +423,42 @@ a:hover {
   /* IE6-9 */
 }
 
-/* line 101, sass/globals/_body.scss */
+/* line 107, sass/globals/_body.scss */
 .app-shadow {
   -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
   -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
   box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
 }
 
-/* line 105, sass/globals/_body.scss */
+/* line 111, sass/globals/_body.scss */
 .bcg-active.false {
   background-color: #f2e8e8;
 }
 
 /* Hide element on is-mobile-true devices
 -------------------------------------------------- */
-/* line 112, sass/globals/_body.scss */
+/* line 118, sass/globals/_body.scss */
 .is-mobile-true .mobhidden {
   display: none !important;
 }
 
 /* Spinners
 -------------------------------------------------- */
-/* line 120, sass/globals/_body.scss */
+/* line 126, sass/globals/_body.scss */
 .module-spinner {
   display: none !important;
 }
 
 /* Images
 -------------------------------------------------- */
-/* line 126, sass/globals/_body.scss */
+/* line 132, sass/globals/_body.scss */
 .report-img {
   margin: 0;
   max-width: 26px;
   display: inline;
 }
 
-/* line 132, sass/globals/_body.scss */
+/* line 138, sass/globals/_body.scss */
 .product-img {
   margin: 0;
   max-width: 100px;
@@ -461,7 +468,7 @@ a:hover {
 
 /* Device assigned block
 -------------------------------------------------- */
-/* line 141, sass/globals/_body.scss */
+/* line 147, sass/globals/_body.scss */
 .device-assigned-block {
   background-color: #FCF8E3;
   padding: 10px;
@@ -471,7 +478,7 @@ a:hover {
   background-color: #fcf8e3;
 }
 
-/* line 150, sass/globals/_body.scss */
+/* line 156, sass/globals/_body.scss */
 .btn-device-admin {
   display: inline-block;
   padding: 6px 12px;
@@ -506,7 +513,7 @@ vertical-align: middle;
 }*/
 /* Tooltip
 -------------------------------------------------- */
-/* line 190, sass/globals/_body.scss */
+/* line 196, sass/globals/_body.scss */
 .tooltip-inner {
   background-color: #F6F6F6;
   color: #000;
@@ -515,7 +522,7 @@ vertical-align: middle;
   text-align: left;
 }
 
-/* line 197, sass/globals/_body.scss */
+/* line 203, sass/globals/_body.scss */
 .tooltip-arrow {
   border-bottom-color: #f2f2f2;
 }
@@ -1134,6 +1141,15 @@ vertical-align: middle;
 /* line 195, sass/globals/_navi.scss */
 .page-menu .page-menu-tagging {
   background-color: #31b0d5;
+}
+
+/* Footer drop-down
+-------------------------------------------------- */
+/* line 201, sass/globals/_navi.scss */
+.dropdown-menu-bottom {
+  height: auto;
+  max-height: 600px;
+  overflow-x: hidden;
 }
 
 /* Table
@@ -3199,7 +3215,7 @@ legend.alpaca-container-label {
 /* line 133, sass/modules/_elements.scss */
 .widget-body .widget-level {
   font-weight: bold;
-  font-size: 25.2px;
+  font-size: 22.4px;
 }
 /* line 137, sass/modules/_elements.scss */
 .widget-body .widget-scale {
@@ -3231,78 +3247,82 @@ legend.alpaca-container-label {
   cursor: pointer;
 }
 /* line 165, sass/modules/_elements.scss */
-.widget-body .widget-btn-off, .widget-body .widget-btn-on {
+.widget-body .widget-btn-off, .widget-body .widget-btn-on, .widget-body .widget-btn-full {
   padding: 5px 17px;
 }
 /* line 168, sass/modules/_elements.scss */
-.widget-body .widget-btn-off .fa, .widget-body .widget-btn-on .fa {
+.widget-body .widget-btn-off .fa, .widget-body .widget-btn-on .fa, .widget-body .widget-btn-full .fa {
   color: #d9d9d9;
 }
 /* line 171, sass/modules/_elements.scss */
-.widget-body .widget-btn-off .widget-btn-symbol, .widget-body .widget-btn-on .widget-btn-symbol {
+.widget-body .widget-btn-off .widget-btn-symbol, .widget-body .widget-btn-on .widget-btn-symbol, .widget-body .widget-btn-full .widget-btn-symbol {
   color: #d9d9d9;
   font-weight: bold;
 }
 /* line 176, sass/modules/_elements.scss */
-.widget-body .widget-btn-off .widget-btn-label, .widget-body .widget-btn-on .widget-btn-label {
+.widget-body .widget-btn-off .widget-btn-label, .widget-body .widget-btn-on .widget-btn-label, .widget-body .widget-btn-full .widget-btn-label {
   display: none;
 }
 /* line 181, sass/modules/_elements.scss */
+.widget-body .widget-btn-full {
+  padding: 5px 10px;
+}
+/* line 184, sass/modules/_elements.scss */
 .widget-body .widget-btn-label-on {
   color: #595959;
   text-transform: lowercase;
 }
-/* line 185, sass/modules/_elements.scss */
+/* line 188, sass/modules/_elements.scss */
 .widget-body .widget-btn-off.btn-primary {
   background-color: #fff !important;
   border-color: #ccc;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-/* line 190, sass/modules/_elements.scss */
+/* line 193, sass/modules/_elements.scss */
 .widget-body .widget-btn-off.btn-primary .fa {
   color: #d9534f !important;
 }
-/* line 193, sass/modules/_elements.scss */
+/* line 196, sass/modules/_elements.scss */
 .widget-body .widget-btn-off.btn-primary .widget-btn-symbol {
   color: #d9534f !important;
 }
-/* line 197, sass/modules/_elements.scss */
-.widget-body .widget-btn-on.btn-primary {
+/* line 200, sass/modules/_elements.scss */
+.widget-body .widget-btn-on.btn-primary, .widget-body .widget-btn-full.btn-primary {
   background-color: #fff !important;
   border-color: #ccc;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-/* line 201, sass/modules/_elements.scss */
-.widget-body .widget-btn-on.btn-primary .fa {
-  color: #80AD80 !important;
-}
 /* line 204, sass/modules/_elements.scss */
-.widget-body .widget-btn-on.btn-primary .widget-btn-symbol {
+.widget-body .widget-btn-on.btn-primary .fa, .widget-body .widget-btn-full.btn-primary .fa {
+  color: #6494BC !important;
+}
+/* line 207, sass/modules/_elements.scss */
+.widget-body .widget-btn-on.btn-primary .widget-btn-symbol, .widget-body .widget-btn-full.btn-primary .widget-btn-symbol {
   color: #80AD80 !important;
 }
-/* line 208, sass/modules/_elements.scss */
+/* line 211, sass/modules/_elements.scss */
 .widget-body .element-hidden.hidden-sensor-multiline {
   height: 220px;
 }
-/* line 212, sass/modules/_elements.scss */
+/* line 215, sass/modules/_elements.scss */
 .widget-body table {
   width: 100%;
 }
-/* line 214, sass/modules/_elements.scss */
+/* line 217, sass/modules/_elements.scss */
 .widget-body table td {
   width: 50%;
   vertical-align: middle;
   text-align: center;
 }
 
-/* line 221, sass/modules/_elements.scss */
+/* line 224, sass/modules/_elements.scss */
 .multiline-entry {
   position: relative;
 }
 
-/* line 226, sass/modules/_elements.scss */
+/* line 229, sass/modules/_elements.scss */
 .widget-body .element-hidden, .multiline-entry .element-hidden {
   z-index: 10000;
   overflow: hidden;
@@ -3320,58 +3340,78 @@ legend.alpaca-container-label {
   background-color: #fff;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
 }
-/* line 243, sass/modules/_elements.scss */
+/* line 246, sass/modules/_elements.scss */
 .widget-body .hidden-close, .multiline-entry .hidden-close {
   position: absolute;
   top: 10px;
   left: 93%;
 }
 
-/* line 250, sass/modules/_elements.scss */
+/* Specifics element style
+----------------------------------------------------*/
+/* line 256, sass/modules/_elements.scss */
+.sensorMultiline .control-left {
+  width: 60% !important;
+}
+/* line 259, sass/modules/_elements.scss */
+.sensorMultiline .control-right {
+  width: 40%;
+}
+
+/* line 264, sass/modules/_elements.scss */
+.switchMultilevel.dimmer .control-left {
+  width: 60% !important;
+}
+/* line 267, sass/modules/_elements.scss */
+.switchMultilevel.dimmer .control-right {
+  width: 40%;
+}
+
+/* line 272, sass/modules/_elements.scss */
 .element-camera-control {
   text-align: center;
 }
 
-/* line 253, sass/modules/_elements.scss */
+/* line 275, sass/modules/_elements.scss */
 .camera-img {
   text-align: center;
 }
-/* line 255, sass/modules/_elements.scss */
+/* line 277, sass/modules/_elements.scss */
 .camera-img img {
   width: 100%;
   display: inline-block;
 }
 
-/* line 261, sass/modules/_elements.scss */
+/* line 283, sass/modules/_elements.scss */
 .color-picker-show {
   display: inline-block;
   width: 24px;
   height: 24px;
 }
 
-/* line 267, sass/modules/_elements.scss */
+/* line 289, sass/modules/_elements.scss */
 .drop-down-tags div {
   padding: 5px;
 }
 
-/* line 274, sass/modules/_elements.scss */
+/* line 296, sass/modules/_elements.scss */
 .drop-down-tags a {
   display: inline-block;
   margin: 0 5px;
 }
 
-/* line 279, sass/modules/_elements.scss */
+/* line 301, sass/modules/_elements.scss */
 .bcg-success.false {
   color: #a8a8a8;
 }
-/* line 281, sass/modules/_elements.scss */
+/* line 303, sass/modules/_elements.scss */
 .bcg-success.false .report-img {
   opacity: 0.4;
 }
 
 /* Element detail
 ----------------------------------------------------*/
-/* line 289, sass/modules/_elements.scss */
+/* line 311, sass/modules/_elements.scss */
 .btn-tag {
   float: none !important;
   border-radius: 4px !important;
@@ -3398,72 +3438,72 @@ legend.alpaca-container-label {
 .hidden-camera{}*/
 /* OpenWeather widget
 ----------------------------------------------------*/
-/* line 316, sass/modules/_elements.scss */
+/* line 338, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline table td {
   text-align: left;
   padding: 5px 0;
 }
 
-/* line 321, sass/modules/_elements.scss */
+/* line 343, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline table td:first-child {
   padding-left: 20px;
   vertical-align: top;
 }
 
-/* line 326, sass/modules/_elements.scss */
+/* line 348, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline h4 {
   display: inline;
 }
 
-/* line 330, sass/modules/_elements.scss */
+/* line 352, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline .text-center {
   margin: 10px 0;
 }
 
 /* Text widget
 -----------------------------------------------------*/
-/* line 336, sass/modules/_elements.scss */
+/* line 358, sass/modules/_elements.scss */
 .widget-body.text-widget h3 {
   font-weight: bold;
 }
 
-/* line 340, sass/modules/_elements.scss */
+/* line 362, sass/modules/_elements.scss */
 .widget-body.text-widget-no-img {
   padding-left: 15px;
 }
 
-/* line 344, sass/modules/_elements.scss */
+/* line 366, sass/modules/_elements.scss */
 .widget-control.text {
   width: 95%;
 }
 
-/* line 348, sass/modules/_elements.scss */
+/* line 370, sass/modules/_elements.scss */
 .text-widget-modal.modal-dialog {
   text-align: center;
 }
 
-/* line 352, sass/modules/_elements.scss */
+/* line 374, sass/modules/_elements.scss */
 img.widget-promo-image {
   max-height: 200px;
   margin-bottom: 10px;
 }
 
-/* line 357, sass/modules/_elements.scss */
+/* line 379, sass/modules/_elements.scss */
 .widget-promo-text {
   text-align: left;
 }
 
-/* line 361, sass/modules/_elements.scss */
+/* line 383, sass/modules/_elements.scss */
 .widget-control.text a {
   font-weight: normal;
 }
 
-/* line 365, sass/modules/_elements.scss */
+/* line 387, sass/modules/_elements.scss */
 .widget-control.text a:hover {
   text-decoration: none;
 }
 
-/* line 369, sass/modules/_elements.scss */
+/* line 391, sass/modules/_elements.scss */
 .widget-control.text a:after {
   content: "\f1ea";
   font-family: FontAwesome;
@@ -3476,13 +3516,13 @@ img.widget-promo-image {
 
 /* MultilevelSensor widget
 -----------------------------------------------------*/
-/* line 381, sass/modules/_elements.scss */
+/* line 403, sass/modules/_elements.scss */
 .widget-body .element-hidden.hidden-sensor-multiline.multiline-sensor {
   padding: 10px 0;
   height: auto;
 }
 
-/* line 386, sass/modules/_elements.scss */
+/* line 408, sass/modules/_elements.scss */
 .hidden-sensor-multiline .widget-image {
   position: relative;
   top: 0;
@@ -3491,25 +3531,25 @@ img.widget-promo-image {
   height: 25px;
 }
 
-/* line 394, sass/modules/_elements.scss */
+/* line 416, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline.multiline-sensor table td:first-child {
   padding-left: 5px;
 }
 
-/* line 398, sass/modules/_elements.scss */
+/* line 420, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline.multiline-sensor table td {
   width: inherit;
   padding: 5px 5px 5px 10px;
 }
 
-/* line 403, sass/modules/_elements.scss */
+/* line 425, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline.multiline-sensor table tr:nth-child(odd) {
   background-color: #f9f9f9;
 }
 
 /* ToggleButton widget
 --------------------------------------------------------*/
-/* line 410, sass/modules/_elements.scss */
+/* line 432, sass/modules/_elements.scss */
 .toggleButton .widget-body div.widget-control.control-right.ng-scope > div > button.btn.btn-default.btn-sm {
   cursor: default;
 }
@@ -4078,23 +4118,39 @@ padding-right: 5px;
 -------------------------------------------------- */
 /* line 3, sass/modules/_management.scss */
 .admin-entry {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   border-bottom: solid 1px #d3d3d3;
 }
 
 /* line 7, sass/modules/_management.scss */
 .admin-entry-title {
-  font-size: 18px;
+  font-size: 16px;
+  position: relative;
+  vertical-align: middle;
+  margin: 10px 0;
+  color: #5d5d5d;
   cursor: pointer;
 }
+/* line 15, sass/modules/_management.scss */
+.admin-entry-title .fa {
+  padding-right: 7px;
+  font-size: 19.2px;
+}
+/* line 19, sass/modules/_management.scss */
+.admin-entry-title .subnavi-arrow {
+  position: absolute;
+  right: 1%;
+  display: inline-block;
+  padding: 0;
+}
 
-/* line 11, sass/modules/_management.scss */
+/* line 26, sass/modules/_management.scss */
 .user-image {
   max-width: 40px;
   border-radius: 50%;
 }
 
-/* line 16, sass/modules/_management.scss */
+/* line 31, sass/modules/_management.scss */
 .profile-lang {
   display: inline-block;
 }
@@ -4599,26 +4655,6 @@ padding-right: 5px;
   /* line 178, sass/responsive/_mixins.scss */
   .page-navi .page-navi-in {
     width: 100%;
-    /*            .page-cat-basic_gateway_modules .fa{color: #dd976e;}
-            .page-cat-legacy_products_workaround .fa{color: #6c7a89;}
-            .page-cat-support_external_ui .fa{color: #6494bc;} 
-            .page-cat-support_external_dev .fa{color: #80ad80;} 
-            .page-cat-automation_basic .fa{color: #31b0d5;}
-            .page-cat-device_enhancements .fa{color: #f0aD4e;}
-            .page-cat-developers_stuff .fa{color: #d9534f;} 
-            .page-cat-complex_applications .fa{color: #dd976e;} 
-            .page-cat-automation .fa{color: #dddddd;}
-            .page-cat-security .fa{color: #6c7a89;}
-            .page-cat-peripherals .fa{color: #6494bc;}
-            .page-cat-logging .fa{color: #31b0d5;}
-            .page-cat-scripting .fa{color: #f0aD4e;}
-            .page-cat-devices .fa{color: #d9534f;} 
-            .page-cat-scheduling .fa{color: #dd976e;} 
-            .page-cat-climate .fa{color: #dddddd;}
-            .page-cat-environment .fa{color: #6c7a89;}
-            .page-cat-scenes .fa{color: #6494bc;} 
-            .page-cat-notifications .fa{color: #80ad80;} 
-            .page-cat-tagging .fa{color: #31b0d5;}*/
   }
   /* line 181, sass/responsive/_mixins.scss */
   .page-navi .page-navi-in ul li {
@@ -4648,28 +4684,28 @@ padding-right: 5px;
     right: 1%;
     display: inline-block !important;
   }
-  /* line 233, sass/responsive/_mixins.scss */
+  /* line 212, sass/responsive/_mixins.scss */
   .page-navi .page-navi-in .page-navi-close {
     border: 0;
     padding: 5px 30px 5px 5px;
   }
 
-  /* line 239, sass/responsive/_mixins.scss */
+  /* line 218, sass/responsive/_mixins.scss */
   .page-menu {
     font-size: 16.8px;
   }
-  /* line 241, sass/responsive/_mixins.scss */
+  /* line 220, sass/responsive/_mixins.scss */
   .page-menu .fa {
     font-size: 16.8px;
   }
-  /* line 245, sass/responsive/_mixins.scss */
+  /* line 224, sass/responsive/_mixins.scss */
   .page-menu ul {
     list-style: none;
     text-align: left;
     margin: 0;
     padding: 0;
   }
-  /* line 253, sass/responsive/_mixins.scss */
+  /* line 232, sass/responsive/_mixins.scss */
   .page-menu ul li {
     width: 100%;
     float: none;
@@ -4677,30 +4713,39 @@ padding-right: 5px;
     border-bottom: solid 1px #F6F6F6;
   }
 
+  /* line 245, sass/responsive/_mixins.scss */
+  .dropdown-menu-bottom {
+    max-height: 180px;
+    min-width: auto;
+  }
+
+  /*    .dropdown-menu-bottom.open { position: static; }
+  .dropdown-menu-bottom.open, .dropdown-menu-bottom .dropdown-menu {display:table; width: 100%; text-align: center; left:0; right:0; }
+  .dropdown-menu>li { display: table-cell; }*/
   /* line 81, sass/responsive/_mixins.scss */
   .report-img {
     max-width: 36px;
   }
 
-  /* line 278, sass/responsive/_mixins.scss */
+  /* line 265, sass/responsive/_mixins.scss */
   .table-report tbody tr.bcg-active.true {
     background-color: #fff;
   }
-  /* line 282, sass/responsive/_mixins.scss */
+  /* line 269, sass/responsive/_mixins.scss */
   .table-report tbody tr.bcg-active.false {
     background-color: #f2e8e8 !important;
   }
 
-  /* line 293, sass/responsive/_mixins.scss */
+  /* line 280, sass/responsive/_mixins.scss */
   .btn, .btn-device-admin {
     font-size: 18px;
   }
-  /* line 295, sass/responsive/_mixins.scss */
+  /* line 282, sass/responsive/_mixins.scss */
   .btn .fa, .btn-device-admin .fa {
     font-size: 21.6px;
   }
 
-  /* line 299, sass/responsive/_mixins.scss */
+  /* line 286, sass/responsive/_mixins.scss */
   .btn-name {
     display: none;
   }
@@ -4716,13 +4761,13 @@ padding-right: 5px;
   /*    .submit-entry .btn-submit{
           padding: 6px 12px;
       }*/
-  /* line 319, sass/responsive/_mixins.scss */
+  /* line 306, sass/responsive/_mixins.scss */
   .form-control {
     font-size: 16.8px;
     padding: 16.8px 14.4px !important;
   }
 
-  /* line 323, sass/responsive/_mixins.scss */
+  /* line 310, sass/responsive/_mixins.scss */
   input[type=checkbox] {
     -ms-transform: scale(1.2);
     /* IE */
@@ -4736,7 +4781,7 @@ padding-right: 5px;
     margin: 0 10px 0;
   }
 
-  /* line 332, sass/responsive/_mixins.scss */
+  /* line 319, sass/responsive/_mixins.scss */
   input[type=radio] {
     transform: scale(1.2, 1.2);
     -moz-transform: scale(1.2, 1.2);
@@ -4745,36 +4790,36 @@ padding-right: 5px;
     -o-transform: scale(1.2, 1.2);
   }
 
-  /* line 340, sass/responsive/_mixins.scss */
+  /* line 327, sass/responsive/_mixins.scss */
   .form-control-sm, .form-control-md {
     width: 100% !important;
     display: block !important;
   }
 
-  /* line 349, sass/responsive/_mixins.scss */
+  /* line 336, sass/responsive/_mixins.scss */
   .nav-tabs > li > a {
     font-size: 19.2px;
   }
-  /* line 351, sass/responsive/_mixins.scss */
+  /* line 338, sass/responsive/_mixins.scss */
   .nav-tabs > li > a .fa {
     font-size: 23.04px;
   }
 
-  /* line 355, sass/responsive/_mixins.scss */
+  /* line 342, sass/responsive/_mixins.scss */
   .tab-name {
     display: none;
   }
 
-  /* line 358, sass/responsive/_mixins.scss */
+  /* line 345, sass/responsive/_mixins.scss */
   .nav-tabs-3 {
     text-align: center;
   }
 
-  /* line 366, sass/responsive/_mixins.scss */
+  /* line 353, sass/responsive/_mixins.scss */
   .dropdown-menu {
     font-size: 16.8px;
   }
-  /* line 368, sass/responsive/_mixins.scss */
+  /* line 355, sass/responsive/_mixins.scss */
   .dropdown-menu .fa {
     font-size: 23.04px;
   }

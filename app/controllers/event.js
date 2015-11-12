@@ -31,14 +31,14 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
         day: 1
     };
     $scope.timeFilter = $scope.timeFilterDefault;
-     $scope.devices = {
-         find: {
-             id: false,
-             title: false,
-             data: {}
-         },
-         data: {}
-     };
+    $scope.devices = {
+        find: {
+            id: false,
+            title: false,
+            data: {}
+        },
+        data: {}
+    };
     $scope.currentPage = 1;
     $scope.pageSize = cfg.page_results_events;
     $scope.reset = function() {
@@ -50,27 +50,33 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
     $scope.$on('$destroy', function() {
         $interval.cancel($scope.apiDataInterval);
     });
-    
-      /**
+
+    /**
      * Load devices
      */
     $scope.loadDevices = function() {
-        dataFactory.getApi('devices',null,true).then(function(response) {
-            var data = _.indexBy(response.data.data.devices, 'id');
-            angular.extend($scope.devices.data,data);
+        dataFactory.getApi('devices', null, true).then(function(response) {
+            var rejectType = ['battery', 'text', 'camera'];
+            var data = _.chain(response.data.data.devices)
+                    .flatten()
+                    .reject(function(v) {
+                        return rejectType.indexOf(v.deviceType) > -1 || v.permanently_hidden === true;
+                    })
+                    .indexBy('id')
+                    .value();
+            angular.extend($scope.devices.data, data);
             if (angular.isDefined($routeParams.param) && angular.isDefined($routeParams.val)) {
-            if($routeParams.param === 'source' && !_.isEmpty(data) && data[$routeParams.val]){
-                angular.extend($scope.devices.find,{id:$routeParams.val},{title:data[$routeParams.val].metrics.title});
-                  angular.extend($scope.page,{title:data[$routeParams.val].metrics.title});
+                if ($routeParams.param === 'source' && !_.isEmpty(data) && data[$routeParams.val]) {
+                    angular.extend($scope.devices.find, {id: $routeParams.val}, {title: data[$routeParams.val].metrics.title});
+                    angular.extend($scope.page, {title: data[$routeParams.val].metrics.title});
+                }
             }
-        }
-            //console.log($scope.devices.data) 
         }, function(error) {
             dataService.showConnectionError(error);
         });
     }
     ;
-     $scope.loadDevices();
+    $scope.loadDevices();
 
     /**
      * Load data into collection
@@ -182,7 +188,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
      * Delete event
      */
     $scope.deleteEvent = function(id, params, target, message) {
-       alertify.confirm(message, function() {
+        alertify.confirm(message, function() {
             $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
             dataFactory.deleteApi('notifications', id, params).then(function(response) {
                 myCache.remove('notifications');

@@ -84,7 +84,7 @@ var config_data = {
         // Default language
         'lang': 'en',// !!!!Do not change it
         // List of supported languages
-        'lang_list': ['en', 'de', 'ru', 'cn', 'fr','cz','sk'],
+        'lang_list': ['en', 'de', 'ru', 'cn', 'fr','cz','sk','se'],
         // Role access
         'role_access': {
             admin: [1],

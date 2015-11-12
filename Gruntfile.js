@@ -71,8 +71,6 @@ module.exports = function(grunt) {
                     'app/controllers/room.js',
                     'app/controllers/management.js',
                     'app/controllers/mysettings.js',
-                    'app/controllers/report.js',
-                    'app/controllers/info.js',
                     'app/controllers/auth.js',
                     //'app/modules/bootstrap-colorpicker-module.min.js',
                     'app/modules/bootstrap-colorpicker-module.js',

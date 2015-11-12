@@ -1,4 +1,5 @@
 {
+    "frostProtection":  "Frost Protection",
     "goahead": "Go Ahead",
     "reset": "Reset",
     "app_installation_successful": "The app was successfully installed.",
@@ -56,9 +57,9 @@
     "keep_password_empty": "Nechte prázdné pokud nechcete změnit Heslo.",
     "firmware_update_info": "Otevře se nové okno. Pro aktualizaci firmware, klikněte na možnost Pokročilé -> Firmware a pokračujte dle instrukcí.",
     "off": "Off",
-    "esave": "E-Uložit",
+    "energySave": "E-Uložit",
     "comfort": "Komfort",
-    "time_driven": "Časově-řízený",
+    "schedule": "Časově-řízený",
     "per_room": "za Pokoj",
     "element_id": "Element ID",
     "factory_default": "Výchozí nastavení",

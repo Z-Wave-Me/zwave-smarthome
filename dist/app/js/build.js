@@ -5223,11 +5223,6 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     templateUrl: 'app/views/report/report.html',
                     requireLogin: true
                 }).
-                //Info
-                when('/info', {
-                    templateUrl: 'app/views/info/info.html',
-                    requireLogin: true
-                }).
                 //Login
                 when('/login', {
                     redirectTo: '/'
@@ -6502,7 +6497,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
 
         angular.forEach(data, function(v, k) {
             var instance;
-            var minMax = {min: 0, max: 100};
+            var minMax = {min: 0, max: 99};
             var hasInstance = false;
             var zwaveId = false;
             var level = $filter('numberFixedLen')(v.metrics.level);
@@ -6566,7 +6561,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                 'probeTitle': v.metrics.probeTitle,
                 'scaleTitle': v.metrics.scaleTitle,
                 'deviceType': v.deviceType,
-                'v.probeType':v.probeType,
+                'probeType': v.probeType,
                 'location': v.location,
                 'creatorID': v.creatorId,
                 'updateTime': v.updateTime,
@@ -6610,7 +6605,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
             angular.forEach(devices, function(v, k) {
                 widgetId = '#Widget_' + v.id;
                 updateDeviceLevel(widgetId, v);
-                 updateDeviceScale(widgetId, v);
+                updateDeviceScale(widgetId, v);
                 updateDeviceTime(widgetId, v);
                 updateDeviceIcon(widgetId, v);
                 updateDeviceBtn(widgetId, v);
@@ -6618,7 +6613,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
 
             });
         }
-       
+
     }
     /**
      * Update device level
@@ -6641,15 +6636,15 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
         console.log(Math.round(+new Date() / 1000) + ' Update device: ID: ' + v.id + ' - level: ' + val)
 
     }
-    
-     /**
+
+    /**
      * Update device scale
      */
     function updateDeviceScale(widgetId, v) {
-        if(angular.isDefined(v.metrics.scaleTitle) && v.metrics.scaleTitle !==''){
-             $(widgetId + ' .widget-scale').html(v.metrics.scaleTitle);
+        if (angular.isDefined(v.metrics.scaleTitle) && v.metrics.scaleTitle !== '') {
+            $(widgetId + ' .widget-scale').html(v.metrics.scaleTitle);
         }
-       
+
         //console.log('Update device: ID: ' + v.id + ' - scale: ' + v.metrics.scaleTitle)
     }
 
@@ -6686,6 +6681,15 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      */
     function updateDeviceBtn(widgetId, v) {
         var status = false;
+        var minMax = {min: 0, max: 99};
+        // Create min/max value
+        switch (v.probeType) {
+            case 'test':
+                minMax = {min: 0, max: 255};
+                break;
+            default:
+                break;
+        }
         switch (v.deviceType) {
             case 'sensorMultiline':
                 if (v.metrics.multilineType == 'protection') {
@@ -6698,6 +6702,15 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                 break;
             case 'doorlock':
                 if (v.metrics.level == 'open') {
+                    status = 'on';
+                } else {
+                    status = 'off';
+                }
+                break;
+            case 'switchMultilevel':
+                if (v.metrics.level === minMax.max) {
+                    status = 'full';
+                } else if (v.metrics.level > minMax.min && v.metrics.level < minMax.max) {
                     status = 'on';
                 } else {
                     status = 'off';
@@ -6718,7 +6731,12 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
         if (status == 'on') {
             $(widgetId + ' .widget-btn-on').removeClass('btn-default').addClass('btn-primary');
             $(widgetId + ' .widget-btn-off').removeClass('btn-primary').addClass('btn-default');
-        } else {
+        } else if (status == 'full') {
+             $(widgetId + ' .widget-btn-full').removeClass('btn-default').addClass('btn-primary');
+            $(widgetId + ' .widget-btn-on').removeClass('btn-default').addClass('btn-primary');
+            $(widgetId + ' .widget-btn-off').removeClass('btn-primary').addClass('btn-default');
+        }
+        else {
             $(widgetId + ' .widget-btn-on').removeClass('btn-primary').addClass('btn-default');
             $(widgetId + ' .widget-btn-off').removeClass('btn-default').addClass('btn-primary');
         }
@@ -6824,10 +6842,10 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                 continue;
             if (typeof obj[i] == 'object') {
                 objects = objects.concat(replaceModuleFormData(obj[i], key));
-            } else if (i == key && 
-                        !angular.isArray(obj[key]) && 
-                                typeof obj[key] === 'string' && 
-                                    obj[key].indexOf("function") === 0) {
+            } else if (i == key &&
+                    !angular.isArray(obj[key]) &&
+                    typeof obj[key] === 'string' &&
+                    obj[key].indexOf("function") === 0) {
                 // overwrite old string with function                
                 // we can only pass a function as string in JSON ==> doing a real function
                 obj[key] = new Function('return ' + obj[key])();
@@ -7903,6 +7921,15 @@ myApp.filter('getElementIcon', function(cfg) {
                 case 'luminosity':
                     icon = cfg.img.icons + 'luminosity.png';
                     break;
+                case 'humidity':
+                    icon = cfg.img.icons + 'humidity.png';
+                    break;
+                case 'ultraviolet':
+                    icon = cfg.img.icons + 'ultraviolet.png';
+                    break;
+                case 'barometer':
+                    icon = cfg.img.icons + 'barometer.png';
+                    break;
                 case 'new':
                     icon = cfg.img.icons + 'new.png';
                     break;
@@ -7987,6 +8014,22 @@ myApp.filter('getBatteryIcon', function() {
             icon = 'battery-20.png';
         }else{
             icon = 'battery-0.png';
+        }
+        return icon;
+    };
+});
+
+/**
+ * Get event icon
+ */
+myApp.filter('getRoomIcon', function(cfg) {
+    return function(room) {
+        var icon = 'storage/img/placeholder-img.png';
+        if(room.img_type == 'default' && room.default_img){
+            icon = 'storage/img/rooms/' + room.default_img;
+        }
+         if(room.img_type == 'user' && room.user_img){
+            icon = cfg.server_url + cfg.api_url + 'load/image/' + room.user_img;
         }
         return icon;
     };
@@ -8641,7 +8684,8 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.goHistory = [];
     $scope.apiDataInterval = null;
     $scope.multilineSensorsInterval = null;
-     $scope.element = {
+     $scope.elements = {
+         all: {},
          input: {}
      };
     $scope.collection = [];
@@ -8649,6 +8693,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.deviceType = [];
     $scope.tags = [];
     $scope.rooms = {};
+    $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/image/';
     $scope.history = [];
     $scope.historyStatus = [];
     $scope.multilineDev = false;
@@ -8771,7 +8816,9 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
                 
                 return;
             }
-            $scope.collection = collection;
+            angular.extend($scope.elements.all,_.indexBy(collection,'id'));
+            angular.extend($scope.collection,collection);
+            //$scope.collection = collection;
             dataService.updateTimeTick(response.data.data.updateTime);
         }, function(error) {
             //console.log('After login: ',$routeParams.login)
@@ -8915,7 +8962,8 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     /**
      * Multiline climateControl
      */
-    $scope.climateElementModes = ['off', 'esave', 'per_room'];
+    $scope.climateElementModes = ['frostProtection', 'energySave', 'comfort','schedule'];
+    $scope.climatePerRoom = {};
     /**
      * Show climate modal window
      */
@@ -8923,7 +8971,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         $(target).modal();
         $scope.input = input;
         $scope.climateControl = {data: false, icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        $scope.climateControlModes = ['off', 'esave', 'comfort', 'time_driven'];
+        $scope.climateControlModes = ['off', 'esave', 'comfort', 'schedule'];
         $scope.climateControlMode = '';
         $scope.changeClimateControlProcess = {};
         //dataFactory.getApiLocal('_test/climate_control.json').then(function(response) {
@@ -9029,7 +9077,10 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     function runCmd(cmd, id) {
         var widgetId = '#Widget_' + id;
         dataFactory.runApiCmd(cmd).then(function(response) {
-            $(widgetId + ' .widget-image').addClass('trans-true');
+            if(id){
+                $(widgetId + ' .widget-image').addClass('trans-true'); 
+            }
+           
         }, function(error) {
             alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
@@ -9276,14 +9327,14 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
         day: 1
     };
     $scope.timeFilter = $scope.timeFilterDefault;
-     $scope.devices = {
-         find: {
-             id: false,
-             title: false,
-             data: {}
-         },
-         data: {}
-     };
+    $scope.devices = {
+        find: {
+            id: false,
+            title: false,
+            data: {}
+        },
+        data: {}
+    };
     $scope.currentPage = 1;
     $scope.pageSize = cfg.page_results_events;
     $scope.reset = function() {
@@ -9295,27 +9346,33 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
     $scope.$on('$destroy', function() {
         $interval.cancel($scope.apiDataInterval);
     });
-    
-      /**
+
+    /**
      * Load devices
      */
     $scope.loadDevices = function() {
-        dataFactory.getApi('devices',null,true).then(function(response) {
-            var data = _.indexBy(response.data.data.devices, 'id');
-            angular.extend($scope.devices.data,data);
+        dataFactory.getApi('devices', null, true).then(function(response) {
+            var rejectType = ['battery', 'text', 'camera'];
+            var data = _.chain(response.data.data.devices)
+                    .flatten()
+                    .reject(function(v) {
+                        return rejectType.indexOf(v.deviceType) > -1 || v.permanently_hidden === true;
+                    })
+                    .indexBy('id')
+                    .value();
+            angular.extend($scope.devices.data, data);
             if (angular.isDefined($routeParams.param) && angular.isDefined($routeParams.val)) {
-            if($routeParams.param === 'source' && !_.isEmpty(data) && data[$routeParams.val]){
-                angular.extend($scope.devices.find,{id:$routeParams.val},{title:data[$routeParams.val].metrics.title});
-                  angular.extend($scope.page,{title:data[$routeParams.val].metrics.title});
+                if ($routeParams.param === 'source' && !_.isEmpty(data) && data[$routeParams.val]) {
+                    angular.extend($scope.devices.find, {id: $routeParams.val}, {title: data[$routeParams.val].metrics.title});
+                    angular.extend($scope.page, {title: data[$routeParams.val].metrics.title});
+                }
             }
-        }
-            //console.log($scope.devices.data) 
         }, function(error) {
             dataService.showConnectionError(error);
         });
     }
     ;
-     $scope.loadDevices();
+    $scope.loadDevices();
 
     /**
      * Load data into collection
@@ -9427,7 +9484,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
      * Delete event
      */
     $scope.deleteEvent = function(id, params, target, message) {
-       alertify.confirm(message, function() {
+        alertify.confirm(message, function() {
             $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
             dataFactory.deleteApi('notifications', id, params).then(function(response) {
                 myCache.remove('notifications');
@@ -9826,7 +9883,7 @@ myAppController.controller('AppController', function($scope, $filter, $cookies, 
 
         }, function(error) {
             $scope.loading = false;
-            var message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error.key) + ' ' + error.data.error.request : $scope._t('error_no_module_download'));
+            var message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error.key) : $scope._t('error_no_module_download'));
             alertify.alert(message);
         });
 
@@ -9849,7 +9906,7 @@ myAppController.controller('AppController', function($scope, $filter, $cookies, 
 
             }, function(error) {
                 $scope.loading = false;
-                var message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error.key) + ' ' + error.data.error.request : $scope._t('error_no_module_download'));
+                var message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error.key) : $scope._t('error_no_module_download'));
                 alertify.alert(message);
             });
         });
@@ -9870,7 +9927,7 @@ myAppController.controller('AppController', function($scope, $filter, $cookies, 
                     $route.reload();
 
             }, function(error) {
-               var message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error.key) + ' ' + error.data.error.request : $scope._t('error_delete_data'));
+               var message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error.key) : $scope._t('error_delete_data'));
                 $scope.loading = false;
                 alertify.alert(message);
             });
@@ -9890,7 +9947,7 @@ myAppController.controller('AppController', function($scope, $filter, $cookies, 
                     $route.reload();
 
             }, function(error) {
-                var message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error.key) + ' ' + error.data.error.request : $scope._t('error_delete_data'));
+                var message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error.key) : $scope._t('error_delete_data'));
                 $scope.loading = false;
                 alertify.alert(message);
             });
@@ -12988,6 +13045,125 @@ myAppController.controller('ManagementAppStoreController', function($scope, $rou
 
 });
 /**
+ * Management report controller
+ */
+
+myAppController.controller('ManagementReportController', function($scope, $window, $route,dataFactory, dataService) {
+    $scope.ZwaveApiData = false;
+    $scope.remoteAccess = false;
+    $scope.input = {
+        browser_agent: '',
+        browser_version: '',
+        browser_info: '',
+        shui_version: '',
+        zwave_vesion: '',
+        controller_info: '',
+        remote_id: '',
+        remote_activated: 0,
+        remote_support_activated: 0,
+        zwave_binding: 0,
+        email: null,
+        content: null
+    };
+
+    /**
+     * Load ZwaveApiData
+     */
+    $scope.loadZwaveApiData = function() {
+        dataService.showConnectionSpinner();
+        dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
+            $scope.ZwaveApiData = ZWaveAPIData;
+            dataService.updateTimeTick();
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    };
+
+    $scope.loadZwaveApiData();
+    /**
+     * Load Remote access data
+     */
+    $scope.loadRemoteAccess = function() {
+        if (!$scope.elementAccess($scope.cfg.role_access.remote_access)) {
+            return;
+        }
+        dataFactory.getApi('instances', '/RemoteAccess').then(function(response) {
+            $scope.remoteAccess = response.data.data[0];
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    };
+
+    $scope.loadRemoteAccess();
+
+    /**
+     * Send and save report
+     */
+    $scope.sendReport = function(form, input) {
+        if (form.$invalid) {
+            return;
+        }
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('sending')};
+        if ($scope.ZwaveApiData) {
+            input.zwave_binding = 1;
+            input.zwave_vesion = $scope.ZwaveApiData.controller.data.softwareRevisionVersion.value;
+            input.controller_info = JSON.stringify($scope.ZwaveApiData.controller.data);
+        }
+        if (Object.keys($scope.remoteAccess).length > 0) {
+            input.remote_activated = $scope.remoteAccess.params.actStatus ? 1 : 0;
+            input.remote_support_activated = $scope.remoteAccess.params.sshStatus ? 1 : 0;
+            input.remote_id = $scope.remoteAccess.params.userId;
+
+        }
+        input.browser_agent = $window.navigator.appCodeName;
+        input.browser_version = $window.navigator.appVersion;
+        input.browser_info = 'PLATFORM: ' + $window.navigator.platform + '\nUSER-AGENT: ' + $window.navigator.userAgent;
+        input.shui_version = $scope.cfg.app_version;
+        //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        dataFactory.postReport(input).then(function(response) {
+            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_send_report') + ' ' + input.email};
+             $route.reload();
+            //$window.location.reload();
+//            $scope.form.$setPristine();
+//           input.content = null;
+//            input.email = null;
+
+
+        }, function(error) {
+            alertify.alert($scope._t('error_send_report'));
+            $scope.loading = false;
+        });
+
+    };
+
+});
+/**
+ * Management info controller
+ */
+myAppController.controller('ManagementInfoController', function($scope, dataFactory,dataService) {
+    $scope.input = {
+        software: {
+            firmwareVersion: '',
+            uiVersion: $scope.cfg.app_version
+        }
+    };
+    
+    /**
+     * Load ZwaveApiData
+     */
+    $scope.loadZwaveApiData = function() {
+        dataService.showConnectionSpinner();
+        dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
+            angular.extend($scope.input.software,{firmwareVersion: ZWaveAPIData.controller.data.softwareRevisionVersion.value});
+            dataService.updateTimeTick();
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    };
+
+    $scope.loadZwaveApiData();
+});
+/**
  * Application MySettings controller
  * @author Martin Vach
  */
@@ -13073,8 +13249,8 @@ myAppController.controller('MySettingsController', function($scope, $window, $lo
             $cookies.lang = input.lang;
             myCache.remove('profiles');
             dataService.setUser(data);
-            $window.location.reload();
-            $window.history.back();
+            $window.location.reload(); 
+            //$window.history.back();
             //$route.reload();
 
         }, function(error) {
@@ -13127,130 +13303,6 @@ myAppController.controller('MySettingsController', function($scope, $window, $lo
     }
     ;
 
-});
-/**
- * Application Bug Report controller
- * @author Martin Vach
- */
-
-/**
- * Report controller
- */
-myAppController.controller('ReportController', function($scope, $window, dataFactory, dataService) {
-    $scope.ZwaveApiData = false;
-    $scope.remoteAccess = false;
-    $scope.input = {
-        browser_agent: '',
-        browser_version: '',
-        browser_info: '',
-        shui_version: '',
-        zwave_vesion: '',
-        controller_info: '',
-        remote_id: '',
-        remote_activated: 0,
-        remote_support_activated: 0,
-        zwave_binding: 0,
-        email: null,
-        content: null
-    };
-
-    /**
-     * Load ZwaveApiData
-     */
-    $scope.loadZwaveApiData = function() {
-        dataService.showConnectionSpinner();
-        dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
-            $scope.ZwaveApiData = ZWaveAPIData;
-            dataService.updateTimeTick();
-        }, function(error) {
-            dataService.showConnectionError(error);
-        });
-    };
-
-    $scope.loadZwaveApiData();
-    /**
-     * Load Remote access data
-     */
-    $scope.loadRemoteAccess = function() {
-        if (!$scope.elementAccess($scope.cfg.role_access.remote_access)) {
-            return;
-        }
-        dataFactory.getApi('instances', '/RemoteAccess').then(function(response) {
-            $scope.remoteAccess = response.data.data[0];
-        }, function(error) {
-            dataService.showConnectionError(error);
-        });
-    };
-
-    $scope.loadRemoteAccess();
-
-    /**
-     * Create/Update an item
-     */
-    $scope.store = function(form, input) {
-        if (form.$invalid) {
-            return;
-        }
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('sending')};
-        if ($scope.ZwaveApiData) {
-            input.zwave_binding = 1;
-            input.zwave_vesion = $scope.ZwaveApiData.controller.data.softwareRevisionVersion.value;
-            input.controller_info = JSON.stringify($scope.ZwaveApiData.controller.data);
-        }
-        if (Object.keys($scope.remoteAccess).length > 0) {
-            input.remote_activated = $scope.remoteAccess.params.actStatus ? 1 : 0;
-            input.remote_support_activated = $scope.remoteAccess.params.sshStatus ? 1 : 0;
-            input.remote_id = $scope.remoteAccess.params.userId;
-
-        }
-        input.browser_agent = $window.navigator.appCodeName;
-        input.browser_version = $window.navigator.appVersion;
-        input.browser_info = 'PLATFORM: ' + $window.navigator.platform + '\nUSER-AGENT: ' + $window.navigator.userAgent;
-        input.shui_version = $scope.cfg.app_version;
-        //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        dataFactory.postReport(input).then(function(response) {
-            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_send_report') + ' ' + input.email};
-            $window.location.reload();
-//            $scope.form.$setPristine();
-//           input.content = null;
-//            input.email = null;
-
-
-        }, function(error) {
-            alertify.alert($scope._t('error_send_report'));
-            $scope.loading = false;
-        });
-
-    };
-
-});
-/**
- * Application info controller
- * @author Martin Vach
- */
-
-myAppController.controller('InfoController', function($scope, dataFactory,dataService) {
-    $scope.input = {
-        software: {
-            firmwareVersion: '',
-            uiVersion: $scope.cfg.app_version
-        }
-    };
-    
-    /**
-     * Load ZwaveApiData
-     */
-    $scope.loadZwaveApiData = function() {
-        dataService.showConnectionSpinner();
-        dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
-            angular.extend($scope.input.software,{firmwareVersion: ZWaveAPIData.controller.data.softwareRevisionVersion.value});
-            dataService.updateTimeTick();
-        }, function(error) {
-            dataService.showConnectionError(error);
-        });
-    };
-
-    $scope.loadZwaveApiData();
 });
 /**
  * Application Auth controller

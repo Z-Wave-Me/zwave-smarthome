@@ -153,9 +153,9 @@ myAppController.controller('AppController', function($scope, $filter, $cookies, 
                                 isHidden = ($scope.user.expert_view ? false : true);
                             }
                         }
-                         angular.extend(item,{file: item.modulename});
-                         var findNameStr = item.modulename.split('.');
-                         item['modulename'] = findNameStr[0];
+                         //angular.extend(item,{file: item.modulename});
+                         //var findNameStr = item.modulename.split('.');
+                         //item['modulename'] = findNameStr[0];
                         if (!isHidden) {
                             return item;
                         }
@@ -324,7 +324,7 @@ myAppController.controller('AppController', function($scope, $filter, $cookies, 
 
         }, function(error) {
             $scope.loading = false;
-            var message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error.key) + ' ' + error.data.error.request : $scope._t('error_no_module_download'));
+            var message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error.key) : $scope._t('error_no_module_download'));
             alertify.alert(message);
         });
 
@@ -347,7 +347,7 @@ myAppController.controller('AppController', function($scope, $filter, $cookies, 
 
             }, function(error) {
                 $scope.loading = false;
-                var message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error.key) + ' ' + error.data.error.request : $scope._t('error_no_module_download'));
+                var message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error.key) : $scope._t('error_no_module_download'));
                 alertify.alert(message);
             });
         });
@@ -368,7 +368,7 @@ myAppController.controller('AppController', function($scope, $filter, $cookies, 
                     $route.reload();
 
             }, function(error) {
-               var message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error.key) + ' ' + error.data.error.request : $scope._t('error_delete_data'));
+               var message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error.key) : $scope._t('error_delete_data'));
                 $scope.loading = false;
                 alertify.alert(message);
             });
@@ -388,7 +388,7 @@ myAppController.controller('AppController', function($scope, $filter, $cookies, 
                     $route.reload();
 
             }, function(error) {
-                var message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error.key) + ' ' + error.data.error.request : $scope._t('error_delete_data'));
+                var message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error.key) : $scope._t('error_delete_data'));
                 $scope.loading = false;
                 alertify.alert(message);
             });

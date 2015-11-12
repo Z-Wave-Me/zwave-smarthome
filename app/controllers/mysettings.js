@@ -84,8 +84,8 @@ myAppController.controller('MySettingsController', function($scope, $window, $lo
             $cookies.lang = input.lang;
             myCache.remove('profiles');
             dataService.setUser(data);
-            $window.location.reload();
-            $window.history.back();
+            $window.location.reload(); 
+            //$window.history.back();
             //$route.reload();
 
         }, function(error) {
