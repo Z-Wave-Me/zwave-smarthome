@@ -4,7 +4,7 @@
     <!-- ///////////////////////////// User management ///////////////////////////// -->
     <div class="admin-entry">
         <h2 class="admin-entry-title" ng-click="expandElement('user')">
-            <i class="fa" ng-class="expand.user ? 'fa-chevron-up':'fa-chevron-down'"></i> <span ng-bind="_t('nav_admin')"></span>
+            <i class="fa fa-users"></i> <span ng-bind="_t('nav_admin')"></span>  <i class="fa subnavi-arrow" ng-class="expand.user ? 'fa-chevron-up':'fa-chevron-down'"></i>
         </h2>
         <div class="admin-entry-ctrl" ng-class="" ng-if="expand.user">
             <table id="table_cfg_admin" class="table table-condensed table-report">
@@ -34,7 +34,8 @@
     <!-- ///////////////////////////// Remote accessForm ///////////////////////////// -->
     <div class="admin-entry">
         <h2 class="admin-entry-title" ng-click="expandElement('remote')">
-            <i class="fa" ng-class="expand.remote ? 'fa-chevron-up':'fa-chevron-down'"></i> <span ng-bind="_t('remote_access_manage')"></span>
+            <i class="fa fa-wifi"></i> <span ng-bind="_t('remote_access_manage')"></span>
+             <i class="fa subnavi-arrow" ng-class="expand.remote  ? 'fa-chevron-up':'fa-chevron-down'"></i>
         </h2>
 
         <div class="admin-entry-ctrl" ng-class="" ng-if="expand.remote">
@@ -81,7 +82,8 @@
     <!-- ///////////////////////////// Licence key ///////////////////////////// -->
     <div class="admin-entry" ng-if="controllerInfo.uuid && cfg.find_hosts.indexOf(hostName) === -1 && cfg.app_type !== 'popp' && !isMobile">
         <h2 class="admin-entry-title" ng-click="expandElement('licence')">
-            <i class="fa" ng-class="expand.licence ? 'fa-chevron-up':'fa-chevron-down'"></i> <span ng-bind="_t('licence_upgrade')"></span> 
+            <i class="fa fa-key"></i> <span ng-bind="_t('licence_upgrade')"></span> 
+            <i class="fa subnavi-arrow" ng-class="expand.licence  ? 'fa-chevron-up':'fa-chevron-down'"></i>
         </h2>
         <div class="admin-entry-ctrl" ng-class="" ng-if="expand.licence">
             <form name="form_licence" id="form_password" class="form form-page" ng-submit="getLicense(inputLicence)" novalidate>
@@ -199,7 +201,8 @@
     <!-- ///////////////////////////// Firmware update ///////////////////////////// --> 
     <div class="admin-entry" ng-if="cfg.find_hosts.indexOf(hostName) === -1 && cfg.app_type !== 'wd' && !isMobile"> 
         <h2 class="admin-entry-title" ng-click="expandElement('firmware')">
-            <i class="fa" ng-class="expand.firmware ? 'fa-chevron-up':'fa-chevron-down'"></i> <span ng-bind="_t('firmware_update')"></span>
+            <i class="fa fa-level-up"></i> <span ng-bind="_t('firmware_update')"></span>
+             <i class="fa subnavi-arrow" ng-class="expand.firmware  ? 'fa-chevron-up':'fa-chevron-down'"></i>
         </h2>
         <div class="admin-entry-ctrl" ng-if="expand.firmware">
             <form name="form_firmware" id="form_firmware" class="form form-page" ng-submit="updateFirmware()" novalidate>
@@ -227,7 +230,8 @@
     <!-- ///////////////////////////// App Store access ///////////////////////////// -->
     <div class="admin-entry" ng-controller="ManagementAppStoreController"> 
         <h2 class="admin-entry-title" ng-click="expandElement('appstore')">
-            <i class="fa" ng-class="expand.appstore ? 'fa-chevron-up':'fa-chevron-down'"></i> <span ng-bind="_t('app_store_access')"></span>
+            <i class="fa fa-cart-plus"></i> <span ng-bind="_t('app_store_access')"></span>
+             <i class="fa subnavi-arrow" ng-class="expand.appstore  ? 'fa-chevron-up':'fa-chevron-down'"></i>
         </h2>
         <div class="admin-entry-ctrl" ng-if="expand.appstore">
             <form name="form_appatore" id="form_appatore" class="form form-inline form-page" ng-submit="appStoreAddToken()" novalidate>
@@ -260,7 +264,8 @@
     <!-- ///////////////////////////// Report ///////////////////////////// -->
     <div class="admin-entry" ng-controller="ManagementReportController"> 
         <h2 class="admin-entry-title" ng-click="expandElement('report')">
-            <i class="fa" ng-class="expand.report ? 'fa-chevron-up':'fa-chevron-down'"></i> <span ng-bind="_t('nav_report')"></span>
+            <i class="fa fa-bug"></i> <span ng-bind="_t('nav_report')"></span>
+            <i class="fa subnavi-arrow" ng-class="expand.report  ? 'fa-chevron-up':'fa-chevron-down'"></i>
         </h2>
          <div class="admin-entry-ctrl" ng-if="expand.report">
             <form name="form_report" id="form_profile" class="form form-page" ng-submit="sendReport(form_report,input)" novalidate>
@@ -289,7 +294,8 @@
     <!-- ///////////////////////////// Info ///////////////////////////// -->
     <div class="admin-entry" ng-controller="ManagementInfoController"> 
         <h2 class="admin-entry-title" ng-click="expandElement('appinfo')">
-            <i class="fa" ng-class="expand.appinfo ? 'fa-chevron-up':'fa-chevron-down'"></i> <span ng-bind="_t('info')"></span>
+            <i class="fa fa-info-circle"></i> <span ng-bind="_t('info')"></span>
+            <i class="fa subnavi-arrow" ng-class="expand.appinfo  ? 'fa-chevron-up':'fa-chevron-down'"></i>
         </h2>
         <div class="admin-entry-ctrl" ng-if="expand.appinfo">
             <div class="form form-inline form-page">
