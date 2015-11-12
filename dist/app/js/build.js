@@ -9712,9 +9712,9 @@ myAppController.controller('AppController', function($scope, $filter, $cookies, 
                                 isHidden = ($scope.user.expert_view ? false : true);
                             }
                         }
-                         angular.extend(item,{file: item.modulename});
-                         var findNameStr = item.modulename.split('.');
-                         item['modulename'] = findNameStr[0];
+                         //angular.extend(item,{file: item.modulename});
+                         //var findNameStr = item.modulename.split('.');
+                         //item['modulename'] = findNameStr[0];
                         if (!isHidden) {
                             return item;
                         }
