@@ -9,7 +9,7 @@
             <div class="widget-block {{v.deviceType}} {{v.probeType}}" ng-switch="v.deviceType" ng-init="levelVal[v.id] = v.level">
 
                 <!-- {{v.id}}: {{levelVal[v.id]}} icon {{v.icon}} -->
-                <div class="widget-block-in clearfix app-border app-gradient app-shadow" ng-class="v.level === 'ALERT'? 'app-gradient-red' :  (v.level === 'OK!'? 'app-gradient-yellow' : (v.level === 'OK'? 'app-gradient-green' : ''))">
+                <div class="widget-block-in clearfix app-border app-gradient app-shadow is-new-{{v.cfg.isNew}}" ng-class="v.level === 'ALERT'? 'app-gradient-red' :  (v.level === 'OK!'? 'app-gradient-yellow' : (v.level === 'OK'? 'app-gradient-green' : ''))">
                     <!-- Widget icon -->
                     <!-- icon of widget type text -->
                     <img id="widget_img_{{v.id}}" ng-if="v.deviceType === 'text'" ng-show="v.metrics.icon" class="widget-image" ng-src="{{v.metrics.icon}}" alt="{{v.title}}" ng-click="showModal('#modal_promo', {'type': v.deviceType, 'title': v.title, 'text': v.metrics.text, 'url': v.metrics.icon})" />
