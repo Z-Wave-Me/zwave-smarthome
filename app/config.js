@@ -199,6 +199,16 @@ var config_data = {
                     'SensorsPolling',
                     'SwitchControlGenerator',
                     'ZWave'
+                ],
+                featured_apps: [
+                    'DeviceHistory',
+                    'RGB',
+                    'LightScene',
+                    'PeriodicallySwitchController',
+                    'LogicalRules',
+                    'OpenWeather',
+                    'CustomUserCodeLoader',
+                    'DummyDevice'
                 ]
             },
             'popp': {

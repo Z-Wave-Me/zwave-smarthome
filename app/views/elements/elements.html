@@ -5,7 +5,7 @@
     <bb-alert alert="alert"></bb-alert>
     <div class="dashboard-welcome" ng-if="welcome" ng-include="'app/views/elements/welcome.html'"></div>
     <div class="row">
-        <div ng-if="v.visibility === true" id="Widget_{{v.id}}" class="col-lg-4 col-md-6 col-sm-6 widget-entry" ng-repeat="v in collection| filter:q | orderBy: 'title' track by v.id">
+        <div ng-if="v.visibility === true" id="Widget_{{v.id}}" class="col-lg-4 col-md-6 col-sm-6 widget-entry" ng-repeat="v in collection| filter:q | orderBy: '-creationTime' track by v.id">
             <div class="widget-block {{v.deviceType}} {{v.probeType}}" ng-switch="v.deviceType" ng-init="levelVal[v.id] = v.level">
 
                 <!-- {{v.id}}: {{levelVal[v.id]}} icon {{v.icon}} -->

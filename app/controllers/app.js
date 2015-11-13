@@ -17,6 +17,7 @@ myAppController.controller('AppController', function($scope, $filter, $cookies, 
     $scope.localModules = {
         data: {},
         all: {},
+        featured: {},
         ids: []
     };
     //$scope.modulesIds = [];
