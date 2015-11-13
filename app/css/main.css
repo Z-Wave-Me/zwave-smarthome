@@ -3085,23 +3085,28 @@ legend.alpaca-container-label {
 /* Elements
 -------------------------------------------------- */
 /* line 24, sass/modules/_elements.scss */
+.is-new-true {
+  border-color: #cce5cc;
+}
+
+/* line 27, sass/modules/_elements.scss */
 .widget-block {
   margin-bottom: 20px;
 }
 
-/* line 27, sass/modules/_elements.scss */
+/* line 30, sass/modules/_elements.scss */
 .widget-block-in {
   height: 120px;
   position: relative;
   text-align: left;
 }
 
-/* line 33, sass/modules/_elements.scss */
+/* line 36, sass/modules/_elements.scss */
 .multiline-entry {
   position: relative;
 }
 
-/* line 36, sass/modules/_elements.scss */
+/* line 39, sass/modules/_elements.scss */
 .widget-image {
   position: absolute;
   top: 10px;
@@ -3113,115 +3118,115 @@ legend.alpaca-container-label {
   border-radius: 50%;
 }
 
-/* line 46, sass/modules/_elements.scss */
+/* line 49, sass/modules/_elements.scss */
 .widget-img-update {
   border-color: #d3d3d3;
 }
 
-/* line 49, sass/modules/_elements.scss */
+/* line 52, sass/modules/_elements.scss */
 .trans-true {
   opacity: 0.3;
 }
 
-/* line 52, sass/modules/_elements.scss */
+/* line 55, sass/modules/_elements.scss */
 .widget-header {
   position: relative;
   text-align: right;
   padding: 3px;
 }
-/* line 57, sass/modules/_elements.scss */
+/* line 60, sass/modules/_elements.scss */
 .widget-header a {
   display: inline-block;
   padding: 0 5px 0 0;
   color: #767676;
 }
-/* line 62, sass/modules/_elements.scss */
+/* line 65, sass/modules/_elements.scss */
 .widget-header a:hover {
   color: #444444;
 }
 
-/* line 68, sass/modules/_elements.scss */
+/* line 71, sass/modules/_elements.scss */
 .widget-body {
   margin-top: -5px;
   padding: 0 5px 15px 74px;
   width: 100%;
 }
-/* line 72, sass/modules/_elements.scss */
+/* line 75, sass/modules/_elements.scss */
 .widget-body .widget-content-wrap {
   padding: 0 5px 15px 0;
 }
-/* line 76, sass/modules/_elements.scss */
+/* line 79, sass/modules/_elements.scss */
 .widget-body .widget-room {
   display: block;
   font-size: 11.9px;
   color: #737373;
 }
-/* line 82, sass/modules/_elements.scss */
+/* line 85, sass/modules/_elements.scss */
 .widget-body .entry-title {
   padding: 5px 30px 0 0;
   margin-bottom: 7px;
 }
-/* line 87, sass/modules/_elements.scss */
+/* line 90, sass/modules/_elements.scss */
 .widget-body .widget-control-wrap {
   margin-top: -5px;
   width: 100%;
 }
-/* line 91, sass/modules/_elements.scss */
+/* line 94, sass/modules/_elements.scss */
 .widget-body .widget-control {
   width: 50%;
   float: left;
 }
-/* line 98, sass/modules/_elements.scss */
+/* line 101, sass/modules/_elements.scss */
 .widget-body .widget-control .fa-caret-down {
   font-size: 19.6px;
   color: #6494BC;
 }
-/* line 102, sass/modules/_elements.scss */
+/* line 105, sass/modules/_elements.scss */
 .widget-body .widget-control select {
   overflow: hidden;
   padding: 3px;
   max-width: 150px;
 }
-/* line 107, sass/modules/_elements.scss */
+/* line 110, sass/modules/_elements.scss */
 .widget-body .widget-control option {
   overflow: hidden;
 }
-/* line 112, sass/modules/_elements.scss */
+/* line 115, sass/modules/_elements.scss */
 .widget-body .widget-control.control-right {
   float: right;
   text-align: right;
   padding-right: 7px;
   margin-top: -5px;
 }
-/* line 115, sass/modules/_elements.scss */
+/* line 118, sass/modules/_elements.scss */
 .widget-body .widget-control.control-right .btn-group {
   float: right;
 }
-/* line 121, sass/modules/_elements.scss */
+/* line 124, sass/modules/_elements.scss */
 .widget-body .widget-control.control-left {
   float: left;
 }
-/* line 123, sass/modules/_elements.scss */
+/* line 126, sass/modules/_elements.scss */
 .widget-body .widget-control.control-left .btn-group {
   margin-top: -5px;
   float: left;
 }
-/* line 128, sass/modules/_elements.scss */
+/* line 131, sass/modules/_elements.scss */
 .widget-body .widget-control.control-left.text {
   color: #737373;
   font-size: 11.9px;
   padding-left: 10px;
 }
-/* line 133, sass/modules/_elements.scss */
+/* line 136, sass/modules/_elements.scss */
 .widget-body .widget-level {
   font-weight: bold;
   font-size: 22.4px;
 }
-/* line 137, sass/modules/_elements.scss */
+/* line 140, sass/modules/_elements.scss */
 .widget-body .widget-scale {
   font-size: 15.4px;
 }
-/* line 140, sass/modules/_elements.scss */
+/* line 143, sass/modules/_elements.scss */
 .widget-body .btn-widget-time, .widget-body .txt-widget-time {
   padding: 7px 0 0 0;
   border: 0 none;
@@ -3229,100 +3234,100 @@ legend.alpaca-container-label {
   font-size: 11.9px;
   background-color: transparent;
 }
-/* line 147, sass/modules/_elements.scss */
+/* line 150, sass/modules/_elements.scss */
 .widget-body .txt-widget-time {
   border: 0 !important;
   cursor: text;
 }
-/* line 151, sass/modules/_elements.scss */
+/* line 154, sass/modules/_elements.scss */
 .widget-body .txt-widget-time:focus {
   outline: 0;
 }
-/* line 154, sass/modules/_elements.scss */
+/* line 157, sass/modules/_elements.scss */
 .widget-body .txt-widget-time:active {
   box-shadow: 0;
 }
-/* line 161, sass/modules/_elements.scss */
+/* line 164, sass/modules/_elements.scss */
 .widget-body .widget-click-popup {
   cursor: pointer;
 }
-/* line 165, sass/modules/_elements.scss */
+/* line 168, sass/modules/_elements.scss */
 .widget-body .widget-btn-off, .widget-body .widget-btn-on, .widget-body .widget-btn-full {
   padding: 5px 17px;
 }
-/* line 168, sass/modules/_elements.scss */
+/* line 171, sass/modules/_elements.scss */
 .widget-body .widget-btn-off .fa, .widget-body .widget-btn-on .fa, .widget-body .widget-btn-full .fa {
   color: #d9d9d9;
 }
-/* line 171, sass/modules/_elements.scss */
+/* line 174, sass/modules/_elements.scss */
 .widget-body .widget-btn-off .widget-btn-symbol, .widget-body .widget-btn-on .widget-btn-symbol, .widget-body .widget-btn-full .widget-btn-symbol {
   color: #d9d9d9;
   font-weight: bold;
 }
-/* line 176, sass/modules/_elements.scss */
+/* line 179, sass/modules/_elements.scss */
 .widget-body .widget-btn-off .widget-btn-label, .widget-body .widget-btn-on .widget-btn-label, .widget-body .widget-btn-full .widget-btn-label {
   display: none;
 }
-/* line 181, sass/modules/_elements.scss */
+/* line 184, sass/modules/_elements.scss */
 .widget-body .widget-btn-full {
   padding: 5px 10px;
 }
-/* line 184, sass/modules/_elements.scss */
+/* line 187, sass/modules/_elements.scss */
 .widget-body .widget-btn-label-on {
   color: #595959;
   text-transform: lowercase;
 }
-/* line 188, sass/modules/_elements.scss */
+/* line 191, sass/modules/_elements.scss */
 .widget-body .widget-btn-off.btn-primary {
   background-color: #fff !important;
   border-color: #ccc;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-/* line 193, sass/modules/_elements.scss */
+/* line 196, sass/modules/_elements.scss */
 .widget-body .widget-btn-off.btn-primary .fa {
   color: #d9534f !important;
 }
-/* line 196, sass/modules/_elements.scss */
+/* line 199, sass/modules/_elements.scss */
 .widget-body .widget-btn-off.btn-primary .widget-btn-symbol {
   color: #d9534f !important;
 }
-/* line 200, sass/modules/_elements.scss */
+/* line 203, sass/modules/_elements.scss */
 .widget-body .widget-btn-on.btn-primary, .widget-body .widget-btn-full.btn-primary {
   background-color: #fff !important;
   border-color: #ccc;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-/* line 204, sass/modules/_elements.scss */
+/* line 207, sass/modules/_elements.scss */
 .widget-body .widget-btn-on.btn-primary .fa, .widget-body .widget-btn-full.btn-primary .fa {
   color: #6494BC !important;
 }
-/* line 207, sass/modules/_elements.scss */
+/* line 210, sass/modules/_elements.scss */
 .widget-body .widget-btn-on.btn-primary .widget-btn-symbol, .widget-body .widget-btn-full.btn-primary .widget-btn-symbol {
   color: #80AD80 !important;
 }
-/* line 211, sass/modules/_elements.scss */
+/* line 214, sass/modules/_elements.scss */
 .widget-body .element-hidden.hidden-sensor-multiline {
   height: 220px;
 }
-/* line 215, sass/modules/_elements.scss */
+/* line 218, sass/modules/_elements.scss */
 .widget-body table {
   width: 100%;
 }
-/* line 217, sass/modules/_elements.scss */
+/* line 220, sass/modules/_elements.scss */
 .widget-body table td {
   width: 50%;
   vertical-align: middle;
   text-align: center;
 }
 
-/* line 224, sass/modules/_elements.scss */
+/* line 227, sass/modules/_elements.scss */
 .multiline-entry {
   position: relative;
 }
 
-/* line 229, sass/modules/_elements.scss */
+/* line 232, sass/modules/_elements.scss */
 .widget-body .element-hidden, .multiline-entry .element-hidden {
   z-index: 10000;
   overflow: hidden;
@@ -3340,7 +3345,7 @@ legend.alpaca-container-label {
   background-color: #fff;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
 }
-/* line 246, sass/modules/_elements.scss */
+/* line 249, sass/modules/_elements.scss */
 .widget-body .hidden-close, .multiline-entry .hidden-close {
   position: absolute;
   top: 10px;
@@ -3349,69 +3354,69 @@ legend.alpaca-container-label {
 
 /* Specifics element style
 ----------------------------------------------------*/
-/* line 256, sass/modules/_elements.scss */
+/* line 259, sass/modules/_elements.scss */
 .sensorMultiline .control-left {
   width: 60% !important;
 }
-/* line 259, sass/modules/_elements.scss */
+/* line 262, sass/modules/_elements.scss */
 .sensorMultiline .control-right {
   width: 40%;
 }
 
-/* line 264, sass/modules/_elements.scss */
+/* line 267, sass/modules/_elements.scss */
 .switchMultilevel.dimmer .control-left {
   width: 60% !important;
 }
-/* line 267, sass/modules/_elements.scss */
+/* line 270, sass/modules/_elements.scss */
 .switchMultilevel.dimmer .control-right {
   width: 40%;
 }
 
-/* line 272, sass/modules/_elements.scss */
+/* line 275, sass/modules/_elements.scss */
 .element-camera-control {
   text-align: center;
 }
 
-/* line 275, sass/modules/_elements.scss */
+/* line 278, sass/modules/_elements.scss */
 .camera-img {
   text-align: center;
 }
-/* line 277, sass/modules/_elements.scss */
+/* line 280, sass/modules/_elements.scss */
 .camera-img img {
   width: 100%;
   display: inline-block;
 }
 
-/* line 283, sass/modules/_elements.scss */
+/* line 286, sass/modules/_elements.scss */
 .color-picker-show {
   display: inline-block;
   width: 24px;
   height: 24px;
 }
 
-/* line 289, sass/modules/_elements.scss */
+/* line 292, sass/modules/_elements.scss */
 .drop-down-tags div {
   padding: 5px;
 }
 
-/* line 296, sass/modules/_elements.scss */
+/* line 299, sass/modules/_elements.scss */
 .drop-down-tags a {
   display: inline-block;
   margin: 0 5px;
 }
 
-/* line 301, sass/modules/_elements.scss */
+/* line 304, sass/modules/_elements.scss */
 .bcg-success.false {
   color: #a8a8a8;
 }
-/* line 303, sass/modules/_elements.scss */
+/* line 306, sass/modules/_elements.scss */
 .bcg-success.false .report-img {
   opacity: 0.4;
 }
 
 /* Element detail
 ----------------------------------------------------*/
-/* line 311, sass/modules/_elements.scss */
+/* line 314, sass/modules/_elements.scss */
 .btn-tag {
   float: none !important;
   border-radius: 4px !important;
@@ -3438,72 +3443,72 @@ legend.alpaca-container-label {
 .hidden-camera{}*/
 /* OpenWeather widget
 ----------------------------------------------------*/
-/* line 338, sass/modules/_elements.scss */
+/* line 341, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline table td {
   text-align: left;
   padding: 5px 0;
 }
 
-/* line 343, sass/modules/_elements.scss */
+/* line 346, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline table td:first-child {
   padding-left: 20px;
   vertical-align: top;
 }
 
-/* line 348, sass/modules/_elements.scss */
+/* line 351, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline h4 {
   display: inline;
 }
 
-/* line 352, sass/modules/_elements.scss */
+/* line 355, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline .text-center {
   margin: 10px 0;
 }
 
 /* Text widget
 -----------------------------------------------------*/
-/* line 358, sass/modules/_elements.scss */
+/* line 361, sass/modules/_elements.scss */
 .widget-body.text-widget h3 {
   font-weight: bold;
 }
 
-/* line 362, sass/modules/_elements.scss */
+/* line 365, sass/modules/_elements.scss */
 .widget-body.text-widget-no-img {
   padding-left: 15px;
 }
 
-/* line 366, sass/modules/_elements.scss */
+/* line 369, sass/modules/_elements.scss */
 .widget-control.text {
   width: 95%;
 }
 
-/* line 370, sass/modules/_elements.scss */
+/* line 373, sass/modules/_elements.scss */
 .text-widget-modal.modal-dialog {
   text-align: center;
 }
 
-/* line 374, sass/modules/_elements.scss */
+/* line 377, sass/modules/_elements.scss */
 img.widget-promo-image {
   max-height: 200px;
   margin-bottom: 10px;
 }
 
-/* line 379, sass/modules/_elements.scss */
+/* line 382, sass/modules/_elements.scss */
 .widget-promo-text {
   text-align: left;
 }
 
-/* line 383, sass/modules/_elements.scss */
+/* line 386, sass/modules/_elements.scss */
 .widget-control.text a {
   font-weight: normal;
 }
 
-/* line 387, sass/modules/_elements.scss */
+/* line 390, sass/modules/_elements.scss */
 .widget-control.text a:hover {
   text-decoration: none;
 }
 
-/* line 391, sass/modules/_elements.scss */
+/* line 394, sass/modules/_elements.scss */
 .widget-control.text a:after {
   content: "\f1ea";
   font-family: FontAwesome;
@@ -3516,13 +3521,13 @@ img.widget-promo-image {
 
 /* MultilevelSensor widget
 -----------------------------------------------------*/
-/* line 403, sass/modules/_elements.scss */
+/* line 406, sass/modules/_elements.scss */
 .widget-body .element-hidden.hidden-sensor-multiline.multiline-sensor {
   padding: 10px 0;
   height: auto;
 }
 
-/* line 408, sass/modules/_elements.scss */
+/* line 411, sass/modules/_elements.scss */
 .hidden-sensor-multiline .widget-image {
   position: relative;
   top: 0;
@@ -3531,25 +3536,25 @@ img.widget-promo-image {
   height: 25px;
 }
 
-/* line 416, sass/modules/_elements.scss */
+/* line 419, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline.multiline-sensor table td:first-child {
   padding-left: 5px;
 }
 
-/* line 420, sass/modules/_elements.scss */
+/* line 423, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline.multiline-sensor table td {
   width: inherit;
   padding: 5px 5px 5px 10px;
 }
 
-/* line 425, sass/modules/_elements.scss */
+/* line 428, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline.multiline-sensor table tr:nth-child(odd) {
   background-color: #f9f9f9;
 }
 
 /* ToggleButton widget
 --------------------------------------------------------*/
-/* line 432, sass/modules/_elements.scss */
+/* line 435, sass/modules/_elements.scss */
 .toggleButton .widget-body div.widget-control.control-right.ng-scope > div > button.btn.btn-default.btn-sm {
   cursor: default;
 }
@@ -4837,8 +4842,12 @@ padding-right: 5px;
     box-shadow: none;
     border-bottom: solid 1px #ccc;
   }
+  /* line 13, sass/responsive/_modules.scss */
+  .widget-block .is-new-true {
+    border-bottom: solid 3px #cce5cc;
+  }
 
-  /* line 14, sass/responsive/_modules.scss */
+  /* line 17, sass/responsive/_modules.scss */
   .widget-block-in {
     /*   border: solid 1px red;*/
     height: auto;
@@ -4847,45 +4856,45 @@ padding-right: 5px;
     padding: 10px;
   }
 
-  /* line 21, sass/responsive/_modules.scss */
+  /* line 25, sass/responsive/_modules.scss */
   .widget-image {
     top: 20px;
     /*        width: 42px;
             height: 42px;*/
   }
 
-  /* line 27, sass/responsive/_modules.scss */
+  /* line 31, sass/responsive/_modules.scss */
   .widget-body {
     margin-top: -20px;
   }
-  /* line 30, sass/responsive/_modules.scss */
+  /* line 34, sass/responsive/_modules.scss */
   .widget-body .entry-title {
     display: inline;
     padding: 15px 40px 0 0;
   }
-  /* line 34, sass/responsive/_modules.scss */
+  /* line 38, sass/responsive/_modules.scss */
   .widget-body .widget-content-wrap {
     padding: 0 5px 15px 0;
   }
-  /* line 39, sass/responsive/_modules.scss */
+  /* line 43, sass/responsive/_modules.scss */
   .widget-body .btn-widget-time, .widget-body .txt-widget-time {
     padding: 0;
     font-size: 14.28px;
   }
-  /* line 42, sass/responsive/_modules.scss */
+  /* line 46, sass/responsive/_modules.scss */
   .widget-body .btn-widget-time .fa, .widget-body .txt-widget-time .fa {
     font-size: 14.28px;
   }
-  /* line 46, sass/responsive/_modules.scss */
+  /* line 50, sass/responsive/_modules.scss */
   .widget-body .widget-control.control-left.text {
     padding-left: 0;
   }
 
-  /* line 53, sass/responsive/_modules.scss */
+  /* line 57, sass/responsive/_modules.scss */
   .modal-no-padding .modal-dialog {
     margin: 0;
   }
-  /* line 55, sass/responsive/_modules.scss */
+  /* line 59, sass/responsive/_modules.scss */
   .modal-no-padding .modal-dialog .modal-body {
     padding: 0;
   }
@@ -4894,51 +4903,51 @@ padding-right: 5px;
           text-align: right;
       }*/
   /* Home */
-  /* line 69, sass/responsive/_modules.scss */
+  /* line 73, sass/responsive/_modules.scss */
   .home-widget .widget-entry .widget-block-in {
     border: 0;
     padding: 0;
   }
 
-  /* line 82, sass/responsive/_modules.scss */
+  /* line 86, sass/responsive/_modules.scss */
   .room-entry {
     float: left;
     width: 50%;
     padding: 0;
   }
-  /* line 86, sass/responsive/_modules.scss */
+  /* line 90, sass/responsive/_modules.scss */
   .room-entry .room-in {
     position: relatvive;
   }
-  /* line 89, sass/responsive/_modules.scss */
+  /* line 93, sass/responsive/_modules.scss */
   .room-entry .entry-title {
     position: absolute;
     text-align: center;
     left: 0;
     right: 0;
   }
-  /* line 96, sass/responsive/_modules.scss */
+  /* line 100, sass/responsive/_modules.scss */
   .room-entry .entry-title-text {
     display: none;
   }
-  /* line 99, sass/responsive/_modules.scss */
+  /* line 103, sass/responsive/_modules.scss */
   .room-entry .app-border {
     border: solid 1px #d3d3d3;
   }
 
-  /* line 104, sass/responsive/_modules.scss */
+  /* line 108, sass/responsive/_modules.scss */
   .room-image-big {
     margin: 24px 0 0 0;
     max-width: 130px;
     max-height: 130px;
   }
 
-  /* line 111, sass/responsive/_modules.scss */
+  /* line 115, sass/responsive/_modules.scss */
   #table_cfg_rooms .td-action {
     width: 30%;
   }
 
-  /* line 119, sass/responsive/_modules.scss */
+  /* line 123, sass/responsive/_modules.scss */
   .event-date {
     display: block;
   }
@@ -4954,12 +4963,12 @@ padding-right: 5px;
   /*    .tab-icon{
           font-size: 20px;
       }*/
-  /* line 141, sass/responsive/_modules.scss */
+  /* line 145, sass/responsive/_modules.scss */
   #table_apps_instance .td-action {
     width: 40%;
   }
 
-  /* line 146, sass/responsive/_modules.scss */
+  /* line 150, sass/responsive/_modules.scss */
   .app-entry {
     width: 100%;
     padding: 0;
@@ -4982,7 +4991,7 @@ padding-right: 5px;
     /* IE6-9 */
   }
 
-  /* line 152, sass/responsive/_modules.scss */
+  /* line 156, sass/responsive/_modules.scss */
   .app-entry-green {
     background: #1e5799;
     /* Old browsers */
@@ -5002,7 +5011,7 @@ padding-right: 5px;
     /* IE6-9 */
   }
 
-  /* line 155, sass/responsive/_modules.scss */
+  /* line 159, sass/responsive/_modules.scss */
   .app-entry-in {
     border: 0;
     height: auto;
@@ -5012,7 +5021,7 @@ padding-right: 5px;
     margin: 0;
   }
 
-  /* line 165, sass/responsive/_modules.scss */
+  /* line 169, sass/responsive/_modules.scss */
   .app-image {
     top: 10px;
     left: 10px;
@@ -5020,20 +5029,20 @@ padding-right: 5px;
     height: 40px;
   }
 
-  /* line 171, sass/responsive/_modules.scss */
+  /* line 175, sass/responsive/_modules.scss */
   .app-body {
     height: 64px;
     margin: 0;
     padding: 5px 5px 15px 64px;
   }
-  /* line 175, sass/responsive/_modules.scss */
+  /* line 179, sass/responsive/_modules.scss */
   .app-body .entry-title {
     position: absolute;
     z-index: 10;
     padding: 10px 90px 0 0;
   }
 
-  /* line 182, sass/responsive/_modules.scss */
+  /* line 186, sass/responsive/_modules.scss */
   .app-footer-in .btn {
     margin-top: -20px;
   }
@@ -5041,31 +5050,31 @@ padding-right: 5px;
   /*    .app-image{
            margin: 0;
       }*/
-  /* line 192, sass/responsive/_modules.scss */
+  /* line 196, sass/responsive/_modules.scss */
   .app-detail-header-in {
     position: static;
     padding: 0 15px 15px 15px;
     background: none;
   }
-  /* line 196, sass/responsive/_modules.scss */
+  /* line 200, sass/responsive/_modules.scss */
   .app-detail-header-in .app-detail-img {
     text-align: center;
     margin: 0 auto;
   }
-  /* line 199, sass/responsive/_modules.scss */
+  /* line 203, sass/responsive/_modules.scss */
   .app-detail-header-in .app-detail-img .app-image-detail {
     position: static;
   }
-  /* line 204, sass/responsive/_modules.scss */
+  /* line 208, sass/responsive/_modules.scss */
   .app-detail-header-in .app-detail-body {
     padding-left: 0;
   }
-  /* line 207, sass/responsive/_modules.scss */
+  /* line 211, sass/responsive/_modules.scss */
   .app-detail-header-in .app-detail-control {
     text-align: center;
   }
 
-  /* line 279, sass/responsive/_modules.scss */
+  /* line 283, sass/responsive/_modules.scss */
   #table_cfg_admin .td-action {
     width: 30%;
   }
