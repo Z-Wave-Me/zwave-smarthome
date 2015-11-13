@@ -350,6 +350,8 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
             var zwaveId = false;
             var level = $filter('numberFixedLen')(v.metrics.level);
             var rgbColors = false;
+            var yesterday = (Math.round(new Date().getTime() / 1000)) - (24 * 3600);
+            var isNew = v.creationTime > yesterday ? true : false;
             var appType = {};
             if (v.permanently_hidden || v.deviceType == 'battery') {
                 return;
@@ -394,6 +396,8 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                 default:
                     break;
             }
+           
+            console.log(v.id + ': ' + isNew)
             //console.log('Device id %s has history %s',v.id,v.hasHistory)
             obj = {
                 'id': v.id,
@@ -412,6 +416,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                 'probeType': v.probeType,
                 'location': v.location,
                 'creatorID': v.creatorId,
+                'creationTime': v.creationTime,
                 'updateTime': v.updateTime,
                 'onDashboard': onDashboard,
                 'imgTrans': false,
@@ -420,7 +425,8 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                 'minMax': minMax,
                 'cfg': {
                     'zwaveId': zwaveId,
-                    'hasInstance': hasInstance
+                    'hasInstance': hasInstance,
+                    'isNew': isNew
                 },
                 'appType': appType
             };
