@@ -15,6 +15,7 @@ myAppController.controller('AppController', function($scope, $filter, $cookies, 
     $scope.hasImage = [];
     //$scope.modules = [];
     $scope.localModules = {
+        shhowAll: false,
         data: {},
         all: {},
         featured: {},
@@ -80,6 +81,13 @@ myAppController.controller('AppController', function($scope, $filter, $cookies, 
         });
     };
     $scope.loadCategories();
+    
+     /**
+     * Show all/featured apps
+     */
+    $scope.showAll = function(bool) {
+        $scope.localModules.showAll = bool;
+    };
 
     /**
      * Load local modules
@@ -110,7 +118,7 @@ myAppController.controller('AppController', function($scope, $filter, $cookies, 
                     $scope.cameraIds.push(item.id);
                     isHidden = true;
                 }
-
+               
                 if (!isHidden) {
                      var findLocationStr = item.location.split('/');
                      if (findLocationStr[0] === 'userModules') {
@@ -123,10 +131,14 @@ myAppController.controller('AppController', function($scope, $filter, $cookies, 
                     if (item.category && $scope.modulesCats.indexOf(item.category) === -1) {
                         $scope.modulesCats.push(item.category);
                     }
+                     if ($scope.getCustomCfgArr('featured_apps').indexOf(item.moduleName) > -1) {
+                            $scope.localModules.featured[item.moduleName] = item;
+                        }
+                        
                     return item;
                 }
             });
-            $scope.localModules.data = _.where(modulesFiltered, query);
+            $scope.localModules.data = $scope.localModules.showAll ? _.where(modulesFiltered, query) : $scope.localModules.featured;
             //console.log($scope.localModules.data);
             //$scope.modules = _.where(modulesFiltered, query);
             $scope.loading = false;
@@ -242,12 +254,26 @@ myAppController.controller('AppController', function($scope, $filter, $cookies, 
                     var filter = false;
 
                     if ($scope.currentCategory.id) {
+                        $scope.localModules.showAll = true;
                         filter = {category: $scope.currentCategory.id};
                     }
                     $scope.loadModules(filter);
                     $scope.loadOnlineModules();
                     $scope.loadInstances();
                 });
+                $scope.$watch('localModules.showAll', function() {
+                    //$scope.modules = angular.copy([]);
+                    $scope.localModules.data = angular.copy([]);
+                    var filter = false;
+
+                    if ($scope.currentCategory.id) {
+                        filter = {category: $scope.currentCategory.id};
+                    }
+                    $scope.loadModules(filter);
+                    $scope.loadOnlineModules();
+                    $scope.loadInstances();
+                });
+                
                 break;
         }
     });

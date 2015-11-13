@@ -3605,18 +3605,40 @@ img.widget-promo-image {
 
 /* Apps
 -------------------------------------------------- */
+/* line 3, sass/modules/_apps.scss */
+.app-featured {
+  text-align: center;
+  margin-bottom: 10px;
+  padding: 10px 20px;
+}
+/* line 7, sass/modules/_apps.scss */
+.app-featured .app-featured-entry {
+  display: inline-block;
+  padding: 0 10px 10px 10px;
+}
+/* line 11, sass/modules/_apps.scss */
+.app-featured img {
+  max-width: 64px;
+  max-height: 64px;
+}
+
+/* line 16, sass/modules/_apps.scss */
+.app-featured.show-all-true {
+  cursor: pointer;
+}
+
 /*.col-sm-2.app-header{
 padding-left: 5px;
 padding-right: 5px;
 }*/
-/* line 9, sass/modules/_apps.scss */
+/* line 25, sass/modules/_apps.scss */
 .app-entry-in {
   position: relative;
   height: 100px;
   margin: 10px 0;
 }
 
-/* line 16, sass/modules/_apps.scss */
+/* line 32, sass/modules/_apps.scss */
 .app-image {
   position: absolute;
   top: 10px;
@@ -3630,18 +3652,18 @@ padding-right: 5px;
   border-radius: 50%;
 }
 
-/* line 31, sass/modules/_apps.scss */
+/* line 47, sass/modules/_apps.scss */
 .app-body {
   margin-top: -5px;
   padding: 25px 5px 15px 84px;
   width: 100%;
 }
-/* line 35, sass/modules/_apps.scss */
+/* line 51, sass/modules/_apps.scss */
 .app-body .entry-title {
   padding-right: 30px;
 }
 
-/* line 39, sass/modules/_apps.scss */
+/* line 55, sass/modules/_apps.scss */
 .app-footer {
   text-align: right;
   width: 100%;
@@ -3650,12 +3672,12 @@ padding-right: 5px;
   left: 0;
   height: 40px;
 }
-/* line 47, sass/modules/_apps.scss */
+/* line 63, sass/modules/_apps.scss */
 .app-footer .app-footer-in {
   padding: 0 15px 10px 10px;
 }
 
-/* line 58, sass/modules/_apps.scss */
+/* line 74, sass/modules/_apps.scss */
 #table_apps_instance .report-img {
   /*        max-width: 32px;
           max-height: 32px;*/
@@ -3664,21 +3686,21 @@ padding-right: 5px;
   border-radius: 50%;
 }
 
-/* line 68, sass/modules/_apps.scss */
+/* line 84, sass/modules/_apps.scss */
 .app-image-list {
   max-width: 70px;
 }
 
 /* Alpaca page
 -------------------------------------------------- */
-/* line 73, sass/modules/_apps.scss */
+/* line 89, sass/modules/_apps.scss */
 .alpaca-perex {
   margin: 0 0 20px 0;
   padding: 0 0 10px 0;
   border-bottom: dotted 1px #d3d3d3;
 }
 
-/* line 78, sass/modules/_apps.scss */
+/* line 94, sass/modules/_apps.scss */
 .app-image-alpaca {
   max-width: 128px;
   max-height: 128px;
@@ -3690,7 +3712,7 @@ padding-right: 5px;
   border: solid 2px #d3d3d3;
 }
 
-/* line 89, sass/modules/_apps.scss */
+/* line 105, sass/modules/_apps.scss */
 #alpaca_data {
   padding: 20px;
   margin: 0 0 20px 0;
@@ -3700,12 +3722,12 @@ padding-right: 5px;
 
 /* Apps detail
 -------------------------------------------------- */
-/* line 97, sass/modules/_apps.scss */
+/* line 113, sass/modules/_apps.scss */
 .app-detail-header-in {
   position: relative;
   padding: 20px;
 }
-/* line 101, sass/modules/_apps.scss */
+/* line 117, sass/modules/_apps.scss */
 .app-detail-header-in .app-detail-img img {
   position: absolute;
   max-width: 130px;
@@ -3716,17 +3738,17 @@ padding-right: 5px;
           -moz-border-radius: 50%;
           border-radius: 50%; */
 }
-/* line 113, sass/modules/_apps.scss */
+/* line 129, sass/modules/_apps.scss */
 .app-detail-header-in .app-detail-body {
   padding-left: 150px;
 }
-/* line 116, sass/modules/_apps.scss */
+/* line 132, sass/modules/_apps.scss */
 .app-detail-header-in .app-detail-list, .app-detail-header-in .app-detail-perex {
   padding-bottom: 10px;
   margin-bottom: 10px;
   border-bottom: dotted 1px #d3d3d3;
 }
-/* line 121, sass/modules/_apps.scss */
+/* line 137, sass/modules/_apps.scss */
 .app-detail-header-in .app-detail-control {
   position: relative;
 }

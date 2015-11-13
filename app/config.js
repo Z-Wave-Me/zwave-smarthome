@@ -201,14 +201,11 @@ var config_data = {
                     'ZWave'
                 ],
                 featured_apps: [
-                    'DeviceHistory',
-                    'RGB',
-                    'LightScene',
-                    'PeriodicallySwitchController',
-                    'LogicalRules',
+                    'IfThen',
                     'OpenWeather',
-                    'CustomUserCodeLoader',
-                    'DummyDevice'
+                    'DeviceHistory',
+                    'PeriodicalSwitchControl',
+                    'ScheduledScene'
                 ]
             },
             'popp': {
@@ -231,6 +228,13 @@ var config_data = {
                     'SensorsPolling',
                     'SwitchControlGenerator',
                     'ZWave'
+                ],
+                featured_apps: [
+                    'IfThen',
+                    'OpenWeather',
+                    'DeviceHistory',
+                    'PeriodicalSwitchControl',
+                    'ScheduledScene'
                 ]
             },
             'wd': {
@@ -253,6 +257,13 @@ var config_data = {
                     'SensorsPolling',
                     'SwitchControlGenerator',
                     'ZWave'
+                ],
+                featured_apps: [
+                    'IfThen',
+                    'OpenWeather',
+                    'DeviceHistory',
+                    'PeriodicalSwitchControl',
+                    'ScheduledScene'
                 ]
             }
         }
