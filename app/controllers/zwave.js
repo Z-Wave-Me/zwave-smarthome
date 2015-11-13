@@ -642,7 +642,6 @@ myAppController.controller('ZwaveExcludeController', function($scope, $location,
         dataFactory.loadZwaveApiData(true).then(function(ZWaveAPIData) {
             var refresh = function() {
                 dataFactory.refreshZwaveApiData().then(function(response) {
-                    console.log(response.data)
                     //var data = response.data;
                     if ('controller.data.controllerState' in response.data) {
                         $scope.zWaveDevice.controllerState =response.data['controller.data.controllerState'].value;

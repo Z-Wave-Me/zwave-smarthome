@@ -1,4 +1,11 @@
 {
+     "remove_device_from_network": " Sie wollen das Gerät aus ihrem Z-Wave Netz entfernen und zurücksetzen? ",
+    "start_removal": "Bitte starten Sie den Process zum Entfernen des Gerätes:",
+    "confirm_exclusion": "Bestätigen Sie die Entfernung des Gerätes durch einen Tastendruck direkt am Gerät- Eventuell müssen Sie im Geräte-Handbuch nachschlagen, wie das Gerät exkludiert wird. Dieser Prozess setzt das Gerät in den Auslieferungszustand zurück so daß es erneut in ein Z-Wave Netz hinzugefügt werden kann.",
+    "broken_device": "Mein Gerät ist defekt oder nicht mehr vorhanden",
+    "broken_device_war": "Bitte nutzen Sie diese Funktion nur, wenn das Gerät wirklich defekt oder nicht mehr vorhanden ist. Das Gerät selbst wird damit nicht in den Auslieferungszustand zurückgesetzt und kann damit auch nicht zu einem anderen Netz hinzugefügt werden. Wenn Sie Zugriff auf das Gerät haben, nutzen Sie bitte den Exklusion-Prozess.",
+    "remove_permanently": "Permanent entfernen",
+    "broken_device_info": "For der entgültigen Entfernung wird nochmals versucht, ihr Gerät im Funknetz zu finden. Falls es noch aktiv ist, wird dieser Prozess abgebrochen. Nutzen Sie dann den Exclusion-Prozess.",
     "frostProtection": "Frostschutz",
     "goahead": "Fortfahren",
     "reset": "Zurücksetzen",
