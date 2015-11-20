@@ -1,0 +1,10 @@
+<!-- Local apps view -->
+<div ng-controller="AppBaseController">
+    <div ng-controller="AppLocalController">
+        <!-- Preview -->
+        <div ng-if="appLocal.mode === 'preview'" ng-include="'app/views/apps/apps_local_preview.html'"></div>
+        <!-- Featured -->
+        <div ng-if="appLocal.mode === 'list'" ng-include="'app/views/apps/apps_local_list.html'"></div>
+        
+</div> <!-- /ng-controller --> 
+</div> <!-- /ng-controller --> 
