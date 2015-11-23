@@ -230,6 +230,603 @@ colorpicker-preview {
   background-position: 0 100%;
 }
 
+/*!
+ * Datetimepicker for Bootstrap 3
+ * version : 4.14.30
+ * https://github.com/Eonasdan/bootstrap-datetimepicker/
+ */
+/* line 6, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget {
+  list-style: none;
+}
+
+/* line 9, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget.dropdown-menu {
+  margin: 2px 0;
+  padding: 4px;
+  width: 19em;
+}
+
+@media (min-width: 768px) {
+  /* line 15, sass/vendor/_bootstrap-datetimepicker.scss */
+  .bootstrap-datetimepicker-widget.dropdown-menu.timepicker-sbs {
+    width: 38em;
+  }
+}
+@media (min-width: 992px) {
+  /* line 20, sass/vendor/_bootstrap-datetimepicker.scss */
+  .bootstrap-datetimepicker-widget.dropdown-menu.timepicker-sbs {
+    width: 38em;
+  }
+}
+@media (min-width: 1200px) {
+  /* line 25, sass/vendor/_bootstrap-datetimepicker.scss */
+  .bootstrap-datetimepicker-widget.dropdown-menu.timepicker-sbs {
+    width: 38em;
+  }
+}
+/* line 29, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget.dropdown-menu:before,
+.bootstrap-datetimepicker-widget.dropdown-menu:after {
+  content: '';
+  display: inline-block;
+  position: absolute;
+}
+
+/* line 35, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget.dropdown-menu.bottom:before {
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 7px solid #cccccc;
+  border-bottom-color: rgba(0, 0, 0, 0.2);
+  top: -7px;
+  left: 7px;
+}
+
+/* line 43, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget.dropdown-menu.bottom:after {
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid white;
+  top: -6px;
+  left: 8px;
+}
+
+/* line 50, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget.dropdown-menu.top:before {
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 7px solid #cccccc;
+  border-top-color: rgba(0, 0, 0, 0.2);
+  bottom: -7px;
+  left: 6px;
+}
+
+/* line 58, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget.dropdown-menu.top:after {
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid white;
+  bottom: -6px;
+  left: 7px;
+}
+
+/* line 65, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget.dropdown-menu.pull-right:before {
+  left: auto;
+  right: 6px;
+}
+
+/* line 69, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget.dropdown-menu.pull-right:after {
+  left: auto;
+  right: 7px;
+}
+
+/* line 73, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget .list-unstyled {
+  margin: 0;
+}
+
+/* line 76, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget a[data-action] {
+  padding: 6px 0;
+}
+
+/* line 79, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget a[data-action]:active {
+  box-shadow: none;
+}
+
+/* line 82, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget .timepicker-hour,
+.bootstrap-datetimepicker-widget .timepicker-minute,
+.bootstrap-datetimepicker-widget .timepicker-second {
+  width: 54px;
+  font-weight: bold;
+  font-size: 1.2em;
+  margin: 0;
+}
+
+/* line 90, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget button[data-action] {
+  padding: 6px;
+}
+
+/* line 93, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget .btn[data-action="incrementHours"]::after {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  content: "Increment Hours";
+}
+
+/* line 104, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget .btn[data-action="incrementMinutes"]::after {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  content: "Increment Minutes";
+}
+
+/* line 115, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget .btn[data-action="decrementHours"]::after {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  content: "Decrement Hours";
+}
+
+/* line 126, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget .btn[data-action="decrementMinutes"]::after {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  content: "Decrement Minutes";
+}
+
+/* line 137, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget .btn[data-action="showHours"]::after {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  content: "Show Hours";
+}
+
+/* line 148, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget .btn[data-action="showMinutes"]::after {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  content: "Show Minutes";
+}
+
+/* line 159, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget .btn[data-action="togglePeriod"]::after {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  content: "Toggle AM/PM";
+}
+
+/* line 170, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget .btn[data-action="clear"]::after {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  content: "Clear the picker";
+}
+
+/* line 181, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget .btn[data-action="today"]::after {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  content: "Set the date to today";
+}
+
+/* line 192, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget .picker-switch {
+  text-align: center;
+}
+
+/* line 195, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget .picker-switch::after {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  content: "Toggle Date and Time Screens";
+}
+
+/* line 206, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget .picker-switch td {
+  padding: 0;
+  margin: 0;
+  height: auto;
+  width: auto;
+  line-height: inherit;
+}
+
+/* line 213, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget .picker-switch td span {
+  line-height: 2.5;
+  height: 2.5em;
+  width: 100%;
+}
+
+/* line 218, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table {
+  width: 100%;
+  margin: 0;
+}
+
+/* line 222, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table td,
+.bootstrap-datetimepicker-widget table th {
+  text-align: center;
+  border-radius: 4px;
+}
+
+/* line 227, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table th {
+  height: 20px;
+  line-height: 20px;
+  width: 20px;
+}
+
+/* line 232, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table th.picker-switch {
+  width: 145px;
+}
+
+/* line 235, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table th.disabled,
+.bootstrap-datetimepicker-widget table th.disabled:hover {
+  background: none;
+  color: #777777;
+  cursor: not-allowed;
+}
+
+/* line 241, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table th.prev::after {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  content: "Previous Month";
+}
+
+/* line 252, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table th.next::after {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  content: "Next Month";
+}
+
+/* line 263, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table thead tr:first-child th {
+  cursor: pointer;
+}
+
+/* line 266, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table thead tr:first-child th:hover {
+  background: #eeeeee;
+}
+
+/* line 269, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table td {
+  height: 54px;
+  line-height: 54px;
+  width: 54px;
+}
+
+/* line 274, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table td.cw {
+  font-size: .8em;
+  height: 20px;
+  line-height: 20px;
+  color: #777777;
+}
+
+/* line 280, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table td.day {
+  height: 20px;
+  line-height: 20px;
+  width: 20px;
+}
+
+/* line 285, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table td.day:hover,
+.bootstrap-datetimepicker-widget table td.hour:hover,
+.bootstrap-datetimepicker-widget table td.minute:hover,
+.bootstrap-datetimepicker-widget table td.second:hover {
+  background: #eeeeee;
+  cursor: pointer;
+}
+
+/* line 292, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table td.old,
+.bootstrap-datetimepicker-widget table td.new {
+  color: #777777;
+}
+
+/* line 296, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table td.today {
+  position: relative;
+}
+
+/* line 299, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table td.today:before {
+  content: '';
+  display: inline-block;
+  border: 0 0 7px 7px solid transparent;
+  border-bottom-color: #337ab7;
+  border-top-color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+}
+
+/* line 309, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table td.active,
+.bootstrap-datetimepicker-widget table td.active:hover {
+  background-color: #337ab7;
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+/* line 315, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table td.active.today:before {
+  border-bottom-color: #fff;
+}
+
+/* line 318, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table td.disabled,
+.bootstrap-datetimepicker-widget table td.disabled:hover {
+  background: none;
+  color: #777777;
+  cursor: not-allowed;
+}
+
+/* line 324, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table td span {
+  display: inline-block;
+  width: 54px;
+  height: 54px;
+  line-height: 54px;
+  margin: 2px 1.5px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+/* line 333, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table td span:hover {
+  background: #eeeeee;
+}
+
+/* line 336, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table td span.active {
+  background-color: #337ab7;
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+/* line 341, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table td span.old {
+  color: #777777;
+}
+
+/* line 344, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table td span.disabled,
+.bootstrap-datetimepicker-widget table td span.disabled:hover {
+  background: none;
+  color: #777777;
+  cursor: not-allowed;
+}
+
+/* line 350, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget.usetwentyfour td.hour {
+  height: 27px;
+  line-height: 27px;
+}
+
+/* line 354, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget.wider {
+  width: 21em;
+}
+
+/* line 357, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget .datepicker-decades .decade {
+  line-height: 1.8em !important;
+}
+
+/* line 360, sass/vendor/_bootstrap-datetimepicker.scss */
+.input-group.date .input-group-addon {
+  cursor: pointer;
+}
+
+/* line 363, sass/vendor/_bootstrap-datetimepicker.scss */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/*
+ * jQuery File Upload UI Plugin CSS
+ * https://github.com/blueimp/jQuery-File-Upload
+ *
+ * Copyright 2010, Sebastian Tschan
+ * https://blueimp.net
+ *
+ * Licensed under the MIT license:
+ * http://www.opensource.org/licenses/MIT
+ */
+/* line 13, sass/vendor/_jquery.fileupload-ui.scss */
+.fileupload-buttonbar .btn,
+.fileupload-buttonbar .toggle {
+  margin-bottom: 5px;
+}
+
+/* line 17, sass/vendor/_jquery.fileupload-ui.scss */
+.progress-animated .progress-bar,
+.progress-animated .bar {
+  background: url("../img/progressbar.gif") !important;
+  filter: none;
+}
+
+/* line 22, sass/vendor/_jquery.fileupload-ui.scss */
+.fileupload-process {
+  float: right;
+  display: none;
+}
+
+/* line 26, sass/vendor/_jquery.fileupload-ui.scss */
+.fileupload-processing .fileupload-process,
+.files .processing .preview {
+  display: block;
+  width: 32px;
+  height: 32px;
+  background: url("../img/loading.gif") center no-repeat;
+  background-size: contain;
+}
+
+/* line 34, sass/vendor/_jquery.fileupload-ui.scss */
+.files audio,
+.files video {
+  max-width: 300px;
+}
+
+@media (max-width: 767px) {
+  /* line 40, sass/vendor/_jquery.fileupload-ui.scss */
+  .fileupload-buttonbar .toggle,
+  .files .toggle,
+  .files .btn span {
+    display: none;
+  }
+
+  /* line 45, sass/vendor/_jquery.fileupload-ui.scss */
+  .files .name {
+    width: 80px;
+    word-wrap: break-word;
+  }
+
+  /* line 49, sass/vendor/_jquery.fileupload-ui.scss */
+  .files audio,
+  .files video {
+    max-width: 80px;
+  }
+
+  /* line 53, sass/vendor/_jquery.fileupload-ui.scss */
+  .files img,
+  .files canvas {
+    max-width: 100%;
+  }
+}
+/*
+ * jQuery File Upload Plugin CSS
+ * https://github.com/blueimp/jQuery-File-Upload
+ *
+ * Copyright 2013, Sebastian Tschan
+ * https://blueimp.net
+ *
+ * Licensed under the MIT license:
+ * http://www.opensource.org/licenses/MIT
+ */
+/* line 13, sass/vendor/_jquery.fileupload.scss */
+.fileinput-button {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+/* line 18, sass/vendor/_jquery.fileupload.scss */
+.fileinput-button input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  opacity: 0;
+  -ms-filter: 'alpha(opacity=0)';
+  font-size: 200px;
+  direction: ltr;
+  cursor: pointer;
+}
+
+/* Fixes for IE < 8 */
+@media screen\9 {
+  /* line 32, sass/vendor/_jquery.fileupload.scss */
+  .fileinput-button input {
+    filter: alpha(opacity=0);
+    font-size: 100%;
+    height: 100%;
+  }
+}
 /* Body
 -------------------------------------------------- */
 /* line 4, sass/globals/_body.scss */
@@ -3053,6 +3650,14 @@ legend.alpaca-container-label {
 
 /* line 675, sass/modules/_alpaca.scss */
 .alpaca-icon-required.glyphicon.glyphicon-star {
+  display: none;
+}
+
+/** ************************************** **/
+/** Table                                  **/
+/** ************************************** **/
+/* line 684, sass/modules/_alpaca.scss */
+.alpaca-field-tablerow label.control-label {
   display: none;
 }
 
