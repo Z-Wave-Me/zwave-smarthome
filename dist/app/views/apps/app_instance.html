@@ -4,7 +4,7 @@
         <tbody>
             <tr class="bcg-active"
                 id="instance_{{$index}}" 
-                ng-repeat="v in instances|orderBy:'title' track by v.id" 
+                ng-repeat="v in instances|orderBy:'-creationTime' track by v.id" 
                 ng-class="v.active ? 'true': 'false'"
                 ng-if="cameraIds.indexOf(v.moduleId) === -1">
                 <td class="td-img">
