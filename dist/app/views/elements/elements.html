@@ -5,11 +5,11 @@
     <bb-alert alert="alert"></bb-alert>
     <div class="dashboard-welcome" ng-if="welcome" ng-include="'app/views/elements/welcome.html'"></div>
     <div class="row">
-        <div ng-if="v.visibility === true" id="Widget_{{v.id}}" class="col-lg-4 col-md-6 col-sm-6 widget-entry" ng-repeat="v in collection| filter:q | orderBy: 'title' track by v.id">
+        <div ng-if="v.visibility === true" id="Widget_{{v.id}}" class="col-lg-4 col-md-6 col-sm-6 widget-entry" ng-repeat="v in collection| filter:q | orderBy: '-creationTime' track by v.id">
             <div class="widget-block {{v.deviceType}} {{v.probeType}}" ng-switch="v.deviceType" ng-init="levelVal[v.id] = v.level">
 
                 <!-- {{v.id}}: {{levelVal[v.id]}} icon {{v.icon}} -->
-                <div class="widget-block-in clearfix app-border app-gradient app-shadow" ng-class="v.level === 'ALERT'? 'app-gradient-red' :  (v.level === 'OK!'? 'app-gradient-yellow' : (v.level === 'OK'? 'app-gradient-green' : ''))">
+                <div class="widget-block-in clearfix app-border app-gradient app-shadow is-new-{{v.cfg.isNew}}" ng-class="v.level === 'ALERT'? 'app-gradient-red' :  (v.level === 'OK!'? 'app-gradient-yellow' : (v.level === 'OK'? 'app-gradient-green' : ''))">
                     <!-- Widget icon -->
                     <!-- icon of widget type text -->
                     <img id="widget_img_{{v.id}}" ng-if="v.deviceType === 'text'" ng-show="v.metrics.icon" class="widget-image" ng-src="{{v.metrics.icon}}" alt="{{v.title}}" ng-click="showModal('#modal_promo', {'type': v.deviceType, 'title': v.title, 'text': v.metrics.text, 'url': v.metrics.icon})" />
@@ -241,32 +241,32 @@
                             <!-- ////////// sensorMultiline ////////// -->
                             <div ng-switch-when="sensorMultiline"> 
                                 <!-- climateControl sensorMultiline -->
-                                <div ng-if="v.metrics.multilineType === 'climateControl'">
+                                <div ng-if="v.metrics.multilineType === 'climateControl'"> 
                                     <div class="widget-control control-right widget-click-popup">
-                                        <span ng-if="climatePerRoom[v.id]"><i class="fa fa-caret-down"></i> <strong ng-click="loadClimateControl('#modal_climate_control', v.id, v)">{{_t('lb_settings')}}</strong></span>
-                                        <span class="text-disabled" ng-if="!climatePerRoom[v.id]"><i class="fa fa-caret-down"></i> <strong>{{_t('lb_settings')}}</strong></span>
+                                        <span ng-if_="climatePerRoom[v.id]"><i class="fa fa-caret-down"></i> <strong ng-click="loadClimateControl('#modal_climate_control', v.id, v)">{{_t('lb_settings')}}</strong></span>
+                                         <!--<span class="text-disabled" ng-if="!climatePerRoom[v.id]"><i class="fa fa-caret-down"></i> <strong>{{_t('lb_settings')}}</strong></span>-->
                                     </div><!-- /.widget-control .left -->
                                     <div class="widget-control control-left">
                                         <div class="btn-group">
                                             <button 
-                                                class="btn btn-sm widget-btn" 
-                                                id="btn_off_{{ v.id}}"
+                                                class="btn btn-sm widget-btn widget-btn-full widget-btn-frostProtection" 
+                                                id="btn_frostProtection_{{ v.id}}"
                                                 ng-click="runCmd(v.id + '/command/' + climateElementModes[0] + '?room=null', false); climatePerRoom[v.id] = false"
-                                                ng-class="'btn-default'"
+                                                ng-class="v.metrics.state =='frostProtection' ? 'btn-primary': 'btn-default'"
                                                 title="{{_t(climateElementModes[0])}}"><i class="fa fa-asterisk text-primary"></i>
                                             </button>
                                             <button 
-                                                class="btn btn-sm widget-btn" 
-                                                id="btn_off_{{ v.id}}"
+                                                class="btn btn-sm widget-btn widget-btn-full widget-btn-energySave" 
+                                                id="btn_energySave_{{ v.id}}"
                                                 ng-click="runCmd(v.id + '/command/' + climateElementModes[1] + '?room=null', false); climatePerRoom[v.id] = false"
-                                                ng-class="'btn-default'"
+                                               ng-class="v.metrics.state =='energySave' ? 'btn-primary': 'btn-default'"
                                                 title="{{_t(climateElementModes[1])}}"><i class="fa fa-eur text-success"></i>
                                             </button>
                                             <button 
-                                                class="btn btn-sm widget-btn" 
-                                                id="btn_on_{{ v.id}}"
+                                                class="btn btn-sm widget-btn widget-btn-full widget-btn-comfort" 
+                                                id="btn_comfort_{{ v.id}}"
                                                 ng-click="runCmd(v.id + '/command/' + climateElementModes[2] + '?room=null', false); climatePerRoom[v.id] = true"
-                                                ng-class="'btn-default'"
+                                                ng-class="v.metrics.state =='comfort' ? 'btn-primary': 'btn-default'"
                                                 title="{{_t(climateElementModes[2])}}"><i class="fa fa-building text-warning"></i>
                                             </button>
                                         </div>
@@ -758,10 +758,16 @@
                                         <img class="report-img img-circle" ng-src="{{rooms[n.roomName]|getRoomIcon}}" />
                                     </td>
                                     <td ng-bind="rooms[n.roomName].title"></td>
-                                    <td>
-                                        <span class="text-primary">{{elements.all[n.mainSensor].metrics.level}}  {{elements.all[n.mainSensor].metrics.scaleTitle}}</span>
-                                        => <span class="text-success">{{elements.all[n.mainSensor].metrics.level}}  {{elements.all[n.mainSensor].metrics.scaleTitle}}</span>
-                                        (<span><i class="fa fa-clock-o"></i> {{input.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}})</span>
+                                    <td class="text-right">
+                                        <span class="text-primary_">{{elements.all[n.mainSensor].metrics.level}}  {{elements.all[n.mainSensor].metrics.scaleTitle}}</span>
+                                        <!--(<span><i class="fa fa-clock-o"></i> {{input.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}})</span>-->
+                                    </td>
+                                    <td class="text-right">
+                                        =>
+                                    </td>
+                                    <td class="text-right">
+                                       <span class="text-success">{{n.targetTemp}}  {{elements.all[n.mainSensor].metrics.scaleTitle}}</span>
+                                        <!--(<span><i class="fa fa-clock-o"></i> {{input.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}})</span>-->
                                     </td>
                                     <!--<td class="text-primary">
                                         Set <span ng-bind="n.comfort"></span> <span ng-bind="n.scaleTitle"></span>
@@ -777,7 +783,7 @@
                                                 ng-model="climateControlMode" 
                                                 ng-disabled="changeClimateControlProcess[n.roomName]"
                                                 ng-change="changeClimateControlMode({cmd: input.id + '/command/' + climateControlMode + '?room=' + n.roomName, roomName: n.roomName})">
-                                            <option value="{{m}}" ng-repeat="m in climateElementModes" ng-selected="n.mode == m" ng-bind="_t(m)"></option>
+                                            <option value="{{m}}" ng-repeat="m in climateElementModes" ng-selected="n.state == m" ng-bind="_t(m)"></option>
                                         </select>
                                     </td>
                                 </tr>

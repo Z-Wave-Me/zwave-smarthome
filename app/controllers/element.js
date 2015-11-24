@@ -205,7 +205,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
                 
                 return;
             }
-            angular.extend($scope.elements.all,_.indexBy(collection,'id'));
+            angular.extend($scope.elements.all,_.indexBy(response.data.data.devices,'id'));
             angular.extend($scope.collection,collection);
             //$scope.collection = collection;
             dataService.updateTimeTick(response.data.data.updateTime);
