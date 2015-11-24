@@ -590,7 +590,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      */
     function getModuleFormData(module, data) {
         var collection = {
-            'options': replaceModuleFormData(module.options, 'click'),
+            'options': replaceModuleFormData(module.options, 'onFieldChange'),
             'schema': module.schema,
             'data': data,
             'postRender': postRenderAlpaca
