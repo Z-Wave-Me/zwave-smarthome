@@ -48,7 +48,10 @@ myAppController.controller('LoginController', function($scope, $location, $windo
             //$scope.loading = false;
             $scope.input.form = false;
             //$window.location.href = '#/elements/dashboard/1?login';
-            $location.path('/elements/dashboard/1?login');
+             //console.log(user);
+            //$location.path('/elements/dashboard/1?login');
+            window.location = '#/elements/dashboard/1?login';
+           
             $window.location.reload();
         }, function(error) {
             var message = $scope._t('error_load_data');

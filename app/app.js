@@ -99,9 +99,21 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     requireLogin: true,
                     roles: cfg.role_access.apps_local
                 }).
+                //Apps online
+                when('/apps/online', { 
+                    templateUrl: 'app/views/apps/apps_online.html',
+                     requireLogin: true,
+                    roles: cfg.role_access.apps
+                }).
                 //Apps - online detail
                 when('/apps/online/:id', {
                     templateUrl: 'app/views/apps/app_online_detail.html',
+                    requireLogin: true,
+                   roles: cfg.role_access.apps_online
+                }).
+                //Apps -instance
+                when('/apps/instance', {
+                    templateUrl: 'app/views/apps/apps_instance.html',
                     requireLogin: true,
                    roles: cfg.role_access.apps_online
                 }).
@@ -264,6 +276,7 @@ angular.forEach(config_data, function(key, value) {
  * Route Access Control and Authentication
  */
 myApp.run(function($rootScope, $location, dataService) {
+    $rootScope._ = _;
     $rootScope.$on("$routeChangeStart", function(event, next, current) {
         var user;
         if (next.requireLogin) {

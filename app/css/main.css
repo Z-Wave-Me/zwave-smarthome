@@ -5079,13 +5079,14 @@ padding-right: 5px;
 /*==========  Non-Mobile First Method  ==========*/
 /* Large Devices, Wide Screens */
 /* Medium Devices, Desktops */
-@media only screen and (max-width: 992px), (orientation: portrait) {
-  /* line 104, sass/responsive/_responsive.scss */
+/* Small Devices, Tablets */
+@media only screen and (max-width: 768px) {
+  /* line 109, sass/responsive/_responsive.scss */
   .show-on-pc {
     display: none;
   }
 
-  /* line 107, sass/responsive/_responsive.scss */
+  /* line 112, sass/responsive/_responsive.scss */
   .show-on-mobile {
     display: block !important;
   }
@@ -5706,7 +5707,6 @@ padding-right: 5px;
     width: 30%;
   }
 }
-/* Small Devices, Tablets */
 /* Extra Small Devices, Phones */
 /* Custom, iPhone Retina */
 /* Custom, iPhone Retina */
