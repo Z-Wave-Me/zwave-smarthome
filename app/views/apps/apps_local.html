@@ -1,6 +1,9 @@
 <!-- Local apps view -->
 <div ng-controller="AppBaseController">
     <div ng-controller="AppLocalController">
+        <!-- Apps navigation -->
+        <div ng-include="'app/views/apps/navi.html'"></div>
+    
         <div class="page-control form-inline">
             <a class="btn btn-default" href="" ng-click="setFilter()" ng-if="!_.isEmpty(dataHolder.modules.filter)"><i class="fa fa-refresh text-danger"></i> <span class="btn-name">{{_t('clear_all_filters')}}</span></a>
             <a class="btn btn-default" href="" ng-click="expandNavi('appsCategories', $event)"><i class="fa fa-chevron-down text-success" ng-class="naviExpanded.appsCategories ? 'fa-chevron-up': 'fa-chevron-down'"></i> 
@@ -50,8 +53,8 @@
             <div class="col-lg-4 col-md-6 col-sm-6 app-entry"
                  id="local_module_{{v.id}}" 
                  ng-repeat="v in dataHolder.modules.all|orderBy:'defaults.title' | filter:q  track by v.id" 
-                 ng-class="dataHolder.onlineModules.all[v.id] && dataHolder.onlineModules.all[v.id].version != v.version ? 'app-entry-green': ''">
-                    <div class="app-border app-gradient app-shadow app-entry-in" ng-class="dataHolder.onlineModules.all[v.id] && dataHolder.onlineModules.all[v.id].version != v.version ? 'app-gradient-green': ''"> 
+                 ng-class="dataHolder.onlineModules.ids[v.id] && dataHolder.onlineModules.ids[v.id].version != v.version ? 'app-entry-green': ''">
+                    <div class="app-border app-gradient app-shadow app-entry-in" ng-class="dataHolder.onlineModules.ids[v.id] && dataHolder.onlineModules.ids[v.id].version != v.version ? 'app-gradient-green': ''"> 
                     <a href="#apps/local/{{v.id}}">
                         <img class="app-image" ng-src="{{moduleMediaUrl + v.moduleName + '/' + v.icon}}" ng-if="v.icon" alt="{{v.defaults.title}}" />
                         <img class="app-image" ng-src="storage/img/placeholder-img.png" ng-if="!v.icon" alt="{{v.defaults.title}}" />

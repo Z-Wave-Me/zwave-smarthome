@@ -95,7 +95,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
                 }).
                 //Apps - local detail
                 when('/apps/local/:id', {
-                    templateUrl: 'app/views/apps/app_local_detail.html',
+                    templateUrl: 'app/views/apps/apps_local_id.html',
                     requireLogin: true,
                     roles: cfg.role_access.apps_local
                 }).
@@ -107,7 +107,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
                 }).
                 //Apps - online detail
                 when('/apps/online/:id', {
-                    templateUrl: 'app/views/apps/app_online_detail.html',
+                    templateUrl: 'app/views/apps/apps_online_id.html',
                     requireLogin: true,
                    roles: cfg.role_access.apps_online
                 }).

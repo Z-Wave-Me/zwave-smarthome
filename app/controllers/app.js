@@ -334,7 +334,7 @@ myAppController.controller('AppController', function($scope, $filter, $cookies, 
 
         });
     };
-    
+
 
     /**
      * Delete module
@@ -389,7 +389,7 @@ myAppController.controller('AppBaseController', function($scope, $filter, $cooki
         modules: {
             all: {},
             categories: {},
-            ids: [],
+            ids: {},
             filter: {},
             cameraIds: [],
             imgs: [],
@@ -401,6 +401,7 @@ myAppController.controller('AppBaseController', function($scope, $filter, $cooki
         },
         onlineModules: {
             all: {},
+            ids: {},
             filter: {}
         },
         tokens: {
@@ -420,7 +421,7 @@ myAppController.controller('AppBaseController', function($scope, $filter, $cooki
     $scope.loadTokens = function(filter) {
         dataFactory.getApi('tokens', null, true).then(function(response) {
             angular.extend($scope.dataHolder.tokens.all, response.data.data.tokens);
-              $scope.loadOnlineModules();
+            $scope.loadOnlineModules();
             //$scope.loadOnlineModules(filter);
         }, function(error) {
         });
@@ -449,11 +450,12 @@ myAppController.controller('AppBaseController', function($scope, $filter, $cooki
         dataFactory.getApi('modules').then(function(response) {
             $scope.dataHolder.modules.all = _.chain(response.data.data)
                     .flatten()
-                   
                     .filter(function(item) {
-                        $scope.dataHolder.modules.ids.push(item.id);
+                        //$scope.dataHolder.modules.ids.push(item.id);
+                         $scope.dataHolder.modules.ids[item.id] = {version: item.version};
                         //$scope.dataHolder.modules.all[item.id] = item;
                         var isHidden = false;
+                        var items = [];
                         if ($scope.getHiddenApps().indexOf(item.moduleName) > -1) {
                             if ($scope.user.role !== 1) {
                                 isHidden = true;
@@ -485,10 +487,9 @@ myAppController.controller('AppBaseController', function($scope, $filter, $cooki
                             } else {
                                 angular.extend(item, {featured: false});
                             }
-                            return item;
+                            return items;
                         }
                     })
-                    
                     .where($scope.dataHolder.modules.filter)
                     .value();
             $scope.loading = false;
@@ -499,7 +500,7 @@ myAppController.controller('AppBaseController', function($scope, $filter, $cooki
         });
     };
 
-   $scope.loadLocalModules();
+    $scope.loadLocalModules();
 
     /**
      * Load online modules
@@ -510,6 +511,9 @@ myAppController.controller('AppBaseController', function($scope, $filter, $cooki
                     .flatten()
                     .filter(function(item) {
                         var isHidden = false;
+                        var obj = {};
+                        obj[item.modulename] = 'dfdf';
+                        $scope.dataHolder.onlineModules.ids[item.modulename] = {version: item.version};
                         if ($scope.getHiddenApps().indexOf(item.modulename) > -1) {
                             if ($scope.user.role !== 1) {
                                 isHidden = true;
@@ -518,11 +522,11 @@ myAppController.controller('AppBaseController', function($scope, $filter, $cooki
                             }
                         }
                         if (!isHidden) {
+                            item.featured = (item.featured == 1 ? true : false);
                             return item;
                         }
                     })
                     .where($scope.dataHolder.onlineModules.filter)
-                    .indexBy('modulename')
                     .value();
             $scope.loading = false;
             dataService.updateTimeTick();
@@ -531,7 +535,7 @@ myAppController.controller('AppBaseController', function($scope, $filter, $cooki
             dataService.showConnectionError(error);
         });
     };
-   
+
     /**
      * Load instances
      */
@@ -557,7 +561,7 @@ myAppController.controller('AppBaseController', function($scope, $filter, $cooki
             dataService.showConnectionError(error);
         });
     };
-     $scope.loadInstances();
+    $scope.loadInstances();
 
 });
 
@@ -565,15 +569,20 @@ myAppController.controller('AppBaseController', function($scope, $filter, $cooki
  * App local controller
  */
 myAppController.controller('AppLocalController', function($scope, $filter, $cookies, $timeout, $route, $routeParams, $location, dataFactory, dataService, myCache, _) {
-    $scope.dataHolder.modules.filter = {featured: true};
+    $scope.activeTab = 'local';
+    //$scope.dataHolder.modules.filter = {featured: true};
+     $scope.dataHolder.modules.filter = ($cookies.filterAppsLocal ? angular.fromJson($cookies.filterAppsLocal) : {featured: true});
+     console.log($cookies.filterAppsLocal)
     /**
      * Set filter
      */
     $scope.setFilter = function(filter) {
         if (!filter) {
             angular.extend($scope.dataHolder.modules, {filter: {}});
+             $cookies.filterAppsLocal = angular.toJson({});
         } else {
             angular.extend($scope.dataHolder.modules, {filter: filter});
+             $cookies.filterAppsLocal = angular.toJson(filter);
         }
 
         $scope.loadLocalModules();
@@ -624,21 +633,25 @@ myAppController.controller('AppLocalController', function($scope, $filter, $cook
 /**
  * App online controller
  */
-myAppController.controller('AppOnlineController', function($scope, $filter, $cookies, $timeout, $route, $routeParams, $location, dataFactory, dataService, myCache, _) {
-    //$scope.dataHolder.onlineModules.filter = {featured: true};
+myAppController.controller('AppOnlineController', function($scope, $filter, $cookies, $timeout, $route, dataFactory, myCache, _) {
+    $scope.activeTab = 'online';
+    $scope.dataHolder.onlineModules.filter = ($cookies.filterAppsOnline ? angular.fromJson($cookies.filterAppsOnline) : {featured: true});
+    
     /**
      * Set filter
      */
     $scope.setFilter = function(filter) {
         if (!filter) {
             angular.extend($scope.dataHolder.onlineModules, {filter: {}});
+            $cookies.filterAppsOnline = angular.toJson({});
+            //delete $cookies['filterAppsOnline'];
         } else {
             angular.extend($scope.dataHolder.onlineModules, {filter: filter});
+             $cookies.filterAppsOnline = angular.toJson(filter);
         }
-
         $scope.loadOnlineModules();
     };
-    
+
     /**
      * Install module
      */
@@ -692,7 +705,8 @@ myAppController.controller('AppOnlineController', function($scope, $filter, $coo
 /**
  * App Instance controller
  */
-myAppController.controller('AppInstanceController', function($scope, $filter, $cookies, $timeout, $route, $routeParams, $location, dataFactory, dataService, myCache, _) {
+myAppController.controller('AppInstanceController', function($scope, $route, dataFactory, myCache, _) {
+    $scope.activeTab = 'instance';
     $scope.activateInstance = function(input, activeStatus) {
         input.active = activeStatus;
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
@@ -702,7 +716,8 @@ myAppController.controller('AppInstanceController', function($scope, $filter, $c
                 myCache.remove('instances');
                 myCache.remove('instances/' + input.moduleId);
                 myCache.remove('devices');
-                $scope.loadInstances();
+                //$scope.loadInstances();
+                $route.reload();
 
             }, function(error) {
                 alertify.alert($scope._t('error_update_data'));

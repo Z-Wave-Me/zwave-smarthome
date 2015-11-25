@@ -1515,20 +1515,21 @@ vertical-align: middle;
 /* line 3, sass/globals/_navi.scss */
 .page-control {
   text-align: right;
+  margin-top: 10px;
 }
 
-/* line 6, sass/globals/_navi.scss */
+/* line 7, sass/globals/_navi.scss */
 .page-navi {
   font-size: 16px;
   position: relative;
   width: 100%;
   height: 100%;
 }
-/* line 11, sass/globals/_navi.scss */
+/* line 12, sass/globals/_navi.scss */
 .page-navi .fa {
   font-size: 19.2px;
 }
-/* line 14, sass/globals/_navi.scss */
+/* line 15, sass/globals/_navi.scss */
 .page-navi .page-navi-in {
   position: absolute;
   background-color: #fbfbfb;
@@ -1578,14 +1579,14 @@ vertical-align: middle;
           #cat_notifications{.fa{color: #80ad80;}} 
           #cat_tagging{.fa{color: #31b0d5;}}*/
 }
-/* line 24, sass/globals/_navi.scss */
+/* line 25, sass/globals/_navi.scss */
 .page-navi .page-navi-in ul {
   list-style: none;
   text-align: left;
   margin: 0;
   padding: 0;
 }
-/* line 33, sass/globals/_navi.scss */
+/* line 34, sass/globals/_navi.scss */
 .page-navi .page-navi-in ul li {
   display: inline-block;
   width: 33.33%;
@@ -1593,23 +1594,23 @@ vertical-align: middle;
   border: solid 4px #fbfbfb;
   background-color: #EEEEEE;
 }
-/* line 44, sass/globals/_navi.scss */
+/* line 45, sass/globals/_navi.scss */
 .page-navi .page-navi-in ul li .page-navi-icon {
   display: none;
 }
-/* line 53, sass/globals/_navi.scss */
+/* line 54, sass/globals/_navi.scss */
 .page-navi .page-navi-in ul li a {
   text-align: left;
   padding: 0 10px;
   vertical-align: middle;
   display: block;
 }
-/* line 64, sass/globals/_navi.scss */
+/* line 65, sass/globals/_navi.scss */
 .page-navi .page-navi-in ul .active a {
   font-weight: bold;
   text-decoration: underline;
 }
-/* line 117, sass/globals/_navi.scss */
+/* line 118, sass/globals/_navi.scss */
 .page-navi .page-navi-in .page-navi-close {
   text-align: right;
   border-top: solid 1px #d3d3d3;
@@ -1617,22 +1618,22 @@ vertical-align: middle;
   padding: 5px 10px 5px 5px;
 }
 
-/* line 125, sass/globals/_navi.scss */
+/* line 126, sass/globals/_navi.scss */
 .page-menu {
   font-size: 16px;
 }
-/* line 128, sass/globals/_navi.scss */
+/* line 129, sass/globals/_navi.scss */
 .page-menu .fa {
   font-size: 19.2px;
 }
-/* line 134, sass/globals/_navi.scss */
+/* line 135, sass/globals/_navi.scss */
 .page-menu ul {
   list-style: none;
   text-align: left;
   margin: 0;
   padding: 0;
 }
-/* line 142, sass/globals/_navi.scss */
+/* line 143, sass/globals/_navi.scss */
 .page-menu ul li {
   display: block;
   float: left;
@@ -1640,7 +1641,7 @@ vertical-align: middle;
   padding: 10px 0;
   border: solid 4px #F6F6F6;
 }
-/* line 151, sass/globals/_navi.scss */
+/* line 152, sass/globals/_navi.scss */
 .page-menu ul li a {
   padding: 0 10px;
   text-align: left;
@@ -1650,99 +1651,99 @@ vertical-align: middle;
   display: block;
   color: #fff;
 }
-/* line 165, sass/globals/_navi.scss */
+/* line 166, sass/globals/_navi.scss */
 .page-menu ul .active a {
   font-weight: bold;
   text-decoration: underline;
 }
-/* line 170, sass/globals/_navi.scss */
+/* line 171, sass/globals/_navi.scss */
 .page-menu ul .fa {
   padding-right: 5px;
 }
-/* line 176, sass/globals/_navi.scss */
+/* line 177, sass/globals/_navi.scss */
 .page-menu .page-menu-basic_gateway_modules {
   background-color: #dd976e;
 }
-/* line 177, sass/globals/_navi.scss */
+/* line 178, sass/globals/_navi.scss */
 .page-menu .page-menu-legacy_products_workaround {
   background-color: #6c7a89;
 }
-/* line 178, sass/globals/_navi.scss */
+/* line 179, sass/globals/_navi.scss */
 .page-menu .page-menu-support_external_ui {
   background-color: #6494bc;
 }
-/* line 179, sass/globals/_navi.scss */
+/* line 180, sass/globals/_navi.scss */
 .page-menu .page-menu-support_external_dev {
   background-color: #80ad80;
 }
-/* line 180, sass/globals/_navi.scss */
+/* line 181, sass/globals/_navi.scss */
 .page-menu .page-menu-automation_basic {
   background-color: #31b0d5;
 }
-/* line 181, sass/globals/_navi.scss */
+/* line 182, sass/globals/_navi.scss */
 .page-menu .page-menu-device_enhancements {
   background-color: #f0aD4e;
 }
-/* line 182, sass/globals/_navi.scss */
+/* line 183, sass/globals/_navi.scss */
 .page-menu .page-menu-developers_stuff {
   background-color: #d9534f;
 }
-/* line 183, sass/globals/_navi.scss */
+/* line 184, sass/globals/_navi.scss */
 .page-menu .page-menu-complex_applications {
   background-color: #dd976e;
 }
-/* line 184, sass/globals/_navi.scss */
+/* line 185, sass/globals/_navi.scss */
 .page-menu .page-menu-automation {
   background-color: #dddddd;
 }
-/* line 185, sass/globals/_navi.scss */
+/* line 186, sass/globals/_navi.scss */
 .page-menu .page-menu-security {
   background-color: #6c7a89;
 }
-/* line 186, sass/globals/_navi.scss */
+/* line 187, sass/globals/_navi.scss */
 .page-menu .page-menu-peripherals {
   background-color: #6494bc;
 }
-/* line 187, sass/globals/_navi.scss */
+/* line 188, sass/globals/_navi.scss */
 .page-menu .page-menu-logging {
   background-color: #31b0d5;
 }
-/* line 188, sass/globals/_navi.scss */
+/* line 189, sass/globals/_navi.scss */
 .page-menu .page-menu-scripting {
   background-color: #f0aD4e;
 }
-/* line 189, sass/globals/_navi.scss */
+/* line 190, sass/globals/_navi.scss */
 .page-menu .page-menu-devices {
   background-color: #d9534f;
 }
-/* line 190, sass/globals/_navi.scss */
+/* line 191, sass/globals/_navi.scss */
 .page-menu .page-menu-scheduling {
   background-color: #dd976e;
 }
-/* line 191, sass/globals/_navi.scss */
+/* line 192, sass/globals/_navi.scss */
 .page-menu .page-menu-climate {
   background-color: #dddddd;
 }
-/* line 192, sass/globals/_navi.scss */
+/* line 193, sass/globals/_navi.scss */
 .page-menu .page-menu-environment {
   background-color: #6c7a89;
 }
-/* line 193, sass/globals/_navi.scss */
+/* line 194, sass/globals/_navi.scss */
 .page-menu .page-menu-scenes {
   background-color: #6494bc;
 }
-/* line 194, sass/globals/_navi.scss */
+/* line 195, sass/globals/_navi.scss */
 .page-menu .page-menu-notifications {
   background-color: #80ad80;
 }
-/* line 195, sass/globals/_navi.scss */
+/* line 196, sass/globals/_navi.scss */
 .page-menu .page-menu-tagging {
   background-color: #31b0d5;
 }
 
 /* Footer drop-down
 -------------------------------------------------- */
-/* line 201, sass/globals/_navi.scss */
+/* line 202, sass/globals/_navi.scss */
 .dropdown-menu-bottom {
   height: auto;
   max-height: 600px;
