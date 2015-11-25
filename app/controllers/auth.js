@@ -71,6 +71,44 @@ myAppController.controller('LoginController', function($scope, $location, $windo
 
 });
 /**
+ * Password controller
+ */
+myAppController.controller('PasswordController', function($scope,  $location,dataFactory) {
+    $scope.newPassword = null;
+    
+    /**
+     * Change password
+     */
+    $scope.changePassword = function(newPassword) {
+        if (!newPassword || newPassword == '') {
+            return;
+        }
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        var input = {
+            id: $scope.user.id,
+            password: newPassword
+
+        };
+         dataFactory.putApi('profiles_auth_update', input.id, input).then(function(response) {
+            var data = response.data.data;
+            if (!data) {
+                alertify.alert($scope._t('error_update_data'));
+                $scope.loading = false;
+                return;
+            }
+            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
+             window.location = '#/elements/dashboard/1';
+            //$window.history.back();
+
+        }, function(error) {
+            alertify.alert($scope._t('error_update_data'));
+            $scope.loading = false;
+        });
+
+    };
+
+});
+/**
  * Logout controller
  */
 myAppController.controller('LogoutController', function($scope, dataService) {

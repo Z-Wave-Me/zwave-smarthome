@@ -236,6 +236,11 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     redirectTo: '/'
                     //templateUrl: 'app/views/login/login.html',
                 }).
+                //Password
+                when('/password', {
+                    templateUrl: 'app/views/login/password.html',
+                    requireLogin: true
+                }).
                 //Login
                 when('/logout', {
                     templateUrl: 'app/views/login/logout.html',
