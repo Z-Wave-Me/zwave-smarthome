@@ -77,7 +77,7 @@ myApp.directive('bbAlertText', function() {
 /**
  * Help directive
  */
-myApp.directive('bbHelp', function(dataFactory,cfg) {
+myApp.directive('bbHelp', function(dataFactory, cfg) {
     return {
         restrict: "E",
         replace: true,
@@ -149,20 +149,28 @@ myApp.directive('bbValidator', function($window) {
         template: '<div class="valid-error text-danger" ng-if="inputName && !inputName.$pristine && hasBlur">*{{trans}}</div>'
     };
 });
+
 /**
- * Load script into view
+ * Compare ompare two values
  */
-myApp.directive('bbScript', function($parse, $rootScope, $compile) {
+myApp.directive("bbCompareTo", function() {
     return {
-        restrict: 'E',
-        terminal: true,
-        link: function(scope, element, attr) {
-            if (attr.ngSrc) {
-                 var domElem = '<script src="'+attr.ngSrc+'" async defer></script>';
-                 $(element).append($compile(domElem)(scope));
+        require: "ngModel",
+        link: function(scope, elem, attrs, ctrl) {
+            var otherInput = elem.inheritedData("$formController")[attrs.bbCompareTo];
 
+            ctrl.$parsers.push(function(value) {
+                if(value === otherInput.$viewValue) {
+                    ctrl.$setValidity("compareto", true);
+                    return value;
+                }
+                ctrl.$setValidity("compareto", false);
+            });
 
-            }
+            otherInput.$parsers.push(function(value) {
+                ctrl.$setValidity("compareto", value === ctrl.$viewValue);
+                return value;
+            });
         }
     };
 });
@@ -328,60 +336,60 @@ myApp.directive('fileModel', ['$parse', function($parse) {
     }]);
 
 myApp.directive('infiniteScroll', [
-  '$rootScope', '$window', '$timeout', function($rootScope, $window, $timeout) {
-    return {
-      link: function(scope, elem, attrs) {
-        var checkWhenEnabled, handler, scrollDistance, scrollEnabled;
-        $window = angular.element($window);
-        scrollDistance = 0;
-        if (attrs.infiniteScrollDistance != null) {
-          scope.$watch(attrs.infiniteScrollDistance, function(value) {
-            return scrollDistance = parseInt(value, 10);
-          });
-        }
-        scrollEnabled = true;
-        checkWhenEnabled = false;
-        if (attrs.infiniteScrollDisabled != null) {
-          scope.$watch(attrs.infiniteScrollDisabled, function(value) {
-            scrollEnabled = !value;
-            if (scrollEnabled && checkWhenEnabled) {
-              checkWhenEnabled = false;
-              return handler();
+    '$rootScope', '$window', '$timeout', function($rootScope, $window, $timeout) {
+        return {
+            link: function(scope, elem, attrs) {
+                var checkWhenEnabled, handler, scrollDistance, scrollEnabled;
+                $window = angular.element($window);
+                scrollDistance = 0;
+                if (attrs.infiniteScrollDistance != null) {
+                    scope.$watch(attrs.infiniteScrollDistance, function(value) {
+                        return scrollDistance = parseInt(value, 10);
+                    });
+                }
+                scrollEnabled = true;
+                checkWhenEnabled = false;
+                if (attrs.infiniteScrollDisabled != null) {
+                    scope.$watch(attrs.infiniteScrollDisabled, function(value) {
+                        scrollEnabled = !value;
+                        if (scrollEnabled && checkWhenEnabled) {
+                            checkWhenEnabled = false;
+                            return handler();
+                        }
+                    });
+                }
+                handler = function() {
+                    var elementBottom, remaining, shouldScroll, windowBottom;
+                    windowBottom = $window.height() + $window.scrollTop();
+                    elementBottom = elem.offset().top + elem.height();
+                    remaining = elementBottom - windowBottom;
+                    shouldScroll = remaining <= $window.height() * scrollDistance;
+                    if (shouldScroll && scrollEnabled) {
+                        if ($rootScope.$$phase) {
+                            return scope.$eval(attrs.infiniteScroll);
+                        } else {
+                            return scope.$apply(attrs.infiniteScroll);
+                        }
+                    } else if (shouldScroll) {
+                        return checkWhenEnabled = true;
+                    }
+                };
+                $window.on('scroll', handler);
+                scope.$on('$destroy', function() {
+                    return $window.off('scroll', handler);
+                });
+                return $timeout((function() {
+                    if (attrs.infiniteScrollImmediateCheck) {
+                        if (scope.$eval(attrs.infiniteScrollImmediateCheck)) {
+                            return handler();
+                        }
+                    } else {
+                        return handler();
+                    }
+                }), 0);
             }
-          });
-        }
-        handler = function() {
-          var elementBottom, remaining, shouldScroll, windowBottom;
-          windowBottom = $window.height() + $window.scrollTop();
-          elementBottom = elem.offset().top + elem.height();
-          remaining = elementBottom - windowBottom;
-          shouldScroll = remaining <= $window.height() * scrollDistance;
-          if (shouldScroll && scrollEnabled) {
-            if ($rootScope.$$phase) {
-              return scope.$eval(attrs.infiniteScroll);
-            } else {
-              return scope.$apply(attrs.infiniteScroll);
-            }
-          } else if (shouldScroll) {
-            return checkWhenEnabled = true;
-          }
         };
-        $window.on('scroll', handler);
-        scope.$on('$destroy', function() {
-          return $window.off('scroll', handler);
-        });
-        return $timeout((function() {
-          if (attrs.infiniteScrollImmediateCheck) {
-            if (scope.$eval(attrs.infiniteScrollImmediateCheck)) {
-              return handler();
-            }
-          } else {
-            return handler();
-          }
-        }), 0);
-      }
-    };
-  }
+    }
 ]);
 /**
  * Key event directive

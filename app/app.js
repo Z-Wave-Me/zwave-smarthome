@@ -24,7 +24,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
                 // Login
                 when('/', {
                     //redirectTo: '/elements/dashboard/1'
-                    templateUrl: 'app/views/login/login.html'
+                    templateUrl: 'app/views/auth/login.html'
                 }).
                  // Home
                 when('/home', {
@@ -244,12 +244,12 @@ myApp.config(['$routeProvider', function($routeProvider) {
                 }).
                 //Password
                 when('/password', {
-                    templateUrl: 'app/views/login/password.html',
+                    templateUrl: 'app/views/auth/password.html',
                     requireLogin: true
                 }).
                 //Login
                 when('/logout', {
-                    templateUrl: 'app/views/login/logout.html',
+                    templateUrl: 'app/views/auth/logout.html',
                     requireLogin: true
                 }).
                 // Error page

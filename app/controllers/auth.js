@@ -75,7 +75,9 @@ myAppController.controller('LoginController', function($scope, $location, $windo
 myAppController.controller('PasswordController', function($scope,  dataFactory) {
     //$scope.newPassword = null;
     $scope.input = {
-        password: ''
+        password: '',
+       passwordConfirm: '',
+       email: '',
     };
     /**
      * Change password
@@ -92,7 +94,8 @@ myAppController.controller('PasswordController', function($scope,  dataFactory) 
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         var input = {
             id: $scope.user.id,
-            password: input.password
+            password: input.password,
+            email: input.email
 
         };
          dataFactory.putApi('profiles_auth_update', input.id, input).then(function(response) {
