@@ -1,9 +1,9 @@
 {
     "newtrans": "---",
+    "---": "newtrans",
     "password_info":  "The info text comes here....",
     "enter_valid_password":  "Please enter a valid password",
     "featured_apps":  "Featured apps",
-    "---": "newtrans",
     "frostProtection":  "Frost Protection",
     "goahead": "Go Ahead",
     "reset": "Reset",

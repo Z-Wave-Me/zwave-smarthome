@@ -1,4 +1,7 @@
 {
+    "password_info":  "The info text comes here....",
+    "enter_valid_password":  "Please enter a valid password",
+    "featured_apps":  "Featured apps",
     "frostProtection":  "Frost Protection",
     "goahead": "Go Ahead",
     "reset": "Reset",
