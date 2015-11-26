@@ -1,6 +1,7 @@
 {
+    "passwords_must_match":  "Passwords must match.",
     "password_valid":  "Password should be minimum 6 characters",
-    "password_info":  "The info text comes here....",
+    "password_info":  "Bisher verwenden Sie noch das Standartpasswort. Dies ist jedoch sehr unsicher und wir empfehlen Ihnen dieses zu ändern.",
     "enter_valid_password":  "Please enter a valid password",
     "featured_apps":  "Featured apps",
     "frostProtection": "Frostschutz",
