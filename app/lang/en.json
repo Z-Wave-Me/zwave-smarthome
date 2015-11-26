@@ -1,5 +1,6 @@
 {
     "newtrans": "---",
+    "all_apps": "All Apps",
      "---": "newtrans",
     "remove_device_from_network": "You want to remove and reset device from your Z-Wave network?",
     "start_removal": "Please start the removal and resetting process by hitting the button below.",
