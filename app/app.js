@@ -82,6 +82,12 @@ myApp.config(['$routeProvider', function($routeProvider) {
                      requireLogin: true,
                     roles: cfg.role_access.apps
                 }).
+                //Apps local
+                when('/apps/local', { 
+                    templateUrl: 'app/views/apps/apps_local.html',
+                     requireLogin: true,
+                    roles: cfg.role_access.apps
+                }).
                  when('/apps/category/:category', { 
                     templateUrl: 'app/views/apps/apps.html',
                      requireLogin: true,
@@ -89,13 +95,25 @@ myApp.config(['$routeProvider', function($routeProvider) {
                 }).
                 //Apps - local detail
                 when('/apps/local/:id', {
-                    templateUrl: 'app/views/apps/app_local_detail.html',
+                    templateUrl: 'app/views/apps/apps_local_id.html',
                     requireLogin: true,
                     roles: cfg.role_access.apps_local
                 }).
+                //Apps online
+                when('/apps/online', { 
+                    templateUrl: 'app/views/apps/apps_online.html',
+                     requireLogin: true,
+                    roles: cfg.role_access.apps
+                }).
                 //Apps - online detail
                 when('/apps/online/:id', {
-                    templateUrl: 'app/views/apps/app_online_detail.html',
+                    templateUrl: 'app/views/apps/apps_online_id.html',
+                    requireLogin: true,
+                   roles: cfg.role_access.apps_online
+                }).
+                //Apps -instance
+                when('/apps/instance', {
+                    templateUrl: 'app/views/apps/apps_instance.html',
                     requireLogin: true,
                    roles: cfg.role_access.apps_online
                 }).
@@ -224,6 +242,11 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     redirectTo: '/'
                     //templateUrl: 'app/views/login/login.html',
                 }).
+                //Password
+                when('/password', {
+                    templateUrl: 'app/views/login/password.html',
+                    requireLogin: true
+                }).
                 //Login
                 when('/logout', {
                     templateUrl: 'app/views/login/logout.html',
@@ -264,6 +287,7 @@ angular.forEach(config_data, function(key, value) {
  * Route Access Control and Authentication
  */
 myApp.run(function($rootScope, $location, dataService) {
+    $rootScope._ = _;
     $rootScope.$on("$routeChangeStart", function(event, next, current) {
         var user;
         if (next.requireLogin) {

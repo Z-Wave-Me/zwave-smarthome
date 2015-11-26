@@ -119,14 +119,6 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     };
 
     /**
-     * DEPRECATED - replaced with underscore _where
-     * Get data or filtered data
-     */
-//    this.getData = function(data, filter) {
-//        return getData(data, filter);
-//    };
-
-    /**
      * Get device data
      */
     this.getDevices = function(data, filter, positions, instances, location) {
@@ -162,14 +154,6 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     };
 
     /**
-     * DEPRECATED
-     * Get instances
-     */
-//    this.getInstances = function(data, modules) {
-//        return getInstances(data, modules);
-//    };
-
-    /**
      * Get module form data
      */
     this.getModuleFormData = function(module, data) {
@@ -196,22 +180,6 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     this.getEventLevel = function(data, set) {
         return getEventLevel(data, set);
     };
-
-    /**
-     * DEPRECATED - replaced by underscore _.uniq
-     * Get pairs
-     */
-//    this.getPairs = function(data, key, val, cache) {
-//        return getPairs(data, key, val, cache);
-//    };
-
-    /**
-     * DEPRECATED - replaced with underscore _.findWhere
-     * Get row by
-     */
-//    this.getRowBy = function(data, key, val, cache) {
-//        return getRowBy(data, key, val, cache);
-//    };
 
     /**
      * Get config navigation devices
@@ -306,33 +274,6 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
 
     }
 
-
-    /**
-     * DEPRECATED - replaced with underscore _where
-     * Get API data or filtered data
-     */
-//    function getData(data, filter) {
-//        if (!filter) {
-//            return data;
-//        }
-//        var collection = [];
-//        var addToCollection = false;
-//        angular.forEach(data, function(v, k) {
-//            if (angular.isArray(v[filter.filter])) {
-//                addToCollection = (filter.not ? v[filter.filter].indexOf(filter.val) === -1 : v[filter.filter].indexOf(filter.val) > -1);
-//                if (addToCollection) {
-//                    collection.push(v);
-//                }
-//            } else {
-//                addToCollection = (filter.not ? v[filter.filter] != filter.val : v[filter.filter] == filter.val);
-//                if (addToCollection) {
-//                    collection.push(v);
-//                }
-//            }
-//        });
-//        return collection;
-//    }
-
     /**
      * Get device data
      */
@@ -396,9 +337,6 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                 default:
                     break;
             }
-           
-            console.log(v.id + ': ' + isNew)
-            //console.log('Device id %s has history %s',v.id,v.hasHistory)
             obj = {
                 'id': v.id,
                 'zwaveId': zwaveId,
@@ -553,6 +491,9 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                         status = 'off';
                     }
                 }
+                if (v.metrics.multilineType == 'climateControl') {
+                     status = 'climate';
+                }
                 break;
             case 'doorlock':
                 if (v.metrics.level == 'open') {
@@ -589,6 +530,9 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
              $(widgetId + ' .widget-btn-full').removeClass('btn-default').addClass('btn-primary');
             $(widgetId + ' .widget-btn-on').removeClass('btn-default').addClass('btn-primary');
             $(widgetId + ' .widget-btn-off').removeClass('btn-primary').addClass('btn-default');
+        }else if (status == 'climate') {
+             $(widgetId + ' .widget-btn-frostProtection,' + widgetId + ' .widget-btn-energySave,' + widgetId + ' .widget-btn-comfort').removeClass('btn-primary').addClass('btn-default');
+             $(widgetId + ' .widget-btn-' + v.metrics.state).removeClass('btn-default').addClass('btn-primary');
         }
         else {
             $(widgetId + ' .widget-btn-on').removeClass('btn-primary').addClass('btn-default');
@@ -638,41 +582,6 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
 
     }
     ;
-
-    /**
-     * DEPRECATED
-     * Get instances data
-     */
-//    function getInstances(data, modules) {
-//        var collection = [];
-//        var moduleOptions;
-//        var module;
-//        var moduleTitle;
-//        var params;
-//        angular.forEach(data, function(v, k) {
-//            params = (!v.params ? [] : v.params);
-//            module = getRowBy(modules, 'id', v.moduleId);
-//            if (module) {
-//                moduleTitle = $filter('hasNode')(module, 'defaults.title');
-//                moduleOptions = getModuleConfigOptions(module, params);
-//            }
-//
-//            collection.push({
-//                'id': v.id,
-//                'moduleId': v.moduleId,
-//                'title': v.title,
-//                'moduleTitle': moduleTitle,
-//                'params': params,
-//                'description': v.description,
-//                'moduleData': module,
-//                'moduleOptions': moduleOptions,
-//                'moduleInput': getModuleConfigInputs(module, params)
-//            });
-//
-//        });
-//        return collection;
-//    }
-
     /**
      * Get module form data
      */
@@ -793,50 +702,6 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
 
         return $filter('unique')(collection, 'key');
     }
-
-    /**
-     *  DEPRECATED - replaced by underscore _.uniq
-     * Get pairs - key => value
-     */
-//    function getPairs(data, key, val, cache) {
-//        var ret;
-//        var collection = [];
-//        var cached = myCache.get(cache);
-//        // Cached data
-//        if (cached) {
-//            return cached;
-//        }
-//
-//        // Load data
-//        angular.forEach(data, function(v, k) {
-//            if (v[val] != '') {
-//                collection.push({
-//                    'key': v[key],
-//                    'val': v[val]
-//                });
-//            }
-//
-//        });
-//        ret = $filter('unique')(collection, 'key');
-//        myCache.put(cache, ret);
-//        return ret;
-//    }
-
-    /**
-     * DEPRECATED - replaced with underscore _.findWhere
-     * Get 1 row by - key => value
-     */
-//    function getRowBy(data, key, val) {
-//        var collection = null;
-//        angular.forEach(data, function(v, k) {
-//            if (v[key] == val) {
-//                collection = v;
-//                return;
-//            }
-//
-//        });
-//        return collection;
-//    }
 
     /**
      * Set EnOcean profile

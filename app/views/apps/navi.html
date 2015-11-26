@@ -1,0 +1,19 @@
+<div class="tabs-container">
+    <ul class="nav nav-tabs nav-tabs-3" role="tablist">
+        <li ng-class="activeTab == 'local' ? 'active' : ''">
+            <a href="#apps/local">
+                <i class="fa fa-cloud-download fa-lg tab-icon"></i> <span class="tab-name">{{_t('lb_local_modules')}}</span>
+            </a>
+        </li>
+        <li ng-class="activeTab == 'online' ? 'active' : ''">
+            <a href="#apps/online">
+                <i class="fa fa-globe fa-lg tab-icon"></i> <span class="tab-name">{{_t('lb_online_modules')}}</span>
+            </a>
+        </li>
+        <li ng-class="activeTab == 'instance' ? 'active' : ''">
+            <a href="#apps/instance">
+                <i class="fa fa-cog fa-fire tab-icon"></i> <span class="tab-name">{{_t('lb_active')}}</span>
+            </a>
+        </li>
+    </ul>
+</div>
