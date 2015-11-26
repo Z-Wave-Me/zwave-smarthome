@@ -1,4 +1,5 @@
 {
+    "password_valid":  "Password should be minimum 6 characters",
     "password_info":  "The info text comes here....",
     "enter_valid_password":  "Please enter a valid password",
     "featured_apps":  "Featured apps",

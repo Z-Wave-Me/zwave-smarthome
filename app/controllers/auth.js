@@ -73,12 +73,18 @@ myAppController.controller('LoginController', function($scope, $location, $windo
  * Password controller
  */
 myAppController.controller('PasswordController', function($scope,  dataFactory) {
-    $scope.newPassword = null;
+    //$scope.newPassword = null;
+    $scope.input = {
+        password: ''
+    };
     /**
      * Change password
      */
-    $scope.changePassword = function(newPassword) {
-        if (!newPassword || newPassword === '' || newPassword === $scope.cfg.default_credentials.password) {
+    $scope.changePassword = function(form,input) {
+        if (form.$invalid) {
+            return;
+        }
+        if (input.password === '' || input.password === $scope.cfg.default_credentials.password) {
             alertify.alert($scope._t('enter_valid_password'));
             $scope.loading = false;
             return;
@@ -86,7 +92,7 @@ myAppController.controller('PasswordController', function($scope,  dataFactory) 
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         var input = {
             id: $scope.user.id,
-            password: newPassword
+            password: input.password
 
         };
          dataFactory.putApi('profiles_auth_update', input.id, input).then(function(response) {

@@ -146,7 +146,7 @@ myApp.directive('bbValidator', function($window) {
             trans: '=',
             hasBlur: '='
         },
-        template: '<div class="valid-error text-danger" ng-if="inputName.$invalid && !inputName.$pristine && hasBlur">*{{trans}}</div>'
+        template: '<div class="valid-error text-danger" ng-if="inputName && !inputName.$pristine && hasBlur">*{{trans}}</div>'
     };
 });
 /**
