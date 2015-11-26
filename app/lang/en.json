@@ -1,7 +1,7 @@
 {
     "newtrans": "---",
-    "passwords_must_match":  "Passwords must match.",
     "---": "newtrans",
+    "passwords_must_match":  "Passwords must match.",
     "confirm_password":  "Retype password to confirm",
     "password_valid":  "Password should be minimum 6 characters",
     "password_info":  "You are still using the default password. However, this is very unsecure and we recommend to change it.",
