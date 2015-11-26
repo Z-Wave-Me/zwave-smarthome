@@ -11,8 +11,8 @@ var config_data = {
         'interval': 3000,
         // Interval in miliseconds (5 min) to clear history (json) cache
         'history_cache_interval': 300000,
-        // Default login
-         'default_login': {
+        // Default auth credentials
+         'default_credentials': {
              'login':'admin',
              'password':'admin'
          },

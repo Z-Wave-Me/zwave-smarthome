@@ -4790,12 +4790,16 @@ padding-right: 5px;
 
 /* Login
 -------------------------------------------------- */
+/* line 4, sass/modules/_login.scss */
+#page_login #header, #page_password #header {
+  display: none !important;
+}
 /* line 7, sass/modules/_login.scss */
-#page_login .container {
+#page_login .container, #page_password .container {
   max-width: 500px;
 }
 /* line 10, sass/modules/_login.scss */
-#page_login .login-lang {
+#page_login .login-lang, #page_password .login-lang {
   text-align: right;
   margin-bottom: 10px;
 }
