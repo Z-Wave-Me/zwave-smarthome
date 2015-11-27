@@ -66,7 +66,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
                 }).
                 //Admin detail
                 when('/admin/user/:id', {
-                    templateUrl: 'app/views/management/management_user.html',
+                    templateUrl: 'app/views/management/management_user_id.html',
                     requireLogin: true,
                     roles: cfg.role_access.admin_user
                 }).

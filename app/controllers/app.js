@@ -377,7 +377,6 @@ myAppController.controller('AppController', function($scope, $filter, $cookies, 
     };
 
 });
-
 /**
  * App base controller
  */
@@ -564,7 +563,6 @@ myAppController.controller('AppBaseController', function($scope, $filter, $cooki
     $scope.loadInstances();
 
 });
-
 /**
  * App local controller
  */
@@ -629,7 +627,6 @@ myAppController.controller('AppLocalController', function($scope, $filter, $cook
     };
 
 });
-
 /**
  * App online controller
  */
@@ -701,7 +698,6 @@ myAppController.controller('AppOnlineController', function($scope, $filter, $coo
     };
 
 });
-
 /**
  * App Instance controller
  */
@@ -798,8 +794,6 @@ myAppController.controller('AppLocalDetailController', function($scope, $routePa
     }
 
 });
-
-
 /**
  * App online detail controller
  */

@@ -54,7 +54,6 @@ myApp.directive('bbAlert', function() {
         replace: true,
         scope: {alert: '='},
         template: '<div class="alert" ng-if="alert.message" ng-class="alert.status">'
-                + ' <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'
                 + '<i class="fa fa-lg" ng-class="alert.icon"></i> <span ng-bind-html="alert.message|toTrusted"></span>'
                 + '</div>'
     };

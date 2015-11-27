@@ -13,28 +13,32 @@ myAppController.controller('ManagementController', function($scope, $window, $lo
         remote: false,
         licence: false,
         firmware: false,
-        backup: false
+        backup: false,
+        restore: false,
+        info: false,
+        report: false,
+        appstore: false
     }, $scope.expand);
 
-    $scope.profiles = {};
-    $scope.remoteAccess = false;
+    //$scope.profiles = {};
+    //$scope.remoteAccess = false;
     $scope.controllerInfo = {
         uuid: null,
         softwareRevisionVersion: null,
         softwareLatestVersion: null
     };
-    $scope.proccessLicence = false;
-    $scope.proccessVerify = {
-        'message': false,
-        'status': 'is-hidden'
-    };
-    $scope.proccessUpdate = {
-        'message': false,
-        'status': 'is-hidden'
-    };
-    $scope.inputLicence = {
-        "scratch_id": null
-    };
+//    $scope.proccessLicence = false;
+//    $scope.proccessVerify = {
+//        'message': false,
+//        'status': 'is-hidden'
+//    };
+//    $scope.proccessUpdate = {
+//        'message': false,
+//        'status': 'is-hidden'
+//    };
+//    $scope.inputLicence = {
+//        "scratch_id": null
+//    };
     $scope.restoreBck = {
         chip: '0'
     };
@@ -46,19 +50,19 @@ myAppController.controller('ManagementController', function($scope, $window, $lo
         angular.copy({}, $scope.expand);
     });
 
-    $scope.firmwareUpdateUrl = $sce.trustAsResourceUrl('http://' + $scope.hostName + ':8084/cgi-bin/main.cgi');
-
-
-    /**
-     * Load razberry latest version
-     */
-    $scope.loadRazLatest = function() {
-        dataFactory.getRemoteData($scope.cfg.raz_latest_version_url).then(function(response) {
-            $scope.controllerInfo.softwareLatestVersion = response;
-        }, function(error) {
-        });
-    };
-    //$scope.loadRazLatest();
+//    $scope.firmwareUpdateUrl = $sce.trustAsResourceUrl('http://' + $scope.hostName + ':8084/cgi-bin/main.cgi');
+//
+//
+//    /**
+//     * Load razberry latest version
+//     */
+//    $scope.loadRazLatest = function() {
+//        dataFactory.getRemoteData($scope.cfg.raz_latest_version_url).then(function(response) {
+//            $scope.controllerInfo.softwareLatestVersion = response;
+//        }, function(error) {
+//        });
+//    };
+//    //$scope.loadRazLatest();
 
     /**
      * Load ZwaveApiData
@@ -79,10 +83,244 @@ myAppController.controller('ManagementController', function($scope, $window, $lo
 
     /************************************** User management **************************************/
 
+//    /**
+//     * Load data into collection
+//     */
+//    $scope.loadData = function() {
+//        dataService.showConnectionSpinner();
+//        dataFactory.getApi('profiles').then(function(response) {
+//            $scope.profiles = response.data.data;
+//            dataService.updateTimeTick();
+//        }, function(error) {
+//            $location.path('/error/' + error.status);
+//        });
+//    };
+    //$scope.loadData();
     /**
-     * Load data into collection
+     * Delete an item
      */
-    $scope.loadData = function() {
+//    $scope.delete = function(target, input, message, except) {
+//        if (input.id == except) {
+//            return;
+//        }
+//        alertify.confirm(message, function() {
+//            dataFactory.deleteApi('profiles', input.id).then(function(response) {
+//                $(target).fadeOut(2000);
+//                myCache.remove('profiles');
+//
+//            }, function(error) {
+//                alertify.alert($scope._t('error_delete_data'));
+//            });
+//        });
+//    };
+
+    /************************************** Remote access **************************************/
+
+//    /**
+//     * Load Remote access data
+//     */
+//    $scope.loadRemoteAccess = function() {
+//        if (!$scope.elementAccess($scope.cfg.role_access.remote_access)) {
+//            return;
+//        }
+//        dataFactory.getApi('instances', '/RemoteAccess').then(function(response) {
+//            var remoteAccess = response.data.data[0];
+//            if (Object.keys(remoteAccess).length < 1) {
+//                $scope.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-warning'};
+//            }
+//            if (!remoteAccess.active) {
+//                $scope.alert = {message: $scope._t('remote_access_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+//                return;
+//            }
+//            if (!remoteAccess.params.userId) {
+//                $scope.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-warning'};
+//                return;
+//            }
+//            remoteAccess.params.pass = null;
+//            $scope.remoteAccess = remoteAccess;
+//        }, function(error) {
+//            $scope.alert = {message: $scope._t('remote_access_not_installed'), status: 'alert-danger', icon: 'fa-warning'};
+//        });
+//    };
+//
+//    $scope.loadRemoteAccess();
+//
+//    /**
+//     * PUT Remote access
+//     */
+//    $scope.putRemoteAccess = function(input) {
+//        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+//        dataFactory.putApi('instances', input.id, input).then(function(response) {
+//            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
+//
+//        }, function(error) {
+//            alertify.alert($scope._t('error_update_data'));
+//            $scope.loading = false;
+//        });
+//
+//    };
+
+    /************************************** Licence **************************************/
+
+//    /**
+//     * Get license key
+//     */
+//    $scope.getLicense = function(inputLicence) {
+//        // Clear messages
+//        $scope.proccessVerify.message = false;
+//        $scope.proccessUpdate.message = false;
+//        if (!inputLicence.scratch_id) {
+//            return;
+//        }
+//
+//        $scope.proccessVerify = {'message': $scope._t('verifying_licence_key'), 'status': 'fa fa-spinner fa-spin'};
+//        $scope.proccessLicence = true;
+//        var input = {
+//            'uuid': $scope.controllerInfo.uuid,
+//            'scratch': inputLicence.scratch_id
+//        };
+//        dataFactory.getLicense(input).then(function(response) {
+//            $scope.proccessVerify = {'message': $scope._t('success_licence_key'), 'status': 'fa fa-check text-success'};
+//            // Update capabilities
+//            updateCapabilities(response);
+//        }, function(error) {
+//            var message = $scope._t('error_no_licence_key');
+//            if (error.status == 404) {
+//                var message = $scope._t('error_404_licence_key');
+//            }
+//            $scope.proccessVerify = {'message': message, 'status': 'fa fa-exclamation-triangle text-danger'};
+//            $scope.proccessLicence = false;
+//
+//        });
+//        return;
+//    };
+//
+//    /**
+//     * Update capabilities
+//     */
+//    function updateCapabilities(data) {
+//        $scope.proccessUpdate = {'message': $scope._t('upgrading_capabilities'), 'status': 'fa fa-spinner fa-spin'};
+////        $timeout(function() {
+////             $scope.proccessUpdate = {'message': $scope._t('success_capabilities'), 'status': 'fa fa-check text-success'};
+////             $scope.proccessLicence = false;
+////        }, 3000);
+//        dataFactory.zmeCapabilities(data).then(function(response) {
+//            $scope.proccessUpdate = {'message': $scope._t('success_capabilities'), 'status': 'fa fa-check text-success'};
+//            $scope.proccessLicence = false;
+//        }, function(error) {
+//            $scope.proccessUpdate = {'message': $scope._t('error_no_capabilities'), 'status': 'fa fa-exclamation-triangle text-danger'};
+//            $scope.proccessLicence = false;
+//        });
+//    }
+//    ;
+
+    /************************************** Backup, Restore, Factory default **************************************/
+//    // Backup, restore, Factory default
+//    $scope.backupRestore = {
+//        activeTab: (angular.isDefined($cookies.tab_admin_backup) ? $cookies.tab_admin_backup : 'backup'),
+//        restore: {
+//            alert: {message: false, status: 'is-hidden', icon: false},
+//            process: false
+//        },
+//        factory: {
+//            alert: {message: false, status: 'is-hidden', icon: false},
+//            process: false
+//        }
+//
+//    };
+//    $scope.factoryDefault = {
+//        alert: {message: false, status: 'is-hidden', icon: false},
+//        process: false
+//
+//    };
+//
+//    /**
+//     * Set tab
+//     */
+//    $scope.setBackupTab = function(tabId) {
+//        $scope.backupRestore.activeTab = tabId;
+//        $cookies.tab_admin_backup = tabId;
+//    };
+//
+//    /**
+//     * Upload backup file
+//     */
+//    $scope.uploadBackupFile = function(input) {
+//        var cnt = 0;
+//        $scope.backupRestore.restore.process = true;
+//        var refresh = function() {
+//            $scope.backupRestore.restore.alert = {message: $scope._t('restore_wait'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
+//            cnt += 1;
+//            if (cnt >= 10) {
+//                $interval.cancel(interval);
+//                $scope.backupRestore.restore.alert = {message: $scope._t('factory_default_success'), status: 'alert-success', icon: 'fa-check'};
+//                //$scope.backupRestore.restore.alert = {message: $scope._t('factory_default_error'), status: 'alert-danger', icon: 'fa-warning'};
+//                $scope.backupRestore.restore.process = false;
+//            }
+//        };
+//        var interval = $interval(refresh, 1000);
+//        return;
+//        /*$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('restore_wait')};
+//         var fd = new FormData();
+//         fd.append('file_upload', $scope.myFile);
+//         dataFactory.restoreFromBck(fd).then(function(response) {
+//         $timeout(function() {
+//         $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('restore_done_reload_ui')};
+//         //$interval.cancel($scope.zwaveDataInterval);
+//         $window.location.reload();
+//         }, 20000);
+//         }, function(error) {
+//         $scope.loading = false;
+//         });*/
+//    };
+//
+//    /**
+//     * Cancel restore
+//     */
+//    $scope.cancelRestore = function() {
+//        $("#restore_confirm").attr('checked', false);
+//        $("#restore_chip_info").attr('checked', false);
+//        $scope.goRestore = false;
+//        $scope.goRestoreUpload = false;
+//
+//    };
+//
+//    /**
+//     * Back to Factory default
+//     */
+//    $scope.backFactoryDefault = function(input) {
+//        var cnt = 0;
+//        $scope.backupRestore.factory.process = true;
+//        var refresh = function() {
+//            $scope.backupRestore.factory.alert = {message: $scope._t('returning_factory_default'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
+//            cnt += 1;
+//            if (cnt >= 10) {
+//                $interval.cancel(interval);
+//                $scope.backupRestore.factory.alert = {message: $scope._t('factory_default_success'), status: 'alert-success', icon: 'fa-check'};
+//                //$scope.backupRestore.factory.alert = {message: $scope._t('factory_default_error'), status: 'alert-danger', icon: 'fa-warning'};
+//                $scope.backupRestore.factory.process = false;
+//            }
+//        };
+//        var interval = $interval(refresh, 1000);
+//    };
+
+    /************************************** Firmware **************************************/
+    /**
+     * Show modal window
+     */
+//    $scope.showModal = function(target) {
+//        $(target).modal();
+//    };
+});
+/**
+ * List of users
+ */
+myAppController.controller('ManagementUserController', function($scope, $location, dataFactory, dataService, myCache) {
+    $scope.profiles = {};
+    /**
+     * Load profiles
+     */
+    $scope.loadProfiles = function() {
         dataService.showConnectionSpinner();
         dataFactory.getApi('profiles').then(function(response) {
             $scope.profiles = response.data.data;
@@ -91,11 +329,12 @@ myAppController.controller('ManagementController', function($scope, $window, $lo
             $location.path('/error/' + error.status);
         });
     };
-    $scope.loadData();
+    $scope.loadProfiles();
+
     /**
-     * Delete an item
+     * Delete an user
      */
-    $scope.delete = function(target, input, message, except) {
+    $scope.deleteProfile = function(target, input, message, except) {
         if (input.id == except) {
             return;
         }
@@ -110,208 +349,12 @@ myAppController.controller('ManagementController', function($scope, $window, $lo
         });
     };
 
-    /************************************** Remote access **************************************/
 
-    /**
-     * Load Remote access data
-     */
-    $scope.loadRemoteAccess = function() {
-        if (!$scope.elementAccess($scope.cfg.role_access.remote_access)) {
-            return;
-        }
-        dataFactory.getApi('instances', '/RemoteAccess').then(function(response) {
-            var remoteAccess = response.data.data[0];
-            if (Object.keys(remoteAccess).length < 1) {
-                $scope.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-warning'};
-            }
-            if (!remoteAccess.active) {
-                $scope.alert = {message: $scope._t('remote_access_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
-                return;
-            }
-            if (!remoteAccess.params.userId) {
-                $scope.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-warning'};
-                return;
-            }
-            remoteAccess.params.pass = null;
-            $scope.remoteAccess = remoteAccess;
-        }, function(error) {
-            $scope.alert = {message: $scope._t('remote_access_not_installed'), status: 'alert-danger', icon: 'fa-warning'};
-        });
-    };
-
-    $scope.loadRemoteAccess();
-
-    /**
-     * PUT Remote access
-     */
-    $scope.putRemoteAccess = function(input) {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataFactory.putApi('instances', input.id, input).then(function(response) {
-            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
-
-        }, function(error) {
-            alertify.alert($scope._t('error_update_data'));
-            $scope.loading = false;
-        });
-
-    };
-
-    /************************************** Licence **************************************/
-
-    /**
-     * Get license key
-     */
-    $scope.getLicense = function(inputLicence) {
-        // Clear messages
-        $scope.proccessVerify.message = false;
-        $scope.proccessUpdate.message = false;
-        if (!inputLicence.scratch_id) {
-            return;
-        }
-
-        $scope.proccessVerify = {'message': $scope._t('verifying_licence_key'), 'status': 'fa fa-spinner fa-spin'};
-        $scope.proccessLicence = true;
-        var input = {
-            'uuid': $scope.controllerInfo.uuid,
-            'scratch': inputLicence.scratch_id
-        };
-        dataFactory.getLicense(input).then(function(response) {
-            $scope.proccessVerify = {'message': $scope._t('success_licence_key'), 'status': 'fa fa-check text-success'};
-            // Update capabilities
-            updateCapabilities(response);
-        }, function(error) {
-            var message = $scope._t('error_no_licence_key');
-            if (error.status == 404) {
-                var message = $scope._t('error_404_licence_key');
-            }
-            $scope.proccessVerify = {'message': message, 'status': 'fa fa-exclamation-triangle text-danger'};
-            $scope.proccessLicence = false;
-
-        });
-        return;
-    };
-
-    /**
-     * Update capabilities
-     */
-    function updateCapabilities(data) {
-        $scope.proccessUpdate = {'message': $scope._t('upgrading_capabilities'), 'status': 'fa fa-spinner fa-spin'};
-//        $timeout(function() {
-//             $scope.proccessUpdate = {'message': $scope._t('success_capabilities'), 'status': 'fa fa-check text-success'};
-//             $scope.proccessLicence = false;
-//        }, 3000);
-        dataFactory.zmeCapabilities(data).then(function(response) {
-            $scope.proccessUpdate = {'message': $scope._t('success_capabilities'), 'status': 'fa fa-check text-success'};
-            $scope.proccessLicence = false;
-        }, function(error) {
-            $scope.proccessUpdate = {'message': $scope._t('error_no_capabilities'), 'status': 'fa fa-exclamation-triangle text-danger'};
-            $scope.proccessLicence = false;
-        });
-    }
-    ;
-
-    /************************************** Backup, Restore, Factory default **************************************/
-    // Backup, restore, Factory default
-    $scope.backupRestore = {
-        activeTab: (angular.isDefined($cookies.tab_admin_backup) ? $cookies.tab_admin_backup : 'backup'),
-        restore: {
-            alert: {message: false, status: 'is-hidden', icon: false},
-            process: false
-        },
-        factory: {
-            alert: {message: false, status: 'is-hidden', icon: false},
-            process: false
-        }
-
-    };
-    $scope.factoryDefault = {
-        alert: {message: false, status: 'is-hidden', icon: false},
-        process: false
-
-    };
-
-    /**
-     * Set tab
-     */
-    $scope.setBackupTab = function(tabId) {
-        $scope.backupRestore.activeTab = tabId;
-        $cookies.tab_admin_backup = tabId;
-    };
-
-    /**
-     * Upload backup file
-     */
-    $scope.uploadBackupFile = function(input) {
-        var cnt = 0;
-        $scope.backupRestore.restore.process = true;
-        var refresh = function() {
-            $scope.backupRestore.restore.alert = {message: $scope._t('restore_wait'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
-            cnt += 1;
-            if (cnt >= 10) {
-                $interval.cancel(interval);
-                $scope.backupRestore.restore.alert = {message: $scope._t('factory_default_success'), status: 'alert-success', icon: 'fa-check'};
-                //$scope.backupRestore.restore.alert = {message: $scope._t('factory_default_error'), status: 'alert-danger', icon: 'fa-warning'};
-                $scope.backupRestore.restore.process = false;
-            }
-        };
-        var interval = $interval(refresh, 1000);
-        return;
-        /*$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('restore_wait')};
-         var fd = new FormData();
-         fd.append('file_upload', $scope.myFile);
-         dataFactory.restoreFromBck(fd).then(function(response) {
-         $timeout(function() {
-         $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('restore_done_reload_ui')};
-         //$interval.cancel($scope.zwaveDataInterval);
-         $window.location.reload();
-         }, 20000);
-         }, function(error) {
-         $scope.loading = false;
-         });*/
-    };
-
-    /**
-     * Cancel restore
-     */
-    $scope.cancelRestore = function() {
-        $("#restore_confirm").attr('checked', false);
-        $("#restore_chip_info").attr('checked', false);
-        $scope.goRestore = false;
-        $scope.goRestoreUpload = false;
-
-    };
-
-    /**
-     * Back to Factory default
-     */
-    $scope.backFactoryDefault = function(input) {
-        var cnt = 0;
-        $scope.backupRestore.factory.process = true;
-        var refresh = function() {
-            $scope.backupRestore.factory.alert = {message: $scope._t('returning_factory_default'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
-            cnt += 1;
-            if (cnt >= 10) {
-                $interval.cancel(interval);
-                $scope.backupRestore.factory.alert = {message: $scope._t('factory_default_success'), status: 'alert-success', icon: 'fa-check'};
-                //$scope.backupRestore.factory.alert = {message: $scope._t('factory_default_error'), status: 'alert-danger', icon: 'fa-warning'};
-                $scope.backupRestore.factory.process = false;
-            }
-        };
-        var interval = $interval(refresh, 1000);
-    };
-
-    /************************************** Firmware **************************************/
-    /**
-     * Show modal window
-     */
-    $scope.showModal = function(target) {
-        $(target).modal();
-    };
 });
 /**
  * User detail
  */
-myAppController.controller('ManagementUserController', function($scope, $routeParams, $filter, $location, dataFactory, dataService, myCache) {
+myAppController.controller('ManagementUserIdController', function($scope, $routeParams, $filter, $location, dataFactory, dataService, myCache) {
     $scope.id = $filter('toInt')($routeParams.id);
     $scope.rooms = {};
     $scope.input = {
@@ -453,6 +496,182 @@ myAppController.controller('ManagementUserController', function($scope, $routePa
 
 });
 /**
+ * Remote access controller
+ */
+myAppController.controller('ManagementRemoteController', function($scope, dataFactory) {
+    $scope.remoteAccess = false;
+    /**
+     * Load Remote access data
+     */
+    $scope.loadRemoteAccess = function() {
+        if (!$scope.elementAccess($scope.cfg.role_access.remote_access)) {
+            return;
+        }
+        dataFactory.getApi('instances', '/RemoteAccess').then(function(response) {
+            var remoteAccess = response.data.data[0];
+            if (Object.keys(remoteAccess).length < 1) {
+                $scope.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-warning'};
+            }
+            if (!remoteAccess.active) {
+                $scope.alert = {message: $scope._t('remote_access_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                return;
+            }
+            if (!remoteAccess.params.userId) {
+                $scope.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-warning'};
+                return;
+            }
+            remoteAccess.params.pass = null;
+            $scope.remoteAccess = remoteAccess;
+        }, function(error) {
+            $scope.alert = {message: $scope._t('remote_access_not_installed'), status: 'alert-danger', icon: 'fa-warning'};
+        });
+    };
+
+    $scope.loadRemoteAccess();
+
+    /**
+     * PUT Remote access
+     */
+    $scope.putRemoteAccess = function(input) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        dataFactory.putApi('instances', input.id, input).then(function(response) {
+            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
+
+        }, function(error) {
+            alertify.alert($scope._t('error_update_data'));
+            $scope.loading = false;
+        });
+
+    };
+});
+/**
+ * Licence controller
+ */
+myAppController.controller('ManagementLicenceController', function($scope, dataFactory) {
+    $scope.proccessLicence = false;
+    $scope.proccessVerify = {
+        'message': false,
+        'status': 'is-hidden'
+    };
+    $scope.proccessUpdate = {
+        'message': false,
+        'status': 'is-hidden'
+    };
+    $scope.inputLicence = {
+        "scratch_id": null
+    };
+    /**
+     * Get license key
+     */
+    $scope.getLicense = function(inputLicence) {
+        // Clear messages
+        $scope.proccessVerify.message = false;
+        $scope.proccessUpdate.message = false;
+        if (!inputLicence.scratch_id) {
+            return;
+        }
+
+        $scope.proccessVerify = {'message': $scope._t('verifying_licence_key'), 'status': 'fa fa-spinner fa-spin'};
+        $scope.proccessLicence = true;
+        var input = {
+            'uuid': $scope.controllerInfo.uuid,
+            'scratch': inputLicence.scratch_id
+        };
+        dataFactory.getLicense(input).then(function(response) {
+            $scope.proccessVerify = {'message': $scope._t('success_licence_key'), 'status': 'fa fa-check text-success'};
+            // Update capabilities
+            updateCapabilities(response);
+        }, function(error) {
+            var message = $scope._t('error_no_licence_key');
+            if (error.status == 404) {
+                var message = $scope._t('error_404_licence_key');
+            }
+            $scope.proccessVerify = {'message': message, 'status': 'fa fa-exclamation-triangle text-danger'};
+            $scope.proccessLicence = false;
+
+        });
+        return;
+    };
+
+    /**
+     * Update capabilities
+     */
+    function updateCapabilities(data) {
+        $scope.proccessUpdate = {'message': $scope._t('upgrading_capabilities'), 'status': 'fa fa-spinner fa-spin'};
+        dataFactory.zmeCapabilities(data).then(function(response) {
+            $scope.proccessUpdate = {'message': $scope._t('success_capabilities'), 'status': 'fa fa-check text-success'};
+            $scope.proccessLicence = false;
+        }, function(error) {
+            $scope.proccessUpdate = {'message': $scope._t('error_no_capabilities'), 'status': 'fa fa-exclamation-triangle text-danger'};
+            $scope.proccessLicence = false;
+        });
+    }
+    ;
+});
+/**
+ * Firmware update controller
+ */
+myAppController.controller('ManagementFirmwareController', function($scope, $sce, dataFactory) {
+    $scope.firmwareUpdateUrl = $sce.trustAsResourceUrl('http://' + $scope.hostName + ':8084/cgi-bin/main.cgi');
+
+
+    /**
+     * Load razberry latest version
+     */
+    $scope.loadRazLatest = function() {
+        dataFactory.getRemoteData($scope.cfg.raz_latest_version_url).then(function(response) {
+            $scope.controllerInfo.softwareLatestVersion = response;
+        }, function(error) {
+        });
+    };
+    //$scope.loadRazLatest();
+
+    /**
+     * Show modal window
+     */
+    $scope.showModalFirmware = function(target) {
+        $(target).modal();
+    };
+});
+/**
+ * Back up controller
+ */
+myAppController.controller('ManagementBackupController', function($scope, $cookies, $interval, dataFactory) {
+   
+});
+/**
+ * Restor controller
+ */
+myAppController.controller('ManagementRestoreController', function($scope, dataFactory) {
+    $scope.myFile = null;
+    $scope.managementRestore = {
+        confirm: false,
+        alert: {message: false, status: 'is-hidden', icon: false},
+        process: false
+    };
+
+    /**
+     * Upload image
+     */
+    $scope.uploadFile = function(files) {
+        $scope.managementRestore.alert = {message: $scope._t('restore_wait'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
+        var cmd = $scope.cfg.api['restore'];
+        var fd = new FormData();
+        
+        fd.append('backupFile', $scope.myFile);
+        //fd.append('backupFile', files[0]); 
+        $scope.managementRestore.alert = {message: $scope._t('factory_default_success'), status: 'alert-success', icon: 'fa-check'};
+       dataFactory.uploadApiFile(cmd, fd).then(function(response) {
+            $scope.managementRestore.alert = {message: $scope._t('restore_done_reload_ui'), status: 'alert-success', icon: 'fa-check'};
+        }, function(error) {
+            $scope.loading = false;
+            alertify.alert($scope._t('restore_backup_failed'));
+            $scope.managementRestore.alert = false;
+        });
+         
+    };
+});
+/**
  * App Store controller
  */
 myAppController.controller('ManagementAppStoreController', function($scope, $routeParams, $filter, $location, dataFactory, dataService, myCache) {
@@ -471,10 +690,11 @@ myAppController.controller('ManagementAppStoreController', function($scope, $rou
         dataService.showConnectionSpinner();
         dataFactory.getApi('tokens', null, true).then(function(response) {
             angular.extend($scope.appStore.tokens, response.data.data.tokens);
-        }, function(error) {});
+        }, function(error) {
+        });
     };
     $scope.appStoreLoadTokens();
-    
+
     /**
      * Create/Update an item
      */
@@ -487,10 +707,10 @@ myAppController.controller('ManagementAppStoreController', function($scope, $rou
             $scope.appStoreLoadTokens();
         }, function(error) {
             var message = $scope._t('error_update_data');
-            if(error.status === 409){
+            if (error.status === 409) {
                 message = $scope._t('notunique_token') + ' - ' + $scope.appStore.input.token;
             }
-            alertify.alert( message);
+            alertify.alert(message);
         });
 
     };
@@ -501,7 +721,8 @@ myAppController.controller('ManagementAppStoreController', function($scope, $rou
     $scope.appStoreRemoveToken = function(token, message) {
         alertify.confirm(message, function() {
             dataFactory.deleteApiFormdata('tokens', {token: token}).then(function(response) {
-                angular.extend($scope.appStore,response.data.data);;
+                angular.extend($scope.appStore, response.data.data);
+                ;
             }, function(error) {
                 alertify.alert($scope._t('error_delete_data'));
             });
@@ -516,8 +737,7 @@ myAppController.controller('ManagementAppStoreController', function($scope, $rou
 /**
  * Management report controller
  */
-
-myAppController.controller('ManagementReportController', function($scope, $window, $route,dataFactory, dataService) {
+myAppController.controller('ManagementReportController', function($scope, $window, $route, dataFactory, dataService) {
     $scope.ZwaveApiData = false;
     $scope.remoteAccess = false;
     $scope.input = {
@@ -591,7 +811,7 @@ myAppController.controller('ManagementReportController', function($scope, $windo
         //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         dataFactory.postReport(input).then(function(response) {
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_send_report') + ' ' + input.email};
-             $route.reload();
+            $route.reload();
             //$window.location.reload();
 //            $scope.form.$setPristine();
 //           input.content = null;
@@ -609,21 +829,21 @@ myAppController.controller('ManagementReportController', function($scope, $windo
 /**
  * Management info controller
  */
-myAppController.controller('ManagementInfoController', function($scope, dataFactory,dataService) {
+myAppController.controller('ManagementInfoController', function($scope, dataFactory, dataService) {
     $scope.input = {
         software: {
             firmwareVersion: '',
             uiVersion: $scope.cfg.app_version
         }
     };
-    
+
     /**
      * Load ZwaveApiData
      */
     $scope.loadZwaveApiData = function() {
         dataService.showConnectionSpinner();
         dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
-            angular.extend($scope.input.software,{firmwareVersion: ZWaveAPIData.controller.data.softwareRevisionVersion.value});
+            angular.extend($scope.input.software, {firmwareVersion: ZWaveAPIData.controller.data.softwareRevisionVersion.value});
             dataService.updateTimeTick();
         }, function(error) {
             dataService.showConnectionError(error);
