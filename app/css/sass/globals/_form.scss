@@ -26,6 +26,13 @@ fieldset, .fieldset{
     background-color: $app-body-bcg-color;
     padding: 10px;
 }
+.isrequired{
+    font-weight: bold !important;
+    
+}
+.isrequired::before { 
+    content: "*";
+}
 
 .form-control-sm{
     width: 30% !important;
@@ -33,7 +40,7 @@ fieldset, .fieldset{
 
 .form-control-md{
     width: 50% !important;
-}
+} 
 
 .submit-entry{
     text-align: right;

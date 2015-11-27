@@ -1851,17 +1851,27 @@ fieldset, .fieldset {
   padding: 10px;
 }
 
-/* line 30, sass/globals/_form.scss */
+/* line 29, sass/globals/_form.scss */
+.isrequired {
+  font-weight: bold !important;
+}
+
+/* line 33, sass/globals/_form.scss */
+.isrequired::before {
+  content: "*";
+}
+
+/* line 37, sass/globals/_form.scss */
 .form-control-sm {
   width: 30% !important;
 }
 
-/* line 34, sass/globals/_form.scss */
+/* line 41, sass/globals/_form.scss */
 .form-control-md {
   width: 50% !important;
 }
 
-/* line 38, sass/globals/_form.scss */
+/* line 45, sass/globals/_form.scss */
 .submit-entry {
   text-align: right;
   display: block;
@@ -1869,23 +1879,23 @@ fieldset, .fieldset {
   border-top: solid 1px #c6c6c6;
 }
 
-/* line 46, sass/globals/_form.scss */
+/* line 53, sass/globals/_form.scss */
 fieldset.submit-entry {
   margin: 0 !important;
 }
 
-/* line 49, sass/globals/_form.scss */
+/* line 56, sass/globals/_form.scss */
 .form-control-hidden {
   display: none !important;
 }
 
-/* line 52, sass/globals/_form.scss */
+/* line 59, sass/globals/_form.scss */
 .form-control-img {
   cursor: pointer;
   border: solid 4px transparent;
 }
 
-/* line 57, sass/globals/_form.scss */
+/* line 64, sass/globals/_form.scss */
 .control-active {
   border: solid 4px black !important;
 }
