@@ -247,6 +247,14 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     templateUrl: 'app/views/auth/password.html',
                     requireLogin: true
                 }).
+                //Password forgot
+                when('/passwordforgot', {
+                    templateUrl: 'app/views/auth/password_forgot.html'
+                }).
+                //Password reset
+                when('/passwordforgot/reset/:token', {
+                    templateUrl: 'app/views/auth/password_reset.html'
+                }).
                 //Login
                 when('/logout', {
                     templateUrl: 'app/views/auth/logout.html',
