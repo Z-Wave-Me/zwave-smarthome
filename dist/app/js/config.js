@@ -11,6 +11,11 @@ var config_data = {
         'interval': 3000,
         // Interval in miliseconds (5 min) to clear history (json) cache
         'history_cache_interval': 300000,
+        // Default auth credentials
+         'default_credentials': {
+             'login':'admin',
+             'password':'admin'
+         },
         // List of API URLs 
         'api': {
             'devices': 'ZAutomation/api/v1/devices',
@@ -199,6 +204,13 @@ var config_data = {
                     'SensorsPolling',
                     'SwitchControlGenerator',
                     'ZWave'
+                ],
+                featured_apps: [
+                    'IfThen',
+                    'OpenWeather',
+                    'DeviceHistory',
+                    'PeriodicalSwitchControl',
+                    'ScheduledScene'
                 ]
             },
             'popp': {
@@ -221,6 +233,13 @@ var config_data = {
                     'SensorsPolling',
                     'SwitchControlGenerator',
                     'ZWave'
+                ],
+                featured_apps: [
+                    'IfThen',
+                    'OpenWeather',
+                    'DeviceHistory',
+                    'PeriodicalSwitchControl',
+                    'ScheduledScene'
                 ]
             },
             'wd': {
@@ -243,6 +262,13 @@ var config_data = {
                     'SensorsPolling',
                     'SwitchControlGenerator',
                     'ZWave'
+                ],
+                featured_apps: [
+                    'IfThen',
+                    'OpenWeather',
+                    'DeviceHistory',
+                    'PeriodicalSwitchControl',
+                    'ScheduledScene'
                 ]
             }
         }
