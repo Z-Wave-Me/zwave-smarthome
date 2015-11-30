@@ -1,5 +1,21 @@
 /* Apps
 -------------------------------------------------- */
+.app-featured{ 
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 10px 20px;
+    .app-featured-entry{
+        display: inline-block;
+        padding: 0 10px 10px 10px;
+    }
+    img{
+        max-width: 64px;
+        max-height: 64px;
+    }
+}
+.app-featured.show-all-true{ 
+    cursor:pointer;
+}
 .app-entry{  
 }
 /*.col-sm-2.app-header{

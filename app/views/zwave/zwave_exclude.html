@@ -1,0 +1,69 @@
+<!-- Include -->
+<div ng-controller="ZwaveExcludeController">
+    
+    <div ng-if="zWaveDevice.id">
+        <div class="device-perex clearfix"> 
+            <h2>{{zWaveDevice.name}}</h2>
+            <p>{{_t('remove_device_from_network')}} </p>
+        </div>
+        <div class="col-device app-border app-gradient app-shadow">
+            <!-- RemoveNodeFromNetwork proccess --> 
+            <div ng-if="zWaveDevice.lastExcludedDevice != zWaveDevice.id">
+                <div class="exclude-device" ng-hide="[5].indexOf(zWaveDevice.controllerState) > -1">
+                    <p><strong>{{_t('start_removal')}} </strong></p>
+                    <button class="btn btn-default btn-lg"
+                            ng-click="runZwaveCmd('controller.RemoveNodeFromNetwork(1)')"
+                            ><i class="fa fa-play-circle fa-lg text-success"></i> {{_t('btn_exclusion_start')}}</button> 
+                </div>
+                <div class="exclude-device" ng-show="zWaveDevice.controllerState == 5">
+                    <div class="alert alert-warning"><i class="fa fa-spinner fa-spin"></i> <strong>{{_t('confirm_exclusion')}}</strong></div>
+                    <button 
+                        class="btn btn-default btn-lg"
+                        ng-click="runZwaveCmd('controller.RemoveNodeFromNetwork(0)')">
+                        <i class="fa fa-ban fa-lg text-danger"></i> {{_t('btn_exclusion_stop')}}</button>
+                </div>
+            </div>
+            <!-- RemoveNodeFromNetwork result --> 
+            <div class="exclude-device" ng-if="zWaveDevice.lastExcludedDevice == zWaveDevice.id">
+                <div class="alert alert-success">
+                    <i class="fa fa-check"></i> <strong>{{_t('lb_device_excluded')}}</strong>
+                </div>
+            </div>
+        </div>
+        <div class="fieldset submit-entry">
+            <button type="button" class="btn btn-default" bb-go-back><i class="fa fa-times  text-danger"></i> <span ng-bind="_t('lb_cancel')"></span></button>
+            <!-- <a href="#zwave/devices" class="btn btn-info">{{_t('continue')}} <i class="fa fa-chevron-right"></i></a> --> 
+        </div>
+        <p>&nbsp;</p>
+
+        <div class="col-device app-border app-gradient app-shadow">
+            <!-- RemoveFailedNode proccess --> 
+            <div ng-if="!zWaveDevice.removeNodeProcess">
+                <div class="exclude-device">
+                    <button class="btn btn-default btn-lg"
+                            ng-disabled_="[5, 6, 7, 20].indexOf(controllerState) > -1"
+                            ng-show_="[1, 2, 3, 4].indexOf(controllerState) == -1"
+                            ng-click="zWaveDevice.removeNode = !zWaveDevice.removeNode" ><i class="fa fa-chain-broken fa-lg text-danger"></i> {{_t('broken_device')}}</button>
+                </div>
+                <div class="exclude-device" ng-if="zWaveDevice.removeNode">
+                    <div class="alert alert-warning"><i class="fa fa-info-circle"></i> {{_t('broken_device_war')}}</div>
+
+                    <button class="btn btn-danger btn-lg"
+                            ng-click="removeFailedNode('devices[' + zWaveDevice.id + '].RemoveFailedNode()')"
+                            ><i class="fa fa-exclamation-triangle fa-lg"></i> {{_t('remove_permanently')}}</button>
+
+                </div>
+            </div>
+            <div class="exclude-device" ng-if="zWaveDevice.removeNodeProcess">
+                <div class="alert alert-warning">
+                    <i class="fa fa-spinner fa-spin"></i> <strong>{{_t('broken_device_info')}}</strong>
+                </div>
+            </div>
+        </div>
+        <div class="fieldset submit-entry">
+            <button type="button" class="btn btn-default" bb-go-back><i class="fa fa-times text-danger"></i> <span ng-bind="_t('lb_cancel')"></span></button>
+        </div>
+    </div>
+    <div class="device-logo" ng-include="'app/views/zwave/zwave_nav.html'"></div>
+</div> <!-- /ng-controller --> 
+

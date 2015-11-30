@@ -180,6 +180,16 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
     };
     
     /**
+     * Get array from custom config
+     */
+    $scope.getCustomCfgArr = function(key) {
+       if (cfg.custom_cfg[cfg.app_type]) {
+            return cfg.custom_cfg[cfg.app_type][key]|| [];
+        }
+        return [];
+    };
+    
+    /**
      * Redirect to Expert
      */
     $scope.toExpert = function(url, message) {

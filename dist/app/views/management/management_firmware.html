@@ -1,0 +1,43 @@
+<!-- Admin firmware view -->
+<h2 class="admin-entry-title" ng-click="expandElement('firmware')">
+    <i class="fa fa-level-up"></i> <span ng-bind="_t('firmware_update')"></span>
+     <i class="fa subnavi-arrow" ng-class="expand.firmware  ? 'fa-chevron-up':'fa-chevron-down'"></i>
+</h2>
+<div class="admin-entry-ctrl" ng-if="expand.firmware" ng-controller="ManagementFirmwareController">
+    <form name="form_firmware" id="form_firmware" class="form form-page" ng-submit="updateFirmware()" novalidate>
+        <fieldset>
+            <!-- Currentt version -->
+
+            <p class="form-control-static">
+                <span ng-bind="_t('current_firmware')"></span>: <strong ng-bind="controllerInfo.softwareRevisionVersion"></strong>
+            </p>
+
+            <div class="form-group">
+                <bb-help-text trans="_t('firmware_update_info')"></bb-help-text>
+            </div>
+        </fieldset>
+        <fieldset class="submit-entry">
+            <button type="button" class="btn btn-default" ng-click="expandElement('firmware')"><i class="fa fa-times  text-danger"></i> <span ng-bind="_t('lb_cancel')"></span></button>
+            <button type="button" class="btn btn-submit" ng-click="showModalFirmware('#modal_firmware')"><i class="fa fa-level-up"></i> <span ng-bind="_t('update_to_latest')"></span></button>
+        </fieldset>
+
+    </form>
+
+     <!-- Modal firmware -->
+    <div class="modal fade" id="modal_firmware" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-if="cfg.find_hosts.indexOf(hostName) === -1 && cfg.app_type !== 'wd' && !isMobile">
+        <div class="modal-dialog modal-firmware-iframe">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" ng-bind="_t('firmware_update')"></h4>
+                </div>
+                <div class="modal-body">
+
+                    <iframe ng-src="{{firmwareUpdateUrl}}" height="600" style="width: 100%; "></iframe> 
+
+                </div>
+            </div>
+        </div>
+    </div><!-- /.Modalfirmware -->
+
+</div>

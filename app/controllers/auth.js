@@ -17,11 +17,6 @@ myAppController.controller('LoginController', function($scope, $location, $windo
         default_ui: 1
     };
     $scope.loginLang = ($scope.lastLogin != undefined && angular.isDefined($cookies.lang)) ? $cookies.lang : false;
-    //if(!$scope.lastLogin )
-//    if (dataService.getUser()) {
-//        $location.path('/elements');
-//        return;
-//    }
     /**
      * Login language
      */
@@ -38,6 +33,7 @@ myAppController.controller('LoginController', function($scope, $location, $windo
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         $scope.alert = {message: false};
         dataFactory.logInApi(input).then(function(response) {
+            var redirectTo = '#/elements/dashboard/1?login';
             var user = response.data.data;
              if($scope.loginLang){
                  user.lang = $scope.loginLang;
@@ -48,7 +44,13 @@ myAppController.controller('LoginController', function($scope, $location, $windo
             //$scope.loading = false;
             $scope.input.form = false;
             //$window.location.href = '#/elements/dashboard/1?login';
-            $location.path('/elements/dashboard/1?login');
+             //console.log(user);
+            //$location.path('/elements/dashboard/1?login');
+            if(input.password === $scope.cfg.default_credentials.password){
+                redirectTo = '#/password';
+            }
+            window.location = redirectTo;
+           
             $window.location.reload();
         }, function(error) {
             var message = $scope._t('error_load_data');
@@ -65,6 +67,53 @@ myAppController.controller('LoginController', function($scope, $location, $windo
     if ($routeParams.login && $routeParams.password) {
         $scope.login($routeParams);
     }
+
+});
+/**
+ * Password controller
+ */
+myAppController.controller('PasswordController', function($scope,  dataFactory) {
+    //$scope.newPassword = null;
+    $scope.input = {
+        password: '',
+       passwordConfirm: '',
+       email: '',
+    };
+    /**
+     * Change password
+     */
+    $scope.changePassword = function(form,input) {
+        if (form.$invalid) {
+            return;
+        }
+        if (input.password === '' || input.password === $scope.cfg.default_credentials.password) {
+            alertify.alert($scope._t('enter_valid_password'));
+            $scope.loading = false;
+            return;
+        }
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        var input = {
+            id: $scope.user.id,
+            password: input.password,
+            email: input.email
+
+        };
+         dataFactory.putApi('profiles_auth_update', input.id, input).then(function(response) {
+            var data = response.data.data;
+            if (!data) {
+                alertify.alert($scope._t('error_update_data'));
+                $scope.loading = false;
+                return;
+            }
+            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
+             window.location = '#/elements/dashboard/1';
+
+        }, function(error) {
+            alertify.alert($scope._t('error_update_data'));
+            $scope.loading = false;
+        });
+
+    };
 
 });
 /**

@@ -230,6 +230,603 @@ colorpicker-preview {
   background-position: 0 100%;
 }
 
+/*!
+ * Datetimepicker for Bootstrap 3
+ * version : 4.14.30
+ * https://github.com/Eonasdan/bootstrap-datetimepicker/
+ */
+/* line 6, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget {
+  list-style: none;
+}
+
+/* line 9, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget.dropdown-menu {
+  margin: 2px 0;
+  padding: 4px;
+  width: 19em;
+}
+
+@media (min-width: 768px) {
+  /* line 15, sass/vendor/_bootstrap-datetimepicker.scss */
+  .bootstrap-datetimepicker-widget.dropdown-menu.timepicker-sbs {
+    width: 38em;
+  }
+}
+@media (min-width: 992px) {
+  /* line 20, sass/vendor/_bootstrap-datetimepicker.scss */
+  .bootstrap-datetimepicker-widget.dropdown-menu.timepicker-sbs {
+    width: 38em;
+  }
+}
+@media (min-width: 1200px) {
+  /* line 25, sass/vendor/_bootstrap-datetimepicker.scss */
+  .bootstrap-datetimepicker-widget.dropdown-menu.timepicker-sbs {
+    width: 38em;
+  }
+}
+/* line 29, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget.dropdown-menu:before,
+.bootstrap-datetimepicker-widget.dropdown-menu:after {
+  content: '';
+  display: inline-block;
+  position: absolute;
+}
+
+/* line 35, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget.dropdown-menu.bottom:before {
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 7px solid #cccccc;
+  border-bottom-color: rgba(0, 0, 0, 0.2);
+  top: -7px;
+  left: 7px;
+}
+
+/* line 43, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget.dropdown-menu.bottom:after {
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid white;
+  top: -6px;
+  left: 8px;
+}
+
+/* line 50, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget.dropdown-menu.top:before {
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 7px solid #cccccc;
+  border-top-color: rgba(0, 0, 0, 0.2);
+  bottom: -7px;
+  left: 6px;
+}
+
+/* line 58, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget.dropdown-menu.top:after {
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid white;
+  bottom: -6px;
+  left: 7px;
+}
+
+/* line 65, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget.dropdown-menu.pull-right:before {
+  left: auto;
+  right: 6px;
+}
+
+/* line 69, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget.dropdown-menu.pull-right:after {
+  left: auto;
+  right: 7px;
+}
+
+/* line 73, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget .list-unstyled {
+  margin: 0;
+}
+
+/* line 76, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget a[data-action] {
+  padding: 6px 0;
+}
+
+/* line 79, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget a[data-action]:active {
+  box-shadow: none;
+}
+
+/* line 82, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget .timepicker-hour,
+.bootstrap-datetimepicker-widget .timepicker-minute,
+.bootstrap-datetimepicker-widget .timepicker-second {
+  width: 54px;
+  font-weight: bold;
+  font-size: 1.2em;
+  margin: 0;
+}
+
+/* line 90, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget button[data-action] {
+  padding: 6px;
+}
+
+/* line 93, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget .btn[data-action="incrementHours"]::after {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  content: "Increment Hours";
+}
+
+/* line 104, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget .btn[data-action="incrementMinutes"]::after {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  content: "Increment Minutes";
+}
+
+/* line 115, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget .btn[data-action="decrementHours"]::after {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  content: "Decrement Hours";
+}
+
+/* line 126, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget .btn[data-action="decrementMinutes"]::after {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  content: "Decrement Minutes";
+}
+
+/* line 137, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget .btn[data-action="showHours"]::after {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  content: "Show Hours";
+}
+
+/* line 148, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget .btn[data-action="showMinutes"]::after {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  content: "Show Minutes";
+}
+
+/* line 159, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget .btn[data-action="togglePeriod"]::after {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  content: "Toggle AM/PM";
+}
+
+/* line 170, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget .btn[data-action="clear"]::after {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  content: "Clear the picker";
+}
+
+/* line 181, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget .btn[data-action="today"]::after {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  content: "Set the date to today";
+}
+
+/* line 192, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget .picker-switch {
+  text-align: center;
+}
+
+/* line 195, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget .picker-switch::after {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  content: "Toggle Date and Time Screens";
+}
+
+/* line 206, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget .picker-switch td {
+  padding: 0;
+  margin: 0;
+  height: auto;
+  width: auto;
+  line-height: inherit;
+}
+
+/* line 213, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget .picker-switch td span {
+  line-height: 2.5;
+  height: 2.5em;
+  width: 100%;
+}
+
+/* line 218, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table {
+  width: 100%;
+  margin: 0;
+}
+
+/* line 222, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table td,
+.bootstrap-datetimepicker-widget table th {
+  text-align: center;
+  border-radius: 4px;
+}
+
+/* line 227, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table th {
+  height: 20px;
+  line-height: 20px;
+  width: 20px;
+}
+
+/* line 232, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table th.picker-switch {
+  width: 145px;
+}
+
+/* line 235, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table th.disabled,
+.bootstrap-datetimepicker-widget table th.disabled:hover {
+  background: none;
+  color: #777777;
+  cursor: not-allowed;
+}
+
+/* line 241, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table th.prev::after {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  content: "Previous Month";
+}
+
+/* line 252, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table th.next::after {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  content: "Next Month";
+}
+
+/* line 263, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table thead tr:first-child th {
+  cursor: pointer;
+}
+
+/* line 266, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table thead tr:first-child th:hover {
+  background: #eeeeee;
+}
+
+/* line 269, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table td {
+  height: 54px;
+  line-height: 54px;
+  width: 54px;
+}
+
+/* line 274, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table td.cw {
+  font-size: .8em;
+  height: 20px;
+  line-height: 20px;
+  color: #777777;
+}
+
+/* line 280, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table td.day {
+  height: 20px;
+  line-height: 20px;
+  width: 20px;
+}
+
+/* line 285, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table td.day:hover,
+.bootstrap-datetimepicker-widget table td.hour:hover,
+.bootstrap-datetimepicker-widget table td.minute:hover,
+.bootstrap-datetimepicker-widget table td.second:hover {
+  background: #eeeeee;
+  cursor: pointer;
+}
+
+/* line 292, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table td.old,
+.bootstrap-datetimepicker-widget table td.new {
+  color: #777777;
+}
+
+/* line 296, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table td.today {
+  position: relative;
+}
+
+/* line 299, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table td.today:before {
+  content: '';
+  display: inline-block;
+  border: 0 0 7px 7px solid transparent;
+  border-bottom-color: #337ab7;
+  border-top-color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+}
+
+/* line 309, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table td.active,
+.bootstrap-datetimepicker-widget table td.active:hover {
+  background-color: #337ab7;
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+/* line 315, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table td.active.today:before {
+  border-bottom-color: #fff;
+}
+
+/* line 318, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table td.disabled,
+.bootstrap-datetimepicker-widget table td.disabled:hover {
+  background: none;
+  color: #777777;
+  cursor: not-allowed;
+}
+
+/* line 324, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table td span {
+  display: inline-block;
+  width: 54px;
+  height: 54px;
+  line-height: 54px;
+  margin: 2px 1.5px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+/* line 333, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table td span:hover {
+  background: #eeeeee;
+}
+
+/* line 336, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table td span.active {
+  background-color: #337ab7;
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+/* line 341, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table td span.old {
+  color: #777777;
+}
+
+/* line 344, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget table td span.disabled,
+.bootstrap-datetimepicker-widget table td span.disabled:hover {
+  background: none;
+  color: #777777;
+  cursor: not-allowed;
+}
+
+/* line 350, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget.usetwentyfour td.hour {
+  height: 27px;
+  line-height: 27px;
+}
+
+/* line 354, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget.wider {
+  width: 21em;
+}
+
+/* line 357, sass/vendor/_bootstrap-datetimepicker.scss */
+.bootstrap-datetimepicker-widget .datepicker-decades .decade {
+  line-height: 1.8em !important;
+}
+
+/* line 360, sass/vendor/_bootstrap-datetimepicker.scss */
+.input-group.date .input-group-addon {
+  cursor: pointer;
+}
+
+/* line 363, sass/vendor/_bootstrap-datetimepicker.scss */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/*
+ * jQuery File Upload UI Plugin CSS
+ * https://github.com/blueimp/jQuery-File-Upload
+ *
+ * Copyright 2010, Sebastian Tschan
+ * https://blueimp.net
+ *
+ * Licensed under the MIT license:
+ * http://www.opensource.org/licenses/MIT
+ */
+/* line 13, sass/vendor/_jquery.fileupload-ui.scss */
+.fileupload-buttonbar .btn,
+.fileupload-buttonbar .toggle {
+  margin-bottom: 5px;
+}
+
+/* line 17, sass/vendor/_jquery.fileupload-ui.scss */
+.progress-animated .progress-bar,
+.progress-animated .bar {
+  background: url("../img/progressbar.gif") !important;
+  filter: none;
+}
+
+/* line 22, sass/vendor/_jquery.fileupload-ui.scss */
+.fileupload-process {
+  float: right;
+  display: none;
+}
+
+/* line 26, sass/vendor/_jquery.fileupload-ui.scss */
+.fileupload-processing .fileupload-process,
+.files .processing .preview {
+  display: block;
+  width: 32px;
+  height: 32px;
+  background: url("../img/loading.gif") center no-repeat;
+  background-size: contain;
+}
+
+/* line 34, sass/vendor/_jquery.fileupload-ui.scss */
+.files audio,
+.files video {
+  max-width: 300px;
+}
+
+@media (max-width: 767px) {
+  /* line 40, sass/vendor/_jquery.fileupload-ui.scss */
+  .fileupload-buttonbar .toggle,
+  .files .toggle,
+  .files .btn span {
+    display: none;
+  }
+
+  /* line 45, sass/vendor/_jquery.fileupload-ui.scss */
+  .files .name {
+    width: 80px;
+    word-wrap: break-word;
+  }
+
+  /* line 49, sass/vendor/_jquery.fileupload-ui.scss */
+  .files audio,
+  .files video {
+    max-width: 80px;
+  }
+
+  /* line 53, sass/vendor/_jquery.fileupload-ui.scss */
+  .files img,
+  .files canvas {
+    max-width: 100%;
+  }
+}
+/*
+ * jQuery File Upload Plugin CSS
+ * https://github.com/blueimp/jQuery-File-Upload
+ *
+ * Copyright 2013, Sebastian Tschan
+ * https://blueimp.net
+ *
+ * Licensed under the MIT license:
+ * http://www.opensource.org/licenses/MIT
+ */
+/* line 13, sass/vendor/_jquery.fileupload.scss */
+.fileinput-button {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+/* line 18, sass/vendor/_jquery.fileupload.scss */
+.fileinput-button input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  opacity: 0;
+  -ms-filter: 'alpha(opacity=0)';
+  font-size: 200px;
+  direction: ltr;
+  cursor: pointer;
+}
+
+/* Fixes for IE < 8 */
+@media screen\9 {
+  /* line 32, sass/vendor/_jquery.fileupload.scss */
+  .fileinput-button input {
+    filter: alpha(opacity=0);
+    font-size: 100%;
+    height: 100%;
+  }
+}
 /* Body
 -------------------------------------------------- */
 /* line 4, sass/globals/_body.scss */
@@ -918,20 +1515,21 @@ vertical-align: middle;
 /* line 3, sass/globals/_navi.scss */
 .page-control {
   text-align: right;
+  margin-top: 10px;
 }
 
-/* line 6, sass/globals/_navi.scss */
+/* line 7, sass/globals/_navi.scss */
 .page-navi {
   font-size: 16px;
   position: relative;
   width: 100%;
   height: 100%;
 }
-/* line 11, sass/globals/_navi.scss */
+/* line 12, sass/globals/_navi.scss */
 .page-navi .fa {
   font-size: 19.2px;
 }
-/* line 14, sass/globals/_navi.scss */
+/* line 15, sass/globals/_navi.scss */
 .page-navi .page-navi-in {
   position: absolute;
   background-color: #fbfbfb;
@@ -981,14 +1579,14 @@ vertical-align: middle;
           #cat_notifications{.fa{color: #80ad80;}} 
           #cat_tagging{.fa{color: #31b0d5;}}*/
 }
-/* line 24, sass/globals/_navi.scss */
+/* line 25, sass/globals/_navi.scss */
 .page-navi .page-navi-in ul {
   list-style: none;
   text-align: left;
   margin: 0;
   padding: 0;
 }
-/* line 33, sass/globals/_navi.scss */
+/* line 34, sass/globals/_navi.scss */
 .page-navi .page-navi-in ul li {
   display: inline-block;
   width: 33.33%;
@@ -996,23 +1594,23 @@ vertical-align: middle;
   border: solid 4px #fbfbfb;
   background-color: #EEEEEE;
 }
-/* line 44, sass/globals/_navi.scss */
+/* line 45, sass/globals/_navi.scss */
 .page-navi .page-navi-in ul li .page-navi-icon {
   display: none;
 }
-/* line 53, sass/globals/_navi.scss */
+/* line 54, sass/globals/_navi.scss */
 .page-navi .page-navi-in ul li a {
   text-align: left;
   padding: 0 10px;
   vertical-align: middle;
   display: block;
 }
-/* line 64, sass/globals/_navi.scss */
+/* line 65, sass/globals/_navi.scss */
 .page-navi .page-navi-in ul .active a {
   font-weight: bold;
   text-decoration: underline;
 }
-/* line 117, sass/globals/_navi.scss */
+/* line 118, sass/globals/_navi.scss */
 .page-navi .page-navi-in .page-navi-close {
   text-align: right;
   border-top: solid 1px #d3d3d3;
@@ -1020,22 +1618,22 @@ vertical-align: middle;
   padding: 5px 10px 5px 5px;
 }
 
-/* line 125, sass/globals/_navi.scss */
+/* line 126, sass/globals/_navi.scss */
 .page-menu {
   font-size: 16px;
 }
-/* line 128, sass/globals/_navi.scss */
+/* line 129, sass/globals/_navi.scss */
 .page-menu .fa {
   font-size: 19.2px;
 }
-/* line 134, sass/globals/_navi.scss */
+/* line 135, sass/globals/_navi.scss */
 .page-menu ul {
   list-style: none;
   text-align: left;
   margin: 0;
   padding: 0;
 }
-/* line 142, sass/globals/_navi.scss */
+/* line 143, sass/globals/_navi.scss */
 .page-menu ul li {
   display: block;
   float: left;
@@ -1043,7 +1641,7 @@ vertical-align: middle;
   padding: 10px 0;
   border: solid 4px #F6F6F6;
 }
-/* line 151, sass/globals/_navi.scss */
+/* line 152, sass/globals/_navi.scss */
 .page-menu ul li a {
   padding: 0 10px;
   text-align: left;
@@ -1053,99 +1651,99 @@ vertical-align: middle;
   display: block;
   color: #fff;
 }
-/* line 165, sass/globals/_navi.scss */
+/* line 166, sass/globals/_navi.scss */
 .page-menu ul .active a {
   font-weight: bold;
   text-decoration: underline;
 }
-/* line 170, sass/globals/_navi.scss */
+/* line 171, sass/globals/_navi.scss */
 .page-menu ul .fa {
   padding-right: 5px;
 }
-/* line 176, sass/globals/_navi.scss */
+/* line 177, sass/globals/_navi.scss */
 .page-menu .page-menu-basic_gateway_modules {
   background-color: #dd976e;
 }
-/* line 177, sass/globals/_navi.scss */
+/* line 178, sass/globals/_navi.scss */
 .page-menu .page-menu-legacy_products_workaround {
   background-color: #6c7a89;
 }
-/* line 178, sass/globals/_navi.scss */
+/* line 179, sass/globals/_navi.scss */
 .page-menu .page-menu-support_external_ui {
   background-color: #6494bc;
 }
-/* line 179, sass/globals/_navi.scss */
+/* line 180, sass/globals/_navi.scss */
 .page-menu .page-menu-support_external_dev {
   background-color: #80ad80;
 }
-/* line 180, sass/globals/_navi.scss */
+/* line 181, sass/globals/_navi.scss */
 .page-menu .page-menu-automation_basic {
   background-color: #31b0d5;
 }
-/* line 181, sass/globals/_navi.scss */
+/* line 182, sass/globals/_navi.scss */
 .page-menu .page-menu-device_enhancements {
   background-color: #f0aD4e;
 }
-/* line 182, sass/globals/_navi.scss */
+/* line 183, sass/globals/_navi.scss */
 .page-menu .page-menu-developers_stuff {
   background-color: #d9534f;
 }
-/* line 183, sass/globals/_navi.scss */
+/* line 184, sass/globals/_navi.scss */
 .page-menu .page-menu-complex_applications {
   background-color: #dd976e;
 }
-/* line 184, sass/globals/_navi.scss */
+/* line 185, sass/globals/_navi.scss */
 .page-menu .page-menu-automation {
   background-color: #dddddd;
 }
-/* line 185, sass/globals/_navi.scss */
+/* line 186, sass/globals/_navi.scss */
 .page-menu .page-menu-security {
   background-color: #6c7a89;
 }
-/* line 186, sass/globals/_navi.scss */
+/* line 187, sass/globals/_navi.scss */
 .page-menu .page-menu-peripherals {
   background-color: #6494bc;
 }
-/* line 187, sass/globals/_navi.scss */
+/* line 188, sass/globals/_navi.scss */
 .page-menu .page-menu-logging {
   background-color: #31b0d5;
 }
-/* line 188, sass/globals/_navi.scss */
+/* line 189, sass/globals/_navi.scss */
 .page-menu .page-menu-scripting {
   background-color: #f0aD4e;
 }
-/* line 189, sass/globals/_navi.scss */
+/* line 190, sass/globals/_navi.scss */
 .page-menu .page-menu-devices {
   background-color: #d9534f;
 }
-/* line 190, sass/globals/_navi.scss */
+/* line 191, sass/globals/_navi.scss */
 .page-menu .page-menu-scheduling {
   background-color: #dd976e;
 }
-/* line 191, sass/globals/_navi.scss */
+/* line 192, sass/globals/_navi.scss */
 .page-menu .page-menu-climate {
   background-color: #dddddd;
 }
-/* line 192, sass/globals/_navi.scss */
+/* line 193, sass/globals/_navi.scss */
 .page-menu .page-menu-environment {
   background-color: #6c7a89;
 }
-/* line 193, sass/globals/_navi.scss */
+/* line 194, sass/globals/_navi.scss */
 .page-menu .page-menu-scenes {
   background-color: #6494bc;
 }
-/* line 194, sass/globals/_navi.scss */
+/* line 195, sass/globals/_navi.scss */
 .page-menu .page-menu-notifications {
   background-color: #80ad80;
 }
-/* line 195, sass/globals/_navi.scss */
+/* line 196, sass/globals/_navi.scss */
 .page-menu .page-menu-tagging {
   background-color: #31b0d5;
 }
 
 /* Footer drop-down
 -------------------------------------------------- */
-/* line 201, sass/globals/_navi.scss */
+/* line 202, sass/globals/_navi.scss */
 .dropdown-menu-bottom {
   height: auto;
   max-height: 600px;
@@ -1253,17 +1851,27 @@ fieldset, .fieldset {
   padding: 10px;
 }
 
-/* line 30, sass/globals/_form.scss */
+/* line 29, sass/globals/_form.scss */
+.isrequired {
+  font-weight: bold !important;
+}
+
+/* line 33, sass/globals/_form.scss */
+.isrequired::before {
+  content: "*";
+}
+
+/* line 37, sass/globals/_form.scss */
 .form-control-sm {
   width: 30% !important;
 }
 
-/* line 34, sass/globals/_form.scss */
+/* line 41, sass/globals/_form.scss */
 .form-control-md {
   width: 50% !important;
 }
 
-/* line 38, sass/globals/_form.scss */
+/* line 45, sass/globals/_form.scss */
 .submit-entry {
   text-align: right;
   display: block;
@@ -1271,23 +1879,23 @@ fieldset, .fieldset {
   border-top: solid 1px #c6c6c6;
 }
 
-/* line 46, sass/globals/_form.scss */
+/* line 53, sass/globals/_form.scss */
 fieldset.submit-entry {
   margin: 0 !important;
 }
 
-/* line 49, sass/globals/_form.scss */
+/* line 56, sass/globals/_form.scss */
 .form-control-hidden {
   display: none !important;
 }
 
-/* line 52, sass/globals/_form.scss */
+/* line 59, sass/globals/_form.scss */
 .form-control-img {
   cursor: pointer;
   border: solid 4px transparent;
 }
 
-/* line 57, sass/globals/_form.scss */
+/* line 64, sass/globals/_form.scss */
 .control-active {
   border: solid 4px black !important;
 }
@@ -3056,6 +3664,14 @@ legend.alpaca-container-label {
   display: none;
 }
 
+/** ************************************** **/
+/** Table                                  **/
+/** ************************************** **/
+/* line 684, sass/modules/_alpaca.scss */
+.alpaca-field-tablerow label.control-label {
+  display: none;
+}
+
 /* Homepage styles */
 /* Welcome
 -------------------------------------------------- */
@@ -3085,23 +3701,28 @@ legend.alpaca-container-label {
 /* Elements
 -------------------------------------------------- */
 /* line 24, sass/modules/_elements.scss */
+.is-new-true {
+  border-color: #cce5cc;
+}
+
+/* line 27, sass/modules/_elements.scss */
 .widget-block {
   margin-bottom: 20px;
 }
 
-/* line 27, sass/modules/_elements.scss */
+/* line 30, sass/modules/_elements.scss */
 .widget-block-in {
   height: 120px;
   position: relative;
   text-align: left;
 }
 
-/* line 33, sass/modules/_elements.scss */
+/* line 36, sass/modules/_elements.scss */
 .multiline-entry {
   position: relative;
 }
 
-/* line 36, sass/modules/_elements.scss */
+/* line 39, sass/modules/_elements.scss */
 .widget-image {
   position: absolute;
   top: 10px;
@@ -3113,115 +3734,115 @@ legend.alpaca-container-label {
   border-radius: 50%;
 }
 
-/* line 46, sass/modules/_elements.scss */
+/* line 49, sass/modules/_elements.scss */
 .widget-img-update {
   border-color: #d3d3d3;
 }
 
-/* line 49, sass/modules/_elements.scss */
+/* line 52, sass/modules/_elements.scss */
 .trans-true {
   opacity: 0.3;
 }
 
-/* line 52, sass/modules/_elements.scss */
+/* line 55, sass/modules/_elements.scss */
 .widget-header {
   position: relative;
   text-align: right;
   padding: 3px;
 }
-/* line 57, sass/modules/_elements.scss */
+/* line 60, sass/modules/_elements.scss */
 .widget-header a {
   display: inline-block;
   padding: 0 5px 0 0;
   color: #767676;
 }
-/* line 62, sass/modules/_elements.scss */
+/* line 65, sass/modules/_elements.scss */
 .widget-header a:hover {
   color: #444444;
 }
 
-/* line 68, sass/modules/_elements.scss */
+/* line 71, sass/modules/_elements.scss */
 .widget-body {
   margin-top: -5px;
   padding: 0 5px 15px 74px;
   width: 100%;
 }
-/* line 72, sass/modules/_elements.scss */
+/* line 75, sass/modules/_elements.scss */
 .widget-body .widget-content-wrap {
   padding: 0 5px 15px 0;
 }
-/* line 76, sass/modules/_elements.scss */
+/* line 79, sass/modules/_elements.scss */
 .widget-body .widget-room {
   display: block;
   font-size: 11.9px;
   color: #737373;
 }
-/* line 82, sass/modules/_elements.scss */
+/* line 85, sass/modules/_elements.scss */
 .widget-body .entry-title {
   padding: 5px 30px 0 0;
   margin-bottom: 7px;
 }
-/* line 87, sass/modules/_elements.scss */
+/* line 90, sass/modules/_elements.scss */
 .widget-body .widget-control-wrap {
   margin-top: -5px;
   width: 100%;
 }
-/* line 91, sass/modules/_elements.scss */
+/* line 94, sass/modules/_elements.scss */
 .widget-body .widget-control {
   width: 50%;
   float: left;
 }
-/* line 98, sass/modules/_elements.scss */
+/* line 101, sass/modules/_elements.scss */
 .widget-body .widget-control .fa-caret-down {
   font-size: 19.6px;
   color: #6494BC;
 }
-/* line 102, sass/modules/_elements.scss */
+/* line 105, sass/modules/_elements.scss */
 .widget-body .widget-control select {
   overflow: hidden;
   padding: 3px;
   max-width: 150px;
 }
-/* line 107, sass/modules/_elements.scss */
+/* line 110, sass/modules/_elements.scss */
 .widget-body .widget-control option {
   overflow: hidden;
 }
-/* line 112, sass/modules/_elements.scss */
+/* line 115, sass/modules/_elements.scss */
 .widget-body .widget-control.control-right {
   float: right;
   text-align: right;
   padding-right: 7px;
   margin-top: -5px;
 }
-/* line 115, sass/modules/_elements.scss */
+/* line 118, sass/modules/_elements.scss */
 .widget-body .widget-control.control-right .btn-group {
   float: right;
 }
-/* line 121, sass/modules/_elements.scss */
+/* line 124, sass/modules/_elements.scss */
 .widget-body .widget-control.control-left {
   float: left;
 }
-/* line 123, sass/modules/_elements.scss */
+/* line 126, sass/modules/_elements.scss */
 .widget-body .widget-control.control-left .btn-group {
   margin-top: -5px;
   float: left;
 }
-/* line 128, sass/modules/_elements.scss */
+/* line 131, sass/modules/_elements.scss */
 .widget-body .widget-control.control-left.text {
   color: #737373;
   font-size: 11.9px;
   padding-left: 10px;
 }
-/* line 133, sass/modules/_elements.scss */
+/* line 136, sass/modules/_elements.scss */
 .widget-body .widget-level {
   font-weight: bold;
   font-size: 22.4px;
 }
-/* line 137, sass/modules/_elements.scss */
+/* line 140, sass/modules/_elements.scss */
 .widget-body .widget-scale {
   font-size: 15.4px;
 }
-/* line 140, sass/modules/_elements.scss */
+/* line 143, sass/modules/_elements.scss */
 .widget-body .btn-widget-time, .widget-body .txt-widget-time {
   padding: 7px 0 0 0;
   border: 0 none;
@@ -3229,100 +3850,100 @@ legend.alpaca-container-label {
   font-size: 11.9px;
   background-color: transparent;
 }
-/* line 147, sass/modules/_elements.scss */
+/* line 150, sass/modules/_elements.scss */
 .widget-body .txt-widget-time {
   border: 0 !important;
   cursor: text;
 }
-/* line 151, sass/modules/_elements.scss */
+/* line 154, sass/modules/_elements.scss */
 .widget-body .txt-widget-time:focus {
   outline: 0;
 }
-/* line 154, sass/modules/_elements.scss */
+/* line 157, sass/modules/_elements.scss */
 .widget-body .txt-widget-time:active {
   box-shadow: 0;
 }
-/* line 161, sass/modules/_elements.scss */
+/* line 164, sass/modules/_elements.scss */
 .widget-body .widget-click-popup {
   cursor: pointer;
 }
-/* line 165, sass/modules/_elements.scss */
+/* line 168, sass/modules/_elements.scss */
 .widget-body .widget-btn-off, .widget-body .widget-btn-on, .widget-body .widget-btn-full {
   padding: 5px 17px;
 }
-/* line 168, sass/modules/_elements.scss */
+/* line 171, sass/modules/_elements.scss */
 .widget-body .widget-btn-off .fa, .widget-body .widget-btn-on .fa, .widget-body .widget-btn-full .fa {
   color: #d9d9d9;
 }
-/* line 171, sass/modules/_elements.scss */
+/* line 174, sass/modules/_elements.scss */
 .widget-body .widget-btn-off .widget-btn-symbol, .widget-body .widget-btn-on .widget-btn-symbol, .widget-body .widget-btn-full .widget-btn-symbol {
   color: #d9d9d9;
   font-weight: bold;
 }
-/* line 176, sass/modules/_elements.scss */
+/* line 179, sass/modules/_elements.scss */
 .widget-body .widget-btn-off .widget-btn-label, .widget-body .widget-btn-on .widget-btn-label, .widget-body .widget-btn-full .widget-btn-label {
   display: none;
 }
-/* line 181, sass/modules/_elements.scss */
+/* line 184, sass/modules/_elements.scss */
 .widget-body .widget-btn-full {
   padding: 5px 10px;
 }
-/* line 184, sass/modules/_elements.scss */
+/* line 187, sass/modules/_elements.scss */
 .widget-body .widget-btn-label-on {
   color: #595959;
   text-transform: lowercase;
 }
-/* line 188, sass/modules/_elements.scss */
+/* line 191, sass/modules/_elements.scss */
 .widget-body .widget-btn-off.btn-primary {
   background-color: #fff !important;
   border-color: #ccc;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-/* line 193, sass/modules/_elements.scss */
+/* line 196, sass/modules/_elements.scss */
 .widget-body .widget-btn-off.btn-primary .fa {
   color: #d9534f !important;
 }
-/* line 196, sass/modules/_elements.scss */
+/* line 199, sass/modules/_elements.scss */
 .widget-body .widget-btn-off.btn-primary .widget-btn-symbol {
   color: #d9534f !important;
 }
-/* line 200, sass/modules/_elements.scss */
+/* line 203, sass/modules/_elements.scss */
 .widget-body .widget-btn-on.btn-primary, .widget-body .widget-btn-full.btn-primary {
   background-color: #fff !important;
   border-color: #ccc;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-/* line 204, sass/modules/_elements.scss */
+/* line 207, sass/modules/_elements.scss */
 .widget-body .widget-btn-on.btn-primary .fa, .widget-body .widget-btn-full.btn-primary .fa {
   color: #6494BC !important;
 }
-/* line 207, sass/modules/_elements.scss */
+/* line 210, sass/modules/_elements.scss */
 .widget-body .widget-btn-on.btn-primary .widget-btn-symbol, .widget-body .widget-btn-full.btn-primary .widget-btn-symbol {
   color: #80AD80 !important;
 }
-/* line 211, sass/modules/_elements.scss */
+/* line 214, sass/modules/_elements.scss */
 .widget-body .element-hidden.hidden-sensor-multiline {
   height: 220px;
 }
-/* line 215, sass/modules/_elements.scss */
+/* line 218, sass/modules/_elements.scss */
 .widget-body table {
   width: 100%;
 }
-/* line 217, sass/modules/_elements.scss */
+/* line 220, sass/modules/_elements.scss */
 .widget-body table td {
   width: 50%;
   vertical-align: middle;
   text-align: center;
 }
 
-/* line 224, sass/modules/_elements.scss */
+/* line 227, sass/modules/_elements.scss */
 .multiline-entry {
   position: relative;
 }
 
-/* line 229, sass/modules/_elements.scss */
+/* line 232, sass/modules/_elements.scss */
 .widget-body .element-hidden, .multiline-entry .element-hidden {
   z-index: 10000;
   overflow: hidden;
@@ -3340,7 +3961,7 @@ legend.alpaca-container-label {
   background-color: #fff;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
 }
-/* line 246, sass/modules/_elements.scss */
+/* line 249, sass/modules/_elements.scss */
 .widget-body .hidden-close, .multiline-entry .hidden-close {
   position: absolute;
   top: 10px;
@@ -3349,69 +3970,69 @@ legend.alpaca-container-label {
 
 /* Specifics element style
 ----------------------------------------------------*/
-/* line 256, sass/modules/_elements.scss */
+/* line 259, sass/modules/_elements.scss */
 .sensorMultiline .control-left {
   width: 60% !important;
 }
-/* line 259, sass/modules/_elements.scss */
+/* line 262, sass/modules/_elements.scss */
 .sensorMultiline .control-right {
   width: 40%;
 }
 
-/* line 264, sass/modules/_elements.scss */
+/* line 267, sass/modules/_elements.scss */
 .switchMultilevel.dimmer .control-left {
   width: 60% !important;
 }
-/* line 267, sass/modules/_elements.scss */
+/* line 270, sass/modules/_elements.scss */
 .switchMultilevel.dimmer .control-right {
   width: 40%;
 }
 
-/* line 272, sass/modules/_elements.scss */
+/* line 275, sass/modules/_elements.scss */
 .element-camera-control {
   text-align: center;
 }
 
-/* line 275, sass/modules/_elements.scss */
+/* line 278, sass/modules/_elements.scss */
 .camera-img {
   text-align: center;
 }
-/* line 277, sass/modules/_elements.scss */
+/* line 280, sass/modules/_elements.scss */
 .camera-img img {
   width: 100%;
   display: inline-block;
 }
 
-/* line 283, sass/modules/_elements.scss */
+/* line 286, sass/modules/_elements.scss */
 .color-picker-show {
   display: inline-block;
   width: 24px;
   height: 24px;
 }
 
-/* line 289, sass/modules/_elements.scss */
+/* line 292, sass/modules/_elements.scss */
 .drop-down-tags div {
   padding: 5px;
 }
 
-/* line 296, sass/modules/_elements.scss */
+/* line 299, sass/modules/_elements.scss */
 .drop-down-tags a {
   display: inline-block;
   margin: 0 5px;
 }
 
-/* line 301, sass/modules/_elements.scss */
+/* line 304, sass/modules/_elements.scss */
 .bcg-success.false {
   color: #a8a8a8;
 }
-/* line 303, sass/modules/_elements.scss */
+/* line 306, sass/modules/_elements.scss */
 .bcg-success.false .report-img {
   opacity: 0.4;
 }
 
 /* Element detail
 ----------------------------------------------------*/
-/* line 311, sass/modules/_elements.scss */
+/* line 314, sass/modules/_elements.scss */
 .btn-tag {
   float: none !important;
   border-radius: 4px !important;
@@ -3438,72 +4059,72 @@ legend.alpaca-container-label {
 .hidden-camera{}*/
 /* OpenWeather widget
 ----------------------------------------------------*/
-/* line 338, sass/modules/_elements.scss */
+/* line 341, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline table td {
   text-align: left;
   padding: 5px 0;
 }
 
-/* line 343, sass/modules/_elements.scss */
+/* line 346, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline table td:first-child {
   padding-left: 20px;
   vertical-align: top;
 }
 
-/* line 348, sass/modules/_elements.scss */
+/* line 351, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline h4 {
   display: inline;
 }
 
-/* line 352, sass/modules/_elements.scss */
+/* line 355, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline .text-center {
   margin: 10px 0;
 }
 
 /* Text widget
 -----------------------------------------------------*/
-/* line 358, sass/modules/_elements.scss */
+/* line 361, sass/modules/_elements.scss */
 .widget-body.text-widget h3 {
   font-weight: bold;
 }
 
-/* line 362, sass/modules/_elements.scss */
+/* line 365, sass/modules/_elements.scss */
 .widget-body.text-widget-no-img {
   padding-left: 15px;
 }
 
-/* line 366, sass/modules/_elements.scss */
+/* line 369, sass/modules/_elements.scss */
 .widget-control.text {
   width: 95%;
 }
 
-/* line 370, sass/modules/_elements.scss */
+/* line 373, sass/modules/_elements.scss */
 .text-widget-modal.modal-dialog {
   text-align: center;
 }
 
-/* line 374, sass/modules/_elements.scss */
+/* line 377, sass/modules/_elements.scss */
 img.widget-promo-image {
   max-height: 200px;
   margin-bottom: 10px;
 }
 
-/* line 379, sass/modules/_elements.scss */
+/* line 382, sass/modules/_elements.scss */
 .widget-promo-text {
   text-align: left;
 }
 
-/* line 383, sass/modules/_elements.scss */
+/* line 386, sass/modules/_elements.scss */
 .widget-control.text a {
   font-weight: normal;
 }
 
-/* line 387, sass/modules/_elements.scss */
+/* line 390, sass/modules/_elements.scss */
 .widget-control.text a:hover {
   text-decoration: none;
 }
 
-/* line 391, sass/modules/_elements.scss */
+/* line 394, sass/modules/_elements.scss */
 .widget-control.text a:after {
   content: "\f1ea";
   font-family: FontAwesome;
@@ -3516,13 +4137,13 @@ img.widget-promo-image {
 
 /* MultilevelSensor widget
 -----------------------------------------------------*/
-/* line 403, sass/modules/_elements.scss */
+/* line 406, sass/modules/_elements.scss */
 .widget-body .element-hidden.hidden-sensor-multiline.multiline-sensor {
   padding: 10px 0;
   height: auto;
 }
 
-/* line 408, sass/modules/_elements.scss */
+/* line 411, sass/modules/_elements.scss */
 .hidden-sensor-multiline .widget-image {
   position: relative;
   top: 0;
@@ -3531,25 +4152,25 @@ img.widget-promo-image {
   height: 25px;
 }
 
-/* line 416, sass/modules/_elements.scss */
+/* line 419, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline.multiline-sensor table td:first-child {
   padding-left: 5px;
 }
 
-/* line 420, sass/modules/_elements.scss */
+/* line 423, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline.multiline-sensor table td {
   width: inherit;
   padding: 5px 5px 5px 10px;
 }
 
-/* line 425, sass/modules/_elements.scss */
+/* line 428, sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline.multiline-sensor table tr:nth-child(odd) {
   background-color: #f9f9f9;
 }
 
 /* ToggleButton widget
 --------------------------------------------------------*/
-/* line 432, sass/modules/_elements.scss */
+/* line 435, sass/modules/_elements.scss */
 .toggleButton .widget-body div.widget-control.control-right.ng-scope > div > button.btn.btn-default.btn-sm {
   cursor: default;
 }
@@ -3600,18 +4221,40 @@ img.widget-promo-image {
 
 /* Apps
 -------------------------------------------------- */
+/* line 3, sass/modules/_apps.scss */
+.app-featured {
+  text-align: center;
+  margin-bottom: 10px;
+  padding: 10px 20px;
+}
+/* line 7, sass/modules/_apps.scss */
+.app-featured .app-featured-entry {
+  display: inline-block;
+  padding: 0 10px 10px 10px;
+}
+/* line 11, sass/modules/_apps.scss */
+.app-featured img {
+  max-width: 64px;
+  max-height: 64px;
+}
+
+/* line 16, sass/modules/_apps.scss */
+.app-featured.show-all-true {
+  cursor: pointer;
+}
+
 /*.col-sm-2.app-header{
 padding-left: 5px;
 padding-right: 5px;
 }*/
-/* line 9, sass/modules/_apps.scss */
+/* line 25, sass/modules/_apps.scss */
 .app-entry-in {
   position: relative;
   height: 100px;
   margin: 10px 0;
 }
 
-/* line 16, sass/modules/_apps.scss */
+/* line 32, sass/modules/_apps.scss */
 .app-image {
   position: absolute;
   top: 10px;
@@ -3625,18 +4268,18 @@ padding-right: 5px;
   border-radius: 50%;
 }
 
-/* line 31, sass/modules/_apps.scss */
+/* line 47, sass/modules/_apps.scss */
 .app-body {
   margin-top: -5px;
   padding: 25px 5px 15px 84px;
   width: 100%;
 }
-/* line 35, sass/modules/_apps.scss */
+/* line 51, sass/modules/_apps.scss */
 .app-body .entry-title {
   padding-right: 30px;
 }
 
-/* line 39, sass/modules/_apps.scss */
+/* line 55, sass/modules/_apps.scss */
 .app-footer {
   text-align: right;
   width: 100%;
@@ -3645,12 +4288,12 @@ padding-right: 5px;
   left: 0;
   height: 40px;
 }
-/* line 47, sass/modules/_apps.scss */
+/* line 63, sass/modules/_apps.scss */
 .app-footer .app-footer-in {
   padding: 0 15px 10px 10px;
 }
 
-/* line 58, sass/modules/_apps.scss */
+/* line 74, sass/modules/_apps.scss */
 #table_apps_instance .report-img {
   /*        max-width: 32px;
           max-height: 32px;*/
@@ -3659,21 +4302,21 @@ padding-right: 5px;
   border-radius: 50%;
 }
 
-/* line 68, sass/modules/_apps.scss */
+/* line 84, sass/modules/_apps.scss */
 .app-image-list {
   max-width: 70px;
 }
 
 /* Alpaca page
 -------------------------------------------------- */
-/* line 73, sass/modules/_apps.scss */
+/* line 89, sass/modules/_apps.scss */
 .alpaca-perex {
   margin: 0 0 20px 0;
   padding: 0 0 10px 0;
   border-bottom: dotted 1px #d3d3d3;
 }
 
-/* line 78, sass/modules/_apps.scss */
+/* line 94, sass/modules/_apps.scss */
 .app-image-alpaca {
   max-width: 128px;
   max-height: 128px;
@@ -3685,7 +4328,7 @@ padding-right: 5px;
   border: solid 2px #d3d3d3;
 }
 
-/* line 89, sass/modules/_apps.scss */
+/* line 105, sass/modules/_apps.scss */
 #alpaca_data {
   padding: 20px;
   margin: 0 0 20px 0;
@@ -3695,12 +4338,12 @@ padding-right: 5px;
 
 /* Apps detail
 -------------------------------------------------- */
-/* line 97, sass/modules/_apps.scss */
+/* line 113, sass/modules/_apps.scss */
 .app-detail-header-in {
   position: relative;
   padding: 20px;
 }
-/* line 101, sass/modules/_apps.scss */
+/* line 117, sass/modules/_apps.scss */
 .app-detail-header-in .app-detail-img img {
   position: absolute;
   max-width: 130px;
@@ -3711,17 +4354,17 @@ padding-right: 5px;
           -moz-border-radius: 50%;
           border-radius: 50%; */
 }
-/* line 113, sass/modules/_apps.scss */
+/* line 129, sass/modules/_apps.scss */
 .app-detail-header-in .app-detail-body {
   padding-left: 150px;
 }
-/* line 116, sass/modules/_apps.scss */
+/* line 132, sass/modules/_apps.scss */
 .app-detail-header-in .app-detail-list, .app-detail-header-in .app-detail-perex {
   padding-bottom: 10px;
   margin-bottom: 10px;
   border-bottom: dotted 1px #d3d3d3;
 }
-/* line 121, sass/modules/_apps.scss */
+/* line 137, sass/modules/_apps.scss */
 .app-detail-header-in .app-detail-control {
   position: relative;
 }
@@ -4157,12 +4800,16 @@ padding-right: 5px;
 
 /* Login
 -------------------------------------------------- */
+/* line 4, sass/modules/_login.scss */
+#page_login #header, #page_password #header {
+  display: none !important;
+}
 /* line 7, sass/modules/_login.scss */
-#page_login .container {
+#page_login .container, #page_password .container {
   max-width: 500px;
 }
 /* line 10, sass/modules/_login.scss */
-#page_login .login-lang {
+#page_login .login-lang, #page_password .login-lang {
   text-align: right;
   margin-bottom: 10px;
 }
@@ -4447,13 +5094,14 @@ padding-right: 5px;
 /*==========  Non-Mobile First Method  ==========*/
 /* Large Devices, Wide Screens */
 /* Medium Devices, Desktops */
-@media only screen and (max-width: 992px), (orientation: portrait) {
-  /* line 104, sass/responsive/_responsive.scss */
+/* Small Devices, Tablets */
+@media only screen and (max-width: 768px) {
+  /* line 109, sass/responsive/_responsive.scss */
   .show-on-pc {
     display: none;
   }
 
-  /* line 107, sass/responsive/_responsive.scss */
+  /* line 112, sass/responsive/_responsive.scss */
   .show-on-mobile {
     display: block !important;
   }
@@ -4837,8 +5485,12 @@ padding-right: 5px;
     box-shadow: none;
     border-bottom: solid 1px #ccc;
   }
+  /* line 13, sass/responsive/_modules.scss */
+  .widget-block .is-new-true {
+    border-bottom: solid 3px #cce5cc;
+  }
 
-  /* line 14, sass/responsive/_modules.scss */
+  /* line 17, sass/responsive/_modules.scss */
   .widget-block-in {
     /*   border: solid 1px red;*/
     height: auto;
@@ -4847,45 +5499,45 @@ padding-right: 5px;
     padding: 10px;
   }
 
-  /* line 21, sass/responsive/_modules.scss */
+  /* line 25, sass/responsive/_modules.scss */
   .widget-image {
     top: 20px;
     /*        width: 42px;
             height: 42px;*/
   }
 
-  /* line 27, sass/responsive/_modules.scss */
+  /* line 31, sass/responsive/_modules.scss */
   .widget-body {
     margin-top: -20px;
   }
-  /* line 30, sass/responsive/_modules.scss */
+  /* line 34, sass/responsive/_modules.scss */
   .widget-body .entry-title {
     display: inline;
     padding: 15px 40px 0 0;
   }
-  /* line 34, sass/responsive/_modules.scss */
+  /* line 38, sass/responsive/_modules.scss */
   .widget-body .widget-content-wrap {
     padding: 0 5px 15px 0;
   }
-  /* line 39, sass/responsive/_modules.scss */
+  /* line 43, sass/responsive/_modules.scss */
   .widget-body .btn-widget-time, .widget-body .txt-widget-time {
     padding: 0;
     font-size: 14.28px;
   }
-  /* line 42, sass/responsive/_modules.scss */
+  /* line 46, sass/responsive/_modules.scss */
   .widget-body .btn-widget-time .fa, .widget-body .txt-widget-time .fa {
     font-size: 14.28px;
   }
-  /* line 46, sass/responsive/_modules.scss */
+  /* line 50, sass/responsive/_modules.scss */
   .widget-body .widget-control.control-left.text {
     padding-left: 0;
   }
 
-  /* line 53, sass/responsive/_modules.scss */
+  /* line 57, sass/responsive/_modules.scss */
   .modal-no-padding .modal-dialog {
     margin: 0;
   }
-  /* line 55, sass/responsive/_modules.scss */
+  /* line 59, sass/responsive/_modules.scss */
   .modal-no-padding .modal-dialog .modal-body {
     padding: 0;
   }
@@ -4894,51 +5546,51 @@ padding-right: 5px;
           text-align: right;
       }*/
   /* Home */
-  /* line 69, sass/responsive/_modules.scss */
+  /* line 73, sass/responsive/_modules.scss */
   .home-widget .widget-entry .widget-block-in {
     border: 0;
     padding: 0;
   }
 
-  /* line 82, sass/responsive/_modules.scss */
+  /* line 86, sass/responsive/_modules.scss */
   .room-entry {
     float: left;
     width: 50%;
     padding: 0;
   }
-  /* line 86, sass/responsive/_modules.scss */
+  /* line 90, sass/responsive/_modules.scss */
   .room-entry .room-in {
     position: relatvive;
   }
-  /* line 89, sass/responsive/_modules.scss */
+  /* line 93, sass/responsive/_modules.scss */
   .room-entry .entry-title {
     position: absolute;
     text-align: center;
     left: 0;
     right: 0;
   }
-  /* line 96, sass/responsive/_modules.scss */
+  /* line 100, sass/responsive/_modules.scss */
   .room-entry .entry-title-text {
     display: none;
   }
-  /* line 99, sass/responsive/_modules.scss */
+  /* line 103, sass/responsive/_modules.scss */
   .room-entry .app-border {
     border: solid 1px #d3d3d3;
   }
 
-  /* line 104, sass/responsive/_modules.scss */
+  /* line 108, sass/responsive/_modules.scss */
   .room-image-big {
     margin: 24px 0 0 0;
     max-width: 130px;
     max-height: 130px;
   }
 
-  /* line 111, sass/responsive/_modules.scss */
+  /* line 115, sass/responsive/_modules.scss */
   #table_cfg_rooms .td-action {
     width: 30%;
   }
 
-  /* line 119, sass/responsive/_modules.scss */
+  /* line 123, sass/responsive/_modules.scss */
   .event-date {
     display: block;
   }
@@ -4954,12 +5606,12 @@ padding-right: 5px;
   /*    .tab-icon{
           font-size: 20px;
       }*/
-  /* line 141, sass/responsive/_modules.scss */
+  /* line 145, sass/responsive/_modules.scss */
   #table_apps_instance .td-action {
     width: 40%;
   }
 
-  /* line 146, sass/responsive/_modules.scss */
+  /* line 150, sass/responsive/_modules.scss */
   .app-entry {
     width: 100%;
     padding: 0;
@@ -4982,7 +5634,7 @@ padding-right: 5px;
     /* IE6-9 */
   }
 
-  /* line 152, sass/responsive/_modules.scss */
+  /* line 156, sass/responsive/_modules.scss */
   .app-entry-green {
     background: #1e5799;
     /* Old browsers */
@@ -5002,7 +5654,7 @@ padding-right: 5px;
     /* IE6-9 */
   }
 
-  /* line 155, sass/responsive/_modules.scss */
+  /* line 159, sass/responsive/_modules.scss */
   .app-entry-in {
     border: 0;
     height: auto;
@@ -5012,7 +5664,7 @@ padding-right: 5px;
     margin: 0;
   }
 
-  /* line 165, sass/responsive/_modules.scss */
+  /* line 169, sass/responsive/_modules.scss */
   .app-image {
     top: 10px;
     left: 10px;
@@ -5020,20 +5672,20 @@ padding-right: 5px;
     height: 40px;
   }
 
-  /* line 171, sass/responsive/_modules.scss */
+  /* line 175, sass/responsive/_modules.scss */
   .app-body {
     height: 64px;
     margin: 0;
     padding: 5px 5px 15px 64px;
   }
-  /* line 175, sass/responsive/_modules.scss */
+  /* line 179, sass/responsive/_modules.scss */
   .app-body .entry-title {
     position: absolute;
     z-index: 10;
     padding: 10px 90px 0 0;
   }
 
-  /* line 182, sass/responsive/_modules.scss */
+  /* line 186, sass/responsive/_modules.scss */
   .app-footer-in .btn {
     margin-top: -20px;
   }
@@ -5041,36 +5693,35 @@ padding-right: 5px;
   /*    .app-image{
            margin: 0;
       }*/
-  /* line 192, sass/responsive/_modules.scss */
+  /* line 196, sass/responsive/_modules.scss */
   .app-detail-header-in {
     position: static;
     padding: 0 15px 15px 15px;
     background: none;
   }
-  /* line 196, sass/responsive/_modules.scss */
+  /* line 200, sass/responsive/_modules.scss */
   .app-detail-header-in .app-detail-img {
     text-align: center;
     margin: 0 auto;
   }
-  /* line 199, sass/responsive/_modules.scss */
+  /* line 203, sass/responsive/_modules.scss */
   .app-detail-header-in .app-detail-img .app-image-detail {
     position: static;
   }
-  /* line 204, sass/responsive/_modules.scss */
+  /* line 208, sass/responsive/_modules.scss */
   .app-detail-header-in .app-detail-body {
     padding-left: 0;
   }
-  /* line 207, sass/responsive/_modules.scss */
+  /* line 211, sass/responsive/_modules.scss */
   .app-detail-header-in .app-detail-control {
     text-align: center;
   }
 
-  /* line 279, sass/responsive/_modules.scss */
+  /* line 283, sass/responsive/_modules.scss */
   #table_cfg_admin .td-action {
     width: 30%;
   }
 }
-/* Small Devices, Tablets */
 /* Extra Small Devices, Phones */
 /* Custom, iPhone Retina */
 /* Custom, iPhone Retina */
