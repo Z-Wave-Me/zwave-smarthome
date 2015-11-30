@@ -94,7 +94,11 @@ myAppController.controller('PasswordController', function($scope, dataFactory) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         var input = {
             id: $scope.user.id,
-            password: input.password,
+            password: input.password
+
+        };
+         var inputProfile = {
+            id: $scope.user.id,
             email: input.email
 
         };
@@ -112,6 +116,7 @@ myAppController.controller('PasswordController', function($scope, dataFactory) {
             alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
         });
+        
 
     };
 

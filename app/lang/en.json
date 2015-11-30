@@ -2,7 +2,7 @@
     "newtrans": "---",
     "password_forgot": "Forgot your password?",
     "password_forgot_info": "To reset your password, enter the email address.",
-    "password_forgot_success": "Please check your email to confirm your password update. ",
+    "password_forgot_success": "Please check your email to confirm your password reset. ",
     "password_reset": "Reset your password",
     "email_notfound": "Given email does not exist in our database",
     "token_notfound": "Given key does not exist in our database",

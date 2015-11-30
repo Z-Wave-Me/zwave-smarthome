@@ -36,7 +36,9 @@ var config_data = {
             'login': 'ZAutomation/api/v1/login',
             'backup': 'ZAutomation/api/v1/backup',
             'restore': 'ZAutomation/api/v1/restore',
-            'tokens': 'ZAutomation/api/v1/modules/tokens'
+            'tokens': 'ZAutomation/api/v1/modules/tokens',
+            'password_reset': 'ZAutomation/api/v1/password/reset',
+            'password_restore': 'ZAutomation/api/v1/password/restore'
         },
         // List of image pathes
         'img': {
