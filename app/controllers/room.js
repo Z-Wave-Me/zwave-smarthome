@@ -36,7 +36,11 @@ myAppController.controller('RoomController', function($scope, $location, dataFac
      */
     $scope.loadDevices = function() {
         dataFactory.getApi('devices').then(function(response) {
-            $scope.devices.count = _.groupBy(response.data.data.devices, 'location');
+            $scope.devices.count = _.chain(response.data.data.devices)
+                    .flatten()
+                    .reject(function(v){ return v.deviceType == 'battery' || v.permanently_hidden == true; })
+                    .groupBy('location')
+                    .value();
         }, function(error) {
         });
     }

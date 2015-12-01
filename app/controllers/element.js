@@ -73,11 +73,16 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.goHistory = [];
     $scope.apiDataInterval = null;
     $scope.multilineSensorsInterval = null;
+     $scope.elements = {
+         all: {},
+         input: {}
+     };
     $scope.collection = [];
     $scope.showFooter = true;
     $scope.deviceType = [];
     $scope.tags = [];
     $scope.rooms = {};
+    $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/image/';
     $scope.history = [];
     $scope.historyStatus = [];
     $scope.multilineDev = false;
@@ -171,9 +176,9 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
                         $scope.showFooter = false;
                         filter = $routeParams;
                         if (angular.isDefined($routeParams.val)&& !_.isEmpty($scope.rooms)) {
-                            $scope.headline = $scope._t('lb_devices_room') + ' ' + $scope.rooms[$routeParams.val].title;
+                            $scope.headline = $scope._t('lb_devices_room') + ' ' + ($routeParams.val == 0 ? $scope._t($scope.rooms[$routeParams.val].title) : $scope.rooms[$routeParams.val].title) ;
                         }
-                        break;
+                        break; 
                     default:
                         break;
                 }
@@ -200,7 +205,9 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
                 
                 return;
             }
-            $scope.collection = collection;
+            angular.extend($scope.elements.all,_.indexBy(response.data.data.devices,'id'));
+            angular.extend($scope.collection,collection);
+            //$scope.collection = collection;
             dataService.updateTimeTick(response.data.data.updateTime);
         }, function(error) {
             //console.log('After login: ',$routeParams.login)
@@ -219,6 +226,10 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
             dataFactory.refreshApi('devices').then(function(response) {
                 dataService.updateDevices(response.data);
                 dataService.updateTimeTick(response.data.data.updateTime);
+                if(response.data.data.structureChanged === true){
+                      $scope.loadData();
+                }
+               
             }, function(error) {
                 dataService.showConnectionError(error);
             });
@@ -340,7 +351,8 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     /**
      * Multiline climateControl
      */
-    $scope.climateElementModes = ['off', 'esave', 'per_room'];
+    $scope.climateElementModes = ['frostProtection', 'energySave', 'comfort','schedule'];
+    $scope.climatePerRoom = {};
     /**
      * Show climate modal window
      */
@@ -348,8 +360,8 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         $(target).modal();
         $scope.input = input;
         $scope.climateControl = {data: false, icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        $scope.climateControlModes = ['off', 'esave', 'comfort', 'time_driven'];
-        $scope.climateControlMode = {};
+        $scope.climateControlModes = ['off', 'esave', 'comfort', 'schedule'];
+        $scope.climateControlMode = '';
         $scope.changeClimateControlProcess = {};
         //dataFactory.getApiLocal('_test/climate_control.json').then(function(response) {
          dataFactory.getApi('devices', '/' + id, true).then(function(response) {
@@ -363,18 +375,31 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         });
 
     };
+    /**
+     * Change climate element mode
+     */
+    $scope.changeClimateElementlMode = function(input) {
+         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+         dataFactory.runApiCmd(input.cmd).then(function(response) {
+           $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
+        }, function(error) {
+            alertify.alert($scope._t('error_update_data'));
+            $scope.loading = false;
+        });
+
+    };
 
     /**
      * Change climate control mode
      */
-    $scope.changeClimateControlMode = function(id) {
-        //console.log($scope.climateControl.data.metrics.rooms);
-        $scope.changeClimateControlProcess[id] = true;
-        var room = _.findWhere($scope.climateControl.data.metrics.rooms, {id: id})
-        console.log(room.title + ' changing mode to: ', $scope.climateControlMode[id])
-        $timeout(function() {
-            $scope.changeClimateControlProcess[id] = false;
-        }, 3000);
+    $scope.changeClimateControlMode = function(input) {
+        $scope.changeClimateControlProcess[input.roomName] = true;
+        dataFactory.runApiCmd(input.cmd).then(function(response) {
+            $scope.changeClimateControlProcess[input.roomName] = false;
+        }, function(error) {
+            alertify.alert($scope._t('error_update_data'));
+           $scope.changeClimateControlProcess[input.roomName] = false;
+        });
 
     };
     /**
@@ -441,7 +466,10 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     function runCmd(cmd, id) {
         var widgetId = '#Widget_' + id;
         dataFactory.runApiCmd(cmd).then(function(response) {
-            $(widgetId + ' .widget-image').addClass('trans-true');
+            if(id){
+                $(widgetId + ' .widget-image').addClass('trans-true'); 
+            }
+           
         }, function(error) {
             alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;

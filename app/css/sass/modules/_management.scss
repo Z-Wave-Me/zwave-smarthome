@@ -1,20 +1,35 @@
 /* Admin
 -------------------------------------------------- */
 .admin-entry{
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     border-bottom: solid 1px $app-border-color;
 }
 .admin-entry-title{
-    font-size: 18px;
+    font-size: $app-navi-font-size; 
+    position: relative;
+    //padding: 10px 0;
+    vertical-align: middle;
+    margin: 10px 0;
+    color: $header-link-color;
     cursor: pointer;
+    .fa{
+            padding-right: 7px;
+             font-size: $app-navi-icon-size;  
+        }
+    .subnavi-arrow{
+        position: absolute;
+        right: 1%;
+        display: inline-block;
+        padding:0;
+    }
 }
 .user-image{
-     max-width: 40px;
-       border-radius: 50%;
+    max-width: 40px;
+    border-radius: 50%;
 }
 
 .profile-lang{
     display: inline-block;
     //margin: 0 10px 0 0;
-    
+
 }

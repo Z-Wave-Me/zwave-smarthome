@@ -76,6 +76,12 @@ a:hover {
    
 }
 
+.text-disabled{
+    pointer-events: none;
+    color: lighten($app-body-color, 40%);;
+     opacity: 0.5; 
+}
+
 .btn-tooltip{
     cursor: help;
 }

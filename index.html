@@ -14,17 +14,23 @@
         <!-- App config -->
         <script src="app/config.js"></script>
         <!-- jQuery js -->
-        <script src="vendor/jquery/jquery-1.11.1.js"></script>
+        <script src="vendor/jquery/jquery-1.11.3.min.js"></script>
+        <script src="vendor/jquery/jquery-ui.min.js"></script>
+        <script src="vendor/jquery/plugins/jquery.ui.widget.js"></script>
+        <script src="vendor/jquery/plugins/jquery.iframe-transport.js"></script>
+        <script src="vendor/jquery/plugins/jquery.fileupload.js"></script>
+        <script src="vendor/jquery/plugins/jquery.fileupload-process.js"></script>
+        <script src="vendor/jquery/plugins/jquery.fileupload-ui.js"></script>
         <!-- Vendors js -->
         <!-- <script src="vendor/upload/angular-file-upload-shim.js"></script> -->
         <!--  <script src="vendor/gridster/jquery.gridster.js"></script> -->
         <!-- <script src="vendor/bootstrap-switch/bootstrap-switch.js"></script> -->
         <!--  <script src="vendor/md5/md5.js"></script> -->
+        <script src="vendor/handlebars/handlebars-v3.0.3.min.js"></script>
+        <script src="vendor/moment/moment-with-locales.min.js"></script>
         <script src="vendor/underscore/underscore-1.8.3/underscore.js"></script> 
         <script src="vendor/chartjs/Chart.js"></script>
         <script src="vendor/knob/jquery.knob.js"></script>
-        <script src="vendor/handlebars/handlebars-v3.0.3.min.js"></script> 
-        <script src="vendor/alpaca/1.5.13/alpaca.min.js"></script>
         <script src="vendor/alertify/alertify.min.js"></script> 
         <!-- Angular js -->
         <script src="vendor/angular/angular-1.2.28/angular.js"></script>
@@ -34,6 +40,9 @@
         <script src="vendor/dragdrop/angular-drag-and-drop-lists.js"></script>
         <!-- Bootstrap js -->
         <script src="vendor/bootstrap/bootstrap.js"></script>
+        <script src="vendor/bootstrap/plugins/bootstrap-datetimepicker.js"></script>
+
+        <script src="vendor/alpaca/1.5.14/bootstrap/alpaca.min.js"></script>
         <!-- App js -->
         <script src="app/app.js"></script>
         <script src="app/services/factories.js"></script>
@@ -56,8 +65,6 @@
         <script src="app/controllers/room.js"></script>
         <script src="app/controllers/management.js"></script> 
         <script src="app/controllers/mysettings.js"></script>
-        <script src="app/controllers/report.js"></script>
-        <script src="app/controllers/info.js"></script> 
         <script src="app/controllers/auth.js"></script> 
         <script src="app/modules/bootstrap-colorpicker-module.js"></script>
         <!-- ExpertUI configuration js -->
@@ -100,7 +107,7 @@
                     <ul>
                         <!-- Apps -->
                         <li class="subnavi-apps" ng-class="isActive('apps')" ng-if="elementAccess(cfg.role_access.apps)">
-                            <a href="#apps"><i class="fa fa-cubes"></i> {{_t('nav_apps')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                            <a href="#apps/local"><i class="fa fa-cubes"></i> {{_t('nav_apps')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
                         </li>
                         <!-- Devices -->
                         <li class="subnavi-devices" ng-class="isActive('devices')" ng-if="elementAccess(cfg.role_access.devices)">
@@ -117,14 +124,6 @@
                         <!-- Management -->
                         <li class="subnavi-admin" ng-class="isActive('admin')" ng-if="elementAccess(cfg.role_access.admin)">
                             <a href="#admin"><i class="fa fa-wrench"></i> {{_t('management')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                        </li>
-                        <!-- Report -->
-                        <li class="subnavi-report" ng-class="isActive('report')">
-                            <a href="#report"><i class="fa fa-bug"></i> {{_t('nav_report')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                        </li>
-                        <!-- Info -->
-                        <li class="subnavi-info" ng-class="isActive('info')">
-                            <a href="#info"><i class="fa fa-info-circle"></i> {{_t('info')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
                         </li>
                         <!-- Logout -->
                         <li class="subnavi-logout" ng-if="elementAccess(null, isMobile)">

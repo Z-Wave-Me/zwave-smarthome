@@ -19,6 +19,9 @@
                         <a class="btn btn-default" href="#zwave/devices/{{v.id}}" ng-if_="v.cfg.length > 0">
                            <i class="fa fa-cog text-primary"></i> <span class="btn-name" ng-bind="_t('lb_configuration')"></span>
                        </a>
+                        <a class="btn btn-default" href="#zwave/exclude/{{v.id}}" title="{{_t('lb_remove')}}">
+                                <i class="fa fa-remove fa-lg text-danger"></i>
+                        </a>
                     </td>
                 </tr>
             </tbody>

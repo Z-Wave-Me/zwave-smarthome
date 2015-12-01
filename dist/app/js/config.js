@@ -11,6 +11,11 @@ var config_data = {
         'interval': 3000,
         // Interval in miliseconds (5 min) to clear history (json) cache
         'history_cache_interval': 300000,
+        // Default auth credentials
+         'default_credentials': {
+             'login':'admin',
+             'password':'admin'
+         },
         // List of API URLs 
         'api': {
             'devices': 'ZAutomation/api/v1/devices',
@@ -18,10 +23,13 @@ var config_data = {
             'profiles': 'ZAutomation/api/v1/profiles',
             'profiles_auth_update': 'ZAutomation/api/v1/auth/update',
             'locations': 'ZAutomation/api/v1/locations',
-            'notifications': 'ZAutomation/api/v1/notifications',
+            'notifications': 'ZAutomation/api/v1/notifications', 
             'modules': 'ZAutomation/api/v1/modules',
             'modules_categories': 'ZAutomation/api/v1/modules/categories',
             'online_install': 'ZAutomation/api/v1/modules/install',
+            'online_update': 'ZAutomation/api/v1/modules/update',
+            'online_delete': 'ZAutomation/api/v1/modules/delete',
+            'online_reset': 'ZAutomation/api/v1/modules/reset',
             'instances': 'ZAutomation/api/v1/instances',
             'namespaces': 'ZAutomation/api/v1/namespaces',
             'history': 'ZAutomation/api/v1/history',
@@ -47,16 +55,14 @@ var config_data = {
         // Help data path
         'help_data_url': 'storage/help/',
         // Online module url
-         'online_module_url': 'http://hrix.net/module_store_int/json_store.php',
-        //'online_module_url': 'http://hrix.net/modules_store/json_store.php',
+        'online_module_url': 'http://hrix.net/modules_new/?uri=api-modules',
         // Online module img url
-        'online_module_img_url': 'http://hrix.net/module_store_int/modules/',
-        //'online_module_img_url': 'http://hrix.net/modules_store/modules/',
+        'online_module_img_url': 'http://hrix.net/modules_new/modules/',
         // Online module download url
-        'online_module_download_url': 'http://hrix.net/module_store_int/modules/',
-        //'online_module_download_url': 'http://hrix.net/modules_store/modules/',
+        'online_module_download_url': 'http://hrix.net/modules_new/modules/',
+        // Online module download url
+        'blacklist_url': 'http://hrix.net/blacklist.json',
         // Post report url
-        //'post_report_url': 'http://dev.dev/zwave-api/report/post-report.php',
         'post_report_url': ' http://zwave.eu/api/report/post-report.php',
         // Razberry latest version
         'raz_latest_version_url': 'http://razberry.z-wave.me/z-way/razberry/latest/VERSION',
@@ -83,7 +89,7 @@ var config_data = {
         // Default language
         'lang': 'en',// !!!!Do not change it
         // List of supported languages
-        'lang_list': ['en', 'de', 'ru', 'cn', 'fr','cz','sk'],
+        'lang_list': ['en', 'de', 'ru', 'cn', 'fr','cz','sk','sv'],
         // Role access
         'role_access': {
             admin: [1],
@@ -198,6 +204,13 @@ var config_data = {
                     'SensorsPolling',
                     'SwitchControlGenerator',
                     'ZWave'
+                ],
+                featured_apps: [
+                    'IfThen',
+                    'OpenWeather',
+                    'DeviceHistory',
+                    'PeriodicalSwitchControl',
+                    'ScheduledScene'
                 ]
             },
             'popp': {
@@ -220,6 +233,13 @@ var config_data = {
                     'SensorsPolling',
                     'SwitchControlGenerator',
                     'ZWave'
+                ],
+                featured_apps: [
+                    'IfThen',
+                    'OpenWeather',
+                    'DeviceHistory',
+                    'PeriodicalSwitchControl',
+                    'ScheduledScene'
                 ]
             },
             'wd': {
@@ -242,6 +262,13 @@ var config_data = {
                     'SensorsPolling',
                     'SwitchControlGenerator',
                     'ZWave'
+                ],
+                featured_apps: [
+                    'IfThen',
+                    'OpenWeather',
+                    'DeviceHistory',
+                    'PeriodicalSwitchControl',
+                    'ScheduledScene'
                 ]
             }
         }

@@ -119,14 +119,6 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     };
 
     /**
-     * DEPRECATED - replaced with underscore _where
-     * Get data or filtered data
-     */
-//    this.getData = function(data, filter) {
-//        return getData(data, filter);
-//    };
-
-    /**
      * Get device data
      */
     this.getDevices = function(data, filter, positions, instances, location) {
@@ -162,14 +154,6 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     };
 
     /**
-     * DEPRECATED
-     * Get instances
-     */
-//    this.getInstances = function(data, modules) {
-//        return getInstances(data, modules);
-//    };
-
-    /**
      * Get module form data
      */
     this.getModuleFormData = function(module, data) {
@@ -196,22 +180,6 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     this.getEventLevel = function(data, set) {
         return getEventLevel(data, set);
     };
-
-    /**
-     * DEPRECATED - replaced by underscore _.uniq
-     * Get pairs
-     */
-//    this.getPairs = function(data, key, val, cache) {
-//        return getPairs(data, key, val, cache);
-//    };
-
-    /**
-     * DEPRECATED - replaced with underscore _.findWhere
-     * Get row by
-     */
-//    this.getRowBy = function(data, key, val, cache) {
-//        return getRowBy(data, key, val, cache);
-//    };
 
     /**
      * Get config navigation devices
@@ -306,33 +274,6 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
 
     }
 
-
-    /**
-     * DEPRECATED - replaced with underscore _where
-     * Get API data or filtered data
-     */
-//    function getData(data, filter) {
-//        if (!filter) {
-//            return data;
-//        }
-//        var collection = [];
-//        var addToCollection = false;
-//        angular.forEach(data, function(v, k) {
-//            if (angular.isArray(v[filter.filter])) {
-//                addToCollection = (filter.not ? v[filter.filter].indexOf(filter.val) === -1 : v[filter.filter].indexOf(filter.val) > -1);
-//                if (addToCollection) {
-//                    collection.push(v);
-//                }
-//            } else {
-//                addToCollection = (filter.not ? v[filter.filter] != filter.val : v[filter.filter] == filter.val);
-//                if (addToCollection) {
-//                    collection.push(v);
-//                }
-//            }
-//        });
-//        return collection;
-//    }
-
     /**
      * Get device data
      */
@@ -345,11 +286,13 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
 
         angular.forEach(data, function(v, k) {
             var instance;
-            var minMax = {min: 0, max: 100};
+            var minMax = {min: 0, max: 99};
             var hasInstance = false;
             var zwaveId = false;
             var level = $filter('numberFixedLen')(v.metrics.level);
             var rgbColors = false;
+            var yesterday = (Math.round(new Date().getTime() / 1000)) - (24 * 3600);
+            var isNew = v.creationTime > yesterday ? true : false;
             var appType = {};
             if (v.permanently_hidden || v.deviceType == 'battery') {
                 return;
@@ -394,7 +337,6 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                 default:
                     break;
             }
-            //console.log('Device id %s has history %s',v.id,v.hasHistory)
             obj = {
                 'id': v.id,
                 'zwaveId': zwaveId,
@@ -409,9 +351,10 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                 'probeTitle': v.metrics.probeTitle,
                 'scaleTitle': v.metrics.scaleTitle,
                 'deviceType': v.deviceType,
-                'v.probeType':v.probeType,
+                'probeType': v.probeType,
                 'location': v.location,
                 'creatorID': v.creatorId,
+                'creationTime': v.creationTime,
                 'updateTime': v.updateTime,
                 'onDashboard': onDashboard,
                 'imgTrans': false,
@@ -420,7 +363,8 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                 'minMax': minMax,
                 'cfg': {
                     'zwaveId': zwaveId,
-                    'hasInstance': hasInstance
+                    'hasInstance': hasInstance,
+                    'isNew': isNew
                 },
                 'appType': appType
             };
@@ -453,6 +397,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
             angular.forEach(devices, function(v, k) {
                 widgetId = '#Widget_' + v.id;
                 updateDeviceLevel(widgetId, v);
+                updateDeviceScale(widgetId, v);
                 updateDeviceTime(widgetId, v);
                 updateDeviceIcon(widgetId, v);
                 updateDeviceBtn(widgetId, v);
@@ -482,6 +427,17 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
         }
         console.log(Math.round(+new Date() / 1000) + ' Update device: ID: ' + v.id + ' - level: ' + val)
 
+    }
+
+    /**
+     * Update device scale
+     */
+    function updateDeviceScale(widgetId, v) {
+        if (angular.isDefined(v.metrics.scaleTitle) && v.metrics.scaleTitle !== '') {
+            $(widgetId + ' .widget-scale').html(v.metrics.scaleTitle);
+        }
+
+        //console.log('Update device: ID: ' + v.id + ' - scale: ' + v.metrics.scaleTitle)
     }
 
     /**
@@ -517,6 +473,15 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      */
     function updateDeviceBtn(widgetId, v) {
         var status = false;
+        var minMax = {min: 0, max: 99};
+        // Create min/max value
+        switch (v.probeType) {
+            case 'test':
+                minMax = {min: 0, max: 255};
+                break;
+            default:
+                break;
+        }
         switch (v.deviceType) {
             case 'sensorMultiline':
                 if (v.metrics.multilineType == 'protection') {
@@ -526,9 +491,21 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                         status = 'off';
                     }
                 }
+                if (v.metrics.multilineType == 'climateControl') {
+                     status = 'climate';
+                }
                 break;
             case 'doorlock':
                 if (v.metrics.level == 'open') {
+                    status = 'on';
+                } else {
+                    status = 'off';
+                }
+                break;
+            case 'switchMultilevel':
+                if (v.metrics.level === minMax.max) {
+                    status = 'full';
+                } else if (v.metrics.level > minMax.min && v.metrics.level < minMax.max) {
                     status = 'on';
                 } else {
                     status = 'off';
@@ -549,7 +526,15 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
         if (status == 'on') {
             $(widgetId + ' .widget-btn-on').removeClass('btn-default').addClass('btn-primary');
             $(widgetId + ' .widget-btn-off').removeClass('btn-primary').addClass('btn-default');
-        } else {
+        } else if (status == 'full') {
+             $(widgetId + ' .widget-btn-full').removeClass('btn-default').addClass('btn-primary');
+            $(widgetId + ' .widget-btn-on').removeClass('btn-default').addClass('btn-primary');
+            $(widgetId + ' .widget-btn-off').removeClass('btn-primary').addClass('btn-default');
+        }else if (status == 'climate') {
+             $(widgetId + ' .widget-btn-frostProtection,' + widgetId + ' .widget-btn-energySave,' + widgetId + ' .widget-btn-comfort').removeClass('btn-primary').addClass('btn-default');
+             $(widgetId + ' .widget-btn-' + v.metrics.state).removeClass('btn-default').addClass('btn-primary');
+        }
+        else {
             $(widgetId + ' .widget-btn-on').removeClass('btn-primary').addClass('btn-default');
             $(widgetId + ' .widget-btn-off').removeClass('btn-default').addClass('btn-primary');
         }
@@ -597,41 +582,6 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
 
     }
     ;
-
-    /**
-     * DEPRECATED
-     * Get instances data
-     */
-//    function getInstances(data, modules) {
-//        var collection = [];
-//        var moduleOptions;
-//        var module;
-//        var moduleTitle;
-//        var params;
-//        angular.forEach(data, function(v, k) {
-//            params = (!v.params ? [] : v.params);
-//            module = getRowBy(modules, 'id', v.moduleId);
-//            if (module) {
-//                moduleTitle = $filter('hasNode')(module, 'defaults.title');
-//                moduleOptions = getModuleConfigOptions(module, params);
-//            }
-//
-//            collection.push({
-//                'id': v.id,
-//                'moduleId': v.moduleId,
-//                'title': v.title,
-//                'moduleTitle': moduleTitle,
-//                'params': params,
-//                'description': v.description,
-//                'moduleData': module,
-//                'moduleOptions': moduleOptions,
-//                'moduleInput': getModuleConfigInputs(module, params)
-//            });
-//
-//        });
-//        return collection;
-//    }
-
     /**
      * Get module form data
      */
@@ -655,10 +605,10 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                 continue;
             if (typeof obj[i] == 'object') {
                 objects = objects.concat(replaceModuleFormData(obj[i], key));
-            } else if (i == key && 
-                        !angular.isArray(obj[key]) && 
-                                typeof obj[key] === 'string' && 
-                                    obj[key].indexOf("function") === 0) {
+            } else if (i == key &&
+                    !angular.isArray(obj[key]) &&
+                    typeof obj[key] === 'string' &&
+                    obj[key].indexOf("function") === 0) {
                 // overwrite old string with function                
                 // we can only pass a function as string in JSON ==> doing a real function
                 obj[key] = new Function('return ' + obj[key])();
@@ -752,50 +702,6 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
 
         return $filter('unique')(collection, 'key');
     }
-
-    /**
-     *  DEPRECATED - replaced by underscore _.uniq
-     * Get pairs - key => value
-     */
-//    function getPairs(data, key, val, cache) {
-//        var ret;
-//        var collection = [];
-//        var cached = myCache.get(cache);
-//        // Cached data
-//        if (cached) {
-//            return cached;
-//        }
-//
-//        // Load data
-//        angular.forEach(data, function(v, k) {
-//            if (v[val] != '') {
-//                collection.push({
-//                    'key': v[key],
-//                    'val': v[val]
-//                });
-//            }
-//
-//        });
-//        ret = $filter('unique')(collection, 'key');
-//        myCache.put(cache, ret);
-//        return ret;
-//    }
-
-    /**
-     * DEPRECATED - replaced with underscore _.findWhere
-     * Get 1 row by - key => value
-     */
-//    function getRowBy(data, key, val) {
-//        var collection = null;
-//        angular.forEach(data, function(v, k) {
-//            if (v[key] == val) {
-//                collection = v;
-//                return;
-//            }
-//
-//        });
-//        return collection;
-//    }
 
     /**
      * Set EnOcean profile

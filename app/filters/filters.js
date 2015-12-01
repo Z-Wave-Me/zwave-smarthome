@@ -212,6 +212,15 @@ myApp.filter('getElementIcon', function(cfg) {
                 case 'luminosity':
                     icon = cfg.img.icons + 'luminosity.png';
                     break;
+                case 'humidity':
+                    icon = cfg.img.icons + 'humidity.png';
+                    break;
+                case 'ultraviolet':
+                    icon = cfg.img.icons + 'ultraviolet.png';
+                    break;
+                case 'barometer':
+                    icon = cfg.img.icons + 'barometer.png';
+                    break;
                 case 'new':
                     icon = cfg.img.icons + 'new.png';
                     break;
@@ -296,6 +305,22 @@ myApp.filter('getBatteryIcon', function() {
             icon = 'battery-20.png';
         }else{
             icon = 'battery-0.png';
+        }
+        return icon;
+    };
+});
+
+/**
+ * Get event icon
+ */
+myApp.filter('getRoomIcon', function(cfg) {
+    return function(room) {
+        var icon = 'storage/img/placeholder-img.png';
+        if(room.img_type == 'default' && room.default_img){
+            icon = 'storage/img/rooms/' + room.default_img;
+        }
+         if(room.img_type == 'user' && room.user_img){
+            icon = cfg.server_url + cfg.api_url + 'load/image/' + room.user_img;
         }
         return icon;
     };

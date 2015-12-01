@@ -10,26 +10,45 @@
         -moz-box-shadow:    none;
         box-shadow:        none;
         border-bottom: solid 1px #ccc;
+        .is-new-true{
+   border-bottom: solid 3px lighten(#3c763d, 50%);
+}
     }
     .widget-block-in{
         /*   border: solid 1px red;*/
         height: auto;
-        min-height: 120px;
+        min-height: 100px;
         text-align: left;
         padding: 10px;
     }
+    
     .widget-image{ 
         top: 20px;
         //left: 5px;
-/*        width: 42px;
-        height: 42px;*/
+        /*        width: 42px;
+                height: 42px;*/
     }
     .widget-body{
         margin-top: -20px;
-        padding: 0 5px 15px 80px;
+        //padding: 0 5px 15px 80px;
         .entry-title{
             display: inline;
             padding: 15px 40px 0 0;
+        }
+        .widget-content-wrap{
+
+            padding: 0 5px 15px 0;
+
+        }
+        .btn-widget-time, .txt-widget-time{
+            padding: 0;
+             font-size: ($app-body-font-size * 0.85)  * $m-font-scale;
+            .fa {
+                font-size: ($app-body-font-size * 0.85)  * $m-font-scale;
+            }
+        }
+        .widget-control.control-left.text{
+            padding-left: 0;
         }
     }
 
@@ -63,7 +82,7 @@
 /* Mobile Rooms
 -------------------------------------------------- */
 @mixin mRooms() {
-    
+
     .room-entry{
         float:left;
         width: 50%;
@@ -101,7 +120,7 @@
 /* Mobile Events
 -------------------------------------------------- */
 @mixin mEvents() {
-     .event-date{
+    .event-date{
         display: block;
     }
 }
@@ -109,19 +128,19 @@
 -------------------------------------------------- */
 @mixin mApps() {
     // Apps
-/*    .tabs-container{
-        text-align: center;
-    }*/
+    /*    .tabs-container{
+            text-align: center;
+        }*/
     /*    .nav-tabs{
             display: block;
             text-align: center;
             padding: 0 25%;
         }*/
-   
-    
-/*    .tab-icon{
-        font-size: 20px;
-    }*/
+
+
+    /*    .tab-icon{
+            font-size: 20px;
+        }*/
     #table_apps_instance{
         .td-action{
             width: 40%;
@@ -169,9 +188,9 @@
         }
     }
 
-/*    .app-image{
-         margin: 0;
-    }*/
+    /*    .app-image{
+             margin: 0;
+        }*/
 
     // Apps detail
     .app-detail-header-in{

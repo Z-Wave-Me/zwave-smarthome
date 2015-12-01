@@ -38,11 +38,11 @@
          <!--<div class="tab-pane" id="module_hidden" ng-class="activeTab == 'hidden' ? 'active' : ''" ng-include="'app/views/apps/app_hidden.html'"></div>-->
     </div>
 
-    <div id="footer" ng-show="showFooter">
+    <div id="footer" ng-show="showFooter__">
         <div class="navbar navbar-default navbar-fixed-bottom">
             <div class="container">
                <div class="form-inline" role="form">
-                    <div class="btn-group dropup" ng-if="showInFooter.categories">
+                    <!--<div class="btn-group dropup" ng-if="showInFooter.categories">
                         <button type="button" class="btn btn-default" ng-bind="_t('lb_filter_by')"></button>
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                             <span class="caret"></span>
@@ -56,7 +56,7 @@
                                 <a href="#apps/category/{{v.id}}">{{v.name}}</a> 
                             </li>
                         </ul>
-                    </div>
+                    </div>-->
                     <div class="input-group search-form hide-on-mobile">
                        <input type="text" ng-model="q" class="form-control" value="{{q}}">
                         <span class="input-group-addon"><i class="fa fa-search"></i></span> 

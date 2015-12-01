@@ -1,0 +1,52 @@
+<!-- Instance view -->
+<div ng-controller="AppBaseController">
+    <div ng-controller="AppInstanceController">
+         <!-- Apps navigation -->
+        <div ng-include="'app/views/apps/navi.html'"></div>
+<div class="table-responsive_">
+    <table id="table_apps_instance" class="table table-condensed table-report">
+        <tbody>
+            <tr class="bcg-active"
+                id="instance_{{$index}}" 
+                ng-repeat="v in dataHolder.instances.all|orderBy:'-creationTime' track by v.id" 
+                ng-class="v.active ? 'true': 'false'"
+                ng-if="dataHolder.modules.cameraIds.indexOf(v.moduleId) === -1">
+                <td class="td-img">
+                    <img class="report-img" ng-src="{{moduleMediaUrl + v.moduleId + '/' + dataHolder.modules.imgs[v.moduleId]}}" ng-if="dataHolder.modules.imgs[v.moduleId]" alt="img" />
+                    <img class="report-img" ng-src="storage/img/placeholder-img.png" ng-if="!dataHolder.modules.imgs[v.moduleId]" alt="img" />
+                    <!-- <img class="report-img" ng-src="storage/img/apps/app.png" alt="icon" />-->
+                </td>
+                <td>
+                   <a href="#module/put/{{v.id}}"><span ng-bind="v.title"></span> <span ng-bind="_t('lb_use')"></span> <strong ng-bind="v.module"></strong></a>
+                </td>
+                <td class="td-action">
+                    <a href="#module/put/{{v.id}}" class="btn btn-default btn-sm">
+                        <i class="fa fa-cog fa-lg"></i>
+                    </a>
+                    <button title="{{_t('lb_deactivate')}}" 
+                            class="btn btn-default btn-sm" href="" 
+                            ng-show="v.active"
+                            ng-click="activateInstance(v, false)"
+                            >
+                        <i class="fa fa-power-off fa-lg text-primary"></i> <span class="btn-name" ng-bind="_t('lb_deactivate')"></span>
+                    </button>
+                    <button title="{{_t('lb_activate')}}" 
+                            class="btn btn-default btn-sm" 
+                            ng-show="!v.active" 
+                            ng-click="activateInstance(v, true)
+                            ">
+                        <i class="fa fa-refresh fa-lg text-success"></i> <span class="btn-name" ng-bind="_t('lb_activate')"></span>
+                    </button>
+                    <button title="{{_t('lb_remove')}}" 
+                            class="btn btn-default btn-sm"
+                            ng-click="deleteInstance('#instance_' + $index, {'id': v.id}, _t('lb_delete_confirm'))"
+                            >
+                        <i class="fa fa-remove fa-lg text-danger"></i> <span class="btn-name" ng-bind="_t('lb_remove')"></span>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+    </div> <!-- /ng-controller --> 
+</div> <!-- /ng-controller --> 

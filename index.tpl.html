@@ -44,7 +44,7 @@
                     <ul>
                         <!-- Apps -->
                         <li class="subnavi-apps" ng-class="isActive('apps')" ng-if="elementAccess(cfg.role_access.apps)">
-                            <a href="#apps"><i class="fa fa-cubes"></i> {{_t('nav_apps')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                            <a href="#apps/local"><i class="fa fa-cubes"></i> {{_t('nav_apps')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
                         </li>
                         <!-- Devices -->
                         <li class="subnavi-devices" ng-class="isActive('devices')" ng-if="elementAccess(cfg.role_access.devices)">
@@ -61,14 +61,6 @@
                         <!-- Management -->
                         <li class="subnavi-admin" ng-class="isActive('admin')" ng-if="elementAccess(cfg.role_access.admin)">
                             <a href="#admin"><i class="fa fa-wrench"></i> {{_t('management')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                        </li>
-                        <!-- Report -->
-                        <li class="subnavi-report" ng-class="isActive('report')">
-                            <a href="#report"><i class="fa fa-bug"></i> {{_t('nav_report')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                        </li>
-                        <!-- Info -->
-                        <li class="subnavi-info" ng-class="isActive('info')">
-                            <a href="#info"><i class="fa fa-info-circle"></i> {{_t('info')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
                         </li>
                         <!-- Logout -->
                         <li class="subnavi-logout" ng-if="elementAccess(null, isMobile)">

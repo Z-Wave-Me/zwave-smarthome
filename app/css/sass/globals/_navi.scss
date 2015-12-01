@@ -2,6 +2,7 @@
 -------------------------------------------------- */
 .page-control{
     text-align: right;
+    margin-top: 10px;
   }   
 .page-navi{
     font-size: $app-navi-font-size; 
@@ -37,7 +38,7 @@
                   border: solid 4px lighten($app-body-bcg-color, 2%);
                 //float: left;
                 //height: $app-navi-font-size * 2;
-                background-color: #ddd;
+                background-color: #EEEEEE;
                 //border:solid 1px #ccc;
                 //line-height: $app-navi-font-size * 2;
                 //margin: 0 5px 20px 5px;
@@ -194,4 +195,12 @@
         .page-menu-notifications{background-color: #80ad80;} 
         .page-menu-tagging{background-color: #31b0d5;}
     
+}
+
+/* Footer drop-down
+-------------------------------------------------- */
+.dropdown-menu-bottom{
+   height: auto;
+    max-height: 600px;
+    overflow-x: hidden;
 }

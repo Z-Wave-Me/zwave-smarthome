@@ -84,7 +84,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $lo
             $cookies.lang = input.lang;
             myCache.remove('profiles');
             dataService.setUser(data);
-            $window.location.reload();
+            $window.location.reload(); 
             //$window.history.back();
             //$route.reload();
 
@@ -99,7 +99,9 @@ myAppController.controller('MySettingsController', function($scope, $window, $lo
      * Change password
      */
     $scope.changePassword = function(newPassword) {
-        if (!newPassword || newPassword == '') {
+        if (!newPassword || newPassword === '' || newPassword === $scope.cfg.default_credentials.password) {
+            alertify.alert($scope._t('enter_valid_password'));
+            $scope.loading = false;
             return;
         }
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
