@@ -77,7 +77,7 @@ myAppController.controller('PasswordController', function($scope, dataFactory) {
     $scope.input = {
         password: '',
         passwordConfirm: '',
-        email: '',
+        email: ''
     };
     /**
      * Change password
@@ -86,7 +86,7 @@ myAppController.controller('PasswordController', function($scope, dataFactory) {
         if (form.$invalid) {
             return;
         }
-        if (input.password === '' || input.password === $scope.cfg.default_credentials.password) {
+        if (input.password === $scope.cfg.default_credentials.password) {
             alertify.alert($scope._t('enter_valid_password'));
             $scope.loading = false;
             return;
@@ -94,21 +94,19 @@ myAppController.controller('PasswordController', function($scope, dataFactory) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         var input = {
             id: $scope.user.id,
-            password: input.password
-
-        };
-         var inputProfile = {
-            id: $scope.user.id,
+            password: input.password,
             email: input.email
 
         };
         dataFactory.putApi('profiles_auth_update', input.id, input).then(function(response) {
             var data = response.data.data;
+            data['email'] = input.email;
             if (!data) {
                 alertify.alert($scope._t('error_update_data'));
                 $scope.loading = false;
                 return;
             }
+            dataFactory.putApi('profiles', input.id, data).then(function(response) {}, function(error) {});
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
             window.location = '#/elements/dashboard/1';
 
@@ -116,6 +114,8 @@ myAppController.controller('PasswordController', function($scope, dataFactory) {
             alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
         });
+        
+        
         
 
     };
