@@ -14,7 +14,8 @@ myAppController.controller('LoginController', function($scope, $location, $windo
         login: '',
         password: '',
         keepme: false,
-        default_ui: 1
+        default_ui: 1,
+        fromexpert: $routeParams.fromexpert
     };
     $scope.loginLang = ($scope.lastLogin != undefined && angular.isDefined($cookies.lang)) ? $cookies.lang : false;
     /**
@@ -46,9 +47,14 @@ myAppController.controller('LoginController', function($scope, $location, $windo
             //$window.location.href = '#/elements/dashboard/1?login';
             //console.log(user);
             //$location.path('/elements/dashboard/1?login');
+            if(input.fromexpert){
+                window.location.href = $scope.cfg.expert_url;
+                return;
+            }
             if (input.password === $scope.cfg.default_credentials.password) {
                 redirectTo = '#/password';
             }
+            
             window.location = redirectTo;
 
             $window.location.reload();

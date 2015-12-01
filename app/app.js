@@ -23,8 +23,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
         $routeProvider.
                 // Login
                 when('/', {
-                    //redirectTo: '/elements/dashboard/1'
-                    templateUrl: 'app/views/auth/login.html'
+                   templateUrl: 'app/views/auth/login.html'
                 }).
                  // Home
                 when('/home', {
