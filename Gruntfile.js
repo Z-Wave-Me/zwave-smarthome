@@ -33,7 +33,7 @@ module.exports = function(grunt) {
                     'vendor/jquery/plugins/jquery.fileupload.js',
                     'vendor/jquery/plugins/jquery.fileupload-process.js',
                     'vendor/jquery/plugins/jquery.fileupload-ui.js',
-                    'vendor/moment/moment-with-locales.min.js'
+                    'vendor/moment/moment-with-locales.min.js',
                     'vendor/underscore/underscore-1.8.3/underscore-min.js',
                     'vendor/chartjs/Chart.js',
                     //'vendor/upload/angular-file-upload-shim.js',

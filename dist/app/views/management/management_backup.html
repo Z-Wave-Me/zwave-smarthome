@@ -1,0 +1,17 @@
+<!-- Admin backup view -->
+<h2 class="admin-entry-title" ng-click="expandElement('backup')">
+    <i class="fa fa-cloud-download"></i> <span ng-bind="_t('backup')"></span>
+     <i class="fa subnavi-arrow" ng-class="expand.backup  ? 'fa-chevron-up':'fa-chevron-down'"></i>
+</h2>
+<div class="admin-entry-ctrl" ng-if="expand.backup" ng-controller="ManagementBackupController">
+    <div class="form form-inline form-page">
+        <div class="fieldset">
+            <bb-help-text trans="_t('backup_info')"></bb-help-text>
+            <bb-alert alert="managementBackup.alert"></bb-alert>
+        </div>
+        <div class="fieldset submit-entry">
+            <button type="button" class="btn btn-default" ng-click="expandElement('backup')"><i class="fa fa-times  text-danger"></i> <span ng-bind="_t('lb_cancel')"></span></button>
+            <a class="btn btn-submit" ng-click="downloadBackupFile()"><i class="fa fa-cloud-download"></i> {{_t('nm_backup_download')}}</a>
+        </div>
+    </div>
+</div>
