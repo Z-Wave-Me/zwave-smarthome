@@ -12,8 +12,8 @@ var myApp = angular.module('myApp', [
     'myAppFactory',
     'myAppService',
     'colorpicker.module',
-    'dndLists'
-    //'angularFileUpload'
+    'dndLists',
+    'qAllSettled'
 
 ]);
 

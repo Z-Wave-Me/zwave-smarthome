@@ -55,6 +55,7 @@ module.exports = function(grunt) {
                     'vendor/bootstrap/bootstrap.min.js',
                     // APP
                     'app/app.js',
+                    'app/modules/qAllSettled.js',
                     //'app/config/config.js',
                     'app/config/settings.js',
                     'app/services/factories.js',
