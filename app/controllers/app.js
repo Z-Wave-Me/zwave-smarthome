@@ -574,9 +574,15 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
     $scope.postModule = function(id) {
         dataService.showConnectionSpinner();
         dataFactory.getApi('modules', '/' + id + '?lang=' + $scope.lang, true).then(function(module) {
+            // get module postRender data
+            var modulePR = null;
+            if(angular.isString(module.data.data.postRender) && module.data.data.postRender.indexOf('function') === 0){
+                modulePR = module.data.data.postRender;
+            }
             var formData = dataService.getModuleFormData(module.data.data, module.data.data.defaults);
             var langCode = (angular.isDefined(cfg.lang_codes[$scope.lang]) ? cfg.lang_codes[$scope.lang] : null);
             $scope.input = {
+                'modulePostrender': modulePR,
                 'instanceId': 0,
                 'moduleId': id,
                 'active': true,
@@ -617,9 +623,15 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                     }
 
                 }
+                // get module postRender data
+                var modulePR = null;
+                if(angular.isString(module.data.data.postRender) && module.data.data.postRender.indexOf('function') === 0){
+                    modulePR = module.data.data.postRender;
+                }
                 var formData = dataService.getModuleFormData(module.data.data, instance.params);
 
                 $scope.input = {
+                    'modulePostrender': modulePR,
                     'instanceId': instance.id,
                     'moduleId': module.data.data.id,
                     'active': instance.active,
