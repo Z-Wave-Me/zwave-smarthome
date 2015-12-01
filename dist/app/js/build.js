@@ -8283,8 +8283,8 @@ var myApp = angular.module('myApp', [
     'myAppFactory',
     'myAppService',
     'colorpicker.module',
-    'dndLists'
-    //'angularFileUpload'
+    'dndLists',
+    'qAllSettled'
 
 ]);
 
@@ -8294,8 +8294,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
         $routeProvider.
                 // Login
                 when('/', {
-                    //redirectTo: '/elements/dashboard/1'
-                    templateUrl: 'app/views/auth/login.html'
+                   templateUrl: 'app/views/auth/login.html'
                 }).
                  // Home
                 when('/home', {
@@ -8518,6 +8517,14 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     templateUrl: 'app/views/auth/password.html',
                     requireLogin: true
                 }).
+                //Password forgot
+                when('/passwordforgot', {
+                    templateUrl: 'app/views/auth/password_forgot.html'
+                }).
+                //Password reset
+                when('/passwordforgot/reset/:token', {
+                    templateUrl: 'app/views/auth/password_reset.html'
+                }).
                 //Login
                 when('/logout', {
                     templateUrl: 'app/views/auth/logout.html',
@@ -8628,6 +8635,28 @@ myApp.config(function($provide, $httpProvider) {
 
 
 
+/**
+ * Angular $q allSettled() implementation
+ */
+'use strict';
+
+angular.module('qAllSettled', []).config(function($provide) {
+  $provide.decorator('$q', function($delegate) {
+    var $q = $delegate;
+     $q.allSettled = function(promises) {
+        var wrappedPromises = angular.isArray(promises) ? promises.slice(0) : {};
+        angular.forEach(promises, function(promise, index){
+          wrappedPromises[index] = promise.then(function(value){
+            return { state: 'fulfilled', value: value };
+          }, function(reason){
+            return { state: 'rejected', reason: reason };
+          });
+        });
+        return $q.all(wrappedPromises);
+      };
+    return $q;
+  });
+});
 /**
  * Application factories
  * @author Martin Vach
@@ -10030,7 +10059,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      */
     function getModuleFormData(module, data) {
         var collection = {
-            'options': replaceModuleFormData(module.options, 'click'),
+            'options': replaceModuleFormData(module.options, ['click','onFieldChange']),
             'schema': module.schema,
             'data': data,
             'postRender': postRenderAlpaca
@@ -10041,20 +10070,20 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     /**
      * Replace module object
      */
-    function replaceModuleFormData(obj, key) {
+    function replaceModuleFormData(obj, keys) {
         var objects = [];
         for (var i in obj) {
             if (!obj.hasOwnProperty(i))
                 continue;
             if (typeof obj[i] == 'object') {
-                objects = objects.concat(replaceModuleFormData(obj[i], key));
-            } else if (i == key &&
-                    !angular.isArray(obj[key]) &&
-                    typeof obj[key] === 'string' &&
-                    obj[key].indexOf("function") === 0) {
+                objects = objects.concat(replaceModuleFormData(obj[i], keys));
+            } else if (~keys.indexOf(i) &&
+                    !angular.isArray(obj[i]) &&
+                    typeof obj[i] === 'string' &&
+                    obj[i].indexOf("function") === 0) {
                 // overwrite old string with function                
                 // we can only pass a function as string in JSON ==> doing a real function
-                obj[key] = new Function('return ' + obj[key])();
+                obj[i] = new Function('return ' + obj[i])();
             }
         }
         return obj;
@@ -11460,6 +11489,19 @@ myApp.filter('stringToSlug', function() {
  * @returns false
  */
 var postRenderAlpaca = function(renderedForm) {
+
+    var $alpaca = $('#alpaca_data');    
+
+    //load postRender function from module
+    if($alpaca && $alpaca.data('modulePostrender') && !!$alpaca.data('modulePostrender')) {
+        eval($alpaca.data('modulePostrender'));
+    }
+
+    // call postRender function from module
+    if (modulePostRender){
+       modulePostRender(); 
+    }
+
     $('#btn_module_submit').click(function() {
         var data = postRenderAlpacaData(renderedForm);
         var url = config_data.cfg.server_url + config_data.cfg.api['instances'] + (data.instanceId > 0 ? '/' + data.instanceId : '');
@@ -11518,7 +11560,7 @@ function postRenderAlpacaData(renderedForm) {
 
     });
     return $.extend(inputData, alpacaData);
-}
+};
 /**
  * Application base controller
  * @author Martin Vach
@@ -13655,9 +13697,15 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
     $scope.postModule = function(id) {
         dataService.showConnectionSpinner();
         dataFactory.getApi('modules', '/' + id + '?lang=' + $scope.lang, true).then(function(module) {
+            // get module postRender data
+            var modulePR = null;
+            if(angular.isString(module.data.data.postRender) && module.data.data.postRender.indexOf('function') === 0){
+                modulePR = module.data.data.postRender;
+            }
             var formData = dataService.getModuleFormData(module.data.data, module.data.data.defaults);
             var langCode = (angular.isDefined(cfg.lang_codes[$scope.lang]) ? cfg.lang_codes[$scope.lang] : null);
             $scope.input = {
+                'modulePostrender': modulePR,
                 'instanceId': 0,
                 'moduleId': id,
                 'active': true,
@@ -13698,9 +13746,15 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                     }
 
                 }
+                // get module postRender data
+                var modulePR = null;
+                if(angular.isString(module.data.data.postRender) && module.data.data.postRender.indexOf('function') === 0){
+                    modulePR = module.data.data.postRender;
+                }
                 var formData = dataService.getModuleFormData(module.data.data, instance.params);
 
                 $scope.input = {
+                    'modulePostrender': modulePR,
                     'instanceId': instance.id,
                     'moduleId': module.data.data.id,
                     'active': instance.active,
@@ -15535,9 +15589,13 @@ myAppController.controller('EnoceanManageController', function($scope, $location
      * Delete device
      */
     $scope.deleteDevice = function(id, target, message) {
-        var cmd = 'delete devices["' + id + '"]';
+        var cmd = 'delete devices["x' + id + '"]';
         alertify.confirm(message, function() {
             dataFactory.runEnoceanCmd(cmd).then(function(response) {
+                if(response.data === 'false'){
+                    alertify.alert($scope._t('error_delete_data'));
+                    return;
+                }
                 $(target).fadeOut(500);
                 //$scope.loadData();
             }, function(error) {
@@ -17042,21 +17100,7 @@ myAppController.controller('ManagementInfoController', function($scope, dataFact
 myAppController.controller('MySettingsController', function($scope, $window, $location,$cookies,dataFactory, dataService, myCache) {
     $scope.id = $scope.user.id;
     $scope.devices = {};
-    $scope.input = {
-        id: 0,
-        name: '',
-        active: true,
-        description: '',
-        //positions: [],
-        password: '',
-        lang: 'en',
-        color: '',
-        hide_all_device_events: false,
-        hide_system_events: false,
-        hide_single_device_events: [],
-        interval: 2000
-
-    };
+    $scope.input = {};
     $scope.newPassword = null;
 
     /**
@@ -17174,6 +17218,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $lo
     ;
 
 });
+
 /**
  * Application Auth controller
  * @author Martin Vach
@@ -17184,13 +17229,14 @@ myAppController.controller('MySettingsController', function($scope, $window, $lo
 /**
  * Login controller
  */
-myAppController.controller('LoginController', function($scope, $location, $window, $routeParams, $cookies,dataFactory, dataService) {
+myAppController.controller('LoginController', function($scope, $location, $window, $routeParams, $cookies, dataFactory, dataService) {
     $scope.input = {
         form: true,
         login: '',
         password: '',
         keepme: false,
-        default_ui: 1
+        default_ui: 1,
+        fromexpert: $routeParams.fromexpert
     };
     $scope.loginLang = ($scope.lastLogin != undefined && angular.isDefined($cookies.lang)) ? $cookies.lang : false;
     /**
@@ -17211,22 +17257,27 @@ myAppController.controller('LoginController', function($scope, $location, $windo
         dataFactory.logInApi(input).then(function(response) {
             var redirectTo = '#/elements/dashboard/1?login';
             var user = response.data.data;
-             if($scope.loginLang){
-                 user.lang = $scope.loginLang;
-             }
+            if ($scope.loginLang) {
+                user.lang = $scope.loginLang;
+            }
             dataService.setZWAYSession(user.sid);
             dataService.setUser(user);
             dataService.setLastLogin(Math.round(+new Date() / 1000));
             //$scope.loading = false;
             $scope.input.form = false;
             //$window.location.href = '#/elements/dashboard/1?login';
-             //console.log(user);
+            //console.log(user);
             //$location.path('/elements/dashboard/1?login');
-            if(input.password === $scope.cfg.default_credentials.password){
+            if(input.fromexpert){
+                window.location.href = $scope.cfg.expert_url;
+                return;
+            }
+            if (input.password === $scope.cfg.default_credentials.password) {
                 redirectTo = '#/password';
             }
+            
             window.location = redirectTo;
-           
+
             $window.location.reload();
         }, function(error) {
             var message = $scope._t('error_load_data');
@@ -17248,21 +17299,21 @@ myAppController.controller('LoginController', function($scope, $location, $windo
 /**
  * Password controller
  */
-myAppController.controller('PasswordController', function($scope,  dataFactory) {
+myAppController.controller('PasswordController', function($scope, dataFactory) {
     //$scope.newPassword = null;
     $scope.input = {
         password: '',
-       passwordConfirm: '',
-       email: '',
+        passwordConfirm: '',
+        email: ''
     };
     /**
      * Change password
      */
-    $scope.changePassword = function(form,input) {
+    $scope.changePassword = function(form, input) {
         if (form.$invalid) {
             return;
         }
-        if (input.password === '' || input.password === $scope.cfg.default_credentials.password) {
+        if (input.password === $scope.cfg.default_credentials.password) {
             alertify.alert($scope._t('enter_valid_password'));
             $scope.loading = false;
             return;
@@ -17274,7 +17325,53 @@ myAppController.controller('PasswordController', function($scope,  dataFactory) 
             email: input.email
 
         };
-         dataFactory.putApi('profiles_auth_update', input.id, input).then(function(response) {
+        dataFactory.putApi('profiles_auth_update', input.id, input).then(function(response) {
+            var data = response.data.data;
+            data['email'] = input.email;
+            if (!data) {
+                alertify.alert($scope._t('error_update_data'));
+                $scope.loading = false;
+                return;
+            }
+            dataFactory.putApi('profiles', input.id, data).then(function(response) {}, function(error) {});
+            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
+            window.location = '#/elements/dashboard/1';
+
+        }, function(error) {
+            alertify.alert($scope._t('error_update_data'));
+            $scope.loading = false;
+        });
+        
+        
+        
+
+    };
+
+});
+/**
+ * Password forgot controller
+ */
+myAppController.controller('PasswordForgotController', function($scope, $location,dataFactory) {
+    $scope.passwordForgot = {
+        input: { email: '',location: $location,resetUrl: $location.$$absUrl + '/reset/'},
+        alert: {message: false, status: 'is-hidden', icon: false}
+    };
+
+    /**
+     * Send an email
+     */
+    $scope.sendEmail = function(form, input) {
+        if (form.$invalid) {
+            return;
+        }
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        alertify.alert($scope._t('email_notfound'));
+         $scope.passwordForgot.alert = {message: $scope._t('password_forgot_success'), status: 'alert-success', icon: 'fa-check'};
+        $scope.loading = false;
+
+        return;
+
+        dataFactory.putApi('profiles_auth_update', input.id, input).then(function(response) {
             var data = response.data.data;
             if (!data) {
                 alertify.alert($scope._t('error_update_data'));
@@ -17282,7 +17379,77 @@ myAppController.controller('PasswordController', function($scope,  dataFactory) 
                 return;
             }
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
-             window.location = '#/elements/dashboard/1';
+            window.location = '#/elements/dashboard/1';
+
+        }, function(error) {
+            alertify.alert($scope._t('error_update_data'));
+            $scope.loading = false;
+        });
+
+    };
+
+});
+
+/**
+ * Password reset controller
+ */
+myAppController.controller('PasswordResetController', function($scope, $routeParams,dataFactory) {
+   $scope.passwordReset = {
+        input: { id: null, password: '',passwordConfirm: '',token: $routeParams.token},
+        alert: {message: false, status: 'is-hidden', icon: false}
+    };
+    /**
+     * Check a valid token
+     */
+    $scope.checkToken = function(token) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+         $scope.passwordReset.input.id = 1;
+         $scope.loading = false;
+         return;
+
+        dataFactory.getApi('myappi', null, true).then(function(response) {
+            $scope.passwordReset.input.id = response.data.data.user.id;
+            $scope.passwordReset.input.id = 1;
+            $scope.loading = false;
+        }, function(error) {
+            var message = $scope._t('error_500');
+            if (error.status == 404) {
+                message = $scope._t('token_notfound');
+            }
+            $scope.loading = false;
+            $scope.passwordReset.alert = {message: message, status: 'alert-danger', icon: 'fa-warning'};
+        });
+
+    };
+    $scope.checkToken($routeParams.token);
+    
+    /**
+     * Change password
+     */
+    $scope.changePassword = function(form, input) {
+        if (form.$invalid) {
+            return;
+        }
+        if (input.password === '' || input.password === $scope.cfg.default_credentials.password) {
+            alertify.alert($scope._t('enter_valid_password'));
+            $scope.loading = false;
+            return;
+        }
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        var input = {
+            id: input.id,
+            password: input.password
+
+        };
+        dataFactory.putApi('profiles_auth_update', input.id, input).then(function(response) {
+            var data = response.data.data;
+            if (!data) {
+                alertify.alert($scope._t('error_update_data'));
+                $scope.loading = false;
+                return;
+            }
+            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
+            window.location = '#/';
 
         }, function(error) {
             alertify.alert($scope._t('error_update_data'));

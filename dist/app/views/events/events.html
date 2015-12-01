@@ -5,10 +5,10 @@
     <div class="events-header">
         <button class="btn btn-default" ng-click="changeTime(1)" ng-disabled="timeFilter.day == 1" ng-bind="_t('lb_today')"></button>
         <button class="btn btn-default" ng-click="changeTime(2)" ng-disabled="timeFilter.day == 2" ng-bind="_t('lb_yesterday')"></button>
-        <button class="btn btn-default" ng-click="changeTime(3)" ng-disabled="timeFilter.day == 3">3 <span ng-bind="_t('lb_days')"></span></button>
+        <!--<button class="btn btn-default" ng-click="changeTime(3)" ng-disabled="timeFilter.day == 3">3 <span ng-bind="_t('lb_days')"></span></button>
         <button class="btn btn-default" ng-click="changeTime(4)" ng-disabled="timeFilter.day == 4">4 <span ng-bind="_t('lb_days')"></span></button>
         <button class="btn btn-default" ng-click="changeTime(5)" ng-disabled="timeFilter.day == 5">5 <span ng-bind="_t('lb_days')"></span></button>
-        <button class="btn btn-default" ng-click="changeTime(6)" ng-disabled="timeFilter.day == 6">6 <span ng-bind="_t('lb_days')"></span></button>
+        <button class="btn btn-default" ng-click="changeTime(6)" ng-disabled="timeFilter.day == 6">6 <span ng-bind="_t('lb_days')"></span></button>-->
         <button class="btn btn-default" ng-click="changeTime(7)" ng-disabled="timeFilter.day == 7">7 <span ng-bind="_t('lb_days')"></span></button>
     </div>
       <div class="info-lert" ng-if="collection.length < 1 || devices.find.id"><i class="fa fa-info-circle text-info"></i> {{_t('device_no_event')}}.</div>

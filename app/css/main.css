@@ -4801,15 +4801,15 @@ padding-right: 5px;
 /* Login
 -------------------------------------------------- */
 /* line 4, sass/modules/_login.scss */
-#page_login #header, #page_password #header {
+#page_login #header, #page_password #header, #page_passwordforgot #header, #page_passwordreset #header {
   display: none !important;
 }
 /* line 7, sass/modules/_login.scss */
-#page_login .container, #page_password .container {
+#page_login .container, #page_password .container, #page_passwordforgot .container, #page_passwordreset .container {
   max-width: 500px;
 }
 /* line 10, sass/modules/_login.scss */
-#page_login .login-lang, #page_password .login-lang {
+#page_login .login-lang, #page_password .login-lang, #page_passwordforgot .login-lang, #page_passwordreset .login-lang {
   text-align: right;
   margin-bottom: 10px;
 }

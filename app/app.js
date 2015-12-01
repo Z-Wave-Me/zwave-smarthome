@@ -12,8 +12,8 @@ var myApp = angular.module('myApp', [
     'myAppFactory',
     'myAppService',
     'colorpicker.module',
-    'dndLists'
-    //'angularFileUpload'
+    'dndLists',
+    'qAllSettled'
 
 ]);
 
@@ -23,8 +23,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
         $routeProvider.
                 // Login
                 when('/', {
-                    //redirectTo: '/elements/dashboard/1'
-                    templateUrl: 'app/views/auth/login.html'
+                   templateUrl: 'app/views/auth/login.html'
                 }).
                  // Home
                 when('/home', {
@@ -246,6 +245,14 @@ myApp.config(['$routeProvider', function($routeProvider) {
                 when('/password', {
                     templateUrl: 'app/views/auth/password.html',
                     requireLogin: true
+                }).
+                //Password forgot
+                when('/passwordforgot', {
+                    templateUrl: 'app/views/auth/password_forgot.html'
+                }).
+                //Password reset
+                when('/passwordforgot/reset/:token', {
+                    templateUrl: 'app/views/auth/password_reset.html'
                 }).
                 //Login
                 when('/logout', {
