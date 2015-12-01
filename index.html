@@ -45,6 +45,7 @@
         <script src="vendor/alpaca/1.5.14/bootstrap/alpaca.min.js"></script>
         <!-- App js -->
         <script src="app/app.js"></script>
+        <script src="app/modules/qAllSettled.js"></script>
         <script src="app/services/factories.js"></script>
         <script src="app/services/services.js"></script>
         <script src="app/directives/directives.js"></script>
@@ -107,7 +108,7 @@
                     <ul>
                         <!-- Apps -->
                         <li class="subnavi-apps" ng-class="isActive('apps')" ng-if="elementAccess(cfg.role_access.apps)">
-                            <a href="#apps"><i class="fa fa-cubes"></i> {{_t('nav_apps')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                            <a href="#apps/local"><i class="fa fa-cubes"></i> {{_t('nav_apps')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
                         </li>
                         <!-- Devices -->
                         <li class="subnavi-devices" ng-class="isActive('devices')" ng-if="elementAccess(cfg.role_access.devices)">

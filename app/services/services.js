@@ -337,9 +337,6 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                 default:
                     break;
             }
-           
-            console.log(v.id + ': ' + isNew)
-            //console.log('Device id %s has history %s',v.id,v.hasHistory)
             obj = {
                 'id': v.id,
                 'zwaveId': zwaveId,

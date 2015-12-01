@@ -1,0 +1,43 @@
+<!-- Admin licence view -->
+<h2 class="admin-entry-title" ng-click="expandElement('licence')">
+            <i class="fa fa-key"></i> <span ng-bind="_t('licence_upgrade')"></span> 
+            <i class="fa subnavi-arrow" ng-class="expand.licence  ? 'fa-chevron-up':'fa-chevron-down'"></i>
+</h2>
+<div class="admin-entry-ctrl" ng-class="" ng-if="expand.licence" ng-controller="ManagementLicenceController">
+    <form name="form_licence" id="form_password" class="form form-page" ng-submit="getLicense(inputLicence)" novalidate>
+        <fieldset>
+            <!--
+           <p class="form-control-static" ng-bind="_t('licence_upgrade_info')"></p>
+           <p><a ng-href="{{cfg.buy_licence_key}}" class="btn btn-info">{{_t('btn_licence_buy')}}</a></p>
+            -->
+            <!-- password -->
+            <p>{{_t('licence_upgrade_key')}}</p>
+            <label>{{_t('licence_key_insert')}}:</label>
+            <input
+                class="form-control form-control-sm" 
+                type="text" 
+                name="scratch_id"
+                id="scratch_id" 
+                value="" 
+                ng-model="inputLicence.scratch_id" />
+
+            <div><br />
+                <p ng-if="proccessVerify.message">
+                    <i class="fa-lg" ng-class="proccessVerify.status"></i> <strong ng-bind="proccessVerify.message"></strong>
+                </p>
+                <p ng-if="proccessUpdate.message">
+                    <i class="fa-lg" ng-class="proccessUpdate.status"></i> <strong ng-bind="proccessUpdate.message"></strong>
+                </p>
+            </div>
+        </fieldset> 
+        <fieldset class="submit-entry">
+            <button type="button" class="btn btn-default" ng-click="expandElement('licence')" ng-disabled="proccessLicence">
+                <i class="fa fa-times  text-danger"></i> <span ng-bind="_t('lb_cancel')"></span>
+            </button>
+            <button type="submit" class="btn btn-submit" ng-disabled="proccessLicence">
+                <i class="fa fa-share"></i> <span ng-bind="_t('btn_licence_verify')"></span>
+            </button>
+        </fieldset>
+    </form>
+
+</div>

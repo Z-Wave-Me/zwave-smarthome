@@ -1,0 +1,84 @@
+<!-- Local apps view -->
+<div ng-controller="AppBaseController">
+    <div ng-controller="AppLocalController">
+        <!-- Apps navigation -->
+        <div ng-include="'app/views/apps/navi.html'"></div>
+    
+        <div class="page-control form-inline">
+            <a class="btn btn-default" href="" ng-click="expandNavi('appsCategories', $event)"><i class="fa fa-chevron-down text-success" ng-class="naviExpanded.appsCategories ? 'fa-chevron-up': 'fa-chevron-down'"></i> 
+                 <span ng-if="dataHolder.modules.filter.category">{{dataHolder.modules.categories[dataHolder.modules.filter.category].name|cutText:true:30}}</span>
+                 <span ng-if="dataHolder.modules.filter.featured">{{_t('featured_apps')}}</span>
+                 <span ng-if="_.isEmpty(dataHolder.modules.filter)">{{_t('all_apps')}}</span>
+            </a>
+            <div class="input-group search-form hide-on-mobile_">
+                <input type="text" ng-model="q" class="form-control" value="{{q}}">
+                <span class="input-group-addon"><i class="fa fa-search"></i></span> 
+            </div>
+
+        </div>
+        <div class="page-navi" ng-if="naviExpanded.appsCategories">
+        <div class="page-navi-in">
+            <ul>
+                <li class="page-cat-0" ng-class="_.isEmpty(dataHolder.modules.filter) == true ? 'active': ''"><a href="" ng-click="setFilter()"><i class="fa fa-check-circle-o"></i> {{_t('all_apps')}}</a></li>
+                <li class="page-cat-0" ng-class="dataHolder.modules.filter.featured == true ? 'active': ''"><a href="" ng-click="setFilter({featured: true})"><i class="fa fa-thumbs-o-up"></i> {{_t('featured_apps')}}</a></li>
+                <li class="page-cat-{{v.id}}" ng-repeat="v in dataHolder.modules.categories" ng-if="dataHolder.modules.cats.indexOf(v.id) > -1" ng-class="dataHolder.modules.filter.category == v.id ? 'active': ''">
+                    <a href="" ng-click="setFilter({category: v.id})" ng-switch="v.id">
+                        <i class="fa fa-cube" ng-switch-when="basic_gateway_modules"></i>
+                    <i class="fa fa-wrench" ng-switch-when="legacy_products_workaround"></i>
+                     <i class="fa fa-object-group" ng-switch-when="support_external_ui"></i>
+                     <i class="fa fa-cubes" ng-switch-when="support_external_dev"></i>
+                     <i class="fa fa-refresh" ng-switch-when="automation_basic"></i>
+                     <i class="fa fa-caret-square-o-up" ng-switch-when="device_enhancements"></i>
+                     <i class="fa fa-file-code-o" ng-switch-when="developers_stuff"></i>
+                     <i class="fa fa-link" ng-switch-when="complex_applications"></i>
+                     <i class="fa fa-chevron-right" ng-switch-when="automation"></i>
+                     <i class="fa fa-shield" ng-switch-when="security"></i>
+                     <i class="fa fa-bolt" ng-switch-when="peripherals"></i>
+                     <i class="fa fa-chevron-right" ng-switch-when="logging"></i>
+                     <i class="fa fa-chevron-right" ng-switch-when="scripting"></i>
+                     <i class="fa fa-cogs" ng-switch-when="devices"></i>
+                     <i class="fa fa-chevron-right" ng-switch-when="scheduling"></i>
+                     <i class="fa fa-chevron-right" ng-switch-when="climate"></i>
+                     <i class="fa fa-chevron-right" ng-switch-when="environment"></i>
+                     <i class="fa fa-chevron-right" ng-switch-when="scenes"></i>
+                     <i class="fa fa-calendar" ng-switch-when="notifications"></i>
+                     <i class="fa fa-tags" ng-switch-when="tagging"></i> 
+                        {{v.name|cutText:true:30}} <span class="page-navi-icon"><i class="fa fa-chevron-right"></i></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row row-page" id="_page_app_local">
+            <div class="col-lg-4 col-md-6 col-sm-6 app-entry"
+                 id="local_module_{{v.id}}" 
+                 ng-repeat="v in dataHolder.modules.all|orderBy:'defaults.title' | filter:q  track by v.id" 
+                 ng-class="dataHolder.onlineModules.ids[v.id] && dataHolder.onlineModules.ids[v.id].version != v.version ? 'app-entry-green': ''">
+                    <div class="app-border app-gradient app-shadow app-entry-in" ng-class="dataHolder.onlineModules.ids[v.id] && dataHolder.onlineModules.ids[v.id].version != v.version ? 'app-gradient-green': ''"> 
+                    <a href="#apps/local/{{v.id}}">
+                        <img class="app-image" ng-src="{{moduleMediaUrl + v.moduleName + '/' + v.icon}}" ng-if="v.icon" alt="{{v.defaults.title}}" />
+                        <img class="app-image" ng-src="storage/img/placeholder-img.png" ng-if="!v.icon" alt="{{v.defaults.title}}" />
+                    </a>
+
+                    <div class="app-body">
+                        <h3 class="entry-title"><a href="#apps/local/{{v.id}}" ng-bind="v.defaults.title"></a>  &raquo;</h3>
+                    </div>
+                    <div class="app-footer">
+                        <div class="app-footer-in">
+                            <a href="#module/post/{{v.id}}" class="btn btn-default">
+                                <i class="fa fa-plus fa-lg text-success"></i> <span class="btn-name" ng-bind="_t('lb_add_app')"></span>
+                            </a>
+                            <a href="" class="btn btn-default btn-sm" ng-click="deleteModule({'id': v.id}, _t('app_delete_confirm'),'#local_module_' + v.id)" ng-if="v.custom && !v.hasReset">
+                                <i class="fa fa-remove fa-lg text-danger"></i> <span class="btn-name" ng-bind="_t('lb_remove')"></span>
+                            </a>
+                            <a href="" class="btn btn-default btn-sm" ng-click="resetModule({'id': v.id}, _t('app_reset_confirm'),'#local_module_' + v.id)" ng-if="v.custom && v.hasReset">
+                                <i class="fa fa-remove fa-refresh text-warning"></i> <span class="btn-name" ng-bind="_t('reset')"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div> <!-- /ng-controller --> 
+</div> <!-- /ng-controller --> 

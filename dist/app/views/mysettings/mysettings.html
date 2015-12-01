@@ -5,13 +5,16 @@
         <h2 ng-bind="_t('nav_myaccess')"></h2>
         <form name="form_profile" id="form_profile" class="form form-page" ng-submit="store(input)" novalidate>
             <fieldset>
-                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_name')"></span></h3>
-                <div>
+                <div class="form-group">
                     <!-- name -->
-                    <div class="form-group">
-                        <input name="name" id="name" type="text" class="form-control" placeholder="{{_t('lb_profile_name_insert')}}" value="{{input.name}}" ng-model="input.name" />
-                    </div>
+                     <label>{{_t('lb_name')}}: </label>
+                    <input name="name" id="name" type="text" class="form-control" placeholder="{{_t('lb_profile_name_insert')}}" value="{{input.name}}" ng-model="input.name" />
                 </div>
+                <div class="form-group">
+                    <!-- email -->
+                 <label>{{_t('lb_email')}}: </label>
+                 <input name="email" id="email" type="email" class="form-control" value="{{input.email}}" ng-model="input.email" />
+                 </div>
             </fieldset>
             <fieldset>
                 <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_settings')"></span></h3>

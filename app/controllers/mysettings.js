@@ -9,21 +9,7 @@
 myAppController.controller('MySettingsController', function($scope, $window, $location,$cookies,dataFactory, dataService, myCache) {
     $scope.id = $scope.user.id;
     $scope.devices = {};
-    $scope.input = {
-        id: 0,
-        name: '',
-        active: true,
-        description: '',
-        //positions: [],
-        password: '',
-        lang: 'en',
-        color: '',
-        hide_all_device_events: false,
-        hide_system_events: false,
-        hide_single_device_events: [],
-        interval: 2000
-
-    };
+    $scope.input = {};
     $scope.newPassword = null;
 
     /**
@@ -99,7 +85,9 @@ myAppController.controller('MySettingsController', function($scope, $window, $lo
      * Change password
      */
     $scope.changePassword = function(newPassword) {
-        if (!newPassword || newPassword == '') {
+        if (!newPassword || newPassword === '' || newPassword === $scope.cfg.default_credentials.password) {
+            alertify.alert($scope._t('enter_valid_password'));
+            $scope.loading = false;
             return;
         }
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};

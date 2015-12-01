@@ -11,6 +11,11 @@ var config_data = {
         'interval': 3000,
         // Interval in miliseconds (5 min) to clear history (json) cache
         'history_cache_interval': 300000,
+        // Default auth credentials
+         'default_credentials': {
+             'login':'admin',
+             'password':'admin'
+         },
         // List of API URLs 
         'api': {
             'devices': 'ZAutomation/api/v1/devices',
@@ -31,7 +36,9 @@ var config_data = {
             'login': 'ZAutomation/api/v1/login',
             'backup': 'ZAutomation/api/v1/backup',
             'restore': 'ZAutomation/api/v1/restore',
-            'tokens': 'ZAutomation/api/v1/modules/tokens'
+            'tokens': 'ZAutomation/api/v1/modules/tokens',
+            'password_reset': 'ZAutomation/api/v1/password/reset',
+            'password_restore': 'ZAutomation/api/v1/password/restore'
         },
         // List of image pathes
         'img': {
@@ -199,6 +206,13 @@ var config_data = {
                     'SensorsPolling',
                     'SwitchControlGenerator',
                     'ZWave'
+                ],
+                featured_apps: [
+                    'IfThen',
+                    'OpenWeather',
+                    'DeviceHistory',
+                    'PeriodicalSwitchControl',
+                    'ScheduledScene'
                 ]
             },
             'popp': {
@@ -221,6 +235,13 @@ var config_data = {
                     'SensorsPolling',
                     'SwitchControlGenerator',
                     'ZWave'
+                ],
+                featured_apps: [
+                    'IfThen',
+                    'OpenWeather',
+                    'DeviceHistory',
+                    'PeriodicalSwitchControl',
+                    'ScheduledScene'
                 ]
             },
             'wd': {
@@ -243,6 +264,13 @@ var config_data = {
                     'SensorsPolling',
                     'SwitchControlGenerator',
                     'ZWave'
+                ],
+                featured_apps: [
+                    'IfThen',
+                    'OpenWeather',
+                    'DeviceHistory',
+                    'PeriodicalSwitchControl',
+                    'ScheduledScene'
                 ]
             }
         }
