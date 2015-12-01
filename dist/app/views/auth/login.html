@@ -2,7 +2,7 @@
 <div ng-controller="LoginController" class="mobile-padding">
     <bb-loader></bb-loader>
     <div ng-if="input.form">
-    <div class="login-lang">
+    <div class="login-lang" ng-if="!input.fromexpert">
        <a href="" ng-repeat="v in cfg.lang_list" class="lang-item" ng-click="setLoginLang(v)">
         <img ng-src="app/img/flags/{{v}}.png" alt="{{v}}"/>
     </a> 

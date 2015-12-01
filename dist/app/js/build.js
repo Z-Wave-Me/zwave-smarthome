@@ -8283,8 +8283,8 @@ var myApp = angular.module('myApp', [
     'myAppFactory',
     'myAppService',
     'colorpicker.module',
-    'dndLists'
-    //'angularFileUpload'
+    'dndLists',
+    'qAllSettled'
 
 ]);
 
@@ -8294,8 +8294,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
         $routeProvider.
                 // Login
                 when('/', {
-                    //redirectTo: '/elements/dashboard/1'
-                    templateUrl: 'app/views/auth/login.html'
+                   templateUrl: 'app/views/auth/login.html'
                 }).
                  // Home
                 when('/home', {
@@ -8636,6 +8635,28 @@ myApp.config(function($provide, $httpProvider) {
 
 
 
+/**
+ * Angular $q allSettled() implementation
+ */
+'use strict';
+
+angular.module('qAllSettled', []).config(function($provide) {
+  $provide.decorator('$q', function($delegate) {
+    var $q = $delegate;
+     $q.allSettled = function(promises) {
+        var wrappedPromises = angular.isArray(promises) ? promises.slice(0) : {};
+        angular.forEach(promises, function(promise, index){
+          wrappedPromises[index] = promise.then(function(value){
+            return { state: 'fulfilled', value: value };
+          }, function(reason){
+            return { state: 'rejected', reason: reason };
+          });
+        });
+        return $q.all(wrappedPromises);
+      };
+    return $q;
+  });
+});
 /**
  * Application factories
  * @author Martin Vach
@@ -10038,7 +10059,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      */
     function getModuleFormData(module, data) {
         var collection = {
-            'options': replaceModuleFormData(module.options, 'click'),
+            'options': replaceModuleFormData(module.options, ['click','onFieldChange']),
             'schema': module.schema,
             'data': data,
             'postRender': postRenderAlpaca
@@ -10049,20 +10070,20 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     /**
      * Replace module object
      */
-    function replaceModuleFormData(obj, key) {
+    function replaceModuleFormData(obj, keys) {
         var objects = [];
         for (var i in obj) {
             if (!obj.hasOwnProperty(i))
                 continue;
             if (typeof obj[i] == 'object') {
-                objects = objects.concat(replaceModuleFormData(obj[i], key));
-            } else if (i == key &&
-                    !angular.isArray(obj[key]) &&
-                    typeof obj[key] === 'string' &&
-                    obj[key].indexOf("function") === 0) {
+                objects = objects.concat(replaceModuleFormData(obj[i], keys));
+            } else if (~keys.indexOf(i) &&
+                    !angular.isArray(obj[i]) &&
+                    typeof obj[i] === 'string' &&
+                    obj[i].indexOf("function") === 0) {
                 // overwrite old string with function                
                 // we can only pass a function as string in JSON ==> doing a real function
-                obj[key] = new Function('return ' + obj[key])();
+                obj[i] = new Function('return ' + obj[i])();
             }
         }
         return obj;
@@ -11468,6 +11489,19 @@ myApp.filter('stringToSlug', function() {
  * @returns false
  */
 var postRenderAlpaca = function(renderedForm) {
+
+    var $alpaca = $('#alpaca_data');    
+
+    //load postRender function from module
+    if($alpaca && $alpaca.data('modulePostrender') && !!$alpaca.data('modulePostrender')) {
+        eval($alpaca.data('modulePostrender'));
+    }
+
+    // call postRender function from module
+    if (modulePostRender){
+       modulePostRender(); 
+    }
+
     $('#btn_module_submit').click(function() {
         var data = postRenderAlpacaData(renderedForm);
         var url = config_data.cfg.server_url + config_data.cfg.api['instances'] + (data.instanceId > 0 ? '/' + data.instanceId : '');
@@ -11526,7 +11560,7 @@ function postRenderAlpacaData(renderedForm) {
 
     });
     return $.extend(inputData, alpacaData);
-}
+};
 /**
  * Application base controller
  * @author Martin Vach
@@ -13663,9 +13697,15 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
     $scope.postModule = function(id) {
         dataService.showConnectionSpinner();
         dataFactory.getApi('modules', '/' + id + '?lang=' + $scope.lang, true).then(function(module) {
+            // get module postRender data
+            var modulePR = null;
+            if(angular.isString(module.data.data.postRender) && module.data.data.postRender.indexOf('function') === 0){
+                modulePR = module.data.data.postRender;
+            }
             var formData = dataService.getModuleFormData(module.data.data, module.data.data.defaults);
             var langCode = (angular.isDefined(cfg.lang_codes[$scope.lang]) ? cfg.lang_codes[$scope.lang] : null);
             $scope.input = {
+                'modulePostrender': modulePR,
                 'instanceId': 0,
                 'moduleId': id,
                 'active': true,
@@ -13706,9 +13746,15 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                     }
 
                 }
+                // get module postRender data
+                var modulePR = null;
+                if(angular.isString(module.data.data.postRender) && module.data.data.postRender.indexOf('function') === 0){
+                    modulePR = module.data.data.postRender;
+                }
                 var formData = dataService.getModuleFormData(module.data.data, instance.params);
 
                 $scope.input = {
+                    'modulePostrender': modulePR,
                     'instanceId': instance.id,
                     'moduleId': module.data.data.id,
                     'active': instance.active,
@@ -17189,7 +17235,8 @@ myAppController.controller('LoginController', function($scope, $location, $windo
         login: '',
         password: '',
         keepme: false,
-        default_ui: 1
+        default_ui: 1,
+        fromexpert: $routeParams.fromexpert
     };
     $scope.loginLang = ($scope.lastLogin != undefined && angular.isDefined($cookies.lang)) ? $cookies.lang : false;
     /**
@@ -17221,9 +17268,14 @@ myAppController.controller('LoginController', function($scope, $location, $windo
             //$window.location.href = '#/elements/dashboard/1?login';
             //console.log(user);
             //$location.path('/elements/dashboard/1?login');
+            if(input.fromexpert){
+                window.location.href = $scope.cfg.expert_url;
+                return;
+            }
             if (input.password === $scope.cfg.default_credentials.password) {
                 redirectTo = '#/password';
             }
+            
             window.location = redirectTo;
 
             $window.location.reload();
