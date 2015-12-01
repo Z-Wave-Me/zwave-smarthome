@@ -587,7 +587,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      */
     function getModuleFormData(module, data) {
         var collection = {
-            'options': replaceModuleFormData(module.options, 'click'),
+            'options': replaceModuleFormData(module.options, ['click','onFieldChange']),
             'schema': module.schema,
             'data': data,
             'postRender': postRenderAlpaca
@@ -598,20 +598,20 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     /**
      * Replace module object
      */
-    function replaceModuleFormData(obj, key) {
+    function replaceModuleFormData(obj, keys) {
         var objects = [];
         for (var i in obj) {
             if (!obj.hasOwnProperty(i))
                 continue;
             if (typeof obj[i] == 'object') {
-                objects = objects.concat(replaceModuleFormData(obj[i], key));
-            } else if (i == key &&
-                    !angular.isArray(obj[key]) &&
-                    typeof obj[key] === 'string' &&
-                    obj[key].indexOf("function") === 0) {
+                objects = objects.concat(replaceModuleFormData(obj[i], keys));
+            } else if (~keys.indexOf(i) &&
+                    !angular.isArray(obj[i]) &&
+                    typeof obj[i] === 'string' &&
+                    obj[i].indexOf("function") === 0) {
                 // overwrite old string with function                
                 // we can only pass a function as string in JSON ==> doing a real function
-                obj[key] = new Function('return ' + obj[key])();
+                obj[i] = new Function('return ' + obj[i])();
             }
         }
         return obj;
