@@ -166,10 +166,10 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
      */
     $scope.uploadFile = function(files) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('uploading')};
-        var cmd = $scope.cfg.api_url + 'upload/image';
+        var cmd = $scope.cfg.api_url + 'upload/file';
         var fd = new FormData();
         //fd.append('file_upload', $scope.myFile);
-        fd.append('file_upload', files[0]);
+        fd.append('files_files', files[0]);
         dataFactory.uploadApiFile(cmd, fd).then(function(response) {
             $scope.input.user_img = response.data.data;
             $scope.input.img_type = 'user';

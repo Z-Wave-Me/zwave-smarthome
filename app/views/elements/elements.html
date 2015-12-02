@@ -750,14 +750,14 @@
                     <div class="multiline-entry" ng-if="climateControl.data">
                         <table class="table table-report table-condensed">
                             <tbody>
-                                <tr class="bcg-success" ng-repeat="n in climateControl.data.metrics.rooms" ng-if="n.roomName > 0">
+                                <tr class="bcg-success" ng-repeat="n in climateControl.data.metrics.rooms" ng-if="n.room > 0">
                                     <!--<td class="td-img">
                                         <img class="report-img" ng-src="storage/img/rooms/{{n.default_img}}" alt="img" />
                                     </td> -->
                                     <td class="td-img">
-                                        <img class="report-img img-circle" ng-src="{{rooms[n.roomName]|getRoomIcon}}" />
+                                        <img class="report-img img-circle" ng-src="{{rooms[n.room]|getRoomIcon}}" />
                                     </td>
-                                    <td ng-bind="rooms[n.roomName].title"></td>
+                                    <td ng-bind="rooms[n.room].title"></td>
                                     <td class="text-right">
                                         <span class="text-primary_">{{elements.all[n.mainSensor].metrics.level}}  {{elements.all[n.mainSensor].metrics.scaleTitle}}</span>
                                         <!--(<span><i class="fa fa-clock-o"></i> {{input.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}})</span>-->
@@ -773,16 +773,16 @@
                                         Set <span ng-bind="n.comfort"></span> <span ng-bind="n.scaleTitle"></span>
                                     </td> -->
                                     <td class="text-right">
-                                        <i class="fa fa-spinner fa-spin" ng-if="changeClimateControlProcess[n.roomName]"></i>&nbsp;
+                                        <i class="fa fa-spinner fa-spin" ng-if="changeClimateControlProcess[n.room]"></i>&nbsp;
                                     </td>
                                     <td class="text-right">
 
                                         <select class="form-control" 
-                                                name="changeMode_{{n.roomName}}" 
-                                                id="changeMode_{{n.roomName}}"
+                                                name="changeMode_{{n.room}}" 
+                                                id="changeMode_{{n.room}}"
                                                 ng-model="climateControlMode" 
-                                                ng-disabled="changeClimateControlProcess[n.roomName]"
-                                                ng-change="changeClimateControlMode({cmd: input.id + '/command/' + climateControlMode + '?room=' + n.roomName, roomName: n.roomName})">
+                                                ng-disabled="changeClimateControlProcess[n.room]"
+                                                ng-change="changeClimateControlMode({cmd: input.id + '/command/' + climateControlMode + '?room=' + n.room, room: n.room})">
                                             <option value="{{m}}" ng-repeat="m in climateElementModes" ng-selected="n.state == m" ng-bind="_t(m)"></option>
                                         </select>
                                     </td>
