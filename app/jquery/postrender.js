@@ -4,16 +4,16 @@
  */
 var postRenderAlpaca = function(renderedForm) {
 
-    var $alpaca = $('#alpaca_data');    
+    var $alpaca = $('#alpaca_data');
 
     //load postRender function from module
     if($alpaca && $alpaca.data('modulePostrender') && !!$alpaca.data('modulePostrender')) {
         eval($alpaca.data('modulePostrender'));
-    }
 
-    // call postRender function from module
-    if (modulePostRender){
-       modulePostRender(); 
+        // call postRender function from module
+        if (typeof(modulePostRender) == 'function') {
+           modulePostRender();
+        }
     }
 
     $('#btn_module_submit').click(function() {
