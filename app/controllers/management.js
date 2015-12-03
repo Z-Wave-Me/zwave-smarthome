@@ -22,10 +22,13 @@ myAppController.controller('ManagementController', function($scope, $window, $lo
 
     $scope.controllerInfo = {
         uuid: null,
+        isZeroUuid: false,
         softwareRevisionVersion: null,
         softwareLatestVersion: null,
         capabillities: null
     };
+    
+    console.log(parseFloat( '000' ) === 0)
 
     $scope.zwaveDataInterval = null;
     // Cancel interval on page destroy
@@ -49,6 +52,7 @@ myAppController.controller('ManagementController', function($scope, $window, $lo
 
             };
             $scope.controllerInfo.uuid = ZWaveAPIData.controller.data.uuid.value;
+             $scope.controllerInfo.isZeroUuid = parseFloat(ZWaveAPIData.controller.data.uuid.value) === 0;
             $scope.controllerInfo.softwareRevisionVersion = ZWaveAPIData.controller.data.softwareRevisionVersion.value;
             $scope.controllerInfo.capabillities = caps(ZWaveAPIData.controller.data.caps.value);
             
