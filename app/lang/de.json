@@ -71,6 +71,7 @@
     "off": "Aus (Frostschutz)",
     "energySave": "Energiesparmodus",
     "comfort": "Komfort",
+    "room_specific": "Raumindividuell",
     "schedule": "Zeitgesteuert",
     "per_room": "pro Raum",
      "element_id": "Gerätenummer",

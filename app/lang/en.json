@@ -83,6 +83,7 @@
     "off": "Off",
     "energySave": "E-Save",
     "comfort": "Comfort",
+    "room_specific": "Room Specific",
     "schedule": "Time-driven",
     "per_room": "per Room",
     "element_id": "Element ID",
