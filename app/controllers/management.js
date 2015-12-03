@@ -55,8 +55,6 @@ myAppController.controller('ManagementController', function($scope, $window, $lo
              $scope.controllerInfo.isZeroUuid = parseFloat(ZWaveAPIData.controller.data.uuid.value) === 0;
             $scope.controllerInfo.softwareRevisionVersion = ZWaveAPIData.controller.data.softwareRevisionVersion.value;
             $scope.controllerInfo.capabillities = caps(ZWaveAPIData.controller.data.caps.value);
-            
-            //$scope.controllerUuid = ZWaveAPIData.controller.data.uuid.value;
             dataService.updateTimeTick();
         }, function(error) {
             dataService.showConnectionError(error);
