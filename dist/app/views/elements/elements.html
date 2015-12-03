@@ -122,13 +122,15 @@
 
                             <!-- ////////// switchRGBW ////////// -->
                             <div  ng-switch-when="switchRGBW" ng-init="rgbVal[v.id] = v.rgbColors">
-                                <div class="widget-control control-right widget-click-popup" 
+                                <!-- <div class="widget-control control-right widget-click-popup" 
                                      colorpicker="rgb" ng-model="rgbVal[v.id]"
                                      cmdurl="{{cfg.server_url + cfg.api_url}}devices/{{v.id}}/command/exact"
                                      sid="{{ZWAYSession}}"
                                      lang="{{lang}}"
                                      ng-click="showColor = !showColor">
-                                    <span class="color-picker-show" style="background-color: {{rgbVal[v.id]}};">&nbsp;</span> <span>RGB <i class="fa fa-caret-down"></i></span>
+                                     <span class="color-picker-show" style="background-color: {{rgbVal[v.id]}};">&nbsp;</span> <span>RGB <i class="fa fa-caret-down"></i></span> -->
+                                     <div class="widget-control control-right widget-click-popup" ng-click="loadRgbWheel('#modal_rgb_wheel', v.id,v)">
+                                     <span class="color-picker-show" style="background-color: {{rgbVal[v.id]}};">&nbsp;</span> <span>RGB <i class="fa fa-caret-down"></i></span>
                                 </div>
                                 <div class="widget-control control-left">
                                     <div class="btn-group"> 
@@ -243,7 +245,7 @@
                                 <!-- climateControl sensorMultiline -->
                                 <div ng-if="v.metrics.multilineType === 'climateControl'"> 
                                     <div class="widget-control control-right widget-click-popup">
-                                        <span ng-if_="climatePerRoom[v.id]"><i class="fa fa-caret-down"></i> <strong ng-click="loadClimateControl('#modal_climate_control', v.id, v)">{{_t('lb_settings')}}</strong></span>
+                                        <span ng-if_="climatePerRoom[v.id]"><i class="fa fa-caret-down"></i> <strong ng-click="loadClimateControl('#modal_climate_control', v.id, v)">{{_t('nav_rooms')}}</strong></span>
                                          <!--<span class="text-disabled" ng-if="!climatePerRoom[v.id]"><i class="fa fa-caret-down"></i> <strong>{{_t('lb_settings')}}</strong></span>-->
                                     </div><!-- /.widget-control .left -->
                                     <div class="widget-control control-left">
@@ -267,7 +269,7 @@
                                                 id="btn_comfort_{{ v.id}}"
                                                 ng-click="runCmd(v.id + '/command/' + climateElementModes[2] + '?room=null', false); climatePerRoom[v.id] = true"
                                                 ng-class="v.metrics.state =='comfort' ? 'btn-primary': 'btn-default'"
-                                                title="{{_t(climateElementModes[2])}}"><i class="fa fa-building text-warning"></i>
+                                                title="{{_t('room_specific')}}"><i class="fa fa-building text-warning"></i>
                                             </button>
                                         </div>
                                     </div><!-- /.widget-control .right -->
@@ -750,14 +752,14 @@
                     <div class="multiline-entry" ng-if="climateControl.data">
                         <table class="table table-report table-condensed">
                             <tbody>
-                                <tr class="bcg-success" ng-repeat="n in climateControl.data.metrics.rooms" ng-if="n.roomName > 0">
+                                <tr class="bcg-success" ng-repeat="n in climateControl.data.metrics.rooms" ng-if="n.room > 0">
                                     <!--<td class="td-img">
                                         <img class="report-img" ng-src="storage/img/rooms/{{n.default_img}}" alt="img" />
                                     </td> -->
                                     <td class="td-img">
-                                        <img class="report-img img-circle" ng-src="{{rooms[n.roomName]|getRoomIcon}}" />
+                                        <img class="report-img img-circle" ng-src="{{rooms[n.room]|getRoomIcon}}" />
                                     </td>
-                                    <td ng-bind="rooms[n.roomName].title"></td>
+                                    <td ng-bind="rooms[n.room].title"></td>
                                     <td class="text-right">
                                         <span class="text-primary_">{{elements.all[n.mainSensor].metrics.level}}  {{elements.all[n.mainSensor].metrics.scaleTitle}}</span>
                                         <!--(<span><i class="fa fa-clock-o"></i> {{input.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}})</span>-->
@@ -773,18 +775,49 @@
                                         Set <span ng-bind="n.comfort"></span> <span ng-bind="n.scaleTitle"></span>
                                     </td> -->
                                     <td class="text-right">
-                                        <i class="fa fa-spinner fa-spin" ng-if="changeClimateControlProcess[n.roomName]"></i>&nbsp;
+                                        <i class="fa fa-spinner fa-spin" ng-if="changeClimateControlProcess[n.room]"></i>&nbsp;
                                     </td>
                                     <td class="text-right">
 
                                         <select class="form-control" 
-                                                name="changeMode_{{n.roomName}}" 
-                                                id="changeMode_{{n.roomName}}"
+                                                name="changeMode_{{n.room}}" 
+                                                id="changeMode_{{n.room}}"
                                                 ng-model="climateControlMode" 
-                                                ng-disabled="changeClimateControlProcess[n.roomName]"
-                                                ng-change="changeClimateControlMode({cmd: input.id + '/command/' + climateControlMode + '?room=' + n.roomName, roomName: n.roomName})">
-                                            <option value="{{m}}" ng-repeat="m in climateElementModes" ng-selected="n.state == m" ng-bind="_t(m)"></option>
+                                                ng-disabled="changeClimateControlProcess[n.room]"
+                                                ng-change="changeClimateControlMode({cmd: input.id + '/command/' + climateControlMode + '?room=' + n.room, room: n.room})">
+                                            <option value="{{m}}" ng-repeat="m in climateElementModes" ng-disabled="m == 'schedule' && !n.hasSchedule" ng-selected="n.state == m" ng-bind="_t(m)"></option>
                                         </select>
+
+                                        <!-- <div class="btn-group">
+                                            <button 
+                                                class="btn btn-sm widget-btn widget-btn-full widget-btn-frostProtection" 
+                                                id="btn_modal_frostProtection_{{climateControl.data.id}}"
+                                                ng-click="runCmd(input.id + '/command/' + climateElementModes[0] + '?room=' + n.room, false); climatePerRoom[n.state] = false"
+                                                ng-class="n.state =='frostProtection' ? 'btn-primary': 'btn-default'"
+                                                title="{{_t(climateElementModes[0])}}"><i class="fa fa-asterisk"></i>
+                                            </button>
+                                            <button 
+                                                class="btn btn-sm widget-btn widget-btn-full widget-btn-energySave" 
+                                                id="btn_modal_energySave_{{climateControl.data.id}}"
+                                                ng-click="runCmd(input.id + '/command/' + climateElementModes[1] + '?room=' + n.room, false); climatePerRoom[n.state] = false"
+                                               ng-class="n.state =='energySave' ? 'btn-primary': 'btn-default'"
+                                                title="{{_t(climateElementModes[1])}}"><i class="fa fa-leaf"></i>
+                                            </button>
+                                            <button 
+                                                class="btn btn-sm widget-btn widget-btn-full widget-btn-comfort" 
+                                                id="btn_modal_comfort_{{climateControl.data.id}}"
+                                                ng-click="runCmd(input.id + '/command/' + climateElementModes[2] + '?room=' + n.room, false); climatePerRoom[n.state] = true"
+                                                ng-class="n.state =='comfort' ? 'btn-primary': 'btn-default'"
+                                                title="{{_t(climateElementModes[2])}}"><i class="fa fa-tachometer"></i>
+                                            </button>
+                                            <button 
+                                                class="btn btn-sm widget-btn widget-btn-full widget-btn-schedule" 
+                                                id="btn_modal_schedule_{{climateControl.data.id}}"
+                                                ng-click="runCmd(input.id + '/command/' + climateElementModes[3] + '?room=' + n.room, false); climatePerRoom[n.state] = true"
+                                                ng-class="n.state =='schedule' ? 'btn-primary': 'btn-default'"
+                                                title="{{_t(climateElementModes[3])}}"><i class="fa fa-clock-o"></i>
+                                            </button>
+                                        </div> -->
                                     </td>
                                 </tr>
                             </tbody>
@@ -829,6 +862,42 @@
             </div>
         </div>
     </div><!-- /.Modal multiline -->
+    
+    <!-- Modal RGB wheel -->
+    <div class="modal modal-vertical-centered fade" id="modal_rgb_wheel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-center">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" ng-bind="input.title"></h4>
+                </div>
+                <div class="modal-body ">
+
+                    <div class="row wheel-colorpicker">
+                        <div class="col-rgb col-sm-6">
+                            <canvas id="wheel_picker" var="4" width="300" height="300" ng-mousemove="setColor($element)"></canvas>
+                            <input type="hidden" id="rgbVal" />
+                        </div>
+                        <div class="col-rgb col-sm-6">
+                            <div id="wheel_picker_preview">
+                                 <div id="wheel_picker_preview_spin" ng-if="rgbWheel.process">
+                                <i class="fa fa-spinner fa-spin fa-lg"></i> {{_t('updating')}}
+                                </div>
+                            </div>
+                            <p><input class="form-control" type="text" id="rVal" disabled /></p>
+                            <p><input class="form-control" type="text" id="gVal" disabled /></p>
+                            <p><input class="form-control" type="text" id="bVal" disabled /></p>
+                        </div>
+                        <!-- preview element -->
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.Modal RGB wheel -->
+    
+    
 
     <!-- Elements footer view -->
     <div id="footer" ng-show="showFooter">
