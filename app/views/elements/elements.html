@@ -245,7 +245,7 @@
                                 <!-- climateControl sensorMultiline -->
                                 <div ng-if="v.metrics.multilineType === 'climateControl'"> 
                                     <div class="widget-control control-right widget-click-popup">
-                                        <span ng-if_="climatePerRoom[v.id]"><i class="fa fa-caret-down"></i> <strong ng-click="loadClimateControl('#modal_climate_control', v.id, v)">{{_t('lb_settings')}}</strong></span>
+                                        <span ng-if_="climatePerRoom[v.id]"><i class="fa fa-caret-down"></i> <strong ng-click="loadClimateControl('#modal_climate_control', v.id, v)">{{_t('nav_rooms')}}</strong></span>
                                          <!--<span class="text-disabled" ng-if="!climatePerRoom[v.id]"><i class="fa fa-caret-down"></i> <strong>{{_t('lb_settings')}}</strong></span>-->
                                     </div><!-- /.widget-control .left -->
                                     <div class="widget-control control-left">
@@ -269,7 +269,7 @@
                                                 id="btn_comfort_{{ v.id}}"
                                                 ng-click="runCmd(v.id + '/command/' + climateElementModes[2] + '?room=null', false); climatePerRoom[v.id] = true"
                                                 ng-class="v.metrics.state =='comfort' ? 'btn-primary': 'btn-default'"
-                                                title="{{_t(climateElementModes[2])}}"><i class="fa fa-building text-warning"></i>
+                                                title="{{_t('room_specific')}}"><i class="fa fa-building text-warning"></i>
                                             </button>
                                         </div>
                                     </div><!-- /.widget-control .right -->
@@ -785,8 +785,39 @@
                                                 ng-model="climateControlMode" 
                                                 ng-disabled="changeClimateControlProcess[n.room]"
                                                 ng-change="changeClimateControlMode({cmd: input.id + '/command/' + climateControlMode + '?room=' + n.room, room: n.room})">
-                                            <option value="{{m}}" ng-repeat="m in climateElementModes" ng-selected="n.state == m" ng-bind="_t(m)"></option>
+                                            <option value="{{m}}" ng-repeat="m in climateElementModes" ng-disabled="m == 'schedule' && !n.hasSchedule" ng-selected="n.state == m" ng-bind="_t(m)"></option>
                                         </select>
+
+                                        <!-- <div class="btn-group">
+                                            <button 
+                                                class="btn btn-sm widget-btn widget-btn-full widget-btn-frostProtection" 
+                                                id="btn_modal_frostProtection_{{climateControl.data.id}}"
+                                                ng-click="runCmd(input.id + '/command/' + climateElementModes[0] + '?room=' + n.room, false); climatePerRoom[n.state] = false"
+                                                ng-class="n.state =='frostProtection' ? 'btn-primary': 'btn-default'"
+                                                title="{{_t(climateElementModes[0])}}"><i class="fa fa-asterisk"></i>
+                                            </button>
+                                            <button 
+                                                class="btn btn-sm widget-btn widget-btn-full widget-btn-energySave" 
+                                                id="btn_modal_energySave_{{climateControl.data.id}}"
+                                                ng-click="runCmd(input.id + '/command/' + climateElementModes[1] + '?room=' + n.room, false); climatePerRoom[n.state] = false"
+                                               ng-class="n.state =='energySave' ? 'btn-primary': 'btn-default'"
+                                                title="{{_t(climateElementModes[1])}}"><i class="fa fa-leaf"></i>
+                                            </button>
+                                            <button 
+                                                class="btn btn-sm widget-btn widget-btn-full widget-btn-comfort" 
+                                                id="btn_modal_comfort_{{climateControl.data.id}}"
+                                                ng-click="runCmd(input.id + '/command/' + climateElementModes[2] + '?room=' + n.room, false); climatePerRoom[n.state] = true"
+                                                ng-class="n.state =='comfort' ? 'btn-primary': 'btn-default'"
+                                                title="{{_t(climateElementModes[2])}}"><i class="fa fa-tachometer"></i>
+                                            </button>
+                                            <button 
+                                                class="btn btn-sm widget-btn widget-btn-full widget-btn-schedule" 
+                                                id="btn_modal_schedule_{{climateControl.data.id}}"
+                                                ng-click="runCmd(input.id + '/command/' + climateElementModes[3] + '?room=' + n.room, false); climatePerRoom[n.state] = true"
+                                                ng-class="n.state =='schedule' ? 'btn-primary': 'btn-default'"
+                                                title="{{_t(climateElementModes[3])}}"><i class="fa fa-clock-o"></i>
+                                            </button>
+                                        </div> -->
                                     </td>
                                 </tr>
                             </tbody>
