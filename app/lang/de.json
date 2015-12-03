@@ -1,4 +1,13 @@
 {
+    "bugreport_info": "Dieses Formular ermöglicht das Melden von Fehlern. Bitte erwarten Sie keine Antwort auf ihren Report. Wenn Sie Support benötigen, nutzen Sie bitte die entsprechenden Forums und Email-Adressen.",
+    "password_forgot": "Forgot your password?",
+    "password_forgot_info": "To reset your password, enter the email address.",
+    "password_forgot_success": "Please check your email to confirm your password reset. ",
+    "password_reset": "Reset your password",
+    "email_notfound": "Given email does not exist in our database",
+    "token_notfound": "Given key does not exist in our database",
+    "backup_wait": "Creating a backup file. Please wait...",
+    "backup_failed": "Backup process has failed",
     "all_apps": "All Apps",
     "passwords_must_match":  "Passwords must match.",
     "remove_device_from_network": "You want to remove and reset device from your Z-Wave network?",

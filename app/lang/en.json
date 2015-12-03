@@ -1,5 +1,6 @@
 {
     "newtrans": "---",
+    "bugreport_info": "This form is dedicated to report bugs in the UI please do not provide any response. If you need support please consult the support forums or email addresses provided.",
     "password_forgot": "Forgot your password?",
     "password_forgot_info": "To reset your password, enter the email address.",
     "password_forgot_success": "Please check your email to confirm your password reset. ",

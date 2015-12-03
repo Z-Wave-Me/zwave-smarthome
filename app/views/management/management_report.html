@@ -6,6 +6,7 @@
  <div class="admin-entry-ctrl" ng-if="expand.report"  ng-controller="ManagementReportController">
     <form name="form_report" id="form_profile" class="form form-page" ng-submit="sendReport(form_report,input)" novalidate>
         <fieldset>
+            <div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i> {{_t('bugreport_info')}}</div>
 
             <!-- content -->
                 <div class="form-group_">
