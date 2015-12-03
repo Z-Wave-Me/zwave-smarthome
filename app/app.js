@@ -11,7 +11,7 @@ var myApp = angular.module('myApp', [
     'myAppController',
     'myAppFactory',
     'myAppService',
-    'colorpicker.module',
+    //'colorpicker.module',
     'dndLists',
     'qAllSettled'
 

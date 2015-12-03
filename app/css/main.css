@@ -4175,6 +4175,32 @@ img.widget-promo-image {
   cursor: default;
 }
 
+/* RGB color wheel
+--------------------------------------------------------*/
+/* line 442, sass/modules/_elements.scss */
+.wheel-colorpicker .col-rgb {
+  margin: 0 auto;
+  text-align: center;
+}
+/* line 446, sass/modules/_elements.scss */
+.wheel-colorpicker #wheel_picker {
+  margin: 0 auto;
+  text-align: center;
+  cursor: pointer;
+}
+/* line 451, sass/modules/_elements.scss */
+.wheel-colorpicker #wheel_picker_preview {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin: 0 0 20px 0;
+  height: 40px;
+  line-height: 35px;
+}
+/* line 457, sass/modules/_elements.scss */
+.wheel-colorpicker #wheel_picker_preview #wheel_picker_preview_spin {
+  background-color: #fff;
+}
+
 /* Events
 -------------------------------------------------- */
 /* line 3, sass/modules/_events.scss */

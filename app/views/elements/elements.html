@@ -122,13 +122,15 @@
 
                             <!-- ////////// switchRGBW ////////// -->
                             <div  ng-switch-when="switchRGBW" ng-init="rgbVal[v.id] = v.rgbColors">
-                                <div class="widget-control control-right widget-click-popup" 
+                                <!-- <div class="widget-control control-right widget-click-popup" 
                                      colorpicker="rgb" ng-model="rgbVal[v.id]"
                                      cmdurl="{{cfg.server_url + cfg.api_url}}devices/{{v.id}}/command/exact"
                                      sid="{{ZWAYSession}}"
                                      lang="{{lang}}"
                                      ng-click="showColor = !showColor">
-                                    <span class="color-picker-show" style="background-color: {{rgbVal[v.id]}};">&nbsp;</span> <span>RGB <i class="fa fa-caret-down"></i></span>
+                                     <span class="color-picker-show" style="background-color: {{rgbVal[v.id]}};">&nbsp;</span> <span>RGB <i class="fa fa-caret-down"></i></span> -->
+                                     <div class="widget-control control-right widget-click-popup" ng-click="loadRgbWheel('#modal_rgb_wheel', v.id,v)">
+                                     <span class="color-picker-show" style="background-color: {{rgbVal[v.id]}};">&nbsp;</span> <span>RGB <i class="fa fa-caret-down"></i></span>
                                 </div>
                                 <div class="widget-control control-left">
                                     <div class="btn-group"> 
@@ -860,6 +862,42 @@
             </div>
         </div>
     </div><!-- /.Modal multiline -->
+    
+    <!-- Modal RGB wheel -->
+    <div class="modal modal-vertical-centered fade" id="modal_rgb_wheel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-center">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" ng-bind="input.title"></h4>
+                </div>
+                <div class="modal-body ">
+
+                    <div class="row wheel-colorpicker">
+                        <div class="col-rgb col-sm-6">
+                            <canvas id="wheel_picker" var="4" width="300" height="300" ng-mousemove="setColor($element)"></canvas>
+                            <input type="hidden" id="rgbVal" />
+                        </div>
+                        <div class="col-rgb col-sm-6">
+                            <div id="wheel_picker_preview">
+                                 <div id="wheel_picker_preview_spin" ng-if="rgbWheel.process">
+                                <i class="fa fa-spinner fa-spin fa-lg"></i> {{_t('updating')}}
+                                </div>
+                            </div>
+                            <p><input class="form-control" type="text" id="rVal" disabled /></p>
+                            <p><input class="form-control" type="text" id="gVal" disabled /></p>
+                            <p><input class="form-control" type="text" id="bVal" disabled /></p>
+                        </div>
+                        <!-- preview element -->
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.Modal RGB wheel -->
+    
+    
 
     <!-- Elements footer view -->
     <div id="footer" ng-show="showFooter">

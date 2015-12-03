@@ -1,5 +1,10 @@
 {
     "newtrans": "---",
+     "---": "newtrans",
+    "replug_device": "Replug the device",
+    "ctrl_info_caps_cap_title": "Capabillities:",
+    "management_trans_info": "This translation was provided by Z_Wave.Me http://www.zwave.me For contact please use info@zwave.me",
+    "bugreport_info": "This form is dedicated to report bugs in the UI please do not provide any response. If you need support please consult the support forums or email addresses provided.",
     "password_forgot": "Forgot your password?",
     "password_forgot_info": "To reset your password, enter the email address.",
     "password_forgot_success": "Please check your email to confirm your password reset. ",
@@ -8,7 +13,6 @@
     "token_notfound": "Given key does not exist in our database",
     "backup_wait": "Creating a backup file. Please wait...",
     "backup_failed": "Backup process has failed",
-    "---": "newtrans",
     "all_apps": "All Apps",
     "remove_device_from_network": "You want to remove and reset device from your Z-Wave network?",
     "start_removal": "Please start the removal and resetting process by hitting the button below.",
