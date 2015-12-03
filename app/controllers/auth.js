@@ -92,11 +92,11 @@ myAppController.controller('PasswordController', function($scope, dataFactory) {
         if (form.$invalid) {
             return;
         }
-        if (input.password === $scope.cfg.default_credentials.password) {
+        /*if (input.password === $scope.cfg.default_credentials.password) {
             alertify.alert($scope._t('enter_valid_password'));
             $scope.loading = false;
             return;
-        }
+        }*/
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         var input = {
             id: $scope.user.id,
@@ -209,11 +209,11 @@ myAppController.controller('PasswordResetController', function($scope, $routePar
         if (form.$invalid) {
             return;
         }
-        if (input.password === '' || input.password === $scope.cfg.default_credentials.password) {
+        /*if (input.password === '' || input.password === $scope.cfg.default_credentials.password) {
             alertify.alert($scope._t('enter_valid_password'));
             $scope.loading = false;
             return;
-        }
+        }*/
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         var input = {
             id: input.id,

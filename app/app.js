@@ -263,12 +263,8 @@ myApp.config(['$routeProvider', function($routeProvider) {
                 when('/error/:code?', {
                     templateUrl: 'app/views/error.html'
                 }).
-                // Test
-                when('/test', {
-                    templateUrl: 'app/views/_test/test.html'
-                }).
                 otherwise({
-                    redirectTo: '/error/404'
+                    redirectTo: '/error/404' 
                 });
     }]);
 

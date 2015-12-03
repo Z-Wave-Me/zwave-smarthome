@@ -85,7 +85,8 @@ myAppController.controller('MySettingsController', function($scope, $window, $lo
      * Change password
      */
     $scope.changePassword = function(newPassword) {
-        if (!newPassword || newPassword === '' || newPassword === $scope.cfg.default_credentials.password) {
+        if (!newPassword || newPassword === '') {
+       // if (!newPassword || newPassword === '' || newPassword === $scope.cfg.default_credentials.password) {
             alertify.alert($scope._t('enter_valid_password'));
             $scope.loading = false;
             return;

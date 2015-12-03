@@ -115,9 +115,10 @@ a:hover {
 /* Hide element on is-mobile-true devices
 -------------------------------------------------- */
 .is-mobile-true{
-    .mobhidden{
+    .mobhidden, .btn-name{
         display: none !important;
     }
+   
 
 }
 
