@@ -149,7 +149,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         dataFactory.getApi('devices',null,true).then(function(response) {
             
             var filter = null;
-            var notFound = $scope._t('error_404');
+            var notFound = $scope._t('no_devices');
             $scope.loading = false;
             if (response.data.data.devices.length < 1) {
                 notFound = $scope._t('no_devices') + ' <a href="#devices"><strong>' + $scope._t('lb_include_device') + '</strong></a>';
