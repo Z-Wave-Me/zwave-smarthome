@@ -251,7 +251,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     templateUrl: 'app/views/auth/password_forgot.html'
                 }).
                 //Password reset
-                when('/passwordforgot/reset/:token', {
+                when('/passwordforgot/reset/:token?', {
                     templateUrl: 'app/views/auth/password_reset.html'
                 }).
                 //Login

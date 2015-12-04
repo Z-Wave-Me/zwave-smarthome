@@ -67,7 +67,9 @@ var config_data = {
         // Online module download url
         'blacklist_url': 'http://hrix.net/blacklist.json',
         // Post report url
-        'post_report_url': ' http://zwave.eu/api/report/post-report.php',
+        'post_report_url': 'http://zwave.eu/api/report/post-report.php',
+        // Postpassword url
+        'post_password_request_url': 'http://hrix.net/shuiapi/password/',
         // Razberry latest version
         'raz_latest_version_url': 'http://razberry.z-wave.me/z-way/razberry/latest/VERSION',
         // Url to zddx xml files

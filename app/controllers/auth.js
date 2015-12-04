@@ -132,22 +132,38 @@ myAppController.controller('PasswordController', function($scope, dataFactory) {
  */
 myAppController.controller('PasswordForgotController', function($scope, $location,dataFactory) {
     $scope.passwordForgot = {
-        input: { email: '',location: $location,resetUrl: $location.$$absUrl + '/reset/'},
+        input: { email: '',token: null,resetUrl: null},
         alert: {message: false, status: 'is-hidden', icon: false}
     };
 
     /**
      * Send an email
      */
-    $scope.sendEmail = function(form, input) {
-        if (form.$invalid) {
+    $scope.sendEmail = function(form) {
+       if (form.$invalid) {
             return;
         }
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        alertify.alert($scope._t('email_notfound'));
-         $scope.passwordForgot.alert = {message: $scope._t('password_forgot_success'), status: 'alert-success', icon: 'fa-check'};
-        $scope.loading = false;
+         var token = 'tokenstring15hgh58hgg5';
+        $scope.passwordForgot.input.token = token;
+        $scope.passwordForgot.input.resetUrl = $location.$$absUrl + '/reset/' + token;
+        console.log($scope.passwordForgot)
+//        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+//        alertify.alert($scope._t('email_notfound'));
+//         $scope.passwordForgot.alert = {message: $scope._t('password_forgot_success'), status: 'alert-success', icon: 'fa-check'};
+//        $scope.loading = false;
 
+       // return;
+        //alertify.alert($scope._t('email_notfound'));
+        //return;
+        dataFactory.postToRemote($scope.cfg.post_password_request_url,$scope.passwordForgot.input).then(function(response) {
+             $scope.passwordForgot.alert = {message: $scope._t('password_forgot_success'), status: 'alert-success', icon: 'fa-check'};
+             $scope.loading = false;
+        }, function(error) {
+            alertify.alert($scope._t('error_500'));
+            $scope.loading = false;
+        });
+        
         return;
 
         dataFactory.putApi('profiles_auth_update', input.id, input).then(function(response) {
