@@ -84,13 +84,15 @@ myAppController.controller('MySettingsController', function($scope, $window, $lo
     /**
      * Change password
      */
-    $scope.changePassword = function(newPassword) {
-        if (!newPassword || newPassword === '') {
-       // if (!newPassword || newPassword === '' || newPassword === $scope.cfg.default_credentials.password) {
-            alertify.alert($scope._t('enter_valid_password'));
-            $scope.loading = false;
+    $scope.changePassword = function(form,newPassword) {
+        if (form.$invalid) {
             return;
         }
+//       if (!newPassword || newPassword === '' || newPassword === $scope.cfg.default_credentials.password) {
+//            alertify.alert($scope._t('enter_valid_password'));
+//            $scope.loading = false;
+//            return;
+//        }
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         var input = {
             id: $scope.id,

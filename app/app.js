@@ -272,14 +272,6 @@ myApp.config(['$routeProvider', function($routeProvider) {
  * App configuration
  */
 
-//myApp.config([
-//    "$routeProvider",
-//    "$httpProvider",
-//    function($routeProvider, $httpProvider){
-//        $httpProvider.defaults.headers.common['Access-Control-Allow-Headers'] = '*';
-//    }
-//]);
-
 var config_module = angular.module('myAppConfig', []);
 
 angular.forEach(config_data, function(key, value) {
@@ -287,10 +279,12 @@ angular.forEach(config_data, function(key, value) {
 });
 
 /**
- * Route Access Control and Authentication
+ * Run
  */
 myApp.run(function($rootScope, $location, dataService) {
+    // Run ubderscore js in views
     $rootScope._ = _;
+   // Route Access Control and Authentication
     $rootScope.$on("$routeChangeStart", function(event, next, current) {
         var user;
         if (next.requireLogin) {
