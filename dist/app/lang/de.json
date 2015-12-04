@@ -1,4 +1,5 @@
 {
+    "password_email_info": "Bitte geben Sie die Email-Adresse an, an die eine vergessenes Password gesendet werden soll",
     "replug_device": "Replug the device",
     "ctrl_info_caps_cap_title": "Capabillities:",
     "management_trans_info": "This translation was provided by Z_Wave.Me http://www.zwave.me For contact please use info@zwave.me",
@@ -21,7 +22,7 @@
     "remove_permanently": "Remove Permanently",
     "broken_device_info": "The wireless connection to the device is tested. This process may take some minutes. If the device is alive it will _NOT_ be excluded from the network. In this case use the exclusion and reset process above.",
     "password_valid": "Password should be minimum 6 characters",
-    "password_info": "Bisher verwenden Sie noch das Standartpasswort. Dies ist jedoch sehr unsicher und wir empfehlen Ihnen dieses zu ändern.",
+    "password_info": "Sie müssen das Auslieferungspassword für den Nutzer \"admin\" abändern. Bitte wählen Sie ihr eigenes Password mit mindestens 6 zeichen.",
     "enter_valid_password": "Please enter a valid password",
     "featured_apps": "Featured apps",
     "frostProtection": "Frostschutz",
@@ -187,7 +188,7 @@
     "welcome_1": "Willkommen in Ihrem Smart Home",
     "welcome_2": "Sie können sich mit dem Login: \"admin\" und dem Passwort: \"admin\" anmelden.",
     "welcome_3": "Bitte vergessen Sie nicht Ihr Passwort im Menü unter \"Meine Einstellungen\" zu ändern.",
-    "lb_zwave_autodetect": "Z-Wave Gerät automatisch erkennen",
+    "lb_zwave_autodetect": "Neues Z-Wave Gerät hinzufügen und automatisch identifizieren",
     "lb_device_configuration": "Gerätkonfiguration",
     "error_module_delete": "App kann nicht entfernt werden.",
     "success_module_deleted": "App erfolgreich entfernt.",
