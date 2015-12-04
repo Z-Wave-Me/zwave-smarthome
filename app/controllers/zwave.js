@@ -127,6 +127,7 @@ myAppController.controller('ZwaveIncludeController', function($scope, $routePara
                     $scope.device.data = v;
                     if (v.inclusion_type === 'unsecure') {
                         $scope.secureInclusion = false;
+                        $scope.device.secureInclusion = false;
                     }
                     return;
                 }
@@ -168,24 +169,24 @@ myAppController.controller('ZwaveIncludeController', function($scope, $routePara
      * Watch for last excluded device
      */
     $scope.$watch('lastExcludedDevice', function() {
-        console.log('watch: $scope.device.blacklist', $scope.device.blacklist);
-        console.log('watch: $scope.lastExcludedDevice:', $scope.lastExcludedDevice);
-        console.log('watch: $scope.device.secureInclusion', $scope.device.secureInclusion);
+        //console.log('watch: $scope.device.blacklist', $scope.device.blacklist);
+        //console.log('watch: $scope.lastExcludedDevice:', $scope.lastExcludedDevice);
+        //console.log('watch: $scope.device.secureInclusion', $scope.secureInclusion);
         if (!!$scope.lastExcludedDevice) {
             var refresh = function() {
-                console.log('refresh: $scope.device.secureInclusion', $scope.device.secureInclusion);
+                //console.log('refresh: $scope.device.secureInclusion', $scope.device.secureInclusion);
                 var includeSecure = $scope.device.secureInclusion;
-                console.log('includeSecure', includeSecure);
-                console.log('set unsecure condition:', $scope.lastExcludedDevice && !includeSecure);
+                //console.log('includeSecure', includeSecure);
+                //console.log('set unsecure condition:', $scope.lastExcludedDevice && !includeSecure);
                 if ($scope.lastExcludedDevice && !includeSecure) {
-                    console.log('set unsecure ...');
+                    //console.log('set unsecure ...');
                     $scope.setSecureInclusion(includeSecure);
                     $interval.cancel($scope.excludeDataInterval);
                 }
 
-                console.log('refresh: $scope.controllerState', $scope.controllerState);
+               // console.log('refresh: $scope.controllerState', $scope.controllerState);
                 if ($scope.controllerState === 0) {
-                    console.log('remove interval ...');
+                    //console.log('remove interval ...');
                     $interval.cancel($scope.excludeDataInterval);
                 }
             };
@@ -254,7 +255,7 @@ myAppController.controller('ZwaveIncludeController', function($scope, $routePara
                         $scope.lastIncludedDevice = node.data.givenName.value || 'Device ' + '_' + nodeId;
                         $scope.setSecureInclusion(true);
                         $scope.secureInclusion = true;
-                        console.log('interview: $scope.secureInclusion', $scope.secureInclusion);
+                        //console.log('interview: $scope.secureInclusion', $scope.secureInclusion);
                         myCache.remove('devices');
                         $scope.includedDeviceId = null;
                         $scope.checkInterview = false;
@@ -283,17 +284,9 @@ myAppController.controller('ZwaveIncludeController', function($scope, $routePara
      * Start inclusion proccess
      */
     $scope.startInclusion = function(cmd) {
-        console.log('$scope.device.secureInclusion', $scope.device.secureInclusion);
-        //$scope.setSecureInclusion($scope.secureInclusion);
-        dataFactory.runZwaveCmd(cmd).then(function() {
-        }, function(error) {
-        });
-
-//        if ($scope.device.blacklist === null) {
-//            $timeout(function(){
-//                //$scope.setBlacklist();
-//            }, 1500);
-//        }
+        //console.log('$scope.device.secureInclusion', $scope.device.secureInclusion);
+        $scope.setSecureInclusion($scope.secureInclusion);
+        dataFactory.runZwaveCmd(cmd).then(function() {}, function(error) {});
     };
 
     /**
