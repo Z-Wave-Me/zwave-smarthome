@@ -34,11 +34,11 @@ var config_data = {
             'namespaces': 'ZAutomation/api/v1/namespaces',
             'history': 'ZAutomation/api/v1/history',
             'login': 'ZAutomation/api/v1/login',
+            'logout': 'ZAutomation/api/v1/logout',
             'backup': 'ZAutomation/api/v1/backup',
             'restore': 'ZAutomation/api/v1/restore',
             'tokens': 'ZAutomation/api/v1/modules/tokens',
-            'password_reset': 'ZAutomation/api/v1/auth/forgotten',
-            'password_restore': 'ZAutomation/api/v1/auth/forgotten'
+            'password_reset': 'ZAutomation/api/v1/auth/forgotten'
         },
         // List of image pathes
         'img': {
