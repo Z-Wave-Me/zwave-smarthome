@@ -11,15 +11,20 @@
                 <tbody>
                     <tr>
                         <td>{{_t('firmware_version')}}</td>
-                        <td class="td20">{{input.software.firmwareVersion}}</td>
+                        <td class="td20">{{controllerInfo.softwareRevisionVersion}}</td>
                     </tr>
                     <tr>
                         <td>{{_t('ui_version')}}</td>
-                        <td class="td20">{{input.software.uiVersion}}</td>
+                        <td class="td20">{{cfg.app_version}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{_t('ctrl_info_caps_cap_title')}}</td>
+                        <td class="td20">{{controllerInfo.capabillities}}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
+        <div class="fieldset"><bb-help-text trans="_t('management_trans_info')"></bb-help-text></div>
         <div class="fieldset submit-entry">
             <button type="button" class="btn btn-default" ng-click="expandElement('appinfo')"><i class="fa fa-times  text-danger"></i> <span ng-bind="_t('lb_cancel')"></span></button>
         </div>

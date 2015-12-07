@@ -1035,27 +1035,27 @@ a:hover {
 /* Hide element on is-mobile-true devices
 -------------------------------------------------- */
 /* line 118, sass/globals/_body.scss */
-.is-mobile-true .mobhidden {
+.is-mobile-true .mobhidden, .is-mobile-true .btn-name {
   display: none !important;
 }
 
 /* Spinners
 -------------------------------------------------- */
-/* line 126, sass/globals/_body.scss */
+/* line 127, sass/globals/_body.scss */
 .module-spinner {
   display: none !important;
 }
 
 /* Images
 -------------------------------------------------- */
-/* line 132, sass/globals/_body.scss */
+/* line 133, sass/globals/_body.scss */
 .report-img {
   margin: 0;
   max-width: 26px;
   display: inline;
 }
 
-/* line 138, sass/globals/_body.scss */
+/* line 139, sass/globals/_body.scss */
 .product-img {
   margin: 0;
   max-width: 100px;
@@ -1065,7 +1065,7 @@ a:hover {
 
 /* Device assigned block
 -------------------------------------------------- */
-/* line 147, sass/globals/_body.scss */
+/* line 148, sass/globals/_body.scss */
 .device-assigned-block {
   background-color: #FCF8E3;
   padding: 10px;
@@ -1075,7 +1075,7 @@ a:hover {
   background-color: #fcf8e3;
 }
 
-/* line 156, sass/globals/_body.scss */
+/* line 157, sass/globals/_body.scss */
 .btn-device-admin {
   display: inline-block;
   padding: 6px 12px;
@@ -1110,7 +1110,7 @@ vertical-align: middle;
 }*/
 /* Tooltip
 -------------------------------------------------- */
-/* line 196, sass/globals/_body.scss */
+/* line 197, sass/globals/_body.scss */
 .tooltip-inner {
   background-color: #F6F6F6;
   color: #000;
@@ -1119,7 +1119,7 @@ vertical-align: middle;
   text-align: left;
 }
 
-/* line 203, sass/globals/_body.scss */
+/* line 204, sass/globals/_body.scss */
 .tooltip-arrow {
   border-bottom-color: #f2f2f2;
 }
@@ -1808,9 +1808,8 @@ vertical-align: middle;
 /* line 10, sass/globals/_button.scss */
 .btn-submit {
   color: #fff;
-  border: solid 2px green;
+  border: solid 1px green;
   background-color: #629862;
-  padding: 6px 50px;
 }
 
 /* line 16, sass/globals/_button.scss */
@@ -4173,6 +4172,32 @@ img.widget-promo-image {
 /* line 435, sass/modules/_elements.scss */
 .toggleButton .widget-body div.widget-control.control-right.ng-scope > div > button.btn.btn-default.btn-sm {
   cursor: default;
+}
+
+/* RGB color wheel
+--------------------------------------------------------*/
+/* line 442, sass/modules/_elements.scss */
+.wheel-colorpicker .col-rgb {
+  margin: 0 auto;
+  text-align: center;
+}
+/* line 446, sass/modules/_elements.scss */
+.wheel-colorpicker #wheel_picker {
+  margin: 0 auto;
+  text-align: center;
+  cursor: pointer;
+}
+/* line 451, sass/modules/_elements.scss */
+.wheel-colorpicker #wheel_picker_preview {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin: 0 0 20px 0;
+  height: 40px;
+  line-height: 35px;
+}
+/* line 457, sass/modules/_elements.scss */
+.wheel-colorpicker #wheel_picker_preview #wheel_picker_preview_spin {
+  background-color: #fff;
 }
 
 /* Events

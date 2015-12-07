@@ -181,8 +181,8 @@ myApp.filter('getElementIcon', function(cfg) {
                     }
                     break;
                 case 'thermostat':
-                     icon = cfg.img.icons + (level == 'on' ? 'switch-on.png' : 'switch-off.png');
-                    //icon = cfg.img.icons + 'thermostat.png';
+                    //icon = cfg.img.icons + (level == 'on' ? 'switch-on.png' : 'switch-off.png');
+                    icon = cfg.img.icons + 'thermostat.png';
                     break;
 
                 case 'energy':

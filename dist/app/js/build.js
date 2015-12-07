@@ -8282,7 +8282,7 @@ var myApp = angular.module('myApp', [
     'myAppController',
     'myAppFactory',
     'myAppService',
-    'colorpicker.module',
+    //'colorpicker.module',
     'dndLists',
     'qAllSettled'
 
@@ -8522,7 +8522,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     templateUrl: 'app/views/auth/password_forgot.html'
                 }).
                 //Password reset
-                when('/passwordforgot/reset/:token', {
+                when('/passwordforgot/reset/:token?', {
                     templateUrl: 'app/views/auth/password_reset.html'
                 }).
                 //Login
@@ -8534,26 +8534,14 @@ myApp.config(['$routeProvider', function($routeProvider) {
                 when('/error/:code?', {
                     templateUrl: 'app/views/error.html'
                 }).
-                // Test
-                when('/test', {
-                    templateUrl: 'app/views/_test/test.html'
-                }).
                 otherwise({
-                    redirectTo: '/error/404'
+                    redirectTo: '/error/404' 
                 });
     }]);
 
 /**
  * App configuration
  */
-
-//myApp.config([
-//    "$routeProvider",
-//    "$httpProvider",
-//    function($routeProvider, $httpProvider){
-//        $httpProvider.defaults.headers.common['Access-Control-Allow-Headers'] = '*';
-//    }
-//]);
 
 var config_module = angular.module('myAppConfig', []);
 
@@ -8562,10 +8550,12 @@ angular.forEach(config_data, function(key, value) {
 });
 
 /**
- * Route Access Control and Authentication
+ * Run
  */
 myApp.run(function($rootScope, $location, dataService) {
+    // Run ubderscore js in views
     $rootScope._ = _;
+   // Route Access Control and Authentication
     $rootScope.$on("$routeChangeStart", function(event, next, current) {
         var user;
         if (next.requireLogin) {
@@ -8718,6 +8708,7 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
         getLicense: getLicense,
         zmeCapabilities: zmeCapabilities,
         postReport: postReport,
+        postToRemote: postToRemote,
         getOnlineModules: getOnlineModules,
         installOnlineModule: installOnlineModule,
         restoreFromBck: restoreFromBck,
@@ -9367,6 +9358,25 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
         return $http({
             method: "POST",
             url: cfg.post_report_url,
+            data: $.param(data),
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+                        //'ZWAYSession': ZWAYSession 
+            }
+        }).then(function(response) {
+            return response;
+        }, function(response) {// something went wrong
+            return $q.reject(response);
+        });
+    }
+    
+    /**
+     * Post on remote server
+     */
+    function postToRemote(url,data) {
+        return $http({
+            method: "POST",
+            url: url,
             data: $.param(data),
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
@@ -11088,8 +11098,8 @@ myApp.filter('getElementIcon', function(cfg) {
                     }
                     break;
                 case 'thermostat':
-                     icon = cfg.img.icons + (level == 'on' ? 'switch-on.png' : 'switch-off.png');
-                    //icon = cfg.img.icons + 'thermostat.png';
+                    //icon = cfg.img.icons + (level == 'on' ? 'switch-on.png' : 'switch-off.png');
+                    icon = cfg.img.icons + 'thermostat.png';
                     break;
 
                 case 'energy':
@@ -11490,16 +11500,16 @@ myApp.filter('stringToSlug', function() {
  */
 var postRenderAlpaca = function(renderedForm) {
 
-    var $alpaca = $('#alpaca_data');    
+    var $alpaca = $('#alpaca_data');
 
     //load postRender function from module
     if($alpaca && $alpaca.data('modulePostrender') && !!$alpaca.data('modulePostrender')) {
         eval($alpaca.data('modulePostrender'));
-    }
 
-    // call postRender function from module
-    if (modulePostRender){
-       modulePostRender(); 
+        // call postRender function from module
+        if (typeof(modulePostRender) == 'function') {
+           modulePostRender();
+        }
     }
 
     $('#btn_module_submit').click(function() {
@@ -11757,7 +11767,8 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
      */
     $scope.toExpert = function(url, message) {
         alertify.confirm(message, function() {
-            $window.location.href = url;
+            //$window.location.href = url;
+            $window.open(url, '_blank');
          }).set('labels', {ok:$scope._t('goahead')});
     };
     
@@ -11980,7 +11991,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         dataFactory.getApi('devices',null,true).then(function(response) {
             
             var filter = null;
-            var notFound = $scope._t('error_404');
+            var notFound = $scope._t('no_devices');
             $scope.loading = false;
             if (response.data.data.devices.length < 1) {
                 notFound = $scope._t('no_devices') + ' <a href="#devices"><strong>' + $scope._t('lb_include_device') + '</strong></a>';
@@ -12231,6 +12242,79 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
             alertify.alert($scope._t('error_update_data'));
            $scope.changeClimateControlProcess[input.roomName] = false;
         });
+
+    };
+    
+     /**
+     * Show RGB modal window
+     */
+    $scope.rgbWheel = {
+        process: false
+    };
+    $scope.loadRgbWheel = function(target, id, input) {
+        $(target).modal();
+        $scope.input = input;
+        $(target).modal();
+        var bCanPreview = true; // can preview
+
+        // create canvas and context objects
+        var canvas = document.getElementById('wheel_picker');
+
+        var ctx = canvas.getContext('2d');
+        // drawing active image
+        var image = new Image();
+        image.onload = function() {
+            ctx.drawImage(image, 0, 0, image.width, image.height); // draw the image on the canvas
+        };
+        image.src = 'app/img/colorwheel.png';
+        
+        var defaultColor = "rgb(" + input.metrics.color.r + ", " + input.metrics.color.g + ", " + input.metrics.color.b + ")";
+        $('#wheel_picker_preview').css('backgroundColor',defaultColor);
+
+        $('#wheel_picker').mousemove(function(e) { // mouse move handler
+            if (bCanPreview) {
+                // get coordinates of current position
+                var canvasOffset = $(canvas).offset();
+                var canvasX = Math.floor(e.pageX - canvasOffset.left);
+                var canvasY = Math.floor(e.pageY - canvasOffset.top);
+
+                // get current pixel
+                var imageData = ctx.getImageData(canvasX, canvasY, 1, 1);
+                var pixel = imageData.data;
+
+                // update preview color
+                var pixelColor = "rgb(" + pixel[0] + ", " + pixel[1] + ", " + pixel[2] + ")";
+               
+                if(pixelColor == 'rgb(0, 0, 0)'){
+                     $('#wheel_picker_preview').css('backgroundColor',defaultColor);
+                     
+                }else{
+                     $('#wheel_picker_preview').css('backgroundColor', pixelColor);
+                }
+               
+                // update controls
+                $('#rVal').val('R: ' + pixel[0]);
+                $('#gVal').val('G: ' + pixel[1]);
+                $('#bVal').val('B: ' + pixel[2]);
+                $('#rgbVal').val(pixel[0] + ',' + pixel[1] + ',' + pixel[2]);
+            }
+        });
+
+        $('#wheel_picker').click(function(e) { // click event handler
+            bCanPreview = !bCanPreview;
+            if (!bCanPreview) {
+                var cmdColor = $('#rgbVal').val().split(',');
+                var cmd = id + '/command/exact?red=' + cmdColor[0] + '&green=' + cmdColor[1] + '&blue=' + cmdColor[2] + '';
+                $scope.rgbWheel.process = true;
+                dataFactory.runApiCmd(cmd).then(function(response) {
+                    $scope.rgbWheel.process = false;
+                }, function(error) {
+                    $scope.rgbWheel.process = false;
+                     alertify.alert($scope._t('error_update_data'));
+                });
+            }
+        });
+
 
     };
     /**
@@ -14001,6 +14085,7 @@ myAppController.controller('ZwaveIncludeController', function($scope, $routePara
                     $scope.device.data = v;
                     if (v.inclusion_type === 'unsecure') {
                         $scope.secureInclusion = false;
+                        $scope.device.secureInclusion = false;
                     }
                     return;
                 }
@@ -14042,24 +14127,24 @@ myAppController.controller('ZwaveIncludeController', function($scope, $routePara
      * Watch for last excluded device
      */
     $scope.$watch('lastExcludedDevice', function() {
-        console.log('watch: $scope.device.blacklist', $scope.device.blacklist);
-        console.log('watch: $scope.lastExcludedDevice:', $scope.lastExcludedDevice);
-        console.log('watch: $scope.device.secureInclusion', $scope.device.secureInclusion);
+        //console.log('watch: $scope.device.blacklist', $scope.device.blacklist);
+        //console.log('watch: $scope.lastExcludedDevice:', $scope.lastExcludedDevice);
+        //console.log('watch: $scope.device.secureInclusion', $scope.secureInclusion);
         if (!!$scope.lastExcludedDevice) {
             var refresh = function() {
-                console.log('refresh: $scope.device.secureInclusion', $scope.device.secureInclusion);
+                //console.log('refresh: $scope.device.secureInclusion', $scope.device.secureInclusion);
                 var includeSecure = $scope.device.secureInclusion;
-                console.log('includeSecure', includeSecure);
-                console.log('set unsecure condition:', $scope.lastExcludedDevice && !includeSecure);
+                //console.log('includeSecure', includeSecure);
+                //console.log('set unsecure condition:', $scope.lastExcludedDevice && !includeSecure);
                 if ($scope.lastExcludedDevice && !includeSecure) {
-                    console.log('set unsecure ...');
+                    //console.log('set unsecure ...');
                     $scope.setSecureInclusion(includeSecure);
                     $interval.cancel($scope.excludeDataInterval);
                 }
 
-                console.log('refresh: $scope.controllerState', $scope.controllerState);
+               // console.log('refresh: $scope.controllerState', $scope.controllerState);
                 if ($scope.controllerState === 0) {
-                    console.log('remove interval ...');
+                    //console.log('remove interval ...');
                     $interval.cancel($scope.excludeDataInterval);
                 }
             };
@@ -14128,7 +14213,7 @@ myAppController.controller('ZwaveIncludeController', function($scope, $routePara
                         $scope.lastIncludedDevice = node.data.givenName.value || 'Device ' + '_' + nodeId;
                         $scope.setSecureInclusion(true);
                         $scope.secureInclusion = true;
-                        console.log('interview: $scope.secureInclusion', $scope.secureInclusion);
+                        //console.log('interview: $scope.secureInclusion', $scope.secureInclusion);
                         myCache.remove('devices');
                         $scope.includedDeviceId = null;
                         $scope.checkInterview = false;
@@ -14157,17 +14242,9 @@ myAppController.controller('ZwaveIncludeController', function($scope, $routePara
      * Start inclusion proccess
      */
     $scope.startInclusion = function(cmd) {
-        console.log('$scope.device.secureInclusion', $scope.device.secureInclusion);
-        //$scope.setSecureInclusion($scope.secureInclusion);
-        dataFactory.runZwaveCmd(cmd).then(function() {
-        }, function(error) {
-        });
-
-//        if ($scope.device.blacklist === null) {
-//            $timeout(function(){
-//                //$scope.setBlacklist();
-//            }, 1500);
-//        }
+        //console.log('$scope.device.secureInclusion', $scope.device.secureInclusion);
+        $scope.setSecureInclusion($scope.secureInclusion);
+        dataFactory.runZwaveCmd(cmd).then(function() {}, function(error) {});
     };
 
     /**
@@ -16087,10 +16164,10 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
      */
     $scope.uploadFile = function(files) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('uploading')};
-        var cmd = $scope.cfg.api_url + 'upload/image';
+        var cmd = $scope.cfg.api_url + 'upload/file';
         var fd = new FormData();
         //fd.append('file_upload', $scope.myFile);
-        fd.append('file_upload', files[0]);
+        fd.append('files_files', files[0]);
         dataFactory.uploadApiFile(cmd, fd).then(function(response) {
             $scope.input.user_img = response.data.data;
             $scope.input.img_type = 'user';
@@ -16227,28 +16304,15 @@ myAppController.controller('ManagementController', function($scope, $window, $lo
         appstore: false
     }, $scope.expand);
 
-    //$scope.profiles = {};
-    //$scope.remoteAccess = false;
     $scope.controllerInfo = {
         uuid: null,
+        isZeroUuid: false,
         softwareRevisionVersion: null,
-        softwareLatestVersion: null
+        softwareLatestVersion: null,
+        capabillities: null
     };
-//    $scope.proccessLicence = false;
-//    $scope.proccessVerify = {
-//        'message': false,
-//        'status': 'is-hidden'
-//    };
-//    $scope.proccessUpdate = {
-//        'message': false,
-//        'status': 'is-hidden'
-//    };
-//    $scope.inputLicence = {
-//        "scratch_id": null
-//    };
-    $scope.restoreBck = {
-        chip: '0'
-    };
+    
+    console.log(parseFloat( '000' ) === 0)
 
     $scope.zwaveDataInterval = null;
     // Cancel interval on page destroy
@@ -16257,29 +16321,24 @@ myAppController.controller('ManagementController', function($scope, $window, $lo
         angular.copy({}, $scope.expand);
     });
 
-//    $scope.firmwareUpdateUrl = $sce.trustAsResourceUrl('http://' + $scope.hostName + ':8084/cgi-bin/main.cgi');
-//
-//
-//    /**
-//     * Load razberry latest version
-//     */
-//    $scope.loadRazLatest = function() {
-//        dataFactory.getRemoteData($scope.cfg.raz_latest_version_url).then(function(response) {
-//            $scope.controllerInfo.softwareLatestVersion = response;
-//        }, function(error) {
-//        });
-//    };
-//    //$scope.loadRazLatest();
-
     /**
      * Load ZwaveApiData
      */
     $scope.loadZwaveApiData = function() {
         dataService.showConnectionSpinner();
         dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
+            var caps = function(arr) {
+                var cap = '';
+                cap += (arr[3] & 0x01 ? 'S' : 's');
+                cap += (arr[3] & 0x02 ? 'L' : 'l');
+                cap += (arr[3] & 0x04 ? 'M' : 'm');
+                return cap;
+
+            };
             $scope.controllerInfo.uuid = ZWaveAPIData.controller.data.uuid.value;
+             $scope.controllerInfo.isZeroUuid = parseFloat(ZWaveAPIData.controller.data.uuid.value) === 0;
             $scope.controllerInfo.softwareRevisionVersion = ZWaveAPIData.controller.data.softwareRevisionVersion.value;
-            //$scope.controllerUuid = ZWaveAPIData.controller.data.uuid.value;
+            $scope.controllerInfo.capabillities = caps(ZWaveAPIData.controller.data.caps.value);
             dataService.updateTimeTick();
         }, function(error) {
             dataService.showConnectionError(error);
@@ -16288,236 +16347,6 @@ myAppController.controller('ManagementController', function($scope, $window, $lo
 
     $scope.loadZwaveApiData();
 
-    /************************************** User management **************************************/
-
-//    /**
-//     * Load data into collection
-//     */
-//    $scope.loadData = function() {
-//        dataService.showConnectionSpinner();
-//        dataFactory.getApi('profiles').then(function(response) {
-//            $scope.profiles = response.data.data;
-//            dataService.updateTimeTick();
-//        }, function(error) {
-//            $location.path('/error/' + error.status);
-//        });
-//    };
-    //$scope.loadData();
-    /**
-     * Delete an item
-     */
-//    $scope.delete = function(target, input, message, except) {
-//        if (input.id == except) {
-//            return;
-//        }
-//        alertify.confirm(message, function() {
-//            dataFactory.deleteApi('profiles', input.id).then(function(response) {
-//                $(target).fadeOut(2000);
-//                myCache.remove('profiles');
-//
-//            }, function(error) {
-//                alertify.alert($scope._t('error_delete_data'));
-//            });
-//        });
-//    };
-
-    /************************************** Remote access **************************************/
-
-//    /**
-//     * Load Remote access data
-//     */
-//    $scope.loadRemoteAccess = function() {
-//        if (!$scope.elementAccess($scope.cfg.role_access.remote_access)) {
-//            return;
-//        }
-//        dataFactory.getApi('instances', '/RemoteAccess').then(function(response) {
-//            var remoteAccess = response.data.data[0];
-//            if (Object.keys(remoteAccess).length < 1) {
-//                $scope.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-warning'};
-//            }
-//            if (!remoteAccess.active) {
-//                $scope.alert = {message: $scope._t('remote_access_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
-//                return;
-//            }
-//            if (!remoteAccess.params.userId) {
-//                $scope.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-warning'};
-//                return;
-//            }
-//            remoteAccess.params.pass = null;
-//            $scope.remoteAccess = remoteAccess;
-//        }, function(error) {
-//            $scope.alert = {message: $scope._t('remote_access_not_installed'), status: 'alert-danger', icon: 'fa-warning'};
-//        });
-//    };
-//
-//    $scope.loadRemoteAccess();
-//
-//    /**
-//     * PUT Remote access
-//     */
-//    $scope.putRemoteAccess = function(input) {
-//        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-//        dataFactory.putApi('instances', input.id, input).then(function(response) {
-//            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
-//
-//        }, function(error) {
-//            alertify.alert($scope._t('error_update_data'));
-//            $scope.loading = false;
-//        });
-//
-//    };
-
-    /************************************** Licence **************************************/
-
-//    /**
-//     * Get license key
-//     */
-//    $scope.getLicense = function(inputLicence) {
-//        // Clear messages
-//        $scope.proccessVerify.message = false;
-//        $scope.proccessUpdate.message = false;
-//        if (!inputLicence.scratch_id) {
-//            return;
-//        }
-//
-//        $scope.proccessVerify = {'message': $scope._t('verifying_licence_key'), 'status': 'fa fa-spinner fa-spin'};
-//        $scope.proccessLicence = true;
-//        var input = {
-//            'uuid': $scope.controllerInfo.uuid,
-//            'scratch': inputLicence.scratch_id
-//        };
-//        dataFactory.getLicense(input).then(function(response) {
-//            $scope.proccessVerify = {'message': $scope._t('success_licence_key'), 'status': 'fa fa-check text-success'};
-//            // Update capabilities
-//            updateCapabilities(response);
-//        }, function(error) {
-//            var message = $scope._t('error_no_licence_key');
-//            if (error.status == 404) {
-//                var message = $scope._t('error_404_licence_key');
-//            }
-//            $scope.proccessVerify = {'message': message, 'status': 'fa fa-exclamation-triangle text-danger'};
-//            $scope.proccessLicence = false;
-//
-//        });
-//        return;
-//    };
-//
-//    /**
-//     * Update capabilities
-//     */
-//    function updateCapabilities(data) {
-//        $scope.proccessUpdate = {'message': $scope._t('upgrading_capabilities'), 'status': 'fa fa-spinner fa-spin'};
-////        $timeout(function() {
-////             $scope.proccessUpdate = {'message': $scope._t('success_capabilities'), 'status': 'fa fa-check text-success'};
-////             $scope.proccessLicence = false;
-////        }, 3000);
-//        dataFactory.zmeCapabilities(data).then(function(response) {
-//            $scope.proccessUpdate = {'message': $scope._t('success_capabilities'), 'status': 'fa fa-check text-success'};
-//            $scope.proccessLicence = false;
-//        }, function(error) {
-//            $scope.proccessUpdate = {'message': $scope._t('error_no_capabilities'), 'status': 'fa fa-exclamation-triangle text-danger'};
-//            $scope.proccessLicence = false;
-//        });
-//    }
-//    ;
-
-    /************************************** Backup, Restore, Factory default **************************************/
-//    // Backup, restore, Factory default
-//    $scope.backupRestore = {
-//        activeTab: (angular.isDefined($cookies.tab_admin_backup) ? $cookies.tab_admin_backup : 'backup'),
-//        restore: {
-//            alert: {message: false, status: 'is-hidden', icon: false},
-//            process: false
-//        },
-//        factory: {
-//            alert: {message: false, status: 'is-hidden', icon: false},
-//            process: false
-//        }
-//
-//    };
-//    $scope.factoryDefault = {
-//        alert: {message: false, status: 'is-hidden', icon: false},
-//        process: false
-//
-//    };
-//
-//    /**
-//     * Set tab
-//     */
-//    $scope.setBackupTab = function(tabId) {
-//        $scope.backupRestore.activeTab = tabId;
-//        $cookies.tab_admin_backup = tabId;
-//    };
-//
-//    /**
-//     * Upload backup file
-//     */
-//    $scope.uploadBackupFile = function(input) {
-//        var cnt = 0;
-//        $scope.backupRestore.restore.process = true;
-//        var refresh = function() {
-//            $scope.backupRestore.restore.alert = {message: $scope._t('restore_wait'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
-//            cnt += 1;
-//            if (cnt >= 10) {
-//                $interval.cancel(interval);
-//                $scope.backupRestore.restore.alert = {message: $scope._t('factory_default_success'), status: 'alert-success', icon: 'fa-check'};
-//                //$scope.backupRestore.restore.alert = {message: $scope._t('factory_default_error'), status: 'alert-danger', icon: 'fa-warning'};
-//                $scope.backupRestore.restore.process = false;
-//            }
-//        };
-//        var interval = $interval(refresh, 1000);
-//        return;
-//        /*$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('restore_wait')};
-//         var fd = new FormData();
-//         fd.append('file_upload', $scope.myFile);
-//         dataFactory.restoreFromBck(fd).then(function(response) {
-//         $timeout(function() {
-//         $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('restore_done_reload_ui')};
-//         //$interval.cancel($scope.zwaveDataInterval);
-//         $window.location.reload();
-//         }, 20000);
-//         }, function(error) {
-//         $scope.loading = false;
-//         });*/
-//    };
-//
-//    /**
-//     * Cancel restore
-//     */
-//    $scope.cancelRestore = function() {
-//        $("#restore_confirm").attr('checked', false);
-//        $("#restore_chip_info").attr('checked', false);
-//        $scope.goRestore = false;
-//        $scope.goRestoreUpload = false;
-//
-//    };
-//
-//    /**
-//     * Back to Factory default
-//     */
-//    $scope.backFactoryDefault = function(input) {
-//        var cnt = 0;
-//        $scope.backupRestore.factory.process = true;
-//        var refresh = function() {
-//            $scope.backupRestore.factory.alert = {message: $scope._t('returning_factory_default'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
-//            cnt += 1;
-//            if (cnt >= 10) {
-//                $interval.cancel(interval);
-//                $scope.backupRestore.factory.alert = {message: $scope._t('factory_default_success'), status: 'alert-success', icon: 'fa-check'};
-//                //$scope.backupRestore.factory.alert = {message: $scope._t('factory_default_error'), status: 'alert-danger', icon: 'fa-warning'};
-//                $scope.backupRestore.factory.process = false;
-//            }
-//        };
-//        var interval = $interval(refresh, 1000);
-//    };
-
-    /************************************** Firmware **************************************/
-    /**
-     * Show modal window
-     */
-//    $scope.showModal = function(target) {
-//        $(target).modal();
-//    };
 });
 /**
  * List of users
@@ -17067,27 +16896,7 @@ myAppController.controller('ManagementReportController', function($scope, $windo
  * Management info controller
  */
 myAppController.controller('ManagementInfoController', function($scope, dataFactory, dataService) {
-    $scope.input = {
-        software: {
-            firmwareVersion: '',
-            uiVersion: $scope.cfg.app_version
-        }
-    };
-
-    /**
-     * Load ZwaveApiData
-     */
-    $scope.loadZwaveApiData = function() {
-        dataService.showConnectionSpinner();
-        dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
-            angular.extend($scope.input.software, {firmwareVersion: ZWaveAPIData.controller.data.softwareRevisionVersion.value});
-            dataService.updateTimeTick();
-        }, function(error) {
-            dataService.showConnectionError(error);
-        });
-    };
-
-    $scope.loadZwaveApiData();
+   
 });
 /**
  * Application MySettings controller
@@ -17175,12 +16984,15 @@ myAppController.controller('MySettingsController', function($scope, $window, $lo
     /**
      * Change password
      */
-    $scope.changePassword = function(newPassword) {
-        if (!newPassword || newPassword === '' || newPassword === $scope.cfg.default_credentials.password) {
-            alertify.alert($scope._t('enter_valid_password'));
-            $scope.loading = false;
+    $scope.changePassword = function(form,newPassword) {
+        if (form.$invalid) {
             return;
         }
+//       if (!newPassword || newPassword === '' || newPassword === $scope.cfg.default_credentials.password) {
+//            alertify.alert($scope._t('enter_valid_password'));
+//            $scope.loading = false;
+//            return;
+//        }
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         var input = {
             id: $scope.id,
@@ -17268,14 +17080,14 @@ myAppController.controller('LoginController', function($scope, $location, $windo
             //$window.location.href = '#/elements/dashboard/1?login';
             //console.log(user);
             //$location.path('/elements/dashboard/1?login');
-            if(input.fromexpert){
+            if (input.fromexpert) {
                 window.location.href = $scope.cfg.expert_url;
                 return;
             }
             if (input.password === $scope.cfg.default_credentials.password) {
                 redirectTo = '#/password';
             }
-            
+
             window.location = redirectTo;
 
             $window.location.reload();
@@ -17313,11 +17125,11 @@ myAppController.controller('PasswordController', function($scope, dataFactory) {
         if (form.$invalid) {
             return;
         }
-        if (input.password === $scope.cfg.default_credentials.password) {
-            alertify.alert($scope._t('enter_valid_password'));
-            $scope.loading = false;
-            return;
-        }
+        /*if (input.password === $scope.cfg.default_credentials.password) {
+         alertify.alert($scope._t('enter_valid_password'));
+         $scope.loading = false;
+         return;
+         }*/
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         var input = {
             id: $scope.user.id,
@@ -17333,7 +17145,9 @@ myAppController.controller('PasswordController', function($scope, dataFactory) {
                 $scope.loading = false;
                 return;
             }
-            dataFactory.putApi('profiles', input.id, data).then(function(response) {}, function(error) {});
+            dataFactory.putApi('profiles', input.id, data).then(function(response) {
+            }, function(error) {
+            });
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
             window.location = '#/elements/dashboard/1';
 
@@ -17341,9 +17155,9 @@ myAppController.controller('PasswordController', function($scope, dataFactory) {
             alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
         });
-        
-        
-        
+
+
+
 
     };
 
@@ -17351,40 +17165,42 @@ myAppController.controller('PasswordController', function($scope, dataFactory) {
 /**
  * Password forgot controller
  */
-myAppController.controller('PasswordForgotController', function($scope, $location,dataFactory) {
+myAppController.controller('PasswordForgotController', function($scope, $location, dataFactory) {
     $scope.passwordForgot = {
-        input: { email: '',location: $location,resetUrl: $location.$$absUrl + '/reset/'},
+        input: {email: '', token: null, resetUrl: null},
         alert: {message: false, status: 'is-hidden', icon: false}
     };
 
     /**
      * Send an email
      */
-    $scope.sendEmail = function(form, input) {
+    $scope.sendEmail = function(form) {
         if (form.$invalid) {
             return;
         }
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        alertify.alert($scope._t('email_notfound'));
-         $scope.passwordForgot.alert = {message: $scope._t('password_forgot_success'), status: 'alert-success', icon: 'fa-check'};
-        $scope.loading = false;
-
-        return;
-
-        dataFactory.putApi('profiles_auth_update', input.id, input).then(function(response) {
-            var data = response.data.data;
-            if (!data) {
-                alertify.alert($scope._t('error_update_data'));
+        dataFactory.postApi('password_reset', $scope.passwordForgot.input).then(function(response) {
+            $scope.passwordForgot.input.token = response.data.data.token;
+            $scope.passwordForgot.input.resetUrl = $location.$$absUrl + '/reset/' + response.data.data.token;
+            dataFactory.postToRemote($scope.cfg.post_password_request_url, $scope.passwordForgot.input).then(function(rdata) {
+                $scope.passwordForgot.alert = {message: $scope._t('password_forgot_success'), status: 'alert-success', icon: 'fa-check'};
                 $scope.loading = false;
-                return;
-            }
-            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
-            window.location = '#/elements/dashboard/1';
-
+            }, function(error) {
+                alertify.alert($scope._t('error_500'));
+                $scope.loading = false;
+            });
         }, function(error) {
-            alertify.alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_500'));
             $scope.loading = false;
         });
+
+//         dataFactory.postToRemote($scope.cfg.post_password_request_url, $scope.passwordForgot.input).then(function(response) {
+//            $scope.passwordForgot.alert = {message: $scope._t('password_forgot_success'), status: 'alert-success', icon: 'fa-check'};
+//            $scope.loading = false;
+//        }, function(error) {
+//            alertify.alert($scope._t('error_500'));
+//            $scope.loading = false;
+//        });
 
     };
 
@@ -17393,23 +17209,18 @@ myAppController.controller('PasswordForgotController', function($scope, $locatio
 /**
  * Password reset controller
  */
-myAppController.controller('PasswordResetController', function($scope, $routeParams,dataFactory) {
-   $scope.passwordReset = {
-        input: { id: null, password: '',passwordConfirm: '',token: $routeParams.token},
+myAppController.controller('PasswordResetController', function($scope, $routeParams, dataFactory) {
+    $scope.passwordReset = {
+        input: {userId: null, password: '', passwordConfirm: '', token: $routeParams.token},
         alert: {message: false, status: 'is-hidden', icon: false}
     };
     /**
      * Check a valid token
      */
-    $scope.checkToken = function(token) {
+    $scope.checkToken = function() {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-         $scope.passwordReset.input.id = 1;
-         $scope.loading = false;
-         return;
-
-        dataFactory.getApi('myappi', null, true).then(function(response) {
-            $scope.passwordReset.input.id = response.data.data.user.id;
-            $scope.passwordReset.input.id = 1;
+        dataFactory.postApi('password_reset', $scope.passwordReset.input, '?token=' + $scope.passwordReset.input.token).then(function(response) {
+            $scope.passwordReset.input.userId = response.data.data.userId;
             $scope.loading = false;
         }, function(error) {
             var message = $scope._t('error_500');
@@ -17419,625 +17230,48 @@ myAppController.controller('PasswordResetController', function($scope, $routePar
             $scope.loading = false;
             $scope.passwordReset.alert = {message: message, status: 'alert-danger', icon: 'fa-warning'};
         });
+        return;
 
     };
-    $scope.checkToken($routeParams.token);
-    
+    $scope.checkToken();
+
+
+
     /**
      * Change password
      */
-    $scope.changePassword = function(form, input) {
+    $scope.changePassword = function(form) {
         if (form.$invalid) {
-            return;
-        }
-        if (input.password === '' || input.password === $scope.cfg.default_credentials.password) {
-            alertify.alert($scope._t('enter_valid_password'));
-            $scope.loading = false;
             return;
         }
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         var input = {
-            id: input.id,
-            password: input.password
+            id: $scope.passwordReset.input.userId,
+            password: $scope.passwordReset.input.password,
+            token: $routeParams.token
+
 
         };
         dataFactory.putApi('profiles_auth_update', input.id, input).then(function(response) {
-            var data = response.data.data;
-            if (!data) {
-                alertify.alert($scope._t('error_update_data'));
-                $scope.loading = false;
-                return;
-            }
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
             window.location = '#/';
-
         }, function(error) {
             alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
         });
-
     };
-
 });
 /**
  * Logout controller
  */
-myAppController.controller('LogoutController', function($scope, dataService) {
+myAppController.controller('LogoutController', function($scope, dataService, dataFactory) {
     $scope.logout = function() {
         dataService.logOut();
+         dataFactory.getApi('logout').then(function(response) {});
     };
     $scope.logout();
 
 });
-'use strict';
-
-angular.module('colorpicker.module', [])
-        .factory('Helper', function() {
-            return {
-                closestSlider: function(elem) {
-                    var matchesSelector = elem.matches || elem.webkitMatchesSelector || elem.mozMatchesSelector || elem.msMatchesSelector;
-                    if (matchesSelector.bind(elem)('I')) {
-                        return elem.parentNode;
-                    }
-                    return elem;
-                },
-                getOffset: function(elem, fixedPosition) {
-                    var
-                            x = 0,
-                            y = 0,
-                            scrollX = 0,
-                            scrollY = 0;
-                    while (elem && !isNaN(elem.offsetLeft) && !isNaN(elem.offsetTop)) {
-                        x += elem.offsetLeft;
-                        y += elem.offsetTop;
-                        if (!fixedPosition && elem.tagName === 'BODY') {
-                            scrollX += document.documentElement.scrollLeft || elem.scrollLeft;
-                            scrollY += document.documentElement.scrollTop || elem.scrollTop;
-                        } else {
-                            scrollX += elem.scrollLeft;
-                            scrollY += elem.scrollTop;
-                        }
-                        elem = elem.offsetParent;
-                    }
-                    return {
-                        top: y,
-                        left: x,
-                        scrollX: scrollX,
-                        scrollY: scrollY
-                    };
-                },
-                // a set of RE's that can match strings and generate color tuples. https://github.com/jquery/jquery-color/
-                stringParsers: [
-                    {
-                        re: /rgba?\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*(?:,\s*(\d+(?:\.\d+)?)\s*)?\)/,
-                        parse: function(execResult) {
-                            return [
-                                execResult[1],
-                                execResult[2],
-                                execResult[3],
-                                execResult[4]
-                            ];
-                        }
-                    },
-                    {
-                        re: /rgba?\(\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*(?:,\s*(\d+(?:\.\d+)?)\s*)?\)/,
-                        parse: function(execResult) {
-                            return [
-                                2.55 * execResult[1],
-                                2.55 * execResult[2],
-                                2.55 * execResult[3],
-                                execResult[4]
-                            ];
-                        }
-                    },
-                    {
-                        re: /#([a-fA-F0-9]{2})([a-fA-F0-9]{2})([a-fA-F0-9]{2})/,
-                        parse: function(execResult) {
-                            return [
-                                parseInt(execResult[1], 16),
-                                parseInt(execResult[2], 16),
-                                parseInt(execResult[3], 16)
-                            ];
-                        }
-                    },
-                    {
-                        re: /#([a-fA-F0-9])([a-fA-F0-9])([a-fA-F0-9])/,
-                        parse: function(execResult) {
-                            return [
-                                parseInt(execResult[1] + execResult[1], 16),
-                                parseInt(execResult[2] + execResult[2], 16),
-                                parseInt(execResult[3] + execResult[3], 16)
-                            ];
-                        }
-                    }
-                ]
-            };
-        })
-        .factory('Color', ['Helper', function(Helper) {
-                return {
-                    value: {
-                        h: 1,
-                        s: 1,
-                        b: 1,
-                        a: 1
-                    },
-                    // translate a format from Color object to a string
-                    'rgb': function() {
-                        var rgb = this.toRGB();
-                        return 'rgb(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ')';
-                    },
-                    'rgba': function() {
-                        var rgb = this.toRGB();
-                        return 'rgba(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ',' + rgb.a + ')';
-                    },
-                    'hex': function() {
-                        return  this.toHex();
-                    },
-                    // HSBtoRGB from RaphaelJS
-                    RGBtoHSB: function(r, g, b, a) {
-                        r /= 255;
-                        g /= 255;
-                        b /= 255;
-
-                        var H, S, V, C;
-                        V = Math.max(r, g, b);
-                        C = V - Math.min(r, g, b);
-                        H = (C === 0 ? null :
-                                V === r ? (g - b) / C :
-                                V === g ? (b - r) / C + 2 :
-                                (r - g) / C + 4
-                                );
-                        H = ((H + 360) % 6) * 60 / 360;
-                        S = C === 0 ? 0 : C / V;
-                        return {h: H || 1, s: S, b: V, a: a || 1};
-                    },
-                    //parse a string to HSB
-                    setColor: function(val) {
-                        val = val.toLowerCase();
-                        for (var key in Helper.stringParsers) {
-                            if (Helper.stringParsers.hasOwnProperty(key)) {
-                                var parser = Helper.stringParsers[key];
-                                var match = parser.re.exec(val),
-                                        values = match && parser.parse(match);
-                                if (values) {
-                                    this.value = this.RGBtoHSB.apply(null, values);
-                                    return false;
-                                }
-                            }
-                        }
-                    },
-                    setHue: function(h) {
-                        this.value.h = 1 - h;
-                    },
-                    setSaturation: function(s) {
-                        this.value.s = s;
-                    },
-                    setLightness: function(b) {
-                        this.value.b = 1 - b;
-                    },
-                    setAlpha: function(a) {
-                        this.value.a = parseInt((1 - a) * 100, 10) / 100;
-                    },
-                    // HSBtoRGB from RaphaelJS
-                    // https://github.com/DmitryBaranovskiy/raphael/
-                    toRGB: function(h, s, b, a) {
-                        if (!h) {
-                            h = this.value.h;
-                            s = this.value.s;
-                            b = this.value.b;
-                        }
-                        h *= 360;
-                        var R, G, B, X, C;
-                        h = (h % 360) / 60;
-                        C = b * s;
-                        X = C * (1 - Math.abs(h % 2 - 1));
-                        R = G = B = b - C;
-
-                        h = ~~h;
-                        R += [C, X, 0, 0, X, C][h];
-                        G += [X, C, C, X, 0, 0][h];
-                        B += [0, 0, X, C, C, X][h];
-                        return {
-                            r: Math.round(R * 255),
-                            g: Math.round(G * 255),
-                            b: Math.round(B * 255),
-                            a: a || this.value.a
-                        };
-                    },
-                    toHex: function(h, s, b, a) {
-                        var rgb = this.toRGB(h, s, b, a);
-                        return '#' + ((1 << 24) | (parseInt(rgb.r, 10) << 16) | (parseInt(rgb.g, 10) << 8) | parseInt(rgb.b, 10)).toString(16).substr(1);
-                    }
-                };
-            }])
-        .factory('Slider', ['Helper', function(Helper) {
-                var
-                        slider = {
-                            maxLeft: 0,
-                            maxTop: 0,
-                            callLeft: null,
-                            callTop: null,
-                            knob: {
-                                top: 0,
-                                left: 0
-                            }
-                        },
-                pointer = {};
-
-                return {
-                    getSlider: function() {
-                        return slider;
-                    },
-                    getLeftPosition: function(event) {
-                        return Math.max(0, Math.min(slider.maxLeft, slider.left + ((event.pageX || pointer.left) - pointer.left)));
-                    },
-                    getTopPosition: function(event) {
-                        return Math.max(0, Math.min(slider.maxTop, slider.top + ((event.pageY || pointer.top) - pointer.top)));
-                    },
-                    setSlider: function(event, fixedPosition) {
-                        var
-                                target = Helper.closestSlider(event.target),
-                                targetOffset = Helper.getOffset(target, fixedPosition);
-                        slider.knob = target.children[0].style;
-                        slider.left = event.pageX - targetOffset.left - window.pageXOffset + targetOffset.scrollX;
-                        slider.top = event.pageY - targetOffset.top - window.pageYOffset + targetOffset.scrollY;
-
-                        pointer = {
-                            left: event.pageX,
-                            top: event.pageY
-                        };
-                    },
-                    setSaturation: function(event, fixedPosition) {
-                        slider = {
-                            maxLeft: 100,
-                            maxTop: 100,
-                            callLeft: 'setSaturation',
-                            callTop: 'setLightness'
-                        };
-                        this.setSlider(event, fixedPosition);
-                    },
-                    setHue: function(event, fixedPosition) {
-                        slider = {
-                            maxLeft: 0,
-                            maxTop: 100,
-                            callLeft: false,
-                            callTop: 'setHue'
-                        };
-                        this.setSlider(event, fixedPosition);
-                    },
-                    setAlpha: function(event, fixedPosition) {
-                        slider = {
-                            maxLeft: 0,
-                            maxTop: 100,
-                            callLeft: false,
-                            callTop: 'setAlpha'
-                        };
-                        this.setSlider(event, fixedPosition);
-                    },
-                    setKnob: function(top, left) {
-                        slider.knob.top = top + 'px';
-                        slider.knob.left = left + 'px';
-                    }
-                };
-            }])
-        .directive('colorpicker', ['$document', '$compile', 'Color', 'Slider', 'Helper', function($document, $compile, Color, Slider, Helper) {
-                return {
-                    require: '?ngModel',
-                    restrict: 'A',
-                    link: function($scope, elem, attrs, ngModel) {
-                        var
-                                thisFormat = attrs.colorpicker ? attrs.colorpicker : 'hex',
-                                position = angular.isDefined(attrs.colorpickerPosition) ? attrs.colorpickerPosition : 'bottom',
-                                inline = angular.isDefined(attrs.colorpickerInline) ? attrs.colorpickerInline : false,
-                                fixedPosition = angular.isDefined(attrs.colorpickerFixedPosition) ? attrs.colorpickerFixedPosition : false,
-                                target = angular.isDefined(attrs.colorpickerParent) ? elem.parent() : angular.element(document.body),
-                                withInput = angular.isDefined(attrs.colorpickerWithInput) ? attrs.colorpickerWithInput : false,
-                                inputTemplate = withInput ? '<input type="text" name="colorpicker-input">' : '',
-                                closeButton = !inline ? '<button type="button" class="close close-colorpicker">&times;</button>' : '',
-                                template =
-                                '<div class="colorpicker dropdown">' +
-                                '<div class="dropdown-menu">' +
-                                '<colorpicker-saturation><i></i></colorpicker-saturation>' +
-                                '<colorpicker-hue><i></i></colorpicker-hue>' +
-                                '<colorpicker-alpha><i></i></colorpicker-alpha>' +
-                                '<colorpicker-preview></colorpicker-preview>' +
-                                inputTemplate +
-                                closeButton +
-                                '</div>' +
-                                '</div>',
-                                colorpickerTemplate = angular.element(template),
-                                pickerColor = Color,
-                                sliderAlpha,
-                                sliderHue = colorpickerTemplate.find('colorpicker-hue'),
-                                sliderSaturation = colorpickerTemplate.find('colorpicker-saturation'),
-                                colorpickerPreview = colorpickerTemplate.find('colorpicker-preview'),
-                                pickerColorPointers = colorpickerTemplate.find('i');
-
-                        $compile(colorpickerTemplate)($scope);
-
-                        if (withInput) {
-                            var pickerColorInput = colorpickerTemplate.find('input');
-                            pickerColorInput
-                                    .on('mousedown', function(event) {
-                                        event.stopPropagation();
-                                    })
-                                    .on('keyup', function(event) {
-                                        var newColor = this.value;
-                                        elem.val(newColor);
-                                        if (ngModel) {
-                                            $scope.$apply(ngModel.$setViewValue(newColor));
-                                        }
-                                        event.stopPropagation();
-                                        event.preventDefault();
-                                    });
-                            elem.on('keyup', function() {
-                                pickerColorInput.val(elem.val());
-                            });
-                        }
-
-                        var bindMouseEvents = function() {
-                            $document.on('mousemove', mousemove);
-                            $document.on('mouseup', mouseup);
-                        };
-
-                        if (thisFormat === 'rgba') {
-                            colorpickerTemplate.addClass('alpha');
-                            sliderAlpha = colorpickerTemplate.find('colorpicker-alpha');
-                            sliderAlpha
-                                    .on('click', function(event) {
-                                        Slider.setAlpha(event, fixedPosition);
-                                        mousemove(event);
-                                    })
-                                    .on('mousedown', function(event) {
-                                        Slider.setAlpha(event, fixedPosition);
-                                        bindMouseEvents();
-                                    });
-                        }
-
-                        sliderHue
-                                .on('click', function(event) {
-                                    Slider.setHue(event, fixedPosition);
-                                    mousemove(event);
-                                })
-                                .on('mousedown', function(event) {
-                                    Slider.setHue(event, fixedPosition);
-                                    bindMouseEvents();
-                                });
-
-                        sliderSaturation
-                                .on('click', function(event) {
-                                    Slider.setSaturation(event, fixedPosition);
-                                    mousemove(event);
-                                    if (angular.isDefined(attrs.colorpickerCloseOnSelect)) {
-                                        hideColorpickerTemplate();
-                                    }
-                                })
-                                .on('mousedown', function(event) {
-                                    Slider.setSaturation(event, fixedPosition);
-                                    bindMouseEvents();
-                                });
-
-                        if (fixedPosition) {
-                            colorpickerTemplate.addClass('colorpicker-fixed-position');
-                        }
-
-                        colorpickerTemplate.addClass('colorpicker-position-' + position);
-                        if (inline === 'true') {
-                            colorpickerTemplate.addClass('colorpicker-inline');
-                        }
-
-                        target.append(colorpickerTemplate);
-
-                        if (ngModel) {
-                            ngModel.$render = function() {
-                                elem.val(ngModel.$viewValue);
-                            };
-                            $scope.$watch(attrs.ngModel, function(newVal) {
-                                update();
-
-                                if (withInput) {
-                                    pickerColorInput.val(newVal);
-                                }
-                            });
-                        }
-
-                        elem.on('$destroy', function() {
-                            colorpickerTemplate.remove();
-                        });
-
-                        var previewColor = function() {
-                            try {
-                                colorpickerPreview.css('backgroundColor', pickerColor[thisFormat]());
-                            } catch (e) {
-                                colorpickerPreview.css('backgroundColor', pickerColor.toHex());
-                            }
-                            sliderSaturation.css('backgroundColor', pickerColor.toHex(pickerColor.value.h, 1, 1, 1));
-                            if (thisFormat === 'rgba') {
-                                sliderAlpha.css.backgroundColor = pickerColor.toHex();
-                            }
-                        };
-
-                        var mousemove = function(event) {
-                            var
-                                    left = Slider.getLeftPosition(event),
-                                    top = Slider.getTopPosition(event),
-                                    slider = Slider.getSlider();
-
-                            Slider.setKnob(top, left);
-
-                            if (slider.callLeft) {
-                                pickerColor[slider.callLeft].call(pickerColor, left / 100);
-                            }
-                            if (slider.callTop) {
-                                pickerColor[slider.callTop].call(pickerColor, top / 100);
-                            }
-                            previewColor();
-                            var newColor = pickerColor[thisFormat]();
-                            elem.val(newColor);
-
-                            if (ngModel) {
-                                $scope.$apply(ngModel.$setViewValue(newColor));
-                            }
-                            if (withInput) {
-                                pickerColorInput.val(newColor);
-                            }
-                            return false;
-                        };
-
-                        var mouseup = function() {
-                            /*** Custom update ***/
-                            var lang = attrs.cmdurl;
-                            var sid = attrs.sid;
-                            var url = attrs.cmdurl;
-                            var color = pickerColor[thisFormat]();
-                            var array = color.match(/\((.*)\)/)[1].split(',');
-                            var cmd = url + '?red=' + array[0] + '&green=' + array[1] + '&blue=' + array[2];
-                            $.ajax({
-                                type: "GET",
-                                url: cmd,
-                                headers: {
-                                    'Accept-Language': lang,
-                                    'ZWAYSession': sid
-                                }
-                            });
-                            //console.log('RGB change', cmd)
-                            /*** END - Custom update ***/
-                            $document.off('mousemove', mousemove);
-                            $document.off('mouseup', mouseup);
-                        };
-
-                        var update = function() {
-
-                            pickerColor.setColor(elem.val());
-                            pickerColorPointers.eq(0).css({
-                                left: pickerColor.value.s * 100 + 'px',
-                                top: 100 - pickerColor.value.b * 100 + 'px'
-                            });
-                            pickerColorPointers.eq(1).css('top', 100 * (1 - pickerColor.value.h) + 'px');
-                            pickerColorPointers.eq(2).css('top', 100 * (1 - pickerColor.value.a) + 'px');
-                            previewColor();
-                        };
-
-                        var getColorpickerTemplatePosition = function() {
-                            var
-                                    positionValue,
-                                    positionOffset = Helper.getOffset(elem[0]);
-
-                            if (angular.isDefined(attrs.colorpickerParent)) {
-                                positionOffset.left = 0;
-                                positionOffset.top = 0;
-                            }
-
-                            if (position === 'top') {
-                                positionValue = {
-                                    'top': positionOffset.top - 147,
-                                    'left': positionOffset.left
-                                };
-                            } else if (position === 'right') {
-                                positionValue = {
-                                    'top': positionOffset.top,
-                                    'left': positionOffset.left + 126
-                                };
-                            } else if (position === 'bottom') {
-                                positionValue = {
-                                    'top': positionOffset.top + elem[0].offsetHeight + 2,
-                                    'left': positionOffset.left
-                                };
-                            } else if (position === 'left') {
-                                positionValue = {
-                                    'top': positionOffset.top,
-                                    'left': positionOffset.left - 150
-                                };
-                            }
-                            return {
-                                'top': positionValue.top + 'px',
-                                'left': positionValue.left + 'px'
-                            };
-                        };
-
-                        var documentMousedownHandler = function() {
-                            hideColorpickerTemplate();
-                        };
-
-                        var showColorpickerTemplate = function() {
-
-                            if (!colorpickerTemplate.hasClass('colorpicker-visible')) {
-                                update();
-                                colorpickerTemplate
-                                        .addClass('colorpicker-visible')
-                                        .css(getColorpickerTemplatePosition());
-
-                                if (inline === false) {
-                                    // register global mousedown event to hide the colorpicker
-                                    $document.on('mousedown', documentMousedownHandler);
-                                }
-
-                                if (attrs.colorpickerIsOpen) {
-                                    $scope[attrs.colorpickerIsOpen] = true;
-                                    if (!$scope.$$phase) {
-                                        $scope.$digest(); //trigger the watcher to fire
-                                    }
-                                }
-                            }
-
-                        };
-
-                        if (inline === false) {
-                            elem.on('click', showColorpickerTemplate);
-                        } else {
-                            showColorpickerTemplate();
-                        }
-
-                        colorpickerTemplate.on('mousedown', function(event) {
-                            event.stopPropagation();
-                            event.preventDefault();
-                        });
-
-                        var emitEvent = function(name) {
-                            if (ngModel) {
-                                $scope.$emit(name, {
-                                    name: attrs.ngModel,
-                                    value: ngModel.$modelValue
-                                });
-                            }
-                        };
-
-                        var hideColorpickerTemplate = function() {
-                            if (colorpickerTemplate.hasClass('colorpicker-visible')) {
-                                colorpickerTemplate.removeClass('colorpicker-visible');
-                                emitEvent('colorpicker-closed');
-                                // unregister the global mousedown event
-                                $document.off('mousedown', documentMousedownHandler);
-
-                                if (attrs.colorpickerIsOpen) {
-                                    $scope[attrs.colorpickerIsOpen] = false;
-                                    if (!$scope.$$phase) {
-                                        $scope.$digest(); //trigger the watcher to fire
-                                    }
-                                }
-                            }
-                        };
-
-                        colorpickerTemplate.find('button').on('click', function() {
-                            hideColorpickerTemplate();
-                        });
-
-                        if (attrs.colorpickerIsOpen) {
-                            $scope.$watch(attrs.colorpickerIsOpen, function(shouldBeOpen) {
-
-                                if (shouldBeOpen === true) {
-                                    showColorpickerTemplate();
-                                } else if (shouldBeOpen === false) {
-                                    hideColorpickerTemplate();
-                                }
-
-                            });
-                        }
-
-                    }
-                };
-            }]);
-
 // device filter for device select menu
 function devices_htmlSelect_filter(ZWaveAPIData,span,dev,type) {
 	// return true means to skip this node

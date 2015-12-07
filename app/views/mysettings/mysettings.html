@@ -93,7 +93,7 @@
 
         <!-- ///////////////////////////// Change password Form ///////////////////////////// -->
         <h2 ng-bind="_t('my_local_access')"></h2>
-        <form name="form_password" id="form_password" class="form form-page" ng-submit="changePassword(newPassword)" novalidate>
+        <form name="form_password" id="form_password" class="form form-page" ng-submit="changePassword(form_password,newPassword)" novalidate>
             <fieldset>
                 <!-- login  -->
                 <p class="form-control-static">
@@ -102,13 +102,16 @@
                 <!-- password -->
                 <div>
                     <label>{{_t('lb_new_password')}}: </label>
-                    <input name="password" id="password" type="password" class="form-control form-control-sm" value="" ng-model="newPassword" />
+                    <input name="password" id="password" type="password" class="form-control form-control-sm" value="" ng-model="newPassword" ng-blur="passwordBlur = true" ng-required="true" ng-minlength="6" />
+                    <bb-validator input-name='form_password.password.$error.required' trans='_t("field_required")' has-blur='passwordBlur'></bb-validator> 
+            <bb-validator input-name='form_password.password.$error.minlength' trans='_t("password_valid")' has-blur='passwordBlur'></bb-validator>
+                    
                 </div>
 
             </fieldset>
             <fieldset class="submit-entry">
                 <button type="button" class="btn btn-default" bb-go-back><i class="fa fa-times  text-danger"></i> <span ng-bind="_t('lb_cancel')"></span></button>
-                 <button type="submit" class="btn btn-submit"><i class="fa fa-check"></i> <span ng-bind="_t('lb_change_password')"></span></button>
+                 <button type="submit" class="btn btn-submit" ng-disabled="form_password.$invalid"><i class="fa fa-check"></i> <span ng-bind="_t('lb_change_password')"></span></button>
             </fieldset>
         </form>
  </div>

@@ -47,14 +47,14 @@ myAppController.controller('LoginController', function($scope, $location, $windo
             //$window.location.href = '#/elements/dashboard/1?login';
             //console.log(user);
             //$location.path('/elements/dashboard/1?login');
-            if(input.fromexpert){
+            if (input.fromexpert) {
                 window.location.href = $scope.cfg.expert_url;
                 return;
             }
             if (input.password === $scope.cfg.default_credentials.password) {
                 redirectTo = '#/password';
             }
-            
+
             window.location = redirectTo;
 
             $window.location.reload();
@@ -92,11 +92,11 @@ myAppController.controller('PasswordController', function($scope, dataFactory) {
         if (form.$invalid) {
             return;
         }
-        if (input.password === $scope.cfg.default_credentials.password) {
-            alertify.alert($scope._t('enter_valid_password'));
-            $scope.loading = false;
-            return;
-        }
+        /*if (input.password === $scope.cfg.default_credentials.password) {
+         alertify.alert($scope._t('enter_valid_password'));
+         $scope.loading = false;
+         return;
+         }*/
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         var input = {
             id: $scope.user.id,
@@ -112,7 +112,9 @@ myAppController.controller('PasswordController', function($scope, dataFactory) {
                 $scope.loading = false;
                 return;
             }
-            dataFactory.putApi('profiles', input.id, data).then(function(response) {}, function(error) {});
+            dataFactory.putApi('profiles', input.id, data).then(function(response) {
+            }, function(error) {
+            });
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
             window.location = '#/elements/dashboard/1';
 
@@ -120,9 +122,9 @@ myAppController.controller('PasswordController', function($scope, dataFactory) {
             alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
         });
-        
-        
-        
+
+
+
 
     };
 
@@ -130,40 +132,42 @@ myAppController.controller('PasswordController', function($scope, dataFactory) {
 /**
  * Password forgot controller
  */
-myAppController.controller('PasswordForgotController', function($scope, $location,dataFactory) {
+myAppController.controller('PasswordForgotController', function($scope, $location, dataFactory) {
     $scope.passwordForgot = {
-        input: { email: '',location: $location,resetUrl: $location.$$absUrl + '/reset/'},
+        input: {email: '', token: null, resetUrl: null},
         alert: {message: false, status: 'is-hidden', icon: false}
     };
 
     /**
      * Send an email
      */
-    $scope.sendEmail = function(form, input) {
+    $scope.sendEmail = function(form) {
         if (form.$invalid) {
             return;
         }
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        alertify.alert($scope._t('email_notfound'));
-         $scope.passwordForgot.alert = {message: $scope._t('password_forgot_success'), status: 'alert-success', icon: 'fa-check'};
-        $scope.loading = false;
-
-        return;
-
-        dataFactory.putApi('profiles_auth_update', input.id, input).then(function(response) {
-            var data = response.data.data;
-            if (!data) {
-                alertify.alert($scope._t('error_update_data'));
+        dataFactory.postApi('password_reset', $scope.passwordForgot.input).then(function(response) {
+            $scope.passwordForgot.input.token = response.data.data.token;
+            $scope.passwordForgot.input.resetUrl = $location.$$absUrl + '/reset/' + response.data.data.token;
+            dataFactory.postToRemote($scope.cfg.post_password_request_url, $scope.passwordForgot.input).then(function(rdata) {
+                $scope.passwordForgot.alert = {message: $scope._t('password_forgot_success'), status: 'alert-success', icon: 'fa-check'};
                 $scope.loading = false;
-                return;
-            }
-            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
-            window.location = '#/elements/dashboard/1';
-
+            }, function(error) {
+                alertify.alert($scope._t('error_500'));
+                $scope.loading = false;
+            });
         }, function(error) {
-            alertify.alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_500'));
             $scope.loading = false;
         });
+
+//         dataFactory.postToRemote($scope.cfg.post_password_request_url, $scope.passwordForgot.input).then(function(response) {
+//            $scope.passwordForgot.alert = {message: $scope._t('password_forgot_success'), status: 'alert-success', icon: 'fa-check'};
+//            $scope.loading = false;
+//        }, function(error) {
+//            alertify.alert($scope._t('error_500'));
+//            $scope.loading = false;
+//        });
 
     };
 
@@ -172,23 +176,18 @@ myAppController.controller('PasswordForgotController', function($scope, $locatio
 /**
  * Password reset controller
  */
-myAppController.controller('PasswordResetController', function($scope, $routeParams,dataFactory) {
-   $scope.passwordReset = {
-        input: { id: null, password: '',passwordConfirm: '',token: $routeParams.token},
+myAppController.controller('PasswordResetController', function($scope, $routeParams, dataFactory) {
+    $scope.passwordReset = {
+        input: {userId: null, password: '', passwordConfirm: '', token: $routeParams.token},
         alert: {message: false, status: 'is-hidden', icon: false}
     };
     /**
      * Check a valid token
      */
-    $scope.checkToken = function(token) {
+    $scope.checkToken = function() {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-         $scope.passwordReset.input.id = 1;
-         $scope.loading = false;
-         return;
-
-        dataFactory.getApi('myappi', null, true).then(function(response) {
-            $scope.passwordReset.input.id = response.data.data.user.id;
-            $scope.passwordReset.input.id = 1;
+        dataFactory.postApi('password_reset', $scope.passwordReset.input, '?token=' + $scope.passwordReset.input.token).then(function(response) {
+            $scope.passwordReset.input.userId = response.data.data.userId;
             $scope.loading = false;
         }, function(error) {
             var message = $scope._t('error_500');
@@ -198,52 +197,44 @@ myAppController.controller('PasswordResetController', function($scope, $routePar
             $scope.loading = false;
             $scope.passwordReset.alert = {message: message, status: 'alert-danger', icon: 'fa-warning'};
         });
+        return;
 
     };
-    $scope.checkToken($routeParams.token);
-    
+    $scope.checkToken();
+
+
+
     /**
      * Change password
      */
-    $scope.changePassword = function(form, input) {
+    $scope.changePassword = function(form) {
         if (form.$invalid) {
-            return;
-        }
-        if (input.password === '' || input.password === $scope.cfg.default_credentials.password) {
-            alertify.alert($scope._t('enter_valid_password'));
-            $scope.loading = false;
             return;
         }
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         var input = {
-            id: input.id,
-            password: input.password
+            id: $scope.passwordReset.input.userId,
+            password: $scope.passwordReset.input.password,
+            token: $routeParams.token
+
 
         };
         dataFactory.putApi('profiles_auth_update', input.id, input).then(function(response) {
-            var data = response.data.data;
-            if (!data) {
-                alertify.alert($scope._t('error_update_data'));
-                $scope.loading = false;
-                return;
-            }
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
             window.location = '#/';
-
         }, function(error) {
             alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
         });
-
     };
-
 });
 /**
  * Logout controller
  */
-myAppController.controller('LogoutController', function($scope, dataService) {
+myAppController.controller('LogoutController', function($scope, dataService, dataFactory) {
     $scope.logout = function() {
         dataService.logOut();
+         dataFactory.getApi('logout').then(function(response) {});
     };
     $scope.logout();
 

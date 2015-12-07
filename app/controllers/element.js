@@ -149,7 +149,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         dataFactory.getApi('devices',null,true).then(function(response) {
             
             var filter = null;
-            var notFound = $scope._t('error_404');
+            var notFound = $scope._t('no_devices');
             $scope.loading = false;
             if (response.data.data.devices.length < 1) {
                 notFound = $scope._t('no_devices') + ' <a href="#devices"><strong>' + $scope._t('lb_include_device') + '</strong></a>';
@@ -400,6 +400,79 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
             alertify.alert($scope._t('error_update_data'));
            $scope.changeClimateControlProcess[input.roomName] = false;
         });
+
+    };
+    
+     /**
+     * Show RGB modal window
+     */
+    $scope.rgbWheel = {
+        process: false
+    };
+    $scope.loadRgbWheel = function(target, id, input) {
+        $(target).modal();
+        $scope.input = input;
+        $(target).modal();
+        var bCanPreview = true; // can preview
+
+        // create canvas and context objects
+        var canvas = document.getElementById('wheel_picker');
+
+        var ctx = canvas.getContext('2d');
+        // drawing active image
+        var image = new Image();
+        image.onload = function() {
+            ctx.drawImage(image, 0, 0, image.width, image.height); // draw the image on the canvas
+        };
+        image.src = 'app/img/colorwheel.png';
+        
+        var defaultColor = "rgb(" + input.metrics.color.r + ", " + input.metrics.color.g + ", " + input.metrics.color.b + ")";
+        $('#wheel_picker_preview').css('backgroundColor',defaultColor);
+
+        $('#wheel_picker').mousemove(function(e) { // mouse move handler
+            if (bCanPreview) {
+                // get coordinates of current position
+                var canvasOffset = $(canvas).offset();
+                var canvasX = Math.floor(e.pageX - canvasOffset.left);
+                var canvasY = Math.floor(e.pageY - canvasOffset.top);
+
+                // get current pixel
+                var imageData = ctx.getImageData(canvasX, canvasY, 1, 1);
+                var pixel = imageData.data;
+
+                // update preview color
+                var pixelColor = "rgb(" + pixel[0] + ", " + pixel[1] + ", " + pixel[2] + ")";
+               
+                if(pixelColor == 'rgb(0, 0, 0)'){
+                     $('#wheel_picker_preview').css('backgroundColor',defaultColor);
+                     
+                }else{
+                     $('#wheel_picker_preview').css('backgroundColor', pixelColor);
+                }
+               
+                // update controls
+                $('#rVal').val('R: ' + pixel[0]);
+                $('#gVal').val('G: ' + pixel[1]);
+                $('#bVal').val('B: ' + pixel[2]);
+                $('#rgbVal').val(pixel[0] + ',' + pixel[1] + ',' + pixel[2]);
+            }
+        });
+
+        $('#wheel_picker').click(function(e) { // click event handler
+            bCanPreview = !bCanPreview;
+            if (!bCanPreview) {
+                var cmdColor = $('#rgbVal').val().split(',');
+                var cmd = id + '/command/exact?red=' + cmdColor[0] + '&green=' + cmdColor[1] + '&blue=' + cmdColor[2] + '';
+                $scope.rgbWheel.process = true;
+                dataFactory.runApiCmd(cmd).then(function(response) {
+                    $scope.rgbWheel.process = false;
+                }, function(error) {
+                    $scope.rgbWheel.process = false;
+                     alertify.alert($scope._t('error_update_data'));
+                });
+            }
+        });
+
 
     };
     /**

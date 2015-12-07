@@ -3,7 +3,7 @@ var config_data = {
         //Application name
         'app_name': 'SmartHome UI',
         // Application version
-        'app_version': '1.0.2',
+        'app_version': '1.0.3',
         // Server base url
         'server_url': '/',
         //'server_url': 'http://192.168.10.119:8083/',
@@ -34,11 +34,11 @@ var config_data = {
             'namespaces': 'ZAutomation/api/v1/namespaces',
             'history': 'ZAutomation/api/v1/history',
             'login': 'ZAutomation/api/v1/login',
+            'logout': 'ZAutomation/api/v1/logout',
             'backup': 'ZAutomation/api/v1/backup',
             'restore': 'ZAutomation/api/v1/restore',
             'tokens': 'ZAutomation/api/v1/modules/tokens',
-            'password_reset': 'ZAutomation/api/v1/password/reset',
-            'password_restore': 'ZAutomation/api/v1/password/restore'
+            'password_reset': 'ZAutomation/api/v1/auth/forgotten'
         },
         // List of image pathes
         'img': {
@@ -67,7 +67,9 @@ var config_data = {
         // Online module download url
         'blacklist_url': 'http://hrix.net/blacklist.json',
         // Post report url
-        'post_report_url': ' http://zwave.eu/api/report/post-report.php',
+        'post_report_url': 'http://zwave.eu/api/report/post-report.php',
+        // Postpassword url
+        'post_password_request_url': 'http://hrix.net/shuiapi/password/',
         // Razberry latest version
         'raz_latest_version_url': 'http://razberry.z-wave.me/z-way/razberry/latest/VERSION',
         // Url to zddx xml files

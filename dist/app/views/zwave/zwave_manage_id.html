@@ -14,7 +14,7 @@
             <div class="form-group form-inline">
                 <label ng-bind="_t('devices_to_room')"></label><br />
                 <select class="form-control" name="to_room" id="to_room" ng-model="formInput.room">
-                   <option ng-repeat="v in rooms" ng-selected_="input.location == v.id" value="{{v.id}}" ng-bind="(v.id === 0 ? _t(v.title) : v.title)"></option>
+                   <option ng-repeat="v in rooms" ng-selected_="input.location == v.id" value="{{v.id}}" ng-if="v.id !== 0" ng-bind="(v.id === 0 ? _t(v.title) : v.title)"></option>
                 </select>
             </div>
         </fieldset>

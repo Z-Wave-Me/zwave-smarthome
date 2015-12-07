@@ -435,3 +435,27 @@ img.widget-promo-image {
 .toggleButton .widget-body div.widget-control.control-right.ng-scope > div > button.btn.btn-default.btn-sm {
     cursor: default;
 }
+
+/* RGB color wheel
+--------------------------------------------------------*/
+.wheel-colorpicker{
+    .col-rgb{
+        margin: 0 auto;
+        text-align: center;
+    }
+    #wheel_picker{
+        margin: 0 auto;
+        text-align: center;
+        cursor: pointer;
+    }
+    #wheel_picker_preview{
+            border: 1px solid #ccc;
+        border-radius: 4px;
+        margin: 0 0 20px 0;
+        height: 40px;
+        line-height: 35px;
+        #wheel_picker_preview_spin{
+            background-color: #fff;
+        }
+    }
+}

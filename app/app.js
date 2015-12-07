@@ -11,7 +11,7 @@ var myApp = angular.module('myApp', [
     'myAppController',
     'myAppFactory',
     'myAppService',
-    'colorpicker.module',
+    //'colorpicker.module',
     'dndLists',
     'qAllSettled'
 
@@ -251,7 +251,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     templateUrl: 'app/views/auth/password_forgot.html'
                 }).
                 //Password reset
-                when('/passwordforgot/reset/:token', {
+                when('/passwordforgot/reset/:token?', {
                     templateUrl: 'app/views/auth/password_reset.html'
                 }).
                 //Login
@@ -263,26 +263,14 @@ myApp.config(['$routeProvider', function($routeProvider) {
                 when('/error/:code?', {
                     templateUrl: 'app/views/error.html'
                 }).
-                // Test
-                when('/test', {
-                    templateUrl: 'app/views/_test/test.html'
-                }).
                 otherwise({
-                    redirectTo: '/error/404'
+                    redirectTo: '/error/404' 
                 });
     }]);
 
 /**
  * App configuration
  */
-
-//myApp.config([
-//    "$routeProvider",
-//    "$httpProvider",
-//    function($routeProvider, $httpProvider){
-//        $httpProvider.defaults.headers.common['Access-Control-Allow-Headers'] = '*';
-//    }
-//]);
 
 var config_module = angular.module('myAppConfig', []);
 
@@ -291,10 +279,12 @@ angular.forEach(config_data, function(key, value) {
 });
 
 /**
- * Route Access Control and Authentication
+ * Run
  */
 myApp.run(function($rootScope, $location, dataService) {
+    // Run ubderscore js in views
     $rootScope._ = _;
+   // Route Access Control and Authentication
     $rootScope.$on("$routeChangeStart", function(event, next, current) {
         var user;
         if (next.requireLogin) {

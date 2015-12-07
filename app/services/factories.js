@@ -59,6 +59,7 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
         getLicense: getLicense,
         zmeCapabilities: zmeCapabilities,
         postReport: postReport,
+        postToRemote: postToRemote,
         getOnlineModules: getOnlineModules,
         installOnlineModule: installOnlineModule,
         restoreFromBck: restoreFromBck,
@@ -708,6 +709,25 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
         return $http({
             method: "POST",
             url: cfg.post_report_url,
+            data: $.param(data),
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+                        //'ZWAYSession': ZWAYSession 
+            }
+        }).then(function(response) {
+            return response;
+        }, function(response) {// something went wrong
+            return $q.reject(response);
+        });
+    }
+    
+    /**
+     * Post on remote server
+     */
+    function postToRemote(url,data) {
+        return $http({
+            method: "POST",
+            url: url,
             data: $.param(data),
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"

@@ -4,6 +4,7 @@
             <i class="fa subnavi-arrow" ng-class="expand.licence  ? 'fa-chevron-up':'fa-chevron-down'"></i>
 </h2>
 <div class="admin-entry-ctrl" ng-class="" ng-if="expand.licence" ng-controller="ManagementLicenceController">
+    
     <form name="form_licence" id="form_password" class="form form-page" ng-submit="getLicense(inputLicence)" novalidate>
         <fieldset>
             <!--
@@ -11,6 +12,7 @@
            <p><a ng-href="{{cfg.buy_licence_key}}" class="btn btn-info">{{_t('btn_licence_buy')}}</a></p>
             -->
             <!-- password -->
+            <div class="alert alert-danger" ng-if="controllerInfo.isZeroUuid"><i class="fa fa-plug"></i> {{_t('replug_device')}}</div>
             <p>{{_t('licence_upgrade_key')}}</p>
             <label>{{_t('licence_key_insert')}}:</label>
             <input
@@ -19,6 +21,7 @@
                 name="scratch_id"
                 id="scratch_id" 
                 value="" 
+                ng-disabled="controllerInfo.isZeroUuid"
                 ng-model="inputLicence.scratch_id" />
 
             <div><br />
@@ -34,7 +37,7 @@
             <button type="button" class="btn btn-default" ng-click="expandElement('licence')" ng-disabled="proccessLicence">
                 <i class="fa fa-times  text-danger"></i> <span ng-bind="_t('lb_cancel')"></span>
             </button>
-            <button type="submit" class="btn btn-submit" ng-disabled="proccessLicence">
+            <button type="submit" class="btn btn-submit" ng-disabled="proccessLicence || controllerInfo.isZeroUuid">
                 <i class="fa fa-share"></i> <span ng-bind="_t('btn_licence_verify')"></span>
             </button>
         </fieldset>
