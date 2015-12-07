@@ -34,6 +34,7 @@ var config_data = {
             'namespaces': 'ZAutomation/api/v1/namespaces',
             'history': 'ZAutomation/api/v1/history',
             'login': 'ZAutomation/api/v1/login',
+            'logout': 'ZAutomation/api/v1/logout',
             'backup': 'ZAutomation/api/v1/backup',
             'restore': 'ZAutomation/api/v1/restore',
             'tokens': 'ZAutomation/api/v1/modules/tokens',
