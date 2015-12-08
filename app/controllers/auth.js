@@ -123,7 +123,7 @@ myAppController.controller('PasswordController', function($scope, dataFactory) {
             if (error.status == 409) {
                 message = $scope._t('nonunique_email');
             }
-            alertify.alert($scope._t('error_update_data'));
+            alertify.alert(message);
             $scope.loading = false;
         });
 
