@@ -20,7 +20,7 @@ myAppController.controller('LoginController', function($scope, $location, $windo
     };
     if(dataService.getUser()){
         $scope.input.form = false;
-         window.location = '#/elements/dashboard/1?login';
+        window.location = '#/elements/dashboard/1?login';
     }
     $scope.loginLang = ($scope.lastLogin != undefined && angular.isDefined($cookies.lang)) ? $cookies.lang : false;
     /**
@@ -40,6 +40,7 @@ myAppController.controller('LoginController', function($scope, $location, $windo
         dataFactory.sessionApi().then(function(response) {
             $scope.processUser(response.data.data);
             if (!hasCookie) {
+                $location.path('/elements/dashboard/1');
                 $window.location.reload();
             }
         });
@@ -57,7 +58,6 @@ myAppController.controller('LoginController', function($scope, $location, $windo
         //$scope.loading = false;
         $scope.input.form = false;
         //$window.location.href = '#/elements/dashboard/1?login';
-        $location.path('/elements/dashboard/1');
     };
     /**
      * Login proccess
@@ -67,6 +67,7 @@ myAppController.controller('LoginController', function($scope, $location, $windo
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         $scope.alert = {message: false};
         dataFactory.logInApi(input).then(function(response) {
+            var redirectTo = '#/elements/dashboard/1?login';
             $scope.processUser(response.data.data);
             if (input.fromexpert) {
                 window.location.href = $scope.cfg.expert_url;
@@ -75,6 +76,7 @@ myAppController.controller('LoginController', function($scope, $location, $windo
             if (input.password === $scope.cfg.default_credentials.password) {
                 redirectTo = '#/password';
             }
+            window.location = redirectTo;
             $window.location.reload();
         }, function(error) {
             var message = $scope._t('error_load_data');
