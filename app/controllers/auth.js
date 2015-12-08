@@ -9,6 +9,7 @@
  * Login controller
  */
 myAppController.controller('LoginController', function($scope, $location, $window, $routeParams, $cookies, dataFactory, dataService) {
+    
     $scope.input = {
         form: true,
         login: '',
@@ -17,6 +18,10 @@ myAppController.controller('LoginController', function($scope, $location, $windo
         default_ui: 1,
         fromexpert: $routeParams.fromexpert
     };
+    if(dataService.getUser()){
+        $scope.input.form = false;
+         window.location = '#/elements/dashboard/1?login';
+    }
     $scope.loginLang = ($scope.lastLogin != undefined && angular.isDefined($cookies.lang)) ? $cookies.lang : false;
     /**
      * Login language
@@ -92,11 +97,6 @@ myAppController.controller('PasswordController', function($scope, dataFactory) {
         if (form.$invalid) {
             return;
         }
-        /*if (input.password === $scope.cfg.default_credentials.password) {
-         alertify.alert($scope._t('enter_valid_password'));
-         $scope.loading = false;
-         return;
-         }*/
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         var input = {
             id: $scope.user.id,
@@ -119,6 +119,10 @@ myAppController.controller('PasswordController', function($scope, dataFactory) {
             window.location = '#/elements/dashboard/1';
 
         }, function(error) {
+            var message = $scope._t('error_update_data');
+            if (error.status == 409) {
+                message = $scope._t('nonunique_email');
+            }
             alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
         });
@@ -160,14 +164,6 @@ myAppController.controller('PasswordForgotController', function($scope, $locatio
             alertify.alert($scope._t('error_500'));
             $scope.loading = false;
         });
-
-//         dataFactory.postToRemote($scope.cfg.post_password_request_url, $scope.passwordForgot.input).then(function(response) {
-//            $scope.passwordForgot.alert = {message: $scope._t('password_forgot_success'), status: 'alert-success', icon: 'fa-check'};
-//            $scope.loading = false;
-//        }, function(error) {
-//            alertify.alert($scope._t('error_500'));
-//            $scope.loading = false;
-//        });
 
     };
 
