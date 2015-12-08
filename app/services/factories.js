@@ -31,7 +31,6 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
     }
     return({
         logInApi: logInApi,
-        logOutApi: logOutApi,
         sessionApi: sessionApi,
         getApiLocal: getApiLocal,
         getApi: getApi,
@@ -76,19 +75,6 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
             method: "post",
             data: data,
             url: cfg.server_url + cfg.api['login']
-        }).then(function(response) {
-            return response;
-        }, function(response) {// something went wrong
-            //return response;
-            return $q.reject(response);
-        });
-    }
-    
-    // Get api data
-    function logOutApi() {
-        return $http({
-            method: "get",
-            url: cfg.server_url + cfg.api['logout']
         }).then(function(response) {
             return response;
         }, function(response) {// something went wrong
