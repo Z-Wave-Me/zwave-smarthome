@@ -25,7 +25,8 @@ myAppController.controller('ManagementController', function($scope, $window, $lo
         isZeroUuid: false,
         softwareRevisionVersion: null,
         softwareLatestVersion: null,
-        capabillities: null
+        capabillities: null,
+        scratchId: null
     };
 
     $scope.zwaveDataInterval = null;
@@ -55,6 +56,7 @@ myAppController.controller('ManagementController', function($scope, $window, $lo
             $scope.controllerInfo.isZeroUuid = parseFloat(ZWaveAPIData.controller.data.uuid.value) === 0;
             $scope.controllerInfo.softwareRevisionVersion = ZWaveAPIData.controller.data.softwareRevisionVersion.value;
             $scope.controllerInfo.capabillities = caps(ZWaveAPIData.controller.data.caps.value);
+            $scope.loadLicenceScratchId($scope.controllerInfo.uuid);
             dataService.updateTimeTick();
         }, function(error) {
             dataService.showConnectionError(error);
@@ -62,6 +64,18 @@ myAppController.controller('ManagementController', function($scope, $window, $lo
     };
 
     $scope.loadZwaveApiData();
+    
+    /**
+     * Load ZwaveApiData
+     */
+    $scope.loadLicenceScratchId = function(uuid) {
+        dataService.showConnectionSpinner();
+        dataFactory.getRemoteData($scope.cfg.get_licence_scratchid + '?uuid=' +uuid).then(function(response) {
+            $scope.controllerInfo.scratchId = response.data.scratch_id;
+            dataService.updateTimeTick();
+        }, function(error) {});
+    };
+     
 
 });
 /**
@@ -328,7 +342,7 @@ myAppController.controller('ManagementLicenceController', function($scope, dataF
         'status': 'is-hidden'
     };
     $scope.inputLicence = {
-        "scratch_id": null
+        "scratch_id":  $scope.controllerInfo.scratchId  
     };
     /**
      * Get license key

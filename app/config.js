@@ -70,6 +70,8 @@ var config_data = {
         'post_report_url': 'http://zwave.eu/api/report/post-report.php',
         // Postpassword url
         'post_password_request_url': 'http://hrix.net/shuiapi/password/',
+        // Get licence scratch id
+        'get_licence_scratchid': 'http://hrix.net/shuiapi/licence/',
         // Razberry latest version
         'raz_latest_version_url': 'http://razberry.z-wave.me/z-way/razberry/latest/VERSION',
         // Url to zddx xml files

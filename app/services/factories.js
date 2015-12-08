@@ -369,10 +369,10 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
         // NOT Cached data
         return $http({
             method: 'get',
-            url: url,
-            headers: {
+            url: url
+            /*headers: {
                 'Accept-Language': lang
-            }
+            }*/
         }).then(function(response) {
             return response;
         }, function(error) {// something went wrong
