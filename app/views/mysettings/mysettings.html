@@ -8,13 +8,13 @@
                 <div class="form-group">
                     <!-- name -->
                      <label class="isrequired">{{_t('lb_name')}}: </label>
-                    <input name="name" id="name" type="text" class="form-control" placeholder="{{_t('lb_profile_name_insert')}}" value="{{input.name}}" ng-model="input.name" ng-blur="nameBlur = true" ng-required="true" />
+                    <input name="name" id="name" type="text" class="form-control form-control-sm" placeholder="{{_t('lb_profile_name_insert')}}" value="{{input.name}}" ng-model="input.name" ng-blur="nameBlur = true" ng-required="true" />
                     <bb-validator input-name='form_profile.name.$error.required' trans='_t("field_required")' has-blur='nameBlur'></bb-validator> 
                 </div>
                 <div class="form-group">
                     <!-- email -->
                  <label>{{_t('lb_email')}}: </label>
-                 <input name="email" id="email" type="email" class="form-control" value="{{input.email}}" ng-model="input.email" ng-blur="emailBlur = true" />
+                 <input name="email" id="email" type="email" class="form-control form-control-sm" value="{{input.email}}" ng-model="input.email" ng-blur="emailBlur = true" />
                   <bb-validator input-name='form_profile.email.$error.email' trans='_t("email_invalid")' has-blur='emailBlur'></bb-validator> 
                  </div>
             </fieldset>

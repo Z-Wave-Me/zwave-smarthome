@@ -27,8 +27,6 @@ myAppController.controller('ManagementController', function($scope, $window, $lo
         softwareLatestVersion: null,
         capabillities: null
     };
-    
-    console.log(parseFloat( '000' ) === 0)
 
     $scope.zwaveDataInterval = null;
     // Cancel interval on page destroy
@@ -45,14 +43,16 @@ myAppController.controller('ManagementController', function($scope, $window, $lo
         dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
             var caps = function(arr) {
                 var cap = '';
-                cap += (arr[3] & 0x01 ? 'S' : 's');
-                cap += (arr[3] & 0x02 ? 'L' : 'l');
-                cap += (arr[3] & 0x04 ? 'M' : 'm');
+                if (angular.isArray(arr)) {
+                    cap += (arr[3] & 0x01 ? 'S' : 's');
+                    cap += (arr[3] & 0x02 ? 'L' : 'l');
+                    cap += (arr[3] & 0x04 ? 'M' : 'm');
+                }
                 return cap;
 
             };
             $scope.controllerInfo.uuid = ZWaveAPIData.controller.data.uuid.value;
-             $scope.controllerInfo.isZeroUuid = parseFloat(ZWaveAPIData.controller.data.uuid.value) === 0;
+            $scope.controllerInfo.isZeroUuid = parseFloat(ZWaveAPIData.controller.data.uuid.value) === 0;
             $scope.controllerInfo.softwareRevisionVersion = ZWaveAPIData.controller.data.softwareRevisionVersion.value;
             $scope.controllerInfo.capabillities = caps(ZWaveAPIData.controller.data.caps.value);
             dataService.updateTimeTick();
@@ -106,7 +106,7 @@ myAppController.controller('ManagementUserController', function($scope, $locatio
 /**
  * User detail
  */
-myAppController.controller('ManagementUserIdController', function($scope, $routeParams, $filter, $location, dataFactory, dataService, myCache) {
+myAppController.controller('ManagementUserIdController', function($scope, $routeParams, $filter, $location, $window, dataFactory, dataService, myCache) {
     $scope.id = $filter('toInt')($routeParams.id);
     $scope.rooms = {};
     $scope.input = {
@@ -192,7 +192,10 @@ myAppController.controller('ManagementUserIdController', function($scope, $route
     /**
      * Create/Update an item
      */
-    $scope.store = function(input) {
+    $scope.store = function(form, input) {
+        if (form.$invalid) {
+            return;
+        }
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         if ($scope.id == 0) {
             input.password = input.password;
@@ -205,9 +208,18 @@ myAppController.controller('ManagementUserIdController', function($scope, $route
                 $scope.loadData(id);
             }
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
+            //$window.history.back();
+            //$window.location.reload(); 
+            window.location = '#/admin';
+
+            //$window.location.reload();
 
         }, function(error) {
-            alertify.alert($scope._t('error_update_data'));
+            var message = $scope._t('error_update_data');
+            if (error.status == 409) {
+                message = $scope._t('nonunique_email');
+            }
+            alertify.alert(message);
             $scope.loading = false;
         });
 
@@ -216,8 +228,8 @@ myAppController.controller('ManagementUserIdController', function($scope, $route
     /**
      * Change auth data
      */
-    $scope.changeAuth = function(auth) {
-        if (!auth.login && !auth.password) {
+    $scope.changeAuth = function(form, auth) {
+        if (form.$invalid) {
             return;
         }
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
@@ -235,9 +247,15 @@ myAppController.controller('ManagementUserIdController', function($scope, $route
                 return;
             }
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
+            $window.history.back();
+
 
         }, function(error) {
-            alertify.alert($scope._t('error_update_data'));
+            var message = $scope._t('error_update_data');
+            if (error.status == 409) {
+                message = $scope._t('nonunique_user');
+            }
+            alertify.alert(message);
             $scope.loading = false;
         });
 
@@ -612,5 +630,5 @@ myAppController.controller('ManagementReportController', function($scope, $windo
  * Management info controller
  */
 myAppController.controller('ManagementInfoController', function($scope, dataFactory, dataService) {
-   
+
 });
