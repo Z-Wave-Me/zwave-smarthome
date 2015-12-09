@@ -1,4 +1,6 @@
 {
+    "nonunique_user": "The given user login already exists. Please use a different login name.",
+    "nonunique_email": "The given email already exists. Please use a different email.",
     "password_email_info": "Bitte geben Sie die Email-Adresse an, an die eine vergessenes Password gesendet werden soll",
     "replug_device": "Replug the device",
     "ctrl_info_caps_cap_title": "Capabillities:",
