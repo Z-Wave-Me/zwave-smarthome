@@ -92,7 +92,7 @@ myAppController.controller('LoginController', function($scope, $location, $windo
      */
     if ($routeParams.login && $routeParams.password) {
         $scope.login($routeParams);
-    } else {
+    } else if (!$routeParams.logout) {
         $scope.getSession();
     }
 });
@@ -245,8 +245,9 @@ myAppController.controller('PasswordResetController', function($scope, $routePar
  */
 myAppController.controller('LogoutController', function($scope, dataService, dataFactory) {
     $scope.logout = function() {
-        dataService.logOut();
-        dataFactory.getApi('logout').then(function(response) {});
+        dataFactory.getApi('logout').then(function(response) {
+            dataService.logOut();
+        });
     };
     $scope.logout();
 
