@@ -56,7 +56,10 @@ myAppController.controller('MySettingsController', function($scope, $window, $lo
     /**
      * Create/Update an item
      */
-    $scope.store = function(input) {
+    $scope.store = function(form,input) {
+        if (form.$invalid) {
+            return;
+        }
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         dataFactory.putApi('profiles', input.id, input).then(function(response) {
             var data = response.data.data;
@@ -75,7 +78,11 @@ myAppController.controller('MySettingsController', function($scope, $window, $lo
             //$route.reload();
 
         }, function(error) {
-            alertify.alert($scope._t('error_update_data'));
+            var message = $scope._t('error_update_data');
+            if (error.status == 409) {
+                message = $scope._t('nonunique_email');
+            }
+            alertify.alert(message);
             $scope.loading = false;
         });
 

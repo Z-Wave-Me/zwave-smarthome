@@ -35,6 +35,7 @@ var config_data = {
             'history': 'ZAutomation/api/v1/history',
             'login': 'ZAutomation/api/v1/login',
             'logout': 'ZAutomation/api/v1/logout',
+            'session': 'ZAutomation/api/v1/session',
             'backup': 'ZAutomation/api/v1/backup',
             'restore': 'ZAutomation/api/v1/restore',
             'tokens': 'ZAutomation/api/v1/modules/tokens',
@@ -70,6 +71,8 @@ var config_data = {
         'post_report_url': 'http://zwave.eu/api/report/post-report.php',
         // Postpassword url
         'post_password_request_url': 'http://hrix.net/shuiapi/password/',
+        // Get licence scratch id
+        'get_licence_scratchid': 'http://hrix.net/shuiapi/licence/',
         // Razberry latest version
         'raz_latest_version_url': 'http://razberry.z-wave.me/z-way/razberry/latest/VERSION',
         // Url to zddx xml files

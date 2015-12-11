@@ -1,4 +1,7 @@
 {
+    "nonunique_user": "The given user login already exists. Please use a different login name.",
+    "nonunique_email": "The given email already exists. Please use a different email.",
+    "password_email_info": "Please provide the email address in case you loose your password.",
     "replug_device": "Replug the device",
     "ctrl_info_caps_cap_title": "Capabillities:",
     "management_trans_info": "This translation was provided by Z_Wave.Me http://www.zwave.me For contact please use info@zwave.me",
