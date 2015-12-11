@@ -917,6 +917,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
     // Post new module instance
     $scope.postModule = function(id) {
         dataService.showConnectionSpinner();
+         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('modules', '/' + id + '?lang=' + $scope.lang, true).then(function(module) {
             // get module postRender data
             var modulePR = null;
@@ -939,14 +940,19 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
             };
             $scope.showForm = true;
             if (!$filter('hasNode')(formData, 'options.fields') || !$filter('hasNode')(formData, 'schema.properties')) {
+               $location.path('/error/404');
                 $scope.alpacaData = false;
+                $scope.loading = false;
                 return;
             }
             $.alpaca.setDefaultLocale(langCode);
             $('#alpaca_data').alpaca(formData);
             dataService.updateTimeTick();
+              $scope.showForm = true;
+            $scope.loading = false;
 
         }, function(error) {
+             $scope.loading = false;
             $location.path('/error/' + error.status);
         });
     };
@@ -957,12 +963,14 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
             return;
         }
         dataService.showConnectionSpinner();
+         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('instances', '/' + id, true).then(function(instances) {
             var instance = instances.data.data;
             dataFactory.getApi('modules', '/' + instance.moduleId + '?lang=' + $scope.lang, true).then(function(module) {
                 if (module.data.data.state === 'hidden') {
                     if (!$scope.user.expert_view) {
                         dataService.updateTimeTick();
+                         $scope.loading = false;
                         return;
                     }
 
@@ -986,20 +994,25 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                     'moduleName': $filter('hasNode')(module, 'data.data.moduleName'),
                     'category': module.data.data.category
                 };
-                $scope.showForm = true;
+              
                 if (!$filter('hasNode')(formData, 'options.fields') || !$filter('hasNode')(formData, 'schema.properties')) {
                     $scope.alpacaData = false;
+                     $scope.loading = false;
+                      $location.path('/error/404');
                     return;
                 }
 
                 $('#alpaca_data').alpaca(formData);
-
+                $scope.showForm = true;
                 dataService.updateTimeTick();
+                 $scope.loading = false;
             }, function(error) {
                 alertify.alert($scope._t('error_load_data'));
                 dataService.showConnectionError(error);
+                 $scope.loading = false;
             });
         }, function(error) {
+             $scope.loading = false;
             $location.path('/error/' + error.status);
         });
 
