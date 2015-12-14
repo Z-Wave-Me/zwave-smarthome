@@ -938,18 +938,16 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                 'moduleName': $filter('hasNode')(module, 'data.data.moduleName'),
                 'category': module.data.data.category
             };
-            $scope.showForm = true;
+            dataService.updateTimeTick();
+              $scope.showForm = true;
+            $scope.loading = false;
             if (!$filter('hasNode')(formData, 'options.fields') || !$filter('hasNode')(formData, 'schema.properties')) {
-               $location.path('/error/404');
-                $scope.alpacaData = false;
-                $scope.loading = false;
+               $scope.alpacaData = false;
                 return;
             }
             $.alpaca.setDefaultLocale(langCode);
             $('#alpaca_data').alpaca(formData);
-            dataService.updateTimeTick();
-              $scope.showForm = true;
-            $scope.loading = false;
+           
 
         }, function(error) {
              $scope.loading = false;
@@ -994,18 +992,16 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
                     'moduleName': $filter('hasNode')(module, 'data.data.moduleName'),
                     'category': module.data.data.category
                 };
-              
+              $scope.showForm = true;
+                dataService.updateTimeTick();
+                 $scope.loading = false;
                 if (!$filter('hasNode')(formData, 'options.fields') || !$filter('hasNode')(formData, 'schema.properties')) {
                     $scope.alpacaData = false;
-                     $scope.loading = false;
-                      $location.path('/error/404');
                     return;
                 }
 
                 $('#alpaca_data').alpaca(formData);
-                $scope.showForm = true;
-                dataService.updateTimeTick();
-                 $scope.loading = false;
+                
             }, function(error) {
                 alertify.alert($scope._t('error_load_data'));
                 dataService.showConnectionError(error);

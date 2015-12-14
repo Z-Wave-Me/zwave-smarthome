@@ -37,7 +37,7 @@ var postRenderAlpaca = function(renderedForm) {
             },
             data: JSON.stringify(data),
             beforeSend: function() {
-                console.log(data);
+                //console.log(data);
                 return; 
                 //$('.module-spinner').show();
             },
