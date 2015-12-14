@@ -181,8 +181,8 @@ myApp.filter('getElementIcon', function(cfg) {
                     }
                     break;
                 case 'thermostat':
-                     icon = cfg.img.icons + (level == 'on' ? 'switch-on.png' : 'switch-off.png');
-                    //icon = cfg.img.icons + 'thermostat.png';
+                    //icon = cfg.img.icons + (level == 'on' ? 'switch-on.png' : 'switch-off.png');
+                    icon = cfg.img.icons + 'thermostat.png';
                     break;
 
                 case 'energy':
@@ -211,6 +211,15 @@ myApp.filter('getElementIcon', function(cfg) {
                     break;
                 case 'luminosity':
                     icon = cfg.img.icons + 'luminosity.png';
+                    break;
+                case 'humidity':
+                    icon = cfg.img.icons + 'humidity.png';
+                    break;
+                case 'ultraviolet':
+                    icon = cfg.img.icons + 'ultraviolet.png';
+                    break;
+                case 'barometer':
+                    icon = cfg.img.icons + 'barometer.png';
                     break;
                 case 'new':
                     icon = cfg.img.icons + 'new.png';
@@ -302,12 +311,36 @@ myApp.filter('getBatteryIcon', function() {
 });
 
 /**
+ * Get event icon
+ */
+myApp.filter('getRoomIcon', function(cfg) {
+    return function(room) {
+        var icon = 'storage/img/placeholder-img.png';
+        if(room.img_type == 'default' && room.default_img){
+            icon = 'storage/img/rooms/' + room.default_img;
+        }
+         if(room.img_type == 'user' && room.user_img){
+            icon = cfg.server_url + cfg.api_url + 'load/image/' + room.user_img;
+        }
+        return icon;
+    };
+});
+
+/**
  * Get max level
  */
 myApp.filter('getMaxLevel', function() {
-    return function(input) {
-        var maxLevel = 100;
-        var levelVal = (input < 100 ? input : 99);
+    return function(input,probeType) {
+        var levelVal = 100;
+         switch (probeType) {
+            case 'test':
+                levelVal = (input < 255 ? input : 255);
+                break;
+             
+            default:
+                levelVal = (input < 100 ? input : 100);
+                break;
+        }
         return levelVal;
     };
 });
@@ -511,7 +544,7 @@ myApp.filter('uri', function($location) {
  */
 myApp.filter('deviceName', function() {
     return function(deviceId, device) {
-        var name = (deviceId == 1 ? 'RaZberry' : 'Device ' + '_' + deviceId);
+        var name = (deviceId == 1 ? 'Z-Way' : 'Device ' + '_' + deviceId);
         if (device === undefined) {
             return name;
         }

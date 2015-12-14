@@ -1,8 +1,5 @@
 <div ng-controller="EnoceanTeachinController" class="mobile-padding">
-    <div class="device-logo">
-        <a href="#enocean/devices"><img class="apps-image" ng-src="app/img/logo-enocean.png" alt="Logo" /></a>
-    </div>
-    <bb-loader></bb-loader> 
+     <bb-loader></bb-loader> 
     <!-- Auto inclusion -->
     <div class="device-perex clearfix">
         <div class="include-device-img" ng-if="device.image">
@@ -101,4 +98,5 @@
     <div class="submit-entry save-continue">
         <a href="#enocean/manage" class="btn btn-info">{{_t('manage_enocean_devices')}} <i class="fa fa-chevron-right"></i></a>
         </div>
+    <div class="device-logo" ng-include="'app/views/enocean/enocean_nav.html'"></div>
 </div> <!-- /ng-controller --> 

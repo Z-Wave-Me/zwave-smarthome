@@ -3,6 +3,19 @@
  * @returns false
  */
 var postRenderAlpaca = function(renderedForm) {
+
+    var $alpaca = $('#alpaca_data');
+
+    //load postRender function from module
+    if($alpaca && $alpaca.data('modulePostrender') && !!$alpaca.data('modulePostrender')) {
+        eval($alpaca.data('modulePostrender'));
+
+        // call postRender function from module
+        if (typeof(modulePostRender) == 'function') {
+           modulePostRender();
+        }
+    }
+
     $('#btn_module_submit').click(function() {
         var data = postRenderAlpacaData(renderedForm);
         var url = config_data.cfg.server_url + config_data.cfg.api['instances'] + (data.instanceId > 0 ? '/' + data.instanceId : '');
@@ -61,4 +74,4 @@ function postRenderAlpacaData(renderedForm) {
 
     });
     return $.extend(inputData, alpacaData);
-}
+};

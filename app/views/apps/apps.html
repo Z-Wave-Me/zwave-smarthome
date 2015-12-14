@@ -38,17 +38,27 @@
          <!--<div class="tab-pane" id="module_hidden" ng-class="activeTab == 'hidden' ? 'active' : ''" ng-include="'app/views/apps/app_hidden.html'"></div>-->
     </div>
 
-    <div id="footer" ng-show="showFooter">
+    <div id="footer" ng-show="showFooter__">
         <div class="navbar navbar-default navbar-fixed-bottom">
             <div class="container">
-                <div class="form-inline" role="form">
-                    <select class="form-control" ng-model="category" ng-show="showInFooter.categories">
-                        <option value="" ng-bind="_t('lb_all')"></option>
-                        <option ng-repeat="v in categories" value="{{v.id}}" ng-if="modulesCats.indexOf(v.id) > -1" ng-selected="category == v.id" ng-bind="v.name">
-                        </option>
-                    </select>
+               <div class="form-inline" role="form">
+                    <!--<div class="btn-group dropup" ng-if="showInFooter.categories">
+                        <button type="button" class="btn btn-default" ng-bind="_t('lb_filter_by')"></button>
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li ng-class="!currentCategory.id ? 'active': ''">
+                                <a href="#apps">{{_t('lb_all')}}</a> 
+                            </li>
+                            <li ng-repeat="v in categories" ng-if="modulesCats.indexOf(v.id) > -1" ng-class="currentCategory.id == v.id ? 'active': ''">
+                                <a href="#apps/category/{{v.id}}">{{v.name}}</a> 
+                            </li>
+                        </ul>
+                    </div>-->
                     <div class="input-group search-form hide-on-mobile">
-                        <input type="text" ng-model="q" class="form-control">
+                       <input type="text" ng-model="q" class="form-control" value="{{q}}">
                         <span class="input-group-addon"><i class="fa fa-search"></i></span> 
                     </div>
                 </div>

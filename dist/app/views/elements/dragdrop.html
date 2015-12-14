@@ -1,0 +1,29 @@
+<!-- Elements 1 view -->
+<div class="simpleDemo" ng-controller="DragDropController">
+    <h1>Drag & Drop</h1>
+    
+<!--<ul class="dragdrop" dnd-list="models.list">
+    <li class="itemlist" ng-repeat="item in models.list"
+        dnd-draggable="item"
+        dnd-moved="itemMoved($index, 1)"
+        dnd-effect-allowed="move"
+        dnd-selected="models.selected = item"
+        ng-class="{'selected': models.selected === item}"
+        >
+        {{item.label}}
+    </li>
+</ul>-->
+    
+    
+<ul class="dragdrop" dnd-list="elements.list">
+    <li class="itemlist" ng-repeat="v in elements.list"
+        dnd-draggable="v"
+        dnd-moved="elementMoved($index, 1)"
+        dnd-effect-allowed="move"
+        dnd-selected="elements.selected = v"
+        ng-class="{'selected': elements.selected === v}"
+        >
+        {{v.metrics.title}}
+    </li>
+</ul>
+</div> <!-- /ng-controller --> 

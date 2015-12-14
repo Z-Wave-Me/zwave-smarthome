@@ -1,6 +1,6 @@
 // Settings
-@import "settings/_base";
-@import "settings/_mixins";
+@import "globals/_variables";
+@import "globals/_mixins";
 // CSS3
 @import "css3/_box-shadow.scss"; 
 // Core Bootstrap variables and mixins
@@ -11,34 +11,55 @@
 //@import "css3/_border-radius";
 // Vendors
 @import "vendor/_colorpicker";
-// Partials
+@import "vendor/_bootstrap-datetimepicker";
+@import "vendor/_jquery.fileupload-ui";
+@import "vendor/_jquery.fileupload";
+// Partials 
 @import "globals/_body";
-@import "globals/_navigation";
-@import "globals/_footer"; 
+//@import "globals/_navigation";
+@import "globals/_header";
+@import "globals/_footer";
+@import "globals/_navi"; 
+@import "globals/_table"; 
+@import "globals/_button"; 
+@import "globals/_form";
+@import "globals/_tab"; 
+@import "globals/_dropdown"; 
+@import "globals/_loader"; 
+@import "globals/_alertify";
+@import "globals/_alert";
+@import "globals/_modal";
+@import "globals/_pagination"; 
 
 // Modules
-@import "modules/_alpaca";
+@import "modules/_alpaca"; 
 @import "modules/_homepage";
 @import "modules/_elements";
 @import "modules/_events";
 @import "modules/_apps";
 @import "modules/_rooms";
 @import "modules/_config_rooms";
-@import "modules/_profile";
+@import "modules/_mysettings";
 @import "modules/_devices";
-@import "modules/_network";
+@import "modules/_zwave";
 @import "modules/_configuration";
-@import "modules/_admin";
+@import "modules/_management";
 @import "modules/_login";
-@import "modules/_report";
+@import "modules/_report"; 
 
-// Responsive
-@import "globals/_responsive";
 // Enocean
 @import "globals/_enocean";
 
 // POPP
 @import "globals/_app_popp";
 
+// Drag & drop
+@import "globals/_dragdrop";
+
 // WD
 //@import "globals/_app_wd";
+
+// Mobile
+@import "responsive/_mixins";
+@import "responsive/_modules";
+@import "responsive/_responsive"; 

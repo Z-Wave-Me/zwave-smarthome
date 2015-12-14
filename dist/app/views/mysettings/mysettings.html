@@ -1,0 +1,127 @@
+<!-- Home view -->
+<div ng-controller="MySettingsController" class="mobile-padding">
+    <bb-loader></bb-loader>
+    <div ng-show="input">
+        <h2 ng-bind="_t('nav_myaccess')"></h2>
+        <form name="form_profile" id="form_profile" class="form form-page" ng-submit="store(form_profile,input)" novalidate>
+            <fieldset>
+                <div class="form-group">
+                    <!-- name -->
+                     <label class="isrequired">{{_t('lb_name')}}: </label>
+                    <input name="name" id="name" type="text" class="form-control form-control-sm" placeholder="{{_t('lb_profile_name_insert')}}" value="{{input.name}}" ng-model="input.name" ng-blur="nameBlur = true" ng-required="true" />
+                    <bb-validator input-name='form_profile.name.$error.required' trans='_t("field_required")' has-blur='nameBlur'></bb-validator> 
+                </div>
+                <div class="form-group">
+                    <!-- email -->
+                 <label>{{_t('lb_email')}}: </label>
+                 <input name="email" id="email" type="email" class="form-control form-control-sm" value="{{input.email}}" ng-model="input.email" ng-blur="emailBlur = true" />
+                  <bb-validator input-name='form_profile.email.$error.email' trans='_t("email_invalid")' has-blur='emailBlur'></bb-validator> 
+                 </div>
+            </fieldset>
+            <fieldset>
+                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_settings')"></span></h3>
+                <div>
+                    <!-- lang -->
+                    <div class="form-group form-inline">
+                        <label>{{_t('lb_language')}}:</label>
+                        <span ng-repeat="v in cfg.lang_list" >
+                            <input class="form-control-hidden" type="radio" name="color" value="{{v}}" ng-model="input.lang" ng-checked="input.color == v" />
+                            <img class="form-control-img profile-lang" ng-click="input.lang = v" ng-class="v == input.lang ? 'control-active':''" ng-src="app/img/flags/{{v}}.png" alt="{{ v}}"/>
+                        </span>
+                        <span ng-bind="input.lang"></span>
+                    </div>
+                    <!-- colors -->
+                    <div class="form-group">
+                        <label>{{_t('lb_profile_color')}}: </label>
+                        <span ng-repeat="v in cfg.profile_colors" >
+                            <input class="form-control-hidden" type="radio" name="color" value="{{v}}" ng-model="input.color" ng-checked="input.color == v" />
+                            <span class="form-control-img profile-color" style="background-color: {{v}}" ng-click="input.color = v" ng-class="v == input.color ? 'control-active':''">&nbsp;</span> 
+                        </span>
+                        <span ng-bind="input.color"></span>
+                    </div>
+                    <!-- interval -->
+                    <div class="form-group form-inline">
+                        <label>{{_t('lb_interval')}}: </label>
+                        <input name="interval" id="interval" type="text" class="form-control" placeholder="{{_t('lb_interval_placeholder')}}" value="{{input.interval}}" ng-model="input.interval" />
+                        ({{_t('miliseconds')}})
+                    </div>
+
+                </div>
+            </fieldset>
+            <!-- Expert view -->
+            <fieldset ng-if="elementAccess(cfg.role_access.expert_view)">
+                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_expert_view')"></span></h3>                  
+                <div class="form-group form-inline">
+                    <input type="checkbox" name="expert_view" ng-model="input.expert_view" ng-checked="input.expert_view" />
+                    <label ng-bind="_t('lb_expert_app_view')"></label>
+                </div>
+            </fieldset>
+            <fieldset>
+                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('nav_events')"></span></h3>
+                <div>
+                    <div>
+                        <input type="checkbox" name="hide_all_device_events" value="true" id="hide_all_device_events" ng-model="input.hide_all_device_events" ng-checked="input.hide_all_device_events" /> 
+                        <label ng-bind="_t('lb_hide_device_events')"></label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="hide_system_events" value="true" id="hide_system_events" ng-model="input.hide_system_events" ng-checked="input.hide_system_events" /> 
+                        <label ng-bind="_t('lb_hide_system_events')"></label>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_hidden_events_device')"></span></h3>
+                <div class="device-assigned-block_">
+                    <div class="btn-device-admin" id="device_assigned_{{$index}}" ng-repeat="d in devices" ng-if="input.hide_single_device_events.indexOf(d.id) > -1"> 
+                        <a href="" ng-click="removeDevice(d.id)">{{d.metrics.title}} <i class="fa fa-times text-danger"></i></a>
+                    </div>
+                </div>
+                <!--<div class="device-available-block">
+                    
+                    <h3 ng-click="showDevices = !showDevices"><i class="fa fa-chevron-down"></i> {{_t('lb_available_devices')}}</h3>
+                    <div ng-if="showDevices">
+                    <div class="btn-device-admin" id="device_unassigned_{{$index}}" ng-repeat="d in devices" ng-if="input.hide_single_device_events.indexOf(d.id) === -1">
+                        <a href="" ng-click="assignDevice(d.id)">{{d.metrics.title}} <i class="fa fa-plus text-success"></i></a>
+                    </div>
+                    </div>
+                </div> --> 
+
+            </fieldset>
+            <fieldset class="submit-entry">
+                <button type="button" class="btn btn-default" bb-go-back><i class="fa fa-times  text-danger"></i> <span ng-bind="_t('lb_cancel')"></span></button>
+                 <button type="submit" class="btn btn-submit" ng-disabled="form_profile.$invalid"><i class="fa fa-check"></i> <span ng-bind="_t('lb_save')"></span></button>
+            </fieldset>
+        </form>
+
+        <!-- ///////////////////////////// Change password Form ///////////////////////////// -->
+        <h2 ng-bind="_t('my_local_access')"></h2>
+        <form name="form_password" id="form_password" class="form form-page" ng-submit="changePassword(form_password,newPassword)" novalidate>
+            <fieldset>
+                <!-- login  -->
+                <p class="form-control-static">
+                    <span ng-bind="_t('lb_login')"></span>: <strong ng-bind="input.login"></strong>
+                </p>
+                <!-- password -->
+                <div>
+                    <label class="isrequired">{{_t('lb_new_password')}}: </label>
+                    <input name="password" id="password" type="password" class="form-control form-control-sm" value="" ng-model="newPassword" ng-blur="passwordBlur = true" ng-required="true" ng-minlength="6" />
+                    <bb-validator input-name='form_password.password.$error.required' trans='_t("field_required")' has-blur='passwordBlur'></bb-validator> 
+            <bb-validator input-name='form_password.password.$error.minlength' trans='_t("password_valid")' has-blur='passwordBlur'></bb-validator>
+                    
+                </div>
+              </fieldset>
+            <!-- confirm password -->  
+        <fieldset>
+           <label class="isrequired">{{_t('confirm_password')}}: </label>
+             <input name="password_confirm" id="password_confirm" type="password" class="form-control form-control-sm" value="" ng-blur="passwordConfirmBlur = true" ng-model="input.passwordConfirm" bb-compare-to="password" />
+             <bb-validator input-name='form_password.password_confirm.$error.compareto' trans='_t("passwords_must_match")' has-blur='passwordConfirmBlur'></bb-validator>
+           
+        </fieldset>
+            <fieldset class="submit-entry">
+                <button type="button" class="btn btn-default" bb-go-back><i class="fa fa-times  text-danger"></i> <span ng-bind="_t('lb_cancel')"></span></button>
+                 <button type="submit" class="btn btn-submit" ng-disabled="form_password.$invalid"><i class="fa fa-check"></i> <span ng-bind="_t('lb_change_password')"></span></button>
+            </fieldset>
+        </form>
+ </div>
+
+</div> <!-- /ng-controller --> 

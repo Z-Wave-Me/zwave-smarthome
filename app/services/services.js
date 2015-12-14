@@ -7,7 +7,7 @@ var myAppService = angular.module('myAppService', []);
 /**
  * Device service
  */
-myAppService.service('dataService', function($filter, $log, $cookies, $location, $window,myCache, cfg,_) {
+myAppService.service('dataService', function($filter, $log, $cookies, $location, $window, myCache, cfg, _) {
     /// --- Public functions --- ///
     /**
      * Get language line by key
@@ -83,8 +83,8 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     this.setUser = function(data) {
         return setUser(data);
     };
-    
-     /**
+
+    /**
      * Get user SID (token)
      */
     this.getZWAYSession = function() {
@@ -96,35 +96,27 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     this.setZWAYSession = function(sid) {
         return setZWAYSession(sid);
     };
-     /**
+    /**
      * Get last login
      */
     this.getLastLogin = function() {
-       return getLastLogin();
-   };
-    
-   /*
-    * Set last login
-    */
-   this.setLastLogin = function(val) {
-       return setLastLogin(val);
-   };
-   
-   /**
+        return getLastLogin();
+    };
+
+    /*
+     * Set last login
+     */
+    this.setLastLogin = function(val) {
+        return setLastLogin(val);
+    };
+
+    /**
      * Logout
      */
     this.logOut = function() {
         return logOut();
 
     };
-
-    /**
-     * DEPRECATED - replaced with underscore _where
-     * Get data or filtered data
-     */
-//    this.getData = function(data, filter) {
-//        return getData(data, filter);
-//    };
 
     /**
      * Get device data
@@ -162,18 +154,10 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     };
 
     /**
-     * DEPRECATED
-     * Get instances
-     */
-//    this.getInstances = function(data, modules) {
-//        return getInstances(data, modules);
-//    };
-
-    /**
      * Get module form data
      */
-    this.getModuleFormData = function(module, data, namespaces) {
-        return getModuleFormData(module, data, namespaces);
+    this.getModuleFormData = function(module, data) {
+        return getModuleFormData(module, data);
     };
 
     /**
@@ -198,29 +182,13 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     };
 
     /**
-     * DEPRECATED - replaced by underscore _.uniq
-     * Get pairs
-     */
-//    this.getPairs = function(data, key, val, cache) {
-//        return getPairs(data, key, val, cache);
-//    };
-
-    /**
-     * DEPRECATED - replaced with underscore _.findWhere
-     * Get row by
-     */
-//    this.getRowBy = function(data, key, val, cache) {
-//        return getRowBy(data, key, val, cache);
-//    };
-
-    /**
      * Get config navigation devices
      */
     this.configGetNav = function(ZWaveAPIData) {
         return configGetNav(ZWaveAPIData);
     };
-    
-     /**
+
+    /**
      * Set EnOcean profile
      */
     this.setEnoProfile = function(data) {
@@ -252,7 +220,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      * Set user data
      */
     function setUser(data) {
-         if(!data){
+        if (!data) {
             delete $cookies['user'];
             return;
         }
@@ -264,21 +232,21 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      * Get user SID (token)
      */
     function getZWAYSession() {
-         return $cookies.ZWAYSession;
+        return $cookies.ZWAYSession;
 
     }
     /**
      * Set user SID (token)
      */
     function setZWAYSession(sid) {
-        if(!sid){
+        if (!sid) {
             delete $cookies['ZWAYSession'];
             return;
         }
         $cookies.ZWAYSession = sid;
 
     }
-    
+
     /**
      * Get last login
      */
@@ -286,7 +254,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
         return $cookies.lastLogin !== 'undefined' ? $cookies.lastLogin : false;
 
     }
-    
+
     /**
      * Set last login
      */
@@ -294,7 +262,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
         $cookies.lastLogin = val;
 
     }
-    
+
     /**
      * Logout
      */
@@ -306,48 +274,26 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
 
     }
 
-
-    /**
-     * DEPRECATED - replaced with underscore _where
-     * Get API data or filtered data
-     */
-//    function getData(data, filter) {
-//        if (!filter) {
-//            return data;
-//        }
-//        var collection = [];
-//        var addToCollection = false;
-//        angular.forEach(data, function(v, k) {
-//            if (angular.isArray(v[filter.filter])) {
-//                addToCollection = (filter.not ? v[filter.filter].indexOf(filter.val) === -1 : v[filter.filter].indexOf(filter.val) > -1);
-//                if (addToCollection) {
-//                    collection.push(v);
-//                }
-//            } else {
-//                addToCollection = (filter.not ? v[filter.filter] != filter.val : v[filter.filter] == filter.val);
-//                if (addToCollection) {
-//                    collection.push(v);
-//                }
-//            }
-//        });
-//        return collection;
-//    }
-
     /**
      * Get device data
      */
     function getDevices(data, filter, dashboard, instances, location) {
-       var obj;
+        var obj;
         var collection = [];
         var onDashboard = false;
         var findZwaveStr = "ZWayVDev_zway_";
+        var findZenoStr = "ZEnoVDev_zeno_x";
 
         angular.forEach(data, function(v, k) {
-            var instance; 
+            var instance;
+            var minMax = {min: 0, max: 99};
             var hasInstance = false;
             var zwaveId = false;
             var level = $filter('numberFixedLen')(v.metrics.level);
             var rgbColors = false;
+            var yesterday = (Math.round(new Date().getTime() / 1000)) - (24 * 3600);
+            var isNew = v.creationTime > yesterday ? true : false;
+            var appType = {};
             if (v.permanently_hidden || v.deviceType == 'battery') {
                 return;
             }
@@ -359,19 +305,23 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                     return;
                 }
             }
-           if(instances){
-               if (v.id.indexOf(findZwaveStr) > -1) {
-                zwaveId = v.id.split(findZwaveStr)[1].split('-')[0];
-            } else {
-                //instance = getRowBy(instances, 'id', v.creatorId);
-                instance = _.findWhere(instances, {id: v.creatorId});
-                if (instance && instance['moduleId'] != 'ZWave') {
-                    hasInstance = instance;
+            if (instances) {
+                if (v.id.indexOf(findZwaveStr) > -1) {
+                    zwaveId = v.id.split(findZwaveStr)[1].split('-')[0];
+                    appType['zwave'] = zwaveId.replace(/[^0-9]/g, '');
+                } else if (v.id.indexOf(findZenoStr) > -1) {
+                    appType['enocean'] = v.id.split(findZenoStr)[1].split('_')[0];
+                } else {
+                    //instance = getRowBy(instances, 'id', v.creatorId);
+                    instance = _.findWhere(instances, {id: v.creatorId});
+                    if (instance && instance['moduleId'] != 'ZWave') {
+                        hasInstance = instance;
+                        appType['instance'] = instance;
 
+                    }
                 }
             }
-           }
-            
+
             if (dashboard && dashboard.indexOf(v.id) !== -1) {
                 var onDashboard = true;
             }
@@ -379,7 +329,14 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
             if (v.metrics.color) {
                 rgbColors = 'rgb(' + v.metrics.color.r + ',' + v.metrics.color.g + ',' + v.metrics.color.b + ')';
             }
-            //console.log('Device id %s has history %s',v.id,v.hasHistory)
+            // Create min/max value
+            switch (v.probeType) {
+                case 'test':
+                    minMax = {min: 0, max: 255};
+                    break;
+                default:
+                    break;
+            }
             obj = {
                 'id': v.id,
                 'zwaveId': zwaveId,
@@ -394,17 +351,22 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                 'probeTitle': v.metrics.probeTitle,
                 'scaleTitle': v.metrics.scaleTitle,
                 'deviceType': v.deviceType,
+                'probeType': v.probeType,
                 'location': v.location,
                 'creatorID': v.creatorId,
+                'creationTime': v.creationTime,
                 'updateTime': v.updateTime,
                 'onDashboard': onDashboard,
                 'imgTrans': false,
                 'visibility': v.visibility,
-                'hasHistory': (v.hasHistory === true ? true : false), 
+                'hasHistory': (v.hasHistory === true ? true : false),
+                'minMax': minMax,
                 'cfg': {
                     'zwaveId': zwaveId,
-                    'hasInstance': hasInstance
-                }
+                    'hasInstance': hasInstance,
+                    'isNew': isNew
+                },
+                'appType': appType
             };
             if (filter) {
                 if (angular.isArray(obj[filter.filter])) {
@@ -435,6 +397,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
             angular.forEach(devices, function(v, k) {
                 widgetId = '#Widget_' + v.id;
                 updateDeviceLevel(widgetId, v);
+                updateDeviceScale(widgetId, v);
                 updateDeviceTime(widgetId, v);
                 updateDeviceIcon(widgetId, v);
                 updateDeviceBtn(widgetId, v);
@@ -460,10 +423,21 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                     break;
             }
             $(widgetId + ' .widget-level').html(val);
-            $(widgetId + ' .widget-level-knob').val(val);
+            $(widgetId + ' .widget-level-knob').val(val).trigger('change', false);
         }
         console.log(Math.round(+new Date() / 1000) + ' Update device: ID: ' + v.id + ' - level: ' + val)
 
+    }
+
+    /**
+     * Update device scale
+     */
+    function updateDeviceScale(widgetId, v) {
+        if (angular.isDefined(v.metrics.scaleTitle) && v.metrics.scaleTitle !== '') {
+            $(widgetId + ' .widget-scale').html(v.metrics.scaleTitle);
+        }
+
+        //console.log('Update device: ID: ' + v.id + ' - scale: ' + v.metrics.scaleTitle)
     }
 
     /**
@@ -499,9 +473,39 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      */
     function updateDeviceBtn(widgetId, v) {
         var status = false;
+        var minMax = {min: 0, max: 99};
+        // Create min/max value
+        switch (v.probeType) {
+            case 'test':
+                minMax = {min: 0, max: 255};
+                break;
+            default:
+                break;
+        }
         switch (v.deviceType) {
+            case 'sensorMultiline':
+                if (v.metrics.multilineType == 'protection') {
+                    if (v.metrics.state == 'armed') {
+                        status = 'on';
+                    } else {
+                        status = 'off';
+                    }
+                }
+                if (v.metrics.multilineType == 'climateControl') {
+                     status = 'climate';
+                }
+                break;
             case 'doorlock':
                 if (v.metrics.level == 'open') {
+                    status = 'on';
+                } else {
+                    status = 'off';
+                }
+                break;
+            case 'switchMultilevel':
+                if (v.metrics.level === minMax.max) {
+                    status = 'full';
+                } else if (v.metrics.level > minMax.min && v.metrics.level < minMax.max) {
                     status = 'on';
                 } else {
                     status = 'off';
@@ -522,7 +526,15 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
         if (status == 'on') {
             $(widgetId + ' .widget-btn-on').removeClass('btn-default').addClass('btn-primary');
             $(widgetId + ' .widget-btn-off').removeClass('btn-primary').addClass('btn-default');
-        } else {
+        } else if (status == 'full') {
+             $(widgetId + ' .widget-btn-full').removeClass('btn-default').addClass('btn-primary');
+            $(widgetId + ' .widget-btn-on').removeClass('btn-default').addClass('btn-primary');
+            $(widgetId + ' .widget-btn-off').removeClass('btn-primary').addClass('btn-default');
+        }else if (status == 'climate') {
+             $(widgetId + ' .widget-btn-frostProtection,' + widgetId + ' .widget-btn-energySave,' + widgetId + ' .widget-btn-comfort').removeClass('btn-primary').addClass('btn-default');
+             $(widgetId + ' .widget-btn-' + v.metrics.state).removeClass('btn-default').addClass('btn-primary');
+        }
+        else {
             $(widgetId + ' .widget-btn-on').removeClass('btn-primary').addClass('btn-default');
             $(widgetId + ' .widget-btn-off').removeClass('btn-default').addClass('btn-primary');
         }
@@ -535,7 +547,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      * Get chart data
      */
     function getChartData(data, colors) {
-       
+
         if (!angular.isObject(data, colors)) {
             return null;
         }
@@ -570,49 +582,13 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
 
     }
     ;
-
-    /**
-     * DEPRECATED
-     * Get instances data
-     */
-//    function getInstances(data, modules) {
-//        var collection = [];
-//        var moduleOptions;
-//        var module;
-//        var moduleTitle;
-//        var params;
-//        angular.forEach(data, function(v, k) {
-//            params = (!v.params ? [] : v.params);
-//            module = getRowBy(modules, 'id', v.moduleId);
-//            if (module) {
-//                moduleTitle = $filter('hasNode')(module, 'defaults.title');
-//                moduleOptions = getModuleConfigOptions(module, params);
-//            }
-//
-//            collection.push({
-//                'id': v.id,
-//                'moduleId': v.moduleId,
-//                'title': v.title,
-//                'moduleTitle': moduleTitle,
-//                'params': params,
-//                'description': v.description,
-//                'moduleData': module,
-//                'moduleOptions': moduleOptions,
-//                'moduleInput': getModuleConfigInputs(module, params)
-//            });
-//
-//        });
-//        return collection;
-//    }
-
     /**
      * Get module form data
      */
-    function getModuleFormData(module, data, namespaces) {
-        var bind = setModuleFormData(module.options, module.schema, namespaces);
+    function getModuleFormData(module, data) {
         var collection = {
-            'options': bind.options,
-            'schema': bind.schema,
+            'options': replaceModuleFormData(module.options, ['click','onFieldChange']),
+            'schema': module.schema,
             'data': data,
             'postRender': postRenderAlpaca
         };
@@ -620,59 +596,27 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     }
 
     /**
-     * Set module form data
-     */
-    function setModuleFormData(options, schema, namespaces) {
-        var collection = {
-            'options': replaceModuleFormData(options, 'optionLabels', namespaces, 'deviceName'),
-            'schema': replaceModuleFormData(schema, 'enum', namespaces, 'deviceId')
-        };
-        return collection;
-    }
-    /**
      * Replace module object
      */
-    function replaceModuleFormData(obj, key, namespaces, namespaceKey) {
+    function replaceModuleFormData(obj, keys) {
         var objects = [];
         for (var i in obj) {
             if (!obj.hasOwnProperty(i))
                 continue;
             if (typeof obj[i] == 'object') {
-                objects = objects.concat(replaceModuleFormData(obj[i], key, namespaces, namespaceKey));
-            } else if (i == key && !angular.isArray(obj[key])) {
-                obj[key] = buildArrayFromNamespaces(obj[key], namespaces, namespaceKey);
+                objects = objects.concat(replaceModuleFormData(obj[i], keys));
+            } else if (~keys.indexOf(i) &&
+                    !angular.isArray(obj[i]) &&
+                    typeof obj[i] === 'string' &&
+                    obj[i].indexOf("function") === 0) {
+                // overwrite old string with function                
+                // we can only pass a function as string in JSON ==> doing a real function
+                obj[i] = new Function('return ' + obj[i])();
             }
         }
         return obj;
     }
 
-
-    /**
-     * Build an array from namespaces
-     */
-    function buildArrayFromNamespaces(enums, namespaces, namespaceKey) {
-
-        var collection = [];
-        var namesp = enums.split(',');
-        if (!angular.isArray(namesp)) {
-            return false;
-        }
-        angular.forEach(namesp, function(v, k) {
-            var id = v.split(':');
-            if (!angular.isArray(id)) {
-                return false;
-            }
-            angular.forEach(namespaces, function(nm, km) {
-                if (nm.id == id[1]) {
-                    angular.forEach(nm.params, function(i, n) {
-                        collection.push(i[namespaceKey]);
-                    });
-                }
-            });
-        });
-
-        return collection;
-    }
     /**
      * Get device type
      */
@@ -760,62 +704,19 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     }
 
     /**
-     *  DEPRECATED - replaced by underscore _.uniq
-     * Get pairs - key => value
-     */
-//    function getPairs(data, key, val, cache) {
-//        var ret;
-//        var collection = [];
-//        var cached = myCache.get(cache);
-//        // Cached data
-//        if (cached) {
-//            return cached;
-//        }
-//
-//        // Load data
-//        angular.forEach(data, function(v, k) {
-//            if (v[val] != '') {
-//                collection.push({
-//                    'key': v[key],
-//                    'val': v[val]
-//                });
-//            }
-//
-//        });
-//        ret = $filter('unique')(collection, 'key');
-//        myCache.put(cache, ret);
-//        return ret;
-//    }
-
-    /**
-     * DEPRECATED - replaced with underscore _.findWhere
-     * Get 1 row by - key => value
-     */
-//    function getRowBy(data, key, val) {
-//        var collection = null;
-//        angular.forEach(data, function(v, k) {
-//            if (v[key] == val) {
-//                collection = v;
-//                return;
-//            }
-//
-//        });
-//        return collection;
-//    }
-    
-    /**
      * Set EnOcean profile
      */
-    function setEnoProfile(data){
+    function setEnoProfile(data) {
         var profile = {};
         angular.forEach(data, function(v, k) {
-                var profileId = parseInt(v._rorg, 16) + '_' + parseInt(v._func, 16) + '_' + parseInt(v._type, 16);
-                profile[profileId] = v;
-                profile[profileId]['id'] = profileId;
-                profile[profileId]['rorgInt'] = parseInt(v._rorg, 16);
-                profile[profileId]['funcInt'] = parseInt(v._func, 16);
-                profile[profileId]['typeInt'] = parseInt(v._type, 16);
-            });
+            var profileId = parseInt(v._rorg, 16) + '_' + parseInt(v._func, 16) + '_' + parseInt(v._type, 16);
+            profile[profileId] = v;
+            profile[profileId]['id'] = profileId;
+            profile[profileId]['rorgInt'] = parseInt(v._rorg, 16);
+            profile[profileId]['funcInt'] = parseInt(v._func, 16);
+            profile[profileId]['typeInt'] = parseInt(v._type, 16);
+        });
         return profile;
-    };
+    }
+    ;
 });

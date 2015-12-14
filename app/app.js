@@ -11,8 +11,9 @@ var myApp = angular.module('myApp', [
     'myAppController',
     'myAppFactory',
     'myAppService',
-    'colorpicker.module'
-    //'angularFileUpload'
+    //'colorpicker.module',
+    'dndLists',
+    'qAllSettled'
 
 ]);
 
@@ -22,8 +23,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
         $routeProvider.
                 // Login
                 when('/', {
-                    //redirectTo: '/elements/dashboard/1'
-                    templateUrl: 'app/views/login/login.html'
+                   templateUrl: 'app/views/auth/login.html'
                 }).
                  // Home
                 when('/home', {
@@ -40,6 +40,12 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     requireLogin: true,
                     roles: cfg.role_access.element
                 }).
+                 // Element - drag & drop
+                when('/dragdrop', {
+                    templateUrl: 'app/views/elements/dragdrop.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.element
+                }).
                 // Rooms
                 when('/rooms', {
                     templateUrl: 'app/views/rooms/rooms.html',
@@ -53,19 +59,19 @@ myApp.config(['$routeProvider', function($routeProvider) {
                 }).
                 //Admin
                 when('/admin', {
-                    templateUrl: 'app/views/admin/admin.html',
+                    templateUrl: 'app/views/management/management.html',
                     requireLogin: true,
                     roles: cfg.role_access.admin
                 }).
                 //Admin detail
                 when('/admin/user/:id', {
-                    templateUrl: 'app/views/admin/admin_user.html',
+                    templateUrl: 'app/views/management/management_user_id.html',
                     requireLogin: true,
                     roles: cfg.role_access.admin_user
                 }).
                 //My Access
                 when('/myaccess', {
-                    templateUrl: 'app/views/myaccess/myaccess.html',
+                    templateUrl: 'app/views/mysettings/mysettings.html',
                     requireLogin: true,
                     roles: cfg.role_access.myaccess
                 }).
@@ -75,15 +81,38 @@ myApp.config(['$routeProvider', function($routeProvider) {
                      requireLogin: true,
                     roles: cfg.role_access.apps
                 }).
+                //Apps local
+                when('/apps/local', { 
+                    templateUrl: 'app/views/apps/apps_local.html',
+                     requireLogin: true,
+                    roles: cfg.role_access.apps
+                }).
+                 when('/apps/category/:category', { 
+                    templateUrl: 'app/views/apps/apps.html',
+                     requireLogin: true,
+                    roles: cfg.role_access.apps
+                }).
                 //Apps - local detail
                 when('/apps/local/:id', {
-                    templateUrl: 'app/views/apps/app_local_detail.html',
+                    templateUrl: 'app/views/apps/apps_local_id.html',
                     requireLogin: true,
                     roles: cfg.role_access.apps_local
                 }).
+                //Apps online
+                when('/apps/online', { 
+                    templateUrl: 'app/views/apps/apps_online.html',
+                     requireLogin: true,
+                    roles: cfg.role_access.apps
+                }).
                 //Apps - online detail
                 when('/apps/online/:id', {
-                    templateUrl: 'app/views/apps/app_online_detail.html',
+                    templateUrl: 'app/views/apps/apps_online_id.html',
+                    requireLogin: true,
+                   roles: cfg.role_access.apps_online
+                }).
+                //Apps -instance
+                when('/apps/instance', {
+                    templateUrl: 'app/views/apps/apps_instance.html',
                     requireLogin: true,
                    roles: cfg.role_access.apps_online
                 }).
@@ -99,29 +128,56 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     requireLogin: true,
                     roles: cfg.role_access.devices
                 }).
-                //Zwave device
-                when('/devices/zwave/:brandname?', {
-                    templateUrl: 'app/views/devices/devices_zwave.html',
+                //Zwave add
+                when('/zwave/add/:brandname?', {
+                    templateUrl: 'app/views/zwave/zwave_add.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices
                 }).
-                //IP camera device
-                when('/devices/ipcamera', {
-                    templateUrl: 'app/views/devices/devices_ipcamera.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.devices
-                }).
-                //IP camera device
-               /* when('/devices/enocean/:brandname?', {
-                    templateUrl: 'app/views/devices/devices_enocean.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.devices
-                }).*/
                 //Include Zwave device
-                when('/include/:device?', {
-                    templateUrl: 'app/views/devices/device_include.html',
+                when('/zwave/include/:device?', {
+                    templateUrl: 'app/views/zwave/zwave_include.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices_include
+                }).
+                //Include Zwave device
+                when('/zwave/exclude/:id', {
+                    templateUrl: 'app/views/zwave/zwave_exclude.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices_include
+                }).
+                //Zwave devices
+                when('/zwave/devices', {
+                    templateUrl: 'app/views/zwave/zwave_devices.html',
+                    requireLogin: true
+                }).
+                //Zwave devices config
+                when('/zwave/devices/:nodeId/:nohistory?', {
+                    templateUrl: 'app/views/zwave/zwave_manage_id.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.network_config_id
+                }).
+                //Zwave battery
+                when('/zwave/batteries', {
+                    templateUrl: 'app/views/zwave/zwave_batteries.html',
+                    requireLogin: true
+                }).
+                //Zwave Network
+                when('/zwave/network', {
+                    templateUrl: 'app/views/zwave/zwave_network.html',
+                    requireLogin: true
+                }).
+                //Camera add
+                when('/camera/add', {
+                    templateUrl: 'app/views/camera/camera_add.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
+                }).
+                //Camera manage
+                when('/camera/manage', {
+                    templateUrl: 'app/views/camera/camera_manage.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
                 }).
                 //Enocean Devices
                 when('/enocean/devices/:brandname?', {
@@ -170,17 +226,6 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     requireLogin: true,
                     roles: cfg.role_access.config_rooms_id
                 }).
-                //Network
-                when('/network', {
-                    templateUrl: 'app/views/network/network.html',
-                    requireLogin: true
-                }).
-                //Network config
-                when('/network/config/:nodeId', {
-                    templateUrl: 'app/views/network/config.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.network_config_id
-                }).
                 //Device configuration
                 when('/deviceconfig/:nodeId', {
                     templateUrl: 'app/views/expertui/configuration.html',
@@ -196,35 +241,36 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     redirectTo: '/'
                     //templateUrl: 'app/views/login/login.html',
                 }).
+                //Password
+                when('/password', {
+                    templateUrl: 'app/views/auth/password.html',
+                    requireLogin: true
+                }).
+                //Password forgot
+                when('/passwordforgot', {
+                    templateUrl: 'app/views/auth/password_forgot.html'
+                }).
+                //Password reset
+                when('/passwordforgot/reset/:token?', {
+                    templateUrl: 'app/views/auth/password_reset.html'
+                }).
                 //Login
                 when('/logout', {
-                    templateUrl: 'app/views/login/logout.html',
+                    templateUrl: 'app/views/auth/logout.html',
                     requireLogin: true
                 }).
                 // Error page
                 when('/error/:code?', {
                     templateUrl: 'app/views/error.html'
                 }).
-                // Test
-                when('/test', {
-                    templateUrl: 'app/views/_test/test.html'
-                }).
                 otherwise({
-                    redirectTo: '/error/404'
+                    redirectTo: '/error/404' 
                 });
     }]);
 
 /**
  * App configuration
  */
-
-//myApp.config([
-//    "$routeProvider",
-//    "$httpProvider",
-//    function($routeProvider, $httpProvider){
-//        $httpProvider.defaults.headers.common['Access-Control-Allow-Headers'] = '*';
-//    }
-//]);
 
 var config_module = angular.module('myAppConfig', []);
 
@@ -233,24 +279,23 @@ angular.forEach(config_data, function(key, value) {
 });
 
 /**
- * Route Access Control and Authentication
+ * Run
  */
 myApp.run(function($rootScope, $location, dataService) {
+    // Run ubderscore js in views
+    $rootScope._ = _;
+   // Route Access Control and Authentication
     $rootScope.$on("$routeChangeStart", function(event, next, current) {
         var user;
         if (next.requireLogin) {
             user = dataService.getUser();
             if (!user) {
-                //alert('You need to be authenticated to see this page!');
-                //event.preventDefault();
                 $location.path('/');
                 return;
             }
             if (next.roles && angular.isArray(next.roles)) {
                 if (next.roles.indexOf(user.role) === -1) {
-                    //alert('You have no permissions to see this page!');
-                    //$location.path('/elements');
-                     $location.path('/error/403');
+                    $location.path('/error/403');
                     return;
                 }
             }

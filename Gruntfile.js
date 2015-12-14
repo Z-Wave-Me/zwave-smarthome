@@ -19,14 +19,21 @@ module.exports = function(grunt) {
                 src: [
                     'app/css/bootstrap.css',
                     'app/css/main.css',
-                    'app/css/font-awesome-4.2.0/css/font-awesome.min.css'
+                    'app/css/font-awesome-4.4.0/css/font-awesome.min.css'
                 ],
                 dest: 'dist/app/css/build.css'
             },
             js: {
                 src: [
                     // Vendors
-                    'vendor/jquery/jquery-1.11.1.min.js',
+                    'vendor/jquery/jquery-1.11.3.min.js',
+                    'vendor/jquery/jquery-ui.min.js',
+                    'vendor/jquery/plugins/jquery.ui.widget.js',
+                    'vendor/jquery/plugins/jquery.iframe-transport.js',
+                    'vendor/jquery/plugins/jquery.fileupload.js',
+                    'vendor/jquery/plugins/jquery.fileupload-process.js',
+                    'vendor/jquery/plugins/jquery.fileupload-ui.js',
+                    'vendor/moment/moment-with-locales.min.js',
                     'vendor/underscore/underscore-1.8.3/underscore-min.js',
                     'vendor/chartjs/Chart.js',
                     //'vendor/upload/angular-file-upload-shim.js',
@@ -34,7 +41,8 @@ module.exports = function(grunt) {
                     'vendor/knob/jquery.knob.js',
                     //'vendor/bootstrap-switch/bootstrap-switch.js',
                     'vendor/handlebars/handlebars-v3.0.3.min.js',
-                    'vendor/alpaca/1.5.13/alpaca.min.js',
+                    'vendor/alpaca/1.5.14/bootstrap/alpaca.min.js',
+                    'vendor/alertify/alertify.min.js',
                     //'vendor/md5/md5.js',
                     // Angular
                     'vendor/angular/angular-1.2.28/angular.min.js',
@@ -42,10 +50,12 @@ module.exports = function(grunt) {
                     'vendor/angular/angular-1.2.28/angular-route.min.js',
                     //'vendor/angular/angular-1.2.16/angular-resource.js',
                     'vendor/angular/angular-1.2.28/angular-cookies.min.js',
+                    'vendor/dragdrop/angular-drag-and-drop-lists.js',
                      // Bootstrap
                     'vendor/bootstrap/bootstrap.min.js',
                     // APP
                     'app/app.js',
+                    'app/modules/qAllSettled.js',
                     //'app/config/config.js',
                     'app/config/settings.js',
                     'app/services/factories.js',
@@ -63,15 +73,15 @@ module.exports = function(grunt) {
                     'app/controllers/event.js',
                     'app/controllers/app.js',
                     'app/controllers/device.js',
+                    'app/controllers/zwave.js',
+                    'app/controllers/camera.js',
                     'app/controllers/enocean.js',
                     'app/controllers/room.js',
-                    'app/controllers/network.js',
-                    'app/controllers/admin.js',
-                    'app/controllers/myaccess.js',
-                    'app/controllers/report.js',
+                    'app/controllers/management.js',
+                    'app/controllers/mysettings.js',
                     'app/controllers/auth.js',
                     //'app/modules/bootstrap-colorpicker-module.min.js',
-                    'app/modules/bootstrap-colorpicker-module.js',
+                    //'app/modules/bootstrap-colorpicker-module.js',
                     // ExpertUI configuration js
                     'app/expertui/pyzw.js',
                     'app/expertui/pyzw_zwave_ui.js',
@@ -106,7 +116,7 @@ module.exports = function(grunt) {
             fonts: {
                 files: [
                     {src: ['app/fonts/**'], dest: 'dist/'},
-                    {expand:true,src: ['app/css/font-awesome-4.2.0/fonts/*'], dest: 'dist/app/fonts/',flatten: true}
+                    {expand:true,src: ['app/css/font-awesome-4.4.0/fonts/*'], dest: 'dist/app/fonts/',flatten: true}
                 ]
             },
             angmap: {

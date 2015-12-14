@@ -1,0 +1,28 @@
+<!-- Admin restore view -->
+<h2 class="admin-entry-title" ng-click="expandElement('restore')">
+    <i class="fa fa-repeat"></i> <span ng-bind="_t('nm_restore_backup_upload')"></span>
+    <i class="fa subnavi-arrow" ng-class="expand.restore  ? 'fa-chevron-up':'fa-chevron-down'"></i>
+</h2>
+<div class="admin-entry-ctrl" ng-if="expand.restore" ng-controller="ManagementRestoreController">
+    <div class="form form-page">
+        <div class="fieldset">
+            <bb-alert alert="managementRestore.alert"></bb-alert>
+            <div ng-hide="managementRestore.alert.message">
+                <div class="alert alert-warning">
+                <input type="checkbox" name="restore_confirm" value="1" id="restore_confirm" ng-click="managementRestore.confirm = !managementRestore.confirm" /> <span ng-bind="_t('are_you_sure_restore')"></span>
+            </div>
+            <div class="form-group" ng-show="managementRestore.confirm">
+                <!--<input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)"/> -->
+                <input type="file" class="form-control_" file-model="myFile" />
+            </div>
+            </div>
+            
+        </div>
+        
+        <div class="fieldset submit-entry">
+            <button type="button" class="btn btn-default" ng-click="expandElement('restore')"><i class="fa fa-times  text-danger"></i> <span ng-bind="_t('lb_cancel')"></span></button>
+            <button type="button" class="btn btn-submit" ng-click="uploadFile()" ng-disabled="!managementRestore.confirm || managementRestore.alert.message"><i class="fa fa-download"></i> {{_t('nm_restore_pick_up')}}</button>
+            
+        </div>
+    </div>
+</div>

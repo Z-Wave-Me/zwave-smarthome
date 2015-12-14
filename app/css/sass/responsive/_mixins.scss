@@ -1,0 +1,377 @@
+/* Mobile body
+-------------------------------------------------- */
+@mixin mBody() {
+    body {
+        font-size: $app-body-font-size * $m-font-scale;
+    }
+    #main_content {
+        margin-top: $header-h + 45px;
+        margin-bottom: 10px;
+    }
+
+    .hide-on-mobile{
+        display:none !important;
+    }
+    .show-on-mobile{
+        display:block;
+    }
+    .navbar-toggle{
+        margin-right: 30px !important;
+    }
+    .container{
+        max-width:none;
+        width: 100%;
+
+    }
+    .row {
+        padding-right: 0;
+        margin-right: 0;
+
+    }
+    .col-sm-6{
+        padding-right: 0;
+    }
+
+
+    // Typo
+    h1 {
+        font-size:$app-h1-font-size * $m-font-scale;
+    }
+
+    h2 {
+        font-size: $app-h2-font-size * $m-font-scale;
+    }
+
+    h3 {
+        font-size: $app-h3-font-size  * $m-font-scale;
+    }
+
+    h4 {
+        font-size: $app-h4-font-size  * $m-font-scale;
+    }
+    .entry-title{
+        font-size: $app-body-font-size  * $m-font-scale;
+    }
+
+    // Settings
+    .mobile-padding{
+        padding: 0 15px;
+        .page-header{
+            padding: 0;
+        }
+    }
+    .row-page{
+        margin: 0;
+    }
+
+    .app-shadow{
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+    }
+    .app-border{
+        border: 0;
+
+    }
+
+}
+/* Mobile images
+-------------------------------------------------- */
+@mixin mImg() {
+    .report-img{
+        max-width: 36px;
+    }
+}
+/* Mobile header
+-------------------------------------------------- */
+@mixin mHeader() {
+    #header{
+        font-size: $app-navi-font-size * $m-font-scale; 
+        // Hide elements
+        #header_logo,.divider-vertical{
+            display: none !important;
+        }
+        .fa{
+            font-size: $app-navi-icon-size * $m-font-scale;
+        }
+    }
+    // Main navigation
+    #main_navigation_wrap{
+        height: $header-h + 25px;
+    }
+    #main_navigation{
+        line-height: $header-h + 25px;
+
+        a{
+            line-height: $header-h + 25px;
+        }
+    }
+    #navigation_left{
+        left: -30px;
+
+    }
+    #navi_settings{
+        border-radius: 4px;
+        border: solid 1px #000;
+        height: 40px;
+        line-height: 40px !important;
+        padding: 7px;
+        margin-right: 15px;
+    }
+    // Subnavigation
+    #sub_navigation_in{
+        ul{
+            padding: 0;
+            list-style: none;
+            text-align: left;
+            margin:0;
+            li{
+                display: block;
+                width: 100%;
+                margin: 0; 
+                /*               background-color: lighten($app-body-bcg-color, 2%) !important;
+                                    border: 0;*/
+                border-bottom: solid 1px $app-border-color;
+                a{
+                    display: block;
+                    position:relative;
+                    font-size: $app-navi-font-size * $m-font-scale;
+                    text-align: left;
+                    padding: 10px 20px;
+                    //line-height: 1.42857;
+                    border-radius: 0;
+
+                    color: $header-link-color;
+                    border: 0 none;
+                }
+                .active{
+                    /*                    a{
+                                            background-color: $header-color-secondary;
+                                        }*/
+                }
+            }
+        }
+        /*        .subnavi-apps .fa{color: #dd976e;}
+                .subnavi-devices .fa{color: #6c7a89;}
+                .subnavi-config-rooms .fa{color: #6494bc;} 
+                .subnavi-myaccess .fa{color: #80ad80;} 
+                .subnavi-admin .fa{color: #31b0d5;}
+                .subnavi-report .fa{color: #f0aD4e;}
+                .subnavi-info .fa{color: #d9534f;} 
+                .subnavi-logout .fa{color: #6494bc;}*/
+    }
+    #sub_navigation_close{
+        border: 0;
+    }
+
+}
+
+
+/* Mobile page navigation
+-------------------------------------------------- */
+@mixin mNavi() {
+    .page-navi{
+        font-size: $app-navi-font-size * $m-font-scale;
+        .fa{
+            font-size: $app-navi-font-size * $m-font-scale;  
+        }
+        .page-navi-in{
+            width: 100%;
+            ul{
+                li{
+                    display: block;
+                    width: 100%;
+
+                    background-color: lighten($app-body-bcg-color, 2%) !important;
+                    border: 0;
+                    border-bottom: solid 1px $app-border-color;
+                    a{
+                        display: block;
+                        position:relative;
+                        //font-size: $app-navi-font-size * $m-font-scale;
+                        text-align: left;
+                        padding:0 10px;
+                        color: $header-link-color;
+
+                    }
+
+                }
+                .active{
+                    /*                    a{
+                                            background-color: $header-color-secondary;
+                                        }*/
+                }
+                .page-navi-icon{
+                    position: absolute;
+                    right: 1%;
+                    display: inline-block !important;
+                }
+
+            }
+
+            .page-navi-close{
+                border: 0;
+                padding: 5px 30px 5px 5px;
+            }
+        }
+    }
+    .page-menu{
+        font-size: $app-body-font-size * $m-font-scale;
+        .fa{
+            font-size: $app-body-font-size * $m-font-scale;  
+        }
+
+        ul{
+            // padding: 20px;
+
+            list-style: none;
+            text-align: left;
+            margin: 0;
+            padding:0; 
+
+            li{
+                width: 100%;
+                float: none;
+                border: 0;
+                border-bottom: solid 1px $app-body-bcg-color;
+                .page-navi-icon{}
+                a{}
+
+            }
+            .fa{}
+
+        }
+    }
+    .dropdown-menu-bottom{
+         max-height: 180px;
+         min-width:auto;
+  //width:100%;
+    }
+/*    .dropdown-menu-bottom.open { position: static; }
+.dropdown-menu-bottom.open, .dropdown-menu-bottom .dropdown-menu {display:table; width: 100%; text-align: center; left:0; right:0; }
+.dropdown-menu>li { display: table-cell; }*/
+}
+
+/* Mobile footer
+-------------------------------------------------- */
+@mixin mFooter() {
+
+}
+
+/* Mobile table
+-------------------------------------------------- */
+@mixin mTable() {
+    .table-report{
+        tbody tr.bcg-active.true{
+            //@include appGradient();
+            background-color: #fff;
+        }
+        tbody tr.bcg-active.false{
+            background-color: $app-bcg-active-false !important;
+        }
+
+
+    }
+}
+
+/* Mobile buttons
+-------------------------------------------------- */
+@mixin mButton() {
+    .btn,.btn-device-admin {
+        font-size: $app-btn-font-size * $m-font-scale;
+        .fa{
+            font-size: $app-btn-icon-size * $m-font-scale; 
+        }
+    }
+    .btn-name{
+        display: none;
+    }
+    /*    .td-action{
+            .btn{
+                padding: 4px 8px;
+                font-size: 16px;
+                //line-height: 1.42857;
+                //border-radius: 4px;
+            }
+        }*/
+
+    /*    .submit-entry .btn-submit{
+            padding: 6px 12px;
+        }*/
+}
+
+/* Mobile forms
+-------------------------------------------------- */
+@mixin mForm() {
+    .form-control {
+        font-size: $app-body-font-size * $m-font-scale;
+        padding: ($app-body-font-size * $m-font-scale) (12px  * $m-font-scale) !important;
+    }
+    input[type=checkbox]{
+        -ms-transform: scale($m-font-scale); /* IE */
+        -moz-transform: scale($m-font-scale); /* FF */
+        -webkit-transform: scale($m-font-scale); /* Safari and Chrome */
+        -o-transform: scale($m-font-scale); /* Opera */
+        padding: 10px;
+        margin: 0 10px 0;
+    }
+
+    input[type=radio] { 
+        transform: scale($m-font-scale, $m-font-scale); 
+        -moz-transform: scale($m-font-scale, $m-font-scale); 
+        -ms-transform: scale($m-font-scale, $m-font-scale); 
+        -webkit-transform: scale($m-font-scale, $m-font-scale); 
+        -o-transform: scale($m-font-scale, $m-font-scale); 
+    }
+
+    .form-control-sm,.form-control-md{
+        width: 100% !important;
+        display: block !important;
+    }
+
+}
+/* Mobile tabs
+-------------------------------------------------- */
+@mixin mTab() {
+    .nav-tabs > li > a {
+        font-size: $app-navi-font-size * $m-font-scale;
+        .fa{
+            font-size: $app-navi-icon-size * $m-font-scale;
+        }
+    }
+    .tab-name{
+        display: none;
+    }
+    .nav-tabs-3{
+        text-align: center;
+    }
+}
+
+/* Mobile Dropdown
+-------------------------------------------------- */
+@mixin mDropdown() {
+    .dropdown-menu {
+        font-size: $app-body-font-size * $m-font-scale;
+        .fa{
+            font-size: $app-navi-icon-size * $m-font-scale;
+        }
+    }
+}
+/* Mobile loader
+-------------------------------------------------- */
+@mixin mLoader() {
+}
+/* Mobile alert
+-------------------------------------------------- */
+@mixin mAlert() {
+}
+/* Mobile modal
+-------------------------------------------------- */
+@mixin mModal() {
+
+}
+/* Mobile pagination
+-------------------------------------------------- */
+@mixin mPagination() {
+
+}

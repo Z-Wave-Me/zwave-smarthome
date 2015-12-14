@@ -3,16 +3,14 @@
      <bb-loader></bb-loader>
     <!-- Config navigation -->
 
-    <div class="tab-content" ng-show="deviceId > 0">
-        <h2 class="page-subtitle subtitle-border">
-        (#{{deviceId}}) <span ng-bind="deviceName"></span>
-    </h2> 
+    <div ng-show="deviceId > 0">
+        <h1>(#{{deviceId}}) <span ng-bind="deviceName"></span></h1> 
          <!--<div class="alert alert-warning" ng-show="!configCont"><i class="fa fa-exclamation-triangle"></i> {{_t('no_zddx_file')}}</div>-->
 
         <!-- config_cont -->
         <div class="cfg-block" id="config_cont" ng-if="configCont">
 
-            <h4>{{_t('configurations_list')}}</h4>
+             <h2>{{_t('configurations_list')}}</h2>
             <div class="alert-list">
         <p class="text-danger text-alert-list" ng-repeat="v in configCont" ng-if="v.configCconfigValue != v.configZwaveValue">{{v.label}}: {{_t('value_changed_to')}} <strong config-value-title collection='v' show_value='v.configCconfigValue'></strong> {{_t('value_not_stored_indevice')}}</p>
     </div>
@@ -24,14 +22,6 @@
                     role="form"
                     ng-submit="submitApplyConfigCfg(formName,{'id': deviceId,'instance': '0','commandclass': '70','command': 'Set'}, configCont, hasBattery)" 
                     novalidate>
-                    <a
-                        class="btn btn-primary spin-true"
-                        ng-click="updateFromDeviceCfg('devices[' + deviceId + '].instances[0].commandClasses[0x70].Get', configCont,deviceId)" 
-                        >{{_t('btn_update_from_device')}} <i class="fa fa-spinner fa-spin"></i></a>
-                    <button 
-                        type="submit" 
-                        class="btn btn-info spin-true" 
-                        >{{_t('apply_config')}} <i class="fa fa-spinner fa-spin"></i></button> 
                     <div class="cfg-control-content" id="cfg_control_{{v.confNum}}" ng-repeat="v in configCont">
                         
                         <div class="form-inline">
@@ -64,12 +54,23 @@
 
 
                     </div>
+                    <fieldset class="submit-entry">
+                        <button type="button" class="btn btn-default" bb-go-back><i class="fa fa-times  text-danger"></i> <span ng-bind="_t('lb_cancel')"></span></button>
+                        <a
+                        class="btn btn-primary"
+                        ng-click="updateFromDeviceCfg('devices[' + deviceId + '].instances[0].commandClasses[0x70].Get', configCont,deviceId)" 
+                        ><i class="fa fa-refresh"></i> {{_t('btn_update_from_device')}}</a>
+                    <button 
+                        type="submit" 
+                        class="btn btn-submit" 
+                        ><i class="fa fa-check"></i> {{_t('apply_config')}}</button> 
+                     </fieldset>    
                 </form>
             </div>
         </div>
         <!-- wakeup_cont -->
         <div class="cfg-block" id="wakeup_cont" ng-if="wakeupCont">
-            <h4>{{_t('wakeup_list')}}</h4>
+             <h2>{{_t('wakeup_list')}}</h2>
             <div class="cfg-block-content" ng-init="formName = 'form_wakeup'">
                 <form 
                     name="{{formName}}" 
@@ -78,15 +79,6 @@
                     role="form"
                     ng-submit="submitApplyConfigCfg(formName,{'id': deviceId,'instance': '0','commandclass': '84','command': 'Set'}, wakeupCont, hasBattery)" 
                     novalidate>
-                    <a
-                        href="" 
-                        class="btn btn-primary spin-true"
-                        ng-click="updateFromDevice(wakeupCont.cmd + '.Get()',hasBattery)"
-                        >{{_t('btn_update_from_device')}} <i class="fa fa-spinner fa-spin"></i></a>
-                    <button 
-                        type="submit" 
-                        class="btn btn-info spin-true" 
-                        >{{_t('apply_config')}} <i class="fa fa-spinner fa-spin"></i></button> 
                     <div class="clearfix"></div>
                     <div class="cfg-control-content">
                         <div ng-repeat="v in wakeupCont.params">
@@ -109,12 +101,24 @@
                             <span> | {{_t('default_value_is')}}: <config-default-value  collection='v' show_default_value='wakeupCont.showDefaultValue' default_value='wakeupCont.defaultValue'></config-default-value></span>
                         </p>
                     </div>
+                    <fieldset class="submit-entry">
+                        <button type="button" class="btn btn-default" bb-go-back><i class="fa fa-times  text-danger"></i> <span ng-bind="_t('lb_cancel')"></span></button>
+                        <a
+                        href="" 
+                        class="btn btn-primary"
+                        ng-click="updateFromDevice(wakeupCont.cmd + '.Get()',hasBattery)"
+                        ><i class="fa fa-refresh"></i> {{_t('btn_update_from_device')}}</a>
+                    <button 
+                        type="submit" 
+                        class="btn btn-submit" 
+                        ><i class="fa fa-check"></i> {{_t('apply_config')}}</button> 
+                     </fieldset>    
                 </form>
             </div>
         </div>
         <!-- switchall_cont -->
         <div class="cfg-block" id="switchall_cont" ng-if="switchAllCont">
-            <h4>{{_t('switchall_list')}}</h4>
+            <h2>{{_t('switchall_list')}}</h2>
             <div class="cfg-block-content" ng-init="formName = 'form_switch_all'">
                 <form 
                     name="{{formName}}" 
@@ -123,14 +127,6 @@
                     role="form"
                     ng-submit="submitApplyConfigCfg(formName,{'id': deviceId,'instance': '0','commandclass': '27','command': 'Set'}, switchAllCont, hasBattery)" 
                     novalidate>
-                    <a
-                        class="btn btn-primary spin-true"
-                        ng-click="updateFromDevice(switchAllCont.cmd + '.Get()',hasBattery)"
-                        >{{_t('btn_update_from_device')}} <i class="fa fa-spinner fa-spin"></i></a>
-                    <button 
-                        type="submit" 
-                        class="btn btn-info spin-true" 
-                        >{{_t('apply_config')}} <i class="fa fa-spinner fa-spin"></i></button> 
                     <div class="cfg-control-content" ng-repeat="v in switchAllCont.params">
                         <div class="form-inline" >
                             <expert-command-input 
@@ -147,12 +143,23 @@
                             <span> | {{_t('default_value_is')}}: <config-default-value  collection='v' show_default_value='switchAllCont.showDefaultValue' default_value='switchAllCont.defaultValue'></config-default-value></span>
                         </p>
                     </div>
+                    <fieldset class="submit-entry">
+                        <button type="button" class="btn btn-default" bb-go-back><i class="fa fa-times  text-danger"></i> <span ng-bind="_t('lb_cancel')"></span></button>
+                        <a
+                        class="btn btn-primary"
+                        ng-click="updateFromDevice(switchAllCont.cmd + '.Get()',hasBattery)"
+                        ><i class="fa fa-refresh"></i> {{_t('btn_update_from_device')}}</a>
+                    <button 
+                        type="submit" 
+                        class="btn btn-submit" 
+                        ><i class="fa fa-check"></i> {{_t('apply_config')}}</button> 
+                     </fieldset>    
                 </form>
             </div>
         </div>
         <!-- protection_cont -->
         <div class="cfg-block" id="protection_cont" ng-if="protectionCont">
-            <h4>{{_t('protection_list')}}</h4>
+            <h2>{{_t('protection_list')}}</h2>
             <div class="cfg-block-content" ng-init="formName = 'form_protection_list'">
                 <form 
                     name="{{formName}}" 
@@ -161,14 +168,7 @@
                     role="form"
                     ng-submit="submitApplyConfigCfg(formName,{'id': deviceId,'instance': '0','commandclass': '75','command': 'Set'}, protectionCont, hasBattery)" 
                     novalidate>
-                    <a
-                        class="btn btn-primary spin-true"
-                        ng-click="updateFromDevice(protectionCont.cmd + '.Get()',hasBattery)"
-                        >{{_t('btn_update_from_device')}} <i class="fa fa-spinner fa-spin"></i></a>
-                    <button 
-                        type="submit" 
-                        class="btn btn-info spin-true"
-                        >{{_t('apply_config')}} <i class="fa fa-spinner fa-spin"></i></button> 
+                    
                     <div class="cfg-control-content" ng-repeat="v in protectionCont.params">
                         <div class="form-inline" >
                             <expert-command-input 
@@ -185,12 +185,20 @@
                             <span> | {{_t('default_value_is')}}: <config-default-value  collection='v' show_default_value='protectionCont.showDefaultValue' default_value='protectionCont.defaultValue'></config-default-value></span>
                         </p>
                     </div>
+                    <fieldset class="submit-entry">
+                        <button type="button" class="btn btn-default" bb-go-back><i class="fa fa-times  text-danger"></i> <span ng-bind="_t('lb_cancel')"></span></button>
+                        <a
+                        class="btn btn-primary"
+                        ng-click="updateFromDevice(protectionCont.cmd + '.Get()',hasBattery)"
+                        ><i class="fa fa-refresh"></i> {{_t('btn_update_from_device')}}</a>
+                    <button 
+                        type="submit" 
+                        class="btn btn-submit"
+                        ><i class="fa fa-check"></i> {{_t('apply_config')}}</button> 
+                     </fieldset>    
                 </form>      
 
             </div>
         </div>
-    </div> 
-     <div class="submit-entry">
-     <button class="btn btn-default" ng-bind="_t('lb_cancel')" bb-go-back></button>
-      </div> 
+    </div>
 </div><!-- /ng-controler -->

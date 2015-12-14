@@ -1,0 +1,31 @@
+<!-- Welcome view -->
+<div>
+    <!--<div class="device-perex clearfix welcome-promo"> 
+        <div class="include-device-img">
+            <img class="welcome-img" ng-src="app/img/welcome.png" alt="img" />
+        </div>
+        <div class="include-device-txt">
+            <h2>Welcome to SmartHome</h2>
+
+            <p>Donec ultricies tempor augue a placerat. Pellentesque blandit augue velit, vel fermentum sem vestibulum id. In quis faucibus ipsum. Morbi imperdiet tincidunt felis, vel porta ipsum. Nam et dui facilisis.</p>
+        </div>
+    </div> -->
+    <div class="welcome-alert app-border app-gradient app-shadow">
+        <h2>{{_t('welcome_no_devices')}}</h2>
+        <table class="table table-report table-welcome">
+            <tbody>
+                <tr>
+                    <td><span class="badge badge-number">1</span> <span class="welcome-help"><a href="#elements">{{_t('welcome_step1')}} <i class="fa fa-clone"></i></a></span></td>  
+                </tr>
+                <tr>
+                    <td><span class="badge badge-number">2</span> <span class="welcome-help">{{_t('welcome_step2')}} <i class="fa fa-cog"></i></span></td>  
+                </tr>
+                <tr>
+                    <td><span class="badge badge-number">3</span> <span class="welcome-help">{{_t('welcome_step3')}}</span></td>  
+                </tr>
+            </tbody>
+        </table>
+        <a class="btn btn-primary btn-block" href="#elements">{{_t('welcome_go')}} <i class="fa fa-chevron-right"></i></a>
+    </div>
+
+</div>

@@ -1,19 +1,12 @@
 <!-- Rooms view -->
 <div ng-controller="RoomConfigController">
      <bb-loader></bb-loader>
-     <div class="page-header header-control clearfix">
-        <h1 ng-bind="_t('nav_rooms')"></h1>
-        <div class="page-header-control">
-            <a type="button" class="btn btn-info" ng-href="#config-rooms/0"><i class="fa fa-plus"></i> {{_t('lb_add_room')}}</a>
-        </div>
-    </div>
+     <h2 class="mobile-padding" ng-bind="_t('nav_rooms')"></h2>
     <table id="table_cfg_rooms" class="table table-condensed table-report">
         <tbody>
             <tr ng-repeat="v in collection" id="row_{{v.id}}">
                 <td class="td-img">
-                      <img class="report-img img-circle" ng-src="storage/img/rooms/{{v.default_img}}" ng-if="v.img_type == 'default' && v.default_img" alt="{{v.name}}" />
-                      <img class="report-img img-circle" ng-src="{{userImageUrl + v.user_img}}" ng-if="v.img_type == 'user' && v.user_img" alt="{{v.name}}" />
-                      <img class="report-img img-circle" ng-src="storage/img/placeholder-img.png" ng-if="!v.default_img && !v.user_img" alt="{{v.name}}" />
+                     <img class="report-img img-circle" ng-src="{{v|getRoomIcon}}" />
                 </td>
                  <td ng-bind="v.title"></td>
                 <td class="td-action">
@@ -25,4 +18,8 @@
             </tr>
         </tbody>
     </table>
+     <div class="fieldset submit-entry">
+        <button type="button" class="btn btn-default" bb-go-back><i class="fa fa-times  text-danger"></i> <span ng-bind="_t('lb_cancel')"></span></button>
+          <a type="button" class="btn btn-submit" ng-href="#config-rooms/0"><i class="fa fa-plus"></i> {{_t('lb_add_room')}}</a>
+     </div>
 </div> <!-- /ng-controller --> 

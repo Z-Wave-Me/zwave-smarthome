@@ -4,21 +4,89 @@
  */
 
 /**
+ * DragDrop controller
+ */
+myAppController.controller('DragDropController', function($scope, dataFactory) {
+    $scope.models = {
+        selected: null,
+        list: []
+    };
+
+    // Generate initial model
+    for (var i = 1; i <= 5; ++i) {
+        $scope.models.list.push({label: "Item A" + i});
+    }
+
+    $scope.itemMoved = function(index) {
+        $scope.models.list.splice(index, 1);
+        angular.forEach($scope.models.list, function(v, k) {
+            console.log((k + 1) + ': ', v.label)
+
+        });
+        console.log(index)
+    };
+
+    // Model to JSON for demo purpose
+    $scope.$watch('models', function(model) {
+        //console.log(model)
+        $scope.modelAsJson = angular.toJson(model, true);
+    }, true);
+
+    $scope.elements = {
+        selected: null,
+        list: []
+    };
+    ;
+    /**
+     * Load data into collection
+     */
+    $scope.loadData = function() {
+        dataFactory.getApi('devices').then(function(response) {
+            $scope.elements.list = response.data.data.devices;
+        }, function(error) {
+        });
+    };
+    $scope.loadData();
+
+    $scope.elementMoved = function(index) {
+        $scope.elements.list.splice(index, 1);
+        var sorting = [];
+        angular.forEach($scope.elements.list, function(v, k) {
+           sorting[v.id] = (k+1);
+            dataFactory.putApi('devices', v.id, {position: index}).then(function(response) {
+                //console.log((k + 1) + ': ', v.metrics.title);
+            }, function(error) {
+            });
+         });
+          console.log(sorting)
+        //console.log(index)
+    };
+
+});
+
+/**
  * Element controller
  */
-myAppController.controller('ElementController', function($scope, $routeParams, $interval, $location, dataFactory, dataService, myCache) {
+myAppController.controller('ElementController', function($scope, $routeParams, $interval, $location, dataFactory, dataService, myCache,_) {
+    $scope.welcome = false;
     $scope.goHidden = [];
     $scope.goHistory = [];
     $scope.apiDataInterval = null;
-    $scope.multilineSensorInterval = null;
+    $scope.multilineSensorsInterval = null;
+     $scope.elements = {
+         all: {},
+         input: {}
+     };
     $scope.collection = [];
     $scope.showFooter = true;
     $scope.deviceType = [];
     $scope.tags = [];
-    $scope.rooms = [];
+    $scope.rooms = {};
+    $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/image/';
     $scope.history = [];
     $scope.historyStatus = [];
-    $scope.multilineSensor = false;
+    $scope.multilineDev = false;
+    $scope.multilineSensors = false;
     $scope.doorLock = false;
     $scope.levelVal = [];
     $scope.rgbVal = [];
@@ -31,6 +99,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.knobopt = {
         width: 100
     };
+    $scope.alertabc = false;
 
     $scope.slider = {
         modelMax: 38
@@ -51,12 +120,25 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     // Cancel interval on page destroy
     $scope.$on('$destroy', function() {
         $interval.cancel($scope.apiDataInterval);
-        $interval.cancel($scope.multilineSensorInterval);
+        $interval.cancel($scope.multilineSensorsInterval);
 
         $('.modal').remove();
         $('.modal-backdrop').remove();
         $('body').removeClass("modal-open");
     });
+    
+     /**
+     * Load locations
+     */
+    $scope.loadLocations = function() {
+        dataFactory.getApi('locations').then(function(response) {
+            angular.extend($scope.rooms,_.indexBy(response.data.data, 'id'));
+        }, function(error) {
+            dataService.showConnectionError(error);
+        });
+    }
+    ;
+     $scope.loadLocations();
 
     /**
      * Load data into collection
@@ -64,10 +146,16 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     $scope.loadData = function() {
         dataService.showConnectionSpinner();
         //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataFactory.getApi('devices').then(function(response) {
+        dataFactory.getApi('devices',null,true).then(function(response) {
+            
             var filter = null;
-            var notFound = $scope._t('no_devices') + ' <a href="#devices">' + $scope._t('lb_include_device') + '</a>'
+            var notFound = $scope._t('no_devices');
             $scope.loading = false;
+            if (response.data.data.devices.length < 1) {
+                notFound = $scope._t('no_devices') + ' <a href="#devices"><strong>' + $scope._t('lb_include_device') + '</strong></a>';
+                $scope.alert = {message: notFound, status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                return;
+            }
             $scope.deviceType = dataService.getDeviceType(response.data.data.devices);
             $scope.tags = dataService.getTags(response.data.data.devices);
             // Filter
@@ -76,7 +164,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
                     case 'dashboard':
                         $scope.showFooter = false;
                         filter = {filter: "onDashboard", val: true};
-                        notFound = $scope._t('no_devices_dashboard');
+                        //notFound = $scope._t('no_devices_dashboard');
                         break;
                     case 'deviceType':
                         filter = $routeParams;
@@ -87,20 +175,39 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
                     case 'location':
                         $scope.showFooter = false;
                         filter = $routeParams;
-                        if (angular.isDefined($routeParams.name)) {
-                            $scope.headline = $scope._t('lb_devices_room') + ' ' + $routeParams.name;
+                        if (angular.isDefined($routeParams.val)&& !_.isEmpty($scope.rooms)) {
+                            $scope.headline = $scope._t('lb_devices_room') + ' ' + ($routeParams.val == 0 ? $scope._t($scope.rooms[$routeParams.val].title) : $scope.rooms[$routeParams.val].title) ;
                         }
-                        break;
+                        break; 
                     default:
                         break;
                 }
             }
             var collection = dataService.getDevices(response.data.data.devices, filter, $scope.user.dashboard, null);
             if (collection.length < 1) {
-                $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: notFound};
+                switch($routeParams.filter){
+                   case 'dashboard':
+                         $scope.welcome = true;
+                        break;
+                     case 'location':
+                         if($scope.user.role === 1){
+                             $location.path('/config-rooms/' + filter.val);
+                         }else{
+                            $scope.alert = {message: notFound, status: 'alert-warning', icon: 'fa-exclamation-circle'}; 
+                         }
+                        break;
+                    default:
+                        $scope.alert = {message: notFound, status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                        break;
+                }
+                
+                //$scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: notFound};
+                
                 return;
             }
-            $scope.collection = collection;
+            angular.extend($scope.elements.all,_.indexBy(response.data.data.devices,'id'));
+            angular.extend($scope.collection,collection);
+            //$scope.collection = collection;
             dataService.updateTimeTick(response.data.data.updateTime);
         }, function(error) {
             //console.log('After login: ',$routeParams.login)
@@ -119,6 +226,10 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
             dataFactory.refreshApi('devices').then(function(response) {
                 dataService.updateDevices(response.data);
                 dataService.updateTimeTick(response.data.data.updateTime);
+                if(response.data.data.structureChanged === true){
+                      $scope.loadData();
+                }
+               
             }, function(error) {
                 dataService.showConnectionError(error);
             });
@@ -127,7 +238,7 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     };
 
     $scope.refreshData();
-
+    
     /**
      * Load device history
      */
@@ -176,19 +287,20 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     /**
      * Show Multiline Sensor modal window
      */
-    $scope.loadMultilineSensor = function(target, id, input) {
+    $scope.loadMultilineSensor = function(target, id, input, sensors) {
         $(target).modal();
         $scope.input = input;
-        $scope.multilineSensor = {data: false, icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        $scope.multilineSensors = {data: false, icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('devices', '/' + id, true).then(function(response) {
-            if (response.data.data.metrics.sensors) {
-                $scope.multilineSensor = {data: response.data.data.metrics.sensors};
-                $scope.refreshMultilineSensor(id);
+            if (response.data.data.metrics[sensors]) {
+                $scope.multiLineDev = {data: response.data.data};
+                $scope.multilineSensors = {data: response.data.data.metrics[sensors]};
+                $scope.refreshMultilineSensors(id, sensors);
             } else {
-                $scope.multilineSensor = {data: false, icon: 'fa-info-circle text-warning', message: $scope._t('no_data')};
+                $scope.multilineSensors = {data: false, icon: 'fa-info-circle text-warning', message: $scope._t('no_data')};
             }
         }, function(error) {
-            $scope.multilineSensor = {data: false, icon: 'fa-exclamation-triangle text-danger', message: $scope._t('error_load_data')};
+            $scope.multilineSensors = {data: false, icon: 'fa-exclamation-triangle text-danger', message: $scope._t('error_load_data')};
         });
 
     };
@@ -196,23 +308,24 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     /**
      * Refresh multiline sensor data
      */
-    $scope.refreshMultilineSensor = function(id) {
+    $scope.refreshMultilineSensors = function(id, sensors) {
         var refresh = function() {
             dataFactory.getApi('devices', '/' + id, true).then(function(response) {
-                if (response.data.data.metrics.sensors) {
-                    angular.extend($scope.multilineSensor.data, response.data.data.metrics.sensors);
+                if (response.data.data.metrics[sensors]) {
+                    angular.extend($scope.multilineSensors.data, response.data.data.metrics[sensors]);
                     //$scope.multilineSensor.data = {data: response.data.data.metrics.sensors};
                 }
-            }, function(error) {});
+            }, function(error) {
+            });
         };
-        $scope.multilineSensorInterval = $interval(refresh, $scope.cfg.interval);
+        $scope.multilineSensorsInterval = $interval(refresh, $scope.cfg.interval);
     };
-    
-     /**
+
+    /**
      * Close multiline sensor window
      */
     $scope.closeMultilineSensor = function() {
-         $interval.cancel($scope.multilineSensorInterval);
+        $interval.cancel($scope.multilineSensorsInterval);
     };
 
     /**
@@ -232,6 +345,134 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
         }, function(error) {
             $scope.doorLock = {data: false, icon: 'fa-exclamation-triangle text-danger', message: $scope._t('error_load_data')};
         });
+
+    };
+    
+    /**
+     * Multiline climateControl
+     */
+    $scope.climateElementModes = ['frostProtection', 'energySave', 'comfort','schedule'];
+    $scope.climatePerRoom = {};
+    /**
+     * Show climate modal window
+     */
+    $scope.loadClimateControl = function(target, id, input) {
+        $(target).modal();
+        $scope.input = input;
+        $scope.climateControl = {data: false, icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        $scope.climateControlModes = ['off', 'esave', 'comfort', 'schedule'];
+        $scope.climateControlMode = '';
+        $scope.changeClimateControlProcess = {};
+        //dataFactory.getApiLocal('_test/climate_control.json').then(function(response) {
+         dataFactory.getApi('devices', '/' + id, true).then(function(response) {
+            if (response.data.data.metrics.rooms) {
+                $scope.climateControl = {data: response.data.data};
+            } else {
+                $scope.climateControl = {data: false, icon: 'fa-info-circle text-warning', message: $scope._t('no_data')};
+            }
+        }, function(error) {
+            $scope.climateControl = {data: false, icon: 'fa-exclamation-triangle text-danger', message: $scope._t('error_load_data')};
+        });
+
+    };
+    /**
+     * Change climate element mode
+     */
+    $scope.changeClimateElementlMode = function(input) {
+         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+         dataFactory.runApiCmd(input.cmd).then(function(response) {
+           $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
+        }, function(error) {
+            alertify.alert($scope._t('error_update_data'));
+            $scope.loading = false;
+        });
+
+    };
+
+    /**
+     * Change climate control mode
+     */
+    $scope.changeClimateControlMode = function(input) {
+        $scope.changeClimateControlProcess[input.roomName] = true;
+        dataFactory.runApiCmd(input.cmd).then(function(response) {
+            $scope.changeClimateControlProcess[input.roomName] = false;
+        }, function(error) {
+            alertify.alert($scope._t('error_update_data'));
+           $scope.changeClimateControlProcess[input.roomName] = false;
+        });
+
+    };
+    
+     /**
+     * Show RGB modal window
+     */
+    $scope.rgbWheel = {
+        process: false
+    };
+    $scope.loadRgbWheel = function(target, id, input) {
+        $(target).modal();
+        $scope.input = input;
+        $(target).modal();
+        var bCanPreview = true; // can preview
+
+        // create canvas and context objects
+        var canvas = document.getElementById('wheel_picker');
+
+        var ctx = canvas.getContext('2d');
+        // drawing active image
+        var image = new Image();
+        image.onload = function() {
+            ctx.drawImage(image, 0, 0, image.width, image.height); // draw the image on the canvas
+        };
+        image.src = 'app/img/colorwheel.png';
+        
+        var defaultColor = "rgb(" + input.metrics.color.r + ", " + input.metrics.color.g + ", " + input.metrics.color.b + ")";
+        $('#wheel_picker_preview').css('backgroundColor',defaultColor);
+
+        $('#wheel_picker').mousemove(function(e) { // mouse move handler
+            if (bCanPreview) {
+                // get coordinates of current position
+                var canvasOffset = $(canvas).offset();
+                var canvasX = Math.floor(e.pageX - canvasOffset.left);
+                var canvasY = Math.floor(e.pageY - canvasOffset.top);
+
+                // get current pixel
+                var imageData = ctx.getImageData(canvasX, canvasY, 1, 1);
+                var pixel = imageData.data;
+
+                // update preview color
+                var pixelColor = "rgb(" + pixel[0] + ", " + pixel[1] + ", " + pixel[2] + ")";
+               
+                if(pixelColor == 'rgb(0, 0, 0)'){
+                     $('#wheel_picker_preview').css('backgroundColor',defaultColor);
+                     
+                }else{
+                     $('#wheel_picker_preview').css('backgroundColor', pixelColor);
+                }
+               
+                // update controls
+                $('#rVal').val('R: ' + pixel[0]);
+                $('#gVal').val('G: ' + pixel[1]);
+                $('#bVal').val('B: ' + pixel[2]);
+                $('#rgbVal').val(pixel[0] + ',' + pixel[1] + ',' + pixel[2]);
+            }
+        });
+
+        $('#wheel_picker').click(function(e) { // click event handler
+            bCanPreview = !bCanPreview;
+            if (!bCanPreview) {
+                var cmdColor = $('#rgbVal').val().split(',');
+                var cmd = id + '/command/exact?red=' + cmdColor[0] + '&green=' + cmdColor[1] + '&blue=' + cmdColor[2] + '';
+                $scope.rgbWheel.process = true;
+                dataFactory.runApiCmd(cmd).then(function(response) {
+                    $scope.rgbWheel.process = false;
+                }, function(error) {
+                    $scope.rgbWheel.process = false;
+                     alertify.alert($scope._t('error_update_data'));
+                });
+            }
+        });
+
 
     };
     /**
@@ -298,9 +539,12 @@ myAppController.controller('ElementController', function($scope, $routeParams, $
     function runCmd(cmd, id) {
         var widgetId = '#Widget_' + id;
         dataFactory.runApiCmd(cmd).then(function(response) {
-            $(widgetId + ' .widget-image').addClass('trans-true');
+            if(id){
+                $(widgetId + ' .widget-image').addClass('trans-true'); 
+            }
+           
         }, function(error) {
-            alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
         });
         return;
@@ -357,8 +601,7 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
             });
 
         }, function(error) {
-            alert($scope._t('error_load_data'));
-            dataService.showConnectionError(error);
+            dataService.showConnectionError(error); 
         });
     };
     $scope.loadTagList();
@@ -412,7 +655,7 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
                 updateProfile($scope.user, input.id);
 
             }, function(error) {
-                alert($scope._t('error_update_data'));
+                alertify.alert($scope._t('error_update_data'));
                 $scope.loading = false;
             });
         }
@@ -461,7 +704,7 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
             $window.history.back();
 
         }, function(error) {
-            alert($scope._t('error_update_data'));
+            alertify.alert($scope._t('error_update_data'));
             $scope.loading = false;
         });
         return;
@@ -484,13 +727,14 @@ myAppController.controller('ElementDetailController', function($scope, $routePar
                 'metrics': v.metrics,
                 'updateTime': v.updateTime,
                 'cfg': v.cfg,
+                'appType': v.appType,
                 'permanently_hidden': v.permanently_hidden,
                 //'rooms': $scope.rooms,
                 'hide_events': false
             };
             dataService.updateTimeTick(updateTime);
         } else {
-            alert($scope._t('no_data'));
+            alertify.alert($scope._t('no_data'));
             dataService.showConnectionError($scope._t('no_data'));
         }
     }
