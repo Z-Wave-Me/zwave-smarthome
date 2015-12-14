@@ -16364,7 +16364,7 @@ myAppController.controller('ManagementController', function($scope, $window, $lo
 
             };
             $scope.controllerInfo.uuid = ZWaveAPIData.controller.data.uuid.value;
-            $scope.controllerInfo.isZeroUuid = parseFloat(ZWaveAPIData.controller.data.uuid.value) === 0;
+            $scope.controllerInfo.isZeroUuid = parseInt(ZWaveAPIData.controller.data.uuid.value,16) === 0;
             $scope.controllerInfo.softwareRevisionVersion = ZWaveAPIData.controller.data.softwareRevisionVersion.value;
             $scope.controllerInfo.capabillities = caps(ZWaveAPIData.controller.data.caps.value);
             $scope.loadLicenceScratchId($scope.controllerInfo.uuid);
@@ -17135,14 +17135,14 @@ myAppController.controller('LoginController', function($scope, $location, $windo
      * Get session (ie for users holding only a session id, or users that require no login)
      */
     $scope.getSession = function() {
-        var hasCookie = ($cookies.user) ? true:false;
-        dataFactory.sessionApi().then(function(response) {
-            $scope.processUser(response.data.data);
-            if (!hasCookie) {
-                $location.path('/elements/dashboard/1');
-                $window.location.reload();
-            }
-        });
+//        var hasCookie = ($cookies.user) ? true:false;
+//        dataFactory.sessionApi().then(function(response) {
+//            $scope.processUser(response.data.data);
+//            if (!hasCookie) {
+//                $location.path('/elements/dashboard/1');
+//                $window.location.reload();
+//            }
+//        });
     };
     /**
      * Login with selected data from server response
