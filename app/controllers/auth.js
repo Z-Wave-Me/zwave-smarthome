@@ -36,14 +36,14 @@ myAppController.controller('LoginController', function($scope, $location, $windo
      * Get session (ie for users holding only a session id, or users that require no login)
      */
     $scope.getSession = function() {
-        var hasCookie = ($cookies.user) ? true:false;
-        dataFactory.sessionApi().then(function(response) {
-            $scope.processUser(response.data.data);
-            if (!hasCookie) {
-                $location.path('/elements/dashboard/1');
-                $window.location.reload();
-            }
-        });
+//        var hasCookie = ($cookies.user) ? true:false;
+//        dataFactory.sessionApi().then(function(response) {
+//            $scope.processUser(response.data.data);
+//            if (!hasCookie) {
+//                $location.path('/elements/dashboard/1');
+//                $window.location.reload();
+//            }
+//        });
     };
     /**
      * Login with selected data from server response
