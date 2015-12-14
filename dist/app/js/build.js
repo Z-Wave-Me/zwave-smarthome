@@ -16364,7 +16364,7 @@ myAppController.controller('ManagementController', function($scope, $window, $lo
 
             };
             $scope.controllerInfo.uuid = ZWaveAPIData.controller.data.uuid.value;
-            $scope.controllerInfo.isZeroUuid = parseFloat(ZWaveAPIData.controller.data.uuid.value) === 0;
+            $scope.controllerInfo.isZeroUuid = parseInt(ZWaveAPIData.controller.data.uuid.value,16) === 0;
             $scope.controllerInfo.softwareRevisionVersion = ZWaveAPIData.controller.data.softwareRevisionVersion.value;
             $scope.controllerInfo.capabillities = caps(ZWaveAPIData.controller.data.caps.value);
             $scope.loadLicenceScratchId($scope.controllerInfo.uuid);
