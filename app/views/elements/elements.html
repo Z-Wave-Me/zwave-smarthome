@@ -67,6 +67,10 @@
                                             ng-class="levelVal[v.id] < 1 ? 'btn-primary': 'btn-default'"
                                             title="{{_t('lb_down')}}"><i class="fa fa-arrow-down"></i> <span class="widget-btn-label">{{_t('lb_down')}}</span></button>
                                         <button 
+                                            class="btn btn-sm btn-default" 
+                                            data-ng-click="levelVal[v.id] == v.level; runCmd(v.id + '/command/stop', v.id); goHidden = false"
+                                            title="{{_t('lb_stop')}}"><i class="fa fa-square"></i> </button>
+                                        <button 
                                             class="btn btn-sm widget-btn-on" 
                                             id="btn_on_{{ v.id}}"
                                             data-ng-click="levelVal[v.id] == 99; runCmd(v.id + '/command/on', v.id); goHidden = false"

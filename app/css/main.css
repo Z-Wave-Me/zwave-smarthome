@@ -3979,11 +3979,11 @@ legend.alpaca-container-label {
 }
 
 /* line 267, sass/modules/_elements.scss */
-.switchMultilevel.dimmer .control-left {
+.switchMultilevel .control-left {
   width: 60% !important;
 }
 /* line 270, sass/modules/_elements.scss */
-.switchMultilevel.dimmer .control-right {
+.switchMultilevel .control-right {
   width: 40%;
 }
 
