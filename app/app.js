@@ -75,20 +75,9 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     requireLogin: true,
                     roles: cfg.role_access.myaccess
                 }).
-                //Apps
-                when('/apps', { 
-                    templateUrl: 'app/views/apps/apps.html',
-                     requireLogin: true,
-                    roles: cfg.role_access.apps
-                }).
                 //Apps local
                 when('/apps/local', { 
                     templateUrl: 'app/views/apps/apps_local.html',
-                     requireLogin: true,
-                    roles: cfg.role_access.apps
-                }).
-                 when('/apps/category/:category', { 
-                    templateUrl: 'app/views/apps/apps.html',
                      requireLogin: true,
                     roles: cfg.role_access.apps
                 }).

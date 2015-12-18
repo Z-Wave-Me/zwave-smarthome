@@ -1,6 +1,7 @@
 <!-- Online apps view -->
 <div ng-controller="AppBaseController">
     <div ng-controller="AppOnlineController">
+         <bb-loader></bb-loader>
          <!-- Apps navigation -->
         <div ng-include="'app/views/apps/navi.html'"></div>
         <div class="page-control form-inline">
@@ -59,8 +60,7 @@
                          ng-click="redirectToRoute(dataHolder.modules.ids[v.modulename] ? false : 'apps/online/' + v.modulename)" />
                     <div class="app-body">
                         <h3 class="entry-title">
-                            <a href="#apps/online/{{v.modulename}}" ng-if="dataHolder.modules.ids.indexOf(v.modulename) === -1">{{v.title}}  &raquo;</a>
-                            <span ng-if="dataHolder.modules.ids.indexOf(v.modulename) !== -1" ng-bind="v.title"></span>
+                            <a href="#apps/online/{{v.modulename}}">{{v.title}} &raquo;</a>
                         </h3>
 
                     </div>
