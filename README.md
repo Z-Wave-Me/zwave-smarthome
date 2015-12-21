@@ -6,8 +6,10 @@ Angular app
 ## v1.0.4
 ### New features
 - Added stop button to blinds.
+
 ### Changes
 - ???.
+
 ### Fixes
 - ???.
 
