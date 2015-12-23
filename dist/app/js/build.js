@@ -8346,20 +8346,9 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     requireLogin: true,
                     roles: cfg.role_access.myaccess
                 }).
-                //Apps
-                when('/apps', { 
-                    templateUrl: 'app/views/apps/apps.html',
-                     requireLogin: true,
-                    roles: cfg.role_access.apps
-                }).
                 //Apps local
                 when('/apps/local', { 
                     templateUrl: 'app/views/apps/apps_local.html',
-                     requireLogin: true,
-                    roles: cfg.role_access.apps
-                }).
-                 when('/apps/category/:category', { 
-                    templateUrl: 'app/views/apps/apps.html',
                      requireLogin: true,
                     roles: cfg.role_access.apps
                 }).
@@ -10936,8 +10925,8 @@ myApp.directive("tcChartjs", [ "TcChartjsFactory", function(TcChartjsFactory) {
 /**
  * Display HTML tags in scope
  */
-myApp.filter('toTrusted', ['$sce', function($sce) {
-        return function(text) {
+myApp.filter('toTrusted', ['$sce', function ($sce) {
+        return function (text) {
             if (text == null) {
                 return '';
             }
@@ -10947,16 +10936,16 @@ myApp.filter('toTrusted', ['$sce', function($sce) {
 /**
  * Strip HTML tags from input
  */
-myApp.filter('stripTags', function() {
-    return function(text) {
-      return String(text).replace(/<[^>]+>/gm, '');
+myApp.filter('stripTags', function () {
+    return function (text) {
+        return String(text).replace(/<[^>]+>/gm, '');
     };
 });
 /**
  * Cut text into x chars
  */
-myApp.filter('cutText', function() {
-    return function(value, wordwise, max, tail) {
+myApp.filter('cutText', function () {
+    return function (value, wordwise, max, tail) {
         if (!value)
             return '';
 
@@ -10980,8 +10969,8 @@ myApp.filter('cutText', function() {
 /**
  * Convert val to int
  */
-myApp.filter('toInt', function() {
-    return function(val, a) {
+myApp.filter('toInt', function () {
+    return function (val, a) {
         a = typeof a !== 'undefined' ? a : 10;
         if (isNaN(val)) {
             return 0;
@@ -10993,17 +10982,17 @@ myApp.filter('toInt', function() {
 /**
  * Get type of a Javascript variable
  */
-myApp.filter('typeOf', function() {
-    return function(obj) {
-         return {}.toString.call(obj).split(' ')[1].slice(0, -1).toLowerCase();
+myApp.filter('typeOf', function () {
+    return function (obj) {
+        return {}.toString.call(obj).split(' ')[1].slice(0, -1).toLowerCase();
     };
 });
 
 /**
  * Set the max dec. lenghth
  */
-myApp.filter('numberFixedLen', function() {
-    return function(val) {
+myApp.filter('numberFixedLen', function () {
+    return function (val) {
         if (val == 0) {
             return 0;
         }
@@ -11028,8 +11017,8 @@ myApp.filter('numberFixedLen', function() {
 /**
  * Check if JSON keys/nodes exist
  */
-myApp.filter('hasNode', function() {
-    return function(obj, path) {
+myApp.filter('hasNode', function () {
+    return function (obj, path) {
         if (!obj || !path) {
             return null;
         }
@@ -11048,8 +11037,8 @@ myApp.filter('hasNode', function() {
 /**
  * Get segment from url
  */
-myApp.filter('getUrlSegment', function($location) {
-    return function(segment) {
+myApp.filter('getUrlSegment', function ($location) {
+    return function (segment) {
         var ret = false;
         var data = $location.path().split('/');
         if (data[segment]) {
@@ -11061,10 +11050,10 @@ myApp.filter('getUrlSegment', function($location) {
 /**
  * Get current time
  */
-myApp.filter('getElementIcon', function(cfg) {
-    return function(input, device,level) {
+myApp.filter('getElementIcon', function (cfg) {
+    return function (input, device, level) {
         var icon = cfg.img.icons + 'placeholder.png';
-        
+
         if (input) {
             if ((/^https?:\/\//.test(input))) {
                 return input;
@@ -11079,10 +11068,10 @@ myApp.filter('getElementIcon', function(cfg) {
                 case 'door':
                     icon = cfg.img.icons + (level == 'open' || level == 'on' ? 'door-open.png' : 'door-closed.png');
                     break;
-                 case 'doorlockcontrol':
-                     icon = cfg.img.icons + 'lock-closed.png';
+                case 'doorlockcontrol':
+                    icon = cfg.img.icons + 'lock-closed.png';
                     break;
-                    
+
 
                 case 'switch':
                     icon = cfg.img.icons + (level == 'on' ? 'switch-on.png' : 'switch-off.png');
@@ -11159,14 +11148,14 @@ myApp.filter('getElementIcon', function(cfg) {
                     break;
             }
 
-        }else{
-           switch (device.deviceType) {
+        } else {
+            switch (device.deviceType) {
                 case 'switchControl':
                     icon = cfg.img.icons + 'switch-control.png';
                     break;
                 default:
                     break;
-              }
+            }
         }
         return icon;
     };
@@ -11175,30 +11164,30 @@ myApp.filter('getElementIcon', function(cfg) {
 /**
  * Get event icon
  */
-myApp.filter('getEventIcon', function() {
-    return function(input,message) {
+myApp.filter('getEventIcon', function () {
+    return function (input, message) {
         var icon = 'placeholder.png';
         switch (input) {
             case 'device-temperature':
                 icon = 'device-temperature.png';
                 break;
-             case 'device-electric':
+            case 'device-electric':
                 icon = 'device-electric.png';
                 break;
-             case 'device-power':
+            case 'device-power':
                 icon = 'device-power.png';
                 break;
             case 'device-status':
                 icon = 'device-status.png';
                 break
             case 'device-OnOff':
-                if(angular.isObject(message)){
-                    icon = (message.l == 'on'? 'device-on.png': 'device-off.png'); 
-                }else{
+                if (angular.isObject(message)) {
+                    icon = (message.l == 'on' ? 'device-on.png' : 'device-off.png');
+                } else {
                     icon = 'device-on.png';
                 }
                 break
-             case 'device-luminiscence':
+            case 'device-luminiscence':
                 icon = 'device-luminiscence.png';
                 break
             case 'device':
@@ -11217,24 +11206,24 @@ myApp.filter('getEventIcon', function() {
 /**
  * Get battery icon
  */
-myApp.filter('getBatteryIcon', function() {
-    return function(input) {
+myApp.filter('getBatteryIcon', function () {
+    return function (input) {
         var icon = 'battery.png';
         if (isNaN(input)) {
             return icon;
         }
         var level = parseInt(input);
-        if(level > 95){
+        if (level > 95) {
             icon = 'battery-100.png';
-        }else if(level >= 70 && level <= 95){
+        } else if (level >= 70 && level <= 95) {
             icon = 'battery-80.png';
-        }else if(level >= 50 && level < 70){
+        } else if (level >= 50 && level < 70) {
             icon = 'battery-50.png';
-        }else if(level > 20 && level < 50){
+        } else if (level > 20 && level < 50) {
             icon = 'battery-30.png';
-        }else if(level >= 5 && level <= 20){
+        } else if (level >= 5 && level <= 20) {
             icon = 'battery-20.png';
-        }else{
+        } else {
             icon = 'battery-0.png';
         }
         return icon;
@@ -11244,13 +11233,13 @@ myApp.filter('getBatteryIcon', function() {
 /**
  * Get event icon
  */
-myApp.filter('getRoomIcon', function(cfg) {
-    return function(room) {
+myApp.filter('getRoomIcon', function (cfg) {
+    return function (room) {
         var icon = 'storage/img/placeholder-img.png';
-        if(room.img_type == 'default' && room.default_img){
+        if (room.img_type == 'default' && room.default_img) {
             icon = 'storage/img/rooms/' + room.default_img;
         }
-         if(room.img_type == 'user' && room.user_img){
+        if (room.img_type == 'user' && room.user_img) {
             icon = cfg.server_url + cfg.api_url + 'load/image/' + room.user_img;
         }
         return icon;
@@ -11258,16 +11247,52 @@ myApp.filter('getRoomIcon', function(cfg) {
 });
 
 /**
+ * Get App category icon
+ */
+myApp.filter('getAppCategoryIcon', function () {
+    return function (input) {
+        var array = {
+            basic_gateway_modules: 'fa-cube',
+            legacy_products_workaround: 'fa-wrench',
+            support_external_ui: 'fa-object-group',
+            support_external_dev: 'fa-cubes',
+            automation_basic: 'fa-refresh',
+            device_enhancements: 'fa-caret-square-o-u',
+            developers_stuff: 'fa-file-code-o',
+            complex_applications: 'fa-link',
+            //automation: '',
+            security: 'fa-shield',
+            peripherals: 'fa-bolt',
+            logging: 'fa-list-ul',
+            //scripting: '',
+            devices: 'fa-cogs',
+            //scheduling: '',
+            //climate: '',
+            environment: 'fa-puzzle-piece',
+            //scenes: '',
+            notifications: 'fa-calendar',
+            tagging: 'fa-tags'
+        };
+        // Default icon
+        if (!array[input]) {
+            return 'fa-caret-right';
+        }
+
+        return array[input];
+    };
+});
+
+/**
  * Get max level
  */
-myApp.filter('getMaxLevel', function() {
-    return function(input,probeType) {
+myApp.filter('getMaxLevel', function () {
+    return function (input, probeType) {
         var levelVal = 100;
-         switch (probeType) {
+        switch (probeType) {
             case 'test':
                 levelVal = (input < 255 ? input : 255);
                 break;
-             
+
             default:
                 levelVal = (input < 100 ? input : 100);
                 break;
@@ -11279,15 +11304,15 @@ myApp.filter('getMaxLevel', function() {
 /**
  * Today from unix - ExpertUI filter
  */
-myApp.filter('isTodayFromUnix', function() {
-    return function(input) {
-        if(isNaN(input)){
+myApp.filter('isTodayFromUnix', function () {
+    return function (input) {
+        if (isNaN(input)) {
             return '?';
         }
         var d = new Date(input * 1000);
         var day = (d.getDate() < 10 ? '0' + d.getDate() : d.getDate());
         var mon = d.getMonth() + 1; //Months are zero based
-        mon = ( mon < 10 ? '0' +  mon :  mon);
+        mon = (mon < 10 ? '0' + mon : mon);
         var year = d.getFullYear();
         var hrs = (d.getHours() < 10 ? '0' + d.getHours() : d.getHours());
         var min = (d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes());
@@ -11306,8 +11331,8 @@ myApp.filter('isTodayFromUnix', function() {
 /**
  * Get current time
  */
-myApp.filter('getCurrentTime', function() {
-    return function() {
+myApp.filter('getCurrentTime', function () {
+    return function () {
         var d = new Date();
         var hrs = (d.getHours() < 10 ? '0' + d.getHours() : d.getHours());
         var min = (d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes());
@@ -11319,8 +11344,8 @@ myApp.filter('getCurrentTime', function() {
 /**
  * Get current time
  */
-myApp.filter('unixStartOfDay', function() {
-    return function(input, value) {
+myApp.filter('unixStartOfDay', function () {
+    return function (input, value) {
         var now = new Date();
         var startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
         var timestamp = (startOfDay / 1000) + (3600 * 2);
@@ -11342,8 +11367,8 @@ myApp.filter('unixStartOfDay', function() {
 /**
  * If is today display h:m otherwise d:m:y
  */
-myApp.filter('isToday', function() {
-    return function(input, fromunix,days,yesterday) {
+myApp.filter('isToday', function () {
+    return function (input, fromunix, days, yesterday) {
         if (fromunix) {
             var d = new Date(input * 1000);
             var startDate = new Date(input * 1000);  // 2000-01-01
@@ -11386,8 +11411,8 @@ myApp.filter('isToday', function() {
 /**
  * If is today display h:m otherwise d:m:y
  */
-myApp.filter('eventDate', function() {
-    return function(input) {
+myApp.filter('eventDate', function () {
+    return function (input) {
         var d = new Date(input);
         var day = d.getDate();
         var mon = d.getMonth() + 1; //Months are zero based
@@ -11408,8 +11433,8 @@ myApp.filter('eventDate', function() {
 /**
  * Get only unique values
  */
-myApp.filter('unique', function() {
-    return function(items, filterOn) {
+myApp.filter('unique', function () {
+    return function (items, filterOn) {
 
         if (filterOn === false) {
             return items;
@@ -11418,7 +11443,7 @@ myApp.filter('unique', function() {
         if ((filterOn || angular.isUndefined(filterOn)) && angular.isArray(items)) {
             var hashCheck = {}, newItems = [];
 
-            var extractValueToCompare = function(item) {
+            var extractValueToCompare = function (item) {
                 if (angular.isObject(item) && angular.isString(filterOn)) {
                     return item[filterOn];
                 } else {
@@ -11426,7 +11451,7 @@ myApp.filter('unique', function() {
                 }
             };
 
-            angular.forEach(items, function(item) {
+            angular.forEach(items, function (item) {
                 var valueToCheck, isDuplicate = false;
 
                 for (var i = 0; i < newItems.length; i++) {
@@ -11448,19 +11473,19 @@ myApp.filter('unique', function() {
 /**
  * Get uri segment
  */
-myApp.filter('uri', function($location) {
+myApp.filter('uri', function ($location) {
     return {
-        segment: function(segment) {
+        segment: function (segment) {
             var data = $location.path().split("/");
             if (data[segment]) {
                 return data[segment];
             }
             return false;
         },
-        total_segments: function() {
+        total_segments: function () {
             var data = $location.path().split("/");
             var i = 0;
-            angular.forEach(data, function(value) {
+            angular.forEach(data, function (value) {
                 if (value.length) {
                     i++;
                 }
@@ -11473,8 +11498,8 @@ myApp.filter('uri', function($location) {
 /**
  * Display device name
  */
-myApp.filter('deviceName', function() {
-    return function(deviceId, device) {
+myApp.filter('deviceName', function () {
+    return function (deviceId, device) {
         var name = (deviceId == 1 ? 'Z-Way' : 'Device ' + '_' + deviceId);
         if (device === undefined) {
             return name;
@@ -11489,8 +11514,8 @@ myApp.filter('deviceName', function() {
 /**
  * Convert text to slug
  */
-myApp.filter('stringToSlug', function() {
-    return function(str) {
+myApp.filter('stringToSlug', function () {
+    return function (str) {
         str = str.replace(/^\s+|\s+$/g, ''); // trim
         str = str.toLowerCase();
 
@@ -12881,380 +12906,6 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
  */
 
 /**
- * App controller
- */
-myAppController.controller('AppController', function($scope, $filter, $cookies, $timeout, $route, $routeParams, $location, dataFactory, dataService, myCache, _) {
-    //Set elements to expand/collapse
-    angular.copy({
-        appsCategories: false
-    }, $scope.expand);
-    $scope.instances = [];
-    $scope.hasImage = [];
-    //$scope.modules = [];
-    $scope.localModules = {
-        shhowAll: false,
-        data: {},
-        all: {},
-        featured: {},
-        ids: []
-    };
-    //$scope.modulesIds = [];
-    $scope.cameraIds = [];
-    $scope.modulesCats = [];
-    $scope.moduleImgs = [];
-    $scope.onlineModules = [];
-    $scope.onlineVersion = [];
-    $scope.categories = [];
-    $scope.activeTab = (angular.isDefined($cookies.tab_app) ? $cookies.tab_app : 'local');
-    //$scope.activeTab = 'local';
-    $scope.tokens = {};
-    //$scope.category = '';
-    $scope.currentCategory = {
-        id: false,
-        name: ''
-    };
-    $scope.showFooter = true;
-    $scope.modalLocal = {};
-    $scope.showInFooter = {
-        'categories': true,
-        'serach': true
-    };
-    $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
-    $scope.onlineMediaUrl = $scope.cfg.online_module_img_url;
-
-    // On page destroy
-    $scope.$on('$destroy', function() {
-        angular.copy({}, $scope.expand);
-    });
-    /**
-     * Load tokens
-     */
-    $scope.loadTokens = function(filter) {
-        dataFactory.getApi('tokens', null, true).then(function(response) {
-            angular.extend($scope.tokens, response.data.data.tokens);
-            $scope.loadOnlineModules(filter);
-        }, function(error) {
-        });
-    };
-
-    /**
-     * Load categories
-     */
-    $scope.loadCategories = function() {
-        dataFactory.getApi('modules_categories').then(function(response) {
-            var cat = response.data.data;
-            if (cat) {
-                $scope.categories = cat[$scope.lang] || cat[$scope.cfg.lang];
-
-                if ($routeParams.category) {
-                    var currCat = _.findWhere($scope.categories, {id: $routeParams.category});
-                    angular.extend($scope.currentCategory, {name: currCat.name});
-                }
-
-            }
-
-        }, function(error) {
-            dataService.showConnectionError(error);
-        });
-    };
-    $scope.loadCategories();
-
-    /**
-     * Show all/featured apps
-     */
-    $scope.showAll = function(bool) {
-        $scope.localModules.showAll = bool;
-    };
-
-    /**
-     * Load local modules
-     */
-    $scope.loadModules = function(query) {
-        var filter = null;
-        if ($scope.user.role === 1 && $scope.user.expert_view) {
-            filter = null;
-        } else {
-            filter = {filter: "state", val: "hidden", not: true};
-        }
-        dataFactory.getApi('modules').then(function(response) {
-            var modulesFiltered = _.filter(response.data.data, function(item) {
-
-                //$scope.localModules.ids.push(item.id);
-                $scope.localModules.ids.push(item.id);
-                $scope.localModules.all[item.id] = item;
-                var isHidden = false;
-                if ($scope.getHiddenApps().indexOf(item.moduleName) > -1) {
-                    if ($scope.user.role !== 1) {
-                        isHidden = true;
-                    } else {
-                        isHidden = ($scope.user.expert_view ? false : true);
-                    }
-
-                }
-                if (item.category === 'surveillance') {
-                    $scope.cameraIds.push(item.id);
-                    isHidden = true;
-                }
-
-                if (!isHidden) {
-                    var findLocationStr = item.location.split('/');
-                    if (findLocationStr[0] === 'userModules') {
-                        angular.extend(item, {custom: true});
-                    } else {
-                        angular.extend(item, {custom: false});
-                    }
-                    //$scope.modulesIds.push(item.id);
-                    $scope.moduleImgs[item.id] = item.icon;
-                    if (item.category && $scope.modulesCats.indexOf(item.category) === -1) {
-                        $scope.modulesCats.push(item.category);
-                    }
-                    if ($scope.getCustomCfgArr('featured_apps').indexOf(item.moduleName) > -1) {
-                        $scope.localModules.featured[item.moduleName] = item;
-                    }
-
-                    return item;
-                }
-            });
-            $scope.localModules.data = $scope.localModules.showAll ? _.where(modulesFiltered, query) : $scope.localModules.featured;
-            //console.log($scope.localModules.data);
-            //$scope.modules = _.where(modulesFiltered, query);
-            $scope.loading = false;
-            dataService.updateTimeTick();
-        }, function(error) {
-            $scope.loading = false;
-            dataService.showConnectionError(error);
-        });
-    };
-
-    /**
-     * Load online modules
-     */
-    $scope.loadOnlineModules = function(filter) {
-        dataFactory.getOnlineModules({token: _.values($scope.tokens)}).then(function(response) {
-            $scope.onlineModules = _.chain(response.data.data)
-                    .flatten()
-                    .filter(function(item) {
-                        var isHidden = false;
-                        $scope.onlineVersion[item.modulename] = item.version;
-                        if ($scope.getHiddenApps().indexOf(item.modulename) > -1) {
-                            if ($scope.user.role !== 1) {
-                                isHidden = true;
-                            } else {
-                                isHidden = ($scope.user.expert_view ? false : true);
-                            }
-                        }
-                        //angular.extend(item,{file: item.modulename});
-                        //var findNameStr = item.modulename.split('.');
-                        //item['modulename'] = findNameStr[0];
-                        if (!isHidden) {
-                            return item;
-                        }
-                    })
-                    .where(filter)
-                    .value();
-            $scope.loading = false;
-            dataService.updateTimeTick();
-        }, function(error) {
-            $scope.loading = false;
-            dataService.showConnectionError(error);
-        });
-    };
-    /**
-     * Load instances
-     */
-    $scope.loadInstances = function() {
-        dataFactory.getApi('instances').then(function(response) {
-            $scope.instances = _.reject(response.data.data, function(v) {
-                //return v.state === 'hidden' && ($scope.user.role !== 1 && $scope.user.expert_view !== true);
-                if ($scope.getHiddenApps().indexOf(v.moduleId) > -1) {
-                    if ($scope.user.role !== 1) {
-                        return true;
-                    } else {
-                        return ($scope.user.expert_view ? false : true);
-                    }
-
-                } else {
-                    return false;
-                }
-            });
-            $scope.loading = false;
-            dataService.updateTimeTick();
-        }, function(error) {
-            $scope.loading = false;
-            dataService.showConnectionError(error);
-        });
-    };
-
-    /**
-     * Set tab
-     */
-    $scope.setTab = function(tabId) {
-        $scope.activeTab = tabId;
-        $cookies.tab_app = tabId;
-    };
-
-    if (angular.isDefined($routeParams.category)) {
-        $scope.currentCategory.id = $routeParams.category;
-    }
-
-    // Watch for tab change
-    $scope.$watch('activeTab', function() {
-        dataService.showConnectionSpinner();
-        //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        switch ($scope.activeTab) {
-            case 'instance':
-                $scope.loadModules();
-                $scope.showInFooter.categories = false;
-                $scope.loadInstances();
-
-                break;
-            case 'online':
-                var filter = false;
-
-                if ($scope.currentCategory.id) {
-                    filter = {category: $scope.currentCategory.id};
-                    //console.log(filter)
-
-                }
-
-                $scope.loadTokens(filter);
-
-                $scope.loadModules(filter);
-                $scope.showInFooter.categories = false;
-
-                break;
-            default:
-                $scope.showInFooter.categories = true;
-                $scope.$watch('currentCategory', function() {
-                    //$scope.modules = angular.copy([]);
-                    $scope.localModules.data = angular.copy([]);
-                    var filter = false;
-
-                    if ($scope.currentCategory.id) {
-                        $scope.localModules.showAll = true;
-                        filter = {category: $scope.currentCategory.id};
-                    }
-                    $scope.loadModules(filter);
-                    $scope.loadOnlineModules();
-                    $scope.loadInstances();
-                });
-                $scope.$watch('localModules.showAll', function() {
-                    //$scope.modules = angular.copy([]);
-                    $scope.localModules.data = angular.copy([]);
-                    var filter = false;
-
-                    if ($scope.currentCategory.id) {
-                        filter = {category: $scope.currentCategory.id};
-                    }
-                    $scope.loadModules(filter);
-                    $scope.loadOnlineModules();
-                    $scope.loadInstances();
-                });
-
-                break;
-        }
-    });
-
-    /**
-     * Show modal window
-     */
-    $scope.showModal = function(target, input) {
-        $scope.modalLocal = input;
-        $(target).modal();
-    };
-
-    /**
-     * Reset filter
-     */
-    $scope.resetFilter = function(path) {
-        $route.reload();
-        if (path) {
-            $location.path(path);
-        }
-
-    };
-
-    /**
-     * Ictivate instance
-     */
-    $scope.activateInstance = function(input, activeStatus) {
-        input.active = activeStatus;
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        if (input.id) {
-            dataFactory.putApi('instances', input.id, input).then(function(response) {
-                $scope.loading = false;
-                myCache.remove('instances');
-                myCache.remove('instances/' + input.moduleId);
-                myCache.remove('devices');
-                $scope.loadInstances();
-
-            }, function(error) {
-                alertify.alert($scope._t('error_update_data'));
-                $scope.loading = false;
-            });
-        }
-
-    };
-
-    /**
-     * Delete instance
-     */
-    $scope.deleteInstance = function(target, input, message) {
-        alertify.confirm(message, function() {
-            dataFactory.deleteApi('instances', input.id).then(function(response) {
-                $(target).fadeOut(500);
-                myCache.remove('instances');
-                myCache.remove('devices');
-            }, function(error) {
-                alertify.alert($scope._t('error_delete_data'));
-            });
-
-        });
-    };
-
-
-    /**
-     * Delete module
-     */
-    $scope.deleteModule = function(input, message, target) {
-
-        alertify.confirm(message, function() {
-            //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
-            dataFactory.deleteApi('online_delete', input.id).then(function(response) {
-                $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t(response.data.data.key)};
-                myCache.removeAll();
-                $route.reload();
-
-            }, function(error) {
-                var message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error.key) : $scope._t('error_delete_data'));
-                $scope.loading = false;
-                alertify.alert(message);
-            });
-        });
-    };
-
-    /**
-     * Reset module
-     */
-    $scope.resetModule = function(input, message, target) {
-
-        alertify.confirm(message, function() {
-            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
-            dataFactory.postApi('online_reset', input, '/' + input.id).then(function(response) {
-                $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t(response.data.data.key)};
-                myCache.removeAll();
-                $route.reload();
-
-            }, function(error) {
-                var message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error.key) : $scope._t('error_delete_data'));
-                $scope.loading = false;
-                alertify.alert(message);
-            });
-        });
-    };
-
-});
-/**
  * App base controller
  */
 myAppController.controller('AppBaseController', function($scope, $filter, $cookies, $timeout, $route, $routeParams, $location, dataFactory, dataService, myCache, _) {
@@ -13674,7 +13325,7 @@ myAppController.controller('AppLocalDetailController', function($scope, $routePa
 /**
  * App online detail controller
  */
-myAppController.controller('AppOnlineDetailController', function($scope, $routeParams, $timeout, $location, dataFactory, dataService, _) {
+myAppController.controller('AppOnlineDetailController', function($scope, $routeParams, $timeout, $location,$route,  myCache,dataFactory, dataService, _) {
     $scope.local = {
         installed: false
     };
@@ -13744,25 +13395,26 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
             $location.path('/error/' + error.status);
         });
     };
-
-
-
-    /**
-     * Download module
+    
+     /**
+     * Install module
      */
-    $scope.downloadModule = function(id) {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
+    $scope.installModule = function(file) {
+       $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
         var data = {
-            moduleUrl: $scope.cfg.online_module_download_url + id + '.tar.gz'
+            moduleUrl: $scope.cfg.online_module_download_url + file
         };
-        dataFactory.installOnlineModule(data).then(function(response) {
+        dataFactory.installOnlineModule(data, 'online_install').then(function(response) {
             $timeout(function() {
-                $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_module_download')};
+                $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t(response.data.data.key)};
+                myCache.removeAll();
+                $route.reload();
             }, 3000);
 
         }, function(error) {
             $scope.loading = false;
-            alertify.alert($scope._t('error_no_module_download'));
+            var message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error.key) : $scope._t('error_no_module_download'));
+            alertify.alert(message);
         });
 
     };

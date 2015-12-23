@@ -1,0 +1,15 @@
+/* Dropdown
+-------------------------------------------------- */
+.dropdown-menu {
+   font-size: $app-body-font-size;
+   .fa{
+       font-size: $app-navi-icon-size;
+   }
+}
+
+.dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {
+    color:lighten($app-body-color, 50%);
+    text-decoration: none;
+    outline: 0;
+    background-color:$header-color-secondary;
+}

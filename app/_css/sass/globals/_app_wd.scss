@@ -1,0 +1,91 @@
+/* WD css
+-------------------------------------------------- */
+.app-type-wd{
+    /* TYPO */
+    a:hover {
+        color: #0096f1;
+    }
+     /* Navi */
+    .navbar-inverse {
+        background-color: #0066A4;
+        //border-color: transparent;
+        //border-bottom: solid 4px #00376D;
+        color: #00376D;
+        .navbar-nav{
+            .dropdown-toggle{
+                color: #fff;
+            }
+            .dropdown-toggle:hover{
+                color: #fff;
+            }
+        }
+    }
+
+    navbar-inverse .navbar-nav > .open > a, 
+    .navbar-inverse .navbar-nav > .open > a:hover, 
+        .navbar-inverse .navbar-nav > .open > a:focus {
+        background-color: #00376D;
+        color: #16a4f7;
+    }
+
+    .navbar-inverse .dropdown-menu > .active > a, 
+    .navbar-inverse .dropdown-menu > .active > a:hover, 
+        .navbar-inverse .dropdown-menu > .active > a:focus {
+        background-color: #0066A4;
+        color: #fff;
+    }
+    .navbar-inverse .dropdown-menu>li>a:hover, 
+        .navbar-inverse .dropdown-menu>li>a:focus {
+        background-color: #16a4f7;
+        color: #fff;
+    }
+
+    .navbar-visible-in{
+        .divider-vertical{
+            height: 50px;
+        }
+        a{
+            color: #fff;
+        }
+        a:hover{
+            color: #16a4f7;
+        }
+        .active{
+            background-color:#00376D;
+            color: #fff;
+        }
+    }
+
+    .header-logo{
+        img{
+            max-height: 40px;
+            max-width: 70px;
+        }
+    }
+
+    #update_time_tick{
+        .text-success{
+            color: #fff;
+        }
+    }
+
+    .navbar{
+        .divider-vertical {
+            border-left: 1px solid #001d3a;
+            border-right: 1px solid #005eba;
+        }
+    }
+
+    /* Tabs
+    -------------------------------------------------- */
+    .nav-tabs > li.active > a, 
+    .nav-tabs > li.active > a:hover, 
+        .nav-tabs > li.active > a:focus {
+        color:  #0066A4;
+    }
+
+    .nav-tabs > li.active > a i {
+        color:  #0066A4;
+    }
+
+}

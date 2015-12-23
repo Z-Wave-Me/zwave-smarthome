@@ -1,0 +1,47 @@
+/* Rooms
+-------------------------------------------------- */
+.room-entry{
+    //padding: 0;
+}
+.room-in{
+    text-align: center;
+    padding: 10px;
+    a{
+        font-weight: bold;
+    }
+    .entry-title-text{
+        padding-right: 20px
+    }
+}
+
+.room-image-big{
+    border: solid 6px $app-border-color-light;
+    //width: 100%;
+    width: 200px;
+    height:200px;
+    border-radius: 50%;
+}
+.room-image-big:hover{
+    border-color: darken($app-body-bcg-color,10);
+}
+
+.has-device-false{
+    .room-image-big{
+         opacity: 0.5;
+    }
+    .room-image-big:hover{
+          border: solid 6px $app-border-color-light !important;
+    }
+   
+} 
+
+.room-name{
+    //position: absolute;
+    text-align: center;
+    padding: 0 10px;
+    line-height: 34px;
+}
+.panel-body-room img{
+    max-width: 100%;
+    border: solid 4px #323232;
+}

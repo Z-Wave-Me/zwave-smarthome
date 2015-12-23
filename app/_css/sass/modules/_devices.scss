@@ -1,0 +1,124 @@
+/* Devices
+-------------------------------------------------- */
+/*.device-container{
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 20px auto;
+    text-align: center;
+    padding: 10px;
+    @include appGradient();
+
+    .list-group-item{
+        text-align: left;
+        background-color: transparent;
+        margin: 0;
+        border: 0;
+        border-radius: 0;
+        border-top: solid 1px $app-border-color;
+
+    }
+}*/
+.device-logo{
+    text-align: center;
+    margin: 0 0 20px 0;
+}
+.device-logo img{
+    max-width: 100px !important;
+    max-height: 70px !important;
+
+}
+
+.device-type-logo{
+    //vertical-align: middle;
+    max-width: 80px;
+    max-height: 80px;
+}
+
+.expert-link{
+    padding-right: 20px;
+}
+.device-manufacturers{
+    //background-color: #fff;
+    //padding: 10px;
+    .vendor-entry{
+        //padding-left: 15px;
+        padding-right: 0;
+    }
+}
+.manufacturer-logo{
+    margin: 0 5px;
+    max-width: 70px;
+    display: inline;
+}
+
+.device-autodetect{
+    margin: 0 0 20px 0;
+}
+
+.col-device-vendor{
+    padding-left: 15px !important;
+    padding-right: 0 !important;
+}
+.vendor-list {
+    display: block; 
+    margin: 0 0 10px 0 ;
+    background-color: #fff;
+    text-align: center; 
+    border: solid 1px $app-border-color;
+
+    .vendor-image{
+        line-height: 80px;
+        margin: 0 !important;
+        img {
+            vertical-align: middle;
+            max-width: 80px;
+            max-height: 60px;
+        }
+    }
+}
+.device-perex{
+    margin-bottom:10px;
+/*    font-size: 110%;
+    padding: 10px 0;
+    border-top: solid 1px $app-border-color;*/
+}
+
+.include-device-img{
+    float: left;
+    margin-right: 20px;
+ }
+.include-device-img img{
+    max-width: 200px;
+    max-height: 200px;
+     border: solid 2px $app-border-color;
+}
+
+.col-device{
+    //text-align: center;
+    padding: 20px;
+    .device-statement{
+        margin: 10px 0;
+        padding: 10px 0;
+        border-bottom: solid 1px $app-border-color;
+    }
+}
+.table-inclusion td{
+    vertical-align: middle !important;
+    .alert {
+        margin-bottom: 0;
+    }
+}
+
+.badge-number {
+    display: inline-block;
+    text-align: center;
+    line-height: 20px;
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+    border-radius: 50%;
+}
+
+.td-camera-action{
+    text-align: right;
+}

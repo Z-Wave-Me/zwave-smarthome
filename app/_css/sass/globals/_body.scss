@@ -1,0 +1,206 @@
+/* Body
+-------------------------------------------------- */
+html {}
+body {
+    background-color: $app-body-bcg-color;
+    color: $app-body-color;
+   font-size: $app-body-font-size;
+}
+
+/* Page
+-------------------------------------------------- */
+#main_content {
+    margin-top: $header-h + 20px; 
+    margin-bottom: 20px;
+}
+
+/* Typo
+-------------------------------------------------- */
+h1, .h1, h2, .h2, h3, .h3 {
+    margin-top: 0;
+   color: lighten($app-body-color, 15%);
+}
+h1 {
+    font-size:$app-h1-font-size;
+}
+
+h2 {
+    
+    font-size: $app-h2-font-size;
+     margin: 10px 0 3px 0;
+}
+
+h3 {
+    font-size: $app-h3-font-size;
+}
+
+h4 {
+    font-size: $app-h4-font-size;
+}
+.entry-title{
+    font-size: $app-body-font-size * 1.1;
+}
+
+a {
+    color: lighten($app-body-color, 25%);
+}
+a:hover {
+    color: lighten($brand-color-secondary, 15%);
+}
+
+.text-supp{
+    font-style: italic;
+    color: lighten($app-body-color, 30%);
+}
+
+.badge{
+    padding: 7px;
+    margin-right: 5px;
+}
+.label-more{
+    cursor: pointer;
+}
+
+.more-info{
+    color: #458EC5;
+    font-weight: bold;
+}
+.help-text{
+    display: block;
+    //font-size: 95%;
+    font-style: italic;
+     margin: 5px 0;
+}
+.help-text.inline{
+    display: inline;
+   
+}
+
+.text-disabled{
+    pointer-events: none;
+    color: lighten($app-body-color, 40%);;
+     opacity: 0.5; 
+}
+
+.btn-tooltip{
+    cursor: help;
+}
+.app-border{
+    border: solid 4px $app-border-color-light;
+}
+.app-gradient{
+    @include appGradient();
+}
+
+.app-gradient-green{
+    @include appGradientGreen();
+}
+
+.app-gradient-red{
+    @include appGradientRed();
+}
+
+.app-gradient-yellow{
+    @include appGradientYellow();
+}
+
+.app-shadow{
+    @include appBoxShadow();
+}
+
+.bcg-active.false{
+    background-color: $app-bcg-active-false;
+}
+
+/* Hide element on is-mobile-true devices
+-------------------------------------------------- */
+.is-mobile-true{
+    .mobhidden, .btn-name{
+        display: none !important;
+    }
+   
+
+}
+
+/* Spinners
+-------------------------------------------------- */
+.module-spinner{
+    display: none !important;
+}
+
+/* Images
+-------------------------------------------------- */
+.report-img{
+    margin: 0;
+    max-width: 26px;
+    display: inline;
+}
+
+.product-img{
+    margin: 0;
+    max-width: 100px;
+     max-height: 70px;
+    display: inline;
+}
+
+/* Device assigned block
+-------------------------------------------------- */
+.device-assigned-block {
+    background-color: #FCF8E3;
+  padding: 10px;
+  border: 1px solid #faebcc;
+  margin: 10px 0;
+  color: #8a6d3b;
+  background-color: #fcf8e3;
+}
+
+.btn-device-admin {
+  display: inline-block;
+  padding: 6px 12px;
+  margin: 0 5px 5px 0;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-color: #fff;
+  border: 1px solid #d3d3d3;
+  border-radius: 4px;
+}
+
+
+
+
+
+
+//.modal-vertical.fade.in { top: 50%; transform: translateY(-50%); }
+/*.modal-vertical-centered {
+  transform: translate(0, 25%) !important;
+  -ms-transform: translate(0, 25%) !important;  IE 9 
+  -webkit-transform: translate(0, 25%) !important;  Safari and Chrome 
+}*/
+/*.modal-dialog-center_ {
+    margin-top: 25%;
+}
+.table {
+ display: table;
+ height:100%;
+}
+.table-cell {
+display: table-cell;
+vertical-align: middle;
+}*/
+/* Tooltip
+-------------------------------------------------- */
+.tooltip-inner {
+    background-color: $app-body-bcg-color;
+    color: #000;
+    font-size: 14px;
+    padding: 10px;
+    text-align: left;
+}
+.tooltip-arrow {
+    border-bottom-color: #f2f2f2;
+}
