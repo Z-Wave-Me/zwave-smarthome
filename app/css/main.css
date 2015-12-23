@@ -3753,7 +3753,7 @@ legend.alpaca-container-label {
 .widget-header a {
   display: inline-block;
   padding: 0 5px 0 0;
-  color: #767676;
+  color: #777777;
 }
 /* line 65, sass/modules/_elements.scss */
 .widget-header a:hover {
