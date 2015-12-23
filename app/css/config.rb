@@ -6,6 +6,7 @@ css_dir = "/"
 sass_dir = "sass"
 images_dir = "images"
 javascripts_dir = "javascripts"
+cache_path = '../../../_tmp/.sass-cache'
 
 # You can select your preferred output style here (can be overridden via the command line):
 # output_style = :expanded or :nested or :compact or :compressed
