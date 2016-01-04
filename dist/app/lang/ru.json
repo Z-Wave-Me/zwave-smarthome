@@ -1,5 +1,7 @@
 {
-    
+    "url": "URL",
+    "contact_person": "Contact person",
+    "translation": "Translation",
     "app_store_access": "Доступ в магазин приложений",
     "app_store_access_info": "Доступ в магазин приложений",
     "add_token": "Добавить",

@@ -11247,6 +11247,32 @@ myApp.filter('getRoomIcon', function (cfg) {
 });
 
 /**
+ * Get element category icon
+ */
+myApp.filter('getElCategoryIcon', function () {
+    return function (input) {
+        var array = {
+            text: 'fa-file-text-o',
+            camera: 'fa-video-camera',
+            switchRGBW: 'fa-star-half-o',
+            switchControl: 'fa-toggle-off',
+            switchBinary: 'fa-toggle-on',
+            sensorMultiline: 'fa-list-ul',
+            switchMultilevel: 'fa-cogs',
+            toggleButton: 'fa-dot-circle-o',
+            sensorMultilevel: 'fa-clock-o',
+            sensorBinary: 'fa-fire'
+        };
+        // Default icon
+        if (!array[input]) {
+            return 'fa-caret-right';
+        }
+
+        return array[input];
+    };
+});
+
+/**
  * Get App category icon
  */
 myApp.filter('getAppCategoryIcon', function () {
@@ -11816,12 +11842,17 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
      */
     $scope.naviExpanded = {};
     $scope.expandNavi = function(key,$event,status) {
+        if($scope.naviExpanded[key]){
+             $scope.naviExpanded = {};
+             $event.stopPropagation();
+             return;
+        }
+        $scope.naviExpanded = {};
         if(typeof status === 'boolean'){
            $scope.naviExpanded[key] = status;
         }else{
-             $scope.naviExpanded[key] = !($scope.naviExpanded[key]);
+             $scope.naviExpanded[key] = !$scope.naviExpanded[key];
         }
-       
        $event.stopPropagation();
     };
     // Collaps element/menu when clicking outside
@@ -11831,6 +11862,20 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
                 $scope.$apply();
           }
       };
+    
+     /**
+     * Open/close modal
+     */
+    $scope.modalArr = {};  
+    $scope.handleModal = function(key,$event,status) {
+        if(typeof status === 'boolean'){
+           $scope.modalArr[key] = status;
+        }else{
+             $scope.modalArr[key] = !($scope.modalArr[key]);
+        }
+       
+       $event.stopPropagation();
+    };
      /**
      * Expand/collapse element
      */
@@ -16356,8 +16401,6 @@ myAppController.controller('ManagementLicenceController', function($scope, dataF
  */
 myAppController.controller('ManagementFirmwareController', function($scope, $sce, dataFactory) {
     $scope.firmwareUpdateUrl = $sce.trustAsResourceUrl('http://' + $scope.hostName + ':8084/cgi-bin/main.cgi');
-
-
     /**
      * Load razberry latest version
      */
@@ -16368,13 +16411,6 @@ myAppController.controller('ManagementFirmwareController', function($scope, $sce
         });
     };
     //$scope.loadRazLatest();
-
-    /**
-     * Show modal window
-     */
-    $scope.showModalFirmware = function(target) {
-        $(target).modal();
-    };
 });
 /**
  * Back up controller
