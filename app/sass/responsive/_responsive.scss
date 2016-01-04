@@ -127,6 +127,7 @@
     @include mModal();
     @include mPagination();
     @include mElements();
+     @include mElementsNew();
     @include mRooms();
     @include mEvents();
     @include mApps();

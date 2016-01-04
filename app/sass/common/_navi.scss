@@ -1,0 +1,109 @@
+/* Page navigation
+-------------------------------------------------- */
+.page-control{
+    text-align: right;
+    margin-bottom: 10px;
+}   
+.page-navi{
+    font-size: $app-navi-font-size; 
+    position: relative;
+    width: 100%;
+    height: 100%;
+    .fa{
+        font-size: $app-navi-icon-size;  
+    }
+    .page-navi-title{
+        text-transform: uppercase;
+        text-align: center;
+        margin: 0;
+        padding: 10px;
+        font-weight: bold;
+        border-bottom: solid 1px lighten($app-border-color, 8%);
+    }
+     .page-navi-content{
+            padding: 20px;
+        }
+    .page-navi-tag {
+        border: solid 1px #777777;
+        display: inline;
+        margin: 5px;
+        padding: .2em .6em .3em;
+        line-height: 1;
+        color: #777777;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: baseline;
+        border-radius: .25em;
+    }
+    .page-navi-tag.active{
+        color: #fff;
+        background-color: #777777;
+        cursor:text;
+    }
+    .page-navi-in{
+        position: absolute;
+        background-color: #fff;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+        border: 1px solid $app-border-color;
+        width: 100%;
+        top:0;
+        left:0;
+        z-index: 2000;
+       
+        ul{
+
+            list-style: none;
+            text-align: left;
+            padding:10px;
+            li{
+                display: block;
+                float: left;
+                width: 25%;
+                padding: 10px;
+                .page-navi-icon{
+                    display: none;
+                }
+                a{
+                    color: $header-link-color;
+                    text-align: left;
+                    vertical-align: top;
+                    display: block;
+                    min-height: 50px;
+                    border-bottom: solid 1px lighten($app-border-color, 8%);
+                    margin: auto;
+                }
+
+            }
+            .active{
+                a{
+                     color: lighten($header-link-color, 30%);
+                    font-weight: bold;
+                    text-decoration: underline;
+                    cursor: text;
+                }
+            }
+            .fa{
+                padding-right: 5px;
+                 color: lighten($header-link-color, 10%);
+                
+            }
+
+        }
+    }
+}
+.page-navi-in ul:before, .page-navi-in ul:after {
+    display: table;
+    content: "";
+    line-height: 0;
+}
+.page-navi-in ul:after {
+    clear: both;
+}
+
+/* Footer drop-down
+-------------------------------------------------- */
+.dropdown-menu-bottom{
+    height: auto;
+    max-height: 600px;
+    overflow-x: hidden;
+}

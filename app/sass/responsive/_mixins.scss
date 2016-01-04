@@ -179,27 +179,16 @@
             width: 100%;
             ul{
                 li{
-                    display: block;
                     width: 100%;
-
-                    background-color: lighten($app-body-bcg-color, 2%) !important;
-                    border: 0;
+                    float: none;
                     border-bottom: solid 1px $app-border-color;
                     a{
-                        display: block;
-                        position:relative;
-                        //font-size: $app-navi-font-size * $m-font-scale;
-                        text-align: left;
-                        padding:0 10px;
-                        color: $header-link-color;
+                       position:relative;
+                        min-height: 1px;
+                        border: 0 none;
 
                     }
 
-                }
-                .active{
-                    /*                    a{
-                                            background-color: $header-color-secondary;
-                                        }*/
                 }
                 .page-navi-icon{
                     position: absolute;
@@ -213,33 +202,6 @@
                 border: 0;
                 padding: 5px 30px 5px 5px;
             }
-        }
-    }
-    .page-menu{
-        font-size: $app-body-font-size * $m-font-scale;
-        .fa{
-            font-size: $app-body-font-size * $m-font-scale;  
-        }
-
-        ul{
-            // padding: 20px;
-
-            list-style: none;
-            text-align: left;
-            margin: 0;
-            padding:0; 
-
-            li{
-                width: 100%;
-                float: none;
-                border: 0;
-                border-bottom: solid 1px $app-body-bcg-color;
-                .page-navi-icon{}
-                a{}
-
-            }
-            .fa{}
-
         }
     }
     .dropdown-menu-bottom{
@@ -368,7 +330,12 @@
 /* Mobile modal
 -------------------------------------------------- */
 @mixin mModal() {
-
+    .appmodal { 
+    .appmodal-in{
+        width: 99%;
+        margin: 15% auto;
+    }
+}
 }
 /* Mobile pagination
 -------------------------------------------------- */

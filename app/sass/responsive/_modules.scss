@@ -1,5 +1,63 @@
 /* Mobile Elements
 -------------------------------------------------- */
+@mixin mElementsNew{
+    .widget-entry{
+        width: 100%;
+    }
+    .widget-entry-in{ 
+        margin: 0;
+        -webkit-box-shadow: none;
+        -moz-box-shadow:    none;
+        box-shadow:        none;
+        border: 0 none;
+        border-bottom: solid 1px #ccc;
+        height: auto;
+        min-height: 100px;
+        text-align: left;
+        padding: 10px;
+
+    }
+    .is-new-true{
+        border-bottom: solid 3px lighten(#3c763d, 50%);
+    }
+
+
+    .widget-icon{ 
+        top: 20px;
+        //left: 5px;
+        /*        width: 42px;
+                height: 42px;*/
+    }
+    .widget-content{
+        margin-top: -20px;
+        //padding: 0 5px 15px 80px;
+        .entry-title{
+            display: inline;
+            padding: 15px 40px 0 0;
+        }
+        .btn-widget-time, .txt-widget-time{
+            padding: 0;
+            font-size: ($app-body-font-size * 0.85)  * $m-font-scale;
+            .fa {
+                font-size: ($app-body-font-size * 0.85)  * $m-font-scale;
+            }
+        }
+    }
+
+    .modal-no-padding {
+        //width: 100%;
+        .modal-dialog {
+            margin: 0; 
+            .modal-body {
+                padding: 0;
+            }  
+        }
+
+    }
+}
+
+/* Mobile Elements
+-------------------------------------------------- */
 @mixin mElements{
     .widget-entry{
         width: 100%;
@@ -11,8 +69,8 @@
         box-shadow:        none;
         border-bottom: solid 1px #ccc;
         .is-new-true{
-   border-bottom: solid 3px lighten(#3c763d, 50%);
-}
+            border-bottom: solid 3px lighten(#3c763d, 50%);
+        }
     }
     .widget-block-in{
         /*   border: solid 1px red;*/
@@ -21,7 +79,7 @@
         text-align: left;
         padding: 10px;
     }
-    
+
     .widget-image{ 
         top: 20px;
         //left: 5px;
@@ -42,7 +100,7 @@
         }
         .btn-widget-time, .txt-widget-time{
             padding: 0;
-             font-size: ($app-body-font-size * 0.85)  * $m-font-scale;
+            font-size: ($app-body-font-size * 0.85)  * $m-font-scale;
             .fa {
                 font-size: ($app-body-font-size * 0.85)  * $m-font-scale;
             }
