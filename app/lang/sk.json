@@ -1,4 +1,7 @@
 {
+    "url": "URL",
+    "contact_person": "Contact person",
+    "translation": "Translation",
     "nonunique_user": "The given user login already exists. Please use a different login name.",
     "nonunique_email": "The given email already exists. Please use a different email.",
     "password_email_info": "Please provide the email address in case you loose your password.",
