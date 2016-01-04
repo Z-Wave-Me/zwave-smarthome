@@ -327,6 +327,32 @@ myApp.filter('getRoomIcon', function (cfg) {
 });
 
 /**
+ * Get element category icon
+ */
+myApp.filter('getElCategoryIcon', function () {
+    return function (input) {
+        var array = {
+            text: 'fa-file-text-o',
+            camera: 'fa-video-camera',
+            switchRGBW: 'fa-star-half-o',
+            switchControl: 'fa-toggle-off',
+            switchBinary: 'fa-toggle-on',
+            sensorMultiline: 'fa-list-ul',
+            switchMultilevel: 'fa-cogs',
+            toggleButton: 'fa-dot-circle-o',
+            sensorMultilevel: 'fa-clock-o',
+            sensorBinary: 'fa-fire'
+        };
+        // Default icon
+        if (!array[input]) {
+            return 'fa-caret-right';
+        }
+
+        return array[input];
+    };
+});
+
+/**
  * Get App category icon
  */
 myApp.filter('getAppCategoryIcon', function () {
