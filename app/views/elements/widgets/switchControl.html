@@ -1,0 +1,18 @@
+<!-- switchControl -->
+<div class="widget-ctrl ctrl-left">&nbsp;</div>
+<div class="widget-ctrl ctrl-right">
+    <div class="btn-group">
+        <button class="btn btn-off" id="btn_off_{{ v.id}}"
+            data-ng-click="runCmd(v.id + '/command/off', v.id)"
+            ng-class="v.metrics.level =='off' ? 'btn-primary': 'btn-default'"
+            title="{{_t('lb_off')}}">
+            <span class="widget-btn-symbol">0</span>
+        </button>
+        <button class="btn btn-on" id="btn_on_{{ v.id}}"
+            data-ng-click="runCmd(v.id + '/command/on', v.id)"
+            ng-class="v.metrics.level =='on' ? 'btn-primary': 'btn-default'"
+            title="{{_t('lb_on')}}">
+            <span class="widget-btn-symbol">I</span>
+        </button>
+    </div>
+</div>

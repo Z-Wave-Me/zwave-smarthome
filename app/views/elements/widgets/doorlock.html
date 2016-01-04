@@ -1,0 +1,16 @@
+<!-- doorlock -->
+<div class="widget-ctrl ctrl-left">&nbsp;</div>
+<div class="widget-ctrl ctrl-right widget-ctrl-click">
+   <div class="btn-group">
+        <button class="btn btn-off"
+            ng-class="v.metrics.level=='close' ? 'btn-primary': 'btn-default'"
+            data-ng-click="runCmd(v.id + '/command/close', v.id)">
+            <i class="fa fa-lock"></i>
+        </button>
+        <button class="btn btn-on"
+            ng-class="v.metrics.level =='open' ? 'btn-primary': 'btn-default'"
+            data-ng-click="runCmd(v.id + '/command/open', v.id)">
+            <i class="fa fa-unlock"></i>
+        </button>
+    </div>
+</div>

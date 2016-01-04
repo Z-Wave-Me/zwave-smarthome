@@ -29,6 +29,21 @@ myApp.config(['$routeProvider', function($routeProvider) {
                 when('/home', {
                    redirectTo: '/elements/dashboard/1'
                 }).
+                 // Elements Dashboard
+                when('/dashboard', {
+                   templateUrl: 'app/views/elements/elements_dashboard.html',
+                   requireLogin: true
+                }).
+                 // Elements list
+                when('/elementsnew', {
+                   templateUrl: 'app/views/elements/elements_page.html',
+                   requireLogin: true
+                }).
+                 // Elements rooms
+                when('/room/:id', {
+                   templateUrl: 'app/views/elements/elements_room.html',
+                   requireLogin: true
+                }).
                 // Elements
                 when('/elements/:filter?/:val?/:name?', {
                     templateUrl: 'app/views/elements/elements.html',

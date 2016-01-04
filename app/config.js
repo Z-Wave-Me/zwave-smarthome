@@ -183,11 +183,21 @@ var config_data = {
         'knob_255': [
             'multilevel'
         ],
+        // Order by
+        orderby: {
+            elements: {
+                'creationTimeDESC': '-creationTime',
+                'creationTimeASC': 'creationTime',
+                'titleASC': 'metrics.title',
+                'titleDESC': '-metrics.title'
+            }
+        },
+        // List of climate states
+        climate_state: ['frostProtection', 'energySave', 'comfort', 'schedule'],
         // Results per page
         'page_results': 12,
         // Results per events page
         'page_results_events': 50,
-        
         // ---------------------------------- Custom config for specifics app_type ---------------------------------- //
         // Application type : default/popp/wd
         'app_type': 'default',

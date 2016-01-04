@@ -1,0 +1,83 @@
+<!-- Elements list -->
+<div class="row">
+    <div id="Widget_{{v.id}}" class="col-lg-4 col-md-6 col-sm-6 widget-entry" ng-repeat="v in dataHolder.devices.collection| filter:q | orderBy: cfg.orderby.elements[dataHolder.devices.orderBy] track by v.id">
+        <div class="clearfix widget-entry-in is-new-{{v.isNew}}">
+            <!-- Widget icon -->
+            <!--  <img class="widget-icon" ng-src="{{v.metrics.icon|getElementIcon:v:levelVal[v.id]}}" alt="img" />-->
+           
+            <img class="widget-icon widget-icon-update trans-{{v.imgTrans}}" ng-src="{{v.iconPath}}" alt="img" ng-click="runCmd(v.id + '/command/' + v.updateCmd)" ng-if="cfg.element_update_icon.indexOf(v.deviceType) > -1" />
+            <img class="widget-icon" ng-src="{{v.iconPath}}" alt="img" ng-if="cfg.element_update_icon.indexOf(v.deviceType) === -1" />
+            <!-- Widget header -->
+            <div class="widget-header">
+                <!--{{$index}}| {{v.id}} | {{v.deviceType}}-->
+                <a class="widget-history" href="" ng-click="dataHolder.devices.find = v;handleModal('modalHistory', $event)" ng-if="v.hasHistory"><i class="fa fa-history fa-lg"></i></a>
+                <a class="widget-config" href="#element/{{v.id}}" ng-if="elementAccess(cfg.role_access.element)"><i class="fa fa-cog fa-lg"></i></a>
+            </div>
+            <!-- Widget content -->
+            <div class="widget-content">
+                <!-- Widget title -->
+                <div class="widget-title">
+                    <span class="widget-room"><span ng-if="v.location !== 0">{{dataHolder.devices.rooms[v.location].title|cutText:true:25}}</span>&nbsp;</span>
+                    <h3>{{v.metrics.title|cutText:true:25}}</h3>
+                </div>
+                <!-- Widget footer -->
+                <div class="widget-footer" ng-switch="v.deviceType">
+                    <div ng-switch-when="switchMultilevel">
+                        <div ng-include="'app/views/elements/widgets/switchMultilevel.html'"></div>
+                    </div>
+                    <div ng-switch-when="switchBinary">
+                        <div ng-include="'app/views/elements/widgets/switchBinary.html'"></div>
+                    </div>
+                    <div ng-switch-when="switchRGBW">
+                        <div ng-include="'app/views/elements/widgets/switchRGBW.html'"></div>
+                    </div>
+                    <div ng-switch-when="doorlock">
+                        <div ng-include="'app/views/elements/widgets/doorlock.html'"></div>
+                    </div>
+                    <div ng-switch-when="doorLockControl">
+                        <div ng-include="'app/views/elements/widgets/doorLockControl.html'"></div>
+                     </div>
+                    <div ng-switch-when="toggleButton">
+                        <div ng-include="'app/views/elements/widgets/toggleButton.html'"></div>
+                    </div>
+                    <div ng-switch-when="sensorMultilevel">
+                        <div ng-include="'app/views/elements/widgets/sensorMultilevel.html'"></div>
+                    </div>
+                    <div ng-switch-when="sensorBinary">
+                        <div ng-include="'app/views/elements/widgets/sensorBinary.html'"></div>
+                    </div>
+                    <div ng-switch-when="thermostat">
+                        <div ng-include="'app/views/elements/widgets/thermostat.html'"></div>
+                    </div>
+                    <div ng-switch-when="camera">
+                        <div ng-include="'app/views/elements/widgets/camera.html'"></div>
+                    </div>
+                    <div ng-switch-when="text">
+                        <div ng-include="'app/views/elements/widgets/text.html'"></div>
+                    </div>
+                    <div ng-switch-when="switchControl">
+                        <div ng-include="'app/views/elements/widgets/switchControl.html'"></div>
+                    </div>
+                    <div ng-switch-when="sensorMultiline">
+                        <div ng-include="'app/views/elements/widgets/sensorMultiline.html'"></div>
+                    </div>
+                    <div ng-switch-default>
+                        <div ng-include="'app/views/elements/widgets/default.html'"></div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+</div><!-- /.row -->
+<!-- Modal windows -->
+ <div ng-include="'app/views/elements/widgets/historyModal.html'"></div>
+ <div ng-include="'app/views/elements/widgets/switchMultilevelModal.html'"></div>
+ <div ng-include="'app/views/elements/widgets/thermostatModal.html'"></div>
+ <div ng-include="'app/views/elements/widgets/sensorMultilineModal.html'"></div>
+ <div ng-include="'app/views/elements/widgets/openWeatherModal.html'"></div>
+ <div ng-include="'app/views/elements/widgets/textModal.html'"></div>
+ <div ng-include="'app/views/elements/widgets/cameraModal.html'"></div>
+ <div ng-include="'app/views/elements/widgets/climateControlModal.html'"></div>
+ <div ng-include="'app/views/elements/widgets/doorLockControlModal.html'"></div>
+ <div ng-include="'app/views/elements/widgets/switchRGBWModal.html'"></div>
+ 
