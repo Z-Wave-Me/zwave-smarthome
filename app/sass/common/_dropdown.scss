@@ -1,4 +1,4 @@
-/* Dropdown
+/* Bootstrap Dropdown
 -------------------------------------------------- */
 .dropdown-menu {
     font-size: $app-body-font-size;
@@ -13,12 +13,14 @@
     outline: 0;
     background-color:$header-color-secondary;
 }
+/* Dropdown
+-------------------------------------------------- */
 .app-dropdown{
     position: absolute;
     top: 100%;
     right: 0;
     left: auto;
-    z-index: 1000;
+    z-index: 2000;
     float: right;
     min-width: 360px;
     padding: 0;
@@ -74,4 +76,14 @@
     float: left;
     left: 0;
     right: auto;
+}
+.app-dropdown-bottom{
+     top: auto;
+     bottom: 100%;
+}
+
+.app-dropdown-mxh-600{
+     height: auto;
+    max-height: 600px;
+    overflow-x: hidden;
 }

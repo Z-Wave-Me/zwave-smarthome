@@ -204,12 +204,12 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
      */
     $scope.naviExpanded = {};
     $scope.expandNavi = function(key,$event,status) {
+        $scope.naviExpanded = {};
         if(typeof status === 'boolean'){
            $scope.naviExpanded[key] = status;
         }else{
-             $scope.naviExpanded[key] = !($scope.naviExpanded[key]);
+             $scope.naviExpanded[key] = !$scope.naviExpanded[key];
         }
-       
        $event.stopPropagation();
     };
     // Collaps element/menu when clicking outside

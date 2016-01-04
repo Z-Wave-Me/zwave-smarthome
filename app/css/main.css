@@ -1556,7 +1556,7 @@ fieldset.submit-entry {
   padding: 0;
 }
 
-/* Dropdown
+/* Bootstrap Dropdown
 -------------------------------------------------- */
 /* line 3, ../sass/common/_dropdown.scss */
 .dropdown-menu {
@@ -1575,13 +1575,15 @@ fieldset.submit-entry {
   background-color: #DDDDDD;
 }
 
-/* line 16, ../sass/common/_dropdown.scss */
+/* Dropdown
+-------------------------------------------------- */
+/* line 18, ../sass/common/_dropdown.scss */
 .app-dropdown {
   position: absolute;
   top: 100%;
   right: 0;
   left: auto;
-  z-index: 1000;
+  z-index: 2000;
   float: right;
   min-width: 360px;
   padding: 0;
@@ -1592,25 +1594,25 @@ fieldset.submit-entry {
   background-clip: padding-box;
   color: #5d5d5d;
 }
-/* line 31, ../sass/common/_dropdown.scss */
+/* line 33, ../sass/common/_dropdown.scss */
 .app-dropdown .app-dropdown-title {
   margin: 0;
   padding: 10px;
   font-weight: bold;
   border-bottom: solid 1px #e7e7e7;
 }
-/* line 37, ../sass/common/_dropdown.scss */
+/* line 39, ../sass/common/_dropdown.scss */
 .app-dropdown ul {
   padding: 0;
   margin: 0;
   list-style: none;
 }
-/* line 41, ../sass/common/_dropdown.scss */
+/* line 43, ../sass/common/_dropdown.scss */
 .app-dropdown ul li {
   padding: 10px 0;
   border-bottom: solid 1px #e7e7e7;
 }
-/* line 44, ../sass/common/_dropdown.scss */
+/* line 46, ../sass/common/_dropdown.scss */
 .app-dropdown ul li a {
   display: block;
   position: relative;
@@ -1618,29 +1620,42 @@ fieldset.submit-entry {
   vertical-align: middle;
   color: #5d5d5d;
 }
-/* line 52, ../sass/common/_dropdown.scss */
+/* line 54, ../sass/common/_dropdown.scss */
 .app-dropdown ul li .menu-arrow {
   position: absolute;
   right: 1%;
   display: inline-block;
 }
-/* line 60, ../sass/common/_dropdown.scss */
+/* line 62, ../sass/common/_dropdown.scss */
 .app-dropdown ul .active a {
   color: #aaaaaa;
   font-weight: bold;
   text-decoration: underline;
   cursor: text;
 }
-/* line 67, ../sass/common/_dropdown.scss */
+/* line 69, ../sass/common/_dropdown.scss */
 .app-dropdown ul .fa {
   padding-right: 7px;
 }
 
-/* line 73, ../sass/common/_dropdown.scss */
+/* line 75, ../sass/common/_dropdown.scss */
 .app-dropdown-left {
   float: left;
   left: 0;
   right: auto;
+}
+
+/* line 80, ../sass/common/_dropdown.scss */
+.app-dropdown-bottom {
+  top: auto;
+  bottom: 100%;
+}
+
+/* line 85, ../sass/common/_dropdown.scss */
+.app-dropdown-mxh-600 {
+  height: auto;
+  max-height: 600px;
+  overflow-x: hidden;
 }
 
 /* Absolute Center CSS Spinner
