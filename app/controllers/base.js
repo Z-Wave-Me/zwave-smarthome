@@ -204,6 +204,11 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
      */
     $scope.naviExpanded = {};
     $scope.expandNavi = function(key,$event,status) {
+        if($scope.naviExpanded[key]){
+             $scope.naviExpanded = {};
+             $event.stopPropagation();
+             return;
+        }
         $scope.naviExpanded = {};
         if(typeof status === 'boolean'){
            $scope.naviExpanded[key] = status;
