@@ -397,8 +397,6 @@ myAppController.controller('ManagementLicenceController', function($scope, dataF
  */
 myAppController.controller('ManagementFirmwareController', function($scope, $sce, dataFactory) {
     $scope.firmwareUpdateUrl = $sce.trustAsResourceUrl('http://' + $scope.hostName + ':8084/cgi-bin/main.cgi');
-
-
     /**
      * Load razberry latest version
      */
@@ -409,13 +407,6 @@ myAppController.controller('ManagementFirmwareController', function($scope, $sce
         });
     };
     //$scope.loadRazLatest();
-
-    /**
-     * Show modal window
-     */
-    $scope.showModalFirmware = function(target) {
-        $(target).modal();
-    };
 });
 /**
  * Back up controller

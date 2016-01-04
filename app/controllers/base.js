@@ -219,6 +219,20 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
                 $scope.$apply();
           }
       };
+    
+     /**
+     * Open/close modal
+     */
+    $scope.modalArr = {};  
+    $scope.handleModal = function(key,$event,status) {
+        if(typeof status === 'boolean'){
+           $scope.modalArr[key] = status;
+        }else{
+             $scope.modalArr[key] = !($scope.modalArr[key]);
+        }
+       
+       $event.stopPropagation();
+    };
      /**
      * Expand/collapse element
      */
