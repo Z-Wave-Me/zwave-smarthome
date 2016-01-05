@@ -2,8 +2,7 @@ SmartHome UI
 ===============
 
 Angular app
-## Changelog
-### v1.0.4
+## v1.0.4
 #### New features
 - Download app counter.
 - Added icon to deveices list in Events.
@@ -15,5 +14,5 @@ Angular app
 #### Fixes
 - Fixed redirect after post/put a local app.
 
-### v1.0.0
+## v1.0.0
 - Released.
