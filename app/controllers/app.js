@@ -278,12 +278,13 @@ myAppController.controller('AppOnlineController', function($scope, $filter, $coo
     /**
      * Install module
      */
-    $scope.installModule = function(modulename) {
+    $scope.installModule = function(module) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
         var data = {
-            moduleUrl: $scope.cfg.online_module_download_url + modulename
+            moduleUrl: $scope.cfg.online_module_download_url + module.file
         };
         dataFactory.installOnlineModule(data, 'online_install').then(function(response) {
+            dataFactory.postToRemote($scope.cfg.online_module_installed_url,{id: module.id});
             $timeout(function() {
                 $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t(response.data.data.key)};
                 myCache.removeAll();
@@ -300,11 +301,11 @@ myAppController.controller('AppOnlineController', function($scope, $filter, $coo
     /**
      * Update module
      */
-    $scope.updateModule = function(modulename, confirm) {
+    $scope.updateModule = function(module, confirm) {
         alertify.confirm(confirm, function() {
             $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
             var data = {
-                moduleUrl: $scope.cfg.online_module_download_url + modulename
+                moduleUrl: $scope.cfg.online_module_download_url + module.file
             };
             dataFactory.installOnlineModule(data, 'online_update').then(function(response) {
                 $timeout(function() {
@@ -497,12 +498,13 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
      /**
      * Install module
      */
-    $scope.installModule = function(file) {
+    $scope.installModule = function(module) {
        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
         var data = {
-            moduleUrl: $scope.cfg.online_module_download_url + file
+            moduleUrl: $scope.cfg.online_module_download_url + module.file
         };
         dataFactory.installOnlineModule(data, 'online_install').then(function(response) {
+             dataFactory.postToRemote($scope.cfg.online_module_installed_url,{id: module.id});
             $timeout(function() {
                 $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t(response.data.data.key)};
                 myCache.removeAll();

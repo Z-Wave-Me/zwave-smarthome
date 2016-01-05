@@ -25,6 +25,9 @@
                           ng-class="module.maturity == 'stable' ? 'label-success':'label-warning'"
                           >{{module.maturity}}</span>
                 </p> 
+                <p class="app-detail-list" ng-show="module.installed">
+                    <i class="fa fa-download fa-lg"></i> {{module.installed}}x
+                </p>
                 <p class="app-detail-list" ng-show="module.last_updated">
                     <i class="fa fa-clock-o fa-lg"></i> <span ng-bind="module.last_updated"></span>
                 </p>
@@ -34,7 +37,7 @@
     </div>
      <div class="fieldset submit-entry">
         <button type="button" class="btn btn-default" bb-go-back><i class="fa fa-times  text-danger"></i> <span ng-bind="_t('lb_cancel')"></span></button>
-        <button class="btn btn-submit" ng-click="installModule(module.file)" ng-if="!local.installed">
+        <button class="btn btn-submit" ng-click="installModule(module)" ng-if="!local.installed">
             <i class="fa fa-lg text-success fa-download"></i> <span class="btn-name_">{{_t('lb_download')}}</span>
         </button> 
         <button class="btn btn-default" disabled ng-if="local.installed">
