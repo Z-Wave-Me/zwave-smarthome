@@ -35,7 +35,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
                    requireLogin: true
                 }).
                  // Elements list
-                when('/elementsnew', {
+                when('/element', {
                    templateUrl: 'app/views/elements/elements_page.html',
                    requireLogin: true
                 }).

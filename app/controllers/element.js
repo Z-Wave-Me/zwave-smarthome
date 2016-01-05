@@ -9,6 +9,7 @@
 myAppController.controller('ElementBaseController', function ($scope, $routeParams, $interval, $location, $cookies, $filter, dataFactory, dataService) {
     $scope.dataHolder = {
         devices: {
+            show: true,
             all: {},
             collection: {},
             deviceType: {},
@@ -113,6 +114,9 @@ myAppController.controller('ElementBaseController', function ($scope, $routePara
                 });
             } else {
                 $scope.dataHolder.devices.collection = _.where($scope.dataHolder.devices.all, $scope.dataHolder.devices.filter);
+            }
+            if(_.isEmpty($scope.dataHolder.devices.collection)){
+                $scope.dataHolder.devices.show = false;
             }
             dataService.updateTimeTick(response.data.data.updateTime);
         }, function (error) {
