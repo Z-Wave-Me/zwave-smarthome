@@ -61,6 +61,8 @@ var config_data = {
         'help_data_url': 'storage/help/',
         // Online module url
         'online_module_url': 'http://hrix.net/modules_new/?uri=api-modules',
+        // Online module id url
+        'online_moduleid_url': 'http://hrix.net/modules_new/?uri=api-modulesid',
         // Online module img url
         'online_module_img_url': 'http://hrix.net/modules_new/modules/',
         // Online module download url

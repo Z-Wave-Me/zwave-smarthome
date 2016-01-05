@@ -495,6 +495,26 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
         });
     };
     
+    /**
+     * Load module detail
+     */
+    $scope.loadModuleId = function(id) {
+        dataService.showConnectionSpinner();
+        
+          dataFactory.postToRemote($scope.cfg.online_module_installed_url, {id: module.id}).then(function(response) {
+//            $scope.module = _.findWhere(response.data.data, filter);
+//            if (!$scope.module) {
+//                $location.path('/error/404');
+//                return;
+//            }
+//            $scope.loadModules({moduleName: id});
+//            $scope.loadCategories($scope.module.category);
+//            dataService.updateTimeTick();
+        }, function(error) {
+            $location.path('/error/' + error.status);
+        });
+    };
+    
      /**
      * Install module
      */
