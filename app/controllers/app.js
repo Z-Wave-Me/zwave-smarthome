@@ -678,7 +678,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
         if (input.instanceId > 0) {
             dataFactory.putApi('instances', input.instanceId, inputData).then(function(response) {
                 myCache.remove('devices');
-                $location.path('/apps');
+                $location.path('/apps/instance');
 
             }, function(error) {
                 alertify.alert($scope._t('error_update_data'));
@@ -686,7 +686,7 @@ myAppController.controller('AppModuleAlpacaController', function($scope, $routeP
         } else {
             dataFactory.postApi('instances', inputData).then(function(response) {
                 myCache.remove('devices');
-                $location.path('/apps');
+                $location.path('/apps/local');
 
             }, function(error) {
                 alertify.alert($scope._t('error_update_data'));

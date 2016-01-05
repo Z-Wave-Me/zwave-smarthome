@@ -43,7 +43,12 @@ var postRenderAlpaca = function(renderedForm) {
             },
             success: function(response) {
                  $('.module-spinner').fadeOut();
-                 window.location.replace("#apps");
+                 if(data.instanceId > 0){
+                     window.location.replace("#apps/instance");
+                 }else{
+                     window.location.replace("#apps/local");
+                 }
+                 
                  //window.location.reload(true);
             },
             error: function(xhr, ajaxOptions, thrownError) {
