@@ -69,6 +69,10 @@ var config_data = {
         'online_module_download_url': 'http://hrix.net/modules_new/modules/',
         // Online module installed url
         'online_module_installed_url': 'http://hrix.net/modules_new/?uri=api-modules-installed',
+        // Online module comments url
+        'online_module_comments_url': 'http://hrix.net/modules_new/?uri=api-comments',
+        // Online module comment create url
+        'online_module_comment_create_url': 'http://hrix.net/modules_new/?uri=api-comments-create',
         // Online module download url
         'blacklist_url': 'http://hrix.net/blacklist.json',
         // Post report url

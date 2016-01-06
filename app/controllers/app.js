@@ -432,11 +432,12 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
     $scope.comments = {
         all: {},
         model: {
-            module_id: parseInt($routeParams.id,10),
+            module_id: parseInt($routeParams.id, 10),
             content: '',
             name: '',
             remote_id: ''
-        }
+        },
+        show: true
     };
     $scope.categoryName = '';
     $scope.onlineMediaUrl = $scope.cfg.online_module_img_url;
@@ -504,91 +505,19 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
     /**
      * Load comments
      */
-    $scope.loadComments = function () {
-        var response = [
-            {
-                "id": 0,
-                "module_id": 222,
-                "remote_id": 12345,
-                "type": 0,
-                "name": "Sanchez",
-                "content": "Officia cupidatat consectetur officia eiusmod nulla enim voluptate minim. Reprehenderit nulla minim occaecat exercitation culpa laborum anim occaecat id sunt enim do sunt deserunt. Eiusmod cupidatat exercitation et deserunt reprehenderit minim ad tempor minim eiusmod consequat eiusmod culpa veniam. Proident officia veniam fugiat aliqua cupidatat nostrud elit ex exercitation culpa fugiat aliquip veniam.\r\n",
-                "created_at": "2015-09-24T09:30:43 -02:00"
-            },
-            {
-                "id": 1,
-                "module_id": 222,
-                "remote_id": 12345,
-                "type": 1,
-                "name": "Abbott",
-                "content": "Dolor amet nulla magna consectetur adipisicing ullamco irure pariatur. Voluptate dolor eu qui labore do ipsum consequat proident velit irure adipisicing proident elit non. In nisi non enim ipsum fugiat qui.\r\n",
-                "created_at": "2014-02-14T05:06:51 -01:00"
-            },
-            {
-                "id": 2,
-                "module_id": 222,
-                "remote_id": 12345,
-                "type": 0,
-                "name": "Hurley",
-                "content": "Nostrud sit voluptate mollit amet voluptate. Excepteur quis in minim veniam ad esse exercitation anim irure consequat. Sunt laboris elit duis quis eiusmod occaecat amet occaecat ex incididunt anim amet. Aliquip labore eiusmod officia nulla exercitation aliquip duis nisi.\r\n",
-                "created_at": "2015-09-17T03:07:58 -02:00"
-            },
-            {
-                "id": 3,
-                "module_id": 222,
-                "remote_id": 12345,
-                "type": 1,
-                "name": "Bernard",
-                "content": "Eu est anim elit nostrud veniam exercitation incididunt enim. Velit velit officia dolore in esse occaecat consectetur. Consectetur occaecat qui culpa dolore pariatur cupidatat ipsum Lorem veniam enim voluptate. Velit nisi exercitation in tempor exercitation. Amet veniam dolore et cupidatat. Cillum ea enim eu duis esse enim reprehenderit amet dolore aliquip.\r\n",
-                "created_at": "2014-07-11T10:30:07 -02:00"
-            },
-            {
-                "id": 4,
-                "module_id": 222,
-                "remote_id": 12345,
-                "type": 0,
-                "name": "Hunt",
-                "content": "Dolore adipisicing fugiat culpa eu officia laboris cillum consectetur eiusmod nostrud. Nisi deserunt voluptate cillum in dolor labore veniam eu commodo laboris esse labore aute eiusmod. Sint ipsum magna culpa ea.\r\n",
-                "created_at": "2014-06-16T08:12:39 -02:00"
-            },
-            {
-                "id": 5,
-                "module_id": 222,
-                "remote_id": 12345,
-                "type": 1,
-                "name": "Cochran",
-                "content": "Cupidatat cupidatat adipisicing duis et consequat laboris ipsum deserunt excepteur. Minim est culpa elit nisi duis tempor dolor esse aliquip. Culpa commodo cupidatat sit esse tempor laboris nostrud et reprehenderit labore do.\r\n",
-                "created_at": "2015-12-26T04:40:46 -01:00"
-            },
-            {
-                "id": 6,
-                "module_id": 222,
-                "remote_id": 12345,
-                "type": 1,
-                "name": "Jennings",
-                "content": "Ipsum mollit Lorem fugiat non aute. Consectetur cillum voluptate nulla reprehenderit eu tempor id. Quis aliqua mollit labore do adipisicing quis velit. Et mollit ad officia dolore esse ea exercitation duis ut voluptate in adipisicing deserunt.\r\n",
-                "created_at": "2015-01-07T09:59:07 -01:00"
-            },
-            {
-                "id": 7,
-                "module_id": 222,
-                "remote_id": 12345,
-                "type": 0,
-                "name": "Crosby",
-                "content": "Commodo officia cupidatat laborum velit et quis Lorem eu ullamco nisi qui cillum sit cillum. Anim laborum consequat in cupidatat pariatur velit voluptate in anim occaecat laborum. Mollit voluptate nostrud non eiusmod aute do adipisicing id aliqua Lorem consequat laborum. Voluptate reprehenderit reprehenderit nostrud sint culpa. Velit laboris veniam laborum consectetur excepteur ad adipisicing nostrud. Est reprehenderit proident consequat deserunt est anim nulla amet reprehenderit.\r\n",
-                "created_at": "2015-08-11T01:33:29 -02:00"
-            },
-            {
-                "id": 8,
-                "module_id": 222,
-                "remote_id": 12345,
-                "type": 1,
-                "name": "Charles",
-                "content": "Est aliquip aute consectetur ad Lorem quis irure elit ad voluptate aute est Lorem. Enim aliqua duis commodo do elit voluptate ut sint dolor voluptate voluptate dolor. Aute do ipsum nisi sit consequat deserunt culpa nisi reprehenderit cupidatat nulla incididunt eu enim. Qui sit culpa ipsum minim. Ea eiusmod reprehenderit culpa nostrud irure velit incididunt dolor enim.\r\n",
-                "created_at": "2015-09-21T12:40:25 -02:00"
+    $scope.loadComments = function (id) {
+        dataFactory.getRemoteData($scope.cfg.online_module_comments_url + '/' + id, true).then(function (response) {
+            $scope.comments.all = response.data.data;
+            if(_.isEmpty(response.data.data)){
+                $scope.comments.show = false;
+            }else{
+                 $scope.comments.show = true;
             }
-        ];
-        $scope.comments.all = response;
+        }, function (error) {
+            $scope.loading = false;
+            alertify.alert($scope._t('error_load_comments'));
+        });
+
     };
     $scope.loadComments($routeParams.id);
 
@@ -623,21 +552,14 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
         if (form.$invalid) {
             return;
         }
-        console.log(input)
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        //alertify.alert($scope._t('error_update_data'));
-        $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('comment_add_successful')};
-        $scope.expand.appcommentadd = false;
-        $scope.loadComments($routeParams.id);
-        input.content = '';
-        input.name = '';
-        return;
-        dataFactory.postToRemote($scope.cfg.online_module_installed_url, {id: module.id}).then(function (response) {
-            $timeout(function () {
-                $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('comment_add_successful')};
-                myCache.removeAll();
-                $route.reload();
-            }, 3000);
+        dataFactory.postToRemote($scope.cfg.online_module_comment_create_url, input).then(function (response) {
+            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('comment_add_successful')};
+            $scope.expand.appcommentadd = false;
+            $scope.loadComments($routeParams.id);
+            input.content = '';
+            input.name = '';
+            /*$timeout(function () {}, 3000);*/
 
         }, function (error) {
             $scope.loading = false;
