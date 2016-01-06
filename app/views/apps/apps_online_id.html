@@ -1,47 +1,12 @@
 <!-- AppOnlineDetailController -->
 <div ng-controller="AppOnlineDetailController">
      <bb-loader></bb-loader>
-    <div class="app-border app-gradient app-shadow app-detail-header">
-        <div class="app-detail-header-in" ng-if="module">
-            <div class="app-detail-img">
-              <img class="app-image-detail" ng-src="{{onlineMediaUrl + module.icon}}" ng-if="module.icon" alt="{{module.title}}" />
-                <img class="app-image-detail" ng-src="storage/img/placeholder-img.png" ng-if="!module.icon" alt="{{module.title}}" />
-            </div>
-
-            <div class="app-detail-body">
-                <h2 ng-bind="module.title"></h2>
-                <p class="app-detail-perex" ng-bind-html="module.description|toTrusted"></p>
-                <p class="app-detail-list" ng-show="module.category">
-                    <i class="fa fa-list fa-lg"></i> <span ng-bind="categoryName"></span>
-                </p>
-                <p class="app-detail-list" ng-show="module.author">
-                    <i class="fa fa-user fa-lg"></i>
-                    <span ng-show="!module.homepage" ng-bind="module.author"></span>
-                    <a ng-href="{{module.homepage}}" ng-show="module.homepage" ng-bind="module.author"></a> 
-                </p>
-                <p class="app-detail-list" ng-show="module.version">
-                    <i class="fa fa-info-circle fa-lg"></i> <span class="app-version" ng-bind="module.version"></span>
-                    <span class="label"
-                          ng-class="module.maturity == 'stable' ? 'label-success':'label-warning'"
-                          >{{module.maturity}}</span>
-                </p> 
-                <p class="app-detail-list" ng-show="module.installed">
-                    <i class="fa fa-download fa-lg"></i> {{module.installed}}x
-                </p>
-                <p class="app-detail-list" ng-show="module.last_updated">
-                    <i class="fa fa-clock-o fa-lg"></i> <span ng-bind="module.last_updated"></span>
-                </p>
-                
-            </div>
-        </div>
-    </div>
-     <div class="fieldset submit-entry">
-        <button type="button" class="btn btn-default" bb-go-back><i class="fa fa-times  text-danger"></i> <span ng-bind="_t('lb_cancel')"></span></button>
-        <button class="btn btn-submit" ng-click="installModule(module)" ng-if="!local.installed">
-            <i class="fa fa-lg text-success fa-download"></i> <span class="btn-name_">{{_t('lb_download')}}</span>
-        </button> 
-        <button class="btn btn-default" disabled ng-if="local.installed">
-            <i class="fa fa-check fa-lg"></i> <span class="btn-name_">{{_t('installed')}}</span>
-        </button>
-     </div>
+    <!-- ///////////////////////////// App info ///////////////////////////// -->
+    <div class="admin-entry" ng-include="'app/views/apps/apps_online_id_info.html'"></div>
+    
+     <!-- ///////////////////////////// App description ///////////////////////////// -->
+    <div class="admin-entry" ng-include="'app/views/apps/apps_online_id_desc.html'"></div>
+    
+    <!-- ///////////////////////////// App comments ///////////////////////////// -->
+    <div class="admin-entry" ng-include="'app/views/apps/apps_online_id_comments.html'"></div>
 </div> <!-- /ng-controller --> 

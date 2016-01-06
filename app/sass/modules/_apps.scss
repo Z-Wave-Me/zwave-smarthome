@@ -138,4 +138,25 @@ padding-right: 5px;
         position: relative;
     }
 }
+/* Apps comments
+-------------------------------------------------- */
+.comment-entry{
+    margin: 0 0 10px 0;
+    .comment-header{
+        font-style: italic;
+        font-size: 95%;
+        color: $header-link-color;
+        margin: 0 0 5px 0;
+    }
+    .comment-body{
+        
+    }
+}
+.comment-entry.even{
+    padding: 10px;
+    background-color: $entry-even-bcg-color;
+}
+// Author comment
+.comment-type-1{
+}
 

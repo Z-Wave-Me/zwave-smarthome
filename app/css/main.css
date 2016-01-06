@@ -3859,6 +3859,26 @@ padding-right: 5px;
   position: relative;
 }
 
+/* Apps comments
+-------------------------------------------------- */
+/* line 143, ../sass/modules/_apps.scss */
+.comment-entry {
+  margin: 0 0 10px 0;
+}
+/* line 145, ../sass/modules/_apps.scss */
+.comment-entry .comment-header {
+  font-style: italic;
+  font-size: 95%;
+  color: #5d5d5d;
+  margin: 0 0 5px 0;
+}
+
+/* line 155, ../sass/modules/_apps.scss */
+.comment-entry.even {
+  padding: 10px;
+  background-color: #E9E9E9;
+}
+
 /* Rooms
 -------------------------------------------------- */
 /* line 6, ../sass/modules/_rooms.scss */

@@ -1,5 +1,10 @@
 {
     "newtrans": "---",
+    "description": "Description",
+    "comments": "Comments",
+    "add_comment": "Add new comment",
+      "comment_add_successful": "The comment was successfully saved",
+    "comment_add_failed": "Failed to add the comment",
     "---": "newtrans",
     "sortby": "Sort by",
     "creationTimeASC": "Oldest",
