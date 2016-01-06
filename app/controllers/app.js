@@ -431,19 +431,6 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
     $scope.module = [];
     $scope.categoryName = '';
     $scope.onlineMediaUrl = $scope.cfg.online_module_img_url;
-    $scope.tokens = {};
-
-    /**
-     * Load tokens
-     */
-    $scope.loadTokens = function() {
-        dataFactory.getApi('tokens', null, true).then(function(response) {
-            angular.extend($scope.tokens, response.data.data.tokens);
-            $scope.loadModule($routeParams.id);
-        }, function(error) {
-        });
-    };
-    $scope.loadTokens();
 
     /**
      * Load categories
@@ -465,33 +452,10 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
     /**
      * Load local modules
      */
-    $scope.loadModules = function(query) {
+    $scope.loadLocalModules = function(query) {
         dataFactory.getApi('modules').then(function(response) {
             $scope.local.installed = _.findWhere(response.data.data, query);
         }, function(error) {
-        });
-    };
-    /**
-     * Load module detail
-     */
-    $scope.loadModule = function(id) {
-        dataService.showConnectionSpinner();
-        var param = parseInt(id, 10);
-        var filter = {id: id};
-        if (isNaN(param)) {
-            filter = {modulename: id};
-        }
-        dataFactory.getOnlineModules({token: _.values($scope.tokens)}, true).then(function(response) {
-            $scope.module = _.findWhere(response.data.data, filter);
-            if (!$scope.module) {
-                $location.path('/error/404');
-                return;
-            }
-            $scope.loadModules({moduleName: id});
-            $scope.loadCategories($scope.module.category);
-            dataService.updateTimeTick();
-        }, function(error) {
-            $location.path('/error/' + error.status);
         });
     };
     
@@ -500,20 +464,16 @@ myAppController.controller('AppOnlineDetailController', function($scope, $routeP
      */
     $scope.loadModuleId = function(id) {
         dataService.showConnectionSpinner();
-        
-          dataFactory.postToRemote($scope.cfg.online_module_installed_url, {id: module.id}).then(function(response) {
-//            $scope.module = _.findWhere(response.data.data, filter);
-//            if (!$scope.module) {
-//                $location.path('/error/404');
-//                return;
-//            }
-//            $scope.loadModules({moduleName: id});
-//            $scope.loadCategories($scope.module.category);
-//            dataService.updateTimeTick();
+            dataFactory.postToRemote($scope.cfg.online_moduleid_url, {id: id,lang: $scope.lang}).then(function(response) {
+            $scope.module = response.data.data;
+            $scope.loadLocalModules({moduleName: $scope.module.modulename});
+            $scope.loadCategories($scope.module.category);
+            dataService.updateTimeTick();
         }, function(error) {
             $location.path('/error/' + error.status);
         });
     };
+    $scope.loadModuleId($routeParams.id);
     
      /**
      * Install module
