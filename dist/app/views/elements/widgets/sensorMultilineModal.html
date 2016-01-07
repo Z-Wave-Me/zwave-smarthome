@@ -1,0 +1,41 @@
+<!-- sensorMultilineModal -->
+<div id="sensorMultilineModal" class="appmodal" ng-controller="ElementSensorMultilineController" ng-if="modalArr.sensorMultilineModal">
+    <div class="appmodal-in">
+        <div class="appmodal-header">
+            <span class="appmodal-close" ng-click="handleModal('sensorMultilineModal', $event)"><i class="fa fa-times"></i></span>
+            <h3>{{widgetSensorMultiline.find.metrics.title}}</h3>
+        </div>
+        <div class="appmodal-body">
+            <bb-alert alert="widgetSensorMultiline.alert"></bb-alert>
+            <div class="multiline-entry" ng-if="widgetSensorMultiline.find">
+                <table class="table table-report table-condensed">
+                    <tbody>
+                        <!-- <tr class="text-right" ng-if="multiLineDev.data.metrics.multilineType == 'protection'">
+                           <td>
+                               <button class="btn btn-default btn-sm" ng-click="runCmd(multiLineDev.data.id + '/command/update')"> <i class="fa fa-clock-o"></i> <span class="widget-update-time">{{multiLineDev.data.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span></button>
+                           </td>
+                        </tr> -->
+                        <tr ng-repeat="n in widgetSensorMultiline.find.metrics.sensors track by n.id">
+                            <td class="td-img">
+                                <img id="widget_multiline_img_{{n.id}}" class="report-img" ng-src="{{n.metrics.icon|getElementIcon:n:n.metrics.level}}" alt="img" />
+                            </td>
+                            <td>
+                                <span ng-bind="n.metrics.title"/></span><br />
+                            </td>
+                            <td>
+                                <strong>{{n.metrics.level | numberFixedLen}} {{n.metrics.scaleTitle}}</strong>
+                            </td>
+                            <td class="text-right">
+                                <a class="widget-history" href="" ng-click="dataHolder.devices.find = dataHolder.devices.all[n.id];handleModal('modalHistory', $event)" ng-if="n.hasHistory"><i class="fa fa-history fa-lg"></i></a>&nbsp;
+                                <button class="btn btn-default btn-sm" ng-click="runCmd(n.id + '/command/update')" ng-if="cfg.element_update_time_btn.indexOf(n.deviceType) > - 1 && n.updateTime"> <i class="fa fa-clock-o"></i> <span class="widget-update-time">{{n.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--<div class="appmodal-footer">
+            <button type="button" class="btn btn-default" ng-click="handleModal('sensorMultilineModal', $event)"><i class="fa fa-times text-danger"></i> {{_t('lb_close')}}</button>
+        </div>-->
+    </div>
+</div>

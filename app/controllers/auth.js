@@ -20,7 +20,7 @@ myAppController.controller('LoginController', function($scope, $location, $windo
     };
     if(dataService.getUser()){
         $scope.input.form = false;
-        window.location = '#/elements/dashboard/1?login';
+        window.location = '#/dashboard';
     }
     $scope.loginLang = ($scope.lastLogin != undefined && angular.isDefined($cookies.lang)) ? $cookies.lang : false;
     /**
@@ -40,7 +40,7 @@ myAppController.controller('LoginController', function($scope, $location, $windo
 //        dataFactory.sessionApi().then(function(response) {
 //            $scope.processUser(response.data.data);
 //            if (!hasCookie) {
-//                $location.path('/elements/dashboard/1');
+//                $location.path('/dashboard');
 //                $window.location.reload();
 //            }
 //        });
@@ -67,7 +67,7 @@ myAppController.controller('LoginController', function($scope, $location, $windo
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         $scope.alert = {message: false};
         dataFactory.logInApi(input).then(function(response) {
-            var redirectTo = '#/elements/dashboard/1?login';
+            var redirectTo = '#/dashboard';
             $scope.processUser(response.data.data);
             if (input.fromexpert) {
                 window.location.href = $scope.cfg.expert_url;
@@ -132,7 +132,7 @@ myAppController.controller('PasswordController', function($scope, dataFactory) {
             }, function(error) {
             });
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
-            window.location = '#/elements/dashboard/1';
+            window.location = '#/dashboard';
 
         }, function(error) {
             var message = $scope._t('error_update_data');

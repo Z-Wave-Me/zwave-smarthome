@@ -1,0 +1,18 @@
+<!-- modalHistory -->
+<div id="modalHistory" class="appmodal" ng-controller="ElementHistoryController" ng-if="modalArr.modalHistory">
+    <div class="appmodal-in">
+        <div class="appmodal-header">
+            <span class="appmodal-close" ng-click="handleModal('modalHistory', $event)"><i class="fa fa-times"></i></span>
+            <h3>{{widgetHistory.find.metrics.title}}</h3>
+        </div>
+        <div class="appmodal-body text-center">
+             <bb-alert alert="widgetHistory.alert"></bb-alert>
+            <div ng-if="!(_.isEmpty(widgetHistory.chartData))">
+                <canvas tc-chartjs-line chart-data="widgetHistory.chartData" chart-options="widgetHistory.chartOptions" width="340" height="200"></canvas>
+            </div>
+        </div>
+        <!--<div class="appmodal-footer">
+            <button type="button" class="btn btn-default" ng-click="handleModal('modalHistory', $event)"><i class="fa fa-times text-danger"></i> {{_t('lb_close')}}</button>
+        </div>-->
+    </div>
+</div>

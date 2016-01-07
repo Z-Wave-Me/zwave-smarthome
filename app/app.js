@@ -27,7 +27,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
                 }).
                  // Home
                 when('/home', {
-                   redirectTo: '/elements/dashboard/1'
+                   redirectTo: '/dashboard'
                 }).
                  // Elements Dashboard
                 when('/dashboard', {
@@ -35,29 +35,19 @@ myApp.config(['$routeProvider', function($routeProvider) {
                    requireLogin: true
                 }).
                  // Elements list
-                when('/element', {
+                when('/elements', {
                    templateUrl: 'app/views/elements/elements_page.html',
                    requireLogin: true
                 }).
-                 // Elements rooms
-                when('/room/:id', {
-                   templateUrl: 'app/views/elements/elements_room.html',
-                   requireLogin: true
-                }).
+                // DEPRECATED
                 // Elements
-                when('/elements/:filter?/:val?/:name?', {
+                /*when('/elements/:filter?/:val?/:name?', {
                     templateUrl: 'app/views/elements/elements.html',
                     requireLogin: true
-                }).
-                // Element
+                }).*/
+                // Element id
                 when('/element/:id', {
                     templateUrl: 'app/views/elements/element.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.element
-                }).
-                 // Element - drag & drop
-                when('/dragdrop', {
-                    templateUrl: 'app/views/elements/dragdrop.html',
                     requireLogin: true,
                     roles: cfg.role_access.element
                 }).
@@ -66,6 +56,11 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     templateUrl: 'app/views/rooms/rooms.html',
                     requireLogin: true,
                     roles: cfg.role_access.rooms
+                }).
+                 // Elements rooms
+                when('/rooms/:id', {
+                   templateUrl: 'app/views/elements/elements_room.html',
+                   requireLogin: true
                 }).
                 // Events
                 when('/events/:param?/:val?', {

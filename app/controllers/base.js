@@ -93,22 +93,23 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
      */
     $scope.getBodyId = function() {
         var path = $location.path().split('/');
-        if (path[1] == 'elements') {
-            switch (path[2]) {
-                case 'location':
-                    return 'location';
-                    break;
-                case 'dashboard':
-                    return 'dashboard';
-                    break;
-                default:
-                    return 'elements';
-                    break;
-            }
-
-        } else {
-            return path[1] || 'login';
-        }
+        return path[1] || 'login';
+//        if (path[1] == 'elements') {
+//            switch (path[2]) {
+//                case 'location':
+//                    return 'location';
+//                    break;
+//                case 'dashboard':
+//                    return 'dashboard';
+//                    break;
+//                default:
+//                    return 'elements';
+//                    break;
+//            }
+//
+//        } else {
+//            return path[1] || 'login';
+//        }
 
     };
 

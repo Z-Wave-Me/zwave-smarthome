@@ -1,0 +1,53 @@
+<!-- openWeatherModal -->
+<div id="openWeatherModal" class="appmodal" ng-controller="ElementOpenWeatherController" ng-if="modalArr.openWeatherModal">
+    <div class="appmodal-in">
+        <div class="appmodal-header">
+            <span class="appmodal-close" ng-click="handleModal('openWeatherModal', $event)"><i class="fa fa-times"></i></span>
+            <h3>{{widgetOpenWeather.find.metrics.title}}, {{widgetOpenWeather.find.metrics.country}} <img ng-src="{{widgetOpenWeather.find.metrics.flag}}"></h3>
+        </div>
+        <div class="appmodal-body">
+            <bb-alert alert="widgetOpenWeather.alert"></bb-alert>
+            <table class="table table-report table-condensed">
+                <tbody>
+                    <tr>
+                        <td><b>{{_t('lb_humidity')}}</b></td>
+                        <td><span ng-bind="widgetOpenWeather.find.metrics.zwaveOpenWeather.main.humidity"/><span> %</span></td>    
+                    </tr>
+                    <tr>
+                        <td><b>{{_t('lb_pressure')}}</b></td>
+                        <td><span ng-bind="widgetOpenWeather.find.metrics.zwaveOpenWeather.main.pressure"/><span> hPa</span></td>
+                    </tr>
+                    <tr>
+                        <td><b>{{_t('lb_weather')}}</b></td>
+                        <td><span ng-bind="widgetOpenWeather.find.metrics.zwaveOpenWeather.weather[0].description"/></td>
+                    </tr>
+                    <tr>
+                        <td><b>{{_t('lb_wind')}}</b></td>
+                        <td>
+                            <span ng-bind="widgetOpenWeather.find.metrics.zwaveOpenWeather.wind.speed | number:1"/><span> m/s</span> 
+                            <!-- Choose correct wind direction -->
+                            <span ng-if="widgetOpenWeather.find.metrics.zwaveOpenWeather.wind.deg === 0">{{_t('lb_n')}}</span>
+                            <span ng-if="0 < widgetOpenWeather.find.metrics.zwaveOpenWeather.wind.deg < 45">{{_t('lb_ne')}}</span>
+                            <span ng-if="widgetOpenWeather.find.metrics.zwaveOpenWeather.wind.deg === 90">{{_t('lb_e')}}</span>
+                            <span ng-if="90 < widgetOpenWeather.find.metrics.zwaveOpenWeather.wind.deg < 180">{{_t('lb_se')}}</span>
+                            <span ng-if="widgetOpenWeather.find.metrics.zwaveOpenWeather.wind.deg === 180">{{_t('lb_s')}}</span>
+                            <span ng-if="180 < widgetOpenWeather.find.metrics.zwaveOpenWeather.wind.deg < 270">{{_t('lb_sw')}}</span>
+                            <span ng-if="widgetOpenWeather.find.metrics.zwaveOpenWeather.wind.speed === 270">{{_t('lb_w')}}</span>
+                            <span ng-if="270 < widgetOpenWeather.find.metrics.zwaveOpenWeather.wind.deg < 360">{{_t('lb_nw')}}</span>
+                            <!-- Wind dirction in degree -->
+                            (<span ng-bind="widgetOpenWeather.find.metrics.zwaveOpenWeather.wind.deg | number:0"/><span>°</span>)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>{{_t('lb_last_update')}}</b></td>
+                        <td>{{widgetOpenWeather.find.updateTime|isToday:true}}</td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--<div class="appmodal-footer">
+            <button type="button" class="btn btn-default" ng-click="handleModal('openWeatherModal', $event)"><i class="fa fa-times text-danger"></i> {{_t('lb_close')}}</button>
+        </div>-->
+    </div>
+</div>

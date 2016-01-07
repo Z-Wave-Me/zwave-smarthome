@@ -1,0 +1,66 @@
+<!-- thermostatModal -->
+<div id="thermostatModal" class="appmodal" ng-controller="ElementThermostatController" ng-if="modalArr.thermostatModal">
+    <div class="appmodal-in">
+        <div class="appmodal-header">
+            <span class="appmodal-close" ng-click="handleModal('thermostatModal', $event)"><i class="fa fa-times"></i></span>
+            <h3>{{widgetThermostat.find.metrics.title}}</h3>
+        </div>
+        <div class="appmodal-body text-center">
+            <bb-alert alert="widgetThermostat.alert"></bb-alert>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <input 
+                                type="text" 
+                                value="{{widgetThermostat.find.metrics.level}}" 
+                                class="dial widget-level-knob" 
+                                data-width="160" 
+                                data-height="160" 
+                                data-min="5"
+                                data-max="40" 
+                                knob-id="widgetThermostat.find.id" 
+                                knob-data="widgetThermostat.find.metrics.level" 
+                                knob-options="knobopt" 
+                                ng-model="widgetThermostat.find.metrics.level" myknob ng-if="widgetThermostat.find.metrics.scaleTitle === '°C'" /> 
+                            <input 
+                                type="text" 
+                                value="{{widgetThermostat.find.metrics.level}}" 
+                                class="dial widget-level-knob" 
+                                data-width="160" 
+                                data-height="160" 
+                                data-min="40"
+                                data-max="104" 
+                                knob-id="widgetThermostat.find.id" 
+                                knob-data="widgetThermostat.find.metrics.level" 
+                                knob-options="knobopt" 
+                                ng-model="widgetThermostat.find.metrics.level" myknob ng-if="widgetThermostat.find.metrics.scaleTitle === '°F'" />
+                        </td>
+                        <td>
+                            <button class="btn btn-primary"
+                                    ng-click="setExactCmd(widgetThermostat.find, '+')"
+                                    ><i class="fa fa-angle-up fa-lg"></i>
+                            </button>&nbsp;
+                            <button class="btn btn-info"
+                                    ng-click="setExactCmd(widgetThermostat.find, widgetThermostat.find.minMax.max)"
+                                    ><i class="fa fa-angle-double-up fa-lg"></i>
+                            </button><br /><br />
+                            <button class="btn btn-primary"
+                                    ng-click="setExactCmd(widgetThermostat.find, '-')"
+                                    ><i class="fa fa-angle-down fa-lg"></i>
+                            </button>&nbsp;
+                            <button class="btn btn-info"
+                                    ng-click="setExactCmd(widgetThermostat.find, widgetThermostat.find.minMax.min)"
+                                    >
+                                <i class="fa fa-angle-double-down fa-lg"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--<div class="appmodal-footer">
+            <button type="button" class="btn btn-default" ng-click="handleModal('thermostatModal', $event)"><i class="fa fa-times text-danger"></i> {{_t('lb_close')}}</button>
+        </div>-->
+    </div>
+</div>

@@ -1,0 +1,7 @@
+<!-- Elements dashboard view -->
+<div ng-controller="ElementBaseController">
+    <div ng-controller="ElementDashboardController">
+        <div ng-if="!dataHolder.devices.show" ng-include="'app/views/elements/welcome_dashboard.html'"></div>
+        <div ng-if="dataHolder.devices.show" ng-include="'app/views/elements/list.html'"></div>
+    </div> <!-- /ng-controller --> 
+</div> <!-- /ng-controller --> 

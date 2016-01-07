@@ -61,10 +61,18 @@ var config_data = {
         'help_data_url': 'storage/help/',
         // Online module url
         'online_module_url': 'http://hrix.net/modules_new/?uri=api-modules',
+        // Online module id url
+        'online_moduleid_url': 'http://hrix.net/modules_new/?uri=api-modulesid',
         // Online module img url
         'online_module_img_url': 'http://hrix.net/modules_new/modules/',
         // Online module download url
         'online_module_download_url': 'http://hrix.net/modules_new/modules/',
+        // Online module installed url
+        'online_module_installed_url': 'http://hrix.net/modules_new/?uri=api-modules-installed',
+        // Online module comments url
+        'online_module_comments_url': 'http://hrix.net/modules_new/?uri=api-comments',
+        // Online module comment create url
+        'online_module_comment_create_url': 'http://hrix.net/modules_new/?uri=api-comments-create',
         // Online module download url
         'blacklist_url': 'http://hrix.net/blacklist.json',
         // Post report url
@@ -183,11 +191,21 @@ var config_data = {
         'knob_255': [
             'multilevel'
         ],
+        // Order by
+        orderby: {
+            elements: {
+                'creationTimeDESC': '-creationTime',
+                'creationTimeASC': 'creationTime',
+                'titleASC': 'metrics.title',
+                'titleDESC': '-metrics.title'
+            }
+        },
+        // List of climate states
+        climate_state: ['frostProtection', 'energySave', 'comfort', 'schedule'],
         // Results per page
         'page_results': 12,
         // Results per events page
         'page_results_events': 50,
-        
         // ---------------------------------- Custom config for specifics app_type ---------------------------------- //
         // Application type : default/popp/wd
         'app_type': 'default',
