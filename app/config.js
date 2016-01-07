@@ -60,19 +60,19 @@ var config_data = {
         // Help data path
         'help_data_url': 'storage/help/',
         // Online module url
-        'online_module_url': 'http://hrix.net/modules_new/?uri=api-modules',
+        'online_module_url': 'http://developer.zwave.eu/?uri=api-modules',
         // Online module id url
-        'online_moduleid_url': 'http://hrix.net/modules_new/?uri=api-modulesid',
+        'online_moduleid_url': 'http://developer.zwave.eu/?uri=api-modulesid',
         // Online module img url
-        'online_module_img_url': 'http://hrix.net/modules_new/modules/',
+        'online_module_img_url': 'http://developer.zwave.eu/modules/',
         // Online module download url
-        'online_module_download_url': 'http://hrix.net/modules_new/modules/',
+        'online_module_download_url': 'http://developer.zwave.eu/modules/',
         // Online module installed url
-        'online_module_installed_url': 'http://hrix.net/modules_new/?uri=api-modules-installed',
+        'online_module_installed_url': 'http://developer.zwave.eu/?uri=api-modules-installed',
         // Online module comments url
-        'online_module_comments_url': 'http://hrix.net/modules_new/?uri=api-comments',
+        'online_module_comments_url': 'http://developer.zwave.eu/?uri=api-comments',
         // Online module comment create url
-        'online_module_comment_create_url': 'http://hrix.net/modules_new/?uri=api-comments-create',
+        'online_module_comment_create_url': 'http://developer.zwave.eu/?uri=api-comments-create',
         // Online module download url
         'blacklist_url': 'http://hrix.net/blacklist.json',
         // Post report url
