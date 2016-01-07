@@ -3864,8 +3864,10 @@ padding-right: 5px;
 /* line 143, ../sass/modules/_apps.scss */
 .comment-entry {
   margin: 0 0 10px 0;
+  padding: 10px;
+  background-color: #f3f3f3;
 }
-/* line 145, ../sass/modules/_apps.scss */
+/* line 147, ../sass/modules/_apps.scss */
 .comment-entry .comment-header {
   font-style: italic;
   font-size: 95%;
@@ -3873,9 +3875,8 @@ padding-right: 5px;
   margin: 0 0 5px 0;
 }
 
-/* line 155, ../sass/modules/_apps.scss */
+/* line 157, ../sass/modules/_apps.scss */
 .comment-entry.even {
-  padding: 10px;
   background-color: #E9E9E9;
 }
 

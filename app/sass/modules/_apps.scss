@@ -142,6 +142,8 @@ padding-right: 5px;
 -------------------------------------------------- */
 .comment-entry{
     margin: 0 0 10px 0;
+    padding: 10px;
+     background-color: lighten($entry-even-bcg-color,4%);
     .comment-header{
         font-style: italic;
         font-size: 95%;
@@ -153,7 +155,6 @@ padding-right: 5px;
     }
 }
 .comment-entry.even{
-    padding: 10px;
     background-color: $entry-even-bcg-color;
 }
 // Author comment
