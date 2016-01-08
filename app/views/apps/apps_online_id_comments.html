@@ -18,7 +18,7 @@
                 <input name="name" id="name" type="text" class="form-control" value="{{comments.model.name}}" ng-blur="nameBlur = true" ng-model="comments.model.name" ng-required="true" />
                 <bb-validator input-name='form_comment.name.$error.required' trans='_t("field_required")' has-blur='nameBlur'></bb-validator> 
             </div>
-             <bb-help-text trans="_t('Info text comes here..')"></bb-help-text>
+               <!-- <bb-help-text trans="_t('Info text comes here..')"></bb-help-text> -->
         </fieldset>
         <fieldset class="submit-entry">
             <button type="button" class="btn btn-default" ng-click="expandElement('appcommentadd')"><i class="fa fa-times  text-danger"></i> <span ng-bind="_t('lb_cancel')"></span></button>

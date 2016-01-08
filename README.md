@@ -4,10 +4,11 @@ SmartHome UI
 Angular app
 ## v1.0.4
 #### New features
-- Better and improved modal windows and dropdowns
+- Rating of the Apps.
+- Improved modal windows and dropdowns
 - Sorting Elements by title, newest....
 - Comments for On-line Apps.
-- Download app counter.
+- Counter for downloaded On-line Apps.
 - Added icon to deveices list in Events.
 - Added stop button to blinds.
 

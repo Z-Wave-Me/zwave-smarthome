@@ -3859,15 +3859,28 @@ padding-right: 5px;
   position: relative;
 }
 
-/* Apps comments
+/* Apps rating
 -------------------------------------------------- */
 /* line 143, ../sass/modules/_apps.scss */
+.module-rating {
+  padding: 0 10px 0 0;
+  color: #8c8c8c;
+}
+
+/* line 147, ../sass/modules/_apps.scss */
+.module-rating.israted {
+  color: #629862;
+}
+
+/* Apps comments
+-------------------------------------------------- */
+/* line 152, ../sass/modules/_apps.scss */
 .comment-entry {
   margin: 0 0 10px 0;
   padding: 10px;
   background-color: #f3f3f3;
 }
-/* line 147, ../sass/modules/_apps.scss */
+/* line 156, ../sass/modules/_apps.scss */
 .comment-entry .comment-header {
   font-style: italic;
   font-size: 95%;
@@ -3875,7 +3888,7 @@ padding-right: 5px;
   margin: 0 0 5px 0;
 }
 
-/* line 157, ../sass/modules/_apps.scss */
+/* line 166, ../sass/modules/_apps.scss */
 .comment-entry.even {
   background-color: #E9E9E9;
 }
