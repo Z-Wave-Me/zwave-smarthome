@@ -11992,6 +11992,7 @@ myAppController.controller('ElementBaseController', function ($scope, $routePara
         dataFactory.getApi('devices', null, true).then(function (response) {
             var devices = _.chain(response.data.data.devices)
                     .flatten()
+                    .uniq(false,function(v){return v.id;})
                     .reject(function (v) {
                         return (v.deviceType === 'battery') || (v.permanently_hidden === true) || (v.visibility === false);
                     })
@@ -12057,7 +12058,7 @@ myAppController.controller('ElementBaseController', function ($scope, $routePara
             } else {
                 $scope.dataHolder.devices.collection = _.where($scope.dataHolder.devices.all, $scope.dataHolder.devices.filter);
             }
-            if(_.isEmpty($scope.dataHolder.devices.collection)){
+            if (_.isEmpty($scope.dataHolder.devices.collection)) {
                 $scope.dataHolder.devices.show = false;
             }
             dataService.updateTimeTick(response.data.data.updateTime);
@@ -12118,13 +12119,13 @@ myAppController.controller('ElementBaseController', function ($scope, $routePara
 
         $scope.loadDevices();
     };
-    
+
     /**
      * Set order by
      */
     $scope.setOrderBy = function (key) {
         angular.extend($scope.dataHolder.devices, {orderBy: key});
-            $cookies.orderByElements = key;
+        $cookies.orderByElements = key;
 
         $scope.loadDevices();
     };
@@ -13945,9 +13946,18 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
             module_id: parseInt($routeParams.id, 10),
             content: '',
             name: '',
-            remote_id: ''
+            remote_id: false
         },
         show: true
+    };
+    $scope.rating = {
+        range: _.range(1, 6),
+        model: {
+            module_id: parseInt($routeParams.id, 10),
+            remote_id: false,
+            score: 0
+
+        }
     };
     $scope.categoryName = '';
     $scope.onlineMediaUrl = $scope.cfg.online_module_img_url;
@@ -13960,6 +13970,7 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
             $scope.remoteAccess = response.data.data[0];
             if (Object.keys(response.data.data[0]).length > 0) {
                 $scope.comments.model.remote_id = response.data.data[0].params.userId;
+                $scope.rating.model.remote_id = response.data.data[0].params.userId;
             }
 
         }, function (error) {
@@ -14018,10 +14029,10 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
     $scope.loadComments = function (id) {
         dataFactory.getRemoteData($scope.cfg.online_module_comments_url + '/' + id, true).then(function (response) {
             $scope.comments.all = response.data.data;
-            if(_.isEmpty(response.data.data)){
+            if (_.isEmpty(response.data.data)) {
                 $scope.comments.show = false;
-            }else{
-                 $scope.comments.show = true;
+            } else {
+                $scope.comments.show = true;
             }
         }, function (error) {
             $scope.loading = false;
@@ -14077,6 +14088,26 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
 
         });
 
+    };
+    
+     /**
+     * Rate module
+     */
+    $scope.rateModule = function (score) {
+        $scope.rating.model.score = parseInt(score);
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        dataFactory.postToRemote($scope.cfg.online_module_rating_create_url, $scope.rating.model).then(function (response) {
+            $scope.loading = false;
+             $scope.loadModuleId($routeParams.id);
+        }, function (error) {
+            var message = $scope._t('error_update_data');
+            $scope.loading = false;
+            if(error.status === 409){
+                 message = $scope._t('already_rated');
+            }
+            alertify.alert(message);
+
+        });
     };
 
 });
