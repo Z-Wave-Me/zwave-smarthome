@@ -63,6 +63,11 @@ myAppController.controller('LoginController', function($scope, $location, $windo
      * Login proccess
      */
     $scope.login = function(input) {
+//         dataFactory.postToRemote('http://developer.zwave.eu/ietest.php', input).then(function (response) {
+//        }, function (error) {
+//
+//        });
+//        return;
         input.password = input.password;
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         $scope.alert = {message: false};
