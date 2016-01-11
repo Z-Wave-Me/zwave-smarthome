@@ -41,17 +41,17 @@
     display: none;
 }
 .show-on-mobile{
-        display: none;
- }
- 
-  .is-mobile-true{
-       #footer, #mobile_footer{
-            .container{
-              padding-right: 70px; 
-            }
-            
+    display: none;
+}
+
+.is-mobile-true{
+    #footer, #mobile_footer{
+        .container{
+            padding-right: 70px; 
         }
+
     }
+}
 /*@media (max-width: 2000px) {
     .show-on-mobile{
         display: none;
@@ -100,13 +100,13 @@
 }
 
 /* Medium Devices, Desktops */
-@media only screen and (max-width : 992px),(orientation:portrait)   {
-   
+@media only screen and (max-width : 992px)   {
+
 }
 
 /* Small Devices, Tablets */
-@media only screen and (max-width : 768px){
-     .show-on-pc{
+@media only screen and (max-width : 768px),(orientation:portrait){
+    .show-on-pc{
         display: none;
     }
     .show-on-mobile{
@@ -115,7 +115,7 @@
     @include mBody();
     @include mHeader(); 
     @include mFooter();
-     @include mNavi();
+    @include mNavi();
     @include mImg();
     @include mTable();
     @include mButton();
@@ -123,11 +123,11 @@
     @include mLoader();
     @include mAlert();
     @include mTab();
-     @include mDropdown();
+    @include mDropdown();
     @include mModal();
     @include mPagination();
     @include mElements();
-     @include mElementsNew();
+    @include mElementsNew();
     @include mRooms();
     @include mEvents();
     @include mApps();

@@ -4544,7 +4544,7 @@ padding-right: 5px;
 /* Large Devices, Wide Screens */
 /* Medium Devices, Desktops */
 /* Small Devices, Tablets */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 768px), (orientation: portrait) {
   /* line 109, ../sass/responsive/_responsive.scss */
   .show-on-pc {
     display: none;
