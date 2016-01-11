@@ -50,6 +50,7 @@ myAppController.controller('ElementBaseController', function ($scope, $routePara
         dataFactory.getApi('devices', null, true).then(function (response) {
             var devices = _.chain(response.data.data.devices)
                     .flatten()
+                    .uniq(false,function(v){return v.id;})
                     .reject(function (v) {
                         return (v.deviceType === 'battery') || (v.permanently_hidden === true) || (v.visibility === false);
                     })
@@ -115,7 +116,7 @@ myAppController.controller('ElementBaseController', function ($scope, $routePara
             } else {
                 $scope.dataHolder.devices.collection = _.where($scope.dataHolder.devices.all, $scope.dataHolder.devices.filter);
             }
-            if(_.isEmpty($scope.dataHolder.devices.collection)){
+            if (_.isEmpty($scope.dataHolder.devices.collection)) {
                 $scope.dataHolder.devices.show = false;
             }
             dataService.updateTimeTick(response.data.data.updateTime);
@@ -176,13 +177,13 @@ myAppController.controller('ElementBaseController', function ($scope, $routePara
 
         $scope.loadDevices();
     };
-    
+
     /**
      * Set order by
      */
     $scope.setOrderBy = function (key) {
         angular.extend($scope.dataHolder.devices, {orderBy: key});
-            $cookies.orderByElements = key;
+        $cookies.orderByElements = key;
 
         $scope.loadDevices();
     };
