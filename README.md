@@ -2,8 +2,9 @@ SmartHome UI
 ===============
 
 Angular app
-## v1.0.4
+## v1.1.0
 #### New features
+- Backup and restore.
 - Rating of the Apps.
 - Improved modal windows and dropdowns
 - Sorting Elements by title, newest....
@@ -17,6 +18,7 @@ Angular app
 - Replaced Bootstrap modal windows and dropdowns with Angular.
 
 #### Fixes
+- List elements error #82.
 - Can not install user module from store #87
 - Fixed redirect after post/put a local app.
 
