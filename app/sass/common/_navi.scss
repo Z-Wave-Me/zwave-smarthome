@@ -13,10 +13,10 @@
         font-size: $app-navi-icon-size;  
     }
     .page-navi-title{
-        text-transform: uppercase;
-        text-align: center;
+        //text-transform: uppercase;
+       text-align: left;
         margin: 0;
-        padding: 10px;
+        padding: 10px 20px;
         font-weight: bold;
         border-bottom: solid 1px lighten($app-border-color, 8%);
     }
@@ -24,8 +24,8 @@
             padding: 20px;
         }
     .page-navi-tag {
-        border: solid 1px #777777;
-        display: inline;
+        border: solid 1px lighten($app-border-color, 8%);
+        display: inline-block;
         margin: 5px;
         padding: .2em .6em .3em;
         line-height: 1;
@@ -36,8 +36,8 @@
         border-radius: .25em;
     }
     .page-navi-tag.active{
-        color: #fff;
-        background-color: #777777;
+        //color: #fff;
+        background-color: lighten($app-border-color, 8%);
         cursor:text;
     }
     .page-navi-in{
