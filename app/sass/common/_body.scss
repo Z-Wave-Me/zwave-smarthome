@@ -1,33 +1,58 @@
-/* Body
--------------------------------------------------- */
-html {}
-body {
-    background-color: $app-body-bcg-color;
-    color: $app-body-color;
-   font-size: $app-body-font-size;
+// Reset the box-sizing
+//
+// Heads up! This reset may cause conflicts with some third-party widgets.
+// For recommendations on resolving such conflicts, see
+// http://getbootstrap.com/getting-started/#third-box-sizing
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing:border-box;
+}
+*:before,
+*:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
-/* Page
+/* Body reset
 -------------------------------------------------- */
-#main_content {
-    margin-top: $header-h + 20px; 
-    margin-bottom: 20px;
+html {
+    font-size: 10px;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+body {
+    font-family: $app-font-family-sans-serif;
+    font-size: $app-body-font-size;
+    line-height: $app-line-height-base;
+    color: $app-body-color;
+    background-color: $app-body-bcg-color;
+}
+
+// Reset fonts for relevant elements
+input,
+button,
+select,
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
 }
 
 /* Typo
 -------------------------------------------------- */
 h1, .h1, h2, .h2, h3, .h3 {
     margin-top: 0;
-   color: lighten($app-body-color, 15%);
+    color: lighten($app-body-color, 15%);
 }
 h1 {
     font-size:$app-h1-font-size;
 }
 
 h2 {
-    
     font-size: $app-h2-font-size;
-     margin: 10px 0 3px 0;
+    margin: 10px 0 3px 0;
 }
 
 h3 {
@@ -37,122 +62,47 @@ h3 {
 h4 {
     font-size: $app-h4-font-size;
 }
-.entry-title{
-    font-size: $app-body-font-size * 1.1;
-}
 
 /* Links
 -------------------------------------------------- */
 a {
-    color: lighten($app-body-color, 25%);
-}
-a:hover {
-    color: lighten($brand-color-secondary, 15%);
-}
-.clickable{
-    cursor: pointer;
-}
+    color: $app-a-color;
+    text-decoration: none;
 
-.text-supp{
-    font-style: italic;
-    color: lighten($app-body-color, 30%);
-}
-
-.badge{
-    padding: 7px;
-    margin-right: 5px;
-}
-.help-text{
-    display: block;
-    //font-size: 95%;
-    font-style: italic;
-     margin: 5px 0;
-}
-.help-text.inline{
-    display: inline;
-   
-}
-.app-border{
-    border: solid 4px $app-border-color-light;
-}
-.app-gradient{
-    @include appGradient();
-}
-
-.app-gradient-green{
-    @include appGradientGreen();
-}
-
-.app-gradient-red{
-    @include appGradientRed();
-}
-
-.app-gradient-yellow{
-    @include appGradientYellow();
-}
-
-.app-shadow{
-    @include appBoxShadow();
-}
-
-.bcg-active.false{
-    background-color: $app-bcg-active-false;
-}
-
-/* Hide element on is-mobile-true devices
--------------------------------------------------- */
-.is-mobile-true{
-    .mobhidden, .btn-name{
-        display: none !important;
+    &:hover,&:focus {
+        color: $app-a-hover-color;
+        text-decoration: underline;
     }
-   
 
+    &:focus {
+        // Default
+        outline: thin dotted;
+        // WebKit
+        outline: 5px auto -webkit-focus-ring-color;
+        outline-offset: -2px;
+    }
 }
-
-/* Spinners
--------------------------------------------------- */
-.module-spinner{
-    display: none !important;
-}
-
 /* Images
 -------------------------------------------------- */
-.report-img{
-    margin: 0;
-    max-width: 26px;
-    display: inline;
+img {
+    vertical-align: middle;
 }
 
-.product-img{
-    margin: 0;
-    max-width: 100px;
-     max-height: 70px;
-    display: inline;
-}
-
-/* Device assigned block
+/* Layout
 -------------------------------------------------- */
-.device-assigned-block {
-    background-color: #FCF8E3;
-  padding: 10px;
-  border: 1px solid #faebcc;
-  margin: 10px 0;
-  color: #8a6d3b;
-  background-color: #fcf8e3;
-}
+.container{
+    max-width:none;
+    width: 100%;
 
-.btn-device-admin {
-  display: inline-block;
-  padding: 6px 12px;
-  margin: 0 5px 5px 0;
-  margin-bottom: 0;
-  font-size: 14px;
-  font-weight: normal;
-  line-height: 1.42857143;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  background-color: #fff;
-  border: 1px solid #d3d3d3;
-  border-radius: 4px;
+}
+.row {
+    padding-right: 0;
+    margin-right: 0;
+
+}
+.mobile-padding{
+    padding: 0 15px;
+    .page-header{
+        padding: 0;
+    }
 }

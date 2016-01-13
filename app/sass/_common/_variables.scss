@@ -1,0 +1,108 @@
+// Mobile device font-size scale
+$m-font-scale: 1.2;
+// Font size
+$app-body-font-size: 14px;
+$app-navi-font-size: 16px;
+$app-h1-font-size: $app-body-font-size * 1.6;
+$app-h2-font-size: $app-body-font-size * 1.4;
+$app-h3-font-size: $app-body-font-size * 1.2;
+$app-h4-font-size: $app-body-font-size * 1.1;
+$app-btn-font-size: 15px;
+// Icon size
+$app-navi-icon-size: $app-navi-font-size * 1.2;
+$app-btn-icon-size: $app-btn-font-size * 1.2;
+// Elements size
+$header-h: 50px;
+// Main color
+$brand-color-primary: #000;
+$brand-color-secondary: #DA131F;
+
+$brand-color-6494bc: #80ad80;
+
+// Body
+$app-body-bcg-color:  #F6F6F6;
+$app-body-color:  lighten($brand-color-primary, 5%);
+
+// Link
+$header-link-color: #5d5d5d;
+
+// Entry color
+$entry-even-bcg-color:  #E9E9E9;
+
+// Header
+$header-color-primary: #E9E9E9;
+$header-color-secondary:  #DDDDDD;
+
+// Footer
+$footer-bcg-color: #E9E9E9;
+$footer-border-color:  #DDDDDD;
+
+// Border color 
+$app-border-color: #d3d3d3;
+$app-border-color-light: #fff; 
+
+// Active background color
+$app-bcg-active-false:  #f2e8e8;
+
+// Loader fade out
+$app-loader-fade:  7s;
+
+// Pagination
+$pagination-bcg-color: #FFF;
+$pagination-active-bcg-color: #d3d3d3;
+$pagination-border-color:  #d3d3d3;
+
+//== Bootstrap Colors
+//
+//## Gray and brand colors for use across Bootstrap.
+$gray-darker:            lighten($brand-color-primary, 13.5%) !default; // #222
+$gray-dark:              lighten($brand-color-primary, 20%) !default;   // #333
+$gray:                   lighten($brand-color-primary, 33.5%) !default; // #555
+$gray-light:             lighten($brand-color-primary, 60%) !default;   // #999
+$gray-lighter:           lighten($brand-color-primary, 93.5%) !default; // #eee
+
+// Inverted navbar
+// Reset inverted navbar basics
+$navbar-inverse-color:                      $gray-light !default;
+$navbar-inverse-bg:                         $gray-darker !default;
+$navbar-inverse-border:                     darken($navbar-inverse-bg, 10%) !default;
+
+// Inverted navbar links
+$navbar-inverse-link-color:                 $gray-light !default;
+$navbar-inverse-link-hover-color:           #fff !default;
+$navbar-inverse-link-hover-bg:              transparent !default;
+$navbar-inverse-link-active-color:          $navbar-inverse-link-hover-color !default;
+$navbar-inverse-link-active-bg:             darken($navbar-inverse-bg, 10%) !default;
+//$navbar-inverse-link-disabled-color:        #444 !default;
+//$navbar-inverse-link-disabled-bg:           transparent !default;
+
+// Inverted navbar brand label
+$navbar-inverse-brand-color:                $navbar-inverse-link-color !default;
+$navbar-inverse-brand-hover-color:          #fff !default;
+$navbar-inverse-brand-hover-bg:             transparent !default;
+
+// Inverted navbar toggle
+$navbar-inverse-toggle-hover-bg:            #333 !default;
+$navbar-inverse-toggle-icon-bar-bg:         #fff !default;
+$navbar-inverse-toggle-border-color:        #333 !default;
+
+// Elements
+$app-el-block-w: 300px;
+$app-el-block-h: 120px;
+$app-el-hidden-w: 300px;
+$app-el-hidden-h: 200px;
+
+// Footer
+$app-footer-height: 40px;
+$app-footer-container-height: $app-footer-height;
+$app-footer-padding: 10px 0 0;
+$app-footer-background-color: $gray-dark;
+$app-footer-border-top: solid 0 $gray;
+$app-footer-font-size: 90%;
+$app-footer-color: $gray-light !default;
+$app-footer-text-align: center;
+$app-footer-a-padding: 0 0 0 30px;
+$app-footer-a-color: $app-footer-color;
+$app-footer-a-text-decoration: none;
+$app-footer-a-hover-color: $app-footer-color;
+$app-footer-a-hover-text-decoration: underline;
