@@ -1,5 +1,13 @@
-/* App variables
+/* Global variables
 -------------------------------------------------- */
+/*-------------------------------------*/
+/*-------------------------------------*/
+/*-------------------------------------*/
+/*-------------------------------------*/
+/*-------------------------------------*/
+/*-------------------------------------*/
+/*-------------------------------------*/
+/*-------------------------------------*/
 /* App colors
 -------------------------------------------------- */
 /*$app-color-primary: red;
@@ -8,6 +16,607 @@ $app-body-color:  lighten($app-color-primary, 5%);
 $app-body-bcg-color:  #FFFFFF;
 $app-a-color:  lighten($app-color-primary, 20%);
 $app-a-hover-color:  lighten($app-color-primary, 10%);*/
+/*
+ * jQuery File Upload UI Plugin CSS
+ * https://github.com/blueimp/jQuery-File-Upload
+ *
+ * Copyright 2010, Sebastian Tschan
+ * https://blueimp.net
+ *
+ * Licensed under the MIT license:
+ * http://www.opensource.org/licenses/MIT
+ */
+/* line 13, ../sass/vendor/_jquery.fileupload-ui.scss */
+.fileupload-buttonbar .btn,
+.fileupload-buttonbar .toggle {
+  margin-bottom: 5px;
+}
+
+/* line 17, ../sass/vendor/_jquery.fileupload-ui.scss */
+.progress-animated .progress-bar,
+.progress-animated .bar {
+  background: url("../img/progressbar.gif") !important;
+  filter: none;
+}
+
+/* line 22, ../sass/vendor/_jquery.fileupload-ui.scss */
+.fileupload-process {
+  float: right;
+  display: none;
+}
+
+/* line 26, ../sass/vendor/_jquery.fileupload-ui.scss */
+.fileupload-processing .fileupload-process,
+.files .processing .preview {
+  display: block;
+  width: 32px;
+  height: 32px;
+  background: url("../img/loading.gif") center no-repeat;
+  background-size: contain;
+}
+
+/* line 34, ../sass/vendor/_jquery.fileupload-ui.scss */
+.files audio,
+.files video {
+  max-width: 300px;
+}
+
+@media (max-width: 767px) {
+  /* line 40, ../sass/vendor/_jquery.fileupload-ui.scss */
+  .fileupload-buttonbar .toggle,
+  .files .toggle,
+  .files .btn span {
+    display: none;
+  }
+
+  /* line 45, ../sass/vendor/_jquery.fileupload-ui.scss */
+  .files .name {
+    width: 80px;
+    word-wrap: break-word;
+  }
+
+  /* line 49, ../sass/vendor/_jquery.fileupload-ui.scss */
+  .files audio,
+  .files video {
+    max-width: 80px;
+  }
+
+  /* line 53, ../sass/vendor/_jquery.fileupload-ui.scss */
+  .files img,
+  .files canvas {
+    max-width: 100%;
+  }
+}
+/*
+ * jQuery File Upload Plugin CSS
+ * https://github.com/blueimp/jQuery-File-Upload
+ *
+ * Copyright 2013, Sebastian Tschan
+ * https://blueimp.net
+ *
+ * Licensed under the MIT license:
+ * http://www.opensource.org/licenses/MIT
+ */
+/* line 13, ../sass/vendor/_jquery.fileupload.scss */
+.fileinput-button {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+/* line 18, ../sass/vendor/_jquery.fileupload.scss */
+.fileinput-button input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  opacity: 0;
+  -ms-filter: 'alpha(opacity=0)';
+  font-size: 200px;
+  direction: ltr;
+  cursor: pointer;
+}
+
+/* Fixes for IE < 8 */
+@media screen\9 {
+  /* line 32, ../sass/vendor/_jquery.fileupload.scss */
+  .fileinput-button input {
+    filter: alpha(opacity=0);
+    font-size: 100%;
+    height: 100%;
+  }
+}
+/* Custom
+-------------------------------------------------- */
+/* line 3, ../sass/vendor/_alpaca.scss */
+.alpaca-message-invalidValueOfEnum {
+  display: none !important;
+}
+
+/* line 6, ../sass/vendor/_alpaca.scss */
+.alpaca-fieldset-legend {
+  font-size: 16px;
+}
+
+/* line 10, ../sass/vendor/_alpaca.scss */
+.alpaca-fieldset-legend-button {
+  margin-right: 5px;
+}
+
+/* line 14, ../sass/vendor/_alpaca.scss */
+.alpaca-array-actionbar {
+  display: inline-block !important;
+}
+
+/* line 18, ../sass/vendor/_alpaca.scss */
+.alpaca-fieldset-array-item-toolbar {
+  display: inline-block !important;
+}
+
+/* line 21, ../sass/vendor/_alpaca.scss */
+.help-block.alpaca-controlfield-message-text {
+  display: inline-block !important;
+}
+
+/* line 24, ../sass/vendor/_alpaca.scss */
+.alpaca-controlfield-container .has-error .form-control {
+  border-color: #ccc !important;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+/* Default
+-------------------------------------------------- */
+/** Added to outer field elements to hide them **/
+/* line 33, ../sass/vendor/_alpaca.scss */
+.alpaca-hidden {
+  display: none;
+}
+
+/** Added to every field outer element **/
+/** Added to every container outer field element **/
+/** Added to the optional label (or legend) accompanying any container **/
+/** Added to every container item field within a container **/
+/** Added to the first container item field within a container **/
+/** Added to the last container item field within a container **/
+/** Added to a container to indicate it is empty **/
+/** Added to the dom element holding the toolbar for an array **/
+/** Added to a button in the array toolbar that triggers an action **/
+/** Added to the dom element holding the actionbar for each array item **/
+/** Added to a button in an array item actionbar that triggers an action **/
+/** Added to every control outer field element **/
+/** Added to the optional label accompanying any control **/
+/** ******************************************************** **/
+/**                        STATE LABELS                      **/
+/** ******************************************************** **/
+/** Added to top-most control when rendering in display mode **/
+/** Added to top-most control when rendering in create mode **/
+/** Added to top-most control when rendering in edit mode **/
+/** Added to any field that is optional **/
+/** Added to any field that is required **/
+/** Added to any field that is readonly **/
+/** Added to the container that holds Alpaca field helper text **/
+/** Added to form containers that are rendering in horizontal mode **/
+/** Added to form containers that are rendering in vertical mode **/
+/** Added to the top most container element **/
+/** Added to fields that are valid **/
+/** Added to fields that have run through validation and are invalid **/
+/** Added to fields that have run through validation and are invalid but are currently hiding invalidation errors **/
+/* Added to additional DOM elements to mark validation messages */
+/** Added to messages that are for invalidation states that are current hidden (hideInitValidationError) **/
+/** Added to buttons that are marked disabled */
+/** ******************************************************** **/
+/**                           ICONS                          **/
+/** ******************************************************** **/
+/** Added to indicate hover state **/
+/** General purpose HTML clear **/
+/* line 242, ../sass/vendor/_alpaca.scss */
+.alpaca-clear {
+  clear: both;
+}
+
+/* line 247, ../sass/vendor/_alpaca.scss */
+.alpaca-float-right {
+  float: right;
+}
+
+/** ************************************** **/
+/** TWITTER TYPEAHEAD                      **/
+/** ************************************** **/
+/* line 257, ../sass/vendor/_alpaca.scss */
+.twitter-typeahead .tt-dropdown-menu {
+  background-color: white;
+  border: 1px #ccc solid;
+  padding: 10px;
+  padding-top: 0px;
+  color: #999;
+  width: 100%;
+}
+
+/* line 267, ../sass/vendor/_alpaca.scss */
+.twitter-typeahead .tt-dropdown-menu P {
+  font-size: 1em;
+}
+
+/* line 272, ../sass/vendor/_alpaca.scss */
+.tt-suggestion.tt-is-under-cursor {
+  background-color: #ccc;
+  color: #333;
+}
+
+/* line 278, ../sass/vendor/_alpaca.scss */
+.tt-dropdown-menu {
+  background-color: white;
+  border: 1px solid #cccccc;
+  width: 100%;
+}
+
+/** ************************************** **/
+/** EDITOR FIELD                           **/
+/** ************************************** **/
+/* line 292, ../sass/vendor/_alpaca.scss */
+.alpaca-controlfield-editor {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  border: 1px #ccc solid;
+}
+
+/* line 300, ../sass/vendor/_alpaca.scss */
+.alpaca-controlfield-editor .control-field-editor-el {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+/** ************************************** **/
+/** DATEPICKER (jQueryUI)                  **/
+/** ************************************** **/
+/* line 315, ../sass/vendor/_alpaca.scss */
+#ui-datepicker-div {
+  display: none;
+  background-color: white;
+  z-index: 9999999 !important;
+  width: 22em !important;
+}
+
+/* Fix for Chrome issue with Button text */
+/* line 324, ../sass/vendor/_alpaca.scss */
+.ui-button .ui-button-text {
+  white-space: nowrap;
+}
+
+/* line 328, ../sass/vendor/_alpaca.scss */
+.ui-datepicker {
+  z-index: 100;
+}
+
+/** ************************************** **/
+/** FILE UPLOAD (jQueryUI)                 **/
+/** ************************************** **/
+/* line 344, ../sass/vendor/_alpaca.scss */
+.alpaca-fileupload-container {
+  border: 1px #ccc solid;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* line 351, ../sass/vendor/_alpaca.scss */
+.alpaca-fileupload-container .row {
+  margin-bottom: 10px;
+}
+
+/* line 356, ../sass/vendor/_alpaca.scss */
+.alpaca-fileupload-well {
+  /*border: 1px #ccc solid;*/
+  padding: 10px;
+  border-radius: 5px;
+  min-height: 100px;
+}
+
+/* line 364, ../sass/vendor/_alpaca.scss */
+.alpaca-fileupload-container table {
+  border: 1px #ccc solid;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* line 371, ../sass/vendor/_alpaca.scss */
+.alpaca-fileupload-well p {
+  padding-top: 20px;
+  color: #888;
+}
+
+/** ************************************** **/
+/** ACE EDITOR                             **/
+/** ************************************** **/
+/* line 388, ../sass/vendor/_alpaca.scss */
+.ace_editor {
+  border: 1px solid #cccccc;
+}
+
+/* line 396, ../sass/vendor/_alpaca.scss */
+.has-error .multiselect {
+  border-color: #a94442;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+/* line 402, ../sass/vendor/_alpaca.scss */
+.alpaca-container-label {
+  margin-top: 20px;
+}
+
+/* line 407, ../sass/vendor/_alpaca.scss */
+legend.alpaca-container-label {
+  margin-top: 0px;
+}
+
+/* line 412, ../sass/vendor/_alpaca.scss */
+.alpaca-array-toolbar {
+  margin-bottom: 10px;
+}
+
+/* line 417, ../sass/vendor/_alpaca.scss */
+.alpaca-array-actionbar {
+  padding-bottom: 10px;
+  height: 40px;
+}
+
+/* line 423, ../sass/vendor/_alpaca.scss */
+.alpaca-array-actionbar, .alpaca-array-actionbar.btn-group {
+  width: 100%;
+}
+
+/* line 428, ../sass/vendor/_alpaca.scss */
+.alpaca-field-object {
+  border: 1px #ddd solid;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+/* line 435, ../sass/vendor/_alpaca.scss */
+.alpaca-display h3 {
+  margin-top: 0px;
+}
+
+/* line 440, ../sass/vendor/_alpaca.scss */
+.alpaca-field-object .alpaca-container .alpaca-field-object > .alpaca-container.alpaca-container-has-items {
+  /*border: 1px #ddd solid;
+  border-radius: 4px;*/
+  padding: 10px;
+}
+
+/*
+.alpaca-field-array
+{
+    border: 1px #ddd solid;
+    border-radius: 4px;
+    padding: 10px;
+}
+*/
+/* line 456, ../sass/vendor/_alpaca.scss */
+.alpaca-field-array > .alpaca-container.alpaca-container-has-items {
+  border: 1px #ddd solid;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+/* line 463, ../sass/vendor/_alpaca.scss */
+.alpaca-container-item > .alpaca-container > .alpaca-field-object {
+  border: 0px;
+}
+
+/* line 468, ../sass/vendor/_alpaca.scss */
+.alpaca-form-buttons-container {
+  margin-top: 10px;
+  text-align: right;
+}
+
+/* line 474, ../sass/vendor/_alpaca.scss */
+.alpaca-container > .form-group {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+/* line 480, ../sass/vendor/_alpaca.scss */
+.alpaca-field-hidden {
+  display: none;
+}
+
+/* line 485, ../sass/vendor/_alpaca.scss */
+.alpaca-field-object.alpaca-top {
+  border: 0px;
+}
+
+/* line 490, ../sass/vendor/_alpaca.scss */
+.alpaca-field-array.alpaca-top {
+  border: 0px;
+}
+
+/* line 495, ../sass/vendor/_alpaca.scss */
+.alpaca-container-item:not(:first-child) {
+  margin-top: 10px;
+}
+
+/* line 500, ../sass/vendor/_alpaca.scss */
+.alpaca-container .alpaca-container-item:last-child {
+  margin-bottom: 0px;
+}
+
+/* line 505, ../sass/vendor/_alpaca.scss */
+.alpaca-field-object.alpaca-top .alpaca-container {
+  border: 0px;
+}
+
+/* line 510, ../sass/vendor/_alpaca.scss */
+.alpaca-field-select .btn-group {
+  display: block;
+}
+
+/* line 515, ../sass/vendor/_alpaca.scss */
+.alpaca-field-select .btn-group button.multiselect {
+  float: none;
+}
+
+/* line 520, ../sass/vendor/_alpaca.scss */
+.bootstrap-timepicker-widget table td input {
+  width: 50px !important;
+}
+
+/** FIElDS **/
+/* line 528, ../sass/vendor/_alpaca.scss */
+.alpaca-field.alpaca-field-upload .fileupload-active-zone {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+/* line 533, ../sass/vendor/_alpaca.scss */
+.alpaca-field.alpaca-field-upload .template-download TD.error {
+  color: red;
+}
+
+/* line 538, ../sass/vendor/_alpaca.scss */
+.alpaca-field.alpaca-field-address .alpaca-field-address-mapcanvas {
+  height: 250px;
+}
+
+/* line 543, ../sass/vendor/_alpaca.scss */
+.alpaca-field.alpaca-field-image .alpaca-image-display {
+  margin-top: 20px;
+}
+
+/* line 548, ../sass/vendor/_alpaca.scss */
+.alpaca-field-text-max-length-indicator {
+  color: #aaa;
+}
+
+/* line 553, ../sass/vendor/_alpaca.scss */
+.alpaca-field-text-max-length-indicator.err {
+  color: #aa0000;
+}
+
+/** WIZARD **/
+/* line 562, ../sass/vendor/_alpaca.scss */
+.alpaca-wizard .alpaca-wizard-nav li .chevron {
+  position: absolute;
+  top: 0;
+  right: -14px;
+  display: block;
+  border: 27px solid transparent;
+  border-right: 0;
+  border-left: 14px solid #d4d4d4;
+}
+
+/* line 573, ../sass/vendor/_alpaca.scss */
+.alpaca-wizard .alpaca-wizard-nav li .chevron:before {
+  position: absolute;
+  top: -27px;
+  right: 1px;
+  display: block;
+  border: 27px solid transparent;
+  border-right: 0;
+  border-left: 14px solid #fcfcfc;
+  content: "";
+}
+
+/* line 585, ../sass/vendor/_alpaca.scss */
+.alpaca-wizard .alpaca-wizard-nav li div.holder {
+  padding-left: 30px;
+  padding-right: 20px;
+  text-align: center;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+/* line 594, ../sass/vendor/_alpaca.scss */
+.alpaca-wizard .alpaca-wizard-nav li:first-child div.holder {
+  padding-left: 10px;
+}
+
+/* line 599, ../sass/vendor/_alpaca.scss */
+.alpaca-wizard .alpaca-wizard-nav li div.holder div.title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* line 606, ../sass/vendor/_alpaca.scss */
+.alpaca-wizard .alpaca-wizard-nav li div.holder div.description {
+  color: #aaa;
+  font-size: 12px;
+}
+
+/* line 612, ../sass/vendor/_alpaca.scss */
+.alpaca-wizard .alpaca-wizard-nav li.completed div.holder div.title {
+  color: #333;
+}
+
+/* line 617, ../sass/vendor/_alpaca.scss */
+.alpaca-wizard .alpaca-wizard-nav li.completed div.holder div.description {
+  color: #333;
+}
+
+/* line 622, ../sass/vendor/_alpaca.scss */
+.alpaca-wizard .alpaca-wizard-nav li.visited:hover {
+  cursor: pointer;
+}
+
+/* line 635, ../sass/vendor/_alpaca.scss */
+.alpaca-wizard .alpaca-wizard-nav li.active:hover {
+  cursor: default;
+}
+
+/* line 640, ../sass/vendor/_alpaca.scss */
+.alpaca-wizard .alpaca-wizard-nav li.active div.holder div.title {
+  color: #206199;
+}
+
+/* line 645, ../sass/vendor/_alpaca.scss */
+.alpaca-wizard .alpaca-wizard-nav li.active div.holder div.description {
+  color: #206199;
+}
+
+/* line 650, ../sass/vendor/_alpaca.scss */
+.alpaca-wizard .alpaca-wizard-nav li.disabled div.holder div.title {
+  color: #ccc;
+}
+
+/* line 655, ../sass/vendor/_alpaca.scss */
+.alpaca-wizard .alpaca-wizard-nav li.disabled div.holder div.description {
+  color: #ccc;
+}
+
+/* line 660, ../sass/vendor/_alpaca.scss */
+.alpaca-wizard .alpaca-wizard-nav .alpaca-wizard-back {
+  background-color: #fcfcfc;
+}
+
+/* line 665, ../sass/vendor/_alpaca.scss */
+.alpaca-wizard .alpaca-wizard-buttons {
+  margin-top: 20px;
+}
+
+/* line 670, ../sass/vendor/_alpaca.scss */
+.alpaca-wizard .alpaca-wizard-progress-bar {
+  margin-top: 20px;
+}
+
+/* line 675, ../sass/vendor/_alpaca.scss */
+.alpaca-icon-required.glyphicon.glyphicon-star {
+  display: none;
+}
+
+/** ************************************** **/
+/** Table                                  **/
+/** ************************************** **/
+/* line 684, ../sass/vendor/_alpaca.scss */
+.alpaca-field-tablerow label.control-label {
+  display: none;
+}
+
 /* line 6, ../sass/common/_body.scss */
 * {
   -webkit-box-sizing: border-box;
@@ -55,28 +664,28 @@ textarea {
 /* line 45, ../sass/common/_body.scss */
 h1, .h1, h2, .h2, h3, .h3 {
   margin-top: 0;
-  color: #333333;
+  color: #737373;
 }
 
 /* line 49, ../sass/common/_body.scss */
 h1 {
-  font-size: 27.2px;
+  font-size: 160%;
 }
 
 /* line 53, ../sass/common/_body.scss */
 h2 {
-  font-size: 23.8px;
+  font-size: 140%;
   margin: 10px 0 3px 0;
 }
 
 /* line 58, ../sass/common/_body.scss */
 h3 {
-  font-size: 20.4px;
+  font-size: 120%;
 }
 
 /* line 62, ../sass/common/_body.scss */
 h4 {
-  font-size: 18.7px;
+  font-size: 110%;
 }
 
 /* Links
@@ -105,27 +714,74 @@ img {
   vertical-align: middle;
 }
 
+/* line 90, ../sass/common/_body.scss */
+.report-img {
+  max-width: 36px;
+}
+
 /* Layout
 -------------------------------------------------- */
-/* line 93, ../sass/common/_body.scss */
+/* line 96, ../sass/common/_body.scss */
+#main_content {
+  margin-top: 95px;
+  margin-bottom: 80px;
+}
+
+/* line 101, ../sass/common/_body.scss */
 .container {
   max-width: none;
   width: 100%;
 }
 
-/* line 98, ../sass/common/_body.scss */
+/* line 106, ../sass/common/_body.scss */
 .row {
   padding-right: 0;
   margin-right: 0;
 }
 
-/* line 103, ../sass/common/_body.scss */
+/* line 111, ../sass/common/_body.scss */
 .mobile-padding {
   padding: 0 15px;
 }
-/* line 105, ../sass/common/_body.scss */
+/* line 113, ../sass/common/_body.scss */
 .mobile-padding .page-header {
   padding: 0;
+}
+
+/* Others
+-------------------------------------------------- */
+/* line 121, ../sass/common/_body.scss */
+.bcg-active.false, .bcg-danger {
+  background-color: #f9e2e2;
+}
+
+/* line 125, ../sass/common/_body.scss */
+.clickable {
+  cursor: pointer;
+}
+
+/* line 129, ../sass/common/_body.scss */
+.text-supp {
+  font-style: italic;
+  color: #595959;
+}
+
+/* line 134, ../sass/common/_body.scss */
+.badge {
+  padding: 7px;
+  margin-right: 5px;
+}
+
+/* line 138, ../sass/common/_body.scss */
+.help-text {
+  display: block;
+  font-style: italic;
+  margin: 5px 0;
+}
+
+/* line 144, ../sass/common/_body.scss */
+.help-text.inline {
+  display: inline;
 }
 
 /* Header
@@ -136,10 +792,10 @@ img {
   top: 0;
   right: 0;
   left: 0;
-  z-index: 3000;
+  z-index: 2100;
   margin-bottom: 20px;
   color: #0d0d0d;
-  font-size: 19px;
+  font-size: 120%;
 }
 /* line 12, ../sass/common/_header.scss */
 #header .container {
@@ -154,7 +810,7 @@ img {
 }
 /* line 22, ../sass/common/_header.scss */
 #header .fa {
-  font-size: 22.8px;
+  font-size: 120%;
 }
 
 /* Main navigation
@@ -290,7 +946,511 @@ img {
 }
 /* line 135, ../sass/common/_header.scss */
 #sub_navigation_in ul .fa {
+  color: #666666;
   padding-right: 7px;
+}
+
+/* Footer
+-------------------------------------------------- */
+/* line 4, ../sass/common/_footer.scss */
+#footer {
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  width: 100%;
+  text-align: center;
+  height: 60px;
+  border-top: solid 1px #cccccc;
+}
+/* line 12, ../sass/common/_footer.scss */
+#footer #footer_in {
+  background-color: #FFFFFF;
+  height: 60px;
+  line-height: 60px;
+}
+
+/* line 21, ../sass/common/_footer.scss */
+.mobile-footer {
+  z-index: 1030 !important;
+}
+
+/* Page navigation
+-------------------------------------------------- */
+/* line 3, ../sass/common/_navi.scss */
+.page-control {
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+/* line 8, ../sass/common/_navi.scss */
+.page-navi {
+  font-size: 120%;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  color: #333333;
+}
+/* line 14, ../sass/common/_navi.scss */
+.page-navi .page-navi-in {
+  position: absolute;
+  background-color: #FFFFFF;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  border: 1px solid #cccccc;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1900;
+}
+/* line 24, ../sass/common/_navi.scss */
+.page-navi ul {
+  list-style: none;
+  text-align: left;
+  padding: 10px;
+}
+/* line 28, ../sass/common/_navi.scss */
+.page-navi ul li {
+  padding: 10px;
+  border-bottom: solid 1px #cccccc;
+}
+/* line 34, ../sass/common/_navi.scss */
+.page-navi ul li a {
+  position: relative;
+  min-height: 1px;
+  color: #333333;
+  text-align: left;
+  vertical-align: top;
+  display: block;
+  margin: auto;
+}
+/* line 46, ../sass/common/_navi.scss */
+.page-navi ul li .page-navi-icon {
+  position: absolute;
+  right: 1%;
+  display: inline-block !important;
+}
+/* line 54, ../sass/common/_navi.scss */
+.page-navi ul .active a {
+  color: gray;
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: text;
+}
+/* line 61, ../sass/common/_navi.scss */
+.page-navi ul .fa {
+  padding-right: 7px;
+  color: #666666;
+}
+/* line 67, ../sass/common/_navi.scss */
+.page-navi .fa {
+  font-size: 130%;
+}
+/* line 70, ../sass/common/_navi.scss */
+.page-navi .page-navi-title {
+  text-align: left;
+  margin: 0;
+  padding: 10px 20px;
+  color: #737373;
+  border-bottom: solid 1px #cccccc;
+}
+/* line 77, ../sass/common/_navi.scss */
+.page-navi .page-navi-content {
+  padding: 20px;
+}
+/* line 80, ../sass/common/_navi.scss */
+.page-navi .page-navi-tag {
+  border: solid 1px #cccccc;
+  display: inline-block;
+  margin: 5px;
+  padding: 5px;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 4px;
+}
+/* line 90, ../sass/common/_navi.scss */
+.page-navi .page-navi-tag.active {
+  background-color: #cccccc;
+  cursor: text;
+}
+
+/* line 96, ../sass/common/_navi.scss */
+.page-navi-in ul:before, .page-navi-in ul:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+
+/* line 101, ../sass/common/_navi.scss */
+.page-navi-in ul:after {
+  clear: both;
+}
+
+/* Table
+-------------------------------------------------- */
+/* line 6, ../sass/common/_table.scss */
+.table tbody tr td {
+  border-top: 1px solid #cccccc;
+}
+
+/* line 13, ../sass/common/_table.scss */
+.table-report {
+  border: 0 !important;
+  margin-bottom: 0 !important;
+}
+/* line 16, ../sass/common/_table.scss */
+.table-report td {
+  vertical-align: middle;
+}
+/* line 20, ../sass/common/_table.scss */
+.table-report tbody .td-img {
+  width: 30px;
+}
+/* line 23, ../sass/common/_table.scss */
+.table-report tbody .td-action {
+  text-align: right;
+}
+
+/* line 29, ../sass/common/_table.scss */
+.table-products td {
+  vertical-align: middle !important;
+}
+
+/* line 34, ../sass/common/_table.scss */
+.td20 {
+  width: 20%;
+}
+
+/* line 37, ../sass/common/_table.scss */
+.td30 {
+  width: 30%;
+}
+
+/* Button
+-------------------------------------------------- */
+/* line 3, ../sass/common/_button.scss */
+.btn, .btn-device-admin {
+  font-size: 110%;
+}
+/* line 5, ../sass/common/_button.scss */
+.btn .fa, .btn-device-admin .fa {
+  font-size: 130%;
+}
+
+/* line 9, ../sass/common/_button.scss */
+.btn-submit {
+  color: #FFFFFF;
+  border: solid 1px #80AD80;
+  background-color: #4e794e;
+}
+/* line 13, ../sass/common/_button.scss */
+.btn-submit:hover, .btn-submit:focus {
+  background-color: #80AD80;
+}
+
+/* Form
+-------------------------------------------------- */
+/* line 3, ../sass/common/_form.scss */
+.form-control {
+  font-size: 90%;
+  color: #737373;
+  border: solid 1px #cccccc;
+}
+
+/* line 9, ../sass/common/_form.scss */
+.form-page {
+  margin-bottom: 20px;
+  background-color: #FFFFFF;
+  border: solid 1px #cccccc;
+}
+/* line 14, ../sass/common/_form.scss */
+.form-page .form-group {
+  border-bottom: solid 1px #cccccc;
+  padding-bottom: 10px;
+}
+/* line 18, ../sass/common/_form.scss */
+.form-page label {
+  font-weight: normal;
+}
+
+/* line 23, ../sass/common/_form.scss */
+fieldset, .fieldset {
+  padding: 10px;
+}
+
+/* line 26, ../sass/common/_form.scss */
+.isrequired {
+  font-weight: bold !important;
+}
+
+/* line 30, ../sass/common/_form.scss */
+.isrequired::before {
+  content: "*";
+}
+
+/* line 34, ../sass/common/_form.scss */
+.form-control-sm {
+  width: 30% !important;
+}
+
+/* line 38, ../sass/common/_form.scss */
+.form-control-md {
+  width: 50% !important;
+}
+
+/* line 42, ../sass/common/_form.scss */
+.submit-entry {
+  text-align: right;
+  display: block;
+  background-color: #FFFFFF !important;
+  border-top: solid 1px #cccccc;
+}
+
+/* line 50, ../sass/common/_form.scss */
+fieldset.submit-entry {
+  margin: 0 !important;
+}
+
+/* line 53, ../sass/common/_form.scss */
+.form-control-hidden {
+  display: none !important;
+}
+
+/* line 56, ../sass/common/_form.scss */
+.form-control-img {
+  cursor: pointer;
+  border: solid 4px transparent;
+}
+
+/* line 61, ../sass/common/_form.scss */
+.control-active {
+  border: solid 4px black !important;
+}
+
+/* Tab
+-------------------------------------------------- */
+/* line 3, ../sass/common/_tab.scss */
+.nav-tabs {
+  border-bottom: 1px solid #cccccc;
+  text-align: center;
+}
+
+/* line 8, ../sass/common/_tab.scss */
+.nav-tabs > li > a {
+  font-size: 120%;
+  border: 1px solid #cccccc;
+  background-color: #FFFFFF;
+}
+/* line 12, ../sass/common/_tab.scss */
+.nav-tabs > li > a .fa {
+  font-size: 130%;
+  color: #666666;
+}
+
+/* line 18, ../sass/common/_tab.scss */
+.nav-tabs > li > a:hover {
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+/* line 24, ../sass/common/_tab.scss */
+.nav-tabs > li.active > a {
+  font-weight: bold;
+  background-color: #f2f2f2;
+}
+
+/* line 28, ../sass/common/_tab.scss */
+.nav-tabs > li.active > a:hover {
+  text-decoration: none;
+}
+
+/* line 31, ../sass/common/_tab.scss */
+.nav-tabs > li.active > a i {
+  color: #80AD80;
+}
+
+/* line 35, ../sass/common/_tab.scss */
+.nav-tabs-3 > li {
+  width: 33.33333%;
+}
+
+/* line 38, ../sass/common/_tab.scss */
+.tab-content {
+  padding-top: 10px;
+}
+
+/* line 41, ../sass/common/_tab.scss */
+.tab-content-form {
+  padding: 0;
+}
+
+/* Dropdown
+-------------------------------------------------- */
+/* line 3, ../sass/common/_dropdown.scss */
+.app-dropdown {
+  font-size: 110%;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: auto;
+  z-index: 1100;
+  float: right;
+  min-width: 360px;
+  padding: 0;
+  text-align: left;
+  background-color: #FFFFFF;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  border: 1px solid #cccccc;
+  background-clip: padding-box;
+  color: #333333;
+}
+/* line 19, ../sass/common/_dropdown.scss */
+.app-dropdown .app-dropdown-title {
+  color: #737373;
+  margin: 0;
+  padding: 10px;
+  font-weight: bold;
+  border-bottom: solid 1px #cccccc;
+}
+/* line 26, ../sass/common/_dropdown.scss */
+.app-dropdown ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+/* line 30, ../sass/common/_dropdown.scss */
+.app-dropdown ul li {
+  padding: 10px 0;
+  border-bottom: solid 1px #cccccc;
+}
+/* line 33, ../sass/common/_dropdown.scss */
+.app-dropdown ul li a {
+  display: block;
+  position: relative;
+  padding: 0 10px;
+  vertical-align: middle;
+  color: #333333;
+}
+/* line 41, ../sass/common/_dropdown.scss */
+.app-dropdown ul li .menu-arrow {
+  position: absolute;
+  right: 1%;
+  display: inline-block;
+}
+/* line 49, ../sass/common/_dropdown.scss */
+.app-dropdown ul .active a {
+  color: #999999;
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: text;
+}
+/* line 56, ../sass/common/_dropdown.scss */
+.app-dropdown ul .fa {
+  font-size: 120%;
+  padding-right: 10px;
+}
+
+/* line 63, ../sass/common/_dropdown.scss */
+.app-dropdown-left {
+  float: left;
+  left: 0;
+  right: auto;
+}
+
+/* line 68, ../sass/common/_dropdown.scss */
+.app-dropdown-bottom {
+  top: auto;
+  bottom: 100%;
+}
+
+/* line 73, ../sass/common/_dropdown.scss */
+.app-dropdown-mxh-600 {
+  height: auto;
+  max-height: 600px;
+  overflow-x: hidden;
+}
+
+/* Modal
+-------------------------------------------------- */
+/* line 3, ../sass/common/_modal.scss */
+.appmodal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2000;
+  overflow: show;
+  color: #0d0d0d;
+}
+/* line 12, ../sass/common/_modal.scss */
+.appmodal .appmodal-in {
+  width: 50%;
+  position: relative;
+  margin: 15% auto;
+  background-color: #FFFFFF;
+}
+
+/* line 20, ../sass/common/_modal.scss */
+.appmodal-100 .appmodal-in {
+  width: 99%;
+}
+
+/* line 25, ../sass/common/_modal.scss */
+.appmodal-90 .appmodal-in {
+  width: 90%;
+}
+
+/* line 29, ../sass/common/_modal.scss */
+#modalHistory {
+  z-index: 2001;
+}
+
+/* line 33, ../sass/common/_modal.scss */
+.appmodal:before {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(37, 37, 37, 0.5);
+}
+
+/* line 43, ../sass/common/_modal.scss */
+.appmodal-header, .appmodal-body, .appmodal-footer {
+  padding: 10px 15px;
+}
+
+/* line 47, ../sass/common/_modal.scss */
+.appmodal-header {
+  border-bottom: solid 1px #cccccc;
+}
+/* line 49, ../sass/common/_modal.scss */
+.appmodal-header .appmodal-close {
+  color: #404040;
+  display: block;
+  text-decoration: none;
+  position: absolute;
+  right: 10px;
+  top: 7px;
+  z-index: 2;
+  cursor: pointer;
+}
+/* line 58, ../sass/common/_modal.scss */
+.appmodal-header .appmodal-close span {
+  display: inline-block;
+}
+/* line 62, ../sass/common/_modal.scss */
+.appmodal-header h3 {
+  margin: 0;
+  color: #737373;
+}
+
+/* line 70, ../sass/common/_modal.scss */
+.appmodal-footer {
+  border-top: solid 1px #cccccc;
+  text-align: right;
 }
 
 /*# sourceMappingURL=main.css.map */

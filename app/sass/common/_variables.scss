@@ -1,28 +1,105 @@
-/* App variables
+/* Global variables
 -------------------------------------------------- */
-// Font family
-$app-font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif !default;
-$app-font-family-serif:       Georgia, "Times New Roman", Times, serif !default;
-$app-font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default;
-// Line height
-$app-line-height-base:        1.428571429 !default; // 20/14
-// Font size
-$app-body-font-size: 17px;
-$app-navi-font-size: 19px;
-$app-navi-icon-size: $app-navi-font-size * 1.2;
-$app-h1-font-size: $app-body-font-size * 1.6;
-$app-h2-font-size: $app-body-font-size * 1.4;
-$app-h3-font-size: $app-body-font-size * 1.2;
-$app-h4-font-size: $app-body-font-size * 1.1;
 
-// Shadow
-$app-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-$app-subnavi-box-shadow: $app-box-shadow;
+/*-------------------------------------*/
+// GRID
+$grid-gutter: 15px;
+
+/*-------------------------------------*/
+// MEDIA QUERIES
+
+$media-lg: 1200px;
+$media-mid: 900px;
+$media-sm: 600px;
+
+/*-------------------------------------*/
+// DIMENSIONS: WIDTHS, HEIGHTS
+// Base
+$app-line-height-base:        1.428571429 !default; // 20/14
+
 // Header
 $header-h: 75px;
 $header-icon-settings-h: 40px;
 
-//Colors
+// Page navigation
+$page-navi-h: 50px;
+
+// Dropdown
+$dropdown-w: 360px;
+
+// Modal
+$modal-margin: 15% auto;
+$modal-w: 50%;
+$modal-full-w: 99%;
+
+// Loader
+$loader-w: 260px;
+$loader-h: 50px;
+$loader-margin: 80px auto auto auto;
+// Images
+$report-img: 36px;
+$widget-img: 60px;
+$product-img: 60px;
+
+// Footer
+$footer-h: 60px;
+
+/*-------------------------------------*/
+// SPACING
+
+$spacing: 10px;                
+$spacing-double: $spacing * 2;   
+$spacing-third: $spacing * 3;    
+$spacing-half: $spacing / 2;
+
+/*-------------------------------------*/
+// Z:INDEX
+
+$zindex-header: 2100;
+$zindex-page-navi: 1900;
+$zindex-dropdown: 1100;
+$zindex-loader: 2200;
+$zindex-modal: 2000;
+$zindex-footer: 1000;
+$zindex-m-footer: 1030;
+
+
+/*-------------------------------------*/
+// FONTS
+
+// Font family
+$app-font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$app-font-family-serif:       Georgia, "Times New Roman", Times, serif !default;
+$app-font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default;
+
+// Font size
+$app-body-font-size: 17px;
+$app-navi-font-size: 120%;
+$app-btn-font-size: 110%;
+$app-btn-icon-size: 130%;
+$app-input-font-size: 90%;
+$app-navi-icon-size: 120%;
+$app-h1-font-size: 160%;
+$app-h2-font-size: 140%;
+$app-h3-font-size: 120%;
+$app-h4-font-size: 110%;
+$page-navi-font-size: 120%;
+$page-navi-icon-size: 130%;
+$dropdown-font-size: 110%;
+$dropdown-icon-size: 120%;
+$tab-font-size: 120%;
+$tab-icon-size: 130%;
+
+/*-------------------------------------*/
+// COLORS
+
+// Base
+$app-brand-primary:         #6494BC !default;
+$app-brand-success:         #80AD80 !default;
+$app-brand-info:            #5bc0de !default;
+$app-brand-warning:         #f0ad4e !default;
+$app-brand-danger:          #d9534f !default;
+
 $app-color-primary: #000000;
 $app-color-secondary: #000000;
 $app-border-color: lighten($app-color-primary, 80%);
@@ -30,10 +107,80 @@ $app-body-color:  lighten($app-color-primary, 5%);
 $app-body-bcg-color:  #FFFFFF;
 $app-a-color:  lighten($app-color-primary, 20%);
 $app-a-hover-color:  lighten($app-color-primary, 10%);
-$app-header-color: lighten($app-color-primary, 5%);
-$app-header-bcg-color:  #FFFFFF;
+$app-heading-color: lighten($app-body-color, 40%);
+$app-h1-color: $app-heading-color; 
+$app-h2-color: $app-heading-color; 
+$app-h3-color: $app-heading-color;
+$app-h4-color: $app-heading-color; 
+$app-bcg-danger: #f9e2e2;
+
+// Header
+$header-color: lighten($app-color-primary, 5%);
+$header-bcg-color:  #FFFFFF;
 $header-border-color: $app-border-color;
 $header-delim-color: $app-border-color;
 $header-a-color: $app-a-color;
+$header-icon-color: lighten($header-a-color, 20%);
 $header-a-active-color: $app-border-color;
 $header-subnavi-bcg-color: #FFFFFF;
+
+// Page navigation
+$page-navi-bcg-color: #FFFFFF;
+$page-navi-color: $app-a-color;
+$page-navi-border-color: $app-border-color;
+$header-icon-color: lighten($page-navi-color, 20%);
+$page-navi-heading-color: $app-heading-color;
+
+// Dropdown
+$dropdown-bcg-color: #FFFFFF;
+$dropdown-color: $app-a-color;
+$dropdown-border-color: $app-border-color;
+$dropdown-icon-color: lighten($dropdown-color, 20%);
+$dropdown-heading-color: $app-heading-color;
+
+// Dropdown
+$dropdown-bcg-color: #FFFFFF;
+$dropdown-color: $app-a-color;
+$dropdown-border-color: $app-border-color;
+$dropdown-icon-color: lighten($dropdown-color, 20%);
+$dropdown-heading-color: $app-heading-color;
+
+// Tabs
+$tabs-bcg-color: #FFFFFF;
+$tabs-color: $app-a-color;
+$tabs-border-color: $app-border-color;
+$tabs-icon-color: lighten($tabs-color, 20%);
+$tabs-icon-active-color: $app-brand-success;
+$tabs-active-bcg-color: lighten($tabs-border-color, 15%);
+
+// Modal
+$modal-bcg-color: #FFFFFF;
+$modal-color: $app-body-color;
+$modal-icon-color: lighten($modal-color, 20%);
+$modal-overlay-bcg-color: rgba(37, 37, 37, 0.5);
+$modal-border-color: $app-border-color;
+$modal-heading-color: $app-heading-color;
+
+
+// Footer
+$footer-border-color: $app-border-color;
+$footer-bcg-color: #FFFFFF;
+
+// Button
+$btn-submit-color:  #FFFFFF;
+// Form
+$form-input-color: lighten($app-body-color, 40%);
+$form-border-color: $app-border-color;
+$form-bcg-color: #FFFFFF;
+$form-submit-entry-bcg-color: #FFFFFF;
+
+/*-------------------------------------*/
+// EFFECTS
+// Radius
+$app-border-radius: 4px;
+// Shadow
+$app-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+$app-mainsubnavi-box-shadow: $app-box-shadow;
+$page-navi-box-shadow: $app-box-shadow;
+$dropdown-box-shadow: $app-box-shadow;
+

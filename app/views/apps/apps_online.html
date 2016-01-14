@@ -5,7 +5,7 @@
          <!-- Apps navigation -->
         <div ng-include="'app/views/apps/navi.html'"></div>
         <div class="page-control form-inline">
-            <a class="btn btn-default" href="" ng-click="expandNavi('appsCategories', $event)"><i class="fa fa-chevron-down text-success" ng-class="naviExpanded.appsCategories ? 'fa-chevron-up': 'fa-chevron-down'"></i> 
+            <a class="btn btn-default" href="" ng-click="expandNavi('appsCategories', $event)"><i class="fa fa-filter"></i> 
                 <span ng-if="dataHolder.onlineModules.filter.category">{{dataHolder.modules.categories[dataHolder.onlineModules.filter.category].name|cutText:true:30}}</span>
                 <span ng-if="dataHolder.onlineModules.filter.featured">{{_t('featured_apps')}}</span>
                 <span ng-if="_.isEmpty(dataHolder.onlineModules.filter)">{{_t('all_apps')}}</span>

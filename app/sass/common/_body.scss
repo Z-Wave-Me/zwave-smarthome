@@ -44,7 +44,7 @@ textarea {
 -------------------------------------------------- */
 h1, .h1, h2, .h2, h3, .h3 {
     margin-top: 0;
-    color: lighten($app-body-color, 15%);
+    color: $app-heading-color;
 }
 h1 {
     font-size:$app-h1-font-size;
@@ -87,9 +87,17 @@ a {
 img {
     vertical-align: middle;
 }
+ .report-img{
+        max-width: $report-img;
+    }
 
 /* Layout
 -------------------------------------------------- */
+#main_content {
+    margin-top: $header-h + $spacing-double; 
+    margin-bottom: $footer-h + $spacing-double;
+}
+
 .container{
     max-width:none;
     width: 100%;
@@ -105,4 +113,35 @@ img {
     .page-header{
         padding: 0;
     }
+}
+
+/* Others
+-------------------------------------------------- */
+
+.bcg-active.false,.bcg-danger{
+    background-color: $app-bcg-danger;
+}
+
+.clickable{
+    cursor: pointer;
+}
+
+.text-supp{
+    font-style: italic;
+    color: lighten($app-body-color, 30%);
+}
+
+.badge{
+    padding: 7px;
+    margin-right: 5px;
+}
+.help-text{
+    display: block;
+    //font-size: 95%;
+    font-style: italic;
+     margin: 5px 0;
+}
+.help-text.inline{
+    display: inline;
+   
 }
