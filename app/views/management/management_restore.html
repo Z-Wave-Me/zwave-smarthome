@@ -1,9 +1,9 @@
 <!-- Admin restore view -->
-<h2 class="admin-entry-title" ng-click="expandElement('restore')">
+<h2 class="accordion-entry-title" ng-click="expandElement('restore')">
     <i class="fa fa-repeat"></i> <span ng-bind="_t('nm_restore_backup_upload')"></span>
-    <i class="fa subnavi-arrow" ng-class="expand.restore  ? 'fa-chevron-up':'fa-chevron-down'"></i>
+    <i class="fa accordion-arrow" ng-class="expand.restore  ? 'fa-chevron-up':'fa-chevron-down'"></i>
 </h2>
-<div class="admin-entry-ctrl" ng-if="expand.restore" ng-controller="ManagementRestoreController">
+<div class="accordion-entry-ctrl" ng-if="expand.restore" ng-controller="ManagementRestoreController">
     <div class="form form-page">
         <div class="fieldset">
             <bb-alert alert="managementRestore.alert"></bb-alert>

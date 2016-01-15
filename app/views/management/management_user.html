@@ -1,8 +1,8 @@
 <!-- Admin user list view -->
-<h2 class="admin-entry-title" ng-click="expandElement('user')">
-            <i class="fa fa-users"></i> <span ng-bind="_t('nav_admin')"></span>  <i class="fa subnavi-arrow" ng-class="expand.user ? 'fa-chevron-up':'fa-chevron-down'"></i>
+<h2 class="accordion-entry-title" ng-click="expandElement('user')">
+            <i class="fa fa-users"></i> <span ng-bind="_t('nav_admin')"></span>  <i class="fa accordion-arrow" ng-class="expand.user ? 'fa-chevron-up':'fa-chevron-down'"></i>
 </h2>
-<div class="admin-entry-ctrl" ng-class="" ng-if="expand.user" ng-controller="ManagementUserController">
+<div class="accordion-entry-ctrl" ng-class="" ng-if="expand.user" ng-controller="ManagementUserController">
     <table id="table_cfg_admin" class="table table-condensed table-report">
         <tbody>
             <tr ng-repeat="v in profiles" id="row_{{v.id}}">

@@ -1,0 +1,163 @@
+/* Devices
+-------------------------------------------------- */
+.device-logo{
+    text-align: center;
+    margin: 0 0 $spacing-double 0;
+}
+.device-logo img{
+    max-width: 100px !important;
+    max-height: 70px !important;
+
+}
+
+.device-type-logo{
+    max-width: 80px;
+    max-height: 80px;
+}
+// Deprecated
+/*.expert-link{
+    padding-right: $spacing-double;
+}*/
+.device-manufacturers{
+    .vendor-entry{
+        padding-right: 0;
+    }
+}
+//DEPRECATED
+/*.manufacturer-logo{
+    margin: 0 $spacing-half;
+    max-width: 70px;
+    display: inline;
+}*/
+
+.device-autodetect{
+    margin: 0 0 $spacing-double 0;
+}
+
+.col-device-vendor{
+    padding-left: 15px !important;
+    padding-right: 0 !important;
+}
+.vendor-list {
+    display: block; 
+    margin: 0 0 $spacing 0 ;
+    background-color: $device-bcg-color;
+    text-align: center; 
+    border: solid 1px $device-border-color;
+
+    .vendor-image{
+        line-height: 80px;
+        margin: 0 !important;
+        img {
+            vertical-align: middle;
+            max-width: $vendor-img-w;
+            max-height: $vendor-img-h;
+        }
+    }
+}
+.device-perex{
+    margin-bottom:$spacing;
+}
+
+.include-device-img{
+    float: left;
+    margin-right: $spacing-double;
+ }
+.include-device-img img{
+    max-width: 200px;
+    max-height: 200px;
+     border: solid 2px $device-border-color;
+}
+
+.col-device{
+    //text-align: center;
+    padding: $spacing-double;
+    .device-statement{
+        margin: $spacing 0;
+        padding: $spacing 0;
+        border-bottom: solid 1px $device-border-color;
+    }
+}
+.table-inclusion td{
+    vertical-align: middle !important;
+    .alert {
+        margin-bottom: 0;
+    }
+}
+
+.badge-number {
+    display: inline-block;
+    text-align: center;
+    line-height: 20px;
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+    border-radius: 50%;
+}
+
+.td-camera-action{
+    text-align: right;
+}
+
+/* ZWave
+-------------------------------------------------- */
+
+.network-zwave-device{
+    .network-node-name{
+        font-style: italic;
+    }
+}
+.network-zwave-title{
+    font-weight: bold;
+}
+.zwave-hidden-true{
+    color: $app-body-disabled-color;
+    input{
+        color:$app-body-disabled-color;
+    }
+}
+.network-zwave-element{
+    padding-left: $spacing;
+    margin-bottom: $spacing-half;
+}
+
+.network-zwave-title{
+    cursor: pointer;
+}
+
+.network-block{
+    margin-bottom: $spacing-double;
+}
+
+/* Configuration
+-------------------------------------------------- */
+.table-cfg-interview th{
+    width: 25%;
+}
+.cfg-block {
+    margin: 0 0 $spacing-double 0;
+    padding: 0 0 $spacing-double 0;
+}
+
+.cfg-block h4{
+    font-size: 16px;
+}
+
+.cfg-control-content{
+    padding: $spacing;
+    margin: $spacing 0;
+}
+.cfg-info{ 
+    margin: $spacing 0 0 0;
+    padding: $spacing 0 0 0;
+    border-top: solid 1px $device-border-color;
+}
+.commads-is-current{
+   text-decoration: underline;
+}
+#wakeup_cont .form-inline{
+    float: left;
+}
+.spin-true .fa-spin{
+    display: none;
+}

@@ -1,0 +1,21 @@
+/* Events
+-------------------------------------------------- */
+.table-events{ 
+     .td-event-icon{
+      width: $report-img;
+    }
+    .td-event-warning{
+        background: $app-bcg-warning;
+    }
+    .td-event-device-info{}
+    .td-event-error{
+       background: $app-bcg-danger;
+    }
+    .td-event-critical{
+        background: $app-bcg-danger;
+    }
+    .td-action{
+       width: 110px;
+      
+    }
+}

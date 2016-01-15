@@ -27,12 +27,11 @@
             <div class="form-group">
                 <input name="password" id="password" type="password" class="form-control" placeholder="{{_t('lb_password')}}" value="" ng-model="input.password" />
             </div>
-           
-                <a href="#passwordforgot"><i class="fa fa-question-circle text-primary"></i> {{_t('password_forgot')}}</a>
+           <a href="#passwordforgot"><i class="fa fa-question-circle text-primary"></i> {{_t('password_forgot')}}</a>
         </fieldset>
-       <div class="form-footer">
-            <button type="submit" class="btn btn-primary btn-block" ng-bind="_t('lb_enter')"></button>
-        </div>
+        <fieldset class="submit-entry">
+            <button type="submit" class="btn btn-submit"><i class="fa fa-sign-in"></i> {{_t('lb_enter')}}</button>
+        </fieldset>
     </form>
     </div>
 </div>

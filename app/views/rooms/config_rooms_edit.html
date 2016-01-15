@@ -18,21 +18,17 @@
             <fieldset>
                 <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_select_image')"></span></h3>
                 <div class="clearfix">
-                    <div class="room-images">
-                         <!--<input type="radio" name="default_img" class="form-control-hidden" value="{{v}}" ng-model="input.default_img" ng-checked="input.default_img == v" />-->
-                        <img class="room-image form-control-img" 
+                    <img class="room-img-upload form-control-img" 
                              ng-repeat="v in defaultImages"
                              ng-click="input.default_img = v;input.img_type = 'default'" 
                              ng-class="input.img_type == 'default' && v == input.default_img ? 'control-active':''" 
                              ng-src="storage/img/rooms/{{v}}" alt="{{v}}" />
                         
-                         <!--<input type="radio" class="form-control-hidden" name="user_img" value="{{input.user_img}}" ng-model="input.user_img" ng-checked="input.img_type == 'user'" />-->
-                        <img class="room-image form-control-img" 
+                         <img class="room-img-upload form-control-img" 
                              ng-click="input.user_img = input.user_img;input.img_type = 'user'"
                              ng-class="input.img_type == 'user' ? 'control-active':''" 
                              ng-src="{{userImageUrl + input.user_img}}" 
                              ng-if="input.user_img" />
-                    </div>
                 </div>
             </fieldset>
             <fieldset ng-if="!isMobile">
@@ -49,17 +45,25 @@
             
              <fieldset>
                 <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('nav_devices')"></span></h3>
-                <div class="device-assigned-block">
+                <div class="alert alert-warning">
                         <h4>{{_t('lb_devices_in_room')}}</h4>
-                        <div class="btn-device-admin" id="device_assigned_{{$index}}" ng-repeat="d in devices" ng-if="devicesAssigned.indexOf(d.id) > -1 && d.location !== 0"> 
-                            <a href="" ng-click="removeDevice(d)">{{d.metrics.title}} <i class="fa fa-times text-danger"></i></a>
-                        </div>
+                        <a href="" class="btn btn-default btn-small"
+                            ng-repeat="d in devices"
+                           ng-if="devicesAssigned.indexOf(d.id) > -1 && d.location !== 0"
+                           ng-click="removeDevice(d)">{{d.metrics.title|cutText:true:20}} <i class="fa fa-times text-danger"></i></a>
+                        <!--<div class="btn-device-admin" id="device_assigned_{{$index}}" ng-repeat="d in devices" ng-if="devicesAssigned.indexOf(d.id) > -1 && d.location !== 0"> 
+                            <a href="" ng-click="removeDevice(d)">{{d.metrics.title|cutText:true:20}} <i class="fa fa-times text-danger"></i></a>
+                        </div>-->
                     </div>
                 <div class="device-available-block">
                     <h4>{{_t('lb_available_devices')}}</h4>
-                    <div class="btn-device-admin" id="device_unassigned_{{$index}}" ng-repeat="d in devices" ng-if="devicesAssigned.indexOf(d.id) === -1 || d.location === 0">
-                        <a href="" ng-click="assignDevice(d)">{{d.metrics.title}} <i class="fa fa-plus text-success"></i></a>
-                    </div>
+                    <a href="" class="btn btn-default btn-small" 
+                       ng-repeat="d in devices" 
+                       ng-if="devicesAssigned.indexOf(d.id) === -1 || d.location === 0"
+                       ng-click="assignDevice(d)">{{d.metrics.title|cutText:true:20}} <i class="fa fa-plus text-success"></i></a>
+                    <!--<div class="btn-device-admin" id="device_unassigned_{{$index}}" ng-repeat="d in devices" ng-if="devicesAssigned.indexOf(d.id) === -1 || d.location === 0">
+                        <a href="" ng-click="assignDevice(d)">{{d.metrics.title|cutText:true:20}} <i class="fa fa-plus text-success"></i></a>
+                    </div>-->
                 </div>
             </fieldset>
             <fieldset class="submit-entry">

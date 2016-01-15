@@ -1,9 +1,9 @@
 <!-- Admin report view -->
-<h2 class="admin-entry-title" ng-click="expandElement('report')">
+<h2 class="accordion-entry-title" ng-click="expandElement('report')">
     <i class="fa fa-bug"></i> <span ng-bind="_t('nav_report')"></span>
-    <i class="fa subnavi-arrow" ng-class="expand.report  ? 'fa-chevron-up':'fa-chevron-down'"></i>
+    <i class="fa accordion-arrow" ng-class="expand.report  ? 'fa-chevron-up':'fa-chevron-down'"></i>
 </h2>
- <div class="admin-entry-ctrl" ng-if="expand.report"  ng-controller="ManagementReportController">
+ <div class="accordion-entry-ctrl" ng-if="expand.report"  ng-controller="ManagementReportController">
     <form name="form_report" id="form_profile" class="form form-page" ng-submit="sendReport(form_report,input)" novalidate>
         <fieldset>
             <div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i> {{_t('bugreport_info')}}</div>

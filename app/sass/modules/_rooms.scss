@@ -1,0 +1,17 @@
+/* Rooms
+-------------------------------------------------- */
+.app-row-room{}
+.room-entry{
+    width: $room-col-w;
+    @include appFloat(left);
+}
+.room-entry-in{
+    text-align: center;
+    padding: $spacing;
+    a{
+        font-weight: bold;
+    }
+    .entry-title-text{
+        padding-right: $spacing-double;
+    }
+}

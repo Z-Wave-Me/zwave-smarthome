@@ -1,9 +1,9 @@
 <!-- Admin licence view -->
-<h2 class="admin-entry-title" ng-click="expandElement('licence')">
+<h2 class="accordion-entry-title" ng-click="expandElement('licence')">
             <i class="fa fa-key"></i> <span ng-bind="_t('licence_upgrade')"></span> 
-            <i class="fa subnavi-arrow" ng-class="expand.licence  ? 'fa-chevron-up':'fa-chevron-down'"></i>
+            <i class="fa accordion-arrow" ng-class="expand.licence  ? 'fa-chevron-up':'fa-chevron-down'"></i>
 </h2>
-<div class="admin-entry-ctrl" ng-class="" ng-if="expand.licence" ng-controller="ManagementLicenceController">
+<div class="accordion-entry-ctrl" ng-class="" ng-if="expand.licence" ng-controller="ManagementLicenceController">
     
     <form name="form_licence" id="form_password" class="form form-page" ng-submit="getLicense(inputLicence)" novalidate>
         <fieldset>

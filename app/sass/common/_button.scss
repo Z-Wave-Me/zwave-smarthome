@@ -14,3 +14,10 @@
          background-color: $app-brand-success;
     }
 }
+
+.btn-small{
+    font-size: $app-btn-small-font-size;
+    .fa{
+        font-size: $app-btn-small-icon-size;
+    }
+}

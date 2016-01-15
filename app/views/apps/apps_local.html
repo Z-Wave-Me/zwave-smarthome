@@ -10,8 +10,8 @@
                  <span ng-if="dataHolder.modules.filter.featured">{{_t('featured_apps')}}</span>
                  <span ng-if="_.isEmpty(dataHolder.modules.filter)">{{_t('all_apps')}}</span>
             </a>
-            <div class="input-group search-form hide-on-mobile_">
-                <input type="text" ng-model="q" class="form-control" value="{{q}}">
+            <div class="input-group hide-on-mobile_">
+                <input type="text" ng-model="q" class="form-control form-search" value="{{q}}">
                 <span class="input-group-addon"><i class="fa fa-search"></i></span> 
             </div>
 

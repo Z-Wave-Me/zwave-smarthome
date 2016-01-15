@@ -1,0 +1,33 @@
+/* Images
+-------------------------------------------------- */
+img {
+    vertical-align: middle;
+}
+.img-circle{
+    border-radius: 50%;
+}
+.report-img{
+    max-width: $report-img;
+    max-height: $report-img;
+}
+.product-img{
+    max-width: $product-img;
+    max-height: $product-img;
+}
+.room-image-preview{
+    border: solid 6px $room-border-color;
+    width: $room-img-preview;
+    height:$room-img-preview;
+}
+
+.has-device-false{
+    .room-image-preview{
+        opacity: 0.5;
+    }
+} 
+.room-img-upload{
+    display: inline-block;
+    max-width: $room-img-upload;
+    max-height: $room-img-upload;
+    margin: $spacing-half;
+}

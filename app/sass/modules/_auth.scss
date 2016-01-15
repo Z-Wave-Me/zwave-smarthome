@@ -1,0 +1,15 @@
+/* Login
+-------------------------------------------------- */
+#page_login, #page_password,#page_passwordforgot,#page_passwordreset{ 
+    #header{
+        display: none !important; 
+    }
+    .container {
+        max-width: $auth-page-w;
+    }
+    .login-lang{
+        text-align: right;
+        margin-bottom: $spacing;
+    }
+
+}

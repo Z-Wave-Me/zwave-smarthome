@@ -37,21 +37,21 @@
 ==================================================*/
 
 /*==========  Detected mobile devices  ==========*/
-.m-only{
+/*.m-only{
     display: none;
 }
 .show-on-mobile{
     display: none;
-}
+}*/
 
-.is-mobile-true{
+/*.is-mobile-true{
     #footer, #mobile_footer{
         .container{
             padding-right: 70px; 
         }
 
     }
-}
+}*/
 /*@media (max-width: 2000px) {
     .show-on-mobile{
         display: none;
@@ -82,12 +82,16 @@
 
 /* Medium Devices, Desktops */
 @media only screen and (min-width : 992px) {
-
+    $room-col-w: 33.33333%;
+    $room-img-preview: 170px;
+    @import "_shared"; 
 }
 
 /* Large Devices, Wide Screens */
 @media only screen and (min-width : 1200px) {
-
+    $room-col-w: 25%;
+    $room-img-preview: 200px;
+    @import "_shared"; 
 }
 
 
@@ -106,32 +110,7 @@
 
 /* Small Devices, Tablets */
 @media only screen and (max-width : 768px),(orientation:portrait){
-    .show-on-pc{
-        display: none;
-    }
-    .show-on-mobile{
-        display: block !important;
-    }
-    @include mBody();
-    @include mHeader(); 
-    @include mFooter();
-    @include mNavi();
-    @include mImg();
-    @include mTable();
-    @include mButton();
-    @include mForm();
-    @include mLoader();
-    @include mAlert();
-    @include mTab();
-    @include mDropdown();
-    @include mModal();
-    @include mPagination();
-    @include mElements();
-    @include mElementsNew();
-    @include mRooms();
-    @include mEvents();
-    @include mApps();
-    @include mManagement();
+
 }
 
 /* Extra Small Devices, Phones */ 
@@ -147,10 +126,4 @@
 /* Custom, iPhone Retina */ 
 @media only screen and (max-width : 320px) {
 
-}
-
-@media only screen and (min-width: 768px) and (max-width : 992px) {
-    .hide-navi-text{
-        display: none !important;
-    }
 }

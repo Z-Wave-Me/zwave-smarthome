@@ -18,7 +18,7 @@
 /* Body reset
 -------------------------------------------------- */
 html {
-    font-size: 10px;
+    font-size: $app-body-font-size;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
@@ -42,7 +42,7 @@ textarea {
 
 /* Typo
 -------------------------------------------------- */
-h1, .h1, h2, .h2, h3, .h3 {
+h1, h2, h3,h4{
     margin-top: 0;
     color: $app-heading-color;
 }
@@ -52,7 +52,7 @@ h1 {
 
 h2 {
     font-size: $app-h2-font-size;
-    margin: 10px 0 3px 0;
+    margin: $spacing 0 $spacing-half 0;
 }
 
 h3 {
@@ -82,38 +82,6 @@ a {
         outline-offset: -2px;
     }
 }
-/* Images
--------------------------------------------------- */
-img {
-    vertical-align: middle;
-}
- .report-img{
-        max-width: $report-img;
-    }
-
-/* Layout
--------------------------------------------------- */
-#main_content {
-    margin-top: $header-h + $spacing-double; 
-    margin-bottom: $footer-h + $spacing-double;
-}
-
-.container{
-    max-width:none;
-    width: 100%;
-
-}
-.row {
-    padding-right: 0;
-    margin-right: 0;
-
-}
-.mobile-padding{
-    padding: 0 15px;
-    .page-header{
-        padding: 0;
-    }
-}
 
 /* Others
 -------------------------------------------------- */
@@ -132,14 +100,14 @@ img {
 }
 
 .badge{
-    padding: 7px;
-    margin-right: 5px;
+    padding: $spacing-half;
+    margin-right: $spacing-half;
 }
 .help-text{
     display: block;
-    //font-size: 95%;
-    font-style: italic;
-     margin: 5px 0;
+    font-size: $helptext-font-size;
+     font-style: italic;
+     margin: $spacing-half 0;
 }
 .help-text.inline{
     display: inline;

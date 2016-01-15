@@ -82,16 +82,24 @@
             <fieldset>
                 <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_allow_rooms')"></span></h3>
                 <div>
-                    <div class="device-assigned-block">
-                        <div class="btn-device-admin" id="device_assigned_{{$index}}" ng-repeat="d in rooms" ng-if="input.rooms.indexOf(d.id) > -1"> 
+                    <div class="alert alert-warning">
+                        <a href="" class="btn btn-default btn-small"
+                           ng-repeat="d in rooms" 
+                           ng-if="input.rooms.indexOf(d.id) > -1"
+                           ng-click="removeRoom(d.id)">{{d.title|cutText:true:20}} <i class="fa fa-times text-danger"></i></a>
+                        <!--<div class="btn-device-admin" id="device_assigned_{{$index}}" ng-repeat="d in rooms" ng-if="input.rooms.indexOf(d.id) > -1"> 
                             <a href="" ng-click="removeRoom(d.id)">{{d.title}} <i class="fa fa-times text-danger"></i></a>
-                        </div>
+                        </div>-->
                     </div>
                 <div class="device-available-block">
-                     <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_available_rooms')"></span></h3>
-                    <div class="btn-device-admin" id="device_unassigned_{{$index}}" ng-repeat="d in rooms" ng-if="input.rooms.indexOf(d.id) === -1">
+                     <h4><span ng-bind="_t('lb_available_rooms')"></span></h4>
+                     <a href="" class="btn btn-default btn-small" 
+                        ng-repeat="d in rooms" 
+                        ng-if="input.rooms.indexOf(d.id) === -1"
+                        ng-click="assignRoom(d.id)">{{d.title|cutText:true:20}} <i class="fa fa-plus text-success"></i></a>
+                    <!--<div class="btn-device-admin" id="device_unassigned_{{$index}}" ng-repeat="d in rooms" ng-if="input.rooms.indexOf(d.id) === -1">
                         <a href="" ng-click="assignRoom(d.id)">{{d.title}} <i class="fa fa-plus text-success"></i></a>
-                    </div>
+                    </div>-->
                 </div>
                 </div>
              </fieldset>

@@ -5,7 +5,7 @@
     <div class="page-control form-inline">
         <div class="btn-group">
             <button class="btn btn-default" ng-click="expandNavi('elCategories', $event)">
-                <i class="fa fa-filter text-success"></i> 
+                <i class="fa fa-filte"></i> 
                 <span ng-if="dataHolder.devices.filter.deviceType">{{_t(dataHolder.devices.filter.deviceType) | cutText:true:30}}</span>
                 <span ng-if="dataHolder.devices.filter.tag">{{dataHolder.devices.filter.tag|cutText:true:30}}</span>
                 <span ng-if="_.isEmpty(dataHolder.devices.filter)">{{_t('all_elements')}}</span>
@@ -13,7 +13,7 @@
         </div>
         <div class="btn-group">
             <button class="btn btn-default" ng-click="expandNavi('elOrderBy', $event)">
-                <i class="fa fa-sort-alpha-asc text-success"></i> {{_t(dataHolder.devices.orderBy) | cutText:true:30}}
+                <i class="fa fa-sort-alpha-asc"></i> {{_t(dataHolder.devices.orderBy) | cutText:true:30}}
             </button>
             <div class="app-dropdown" ng-if="naviExpanded.elOrderBy">
                 <p class="app-dropdown-title">{{_t('sortby')}}:</p>
@@ -26,8 +26,8 @@
             </div>
         </div>
 
-        <div class="input-group search-form hide-on-mobile_">
-            <input type="text" ng-model="q" class="form-control" value="{{q}}">
+        <div class="input-group hide-on-mobile_">
+            <input type="text" ng-model="q" class="form-control form-search" value="{{q}}">
             <span class="input-group-addon"><i class="fa fa-search"></i></span> 
         </div>
     </div>

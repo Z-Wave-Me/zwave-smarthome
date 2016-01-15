@@ -1,9 +1,9 @@
 <!-- App online comments -->
-<h2 class="admin-entry-title" ng-click="expandElement('appcomments')">
+<h2 class="accordion-entry-title" ng-click="expandElement('appcomments')">
     <i class="fa fa-comments"></i> {{_t('comments')}} ({{comments.all.length}})
-    <i class="fa subnavi-arrow" ng-class="expand.appcomments ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+    <i class="fa accordion-arrow" ng-class="expand.appcomments ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
 </h2>
-<div class="admin-entry-ctrl" ng-if="expand.appcomments">
+<div class="accordion-entry-ctrl" ng-if="expand.appcomments">
     <h3 class="text-right clickable" ng-click="expandElement('appcommentadd')"><i class="fa fa-plus text-success"></i> {{_t('add_comment')}}</h3>
     <form name="form_comment" id="form_profile" class="form form-page" ng-if="expand.appcommentadd" ng-submit="addComment(form_comment, comments.model)" novalidate>
         <fieldset>

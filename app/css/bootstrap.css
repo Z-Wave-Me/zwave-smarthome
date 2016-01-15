@@ -4996,7 +4996,106 @@ a.badge:hover, a.badge:focus {
 
 /*@import "bootstrap/jumbotron";*/
 /*@import "bootstrap/thumbnails";*/
-/*@import "bootstrap/alerts";*/
+/* line 9, ../sass/bootstrap/_alerts.scss */
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+/* line 16, ../sass/bootstrap/_alerts.scss */
+.alert h4 {
+  margin-top: 0;
+  color: inherit;
+}
+/* line 22, ../sass/bootstrap/_alerts.scss */
+.alert .alert-link {
+  font-weight: bold;
+}
+/* line 27, ../sass/bootstrap/_alerts.scss */
+.alert > p,
+.alert > ul {
+  margin-bottom: 0;
+}
+/* line 31, ../sass/bootstrap/_alerts.scss */
+.alert > p + p {
+  margin-top: 5px;
+}
+
+/* line 40, ../sass/bootstrap/_alerts.scss */
+.alert-dismissable,
+.alert-dismissible {
+  padding-right: 35px;
+}
+/* line 45, ../sass/bootstrap/_alerts.scss */
+.alert-dismissable .close,
+.alert-dismissible .close {
+  position: relative;
+  top: -2px;
+  right: -21px;
+  color: inherit;
+}
+
+/* line 57, ../sass/bootstrap/_alerts.scss */
+.alert-success {
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #3c763d;
+}
+/* line 8, ../sass/bootstrap/mixins/_alerts.scss */
+.alert-success hr {
+  border-top-color: #c9e2b3;
+}
+/* line 11, ../sass/bootstrap/mixins/_alerts.scss */
+.alert-success .alert-link {
+  color: #2b542c;
+}
+
+/* line 60, ../sass/bootstrap/_alerts.scss */
+.alert-info {
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+  color: #31708f;
+}
+/* line 8, ../sass/bootstrap/mixins/_alerts.scss */
+.alert-info hr {
+  border-top-color: #a6e1ec;
+}
+/* line 11, ../sass/bootstrap/mixins/_alerts.scss */
+.alert-info .alert-link {
+  color: #245269;
+}
+
+/* line 63, ../sass/bootstrap/_alerts.scss */
+.alert-warning {
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+  color: #8a6d3b;
+}
+/* line 8, ../sass/bootstrap/mixins/_alerts.scss */
+.alert-warning hr {
+  border-top-color: #f7e1b5;
+}
+/* line 11, ../sass/bootstrap/mixins/_alerts.scss */
+.alert-warning .alert-link {
+  color: #66512c;
+}
+
+/* line 66, ../sass/bootstrap/_alerts.scss */
+.alert-danger {
+  background-color: #f2dede;
+  border-color: #ebccd1;
+  color: #a94442;
+}
+/* line 8, ../sass/bootstrap/mixins/_alerts.scss */
+.alert-danger hr {
+  border-top-color: #e4b9c0;
+}
+/* line 11, ../sass/bootstrap/mixins/_alerts.scss */
+.alert-danger .alert-link {
+  color: #843534;
+}
+
 /*@import "bootstrap/progress-bars";*/
 /*@import "bootstrap/media";*/
 /*@import "bootstrap/list-group";*/
