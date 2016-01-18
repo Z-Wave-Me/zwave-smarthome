@@ -21,6 +21,7 @@
 @import "common/_footer";
 @import "common/_images";
 @import "common/_navi";
+@import "common/_widget"; 
 @import "common/_table"; 
 @import "common/_button"; 
 @import "common/_form";
@@ -36,7 +37,7 @@
 //@import "modules/_elements";
 //@import "modules/_elements_new"; 
 @import "modules/_events";
-//@import "modules/_apps";
+@import "modules/_apps";
 @import "modules/_rooms";
 @import "modules/_devices";
 @import "modules/_auth";

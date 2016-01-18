@@ -1,0 +1,20 @@
+/* Medium Devices, Desktops
+-------------------------------------------------- */
+$room-col-w: 33.33333%;
+$room-img-preview: 170px;
+
+/*-------------------------------------*/
+// Shared styles
+@import "_mq_shared"; 
+
+/*-------------------------------------*/
+// Images
+.room-image-preview{
+    width: $room-img-preview;
+    height:$room-img-preview;
+}
+/*-------------------------------------*/
+// Rooms
+.room-entry{
+    width: $room-col-w;
+}

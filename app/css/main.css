@@ -2031,25 +2031,31 @@ img {
   max-height: 36px;
 }
 
-/* line 13, ../sass/common/_images.scss */
+/* line 14, ../sass/common/_images.scss */
+.widget-img img {
+  max-width: 50px;
+  max-height: 50px;
+}
+
+/* line 20, ../sass/common/_images.scss */
 .product-img {
   max-width: 60px;
   max-height: 60px;
 }
 
-/* line 17, ../sass/common/_images.scss */
+/* line 24, ../sass/common/_images.scss */
 .room-image-preview {
   border: solid 6px #cccccc;
   width: 130px;
   height: 130px;
 }
 
-/* line 24, ../sass/common/_images.scss */
+/* line 31, ../sass/common/_images.scss */
 .has-device-false .room-image-preview {
   opacity: 0.5;
 }
 
-/* line 28, ../sass/common/_images.scss */
+/* line 35, ../sass/common/_images.scss */
 .room-img-upload {
   display: inline-block;
   max-width: 70px;
@@ -2172,6 +2178,86 @@ img {
 /* line 106, ../sass/common/_navi.scss */
 .page-navi-in ul:after {
   clear: both;
+}
+
+/* Widget
+-------------------------------------------------- */
+/* line 4, ../sass/common/_widget.scss */
+.widget-entry {
+  width: 100%;
+  height: 150px;
+  border: solid 1px #cccccc;
+}
+/* line 8, ../sass/common/_widget.scss */
+.widget-entry .widget-entry-in {
+  position: relative;
+  padding: 10px;
+}
+/* line 11, ../sass/common/_widget.scss */
+.widget-entry .widget-entry-in .widget-img {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+}
+/* line 16, ../sass/common/_widget.scss */
+.widget-entry .widget-entry-in .widget-header {
+  position: relative;
+  text-align: right;
+}
+/* line 20, ../sass/common/_widget.scss */
+.widget-entry .widget-entry-in .widget-content {
+  /*           margin: 0 0 0 70px;
+              position: relative;
+              min-height: $widget-col-h /2;*/
+}
+/* line 26, ../sass/common/_widget.scss */
+.widget-entry .widget-entry-in .widget-title {
+  position: relative;
+  height: 50%;
+}
+/* line 31, ../sass/common/_widget.scss */
+.widget-entry .widget-entry-in .widget-title h3 {
+  padding: 0;
+  margin: 0;
+}
+/* line 38, ../sass/common/_widget.scss */
+.widget-entry .widget-entry-in .widget-footer {
+  background: red;
+  height: 50%;
+  /*            width: 100%;
+              position: absolute;
+              bottom: 0;
+              left: 0;*/
+}
+/* line 48, ../sass/common/_widget.scss */
+.widget-entry .widget-entry-in .bottom-aligner {
+  display: inline-block;
+  height: 100%;
+  vertical-align: bottom;
+  width: 1px;
+  background: red;
+}
+/* line 55, ../sass/common/_widget.scss */
+.widget-entry .widget-entry-in .widget-ctrl-click {
+  cursor: pointer;
+}
+/* line 59, ../sass/common/_widget.scss */
+.widget-entry .widget-entry-in .widget-ctrl {
+  width: 50%;
+  float: left;
+}
+/* line 65, ../sass/common/_widget.scss */
+.widget-entry .widget-entry-in .widget-ctrl.ctrl-left .btn-group {
+  float: left;
+}
+/* line 69, ../sass/common/_widget.scss */
+.widget-entry .widget-entry-in .widget-ctrl.ctrl-right {
+  float: right;
+  text-align: right;
+}
+/* line 72, ../sass/common/_widget.scss */
+.widget-entry .widget-entry-in .widget-ctrl.ctrl-right .btn-group {
+  float: right;
 }
 
 /* Table
@@ -2708,6 +2794,8 @@ http://codepen.io/MattIn4D/pen/LiKFC
   width: 110px;
 }
 
+/* Apps
+-------------------------------------------------- */
 /* Rooms
 -------------------------------------------------- */
 /* line 4, ../sass/modules/_rooms.scss */
@@ -3023,34 +3111,40 @@ http://codepen.io/MattIn4D/pen/LiKFC
 /* Small Devices, Tablets */
 /* Medium Devices, Desktops */
 @media only screen and (min-width: 992px) {
+  /* Medium Devices, Desktops
+  -------------------------------------------------- */
+  /*-------------------------------------*/
   /* Shared styles
   -------------------------------------------------- */
   /*-------------------------------------*/
-  /* line 5, ../sass/responsive/_shared.scss */
+  /* line 12, ../sass/responsive/_mq_md.scss */
   .room-image-preview {
     width: 170px;
     height: 170px;
   }
 
   /*-------------------------------------*/
-  /* line 11, ../sass/responsive/_shared.scss */
+  /* line 18, ../sass/responsive/_mq_md.scss */
   .room-entry {
     width: 33.33333%;
   }
 }
 /* Large Devices, Wide Screens */
 @media only screen and (min-width: 1200px) {
+  /* Large Devices, Wide Screens
+  -------------------------------------------------- */
+  /*-------------------------------------*/
   /* Shared styles
   -------------------------------------------------- */
   /*-------------------------------------*/
-  /* line 5, ../sass/responsive/_shared.scss */
+  /* line 12, ../sass/responsive/_mq_lg.scss */
   .room-image-preview {
     width: 200px;
     height: 200px;
   }
 
   /*-------------------------------------*/
-  /* line 11, ../sass/responsive/_shared.scss */
+  /* line 18, ../sass/responsive/_mq_lg.scss */
   .room-entry {
     width: 25%;
   }

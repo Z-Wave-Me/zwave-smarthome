@@ -1,0 +1,77 @@
+/* Widget
+-------------------------------------------------- */
+.app-row-room{}
+.widget-entry{
+    width: 100%;
+    height: $widget-col-h;
+    border: solid 1px $widget-border-color;
+    .widget-entry-in{
+        position: relative;
+        padding: $spacing;
+        .widget-img{
+            position: absolute;
+            top: $spacing-double;
+            left: $spacing;
+        }
+        .widget-header {
+            position: relative;
+            text-align: right;
+        }
+        .widget-content{
+            // margin: -20px 0 0 70px;
+/*           margin: 0 0 0 70px;
+            position: relative;
+            min-height: $widget-col-h /2;*/
+        }
+        .widget-title{
+            position: relative;
+            //background: lightgreen;
+            height:50%;
+           
+            h3{
+                //position: absolute;
+                
+                padding: 0;
+                margin: 0;
+            }
+        }
+        .widget-footer{
+            background: red;
+    height:50%;
+            //border: solid 1px red;
+/*            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;*/
+
+        }
+        .bottom-aligner {
+    display: inline-block;
+    height: 100%;
+    vertical-align: bottom;
+    width:1px;
+    background: red;
+}
+        .widget-ctrl-click{
+            cursor: pointer;
+        }
+
+        .widget-ctrl{
+            
+             width: 50%;
+                float: left;
+        }
+        .widget-ctrl.ctrl-left{
+            .btn-group{
+                float: left; 
+            }
+        }
+        .widget-ctrl.ctrl-right{
+            float: right;
+            text-align: right;
+            .btn-group{
+                float: right;
+            }
+        }
+    }
+}

@@ -1,12 +1,13 @@
 <!-- Elements list -->
-<div class="row">
-    <div id="Widget_{{v.id}}" class="col-lg-4 col-md-6 col-sm-6 widget-entry" ng-repeat="v in dataHolder.devices.collection| filter:q | orderBy: cfg.orderby.elements[dataHolder.devices.orderBy] track by v.id">
-        <div class="clearfix widget-entry-in is-new-{{v.isNew}}">
+<div class="app-row app-row-widget app-row-element clearfix">
+    <div id="Widget_{{v.id}}" class="widget-entry" ng-repeat="v in dataHolder.devices.collection| filter:q | orderBy: cfg.orderby.elements[dataHolder.devices.orderBy] track by v.id">
+        <div class="widget-entry-in is-new-{{v.isNew}}">
             <!-- Widget icon -->
             <!--  <img class="widget-icon" ng-src="{{v.metrics.icon|getElementIcon:v:levelVal[v.id]}}" alt="img" />-->
-           
-            <img class="widget-icon widget-icon-update trans-{{v.imgTrans}}" ng-src="{{v.iconPath}}" alt="img" ng-click="runCmd(v.id + '/command/' + v.updateCmd)" ng-if="cfg.element_update_icon.indexOf(v.deviceType) > -1" />
-            <img class="widget-icon" ng-src="{{v.iconPath}}" alt="img" ng-if="cfg.element_update_icon.indexOf(v.deviceType) === -1" />
+            <div class="widget-img">
+                <img class="widget-icon widget-icon-update trans-{{v.imgTrans}}" ng-src="{{v.iconPath}}" alt="img" ng-click="runCmd(v.id + '/command/' + v.updateCmd)" ng-if="cfg.element_update_icon.indexOf(v.deviceType) > -1" />
+                <img class="widget-icon" ng-src="{{v.iconPath}}" alt="img" ng-if="cfg.element_update_icon.indexOf(v.deviceType) === -1" />
+            </div>
             <!-- Widget header -->
             <div class="widget-header">
                 <!--{{$index}}| {{v.id}} | {{v.deviceType}}-->
@@ -20,6 +21,7 @@
                     <span class="widget-room"><span ng-if="v.location !== 0">{{dataHolder.devices.rooms[v.location].title|cutText:true:25}}</span>&nbsp;</span>
                     <h3>{{v.metrics.title|cutText:true:25}}</h3>
                 </div>
+                <div class="bottom-aligner"></div>
                 <!-- Widget footer -->
                 <div class="widget-footer" ng-switch="v.deviceType">
                     <div ng-switch-when="switchMultilevel">

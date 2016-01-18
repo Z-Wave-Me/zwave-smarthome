@@ -47,6 +47,12 @@ $vendor-img-h: 60px;
 // Footer
 $footer-h: 60px;
 
+//Widget
+$widget-col-w: 50%;
+$widget-col-h: 150px;
+$widget-img: 50px;
+
+
 //Room
 $room-col-w: 50%;
 $room-img-upload: 70px;
@@ -211,8 +217,15 @@ $device-bcg-color: #FFFFFF;
 $device-color: $app-body-color;
 $device-border-color: $app-border-color;
 
+// Widget
+$widget-bcg-color: #FFFFFF;
+$widget-color: $app-a-color;
+$widget-border-color: $app-border-color;
+$widget-heading-color: $app-heading-color;
+
 // Room
 $room-border-color: $app-border-color;
+
 /*-------------------------------------*/
 // EFFECTS
 

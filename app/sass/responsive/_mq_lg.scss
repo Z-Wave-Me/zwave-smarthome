@@ -1,5 +1,12 @@
-/* Shared styles
+/* Large Devices, Wide Screens
 -------------------------------------------------- */
+$room-col-w: 25%;
+$room-img-preview: 200px;
+
+/*-------------------------------------*/
+// Shared styles
+@import "_mq_shared"; 
+
 /*-------------------------------------*/
 // Images
 .room-image-preview{

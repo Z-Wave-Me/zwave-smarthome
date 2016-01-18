@@ -10,6 +10,13 @@ img {
     max-width: $report-img;
     max-height: $report-img;
 }
+.widget-img{
+    img{
+        max-width: $widget-img;
+        max-height: $widget-img;
+    }
+
+}
 .product-img{
     max-width: $product-img;
     max-height: $product-img;
