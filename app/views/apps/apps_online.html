@@ -31,8 +31,8 @@
             </div>
         </div>
         
-        <div class="row row-page" id="_page_app_local">
-            <div class="col-lg-4 col-md-6 col-sm-6 app-entry" 
+         <div class="app-row app-row-widget app-row-app clearfix">
+            <div class="widget-entry"
                  ng-class="dataHolder.modules.ids[v.modulename] ? 'app-entry-green': ''" 
                  ng-repeat="v in dataHolder.onlineModules.all| orderBy:'title' | filter:q track by v.id">
                 <div class="app-border app-gradient app-shadow app-entry-in" ng-class="dataHolder.modules.ids[v.modulename] ? 'app-gradient-green': ''">

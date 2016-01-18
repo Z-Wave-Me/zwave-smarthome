@@ -103,7 +103,7 @@
         //w: margin: 0 0 0 66%;
         margin:0;
         background-color: $header-subnavi-bcg-color;
-        box-shadow: $app-mainsubnavi-box-shadow;
+        @include appBoxShadow($app-mainsubnavi-box-shadow);
         border: 1px solid $header-border-color;
         li{
             padding: 10px 0;

@@ -50,7 +50,7 @@ $footer-h: 60px;
 //Widget
 $widget-col-w: 50%;
 $widget-col-h: 150px;
-$widget-img: 50px;
+$widget-img: 64px;
 
 
 //Room
@@ -110,6 +110,13 @@ $accordion-icon-size: 130%;
 $tab-font-size: 120%;
 $tab-icon-size: 130%;
 $helptext-font-size: 95%;
+$widget-heading-font-size: 120%;
+$widget-icon-size: 130%;
+$element-widget-room-font-size: 85%;
+$element-widget-level-font-size: 160%;
+$element-widget-scale-font-size: 110%;
+$element-widget-caret-font-size: 140%;
+$element-widget-time-font-size: 85%;
 
 /*-------------------------------------*/
 // COLORS
@@ -219,16 +226,29 @@ $device-border-color: $app-border-color;
 
 // Widget
 $widget-bcg-color: #FFFFFF;
-$widget-color: $app-a-color;
+$widget-img-border-color: #FFFFFF;
+$widget-color: $app-body-color;
 $widget-border-color: $app-border-color;
 $widget-heading-color: $app-heading-color;
+$widget-icon-color:lighten($widget-color, 40%);;
 
+// Element
+$element-widget-room-color: lighten($widget-color, 40%);
+$element-widget-caret-color: $app-brand-primary;
+$element-widget-time-color: lighten($widget-color, 40%);
+$element-widget-level-color: $app-body-color;
+$element-widget-btn-color: lighten($widget-color, 80%);
+$element-widget-btn-border-color: $element-widget-btn-color;
+$element-widget-btn-bcg-color: #FFFFFF;
+$element-widget-btn-0-color: $app-brand-danger;
+$element-widget-btn-1-color: $app-brand-success;
+$element-widget-btn-on-color: lighten($widget-color, 40%);
+$element-widget-img-update-border-color: $app-border-color;
 // Room
 $room-border-color: $app-border-color;
 
 /*-------------------------------------*/
 // EFFECTS
-
 // Radius
 $app-border-radius: 4px;
 
@@ -237,6 +257,7 @@ $app-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
 $app-mainsubnavi-box-shadow: $app-box-shadow;
 $page-navi-box-shadow: $app-box-shadow;
 $dropdown-box-shadow: $app-box-shadow;
+$element-widget-btn-box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
 
 // Loader fade out
 $loader-fadeout:  7s;

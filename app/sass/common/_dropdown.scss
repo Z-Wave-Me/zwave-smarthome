@@ -12,7 +12,7 @@
     padding: 0;
     text-align: left;
     background-color: $dropdown-bcg-color;
-    box-shadow: $dropdown-box-shadow;
+    @include appBoxShadow($dropdown-box-shadow);
     border: 1px solid $dropdown-border-color;
     background-clip: padding-box;
     color: $dropdown-color;

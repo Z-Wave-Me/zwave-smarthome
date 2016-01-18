@@ -1954,6 +1954,8 @@ a:focus {
   list-style: none;
   margin: 0;
   background-color: #FFFFFF;
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  -moz-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   border: 1px solid #cccccc;
 }
@@ -2033,29 +2035,33 @@ img {
 
 /* line 14, ../sass/common/_images.scss */
 .widget-img img {
-  max-width: 50px;
-  max-height: 50px;
+  max-width: 64px;
+  max-height: 64px;
+  border: solid 4px #FFFFFF;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
 }
 
-/* line 20, ../sass/common/_images.scss */
+/* line 22, ../sass/common/_images.scss */
 .product-img {
   max-width: 60px;
   max-height: 60px;
 }
 
-/* line 24, ../sass/common/_images.scss */
+/* line 26, ../sass/common/_images.scss */
 .room-image-preview {
   border: solid 6px #cccccc;
   width: 130px;
   height: 130px;
 }
 
-/* line 31, ../sass/common/_images.scss */
+/* line 33, ../sass/common/_images.scss */
 .has-device-false .room-image-preview {
   opacity: 0.5;
 }
 
-/* line 35, ../sass/common/_images.scss */
+/* line 37, ../sass/common/_images.scss */
 .room-img-upload {
   display: inline-block;
   max-width: 70px;
@@ -2089,6 +2095,8 @@ img {
 .page-navi .page-navi-in {
   position: absolute;
   background-color: #FFFFFF;
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  -moz-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   border: 1px solid #cccccc;
   width: 100%;
@@ -2186,56 +2194,63 @@ img {
 .widget-entry {
   width: 100%;
   height: 150px;
-  border: solid 1px #cccccc;
+  border-bottom: solid 1px #cccccc;
+  color: #0d0d0d;
 }
-/* line 8, ../sass/common/_widget.scss */
+/* line 9, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in {
   position: relative;
   padding: 10px;
 }
-/* line 11, ../sass/common/_widget.scss */
+/* line 12, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .widget-img {
   position: absolute;
   top: 20px;
   left: 10px;
 }
-/* line 16, ../sass/common/_widget.scss */
+/* line 19, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .widget-header {
   position: relative;
   text-align: right;
 }
-/* line 20, ../sass/common/_widget.scss */
+/* line 22, ../sass/common/_widget.scss */
+.widget-entry .widget-entry-in .widget-header .widget-icon {
+  color: #737373;
+}
+/* line 24, ../sass/common/_widget.scss */
+.widget-entry .widget-entry-in .widget-header .widget-icon .fa {
+  font-size: 130%;
+}
+/* line 29, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .widget-content {
-  /*           margin: 0 0 0 70px;
-              position: relative;
-              min-height: $widget-col-h /2;*/
+  margin: -10px 0 0 84px;
 }
-/* line 26, ../sass/common/_widget.scss */
+/* line 32, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .widget-title {
-  position: relative;
   height: 50%;
+  color: #737373;
 }
-/* line 31, ../sass/common/_widget.scss */
+/* line 35, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .widget-title h3 {
+  font-size: 120%;
   padding: 0;
   margin: 0;
 }
-/* line 38, ../sass/common/_widget.scss */
+/* line 39, ../sass/common/_widget.scss */
+.widget-entry .widget-entry-in .widget-title h3 a {
+  color: #737373;
+}
+/* line 44, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .widget-footer {
-  background: red;
   height: 50%;
-  /*            width: 100%;
-              position: absolute;
-              bottom: 0;
-              left: 0;*/
 }
 /* line 48, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .bottom-aligner {
+  border: 0;
   display: inline-block;
   height: 100%;
   vertical-align: bottom;
   width: 1px;
-  background: red;
 }
 /* line 55, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .widget-ctrl-click {
@@ -2246,16 +2261,16 @@ img {
   width: 50%;
   float: left;
 }
-/* line 65, ../sass/common/_widget.scss */
+/* line 64, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .widget-ctrl.ctrl-left .btn-group {
   float: left;
 }
-/* line 69, ../sass/common/_widget.scss */
+/* line 68, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .widget-ctrl.ctrl-right {
   float: right;
   text-align: right;
 }
-/* line 72, ../sass/common/_widget.scss */
+/* line 71, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .widget-ctrl.ctrl-right .btn-group {
   float: right;
 }
@@ -2487,6 +2502,8 @@ textarea {
   padding: 0;
   text-align: left;
   background-color: #FFFFFF;
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  -moz-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   border: 1px solid #cccccc;
   background-clip: padding-box;
@@ -2769,6 +2786,80 @@ http://codepen.io/MattIn4D/pen/LiKFC
   color: #FFFFFF;
   background-color: #cccccc;
   border-color: #cccccc;
+}
+
+/* Elements
+-------------------------------------------------- */
+/* line 5, ../sass/modules/_elements.scss */
+.widget-entry-element .widget-img .widget-icon-update {
+  z-index: 10;
+  cursor: pointer;
+  border-color: #cccccc;
+}
+/* line 12, ../sass/modules/_elements.scss */
+.widget-entry-element .widget-title .widget-room {
+  display: block;
+  font-size: 85%;
+  color: #737373;
+}
+/* line 18, ../sass/modules/_elements.scss */
+.widget-entry-element .widget-level {
+  font-weight: bold;
+  font-size: 160%;
+  color: #0d0d0d;
+}
+/* line 23, ../sass/modules/_elements.scss */
+.widget-entry-element .widget-scale {
+  font-size: 110%;
+}
+/* line 27, ../sass/modules/_elements.scss */
+.widget-entry-element .widget-ctrl .fa-caret-down {
+  font-size: 140%;
+  color: #6494BC;
+}
+/* line 32, ../sass/modules/_elements.scss */
+.widget-entry-element .widget-ctrl .btn-group .btn {
+  color: #d9d9d9;
+}
+/* line 35, ../sass/modules/_elements.scss */
+.widget-entry-element .widget-ctrl .btn-group .widget-btn-symbol {
+  font-weight: bold;
+  display: inline-block;
+  padding: 0 5px;
+}
+/* line 40, ../sass/modules/_elements.scss */
+.widget-entry-element .widget-ctrl .btn-group .btn-primary {
+  background-color: #FFFFFF !important;
+  border-color: #d9d9d9;
+  color: #80AD80 !important;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  -moz-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+/* line 45, ../sass/modules/_elements.scss */
+.widget-entry-element .widget-ctrl .btn-group .btn-primary .fa {
+  color: #80AD80 !important;
+}
+/* line 49, ../sass/modules/_elements.scss */
+.widget-entry-element .widget-ctrl .btn-group .btn-off.btn-primary {
+  color: #d9534f !important;
+}
+/* line 51, ../sass/modules/_elements.scss */
+.widget-entry-element .widget-ctrl .btn-group .btn-off.btn-primary .fa {
+  color: #80AD80 !important;
+}
+/* line 55, ../sass/modules/_elements.scss */
+.widget-entry-element .widget-ctrl .btn-group .btn-label-on {
+  color: #737373;
+  text-transform: lowercase;
+}
+/* line 59, ../sass/modules/_elements.scss */
+.widget-entry-element .widget-ctrl .btn-group .btn-widget-time, .widget-entry-element .widget-ctrl .btn-group .txt-widget-time {
+  padding: 10px 0 0 0;
+  border: 0 none;
+  color: #737373;
+  font-size: 85%;
+  background-color: transparent;
 }
 
 /* Events

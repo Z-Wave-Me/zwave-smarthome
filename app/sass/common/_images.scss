@@ -14,6 +14,8 @@ img {
     img{
         max-width: $widget-img;
         max-height: $widget-img;
+        border: solid 4px $widget-img-border-color;
+        @include appBorderRadius(50%);
     }
 
 }

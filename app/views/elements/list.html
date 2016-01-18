@@ -1,18 +1,18 @@
 <!-- Elements list -->
 <div class="app-row app-row-widget app-row-element clearfix">
-    <div id="Widget_{{v.id}}" class="widget-entry" ng-repeat="v in dataHolder.devices.collection| filter:q | orderBy: cfg.orderby.elements[dataHolder.devices.orderBy] track by v.id">
+    <div id="Widget_{{v.id}}" class="widget-entry widget-entry-element" ng-repeat="v in dataHolder.devices.collection| filter:q | orderBy: cfg.orderby.elements[dataHolder.devices.orderBy] track by v.id">
         <div class="widget-entry-in is-new-{{v.isNew}}">
             <!-- Widget icon -->
             <!--  <img class="widget-icon" ng-src="{{v.metrics.icon|getElementIcon:v:levelVal[v.id]}}" alt="img" />-->
             <div class="widget-img">
-                <img class="widget-icon widget-icon-update trans-{{v.imgTrans}}" ng-src="{{v.iconPath}}" alt="img" ng-click="runCmd(v.id + '/command/' + v.updateCmd)" ng-if="cfg.element_update_icon.indexOf(v.deviceType) > -1" />
-                <img class="widget-icon" ng-src="{{v.iconPath}}" alt="img" ng-if="cfg.element_update_icon.indexOf(v.deviceType) === -1" />
+                <img class="widget-icon widget-icon-update img-circle trans-{{v.imgTrans}}" ng-src="{{v.iconPath}}" alt="img" ng-click="runCmd(v.id + '/command/' + v.updateCmd)" ng-if="cfg.element_update_icon.indexOf(v.deviceType) > -1" />
+                <img class="widget-icon img-circle" ng-src="{{v.iconPath}}" alt="img" ng-if="cfg.element_update_icon.indexOf(v.deviceType) === -1" />
             </div>
             <!-- Widget header -->
             <div class="widget-header">
                 <!--{{$index}}| {{v.id}} | {{v.deviceType}}-->
-                <a class="widget-history" href="" ng-click="dataHolder.devices.find = v;handleModal('modalHistory', $event)" ng-if="v.hasHistory"><i class="fa fa-history fa-lg"></i></a>
-                <a class="widget-config" href="#element/{{v.id}}" ng-if="elementAccess(cfg.role_access.element)"><i class="fa fa-cog fa-lg"></i></a>
+                <a class="widget-icon widget-history" href="" ng-click="dataHolder.devices.find = v;handleModal('modalHistory', $event)" ng-if="v.hasHistory"><i class="fa fa-history fa-lg"></i></a>
+                <a class="widget-icon widget-config" href="#element/{{v.id}}" ng-if="elementAccess(cfg.role_access.element)"><i class="fa fa-cog fa-lg"></i></a>
             </div>
             <!-- Widget content -->
             <div class="widget-content">
@@ -21,7 +21,7 @@
                     <span class="widget-room"><span ng-if="v.location !== 0">{{dataHolder.devices.rooms[v.location].title|cutText:true:25}}</span>&nbsp;</span>
                     <h3>{{v.metrics.title|cutText:true:25}}</h3>
                 </div>
-                <div class="bottom-aligner"></div>
+                <hr class="bottom-aligner" />
                 <!-- Widget footer -->
                 <div class="widget-footer" ng-switch="v.deviceType">
                     <div ng-switch-when="switchMultilevel">

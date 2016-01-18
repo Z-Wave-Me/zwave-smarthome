@@ -19,7 +19,7 @@
     .page-navi-in{
         position: absolute;
         background-color: $page-navi-bcg-color;
-        box-shadow: $page-navi-box-shadow;
+        @include appBoxShadow($page-navi-box-shadow);
         border: 1px solid $page-navi-border-color;
         width: 100%;
         top:0;

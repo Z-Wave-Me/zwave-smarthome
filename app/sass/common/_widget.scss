@@ -4,7 +4,8 @@
 .widget-entry{
     width: 100%;
     height: $widget-col-h;
-    border: solid 1px $widget-border-color;
+    border-bottom: solid 1px $widget-border-color;
+    color: $widget-color;
     .widget-entry-in{
         position: relative;
         padding: $spacing;
@@ -12,54 +13,52 @@
             position: absolute;
             top: $spacing-double;
             left: $spacing;
+            
         }
+        
         .widget-header {
             position: relative;
             text-align: right;
+            .widget-icon{
+                color: $widget-icon-color;
+                .fa{
+                    font-size: $widget-icon-size;
+                }
+            }
         }
         .widget-content{
-            // margin: -20px 0 0 70px;
-/*           margin: 0 0 0 70px;
-            position: relative;
-            min-height: $widget-col-h /2;*/
+            margin: -$spacing 0 0 $widget-img + $spacing-double;
         }
         .widget-title{
-            position: relative;
-            //background: lightgreen;
             height:50%;
-           
+            color: $widget-heading-color;
             h3{
-                //position: absolute;
-                
+                font-size: $widget-heading-font-size;
                 padding: 0;
                 margin: 0;
+                a{
+                    color: $widget-heading-color;
+                }
             }
         }
         .widget-footer{
-            background: red;
-    height:50%;
-            //border: solid 1px red;
-/*            width: 100%;
-            position: absolute;
-            bottom: 0;
-            left: 0;*/
+           height:50%;
 
         }
         .bottom-aligner {
-    display: inline-block;
-    height: 100%;
-    vertical-align: bottom;
-    width:1px;
-    background: red;
-}
+            border:0;
+            display: inline-block;
+            height: 100%;
+            vertical-align: bottom;
+            width:1px;
+        }
         .widget-ctrl-click{
             cursor: pointer;
         }
 
         .widget-ctrl{
-            
-             width: 50%;
-                float: left;
+            width: 50%;
+            float: left;
         }
         .widget-ctrl.ctrl-left{
             .btn-group{
