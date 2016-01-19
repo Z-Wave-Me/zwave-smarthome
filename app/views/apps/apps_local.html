@@ -38,12 +38,12 @@
             </ul>
         </div>
     </div>
-    <div class="app-row app-row-widget app-row-app clearfix">
-        <div class="widget-entry"
+    <div class="app-row app-row-widget app-row-app-local clearfix">
+        <div class="widget-entry widget-entry-app"
              id="local_module_{{v.id}}" 
              ng-repeat="v in dataHolder.modules.all|orderBy:'defaults.title' | filter:q  track by v.id" 
-             ng-class="dataHolder.onlineModules.ids[v.id] && dataHolder.onlineModules.ids[v.id].version != v.version ? 'app-entry-green': ''">
-                <div class="widget-entry-in" ng-class="dataHolder.onlineModules.ids[v.id] && dataHolder.onlineModules.ids[v.id].version != v.version ? 'app-gradient-green': ''"> 
+             ng-class="dataHolder.onlineModules.ids[v.id] && dataHolder.onlineModules.ids[v.id].version != v.version ? 'app-entry-success': ''">
+                <div class="widget-entry-in"> 
                     <!-- Widget img -->
                     <div class="widget-img">
                     <a href="#apps/local/{{v.id}}">
@@ -52,13 +52,13 @@
                     </a>
                     </div>
                     <!-- Widget header -->
-                    <div class="widget-header">Widget header</div>
+                    <div class="widget-header"></div>
                     <div class="widget-content">
                         <!-- Widget title -->
                          <div class="widget-title">
                             <h3><a href="#apps/local/{{v.id}}" ng-bind="v.defaults.title"></a>  &raquo;</h3>
                         </div>
-
+                        <hr class="bottom-aligner" />
                         <!-- Widget footer -->
                          <div class="widget-footer">
                             <div class="widget-ctrl ctrl-left">&nbsp;</div>

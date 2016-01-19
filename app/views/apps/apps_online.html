@@ -31,34 +31,44 @@
             </div>
         </div>
         
-         <div class="app-row app-row-widget app-row-app clearfix">
-            <div class="widget-entry"
-                 ng-class="dataHolder.modules.ids[v.modulename] ? 'app-entry-green': ''" 
+         <div class="app-row app-row-widget app-row-app-online clearfix">
+            <div class="widget-entry widget-entry-app"
+                 ng-class="dataHolder.modules.ids[v.modulename] ? 'app-entry-success': ''" 
                  ng-repeat="v in dataHolder.onlineModules.all| orderBy:'title' | filter:q track by v.id">
-                <div class="app-border app-gradient app-shadow app-entry-in" ng-class="dataHolder.modules.ids[v.modulename] ? 'app-gradient-green': ''">
-                    <img class="app-image" alt="{{v.title}}" 
-                         ng-src="{{v.icon ? onlineMediaUrl + v.icon : 'storage/img/placeholder-img.png'}}" 
-                         ng-click="redirectToRoute(dataHolder.modules.ids[v.modulename] ? false : 'apps/online/' + v.id)" />
-                    <div class="app-body">
-                        <h3 class="entry-title">
-                            <a href="#apps/online/{{v.id}}">{{v.title}} &raquo;</a>
-                        </h3>
-
+                <div class="widget-entry-in">
+                     <!-- Widget img -->
+                    <div class="widget-img">
+                        <a ng-href="#apps/online/{{v.id}}">
+                             <img class="app-image" alt="{{v.title}}" 
+                             ng-src="{{v.icon ? onlineMediaUrl + v.icon : 'storage/img/placeholder-img.png'}}" 
+                             ng-click="redirectToRoute(dataHolder.modules.ids[v.modulename] ? false : 'apps/online/' + v.id)" />
+                        </a>
                     </div>
-                    <div class="app-footer">
-                        <div class="app-footer-in">
-                            <!-- Download -->
-                            <button href="" class="btn btn-default btn-sm" ng-click="installModule(v, 'online_install')" ng-if="!dataHolder.modules.ids[v.modulename]">
-                                <i class="fa fa-download fa-lg text-success"></i> <span class="btn-name_">{{_t('lb_download')}}</span>
-                            </button> 
-                            <!-- Update -->
-                            <button href="" class="btn btn-default btn-sm" ng-click="updateModule(v, _t('app_update_confirm'))" ng-if="dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version != v.version">
-                                <i class="fa fa-level-up fa-lg text-primary"></i> <span class="btn-name_">{{_t('update_to_latest')}}</span>
-                            </button> 
-                            <!-- Installed -->
-                            <button class="btn btn-default btn-sm" disabled ng-if="dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version == v.version">
-                                <i class="fa fa-check fa-lg"></i> <span class="btn-name_">{{_t('installed')}}</span>
-                            </button> 
+                     <!-- Widget header -->
+                    <div class="widget-header"></div>
+                    <div class="widget-content">
+                        <!-- Widget title -->
+                         <div class="widget-title">
+                             <h3><a ng-href="#apps/online/{{v.id}}">{{v.title}} &raquo;</a></h3>
+                        </div>
+                        <hr class="bottom-aligner" />
+                         <!-- Widget footer -->
+                         <div class="widget-footer">
+                            <div class="widget-ctrl ctrl-left">&nbsp;</div>
+                            <div class="widget-ctrl ctrl-right">
+                                 <!-- Download -->
+                                <button href="" class="btn btn-default btn-sm" ng-click="installModule(v, 'online_install')" ng-if="!dataHolder.modules.ids[v.modulename]">
+                                    <i class="fa fa-download fa-lg text-success"></i> <span class="btn-name_">{{_t('lb_download')}}</span>
+                                </button> 
+                                <!-- Update -->
+                                <button href="" class="btn btn-default btn-sm" ng-click="updateModule(v, _t('app_update_confirm'))" ng-if="dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version != v.version">
+                                    <i class="fa fa-level-up fa-lg text-primary"></i> <span class="btn-name_">{{_t('update_to_latest')}}</span>
+                                </button> 
+                                <!-- Installed -->
+                                <button class="btn btn-default btn-sm" disabled ng-if="dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version == v.version">
+                                    <i class="fa fa-check fa-lg"></i> <span class="btn-name_">{{_t('installed')}}</span>
+                                </button> 
+                            </div>
                         </div>
                     </div>
                 </div>

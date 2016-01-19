@@ -81,13 +81,12 @@
 }
 
 /* Medium Devices, Desktops */
-@media only screen and (min-width : 992px) {
+@media only screen and (min-width : 992px) and (orientation:landscape) {
     @import "_mq_md"; 
 }
 
 /* Large Devices, Wide Screens */
-@media only screen and (min-width : 1200px) {
-    
+@media only screen and (min-width : 1200px)and (orientation:landscape) {
     @import "_mq_lg"; 
 }
 
@@ -107,7 +106,9 @@
 
 /* Small Devices, Tablets */
 @media only screen and (max-width : 768px),(orientation:portrait){
-
+    .btn-name,.tab-name,.mobile-hide{
+        display: none !important;
+    }
 }
 
 /* Extra Small Devices, Phones */ 

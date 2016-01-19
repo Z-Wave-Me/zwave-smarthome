@@ -2,9 +2,10 @@
 -------------------------------------------------- */
 .app-row-room{}
 .widget-entry{
-    width: 100%;
+    width: $widget-col-w;
     height: $widget-col-h;
     border-bottom: solid 1px $widget-border-color;
+    background-color: $widget-bcg-color;
     color: $widget-color;
     .widget-entry-in{
         position: relative;

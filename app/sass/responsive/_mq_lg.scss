@@ -1,20 +1,14 @@
 /* Large Devices, Wide Screens
 -------------------------------------------------- */
+$app-body-font-size: 14px;
+
+$header-h: 60px;
+
+$widget-col-w: 33.33333%;
+
 $room-col-w: 25%;
 $room-img-preview: 200px;
 
 /*-------------------------------------*/
 // Shared styles
-@import "_mq_shared"; 
-
-/*-------------------------------------*/
-// Images
-.room-image-preview{
-    width: $room-img-preview;
-    height:$room-img-preview;
-}
-/*-------------------------------------*/
-// Rooms
-.room-entry{
-    width: $room-col-w;
-}
+//@import "_mq_shared"; 

@@ -48,9 +48,12 @@ $vendor-img-h: 60px;
 $footer-h: 60px;
 
 //Widget
-$widget-col-w: 50%;
+$widget-col-w: 100%;
 $widget-col-h: 150px;
 $widget-img: 64px;
+
+//Apps
+$app-widget-col-h: 90px;
 
 
 //Room
@@ -234,7 +237,7 @@ $widget-icon-color:lighten($widget-color, 40%);;
 
 // Element
 $element-widget-room-color: lighten($widget-color, 40%);
-$element-widget-caret-color: $app-brand-primary;
+$element-widget-caret-color: lighten($widget-color, 40%);
 $element-widget-time-color: lighten($widget-color, 40%);
 $element-widget-level-color: $app-body-color;
 $element-widget-btn-color: lighten($widget-color, 80%);
@@ -244,6 +247,7 @@ $element-widget-btn-0-color: $app-brand-danger;
 $element-widget-btn-1-color: $app-brand-success;
 $element-widget-btn-on-color: lighten($widget-color, 40%);
 $element-widget-img-update-border-color: $app-border-color;
+$element-widget-isnew-border-color: $app-brand-success;
 // Room
 $room-border-color: $app-border-color;
 

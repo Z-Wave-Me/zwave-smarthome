@@ -1,2 +1,26 @@
 /* Apps
 -------------------------------------------------- */
+.widget-entry-app{
+    height: $app-widget-col-h;
+    &.app-entry-success {
+        @include appGradientSuccess();
+    }
+    .widget-entry-in{
+        .widget-img{
+            top: $spacing;
+        }
+        .widget-header{
+            display: none;
+        }
+        .widget-content{
+            margin: $spacing-double 0 0 $widget-img + $spacing-double;
+        }
+        .bottom-aligner{
+            display: none;
+        }
+        .widget-footer{
+          margin-top: -30px;
+
+        }
+    }
+}

@@ -1,2 +1,52 @@
 /* Shared styles
 -------------------------------------------------- */
+
+/* Body reset
+-------------------------------------------------- */
+html {
+    font-size: $app-body-font-size;
+}
+
+body {
+    font-size: $app-body-font-size;
+    line-height: $app-line-height-base;
+}
+
+/* Header
+-------------------------------------------------- */
+#header{
+    .divider-vertical {
+        height: $header-h;
+    }
+}
+
+/* Main navigation
+-------------------------------------------------- */
+#main_navigation_wrap{
+    height: $header-h;
+}
+
+#main_navigation{
+    line-height: $header-h;
+    a{
+        line-height: $header-h;
+    }
+}
+
+/*-------------------------------------*/
+// Images
+.room-image-preview{
+    width: $room-img-preview;
+    height:$room-img-preview;
+}
+/*-------------------------------------*/
+// Widgets
+.widget-entry{
+    @include appFloat(left);
+    width: $widget-col-w;
+}
+/*-------------------------------------*/
+// Rooms
+.room-entry{
+    width: $room-col-w;
+}

@@ -1,20 +1,16 @@
 /* Medium Devices, Desktops
 -------------------------------------------------- */
+$app-body-font-size: 15px;
+
+$header-h: 60px;
+
+$widget-col-w: 50%;
+
 $room-col-w: 33.33333%;
 $room-img-preview: 170px;
 
 /*-------------------------------------*/
 // Shared styles
-@import "_mq_shared"; 
+//@import "_mq_shared"; 
 
-/*-------------------------------------*/
-// Images
-.room-image-preview{
-    width: $room-img-preview;
-    height:$room-img-preview;
-}
-/*-------------------------------------*/
-// Rooms
-.room-entry{
-    width: $room-col-w;
-}
+
