@@ -106,13 +106,13 @@
         @include appBoxShadow($app-mainsubnavi-box-shadow);
         border: 1px solid $header-border-color;
         li{
-            padding: 10px 0;
+            padding: $spacing 0;
             border-bottom: solid 1px $header-border-color;
             a{
                 display: block;
                 position:relative;
                 //w: padding: 0 10px;
-                 padding: 10px 20px;
+                 padding:  $spacing  $spacing-double;
                 vertical-align: middle;
                 color: $header-a-color;
             }

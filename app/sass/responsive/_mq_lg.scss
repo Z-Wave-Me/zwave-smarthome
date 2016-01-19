@@ -1,14 +1,16 @@
 /* Large Devices, Wide Screens
 -------------------------------------------------- */
 $app-body-font-size: 14px;
-
 $header-h: 60px;
-
+$subnavigation-margin: 0 0 0 66%;
+$page-navi-h: 30px;
+$page-navi-w: 25%;
 $widget-col-w: 33.33333%;
-
+$widget-col-h: 120px;
+$app-widget-col-h: 110px;
 $room-col-w: 25%;
 $room-img-preview: 200px;
 
 /*-------------------------------------*/
 // Shared styles
-//@import "_mq_shared"; 
+@import "_mq_shared"; 

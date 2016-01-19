@@ -56,7 +56,7 @@
                     <div class="widget-content">
                         <!-- Widget title -->
                          <div class="widget-title">
-                            <h3><a href="#apps/local/{{v.id}}" ng-bind="v.defaults.title"></a>  &raquo;</h3>
+                            <h3><a href="#apps/local/{{v.id}}" ng-bind="v.defaults.title|cutText:true:25"></a>  &raquo;</h3>
                         </div>
                         <hr class="bottom-aligner" />
                         <!-- Widget footer -->

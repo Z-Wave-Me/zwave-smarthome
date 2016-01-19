@@ -1,9 +1,6 @@
 /* Elements
 -------------------------------------------------- */
 .widget-entry-element{
-    &.is-new-true {
-        border-color: $element-widget-isnew-border-color;
-    }
     .widget-entry-in{
         .widget-img{
             .widget-icon-update{
@@ -69,6 +66,12 @@
                 }
             }
         }
+    }
+}
+
+.app-entry-success {
+    .is-new-true {
+         border-color: $element-widget-isnew-border-color;
     }
 }
 

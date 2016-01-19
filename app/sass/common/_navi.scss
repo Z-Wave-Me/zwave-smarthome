@@ -30,6 +30,7 @@
         list-style: none;
         text-align: left;
         padding: $spacing;
+        margin: 0;
         li{
             //w: display: block;
             //w: float: left;
@@ -80,7 +81,7 @@
         border-bottom: solid 1px $page-navi-border-color;
     }
     .page-navi-content{
-        padding: $spacing-double;
+        padding: $spacing;
     }
     .page-navi-tag {
         border: solid 1px $page-navi-border-color;

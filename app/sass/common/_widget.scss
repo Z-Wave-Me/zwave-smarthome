@@ -3,11 +3,11 @@
 .app-row-room{}
 .widget-entry{
     width: $widget-col-w;
-    height: $widget-col-h;
-    border-bottom: solid 1px $widget-border-color;
-    background-color: $widget-bcg-color;
     color: $widget-color;
     .widget-entry-in{
+        border-bottom: solid 1px $widget-border-color;
+    background-color: $widget-bcg-color;
+        height: $widget-col-h;
         position: relative;
         padding: $spacing;
         .widget-img{

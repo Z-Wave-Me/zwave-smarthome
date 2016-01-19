@@ -1,11 +1,8 @@
 /* Apps
 -------------------------------------------------- */
 .widget-entry-app{
-    height: $app-widget-col-h;
-    &.app-entry-success {
-        @include appGradientSuccess();
-    }
     .widget-entry-in{
+        height: $app-widget-col-h;
         .widget-img{
             top: $spacing;
         }
@@ -19,8 +16,20 @@
             display: none;
         }
         .widget-footer{
-          margin-top: -30px;
+            margin-top: -30px;
 
         }
+        .widget-ctrl{
+            width: 100%;
+            &.ctrl-left{
+                display: none;
+            }
+            //float: none;
+        }
+    }
+}
+.app-entry-success {
+    .widget-entry-in{
+        @include appGradientSuccess();
     }
 }

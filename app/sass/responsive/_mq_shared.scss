@@ -33,6 +33,39 @@ body {
     }
 }
 
+/* Subnavigation
+-------------------------------------------------- */
+#sub_navigation_in{
+    ul{
+        margin: $subnavigation-margin;
+        li{
+            a{
+              padding: 0 $spacing;
+            }
+
+        }
+    }
+}
+/* Page navigation
+-------------------------------------------------- */
+.page-navi{
+    ul{
+        li{
+            display: block;
+            float: left;
+            width: $page-navi-w;
+            a{
+               min-height: $page-navi-h;
+                margin: auto 10px;
+            }
+
+            .page-navi-icon{
+                display: none !important;
+            }
+        }
+    }
+}
+
 /*-------------------------------------*/
 // Images
 .room-image-preview{
@@ -42,8 +75,31 @@ body {
 /*-------------------------------------*/
 // Widgets
 .widget-entry{
-    @include appFloat(left);
+     @include appFloat(left);
+     border: 0;
     width: $widget-col-w;
+    .widget-entry-in{
+         height: $widget-col-h;
+        border: solid 1px $widget-border-color;
+        margin: $spacing-half;
+  }
+}
+/* Elements
+-------------------------------------------------- */
+.widget-entry-element{
+     //height: $widget-col-h;
+}
+
+/* Apps
+-------------------------------------------------- */
+.widget-entry-app{
+   .widget-entry-in{
+         height: $app-widget-col-h;
+        .widget-footer{
+          margin: $spacing 0 0 0;
+
+        }
+    }
 }
 /*-------------------------------------*/
 // Rooms
