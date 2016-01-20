@@ -231,7 +231,7 @@ myAppController.controller('ManagementUserIdController', function($scope, $route
         }, function(error) {
             var message = $scope._t('error_update_data');
             if (error.status == 409) {
-                message = $scope._t('nonunique_email');
+                message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error) : message);
             }
             alertify.alert(message);
             $scope.loading = false;
@@ -267,7 +267,7 @@ myAppController.controller('ManagementUserIdController', function($scope, $route
         }, function(error) {
             var message = $scope._t('error_update_data');
             if (error.status == 409) {
-                message = $scope._t('nonunique_user');
+                message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error) : message);
             }
             alertify.alert(message);
             $scope.loading = false;
