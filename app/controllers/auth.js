@@ -36,14 +36,15 @@ myAppController.controller('LoginController', function($scope, $location, $windo
      * Get session (ie for users holding only a session id, or users that require no login)
      */
     $scope.getSession = function() {
-//        var hasCookie = ($cookies.user) ? true:false;
-//        dataFactory.sessionApi().then(function(response) {
-//            $scope.processUser(response.data.data);
-//            if (!hasCookie) {
-//                $location.path('/dashboard');
-//                $window.location.reload();
-//            }
-//        });
+       var hasCookie = ($cookies.user) ? true:false;
+       dataFactory.sessionApi().then(function(response) {
+           $scope.processUser(response.data.data);
+           if (!hasCookie) {
+               //$location.path('#/dashboard');
+               $location.path('/dashboard');
+               $window.location.reload();
+           }
+       });
     };
     /**
      * Login with selected data from server response
@@ -55,9 +56,7 @@ myAppController.controller('LoginController', function($scope, $location, $windo
         dataService.setZWAYSession(user.sid);
         dataService.setUser(user);
         dataService.setLastLogin(Math.round(+new Date() / 1000));
-        //$scope.loading = false;
         $scope.input.form = false;
-        //$window.location.href = '#/elements/dashboard/1?login';
     };
     /**
      * Login proccess
@@ -67,14 +66,14 @@ myAppController.controller('LoginController', function($scope, $location, $windo
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         $scope.alert = {message: false};
         dataFactory.logInApi(input).then(function(response) {
-            var redirectTo = '#/dashboard';
+            var redirectTo = '/dashboard';
             $scope.processUser(response.data.data);
             if (input.fromexpert) {
                 window.location.href = $scope.cfg.expert_url;
                 return;
             }
             if (input.password === $scope.cfg.default_credentials.password) {
-                redirectTo = '#/password';
+                redirectTo = '/password';
             }
             window.location = redirectTo;
             $window.location.reload();
