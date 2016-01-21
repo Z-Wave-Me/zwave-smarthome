@@ -10,14 +10,24 @@ img {
     max-width: $report-img;
     max-height: $report-img;
 }
-.widget-img{
-    img{
-        max-width: $widget-img;
-        max-height: $widget-img;
-        border: solid 4px $widget-img-border-color;
-        @include appBorderRadius(50%);
-    }
 
+.widget-preview-img{
+    max-width: $widget-img;
+    max-height: $widget-img;
+    border: solid 4px $widget-img-border-color;
+    @include appBorderRadius(50%);
+}
+
+.app-image-detail{
+     max-width: $app-detail-img;
+    max-height: $app-detail-img;
+    @include appBorderRadius(50%);
+}
+
+.include-image-detail{
+   max-width: $include-detail-img;
+    max-height: $include-detail-img;
+    //@include appBorderRadius(50%);
 }
 .product-img{
     max-width: $product-img;

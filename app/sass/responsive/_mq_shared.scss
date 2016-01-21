@@ -79,7 +79,7 @@ body {
      border: 0;
     width: $widget-col-w;
     .widget-entry-in{
-         height: $widget-col-h;
+         //height: $widget-col-h;
         border: solid 1px $widget-border-color;
         margin: $spacing-half;
   }
@@ -87,7 +87,9 @@ body {
 /* Elements
 -------------------------------------------------- */
 .widget-entry-element{
-     //height: $widget-col-h;
+    .widget-entry-in{
+         height: $element-widget-col-h; 
+    }
 }
 
 /* Apps
@@ -100,6 +102,27 @@ body {
 
         }
     }
+}
+/* App detail
+-------------------------------------------------- */
+.app-detail-img{
+    @include appFloat(left);
+     width: $app-detail-img + $spacing-double;
+    
+}
+.app-detail-body{
+   margin: 0 0 0 $app-detail-img + $spacing-double;
+}
+
+/* Device include
+-------------------------------------------------- */
+.include-device-img{
+    @include appFloat(left);
+     width: $app-detail-img + $spacing-double;
+    
+}
+.app-detail-body{
+   margin: 0 0 0 $app-detail-img + $spacing-double;
 }
 /*-------------------------------------*/
 // Rooms

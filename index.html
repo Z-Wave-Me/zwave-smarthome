@@ -81,7 +81,7 @@
             <div id="main_navigation_wrap">
                 <div id="main_navigation" class="container">
                     <div id="navigation_left">
-                        <a class="mobile-hide" href="#home" title="{{_t('nav_home')}}">
+                        <a class="nav-logo" href="#home" title="{{_t('nav_home')}}">
                             <img ng-src="{{getAppLogo()}}" id="header_logo" alt="App logo" />
                         </a>
                         <span class="divider-vertical"></span>
@@ -94,7 +94,6 @@
                         <a href="#events" title="{{_t('nav_events')}}" ng-class="isActive('events')"><i class="fa fa-calendar"></i></a>
                         <span class="divider-vertical"></span> 
                         &nbsp;<span id="update_time_tick" ng-click="reloadData()"></span>
-                        <span class="mobile-icon" ng-if="isMobile"><i class="fa fa-mobile"></i></span>
                     </div>
                     <div id="navigation_right">
                         <span class="divider-vertical"></span> 

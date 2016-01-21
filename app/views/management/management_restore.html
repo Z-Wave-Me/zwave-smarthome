@@ -20,8 +20,10 @@
         </div>
         
         <div class="fieldset submit-entry">
-            <button type="button" class="btn btn-default" ng-click="expandElement('restore')"><i class="fa fa-times  text-danger"></i> <span ng-bind="_t('lb_cancel')"></span></button>
-            <button type="button" class="btn btn-submit" ng-click="uploadFile()" ng-disabled="!managementRestore.confirm || managementRestore.alert.message"><i class="fa fa-download"></i> {{_t('nm_restore_pick_up')}}</button>
+            <button type="button" class="btn btn-submit" 
+                    ng-click="uploadFile()" ng-disabled="!managementRestore.confirm || managementRestore.alert.message">
+                <i class="fa fa-download"></i> <span class="btn-name">{{_t('nm_restore_pick_up')}}</span>
+            </button>
             
         </div>
     </div>

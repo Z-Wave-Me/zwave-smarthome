@@ -1,16 +1,20 @@
 <!-- Appp module ad  view -->
 <div class="mobile-padding" id="page_module_update" ng-controller="AppModuleAlpacaController">
      <bb-loader></bb-loader>
-     <div  ng-show="showForm">
-    <div class="alpaca-perex clearfix"> 
-        <img class="app-image-alpaca" ng-src="{{moduleMediaUrl + input.moduleName + '/' + input.icon}}" ng-if="input.icon" alt="img" />
-        <h1 ng-bind="input.moduleTitle"></h1>
+     <div  class="form-page" ng-show="showForm">
+    <div class="fieldset clearfix">
+        <div class="app-detail-img">
+            <img class="app-image-alpaca" ng-src="{{moduleMediaUrl + input.moduleName + '/' + input.icon}}" ng-if="input.icon" alt="img" />
+        </div>
+       <div class="app-detail-body">
+        <h2 ng-bind="input.moduleTitle"></h2>
         <p class="help-block">{{_t('lb_module_id')}}: {{input.moduleId}} | {{_t('lb_instance_id')}}: {{input.instanceId}} <!--| {{_t('lb_category')}}: {{_t(input.category)}}--></p>
-       
+        </div>
     </div>
     <form id="form_module">
         <input name="instanceId" id="instanceId" type="hidden" class="form-control" value="{{input.instanceId}}" />
         <input name="moduleId" id="moduleId" type="hidden" class="form-control" value="{{input.moduleId}}" />
+        <fieldset>
         <div class="form-group">
             <input type="checkbox" name="active" value="{{input.active}}" id="active" ng-model="input.active" ng-checked="input.active" /> <label>{{_t('lb_active')}}</label>
         </div>
@@ -23,23 +27,23 @@
             <textarea name="description" id="description" class="form-control" ng-model="input.description" placeholder="{{_t('lb_your_notes')}}"></textarea>
 
         </div> -->
-
+         </fieldset>
         <div id="alpaca_data" ng-show="alpacaData" data-module-postrender="{{input.modulePostrender}}"></div>
 
         <!-- Submit -->
         <fieldset class="submit-entry">
-            <button type="button" class="btn btn-default" bb-go-back><i class="fa fa-times  text-danger"></i> <span ng-bind="_t('lb_cancel')"></span></button>
+            <button type="button" class="btn btn-default" bb-go-back><i class="fa fa-times  text-danger"></i> <span class="btn-name">{{_t('lb_cancel')}}</span></button>
             <button type="submit" 
                     id="btn_module_submit_ang"
                     class="btn btn-submit" 
                     ng-click="store(input)"
-                    ng-hide="alpacaData">{{_t('lb_save')}} <i class="fa fa-spinner fa-spin module-spinner"></i></button>
+                    ng-hide="alpacaData"><i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_save')}}</span></button>
                     <button type="submit" 
                     id="btn_module_submit"
                     class="btn btn-submit"
                     data-sid="{{ZWAYSession}}"
                     data-lang="{{lang}}"
-                    ng-show="alpacaData">{{_t('lb_save')}} <i class="fa fa-spinner fa-spin module-spinner"></i></button>
+                    ng-show="alpacaData"><i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_save')}}</span></button>
            
         </fieldset>
 

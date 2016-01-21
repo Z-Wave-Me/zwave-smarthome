@@ -35,7 +35,7 @@
 }
 
 .col-device-vendor{
-    padding-left: 15px !important;
+    padding-left: $spacing !important;
     padding-right: 0 !important;
 }
 .vendor-list {
@@ -46,12 +46,12 @@
     border: solid 1px $device-border-color;
 
     .vendor-image{
-        line-height: 80px;
+        line-height: $vendor-img;
         margin: 0 !important;
         img {
             vertical-align: middle;
-            max-width: $vendor-img-w;
-            max-height: $vendor-img-h;
+            max-width: $vendor-img;
+            max-height: $vendor-img;
         }
     }
 }
@@ -60,14 +60,8 @@
 }
 
 .include-device-img{
-    float: left;
-    margin-right: $spacing-double;
+    margin: 0 0 $spacing 0;
  }
-.include-device-img img{
-    max-width: 200px;
-    max-height: 200px;
-     border: solid 2px $device-border-color;
-}
 
 .col-device{
     //text-align: center;

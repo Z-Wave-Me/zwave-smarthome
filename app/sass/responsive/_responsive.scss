@@ -36,31 +36,11 @@
 =            Bootstrap 3 Media Queries             =
 ==================================================*/
 
-/*==========  Detected mobile devices  ==========*/
-/*.m-only{
-    display: none;
+.is-mobile-true{
+    .mobile-hide{
+        display: none !important;
+    }
 }
-.show-on-mobile{
-    display: none;
-}*/
-
-/*.is-mobile-true{
-    #footer, #mobile_footer{
-        .container{
-            padding-right: 70px; 
-        }
-
-    }
-}*/
-/*@media (max-width: 2000px) {
-    .show-on-mobile{
-        display: none;
-    }
-    .is-mobile-true{
-        @include appMobileLayout();
-    } 
-}*/
-
 
 /*==========  Mobile First Method  ==========*/
 
@@ -106,7 +86,7 @@
 
 /* Small Devices, Tablets */
 @media only screen and (max-width : 768px),(orientation:portrait){
-    .btn-name,.tab-name,.mobile-hide{
+    .btn-name,.tab-name,.nav-logo{
         display: none !important;
     }
 }

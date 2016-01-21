@@ -47,8 +47,8 @@
                     <!-- Widget img -->
                     <div class="widget-img">
                     <a href="#apps/local/{{v.id}}">
-                        <img ng-src="{{moduleMediaUrl + v.moduleName + '/' + v.icon}}" ng-if="v.icon" alt="{{v.defaults.title}}" />
-                        <img ng-src="storage/img/placeholder-img.png" ng-if="!v.icon" alt="{{v.defaults.title}}" />
+                        <img class="widget-preview-img" ng-src="{{moduleMediaUrl + v.moduleName + '/' + v.icon}}" ng-if="v.icon" alt="{{v.defaults.title}}" />
+                        <img class="widget-preview-img" ng-src="storage/img/placeholder-img.png" ng-if="!v.icon" alt="{{v.defaults.title}}" />
                     </a>
                     </div>
                     <!-- Widget header -->

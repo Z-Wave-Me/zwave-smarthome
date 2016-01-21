@@ -33,3 +33,14 @@
         @include appGradientSuccess();
     }
 }
+
+/* App detail
+-------------------------------------------------- */
+.app-detail-img{
+     margin: 0 0 $spacing 0;
+}
+.app-detail-body{
+    h2{
+        margin: $spacing-double 0 $spacing 0;
+    }
+}

@@ -34,12 +34,13 @@
                                     class="btn btn-danger btn-sm"
                                     ng-if="!inclusion.done && inclusion.promisc"
                                     ng-click="runCmd('controller.data.promisc=false')">
-                                    <span ng-bind="_t('stop_teachin')"></span>
+                                    <i class="fa fa-ban"></i> <span class="btn-name">{{_t('stop_teachin')}}</span>
                                 </button>
                                 <button class="btn btn-success btn-sm"
                                         ng-if="!inclusion.done && !inclusion.promisc"
-                                        ng-click="runCmd('controller.data.promisc=true')"
-                                        ><span ng-bind="_t('start_teachin')"></span></button>
+                                        ng-click="runCmd('controller.data.promisc=true')">
+                                    <i class="fa fa-plug"></i> <span class="btn-name">{{_t('start_teachin')}}</span>
+                                </button>
                             </div>
                             
                         </td>

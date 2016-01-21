@@ -34,11 +34,8 @@
             </div>
         </fieldset> 
         <fieldset class="submit-entry">
-            <button type="button" class="btn btn-default" ng-click="expandElement('licence')" ng-disabled="proccessLicence">
-                <i class="fa fa-times  text-danger"></i> <span ng-bind="_t('lb_cancel')"></span>
-            </button>
             <button type="submit" class="btn btn-submit" ng-disabled="proccessLicence || controllerInfo.isZeroUuid">
-                <i class="fa fa-share"></i> <span ng-bind="_t('btn_licence_verify')"></span>
+                <i class="fa fa-share"></i> <span class="btn-name">{{_t('btn_licence_verify')}}</span>
             </button>
         </fieldset>
     </form>

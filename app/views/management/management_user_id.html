@@ -42,7 +42,7 @@
              </fieldset>
             
              <fieldset>
-                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_settings')"></span></h3>
+                <h3><span ng-bind="_t('lb_settings')"></span></h3>
                 <div>
                      <!-- role -->
                     <div class="form-group form-inline" ng-if="user.id != id">
@@ -52,11 +52,6 @@
                         <input type="radio" name="role" value="3" ng-model="input.role" ng-checked="input.role == 3" /> {{_t('lb_local')}} </br>
                         <input type="radio" name="role" value="4" ng-model="input.role" ng-checked="input.role == 4" /> {{_t('lb_anonymous')}}
                     </div>
-                     <!-- Default UI
-                    <div class="form-group form-inline">
-                        <label>{{_t('lb_default_ui')}}: </label> <input type="radio" name="default_ui" value="1" ng-model="input.default_ui" ng-checked="input.default_ui == 1" /> {{_t('lb_ui_smarthome')}}
-                         <input type="radio" name="default_ui" value="2" ng-model="input.default_ui" ng-checked="input.default_ui == 2" /> {{_t('lb_ui_expert')}}
-                    </div> -->
                     <!-- lang -->
                     <div class="form-group form-inline">
                         <label>{{_t('lb_language')}}:</label>
@@ -66,7 +61,7 @@
                         </span>
                         <span ng-bind="input.lang"></span>
                     </div>
-                    <!-- colors -->
+                    <!-- colors
                     <div class="form-group">
                         <label>{{_t('lb_profile_color')}}: </label>
                         <span ng-repeat="v in cfg.profile_colors" >
@@ -74,13 +69,13 @@
                             <span class="form-control-img profile-color" style="background-color: {{v}}" ng-click="input.color = v" ng-class="v == input.color ? 'control-active':''">&nbsp;</span> 
                         </span>
                         <span ng-bind="input.color"></span>
-                    </div>
+                    </div> -->
 
                 </div>
             </fieldset>
 
             <fieldset>
-                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_allow_rooms')"></span></h3>
+                <h3><span ng-bind="_t('lb_allow_rooms')"></span></h3>
                 <div>
                     <div class="alert alert-warning">
                         <a href="" class="btn btn-default btn-small"

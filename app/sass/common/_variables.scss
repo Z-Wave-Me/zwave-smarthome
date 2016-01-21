@@ -37,12 +37,16 @@ $modal-full-w: 99%;
 $loader-w: 260px;
 $loader-h: 50px;
 $loader-margin: 80px auto auto auto;
+
 // Images
 $report-img: 36px;
 $widget-img: 60px;
+$app-detail-img:128px;
+$include-detail-img:128px;
 $product-img: 60px;
-$vendor-img-w: 80px;
-$vendor-img-h: 60px;
+$vendor-img: 80px;
+$room-img-upload: 70px;
+$room-img-preview: 130px;
 
 // Footer
 $footer-h: 60px;
@@ -50,7 +54,9 @@ $footer-h: 60px;
 //Widget
 $widget-col-w: 100%;
 $widget-col-h: 150px;
-$widget-img: 64px;
+
+//Elements
+$element-widget-col-h: 150px;
 
 //Apps
 $app-widget-col-h: 90px;
@@ -58,8 +64,6 @@ $app-widget-col-h: 90px;
 
 //Room
 $room-col-w: 50%;
-$room-img-upload: 70px;
-$room-img-preview: 130px;
 
 //Login
 $auth-page-w: 500px;
