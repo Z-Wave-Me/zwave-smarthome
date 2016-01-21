@@ -85,7 +85,12 @@ a {
 
 /* Others
 -------------------------------------------------- */
-
+.update-time-tick{
+    font-size: $app-updatetime-font-size;
+    .fa{
+        font-size: $app-updatetime-icon-size; 
+    }
+}
 .bcg-active.false,.bcg-danger{
     background-color: $app-bcg-danger;
 }
@@ -106,10 +111,13 @@ a {
 .help-text{
     display: block;
     font-size: $helptext-font-size;
-     font-style: italic;
-     margin: $spacing-half 0;
+    font-style: italic;
+    margin: $spacing-half 0;
 }
 .help-text.inline{
     display: inline;
-   
+
+}
+.display-block{
+    display: block;
 }

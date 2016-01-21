@@ -5,16 +5,16 @@
         <h2 ng-bind="_t('nav_myaccess')"></h2>
         <form name="form_profile" id="form_profile" class="form form-page" ng-submit="store(form_profile,input)" novalidate>
             <fieldset>
-                <div class="form-group">
+                <div class="form-group form-inline">
                     <!-- name -->
-                     <label class="isrequired">{{_t('lb_name')}}: </label>
-                    <input name="name" id="name" type="text" class="form-control form-control-sm" placeholder="{{_t('lb_profile_name_insert')}}" value="{{input.name}}" ng-model="input.name" ng-blur="nameBlur = true" ng-required="true" />
+                     <label class="isrequired display-block">{{_t('lb_name')}}: </label>
+                    <input name="name" id="name" type="text" class="form-control" placeholder="{{_t('lb_profile_name_insert')}}" value="{{input.name}}" ng-model="input.name" ng-blur="nameBlur = true" ng-required="true" />
                     <bb-validator input-name='form_profile.name.$error.required' trans='_t("field_required")' has-blur='nameBlur'></bb-validator> 
                 </div>
-                <div class="form-group">
+                <div class="form-group form-inline">
                     <!-- email -->
-                 <label>{{_t('lb_email')}}: </label>
-                 <input name="email" id="email" type="email" class="form-control form-control-sm" value="{{input.email}}" ng-model="input.email" ng-blur="emailBlur = true" />
+                 <label class="display-block">{{_t('lb_email')}}: </label>
+                 <input name="email" id="email" type="email" class="form-control" value="{{input.email}}" ng-model="input.email" ng-blur="emailBlur = true" />
                   <bb-validator input-name='form_profile.email.$error.email' trans='_t("email_invalid")' has-blur='emailBlur'></bb-validator> 
                  </div>
             </fieldset>
@@ -100,7 +100,7 @@
                 <i class="fa accordion-arrow" ng-class="expand.settingsaccount ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
             </h2>
             <div class="accordion-entry-ctrl" ng-if="expand.settingsaccount" ng-controller="ManagementFirmwareController">
-            <form name="form_password" id="form_password" class="form form-page" ng-submit="changePassword(form_password,newPassword)" novalidate>
+            <form name="form_password" id="form_password" class="form form-inline form-page" ng-submit="changePassword(form_password,newPassword)" novalidate>
                 <fieldset>
                     <!-- login  -->
                     <p class="form-control-static">
@@ -108,8 +108,8 @@
                     </p>
                     <!-- password -->
                     <div>
-                        <label class="isrequired">{{_t('lb_new_password')}}: </label>
-                        <input name="password" id="password" type="password" class="form-control form-control-sm" value="" ng-model="newPassword" ng-blur="passwordBlur = true" ng-required="true" ng-minlength="6" />
+                        <label class="isrequired display-block">{{_t('lb_new_password')}}: </label>
+                        <input name="password" id="password" type="password" class="form-control" value="" ng-model="newPassword" ng-blur="passwordBlur = true" ng-required="true" ng-minlength="6" />
                         <bb-validator input-name='form_password.password.$error.required' trans='_t("field_required")' has-blur='passwordBlur'></bb-validator> 
                 <bb-validator input-name='form_password.password.$error.minlength' trans='_t("password_valid")' has-blur='passwordBlur'></bb-validator>
 
@@ -117,8 +117,8 @@
                   </fieldset>
                 <!-- confirm password -->  
             <fieldset>
-               <label class="isrequired">{{_t('confirm_password')}}: </label>
-                 <input name="password_confirm" id="password_confirm" type="password" class="form-control form-control-sm" value="" ng-blur="passwordConfirmBlur = true" ng-model="input.passwordConfirm" bb-compare-to="password" />
+               <label class="isrequired display-block">{{_t('confirm_password')}}: </label>
+                 <input name="password_confirm" id="password_confirm" type="password" class="form-control" value="" ng-blur="passwordConfirmBlur = true" ng-model="input.passwordConfirm" bb-compare-to="password" />
                  <bb-validator input-name='form_password.password_confirm.$error.compareto' trans='_t("passwords_must_match")' has-blur='passwordConfirmBlur'></bb-validator>
 
             </fieldset>

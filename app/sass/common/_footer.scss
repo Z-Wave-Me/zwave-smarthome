@@ -1,6 +1,5 @@
 /* Footer
 -------------------------------------------------- */
-
 #footer{
     position:fixed;
     left:0px;
@@ -13,6 +12,9 @@
         background-color: $footer-bcg-color;
         height: $footer-h;
         line-height: $footer-h;
+        .update-time-tick{
+            display: none;
+        }
     }
     a{}
     a:hover{}

@@ -47,15 +47,6 @@
         background-color:$header-a-active-color;
         color: lighten($header-a-active-color, 10%);
     }
-    #update_time_tick{
-        font-size: $app-body-font-size;
-        .fa{
-            font-size: $app-body-font-size; 
-        }
-    }
-    .fa-mobile{
-        font-size: $app-body-font-size;
-    }
 }
 #header_logo{
     max-height: 40px;

@@ -1788,29 +1788,38 @@ a:focus {
 
 /* Others
 -------------------------------------------------- */
-/* line 89, ../sass/common/_body.scss */
+/* line 88, ../sass/common/_body.scss */
+.update-time-tick {
+  font-size: 17px;
+}
+/* line 90, ../sass/common/_body.scss */
+.update-time-tick .fa {
+  font-size: 110%;
+}
+
+/* line 94, ../sass/common/_body.scss */
 .bcg-active.false, .bcg-danger {
   background-color: #f2dede;
 }
 
-/* line 93, ../sass/common/_body.scss */
+/* line 98, ../sass/common/_body.scss */
 .clickable {
   cursor: pointer;
 }
 
-/* line 97, ../sass/common/_body.scss */
+/* line 102, ../sass/common/_body.scss */
 .text-supp {
   font-style: italic;
   color: #595959;
 }
 
-/* line 102, ../sass/common/_body.scss */
+/* line 107, ../sass/common/_body.scss */
 .badge {
   padding: 5px;
   margin-right: 5px;
 }
 
-/* line 106, ../sass/common/_body.scss */
+/* line 111, ../sass/common/_body.scss */
 .help-text {
   display: block;
   font-size: 95%;
@@ -1818,9 +1827,14 @@ a:focus {
   margin: 5px 0;
 }
 
-/* line 112, ../sass/common/_body.scss */
+/* line 117, ../sass/common/_body.scss */
 .help-text.inline {
   display: inline;
+}
+
+/* line 121, ../sass/common/_body.scss */
+.display-block {
+  display: block;
 }
 
 /* Header
@@ -1882,36 +1896,24 @@ a:focus {
   background-color: #cccccc;
   color: #e6e6e6;
 }
-/* line 50, ../sass/common/_header.scss */
-#main_navigation #update_time_tick {
-  font-size: 17px;
-}
-/* line 52, ../sass/common/_header.scss */
-#main_navigation #update_time_tick .fa {
-  font-size: 17px;
-}
-/* line 56, ../sass/common/_header.scss */
-#main_navigation .fa-mobile {
-  font-size: 17px;
-}
 
-/* line 60, ../sass/common/_header.scss */
+/* line 51, ../sass/common/_header.scss */
 #header_logo {
   max-height: 40px;
   max-width: 100px;
 }
 
-/* line 64, ../sass/common/_header.scss */
+/* line 55, ../sass/common/_header.scss */
 #navigation_left {
   position: absolute;
 }
 
-/* line 68, ../sass/common/_header.scss */
+/* line 59, ../sass/common/_header.scss */
 #navigation_right {
   float: right;
 }
 
-/* line 71, ../sass/common/_header.scss */
+/* line 62, ../sass/common/_header.scss */
 #navi_settings {
   border-radius: 4px;
   border: solid 1px #cccccc;
@@ -1921,34 +1923,34 @@ a:focus {
   margin-right: 15px;
 }
 
-/* line 79, ../sass/common/_header.scss */
+/* line 70, ../sass/common/_header.scss */
 .navi-time-link {
   cursor: pointer;
 }
 
-/* line 82, ../sass/common/_header.scss */
+/* line 73, ../sass/common/_header.scss */
 .navi-time {
   padding-left: 10px;
 }
 
-/* line 86, ../sass/common/_header.scss */
+/* line 77, ../sass/common/_header.scss */
 .mobile-icon {
   padding-left: 7px;
   color: #333333;
 }
-/* line 89, ../sass/common/_header.scss */
+/* line 80, ../sass/common/_header.scss */
 .mobile-icon .fa {
   font-size: 17px;
 }
 
 /* Subnavigation
 -------------------------------------------------- */
-/* line 96, ../sass/common/_header.scss */
+/* line 87, ../sass/common/_header.scss */
 #sub_navigation {
   position: relative;
 }
 
-/* line 100, ../sass/common/_header.scss */
+/* line 91, ../sass/common/_header.scss */
 #sub_navigation_in ul {
   padding: 0;
   list-style: none;
@@ -1959,12 +1961,12 @@ a:focus {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   border: 1px solid #cccccc;
 }
-/* line 108, ../sass/common/_header.scss */
+/* line 99, ../sass/common/_header.scss */
 #sub_navigation_in ul li {
   padding: 10px 0;
   border-bottom: solid 1px #cccccc;
 }
-/* line 111, ../sass/common/_header.scss */
+/* line 102, ../sass/common/_header.scss */
 #sub_navigation_in ul li a {
   display: block;
   position: relative;
@@ -1972,20 +1974,20 @@ a:focus {
   vertical-align: middle;
   color: #333333;
 }
-/* line 120, ../sass/common/_header.scss */
+/* line 111, ../sass/common/_header.scss */
 #sub_navigation_in ul li .subnavi-arrow {
   position: absolute;
   right: 1%;
   display: inline-block;
 }
-/* line 128, ../sass/common/_header.scss */
+/* line 119, ../sass/common/_header.scss */
 #sub_navigation_in ul .active a {
   color: gray;
   font-weight: bold;
   text-decoration: underline;
   cursor: text;
 }
-/* line 135, ../sass/common/_header.scss */
+/* line 126, ../sass/common/_header.scss */
 #sub_navigation_in ul .fa {
   color: #666666;
   padding-right: 7px;
@@ -1993,7 +1995,7 @@ a:focus {
 
 /* Footer
 -------------------------------------------------- */
-/* line 4, ../sass/common/_footer.scss */
+/* line 3, ../sass/common/_footer.scss */
 #footer {
   position: fixed;
   left: 0px;
@@ -2003,14 +2005,18 @@ a:focus {
   height: 60px;
   border-top: solid 1px #cccccc;
 }
-/* line 12, ../sass/common/_footer.scss */
+/* line 11, ../sass/common/_footer.scss */
 #footer #footer_in {
   background-color: #FFFFFF;
   height: 60px;
   line-height: 60px;
 }
+/* line 15, ../sass/common/_footer.scss */
+#footer #footer_in .update-time-tick {
+  display: none;
+}
 
-/* line 21, ../sass/common/_footer.scss */
+/* line 23, ../sass/common/_footer.scss */
 .mobile-footer {
   z-index: 1030 !important;
 }
@@ -2029,14 +2035,14 @@ img {
 
 /* line 9, ../sass/common/_images.scss */
 .report-img {
-  max-width: 36px;
-  max-height: 36px;
+  max-width: 40px;
+  max-height: 40px;
 }
 
 /* line 14, ../sass/common/_images.scss */
 .widget-preview-img {
-  max-width: 60px;
-  max-height: 60px;
+  max-width: 64px;
+  max-height: 64px;
   border: solid 4px #FFFFFF;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
@@ -2060,8 +2066,8 @@ img {
 
 /* line 32, ../sass/common/_images.scss */
 .product-img {
-  max-width: 60px;
-  max-height: 60px;
+  max-width: 64px;
+  max-height: 64px;
 }
 
 /* line 36, ../sass/common/_images.scss */
@@ -2240,7 +2246,7 @@ img {
 }
 /* line 30, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .widget-content {
-  margin: -10px 0 0 80px;
+  margin: -10px 0 0 84px;
 }
 /* line 33, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .widget-title {
@@ -2335,85 +2341,176 @@ img {
 /* Button
 -------------------------------------------------- */
 /* line 3, ../sass/common/_button.scss */
+.btn-goup-block {
+  display: table;
+  width: 100%;
+  margin: 0 0 10px 0;
+}
+
+/* line 12, ../sass/common/_button.scss */
+.btn-goup-1 .btn {
+  width: 100%;
+}
+
+/* line 17, ../sass/common/_button.scss */
+.btn-goup-2 .btn {
+  width: 50%;
+}
+
+/* line 22, ../sass/common/_button.scss */
+.btn-goup-3 .btn {
+  width: 33.33333%;
+}
+
+/* line 27, ../sass/common/_button.scss */
 .btn, .btn-device-admin {
   font-size: 110%;
 }
-/* line 5, ../sass/common/_button.scss */
+/* line 29, ../sass/common/_button.scss */
 .btn .fa, .btn-device-admin .fa {
-  font-size: 120%;
+  font-size: 150%;
 }
 
-/* line 9, ../sass/common/_button.scss */
+/* line 33, ../sass/common/_button.scss */
 .btn-submit {
   color: #FFFFFF;
   border: solid 1px #80AD80;
   background-color: #4e794e;
 }
-/* line 13, ../sass/common/_button.scss */
+/* line 37, ../sass/common/_button.scss */
 .btn-submit:hover, .btn-submit:focus {
   background-color: #80AD80;
 }
 
-/* line 18, ../sass/common/_button.scss */
+/* line 42, ../sass/common/_button.scss */
 .btn-small {
   font-size: 90%;
 }
-/* line 20, ../sass/common/_button.scss */
+/* line 44, ../sass/common/_button.scss */
 .btn-small .fa {
   font-size: 95%;
+}
+
+/* line 49, ../sass/common/_button.scss */
+.btn-default.active {
+  background-color: #f2f2f2;
+}
+
+/* Button tabs
+-------------------------------------------------- */
+/* line 57, ../sass/common/_button.scss */
+.btn-goup-tabs {
+  display: table;
+  width: 100%;
+  margin: 0 0 10px 0;
+}
+/* line 61, ../sass/common/_button.scss */
+.btn-goup-tabs .btn {
+  padding: 10px;
+  font-size: 120%;
+}
+/* line 65, ../sass/common/_button.scss */
+.btn-goup-tabs .btn .fa {
+  font-size: 130%;
+  color: #666666;
+}
+/* line 70, ../sass/common/_button.scss */
+.btn-goup-tabs .active .fa {
+  color: #80AD80;
+}
+
+/* line 75, ../sass/common/_button.scss */
+.btn-tabs-3 .btn {
+  width: 33.33333%;
 }
 
 /* Form
 -------------------------------------------------- */
 /* line 3, ../sass/common/_form.scss */
 .form-control {
-  font-size: 90%;
+  font-size: 95%;
   color: #737373;
   border: solid 1px #cccccc;
+  padding: 22px 16px;
 }
 
-/* line 9, ../sass/common/_form.scss */
+/* line 10, ../sass/common/_form.scss */
+textarea {
+  min-height: 150px;
+}
+
+/* line 13, ../sass/common/_form.scss */
+label {
+  font-size: 105%;
+}
+
+/* line 16, ../sass/common/_form.scss */
+input[type=checkbox] {
+  -ms-transform: scale(2);
+  /* IE */
+  -moz-transform: scale(2);
+  /* FF */
+  -webkit-transform: scale(2);
+  /* Safari and Chrome */
+  -o-transform: scale(2);
+  /* Opera */
+  padding: 10px;
+  margin: 0 10px 0;
+}
+
+/* line 24, ../sass/common/_form.scss */
+input[type=radio] {
+  transform: scale(1.8, 1.8);
+  -moz-transform: scale(1.8, 1.8);
+  -ms-transform: scale(1.8, 1.8);
+  -webkit-transform: scale(1.8, 1.8);
+  -o-transform: scale(1.8, 1.8);
+  padding: 10px;
+  margin: 0 10px 0;
+}
+
+/* line 35, ../sass/common/_form.scss */
 .form-page {
   margin-bottom: 20px;
   background-color: #FFFFFF;
   border: solid 1px #cccccc;
 }
-/* line 14, ../sass/common/_form.scss */
+/* line 40, ../sass/common/_form.scss */
 .form-page .form-group {
   border-bottom: solid 1px #cccccc;
   padding-bottom: 10px;
 }
-/* line 18, ../sass/common/_form.scss */
+/* line 44, ../sass/common/_form.scss */
 .form-page label {
   font-weight: normal;
 }
 
-/* line 23, ../sass/common/_form.scss */
+/* line 49, ../sass/common/_form.scss */
 fieldset, .fieldset {
   padding: 10px;
 }
 
-/* line 26, ../sass/common/_form.scss */
+/* line 52, ../sass/common/_form.scss */
 .isrequired {
   font-weight: bold !important;
 }
 
-/* line 30, ../sass/common/_form.scss */
+/* line 56, ../sass/common/_form.scss */
 .isrequired::before {
   content: "*";
 }
 
-/* line 34, ../sass/common/_form.scss */
+/* line 60, ../sass/common/_form.scss */
 .form-control-sm {
   width: 30% !important;
 }
 
-/* line 38, ../sass/common/_form.scss */
+/* line 64, ../sass/common/_form.scss */
 .form-control-md {
   width: 50% !important;
 }
 
-/* line 42, ../sass/common/_form.scss */
+/* line 68, ../sass/common/_form.scss */
 .submit-entry {
   text-align: right;
   display: block;
@@ -2421,87 +2518,25 @@ fieldset, .fieldset {
   border-top: solid 1px #cccccc;
 }
 
-/* line 50, ../sass/common/_form.scss */
+/* line 76, ../sass/common/_form.scss */
 fieldset.submit-entry {
   margin: 0 !important;
 }
 
-/* line 53, ../sass/common/_form.scss */
+/* line 79, ../sass/common/_form.scss */
 .form-control-hidden {
   display: none !important;
 }
 
-/* line 56, ../sass/common/_form.scss */
+/* line 82, ../sass/common/_form.scss */
 .form-control-img {
   cursor: pointer;
   border: solid 4px transparent;
 }
 
-/* line 61, ../sass/common/_form.scss */
+/* line 87, ../sass/common/_form.scss */
 .control-active {
   border: solid 4px black !important;
-}
-
-/* line 64, ../sass/common/_form.scss */
-textarea {
-  min-height: 150px;
-}
-
-/* Tab
--------------------------------------------------- */
-/* line 3, ../sass/common/_tab.scss */
-.nav-tabs {
-  border-bottom: 1px solid #cccccc;
-  text-align: center;
-}
-
-/* line 8, ../sass/common/_tab.scss */
-.nav-tabs > li > a {
-  font-size: 120%;
-  border: 1px solid #cccccc;
-  background-color: #FFFFFF;
-}
-/* line 12, ../sass/common/_tab.scss */
-.nav-tabs > li > a .fa {
-  font-size: 130%;
-  color: #666666;
-}
-
-/* line 18, ../sass/common/_tab.scss */
-.nav-tabs > li > a:hover {
-  background-color: transparent;
-  text-decoration: underline;
-}
-
-/* line 24, ../sass/common/_tab.scss */
-.nav-tabs > li.active > a {
-  font-weight: bold;
-  background-color: #f2f2f2;
-}
-
-/* line 28, ../sass/common/_tab.scss */
-.nav-tabs > li.active > a:hover {
-  text-decoration: none;
-}
-
-/* line 31, ../sass/common/_tab.scss */
-.nav-tabs > li.active > a i {
-  color: #80AD80;
-}
-
-/* line 35, ../sass/common/_tab.scss */
-.nav-tabs-3 > li {
-  width: 33.33333%;
-}
-
-/* line 38, ../sass/common/_tab.scss */
-.tab-content {
-  padding-top: 10px;
-}
-
-/* line 41, ../sass/common/_tab.scss */
-.tab-content-form {
-  padding: 0;
 }
 
 /* Dropdown
@@ -2515,7 +2550,7 @@ textarea {
   left: auto;
   z-index: 1100;
   float: right;
-  min-width: 360px;
+  min-width: 300px;
   padding: 0;
   text-align: left;
   background-color: #FFFFFF;
@@ -3125,7 +3160,7 @@ img.widget-promo-image {
 -------------------------------------------------- */
 /* line 4, ../sass/modules/_events.scss */
 .table-events .td-event-icon {
-  width: 36px;
+  width: 40px;
 }
 /* line 7, ../sass/modules/_events.scss */
 .table-events .td-event-warning {
@@ -3160,7 +3195,7 @@ img.widget-promo-image {
 }
 /* line 12, ../sass/modules/_apps.scss */
 .widget-entry-app .widget-entry-in .widget-content {
-  margin: 20px 0 0 80px;
+  margin: 20px 0 0 84px;
 }
 /* line 15, ../sass/modules/_apps.scss */
 .widget-entry-app .widget-entry-in .bottom-aligner {
@@ -3498,6 +3533,10 @@ img.widget-promo-image {
 /* Custom, iPhone Retina */
 /* Extra Small Devices, Phones */
 /* Small Devices, Tablets */
+@media only screen and (min-width: 768px) {
+  /*  Small Devices, Tablets
+  -------------------------------------------------- */
+}
 /* Medium Devices, Desktops */
 @media only screen and (min-width: 992px) and (orientation: landscape) {
   /* Medium Devices, Desktops
@@ -3570,15 +3609,70 @@ img.widget-promo-image {
     display: none !important;
   }
 
-  /*-------------------------------------*/
+  /* Images
+  -------------------------------------------------- */
   /* line 71, ../sass/responsive/_mq_shared.scss */
   .room-image-preview {
     width: 170px;
     height: 170px;
   }
 
-  /*-------------------------------------*/
-  /* line 77, ../sass/responsive/_mq_shared.scss */
+  /* Input
+  -------------------------------------------------- */
+  /* line 78, ../sass/responsive/_mq_shared.scss */
+  .form-control {
+    padding: 6px 12px;
+  }
+
+  /* line 81, ../sass/responsive/_mq_shared.scss */
+  input[type=checkbox] {
+    -ms-transform: scale(1.2);
+    /* IE */
+    -moz-transform: scale(1.2);
+    /* FF */
+    -webkit-transform: scale(1.2);
+    /* Safari and Chrome */
+    -o-transform: scale(1.2);
+    /* Opera */
+  }
+
+  /* line 87, ../sass/responsive/_mq_shared.scss */
+  input[type=radio] {
+    transform: scale(1.2, 1.2);
+    -moz-transform: scale(1.2, 1.2);
+    -ms-transform: scale(1.2, 1.2);
+    -webkit-transform: scale(1.2, 1.2);
+    -o-transform: scale(1.2, 1.2);
+  }
+
+  /* Button
+  -------------------------------------------------- */
+  /* line 98, ../sass/responsive/_mq_shared.scss */
+  .btn .fa, .btn-device-admin .fa {
+    font-size: 120%;
+  }
+
+  /* line 102, ../sass/responsive/_mq_shared.scss */
+  .btn-goup-block {
+    width: auto !important;
+    display: inline-block;
+    margin: 0;
+  }
+  /* line 106, ../sass/responsive/_mq_shared.scss */
+  .btn-goup-block .btn {
+    width: auto !important;
+  }
+
+  /* Dropdown
+  -------------------------------------------------- */
+  /* line 113, ../sass/responsive/_mq_shared.scss */
+  .app-dropdown {
+    min-width: 360px;
+  }
+
+  /* Widgets
+  -------------------------------------------------- */
+  /* line 118, ../sass/responsive/_mq_shared.scss */
   .widget-entry {
     float: left;
     position: relative;
@@ -3586,7 +3680,7 @@ img.widget-promo-image {
     border: 0;
     width: 50%;
   }
-  /* line 81, ../sass/responsive/_mq_shared.scss */
+  /* line 122, ../sass/responsive/_mq_shared.scss */
   .widget-entry .widget-entry-in {
     border: solid 1px #cccccc;
     margin: 5px;
@@ -3594,25 +3688,25 @@ img.widget-promo-image {
 
   /* Elements
   -------------------------------------------------- */
-  /* line 90, ../sass/responsive/_mq_shared.scss */
+  /* line 131, ../sass/responsive/_mq_shared.scss */
   .widget-entry-element .widget-entry-in {
     height: 120px;
   }
 
   /* Apps
   -------------------------------------------------- */
-  /* line 98, ../sass/responsive/_mq_shared.scss */
+  /* line 139, ../sass/responsive/_mq_shared.scss */
   .widget-entry-app .widget-entry-in {
     height: 120px;
   }
-  /* line 100, ../sass/responsive/_mq_shared.scss */
+  /* line 141, ../sass/responsive/_mq_shared.scss */
   .widget-entry-app .widget-entry-in .widget-footer {
     margin: 10px 0 0 0;
   }
 
   /* App detail
   -------------------------------------------------- */
-  /* line 108, ../sass/responsive/_mq_shared.scss */
+  /* line 149, ../sass/responsive/_mq_shared.scss */
   .app-detail-img {
     float: left;
     position: relative;
@@ -3620,14 +3714,14 @@ img.widget-promo-image {
     width: 148px;
   }
 
-  /* line 113, ../sass/responsive/_mq_shared.scss */
+  /* line 154, ../sass/responsive/_mq_shared.scss */
   .app-detail-body {
     margin: 0 0 0 148px;
   }
 
   /* Device include
   -------------------------------------------------- */
-  /* line 119, ../sass/responsive/_mq_shared.scss */
+  /* line 160, ../sass/responsive/_mq_shared.scss */
   .include-device-img {
     float: left;
     position: relative;
@@ -3635,13 +3729,14 @@ img.widget-promo-image {
     width: 148px;
   }
 
-  /* line 124, ../sass/responsive/_mq_shared.scss */
+  /* line 165, ../sass/responsive/_mq_shared.scss */
   .app-detail-body {
     margin: 0 0 0 148px;
   }
 
-  /*-------------------------------------*/
-  /* line 129, ../sass/responsive/_mq_shared.scss */
+  /* Rooms
+  -------------------------------------------------- */
+  /* line 171, ../sass/responsive/_mq_shared.scss */
   .room-entry {
     width: 33.33333%;
   }
@@ -3718,15 +3813,70 @@ img.widget-promo-image {
     display: none !important;
   }
 
-  /*-------------------------------------*/
+  /* Images
+  -------------------------------------------------- */
   /* line 71, ../sass/responsive/_mq_shared.scss */
   .room-image-preview {
     width: 200px;
     height: 200px;
   }
 
-  /*-------------------------------------*/
-  /* line 77, ../sass/responsive/_mq_shared.scss */
+  /* Input
+  -------------------------------------------------- */
+  /* line 78, ../sass/responsive/_mq_shared.scss */
+  .form-control {
+    padding: 6px 12px;
+  }
+
+  /* line 81, ../sass/responsive/_mq_shared.scss */
+  input[type=checkbox] {
+    -ms-transform: scale(1.2);
+    /* IE */
+    -moz-transform: scale(1.2);
+    /* FF */
+    -webkit-transform: scale(1.2);
+    /* Safari and Chrome */
+    -o-transform: scale(1.2);
+    /* Opera */
+  }
+
+  /* line 87, ../sass/responsive/_mq_shared.scss */
+  input[type=radio] {
+    transform: scale(1.2, 1.2);
+    -moz-transform: scale(1.2, 1.2);
+    -ms-transform: scale(1.2, 1.2);
+    -webkit-transform: scale(1.2, 1.2);
+    -o-transform: scale(1.2, 1.2);
+  }
+
+  /* Button
+  -------------------------------------------------- */
+  /* line 98, ../sass/responsive/_mq_shared.scss */
+  .btn .fa, .btn-device-admin .fa {
+    font-size: 120%;
+  }
+
+  /* line 102, ../sass/responsive/_mq_shared.scss */
+  .btn-goup-block {
+    width: auto !important;
+    display: inline-block;
+    margin: 0;
+  }
+  /* line 106, ../sass/responsive/_mq_shared.scss */
+  .btn-goup-block .btn {
+    width: auto !important;
+  }
+
+  /* Dropdown
+  -------------------------------------------------- */
+  /* line 113, ../sass/responsive/_mq_shared.scss */
+  .app-dropdown {
+    min-width: 380px;
+  }
+
+  /* Widgets
+  -------------------------------------------------- */
+  /* line 118, ../sass/responsive/_mq_shared.scss */
   .widget-entry {
     float: left;
     position: relative;
@@ -3734,7 +3884,7 @@ img.widget-promo-image {
     border: 0;
     width: 33.33333%;
   }
-  /* line 81, ../sass/responsive/_mq_shared.scss */
+  /* line 122, ../sass/responsive/_mq_shared.scss */
   .widget-entry .widget-entry-in {
     border: solid 1px #cccccc;
     margin: 5px;
@@ -3742,25 +3892,25 @@ img.widget-promo-image {
 
   /* Elements
   -------------------------------------------------- */
-  /* line 90, ../sass/responsive/_mq_shared.scss */
+  /* line 131, ../sass/responsive/_mq_shared.scss */
   .widget-entry-element .widget-entry-in {
     height: 120px;
   }
 
   /* Apps
   -------------------------------------------------- */
-  /* line 98, ../sass/responsive/_mq_shared.scss */
+  /* line 139, ../sass/responsive/_mq_shared.scss */
   .widget-entry-app .widget-entry-in {
     height: 110px;
   }
-  /* line 100, ../sass/responsive/_mq_shared.scss */
+  /* line 141, ../sass/responsive/_mq_shared.scss */
   .widget-entry-app .widget-entry-in .widget-footer {
     margin: 10px 0 0 0;
   }
 
   /* App detail
   -------------------------------------------------- */
-  /* line 108, ../sass/responsive/_mq_shared.scss */
+  /* line 149, ../sass/responsive/_mq_shared.scss */
   .app-detail-img {
     float: left;
     position: relative;
@@ -3768,14 +3918,14 @@ img.widget-promo-image {
     width: 148px;
   }
 
-  /* line 113, ../sass/responsive/_mq_shared.scss */
+  /* line 154, ../sass/responsive/_mq_shared.scss */
   .app-detail-body {
     margin: 0 0 0 148px;
   }
 
   /* Device include
   -------------------------------------------------- */
-  /* line 119, ../sass/responsive/_mq_shared.scss */
+  /* line 160, ../sass/responsive/_mq_shared.scss */
   .include-device-img {
     float: left;
     position: relative;
@@ -3783,13 +3933,14 @@ img.widget-promo-image {
     width: 148px;
   }
 
-  /* line 124, ../sass/responsive/_mq_shared.scss */
+  /* line 165, ../sass/responsive/_mq_shared.scss */
   .app-detail-body {
     margin: 0 0 0 148px;
   }
 
-  /*-------------------------------------*/
-  /* line 129, ../sass/responsive/_mq_shared.scss */
+  /* Rooms
+  -------------------------------------------------- */
+  /* line 171, ../sass/responsive/_mq_shared.scss */
   .room-entry {
     width: 25%;
   }
@@ -3797,13 +3948,18 @@ img.widget-promo-image {
 /*==========  Non-Mobile First Method  ==========*/
 /* Large Devices, Wide Screens */
 /* Medium Devices, Desktops */
-/* Small Devices, Tablets */
-@media only screen and (max-width: 768px), (orientation: portrait) {
-  /* line 89, ../sass/responsive/_responsive.scss */
-  .btn-name, .tab-name, .nav-logo {
+@media only screen and (max-width: 992px) {
+  /* line 84, ../sass/responsive/_responsive.scss */
+  .btn-name, .tab-name, .nav-logo, #header .update-time-tick {
     display: none !important;
   }
+
+  /* line 87, ../sass/responsive/_responsive.scss */
+  #footer .update-time-tick {
+    display: inline-block !important;
+  }
 }
+/* Small Devices, Tablets */
 /* Extra Small Devices, Phones */
 /* Custom, iPhone Retina */
 /* Custom, iPhone Retina */

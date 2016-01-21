@@ -4,7 +4,33 @@
     font-size: $app-input-font-size;
     color: $form-input-color;
     border: solid 1px $form-border-color;
+    padding: $app-input-padding;
 }
+
+textarea{
+    min-height: 150px;
+}
+label{
+    font-size: $app-label-font-size;
+}
+input[type=checkbox]{
+    -ms-transform: scale($checkbox-scale); /* IE */
+    -moz-transform: scale($checkbox-scale); /* FF */
+    -webkit-transform: scale($checkbox-scale); /* Safari and Chrome */
+    -o-transform: scale($checkbox-scale); /* Opera */
+    padding: $spacing;
+    margin: 0 $spacing 0;
+}
+input[type=radio] { 
+    transform: scale($radio-scale, $radio-scale); 
+    -moz-transform: scale($radio-scale, $radio-scale); 
+    -ms-transform: scale($radio-scale, $radio-scale); 
+    -webkit-transform: scale($radio-scale, $radio-scale); 
+    -o-transform: scale($radio-scale, $radio-scale); 
+    padding: $spacing;
+    margin: 0 $spacing 0;
+}
+
 
 .form-page{
     margin-bottom: $spacing-double;
@@ -25,7 +51,7 @@ fieldset, .fieldset{
 }
 .isrequired{
     font-weight: bold !important;
-    
+
 }
 .isrequired::before { 
     content: "*";
@@ -60,7 +86,4 @@ fieldset.submit-entry{
 }
 .control-active{
     border: solid 4px black !important;
-}
-textarea{
-     min-height: 150px;
 }

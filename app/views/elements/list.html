@@ -5,8 +5,8 @@
             <!-- Widget icon -->
             <!--  <img class="widget-icon" ng-src="{{v.metrics.icon|getElementIcon:v:levelVal[v.id]}}" alt="img" />-->
             <div class="widget-img">
-                <img class="widget-icon widget-icon-update img-circle trans-{{v.imgTrans}}" ng-src="{{v.iconPath}}" alt="img" ng-click="runCmd(v.id + '/command/' + v.updateCmd)" ng-if="cfg.element_update_icon.indexOf(v.deviceType) > -1" />
-                <img class="widget-icon img-circle" ng-src="{{v.iconPath}}" alt="img" ng-if="cfg.element_update_icon.indexOf(v.deviceType) === -1" />
+                <img class="widget-preview-img widget-icon-update img-circle trans-{{v.imgTrans}}" ng-src="{{v.iconPath}}" alt="img" ng-click="runCmd(v.id + '/command/' + v.updateCmd)" ng-if="cfg.element_update_icon.indexOf(v.deviceType) > -1" />
+                <img class="widget-preview-img img-circle" ng-src="{{v.iconPath}}" alt="img" ng-if="cfg.element_update_icon.indexOf(v.deviceType) === -1" />
             </div>
             <!-- Widget header -->
             <div class="widget-header">

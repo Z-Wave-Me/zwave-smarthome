@@ -1,5 +1,29 @@
 /* Button
 -------------------------------------------------- */
+.btn-goup-block{
+    display: table;
+    width: 100%;
+    margin: 0 0 $spacing 0;
+
+
+}
+
+.btn-goup-1{
+    .btn{
+        width: 100%;
+    }
+}
+.btn-goup-2{
+    .btn{
+        width: 50%;
+    }
+}
+.btn-goup-3{
+    .btn{
+        width: 33.33333%;
+    }
+}
+
 .btn,.btn-device-admin {
     font-size: $app-btn-font-size;
     .fa{
@@ -10,8 +34,8 @@
     color: $btn-submit-color;
     border: solid 1px $app-brand-success;
     background-color: darken($app-brand-success, 20%);
-   &:hover,&:focus {
-         background-color: $app-brand-success;
+    &:hover,&:focus {
+        background-color: $app-brand-success;
     }
 }
 
@@ -19,5 +43,36 @@
     font-size: $app-btn-small-font-size;
     .fa{
         font-size: $app-btn-small-icon-size;
+    }
+}
+
+.btn-default.active {
+    //color: #333;
+    background-color: $tabs-active-bcg-color;
+    //border-color: #adadad;
+}
+
+/* Button tabs
+-------------------------------------------------- */
+.btn-goup-tabs{
+    display: table;
+    width: 100%;
+    margin: 0 0 $spacing 0;
+    .btn{
+        padding: $spacing;
+        font-size: $tab-font-size;
+        //background-color: $tabs-bcg-color;
+        .fa{
+            font-size: $tab-icon-size;
+            color: $tabs-icon-color;
+        }
+    }
+    .active .fa{
+        color: $tabs-icon-active-color;
+    }
+}
+.btn-tabs-3{
+    .btn{
+        width: 33.33333%;
     }
 }

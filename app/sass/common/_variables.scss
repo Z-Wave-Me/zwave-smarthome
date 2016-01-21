@@ -17,6 +17,10 @@ $media-sm: 600px;
 // Base
 $app-line-height-base:        1.428571429 !default; // 20/14
 
+// Input
+$checkbox-scale: 2;
+$radio-scale: 1.8;
+$app-input-padding: 22px 16px;
 // Header
 $header-h: 75px;
 $header-icon-settings-h: 40px;
@@ -26,7 +30,7 @@ $page-control-input-h: 40px;
 $page-navi-h: 50px;
 
 // Dropdown
-$dropdown-w: 360px;
+$dropdown-w: 300px;
 
 // Modal
 $modal-margin: 15% auto;
@@ -39,11 +43,11 @@ $loader-h: 50px;
 $loader-margin: 80px auto auto auto;
 
 // Images
-$report-img: 36px;
-$widget-img: 60px;
+$report-img: 40px;
+$widget-img: 64px;
 $app-detail-img:128px;
 $include-detail-img:128px;
-$product-img: 60px;
+$product-img: 64px;
 $vendor-img: 80px;
 $room-img-upload: 70px;
 $room-img-preview: 130px;
@@ -99,11 +103,14 @@ $app-font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace 
 $app-body-font-size: 17px;
 $app-navi-font-size: 120%;
 $app-btn-font-size: 110%;
-$app-btn-icon-size: 120%;
+$app-btn-icon-size: 150%;
 $app-btn-small-font-size: 90%;
 $app-btn-small-icon-size: 95%;
-$app-input-font-size: 90%;
+$app-input-font-size: 95%;
+$app-label-font-size: 105%;
 $app-navi-icon-size: 120%;
+$app-updatetime-font-size: 17px;
+$app-updatetime-icon-size: 110%;
 $app-h1-font-size: 160%;
 $app-h2-font-size: 140%;
 $app-h3-font-size: 120%;

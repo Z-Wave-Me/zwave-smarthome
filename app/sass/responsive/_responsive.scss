@@ -56,7 +56,7 @@
 
 /* Small Devices, Tablets */
 @media only screen and (min-width : 768px) {
-
+     @import "_mq_sm"; 
 
 }
 
@@ -81,14 +81,17 @@
 
 /* Medium Devices, Desktops */
 @media only screen and (max-width : 992px)   {
-
+     .btn-name,.tab-name,.nav-logo, #header .update-time-tick{
+        display: none !important;
+    }
+    #footer .update-time-tick{
+            display: inline-block !important;
+        }
 }
 
 /* Small Devices, Tablets */
 @media only screen and (max-width : 768px),(orientation:portrait){
-    .btn-name,.tab-name,.nav-logo{
-        display: none !important;
-    }
+   
 }
 
 /* Extra Small Devices, Phones */ 

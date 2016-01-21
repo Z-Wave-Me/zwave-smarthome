@@ -93,7 +93,7 @@
                         <span class="divider-vertical"></span>
                         <a href="#events" title="{{_t('nav_events')}}" ng-class="isActive('events')"><i class="fa fa-calendar"></i></a>
                         <span class="divider-vertical"></span> 
-                        &nbsp;<span id="update_time_tick" ng-click="reloadData()"></span>
+                        &nbsp;<span class="update-time-tick" ng-click="reloadData()"></span>
                     </div>
                     <div id="navigation_right">
                         <span class="divider-vertical"></span> 
@@ -138,10 +138,10 @@
         <div id="main_content" class="container" ng-view></div>
         <div class="clearfix"></div>
 
-        <div id="footer" class="mobile-footer" ng-if_="isMobile">
+        <div id="footer">
             <div id="footer_in">
                 <div class="container">
-                    &nbsp; This is a footer
+                    <span class="update-time-tick" ng-click="reloadData()"></span>
                 </div>
             </div>         
         </div>

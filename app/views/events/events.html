@@ -2,7 +2,16 @@
 <div ng-controller="EventController">
     <bb-loader></bb-loader>
     <div class="page-control form-inline">
-        <div class="btn-group">
+        <!-- Filter -->
+        <div class="btn-group btn-goup-block btn-goup-2">
+            <button class="btn btn-default" ng-click="expandNavi('evFilter', $event)">
+                <i class="fa fa-filter"></i>
+                <span ng-if="!devices.find.title && !currLevel">{{_t('lb_show_all')}}</span>
+                 <span ng-if="devices.find.title">{{_t(devices.find.title) | cutText:true:25}}</span>
+                 <span ng-if="currLevel"> {{_t('lb_notify_' + currLevel)}}</span>
+            </button>
+         
+        <!-- Days -->
             <button class="btn btn-default" ng-click="expandNavi('evDay', $event)" ng-switch="timeFilter.day">
                 <i class="fa fa-calendar-check-o"></i> 
                  <span ng-switch-when="2">{{_t('lb_yesterday')}}</span>
@@ -23,15 +32,8 @@
                 </ul>
             </div>
         </div>
-         <div class="btn-group">
-        <button class="btn btn-default" ng-click="expandNavi('evFilter', $event)">
-                <i class="fa fa-filter"></i>
-                <span ng-if="!devices.find.title && !currLevel">{{_t('lb_show_all')}}</span>
-                 <span ng-if="devices.find.title">{{_t(devices.find.title) | cutText:true:25}}</span>
-                 <span ng-if="currLevel"> {{_t('lb_notify_' + currLevel)}}</span>
-            </button>
-         </div>
     </div>
+    <!-- Page subnavi -->
     <div class="page-navi" ng-if="naviExpanded.evFilter">
         <div class="page-navi-in">
              <p class="page-navi-title">{{_t('error_type')}} </p>
