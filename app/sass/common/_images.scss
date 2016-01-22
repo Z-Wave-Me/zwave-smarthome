@@ -10,6 +10,11 @@ img {
     max-width: $report-img;
     max-height: $report-img;
 }
+.navi-img{
+    max-width: $navi-img;
+    max-height: $navi-img;
+    @include appBorderRadius(50%);
+}
 
 .widget-preview-img{
     max-width: $widget-img;

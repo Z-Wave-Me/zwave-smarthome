@@ -14,7 +14,7 @@
                 </div>
             </fieldset>
             <fieldset>
-                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_configuration')"></span></h3>
+                <h3><span ng-bind="_t('lb_configuration')"></span></h3>
                  <div>
                     <!-- instance -->
                     <div class="form-group" ng-if="input.appType.instance">
@@ -58,32 +58,29 @@
 
                 </div>
             </fieldset>
-            <fieldset  ng-if="elementAccess(cfg.role_access.admin)">
-                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_tags')"></span></h3>
-                
-                    <div class="form-group_ clearfix">
-                        <div class="btn-device" id="tag_{{$index}}" ng-repeat="t in input.tags">{{t}} 
-                            <a href="" ng-click="removeTag($index)"><i class="fa fa-times text-danger"></i></a>
-                        </div>
+            <fieldset  class="form-inline" ng-if="elementAccess(cfg.role_access.admin)">
+                <h3><span ng-bind="_t('lb_tags')"></span></h3>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input name="add_tag" id="add_tag" type="text" 
+                                         class="form-control" value="" 
+                                         placeholder="{{_t('lb_add_tag')}}" 
+                                         ng-model="searchText" bb-key-event="searchMe(searchText);" data-toggle="dropdown" />
+                       <span class="input-group-addon clickable" ng-click="addTag(searchText)"><i class="fa fa-plus text-success"></i></span> 
+                        <!--<ul class="dropdown-menu" ng-if="autoCompletePanel">
+                                       <li href="" ng-click="addTag(v)" ng-repeat="v in suggestions"><a href=""><span ng-bind="v"></span> <i class="fa fa-plus text-success"></i></a></li>
+                                   </ul>-->
                     </div>
-                <br />
-                
-                    <div class="form-group_">
-                    <div class="btn-group dropup form-inline">
-                       <input name="add_tag" id="add_tag" type="text" class="form-control" value="" placeholder="{{_t('lb_add_tag')}}" ng-model="searchText" bb-key-event="searchMe(searchText);" data-toggle="dropdown" />
-                        <button type="button" class="btn btn-default btn-tag" ng-click="addTag(searchText)"><i class="fa fa-plus text-success"></i></button>
-                        <ul class="dropdown-menu" ng-if="autoCompletePanel">
-                            <li href="" ng-click="addTag(v)" ng-repeat="v in suggestions"><a href=""><span ng-bind="v"></span> <i class="fa fa-plus text-success"></i></a></li>
-                        </ul>
-                       
-                    </div>
+                 </div>
+                <div class="form-group">
+                    <a href="" class="btn btn-default btn-tag" d="tag_{{$index}}"
+                            ng-repeat="t in input.tags"
+                           ng-click="removeTag($index)">{{t}} <i class="fa fa-times text-danger"></i></a>
                 </div>
-
-
             </fieldset>
             <!-- Submit -->
             <fieldset class="submit-entry">
-                 <button type="button" class="btn btn-default" bb-go-back><i class="fa fa-times text-danger"></i> <span ng-bind="_t('lb_cancel')"></span></button>
+                 <button type="button" class="btn btn-default" bb-go-back><i class="fa fa-reply"></i> <span ng-bind="_t('lb_cancel')"></span></button>
                  <button type="submit" class="btn btn-submit"><i class="fa fa-check"></i> <span ng-bind="_t('lb_save')"></span></button>
             </fieldset>
         </form>

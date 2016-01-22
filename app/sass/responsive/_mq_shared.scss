@@ -107,11 +107,33 @@ input[type=radio] {
         width: auto !important;
     }
 }
+.btn-tag{
+    display: inline-block;
+    position: static;
+    font-size: $app-btn-tag-font-size;
+    margin: 0 $spacing $spacing 0;
+    .fa{
+        position: static;
+         margin: 0 0 0 $spacing;
+        font-size: $app-btn-tag-icon-size;
+    }
+}
 
 /* Dropdown
 -------------------------------------------------- */
 .app-dropdown{
      min-width: $dropdown-w;
+}
+/* Dropdown
+-------------------------------------------------- */
+.report-entry {
+   display: table;
+   .report-col{
+       vertical-align: middle;
+   }
+   .report-ctrl{
+         display: table-cell;
+    }
 }
 /* Widgets
 -------------------------------------------------- */
@@ -123,6 +145,14 @@ input[type=radio] {
          //height: $widget-col-h;
         border: solid 1px $widget-border-color;
         margin: $spacing-half;
+       .widget-header {
+            .widget-icon{
+                .fa{
+                    padding: 0 0 0 $spacing-half;
+                    font-size: $widget-icon-size;
+                }
+            }
+        }
   }
 }
 /* Elements

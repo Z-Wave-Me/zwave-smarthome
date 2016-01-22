@@ -44,7 +44,11 @@
                 </li>
             </ul>
             <div class="page-navi-content">
-                 {{_t('lb_tags')}}: <a class="page-navi-tag" href=""  ng-repeat="v in dataHolder.devices.tags" ng-click="setFilter({tag: v})" ng-class="dataHolder.devices.filter.tag == v ? 'active': ''">
+                <p class="page-navi-title"> {{_t('lb_tags')}}</p>
+                <a class="btn btn-default btn-tag" href="" 
+                        ng-repeat="v in dataHolder.devices.tags" 
+                        ng-click="setFilter({tag: v})" 
+                        ng-class="dataHolder.devices.filter.tag == v ? 'active': ''">
                      {{_t(v) | cutText:true:30}}
                  </a>
             </div>

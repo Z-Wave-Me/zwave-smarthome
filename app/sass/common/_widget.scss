@@ -23,6 +23,7 @@
             .widget-icon{
                 color: $widget-icon-color;
                 .fa{
+                    padding: 0 0 0 $spacing;
                     font-size: $widget-icon-size;
                 }
             }

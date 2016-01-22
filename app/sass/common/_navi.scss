@@ -48,9 +48,12 @@
                
                 margin: auto;
             }
+            .navi-img{
+                display: inline-block;
+                margin: 0 $spacing 0 0;
+            }
 
             .page-navi-icon{
-                //w: display: none;
                 position: absolute;
                 right: 1%;
                 display: inline-block !important;
@@ -78,7 +81,7 @@
         margin: 0;
         padding: $spacing $spacing-double;
         color: $page-navi-heading-color;
-        border-bottom: solid 1px $page-navi-border-color;
+        //border-bottom: solid 1px $page-navi-border-color;
     }
     .page-navi-content{
         padding: $spacing;

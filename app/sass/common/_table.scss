@@ -13,10 +13,10 @@
 .table-report{
     border: 0 !important;
     margin-bottom: 0 !important;
-    td{
-        vertical-align: middle;
-    }
     tbody{
+        td{
+            vertical-align: middle !important;
+        }
         .td-img{
             width: 30px;
         }

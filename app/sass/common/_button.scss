@@ -46,6 +46,20 @@
     }
 }
 
+.btn-tag{
+    display: block;
+    position: relative;
+    text-align: left;
+    font-size: $app-btn-tag-font-size;
+    margin: 0 0 $spacing 0;
+    .fa{
+        position: absolute;
+        top: $spacing-half;
+        right: $spacing;
+       font-size: $app-btn-tag-icon-size;
+    }
+}
+
 .btn-default.active {
     //color: #333;
     background-color: $tabs-active-bcg-color;

@@ -1,0 +1,22 @@
+/* Report
+-------------------------------------------------- */
+.app-row-report{
+  border-top: solid 1px $report-border-color;
+ border-bottom: solid 1px $report-border-color;    
+}
+.report-entry {
+   border-bottom: solid 1px $report-border-color;
+   padding: $spacing $spacing-half;
+   width: 100%;
+   .report-col{
+       display: table-cell;
+   }
+    .report-media{
+          width: $report-img + $spacing;
+    }
+    .report-body{}
+    .report-ctrl{
+        display: block;
+         text-align: right;
+    }
+}

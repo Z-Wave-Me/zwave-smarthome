@@ -32,6 +32,9 @@ $page-navi-h: 50px;
 // Dropdown
 $dropdown-w: 300px;
 
+// Overflow H
+$app-overflow-h: 500px;
+
 // Modal
 $modal-margin: 15% auto;
 $modal-w: 50%;
@@ -43,6 +46,7 @@ $loader-h: 50px;
 $loader-margin: 80px auto auto auto;
 
 // Images
+$navi-img: 32px;
 $report-img: 40px;
 $widget-img: 64px;
 $app-detail-img:128px;
@@ -106,6 +110,8 @@ $app-btn-font-size: 110%;
 $app-btn-icon-size: 150%;
 $app-btn-small-font-size: 90%;
 $app-btn-small-icon-size: 95%;
+$app-btn-tag-font-size: 100%;
+$app-btn-tag-icon-size: 150%;
 $app-input-font-size: 95%;
 $app-label-font-size: 105%;
 $app-navi-icon-size: 120%;
@@ -125,7 +131,7 @@ $tab-font-size: 120%;
 $tab-icon-size: 130%;
 $helptext-font-size: 95%;
 $widget-heading-font-size: 120%;
-$widget-icon-size: 130%;
+$widget-icon-size: 180%;
 $element-widget-room-font-size: 85%;
 $element-widget-level-font-size: 160%;
 $element-widget-scale-font-size: 110%;
@@ -233,6 +239,9 @@ $form-border-color: $app-border-color;
 $form-bcg-color: #FFFFFF;
 $form-submit-entry-bcg-color: #FFFFFF;
 
+// Report
+$report-border-color: $app-border-color;
+
 // Device
 $device-bcg-color: #FFFFFF;
 $device-color: $app-body-color;
@@ -244,7 +253,7 @@ $widget-img-border-color: #FFFFFF;
 $widget-color: $app-body-color;
 $widget-border-color: $app-border-color;
 $widget-heading-color: $app-heading-color;
-$widget-icon-color:lighten($widget-color, 40%);;
+$widget-icon-color:lighten($widget-color, 40%);
 
 // Element
 $element-widget-room-color: lighten($widget-color, 40%);

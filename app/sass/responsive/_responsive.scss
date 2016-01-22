@@ -32,6 +32,10 @@
     box-sizing: border-box;
 }
 
+/*==========  Overflow  ==========*/
+
+  
+
 /*==================================================
 =            Bootstrap 3 Media Queries             =
 ==================================================*/
@@ -91,7 +95,10 @@
 
 /* Small Devices, Tablets */
 @media only screen and (max-width : 768px),(orientation:portrait){
-   
+    .page-navi-in{
+        max-height: $app-overflow-h;
+        overflow-x: hidden;
+    }
 }
 
 /* Extra Small Devices, Phones */ 
