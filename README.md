@@ -18,6 +18,7 @@ Angular app
 - Replaced Bootstrap modal windows and dropdowns with Angular.
 
 #### Fixes
+- Cannot add email address to user #90
 - Climate Control widget displays the correct values.
 - List elements error #82.
 - Can not install user module from store #87

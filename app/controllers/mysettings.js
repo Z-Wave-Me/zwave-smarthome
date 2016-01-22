@@ -73,14 +73,14 @@ myAppController.controller('MySettingsController', function($scope, $window, $lo
             $cookies.lang = input.lang;
             myCache.remove('profiles');
             dataService.setUser(data);
-            $window.location.reload(); 
+            $window.location.reload();
             //$window.history.back();
             //$route.reload();
 
         }, function(error) {
             var message = $scope._t('error_update_data');
             if (error.status == 409) {
-                message = $scope._t('nonunique_email');
+                message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error) : message);
             }
             alertify.alert(message);
             $scope.loading = false;
