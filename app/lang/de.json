@@ -1,4 +1,6 @@
 {
+    "secure_login": "Secure login",
+    "unsecure_login": "Unsecure login",
     "remember_me": "Remember me",
     "rate_app": "Bewerten Sie diese App",
     "already_rated": "Sie haben diese App bereits bewertet",

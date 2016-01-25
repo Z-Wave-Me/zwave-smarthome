@@ -15,7 +15,8 @@ myAppController.controller('LoginController', function($scope, $location, $windo
         login: '',
         password: '',
         rememberme: false,
-        //secure: true,
+        secure: false,
+        remoteId: null,
         fromexpert: $routeParams.fromexpert
     };
     if(dataService.getUser()){
@@ -31,6 +32,25 @@ myAppController.controller('LoginController', function($scope, $location, $windo
         $cookies.lang = lang;
         $scope.loadLang(lang);
     };
+    
+     /**
+     * Login language
+     */
+    $scope.setSecure = function(bool) {
+        $scope.input.secure = bool;
+    };
+    
+     /**
+     * Get remote id
+     */
+    $scope.getRemoteId = function() {
+       dataFactory.getApi('remote_id').then(function(response) {
+           if(response.data.data.remote_id && response.data.data.remote_id !== ''){
+               $scope.input.remoteId = response.data.data.remote_id;
+           }
+        });
+    };
+    $scope.getRemoteId();
     
     /**
      * Get session (ie for users holding only a session id, or users that require no login)
@@ -48,10 +68,11 @@ myAppController.controller('LoginController', function($scope, $location, $windo
     /**
      * Login with selected data from server response
      */
-    $scope.processUser = function(user,rememberme) { 
+    $scope.processUser = function(user,rememberme,secure) { 
         if($scope.loginLang){
             user.lang = $scope.loginLang;
         }
+        angular.extend(user,{secure: secure})
         dataService.setZWAYSession(user.sid);
         dataService.setUser(user);
         dataService.setLastLogin(Math.round(+new Date() / 1000));
@@ -76,7 +97,7 @@ myAppController.controller('LoginController', function($scope, $location, $windo
         dataFactory.logInApi(input).then(function(response) {
             var redirectTo = '#/dashboard'; 
             var rememberme = (input.rememberme ? input : null);
-            $scope.processUser(response.data.data,rememberme);
+            $scope.processUser(response.data.data,rememberme,input.secure);
             if (input.fromexpert) {
                 window.location.href = $scope.cfg.expert_url;
                 return;
@@ -101,7 +122,6 @@ myAppController.controller('LoginController', function($scope, $location, $windo
     if ($routeParams.login && $routeParams.password) {
         $scope.login($routeParams);
     } else if(dataService.getRememberMe()){
-        console.log(dataService.getRememberMe())
         $scope.login(dataService.getRememberMe());
     }else if (!$routeParams.logout) {
         $scope.getSession();

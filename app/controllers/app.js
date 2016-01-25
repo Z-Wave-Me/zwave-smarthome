@@ -413,7 +413,7 @@ myAppController.controller('AppLocalDetailController', function ($scope, $routeP
 
     /// --- Private functions --- ///
     function loadOnlineModules(moduleName) {
-        dataFactory.getRemoteData($scope.cfg.online_module_url).then(function (response) {
+        dataFactory.getRemoteData($scope.cfg.remote_protocol + $scope.cfg.online_module_url).then(function (response) {
             $scope.isOnline = _.findWhere(response.data, {modulename: moduleName});
             dataService.updateTimeTick();
         }, function (error) {

@@ -39,7 +39,8 @@ var config_data = {
             'backup': 'ZAutomation/api/v1/backup',
             'restore': 'ZAutomation/api/v1/restore',
             'tokens': 'ZAutomation/api/v1/modules/tokens',
-            'password_reset': 'ZAutomation/api/v1/auth/forgotten'
+            'password_reset': 'ZAutomation/api/v1/auth/forgotten',
+            'remote_id': 'ZAutomation/api/v1/system/remote-id'
         },
         // List of image pathes
         'img': {
@@ -59,8 +60,10 @@ var config_data = {
         'local_data_url': 'storage/data/',
         // Help data path
         'help_data_url': 'storage/help/',
+        // Server base url
+        'remote_protocol': 'http://', 
         // Online module url
-        'online_module_url': 'http://developer.z-wave.me/?uri=api-modules',
+        'online_module_url': 'developer.z-wave.me/?uri=api-modules',
         // Online module id url
         'online_moduleid_url': 'http://developer.z-wave.me/?uri=api-modulesid',
         // Online module img url
