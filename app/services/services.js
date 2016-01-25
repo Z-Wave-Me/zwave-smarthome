@@ -113,15 +113,15 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     /**
      * Get remember me
      */
-    this.getRememberMe = function(data) {
-        return getUser(data);
+    this.getRememberMe = function() {
+        return getRememberMe();
     };
 
     /**
      * Set remember me
      */
     this.setRememberMe = function(data) {
-        return setUser(data);
+        return setRememberMe(data);
     };
 
     /**
@@ -304,7 +304,6 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     function logOut() {
         setUser(null);
         setZWAYSession(null);
-        setRememberMe(null);
         $window.location.href = '#/';
         $window.location.reload();
 

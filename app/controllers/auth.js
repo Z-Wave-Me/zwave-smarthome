@@ -36,15 +36,14 @@ myAppController.controller('LoginController', function($scope, $location, $windo
      * Get session (ie for users holding only a session id, or users that require no login)
      */
     $scope.getSession = function() {
-//       var hasCookie = ($cookies.user) ? true:false;
-//       dataFactory.sessionApi().then(function(response) {
-//           $scope.processUser(response.data.data);
-//           if (!hasCookie) {
-//               //$location.path('#/dashboard');
-//               $location.path('/dashboard');
-//               $window.location.reload();
-//           }
-//       });
+       var hasCookie = ($cookies.user) ? true:false;
+       dataFactory.sessionApi().then(function(response) {
+           $scope.processUser(response.data.data);
+           if (!hasCookie) {
+               window.location = '#/dashboard';
+               $window.location.reload();
+           }
+       });
     };
     /**
      * Login with selected data from server response
@@ -56,9 +55,9 @@ myAppController.controller('LoginController', function($scope, $location, $windo
         dataService.setZWAYSession(user.sid);
         dataService.setUser(user);
         dataService.setLastLogin(Math.round(+new Date() / 1000));
-//        if(rememberme){
-//           dataService.setRememberMe(rememberme); 
-//        }
+        if(rememberme){
+           dataService.setRememberMe(rememberme); 
+        }
         
         $scope.input.form = false;
     };
@@ -75,7 +74,7 @@ myAppController.controller('LoginController', function($scope, $location, $windo
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         $scope.alert = {message: false};
         dataFactory.logInApi(input).then(function(response) {
-            var redirectTo = '/dashboard';
+            var redirectTo = '#/dashboard'; 
             var rememberme = (input.rememberme ? input : null);
             $scope.processUser(response.data.data,rememberme);
             if (input.fromexpert) {
@@ -83,7 +82,7 @@ myAppController.controller('LoginController', function($scope, $location, $windo
                 return;
             }
             if (input.password === $scope.cfg.default_credentials.password) {
-                redirectTo = '/password';
+                redirectTo = '#/password';
             }
             window.location = redirectTo;
             $window.location.reload();
@@ -97,11 +96,14 @@ myAppController.controller('LoginController', function($scope, $location, $windo
         });
     };
     /**
-     * Login from url or session
+     * Login from url, remember me or session
      */
     if ($routeParams.login && $routeParams.password) {
         $scope.login($routeParams);
-    } else if (!$routeParams.logout) {
+    } else if(dataService.getRememberMe()){
+        console.log(dataService.getRememberMe())
+        $scope.login(dataService.getRememberMe());
+    }else if (!$routeParams.logout) {
         $scope.getSession();
     }
 });
@@ -255,6 +257,7 @@ myAppController.controller('PasswordResetController', function($scope, $routePar
 myAppController.controller('LogoutController', function($scope, dataService, dataFactory) {
     $scope.logout = function() {
         dataFactory.getApi('logout').then(function(response) {
+             dataService.setRememberMe(null);
             dataService.logOut();
         });
     };
