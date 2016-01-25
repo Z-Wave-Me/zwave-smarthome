@@ -231,7 +231,7 @@ myAppController.controller('ManagementUserIdController', function($scope, $route
         }, function(error) {
             var message = $scope._t('error_update_data');
             if (error.status == 409) {
-                message = $scope._t('nonunique_email');
+                message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error) : message);
             }
             alertify.alert(message);
             $scope.loading = false;
@@ -267,7 +267,7 @@ myAppController.controller('ManagementUserIdController', function($scope, $route
         }, function(error) {
             var message = $scope._t('error_update_data');
             if (error.status == 409) {
-                message = $scope._t('nonunique_user');
+                message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error) : message);
             }
             alertify.alert(message);
             $scope.loading = false;
@@ -408,43 +408,7 @@ myAppController.controller('ManagementFirmwareController', function($scope, $sce
     };
     //$scope.loadRazLatest();
 });
-/**
- * Back up controller
- */
-myAppController.controller('ManagementBackupController', function($scope, $timeout, dataFactory, _) {
-    $scope.managementBackup = {
-        alert: {message: false, status: 'is-hidden', icon: false}
-    };
-    $scope.downloadBackupFile = function() {
-        $scope.managementBackup.alert = {message: $scope._t('backup_wait'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
-        dataFactory.getApi('backup', null, true).then(function(response) {
-            $timeout(function() {
-                $scope.managementBackup.alert = false;
-                var saveData = (function() {
-                    var a = document.createElement("a");
-                    document.body.appendChild(a);
-                    a.style = "display: none";
-                    return function(data, fileName) {
-                        var json = JSON.stringify(data),
-                                blob = new Blob([json], {type: "octet/stream"}),
-                                url = window.URL.createObjectURL(blob);
-                        a.href = url;
-                        a.download = fileName;
-                        a.click();
-                        window.URL.revokeObjectURL(url);
-                    };
-                }());
-                fileName = 'z-way-backup-' + _.now() + '.zab';
-                saveData(response.data.data, fileName);
-            });
 
-        }, function(error) {
-            alertify.alert($scope._t('backup_failed'));
-            $scope.managementBackup.alert = false;
-        });
-
-    };
-});
 /**
  * Restor controller
  */

@@ -3,7 +3,7 @@ var config_data = {
         //Application name
         'app_name': 'SmartHome UI',
         // Application version
-        'app_version': '1.0.4',
+        'app_version': 'v1.1.0',
         // Server base url
         'server_url': '/',
         //'server_url': 'http://192.168.10.119:8083/',
@@ -73,6 +73,8 @@ var config_data = {
         'online_module_comments_url': 'http://developer.zwave.eu/?uri=api-comments',
         // Online module comment create url
         'online_module_comment_create_url': 'http://developer.zwave.eu/?uri=api-comments-create',
+        // Online module rating create url
+        'online_module_rating_create_url': 'http://developer.zwave.eu/?uri=api-rating-create',
         // Online module download url
         'blacklist_url': 'http://hrix.net/blacklist.json',
         // Post report url

@@ -3,7 +3,7 @@ var config_data = {
         //Application name
         'app_name': 'SmartHome UI',
         // Application version
-        'app_version': '1.0.4',
+        'app_version': 'v1.1.0',
         // Server base url
         'server_url': '/',
         //'server_url': 'http://192.168.10.119:8083/',
@@ -60,21 +60,21 @@ var config_data = {
         // Help data path
         'help_data_url': 'storage/help/',
         // Online module url
-        'online_module_url': 'http://developer.zwave.eu/?uri=api-modules',
+        'online_module_url': 'http://developer.z-wave.me/?uri=api-modules',
         // Online module id url
-        'online_moduleid_url': 'http://developer.zwave.eu/?uri=api-modulesid',
+        'online_moduleid_url': 'http://developer.z-wave.me/?uri=api-modulesid',
         // Online module img url
-        'online_module_img_url': 'http://developer.zwave.eu/modules/',
+        'online_module_img_url': 'http://developer.z-wave.me/modules/',
         // Online module download url
-        'online_module_download_url': 'http://developer.zwave.eu/modules/',
+        'online_module_download_url': 'http://developer.z-wave.me/modules/',
         // Online module installed url
-        'online_module_installed_url': 'http://developer.zwave.eu/?uri=api-modules-installed',
+        'online_module_installed_url': 'http://developer.z-wave.me/?uri=api-modules-installed',
         // Online module comments url
-        'online_module_comments_url': 'http://developer.zwave.eu/?uri=api-comments',
+        'online_module_comments_url': 'http://developer.z-wave.me/?uri=api-comments',
         // Online module comment create url
-        'online_module_comment_create_url': 'http://developer.zwave.eu/?uri=api-comments-create',
+        'online_module_comment_create_url': 'http://developer.z-wave.me/?uri=api-comments-create',
         // Online module rating create url
-        'online_module_rating_create_url': 'http://developer.zwave.eu/?uri=api-rating-create',
+        'online_module_rating_create_url': 'http://developer.z-wave.me/?uri=api-rating-create',
         // Online module download url
         'blacklist_url': 'http://hrix.net/blacklist.json',
         // Post report url
@@ -84,7 +84,7 @@ var config_data = {
         // Get licence scratch id
         'get_licence_scratchid': 'http://hrix.net/shuiapi/licence/',
         // Razberry latest version
-        'raz_latest_version_url': 'http://razberry.z-wave.me/z-way/razberry/latest/VERSION',
+        'raz_latest_version_url': 'http://razberry.z-wave.me/z-way/razberry/latest/VERSION', 
         // Url to zddx xml files
         'zddx_url': 'ZDDX/',
         // Url to run ExpertUI cmd

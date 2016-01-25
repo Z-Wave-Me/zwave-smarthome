@@ -1,55 +1,15 @@
 <!-- Events view -->
 <div ng-controller="EventController">
     <bb-loader></bb-loader>
-    <div class="page-control form-inline">
-        <div class="btn-group">
-            <button class="btn btn-default" ng-click="expandNavi('evDay', $event)" ng-switch="timeFilter.day">
-                <i class="fa fa-calendar-check-o text-success"></i> 
-                 <span ng-switch-when="2">{{_t('lb_yesterday')}}</span>
-                 <span ng-switch-when="7">7 {{_t('lb_days')}}</span>
-                <span ng-switch-default>{{_t('lb_today')}}</span>
-            </button>
-            <div class="app-dropdown" ng-if="naviExpanded.evDay">
-                <ul>
-                    <li class="page-order-1" ng-class="timeFilter.day == 1 ? 'active': ''" ng-click="changeTime(1)">
-                        <a href="">{{_t('lb_today')}} <span class="menu-arrow" ng-if="timeFilter.day == 1"><i class="fa fa-check"></i></span></a>
-                    </li>
-                    <li class="page-order-2" ng-class="timeFilter.day == 2 ? 'active': ''" ng-click="changeTime(2)">
-                        <a href="">{{_t('lb_yesterday')}} <span class="menu-arrow" ng-if="timeFilter.day == 2"><i class="fa fa-check"></i></span></a>
-                    </li>
-                    <li class="page-order-7" ng-class="timeFilter.day == 7 ? 'active': ''" ng-click="changeTime(7)">
-                        <a href="">7 {{_t('lb_days')}} <span class="menu-arrow" ng-if="timeFilter.day == 7"><i class="fa fa-check"></i></span></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-         <div class="btn-group">
-        <button class="btn btn-default" ng-click="expandNavi('evFilter', $event)">
-                <i class="fa fa-filter text-success"></i>
-                <span ng-if="!devices.find.title && !currLevel">{{_t('lb_show_all')}}</span>
-                 <span ng-if="devices.find.title">{{_t(devices.find.title) | cutText:true:25}}</span>
-                 <span ng-if="currLevel"> {{_t('lb_notify_' + currLevel)}}</span>
-            </button>
-         </div>
-    </div>
-    <div class="page-navi" ng-if="naviExpanded.evFilter">
-        <div class="page-navi-in">
-             <p class="page-navi-title">{{_t('error_type')}} </p>
-            <div class="page-navi-content">
-                 <a class="page-navi-tag" ng-href="#events/level/{{v.key}}" ng-repeat="v in eventLevels" ng-class="v.key == currLevel? 'active': ''">
-                     {{_t('lb_notify_' + v.val)}}
-                 </a>
-            </div>
-            <p class="page-navi-title">{{_t('lb_device')}} </p>
-            <div class="page-navi-content">
-                 
-                 <a class="page-navi-tag" ng-href="#events/source/{{v.id}}" ng-repeat="v in devices.data" ng-class="v.id===devices.find.id ? 'active':''">
-                      <img class="report-img" ng-src="{{v.metrics.icon|getElementIcon:v:v.metrics.level}}" alt="img" />
-                                        {{v.metrics.title|cutText:true:25}}
-                 </a>
-            </div>
-            
-        </div>
+     <h2 ng-if="page.title">{{page.title|cutText:true:50}}</h2>
+    <div class="events-header">
+        <button class="btn btn-default" ng-click="changeTime(1)" ng-disabled="timeFilter.day == 1" ng-bind="_t('lb_today')"></button>
+        <button class="btn btn-default" ng-click="changeTime(2)" ng-disabled="timeFilter.day == 2" ng-bind="_t('lb_yesterday')"></button>
+        <!--<button class="btn btn-default" ng-click="changeTime(3)" ng-disabled="timeFilter.day == 3">3 <span ng-bind="_t('lb_days')"></span></button>
+        <button class="btn btn-default" ng-click="changeTime(4)" ng-disabled="timeFilter.day == 4">4 <span ng-bind="_t('lb_days')"></span></button>
+        <button class="btn btn-default" ng-click="changeTime(5)" ng-disabled="timeFilter.day == 5">5 <span ng-bind="_t('lb_days')"></span></button>
+        <button class="btn btn-default" ng-click="changeTime(6)" ng-disabled="timeFilter.day == 6">6 <span ng-bind="_t('lb_days')"></span></button>-->
+        <button class="btn btn-default" ng-click="changeTime(7)" ng-disabled="timeFilter.day == 7">7 <span ng-bind="_t('lb_days')"></span></button>
     </div>
       <div class="info-lert" ng-if="collection.length < 1 || devices.find.id"><i class="fa fa-info-circle text-info"></i> {{_t('device_no_event')}}.</div>
     <div class="table-responsive_">
@@ -80,6 +40,7 @@
                             <button type="button" class="btn btn-default" ng-click="expandNavi('evDropDown_' + $index, $event)"><i class="fa fa-caret-down"></i></button>
                             <div class="app-dropdown" ng-if="naviExpanded['evDropDown' + '_' + $index]">
                             <ul>
+                                <!--<li><a href="" ng-click="markAsRead(v.id)" ng-bind="_t('lb_mark_read')"></a></li>-->
                                 <li>
                                     <a ng-href="#events"> <i class="fa fa-eye"></i> <span ng-bind="_t('lb_show_all')"></span></a>
                                 </li>
@@ -122,6 +83,51 @@
         <div class="info-lert" ng-if="user.hide_all_device_events || user.hide_system_events"><i class="fa fa-info-circle text-info"></i> <span ng-bind="_t('events_hidden')"></span></div>
         <div class="text-center mobile-padding" ng-if="collection.length > 0">
             <dir-pagination-controls boundary-links="true"></dir-pagination-controls>
+        </div>
+    </div>
+    <!-- Elements footer view -->
+    <div id="footer">
+        <div class="navbar navbar-default navbar-fixed-bottom">
+            <div class="container">
+                <form class="form-inline form-events-filter" role="form">
+                     <div class="btn-group dropup">
+                        {{_t('lb_filter_by')}}:
+                         </div>
+                     <div class="btn-group dropup">
+                        <button type="button" class="btn btn-default" ng-bind="_t('error_type')"></button>
+                        <button type="button" class="btn btn-default" ng-click="expandNavi('evDropDownType',$event)">
+                             <i class="fa fa-caret-up"></i>
+                        </button>
+                         <div class="app-dropdown app-dropdown-bottom" ng-if="naviExpanded['evDropDownType']">
+                        <ul>
+                            <li ng-repeat="v in eventLevels" ng-class="v.key == currLevel ? 'active':''">
+                                <a href="#events/level/{{v.key}}">{{_t('lb_notify_' + v.val)}} <span class="menu-arrow" ng-if="v.key == currLevel"><i class="fa fa-check"></i></span></a> 
+                            </li>
+                        </ul>
+                       </div>
+                    </div>
+                    <div class="btn-group dropup">
+                        <button type="button" class="btn btn-default">
+                              <span ng-if_="!devices.find.title">{{_t('lb_device')}}</span>
+                        </button>
+                        <button type="button" class="btn btn-default" ng-click="expandNavi('evDropDownDevice',$event)">
+                            <i class="fa fa-caret-up"></i>
+                        </button>
+                         <div class="app-dropdown app-dropdown-bottom app-dropdown-mxh-600" ng-if="naviExpanded['evDropDownDevice']">
+                            <ul>
+                                <!--<li><a href="" ng-click="markAsRead(v.id)" ng-bind="_t('lb_mark_read')"></a></li>-->
+                                <li ng-repeat="v in devices.data" ng-class="v.id===devices.find.id ? 'active':''">
+                                   
+                                    <a ng-href="#events/source/{{v.id}}">
+                                         <img class="report-img" ng-src="{{v.metrics.icon|getElementIcon:v:v.metrics.level}}" alt="img" />
+                                        {{v.metrics.title|cutText:true:25}} <span class="menu-arrow" ng-if="v.id===devices.find.id"><i class="fa fa-check"></i></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div> <!-- /ng-controller --> 

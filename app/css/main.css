@@ -1242,10 +1242,9 @@ a:hover {
 }
 /* line 15, ../sass/common/_navi.scss */
 .page-navi .page-navi-title {
-  text-transform: uppercase;
-  text-align: center;
+  text-align: left;
   margin: 0;
-  padding: 10px;
+  padding: 10px 20px;
   font-weight: bold;
   border-bottom: solid 1px #e7e7e7;
 }
@@ -1255,8 +1254,8 @@ a:hover {
 }
 /* line 26, ../sass/common/_navi.scss */
 .page-navi .page-navi-tag {
-  border: solid 1px #777777;
-  display: inline;
+  border: solid 1px #e7e7e7;
+  display: inline-block;
   margin: 5px;
   padding: .2em .6em .3em;
   line-height: 1;
@@ -1268,8 +1267,7 @@ a:hover {
 }
 /* line 38, ../sass/common/_navi.scss */
 .page-navi .page-navi-tag.active {
-  color: #fff;
-  background-color: #777777;
+  background-color: #e7e7e7;
   cursor: text;
 }
 /* line 43, ../sass/common/_navi.scss */
@@ -4544,7 +4542,7 @@ padding-right: 5px;
 /* Large Devices, Wide Screens */
 /* Medium Devices, Desktops */
 /* Small Devices, Tablets */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 768px), (orientation: portrait) {
   /* line 109, ../sass/responsive/_responsive.scss */
   .show-on-pc {
     display: none;

@@ -21,10 +21,10 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
         {key: 6, val: '6 ' + $scope._t('lb_days')},
         {key: 7, val: '7 ' + $scope._t('lb_days')}
     ];
-
+    $scope.currSource = false;
     $scope.eventSources = [];
     //$scope.profileData = [];
-    $scope.currLevel = null;
+    $scope.currLevel = false;
     $scope.timeFilterDefault = {
         since: $filter('unixStartOfDay')(),
         to: $filter('unixStartOfDay')('+', 86400),
@@ -48,6 +48,8 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
 
     // Cancel interval on page destroy
     $scope.$on('$destroy', function() {
+        $scope.currSource = false;
+        $scope.currLevel= false;
         $interval.cancel($scope.apiDataInterval);
     });
 
@@ -219,8 +221,12 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
         //$scope.eventSources = dataService.getPairs(data.data.notifications, 'source', 'source');
         var filter = null;
         if (angular.isDefined($routeParams.param) && angular.isDefined($routeParams.val)) {
-            $scope.currSource = $routeParams.val;
-            $scope.currLevel = $routeParams.val;
+            if($routeParams.param === 'source' && $routeParams.val !== ''){
+                $scope.currSource = $routeParams.val;
+            }
+            if($routeParams.param === 'level' && $routeParams.val !== ''){
+               $scope.currLevel = $routeParams.val;
+            }
             filter = $routeParams;
             angular.forEach(data.data.notifications, function(v, k) {
                 if (filter && angular.isDefined(v[filter.param])) {

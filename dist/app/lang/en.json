@@ -1,5 +1,7 @@
 {
     "newtrans": "---",
+    "rate_app": "Rate this APP",
+    "already_rated": "You have already rated this APP",
     "description": "Description",
     "comments": "Comments",
     "add_comment": "Add comment",

@@ -424,7 +424,7 @@ myAppController.controller('AppLocalDetailController', function ($scope, $routeP
 /**
  * App online detail controller
  */
-myAppController.controller('AppOnlineDetailController', function ($scope, $routeParams, $timeout, $location, $route, myCache, dataFactory, dataService, _) {
+myAppController.controller('AppOnlineDetailController', function ($scope, $routeParams, $timeout, $location, $route, $filter, myCache, dataFactory, dataService, _) {
     $scope.local = {
         installed: false
     };
