@@ -14,8 +14,8 @@ myAppController.controller('LoginController', function($scope, $location, $windo
         form: true,
         login: '',
         password: '',
-        keepme: false,
-        default_ui: 1,
+        rememberme: false,
+        //secure: true,
         fromexpert: $routeParams.fromexpert
     };
     if(dataService.getUser()){
@@ -36,26 +36,30 @@ myAppController.controller('LoginController', function($scope, $location, $windo
      * Get session (ie for users holding only a session id, or users that require no login)
      */
     $scope.getSession = function() {
-       var hasCookie = ($cookies.user) ? true:false;
-       dataFactory.sessionApi().then(function(response) {
-           $scope.processUser(response.data.data);
-           if (!hasCookie) {
-               //$location.path('#/dashboard');
-               $location.path('/dashboard');
-               $window.location.reload();
-           }
-       });
+//       var hasCookie = ($cookies.user) ? true:false;
+//       dataFactory.sessionApi().then(function(response) {
+//           $scope.processUser(response.data.data);
+//           if (!hasCookie) {
+//               //$location.path('#/dashboard');
+//               $location.path('/dashboard');
+//               $window.location.reload();
+//           }
+//       });
     };
     /**
      * Login with selected data from server response
      */
-    $scope.processUser = function(user) { 
+    $scope.processUser = function(user,rememberme) { 
         if($scope.loginLang){
             user.lang = $scope.loginLang;
         }
         dataService.setZWAYSession(user.sid);
         dataService.setUser(user);
         dataService.setLastLogin(Math.round(+new Date() / 1000));
+//        if(rememberme){
+//           dataService.setRememberMe(rememberme); 
+//        }
+        
         $scope.input.form = false;
     };
     /**
@@ -72,7 +76,8 @@ myAppController.controller('LoginController', function($scope, $location, $windo
         $scope.alert = {message: false};
         dataFactory.logInApi(input).then(function(response) {
             var redirectTo = '/dashboard';
-            $scope.processUser(response.data.data);
+            var rememberme = (input.rememberme ? input : null);
+            $scope.processUser(response.data.data,rememberme);
             if (input.fromexpert) {
                 window.location.href = $scope.cfg.expert_url;
                 return;

@@ -109,6 +109,20 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     this.setLastLogin = function(val) {
         return setLastLogin(val);
     };
+    
+    /**
+     * Get remember me
+     */
+    this.getRememberMe = function(data) {
+        return getUser(data);
+    };
+
+    /**
+     * Set remember me
+     */
+    this.setRememberMe = function(data) {
+        return setUser(data);
+    };
 
     /**
      * Logout
@@ -262,6 +276,27 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
         $cookies.lastLogin = val;
 
     }
+    
+     /**
+     * Get remember me
+     */
+    function getRememberMe() {
+        var user = ($cookies.rememberme !== 'undefined' ? angular.fromJson($cookies.rememberme) : false);
+        return user;
+    }
+
+    /**
+     * Set remember
+     */
+    function setRememberMe(data) {
+        if (!data) {
+            delete $cookies['rememberme'];
+            return;
+        }
+        $cookies.rememberme = angular.toJson(data);
+        return data;
+
+    }
 
     /**
      * Logout
@@ -269,6 +304,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     function logOut() {
         setUser(null);
         setZWAYSession(null);
+        setRememberMe(null);
         $window.location.href = '#/';
         $window.location.reload();
 
