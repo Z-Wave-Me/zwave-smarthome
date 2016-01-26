@@ -77,15 +77,17 @@ var config_data = {
         // Online module rating create url
         'online_module_rating_create_url': 'https://developer.z-wave.me/?uri=api-rating-create',
         // Online module download url
-        'blacklist_url': 'http://hrix.net/blacklist.json',
+        'blacklist_url': 'https://hrix.net/blacklist.json', 
         // Post report url
-        'post_report_url': 'http://zwave.eu/api/report/post-report.php',
+        'post_report_url': 'https://hrix.net/shuiapi/report/',
         // Postpassword url
-        'post_password_request_url': 'http://hrix.net/shuiapi/password/',
+        'post_password_request_url': 'https://hrix.net/shuiapi/password/',
         // Get licence scratch id
-        'get_licence_scratchid': 'http://hrix.net/shuiapi/licence/',
+        'get_licence_scratchid': 'https://hrix.net/shuiapi/licence/',
+        // Url to get a license key
+        'license_url': 'https://hrix.net/shuiapi/licence/upgrade.php',
         // Razberry latest version
-        'raz_latest_version_url': 'http://razberry.z-wave.me/z-way/razberry/latest/VERSION', 
+        'raz_latest_version_url': 'https://razberry.z-wave.me/z-way/razberry/latest/VERSION', 
         // Url to zddx xml files
         'zddx_url': 'ZDDX/',
         // Url to run ExpertUI cmd
@@ -98,10 +100,6 @@ var config_data = {
         'enocean_black_list': ['81048201'],
         // Url to config XML file
         'cfg_xml_url': 'config/Configuration.xml',
-        // Url to get a license key
-        'license_url': 'http://store.zwaveeurope.com/license/utility_uzb.php',
-        // Buy licence key url
-        'buy_licence_key': 'http://www.zwave.me/index.php?id=41',
         // Url to update capabilities
         'license_load_url': 'ZWaveAPI/ZMELicense',
         // Language directory

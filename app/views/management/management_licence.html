@@ -7,10 +7,6 @@
     
     <form name="form_licence" id="form_password" class="form form-page" ng-submit="getLicense(inputLicence)" novalidate>
         <fieldset>
-            <!--
-           <p class="form-control-static" ng-bind="_t('licence_upgrade_info')"></p>
-           <p><a ng-href="{{cfg.buy_licence_key}}" class="btn btn-info">{{_t('btn_licence_buy')}}</a></p>
-            -->
             <!-- password -->
             <div class="alert alert-danger" ng-if="controllerInfo.isZeroUuid"><i class="fa fa-plug"></i> {{_t('replug_device')}}</div>
             <p>{{_t('licence_upgrade_key')}}</p>
