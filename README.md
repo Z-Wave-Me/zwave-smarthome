@@ -6,7 +6,7 @@ Angular app
 #### New features
 - Backup and restore.
 - Rating of the Apps.
-- Improved modal windows and dropdowns
+- Improved modal windows and dropdowns.
 - Remember me checkbox on the login page.
 - Sorting Elements by title, newest....
 - Comments for On-line Apps.
