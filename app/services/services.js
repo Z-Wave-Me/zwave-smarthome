@@ -109,6 +109,20 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     this.setLastLogin = function(val) {
         return setLastLogin(val);
     };
+    
+    /**
+     * Get remember me
+     */
+    this.getRememberMe = function() {
+        return getRememberMe();
+    };
+
+    /**
+     * Set remember me
+     */
+    this.setRememberMe = function(data) {
+        return setRememberMe(data);
+    };
 
     /**
      * Logout
@@ -260,6 +274,27 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      */
     function setLastLogin(val) {
         $cookies.lastLogin = val;
+
+    }
+    
+     /**
+     * Get remember me
+     */
+    function getRememberMe() {
+        var user = ($cookies.rememberme !== 'undefined' ? angular.fromJson($cookies.rememberme) : false);
+        return user;
+    }
+
+    /**
+     * Set remember
+     */
+    function setRememberMe(data) {
+        if (!data) {
+            delete $cookies['rememberme'];
+            return;
+        }
+        $cookies.rememberme = angular.toJson(data);
+        return data;
 
     }
 
