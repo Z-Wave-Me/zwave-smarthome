@@ -118,6 +118,20 @@ input[type=radio] {
         font-size: $app-btn-tag-icon-size;
     }
 }
+/* modal
+-------------------------------------------------- */
+.appmodal { 
+    .appmodal-in{
+        width: $modal-w;
+        margin: $modal-margin;
+    }
+}
+
+.appmodal-header{
+   .appmodal-close{
+        font-size: $modal-close-size;
+    }
+}
 
 /* Dropdown
 -------------------------------------------------- */

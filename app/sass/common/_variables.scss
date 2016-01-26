@@ -36,8 +36,8 @@ $dropdown-w: 300px;
 $app-overflow-h: 500px;
 
 // Modal
-$modal-margin: 15% auto;
-$modal-w: 50%;
+$modal-margin: 35% auto;
+$modal-w: 99%;
 $modal-full-w: 99%;
 
 // Loader
@@ -75,6 +75,9 @@ $room-col-w: 50%;
 
 //Login
 $auth-page-w: 500px;
+
+//Badge number
+$badge-number-w: 32px;
 /*-------------------------------------*/
 // SPACING
 
@@ -85,7 +88,7 @@ $spacing-half: $spacing / 2;
 
 /*-------------------------------------*/
 // Z:INDEX
-
+$zindex-alertify: 2200;
 $zindex-header: 2100;
 $zindex-page-navi: 1900;
 $zindex-dropdown: 1100;
@@ -123,6 +126,8 @@ $app-h3-font-size: 120%;
 $app-h4-font-size: 110%;
 $page-navi-font-size: 120%;
 $page-navi-icon-size: 130%;
+$modal-close-size: 180%;
+$modal-heading-font-size: 120%;
 $dropdown-font-size: 110%;
 $dropdown-icon-size: 120%;
 $accordion-heading-font-size: 120%;
@@ -137,6 +142,7 @@ $element-widget-level-font-size: 160%;
 $element-widget-scale-font-size: 110%;
 $element-widget-caret-font-size: 140%;
 $element-widget-time-font-size: 85%;
+$badge-number-font-size: 120%;
 
 /*-------------------------------------*/
 // COLORS
@@ -268,8 +274,13 @@ $element-widget-btn-1-color: $app-brand-success;
 $element-widget-btn-on-color: lighten($widget-color, 40%);
 $element-widget-img-update-border-color: $app-border-color;
 $element-widget-isnew-border-color: $app-brand-success;
+
 // Room
 $room-border-color: $app-border-color;
+
+// Badge number
+$badge-number-bcg-color: lighten($app-body-color, 60%);
+$badge-number-color: #FFFFFF;
 
 /*-------------------------------------*/
 // EFFECTS

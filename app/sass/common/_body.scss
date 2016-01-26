@@ -121,3 +121,14 @@ a {
 .display-block{
     display: block;
 }
+.badge-number {
+    background-color: $badge-number-bcg-color;
+    color: $badge-number-color;
+    display: inline-block;
+    text-align: center;
+    line-height: $badge-number-w - (($badge-number-w/2) / 2);
+    width: $badge-number-w;
+    height: $badge-number-w;
+    font-size: $badge-number-font-size;
+    border-radius: 50%;
+}
