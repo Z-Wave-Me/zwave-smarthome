@@ -617,23 +617,26 @@ legend.alpaca-container-label {
   display: none;
 }
 
-/**
- * alertifyjs 1.4.1 http://alertifyjs.com
- * AlertifyJS is a javascript framework for developing pretty browser dialogs and notifications.
- * Copyright 2015 Mohammad Younes <Mohammad@alertifyjs.com> (http://alertifyjs.com) 
- * Licensed under MIT <http://opensource.org/licenses/mit-license.php>*/
-/* line 6, ../sass/vendor/_alertify.scss */
-.alertify .ajs-dimmer {
-  position: fixed;
-  z-index: 1981;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 0;
-  margin: 0;
-  background-color: #252525;
-  opacity: .5;
+/** ************************************** **/
+/** Time picker                            **/
+/** ************************************** **/
+/* line 692, ../sass/vendor/_alpaca.scss */
+div.timepicker-picker > table.table-condensed {
+  margin: auto;
+}
+
+/* line 696, ../sass/vendor/_alpaca.scss */
+div.timepicker-picker > table.table-condensed tr td {
+  text-align: center;
+}
+
+/* Body
+-------------------------------------------------- */
+/* line 4, ../sass/common/_body.scss */
+body {
+  background-color: #F6F6F6;
+  color: #0d0d0d;
+  font-size: 14px;
 }
 
 /* line 18, ../sass/vendor/_alertify.scss */

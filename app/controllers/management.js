@@ -408,7 +408,6 @@ myAppController.controller('ManagementFirmwareController', function($scope, $sce
     };
     //$scope.loadRazLatest();
 });
-
 /**
  * Restor controller
  */

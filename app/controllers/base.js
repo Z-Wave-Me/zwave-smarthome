@@ -29,7 +29,6 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
 
     };
     $scope.setPollInterval();
-
     $scope.elementAccess = function(roles, mobile) {
         if (!$scope.user) {
             return false;

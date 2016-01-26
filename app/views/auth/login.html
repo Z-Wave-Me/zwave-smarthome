@@ -2,36 +2,48 @@
 <div ng-controller="LoginController" class="mobile-padding">
     <bb-loader></bb-loader>
     <div ng-if="input.form">
-    <div class="login-lang" ng-if="!input.fromexpert">
-       <a href="" ng-repeat="v in cfg.lang_list" class="lang-item" ng-click="setLoginLang(v)">
-        <img ng-src="app/img/flags/{{v}}.png" alt="{{v}}"/>
-    </a> 
-    </div>
-    
-    <div class="welcome-screen" ng-if="!lastLogin">
-        <h1 ng-bind="_t('welcome_1')"></h1>
-        <p ng-bind="_t('welcome_2')"></p>
-        <div class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i> <span  ng-bind="_t('welcome_3')"></span></div>
-        
-    </div>
-    <bb-alert alert="alert"></bb-alert>
-    
-    <form name="form_login" id="form_login" class="form form-page" ng-submit="login(input)" novalidate>
-        <fieldset>
-            <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('nav_login')"></span></h3>
-            <!-- login -->
-            <div class="form-group">
-                <input name="login" id="login" type="text" class="form-control" placeholder="{{_t('lb_login')}}" value="{{input.login}}" ng-model="input.login" />
-            </div>
-            <!-- password -->
-            <div class="form-group">
-                <input name="password" id="password" type="password" class="form-control" placeholder="{{_t('lb_password')}}" value="" ng-model="input.password" />
-            </div>
-           <a href="#passwordforgot"><i class="fa fa-question-circle text-primary"></i> {{_t('password_forgot')}}</a>
-        </fieldset>
-        <fieldset class="submit-entry">
-            <button type="submit" class="btn btn-submit"><i class="fa fa-sign-in"></i> {{_t('lb_enter')}}</button>
-        </fieldset>
-    </form>
+        <div class="login-lang" ng-if="!input.fromexpert">
+            <a href="" ng-repeat="v in cfg.lang_list" class="lang-item" ng-click="setLoginLang(v)">
+                <img ng-src="app/img/flags/{{v}}.png" alt="{{v}}"/>
+            </a> 
+        </div>
+
+        <div class="welcome-screen" ng-if="!lastLogin">
+            <h1 ng-bind="_t('welcome_1')"></h1>
+            <p ng-bind="_t('welcome_2')"></p>
+            <div class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i> <span  ng-bind="_t('welcome_3')"></span></div>
+
+        </div>
+        <bb-alert alert="alert"></bb-alert>
+
+        <form name="form_login" id="form_login" class="form form-page" ng-submit="login(input)" novalidate>
+            <fieldset>
+                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('nav_login')"></span></h3>
+                <!-- login -->
+                <div class="form-group">
+                    <input name="login" id="login" type="text" class="form-control" placeholder="{{_t('lb_login')}}" value="{{input.login}}" ng-model="input.login" />
+                </div>
+                <!-- password -->
+                <div class="form-group">
+                    <input name="password" id="password" type="password" class="form-control" placeholder="{{_t('lb_password')}}" value="" ng-model="input.password" />
+                </div>
+
+                <!-- remember -->
+                <div class="form-group">
+                    <input type="checkbox" name="rememberme" value="true" id="rememberme" ng-model="input.rememberme" ng-checked="input.remember" /> <label ng-bind="_t('remember_me')"></label>
+                </div>
+
+                <a href="#passwordforgot"><i class="fa fa-question-circle text-primary"></i> {{_t('password_forgot')}}</a>
+            </fieldset>
+            <fieldset class="submit-entry">
+                 <button type="button" class="btn btn-default" 
+                         ng-class="input.secure ? 'active' : ''" 
+                         ng-click="setSecure(input.secure = !input.secure)">
+                     <i class="fa fa-lg" ng-class="input.secure ? 'fa-lock text-success' : 'fa-unlock text-danger'"></i> 
+                     <span ng-bind="input.secure ? _t('secure_login'): _t('unsecure_login')"></span>
+                 </button>
+                <button type="submit" class="btn btn-submit"><i class="fa fa-sign-in"></i> {{_t('lb_enter')}}</button>
+            </fieldset>
+        </form>
     </div>
 </div>
