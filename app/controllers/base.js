@@ -29,13 +29,6 @@ myAppController.controller('BaseController', function($scope, $cookies, $filter,
 
     };
     $scope.setPollInterval();
-    // Secure login
-    $scope.secureLogin = function() {
-        if ($scope.user && $scope.user.secure) {
-            angular.extend(cfg,{remote_protocol: 'https://'});
-        }
-    };
-    $scope.secureLogin();
     $scope.elementAccess = function(roles, mobile) {
         if (!$scope.user) {
             return false;

@@ -759,7 +759,7 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
      */
     function getOnlineModules(data,noCache) {
         // Cached data
-        var cacheName = 'cache_' + cfg.remote_protocol + cfg.online_module_url;
+        var cacheName = 'cache_' + cfg.online_module_url;
         var cached = myCache.get(cacheName);
 
         if (!noCache && cached) {
@@ -770,7 +770,7 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
         // NOT Cached data
         return $http({
             method: 'post',
-            url: cfg.remote_protocol + cfg.online_module_url,
+            url: cfg.online_module_url,
             data: $.param(data),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',

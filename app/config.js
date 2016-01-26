@@ -60,24 +60,22 @@ var config_data = {
         'local_data_url': 'storage/data/',
         // Help data path
         'help_data_url': 'storage/help/',
-        // Server base url
-        'remote_protocol': 'http://', 
         // Online module url
-        'online_module_url': 'developer.z-wave.me/?uri=api-modules',
+        'online_module_url': 'https://developer.z-wave.me/?uri=api-modules',
         // Online module id url
-        'online_moduleid_url': 'http://developer.z-wave.me/?uri=api-modulesid',
+        'online_moduleid_url': 'https://developer.z-wave.me/?uri=api-modulesid',
         // Online module img url
-        'online_module_img_url': 'http://developer.z-wave.me/modules/',
+        'online_module_img_url': 'https://developer.z-wave.me/modules/',
         // Online module download url
-        'online_module_download_url': 'http://developer.z-wave.me/modules/',
+        'online_module_download_url': 'https://developer.z-wave.me/modules/',
         // Online module installed url
-        'online_module_installed_url': 'http://developer.z-wave.me/?uri=api-modules-installed',
+        'online_module_installed_url': 'https://developer.z-wave.me/?uri=api-modules-installed',
         // Online module comments url
-        'online_module_comments_url': 'http://developer.z-wave.me/?uri=api-comments',
+        'online_module_comments_url': 'https://developer.z-wave.me/?uri=api-comments',
         // Online module comment create url
-        'online_module_comment_create_url': 'http://developer.z-wave.me/?uri=api-comments-create',
+        'online_module_comment_create_url': 'https://developer.z-wave.me/?uri=api-comments-create',
         // Online module rating create url
-        'online_module_rating_create_url': 'http://developer.z-wave.me/?uri=api-rating-create',
+        'online_module_rating_create_url': 'https://developer.z-wave.me/?uri=api-rating-create',
         // Online module download url
         'blacklist_url': 'http://hrix.net/blacklist.json',
         // Post report url
