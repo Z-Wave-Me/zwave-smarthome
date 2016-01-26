@@ -6,17 +6,17 @@
     right: 0;
     left: 0;
     z-index: $zindex-header;
-    margin-bottom: 20px;
+    //margin-bottom: $spacing-double;
     color: $header-color;
     font-size: $app-navi-font-size; 
     .container{
         padding: 0;
     }
     .divider-vertical {
-        display: none;
+       // display: none;
         height: $header-h;
-        border-left: 1px solid darken($header-delim-color, 10%);
-        border-right: 1px solid lighten($header-delim-color, 15%);
+        border-left: 1px solid $header-delim-l-color;
+        border-right: 1px solid $header-delim-r-color;
     }
 
     .fa{
@@ -61,7 +61,7 @@
 }
  #navi_settings{
         border-radius: 4px;
-        border: solid 1px $header-border-color;
+        //border: solid 1px $header-border-color;
         height: $header-icon-settings-h;
         line-height: $header-icon-settings-h !important;
         padding: 7px;

@@ -16,6 +16,8 @@ $media-sm: 600px;
 // DIMENSIONS: WIDTHS, HEIGHTS
 // Base
 $app-line-height-base:        1.428571429 !default; // 20/14
+// Base
+$app-container-w: 100%;
 
 // Input
 $checkbox-scale: 2;
@@ -179,6 +181,8 @@ $header-color: lighten($app-color-primary, 5%);
 $header-bcg-color:  #FFFFFF;
 $header-border-color: $app-border-color;
 $header-delim-color: $app-border-color;
+$header-delim-l-color: darken($app-border-color, 10%);
+$header-delim-r-color: lighten($app-border-color, 15%);
 $header-a-color: $app-a-color;
 $header-icon-color: lighten($header-a-color, 20%);
 $header-a-active-color: $app-border-color;
@@ -247,6 +251,7 @@ $form-submit-entry-bcg-color: #FFFFFF;
 
 // Report
 $report-border-color: $app-border-color;
+$report-bcg-color: #FFFFFF;
 
 // Device
 $device-bcg-color: #FFFFFF;

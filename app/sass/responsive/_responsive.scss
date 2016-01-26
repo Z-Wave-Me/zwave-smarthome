@@ -85,7 +85,10 @@
 
 /* Medium Devices, Desktops */
 @media only screen and (max-width : 992px)   {
-     .btn-name,.tab-name,.nav-logo, #header .update-time-tick{
+    .nav-logo, 
+     #header .update-time-tick,
+     #main_navigation .divider-vertical,
+      .btn-name,{
         display: none !important;
     }
     #footer .update-time-tick{

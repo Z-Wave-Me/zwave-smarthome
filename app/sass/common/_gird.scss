@@ -1,13 +1,13 @@
 /* Gird
 -------------------------------------------------- */
 #main_content {
-    margin-top: $header-h + $spacing-double; 
-    margin-bottom: $footer-h + $spacing-double;
+    margin-top: $header-h + $spacing; 
+    margin-bottom: $footer-h + $spacing;
 }
 
 .container{
     max-width:none;
-    width: 100%;
+    width: $app-container-w;
 
 }
 .row {

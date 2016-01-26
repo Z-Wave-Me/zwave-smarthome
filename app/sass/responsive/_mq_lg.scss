@@ -1,7 +1,8 @@
 /* Large Devices, Wide Screens
 -------------------------------------------------- */
+$app-container-w: 1200px;
 $app-body-font-size: 14px;
-$header-h: 60px;
+$header-h: 50px;
 $subnavigation-margin: 0 0 0 66%;
 $page-navi-h: 30px;
 $page-navi-w: 25%;
@@ -21,6 +22,9 @@ $room-img-preview: 200px;
 $modal-w: 50%;
 $modal-margin: 15% auto;
 $modal-close-size: 140%;
+$footer-h: 40px;
+$app-updatetime-font-size: 90%;
+$app-updatetime-icon-size: 90%;
 
 /*-------------------------------------*/
 // Shared styles

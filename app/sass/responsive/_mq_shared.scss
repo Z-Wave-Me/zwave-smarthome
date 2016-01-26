@@ -46,6 +46,16 @@ body {
         }
     }
 }
+/* Gird
+-------------------------------------------------- */
+#main_content {
+    margin-top: $header-h + $spacing-double; 
+    margin-bottom: $footer-h + $spacing-double;
+}
+.container{
+    max-width:$app-container-w;
+
+}
 /* Page navigation
 -------------------------------------------------- */
 .page-navi{
@@ -214,4 +224,22 @@ input[type=radio] {
 -------------------------------------------------- */
 .room-entry{
     width: $room-col-w;
+}
+
+/* Footer
+-------------------------------------------------- */
+#footer{
+    #footer_in{
+       height: $footer-h;
+        line-height: $footer-h;
+    }
+}
+
+/* Others
+-------------------------------------------------- */
+.update-time-tick{
+    font-size: $app-updatetime-font-size !important;
+    .fa{
+        font-size: $app-updatetime-icon-size !important; 
+    }
 }
