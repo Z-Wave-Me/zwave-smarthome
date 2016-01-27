@@ -3,8 +3,14 @@
 .form-control {
     font-size: $app-input-font-size;
     color: $form-input-color;
-    border: solid 1px $form-border-color;
+    border: solid 1px $form-input-border-color;
     padding: $app-input-padding;
+    height: auto;
+}
+
+.input-group-addon {
+   border: solid 1px $form-input-border-color;
+   background-color: $form-addon-bcg-color;
 }
 
 textarea{

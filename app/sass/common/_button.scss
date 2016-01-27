@@ -24,12 +24,23 @@
     }
 }
 
+.btn-default {
+    color: $btn-color;
+    background-color: $btn-bcg-color;
+    border-color: $btn-border-color;
+}
+
+.btn-default.active {
+    background-color:$btn-active-bcg-color;
+}
+
 .btn,.btn-device-admin {
     font-size: $app-btn-font-size;
     .fa{
         font-size: $app-btn-icon-size; 
     }
 }
+
 .btn-submit{
     color: $btn-submit-color;
     border: solid 1px $app-brand-success;
@@ -60,11 +71,7 @@
     }
 }
 
-.btn-default.active {
-    //color: #333;
-    background-color: $tabs-active-bcg-color;
-    //border-color: #adadad;
-}
+
 
 /* Button tabs
 -------------------------------------------------- */
@@ -75,7 +82,10 @@
     .btn{
         padding: $spacing;
         font-size: $tab-font-size;
-        //background-color: $tabs-bcg-color;
+        background-color: $tabs-bcg-color;
+        &.active {
+            background-color: $tabs-active-bcg-color;
+        }
         .fa{
             font-size: $tab-icon-size;
             color: $tabs-icon-color;

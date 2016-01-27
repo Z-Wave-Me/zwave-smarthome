@@ -22,7 +22,7 @@ $app-container-w: 100%;
 // Input
 $checkbox-scale: 2;
 $radio-scale: 1.8;
-$app-input-padding: 22px 16px;
+$app-input-padding: 12px 14px;
 // Header
 $header-h: 75px;
 $header-icon-settings-h: 40px;
@@ -209,13 +209,19 @@ $accordion-border-color: $app-border-color;
 $accordion-icon-color: lighten($accordion-color, 20%);
 $accordion-heading-color: $app-heading-color;
 
+// Buttons
+$btn-color: $app-body-color;
+$btn-bcg-color: #FFFFFF;
+$btn-border-color: #CCCCCC;
+$btn-active-bcg-color: #FFFFFF;
+
 // Tabs
 $tabs-bcg-color: #FFFFFF;
-$tabs-color: $app-a-color;
+$tabs-color: $app-body-color;
 $tabs-border-color: $app-border-color;
 $tabs-icon-color: lighten($tabs-color, 20%);
 $tabs-icon-active-color: $app-brand-success;
-$tabs-active-bcg-color: lighten($tabs-border-color, 15%);
+$tabs-active-bcg-color: darken($tabs-bcg-color, 5%);
 
 // Modal
 $modal-bcg-color: #FFFFFF;
@@ -244,10 +250,12 @@ $footer-bcg-color: #FFFFFF;
 $btn-submit-color:  #FFFFFF;
 
 // Form
-$form-input-color: lighten($app-body-color, 40%);
 $form-border-color: $app-border-color;
 $form-bcg-color: #FFFFFF;
+$form-input-border-color: #CCCCCC;
+$form-input-color: lighten($app-body-color, 30%);
 $form-submit-entry-bcg-color: #FFFFFF;
+$form-addon-bcg-color: #EEEEEE;
 
 // Report
 $report-border-color: $app-border-color;
