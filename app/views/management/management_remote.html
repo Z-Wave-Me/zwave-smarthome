@@ -16,9 +16,9 @@
                         <span ng-bind="_t('remote_access_id')"></span>: <strong ng-bind="remoteAccess.params.userId"></strong>
                     </p>
                     <!-- Remote access password -->
-                    <p>
+                    <p class="form-inline">
                         <label>{{_t('remote_access_password')}}: </label>
-                        <input name="remote_password" id="remote_password" type="password" class="form-control form-control-sm" value="" ng-model="remoteAccess.params.pass" />
+                        <input name="remote_password" id="remote_password" type="password" class="form-control" value="" ng-model="remoteAccess.params.pass" />
                     <bb-help-text trans="_t('keep_password_empty')"></bb-help-text>
                     </p>
                 </div>

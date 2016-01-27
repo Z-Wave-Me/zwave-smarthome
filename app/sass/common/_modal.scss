@@ -73,3 +73,11 @@
   border-top: solid 1px $modal-border-color;  
   text-align: right;
 }
+
+/* Modal with knob
+-------------------------------------------------- */
+.app-row-knob{
+    .knob-col{
+       padding: $spacing;
+   }
+}

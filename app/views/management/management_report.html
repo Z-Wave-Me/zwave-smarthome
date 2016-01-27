@@ -9,12 +9,12 @@
             <div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i> {{_t('bugreport_info')}}</div>
 
             <!-- content -->
-                <div class="form-group_">
+                <div class="form-group">
                     <textarea name="content" id="content" class="form-control report-content" ng-blur="contentBlur = true" ng-model="input.content" ng-required="true"></textarea>
                     <bb-validator input-name='form_report.content.$error.required' trans='_t("field_required")' has-blur='contentBlur'></bb-validator> 
                 </div>
             <!-- email -->
-                 <div class="form-group form-inline">
+                 <div class="form-group form-inline last">
                         <label>{{_t('lb_email')}}: </label>
                         <input name="email" id="email" type="email" class="form-control" value="{{input.email}}" ng-blur="emailBlur = true" ng-model="input.email" ng-required="true" />
                         <bb-validator input-name='form_report.email.$error.required' trans='_t("email_invalid")' has-blur='emailBlur'></bb-validator> 

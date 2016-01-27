@@ -7,11 +7,9 @@
         </div>
         <div class="appmodal-body text-center">
             <bb-alert alert="widgetThermostat.alert"></bb-alert>
-            <table>
-                <tbody>
-                    <tr>
-                        <td>
-                            <input 
+            <div class="app-row app-row-knob clearfix">
+                <div class="knob-col knob-ctrl">
+                    <input 
                                 type="text" 
                                 value="{{widgetThermostat.find.metrics.level}}" 
                                 class="dial widget-level-knob" 
@@ -35,16 +33,19 @@
                                 knob-data="widgetThermostat.find.metrics.level" 
                                 knob-options="knobopt" 
                                 ng-model="widgetThermostat.find.metrics.level" myknob ng-if="widgetThermostat.find.metrics.scaleTitle === '°F'" />
-                        </td>
-                        <td>
-                            <button class="btn btn-primary"
+                </div>
+                <div class="knob-col knob-btn">
+                    <p>
+                    <button class="btn btn-primary"
                                     ng-click="setExactCmd(widgetThermostat.find, '+')"
                                     ><i class="fa fa-angle-up fa-lg"></i>
                             </button>&nbsp;
                             <button class="btn btn-info"
                                     ng-click="setExactCmd(widgetThermostat.find, widgetThermostat.find.minMax.max)"
                                     ><i class="fa fa-angle-double-up fa-lg"></i>
-                            </button><br /><br />
+                            </button>
+                     </p>
+                     <p>     
                             <button class="btn btn-primary"
                                     ng-click="setExactCmd(widgetThermostat.find, '-')"
                                     ><i class="fa fa-angle-down fa-lg"></i>
@@ -54,10 +55,9 @@
                                     >
                                 <i class="fa fa-angle-double-down fa-lg"></i>
                             </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                     </p>  
+                </div>
+            </div>
         </div>
         <!--<div class="appmodal-footer">
             <button type="button" class="btn btn-default" ng-click="handleModal('thermostatModal', $event)"><i class="fa fa-times text-danger"></i> {{_t('lb_close')}}</button>

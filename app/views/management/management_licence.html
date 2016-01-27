@@ -10,6 +10,7 @@
             <!-- password -->
             <div class="alert alert-danger" ng-if="controllerInfo.isZeroUuid"><i class="fa fa-plug"></i> {{_t('replug_device')}}</div>
             <p>{{_t('licence_upgrade_key')}}</p>
+            <p class="form-inline">
             <label>{{_t('licence_key_insert')}}:</label>
             <input
                 class="form-control form-control-sm" 
@@ -19,8 +20,8 @@
                 value="{{inputLicence.scratch_id}}" 
                 ng-disabled="controllerInfo.isZeroUuid"
                 ng-model="inputLicence.scratch_id" />
-
-            <div><br />
+             </p>
+            <div>
                 <p ng-if="proccessVerify.message">
                     <i class="fa-lg" ng-class="proccessVerify.status"></i> <strong ng-bind="proccessVerify.message"></strong>
                 </p>

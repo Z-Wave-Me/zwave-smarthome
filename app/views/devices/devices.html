@@ -8,6 +8,7 @@
                         <img class="device-type-logo" ng-src="app/img/logo-zwave.png" alt="Logo" />
                     </td>
                     <td class="td-action">
+                     <div class="btn-group">
                          <a class="btn btn-default" href="" ng-click="toExpert('/expert',_t('redirect_to_expert'))" ng-if="elementAccess(cfg.role_access.admin,isMobile) && cfg.app_type === 'default'">
                             <i class="fa fa-external-link"></i> <span class="btn-name" ng-bind="_t('manage_with_expertui')"></span>
                         </a>
@@ -17,6 +18,7 @@
                         <a class="btn btn-default" href="#zwave/devices">
                             <i class="fa fa-edit text-primary"></i> <span class="btn-name" ng-bind="_t('manage')"></span>
                         </a>
+                     </div>
                     </td>
                 </tr>
                 <tr>
@@ -24,12 +26,14 @@
                         <img class="device-type-logo" ng-src="app/img/logo-camera.png" alt="Logo" />
                     </td>
                    <td class="td-action">
+                      <div class="btn-group">
                         <a class="btn btn-default" href="#camera/add">
                             <i class="fa fa-plus text-success"></i> <span class="btn-name" ng-bind="_t('add_new')"></span>
                         </a>
                        <a class="btn btn-default" href="#camera/manage">
                             <i class="fa fa-edit text-primary"></i> <span class="btn-name" ng-bind="_t('manage')"></span>
                         </a> 
+                    </div>
                     </td>
                 </tr>
                 <tr ng-if="enocean.installed">
@@ -39,12 +43,14 @@
                      <td class="td-action">
                           <bb-alert-text alert="enocean.alert"></bb-alert-text>
                           <div ng-if="enocean.active">
-                          <a class="btn btn-default" href="#enocean/devices">
-                            <i class="fa fa-plus text-success"></i> <span class="btn-name" ng-bind="_t('add_new')"></span>
-                        </a>
-                         <a class="btn btn-default" href="#enocean/manage">
-                            <i class="fa fa-edit text-primary"></i> <span class="btn-name" ng-bind="_t('manage')"></span>
-                        </a> 
+                            <div class="btn-group">
+                                <a class="btn btn-default" href="#enocean/devices">
+                                  <i class="fa fa-plus text-success"></i> <span class="btn-name" ng-bind="_t('add_new')"></span>
+                              </a>
+                               <a class="btn btn-default" href="#enocean/manage">
+                                  <i class="fa fa-edit text-primary"></i> <span class="btn-name" ng-bind="_t('manage')"></span>
+                              </a> 
+                            </div>
                         </div>
                     </td>
                 </tr>

@@ -24,7 +24,8 @@
   bottom: 0;
   padding: 0;
   overflow-y: auto;
-  z-index: 1981;
+  //z-index: 1981;
+  z-index: $zindex-alertify;
 }
 .alertify .ajs-dialog {
   position: relative;
@@ -815,7 +816,7 @@
   }
 }
 .alertify-notifier {
-  position: fixed;
+  position: fixed; 
   width: 0;
   overflow: visible;
   //z-index: 1982;

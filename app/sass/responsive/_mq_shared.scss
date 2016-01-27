@@ -128,7 +128,7 @@ input[type=radio] {
         font-size: $app-btn-tag-icon-size;
     }
 }
-/* modal
+/* Modal
 -------------------------------------------------- */
 .appmodal { 
     .appmodal-in{
@@ -142,13 +142,33 @@ input[type=radio] {
         font-size: $modal-close-size;
     }
 }
+/* Modal with knob
+-------------------------------------------------- */
+.app-row-knob{
+   display: table;
+    width: 100%;
+   .knob-col{
+        display: table-cell;
+       vertical-align: middle;
+       padding: $spacing;
+       width: 50%;
+   }
+   .knob-ctrl{
+       text-align: right;
+   }
+   .knob-btn{
+       text-align: left;
+   }
+}
 
 /* Dropdown
 -------------------------------------------------- */
 .app-dropdown{
      min-width: $dropdown-w;
+     
 }
-/* Dropdown
+
+/* Report
 -------------------------------------------------- */
 .report-entry {
    display: table;

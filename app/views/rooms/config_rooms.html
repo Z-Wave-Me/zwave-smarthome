@@ -11,10 +11,12 @@
                 {{v.title|cutText:true:25}}
             </div>
          <div class="report-col report-ctrl">
-             <a class="btn btn-default" href="#config-rooms/{{v.id}}"><i class="fa fa-pencil fa-lg text-info"></i></a>
+             <div class="btn-group">
+             <a class="btn btn-default" href="#config-rooms/{{v.id}}"><i class="fa fa-pencil text-info"></i></a>
                     <button class="btn btn-default" 
                        ng-click="delete('#row_' + v.id, v.id, _t('lb_delete_confirm'))"
-                       ><i class="fa fa-times fa-lg text-danger"></i></button> 
+                       ><i class="fa fa-times text-danger"></i></button>
+              </div>
          </div>
         </div>
       </div>

@@ -58,9 +58,9 @@
 
                 </div>
             </fieldset>
-            <fieldset  class="form-inline" ng-if="elementAccess(cfg.role_access.admin)">
+            <fieldset ng-if="elementAccess(cfg.role_access.admin)">
                 <h3><span ng-bind="_t('lb_tags')"></span></h3>
-                <div class="form-group">
+                <div class="form-group form-inline">
                     <div class="input-group">
                         <input name="add_tag" id="add_tag" type="text" 
                                          class="form-control" value="" 
@@ -72,8 +72,8 @@
                                    </ul>-->
                     </div>
                  </div>
-                <div class="form-group">
-                    <a href="" class="btn btn-default btn-tag" d="tag_{{$index}}"
+                <div class="form-group last">
+                    <a href="" class="btn btn-default btn-tag" id="tag_{{$index}}"
                             ng-repeat="t in input.tags"
                            ng-click="removeTag($index)">{{t}} <i class="fa fa-times text-danger"></i></a>
                 </div>
