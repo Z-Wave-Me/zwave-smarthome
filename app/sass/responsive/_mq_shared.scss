@@ -183,6 +183,13 @@ input[type=radio] {
     max-width: $report-img;
     max-height: $report-img;
 }
+.app-row-zwave{
+    .report-entry {
+   .report-ctrl{
+       vertical-align: top;
+   }
+}
+}
 /* Widgets
 -------------------------------------------------- */
 .app-row-widget{

@@ -61,7 +61,7 @@
 
 .include-device-img{
     margin: 0 0 $spacing 0;
- }
+}
 
 .col-device{
     //text-align: center;
@@ -93,9 +93,26 @@
 }
 .network-zwave-title{
     font-weight: bold;
+    display: block;
+     &.noelements{
+            color: lighten($app-body-color,20%);
+            font-weight: normal;
+        }
 }
 .zwave-hidden-true{
-    color: $app-body-disabled-color;
+    a{
+        color: $app-body-disabled-color;
+        cursor: text; 
+        text-decoration: line-through;
+        &:hover{
+            text-decoration: line-through;
+        }
+        .zwave-raquo{
+            display: none;
+        }
+    }
+
+
     input{
         color:$app-body-disabled-color;
     }
@@ -137,7 +154,7 @@
     border-top: solid 1px $device-border-color;
 }
 .commads-is-current{
-   text-decoration: underline;
+    text-decoration: underline;
 }
 #wakeup_cont .form-inline{
     float: left;
