@@ -288,7 +288,7 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
             $timeout(function () {
                 $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t(response.data.data.key)};
                 myCache.removeAll();
-                $route.reload();
+                window.location = '#/module/post/' + module.modulename;
             }, 3000);
 
         }, function (error) {
@@ -544,7 +544,7 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
             $timeout(function () {
                 $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t(response.data.data.key)};
                 myCache.removeAll();
-                $route.reload();
+                window.location = '#/module/post/' + module.modulename;
             }, 3000);
 
         }, function (error) {

@@ -5,7 +5,9 @@ Angular app
 ## v1.2.0
 #### New features
 - Enhanced display on mobile devices and tablets.
+- Added the ability to customize the device from Devices/Manage
 - Backup and restore.
+- Redirect to the APP detail after module instalation.
 - Rating of the Apps.
 - Improved modal windows and dropdowns.
 - Remember me checkbox on the login page.
@@ -18,6 +20,7 @@ Angular app
 #### Changes
 - Elements are completely refactored.
 - Replaced Bootstrap modal windows and dropdowns with Angular.
+- Replaced http protocol with https for external APIs.
 
 #### Fixes
 - Cannot add email address to user #90

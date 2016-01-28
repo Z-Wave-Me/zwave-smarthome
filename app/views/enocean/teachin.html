@@ -22,14 +22,14 @@
                             <td><span class="badge badge-number">1</span></td>
                             <td>
                                 <div class="alert" ng-if="inclusion.message" ng-class="inclusion.status">
-                                    <i class="fa fa-lg" ng-class="inclusion.icon"></i> <span ng-bind-html="inclusion.message | toTrusted"></span>
+                                    <i class="fa" ng-class="inclusion.icon"></i> <span ng-bind-html="inclusion.message | toTrusted"></span>
                                     <button
-                                        class="btn btn-danger btn-sm"
+                                        class="btn btn-danger"
                                         ng-if="!inclusion.done && inclusion.promisc"
                                         ng-click="runCmd('controller.data.promisc=false')">
                                          <i class="fa fa-ban"></i> <span class="btn-name">{{_t('stop_teachin')}}</span>
                                     </button>
-                                    <button class="btn btn-success btn-sm"
+                                    <button class="btn btn-success"
                                             ng-if="!inclusion.done && !inclusion.promisc"
                                             ng-click="runCmd('controller.data.promisc=true')">
                                             <i class="fa fa-plug"></i> <span class="btn-name">{{_t('start_teachin')}}</span>
@@ -53,7 +53,7 @@
                                         </div>
                                         </fieldset>
                                     <div class="alert alert-warning" ng-if="apiDevices.length < 1">
-                                    <i class="fa fa-lg fa-exclamation-circle"></i> <span ng-bind="_t('enocean_no_settings')"></span>
+                                    <i class="fa fa-exclamation-circle"></i> <span ng-bind="_t('enocean_no_settings')"></span>
                                     </div>
 
                                     <fieldset ng-if="apiDevices">

@@ -9,27 +9,27 @@
             <div class="app-detail-body">
                 <h2 ng-bind="module.title"></h2>
                 <p class="app-detail-list" ng-show="module.category">
-                    <i class="fa fa-list fa-lg"></i> <span ng-bind="categoryName"></span>
+                    <i class="fa fa-list"></i> <span ng-bind="categoryName"></span>
                 </p>
                 <p class="app-detail-list" ng-show="module.author">
-                    <i class="fa fa-user fa-lg"></i>
+                    <i class="fa fa-user"></i>
                     <span ng-show="!module.homepage" ng-bind="module.author"></span>
                     <a ng-href="{{module.homepage}}" ng-show="module.homepage" ng-bind="module.author"></a> 
                 </p>
                 <p class="app-detail-list" ng-show="module.version">
-                    <i class="fa fa-info-circle fa-lg"></i> <span class="app-version" ng-bind="module.version"></span>
+                    <i class="fa fa-info-circle"></i> <span class="app-version" ng-bind="module.version"></span>
                     <span class="label"
                           ng-class="module.maturity == 'stable' ? 'label-success' : 'label-warning'"
                           >{{module.maturity}}</span>
                 </p> 
                 <p class="app-detail-list" ng-show="module.installed">
-                    <i class="fa fa-download fa-lg"></i> {{module.installed}}x
+                    <i class="fa fa-download"></i> {{module.installed}}x
                 </p>
                 <p class="app-detail-list" ng-show="module.last_updated">
-                    <i class="fa fa-clock-o fa-lg"></i> <span ng-bind="module.last_updated"></span>
+                    <i class="fa fa-clock-o"></i> <span ng-bind="module.last_updated"></span>
                 </p>
                 <p class="app-detail-list" ng-if="rating.model.remote_id">
-                    {{_t('rate_app')}}: <i class="fa fa-lg clickable module-rating" title="{{v}}"
+                    {{_t('rate_app')}}: <i class="fa clickable module-rating" title="{{v}}"
                                      ng-class="v > module.rating ? 'fa-star-o' : 'fa-star israted'" 
                                     ng-repeat="v in rating.range" 
                                     ng-click="rateModule(v)"></i>
@@ -41,10 +41,13 @@
     <div class="fieldset submit-entry">
         <button type="button" class="btn btn-default" bb-go-back><i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span></button>
         <button class="btn btn-submit" ng-click="installModule(module)" ng-if="!local.installed">
-            <i class="fa fa-lg fa-download"></i> <span class="btn-name">{{_t('lb_download')}}</span>
+            <i class="fa fa-download"></i> <span class="btn-name">{{_t('lb_download')}}</span>
         </button> 
         <button class="btn btn-default" disabled ng-if="local.installed">
-            <i class="fa fa-check fa-lg"></i> <span class="btn-name">{{_t('installed')}}</span>
+            <i class="fa fa-check"></i> <span class="btn-name">{{_t('installed')}}</span>
         </button>
+         <a href="#module/post/{{module.modulename}}" class="btn btn-default" ng-if="local.installed">
+            <i class="fa text-success"></i> <span class="btn-name" ng-bind="_t('lb_add_app')"></span>
+        </a>
     </div>
 </div>

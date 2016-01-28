@@ -63,16 +63,16 @@
                             <div class="widget-ctrl ctrl-left">&nbsp;</div>
                             <div class="widget-ctrl ctrl-right">
                                  <!-- Download -->
-                                <button href="" class="btn btn-default btn-sm" ng-click="installModule(v, 'online_install')" ng-if="!dataHolder.modules.ids[v.modulename]">
-                                    <i class="fa fa-download fa-lg text-success"></i> <span class="btn-name">{{_t('lb_download')}}</span>
+                                <button href="" class="btn btn-default" ng-click="installModule(v, 'online_install')" ng-if="!dataHolder.modules.ids[v.modulename]">
+                                    <i class="fa fa-downloadtext-success"></i> <span class="btn-name">{{_t('lb_download')}}</span>
                                 </button> 
                                 <!-- Update -->
-                                <button href="" class="btn btn-default btn-sm" ng-click="updateModule(v, _t('app_update_confirm'))" ng-if="dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version != v.version">
-                                    <i class="fa fa-level-up fa-lg text-primary"></i> <span class="btn-name">{{_t('update_to_latest')}}</span>
+                                <button href="" class="btn btn-default" ng-click="updateModule(v, _t('app_update_confirm'))" ng-if="dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version != v.version">
+                                    <i class="fa fa-level-up text-success"></i> <span class="btn-name">{{_t('update_to_latest')}}</span>
                                 </button> 
                                 <!-- Installed -->
-                                <button class="btn btn-default btn-sm" disabled ng-if="dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version == v.version">
-                                    <i class="fa fa-check fa-lg"></i> <span class="btn-name">{{_t('installed')}}</span>
+                                <button class="btn btn-default" disabled ng-if="dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version == v.version">
+                                    <i class="fa fa-check"></i> <span class="btn-name">{{_t('installed')}}</span>
                                 </button> 
                             </div>
                         </div>

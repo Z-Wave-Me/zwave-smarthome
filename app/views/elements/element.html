@@ -19,17 +19,17 @@
                     <!-- instance -->
                     <div class="form-group" ng-if="input.appType.instance">
                         <span ng-bind="_t('lb_gen_by_module')"></span> 
-                        <a class="btn btn-default btn-sm" ng-href="#module/put/{{input.appType.instance.id}}">
+                        <a class="btn btn-default" ng-href="#module/put/{{input.appType.instance.id}}">
                             <strong ng-bind="input.appType.instance.title"></strong> - <span ng-bind="input.appType.instance.module"></span>
                         </a>
                     </div>
                     <!-- zwave -->
                     <div class="form-group" ng-if="input.appType.zwave">
-                        <span ng-bind="_t('lb_gen_by')"></span> <a href="#zwave/devices/{{input.appType.zwave}}" class="btn btn-default btn-sm"><span ng-bind="_t('lb_zwave_device')"></span> #{{input.appType.zwave}}</a>
+                        <span ng-bind="_t('lb_gen_by')"></span> <a href="#zwave/devices/{{input.appType.zwave}}" class="btn btn-default"><span ng-bind="_t('lb_zwave_device')"></span> #{{input.appType.zwave}}</a>
                     </div>
                     <!-- enocean -->
                     <div class="form-group" ng-if="input.appType.enocean">
-                        <span ng-bind="_t('lb_gen_by')"></span> <a href="#enocean/manage/{{input.appType.enocean}}" class="btn btn-default btn-sm"><span ng-bind="_t('enocean_device')"></span> #{{input.appType.enocean}}</a>
+                        <span ng-bind="_t('lb_gen_by')"></span> <a href="#enocean/manage/{{input.appType.enocean}}" class="btn btn-default"><span ng-bind="_t('enocean_device')"></span> #{{input.appType.enocean}}</a>
                     </div>
                     
                     <!-- dashboard etc -->
