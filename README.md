@@ -2,8 +2,9 @@ SmartHome UI
 ===============
 
 Angular app
-## v1.1.0
+## v1.2.0
 #### New features
+- Enhanced display on mobile devices and tablets.
 - Backup and restore.
 - Rating of the Apps.
 - Improved modal windows and dropdowns.

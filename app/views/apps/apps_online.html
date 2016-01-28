@@ -12,7 +12,7 @@
                     <span ng-if="_.isEmpty(dataHolder.onlineModules.filter)">{{_t('all_apps')}}</span>
                 </a>
             </div>
-            <div class="input-group hide-on-mobile_">
+            <div class="input-group">
                 <input type="text" ng-model="q" class="form-control form-search" value="{{q}}">
                 <span class="input-group-addon"><i class="fa fa-search"></i></span> 
             </div>
@@ -21,8 +21,12 @@
         <div class="page-navi" ng-if="naviExpanded.appsCategories">
             <div class="page-navi-in">
                 <ul>
-                    <li class="page-cat-0" ng-class="_.isEmpty(dataHolder.onlineModules.filter) == true ? 'active': ''"><a href="" ng-click="setFilter()"><i class="fa fa-check-circle-o"></i> {{_t('all_apps')}}</a></li>
-                    <li class="page-cat-0" ng-class="dataHolder.onlineModules.filter.featured == true ? 'active': ''"><a href="" ng-click="setFilter({featured: true})"><i class="fa fa-thumbs-o-up"></i> {{_t('featured_apps')}}</a></li>
+                    <li class="page-cat-0" ng-class="_.isEmpty(dataHolder.onlineModules.filter) == true ? 'active': ''">
+                        <a href="" ng-click="setFilter()"><i class="fa fa-check-circle-o"></i> {{_t('all_apps')}} <span class="page-navi-icon"><i class="fa fa-chevron-right"></i></span></a>
+                    </li>
+                    <li class="page-cat-0" ng-class="dataHolder.onlineModules.filter.featured == true ? 'active': ''">
+                        <a href="" ng-click="setFilter({featured: true})"><i class="fa fa-thumbs-o-up"></i> {{_t('featured_apps')}}</a> <span class="page-navi-icon"><i class="fa fa-chevron-right"></i></span>
+                    </li>
                     <li class="page-cat-{{v.id}}" ng-repeat="v in dataHolder.modules.categories" ng-if="dataHolder.modules.cats.indexOf(v.id) > -1" ng-class="dataHolder.onlineModules.filter.category == v.id ? 'active': ''">
                         <a href="" ng-click="setFilter({category: v.id})" ng-switch="v.id">
                              <i class="fa {{v.id|getAppCategoryIcon}}"></i>
