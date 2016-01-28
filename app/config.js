@@ -40,7 +40,8 @@ var config_data = {
             'restore': 'ZAutomation/api/v1/restore',
             'tokens': 'ZAutomation/api/v1/modules/tokens',
             'password_reset': 'ZAutomation/api/v1/auth/forgotten',
-            'remote_id': 'ZAutomation/api/v1/system/remote-id'
+            'remote_id': 'ZAutomation/api/v1/system/remote-id',
+            'firmwareupdate': 'ZAutomation/api/v1/system/firmwareupdate'
         },
         // List of image pathes
         'img': {

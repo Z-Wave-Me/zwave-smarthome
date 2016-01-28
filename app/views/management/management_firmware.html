@@ -18,23 +18,24 @@
         </fieldset>
         <fieldset class="submit-entry">
             <button type="button" class="btn btn-submit" 
-                    ng-click="handleModal('firmwareUpdateModal', $event)">
+                    ng-click="setAccess('?allow_access=1&timeout=120');handleModal('firmwareUpdateModal', $event)">
                 <i class="fa fa-level-up"></i> <span class="btn-name">{{_t('update_to_latest')}}</span>
             </button>
 
         </fieldset>
-
+ 
     </form>
 
     <!-- firmwareUpdateModal -->
-    <div id="firmwareUpdateModal" class="appmodal appmodal-100" ng-if="modalArr.firmwareUpdateModal">
+    <div id="firmwareUpdateModal" class="appmodal appmodal-100" ng-if="modalArr.firmwareUpdateModal && firmwareUpdate.show">
         <div class="appmodal-in">
             <div class="appmodal-header">
-                <span class="appmodal-close" ng-click="handleModal('firmwareUpdateModal', $event)"><i class="fa fa-times"></i></span>
+                <span class="appmodal-close" ng-click="setAccess('?allow_access=0');handleModal('firmwareUpdateModal', $event)"><i class="fa fa-times"></i></span>
                 <h3>{{_t('firmware_update')}}</h3>
             </div>
             <div class="appmodal-body text-center">
-                <iframe ng-src="{{firmwareUpdateUrl}}" height="600" style="width: 100%; "></iframe> 
+               <bb-alert alert="firmwareUpdate.alert"></bb-alert>
+                <iframe ng-src="{{firmwareUpdate.url}}" height="600" style="width: 100%;" ng-if="firmwareUpdate.loaded"></iframe> 
             </div>
         </div>
     </div>

@@ -6,7 +6,7 @@
 /**
  * Management controller
  */
-myAppController.controller('ManagementController', function($scope, $window, $location, $timeout, $interval, $sce, $cookies, dataFactory, dataService, myCache) {
+myAppController.controller('ManagementController', function($scope, $interval, dataFactory, dataService, myCache) {
     //Set elements to expand/collapse
     angular.copy({
         user: false,
@@ -395,8 +395,32 @@ myAppController.controller('ManagementLicenceController', function($scope, dataF
 /**
  * Firmware update controller
  */
-myAppController.controller('ManagementFirmwareController', function($scope, $sce, dataFactory) {
+myAppController.controller('ManagementFirmwareController', function($scope, $sce, $timeout,dataFactory) {
     $scope.firmwareUpdateUrl = $sce.trustAsResourceUrl('http://' + $scope.hostName + ':8084/cgi-bin/main.cgi');
+    $scope.firmwareUpdate = {
+        show: false,
+        loaded: false,
+        alert: {message: false, status: 'is-hidden', icon: false},
+        url: $sce.trustAsResourceUrl('http://' + $scope.hostName + ':8084/cgi-bin/main.cgi')
+    };
+    /**
+     * Load razberry latest version
+     */
+    $scope.setAccess = function(param) {
+        $scope.firmwareUpdate.alert = {message: $scope._t('loading'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
+        dataFactory.getApi('firmwareupdate',param,true).then(function(response) {
+            $scope.firmwareUpdate.show = true;
+             $timeout(function () {
+                 $scope.firmwareUpdate.loaded = true;
+                 $scope.firmwareUpdate.alert = {message: false};
+            }, 5000);
+            
+        }, function(error) {
+           alertify.alert($scope._t('error_load_data'));
+            
+        });
+    };
+    //$scope.loadRazLatest();
     /**
      * Load razberry latest version
      */
@@ -442,7 +466,7 @@ myAppController.controller('ManagementRestoreController', function($scope, dataF
 /**
  * App Store controller
  */
-myAppController.controller('ManagementAppStoreController', function($scope, $routeParams, $filter, $location, dataFactory, dataService, myCache) {
+myAppController.controller('ManagementAppStoreController', function($scope,dataFactory, dataService) {
     $scope.appStore = {
         input: {
             token: ''
