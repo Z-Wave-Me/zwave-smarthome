@@ -1,15 +1,13 @@
 /* Login
 -------------------------------------------------- */
 #page_login, #page_password,#page_passwordforgot,#page_passwordreset{ 
-    #header{
+    #header,#footer{
         display: none !important; 
     }
-    .container {
-        max-width: 500px;
-    }
+    
     .login-lang{
         text-align: right;
-        margin-bottom: 10px;
+        margin-bottom: $spacing;
     }
 
 }

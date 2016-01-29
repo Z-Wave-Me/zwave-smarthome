@@ -1,5 +1,39 @@
 /* Button
 -------------------------------------------------- */
+.btn-goup-block{
+    display: table;
+    width: 100%;
+    margin: 0 0 $spacing 0;
+
+
+}
+
+.btn-goup-1{
+    .btn{
+        width: 100%;
+    }
+}
+.btn-goup-2{
+    .btn{
+        width: 50%;
+    }
+}
+.btn-goup-3{
+    .btn{
+        width: 33.33333%;
+    }
+}
+
+.btn-default {
+    color: $btn-color;
+    background-color: $btn-bcg-color;
+    border-color: $btn-border-color;
+}
+
+.btn-default.active {
+    background-color:$btn-active-bcg-color;
+}
+
 .btn,.btn-device-admin {
     font-size: $app-btn-font-size;
     .fa{
@@ -8,11 +42,61 @@
 }
 
 .btn-submit{
-    color: #fff;
-    border: solid 1px green;
-    background-color: #629862;
-    //padding: 6px 50px;
+    color: $btn-submit-color;
+    border: solid 1px $app-brand-success;
+    background-color: darken($app-brand-success, 20%);
+    &:hover,&:focus {
+        background-color: $app-brand-success;
+    }
 }
-.btn-submit:hover {
-    background-color: #80AD80;
+
+.btn-small{
+    font-size: $app-btn-small-font-size;
+    .fa{
+        font-size: $app-btn-small-icon-size;
+    }
+}
+
+.btn-tag{
+    display: block;
+    position: relative;
+    text-align: left;
+    font-size: $app-btn-tag-font-size;
+    margin: 0 0 $spacing 0;
+    .fa{
+        position: absolute;
+        top: $spacing-half;
+        right: $spacing;
+       font-size: $app-btn-tag-icon-size;
+    }
+}
+
+
+
+/* Button tabs
+-------------------------------------------------- */
+.btn-goup-tabs{
+    display: table;
+    width: 100%;
+    margin: 0 0 $spacing 0;
+    .btn{
+        padding: $spacing;
+        font-size: $tab-font-size;
+        background-color: $tabs-bcg-color;
+        &.active {
+            background-color: $tabs-active-bcg-color;
+        }
+        .fa{
+            font-size: $tab-icon-size;
+            color: $tabs-icon-color;
+        }
+    }
+    .active .fa{
+        color: $tabs-icon-active-color;
+    }
+}
+.btn-tabs-3{
+    .btn{
+        width: 33.33333%;
+    }
 }

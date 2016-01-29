@@ -1,0 +1,57 @@
+/* Images
+-------------------------------------------------- */
+img {
+    vertical-align: middle;
+}
+.img-circle{
+    border-radius: 50%;
+}
+.report-img{
+    max-width: $report-img;
+    max-height: $report-img;
+}
+.navi-img{
+    max-width: $navi-img;
+    max-height: $navi-img;
+    @include appBorderRadius(50%);
+}
+
+.widget-preview-img{
+    max-width: $widget-img;
+    max-height: $widget-img;
+    border: solid 4px $widget-img-border-color;
+    @include appBorderRadius(50%);
+}
+
+.app-image-detail{
+     max-width: $app-detail-img;
+    max-height: $app-detail-img;
+    @include appBorderRadius(50%);
+}
+
+.include-image-detail{
+   max-width: $include-detail-img;
+    max-height: $include-detail-img;
+    //@include appBorderRadius(50%);
+}
+.product-img{
+    max-width: $product-img;
+    max-height: $product-img;
+}
+.room-image-preview{
+    border: solid 6px $room-border-color;
+    width: $room-img-preview;
+    height:$room-img-preview;
+}
+
+.has-device-false{
+    .room-image-preview{
+        opacity: 0.5;
+    }
+} 
+.room-img-upload{
+    display: inline-block;
+    max-width: $room-img-upload;
+    max-height: $room-img-upload;
+    margin: $spacing-half;
+}

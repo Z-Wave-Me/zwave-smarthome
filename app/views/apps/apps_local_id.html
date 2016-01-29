@@ -1,44 +1,40 @@
 <!-- AppLocalDetailController -->
 <div ng-controller="AppLocalDetailController">
-     <bb-loader></bb-loader>
-     <div class="app-border app-gradient app-shadow app-detail-header">
-        <div class="app-detail-header-in">
-            <div class="app-detail-img">
-                <img class="app-image-detail" ng-src="{{moduleMediaUrl + module.moduleName + '/' + module.icon}}" ng-if="module.icon" alt="{{module.defaults.title}}" />
-                <img class="app-image-detail" ng-src="storage/img/placeholder-img.png" ng-if="!module.icon" alt="{{module.defaults.title}}" />
+    <bb-loader></bb-loader>
+        <div class="form form-inline form-page">
+            <div class="fieldset clearfix">
+              
+                    <div class="app-detail-img">
+                        <img class="app-image-detail" ng-src="{{moduleMediaUrl + module.moduleName + '/' + module.icon}}" ng-if="module.icon" alt="{{module.defaults.title}}" />
+                        <img class="app-image-detail" ng-src="storage/img/placeholder-img.png" ng-if="!module.icon" alt="{{module.defaults.title}}" />
+                    </div>
+
+                    <div class="app-detail-body">
+                        <h2 ng-bind="module.defaults.title"></h2>
+                        <p class="app-detail-perex" ng-bind-html="module.defaults.description | toTrusted"></p>
+                        <p class="app-detail-list" ng-show="module.dependencies.length > 0">
+                            <i class="fa fa-sitemap"></i> <strong>{{_t('lb_instance_of')}}:</strong> <span ng-repeat="i in module.dependencies">{{i}}, </span>
+                        </p>
+                        <p class="app-detail-list" ng-show="module.category">
+                            <i class="fa fa-list"></i> <span ng-bind="categoryName"></span>
+                        </p>
+                        <p class="app-detail-list" ng-show="module.author">
+                            <i class="fa fa-user"></i>
+                            <span ng-show="!module.homepage" ng-bind="module.author"></span>
+                            <a ng-href="{{module.homepage}}" ng-show="module.homepage" ng-bind="module.author"></a> 
+                        </p>
+                        <p class="app-detail-list" ng-show="module.version">
+                            <i class="fa fa-info-circle"></i> <span class="app-version" ng-bind="module.version"></span>
+                            <span class="label"
+                                  ng-class="module.maturity == 'stable' ? 'label-success' : 'label-warning'"
+                                  >{{module.maturity}}</span>
+                        </p>
+                    </div>
             </div>
-        
-        <div class="app-detail-body">
-            <h2 ng-bind="module.defaults.title"></h2>
-            <p class="app-detail-perex" ng-bind-html="module.defaults.description|toTrusted"></p>
-            <p class="app-detail-list" ng-show="module.dependencies.length > 0">
-                <i class="fa fa-sitemap fa-lg"></i> <strong>{{_t('lb_instance_of')}}:</strong> <span ng-repeat="i in module.dependencies">{{i}}, </span>
-            </p>
-            <p class="app-detail-list" ng-show="module.category">
-                <i class="fa fa-list fa-lg"></i> <span ng-bind="categoryName"></span>
-            </p>
-            <p class="app-detail-list" ng-show="module.author">
-                <i class="fa fa-user fa-lg"></i>
-                    <span ng-show="!module.homepage" ng-bind="module.author"></span>
-                    <a ng-href="{{module.homepage}}" ng-show="module.homepage" ng-bind="module.author"></a> 
-            </p>
-            <p class="app-detail-list" ng-show="module.version">
-               <i class="fa fa-info-circle fa-lg"></i> <span class="app-version" ng-bind="module.version"></span>
-                    <span class="label"
-                          ng-class="module.maturity == 'stable' ? 'label-success':'label-warning'"
-                          >{{module.maturity}}</span>
-            </p>
-             <!-- <div class="app-detail-control">
-                 <a href="#apps/online/{{module.id}}" class="btn btn-default" ng-if="isOnline && isOnline.version != module.version">
-                        <i class="fa fa-download fa-lg text-info"></i> <span class="btn-name_">{{_t('lb_app_new_version')}} ({{isOnline.version}})</span>
-                    </a>
-                  </div> --> 
+            <div class="fieldset submit-entry">
+                <button type="button" class="btn btn-default" bb-go-back><i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span></button>
+                <a class="btn btn-submit" href="#module/post/{{module.id}}" ><i class="fa fa-plus"></i> <span class="btn-name">{{_t('lb_add_app')}}</span></a>
+            </div>
         </div>
-      </div>
-    </div>
-     <div class="fieldset submit-entry">
-        <button type="button" class="btn btn-default" bb-go-back><i class="fa fa-times  text-danger"></i> <span ng-bind="_t('lb_cancel')"></span></button>
-          <a class="btn btn-submit" href="#module/post/{{module.id}}" ><i class="fa fa-plus"></i> <span class="btn-name_">{{_t('lb_add_app')}}</span></a>
-     </div>
 
 </div> <!-- /ng-controller --> 

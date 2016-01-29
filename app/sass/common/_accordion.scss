@@ -1,0 +1,26 @@
+/* Accordion
+-------------------------------------------------- */
+.accordion-entry{
+    margin-bottom: $spacing;
+    border-bottom: dotted 1px $accordion-border-color;
+    color: $accordion-color;
+}
+.accordion-entry-title{
+    font-size: $accordion-heading-font-size; 
+    position: relative;
+    vertical-align: middle;
+    margin: $spacing 0;
+    color: $accordion-heading-color;
+    cursor: pointer;
+    .fa{
+        color: $accordion-icon-color;    
+        padding-right: $spacing;
+             font-size: $accordion-icon-size;  
+        }
+    .accordion-arrow{
+        position: absolute;
+        right: 1%;
+        display: inline-block;
+        padding:0;
+    }
+}

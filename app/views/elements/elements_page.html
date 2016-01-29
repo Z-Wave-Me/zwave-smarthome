@@ -3,17 +3,15 @@
     <div ng-if="!dataHolder.devices.show" ng-include="'app/views/elements/no_elements.html'"></div>
     <div ng-if="dataHolder.devices.show">
     <div class="page-control form-inline">
-        <div class="btn-group">
+        <div class="btn-group btn-goup-block btn-goup-2">
             <button class="btn btn-default" ng-click="expandNavi('elCategories', $event)">
-                <i class="fa fa-filter text-success"></i> 
-                <span ng-if="dataHolder.devices.filter.deviceType">{{_t(dataHolder.devices.filter.deviceType) | cutText:true:30}}</span>
-                <span ng-if="dataHolder.devices.filter.tag">{{dataHolder.devices.filter.tag|cutText:true:30}}</span>
-                <span ng-if="_.isEmpty(dataHolder.devices.filter)">{{_t('all_elements')}}</span>
+                <i class="fa fa-filter"></i> 
+                <span class="btn-name" ng-if="dataHolder.devices.filter.deviceType">{{_t(dataHolder.devices.filter.deviceType) | cutText:true:15}}</span>
+                <span class="btn-name" ng-if="dataHolder.devices.filter.tag">{{dataHolder.devices.filter.tag|cutText:true:15}}</span>
+                <span class="btn-name" ng-if="_.isEmpty(dataHolder.devices.filter)">{{_t('all_elements')|cutText:true:15}}</span>
             </button>
-        </div>
-        <div class="btn-group">
             <button class="btn btn-default" ng-click="expandNavi('elOrderBy', $event)">
-                <i class="fa fa-sort-alpha-asc text-success"></i> {{_t(dataHolder.devices.orderBy) | cutText:true:30}}
+                <i class="fa fa-sort-alpha-asc"></i> <span class="btn-name">{{_t(dataHolder.devices.orderBy) | cutText:true:15}}</span>
             </button>
             <div class="app-dropdown" ng-if="naviExpanded.elOrderBy">
                 <p class="app-dropdown-title">{{_t('sortby')}}:</p>
@@ -26,7 +24,7 @@
             </div>
         </div>
 
-        <div class="input-group search-form hide-on-mobile_">
+        <div class="input-group search-group">
             <input type="text" ng-model="q" class="form-control" value="{{q}}">
             <span class="input-group-addon"><i class="fa fa-search"></i></span> 
         </div>
@@ -46,7 +44,11 @@
                 </li>
             </ul>
             <div class="page-navi-content">
-                 {{_t('lb_tags')}}: <a class="page-navi-tag" href=""  ng-repeat="v in dataHolder.devices.tags" ng-click="setFilter({tag: v})" ng-class="dataHolder.devices.filter.tag == v ? 'active': ''">
+                <p class="page-navi-title"> {{_t('lb_tags')}}</p>
+                <a class="btn btn-default btn-tag" href="" 
+                        ng-repeat="v in dataHolder.devices.tags" 
+                        ng-click="setFilter({tag: v})" 
+                        ng-class="dataHolder.devices.filter.tag == v ? 'active': ''">
                      {{_t(v) | cutText:true:30}}
                  </a>
             </div>

@@ -81,7 +81,7 @@
             <div id="main_navigation_wrap">
                 <div id="main_navigation" class="container">
                     <div id="navigation_left">
-                        <a href="#home" title="{{_t('nav_home')}}">
+                        <a class="nav-logo" href="#home" title="{{_t('nav_home')}}">
                             <img ng-src="{{getAppLogo()}}" id="header_logo" alt="App logo" />
                         </a>
                         <span class="divider-vertical"></span>
@@ -93,48 +93,44 @@
                         <span class="divider-vertical"></span>
                         <a href="#events" title="{{_t('nav_events')}}" ng-class="isActive('events')"><i class="fa fa-calendar"></i></a>
                         <span class="divider-vertical"></span> 
-                        &nbsp;<span id="update_time_tick" ng-click="reloadData()"></span>
-                        <span class="mobile-icon" ng-if="isMobile"><i class="fa fa-mobile"></i></span>
+                        &nbsp;<span class="update-time-tick" ng-click="reloadData()"></span>
                     </div>
                     <div id="navigation_right">
                         <span class="divider-vertical"></span> 
-                        <a id="navi_settings" href="" ng-click="expandNavi('mainNav',$event)" ng-class="naviExpanded.mainNav ? 'active':''"><i class="fa fa-cog"></i></a>
+                        <a id="navi_settings" href="" ng-click="expandNavi('mainNav', $event)" ng-class="naviExpanded.mainNav ? 'active' : ''"><i class="fa fa-cog"></i></a>
                     </div>
                 </div><!-- /#navigation --> 
             </div><!-- /#main_navigation_wrap --> 
             <div id="sub_navigation" ng-if="naviExpanded.mainNav">
                 <div id="sub_navigation_in">
                     <div class="container">
-                    <ul>
-                        <!-- Apps -->
-                        <li class="subnavi-apps" ng-class="isActive('apps')" ng-if="elementAccess(cfg.role_access.apps)">
-                            <a href="#apps/local"><i class="fa fa-cubes"></i> {{_t('nav_apps')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                        </li>
-                        <!-- Devices -->
-                        <li class="subnavi-devices" ng-class="isActive('devices')" ng-if="elementAccess(cfg.role_access.devices)">
-                            <a href="#devices"><i class="fa fa-cogs"></i> {{_t('nav_devices')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                        </li>
-                        <!-- Config rooms -->
-                        <li class="subnavi-config-rooms" ng-class="isActive('config-rooms')" ng-if="elementAccess(cfg.role_access.config_rooms)">
-                            <a href="#config-rooms"><i class="fa fa-building-o"></i> {{_t('nav_rooms')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                        </li>
-                        <!-- My access -->
-                        <li class="subnavi-myaccess" ng-class="isActive('myaccess')" ng-if="elementAccess(cfg.role_access.myaccess)">
-                            <a href="#myaccess"><i class="fa fa-user"></i> {{_t('nav_myaccess')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                        </li>
-                        <!-- Management -->
-                        <li class="subnavi-admin" ng-class="isActive('admin')" ng-if="elementAccess(cfg.role_access.admin)">
-                            <a href="#admin"><i class="fa fa-wrench"></i> {{_t('management')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                        </li>
-                        <!-- Logout -->
-                        <li class="subnavi-logout" ng-if="elementAccess(null, isMobile)">
-                            <a href="#logout"><i class="fa fa-sign-out"></i> {{_t('nav_logout')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                        </li>
-                    </ul>
-                    <!--<div id="sub_navigation_close">
-                        <a class="btn btn-default"  href="" ng-click="expandNavi('mainNav')"><i class="fa fa-chevron-up text-danger"></i> {{_t('collapse')}}</a>
-                    </div>--> 
-                 </div>
+                        <ul>
+                            <!-- Apps -->
+                            <li class="subnavi-apps" ng-class="isActive('apps')" ng-if="elementAccess(cfg.role_access.apps)">
+                                <a href="#apps/local"><i class="fa fa-cubes"></i> {{_t('nav_apps')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                            </li>
+                            <!-- Devices -->
+                            <li class="subnavi-devices" ng-class="isActive('devices')" ng-if="elementAccess(cfg.role_access.devices)">
+                                <a href="#devices"><i class="fa fa-cogs"></i> {{_t('nav_devices')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                            </li>
+                            <!-- Config rooms -->
+                            <li class="subnavi-config-rooms" ng-class="isActive('config-rooms')" ng-if="elementAccess(cfg.role_access.config_rooms)">
+                                <a href="#config-rooms"><i class="fa fa-building-o"></i> {{_t('nav_rooms')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                            </li>
+                            <!-- My access -->
+                            <li class="subnavi-myaccess" ng-class="isActive('myaccess')" ng-if="elementAccess(cfg.role_access.myaccess)">
+                                <a href="#myaccess"><i class="fa fa-user"></i> {{_t('nav_myaccess')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                            </li>
+                            <!-- Management -->
+                            <li class="subnavi-admin" ng-class="isActive('admin')" ng-if="elementAccess(cfg.role_access.admin)">
+                                <a href="#admin"><i class="fa fa-wrench"></i> {{_t('management')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                            </li>
+                            <!-- Logout -->
+                            <li class="subnavi-logout" ng-if="elementAccess(null, isMobile)">
+                                <a href="#logout"><i class="fa fa-sign-out"></i> {{_t('nav_logout')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                            </li>
+                        </ul>
+                    </div>
                 </div><!-- /#subnavigation_in --> 
             </div><!-- /#subnavigation --> 
         </div><!-- /#header --> 
@@ -142,12 +138,12 @@
         <div id="main_content" class="container" ng-view></div>
         <div class="clearfix"></div>
 
-        <div id="mobile_footer" ng-if="isMobile">
-            <div class="navbar navbar-default navbar-fixed-bottom">
+        <div id="footer">
+            <div id="footer_in">
                 <div class="container">
-                    &nbsp;
+                    <span class="update-time-tick" ng-click="reloadData()"></span>
                 </div>
-            </div>
+            </div>         
         </div>
     </body>
 </html>

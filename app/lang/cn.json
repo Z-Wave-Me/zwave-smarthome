@@ -1,4 +1,7 @@
 {
+        "secure_login": "Secure login",
+        "unsecure_login": "Unsecure login",
+        "remember_me": "Remember me",
         "rate_app": "评价该软件",
         "already_rated": "已经评价该软件",
         "description": "描述",

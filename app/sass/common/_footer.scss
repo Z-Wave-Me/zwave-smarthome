@@ -1,25 +1,22 @@
 /* Footer
 -------------------------------------------------- */
-#mobile_footer {
-     .navbar{
-        z-index: 1020 !important;
-    }
-   
-    
-}
-#footer,#mobile_footer {
-    position: relative;
+#footer{
+    position:fixed;
+    left:0px;
+    bottom:0px;
+    width:100%;
     text-align: center;
-    height: 60px;
-    .navbar{
-        border-top: solid 4px $footer-border-color;
-         background-color: $footer-bcg-color;
+    //height: $footer-h;
+     border-top: solid 1px $footer-border-color;
+    #footer_in{
+        background-color: $footer-bcg-color;
+        height: $footer-h;
+        line-height: $footer-h;
+        .update-time-tick{
+            display: none;
+        }
     }
-    .container{
-        margin-top: 10px;
-    }
-    
-}
+    a{}
+    a:hover{}
 
-#footer a{}
-#footer a:hover{}
+}

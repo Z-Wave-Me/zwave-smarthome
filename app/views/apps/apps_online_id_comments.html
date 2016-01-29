@@ -1,10 +1,14 @@
 <!-- App online comments -->
-<h2 class="admin-entry-title" ng-click="expandElement('appcomments')">
+<h2 class="accordion-entry-title" ng-click="expandElement('appcomments')">
     <i class="fa fa-comments"></i> {{_t('comments')}} ({{comments.all.length}})
-    <i class="fa subnavi-arrow" ng-class="expand.appcomments ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+    <i class="fa accordion-arrow" ng-class="expand.appcomments ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
 </h2>
-<div class="admin-entry-ctrl" ng-if="expand.appcomments">
-    <h3 class="text-right clickable" ng-click="expandElement('appcommentadd')"><i class="fa fa-plus text-success"></i> {{_t('add_comment')}}</h3>
+<div class="accordion-entry-ctrl" ng-if="expand.appcomments">
+    <p class="text-right clickable">
+        <button type="button" class="btn btn-default" ng-click="expandElement('appcommentadd')">
+            <i class="fa fa-plus text-success"></i> <span class="btn-name">{{_t('add_comment')}}</span>
+        </button>
+    </p>
     <form name="form_comment" id="form_profile" class="form form-page" ng-if="expand.appcommentadd" ng-submit="addComment(form_comment, comments.model)" novalidate>
         <fieldset>
             <!-- content -->
@@ -21,8 +25,12 @@
                <!-- <bb-help-text trans="_t('Info text comes here..')"></bb-help-text> -->
         </fieldset>
         <fieldset class="submit-entry">
-            <button type="button" class="btn btn-default" ng-click="expandElement('appcommentadd')"><i class="fa fa-times  text-danger"></i> <span ng-bind="_t('lb_cancel')"></span></button>
-            <button type="submit" class="btn btn-submit" ng-disabled="form_comment.$invalid"><i class="fa fa-check"></i> <span ng-bind="_t('lb_submit')"></span></button>
+            <button type="button" class="btn btn-default" ng-click="expandElement('appcommentadd')">
+                <i class="fa fa-times  text-danger"></i> <span class="btn-name">{{_t('lb_cancel')}}</span>
+            </button>
+            <button type="submit" class="btn btn-submit" ng-disabled="form_comment.$invalid">
+                <i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_submit')}}</span>
+            </button>
         </fieldset>
     </form>
     <div class="form form-inline form-page" ng-if="!expand.appcommentadd">
@@ -32,9 +40,6 @@
                 <div class="comment-header"><i class="fa fa-clock-o"></i> {{v.created_at}}  | <i class="fa" ng-class="v.type == 1 ? 'fa-user-plus text-success' : 'fa-user'"></i> {{v.name}}</div>
                 <div class="comment-body">{{v.content}}</div>
             </div>
-        </div>
-        <div class="fieldset submit-entry">
-            <button type="button" class="btn btn-default" ng-click="expandElement('appcomments')"><i class="fa fa-times text-danger"></i> <span ng-bind="_t('lb_close')"></span></button>
         </div>
     </div>
 </div>

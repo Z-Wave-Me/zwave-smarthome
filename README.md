@@ -2,11 +2,15 @@ SmartHome UI
 ===============
 
 Angular app
-## v1.1.0
+## v1.2.0
 #### New features
+- Enhanced display on mobile devices and tablets.
+- Added the ability to customize the device from Devices/Manage
 - Backup and restore.
+- Redirect to the APP detail after module instalation.
 - Rating of the Apps.
-- Improved modal windows and dropdowns
+- Improved modal windows and dropdowns.
+- Remember me checkbox on the login page.
 - Sorting Elements by title, newest....
 - Comments for On-line Apps.
 - Counter for downloaded On-line Apps.
@@ -16,8 +20,10 @@ Angular app
 #### Changes
 - Elements are completely refactored.
 - Replaced Bootstrap modal windows and dropdowns with Angular.
+- Replaced http protocol with https for external APIs.
 
 #### Fixes
+- Cannot add email address to user #90
 - Climate Control widget displays the correct values.
 - List elements error #82.
 - Can not install user module from store #87

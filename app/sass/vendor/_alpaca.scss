@@ -684,3 +684,15 @@ legend.alpaca-container-label
 .alpaca-field-tablerow label.control-label {
     display: none;
 }
+
+/** ************************************** **/
+/** Time picker                            **/
+/** ************************************** **/
+
+div.timepicker-picker > table.table-condensed {
+    margin: auto;
+}
+
+div.timepicker-picker > table.table-condensed tr td {
+    text-align: center;
+}

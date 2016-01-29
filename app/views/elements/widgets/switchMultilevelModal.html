@@ -7,11 +7,9 @@
         </div>
         <div class="appmodal-body text-center">
             <bb-alert alert="widgetSwitchMultilevel.alert"></bb-alert>
-            <table>
-                <tbody>
-                    <tr>
-                        <td>
-                            <!--<myknob knob-data="v.level" knob-options="knobopt"></myknob> -->
+            <div class="app-row app-row-knob clearfix">
+                <div class="knob-col knob-ctrl">
+                     <!--<myknob knob-data="v.level" knob-options="knobopt"></myknob> -->
                             <input 
                                 type="text" 
                                 value="{{widgetSwitchMultilevel.find.metrics.level|getMaxLevel:widgetSwitchMultilevel.find.probeType}}" 
@@ -36,36 +34,38 @@
                                 knob-data="widgetSwitchMultilevel.find.metrics.level" 
                                 knob-options="knobopt" 
                                 ng-model="widgetSwitchMultilevel.find.metrics.level" myknob ng-if="cfg.knob_255.indexOf(widgetSwitchMultilevel.find.probeType) === -1" />
-                        </td>
-                        <td>
-                            <button class="btn btn-primary"
+                </div>
+                <div class="knob-col knob-btn">
+                    <p>
+                     <button class="btn btn-primary"
                                     ng-click="setExactCmd(widgetSwitchMultilevel.find, '+')"
-                                    ><i class="fa fa-angle-up fa-lg"></i>
+                                    ><i class="fa fa-angle-up"></i>
                             </button>&nbsp;
                             <button class="btn btn-info"
                                     ng-click="setExactCmd(widgetSwitchMultilevel.find, widgetSwitchMultilevel.find.minMax.max)"
-                                    ><i class="fa fa-angle-double-up fa-lg"></i>
-                            </button><br /><br />
+                                    ><i class="fa fa-angle-double-up"></i>
+                            </button>
+                    </p>
+                     <p>
                             <button class="btn btn-primary"
                                     ng-click="setExactCmd(widgetSwitchMultilevel.find, '-')"
-                                    ><i class="fa fa-angle-down fa-lg"></i>
+                                    ><i class="fa fa-angle-down"></i>
                             </button>&nbsp;
                             <button class="btn btn-info"
                                     ng-click="setExactCmd(widgetSwitchMultilevel.find, widgetSwitchMultilevel.find.minMax.min)"
                                     >
-                                <i class="fa fa-angle-double-down fa-lg"></i>
+                                <i class="fa fa-angle-double-down"></i>
                             </button>
-                        </td>
-                        <td>
+                     </p>
+                      <p>
                             <button class="btn btn-info"
                                     ng-click="setExactCmd(widgetSwitchMultilevel.find, widgetSwitchMultilevel.find.minMax.max)"
                                     ng-bind="_t('lb_full')">
                             </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+                     </p>
+                </div>
+            </div>
+         </div>
         <!--<div class="appmodal-footer">
             <button type="button" class="btn btn-default" ng-click="handleModal('switchMultilevelModal', $event)"><i class="fa fa-times text-danger"></i> {{_t('lb_close')}}</button>
         </div>-->

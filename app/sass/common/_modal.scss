@@ -1,47 +1,24 @@
 /* Modal
 -------------------------------------------------- */
-.modal-tooltip {
-    width: 40%; /* or whatever you wish */
-}
-.modal-vertical-centered {
-    position: fixed;
-    top: 15% !important;
-}
-
-.modal-vertical-centered {
-    position: fixed;
-    top: 15% !important;
-}
-.modal-firmware-iframe{
-    width: 100%;
-    //height: 100%;
-    padding:0;
-    .modal-content {
-        height: 100%;
-        border-radius: 0;
-    }
-}
-
-/* Custom Modal
--------------------------------------------------- */
 .appmodal { 
     position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: 1980;
+    z-index: $zindex-modal;
      overflow: show;
+     color: $modal-color;
     .appmodal-in{
-        width: 50%;
+        width: $modal-w;
         position: relative;
-        margin: 10% auto;
-       background-color: #fff;
+        margin: $modal-margin;
+       background-color: $modal-bcg-color;
     }
 }
 .appmodal-100 { 
     .appmodal-in{
-        width: 99%;
+        width: $modal-full-w !important;
     }
 }
 .appmodal-90 { 
@@ -50,7 +27,7 @@
     }
 }
 #modalHistory{
-    z-index: 1981;
+    z-index: $zindex-modal + 1;
 }
 
 .appmodal:before {
@@ -61,22 +38,22 @@
     left: 0;
     width: 100%;
     height: 100%;
-    //background-color: rgba(0,0,0,0.1);
-     background: rgba(37, 37, 37, 0.5);
+    background-color: $app-overlay-bcg-color;
 }
 .appmodal-header,.appmodal-body,.appmodal-footer{
     padding: 10px 15px;
 }
 
 .appmodal-header{
-   border-bottom: $app-border-color solid 1px;
+   border-bottom: solid 1px $modal-border-color;
   .appmodal-close{
-        color: lighten($app-body-color, 50%);
+        color: $modal-icon-color;
+        font-size: $modal-close-size;
         display: block;
         text-decoration: none;
         position: absolute; 
-        right: 15px; 
-        top: 7px;
+        right: $spacing; 
+        top:  0;
         z-index: 2;
         cursor: pointer;
         span{
@@ -84,14 +61,23 @@
         }
     }
     h3{
+        font-size: $modal-heading-font-size;
         margin: 0;
-        font-weight: bold;
+        color: $modal-heading-color;
     }
 }
 
 .appmodal-body{}
 
 .appmodal-footer{
-  border-top: $app-border-color solid 1px;  
+  border-top: solid 1px $modal-border-color;  
   text-align: right;
+}
+
+/* Modal with knob
+-------------------------------------------------- */
+.app-row-knob{
+    .knob-col{
+       padding: $spacing;
+   }
 }

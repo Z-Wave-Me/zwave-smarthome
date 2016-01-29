@@ -13,14 +13,14 @@
                     <p><strong>{{_t('start_removal')}} </strong></p>
                     <button class="btn btn-default btn-lg"
                             ng-click="runZwaveCmd('controller.RemoveNodeFromNetwork(1)')"
-                            ><i class="fa fa-play-circle fa-lg text-success"></i> {{_t('btn_exclusion_start')}}</button> 
+                            ><i class="fa fa-play-circle text-success"></i> {{_t('btn_exclusion_start')}}</button> 
                 </div>
                 <div class="exclude-device" ng-show="zWaveDevice.controllerState == 5">
                     <div class="alert alert-warning"><i class="fa fa-spinner fa-spin"></i> <strong>{{_t('confirm_exclusion')}}</strong></div>
                     <button 
                         class="btn btn-default btn-lg"
                         ng-click="runZwaveCmd('controller.RemoveNodeFromNetwork(0)')">
-                        <i class="fa fa-ban fa-lg text-danger"></i> {{_t('btn_exclusion_stop')}}</button>
+                        <i class="fa fa-ban text-danger"></i> {{_t('btn_exclusion_stop')}}</button>
                 </div>
             </div>
             <!-- RemoveNodeFromNetwork result --> 
@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="fieldset submit-entry">
-            <button type="button" class="btn btn-default" bb-go-back><i class="fa fa-times  text-danger"></i> <span ng-bind="_t('lb_cancel')"></span></button>
+            <button type="button" class="btn btn-default" bb-go-back><i class="fa fa-reply"></i> <span ng-bind="_t('lb_cancel')"></span></button>
             <!-- <a href="#zwave/devices" class="btn btn-info">{{_t('continue')}} <i class="fa fa-chevron-right"></i></a> --> 
         </div>
         <p>&nbsp;</p>
@@ -43,14 +43,14 @@
                     <button class="btn btn-default btn-lg"
                             ng-disabled_="[5, 6, 7, 20].indexOf(controllerState) > -1"
                             ng-show_="[1, 2, 3, 4].indexOf(controllerState) == -1"
-                            ng-click="zWaveDevice.removeNode = !zWaveDevice.removeNode" ><i class="fa fa-chain-broken fa-lg text-danger"></i> {{_t('broken_device')}}</button>
+                            ng-click="zWaveDevice.removeNode = !zWaveDevice.removeNode" ><i class="fa fa-chain-broken  text-danger"></i> {{_t('broken_device')}}</button>
                 </div>
                 <div class="exclude-device" ng-if="zWaveDevice.removeNode">
                     <div class="alert alert-warning"><i class="fa fa-info-circle"></i> {{_t('broken_device_war')}}</div>
 
                     <button class="btn btn-danger btn-lg"
                             ng-click="removeFailedNode('devices[' + zWaveDevice.id + '].RemoveFailedNode()')"
-                            ><i class="fa fa-exclamation-triangle fa-lg"></i> {{_t('remove_permanently')}}</button>
+                            ><i class="fa fa-exclamation-triangle "></i> {{_t('remove_permanently')}}</button>
 
                 </div>
             </div>
@@ -61,7 +61,7 @@
             </div>
         </div>
         <div class="fieldset submit-entry">
-            <button type="button" class="btn btn-default" bb-go-back><i class="fa fa-times text-danger"></i> <span ng-bind="_t('lb_cancel')"></span></button>
+            <button type="button" class="btn btn-default" bb-go-back><i class="fa fa-reply"></i> <span ng-bind="_t('lb_cancel')"></span></button>
         </div>
     </div>
     <div class="device-logo" ng-include="'app/views/zwave/zwave_nav.html'"></div>

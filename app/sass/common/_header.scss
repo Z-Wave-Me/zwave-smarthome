@@ -5,17 +5,18 @@
     top: 0;
     right: 0;
     left: 0;
-    z-index: 3000;
-    margin-bottom: 20px;
-    color: $header-color-secondary;
+    z-index: $zindex-header;
+    //margin-bottom: $spacing-double;
+    color: $header-color;
     font-size: $app-navi-font-size; 
     .container{
         padding: 0;
     }
     .divider-vertical {
+       // display: none;
         height: $header-h;
-        border-left: 1px solid darken($header-color-secondary, 10%);
-        border-right: 1px solid lighten($header-color-secondary, 15%);
+        border-left: 1px solid $header-delim-l-color;
+        border-right: 1px solid $header-delim-r-color;
     }
 
     .fa{
@@ -26,8 +27,8 @@
 /* Main navigation
 -------------------------------------------------- */
 #main_navigation_wrap{
-    background-color: $header-color-primary;
-    border-bottom: solid 4px $header-color-secondary;
+    background-color: $header-bcg-color;
+    border-bottom: solid 1px $header-border-color;
     height: $header-h;
 }
 #main_navigation{
@@ -36,24 +37,15 @@
     a{
         display: inline-block;
         padding: 0 15px;
-        color: $header-link-color;
+        color: $header-a-color;
         line-height: $header-h;
     }
     a:hover{
-        background-color: darken($header-color-secondary, 5%);
+        background-color: darken($header-a-active-color, 5%);
     }
     .active{
-        background-color:$header-color-secondary;
-        color: lighten($header-color-secondary, 10%);
-    }
-    #update_time_tick{
-        font-size: $app-body-font-size;
-        .fa{
-            font-size: $app-body-font-size; 
-        }
-    }
-    .fa-mobile{
-        font-size: $app-body-font-size;
+        background-color:$header-a-active-color;
+        color: lighten($header-a-active-color, 10%);
     }
 }
 #header_logo{
@@ -67,6 +59,14 @@
 #navigation_right{
     float: right;
 }
+ #navi_settings{
+        border-radius: 4px;
+        //border: solid 1px $header-border-color;
+        height: $header-icon-settings-h;
+        line-height: $header-icon-settings-h !important;
+        padding: 7px;
+        margin-right: 15px;
+    }
 .navi-time-link{
     cursor: pointer;
 }
@@ -76,68 +76,36 @@
 
 .mobile-icon{
     padding-left: 7px;
-    color: $header-link-color;
+    color: $header-a-color;
     .fa{
         font-size: $app-body-font-size;   
     }
-}
-
-/** Profile colors */
-.profile-dddddd{
-    @include appProfileColors(#dddddd);
-}
-.profile-6c7a89{
-    @include appProfileColors(#6c7a89);
-}
-.profile-6494bc{
-    @include appProfileColors(#6494bc);
-}
-.profile-80ad80{
-    @include appProfileColors(#80ad80);
-}
-.profile-31b0d5{
-    @include appProfileColors(#31b0d5);
-}
-.profile-f0aD4e{
-    @include appProfileColors(#f0aD4e);
-}
-.profile-d9534f{
-    @include appProfileColors(#d9534f);
-}
-.profile-dd976e{
-    @include appProfileColors(#dd976e);
 }
 
 /* Subnavigation
 -------------------------------------------------- */
 #sub_navigation{
     position: relative;
-    .container_{
-        width: 33%;
-        background-color: #fff;
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-        margin:0;
-    }
-
-
 }
 #sub_navigation_in{
     ul{
         padding: 0;
         list-style: none;
-        margin: 0 0 0 66%;
-        background-color: #fff;
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-        border: 1px solid $app-border-color;
+        //w: margin: 0 0 0 66%;
+        margin:0;
+        background-color: $header-subnavi-bcg-color;
+        @include appBoxShadow($app-mainsubnavi-box-shadow);
+        border: 1px solid $header-border-color;
         li{
-            padding: 10px 0;
-            border-bottom: solid 1px lighten($app-border-color, 8%);
+            padding: $spacing 0;
+            border-bottom: solid 1px $header-border-color;
             a{
                 display: block;
                 position:relative;
-                padding: 0 10px;
+                //w: padding: 0 10px;
+                 padding:  $spacing  $spacing-double;
                 vertical-align: middle;
-                color: $header-link-color;
+                color: $header-a-color;
             }
 
             .subnavi-arrow{
@@ -149,21 +117,16 @@
         }
         .active{
             a{
-                color: lighten($header-link-color, 30%);
+                color: lighten($header-a-color, 30%);
                 font-weight: bold;
                 text-decoration: underline;
                 cursor:text;
             }
         }
         .fa{
+            color: $header-icon-color;
             padding-right: 7px;
         }
 
     }
-}
-
-#sub_navigation_close{
-    text-align: right;
-    border-top: solid 1px $app-border-color;
-    padding: 5px 10px 5px 5px;
 }

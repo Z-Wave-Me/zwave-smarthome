@@ -1,4 +1,7 @@
 {
+    "secure_login": "Secure login",
+    "unsecure_login": "Unsecure login",
+    "remember_me": "Remember me",
     "rate_app": "Rate this APP",
     "already_rated": "You have already rated this APP",
     "description": "Description",

@@ -1,0 +1,24 @@
+/* Gird
+-------------------------------------------------- */
+#main_content {
+    margin-top: $header-h + $spacing; 
+    margin-bottom: $footer-h + $spacing;
+}
+
+.container{
+    max-width:none;
+    width: $app-container-w;
+
+}
+.row {
+    padding-right: 0;
+    margin-right: 0;
+
+}
+
+.mobile-padding{
+    padding: 0 $grid-gutter;
+    .page-header{
+        padding: 0;
+    }
+}

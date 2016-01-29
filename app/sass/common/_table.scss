@@ -4,7 +4,7 @@
     tbody{
         tr{
             td{
-                border-bottom: 1px solid lighten($app-border-color, 3%); 
+                border-top: 1px solid $app-border-color; 
             }
         }
     }
@@ -13,13 +13,10 @@
 .table-report{
     border: 0 !important;
     margin-bottom: 0 !important;
-    td{
-        vertical-align: middle;
-    }
     tbody{
-        tr{
-            //background-color: lighten($app-body-bcg-color, 15%); 
-            background-color: #fff;
+        td{
+            vertical-align: middle !important;
+            background-color: $report-bcg-color;
         }
         .td-img{
             width: 30px;

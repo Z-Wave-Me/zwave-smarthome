@@ -1,20 +1,56 @@
 /* Form
 -------------------------------------------------- */
 .form-control {
-    font-size: $app-body-font-size;
+    font-size: $app-input-font-size;
+    color: $form-input-color;
+    border: solid 1px $form-input-border-color;
+    padding: $app-input-padding;
+    height: auto;
 }
 
+.input-group-addon {
+   border: solid 1px $form-input-border-color;
+   background-color: $form-addon-bcg-color;
+}
+
+textarea{
+    min-height: 150px;
+}
+label{
+    font-size: $app-label-font-size;
+}
+input[type=checkbox]{
+    -ms-transform: scale($checkbox-scale); /* IE */
+    -moz-transform: scale($checkbox-scale); /* FF */
+    -webkit-transform: scale($checkbox-scale); /* Safari and Chrome */
+    -o-transform: scale($checkbox-scale); /* Opera */
+    padding: $spacing;
+    margin: 0 $spacing 0;
+}
+input[type=radio] { 
+    transform: scale($radio-scale, $radio-scale); 
+    -moz-transform: scale($radio-scale, $radio-scale); 
+    -ms-transform: scale($radio-scale, $radio-scale); 
+    -webkit-transform: scale($radio-scale, $radio-scale); 
+    -o-transform: scale($radio-scale, $radio-scale); 
+    padding: $spacing;
+    margin: 0 $spacing 0;
+}
+
+
 .form-page{
-    margin-bottom: 20px;
-    background-color: #fff;
-    border: solid 4px darken($app-body-bcg-color,5%);
-    fieldset,.fieldset{
-        background-color: #fff; 
-    }
+    margin-bottom: $spacing-double;
+    background-color: $form-bcg-color;
+    border: solid 1px $form-border-color;
     h3{}
     .form-group{
-        border-top: solid 1px $app-border-color;
-        padding-top: 10px;
+        border-bottom: solid 1px $form-border-color;
+        padding-bottom: $spacing;
+        &.last {
+         border-bottom: 0;
+        padding-bottom: 0;
+        margin-bottom: 0;
+    }
     }
     label{
         font-weight: normal;
@@ -22,13 +58,11 @@
 }
 
 fieldset, .fieldset{
-    //margin-bottom: 10px;
-    background-color: $app-body-bcg-color;
-    padding: 10px;
+    padding: $spacing;
 }
 .isrequired{
     font-weight: bold !important;
-    
+
 }
 .isrequired::before { 
     content: "*";
@@ -46,8 +80,8 @@ fieldset, .fieldset{
     text-align: right;
     display: block;
     //margin: 10px 0 0 0;
-    background-color: darken($app-body-bcg-color,5%) !important;
-     border-top: solid 1px darken($app-border-color,5%);
+    background-color: $form-submit-entry-bcg-color;
+    border-top: solid 1px $form-border-color;
 }
 
 fieldset.submit-entry{

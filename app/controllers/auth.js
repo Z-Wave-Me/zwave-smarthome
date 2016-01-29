@@ -14,8 +14,9 @@ myAppController.controller('LoginController', function($scope, $location, $windo
         form: true,
         login: '',
         password: '',
-        keepme: false,
-        default_ui: 1,
+        rememberme: false,
+        secure: false,
+        remoteId: null,
         fromexpert: $routeParams.fromexpert
     };
     if(dataService.getUser()){
@@ -32,43 +33,71 @@ myAppController.controller('LoginController', function($scope, $location, $windo
         $scope.loadLang(lang);
     };
     
+     /**
+     * Login language
+     */
+    $scope.setSecure = function(bool) {
+        $scope.input.secure = bool;
+    };
+    
+     /**
+     * Get remote id
+     */
+    $scope.getRemoteId = function() {
+       dataFactory.getApi('remote_id').then(function(response) {
+           if(response.data.data.remote_id && response.data.data.remote_id !== ''){
+               $scope.input.remoteId = response.data.data.remote_id;
+           }
+        });
+    };
+    $scope.getRemoteId();
+    
     /**
      * Get session (ie for users holding only a session id, or users that require no login)
      */
     $scope.getSession = function() {
-//        var hasCookie = ($cookies.user) ? true:false;
-//        dataFactory.sessionApi().then(function(response) {
-//            $scope.processUser(response.data.data);
-//            if (!hasCookie) {
-//                $location.path('/dashboard');
-//                $window.location.reload();
-//            }
-//        });
+       var hasCookie = ($cookies.user) ? true:false;
+       dataFactory.sessionApi().then(function(response) {
+           $scope.processUser(response.data.data);
+           if (!hasCookie) {
+               window.location = '#/dashboard';
+               $window.location.reload();
+           }
+       });
     };
     /**
      * Login with selected data from server response
      */
-    $scope.processUser = function(user) { 
+    $scope.processUser = function(user,rememberme,secure) { 
         if($scope.loginLang){
             user.lang = $scope.loginLang;
         }
+        angular.extend(user,{secure: secure})
         dataService.setZWAYSession(user.sid);
         dataService.setUser(user);
         dataService.setLastLogin(Math.round(+new Date() / 1000));
-        //$scope.loading = false;
+        if(rememberme){
+           dataService.setRememberMe(rememberme); 
+        }
+        
         $scope.input.form = false;
-        //$window.location.href = '#/elements/dashboard/1?login';
     };
     /**
      * Login proccess
      */
     $scope.login = function(input) {
+//         dataFactory.postToRemote('http://developer.zwave.eu/ietest.php', input).then(function (response) {
+//        }, function (error) {
+//
+//        });
+//        return;
         input.password = input.password;
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         $scope.alert = {message: false};
         dataFactory.logInApi(input).then(function(response) {
-            var redirectTo = '#/dashboard';
-            $scope.processUser(response.data.data);
+            var redirectTo = '#/dashboard'; 
+            var rememberme = (input.rememberme ? input : null);
+            $scope.processUser(response.data.data,rememberme,input.secure);
             if (input.fromexpert) {
                 window.location.href = $scope.cfg.expert_url;
                 return;
@@ -88,11 +117,13 @@ myAppController.controller('LoginController', function($scope, $location, $windo
         });
     };
     /**
-     * Login from url or session
+     * Login from url, remember me or session
      */
     if ($routeParams.login && $routeParams.password) {
         $scope.login($routeParams);
-    } else if (!$routeParams.logout) {
+    } else if(dataService.getRememberMe()){
+        $scope.login(dataService.getRememberMe());
+    }else if (!$routeParams.logout) {
         $scope.getSession();
     }
 });
@@ -246,6 +277,7 @@ myAppController.controller('PasswordResetController', function($scope, $routePar
 myAppController.controller('LogoutController', function($scope, dataService, dataFactory) {
     $scope.logout = function() {
         dataFactory.getApi('logout').then(function(response) {
+             dataService.setRememberMe(null);
             dataService.logOut();
         });
     };
