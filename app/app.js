@@ -330,18 +330,18 @@ myApp.config(function($provide, $httpProvider) {
                if(rejection.status == 401){
                    if(path[1] !== ''){
                         dataService.logOut();
+                        
                    }
                    return $q.reject(rejection);
                     
                 }else if(rejection.status == 403){
+                     dataService.logError(rejection);
                     $location.path('/error/403');
                     return $q.reject(rejection);
                 }else{
                     // Return the promise rejection.
                     return $q.reject(rejection);
                 }
-                //
-                
             }
         };
     });
