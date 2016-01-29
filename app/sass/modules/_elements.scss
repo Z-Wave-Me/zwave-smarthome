@@ -72,7 +72,7 @@
 
 .app-entry-success {
     .is-new-true {
-         border-color: $element-widget-isnew-border-color;
+        border-color: $element-widget-isnew-border-color;
     }
 }
 
@@ -97,6 +97,10 @@
 
 .element-camera-control{
     text-align: center;
+    margin: 0 0 $spacing 0;
+    .fa{
+        font-size: 180%;
+    }
 }
 .camera-img{
     text-align:center;
@@ -105,6 +109,7 @@
         display: inline-block;
     }
 }
+
 
 .color-picker-show{
     display:inline-block;
