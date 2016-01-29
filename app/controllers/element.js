@@ -139,6 +139,9 @@ myAppController.controller('ElementBaseController', function ($scope, $routePara
                 dataService.updateTimeTick(response.data.data.updateTime);
                 if (response.data.data.devices.length > 0) {
                     angular.forEach(response.data.data.devices, function (v, k) {
+                        if (v.metrics.level) {
+                             v.metrics.level = $filter('numberFixedLen')(v.metrics.level);
+                        }
                         var index = _.findIndex($scope.dataHolder.devices.all, {id: v.id});
                         if (!$scope.dataHolder.devices.all[index]) {
                             return;
