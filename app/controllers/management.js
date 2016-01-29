@@ -104,13 +104,13 @@ myAppController.controller('ManagementUserController', function($scope, $locatio
         if (input.id == except) {
             return;
         }
-        alertify.confirm(message, function() {
+        alertify.confirmWarning(message, function() {
             dataFactory.deleteApi('profiles', input.id).then(function(response) {
                 $(target).fadeOut(2000);
                 myCache.remove('profiles');
 
             }, function(error) {
-                alertify.alert($scope._t('error_delete_data'));
+                alertify.alertError($scope._t('error_delete_data'));
             });
         });
     };
@@ -233,7 +233,7 @@ myAppController.controller('ManagementUserIdController', function($scope, $route
             if (error.status == 409) {
                 message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error) : message);
             }
-            alertify.alert(message);
+            alertify.alertError(message);
             $scope.loading = false;
         });
 
@@ -256,7 +256,7 @@ myAppController.controller('ManagementUserIdController', function($scope, $route
         dataFactory.putApi('profiles_auth_update', input.id, input).then(function(response) {
             var data = response.data.data;
             if (!data) {
-                alertify.alert($scope._t('error_update_data'));
+                alertify.alertError($scope._t('error_update_data'));
                 $scope.loading = false;
                 return;
             }
@@ -269,7 +269,7 @@ myAppController.controller('ManagementUserIdController', function($scope, $route
             if (error.status == 409) {
                 message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error) : message);
             }
-            alertify.alert(message);
+            alertify.alertError(message);
             $scope.loading = false;
         });
 
@@ -322,7 +322,7 @@ myAppController.controller('ManagementRemoteController', function($scope, dataFa
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
 
         }, function(error) {
-            alertify.alert($scope._t('error_update_data'));
+            alertify.alertError($scope._t('error_update_data'));
             $scope.loading = false;
         });
 
@@ -416,7 +416,7 @@ myAppController.controller('ManagementFirmwareController', function($scope, $sce
             }, 5000);
             
         }, function(error) {
-           alertify.alert($scope._t('error_load_data'));
+           alertify.alertError($scope._t('error_load_data'));
             
         });
     };
@@ -457,7 +457,7 @@ myAppController.controller('ManagementRestoreController', function($scope, dataF
             $scope.managementRestore.alert = {message: $scope._t('restore_done_reload_ui'), status: 'alert-success', icon: 'fa-check'};
         }, function(error) {
             $scope.loading = false;
-            alertify.alert($scope._t('restore_backup_failed'));
+            alertify.alertError($scope._t('restore_backup_failed'));
             $scope.managementRestore.alert = false;
         });
 
@@ -502,7 +502,7 @@ myAppController.controller('ManagementAppStoreController', function($scope,dataF
             if (error.status === 409) {
                 message = $scope._t('notunique_token') + ' - ' + $scope.appStore.input.token;
             }
-            alertify.alert(message);
+            alertify.alertError(message);
         });
 
     };
@@ -511,12 +511,12 @@ myAppController.controller('ManagementAppStoreController', function($scope,dataF
      * Remove a token from the list
      */
     $scope.appStoreRemoveToken = function(token, message) {
-        alertify.confirm(message, function() {
+        alertify.confirmWarning(message, function() {
             dataFactory.deleteApiFormdata('tokens', {token: token}).then(function(response) {
                 angular.extend($scope.appStore, response.data.data);
                 ;
             }, function(error) {
-                alertify.alert($scope._t('error_delete_data'));
+                alertify.alertError($scope._t('error_delete_data'));
             });
         });
         return;
@@ -611,7 +611,7 @@ myAppController.controller('ManagementReportController', function($scope, $windo
 
 
         }, function(error) {
-            alertify.alert($scope._t('error_send_report'));
+            alertify.alertError($scope._t('error_send_report'));
             $scope.loading = false;
         });
 

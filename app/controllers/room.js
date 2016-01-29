@@ -80,7 +80,7 @@ myAppController.controller('RoomConfigController', function($scope, $window, $lo
      */
     $scope.delete = function(target, roomId, message) {
 
-        alertify.confirm(message, function() {
+        alertify.confirmWarning(message, function() {
             dataFactory.deleteApi('locations', roomId).then(function(response) {
                 var devices = _.where($scope.devices, {location: roomId});
                 removeRoomIdFromDevice(devices);
@@ -89,7 +89,7 @@ myAppController.controller('RoomConfigController', function($scope, $window, $lo
                 $scope.loadData();
 
             }, function(error) {
-                alertify.alert($scope._t('error_delete_data'));
+                alertify.alertError($scope._t('error_delete_data'));
             });
         });
     };
@@ -176,7 +176,7 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_upload')};
         }, function(error) {
             $scope.loading = false;
-            alertify.alert($scope._t('error_upload'));
+            alertify.alertError($scope._t('error_upload'));
         });
     };
 
@@ -225,7 +225,7 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
 
         }, function(error) {
-            alertify.alert($scope._t('error_update_data'));
+            alertify.alertError($scope._t('error_update_data'));
             $scope.loading = false;
 
         });

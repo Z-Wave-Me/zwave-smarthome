@@ -6,11 +6,19 @@
 /**
  * My Access
  */
-myAppController.controller('MySettingsController', function($scope, $window, $location,$cookies,dataFactory, dataService, myCache) {
+myAppController.controller('MySettingsController', function($scope, $window, $location,$cookies,$timeout,dataFactory, dataService, myCache) {
     $scope.id = $scope.user.id;
     $scope.devices = {};
     $scope.input = {};
     $scope.newPassword = null;
+    
+     $scope.notifierA = {
+        message: 'Message from my settings',
+        type: 'success',
+        wait: 5
+        
+    };
+   
 
     /**
      * Load data
@@ -64,28 +72,29 @@ myAppController.controller('MySettingsController', function($scope, $window, $lo
         dataFactory.putApi('profiles', input.id, input).then(function(response) {
             var data = response.data.data;
             if (!data) {
-                alertify.alert($scope._t('error_update_data'));
+                alertify.alertError($scope._t('error_update_data'));
                 $scope.loading = false;
                 return;
             }
 
-            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
+            $scope.loading = false;
             $cookies.lang = input.lang;
             myCache.remove('profiles');
             dataService.setUser(data);
-            $window.location.reload();
-            //$window.history.back();
-            //$route.reload();
+             dataService.showNotifier({message: $scope._t('success_updated')});
+             $timeout(function () {
+                 alertify.dismissAll();
+                $window.location.reload();
+            }, 3000);
 
         }, function(error) {
             var message = $scope._t('error_update_data');
             if (error.status == 409) {
                 message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error) : message);
             }
-            alertify.alert(message);
+             alertify.alertError(message);
             $scope.loading = false;
         });
-
     };
 
     /**
@@ -96,7 +105,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $lo
             return;
         }
 //       if (!newPassword || newPassword === '' || newPassword === $scope.cfg.default_credentials.password) {
-//            alertify.alert($scope._t('enter_valid_password'));
+//            alertify.alertError($scope._t('enter_valid_password'));
 //            $scope.loading = false;
 //            return;
 //        }
@@ -109,7 +118,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $lo
         dataFactory.putApi('profiles_auth_update', input.id, input).then(function(response) {
             var data = response.data.data;
             if (!data) {
-                alertify.alert($scope._t('error_update_data'));
+                alertify.alertError($scope._t('error_update_data'));
                 $scope.loading = false;
                 return;
             }
@@ -117,7 +126,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $lo
             $window.history.back();
 
         }, function(error) {
-            alertify.alert($scope._t('error_update_data'));
+            alertify.alertError($scope._t('error_update_data'));
             $scope.loading = false;
         });
 

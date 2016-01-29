@@ -212,7 +212,7 @@ myAppController.controller('ElementBaseController', function ($scope, $routePara
 //            }
 
         }, function (error) {
-            alertify.alert($scope._t('error_update_data'));
+            alertify.alertError($scope._t('error_update_data'));
             $scope.loading = false;
         });
         return;
@@ -727,7 +727,7 @@ myAppController.controller('ElementDetailController', function ($scope, $routePa
                 updateProfile($scope.user, input.id);
 
             }, function (error) {
-                alertify.alert($scope._t('error_update_data'));
+                alertify.alertError($scope._t('error_update_data'));
                 $scope.loading = false;
             });
         }
@@ -776,7 +776,7 @@ myAppController.controller('ElementDetailController', function ($scope, $routePa
             $window.history.back();
 
         }, function (error) {
-            alertify.alert($scope._t('error_update_data'));
+            alertify.alertError($scope._t('error_update_data'));
             $scope.loading = false;
         });
         return;
@@ -806,7 +806,7 @@ myAppController.controller('ElementDetailController', function ($scope, $routePa
             };
             dataService.updateTimeTick(updateTime);
         } else {
-            alertify.alert($scope._t('no_data'));
+            alertify.alertError($scope._t('no_data'));
             dataService.showConnectionError($scope._t('no_data'));
         }
     }

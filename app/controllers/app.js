@@ -217,7 +217,7 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
      */
     $scope.deleteModule = function (input, message) {
 
-        alertify.confirm(message, function () {
+        alertify.confirmWarning(message, function () {
             //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
             dataFactory.deleteApi('online_delete', input.id).then(function (response) {
                 $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t(response.data.data.key)};
@@ -227,7 +227,7 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
             }, function (error) {
                 var message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error.key) : $scope._t('error_delete_data'));
                 $scope.loading = false;
-                alertify.alert(message);
+                alertify.alertError(message);
             });
         });
     };
@@ -237,7 +237,7 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
      */
     $scope.resetModule = function (input, message) {
 
-        alertify.confirm(message, function () {
+        alertify.confirmWarning(message, function () {
             $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
             dataFactory.postApi('online_reset', input, '/' + input.id).then(function (response) {
                 $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t(response.data.data.key)};
@@ -247,7 +247,7 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
             }, function (error) {
                 var message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error.key) : $scope._t('error_delete_data'));
                 $scope.loading = false;
-                alertify.alert(message);
+                alertify.alertError(message);
             });
         });
     };
@@ -294,7 +294,7 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
         }, function (error) {
             $scope.loading = false;
             var message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error.key) : $scope._t('error_no_module_download'));
-            alertify.alert(message);
+            alertify.alertError(message);
         });
 
     };
@@ -302,7 +302,7 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
      * Update module
      */
     $scope.updateModule = function (module, confirm) {
-        alertify.confirm(confirm, function () {
+        alertify.confirmWarning(confirm, function () {
             $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
             var data = {
                 moduleUrl: $scope.cfg.online_module_download_url + module.file
@@ -317,7 +317,7 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
             }, function (error) {
                 $scope.loading = false;
                 var message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error.key) : $scope._t('error_no_module_download'));
-                alertify.alert(message);
+                alertify.alertError(message);
             });
         });
 
@@ -343,7 +343,7 @@ myAppController.controller('AppInstanceController', function ($scope, $route, da
                 $route.reload();
 
             }, function (error) {
-                alertify.alert($scope._t('error_update_data'));
+                alertify.alertError($scope._t('error_update_data'));
                 $scope.loading = false;
             });
         }
@@ -354,13 +354,13 @@ myAppController.controller('AppInstanceController', function ($scope, $route, da
      * Delete instance
      */
     $scope.deleteInstance = function (target, input, message) {
-        alertify.confirm(message, function () {
+        alertify.confirmWarning(message, function () {
             dataFactory.deleteApi('instances', input.id).then(function (response) {
                 $(target).fadeOut(500);
                 myCache.remove('instances');
                 myCache.remove('devices');
             }, function (error) {
-                alertify.alert($scope._t('error_delete_data'));
+                alertify.alertError($scope._t('error_delete_data'));
             });
 
         });
@@ -525,7 +525,7 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
             }
         }, function (error) {
             $scope.loading = false;
-            alertify.alert($scope._t('error_load_comments'));
+            alertify.alertError($scope._t('error_load_comments'));
         });
 
     };
@@ -550,7 +550,7 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
         }, function (error) {
             $scope.loading = false;
             var message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error.key) : $scope._t('error_no_module_download'));
-            alertify.alert(message);
+            alertify.alertError(message);
         });
 
     };
@@ -573,7 +573,7 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
 
         }, function (error) {
             $scope.loading = false;
-            alertify.alert($scope._t('comment_add_failed'));
+            alertify.alertError($scope._t('comment_add_failed'));
 
         });
 
@@ -594,7 +594,7 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
             if(error.status === 409){
                  message = $scope._t('already_rated');
             }
-            alertify.alert(message);
+            alertify.alertError(message);
 
         });
     };
@@ -712,7 +712,7 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
                 $('#alpaca_data').alpaca(formData);
 
             }, function (error) {
-                alertify.alert($scope._t('error_load_data'));
+                alertify.alertError($scope._t('error_load_data'));
                 dataService.showConnectionError(error);
                 $scope.loading = false;
             });
@@ -763,7 +763,7 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
                 $location.path('/apps/instance');
 
             }, function (error) {
-                alertify.alert($scope._t('error_update_data'));
+                alertify.alertError($scope._t('error_update_data'));
             });
         } else {
             dataFactory.postApi('instances', inputData).then(function (response) {
@@ -771,7 +771,7 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
                 $location.path('/apps/local');
 
             }, function (error) {
-                alertify.alert($scope._t('error_update_data'));
+                alertify.alertError($scope._t('error_update_data'));
             });
         }
     };

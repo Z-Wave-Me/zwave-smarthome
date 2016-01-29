@@ -155,7 +155,7 @@ myAppController.controller('PasswordController', function($scope, dataFactory) {
             var data = response.data.data;
             data['email'] = input.email;
             if (!data) {
-                alertify.alert($scope._t('error_update_data'));
+                alertify.alertError($scope._t('error_update_data'));
                 $scope.loading = false;
                 return;
             }
@@ -170,7 +170,7 @@ myAppController.controller('PasswordController', function($scope, dataFactory) {
             if (error.status == 409) {
                 message = $scope._t('nonunique_email');
             }
-            alertify.alert(message);
+            alertify.alertError(message);
             $scope.loading = false;
         });
 
@@ -204,11 +204,11 @@ myAppController.controller('PasswordForgotController', function($scope, $locatio
                 $scope.passwordForgot.alert = {message: $scope._t('password_forgot_success'), status: 'alert-success', icon: 'fa-check'};
                 $scope.loading = false;
             }, function(error) {
-                alertify.alert($scope._t('error_500'));
+                alertify.alertError($scope._t('error_500'));
                 $scope.loading = false;
             });
         }, function(error) {
-            alertify.alert($scope._t('error_500'));
+            alertify.alertError($scope._t('error_500'));
             $scope.loading = false;
         });
 
@@ -266,7 +266,7 @@ myAppController.controller('PasswordResetController', function($scope, $routePar
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
             window.location = '#/';
         }, function(error) {
-            alertify.alert($scope._t('error_update_data'));
+            alertify.alertError($scope._t('error_update_data'));
             $scope.loading = false;
         });
     };

@@ -7,12 +7,12 @@ var myAppService = angular.module('myAppService', []);
 /**
  * Device service
  */
-myAppService.service('dataService', function($filter, $log, $cookies, $location, $window, myCache, cfg, _) {
+myAppService.service('dataService', function ($filter, $log, $cookies, $location, $window, myCache, cfg, _) {
     /// --- Public functions --- ///
     /**
      * Get language line by key
      */
-    this.getLangLine = function(key, languages) {
+    this.getLangLine = function (key, languages) {
         if (angular.isObject(languages)) {
             if (angular.isDefined(languages[key])) {
                 return languages[key] !== '' ? languages[key] : key;
@@ -23,7 +23,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     /**
      * Show connection error
      */
-    this.showConnectionError = function(error) {
+    this.showConnectionError = function (error) {
         $('.update-time-tick').html('<i class="fa fa-minus-circle fa-lg text-danger"></i>');
         return this.logError(error, 'Unable to recieve HTTP data');
     };
@@ -31,7 +31,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     /**
      * Show connection spinner
      */
-    this.showConnectionSpinner = function() {
+    this.showConnectionSpinner = function () {
         $('.update-time-tick').html('<i class="fa fa-spinner fa-spin fa-lg text-success"></i>');
         //return this.logError(error,'Unable to recieve HTTP data');
     };
@@ -39,24 +39,35 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     /**
      * Update time tick
      */
-    this.updateTimeTick = function(time) {
+    this.updateTimeTick = function (time) {
 
         time = (time || Math.round(+new Date() / 1000));
         $('.update-time-tick').html('<span class="navi-time-link"><i class="fa fa-clock-o text-success"></i> <span class="text-success">' + $filter('getCurrentTime')(time)) + '</span></span>';
+    };
+
+    /**
+     * Show notifier
+     */
+    this.showNotifier = function (notifier) {
+        var param = _.defaults(notifier, {position: 'top-right', message: false, type: 'success', wait: 5});
+        if (notifier.message) {
+            alertify.set('notifier', 'position', 'top-right');
+            alertify.notify(param.message, param.type, param.wait);
+        }
     };
 
 
     /**
      * Log error
      */
-    this.logError = function(error, message) {
+    this.logError = function (error, message) {
         message = message || 'ERROR:';
         $log.error('---------- ' + message + ' ----------', error);
     };
     /**
      * Log info
      */
-    this.logInfo = function(info, message) {
+    this.logInfo = function (info, message) {
         message = message || 'INFO:';
         $log.info('---------- ' + message + ' ----------', info);
     };
@@ -65,7 +76,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     /**
      * Mobile device detect
      */
-    this.isMobile = function(a) {
+    this.isMobile = function (a) {
         return isMobile(a);
     };
 
@@ -73,61 +84,61 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     /**
      * Get user data
      */
-    this.getUser = function(data) {
+    this.getUser = function (data) {
         return getUser(data);
     };
 
     /**
      * Set user data
      */
-    this.setUser = function(data) {
+    this.setUser = function (data) {
         return setUser(data);
     };
 
     /**
      * Get user SID (token)
      */
-    this.getZWAYSession = function() {
+    this.getZWAYSession = function () {
         return getZWAYSession();
     };
     /**
      * Set user SID (token)
      */
-    this.setZWAYSession = function(sid) {
+    this.setZWAYSession = function (sid) {
         return setZWAYSession(sid);
     };
     /**
      * Get last login
      */
-    this.getLastLogin = function() {
+    this.getLastLogin = function () {
         return getLastLogin();
     };
 
     /*
      * Set last login
      */
-    this.setLastLogin = function(val) {
+    this.setLastLogin = function (val) {
         return setLastLogin(val);
     };
-    
+
     /**
      * Get remember me
      */
-    this.getRememberMe = function() {
+    this.getRememberMe = function () {
         return getRememberMe();
     };
 
     /**
      * Set remember me
      */
-    this.setRememberMe = function(data) {
+    this.setRememberMe = function (data) {
         return setRememberMe(data);
     };
 
     /**
      * Logout
      */
-    this.logOut = function() {
+    this.logOut = function () {
         return logOut();
 
     };
@@ -135,77 +146,77 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
     /**
      * Get device data
      */
-    this.getDevices = function(data, filter, positions, instances, location) {
+    this.getDevices = function (data, filter, positions, instances, location) {
         return getDevices(data, filter, positions, instances, location);
     };
 
     /**
      * Get device types
      */
-    this.getDeviceType = function(data) {
+    this.getDeviceType = function (data) {
         return getDeviceType(data);
     };
 
     /**
      * Update devices
      */
-    this.updateDevices = function(data) {
+    this.updateDevices = function (data) {
         return updateDevices(data);
     };
 
     /**
      * Get chart data
      */
-    this.getChartData = function(data, colors) {
+    this.getChartData = function (data, colors) {
         return getChartData(data, colors);
     };
 
     /**
      * Get tags
      */
-    this.getTags = function(data) {
+    this.getTags = function (data) {
         return getTags(data);
     };
 
     /**
      * Get module form data
      */
-    this.getModuleFormData = function(module, data) {
+    this.getModuleFormData = function (module, data) {
         return getModuleFormData(module, data);
     };
 
     /**
      * Get module config input
      */
-    this.getModuleConfigInputs = function(module, params, namespaces) {
+    this.getModuleConfigInputs = function (module, params, namespaces) {
         return getModuleConfigInputs(module, params, namespaces);
     };
 
     /**
      * Set array value
      */
-    this.setArrayValue = function(data, key, add) {
+    this.setArrayValue = function (data, key, add) {
         return setArrayValue(data, key, add);
     };
 
     /**
      * Get event level
      */
-    this.getEventLevel = function(data, set) {
+    this.getEventLevel = function (data, set) {
         return getEventLevel(data, set);
     };
 
     /**
      * Get config navigation devices
      */
-    this.configGetNav = function(ZWaveAPIData) {
+    this.configGetNav = function (ZWaveAPIData) {
         return configGetNav(ZWaveAPIData);
     };
 
     /**
      * Set EnOcean profile
      */
-    this.setEnoProfile = function(data) {
+    this.setEnoProfile = function (data) {
         return setEnoProfile(data);
     };
 
@@ -276,8 +287,8 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
         $cookies.lastLogin = val;
 
     }
-    
-     /**
+
+    /**
      * Get remember me
      */
     function getRememberMe() {
@@ -319,7 +330,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
         var findZwaveStr = "ZWayVDev_zway_";
         var findZenoStr = "ZEnoVDev_zeno_x";
 
-        angular.forEach(data, function(v, k) {
+        angular.forEach(data, function (v, k) {
             var instance;
             var minMax = {min: 0, max: 99};
             var hasInstance = false;
@@ -429,7 +440,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
         var devices = data.data.devices;
         var widgetId;
         if (devices.length > 0) {
-            angular.forEach(devices, function(v, k) {
+            angular.forEach(devices, function (v, k) {
                 widgetId = '#Widget_' + v.id;
                 updateDeviceLevel(widgetId, v);
                 updateDeviceScale(widgetId, v);
@@ -527,7 +538,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                     }
                 }
                 if (v.metrics.multilineType == 'climateControl') {
-                     status = 'climate';
+                    status = 'climate';
                 }
                 break;
             case 'doorlock':
@@ -562,14 +573,13 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
             $(widgetId + ' .widget-btn-on').removeClass('btn-default').addClass('btn-primary');
             $(widgetId + ' .widget-btn-off').removeClass('btn-primary').addClass('btn-default');
         } else if (status == 'full') {
-             $(widgetId + ' .widget-btn-full').removeClass('btn-default').addClass('btn-primary');
+            $(widgetId + ' .widget-btn-full').removeClass('btn-default').addClass('btn-primary');
             $(widgetId + ' .widget-btn-on').removeClass('btn-default').addClass('btn-primary');
             $(widgetId + ' .widget-btn-off').removeClass('btn-primary').addClass('btn-default');
-        }else if (status == 'climate') {
-             $(widgetId + ' .widget-btn-frostProtection,' + widgetId + ' .widget-btn-energySave,' + widgetId + ' .widget-btn-comfort').removeClass('btn-primary').addClass('btn-default');
-             $(widgetId + ' .widget-btn-' + v.metrics.state).removeClass('btn-default').addClass('btn-primary');
-        }
-        else {
+        } else if (status == 'climate') {
+            $(widgetId + ' .widget-btn-frostProtection,' + widgetId + ' .widget-btn-energySave,' + widgetId + ' .widget-btn-comfort').removeClass('btn-primary').addClass('btn-default');
+            $(widgetId + ' .widget-btn-' + v.metrics.state).removeClass('btn-default').addClass('btn-primary');
+        } else {
             $(widgetId + ' .widget-btn-on').removeClass('btn-primary').addClass('btn-default');
             $(widgetId + ' .widget-btn-off').removeClass('btn-default').addClass('btn-primary');
         }
@@ -598,7 +608,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
                 }]
         };
         var cnt = 0;
-        angular.forEach(data, function(v, k) {
+        angular.forEach(data, function (v, k) {
             cnt++;
             var time = $filter('date')(((v.id) * 1000), 'H:mm');
             //if (v.id > currTime && out.labels.indexOf(time) === -1) {
@@ -622,7 +632,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      */
     function getModuleFormData(module, data) {
         var collection = {
-            'options': replaceModuleFormData(module.options, ['click','onFieldChange']),
+            'options': replaceModuleFormData(module.options, ['click', 'onFieldChange']),
             'schema': module.schema,
             'data': data,
             'postRender': postRenderAlpaca
@@ -657,7 +667,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      */
     function getDeviceType(data) {
         var collection = [];
-        angular.forEach(data, function(v, k) {
+        angular.forEach(data, function (v, k) {
             if (v.deviceType == 'battery') {
                 return;
             }
@@ -674,11 +684,11 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      */
     function getTags(data) {
         var collection = [];
-        angular.forEach(data, function(v, k) {
+        angular.forEach(data, function (v, k) {
             if (v.deviceType == 'battery' || v.tags.length < 1) {
                 return;
             }
-            angular.forEach(v.tags, function(t, k) {
+            angular.forEach(v.tags, function (t, k) {
                 collection.push({
                     'key': t,
                     'val': t
@@ -715,7 +725,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      */
     function removeArrayValue(data, key) {
         var collection = [];
-        angular.forEach(data, function(v, k) {
+        angular.forEach(data, function (v, k) {
             if (v != key) {
                 collection.push(v);
             }
@@ -728,7 +738,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      */
     function getEventLevel(data, set) {
         var collection = (set ? set : []);
-        angular.forEach(data, function(v, k) {
+        angular.forEach(data, function (v, k) {
             collection.push({
                 'key': v.level,
                 'val': v.level
@@ -743,7 +753,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $location,
      */
     function setEnoProfile(data) {
         var profile = {};
-        angular.forEach(data, function(v, k) {
+        angular.forEach(data, function (v, k) {
             var profileId = parseInt(v._rorg, 16) + '_' + parseInt(v._func, 16) + '_' + parseInt(v._type, 16);
             profile[profileId] = v;
             profile[profileId]['id'] = profileId;
