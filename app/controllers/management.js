@@ -81,18 +81,22 @@ myAppController.controller('ManagementController', function($scope, $interval, d
 /**
  * List of users
  */
-myAppController.controller('ManagementUserController', function($scope, $location, dataFactory, dataService, myCache) {
-    $scope.profiles = {};
+myAppController.controller('ManagementUserController', function($scope, dataFactory, dataService, myCache) {
+    $scope.userProfiles = {
+        all: false
+    };
     /**
      * Load profiles
      */
     $scope.loadProfiles = function() {
-        dataService.showConnectionSpinner();
-        dataFactory.getApi('profiles').then(function(response) {
-            $scope.profiles = response.data.data;
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        dataFactory.getApi('profiles',null,true).then(function(response) {
+            $scope.userProfiles.all = response.data.data;
             dataService.updateTimeTick();
+            $scope.loading = false;
         }, function(error) {
-            $location.path('/error/' + error.status);
+             $scope.loading = false;
+            alertify.alertError($scope._t('error_load_data'));
         });
     };
     $scope.loadProfiles();
@@ -100,16 +104,19 @@ myAppController.controller('ManagementUserController', function($scope, $locatio
     /**
      * Delete an user
      */
-    $scope.deleteProfile = function(target, input, message, except) {
+    $scope.deleteProfile = function(input, message, except) {
         if (input.id == except) {
             return;
         }
         alertify.confirmWarning(message, function() {
+            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
             dataFactory.deleteApi('profiles', input.id).then(function(response) {
-                $(target).fadeOut(2000);
                 myCache.remove('profiles');
-
+                 dataService.showNotifier({message: $scope._t('delete_successful')});
+                  $scope.loading = false;
+                  $scope.loadProfiles();
             }, function(error) {
+                 $scope.loading = false;
                 alertify.alertError($scope._t('error_delete_data'));
             });
         });
@@ -282,7 +289,7 @@ myAppController.controller('ManagementUserIdController', function($scope, $route
 /**
  * Remote access controller
  */
-myAppController.controller('ManagementRemoteController', function($scope, dataFactory) {
+myAppController.controller('ManagementRemoteController', function($scope, dataFactory,dataService) {
     $scope.remoteAccess = false;
     /**
      * Load Remote access data
@@ -291,23 +298,26 @@ myAppController.controller('ManagementRemoteController', function($scope, dataFa
         if (!$scope.elementAccess($scope.cfg.role_access.remote_access)) {
             return;
         }
+         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('instances', '/RemoteAccess').then(function(response) {
-            var remoteAccess = response.data.data[0];
+           $scope.loading = false;
+           var remoteAccess = response.data.data[0];
             if (Object.keys(remoteAccess).length < 1) {
-                $scope.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-warning'};
+                 alertify.alertError($scope._t('error_load_data'));
             }
             if (!remoteAccess.active) {
-                $scope.alert = {message: $scope._t('remote_access_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                alertify.alertWarning($scope._t('remote_access_not_active'));
                 return;
             }
             if (!remoteAccess.params.userId) {
-                $scope.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-warning'};
+                alertify.alertError($scope._t('error_load_data'));
                 return;
             }
             remoteAccess.params.pass = null;
             $scope.remoteAccess = remoteAccess;
         }, function(error) {
-            $scope.alert = {message: $scope._t('remote_access_not_installed'), status: 'alert-danger', icon: 'fa-warning'};
+            $scope.loading = false;
+            alertify.alertError($scope._t('remote_access_not_installed'));
         });
     };
 
@@ -317,10 +327,10 @@ myAppController.controller('ManagementRemoteController', function($scope, dataFa
      * PUT Remote access
      */
     $scope.putRemoteAccess = function(input) {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         dataFactory.putApi('instances', input.id, input).then(function(response) {
-            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
-
+            $scope.loading = false;
+             dataService.showNotifier({message: $scope._t('success_updated')});
         }, function(error) {
             alertify.alertError($scope._t('error_update_data'));
             $scope.loading = false;

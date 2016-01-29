@@ -9,30 +9,22 @@
 myAppController.controller('MySettingsController', function($scope, $window, $location,$cookies,$timeout,dataFactory, dataService, myCache) {
     $scope.id = $scope.user.id;
     $scope.devices = {};
-    $scope.input = {};
+    $scope.input = false;
     $scope.newPassword = null;
     
-     $scope.notifierA = {
-        message: 'Message from my settings',
-        type: 'success',
-        wait: 5
-        
-    };
-   
-
     /**
      * Load data
      */
     $scope.loadData = function(id) {
-        dataService.showConnectionSpinner();
-        dataFactory.getApi('profiles', '/' + id, true).then(function(response) {
+         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+       dataFactory.getApi('profiles', '/' + id, true).then(function(response) {
             loadDevices();
             $scope.input = response.data.data;
-            dataService.updateTimeTick();
+           $scope.loading = false;
+           dataService.updateTimeTick();
         }, function(error) {
-            $scope.input = false;
             $scope.loading = false;
-            $location.path('/error/' + error.status);
+            alertify.alertError($scope._t('error_load_data'));
         });
     };
     if ($scope.id > 0) {
@@ -122,7 +114,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $lo
                 $scope.loading = false;
                 return;
             }
-            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
+            dataService.showNotifier({message: $scope._t('success_updated')});
             $window.history.back();
 
         }, function(error) {

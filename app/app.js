@@ -326,7 +326,7 @@ myApp.config(function($provide, $httpProvider) {
             },
             // On response failture
             responseError: function(rejection) {
-                dataService.logError(rejection);
+               dataService.logError(rejection);
                if(rejection.status == 401){
                    if(path[1] !== ''){
                         dataService.logOut();
