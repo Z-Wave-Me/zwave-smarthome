@@ -4,6 +4,7 @@
     <i class="fa accordion-arrow" ng-class="expand.restore  ? 'fa-chevron-up':'fa-chevron-down'"></i>
 </h2>
 <div class="accordion-entry-ctrl" ng-if="expand.restore" ng-controller="ManagementRestoreController">
+    <bb-loader></bb-loader>
     <div class="form form-page">
         <div class="fieldset">
             <bb-alert alert="managementRestore.alert"></bb-alert>

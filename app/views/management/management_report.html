@@ -4,6 +4,7 @@
     <i class="fa accordion-arrow" ng-class="expand.report  ? 'fa-chevron-up':'fa-chevron-down'"></i>
 </h2>
  <div class="accordion-entry-ctrl" ng-if="expand.report"  ng-controller="ManagementReportController">
+      <bb-loader></bb-loader>
     <form name="form_report" id="form_profile" class="form form-page" ng-submit="sendReport(form_report,input)" novalidate>
         <fieldset>
             <div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i> {{_t('bugreport_info')}}</div>

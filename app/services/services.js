@@ -24,15 +24,17 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $location
      * Show connection error
      */
     this.showConnectionError = function (error) {
-        $('.update-time-tick').html('<i class="fa fa-minus-circle fa-lg text-danger"></i>');
-        return this.logError(error, 'Unable to recieve HTTP data');
+        return false;
+        //$('.update-time-tick').html('<i class="fa fa-minus-circle fa-lg text-danger"></i>');
+        //return this.logError(error, 'Unable to recieve HTTP data');
     };
 
     /**
      * Show connection spinner
      */
     this.showConnectionSpinner = function () {
-        $('.update-time-tick').html('<i class="fa fa-spinner fa-spin fa-lg text-success"></i>');
+        return false;
+       // $('.update-time-tick').html('<i class="fa fa-spinner fa-spin fa-lg text-success"></i>');
         //return this.logError(error,'Unable to recieve HTTP data');
     };
 

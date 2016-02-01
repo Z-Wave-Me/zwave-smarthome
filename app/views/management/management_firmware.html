@@ -4,6 +4,7 @@
     <i class="fa accordion-arrow" ng-class="expand.firmware ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
 </h2>
 <div class="accordion-entry-ctrl" ng-if="expand.firmware" ng-controller="ManagementFirmwareController">
+    <bb-loader></bb-loader>
     <form name="form_firmware" id="form_firmware" class="form form-page" ng-submit="updateFirmware()" novalidate>
         <fieldset>
             <!-- Currentt version -->
@@ -18,7 +19,7 @@
         </fieldset>
         <fieldset class="submit-entry">
             <button type="button" class="btn btn-submit" 
-                    ng-click="setAccess('?allow_access=1&timeout=120');handleModal('firmwareUpdateModal', $event)">
+                    ng-click="setAccess('?allow_access=1&timeout=120',true);handleModal('firmwareUpdateModal', $event)">
                 <i class="fa fa-level-up"></i> <span class="btn-name">{{_t('update_to_latest')}}</span>
             </button>
 
@@ -34,8 +35,7 @@
                 <h3>{{_t('firmware_update')}}</h3>
             </div>
             <div class="appmodal-body text-center">
-               <bb-alert alert="firmwareUpdate.alert"></bb-alert>
-                <iframe ng-src="{{firmwareUpdate.url}}" height="600" style="width: 100%;" ng-if="firmwareUpdate.loaded"></iframe> 
+               <iframe ng-src="{{firmwareUpdate.url}}" height="600" style="width: 100%;" ng-if="firmwareUpdate.loaded"></iframe> 
             </div>
         </div>
     </div>
