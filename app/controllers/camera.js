@@ -134,7 +134,7 @@ myAppController.controller('CameraManageController', function($scope, $route,$wi
      * Delete instance
      */
     $scope.deleteInstance = function(target, input, message) {
-         alertify.confirmWarning(message, function() {
+         alertify.confirm(message, function() {
             dataFactory.deleteApi('instances', input.id).then(function(response) {
                 $(target).fadeOut(500);
                 myCache.remove('instances');

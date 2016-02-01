@@ -108,7 +108,7 @@ myAppController.controller('ManagementUserController', function ($scope, dataFac
         if (input.id == except) {
             return;
         }
-        alertify.confirmWarning(message, function () {
+        alertify.confirm(message, function () {
             $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
             dataFactory.deleteApi('profiles', input.id).then(function (response) {
                 myCache.remove('profiles');
@@ -127,7 +127,7 @@ myAppController.controller('ManagementUserController', function ($scope, dataFac
 /**
  * User detail
  */
-myAppController.controller('ManagementUserIdController', function ($scope, $routeParams, $filter, $location, $window, dataFactory, dataService, myCache) {
+myAppController.controller('ManagementUserIdController', function ($scope, $routeParams, $filter, $window, dataFactory, dataService, myCache) {
     $scope.id = $filter('toInt')($routeParams.id);
     $scope.rooms = {};
     $scope.input = {
@@ -157,13 +157,14 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
      * Load data
      */
     $scope.loadData = function (id) {
-        dataService.showConnectionSpinner();
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('profiles', '/' + id, true).then(function (response) {
+             $scope.loading = false;
             $scope.input = response.data.data;
-            dataService.updateTimeTick();
         }, function (error) {
             $scope.input = false;
-            $location.path('/error/' + error.status);
+            $scope.loading = false;
+            alertify.alertError($scope._t('error_load_data'));
         });
     };
     if ($scope.id > 0) {
@@ -175,15 +176,12 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
      */
     $scope.loadRooms = function () {
         dataFactory.getApi('locations').then(function (response) {
-            //$scope.rooms = response.data.data;
             $scope.rooms = _.filter(response.data.data, function (v) {
                 if (v.id !== 0) {
                     return v;
                 }
             });
-        }, function (error) {
-            dataService.showConnectionError(error);
-        });
+        }, function (error) {});
     }
     ;
     $scope.loadRooms();
@@ -228,9 +226,9 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
                 myCache.remove('profiles');
                 $scope.loadData(id);
             }
-            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
-            //$window.history.back();
-            //$window.location.reload(); 
+            //$scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
+            $scope.loading = false;
+            dataService.showNotifier({message: $scope._t('success_updated')});
             window.location = '#/admin';
 
             //$window.location.reload();
@@ -261,13 +259,13 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
 
         };
         dataFactory.putApi('profiles_auth_update', input.id, input).then(function (response) {
+            $scope.loading = false;
             var data = response.data.data;
             if (!data) {
                 alertify.alertError($scope._t('error_update_data'));
-                $scope.loading = false;
                 return;
             }
-            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
+            dataService.showNotifier({message: $scope._t('success_updated')});
             $window.history.back();
 
 
@@ -533,7 +531,7 @@ myAppController.controller('ManagementAppStoreController', function ($scope, dat
      * Remove a token from the list
      */
     $scope.appStoreRemoveToken = function (token, message) {
-        alertify.confirmWarning(message, function () {
+        alertify.confirm(message, function () {
             dataFactory.deleteApiFormdata('tokens', {token: token}).then(function (response) {
                 angular.extend($scope.appStore, response.data.data);
                 ;
@@ -623,10 +621,6 @@ myAppController.controller('ManagementReportController', function ($scope, $wind
              $scope.loading =false;
              dataService.showNotifier({message: $scope._t('success_send_report') + ' ' + input.email});
              $route.reload();
-            //$window.location.reload();
-//            $scope.form.$setPristine();
-//           input.content = null;
-//            input.email = null;
         }, function (error) {
             alertify.alertError($scope._t('error_send_report'));
             $scope.loading = false;

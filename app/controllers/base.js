@@ -193,7 +193,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
      * Redirect to Expert
      */
     $scope.toExpert = function (url, message) {
-        alertify.confirmWarning(message, function () {
+        alertify.confirm(message, function () {
             //$window.location.href = url;
             $window.open(url, '_blank');
         }).set('labels', {ok: $scope._t('goahead')});
@@ -284,19 +284,6 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         }, true, 'alert');
     }
     
-    // Extend existing confirm dialog
-    if (!alertify.confirmWarning) {
-        //define a new errorAlert base on alert
-        alertify.dialog('confirmWarning', function factory() {
-            return{
-                build: function () {
-                    var errorHeader = '<span class="fa fa-exclamation-circle fa-lg text-warning" '
-                            + 'style="vertical-align:middle;">'
-                            + '</span> ' + cfg.app_name + ' - WARNING';
-                    this.setHeader(errorHeader);
-                }
-            };
-        }, true, 'alert');
-    }
+   
 
 });

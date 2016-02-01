@@ -723,7 +723,7 @@ myAppController.controller('EnoceanManageController', function($scope, $location
      */
     $scope.deleteDevice = function(id, target, message) {
         var cmd = 'delete devices["x' + id + '"]';
-        alertify.confirmWarning(message, function() {
+        alertify.confirm(message, function() {
             dataFactory.runEnoceanCmd(cmd).then(function(response) {
                 if(response.data === 'false'){
                     alertify.alertError($scope._t('error_delete_data'));

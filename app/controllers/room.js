@@ -80,7 +80,7 @@ myAppController.controller('RoomConfigController', function($scope, $window, $lo
      */
     $scope.delete = function(target, roomId, message) {
 
-        alertify.confirmWarning(message, function() {
+        alertify.confirm(message, function() {
             dataFactory.deleteApi('locations', roomId).then(function(response) {
                 var devices = _.where($scope.devices, {location: roomId});
                 removeRoomIdFromDevice(devices);

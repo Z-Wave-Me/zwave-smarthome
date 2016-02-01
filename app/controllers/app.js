@@ -72,6 +72,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
      * Load local modules
      */
     $scope.loadLocalModules = function () {
+          $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('modules').then(function (response) {
             $scope.dataHolder.modules.all = _.chain(response.data.data)
                     .flatten()
@@ -117,11 +118,11 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                     })
                     .where($scope.dataHolder.modules.filter)
                     .value();
-            $scope.loading = false;
-            dataService.updateTimeTick();
+                $scope.loading = false;
+           
         }, function (error) {
             $scope.loading = false;
-            dataService.showConnectionError(error);
+             alertify.alertError($scope._t('error_load_data'));
         });
     };
 
@@ -132,6 +133,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
      */
     $scope.loadOnlineModules = function () {
         dataFactory.getOnlineModules({token: _.values($scope.dataHolder.tokens.all)}).then(function (response) {
+            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
             $scope.dataHolder.onlineModules.all = _.chain(response.data.data)
                     .flatten()
                     .filter(function (item) {
@@ -157,7 +159,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
             dataService.updateTimeTick();
         }, function (error) {
             $scope.loading = false;
-            dataService.showConnectionError(error);
+            alertify.alertError($scope._t('error_load_data'));
         });
     };
 
@@ -165,6 +167,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
      * Load instances
      */
     $scope.loadInstances = function () {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('instances').then(function (response) {
             $scope.dataHolder.instances.all = _.reject(response.data.data, function (v) {
                 //return v.state === 'hidden' && ($scope.user.role !== 1 && $scope.user.expert_view !== true);
@@ -180,10 +183,9 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                 }
             });
             $scope.loading = false;
-            dataService.updateTimeTick();
         }, function (error) {
             $scope.loading = false;
-            dataService.showConnectionError(error);
+            alertify.alertError($scope._t('error_load_data'));
         });
     };
     $scope.loadInstances();
@@ -217,10 +219,11 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
      */
     $scope.deleteModule = function (input, message) {
 
-        alertify.confirmWarning(message, function () {
-            //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
+        alertify.confirm(message, function () {
+            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
             dataFactory.deleteApi('online_delete', input.id).then(function (response) {
-                $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t(response.data.data.key)};
+                $scope.loading = false;
+                 dataService.showNotifier({message: $scope._t('delete_successful')});
                 myCache.removeAll();
                 $route.reload();
 
@@ -237,10 +240,11 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
      */
     $scope.resetModule = function (input, message) {
 
-        alertify.confirmWarning(message, function () {
+        alertify.confirm(message, function () {
             $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
             dataFactory.postApi('online_reset', input, '/' + input.id).then(function (response) {
-                $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t(response.data.data.key)};
+                $scope.loading = false;
+                 dataService.showNotifier({message: $scope._t('delete_successful')});
                 myCache.removeAll();
                 $route.reload();
 
@@ -256,7 +260,7 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
 /**
  * App online controller
  */
-myAppController.controller('AppOnlineController', function ($scope, $filter, $cookies, $timeout, $route, dataFactory, myCache, _) {
+myAppController.controller('AppOnlineController', function ($scope, $filter, $cookies, $timeout, $route, dataFactory,dataService, myCache, _) {
     $scope.activeTab = 'online';
     $scope.dataHolder.onlineModules.filter = ($cookies.filterAppsOnline ? angular.fromJson($cookies.filterAppsOnline) : {featured: true});
 
@@ -285,11 +289,13 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
         };
         dataFactory.installOnlineModule(data, 'online_install').then(function (response) {
             dataFactory.postToRemote($scope.cfg.online_module_installed_url, {id: module.id});
-            $timeout(function () {
-                $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t(response.data.data.key)};
-                myCache.removeAll();
+             $scope.loading = false;
+             dataService.showNotifier({message: $scope._t(response.data.data.key)});
+            //$timeout(function () {
+                //$scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t(response.data.data.key)};
+               
                 window.location = '#/module/post/' + module.modulename;
-            }, 3000);
+            //}, 3000);
 
         }, function (error) {
             $scope.loading = false;
@@ -302,17 +308,17 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
      * Update module
      */
     $scope.updateModule = function (module, confirm) {
-        alertify.confirmWarning(confirm, function () {
+        alertify.confirm(confirm, function () {
             $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
             var data = {
                 moduleUrl: $scope.cfg.online_module_download_url + module.file
             };
             dataFactory.installOnlineModule(data, 'online_update').then(function (response) {
-                $timeout(function () {
-                    $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t(response.data.data.key)};
-                    myCache.removeAll();
-                    $route.reload();
-                }, 3000);
+                 $scope.loading = false;
+                dataService.showNotifier({message: $scope._t(response.data.data.key)});
+                //$timeout(function () {
+                     $route.reload();
+                //}, 3000);
 
             }, function (error) {
                 $scope.loading = false;
@@ -328,7 +334,7 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
 /**
  * App Instance controller
  */
-myAppController.controller('AppInstanceController', function ($scope, $route, dataFactory, myCache, _) {
+myAppController.controller('AppInstanceController', function ($scope, $route, dataFactory, dataService,myCache, _) {
     $scope.activeTab = 'instance';
     $scope.activateInstance = function (input, activeStatus) {
         input.active = activeStatus;
@@ -339,8 +345,8 @@ myAppController.controller('AppInstanceController', function ($scope, $route, da
                 myCache.remove('instances');
                 myCache.remove('instances/' + input.moduleId);
                 myCache.remove('devices');
-                //$scope.loadInstances();
-                $route.reload();
+                $scope.loadInstances();
+                //$route.reload();
 
             }, function (error) {
                 alertify.alertError($scope._t('error_update_data'));
@@ -354,12 +360,16 @@ myAppController.controller('AppInstanceController', function ($scope, $route, da
      * Delete instance
      */
     $scope.deleteInstance = function (target, input, message) {
-        alertify.confirmWarning(message, function () {
+        alertify.confirm(message, function () {
+            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
             dataFactory.deleteApi('instances', input.id).then(function (response) {
-                $(target).fadeOut(500);
+                 $scope.loading = false;
+                dataService.showNotifier({message: $scope._t('delete_successful')});
                 myCache.remove('instances');
                 myCache.remove('devices');
+                 $scope.loadInstances();
             }, function (error) {
+                $scope.loading = false;
                 alertify.alertError($scope._t('error_delete_data'));
             });
 
@@ -397,16 +407,15 @@ myAppController.controller('AppLocalDetailController', function ($scope, $routeP
      * Load module detail
      */
     $scope.loadModule = function (id) {
-        dataService.showConnectionSpinner();
-        //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('modules', '/' + id).then(function (response) {
             loadOnlineModules(id);
             $scope.module = response.data.data;
             $scope.loadCategories(response.data.data.category);
-            //$scope.loading = false;
+            $scope.loading = false;
         }, function (error) {
             $scope.loading = false;
-            $location.path('/error/' + error.status);
+             alertify.alertError($scope._t('error_load_data'));
         });
     };
     $scope.loadModule($routeParams.id);
@@ -500,14 +509,21 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
      * Load module detail
      */
     $scope.loadModuleId = function (id) {
-        dataService.showConnectionSpinner();
+       $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.postToRemote($scope.cfg.online_moduleid_url, {id: id, lang: $scope.lang}).then(function (response) {
+             $scope.loading = false;
+             if(_.isEmpty(response.data.data)){
+                alertify.alertError($scope._t('no_data')); 
+                return;
+             }
             $scope.module = response.data.data;
+            
             $scope.loadLocalModules({moduleName: $scope.module.modulename});
             $scope.loadCategories($scope.module.category);
             dataService.updateTimeTick();
         }, function (error) {
-            $location.path('/error/' + error.status);
+             $scope.loading = false;
+             alertify.alertError($scope._t('error_load_data'));
         });
     };
     $scope.loadModuleId($routeParams.id);
@@ -541,11 +557,10 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
         };
         dataFactory.installOnlineModule(data, 'online_install').then(function (response) {
             dataFactory.postToRemote($scope.cfg.online_module_installed_url, {id: module.id});
-            $timeout(function () {
-                $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t(response.data.data.key)};
-                myCache.removeAll();
+            dataService.showNotifier({message: $scope._t(response.data.data.key)});
+            //$timeout(function () {
                 window.location = '#/module/post/' + module.modulename;
-            }, 3000);
+            //}, 3000);
 
         }, function (error) {
             $scope.loading = false;
@@ -564,7 +579,8 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
         }
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         dataFactory.postToRemote($scope.cfg.online_module_comment_create_url, input).then(function (response) {
-            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('comment_add_successful')};
+            $scope.loading = false;
+            dataService.showNotifier({message: $scope._t('comment_add_successful')});
             $scope.expand.appcommentadd = false;
             $scope.loadComments($routeParams.id);
             input.content = '';

@@ -9,6 +9,7 @@
 myAppController.controller('ElementBaseController', function ($scope, $routeParams, $interval, $location, $cookies, $filter, dataFactory, dataService) {
     $scope.dataHolder = {
         devices: {
+            welcome:false,
             show: true,
             all: {},
             collection: {},
@@ -46,8 +47,9 @@ myAppController.controller('ElementBaseController', function ($scope, $routePara
      * Load data into collection
      */
     $scope.loadDevices = function () {
-        dataService.showConnectionSpinner();
+         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('devices', null, true).then(function (response) {
+            $scope.loading = false;
             var devices = _.chain(response.data.data.devices)
                     .flatten()
                     .uniq(false, function (v) {
@@ -119,13 +121,12 @@ myAppController.controller('ElementBaseController', function ($scope, $routePara
                 $scope.dataHolder.devices.collection = _.where($scope.dataHolder.devices.all, $scope.dataHolder.devices.filter);
             }
             if (_.isEmpty($scope.dataHolder.devices.collection)) {
-                $scope.dataHolder.devices.show = false;
+                $scope.dataHolder.devices.welcome = true;
             }
-            dataService.updateTimeTick(response.data.data.updateTime);
         }, function (error) {
-            if (!angular.isDefined($routeParams.login)) {
-                $location.path('/error/' + error.status);
-            }
+            $scope.loading = false;
+             alertify.alertError($scope._t('error_load_data'));
+                $scope.dataHolder.devices.show = false;
         });
     };
     $scope.loadDevices();
@@ -160,7 +161,7 @@ myAppController.controller('ElementBaseController', function ($scope, $routePara
                 }
 
             }, function (error) {
-                dataService.showConnectionError(error);
+                $interval.cancel($scope.apiDataInterval);
             });
         };
         $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
@@ -638,8 +639,9 @@ myAppController.controller('ElementDetailController', function ($scope, $routePa
      * Load data into collection
      */
     $scope.loadData = function (id) {
-        dataService.showConnectionSpinner();
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('devices', '/' + id).then(function (response) {
+            $scope.loading = false;
             var devices = [];
             devices[0] = response.data.data;
             $scope.deviceType = dataService.getDeviceType(devices);
@@ -650,7 +652,8 @@ myAppController.controller('ElementDetailController', function ($scope, $routePa
             loadInstances(devices);
 
         }, function (error) {
-            $location.path('/error/' + error.status);
+            $scope.loading = false;
+            alertify.alertError($scope._t('error_load_data'));
         });
     };
     $scope.loadData($routeParams.id);
@@ -768,8 +771,9 @@ myAppController.controller('ElementDetailController', function ($scope, $routePa
      */
     function updateProfile(profileData, deviceId) {
         dataFactory.putApi('profiles', profileData.id, profileData).then(function (response) {
+             $scope.loading = false;
+            dataService.showNotifier({message: $scope._t('success_updated')});
             dataService.setUser(response.data.data);
-            $scope.loading = false;
             myCache.remove('devices');
             myCache.remove('devices/' + deviceId);
             myCache.remove('locations');

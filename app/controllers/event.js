@@ -190,7 +190,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
      * Delete event
      */
     $scope.deleteEvent = function(id, params, target, message) {
-        alertify.confirmWarning(message, function() {
+        alertify.confirm(message, function() {
             $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
             dataFactory.deleteApi('notifications', id, params).then(function(response) {
                 myCache.remove('notifications');
