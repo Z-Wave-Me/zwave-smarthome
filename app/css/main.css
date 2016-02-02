@@ -3350,6 +3350,42 @@ img.widget-promo-image {
   margin: 20px 0 10px 0;
 }
 
+/* Apps rating
+-------------------------------------------------- */
+/* line 50, ../sass/modules/_apps.scss */
+.module-rating {
+  font-size: 150%;
+  padding: 0 10px 0 0;
+  color: #8c8c8c;
+}
+/* line 54, ../sass/modules/_apps.scss */
+.module-rating.israted {
+  color: #80AD80;
+}
+
+/* Apps comments
+-------------------------------------------------- */
+/* line 60, ../sass/modules/_apps.scss */
+.comment-entry {
+  margin: 0 0 10px 0;
+  padding: 10px;
+  background-color: #f3f3f3;
+  color: #0d0d0d;
+  font-size: 100%;
+}
+/* line 66, ../sass/modules/_apps.scss */
+.comment-entry .comment-header {
+  font-style: italic;
+  font-size: 95%;
+  color: #404040;
+  margin: 0 0 5px 0;
+}
+
+/* line 76, ../sass/modules/_apps.scss */
+.comment-entry.even {
+  background-color: #E9E9E9;
+}
+
 /* Rooms
 -------------------------------------------------- */
 /* line 4, ../sass/modules/_rooms.scss */

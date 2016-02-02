@@ -147,6 +147,9 @@ $element-widget-caret-font-size: 140%;
 $element-widget-time-font-size: 85%;
 $badge-number-font-size: 120%;
 $modal-camera-font-size: 170%;
+$comment-font-size: 100%;
+$comment-header-font-size: 95%;
+$rating-icon-size: 150%;
 
 /*-------------------------------------*/
 // COLORS
@@ -296,6 +299,14 @@ $room-border-color: $app-border-color;
 // Badge number
 $badge-number-bcg-color: lighten($app-body-color, 60%);
 $badge-number-color: #FFFFFF;
+
+// Comments and ratings
+$rating-color: lighten($app-body-color,50%);
+$rating-israted-color: #80AD80;
+$comment-even-bcg-color:  #E9E9E9;
+$comment-color: $app-body-color;
+$comment-header-color:  lighten($comment-color, 20%);
+
 
 /*-------------------------------------*/
 // EFFECTS

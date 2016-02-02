@@ -37,10 +37,45 @@
 /* App detail
 -------------------------------------------------- */
 .app-detail-img{
-     margin: 0 0 $spacing 0;
+    margin: 0 0 $spacing 0;
 }
 .app-detail-body{
     h2{
         margin: $spacing-double 0 $spacing 0;
     }
+}
+
+/* Apps rating
+-------------------------------------------------- */
+.module-rating{
+    font-size: $rating-icon-size;
+    padding: 0 $spacing 0 0;
+    color: $rating-color;
+    &.israted{ 
+        color: $rating-israted-color;
+    }
+}
+/* Apps comments
+-------------------------------------------------- */
+.comment-entry{
+    margin: 0 0 $spacing 0;
+    padding: $spacing;
+    background-color: lighten($comment-even-bcg-color,4%);
+    color: $comment-color;
+    font-size: $comment-font-size;
+    .comment-header{
+        font-style: italic;
+        font-size: $comment-header-font-size;
+        color: $comment-header-color;
+        margin: 0 0 $spacing-half 0;
+    }
+    .comment-body{
+
+    }
+}
+.comment-entry.even{
+    background-color: $comment-even-bcg-color;
+}
+// Author comment
+.comment-type-1{
 }
