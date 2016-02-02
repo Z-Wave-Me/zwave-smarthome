@@ -3,7 +3,7 @@ var config_data = {
         //Application name
         'app_name': 'SmartHome UI',
         // Application version
-        'app_version': '1.3.0',
+        'app_version': '1.2.0',
         // Server base url
         'server_url': '/',
         //'server_url': 'http://192.168.10.119:8083/',
@@ -41,7 +41,7 @@ var config_data = {
             'tokens': 'ZAutomation/api/v1/modules/tokens',
             'password_reset': 'ZAutomation/api/v1/auth/forgotten',
             'remote_id': 'ZAutomation/api/v1/system/remote-id',
-            'firmwareupdate': 'ZAutomation/api/v1/system/firmwareupdate'
+            'firmwareupdate': 'ZAutomation/api/v1/system/webif-access'
         },
         // List of image pathes
         'img': {

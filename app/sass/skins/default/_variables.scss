@@ -122,7 +122,7 @@ $device-border-color: $app-border-color;
 $widget-bcg-color: #FFFFFF;
 $widget-img-border-color: #FFFFFF;
 $widget-color: $app-body-color;
-$widget-border-color: $app-border-color;
+$widget-border-color: #FFFFFF;
 $widget-heading-color: $app-heading-color;
 $widget-icon-color:lighten($widget-color, 40%);
 
@@ -138,7 +138,7 @@ $element-widget-btn-0-color: $app-brand-danger;
 $element-widget-btn-1-color: $app-brand-success;
 $element-widget-btn-on-color: lighten($widget-color, 40%);
 $element-widget-img-update-border-color: $app-border-color;
-$element-widget-isnew-border-color: $app-brand-success;
+$element-widget-isnew-border-color: lighten($app-brand-success,20%);
 
 // Room
 $room-border-color: $app-border-color;
