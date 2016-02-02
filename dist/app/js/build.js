@@ -17347,8 +17347,8 @@ myAppController.controller('PasswordResetController', function($scope, $routePar
  */
 myAppController.controller('LogoutController', function($scope, dataService, dataFactory) {
     $scope.logout = function() {
+        dataService.setRememberMe(null);
         dataFactory.getApi('logout').then(function(response) {
-             dataService.setRememberMe(null);
             dataService.logOut();
         });
     };
