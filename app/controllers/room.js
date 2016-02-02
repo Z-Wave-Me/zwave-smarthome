@@ -17,8 +17,9 @@ myAppController.controller('RoomController', function($scope, $location, dataFac
      * Load data into collection
      */
     $scope.loadData = function() {
-        dataService.showConnectionSpinner();
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('locations').then(function(response) {
+            $scope.loading = false;
             $scope.collection = response.data.data;
 //            if (Object.keys($scope.collection).length < 1) {
 //                $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: $scope._t('no_data')};
@@ -26,7 +27,8 @@ myAppController.controller('RoomController', function($scope, $location, dataFac
             dataService.updateTimeTick();
             $scope.loadDevices();
         }, function(error) {
-            $location.path('/error/' + error.status);
+              $scope.loading = false;
+            alertify.alertError($scope._t('error_load_data'));
         });
     };
     $scope.loadData();
@@ -41,8 +43,7 @@ myAppController.controller('RoomController', function($scope, $location, dataFac
                     .reject(function(v){ return v.deviceType == 'battery' || v.permanently_hidden == true; })
                     .groupBy('location')
                     .value();
-        }, function(error) {
-        });
+        }, function(error) {});
     }
     ;
 });
@@ -50,7 +51,10 @@ myAppController.controller('RoomController', function($scope, $location, dataFac
  * Room config controller
  */
 myAppController.controller('RoomConfigController', function($scope, $window, $location, dataFactory, dataService, myCache, _) {
-    $scope.collection = [];
+    $scope.roomConfig = {
+         show: true,
+         all: {}
+     };
     $scope.devices = [];
     $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/image/';
 
@@ -62,15 +66,19 @@ myAppController.controller('RoomConfigController', function($scope, $window, $lo
      * Load data into collection
      */
     $scope.loadData = function(id) {
+         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('locations').then(function(response) {
-            $scope.collection = _.filter(response.data.data, function(v) {
+            $scope.loading = false;
+            $scope.roomConfig.all = _.filter(response.data.data, function(v) {
                 if (v.id !== 0) {
                     return v;
                 }
             });
             loadDevices();
         }, function(error) {
-            $location.path('/error/' + error.status);
+            $scope.roomConfig.show = false;
+             $scope.loading = false;
+            alertify.alertError($scope._t('error_load_data'));
         });
     };
     $scope.loadData();
@@ -81,14 +89,18 @@ myAppController.controller('RoomConfigController', function($scope, $window, $lo
     $scope.delete = function(target, roomId, message) {
 
         alertify.confirm(message, function() {
+            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
             dataFactory.deleteApi('locations', roomId).then(function(response) {
+                $scope.loading = false;
                 var devices = _.where($scope.devices, {location: roomId});
                 removeRoomIdFromDevice(devices);
                 myCache.remove('locations');
                 myCache.remove('devices');
+                dataService.showNotifier({message: $scope._t('delete_successful')});
                 $scope.loadData();
 
             }, function(error) {
+                $scope.loading = false;
                 alertify.alertError($scope._t('error_delete_data'));
             });
         });
@@ -146,13 +158,15 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
      * Load data
      */
     $scope.loadData = function(id) {
-        dataService.showConnectionSpinner();
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('locations', '/' + id, true).then(function(response) {
+            $scope.loading = false;
             $scope.input = response.data.data;
             loadDevices(id);
         }, function(error) {
             $scope.input = false;
-            $location.path('/error/' + error.status);
+            $scope.loading = false;
+            alertify.alertError($scope._t('error_load_data'));
         });
     };
     if ($scope.id > 0) {
@@ -171,9 +185,10 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
         //fd.append('file_upload', $scope.myFile);
         fd.append('files_files', files[0]);
         dataFactory.uploadApiFile(cmd, fd).then(function(response) {
+             $scope.loading = false;
             $scope.input.user_img = response.data.data;
             $scope.input.img_type = 'user';
-            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_upload')};
+            dataService.showNotifier({message: $scope._t('success_upload')});
         }, function(error) {
             $scope.loading = false;
             alertify.alertError($scope._t('error_upload'));
@@ -213,6 +228,7 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
     $scope.store = function(input) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         dataFactory.storeApi('locations', input.id, input).then(function(response) {
+             $scope.loading = false;
             var id = $filter('hasNode')(response, 'data.data.id');
             if (id) {
                 saveRoomIdIntoDevice(response.data, $scope.devicesAssigned);
@@ -220,9 +236,10 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
                 myCache.remove('locations');
                 myCache.remove('devices');
                 //$scope.loadData(id);
+                 dataService.showNotifier({message: $scope._t('success_updated')});
                 $location.path('/config-rooms');
             }
-            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
+           
 
         }, function(error) {
             alertify.alertError($scope._t('error_update_data'));
@@ -247,9 +264,7 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
 
             });
             dataService.updateTimeTick();
-        }, function(error) {
-            dataService.showConnectionError(error);
-        });
+        }, function(error) {});
     }
     ;
 

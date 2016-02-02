@@ -1,9 +1,10 @@
 <!-- Rooms view -->
 <div ng-controller="RoomConfigController">
      <bb-loader></bb-loader>
+     <div ng-if="roomConfig.show">
      <h2 ng-bind="_t('nav_rooms')"></h2>
      <div class="app-row app-row-report app-row-room clearfix">
-         <div id="row_{{v.id}}" class="report-entry" ng-repeat="v in collection">
+         <div id="row_{{v.id}}" class="report-entry" ng-repeat="v in roomConfig.all">
             <div class="report-col report-media">
              <img class="report-img img-circle" ng-src="{{v|getRoomIcon}}" />
            </div>
@@ -24,4 +25,5 @@
         <button type="button" class="btn btn-default" bb-go-back><i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span></button>
           <a type="button" class="btn btn-submit" ng-href="#config-rooms/0"><i class="fa fa-plus"></i> <span class="btn-name">{{_t('lb_add_room')}}</span></a>
      </div>
+   </div>
 </div> <!-- /ng-controller --> 
