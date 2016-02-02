@@ -1,6 +1,7 @@
 <!-- Zwave manage config view -->
 <div ng-controller="ZwaveManageIdController" class="mobile-padding">
     <bb-loader></bb-loader> 
+    <div ng-show="formInput.deviceName">
     <h1>(#{{zWaveDevice.id}}) {{formInput.deviceName}}</h1>
     <!-- Zwave config form -->
  <form name="form_network_config" id="form_profile" class="form form-page" ng-submit="updateAllDevices(formInput)" novalidate>
@@ -22,14 +23,16 @@
             <div class="form-group form-inline zwave-hidden-{{formInput.elements[e.id].permanently_hidden}}" ng-repeat="e in devices | orderBy:'title':false track by e.id" ng-init="dev[e.id] = e">
 
                 <h3>
-                    <img id="widget_img_{{v.id}}" class="report-img" ng-src="{{e.metrics.icon|getElementIcon:e:e.level}}" alt="img" />
+                    <img class="zwave-config-img" ng-src="{{e.metrics.icon|getElementIcon:e:e.level}}" alt="img" />
                      <span ng-bind="formInput.elements[e.id].metrics.title"></span>
                 </h3>
-                    <div>
-                            <input type="text" name="title_{{$index}}" id="title_{{$index}}" class="form-control form-control-md" ng-model="formInput.elements[e.id].metrics.title" value="{{formInput.elements[e.id].metrics.title}}" />
+                    <div class="form-group form-inline">
+                            <input type="text" name="title_{{$index}}" id="title_{{$index}}" class="form-control" ng-model="formInput.elements[e.id].metrics.title" value="{{formInput.elements[e.id].metrics.title}}" />
                              <!-- <button class="btn btn-primary" ng-click="updateDevice(dev[e.id])" ng-bind="_t('rename_element')"></button> --> 
+                             <span class="mobile-block">
                              <input type="checkbox" name="permanently_hidden_{{$index}}" id="permanently_hidden_{{$index}}" ng-model="formInput.elements[e.id].permanently_hidden" ng-checked="formInput.elements[e.id].permanently_hidden" />
                             <label ng-bind="_t('hide_element')"></label>
+                            </span>
                             <!-- <a class="btn" href="" 
                                  ng-click="updateDevice({id: e.id,permanently_hidden: e.permanently_hidden ? false : true})" 
                                  ng-bind="e.permanently_hidden ? _t('show_element') : _t('hide_element')"
@@ -54,5 +57,6 @@
             
         </fieldset>
     </form>
+    </div>
     <div class="device-logo" ng-include="'app/views/zwave/zwave_nav.html'"></div>
 </div> <!-- /ng-controller --> 

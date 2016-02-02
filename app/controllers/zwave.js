@@ -420,13 +420,15 @@ myAppController.controller('ZwaveManageController', function($scope, $cookies, $
      * Load data
      */
     $scope.loadData = function() {
-        dataService.showConnectionSpinner();
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('devices').then(function(response) {
+            $scope.loading = false;
             zwaveApiData(response.data.data.devices);
             loadLocations();
 
         }, function(error) {
-            $location.path('/error/' + error.status);
+            $scope.loading = false;
+             alertify.alertError($scope._t('error_load_data'));
         });
     };
     $scope.loadData();
@@ -564,7 +566,7 @@ myAppController.controller('ZwaveManageController', function($scope, $cookies, $
 
             }
         }, function(error) {
-            $location.path('/error/' + error.status);
+             alertify.alertError($scope._t('error_load_data'));
         });
     }
     ;
@@ -696,7 +698,7 @@ myAppController.controller('ZwaveManageIdController', function($scope, $window, 
     $scope.formInput = {
         elements: {},
         room: 0,
-        deviceName: ''
+        deviceName: false
     };
     $scope.rooms = [];
 
@@ -704,13 +706,15 @@ myAppController.controller('ZwaveManageIdController', function($scope, $window, 
      * Load data
      */
     $scope.loadConfigData = function(nodeId) {
-        dataService.showConnectionSpinner();
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('devices').then(function(response) {
+            $scope.loading = false;
             zwaveConfigApiData(nodeId, response.data.data.devices);
             loadConfigLocations();
 
         }, function(error) {
-            $location.path('/error/' + error.status);
+            $scope.loading = false;
+            alertify.alertError($scope._t('error_load_data'));
         });
     };
     $scope.loadConfigData($scope.zwaveConfig.nodeId);
@@ -736,16 +740,13 @@ myAppController.controller('ZwaveManageIdController', function($scope, $window, 
         }, function(error) {
         });
         myCache.removeAll();
-        $timeout(function() {
-            $scope.loading = false;
-
+        $scope.loading = false;
+             dataService.showNotifier({message: $scope._t('success_updated')});
             if (angular.isDefined($routeParams.nohistory)) {
                 $location.path('/zwave/devices');
             } else {
                 $window.history.back();
             }
-
-        }, 3000);
     };
 
     /// --- Private functions --- ///

@@ -2,29 +2,27 @@
 -------------------------------------------------- */
 .widget-entry-app{
     .widget-entry-in{
-        height: $app-widget-col-h;
-        .widget-img{
-            top: $spacing;
-        }
+        min-height: $app-widget-col-h;
+        height: auto;
         .widget-header{
             display: none;
         }
         .widget-content{
-            margin: $spacing-double 0 0 $widget-img + $spacing-double;
+            margin: $spacing-double 0 0 $widget-img + $spacing;
         }
         .bottom-aligner{
             display: none;
         }
         .widget-footer{
-            margin-top: -30px;
+            margin-top: 10px;
 
         }
         .widget-ctrl{
+            float: none;
             width: 100%;
             &.ctrl-left{
                 display: none;
             }
-            //float: none;
         }
     }
 }

@@ -1678,8 +1678,8 @@ div.timepicker-picker > table.table-condensed tr td {
 -------------------------------------------------- */
 /* line 3, ../sass/common/_gird.scss */
 #main_content {
-  margin-top: 85px;
-  margin-bottom: 70px;
+  margin-top: 60px;
+  margin-bottom: 60px;
 }
 
 /* line 8, ../sass/common/_gird.scss */
@@ -1875,7 +1875,7 @@ a:focus {
 }
 /* line 15, ../sass/common/_header.scss */
 #header .divider-vertical {
-  height: 75px;
+  height: 50px;
   border-left: 1px solid #c4c4c4;
   border-right: 1px solid #FFFFFF;
 }
@@ -1890,20 +1890,20 @@ a:focus {
 #main_navigation_wrap {
   background-color: #E9E9E9;
   border-bottom: solid 1px #DDDDDD;
-  height: 75px;
+  height: 50px;
 }
 
 /* line 34, ../sass/common/_header.scss */
 #main_navigation {
   position: relative;
-  line-height: 75px;
+  line-height: 50px;
 }
 /* line 37, ../sass/common/_header.scss */
 #main_navigation a {
   display: inline-block;
   padding: 0 15px;
   color: #333333;
-  line-height: 75px;
+  line-height: 50px;
 }
 /* line 43, ../sass/common/_header.scss */
 #main_navigation a:hover {
@@ -2019,15 +2019,16 @@ a:focus {
   bottom: 0px;
   width: 100%;
   text-align: center;
+  z-index: 2100;
   border-top: solid 1px #adadad;
 }
-/* line 11, ../sass/common/_footer.scss */
+/* line 12, ../sass/common/_footer.scss */
 #footer #footer_in {
   background-color: #E9E9E9;
-  height: 60px;
-  line-height: 60px;
+  height: 50px;
+  line-height: 50px;
 }
-/* line 15, ../sass/common/_footer.scss */
+/* line 16, ../sass/common/_footer.scss */
 #footer #footer_in .update-time-tick {
   display: none;
 }
@@ -2108,6 +2109,13 @@ img {
   max-width: 70px;
   max-height: 70px;
   margin: 5px;
+}
+
+/* line 58, ../sass/common/_images.scss */
+.zwave-config-img {
+  display: inline-block;
+  max-width: 32px;
+  max-height: 32px;
 }
 
 /* Page navigation
@@ -2280,7 +2288,7 @@ img {
 }
 /* line 37, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .widget-title h3 {
-  font-size: 120%;
+  font-size: 115%;
   padding: 0;
   margin: 0;
 }
@@ -2704,19 +2712,24 @@ fieldset.submit-entry {
 }
 
 /* line 63, ../sass/common/_dropdown.scss */
+.dropdown-100 {
+  width: 100%;
+}
+
+/* line 66, ../sass/common/_dropdown.scss */
 .app-dropdown-left {
   float: left;
   left: 0;
   right: auto;
 }
 
-/* line 68, ../sass/common/_dropdown.scss */
+/* line 71, ../sass/common/_dropdown.scss */
 .app-dropdown-bottom {
   top: auto;
   bottom: 100%;
 }
 
-/* line 73, ../sass/common/_dropdown.scss */
+/* line 76, ../sass/common/_dropdown.scss */
 .app-dropdown-mxh-600 {
   height: auto;
   max-height: 600px;
@@ -2838,7 +2851,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
 .appmodal .appmodal-in {
   width: 99%;
   position: relative;
-  margin: 95px auto 20px auto;
+  margin: 70px auto 20px auto;
   background-color: #FFFFFF;
 }
 
@@ -3292,38 +3305,36 @@ img.widget-promo-image {
 -------------------------------------------------- */
 /* line 4, ../sass/modules/_apps.scss */
 .widget-entry-app .widget-entry-in {
-  height: 90px;
+  min-height: 120px;
+  height: auto;
 }
-/* line 6, ../sass/modules/_apps.scss */
-.widget-entry-app .widget-entry-in .widget-img {
-  top: 10px;
-}
-/* line 9, ../sass/modules/_apps.scss */
+/* line 7, ../sass/modules/_apps.scss */
 .widget-entry-app .widget-entry-in .widget-header {
   display: none;
 }
-/* line 12, ../sass/modules/_apps.scss */
+/* line 10, ../sass/modules/_apps.scss */
 .widget-entry-app .widget-entry-in .widget-content {
-  margin: 20px 0 0 84px;
+  margin: 20px 0 0 74px;
 }
-/* line 15, ../sass/modules/_apps.scss */
+/* line 13, ../sass/modules/_apps.scss */
 .widget-entry-app .widget-entry-in .bottom-aligner {
   display: none;
 }
-/* line 18, ../sass/modules/_apps.scss */
+/* line 16, ../sass/modules/_apps.scss */
 .widget-entry-app .widget-entry-in .widget-footer {
-  margin-top: -30px;
+  margin-top: 10px;
 }
-/* line 22, ../sass/modules/_apps.scss */
+/* line 20, ../sass/modules/_apps.scss */
 .widget-entry-app .widget-entry-in .widget-ctrl {
+  float: none;
   width: 100%;
 }
-/* line 24, ../sass/modules/_apps.scss */
+/* line 23, ../sass/modules/_apps.scss */
 .widget-entry-app .widget-entry-in .widget-ctrl.ctrl-left {
   display: none;
 }
 
-/* line 32, ../sass/modules/_apps.scss */
+/* line 30, ../sass/modules/_apps.scss */
 .app-entry-success .widget-entry-in {
   background: #1e5799;
   /* Old browsers */
@@ -3345,32 +3356,32 @@ img.widget-promo-image {
 
 /* App detail
 -------------------------------------------------- */
-/* line 39, ../sass/modules/_apps.scss */
+/* line 37, ../sass/modules/_apps.scss */
 .app-detail-img {
   margin: 0 0 10px 0;
 }
 
-/* line 43, ../sass/modules/_apps.scss */
+/* line 41, ../sass/modules/_apps.scss */
 .app-detail-body h2 {
   margin: 20px 0 10px 0;
 }
 
 /* Apps rating
 -------------------------------------------------- */
-/* line 50, ../sass/modules/_apps.scss */
+/* line 48, ../sass/modules/_apps.scss */
 .module-rating {
   font-size: 150%;
   padding: 0 10px 0 0;
   color: #8c8c8c;
 }
-/* line 54, ../sass/modules/_apps.scss */
+/* line 52, ../sass/modules/_apps.scss */
 .module-rating.israted {
   color: #80AD80;
 }
 
 /* Apps comments
 -------------------------------------------------- */
-/* line 60, ../sass/modules/_apps.scss */
+/* line 58, ../sass/modules/_apps.scss */
 .comment-entry {
   margin: 0 0 10px 0;
   padding: 10px;
@@ -3378,7 +3389,7 @@ img.widget-promo-image {
   color: #0d0d0d;
   font-size: 100%;
 }
-/* line 66, ../sass/modules/_apps.scss */
+/* line 64, ../sass/modules/_apps.scss */
 .comment-entry .comment-header {
   font-style: italic;
   font-size: 95%;
@@ -3386,7 +3397,7 @@ img.widget-promo-image {
   margin: 0 0 5px 0;
 }
 
-/* line 76, ../sass/modules/_apps.scss */
+/* line 74, ../sass/modules/_apps.scss */
 .comment-entry.even {
   background-color: #E9E9E9;
 }
@@ -4137,16 +4148,17 @@ img.widget-promo-image {
   -------------------------------------------------- */
   /* line 227, ../sass/responsive/_mq_shared.scss */
   .widget-entry-app .widget-entry-in {
-    height: 120px;
+    min-height: 1px;
+    height: 110px;
   }
-  /* line 229, ../sass/responsive/_mq_shared.scss */
+  /* line 230, ../sass/responsive/_mq_shared.scss */
   .widget-entry-app .widget-entry-in .widget-footer {
     margin: 10px 0 0 0;
   }
 
   /* App detail
   -------------------------------------------------- */
-  /* line 237, ../sass/responsive/_mq_shared.scss */
+  /* line 238, ../sass/responsive/_mq_shared.scss */
   .app-detail-img {
     float: left;
     position: relative;
@@ -4154,14 +4166,14 @@ img.widget-promo-image {
     width: 148px;
   }
 
-  /* line 242, ../sass/responsive/_mq_shared.scss */
+  /* line 243, ../sass/responsive/_mq_shared.scss */
   .app-detail-body {
     margin: 0 0 0 148px;
   }
 
   /* Device include
   -------------------------------------------------- */
-  /* line 248, ../sass/responsive/_mq_shared.scss */
+  /* line 249, ../sass/responsive/_mq_shared.scss */
   .include-device-img {
     float: left;
     position: relative;
@@ -4169,45 +4181,45 @@ img.widget-promo-image {
     width: 148px;
   }
 
-  /* line 253, ../sass/responsive/_mq_shared.scss */
+  /* line 254, ../sass/responsive/_mq_shared.scss */
   .app-detail-body {
     margin: 0 0 0 148px;
   }
 
   /* Rooms
   -------------------------------------------------- */
-  /* line 259, ../sass/responsive/_mq_shared.scss */
+  /* line 260, ../sass/responsive/_mq_shared.scss */
   .room-entry {
     width: 33.33333%;
   }
 
   /* Footer
   -------------------------------------------------- */
-  /* line 266, ../sass/responsive/_mq_shared.scss */
+  /* line 267, ../sass/responsive/_mq_shared.scss */
   #footer #footer_in {
     height: 40px;
     line-height: 40px;
   }
 
-  /* line 272, ../sass/responsive/_mq_shared.scss */
+  /* line 273, ../sass/responsive/_mq_shared.scss */
   #footer {
     display: none;
   }
 
   /* Auth
   -------------------------------------------------- */
-  /* line 279, ../sass/responsive/_mq_shared.scss */
+  /* line 280, ../sass/responsive/_mq_shared.scss */
   #page_login .container, #page_password .container, #page_passwordforgot .container, #page_passwordreset .container {
     max-width: 500px;
   }
 
   /* Others
   -------------------------------------------------- */
-  /* line 286, ../sass/responsive/_mq_shared.scss */
+  /* line 287, ../sass/responsive/_mq_shared.scss */
   .update-time-tick {
     font-size: 90% !important;
   }
-  /* line 288, ../sass/responsive/_mq_shared.scss */
+  /* line 289, ../sass/responsive/_mq_shared.scss */
   .update-time-tick .fa {
     font-size: 90% !important;
   }
@@ -4471,16 +4483,17 @@ img.widget-promo-image {
   -------------------------------------------------- */
   /* line 227, ../sass/responsive/_mq_shared.scss */
   .widget-entry-app .widget-entry-in {
+    min-height: 1px;
     height: 110px;
   }
-  /* line 229, ../sass/responsive/_mq_shared.scss */
+  /* line 230, ../sass/responsive/_mq_shared.scss */
   .widget-entry-app .widget-entry-in .widget-footer {
     margin: 10px 0 0 0;
   }
 
   /* App detail
   -------------------------------------------------- */
-  /* line 237, ../sass/responsive/_mq_shared.scss */
+  /* line 238, ../sass/responsive/_mq_shared.scss */
   .app-detail-img {
     float: left;
     position: relative;
@@ -4488,14 +4501,14 @@ img.widget-promo-image {
     width: 148px;
   }
 
-  /* line 242, ../sass/responsive/_mq_shared.scss */
+  /* line 243, ../sass/responsive/_mq_shared.scss */
   .app-detail-body {
     margin: 0 0 0 148px;
   }
 
   /* Device include
   -------------------------------------------------- */
-  /* line 248, ../sass/responsive/_mq_shared.scss */
+  /* line 249, ../sass/responsive/_mq_shared.scss */
   .include-device-img {
     float: left;
     position: relative;
@@ -4503,45 +4516,45 @@ img.widget-promo-image {
     width: 148px;
   }
 
-  /* line 253, ../sass/responsive/_mq_shared.scss */
+  /* line 254, ../sass/responsive/_mq_shared.scss */
   .app-detail-body {
     margin: 0 0 0 148px;
   }
 
   /* Rooms
   -------------------------------------------------- */
-  /* line 259, ../sass/responsive/_mq_shared.scss */
+  /* line 260, ../sass/responsive/_mq_shared.scss */
   .room-entry {
     width: 25%;
   }
 
   /* Footer
   -------------------------------------------------- */
-  /* line 266, ../sass/responsive/_mq_shared.scss */
+  /* line 267, ../sass/responsive/_mq_shared.scss */
   #footer #footer_in {
     height: 40px;
     line-height: 40px;
   }
 
-  /* line 272, ../sass/responsive/_mq_shared.scss */
+  /* line 273, ../sass/responsive/_mq_shared.scss */
   #footer {
     display: none;
   }
 
   /* Auth
   -------------------------------------------------- */
-  /* line 279, ../sass/responsive/_mq_shared.scss */
+  /* line 280, ../sass/responsive/_mq_shared.scss */
   #page_login .container, #page_password .container, #page_passwordforgot .container, #page_passwordreset .container {
     max-width: 500px;
   }
 
   /* Others
   -------------------------------------------------- */
-  /* line 286, ../sass/responsive/_mq_shared.scss */
+  /* line 287, ../sass/responsive/_mq_shared.scss */
   .update-time-tick {
     font-size: 90% !important;
   }
-  /* line 288, ../sass/responsive/_mq_shared.scss */
+  /* line 289, ../sass/responsive/_mq_shared.scss */
   .update-time-tick .fa {
     font-size: 90% !important;
   }
@@ -4559,6 +4572,12 @@ img.widget-promo-image {
   }
 
   /* line 94, ../sass/responsive/_responsive.scss */
+  .mobile-block {
+    margin: 10px 0 0 0;
+    display: block;
+  }
+
+  /* line 98, ../sass/responsive/_responsive.scss */
   #footer .update-time-tick {
     display: inline-block !important;
   }
@@ -4572,6 +4591,15 @@ img.widget-promo-image {
 }
 /* Extra Small Devices, Phones */
 /* Custom, iPhone Retina */
-/* Custom, iPhone Retina */
+@media only screen and (max-width: 360px) {
+  /* line 121, ../sass/responsive/_responsive.scss */
+  .widget-entry-app .widget-entry-in .widget-ctrl.ctrl-right {
+    text-align: left;
+  }
+  /* line 123, ../sass/responsive/_responsive.scss */
+  .widget-entry-app .widget-entry-in .widget-ctrl.ctrl-right .btn-group {
+    float: none;
+  }
+}
 
 /*# sourceMappingURL=main.css.map */

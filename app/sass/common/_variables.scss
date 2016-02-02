@@ -32,7 +32,7 @@ $checkbox-scale: 2;
 $radio-scale: 1.8;
 $app-input-padding: 12px 14px;
 // Header
-$header-h: 75px;
+$header-h: 50px;
 $header-icon-settings-h: 40px;
 
 // Page navigation
@@ -65,9 +65,10 @@ $product-img: 64px;
 $vendor-img: 80px;
 $room-img-upload: 70px;
 $room-img-preview: 130px;
+$zwave-config-img: 32px;
 
 // Footer
-$footer-h: 60px;
+$footer-h: 50px;
 
 //Widget
 $widget-col-w: 100%;
@@ -77,7 +78,7 @@ $widget-col-h: 150px;
 $element-widget-col-h: 150px;
 
 //Apps
-$app-widget-col-h: 90px;
+$app-widget-col-h: 120px;
 
 
 //Room
@@ -97,8 +98,8 @@ $zindex-header: 2100;
 $zindex-page-navi: 1900;
 $zindex-dropdown: 1100;
 $zindex-modal: 2000;
-$zindex-footer: 1000;
-$zindex-m-footer: 1030;
+$zindex-footer: 2100;
+$zindex-m-footer: 2130;
 
 
 /*-------------------------------------*/
@@ -138,7 +139,7 @@ $accordion-icon-size: 130%;
 $tab-font-size: 120%;
 $tab-icon-size: 130%;
 $helptext-font-size: 95%;
-$widget-heading-font-size: 120%;
+$widget-heading-font-size: 115%;
 $widget-icon-size: 180%;
 $element-widget-room-font-size: 85%;
 $element-widget-level-font-size: 160%;

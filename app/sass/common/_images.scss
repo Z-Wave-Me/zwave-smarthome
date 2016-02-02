@@ -55,3 +55,8 @@ img {
     max-height: $room-img-upload;
     margin: $spacing-half;
 }
+.zwave-config-img{
+    display: inline-block;
+    max-width: $zwave-config-img;
+    max-height:$zwave-config-img;
+}

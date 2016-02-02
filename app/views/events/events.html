@@ -18,7 +18,7 @@
                  <span ng-switch-when="7">7 {{_t('lb_days')}}</span>
                 <span ng-switch-default>{{_t('lb_today')}}</span>
             </button>
-            <div class="app-dropdown" ng-if="naviExpanded.evDay">
+            <div class="app-dropdown dropdown-100" ng-if="naviExpanded.evDay">
                 <ul>
                     <li class="page-order-1" ng-class="timeFilter.day == 1 ? 'active': ''" ng-click="changeTime(1)">
                         <a href="">{{_t('lb_today')}} <span class="menu-arrow" ng-if="timeFilter.day == 1"><i class="fa fa-check"></i></span></a>

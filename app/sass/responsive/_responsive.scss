@@ -91,6 +91,10 @@
       .btn-name,{
         display: none !important;
     }
+    .mobile-block{
+        margin: $spacing 0 0 0;
+        display: block;
+    }
     #footer .update-time-tick{
             display: inline-block !important;
         }
@@ -110,11 +114,18 @@
 }
 
 /* Custom, iPhone Retina */ 
-@media only screen and (max-width : 320px) {
-
+@media only screen and (max-width : 360px) {
+    .widget-entry-app{
+    .widget-entry-in{
+        .widget-ctrl{
+           &.ctrl-right{
+                 text-align: left;
+                 .btn-group{
+                     float: none;
+                 }
+            }
+        }
+    }
 }
-
-/* Custom, iPhone Retina */ 
-@media only screen and (max-width : 320px) {
 
 }

@@ -240,7 +240,6 @@ myAppController.controller('PasswordResetController', function($scope, $routePar
             $scope.loading = false;
             $scope.passwordReset.alert = {message: message, status: 'alert-danger', icon: 'fa-warning'};
         });
-        return;
 
     };
     $scope.checkToken();

@@ -225,6 +225,7 @@ input[type=radio] {
 -------------------------------------------------- */
 .widget-entry-app{
    .widget-entry-in{
+       min-height: 1px;
          height: $app-widget-col-h;
         .widget-footer{
           margin: $spacing 0 0 0;

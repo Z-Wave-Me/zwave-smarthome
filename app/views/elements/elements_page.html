@@ -14,7 +14,7 @@
             <button class="btn btn-default" ng-click="expandNavi('elOrderBy', $event)">
                 <i class="fa fa-sort-alpha-asc"></i> <span class="btn-name">{{_t(dataHolder.devices.orderBy) | cutText:true:15}}</span>
             </button>
-            <div class="app-dropdown" ng-if="naviExpanded.elOrderBy">
+            <div class="app-dropdown dropdown-100" ng-if="naviExpanded.elOrderBy">
                 <p class="app-dropdown-title">{{_t('sortby')}}:</p>
                 <ul>
                     <li class="page-order-{{k}}" ng-repeat="(k,v) in cfg.orderby.elements" ng-class="dataHolder.devices.orderBy == k ? 'active': ''">
