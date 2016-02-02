@@ -3,7 +3,7 @@ var config_data = {
         //Application name
         'app_name': 'SmartHome UI',
         // Application version
-        'app_version': 'v1.1.0',
+        'app_version': '1.2.0',
         // Server base url
         'server_url': '/',
         //'server_url': 'http://192.168.10.119:8083/',
@@ -39,7 +39,9 @@ var config_data = {
             'backup': 'ZAutomation/api/v1/backup',
             'restore': 'ZAutomation/api/v1/restore',
             'tokens': 'ZAutomation/api/v1/modules/tokens',
-            'password_reset': 'ZAutomation/api/v1/auth/forgotten'
+            'password_reset': 'ZAutomation/api/v1/auth/forgotten',
+            'remote_id': 'ZAutomation/api/v1/system/remote-id',
+            'firmwareupdate': 'ZAutomation/api/v1/system/webif-access'
         },
         // List of image pathes
         'img': {
@@ -60,31 +62,33 @@ var config_data = {
         // Help data path
         'help_data_url': 'storage/help/',
         // Online module url
-        'online_module_url': 'http://developer.zwave.eu/?uri=api-modules',
+        'online_module_url': 'https://developer.z-wave.me/?uri=api-modules',
         // Online module id url
-        'online_moduleid_url': 'http://developer.zwave.eu/?uri=api-modulesid',
+        'online_moduleid_url': 'https://developer.z-wave.me/?uri=api-modulesid',
         // Online module img url
-        'online_module_img_url': 'http://developer.zwave.eu/modules/',
+        'online_module_img_url': 'https://developer.z-wave.me/modules/',
         // Online module download url
-        'online_module_download_url': 'http://developer.zwave.eu/modules/',
+        'online_module_download_url': 'https://developer.z-wave.me/modules/',
         // Online module installed url
-        'online_module_installed_url': 'http://developer.zwave.eu/?uri=api-modules-installed',
+        'online_module_installed_url': 'https://developer.z-wave.me/?uri=api-modules-installed',
         // Online module comments url
-        'online_module_comments_url': 'http://developer.zwave.eu/?uri=api-comments',
+        'online_module_comments_url': 'https://developer.z-wave.me/?uri=api-comments',
         // Online module comment create url
-        'online_module_comment_create_url': 'http://developer.zwave.eu/?uri=api-comments-create',
+        'online_module_comment_create_url': 'https://developer.z-wave.me/?uri=api-comments-create',
         // Online module rating create url
-        'online_module_rating_create_url': 'http://developer.zwave.eu/?uri=api-rating-create',
+        'online_module_rating_create_url': 'https://developer.z-wave.me/?uri=api-rating-create',
         // Online module download url
-        'blacklist_url': 'http://hrix.net/blacklist.json',
+        'blacklist_url': 'https://hrix.net/blacklist.json', 
         // Post report url
-        'post_report_url': 'http://zwave.eu/api/report/post-report.php',
+        'post_report_url': 'https://hrix.net/shuiapi/report/',
         // Postpassword url
-        'post_password_request_url': 'http://hrix.net/shuiapi/password/',
+        'post_password_request_url': 'https://hrix.net/shuiapi/password/',
         // Get licence scratch id
-        'get_licence_scratchid': 'http://hrix.net/shuiapi/licence/',
+        'get_licence_scratchid': 'https://hrix.net/shuiapi/licence/',
+        // Url to get a license key
+        'license_url': 'https://hrix.net/shuiapi/licence/upgrade.php',
         // Razberry latest version
-        'raz_latest_version_url': 'http://razberry.z-wave.me/z-way/razberry/latest/VERSION',
+        'raz_latest_version_url': 'https://razberry.z-wave.me/z-way/razberry/latest/VERSION', 
         // Url to zddx xml files
         'zddx_url': 'ZDDX/',
         // Url to run ExpertUI cmd
@@ -97,10 +101,6 @@ var config_data = {
         'enocean_black_list': ['81048201'],
         // Url to config XML file
         'cfg_xml_url': 'config/Configuration.xml',
-        // Url to get a license key
-        'license_url': 'http://store.zwaveeurope.com/license/utility_uzb.php',
-        // Buy licence key url
-        'buy_licence_key': 'http://www.zwave.me/index.php?id=41',
         // Url to update capabilities
         'license_load_url': 'ZWaveAPI/ZMELicense',
         // Language directory

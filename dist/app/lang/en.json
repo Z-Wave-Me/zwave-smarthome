@@ -1,5 +1,10 @@
 {
     "newtrans": "---",
+     "---": "newtrans",
+    "delete_successful": "Data was successfully deleted",
+    "secure_login": "Secure login",
+    "unsecure_login": "Unsecure login",
+    "remember_me": "Remember me",
     "rate_app": "Rate this APP",
     "already_rated": "You have already rated this APP",
     "description": "Description",
@@ -9,7 +14,6 @@
     "comment_add_failed": "Failed to add the comment",
     "error_load_comments": "Unable to load comments",
     "no_comments": "There are no comments yet",
-    "---": "newtrans",
     "sortby": "Sort by",
     "creationTimeASC": "Oldest",
     "creationTimeDESC": "Newest",

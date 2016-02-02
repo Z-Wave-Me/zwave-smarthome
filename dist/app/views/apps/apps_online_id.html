@@ -1,12 +1,14 @@
 <!-- AppOnlineDetailController -->
 <div ng-controller="AppOnlineDetailController">
      <bb-loader></bb-loader>
+     <div ng-if="!_.isEmpty(module)">
     <!-- ///////////////////////////// App info ///////////////////////////// -->
-    <div class="admin-entry" ng-include="'app/views/apps/apps_online_id_info.html'"></div>
+    <div class="accordion-entry" ng-include="'app/views/apps/apps_online_id_info.html'"></div>
     
      <!-- ///////////////////////////// App description ///////////////////////////// -->
-    <div class="admin-entry" ng-include="'app/views/apps/apps_online_id_desc.html'"></div>
+    <div class="accordion-entry" ng-include="'app/views/apps/apps_online_id_desc.html'"></div>
     
     <!-- ///////////////////////////// App comments ///////////////////////////// -->
-    <div class="admin-entry" ng-include="'app/views/apps/apps_online_id_comments.html'"></div>
+    <div class="accordion-entry" ng-include="'app/views/apps/apps_online_id_comments.html'"></div>
+    </div>
 </div> <!-- /ng-controller --> 

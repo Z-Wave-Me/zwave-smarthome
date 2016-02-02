@@ -1,25 +1,29 @@
 <!-- Rooms view -->
 <div ng-controller="RoomConfigController">
      <bb-loader></bb-loader>
-     <h2 class="mobile-padding" ng-bind="_t('nav_rooms')"></h2>
-    <table id="table_cfg_rooms" class="table table-condensed table-report">
-        <tbody>
-            <tr ng-repeat="v in collection" id="row_{{v.id}}">
-                <td class="td-img">
-                     <img class="report-img img-circle" ng-src="{{v|getRoomIcon}}" />
-                </td>
-                 <td ng-bind="v.title"></td>
-                <td class="td-action">
-                    <a class="btn btn-default" href="#config-rooms/{{v.id}}"><i class="fa fa-pencil fa-lg text-info"></i></a>
+     <div ng-if="roomConfig.show">
+     <h2 ng-bind="_t('nav_rooms')"></h2>
+     <div class="app-row app-row-report app-row-room clearfix">
+         <div id="row_{{v.id}}" class="report-entry" ng-repeat="v in roomConfig.all">
+            <div class="report-col report-media">
+             <img class="report-img img-circle" ng-src="{{v|getRoomIcon}}" />
+           </div>
+            <div class="report-col report-body">
+                {{v.title|cutText:true:25}}
+            </div>
+         <div class="report-col report-ctrl">
+             <div class="btn-group">
+             <a class="btn btn-default" href="#config-rooms/{{v.id}}"><i class="fa fa-pencil text-info"></i></a>
                     <button class="btn btn-default" 
                        ng-click="delete('#row_' + v.id, v.id, _t('lb_delete_confirm'))"
-                       ><i class="fa fa-times fa-lg text-danger"></i></button>   
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                       ><i class="fa fa-times text-danger"></i></button>
+              </div>
+         </div>
+        </div>
+      </div>
      <div class="fieldset submit-entry">
-        <button type="button" class="btn btn-default" bb-go-back><i class="fa fa-times  text-danger"></i> <span ng-bind="_t('lb_cancel')"></span></button>
-          <a type="button" class="btn btn-submit" ng-href="#config-rooms/0"><i class="fa fa-plus"></i> {{_t('lb_add_room')}}</a>
+        <button type="button" class="btn btn-default" bb-go-back><i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span></button>
+          <a type="button" class="btn btn-submit" ng-href="#config-rooms/0"><i class="fa fa-plus"></i> <span class="btn-name">{{_t('lb_add_room')}}</span></a>
      </div>
+   </div>
 </div> <!-- /ng-controller --> 

@@ -1,11 +1,13 @@
-<ul class="nav nav-tabs nav-tabs-3" role="tablist">
-    <li ng-class="activeTab == 'controller' ? 'active' : ''">
-         <a href="#enocean/controller"><i class="fa fa-info-circle"></i> <span class="tab-name">{{_t('controller_info')}}</span></a>
-    </li>
-    <li ng-class="activeTab == 'manage' ? 'active' : ''">
-         <a href="#enocean/manage"><i class="fa fa-edit"></i> <span class="tab-name">{{_t('manage')}}</span></a>
-    </li>
-    <li ng-class="activeTab == 'assign' ? 'active' : ''">
-        <a href="#enocean/assign"><i class="fa fa-book"></i> <span class="tab-name">{{_t('teach_in')}}</span></a>
-    </li>
-</ul>
+<div class="tabs-wrap form-inline">
+    <div class="btn-group btn-goup-tabs btn-tabs-3">
+        <a class="btn btn-default" href="#enocean/controller" ng-class="activeTab == 'controller' ? 'active' : ''">
+            <i class="fa fa-info-circle"></i> <span class="btn-name">{{_t('controller_info')}}</span>
+        </a>
+        <a class="btn btn-default" href="#enocean/manage" ng-class="activeTab == 'manage' ? 'active' : ''">
+            <i class="fa fa-bolt"></i> <span class="btn-name">{{_t('manage')}}</span>
+        </a>
+        <a class="btn btn-default" href="#enocean/assign" ng-class="activeTab == 'assign' ? 'active' : ''">
+            <i class="fa fa-sitemap"></i> <span class="btn-name">{{_t('teach_in')}}</span>
+        </a>
+    </div>
+</div>

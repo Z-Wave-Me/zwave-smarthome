@@ -10,7 +10,7 @@
            <div class="multiline-entry" ng-if="widgetClimateControl.rooms">
                 <table class="table table-report table-condensed">
                     <tbody>
-                        <tr class="bcg-success" ng-repeat="n in widgetClimateControl.rooms" ng-if="n.roomName > 0">
+                        <tr class="bcg-success" ng-repeat="n in widgetClimateControl.rooms" ng-if="n.room > 0">
                             <td class="td-img">
                                 <img class="report-img img-circle" ng-src="{{n.roomIcon}}" />
                             </td>
@@ -27,10 +27,10 @@
                             <td class="text-right">
 
                                 <select class="form-control" 
-                                        name="changeMode_{{n.roomName}}" 
-                                        id="changeMode_{{n.roomName}}"
-                                        ng-model="widgetClimateControl.model[n.roomName]" 
-                                         ng-change="changeClimateControlMode({cmd: widgetClimateControl.find.id + '/command/' + widgetClimateControl.model[n.roomName] + '?room=' + n.roomName, room: n.roomName})">
+                                        name="changeMode_{{n.room}}" 
+                                        id="changeMode_{{n.room}}"
+                                        ng-model="widgetClimateControl.model[n.room]" 
+                                         ng-change="changeClimateControlMode({cmd: widgetClimateControl.find.id + '/command/' + widgetClimateControl.model[n.room] + '?room=' + n.room, room: n.room})">
                                     <option value="{{m}}" ng-repeat="m in cfg.climate_state" ng-disabled="m == 'schedule' && !n.hasSchedule" ng-selected="n.state == m">{{_t(m)}}</option>
                                 </select>
                             </td>
