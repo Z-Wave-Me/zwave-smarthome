@@ -244,8 +244,11 @@ input[type=radio] {
    margin: 0 0 0 $app-detail-img + $spacing-double;
 }
 
-/* Device include
+/* Devices
 -------------------------------------------------- */
+.vendor-entry{
+     width: $device-vendor-w; 
+}
 .include-device-img{
     @include appFloat(left);
      width: $app-detail-img + $spacing-double;
