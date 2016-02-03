@@ -1971,12 +1971,12 @@ a:focus {
 #sub_navigation_in ul {
   padding: 0;
   list-style: none;
-  margin: 0;
+  margin: 0 10px;
   background-color: #FFFFFF;
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   -moz-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-  border: 1px solid #DDDDDD;
+  border: 1px solid #d3d3d3;
 }
 /* line 99, ../sass/common/_header.scss */
 #sub_navigation_in ul li {
@@ -2409,64 +2409,68 @@ img {
   width: 100%;
   margin: 0 0 10px 0;
 }
+/* line 8, ../sass/common/_button.scss */
+.btn-goup-block .btn.active .fa {
+  color: #80AD80;
+}
 
-/* line 12, ../sass/common/_button.scss */
+/* line 18, ../sass/common/_button.scss */
 .btn-goup-1 .btn {
   width: 100%;
 }
 
-/* line 17, ../sass/common/_button.scss */
+/* line 23, ../sass/common/_button.scss */
 .btn-goup-2 .btn {
   width: 50%;
 }
 
-/* line 22, ../sass/common/_button.scss */
+/* line 28, ../sass/common/_button.scss */
 .btn-goup-3 .btn {
   width: 33.33333%;
 }
 
-/* line 27, ../sass/common/_button.scss */
+/* line 33, ../sass/common/_button.scss */
 .btn-default {
   color: #0d0d0d;
   background-color: #FFFFFF;
   border-color: #CCCCCC;
 }
 
-/* line 33, ../sass/common/_button.scss */
+/* line 39, ../sass/common/_button.scss */
 .btn-default.active {
   background-color: #EEEEEE;
 }
 
-/* line 37, ../sass/common/_button.scss */
+/* line 43, ../sass/common/_button.scss */
 .btn, .btn-device-admin {
   font-size: 110%;
 }
-/* line 39, ../sass/common/_button.scss */
+/* line 45, ../sass/common/_button.scss */
 .btn .fa, .btn-device-admin .fa {
   font-size: 150%;
 }
 
-/* line 44, ../sass/common/_button.scss */
+/* line 50, ../sass/common/_button.scss */
 .btn-submit {
   color: #FFFFFF;
   border: solid 1px #80AD80;
   background-color: #4e794e;
 }
-/* line 48, ../sass/common/_button.scss */
+/* line 54, ../sass/common/_button.scss */
 .btn-submit:hover, .btn-submit:focus {
   background-color: #80AD80;
 }
 
-/* line 53, ../sass/common/_button.scss */
+/* line 59, ../sass/common/_button.scss */
 .btn-small {
   font-size: 90%;
 }
-/* line 55, ../sass/common/_button.scss */
+/* line 61, ../sass/common/_button.scss */
 .btn-small .fa {
   font-size: 95%;
 }
 
-/* line 60, ../sass/common/_button.scss */
+/* line 66, ../sass/common/_button.scss */
 .btn-tag {
   display: block;
   position: relative;
@@ -2474,7 +2478,7 @@ img {
   font-size: 100%;
   margin: 0 0 10px 0;
 }
-/* line 66, ../sass/common/_button.scss */
+/* line 72, ../sass/common/_button.scss */
 .btn-tag .fa {
   position: absolute;
   top: 5px;
@@ -2484,33 +2488,33 @@ img {
 
 /* Button tabs
 -------------------------------------------------- */
-/* line 78, ../sass/common/_button.scss */
+/* line 84, ../sass/common/_button.scss */
 .btn-goup-tabs {
   display: table;
   width: 100%;
   margin: 0 0 10px 0;
 }
-/* line 82, ../sass/common/_button.scss */
+/* line 88, ../sass/common/_button.scss */
 .btn-goup-tabs .btn {
   padding: 10px;
   font-size: 120%;
   background-color: #EEEEEE;
 }
-/* line 86, ../sass/common/_button.scss */
+/* line 92, ../sass/common/_button.scss */
 .btn-goup-tabs .btn.active {
   background-color: gainsboro;
 }
-/* line 89, ../sass/common/_button.scss */
+/* line 95, ../sass/common/_button.scss */
 .btn-goup-tabs .btn .fa {
   font-size: 130%;
   color: #404040;
 }
-/* line 94, ../sass/common/_button.scss */
+/* line 100, ../sass/common/_button.scss */
 .btn-goup-tabs .active .fa {
   color: #80AD80;
 }
 
-/* line 99, ../sass/common/_button.scss */
+/* line 105, ../sass/common/_button.scss */
 .btn-tabs-3 .btn {
   width: 33.33333%;
 }
@@ -3299,6 +3303,19 @@ img.widget-promo-image {
 /* line 10, ../sass/modules/_events.scss */
 .event-level-critical {
   background: #f2dede;
+}
+
+/* line 14, ../sass/modules/_events.scss */
+.group-event-dropdown {
+  width: 100%;
+}
+/* line 16, ../sass/modules/_events.scss */
+.group-event-dropdown .btn {
+  float: right;
+}
+/* line 19, ../sass/modules/_events.scss */
+.group-event-dropdown .app-dropdown {
+  width: 100%;
 }
 
 /* Apps

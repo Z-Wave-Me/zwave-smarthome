@@ -7,11 +7,12 @@
     
         <div class="page-control form-inline">
             <div class="btn-group btn-goup-block btn-goup-1">
-                <a class="btn btn-default" href="" ng-click="expandNavi('appsCategories', $event)"><i class="fa fa-filter"></i> 
+                <button class="btn btn-default" ng-click="expandNavi('appsCategories', $event)" ng-class="!_.isEmpty(dataHolder.modules.filter) ? 'active':'' ">
+                    <i class="fa fa-filter"></i> 
                      <span ng-if="dataHolder.modules.filter.category">{{dataHolder.modules.categories[dataHolder.modules.filter.category].name|cutText:true:30}}</span>
                      <span ng-if="dataHolder.modules.filter.featured">{{_t('featured_apps')}}</span>
                      <span ng-if="_.isEmpty(dataHolder.modules.filter)">{{_t('all_apps')}}</span>
-                </a>
+                </button>
             </div>
             <div class="input-group">
                 <input type="text" ng-model="q" class="form-control form-search" value="{{q}}">

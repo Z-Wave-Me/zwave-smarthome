@@ -192,6 +192,7 @@ $header-delim-r-color: lighten($app-border-color, 15%);
 $header-a-color: $app-a-color;
 $header-icon-color: lighten($header-a-color, 20%);
 $header-a-active-color: $app-border-color;
+$header-subnavi-border-color: $app-border-color;
 $header-subnavi-bcg-color: #FFFFFF;
 
 // Page navigation
@@ -220,6 +221,7 @@ $btn-color: $app-body-color;
 $btn-bcg-color: #FFFFFF;
 $btn-border-color: #CCCCCC;
 $btn-active-bcg-color: #FFFFFF;
+$btn-icon-active-color: $app-brand-success;
 
 // Tabs
 $tabs-bcg-color: #FFFFFF;

@@ -4,6 +4,12 @@
     display: table;
     width: 100%;
     margin: 0 0 $spacing 0;
+    .btn{
+        &.active .fa{
+            color: $btn-icon-active-color;
+        }
+    }
+
 
 
 }
@@ -67,7 +73,7 @@
         position: absolute;
         top: $spacing-half;
         right: $spacing;
-       font-size: $app-btn-tag-icon-size;
+        font-size: $app-btn-tag-icon-size;
     }
 }
 

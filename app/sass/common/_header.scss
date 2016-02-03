@@ -92,10 +92,10 @@
         padding: 0;
         list-style: none;
         //w: margin: 0 0 0 66%;
-        margin:0;
+        margin: 0 $spacing;
         background-color: $header-subnavi-bcg-color;
         @include appBoxShadow($app-mainsubnavi-box-shadow);
-        border: 1px solid $header-border-color;
+        border: 1px solid $header-subnavi-border-color;
         li{
             padding: $spacing 0;
             border-bottom: solid 1px $header-border-color;

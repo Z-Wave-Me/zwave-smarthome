@@ -10,3 +10,13 @@
 .event-level-critical{
     background: $app-bcg-danger;
 }
+
+.group-event-dropdown{
+   width: 100%;
+       .btn{
+       float: right;
+   }
+   .app-dropdown{
+       width: 100%;
+   }
+}
