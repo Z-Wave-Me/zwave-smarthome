@@ -249,11 +249,6 @@ input[type=radio] {
 .vendor-entry{
      width: $device-vendor-w; 
 }
-.include-device-img{
-    @include appFloat(left);
-     width: $app-detail-img + $spacing-double;
-    
-}
 .app-detail-body{
    margin: 0 0 0 $app-detail-img + $spacing-double;
 }

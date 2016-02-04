@@ -2,7 +2,7 @@
 <div ng-controller="ElementBaseController">
     <bb-loader></bb-loader>
     <div ng-if="dataHolder.devices.welcome" ng-include="'app/views/elements/no_elements.html'"></div>
-    <div ng-if="dataHolder.devices.show">
+    <div ng-if="dataHolder.devices.show && !dataHolder.devices.welcome">
     <div class="page-control form-inline">
         <div class="btn-group btn-goup-block btn-goup-3">
             <button class="btn btn-default" ng-click="expandNavi('elCategories', $event)" ng-class="dataHolder.devices.filter.deviceType ? 'active':'' ">

@@ -616,7 +616,8 @@ myAppController.controller('ZwaveExcludeController', function($scope, $location,
         dataFactory.loadZwaveApiData(true).then(function(ZWaveAPIData) {
             var node = ZWaveAPIData.devices[$routeParams.id];
             if (!node) {
-                $location.path('/error/404');
+                alertify.alertError($scope._t('no_data'));
+                return;
             }
             $scope.zWaveDevice.controllerState = ZWaveAPIData.controller.data.controllerState.value;
             $scope.zWaveDevice.id = $routeParams.id;
@@ -624,7 +625,7 @@ myAppController.controller('ZwaveExcludeController', function($scope, $location,
             return;
 
         }, function(error) {
-            $location.path('/error/404');
+           alertify.alertError($scope._t('error_load_data'));
         });
     };
     $scope.loadZwaveApiData();

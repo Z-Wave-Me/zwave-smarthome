@@ -3,31 +3,35 @@
      <bb-loader></bb-loader>
     <!-- Zwave navigation -->
     <div ng-include="'app/views/zwave/navi.html'"></div>
-    <div class="tab-pane" id="module_health">
-        <table class="table table-condensed table-report">
-            <tbody>
-                <tr ng-repeat="v in zWaveDevices| orderBy:'id':false" id="row_health_{{v.id}}" ng-if="v.messages">
-                   <td class="network-zwave-device">
-                        <span class="network-node-name">(#{{v.id}}) {{v.title}}</span>
-                        <div  class="network-zwave-device" ng-repeat="e in v.elements| orderBy:'title':false" ng-bind="e.title"></div>
-                    </td>
-                    <td class="td-action">
-                        <div class="text-danger" ng-repeat="m in v.messages|unique:true">
-                            <span ng-if="!isMobile">
-                                <a class="text-danger" href="" ng-if="m.type == 'failed' || m.type == 'config'" ng-click="toExpert('/expert/#help/' + v.id, _t('redirect_to_expert'))" >
-                                    <span  ng-bind="m.error"></span> <i class="fa fa-external-link"></i>
-                                </a>
-                            </span>
-                            <span ng-if="isMobile">
-                                <span  class="text-danger" ng-if="m.type == 'failed' || m.type == 'config'" ng-bind="m.error"></span>
-                            </span>
-                            <span ng-if="m.type == 'battery'" ng-bind="m.error"></span>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
- 
-    </div>
+    <div class="app-row app-row-report app-row-zwave clearfix">
+         <div id="row_zwave_network_{{v.id}}" class="report-entry" ng-repeat="v in zWaveDevices | orderBy:'title':false" ng-if="v.messages">
+             <div class="report-col report-body zwave-network">
+                <span class="network-zwave-title noelements clickable" ng-if="v.elements.length < 1">{{v.title|cutText:true:25}} (#{{v.id}}) </span>
+                <a href="" class="network-zwave-title clickable" ng-click="expandElement('accZwaveNetwork_' + v.id)" ng-if="v.elements.length > 0">
+                    <i class="fa" ng-class="expand['accZwave' + '_' + v.id] ? 'fa-chevron-up': 'fa-chevron-down'"></i> {{v.title}} (#{{v.id}})
+                 </a>
+                 <div ng-if="expand['accZwaveNetwork_' + v.id]">
+                 <div class="network-zwave-element zwave-hidden-{{e.permanently_hidden}}" ng-repeat="e in v.elements | orderBy:'title':false">
+                     <a ng-href="#/element/{{e.id}}">
+                         <img class="report-img-s" ng-src="{{e.metrics.icon|getElementIcon:e:e.level}}" alt="img" /> {{e.title|cutText:true:25}} <span class="zwave-raquo">&raquo;</span>
+                     </a>
+                   </div>
+                   </div>
+            </div>
+         <div class="report-col report-ctrl">
+             <div class="text-danger" ng-repeat="m in v.messages|unique:true">
+                <span ng-if="!isMobile">
+                    <a class="text-danger" href="" ng-if="m.type == 'failed' || m.type == 'config'" ng-click="toExpert('/expert/#help/' + v.id, _t('redirect_to_expert'))" >
+                        <span  ng-bind="m.error"></span> <i class="fa fa-external-link"></i>
+                    </a>
+                </span>
+                <span ng-if="isMobile">
+                    <span  class="text-danger" ng-if="m.type == 'failed' || m.type == 'config'" ng-bind="m.error"></span>
+                </span>
+                <span ng-if="m.type == 'battery'" ng-bind="m.error"></span>
+            </div>
+         </div>
+        </div>
+      </div>
     <div class="device-logo" ng-include="'app/views/zwave/zwave_nav.html'"></div>
 </div> <!-- /ng-controller --> 

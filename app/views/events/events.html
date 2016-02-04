@@ -29,6 +29,7 @@
                      {{_t('lb_notify_' + v.val)}}
                  </a>
             </div>
+             <div ng-if="devices.show">
             <p class="page-navi-title">{{_t('lb_device')}} </p>
             <ul>
                 <li class="page-cat-0" ng-class="v.id===devices.find.id ? 'active':''" ng-repeat="v in devices.data" >
@@ -38,7 +39,7 @@
                  </a>
                 </li>
             </ul>
-            
+         </div>
         </div>
     </div>
     
@@ -52,7 +53,7 @@
             </div>
         </div>
     </div>
-      <div class="info-lert" ng-if="collection.length < 1 || devices.find.id"><i class="fa fa-info-circle text-info"></i> {{_t('device_no_event')}}.</div>
+      <div class="info-lert" ng-if="devices.find.id && collection.length < 1"><i class="fa fa-info-circle text-info"></i> {{_t('device_no_event')}}.</div>
       <div class="info-lert" ng-if="user.hide_all_device_events || user.hide_system_events"><i class="fa fa-info-circle text-info"></i> <span ng-bind="_t('events_hidden')"></span></div>
         
     <div class="app-row app-row-report app-row-event clearfix">

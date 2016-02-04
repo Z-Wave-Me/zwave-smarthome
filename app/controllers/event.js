@@ -37,7 +37,8 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
             title: false,
             data: {}
         },
-        data: {}
+        data: {},
+        show: false
     };
     $scope.currentPage = 1;
     $scope.pageSize = cfg.page_results_events;
@@ -66,16 +67,17 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
                     })
                     .indexBy('id')
                     .value();
-            angular.extend($scope.devices.data, data);
+            if(!_.isEmpty(data)){
+               angular.extend($scope.devices, {data: data,show: true}); 
+            }
+            
             if (angular.isDefined($routeParams.param) && angular.isDefined($routeParams.val)) {
                 if ($routeParams.param === 'source' && !_.isEmpty(data) && data[$routeParams.val]) {
                     angular.extend($scope.devices.find, {id: $routeParams.val}, {title: data[$routeParams.val].metrics.title});
                     angular.extend($scope.page, {title: data[$routeParams.val].metrics.title});
                 }
             }
-        }, function(error) {
-            dataService.showConnectionError(error);
-        });
+        }, function(error) {});
     }
     ;
     $scope.loadDevices();
@@ -92,7 +94,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
             dataService.updateTimeTick(response.data.data.updateTime);
             $scope.loading = false;
         }, function(error) {
-            $location.path('/error/' + error.status);
+            alertify.alertError($scope._t('error_load_data'));
         });
     };
     $scope.loadData();

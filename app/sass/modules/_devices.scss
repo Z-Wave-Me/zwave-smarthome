@@ -99,6 +99,7 @@
 .network-zwave-title{
     font-weight: bold;
     display: block;
+    width: 100%;
      &.noelements{
             color: lighten($app-body-color,20%);
             font-weight: normal;
@@ -124,12 +125,10 @@
 }
 .network-zwave-element{
     padding-left: $spacing;
-    margin-bottom: $spacing-half;
+    margin: $spacing 0 0 0;
 }
 
-.network-zwave-title{
-    cursor: pointer;
-}
+
 
 .network-block{
     margin-bottom: $spacing-double;

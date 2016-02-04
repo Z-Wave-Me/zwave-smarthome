@@ -2112,7 +2112,7 @@ img {
 }
 
 /* line 58, ../sass/common/_images.scss */
-.zwave-config-img {
+.report-img-s {
   display: inline-block;
   max-width: 32px;
   max-height: 32px;
@@ -3561,90 +3561,86 @@ img.widget-promo-image {
 .network-zwave-title {
   font-weight: bold;
   display: block;
+  width: 100%;
 }
-/* line 102, ../sass/modules/_devices.scss */
+/* line 103, ../sass/modules/_devices.scss */
 .network-zwave-title.noelements {
   color: #404040;
   font-weight: normal;
 }
 
-/* line 108, ../sass/modules/_devices.scss */
+/* line 109, ../sass/modules/_devices.scss */
 .zwave-hidden-true a {
   color: #8c8c8c;
   cursor: text;
   text-decoration: line-through;
 }
-/* line 112, ../sass/modules/_devices.scss */
+/* line 113, ../sass/modules/_devices.scss */
 .zwave-hidden-true a:hover {
   text-decoration: line-through;
 }
-/* line 115, ../sass/modules/_devices.scss */
+/* line 116, ../sass/modules/_devices.scss */
 .zwave-hidden-true a .zwave-raquo {
   display: none;
 }
-/* line 121, ../sass/modules/_devices.scss */
+/* line 122, ../sass/modules/_devices.scss */
 .zwave-hidden-true input {
   color: #8c8c8c;
 }
 
-/* line 125, ../sass/modules/_devices.scss */
+/* line 126, ../sass/modules/_devices.scss */
 .network-zwave-element {
   padding-left: 10px;
-  margin-bottom: 5px;
+  margin: 10px 0 0 0;
 }
 
-/* line 130, ../sass/modules/_devices.scss */
-.network-zwave-title {
-  cursor: pointer;
-}
-
-/* line 134, ../sass/modules/_devices.scss */
+/* line 133, ../sass/modules/_devices.scss */
 .network-block {
   margin-bottom: 20px;
 }
 
 /* Configuration
 -------------------------------------------------- */
-/* line 140, ../sass/modules/_devices.scss */
+/* line 139, ../sass/modules/_devices.scss */
 .table-cfg-interview th {
   width: 25%;
 }
 
-/* line 143, ../sass/modules/_devices.scss */
+/* line 142, ../sass/modules/_devices.scss */
 .cfg-block {
   margin: 0 0 20px 0;
   padding: 0 0 20px 0;
 }
 
-/* line 148, ../sass/modules/_devices.scss */
+/* line 147, ../sass/modules/_devices.scss */
 .cfg-block h4 {
   font-size: 16px;
 }
 
-/* line 152, ../sass/modules/_devices.scss */
+/* line 151, ../sass/modules/_devices.scss */
 .cfg-control-content {
   padding: 10px;
   margin: 10px 0;
 }
 
-/* line 156, ../sass/modules/_devices.scss */
+/* line 155, ../sass/modules/_devices.scss */
 .cfg-info {
   margin: 10px 0 0 0;
   padding: 10px 0 0 0;
   border-top: solid 1px #d3d3d3;
 }
 
-/* line 161, ../sass/modules/_devices.scss */
+/* line 160, ../sass/modules/_devices.scss */
 .commads-is-current {
   text-decoration: underline;
 }
 
-/* line 164, ../sass/modules/_devices.scss */
+/* line 163, ../sass/modules/_devices.scss */
 #wakeup_cont .form-inline {
   float: left;
 }
 
-/* line 167, ../sass/modules/_devices.scss */
+/* line 166, ../sass/modules/_devices.scss */
 .spin-true .fa-spin {
   display: none;
 }
@@ -3853,6 +3849,25 @@ img.widget-promo-image {
     -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
     -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
     box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+  }
+  /* line 96, ../sass/skins/default/_main.scss */
+  .widget-entry.app-entry-success .widget-entry-in {
+    background: #1e5799;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #1e5799 0%, #dcf4e0 0%, #f6f6f6 99%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #1e5799), color-stop(0%, #dcf4e0), color-stop(99%, #f6f6f6));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #1e5799 0%, #dcf4e0 0%, #f6f6f6 99%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #1e5799 0%, #dcf4e0 0%, #f6f6f6 99%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #1e5799 0%, #dcf4e0 0%, #f6f6f6 99%);
+    /* IE10+ */
+    background: linear-gradient(to bottom, #1e5799 0%, #dcf4e0 0%, #f6f6f6 99%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#f6f6f6',GradientType=0 );
+    /* IE6-9 */
   }
 }
 /*
@@ -4204,52 +4219,44 @@ img.widget-promo-image {
   }
 
   /* line 252, ../sass/responsive/_mq_shared.scss */
-  .include-device-img {
-    float: left;
-    position: relative;
-    min-height: 1px;
-    width: 148px;
-  }
-
-  /* line 257, ../sass/responsive/_mq_shared.scss */
   .app-detail-body {
     margin: 0 0 0 148px;
   }
 
   /* Rooms
   -------------------------------------------------- */
-  /* line 263, ../sass/responsive/_mq_shared.scss */
+  /* line 258, ../sass/responsive/_mq_shared.scss */
   .room-entry {
     width: 33.33333%;
   }
 
   /* Footer
   -------------------------------------------------- */
-  /* line 270, ../sass/responsive/_mq_shared.scss */
+  /* line 265, ../sass/responsive/_mq_shared.scss */
   #footer #footer_in {
     height: 40px;
     line-height: 40px;
   }
 
-  /* line 276, ../sass/responsive/_mq_shared.scss */
+  /* line 271, ../sass/responsive/_mq_shared.scss */
   #footer {
     display: none;
   }
 
   /* Auth
   -------------------------------------------------- */
-  /* line 283, ../sass/responsive/_mq_shared.scss */
+  /* line 278, ../sass/responsive/_mq_shared.scss */
   #page_login .container, #page_password .container, #page_passwordforgot .container, #page_passwordreset .container {
     max-width: 500px;
   }
 
   /* Others
   -------------------------------------------------- */
-  /* line 290, ../sass/responsive/_mq_shared.scss */
+  /* line 285, ../sass/responsive/_mq_shared.scss */
   .update-time-tick {
     font-size: 90% !important;
   }
-  /* line 292, ../sass/responsive/_mq_shared.scss */
+  /* line 287, ../sass/responsive/_mq_shared.scss */
   .update-time-tick .fa {
     font-size: 90% !important;
   }
@@ -4544,52 +4551,44 @@ img.widget-promo-image {
   }
 
   /* line 252, ../sass/responsive/_mq_shared.scss */
-  .include-device-img {
-    float: left;
-    position: relative;
-    min-height: 1px;
-    width: 148px;
-  }
-
-  /* line 257, ../sass/responsive/_mq_shared.scss */
   .app-detail-body {
     margin: 0 0 0 148px;
   }
 
   /* Rooms
   -------------------------------------------------- */
-  /* line 263, ../sass/responsive/_mq_shared.scss */
+  /* line 258, ../sass/responsive/_mq_shared.scss */
   .room-entry {
     width: 25%;
   }
 
   /* Footer
   -------------------------------------------------- */
-  /* line 270, ../sass/responsive/_mq_shared.scss */
+  /* line 265, ../sass/responsive/_mq_shared.scss */
   #footer #footer_in {
     height: 40px;
     line-height: 40px;
   }
 
-  /* line 276, ../sass/responsive/_mq_shared.scss */
+  /* line 271, ../sass/responsive/_mq_shared.scss */
   #footer {
     display: none;
   }
 
   /* Auth
   -------------------------------------------------- */
-  /* line 283, ../sass/responsive/_mq_shared.scss */
+  /* line 278, ../sass/responsive/_mq_shared.scss */
   #page_login .container, #page_password .container, #page_passwordforgot .container, #page_passwordreset .container {
     max-width: 500px;
   }
 
   /* Others
   -------------------------------------------------- */
-  /* line 290, ../sass/responsive/_mq_shared.scss */
+  /* line 285, ../sass/responsive/_mq_shared.scss */
   .update-time-tick {
     font-size: 90% !important;
   }
-  /* line 292, ../sass/responsive/_mq_shared.scss */
+  /* line 287, ../sass/responsive/_mq_shared.scss */
   .update-time-tick .fa {
     font-size: 90% !important;
   }
