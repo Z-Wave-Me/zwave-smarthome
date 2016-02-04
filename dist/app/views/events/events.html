@@ -4,36 +4,23 @@
     <div class="page-control form-inline">
         <!-- Filter -->
         <div class="btn-group btn-goup-block btn-goup-2">
-            <button class="btn btn-default" ng-click="expandNavi('evFilter', $event)">
+            <button class="btn btn-default" ng-click="expandNavi('evFilter', $event)" ng-class="devices.find.title || currLevel ? 'active':'' ">
                 <i class="fa fa-filter"></i>
                 <span ng-if="!devices.find.title && !currLevel">{{_t('lb_show_all')}}</span>
-                 <span ng-if="devices.find.title">{{_t(devices.find.title) | cutText:true:25}}</span>
+                 <span ng-if="devices.find.title">{{_t(devices.find.title) | cutText:true:15}}</span>
                  <span ng-if="currLevel"> {{_t('lb_notify_' + currLevel)}}</span>
             </button>
          
         <!-- Days -->
-            <button class="btn btn-default" ng-click="expandNavi('evDay', $event)" ng-switch="timeFilter.day">
+            <button class="btn btn-default" ng-click="expandNavi('evDays', $event)" ng-switch="timeFilter.day">
                 <i class="fa fa-calendar-check-o"></i> 
                  <span ng-switch-when="2">{{_t('lb_yesterday')}}</span>
                  <span ng-switch-when="7">7 {{_t('lb_days')}}</span>
                 <span ng-switch-default>{{_t('lb_today')}}</span>
             </button>
-            <div class="app-dropdown" ng-if="naviExpanded.evDay">
-                <ul>
-                    <li class="page-order-1" ng-class="timeFilter.day == 1 ? 'active': ''" ng-click="changeTime(1)">
-                        <a href="">{{_t('lb_today')}} <span class="menu-arrow" ng-if="timeFilter.day == 1"><i class="fa fa-check"></i></span></a>
-                    </li>
-                    <li class="page-order-2" ng-class="timeFilter.day == 2 ? 'active': ''" ng-click="changeTime(2)">
-                        <a href="">{{_t('lb_yesterday')}} <span class="menu-arrow" ng-if="timeFilter.day == 2"><i class="fa fa-check"></i></span></a>
-                    </li>
-                    <li class="page-order-7" ng-class="timeFilter.day == 7 ? 'active': ''" ng-click="changeTime(7)">
-                        <a href="">7 {{_t('lb_days')}} <span class="menu-arrow" ng-if="timeFilter.day == 7"><i class="fa fa-check"></i></span></a>
-                    </li>
-                </ul>
-            </div>
         </div>
     </div>
-    <!-- Page subnavi -->
+    <!-- Page subnavi  filter-->
     <div class="page-navi" ng-if="naviExpanded.evFilter">
         <div class="page-navi-in">
              <p class="page-navi-title">{{_t('error_type')}} </p>
@@ -42,6 +29,7 @@
                      {{_t('lb_notify_' + v.val)}}
                  </a>
             </div>
+             <div ng-if="devices.show">
             <p class="page-navi-title">{{_t('lb_device')}} </p>
             <ul>
                 <li class="page-cat-0" ng-class="v.id===devices.find.id ? 'active':''" ng-repeat="v in devices.data" >
@@ -51,10 +39,21 @@
                  </a>
                 </li>
             </ul>
-            
+         </div>
         </div>
     </div>
-      <div class="info-lert" ng-if="collection.length < 1 || devices.find.id"><i class="fa fa-info-circle text-info"></i> {{_t('device_no_event')}}.</div>
+    
+    <!-- Page subnavi  days-->
+    <div class="page-navi" ng-if="naviExpanded.evDays">
+        <div class="page-navi-in">
+            <div class="page-navi-content">
+                <a class="btn btn-default btn-tag" href="" ng-class="timeFilter.day == 1 ? 'active': ''" ng-click="changeTime(1)">{{_t('lb_today')}}</a>
+                <a class="btn btn-default btn-tag" href="" ng-class="timeFilter.day == 2 ? 'active': ''" ng-click="changeTime(2)">{{_t('lb_yesterday')}}</a>
+                <a class="btn btn-default btn-tag" href="" ng-class="timeFilter.day == 7 ? 'active': ''" ng-click="changeTime(7)">7 {{_t('lb_days')}}</a>
+            </div>
+        </div>
+    </div>
+      <div class="info-lert" ng-if="devices.find.id && collection.length < 1"><i class="fa fa-info-circle text-info"></i> {{_t('device_no_event')}}.</div>
       <div class="info-lert" ng-if="user.hide_all_device_events || user.hide_system_events"><i class="fa fa-info-circle text-info"></i> <span ng-bind="_t('events_hidden')"></span></div>
         
     <div class="app-row app-row-report app-row-event clearfix">

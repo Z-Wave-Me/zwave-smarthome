@@ -7,11 +7,12 @@
     
         <div class="page-control form-inline">
             <div class="btn-group btn-goup-block btn-goup-1">
-                <a class="btn btn-default" href="" ng-click="expandNavi('appsCategories', $event)"><i class="fa fa-filter"></i> 
+                <button class="btn btn-default" ng-click="expandNavi('appsCategories', $event)" ng-class="!_.isEmpty(dataHolder.modules.filter) ? 'active':'' ">
+                    <i class="fa fa-filter"></i> 
                      <span ng-if="dataHolder.modules.filter.category">{{dataHolder.modules.categories[dataHolder.modules.filter.category].name|cutText:true:30}}</span>
                      <span ng-if="dataHolder.modules.filter.featured">{{_t('featured_apps')}}</span>
                      <span ng-if="_.isEmpty(dataHolder.modules.filter)">{{_t('all_apps')}}</span>
-                </a>
+                </button>
             </div>
             <div class="input-group">
                 <input type="text" ng-model="q" class="form-control form-search" value="{{q}}">
@@ -58,13 +59,14 @@
                     <div class="widget-content">
                         <!-- Widget title -->
                          <div class="widget-title">
-                            <h3><a href="#apps/local/{{v.id}}" ng-bind="v.defaults.title|cutText:true:25"></a>  &raquo;</h3>
+                            <h3><a href="#apps/local/{{v.id}}" ng-bind="v.defaults.title|cutText:true:20"></a>  <span class="btn-name">&raquo;</span></h3>
                         </div>
                         <hr class="bottom-aligner" />
                         <!-- Widget footer -->
                          <div class="widget-footer">
                             <div class="widget-ctrl ctrl-left">&nbsp;</div>
-                            <div class="widget-ctrl ctrl-right">
+                            <div class="widget-ctrl ctrl-right clearfix">
+                                 <div class="btn-group">
                                  <a href="#module/post/{{v.id}}" class="btn btn-default">
                                     <i class="fa fa-plus text-success"></i> <span class="btn-name" ng-bind="_t('lb_add_app')"></span>
                                 </a>
@@ -74,6 +76,7 @@
                                 <a href="" class="btn btn-default" ng-click="resetModule({'id': v.id}, _t('app_reset_confirm'),'#local_module_' + v.id)" ng-if="v.custom && v.hasReset">
                                     <i class="fa fa-remove fa-refresh text-warning"></i> <span class="btn-name" ng-bind="_t('reset')"></span>
                                 </a>
+                            </div>
                             </div>
                          </div>
                     </div>

@@ -10267,7 +10267,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $location
  * Application directives
  * @author Martin Vach
  */
-myApp.directive('testDir', function() {
+myApp.directive('testDir', function () {
     return {
         restrict: "E",
         replace: true,
@@ -10275,9 +10275,9 @@ myApp.directive('testDir', function() {
     };
 });
 
-myApp.directive('logIt', function() {
+myApp.directive('logIt', function () {
     return {
-        link: function(scope, elem, attrs) {
+        link: function (scope, elem, attrs) {
             console.log(attrs.logIt);
         }
     };
@@ -10286,11 +10286,11 @@ myApp.directive('logIt', function() {
 /**
  * History go back
  */
-myApp.directive('bbGoBack', ['$window', function($window) {
+myApp.directive('bbGoBack', ['$window', function ($window) {
         return {
             restrict: 'A',
-            link: function(scope, elem, attrs) {
-                elem.bind('click', function() {
+            link: function (scope, elem, attrs) {
+                elem.bind('click', function () {
                     $window.history.back();
                 });
             }
@@ -10300,7 +10300,7 @@ myApp.directive('bbGoBack', ['$window', function($window) {
 /**
  * Page loader directive
  */
-myApp.directive('bbLoader', function() {
+myApp.directive('bbLoader', function () {
     return {
         restrict: "E",
         replace: true,
@@ -10313,7 +10313,7 @@ myApp.directive('bbLoader', function() {
 /**
  * Alert directive
  */
-myApp.directive('bbAlert', function() {
+myApp.directive('bbAlert', function () {
     return {
         restrict: "E",
         replace: true,
@@ -10327,7 +10327,7 @@ myApp.directive('bbAlert', function() {
 /**
  * Alerttext  directive
  */
-myApp.directive('bbAlertText', function() {
+myApp.directive('bbAlertText', function () {
     return {
         restrict: "E",
         replace: true,
@@ -10341,42 +10341,44 @@ myApp.directive('bbAlertText', function() {
 /**
  * Help directive
  */
-myApp.directive('bbHelp', function(dataFactory, cfg) {
+myApp.directive('bbHelp', function ($sce, dataFactory, cfg) {
+    var trusted = {};
     return {
         restrict: "E",
-        replace: true,
-//        scope: {
-//            lang: '&',
-//            file: '='
-//        },
-        template: '<span><a href="" ng-click="clickMe(file)"><i class="fa fa-question-circle fa-lg text-info"></i></a>'
-                + '<div class="modal modal-vertical-centered fade" id="help_{{file}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'
-                + '<div class="modal-dialog modal-dialog-center"><div class="modal-content">'
-                + '<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button></div>'
-                + ' <div class="modal-body" ng-bind-html="helpData|toTrusted"></div>'
+        replace: true, template: '<span class="clickable" ng-click="showHelp();handleModal(\'helpModal\', $event)"><i class="fa fa-question-circle fa-lg text-info"></i>'
+                + '<div id="helpModal" class="appmodal" ng-if="modalArr.helpModal"><div class="appmodal-in">'
+                + '<div class="appmodal-header">'
+                + '<h3>{{cfg.app_name}}</h3>'
+                + '<span class="appmodal-close" ng-click="handleModal(\'helpModal\', $event)"><i class="fa fa-times"></i></span>'
+                 + '</div>'
+                + '<div class="appmodal-body" ng-bind-html="getSafeHtml(helpData)"></div>'
                 + '</div></div>'
-                + '</div>'
                 + '</span>',
-        link: function(scope, elem, attrs) {
+        link: function (scope, elem, attrs) {
             scope.file = attrs.file;
             scope.helpData = null;
-            scope.clickMe = function(file) {
+            scope.show = false;
+            scope.showHelp = function () {
                 var defaultLang = 'en';
                 var lang = attrs.lang;
                 var helpFile = scope.file + '.' + lang + '.html';
-                $('#help_' + scope.file).modal();
                 // Load help file for given language
-                dataFactory.getHelp(helpFile).then(function(response) {
+                dataFactory.getHelp(helpFile).then(function (response) {
                     scope.helpData = response.data;
-                }, function(error) {
+                    scope.show = true;
+
+                }, function (error) {
                     // Load help file for default language
                     helpFile = scope.file + '.' + defaultLang + '.html';
-                    dataFactory.getHelp(helpFile).then(function(response) {
+                    dataFactory.getHelp(helpFile).then(function (response) {
                         scope.helpData = response.data;
-                    }, function(error) {
-                        //helpFile = file + '.' + cfg.lang + '.html';
+                    }, function (error) {
+                        alertify.alertError(scope._t('error_load_data'));
                     });
                 });
+            };
+            scope.getSafeHtml = function (html) {
+                return trusted[html] || (trusted[html] = $sce.trustAsHtml(html));
             };
         }
     };
@@ -10385,7 +10387,7 @@ myApp.directive('bbHelp', function(dataFactory, cfg) {
 /**
  * Help text directive
  */
-myApp.directive('bbHelpText', function() {
+myApp.directive('bbHelpText', function () {
     return {
         restrict: "E",
         replace: true,
@@ -10401,7 +10403,7 @@ myApp.directive('bbHelpText', function() {
 /**
  * Show validation error
  */
-myApp.directive('bbValidator', function($window) {
+myApp.directive('bbValidator', function ($window) {
     return {
         restrict: "E",
         replace: true,
@@ -10417,21 +10419,21 @@ myApp.directive('bbValidator', function($window) {
 /**
  * Compare ompare two values
  */
-myApp.directive("bbCompareTo", function() {
+myApp.directive("bbCompareTo", function () {
     return {
         require: "ngModel",
-        link: function(scope, elem, attrs, ctrl) {
+        link: function (scope, elem, attrs, ctrl) {
             var otherInput = elem.inheritedData("$formController")[attrs.bbCompareTo];
 
-            ctrl.$parsers.push(function(value) {
-                if(value === otherInput.$viewValue) {
+            ctrl.$parsers.push(function (value) {
+                if (value === otherInput.$viewValue) {
                     ctrl.$setValidity("compareto", true);
                     return value;
                 }
                 ctrl.$setValidity("compareto", false);
             });
 
-            otherInput.$parsers.push(function(value) {
+            otherInput.$parsers.push(function (value) {
                 ctrl.$setValidity("compareto", value === ctrl.$viewValue);
                 return value;
             });
@@ -10442,11 +10444,11 @@ myApp.directive("bbCompareTo", function() {
 /**
  * Hide collapsed navi after click on mobile devices
  */
-myApp.directive('collapseNavbar', function() {
+myApp.directive('collapseNavbar', function () {
     return {
         restrict: 'A',
-        link: function(scope, element, attrs) {
-            $(element).click(function() {
+        link: function (scope, element, attrs) {
+            $(element).click(function () {
                 $("#nav_collapse").removeClass("in").addClass("collapse");
             });
         }
@@ -10455,11 +10457,11 @@ myApp.directive('collapseNavbar', function() {
 /**
  * Go back
  */
-myApp.directive('goBack', ['$window', function($window) {
+myApp.directive('goBack', ['$window', function ($window) {
         return {
             restrict: 'A',
-            link: function(scope, elem, attrs) {
-                elem.bind('click', function() {
+            link: function (scope, elem, attrs) {
+                elem.bind('click', function () {
                     $window.history.back();
                 });
             }
@@ -10469,16 +10471,16 @@ myApp.directive('goBack', ['$window', function($window) {
 /**
  * Knob directive
  */
-myApp.directive('knob', function() {
+myApp.directive('knob', function () {
     return {
         restrict: 'A',
-        link: function(scope, element, attrs) {
+        link: function (scope, element, attrs) {
             $(element).val(25).knob();
         }
     };
 });
 
-myApp.directive('myknob', ['$timeout', 'dataFactory', function($timeout, dataFactory, dataService) {
+myApp.directive('myknob', ['$timeout', 'dataFactory', function ($timeout, dataFactory, dataService) {
         'use strict';
 
         return {
@@ -10490,18 +10492,18 @@ myApp.directive('myknob', ['$timeout', 'dataFactory', function($timeout, dataFac
                 knobData: '=',
                 knobOptions: '&'
             },
-            link: function($scope, $element) {
+            link: function ($scope, $element) {
                 var knobInit = $scope.knobOptions() || {};
 
-                knobInit.release = function(newValue) {
-                    $timeout(function() {
+                knobInit.release = function (newValue) {
+                    $timeout(function () {
                         $scope.knobData = newValue;
                         runCmdExact($scope.knobId, newValue);
                         $scope.$apply();
                     });
                 };
 
-                $scope.$watch('knobData', function(newValue, oldValue) {
+                $scope.$watch('knobData', function (newValue, oldValue) {
                     if (newValue != oldValue) {
                         $($element).val(newValue).change();
                     }
@@ -10516,8 +10518,8 @@ myApp.directive('myknob', ['$timeout', 'dataFactory', function($timeout, dataFac
          */
         function runCmdExact(id, val) {
             var cmd = id + '/command/exact?level=' + val;
-            dataFactory.runApiCmd(cmd).then(function(response) {
-            }, function(error) {
+            dataFactory.runApiCmd(cmd).then(function (response) {
+            }, function (error) {
                 dataService.logError(error);
             });
             return;
@@ -10527,14 +10529,14 @@ myApp.directive('myknob', ['$timeout', 'dataFactory', function($timeout, dataFac
 /**
  * Bootstrap tooltip
  */
-myApp.directive('tooltip', function() {
+myApp.directive('tooltip', function () {
     return {
         restrict: 'A',
-        link: function(scope, element, attrs) {
-            $(element).hover(function() {
+        link: function (scope, element, attrs) {
+            $(element).hover(function () {
                 // on mouseenter
                 $(element).tooltip('show');
-            }, function() {
+            }, function () {
                 // on mouseleave
                 $(element).tooltip('hide');
             });
@@ -10544,11 +10546,11 @@ myApp.directive('tooltip', function() {
 /**
  * Bootstrap Popover window
  */
-myApp.directive('customPopover', function() {
+myApp.directive('customPopover', function () {
     return {
         restrict: 'A',
         template: '<span>{{label}}</span>',
-        link: function(scope, el, attrs) {
+        link: function (scope, el, attrs) {
             scope.label = attrs.popoverLabel;
             $(el).popover({
                 trigger: 'click',
@@ -10563,12 +10565,12 @@ myApp.directive('customPopover', function() {
  * Confirm dialog after click
  */
 myApp.directive('ngConfirmClick', [
-    function() {
+    function () {
         return {
             priority: -1,
             restrict: 'A',
-            link: function(scope, element, attrs) {
-                element.bind('click', function(e) {
+            link: function (scope, element, attrs) {
+                element.bind('click', function (e) {
                     var message = attrs.ngConfirmClick;
                     if (message && !confirm(message)) {
                         e.stopImmediatePropagation();
@@ -10583,15 +10585,15 @@ myApp.directive('ngConfirmClick', [
 /**
  * Upload file
  */
-myApp.directive('fileModel', ['$parse', function($parse) {
+myApp.directive('fileModel', ['$parse', function ($parse) {
         return {
             restrict: 'A',
-            link: function(scope, element, attrs) {
+            link: function (scope, element, attrs) {
                 var model = $parse(attrs.fileModel);
                 var modelSetter = model.assign;
 
-                element.bind('change', function() {
-                    scope.$apply(function() {
+                element.bind('change', function () {
+                    scope.$apply(function () {
                         modelSetter(scope, element[0].files[0]);
                     });
                 });
@@ -10600,21 +10602,21 @@ myApp.directive('fileModel', ['$parse', function($parse) {
     }]);
 
 myApp.directive('infiniteScroll', [
-    '$rootScope', '$window', '$timeout', function($rootScope, $window, $timeout) {
+    '$rootScope', '$window', '$timeout', function ($rootScope, $window, $timeout) {
         return {
-            link: function(scope, elem, attrs) {
+            link: function (scope, elem, attrs) {
                 var checkWhenEnabled, handler, scrollDistance, scrollEnabled;
                 $window = angular.element($window);
                 scrollDistance = 0;
                 if (attrs.infiniteScrollDistance != null) {
-                    scope.$watch(attrs.infiniteScrollDistance, function(value) {
+                    scope.$watch(attrs.infiniteScrollDistance, function (value) {
                         return scrollDistance = parseInt(value, 10);
                     });
                 }
                 scrollEnabled = true;
                 checkWhenEnabled = false;
                 if (attrs.infiniteScrollDisabled != null) {
-                    scope.$watch(attrs.infiniteScrollDisabled, function(value) {
+                    scope.$watch(attrs.infiniteScrollDisabled, function (value) {
                         scrollEnabled = !value;
                         if (scrollEnabled && checkWhenEnabled) {
                             checkWhenEnabled = false;
@@ -10622,7 +10624,7 @@ myApp.directive('infiniteScroll', [
                         }
                     });
                 }
-                handler = function() {
+                handler = function () {
                     var elementBottom, remaining, shouldScroll, windowBottom;
                     windowBottom = $window.height() + $window.scrollTop();
                     elementBottom = elem.offset().top + elem.height();
@@ -10639,10 +10641,10 @@ myApp.directive('infiniteScroll', [
                     }
                 };
                 $window.on('scroll', handler);
-                scope.$on('$destroy', function() {
+                scope.$on('$destroy', function () {
                     return $window.off('scroll', handler);
                 });
-                return $timeout((function() {
+                return $timeout((function () {
                     if (attrs.infiniteScrollImmediateCheck) {
                         if (scope.$eval(attrs.infiniteScrollImmediateCheck)) {
                             return handler();
@@ -10658,11 +10660,11 @@ myApp.directive('infiniteScroll', [
 /**
  * Key event directive
  */
-myApp.directive('bbKeyEvent', function() {
-    return function(scope, element, attrs) {
-        element.bind("keyup", function(event) {
+myApp.directive('bbKeyEvent', function () {
+    return function (scope, element, attrs) {
+        element.bind("keyup", function (event) {
             if (event.which !== 13) {
-                scope.$apply(function() {
+                scope.$apply(function () {
                     scope.$eval(attrs.bbKeyEvent);
                 });
 
@@ -12006,6 +12008,10 @@ myAppController.controller('ErrorController', function($scope, $routeParams, dat
      */
     $scope.loadError = function(code) {
         if (code) {
+            if(code == 401){
+                 dataService.logOut();
+                 return;
+            }
             $scope.errorCfg.code = code;
         } else {
             $scope.errorCfg.code = 0;
@@ -12891,7 +12897,8 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
             title: false,
             data: {}
         },
-        data: {}
+        data: {},
+        show: false
     };
     $scope.currentPage = 1;
     $scope.pageSize = cfg.page_results_events;
@@ -12920,16 +12927,17 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
                     })
                     .indexBy('id')
                     .value();
-            angular.extend($scope.devices.data, data);
+            if(!_.isEmpty(data)){
+               angular.extend($scope.devices, {data: data,show: true}); 
+            }
+            
             if (angular.isDefined($routeParams.param) && angular.isDefined($routeParams.val)) {
                 if ($routeParams.param === 'source' && !_.isEmpty(data) && data[$routeParams.val]) {
                     angular.extend($scope.devices.find, {id: $routeParams.val}, {title: data[$routeParams.val].metrics.title});
                     angular.extend($scope.page, {title: data[$routeParams.val].metrics.title});
                 }
             }
-        }, function(error) {
-            dataService.showConnectionError(error);
-        });
+        }, function(error) {});
     }
     ;
     $scope.loadDevices();
@@ -12946,7 +12954,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
             dataService.updateTimeTick(response.data.data.updateTime);
             $scope.loading = false;
         }, function(error) {
-            $location.path('/error/' + error.status);
+            alertify.alertError($scope._t('error_load_data'));
         });
     };
     $scope.loadData();
@@ -14372,13 +14380,15 @@ myAppController.controller('ZwaveManageController', function($scope, $cookies, $
      * Load data
      */
     $scope.loadData = function() {
-        dataService.showConnectionSpinner();
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('devices').then(function(response) {
+            $scope.loading = false;
             zwaveApiData(response.data.data.devices);
             loadLocations();
 
         }, function(error) {
-            $location.path('/error/' + error.status);
+            $scope.loading = false;
+             alertify.alertError($scope._t('error_load_data'));
         });
     };
     $scope.loadData();
@@ -14516,7 +14526,7 @@ myAppController.controller('ZwaveManageController', function($scope, $cookies, $
 
             }
         }, function(error) {
-            $location.path('/error/' + error.status);
+             alertify.alertError($scope._t('error_load_data'));
         });
     }
     ;
@@ -14566,7 +14576,8 @@ myAppController.controller('ZwaveExcludeController', function($scope, $location,
         dataFactory.loadZwaveApiData(true).then(function(ZWaveAPIData) {
             var node = ZWaveAPIData.devices[$routeParams.id];
             if (!node) {
-                $location.path('/error/404');
+                alertify.alertError($scope._t('no_data'));
+                return;
             }
             $scope.zWaveDevice.controllerState = ZWaveAPIData.controller.data.controllerState.value;
             $scope.zWaveDevice.id = $routeParams.id;
@@ -14574,7 +14585,7 @@ myAppController.controller('ZwaveExcludeController', function($scope, $location,
             return;
 
         }, function(error) {
-            $location.path('/error/404');
+           alertify.alertError($scope._t('error_load_data'));
         });
     };
     $scope.loadZwaveApiData();
@@ -14648,7 +14659,7 @@ myAppController.controller('ZwaveManageIdController', function($scope, $window, 
     $scope.formInput = {
         elements: {},
         room: 0,
-        deviceName: ''
+        deviceName: false
     };
     $scope.rooms = [];
 
@@ -14656,13 +14667,15 @@ myAppController.controller('ZwaveManageIdController', function($scope, $window, 
      * Load data
      */
     $scope.loadConfigData = function(nodeId) {
-        dataService.showConnectionSpinner();
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('devices').then(function(response) {
+            $scope.loading = false;
             zwaveConfigApiData(nodeId, response.data.data.devices);
             loadConfigLocations();
 
         }, function(error) {
-            $location.path('/error/' + error.status);
+            $scope.loading = false;
+            alertify.alertError($scope._t('error_load_data'));
         });
     };
     $scope.loadConfigData($scope.zwaveConfig.nodeId);
@@ -14688,16 +14701,13 @@ myAppController.controller('ZwaveManageIdController', function($scope, $window, 
         }, function(error) {
         });
         myCache.removeAll();
-        $timeout(function() {
-            $scope.loading = false;
-
+        $scope.loading = false;
+             dataService.showNotifier({message: $scope._t('success_updated')});
             if (angular.isDefined($routeParams.nohistory)) {
                 $location.path('/zwave/devices');
             } else {
                 $window.history.back();
             }
-
-        }, 3000);
     };
 
     /// --- Private functions --- ///
@@ -16441,6 +16451,7 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
 
     };
     $scope.auth = {
+        id: $routeParams.id,
         login: null,
         password: null
 
@@ -16454,6 +16465,7 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
         dataFactory.getApi('profiles', '/' + id, true).then(function (response) {
              $scope.loading = false;
             $scope.input = response.data.data;
+            $scope.auth.login = response.data.data.login;
         }, function (error) {
             $scope.input = false;
             $scope.loading = false;
@@ -16519,7 +16531,6 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
                 myCache.remove('profiles');
                 $scope.loadData(id);
             }
-            //$scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
             $scope.loading = false;
             dataService.showNotifier({message: $scope._t('success_updated')});
             window.location = '#/admin';
@@ -16545,13 +16556,13 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
             return;
         }
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        var input = {
-            id: $scope.id,
-            login: auth.login,
-            password: auth.password
-
-        };
-        dataFactory.putApi('profiles_auth_update', input.id, input).then(function (response) {
+//        var input = {
+//            id: $scope.id,
+//            login: auth.login,
+//            password: auth.password
+//
+//        };
+        dataFactory.putApi('profiles_auth_update', $scope.id,  $scope.auth).then(function (response) {
             $scope.loading = false;
             var data = response.data.data;
             if (!data) {
@@ -16559,7 +16570,7 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
                 return;
             }
             dataService.showNotifier({message: $scope._t('success_updated')});
-            $window.history.back();
+            //$window.history.back();
 
 
         }, function (error) {
@@ -16936,7 +16947,7 @@ myAppController.controller('ManagementInfoController', function ($scope, dataFac
 /**
  * My Access
  */
-myAppController.controller('MySettingsController', function($scope, $window, $location,$cookies,$timeout,dataFactory, dataService, myCache) {
+myAppController.controller('MySettingsController', function($scope, $window, $cookies,$timeout,$filter,dataFactory, dataService, myCache) {
     $scope.id = $scope.user.id;
     $scope.devices = {};
     $scope.input = false;
@@ -17094,7 +17105,7 @@ myAppController.controller('LoginController', function($scope, $location, $windo
         $scope.input.form = false;
         window.location = '#/dashboard';
     }
-    $scope.loginLang = ($scope.lastLogin != undefined && angular.isDefined($cookies.lang)) ? $cookies.lang : false;
+    $scope.loginLang = (angular.isDefined($cookies.lang)) ? $cookies.lang : false;
     /**
      * Login language
      */
@@ -17311,7 +17322,6 @@ myAppController.controller('PasswordResetController', function($scope, $routePar
             $scope.loading = false;
             $scope.passwordReset.alert = {message: message, status: 'alert-danger', icon: 'fa-warning'};
         });
-        return;
 
     };
     $scope.checkToken();

@@ -24,20 +24,24 @@
                     <!-- lang -->
                     <div class="form-group form-inline">
                         <label>{{_t('lb_language')}}:</label>
+                        <span class="mobile-block">
                         <span ng-repeat="v in cfg.lang_list" >
                             <input class="form-control-hidden" type="radio" name="color" value="{{v}}" ng-model="input.lang" ng-checked="input.color == v" />
                             <img class="form-control-img profile-lang" ng-click="input.lang = v" ng-class="v == input.lang ? 'control-active':''" ng-src="app/img/flags/{{v}}.png" alt="{{ v}}"/>
                         </span>
-                        <span ng-bind="input.lang"></span>
+                       </span>
+                        <!--<span ng-bind="input.lang"></span>-->
                     </div>
                     <!-- colors  -->
                     <div class="form-group">
                         <label>{{_t('lb_profile_color')}}: </label>
+                         <span class="mobile-block">
                         <span ng-repeat="v in cfg.profile_colors" >
                             <input class="form-control-hidden" type="radio" name="color" value="{{v}}" ng-model="input.color" ng-checked="input.color == v" />
                             <span class="form-control-img profile-color" style="background-color: {{v}}" ng-click="input.color = v" ng-class="v == input.color ? 'control-active':''">&nbsp;</span> 
                         </span>
-                        <span ng-bind="input.color"></span>
+                       </span>
+                        <!--<span ng-bind="input.color"></span>-->
                     </div>
                     <!-- interval -->
                     <div class="form-group form-inline">

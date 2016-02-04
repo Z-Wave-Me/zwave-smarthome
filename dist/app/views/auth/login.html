@@ -3,17 +3,30 @@
     <bb-loader></bb-loader>
     <div ng-if="input.form">
         <div class="login-lang" ng-if="!input.fromexpert">
-            <a href="" ng-repeat="v in cfg.lang_list" class="lang-item" ng-click="setLoginLang(v)">
+            <div class="btn-group">
+                 <button type="button" class="btn btn-default" ng-click="expandNavi('loginLang',$event)"><i class="fa fa-globe"></i></button>
+               <button type="button" class="btn btn-default" ng-click="expandNavi('loginLang',$event)"><i class="fa fa-caret-down"></i></button>
+               <div class="app-dropdown dropdown-lang" ng-if="naviExpanded.loginLang">
+                 <ul>
+                     <li class="clickable" ng-repeat="v in cfg.lang_list" ng-click="setLoginLang(v)">
+                         <img class="lang-img" ng-src="app/img/flags/{{v}}.png" alt="{{v}}" />
+                     </li>
+                 </ul>
+     
+             </div>
+            </div>
+             
+              <!--<a href="" ng-repeat="v in cfg.lang_list" class="lang-item" ng-click="setLoginLang(v)">
                 <img ng-src="app/img/flags/{{v}}.png" alt="{{v}}"/>
-            </a> 
+            </a> -->
         </div>
 
-        <div class="welcome-screen" ng-if="!lastLogin">
+        <!--<div class="welcome-screen" ng-if="!lastLogin">
             <h1 ng-bind="_t('welcome_1')"></h1>
             <p ng-bind="_t('welcome_2')"></p>
             <div class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i> <span  ng-bind="_t('welcome_3')"></span></div>
 
-        </div>
+        </div> -->
         <bb-alert alert="alert"></bb-alert>
 
         <form name="form_login" id="form_login" class="form form-page" ng-submit="login(input)" novalidate>

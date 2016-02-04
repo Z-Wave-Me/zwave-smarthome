@@ -13,10 +13,10 @@
          ng-include="'app/views/management/management_licence.html'"></div>
     
      <!-- ///////////////////////////// Backup ///////////////////////////// -->
-     <div class="accordion-entry" ng-include="'app/views/management/management_backup.html'"></div>
+     <div class="accordion-entry" ng-include="'app/views/management/management_backup.html'" ng-if="!isMobile"></div>
     
      <!-- ///////////////////////////// Restore ///////////////////////////// -->
-     <div class="accordion-entry" ng-include="'app/views/management/management_restore.html'"></div>
+     <div class="accordion-entry" ng-include="'app/views/management/management_restore.html'" ng-if="!isMobile"></div>
 
     <!-- ///////////////////////////// Firmware update ///////////////////////////// --> 
     <div class="accordion-entry" 

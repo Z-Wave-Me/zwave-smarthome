@@ -6,11 +6,12 @@
         <div ng-include="'app/views/apps/navi.html'"></div>
         <div class="page-control form-inline">
             <div class="btn-group btn-goup-block btn-goup-1">
-                <a class="btn btn-default" href="" ng-click="expandNavi('appsCategories', $event)"><i class="fa fa-filter"></i> 
+                <button class="btn btn-default" ng-click="expandNavi('appsCategories', $event)" ng-class="!_.isEmpty(dataHolder.onlineModules.filter) ? 'active':'' ">
+                    <i class="fa fa-filter"></i> 
                     <span ng-if="dataHolder.onlineModules.filter.category">{{dataHolder.modules.categories[dataHolder.onlineModules.filter.category].name|cutText:true:30}}</span>
                     <span ng-if="dataHolder.onlineModules.filter.featured">{{_t('featured_apps')}}</span>
                     <span ng-if="_.isEmpty(dataHolder.onlineModules.filter)">{{_t('all_apps')}}</span>
-                </a>
+                </button>
             </div>
             <div class="input-group">
                 <input type="text" ng-model="q" class="form-control form-search" value="{{q}}">
@@ -25,7 +26,7 @@
                         <a href="" ng-click="setFilter()"><i class="fa fa-check-circle-o"></i> {{_t('all_apps')}} <span class="page-navi-icon"><i class="fa fa-chevron-right"></i></span></a>
                     </li>
                     <li class="page-cat-0" ng-class="dataHolder.onlineModules.filter.featured == true ? 'active': ''">
-                        <a href="" ng-click="setFilter({featured: true})"><i class="fa fa-thumbs-o-up"></i> {{_t('featured_apps')}}</a> <span class="page-navi-icon"><i class="fa fa-chevron-right"></i></span>
+                        <a href="" ng-click="setFilter({featured: true})"><i class="fa fa-thumbs-o-up"></i> {{_t('featured_apps')}} <span class="page-navi-icon"><i class="fa fa-chevron-right"></i></span></a>
                     </li>
                     <li class="page-cat-{{v.id}}" ng-repeat="v in dataHolder.modules.categories" ng-if="dataHolder.modules.cats.indexOf(v.id) > -1" ng-class="dataHolder.onlineModules.filter.category == v.id ? 'active': ''">
                         <a href="" ng-click="setFilter({category: v.id})" ng-switch="v.id">
@@ -55,16 +56,17 @@
                     <div class="widget-content">
                         <!-- Widget title -->
                          <div class="widget-title">
-                             <h3><a ng-href="#apps/online/{{v.id}}">{{v.title|cutText:true:25}} &raquo;</a></h3>
+                             <h3><a ng-href="#apps/online/{{v.id}}">{{v.title|cutText:true:20}} <span class="btn-name">&raquo;</span></a></h3>
                         </div>
                         <hr class="bottom-aligner" />
                          <!-- Widget footer -->
                          <div class="widget-footer">
                             <div class="widget-ctrl ctrl-left">&nbsp;</div>
                             <div class="widget-ctrl ctrl-right">
+                                <div class="btn-group group-apps">
                                  <!-- Download -->
                                 <button href="" class="btn btn-default" ng-click="installModule(v, 'online_install')" ng-if="!dataHolder.modules.ids[v.modulename]">
-                                    <i class="fa fa-downloadtext-success"></i> <span class="btn-name">{{_t('lb_download')}}</span>
+                                    <i class="fa fa-download text-success"></i> <span class="btn-name">{{_t('lb_download')}}</span>
                                 </button> 
                                 <!-- Update -->
                                 <button href="" class="btn btn-default" ng-click="updateModule(v, _t('app_update_confirm'))" ng-if="dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version != v.version">
@@ -74,6 +76,7 @@
                                 <button class="btn btn-default" disabled ng-if="dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version == v.version">
                                     <i class="fa fa-check"></i> <span class="btn-name">{{_t('installed')}}</span>
                                 </button> 
+                              </div>
                             </div>
                         </div>
                     </div>
