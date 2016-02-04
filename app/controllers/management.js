@@ -148,6 +148,7 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
 
     };
     $scope.auth = {
+        id: $routeParams.id,
         login: null,
         password: null
 
@@ -161,6 +162,7 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
         dataFactory.getApi('profiles', '/' + id, true).then(function (response) {
              $scope.loading = false;
             $scope.input = response.data.data;
+            $scope.auth.login = response.data.data.login;
         }, function (error) {
             $scope.input = false;
             $scope.loading = false;
@@ -226,7 +228,6 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
                 myCache.remove('profiles');
                 $scope.loadData(id);
             }
-            //$scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
             $scope.loading = false;
             dataService.showNotifier({message: $scope._t('success_updated')});
             window.location = '#/admin';
@@ -252,13 +253,13 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
             return;
         }
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        var input = {
-            id: $scope.id,
-            login: auth.login,
-            password: auth.password
-
-        };
-        dataFactory.putApi('profiles_auth_update', input.id, input).then(function (response) {
+//        var input = {
+//            id: $scope.id,
+//            login: auth.login,
+//            password: auth.password
+//
+//        };
+        dataFactory.putApi('profiles_auth_update', $scope.id,  $scope.auth).then(function (response) {
             $scope.loading = false;
             var data = response.data.data;
             if (!data) {
@@ -266,7 +267,7 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
                 return;
             }
             dataService.showNotifier({message: $scope._t('success_updated')});
-            $window.history.back();
+            //$window.history.back();
 
 
         }, function (error) {

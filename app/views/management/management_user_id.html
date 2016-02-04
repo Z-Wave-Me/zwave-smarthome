@@ -102,7 +102,7 @@
         <!-- ///////////////////////////// Change login and password Form ///////////////////////////// -->
         <div ng-if="id > 0">
         <h2 ng-bind="_t('local_access')"></h2>
-        <form name="form_password" id="form_password" class="form form-page" ng-submit="changeAuth(form_password,auth)" novalidate>
+        <form name="form_password" id="form_password" class="form form-page" ng-submit="changeAuth(form_password)" novalidate>
             <fieldset>
                 <!-- login -->
                     <div class="form-group form-inline">
@@ -113,7 +113,7 @@
                 <!-- password -->
                 <div class="form-group form-inline">
                     <label class="isrequired display-block">{{_t('lb_new_password')}}: </label>
-                    <input name="password" id="password" type="password" class="form-control" value="" ng-model="newPassword" ng-blur="passwordBlur = true" ng-required="true" ng-minlength="6" />
+                    <input name="password" id="password" type="password" class="form-control" value="" ng-model="auth.password" ng-blur="passwordBlur = true" ng-required="true" ng-minlength="6" />
                     <bb-validator input-name='form_password.password.$error.required' trans='_t("field_required")' has-blur='passwordBlur'></bb-validator> 
             <bb-validator input-name='form_password.password.$error.minlength' trans='_t("password_valid")' has-blur='passwordBlur'></bb-validator>
                 </div>
