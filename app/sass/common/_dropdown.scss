@@ -28,7 +28,7 @@
         margin:0;
         list-style: none;
         li{
-            padding: 10px 0;
+            padding: $spacing 0;
             border-bottom: solid 1px $dropdown-border-color;
             a{
                 display: block;
@@ -62,6 +62,16 @@
 }
 .dropdown-100{
     width: 100%;
+}
+.dropdown-lang{
+    min-width: $dropdown-lang-w;
+    ul{
+        li{
+           
+             padding: $spacing;
+             text-align: center;
+        }
+    }
 }
 .app-dropdown-left{
     float: left;

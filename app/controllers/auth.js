@@ -23,7 +23,7 @@ myAppController.controller('LoginController', function($scope, $location, $windo
         $scope.input.form = false;
         window.location = '#/dashboard';
     }
-    $scope.loginLang = ($scope.lastLogin != undefined && angular.isDefined($cookies.lang)) ? $cookies.lang : false;
+    $scope.loginLang = (angular.isDefined($cookies.lang)) ? $cookies.lang : false;
     /**
      * Login language
      */

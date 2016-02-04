@@ -40,7 +40,7 @@ body {
         margin: $subnavigation-margin;
         li{
             a{
-              padding: 0 $spacing;
+                padding: 0 $spacing;
             }
 
         }
@@ -65,7 +65,7 @@ body {
             float: left;
             width: $page-navi-w;
             a{
-               min-height: $page-navi-h;
+                min-height: $page-navi-h;
                 margin: auto 10px;
             }
 
@@ -124,7 +124,7 @@ input[type=radio] {
     margin: 0 $spacing $spacing 0;
     .fa{
         position: static;
-         margin: 0 0 0 $spacing;
+        margin: 0 0 0 $spacing;
         font-size: $app-btn-tag-icon-size;
     }
 }
@@ -138,45 +138,57 @@ input[type=radio] {
 }
 
 .appmodal-header{
-   .appmodal-close{
+    .appmodal-close{
         font-size: $modal-close-size;
     }
 }
 /* Modal with knob
 -------------------------------------------------- */
 .app-row-knob{
-   display: table;
+    display: table;
     width: 100%;
-   .knob-col{
+    .knob-col{
         display: table-cell;
-       vertical-align: middle;
-       padding: $spacing;
-       width: 50%;
-   }
-   .knob-ctrl{
-       text-align: right;
-   }
-   .knob-btn{
-       text-align: left;
-   }
+        vertical-align: middle;
+        padding: $spacing;
+        width: 50%;
+    }
+    .knob-ctrl{
+        text-align: right;
+    }
+    .knob-btn{
+        text-align: left;
+    }
 }
 
 /* Dropdown
 -------------------------------------------------- */
 .app-dropdown{
-     min-width: $dropdown-w;
-     
+    min-width: $dropdown-w;
+
+}
+.app-dropdown{
+    &.dropdown-lang{
+        min-width: $dropdown-lang-w; 
+        ul{
+            li{
+                padding: $spacing-half;
+            }
+        }
+    }
+
+
 }
 
 /* Report
 -------------------------------------------------- */
 .report-entry {
-   display: table;
-   .report-col{
-       vertical-align: middle;
-   }
-   .report-ctrl{
-         display: table-cell;
+    display: table;
+    .report-col{
+        vertical-align: middle;
+    }
+    .report-ctrl{
+        display: table-cell;
     }
 }
 .report-img{
@@ -185,10 +197,10 @@ input[type=radio] {
 }
 .app-row-zwave{
     .report-entry {
-   .report-ctrl{
-       vertical-align: top;
-   }
-}
+        .report-ctrl{
+            vertical-align: top;
+        }
+    }
 }
 /* Widgets
 -------------------------------------------------- */
@@ -196,14 +208,14 @@ input[type=radio] {
     margin: 0 -$spacing;
 }
 .widget-entry{
-     @include appFloat(left);
-     border: 0;
+    @include appFloat(left);
+    border: 0;
     width: $widget-col-w;
     .widget-entry-in{
-         //height: $widget-col-h;
+        //height: $widget-col-h;
         border-color: $widget-border-color;
         margin: $spacing;
-       .widget-header {
+        .widget-header {
             .widget-icon{
                 .fa{
                     padding: 0 0 0 $spacing-half;
@@ -211,24 +223,24 @@ input[type=radio] {
                 }
             }
         }
-  }
+    }
 }
 /* Elements
 -------------------------------------------------- */
 .widget-entry-element{
     .widget-entry-in{
-         height: $element-widget-col-h; 
+        height: $element-widget-col-h; 
     }
 }
 
 /* Apps
 -------------------------------------------------- */
 .widget-entry-app{
-   .widget-entry-in{
-       min-height: 1px;
-         height: $app-widget-col-h;
+    .widget-entry-in{
+        min-height: 1px;
+        height: $app-widget-col-h;
         .widget-footer{
-          margin: $spacing 0 0 0;
+            margin: $spacing 0 0 0;
 
         }
     }
@@ -237,20 +249,20 @@ input[type=radio] {
 -------------------------------------------------- */
 .app-detail-img{
     @include appFloat(left);
-     width: $app-detail-img + $spacing-double;
-    
+    width: $app-detail-img + $spacing-double;
+
 }
 .app-detail-body{
-   margin: 0 0 0 $app-detail-img + $spacing-double;
+    margin: 0 0 0 $app-detail-img + $spacing-double;
 }
 
 /* Devices
 -------------------------------------------------- */
 .vendor-entry{
-     width: $device-vendor-w; 
+    width: $device-vendor-w; 
 }
 .app-detail-body{
-   margin: 0 0 0 $app-detail-img + $spacing-double;
+    margin: 0 0 0 $app-detail-img + $spacing-double;
 }
 
 /* Rooms
@@ -263,14 +275,14 @@ input[type=radio] {
 -------------------------------------------------- */
 #footer{
     #footer_in{
-       height: $footer-h;
+        height: $footer-h;
         line-height: $footer-h;
     }
 }
 //.is-mobile-false{
-    #footer{
-       display: none; 
-    }
+#footer{
+    display: none; 
+}
 //}
 /* Auth
 -------------------------------------------------- */
