@@ -23,7 +23,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
         $routeProvider.
                 // Login
                 when('/', {
-                   templateUrl: 'app/views/auth/login.html'
+                   templateUrl: 'app/views/auth/auth.html'
                 }).
                  // Home
                 when('/home', {
@@ -244,6 +244,10 @@ myApp.config(['$routeProvider', function($routeProvider) {
                 when('/password', {
                     templateUrl: 'app/views/auth/password.html',
                     requireLogin: true
+                }).
+                 //Password
+                when('/passwordchange', {
+                    templateUrl: 'app/views/auth/password_change.html'
                 }).
                 //Password forgot
                 when('/passwordforgot', {
