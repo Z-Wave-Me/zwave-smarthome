@@ -2521,6 +2521,11 @@ img {
 }
 
 /* line 105, ../sass/common/_button.scss */
+.btn-tabs-2 .btn {
+  width: 50%;
+}
+
+/* line 110, ../sass/common/_button.scss */
 .btn-tabs-3 .btn {
   width: 33.33333%;
 }
