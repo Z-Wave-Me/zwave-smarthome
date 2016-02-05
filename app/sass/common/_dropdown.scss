@@ -1,7 +1,7 @@
 /* Dropdown
 -------------------------------------------------- */
 .app-dropdown{
-     font-size: $dropdown-font-size; 
+    font-size: $dropdown-font-size; 
     position: absolute;
     top: 100%;
     right: 0;
@@ -35,7 +35,7 @@
                 position:relative;
                 padding: 0 $spacing;
                 vertical-align: middle;
-               color: $dropdown-color;
+                color: $dropdown-color;
             }
 
             .menu-arrow{
@@ -67,9 +67,10 @@
     min-width: $dropdown-lang-w;
     ul{
         li{
-           
-             padding: $spacing;
-             text-align: center;
+            display: inline-block;
+            padding: $spacing-half;
+            border: 0;
+            //text-align: center;
         }
     }
 }
@@ -79,12 +80,12 @@
     right: auto;
 }
 .app-dropdown-bottom{
-     top: auto;
-     bottom: 100%;
+    top: auto;
+    bottom: 100%;
 }
 
 .app-dropdown-mxh-600{
-     height: auto;
+    height: auto;
     max-height: 600px;
     overflow-x: hidden;
 }

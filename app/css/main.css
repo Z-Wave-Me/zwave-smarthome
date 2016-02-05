@@ -2728,28 +2728,29 @@ fieldset.submit-entry {
 
 /* line 66, ../sass/common/_dropdown.scss */
 .dropdown-lang {
-  min-width: 150px;
+  min-width: 250px;
 }
 /* line 69, ../sass/common/_dropdown.scss */
 .dropdown-lang ul li {
-  padding: 10px;
-  text-align: center;
+  display: inline-block;
+  padding: 5px;
+  border: 0;
 }
 
-/* line 76, ../sass/common/_dropdown.scss */
+/* line 77, ../sass/common/_dropdown.scss */
 .app-dropdown-left {
   float: left;
   left: 0;
   right: auto;
 }
 
-/* line 81, ../sass/common/_dropdown.scss */
+/* line 82, ../sass/common/_dropdown.scss */
 .app-dropdown-bottom {
   top: auto;
   bottom: 100%;
 }
 
-/* line 86, ../sass/common/_dropdown.scss */
+/* line 87, ../sass/common/_dropdown.scss */
 .app-dropdown-mxh-600 {
   height: auto;
   max-height: 600px;
@@ -3817,8 +3818,8 @@ img.widget-promo-image {
 /* line 61, ../sass/skins/default/_main.scss */
 .profile-color {
   display: inline-block;
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   margin: 0 10px 0 0;
 }
 
@@ -3829,7 +3830,7 @@ img.widget-promo-image {
 
 /* line 72, ../sass/skins/default/_main.scss */
 .profile-color.active {
-  border: solid 2px #000;
+  border: solid 2px #000000;
 }
 
 /* Widget
@@ -4143,7 +4144,7 @@ img.widget-promo-image {
 
   /* line 171, ../sass/responsive/_mq_shared.scss */
   .app-dropdown.dropdown-lang {
-    min-width: 150px;
+    min-width: 250px;
   }
   /* line 174, ../sass/responsive/_mq_shared.scss */
   .app-dropdown.dropdown-lang ul li {
@@ -4484,7 +4485,7 @@ img.widget-promo-image {
 
   /* line 171, ../sass/responsive/_mq_shared.scss */
   .app-dropdown.dropdown-lang {
-    min-width: 150px;
+    min-width: 250px;
   }
   /* line 174, ../sass/responsive/_mq_shared.scss */
   .app-dropdown.dropdown-lang ul li {
