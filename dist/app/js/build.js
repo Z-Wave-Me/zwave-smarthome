@@ -8294,7 +8294,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
         $routeProvider.
                 // Login
                 when('/', {
-                   templateUrl: 'app/views/auth/login.html'
+                   templateUrl: 'app/views/auth/auth.html'
                 }).
                  // Home
                 when('/home', {
@@ -8515,6 +8515,10 @@ myApp.config(['$routeProvider', function($routeProvider) {
                 when('/password', {
                     templateUrl: 'app/views/auth/password.html',
                     requireLogin: true
+                }).
+                 //Password
+                when('/passwordchange', {
+                    templateUrl: 'app/views/auth/password_change.html'
                 }).
                 //Password forgot
                 when('/passwordforgot', {
@@ -17085,6 +17089,150 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
  * @author Martin Vach
  */
 
+/**
+ * Logout controller
+ */
+myAppController.controller('AuthController', function($scope, $routeParams,$cookies,dataFactory,dataService) {
+    $scope.input = {
+        remoteId: null,
+        firstAccess: false,
+        form: true,
+        login: '',
+        password: '',
+        rememberme: false,
+        secure: false,
+        fromexpert: $routeParams.fromexpert
+    };
+    
+    if(dataService.getUser()){
+        $scope.input.form = false;
+        window.location = '#/dashboard';
+    }
+    
+    $scope.loginLang = (angular.isDefined($cookies.lang)) ? $cookies.lang : false;
+    
+     /**
+     * Get remote id
+     */
+    $scope.getRemoteId = function() {
+       dataFactory.getApi('remote_id').then(function(response) {
+           if(response.data.data.remote_id && response.data.data.remote_id !== ''){
+               $scope.input.remoteId = response.data.data.remote_id;
+           }
+        });
+    };
+    $scope.getRemoteId();
+    
+    /**
+     * Get first access
+     */
+    $scope.getFirstAccess = function() {
+        var response = {
+            data: {
+                data: {
+                    id: 1,
+                    firstAccess: true
+                }
+            }
+        };
+        $scope.input.firstAccess = response.data.data.firstAccess;
+        /*dataFactory.getApi('firstlogin').then(function(response) {
+           if(response.data.data.firstLogin === true){
+                window.location = '#/passwordchange';
+           }
+        });*/
+    };
+    $scope.getFirstAccess();
+    
+    /**
+     * Login language
+     */
+    $scope.setLoginLang = function(lang) {
+        $scope.loginLang = lang;
+        $cookies.lang = lang;
+        $scope.loadLang(lang);
+    };
+});
+
+/**
+ * Login controller
+ */
+myAppController.controller('AuthLoginController', function($scope, $location, $window, $routeParams, $cookies, dataFactory, dataService) {
+    /**
+     * Get session (ie for users holding only a session id, or users that require no login)
+     */
+    $scope.getSession = function() {
+       var hasCookie = ($cookies.user) ? true:false;
+       dataFactory.sessionApi().then(function(response) {
+           $scope.processUser(response.data.data);
+           if (!hasCookie) {
+               window.location = '#/dashboard';
+               $window.location.reload();
+           }
+       });
+    };
+    /**
+     * Login with selected data from server response
+     */
+    $scope.processUser = function(user,rememberme,secure) { 
+        if($scope.loginLang){
+            user.lang = $scope.loginLang;
+        }
+        angular.extend(user,{secure: secure});
+        dataService.setZWAYSession(user.sid);
+        dataService.setUser(user);
+        dataService.setLastLogin(Math.round(+new Date() / 1000));
+        if(rememberme){
+           dataService.setRememberMe(rememberme); 
+        }
+        
+        $scope.input.form = false;
+    };
+    /**
+     * Login proccess
+     */
+    $scope.login = function(input) {
+//         dataFactory.postToRemote('http://developer.zwave.eu/ietest.php', input).then(function (response) {
+//        }, function (error) {
+//
+//        });
+//        return;
+        input.password = input.password;
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        $scope.alert = {message: false};
+        dataFactory.logInApi(input).then(function(response) {
+            var redirectTo = '#/dashboard'; 
+            var rememberme = (input.rememberme ? input : null);
+            $scope.processUser(response.data.data,rememberme,input.secure);
+            if (input.fromexpert) {
+                window.location.href = $scope.cfg.expert_url;
+                return;
+            }
+            if (input.password === $scope.cfg.default_credentials.password) {
+                redirectTo = '#/password';
+            }
+            window.location = redirectTo;
+            $window.location.reload();
+        }, function(error) {
+            var message = $scope._t('error_load_data');
+            if (error.status == 401) {
+                message = $scope._t('error_load_user');
+            }
+            $scope.loading = false;
+            $scope.alert = {message: message, status: 'alert-danger', icon: 'fa-warning'};
+        });
+    };
+    /**
+     * Login from url, remember me or session
+     */
+    if ($routeParams.login && $routeParams.password) {
+        $scope.login($routeParams);
+    } else if(dataService.getRememberMe()){
+        $scope.login(dataService.getRememberMe());
+    }else if (!$routeParams.logout) {
+        $scope.getSession();
+    }
+});
 
 
 /**
@@ -17106,6 +17254,7 @@ myAppController.controller('LoginController', function($scope, $location, $windo
         window.location = '#/dashboard';
     }
     $scope.loginLang = (angular.isDefined($cookies.lang)) ? $cookies.lang : false;
+    
     /**
      * Login language
      */
@@ -17121,6 +17270,29 @@ myAppController.controller('LoginController', function($scope, $location, $windo
     $scope.setSecure = function(bool) {
         $scope.input.secure = bool;
     };
+    /**
+     * Get remote id
+     */
+    $scope.checkFirstLogin = function() {
+        var response = {
+            data: {
+                data: {
+                    id: 1,
+                    firstLogin: true
+                }
+            }
+        };
+        if (response.data.data.firstLogin === true){
+             //window.location = '#/passwordchange';
+             //$window.location.reload();
+        }
+        /*dataFactory.getApi('firstlogin').then(function(response) {
+           if(response.data.data.firstLogin === true){
+                window.location = '#/passwordchange';
+           }
+        });*/
+    };
+    $scope.checkFirstLogin();
     
      /**
      * Get remote id
@@ -17208,6 +17380,59 @@ myAppController.controller('LoginController', function($scope, $location, $windo
     }else if (!$routeParams.logout) {
         $scope.getSession();
     }
+});
+/**
+ * Password controller
+ */
+myAppController.controller('AuthPasswordController', function($scope, dataFactory) {
+    //$scope.newPassword = null;
+    $scope.input = {
+        password: '',
+        passwordConfirm: '',
+        email: ''
+    };
+    /**
+     * Change password
+     */
+    $scope.changePassword = function(form, input) {
+        if (form.$invalid) {
+            return;
+        }
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        var input = {
+            id: $scope.user.id,
+            password: input.password,
+            email: input.email
+
+        };
+        dataFactory.putApi('profiles_auth_update', input.id, input).then(function(response) {
+            var data = response.data.data;
+            data['email'] = input.email;
+            if (!data) {
+                alertify.alertError($scope._t('error_update_data'));
+                $scope.loading = false;
+                return;
+            }
+            dataFactory.putApi('profiles', input.id, data).then(function(response) {
+            }, function(error) {
+            });
+            $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
+            window.location = '#/dashboard';
+
+        }, function(error) {
+            var message = $scope._t('error_update_data');
+            if (error.status == 409) {
+                message = $scope._t('nonunique_email');
+            }
+            alertify.alertError(message);
+            $scope.loading = false;
+        });
+
+
+
+
+    };
+
 });
 /**
  * Password controller
