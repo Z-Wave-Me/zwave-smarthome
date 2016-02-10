@@ -41,7 +41,9 @@ var config_data = {
             'tokens': 'ZAutomation/api/v1/modules/tokens',
             'password_reset': 'ZAutomation/api/v1/auth/forgotten',
             'remote_id': 'ZAutomation/api/v1/system/remote-id',
-            'firmwareupdate': 'ZAutomation/api/v1/system/webif-access'
+            'firmwareupdate': 'ZAutomation/api/v1/system/webif-access',
+            'trust_my_network': 'ZAutomation/api/v1/system/trust-my-network',
+            'firstaccess': 'ZAutomation/api/v1/system/first-access'
         },
         // List of image pathes
         'img': {
@@ -88,7 +90,9 @@ var config_data = {
         // Url to get a license key
         'license_url': 'https://hrix.net/shuiapi/licence/upgrade.php',
         // Razberry latest version
-        'raz_latest_version_url': 'https://razberry.z-wave.me/z-way/razberry/latest/VERSION', 
+        'raz_latest_version_url': 'https://razberry.z-wave.me/z-way/razberry/latest/VERSION',
+        // Find z-wave me box
+        'find_zwaveme_zbox': 'https://find.z-wave.me/zboxweb', 
         // Url to zddx xml files
         'zddx_url': 'ZDDX/',
         // Url to run ExpertUI cmd

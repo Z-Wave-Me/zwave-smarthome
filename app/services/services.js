@@ -96,6 +96,13 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $location
     this.setUser = function (data) {
         return setUser(data);
     };
+    
+    /**
+     * Unset user
+     */
+    this.unsetUser = function () {
+        return unsetUser();
+    };
 
     /**
      * Get user SID (token)
@@ -253,6 +260,15 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $location
         }
         $cookies.user = angular.toJson(data);
         return data;
+
+    }
+    
+    /**
+     * Unset user
+     */
+    function unsetUser() {
+        setUser(null);
+        setZWAYSession(null);
 
     }
     /**
