@@ -317,7 +317,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $location
     function logOut() {
         setUser(null);
         setZWAYSession(null);
-        $window.location.href = '#/';
+        $window.location.href = '#/?logout';
         $window.location.reload();
 
     }

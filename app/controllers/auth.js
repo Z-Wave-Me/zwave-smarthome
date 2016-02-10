@@ -119,11 +119,16 @@ myAppController.controller('LoginController', function($scope, $location, $windo
     /**
      * Login from url, remember me or session
      */
+
+    var path = $location.path().split('/');
+
     if ($routeParams.login && $routeParams.password) {
         $scope.login($routeParams);
     } else if(dataService.getRememberMe()){
         $scope.login(dataService.getRememberMe());
-    }else if (!$routeParams.logout) {
+    // only ask for session forwarding if user is not logged out before or the request comes from trusted hosts
+    } else if ((typeof $routeParams.logout !== 'undefined' && !$routeParams.logout) ||
+                (path[1] === '' && $scope.cfg.find_hosts.indexOf($location.host()) !== -1)) {
         $scope.getSession();
     }
 });
