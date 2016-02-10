@@ -1,6 +1,7 @@
 {
+    "confirm_password": "Retype password to confirm",
     "delete_successful": "Data was successfully deleted",
-    "secure_login": "Secure login",
+    "secure_login": "I trust my local network",
     "unsecure_login": "Unsecure login",
     "remember_me": "Remember me",
     "rate_app": "Rate this APP",
