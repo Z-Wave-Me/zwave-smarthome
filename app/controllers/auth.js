@@ -14,6 +14,18 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $co
         fromexpert: $routeParams.fromexpert
     };
 
+//    var findInput = {
+//        act: 'login',
+//        login: '26775/admin',
+//        pass: 'admin1'
+//    };
+//    dataFactory.postToRemote($scope.cfg.find_zwaveme_zbox, findInput).then(function (response) {
+//        //window.location = 'https://find.z-wave.me';
+//    }, function (error) {
+//        alertify.alertError($scope._t('error_load_data'));
+//
+//    });
+//    return;
 
     if (dataService.getUser()) {
         $scope.auth.form = false;
@@ -98,7 +110,7 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $co
             dataService.unsetUser(user);
             // find.popp.eu
             if ($scope.cfg.app_type === 'popp') {
-                window.location = 'https://find.popp.eu';
+               window.location = 'https://find.popp.eu/?login=' + user.login + '&password=' + password;
             }
             //find.z-wave.me
             else {
@@ -108,7 +120,7 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $co
                     pass: password
                 };
                 dataFactory.postToRemote($scope.cfg.find_zwaveme_zbox, findInput).then(function (response) {
-                    window.location = 'https://find.z-wave.me';
+                    window.location = $scope.cfg.find_zwaveme_zbox + '?login=' + user.login + '&password=' + password;
                 }, function (error) {
                     alertify.alertError($scope._t('error_load_data'));
 
@@ -257,39 +269,6 @@ myAppController.controller('AuthPasswordController', function ($scope, $window, 
             $scope.loading = false;
         });
     };
-
-    /**
-     * Redirect
-     */
-//    $scope.redirectFirstLogin = function (trust, user, password) {
-//        // Trusted
-//        if (trust) {
-//            $scope.processUser(user, false);
-//            window.location = '#/dashboard';
-//            $window.location.reload();
-//        } else {
-//            dataService.unsetUser(user);
-//            // find.popp.eu
-//            if ($scope.cfg.app_type === 'popp') {
-//                window.location = 'https://find.popp.eu';
-//            }
-//            //find.z-wave.me
-//            else {
-//                var findInput = {
-//                    act: 'login',
-//                    login: $scope.auth.remoteId + '/' + user.login,
-//                    password: password
-//                };
-//                dataFactory.postToRemote($scope.cfg.find_zwaveme_zbox, findInput).then(function (response) {
-//                    window.location = 'https://find.z-wave.me';
-//                }, function (error) {
-//                    alertify.alertError($scope._t('error_load_data'));
-//
-//                });
-//
-//            }
-//        }
-//    };
 
 });
 

@@ -92,7 +92,7 @@ var config_data = {
         // Razberry latest version
         'raz_latest_version_url': 'https://razberry.z-wave.me/z-way/razberry/latest/VERSION',
         // Find z-wave me box
-        'find_zwaveme_zbox': 'https://find.z-wave.me/zboxweb', 
+        'find_zwaveme_zbox': 'https://find.z-wave.me/', 
         // Url to zddx xml files
         'zddx_url': 'ZDDX/',
         // Url to run ExpertUI cmd
