@@ -106,6 +106,23 @@
 
 /* Extra Small Devices, Phones */ 
 @media only screen and (max-width : 480px) {
+    .widget-entry-element{
+    .widget-entry-in{
+        .widget-content{
+            margin-left:0;
+        }
+        .widget-title{
+           
+            h3{
+                font-size: 95%;
+                padding: 0 0 0 $widget-img + $spacing;
+            }
+            .widget-room{
+                 padding: 0 0 0 $widget-img + $spacing;
+            }
+        }
+    }
+    }
 
 }
 

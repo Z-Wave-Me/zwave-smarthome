@@ -33,6 +33,9 @@
             .btn-group{
                 .btn{
                     color: $element-widget-btn-color;
+                    .fa{
+                        font-size: $app-btn-font-size;
+                    }
                 }
                 .widget-btn-symbol{
                     font-weight: bold;
