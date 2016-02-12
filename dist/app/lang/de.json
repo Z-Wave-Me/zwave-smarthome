@@ -1,6 +1,7 @@
 {
+    "confirm_password": "Geben Sie Ihr Passwort erneut ein, um es zu bestätigen",
     "delete_successful": "Data was successfully deleted",
-    "secure_login": "Secure login",
+    "secure_login": "Ich vertraue meinem lokalen Ethernet/WLAN",
     "unsecure_login": "Unsecure login",
     "remember_me": "Remember me",
     "rate_app": "Bewerten Sie diese App",

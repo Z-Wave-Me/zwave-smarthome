@@ -3,7 +3,7 @@
 .page-control{
     text-align: right;
     margin-bottom: $spacing;
-     input, button,.btn{
+     input{
        min-height: $page-control-input-h;
        line-height: $page-control-input-h;
        padding: 0 $spacing;

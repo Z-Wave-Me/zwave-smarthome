@@ -11,6 +11,23 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
     $scope.devices = {};
     $scope.input = false;
     $scope.newPassword = null;
+    $scope.trustMyNetwork = true;
+    
+    
+     /**
+     * Trust my network
+     */
+    $scope.loadTrustMyNetwork = function() {
+        dataFactory.getApi('trust_my_network').then(function (response) {
+            $scope.trustMyNetwork = response.data.data.trustMyNetwork;
+                console.log($scope.trustMyNetwork)
+            }, function (error) {
+                $scope.loading = false;
+                alertify.alertError($scope._t('error_load_data'));
+
+            });
+    };
+   
     
     /**
      * Load data
@@ -18,6 +35,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
     $scope.loadData = function(id) {
          $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
        dataFactory.getApi('profiles', '/' + id, true).then(function(response) {
+            $scope.loadTrustMyNetwork();
             loadDevices();
             $scope.input = response.data.data;
            $scope.loading = false;
@@ -30,6 +48,8 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
     if ($scope.id > 0) {
         $scope.loadData($scope.id);
     }
+    
+
 
     /**
      * Assign device to list
@@ -88,6 +108,22 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
             $scope.loading = false;
         });
     };
+    
+     /**
+     * Set Trust my network
+     */
+    $scope.setTrustMyNetwork = function(trustMyNetwork) {
+       $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+                dataFactory.putApi('trust_my_network', null, {trustMyNetwork: trustMyNetwork}).then(function (response) {
+                    $scope.loading = false;
+                   dataService.showNotifier({message: $scope._t('success_updated')});
+                }, function (error) {
+                    $scope.loading = false;
+                    alertify.alertError($scope._t('error_update_data'));
+                    return;
+                });
+    };
+   
 
     /**
      * Change password

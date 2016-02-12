@@ -38,6 +38,7 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
         deleteApiFormdata: deleteApiFormdata,
         postApi: postApi,
         putApi: putApi,
+        putApiWithHeaders: putApiWithHeaders,
         putApiFormdata:putApiFormdata,
         storeApi: storeApi,
         runApiCmd: runApiCmd,
@@ -180,6 +181,20 @@ myAppFactory.factory('dataFactory', function($http, $filter, $q, myCache, dataSe
                 'Accept-Language': lang,
                 'ZWAYSession': ZWAYSession
             }
+        }).then(function(response) {
+            return response;
+        }, function(response) {// something went wrong
+
+            return $q.reject(response);
+        });
+    }
+    // Put api data
+    function putApiWithHeaders(api, id, data, headers,params) {
+        return $http({
+            method: "put",
+            data: data,
+            url: cfg.server_url + cfg.api[api] + (id ? '/' + id : '') + (params ? params : ''),
+            headers: headers
         }).then(function(response) {
             return response;
         }, function(response) {// something went wrong
