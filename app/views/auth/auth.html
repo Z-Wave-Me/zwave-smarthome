@@ -16,7 +16,7 @@
             </div>
         </div>
     <div class="welcome-screen">
-            <h1> {{_t('welcome_1')}}:  #{{auth.remoteId}}</h1> 
+            <h1> {{_t('welcome_1')}}  {{auth.remoteId}}</h1> 
         </div>
     <div ng-if="!auth.firstaccess" ng-include="'app/views/auth/auth_login.html'"></div>
     <div ng-if="auth.firstaccess" ng-include="'app/views/auth/auth_password.html'"></div>

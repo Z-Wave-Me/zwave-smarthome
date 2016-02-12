@@ -104,13 +104,13 @@
                 <i class="fa accordion-arrow" ng-class="expand.settingsaccount ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
             </h2>
             <div class="accordion-entry-ctrl" ng-if="expand.settingsaccount" ng-controller_="ManagementFirmwareController">
-                <div class="form-page form-group form-inline">
+                <!--<div class="form-page form-group form-inline">
                     <div class="fieldset">
                         <input type="checkbox" name="expert_view" ng-model="trustMyNetwork" ng-checked="trustMyNetwork" ng-click="setTrustMyNetwork(trustMyNetwork = !trustMyNetwork)" />
                          <label ng-bind="_t('secure_login')"></label> <bb-help file="secure_login" lang="{{lang}}"></bb-help>
                     </div>
                     
-                </div>
+                </div>-->
             <form name="form_password" id="form_password" class="form form-inline form-page" ng-submit="changePassword(form_password,newPassword)" novalidate>
                 <fieldset>
                     <!-- login  -->

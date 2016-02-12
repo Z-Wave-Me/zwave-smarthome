@@ -17167,19 +17167,6 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $co
         fromexpert: $routeParams.fromexpert
     };
 
-//    var findInput = {
-//        act: 'login',
-//        login: '26775/admin',
-//        pass: 'admin1'
-//    };
-//    dataFactory.postToRemote($scope.cfg.find_zwaveme_zbox, findInput).then(function (response) {
-//        //window.location = 'https://find.z-wave.me';
-//    }, function (error) {
-//        alertify.alertError($scope._t('error_load_data'));
-//
-//    });
-//    return;
-
     if (dataService.getUser()) {
         $scope.auth.form = false;
         window.location = '#/dashboard';
@@ -17244,44 +17231,56 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $co
 
         $scope.auth.form = false;
     };
-
-
     /**
      * Redirect
      */
     $scope.redirectAfterLogin = function (trust, user, password, rememberme) {
-        // Trusted
-        if (trust) {
-            $scope.processUser(user, rememberme);
-            if ($scope.auth.fromexpert) {
-                window.location.href = $scope.cfg.expert_url;
-                return;
-            }
-            window.location = '#/dashboard';
-            $window.location.reload();
-        } else {
-            dataService.unsetUser(user);
-            // find.popp.eu
-            if ($scope.cfg.app_type === 'popp') {
-               window.location = 'https://find.popp.eu/?login=' + user.login + '&password=' + password;
-            }
-            //find.z-wave.me
-            else {
-                var findInput = {
-                    act: 'login',
-                    login: $scope.auth.remoteId + '/' + user.login,
-                    pass: password
-                };
-                dataFactory.postToRemote($scope.cfg.find_zwaveme_zbox, findInput).then(function (response) {
-                    window.location = $scope.cfg.find_zwaveme_zbox + '?login=' + user.login + '&password=' + password;
-                }, function (error) {
-                    alertify.alertError($scope._t('error_load_data'));
-
-                });
-
-            }
+        $scope.processUser(user, rememberme);
+        if ($scope.auth.fromexpert) {
+            window.location.href = $scope.cfg.expert_url;
+            return;
         }
+        window.location = '#/dashboard';
+        $window.location.reload();
     };
+
+
+    /**
+     * Redirect - with trust my network
+     */
+//    $scope.redirectAfterLogin = function (trust, user, password, rememberme) {
+//        // Trusted
+//        if (trust) {
+//            $scope.processUser(user, rememberme);
+//            if ($scope.auth.fromexpert) {
+//                window.location.href = $scope.cfg.expert_url;
+//                return;
+//            }
+//            window.location = '#/dashboard';
+//            $window.location.reload();
+//        } else {
+//            dataService.unsetUser(user);
+//            // find.popp.eu
+//            if ($scope.cfg.app_type === 'popp') {
+//               window.location = 'https://find.popp.eu/?login=' + user.login + '&password=' + password;
+//            }
+//            //find.z-wave.me
+//            else {
+//                var findInput = {
+//                    act: 'login',
+//                    login: $scope.auth.remoteId + '/' + user.login,
+//                    pass: password
+//                };
+//                dataFactory.postToRemote($scope.cfg.find_zwaveme_zbox, findInput).then(function (response) {
+//                    window.location = $scope.cfg.find_zwaveme_zbox + '?login=' + user.login + '&password=' + password;
+//                }, function (error) {
+//                    alertify.alertError($scope._t('error_load_data'));
+//
+//                });
+//
+//            }
+//        }
+//    };
 });
 
 /**
@@ -17315,14 +17314,8 @@ myAppController.controller('AuthLoginController', function ($scope, $location, $
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         $scope.alert = {message: false};
         dataFactory.logInApi(input).then(function (response) {
-            dataFactory.getApi('trust_my_network').then(function (responseTrust) {
-                var rememberme = (input.rememberme ? input : null);
-                $scope.redirectAfterLogin(responseTrust.data.data.trustMyNetwork, response.data.data, input.password, rememberme);
-            }, function (error) {
-                $scope.loading = false;
-                alertify.alertError($scope._t('error_load_data'));
-
-            });
+            var rememberme = (input.rememberme ? input : null);
+            $scope.redirectAfterLogin(true, response.data.data, input.password, rememberme);
 
         }, function (error) {
             $scope.loading = false;
@@ -17330,9 +17323,36 @@ myAppController.controller('AuthLoginController', function ($scope, $location, $
             if (error.status == 401) {
                 message = $scope._t('error_load_user');
             }
-             alertify.alertError(message);
+            alertify.alertError(message);
         });
     };
+
+    /**
+     * Login proccess
+     */
+//    $scope.login = function (input) {
+//        input.password = input.password;
+//        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+//        $scope.alert = {message: false};
+//        dataFactory.logInApi(input).then(function (response) {
+//            dataFactory.getApi('trust_my_network').then(function (responseTrust) {
+//                var rememberme = (input.rememberme ? input : null);
+//                $scope.redirectAfterLogin(responseTrust.data.data.trustMyNetwork, response.data.data, input.password, rememberme);
+//            }, function (error) {
+//                $scope.loading = false;
+//                alertify.alertError($scope._t('error_load_data'));
+//
+//            });
+//
+//        }, function (error) {
+//            $scope.loading = false;
+//            var message = $scope._t('error_load_data');
+//            if (error.status == 401) {
+//                message = $scope._t('error_load_user');
+//            }
+//             alertify.alertError(message);
+//        });
+//    };
     /**
      * Login from url, remember me or session
      */
@@ -17369,9 +17389,6 @@ myAppController.controller('AuthPasswordController', function ($scope, $window, 
         if (form.$invalid) {
             return;
         }
-//        console.log(input);
-//        $scope.redirectFirstLogin(input.trust_my_network, {login:'admin'},input.password);
-//        return;
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         var inputAuth = {
             id: input.id,
@@ -17387,20 +17404,20 @@ myAppController.controller('AuthPasswordController', function ($scope, $window, 
             $scope.loading = false;
             var profile = response.data.data;
             profile['email'] = input.email;
-            $scope.auth
             if (!profile) {
                 alertify.alertError($scope._t('error_update_data'));
                 return;
             }
             // Update profile
             dataFactory.putApiWithHeaders('profiles', input.id, profile, headers).then(function (response) {
+                $scope.redirectAfterLogin(true, $scope.auth.defaultProfile, input.password);
                 // Update trust my network
-                dataFactory.putApiWithHeaders('trust_my_network', null, {trustMyNetwork: input.trust_my_network}, headers).then(function (response) {
-                    $scope.redirectAfterLogin(input.trust_my_network, $scope.auth.defaultProfile, input.password);
-                }, function (error) {
-                    alertify.alertError($scope._t('error_update_data'));
-                    return;
-                });
+                /*dataFactory.putApiWithHeaders('trust_my_network', null, {trustMyNetwork: input.trust_my_network}, headers).then(function (response) {
+                 $scope.redirectAfterLogin(input.trust_my_network, $scope.auth.defaultProfile, input.password);
+                 }, function (error) {
+                 alertify.alertError($scope._t('error_update_data'));
+                 return;
+                 });*/
             }, function (error) {
                 alertify.alertError($scope._t('error_update_data'));
                 return;
