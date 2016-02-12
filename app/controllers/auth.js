@@ -158,17 +158,11 @@ myAppController.controller('AuthLoginController', function ($scope, $location, $
      * Login proccess
      */
     $scope.login = function (input) {
-//         dataFactory.postToRemote('http://developer.zwave.eu/ietest.php', input).then(function (response) {
-//        }, function (error) {
-//
-//        });
-//        return;
         input.password = input.password;
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         $scope.alert = {message: false};
         dataFactory.logInApi(input).then(function (response) {
             dataFactory.getApi('trust_my_network').then(function (responseTrust) {
-                //console.log(response)
                 var rememberme = (input.rememberme ? input : null);
                 $scope.redirectAfterLogin(responseTrust.data.data.trustMyNetwork, response.data.data, input.password, rememberme);
             }, function (error) {
@@ -178,12 +172,12 @@ myAppController.controller('AuthLoginController', function ($scope, $location, $
             });
 
         }, function (error) {
+            $scope.loading = false;
             var message = $scope._t('error_load_data');
             if (error.status == 401) {
                 message = $scope._t('error_load_user');
             }
-            $scope.loading = false;
-            $scope.alert = {message: message, status: 'alert-danger', icon: 'fa-warning'};
+             alertify.alertError(message);
         });
     };
     /**
