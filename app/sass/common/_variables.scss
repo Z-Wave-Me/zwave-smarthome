@@ -197,11 +197,16 @@ $header-a-color: $app-a-color;
 $header-icon-color: lighten($header-a-color, 20%);
 $header-a-active-color: $app-border-color;
 $header-subnavi-border-color: $app-border-color;
+$header-subnavi-color: $app-a-color;
 $header-subnavi-bcg-color: #FFFFFF;
+$header-subnavi-active-color: lighten($header-subnavi-color, 50%);
+
+
 
 // Page navigation
 $page-navi-bcg-color: #FFFFFF;
 $page-navi-color: $app-a-color;
+$page-navi-active-color: lighten($page-navi-color,50%);
 $page-navi-border-color: $app-border-color;
 $header-icon-color: lighten($page-navi-color, 20%);
 $page-navi-heading-color: $app-heading-color;
