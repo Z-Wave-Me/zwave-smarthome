@@ -4,13 +4,16 @@
 
     <div ng-show="input">
         <h2><span ng-bind="_t('lb_room')"></span>: <span ng-show="input.id > 0">(#{{input.id}})</span> <span ng-bind="input.title"></span></h2>
-        <form name="form_profile" id="form_profile" class="form form-page" ng-submit="store(input)" novalidate>
+        <form name="form_room" id="form_room" class="form form-page" ng-submit="store(form_room,input)" novalidate>
             <fieldset>
                 <h3><span ng-bind="_t('lb_name')"></span></h3>
                 <div>
                     <!-- name -->
                     <div class="form-group">
-                        <input name="title" id="title" type="text" class="form-control" placeholder="{{_t('lb_room_name')}}" value="{{input.title}}" ng-model="input.title" />
+                        <input name="title" id="title" type="text" 
+                               class="form-control" placeholder="{{_t('lb_room_name')}}" value="{{input.title}}" 
+                               ng-model="input.title" ng-blur="titleBlur = true" ng-required="true" />
+                        <bb-validator input-name='form_room.title.$error.required' trans='_t("field_required")' has-blur='titleBlur'></bb-validator> 
                     </div>
                 </div>
             </fieldset>
@@ -63,7 +66,7 @@
             </fieldset>
             <fieldset class="submit-entry">
                  <button type="button" class="btn btn-default" bb-go-back><i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span></button>
-                 <button type="submit" class="btn btn-submit"><i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_save')}}</span></button>
+                 <button type="submit" class="btn btn-submit"  ng-disabled="form_room.$invalid"><i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_save')}}</span></button>
             </fieldset>
         </form>
 

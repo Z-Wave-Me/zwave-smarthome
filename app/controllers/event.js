@@ -86,7 +86,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
      * Load data into collection
      */
     $scope.loadData = function() {
-        dataService.showConnectionSpinner();
+         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         $scope.timeFilter = (angular.isDefined($cookies.events_timeFilter) ? angular.fromJson($cookies.events_timeFilter) : $scope.timeFilter);
         var urlParam = '?since=' + $scope.timeFilter.since;
         dataFactory.getApi('notifications', urlParam, true).then(function(response) {
@@ -94,6 +94,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
             dataService.updateTimeTick(response.data.data.updateTime);
             $scope.loading = false;
         }, function(error) {
+            $scope.loading = false;
             alertify.alertError($scope._t('error_load_data'));
         });
     };
@@ -156,7 +157,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
                 break;
         }
         $cookies.events_timeFilter = angular.toJson($scope.timeFilter);
-        $scope.loadData($scope.timeFilter);
+        $scope.loadData();
     };
 
     /**
@@ -191,13 +192,13 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
     /**
      * Delete event
      */
-    $scope.deleteEvent = function(id, params, target, message) {
+    $scope.deleteEvent = function(id,params,message) {
         alertify.confirm(message, function() {
             $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
             dataFactory.deleteApi('notifications', id, params).then(function(response) {
                 myCache.remove('notifications');
                 $scope.loading = false;
-                $(target).fadeOut(2000);
+               $scope.loadData();
             }, function(error) {
                 $scope.loading = false;
                 alertify.alertError($scope._t('error_delete_data'));

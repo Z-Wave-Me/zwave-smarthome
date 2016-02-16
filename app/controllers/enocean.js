@@ -18,29 +18,31 @@ myAppController.controller('EnoceanDeviceController', function($scope, $routePar
      * Load Remote access data
      */
     $scope.loadEnOceanModule = function() {
+         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('instances', '/EnOcean').then(function(response) {
+             $scope.loading = false;
             var module = response.data.data[0];
             if (Object.keys(module).length < 1) {
-                $scope.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-warning'};
+                alertify.alertError($scope._t('no_data'));
                 return;
             }
             if (!module.active) {
-                $scope.alert = {message: $scope._t('enocean_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                alertify.alertError($scope._t('enocean_not_active'));
                 return;
             }
             $scope.hasEnOcean = true;
         }, function(error) {
+             $scope.loading = false;
             if (error.status == 404) {
-                $scope.alert = {message: $scope._t('enocean_nosupport'), status: 'alert-danger', icon: 'fa-warning'};
+               alertify.alertError($scope._t('enocean_nosupport'));
             } else {
-                $location.path('/error/' + error.status);
+                 alertify.alertError($scope._t('error_load_data'));
             }
 
         });
     };
 
     $scope.loadEnOceanModule();
-
 
     /**
      * Load z-wave devices
@@ -685,11 +687,10 @@ myAppController.controller('EnoceanManageController', function($scope, $location
      */
     $scope.loadData = function(enoceanProfiles) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataService.showConnectionSpinner();
         dataFactory.loadEnoceanApiData(true).then(function(response) {
-            dataService.updateTimeTick();
+             $scope.loading = false;
             if (Object.keys(response.data.devices).length < 1) {
-                $scope.loading = {status: 'loading-fade', icon: 'fa-exclamation-circle text-warning', message: $scope._t('no_devices')};
+                 alertify.alertError($scope._t('no_data'));
                 return;
             }
 
@@ -697,7 +698,8 @@ myAppController.controller('EnoceanManageController', function($scope, $location
             $scope.loading = false;
 
         }, function(error) {
-            $location.path('/error/' + error.status);
+             alertify.alertError($scope._t('error_load_data'));
+             $scope.loading = false;
         });
     };
 
@@ -1042,12 +1044,13 @@ myAppController.controller('EnoceanControllerController', function($scope, $loca
      * Load enocean data
      */
     $scope.loadData = function() {
-        dataService.showConnectionSpinner();
+         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.loadEnoceanApiData(true).then(function(response) {
             $scope.controller = response.data.controller.data;
-            dataService.updateTimeTick();
+            $scope.loading = false;
         }, function(error) {
-            $location.path('/error/' + error.status);
+             alertify.alertError($scope._t('error_load_data'));
+             $scope.loading = false;
         });
     };
     $scope.loadData();

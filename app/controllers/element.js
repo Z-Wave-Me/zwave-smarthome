@@ -692,6 +692,7 @@ myAppController.controller('ElementDetailController', function ($scope, $routePa
         if (search.length > 2) {
             var foundText = containsText($scope.tagList, search);
             $scope.autoCompletePanel = (foundText) ? true : false;
+            console.log( $scope.autoCompletePanel)
         }
     };
 

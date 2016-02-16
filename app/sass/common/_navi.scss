@@ -61,11 +61,14 @@
         }
         .active{
             a{
-                color: lighten($page-navi-color, 30%);
+                color: $page-navi-active-color;
                 font-weight: bold;
                 text-decoration: underline;
-                cursor: text;
             }
+            .fa{
+           color: $page-navi-active-color;
+
+        }
         }
         .fa{
             padding-right: 7px;

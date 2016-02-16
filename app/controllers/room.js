@@ -225,7 +225,10 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
     /**
      * Create/Update an item
      */
-    $scope.store = function(input) {
+    $scope.store = function(form,input) {
+        if (form.$invalid) {
+            return;
+        }
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         dataFactory.storeApi('locations', input.id, input).then(function(response) {
              $scope.loading = false;
