@@ -108,4 +108,22 @@ myAppController.controller('SkinLocalController', function ($scope, $window, $ti
  */
 myAppController.controller('SkinOnlineController', function ($scope, dataFactory, dataService) {
     $scope.activeTab = 'online';
+    
+    /**
+     * Download skin
+     */
+    $scope.downloadSkin = function (v) {
+         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+         console.log(v)
+         
+    };
+    
+    /**
+     * Upgrade skin
+     */
+    $scope.upgradeSkin = function (v) {
+         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+         console.log(v)
+         
+    };
 });
