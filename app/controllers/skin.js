@@ -75,8 +75,31 @@ myAppController.controller('SkinBaseController', function ($scope, dataFactory, 
 /**
  * Skin local controller
  */
-myAppController.controller('SkinLocalController', function ($scope, dataFactory, dataService) {
+myAppController.controller('SkinLocalController', function ($scope, $window, $timeout,dataFactory, dataService) {
     $scope.activeTab = 'local';
+    
+    /**
+     * Activate skin
+     */
+    $scope.activateSkin = function (v) {
+         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+         console.log(v)
+         //return;
+        dataFactory.getApiLocal('skins-online.json').then(function (response) {
+             $scope.loading = false;
+                 dataService.showNotifier({message: $scope._t('success_updated')});
+                 return;
+             $timeout(function () {
+                  $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('reloading_page')};
+                 alertify.dismissAll();
+                $window.location.reload();
+            }, 2000);
+            $scope.loading = false;
+        }, function (error) {
+              $scope.loading = false;
+            alertify.alertError($scope._t('error_update_data'));
+        });
+    };
 
 
 });

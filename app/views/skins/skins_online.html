@@ -1,12 +1,14 @@
 <!-- Online skins -->
 <div ng-controller="SkinBaseController">
     <div ng-controller="SkinOnlineController">
+         <bb-loader></bb-loader> 
         <div ng-if="skins.online.show">
             <!-- Skins navigation -->
             <div ng-include="'app/views/skins/navi.html'"></div>
             <div class="app-row app-row-widget app-row-skins clearfix">
                 <div class="widget-entry widget-entry-skin  is-used-{{v.used}}"
-                     id="local_skin_{{v.id}}" 
+                     id="local_skin_{{v.id}}"
+                     ng-class="skins.local.all[v.name] ? 'skin-active-true':''"
                      ng-repeat="v in skins.online.all track by v.id">
                     <div class="widget-entry-in">
                         <!-- Widget img -->

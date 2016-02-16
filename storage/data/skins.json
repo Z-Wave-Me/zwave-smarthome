@@ -12,7 +12,7 @@
             "icon": "defaultzip/screenshot.png",
             "author": "Martin Vach",
             "homepage": "http://www.zwave.eu",
-            "used": true
+            "active": true
         }, {
             "id": "3",
             "name": "blankzip",
@@ -23,6 +23,6 @@
             "icon": "blankzip/screenshot.png",
             "author": "Joe Green",
             "homepage": "http://www.joegreen.com",
-            "used": false
+            "active": false
         }]
 }
