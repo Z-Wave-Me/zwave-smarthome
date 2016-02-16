@@ -181,15 +181,6 @@ input[type=radio] {
 
 /* Report
 -------------------------------------------------- */
-.report-entry {
-    display: table;
-    .report-col{
-        vertical-align: middle;
-    }
-    .report-ctrl{
-        display: table-cell;
-    }
-}
 .report-img{
     max-width: $report-img;
     max-height: $report-img;
@@ -197,7 +188,7 @@ input[type=radio] {
 .app-row-zwave{
     .report-entry {
         .report-ctrl{
-            vertical-align: top;
+            vertical-align: top !important;
         }
     }
 }

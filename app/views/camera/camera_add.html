@@ -1,21 +1,22 @@
 <!-- Camera add view -->
 <div ng-controller="CameraAddController">
     <div ng-show="ipcameraDevices">
-        <table class="table table-condensed table-report table-products">
-            <tbody>
-                <tr ng-repeat="v in ipcameraDevices | orderBy:'defaults.title' track by v.moduleName ">
-                    <td class="td-img">
-                        <img class="product-img" ng-src="{{moduleMediaUrl + v.moduleName + '/' + v.icon}}" ng-if="v.icon" alt="img" />
+        <div class="app-row app-row-report app-row-cameraadd clearfix">
+         <div id="row_camera_{{v.id}}" class="report-entry" ng-repeat="v in ipcameraDevices | orderBy:'defaults.title' track by v.moduleName">
+             <div class="report-col report-media">
+                    <img class="product-img" ng-src="{{moduleMediaUrl + v.moduleName + '/' + v.icon}}" ng-if="v.icon" alt="img" />
                         <img class="product-img" ng-src="storage/img/icons/camera.png" ng-if="!v.icon" alt="img" />
-                    </td>
-                    <td ng-bind="v.defaults.title"></td>
-                    <td class="td-camera-action">
-                        <a href="#module/post/{{v.id}}" class="btn btn-default"><i class="fa fa-plug text-primary"></i> <span class="btn-name">{{_t('lb_include_device')}}</span></a>
-
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                 </div>
+             <div class="report-col report-body">
+                 {{v.defaults.title}}
+            </div>
+         <div class="report-col report-ctrl">
+            <a href="#module/post/{{v.id}}" class="btn btn-default" title="{{_t('lb_include_device')}}">
+                <i class="fa fa-plug text-primary"></i>
+            </a>
+         </div>
+        </div>
+      </div>
     </div>
     <div class="device-logo" ng-include="'app/views/camera/camera_nav.html'"></div>
 </div> <!-- /ng-controller --> 

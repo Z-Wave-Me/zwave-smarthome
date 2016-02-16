@@ -34,7 +34,7 @@
 
 /*==========  Overflow  ==========*/
 
-  
+
 
 /*==================================================
 =            Bootstrap 3 Media Queries             =
@@ -48,30 +48,44 @@
 
 /*==========  Mobile First Method  ==========*/
 
-/* Custom, iPhone Retina */ 
+/* Custom, iPhone Retina */
 @media only screen and (min-width : 320px) {
 
 }
 
-/* Extra Small Devices, Phones */ 
+/* Extra Small Devices, Phones */
 @media only screen and (min-width : 480px) {
-
+    .report-entry {
+        display: table;
+        .report-ctrl{
+            display: table-cell;
+        }
+    }
+    
+    .app-row-zwave{
+    .report-entry {
+        .report-ctrl{
+            vertical-align: top !important;
+        }
+    }
+}
+    
 }
 
 /* Small Devices, Tablets */
 @media only screen and (min-width : 768px) {
-     @import "_mq_sm"; 
+    @import "_mq_sm";
 
 }
 
 /* Medium Devices, Desktops */
 @media only screen and (min-width : 992px) and (orientation:landscape) {
-    @import "_mq_md"; 
+    @import "_mq_md";
 }
 
 /* Large Devices, Wide Screens */
 @media only screen and (min-width : 1200px)and (orientation:landscape) {
-    @import "_mq_lg"; 
+    @import "_mq_lg";
 }
 
 
@@ -85,10 +99,10 @@
 
 /* Medium Devices, Desktops */
 @media only screen and (max-width : 992px)   {
-    .nav-logo, 
-     #header .update-time-tick,
-     #main_navigation .divider-vertical,
-      .btn-name,{
+    .nav-logo,
+    #header .update-time-tick,
+    #main_navigation .divider-vertical,
+    .btn-name,{
         display: none !important;
     }
     .mobile-block{
@@ -96,53 +110,53 @@
         display: block;
     }
     #footer .update-time-tick{
-            display: inline-block !important;
-        }
+        display: inline-block !important;
+    }
 }
 
 /* Small Devices, Tablets */
 @media only screen and (max-width : 768px),(orientation:portrait){
-/*    .page-navi-in{
-        max-height: $app-overflow-h;
-        overflow-x: hidden; 
-    }*/
+    /*    .page-navi-in{
+            max-height: $app-overflow-h;
+            overflow-x: hidden;
+        }*/
 }
 
-/* Extra Small Devices, Phones */ 
+/* Extra Small Devices, Phones */
 @media only screen and (max-width : 480px) {
     .widget-entry-element{
-    .widget-entry-in{
-        .widget-content{
-            margin-left:0;
-        }
-        .widget-title{
-           
-            h3{
-                font-size: 95%;
-                padding: 0 0 0 $widget-img + $spacing;
+        .widget-entry-in{
+            .widget-content{
+                margin-left:0;
             }
-            .widget-room{
-                 padding: 0 0 0 $widget-img + $spacing;
+            .widget-title{
+
+                h3{
+                    font-size: 95%;
+                    padding: 0 0 0 $widget-img + $spacing;
+                }
+                .widget-room{
+                    padding: 0 0 0 $widget-img + $spacing;
+                }
             }
         }
-    }
     }
 
 }
 
-/* Custom, iPhone Retina */ 
+/* Custom, iPhone Retina */
 @media only screen and (max-width : 360px) {
     .widget-entry-app{
-    .widget-entry-in{
-        .widget-ctrl{
-           &.ctrl-right{
-                 text-align: left;
-                 .btn-group{
-                     float: none;
-                 }
+        .widget-entry-in{
+            .widget-ctrl{
+                &.ctrl-right{
+                    text-align: left;
+                    .btn-group{
+                        float: none;
+                    }
+                }
             }
         }
     }
-}
 
 }
