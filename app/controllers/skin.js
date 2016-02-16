@@ -17,7 +17,8 @@ myAppController.controller('SkinBaseController', function ($scope, dataFactory, 
         online: {
             all: {},
             find: {},
-            ids: {}
+            ids: {},
+            show: false
         },
         installed: {
             all: {}
@@ -25,7 +26,7 @@ myAppController.controller('SkinBaseController', function ($scope, dataFactory, 
     };
 
     /**
-     * Load z-wave devices
+     * Load local skins
      */
     $scope.loadLocalSkins = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
@@ -37,6 +38,7 @@ myAppController.controller('SkinBaseController', function ($scope, dataFactory, 
                         v.icon = (!v.icon ? 'storage/img/placeholder-img.png' :'storage/skins/' + v.icon );
                         return v;
                     })
+                    .indexBy('name')
                     .value();
             ;
             $scope.skins.local.show = true;
@@ -46,6 +48,27 @@ myAppController.controller('SkinBaseController', function ($scope, dataFactory, 
         });
     };
     $scope.loadLocalSkins();
+    
+    /**
+     * Load online skins
+     */
+    $scope.loadOnlineSkins = function () {
+        dataFactory.getApiLocal('skins-online.json').then(function (response) {
+            $scope.skins.online.all = _.chain(response.data.data)
+                    .flatten()
+                    .filter(function (v) {
+                        v.icon = (v.icon == '' ? 'storage/img/placeholder-img.png' :'storage/skins/' + v.icon );
+                        return v;
+                    })
+                    .indexBy('name')
+                    .value();
+            ;
+            $scope.skins.online.show = true;
+        }, function (error) {
+            alertify.alertError($scope._t('error_load_data'));
+        });
+    };
+    $scope.loadOnlineSkins();
 
 });
 

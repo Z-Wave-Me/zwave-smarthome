@@ -5,14 +5,14 @@
         <div ng-if="skins.local.show">
             <!-- Skins navigation -->
             <div ng-include="'app/views/skins/navi.html'"></div>
-            <div class="app-row app-row-widget app-row-skins clearfix is-used-{{v.used}}">
-                <div class="widget-entry widget-entry-app"
+            <div class="app-row app-row-widget app-row-skins clearfix">
+                <div class="widget-entry widget-entry-skin  is-used-{{v.used}}"
                      id="local_skin_{{v.id}}" 
                      ng-repeat="v in skins.local.all track by v.id">
                     <div class="widget-entry-in">
                         <!-- Widget img -->
                         <div class="widget-img">
-                            <img class="widget-preview-img" ng-src="{{v.icon}}" alt="{{v.title}}" />
+                            <img class="skin-preview-img" ng-src="{{v.icon}}" alt="{{v.title}}" />
                         </div>
 
                         <!-- Widget header -->
@@ -44,24 +44,25 @@
                 </div><!-- /.widget-entry --> 
             </div><!-- /.app-row --> 
         </div>
-    </div> <!-- /ng-controller --> 
-    <!-- doorLockModal -->
-<div id="skinLocalModal" class="appmodal" ng-if="modalArr.skinLocalModal">
+        <div id="skinLocalModal" class="appmodal" ng-if="modalArr.skinLocalModal">
     <div class="appmodal-in">
         <div class="appmodal-header">
             <span class="appmodal-close" ng-click="handleModal('skinLocalModal', $event)"><i class="fa fa-times"></i></span>
             <h3>{{skins.local.find.title}}</h3>
         </div>
         <div class="appmodal-body">
-             <img class="skin-image-detail" ng-src="{{skins.local.find.icon_____}}" alt="{{skins.local.find.title}}" />
+            <div class="skin-detail-img">
+                 <img class="skin-image-detail" ng-src="{{skins.local.find.icon}}" alt="{{skins.local.find.title}}" />
+            </div>
+            
              <p class="skin-detail-perex">{{skins.local.find.description}}</p>
               <p class="skin-detail-list" ng-if="skins.local.find.author">
                             <i class="fa fa-user"></i>
-                            <span ng-if="!skins.local.find.homepage">{{skins.local.find.author}}</span>
-                            <a ng-href="{{skins.local.find.homepage}}" ng-if="skins.local.find.homepage">{{skins.local.find.author}}</a> 
+                            <span ng-if="!skins.local.find.homepage"> {{skins.local.find.author}}</span>
+                            <a ng-href="{{skins.local.find.homepage}}" ng-if="skins.local.find.homepage"> {{skins.local.find.author}}</a> 
                         </p>
                 <p class="skin-detail-list">
-                        <i class="fa fa-info-circle"></i>{{skins.local.find.version}}
+                        <i class="fa fa-info-circle"></i> {{skins.local.find.version}}
                 </p>
         </div>
         <!--<div class="appmodal-footer">
@@ -69,4 +70,5 @@
         </div>-->
     </div>
 </div>
+    </div> <!-- /ng-controller --> 
 </div> <!-- /ng-controller --> 

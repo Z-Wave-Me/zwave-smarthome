@@ -61,6 +61,8 @@ $navi-img: 32px;
 $report-img: 60px;
 $widget-img: 64px;
 $app-detail-img:128px;
+$skin-img: 120px;
+$skin-detail-img: 300px;
 $include-detail-img:128px;
 $product-img: 64px;
 $vendor-img: 80px;
@@ -81,6 +83,9 @@ $element-widget-col-h: 150px;
 
 //Apps
 $app-widget-col-h: 120px;
+
+//Skins
+$skin-widget-col-h: 110px;
 
 //Room
 $room-col-w: 50%;
@@ -305,6 +310,8 @@ $element-widget-btn-on-color: lighten($widget-color, 40%);
 $element-widget-img-update-border-color: $app-border-color;
 $element-widget-isnew-border-color: lighten($app-brand-success,20%);
 
+// Skin
+$skin-border-color: $app-border-color;
 // Room
 $room-border-color: $app-border-color;
 

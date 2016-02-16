@@ -235,6 +235,19 @@ input[type=radio] {
         }
     }
 }
+
+/* Apps
+-------------------------------------------------- */
+.widget-entry-skin{
+    .widget-entry-in{
+        min-height: 1px;
+        height: $skin-widget-col-h;
+        .widget-footer{
+            margin: $spacing 0 0 0;
+
+        }
+    }
+}
 /* App detail
 -------------------------------------------------- */
 .app-detail-img{

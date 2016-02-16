@@ -1,0 +1,48 @@
+/* Apps
+-------------------------------------------------- */
+.widget-entry-skin{
+    .widget-entry-in{
+        min-height: $skin-widget-col-h;
+        height: auto;
+        .widget-img{
+            //position: absolute;
+            top: 0;
+            left: 0;
+            
+        }
+        .widget-header{
+            display: none;
+        }
+        .widget-content{
+            margin: $spacing-double 0 0 $skin-img + $spacing;
+        }
+        .bottom-aligner{
+            display: none;
+        }
+        .widget-footer{
+            margin-top: 10px;
+
+        }
+        .widget-ctrl{
+            float: none;
+            width: 100%;
+            &.ctrl-left{
+                display: none;
+            }
+        }
+    }
+}
+.is-used-true {
+    .widget-entry-in{
+        @include appGradientSuccess();
+    }
+}
+
+/* Skin detail
+-------------------------------------------------- */
+.skin-detail-img{
+    text-align: center;
+}
+.skin-detail-perex{
+    margin: $spacing 0;
+}

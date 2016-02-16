@@ -24,5 +24,27 @@
             "author": "Joe Green",
             "homepage": "http://www.joegreen.com",
             "used": false
+        }, {
+            "id": "2",
+            "name": "bluezip",
+            "file": "bluezip/main.css",
+            "title": "Skin Blue",
+            "description": "Eam at vidit tritani ornatus. Ius liber fastidii propriae te, augue dolore sea id. Ius nullam fabellas iracundia ex, eu rebum lobortis iracundia eum. Sea unum scaevola ponderum ut, ut nostro deleniti qui, dicat zril id est.",
+            "version": "1.0.3",
+            "icon": "bluezip/screenshot.png",
+            "author": "Frank Blue",
+            "homepage": "http://www.blueskin.com",
+            "used": false
+        }, {
+            "id": "1",
+            "name": "redzip",
+            "file": "redzip/main.css",
+            "title": "Skin Red",
+            "description": "Ut sea habeo posse intellegat, quo cu velit accusam vulputate. Has eu labitur definiebas. Dictas maluisset mediocritatem sea et, vide ignota malorum ius an, ne argumentum philosophia duo. Vix ut debet vocent volumus. Ignota scripta euismod in eos, id has tollit utroque intellegam, ad nec audire convenire quaerendum. Nam eu suas propriae, laboramus democritum voluptaria ius ei.",
+            "version": "1.0.3",
+            "icon": "redzip/screenshot.png",
+            "author": "Martin Vach",
+            "homepage": "http://www.zwave.eu",
+            "used": false
         }]
 }
