@@ -11377,7 +11377,7 @@ myApp.filter('getAppCategoryIcon', function () {
             support_external_ui: 'fa-object-group',
             support_external_dev: 'fa-cubes',
             automation_basic: 'fa-refresh',
-            device_enhancements: 'fa-caret-square-o-u',
+            device_enhancements: 'fa-plus-square',
             developers_stuff: 'fa-file-code-o',
             complex_applications: 'fa-link',
             //automation: '',
@@ -11386,7 +11386,7 @@ myApp.filter('getAppCategoryIcon', function () {
             logging: 'fa-list-ul',
             //scripting: '',
             devices: 'fa-cogs',
-            //scheduling: '',
+            scheduling: 'fa-calendar-plus-o',
             //climate: '',
             environment: 'fa-puzzle-piece',
             //scenes: '',
@@ -12753,6 +12753,7 @@ myAppController.controller('ElementDetailController', function ($scope, $routePa
         if (search.length > 2) {
             var foundText = containsText($scope.tagList, search);
             $scope.autoCompletePanel = (foundText) ? true : false;
+            console.log( $scope.autoCompletePanel)
         }
     };
 
@@ -12981,7 +12982,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
      * Load data into collection
      */
     $scope.loadData = function() {
-        dataService.showConnectionSpinner();
+         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         $scope.timeFilter = (angular.isDefined($cookies.events_timeFilter) ? angular.fromJson($cookies.events_timeFilter) : $scope.timeFilter);
         var urlParam = '?since=' + $scope.timeFilter.since;
         dataFactory.getApi('notifications', urlParam, true).then(function(response) {
@@ -12989,6 +12990,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
             dataService.updateTimeTick(response.data.data.updateTime);
             $scope.loading = false;
         }, function(error) {
+            $scope.loading = false;
             alertify.alertError($scope._t('error_load_data'));
         });
     };
@@ -13051,7 +13053,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
                 break;
         }
         $cookies.events_timeFilter = angular.toJson($scope.timeFilter);
-        $scope.loadData($scope.timeFilter);
+        $scope.loadData();
     };
 
     /**
@@ -13086,13 +13088,13 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
     /**
      * Delete event
      */
-    $scope.deleteEvent = function(id, params, target, message) {
+    $scope.deleteEvent = function(id,params,message) {
         alertify.confirm(message, function() {
             $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
             dataFactory.deleteApi('notifications', id, params).then(function(response) {
                 myCache.remove('notifications');
                 $scope.loading = false;
-                $(target).fadeOut(2000);
+               $scope.loadData();
             }, function(error) {
                 $scope.loading = false;
                 alertify.alertError($scope._t('error_delete_data'));
@@ -15001,29 +15003,31 @@ myAppController.controller('EnoceanDeviceController', function($scope, $routePar
      * Load Remote access data
      */
     $scope.loadEnOceanModule = function() {
+         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('instances', '/EnOcean').then(function(response) {
+             $scope.loading = false;
             var module = response.data.data[0];
             if (Object.keys(module).length < 1) {
-                $scope.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-warning'};
+                alertify.alertError($scope._t('no_data'));
                 return;
             }
             if (!module.active) {
-                $scope.alert = {message: $scope._t('enocean_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                alertify.alertError($scope._t('enocean_not_active'));
                 return;
             }
             $scope.hasEnOcean = true;
         }, function(error) {
+             $scope.loading = false;
             if (error.status == 404) {
-                $scope.alert = {message: $scope._t('enocean_nosupport'), status: 'alert-danger', icon: 'fa-warning'};
+               alertify.alertError($scope._t('enocean_nosupport'));
             } else {
-                $location.path('/error/' + error.status);
+                 alertify.alertError($scope._t('error_load_data'));
             }
 
         });
     };
 
     $scope.loadEnOceanModule();
-
 
     /**
      * Load z-wave devices
@@ -15668,11 +15672,10 @@ myAppController.controller('EnoceanManageController', function($scope, $location
      */
     $scope.loadData = function(enoceanProfiles) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataService.showConnectionSpinner();
         dataFactory.loadEnoceanApiData(true).then(function(response) {
-            dataService.updateTimeTick();
+             $scope.loading = false;
             if (Object.keys(response.data.devices).length < 1) {
-                $scope.loading = {status: 'loading-fade', icon: 'fa-exclamation-circle text-warning', message: $scope._t('no_devices')};
+                 alertify.alertError($scope._t('no_data'));
                 return;
             }
 
@@ -15680,7 +15683,8 @@ myAppController.controller('EnoceanManageController', function($scope, $location
             $scope.loading = false;
 
         }, function(error) {
-            $location.path('/error/' + error.status);
+             alertify.alertError($scope._t('error_load_data'));
+             $scope.loading = false;
         });
     };
 
@@ -16025,12 +16029,13 @@ myAppController.controller('EnoceanControllerController', function($scope, $loca
      * Load enocean data
      */
     $scope.loadData = function() {
-        dataService.showConnectionSpinner();
+         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.loadEnoceanApiData(true).then(function(response) {
             $scope.controller = response.data.controller.data;
-            dataService.updateTimeTick();
+            $scope.loading = false;
         }, function(error) {
-            $location.path('/error/' + error.status);
+             alertify.alertError($scope._t('error_load_data'));
+             $scope.loading = false;
         });
     };
     $scope.loadData();
@@ -16262,7 +16267,10 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
     /**
      * Create/Update an item
      */
-    $scope.store = function(input) {
+    $scope.store = function(form,input) {
+        if (form.$invalid) {
+            return;
+        }
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         dataFactory.storeApi('locations', input.id, input).then(function(response) {
              $scope.loading = false;

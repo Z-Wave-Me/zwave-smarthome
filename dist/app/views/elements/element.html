@@ -3,7 +3,7 @@
     <bb-loader></bb-loader>
     <div ng-show="input">
         <h2><span ng-bind="_t('lb_cfg_view')"></span>: <span ng-bind="input.metrics.title"></span></h2>
-        <form name="form_element" id="form_element" class="form form-page" ng-submit="store(input)" novalidate>
+        <form name="form_element" id="form_element" class="form form-page" autocomplete="off" ng-submit="store(input)" novalidate>
             <fieldset ng-if="elementAccess(cfg.role_access.admin)">
                 <p class="form-control-static">
                             <span ng-bind="_t('element_id')"></span>: <strong ng-bind="input.id"></strong>
@@ -63,13 +63,15 @@
                 <div class="form-group form-inline">
                     <div class="input-group">
                         <input name="add_tag" id="add_tag" type="text" 
-                                         class="form-control" value="" 
+                                         class="form-control" value="{{searchText}}" 
                                          placeholder="{{_t('lb_add_tag')}}" 
                                          ng-model="searchText" bb-key-event="searchMe(searchText);" data-toggle="dropdown" />
                        <span class="input-group-addon clickable" ng-click="addTag(searchText)"><i class="fa fa-plus text-success"></i></span> 
-                        <!--<ul class="dropdown-menu" ng-if="autoCompletePanel">
-                                       <li href="" ng-click="addTag(v)" ng-repeat="v in suggestions"><a href=""><span ng-bind="v"></span> <i class="fa fa-plus text-success"></i></a></li>
-                                   </ul>-->
+                       <div class="app-dropdown app-dropdown-left" ng-if="autoCompletePanel">
+                        <ul>
+                           <li href="" ng-click="addTag(v)" ng-repeat="v in suggestions" ng-if="input.tags.indexOf(v) === -1"><a href=""> <i class="fa fa-plus text-success"></i> {{v}}</a></li>
+                        </ul>
+                        </div>
                     </div>
                  </div>
                 <div class="form-group last">

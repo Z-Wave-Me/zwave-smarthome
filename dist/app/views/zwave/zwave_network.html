@@ -8,7 +8,7 @@
              <div class="report-col report-body zwave-network">
                 <span class="network-zwave-title noelements clickable" ng-if="v.elements.length < 1">{{v.title|cutText:true:25}} (#{{v.id}}) </span>
                 <a href="" class="network-zwave-title clickable" ng-click="expandElement('accZwaveNetwork_' + v.id)" ng-if="v.elements.length > 0">
-                    <i class="fa" ng-class="expand['accZwave' + '_' + v.id] ? 'fa-chevron-up': 'fa-chevron-down'"></i> {{v.title}} (#{{v.id}})
+                    <i class="fa" ng-class="expand['accZwaveNetwork' + '_' + v.id] ? 'fa-chevron-up': 'fa-chevron-down'"></i> {{v.title}} (#{{v.id}})
                  </a>
                  <div ng-if="expand['accZwaveNetwork_' + v.id]">
                  <div class="network-zwave-element zwave-hidden-{{e.permanently_hidden}}" ng-repeat="e in v.elements | orderBy:'title':false">

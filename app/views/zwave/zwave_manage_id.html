@@ -1,7 +1,7 @@
 <!-- Zwave manage config view -->
 <div ng-controller="ZwaveManageIdController" class="mobile-padding">
     <bb-loader></bb-loader> 
-    <div ng-show="formInput.deviceName">
+    <div ng-show="formInput">
     <h1>(#{{zWaveDevice.id}}) {{formInput.deviceName}}</h1>
     <!-- Zwave config form -->
  <form name="form_network_config" id="form_profile" class="form form-page" ng-submit="updateAllDevices(formInput)" novalidate>

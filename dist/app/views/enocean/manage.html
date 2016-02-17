@@ -2,8 +2,7 @@
     <bb-loader></bb-loader> 
     <!-- Enocean navigation -->
     <div ng-include="'app/views/enocean/navi.html'"></div>
-    <div class="tab-content">
-        <div  ng-if="enoceanDevices">
+    <div  ng-if="enoceanDevices">
              <!--<p ng-bind="_t('manage_enocean_devices')"></p>-->
             <table class="table table-condensed table-report">
                 <tbody>
@@ -32,6 +31,5 @@
                 </tbody>
             </table>
         </div>
-    </div>
     <div class="device-logo" ng-include="'app/views/enocean/enocean_nav.html'"></div>
 </div> <!-- /ng-controller --> 
