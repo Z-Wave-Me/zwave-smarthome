@@ -13,7 +13,7 @@
                     <div class="widget-entry-in">
                         <!-- Widget img -->
                         <div class="widget-img">
-                            <img class="skin-preview-img" ng-src="{{v.icon}}" alt="{{v.title}}" />
+                            <img class="skin-preview-img clickable" ng-src="{{v.icon}}" alt="{{v.title}}" ng-click="skins.online.find = v;handleModal('skinOnlineModal', $event)" />
                         </div>
 
                         <!-- Widget header -->
@@ -31,12 +31,12 @@
                                 <div class="widget-ctrl ctrl-left">&nbsp;</div>
                                 <div class="widget-ctrl ctrl-right clearfix">
                                     <!-- Download -->
-                                    <button class="btn btn-default" ng-if="!skins.local.all[v.name]">
+                                    <button class="btn btn-default" ng-if="!skins.local.all[v.name]" ng-click="downloadSkin(v)">
                                          <i class="fa fa-download text-success"></i> <span class="btn-name">{{_t('lb_download')}}</span>
                                     </button>
-                                    <!-- Update -->
-                                     <button class="btn btn-default" ng-if="skins.local.all[v.name] && skins.local.all[v.name].version != v.version">
-                                         <i class="fa fa-level-up text-success"></i> <span class="btn-name">{{_t('update_to_latest')}}</span>
+                                    <!-- Upgrade -->
+                                     <button class="btn btn-default" ng-if="skins.local.all[v.name] && skins.local.all[v.name].version != v.version" ng-click="upgradeSkin(v)">
+                                         <i class="fa fa-level-up text-success"></i> <span class="btn-name">{{_t('upgrade')}}</span>
                                     </button>
                                     <!-- Installed -->
                                     <button class="btn btn-default" disabled ng-if="skins.local.all[v.name] && skins.local.all[v.name].version == v.version">

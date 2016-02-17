@@ -14,7 +14,7 @@
                     <div class="widget-entry-in">
                         <!-- Widget img -->
                         <div class="widget-img">
-                            <img class="skin-preview-img" ng-src="{{v.icon}}" alt="{{v.title}}" />
+                            <img class="skin-preview-img clickable" ng-src="{{v.icon}}" alt="{{v.title}}" ng-click="skins.local.find = v;handleModal('skinLocalModal', $event)" />
                         </div>
 
                         <!-- Widget header -->
@@ -41,7 +41,7 @@
                                             <i class="fa fa-check"></i> <span class="btn-name">{{_t('Active')}}</span>
                                         </button> 
                                          <!-- Delete -->
-                                        <button class="btn btn-default" ng-click="removeSkin(v, _t('app_delete_confirm'))" ng-if="v.name !== skins.local.active || v.name !== 'default'">
+                                        <button class="btn btn-default" ng-click="removeSkin(v, _t('app_delete_confirm'))" ng-hide="v.name === skins.local.active" ng-if="v.name !== 'default'">
                                             <i class="fa fa-remove text-danger"></i> <span class="btn-name" ng-bind="_t('lb_remove')"></span>
                                         </button>
                                    </div>

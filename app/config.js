@@ -79,6 +79,10 @@ var config_data = {
         'online_module_comment_create_url': 'https://developer.z-wave.me/?uri=api-comments-create',
         // Online module rating create url
         'online_module_rating_create_url': 'https://developer.z-wave.me/?uri=api-rating-create',
+        // Online skins url
+        'online_skin_url': 'http://hrix.net/modules_new/?uri=skins',
+        // Online skins storage
+        'online_skin_storage': 'http://hrix.net/modules_new/storage/skins/',
         // Online module download url
         'blacklist_url': 'https://hrix.net/blacklist.json', 
         // Post report url

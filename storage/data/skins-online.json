@@ -5,11 +5,11 @@
     "data": [{
             "id": "3",
             "user_id": "15",
-            "name": "blankzip",
+            "name": "blank",
             "file": "blank.zip",
             "title": "Skin My Blank",
             "description": "Sea agam perfecto ei. Ut eum tractatos quaerendum, ius quas voluptatum et. Illud congue his ut, in sea putent principes repudiandae. Pro aeque instructior mediocritatem cu, usu eius facilis an, at sed timeam vocibus. Novum integre his ea, est mollis persequeris cu.",
-            "version": "1.0.3",
+            "version": "1.0.4",
             "ui_version": "1.0.3",
             "author": "Joe Green",
             "homepage": "http:\/\/www.joegreen.com",
@@ -20,7 +20,7 @@
         }, {
             "id": "2",
             "user_id": "15",
-            "name": "bluezip",
+            "name": "blue",
             "file": "blue.zip",
             "title": "Skin Blue",
             "description": "Eam at vidit tritani ornatus. Ius liber fastidii propriae te, augue dolore sea id. Ius nullam fabellas iracundia ex, eu rebum lobortis iracundia eum. Sea unum scaevola ponderum ut, ut nostro deleniti qui, dicat zril id est.",
@@ -35,7 +35,7 @@
         }, {
             "id": "1",
             "user_id": "15",
-            "name": "redzip",
+            "name": "red",
             "file": "red.zip",
             "title": "Skin Red",
             "description": "Ut sea habeo posse intellegat, quo cu velit accusam vulputate. Has eu labitur definiebas. Dictas maluisset mediocritatem sea et, vide ignota malorum ius an, ne argumentum philosophia duo. Vix ut debet vocent volumus. Ignota scripta euismod in eos, id has tollit utroque intellegam, ad nec audire convenire quaerendum. Nam eu suas propriae, laboramus democritum voluptaria ius ei.",
