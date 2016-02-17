@@ -6,12 +6,12 @@
 /**
  * Skin base controller
  */
-myAppController.controller('SkinBaseController', function ($scope, dataFactory, _) {
+myAppController.controller('SkinBaseController', function ($scope, $cookies,dataFactory, _) {
     $scope.skins = {
         local: {
             all: {},
             find: {},
-            ids: {},
+            active: 'default',
             show: false
         },
         online: {
@@ -24,6 +24,16 @@ myAppController.controller('SkinBaseController', function ($scope, dataFactory, 
             all: {}
         }
     };
+    
+    /**
+     * Get active skin
+     */
+    $scope.getActiveSkin= function () {
+        if($cookies.skin && $cookies.skin !== 'default'){
+             $scope.skins.local = $cookies.skin;
+        }
+    };
+    $scope.getActiveSkin();
 
     /**
      * Load local skins
@@ -35,7 +45,7 @@ myAppController.controller('SkinBaseController', function ($scope, dataFactory, 
             $scope.skins.local.all = _.chain(response.data.data)
                     .flatten()
                     .filter(function (v) {
-                        v.icon = (!v.icon ? 'storage/img/placeholder-img.png' :'storage/skins/' + v.icon );
+                        v.icon = (!v.icon ? 'storage/img/placeholder-img.png' : v.icon );
                         return v;
                     })
                     .indexBy('name')
@@ -75,20 +85,20 @@ myAppController.controller('SkinBaseController', function ($scope, dataFactory, 
 /**
  * Skin local controller
  */
-myAppController.controller('SkinLocalController', function ($scope, $window, $timeout,dataFactory, dataService) {
+myAppController.controller('SkinLocalController', function ($scope, $window, $route,$timeout,$cookies,dataFactory, dataService) {
     $scope.activeTab = 'local';
     
     /**
      * Activate skin
      */
-    $scope.activateSkin = function (v) {
+    $scope.activateSkin = function (skin) {
          $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-         console.log(v)
-         //return;
+        
         dataFactory.getApiLocal('skins-online.json').then(function (response) {
-             $scope.loading = false;
+                $scope.loading = false;
+                 $cookies.skin = skin.name;
                  dataService.showNotifier({message: $scope._t('success_updated')});
-                 return;
+                 //return;
              $timeout(function () {
                   $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('reloading_page')};
                  alertify.dismissAll();
@@ -100,8 +110,23 @@ myAppController.controller('SkinLocalController', function ($scope, $window, $ti
             alertify.alertError($scope._t('error_update_data'));
         });
     };
-
-
+    
+    
+    /**
+     * Remove skin
+     */
+    $scope.removeSkin = function (skin,message) {
+        alertify.confirm(message, function () {
+         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
+        dataFactory.getApiLocal('skins-online.json').then(function (response) {
+                 dataService.showNotifier({message: $scope._t('delete_successful')});
+                $route.reload();
+        }, function (error) {
+              $scope.loading = false;
+            alertify.alertError($scope._t('error_delete_data'));
+        });
+        });
+    };
 });
 /**
  * Skin online controller
@@ -113,17 +138,29 @@ myAppController.controller('SkinOnlineController', function ($scope, dataFactory
      * Download skin
      */
     $scope.downloadSkin = function (v) {
-         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-         console.log(v)
+         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
+         dataFactory.getApiLocal('skins-online.json').then(function (response) {
+                $scope.loading = false;
+                 dataService.showNotifier({message: $scope._t('success_file_download')});
+        }, function (error) {
+              $scope.loading = false;
+            alertify.alertError($scope._t('error_file_download'));
+        });
          
     };
     
     /**
      * Upgrade skin
      */
-    $scope.upgradeSkin = function (v) {
-         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-         console.log(v)
-         
+    $scope.upgradeSkin = function (skin) {
+         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
+        
+        dataFactory.getApiLocal('skins-online.json').then(function (response) {
+                $scope.loading = false;
+                 dataService.showNotifier({message: $scope._t('success_file_download')});
+        }, function (error) {
+              $scope.loading = false;
+             alertify.alertError($scope._t('error_file_download'));
+        });
     };
 });

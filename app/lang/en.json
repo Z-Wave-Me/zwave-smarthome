@@ -1,6 +1,8 @@
 {
     "newtrans": "---",
     "reloading_page": "Reloading page...",
+    "error_file_download": "Unable to download file",
+    "success_file_download": "File successfully downloaded",
      "---": "newtrans",
     "delete_successful": "Data was successfully deleted",
     "secure_login": "I trust my local network",

@@ -20,6 +20,14 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     $scope.hostName = $location.host();
     $scope.ZWAYSession = dataService.getZWAYSession();
     $scope.lastLogin = dataService.getLastLogin();
+    $scope.setSkin = function () {
+        if($cookies.skin && $cookies.skin !== 'default'){
+             //$("link[id='main_css']").attr('href', 'storage/skins/defaultzip/main.css');
+              $("link[id='main_css']").attr('href', 'storage/skins/' + $cookies.skin + '/main.css');
+        }
+
+    };
+    $scope.setSkin();
     $scope.setPollInterval = function () {
         if (!$scope.user) {
             $scope.cfg.interval = $scope.cfg.interval;

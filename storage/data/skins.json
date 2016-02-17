@@ -4,25 +4,23 @@
     "error": null,
     "data": [{
             "id": "4",
-            "name": "defaultzip",
-            "file": "defaultzip/main.css",
+            "name": "default",
+            "file": "app/css/main.css",
             "title": "Default",
             "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.",
             "version": "1.0.3",
-            "icon": "defaultzip/screenshot.png",
+            "icon": "app/css/screenshot.png",
             "author": "Martin Vach",
-            "homepage": "http://www.zwave.eu",
-            "active": true
+            "homepage": "http://www.zwave.eu"
         }, {
             "id": "3",
             "name": "blankzip",
-            "file": "blankzip/main.css",
+            "file": "storage/skins/blankzip/main.css",
             "title": "Skin My Blank",
             "description": "Sea agam perfecto ei. Ut eum tractatos quaerendum, ius quas voluptatum et. Illud congue his ut, in sea putent principes repudiandae. Pro aeque instructior mediocritatem cu, usu eius facilis an, at sed timeam vocibus. Novum integre his ea, est mollis persequeris cu.",
             "version": "1.0.3",
-            "icon": "blankzip/screenshot.png",
+            "icon": "storage/skins/blankzip/screenshot.png",
             "author": "Joe Green",
-            "homepage": "http://www.joegreen.com",
-            "active": false
+            "homepage": "http://www.joegreen.com"
         }]
 }

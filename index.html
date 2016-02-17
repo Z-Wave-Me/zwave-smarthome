@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app="myApp">
+<html lang="en" ng-app="myApp" ng-controller="BaseController">
     <head>
         <meta charset="utf-8">
         <title>Z-Wave Smart Home</title>
@@ -9,8 +9,11 @@
         <!-- Vendor css -->
         <link media="screen" type="text/css" rel="stylesheet" href="app/css/bootstrap.css">
         <link media="screen" type="text/css" rel="stylesheet" href="app/css/font-awesome-4.4.0/css/font-awesome.min.css">
-        <!-- App css -->
-        <link media="screen" type="text/css" rel="stylesheet" href="app/css/main.css">
+        
+         <!-- App css -->
+        <!-- <link media="screen" type="text/css" rel="stylesheet" ng-href="{{cfg.skin}}">-->
+         <link id="main_css" media="screen" type="text/css" rel="stylesheet" href="app/css/main.css">
+       
         <!-- App config -->
         <script src="app/config.js"></script>
         <!-- jQuery js -->
@@ -76,8 +79,10 @@
         <script src="app/expertui/directives.js"></script>
         <script src="app/expertui/services.js"></script>
         <script src="app/expertui/configuration.js"></script>
+        
+        
     </head>
-    <body ng-controller="BaseController" id="page_{{getBodyId()}}" class="app-type-{{cfg.app_type}} is-mobile-{{isMobile}} profile-{{user.color.substring(1)}}">
+    <body id="page_{{getBodyId()}}" class="app-type-{{cfg.app_type}} is-mobile-{{isMobile}} profile-{{user.color.substring(1)}}">
         <div id="header" ng-if="user">
             <div id="main_navigation_wrap">
                 <div id="main_navigation" class="container">
