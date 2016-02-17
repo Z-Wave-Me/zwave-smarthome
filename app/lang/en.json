@@ -50,7 +50,7 @@
     "passwords_must_match": "Passwords must match.",
     "confirm_password": "Retype password to confirm",
     "password_valid": "Password should be minimum 6 characters",
-    "password_info": "You need to change the default password for the user admin. Please choose your own password with minimum 6 characters .",
+    "password_info": "You need to set the default password for the user admin. (minimum 6 characters)",
     "enter_valid_password": "Please enter a valid password",
     "featured_apps": "Featured apps",
     "frostProtection": "Frost Protection",
