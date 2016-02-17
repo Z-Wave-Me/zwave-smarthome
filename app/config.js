@@ -266,7 +266,8 @@ var config_data = {
                     'InfoWidget',
                     'SensorsPolling',
                     'SwitchControlGenerator',
-                    'ZWave'
+                    'ZWave',
+                    'PhilioHW'
                 ],
                 featured_apps: [
                     'IfThen',
@@ -295,7 +296,8 @@ var config_data = {
                     'InfoWidget',
                     'SensorsPolling',
                     'SwitchControlGenerator',
-                    'ZWave'
+                    'ZWave',
+                    'PhilioHW'
                 ],
                 featured_apps: [
                     'IfThen',
