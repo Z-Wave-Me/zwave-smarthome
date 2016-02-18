@@ -22,6 +22,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     $scope.lastLogin = dataService.getLastLogin();
     $scope.setSkin = function () {
         if($cookies.skin && $cookies.skin !== 'default'){
+            cfg.img.icons = 'storage/skins/' + $cookies.skin + '/img/icons/';
              //$("link[id='main_css']").attr('href', 'storage/skins/defaultzip/main.css');
               $("link[id='main_css']").attr('href', 'storage/skins/' + $cookies.skin + '/main.css');
         }
