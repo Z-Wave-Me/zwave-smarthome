@@ -3,10 +3,10 @@
    
     <div ng-controller="SkinLocalController">
          <bb-loader></bb-loader> 
-        <div ng-if="skins.local.show">
-            <!-- Skins navigation -->
+          <!-- Skins navigation -->
             <div ng-include="'app/views/skins/navi.html'"></div>
-            <div class="app-row app-row-widget app-row-skins clearfix">
+        <div ng-if="skins.local.show">
+           <div class="app-row app-row-widget app-row-skins clearfix">
                 <div class="widget-entry widget-entry-skin"
                      id="local_skin_{{v.id}}" 
                      ng-class="v.name === skins.local.active ? 'skin-active-true': ''"

@@ -204,6 +204,7 @@ input[type=radio] {
     .widget-entry-in{
         //height: $widget-col-h;
         border-color: $widget-border-color;
+         border: solid 1px $widget-border-color;
         margin: $spacing;
         .widget-header {
             .widget-icon{
