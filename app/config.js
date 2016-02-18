@@ -222,7 +222,7 @@ var config_data = {
         // Config
         'custom_cfg': {
            'default': {
-               'logo': 'app/img/app-logo-default.png',
+               'logo': 'app/img/komsa.png',
                 hidden_apps: [
                     'Cron',
                     'BatteryPolling',

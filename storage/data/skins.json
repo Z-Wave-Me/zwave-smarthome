@@ -44,5 +44,16 @@
             "icon": "storage/skins/red/screenshot.png",
             "author": "Anna Bllod",
             "homepage": "http://www.redblood.eu"
+        },
+         {
+            "id": "16",
+            "name": "komsa",
+            "file": "storage/komsa/red/main.css",
+            "title": "KOMSA skin",
+            "description": "Sea agam perfecto ei. Ut eum tractatos quaerendum, ius quas voluptatum et. Illud congue his ut, in sea putent principes repudiandae. Pro aeque instructior mediocritatem cu, usu eius facilis an, at sed timeam vocibus. Novum integre his ea, est mollis persequeris cu.",
+            "version": "1.3.0",
+            "icon": "storage/skins/komsa/screenshot.png",
+            "author": "Komsa",
+            "homepage": "http://www.komsa.eu"
         }]
 }
