@@ -13241,7 +13241,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
      */
     $scope.loadLocalModules = function () {
           $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataFactory.getApi('modules').then(function (response) {
+        dataFactory.getApi('modules',null,true).then(function (response) {
             $scope.dataHolder.modules.all = _.chain(response.data.data)
                     .flatten()
                     .filter(function (item) {
