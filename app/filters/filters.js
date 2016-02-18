@@ -244,37 +244,37 @@ myApp.filter('getElementIcon', function (cfg) {
 /**
  * Get event icon
  */
-myApp.filter('getEventIcon', function () {
+myApp.filter('getEventIcon', function (cfg) {
     return function (input, message) {
-        var icon = 'placeholder.png';
+        var icon = cfg.img.icons + 'placeholder.png';
         switch (input) {
             case 'device-temperature':
-                icon = 'device-temperature.png';
+                icon = cfg.img.icons + 'event-device-temperature.png';
                 break;
             case 'device-electric':
-                icon = 'device-electric.png';
+                icon = cfg.img.icons + 'event-device-electric.png';
                 break;
             case 'device-power':
-                icon = 'device-power.png';
+                icon = cfg.img.icons + 'event-device-power.png';
                 break;
             case 'device-status':
-                icon = 'device-status.png';
+                icon = cfg.img.icons + 'event-device-status.png';
                 break
             case 'device-OnOff':
                 if (angular.isObject(message)) {
-                    icon = (message.l == 'on' ? 'device-on.png' : 'device-off.png');
+                    icon = (message.l == 'on' ? cfg.img.icons + 'event-device-on.png' : cfg.img.icons + 'event-device-off.png');
                 } else {
-                    icon = 'device-on.png';
+                    icon = cfg.img.icons + 'event-device-on.png';
                 }
                 break
             case 'device-luminiscence':
-                icon = 'device-luminiscence.png';
+                icon = cfg.img.icons + 'event-device-luminiscence.png';
                 break
             case 'device':
-                icon = 'device.png';
+                icon = cfg.img.icons + 'event-device.png';
                 break
             case 'module':
-                icon = 'module.png';
+                icon = cfg.img.icons + 'event-module.png';
                 break
             default:
                 break;
@@ -286,25 +286,25 @@ myApp.filter('getEventIcon', function () {
 /**
  * Get battery icon
  */
-myApp.filter('getBatteryIcon', function () {
+myApp.filter('getBatteryIcon', function (cfg) {
     return function (input) {
-        var icon = 'battery.png';
+        var icon = cfg.img.icons + 'battery.png';
         if (isNaN(input)) {
             return icon;
         }
         var level = parseInt(input);
         if (level > 95) {
-            icon = 'battery-100.png';
+            icon = cfg.img.icons + 'battery-100.png';
         } else if (level >= 70 && level <= 95) {
-            icon = 'battery-80.png';
+            icon = cfg.img.icons + 'battery-80.png';
         } else if (level >= 50 && level < 70) {
-            icon = 'battery-50.png';
+            icon = cfg.img.icons + 'battery-50.png';
         } else if (level > 20 && level < 50) {
-            icon = 'battery-30.png';
+            icon = cfg.img.icons + 'battery-30.png';
         } else if (level >= 5 && level <= 20) {
-            icon = 'battery-20.png';
+            icon = cfg.img.icons + 'battery-20.png';
         } else {
-            icon = 'battery-0.png';
+            icon = cfg.img.icons + 'battery-0.png';
         }
         return icon;
     };
