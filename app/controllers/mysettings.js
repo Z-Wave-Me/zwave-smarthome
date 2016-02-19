@@ -17,16 +17,16 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
      /**
      * Trust my network
      */
-    $scope.loadTrustMyNetwork = function() {
-        dataFactory.getApi('trust_my_network').then(function (response) {
-            $scope.trustMyNetwork = response.data.data.trustMyNetwork;
-                console.log($scope.trustMyNetwork)
-            }, function (error) {
-                $scope.loading = false;
-                alertify.alertError($scope._t('error_load_data'));
-
-            });
-    };
+//    $scope.loadTrustMyNetwork = function() {
+//        dataFactory.getApi('trust_my_network').then(function (response) {
+//            $scope.trustMyNetwork = response.data.data.trustMyNetwork;
+//                console.log($scope.trustMyNetwork)
+//            }, function (error) {
+//                $scope.loading = false;
+//                alertify.alertError($scope._t('error_load_data'));
+//
+//            });
+//    };
    
     
     /**
@@ -35,7 +35,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
     $scope.loadData = function(id) {
          $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
        dataFactory.getApi('profiles', '/' + id, true).then(function(response) {
-            $scope.loadTrustMyNetwork();
+            //$scope.loadTrustMyNetwork();
             loadDevices();
             $scope.input = response.data.data;
            $scope.loading = false;
@@ -112,17 +112,17 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
      /**
      * Set Trust my network
      */
-    $scope.setTrustMyNetwork = function(trustMyNetwork) {
-       $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-                dataFactory.putApi('trust_my_network', null, {trustMyNetwork: trustMyNetwork}).then(function (response) {
-                    $scope.loading = false;
-                   dataService.showNotifier({message: $scope._t('success_updated')});
-                }, function (error) {
-                    $scope.loading = false;
-                    alertify.alertError($scope._t('error_update_data'));
-                    return;
-                });
-    };
+//    $scope.setTrustMyNetwork = function(trustMyNetwork) {
+//       $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+//                dataFactory.putApi('trust_my_network', null, {trustMyNetwork: trustMyNetwork}).then(function (response) {
+//                    $scope.loading = false;
+//                   dataService.showNotifier({message: $scope._t('success_updated')});
+//                }, function (error) {
+//                    $scope.loading = false;
+//                    alertify.alertError($scope._t('error_update_data'));
+//                    return;
+//                });
+//    };
    
 
     /**
