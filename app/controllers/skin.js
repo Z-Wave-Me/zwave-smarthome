@@ -80,7 +80,8 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $cookies,
         $scope.skins.local.all = _.chain(response)
                 .flatten()
                 .filter(function (v) {
-                    v.icon = (!v.icon ? 'storage/img/placeholder-img.png' : v.icon);
+                    var iconPath = v.name !== 'default' ? $scope.cfg.img.skin_screenshot + v.name  : $scope.cfg.img.skin_screenshot_default;
+                    v.icon = (!v.icon ? 'storage/img/placeholder-img.png' : iconPath + '/screenshot.png');
                     return v;
                 })
                 .indexBy('name')

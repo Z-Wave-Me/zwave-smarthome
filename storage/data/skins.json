@@ -3,56 +3,46 @@
     "message": "OK 200",
     "error": null,
     "data": [{
-            "id": "4",
             "name": "default",
-            "file": "app/css/main.css",
             "title": "Default",
             "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.",
             "version": "1.0.3",
-            "icon": "app/css/screenshot.png",
+            "icon": true,
             "author": "Martin Vach",
             "homepage": "http://www.zwave.eu"
         }, {
-            "id": "12",
             "name": "blank",
-            "file": "storage/skins/blank/main.css",
             "title": "Skin My Blank",
             "description": "Sea agam perfecto ei. Ut eum tractatos quaerendum, ius quas voluptatum et. Illud congue his ut, in sea putent principes repudiandae. Pro aeque instructior mediocritatem cu, usu eius facilis an, at sed timeam vocibus. Novum integre his ea, est mollis persequeris cu.",
             "version": "1.0.3",
-            "icon": "storage/skins/blank/screenshot.png",
+            "icon": true,
             "author": "Joe Green",
             "homepage": "http://www.zwave.eu"
         },
         {
-            "id": "13",
             "name": "blue",
-            "file": "storage/skins/blue/main.css",
             "title": "Blue Super Skin",
             "description": "Sea agam perfecto ei. Ut eum tractatos quaerendum, ius quas voluptatum et. Illud congue his ut, in sea putent principes repudiandae. Pro aeque instructior mediocritatem cu, usu eius facilis an, at sed timeam vocibus. Novum integre his ea, est mollis persequeris cu.",
             "version": "1.0.3",
-            "icon": "storage/skins/blue/screenshot.png",
+            "icon": true,
              "author": "Joe Blue",
             "homepage": "http://www.blueskin.com"
         },
         {
-            "id": "15",
             "name": "red",
-            "file": "storage/skins/red/main.css",
             "title": "Red Blood SmartHome Theme",
             "description": "Sea agam perfecto ei. Ut eum tractatos quaerendum, ius quas voluptatum et. Illud congue his ut, in sea putent principes repudiandae. Pro aeque instructior mediocritatem cu, usu eius facilis an, at sed timeam vocibus. Novum integre his ea, est mollis persequeris cu.",
             "version": "1.3.0",
-            "icon": "storage/skins/red/screenshot.png",
+            "icon": false,
             "author": "Anna Bllod",
             "homepage": "http://www.redblood.eu"
         },
          {
-            "id": "16",
             "name": "komsa",
-            "file": "storage/komsa/red/main.css",
             "title": "KOMSA skin",
             "description": "Sea agam perfecto ei. Ut eum tractatos quaerendum, ius quas voluptatum et. Illud congue his ut, in sea putent principes repudiandae. Pro aeque instructior mediocritatem cu, usu eius facilis an, at sed timeam vocibus. Novum integre his ea, est mollis persequeris cu.",
             "version": "1.3.0",
-            "icon": "storage/skins/komsa/screenshot.png",
+            "icon": true,
             "author": "Komsa",
             "homepage": "http://www.komsa.eu"
         }]

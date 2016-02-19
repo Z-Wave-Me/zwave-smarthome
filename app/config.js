@@ -47,7 +47,9 @@ var config_data = {
         },
         // List of image pathes
         'img': {
-            'icons': 'storage/img/icons/'
+            'icons': 'storage/img/icons/',
+            'skin_screenshot_default': 'app/css/',
+            'skin_screenshot': 'storage/skins/'
         },
         // Api url
         'expert_url': '/expert',

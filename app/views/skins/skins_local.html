@@ -10,7 +10,7 @@
                 <div class="widget-entry widget-entry-skin"
                      id="local_skin_{{v.id}}" 
                      ng-class="{'widget-warning': v.name === skins.local.active}"
-                     ng-repeat="v in skins.local.all track by v.id">
+                     ng-repeat="v in skins.local.all track by v.name">
                     <div class="widget-entry-in">
                         <!-- Widget img -->
                         <div class="widget-img">
