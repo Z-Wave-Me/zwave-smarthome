@@ -88,15 +88,14 @@
 @media only screen and (min-width : 992px) and (orientation:landscape) {
     .widget-entry{
         .widget-entry-in{
-            border: solid 4px #FFFFFF !important;
+            border: solid 4px #FFFFFF;
             @include appGradient();
             @include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29))
         }
-        &.app-entry-success,&.skin-active-true{
-            .widget-entry-in{
-             @include appGradientSuccess();
+ .widget-entry-in{
+                 border-width: 4px;
+                //@include appGradientSuccess();
               }
-        }
         
     }
 }

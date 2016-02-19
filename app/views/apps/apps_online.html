@@ -40,7 +40,7 @@
         
          <div class="app-row app-row-widget app-row-app-online clearfix">
             <div class="widget-entry widget-entry-app"
-                 ng-class="dataHolder.modules.ids[v.modulename] ? 'app-entry-success': ''" 
+                 ng-class="{'widget-warning': dataHolder.modules.ids[v.modulename],'widget-danger': dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version != v.version}" 
                  ng-repeat="v in dataHolder.onlineModules.all| orderBy:'title' | filter:q track by v.id">
                 <div class="widget-entry-in">
                      <!-- Widget img -->

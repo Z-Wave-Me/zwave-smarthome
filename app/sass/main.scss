@@ -3,8 +3,8 @@
 @import "common/_mixins";
 
 // Skin variables
-//@import "skins/default/_variables";
-@import "skins/komsa/_variables";
+@import "skins/default/_variables";
+//@import "skins/komsa/_variables";
 // Vendors
 @import "vendor/_jquery.fileupload-ui";
 @import "vendor/_jquery.fileupload";
@@ -46,8 +46,8 @@
 @import "common/_app_popp";
 
 // Skin main
-//@import "skins/default/_main";
-@import "skins/komsa/_main";
+@import "skins/default/_main";
+//@import "skins/komsa/_main";
 
 // Mobile
-@import "responsive/_responsive"; 
+@import "responsive/_responsive";  

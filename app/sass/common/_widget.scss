@@ -76,3 +76,24 @@
         }
     }
 }
+
+.widget-success{
+    .widget-entry-in{
+    border-color: $widget-success-border-color !important;
+    border-width: 4px;
+    }
+}
+
+.widget-warning{
+    .widget-entry-in{
+    border-color: $widget-warning-border-color !important;
+    border-width: 4px;
+    }
+}
+
+.widget-danger{
+    .widget-entry-in{
+    border-color: $widget-danger-border-color !important;
+    border-width: 4px;
+    }
+}

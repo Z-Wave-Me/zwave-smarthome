@@ -9,7 +9,7 @@
            <div class="app-row app-row-widget app-row-skins clearfix">
                 <div class="widget-entry widget-entry-skin"
                      id="local_skin_{{v.id}}" 
-                     ng-class="v.name === skins.local.active ? 'skin-active-true': ''"
+                     ng-class="{'widget-warning': v.name === skins.local.active}"
                      ng-repeat="v in skins.local.all track by v.id">
                     <div class="widget-entry-in">
                         <!-- Widget img -->
