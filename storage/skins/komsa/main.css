@@ -8,6 +8,8 @@
 /*-------------------------------------*/
 /*-------------------------------------*/
 /*-------------------------------------*/
+/* App colors
+-------------------------------------------------- */
 /*
  * jQuery File Upload UI Plugin CSS
  * https://github.com/blueimp/jQuery-File-Upload
@@ -1798,33 +1800,37 @@ a:focus {
   font-size: 17px;
 }
 /* line 90, ../sass/common/_body.scss */
+.update-time-tick .text-success {
+  color: #80AD80;
+}
+/* line 93, ../sass/common/_body.scss */
 .update-time-tick .fa {
   font-size: 110%;
 }
 
-/* line 94, ../sass/common/_body.scss */
+/* line 97, ../sass/common/_body.scss */
 .bcg-active.false, .bcg-danger {
   background-color: #f2dede;
 }
 
-/* line 98, ../sass/common/_body.scss */
+/* line 101, ../sass/common/_body.scss */
 .clickable {
   cursor: pointer;
 }
 
-/* line 102, ../sass/common/_body.scss */
+/* line 105, ../sass/common/_body.scss */
 .text-supp {
   font-style: italic;
   color: #595959;
 }
 
-/* line 107, ../sass/common/_body.scss */
+/* line 110, ../sass/common/_body.scss */
 .badge {
   padding: 5px;
   margin-right: 5px;
 }
 
-/* line 111, ../sass/common/_body.scss */
+/* line 114, ../sass/common/_body.scss */
 .help-text {
   display: block;
   font-size: 95%;
@@ -1832,17 +1838,17 @@ a:focus {
   margin: 5px 0;
 }
 
-/* line 117, ../sass/common/_body.scss */
+/* line 120, ../sass/common/_body.scss */
 .help-text.inline {
   display: inline;
 }
 
-/* line 121, ../sass/common/_body.scss */
+/* line 124, ../sass/common/_body.scss */
 .display-block {
   display: block;
 }
 
-/* line 124, ../sass/common/_body.scss */
+/* line 127, ../sass/common/_body.scss */
 .badge-number {
   background-color: #a6a6a6;
   color: #FFFFFF;
@@ -3789,8 +3795,18 @@ img.widget-promo-image {
 -------------------------------------------------- */
 /* line 4, ../sass/skins/komsa/_main.scss */
 body {
-  background: url("img/komsa.png") no-repeat 50% 100px;
+  background: url("img/komsa.png") fixed no-repeat 95% 95%;
   background-color: #cccccc;
+}
+
+/* line 8, ../sass/skins/komsa/_main.scss */
+#main_navigation .active {
+  color: #7f8d99;
+}
+
+/* line 13, ../sass/skins/komsa/_main.scss */
+.update-time-tick .text-success {
+  color: #FFFFFF;
 }
 
 /*

@@ -2,6 +2,15 @@
 -------------------------------------------------- */
 
 body {
-    background: url("img/komsa.png") no-repeat 50% 100px;
+    background: url("img/komsa.png") fixed no-repeat 95% 95%;
     background-color: #cccccc;
+}
+#main_navigation .active {
+   // background-color: #cccccc;
+    color: #7f8d99;
+}
+.update-time-tick{
+    .text-success{
+        color:#FFFFFF;
+    }
 }
