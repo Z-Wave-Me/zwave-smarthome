@@ -11,7 +11,7 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $cookies,
         local: {
             all: {},
             find: {},
-            active: 'default',
+            active: $scope.cfg.skin.active,
             show: false
         },
         online: {
@@ -28,12 +28,12 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $cookies,
     /**
      * Get active skin
      */
-    $scope.getActiveSkin = function () {
-        if ($cookies.skin && $cookies.skin !== 'default') {
-            $scope.skins.local.active = $cookies.skin;
-        }
-    };
-    $scope.getActiveSkin();
+//    $scope.getActiveSkin = function () {
+//        if ($cookies.skin && $cookies.skin !== 'default') {
+//            $scope.skins.local.active = $cookies.skin;
+//        }
+//    };
+//    $scope.getActiveSkin();
 
 
     /**
@@ -80,7 +80,7 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $cookies,
         $scope.skins.local.all = _.chain(response)
                 .flatten()
                 .filter(function (v) {
-                    var iconPath = v.name !== 'default' ? $scope.cfg.img.skin_screenshot + v.name  : $scope.cfg.img.skin_screenshot_default;
+                    var iconPath = v.name !== 'default' ? $scope.cfg.skin.path + v.name  : $scope.cfg.img.skin_screenshot;
                     v.icon = (!v.icon ? 'storage/img/placeholder-img.png' : iconPath + '/screenshot.png');
                     return v;
                 })

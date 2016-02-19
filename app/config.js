@@ -45,11 +45,16 @@ var config_data = {
             'trust_my_network': 'ZAutomation/api/v1/system/trust-my-network',
             'firstaccess': 'ZAutomation/api/v1/system/first-access'
         },
+        // Skin
+        'skin': {
+            'active': 'default',
+            'path': 'storage/skins/'
+        },
         // List of image pathes
         'img': {
+            'logo': 'storage/img/logo/',
             'icons': 'storage/img/icons/',
-            'skin_screenshot_default': 'app/css/',
-            'skin_screenshot': 'storage/skins/'
+            'skin_screenshot': 'app/css/'
         },
         // Api url
         'expert_url': '/expert',
@@ -224,7 +229,7 @@ var config_data = {
         // Config
         'custom_cfg': {
            'default': {
-               'logo': 'app/img/app-logo-default.png',
+               'logo': 'app-logo-default.png',
                 hidden_apps: [
                     'Cron',
                     'BatteryPolling',
@@ -254,7 +259,7 @@ var config_data = {
                 ]
             },
             'popp': {
-                'logo': 'app/img/app-logo-popp.png',
+                'logo': 'app-logo-popp.png',
                 'hidden_apps': [
                     'Cron',
                     'CodeDevice',
@@ -284,7 +289,7 @@ var config_data = {
                 ]
             },
             'wd': {
-                'logo': 'app/img/app-logo-wd.png',
+                'logo': 'app-logo-wd.png',
                 'hidden_apps': [
                     'Cron',
                     'BatteryPolling',
