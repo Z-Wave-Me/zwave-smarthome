@@ -8,7 +8,7 @@
             //position: absolute;
             top: 0;
             left: 0;
-            
+
         }
         .widget-header{
             display: none;
@@ -21,6 +21,9 @@
         }
         .widget-footer{
             margin-top: 10px;
+            .btn-name{
+                display: none !important;
+            }
 
         }
         .widget-ctrl{
@@ -32,9 +35,18 @@
         }
     }
 }
-.is-used-true {
-    .widget-entry-in{
-        @include appGradientSuccess();
+#skins_local,#skins_online{
+    .widget-warning{
+        .widget-img{
+            opacity: 0.4;
+            filter: alpha(opacity=40);
+
+        }
+        .widget-title{
+            h3{
+              color: lighten($widget-heading-color,40%) !important;
+            }
+        }
     }
 }
 

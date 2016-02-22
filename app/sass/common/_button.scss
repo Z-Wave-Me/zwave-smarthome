@@ -56,6 +56,16 @@
     }
 }
 
+.btn-installed{
+    border: 0 none;
+    background-color: none !important;
+}
+
+.btn-disabled{
+    border: 0 none;
+    background-color: transparent !important;
+}
+
 .btn-small{
     font-size: $app-btn-small-font-size;
     .fa{

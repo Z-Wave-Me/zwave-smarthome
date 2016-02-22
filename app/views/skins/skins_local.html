@@ -1,7 +1,7 @@
 <!-- Local skins -->
 <div ng-controller="SkinBaseController">
    
-    <div ng-controller="SkinLocalController">
+    <div ng-controller="SkinLocalController" id="skins_local">
          <bb-loader></bb-loader> 
           <!-- Skins navigation -->
             <div ng-include="'app/views/skins/navi.html'"></div>
@@ -37,8 +37,8 @@
                                             <i class="fa fa-fire text-success"></i> <span class="btn-name">{{_t('Activate')}}</span>
                                         </button> 
                                         <!-- Is active -->
-                                        <button class="btn btn-default" disabled ng-if="v.name === skins.local.active">
-                                            <i class="fa fa-check"></i> <span class="btn-name">{{_t('Active')}}</span>
+                                        <button class="btn btn-disabled" disabled ng-if="v.name === skins.local.active">
+                                            <i class="fa fa-check"></i> <span class="btn-name_">{{_t('Active')}}</span>
                                         </button> 
                                          <!-- Delete -->
                                         <button class="btn btn-default" ng-click="removeSkin(v, _t('app_delete_confirm'))" ng-hide="v.name === skins.local.active" ng-if="v.name !== 'default'">

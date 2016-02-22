@@ -1,6 +1,6 @@
 <!-- Online skins -->
 <div ng-controller="SkinBaseController">
-    <div ng-controller="SkinOnlineController">
+    <div ng-controller="SkinOnlineController" id="skins_online">
          <bb-loader></bb-loader>
          <!-- Skins navigation -->
             <div ng-include="'app/views/skins/navi.html'"></div>
@@ -30,18 +30,20 @@
                             <div class="widget-footer">
                                 <div class="widget-ctrl ctrl-left">&nbsp;</div>
                                 <div class="widget-ctrl ctrl-right clearfix">
-                                    <!-- Download -->
-                                    <button class="btn btn-default" ng-if="!skins.local.all[v.name]" ng-click="downloadSkin(v)">
-                                         <i class="fa fa-download text-success"></i> <span class="btn-name">{{_t('lb_download')}}</span>
-                                    </button>
-                                    <!-- Upgrade -->
-                                     <button class="btn btn-default" ng-if="skins.local.all[v.name] && skins.local.all[v.name].version != v.version" ng-click="upgradeSkin(v)">
-                                         <i class="fa fa-level-up text-success"></i> <span class="btn-name">{{_t('upgrade')}}</span>
-                                    </button>
-                                    <!-- Installed -->
-                                    <button class="btn btn-default" disabled ng-if="skins.local.all[v.name] && skins.local.all[v.name].version == v.version">
-                                         <i class="fa fa-check"></i> <span class="btn-name">{{_t('installed')}}</span>
-                                    </button> 
+                                    <div class="btn-group">
+                                        <!-- Download -->
+                                        <button class="btn btn-default" ng-if="!skins.local.all[v.name]" ng-click="downloadSkin(v)">
+                                             <i class="fa fa-download text-success"></i> <span class="btn-name">{{_t('lb_download')}}</span>
+                                        </button>
+                                        <!-- Upgrade -->
+                                         <button class="btn btn-danger" ng-if="skins.local.all[v.name] && skins.local.all[v.name].version != v.version" ng-click="upgradeSkin(v)">
+                                             <i class="fa fa-level-up"></i> <span class="btn-name">{{_t('upgrade')}}</span>
+                                        </button>
+                                        <!-- Installed -->
+                                        <button class="btn btn-disabled" disabled ng-if="skins.local.all[v.name] && skins.local.all[v.name].version == v.version">
+                                             <i class="fa fa-check"></i> <span class="btn-name">{{_t('installed')}}</span>
+                                        </button> 
+                                    </div>
                                 </div>
                             </div>
                         </div>

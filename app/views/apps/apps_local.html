@@ -1,7 +1,7 @@
 <!-- Local apps view -->
 <div ng-controller="AppBaseController">
      <bb-loader></bb-loader>
-    <div ng-controller="AppLocalController">
+    <div ng-controller="AppLocalController" id="apps_local">
         <!-- Apps navigation -->
         <div ng-include="'app/views/apps/navi.html'"></div>
     
@@ -41,7 +41,7 @@
             </ul>
         </div>
     </div>
-    <div class="app-row app-row-widget app-row-app-local clearfix">
+    <div class="app-row app-row-widget clearfix">
         <div class="widget-entry widget-entry-app"
              id="local_module_{{v.id}}" 
              ng-repeat="v in dataHolder.modules.all|orderBy:'defaults.title' | filter:q  track by v.id" 
@@ -67,13 +67,13 @@
                             <div class="widget-ctrl ctrl-left">&nbsp;</div>
                             <div class="widget-ctrl ctrl-right clearfix">
                                  <div class="btn-group">
-                                 <a href="#module/post/{{v.id}}" class="btn btn-default">
+                                 <a href="#module/post/{{v.id}}" class="btn btn-default" title="{{_t('lb_add_app')}}">
                                     <i class="fa fa-plus text-success"></i> <span class="btn-name" ng-bind="_t('lb_add_app')"></span>
                                 </a>
-                                <a href="" class="btn btn-default" ng-click="deleteModule({'id': v.id}, _t('app_delete_confirm'),'#local_module_' + v.id)" ng-if="v.custom && !v.hasReset">
+                                <a href="" class="btn btn-default" title="{{_t('lb_remove')}}" ng-click="deleteModule({'id': v.id}, _t('app_delete_confirm'),'#local_module_' + v.id)" ng-if="v.custom && !v.hasReset">
                                     <i class="fa fa-remove text-danger"></i> <span class="btn-name" ng-bind="_t('lb_remove')"></span>
                                 </a>
-                                <a href="" class="btn btn-default" ng-click="resetModule({'id': v.id}, _t('app_reset_confirm'),'#local_module_' + v.id)" ng-if="v.custom && v.hasReset">
+                                <a href="" class="btn btn-default" title="{{_t('reset')}}" ng-click="resetModule({'id': v.id}, _t('app_reset_confirm'),'#local_module_' + v.id)" ng-if="v.custom && v.hasReset">
                                     <i class="fa fa-remove fa-refresh text-warning"></i> <span class="btn-name" ng-bind="_t('reset')"></span>
                                 </a>
                             </div>
