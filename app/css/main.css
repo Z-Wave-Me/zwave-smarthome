@@ -2145,6 +2145,12 @@ img {
   max-height: 32px;
 }
 
+/* line 76, ../sass/common/_images.scss */
+.img-opacity-50 {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+
 /* Page navigation
 -------------------------------------------------- */
 /* line 3, ../sass/common/_navi.scss */
@@ -3207,6 +3213,11 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-radius: 4px !important;
 }
 
+/* line 144, ../sass/modules/_elements.scss */
+.app-row-icons .report-body {
+  width: 30px;
+}
+
 /* Home widget
 -------------------------------------------------- */
 /*.home-widget{
@@ -3228,72 +3239,72 @@ http://codepen.io/MattIn4D/pen/LiKFC
 .hidden-camera{}*/
 /* OpenWeather widget
 ----------------------------------------------------*/
-/* line 166, ../sass/modules/_elements.scss */
+/* line 171, ../sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline table td {
   text-align: left;
   padding: 5px 0;
 }
 
-/* line 171, ../sass/modules/_elements.scss */
+/* line 176, ../sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline table td:first-child {
   padding-left: 20px;
   vertical-align: top;
 }
 
-/* line 176, ../sass/modules/_elements.scss */
+/* line 181, ../sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline h4 {
   display: inline;
 }
 
-/* line 180, ../sass/modules/_elements.scss */
+/* line 185, ../sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline .text-center {
   margin: 10px 0;
 }
 
 /* Text widget
 -----------------------------------------------------*/
-/* line 186, ../sass/modules/_elements.scss */
+/* line 191, ../sass/modules/_elements.scss */
 .widget-body.text-widget h3 {
   font-weight: bold;
 }
 
-/* line 190, ../sass/modules/_elements.scss */
+/* line 195, ../sass/modules/_elements.scss */
 .widget-body.text-widget-no-img {
   padding-left: 15px;
 }
 
-/* line 194, ../sass/modules/_elements.scss */
+/* line 199, ../sass/modules/_elements.scss */
 .widget-control.text {
   width: 95%;
 }
 
-/* line 198, ../sass/modules/_elements.scss */
+/* line 203, ../sass/modules/_elements.scss */
 .text-widget-modal.modal-dialog {
   text-align: center;
 }
 
-/* line 202, ../sass/modules/_elements.scss */
+/* line 207, ../sass/modules/_elements.scss */
 img.widget-promo-image {
   max-height: 200px;
   margin-bottom: 10px;
 }
 
-/* line 207, ../sass/modules/_elements.scss */
+/* line 212, ../sass/modules/_elements.scss */
 .widget-promo-text {
   text-align: left;
 }
 
-/* line 211, ../sass/modules/_elements.scss */
+/* line 216, ../sass/modules/_elements.scss */
 .widget-control.text a {
   font-weight: normal;
 }
 
-/* line 215, ../sass/modules/_elements.scss */
+/* line 220, ../sass/modules/_elements.scss */
 .widget-control.text a:hover {
   text-decoration: none;
 }
 
-/* line 219, ../sass/modules/_elements.scss */
+/* line 224, ../sass/modules/_elements.scss */
 .widget-control.text a:after {
   content: "\f1ea";
   font-family: FontAwesome;
@@ -3306,13 +3317,13 @@ img.widget-promo-image {
 
 /* MultilevelSensor widget
 -----------------------------------------------------*/
-/* line 231, ../sass/modules/_elements.scss */
+/* line 236, ../sass/modules/_elements.scss */
 .widget-body .element-hidden.hidden-sensor-multiline.multiline-sensor {
   padding: 10px 0;
   height: auto;
 }
 
-/* line 236, ../sass/modules/_elements.scss */
+/* line 241, ../sass/modules/_elements.scss */
 .hidden-sensor-multiline .widget-image {
   position: relative;
   top: 0;
@@ -3321,43 +3332,43 @@ img.widget-promo-image {
   height: 25px;
 }
 
-/* line 244, ../sass/modules/_elements.scss */
+/* line 249, ../sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline.multiline-sensor table td:first-child {
   padding-left: 5px;
 }
 
-/* line 248, ../sass/modules/_elements.scss */
+/* line 253, ../sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline.multiline-sensor table td {
   width: inherit;
   padding: 5px 5px 5px 10px;
 }
 
-/* line 253, ../sass/modules/_elements.scss */
+/* line 258, ../sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline.multiline-sensor table tr:nth-child(odd) {
   background-color: #f9f9f9;
 }
 
 /* ToggleButton widget
 --------------------------------------------------------*/
-/* line 260, ../sass/modules/_elements.scss */
+/* line 265, ../sass/modules/_elements.scss */
 .toggleButton .widget-body div.widget-control.control-right.ng-scope > div > button.btn.btn-default.btn-sm {
   cursor: default;
 }
 
 /* RGB color wheel
 --------------------------------------------------------*/
-/* line 267, ../sass/modules/_elements.scss */
+/* line 272, ../sass/modules/_elements.scss */
 .wheel-colorpicker .col-rgb {
   margin: 0 auto;
   text-align: center;
 }
-/* line 271, ../sass/modules/_elements.scss */
+/* line 276, ../sass/modules/_elements.scss */
 .wheel-colorpicker #wheel_picker {
   margin: 0 auto;
   text-align: center;
   cursor: pointer;
 }
-/* line 276, ../sass/modules/_elements.scss */
+/* line 281, ../sass/modules/_elements.scss */
 .wheel-colorpicker #wheel_picker_preview {
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -3365,7 +3376,7 @@ img.widget-promo-image {
   height: 40px;
   line-height: 35px;
 }
-/* line 282, ../sass/modules/_elements.scss */
+/* line 287, ../sass/modules/_elements.scss */
 .wheel-colorpicker #wheel_picker_preview #wheel_picker_preview_spin {
   background-color: #fff;
 }

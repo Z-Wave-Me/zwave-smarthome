@@ -633,6 +633,20 @@ myAppController.controller('ElementDetailController', function ($scope, $routePa
     $scope.searchText = '';
     $scope.suggestions = [];
     $scope.autoCompletePanel = false;
+    $scope.icons = [
+        {
+            default: $scope.cfg.img.icons + 'switch-off.png',
+            custom: $scope.cfg.img.icons + 'dimmer-off.png'
+        },
+        {
+            default: $scope.cfg.img.icons + 'switch-on.png',
+            custom: false
+        },
+        {
+            default: $scope.cfg.img.icons + 'temperature.png',
+            custom: $scope.cfg.img.icons + 'dimmer-half.png'
+        }
+    ];
 
 
     /**

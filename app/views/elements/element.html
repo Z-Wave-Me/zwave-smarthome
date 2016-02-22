@@ -5,9 +5,9 @@
         <h2><span ng-bind="_t('lb_cfg_view')"></span>: <span ng-bind="input.metrics.title"></span></h2>
         <form name="form_element" id="form_element" class="form form-page" autocomplete="off" ng-submit="store(input)" novalidate>
             <fieldset ng-if="elementAccess(cfg.role_access.admin)">
-                <p class="form-control-static">
+                <!--<p class="form-control-static">
                             <span ng-bind="_t('element_id')"></span>: <strong ng-bind="input.id"></strong>
-                        </p>
+                        </p>-->
                 <div class="form-group_">
                     <label ng-bind="_t('lb_element_name')">{{}}:</label>
                     <input name="title" id="title" type="text" class="form-control" value="{{input.metrics.title}}" placeholder="{{_t('lb_element_name')}}" ng-model="input.title" />
@@ -58,6 +58,33 @@
 
                 </div>
             </fieldset>
+             <fieldset>
+                 <h3>Icons</h3>
+                 <div class="app-row app-row-report app-row-icons clearfix">
+                     <div class="report-entry" ng-repeat="v in icons">
+                       <div class="report-col report-media">
+                           <img class="report-img" ng-src="{{v.default}}" alt="{{v.type}}"/>
+                             
+                       </div>
+                         <div class="report-col report-body">
+                            <i class="fa fa-long-arrow-right" ng-if="v.custom"></i>
+                       </div>
+                       <div class="report-col report-media">
+                            <img class="report-img" ng-src="{{v.custom}}" ng-if="v.custom" alt="{{v.type}}"/>
+                           <img class="report-img img-opacity-50" ng-src="{{cfg.img.icons }}cancel.png" ng-if="!v.custom"  alt="img"/>
+                       </div>
+                         <div class="report-col report-ctrl">
+                             <button href="" class="btn btn-default" ng-click="uploadIcon(v, 'online_install')">
+                                    <i class="fa fa-upload text-success"></i>
+                                </button> 
+                            <button title="{{_t('lb_remove')}}" class="btn btn-default" ng-disabled="!v.custom" ng-click="removeIcon()">
+                                <i class="fa fa-remove text-danger"></i>
+                            </button>
+                         </div>
+                   </div>
+                 </div>
+                 <bb-help-text trans="_t('Info text comes here')"></bb-help-text>
+             </fieldset>
             <fieldset ng-if="elementAccess(cfg.role_access.admin)">
                 <h3><span ng-bind="_t('lb_tags')"></span></h3>
                 <div class="form-group form-inline">
