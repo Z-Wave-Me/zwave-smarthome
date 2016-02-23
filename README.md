@@ -10,7 +10,7 @@ Angular app
 - ???
 
 #### Changes
-- ???
+- Added login label into first access
 
 ## v1.3.0
 #### New features
