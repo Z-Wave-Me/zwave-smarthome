@@ -2,16 +2,15 @@ SmartHome UI
 ===============
 
 Angular app
-
 ## v1.3.1
 #### New features
-- ???.
+- Added HTML title attribute to navigation and buttons.
 
 #### Fixes
-- ???.
+- ???
 
 #### Changes
-- ???.
+- ???
 
 ## v1.3.0
 #### New features
