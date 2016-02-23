@@ -65,15 +65,15 @@
                             <div class="widget-ctrl ctrl-right">
                                 <div class="btn-group group-apps">
                                  <!-- Download -->
-                                <button href="" class="btn btn-default" ng-click="installModule(v, 'online_install')" ng-if="!dataHolder.modules.ids[v.modulename]">
+                                <button href="" class="btn btn-default" title="{{_t('lb_download')}}" ng-click="installModule(v, 'online_install')" ng-if="!dataHolder.modules.ids[v.modulename]">
                                     <i class="fa fa-download text-success"></i> <span class="btn-name">{{_t('lb_download')}}</span>
                                 </button> 
                                 <!-- Update -->
-                                <button href="" class="btn btn-default" ng-click="updateModule(v, _t('app_update_confirm'))" ng-if="dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version != v.version">
+                                <button href="" class="btn btn-default" title="{{_t('update_to_latest')}}" ng-click="updateModule(v, _t('app_update_confirm'))" ng-if="dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version != v.version">
                                     <i class="fa fa-level-up text-success"></i> <span class="btn-name">{{_t('update_to_latest')}}</span>
                                 </button> 
                                 <!-- Installed -->
-                                <button class="btn btn-default" disabled ng-if="dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version == v.version">
+                                <button class="btn btn-default" title="{{_t('installed')}}" disabled ng-if="dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version == v.version">
                                     <i class="fa fa-check"></i> <span class="btn-name">{{_t('installed')}}</span>
                                 </button> 
                               </div>

@@ -32,13 +32,17 @@
 
         <!-- Submit -->
         <fieldset class="submit-entry">
-            <button type="button" class="btn btn-default" bb-go-back><i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span></button>
-            <button type="submit" 
+            <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
+                <i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span>
+            </button>
+            <button type="submit"
+                    title="{{_t('lb_save')}}"
                     id="btn_module_submit_ang"
                     class="btn btn-submit" 
                     ng-click="store(input)"
                     ng-hide="alpacaData"><i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_save')}}</span></button>
-                    <button type="submit" 
+                    <button type="submit"
+                    title="{{_t('lb_save')}}"
                     id="btn_module_submit"
                     class="btn btn-submit"
                     data-sid="{{ZWAYSession}}"

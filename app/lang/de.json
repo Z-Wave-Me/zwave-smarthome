@@ -1,4 +1,5 @@
 {
+    "history": "History",
     "confirm_password": "Geben Sie Ihr Passwort erneut ein, um es zu bestätigen",
     "delete_successful": "Data was successfully deleted",
     "secure_login": "Ich vertraue meinem lokalen Ethernet/WLAN",

@@ -1,6 +1,7 @@
 {
     "newtrans": "---",
-     "---": "newtrans",
+    "---": "newtrans",
+    "history": "History",
     "delete_successful": "Data was successfully deleted",
     "secure_login": "I trust my local network",
     "unsecure_login": "Unsecure login",

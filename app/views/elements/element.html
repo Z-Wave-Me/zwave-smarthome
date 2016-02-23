@@ -5,9 +5,9 @@
         <h2><span ng-bind="_t('lb_cfg_view')"></span>: <span ng-bind="input.metrics.title"></span></h2>
         <form name="form_element" id="form_element" class="form form-page" autocomplete="off" ng-submit="store(input)" novalidate>
             <fieldset ng-if="elementAccess(cfg.role_access.admin)">
-                <p class="form-control-static">
+                 <!--<p class="form-control-static">
                             <span ng-bind="_t('element_id')"></span>: <strong ng-bind="input.id"></strong>
-                        </p>
+                        </p>-->
                 <div class="form-group_">
                     <label ng-bind="_t('lb_element_name')">{{}}:</label>
                     <input name="title" id="title" type="text" class="form-control" value="{{input.metrics.title}}" placeholder="{{_t('lb_element_name')}}" ng-model="input.title" />
@@ -51,7 +51,6 @@
                     <div class="form-group form-inline" ng-if="elementAccess(cfg.role_access.admin)">
                         <label>{{_t('lb_assign_room')}} </label>
                         <select class="form-control" ng-model="input.location">
-                            <!-- <option value="">--- Select one ---</option>-->
                             <option ng-repeat="v in rooms" ng-selected="input.location == v.id" value="{{v.id}}" ng-bind="(v.id === 0 ? _t(v.title) : v.title)"></option>
                         </select>
                     </div>
@@ -66,7 +65,9 @@
                                          class="form-control" value="{{searchText}}" 
                                          placeholder="{{_t('lb_add_tag')}}" 
                                          ng-model="searchText" bb-key-event="searchMe(searchText);" data-toggle="dropdown" />
-                       <span class="input-group-addon clickable" ng-click="addTag(searchText)"><i class="fa fa-plus text-success"></i></span> 
+                       <span class="input-group-addon clickable" title="{{_t('lb_add_tag')}}" ng-click="addTag(searchText)">
+                           <i class="fa fa-plus text-success"></i>
+                       </span> 
                        <div class="app-dropdown app-dropdown-left" ng-if="autoCompletePanel">
                         <ul>
                            <li href="" ng-click="addTag(v)" ng-repeat="v in suggestions" ng-if="input.tags.indexOf(v) === -1"><a href=""> <i class="fa fa-plus text-success"></i> {{v}}</a></li>
@@ -77,13 +78,13 @@
                 <div class="form-group last">
                     <a href="" class="btn btn-default btn-tag" id="tag_{{$index}}"
                             ng-repeat="t in input.tags"
-                           ng-click="removeTag($index)">{{t}} <i class="fa fa-times text-danger"></i></a>
+                           ng-click="removeTag($index)">{{t}} <i class="fa fa-times text-danger" title="{{_t('lb_remove')}}"></i></a>
                 </div>
             </fieldset>
             <!-- Submit -->
             <fieldset class="submit-entry">
-                 <button type="button" class="btn btn-default" bb-go-back><i class="fa fa-reply"></i> <span ng-bind="_t('lb_cancel')"></span></button>
-                 <button type="submit" class="btn btn-submit"><i class="fa fa-check"></i> <span ng-bind="_t('lb_save')"></span></button>
+                 <button type="button" title="{{_t('lb_cancel')}}" class="btn btn-default" bb-go-back><i class="fa fa-reply"></i> <span class="btn-name" ng-bind="_t('lb_cancel')"></span></button>
+                 <button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit"><i class="fa fa-check"></i> <span class="btn-name" ng-bind="_t('lb_save')"></span></button>
             </fieldset>
         </form>
     </div>

@@ -59,7 +59,9 @@
             </div>
 
             <div class="fieldset submit-entry">
-                <button type="button" class="btn btn-default" bb-go-back><i class="fa fa-reply"></i> <span ng-bind="_t('lb_cancel')"></span></button>
+                <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
+                    <i class="fa fa-reply"></i> <span class="btn-name" ng-bind="_t('lb_cancel')"></span>
+                </button>
             </div>
 
         </div>

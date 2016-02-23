@@ -1,6 +1,6 @@
 <!-- Events dropdown -->
 <div class="btn-group group-event-dropdown">
-    <button type="button" class="btn btn-default" ng-click="expandNavi('evDropDown_' + $index, $event)"><i class="fa fa-caret-down"></i></button>
+    <button type="button" class="btn btn-default" title="{{_t('lb_settings')}}" ng-click="expandNavi('evDropDown_' + $index, $event)"><i class="fa fa-caret-down"></i></button>
         <div class="app-dropdown dropdown-events" ng-if="naviExpanded['evDropDown' + '_' + $index]">
             <ul>
                 <li>

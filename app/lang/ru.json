@@ -1,4 +1,5 @@
 {
+    "history": "History",
     "confirm_password": "Retype password to confirm",
     "delete_successful": "Data was successfully deleted",
     "secure_login": "I trust my local network",

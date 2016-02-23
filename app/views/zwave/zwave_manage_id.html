@@ -41,17 +41,17 @@
                 </div>
 
                  <div class="form-group form-inline">
-                 <a class="btn btn-primary" href="#deviceconfig/{{zWaveDevice.id}}" ng-if="zWaveDevice.cfg.length > 0">
+                 <a class="btn btn-primary" href="#deviceconfig/{{zWaveDevice.id}}" title="{{_t('hardware_konfiguration')}}" ng-if="zWaveDevice.cfg.length > 0">
                                <i class="fa fa-wrench"></i> <span class="btn-name" ng-bind="_t('hardware_konfiguration')"></span>
                            </a>
                 </div>
             </fieldset>
          </div>
         <fieldset class="submit-entry">
-            <button type="button" class="btn btn-default" ng-if="!nohistory" bb-go-back>
+            <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" ng-if="!nohistory" bb-go-back>
                 <i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span>
             </button>
-            <button type="submit" class="btn btn-submit">
+            <button type="submit" class="btn btn-submit" title="{{_t('lb_save')}}">
                 <i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_save')}}</span>
             </button>
             
