@@ -29,21 +29,21 @@
         </div>
     </div>
     <div class="widget-ctrl ctrl-right widget-ctrl-click" ng-click="dataHolder.devices.find = v;handleModal('climateControlModal', $event)">
-        <i class="fa fa-caret-down"></i> <strong>{{_t('nav_rooms')}}</strong>
+        <i class="fa fa-caret-down" title="{{_t('lb_settings')}}"></i> <strong>{{_t('nav_rooms')}}</strong>
     </div>
 </div>
 <!-- multilineSensor -->
 <div ng-if="v.metrics.multilineType === 'multilineSensor'">
     <div class="widget-ctrl ctrl-left">
         <div class="btn-group">
-            <button class="btn btn-default btn-widget-time" 
+            <button class="btn btn-default btn-widget-time" title="{{_t('lb_update')}}" 
                     ng-click="runCmd(v.id + '/command/update')"> 
                 <i class="fa fa-clock-o"></i> <span class="widget-update-time">{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span>
             </button>
         </div>
     </div>
      <div class="widget-ctrl ctrl-right widget-ctrl-click" ng-click="dataHolder.devices.find = v;handleModal('sensorMultilineModal', $event)">
-        <i class="fa fa-caret-down"></i> <span class="widget-level">{{v.metrics.level}}</span> <span class="widget-scale">{{v.metrics.scaleTitle}}</span>
+        <i class="fa fa-caret-down" title="{{_t('lb_settings')}}"></i> <span class="widget-level">{{v.metrics.level}}</span> <span class="widget-scale">{{v.metrics.scaleTitle}}</span>
     </div>
 </div>
 <!-- protection -->
@@ -61,21 +61,21 @@
         </div>
     </div>
     <div class="widget-ctrl ctrl-right" ng-click="dataHolder.devices.find = v;handleModal('sensorMultilineModal', $event)">
-         <i class="fa fa-caret-down"></i> <span class="widget-level">{{v.metrics.level}}</span>
+         <i class="fa fa-caret-down" title="{{_t('lb_settings')}}"></i> <span class="widget-level">{{v.metrics.level}}</span>
     </div>
 </div>
 <!-- openWeather -->
 <div ng-if="v.metrics.multilineType === 'openWeather'">
     <div class="widget-ctrl ctrl-left">
         <div class="btn-group">
-            <button class="btn btn-default btn-widget-time" 
+            <button class="btn btn-default btn-widget-time" title="{{_t('lb_update')}}" 
                     ng-click="runCmd(v.id + '/command/update')"> 
                 <i class="fa fa-clock-o"></i> <span class="widget-update-time">{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span>
             </button>
         </div>
     </div>
     <div class="widget-ctrl ctrl-right widget-ctrl-click" ng-click="dataHolder.devices.find = v;handleModal('openWeatherModal', $event)">
-        <i class="fa fa-caret-down"></i> <span class="widget-level">{{v.metrics.level}}</span> <span class="widget-scale">{{v.metrics.scaleTitle}}</span>
+        <i class="fa fa-caret-down" title="{{_t('lb_settings')}}"></i> <span class="widget-level">{{v.metrics.level}}</span> <span class="widget-scale">{{v.metrics.scaleTitle}}</span>
     </div>
 </div>
 

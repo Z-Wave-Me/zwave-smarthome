@@ -1,5 +1,7 @@
 {
     "newtrans": "---",
+    "---": "newtrans",
+    "history": "History",
     "skins": "Skins",
     "reloading_page": "Reloading page...",
     "error_file_download": "Unable to download file",

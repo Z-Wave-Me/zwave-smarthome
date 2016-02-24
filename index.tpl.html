@@ -12,7 +12,7 @@
         <!-- JS -->
         <script src="app/js/build.js"></script>
     </head>
-   <body id="page_{{getBodyId()}}" class="app-type-{{cfg.app_type}} is-mobile-{{isMobile}} profile-{{user.color.substring(1)}}">
+   <body ng-controller="BaseController" id="page_{{getBodyId()}}" class="app-type-{{cfg.app_type}} is-mobile-{{isMobile}} profile-{{user.color.substring(1)}}">
         <div id="header" ng-if="user">
             <div id="main_navigation_wrap">
                 <div id="main_navigation" class="container">
@@ -21,11 +21,11 @@
                             <img ng-src="{{getAppLogo()}}" id="header_logo" alt="App logo" />
                         </a>
                         <span class="divider-vertical"></span>
-                        <a href="#home" ng-class="isActive('dashboard')"><i class="fa fa-home"></i></a>
+                        <a href="#home" title="{{_t('nav_home')}}" ng-class="isActive('dashboard')"><i class="fa fa-home"></i></a>
                         <span class="divider-vertical"></span>
-                        <a href="#rooms" ng-class="isActive('rooms')" ng-if="elementAccess(cfg.role_access.rooms)"><i class="fa fa-building-o"></i></a>
+                        <a href="#rooms" title="{{_t('nav_rooms')}}" ng-class="isActive('rooms')" ng-if="elementAccess(cfg.role_access.rooms)"><i class="fa fa-building-o"></i></a>
                         <span class="divider-vertical"></span>
-                        <a href="#elements" ng-class="isActive('elements')"><i class="fa fa-clone"></i></a>
+                        <a href="#elements" title="{{_t('nav_elements')}}" ng-class="isActive('elements')"><i class="fa fa-clone"></i></a>
                         <span class="divider-vertical"></span>
                         <a href="#events" title="{{_t('nav_events')}}" ng-class="isActive('events')"><i class="fa fa-calendar"></i></a>
                         <span class="divider-vertical"></span> 
@@ -33,7 +33,7 @@
                     </div>
                     <div id="navigation_right">
                         <span class="divider-vertical"></span> 
-                        <a id="navi_settings" href="" ng-click="expandNavi('mainNav', $event)" ng-class="naviExpanded.mainNav ? 'active' : ''"><i class="fa fa-cog"></i></a>
+                        <a id="navi_settings" href="" title="{{_t('lb_configuration')}}" ng-click="expandNavi('mainNav', $event)" ng-class="naviExpanded.mainNav ? 'active' : ''"><i class="fa fa-cog"></i></a>
                     </div>
                 </div><!-- /#navigation --> 
             </div><!-- /#main_navigation_wrap --> 

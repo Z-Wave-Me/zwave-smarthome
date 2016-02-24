@@ -2,17 +2,15 @@ SmartHome UI
 ===============
 
 Angular app
-## v1.4.0
+## v1.3.1
 #### New features
-- The possibility to install a custom skin.
+- Added HTML title attribute to navigation and buttons.
 
 #### Fixes
 - ???
 
 #### Changes
-- Removed background gradient from apps widgets.
-- Removed description from apps buttons.
-- In the installed apps is text grayed out.
+- Added login label into first access
 
 ## v1.3.0
 #### New features

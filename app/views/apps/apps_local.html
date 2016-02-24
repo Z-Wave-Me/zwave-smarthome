@@ -67,7 +67,7 @@
                             <div class="widget-ctrl ctrl-left">&nbsp;</div>
                             <div class="widget-ctrl ctrl-right clearfix">
                                  <div class="btn-group">
-                                 <a href="#module/post/{{v.id}}" class="btn btn-default" title="{{_t('lb_add_app')}}">
+                                 <a ng-href="#module/post/{{v.id}}" class="btn btn-default" title="{{_t('lb_add_app')}}">
                                     <i class="fa fa-plus text-success"></i> <span class="btn-name" ng-bind="_t('lb_add_app')"></span>
                                 </a>
                                 <a href="" class="btn btn-default" title="{{_t('lb_remove')}}" ng-click="deleteModule({'id': v.id}, _t('app_delete_confirm'),'#local_module_' + v.id)" ng-if="v.custom && !v.hasReset">

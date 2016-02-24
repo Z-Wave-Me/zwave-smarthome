@@ -9,13 +9,14 @@
                     </td>
                     <td class="td-action">
                      <div class="btn-group">
-                         <a class="btn btn-default" href="" ng-click="toExpert('/expert',_t('redirect_to_expert'))" ng-if="elementAccess(cfg.role_access.admin,isMobile) && cfg.app_type === 'default'">
+                         <a class="btn btn-default" href="" title="{{_t('manage_with_expertui')}}" 
+                            ng-click="toExpert('/expert',_t('redirect_to_expert'))" ng-if="elementAccess(cfg.role_access.admin,isMobile) && cfg.app_type === 'default'">
                             <i class="fa fa-external-link"></i> <span class="btn-name" ng-bind="_t('manage_with_expertui')"></span>
                         </a>
-                        <a class="btn btn-default" href="#zwave/add">
+                        <a class="btn btn-default" href="#zwave/add" title="{{_t('add_new')}}">
                             <i class="fa fa-plus text-success"></i> <span class="btn-name" ng-bind="_t('add_new')"></span>
                         </a>
-                        <a class="btn btn-default" href="#zwave/devices">
+                        <a class="btn btn-default" href="#zwave/devices" title="{{_t('manage')}}">
                             <i class="fa fa-edit text-primary"></i> <span class="btn-name" ng-bind="_t('manage')"></span>
                         </a>
                      </div>
@@ -27,10 +28,10 @@
                     </td>
                    <td class="td-action">
                       <div class="btn-group">
-                        <a class="btn btn-default" href="#camera/add">
+                        <a class="btn btn-default" href="#camera/add" title="{{_t('add_new')}}">
                             <i class="fa fa-plus text-success"></i> <span class="btn-name" ng-bind="_t('add_new')"></span>
                         </a>
-                       <a class="btn btn-default" href="#camera/manage">
+                       <a class="btn btn-default" href="#camera/manage" title="{{_t('manage')}}">
                             <i class="fa fa-edit text-primary"></i> <span class="btn-name" ng-bind="_t('manage')"></span>
                         </a> 
                     </div>
@@ -44,10 +45,10 @@
                           <bb-alert-text alert="enocean.alert"></bb-alert-text>
                           <div ng-if="enocean.active">
                             <div class="btn-group">
-                                <a class="btn btn-default" href="#enocean/devices">
+                                <a class="btn btn-default" href="#enocean/devices" title="{{_t('add_new')}}">
                                   <i class="fa fa-plus text-success"></i> <span class="btn-name" ng-bind="_t('add_new')"></span>
                               </a>
-                               <a class="btn btn-default" href="#enocean/manage">
+                               <a class="btn btn-default" href="#enocean/manage" title="{{_t('manage')}}">
                                   <i class="fa fa-edit text-primary"></i> <span class="btn-name" ng-bind="_t('manage')"></span>
                               </a> 
                             </div>
