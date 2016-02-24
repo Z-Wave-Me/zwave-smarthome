@@ -39,12 +39,6 @@ myApp.config(['$routeProvider', function($routeProvider) {
                    templateUrl: 'app/views/elements/elements_page.html',
                    requireLogin: true
                 }).
-                // DEPRECATED
-                // Elements
-                /*when('/elements/:filter?/:val?/:name?', {
-                    templateUrl: 'app/views/elements/elements.html',
-                    requireLogin: true
-                }).*/
                 // Element id
                 when('/element/:id', {
                     templateUrl: 'app/views/elements/element.html',
@@ -133,6 +127,13 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     requireLogin: true,
                     roles: cfg.role_access.devices
                 }).
+                 //Include Zwave device
+                when('/zwave/inclusion/:id?', {
+                    templateUrl: 'app/views/zwave/zwave_inclusion.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices_include
+                }).       
+                // DEPRECATED
                 //Include Zwave device
                 when('/zwave/include/:device?', {
                     templateUrl: 'app/views/zwave/zwave_include.html',
