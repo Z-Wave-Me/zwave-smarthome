@@ -52,7 +52,7 @@ myApp.filter('cutText', function () {
 myApp.filter('toInt', function () {
     return function (val, a) {
         a = typeof a !== 'undefined' ? a : 10;
-        if (isNaN(val)) {
+        if (val === null || val==='' || isNaN(val)) {
             return 0;
         }
         return parseInt(val, a);

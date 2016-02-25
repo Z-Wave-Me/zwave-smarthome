@@ -8,79 +8,97 @@
             </div>
             <div class="include-device-body">
                 <h1 ng-if="zwaveInclusion.device.find">{{zwaveInclusion.device.find.brandname + ' ' + zwaveInclusion.device.find.name}}</h1> 
-                <h1 ng-if="!device.data">{{_t('lb_include_device')}}</h1> 
+                <h1 ng-if="_.isEmpty(zwaveInclusion.device.find)">{{_t('lb_include_device')}}</h1> 
             </div>
         </div>
         <div class="fieldset clearfix">
             <div class="app-row app-row-report clearfix">
-                    <!-- 1 -->
-                    <div class="report-entry">
-                        <div class="report-col report-media">
-                            <span class="badge badge-number">1</span>
+                <!-- 1 -->
+                <div class="report-entry">
+                    <div class="report-col report-media">
+                        <span class="badge badge-number">1</span>
+                    </div>
+                    <div class="report-col report-body">
+                        <div class="inclusion-header" ng-if="!zwaveInclusion.preparation.process">
+                            <!-- Header -->
+                        <h3>{{_t('lb_preparation')}}</h3>
+                        {{_t('lb_include_preparation')}} 
+                            <button class="btn btn-default" title="{{_t('lb_include_preparation_start')}}"
+                                    ng-disabled="zwaveInclusion.inclusionProcess.process"
+                                    ng-click="startStopExclusion('controller.RemoveNodeFromNetwork(1)',true)">
+                                <i class="fa fa-refresh"></i> {{_t('lb_include_preparation_start')}}
+                            </button>
+                            <p  ng-if="zwaveInclusion.device.find.prep"><em>{{zwaveInclusion.device.find.prep}}</em></p>
                         </div>
-                        <div class="report-col report-body">
-                            <h3>{{_t('lb_preparation')}}</h3>
-                            <div>{{_t('lb_include_preparation')}} 
-                                <button class="btn btn-default" title="{{_t('lb_include_preparation_start')}}"><i class="fa fa-refresh"></i> {{_t('lb_include_preparation_start')}}</button>
-                            </div>
-                            <div>
-                                <button class="btn btn-danger btn-lg" title="{{_t('btn_exclusion_stop')}}"> 
-                                     <i class="fa fa-ban"></i> <span class="btn-name">{{_t('btn_exclusion_stop')}}</span>
+                         <!-- Process -->
+                        <div class="inclusion-process" ng-if="zwaveInclusion.preparation.process">
+                             <div class="alert alert-warning">
+                                  <i class="fa fa-spinner fa-spin"></i> {{_t('lb_ready_exclude')}} {{zwaveInclusion.device.find.exc}}
+                                <button class="btn btn-danger btn-lg" title="{{_t('btn_exclusion_stop')}}" ng-click="startStopExclusion('controller.RemoveNodeFromNetwork(0)',false)"> 
+                                    <i class="fa fa-ban"></i> <span class="btn-name">{{_t('btn_exclusion_stop')}}</span>
                                 </button>
                             </div>
-                             <!-- last Excluded Device -->
-                             <div class="alert alert-success">
-                                <i class="fa fa-check"></i> <span ng-bind="_t('lb_device_excluded')"></span>
+                        </div>
+
+                    </div>
+                    <div class="report-col report-ctrl">
+                        <i class="fa fa-check fa-2x text-success" ng-if="zwaveInclusion.preparation.done"></i> 
+                    </div>
+                </div><!-- /.report-entry -->
+                <!-- 2 -->
+                <div class="report-entry">
+                    <div class="report-col report-media">
+                        <span class="badge badge-number">2</span>
+                    </div>
+                    <div class="report-col report-body">
+                        <div class="inclusion-header" ng-if="!zwaveInclusion.inclusionProcess.process">
+                          <!-- Header -->
+                            <h3>{{_t('lb_inclusion_progress')}}</h3>
+                             <button class="btn btn-success btn-lg" title="{{_t('btn_inclusion_start')}}" 
+                                     ng-disabled="zwaveInclusion.preparation.process"
+                                      ng-click="startStopInclusion('controller.AddNodeToNetwork(1)',true)">
+                                    <i class="fa fa-plug"></i> <span class="btn-name">{{_t('btn_inclusion_start')}}</span>
+                            </button>
+                        </div>
+                         <!-- Ready -->
+                        <div class="inclusion-process" ng-if="zwaveInclusion.inclusionProcess.process">
+                            <div class="alert alert-warning" ng-if="zwaveInclusion.inclusionProcess.ready">
+                                <i class="fa fa-spinner fa-spin"></i> {{_t('lb_ready_include')}} {{zwaveInclusion.device.find.inc}} 
+                                <button class="btn btn-danger btn-lg" title="{{_t('btn_inclusion_stop')}}"
+                                         ng-click="startStopInclusion('controller.AddNodeToNetwork(0)',false)">
+                                    <i class="fa fa-ban"></i> <span class="btn-name">{{_t('btn_inclusion_stop')}}</span>
+                                </button>
                             </div>
                         </div>
-                        <div class="report-col report-ctrl">
-                            <i class="fa fa-check fa-2x text-success"></i> 
-                        </div>
-                    </div><!-- /.report-entry -->
-                    <!-- 2 -->
-                    <div class="report-entry">
-                        <div class="report-col report-media">
-                            <span class="badge badge-number">2</span>
-                        </div>
-                        <div class="report-col report-body">
-                            <h3>{{_t('lb_inclusion_progress')}}</h3>
-                            <div>
-                            <button class="btn btn-success btn-lg" title="{{_t('btn_inclusion_start')}}">
-                                <i class="fa fa-plug"></i> <span class="btn-name">{{_t('btn_inclusion_start')}}</span>
-                            </button>
-                            <button class="btn btn-danger btn-lg" title="{{_t('btn_inclusion_stop')}}"> 
-                                 <i class="fa fa-ban"></i> <span class="btn-name">{{_t('btn_inclusion_stop')}}</span>
-                            </button>
-                           </div>
-                        </div>
-                        <div class="report-col report-ctrl">
-                            <i class="fa fa-check fa-2x text-success"></i> 
-                        </div>
-                    </div><!-- /.report-entry --> 
-                    <!-- 3 -->
-                    <div class="report-entry">
-                        <div class="report-col report-media">
-                            <span class="badge badge-number">3</span>
-                        </div>
-                        <div class="report-col report-body">
-                             <h3>{{_t('automated_konfiguration')}}</h3>
-                        </div>
-                        <div class="report-col report-ctrl">
-                            <i class="fa fa-check fa-2x text-success"></i> 
-                        </div>
-                    </div><!-- /.report-entry --> 
-                    <!-- 4 -->
-                    <div class="report-entry">
-                        <div class="report-col report-media">
-                            <span class="badge badge-number">4</span>
-                        </div>
-                        <div class="report-col report-body">
-                           <h3>{{_t('manual_konfiguration')}}</h3>
-                        </div>
-                        <div class="report-col report-ctrl">
-                            <i class="fa fa-check fa-2x text-success"></i> 
-                        </div>
-                    </div><!-- /.report-entry --> 
+                    </div>
+                    <div class="report-col report-ctrl">
+                        <i class="fa fa-check fa-2x text-success" ng-if="zwaveInclusion.inclusionProcess.done"></i> 
+                    </div>
+                </div><!-- /.report-entry --> 
+                <!-- 3 -->
+                <div class="report-entry">
+                    <div class="report-col report-media">
+                        <span class="badge badge-number">3</span>
+                    </div>
+                    <div class="report-col report-body">
+                        <h3>{{_t('automated_konfiguration')}}</h3>
+                    </div>
+                    <div class="report-col report-ctrl">
+                        <i class="fa fa-check fa-2x text-success"></i> 
+                    </div>
+                </div><!-- /.report-entry --> 
+                <!-- 4 -->
+                <div class="report-entry">
+                    <div class="report-col report-media">
+                        <span class="badge badge-number">4</span>
+                    </div>
+                    <div class="report-col report-body">
+                        <h3>{{_t('manual_konfiguration')}}</h3>
+                    </div>
+                    <div class="report-col report-ctrl">
+                        <i class="fa fa-check fa-2x text-success"></i> 
+                    </div>
+                </div><!-- /.report-entry --> 
             </div><!-- /.app-row --> 
         </div>
         <div class="fieldset submit-entry">

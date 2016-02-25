@@ -360,6 +360,7 @@ myAppController.controller('ZwaveIncludeController', function($scope, $routePara
         }
         if ('controller.data.lastIncludedDevice' in data) {
             var deviceIncId = data['controller.data.lastIncludedDevice'].value;
+             console.log('lastIncludedDevice: ', deviceIncId);
             if (deviceIncId != null) {
                 var givenName = 'Device_' + deviceIncId;
                 var cmd = 'devices[' + deviceIncId + '].data.givenName.value=\'' + givenName + '\'';
