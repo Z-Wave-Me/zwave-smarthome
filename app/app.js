@@ -132,7 +132,13 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     templateUrl: 'app/views/zwave/zwave_inclusion.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices_include
-                }).       
+                }).  
+                 //Include Zwave device
+                when('/zwave/interview/:id', {
+                    templateUrl: 'app/views/zwave/zwave_interview.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices_include
+                }).   
                 // DEPRECATED
                 //Include Zwave device
                 when('/zwave/include/:device?', {

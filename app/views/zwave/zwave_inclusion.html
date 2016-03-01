@@ -137,5 +137,32 @@
         </div>
     </div>
     <div class="device-logo" ng-include="'app/views/zwave/zwave_nav.html'"></div>
+    <!-- forceInterviewModal -->
+    <div id="forceInterviewModal" class="appmodal" ng-if="zwaveInclusion.automatedConfiguration.forceInterview">
+        <div class="appmodal-in">
+            <div class="appmodal-header">
+                <span class="appmodal-close" ng-click="startConfiguration({nodeId: 13,interviewDoneCnt: 0,interviewRepeatCnt: 0,errorType:''})"><i class="fa fa-times"></i></span>
+                <h3>{{_t('configuration_incomplete')}}</h3>
+            </div>
+            <div class="appmodal-body">
+                {{_t('configuration_complete_only')}} <strong>{{zwaveInclusion.automatedConfiguration.progress}}%</strong>
+                {{zwaveInclusion.automatedConfiguration.includedDevice.interviewNotDone}}
+            </div>
+            <div class="appmodal-footer">
+                <button type="button" class="btn btn-default"
+                        _ng-if="!_isEmpty(zwaveInclusion.automatedConfiguration.includedDevice.versionInterviewNotDone)"
+                        ng-click="forceInterview(zwaveInclusion.automatedConfiguration.includedDevice.versionInterviewNotDone)">
+                    <i class="fa fa-reply text-info"></i> {{_t('try_again_complete')}}
+                </button>
+                
+                <button type="button" class="btn btn-default" 
+                         _ng-if="!_isEmpty(zwaveInclusion.automatedConfiguration.includedDevice.interviewNotDone)"
+                         _ng-hide="!_isEmpty(zwaveInclusion.automatedConfiguration.includedDevice.versionInterviewNotDone)"
+                        ng-click="forceInterview(zwaveInclusion.automatedConfiguration.includedDevice.versionInterviewNotDone)">
+                    <i class="fa fa-reply text-info"></i> {{_t('retry_complete_inclusion')}}
+                </button>
+            </div>
+        </div>
+    </div>
 </div> <!-- /ng-controller --> 
 
