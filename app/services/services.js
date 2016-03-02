@@ -34,7 +34,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $location
      */
     this.showConnectionSpinner = function () {
         return false;
-       // $('.update-time-tick').html('<i class="fa fa-spinner fa-spin fa-lg text-success"></i>');
+        // $('.update-time-tick').html('<i class="fa fa-spinner fa-spin fa-lg text-success"></i>');
         //return this.logError(error,'Unable to recieve HTTP data');
     };
 
@@ -74,6 +74,24 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $location
         $log.info('---------- ' + message + ' ----------', info);
     };
 
+    /**
+     * Get OS (operating system)
+     */
+    this.getOs = function () {
+        if (navigator && navigator.userAgent && navigator.userAgent != null)
+        {
+            var agents = ['android', 'iemobile', 'iphone', 'ipad', 'ipod', 'opera mini', 'blackberry'];
+            var ua = navigator.userAgent.toLowerCase();
+            for (var i in agents) {
+                if (ua.match('/' + agents[i] + '/i')) {
+                    return agents[i];
+                }
+            }
+            return 'any';
+        }
+        return 'any';
+    };
+
 
     /**
      * Mobile device detect
@@ -96,7 +114,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $location
     this.setUser = function (data) {
         return setUser(data);
     };
-    
+
     /**
      * Unset user
      */
@@ -262,7 +280,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $location
         return data;
 
     }
-    
+
     /**
      * Unset user
      */

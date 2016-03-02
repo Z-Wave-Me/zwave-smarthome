@@ -2589,54 +2589,78 @@ input[type=radio] {
   margin: 0 10px 0;
 }
 
-/* line 41, ../sass/common/_form.scss */
+/* line 42, ../sass/common/_form.scss */
+.os-iphone input[type=checkbox], .os-ipad input[type=checkbox], .os-ipod input[type=checkbox] {
+  -ms-transform: scale(1.3);
+  /* IE */
+  -moz-transform: scale(1.3);
+  /* FF */
+  -webkit-transform: scale(1.3);
+  /* Safari and Chrome */
+  -o-transform: scale(1.3);
+  /* Opera */
+  padding: 10px;
+  margin: 0 10px 0;
+}
+/* line 50, ../sass/common/_form.scss */
+.os-iphone input[type=radio], .os-ipad input[type=radio], .os-ipod input[type=radio] {
+  transform: scale(1.2, 1.2);
+  -moz-transform: scale(1.2, 1.2);
+  -ms-transform: scale(1.2, 1.2);
+  -webkit-transform: scale(1.2, 1.2);
+  -o-transform: scale(1.2, 1.2);
+  padding: 10px;
+  margin: 0 10px 0;
+}
+
+/* line 62, ../sass/common/_form.scss */
 .form-page {
   margin-bottom: 20px;
   background-color: #FFFFFF;
   border: solid 1px #e7e7e7;
 }
-/* line 46, ../sass/common/_form.scss */
+/* line 67, ../sass/common/_form.scss */
 .form-page .form-group {
   border-bottom: solid 1px #e7e7e7;
   padding-bottom: 10px;
 }
-/* line 49, ../sass/common/_form.scss */
+/* line 70, ../sass/common/_form.scss */
 .form-page .form-group.last {
   border-bottom: 0;
   padding-bottom: 0;
   margin-bottom: 0;
 }
-/* line 55, ../sass/common/_form.scss */
+/* line 76, ../sass/common/_form.scss */
 .form-page label {
   font-weight: normal;
 }
 
-/* line 60, ../sass/common/_form.scss */
+/* line 81, ../sass/common/_form.scss */
 fieldset, .fieldset {
   padding: 10px;
 }
 
-/* line 63, ../sass/common/_form.scss */
+/* line 84, ../sass/common/_form.scss */
 .isrequired {
   font-weight: bold !important;
 }
 
-/* line 67, ../sass/common/_form.scss */
+/* line 88, ../sass/common/_form.scss */
 .isrequired::before {
   content: "*";
 }
 
-/* line 71, ../sass/common/_form.scss */
+/* line 92, ../sass/common/_form.scss */
 .form-control-sm {
   width: 30% !important;
 }
 
-/* line 75, ../sass/common/_form.scss */
+/* line 96, ../sass/common/_form.scss */
 .form-control-md {
   width: 50% !important;
 }
 
-/* line 79, ../sass/common/_form.scss */
+/* line 100, ../sass/common/_form.scss */
 .submit-entry {
   text-align: right;
   display: block;
@@ -2644,23 +2668,23 @@ fieldset, .fieldset {
   border-top: solid 1px #e7e7e7;
 }
 
-/* line 87, ../sass/common/_form.scss */
+/* line 108, ../sass/common/_form.scss */
 fieldset.submit-entry {
   margin: 0 !important;
 }
 
-/* line 90, ../sass/common/_form.scss */
+/* line 111, ../sass/common/_form.scss */
 .form-control-hidden {
   display: none !important;
 }
 
-/* line 93, ../sass/common/_form.scss */
+/* line 114, ../sass/common/_form.scss */
 .form-control-img {
   cursor: pointer;
   border: solid 4px transparent;
 }
 
-/* line 98, ../sass/common/_form.scss */
+/* line 119, ../sass/common/_form.scss */
 .control-active {
   border: solid 4px black !important;
 }

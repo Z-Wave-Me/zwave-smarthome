@@ -12,7 +12,7 @@
         <!-- JS -->
         <script src="app/js/build.js"></script>
     </head>
-   <body ng-controller="BaseController" id="page_{{getBodyId()}}" class="app-type-{{cfg.app_type}} is-mobile-{{isMobile}} profile-{{user.color.substring(1)}}">
+   <body ng-controller="BaseController" id="page_{{getBodyId()}}" class="app-type-{{cfg.app_type}} is-mobile-{{isMobile}} os-{{cfg.route.os}} profile-{{user.color.substring(1)}}">
         <div id="header" ng-if="user">
             <div id="main_navigation_wrap">
                 <div id="main_navigation" class="container">
