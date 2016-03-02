@@ -8,7 +8,7 @@
     "configuration_incomplete": "Configuration incomplete",
     "configuration_complete_only": "Configuration complete only",
     "force_interview": "Force interview",
-    "error_zwave_network": "An unexpected error occurred while loading the Z-Wave network.",
+    "error_zwave_network": "An unexpected error occurred while connecting the Z-Wave network.",
     "error_zwave_device": "An unexpected error occurred while loading the Z-Wave device.",
     "error_interview_secure_failed": "Secure Inclusion  failed. Exclude and try to include again.",
     "error_interview_unexpected": "An unexpected error occurred while configuring the device.",
