@@ -51,7 +51,7 @@
     border: solid 1px $device-border-color;
 
     .vendor-image{
-        line-height: $vendor-img;
+        line-height: $vendor-img + 5;
         margin: 0 !important;
         img {
             vertical-align: middle;

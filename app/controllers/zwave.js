@@ -4,6 +4,56 @@
  */
 
 /**
+ * Zwave select controller
+ */
+myAppController.controller('ZwaveSelectController', function ($scope, $routeParams, dataFactory, dataService, _) {
+     $scope.zwaveSelect = {
+          logos: {},
+         brand: {},
+          brandName: '',
+         list: {}
+     };
+     
+     /**
+     * Load products - vendor logos
+     */
+    $scope.loadProducts = function () {
+        dataFactory.getApiLocal('test/products.json').then(function (response) {
+             angular.forEach(response.data, function (v, k) {
+                 $scope.zwaveSelect.logos[v.manufacturer] = v.manufacturer_image;
+                 //angular.extend($scope.zwaveSelect.logos[v.manufacturer_id],v.manufacturer_image);
+            });
+            console.log($scope.zwaveSelect.logos)
+        }, function (error) {
+        });
+    };
+    $scope.loadProducts($routeParams.brandname);
+    /**
+     * Load z-wave devices
+     */
+    $scope.loadData = function (brandname, lang) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        //dataFactory.getApiLocal('device.' + lang + '.json').then(function (response) {
+        dataFactory.getApiLocal('test/devicedatabase.json').then(function (response) {
+            $scope.zwaveSelect.brand = _.uniq(response.data, 'brandname');
+            if (brandname) {
+                $scope.zwaveSelect.list = _.where(response.data, {brandname: brandname});
+                if(_.isEmpty($scope.zwaveSelect.list)){
+                     $scope.loading = false;
+                     alertify.alertError($scope._t('no_data'));
+                }
+                
+                $scope.zwaveSelect.brandName = brandname;
+            }
+            $scope.loading = false;
+        }, function (error) {
+          alertify.alertError($scope._t('error_load_data'));
+        });
+    };
+    $scope.loadData($routeParams.brandname, $scope.lang);
+});
+
+/**
  * Zwave add controller
  */
 myAppController.controller('ZwaveAddController', function ($scope, $routeParams, dataFactory, dataService, _) {

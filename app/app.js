@@ -127,6 +127,12 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     requireLogin: true,
                     roles: cfg.role_access.devices
                 }).
+                 //Zwave select manufacturer/device
+                when('/zwave/select/:brandname?', {
+                    templateUrl: 'app/views/zwave/zwave_select.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
+                }).
                  //Include Zwave device
                 when('/zwave/inclusion/:id?', {
                     templateUrl: 'app/views/zwave/zwave_inclusion.html',
