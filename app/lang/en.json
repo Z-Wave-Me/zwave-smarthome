@@ -1,5 +1,7 @@
 {
     "newtrans": "---",
+    "error_exclusion_time": "EXCLUSION takes a long time to start up.",
+    "error_inclusion_time": "INCLUSION takes a long time to start up.",
     "try_again_complete": "Try again to complete",
     "retry_complete_inclusion": "Retry complete inclusion",
     "interview_results": "Interview Results",
@@ -8,7 +10,6 @@
     "force_interview": "Force interview",
     "error_zwave_network": "An unexpected error occurred while loading the Z-Wave network.",
     "error_zwave_device": "An unexpected error occurred while loading the Z-Wave device.",
-    "error_interview_incomplete": "Configuration is not complete. Retry complete inclusion.",
     "error_interview_secure_failed": "Secure Inclusion  failed. Exclude and try to include again.",
     "error_interview_unexpected": "An unexpected error occurred while configuring the device.",
     "error_interview_battery": "You must to wake up the device to complete the inclusion.",

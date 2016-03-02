@@ -709,7 +709,7 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
      */
     $scope.loadConfigData = function (nodeId) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataFactory.getApi('devices').then(function (response) {
+        dataFactory.getApi('devices',null,true).then(function (response) {
             $scope.loading = false;
             zwaveConfigApiData(nodeId, response.data.data.devices);
             loadConfigLocations();

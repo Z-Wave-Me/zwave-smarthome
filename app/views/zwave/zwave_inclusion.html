@@ -25,7 +25,7 @@
                             {{_t('lb_include_preparation')}} 
                             <button class="btn btn-default" title="{{_t('lb_include_preparation_start')}}"
                                     ng-disabled="zwaveInclusion.inclusionProcess.process || zwaveInclusion.automatedConfiguration.includedDevice.nodeId > 0"
-                                    ng-click="startStopExclusion('controller.RemoveNodeFromNetwork(1)', true)">
+                                    ng-click="startStopExclusion(true)">
                                 <i class="fa fa-refresh"></i> {{_t('lb_include_preparation_start')}}
                             </button>
                             <p  ng-if="zwaveInclusion.device.find.prep"><em>{{zwaveInclusion.device.find.prep}}</em></p>
@@ -34,7 +34,7 @@
                         <div class="inclusion-process" ng-if="zwaveInclusion.exclusionProcess.process">
                             <div class="alert alert-warning">
                                 <i class="fa fa-spinner fa-spin"></i> {{_t('lb_ready_exclude')}} {{zwaveInclusion.device.find.exc}}
-                                <button class="btn btn-danger btn-lg" title="{{_t('btn_exclusion_stop')}}" ng-click="startStopExclusion('controller.RemoveNodeFromNetwork(0)', false)"> 
+                                <button class="btn btn-danger btn-lg" title="{{_t('btn_exclusion_stop')}}" ng-click="startStopExclusion( false)"> 
                                     <i class="fa fa-ban"></i> <span class="btn-name">{{_t('btn_exclusion_stop')}}</span>
                                 </button>
                             </div>
@@ -56,7 +56,7 @@
                             <h3>{{_t('lb_inclusion_progress')}}</h3>
                             <button class="btn btn-success btn-lg" title="{{_t('btn_inclusion_start')}}" 
                                     ng-disabled="zwaveInclusion.exclusionProcess.process || zwaveInclusion.automatedConfiguration.includedDevice.nodeId > 0"
-                                    ng-click="startStopInclusion('controller.AddNodeToNetwork(1)', true)">
+                                    ng-click="startStopInclusion(true)">
                                 <i class="fa fa-plug"></i> <span class="btn-name">{{_t('btn_inclusion_start')}}</span>
                             </button>
                         </div>
@@ -65,7 +65,7 @@
                             <div class="alert alert-warning">
                                 <i class="fa fa-spinner fa-spin"></i> {{_t('lb_ready_include')}} {{zwaveInclusion.device.find.inc}} 
                                 <button class="btn btn-danger btn-lg" title="{{_t('btn_inclusion_stop')}}"
-                                        ng-click="startStopInclusion('controller.AddNodeToNetwork(0)', false)">
+                                        ng-click="startStopInclusion(false)">
                                     <i class="fa fa-ban"></i> <span class="btn-name">{{_t('btn_inclusion_stop')}}</span>
                                 </button>
                             </div>
@@ -88,21 +88,20 @@
 
                         <!-- Process -->
                         <div class="inclusion-process" ng-if="zwaveInclusion.automatedConfiguration.process">
-                            <div class="alert alert-warning" >
+                            <div class="alert alert-warning" ng-hide="zwaveInclusion.automatedConfiguration.progress > 99">
                                 <i class="fa fa-spinner fa-spin"></i> <strong>{{_t('configuring_device')}}</strong> 
                                 <span>(#{{zwaveInclusion.automatedConfiguration.includedDevice.nodeId}})</span>
                             </div>
-                             <div class="progress" ng-if="zwaveInclusion.automatedConfiguration.progress > 0">
+                             <div class="progress" ng-if_="zwaveInclusion.automatedConfiguration.progress < 101">
                                 <div class="progress-bar" 
                                      style="min-height:40px;min-width: 2em; width: {{zwaveInclusion.automatedConfiguration.progress}}%;"
                                      ng-class="zwaveInclusion.automatedConfiguration.progress < 100 ? 'progress-bar-striped active' : 'progress-bar-success'">
                                     {{zwaveInclusion.automatedConfiguration.progress}}%
                                 </div>
                             </div>
-
-                            {{zwaveInclusion.automatedConfiguration}}
                            
                         </div>
+                         <!--<pre>{{zwaveInclusion.automatedConfiguration.includedDevice | json}}</pre>--> 
                     </div>
                     <div class="report-col report-ctrl">
                         <i class="fa fa-check fa-2x text-success" ng-if="zwaveInclusion.automatedConfiguration.done"></i> 
@@ -137,32 +136,5 @@
         </div>
     </div>
     <div class="device-logo" ng-include="'app/views/zwave/zwave_nav.html'"></div>
-    <!-- forceInterviewModal -->
-    <div id="forceInterviewModal" class="appmodal" ng-if="zwaveInclusion.automatedConfiguration.forceInterview">
-        <div class="appmodal-in">
-            <div class="appmodal-header">
-                <span class="appmodal-close" ng-click="startConfiguration({nodeId: 13,interviewDoneCnt: 0,interviewRepeatCnt: 0,errorType:''})"><i class="fa fa-times"></i></span>
-                <h3>{{_t('configuration_incomplete')}}</h3>
-            </div>
-            <div class="appmodal-body">
-                {{_t('configuration_complete_only')}} <strong>{{zwaveInclusion.automatedConfiguration.progress}}%</strong>
-                {{zwaveInclusion.automatedConfiguration.includedDevice.interviewNotDone}}
-            </div>
-            <div class="appmodal-footer">
-                <button type="button" class="btn btn-default"
-                        _ng-if="!_isEmpty(zwaveInclusion.automatedConfiguration.includedDevice.versionInterviewNotDone)"
-                        ng-click="forceInterview(zwaveInclusion.automatedConfiguration.includedDevice.versionInterviewNotDone)">
-                    <i class="fa fa-reply text-info"></i> {{_t('try_again_complete')}}
-                </button>
-                
-                <button type="button" class="btn btn-default" 
-                         _ng-if="!_isEmpty(zwaveInclusion.automatedConfiguration.includedDevice.interviewNotDone)"
-                         _ng-hide="!_isEmpty(zwaveInclusion.automatedConfiguration.includedDevice.versionInterviewNotDone)"
-                        ng-click="forceInterview(zwaveInclusion.automatedConfiguration.includedDevice.versionInterviewNotDone)">
-                    <i class="fa fa-reply text-info"></i> {{_t('retry_complete_inclusion')}}
-                </button>
-            </div>
-        </div>
-    </div>
 </div> <!-- /ng-controller --> 
 

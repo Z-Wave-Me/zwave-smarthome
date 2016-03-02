@@ -35,8 +35,8 @@
 }
 
 .vendor-entry{
-     @include appFloat(left);
-     width: $device-vendor-w; 
+    @include appFloat(left);
+    width: $device-vendor-w; 
 }
 
 .col-device-vendor{
@@ -100,10 +100,10 @@
     font-weight: bold;
     display: block;
     width: 100%;
-     &.noelements{
-            color: lighten($app-body-color,20%);
-            font-weight: normal;
-        }
+    &.noelements{
+        color: lighten($app-body-color,20%);
+        font-weight: normal;
+    }
 }
 .zwave-hidden-true{
     a{
@@ -133,6 +133,23 @@
 .network-block{
     margin-bottom: $spacing-double;
 }
+
+/* Inclusion
+-------------------------------------------------- */
+
+#zwave_inclusion{
+    .report-entry{
+        .report-col {
+            vertical-align: top;
+        }
+    } 
+    .inclusion-header{
+        h3{
+            font-weight: bold;
+        }
+    }
+}
+
 
 /* Configuration
 -------------------------------------------------- */

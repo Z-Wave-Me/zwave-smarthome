@@ -1,7 +1,7 @@
 <!-- Zwave device view -->
 <div ng-controller="ZwaveAddController">
    <div class="text-center device-autodetect">
-       <a href="#zwave/include" class="btn btn-default btn-lg btn-block" title="{{_t('lb_zwave_autodetect')}}">
+       <a href="#zwave/inclusion" class="btn btn-default btn-lg btn-block" title="{{_t('lb_zwave_autodetect')}}">
              <i class="fa fa-plug text-success"></i> <span class="btn-name">{{_t('lb_zwave_autodetect')}}</span>
        </a>
    </div>
@@ -26,7 +26,7 @@
                  {{v.name}}
             </div>
          <div class="report-col report-ctrl">
-            <a href="#zwave/include/{{v.id}}" class="btn btn-default" title="{{_t('lb_include_device')}}">
+            <a href="#zwave/inclusion/{{v.id}}" class="btn btn-default" title="{{_t('lb_include_device')}}">
                 <i class="fa fa-plug text-primary"></i>
             </a>
          </div>

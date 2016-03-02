@@ -3632,48 +3632,59 @@ img.widget-promo-image {
   margin-bottom: 20px;
 }
 
+/* Inclusion
+-------------------------------------------------- */
+/* line 142, ../sass/modules/_devices.scss */
+#zwave_inclusion .report-entry .report-col {
+  vertical-align: top;
+}
+/* line 147, ../sass/modules/_devices.scss */
+#zwave_inclusion .inclusion-header h3 {
+  font-weight: bold;
+}
+
 /* Configuration
 -------------------------------------------------- */
-/* line 139, ../sass/modules/_devices.scss */
+/* line 156, ../sass/modules/_devices.scss */
 .table-cfg-interview th {
   width: 25%;
 }
 
-/* line 142, ../sass/modules/_devices.scss */
+/* line 159, ../sass/modules/_devices.scss */
 .cfg-block {
   margin: 0 0 20px 0;
   padding: 0 0 20px 0;
 }
 
-/* line 147, ../sass/modules/_devices.scss */
+/* line 164, ../sass/modules/_devices.scss */
 .cfg-block h4 {
   font-size: 16px;
 }
 
-/* line 151, ../sass/modules/_devices.scss */
+/* line 168, ../sass/modules/_devices.scss */
 .cfg-control-content {
   padding: 10px;
   margin: 10px 0;
 }
 
-/* line 155, ../sass/modules/_devices.scss */
+/* line 172, ../sass/modules/_devices.scss */
 .cfg-info {
   margin: 10px 0 0 0;
   padding: 10px 0 0 0;
   border-top: solid 1px #d3d3d3;
 }
 
-/* line 160, ../sass/modules/_devices.scss */
+/* line 177, ../sass/modules/_devices.scss */
 .commads-is-current {
   text-decoration: underline;
 }
 
-/* line 163, ../sass/modules/_devices.scss */
+/* line 180, ../sass/modules/_devices.scss */
 #wakeup_cont .form-inline {
   float: left;
 }
 
-/* line 166, ../sass/modules/_devices.scss */
+/* line 183, ../sass/modules/_devices.scss */
 .spin-true .fa-spin {
   display: none;
 }
