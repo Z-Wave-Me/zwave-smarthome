@@ -12,6 +12,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     /**
      * Global scopes
      */
+    angular.extend(cfg.route,{os: dataService.getOs()})
     $scope.cfg = cfg;
     $scope.languages = {};
     $scope.loading = false;

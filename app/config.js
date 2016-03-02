@@ -9,7 +9,11 @@ var config_data = {
         //'server_url': 'http://192.168.10.119:8083/',
         // Interval in miliseconds to refresh data
         'interval': 3000,
-        // Interval in miliseconds (5 min) to clear history (json) cache
+        // Route - will be extende
+        'route': {
+            // User agent operating system
+            os: 'unknown'
+        },
         'history_cache_interval': 300000,
         // Default auth credentials
          'default_credentials': {

@@ -9,8 +9,8 @@
 }
 
 .input-group-addon {
-   border: solid 1px $form-input-border-color;
-   background-color: $form-addon-bcg-color;
+    border: solid 1px $form-input-border-color;
+    background-color: $form-addon-bcg-color;
 }
 
 textarea{
@@ -37,6 +37,27 @@ input[type=radio] {
     margin: 0 $spacing 0;
 }
 
+// IOS inputs
+.os-iphone,.os-ipad,.os-ipod{
+    input[type=checkbox]{
+        -ms-transform: scale($checkbox-ios-scale); /* IE */
+        -moz-transform: scale($checkbox-ios-scale); /* FF */
+        -webkit-transform: scale($checkbox-ios-scale); /* Safari and Chrome */
+        -o-transform: scale($checkbox-ios-scale); /* Opera */
+        padding: $spacing;
+        margin: 0 $spacing 0;
+    }
+    input[type=radio] { 
+        transform: scale($radio-ios-scale, $radio-ios-scale); 
+        -moz-transform: scale($radio-ios-scale, $radio-ios-scale); 
+        -ms-transform: scale($radio-ios-scale, $radio-ios-scale); 
+        -webkit-transform: scale($radio-ios-scale, $radio-ios-scale); 
+        -o-transform: scale($radio-ios-scale,$radio-ios-scale); 
+        padding: $spacing;
+        margin: 0 $spacing 0;
+    }
+}
+
 
 .form-page{
     margin-bottom: $spacing-double;
@@ -47,10 +68,10 @@ input[type=radio] {
         border-bottom: solid 1px $form-border-color;
         padding-bottom: $spacing;
         &.last {
-         border-bottom: 0;
-        padding-bottom: 0;
-        margin-bottom: 0;
-    }
+            border-bottom: 0;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
     }
     label{
         font-weight: normal;
