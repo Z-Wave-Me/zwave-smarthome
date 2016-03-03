@@ -135,6 +135,26 @@
             <!-- <a href="#zwave/devices" class="btn btn-info">{{_t('continue')}} <i class="fa fa-chevron-right"></i></a> --> 
         </div>
     </div>
+    <!-- cancelConfigurationModal -->
+    <div id="cancelConfigurationModal" class="appmodal" ng-if_="modalArr.cameraModal">
+        <div class="appmodal-in">
+            <div class="appmodal-header">
+                <span class="appmodal-close" ng-click="handleModal('cameraModal', $event)"><i class="fa fa-times"></i></span>
+                <h3>{{cfg.app_name}}</h3>
+            </div>
+            <div class="appmodal-body">
+                {{_t('configuration_cancel')}}
+            </div>
+            <div class="appmodal-footer">
+                <button type="button" class="btn btn-default" ng-click="cancelManualConfiguration(true)">
+                    <i class="fa fa-refresh text-success"></i> {{_t('reset_redo_inclusion')}}
+                </button>
+                 <button type="button" class="btn btn-default" ng-click="handleModal(false)">
+                     <i class="fa fa-arrow-right text-primary"></i> {{_t('continue_anyway')}}
+                 </button>
+            </div>
+        </div>
+    </div>
     <div class="device-logo" ng-include="'app/views/zwave/zwave_nav.html'"></div>
 </div> <!-- /ng-controller --> 
 
