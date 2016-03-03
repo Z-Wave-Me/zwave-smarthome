@@ -1,18 +1,42 @@
 <!-- Admin factory view -->
 <h2 class="accordion-entry-title" ng-click="expandElement('factory')">
     <i class="fa fa-refresh"></i> <span ng-bind="_t('factory_default')"></span>
-     <i class="fa accordion-arrow" ng-class="expand.factory  ? 'fa-chevron-up':'fa-chevron-down'"></i>
+    <i class="fa accordion-arrow" ng-class="expand.factory ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
 </h2>
-<div class="accordion-entry-ctrl" ng-if_="expand.factory" ng-controller="ManagementFactoryController">
-     <bb-loader></bb-loader>
-    <div class="form form-inline form-page">
-        <div class="fieldset">
+<div class="accordion-entry-ctrl" ng-if="expand.factory" ng-controller="ManagementFactoryController">
+    <bb-loader></bb-loader>
+    <form name="form_factory_default" id="form_profile" class="form form-page" ng-submit="resetFactoryDefault(_t('factory_default_war'))" novalidate>
+        <fieldset>
             <bb-help-text trans="_t('factory_default_info')"></bb-help-text>
-        </div>
-        <div class="fieldset submit-entry">
-            <button class="btn btn-submit" ng-click="resetFactoryDefault(_t('factory_default_war'))" title="{{_t('reset_factory_default')}}">
+            <div class="form-group">
+                <div>
+                    <input type="checkbox" name="overwriteBackupCfg" value="true" id="overwriteBackupCfg" 
+                           ng-model="factoryDefault.model.overwriteBackupCfg" 
+                           ng-checked="factoryDefault.model.overwriteBackupCfg" /> 
+                    <label ng-bind="_t('overwriteBackupCfg')"></label>
+                </div>
+                <div>
+                    <input type="checkbox" name="resetZway" value="true" id="resetZway" 
+                           ng-model="factoryDefault.model.resetZway" 
+                           ng-checked="factoryDefault.model.resetZway" /> 
+                    <label ng-bind="_t('resetZway')"></label>
+                </div>
+                <div class="form-inline">
+                    <label>{{_t('useDefaultConfig')}}:</label>
+                    <input
+                        class="form-control form-control-sm" 
+                        type="text" 
+                        name="useDefaultConfig"
+                        id="scratch_id" 
+                        value="{{factoryDefault.model.useDefaultConfig}}" 
+                        ng-model="factoryDefault.model.useDefaultConfig" />
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="submit-entry">
+            <button type="submit" class="btn btn-submit" title="{{_t('reset_factory_default')}}">
                 <i class="fa fa-refresh"></i> <span class="btn-name">{{_t('reset_factory_default')}}</span>
             </button>
-        </div>
-    </div>
+        </fieldset>
+    </form>
 </div>
