@@ -1,4 +1,6 @@
 {
+    "factory_default_info": "This will remove all already installed or updated apps, devices, settings etc.",
+    "factory_default_war": "Are you sure you want to reset all to default factory settings?",
     "history": "History",
     "confirm_password": "Retype password to confirm",
     "delete_successful": "Data was successfully deleted",
@@ -116,7 +118,6 @@
     "per_room": "za Pokoj",
     "element_id": "Element ID",
     "factory_default": "Výchozí nastavení",
-    "factory_default_war": "Bez vlivu na Z-Wave sít, jen reset modulů a názvů elementů.",
     "back_factory_default": "Zpět na Výchozí nastavení.",
     "returning_factory_default": "Vrácení systémi na Výchozí nastavení ...",
     "factory_default_success": "Systém úspěšně vrátil Výchozí nastavení.",

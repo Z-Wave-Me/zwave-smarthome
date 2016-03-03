@@ -5,6 +5,7 @@ Angular app
 ## v1.3.1
 #### New features
 - Added HTML title attribute to navigation and buttons.
+- Management - reset to factory default.
 
 #### Fixes
 - ???

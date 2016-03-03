@@ -1,4 +1,6 @@
 {
+    "factory_default_info": "This will remove all already installed or updated apps, devices, settings etc.",
+    "factory_default_war": "Are you sure you want to reset all to default factory settings?",
     "history": "History",
     "confirm_password": "Geben Sie Ihr Passwort erneut ein, um es zu bestätigen",
     "delete_successful": "Data was successfully deleted",
@@ -116,7 +118,6 @@
     "per_room": "pro Raum",
     "element_id": "Gerätenummer",
     "factory_default": "Auslieferungszustand",
-    "factory_default_war": "Dies betrifft nur die Namen der Elemente und andere Konfigurationseinstellungen. Das Z-Wave-Netz wird nicht verändert.",
     "back_factory_default": "Zurück zu Auslieferungszustand",
     "returning_factory_default": "System wird in Auslieferungszustand zurückgesetzt....",
     "factory_default_success": "System wurde erfolgreich in Auslieferungszustand zurückgesetzt.",
