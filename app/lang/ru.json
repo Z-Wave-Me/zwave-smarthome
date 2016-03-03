@@ -1,4 +1,6 @@
 {
+    "factory_default_info": "This will remove all already installed or updated apps, devices, settings etc.",
+    "factory_default_war": "Are you sure you want to reset all to default factory settings?",
     "history": "History",
     "confirm_password": "Retype password to confirm",
     "delete_successful": "Data was successfully deleted",
@@ -114,7 +116,6 @@
     "per_room": "per Room",
     "element_id": "ID элемента",
     "factory_default": "Factory default",
-    "factory_default_war": "This will not impact the Z-Wave network but the modules and names of elements only. ",
     "back_factory_default": "Back to Factory Default",
     "returning_factory_default": "Returning system to Factory default...",
     "factory_default_success": "Система успешно сброшена на Заводские настройки.",

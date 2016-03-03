@@ -1,4 +1,6 @@
 {
+     "factory_default_info": "This will remove all already installed or updated apps, devices, settings etc.",
+    "factory_default_war": "Are you sure you want to reset all to default factory settings?",
     "history": "History",
     "confirm_password": "Retype password to confirm",
     "delete_successful": "Data was successfully deleted",
@@ -110,7 +112,6 @@
     "per_room": "每个房间",
     "element_id": "设备ID",
     "factory_default": "出厂设置",
-    "factory_default_war": "这不会影响Z-Wave网络，但是模块和元素名除外. ",
     "back_factory_default": "返回出厂设置",
     "returning_factory_default": "返回系统至出厂设置...",
     "factory_default_success": "系统成功返回到出厂设置.",

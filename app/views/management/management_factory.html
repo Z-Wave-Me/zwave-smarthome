@@ -1,0 +1,18 @@
+<!-- Admin factory view -->
+<h2 class="accordion-entry-title" ng-click="expandElement('factory')">
+    <i class="fa fa-refresh"></i> <span ng-bind="_t('factory_default')"></span>
+     <i class="fa accordion-arrow" ng-class="expand.factory  ? 'fa-chevron-up':'fa-chevron-down'"></i>
+</h2>
+<div class="accordion-entry-ctrl" ng-if_="expand.factory" ng-controller="ManagementFactoryController">
+     <bb-loader></bb-loader>
+    <div class="form form-inline form-page">
+        <div class="fieldset">
+            <bb-help-text trans="_t('factory_default_info')"></bb-help-text>
+        </div>
+        <div class="fieldset submit-entry">
+            <button class="btn btn-submit" ng-click="resetFactoryDefault(_t('factory_default_war'))" title="{{_t('reset_factory_default')}}">
+                <i class="fa fa-refresh"></i> <span class="btn-name">{{_t('reset_factory_default')}}</span>
+            </button>
+        </div>
+    </div>
+</div>

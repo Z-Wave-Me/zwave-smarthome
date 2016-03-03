@@ -1,4 +1,6 @@
 {
+    "factory_default_info": "This will remove all already installed or updated apps, devices, settings etc.",
+    "factory_default_war": "Are you sure you want to reset all to default factory settings?",
     "history": "History",
     "confirm_password": "Retype password to confirm",
     "delete_successful": "Data was successfully deleted",
@@ -116,7 +118,6 @@
     "per_room": "per rum",
     "element_id": "NodID",
     "factory_default": "Fabriksåterställning",
-    "factory_default_war": "Detta kommer inte att påverka ZWave-nätverket, men modulerna och namnen på noderna. ",
     "back_factory_default": "Tillbaka till fabriskåterställning",
     "returning_factory_default": "Återställer systemet till fabriksinställnignarna...",
     "factory_default_success": "Lyckades med att återställa systemet till fabriksinställningarna.",

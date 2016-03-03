@@ -160,7 +160,7 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
     $scope.loadData = function (id) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('profiles', '/' + id, true).then(function (response) {
-             $scope.loading = false;
+            $scope.loading = false;
             $scope.input = response.data.data;
             $scope.auth.login = response.data.data.login;
         }, function (error) {
@@ -259,7 +259,7 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
 //            password: auth.password
 //
 //        };
-        dataFactory.putApi('profiles_auth_update', $scope.id,  $scope.auth).then(function (response) {
+        dataFactory.putApi('profiles_auth_update', $scope.id, $scope.auth).then(function (response) {
             $scope.loading = false;
             var data = response.data.data;
             if (!data) {
@@ -484,6 +484,32 @@ myAppController.controller('ManagementRestoreController', function ($scope, data
 
     };
 });
+
+/**
+ * Management factory default controller
+ */
+myAppController.controller('ManagementFactoryController', function ($scope, $timeout, $window, dataFactory, dataService) {
+    /**
+     * Reset to factory
+     */
+    $scope.resetFactoryDefault = function (message) {
+        alertify.confirm(message, function () {
+            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('returning_factory_default')};
+            dataFactory.getApi('factory_default','?resetZway=true&useDefaultConfig=ttyAMA0').then(function (response) {
+                $scope.loading = false;
+                dataService.showNotifier({message: $scope._t('factory_default_success')});
+                $timeout(function () {
+                    alertify.dismissAll();
+                    $window.location.reload();
+                }, 3000);
+            }, function (error) {
+                alertify.alertError($scope._t('factory_default_error'));
+                $scope.loading = false;
+            });
+        });
+    };
+
+});
 /**
  * App Store controller
  */
@@ -619,9 +645,9 @@ myAppController.controller('ManagementReportController', function ($scope, $wind
         input.shui_version = $scope.cfg.app_version;
         //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         dataFactory.postReport(input).then(function (response) {
-             $scope.loading =false;
-             dataService.showNotifier({message: $scope._t('success_send_report') + ' ' + input.email});
-             $route.reload();
+            $scope.loading = false;
+            dataService.showNotifier({message: $scope._t('success_send_report') + ' ' + input.email});
+            $route.reload();
         }, function (error) {
             alertify.alertError($scope._t('error_send_report'));
             $scope.loading = false;

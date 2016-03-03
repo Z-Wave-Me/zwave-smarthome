@@ -1,6 +1,5 @@
 <!-- Home view -->
 <div ng-controller="ManagementController" class="mobile-padding">
-    
     <!-- ///////////////////////////// User management ///////////////////////////// -->
     <div class="accordion-entry" ng-include="'app/views/management/management_user.html'"></div>
 
@@ -12,11 +11,14 @@
          ng-if="controllerInfo.uuid && cfg.app_type !== 'popp' && !isMobile" 
          ng-include="'app/views/management/management_licence.html'"></div>
     
-     <!-- ///////////////////////////// Backup ///////////////////////////// -->
+    <!-- ///////////////////////////// Backup ///////////////////////////// -->
      <div class="accordion-entry" ng-include="'app/views/management/management_backup.html'" ng-if="!isMobile"></div>
     
      <!-- ///////////////////////////// Restore ///////////////////////////// -->
      <div class="accordion-entry" ng-include="'app/views/management/management_restore.html'" ng-if="!isMobile"></div>
+     
+     <!-- ///////////////////////////// Factory default  ///////////////////////////// -->
+     <div class="accordion-entry" ng-include="'app/views/management/management_factory.html'"></div>
 
     <!-- ///////////////////////////// Firmware update ///////////////////////////// --> 
     <div class="accordion-entry" 
