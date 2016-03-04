@@ -137,8 +137,14 @@
     "per_room": "per Room",
     "element_id": "Element ID",
     "factory_default": "Factory default",
+<<<<<<< HEAD (712893a) - Zwave: removing demo fi
     "reset_factory_default": "Reset to Factory Default",
     "returning_factory_default": "Returning system to Factory default. Please wait...",
+=======
+    "factory_default_war": "This will not impact the Z-Wave network but the modules and names of elements only. ",
+    "back_factory_default": "Back to Factory Default",
+    "returning_factory_default": "Returning system to Factory default...",
+>>>>>>> 0c55a078f18f32fd70bc365cdc721f8076bbb0c8
     "factory_default_success": "System successfully returned to Factory Default.",
     "factory_default_error": "Unable to return the system to Factory Default.",
     "firmware_update": "Firmware update",

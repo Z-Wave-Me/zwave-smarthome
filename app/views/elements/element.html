@@ -57,6 +57,33 @@
 
                 </div>
             </fieldset>
+             <fieldset>
+                 <h3>Icons</h3>
+                 <div class="app-row app-row-report app-row-icons clearfix">
+                     <div class="report-entry" ng-repeat="v in icons">
+                       <div class="report-col report-media">
+                           <img class="report-img" ng-src="{{v.default}}" alt="{{v.type}}"/>
+                             
+                       </div>
+                         <div class="report-col report-body">
+                            <i class="fa fa-long-arrow-right" ng-if="v.custom"></i>
+                       </div>
+                       <div class="report-col report-media">
+                            <img class="report-img" ng-src="{{v.custom}}" ng-if="v.custom" alt="{{v.type}}"/>
+                           <img class="report-img img-opacity-50" ng-src="{{cfg.img.icons }}cancel.png" ng-if="!v.custom"  alt="img"/>
+                       </div>
+                         <div class="report-col report-ctrl">
+                             <button href="" class="btn btn-default" ng-click="uploadIcon(v, 'online_install')">
+                                    <i class="fa fa-upload text-success"></i>
+                                </button> 
+                            <button title="{{_t('lb_remove')}}" class="btn btn-default" ng-disabled="!v.custom" ng-click="removeIcon()">
+                                <i class="fa fa-remove text-danger"></i>
+                            </button>
+                         </div>
+                   </div>
+                 </div>
+                 <bb-help-text trans="_t('Info text comes here')"></bb-help-text>
+             </fieldset>
             <fieldset ng-if="elementAccess(cfg.role_access.admin)">
                 <h3><span ng-bind="_t('lb_tags')"></span></h3>
                 <div class="form-group form-inline">

@@ -87,6 +87,9 @@ a {
 -------------------------------------------------- */
 .update-time-tick{
     font-size: $app-updatetime-font-size;
+    .text-success{
+        color: $app-brand-success;
+    }
     .fa{
         font-size: $app-updatetime-icon-size; 
     }

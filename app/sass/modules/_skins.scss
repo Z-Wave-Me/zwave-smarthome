@@ -1,0 +1,60 @@
+/* Apps
+-------------------------------------------------- */
+.widget-entry-skin{
+    .widget-entry-in{
+        min-height: $skin-widget-col-h;
+        height: auto;
+        .widget-img{
+            //position: absolute;
+            top: 0;
+            left: 0;
+
+        }
+        .widget-header{
+            display: none;
+        }
+        .widget-content{
+            margin: $spacing-double 0 0 $skin-img + $spacing;
+        }
+        .bottom-aligner{
+            display: none;
+        }
+        .widget-footer{
+            margin-top: 10px;
+            .btn-name{
+                display: none !important;
+            }
+
+        }
+        .widget-ctrl{
+            float: none;
+            width: 100%;
+            &.ctrl-left{
+                display: none;
+            }
+        }
+    }
+}
+#skins_local,#skins_online{
+    .widget-warning{
+        .widget-img{
+            opacity: 0.4;
+            filter: alpha(opacity=40);
+
+        }
+        .widget-title{
+            h3{
+              color: lighten($widget-heading-color,40%) !important;
+            }
+        }
+    }
+}
+
+/* Skin detail
+-------------------------------------------------- */
+.skin-detail-img{
+    text-align: center;
+}
+.skin-detail-perex{
+    margin: $spacing 0;
+}

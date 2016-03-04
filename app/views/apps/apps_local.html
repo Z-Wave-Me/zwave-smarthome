@@ -1,7 +1,7 @@
 <!-- Local apps view -->
 <div ng-controller="AppBaseController">
      <bb-loader></bb-loader>
-    <div ng-controller="AppLocalController">
+    <div ng-controller="AppLocalController" id="apps_local">
         <!-- Apps navigation -->
         <div ng-include="'app/views/apps/navi.html'"></div>
     
@@ -41,11 +41,11 @@
             </ul>
         </div>
     </div>
-    <div class="app-row app-row-widget app-row-app-local clearfix">
+    <div class="app-row app-row-widget clearfix">
         <div class="widget-entry widget-entry-app"
              id="local_module_{{v.id}}" 
              ng-repeat="v in dataHolder.modules.all|orderBy:'defaults.title' | filter:q  track by v.id" 
-             ng-class="dataHolder.onlineModules.ids[v.id] && dataHolder.onlineModules.ids[v.id].version != v.version ? 'app-entry-success': ''">
+             ng-class="{'widget-danger': dataHolder.onlineModules.ids[v.id] && dataHolder.onlineModules.ids[v.id].version != v.version}">
                 <div class="widget-entry-in"> 
                     <!-- Widget img -->
                     <div class="widget-img">

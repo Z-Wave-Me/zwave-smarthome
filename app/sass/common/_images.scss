@@ -24,13 +24,22 @@ img {
 }
 
 .app-image-detail{
-     max-width: $app-detail-img;
+    max-width: $app-detail-img;
     max-height: $app-detail-img;
     @include appBorderRadius(50%);
 }
-
+.skin-preview-img{
+    max-width: $skin-img;
+    max-height: $skin-img;
+    border: solid 4px $widget-img-border-color;
+}
+.skin-image-detail{
+    max-width: $skin-detail-img;
+    max-height: $skin-detail-img;
+    border: solid 4px $skin-border-color;
+}
 .include-image-detail{
-   max-width: $include-detail-img;
+    max-width: $include-detail-img;
     max-height: $include-detail-img;
     //@include appBorderRadius(50%);
 }
@@ -63,4 +72,9 @@ img {
 .lang-img{
     max-width: $lang-img;
     max-height:$lang-img;
+}
+.img-opacity-50{
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+
 }

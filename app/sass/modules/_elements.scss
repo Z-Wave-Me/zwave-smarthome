@@ -73,18 +73,6 @@
     }
 }
 
- .is-new-true {
-      .widget-entry-in{
-        border-color: $element-widget-isnew-border-color !important;
-     }
-    }
-
-.app-entry-success {
-    .is-new-true {
-        border-color: $element-widget-isnew-border-color;
-    }
-}
-
 /* Specifics element styles
 ----------------------------------------------------*/
 .sensorMultiline{
@@ -151,6 +139,11 @@
 .btn-tag{
     float: none !important;
     border-radius: 4px !important;
+}
+.app-row-icons{
+    .report-body{
+        width: 30px;
+    }
 }
 
 /* Home widget

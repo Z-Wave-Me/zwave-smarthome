@@ -50,9 +50,16 @@ var config_data = {
             'firstaccess': 'ZAutomation/api/v1/system/first-access',
              'factory_default': 'ZAutomation/api/v1/resetToFactoryDefault'
         },
+        // Skin
+        'skin': {
+            'active': 'default',
+            'path': 'storage/skins/'
+        },
         // List of image pathes
         'img': {
-            'icons': 'storage/img/icons/'
+            'logo': 'storage/img/logo/',
+            'icons': 'storage/img/icons/',
+            'skin_screenshot': 'app/css/'
         },
         // Api url
         'expert_url': '/expert',
@@ -84,6 +91,10 @@ var config_data = {
         'online_module_comment_create_url': 'https://developer.z-wave.me/?uri=api-comments-create',
         // Online module rating create url
         'online_module_rating_create_url': 'https://developer.z-wave.me/?uri=api-rating-create',
+        // Online skins url
+        'online_skin_url': 'http://hrix.net/modules_new/?uri=skins',
+        // Online skins storage
+        'online_skin_storage': 'http://hrix.net/modules_new/storage/skins/',
         // Online module download url
         'blacklist_url': 'https://hrix.net/blacklist.json', 
         // Post report url
@@ -223,7 +234,7 @@ var config_data = {
         // Config
         'custom_cfg': {
            'default': {
-               'logo': 'app/img/app-logo-default.png',
+               'logo': 'app-logo-default.png',
                 hidden_apps: [
                     'Cron',
                     'BatteryPolling',
@@ -253,7 +264,7 @@ var config_data = {
                 ]
             },
             'popp': {
-                'logo': 'app/img/app-logo-popp.png',
+                'logo': 'app-logo-popp.png',
                 'hidden_apps': [
                     'Cron',
                     'CodeDevice',
@@ -283,7 +294,7 @@ var config_data = {
                 ]
             },
             'wd': {
-                'logo': 'app/img/app-logo-wd.png',
+                'logo': 'app-logo-wd.png',
                 'hidden_apps': [
                     'Cron',
                     'BatteryPolling',

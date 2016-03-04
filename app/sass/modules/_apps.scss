@@ -15,6 +15,9 @@
         }
         .widget-footer{
             margin-top: 10px;
+            .btn-name{
+                display: none !important;
+            }
 
         }
         .widget-ctrl{
@@ -25,12 +28,26 @@
             }
         }
     }
+
 }
-.app-entry-success {
-    .widget-entry-in{
-        @include appGradientSuccess();
+
+#apps_online{
+    .widget-warning{
+        .widget-img{
+            opacity: 0.4;
+            filter: alpha(opacity=40);
+
+        }
+        .widget-title{
+            h3{
+                a{
+                    color: lighten($widget-heading-color,40%) !important;
+                }
+            }
+        } 
     }
 }
+
 
 /* App detail
 -------------------------------------------------- */

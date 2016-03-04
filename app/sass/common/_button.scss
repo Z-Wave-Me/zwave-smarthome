@@ -56,6 +56,16 @@
     }
 }
 
+.btn-installed{
+    border: 0 none;
+    background-color: none !important;
+}
+
+.btn-disabled{
+    border: 0 none;
+    background-color: transparent !important;
+}
+
 .btn-small{
     font-size: $app-btn-small-font-size;
     .fa{
@@ -99,6 +109,11 @@
     }
     .active .fa{
         color: $tabs-icon-active-color;
+    }
+}
+.btn-tabs-2{
+    .btn{
+        width: 50%;
     }
 }
 .btn-tabs-3{

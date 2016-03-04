@@ -115,6 +115,16 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     requireLogin: true,
                     roles: cfg.role_access.module
                 }).
+                //Local skins
+                when('/skins/local', {
+                    templateUrl: 'app/views/skins/skins_local.html',
+                    requireLogin: true
+                }).
+                //Online skins
+                when('/skins/online', {
+                    templateUrl: 'app/views/skins/skins_online.html',
+                    requireLogin: true
+                }).        
                 //Devices_
                 when('/devices', {
                     templateUrl: 'app/views/devices/devices.html',

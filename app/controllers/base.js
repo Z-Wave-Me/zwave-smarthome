@@ -21,6 +21,17 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     $scope.hostName = $location.host();
     $scope.ZWAYSession = dataService.getZWAYSession();
     $scope.lastLogin = dataService.getLastLogin();
+    $scope.setSkin = function () {
+        if($cookies.skin && $cookies.skin !== 'default'){
+            cfg.skin.active =  $cookies.skin;
+            cfg.img.icons = cfg.skin.path + $cookies.skin + '/img/icons/';
+            cfg.img.logo = cfg.skin.path + $cookies.skin + '/img/logo/';
+             //$("link[id='main_css']").attr('href', 'storage/skins/defaultzip/main.css');
+              $("link[id='main_css']").attr('href', cfg.skin.path + $cookies.skin + '/main.css');
+        }
+
+    };
+    $scope.setSkin();
     $scope.setPollInterval = function () {
         if (!$scope.user) {
             $scope.cfg.interval = $scope.cfg.interval;
@@ -163,9 +174,9 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
      * Get app logo
      */
     $scope.getAppLogo = function () {
-        var logo = 'app/img/app-logo-default.png';
+        var logo = cfg.img.logo + 'app-logo-default.png';
         if (cfg.custom_cfg[cfg.app_type]) {
-            logo = cfg.custom_cfg[cfg.app_type].logo || logo;
+            logo =  cfg.img.logo + cfg.custom_cfg[cfg.app_type].logo || logo;
         }
         return logo;
     };

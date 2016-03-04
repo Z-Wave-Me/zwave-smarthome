@@ -6,7 +6,7 @@
      <div class="app-row app-row-report app-row-battery clearfix">
          <div id="row_battery_{{v.id}}" class="report-entry" ng-repeat="v in devices.batteries| orderBy:'level':false">
              <div class="report-col report-media">
-                     <img class="report-img" ng-src="storage/img/icons/{{v.metrics.level|getBatteryIcon}}" alt="img" />
+                     <img class="report-img" ng-src="{{v.metrics.level|getBatteryIcon}}" alt="img" />
                  </div>
              <div class="report-col report-body">
                  (#{{v.nodeId}}) {{v.nodeName}}

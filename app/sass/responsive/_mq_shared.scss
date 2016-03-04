@@ -204,6 +204,7 @@ input[type=radio] {
     .widget-entry-in{
         //height: $widget-col-h;
         border-color: $widget-border-color;
+         border: solid 1px $widget-border-color;
         margin: $spacing;
         .widget-header {
             .widget-icon{
@@ -214,6 +215,24 @@ input[type=radio] {
             }
         }
     }
+}
+
+.widget-success{
+/*    .widget-entry-in{
+        border: solid 4px $widget-success-border-color;
+    }*/
+}
+
+.widget-warning{
+/*    .widget-entry-in{
+    border: solid 4px $widget-warning-border-color;
+    }*/
+}
+
+.widget-danger{
+/*    .widget-entry-in{
+     border: solid 4px $widget-danger-border-color;
+    }*/
 }
 /* Elements
 -------------------------------------------------- */
@@ -229,6 +248,19 @@ input[type=radio] {
     .widget-entry-in{
         min-height: 1px;
         height: $app-widget-col-h;
+        .widget-footer{
+            margin: $spacing 0 0 0;
+
+        }
+    }
+}
+
+/* Apps
+-------------------------------------------------- */
+.widget-entry-skin{
+    .widget-entry-in{
+        min-height: 1px;
+        height: $skin-widget-col-h;
         .widget-footer{
             margin: $spacing 0 0 0;
 

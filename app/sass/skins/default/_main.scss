@@ -92,11 +92,10 @@
             @include appGradient();
             @include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29))
         }
-        &.app-entry-success{
-            .widget-entry-in{
-             @include appGradientSuccess();
+ .widget-entry-in{
+                 border-width: 4px;
+                //@include appGradientSuccess();
               }
-        }
         
     }
 }

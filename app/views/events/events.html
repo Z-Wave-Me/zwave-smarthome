@@ -60,7 +60,7 @@
         <div class="report-entry event-level-{{v.level}}" 
              dir-paginate="v in collection | orderBy: '-timestamp' | itemsPerPage: pageSize" current-page="currentPage" id="row_{{v.id}}">
             <div class="report-col report-media">
-                <img id="event_img_{{v.id}}" class="report-img" ng-src="storage/img/events/{{v.type|getEventIcon:v.message}}" alt="{{v.type}}"/>
+                <img id="event_img_{{v.id}}" class="report-img" ng-src="{{v.type|getEventIcon:v.message}}" alt="{{v.type}}"/>
             </div>
             
             <div class="report-col report-body">
