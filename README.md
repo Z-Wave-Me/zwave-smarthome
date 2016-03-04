@@ -4,7 +4,7 @@ SmartHome UI
 Angular app
 ## v1.3.1
 #### New features
-- Devices: Improved Z-Wave inclusion.
+- Improved Z-Wave inclusion.
 - Added HTML title attribute to navigation and buttons.
 - Management: reset to factory default.
 
@@ -12,6 +12,7 @@ Angular app
 - ???
 
 #### Changes
+- Complete refactored Z-Wave inclusion.
 - Added login label into first access
 
 ## v1.3.0

@@ -136,10 +136,10 @@
         </div>
     </div>
     <!-- cancelConfigurationModal -->
-    <div id="cancelConfigurationModal" class="appmodal" ng-if_="modalArr.cameraModal">
+    <div id="cancelConfigurationModal" class="appmodal" ng-if="zwaveInclusion.cancelModal">
         <div class="appmodal-in">
             <div class="appmodal-header">
-                <span class="appmodal-close" ng-click="handleModal('cameraModal', $event)"><i class="fa fa-times"></i></span>
+                <span class="appmodal-close" ng-click="cancelManualConfiguration(true)"><i class="fa fa-times"></i></span>
                 <h3>{{cfg.app_name}}</h3>
             </div>
             <div class="appmodal-body">
@@ -149,8 +149,8 @@
                 <button type="button" class="btn btn-default" ng-click="cancelManualConfiguration(true)">
                     <i class="fa fa-refresh text-success"></i> {{_t('reset_redo_inclusion')}}
                 </button>
-                 <button type="button" class="btn btn-default" ng-click="handleModal(false)">
-                     <i class="fa fa-arrow-right text-primary"></i> {{_t('continue_anyway')}}
+                 <button type="button" class="btn btn-default" ng-click="cancelManualConfiguration(false)">
+                    {{_t('continue_anyway')}}  <i class="fa fa-arrow-right text-primary"></i> 
                  </button>
             </div>
         </div>
