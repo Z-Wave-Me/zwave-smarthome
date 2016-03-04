@@ -308,7 +308,8 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
      * Update module
      */
     $scope.updateModule = function (module, confirm) {
-        alertify.confirm(confirm, function () {
+         var patches = module.patchnotes ? '<div class="app-confirm-content">' + $filter('stripTags')(module.patchnotes) + '</div>': '';
+          alertify.confirm(patches + confirm, function () {
             $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
             var data = {
                 moduleUrl: $scope.cfg.online_module_download_url + module.file

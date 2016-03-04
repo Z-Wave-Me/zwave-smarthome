@@ -81,3 +81,13 @@
        padding: $spacing;
    }
 }
+
+/* Confirm content
+-------------------------------------------------- */
+.app-confirm-content{
+    padding: $spacing;
+    border: solid 1px $app-border-color;
+    margin: $spacing 0;
+    max-height: 200px;
+    overflow: auto;
+}

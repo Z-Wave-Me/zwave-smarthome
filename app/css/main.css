@@ -3049,6 +3049,17 @@ http://codepen.io/MattIn4D/pen/LiKFC
   padding: 10px;
 }
 
+/* Confirm content
+-------------------------------------------------- */
+/* line 87, ../sass/common/_modal.scss */
+.app-confirm-content {
+  padding: 10px;
+  border: solid 1px #d3d3d3;
+  margin: 10px 0;
+  max-height: 200px;
+  overflow: auto;
+}
+
 /* Pagination
 -------------------------------------------------- */
 /* line 3, ../sass/common/_pagination.scss */
