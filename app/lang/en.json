@@ -90,7 +90,7 @@
     "app_delete_successful_but_restart_necessar": "The app was successfully deleted. Please restart your Raspberry",
     "app_failed_to_delete": "Failed to delete the app.",
     "app_not_exist": "App not found.",
-    "app_reset_confirm": "All App instnces will be deleted",
+    "app_reset_confirm": "The app will be reset to its default settings and all already created instances will be deleted. Do you want to continue with the action?",
     "app_reset_successful_to_version": "The app was successfully reset",
     "app_is_still_reseted": "App is already reset.",
     "room_settings": "Room",

@@ -4,6 +4,7 @@ SmartHome UI
 Angular app
 ## v1.3.1
 #### New features
+- On-line appps: dysplaying patches in the update window and in the app detail.
 - Improved Z-Wave inclusion.
 - Added HTML title attribute to navigation and buttons.
 - Management: reset to factory default.
@@ -13,7 +14,8 @@ Angular app
 
 #### Changes
 - Complete refactored Z-Wave inclusion.
-- Added login label into first access
+- Added login label into first access.
+- Apps: Removed green gradient. Installed apps are grayet out.
 
 ## v1.3.0
 #### New features
