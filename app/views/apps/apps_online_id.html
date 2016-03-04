@@ -8,6 +8,9 @@
      <!-- ///////////////////////////// App description ///////////////////////////// -->
     <div class="accordion-entry" ng-include="'app/views/apps/apps_online_id_desc.html'"></div>
     
+    <!-- ///////////////////////////// App patch notes ///////////////////////////// -->
+    <div class="accordion-entry" ng-if="module.patchnotes" ng-include="'app/views/apps/apps_online_id_patches.html'"></div>
+    
     <!-- ///////////////////////////// App comments ///////////////////////////// -->
     <div class="accordion-entry" ng-include="'app/views/apps/apps_online_id_comments.html'"></div>
     </div>

@@ -12,7 +12,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     /**
      * Global scopes
      */
-    angular.extend(cfg.route,{os: dataService.getOs()})
+    angular.extend(cfg.route,{os: dataService.getOs()});
     $scope.cfg = cfg;
     $scope.languages = {};
     $scope.loading = false;
@@ -21,7 +21,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     $scope.hostName = $location.host();
     $scope.ZWAYSession = dataService.getZWAYSession();
     $scope.lastLogin = dataService.getLastLogin();
-    $scope.setSkin = function () {
+    /*$scope.setSkin = function () {
         if($cookies.skin && $cookies.skin !== 'default'){
             cfg.skin.active =  $cookies.skin;
             cfg.img.icons = cfg.skin.path + $cookies.skin + '/img/icons/';
@@ -31,7 +31,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         }
 
     };
-    $scope.setSkin();
+    $scope.setSkin();*/
     $scope.setPollInterval = function () {
         if (!$scope.user) {
             $scope.cfg.interval = $scope.cfg.interval;
@@ -105,22 +105,6 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     $scope.getBodyId = function () {
         var path = $location.path().split('/');
         return path[1] || 'login';
-//        if (path[1] == 'elements') {
-//            switch (path[2]) {
-//                case 'location':
-//                    return 'location';
-//                    break;
-//                case 'dashboard':
-//                    return 'dashboard';
-//                    break;
-//                default:
-//                    return 'elements';
-//                    break;
-//            }
-//
-//        } else {
-//            return path[1] || 'login';
-//        }
 
     };
 
