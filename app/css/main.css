@@ -1861,6 +1861,11 @@ a:focus {
   border-radius: 50%;
 }
 
+/* line 139, ../sass/common/_body.scss */
+.ipad-test-ipad {
+  border: solid 1px red;
+}
+
 /* Header
 -------------------------------------------------- */
 /* line 3, ../sass/common/_header.scss */
