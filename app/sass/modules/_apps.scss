@@ -59,6 +59,11 @@
         margin: $spacing-double 0 $spacing 0;
     }
 }
+.app-detail-list{
+    border-top: solid 1px $app-border-color;
+    margin: $spacing 0 0 0;
+     padding: $spacing 0 0 0;
+}
 
 /* Apps rating
 -------------------------------------------------- */

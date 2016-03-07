@@ -299,8 +299,10 @@ myAppController.controller('ManagementRemoteController', function ($scope, dataF
         }
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('instances', '/RemoteAccess').then(function (response) {
+            
             $scope.loading = false;
             var remoteAccess = response.data.data[0];
+            console.log(remoteAccess)
             if (Object.keys(remoteAccess).length < 1) {
                 alertify.alertError($scope._t('error_load_data'));
             }
@@ -309,7 +311,7 @@ myAppController.controller('ManagementRemoteController', function ($scope, dataF
                 return;
             }
             if (!remoteAccess.params.userId) {
-                alertify.alertError($scope._t('error_load_data'));
+                alertify.alertError($scope._t('error_remote_access_init'));
                 return;
             }
             remoteAccess.params.pass = null;

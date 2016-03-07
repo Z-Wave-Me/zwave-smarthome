@@ -140,9 +140,9 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                         var obj = {};
                         //obj[item.file] = 'dfdf';
                         //angular.extend()
-                        $scope.dataHolder.onlineModules.ids[item.modulename] = {version: item.version,file: item.file,patchnotes: item.patchnotes};
-                         //$scope.dataHolder.onlineModules.ids[item.modulename] = {file: item.file};
-                          //$scope.dataHolder.onlineModules.ids[item.modulename] = {patchnotes: item.patchnotes};
+                        $scope.dataHolder.onlineModules.ids[item.modulename] = {version: item.version, file: item.file, patchnotes: item.patchnotes};
+                        //$scope.dataHolder.onlineModules.ids[item.modulename] = {file: item.file};
+                        //$scope.dataHolder.onlineModules.ids[item.modulename] = {patchnotes: item.patchnotes};
                         if ($scope.getHiddenApps().indexOf(item.modulename) > -1) {
                             if ($scope.user.role !== 1) {
                                 isHidden = true;
@@ -191,8 +191,8 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
         });
     };
     $scope.loadInstances();
-    
-     /**
+
+    /**
      * Update module
      */
     $scope.updateModule = function (module, confirm) {
@@ -333,7 +333,7 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
         });
 
     };
-   
+
 
 });
 /**
@@ -624,12 +624,11 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
 /**
  * App controller - add module
  */
-myAppController.controller('AppModuleAlpacaController', function ($scope, $routeParams, $filter, $location, dataFactory, dataService, myCache, cfg) {
+myAppController.controller('AppModuleAlpacaController', function ($scope, $routeParams, $route,$filter, $location, $q, dataFactory, dataService, myCache, cfg) {
     $scope.showForm = false;
     $scope.success = false;
     $scope.alpacaData = true;
     $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
-    $scope.collection = {};
     $scope.input = {
         'instanceId': 0,
         'active': true,
@@ -639,11 +638,40 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
         'moduleTitle': null,
         'category': null
     };
+    $scope.moduleId = {
+        redirect: $routeParams.redirect,
+        find: {},
+        categoryName: null,
+        dependency: {
+            activate: {},
+            download: {}
+        }
+    };
+
 
     $scope.onLoad = function () {
         myCache.remove('instances');
     };
     $scope.onLoad();
+
+    /**
+     * Load categories
+     */
+    $scope.loadCategories = function (id) {
+        dataFactory.getApi('modules_categories').then(function (response) {
+            var cat = response.data.data;
+            if (!cat) {
+                return;
+            }
+            var category = _.findWhere(cat[$scope.lang] || cat[$scope.cfg.lang], {id: id});
+            if (category) {
+                $scope.moduleId.categoryName = category.name;
+            }
+        }, function (error) {});
+    };
+
+
+
     // Post new module instance
     $scope.postModule = function (id) {
         dataService.showConnectionSpinner();
@@ -668,6 +696,9 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
                 'moduleName': $filter('hasNode')(module, 'data.data.moduleName'),
                 'category': module.data.data.category
             };
+            angular.extend($scope.moduleId, {find: module.data.data});
+            $scope.loadCategories(module.data.data.category);
+            setDependencies(module.data.data.dependencies);
             dataService.updateTimeTick();
             $scope.showForm = true;
             $scope.loading = false;
@@ -723,6 +754,9 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
                     'category': module.data.data.category
                 };
                 $scope.showForm = true;
+                angular.extend($scope.moduleId, {find: module.data.data});
+                $scope.loadCategories(module.data.data.category);
+                setDependencies(module.data.data.dependencies);
                 dataService.updateTimeTick();
                 $scope.loading = false;
                 if (!$filter('hasNode')(formData, 'options.fields') || !$filter('hasNode')(formData, 'schema.properties')) {
@@ -743,6 +777,8 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
         });
 
     };
+
+
     /**
      * Load data
      */
@@ -795,6 +831,74 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
                 alertify.alertError($scope._t('error_update_data'));
             });
         }
+    };
+     /**
+     * Activate module instance
+     */
+     $scope.activateInstance = function (input) {
+         input.active = true;
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        dataFactory.putApi('instances', input.id, input).then(function (response) {
+                $scope.loading = false;
+                $route.reload();
+
+            }, function (error) {
+                alertify.alertError($scope._t('error_update_data'));
+                $scope.loading = false;
+            });
+
+    };
+    
+     /**
+     * Install module
+     */
+    $scope.installModule = function (module) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
+        var data = {
+            moduleUrl: $scope.cfg.online_module_download_url + module.file
+        };
+        dataFactory.installOnlineModule(data, 'online_install').then(function (response) {
+            //dataFactory.postToRemote($scope.cfg.online_module_installed_url, {id: module.id});
+            dataService.showNotifier({message: $scope._t(response.data.data.key)});
+            //$timeout(function () {
+            window.location = '#/module/post/' + module.modulename;
+            //}, 3000);
+
+        }, function (error) {
+            $scope.loading = false;
+            var message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error.key) : $scope._t('error_no_module_download'));
+            alertify.alertError(message);
+        });
+
+    };
+
+    // --- Private functions
+
+    /**
+     * Set dependencies
+     */
+    function setDependencies(dependencies_) {
+        var dependencies = ['Cron','Sonos','RGB','YandexProbki','Wunderground'];
+        if(!_.isArray(dependencies)){
+            return;
+        }
+       dataFactory.getApi('instances', null, true).then(function (response) {
+         var instances =   _.indexBy(response.data.data,'moduleId');
+            angular.forEach(dependencies, function (k) {
+                if(instances[k]){
+                    if(instances[k].active === false){
+                       $scope.moduleId.dependency.activate[k] = instances[k];
+                    }
+                }else{
+                    $scope.moduleId.dependency.download[k] = {
+                         id: k,
+                           modulename: k,
+                            file: k + '.tar.gz'
+                       } ;
+                }
+            });
+            console.log($scope.moduleId.dependency)
+        }, function (error) {});
     };
 
 });

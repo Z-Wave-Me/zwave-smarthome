@@ -110,7 +110,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
                    roles: cfg.role_access.apps_online
                 }).
                 //Module
-                when('/module/:action/:id', {
+                when('/module/:action/:id/:redirect?', {
                     templateUrl: 'app/views/apps/app_module_alpaca.html',
                     requireLogin: true,
                     roles: cfg.role_access.module

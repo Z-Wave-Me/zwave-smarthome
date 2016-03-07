@@ -1,56 +1,94 @@
 <!-- Appp module ad  view -->
 <div class="mobile-padding" id="page_module_update" ng-controller="AppModuleAlpacaController">
-     <bb-loader></bb-loader>
-     <div  class="form-page" ng-show="showForm">
-    <div class="fieldset clearfix">
-        <div class="app-detail-img">
-            <img class="app-image-detail" ng-src="{{moduleMediaUrl + input.moduleName + '/' + input.icon}}" ng-if="input.icon" alt="img" />
+    <bb-loader></bb-loader>
+    <div  class="form-page" ng-show="showForm">
+        <!-- Module info -->
+        <div class="fieldset clearfix">
+            <div class="app-detail-img">
+                <img class="app-image-detail" ng-src="{{moduleMediaUrl + input.moduleName + '/' + input.icon}}" ng-if="input.icon" alt="img" />
+            </div>
+            <div class="app-detail-body">
+                <h2 ng-bind="input.moduleTitle"></h2>
+                <p class="app-detail-perex" ng-bind-html="moduleId.find.defaults.description | toTrusted"></p>
+                <p class="app-detail-list" ng-if="moduleId.categoryName">
+                            <i class="fa fa-list"></i> <span ng-bind="moduleId.categoryName"></span>
+                        </p>
+                <p class="app-detail-list" ng-if="moduleId.find.author">
+                    <i class="fa fa-user"></i>
+                    <span ng-show="!moduleId.find.homepage" ng-bind="moduleId.find.author"></span>
+                    <a ng-href="{{moduleId.find.homepage}}" ng-if="moduleId.find.homepage" ng-bind="moduleId.find.author"></a> 
+                </p>
+                <p class="app-detail-list" ng-if="moduleId.find.version">
+                            <i class="fa fa-info-circle"></i> <span class="app-version" ng-bind="moduleId.find.version"></span>
+                            <span class="label"
+                                  ng-class="moduleId.find.maturity == 'stable' ? 'label-success' : 'label-warning'"
+                                  >{{moduleId.find.maturity}}</span>
+                        </p>
+                  <p class="app-detail-list" ng-if="moduleId.find.dependencies.length > 0">
+                            <i class="fa fa-link"></i> <strong>{{_t('dependent_modules')}}:</strong> <span ng-repeat="i in moduleId.find.dependencies">{{i}}, </span>
+                        </p>
+                  <!-- Module dependencies - activate -->
+                  <div class="alert alert-warning" ng-if="!_.isEmpty(moduleId.dependency.activate)">
+                          <p>{{_t('war_dependency_module_activate')}}</p>
+                            <a href="" class="btn btn-default btn-tag"
+                                   ng-repeat="v in moduleId.dependency.activate"
+                                  ng-click="activateInstance(v)">{{v.moduleId}} <i class="fa fa-fire text-success" title="{{_t('lb_activate')}}"></i></a>
+                        </div>
+                   <!-- Module dependencies - download -->
+                   <div class="alert alert-warning" ng-if="!_.isEmpty(moduleId.dependency.download)">
+                          <p>{{_t('war_dependency_module_install')}}</p>
+                          <a href="" class="btn btn-default btn-tag"
+                                   ng-repeat="v in moduleId.dependency.download"
+                                   ng-click="installModule(v)">{{v.modulename}} <i class="fa fa-download text-success" title="{{_t('lb_download')}}"></i></a>
+                      </div>
+                      <div class="form-group">
+                            
+                        </div>
+            </div>
         </div>
-       <div class="app-detail-body">
-        <h2 ng-bind="input.moduleTitle"></h2>
-        <p class="help-block">{{_t('lb_module_id')}}: {{input.moduleId}} | {{_t('lb_instance_id')}}: {{input.instanceId}} <!--| {{_t('lb_category')}}: {{_t(input.category)}}--></p>
-        </div>
-    </div>
-    <form id="form_module">
-        <input name="instanceId" id="instanceId" type="hidden" class="form-control" value="{{input.instanceId}}" />
-        <input name="moduleId" id="moduleId" type="hidden" class="form-control" value="{{input.moduleId}}" />
-        <fieldset>
-        <div class="form-group">
-            <input type="checkbox" name="active" value="{{input.active}}" id="active" ng-model="input.active" ng-checked="input.active" /> <label>{{_t('lb_active')}}</label>
-        </div>
-        <div class="form-group">
-            <label>{{_t('lb_name')}}</label>
-            <input name="title" id="title" type="text" class="form-control" value="{{input.title}}" ng-model="input.title" />
-        </div>
-         <!--<div class="form-group">
-            <label>{{_t('lb_description')}}</label>
-            <textarea name="description" id="description" class="form-control" ng-model="input.description" placeholder="{{_t('lb_your_notes')}}"></textarea>
+        
+        <!-- Module form -->
+        <form id="form_module">
+            <input name="instanceId" id="instanceId" type="hidden" class="form-control" value="{{input.instanceId}}" />
+            <input name="moduleId" id="moduleId" type="hidden" class="form-control" value="{{input.moduleId}}" />
+            <fieldset>
+                <div class="form-group">
+                    <input type="checkbox" name="active" value="{{input.active}}" id="active" ng-model="input.active" ng-checked="input.active" /> <label>{{_t('lb_active')}}</label>
+                </div>
+                <div class="form-group">
+                    <label>{{_t('lb_name')}}</label>
+                    <input name="title" id="title" type="text" class="form-control" value="{{input.title}}" ng-model="input.title" />
+                </div>
+                <!--<div class="form-group">
+                   <label>{{_t('lb_description')}}</label>
+                   <textarea name="description" id="description" class="form-control" ng-model="input.description" placeholder="{{_t('lb_your_notes')}}"></textarea>
+       
+               </div> -->
+            </fieldset>
+            <div id="alpaca_data" ng-show="alpacaData" data-module-postrender="{{input.modulePostrender}}"></div>
 
-        </div> -->
-         </fieldset>
-        <div id="alpaca_data" ng-show="alpacaData" data-module-postrender="{{input.modulePostrender}}"></div>
+            <!-- Submit -->
+            <fieldset class="submit-entry">
+                <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
+                    <i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span>
+                </button>
+                <button type="submit"
+                        title="{{_t('lb_save')}}"
+                        id="btn_module_submit_ang"
+                        class="btn btn-submit" 
+                        ng-click="store(input)"
+                        ng-hide="alpacaData"><i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_save')}}</span></button>
+                <button type="submit"
+                        title="{{_t('lb_save')}}"
+                        id="btn_module_submit"
+                        class="btn btn-submit"
+                        data-sid="{{ZWAYSession}}"
+                        data-lang="{{lang}}"
+                        ng-disabled_="!_.isEmpty(moduleId.dependency.activate) || !_.isEmpty(moduleId.dependency.download)"
+                        ng-if="alpacaData"><i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_save')}}</span></button>
 
-        <!-- Submit -->
-        <fieldset class="submit-entry">
-            <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
-                <i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span>
-            </button>
-            <button type="submit"
-                    title="{{_t('lb_save')}}"
-                    id="btn_module_submit_ang"
-                    class="btn btn-submit" 
-                    ng-click="store(input)"
-                    ng-hide="alpacaData"><i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_save')}}</span></button>
-                    <button type="submit"
-                    title="{{_t('lb_save')}}"
-                    id="btn_module_submit"
-                    class="btn btn-submit"
-                    data-sid="{{ZWAYSession}}"
-                    data-lang="{{lang}}"
-                    ng-show="alpacaData"><i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_save')}}</span></button>
-           
-        </fieldset>
+            </fieldset>
 
-    </form><!-- /form --> 
+        </form><!-- /form --> 
     </div>
 </div> <!-- /ng-controller --> 
