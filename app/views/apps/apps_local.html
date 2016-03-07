@@ -72,16 +72,26 @@
                                     <i class="fa fa-plus text-success"></i> <span class="btn-name" ng-bind="_t('lb_add_app')"></span>
                                 </a>
                                      <!-- Remove -->
-                                <a href="" class="btn btn-default" title="{{_t('lb_remove')}}" ng-click="deleteModule({'id': v.id}, _t('app_delete_confirm'),'#local_module_' + v.id)" ng-if="v.custom && !v.hasReset">
+                                <button class="btn btn-default" title="{{_t('lb_remove')}}" 
+                                        ng-click="deleteModule({'id': v.id}, _t('app_delete_confirm'),'#local_module_' + v.id)" 
+                                        ng-if="v.custom && !v.hasReset">
                                     <i class="fa fa-remove text-danger"></i> <span class="btn-name" ng-bind="_t('lb_remove')"></span>
-                                </a>
-                                  <!-- Remove -->
-                                <a href="" class="btn btn-default" title="{{_t('reset')}}" ng-click="resetModule({'id': v.id}, _t('app_reset_confirm'),'#local_module_' + v.id)" ng-if="v.custom && v.hasReset">
+                                </button>
+                                  <!-- Reset -->
+                                <button class="btn btn-default" title="{{_t('reset')}}" 
+                                        ng-click="resetModule({'id': v.id}, _t('app_reset_confirm'),'#local_module_' + v.id)" 
+                                        ng-if="v.custom && v.hasReset">
                                     <i class="fa fa-remove fa-refresh text-warning"></i> <span class="btn-name" ng-bind="_t('reset')"></span>
-                                </a>
+                                </button>
+                                 <!-- Updgrade -->
+                                <button href="" class="btn btn-danger" title="{{_t('update_to_latest')}}" 
+                                        ng-click="updateModule(dataHolder.onlineModules.ids[v.moduleName], _t('app_update_confirm'))" 
+                                        ng-if="dataHolder.onlineModules.ids[v.moduleName] && dataHolder.onlineModules.ids[v.moduleName].version != v.version">
+                                    <i class="fa fa-level-up"></i> <span class="btn-name">{{_t('update_to_latest')}}</span>
+                                </button> 
                             </div>
                             </div>
-                         </div>
+                         </div> 
                     </div>
             </div><!-- /.widget-entry-in --> 
         </div><!-- /.widget-entry --> 
