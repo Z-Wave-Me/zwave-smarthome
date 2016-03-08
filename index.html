@@ -146,7 +146,13 @@
             </div><!-- /#subnavigation --> 
         </div><!-- /#header --> 
         <!-- Ang Content Container -->
-        <div id="main_content" class="container" ng-view></div>
+        <div id="main_content" class="container">
+            <div class="app-fatal-error" ng-if="cfg.route.fatalError.message">
+                <div class="fatal-error-message">{{_t(cfg.route.fatalError.message)}}</div>
+                <div class="fatal-error-info">{{_t(cfg.route.fatalError.info)}}</div>
+            </div>
+            <div id="view_content" ng-hide="cfg.route.fatalError.hide" ng-view></div>
+        </div>
         <div class="clearfix"></div>
 
         <div id="footer">

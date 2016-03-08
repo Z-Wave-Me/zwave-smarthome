@@ -12,7 +12,13 @@ var config_data = {
         // Route - will be extende
         'route': {
             // User agent operating system
-            os: 'unknown'
+            os: 'unknown',
+             // Route fatal error
+            fatalError: {
+                message: false,
+                info: false,
+                hide: false // Hide page content
+            }
         },
         'history_cache_interval': 300000,
         // Default auth credentials

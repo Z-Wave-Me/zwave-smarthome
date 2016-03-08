@@ -1,4 +1,11 @@
 {
+    "try_restart_raspberry": "Try to restart your Raspberry.",
+    "war_dependency_module_add": "Please add APP for",
+    "war_dependency_module_activate": "Please activate",
+    "war_dependency_module_install": "Please install",
+    "error_remote_access_init": "Can't to intialize remote access data. Please deactivate/activate it in Apps-Active tab.",
+    "patches": "Patches",
+    "dependent_modules": "Dependent modules",
     "configuration_cancel": "Die autom. Konfiguration des Gerätes wurde nicht beendet. Es kann sein, daß ihnen damit nicht alle Gerätefunktionen zur Vefügung stellen. Sie sollten die Inclusion wiederholen.",
     "continue_anyway": "Trotzdem weiter",
     "reset_redo_inclusion": "Reset und erneute Inklusion",

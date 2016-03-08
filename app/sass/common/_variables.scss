@@ -19,6 +19,7 @@ $spacing: 10px;
 $spacing-double: $spacing * 2;   
 $spacing-third: $spacing * 3;    
 $spacing-half: $spacing / 2;
+$spacing-fatal-error: 20px 20px 20px 52px;
 
 /*-------------------------------------*/
 // DIMENSIONS: WIDTHS, HEIGHTS
@@ -112,7 +113,10 @@ $zindex-modal: 2000;
 $zindex-footer: 2100;
 $zindex-m-footer: 2130;
 
+/*-------------------------------------*/
+// images
 
+$img-fatal-error: url("img/fatal-error-32.png");
 /*-------------------------------------*/
 // FONTS
 
@@ -123,6 +127,8 @@ $app-font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace 
 
 // Font size
 $app-body-font-size: 17px;
+$app-error-message-font-size: 120%;
+$app-error-info-font-size: 105%;
 $app-navi-font-size: 120%;
 $app-btn-font-size: 110%;
 $app-btn-icon-size: 150%;
@@ -175,6 +181,10 @@ $app-brand-danger:          #d9534f !default;
 
 $app-color-primary: #000000;
 $app-color-secondary: #000000;
+$app-error-border-color: $app-brand-danger;
+$app-error-background-color: #FFFFFF;
+$app-error-message-color: $app-brand-danger;
+$app-error-info-color: #000000;
 $app-border-color: lighten($app-color-primary, 80%);
 $app-body-color:  lighten($app-color-primary, 5%);
 $app-body-disabled-color:  lighten($app-body-color, 50%);
