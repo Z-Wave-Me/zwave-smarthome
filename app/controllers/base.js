@@ -12,7 +12,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     /**
      * Global scopes
      */
-    angular.extend(cfg.route,{os: dataService.getOs()});
+    angular.extend(cfg.route, {os: dataService.getOs()});
     $scope.cfg = cfg;
     $scope.languages = {};
     $scope.loading = false;
@@ -22,16 +22,20 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     $scope.ZWAYSession = dataService.getZWAYSession();
     $scope.lastLogin = dataService.getLastLogin();
     /*$scope.setSkin = function () {
-        if($cookies.skin && $cookies.skin !== 'default'){
-            cfg.skin.active =  $cookies.skin;
-            cfg.img.icons = cfg.skin.path + $cookies.skin + '/img/icons/';
-            cfg.img.logo = cfg.skin.path + $cookies.skin + '/img/logo/';
-             //$("link[id='main_css']").attr('href', 'storage/skins/defaultzip/main.css');
-              $("link[id='main_css']").attr('href', cfg.skin.path + $cookies.skin + '/main.css');
-        }
+     if($cookies.skin && $cookies.skin !== 'default'){
+     cfg.skin.active =  $cookies.skin;
+     cfg.img.icons = cfg.skin.path + $cookies.skin + '/img/icons/';
+     cfg.img.logo = cfg.skin.path + $cookies.skin + '/img/logo/';
+     //$("link[id='main_css']").attr('href', 'storage/skins/defaultzip/main.css');
+     $("link[id='main_css']").attr('href', cfg.skin.path + $cookies.skin + '/main.css');
+     }
+     
+     };
+     $scope.setSkin();*/
+    $scope.resetFatalError = function (obj) {
+        angular.extend(cfg.route.fatalError,obj||{message: false,info: false,hide: false});
 
     };
-    $scope.setSkin();*/
     $scope.setPollInterval = function () {
         if (!$scope.user) {
             $scope.cfg.interval = $scope.cfg.interval;
@@ -160,7 +164,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     $scope.getAppLogo = function () {
         var logo = cfg.img.logo + 'app-logo-default.png';
         if (cfg.custom_cfg[cfg.app_type]) {
-            logo =  cfg.img.logo + cfg.custom_cfg[cfg.app_type].logo || logo;
+            logo = cfg.img.logo + cfg.custom_cfg[cfg.app_type].logo || logo;
         }
         return logo;
     };
@@ -249,7 +253,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     alertify.defaults.glossary.title = cfg.app_name;
     alertify.defaults.glossary.ok = 'OK';
     alertify.defaults.glossary.cancel = 'CANCEL';
-   
+
     // Extend existing alert (ERROR) dialog
     if (!alertify.alertError) {
         //define a new errorAlert base on alert
@@ -264,7 +268,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
             };
         }, true, 'alert');
     }
-    
+
     // Extend existing alert (WARNING) dialog
     if (!alertify.alertWarning) {
         //define a new errorAlert base on alert
@@ -279,7 +283,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
             };
         }, true, 'alert');
     }
-    
-   
+
+
 
 });
