@@ -1,7 +1,8 @@
 {
     "newtrans": "---",
-    "war_dependency_module_activate": "Please activate the following modules",
-    "war_dependency_module_install": "Please install the following modules",
+    "war_dependency_module_add": "Please add APP for",
+    "war_dependency_module_activate": "Please activate",
+    "war_dependency_module_install": "Please install",
     "error_remote_access_init": "Can't to intialize remote access data. Please deactivate/activate it in Apps-Active tab.",
     "patches": "Patches",
     "dependent_modules": "Dependent modules",

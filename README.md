@@ -4,6 +4,7 @@ SmartHome UI
 Angular app
 ## v1.3.1
 #### New features
+- Add appp: integration of the dependencies between the modules.
 - Local appps: added "Update to latest" button.
 - On-line appps: dysplaying patches in the update window and in the app detail.
 - Improved Z-Wave inclusion.
@@ -14,6 +15,7 @@ Angular app
 - ???
 
 #### Changes
+- Add app: allow submit when all dependecies are installed and activated.
 - Complete refactored Z-Wave inclusion.
 - Added login label into first access.
 - Apps: Removed green gradient. Installed apps are grayed out.

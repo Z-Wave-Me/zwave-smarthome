@@ -170,7 +170,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
      */
     $scope.loadInstances = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataFactory.getApi('instances').then(function (response) {
+        dataFactory.getApi('instances',null,true).then(function (response) {
             $scope.dataHolder.instances.all = _.reject(response.data.data, function (v) {
                 //return v.state === 'hidden' && ($scope.user.role !== 1 && $scope.user.expert_view !== true);
                 if ($scope.getHiddenApps().indexOf(v.moduleId) > -1) {
@@ -624,7 +624,7 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
 /**
  * App controller - add module
  */
-myAppController.controller('AppModuleAlpacaController', function ($scope, $routeParams, $route,$filter, $location, $q, dataFactory, dataService, myCache, cfg) {
+myAppController.controller('AppModuleAlpacaController', function ($scope, $routeParams, $route, $filter, $location, $q, dataFactory, dataService, myCache, cfg) {
     $scope.showForm = false;
     $scope.success = false;
     $scope.alpacaData = true;
@@ -639,11 +639,15 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
         'category': null
     };
     $scope.moduleId = {
-        redirect: $routeParams.redirect,
+        submit: true,
+        fromapp: $routeParams.fromapp,
         find: {},
         categoryName: null,
+        modules: {},
+        instances: {},
         dependency: {
             activate: {},
+            add: {},
             download: {}
         }
     };
@@ -817,7 +821,12 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
         if (input.instanceId > 0) {
             dataFactory.putApi('instances', input.instanceId, inputData).then(function (response) {
                 myCache.remove('devices');
-                $location.path('/apps/instance');
+                if($scope.moduleId.fromapp){
+                     $location.path('/module/post/' + $scope.moduleId.fromapp);
+                }else{
+                     $location.path('/apps/instance');
+                }
+               
 
             }, function (error) {
                 alertify.alertError($scope._t('error_update_data'));
@@ -825,31 +834,35 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
         } else {
             dataFactory.postApi('instances', inputData).then(function (response) {
                 myCache.remove('devices');
-                $location.path('/apps/local');
+               if($scope.moduleId.fromapp){
+                     $location.path('/module/post/' + $scope.moduleId.fromapp);
+                }else{
+                     $location.path('/apps/instance');
+                }
 
             }, function (error) {
                 alertify.alertError($scope._t('error_update_data'));
             });
         }
     };
-     /**
+    /**
      * Activate module instance
      */
-     $scope.activateInstance = function (input) {
-         input.active = true;
+    $scope.activateInstance = function (input) {
+        input.active = true;
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         dataFactory.putApi('instances', input.id, input).then(function (response) {
-                $scope.loading = false;
-                $route.reload();
+            $scope.loading = false;
+            $route.reload();
 
-            }, function (error) {
-                alertify.alertError($scope._t('error_update_data'));
-                $scope.loading = false;
-            });
+        }, function (error) {
+            alertify.alertError($scope._t('error_update_data'));
+            $scope.loading = false;
+        });
 
     };
-    
-     /**
+
+    /**
      * Install module
      */
     $scope.installModule = function (module) {
@@ -861,7 +874,7 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
             //dataFactory.postToRemote($scope.cfg.online_module_installed_url, {id: module.id});
             dataService.showNotifier({message: $scope._t(response.data.data.key)});
             //$timeout(function () {
-            window.location = '#/module/post/' + module.modulename;
+            window.location = '#/module/post/' + module.modulename + '/' + $routeParams.id;
             //}, 3000);
 
         }, function (error) {
@@ -877,28 +890,63 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
     /**
      * Set dependencies
      */
-    function setDependencies(dependencies_) {
-        var dependencies = ['Cron','Sonos','RGB','YandexProbki','Wunderground'];
-        if(!_.isArray(dependencies)){
+    function setDependencies(dependencies) {
+        //var dependencies = ['Cron', 'Sonos', 'RGB'/*, 'YandexProbki', 'Wunderground'*/];
+        if (!_.isArray(dependencies)) {
             return;
         }
-       dataFactory.getApi('instances', null, true).then(function (response) {
-         var instances =   _.indexBy(response.data.data,'moduleId');
+         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        var promises = [
+            dataFactory.getApi('modules', null, true),
+            dataFactory.getApi('instances', null, true)
+        ];
+
+        $q.allSettled(promises).then(function (response) {
+            var modules = response[0];
+            var instances = response[1];
+            // Error message
+            if (modules.state === 'rejected' || instances.state === 'rejected') {
+                 $scope.loading = false;
+                return;
+            }
+            // Success - modules
+            if (modules.state === 'fulfilled') {
+                $scope.moduleId.modules = _.indexBy(modules.value.data.data, 'moduleName');
+            }
+
+            // Success - instances
+            if (instances.state === 'fulfilled') {
+                $scope.moduleId.instances = _.indexBy(instances.value.data.data, 'moduleId');
+            }
+
+            // Loop throught dependencies
             angular.forEach(dependencies, function (k) {
-                if(instances[k]){
-                    if(instances[k].active === false){
-                       $scope.moduleId.dependency.activate[k] = instances[k];
+                if ($scope.moduleId.modules[k]) {
+                    if ($scope.moduleId.instances[k]) {
+                        if ($scope.moduleId.instances[k].active === false) {
+                             $scope.moduleId.submit = false;
+                            $scope.moduleId.dependency.activate[k] = $scope.moduleId.instances[k];
+                        }
+
+                        //$scope.moduleId.dependency.activate[k] = instances[k];
+                    } else {
+                         $scope.moduleId.submit = false;
+                        $scope.moduleId.dependency.add[k] = {
+                            modulename: k
+                        };
                     }
-                }else{
+                } else {
+                     $scope.moduleId.submit = false;
                     $scope.moduleId.dependency.download[k] = {
-                         id: k,
-                           modulename: k,
-                            file: k + '.tar.gz'
-                       } ;
+                        id: k,
+                        modulename: k,
+                        file: k + '.tar.gz'
+                    };
                 }
             });
-            console.log($scope.moduleId.dependency)
-        }, function (error) {});
-    };
+             $scope.loading = false;
+        });
+    }
+    ;
 
 });

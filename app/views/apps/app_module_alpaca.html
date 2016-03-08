@@ -34,6 +34,12 @@
                                    ng-repeat="v in moduleId.dependency.activate"
                                   ng-click="activateInstance(v)">{{v.moduleId}} <i class="fa fa-fire text-success" title="{{_t('lb_activate')}}"></i></a>
                         </div>
+                  <!-- Module dependencies - add -->
+                  <div class="alert alert-warning" ng-if="!_.isEmpty(moduleId.dependency.add)">
+                          <p>{{_t('war_dependency_module_add')}}</p>
+                            <a ng-href="#module/post/{{v.modulename}}/{{input.moduleId}}" class="btn btn-default btn-tag"
+                                   ng-repeat="v in moduleId.dependency.add">{{v.modulename}} <i class="fa fa-plus text-success" title="{{_t('lb_add_app')}}"></i></a>
+                        </div>
                    <!-- Module dependencies - download -->
                    <div class="alert alert-warning" ng-if="!_.isEmpty(moduleId.dependency.download)">
                           <p>{{_t('war_dependency_module_install')}}</p>
@@ -77,14 +83,16 @@
                         id="btn_module_submit_ang"
                         class="btn btn-submit" 
                         ng-click="store(input)"
-                        ng-hide="alpacaData"><i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_save')}}</span></button>
+                        ng-disabled="!moduleId.submit"
+                        ng-if="!alpacaData"><i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_save')}}</span></button>
                 <button type="submit"
                         title="{{_t('lb_save')}}"
                         id="btn_module_submit"
                         class="btn btn-submit"
                         data-sid="{{ZWAYSession}}"
+                        data-fromapp="{{moduleId.fromapp}}"
                         data-lang="{{lang}}"
-                        ng-disabled_="!_.isEmpty(moduleId.dependency.activate) || !_.isEmpty(moduleId.dependency.download)"
+                        ng-disabled="!moduleId.submit"
                         ng-if="alpacaData"><i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_save')}}</span></button>
 
             </fieldset>
