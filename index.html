@@ -148,6 +148,7 @@
         <!-- Ang Content Container -->
         <div id="main_content" class="container">
             <div class="app-fatal-error" ng-if="cfg.route.fatalError.message">
+                 <img class="fatal-error-img" ng-src="{{cfg.img.icons}}fatal-error.png" alt="{{v.type}}"/>
                 <div class="fatal-error-message">{{_t(cfg.route.fatalError.message)}}</div>
                 <div class="fatal-error-info">{{_t(cfg.route.fatalError.info)}}</div>
             </div>

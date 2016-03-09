@@ -15,8 +15,8 @@ var config_data = {
             os: 'unknown',
              // Route fatal error
             fatalError: {
-                message: false,
-                info: false,
+                message: 'Fatal error message',
+                info: 'Fatal error info',
                 hide: false // Hide page content
             }
         },

@@ -6,6 +6,10 @@ img {
 .img-circle{
     border-radius: 50%;
 }
+.fatal-error-img{
+    max-width: $fatal-error-img;
+    max-height: $fatal-error-img;
+}
 .report-img{
     max-width: $report-img;
     max-height: $report-img;

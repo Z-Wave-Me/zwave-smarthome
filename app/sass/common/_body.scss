@@ -87,8 +87,15 @@ a {
 .app-fatal-error{
     padding: $spacing-fatal-error;
     margin: 0 0 $spacing-double 0;
-    background: $app-error-background-color $img-fatal-error no-repeat $spacing ($spacing + $spacing-half);
+    //background: $app-error-background-color $img-fatal-error no-repeat $spacing ($spacing + $spacing-half);
+    background-color: $app-error-background-color;
     border: solid 4px $app-error-border-color;
+    position: relative;
+    .fatal-error-img{
+         position: absolute;
+            top: ($spacing + $spacing-half);
+            left: $spacing;
+    }
     //background-image: url("img/fatal-error-64.png");
     .fatal-error-message{
         color: $app-error-message-color;

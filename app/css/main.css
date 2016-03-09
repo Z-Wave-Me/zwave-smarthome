@@ -1800,16 +1800,23 @@ a:focus {
 .app-fatal-error {
   padding: 20px 20px 20px 52px;
   margin: 0 0 20px 0;
-  background: #FFFFFF url("img/fatal-error-32.png") no-repeat 10px 15px;
+  background-color: #FFFFFF;
   border: solid 4px #d9534f;
+  position: relative;
 }
-/* line 93, ../sass/common/_body.scss */
+/* line 94, ../sass/common/_body.scss */
+.app-fatal-error .fatal-error-img {
+  position: absolute;
+  top: 15px;
+  left: 10px;
+}
+/* line 100, ../sass/common/_body.scss */
 .app-fatal-error .fatal-error-message {
   color: #d9534f;
   font-weight: bold;
   font-size: 120%;
 }
-/* line 98, ../sass/common/_body.scss */
+/* line 105, ../sass/common/_body.scss */
 .app-fatal-error .fatal-error-info {
   color: #000000;
   font-size: 105%;
@@ -1817,42 +1824,42 @@ a:focus {
 
 /* Others
 -------------------------------------------------- */
-/* line 106, ../sass/common/_body.scss */
+/* line 113, ../sass/common/_body.scss */
 .update-time-tick {
   font-size: 17px;
 }
-/* line 108, ../sass/common/_body.scss */
+/* line 115, ../sass/common/_body.scss */
 .update-time-tick .text-success {
   color: #80AD80;
 }
-/* line 111, ../sass/common/_body.scss */
+/* line 118, ../sass/common/_body.scss */
 .update-time-tick .fa {
   font-size: 110%;
 }
 
-/* line 115, ../sass/common/_body.scss */
+/* line 122, ../sass/common/_body.scss */
 .bcg-active.false, .bcg-danger {
   background-color: #f2dede;
 }
 
-/* line 119, ../sass/common/_body.scss */
+/* line 126, ../sass/common/_body.scss */
 .clickable {
   cursor: pointer;
 }
 
-/* line 123, ../sass/common/_body.scss */
+/* line 130, ../sass/common/_body.scss */
 .text-supp {
   font-style: italic;
   color: #595959;
 }
 
-/* line 128, ../sass/common/_body.scss */
+/* line 135, ../sass/common/_body.scss */
 .badge {
   padding: 5px;
   margin-right: 5px;
 }
 
-/* line 132, ../sass/common/_body.scss */
+/* line 139, ../sass/common/_body.scss */
 .help-text {
   display: block;
   font-size: 95%;
@@ -1860,17 +1867,17 @@ a:focus {
   margin: 5px 0;
 }
 
-/* line 138, ../sass/common/_body.scss */
+/* line 145, ../sass/common/_body.scss */
 .help-text.inline {
   display: inline;
 }
 
-/* line 142, ../sass/common/_body.scss */
+/* line 149, ../sass/common/_body.scss */
 .display-block {
   display: block;
 }
 
-/* line 145, ../sass/common/_body.scss */
+/* line 152, ../sass/common/_body.scss */
 .badge-number {
   background-color: #a6a6a6;
   color: #FFFFFF;
@@ -2075,12 +2082,18 @@ img {
 }
 
 /* line 9, ../sass/common/_images.scss */
+.fatal-error-img {
+  max-width: 32px;
+  max-height: 32px;
+}
+
+/* line 13, ../sass/common/_images.scss */
 .report-img {
   max-width: 60px;
   max-height: 60px;
 }
 
-/* line 13, ../sass/common/_images.scss */
+/* line 17, ../sass/common/_images.scss */
 .navi-img {
   max-width: 32px;
   max-height: 32px;
@@ -2089,7 +2102,7 @@ img {
   border-radius: 50%;
 }
 
-/* line 19, ../sass/common/_images.scss */
+/* line 23, ../sass/common/_images.scss */
 .widget-preview-img {
   max-width: 64px;
   max-height: 64px;
@@ -2099,7 +2112,7 @@ img {
   border-radius: 50%;
 }
 
-/* line 26, ../sass/common/_images.scss */
+/* line 30, ../sass/common/_images.scss */
 .app-image-detail {
   max-width: 128px;
   max-height: 128px;
@@ -2108,45 +2121,45 @@ img {
   border-radius: 50%;
 }
 
-/* line 31, ../sass/common/_images.scss */
+/* line 35, ../sass/common/_images.scss */
 .skin-preview-img {
   max-width: 120px;
   max-height: 120px;
   border: solid 4px #FFFFFF;
 }
 
-/* line 36, ../sass/common/_images.scss */
+/* line 40, ../sass/common/_images.scss */
 .skin-image-detail {
   max-width: 300px;
   max-height: 300px;
   border: solid 4px #cccccc;
 }
 
-/* line 41, ../sass/common/_images.scss */
+/* line 45, ../sass/common/_images.scss */
 .include-image-detail {
   max-width: 128px;
   max-height: 128px;
 }
 
-/* line 46, ../sass/common/_images.scss */
+/* line 50, ../sass/common/_images.scss */
 .product-img {
   max-width: 64px;
   max-height: 64px;
 }
 
-/* line 50, ../sass/common/_images.scss */
+/* line 54, ../sass/common/_images.scss */
 .room-image-preview {
   border: solid 6px #d3d3d3;
   width: 130px;
   height: 130px;
 }
 
-/* line 57, ../sass/common/_images.scss */
+/* line 61, ../sass/common/_images.scss */
 .has-device-false .room-image-preview {
   opacity: 0.5;
 }
 
-/* line 61, ../sass/common/_images.scss */
+/* line 65, ../sass/common/_images.scss */
 .room-img-upload {
   display: inline-block;
   max-width: 70px;
@@ -2154,20 +2167,20 @@ img {
   margin: 5px;
 }
 
-/* line 67, ../sass/common/_images.scss */
+/* line 71, ../sass/common/_images.scss */
 .report-img-s {
   display: inline-block;
   max-width: 32px;
   max-height: 32px;
 }
 
-/* line 72, ../sass/common/_images.scss */
+/* line 76, ../sass/common/_images.scss */
 .lang-img {
   max-width: 32px;
   max-height: 32px;
 }
 
-/* line 76, ../sass/common/_images.scss */
+/* line 80, ../sass/common/_images.scss */
 .img-opacity-50 {
   opacity: 0.5;
   filter: alpha(opacity=50);
