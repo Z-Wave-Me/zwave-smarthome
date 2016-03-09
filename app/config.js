@@ -9,16 +9,22 @@ var config_data = {
         //'server_url': 'http://192.168.10.119:8083/',
         // Interval in miliseconds to refresh data
         'interval': 3000,
-        // Route - will be extende
+        // Route - will be extended
         'route': {
             // User agent operating system
             os: 'unknown',
-             // Route fatal error
+            // Route fatal error
             fatalError: {
-                message: 'Fatal error message',
-                info: 'Fatal error info',
+                message: false,
+                info: false,
                 hide: false // Hide page content
-            }
+            },
+            // App lang
+            lang: 'en',
+            // User data
+            user: false,
+            // Translations
+            t: {}
         },
         'history_cache_interval': 300000,
         // Default auth credentials

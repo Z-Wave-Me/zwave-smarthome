@@ -66,36 +66,38 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     $scope.lang_list = cfg.lang_list;
     // Set language
     //$scope.lang = cfg.lang;
-    $scope.getLang = function () {
-        if ($scope.user) {
-            $scope.lang = $scope.user.lang;
-        } else {
-            $scope.lang = angular.isDefined($cookies.lang) ? $cookies.lang : cfg.lang;
-        }
-    };
-    $scope.getLang();
+//    $scope.getLang = function () {
+//        if ($scope.user) {
+//            $scope.lang = $scope.user.lang;
+//        } else {
+//            $scope.lang = angular.isDefined($cookies.lang) ? $cookies.lang : cfg.lang;
+//        }
+//    };
+ $scope.lang = cfg.route.lang;
+    //$scope.getLang();
     $cookies.lang = $scope.lang;
 
     // Load language files
-    $scope.loadLang = function (lang) {
-        // Is lang in language list?
-        var lang = (cfg.lang_list.indexOf(lang) > -1 ? lang : cfg.lang);
-        dataFactory.getLanguageFile(lang).then(function (response) {
-            //$scope.languages = response.data;
-            angular.extend($scope.languages, response.data);
-        }, function (error) {
-            dataService.showConnectionError(error);
-        });
-    };
+//    $scope.loadLang = function (lang) {
+//        // Is lang in language list?
+//        var lang = (cfg.lang_list.indexOf(lang) > -1 ? lang : cfg.lang);
+//        dataFactory.getLanguageFile(lang).then(function (response) {
+//            //$scope.languages = response.data;
+//            angular.extend($scope.languages, response.data);
+//        }, function (error) {
+//            dataService.showConnectionError(error);
+//        });
+//    };
     // Get language lines
     $scope._t = function (key) {
-        return dataService.getLangLine(key, $scope.languages);
+        return cfg.route.t[key]||key;
+        //return dataService.getLangLine(key, $scope.languages);
     };
 
     // Watch for lang change
-    $scope.$watch('lang', function () {
+   /* $scope.$watch('lang', function () {
         $scope.loadLang($scope.lang);
-    });
+    });*/
 
     // Order by
     $scope.orderBy = function (field) {
