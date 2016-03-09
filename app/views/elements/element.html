@@ -89,9 +89,9 @@
                 <div class="form-group form-inline">
                     <div class="input-group">
                         <input name="add_tag" id="add_tag" type="text" 
-                                         class="form-control" value="{{searchText}}" 
+                                         class="form-control" 
                                          placeholder="{{_t('lb_add_tag')}}" 
-                                         ng-model="searchText" bb-key-event="searchMe(searchText);" data-toggle="dropdown" />
+                                         ng-model="$parent.searchText" bb-key-event="searchMe(searchText);" data-toggle="dropdown" />
                        <span class="input-group-addon clickable" title="{{_t('lb_add_tag')}}" ng-click="addTag(searchText)">
                            <i class="fa fa-plus text-success"></i>
                        </span> 

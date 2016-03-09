@@ -639,3 +639,18 @@ myApp.filter('stringToSlug', function () {
         return str;
     };
 });
+
+myApp.filter('orderByName', function () {
+    return function (items) {
+        console.log(items);
+        console.log('HUI');
+        var filtered = [];
+        angular.forEach(items, function(item) {
+            filtered.push(item);
+        });
+        filtered.sort(function (a, b) {
+            return (a > b? 1 : -1);
+        });
+        return filtered;
+    };
+});

@@ -53,7 +53,7 @@
                      {{_t('all_elements')}}
                  </a>
                 <a class="btn btn-default btn-tag"
-                        ng-repeat="v in dataHolder.devices.tags" 
+                        ng-repeat="v in dataHolder.devices.tags | orderByName" 
                         ng-click="setFilter({tag: v})" 
                         ng-class="dataHolder.devices.filter.tag == v ? 'active': ''">
                      {{_t(v) | cutText:true:30}}
