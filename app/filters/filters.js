@@ -149,7 +149,7 @@ myApp.filter('getElementIcon', function (cfg) {
                     icon = cfg.img.icons + (level == 'open' || level == 'on' ? 'door-open.png' : 'door-closed.png');
                     break;
 
-                case 'window';
+                case 'window':
                     if (typeof(level) === 'number') {
                         if (level == 0) {
                             icon = cfg.img.icons + 'window-down.png';
