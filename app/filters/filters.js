@@ -641,9 +641,7 @@ myApp.filter('stringToSlug', function () {
 });
 
 myApp.filter('orderByName', function () {
-    return function (items) {
-        console.log(items);
-        console.log('HUI');
+    return function (items,reverse) {
         var filtered = [];
         angular.forEach(items, function(item) {
             filtered.push(item);
@@ -651,6 +649,9 @@ myApp.filter('orderByName', function () {
         filtered.sort(function (a, b) {
             return (a > b? 1 : -1);
         });
+        if (reverse === true) {
+            filtered.reverse();
+        }
         return filtered;
     };
 });
