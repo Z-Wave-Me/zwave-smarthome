@@ -6,6 +6,7 @@ Angular app
 #### New features
 - Add appp: integration of the dependencies between the modules.
 - Local appps: added "Update to latest" button.
+- Improved error handling.
 - On-line appps: dysplaying patches in the update window and in the app detail.
 - Improved Z-Wave inclusion.
 - Added HTML title attribute to navigation and buttons.
