@@ -17,6 +17,40 @@ var myApp = angular.module('myApp', [
 
 ]);
 
+/**
+ * App configuration
+ */
+
+var config_module = angular.module('myAppConfig', []);
+var appCookies = angular.injector(['ngCookies']).get('$cookies');
+var appUser = false;
+var appHttp = angular.injector(["ng"]).get("$http");
+// Attempt to get user cookie
+if (appCookies.user) {
+    appUser = angular.fromJson(appCookies.user);
+    angular.extend(config_data.cfg.route, {user: appUser});
+}
+// Attempt to get lang cookie
+if (appCookies.lang) {
+    angular.extend(config_data.cfg.route, {lang: appCookies.lang});
+}
+
+// Attempt to load language file
+appHttp.get('app/lang/' + config_data.cfg.route.lang + '.json').success(function (data) {
+    angular.extend(config_data.cfg.route, {t: data});
+}).error(function () {
+    angular.extend(config_data.cfg.route.fatalError, {
+        message: 'An unexpected error occurred while loading the language file.',
+        hide: true
+    });
+
+});
+
+// Create a config file
+angular.forEach(config_data, function (key, value) {
+    config_module.constant(value, key);
+});
+
 //Define Routing for app
 myApp.config(['$routeProvider', function ($routeProvider) {
         var cfg = config_data.cfg;
@@ -285,58 +319,30 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     templateUrl: 'app/views/auth/logout.html',
                     requireLogin: true
                 }).
-                // Error page
-                when('/error/:code?', {
-                    templateUrl: 'app/views/error.html'
-                }).
                 otherwise({
-                    redirectTo: '/error/404'
+                    templateUrl: 'app/views/error.html',
+                    controller: '404Controller'
                 });
     }]);
 
 /**
- * App configuration
- */
-
-var config_module = angular.module('myAppConfig', []);
-var appCookies = angular.injector(['ngCookies']).get('$cookies');
-var appUser = false;
-var appHttp = angular.injector(["ng"]).get("$http");
-// Attempt to get user cookie
-if (appCookies.user) {
-    appUser = angular.fromJson(appCookies.user);
-    angular.extend(config_data.cfg.route, {user: appUser});
-}
-// Attempt to get lang cookie
-if (appCookies.lang) {
-    angular.extend(config_data.cfg.route, {lang: appCookies.lang});
-}
-
-// Attempt to load language file
-appHttp.get('app/lang/' + config_data.cfg.route.lang + '.json').success(function (data) {
-    angular.extend(config_data.cfg.route, {t: data});
-}).error(function () {
-    angular.extend(config_data.cfg.route.fatalError, {
-        message: 'An unexpected error occurred while loading the language file.',
-        hide: true
-    });
-
-});
-
-// Create a config file
-angular.forEach(config_data, function (key, value) {
-    config_module.constant(value, key);
-});
-
-/**
  * Run
  */
-myApp.run(function ($rootScope, $location, dataService,cfg) {
+myApp.run(function ($rootScope, $location, dataService, cfg) {
     // Run ubderscore js in views
     $rootScope._ = _;
     // Route Access Control and Authentication
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
         var user;
+        // Reset fatal error messages
+        if (!cfg.route.fatalError.permanent) {
+            angular.extend(cfg.route.fatalError, {
+                message: false,
+                info: false,
+                hide: false
+            });
+        }
+        // Is login required?
         if (next.requireLogin) {
             user = dataService.getUser();
             if (!user) {
@@ -390,7 +396,6 @@ myApp.config(function ($provide, $httpProvider, cfg) {
 
                 } else if (rejection.status == 403) {
                     dataService.logError(rejection);
-                    //$location.path('/error/403');
                     angular.extend(cfg.route.fatalError, {
                         message: cfg.route.t['error_403'],
                         hide: true

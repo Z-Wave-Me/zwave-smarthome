@@ -69,10 +69,8 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
      * Load ZwaveApiData
      */
     $scope.loadLicenceScratchId = function (uuid) {
-        dataService.showConnectionSpinner();
         dataFactory.getRemoteData($scope.cfg.get_licence_scratchid + '?uuid=' + uuid).then(function (response) {
             $scope.controllerInfo.scratchId = response.data.scratch_id;
-            dataService.updateTimeTick();
         }, function (error) {});
     };
 

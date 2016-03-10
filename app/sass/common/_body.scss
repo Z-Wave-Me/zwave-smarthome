@@ -85,11 +85,12 @@ a {
 /* Fatal error
 -------------------------------------------------- */
 .app-fatal-error{
+    @include appBorderRadius($app-border-radius);
     padding: $spacing-fatal-error;
     margin: 0 0 $spacing-double 0;
     //background: $app-error-background-color $img-fatal-error no-repeat $spacing ($spacing + $spacing-half);
     background-color: $app-error-background-color;
-    border: solid 4px $app-error-border-color;
+    border: solid 1px $app-error-border-color;
     position: relative;
     .fatal-error-img{
          position: absolute;

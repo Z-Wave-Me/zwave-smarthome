@@ -501,7 +501,7 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
      * Get zwaveApiData
      */
     function zwaveApiData(devices) {
-        dataFactory.loadZwaveApiData().then(function (ZWaveAPIData) {
+        dataFactory.loadZwaveApiData(false).then(function (ZWaveAPIData) {
             dataService.updateTimeTick();
             if (!ZWaveAPIData.devices) {
                 return;
@@ -820,8 +820,7 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
             dataService.updateTimeTick();
             var node = ZWaveAPIData.devices[nodeId];
             if (!node) {
-                // $location.path('/error/404');
-                return;
+               return;
             }
 
             $scope.zWaveDevice = {
@@ -880,7 +879,7 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
 
             });
         }, function (error) {
-            $location.path('/error/404');
+           alertify.alertError($scope._t('error_load_data'));
         });
     }
     ;

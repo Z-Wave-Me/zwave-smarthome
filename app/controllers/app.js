@@ -716,7 +716,7 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
 
         }, function (error) {
             $scope.loading = false;
-            $location.path('/error/' + error.status);
+            alertify.alertError($scope._t('error_load_data'));
         });
     };
 

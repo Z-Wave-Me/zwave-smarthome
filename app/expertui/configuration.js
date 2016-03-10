@@ -288,10 +288,9 @@ myAppController.controller('ConfigConfigurationController', function($scope, $ro
             $scope.protectionCont = expertService.configProtectionCont(node, nodeId, ZWaveAPIData, cfgXml);
             $scope.switchAllCont = expertService.configSwitchAllCont(node, nodeId, ZWaveAPIData, cfgXml);
             if(!$scope.configCont && !$scope.wakeupCont && !$scope.protectionCont && !$scope.switchAllCont){
-                $location.path('/error/404');
+               alertify.alertError($scope._t('error_load_data'));
             }
         }, function(error) {
-            //$location.path('/error/'+ error.status);
             $scope.configCont = expertService.configConfigCont(node, nodeId, zddXml, null, $scope.lang, $scope.languages);
             $scope.wakeupCont = expertService.configWakeupCont(node, nodeId, ZWaveAPIData, null);
             $scope.protectionCont = expertService.configProtectionCont(node, nodeId, ZWaveAPIData, null);

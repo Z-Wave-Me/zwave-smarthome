@@ -17,6 +17,7 @@ var config_data = {
             fatalError: {
                 message: false,
                 info: false,
+                permanent: false,// Permanently displayed
                 hide: false // Hide page content
             },
             // App lang

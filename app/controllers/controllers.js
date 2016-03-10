@@ -4,30 +4,13 @@
  */
 
 /**
- * Error controller
+ * Not found controller
  */
-myAppController.controller('ErrorController', function($scope, $routeParams, dataService) {
-    $scope.errorCfg = {
-        code: false,
-        icon: 'fa-warning'
-    };
-    /**
-     * Logout proccess
-     */
-    $scope.loadError = function(code) {
-        if (code) {
-            if(code == 401){
-                 dataService.logOut();
-                 return;
-            }
-            $scope.errorCfg.code = code;
-        } else {
-            $scope.errorCfg.code = 0;
-        }
-        dataService.showConnectionError(code);
-
-    };
-    $scope.loadError($routeParams.code);
+myAppController.controller('404Controller', function($scope, cfg) {
+    angular.extend(cfg.route.fatalError, {
+        message: $scope._t('error_404'),
+        hide: true
+    });
 
 });
 

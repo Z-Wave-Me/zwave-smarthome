@@ -452,7 +452,6 @@ myAppController.controller('EnoceanTeachinController', function($scope, $routePa
      * Load single device
      */
     $scope.loadDevice = function() {
-        dataService.showConnectionSpinner();
         dataFactory.getApiLocal('devices_enocean.json').then(function(response) {
             angular.forEach(response.data, function(v, k) {
                 if (v.id == $routeParams.device) {
@@ -461,15 +460,14 @@ myAppController.controller('EnoceanTeachinController', function($scope, $routePa
                 }
             });
             if (!$scope.device) {
-                $location.path('/error/404');
+                alertify.alertError($scope._t('no_data'));
             }
 
-            dataService.updateTimeTick();
             $scope.inclusion = {done: false, promisc: true, message: $scope._t('teachin_ready') + ' ' + ($scope.device.inclusion ? $scope.device.inclusion : ''), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
             $scope.runCmd('controller.data.promisc=true');
 
         }, function(error) {
-            $location.path('/error/' + error.status);
+            alertify.alertError($scope._t('error_load_data'));
         });
     };
 
@@ -662,9 +660,7 @@ myAppController.controller('EnoceanManageController', function($scope, $location
     $scope.loadApiDevices = function() {
         dataFactory.getApi('devices').then(function(response) {
             $scope.apiDevices = response.data.data.devices;
-        }, function(error) {
-            // $location.path('/error/' + error.status);
-        });
+        }, function(error) {});
     };
     $scope.loadApiDevices();
 
@@ -843,7 +839,6 @@ myAppController.controller('EnoceanManageDetailController', function($scope, $ro
         dataFactory.runEnoceanCmd('zeno.devices["' + $routeParams.deviceId + '"]').then(function(response) {
             if (response.data == 'null') {
                   console.log('ERROR')
-                //$location.path('/error/404');
                 return;
             }
             var device = response.data;
@@ -863,10 +858,7 @@ myAppController.controller('EnoceanManageDetailController', function($scope, $ro
                 profileId: ''
 
             };
-        }, function(error) {
-          
-            //$location.path('/error/' + error.status);
-        });
+        }, function(error) {});
     };
     $scope.loadData();
 
@@ -896,9 +888,7 @@ myAppController.controller('EnoceanManageDetailController', function($scope, $ro
             });
             loadLocations();
 
-        }, function(error) {
-            // $location.path('/error/' + error.status);
-        });
+        }, function(error) {});
     };
     $scope.loadApiDevices();
 

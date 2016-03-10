@@ -1,6 +1,8 @@
 {
     "newtrans": "---",
-     "---": "newtrans",
+    "---": "newtrans",
+    "error_missing_licence": "Missing License.",
+    "info_missing_licence": "Please apply your License or buy one if you dont have any license for this device.",
     "try_restart_raspberry": "Try to restart your Raspberry.",
     "war_dependency_module_add": "Please add APP for",
     "war_dependency_module_activate": "Please activate",
