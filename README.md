@@ -4,6 +4,7 @@ SmartHome UI
 Angular app
 ## v1.3.1
 #### New features
+- Online apps: dysplaying count of ratings and average value. 
 - Add appp: integration of the dependencies between the modules.
 - Local appps: added "Update to latest" button.
 - Improved error handling.
@@ -16,6 +17,7 @@ Angular app
 - ???
 
 #### Changes
+- The online app description was moved under the title. 
 - Add app: allow submit when all dependecies are installed and activated.
 - Complete refactored Z-Wave inclusion.
 - Added login label into first access.

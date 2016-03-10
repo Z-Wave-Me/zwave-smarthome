@@ -8,6 +8,7 @@
 
             <div class="app-detail-body">
                 <h2 ng-bind="module.title"></h2>
+                 <p class="app-detail-perex" ng-bind-html="module.description|toTrusted"></p>
                 <p class="app-detail-list" ng-show="module.category">
                     <i class="fa fa-list"></i> <span ng-bind="categoryName"></span>
                 </p>
@@ -28,12 +29,20 @@
                 <p class="app-detail-list" ng-show="module.last_updated">
                     <i class="fa fa-clock-o"></i> <span ng-bind="module.last_updated"></span>
                 </p>
-                <p class="app-detail-list" ng-if="rating.model.remote_id">
-                    {{_t('rate_app')}}: <i class="fa clickable module-rating" title="{{v}}"
+                <div class="app-detail-list" ng-if="rating.model.remote_id">
+                    <p>
+                        <strong>{{_t('rate_app')}}: </strong> <i class="fa clickable module-rating" title="{{v}}"
                                      ng-class="v > module.rating ? 'fa-star-o' : 'fa-star israted'" 
                                     ng-repeat="v in rating.range" 
                                     ng-click="rateModule(v)"></i>
-                </p>
+                    </p>
+                    <p>
+                        {{_t('app_was_rated')}}: <strong>{{module.ratingscnt}}</strong>&times;
+                    </p>
+                     <p ng-if="module.ratingsavg">
+                        {{_t('app_average_scored')}}: <strong>{{module.ratingsavg}}</strong>
+                    </p>
+                </div>
 
 
             </div>
