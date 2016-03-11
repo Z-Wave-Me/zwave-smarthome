@@ -15,24 +15,13 @@
                                 class="dial widget-level-knob" 
                                 data-width="160" 
                                 data-height="160" 
-                                data-min="5"
-                                data-max="40" 
+                                knob-step="0.5" 
+                                knob-min="widgetThermostat.find.metrics.min"
+                                knob-max="widgetThermostat.find.metrics.max"
                                 knob-id="widgetThermostat.find.id" 
                                 knob-data="widgetThermostat.find.metrics.level" 
                                 knob-options="knobopt" 
-                                ng-model="widgetThermostat.find.metrics.level" myknob ng-if="widgetThermostat.find.metrics.scaleTitle === '°C'" /> 
-                            <input 
-                                type="text" 
-                                value="{{widgetThermostat.find.metrics.level}}" 
-                                class="dial widget-level-knob" 
-                                data-width="160" 
-                                data-height="160" 
-                                data-min="40"
-                                data-max="104" 
-                                knob-id="widgetThermostat.find.id" 
-                                knob-data="widgetThermostat.find.metrics.level" 
-                                knob-options="knobopt" 
-                                ng-model="widgetThermostat.find.metrics.level" myknob ng-if="widgetThermostat.find.metrics.scaleTitle === '°F'" />
+                                ng-model="widgetThermostat.find.metrics.level" myknob /> 
                 </div>
                 <div class="knob-col knob-btn">
                     <p>
