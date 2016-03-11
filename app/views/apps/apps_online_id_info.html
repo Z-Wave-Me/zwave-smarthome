@@ -39,9 +39,12 @@
                     <p>
                         {{_t('app_was_rated')}}: <strong>{{module.ratingscnt}}</strong>&times;
                     </p>
-                     <p ng-if="module.ratingsavg">
-                        {{_t('app_average_scored')}}: <strong>{{module.ratingsavg}}</strong>
+                     <p>
+                        {{_t('app_average_scored')}}: <strong>{{module.rating}}</strong>
                     </p>
+                     <!-- <p ng-if="module.ratingsavg">
+                        {{_t('app_average_scored')}}: <strong>{{module.ratingsavg}}</strong>
+                    </p>-->
                 </div>
 
 
