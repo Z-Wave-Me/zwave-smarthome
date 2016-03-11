@@ -1,12 +1,12 @@
 <div class="tabs-wrap form-inline">
     <div class="btn-group btn-goup-tabs btn-tabs-3">
-        <a class="btn btn-default" href="#apps/local" ng-class="activeTab == 'local' ? 'active' : ''">
+        <a class="btn btn-default" title="{{_t('lb_local_modules')}}" href="#apps/local" ng-class="activeTab == 'local' ? 'active' : ''">
             <i class="fa fa-cloud-download"></i> <span class="btn-name">{{_t('lb_local_modules')}}</span>
         </a>
-        <a class="btn btn-default" href="#apps/online" ng-class="activeTab == 'online' ? 'active' : ''">
+        <a class="btn btn-default" title="{{_t('lb_online_modules')}}" href="#apps/online" ng-class="activeTab == 'online' ? 'active' : ''">
             <i class="fa fa-globe"></i> <span class="btn-name">{{_t('lb_online_modules')}}</span>
         </a>
-        <a class="btn btn-default" href="#apps/instance" ng-class="activeTab == 'instance' ? 'active' : ''">
+        <a class="btn btn-default" title="{{_t('lb_active')}}" href="#apps/instance" ng-class="activeTab == 'instance' ? 'active' : ''">
             <i class="fa fa-fire"></i> <span class="btn-name">{{_t('lb_active')}}</span>
         </a>
     </div>

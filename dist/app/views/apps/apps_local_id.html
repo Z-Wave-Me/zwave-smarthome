@@ -12,9 +12,7 @@
                     <div class="app-detail-body">
                         <h2 ng-bind="module.defaults.title"></h2>
                         <p class="app-detail-perex" ng-bind-html="module.defaults.description | toTrusted"></p>
-                        <p class="app-detail-list" ng-show="module.dependencies.length > 0">
-                            <i class="fa fa-sitemap"></i> <strong>{{_t('lb_instance_of')}}:</strong> <span ng-repeat="i in module.dependencies">{{i}}, </span>
-                        </p>
+                       
                         <p class="app-detail-list" ng-show="module.category">
                             <i class="fa fa-list"></i> <span ng-bind="categoryName"></span>
                         </p>
@@ -29,11 +27,14 @@
                                   ng-class="module.maturity == 'stable' ? 'label-success' : 'label-warning'"
                                   >{{module.maturity}}</span>
                         </p>
+                         <p class="app-detail-list" ng-show="module.dependencies.length > 0">
+                            <i class="fa fa-link"></i> <strong>{{_t('dependent_modules')}}:</strong> <span ng-repeat="i in module.dependencies">{{i}}, </span>
+                        </p>
                     </div>
             </div>
             <div class="fieldset submit-entry">
-                <button type="button" class="btn btn-default" bb-go-back><i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span></button>
-                <a class="btn btn-submit" href="#module/post/{{module.id}}" ><i class="fa fa-plus"></i> <span class="btn-name">{{_t('lb_add_app')}}</span></a>
+                <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back><i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span></button>
+                <a class="btn btn-submit" href="#module/post/{{module.id}}" title="{{_t('lb_add_app')}}"><i class="fa fa-plus"></i> <span class="btn-name">{{_t('lb_add_app')}}</span></a>
             </div>
         </div>
 

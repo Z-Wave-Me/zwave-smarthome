@@ -1,0 +1,16 @@
+<!-- Zwave device view -->
+<div ng-controller="ZwaveSelectController">
+     <bb-loader></bb-loader>
+   <div class="text-center device-autodetect" ng-if="_.isEmpty(zwaveSelect.list)">
+       <a href="#zwave/inclusion" class="btn btn-default btn-lg btn-block" title="{{_t('lb_zwave_autodetect')}}">
+             <i class="fa fa-plug text-success"></i> <span class="btn-name">{{_t('lb_zwave_autodetect')}}</span>
+       </a>
+   </div>
+     <!-- Brand  --> 
+    <div class="app-row app-row-vendor clearfix" ng-if="_.isEmpty(zwaveSelect.list)" ng-include="'app/views/zwave/zwave_select_brand.html'"></div>
+     <!-- List  --> 
+    <div ng-if="!_.isEmpty(zwaveSelect.list)" ng-include="'app/views/zwave/zwave_select_list.html'"></div>
+     <!-- Logo --> 
+    <div class="device-logo" ng-include="'app/views/zwave/zwave_nav.html'"></div>
+</div> <!-- /ng-controller --> 
+

@@ -1,0 +1,160 @@
+<!-- Include -->
+<div ng-controller="ZwaveInclusionController" id="zwave_inclusion">
+    <bb-loader></bb-loader>
+    <div class="form form-inline form-page">
+        <div class="fieldset clearfix">
+            <div class="include-device-img">
+                <img class="include-image-detail" ng-src="storage/img/zwave/devices/{{zwaveInclusion.device.find.product_image}}" alt="img" ng-if="zwaveInclusion.device.find.product_image" /> 
+            </div>
+            <div class="include-device-body">
+                <h1 ng-if="zwaveInclusion.device.find">{{zwaveInclusion.device.find.brandname + ' ' + zwaveInclusion.device.find.name}}</h1> 
+                <h1 ng-if="_.isEmpty(zwaveInclusion.device.find)">{{_t('lb_include_device')}}</h1> 
+            </div>
+        </div>
+        <div class="fieldset clearfix">
+            <div class="app-row app-row-report clearfix">
+                <!-- 1 -->
+                <div class="report-entry">
+                    <div class="report-col report-media">
+                        <span class="badge badge-number">1</span>
+                    </div>
+                    <div class="report-col report-body">
+                        <div class="inclusion-header" ng-if="!zwaveInclusion.exclusionProcess.process">
+                            <!-- Header -->
+                            <h3>{{_t('lb_preparation')}}</h3>
+                            {{_t('lb_include_preparation')}} 
+                            <button class="btn btn-default" title="{{_t('lb_include_preparation_start')}}"
+                                    ng-disabled="zwaveInclusion.inclusionProcess.process || zwaveInclusion.automatedConfiguration.includedDevice.nodeId > 0"
+                                    ng-click="startStopExclusion(true)">
+                                <i class="fa fa-refresh"></i> {{_t('lb_include_preparation_start')}}
+                            </button>
+                            <p  ng-if="zwaveInclusion.device.find.prep"><em>{{zwaveInclusion.device.find.prep}}</em></p>
+                        </div>
+                        <!-- Process -->
+                        <div class="inclusion-process" ng-if="zwaveInclusion.exclusionProcess.process">
+                            <div class="alert alert-warning">
+                                <i class="fa fa-spinner fa-spin"></i> {{_t('lb_ready_exclude')}} {{zwaveInclusion.device.find.exc}}
+                                <button class="btn btn-danger btn-lg" title="{{_t('btn_exclusion_stop')}}" ng-click="startStopExclusion( false)"> 
+                                    <i class="fa fa-ban"></i> <span class="btn-name">{{_t('btn_exclusion_stop')}}</span>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="report-col report-ctrl">
+                        <i class="fa fa-check fa-2x text-success" ng-if="zwaveInclusion.exclusionProcess.done"></i> 
+                    </div>
+                </div><!-- /.report-entry -->
+                <!-- 2 -->
+                <div class="report-entry">
+                    <div class="report-col report-media">
+                        <span class="badge badge-number">2</span>
+                    </div>
+                    <div class="report-col report-body">
+                        <div class="inclusion-header" ng-if="!zwaveInclusion.inclusionProcess.process">
+                            <!-- Header --> 
+                            <h3>{{_t('lb_inclusion_progress')}}</h3>
+                            <button class="btn btn-success btn-lg" title="{{_t('btn_inclusion_start')}}" 
+                                    ng-disabled="zwaveInclusion.exclusionProcess.process || zwaveInclusion.automatedConfiguration.includedDevice.nodeId > 0"
+                                    ng-click="startStopInclusion(true)">
+                                <i class="fa fa-plug"></i> <span class="btn-name">{{_t('btn_inclusion_start')}}</span>
+                            </button>
+                        </div>
+                        <!-- Process -->
+                        <div class="inclusion-process" ng-if="zwaveInclusion.inclusionProcess.process">
+                            <div class="alert alert-warning">
+                                <i class="fa fa-spinner fa-spin"></i> {{_t('lb_ready_include')}} {{zwaveInclusion.device.find.inc}} 
+                                <button class="btn btn-danger btn-lg" title="{{_t('btn_inclusion_stop')}}"
+                                        ng-click="startStopInclusion(false)">
+                                    <i class="fa fa-ban"></i> <span class="btn-name">{{_t('btn_inclusion_stop')}}</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="report-col report-ctrl">
+                        <i class="fa fa-check fa-2x text-success" ng-if="zwaveInclusion.inclusionProcess.done"></i> 
+                    </div>
+                </div><!-- /.report-entry --> 
+                <!-- 3 -->
+                <div class="report-entry">
+                    <div class="report-col report-media">
+                        <span class="badge badge-number">3</span>
+                    </div>
+                    <div class="report-col report-body">
+                        <!-- Header --> 
+                        <div class="inclusion-header" ng-if="!zwaveInclusion.automatedConfiguration.process">
+                            <h3>{{_t('automated_konfiguration')}}</h3>
+                        </div>
+
+                        <!-- Process -->
+                        <div class="inclusion-process" ng-if="zwaveInclusion.automatedConfiguration.process">
+                            <div class="alert alert-warning" ng-hide="zwaveInclusion.automatedConfiguration.progress > 99">
+                                <i class="fa fa-spinner fa-spin"></i> <strong>{{_t('configuring_device')}}</strong> 
+                                <span>(#{{zwaveInclusion.automatedConfiguration.includedDevice.nodeId}})</span>
+                            </div>
+                             <div class="progress" ng-if_="zwaveInclusion.automatedConfiguration.progress < 101">
+                                <div class="progress-bar" 
+                                     style="min-height:40px;min-width: 2em; width: {{zwaveInclusion.automatedConfiguration.progress}}%;"
+                                     ng-class="zwaveInclusion.automatedConfiguration.progress < 100 ? 'progress-bar-striped active' : 'progress-bar-success'">
+                                    {{zwaveInclusion.automatedConfiguration.progress}}%
+                                </div>
+                            </div>
+                           
+                        </div>
+                         <!--<pre>{{zwaveInclusion.automatedConfiguration.includedDevice | json}}</pre>--> 
+                    </div>
+                    <div class="report-col report-ctrl">
+                        <i class="fa fa-check fa-2x text-success" ng-if="zwaveInclusion.automatedConfiguration.done"></i> 
+                    </div>
+                </div><!-- /.report-entry --> 
+                <!-- 4 -->
+                <div class="report-entry">
+                    <div class="report-col report-media">
+                        <span class="badge badge-number">4</span>
+                    </div>
+                    <div class="report-col report-body">
+                        <!-- Header --> 
+                        <div class="inclusion-header" ng-if="!zwaveInclusion.manualConfiguration.process">
+                            <h3>{{_t('manual_konfiguration')}}</h3>
+                        </div>
+                        <!-- Process -->
+                        <div class="inclusion-process" ng-if="zwaveInclusion.manualConfiguration.process">
+                             <div class="alert alert-warning">
+                                 <i class="fa fa-spinner fa-spin"></i> <strong ng-bind="_t('manual_config_prepare')"></strong>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="report-col report-ctrl">
+                        <i class="fa fa-check fa-2x text-success" ng-if="zwaveInclusion.manualConfiguration.done"></i> 
+                    </div>
+                </div><!-- /.report-entry --> 
+            </div><!-- /.app-row --> 
+        </div>
+        <div class="fieldset submit-entry">
+            <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back><i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span></button>
+            <!-- <a href="#zwave/devices" class="btn btn-info">{{_t('continue')}} <i class="fa fa-chevron-right"></i></a> --> 
+        </div>
+    </div>
+    <!-- cancelConfigurationModal -->
+    <div id="cancelConfigurationModal" class="appmodal" ng-if="zwaveInclusion.cancelModal">
+        <div class="appmodal-in">
+            <div class="appmodal-header">
+                <span class="appmodal-close" ng-click="cancelManualConfiguration(true)"><i class="fa fa-times"></i></span>
+                <h3>{{cfg.app_name}}</h3>
+            </div>
+            <div class="appmodal-body">
+                {{_t('configuration_cancel')}}
+            </div>
+            <div class="appmodal-footer">
+                <button type="button" class="btn btn-default" ng-click="cancelManualConfiguration(true)">
+                    <i class="fa fa-refresh text-success"></i> {{_t('reset_redo_inclusion')}}
+                </button>
+                 <button type="button" class="btn btn-default" ng-click="cancelManualConfiguration(false)">
+                    {{_t('continue_anyway')}}  <i class="fa fa-arrow-right text-primary"></i> 
+                 </button>
+            </div>
+        </div>
+    </div>
+    <div class="device-logo" ng-include="'app/views/zwave/zwave_nav.html'"></div>
+</div> <!-- /ng-controller --> 
+

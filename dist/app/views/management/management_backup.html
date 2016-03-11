@@ -9,7 +9,9 @@
             <bb-help-text trans="_t('backup_info')"></bb-help-text>
         </div>
         <div class="fieldset submit-entry">
-            <a class="btn btn-submit" ng-href="{{cfg.server_url + cfg.api.backup}}"><i class="fa fa-cloud-download"></i> <span class="btn-name">{{_t('nm_backup_download')}}</span></a>
+            <a class="btn btn-submit" ng-href="{{cfg.server_url + cfg.api.backup}}" title="{{_t('nm_backup_download')}}">
+                <i class="fa fa-cloud-download"></i> <span class="btn-name">{{_t('nm_backup_download')}}</span>
+            </a>
         </div>
     </div>
 </div>

@@ -19,7 +19,9 @@
 
                         <td class="td-action">
                              <div class="btn-group">
-                            <a href="#enocean/manage/x{{v.id}}" class="btn btn-default" title="{{_t('lb_configuration')}}"><i class="fa fa-cog text-primary"></i></a>
+                            <a href="#enocean/manage/x{{v.id}}" class="btn btn-default" title="{{_t('lb_configuration')}}">
+                                <i class="fa fa-cog"></i>
+                            </a>
                             <button title="{{_t('lb_remove')}}"
                                     class="btn btn-default"
                                     ng-click="deleteDevice(v.id, '#enocean_row_' + v.id, _t('lb_delete_confirm'))">

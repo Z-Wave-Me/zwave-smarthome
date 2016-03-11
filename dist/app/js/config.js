@@ -3,13 +3,30 @@ var config_data = {
         //Application name
         'app_name': 'SmartHome UI',
         // Application version
-        'app_version': '1.3.0',
+        'app_version': '1.3.1',
         // Server base url
         'server_url': '/',
         //'server_url': 'http://192.168.10.119:8083/',
         // Interval in miliseconds to refresh data
         'interval': 3000,
-        // Interval in miliseconds (5 min) to clear history (json) cache
+        // Route - will be extended
+        'route': {
+            // User agent operating system
+            os: 'unknown',
+            // Route fatal error
+            fatalError: {
+                message: false,
+                info: false,
+                permanent: false,// Permanently displayed
+                hide: false // Hide page content
+            },
+            // App lang
+            lang: 'en',
+            // User data
+            user: false,
+            // Translations
+            t: {}
+        },
         'history_cache_interval': 300000,
         // Default auth credentials
          'default_credentials': {
@@ -43,11 +60,19 @@ var config_data = {
             'remote_id': 'ZAutomation/api/v1/system/remote-id',
             'firmwareupdate': 'ZAutomation/api/v1/system/webif-access',
             'trust_my_network': 'ZAutomation/api/v1/system/trust-my-network',
-            'firstaccess': 'ZAutomation/api/v1/system/first-access'
+            'firstaccess': 'ZAutomation/api/v1/system/first-access',
+             'factory_default': 'ZAutomation/api/v1/resetToFactoryDefault'
+        },
+        // Skin
+        'skin': {
+            'active': 'default',
+            'path': 'storage/skins/'
         },
         // List of image pathes
         'img': {
-            'icons': 'storage/img/icons/'
+            'logo': 'storage/img/logo/',
+            'icons': 'storage/img/icons/',
+            'skin_screenshot': 'app/css/'
         },
         // Api url
         'expert_url': '/expert',
@@ -79,6 +104,10 @@ var config_data = {
         'online_module_comment_create_url': 'https://developer.z-wave.me/?uri=api-comments-create',
         // Online module rating create url
         'online_module_rating_create_url': 'https://developer.z-wave.me/?uri=api-rating-create',
+        // Online skins url
+        'online_skin_url': 'http://hrix.net/modules_new/?uri=skins',
+        // Online skins storage
+        'online_skin_storage': 'http://hrix.net/modules_new/storage/skins/',
         // Online module download url
         'blacklist_url': 'https://hrix.net/blacklist.json', 
         // Post report url
@@ -218,7 +247,7 @@ var config_data = {
         // Config
         'custom_cfg': {
            'default': {
-               'logo': 'app/img/app-logo-default.png',
+               'logo': 'app-logo-default.png',
                 hidden_apps: [
                     'Cron',
                     'BatteryPolling',
@@ -248,7 +277,7 @@ var config_data = {
                 ]
             },
             'popp': {
-                'logo': 'app/img/app-logo-popp.png',
+                'logo': 'app-logo-popp.png',
                 'hidden_apps': [
                     'Cron',
                     'CodeDevice',
@@ -278,7 +307,7 @@ var config_data = {
                 ]
             },
             'wd': {
-                'logo': 'app/img/app-logo-wd.png',
+                'logo': 'app-logo-wd.png',
                 'hidden_apps': [
                     'Cron',
                     'BatteryPolling',

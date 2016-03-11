@@ -8,6 +8,27 @@ module.exports = function(grunt) {
             options: { force: true },
             build: ["dist/"]
         },
+        ngtemplates:  {
+            app:        {
+                 options: {
+                    standalone: true,
+                    module: 'myAppTemplates',
+                    htmlmin: {
+                        collapseBooleanAttributes:      true,
+                        collapseWhitespace:             true,
+                        removeAttributeQuotes:          true,
+                        removeComments:                 true, // Only if you don't use comment directives! 
+                        removeEmptyAttributes:          true,
+                        removeRedundantAttributes:      true,
+                        removeScriptTypeAttributes:     true,
+                        removeStyleLinkTypeAttributes:  true
+}
+                },
+                
+              src:      'app/views/**/*.html',
+              dest:     'dist/app/js/templates.js'
+            }
+          },
         
         // Concat
         concat: {
@@ -55,6 +76,7 @@ module.exports = function(grunt) {
                     'vendor/bootstrap/bootstrap.min.js',
                     // APP
                     'app/app.js',
+                    'dist/app/js/templates.js',
                     'app/modules/qAllSettled.js',
                     //'app/config/config.js',
                     'app/config/settings.js',
@@ -192,6 +214,7 @@ module.exports = function(grunt) {
             }
         },
         
+        
         watch: {
             files: "app/css/sass/**",
             tasks: ["sass"]
@@ -236,8 +259,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-string-replace');
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-remove');
+     grunt.loadNpmTasks('grunt-angular-templates');
 
     // Default task(s).
-    grunt.registerTask('default', ['clean','concat','copy','cssmin']);
+    grunt.registerTask('default', ['clean','ngtemplates','concat','copy','cssmin']);
 
 };

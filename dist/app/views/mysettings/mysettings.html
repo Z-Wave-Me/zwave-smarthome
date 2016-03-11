@@ -32,7 +32,7 @@
                        </span>
                         <!--<span ng-bind="input.lang"></span>-->
                     </div>
-                    <!-- colors  -->
+                    <!-- colors  
                     <div class="form-group">
                         <label>{{_t('lb_profile_color')}}: </label>
                          <span class="mobile-block">
@@ -41,8 +41,7 @@
                             <span class="form-control-img profile-color" style="background-color: {{v}}" ng-click="input.color = v" ng-class="v == input.color ? 'control-active':''">&nbsp;</span> 
                         </span>
                        </span>
-                        <!--<span ng-bind="input.color"></span>-->
-                    </div>
+                    </div>-->
                     <!-- interval -->
                     <div class="form-group form-inline">
                         <label>{{_t('lb_interval')}} ({{_t('miliseconds')}}): </label>
@@ -92,8 +91,12 @@
 
             </fieldset>
             <fieldset class="submit-entry">
-                <button type="button" class="btn btn-default" bb-go-back><i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span></button>
-                 <button type="submit" class="btn btn-submit" ng-disabled="form_profile.$invalid"><i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_save')}}</span></button>
+                <button type="button" class="btn btn-default"  title="{{_t('lb_cancel')}}" bb-go-back>
+                    <i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span>
+                </button>
+                 <button type="submit" class="btn btn-submit" title="{{_t('lb_save')}}" ng-disabled="form_profile.$invalid">
+                     <i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_save')}}</span>
+                 </button>
             </fieldset>
         </form>
 
@@ -134,7 +137,9 @@
 
             </fieldset>
                 <fieldset class="submit-entry">
-                    <button type="submit" class="btn btn-submit" ng-disabled="form_password.$invalid"><i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_change_password')}}</span></button>
+                    <button type="submit" class="btn btn-submit" title="{{_t('lb_change_password')}}" ng-disabled="form_password.$invalid">
+                        <i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_change_password')}}</span>
+                    </button>
                 </fieldset>
             </form>
          </div>

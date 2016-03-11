@@ -1,0 +1,10 @@
+<!-- App online patch notes -->
+<h2 class="accordion-entry-title" ng-click="expandElement('apppatches')">
+    <i class="fa fa-sticky-note-o"></i> {{_t('patches')}}
+    <i class="fa accordion-arrow" ng-class="expand.apppatches ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+</h2>
+<div class="accordion-entry-ctrl" ng-if="expand.apppatches">
+    <div class="form form-inline form-page">
+        <div class="fieldset" ng-bind-html="module.patchnotes|toTrusted"></div>
+    </div>
+</div>

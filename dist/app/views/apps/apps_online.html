@@ -1,7 +1,7 @@
 <!-- Online apps view -->
 <div ng-controller="AppBaseController">
     <bb-loader></bb-loader>
-    <div ng-controller="AppOnlineController">
+    <div ng-controller="AppOnlineController" id="apps_online">
          <!-- Apps navigation -->
         <div ng-include="'app/views/apps/navi.html'"></div>
         <div class="page-control form-inline">
@@ -38,12 +38,12 @@
             </div>
         </div>
         
-         <div class="app-row app-row-widget app-row-app-online clearfix">
+         <div class="app-row app-row-widget clearfix">
             <div class="widget-entry widget-entry-app"
-                 ng-class="dataHolder.modules.ids[v.modulename] ? 'app-entry-success': ''" 
+                 ng-class="{'widget-warning': dataHolder.modules.ids[v.modulename],'widget-danger': dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version != v.version}" 
                  ng-repeat="v in dataHolder.onlineModules.all| orderBy:'title' | filter:q track by v.id">
                 <div class="widget-entry-in">
-                     <!-- Widget img -->
+                    <!-- Widget img -->
                     <div class="widget-img">
                         <a ng-href="#apps/online/{{v.id}}">
                              <img class="widget-preview-img" alt="{{v.title}}" 
@@ -57,6 +57,7 @@
                         <!-- Widget title -->
                          <div class="widget-title">
                              <h3><a ng-href="#apps/online/{{v.id}}">{{v.title|cutText:true:20}} <span class="btn-name">&raquo;</span></a></h3>
+                              
                         </div>
                         <hr class="bottom-aligner" />
                          <!-- Widget footer -->
@@ -65,16 +66,16 @@
                             <div class="widget-ctrl ctrl-right">
                                 <div class="btn-group group-apps">
                                  <!-- Download -->
-                                <button href="" class="btn btn-default" ng-click="installModule(v, 'online_install')" ng-if="!dataHolder.modules.ids[v.modulename]">
+                                <button href="" class="btn btn-default" title="{{_t('lb_download')}}" ng-click="installModule(v, 'online_install')" ng-if="!dataHolder.modules.ids[v.modulename]">
                                     <i class="fa fa-download text-success"></i> <span class="btn-name">{{_t('lb_download')}}</span>
                                 </button> 
-                                <!-- Update -->
-                                <button href="" class="btn btn-default" ng-click="updateModule(v, _t('app_update_confirm'))" ng-if="dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version != v.version">
-                                    <i class="fa fa-level-up text-success"></i> <span class="btn-name">{{_t('update_to_latest')}}</span>
-                                </button> 
                                 <!-- Installed -->
-                                <button class="btn btn-default" disabled ng-if="dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version == v.version">
+                                <button class="btn btn-disabled" disabled title="{{_t('installed')}}" ng-if="dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version == v.version">
                                     <i class="fa fa-check"></i> <span class="btn-name">{{_t('installed')}}</span>
+                                </button> 
+                                 <!-- Updgrade -->
+                                <button href="" class="btn btn-danger" title="{{_t('update_to_latest')}}" ng-click="updateModule(v, _t('app_update_confirm'))" ng-if="dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version != v.version">
+                                    <i class="fa fa-level-up"></i> <span class="btn-name">{{_t('update_to_latest')}}</span>
                                 </button> 
                               </div>
                             </div>

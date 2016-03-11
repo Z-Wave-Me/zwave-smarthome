@@ -17,6 +17,7 @@ Angular app
 - ???
 
 #### Changes
+- The templates are compiled with grunt-angular-templates into templates.js. 
 - The online app description was moved under the title. 
 - Add app: allow submit when all dependecies are installed and activated.
 - Complete refactored Z-Wave inclusion.

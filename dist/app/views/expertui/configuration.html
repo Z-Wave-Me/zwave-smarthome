@@ -55,13 +55,15 @@
 
                     </div>
                     <fieldset class="submit-entry">
-                        <button type="button" class="btn btn-default" bb-go-back><i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span></button>
+                        <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
+                            <i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span>
+                        </button>
                         <a
-                        class="btn btn-primary"
+                        class="btn btn-primary" title="{{_t('btn_update_from_device')}}"
                         ng-click="updateFromDeviceCfg('devices[' + deviceId + '].instances[0].commandClasses[0x70].Get', configCont,deviceId)" 
                         ><i class="fa fa-refresh"></i> <span class="btn-name">{{_t('btn_update_from_device')}}</span></a>
                     <button 
-                        type="submit" 
+                        type="submit" title="{{_t('apply_config')}}"
                         class="btn btn-submit" 
                         ><i class="fa fa-check"></i> <span class="btn-name">{{_t('apply_config')}}</span></button> 
                      </fieldset>    
@@ -102,14 +104,16 @@
                         </p>
                     </div>
                     <fieldset class="submit-entry">
-                        <button type="button" class="btn btn-default" bb-go-back><i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span></button>
+                        <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
+                            <i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span>
+                        </button>
                         <a
                         href="" 
-                        class="btn btn-primary"
+                        class="btn btn-primary" title="{{_t('btn_update_from_device')}}"
                         ng-click="updateFromDevice(wakeupCont.cmd + '.Get()',hasBattery)"
                         ><i class="fa fa-refresh"></i> <span class="btn-name">{{_t('btn_update_from_device')}}</span></a>
                     <button 
-                        type="submit" 
+                        type="submit" title="{{_t('apply_config')}}"
                         class="btn btn-submit" 
                         ><i class="fa fa-check"></i> <span class="btn-name">{{_t('apply_config')}}</span></button> 
                      </fieldset>    
@@ -144,13 +148,15 @@
                         </p>
                     </div>
                     <fieldset class="submit-entry">
-                        <button type="button" class="btn btn-default" bb-go-back><i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span></button>
+                        <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
+                            <i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span>
+                        </button>
                         <a
-                        class="btn btn-primary"
+                        class="btn btn-primary" title="{{_t('btn_update_from_device')}}"
                         ng-click="updateFromDevice(switchAllCont.cmd + '.Get()',hasBattery)"
                         ><i class="fa fa-refresh"></i> <span class="btn-name">{{_t('btn_update_from_device')}}</span></a>
                     <button 
-                        type="submit" 
+                        type="submit" title="{{_t('apply_config')}}"
                         class="btn btn-submit" 
                         ><i class="fa fa-check"></i> <span class="btn-name">{{_t('apply_config')}}</span></button> 
                      </fieldset>    
@@ -186,12 +192,15 @@
                         </p>
                     </div>
                     <fieldset class="submit-entry">
-                        <button type="button" class="btn btn-default" bb-go-back><i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span></button>
+                        <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
+                            <i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span>
+                        </button>
                         <a
-                        class="btn btn-primary"
+                        class="btn btn-primary" title="{{_t('btn_update_from_device')}}"
                         ng-click="updateFromDevice(protectionCont.cmd + '.Get()',hasBattery)"
                         ><i class="fa fa-refresh"></i> <span class="btn-name">{{_t('btn_update_from_device')}}</span></a>
                     <button 
+                        title="{{_t('apply_config')}}"
                         type="submit" 
                         class="btn btn-submit"
                         ><i class="fa fa-check"></i> <span class="btn-name">{{_t('apply_config')}}</span></button> 
