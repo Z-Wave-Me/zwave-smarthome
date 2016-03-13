@@ -34,7 +34,7 @@
     "remember_me": "Remember me",
     "rate_app": "Rate this APP",
     "already_rated": "You have already rated this APP",
-    "description": "Description",
+    "description": "Popis",
     "comments": "Comments",
     "add_comment": "Add comment",
     "comment_add_successful": "The comment was successfully saved",
@@ -46,7 +46,8 @@
     "creationTimeDESC": "Newest",
     "titleASC": "Name ASC",
     "titleDESC": "Name DESC",
-    "all_elements": "All elements",
+    "all_elements": "Všetky elementy",
+    "all_rooms": "Všetky izby"
     "switchControl": "Switch",
     "url": "URL",
     "contact_person": "Contact person",

@@ -111,16 +111,21 @@ myAppController.controller('ElementBaseController', function ($scope, $routePara
             //All devices
             $scope.dataHolder.devices.all = devices.value();
             // Collection
-            if ('tag' in $scope.dataHolder.devices.filter) {
-                $scope.dataHolder.devices.collection = _.filter($scope.dataHolder.devices.all, function (v) {
-                    if (v.tags.indexOf($scope.dataHolder.devices.filter.tag) > -1) {
-                        return v;
+            $scope.dataHolder.devices.collection = _.filter($scope.dataHolder.devices.all,function (device) {
+                var nomatch = _.find($scope.dataHolder.devices.filter,function(filterValue,filterKey) {
+                    if (filterKey === 'tag') {
+                        if (device.tags.indexOf(filterValue) === -1) {
+                            return true; 
+                        }
+                    } else if (filterValue !== device[filterKey]) {
+                        return true;
                     }
+                    // Matches
+                    return false;
                 });
-            } else {
-                $scope.dataHolder.devices.collection = _.where($scope.dataHolder.devices.all, $scope.dataHolder.devices.filter);
-            }
-            if (_.isEmpty($scope.dataHolder.devices.collection)) {
+                return !nomatch;
+            });
+            if (_.isEmpty($scope.dataHolder.devices.all)) {
                 $scope.dataHolder.devices.welcome = true;
             }
         }, function (error) {
@@ -173,13 +178,19 @@ myAppController.controller('ElementBaseController', function ($scope, $routePara
      * Set filter
      */
     $scope.setFilter = function (filter) {
+        var newFilter = {};
         if (!filter) {
             angular.extend($scope.dataHolder.devices, {filter: {}});
-            $cookies.filterElements = angular.toJson({});
         } else {
-            angular.extend($scope.dataHolder.devices, {filter: filter});
-            $cookies.filterElements = angular.toJson(filter);
+            newFilter = angular.extend({}, $scope.dataHolder.devices.filter, filter);
+            _.each(newFilter,function(value,key,list) {
+                if (typeof(value) === 'undefined') {
+                    delete list[key];
+                }
+            });
+            angular.extend($scope.dataHolder.devices, {filter: newFilter});
         }
+        $cookies.filterElements = angular.toJson(newFilter);
 
         $scope.loadDevices();
     };
