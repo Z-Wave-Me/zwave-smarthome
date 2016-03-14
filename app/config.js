@@ -61,7 +61,8 @@ var config_data = {
             'firmwareupdate': 'ZAutomation/api/v1/system/webif-access',
             'trust_my_network': 'ZAutomation/api/v1/system/trust-my-network',
             'firstaccess': 'ZAutomation/api/v1/system/first-access',
-             'factory_default': 'ZAutomation/api/v1/resetToFactoryDefault'
+             'factory_default': 'ZAutomation/api/v1/resetToFactoryDefault',
+              'postfix': 'ZWaveAPI/Postfix'
         },
         // Skin
         'skin': {

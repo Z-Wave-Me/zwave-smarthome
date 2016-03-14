@@ -1,0 +1,18 @@
+<!-- Admin info view -->
+<h2 class="accordion-entry-title" ng-click="expandElement('apppostfix')">
+    <i class="fa fa-list-alt"></i> <span ng-bind="_t('patched_devices')"></span>
+    <i class="fa accordion-arrow" ng-class="expand.appinfo ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+</h2>
+<div class="accordion-entry-ctrl" ng-if="expand.apppostfix" ng-controller="ManagementPostfixController">
+    <div class="form form-inline form-page">
+        <div class="fieldset">
+            <table class="table table-report">
+                <tbody>
+                    <tr ng-repeat="v in postfix.all">
+                        <td>{{v.product}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

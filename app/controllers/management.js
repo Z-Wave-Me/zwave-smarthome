@@ -669,6 +669,33 @@ myAppController.controller('ManagementReportController', function ($scope, $wind
 
 });
 /**
+ * Management postfix controller
+ */
+myAppController.controller('ManagementPostfixController', function ($scope, dataFactory, _) {
+    $scope.postfix = {
+        all: {}
+    };
+    /**
+     * Load postfix data
+     */
+    $scope.loadPostfix = function () {
+         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        dataFactory.getApi('postfix', null, true).then(function (response) {
+            if(_.isEmpty(response.data)){
+                 alertify.alertError($scope._t('no_data'));
+            }
+            $scope.loading = false;
+            $scope.postfix.all = response.data;
+        }, function (error) {
+            $scope.loading = false;
+            alertify.alertError($scope._t('error_load_data'));
+
+        });
+    };
+     $scope.loadPostfix();
+
+});
+/**
  * Management info controller
  */
 myAppController.controller('ManagementInfoController', function ($scope, dataFactory, dataService) {

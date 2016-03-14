@@ -4,7 +4,8 @@ SmartHome UI
 Angular app
 ## v1.3.1
 #### New features
-- Online apps: dysplaying count of ratings and average value. 
+- Online apps: displaying count of ratings and average value. 
+- Management: Added postfix - the list of pstched devices. 
 - Add appp: integration of the dependencies between the modules.
 - Local appps: added "Update to latest" button.
 - Improved error handling.
