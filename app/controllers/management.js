@@ -40,7 +40,6 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
      * Load ZwaveApiData
      */
     $scope.loadZwaveApiData = function () {
-        dataService.showConnectionSpinner();
         dataFactory.loadZwaveApiData().then(function (ZWaveAPIData) {
             var caps = function (arr) {
                 var cap = '';
@@ -57,10 +56,7 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
             $scope.controllerInfo.softwareRevisionVersion = ZWaveAPIData.controller.data.softwareRevisionVersion.value;
             $scope.controllerInfo.capabillities = caps(ZWaveAPIData.controller.data.caps.value);
             $scope.loadLicenceScratchId($scope.controllerInfo.uuid);
-            dataService.updateTimeTick();
-        }, function (error) {
-            dataService.showConnectionError(error);
-        });
+        }, function (error) {});
     };
 
     $scope.loadZwaveApiData();
@@ -90,7 +86,6 @@ myAppController.controller('ManagementUserController', function ($scope, dataFac
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('profiles', null, true).then(function (response) {
             $scope.userProfiles.all = response.data.data;
-            dataService.updateTimeTick();
             $scope.loading = false;
         }, function (error) {
             $scope.loading = false;
@@ -538,7 +533,6 @@ myAppController.controller('ManagementAppStoreController', function ($scope, dat
      * Load tokens
      */
     $scope.appStoreLoadTokens = function () {
-        dataService.showConnectionSpinner();
         dataFactory.getApi('tokens', null, true).then(function (response) {
             angular.extend($scope.appStore.tokens, response.data.data.tokens);
         }, function (error) {
@@ -610,10 +604,8 @@ myAppController.controller('ManagementReportController', function ($scope, $wind
      * Load ZwaveApiData
      */
     $scope.loadZwaveApiData = function () {
-        dataService.showConnectionSpinner();
         dataFactory.loadZwaveApiData().then(function (ZWaveAPIData) {
             $scope.ZwaveApiData = ZWaveAPIData;
-            dataService.updateTimeTick();
         }, function (error) {});
     };
 

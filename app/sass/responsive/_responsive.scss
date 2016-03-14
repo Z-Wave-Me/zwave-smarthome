@@ -100,7 +100,7 @@
 /* Medium Devices, Desktops */
 @media only screen and (max-width : 992px)   {
     .nav-logo,
-    #header .update-time-tick,
+    #header .timestamp,
     #main_navigation .divider-vertical,
     .btn-name,{
         display: none !important;
@@ -109,7 +109,7 @@
         margin: $spacing 0 0 0;
         display: block;
     }
-    #footer .update-time-tick{
+     #footer .timestamp{
         display: inline-block !important;
     }
 }

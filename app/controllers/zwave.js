@@ -65,17 +65,13 @@ myAppController.controller('ZwaveAddController', function ($scope, $routeParams,
      * Load z-wave devices
      */
     $scope.loadData = function (brandname, lang) {
-        dataService.showConnectionSpinner();
         dataFactory.getApiLocal('device.' + lang + '.json').then(function (response) {
             $scope.manufacturers = _.uniq(response.data, 'brandname');
             if (brandname) {
                 $scope.zwaveDevices = _.where(response.data, {brandname: brandname});
                 $scope.manufacturer = brandname;
             }
-            dataService.updateTimeTick();
-        }, function (error) {
-            dataService.showConnectionError(error);
-        });
+        }, function (error) {});
     };
     $scope.loadData($routeParams.brandname, $scope.lang);
 });
@@ -170,7 +166,6 @@ myAppController.controller('ZwaveIncludeController', function ($scope, $routePar
         if (!$scope.device.id) {
             return;
         }
-        dataService.showConnectionSpinner();
         dataFactory.getApiLocal('device.' + lang + '.json').then(function (response) {
             angular.forEach(response.data, function (v, k) {
                 if (v.id == $scope.device.id) {
@@ -183,10 +178,7 @@ myAppController.controller('ZwaveIncludeController', function ($scope, $routePar
                 }
             });
 
-        }, function (error) {
-            dataService.showConnectionError(error);
-            return;
-        });
+        }, function (error) {});
 
     };
     $scope.loadData($scope.lang);
@@ -201,17 +193,10 @@ myAppController.controller('ZwaveIncludeController', function ($scope, $routePar
             var refresh = function () {
                 dataFactory.refreshZwaveApiData().then(function (response) {
                     checkController(response.data, response.data);
-                    dataService.updateTimeTick(response.data.updateTime);
-                }, function (error) {
-                    dataService.showConnectionError(error);
-                    return;
-                });
+                }, function (error) {});
             };
             $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
-        }, function (error) {
-            dataService.showConnectionError(error);
-            return;
-        });
+        }, function (error) {});
     };
     $scope.loadZwaveApiData();
 
@@ -322,7 +307,6 @@ myAppController.controller('ZwaveIncludeController', function ($scope, $routePar
 
                 }, function (error) {
                     $scope.inclusionError = true;
-                    dataService.showConnectionError(error);
                 });
             };
             $scope.includeDataInterval = $interval(refresh, $scope.cfg.interval);
@@ -383,13 +367,10 @@ myAppController.controller('ZwaveIncludeController', function ($scope, $routePar
      */
     $scope.loadElements = function (nodeId) {
         //console.log('Loading nodeId',nodeId)
-        dataService.showConnectionSpinner();
         dataFactory.getApi('devices').then(function (response) {
             zwaveApiData(nodeId, response.data.data.devices);
 
-        }, function (error) {
-            dataService.showConnectionError(error);
-        });
+        }, function (error) {});
     };
 
 
@@ -418,9 +399,7 @@ myAppController.controller('ZwaveIncludeController', function ($scope, $routePar
                     $scope.includedDeviceId = deviceIncId;
                     $scope.deviceFound = true;
                     //getLastIncluded(deviceIncId,ZWaveAPIData);
-                }, function (error) {
-                    dataService.showConnectionError(error);
-                });
+                }, function (error) {});
 
             }
         }
@@ -492,9 +471,7 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
     function loadLocations() {
         dataFactory.getApi('locations').then(function (response) {
             $scope.rooms = response.data.data;
-        }, function (error) {
-            dataService.showConnectionError(error);
-        });
+        }, function (error) {});
     }
     ;
     /**
@@ -502,7 +479,6 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
      */
     function zwaveApiData(devices) {
         dataFactory.loadZwaveApiData(false).then(function (ZWaveAPIData) {
-            dataService.updateTimeTick();
             if (!ZWaveAPIData.devices) {
                 return;
             }
@@ -699,16 +675,10 @@ myAppController.controller('ZwaveExcludeController', function ($scope, $location
                         $scope.zWaveDevice.lastExcludedDevice = response.data['controller.data.lastExcludedDevice'].value;
                         console.log('lastExcludedDevice: ', $scope.zWaveDevice.lastExcludedDevice);
                     }
-                }, function (error) {
-                    dataService.showConnectionError(error);
-                    return;
-                });
+                }, function (error) {});
             };
             $scope.zWaveDevice.apiDataInterval = $interval(refresh, $scope.cfg.interval);
-        }, function (error) {
-            dataService.showConnectionError(error);
-            return;
-        });
+        }, function (error) {});
     };
     $scope.refreshZwaveApiData();
 
@@ -807,9 +777,7 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
     function loadConfigLocations() {
         dataFactory.getApi('locations').then(function (response) {
             $scope.rooms = response.data.data;
-        }, function (error) {
-            dataService.showConnectionError(error);
-        });
+        }, function (error) {});
     }
     ;
     /**
@@ -817,7 +785,6 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
      */
     function zwaveConfigApiData(nodeId, devices) {
         dataFactory.loadZwaveApiData(true).then(function (ZWaveAPIData) {
-            dataService.updateTimeTick();
             var node = ZWaveAPIData.devices[nodeId];
             if (!node) {
                return;

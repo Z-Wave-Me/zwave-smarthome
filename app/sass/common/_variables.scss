@@ -181,6 +181,7 @@ $app-brand-danger:          #d9534f !default;
 
 $app-color-primary: #000000;
 $app-color-secondary: #000000;
+$app-timestamp-color: lighten($app-color-primary, 20%);;
 $app-error-border-color: $app-brand-danger;
 $app-error-background-color: #FFFFFF;
 $app-error-message-color: $app-brand-danger;

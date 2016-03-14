@@ -91,7 +91,6 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
         var urlParam = '?since=' + $scope.timeFilter.since;
         dataFactory.getApi('notifications', urlParam, true).then(function(response) {
             setData(response.data);
-            dataService.updateTimeTick(response.data.data.updateTime);
             $scope.loading = false;
         }, function(error) {
             $scope.loading = false;
@@ -170,10 +169,7 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
                 angular.forEach(response.data.data.notifications, function(v, k) {
                     $scope.collection.push(v);
                 });
-                dataService.updateTimeTick(response.data.data.updateTime);
-            }, function(error) {
-                dataService.showConnectionError(error);
-            });
+            }, function(error) {});
         };
         $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
     };

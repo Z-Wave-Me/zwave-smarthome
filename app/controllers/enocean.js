@@ -48,7 +48,6 @@ myAppController.controller('EnoceanDeviceController', function($scope, $routePar
      * Load z-wave devices
      */
     $scope.loadData = function(brandname) {
-        dataService.showConnectionSpinner();
         dataFactory.getApiLocal('devices_enocean.json').then(function(response) {
             //$scope.manufacturers = dataService.getPairs(response.data, 'vendor', 'vendorLogo', 'manufacturers_enocean');
             $scope.manufacturers = _.uniq(response.data, 'vendor');
@@ -56,10 +55,7 @@ myAppController.controller('EnoceanDeviceController', function($scope, $routePar
                 $scope.enoceanDevices = _.where(response.data, {vendor: brandname});
                 $scope.manufacturer = brandname;
             }
-            dataService.updateTimeTick();
-        }, function(error) {
-            dataService.showConnectionError(error);
-        });
+        }, function(error) {});
     };
     $scope.loadData($routeParams.brandname);
 });
@@ -97,15 +93,11 @@ myAppController.controller('EnoceanAssignController', function($scope, $interval
      * Load included devices
      */
     $scope.loadIncludedDevices = function() {
-        dataService.showConnectionSpinner();
         dataFactory.loadEnoceanApiData(true).then(function(response) {
-            dataService.updateTimeTick();
             angular.forEach(response.data.devices, function(v, k) {
                 $scope.includedDevices.push(k);
             });
-        }, function(error) {
-            dataService.showConnectionError(error);
-        });
+        }, function(error) {});
     };
     $scope.loadIncludedDevices();
 
@@ -127,9 +119,7 @@ myAppController.controller('EnoceanAssignController', function($scope, $interval
     $scope.loadLocations = function() {
         dataFactory.getApi('locations').then(function(response) {
             $scope.rooms = response.data.data;
-        }, function(error) {
-            dataService.showConnectionError(error);
-        });
+        }, function(error) {});
     }
     ;
     $scope.loadLocations();
@@ -212,9 +202,7 @@ myAppController.controller('EnoceanAssignController', function($scope, $interval
 
                     }
                 });
-            }, function(error) {
-                dataService.showConnectionError(error);
-            });
+            }, function(error) {});
         };
         $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
     };
@@ -258,7 +246,6 @@ myAppController.controller('EnoceanAssignController', function($scope, $interval
                     $interval.cancel($scope.apiDataInterval);
                     $scope.inclusion = {done: true, config: true, promisc: false, message: $scope._t('inclusion_proces_done'), status: 'alert-success', icon: 'fa-check'};
                     $scope.loadApiDevices();
-                    dataService.updateTimeTick();
                     return;
                 }
                 //}
@@ -275,10 +262,7 @@ myAppController.controller('EnoceanAssignController', function($scope, $interval
      */
     $scope.runCmd = function(cmd) {
         // Run CMD
-        dataFactory.runEnoceanCmd(cmd).then(function(response) {
-            dataService.updateTimeTick();
-        }, function(error) {
-            dataService.showConnectionError(error);
+        dataFactory.runEnoceanCmd(cmd).then(function(response) {}, function(error) {
             $scope.inclusion = {done: false, promisc: false, message: $scope._t('inclusion_error'), status: 'alert-danger', icon: 'fa-warning'};
 
         });
@@ -381,15 +365,11 @@ myAppController.controller('EnoceanTeachinController', function($scope, $routePa
      * Load included devices
      */
     $scope.loadIncludedDevices = function() {
-        dataService.showConnectionSpinner();
         dataFactory.loadEnoceanApiData(true).then(function(response) {
-            dataService.updateTimeTick();
             angular.forEach(response.data.devices, function(v, k) {
                 $scope.includedDevices.push(k);
             });
-        }, function(error) {
-            dataService.showConnectionError(error);
-        });
+        }, function(error) {});
     };
     $scope.loadIncludedDevices();
 
@@ -411,9 +391,7 @@ myAppController.controller('EnoceanTeachinController', function($scope, $routePa
     $scope.loadLocations = function() {
         dataFactory.getApi('locations').then(function(response) {
             $scope.rooms = response.data.data;
-        }, function(error) {
-            dataService.showConnectionError(error);
-        });
+        }, function(error) {});
     }
     ;
     $scope.loadLocations();
@@ -508,9 +486,7 @@ myAppController.controller('EnoceanTeachinController', function($scope, $routePa
 
                     }
                 });
-            }, function(error) {
-                dataService.showConnectionError(error);
-            });
+            }, function(error) {});
         };
         $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
     };
@@ -553,7 +529,6 @@ myAppController.controller('EnoceanTeachinController', function($scope, $routePa
                     $interval.cancel($scope.apiDataInterval);
                     $scope.inclusion = {done: true, config: true, promisc: false, message: $scope._t('inclusion_proces_done'), status: 'alert-success', icon: 'fa-check'};
                     $scope.loadApiDevices();
-                    dataService.updateTimeTick();
                     return;
                 }
                 //}
@@ -570,10 +545,7 @@ myAppController.controller('EnoceanTeachinController', function($scope, $routePa
      */
     $scope.runCmd = function(cmd) {
         // Run CMD
-        dataFactory.runEnoceanCmd(cmd).then(function(response) {
-            dataService.updateTimeTick();
-        }, function(error) {
-            dataService.showConnectionError(error);
+        dataFactory.runEnoceanCmd(cmd).then(function(response) {}, function(error) {
             $scope.inclusion = {done: false, promisc: false, message: $scope._t('inclusion_error'), status: 'alert-danger', icon: 'fa-warning'};
 
         });
@@ -707,10 +679,7 @@ myAppController.controller('EnoceanManageController', function($scope, $location
      */
     $scope.runCmd = function(cmd) {
         // Run CMD
-        dataFactory.runEnoceanCmd(cmd).then(function(response) {
-            dataService.updateTimeTick();
-        }, function(error) {
-            dataService.showConnectionError(error);
+        dataFactory.runEnoceanCmd(cmd).then(function(response) {}, function(error) {
             $scope.inclusion = {done: false, promisc: false, message: $scope._t('inclusion_error'), status: 'alert-danger', icon: 'fa-warning'};
 
         });
@@ -835,7 +804,6 @@ myAppController.controller('EnoceanManageDetailController', function($scope, $ro
      * Load enocean data
      */
     $scope.loadData = function() {
-        dataService.showConnectionSpinner();
         dataFactory.runEnoceanCmd('zeno.devices["' + $routeParams.deviceId + '"]').then(function(response) {
             if (response.data == 'null') {
                   console.log('ERROR')
@@ -848,7 +816,6 @@ myAppController.controller('EnoceanManageDetailController', function($scope, $ro
                 //profileId = profile.profileId;
                 name = profile._funcDescription;
             }
-            dataService.updateTimeTick();
             $scope.input = {
                 id: device.id.replace(/^(x)/, ""),
                 rorg: device.data.rorg.value,
@@ -968,10 +935,8 @@ myAppController.controller('EnoceanManageDetailController', function($scope, $ro
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         // Run CMD
         dataFactory.runEnoceanCmd(cmd).then(function(response) {
-            dataService.updateTimeTick();
             $scope.loading = false;
         }, function(error) {
-            dataService.showConnectionError(error);
             $scope.loading = false;
 
         });
@@ -1016,9 +981,7 @@ myAppController.controller('EnoceanManageDetailController', function($scope, $ro
     function loadLocations() {
         dataFactory.getApi('locations').then(function(response) {
             $scope.rooms = response.data.data;
-        }, function(error) {
-            dataService.showConnectionError(error);
-        });
+        }, function(error) {});
     }
     ;
 });

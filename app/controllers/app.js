@@ -158,7 +158,6 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                     .where($scope.dataHolder.onlineModules.filter)
                     .value();
             $scope.loading = false;
-            dataService.updateTimeTick();
         }, function (error) {
             $scope.loading = false;
             alertify.alertError($scope._t('error_load_data'));
@@ -403,9 +402,7 @@ myAppController.controller('AppLocalDetailController', function ($scope, $routeP
             if (category) {
                 $scope.categoryName = category.name;
             }
-        }, function (error) {
-            dataService.showConnectionError(error);
-        });
+        }, function (error) {});
     };
 
     /**
@@ -428,8 +425,7 @@ myAppController.controller('AppLocalDetailController', function ($scope, $routeP
     /// --- Private functions --- ///
     function loadOnlineModules(moduleName) {
         dataFactory.getRemoteData($scope.cfg.online_module_url).then(function (response) {
-            $scope.isOnline = _.findWhere(response.data, {modulename: moduleName});
-            dataService.updateTimeTick();
+            $scope.isOnline = _.findWhere(response.data, {modulename: moduleName});;
         }, function (error) {
         });
     }
@@ -476,9 +472,7 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
                 $scope.rating.model.remote_id = response.data.data[0].params.userId;
             }
 
-        }, function (error) {
-            dataService.showConnectionError(error);
-        });
+        }, function (error) {});
     };
 
     $scope.loadRemoteAccess();
@@ -496,9 +490,7 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
             if (category) {
                 $scope.categoryName = category.name;
             }
-        }, function (error) {
-            dataService.showConnectionError(error);
-        });
+        }, function (error) {});
     };
     /**
      * Load local modules
@@ -525,7 +517,6 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
 
             $scope.loadLocalModules({moduleName: $scope.module.modulename});
             $scope.loadCategories($scope.module.category);
-            dataService.updateTimeTick();
         }, function (error) {
             $scope.loading = false;
             alertify.alertError($scope._t('error_load_data'));
@@ -678,7 +669,6 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
 
     // Post new module instance
     $scope.postModule = function (id) {
-        dataService.showConnectionSpinner();
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('modules', '/' + id + '?lang=' + $scope.lang, true).then(function (module) {
             // get module postRender data
@@ -703,7 +693,6 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
             angular.extend($scope.moduleId, {find: module.data.data});
             $scope.loadCategories(module.data.data.category);
             setDependencies(module.data.data.dependencies);
-            dataService.updateTimeTick();
             $scope.showForm = true;
             $scope.loading = false;
             if (!$filter('hasNode')(formData, 'options.fields') || !$filter('hasNode')(formData, 'schema.properties')) {
@@ -725,14 +714,12 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
         if (id < 1) {
             return;
         }
-        dataService.showConnectionSpinner();
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('instances', '/' + id, true).then(function (instances) {
             var instance = instances.data.data;
             dataFactory.getApi('modules', '/' + instance.moduleId + '?lang=' + $scope.lang, true).then(function (module) {
                 if (module.data.data.state === 'hidden') {
                     if (!$scope.user.expert_view) {
-                        dataService.updateTimeTick();
                         $scope.loading = false;
                         return;
                     }
@@ -761,7 +748,6 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
                 angular.extend($scope.moduleId, {find: module.data.data});
                 $scope.loadCategories(module.data.data.category);
                 setDependencies(module.data.data.dependencies);
-                dataService.updateTimeTick();
                 $scope.loading = false;
                 if (!$filter('hasNode')(formData, 'options.fields') || !$filter('hasNode')(formData, 'schema.properties')) {
                     $scope.alpacaData = false;
@@ -772,7 +758,6 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
 
             }, function (error) {
                 alertify.alertError($scope._t('error_load_data'));
-                dataService.showConnectionError(error);
                 $scope.loading = false;
             });
         }, function (error) {

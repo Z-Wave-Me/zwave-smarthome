@@ -1828,41 +1828,38 @@ a:focus {
 /* Others
 -------------------------------------------------- */
 /* line 114, ../sass/common/_body.scss */
-.update-time-tick {
+.timestamp {
+  color: #333333;
   font-size: 17px;
 }
-/* line 116, ../sass/common/_body.scss */
-.update-time-tick .text-success {
-  color: #80AD80;
-}
-/* line 119, ../sass/common/_body.scss */
-.update-time-tick .fa {
+/* line 117, ../sass/common/_body.scss */
+.timestamp .fa {
   font-size: 110%;
 }
 
-/* line 123, ../sass/common/_body.scss */
+/* line 121, ../sass/common/_body.scss */
 .bcg-active.false, .bcg-danger {
   background-color: #f2dede;
 }
 
-/* line 127, ../sass/common/_body.scss */
+/* line 125, ../sass/common/_body.scss */
 .clickable {
   cursor: pointer;
 }
 
-/* line 131, ../sass/common/_body.scss */
+/* line 129, ../sass/common/_body.scss */
 .text-supp {
   font-style: italic;
   color: #595959;
 }
 
-/* line 136, ../sass/common/_body.scss */
+/* line 134, ../sass/common/_body.scss */
 .badge {
   padding: 5px;
   margin-right: 5px;
 }
 
-/* line 140, ../sass/common/_body.scss */
+/* line 138, ../sass/common/_body.scss */
 .help-text {
   display: block;
   font-size: 95%;
@@ -1870,17 +1867,17 @@ a:focus {
   margin: 5px 0;
 }
 
-/* line 146, ../sass/common/_body.scss */
+/* line 144, ../sass/common/_body.scss */
 .help-text.inline {
   display: inline;
 }
 
-/* line 150, ../sass/common/_body.scss */
+/* line 148, ../sass/common/_body.scss */
 .display-block {
   display: block;
 }
 
-/* line 153, ../sass/common/_body.scss */
+/* line 151, ../sass/common/_body.scss */
 .badge-number {
   background-color: #a6a6a6;
   color: #FFFFFF;
@@ -2068,7 +2065,7 @@ a:focus {
   line-height: 50px;
 }
 /* line 16, ../sass/common/_footer.scss */
-#footer #footer_in .update-time-tick {
+#footer #footer_in .timestamp {
   display: none;
 }
 
@@ -4524,11 +4521,11 @@ img.widget-promo-image {
   /* Others
   -------------------------------------------------- */
   /* line 319, ../sass/responsive/_mq_shared.scss */
-  .update-time-tick {
+  .timestamp {
     font-size: 90% !important;
   }
   /* line 321, ../sass/responsive/_mq_shared.scss */
-  .update-time-tick .fa {
+  .timestamp .fa {
     font-size: 90% !important;
   }
 }
@@ -4885,11 +4882,11 @@ img.widget-promo-image {
   /* Others
   -------------------------------------------------- */
   /* line 319, ../sass/responsive/_mq_shared.scss */
-  .update-time-tick {
+  .timestamp {
     font-size: 90% !important;
   }
   /* line 321, ../sass/responsive/_mq_shared.scss */
-  .update-time-tick .fa {
+  .timestamp .fa {
     font-size: 90% !important;
   }
 }
@@ -4899,7 +4896,7 @@ img.widget-promo-image {
 @media only screen and (max-width: 992px) {
   /* line 102, ../sass/responsive/_responsive.scss */
   .nav-logo,
-  #header .update-time-tick,
+  #header .timestamp,
   #main_navigation .divider-vertical,
   .btn-name {
     display: none !important;
@@ -4912,7 +4909,7 @@ img.widget-promo-image {
   }
 
   /* line 112, ../sass/responsive/_responsive.scss */
-  #footer .update-time-tick {
+  #footer .timestamp {
     display: inline-block !important;
   }
 }

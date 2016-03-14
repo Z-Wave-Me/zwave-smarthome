@@ -39,7 +39,6 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
             loadDevices();
             $scope.input = response.data.data;
            $scope.loading = false;
-           dataService.updateTimeTick();
         }, function(error) {
             $scope.loading = false;
             alertify.alertError($scope._t('error_load_data'));
@@ -167,9 +166,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
     function loadDevices() {
         dataFactory.getApi('devices').then(function(response) {
             $scope.devices = response.data.data.devices;
-        }, function(error) {
-            dataService.showConnectionError(error);
-        });
+        }, function(error) {});
     }
     ;
 

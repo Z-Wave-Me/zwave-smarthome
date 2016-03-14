@@ -24,7 +24,6 @@ myAppController.controller('RoomController', function($scope, $location, dataFac
 //            if (Object.keys($scope.collection).length < 1) {
 //                $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: $scope._t('no_data')};
 //            }
-            dataService.updateTimeTick();
             $scope.loadDevices();
         }, function(error) {
               $scope.loading = false;
@@ -113,10 +112,7 @@ myAppController.controller('RoomConfigController', function($scope, $window, $lo
     function loadDevices() {
         dataFactory.getApi('devices').then(function(response) {
             $scope.devices = response.data.data.devices;
-            dataService.updateTimeTick();
-        }, function(error) {
-            dataService.showConnectionError(error);
-        });
+        }, function(error) {});
     }
     ;
 
@@ -266,7 +262,6 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
                 }
 
             });
-            dataService.updateTimeTick();
         }, function(error) {});
     }
     ;

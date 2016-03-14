@@ -50,9 +50,7 @@ myAppController.controller('ConfigConfigurationController', function($scope, $ro
             };
             //$scope.getNodeDevices();
             setData(ZWaveAPIData, nodeId);
-        }, function(error) {
-            dataService.showConnectionError(error);
-        });
+        }, function(error) {});
     };
     $scope.load($routeParams.nodeId);
     
@@ -62,11 +60,8 @@ myAppController.controller('ConfigConfigurationController', function($scope, $ro
     $scope.refresh = function(nodeId) {
         var refresh = function() {
             dataFactory.joinedZwaveData().then(function(response) {
-                dataService.updateTimeTick(response.data.update.updateTime);
-                 setData(response.data.joined, nodeId,true);
-            }, function(error) {
-                dataService.showConnectionError(error);
-            });
+                setData(response.data.joined, nodeId,true);
+            }, function(error) {});
         };
         $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
     };

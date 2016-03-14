@@ -8,12 +8,13 @@ var myAppController = angular.module('myAppController', []);
 /**
  * Base controller
  */
-myAppController.controller('BaseController', function ($scope, $cookies, $filter, $location, $route, $window, cfg, dataFactory, dataService, myCache) {
+myAppController.controller('BaseController', function ($scope, $cookies, $filter, $location, $route, $window,$interval, cfg, dataFactory, dataService, myCache) {
     /**
      * Global scopes
      */
     angular.extend(cfg.route, {os: dataService.getOs()});
     $scope.cfg = cfg;
+     $scope.timeZoneInterval = null;
     $scope.languages = {};
     $scope.loading = false;
     $scope.alert = {message: false, status: 'is-hidden', icon: false};
@@ -32,11 +33,28 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
      
      };
      $scope.setSkin();*/
-    
     $scope.resetFatalError = function (obj) {
         angular.extend(cfg.route.fatalError,obj||{message: false,info: false,hide: false});
 
     };
+    // Set time
+    $scope.setTimeZone = function () {
+         dataFactory.getApi('timezone',null,true).then(function(response) {
+             angular.extend(cfg.route.time,{string: $filter('getCurrentTime')(response.data.data.localTimeUT)});
+             var refresh = function () {
+            dataFactory.getApi('timezone',null,true).then(function (response) {
+                angular.extend(cfg.route.time,{string: $filter('getCurrentTime')(response.data.data.localTimeUT)});
+
+            }, function (error) {
+                $interval.cancel($scope.timeZoneInterval);
+            });
+        };
+        $scope.timeZoneInterval = $interval(refresh, $scope.cfg.interval);
+        }, function(error) {});
+
+    };
+    $scope.setTimeZone();
+    // Set poll interval
     $scope.setPollInterval = function () {
         if (!$scope.user) {
             $scope.cfg.interval = $scope.cfg.interval;
@@ -85,9 +103,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         dataFactory.getLanguageFile(lang).then(function (response) {
             //$scope.languages = response.data;
             angular.extend($scope.languages, response.data);
-        }, function (error) {
-            dataService.showConnectionError(error);
-        });
+        }, function (error) {});
     };
     // Get language lines
     $scope._t = function (key) {
@@ -138,14 +154,6 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     $scope.isActive = function (route) {
         return (route === $scope.getBodyId() ? 'active' : '');
     };
-
-    /**
-     * Set time
-     */
-    $scope.setTime = function () {
-        dataService.updateTimeTick();
-    };
-    $scope.setTime();
 
     /**
      *Reload data

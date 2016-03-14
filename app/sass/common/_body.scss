@@ -111,11 +111,9 @@ a {
 
 /* Others
 -------------------------------------------------- */
-.update-time-tick{
+.timestamp{
+    color: $app-timestamp-color;
     font-size: $app-updatetime-font-size;
-    .text-success{
-        color: $app-brand-success;
-    }
     .fa{
         font-size: $app-updatetime-icon-size; 
     }

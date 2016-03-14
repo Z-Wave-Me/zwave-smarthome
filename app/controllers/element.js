@@ -36,9 +36,7 @@ myAppController.controller('ElementBaseController', function ($scope, $routePara
     $scope.loadLocations = function () {
         dataFactory.getApi('locations').then(function (response) {
             angular.extend($scope.dataHolder.devices.rooms, _.indexBy(response.data.data, 'id'));
-        }, function (error) {
-            dataService.showConnectionError(error);
-        });
+        }, function (error) {});
     }
     ;
     $scope.loadLocations();
@@ -137,7 +135,6 @@ myAppController.controller('ElementBaseController', function ($scope, $routePara
     $scope.refreshDevices = function () {
         var refresh = function () {
             dataFactory.refreshApi('devices').then(function (response) {
-                dataService.updateTimeTick(response.data.data.updateTime);
                 if (response.data.data.devices.length > 0) {
                     angular.forEach(response.data.data.devices, function (v, k) {
                         if (v.metrics.level) {
@@ -676,7 +673,6 @@ myAppController.controller('ElementDetailController', function ($scope, $routePa
      * Load tag list
      */
     $scope.loadTagList = function () {
-        dataService.showConnectionSpinner();
         dataFactory.getApi('devices').then(function (response) {
             angular.forEach(response.data.data.devices, function (v, k) {
                 if (v.tags) {
@@ -689,9 +685,7 @@ myAppController.controller('ElementDetailController', function ($scope, $routePa
                 }
             });
 
-        }, function (error) {
-            dataService.showConnectionError(error);
-        });
+        }, function (error) {});
     };
     $scope.loadTagList();
 
@@ -757,9 +751,7 @@ myAppController.controller('ElementDetailController', function ($scope, $routePa
     function loadLocations() {
         dataFactory.getApi('locations').then(function (response) {
             $scope.rooms = response.data.data;
-        }, function (error) {
-            dataService.showConnectionError(error);
-        });
+        }, function (error) {});
     }
     ;
     /**
@@ -775,9 +767,7 @@ myAppController.controller('ElementDetailController', function ($scope, $routePa
             var v = dataService.getDevices(devices, null, $scope.user.dashboard, response.data.data)[0];
             setInput(v, response.data.data.updateTime);
 
-        }, function (error) {
-            dataService.showConnectionError(error);
-        });
+        }, function (error) {});
     }
     ;
 
@@ -823,10 +813,8 @@ myAppController.controller('ElementDetailController', function ($scope, $routePa
                 //'rooms': $scope.rooms,
                 'hide_events': false
             };
-            dataService.updateTimeTick(updateTime);
         } else {
             alertify.alertError($scope._t('no_data'));
-            dataService.showConnectionError($scope._t('no_data'));
         }
     }
     ;

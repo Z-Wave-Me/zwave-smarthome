@@ -13,7 +13,6 @@ myAppController.controller('CameraAddController', function($scope, dataFactory, 
      * Load ip cameras
      */
     $scope.loadData = function() {
-        dataService.showConnectionSpinner();
         dataFactory.getApi('modules').then(function(response) {
             $scope.ipcameraDevices = _.filter(response.data.data, function(item) {
                 var isHidden = false;
@@ -33,10 +32,7 @@ myAppController.controller('CameraAddController', function($scope, dataFactory, 
                     return item;
                 }
             });
-            dataService.updateTimeTick();
-        }, function(error) {
-            dataService.showConnectionError(error);
-        });
+        }, function(error) {});
     };
     $scope.loadData();
 });
@@ -81,10 +77,7 @@ myAppController.controller('CameraManageController', function($scope, $route,$wi
             });
             $scope.modules.collection = modulesFiltered;
              $scope.loadInstances();
-            dataService.updateTimeTick();
-        }, function(error) {
-            dataService.showConnectionError(error);
-        });
+        }, function(error) {});
     };
      $scope.loadModules();
      
@@ -100,10 +93,8 @@ myAppController.controller('CameraManageController', function($scope, $route,$wi
                 return true;
             });
             $scope.loading = false;
-            dataService.updateTimeTick();
         }, function(error) {
             $scope.loading = false;
-            dataService.showConnectionError(error);
         });
     };
     
