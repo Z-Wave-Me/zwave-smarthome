@@ -20,35 +20,6 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $location
         }
         return key;
     };
-    /**
-     * DEPRECATED
-     * Show connection error
-     */
-//    this.showConnectionError = function (error) {
-//        return false;
-//        //$('.update-time-tick').html('<i class="fa fa-minus-circle fa-lg text-danger"></i>');
-//        //return this.logError(error, 'Unable to recieve HTTP data');
-//    };
-
-    /**
-     * DEPRECATED
-     * Show connection spinner
-     */
-//    this.showConnectionSpinner = function () {
-//        return false;
-//        // $('.update-time-tick').html('<i class="fa fa-spinner fa-spin fa-lg text-success"></i>');
-//        //return this.logError(error,'Unable to recieve HTTP data');
-//    };
-
-    /**
-     * DEPRECATED
-     * Update time tick
-     */
-//    this.updateTimeTick = function (time) {
-//
-//        time = (time || Math.round(+new Date() / 1000));
-//        $('.update-time-tick').html('<span class="navi-time-link"><i class="fa fa-clock-o text-success"></i> <span class="text-success">' + $filter('getCurrentTime')(time)) + '</span></span>';
-//    };
 
     /**
      * Show notifier
@@ -222,14 +193,6 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $location
     };
 
     /**
-     * DEPRECATED
-     * Update devices
-     */
-//    this.updateDevices = function (data) {
-//        return updateDevices(data);
-//    };
-
-    /**
      * Get chart data
      */
     this.getChartData = function (data, colors) {
@@ -324,14 +287,6 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $location
 
         return $filter('unique')(collection, 'key');
     };
-
-    /**
-     * DEPRECATED
-     * Get config navigation devices
-     */
-//    this.configGetNav = function (ZWaveAPIData) {
-//        return configGetNav(ZWaveAPIData);
-//    };
 
     /**
      * Set EnOcean profile
