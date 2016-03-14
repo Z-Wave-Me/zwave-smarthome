@@ -110,20 +110,19 @@ myAppController.controller('ElementBaseController', function ($scope, $routePara
             // $scope.tags = dataService.getTags(response.data.data.devices);
             //All devices
             $scope.dataHolder.devices.all = devices.value();
-            // Collection
+            // Build collection and run all filters
             $scope.dataHolder.devices.collection = _.filter($scope.dataHolder.devices.all,function (device) {
-                var nomatch = _.find($scope.dataHolder.devices.filter,function(filterValue,filterKey) {
+                var match = _.every($scope.dataHolder.devices.filter,function(filterValue,filterKey) {
                     if (filterKey === 'tag') {
-                        if (device.tags.indexOf(filterValue) === -1) {
+                        if (device.tags.indexOf(filterValue) > -1) {
                             return true; 
                         }
-                    } else if (filterValue !== device[filterKey]) {
+                    } else if (filterValue === device[filterKey]) {
                         return true;
                     }
-                    // Matches
                     return false;
                 });
-                return !nomatch;
+                return match;
             });
             if (_.isEmpty($scope.dataHolder.devices.all)) {
                 $scope.dataHolder.devices.welcome = true;
