@@ -1,6 +1,6 @@
 <!-- Elements list -->
 <div class="app-row app-row-widget app-row-element clearfix">
-    <div id="Widget_{{v.id}}" class="widget-entry widget-entry-element  is-new-{{v.isNew}}"
+    <div id="Widget_{{v.id}}" class="widget-entry widget-entry-element"
          ng-class="{'widget-success': v.isNew}"
          ng-repeat="v in dataHolder.devices.collection| filter:q | orderBy: cfg.orderby.elements[dataHolder.devices.orderBy] track by v.id">
         <div class="widget-entry-in">

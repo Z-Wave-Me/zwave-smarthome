@@ -2402,12 +2402,10 @@ img {
   float: right;
 }
 
-/* line 80, ../sass/common/_widget.scss */
-.widget-success {
-  /*    .widget-entry-in{
-      border-color: $widget-success-border-color !important;
-      border-width: 4px;
-      }*/
+/* line 81, ../sass/common/_widget.scss */
+.widget-success .widget-entry-in {
+  border-color: #bed5be !important;
+  border-width: 4px;
 }
 
 /* line 87, ../sass/common/_widget.scss */
@@ -4091,7 +4089,7 @@ img.widget-promo-image {
   }
   /* line 95, ../sass/skins/default/_main.scss */
   .widget-entry .widget-entry-in {
-    border-width: 4px;
+    border-width: 4px !important;
   }
 }
 /*
