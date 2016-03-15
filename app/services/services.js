@@ -40,13 +40,6 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $location
         message = message || 'ERROR:';
         $log.error('---------- ' + message + ' ----------', error);
     };
-    /**
-     * Log info
-     */
-    this.logInfo = function (info, message) {
-        message = message || 'INFO:';
-        $log.info('---------- ' + message + ' ----------', info);
-    };
 
     /**
      * Get OS (operating system)
@@ -103,8 +96,8 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $location
      * Unset user
      */
     this.unsetUser = function () {
-        setUser(null);
-        setZWAYSession(null);
+         this.setUser(null);
+         this.setZWAYSession(null);
     };
 
     /**
@@ -166,6 +159,54 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $location
         $window.location.href = '#/?logout';
         $window.location.reload();
 
+    };
+    
+    /**
+     * Get device data
+     */
+    this.getDevicesData = function (data) {
+        var user = this.getUser();
+        return _.chain(data)
+                    .flatten()
+                    .uniq(false, function (v) {
+                        return v.id;
+                    })
+                    .reject(function (v) {
+                        return (v.deviceType === 'battery') || (v.permanently_hidden === true) || (v.visibility === false);
+                    })
+                    .filter(function (v) {
+                        var minMax;
+                        var yesterday = (Math.round(new Date().getTime() / 1000)) - (24 * 3600);
+                        var isNew = v.creationTime > yesterday ? true : false;
+                        // Create min/max value
+                        switch (v.probeType) {
+                            case 'test':
+                                minMax = {min: 0, max: 255};
+                                break;
+                            default:
+                                minMax = {min: 0, max: 99};
+                                break;
+                        }
+                        if (v.deviceType === 'thermostat') {
+                            minMax = (v.metrics.scaleTitle === '°F' ? {min: 41, max: 104} : {min: 5, max: 40});
+                        }
+                        angular.extend(v,
+                                {onDashboard: (user.dashboard.indexOf(v.id) !== -1 ? true : false)},
+                                {minMax: minMax},
+                                {hasHistory: (v.hasHistory === true ? true : false)},
+                                {imgTrans: false},
+                                {isNew: isNew},
+                                {iconPath: $filter('getElementIcon')(v.metrics.icon, v, v.metrics.level)},
+                                {updateCmd: (v.deviceType === 'switchControl' ? 'on' : 'update')}
+                        );
+                        if (v.metrics.color) {
+                            angular.extend(v.metrics, {rgbColors: 'rgb(' + v.metrics.color.r + ',' + v.metrics.color.g + ',' + v.metrics.color.b + ')'});
+                        }
+                        if (v.metrics.level) {
+                            angular.extend(v.metrics, {level: $filter('numberFixedLen')(v.metrics.level)});
+                        }
+                        return v;
+                    });
     };
 
     /**

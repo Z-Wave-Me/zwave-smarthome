@@ -254,9 +254,7 @@ myApp.directive('myknob', ['$timeout', 'dataFactory', function ($timeout, dataFa
         function runCmdExact(id, val) {
             var cmd = id + '/command/exact?level=' + val;
             dataFactory.runApiCmd(cmd).then(function (response) {
-            }, function (error) {
-                dataService.logError(error);
-            });
+            }, function (error) {});
             return;
         }
         ;

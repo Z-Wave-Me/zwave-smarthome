@@ -80,10 +80,7 @@ myAppController.controller('ConfigConfigurationController', function($scope, $ro
             alertify.alert($scope._t('conf_apply_battery'));
         }
         dataFactory.runExpertCmd(cmd, true).then(function(response) {
-            
-            //dataService.logInfo(response, 'Update from device');
         }, function(error) {
-            dataService.logError(error, 'Update from device');
             alertify.alert($scope._t('error_update_data'));
         });
         $scope.refresh($routeParams.nodeId);
@@ -103,10 +100,7 @@ myAppController.controller('ConfigConfigurationController', function($scope, $ro
             if (v.confNum) {
                 var request = cmd + '(' + v.confNum + ')';
                 dataFactory.runExpertCmd(request, true).then(function(response) {
-                }, function(error) {
-                    dataService.logError(error);
-                    return;
-                });
+                }, function(error) {});
             }
 
         });
@@ -188,47 +182,35 @@ myAppController.controller('ConfigConfigurationController', function($scope, $ro
                     configRequest += cmd.command + '(' + v.parameterValues + ')';
                     if (confNum) {
                         if (confNum == v.confNum) {
-                            dataFactory.runExpertCmd(configRequest, true).then(function(response){}, function(error) {
-                                dataService.logError(error);
-                            });
+                            dataFactory.runExpertCmd(configRequest, true).then(function(response){}, function(error) {});
                         }
                     } else {
-                        dataFactory.runExpertCmd(configRequest, true).then(function(response){},function(error) {
-                            dataService.logError(error);
-                        });
+                        dataFactory.runExpertCmd(configRequest, true).then(function(response){},function(error) {});
                     }
 
                 });
                 break;
             case '75':// Protection
                 request += cmd.command + '(' + configValues.join(",") + ')';
-                dataFactory.runExpertCmd(request, true).then(function(response){},function(error) {
-                    dataService.logError(error);
-                });
+                dataFactory.runExpertCmd(request, true).then(function(response){},function(error) {});
                 break;
             case '84':// Wakeup
                 request += cmd.command + '(' + configValues.join(",") + ')';
-                dataFactory.runExpertCmd(request, true).then(function(response){},function(error) {
-                    dataService.logError(error);
-                });
+                dataFactory.runExpertCmd(request, true).then(function(response){},function(error) {});
                 break;
             case '27':// Switch all
                 request += cmd.command + '(' + configValues.join(",") + ')';
-                dataFactory.runExpertCmd(request, true).then(function(response){},function(error) {
-                    dataService.logError(error);
-                });
+                dataFactory.runExpertCmd(request, true).then(function(response){},function(error) {});
                 break;
             default:
                 break;
         }
         dataFactory.xmlToJson($scope.cfg.server_url + $scope.cfg.cfg_xml_url, true).then(function(cfgXml) {
            var xmlFile = expertService.buildCfgXml(xmlData, cfgXml, cmd['id'], cmd['commandclass']);
-           dataFactory. putCfgXml(xmlFile).then(function(response){},function(error) {
-                    dataService.logError(error);
+           dataFactory.putCfgXml(xmlFile).then(function(response){},function(error) {
                     alertify.alert($scope._t('error_update_data'));
                 });
         }, function(error) {
-            dataService.logError(error);
             alertify.alert($scope._t('error_update_data'));
         });
 

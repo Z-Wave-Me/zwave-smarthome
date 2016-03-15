@@ -684,6 +684,10 @@ myAppController.controller('ElementDetailController', function ($scope, $routePa
             loadLocations();
             // Instances
             loadInstances(devices);
+            var device = [];
+            device[0] = response.data.data;
+            device = dataService.getDevicesData(device).value();
+            getInstances(device);
 
         }, function (error) {
             $scope.loading = false;
@@ -777,6 +781,14 @@ myAppController.controller('ElementDetailController', function ($scope, $routePa
         }, function (error) {});
     }
     ;
+    
+    /**
+     * Get instances
+     */
+    function getInstances(devices) {
+       console.log(devices)
+    }
+    ;
     /**
      * Load instances
      */
@@ -818,7 +830,7 @@ myAppController.controller('ElementDetailController', function ($scope, $routePa
     /**
      * Set input
      */
-    function setInput(v, updateTime) {
+    function setInput(v) {
         if (v) {
             $scope.input = {
                 'id': v.id,

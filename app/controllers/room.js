@@ -6,7 +6,7 @@
 /**
  * Room controller
  */
-myAppController.controller('RoomController', function($scope, $location, dataFactory, dataService, _) {
+myAppController.controller('RoomController', function ($scope, $location, dataFactory, dataService, _) {
     $scope.collection = [];
     $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/image/';
     $scope.devices = {
@@ -16,17 +16,17 @@ myAppController.controller('RoomController', function($scope, $location, dataFac
     /**
      * Load data into collection
      */
-    $scope.loadData = function() {
+    $scope.loadData = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataFactory.getApi('locations').then(function(response) {
+        dataFactory.getApi('locations').then(function (response) {
             $scope.loading = false;
             $scope.collection = response.data.data;
 //            if (Object.keys($scope.collection).length < 1) {
 //                $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: $scope._t('no_data')};
 //            }
             $scope.loadDevices();
-        }, function(error) {
-              $scope.loading = false;
+        }, function (error) {
+            $scope.loading = false;
             alertify.alertError($scope._t('error_load_data'));
         });
     };
@@ -35,48 +35,50 @@ myAppController.controller('RoomController', function($scope, $location, dataFac
     /**
      * Load devices
      */
-    $scope.loadDevices = function() {
-        dataFactory.getApi('devices').then(function(response) {
+    $scope.loadDevices = function () {
+        dataFactory.getApi('devices').then(function (response) {
             $scope.devices.count = _.chain(response.data.data.devices)
                     .flatten()
-                    .reject(function(v){ return v.deviceType == 'battery' || v.permanently_hidden == true; })
+                    .reject(function (v) {
+                        return v.deviceType == 'battery' || v.permanently_hidden == true;
+                    })
                     .groupBy('location')
                     .value();
-        }, function(error) {});
+        }, function (error) {});
     }
     ;
 });
 /**
  * Room config controller
  */
-myAppController.controller('RoomConfigController', function($scope, $window, $location, dataFactory, dataService, myCache, _) {
+myAppController.controller('RoomConfigController', function ($scope, $window, $location, dataFactory, dataService, myCache, _) {
     $scope.roomConfig = {
-         show: true,
-         all: {}
-     };
+        show: true,
+        all: {}
+    };
     $scope.devices = [];
     $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/image/';
 
-    $scope.reset = function() {
+    $scope.reset = function () {
         $scope.collection = angular.copy([]);
     };
 
     /**
      * Load data into collection
      */
-    $scope.loadData = function(id) {
-         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataFactory.getApi('locations').then(function(response) {
+    $scope.loadData = function (id) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        dataFactory.getApi('locations').then(function (response) {
             $scope.loading = false;
-            $scope.roomConfig.all = _.filter(response.data.data, function(v) {
+            $scope.roomConfig.all = _.filter(response.data.data, function (v) {
                 if (v.id !== 0) {
                     return v;
                 }
             });
             loadDevices();
-        }, function(error) {
+        }, function (error) {
             $scope.roomConfig.show = false;
-             $scope.loading = false;
+            $scope.loading = false;
             alertify.alertError($scope._t('error_load_data'));
         });
     };
@@ -85,11 +87,11 @@ myAppController.controller('RoomConfigController', function($scope, $window, $lo
     /**
      * Delete an item
      */
-    $scope.delete = function(target, roomId, message) {
+    $scope.delete = function (target, roomId, message) {
 
-        alertify.confirm(message, function() {
+        alertify.confirm(message, function () {
             $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
-            dataFactory.deleteApi('locations', roomId).then(function(response) {
+            dataFactory.deleteApi('locations', roomId).then(function (response) {
                 $scope.loading = false;
                 var devices = _.where($scope.devices, {location: roomId});
                 removeRoomIdFromDevice(devices);
@@ -98,7 +100,7 @@ myAppController.controller('RoomConfigController', function($scope, $window, $lo
                 dataService.showNotifier({message: $scope._t('delete_successful')});
                 $scope.loadData();
 
-            }, function(error) {
+            }, function (error) {
                 $scope.loading = false;
                 alertify.alertError($scope._t('error_delete_data'));
             });
@@ -110,9 +112,9 @@ myAppController.controller('RoomConfigController', function($scope, $window, $lo
      * Load devices
      */
     function loadDevices() {
-        dataFactory.getApi('devices').then(function(response) {
+        dataFactory.getApi('devices').then(function (response) {
             $scope.devices = response.data.data.devices;
-        }, function(error) {});
+        }, function (error) {});
     }
     ;
 
@@ -120,9 +122,9 @@ myAppController.controller('RoomConfigController', function($scope, $window, $lo
      * Remove room id from device
      */
     function removeRoomIdFromDevice(devices) {
-        angular.forEach(devices, function(v, k) {
-            dataFactory.putApi('devices', v.id, {'location': 0}).then(function(response) {
-            }, function(error) {
+        angular.forEach(devices, function (v, k) {
+            dataFactory.putApi('devices', v.id, {'location': 0}).then(function (response) {
+            }, function (error) {
             });
         });
         return;
@@ -133,7 +135,7 @@ myAppController.controller('RoomConfigController', function($scope, $window, $lo
 /**
  * Config room detail controller
  */
-myAppController.controller('RoomConfigEditController', function($scope, $routeParams, $filter, $location, dataFactory, dataService, myCache) {
+myAppController.controller('RoomConfigEditController', function ($scope, $routeParams, $filter, $location, dataFactory, dataService, myCache, _) {
     $scope.id = $filter('toInt')($routeParams.id);
     $scope.input = {
         'id': 0,
@@ -153,13 +155,13 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
     /**
      * Load data
      */
-    $scope.loadData = function(id) {
+    $scope.loadData = function (id) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataFactory.getApi('locations', '/' + id, true).then(function(response) {
+        dataFactory.getApi('locations', '/' + id, true).then(function (response) {
             $scope.loading = false;
             $scope.input = response.data.data;
             loadDevices(id);
-        }, function(error) {
+        }, function (error) {
             $scope.input = false;
             $scope.loading = false;
             alertify.alertError($scope._t('error_load_data'));
@@ -174,18 +176,18 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
     /**
      * Upload image
      */
-    $scope.uploadFile = function(files) {
+    $scope.uploadFile = function (files) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('uploading')};
         var cmd = $scope.cfg.api_url + 'upload/file';
         var fd = new FormData();
         //fd.append('file_upload', $scope.myFile);
         fd.append('files_files', files[0]);
-        dataFactory.uploadApiFile(cmd, fd).then(function(response) {
-             $scope.loading = false;
+        dataFactory.uploadApiFile(cmd, fd).then(function (response) {
+            $scope.loading = false;
             $scope.input.user_img = response.data.data;
             $scope.input.img_type = 'user';
             dataService.showNotifier({message: $scope._t('success_upload')});
-        }, function(error) {
+        }, function (error) {
             $scope.loading = false;
             alertify.alertError($scope._t('error_upload'));
         });
@@ -194,7 +196,7 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
     /**
      * Assign device to room
      */
-    $scope.assignDevice = function(device) {
+    $scope.assignDevice = function (device) {
         device.location = null;
         $scope.devicesAssigned.push(device.id);
         return;
@@ -203,11 +205,11 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
     /**
      * Remove device from the room
      */
-    $scope.removeDevice = function(device) {
+    $scope.removeDevice = function (device) {
         var oldList = $scope.devicesAssigned;
         $scope.devicesAssigned = [];
         $scope.devicesToRemove = $scope.devicesToRemove.length > 0 ? $scope.devicesToRemove : [];
-        angular.forEach(oldList, function(v, k) {
+        angular.forEach(oldList, function (v, k) {
             if (v != device.id) {
                 $scope.devicesAssigned.push(v);
             } else {
@@ -221,13 +223,13 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
     /**
      * Create/Update an item
      */
-    $scope.store = function(form,input) {
+    $scope.store = function (form, input) {
         if (form.$invalid) {
             return;
         }
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        dataFactory.storeApi('locations', input.id, input).then(function(response) {
-             $scope.loading = false;
+        dataFactory.storeApi('locations', input.id, input).then(function (response) {
+            $scope.loading = false;
             var id = $filter('hasNode')(response, 'data.data.id');
             if (id) {
                 saveRoomIdIntoDevice(response.data, $scope.devicesAssigned);
@@ -235,12 +237,12 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
                 myCache.remove('locations');
                 myCache.remove('devices');
                 //$scope.loadData(id);
-                 dataService.showNotifier({message: $scope._t('success_updated')});
+                dataService.showNotifier({message: $scope._t('success_updated')});
                 $location.path('/config-rooms');
             }
-           
 
-        }, function(error) {
+
+        }, function (error) {
             alertify.alertError($scope._t('error_update_data'));
             $scope.loading = false;
 
@@ -253,16 +255,18 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
      * Load devices
      */
     function loadDevices(locationId) {
-        dataFactory.getApi('devices').then(function(response) {
+        dataFactory.getApi('devices').then(function (response) {
             $scope.devicesAssigned = [];
-            $scope.devices = dataService.getDevices(response.data.data.devices, false, false, false, locationId > 0 ? locationId : 'post');
-            angular.forEach($scope.devices, function(v, k) {
-                if (v.location == locationId && v.location !== 0) {
+            var devices = dataService.getDevicesData(response.data.data.devices).value();
+            _.filter(devices, function (v) {
+                if (v.location == locationId) {
                     $scope.devicesAssigned.push(v.id);
                 }
-
+                if(v.location == 0 || v.location == locationId){
+                    $scope.devices[v.id] = v;
+                }
             });
-        }, function(error) {});
+        }, function (error) {});
     }
     ;
 
@@ -270,9 +274,9 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
      * Save room id into device
      */
     function saveRoomIdIntoDevice(data, devices) {
-        angular.forEach(devices, function(v, k) {
-            dataFactory.storeApi('devices', v, {'location': data.data.id}).then(function(response) {
-            }, function(error) {
+        angular.forEach(devices, function (v, k) {
+            dataFactory.storeApi('devices', v, {'location': data.data.id}).then(function (response) {
+            }, function (error) {
 
             });
         });
@@ -285,9 +289,9 @@ myAppController.controller('RoomConfigEditController', function($scope, $routePa
      * Remove room id from device
      */
     function removeRoomIdFromDevice(data, devices) {
-        angular.forEach(devices, function(v, k) {
-            dataFactory.putApi('devices', v, {'location': 0}).then(function(response) {
-            }, function(error) {
+        angular.forEach(devices, function (v, k) {
+            dataFactory.putApi('devices', v, {'location': 0}).then(function (response) {
+            }, function (error) {
 
             });
         });

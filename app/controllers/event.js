@@ -165,7 +165,6 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
     $scope.refreshData = function() {
         var refresh = function() {
             dataFactory.refreshApi('notifications').then(function(response) {
-                dataService.logInfo(response.data.data.notifications, 'Updating notifications');
                 angular.forEach(response.data.data.notifications, function(v, k) {
                     $scope.collection.push(v);
                 });
@@ -252,7 +251,6 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
     function updateProfile(profileData) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         dataFactory.putApi('profiles', profileData.id, profileData).then(function(response) {
-            //dataService.logInfo(response, 'Updating Devices');
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
             dataService.setUser(response.data.data);
             myCache.remove('notifications');
