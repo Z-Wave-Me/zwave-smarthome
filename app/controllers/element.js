@@ -12,6 +12,7 @@ myAppController.controller('ElementBaseController', function ($scope, $routePara
             welcome:false,
             show: true,
             all: {},
+            byId: {},
             collection: {},
             deviceType: {},
             find: {},
@@ -128,6 +129,17 @@ myAppController.controller('ElementBaseController', function ($scope, $routePara
         });
     };
     $scope.loadDevices();
+     /**
+     * Get device by ID
+     */
+      $scope.getDeviceById = function (id) {
+          var device = _.where($scope.dataHolder.devices.collection, {id: id});
+          if(device[0]){
+              angular.extend($scope.dataHolder.devices.byId,device[0]);
+          }
+      };
+    
+     
 
     /**
      * Refresh data
@@ -215,6 +227,12 @@ myAppController.controller('ElementBaseController', function ($scope, $routePara
         });
         return;
     };
+    /**
+     * Reset devicse data holder
+     */
+    $scope.resetDevices = function (devices) {
+       angular.extend($scope.dataHolder.devices,devices);
+    };
 
     /**
      * Set exact value for cmd command
@@ -260,7 +278,7 @@ myAppController.controller('ElementBaseController', function ($scope, $routePara
 /**
  * Element SensorMultiline controller
  */
-myAppController.controller('ElementHistoryController', function ($scope, dataFactory, dataService) {
+myAppController.controller('ElementHistoryController', function ($scope, dataFactory, dataService,_) {
     $scope.widgetHistory = {
         find: {},
         alert: {message: false, status: 'is-hidden', icon: false},
@@ -275,8 +293,12 @@ myAppController.controller('ElementHistoryController', function ($scope, dataFac
      * Load device history
      */
     $scope.loadDeviceHistory = function () {
-        var device = $scope.dataHolder.devices.find;
-        $scope.widgetHistory.find = device
+        var device = !_.isEmpty($scope.dataHolder.devices.byId) ? $scope.dataHolder.devices.byId : $scope.dataHolder.devices.find;
+        if(!device){
+           $scope.widgetHistory.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+           return;
+        }
+        $scope.widgetHistory.find = device;
         $scope.widgetHistory.alert = {message: $scope._t('loading'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
         dataFactory.getApi('history', '/' + device.id + '?show=24', true).then(function (response) {
             $scope.widgetHistory.alert = {message: false};
@@ -292,6 +314,7 @@ myAppController.controller('ElementHistoryController', function ($scope, dataFac
 
     };
     $scope.loadDeviceHistory();
+    
 });
 
 /**
