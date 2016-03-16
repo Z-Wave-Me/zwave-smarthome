@@ -313,6 +313,36 @@ var config_data = {
                     'ScheduledScene'
                 ]
             },
+             'jb': {
+                'logo': 'app-logo-popp.png',
+                'hidden_apps': [
+                    'Cron',
+                    'CodeDevice',
+                    'BatteryPolling',
+                    'CustomUserCode',
+                    'CustomUserCodeLoader',
+                    'InbandNotifications',
+                    'Notification',
+                    'NotificationSMSru',
+                    'RemoteAccess',
+                    'SecurityMode',
+                    'SensorValueLogging',
+                    'SensorsPollingLogging',
+                    'YandexProbki',
+                    'InfoWidget',
+                    'SensorsPolling',
+                    'SwitchControlGenerator',
+                    'ZWave',
+                    'PhilioHW'
+                ],
+                featured_apps: [
+                    'IfThen',
+                    'OpenWeather',
+                    'DeviceHistory',
+                    'PeriodicalSwitchControl',
+                    'ScheduledScene'
+                ]
+            },
             'wd': {
                 'logo': 'app-logo-wd.png',
                 'hidden_apps': [
