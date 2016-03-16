@@ -8,7 +8,8 @@
 
     <!-- ///////////////////////////// Licence key ///////////////////////////// -->
     <div class="accordion-entry" 
-         ng-if="controllerInfo.uuid && cfg.app_type !== 'popp' && !isMobile" 
+         ng-if="controllerInfo.uuid && !isMobile" 
+         ng-hide="cfg.app_type === 'popp' || cfg.app_type === 'jb'"
          ng-include="'app/views/management/management_licence.html'"></div>
     
     <!-- ///////////////////////////// Backup ///////////////////////////// -->
@@ -22,7 +23,8 @@
 
     <!-- ///////////////////////////// Firmware update ///////////////////////////// --> 
     <div class="accordion-entry" 
-        ng-if="cfg.app_type !== 'wd' && !isMobile"
+            ng-if="!isMobile"
+            ng-hide="cfg.app_type === 'wd' || cfg.app_type === 'jb'"
          ng-include="'app/views/management/management_firmware.html'"></div>
 
     <!-- ///////////////////////////// App Store access ///////////////////////////// -->
