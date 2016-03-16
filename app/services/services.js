@@ -210,13 +210,6 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $location
     };
 
     /**
-     * Get device data
-     */
-    this.getDevices = function (data, filter, positions, instances, location) {
-        return getDevices(data, filter, positions, instances, location);
-    };
-
-    /**
      * Get device types
      */
     this.getDeviceType = function (data) {
@@ -346,119 +339,6 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $location
     };
 
     /// --- Private functions --- ///
-
-    /**
-     * Get device data
-     */
-    function getDevices(data, filter, dashboard, instances, location) {
-        var obj;
-        var collection = [];
-        var onDashboard = false;
-        var findZwaveStr = "ZWayVDev_zway_";
-        var findZenoStr = "ZEnoVDev_zeno_x";
-
-        angular.forEach(data, function (v, k) {
-            var instance;
-            var minMax = {min: 0, max: 99};
-            var hasInstance = false;
-            var zwaveId = false;
-            var level = $filter('numberFixedLen')(v.metrics.level);
-            var rgbColors = false;
-            var yesterday = (Math.round(new Date().getTime() / 1000)) - (24 * 3600);
-            var isNew = v.creationTime > yesterday ? true : false;
-            var appType = {};
-            if (v.permanently_hidden || v.deviceType == 'battery') {
-                return;
-            }
-            if (location === 'post' && v.location) {
-                return;
-            }
-            if (location > 0) {
-                if (v.location != location && v.location) {
-                    return;
-                }
-            }
-            if (instances) {
-                if (v.id.indexOf(findZwaveStr) > -1) {
-                    zwaveId = v.id.split(findZwaveStr)[1].split('-')[0];
-                    appType['zwave'] = zwaveId.replace(/[^0-9]/g, '');
-                } else if (v.id.indexOf(findZenoStr) > -1) {
-                    appType['enocean'] = v.id.split(findZenoStr)[1].split('_')[0];
-                } else {
-                    //instance = getRowBy(instances, 'id', v.creatorId);
-                    instance = _.findWhere(instances, {id: v.creatorId});
-                    if (instance && instance['moduleId'] != 'ZWave') {
-                        hasInstance = instance;
-                        appType['instance'] = instance;
-
-                    }
-                }
-            }
-
-            if (dashboard && dashboard.indexOf(v.id) !== -1) {
-                var onDashboard = true;
-            }
-
-            if (v.metrics.color) {
-                rgbColors = 'rgb(' + v.metrics.color.r + ',' + v.metrics.color.g + ',' + v.metrics.color.b + ')';
-            }
-            // Create min/max value
-            switch (v.probeType) {
-                case 'test':
-                    minMax = {min: 0, max: 255};
-                    break;
-                default:
-                    break;
-            }
-            obj = {
-                'id': v.id,
-                'zwaveId': zwaveId,
-                'title': v.metrics.title,
-                'metrics': v.metrics,
-                'rgbColors': rgbColors,
-                'rgbColorsSDefault': rgbColors,
-                'tags': v.tags,
-                'permanently_hidden': v.permanently_hidden,
-                'level': level,
-                'icon': v.metrics.icon,
-                'probeTitle': v.metrics.probeTitle,
-                'scaleTitle': v.metrics.scaleTitle,
-                'deviceType': v.deviceType,
-                'probeType': v.probeType,
-                'location': v.location,
-                'creatorID': v.creatorId,
-                'creationTime': v.creationTime,
-                'updateTime': v.updateTime,
-                'onDashboard': onDashboard,
-                'imgTrans': false,
-                'visibility': v.visibility,
-                'hasHistory': (v.hasHistory === true ? true : false),
-                'minMax': minMax,
-                'cfg': {
-                    'zwaveId': zwaveId,
-                    'hasInstance': hasInstance,
-                    'isNew': isNew
-                },
-                'appType': appType
-            };
-            if (filter) {
-                if (angular.isArray(obj[filter.filter])) {
-                    if (obj[filter.filter].indexOf(filter.val) > -1) {
-                        collection.push(obj);
-                    }
-                } else {
-                    if (obj[filter.filter] == filter.val) {
-                        collection.push(obj);
-                    }
-                }
-
-            } else {
-                collection.push(obj);
-            }
-
-        });
-        return collection;
-    }
   
     /**
      * Get module form data

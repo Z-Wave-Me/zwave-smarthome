@@ -649,78 +649,16 @@ myAppController.controller('ElementRoomController', function ($scope, $routePara
 myAppController.controller('ElementIdController', function ($scope, $q, $routeParams, $window, $location, dataFactory, dataService, myCache) {
     $scope.elementId = {
         show: false,
+        appType: {},
         input: {},
         locations: {},
         instances: {}
     };
-
-    /**
-     * Load all promises
-     */
-    $scope.allSettled = function () {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        var promises = [
-            dataFactory.getApi('devices', '/' + $routeParams.id),
-            dataFactory.getApi('locations'),
-            dataFactory.getApi('instances')
-        ];
-
-        $q.allSettled(promises).then(function (response) {
-            var device = response[0];
-            var locations = response[1];
-            var instances = response[2];
-             $scope.loading = false;
-            // Error message
-            if (device.state === 'rejected') {
-                alertify.alertError($scope._t('error_load_data'));
-                return;
-            }
-            // Success - locations
-            if (locations.state === 'fulfilled') {
-                $scope.elementId.locations = locations.value.data.data;
-            }
-            // Success - instances
-            if (locations.state === 'fulfilled') {
-                $scope.elementId.instances = instances.value.data.data;
-            }
-            // Success - device
-            if (device.state === 'fulfilled') {
-                var arr = [];
-                arr[0] = device.value.data.data;
-                setDevice(dataService.getDevicesData(arr).value()[0]);
-                $scope.elementId.show = true;
-            }
-            
-           
-
-        });
-
-    };
-    $scope.allSettled();
-    
-    /// --- Private functions --- ///
-     /**
-     * Set device
-     */
-    function setDevice(device) {
-         var findZwaveStr = "ZWayVDev_zway_";
-        var findZenoStr = "ZEnoVDev_zeno_x";
-        console.log($scope.elementId.locations)
-    }
-    ;
-
-});
-
-/**
- * Element detail controller controller
- */
-myAppController.controller('ElementDetailController', function ($scope, $routeParams, $window, $location, dataFactory, dataService, myCache) {
-    $scope.input = [];
-    $scope.rooms = [];
     $scope.tagList = [];
     $scope.searchText = '';
     $scope.suggestions = [];
     $scope.autoCompletePanel = false;
+    
     $scope.icons = [
         {
             default: $scope.cfg.img.icons + 'switch-off.png',
@@ -736,69 +674,68 @@ myAppController.controller('ElementDetailController', function ($scope, $routePa
         }
     ];
 
-
     /**
-     * Load data into collection
+     * Load all promises
      */
-    $scope.loadData = function (id) {
+    $scope.allSettled = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataFactory.getApi('devices', '/' + id).then(function (response) {
-            $scope.loading = false;
-            var devices = [];
-            devices[0] = response.data.data;
-            $scope.deviceType = dataService.getDeviceType(devices);
-            $scope.tags = dataService.getTags(devices);
-            // Loacations
-            loadLocations();
-            // Instances
-            loadInstances(devices);
-            var device = [];
-            device[0] = response.data.data;
-            device = dataService.getDevicesData(device).value();
-            getInstances(device);
+        var promises = [
+            dataFactory.getApi('devices', '/' + $routeParams.id),
+            dataFactory.getApi('locations'),
+            dataFactory.getApi('instances'),
+            dataFactory.getApi('devices')
+        ];
 
-        }, function (error) {
+        $q.allSettled(promises).then(function (response) {
+            var device = response[0];
+            var locations = response[1];
+            var instances = response[2];
+            var devices = response[3];
             $scope.loading = false;
-            alertify.alertError($scope._t('error_load_data'));
+            // Error message
+            if (device.state === 'rejected') {
+                alertify.alertError($scope._t('error_load_data'));
+                return;
+            }
+            // Success - locations
+            if (locations.state === 'fulfilled') {
+                $scope.elementId.locations = locations.value.data.data;
+            }
+            // Success - instances
+            if (locations.state === 'fulfilled') {
+                $scope.elementId.instances = instances.value.data.data;
+            }
+            // Success - devices
+            if (devices.state === 'fulfilled') {
+                setTagList(devices.value.data.data.devices);
+            }
+            // Success - device
+            if (device.state === 'fulfilled') {
+                var arr = [];
+                arr[0] = device.value.data.data;
+                setDevice(dataService.getDevicesData(arr).value()[0]);
+                $scope.elementId.show = true;
+            }
+
+
+
         });
+
     };
-    $scope.loadData($routeParams.id);
+    $scope.allSettled();
 
     /**
-     * Load tag list
+     * Search me
      */
-    $scope.loadTagList = function () {
-        dataFactory.getApi('devices').then(function (response) {
-            angular.forEach(response.data.data.devices, function (v, k) {
-                if (v.tags) {
-                    angular.forEach(v.tags, function (t, kt) {
-                        if ($scope.tagList.indexOf(t) === -1) {
-                            $scope.tagList.push(t);
-                        }
-
-                    });
-                }
-            });
-
-        }, function (error) {});
-    };
-    $scope.loadTagList();
-
-
-
-    $scope.itemsSelectedArr = [];
-    //$scope.itemsArr = [];
-
     $scope.searchMe = function (search) {
         $scope.suggestions = [];
         $scope.autoCompletePanel = false;
         if (search.length > 2) {
-            var foundText = containsText($scope.tagList, search);
+            var foundText = findText($scope.tagList, search);
             $scope.autoCompletePanel = (foundText) ? true : false;
             console.log($scope.autoCompletePanel)
         }
     };
-
 
     /**
      * Add tag to list
@@ -806,32 +743,29 @@ myAppController.controller('ElementDetailController', function ($scope, $routePa
     $scope.addTag = function (searchText) {
         $scope.searchText = '';
         $scope.autoCompletePanel = false;
-        if (!searchText || $scope.input.tags.indexOf(searchText) > -1) {
+        if (!searchText || $scope.elementId.input.tags.indexOf(searchText) > -1) {
             return;
         }
-        $scope.input.tags.push(searchText);
+        $scope.elementId.input.tags.push(searchText);
         return;
     };
     /**
      * Remove tag from list
      */
     $scope.removeTag = function (index) {
-        $scope.input.tags.splice(index, 1);
+        $scope.elementId.input.tags.splice(index, 1);
         $scope.autoCompletePanel = false;
     };
-
     /**
      * Update an item
      */
     $scope.store = function (input) {
         if (input.id) {
             $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-            input.location = parseInt(input.location, 10);
-            input.metrics.title = input.title;
-            dataFactory.putApi('devices', input.id, input).then(function (response) {
-                $scope.user.dashboard = dataService.setArrayValue($scope.user.dashboard, input.id, input.dashboard);
+            dataFactory.putApi('devices', input.id,setOutput(input)).then(function (response) {
+                $scope.user.dashboard = dataService.setArrayValue($scope.user.dashboard, input.id, input.onDashboard);
                 $scope.user.hide_single_device_events = dataService.setArrayValue($scope.user.hide_single_device_events, input.id, input.hide_events);
-                updateProfile($scope.user, input.id);
+                $scope.updateProfile($scope.user, input.id);
 
             }, function (error) {
                 alertify.alertError($scope._t('error_update_data'));
@@ -840,44 +774,10 @@ myAppController.controller('ElementDetailController', function ($scope, $routePa
         }
 
     };
-    /**
-     * Load locations
-     */
-    function loadLocations() {
-        dataFactory.getApi('locations').then(function (response) {
-            $scope.rooms = response.data.data;
-        }, function (error) {});
-    }
-    ;
-
-    /**
-     * Get instances
-     */
-    function getInstances(devices) {
-        console.log(devices)
-    }
-    ;
-    /**
-     * Load instances
-     */
-    function loadInstances(devices) {
-        if (!$scope.elementAccess($scope.cfg.role_access.apps)) {
-            var v = dataService.getDevices(devices, null, $scope.user.dashboard, false)[0];
-            setInput(v, devices.updateTime);
-            return;
-        }
-        dataFactory.getApi('instances').then(function (response) {
-            var v = dataService.getDevices(devices, null, $scope.user.dashboard, response.data.data)[0];
-            setInput(v, response.data.data.updateTime);
-
-        }, function (error) {});
-    }
-    ;
-
-    /**
+     /**
      * Update profile
      */
-    function updateProfile(profileData, deviceId) {
+    $scope.updateProfile = function(profileData, deviceId) {
         dataFactory.putApi('profiles', profileData.id, profileData).then(function (response) {
             $scope.loading = false;
             dataService.showNotifier({message: $scope._t('success_updated')});
@@ -896,35 +796,63 @@ myAppController.controller('ElementDetailController', function ($scope, $routePa
 
     /// --- Private functions --- ///
     /**
-     * Set input
+     * Set device
      */
-    function setInput(v) {
-        if (v) {
-            $scope.input = {
-                'id': v.id,
-                'title': v.title,
-                'dashboard': v.onDashboard == true ? true : false,
-                'location': v.location,
-                'tags': v.tags,
-                'deviceType': v.deviceType,
-                'level': v.level,
-                'metrics': v.metrics,
-                'updateTime': v.updateTime,
-                'cfg': v.cfg,
-                'appType': v.appType,
-                'permanently_hidden': v.permanently_hidden,
-                //'rooms': $scope.rooms,
-                'hide_events': false
-            };
+    function setDevice(device) {
+        var findZwaveStr = "ZWayVDev_zway_";
+        var findZenoStr = "ZEnoVDev_zeno_x";
+        var zwaveId = false;
+         $scope.elementId.input = device;
+        if (device.id.indexOf(findZwaveStr) > -1) {
+            zwaveId = device.id.split(findZwaveStr)[1].split('-')[0];
+            $scope.elementId.appType['zwave'] = zwaveId.replace(/[^0-9]/g, '');
+        } else if (device.id.indexOf(findZenoStr) > -1) {
+            $scope.elementId.appType['enocean'] = device.id.split(findZenoStr)[1].split('_')[0];
         } else {
-            alertify.alertError($scope._t('no_data'));
+            var instance = _.findWhere($scope.elementId.instances, {id: device.creatorId});
+            if (instance && instance['moduleId'] != 'ZWave') {
+                $scope.elementId.appType['instance'] = instance;
+
+            }
         }
     }
     ;
+
     /**
-     * Load locations
+     * Set output
      */
-    function containsText(n, search) {
+    function setOutput(input) {
+        return {
+            'id': input.id,
+            'location': parseInt(input.location, 10),
+            'tags': input.tags,
+            'metrics': input.metrics,
+            'permanently_hidden': input.permanently_hidden
+        };
+    }
+    ;
+
+    /**
+     * Set tag list
+     */
+    function setTagList(devices) {
+        angular.forEach(devices, function (v, k) {
+            if (v.tags) {
+                angular.forEach(v.tags, function (t, kt) {
+                    if ($scope.tagList.indexOf(t) === -1) {
+                        $scope.tagList.push(t);
+                    }
+
+                });
+            }
+        });
+    }
+    ;
+
+    /**
+     * Find text
+     */
+    function findText(n, search) {
         var gotText = false;
         for (var i in n) {
             var re = new RegExp(search, "ig");
@@ -937,4 +865,5 @@ myAppController.controller('ElementDetailController', function ($scope, $routePa
         return gotText;
     }
     ;
+
 });

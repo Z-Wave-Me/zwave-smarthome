@@ -75,12 +75,6 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                 }).
                 // Element id
                 when('/element/:id', {
-                    templateUrl: 'app/views/elements/element.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.element
-                }).
-                 // Element id
-                when('/elementid/:id', {
                     templateUrl: 'app/views/elements/element_id.html',
                     requireLogin: true,
                     roles: cfg.role_access.element
