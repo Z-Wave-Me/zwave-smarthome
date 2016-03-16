@@ -49,54 +49,18 @@ myAppController.controller('ElementBaseController', function ($scope, $routePara
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('devices', null, true).then(function (response) {
             $scope.loading = false;
-            var devices = _.chain(response.data.data.devices)
-                    .flatten()
-                    .uniq(false, function (v) {
-                        return v.id;
-                    })
-                    .reject(function (v) {
-                        return (v.deviceType === 'battery') || (v.permanently_hidden === true) || (v.visibility === false);
-                    })
-                    .filter(function (v) {
-                        var minMax;
-                        var yesterday = (Math.round(new Date().getTime() / 1000)) - (24 * 3600);
-                        var isNew = v.creationTime > yesterday ? true : false;
-                        // Create min/max value
-                        switch (v.probeType) {
-                            case 'test':
-                                minMax = {min: 0, max: 255};
-                                break;
-                            default:
-                                minMax = {min: 0, max: 99};
-                                break;
+            var devices = dataService.getDevicesData(response.data.data.devices);
+            // Set tags
+            _.filter(devices.value(), function (v) {
+                if (v.tags.length > 0) {
+                    angular.forEach(v.tags, function (t) {
+                        if ($scope.dataHolder.devices.tags.indexOf(t) === -1) {
+                            $scope.dataHolder.devices.tags.push(t);
                         }
-                        if (v.deviceType === 'thermostat') {
-                            minMax = (v.metrics.scaleTitle === '°F' ? {min: 41, max: 104} : {min: 5, max: 40});
-                        }
-                        angular.extend(v,
-                                {onDashboard: ($scope.user.dashboard.indexOf(v.id) !== -1 ? true : false)},
-                                {minMax: minMax},
-                                {hasHistory: (v.hasHistory === true ? true : false)},
-                                {imgTrans: false},
-                                {isNew: isNew},
-                                {iconPath: $filter('getElementIcon')(v.metrics.icon, v, v.metrics.level)},
-                                {updateCmd: (v.deviceType === 'switchControl' ? 'on' : 'update')}
-                        );
-                        if (v.metrics.color) {
-                            angular.extend(v.metrics, {rgbColors: 'rgb(' + v.metrics.color.r + ',' + v.metrics.color.g + ',' + v.metrics.color.b + ')'});
-                        }
-                        if (v.metrics.level) {
-                            angular.extend(v.metrics, {level: $filter('numberFixedLen')(v.metrics.level)});
-                        }
-                        if (v.tags.length > 0) {
-                            angular.forEach(v.tags, function (t) {
-                                if ($scope.dataHolder.devices.tags.indexOf(t) === -1) {
-                                    $scope.dataHolder.devices.tags.push(t);
-                                }
-                            });
-                        }
-                        return v;
                     });
+                }
+            });
+            // Set categories
             $scope.dataHolder.devices.deviceType = devices
                     .reject(function (v) {
                         return !('deviceType' in v);
@@ -106,7 +70,7 @@ myAppController.controller('ElementBaseController', function ($scope, $routePara
                     })
                     .pluck('deviceType')
                     .value();
-            // $scope.tags = dataService.getTags(response.data.data.devices);
+            
             //All devices
             $scope.dataHolder.devices.all = devices.value();
             // Collection
@@ -658,7 +622,7 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
     $scope.searchText = '';
     $scope.suggestions = [];
     $scope.autoCompletePanel = false;
-    
+
     $scope.icons = [
         {
             default: $scope.cfg.img.icons + 'switch-off.png',
@@ -762,7 +726,7 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
     $scope.store = function (input) {
         if (input.id) {
             $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-            dataFactory.putApi('devices', input.id,setOutput(input)).then(function (response) {
+            dataFactory.putApi('devices', input.id, setOutput(input)).then(function (response) {
                 $scope.user.dashboard = dataService.setArrayValue($scope.user.dashboard, input.id, input.onDashboard);
                 $scope.user.hide_single_device_events = dataService.setArrayValue($scope.user.hide_single_device_events, input.id, input.hide_events);
                 $scope.updateProfile($scope.user, input.id);
@@ -774,10 +738,10 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
         }
 
     };
-     /**
+    /**
      * Update profile
      */
-    $scope.updateProfile = function(profileData, deviceId) {
+    $scope.updateProfile = function (profileData, deviceId) {
         dataFactory.putApi('profiles', profileData.id, profileData).then(function (response) {
             $scope.loading = false;
             dataService.showNotifier({message: $scope._t('success_updated')});
@@ -802,7 +766,7 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
         var findZwaveStr = "ZWayVDev_zway_";
         var findZenoStr = "ZEnoVDev_zeno_x";
         var zwaveId = false;
-         $scope.elementId.input = device;
+        $scope.elementId.input = device;
         if (device.id.indexOf(findZwaveStr) > -1) {
             zwaveId = device.id.split(findZwaveStr)[1].split('-')[0];
             $scope.elementId.appType['zwave'] = zwaveId.replace(/[^0-9]/g, '');

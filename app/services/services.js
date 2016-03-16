@@ -210,23 +210,6 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $location
     };
 
     /**
-     * Get device types
-     */
-    this.getDeviceType = function (data) {
-        var collection = [];
-        angular.forEach(data, function (v, k) {
-            if (v.deviceType == 'battery') {
-                return;
-            }
-            collection.push({
-                'key': v.deviceType,
-                'val': v.deviceType
-            });
-        });
-        return $filter('unique')(collection, 'key');
-    };
-
-    /**
      * Get chart data
      */
     this.getChartData = function (data, colors) {
@@ -261,25 +244,6 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $location
             return out;
         }
         return null;
-    };
-
-    /**
-     * Get tags
-     */
-    this.getTags = function (data) {
-        var collection = [];
-        angular.forEach(data, function (v, k) {
-            if (v.deviceType == 'battery' || v.tags.length < 1) {
-                return;
-            }
-            angular.forEach(v.tags, function (t, k) {
-                collection.push({
-                    'key': t,
-                    'val': t
-                });
-            });
-        });
-        return $filter('unique')(collection, 'key');
     };
 
     /**
