@@ -324,11 +324,9 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
      * Hide installed
      */
     $scope.hideInstalled = function (status) {
-        console.log()
         angular.extend($scope.dataHolder.onlineModules, {hideInstalled: status});
         $cookies.hideInstalledApps = status;
-         console.log($scope.dataHolder.onlineModules.hideInstalled)
-        $scope.loadTokens();
+        $scope.reloadData();
     };
 
     /**

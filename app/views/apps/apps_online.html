@@ -43,8 +43,8 @@
                 
                 <div class="page-navi-content">
                 <a class="btn btn-default btn-tag"  
-                   ng-click="hideInstalled(dataHolder.onlineModules.hideInstalled ? false:true)" 
-                   ng-class="dataHolder.onlineModules.hideInstalled == true ? 'active': ''">
+                   ng-click="hideInstalled((dataHolder.onlineModules.hideInstalled ? false:true))" 
+                   ng-class="dataHolder.onlineModules.hideInstalled ? 'active': ''">
                      {{_t('hide_installed_apps')}}
                  </a>
                 
