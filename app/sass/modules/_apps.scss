@@ -55,7 +55,19 @@
                     color: lighten($widget-heading-color,40%) !important;
                 }
             }
-        } 
+        }
+        .widget-footer{
+            .rating-group{
+                //margin: $spacing 0 0 0;
+                .widget-rating{
+                    color: lighten($rating-color,10%);
+                    &.israted{ 
+                        color:  lighten($rating-israted-color,10%);
+                    }
+                }
+            }
+
+        }
     }
 }
 

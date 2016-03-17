@@ -5,12 +5,16 @@
          <!-- Apps navigation -->
         <div ng-include="'app/views/apps/navi.html'"></div>
         <div class="page-control form-inline">
-            <div class="btn-group btn-goup-block btn-goup-1">
+            <div class="btn-group btn-goup-block btn-goup-2">
                 <button class="btn btn-default" ng-click="expandNavi('appsCategories', $event)" ng-class="!_.isEmpty(dataHolder.onlineModules.filter) ? 'active':'' ">
                     <i class="fa fa-filter"></i> 
                     <span ng-if="dataHolder.onlineModules.filter.category">{{dataHolder.modules.categories[dataHolder.onlineModules.filter.category].name|cutText:true:30}}</span>
                     <span ng-if="dataHolder.onlineModules.filter.featured">{{_t('featured_apps')}}</span>
                     <span ng-if="_.isEmpty(dataHolder.onlineModules.filter)">{{_t('all_apps')}}</span>
+                </button>
+                <button class="btn btn-default" ng-click="expandNavi('appsOnlineOrderBy', $event)">
+                    <i class="fa fa-sort-alpha-asc"></i> 
+                    <span class="btn-name">{{_t(dataHolder.onlineModules.orderBy) | cutText:true:15}}</span>
                 </button>
             </div>
             <div class="input-group">
@@ -19,6 +23,7 @@
             </div>
 
         </div>
+         <!-- Page subnavi  categories -->
         <div class="page-navi" ng-if="naviExpanded.appsCategories">
             <div class="page-navi-in">
                 <ul>
@@ -37,11 +42,25 @@
                 </ul>
             </div>
         </div>
+         <!-- Page subnavi  sort by -->
+      <div class="page-navi" ng-if="naviExpanded.appsOnlineOrderBy">
+        <div class="page-navi-in">
+            <div class="page-navi-content">
+                 <p class="page-navi-title"> {{_t('sortby')}}</p>
+                <a class="btn btn-default btn-tag" href="" 
+                        ng-repeat="(k,v) in cfg.orderby.appsonline"
+                       ng-click="setOrderBy(k)"
+                       ng-class="dataHolder.onlineModules.orderBy == k ? 'active': ''">
+                     {{_t(k) | cutText:true:30}}
+                 </a>
+            </div>
+        </div>
+    </div>
         
          <div class="app-row app-row-widget clearfix">
             <div class="widget-entry widget-entry-app"
                  ng-class="{'widget-warning': dataHolder.modules.ids[v.modulename],'widget-danger': dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version != v.version}" 
-                 ng-repeat="v in dataHolder.onlineModules.all| orderBy:'title' | filter:q track by v.id">
+                 ng-repeat="v in dataHolder.onlineModules.all| orderBy: cfg.orderby.appsonline[dataHolder.onlineModules.orderBy] | filter:q track by v.id">
                 <div class="widget-entry-in">
                     <!-- Widget img -->
                     <div class="widget-img">

@@ -28,7 +28,8 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
             ratingRange: _.range(1, 6),
             all: {},
             ids: {},
-            filter: {}
+            filter: {},
+            orderBy: ($cookies.orderByAppsOnline ? $cookies.orderByAppsOnline : 'creationTimeDESC')
         },
         tokens: {
             all: {}
@@ -292,6 +293,15 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
 myAppController.controller('AppOnlineController', function ($scope, $filter, $cookies, $timeout, $route, dataFactory, dataService, myCache, _) {
     $scope.activeTab = 'online';
     $scope.dataHolder.onlineModules.filter = ($cookies.filterAppsOnline ? angular.fromJson($cookies.filterAppsOnline) : {featured: true});
+    
+     /**
+     * Set order by
+     */
+    $scope.setOrderBy = function (key) {
+        angular.extend($scope.dataHolder.onlineModules, {orderBy: key});
+        $cookies.orderByAppsOnline = key;
+        $scope.loadLocalModules();
+    };
 
     /**
      * Set filter
