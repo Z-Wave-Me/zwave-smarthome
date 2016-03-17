@@ -22,7 +22,8 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
             currentCategory: {
                 id: false,
                 name: ''
-            }
+            },
+            orderBy: ($cookies.orderByAppsLocal ? $cookies.orderByAppsLocal : 'titleASC')
         },
         onlineModules: {
             ratingRange: _.range(1, 6),
@@ -35,7 +36,8 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
             all: {}
         },
         instances: {
-            all: {}
+            all: {},
+             orderBy: ($cookies.orderByAppsInstances ? $cookies.orderByAppsInstances : 'creationTimeDESC')
         }
     };
 
@@ -45,7 +47,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
     /**
      * Load tokens
      */
-    $scope.loadTokens = function (filter) {
+    $scope.loadTokens = function () {
         dataFactory.getApi('tokens', null, true).then(function (response) {
             angular.extend($scope.dataHolder.tokens.all, response.data.data.tokens);
             $scope.loadOnlineModules();
@@ -229,7 +231,14 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
     $scope.activeTab = 'local';
     //$scope.dataHolder.modules.filter = {featured: true};
     $scope.dataHolder.modules.filter = ($cookies.filterAppsLocal ? angular.fromJson($cookies.filterAppsLocal) : {featured: true});
-    console.log($cookies.filterAppsLocal)
+    /**
+     * Set order by
+     */
+    $scope.setOrderBy = function (key) {
+        angular.extend($scope.dataHolder.modules, {orderBy: key});
+        $cookies.orderByAppsLocal = key;
+        $scope.loadLocalModules();
+    };
     /**
      * Set filter
      */
@@ -301,7 +310,7 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
     $scope.setOrderBy = function (key) {
         angular.extend($scope.dataHolder.onlineModules, {orderBy: key});
         $cookies.orderByAppsOnline = key;
-        $scope.loadLocalModules();
+        $scope.loadTokens();
     };
 
     /**
@@ -350,8 +359,19 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
 /**
  * App Instance controller
  */
-myAppController.controller('AppInstanceController', function ($scope, $route, dataFactory, dataService, myCache, _) {
+myAppController.controller('AppInstanceController', function ($scope, $cookies, dataFactory, dataService, myCache, _) {
     $scope.activeTab = 'instance';
+     /**
+     * Set order by
+     */
+    $scope.setOrderBy = function (key) {
+        angular.extend($scope.dataHolder.instances, {orderBy: key});
+        $cookies.orderByAppsInstances = key;
+        $scope.loadTokens();
+    };
+    /**
+     * Activate instance
+     */
     $scope.activateInstance = function (input, activeStatus) {
         input.active = activeStatus;
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};

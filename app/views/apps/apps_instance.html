@@ -4,10 +4,36 @@
     <div ng-controller="AppInstanceController">
          <!-- Apps navigation -->
         <div ng-include="'app/views/apps/navi.html'"></div>
+        <div class="page-control form-inline">
+            <div class="btn-group btn-goup-block btn-goup-1">
+                <button class="btn btn-default" ng-click="expandNavi('appsInstancesOrderBy', $event)">
+                    <i class="fa fa-sort-alpha-asc"></i> 
+                    <span class="btn-name">{{_t(dataHolder.instances.orderBy) | cutText:true:15}}</span>
+                </button>
+            </div>
+            <div class="input-group">
+                <input type="text" ng-model="q" class="form-control form-search" value="{{q}}">
+                <span class="input-group-addon"><i class="fa fa-search"></i></span> 
+            </div>
+        </div>
+           <!-- Page subnavi  sort by -->
+        <div class="page-navi" ng-if="naviExpanded.appsInstancesOrderBy">
+          <div class="page-navi-in">
+              <div class="page-navi-content">
+                   <p class="page-navi-title"> {{_t('sortby')}}</p>
+                  <a class="btn btn-default btn-tag" href="" 
+                          ng-repeat="(k,v) in cfg.orderby.instances"
+                         ng-click="setOrderBy(k)"
+                         ng-class="dataHolder.instances.orderBy == k ? 'active': ''">
+                       {{_t(k) | cutText:true:30}}
+                   </a>
+              </div>
+          </div>
+      </div>
         <div class="app-row app-row-report app-row-event clearfix">
              <div class="report-entry bcg-active"
                 id="instance_{{$index}}" 
-                ng-repeat="v in dataHolder.instances.all|orderBy:'-creationTime' track by v.id" 
+                ng-repeat="v in dataHolder.instances.all|orderBy:cfg.orderby.instances[dataHolder.instances.orderBy] | filter:q track by v.id" 
                 ng-class="v.active ? 'true': 'false'"
                 ng-if="dataHolder.modules.cameraIds.indexOf(v.moduleId) === -1">
                  <div class="report-col report-media">

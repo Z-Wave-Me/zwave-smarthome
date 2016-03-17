@@ -8,9 +8,9 @@
             <div class="btn-group btn-goup-block btn-goup-2">
                 <button class="btn btn-default" ng-click="expandNavi('appsCategories', $event)" ng-class="!_.isEmpty(dataHolder.onlineModules.filter) ? 'active':'' ">
                     <i class="fa fa-filter"></i> 
-                    <span ng-if="dataHolder.onlineModules.filter.category">{{dataHolder.modules.categories[dataHolder.onlineModules.filter.category].name|cutText:true:30}}</span>
-                    <span ng-if="dataHolder.onlineModules.filter.featured">{{_t('featured_apps')}}</span>
-                    <span ng-if="_.isEmpty(dataHolder.onlineModules.filter)">{{_t('all_apps')}}</span>
+                    <span class="btn-name" ng-if="dataHolder.onlineModules.filter.category">{{dataHolder.modules.categories[dataHolder.onlineModules.filter.category].name|cutText:true:30}}</span>
+                    <span class="btn-name" ng-if="dataHolder.onlineModules.filter.featured">{{_t('featured_apps')}}</span>
+                    <span class="btn-name" ng-if="_.isEmpty(dataHolder.onlineModules.filter)">{{_t('all_apps')}}</span>
                 </button>
                 <button class="btn btn-default" ng-click="expandNavi('appsOnlineOrderBy', $event)">
                     <i class="fa fa-sort-alpha-asc"></i> 

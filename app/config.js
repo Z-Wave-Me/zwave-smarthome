@@ -241,6 +241,10 @@ var config_data = {
                 'titleASC': 'metrics.title',
                 'titleDESC': '-metrics.title'
             },
+            appslocal: {
+                'titleASC': 'defaults.title',
+                'titleDESC': '-defaults.title'
+            },
             appsonline: {
                 'mostRatedDESC': '-rating',
                 'creationTimeDESC': '-id',
@@ -248,6 +252,12 @@ var config_data = {
                 'titleASC': 'title',
                 'titleDESC': '-title',
                 'updateTimeDESC': '-updateTime'
+            },
+             instances: {
+                'creationTimeDESC': '-creationTime',
+                'creationTimeASC': 'creationTime',
+                'titleASC': 'title',
+                'titleDESC': '-title'
             }
         },
         // List of climate states

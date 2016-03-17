@@ -6,12 +6,16 @@
         <div ng-include="'app/views/apps/navi.html'"></div>
     
         <div class="page-control form-inline">
-            <div class="btn-group btn-goup-block btn-goup-1">
+            <div class="btn-group btn-goup-block btn-goup-2">
                 <button class="btn btn-default" ng-click="expandNavi('appsCategories', $event)" ng-class="!_.isEmpty(dataHolder.modules.filter) ? 'active':'' ">
                     <i class="fa fa-filter"></i> 
-                     <span ng-if="dataHolder.modules.filter.category">{{dataHolder.modules.categories[dataHolder.modules.filter.category].name|cutText:true:30}}</span>
-                     <span ng-if="dataHolder.modules.filter.featured">{{_t('featured_apps')}}</span>
-                     <span ng-if="_.isEmpty(dataHolder.modules.filter)">{{_t('all_apps')}}</span>
+                     <span class="btn-name" ng-if="dataHolder.modules.filter.category">{{dataHolder.modules.categories[dataHolder.modules.filter.category].name|cutText:true:30}}</span>
+                     <span class="btn-name" ng-if="dataHolder.modules.filter.featured">{{_t('featured_apps')}}</span>
+                     <span class="btn-name" ng-if="_.isEmpty(dataHolder.modules.filter)">{{_t('all_apps')}}</span>
+                </button>
+                <button class="btn btn-default" ng-click="expandNavi('appsLocalOrderBy', $event)">
+                    <i class="fa fa-sort-alpha-asc"></i> 
+                    <span class="btn-name">{{_t(dataHolder.modules.orderBy) | cutText:true:15}}</span>
                 </button>
             </div>
             <div class="input-group">
@@ -19,6 +23,7 @@
                 <span class="input-group-addon"><i class="fa fa-search"></i></span> 
             </div>
         </div>
+         <!-- Page subnavi  categories -->
         <div class="page-navi" ng-if="naviExpanded.appsCategories">
         <div class="page-navi-in">
             <ul>
@@ -41,10 +46,25 @@
             </ul>
         </div>
     </div>
+        
+         <!-- Page subnavi  sort by -->
+      <div class="page-navi" ng-if="naviExpanded.appsLocalOrderBy">
+        <div class="page-navi-in">
+            <div class="page-navi-content">
+                 <p class="page-navi-title"> {{_t('sortby')}}</p>
+                <a class="btn btn-default btn-tag" href="" 
+                        ng-repeat="(k,v) in cfg.orderby.appslocal"
+                       ng-click="setOrderBy(k)"
+                       ng-class="dataHolder.modules.orderBy == k ? 'active': ''">
+                     {{_t(k) | cutText:true:30}}
+                 </a>
+            </div>
+        </div>
+    </div>
     <div class="app-row app-row-widget clearfix">
         <div class="widget-entry widget-entry-app"
              id="local_module_{{v.id}}" 
-             ng-repeat="v in dataHolder.modules.all|orderBy:'defaults.title' | filter:q  track by v.id" 
+             ng-repeat="v in dataHolder.modules.all|orderBy:cfg.orderby.appslocal[dataHolder.modules.orderBy] | filter:q  track by v.id" 
              ng-class="{'widget-danger': dataHolder.onlineModules.ids[v.id] && dataHolder.onlineModules.ids[v.id].version != v.version}">
                 <div class="widget-entry-in"> 
                     <!-- Widget img -->
