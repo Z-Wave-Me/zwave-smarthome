@@ -246,7 +246,8 @@ var config_data = {
                 'creationTimeDESC': '-id',
                 'creationTimeASC': 'id',
                 'titleASC': 'title',
-                'titleDESC': '-title'
+                'titleDESC': '-title',
+                'updateTimeDESC': '-updateTime'
             }
         },
         // List of climate states

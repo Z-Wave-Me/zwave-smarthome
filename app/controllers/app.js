@@ -154,6 +154,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                         }
                         if (!isHidden) {
                             item.featured = (item.featured == 1 ? true : false);
+                             angular.extend(item, {updateTime:$filter('mysqlToUnixTs')(item.last_updated)});
                             return item;
                         }
                     })

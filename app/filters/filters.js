@@ -537,6 +537,19 @@ myApp.filter('eventDate', function () {
 });
 
 /**
+ * Convert MySql DateTime stamp into JavaScript's Date format
+ */
+myApp.filter('mysqlToUnixTs', function () {
+    return function (input) {
+        //function parses mysql datetime string and returns javascript Date object
+    //input has to be in this format: 2007-06-05 15:26:02
+    var regex=/^([0-9]{2,4})-([0-1][0-9])-([0-3][0-9]) (?:([0-2][0-9]):([0-5][0-9]):([0-5][0-9]))?$/;
+    var parts=input.replace(regex,"$1 $2 $3 $4 $5 $6").split(' ');
+    return Math.floor(new Date(parts[0],parts[1]-1,parts[2],parts[3],parts[4],parts[5]).getTime() / 1000);
+    };
+});
+
+/**
  * Get only unique values
  */
 myApp.filter('unique', function () {
