@@ -25,6 +25,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
             }
         },
         onlineModules: {
+            ratingRange: _.range(1, 6),
             all: {},
             ids: {},
             filter: {}

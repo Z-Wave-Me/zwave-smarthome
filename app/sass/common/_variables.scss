@@ -336,8 +336,8 @@ $badge-number-bcg-color: lighten($app-body-color, 60%);
 $badge-number-color: #FFFFFF;
 
 // Comments and ratings
-$rating-color: lighten($app-body-color,50%);
-$rating-israted-color: #80AD80;
+$rating-color: lighten($app-body-color,70%);
+$rating-israted-color: lighten(#f0ad4e,10%);
 $comment-even-bcg-color:  #E9E9E9;
 $comment-color: $app-body-color;
 $comment-header-color:  lighten($comment-color, 20%);

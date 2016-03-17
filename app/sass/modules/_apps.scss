@@ -18,15 +18,26 @@
             .btn-name{
                 display: none !important;
             }
+            .rating-group{
+                //margin: $spacing 0 0 0;
+                .widget-rating{
+                    font-size: $rating-icon-size * 0.6;
+                    padding: 0 2px 0 0;
+                    color: $rating-color;
+                    &.israted{ 
+                        color: $rating-israted-color;
+                    }
+                }
+            }
 
         }
-        .widget-ctrl{
-            float: none;
-            width: 100%;
-            &.ctrl-left{
-                display: none;
-            }
-        }
+        /*        .widget-ctrl{
+                    float: none;
+                    width: 100%;
+                    &.ctrl-left{
+                        display: none;
+                    }
+                }*/
     }
 
 }
@@ -62,7 +73,7 @@
 .app-detail-list{
     border-top: solid 1px $app-border-color;
     margin: $spacing 0 0 0;
-     padding: $spacing 0 0 0;
+    padding: $spacing 0 0 0;
 }
 
 /* Apps rating
