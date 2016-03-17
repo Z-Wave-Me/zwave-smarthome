@@ -39,6 +39,9 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     };
     // Set time
     $scope.setTimeZone = function () {
+        if(!$scope.user){
+            return;
+        }
          dataFactory.getApi('timezone',null,true).then(function(response) {
              angular.extend(cfg.route.time,{string: $filter('getCurrentTime')(response.data.data.localTimeUT)});
              var refresh = function () {

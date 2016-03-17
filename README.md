@@ -2,14 +2,15 @@ SmartHome UI
 ===============
 
 Angular app
-## v1.3.1
+## v1.4.0
 #### New features
 - Online apps: displaying count of ratings and average value. 
-- Management: Added postfix - the list of pstched devices. 
+- Management: Added postfix - the list of patched devices. 
 - Add appp: integration of the dependencies between the modules.
 - Local appps: added "Update to latest" button.
 - Improved error handling.
-- On-line appps: dysplaying patches in the update window and in the app detail.
+- Displaying server time on all pages.
+- On-line appps: displaying patches in the update window and in the app detail.
 - Improved Z-Wave inclusion.
 - Added HTML title attribute to navigation and buttons.
 - Management: reset to factory default.

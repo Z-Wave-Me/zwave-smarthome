@@ -11,13 +11,18 @@ var config_data = {
         'interval': 3000,
         // Route - will be extended
         'route': {
+            // Time zone
+            time:{
+                string: false,
+                timestamp: false
+            },
             // User agent operating system
             os: 'unknown',
             // Route fatal error
             fatalError: {
                 message: false,
                 info: false,
-                permanent: false,// Permanently displayed
+                permanent: false, // Permanently displayed
                 hide: false // Hide page content
             },
             // App lang
@@ -29,10 +34,10 @@ var config_data = {
         },
         'history_cache_interval': 300000,
         // Default auth credentials
-         'default_credentials': {
-             'login':'admin',
-             'password':'admin'
-         },
+        'default_credentials': {
+            'login': 'admin',
+            'password': 'admin'
+        },
         // List of API URLs 
         'api': {
             'devices': 'ZAutomation/api/v1/devices',
@@ -61,7 +66,9 @@ var config_data = {
             'firmwareupdate': 'ZAutomation/api/v1/system/webif-access',
             'trust_my_network': 'ZAutomation/api/v1/system/trust-my-network',
             'firstaccess': 'ZAutomation/api/v1/system/first-access',
-             'factory_default': 'ZAutomation/api/v1/resetToFactoryDefault'
+            'factory_default': 'ZAutomation/api/v1/resetToFactoryDefault',
+            'postfix': 'ZWaveAPI/Postfix',
+            'timezone': 'ZAutomation/api/v1/system/time/get'
         },
         // Skin
         'skin': {
@@ -109,7 +116,7 @@ var config_data = {
         // Online skins storage
         'online_skin_storage': 'http://hrix.net/modules_new/storage/skins/',
         // Online module download url
-        'blacklist_url': 'https://hrix.net/blacklist.json', 
+        'blacklist_url': 'https://hrix.net/blacklist.json',
         // Post report url
         'post_report_url': 'https://hrix.net/shuiapi/report/',
         // Postpassword url
@@ -121,7 +128,7 @@ var config_data = {
         // Razberry latest version
         'raz_latest_version_url': 'https://razberry.z-wave.me/z-way/razberry/latest/VERSION',
         // Find z-wave me box
-        'find_zwaveme_zbox': 'https://find.z-wave.me/', 
+        'find_zwaveme_zbox': 'https://find.z-wave.me/',
         // Url to zddx xml files
         'zddx_url': 'ZDDX/',
         // Url to run ExpertUI cmd
@@ -139,9 +146,9 @@ var config_data = {
         // Language directory
         'lang_dir': 'app/lang/',
         // Default language
-        'lang': 'en',// !!!!Do not change it
+        'lang': 'en', // !!!!Do not change it
         // List of supported languages
-        'lang_list': ['en', 'de', 'ru', 'cn', 'fr','cz','sk','sv'],
+        'lang_list': ['en', 'de', 'ru', 'cn', 'fr', 'cz', 'sk', 'sv'],
         // Role access
         'role_access': {
             admin: [1],
@@ -246,8 +253,8 @@ var config_data = {
         'app_type': 'default',
         // Config
         'custom_cfg': {
-           'default': {
-               'logo': 'app-logo-default.png',
+            'default': {
+                'logo': 'app-logo-default.png',
                 hidden_apps: [
                     'Cron',
                     'BatteryPolling',
@@ -277,6 +284,36 @@ var config_data = {
                 ]
             },
             'popp': {
+                'logo': 'app-logo-popp.png',
+                'hidden_apps': [
+                    'Cron',
+                    'CodeDevice',
+                    'BatteryPolling',
+                    'CustomUserCode',
+                    'CustomUserCodeLoader',
+                    'InbandNotifications',
+                    'Notification',
+                    'NotificationSMSru',
+                    'RemoteAccess',
+                    'SecurityMode',
+                    'SensorValueLogging',
+                    'SensorsPollingLogging',
+                    'YandexProbki',
+                    'InfoWidget',
+                    'SensorsPolling',
+                    'SwitchControlGenerator',
+                    'ZWave',
+                    'PhilioHW'
+                ],
+                featured_apps: [
+                    'IfThen',
+                    'OpenWeather',
+                    'DeviceHistory',
+                    'PeriodicalSwitchControl',
+                    'ScheduledScene'
+                ]
+            },
+             'jb': {
                 'logo': 'app-logo-popp.png',
                 'hidden_apps': [
                     'Cron',

@@ -26,7 +26,7 @@
                                 <strong>{{n.metrics.level | numberFixedLen}} {{n.metrics.scaleTitle}}</strong>
                             </td>
                             <td class="text-right">
-                                <a class="widget-history" href="" ng-click="dataHolder.devices.find = dataHolder.devices.all[n.id];handleModal('modalHistory', $event)" ng-if="n.hasHistory"><i class="fa fa-history"></i></a>&nbsp;
+                                <a class="widget-history" href="" ng-click="getDeviceById(n.id);handleModal('modalHistory', $event)" ng-if="n.hasHistory"><i class="fa fa-history"></i></a>&nbsp;
                                 <button class="btn btn-default" ng-click="runCmd(n.id + '/command/update')" ng-if="cfg.element_update_time_btn.indexOf(n.deviceType) > - 1 && n.updateTime"> <i class="fa fa-clock-o"></i> <span class="widget-update-time">{{n.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span></button>
                             </td>
                         </tr>

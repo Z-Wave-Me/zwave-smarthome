@@ -2,7 +2,7 @@
 <div id="modalHistory" class="appmodal" ng-controller="ElementHistoryController" ng-if="modalArr.modalHistory">
     <div class="appmodal-in">
         <div class="appmodal-header">
-            <span class="appmodal-close" ng-click="handleModal('modalHistory', $event)"><i class="fa fa-times"></i></span>
+            <span class="appmodal-close" ng-click="resetDevices({byId:{}});handleModal('modalHistory', $event)"><i class="fa fa-times"></i></span>
             <h3>{{widgetHistory.find.metrics.title}}</h3>
         </div>
         <div class="appmodal-body text-center">
