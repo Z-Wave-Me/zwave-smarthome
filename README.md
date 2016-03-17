@@ -4,7 +4,9 @@ SmartHome UI
 Angular app
 ## v1.4.0
 #### New features
+- Local apps: sorting by title, most rated, newest....
 - Online apps: sorting by title, most rated, newest....
+- Online apps: hide already installed apps....
 - Online apps: displaying count of ratings and average value. 
 - Management: Added postfix - the list of patched devices. 
 - Add appp: integration of the dependencies between the modules.

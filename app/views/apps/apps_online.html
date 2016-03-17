@@ -40,6 +40,15 @@
                         </a>
                     </li>
                 </ul>
+                
+                <div class="page-navi-content">
+                <a class="btn btn-default btn-tag"  
+                   ng-click="hideInstalled(dataHolder.onlineModules.hideInstalled ? false:true)" 
+                   ng-class="dataHolder.onlineModules.hideInstalled == true ? 'active': ''">
+                     {{_t('hide_installed_apps')}}
+                 </a>
+                
+            </div>
             </div>
         </div>
          <!-- Page subnavi  sort by -->
@@ -60,7 +69,8 @@
          <div class="app-row app-row-widget clearfix">
             <div class="widget-entry widget-entry-app"
                  ng-class="{'widget-warning': dataHolder.modules.ids[v.modulename],'widget-danger': dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version != v.version}" 
-                 ng-repeat="v in dataHolder.onlineModules.all| orderBy: cfg.orderby.appsonline[dataHolder.onlineModules.orderBy] | filter:q track by v.id">
+                 ng-repeat="v in dataHolder.onlineModules.all| orderBy: cfg.orderby.appsonline[dataHolder.onlineModules.orderBy] | filter:q track by v.id"
+                 ng-hide="v.status !== 'download' && dataHolder.onlineModules.hideInstalled">
                 <div class="widget-entry-in">
                     <!-- Widget img -->
                     <div class="widget-img">

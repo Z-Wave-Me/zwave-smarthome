@@ -30,6 +30,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
             all: {},
             ids: {},
             filter: {},
+            hideInstalled: ($cookies.hideInstalledApps ? $cookies.hideInstalledApps : false),
             orderBy: ($cookies.orderByAppsOnline ? $cookies.orderByAppsOnline : 'creationTimeDESC')
         },
         tokens: {
@@ -145,8 +146,14 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                         //obj[item.file] = 'dfdf';
                         //angular.extend()
                         $scope.dataHolder.onlineModules.ids[item.modulename] = {version: item.version, file: item.file, patchnotes: item.patchnotes};
-                        //$scope.dataHolder.onlineModules.ids[item.modulename] = {file: item.file};
-                        //$scope.dataHolder.onlineModules.ids[item.modulename] = {patchnotes: item.patchnotes};
+                        if($scope.dataHolder.modules.ids[item.modulename]){
+                            item['status'] = 'installed';
+                            if($scope.dataHolder.modules.ids[item.modulename].version != item.version){
+                                item['status'] = 'upgrade';
+                            }
+                        }else{
+                             item['status'] = 'download';
+                        }
                         if ($scope.getHiddenApps().indexOf(item.modulename) > -1) {
                             if ($scope.user.role !== 1) {
                                 isHidden = true;
@@ -310,6 +317,17 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
     $scope.setOrderBy = function (key) {
         angular.extend($scope.dataHolder.onlineModules, {orderBy: key});
         $cookies.orderByAppsOnline = key;
+        $scope.loadTokens();
+    };
+    
+     /**
+     * Hide installed
+     */
+    $scope.hideInstalled = function (status) {
+        console.log()
+        angular.extend($scope.dataHolder.onlineModules, {hideInstalled: status});
+        $cookies.hideInstalledApps = status;
+         console.log($scope.dataHolder.onlineModules.hideInstalled)
         $scope.loadTokens();
     };
 
