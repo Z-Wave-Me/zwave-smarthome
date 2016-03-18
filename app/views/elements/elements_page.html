@@ -54,13 +54,13 @@
                    ng-click="setFilter()" 
                    ng-class="_.isEmpty(dataHolder.devices.filter) == true ? 'active': ''">
                      {{_t('all_elements')}}
-                 </a>
+                </a>
                 <a class="btn btn-default btn-tag"
-                        ng-repeat="v in dataHolder.devices.tags" 
+                        ng-repeat="v in dataHolder.devices.tags|orderBy:'toString()'" 
                         ng-click="setFilter({tag: v})" 
                         ng-class="dataHolder.devices.filter.tag == v ? 'active': ''">
                      {{_t(v) | cutText:true:30}}
-                 </a>
+                </a>
             </div>
         </div>
     </div>
