@@ -12,6 +12,12 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
     }, $scope.expand);
     $scope.dataHolder = {
         modules: {
+            cnt: {
+                apps: 0,
+                collection: 0,
+                appsCat: 0,
+                featured: 0
+            },
             all: {},
             categories: {},
             ids: {},
@@ -38,7 +44,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
         },
         instances: {
             all: {},
-             orderBy: ($cookies.orderByAppsInstances ? $cookies.orderByAppsInstances : 'creationTimeDESC')
+            orderBy: ($cookies.orderByAppsInstances ? $cookies.orderByAppsInstances : 'creationTimeDESC')
         }
     };
 
@@ -78,7 +84,8 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
     $scope.loadLocalModules = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('modules', null, true).then(function (response) {
-            $scope.dataHolder.modules.all = _.chain(response.data.data)
+             $scope.dataHolder.modules.cnt.featured = 0;
+           var modules = _.chain(response.data.data)
                     .flatten()
                     .filter(function (item) {
                         //$scope.dataHolder.modules.ids.push(item.id);
@@ -113,16 +120,23 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                             }
                             if ($scope.getCustomCfgArr('featured_apps').indexOf(item.moduleName) > -1) {
                                 angular.extend(item, {featured: true});
+                                 $scope.dataHolder.modules.cnt.featured += 1;
                                 //$scope.localModules.featured[item.moduleName] = item;
                             } else {
                                 angular.extend(item, {featured: false});
                             }
                             return items;
                         }
-                    })
-                    .where($scope.dataHolder.modules.filter)
-                    .value();
-            $scope.loading = false;
+                    });
+                     // Set categories
+           $scope.dataHolder.modules.cnt.appsCat = modules.countBy(function(v){
+                return v.category;
+            }).value();
+             $scope.dataHolder.modules.cnt.apps = modules.size().value();
+            
+             $scope.dataHolder.modules.all = modules.where($scope.dataHolder.modules.filter).value();
+              $scope.dataHolder.modules.cnt.collection = _.size($scope.dataHolder.modules.all);
+             $scope.loading = false;
 
         }, function (error) {
             $scope.loading = false;
@@ -146,13 +160,13 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                         //obj[item.file] = 'dfdf';
                         //angular.extend()
                         $scope.dataHolder.onlineModules.ids[item.modulename] = {version: item.version, file: item.file, patchnotes: item.patchnotes};
-                        if($scope.dataHolder.modules.ids[item.modulename]){
+                        if ($scope.dataHolder.modules.ids[item.modulename]) {
                             item['status'] = 'installed';
-                            if($scope.dataHolder.modules.ids[item.modulename].version != item.version){
+                            if ($scope.dataHolder.modules.ids[item.modulename].version != item.version) {
                                 item['status'] = 'upgrade';
                             }
-                        }else{
-                             item['status'] = 'download';
+                        } else {
+                            item['status'] = 'download';
                         }
                         if ($scope.getHiddenApps().indexOf(item.modulename) > -1) {
                             if ($scope.user.role !== 1) {
@@ -163,7 +177,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                         }
                         if (!isHidden) {
                             item.featured = (item.featured == 1 ? true : false);
-                             angular.extend(item, {updateTime:$filter('mysqlToUnixTs')(item.last_updated)});
+                            angular.extend(item, {updateTime: $filter('mysqlToUnixTs')(item.last_updated)});
                             return item;
                         }
                     })
@@ -181,7 +195,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
      */
     $scope.loadInstances = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataFactory.getApi('instances',null,true).then(function (response) {
+        dataFactory.getApi('instances', null, true).then(function (response) {
             $scope.dataHolder.instances.all = _.reject(response.data.data, function (v) {
                 //return v.state === 'hidden' && ($scope.user.role !== 1 && $scope.user.expert_view !== true);
                 if ($scope.getHiddenApps().indexOf(v.moduleId) > -1) {
@@ -310,8 +324,8 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
 myAppController.controller('AppOnlineController', function ($scope, $filter, $cookies, $timeout, $route, dataFactory, dataService, myCache, _) {
     $scope.activeTab = 'online';
     $scope.dataHolder.onlineModules.filter = ($cookies.filterAppsOnline ? angular.fromJson($cookies.filterAppsOnline) : {featured: true});
-    
-     /**
+
+    /**
      * Set order by
      */
     $scope.setOrderBy = function (key) {
@@ -319,8 +333,8 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
         $cookies.orderByAppsOnline = key;
         $scope.loadTokens();
     };
-    
-     /**
+
+    /**
      * Hide installed
      */
     $scope.hideInstalled = function (status) {
@@ -377,7 +391,7 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
  */
 myAppController.controller('AppInstanceController', function ($scope, $cookies, dataFactory, dataService, myCache, _) {
     $scope.activeTab = 'instance';
-     /**
+    /**
      * Set order by
      */
     $scope.setOrderBy = function (key) {
@@ -473,7 +487,8 @@ myAppController.controller('AppLocalDetailController', function ($scope, $routeP
     /// --- Private functions --- ///
     function loadOnlineModules(moduleName) {
         dataFactory.getRemoteData($scope.cfg.online_module_url).then(function (response) {
-            $scope.isOnline = _.findWhere(response.data, {modulename: moduleName});;
+            $scope.isOnline = _.findWhere(response.data, {modulename: moduleName});
+            ;
         }, function (error) {
         });
     }
@@ -854,12 +869,12 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
         if (input.instanceId > 0) {
             dataFactory.putApi('instances', input.instanceId, inputData).then(function (response) {
                 myCache.remove('devices');
-                if($scope.moduleId.fromapp){
-                     $location.path('/module/post/' + $scope.moduleId.fromapp);
-                }else{
-                     $location.path('/apps/instance');
+                if ($scope.moduleId.fromapp) {
+                    $location.path('/module/post/' + $scope.moduleId.fromapp);
+                } else {
+                    $location.path('/apps/instance');
                 }
-               
+
 
             }, function (error) {
                 alertify.alertError($scope._t('error_update_data'));
@@ -867,10 +882,10 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
         } else {
             dataFactory.postApi('instances', inputData).then(function (response) {
                 myCache.remove('devices');
-               if($scope.moduleId.fromapp){
-                     $location.path('/module/post/' + $scope.moduleId.fromapp);
-                }else{
-                     $location.path('/apps/instance');
+                if ($scope.moduleId.fromapp) {
+                    $location.path('/module/post/' + $scope.moduleId.fromapp);
+                } else {
+                    $location.path('/apps/instance');
                 }
 
             }, function (error) {
@@ -928,7 +943,7 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
         if (!_.isArray(dependencies)) {
             return;
         }
-         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
             dataFactory.getApi('modules', null, true),
             dataFactory.getApi('instances', null, true)
@@ -939,7 +954,7 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
             var instances = response[1];
             // Error message
             if (modules.state === 'rejected' || instances.state === 'rejected') {
-                 $scope.loading = false;
+                $scope.loading = false;
                 return;
             }
             // Success - modules
@@ -957,19 +972,19 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
                 if ($scope.moduleId.modules[k]) {
                     if ($scope.moduleId.instances[k]) {
                         if ($scope.moduleId.instances[k].active === false) {
-                             $scope.moduleId.submit = false;
+                            $scope.moduleId.submit = false;
                             $scope.moduleId.dependency.activate[k] = $scope.moduleId.instances[k];
                         }
 
                         //$scope.moduleId.dependency.activate[k] = instances[k];
                     } else {
-                         $scope.moduleId.submit = false;
+                        $scope.moduleId.submit = false;
                         $scope.moduleId.dependency.add[k] = {
                             modulename: k
                         };
                     }
                 } else {
-                     $scope.moduleId.submit = false;
+                    $scope.moduleId.submit = false;
                     $scope.moduleId.dependency.download[k] = {
                         id: k,
                         modulename: k,
@@ -977,7 +992,7 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
                     };
                 }
             });
-             $scope.loading = false;
+            $scope.loading = false;
         });
     }
     ;
