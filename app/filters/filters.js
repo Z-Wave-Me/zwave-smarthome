@@ -148,10 +148,23 @@ myApp.filter('getElementIcon', function (cfg) {
                 case 'door':
                     icon = cfg.img.icons + (level == 'open' || level == 'on' ? 'door-open.png' : 'door-closed.png');
                     break;
+
+                case 'window':
+                    if (typeof(level) === 'number') {
+                        if (level == 0) {
+                            icon = cfg.img.icons + 'window-down.png';
+                        } else if (level >= 99) {
+                            icon = cfg.img.icons + 'window-up.png';
+                        } else {
+                            icon = cfg.img.icons + 'window-half.png';
+                        }
+                    } else {
+                        icon = cfg.img.icons + (level == 'open' || level == 'on' ? 'window-open.png' : 'window-closed.png');
+                    }
+                    break;
                 case 'doorlockcontrol':
                     icon = cfg.img.icons + 'lock-closed.png';
                     break;
-
 
                 case 'switch':
                     icon = cfg.img.icons + (level == 'on' ? 'switch-on.png' : 'switch-off.png');
