@@ -460,12 +460,28 @@ myAppController.controller('ElementSensorMultilineController', function ($scope)
 /**
  * Element Camera controller
  */
-myAppController.controller('ElementCameraController', function ($scope) {
+myAppController.controller('ElementCameraController', function ($scope,$interval) {
     $scope.widgetCamera = {
         find: {},
         alert: {message: false, status: 'is-hidden', icon: false}
     };
-
+    
+    $scope.url = undefined;
+    $scope.refreshInterval = undefined;
+    
+    $scope.setUrl = function() {
+        var url = $scope.widgetCamera.find.metrics.url;
+        if ($scope.widgetCamera.find.metrics.autoRefresh === true) {
+            var now = new Date().getTime();
+            if (url.indexOf('?') === -1) {
+                url = url + '?' + now;
+            } else {
+                url = url + '&' + now;
+            }
+        }
+        $scope.url = url;
+    };
+    
     /**
      * Load single device
      */
@@ -476,10 +492,13 @@ myAppController.controller('ElementCameraController', function ($scope) {
             return;
         }
         $scope.widgetCamera.find = device[0];
+        $scope.setUrl();
+        if ($scope.widgetCamera.find.metrics.autoRefresh === true) {
+            $scope.refreshInterval = $interval($scope.setUrl, 1000*15);
+        }
         return;
     };
     $scope.loadDeviceId();
-
 });
 
 /**
