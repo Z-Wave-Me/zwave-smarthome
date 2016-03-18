@@ -1775,19 +1775,24 @@ h4 {
   font-size: 110%;
 }
 
+/* line 66, ../sass/common/_body.scss */
+.item-cnt {
+  font-size: 80%;
+}
+
 /* Links
 -------------------------------------------------- */
-/* line 68, ../sass/common/_body.scss */
+/* line 72, ../sass/common/_body.scss */
 a {
   color: #333333;
   text-decoration: none;
 }
-/* line 72, ../sass/common/_body.scss */
+/* line 76, ../sass/common/_body.scss */
 a:hover, a:focus {
   color: #1a1a1a;
   text-decoration: underline;
 }
-/* line 77, ../sass/common/_body.scss */
+/* line 81, ../sass/common/_body.scss */
 a:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
@@ -1796,7 +1801,7 @@ a:focus {
 
 /* Fatal error
 -------------------------------------------------- */
-/* line 87, ../sass/common/_body.scss */
+/* line 91, ../sass/common/_body.scss */
 .app-fatal-error {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -1807,19 +1812,19 @@ a:focus {
   border: solid 1px #d9534f;
   position: relative;
 }
-/* line 95, ../sass/common/_body.scss */
+/* line 99, ../sass/common/_body.scss */
 .app-fatal-error .fatal-error-img {
   position: absolute;
   top: 15px;
   left: 10px;
 }
-/* line 101, ../sass/common/_body.scss */
+/* line 105, ../sass/common/_body.scss */
 .app-fatal-error .fatal-error-message {
   color: #d9534f;
   font-weight: bold;
   font-size: 120%;
 }
-/* line 106, ../sass/common/_body.scss */
+/* line 110, ../sass/common/_body.scss */
 .app-fatal-error .fatal-error-info {
   color: #000000;
   font-size: 105%;
@@ -1827,39 +1832,39 @@ a:focus {
 
 /* Others
 -------------------------------------------------- */
-/* line 114, ../sass/common/_body.scss */
+/* line 118, ../sass/common/_body.scss */
 .timestamp {
   color: #333333;
   font-size: 17px;
 }
-/* line 117, ../sass/common/_body.scss */
+/* line 121, ../sass/common/_body.scss */
 .timestamp .fa {
   font-size: 110%;
 }
 
-/* line 121, ../sass/common/_body.scss */
+/* line 125, ../sass/common/_body.scss */
 .bcg-active.false, .bcg-danger {
   background-color: #f2dede;
 }
 
-/* line 125, ../sass/common/_body.scss */
+/* line 129, ../sass/common/_body.scss */
 .clickable {
   cursor: pointer;
 }
 
-/* line 129, ../sass/common/_body.scss */
+/* line 133, ../sass/common/_body.scss */
 .text-supp {
   font-style: italic;
   color: #595959;
 }
 
-/* line 134, ../sass/common/_body.scss */
+/* line 138, ../sass/common/_body.scss */
 .badge {
   padding: 5px;
   margin-right: 5px;
 }
 
-/* line 138, ../sass/common/_body.scss */
+/* line 142, ../sass/common/_body.scss */
 .help-text {
   display: block;
   font-size: 95%;
@@ -1867,17 +1872,17 @@ a:focus {
   margin: 5px 0;
 }
 
-/* line 144, ../sass/common/_body.scss */
+/* line 148, ../sass/common/_body.scss */
 .help-text.inline {
   display: inline;
 }
 
-/* line 148, ../sass/common/_body.scss */
+/* line 152, ../sass/common/_body.scss */
 .display-block {
   display: block;
 }
 
-/* line 151, ../sass/common/_body.scss */
+/* line 155, ../sass/common/_body.scss */
 .badge-number {
   background-color: #a6a6a6;
   color: #FFFFFF;

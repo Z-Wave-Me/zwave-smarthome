@@ -8,8 +8,12 @@
  */
 myAppController.controller('ElementBaseController', function ($scope, $routeParams, $interval, $location, $cookies, $filter, dataFactory, dataService) {
     $scope.dataHolder = {
+        cnt: {
+            devices: 0,
+            collection: 0
+        },
         devices: {
-            welcome: false,
+           welcome: false,
             show: true,
             all: {},
             byId: {},
@@ -61,15 +65,11 @@ myAppController.controller('ElementBaseController', function ($scope, $routePara
                 }
             });
             // Set categories
-            $scope.dataHolder.devices.deviceType = devices
-                    .reject(function (v) {
-                        return !('deviceType' in v);
-                    })
-                    .uniq(function (v) {
-                        return v.deviceType;
-                    })
-                    .pluck('deviceType')
-                    .value();
+            $scope.dataHolder.devices.deviceType = devices.countBy(function(v){
+                return v.deviceType;
+            }).value();
+            
+            $scope.dataHolder.cnt.devices = devices.size().value();
             
             //All devices
             $scope.dataHolder.devices.all = devices.value();
@@ -86,6 +86,7 @@ myAppController.controller('ElementBaseController', function ($scope, $routePara
             if (_.isEmpty($scope.dataHolder.devices.collection)) {
                 $scope.dataHolder.devices.welcome = true;
             }
+            $scope.dataHolder.cnt.collection = _.size($scope.dataHolder.devices.collection);
         }, function (error) {
             $scope.loading = false;
             alertify.alertError($scope._t('error_load_data'));
