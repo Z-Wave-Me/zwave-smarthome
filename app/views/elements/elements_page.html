@@ -42,14 +42,14 @@
             <ul>
                 <li class="page-location-all" ng-class="_.isEmpty(dataHolder.devices.filter) == true ? 'active': ''">
                    <a href="" ng-click="setFilter({location: undefined})">
-                       <img class="report-img img-circle" ng-src="{{0|getRoomIcon}}" />
+                       <img class="report-img img-circle" src="storage/img/placeholder-img.png" />
                        {{_t('all_rooms')}} <span class="item-cnt">({{dataHolder.cnt.devices}})</span> 
                        <span class="page-navi-icon"><i class="fa fa-chevron-right"></i></span>
                    </a>
                 </li>
                 <li class="page-location-{{v}}" ng-repeat="v in dataHolder.devices.rooms" ng-class="dataHolder.devices.filter.location == v.id ? 'active': ''">
                    <a href="" ng-click="setFilter({location: v.id})"> 
-                     <img class="report-img img-circle" ng-src="{{v|getRoomIcon}}" />
+                     <img class="report-img img-circle" ng-src="{{v.img_src}}" />
                      {{_t(v.title) | cutText:true:30}} <span class="item-cnt">({{ (v.namespaces|findById:'devices_all').params.length }})</span> 
                      <span class="page-navi-icon"><i class="fa fa-chevron-right"></i></span>
                    </a>
