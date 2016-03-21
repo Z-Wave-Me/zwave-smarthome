@@ -5,7 +5,7 @@ Angular app
 ## v1.4.0
 #### New features
 - Elements: Show count of elements in the filter.
-- Online and local apps: Show count of Apps in the filter. Sorting by title, most rated, newest....
+- Online and local apps: Show count of Apps in the filter. Sorting by title, most rated, newest.... Show only categories that have min 1 app.
 - Online apps: Display count of ratings and average value. Hide already installed apps. Display patches in the update window and in the app detail.
 - Local appps: Added "Update to latest" button.
 - Add appp: Integration of the dependencies between the modules.

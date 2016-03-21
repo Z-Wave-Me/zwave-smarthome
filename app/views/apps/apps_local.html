@@ -43,7 +43,8 @@
                     </a>
                 </li>
                 <li class="page-cat-{{v.id}}" ng-repeat="v in dataHolder.modules.categories" 
-                    ng-if="dataHolder.modules.cats.indexOf(v.id) > -1" ng-class="dataHolder.modules.filter.category == v.id ? 'active': ''">
+                    ng-if="dataHolder.modules.cats.indexOf(v.id) > -1 && dataHolder.modules.cnt.appsCat[v.id]" 
+                    ng-class="dataHolder.modules.filter.category == v.id ? 'active': ''">
                     <a href="" ng-click="setFilter({category: v.id})">
                          <i class="fa {{v.id|getAppCategoryIcon}}"></i>
                         {{v.name|cutText:true:30}} <span class="item-cnt">({{dataHolder.modules.cnt.appsCat[v.id]}})</span> 
