@@ -32,6 +32,12 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
             orderBy: ($cookies.orderByAppsLocal ? $cookies.orderByAppsLocal : 'titleASC')
         },
         onlineModules: {
+            cnt: {
+                apps: 0,
+                collection: 0,
+                appsCat: 0,
+                featured: 0
+            },
             ratingRange: _.range(1, 6),
             all: {},
             ids: {},
@@ -84,8 +90,9 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
     $scope.loadLocalModules = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('modules', null, true).then(function (response) {
-             $scope.dataHolder.modules.cnt.featured = 0;
-           var modules = _.chain(response.data.data)
+            // Reset featured cnt
+            $scope.dataHolder.modules.cnt.featured = 0;
+            var modules = _.chain(response.data.data)
                     .flatten()
                     .filter(function (item) {
                         //$scope.dataHolder.modules.ids.push(item.id);
@@ -120,23 +127,26 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                             }
                             if ($scope.getCustomCfgArr('featured_apps').indexOf(item.moduleName) > -1) {
                                 angular.extend(item, {featured: true});
-                                 $scope.dataHolder.modules.cnt.featured += 1;
-                                //$scope.localModules.featured[item.moduleName] = item;
+                                // Count featured apps
+                                $scope.dataHolder.modules.cnt.featured += 1;
                             } else {
                                 angular.extend(item, {featured: false});
                             }
                             return items;
                         }
                     });
-                     // Set categories
-           $scope.dataHolder.modules.cnt.appsCat = modules.countBy(function(v){
+            // Count apps in categories
+            $scope.dataHolder.modules.cnt.appsCat = modules.countBy(function (v) {
                 return v.category;
             }).value();
-             $scope.dataHolder.modules.cnt.apps = modules.size().value();
             
-             $scope.dataHolder.modules.all = modules.where($scope.dataHolder.modules.filter).value();
-              $scope.dataHolder.modules.cnt.collection = _.size($scope.dataHolder.modules.all);
-             $scope.loading = false;
+            // Count all apps
+            $scope.dataHolder.modules.cnt.apps = modules.size().value();
+
+            $scope.dataHolder.modules.all = modules.where($scope.dataHolder.modules.filter).value();
+             // Count collection
+            $scope.dataHolder.modules.cnt.collection = _.size($scope.dataHolder.modules.all);
+            $scope.loading = false;
 
         }, function (error) {
             $scope.loading = false;
@@ -150,9 +160,11 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
      * Load online modules
      */
     $scope.loadOnlineModules = function () {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getOnlineModules({token: _.values($scope.dataHolder.tokens.all)}).then(function (response) {
-            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-            $scope.dataHolder.onlineModules.all = _.chain(response.data.data)
+            // Reset featured cnt
+            $scope.dataHolder.onlineModules.cnt.featured = 0;
+            var onlineModules = _.chain(response.data.data)
                     .flatten()
                     .filter(function (item) {
                         var isHidden = false;
@@ -176,13 +188,26 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                             }
                         }
                         if (!isHidden) {
-                            item.featured = (item.featured == 1 ? true : false);
-                            angular.extend(item, {updateTime: $filter('mysqlToUnixTs')(item.last_updated)});
+                            if(item.featured == 1){
+                                item.featured = true;
+                                 // Count featured apps
+                                $scope.dataHolder.onlineModules.cnt.featured += 1;
+                            }else{
+                                 item.featured = false;
+                            }
                             return item;
                         }
-                    })
-                    .where($scope.dataHolder.onlineModules.filter)
-                    .value();
+                    });
+            // Count apps in categories
+            $scope.dataHolder.onlineModules.cnt.appsCat = onlineModules.countBy(function (v) {
+                return v.category;
+            }).value();
+            
+            // Count all apps
+            $scope.dataHolder.onlineModules.cnt.apps = onlineModules.size().value();
+            $scope.dataHolder.onlineModules.all = onlineModules.where($scope.dataHolder.onlineModules.filter).value();
+             // Count collection
+            $scope.dataHolder.onlineModules.cnt.collection = _.size($scope.dataHolder.onlineModules.all);
             $scope.loading = false;
         }, function (error) {
             $scope.loading = false;

@@ -5,6 +5,7 @@ Angular app
 ## v1.4.0
 #### New features
 - Elements: Show count of elements in the filter.
+- Online and local apps: Show count of elements in the filter.
 - Online and local apps: sorting by title, most rated, newest....
 - Online apps: hide already installed apps....
 - Online apps: displaying count of ratings and average value. 
