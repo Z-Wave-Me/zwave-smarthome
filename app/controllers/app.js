@@ -139,12 +139,11 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
             $scope.dataHolder.modules.cnt.appsCat = modules.countBy(function (v) {
                 return v.category;
             }).value();
-            
             // Count all apps
             $scope.dataHolder.modules.cnt.apps = modules.size().value();
 
             $scope.dataHolder.modules.all = modules.where($scope.dataHolder.modules.filter).value();
-             // Count collection
+            // Count collection
             $scope.dataHolder.modules.cnt.collection = _.size($scope.dataHolder.modules.all);
             $scope.loading = false;
 
@@ -160,9 +159,9 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
      * Load online modules
      */
     $scope.loadOnlineModules = function () {
-        console.log($scope.dataHolder.onlineModules)
+        //console.log($scope.dataHolder.onlineModules)
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataFactory.getOnlineModules({token: _.values($scope.dataHolder.tokens.all)}).then(function (response) {
+        dataFactory.getOnlineModules({token: _.values($scope.dataHolder.tokens.all)}, true).then(function (response) {
             // Reset featured cnt
             $scope.dataHolder.onlineModules.cnt.featured = 0;
             var onlineModules = _.chain(response.data.data)
@@ -173,15 +172,6 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                         //obj[item.file] = 'dfdf';
                         //angular.extend()
                         $scope.dataHolder.onlineModules.ids[item.modulename] = {version: item.version, file: item.file, patchnotes: item.patchnotes};
-                        if ($scope.dataHolder.modules.ids[item.modulename]) {
-                            isHidden = $scope.dataHolder.onlineModules.hideInstalled;
-                            item['status'] = 'installed';
-                            if ($scope.dataHolder.modules.ids[item.modulename].version != item.version) {
-                                item['status'] = 'upgrade';
-                            }
-                        } else {
-                            item['status'] = 'download';
-                        }
                         if ($scope.getHiddenApps().indexOf(item.modulename) > -1) {
                             if ($scope.user.role !== 1) {
                                 isHidden = true;
@@ -189,26 +179,37 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                                 isHidden = ($scope.user.expert_view ? false : true);
                             }
                         }
-                        if (!isHidden) {
-                            if(item.featured == 1){
-                                item.featured = true;
-                                 // Count featured apps
-                                $scope.dataHolder.onlineModules.cnt.featured += 1;
-                            }else{
-                                 item.featured = false;
+                        if ($scope.dataHolder.modules.ids[item.modulename]) {
+                            item['status'] = 'installed';
+                            if ($scope.dataHolder.modules.ids[item.modulename].version != item.version) {
+                                item['status'] = 'upgrade';
                             }
-                            return item;
+                            isHidden = $scope.dataHolder.onlineModules.hideInstalled;
+                        } else {
+                            item['status'] = 'download';
                         }
-                    });
+                        angular.extend(item, {isHidden: isHidden});
+
+                        if (item.featured == 1) {
+                            item.featured = true;
+                            // Count featured apps
+                            $scope.dataHolder.onlineModules.cnt.featured += 1;
+                        } else {
+                            item.featured = false;
+                        }
+                        return item;
+                    }).reject(function (v) {
+                return v.isHidden === true;
+            });
             // Count apps in categories
             $scope.dataHolder.onlineModules.cnt.appsCat = onlineModules.countBy(function (v) {
                 return v.category;
             }).value();
-            
+
             // Count all apps
             $scope.dataHolder.onlineModules.cnt.apps = onlineModules.size().value();
             $scope.dataHolder.onlineModules.all = onlineModules.where($scope.dataHolder.onlineModules.filter).value();
-             // Count collection
+            // Count collection
             $scope.dataHolder.onlineModules.cnt.collection = _.size($scope.dataHolder.onlineModules.all);
             $scope.loading = false;
         }, function (error) {
@@ -348,7 +349,7 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
 /**
  * App online controller
  */
-myAppController.controller('AppOnlineController', function ($scope, $filter, $cookies, $timeout, $route, dataFactory, dataService, myCache, _) {
+myAppController.controller('AppOnlineController', function ($scope, $filter, $cookies, $window, dataFactory, dataService, _) {
     $scope.activeTab = 'online';
     $scope.dataHolder.onlineModules.filter = ($cookies.filterAppsOnline ? angular.fromJson($cookies.filterAppsOnline) : {featured: true});
 
@@ -369,6 +370,7 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
         angular.extend($scope.dataHolder.onlineModules, {hideInstalled: status});
         $cookies.hideInstalledApps = status;
         $scope.reloadData();
+        //$window.location.reload();
     };
 
     /**
