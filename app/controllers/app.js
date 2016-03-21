@@ -42,7 +42,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
             all: {},
             ids: {},
             filter: {},
-            hideInstalled: ($cookies.hideInstalledApps ? $cookies.hideInstalledApps : false),
+            hideInstalled: ($cookies.hideInstalledApps ? $filter('toBool')($cookies.hideInstalledApps) : false),
             orderBy: ($cookies.orderByAppsOnline ? $cookies.orderByAppsOnline : 'creationTimeDESC')
         },
         tokens: {
@@ -160,6 +160,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
      * Load online modules
      */
     $scope.loadOnlineModules = function () {
+        console.log($scope.dataHolder.onlineModules)
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getOnlineModules({token: _.values($scope.dataHolder.tokens.all)}).then(function (response) {
             // Reset featured cnt

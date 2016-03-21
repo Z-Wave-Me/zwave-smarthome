@@ -180,7 +180,13 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $location
                         var isNew = v.creationTime > yesterday ? true : false;
                         // Create min/max value
                         switch (v.probeType) {
-                            case 'test':
+                            case 'switchColor_red':
+                                minMax = {min: 0, max: 255};
+                                break;
+                             case 'switchColor_green':
+                                minMax = {min: 0, max: 255};
+                                break;
+                            case 'switchColor_blue':
                                 minMax = {min: 0, max: 255};
                                 break;
                             default:
