@@ -60,6 +60,15 @@ myApp.filter('toInt', function () {
 });
 
 /**
+ * Convert val to bool
+ */
+myApp.filter('toBool', function () {
+    return function (val) {
+        return (String(val).toLowerCase() === 'true');
+    };
+});
+
+/**
  * Get type of a Javascript variable
  */
 myApp.filter('typeOf', function () {

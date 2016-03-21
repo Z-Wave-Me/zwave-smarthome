@@ -173,6 +173,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                         //angular.extend()
                         $scope.dataHolder.onlineModules.ids[item.modulename] = {version: item.version, file: item.file, patchnotes: item.patchnotes};
                         if ($scope.dataHolder.modules.ids[item.modulename]) {
+                            isHidden = $scope.dataHolder.onlineModules.hideInstalled;
                             item['status'] = 'installed';
                             if ($scope.dataHolder.modules.ids[item.modulename].version != item.version) {
                                 item['status'] = 'upgrade';
@@ -363,6 +364,7 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
      * Hide installed
      */
     $scope.hideInstalled = function (status) {
+        status = $filter('toBool')(status);
         angular.extend($scope.dataHolder.onlineModules, {hideInstalled: status});
         $cookies.hideInstalledApps = status;
         $scope.reloadData();

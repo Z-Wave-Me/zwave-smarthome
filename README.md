@@ -5,16 +5,13 @@ Angular app
 ## v1.4.0
 #### New features
 - Elements: Show count of elements in the filter.
-- Online and local apps: Show count of elements in the filter.
-- Online and local apps: sorting by title, most rated, newest....
-- Online apps: hide already installed apps....
-- Online apps: displaying count of ratings and average value. 
+- Online and local apps: Show count of Apps in the filter. Sorting by title, most rated, newest....
+- Online apps: Display count of ratings and average value. Hide already installed apps. Display patches in the update window and in the app detail.
+- Local appps: Added "Update to latest" button.
+- Add appp: Integration of the dependencies between the modules.
 - Management: Added postfix - the list of patched devices. 
-- Add appp: integration of the dependencies between the modules.
-- Local appps: added "Update to latest" button.
 - Improved error handling.
 - Displaying server time on all pages.
-- On-line appps: displaying patches in the update window and in the app detail.
 - Improved Z-Wave inclusion.
 - Added HTML title attribute to navigation and buttons.
 - Management: reset to factory default.
