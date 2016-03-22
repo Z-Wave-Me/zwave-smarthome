@@ -431,7 +431,7 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
 /**
  * Element SensorMultiline controller
  */
-myAppController.controller('ElementSensorMultilineController', function ($scope) {
+myAppController.controller('ElementSensorMultilineController', function ($scope,$timeout) {
     $scope.widgetSensorMultiline = {
         find: {},
         alert: {message: false, status: 'is-hidden', icon: false}
@@ -454,6 +454,16 @@ myAppController.controller('ElementSensorMultilineController', function ($scope)
         return;
     };
     $scope.loadDeviceId();
+    /**
+     * Load single device
+     */
+    $scope.runMultilineCmd = function (cmd,id) {
+        $scope.runCmd(cmd, id);
+        $scope.loadDeviceId();
+        $timeout(function () {
+                $scope.loadDeviceId();
+            }, 3000);
+    };
 
 });
 

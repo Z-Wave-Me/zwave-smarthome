@@ -26,13 +26,13 @@
                                 <a class="widget-history" href="" ng-click="getDeviceById(n.id);handleModal('modalHistory', $event)" ng-if="n.hasHistory"><i class="fa fa-history"></i></a>&nbsp;
                                 <div class="btn-group" ng-if="n.deviceType==='switchBinary'">
                                     <button class="btn btn-off"
-                                        data-ng-click="runCmd(n.id + '/command/off', n.id)"
+                                        data-ng-click="runMultilineCmd(n.id + '/command/off', n.id)"
                                         ng-class="n.metrics.level =='off' ? 'btn-primary': 'btn-default'"
                                         title="{{_t('lb_off')}}">
                                         <span class="widget-btn-symbol">0</span>
                                     </button>
                                     <button class="btn btn-on"
-                                        data-ng-click="runCmd(n.id + '/command/on', n.id)"
+                                        data-ng-click="runMultilineCmd(n.id + '/command/on', n.id)"
                                         ng-class="n.metrics.level =='on' ? 'btn-primary': 'btn-default'"
                                         title="{{_t('lb_on')}}">
                                         <span class="widget-btn-symbol">I</span>
