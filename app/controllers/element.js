@@ -13,7 +13,7 @@ myAppController.controller('ElementBaseController', function ($scope, $routePara
             collection: 0
         },
         devices: {
-           welcome: false,
+            welcome: false,
             show: true,
             all: {},
             byId: {},
@@ -65,12 +65,12 @@ myAppController.controller('ElementBaseController', function ($scope, $routePara
                 }
             });
             // Set categories
-            $scope.dataHolder.devices.deviceType = devices.countBy(function(v){
+            $scope.dataHolder.devices.deviceType = devices.countBy(function (v) {
                 return v.deviceType;
             }).value();
-            
+
             $scope.dataHolder.cnt.devices = devices.size().value();
-            
+
             //All devices
             $scope.dataHolder.devices.all = devices.value();
             // Collection
@@ -431,7 +431,7 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
 /**
  * Element SensorMultiline controller
  */
-myAppController.controller('ElementSensorMultilineController', function ($scope,$timeout) {
+myAppController.controller('ElementSensorMultilineController', function ($scope, $timeout, dataFactory, dataService) {
     $scope.widgetSensorMultiline = {
         find: {},
         alert: {message: false, status: 'is-hidden', icon: false}
@@ -441,28 +441,42 @@ myAppController.controller('ElementSensorMultilineController', function ($scope,
      * Load single device
      */
     $scope.loadDeviceId = function () {
-        var device = _.where($scope.dataHolder.devices.collection, {id: $scope.dataHolder.devices.find.id});
-        if (_.isEmpty(device)) {
-            $scope.widgetSensorMultiline.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
-            return;
-        }
-        $scope.widgetSensorMultiline.find = device[0];
-        if (_.isEmpty($scope.widgetSensorMultiline.find.metrics.sensors)) {
-            $scope.widgetSensorMultiline.alert = {message: $scope._t('no_data'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
-            return;
-        }
-        return;
+        dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id,true).then(function (response) {
+            if (_.isEmpty(response.data.data)) {
+                $scope.widgetSensorMultiline.alert = {message: $scope._t('no_data'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                return;
+            }
+           
+            var arr = [];
+            arr[0] = response.data.data;
+            $scope.widgetSensorMultiline.find = dataService.getDevicesData(arr).value()[0];
+        }, function (error) {
+             $scope.widgetSensorMultiline.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+        });
+        // DEPRECATED
+//        return;
+//        var device = _.where($scope.dataHolder.devices.collection, {id: $scope.dataHolder.devices.find.id});
+//        if (_.isEmpty(device)) {
+//            $scope.widgetSensorMultiline.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+//            return;
+//        }
+//        $scope.widgetSensorMultiline.find = device[0];
+//        if (_.isEmpty($scope.widgetSensorMultiline.find.metrics.sensors)) {
+//            $scope.widgetSensorMultiline.alert = {message: $scope._t('no_data'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+//            return;
+//        }
+//        return;
     };
     $scope.loadDeviceId();
     /**
      * Load single device
      */
-    $scope.runMultilineCmd = function (cmd,id) {
+    $scope.runMultilineCmd = function (cmd, id) {
         $scope.runCmd(cmd, id);
         $scope.loadDeviceId();
         $timeout(function () {
-                $scope.loadDeviceId();
-            }, 3000);
+           $scope.loadDeviceId();
+        }, 2000);
     };
 
 });
@@ -470,16 +484,16 @@ myAppController.controller('ElementSensorMultilineController', function ($scope,
 /**
  * Element Camera controller
  */
-myAppController.controller('ElementCameraController', function ($scope,$interval) {
+myAppController.controller('ElementCameraController', function ($scope, $interval) {
     $scope.widgetCamera = {
         find: {},
         alert: {message: false, status: 'is-hidden', icon: false}
     };
-    
+
     $scope.url = undefined;
     $scope.refreshInterval = undefined;
-    
-    $scope.setUrl = function() {
+
+    $scope.setUrl = function () {
         var url = $scope.widgetCamera.find.metrics.url;
         if ($scope.widgetCamera.find.metrics.autoRefresh === true) {
             var now = new Date().getTime();
@@ -491,7 +505,7 @@ myAppController.controller('ElementCameraController', function ($scope,$interval
         }
         $scope.url = url;
     };
-    
+
     /**
      * Load single device
      */
@@ -504,7 +518,7 @@ myAppController.controller('ElementCameraController', function ($scope,$interval
         $scope.widgetCamera.find = device[0];
         $scope.setUrl();
         if ($scope.widgetCamera.find.metrics.autoRefresh === true) {
-            $scope.refreshInterval = $interval($scope.setUrl, 1000*15);
+            $scope.refreshInterval = $interval($scope.setUrl, 1000 * 15);
         }
         return;
     };

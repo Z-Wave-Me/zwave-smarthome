@@ -24,7 +24,7 @@
                             </td>
                             <td class="text-right tbl-widget-ctrl">
                                 <a class="widget-history" href="" ng-click="getDeviceById(n.id);handleModal('modalHistory', $event)" ng-if="n.hasHistory"><i class="fa fa-history"></i></a>&nbsp;
-                                <div class="btn-group" ng-if="n.deviceType==='switchBinary'">
+                                 <div class="btn-group" ng-if="n.deviceType==='switchBinary'">
                                     <button class="btn btn-off"
                                         data-ng-click="runMultilineCmd(n.id + '/command/off', n.id)"
                                         ng-class="n.metrics.level =='off' ? 'btn-primary': 'btn-default'"
