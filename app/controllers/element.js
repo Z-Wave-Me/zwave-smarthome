@@ -58,21 +58,14 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             }
             // Success - locations
             if (locations.state === 'fulfilled') {
-                //$scope.elementId.locations = locations.value.data.data;
                 angular.extend($scope.dataHolder.devices.rooms, _.indexBy(locations.value.data.data, 'id'));
             }
             // Success - devices
             if (devices.state === 'fulfilled') {
-                //dataService.getDevicesData(devices.value.data.data);
-                //var devices = dataService.getDevicesData(devices.value.data.data.devices);
-                setDevices(dataService.getDevicesData(devices.value.data.data.devices));
+               setDevices(dataService.getDevicesData(devices.value.data.data.devices));
            
             }
-
-
-
         });
-
     };
     $scope.allSettled();
 
@@ -174,7 +167,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
                     });
                 }
                 if (response.data.data.structureChanged === true) {
-                    $scope.loadDevices();
+                   $scope.allSettled();
                 }
 
             }, function (error) {
