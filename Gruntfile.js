@@ -74,6 +74,7 @@ module.exports = function(grunt) {
                     'vendor/dragdrop/angular-drag-and-drop-lists.js',
                      // Bootstrap
                     'vendor/bootstrap/bootstrap.min.js',
+                    'vendor/bootstrap/plugins/bootstrap-datetimepicker.js',
                     // APP
                     'app/app.js',
                     'dist/app/js/templates.js',
@@ -83,8 +84,8 @@ module.exports = function(grunt) {
                     'app/services/factories.js',
                     'app/services/services.js',
                     'app/directives/directives.js',
-                     'app/directives/dir-pagination.js',
-                     'app/directives/tc-angular-chartjs.js',
+                    'app/directives/dir-pagination.js',
+                    'app/directives/tc-angular-chartjs.js',
                     //'app/directives/bsSwitch.js',
                     //'app/directives/angular-slider.j',
                     'app/filters/filters.js',
