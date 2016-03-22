@@ -181,11 +181,6 @@ myAppController.controller('ElementBaseController', function ($scope, $routePara
                 );
             }
 
-
-//            if (id) {
-//                $(widgetId + ' .widget-icon').addClass('trans-true');
-//            }
-
         }, function (error) {
             alertify.alertError($scope._t('error_update_data'));
             $scope.loading = false;
@@ -452,6 +447,10 @@ myAppController.controller('ElementSensorMultilineController', function ($scope)
             return;
         }
         $scope.widgetSensorMultiline.find = device[0];
+        if (_.isEmpty($scope.widgetSensorMultiline.find.metrics.sensors)) {
+            $scope.widgetSensorMultiline.alert = {message: $scope._t('no_data'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+            return;
+        }
         return;
     };
     $scope.loadDeviceId();

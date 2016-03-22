@@ -2407,13 +2407,23 @@ img {
   float: right;
 }
 
-/* line 81, ../sass/common/_widget.scss */
+/* line 80, ../sass/common/_widget.scss */
+.tbl-widget-ctrl .widget-history {
+  color: #737373;
+}
+/* line 82, ../sass/common/_widget.scss */
+.tbl-widget-ctrl .widget-history .fa {
+  padding: 0 0 0 10px;
+  font-size: 180%;
+}
+
+/* line 89, ../sass/common/_widget.scss */
 .widget-success .widget-entry-in {
   border-color: #bed5be !important;
   border-width: 4px;
 }
 
-/* line 87, ../sass/common/_widget.scss */
+/* line 95, ../sass/common/_widget.scss */
 .widget-warning {
   /*.widget-entry-in{
       //border-color: $widget-warning-border-color !important;
@@ -2421,7 +2431,7 @@ img {
       }*/
 }
 
-/* line 94, ../sass/common/_widget.scss */
+/* line 102, ../sass/common/_widget.scss */
 .widget-danger {
   /*    .widget-entry-in{
       border-color: $widget-danger-border-color !important;
@@ -3157,27 +3167,28 @@ http://codepen.io/MattIn4D/pen/LiKFC
 .widget-entry-element .widget-entry-in .widget-scale {
   font-size: 110%;
 }
-/* line 29, ../sass/modules/_elements.scss */
-.widget-entry-element .widget-entry-in .widget-ctrl .fa-caret-down {
+
+/* line 33, ../sass/modules/_elements.scss */
+.widget-ctrl .fa-caret-down, .tbl-widget-ctrl .fa-caret-down {
   font-size: 140%;
   color: #737373;
 }
-/* line 34, ../sass/modules/_elements.scss */
-.widget-entry-element .widget-entry-in .widget-ctrl .btn-group .btn {
+/* line 38, ../sass/modules/_elements.scss */
+.widget-ctrl .btn-group .btn, .tbl-widget-ctrl .btn-group .btn {
   color: #d9d9d9;
 }
-/* line 36, ../sass/modules/_elements.scss */
-.widget-entry-element .widget-entry-in .widget-ctrl .btn-group .btn .fa {
+/* line 40, ../sass/modules/_elements.scss */
+.widget-ctrl .btn-group .btn .fa, .tbl-widget-ctrl .btn-group .btn .fa {
   font-size: 110%;
 }
-/* line 40, ../sass/modules/_elements.scss */
-.widget-entry-element .widget-entry-in .widget-ctrl .btn-group .widget-btn-symbol {
+/* line 44, ../sass/modules/_elements.scss */
+.widget-ctrl .btn-group .widget-btn-symbol, .tbl-widget-ctrl .btn-group .widget-btn-symbol {
   font-weight: bold;
   display: inline-block;
   padding: 0 5px;
 }
-/* line 45, ../sass/modules/_elements.scss */
-.widget-entry-element .widget-entry-in .widget-ctrl .btn-group .btn-primary {
+/* line 49, ../sass/modules/_elements.scss */
+.widget-ctrl .btn-group .btn-primary, .tbl-widget-ctrl .btn-group .btn-primary {
   background-color: #FFFFFF !important;
   border-color: #d9d9d9;
   color: #80AD80 !important;
@@ -3185,25 +3196,25 @@ http://codepen.io/MattIn4D/pen/LiKFC
   -moz-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-/* line 50, ../sass/modules/_elements.scss */
-.widget-entry-element .widget-entry-in .widget-ctrl .btn-group .btn-primary .fa {
+/* line 54, ../sass/modules/_elements.scss */
+.widget-ctrl .btn-group .btn-primary .fa, .tbl-widget-ctrl .btn-group .btn-primary .fa {
   color: #80AD80 !important;
 }
-/* line 54, ../sass/modules/_elements.scss */
-.widget-entry-element .widget-entry-in .widget-ctrl .btn-group .btn-off.btn-primary {
+/* line 58, ../sass/modules/_elements.scss */
+.widget-ctrl .btn-group .btn-off.btn-primary, .tbl-widget-ctrl .btn-group .btn-off.btn-primary {
   color: #d9534f !important;
 }
-/* line 56, ../sass/modules/_elements.scss */
-.widget-entry-element .widget-entry-in .widget-ctrl .btn-group .btn-off.btn-primary .fa {
+/* line 60, ../sass/modules/_elements.scss */
+.widget-ctrl .btn-group .btn-off.btn-primary .fa, .tbl-widget-ctrl .btn-group .btn-off.btn-primary .fa {
   color: #80AD80 !important;
 }
-/* line 60, ../sass/modules/_elements.scss */
-.widget-entry-element .widget-entry-in .widget-ctrl .btn-group .btn-label-on {
+/* line 64, ../sass/modules/_elements.scss */
+.widget-ctrl .btn-group .btn-label-on, .tbl-widget-ctrl .btn-group .btn-label-on {
   color: #737373;
   text-transform: lowercase;
 }
-/* line 64, ../sass/modules/_elements.scss */
-.widget-entry-element .widget-entry-in .widget-ctrl .btn-group .btn-widget-time, .widget-entry-element .widget-entry-in .widget-ctrl .btn-group .txt-widget-time {
+/* line 68, ../sass/modules/_elements.scss */
+.widget-ctrl .btn-group .btn-widget-time, .widget-ctrl .btn-group .txt-widget-time, .tbl-widget-ctrl .btn-group .btn-widget-time, .tbl-widget-ctrl .btn-group .txt-widget-time {
   padding: 10px 0 0 0;
   border: 0 none;
   color: #737373;
@@ -3213,80 +3224,80 @@ http://codepen.io/MattIn4D/pen/LiKFC
 
 /* Specifics element styles
 ----------------------------------------------------*/
-/* line 79, ../sass/modules/_elements.scss */
+/* line 81, ../sass/modules/_elements.scss */
 .sensorMultiline .control-left {
   width: 60% !important;
 }
-/* line 82, ../sass/modules/_elements.scss */
+/* line 84, ../sass/modules/_elements.scss */
 .sensorMultiline .control-right {
   width: 40%;
 }
 
-/* line 87, ../sass/modules/_elements.scss */
+/* line 89, ../sass/modules/_elements.scss */
 .switchMultilevel .control-left {
   width: 60% !important;
 }
-/* line 90, ../sass/modules/_elements.scss */
+/* line 92, ../sass/modules/_elements.scss */
 .switchMultilevel .control-right {
   width: 40%;
 }
 
-/* line 95, ../sass/modules/_elements.scss */
+/* line 97, ../sass/modules/_elements.scss */
 .element-camera-control {
   text-align: center;
   margin: 0 0 10px 0;
 }
-/* line 98, ../sass/modules/_elements.scss */
+/* line 100, ../sass/modules/_elements.scss */
 .element-camera-control .fa {
   font-size: 180%;
 }
 
-/* line 102, ../sass/modules/_elements.scss */
+/* line 104, ../sass/modules/_elements.scss */
 .camera-img {
   text-align: center;
 }
-/* line 104, ../sass/modules/_elements.scss */
+/* line 106, ../sass/modules/_elements.scss */
 .camera-img img {
   width: 100%;
   display: inline-block;
 }
 
-/* line 111, ../sass/modules/_elements.scss */
+/* line 113, ../sass/modules/_elements.scss */
 .color-picker-show {
   display: inline-block;
   width: 24px;
   height: 24px;
 }
 
-/* line 117, ../sass/modules/_elements.scss */
+/* line 119, ../sass/modules/_elements.scss */
 .drop-down-tags div {
   padding: 5px;
 }
 
-/* line 124, ../sass/modules/_elements.scss */
+/* line 126, ../sass/modules/_elements.scss */
 .drop-down-tags a {
   display: inline-block;
   margin: 0 5px;
 }
 
-/* line 129, ../sass/modules/_elements.scss */
+/* line 131, ../sass/modules/_elements.scss */
 .bcg-success.false {
   color: #a8a8a8;
 }
-/* line 131, ../sass/modules/_elements.scss */
+/* line 133, ../sass/modules/_elements.scss */
 .bcg-success.false .report-img {
   opacity: 0.4;
 }
 
 /* Element detail
 ----------------------------------------------------*/
-/* line 139, ../sass/modules/_elements.scss */
+/* line 141, ../sass/modules/_elements.scss */
 .btn-tag {
   float: none !important;
   border-radius: 4px !important;
 }
 
-/* line 144, ../sass/modules/_elements.scss */
+/* line 146, ../sass/modules/_elements.scss */
 .app-row-icons .report-body {
   width: 30px;
 }
@@ -3312,72 +3323,72 @@ http://codepen.io/MattIn4D/pen/LiKFC
 .hidden-camera{}*/
 /* OpenWeather widget
 ----------------------------------------------------*/
-/* line 171, ../sass/modules/_elements.scss */
+/* line 173, ../sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline table td {
   text-align: left;
   padding: 5px 0;
 }
 
-/* line 176, ../sass/modules/_elements.scss */
+/* line 178, ../sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline table td:first-child {
   padding-left: 20px;
   vertical-align: top;
 }
 
-/* line 181, ../sass/modules/_elements.scss */
+/* line 183, ../sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline h4 {
   display: inline;
 }
 
-/* line 185, ../sass/modules/_elements.scss */
+/* line 187, ../sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline .text-center {
   margin: 10px 0;
 }
 
 /* Text widget
 -----------------------------------------------------*/
-/* line 191, ../sass/modules/_elements.scss */
+/* line 193, ../sass/modules/_elements.scss */
 .widget-body.text-widget h3 {
   font-weight: bold;
 }
 
-/* line 195, ../sass/modules/_elements.scss */
+/* line 197, ../sass/modules/_elements.scss */
 .widget-body.text-widget-no-img {
   padding-left: 15px;
 }
 
-/* line 199, ../sass/modules/_elements.scss */
+/* line 201, ../sass/modules/_elements.scss */
 .widget-control.text {
   width: 95%;
 }
 
-/* line 203, ../sass/modules/_elements.scss */
+/* line 205, ../sass/modules/_elements.scss */
 .text-widget-modal.modal-dialog {
   text-align: center;
 }
 
-/* line 207, ../sass/modules/_elements.scss */
+/* line 209, ../sass/modules/_elements.scss */
 img.widget-promo-image {
   max-height: 200px;
   margin-bottom: 10px;
 }
 
-/* line 212, ../sass/modules/_elements.scss */
+/* line 214, ../sass/modules/_elements.scss */
 .widget-promo-text {
   text-align: left;
 }
 
-/* line 216, ../sass/modules/_elements.scss */
+/* line 218, ../sass/modules/_elements.scss */
 .widget-control.text a {
   font-weight: normal;
 }
 
-/* line 220, ../sass/modules/_elements.scss */
+/* line 222, ../sass/modules/_elements.scss */
 .widget-control.text a:hover {
   text-decoration: none;
 }
 
-/* line 224, ../sass/modules/_elements.scss */
+/* line 226, ../sass/modules/_elements.scss */
 .widget-control.text a:after {
   content: "\f1ea";
   font-family: FontAwesome;
@@ -3390,13 +3401,13 @@ img.widget-promo-image {
 
 /* MultilevelSensor widget
 -----------------------------------------------------*/
-/* line 236, ../sass/modules/_elements.scss */
+/* line 238, ../sass/modules/_elements.scss */
 .widget-body .element-hidden.hidden-sensor-multiline.multiline-sensor {
   padding: 10px 0;
   height: auto;
 }
 
-/* line 241, ../sass/modules/_elements.scss */
+/* line 243, ../sass/modules/_elements.scss */
 .hidden-sensor-multiline .widget-image {
   position: relative;
   top: 0;
@@ -3405,43 +3416,43 @@ img.widget-promo-image {
   height: 25px;
 }
 
-/* line 249, ../sass/modules/_elements.scss */
+/* line 251, ../sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline.multiline-sensor table td:first-child {
   padding-left: 5px;
 }
 
-/* line 253, ../sass/modules/_elements.scss */
+/* line 255, ../sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline.multiline-sensor table td {
   width: inherit;
   padding: 5px 5px 5px 10px;
 }
 
-/* line 258, ../sass/modules/_elements.scss */
+/* line 260, ../sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline.multiline-sensor table tr:nth-child(odd) {
   background-color: #f9f9f9;
 }
 
 /* ToggleButton widget
 --------------------------------------------------------*/
-/* line 265, ../sass/modules/_elements.scss */
+/* line 267, ../sass/modules/_elements.scss */
 .toggleButton .widget-body div.widget-control.control-right.ng-scope > div > button.btn.btn-default.btn-sm {
   cursor: default;
 }
 
 /* RGB color wheel
 --------------------------------------------------------*/
-/* line 272, ../sass/modules/_elements.scss */
+/* line 274, ../sass/modules/_elements.scss */
 .wheel-colorpicker .col-rgb {
   margin: 0 auto;
   text-align: center;
 }
-/* line 276, ../sass/modules/_elements.scss */
+/* line 278, ../sass/modules/_elements.scss */
 .wheel-colorpicker #wheel_picker {
   margin: 0 auto;
   text-align: center;
   cursor: pointer;
 }
-/* line 281, ../sass/modules/_elements.scss */
+/* line 283, ../sass/modules/_elements.scss */
 .wheel-colorpicker #wheel_picker_preview {
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -3449,7 +3460,7 @@ img.widget-promo-image {
   height: 40px;
   line-height: 35px;
 }
-/* line 287, ../sass/modules/_elements.scss */
+/* line 289, ../sass/modules/_elements.scss */
 .wheel-colorpicker #wheel_picker_preview #wheel_picker_preview_spin {
   background-color: #fff;
 }

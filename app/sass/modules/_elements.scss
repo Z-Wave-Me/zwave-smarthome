@@ -25,50 +25,52 @@
         .widget-scale{
             font-size: $element-widget-scale-font-size;
         }
-        .widget-ctrl{ 
-            .fa-caret-down{
-                font-size: $element-widget-caret-font-size;
-                color: $element-widget-caret-color;
+
+    }
+}
+
+.widget-ctrl,.tbl-widget-ctrl{ 
+    .fa-caret-down{
+        font-size: $element-widget-caret-font-size;
+        color: $element-widget-caret-color;
+    }
+    .btn-group{
+        .btn{
+            color: $element-widget-btn-color;
+            .fa{
+                font-size: $app-btn-font-size;
             }
-            .btn-group{
-                .btn{
-                    color: $element-widget-btn-color;
-                    .fa{
-                        font-size: $app-btn-font-size;
-                    }
-                }
-                .widget-btn-symbol{
-                    font-weight: bold;
-                    display: inline-block;
-                    padding: 0 5px;
-                }
-                .btn-primary{
-                    background-color: $element-widget-btn-bcg-color !important;
-                    border-color: $element-widget-btn-border-color;
-                    color: $element-widget-btn-1-color !important;
-                    @include appBoxShadow($element-widget-btn-box-shadow);
-                    .fa{
-                        color: $element-widget-btn-1-color !important;
-                    }
-                }
-                .btn-off.btn-primary{
-                    color: $element-widget-btn-0-color !important;
-                    .fa{
-                        color: $element-widget-btn-1-color !important;
-                    }
-                }
-                .btn-label-on{
-                    color: $element-widget-btn-on-color;
-                    text-transform: lowercase;
-                }
-                .btn-widget-time,.txt-widget-time{
-                    padding: $spacing 0 0 0;
-                    border: 0 none;
-                    color: $element-widget-time-color;
-                    font-size: $element-widget-time-font-size;
-                    background-color: transparent;
-                }
+        }
+        .widget-btn-symbol{
+            font-weight: bold;
+            display: inline-block;
+            padding: 0 5px;
+        }
+        .btn-primary{
+            background-color: $element-widget-btn-bcg-color !important;
+            border-color: $element-widget-btn-border-color;
+            color: $element-widget-btn-1-color !important;
+            @include appBoxShadow($element-widget-btn-box-shadow);
+            .fa{
+                color: $element-widget-btn-1-color !important;
             }
+        }
+        .btn-off.btn-primary{
+            color: $element-widget-btn-0-color !important;
+            .fa{
+                color: $element-widget-btn-1-color !important;
+            }
+        }
+        .btn-label-on{
+            color: $element-widget-btn-on-color;
+            text-transform: lowercase;
+        }
+        .btn-widget-time,.txt-widget-time{
+            padding: $spacing 0 0 0;
+            border: 0 none;
+            color: $element-widget-time-color;
+            font-size: $element-widget-time-font-size;
+            background-color: transparent;
         }
     }
 }
