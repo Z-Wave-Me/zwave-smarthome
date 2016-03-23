@@ -163,7 +163,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
                                 {iconPath: $filter('getElementIcon')(v.metrics.icon, v, v.metrics.level)},
                                 {updateTime: v.updateTime}
                         );
-                        console.log('Updating device ID: ' + v.id + ', metrics.level: ' + v.metrics.level + ', updateTime: ' + v.updateTime + ', iconPath: ' + $filter('getElementIcon')(v.metrics.icon, v, v.metrics.level))
+                        console.log('Updating from server response: device ID: ' + v.id + ', metrics.level: ' + v.metrics.level + ', updateTime: ' + v.updateTime + ', iconPath: ' + $filter('getElementIcon')(v.metrics.icon, v, v.metrics.level))
                     });
                 }
                 if (response.data.data.structureChanged === true) {
