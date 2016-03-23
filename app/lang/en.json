@@ -1,6 +1,8 @@
 {
     "newtrans": "---",
     "---": "newtrans",
+    "delete_history": "Delete history",
+    "history_delete_confirm": "Are you sure you want to delete this history",
     "hide_installed_apps": "Hide installed app",
     "updateTimeDESC": "Last updated",
     "mostRatedDESC": "Best rated",

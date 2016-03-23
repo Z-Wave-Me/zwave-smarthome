@@ -191,7 +191,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             $cookies.filterElements = angular.toJson(filter);
         }
 
-        $scope.loadDevices();
+         $scope.reloadData();
     };
 
     /**
@@ -200,8 +200,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
     $scope.setOrderBy = function (key) {
         angular.extend($scope.dataHolder.devices, {orderBy: key});
         $cookies.orderByElements = key;
-
-        $scope.loadDevices();
+         $scope.reloadData();
     };
 
     /**
@@ -228,6 +227,25 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
      */
     $scope.resetDevices = function (devices) {
         angular.extend($scope.dataHolder.devices, devices);
+    };
+    
+    /**
+     * Delete device history
+     */
+    $scope.deleteHistory = function (input,message,event) {
+         alertify.confirm(message, function () {
+            dataFactory.deleteApi('history', input.id).then(function (response) {
+                dataService.showNotifier({message: $scope._t('delete_successful')});
+                $scope.handleModal('modalHistory', event);
+             $scope.reloadData();
+
+            }, function (error) {
+                var message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error.key) : $scope._t('error_delete_data'));
+                $scope.loading = false;
+                alertify.alertError(message);
+            });
+            
+        });
     };
 
     /**
