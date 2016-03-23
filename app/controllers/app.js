@@ -6,10 +6,12 @@
 /**
  * App base controller
  */
-myAppController.controller('AppBaseController', function ($scope, $filter, $cookies, $q, $route, dataFactory, dataService, _) {
+myAppController.controller('AppBaseController', function ($scope, $filter, $cookies, $q, $route, $routeParams, dataFactory, dataService, _) {
     angular.copy({
         appsCategories: false
     }, $scope.expand);
+
+
     $scope.dataHolder = {
         modules: {
             cnt: {
@@ -58,37 +60,49 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
     $scope.onlineMediaUrl = $scope.cfg.online_module_img_url;
 
     /**
+     * Load tokens
+     */
+    $scope.loadTokens = function () {
+        dataFactory.getApi('tokens', null, true).then(function (response) {
+            angular.extend($scope.dataHolder.tokens.all, response.data.data.tokens);
+            $scope.allSettled($scope.dataHolder.tokens.all);
+        }, function (error) {
+            $scope.allSettled($scope.dataHolder.tokens.all);
+        });
+    };
+    $scope.loadTokens();
+
+    /**
      * Load all promises
      */
-    $scope.allSettled = function () {
+    $scope.allSettled = function (tokens) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
-            dataFactory.getApi('tokens'),
             dataFactory.getApi('modules_categories'),
             dataFactory.getApi('modules', null, true),
-            dataFactory.getOnlineModules({token: _.values($scope.dataHolder.tokens.all)}, true),
+            dataFactory.getOnlineModules({token: _.values(tokens)}, true),
             dataFactory.getApi('instances', null, true)
         ];
 
         $q.allSettled(promises).then(function (response) {
-            var tokens = response[0];
-            var categories = response[1];
-            var modules = response[2];
-            var onlineModules = response[3];
-            var instances = response[4];
+            var categories = response[0];
+            var modules = response[1];
+            var onlineModules = response[2];
+            var instances = response[3];
             $scope.loading = false;
             // Error message
-//            if (devices.state === 'rejected') {
-//                 $scope.loading = false;
-//                    alertify.alertError($scope._t('error_load_data'));
-//                   $scope.dataHolder.devices.show = false;
-//                   return;
-//            }
-            // Success - tokens
-            if (tokens.state === 'fulfilled') {
-                angular.extend($scope.dataHolder.tokens.all, tokens.value.data.data.tokens);
-                //$scope.loadOnlineModules();
+            if (modules.state === 'rejected' && $scope.routeMatch('/apps/local')) {
+                alertify.alertError($scope._t('error_load_data'));
+                return;
+            }
+            if (onlineModules.state === 'rejected' && $scope.routeMatch('/apps/online')) {
+                alertify.alertError($scope._t('error_load_data'));
+                return;
+            }
 
+            if (instances.state === 'rejected' && $scope.routeMatch('/apps/instance')) {
+                alertify.alertError($scope._t('error_load_data'));
+                return;
             }
 
             // Success - categories
@@ -115,7 +129,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
 
         });
     };
-    $scope.allSettled();
+
 
     /**
      * DEPRECATED
@@ -343,117 +357,119 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
      */
     function setModules(data) {
         // Reset featured cnt
-            $scope.dataHolder.modules.cnt.featured = 0;
-            var modules = _.chain(data)
-                    .flatten()
-                    .filter(function (item) {
-                        //$scope.dataHolder.modules.ids.push(item.id);
-                        $scope.dataHolder.modules.ids[item.id] = {version: item.version};
-                        //$scope.dataHolder.modules.all[item.id] = item;
-                        var isHidden = false;
-                        var items = [];
-                        if ($scope.getHiddenApps().indexOf(item.moduleName) > -1) {
-                            if ($scope.user.role !== 1) {
-                                isHidden = true;
-                            } else {
-                                isHidden = ($scope.user.expert_view ? false : true);
-                            }
-
-                        }
-                        if (item.category === 'surveillance') {
-                            $scope.dataHolder.modules.cameraIds.push(item.id);
+        $scope.dataHolder.modules.cnt.featured = 0;
+        var modules = _.chain(data)
+                .flatten()
+                .filter(function (item) {
+                    //$scope.dataHolder.modules.ids.push(item.id);
+                    $scope.dataHolder.modules.ids[item.id] = {version: item.version};
+                    //$scope.dataHolder.modules.all[item.id] = item;
+                    var isHidden = false;
+                    var items = [];
+                    if ($scope.getHiddenApps().indexOf(item.moduleName) > -1) {
+                        if ($scope.user.role !== 1) {
                             isHidden = true;
+                        } else {
+                            isHidden = ($scope.user.expert_view ? false : true);
                         }
 
-                        if (!isHidden) {
-                            var findLocationStr = item.location.split('/');
-                            if (findLocationStr[0] === 'userModules') {
-                                angular.extend(item, {custom: true});
-                            } else {
-                                angular.extend(item, {custom: false});
-                            }
-                            //$scope.modulesIds.push(item.id);
-                            $scope.dataHolder.modules.imgs[item.id] = item.icon;
-                            if (item.category && $scope.dataHolder.modules.cats.indexOf(item.category) === -1) {
-                                $scope.dataHolder.modules.cats.push(item.category);
-                            }
-                            if ($scope.getCustomCfgArr('featured_apps').indexOf(item.moduleName) > -1) {
-                                angular.extend(item, {featured: true});
-                                // Count featured apps
-                                $scope.dataHolder.modules.cnt.featured += 1;
-                            } else {
-                                angular.extend(item, {featured: false});
-                            }
-                            return items;
-                        }
-                    });
-            // Count apps in categories
-            $scope.dataHolder.modules.cnt.appsCat = modules.countBy(function (v) {
-                return v.category;
-            }).value();
-            // Count all apps
-            $scope.dataHolder.modules.cnt.apps = modules.size().value();
+                    }
+                    if (item.category === 'surveillance') {
+                        $scope.dataHolder.modules.cameraIds.push(item.id);
+                        isHidden = true;
+                    }
 
-            $scope.dataHolder.modules.all = modules.where($scope.dataHolder.modules.filter).value();
-            // Count collection
-            $scope.dataHolder.modules.cnt.collection = _.size($scope.dataHolder.modules.all);
-    };
-    
+                    if (!isHidden) {
+                        var findLocationStr = item.location.split('/');
+                        if (findLocationStr[0] === 'userModules') {
+                            angular.extend(item, {custom: true});
+                        } else {
+                            angular.extend(item, {custom: false});
+                        }
+                        //$scope.modulesIds.push(item.id);
+                        $scope.dataHolder.modules.imgs[item.id] = item.icon;
+                        if (item.category && $scope.dataHolder.modules.cats.indexOf(item.category) === -1) {
+                            $scope.dataHolder.modules.cats.push(item.category);
+                        }
+                        if ($scope.getCustomCfgArr('featured_apps').indexOf(item.moduleName) > -1) {
+                            angular.extend(item, {featured: true});
+                            // Count featured apps
+                            $scope.dataHolder.modules.cnt.featured += 1;
+                        } else {
+                            angular.extend(item, {featured: false});
+                        }
+                        return items;
+                    }
+                });
+        // Count apps in categories
+        $scope.dataHolder.modules.cnt.appsCat = modules.countBy(function (v) {
+            return v.category;
+        }).value();
+        // Count all apps
+        $scope.dataHolder.modules.cnt.apps = modules.size().value();
+
+        $scope.dataHolder.modules.all = modules.where($scope.dataHolder.modules.filter).value();
+        // Count collection
+        $scope.dataHolder.modules.cnt.collection = _.size($scope.dataHolder.modules.all);
+    }
+    ;
+
     /**
      * Set online modules
      */
     function setOnlineModules(data) {
-         // Reset featured cnt
-            $scope.dataHolder.onlineModules.cnt.featured = 0;
-            var onlineModules = _.chain(data)
-                    .flatten()
-                    .filter(function (item) {
-                        var isHidden = false;
-                        var obj = {};
-                        //obj[item.file] = 'dfdf';
-                        //angular.extend()
-                        $scope.dataHolder.onlineModules.ids[item.modulename] = {version: item.version, file: item.file, patchnotes: item.patchnotes};
-                        if ($scope.getHiddenApps().indexOf(item.modulename) > -1) {
-                            if ($scope.user.role !== 1) {
-                                isHidden = true;
-                            } else {
-                                isHidden = ($scope.user.expert_view ? false : true);
-                            }
-                        }
-                        if ($scope.dataHolder.modules.ids[item.modulename]) {
-                            item['status'] = 'installed';
-                            if ($scope.dataHolder.modules.ids[item.modulename].version != item.version) {
-                                item['status'] = 'upgrade';
-                            }
-                            isHidden = $scope.dataHolder.onlineModules.hideInstalled;
+        // Reset featured cnt
+        $scope.dataHolder.onlineModules.cnt.featured = 0;
+        var onlineModules = _.chain(data)
+                .flatten()
+                .filter(function (item) {
+                    var isHidden = false;
+                    var obj = {};
+                    //obj[item.file] = 'dfdf';
+                    //angular.extend()
+                    $scope.dataHolder.onlineModules.ids[item.modulename] = {version: item.version, file: item.file, patchnotes: item.patchnotes};
+                    if ($scope.getHiddenApps().indexOf(item.modulename) > -1) {
+                        if ($scope.user.role !== 1) {
+                            isHidden = true;
                         } else {
-                            item['status'] = 'download';
+                            isHidden = ($scope.user.expert_view ? false : true);
                         }
-                        angular.extend(item, {isHidden: isHidden});
-
-                        if (item.featured == 1) {
-                            item.featured = true;
-                            // Count featured apps
-                            $scope.dataHolder.onlineModules.cnt.featured += 1;
-                        } else {
-                            item.featured = false;
+                    }
+                    if ($scope.dataHolder.modules.ids[item.modulename]) {
+                        item['status'] = 'installed';
+                        if ($scope.dataHolder.modules.ids[item.modulename].version != item.version) {
+                            item['status'] = 'upgrade';
                         }
-                        return item;
-                    }).reject(function (v) {
-                return v.isHidden === true;
-            });
-            // Count apps in categories
-            $scope.dataHolder.onlineModules.cnt.appsCat = onlineModules.countBy(function (v) {
-                return v.category;
-            }).value();
+                        isHidden = $scope.dataHolder.onlineModules.hideInstalled;
+                    } else {
+                        item['status'] = 'download';
+                    }
+                    angular.extend(item, {isHidden: isHidden});
 
-            // Count all apps
-            $scope.dataHolder.onlineModules.cnt.apps = onlineModules.size().value();
-            $scope.dataHolder.onlineModules.all = onlineModules.where($scope.dataHolder.onlineModules.filter).value();
-            // Count collection
-            $scope.dataHolder.onlineModules.cnt.collection = _.size($scope.dataHolder.onlineModules.all);
-            $scope.loading = false;
-    };
+                    if (item.featured == 1) {
+                        item.featured = true;
+                        // Count featured apps
+                        $scope.dataHolder.onlineModules.cnt.featured += 1;
+                    } else {
+                        item.featured = false;
+                    }
+                    return item;
+                }).reject(function (v) {
+            return v.isHidden === true;
+        });
+        // Count apps in categories
+        $scope.dataHolder.onlineModules.cnt.appsCat = onlineModules.countBy(function (v) {
+            return v.category;
+        }).value();
+
+        // Count all apps
+        $scope.dataHolder.onlineModules.cnt.apps = onlineModules.size().value();
+        $scope.dataHolder.onlineModules.all = onlineModules.where($scope.dataHolder.onlineModules.filter).value();
+        // Count collection
+        $scope.dataHolder.onlineModules.cnt.collection = _.size($scope.dataHolder.onlineModules.all);
+        $scope.loading = false;
+    }
+    ;
     /**
      * Set instances
      */
@@ -470,7 +486,8 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                 return false;
             }
         });
-    };
+    }
+    ;
 
 });
 /**
@@ -486,7 +503,7 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
     $scope.setOrderBy = function (key) {
         angular.extend($scope.dataHolder.modules, {orderBy: key});
         $cookies.orderByAppsLocal = key;
-       $scope.reloadData();
+        $scope.reloadData();
     };
     /**
      * Set filter
@@ -500,7 +517,7 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
             $cookies.filterAppsLocal = angular.toJson(filter);
         }
 
-       $scope.reloadData();
+        $scope.reloadData();
     };
 
     /**
@@ -627,7 +644,7 @@ myAppController.controller('AppInstanceController', function ($scope, $cookies, 
     $scope.setOrderBy = function (key) {
         angular.extend($scope.dataHolder.instances, {orderBy: key});
         $cookies.orderByAppsInstances = key;
-         $scope.reloadData();
+        $scope.reloadData();
     };
     /**
      * Activate instance
@@ -638,7 +655,7 @@ myAppController.controller('AppInstanceController', function ($scope, $cookies, 
         if (input.id) {
             dataFactory.putApi('instances', input.id, input).then(function (response) {
                 $scope.loading = false;
-                 $scope.reloadData();
+                $scope.reloadData();
                 //$route.reload();
 
             }, function (error) {
@@ -658,7 +675,7 @@ myAppController.controller('AppInstanceController', function ($scope, $cookies, 
             dataFactory.deleteApi('instances', input.id).then(function (response) {
                 $scope.loading = false;
                 dataService.showNotifier({message: $scope._t('delete_successful')});
-                 $scope.reloadData();
+                $scope.reloadData();
             }, function (error) {
                 $scope.loading = false;
                 alertify.alertError($scope._t('error_delete_data'));

@@ -42,7 +42,7 @@
                     </li>
                     <li class="page-cat-{{v.id}}" 
                         ng-repeat="v in dataHolder.modules.categories" 
-                        ng-if="dataHolder.modules.cats.indexOf(v.id) > -1 && dataHolder.onlineModules.cnt.appsCat[v.id]" 
+                        ng-if="dataHolder.onlineModules.cnt.appsCat[v.id]" 
                         ng-class="dataHolder.onlineModules.filter.category == v.id ? 'active': ''">
                         <a href="" ng-click="setFilter({category: v.id})" ng-switch="v.id">
                              <i class="fa {{v.id|getAppCategoryIcon}}"></i>

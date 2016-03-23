@@ -8,13 +8,13 @@ var myAppController = angular.module('myAppController', []);
 /**
  * Base controller
  */
-myAppController.controller('BaseController', function ($scope, $cookies, $filter, $location, $route, $window,$interval, cfg, dataFactory, dataService, myCache) {
+myAppController.controller('BaseController', function ($scope, $cookies, $filter, $location, $route, $window, $interval, cfg, dataFactory, dataService, myCache) {
     /**
      * Global scopes
      */
     angular.extend(cfg.route, {os: dataService.getOs()});
     $scope.cfg = cfg;
-     $scope.timeZoneInterval = null;
+    $scope.timeZoneInterval = null;
     $scope.languages = {};
     $scope.loading = false;
     $scope.alert = {message: false, status: 'is-hidden', icon: false};
@@ -34,26 +34,26 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
      };
      $scope.setSkin();*/
     $scope.resetFatalError = function (obj) {
-        angular.extend(cfg.route.fatalError,obj||{message: false,info: false,hide: false});
+        angular.extend(cfg.route.fatalError, obj || {message: false, info: false, hide: false});
 
     };
     // Set time
     $scope.setTimeZone = function () {
-        if(!$scope.user){
+        if (!$scope.user) {
             return;
         }
-         dataFactory.getApi('timezone',null,true).then(function(response) {
-             angular.extend(cfg.route.time,{string: $filter('getCurrentTime')(response.data.data.localTimeUT)});
-             var refresh = function () {
-            dataFactory.getApi('timezone',null,true).then(function (response) {
-                angular.extend(cfg.route.time,{string: $filter('getCurrentTime')(response.data.data.localTimeUT)});
+        dataFactory.getApi('timezone', null, true).then(function (response) {
+            angular.extend(cfg.route.time, {string: $filter('getCurrentTime')(response.data.data.localTimeUT)});
+            var refresh = function () {
+                dataFactory.getApi('timezone', null, true).then(function (response) {
+                    angular.extend(cfg.route.time, {string: $filter('getCurrentTime')(response.data.data.localTimeUT)});
 
-            }, function (error) {
-                $interval.cancel($scope.timeZoneInterval);
-            });
-        };
-        $scope.timeZoneInterval = $interval(refresh, $scope.cfg.interval);
-        }, function(error) {});
+                }, function (error) {
+                    $interval.cancel($scope.timeZoneInterval);
+                });
+            };
+            $scope.timeZoneInterval = $interval(refresh, $scope.cfg.interval);
+        }, function (error) {});
 
     };
     $scope.setTimeZone();
@@ -95,13 +95,13 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
             $scope.lang = angular.isDefined($cookies.lang) ? $cookies.lang : cfg.lang;
         }
     };
- //$scope.lang = cfg.route.lang;
+    //$scope.lang = cfg.route.lang;
     $scope.getLang();
     $cookies.lang = $scope.lang;
-    
+
     // Load language files
     $scope.loadLang = function (lang) {
-       // Is lang in language list?
+        // Is lang in language list?
         var lang = (cfg.lang_list.indexOf(lang) > -1 ? lang : cfg.lang);
         dataFactory.getLanguageFile(lang).then(function (response) {
             //$scope.languages = response.data;
@@ -115,8 +115,8 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     };
 
     // Watch for lang change
-   $scope.$watch('lang', function () {
-       //angular.extend($scope.languages, $scope.cfg.route.t);
+    $scope.$watch('lang', function () {
+        //angular.extend($scope.languages, $scope.cfg.route.t);
         $scope.loadLang($scope.lang);
     });
 
@@ -125,6 +125,14 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         $scope.predicate = field;
         $scope.reverse = !$scope.reverse;
     };
+    // Route match
+    $scope.routeMatch = function (path) {
+        if ($route.current && $route.current.regexp) {
+            return $route.current.regexp.test(path);
+        }
+        return false;
+    };
+
 
     /**
      * Get body ID
