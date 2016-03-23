@@ -17,7 +17,8 @@ Angular app
 - Management: reset to factory default.
 
 #### Fixes
-- Add description to the module #104
+- Blind knob.
+- Add description to the module #104.
 
 #### Changes
 - The templates are compiled with grunt-angular-templates into templates.js. 
