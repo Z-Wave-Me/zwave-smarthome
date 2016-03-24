@@ -305,12 +305,10 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             });
             return match;
         });
-        if (_.isEmpty($scope.dataHolder.devices.all)) {
-            if ($scope.routeMatch('/dashboard')) {
-                 $scope.dataHolder.devices.noDashboard = true;
-            }else{
-               $scope.dataHolder.devices.noDevices = true; 
-            }
+        if ($scope.routeMatch('/dashboard') && _.isEmpty($scope.dataHolder.devices.collection)) {
+             $scope.dataHolder.devices.noDashboard = true;
+        } else if (_.isEmpty($scope.dataHolder.devices.all)) {
+           $scope.dataHolder.devices.noDevices = true; 
         }
         $scope.dataHolder.cnt.collection = _.size($scope.dataHolder.devices.collection);
     }
