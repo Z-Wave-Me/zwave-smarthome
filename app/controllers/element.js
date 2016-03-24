@@ -13,7 +13,8 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             collection: 0
         },
         devices: {
-            welcome: false,
+            noDashboard: false,
+            noDevices: false,
             show: true,
             all: {},
             byId: {},
@@ -34,7 +35,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
     $scope.$on('$destroy', function () {
         $interval.cancel($scope.apiDataInterval);
     });
-    
+
     /**
      * Load all promises
      */
@@ -42,7 +43,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
             dataFactory.getApi('locations'),
-            dataFactory.getApi('devices',null,true)
+            dataFactory.getApi('devices', null, true)
         ];
 
         $q.allSettled(promises).then(function (response) {
@@ -51,10 +52,10 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             $scope.loading = false;
             // Error message
             if (devices.state === 'rejected') {
-                 $scope.loading = false;
-                    alertify.alertError($scope._t('error_load_data'));
-                   $scope.dataHolder.devices.show = false;
-                   return;
+                $scope.loading = false;
+                alertify.alertError($scope._t('error_load_data'));
+                $scope.dataHolder.devices.show = false;
+                return;
             }
             // Success - locations
             if (locations.state === 'fulfilled') {
@@ -62,74 +63,13 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             }
             // Success - devices
             if (devices.state === 'fulfilled') {
-               setDevices(dataService.getDevicesData(devices.value.data.data.devices));
-           
+                setDevices(dataService.getDevicesData(devices.value.data.data.devices));
+
             }
         });
     };
     $scope.allSettled();
 
-    /**
-     * DEPRECATED
-     * Load locations
-     */
-//    $scope.loadLocations = function () {
-//        dataFactory.getApi('locations').then(function (response) {
-//            angular.extend($scope.dataHolder.devices.rooms, _.indexBy(response.data.data, 'id'));
-//        }, function (error) {});
-//    }
-    ;
-    //$scope.loadLocations();
-
-    /**
-     * DEPRECATED
-     * Load data into collection
-     */
-//    $scope.loadDevices = function () {
-//        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-//        dataFactory.getApi('devices', null, true).then(function (response) {
-//            $scope.loading = false;
-//            var devices = dataService.getDevicesData(response.data.data.devices);
-//            // Set tags
-//            _.filter(devices.value(), function (v) {
-//                if (v.tags.length > 0) {
-//                    angular.forEach(v.tags, function (t) {
-//                        if ($scope.dataHolder.devices.tags.indexOf(t) === -1) {
-//                            $scope.dataHolder.devices.tags.push(t);
-//                        }
-//                    });
-//                }
-//            });
-//            // Set categories
-//            $scope.dataHolder.devices.deviceType = devices.countBy(function (v) {
-//                return v.deviceType;
-//            }).value();
-//
-//            $scope.dataHolder.cnt.devices = devices.size().value();
-//
-//            //All devices
-//            $scope.dataHolder.devices.all = devices.value();
-//            // Collection
-//            if ('tag' in $scope.dataHolder.devices.filter) {
-//                $scope.dataHolder.devices.collection = _.filter($scope.dataHolder.devices.all, function (v) {
-//                    if (v.tags.indexOf($scope.dataHolder.devices.filter.tag) > -1) {
-//                        return v;
-//                    }
-//                });
-//            } else {
-//                $scope.dataHolder.devices.collection = _.where($scope.dataHolder.devices.all, $scope.dataHolder.devices.filter);
-//            }
-//            if (_.isEmpty($scope.dataHolder.devices.collection)) {
-//                $scope.dataHolder.devices.welcome = true;
-//            }
-//            $scope.dataHolder.cnt.collection = _.size($scope.dataHolder.devices.collection);
-//        }, function (error) {
-//            $scope.loading = false;
-//            alertify.alertError($scope._t('error_load_data'));
-//            $scope.dataHolder.devices.show = false;
-//        });
-//    };
-    //$scope.loadDevices();
     /**
      * Get device by ID
      */
@@ -167,7 +107,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
                     });
                 }
                 if (response.data.data.structureChanged === true) {
-                   $scope.allSettled();
+                    $scope.allSettled();
                 }
 
             }, function (error) {
@@ -191,7 +131,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             $cookies.filterElements = angular.toJson(filter);
         }
 
-         $scope.reloadData();
+        $scope.reloadData();
     };
 
     /**
@@ -200,7 +140,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
     $scope.setOrderBy = function (key) {
         angular.extend($scope.dataHolder.devices, {orderBy: key});
         $cookies.orderByElements = key;
-         $scope.reloadData();
+        $scope.reloadData();
     };
 
     /**
@@ -228,23 +168,23 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
     $scope.resetDevices = function (devices) {
         angular.extend($scope.dataHolder.devices, devices);
     };
-    
+
     /**
      * Delete device history
      */
-    $scope.deleteHistory = function (input,message,event) {
-         alertify.confirm(message, function () {
+    $scope.deleteHistory = function (input, message, event) {
+        alertify.confirm(message, function () {
             dataFactory.deleteApi('history', input.id).then(function (response) {
                 dataService.showNotifier({message: $scope._t('delete_successful')});
                 $scope.handleModal('modalHistory', event);
-             $scope.reloadData();
+                $scope.reloadData();
 
             }, function (error) {
                 var message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error.key) : $scope._t('error_delete_data'));
                 $scope.loading = false;
                 alertify.alertError(message);
             });
-            
+
         });
     };
 
@@ -286,45 +226,53 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
 
         return cmd;
     };
-    
-     /// --- Private functions --- ///
+
+    /// --- Private functions --- ///
     /**
      * Set device
      */
     function setDevices(devices) {
-         // Set tags
-            _.filter(devices.value(), function (v) {
-                if (v.tags.length > 0) {
-                    angular.forEach(v.tags, function (t) {
-                        if ($scope.dataHolder.devices.tags.indexOf(t) === -1) {
-                            $scope.dataHolder.devices.tags.push(t);
-                        }
-                    });
-                }
-            });
-            // Set categories
-            $scope.dataHolder.devices.deviceType = devices.countBy(function (v) {
-                return v.deviceType;
-            }).value();
-
-            $scope.dataHolder.cnt.devices = devices.size().value();
-
-            //All devices
-            $scope.dataHolder.devices.all = devices.value();
-            // Collection
-            if ('tag' in $scope.dataHolder.devices.filter) {
-                $scope.dataHolder.devices.collection = _.filter($scope.dataHolder.devices.all, function (v) {
-                    if (v.tags.indexOf($scope.dataHolder.devices.filter.tag) > -1) {
-                        return v;
+        // Set tags
+        _.filter(devices.value(), function (v) {
+            if (v.tags.length > 0) {
+                angular.forEach(v.tags, function (t) {
+                    if ($scope.dataHolder.devices.tags.indexOf(t) === -1) {
+                        $scope.dataHolder.devices.tags.push(t);
                     }
                 });
-            } else {
-                $scope.dataHolder.devices.collection = _.where($scope.dataHolder.devices.all, $scope.dataHolder.devices.filter);
             }
-            if (_.isEmpty($scope.dataHolder.devices.collection)) {
-                $scope.dataHolder.devices.welcome = true;
+        });
+        // Set categories
+        $scope.dataHolder.devices.deviceType = devices.countBy(function (v) {
+            return v.deviceType;
+        }).value();
+
+        $scope.dataHolder.cnt.devices = devices.size().value();
+
+        //All devices
+        $scope.dataHolder.devices.all = devices.value();
+        if (_.isEmpty($scope.dataHolder.devices.all)) {
+            $scope.dataHolder.devices.noDevices = true;
+            return;
+        }
+        // Collection
+        if ('tag' in $scope.dataHolder.devices.filter) {
+            $scope.dataHolder.devices.collection = _.filter($scope.dataHolder.devices.all, function (v) {
+                if (v.tags.indexOf($scope.dataHolder.devices.filter.tag) > -1) {
+                    return v;
+                }
+            });
+        } else {
+            $scope.dataHolder.devices.collection = _.where($scope.dataHolder.devices.all, $scope.dataHolder.devices.filter);
+        }
+        if (_.isEmpty($scope.dataHolder.devices.collection)) {
+            if ($scope.routeMatch('/dashboard')) {
+                 $scope.dataHolder.devices.noDashboard = true;
+            }else{
+               $scope.dataHolder.devices.noDevices = true; 
             }
-            $scope.dataHolder.cnt.collection = _.size($scope.dataHolder.devices.collection);
+        }
+        $scope.dataHolder.cnt.collection = _.size($scope.dataHolder.devices.collection);
     }
     ;
 
@@ -536,7 +484,7 @@ myAppController.controller('ElementSensorMultilineController', function ($scope,
      * Load single device
      */
     $scope.loadDeviceId = function () {
-        dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id,true).then(function (response) {
+        dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function (response) {
             var arr = [];
             arr[0] = response.data.data;
             $scope.widgetSensorMultiline.find = dataService.getDevicesData(arr).value()[0];
@@ -544,9 +492,9 @@ myAppController.controller('ElementSensorMultilineController', function ($scope,
                 $scope.widgetSensorMultiline.alert = {message: $scope._t('no_data'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
                 return;
             }
-           
+
         }, function (error) {
-             $scope.widgetSensorMultiline.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+            $scope.widgetSensorMultiline.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
         });
         // DEPRECATED
 //        return;
@@ -570,7 +518,7 @@ myAppController.controller('ElementSensorMultilineController', function ($scope,
         $scope.runCmd(cmd, id);
         $scope.loadDeviceId();
         $timeout(function () {
-           $scope.loadDeviceId();
+            $scope.loadDeviceId();
         }, 2000);
     };
 
