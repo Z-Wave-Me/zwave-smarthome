@@ -5,9 +5,9 @@
         <h2><span ng-bind="_t('lb_cfg_view')"></span>: <span ng-bind="elementId.input.metrics.title"></span></h2>
         <form name="form_element" id="form_element" class="form form-page" autocomplete="off" ng-submit="store(elementId.input)" novalidate>
             <fieldset ng-if="elementAccess(cfg.role_access.admin)">
-                 <!--<p class="form-control-static">
+                 <p class="form-control-static">
                             <span ng-bind="_t('element_id')"></span>: <strong ng-bind="elementId.input.id"></strong>
-                        </p>-->
+                        </p>
                 <div class="form-group_">
                     <label>{{_t('lb_element_name')}}:</label>
                     <input name="title" id="title" type="text" 
