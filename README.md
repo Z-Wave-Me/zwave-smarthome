@@ -1,7 +1,7 @@
 SmartHome UI
 ===============
 
-Angular app
+This User Interfaces allows to operate a Smart Home Network based on Z-Wave devices. It utilizes the software architecture "Z_Way", certified as Z-Wave Plus Controller.
 ## v1.4.0
 #### New features
 - Elements: Show count of elements in the filter. Possibility to delete a history.
