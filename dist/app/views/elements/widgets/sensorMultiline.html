@@ -46,6 +46,29 @@
         <i class="fa fa-caret-down" title="{{_t('lb_settings')}}"></i> <span class="widget-level">{{v.metrics.level}}</span> <span class="widget-scale">{{v.metrics.scaleTitle}}</span>
     </div>
 </div>
+
+<!-- multiButton -->
+<div ng-if="v.metrics.multilineType === 'multiButton'">
+    <div class="widget-ctrl ctrl-left">
+        <div class="btn-group">
+        <button class="btn btn-off" id="btn_off_{{ v.id}}"
+            data-ng-click="runCmd(v.id + '/command/off?device=null', v.id)"
+            ng-class="v.metrics.level =='off' ? 'btn-primary': 'btn-default'"
+            title="{{_t('lb_off')}}">
+            <span class="widget-btn-symbol">0</span>
+        </button>
+        <button class="btn btn-on" id="btn_on_{{ v.id}}"
+            data-ng-click="runCmd(v.id + '/command/on?device=null', v.id)"
+            ng-class="v.metrics.level =='on' ? 'btn-primary': 'btn-default'"
+            title="{{_t('lb_on')}}">
+            <span class="widget-btn-symbol">I</span>
+        </button>
+    </div>
+    </div>
+     <div class="widget-ctrl ctrl-right widget-ctrl-click" ng-click="dataHolder.devices.find = v;handleModal('multiButtonModal', $event)">
+        <i class="fa fa-caret-down" title="{{_t('lb_settings')}}"></i> <span class="widget-level">{{v.metrics.level}}</span> <span class="widget-scale">{{v.metrics.scaleTitle}}</span>
+    </div>
+</div>
 <!-- protection -->
 <div ng-if="v.metrics.multilineType === 'protection'">
     <div class="widget-ctrl ctrl-left">

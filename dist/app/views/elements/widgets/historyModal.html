@@ -11,8 +11,11 @@
                 <canvas tc-chartjs-line chart-data="widgetHistory.chartData" chart-options="widgetHistory.chartOptions" width="340" height="200"></canvas>
             </div>
         </div>
-        <!--<div class="appmodal-footer">
-            <button type="button" class="btn btn-default" ng-click="handleModal('modalHistory', $event)"><i class="fa fa-times text-danger"></i> {{_t('lb_close')}}</button>
-        </div>-->
+        <div class="appmodal-footer">
+            <button type="button" class="btn btn-default" ng-click="deleteHistory(widgetHistory.find,_t('history_delete_confirm'),$event)">
+                <i class="fa fa-times text-danger"></i>
+                     <span class="btn-name">{{_t('delete_history')}}</span>
+            </button>
+        </div>
     </div>
 </div>

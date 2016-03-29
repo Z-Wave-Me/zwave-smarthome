@@ -1,5 +1,10 @@
 {
-     "updateTimeDESC": "Last updated",
+    "no_device_installed": "There is no device installed yet",
+    "can_add_app": "You can add an app in the section",
+    "can_include_device": "You can include a device in the section",
+    "delete_history": "Delete history",
+    "hide_installed_apps": "Hide installed app",
+    "updateTimeDESC": "Last updated",
     "mostRatedDESC": "Best rated",
     "patched_devices": "Patched devices",
     "app_was_rated": "This app was rated",
