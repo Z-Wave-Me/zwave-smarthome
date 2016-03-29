@@ -8,6 +8,7 @@
  */
 myAppController.controller('ElementBaseController', function ($scope, $q, $interval, $cookies, $filter, dataFactory, dataService) {
     $scope.dataHolder = {
+        firstLogin: false,
         cnt: {
             devices: 0,
             collection: 0
@@ -680,8 +681,13 @@ myAppController.controller('ElementClimateControlController', function ($scope, 
 /**
  * Element dashboard controller
  */
-myAppController.controller('ElementDashboardController', function ($scope, $routeParams, $window, $location, $cookies, $filter, dataFactory, dataService, myCache) {
+myAppController.controller('ElementDashboardController', function ($scope, $routeParams) {
     $scope.dataHolder.devices.filter = {onDashboard: true};
+    $scope.elementDashboard = {
+        firstLogin: ($routeParams.firstlogin||false),
+        firstFile: ( $scope.lang === 'de'? 'first_login_de.html':'first_login_en.html')
+    };
+    
 
 });
 
