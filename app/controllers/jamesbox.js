@@ -6,23 +6,25 @@
 /**
  * Skin base controller
  */
-myAppController.controller('JamesBoxUpdateController', function ($scope, $q, $cookies, dataFactory, _) {
-    $scope.skins = {
-        local: {
-            all: {},
-            find: {},
-            active: $scope.cfg.skin.active,
-            show: false
-        },
-        online: {
-            all: {},
-            find: {},
-            ids: {},
-            show: false
-        },
-        installed: {
-            all: {}
-        }
+myAppController.controller('JbUpdateController', function ($scope, $timeout, dataFactory, dataService, _) {
+    $scope.jamesbox = {
+        proccess: false
+    };
+
+    /**
+     * Update firmware
+     */
+    $scope.updateFirmware = function () {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        dataFactory.getApi('jb_update').then(function (response) {
+            $timeout(function () {
+                $scope.loading = false;
+                dataService.showNotifier({message: 'Firmware successfully updated'});
+            }, 3000);
+        }, function (error) {
+            alertify.alertError($scope._t('error_update_data'));
+            $scope.loading = false;
+        });
     };
 
 });

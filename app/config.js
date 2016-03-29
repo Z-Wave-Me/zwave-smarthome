@@ -68,7 +68,8 @@ var config_data = {
             'firstaccess': 'ZAutomation/api/v1/system/first-access',
             'factory_default': 'ZAutomation/api/v1/resetToFactoryDefault',
             'postfix': 'ZWaveAPI/Postfix',
-            'timezone': 'ZAutomation/api/v1/system/time/get'
+            'timezone': 'ZAutomation/api/v1/system/time/get',
+            'jb_update': 'ZAutomation/api/v1/system/time/get'
         },
         // Skin
         'skin': {

@@ -1,4 +1,15 @@
 <!-- JamesBox update -->
-<div ng-controller="JamesBoxUpdateController">
+<div ng-controller="JbUpdateController">
+     <bb-loader></bb-loader>
     <h1>{{_t('James Box Update')}}</h1>
+   <div class="form form-inline form-page">
+        <div class="fieldset">
+            <div>Here we need a text telling the users not to unplug the device for 5 minutes until the LED are off.</div>
+        </div>
+        <div class="fieldset submit-entry">
+            <button class="btn btn-submit" title="{{_t('Firmware update')}}" ng-click="updateFirmware()">
+                <i class="fa fa-level-up"></i> <span class="btn-name">{{_t('James Box update')}}</span>
+            </button>
+        </div>
+    </div>
 </div>
