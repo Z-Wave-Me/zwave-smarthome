@@ -314,6 +314,10 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                 when('/passwordforgot/reset/:token?', {
                     templateUrl: 'app/views/auth/password_reset.html'
                 }).
+                //Jamesbox update
+                when('/jamesbox/update', {
+                    templateUrl: 'app/views/jamesbox/update.html'
+                }).
                 //Login
                 when('/logout', {
                     templateUrl: 'app/views/auth/logout.html',
