@@ -128,9 +128,9 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
         var newFilter = {};
         if (!filter) {
             angular.extend($scope.dataHolder.devices, {filter: {}});
-            $cookies.filterElements = angular.toJson({});
         } else {
             newFilter = angular.extend({}, $scope.dataHolder.devices.filter, filter);
+            // Remove empty/undefined filters
             _.each(newFilter,function(value,key,list) {
                 if (typeof(value) === 'undefined') {
                     delete list[key];
