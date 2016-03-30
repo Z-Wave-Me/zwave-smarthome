@@ -81,13 +81,14 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $co
     /**
      * Redirect
      */
-    $scope.redirectAfterLogin = function (trust, user, password, rememberme) {
+    $scope.redirectAfterLogin = function (trust, user, password, rememberme,url) {
+        var location = url|| '#/dashboard';
         $scope.processUser(user, rememberme);
         if ($scope.auth.fromexpert) {
             window.location.href = $scope.cfg.expert_url;
             return;
         }
-        window.location = '#/dashboard';
+        window.location = location;
         $window.location.reload();
     };
 
@@ -257,7 +258,7 @@ myAppController.controller('AuthPasswordController', function ($scope, $window, 
             }
             // Update profile
             dataFactory.putApiWithHeaders('profiles', input.id, profile, headers).then(function (response) {
-                $scope.redirectAfterLogin(true, $scope.auth.defaultProfile, input.password);
+                $scope.redirectAfterLogin(true, $scope.auth.defaultProfile, input.password,'#/dashboard/firstlogin');
                 // Update trust my network
                 /*dataFactory.putApiWithHeaders('trust_my_network', null, {trustMyNetwork: input.trust_my_network}, headers).then(function (response) {
                  $scope.redirectAfterLogin(input.trust_my_network, $scope.auth.defaultProfile, input.password);

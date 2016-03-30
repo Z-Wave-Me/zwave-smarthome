@@ -1,6 +1,11 @@
 {
     "newtrans": "---",
+    "no_device_installed": "There is no device installed yet",
+    "can_add_app": "You can add an app in the section",
+    "can_include_device": "You can include a device in the section",
     "---": "newtrans",
+    "delete_history": "Delete history",
+    "history_delete_confirm": "Are you sure you want to delete this history",
     "hide_installed_apps": "Hide installed app",
     "updateTimeDESC": "Last updated",
     "mostRatedDESC": "Best rated",

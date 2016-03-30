@@ -85,7 +85,7 @@ myApp.directive('bbHelp', function ($sce, dataFactory, cfg) {
                 + '<div class="appmodal-header">'
                 + '<h3>{{cfg.app_name}}</h3>'
                 + '<span class="appmodal-close" ng-click="handleModal(\'helpModal\', $event)"><i class="fa fa-times"></i></span>'
-                 + '</div>'
+                + '</div>'
                 + '<div class="appmodal-body" ng-bind-html="getSafeHtml(helpData)"></div>'
                 + '</div></div>'
                 + '</span>',
@@ -233,15 +233,18 @@ myApp.directive('myknob', ['$timeout', 'dataFactory', function ($timeout, dataFa
             link: function ($scope, $element) {
                 var knobInit = $scope.knobOptions() || {};
                 knobInit.step = $scope.knobStep || 1;
-                if (typeof($scope.knobMin) !== 'undefined')
+                if (typeof ($scope.knobMin) !== 'undefined')
                     knobInit.min = $scope.knobMin;
-                if (typeof($scope.knobMax) !== 'undefined')
+                if (typeof ($scope.knobMax) !== 'undefined')
                     knobInit.max = $scope.knobMax;
                 knobInit.release = function (newValue) {
                     $timeout(function () {
-                        $scope.knobData = newValue;
-                        runCmdExact($scope.knobId, newValue);
-                        $scope.$apply();
+                        var old = $scope.knobData;
+                        if (old != newValue) {
+                            $scope.knobData = newValue;
+                            runCmdExact($scope.knobId, newValue);
+                            $scope.$apply();
+                        }
                     });
                 };
 
@@ -259,6 +262,7 @@ myApp.directive('myknob', ['$timeout', 'dataFactory', function ($timeout, dataFa
          * Run command exact value
          */
         function runCmdExact(id, val) {
+            //console.log('Knob from directive:',val)
             var cmd = id + '/command/exact?level=' + val;
             dataFactory.runApiCmd(cmd).then(function (response) {
             }, function (error) {});

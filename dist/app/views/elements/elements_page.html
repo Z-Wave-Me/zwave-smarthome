@@ -1,14 +1,15 @@
 <!-- Elements 1 view -->
 <div ng-controller="ElementBaseController">
     <bb-loader></bb-loader>
-    <div ng-if="dataHolder.devices.welcome" ng-include="'app/views/elements/no_elements.html'"></div>
-    <div ng-if="dataHolder.devices.show && !dataHolder.devices.welcome">
+     <div ng-if="dataHolder.devices.noDevices" ng-include="'app/views/elements/no_devices.html'"></div>
+    <div ng-if="dataHolder.devices.show && !dataHolder.devices.noDevices">
     <div class="page-control form-inline">
         <div class="btn-group btn-goup-block btn-goup-3">
             <button class="btn btn-default" ng-click="expandNavi('elCategories', $event)" ng-class="dataHolder.devices.filter.deviceType ? 'active':'' ">
                 <i class="fa fa-filter"></i> 
                 <span class="btn-name" ng-if="dataHolder.devices.filter.deviceType">{{_t(dataHolder.devices.filter.deviceType) | cutText:true:15}}</span>
                 <span class="btn-name" ng-if="!dataHolder.devices.filter.deviceType">{{_t('all_elements')|cutText:true:15}}</span>
+                <span class="btn-name item-cnt"> ({{dataHolder.cnt.collection}})</span>
             </button>
              <button class="btn btn-default" ng-click="expandNavi('elTags', $event)" ng-class="dataHolder.devices.filter.tag ? 'active':'' ">
                 <i class="fa fa-tags"></i>
@@ -32,12 +33,14 @@
             <ul>
                 <li class="page-cat-0" ng-class="_.isEmpty(dataHolder.devices.filter) == true ? 'active': ''">
                    <a href="" ng-click="setFilter()">
-                       <i class="fa fa-check-circle-o"></i> {{_t('all_elements')}} <span class="page-navi-icon"><i class="fa fa-chevron-right"></i></span>
+                       <i class="fa fa-check-circle-o"></i> {{_t('all_elements')}} <span class="item-cnt">({{dataHolder.cnt.devices}})</span> 
+                       <span class="page-navi-icon"><i class="fa fa-chevron-right"></i></span>
                    </a>
                 </li>
-                <li class="page-cat-{{v}}" ng-repeat="v in dataHolder.devices.deviceType" ng-class="dataHolder.devices.filter.deviceType == v ? 'active': ''">
+                <li class="page-cat-{{v}}" ng-repeat="(v,k) in dataHolder.devices.deviceType" ng-class="dataHolder.devices.filter.deviceType == v ? 'active': ''">
                     <a href="" ng-click="setFilter({deviceType: v})"> 
-                        <i class="fa {{v|getElCategoryIcon}}"></i> {{_t(v) | cutText:true:30}}<span class="page-navi-icon"><i class="fa fa-chevron-right"></i></span>
+                        <i class="fa {{v|getElCategoryIcon}}"></i> {{_t(v) | cutText:true:30}} <span class="item-cnt">({{k}})</span> 
+                        <span class="page-navi-icon"><i class="fa fa-chevron-right"></i></span>
                     </a>
                 </li>
             </ul>
