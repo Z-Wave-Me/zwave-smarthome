@@ -2,22 +2,22 @@
 <div ng-controller="RoomController" class="mobile-padding">
     <bb-loader></bb-loader>
     <div class="app-row app-row-room clearfix">
-        <div class="room-entry has-device-{{devices.count[v.id].length||'false'}}" 
+        <div class="room-entry has-device-{{rooms.cnt.devices[v.id].length||'false'}}" 
              id="panel_{{$index}}"
-             ng-hide="v.id === 0 && !devices.count[v.id]"
-             ng-repeat="v in collection">
+             ng-hide="v.id === 0 && !rooms.cnt.devices[v.id]"
+             ng-repeat="v in rooms.all">
             <div class="room-entry-in" ng-init="room_title = (v.id == 0 ? _t(v.title) : v.title)">
                  <h4>
-                    <a href="#/rooms/{{v.id}}" title="{{_t('lb_devices_room')}} {{room_title}}" ng-if="devices.count[v.id].length">{{room_title}} ({{devices.count[v.id].length||0}})</a>
-                    <span ng-if="!devices.count[v.id].length">{{room_title}} ({{devices.count[v.id].length||0}})</span>
+                    <a href="#/rooms/{{v.id}}" title="{{_t('lb_devices_room')}} {{room_title}}" ng-if="rooms.cnt.devices[v.id].length">{{room_title}} ({{rooms.cnt.devices[v.id].length||0}})</a>
+                    <span ng-if="!rooms.cnt.devices[v.id].length">{{room_title}} ({{rooms.cnt.devices[v.id].length||0}})</span>
                 </h4>
-                <a href="#/rooms/{{v.id}}" ng-if="devices.count[v.id].length" title="{{_t('lb_devices_room')}} {{room_title}}">
+                <a href="#/rooms/{{v.id}}" ng-if="rooms.cnt.devices[v.id].length" title="{{_t('lb_devices_room')}} {{room_title}}">
                     <img class="room-image-preview img-circle" ng-src="storage/img/rooms/{{v.default_img}}" ng-if="v.img_type == 'default' && v.default_img" alt="img" />
                       <img class="room-image-preview img-circle" ng-src="{{userImageUrl + v.user_img}}" ng-if="v.img_type == 'user' && v.user_img" alt="img" />
                       <img class="room-image-preview img-circle" ng-src="storage/img/placeholder-img.png" ng-if="!v.default_img && !v.user_img && v.id != 0" alt="img" />
                        <img class="room-image-preview img-circle" ng-src="storage/img/rooms/unassigned.png" ng-if="v.id == 0" alt="img" />
                 </a>
-                 <span ng-if="!devices.count[v.id].length">
+                 <span ng-if="!rooms.cnt.devices[v.id].length">
                     <img class="room-image-preview img-circle" ng-src="storage/img/rooms/{{v.default_img}}" ng-if="v.img_type == 'default' && v.default_img" alt="img" />
                       <img class="room-image-preview img-circle" ng-src="{{userImageUrl + v.user_img}}" ng-if="v.img_type == 'user' && v.user_img" alt="img" />
                       <img class="room-image-preview img-circle" ng-src="storage/img/placeholder-img.png" ng-if="!v.default_img && !v.user_img && v.id != 0" alt="img" />

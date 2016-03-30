@@ -7,11 +7,17 @@
  * Room controller
  */
 myAppController.controller('RoomController', function ($scope, $location, dataFactory, dataService, _) {
-    $scope.collection = [];
-    $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/image/';
-    $scope.devices = {
-        count: {}
+    $scope.rooms = {
+        all: {},
+        cnt: {
+            devices: 0
+        }
     };
+    //$scope.collection = [];
+    $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/image/';
+//    $scope.devices = {
+//        count: {}
+//    };
 
     /**
      * Load data into collection
@@ -20,7 +26,8 @@ myAppController.controller('RoomController', function ($scope, $location, dataFa
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('locations').then(function (response) {
             $scope.loading = false;
-            $scope.collection = response.data.data;
+            $scope.rooms.all = response.data.data;
+            //$scope.collection = response.data.data;
 //            if (Object.keys($scope.collection).length < 1) {
 //                $scope.loading = {status: 'loading-spin', icon: 'fa-exclamation-triangle text-warning', message: $scope._t('no_data')};
 //            }
@@ -37,7 +44,7 @@ myAppController.controller('RoomController', function ($scope, $location, dataFa
      */
     $scope.loadDevices = function () {
         dataFactory.getApi('devices').then(function (response) {
-            $scope.devices.count = _.chain(response.data.data.devices)
+            $scope.rooms.cnt.devices = _.chain(response.data.data.devices)
                     .flatten()
                     .reject(function (v) {
                         return v.deviceType == 'battery' || v.permanently_hidden == true;
