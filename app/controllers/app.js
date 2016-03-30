@@ -438,12 +438,22 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                     if ($scope.dataHolder.modules.ids[item.modulename]) {
                         item['status'] = 'installed';
                         if ($scope.dataHolder.modules.ids[item.modulename].version != item.version) {
-                            item['status'] = 'upgrade';
+                            var localVersion = $scope.dataHolder.modules.ids[item.modulename].version.split('.'),
+                                onlineVersion = item.version.split('.');
+                            
+                            for (var i = 0; i < localVersion.length; i++) {
+                                if ((parseInt(localVersion[i], 10) < parseInt(onlineVersion[i], 10)) || ((parseInt(localVersion[i], 10) <= parseInt(onlineVersion[i], 10)) && (!localVersion[i+1] && onlineVersion[i+1] && parseInt(onlineVersion[i+1], 10) > 0))) {
+                                    item['status'] = 'upgrade';
+                                    break;
+                                }
+                            }
                         }
                         isHidden = $scope.dataHolder.onlineModules.hideInstalled;
                     } else {
                         item['status'] = 'download';
                     }
+                    
+                    $scope.dataHolder.onlineModules.ids[item.modulename].status = item.status;
                     angular.extend(item, {isHidden: isHidden});
 
                     if (item.featured == 1) {
@@ -468,8 +478,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
         // Count collection
         $scope.dataHolder.onlineModules.cnt.collection = _.size($scope.dataHolder.onlineModules.all);
         $scope.loading = false;
-    }
-    ;
+    };
     /**
      * Set instances
      */
@@ -486,8 +495,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                 return false;
             }
         });
-    }
-    ;
+    };
 
 });
 /**

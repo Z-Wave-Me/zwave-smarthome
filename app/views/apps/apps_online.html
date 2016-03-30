@@ -120,7 +120,7 @@
                                     <i class="fa fa-check"></i> <span class="btn-name">{{_t('installed')}}</span>
                                 </button> 
                                  <!-- Updgrade -->
-                                <button href="" class="btn btn-danger" title="{{_t('update_to_latest')}}" ng-click="updateModule(v, _t('app_update_confirm'))" ng-if="dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version != v.version">
+                                <button href="" class="btn btn-danger" title="{{_t('update_to_latest')}}" ng-click="updateModule(v, _t('app_update_confirm'))" ng-if="dataHolder.modules.ids[v.modulename] && v.status == 'upgrade' ">
                                     <i class="fa fa-level-up"></i> <span class="btn-name">{{_t('update_to_latest')}}</span>
                                 </button> 
                               </div>
