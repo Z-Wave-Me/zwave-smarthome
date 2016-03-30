@@ -17,7 +17,7 @@
                 <i class="fa fa-filter"></i> 
                 <span class="btn-name" ng-if="dataHolder.devices.filter.deviceType">{{_t(dataHolder.devices.filter.deviceType) | cutText:true:15}}</span>
                 <span class="btn-name" ng-if="dataHolder.devices.filter.visibility === false">{{_t('hidden_elements')|cutText:true:15}}</span>
-                <span class="btn-name" ng-if="_.isEmpty(dataHolder.devices.filter)">{{_t('all_elements')|cutText:true:15}}</span>
+                <span class="btn-name" ng-if="! dataHolder.devices.filter.deviceType">{{_t('all_elements')|cutText:true:15}}</span>
                 <span class="btn-name item-cnt"> ({{dataHolder.cnt.collection}})</span>
             </button>
              <button class="btn btn-default" ng-click="expandNavi('elTags', $event)" ng-class="dataHolder.devices.filter.tag ? 'active':'' ">
