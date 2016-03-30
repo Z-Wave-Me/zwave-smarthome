@@ -201,6 +201,21 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
 
         });
     };
+    
+     /**
+     * Set visibility
+     */
+    $scope.setVisibility = function (v,visibility) {
+       $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+            dataFactory.putApi('devices', v.id, {visibility: visibility}).then(function (response) {
+                 $scope.loading = false;
+                  //dataService.showNotifier({message: $scope._t('success_updated')});
+                  $scope.reloadData();
+            }, function (error) {
+                alertify.alertError($scope._t('error_update_data'));
+                $scope.loading = false;
+            });
+    };
 
     /**
      * Set exact value for cmd command
