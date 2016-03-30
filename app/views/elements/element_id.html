@@ -34,6 +34,14 @@
                         <div class="form-group" ng-if="elementId.appType.enocean">
                             {{_t('lb_gen_by')}} <a href="#enocean/manage/{{elementId.appType.enocean}}" class="btn btn-default">{{_t('enocean_device')}} #{{elementId.appType.enocean}}</a>
                         </div>
+                         <!-- Hide element -->
+                        <div class="form-group">
+                            <input type="checkbox" name="dashboard" id="dashboard" 
+                                    ng-init = "visibility.checked = !elementId.input.visibility"
+                                   ng-model="visibility.checked"
+                                  ng-change="elementId.input.visibility = !visibility.checked"
+                                   ng-checked="!elementId.input.visibility" /> <label>{{_t('Hide this element')}}</label>
+                        </div>
                    </div> 
                  
                     <!-- dashboard etc -->
@@ -45,7 +53,7 @@
                         <div ng-if="elementAccess(cfg.role_access.admin) && elementId.appType.zwave"> 
                             <input type="checkbox" name="permanently_hidden" id="permanently_hidden" value="" 
                                    ng-model="elementId.input.permanently_hidden" 
-                                   ng-checked="elementId.input.permanently_hidden" /> <label>{{_t('lb_permanently_hide')}}</label>
+                                   ng-checked="elementId.input.permanently_hidden" /> <label>{{_t('lb_deactivate')}}</label>
                         </div>
                         <div>
                             <input type="checkbox" name="hide_events" value="{{elementId.input.id}}" id="hide_events" 

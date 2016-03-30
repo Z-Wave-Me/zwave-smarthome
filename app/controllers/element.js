@@ -24,7 +24,8 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             tags: [],
             filter: ($cookies.filterElements ? angular.fromJson($cookies.filterElements) : {}),
             rooms: {},
-            orderBy: ($cookies.orderByElements ? $cookies.orderByElements : 'creationTimeDESC')
+            orderBy: ($cookies.orderByElements ? $cookies.orderByElements : 'creationTimeDESC'),
+            showHidden: ($cookies.showHiddenEl ? $filter('toBool')($cookies.showHiddenEl) : false)
         }
     };
     $scope.apiDataInterval = null;
@@ -63,7 +64,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             }
             // Success - devices
             if (devices.state === 'fulfilled') {
-                setDevices(dataService.getDevicesData(devices.value.data.data.devices));
+                setDevices(dataService.getDevicesData(devices.value.data.data.devices,$scope.dataHolder.devices.showHidden));
 
             }
         });
@@ -131,6 +132,18 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             $cookies.filterElements = angular.toJson(filter);
         }
 
+        $scope.reloadData();
+    };
+    
+    /**
+     * Show hidden elements
+     */
+    $scope.showHiddenEl = function (status) {
+        angular.extend($scope.dataHolder.devices, {filter: {}});
+        $cookies.filterElements = angular.toJson({});
+        status = $filter('toBool')(status);
+        angular.extend($scope.dataHolder.devices, {showHidden: status});
+        $cookies.showHiddenEl = status;
         $scope.reloadData();
     };
 
@@ -763,7 +776,11 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
             if (device.state === 'fulfilled') {
                 var arr = [];
                 arr[0] = device.value.data.data;
-                setDevice(dataService.getDevicesData(arr).value()[0]);
+                if(!dataService.getDevicesData(arr,true).value()[0]){
+                    alertify.alertError($scope._t('error_load_data'));
+                return;
+                }
+                setDevice(dataService.getDevicesData(arr,true).value()[0]);
                 $scope.elementId.show = true;
             }
 
@@ -877,6 +894,7 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
             'location': parseInt(input.location, 10),
             'tags': input.tags,
             'metrics': input.metrics,
+            'visibility': input.visibility,
             'permanently_hidden': input.permanently_hidden
         };
     }
