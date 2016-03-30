@@ -31,7 +31,7 @@
                              <!-- <button class="btn btn-primary" ng-click="updateDevice(dev[e.id])" ng-bind="_t('rename_element')"></button> --> 
                              <span class="mobile-block">
                              <input type="checkbox" name="permanently_hidden_{{$index}}" id="permanently_hidden_{{$index}}" ng-model="formInput.elements[e.id].permanently_hidden" ng-checked="formInput.elements[e.id].permanently_hidden" />
-                            <label ng-bind="_t('hide_element')"></label>
+                             <label>{{_t('lb_deactivate')}}</label>
                             </span>
                             <!-- <a class="btn" href="" 
                                  ng-click="updateDevice({id: e.id,permanently_hidden: e.permanently_hidden ? false : true})" 

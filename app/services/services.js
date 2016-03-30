@@ -164,7 +164,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $location
     /**
      * Get device data
      */
-    this.getDevicesData = function (data) {
+    this.getDevicesData = function (data,showHidden) {
         var user = this.getUser();
         return _.chain(data)
                     .flatten()
@@ -172,7 +172,12 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $location
                         return v.id;
                     })
                     .reject(function (v) {
-                        return (v.deviceType === 'battery') || (v.permanently_hidden === true) || (v.visibility === false);
+                        if(showHidden){
+                            return (v.deviceType === 'battery') || (v.permanently_hidden === true);
+                        }else{
+                            return (v.deviceType === 'battery') || (v.permanently_hidden === true) || (v.visibility === false);
+                        }
+                         
                     })
                     .filter(function (v) {
                         var minMax;
