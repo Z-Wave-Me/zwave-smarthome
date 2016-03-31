@@ -717,7 +717,7 @@ myAppController.controller('ElementRoomController', function ($scope, $routePara
 /**
  * Element ID controller
  */
-myAppController.controller('ElementIdController', function ($scope, $q, $routeParams, $window, $location, dataFactory, dataService, myCache) {
+myAppController.controller('ElementIdController', function ($scope, $q, $routeParams, $window, dataFactory, dataService, myCache) {
     $scope.elementId = {
         show: false,
         appType: {},
@@ -770,7 +770,7 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
             }
             // Success - locations
             if (locations.state === 'fulfilled') {
-                $scope.elementId.locations = locations.value.data.data;
+                $scope.elementId.locations = dataService.getRooms(locations.value.data.data).indexBy('id').value();
             }
             // Success - instances
             if (instances.state === 'fulfilled') {
@@ -791,11 +791,7 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
                 setDevice(dataService.getDevicesData(arr,true).value()[0]);
                 $scope.elementId.show = true;
             }
-
-
-
         });
-
     };
     $scope.allSettled();
 
