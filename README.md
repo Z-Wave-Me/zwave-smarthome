@@ -4,7 +4,7 @@ SmartHome UI
 This User Interfaces allows to operate a Smart Home Network based on Z-Wave devices. It utilizes the software architecture "Z_Way", certified as Z-Wave Plus Controller.
 ## v1.4.0
 #### New features
-- Elements: Show count of elements in the filter. Possibility to delete a history.
+- Elements: Show count of elements in the filter. Possibility to delete a history. Hide/Unhide elements.
 - Online and local apps: Show count of Apps in the filter. Sorting by title, most rated, newest.... Show only categories that have min 1 app.
 - Online apps: Display count of ratings and average value. Hide already installed apps. Display patches in the update window and in the app detail.
 - Local appps: Added "Update to latest" button.

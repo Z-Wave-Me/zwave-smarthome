@@ -13,12 +13,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $location
      * Get language line by key
      */
     this.getLangLine = function (key, languages) {
-        if (angular.isObject(languages)) {
-            if (angular.isDefined(languages[key])) {
-                return languages[key] !== '' ? languages[key] : key;
-            }
-        }
-        return key;
+        return getLangLine(key, languages);
     };
 
     /**
@@ -219,6 +214,27 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $location
                         return v;
                     });
     };
+    
+     /**
+     * Get rooms
+     */
+    this.getRooms = function (data) {
+        return  _.chain(data)
+                    .flatten()
+                    .filter(function (v) {
+                    v.title = (v.id === 0 ?  getLangLine(v.title) : v.title);
+                     v.img_src = 'storage/img/placeholder-img.png';
+                    if(v.id === 0){
+                        v.img_src = 'storage/img/rooms/unassigned.png';
+                    }else if(v.img_type === 'default' && v.default_img){
+                         v.img_src = 'storage/img/rooms/' + v.default_img;
+                    }else if(v.img_type === 'user' && v.user_img){
+                         v.img_src =  cfg.server_url + cfg.api_url + 'load/image/' + v.user_img;
+                    }
+                    return v;
+                });
+
+    };
 
     /**
      * Get chart data
@@ -314,6 +330,19 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $location
     };
 
     /// --- Private functions --- ///
+    
+    /**
+     * Get lang line
+     */
+    function getLangLine(key, languages) {
+        return cfg.route.t[key]||key;
+//        if (angular.isObject(languages)) {
+//            if (angular.isDefined(languages[key])) {
+//                return languages[key] !== '' ? languages[key] : key;
+//            }
+//        }
+//        return key;
+    }
   
     /**
      * Get module form data

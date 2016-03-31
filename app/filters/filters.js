@@ -333,22 +333,6 @@ myApp.filter('getBatteryIcon', function (cfg) {
 });
 
 /**
- * Get event icon
- */
-myApp.filter('getRoomIcon', function (cfg) {
-    return function (room) {
-        var icon = 'storage/img/placeholder-img.png';
-        if (room.img_type == 'default' && room.default_img) {
-            icon = 'storage/img/rooms/' + room.default_img;
-        }
-        if (room.img_type == 'user' && room.user_img) {
-            icon = cfg.server_url + cfg.api_url + 'load/image/' + room.user_img;
-        }
-        return icon;
-    };
-});
-
-/**
  * Get element category icon
  */
 myApp.filter('getElCategoryIcon', function () {

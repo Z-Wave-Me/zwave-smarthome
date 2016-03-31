@@ -61,7 +61,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             }
             // Success - locations
             if (locations.state === 'fulfilled') {
-                angular.extend($scope.dataHolder.devices.rooms, _.indexBy(locations.value.data.data, 'id'));
+                $scope.dataHolder.devices.rooms = dataService.getRooms(locations.value.data.data).indexBy('id').value();
             }
             // Success - devices
             if (devices.state === 'fulfilled') {
@@ -525,19 +525,6 @@ myAppController.controller('ElementSensorMultilineController', function ($scope,
         }, function (error) {
             $scope.widgetSensorMultiline.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
         });
-        // DEPRECATED
-//        return;
-//        var device = _.where($scope.dataHolder.devices.collection, {id: $scope.dataHolder.devices.find.id});
-//        if (_.isEmpty(device)) {
-//            $scope.widgetSensorMultiline.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
-//            return;
-//        }
-//        $scope.widgetSensorMultiline.find = device[0];
-//        if (_.isEmpty($scope.widgetSensorMultiline.find.metrics.sensors)) {
-//            $scope.widgetSensorMultiline.alert = {message: $scope._t('no_data'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
-//            return;
-//        }
-//        return;
     };
     $scope.loadDeviceId();
     /**
@@ -675,7 +662,7 @@ myAppController.controller('ElementClimateControlController', function ($scope, 
                     .filter(function (v) {
                         angular.extend(v,
                                 {roomTitle: $scope.dataHolder.devices.rooms[v.room].title},
-                                {roomIcon: $filter('getRoomIcon')($scope.dataHolder.devices.rooms[v.room])},
+                                {roomIcon: $scope.dataHolder.devices.rooms[v.room].img_src},
                                 {sensorLevel: $scope.widgetClimateControl.devicesId[v.mainSensor] ? $scope.widgetClimateControl.devicesId[v.mainSensor].metrics.level : null},
                                 {scaleTitle: $scope.widgetClimateControl.devicesId[v.mainSensor] ? $scope.widgetClimateControl.devicesId[v.mainSensor].metrics.scaleTitle : null}
                         );
