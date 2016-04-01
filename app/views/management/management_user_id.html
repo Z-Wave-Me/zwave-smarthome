@@ -2,7 +2,7 @@
 <div ng-controller="ManagementUserIdController" class="mobile-padding">
     <bb-loader></bb-loader>
      
-    <div ng-show="input">
+    <div ng-if="show">
         <h2><span ng-bind="_t('lb_user')"></span>: <span ng-show="input.id > 0">(#{{input.id}})</span> <span ng-bind="input.name"></span></h2>
         <form name="form_profile" id="form_profile" class="form form-page" ng-submit="store(form_profile,input)" novalidate>
             <fieldset>
