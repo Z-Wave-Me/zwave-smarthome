@@ -6,7 +6,7 @@
 <div class="accordion-entry-ctrl" ng-if="expand.backup">
     <div class="form form-inline form-page">
         <div class="fieldset">
-            <bb-help-text trans="_t('backup_info')"></bb-help-text>
+             <p>{{_t('backup_info')}}</p>
         </div>
         <div class="fieldset submit-entry">
             <a class="btn btn-submit" ng-href="{{cfg.server_url + cfg.api.backup}}" title="{{_t('nm_backup_download')}}">
