@@ -244,13 +244,19 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                     if ($scope.dataHolder.modules.ids[item.modulename]) {
                         item['status'] = 'installed';
                         if ($scope.dataHolder.modules.ids[item.modulename].version != item.version) {
-                            var localVersion = $scope.dataHolder.modules.ids[item.modulename].version.split('.'),
-                                onlineVersion = item.version.split('.');
-                            
-                            for (var i = 0; i < localVersion.length; i++) {
-                                if ((parseInt(localVersion[i], 10) < parseInt(onlineVersion[i], 10)) || ((parseInt(localVersion[i], 10) <= parseInt(onlineVersion[i], 10)) && (!localVersion[i+1] && onlineVersion[i+1] && parseInt(onlineVersion[i+1], 10) > 0))) {
-                                    item['status'] = 'upgrade';
-                                    break;
+                            if (!$scope.dataHolder.modules.ids[item.modulename].version && !item.version) {
+                                item['status'] = 'error';
+                            } else if (!$scope.dataHolder.modules.ids[item.modulename].version && item.version) {
+                                item['status'] = 'upgrade';
+                            } else {
+                                var localVersion = $scope.dataHolder.modules.ids[item.modulename].version.split('.'),
+                                    onlineVersion = item.version.split('.');
+                                
+                                for (var i = 0; i < localVersion.length; i++) {
+                                    if ((parseInt(localVersion[i], 10) < parseInt(onlineVersion[i], 10)) || ((parseInt(localVersion[i], 10) <= parseInt(onlineVersion[i], 10)) && (!localVersion[i+1] && onlineVersion[i+1] && parseInt(onlineVersion[i+1], 10) > 0))) {
+                                        item['status'] = 'upgrade';
+                                        break;
+                                    }
                                 }
                             }
                         }
