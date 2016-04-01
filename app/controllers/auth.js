@@ -212,7 +212,8 @@ myAppController.controller('AuthLoginController', function ($scope, $location, $
     } else if (dataService.getRememberMe()) {
         $scope.login(dataService.getRememberMe());
         // only ask for session forwarding if user is not logged out before or the request comes from trusted hosts
-    } else if ((typeof $routeParams.logout !== 'undefined' && !$routeParams.logout) ||
+    } else if (typeof $routeParams.logout === 'undefined' ||
+            !$routeParams.logout ||
             (path[1] === '' && $scope.cfg.find_hosts.indexOf($location.host()) !== -1)) {
         $scope.getSession();
     }
