@@ -1,4 +1,6 @@
 {
+    "hide_element_info": "Only hide this element in any View",
+    "deactivate_element_info": "This element can not be used for any scene, app, module and is fully deactivated",
     "show_hidden": "Show hidden",
     "no_device_installed": "There is no device installed yet",
     "can_add_app": "You can add an app in the section",

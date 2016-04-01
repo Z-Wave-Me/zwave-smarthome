@@ -502,7 +502,7 @@ myAppController.controller('ManagementRestoreController', function ($scope, data
 /**
  * Management factory default controller
  */
-myAppController.controller('ManagementFactoryController', function ($scope, $timeout, $window, dataFactory, dataService) {
+myAppController.controller('ManagementFactoryController', function ($scope, $window, dataFactory, dataService) {
     $scope.factoryDefault = {
         model: {
             overwriteBackupCfg: true,
@@ -516,14 +516,16 @@ myAppController.controller('ManagementFactoryController', function ($scope, $tim
      * Reset to factory
      */
     $scope.resetFactoryDefault = function (message) {
-        var params = '?useDefaultConfig=' + $scope.factoryDefault.model.overwriteBackupCfg
-                + '&resetZway=' + $scope.factoryDefault.model.resetZway
-                + '&useDefaultConfig=' + $scope.factoryDefault.model.useDefaultConfig;
+//        var params = '?useDefaultConfig=' + $scope.factoryDefault.model.overwriteBackupCfg
+//                + '&resetZway=' + $scope.factoryDefault.model.resetZway
+//                + '&useDefaultConfig=' + $scope.factoryDefault.model.useDefaultConfig;
+        var params = false;
         alertify.confirm(message, function () {
             $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('returning_factory_default')};
             dataFactory.getApi('factory_default', params).then(function (response) {
                 $scope.loading = false;
                 dataService.showNotifier({message: $scope._t('factory_default_success')});
+                $window.location.reload();
             }, function (error) {
                 alertify.alertError($scope._t('factory_default_error'));
                 $scope.loading = false;

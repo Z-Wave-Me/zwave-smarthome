@@ -41,19 +41,23 @@
                                    ng-model="visibility.checked"
                                   ng-change="elementId.input.visibility = !visibility.checked"
                                    ng-checked="!elementId.input.visibility" /> <label>{{_t('Hide this element')}}</label>
+                             <bb-help-text trans="_t('hide_element_info')"></bb-help-text>
                         </div>
+                        
                    </div> 
+                  <!-- Deactivate element -->
+                        <div class="form-group" ng-if="elementAccess(cfg.role_access.admin) && elementId.appType.zwave">
+                            <input type="checkbox" name="permanently_hidden" id="permanently_hidden" value="" 
+                                   ng-model="elementId.input.permanently_hidden" 
+                                   ng-checked="elementId.input.permanently_hidden" /> <label>{{_t('lb_deactivate')}}</label>
+                             <bb-help-text trans="_t('deactivate_element_info')"></bb-help-text>
+                        </div>
                  
                     <!-- dashboard etc -->
                     <div class="form-group">
                         <div>
                             <input type="checkbox" name="dashboard" value="{{elementId.input.onDashboard}}" id="dashboard" 
                                    ng-model="elementId.input.onDashboard" ng-checked="elementId.input.onDashboard" /> <label>{{_t('lb_add_dashboard')}}</label>
-                        </div>
-                        <div ng-if="elementAccess(cfg.role_access.admin) && elementId.appType.zwave"> 
-                            <input type="checkbox" name="permanently_hidden" id="permanently_hidden" value="" 
-                                   ng-model="elementId.input.permanently_hidden" 
-                                   ng-checked="elementId.input.permanently_hidden" /> <label>{{_t('lb_deactivate')}}</label>
                         </div>
                         <div>
                             <input type="checkbox" name="hide_events" value="{{elementId.input.id}}" id="hide_events" 

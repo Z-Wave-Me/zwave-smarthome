@@ -1,4 +1,6 @@
 {
+    "hide_element_info": "Versteckt lediglich das Element",
+    "deactivate_element_info": "Dieses Element kann in keiner Szene, App oder Module mehr verwendet werden und ist vollständig deaktiviert",
     "show_hidden": "Blende versteckte ein",
     "no_device_installed": "Es sind noch keine Geräte installiert",
     "can_add_app": "Sie können eine App hinzufügen unter",
