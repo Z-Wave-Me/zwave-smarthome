@@ -726,9 +726,10 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
         instances: {}
     };
     $scope.tagList = [];
-    $scope.searchText = '';
+    $scope.search = {
+        text: ''
+    };
     $scope.suggestions = [];
-    $scope.autoCompletePanel = false;
 
     $scope.icons = [
         {
@@ -798,26 +799,24 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
     /**
      * Search me
      */
-    $scope.searchMe = function (search) {
+    $scope.searchMe = function () {
         $scope.suggestions = [];
-        $scope.autoCompletePanel = false;
-        if (search.length > 2) {
-            var foundText = findText($scope.tagList, search);
-            $scope.autoCompletePanel = (foundText) ? true : false;
-            console.log($scope.autoCompletePanel)
+        if ($scope.search.text.length >= 2) {
+            findText($scope.tagList, $scope.search.text,$scope.elementId.input.tags);
         }
     };
 
     /**
      * Add tag to list
      */
-    $scope.addTag = function (searchText) {
-        $scope.searchText = '';
-        $scope.autoCompletePanel = false;
-        if (!searchText || $scope.elementId.input.tags.indexOf(searchText) > -1) {
+    $scope.addTag = function (tag) {
+        tag = tag || $scope.search.text;
+        $scope.suggestions = [];
+        if (!tag || $scope.elementId.input.tags.indexOf(tag) > -1) {
             return;
         }
-        $scope.elementId.input.tags.push(searchText);
+        $scope.elementId.input.tags.push(tag);
+        $scope.search.text = '';
         return;
     };
     /**
@@ -825,7 +824,7 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
      */
     $scope.removeTag = function (index) {
         $scope.elementId.input.tags.splice(index, 1);
-        $scope.autoCompletePanel = false;
+        $scope.suggestions = [];
     };
     /**
      * Update an item
@@ -924,12 +923,13 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
     /**
      * Find text
      */
-    function findText(n, search) {
+    function findText(n, search, exclude) {
         var gotText = false;
         for (var i in n) {
             var re = new RegExp(search, "ig");
             var s = re.test(n[i]);
-            if (s) {
+            if (s
+                && (! _.isArray(exclude) || exclude.indexOf(n[i]) === -1)) {
                 $scope.suggestions.push(n[i]);
                 gotText = true;
             }
