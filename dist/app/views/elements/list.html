@@ -13,6 +13,7 @@
             <!-- Widget header -->
             <div class="widget-header">
                 <!--{{$index}}| {{v.id}} | {{v.deviceType}}-->
+                 <a class="widget-icon widget-hidden" href="" ng-click="setVisibility(v,true)" ng-if="!v.visibility"><i class="fa fa-eye-slash"></i></a>
                 <a class="widget-icon widget-history" href="" title="{{_t('history')}}" ng-click="dataHolder.devices.find = v;handleModal('modalHistory', $event)" ng-if="v.hasHistory"><i class="fa fa-history"></i></a>
                 <a class="widget-icon widget-config" href="#element/{{v.id}}" title="{{_t('lb_cfg_view')}}" ng-if="elementAccess(cfg.role_access.element)"><i class="fa fa-cog"></i></a>
             </div>

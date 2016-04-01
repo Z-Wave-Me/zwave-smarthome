@@ -1,15 +1,15 @@
 <!-- Rooms view -->
-<div ng-controller="RoomConfigController">
+<div ng-controller="RoomController">
      <bb-loader></bb-loader>
-     <div ng-if="roomConfig.show">
+     <div ng-if="rooms.show">
      <h2 ng-bind="_t('nav_rooms')"></h2>
-     <div class="app-row app-row-report app-row-room clearfix">
-         <div id="row_{{v.id}}" class="report-entry" ng-repeat="v in roomConfig.all">
+     <div class="app-row app-row-report app-row-room clearfix" ng-controller="RoomConfigController">
+         <div id="row_{{v.id}}" class="report-entry" ng-repeat="v in rooms.all" ng-if="v.id !== 0">
             <div class="report-col report-media">
-             <img class="report-img img-circle" ng-src="{{v|getRoomIcon}}" />
+             <img class="report-img img-circle" ng-src="{{v.img_src}}" />
            </div>
             <div class="report-col report-body">
-                {{v.title|cutText:true:25}}
+                {{v.title|cutText:true:25}} <span class="item-cnt">({{rooms.cnt.devices[v.id]||0}})</span>
             </div>
          <div class="report-col report-ctrl">
              <div class="btn-group">
@@ -17,7 +17,7 @@
                  <i class="fa fa-pencil text-info"></i>
              </a>
                     <button class="btn btn-default" title="{{_t('lb_remove')}}" 
-                       ng-click="delete('#row_' + v.id, v.id, _t('lb_delete_confirm'))"
+                       ng-click="deleteRoom(v.id, _t('lb_delete_confirm'))"
                        ><i class="fa fa-times text-danger"></i></button>
               </div>
          </div>

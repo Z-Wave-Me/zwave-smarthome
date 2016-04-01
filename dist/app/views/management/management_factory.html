@@ -7,8 +7,8 @@
     <bb-loader></bb-loader>
     <form name="form_factory_default" id="form_profile" class="form form-page" ng-submit="resetFactoryDefault(_t('factory_default_war'))" novalidate>
         <fieldset>
-            <bb-help-text trans="_t('factory_default_info')"></bb-help-text>
-            <div class="form-group">
+            <p>{{_t('factory_default_info')}}</p>
+             <!--<div class="form-group">
                 <div>
                     <input type="checkbox" name="overwriteBackupCfg" value="true" id="overwriteBackupCfg" 
                            ng-model="factoryDefault.model.overwriteBackupCfg" 
@@ -31,7 +31,7 @@
                         value="{{factoryDefault.model.useDefaultConfig}}" 
                         ng-model="factoryDefault.model.useDefaultConfig" />
                 </div>
-            </div>
+            </div>-->
         </fieldset>
         <fieldset class="submit-entry">
             <button type="submit" class="btn btn-submit" title="{{_t('reset_factory_default')}}">
