@@ -1,7 +1,7 @@
 <!-- Switch multilevel -->
 <div class="widget-ctrl ctrl-left">
     <!-- mutilevel -->
-    <div class="btn-group" ng-if="v.metrics.icon == 'multilevel'">
+    <div class="btn-group" ng-if="v.probeType == 'multilevel'">
         <!-- Off -->
         <button class="btn btn-off" id="btn_off_{{ v.id}}"
             data-ng-click="runCmd(v.id + '/command/off', v.id)"
@@ -24,7 +24,7 @@
         </button>
     </div>
     <!-- blind -->
-    <div class="btn-group" ng-if="v.metrics.icon == 'blinds'">
+    <div class="btn-group" ng-if="v.probeType == 'motor'">
         <button 
             class="btn btn-off" id="btn_off_{{ v.id}}"
             data-ng-click="runCmd(v.id + '/command/off', v.id)"
