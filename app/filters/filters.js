@@ -444,8 +444,13 @@ myApp.filter('isTodayFromUnix', function () {
  * Get current time
  */
 myApp.filter('getCurrentTime', function () {
-    return function () {
-        var d = new Date();
+    return function (timestamp) {
+         if (timestamp) {
+            var d = new Date(timestamp * 1000);
+        } else {
+             var d = new Date();
+        }
+        //var d = new Date();
         var hrs = (d.getHours() < 10 ? '0' + d.getHours() : d.getHours());
         var min = (d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes());
         var sec = (d.getSeconds() < 10 ? '0' + d.getSeconds() : d.getSeconds());
