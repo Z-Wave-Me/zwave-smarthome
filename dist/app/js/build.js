@@ -12555,7 +12555,7 @@ var myAppService = angular.module('myAppService', []);
 /**
  * Device service
  */
-myAppService.service('dataService', function ($filter, $log, $cookies, $location, $window, myCache, cfg, _) {
+myAppService.service('dataService', function ($filter, $log, $cookies, $window, cfg, _) {
     /// --- Public functions --- ///
     /**
      * Get language line by key
@@ -12883,13 +12883,13 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $location
      * Get lang line
      */
     function getLangLine(key, languages) {
-        return cfg.route.t[key]||key;
-//        if (angular.isObject(languages)) {
-//            if (angular.isDefined(languages[key])) {
-//                return languages[key] !== '' ? languages[key] : key;
-//            }
-//        }
-//        return key;
+        if (angular.isObject(languages)) {
+            if (angular.isDefined(languages[key])) {
+                return languages[key] !== '' ? languages[key] : key;
+            }
+        }else{
+            return cfg.route.t[key]||key; 
+        }
     }
   
     /**
