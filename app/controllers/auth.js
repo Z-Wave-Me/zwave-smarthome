@@ -259,7 +259,7 @@ myAppController.controller('AuthPasswordController', function ($scope, $window, 
             }
             // Update profile
             dataFactory.putApiWithHeaders('profiles', input.id, profile, headers).then(function (response) {
-                $scope.redirectAfterLogin(true, $scope.auth.defaultProfile, input.password,'#/dashboard/firstlogin');
+                $scope.redirectAfterLogin(true, $scope.auth.defaultProfile, input.password,false,'#/dashboard/firstlogin');
                 // Update trust my network
                 /*dataFactory.putApiWithHeaders('trust_my_network', null, {trustMyNetwork: input.trust_my_network}, headers).then(function (response) {
                  $scope.redirectAfterLogin(input.trust_my_network, $scope.auth.defaultProfile, input.password);
