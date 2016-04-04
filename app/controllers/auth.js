@@ -209,9 +209,11 @@ myAppController.controller('AuthLoginController', function ($scope, $location, $
 
     if ($routeParams.login && $routeParams.password) {
         $scope.login($routeParams);
-    } else if (dataService.getRememberMe()) {
-        $scope.login(dataService.getRememberMe());
-        // only ask for session forwarding if user is not logged out before or the request comes from trusted hosts
+    } else if (dataService.getRememberMe() && !$scope.auth.firstaccess) {
+        //if(!$scope.auth.firstaccess){
+           $scope.login(dataService.getRememberMe()); 
+        //}
+       // only ask for session forwarding if user is not logged out before or the request comes from trusted hosts
     } else if (typeof $routeParams.logout === 'undefined' ||
             !$routeParams.logout ||
             (path[1] === '' && $scope.cfg.find_hosts.indexOf($location.host()) !== -1)) {
@@ -222,7 +224,7 @@ myAppController.controller('AuthLoginController', function ($scope, $location, $
 /**
  * Password controller
  */
-myAppController.controller('AuthPasswordController', function ($scope, $window, dataFactory, dataService) {
+myAppController.controller('AuthPasswordController', function ($scope, dataFactory, dataService) {
     //$scope.newPassword = null;
     $scope.input = {
         id: $scope.auth.defaultProfile.id,

@@ -199,7 +199,7 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
             if (locations.state === 'fulfilled') {
                 $scope.rooms = dataService.getRooms(locations.value.data.data)
                         .reject(function (v) {
-                             return (v.id === 0);
+                            return (v.id === 0);
 
                         })
                         .value();
@@ -502,7 +502,7 @@ myAppController.controller('ManagementRestoreController', function ($scope, data
 /**
  * Management factory default controller
  */
-myAppController.controller('ManagementFactoryController', function ($scope, $window, dataFactory, dataService) {
+myAppController.controller('ManagementFactoryController', function ($scope, $window, $cookies, $cookieStore,dataFactory, dataService) {
     $scope.factoryDefault = {
         model: {
             overwriteBackupCfg: true,
@@ -525,7 +525,13 @@ myAppController.controller('ManagementFactoryController', function ($scope, $win
             dataFactory.getApi('factory_default', params).then(function (response) {
                 $scope.loading = false;
                 dataService.showNotifier({message: $scope._t('factory_default_success')});
-                $window.location.reload();
+                angular.forEach($cookies, function (v, k) {
+                      $cookieStore.remove(k);
+                    //delete $cookies[k];
+                });
+                //dataService.setRememberMe(null);
+                dataService.logOut();
+                //$window.location.reload();
             }, function (error) {
                 alertify.alertError($scope._t('factory_default_error'));
                 $scope.loading = false;
