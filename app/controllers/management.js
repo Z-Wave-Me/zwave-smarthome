@@ -145,21 +145,19 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
     $scope.rooms = {};
     $scope.show = true;
     $scope.input = {
-        id: 0,
-        name: '',
-        active: true,
-        role: 2,
-        password: '',
-        login: '',
-        lang: 'en',
-        color: '#dddddd',
-        hide_all_device_events: false,
-        hide_system_events: false,
-        hide_single_device_events: [],
-        rooms: [0],
-        default_ui: 1,
-        expert_view: false
-
+        "id": 0,
+        "role": 2,
+        "login": "",
+        "name": "",
+        "lang": "en",
+        "color": "#dddddd",
+        "dashboard": [],
+        "interval": 1000,
+        "rooms": [0],
+        "expert_view": true,
+        "hide_all_device_events": false,
+        "hide_system_events": false,
+        "hide_single_device_events": []
     };
     $scope.auth = {
         id: $routeParams.id,
@@ -174,7 +172,7 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
     $scope.allSettledUserId = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
-            dataFactory.getApi('profiles', '/' + $scope.id, true),
+            dataFactory.getApi('profiles', ($scope.id !== 0 ? '/' + $scope.id : ''), true),
             dataFactory.getApi('locations')
         ];
 
@@ -191,8 +189,11 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
             }
             // Success - profile
             if (profile.state === 'fulfilled') {
-                $scope.input = profile.value.data.data;
-                $scope.auth.login = profile.value.data.data.login;
+                if ($scope.id !== 0) {
+                    $scope.input = profile.value.data.data;
+                    $scope.auth.login = profile.value.data.data.login;
+                }
+
             }
 
             // Success - locations
@@ -502,7 +503,7 @@ myAppController.controller('ManagementRestoreController', function ($scope, data
 /**
  * Management factory default controller
  */
-myAppController.controller('ManagementFactoryController', function ($scope, $window, $cookies, $cookieStore,dataFactory, dataService) {
+myAppController.controller('ManagementFactoryController', function ($scope, $window, $cookies, $cookieStore, dataFactory, dataService) {
     $scope.factoryDefault = {
         model: {
             overwriteBackupCfg: true,
@@ -526,7 +527,7 @@ myAppController.controller('ManagementFactoryController', function ($scope, $win
                 $scope.loading = false;
                 dataService.showNotifier({message: $scope._t('factory_default_success')});
                 angular.forEach($cookies, function (v, k) {
-                      $cookieStore.remove(k);
+                    $cookieStore.remove(k);
                     //delete $cookies[k];
                 });
                 //dataService.setRememberMe(null);
