@@ -88,7 +88,8 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
     $scope.devices = {
         'failed': [],
         'batteries': [],
-        'zwave': []
+        'zwave': [],
+        'show': true
     };
     $scope.goEdit = [];
     $scope.zWaveDevices = {};
@@ -117,6 +118,10 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
             $scope.loading = false;
             zwaveApiData(response.data.data.devices);
             loadLocations();
+            if( _.size($scope.zWaveDevices) < 1){
+                $scope.devices.show = false;
+                    alertify.alertWarning($scope._t('no_device_installed')); 
+                }
 
         }, function (error) {
             $scope.loading = false;

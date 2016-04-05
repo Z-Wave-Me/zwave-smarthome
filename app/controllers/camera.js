@@ -32,6 +32,9 @@ myAppController.controller('CameraAddController', function ($scope, dataFactory,
                     return item;
                 }
             });
+            if( _.size($scope.ipcameraDevices) < 1){
+                    alertify.alertWarning($scope._t('no_cameras')); 
+                }
         }, function (error) {});
     };
     $scope.loadData();
@@ -77,6 +80,9 @@ myAppController.controller('CameraManageController', function ($scope, $q, dataF
             // Success - instances
             if (instances.state === 'fulfilled') {
                 setInstances(instances.value.data.data);
+                if( _.size($scope.instances) < 1){
+                    alertify.alertWarning($scope._t('no_cameras')); 
+                }
             }
         });
     };

@@ -1,4 +1,6 @@
 {
+    "no_cameras": "There are no cameras available.",
+    "no_rooms": "There are no rooms available.",
     "hide_element_info": "Only hide this element in any View",
     "deactivate_element_info": "This element can not be used for any scene, app, module and is fully deactivated",
     "show_hidden": "Show hidden",
