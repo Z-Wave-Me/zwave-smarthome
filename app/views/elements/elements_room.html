@@ -2,7 +2,7 @@
 <div ng-controller="ElementBaseController">
     <bb-loader></bb-loader>
     <div ng-controller="ElementRoomController">
-      <h1>{{_t('lb_devices_room')}} {{_t(dataHolder.devices.rooms[dataHolder.devices.filter.location].title)}}</h1>
+      <h1>{{_t('lb_devices_room')}} {{dataHolder.devices.rooms[dataHolder.devices.filter.location].title}}</h1>
       <div ng-if="!dataHolder.devices.show" ng-include="'app/views/elements/no_elements_room.html'"></div>
      <div ng-if="dataHolder.devices.show" ng-include="'app/views/elements/list.html'"></div>
 </div> <!-- /ng-controller --> 
