@@ -71,7 +71,6 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $co
         }
         dataService.setZWAYSession(user.sid);
         dataService.setUser(user);
-        //dataService.setLastLogin(Math.round(+new Date() / 1000));
         if (rememberme) {
             dataService.setRememberMe(rememberme);
         }
@@ -81,8 +80,8 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $co
     /**
      * Redirect
      */
-    $scope.redirectAfterLogin = function (trust, user, password, rememberme,url) {
-        var location = url|| '#/dashboard';
+    $scope.redirectAfterLogin = function (trust, user, password, rememberme, url) {
+        var location = url || '#/dashboard';
         $scope.processUser(user, rememberme);
         if ($scope.auth.fromexpert) {
             window.location.href = $scope.cfg.expert_url;
@@ -211,9 +210,9 @@ myAppController.controller('AuthLoginController', function ($scope, $location, $
         $scope.login($routeParams);
     } else if (dataService.getRememberMe() && !$scope.auth.firstaccess) {
         //if(!$scope.auth.firstaccess){
-           $scope.login(dataService.getRememberMe()); 
+        $scope.login(dataService.getRememberMe());
         //}
-       // only ask for session forwarding if user is not logged out before or the request comes from trusted hosts
+        // only ask for session forwarding if user is not logged out before or the request comes from trusted hosts
     } else if (typeof $routeParams.logout === 'undefined' ||
             !$routeParams.logout ||
             (path[1] === '' && $scope.cfg.find_hosts.indexOf($location.host()) !== -1)) {
@@ -225,7 +224,6 @@ myAppController.controller('AuthLoginController', function ($scope, $location, $
  * Password controller
  */
 myAppController.controller('AuthPasswordController', function ($scope, dataFactory, dataService) {
-    //$scope.newPassword = null;
     $scope.input = {
         id: $scope.auth.defaultProfile.id,
         password: '',
@@ -254,14 +252,15 @@ myAppController.controller('AuthPasswordController', function ($scope, dataFacto
         dataFactory.putApiWithHeaders('profiles_auth_update', inputAuth.id, input, headers).then(function (response) {
             $scope.loading = false;
             var profile = response.data.data;
-            profile['email'] = input.email;
             if (!profile) {
                 alertify.alertError($scope._t('error_update_data'));
                 return;
             }
+            profile['email'] = input.email;
+            profile['lang'] = $scope.loginLang;
             // Update profile
             dataFactory.putApiWithHeaders('profiles', input.id, profile, headers).then(function (response) {
-                $scope.redirectAfterLogin(true, $scope.auth.defaultProfile, input.password,false,'#/dashboard/firstlogin');
+                $scope.redirectAfterLogin(true, $scope.auth.defaultProfile, input.password, false, '#/dashboard/firstlogin');
                 // Update trust my network
                 /*dataFactory.putApiWithHeaders('trust_my_network', null, {trustMyNetwork: input.trust_my_network}, headers).then(function (response) {
                  $scope.redirectAfterLogin(input.trust_my_network, $scope.auth.defaultProfile, input.password);
