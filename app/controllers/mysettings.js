@@ -6,7 +6,7 @@
 /**
  * My Access
  */
-myAppController.controller('MySettingsController', function($scope, $window, $cookies,$timeout,$filter,dataFactory, dataService, myCache) {
+myAppController.controller('MySettingsController', function($scope, $window, $cookies,$timeout,$filter,$q,dataFactory, dataService, myCache) {
     $scope.id = $scope.user.id;
     $scope.devices = {};
     $scope.input = false;
@@ -27,6 +27,41 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
 //
 //            });
 //    };
+
+ /**
+     * Load all promises
+     */
+    $scope.allSettled = function () {
+        var promises = [
+             dataFactory.getApi('profiles', '/' + $scope.id, true),
+            dataFactory.getApi('devices', null, true)
+        ];
+
+        $q.allSettled(promises).then(function (response) {
+            var profile = response[0];
+            var devices = response[1];
+
+            $scope.loading = false;
+            // Error message
+            if (profile.state === 'rejected') {
+                $scope.loading = false;
+                alertify.alertError($scope._t('error_load_data'));
+                return;
+            }
+            // Success - profile
+            if (profile.state === 'fulfilled') {
+                 $scope.input = profile.value.data.data;
+            }
+            // Success - devices
+            if (devices.state === 'fulfilled') {
+               $scope.devices = devices.value.data.data.devices;
+            }
+
+            
+
+        });
+    };
+    $scope.allSettled();   
    
     
     /**
@@ -44,9 +79,9 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
             alertify.alertError($scope._t('error_load_data'));
         });
     };
-    if ($scope.id > 0) {
-        $scope.loadData($scope.id);
-    }
+//    if ($scope.id > 0) {
+//        $scope.loadData($scope.id);
+//    }
     
 
 
