@@ -781,6 +781,10 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
             if (devices.state === 'fulfilled') {
                 setTagList(devices.value.data.data.devices);
             }
+             // Success - instances
+            if (instances && instances.state === 'fulfilled') {
+                $scope.elementId.instances = instances.value.data.data;
+            }
             // Success - device
             if (device.state === 'fulfilled') {
                 var arr = [];
@@ -793,10 +797,7 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
                 $scope.elementId.show = true;
             }
             
-            // Success - instances
-            if (instances && instances.state === 'fulfilled') {
-                $scope.elementId.instances = instances.value.data.data;
-            }
+           
         });
     };
     $scope.allSettled();
