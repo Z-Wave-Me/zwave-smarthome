@@ -757,7 +757,7 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
            
         ];
         
-        if ($scope.user.role === 1) {
+        if ($scope.user.role === 2) {
             promises.push( dataFactory.getApi('instances'));
         }
 

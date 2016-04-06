@@ -1,6 +1,6 @@
 <!-- Fatal Error view -->
 <div class="app-fatal-error">
     <img class="fatal-error-img" ng-src="{{cfg.img.icons}}fatal-error.png" alt="{{v.type}}"/>
-    <div class="fatal-error-message">{{_t(cfg.route.fatalError.message)}}</div>
+    <div class="fatal-error-message">{{cfg.route.fatalError.message}}</div>
     <div class="fatal-error-info" ng-if="cfg.route.fatalError.info" ng-bind-html="cfg.route.fatalError.info|toTrusted"></div>
 </div>
