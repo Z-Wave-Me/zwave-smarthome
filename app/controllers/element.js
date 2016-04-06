@@ -753,15 +753,20 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
         var promises = [
             dataFactory.getApi('devices', '/' + $routeParams.id),
             dataFactory.getApi('locations'),
-            dataFactory.getApi('instances'),
-            dataFactory.getApi('devices')
+           dataFactory.getApi('devices')
+           
         ];
+        
+        if ($scope.user.role === 1) {
+            promises.push( dataFactory.getApi('instances'));
+        }
 
         $q.allSettled(promises).then(function (response) {
             var device = response[0];
             var locations = response[1];
-            var instances = response[2];
-            var devices = response[3];
+             var devices = response[2];
+            var instances = response[3];
+           
             $scope.loading = false;
             // Error message
             if (device.state === 'rejected') {
@@ -771,10 +776,6 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
             // Success - locations
             if (locations.state === 'fulfilled') {
                 $scope.elementId.locations = dataService.getRooms(locations.value.data.data).indexBy('id').value();
-            }
-            // Success - instances
-            if (instances.state === 'fulfilled') {
-                $scope.elementId.instances = instances.value.data.data;
             }
             // Success - devices
             if (devices.state === 'fulfilled') {
@@ -790,6 +791,11 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
                 }
                 setDevice(dataService.getDevicesData(arr,true).value()[0]);
                 $scope.elementId.show = true;
+            }
+            
+            // Success - instances
+            if (instances && instances.state === 'fulfilled') {
+                $scope.elementId.instances = instances.value.data.data;
             }
         });
     };
