@@ -23,7 +23,7 @@ myAppController.controller('EnoceanDeviceController', function($scope, $routePar
              $scope.loading = false;
             var module = response.data.data[0];
             if (Object.keys(module).length < 1) {
-                alertify.alertError($scope._t('no_data'));
+                alertify.alertWarning($scope._t('no_data'));
                 return;
             }
             if (!module.active) {
@@ -438,7 +438,7 @@ myAppController.controller('EnoceanTeachinController', function($scope, $routePa
                 }
             });
             if (!$scope.device) {
-                alertify.alertError($scope._t('no_data'));
+                alertify.alertWarning($scope._t('no_data'));
             }
 
             $scope.inclusion = {done: false, promisc: true, message: $scope._t('teachin_ready') + ' ' + ($scope.device.inclusion ? $scope.device.inclusion : ''), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
@@ -658,7 +658,7 @@ myAppController.controller('EnoceanManageController', function($scope, $location
         dataFactory.loadEnoceanApiData(true).then(function(response) {
              $scope.loading = false;
             if (Object.keys(response.data.devices).length < 1) {
-                 alertify.alertError($scope._t('no_data'));
+                 alertify.alertWarning($scope._t('no_data'));
                 return;
             }
 

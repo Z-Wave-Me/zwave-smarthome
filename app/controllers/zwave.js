@@ -40,7 +40,7 @@ myAppController.controller('ZwaveSelectController', function ($scope, $routePara
                 $scope.zwaveSelect.list = _.where(response.data, {brandname: brandname});
                 if(_.isEmpty($scope.zwaveSelect.list)){
                      $scope.loading = false;
-                     alertify.alertError($scope._t('no_data'));
+                     alertify.alertWarning($scope._t('no_data'));
                 }
                 
                 $scope.zwaveSelect.brandName = brandname;
@@ -310,7 +310,7 @@ myAppController.controller('ZwaveExcludeController', function ($scope, $location
         dataFactory.loadZwaveApiData(true).then(function (ZWaveAPIData) {
             var node = ZWaveAPIData.devices[$routeParams.id];
             if (!node) {
-                alertify.alertError($scope._t('no_data'));
+                alertify.alertWarning($scope._t('no_data'));
                 return;
             }
             $scope.zWaveDevice.controllerState = ZWaveAPIData.controller.data.controllerState.value;

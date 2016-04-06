@@ -635,7 +635,7 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
         dataFactory.postToRemote($scope.cfg.online_moduleid_url, {id: id, lang: $scope.lang}).then(function (response) {
             $scope.loading = false;
             if (_.isEmpty(response.data.data)) {
-                alertify.alertError($scope._t('no_data'));
+                alertify.alertWarning($scope._t('no_data'));
                 return;
             }
             $scope.module = response.data.data;

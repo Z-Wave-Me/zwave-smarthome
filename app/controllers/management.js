@@ -685,7 +685,7 @@ myAppController.controller('ManagementPostfixController', function ($scope, data
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('postfix', null, true).then(function (response) {
             if (_.isEmpty(response.data)) {
-                alertify.alertError($scope._t('no_data'));
+                alertify.alertWarning($scope._t('no_data'));
             }
             $scope.loading = false;
             $scope.postfix.all = response.data;

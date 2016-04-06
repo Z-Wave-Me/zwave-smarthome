@@ -86,7 +86,6 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
 
             // Success - notifications
             if (events.state === 'fulfilled') {
-                console.log(_.size(events.value.data.data.notifications))
                 setEvents(events.value.data.data.notifications);
             }
 
@@ -263,7 +262,7 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
             $scope.collection = data;
         }
         if (_.size($scope.collection) < 1) {
-            alertify.alertError($scope._t('no_data'));
+            alertify.alertWarning($scope._t('no_events'));
             return;
         }
     }
