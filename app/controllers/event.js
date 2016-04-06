@@ -32,6 +32,9 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
     };
     $scope.timeFilter = $scope.timeFilterDefault;
     $scope.devices = {
+        cnt:{
+            deviceEvents:{}
+        },
         find: {
             id: false,
             title: false,
@@ -261,6 +264,11 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
         } else {
             $scope.collection = data;
         }
+        
+         // Count events in the device
+         $scope.devices.cnt.deviceEvents =_.countBy(data,function (v) {
+            return v.source;
+        });
         if (_.size($scope.collection) < 1) {
             alertify.alertWarning($scope._t('no_events'));
             return;
