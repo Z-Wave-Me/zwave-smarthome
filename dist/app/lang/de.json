@@ -1,4 +1,7 @@
 {
+    "no_events": "Sorry, there are no events to show.",
+    "no_cameras": "There are no cameras available.",
+    "no_rooms": "There are no rooms available.",
     "hide_element_info": "Versteckt lediglich das Element",
     "deactivate_element_info": "Dieses Element kann in keiner Szene, App oder Module mehr verwendet werden und ist vollständig deaktiviert",
     "show_hidden": "Blende versteckte ein",

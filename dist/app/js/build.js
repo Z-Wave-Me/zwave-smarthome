@@ -11112,10 +11112,12 @@ myApp.config(function ($provide, $httpProvider, cfg) {
 
                 } else if (rejection.status == 403) {
                     dataService.logError(rejection);
+                    
                     angular.extend(cfg.route.fatalError, {
                         message: cfg.route.t['error_403'],
                         hide: true
                     });
+                    console.log(cfg.route.fatalError)
 
                     return $q.reject(rejection);
                 } else {
@@ -11187,17 +11189,22 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/auth/auth.html',
-    "<div ng-controller=AuthController><bb-loader></bb-loader><div class=login-lang ng-if=!auth.fromexpert><div class=btn-group ng-if=!auth.firstaccess><button type=button class=\"btn btn-default\" title=\"{{_t('lb_language')}}\" ng-click=\"expandNavi('loginLang',$event)\"><i class=\"fa fa-globe\"></i></button><div class=\"app-dropdown dropdown-lang\" ng-if=naviExpanded.loginLang><ul><li class=clickable ng-repeat=\"v in cfg.lang_list\" ng-click=setLoginLang(v)><img class=lang-img ng-src=app/img/flags/{{v}}.png alt=\"{{v}}\"></li></ul></div></div></div><div class=welcome-screen><h1>{{_t('welcome_1')}} {{auth.remoteId}}</h1></div><div ng-if=!auth.firstaccess ng-include=\"'app/views/auth/auth_login.html'\"></div><div ng-if=auth.firstaccess ng-include=\"'app/views/auth/auth_password.html'\"></div></div>"
+    "<div ng-controller=AuthController><div ng-if=!auth.firstaccess ng-include=\"'app/views/auth/auth_login.html'\"></div><div ng-if=auth.firstaccess ng-include=\"'app/views/auth/auth_password.html'\"></div></div>"
+  );
+
+
+  $templateCache.put('app/views/auth/auth_header.html',
+    "<div class=login-lang ng-if=!auth.fromexpert><div class=btn-group ng-if_=!auth.firstaccess><button type=button class=\"btn btn-default\" title=\"{{_t('lb_language')}}\" ng-click=\"expandNavi('loginLang', $event)\"><i class=\"fa fa-globe\"></i></button><div class=\"app-dropdown dropdown-lang\" ng-if=naviExpanded.loginLang><ul><li class=clickable ng-repeat=\"v in cfg.lang_list\" ng-click=setLoginLang(v)><img class=lang-img ng-src=app/img/flags/{{v}}.png alt=\"{{v}}\"></li></ul></div></div></div><div class=welcome-screen><h1>{{_t('welcome_1')}} {{auth.remoteId}}</h1></div>"
   );
 
 
   $templateCache.put('app/views/auth/auth_login.html',
-    "<div ng-controller=AuthLoginController><bb-loader></bb-loader><form name=form_login id=form_login class=\"form form-page\" ng-submit=login(input) novalidate><fieldset><h3><span ng-bind=\"_t('nav_login')\"></span></h3><div class=form-group><input name=login id=login class=form-control placeholder=\"{{_t('lb_login')}}\" value={{input.login}} ng-model=\"input.login\"></div><div class=form-group><input name=password id=password type=password class=form-control placeholder=\"{{_t('lb_password')}}\" ng-model=\"input.password\"></div><div class=form-group><input type=checkbox name=rememberme value=true id=rememberme ng-model=input.rememberme ng-checked=\"input.remember\"><label ng-bind=\"_t('remember_me')\"></label></div><a href=#passwordforgot><i class=\"fa fa-question-circle text-primary\"></i> {{_t('password_forgot')}}</a></fieldset><fieldset class=submit-entry><button type=submit class=\"btn btn-submit\" title=\"{{_t('lb_enter')}}\"><i class=\"fa fa-sign-in\"></i> {{_t('lb_enter')}}</button></fieldset></form></div>"
+    "<div ng-controller=AuthLoginController><bb-loader></bb-loader><div ng-include=\"'app/views/auth/auth_header.html'\"></div><form name=form_login id=form_login class=\"form form-page\" ng-submit=login(input) novalidate><fieldset><h3><span ng-bind=\"_t('nav_login')\"></span></h3><div class=form-group><input name=login id=login class=form-control placeholder=\"{{_t('lb_login')}}\" value={{input.login}} ng-model=\"input.login\"></div><div class=form-group><input name=password id=password type=password class=form-control placeholder=\"{{_t('lb_password')}}\" ng-model=\"input.password\"></div><div class=form-group><input type=checkbox name=rememberme value=true id=rememberme ng-model=input.rememberme ng-checked=\"input.remember\"><label ng-bind=\"_t('remember_me')\"></label></div><a href=#passwordforgot><i class=\"fa fa-question-circle text-primary\"></i> {{_t('password_forgot')}}</a></fieldset><fieldset class=submit-entry><button type=submit class=\"btn btn-submit\" title=\"{{_t('lb_enter')}}\"><i class=\"fa fa-sign-in\"></i> {{_t('lb_enter')}}</button></fieldset></form></div>"
   );
 
 
   $templateCache.put('app/views/auth/auth_password.html',
-    "<div ng-controller=AuthPasswordController><bb-loader></bb-loader><div class=\"alert alert-warning\"><i class=\"fa fa-exclamation-circle\"></i> {{_t('password_info')}}</div><form name=form_password id=form_password class=\"form form-page\" ng-submit=\"changePassword(form_password, input)\" novalidate><fieldset><p class=form-control-static><span ng-bind=\"_t('lb_login')\"></span>: <strong ng-bind=cfg.default_credentials.login></strong></p></fieldset><fieldset><label class=isrequired>{{_t('lb_new_password')}}:</label><input name=password id=password type=password class=form-control ng-model=input.password ng-blur=\"passwordBlur = true\" ng-required=true ng-minlength=\"6\"><bb-validator input-name=form_password.password.$error.required trans=_t(&quot;field_required&quot;) has-blur=passwordBlur></bb-validator><bb-validator input-name=form_password.password.$error.minlength trans=_t(&quot;password_valid&quot;) has-blur=passwordBlur></bb-validator></fieldset><fieldset><label class=isrequired>{{_t('confirm_password')}}:</label><input name=password_confirm id=password_confirm type=password class=form-control ng-blur=\"passwordConfirmBlur = true\" ng-model=input.passwordConfirm bb-compare-to=\"password\"><bb-validator input-name=form_password.password_confirm.$error.compareto trans=_t(&quot;passwords_must_match&quot;) has-blur=passwordConfirmBlur></bb-validator></fieldset><fieldset><div class=form-group><label>{{_t('lb_email')}}:</label><input name=email id=email type=email class=form-control ng-model=input.email ng-blur=\"emailBlur = true\"><bb-validator input-name=form_password.email.$error.required trans=_t(&quot;field_required&quot;) has-blur=emailBlur></bb-validator><bb-validator input-name=form_password.email.$error.email trans=_t(&quot;email_invalid&quot;) has-blur=emailBlur></bb-validator></div><bb-help-text trans=\"_t('password_email_info')\"></bb-help-text></fieldset><fieldset class=submit-entry><button type=submit class=\"btn btn-submit\" title=\"{{_t('lb_enter')}}\" ng-disabled=form_password.$invalid><i class=\"fa fa-check\"></i> <span ng-bind=\"_t('lb_submit')\"></span></button></fieldset></form></div>"
+    "<div ng-controller=AuthPasswordController><bb-loader></bb-loader><div ng-include=\"'app/views/auth/auth_header.html'\"></div><div class=\"alert alert-warning\"><i class=\"fa fa-exclamation-circle\"></i> {{_t('password_info')}}</div><form name=form_password id=form_password class=\"form form-page\" ng-submit=\"changePassword(form_password, input)\" novalidate><fieldset><p class=form-control-static><span ng-bind=\"_t('lb_login')\"></span>: <strong ng-bind=cfg.default_credentials.login></strong></p></fieldset><fieldset><label class=isrequired>{{_t('lb_new_password')}}:</label><input name=password id=password type=password class=form-control ng-model=input.password ng-blur=\"passwordBlur = true\" ng-required=true ng-minlength=\"6\"><bb-validator input-name=form_password.password.$error.required trans=_t(&quot;field_required&quot;) has-blur=passwordBlur></bb-validator><bb-validator input-name=form_password.password.$error.minlength trans=_t(&quot;password_valid&quot;) has-blur=passwordBlur></bb-validator></fieldset><fieldset><label class=isrequired>{{_t('confirm_password')}}:</label><input name=password_confirm id=password_confirm type=password class=form-control ng-blur=\"passwordConfirmBlur = true\" ng-model=input.passwordConfirm bb-compare-to=\"password\"><bb-validator input-name=form_password.password_confirm.$error.compareto trans=_t(&quot;passwords_must_match&quot;) has-blur=passwordConfirmBlur></bb-validator></fieldset><fieldset><div class=form-group><label>{{_t('lb_email')}}:</label><input name=email id=email type=email class=form-control ng-model=input.email ng-blur=\"emailBlur = true\"><bb-validator input-name=form_password.email.$error.required trans=_t(&quot;field_required&quot;) has-blur=emailBlur></bb-validator><bb-validator input-name=form_password.email.$error.email trans=_t(&quot;email_invalid&quot;) has-blur=emailBlur></bb-validator></div><bb-help-text trans=\"_t('password_email_info')\"></bb-help-text></fieldset><fieldset class=submit-entry><button type=submit class=\"btn btn-submit\" title=\"{{_t('lb_enter')}}\" ng-disabled=form_password.$invalid><i class=\"fa fa-check\"></i> <span ng-bind=\"_t('lb_submit')\"></span></button></fieldset></form></div>"
   );
 
 
@@ -11242,7 +11249,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/elements/element_id.html',
-    "<div ng-controller=ElementIdController class=mobile-padding><bb-loader></bb-loader><div ng-if=elementId.show><h2><span ng-bind=\"_t('lb_cfg_view')\"></span>: <span ng-bind=elementId.input.metrics.title></span></h2><form name=form_element id=form_element class=\"form form-page\" autocomplete=off ng-submit=store(elementId.input) novalidate><fieldset ng-if=elementAccess(cfg.role_access.admin)><p class=form-control-static><span ng-bind=\"_t('element_id')\"></span>: <strong ng-bind=elementId.input.id></strong></p><div class=form-group_><label>{{_t('lb_element_name')}}:</label><input name=title id=title class=form-control value={{elementId.input.metrics.title}} placeholder=\"{{_t('lb_element_name')}}\" ng-model=\"elementId.input.metrics.title\"></div></fieldset><fieldset><h3><span ng-bind=\"_t('lb_configuration')\"></span></h3><div ng-if=elementAccess(cfg.role_access.admin)><div class=form-group ng-if=elementId.appType.instance><span ng-bind=\"_t('lb_gen_by_module')\"></span> <a class=\"btn btn-default\" ng-href=#module/put/{{elementId.appType.instance.id}}><strong>{{elementId.appType.instance.title}}</strong> - {{elementId.appType.instance.module}}</a></div><div class=form-group ng-if=elementId.appType.zwave>{{_t('lb_gen_by')}} <a href=#zwave/devices/{{elementId.appType.zwave}} class=\"btn btn-default\">{{_t('lb_zwave_device')}} #{{elementId.appType.zwave}}</a></div><div class=form-group ng-if=elementId.appType.enocean>{{_t('lb_gen_by')}} <a href=#enocean/manage/{{elementId.appType.enocean}} class=\"btn btn-default\">{{_t('enocean_device')}} #{{elementId.appType.enocean}}</a></div><div class=form-group><input type=checkbox name=dashboard id=dashboard ng-init=\"visibility.checked = !elementId.input.visibility\" ng-model=visibility.checked ng-change=\"elementId.input.visibility = !visibility.checked\" ng-checked=\"!elementId.input.visibility\"><label>{{_t('hide_element')}}</label><bb-help-text trans=\"_t('hide_element_info')\"></bb-help-text></div></div><div class=form-group ng-if=\"elementAccess(cfg.role_access.admin) && elementId.appType.zwave\"><input type=checkbox name=permanently_hidden id=permanently_hidden ng-model=elementId.input.permanently_hidden ng-checked=\"elementId.input.permanently_hidden\"><label>{{_t('lb_deactivate')}}</label><bb-help-text trans=\"_t('deactivate_element_info')\"></bb-help-text></div><div class=form-group><div><input type=checkbox name=dashboard value={{elementId.input.onDashboard}} id=dashboard ng-model=elementId.input.onDashboard ng-checked=\"elementId.input.onDashboard\"><label>{{_t('lb_add_dashboard')}}</label></div><div><input type=checkbox name=hide_events value={{elementId.input.id}} id=hide_events ng-model=elementId.input.hide_events ng-checked=\"user.hide_single_device_events.indexOf(elementId.input.id) === -1 ? false : true\"><label>{{_t('lb_hide_events_device')}}</label></div></div><div class=\"form-group form-inline\" ng-if=elementAccess(cfg.role_access.admin)><h3>{{_t('lb_assign_room')}}</h3><div class=btn-group><button type=button class=\"btn btn-default\" ng-click=\"expandNavi('elidDropDown', $event)\">{{elementId.locations[elementId.input.location].title|cutText:true:20}} <i class=\"fa fa-caret-down\"></i></button><div class=\"app-dropdown app-dropdown-left\" ng-if=naviExpanded.elidDropDown><ul><li class=clickable ng-class=\"elementId.input.location == v.id ? 'active':''\" ng-click=\"elementId.input.location = v.id\" ng-repeat=\"v in elementId.locations\"><a><img class=navi-img ng-src={{v.img_src}} alt=\"img\"> {{v.title|cutText:true:20}} <i class=\"fa fa-check menu-arrow\" ng-if=\"elementId.input.location == v.id\"></i></a></li></ul></div></div></div></fieldset><fieldset ng-if=elementAccess(cfg.role_access.admin)><h3><span ng-bind=\"_t('lb_tags')\"></span></h3><div class=\"form-group form-inline\"><div class=input-group><input name=add_tag id=add_tag class=form-control placeholder=\"{{_t('lb_add_tag')}}\" ng-model=searchText bb-key-event=searchMe(searchText); data-toggle=\"dropdown\"> <span class=\"input-group-addon clickable\" title=\"{{_t('lb_add_tag')}}\" ng-click=addTag(searchText)><i class=\"fa fa-plus text-success\"></i></span><div class=\"app-dropdown app-dropdown-left\" ng-if=autoCompletePanel><ul><li href=\"\" ng-click=addTag(v) ng-repeat=\"v in suggestions | orderBy:'toString()'\" ng-if=\"elementId.input.tags.indexOf(v) === -1\"><a href=\"\"><i class=\"fa fa-plus text-success\"></i> {{v}}</a></li></ul></div></div></div><div class=\"form-group last\"><a href=\"\" class=\"btn btn-default btn-tag\" id=tag_{{$index}} ng-repeat=\"t in elementId.input.tags | orderBy:'toString()'\" ng-click=removeTag($index)>{{t}} <i class=\"fa fa-times text-danger\" title=\"{{_t('lb_remove')}}\"></i></a></div></fieldset><fieldset class=submit-entry><button type=button title=\"{{_t('lb_cancel')}}\" class=\"btn btn-default\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name ng-bind=\"_t('lb_cancel')\"></span></button> <button type=submit title=\"{{_t('lb_save')}}\" class=\"btn btn-submit\"><i class=\"fa fa-check\"></i> <span class=btn-name ng-bind=\"_t('lb_save')\"></span></button></fieldset></form></div></div>"
+    "<div ng-controller=ElementIdController class=mobile-padding><bb-loader></bb-loader><div ng-if=elementId.show><h2><span ng-bind=\"_t('lb_cfg_view')\"></span>: <span ng-bind=elementId.input.metrics.title></span></h2><form name=form_element id=form_element class=\"form form-page\" autocomplete=off ng-submit=store(elementId.input) novalidate><fieldset ng-if=elementAccess(cfg.role_access.admin)><p class=form-control-static><span ng-bind=\"_t('element_id')\"></span>: <strong ng-bind=elementId.input.id></strong></p><div class=form-group_><label>{{_t('lb_element_name')}}:</label><input name=title id=title class=form-control value={{elementId.input.metrics.title}} placeholder=\"{{_t('lb_element_name')}}\" ng-model=\"elementId.input.metrics.title\"></div></fieldset><fieldset><h3><span ng-bind=\"_t('lb_configuration')\"></span></h3><div ng-if=elementAccess(cfg.role_access.admin)><div class=form-group ng-if=elementId.appType.instance><span ng-bind=\"_t('lb_gen_by_module')\"></span> <a class=\"btn btn-default\" ng-href=#module/put/{{elementId.appType.instance.id}}><strong>{{elementId.appType.instance.title}}</strong></a></div><div class=form-group ng-if=elementId.appType.zwave>{{_t('lb_gen_by')}} <a href=#zwave/devices/{{elementId.appType.zwave}} class=\"btn btn-default\">{{_t('lb_zwave_device')}} #{{elementId.appType.zwave}}</a></div><div class=form-group ng-if=elementId.appType.enocean>{{_t('lb_gen_by')}} <a href=#enocean/manage/{{elementId.appType.enocean}} class=\"btn btn-default\">{{_t('enocean_device')}} #{{elementId.appType.enocean}}</a></div><div class=form-group><input type=checkbox name=dashboard id=dashboard ng-init=\"visibility.checked = !elementId.input.visibility\" ng-model=visibility.checked ng-change=\"elementId.input.visibility = !visibility.checked\" ng-checked=\"!elementId.input.visibility\"><label>{{_t('hide_element')}}</label><bb-help-text trans=\"_t('hide_element_info')\"></bb-help-text></div></div><div class=form-group ng-if=\"elementAccess(cfg.role_access.admin) && elementId.appType.zwave\"><input type=checkbox name=permanently_hidden id=permanently_hidden ng-model=elementId.input.permanently_hidden ng-checked=\"elementId.input.permanently_hidden\"><label>{{_t('lb_deactivate')}}</label><bb-help-text trans=\"_t('deactivate_element_info')\"></bb-help-text></div><div class=form-group><div><input type=checkbox name=dashboard value={{elementId.input.onDashboard}} id=dashboard ng-model=elementId.input.onDashboard ng-checked=\"elementId.input.onDashboard\"><label>{{_t('lb_add_dashboard')}}</label></div><div><input type=checkbox name=hide_events value={{elementId.input.id}} id=hide_events ng-model=elementId.input.hide_events ng-checked=\"user.hide_single_device_events.indexOf(elementId.input.id) === -1 ? false : true\"><label>{{_t('lb_hide_events_device')}}</label></div></div><div class=\"form-group form-inline\" ng-if=elementAccess(cfg.role_access.admin)><h3>{{_t('lb_assign_room')}}</h3><div class=btn-group><button type=button class=\"btn btn-default\" ng-click=\"expandNavi('elidDropDown', $event)\">{{elementId.locations[elementId.input.location].title|cutText:true:20}} <i class=\"fa fa-caret-down\"></i></button><div class=\"app-dropdown app-dropdown-left\" ng-if=naviExpanded.elidDropDown><ul><li class=clickable ng-class=\"elementId.input.location == v.id ? 'active':''\" ng-click=\"elementId.input.location = v.id\" ng-repeat=\"v in elementId.locations\"><a><img class=navi-img ng-src={{v.img_src}} alt=\"img\"> {{v.title|cutText:true:20}} <i class=\"fa fa-check menu-arrow\" ng-if=\"elementId.input.location == v.id\"></i></a></li></ul></div></div></div></fieldset><fieldset ng-if=elementAccess(cfg.role_access.admin)><h3><span ng-bind=\"_t('lb_tags')\"></span></h3><div class=\"form-group form-inline\"><div class=input-group><input name=add_tag id=add_tag class=form-control placeholder=\"{{_t('lb_add_tag')}}\" ng-model=searchText bb-key-event=searchMe(searchText); data-toggle=\"dropdown\"> <span class=\"input-group-addon clickable\" title=\"{{_t('lb_add_tag')}}\" ng-click=addTag(searchText)><i class=\"fa fa-plus text-success\"></i></span><div class=\"app-dropdown app-dropdown-left\" ng-if=autoCompletePanel><ul><li href=\"\" ng-click=addTag(v) ng-repeat=\"v in suggestions | orderBy:'toString()'\" ng-if=\"elementId.input.tags.indexOf(v) === -1\"><a href=\"\"><i class=\"fa fa-plus text-success\"></i> {{v}}</a></li></ul></div></div></div><div class=\"form-group last\"><a href=\"\" class=\"btn btn-default btn-tag\" id=tag_{{$index}} ng-repeat=\"t in elementId.input.tags | orderBy:'toString()'\" ng-click=removeTag($index)>{{t}} <i class=\"fa fa-times text-danger\" title=\"{{_t('lb_remove')}}\"></i></a></div></fieldset><fieldset class=submit-entry><button type=button title=\"{{_t('lb_cancel')}}\" class=\"btn btn-default\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name ng-bind=\"_t('lb_cancel')\"></span></button> <button type=submit title=\"{{_t('lb_save')}}\" class=\"btn btn-submit\"><i class=\"fa fa-check\"></i> <span class=btn-name ng-bind=\"_t('lb_save')\"></span></button></fieldset></form></div></div>"
   );
 
 
@@ -11252,12 +11259,12 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/elements/elements_page.html',
-    "<div ng-controller=ElementBaseController><bb-loader></bb-loader><div ng-if=dataHolder.devices.noDevices ng-include=\"'app/views/elements/no_devices.html'\"></div><div ng-if=\"dataHolder.devices.show && !dataHolder.devices.noDevices\"><div class=\"page-control form-inline\"><div class=\"btn-group btn-goup-block btn-goup-3\"><button class=\"btn btn-default\" ng-click=\"expandNavi('elCategories', $event)\" ng-class=\"!_.isEmpty(dataHolder.devices.filter) ? 'active':'' \"><i class=\"fa fa-filter\"></i> <span class=btn-name ng-if=dataHolder.devices.filter.deviceType>{{_t(dataHolder.devices.filter.deviceType) | cutText:true:15}}</span> <span class=btn-name ng-if=\"dataHolder.devices.filter.visibility === false\">{{_t('hidden_elements')|cutText:true:15}}</span> <span class=btn-name ng-if=_.isEmpty(dataHolder.devices.filter)>{{_t('all_elements')|cutText:true:15}}</span> <span class=\"btn-name item-cnt\">({{dataHolder.cnt.collection}})</span></button> <button class=\"btn btn-default\" ng-click=\"expandNavi('elTags', $event)\" ng-class=\"dataHolder.devices.filter.tag ? 'active':'' \"><i class=\"fa fa-tags\"></i> <span class=btn-name ng-if=dataHolder.devices.filter.tag>{{dataHolder.devices.filter.tag|cutText:true:15}}</span> <span class=btn-name ng-if=!dataHolder.devices.filter.tag>{{_t('lb_tags')}}</span></button> <button class=\"btn btn-default\" ng-click=\"expandNavi('elOrderBy', $event)\"><i class=\"fa fa-sort-alpha-asc\"></i> <span class=btn-name>{{_t(dataHolder.devices.orderBy) | cutText:true:15}}</span></button></div><div class=\"input-group search-group\"><input ng-model=q class=form-control value={{q}}> <span class=input-group-addon><i class=\"fa fa-search\"></i></span></div></div><div class=page-navi ng-if=naviExpanded.elCategories><div class=page-navi-in><ul><li class=page-cat-0 ng-class=\"_.isEmpty(dataHolder.devices.filter) == true ? 'active': ''\"><a href=\"\" ng-click=setFilter()><i class=\"fa fa-check-circle-o\"></i> {{_t('all_elements')}} <span class=item-cnt>({{dataHolder.cnt.devices}})</span> <span class=page-navi-icon><i class=\"fa fa-chevron-right\"></i></span></a></li><li class=page-cat-{{v}} ng-repeat=\"(v,k) in dataHolder.devices.deviceType\" ng-class=\"dataHolder.devices.filter.deviceType == v ? 'active': ''\"><a href=\"\" ng-click=\"setFilter({deviceType: v})\"><i class=\"fa {{v|getElCategoryIcon}}\"></i> {{_t(v) | cutText:true:30}} <span class=item-cnt>({{k}})</span> <span class=page-navi-icon><i class=\"fa fa-chevron-right\"></i></span></a></li></ul><div class=page-navi-content><a class=\"btn btn-default btn-tag\" ng-click=\"showHiddenEl((dataHolder.devices.showHidden ? false:true))\" ng-class=\"dataHolder.devices.showHidden ? 'active': ''\"><i class=\"fa fa-eye\"></i> {{_t('show_hidden')}}</a></div></div></div><div class=page-navi ng-if=naviExpanded.elTags><div class=page-navi-in><div class=page-navi-content><a class=\"btn btn-default btn-tag\" ng-click=setFilter() ng-class=\"_.isEmpty(dataHolder.devices.filter) == true ? 'active': ''\">{{_t('all_elements')}}</a> <a class=\"btn btn-default btn-tag\" ng-repeat=\"v in dataHolder.devices.tags\" ng-click=\"setFilter({tag: v})\" ng-class=\"dataHolder.devices.filter.tag == v ? 'active': ''\">{{_t(v) | cutText:true:30}}</a></div></div></div><div class=page-navi ng-if=naviExpanded.elOrderBy><div class=page-navi-in><div class=page-navi-content><p class=page-navi-title>{{_t('sortby')}}</p><a class=\"btn btn-default btn-tag\" href=\"\" ng-repeat=\"(k,v) in cfg.orderby.elements\" ng-click=setOrderBy(k) ng-class=\"dataHolder.devices.orderBy == k ? 'active': ''\">{{_t(k) | cutText:true:30}}</a></div></div></div><div ng-include=\"'app/views/elements/list.html'\"></div></div></div>"
+    "<div ng-controller=ElementBaseController><bb-loader></bb-loader><div ng-if=dataHolder.devices.noDevices ng-include=\"'app/views/elements/no_devices.html'\"></div><div ng-if=\"dataHolder.devices.show && !dataHolder.devices.noDevices\"><div class=\"page-control form-inline\"><div class=\"btn-group btn-goup-block btn-goup-3\"><button class=\"btn btn-default\" ng-click=\"expandNavi('elCategories', $event)\" ng-class=\"!_.isEmpty(dataHolder.devices.filter) ? 'active':'' \"><i class=\"fa fa-filter\"></i> <span class=btn-name ng-if=dataHolder.devices.filter.deviceType>{{_t(dataHolder.devices.filter.deviceType) | cutText:true:15}}</span> <span class=btn-name ng-if=\"dataHolder.devices.filter.visibility === false\">{{_t('hidden_elements')|cutText:true:15}}</span> <span class=btn-name ng-if=_.isEmpty(dataHolder.devices.filter)>{{_t('all_elements')|cutText:true:15}}</span> <span class=\"btn-name item-cnt\">({{dataHolder.cnt.collection}})</span></button> <button class=\"btn btn-default\" ng-click=\"expandNavi('elTags', $event)\" ng-class=\"dataHolder.devices.filter.tag ? 'active':'' \"><i class=\"fa fa-tags\"></i> <span class=btn-name ng-if=dataHolder.devices.filter.tag>{{dataHolder.devices.filter.tag|cutText:true:15}}</span> <span class=btn-name ng-if=!dataHolder.devices.filter.tag>{{_t('lb_tags')}}</span></button> <button class=\"btn btn-default\" ng-click=\"expandNavi('elOrderBy', $event)\"><i class=\"fa fa-sort-alpha-asc\"></i> <span class=btn-name>{{_t(dataHolder.devices.orderBy) | cutText:true:15}}</span></button></div><div class=\"input-group search-group\"><input ng-model=q class=form-control value={{q}}> <span class=input-group-addon><i class=\"fa fa-search\"></i></span></div></div><div class=page-navi ng-if=naviExpanded.elCategories><div class=page-navi-in><ul><li class=page-cat-0 ng-class=\"_.isEmpty(dataHolder.devices.filter) == true ? 'active': ''\"><a href=\"\" ng-click=setFilter()><i class=\"fa fa-check-circle-o\"></i> {{_t('all_elements')}} <span class=item-cnt>({{dataHolder.cnt.devices}})</span> <span class=page-navi-icon><i class=\"fa fa-chevron-right\"></i></span></a></li><li class=page-cat-{{v}} ng-repeat=\"(v,k) in dataHolder.devices.deviceType\" ng-class=\"dataHolder.devices.filter.deviceType == v ? 'active': ''\"><a href=\"\" ng-click=\"setFilter({deviceType: v})\"><i class=\"fa {{v|getElCategoryIcon}}\"></i> {{_t(v) | cutText:true:30}} <span class=item-cnt>({{k}})</span> <span class=page-navi-icon><i class=\"fa fa-chevron-right\"></i></span></a></li></ul><div class=page-navi-content><a class=\"btn btn-default btn-tag\" ng-click=\"showHiddenEl((dataHolder.devices.showHidden ? false:true))\" ng-class=\"dataHolder.devices.showHidden ? 'active': ''\"><i class=\"fa fa-eye\"></i> {{_t('show_hidden')}}</a></div></div></div><div class=page-navi ng-if=naviExpanded.elTags><div class=page-navi-in><div class=page-navi-content><a class=\"btn btn-default btn-tag\" ng-click=setFilter() ng-class=\"_.isEmpty(dataHolder.devices.filter) == true ? 'active': ''\">{{_t('all_elements')}}</a> <a class=\"btn btn-default btn-tag\" ng-repeat=\"v in dataHolder.devices.tags\" ng-click=\"setFilter({tag: v})\" ng-class=\"dataHolder.devices.filter.tag == v ? 'active': ''\">{{v|cutText:true:30}}</a></div></div></div><div class=page-navi ng-if=naviExpanded.elOrderBy><div class=page-navi-in><div class=page-navi-content><p class=page-navi-title>{{_t('sortby')}}</p><a class=\"btn btn-default btn-tag\" href=\"\" ng-repeat=\"(k,v) in cfg.orderby.elements\" ng-click=setOrderBy(k) ng-class=\"dataHolder.devices.orderBy == k ? 'active': ''\">{{_t(k) | cutText:true:30}}</a></div></div></div><div ng-include=\"'app/views/elements/list.html'\"></div></div></div>"
   );
 
 
   $templateCache.put('app/views/elements/elements_room.html',
-    "<div ng-controller=ElementBaseController><bb-loader></bb-loader><div ng-controller=ElementRoomController><h1>{{_t('lb_devices_room')}} {{_t(dataHolder.devices.rooms[dataHolder.devices.filter.location].title)}}</h1><div ng-if=!dataHolder.devices.show ng-include=\"'app/views/elements/no_elements_room.html'\"></div><div ng-if=dataHolder.devices.show ng-include=\"'app/views/elements/list.html'\"></div></div></div>"
+    "<div ng-controller=ElementBaseController><bb-loader></bb-loader><div ng-controller=ElementRoomController><h1>{{_t('lb_devices_room')}} {{dataHolder.devices.rooms[dataHolder.devices.filter.location].title}}</h1><div ng-if=!dataHolder.devices.show ng-include=\"'app/views/elements/no_elements_room.html'\"></div><div ng-if=dataHolder.devices.show ng-include=\"'app/views/elements/list.html'\"></div></div></div>"
   );
 
 
@@ -11462,7 +11469,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/error.html',
-    "<div class=app-fatal-error><img class=fatal-error-img ng-src={{cfg.img.icons}}fatal-error.png alt=\"{{v.type}}\"><div class=fatal-error-message>{{_t(cfg.route.fatalError.message)}}</div><div class=fatal-error-info ng-if=cfg.route.fatalError.info ng-bind-html=cfg.route.fatalError.info|toTrusted></div></div>"
+    "<div class=app-fatal-error><img class=fatal-error-img ng-src={{cfg.img.icons}}fatal-error.png alt=\"{{v.type}}\"><div class=fatal-error-message>{{cfg.route.fatalError.message}}</div><div class=fatal-error-info ng-if=cfg.route.fatalError.info ng-bind-html=cfg.route.fatalError.info|toTrusted></div></div>"
   );
 
 
@@ -11472,7 +11479,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/events/events.html',
-    "<div ng-controller=EventController><bb-loader></bb-loader><div class=\"page-control form-inline\"><div class=\"btn-group btn-goup-block btn-goup-2\"><button class=\"btn btn-default\" ng-click=\"expandNavi('evFilter', $event)\" ng-class=\"devices.find.title || currLevel ? 'active':'' \"><i class=\"fa fa-filter\"></i> <span ng-if=\"!devices.find.title && !currLevel\">{{_t('lb_show_all')}}</span> <span ng-if=devices.find.title>{{_t(devices.find.title) | cutText:true:15}}</span> <span ng-if=currLevel>{{_t('lb_notify_' + currLevel)}}</span></button> <button class=\"btn btn-default\" ng-click=\"expandNavi('evDays', $event)\" ng-switch=timeFilter.day><i class=\"fa fa-calendar-check-o\"></i> <span ng-switch-when=2>{{_t('lb_yesterday')}}</span> <span ng-switch-when=7>7 {{_t('lb_days')}}</span> <span ng-switch-default>{{_t('lb_today')}}</span></button></div></div><div class=page-navi ng-if=naviExpanded.evFilter><div class=page-navi-in><p class=page-navi-title>{{_t('error_type')}}</p><div class=page-navi-content><a class=\"btn btn-default btn-tag\" ng-href=#events/level/{{v.key}} ng-repeat=\"v in eventLevels\" ng-class=\"v.key == currLevel? 'active': ''\">{{_t('lb_notify_' + v.val)}}</a></div><div ng-if=devices.show><p class=page-navi-title>{{_t('lb_device')}}</p><ul><li class=page-cat-0 ng-class=\"v.id===devices.find.id ? 'active':''\" ng-repeat=\"v in devices.data\"><a ng-href=#events/source/{{v.id}}><img class=navi-img ng-src={{v.metrics.icon|getElementIcon:v:v.metrics.level}} alt=\"img\"> {{v.metrics.title|cutText:true:25}} <span class=page-navi-icon><i class=\"fa fa-chevron-right\"></i></span></a></li></ul></div></div></div><div class=page-navi ng-if=naviExpanded.evDays><div class=page-navi-in><div class=page-navi-content><a class=\"btn btn-default btn-tag\" href=\"\" ng-class=\"timeFilter.day == 1 ? 'active': ''\" ng-click=changeTime(1)>{{_t('lb_today')}}</a> <a class=\"btn btn-default btn-tag\" href=\"\" ng-class=\"timeFilter.day == 2 ? 'active': ''\" ng-click=changeTime(2)>{{_t('lb_yesterday')}}</a> <a class=\"btn btn-default btn-tag\" href=\"\" ng-class=\"timeFilter.day == 7 ? 'active': ''\" ng-click=changeTime(7)>7 {{_t('lb_days')}}</a></div></div></div><div class=info-lert ng-if=\"devices.find.id && collection.length < 1\"><i class=\"fa fa-info-circle text-info\"></i> {{_t('device_no_event')}}.</div><div class=info-lert ng-if=\"user.hide_all_device_events || user.hide_system_events\"><i class=\"fa fa-info-circle text-info\"></i> <span ng-bind=\"_t('events_hidden')\"></span></div><div class=\"app-row app-row-report app-row-event clearfix\"><div class=\"report-entry event-level-{{v.level}}\" dir-paginate=\"v in collection | orderBy: '-timestamp' | itemsPerPage: pageSize\" current-page=currentPage id=row_{{v.id}}><div class=\"report-col report-media\"><img id=event_img_{{v.id}} class=report-img ng-src={{v.type|getEventIcon:v.message}} alt=\"{{v.type}}\"></div><div class=\"report-col report-body\"><span class=\"text-supp event-date\" title=\"{{v.timestamp| date:'dd.MM.yyyy H:mm'}}\" ng-bind=\"v.timestamp | eventDate\"></span> <span class=hide-on-mobile>|</span> <span ng-if=\"v.source && v.message\"><a ng-href=#element/{{v.source}} ng-if=\"elementAccess(cfg.role_access.element) && (cfg.events_clickable.indexOf(v.level) > -1)\"><span ng-if=\"v.message | hasNode:'l'\"><span ng-bind=v.message.dev></span> {{_t('lb_is')}} <strong ng-bind=v.message.l></strong></span> <span ng-if=\"!(v.message | hasNode:'l')\" ng-bind=v.message></span></a> <span ng-if=\"!elementAccess(cfg.role_access.element) || (cfg.events_clickable.indexOf(v.level) === -1)\"><span ng-if=\"v.message | hasNode:'l'\"><span ng-bind=v.message.dev></span> {{_t('lb_is')}} <strong ng-bind=v.message.l></strong></span> <span ng-if=\"!(v.message | hasNode:'l')\" ng-bind=v.message></span></span></span> <span class=report-message ng-bind=v.message ng-if=\"!v.source && !v.message\"></span></div><div class=\"report-col report-ctrl\" ng-include=\"'app/views/events/dropdown.html'\"></div></div></div><div class=\"text-center mobile-padding\" ng-if=\"collection.length > 0\"><dir-pagination-controls boundary-links=true></dir-pagination-controls></div></div>"
+    "<div ng-controller=EventController><bb-loader></bb-loader><div class=\"page-control form-inline\"><div class=\"btn-group btn-goup-block btn-goup-2\"><button class=\"btn btn-default\" ng-click=\"expandNavi('evFilter', $event)\" ng-class=\"devices.find.title || currLevel ? 'active':'' \"><i class=\"fa fa-filter\"></i> <span ng-if=\"!devices.find.title && !currLevel\">{{_t('lb_show_all')}}</span> <span ng-if=devices.find.title>{{devices.find.title | cutText:true:15}}</span> <span ng-if=currLevel>{{_t('lb_notify_' + currLevel)}}</span></button> <button class=\"btn btn-default\" ng-click=\"expandNavi('evDays', $event)\" ng-switch=timeFilter.day><i class=\"fa fa-calendar-check-o\"></i> <span ng-switch-when=2>{{_t('lb_yesterday')}}</span> <span ng-switch-when=7>7 {{_t('lb_days')}}</span> <span ng-switch-default>{{_t('lb_today')}}</span></button></div></div><div class=page-navi ng-if=naviExpanded.evFilter><div class=page-navi-in><div class=page-navi-content><a class=\"btn btn-default btn-tag\" ng-href=#events/level/{{v.key}} ng-repeat=\"v in eventLevels\" ng-class=\"v.key == currLevel? 'active': ''\">{{_t('lb_notify_' + v.val)}}</a></div><div ng-if=devices.show><div class=page-navi-content><a class=\"btn btn-default btn-tag\" ng-href=#events/source/{{v.id}} ng-repeat=\"v in devices.data\" ng-class=\"v.id===devices.find.id ? 'active':''\" ng-if=devices.cnt.deviceEvents[v.id]><img class=navi-img ng-src={{v.metrics.icon|getElementIcon:v:v.metrics.level}} alt=\"img\"> {{v.metrics.title|cutText:true:25}} <span class=item-cnt>({{devices.cnt.deviceEvents[v.id]}})</span></a></div></div></div></div><div class=page-navi ng-if=naviExpanded.evDays><div class=page-navi-in><div class=page-navi-content><a class=\"btn btn-default btn-tag\" href=\"\" ng-class=\"timeFilter.day == 1 ? 'active': ''\" ng-click=changeTime(1)>{{_t('lb_today')}}</a> <a class=\"btn btn-default btn-tag\" href=\"\" ng-class=\"timeFilter.day == 2 ? 'active': ''\" ng-click=changeTime(2)>{{_t('lb_yesterday')}}</a> <a class=\"btn btn-default btn-tag\" href=\"\" ng-class=\"timeFilter.day == 7 ? 'active': ''\" ng-click=changeTime(7)>7 {{_t('lb_days')}}</a></div></div></div><div class=info-lert ng-if=\"devices.find.id && collection.length < 1\"><i class=\"fa fa-info-circle text-info\"></i> {{_t('device_no_event')}}.</div><div class=info-lert ng-if=\"user.hide_all_device_events || user.hide_system_events\"><i class=\"fa fa-info-circle text-info\"></i> <span ng-bind=\"_t('events_hidden')\"></span></div><div class=\"app-row app-row-report app-row-event clearfix\"><div class=\"report-entry event-level-{{v.level}}\" dir-paginate=\"v in collection | orderBy: '-timestamp' | itemsPerPage: pageSize\" current-page=currentPage id=row_{{v.id}}><div class=\"report-col report-media\"><img id=event_img_{{v.id}} class=report-img ng-src={{v.type|getEventIcon:v.message}} alt=\"{{v.type}}\"></div><div class=\"report-col report-body\"><span class=\"text-supp event-date\" title=\"{{v.timestamp| date:'dd.MM.yyyy H:mm'}}\" ng-bind=\"v.timestamp | eventDate\"></span> <span class=hide-on-mobile>|</span> <span ng-if=\"v.source && v.message\"><a ng-href=#element/{{v.source}} ng-if=\"elementAccess(cfg.role_access.element) && (cfg.events_clickable.indexOf(v.level) > -1)\"><span ng-if=\"v.message | hasNode:'l'\"><span ng-bind=v.message.dev></span> {{_t('lb_is')}} <strong ng-bind=v.message.l></strong></span> <span ng-if=\"!(v.message | hasNode:'l')\" ng-bind=v.message></span></a> <span ng-if=\"!elementAccess(cfg.role_access.element) || (cfg.events_clickable.indexOf(v.level) === -1)\"><span ng-if=\"v.message | hasNode:'l'\"><span ng-bind=v.message.dev></span> {{_t('lb_is')}} <strong ng-bind=v.message.l></strong></span> <span ng-if=\"!(v.message | hasNode:'l')\" ng-bind=v.message></span></span></span> <span class=report-message ng-bind=v.message ng-if=\"!v.source && !v.message\"></span></div><div class=\"report-col report-ctrl\" ng-include=\"'app/views/events/dropdown.html'\"></div></div></div><div class=\"text-center mobile-padding\" ng-if=\"collection.length > 0\"><dir-pagination-controls boundary-links=true></dir-pagination-controls></div></div>"
   );
 
 
@@ -11592,7 +11599,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/zwave/navi.html',
-    "<div class=\"tabs-wrap form-inline\"><div class=\"btn-group btn-goup-tabs btn-tabs-3\"><a class=\"btn btn-default\" href=#zwave/devices title=\"{{_t('lb_zwave_devices')}}\" ng-class=\"activeTab == 'devices' ? 'active' : ''\"><i class=\"fa fa-wifi\"></i> <span class=btn-name>{{_t('lb_zwave_devices')}}</span></a> <a class=\"btn btn-default\" href=#zwave/batteries title=\"{{_t('lb_battery_status')}}\" ng-class=\"activeTab == 'batteries' ? 'active' : ''\" ng-if=elementAccess(cfg.role_access.network)><i class=\"fa fa-bolt\"></i> <span class=btn-name>{{_t('lb_battery_status')}}</span></a> <a class=\"btn btn-default\" href=#zwave/network title=\"{{_t('lb_network_status')}}\" ng-class=\"activeTab == 'network' ? 'active' : ''\" ng-if=elementAccess(cfg.role_access.network)><i class=\"fa fa-sitemap\"></i> <span class=btn-name>{{_t('lb_network_status')}}</span></a></div></div>"
+    "<div class=\"tabs-wrap form-inline\" ng-if=devices.show><div class=\"btn-group btn-goup-tabs btn-tabs-3\"><a class=\"btn btn-default\" href=#zwave/devices title=\"{{_t('lb_zwave_devices')}}\" ng-class=\"activeTab == 'devices' ? 'active' : ''\"><i class=\"fa fa-wifi\"></i> <span class=btn-name>{{_t('lb_zwave_devices')}}</span></a> <a class=\"btn btn-default\" href=#zwave/batteries title=\"{{_t('lb_battery_status')}}\" ng-class=\"activeTab == 'batteries' ? 'active' : ''\" ng-if=elementAccess(cfg.role_access.network)><i class=\"fa fa-bolt\"></i> <span class=btn-name>{{_t('lb_battery_status')}}</span></a> <a class=\"btn btn-default\" href=#zwave/network title=\"{{_t('lb_network_status')}}\" ng-class=\"activeTab == 'network' ? 'active' : ''\" ng-if=elementAccess(cfg.role_access.network)><i class=\"fa fa-sitemap\"></i> <span class=btn-name>{{_t('lb_network_status')}}</span></a></div></div>"
   );
 
 
@@ -15510,15 +15517,20 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
         var promises = [
             dataFactory.getApi('devices', '/' + $routeParams.id),
             dataFactory.getApi('locations'),
-            dataFactory.getApi('instances'),
-            dataFactory.getApi('devices')
+           dataFactory.getApi('devices')
+           
         ];
+        
+        if ($scope.user.role === 1) {
+            promises.push( dataFactory.getApi('instances'));
+        }
 
         $q.allSettled(promises).then(function (response) {
             var device = response[0];
             var locations = response[1];
-            var instances = response[2];
-            var devices = response[3];
+             var devices = response[2];
+            var instances = response[3];
+           
             $scope.loading = false;
             // Error message
             if (device.state === 'rejected') {
@@ -15529,13 +15541,13 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
             if (locations.state === 'fulfilled') {
                 $scope.elementId.locations = dataService.getRooms(locations.value.data.data).indexBy('id').value();
             }
-            // Success - instances
-            if (instances.state === 'fulfilled') {
-                $scope.elementId.instances = instances.value.data.data;
-            }
             // Success - devices
             if (devices.state === 'fulfilled') {
                 setTagList(devices.value.data.data.devices);
+            }
+             // Success - instances
+            if (instances && instances.state === 'fulfilled') {
+                $scope.elementId.instances = instances.value.data.data;
             }
             // Success - device
             if (device.state === 'fulfilled') {
@@ -15548,6 +15560,8 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
                 setDevice(dataService.getDevicesData(arr,true).value()[0]);
                 $scope.elementId.show = true;
             }
+            
+           
         });
     };
     $scope.allSettled();
@@ -15731,6 +15745,9 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
     };
     $scope.timeFilter = $scope.timeFilterDefault;
     $scope.devices = {
+        cnt:{
+            deviceEvents:{}
+        },
         find: {
             id: false,
             title: false,
@@ -15785,7 +15802,6 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
 
             // Success - notifications
             if (events.state === 'fulfilled') {
-                console.log(_.size(events.value.data.data.notifications))
                 setEvents(events.value.data.data.notifications);
             }
 
@@ -15961,8 +15977,13 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
         } else {
             $scope.collection = data;
         }
+        
+         // Count events in the device
+         $scope.devices.cnt.deviceEvents =_.countBy(data,function (v) {
+            return v.source;
+        });
         if (_.size($scope.collection) < 1) {
-            alertify.alertError($scope._t('no_data'));
+            alertify.alertWarning($scope._t('no_events'));
             return;
         }
     }
@@ -16624,7 +16645,7 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
         dataFactory.postToRemote($scope.cfg.online_moduleid_url, {id: id, lang: $scope.lang}).then(function (response) {
             $scope.loading = false;
             if (_.isEmpty(response.data.data)) {
-                alertify.alertError($scope._t('no_data'));
+                alertify.alertWarning($scope._t('no_data'));
                 return;
             }
             $scope.module = response.data.data;
@@ -17851,7 +17872,7 @@ myAppController.controller('ZwaveSelectController', function ($scope, $routePara
                 $scope.zwaveSelect.list = _.where(response.data, {brandname: brandname});
                 if(_.isEmpty($scope.zwaveSelect.list)){
                      $scope.loading = false;
-                     alertify.alertError($scope._t('no_data'));
+                     alertify.alertWarning($scope._t('no_data'));
                 }
                 
                 $scope.zwaveSelect.brandName = brandname;
@@ -17899,7 +17920,8 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
     $scope.devices = {
         'failed': [],
         'batteries': [],
-        'zwave': []
+        'zwave': [],
+        'show': true
     };
     $scope.goEdit = [];
     $scope.zWaveDevices = {};
@@ -17928,6 +17950,10 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
             $scope.loading = false;
             zwaveApiData(response.data.data.devices);
             loadLocations();
+            if( _.size($scope.zWaveDevices) < 1){
+                $scope.devices.show = false;
+                    alertify.alertWarning($scope._t('no_device_installed')); 
+                }
 
         }, function (error) {
             $scope.loading = false;
@@ -18116,7 +18142,7 @@ myAppController.controller('ZwaveExcludeController', function ($scope, $location
         dataFactory.loadZwaveApiData(true).then(function (ZWaveAPIData) {
             var node = ZWaveAPIData.devices[$routeParams.id];
             if (!node) {
-                alertify.alertError($scope._t('no_data'));
+                alertify.alertWarning($scope._t('no_data'));
                 return;
             }
             $scope.zWaveDevice.controllerState = ZWaveAPIData.controller.data.controllerState.value;
@@ -18361,6 +18387,9 @@ myAppController.controller('CameraAddController', function ($scope, dataFactory,
                     return item;
                 }
             });
+            if( _.size($scope.ipcameraDevices) < 1){
+                    alertify.alertWarning($scope._t('no_cameras')); 
+                }
         }, function (error) {});
     };
     $scope.loadData();
@@ -18406,6 +18435,9 @@ myAppController.controller('CameraManageController', function ($scope, $q, dataF
             // Success - instances
             if (instances.state === 'fulfilled') {
                 setInstances(instances.value.data.data);
+                if( _.size($scope.instances) < 1){
+                    alertify.alertWarning($scope._t('no_cameras')); 
+                }
             }
         });
     };
@@ -18517,7 +18549,7 @@ myAppController.controller('EnoceanDeviceController', function($scope, $routePar
              $scope.loading = false;
             var module = response.data.data[0];
             if (Object.keys(module).length < 1) {
-                alertify.alertError($scope._t('no_data'));
+                alertify.alertWarning($scope._t('no_data'));
                 return;
             }
             if (!module.active) {
@@ -18932,7 +18964,7 @@ myAppController.controller('EnoceanTeachinController', function($scope, $routePa
                 }
             });
             if (!$scope.device) {
-                alertify.alertError($scope._t('no_data'));
+                alertify.alertWarning($scope._t('no_data'));
             }
 
             $scope.inclusion = {done: false, promisc: true, message: $scope._t('teachin_ready') + ' ' + ($scope.device.inclusion ? $scope.device.inclusion : ''), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
@@ -19152,7 +19184,7 @@ myAppController.controller('EnoceanManageController', function($scope, $location
         dataFactory.loadEnoceanApiData(true).then(function(response) {
              $scope.loading = false;
             if (Object.keys(response.data.devices).length < 1) {
-                 alertify.alertError($scope._t('no_data'));
+                 alertify.alertWarning($scope._t('no_data'));
                 return;
             }
 
@@ -19548,6 +19580,9 @@ myAppController.controller('RoomController', function ($scope, $q, $cookies, $fi
             // Success - locations
             if (locations.state === 'fulfilled') {
                 $scope.rooms.all = dataService.getRooms(locations.value.data.data).value();
+                if( _.size($scope.rooms.all) < 2){
+                    alertify.alertWarning($scope._t('no_rooms')); 
+                }
             }
             // Success - devices
             if (devices.state === 'fulfilled') {
@@ -19917,21 +19952,19 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
     $scope.rooms = {};
     $scope.show = true;
     $scope.input = {
-        id: 0,
-        name: '',
-        active: true,
-        role: 2,
-        password: '',
-        login: '',
-        lang: 'en',
-        color: '#dddddd',
-        hide_all_device_events: false,
-        hide_system_events: false,
-        hide_single_device_events: [],
-        rooms: [0],
-        default_ui: 1,
-        expert_view: false
-
+        "id": 0,
+        "role": 2,
+        "login": "",
+        "name": "",
+        "lang": "en",
+        "color": "#dddddd",
+        "dashboard": [],
+        "interval": 1000,
+        "rooms": [0],
+        "expert_view": true,
+        "hide_all_device_events": false,
+        "hide_system_events": false,
+        "hide_single_device_events": []
     };
     $scope.auth = {
         id: $routeParams.id,
@@ -19946,7 +19979,7 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
     $scope.allSettledUserId = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
-            dataFactory.getApi('profiles', '/' + $scope.id, true),
+            dataFactory.getApi('profiles', ($scope.id !== 0 ? '/' + $scope.id : ''), true),
             dataFactory.getApi('locations')
         ];
 
@@ -19963,8 +19996,11 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
             }
             // Success - profile
             if (profile.state === 'fulfilled') {
-                $scope.input = profile.value.data.data;
-                $scope.auth.login = profile.value.data.data.login;
+                if ($scope.id !== 0) {
+                    $scope.input = profile.value.data.data;
+                    $scope.auth.login = profile.value.data.data.login;
+                }
+
             }
 
             // Success - locations
@@ -20274,7 +20310,7 @@ myAppController.controller('ManagementRestoreController', function ($scope, data
 /**
  * Management factory default controller
  */
-myAppController.controller('ManagementFactoryController', function ($scope, $window, $cookies, $cookieStore,dataFactory, dataService) {
+myAppController.controller('ManagementFactoryController', function ($scope, $window, $cookies, $cookieStore, dataFactory, dataService) {
     $scope.factoryDefault = {
         model: {
             overwriteBackupCfg: true,
@@ -20298,7 +20334,7 @@ myAppController.controller('ManagementFactoryController', function ($scope, $win
                 $scope.loading = false;
                 dataService.showNotifier({message: $scope._t('factory_default_success')});
                 angular.forEach($cookies, function (v, k) {
-                      $cookieStore.remove(k);
+                    $cookieStore.remove(k);
                     //delete $cookies[k];
                 });
                 //dataService.setRememberMe(null);
@@ -20456,7 +20492,7 @@ myAppController.controller('ManagementPostfixController', function ($scope, data
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('postfix', null, true).then(function (response) {
             if (_.isEmpty(response.data)) {
-                alertify.alertError($scope._t('no_data'));
+                alertify.alertWarning($scope._t('no_data'));
             }
             $scope.loading = false;
             $scope.postfix.all = response.data;
@@ -20722,7 +20758,6 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $co
         }
         dataService.setZWAYSession(user.sid);
         dataService.setUser(user);
-        //dataService.setLastLogin(Math.round(+new Date() / 1000));
         if (rememberme) {
             dataService.setRememberMe(rememberme);
         }
@@ -20732,8 +20767,8 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $co
     /**
      * Redirect
      */
-    $scope.redirectAfterLogin = function (trust, user, password, rememberme,url) {
-        var location = url|| '#/dashboard';
+    $scope.redirectAfterLogin = function (trust, user, password, rememberme, url) {
+        var location = url || '#/dashboard';
         $scope.processUser(user, rememberme);
         if ($scope.auth.fromexpert) {
             window.location.href = $scope.cfg.expert_url;
@@ -20862,9 +20897,9 @@ myAppController.controller('AuthLoginController', function ($scope, $location, $
         $scope.login($routeParams);
     } else if (dataService.getRememberMe() && !$scope.auth.firstaccess) {
         //if(!$scope.auth.firstaccess){
-           $scope.login(dataService.getRememberMe()); 
+        $scope.login(dataService.getRememberMe());
         //}
-       // only ask for session forwarding if user is not logged out before or the request comes from trusted hosts
+        // only ask for session forwarding if user is not logged out before or the request comes from trusted hosts
     } else if (typeof $routeParams.logout === 'undefined' ||
             !$routeParams.logout ||
             (path[1] === '' && $scope.cfg.find_hosts.indexOf($location.host()) !== -1)) {
@@ -20876,7 +20911,6 @@ myAppController.controller('AuthLoginController', function ($scope, $location, $
  * Password controller
  */
 myAppController.controller('AuthPasswordController', function ($scope, dataFactory, dataService) {
-    //$scope.newPassword = null;
     $scope.input = {
         id: $scope.auth.defaultProfile.id,
         password: '',
@@ -20905,14 +20939,15 @@ myAppController.controller('AuthPasswordController', function ($scope, dataFacto
         dataFactory.putApiWithHeaders('profiles_auth_update', inputAuth.id, input, headers).then(function (response) {
             $scope.loading = false;
             var profile = response.data.data;
-            profile['email'] = input.email;
             if (!profile) {
                 alertify.alertError($scope._t('error_update_data'));
                 return;
             }
+            profile['email'] = input.email;
+            profile['lang'] = $scope.loginLang;
             // Update profile
             dataFactory.putApiWithHeaders('profiles', input.id, profile, headers).then(function (response) {
-                $scope.redirectAfterLogin(true, $scope.auth.defaultProfile, input.password,false,'#/dashboard/firstlogin');
+                $scope.redirectAfterLogin(true, $scope.auth.defaultProfile, input.password, false, '#/dashboard/firstlogin');
                 // Update trust my network
                 /*dataFactory.putApiWithHeaders('trust_my_network', null, {trustMyNetwork: input.trust_my_network}, headers).then(function (response) {
                  $scope.redirectAfterLogin(input.trust_my_network, $scope.auth.defaultProfile, input.password);

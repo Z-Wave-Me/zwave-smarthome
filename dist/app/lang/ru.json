@@ -1,4 +1,7 @@
 {
+    "no_events": "Sorry, there are no events to show.",
+    "no_cameras": "There are no cameras available.",
+    "no_rooms": "There are no rooms available.",
     "hide_element_info": "Only hide this element in any View",
     "deactivate_element_info": "This element can not be used for any scene, app, module and is fully deactivated",
     "show_hidden": "Show hidden",
@@ -341,7 +344,7 @@
     "lb_events_type": "События этого типа",
     "lb_notify_device-info": "События устройства",
     "lb_include_preparation": "Устройство должны быть на заводских настройках. Если вы не уверены в этом, запустите",
-    "lb_include_preparation_start": "Исключить снова",
+    "lb_include_preparation_start": "Исключить устройство",
     "lb_inclusion_info": "Процесс включения добавит новое устройство в сеть Z-Wave. Убедитесь, что устройство на заводских настройках, иначе устройство не включится. Если вы не уверенны, то следую инструкции устройства сбрось его на заводские настройки или запустите процесс исключения.",
     "lb_ready_include": "Готов к включению.",
     "lb_new_device_found": "Новое устройство найдено. Пожалуйста дождитесь полной настройки устройства",

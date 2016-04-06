@@ -1,23 +1,5 @@
 <!-- Auth -->
 <div ng-controller="AuthController">
-    <bb-loader></bb-loader> 
-   <div class="login-lang" ng-if="!auth.fromexpert">
-            <div class="btn-group" ng-if="!auth.firstaccess">
-                 <button type="button" class="btn btn-default" title="{{_t('lb_language')}}" ng-click="expandNavi('loginLang',$event)"><i class="fa fa-globe"></i></button>
-               <!--<button type="button" class="btn btn-default" ng-click="expandNavi('loginLang',$event)"><i class="fa fa-caret-down"></i></button>-->
-               <div class="app-dropdown dropdown-lang" ng-if="naviExpanded.loginLang">
-                 <ul>
-                     <li class="clickable" ng-repeat="v in cfg.lang_list" ng-click="setLoginLang(v)">
-                         <img class="lang-img" ng-src="app/img/flags/{{v}}.png" alt="{{v}}" />
-                     </li>
-                 </ul>
-     
-             </div>
-            </div>
-        </div>
-    <div class="welcome-screen">
-            <h1> {{_t('welcome_1')}}  {{auth.remoteId}}</h1> 
-        </div>
     <div ng-if="!auth.firstaccess" ng-include="'app/views/auth/auth_login.html'"></div>
     <div ng-if="auth.firstaccess" ng-include="'app/views/auth/auth_password.html'"></div>
 </div>
