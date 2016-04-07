@@ -119,6 +119,7 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
             zwaveApiData(response.data.data.devices);
             loadLocations();
             if( _.size(response.data.data.devices) < 1){
+                
                 $scope.devices.show = false;
                     alertify.alertWarning($scope._t('no_device_installed')); 
                 }

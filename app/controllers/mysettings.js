@@ -6,7 +6,7 @@
 /**
  * My Access
  */
-myAppController.controller('MySettingsController', function($scope, $window, $cookies,$timeout,$filter,dataFactory, dataService, myCache) {
+myAppController.controller('MySettingsController', function($scope, $window, $cookies,$timeout,$filter,$q,dataFactory, dataService, myCache) {
     $scope.id = $scope.user.id;
     $scope.devices = {};
     $scope.input = false;
@@ -27,29 +27,39 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
 //
 //            });
 //    };
-   
-    
-    /**
-     * Load data
+
+ /**
+     * Load all promises
      */
-    $scope.loadData = function(id) {
-         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-       dataFactory.getApi('profiles', '/' + id, true).then(function(response) {
-            //$scope.loadTrustMyNetwork();
-            loadDevices();
-            $scope.input = response.data.data;
-           $scope.loading = false;
-        }, function(error) {
+    $scope.allSettled = function () {
+        var promises = [
+             dataFactory.getApi('profiles', '/' + $scope.id, true),
+            dataFactory.getApi('devices', null, true)
+        ];
+
+        $q.allSettled(promises).then(function (response) {
+            var profile = response[0];
+            var devices = response[1];
+
             $scope.loading = false;
-            alertify.alertError($scope._t('error_load_data'));
+            // Error message
+            if (profile.state === 'rejected') {
+                $scope.loading = false;
+                alertify.alertError($scope._t('error_load_data'));
+                return;
+            }
+            // Success - profile
+            if (profile.state === 'fulfilled') {
+                 $scope.input = profile.value.data.data;
+            }
+            // Success - devices
+            if (devices.state === 'fulfilled') {
+               $scope.devices = devices.value.data.data.devices;
+            }
         });
     };
-    if ($scope.id > 0) {
-        $scope.loadData($scope.id);
-    }
+    $scope.allSettled();  
     
-
-
     /**
      * Assign device to list
      */
@@ -96,7 +106,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
              $timeout(function () {
                  alertify.dismissAll();
                 $window.location.reload();
-            }, 3000);
+            }, 2000);
 
         }, function(error) {
             var message = $scope._t('error_update_data');
