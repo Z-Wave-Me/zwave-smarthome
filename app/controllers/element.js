@@ -11,7 +11,8 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
         firstLogin: false,
         cnt: {
             devices: 0,
-            collection: 0
+            collection: 0,
+            hidden: 0
         },
         devices: {
             noDashboard: false,
@@ -65,6 +66,12 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             }
             // Success - devices
             if (devices.state === 'fulfilled') {
+                // Count hidden apps
+                 $scope.dataHolder.cnt.hidden =  _.chain(dataService.getDevicesData(devices.value.data.data.devices,true))
+                    .flatten().where({visibility:false})
+                    .size()
+                    .value();
+                // Set devices
                 setDevices(dataService.getDevicesData(devices.value.data.data.devices,$scope.dataHolder.devices.showHidden));
 
             }
