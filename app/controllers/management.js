@@ -468,7 +468,7 @@ myAppController.controller('ManagementFirmwareController', function ($scope, $sc
 /**
  * Restor controller
  */
-myAppController.controller('ManagementRestoreController', function ($scope, dataFactory, dataService) {
+myAppController.controller('ManagementRestoreController', function ($scope, $window,$timeout,dataFactory, dataService) {
     $scope.myFile = null;
     $scope.managementRestore = {
         confirm: false,
@@ -491,6 +491,10 @@ myAppController.controller('ManagementRestoreController', function ($scope, data
             $scope.loading = false;
             dataService.showNotifier({message: $scope._t('restore_done_reload_ui')});
             $scope.managementRestore.alert = {message: $scope._t('restore_done_reload_ui'), status: 'alert-success', icon: 'fa-check'};
+             $timeout(function () {
+                 alertify.dismissAll();
+                $window.location.reload();
+            }, 2000);
         }, function (error) {
             $scope.loading = false;
             alertify.alertError($scope._t('restore_backup_failed'));
