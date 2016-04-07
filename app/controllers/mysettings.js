@@ -56,35 +56,10 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
             if (devices.state === 'fulfilled') {
                $scope.devices = devices.value.data.data.devices;
             }
-
-            
-
         });
     };
-    $scope.allSettled();   
-   
+    $scope.allSettled();  
     
-    /**
-     * Load data
-     */
-    $scope.loadData = function(id) {
-         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-       dataFactory.getApi('profiles', '/' + id, true).then(function(response) {
-            //$scope.loadTrustMyNetwork();
-            loadDevices();
-            $scope.input = response.data.data;
-           $scope.loading = false;
-        }, function(error) {
-            $scope.loading = false;
-            alertify.alertError($scope._t('error_load_data'));
-        });
-    };
-//    if ($scope.id > 0) {
-//        $scope.loadData($scope.id);
-//    }
-    
-
-
     /**
      * Assign device to list
      */
@@ -131,7 +106,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
              $timeout(function () {
                  alertify.dismissAll();
                 $window.location.reload();
-            }, 3000);
+            }, 2000);
 
         }, function(error) {
             var message = $scope._t('error_update_data');
