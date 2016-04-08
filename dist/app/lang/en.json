@@ -181,7 +181,7 @@
     "restore_backup_chip": "Also restore network topology information (please read the user manual first!)",
     "nm_restore_pick_up": "Upload the file",
     "restore_backup_failed": "Upload or restore of backup has failed",
-    "restore_done_reload_ui": "Recovery completed! Please reload the page",
+    "restore_done_reload_ui": "Recovery completed. Reloading page...",
     "restore_wait": "Restoring data. Please wait...",
     "management": "Management",
     "controller_info": "Controller info",

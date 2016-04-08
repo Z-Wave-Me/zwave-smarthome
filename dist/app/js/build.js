@@ -11274,7 +11274,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/elements/first_login_en.html',
-    "<div class=\"form-page welcome-entry\"><div class=fieldset><h1>Welcome to your Smart Home</h1><div>This interface allows managing your Smart Home equipped with interconnected Z-Wave devices. It will show every function of the device as one single <strong>Element</strong> (In case a physical device has multiple functions like switching and metering – it will generate multiple elements). All elements are listed in the <strong>Element View</strong> and can be filtered by function type (switch, dimmer, sensor) or other filtering criteria.<br><br>Each Element has an <strong>Element Configuration Dialog</strong> to rename it or to hide it in case was created but it is not needed. Important elements can be marked to be shown in the <strong>Dashboard</strong>. Additionally the elements can be grouped into rooms.<br><br>Every change of a sensor value or a switching status is called an <strong>Event</strong> and is shown in the <strong>Timeline</strong>. Filtering allows monitoring the changes of one single function or device.<br><br>All other functions such as time triggered actions, the use of information from the Internet, scenes plugin of other technologies and service are realized in <strong>Apps</strong>. These apps can create none, one or multiple new elements and events. The menu <a href=#apps/local class=\"btn btn-default\"><i class=\"fa fa-cubes\"></i> {{_t('nav_apps')}}</a> allows downloading, activating and configuring your Apps.<br><br>To Add a new device please follow the instruction under <a href=#devices class=\"btn btn-default\"><i class=\"fa fa-cogs\"></i> {{_t('nav_devices')}}</a></div></div></div>"
+    "<div class=\"form-page welcome-entry\"><div class=fieldset><h1>Welcome to your Smart Home</h1><div>This interface allows managing your Smart Home equipped with interconnected Z-Wave devices. It will show every function of the device as one single <strong>Element</strong> (In case a physical device has multiple functions like switching and metering – it will generate multiple elements). All elements are listed in the <strong>Element View</strong> and can be filtered by function type (switch, dimmer, sensor) or other filtering criteria.<br><br>Each Element has an <strong>Element Configuration Dialog</strong> to rename it or to hide it in case was created but it is not needed. Important elements can be marked to be shown in the <strong>Dashboard</strong>. Additionally the elements can be grouped into rooms.<br><br>Every change of a sensor value or a switching status is called an <strong>Event</strong> and is shown in the <strong>Timeline</strong>. Filtering allows monitoring the changes of one single function or device.<br><br><div ng-if=elementAccess(cfg.role_access.admin)>All other functions such as time triggered actions, the use of information from the Internet, scenes plugin of other technologies and service are realized in <strong>Apps</strong>. These apps can create none, one or multiple new elements and events. The menu <a href=#apps/local class=\"btn btn-default\"><i class=\"fa fa-cubes\"></i> {{_t('nav_apps')}}</a> allows downloading, activating and configuring your Apps.<br><br>To Add a new device please follow the instruction under <a href=#devices class=\"btn btn-default\"><i class=\"fa fa-cogs\"></i> {{_t('nav_devices')}}</a></div></div></div></div>"
   );
 
 
@@ -11289,7 +11289,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/elements/no_devices.html',
-    "<h2>{{_t('no_device_installed')}}</h2><div class=\"form-page welcome-entry\"><div class=fieldset><div class=form-group><span class=\"badge badge-number\">1</span> <span class=welcome-help>{{_t('can_add_app')}}</span> <a href=#apps/local class=\"btn btn-default\"><i class=\"fa fa-cubes\"></i> {{_t('nav_apps')}}</a></div><div class=form-group><span class=\"badge badge-number\">2</span> <span class=welcome-help>{{_t('can_include_device')}}</span> <a href=#devices class=\"btn btn-default\"><i class=\"fa fa-cogs\"></i> {{_t('nav_devices')}}</a></div></div></div>"
+    "<h2>{{_t('no_device_installed')}}</h2><div class=\"form-page welcome-entry\" ng-if=elementAccess(cfg.role_access.admin)><div class=fieldset><div class=form-group><span class=\"badge badge-number\">1</span> <span class=welcome-help>{{_t('can_add_app')}}</span> <a href=#apps/local class=\"btn btn-default\"><i class=\"fa fa-cubes\"></i> {{_t('nav_apps')}}</a></div><div class=form-group><span class=\"badge badge-number\">2</span> <span class=welcome-help>{{_t('can_include_device')}}</span> <a href=#devices class=\"btn btn-default\"><i class=\"fa fa-cogs\"></i> {{_t('nav_devices')}}</a></div></div><div class=\"fieldset submit-entry\" ng-if=\"dataHolder.cnt.hidden > 0\"><button class=\"btn btn-default\" ng-click=showHiddenEl(true)><i class=\"fa fa-eye\"></i> {{_t('show_hidden')}}</button></div></div>"
   );
 
 
@@ -14775,7 +14775,8 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
         firstLogin: false,
         cnt: {
             devices: 0,
-            collection: 0
+            collection: 0,
+            hidden: 0
         },
         devices: {
             noDashboard: false,
@@ -14829,6 +14830,12 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             }
             // Success - devices
             if (devices.state === 'fulfilled') {
+                // Count hidden apps
+                 $scope.dataHolder.cnt.hidden =  _.chain(dataService.getDevicesData(devices.value.data.data.devices,true))
+                    .flatten().where({visibility:false})
+                    .size()
+                    .value();
+                // Set devices
                 setDevices(dataService.getDevicesData(devices.value.data.data.devices,$scope.dataHolder.devices.showHidden));
 
             }
@@ -17951,6 +17958,7 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
             zwaveApiData(response.data.data.devices);
             loadLocations();
             if( _.size(response.data.data.devices) < 1){
+                
                 $scope.devices.show = false;
                     alertify.alertWarning($scope._t('no_device_installed')); 
                 }
@@ -20275,7 +20283,7 @@ myAppController.controller('ManagementFirmwareController', function ($scope, $sc
 /**
  * Restor controller
  */
-myAppController.controller('ManagementRestoreController', function ($scope, dataFactory, dataService) {
+myAppController.controller('ManagementRestoreController', function ($scope, $window,$timeout,dataFactory, dataService) {
     $scope.myFile = null;
     $scope.managementRestore = {
         confirm: false,
@@ -20298,6 +20306,10 @@ myAppController.controller('ManagementRestoreController', function ($scope, data
             $scope.loading = false;
             dataService.showNotifier({message: $scope._t('restore_done_reload_ui')});
             $scope.managementRestore.alert = {message: $scope._t('restore_done_reload_ui'), status: 'alert-success', icon: 'fa-check'};
+             $timeout(function () {
+                 alertify.dismissAll();
+                $window.location.reload();
+            }, 2000);
         }, function (error) {
             $scope.loading = false;
             alertify.alertError($scope._t('restore_backup_failed'));
@@ -20519,7 +20531,7 @@ myAppController.controller('ManagementInfoController', function ($scope, dataFac
 /**
  * My Access
  */
-myAppController.controller('MySettingsController', function($scope, $window, $cookies,$timeout,$filter,dataFactory, dataService, myCache) {
+myAppController.controller('MySettingsController', function($scope, $window, $cookies,$timeout,$filter,$q,dataFactory, dataService, myCache) {
     $scope.id = $scope.user.id;
     $scope.devices = {};
     $scope.input = false;
@@ -20540,29 +20552,39 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
 //
 //            });
 //    };
-   
-    
-    /**
-     * Load data
+
+ /**
+     * Load all promises
      */
-    $scope.loadData = function(id) {
-         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-       dataFactory.getApi('profiles', '/' + id, true).then(function(response) {
-            //$scope.loadTrustMyNetwork();
-            loadDevices();
-            $scope.input = response.data.data;
-           $scope.loading = false;
-        }, function(error) {
+    $scope.allSettled = function () {
+        var promises = [
+             dataFactory.getApi('profiles', '/' + $scope.id, true),
+            dataFactory.getApi('devices', null, true)
+        ];
+
+        $q.allSettled(promises).then(function (response) {
+            var profile = response[0];
+            var devices = response[1];
+
             $scope.loading = false;
-            alertify.alertError($scope._t('error_load_data'));
+            // Error message
+            if (profile.state === 'rejected') {
+                $scope.loading = false;
+                alertify.alertError($scope._t('error_load_data'));
+                return;
+            }
+            // Success - profile
+            if (profile.state === 'fulfilled') {
+                 $scope.input = profile.value.data.data;
+            }
+            // Success - devices
+            if (devices.state === 'fulfilled') {
+               $scope.devices = devices.value.data.data.devices;
+            }
         });
     };
-    if ($scope.id > 0) {
-        $scope.loadData($scope.id);
-    }
+    $scope.allSettled();  
     
-
-
     /**
      * Assign device to list
      */
@@ -20609,7 +20631,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
              $timeout(function () {
                  alertify.dismissAll();
                 $window.location.reload();
-            }, 3000);
+            }, 2000);
 
         }, function(error) {
             var message = $scope._t('error_update_data');
