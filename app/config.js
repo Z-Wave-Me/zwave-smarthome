@@ -231,7 +231,9 @@ var config_data = {
         ],
         // List of range values 0 - 255
         'knob_255': [
-            'multilevel'
+            'switchColor_red',
+            'switchColor_green',
+            'switchColor_blue'
         ],
         // Order by
         orderby: {
