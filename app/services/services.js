@@ -65,6 +65,13 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
             return false;
         }
     };
+    
+    /**
+     * Go back
+     */
+    this.goBack = function () {
+          window.history.back();
+    };
 
 
     /**

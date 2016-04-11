@@ -65,13 +65,17 @@ myAppController.controller('ZwaveAddController', function ($scope, $routeParams,
      * Load z-wave devices
      */
     $scope.loadData = function (brandname, lang) {
+         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApiLocal('device.' + lang + '.json').then(function (response) {
+            $scope.loading = false;
             $scope.manufacturers = _.uniq(response.data, 'brandname');
             if (brandname) {
                 $scope.zwaveDevices = _.where(response.data, {brandname: brandname});
                 $scope.manufacturer = brandname;
             }
-        }, function (error) {});
+        }, function (error) {
+            alertify.alertError($scope._t('error_load_data')).set('onok', function(closeEvent){dataService.goBack();} ); 
+        });
     };
     $scope.loadData($routeParams.brandname, $scope.lang);
 });
@@ -93,11 +97,7 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
     };
     $scope.goEdit = [];
     $scope.zWaveDevices = {};
-
-//    $scope.modelName = [];
-//    $scope.modelRoom = {};
-//
-//    $scope.rooms = [];
+    
     /**
      * Set tab
      */
@@ -107,7 +107,7 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
         $scope.activeTab = tabId;
         $cookies.tab_network = tabId;
     };
-    $scope.setTab()
+    $scope.setTab();
 
     /**
      * Load data
@@ -116,32 +116,17 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('devices').then(function (response) {
             $scope.loading = false;
-            zwaveApiData(response.data.data.devices);
-            loadLocations();
-            if( _.size(response.data.data.devices) < 1){
-                
-                $scope.devices.show = false;
-                    alertify.alertWarning($scope._t('no_device_installed')); 
-                }
-
+            zwaveApiData(response.data.data.devices); 
         }, function (error) {
             $scope.loading = false;
-            alertify.alertError($scope._t('error_load_data'));
+              $scope.devices.show = false;
+               alertify.alertError($scope._t('error_load_data')).set('onok', function(closeEvent){dataService.goBack();} );
         });
     };
     $scope.loadData();
 
 
     /// --- Private functions --- ///
-    /**
-     * Load locations
-     */
-    function loadLocations() {
-        dataFactory.getApi('locations').then(function (response) {
-            $scope.rooms = response.data.data;
-        }, function (error) {});
-    }
-    ;
     /**
      * Get zwaveApiData
      */
@@ -249,6 +234,10 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
 
                 }
             });
+            if( _.size($scope.zWaveDevices) < 1){
+                $scope.devices.show = false;
+                    alertify.alertWarning($scope._t('no_device_installed')).set('onok', function(closeEvent){dataService.goBack();} ); 
+                }
             // Count device batteries
             for (i = 0; i < $scope.devices.batteries.length; ++i) {
                 var battery = $scope.devices.batteries[i];
@@ -261,7 +250,7 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
 
             }
         }, function (error) {
-            alertify.alertError($scope._t('error_load_data'));
+             alertify.alertError($scope._t('error_load_data')).set('onok', function(closeEvent){dataService.goBack();} );
         });
     }
     ;
@@ -377,7 +366,7 @@ myAppController.controller('ZwaveExcludeController', function ($scope, $location
 /**
  * Zwave manage detail controller
  */
-myAppController.controller('ZwaveManageIdController', function ($scope, $window, $routeParams, $timeout, $filter, $location, dataFactory, dataService, myCache) {
+myAppController.controller('ZwaveManageIdController', function ($scope, $window, $routeParams,$q, $filter, $location, dataFactory, dataService, myCache) {
     $scope.zwaveConfig = {
         nodeId: $routeParams.nodeId,
         nohistory: $routeParams.nohistory
@@ -386,28 +375,48 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
     $scope.zWaveDevice = [];
     $scope.devices = [];
     $scope.formInput = {
+        show: true,
         elements: {},
         room: 0,
         deviceName: false
     };
     $scope.rooms = [];
-
+    
     /**
-     * Load data
+     * Load all promises
      */
-    $scope.loadConfigData = function (nodeId) {
+    $scope.allSettled = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataFactory.getApi('devices',null,true).then(function (response) {
-            $scope.loading = false;
-            zwaveConfigApiData(nodeId, response.data.data.devices);
-            loadConfigLocations();
+        var promises = [
+            dataFactory.getApi('devices', null, true),
+            dataFactory.getApi('locations')
+        ];
 
-        }, function (error) {
+        $q.allSettled(promises).then(function (response) {
+            var devices = response[0];
+            var locations = response[1];
+           
             $scope.loading = false;
-            alertify.alertError($scope._t('error_load_data'));
+            // Error message
+            if (devices.state === 'rejected') {
+                $scope.loading = false;
+                $scope.formInput.show = false;
+                alertify.alertError($scope._t('error_load_data')).set('onok', function(closeEvent){dataService.goBack();} ); 
+                return;
+            }
+             // Success - devices
+            if (devices.state === 'fulfilled') {
+                zwaveConfigApiData($scope.zwaveConfig.nodeId, devices.value.data.data.devices);
+            }
+            // Success - locations
+            if (locations.state === 'fulfilled') {
+                 $scope.rooms = dataService.getRooms(locations.value.data.data).indexBy('id').value();
+                
+            }
+           
         });
     };
-    $scope.loadConfigData($scope.zwaveConfig.nodeId);
+    $scope.allSettled();
 
     /**
      * Update all devices
@@ -440,14 +449,6 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
     };
 
     /// --- Private functions --- ///
-
-
-    function loadConfigLocations() {
-        dataFactory.getApi('locations').then(function (response) {
-            $scope.rooms = dataService.getRooms(response.data.data).indexBy('id').value();
-        }, function (error) {});
-    }
-    ;
     /**
      * Get zwaveApiData
      */

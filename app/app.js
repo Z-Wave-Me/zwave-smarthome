@@ -204,7 +204,7 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                 }).
                 //Zwave devices
                 when('/zwave/devices', {
-                    templateUrl: 'app/views/zwave/zwave_devices.html',
+                    templateUrl: 'app/views/zwave/zwave_manage.html',
                     requireLogin: true
                 }).
                 //Zwave devices config
