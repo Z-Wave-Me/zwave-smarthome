@@ -444,7 +444,7 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
 
     function loadConfigLocations() {
         dataFactory.getApi('locations').then(function (response) {
-            $scope.rooms = response.data.data;
+            $scope.rooms = dataService.getRooms(response.data.data).indexBy('id').value();
         }, function (error) {});
     }
     ;
