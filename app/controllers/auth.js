@@ -157,7 +157,7 @@ myAppController.controller('AuthLoginController', function ($scope, $location, $
      * Login proccess
      */
     $scope.login = function (input) {
-        input.password = input.password;
+        //input.password = input.password;
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         $scope.alert = {message: false};
         dataFactory.logInApi(input).then(function (response) {
