@@ -95,9 +95,10 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
 /**
  * List of users
  */
-myAppController.controller('ManagementUserController', function ($scope, dataFactory, dataService, myCache) {
+myAppController.controller('ManagementUserController', function ($scope,$cookies,dataFactory, dataService, myCache) {
     $scope.userProfiles = {
-        all: false
+        all: false,
+        orderBy: ($cookies.usersOrderBy ? $cookies.usersOrderBy : 'titleASC')
     };
     /**
      * Load profiles
@@ -113,6 +114,15 @@ myAppController.controller('ManagementUserController', function ($scope, dataFac
         });
     };
     $scope.loadProfiles();
+    
+    /**
+     * Set order by
+     */
+    $scope.setOrderBy = function (key) {
+        angular.extend($scope.userProfiles, {orderBy: key});
+        $cookies.usersOrderBy = key;
+        $scope.loadProfiles();
+    };
 
     /**
      * Delete an user

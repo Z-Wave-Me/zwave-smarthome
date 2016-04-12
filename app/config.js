@@ -264,6 +264,10 @@ var config_data = {
             rooms: {
                 'titleASC': 'title',
                 'titleDESC': '-title'
+            },
+            users: {
+                'titleASC': 'name',
+                'titleDESC': '-name'
             }
         },
         // List of climate states
