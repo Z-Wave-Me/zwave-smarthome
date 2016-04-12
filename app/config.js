@@ -260,6 +260,10 @@ var config_data = {
                 'creationTimeASC': 'creationTime',
                 'titleASC': 'title',
                 'titleDESC': '-title'
+            },
+            rooms: {
+                'titleASC': 'title',
+                'titleDESC': '-title'
             }
         },
         // List of climate states

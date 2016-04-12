@@ -13,7 +13,8 @@ myAppController.controller('RoomController', function ($scope, $q, $cookies, $fi
         cnt: {
             devices: {}
         },
-        showHidden: ($cookies.showHiddenEl ? $filter('toBool')($cookies.showHiddenEl) : false)
+        showHidden: ($cookies.showHiddenEl ? $filter('toBool')($cookies.showHiddenEl) : false),
+        orderBy: ($cookies.roomsOrderBy ? $cookies.roomsOrderBy : 'titleASC')
     };
     
     $scope.devices = {
@@ -58,6 +59,15 @@ myAppController.controller('RoomController', function ($scope, $q, $cookies, $fi
         });
     };
     $scope.allSettled();
+    
+    /**
+     * Set order by
+     */
+    $scope.setOrderBy = function (key) {
+        angular.extend($scope.rooms, {orderBy: key});
+        $cookies.roomsOrderBy = key;
+        $scope.allSettled();
+    };
 });
 /**
  * Room config controller
