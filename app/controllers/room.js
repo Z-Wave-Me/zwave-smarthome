@@ -214,7 +214,6 @@ myAppController.controller('RoomConfigEditController', function ($scope, $routeP
                 removeRoomIdFromDevice(response.data, $scope.devicesToRemove);
                 myCache.remove('locations');
                 myCache.remove('devices');
-                //$scope.loadData(id);
                 dataService.showNotifier({message: $scope._t('success_updated')});
                 $location.path('/config-rooms');
             }

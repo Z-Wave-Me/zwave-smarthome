@@ -143,9 +143,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
             dataFactory.installOnlineModule(data, 'online_update').then(function (response) {
                 $scope.loading = false;
                 dataService.showNotifier({message: $scope._t(response.data.data.key)});
-                //$timeout(function () {
                 $route.reload();
-                //}, 3000);
 
             }, function (error) {
                 $scope.loading = false;
@@ -167,9 +165,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
         var modules = _.chain(data)
                 .flatten()
                 .filter(function (item) {
-                    //$scope.dataHolder.modules.ids.push(item.id);
                     $scope.dataHolder.modules.ids[item.id] = {version: item.version};
-                    //$scope.dataHolder.modules.all[item.id] = item;
                     var isHidden = false;
                     var items = [];
                     if ($scope.getHiddenApps().indexOf(item.moduleName) > -1) {
@@ -231,8 +227,6 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                 .filter(function (item) {
                     var isHidden = false;
                     var obj = {};
-                    //obj[item.file] = 'dfdf';
-                    //angular.extend()
                     $scope.dataHolder.onlineModules.ids[item.modulename] = {version: item.version, file: item.file, patchnotes: item.patchnotes};
                     if ($scope.getHiddenApps().indexOf(item.modulename) > -1) {
                         if ($scope.user.role !== 1) {
@@ -407,7 +401,6 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
         angular.extend($scope.dataHolder.onlineModules, {hideInstalled: status});
         $cookies.hideInstalledApps = status;
         $scope.reloadData();
-        //$window.location.reload();
     };
 
     /**
@@ -417,7 +410,6 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
         if (!filter) {
             angular.extend($scope.dataHolder.onlineModules, {filter: {}});
             $cookies.filterAppsOnline = angular.toJson({});
-            //delete $cookies['filterAppsOnline'];
         } else {
             angular.extend($scope.dataHolder.onlineModules, {filter: filter});
             $cookies.filterAppsOnline = angular.toJson(filter);
@@ -437,11 +429,7 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
             dataFactory.postToRemote($scope.cfg.online_module_installed_url, {id: module.id});
             $scope.loading = false;
             dataService.showNotifier({message: $scope._t(response.data.data.key)});
-            //$timeout(function () {
-            //$scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t(response.data.data.key)};
-
             window.location = '#/module/post/' + module.modulename;
-            //}, 3000);
 
         }, function (error) {
             $scope.loading = false;
@@ -550,7 +538,6 @@ myAppController.controller('AppLocalDetailController', function ($scope, $routeP
     function loadOnlineModules(moduleName) {
         dataFactory.getRemoteData($scope.cfg.online_module_url).then(function (response) {
             $scope.isOnline = _.findWhere(response.data, {modulename: moduleName});
-            ;
         }, function (error) {
         });
     }
@@ -679,9 +666,7 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
         dataFactory.installOnlineModule(data, 'online_install').then(function (response) {
             dataFactory.postToRemote($scope.cfg.online_module_installed_url, {id: module.id});
             dataService.showNotifier({message: $scope._t(response.data.data.key)});
-            //$timeout(function () {
-            window.location = '#/module/post/' + module.modulename;
-            //}, 3000);
+           window.location = '#/module/post/' + module.modulename;
 
         }, function (error) {
             $scope.loading = false;
@@ -706,8 +691,6 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
             $scope.loadComments($routeParams.id);
             input.content = '';
             input.name = '';
-            /*$timeout(function () {}, 3000);*/
-
         }, function (error) {
             $scope.loading = false;
             alertify.alertError($scope._t('comment_add_failed'));
@@ -981,11 +964,8 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
             moduleUrl: $scope.cfg.online_module_download_url + module.file
         };
         dataFactory.installOnlineModule(data, 'online_install').then(function (response) {
-            //dataFactory.postToRemote($scope.cfg.online_module_installed_url, {id: module.id});
             dataService.showNotifier({message: $scope._t(response.data.data.key)});
-            //$timeout(function () {
             window.location = '#/module/post/' + module.modulename + '/' + $routeParams.id;
-            //}, 3000);
 
         }, function (error) {
             $scope.loading = false;
@@ -1001,7 +981,6 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
      * Set dependencies
      */
     function setDependencies(dependencies) {
-        //var dependencies = ['Cron', 'Sonos', 'RGB'/*, 'YandexProbki', 'Wunderground'*/];
         if (!_.isArray(dependencies)) {
             return;
         }
@@ -1037,8 +1016,6 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
                             $scope.moduleId.submit = false;
                             $scope.moduleId.dependency.activate[k] = $scope.moduleId.instances[k];
                         }
-
-                        //$scope.moduleId.dependency.activate[k] = instances[k];
                     } else {
                         $scope.moduleId.submit = false;
                         $scope.moduleId.dependency.add[k] = {
