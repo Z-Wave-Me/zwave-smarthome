@@ -124,18 +124,19 @@ myApp.filter('hasNode', function () {
     };
 });
 /**
+ * DEPRECATED
  * Get segment from url
  */
-myApp.filter('getUrlSegment', function ($location) {
-    return function (segment) {
-        var ret = false;
-        var data = $location.path().split('/');
-        if (data[segment]) {
-            ret = data[segment];
-        }
-        return ret;
-    };
-});
+//myApp.filter('getUrlSegment', function ($location) {
+//    return function (segment) {
+//        var ret = false;
+//        var data = $location.path().split('/');
+//        if (data[segment]) {
+//            ret = data[segment];
+//        }
+//        return ret;
+//    };
+//});
 /**
  * Get current time
  */
@@ -203,8 +204,7 @@ myApp.filter('getElementIcon', function (cfg) {
                     }
                     break;
                 case 'thermostat':
-                    //icon = cfg.img.icons + (level == 'on' ? 'switch-on.png' : 'switch-off.png');
-                    icon = cfg.img.icons + 'thermostat.png';
+                    con = cfg.img.icons + 'thermostat.png';
                     break;
 
                 case 'energy':
@@ -431,11 +431,9 @@ myApp.filter('isTodayFromUnix', function () {
         var sec = (d.getSeconds() < 10 ? '0' + d.getSeconds() : d.getSeconds());
 
         if (d.toDateString() == (new Date()).toDateString()) {
-            //return hrs + ':' + min + ':' + sec;
             return hrs + ':' + min;
 
         } else {
-            //return day + '.' + mon + '.' + year + ' ' + hrs + ':' + min + ':' + sec;
             return day + '.' + mon + '.' + year;
         }
     };

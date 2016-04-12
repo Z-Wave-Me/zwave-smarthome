@@ -3,7 +3,7 @@ var config_data = {
         //Application name
         'app_name': 'SmartHome UI',
         // Application version
-        'app_version': '1.4.0',
+        'app_version': '1.4.2',
         // Server base url
         'server_url': '/',
         //'server_url': 'http://192.168.10.119:8083/',
@@ -231,7 +231,9 @@ var config_data = {
         ],
         // List of range values 0 - 255
         'knob_255': [
-            'multilevel'
+            'switchColor_red',
+            'switchColor_green',
+            'switchColor_blue'
         ],
         // Order by
         orderby: {
@@ -258,6 +260,14 @@ var config_data = {
                 'creationTimeASC': 'creationTime',
                 'titleASC': 'title',
                 'titleDESC': '-title'
+            },
+            rooms: {
+                'titleASC': 'title',
+                'titleDESC': '-title'
+            },
+            users: {
+                'titleASC': 'name',
+                'titleDESC': '-name'
             }
         },
         // List of climate states

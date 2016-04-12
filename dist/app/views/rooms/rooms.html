@@ -1,11 +1,38 @@
 <!-- Rooms view -->
 <div ng-controller="RoomController" class="mobile-padding">
     <bb-loader></bb-loader>
+    <div class="page-control form-inline">
+         <div class="btn-group btn-goup-block btn-goup-1">
+                <button class="btn btn-default" ng-click="expandNavi('roomsOrderBy', $event)">
+                    <i class="fa fa-sort-alpha-asc"></i> 
+                    <span class="btn-name">{{_t(rooms.orderBy) | cutText:true:15}}</span>
+                </button>
+            </div>
+            <div class="input-group">
+                <input type="text" ng-model="q" class="form-control form-search" value="{{q}}">
+                <span class="input-group-addon"><i class="fa fa-search"></i></span> 
+            </div>
+        </div>
+     
+        <!-- Page subnavi  sort by -->
+      <div class="page-navi" ng-if="naviExpanded.roomsOrderBy">
+        <div class="page-navi-in">
+            <div class="page-navi-content">
+                 <p class="page-navi-title"> {{_t('sortby')}}</p>
+                <a class="btn btn-default btn-tag" href="" 
+                        ng-repeat="(k,v) in cfg.orderby.rooms"
+                       ng-click="setOrderBy(k)"
+                       ng-class="rooms.orderBy == k ? 'active': ''">
+                     {{_t(k) | cutText:true:30}}
+                 </a>
+            </div>
+        </div>
+    </div>
     <div class="app-row app-row-room clearfix" ng-if="rooms.show">
         <div class="room-entry has-device-{{rooms.cnt.devices[v.id]||'false'}}" 
              id="panel_{{$index}}"
              ng-hide="v.id === 0 && !rooms.cnt.devices[v.id]"
-             ng-repeat="v in rooms.all">
+            ng-repeat="v in rooms.all|orderBy:cfg.orderby.rooms[rooms.orderBy] | filter:q  track by v.id">
             <div class="room-entry-in">
                  <h4>
                     <a href="#/rooms/{{v.id}}" title="{{_t('lb_devices_room')}} {{v.title}}" ng-if="rooms.cnt.devices[v.id]">{{v.title}}  <span class="item-cnt">({{rooms.cnt.devices[v.id]}})</span></a>

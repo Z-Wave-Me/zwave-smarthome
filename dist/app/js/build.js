@@ -10920,7 +10920,7 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                 }).
                 //Zwave devices
                 when('/zwave/devices', {
-                    templateUrl: 'app/views/zwave/zwave_devices.html',
+                    templateUrl: 'app/views/zwave/zwave_manage.html',
                     requireLogin: true
                 }).
                 //Zwave devices config
@@ -11549,7 +11549,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/management/management_user.html',
-    "<h2 class=accordion-entry-title ng-click=\"expandElement('user')\"><i class=\"fa fa-users\"></i> <span ng-bind=\"_t('nav_admin')\"></span> <i class=\"fa accordion-arrow\" ng-class=\"expand.user ? 'fa-chevron-up':'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-class=\"\" ng-if=expand.user ng-controller=ManagementUserController><bb-loader></bb-loader><div class=\"app-row app-row-report app-row-user clearfix\"><div id=row_user_{{v.id}} class=report-entry ng-repeat=\"v in userProfiles.all\"><div class=\"report-col report-media\"><img class=report-img ng-src=storage/img/icons/user.png alt=\"{{v.name}}\"></div><div class=\"report-col report-body\">{{v.name|cutText:true:25}}</div><div class=\"report-col report-ctrl\"><div class=btn-group><a class=\"btn btn-default\" ng-href=#admin/user/{{v.id}} title=\"{{_t('lb_update')}}\"><i class=\"fa fa-pencil text-info\"></i></a> <button class=\"btn btn-default\" title=\"{{_t('lb_remove')}}\" ng-hide=\"v.id == 1\" ng-click=\"deleteProfile(v, _t('lb_delete_confirm'), 1)\"><i class=\"fa fa-times text-danger\"></i></button></div></div></div></div><div class=\"fieldset submit-entry\"><a class=\"btn btn-submit\" ng-href=#admin/user/0 title=\"{{_t('lb_add_user')}}\"><i class=\"fa fa-plus\"></i> <span class=btn-name>{{_t('lb_add_user')}}</span></a></div></div>"
+    "<h2 class=accordion-entry-title ng-click=\"expandElement('user')\"><i class=\"fa fa-users\"></i> <span ng-bind=\"_t('nav_admin')\"></span> <i class=\"fa accordion-arrow\" ng-class=\"expand.user ? 'fa-chevron-up':'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-class=\"\" ng-if=expand.user ng-controller=ManagementUserController><bb-loader></bb-loader><div class=\"page-control form-inline\"><div class=\"btn-group btn-goup-block btn-goup-1\"><button class=\"btn btn-default\" ng-click=\"expandNavi('roomsOrderBy', $event)\"><i class=\"fa fa-sort-alpha-asc\"></i> <span class=btn-name>{{_t(userProfiles.orderBy) | cutText:true:15}}</span></button></div><div class=input-group><input ng-model=q class=\"form-control form-search\" value={{q}}> <span class=input-group-addon><i class=\"fa fa-search\"></i></span></div></div><div class=page-navi ng-if=naviExpanded.roomsOrderBy><div class=page-navi-in><div class=page-navi-content><p class=page-navi-title>{{_t('sortby')}}</p><a class=\"btn btn-default btn-tag\" href=\"\" ng-repeat=\"(k,v) in cfg.orderby.users\" ng-click=setOrderBy(k) ng-class=\"userProfiles.orderBy == k ? 'active': ''\">{{_t(k) | cutText:true:30}}</a></div></div></div><div class=\"app-row app-row-report app-row-user clearfix\"><div id=row_user_{{v.id}} class=report-entry ng-repeat=\"v in userProfiles.all|orderBy:cfg.orderby.users[userProfiles.orderBy]| filter:q  track by v.id\"><div class=\"report-col report-media\"><img class=report-img ng-src=storage/img/icons/user.png alt=\"{{v.name}}\"></div><div class=\"report-col report-body\">{{v.name|cutText:true:25}}</div><div class=\"report-col report-ctrl\"><div class=btn-group><a class=\"btn btn-default\" ng-href=#admin/user/{{v.id}} title=\"{{_t('lb_update')}}\"><i class=\"fa fa-pencil text-info\"></i></a> <button class=\"btn btn-default\" title=\"{{_t('lb_remove')}}\" ng-hide=\"v.id == 1\" ng-click=\"deleteProfile(v, _t('lb_delete_confirm'), 1)\"><i class=\"fa fa-times text-danger\"></i></button></div></div></div></div><div class=\"fieldset submit-entry\"><a class=\"btn btn-submit\" ng-href=#admin/user/0 title=\"{{_t('lb_add_user')}}\"><i class=\"fa fa-plus\"></i> <span class=btn-name>{{_t('lb_add_user')}}</span></a></div></div>"
   );
 
 
@@ -11569,7 +11569,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/rooms/config_rooms.html',
-    "<div ng-controller=RoomController><bb-loader></bb-loader><div ng-if=rooms.show><h2 ng-bind=\"_t('nav_rooms')\"></h2><div class=\"app-row app-row-report app-row-room clearfix\" ng-controller=RoomConfigController><div id=row_{{v.id}} class=report-entry ng-repeat=\"v in rooms.all\" ng-if=\"v.id !== 0\"><div class=\"report-col report-media\"><img class=\"report-img img-circle\" ng-src=\"{{v.img_src}}\"></div><div class=\"report-col report-body\">{{v.title|cutText:true:25}} <span class=item-cnt>({{rooms.cnt.devices[v.id]||0}})</span></div><div class=\"report-col report-ctrl\"><div class=btn-group><a class=\"btn btn-default\" title=\"{{_t('lb_update')}}\" href=#config-rooms/{{v.id}}><i class=\"fa fa-pencil text-info\"></i></a> <button class=\"btn btn-default\" title=\"{{_t('lb_remove')}}\" ng-click=\"deleteRoom(v.id, _t('lb_delete_confirm'))\"><i class=\"fa fa-times text-danger\"></i></button></div></div></div></div><div class=\"fieldset submit-entry\"><button type=button class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <a type=button class=\"btn btn-submit\" title=\"{{_t('lb_add_room')}}\" ng-href=#config-rooms/0><i class=\"fa fa-plus\"></i> <span class=btn-name>{{_t('lb_add_room')}}</span></a></div></div></div>"
+    "<div ng-controller=RoomController><bb-loader></bb-loader><div ng-if=rooms.show><div class=\"page-control form-inline\"><div class=\"btn-group btn-goup-block btn-goup-1\"><button class=\"btn btn-default\" ng-click=\"expandNavi('roomsOrderBy', $event)\"><i class=\"fa fa-sort-alpha-asc\"></i> <span class=btn-name>{{_t(rooms.orderBy) | cutText:true:15}}</span></button></div><div class=input-group><input ng-model=q class=\"form-control form-search\" value={{q}}> <span class=input-group-addon><i class=\"fa fa-search\"></i></span></div></div><div class=page-navi ng-if=naviExpanded.roomsOrderBy><div class=page-navi-in><div class=page-navi-content><p class=page-navi-title>{{_t('sortby')}}</p><a class=\"btn btn-default btn-tag\" href=\"\" ng-repeat=\"(k,v) in cfg.orderby.rooms\" ng-click=setOrderBy(k) ng-class=\"rooms.orderBy == k ? 'active': ''\">{{_t(k) | cutText:true:30}}</a></div></div></div><div class=\"app-row app-row-report app-row-room clearfix\" ng-controller=RoomConfigController><div id=row_{{v.id}} class=report-entry ng-repeat=\"v in rooms.all|orderBy:cfg.orderby.rooms[rooms.orderBy] | filter:q  track by v.id\" ng-if=\"v.id !== 0\"><div class=\"report-col report-media\"><img class=\"report-img img-circle\" ng-src=\"{{v.img_src}}\"></div><div class=\"report-col report-body\">{{v.title|cutText:true:25}} <span class=item-cnt>({{rooms.cnt.devices[v.id]||0}})</span></div><div class=\"report-col report-ctrl\"><div class=btn-group><a class=\"btn btn-default\" title=\"{{_t('lb_update')}}\" href=#config-rooms/{{v.id}}><i class=\"fa fa-pencil text-info\"></i></a> <button class=\"btn btn-default\" title=\"{{_t('lb_remove')}}\" ng-click=\"deleteRoom(v.id, _t('lb_delete_confirm'))\"><i class=\"fa fa-times text-danger\"></i></button></div></div></div></div><div class=\"fieldset submit-entry\"><button type=button class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <a type=button class=\"btn btn-submit\" title=\"{{_t('lb_add_room')}}\" ng-href=#config-rooms/0><i class=\"fa fa-plus\"></i> <span class=btn-name>{{_t('lb_add_room')}}</span></a></div></div></div>"
   );
 
 
@@ -11579,7 +11579,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/rooms/rooms.html',
-    "<div ng-controller=RoomController class=mobile-padding><bb-loader></bb-loader><div class=\"app-row app-row-room clearfix\" ng-if=rooms.show><div class=\"room-entry has-device-{{rooms.cnt.devices[v.id]||'false'}}\" id=panel_{{$index}} ng-hide=\"v.id === 0 && !rooms.cnt.devices[v.id]\" ng-repeat=\"v in rooms.all\"><div class=room-entry-in><h4><a href=#/rooms/{{v.id}} title=\"{{_t('lb_devices_room')}} {{v.title}}\" ng-if=rooms.cnt.devices[v.id]>{{v.title}} <span class=item-cnt>({{rooms.cnt.devices[v.id]}})</span></a> <span ng-if=!rooms.cnt.devices[v.id]>{{v.title}} <span class=item-cnt>(0)</span></span></h4><a ng-href=\"#/rooms{{(rooms.cnt.devices[v.id] ? '/' + v.id : '')}}\" ng-disabled=!rooms.cnt.devices[v.id] title=\"{{_t('lb_devices_room')}} {{v.title}}\"><img class=\"room-image-preview img-circle\" ng-src={{v.img_src}} alt=\"img\"></a></div></div><div class=room-entry id=panel_new_room ng-if=elementAccess(cfg.role_access.config_rooms)><div class=room-entry-in><h4><a href=#config-rooms/0 ng-bind=\"_t('lb_add_room')\"></a></h4><a href=#config-rooms/0><img class=\"room-image-preview img-circle\" src=storage/img/rooms/add-icon.png alt=\"{{_t('lb_add_room')}}\"></a></div></div></div></div>"
+    "<div ng-controller=RoomController class=mobile-padding><bb-loader></bb-loader><div class=\"page-control form-inline\"><div class=\"btn-group btn-goup-block btn-goup-1\"><button class=\"btn btn-default\" ng-click=\"expandNavi('roomsOrderBy', $event)\"><i class=\"fa fa-sort-alpha-asc\"></i> <span class=btn-name>{{_t(rooms.orderBy) | cutText:true:15}}</span></button></div><div class=input-group><input ng-model=q class=\"form-control form-search\" value={{q}}> <span class=input-group-addon><i class=\"fa fa-search\"></i></span></div></div><div class=page-navi ng-if=naviExpanded.roomsOrderBy><div class=page-navi-in><div class=page-navi-content><p class=page-navi-title>{{_t('sortby')}}</p><a class=\"btn btn-default btn-tag\" href=\"\" ng-repeat=\"(k,v) in cfg.orderby.rooms\" ng-click=setOrderBy(k) ng-class=\"rooms.orderBy == k ? 'active': ''\">{{_t(k) | cutText:true:30}}</a></div></div></div><div class=\"app-row app-row-room clearfix\" ng-if=rooms.show><div class=\"room-entry has-device-{{rooms.cnt.devices[v.id]||'false'}}\" id=panel_{{$index}} ng-hide=\"v.id === 0 && !rooms.cnt.devices[v.id]\" ng-repeat=\"v in rooms.all|orderBy:cfg.orderby.rooms[rooms.orderBy] | filter:q  track by v.id\"><div class=room-entry-in><h4><a href=#/rooms/{{v.id}} title=\"{{_t('lb_devices_room')}} {{v.title}}\" ng-if=rooms.cnt.devices[v.id]>{{v.title}} <span class=item-cnt>({{rooms.cnt.devices[v.id]}})</span></a> <span ng-if=!rooms.cnt.devices[v.id]>{{v.title}} <span class=item-cnt>(0)</span></span></h4><a ng-href=\"#/rooms{{(rooms.cnt.devices[v.id] ? '/' + v.id : '')}}\" ng-disabled=!rooms.cnt.devices[v.id] title=\"{{_t('lb_devices_room')}} {{v.title}}\"><img class=\"room-image-preview img-circle\" ng-src={{v.img_src}} alt=\"img\"></a></div></div><div class=room-entry id=panel_new_room ng-if=elementAccess(cfg.role_access.config_rooms)><div class=room-entry-in><h4><a href=#config-rooms/0 ng-bind=\"_t('lb_add_room')\"></a></h4><a href=#config-rooms/0><img class=\"room-image-preview img-circle\" src=storage/img/rooms/add-icon.png alt=\"{{_t('lb_add_room')}}\"></a></div></div></div></div>"
   );
 
 
@@ -11604,17 +11604,12 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/zwave/zwave_add.html',
-    "<div ng-controller=ZwaveAddController><div class=\"text-center device-autodetect\"><a href=#zwave/inclusion class=\"btn btn-default btn-lg btn-block\" title=\"{{_t('lb_zwave_autodetect')}}\"><i class=\"fa fa-plug text-success\"></i> <span class=btn-name>{{_t('lb_zwave_autodetect')}}</span></a></div><div class=\"app-row app-row-vendor clearfix\" ng-hide=zwaveDevices><div class=vendor-entry ng-repeat=\"v in manufacturers\"><a ng-href=#zwave/add/{{v.brandname}} class=vendor-list><p class=vendor-image><img ng-src=storage/img/zwave/vendors/{{v.brand_image}} alt=img ng-show=\"v.brandname\"></p></a></div></div><div ng-if=manufacturer><h3><button class=\"btn btn-default\" bb-go-back><i class=\"fa fa-arrow-left\"></i></button> {{manufacturer}}</h3><div class=\"app-row app-row-report app-row-zwaveadd clearfix\"><div id=row_zwaveadd_{{v.id}} class=report-entry ng-repeat=\"(k,v) in zwaveDevices\"><div class=\"report-col report-media\"><img class=product-img ng-src=storage/img/zwave/devices/{{v.product_image}} alt=img ng-if=\"v.product_image\"> <img class=product-img ng-src=storage/img/zwave/vendors/{{v.brand_image}} alt=img ng-if=\"!v.product_image\"></div><div class=\"report-col report-body\">{{v.name}}</div><div class=\"report-col report-ctrl\"><a href=#zwave/inclusion/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_include_device')}}\"><i class=\"fa fa-plug text-primary\"></i></a></div></div></div></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div></div>"
+    "<div ng-controller=ZwaveAddController><bb-loader></bb-loader><div class=\"text-center device-autodetect\"><a href=#zwave/inclusion class=\"btn btn-default btn-lg btn-block\" title=\"{{_t('lb_zwave_autodetect')}}\"><i class=\"fa fa-plug text-success\"></i> <span class=btn-name>{{_t('lb_zwave_autodetect')}}</span></a></div><div class=\"app-row app-row-vendor clearfix\" ng-hide=zwaveDevices><div class=vendor-entry ng-repeat=\"v in manufacturers\"><a ng-href=#zwave/add/{{v.brandname}} class=vendor-list><p class=vendor-image><img ng-src=storage/img/zwave/vendors/{{v.brand_image}} alt=img ng-show=\"v.brandname\"></p></a></div></div><div ng-if=manufacturer><h3><button class=\"btn btn-default\" bb-go-back><i class=\"fa fa-arrow-left\"></i></button> {{manufacturer}}</h3><div class=\"app-row app-row-report app-row-zwaveadd clearfix\"><div id=row_zwaveadd_{{v.id}} class=report-entry ng-repeat=\"(k,v) in zwaveDevices\"><div class=\"report-col report-media\"><img class=product-img ng-src=storage/img/zwave/devices/{{v.product_image}} alt=img ng-if=\"v.product_image\"> <img class=product-img ng-src=storage/img/zwave/vendors/{{v.brand_image}} alt=img ng-if=\"!v.product_image\"></div><div class=\"report-col report-body\">{{v.name}}</div><div class=\"report-col report-ctrl\"><a href=#zwave/inclusion/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_include_device')}}\"><i class=\"fa fa-plug text-primary\"></i></a></div></div></div></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div></div>"
   );
 
 
   $templateCache.put('app/views/zwave/zwave_batteries.html',
-    "<div ng-controller=ZwaveManageController><bb-loader></bb-loader><div ng-include=\"'app/views/zwave/navi.html'\"></div><div class=\"app-row app-row-report app-row-battery clearfix\"><div id=row_battery_{{v.id}} class=report-entry ng-repeat=\"v in devices.batteries| orderBy:'level':false\"><div class=\"report-col report-media\"><img class=report-img ng-src={{v.metrics.level|getBatteryIcon}} alt=\"img\"></div><div class=\"report-col report-body\">(#{{v.nodeId}}) {{v.nodeName}}</div><div class=\"report-col report-ctrl\"><span class=text-success ng-show=\"v.metrics.level >= 80\">{{v.metrics.level}} %</span> <span class=text-default ng-show=\"v.metrics.level < 80 && v.metrics.level > 20\">{{v.metrics.level}} %</span> <span class=text-danger ng-show=\"v.metrics.level <= 20\"><i class=\"fa fa-exclamation-triangle\"></i> {{v.metrics.level}} %</span></div></div></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div></div>"
-  );
-
-
-  $templateCache.put('app/views/zwave/zwave_devices.html',
-    "<div ng-controller=ZwaveManageController><bb-loader></bb-loader><div ng-include=\"'app/views/zwave/navi.html'\"></div><div class=\"app-row app-row-report app-row-zwave clearfix\"><div id=row_zwave_{{v.id}} class=report-entry ng-repeat=\"v in zWaveDevices | orderBy:'title':false\"><div class=\"report-col report-body zwave-devices\"><span class=\"network-zwave-title noelements\" ng-if=\"v.elements.length < 1\">{{v.title}} (#{{v.id}})</span> <a href=\"\" class=network-zwave-title ng-click=\"expandElement('accZwave_' + v.id)\" ng-if=\"v.elements.length > 0\"><i class=fa ng-class=\"expand['accZwave' + '_' + v.id] ? 'fa-chevron-up': 'fa-chevron-down'\"></i> {{v.title}} (#{{v.id}})</a><div ng-if=\"expand['accZwave_' + v.id]\"><div class=\"network-zwave-element zwave-hidden-{{e.permanently_hidden}}\" ng-repeat=\"e in v.elements | orderBy:'title':false\"><a ng-href=#/element/{{e.id}}><img class=report-img-s ng-src={{e.metrics.icon|getElementIcon:e:e.level}} alt=\"img\"> {{e.title|cutText:true:25}} <span class=zwave-raquo>&raquo;</span></a></div></div></div><div class=\"report-col report-ctrl\" ng-if=elementAccess(cfg.role_access.network)><div class=btn-group><a class=\"btn btn-default\" href=#zwave/devices/{{v.id}} title=\"{{_t('lb_configuration')}}\" ng-if_=\"v.cfg.length > 0\"><i class=\"fa fa-cog text-primary\"></i></a> <a class=\"btn btn-default\" href=#zwave/exclude/{{v.id}} title=\"{{_t('lb_remove')}}\"><i class=\"fa fa-remove text-danger\"></i></a></div></div></div></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div></div>"
+    "<div ng-controller=ZwaveManageController><bb-loader></bb-loader><div ng-include=\"'app/views/zwave/navi.html'\"></div><div class=\"app-row app-row-report app-row-battery clearfix\" ng-if=devices.show><div id=row_battery_{{v.id}} class=report-entry ng-repeat=\"v in devices.batteries| orderBy:'level':false\"><div class=\"report-col report-media\"><img class=report-img ng-src={{v.metrics.level|getBatteryIcon}} alt=\"img\"></div><div class=\"report-col report-body\">(#{{v.nodeId}}) {{v.nodeName}}</div><div class=\"report-col report-ctrl\"><span class=text-success ng-show=\"v.metrics.level >= 80\">{{v.metrics.level}} %</span> <span class=text-default ng-show=\"v.metrics.level < 80 && v.metrics.level > 20\">{{v.metrics.level}} %</span> <span class=text-danger ng-show=\"v.metrics.level <= 20\"><i class=\"fa fa-exclamation-triangle\"></i> {{v.metrics.level}} %</span></div></div></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div></div>"
   );
 
 
@@ -11628,8 +11623,13 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
   );
 
 
+  $templateCache.put('app/views/zwave/zwave_manage.html',
+    "<div ng-controller=ZwaveManageController><bb-loader></bb-loader><div ng-include=\"'app/views/zwave/navi.html'\"></div><div class=\"app-row app-row-report app-row-zwave clearfix\" ng-if=devices.show><div id=row_zwave_{{v.id}} class=report-entry ng-repeat=\"v in zWaveDevices | orderBy:'title':false\"><div class=\"report-col report-body zwave-devices\"><span class=\"network-zwave-title noelements\" ng-if=\"v.elements.length < 1\">{{v.title}} (#{{v.id}})</span> <a href=\"\" class=network-zwave-title ng-click=\"expandElement('accZwave_' + v.id)\" ng-if=\"v.elements.length > 0\"><i class=fa ng-class=\"expand['accZwave' + '_' + v.id] ? 'fa-chevron-up': 'fa-chevron-down'\"></i> {{v.title}} (#{{v.id}})</a><div ng-if=\"expand['accZwave_' + v.id]\"><div class=\"network-zwave-element zwave-hidden-{{e.permanently_hidden}}\" ng-repeat=\"e in v.elements | orderBy:'title':false\"><a ng-href=#/element/{{e.id}}><img class=report-img-s ng-src={{e.metrics.icon|getElementIcon:e:e.level}} alt=\"img\"> {{e.title|cutText:true:25}} <span class=zwave-raquo>&raquo;</span></a></div></div></div><div class=\"report-col report-ctrl\" ng-if=elementAccess(cfg.role_access.network)><div class=btn-group><a class=\"btn btn-default\" href=#zwave/devices/{{v.id}} title=\"{{_t('lb_configuration')}}\"><i class=\"fa fa-cog text-primary\"></i></a> <a class=\"btn btn-default\" href=#zwave/exclude/{{v.id}} title=\"{{_t('lb_remove')}}\"><i class=\"fa fa-remove text-danger\"></i></a></div></div></div></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div></div>"
+  );
+
+
   $templateCache.put('app/views/zwave/zwave_manage_id.html',
-    "<div ng-controller=ZwaveManageIdController class=mobile-padding><bb-loader></bb-loader><div ng-show=formInput><h1>(#{{zWaveDevice.id}}) {{formInput.deviceName}}</h1><form name=form_network_config id=form_profile class=\"form form-page\" ng-submit=updateAllDevices(formInput) novalidate><fieldset><label ng-bind=\"_t('rename_device')\"></label><input name=device_name id=device_name class=form-control value={{formInput.deviceName}} ng-model=\"formInput.deviceName\"></fieldset><div ng-if=\"devices.length > 0\"><fieldset><div class=\"form-group form-inline\"><label ng-bind=\"_t('devices_to_room')\"></label><br><select class=form-control name=to_room id=to_room ng-model=formInput.room><option ng-repeat=\"v in rooms\" ng-selected_=\"input.location == v.id\" value={{v.id}} ng-if=\"v.id !== 0\" ng-bind=\"(v.id === 0 ? _t(v.title) : v.title)\"></option></select></div></fieldset><fieldset><div class=\"form-group form-inline zwave-hidden-{{formInput.elements[e.id].permanently_hidden}}\" ng-repeat=\"e in devices | orderBy:'title':false track by e.id\" ng-init=\"dev[e.id] = e\"><h3><img class=report-img-s ng-src={{e.metrics.icon|getElementIcon:e:e.level}} alt=\"img\"> <span ng-bind=formInput.elements[e.id].metrics.title></span></h3><div class=\"form-group form-inline\"><input name=title_{{$index}} id=title_{{$index}} class=form-control ng-model=formInput.elements[e.id].metrics.title value=\"{{formInput.elements[e.id].metrics.title}}\"> <span class=mobile-block><input type=checkbox name=permanently_hidden_{{$index}} id=permanently_hidden_{{$index}} ng-model=formInput.elements[e.id].permanently_hidden ng-checked=\"formInput.elements[e.id].permanently_hidden\"><label>{{_t('lb_deactivate')}}</label></span></div></div><div class=\"form-group form-inline\"><a class=\"btn btn-primary\" href=#deviceconfig/{{zWaveDevice.id}} title=\"{{_t('hardware_konfiguration')}}\" ng-if=\"zWaveDevice.cfg.length > 0\"><i class=\"fa fa-wrench\"></i> <span class=btn-name ng-bind=\"_t('hardware_konfiguration')\"></span></a></div></fieldset></div><fieldset class=submit-entry><button type=button class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\" ng-if=!nohistory bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <button type=submit class=\"btn btn-submit\" title=\"{{_t('lb_save')}}\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></fieldset></form></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div></div>"
+    "<div ng-controller=ZwaveManageIdController class=mobile-padding><bb-loader></bb-loader><div ng-show=formInput.show><h1>(#{{zWaveDevice.id}}) {{formInput.deviceName}}</h1><form name=form_network_config id=form_profile class=\"form form-page\" ng-submit=updateAllDevices(formInput) novalidate><fieldset><label ng-bind=\"_t('rename_device')\"></label><input name=device_name id=device_name class=form-control value={{formInput.deviceName}} ng-model=\"formInput.deviceName\"></fieldset><div ng-if=\"devices.length > 0\"><fieldset><div class=\"form-group form-inline\"><div class=input-group><input name=appstore_token id=appstore_token class=form-control placeholder=\"{{_t('lb_add_room')}}\" ng-model=\"formInput.newRoom\"> <span class=\"input-group-addon clickable\" title=\"{{_t('add_new')}}\" ng-click=addRoom(formInput.newRoom)><i class=\"fa fa-plus text-success\"></i></span></div></div><div class=\"form-group form-inline\"><label class=display-block ng-bind=\"_t('devices_to_room')\"></label><div class=btn-group><button type=button class=\"btn btn-default\" ng-click=\"expandNavi('devidDropDown', $event)\">{{rooms[formInput.room].title|cutText:true:20}} <i class=\"fa fa-caret-down\"></i></button><div class=\"app-dropdown app-dropdown-left\" ng-if=naviExpanded.devidDropDown><ul><li class=clickable ng-click=\"formInput.room = v.id\" ng-repeat=\"v in rooms\"><a><img class=navi-img ng-src={{v.img_src}} alt=\"img\"> {{v.title|cutText:true:20}} <i class=\"fa fa-check menu-arrow\" ng-if=\"formInput.room == v.id\"></i></a></li></ul></div></div></div></fieldset><fieldset><div class=\"form-group form-inline zwave-hidden-{{formInput.elements[e.id].permanently_hidden}}\" ng-repeat=\"e in devices| orderBy:'title':false track by e.id\" ng-init=\"dev[e.id] = e\"><h3><img class=report-img-s ng-src={{e.metrics.icon|getElementIcon:e:e.level}} alt=\"img\"> <span ng-bind=formInput.elements[e.id].metrics.title></span></h3><div class=\"form-group form-inline\"><input name=title_{{$index}} id=title_{{$index}} class=form-control ng-model=formInput.elements[e.id].metrics.title value=\"{{formInput.elements[e.id].metrics.title}}\"> <span class=mobile-block><input type=checkbox name=permanently_hidden_{{$index}} id=permanently_hidden_{{$index}} ng-model=formInput.elements[e.id].permanently_hidden ng-checked=\"formInput.elements[e.id].permanently_hidden\"><label>{{_t('lb_deactivate')}}</label></span></div></div><div class=\"form-group form-inline\"><a class=\"btn btn-primary\" href=#deviceconfig/{{zWaveDevice.id}} title=\"{{_t('hardware_konfiguration')}}\" ng-if=\"zWaveDevice.cfg.length > 0\"><i class=\"fa fa-wrench\"></i> <span class=btn-name ng-bind=\"_t('hardware_konfiguration')\"></span></a></div></fieldset></div><fieldset class=submit-entry><button type=button class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\" ng-if=!nohistory bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <button type=submit class=\"btn btn-submit\" title=\"{{_t('lb_save')}}\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></fieldset></form></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div></div>"
   );
 
 
@@ -11639,7 +11639,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/zwave/zwave_network.html',
-    "<div ng-controller=ZwaveManageController><bb-loader></bb-loader><div ng-include=\"'app/views/zwave/navi.html'\"></div><div class=\"app-row app-row-report app-row-zwave clearfix\"><div id=row_zwave_network_{{v.id}} class=report-entry ng-repeat=\"v in zWaveDevices | orderBy:'title':false\" ng-if=v.messages><div class=\"report-col report-body zwave-network\"><span class=\"network-zwave-title noelements clickable\" ng-if=\"v.elements.length < 1\">{{v.title|cutText:true:25}} (#{{v.id}})</span> <a href=\"\" class=\"network-zwave-title clickable\" ng-click=\"expandElement('accZwaveNetwork_' + v.id)\" ng-if=\"v.elements.length > 0\"><i class=fa ng-class=\"expand['accZwaveNetwork' + '_' + v.id] ? 'fa-chevron-up': 'fa-chevron-down'\"></i> {{v.title}} (#{{v.id}})</a><div ng-if=\"expand['accZwaveNetwork_' + v.id]\"><div class=\"network-zwave-element zwave-hidden-{{e.permanently_hidden}}\" ng-repeat=\"e in v.elements | orderBy:'title':false\"><a ng-href=#/element/{{e.id}}><img class=report-img-s ng-src={{e.metrics.icon|getElementIcon:e:e.level}} alt=\"img\"> {{e.title|cutText:true:25}} <span class=zwave-raquo>&raquo;</span></a></div></div></div><div class=\"report-col report-ctrl\"><div class=text-danger ng-repeat=\"m in v.messages|unique:true\"><span ng-if=!isMobile><a class=text-danger href=\"\" ng-if=\"m.type == 'failed' || m.type == 'config'\" ng-click=\"toExpert('/expert/#help/' + v.id, _t('redirect_to_expert'))\"><span ng-bind=m.error></span> <i class=\"fa fa-external-link\"></i></a></span> <span ng-if=isMobile><span class=text-danger ng-if=\"m.type == 'failed' || m.type == 'config'\" ng-bind=m.error></span></span> <span ng-if=\"m.type == 'battery'\" ng-bind=m.error></span></div></div></div></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div></div>"
+    "<div ng-controller=ZwaveManageController><bb-loader></bb-loader><div ng-include=\"'app/views/zwave/navi.html'\"></div><div class=\"app-row app-row-report app-row-zwave clearfix\" ng-if=devices.show><div id=row_zwave_network_{{v.id}} class=report-entry ng-repeat=\"v in zWaveDevices | orderBy:'title':false\" ng-if=v.messages><div class=\"report-col report-body zwave-network\"><span class=\"network-zwave-title noelements clickable\" ng-if=\"v.elements.length < 1\">{{v.title|cutText:true:25}} (#{{v.id}})</span> <a href=\"\" class=\"network-zwave-title clickable\" ng-click=\"expandElement('accZwaveNetwork_' + v.id)\" ng-if=\"v.elements.length > 0\"><i class=fa ng-class=\"expand['accZwaveNetwork' + '_' + v.id] ? 'fa-chevron-up': 'fa-chevron-down'\"></i> {{v.title}} (#{{v.id}})</a><div ng-if=\"expand['accZwaveNetwork_' + v.id]\"><div class=\"network-zwave-element zwave-hidden-{{e.permanently_hidden}}\" ng-repeat=\"e in v.elements | orderBy:'title':false\"><a ng-href=#/element/{{e.id}}><img class=report-img-s ng-src={{e.metrics.icon|getElementIcon:e:e.level}} alt=\"img\"> {{e.title|cutText:true:25}} <span class=zwave-raquo>&raquo;</span></a></div></div></div><div class=\"report-col report-ctrl\"><div class=text-danger ng-repeat=\"m in v.messages|unique:true\"><span ng-if=!isMobile><a class=text-danger href=\"\" ng-if=\"m.type == 'failed' || m.type == 'config'\" ng-click=\"toExpert('/expert/#help/' + v.id, _t('redirect_to_expert'))\"><span ng-bind=m.error></span> <i class=\"fa fa-external-link\"></i></a></span> <span ng-if=isMobile><span class=text-danger ng-if=\"m.type == 'failed' || m.type == 'config'\" ng-bind=m.error></span></span> <span ng-if=\"m.type == 'battery'\" ng-bind=m.error></span></div></div></div></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div></div>"
   );
 
 
@@ -12620,6 +12620,13 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
             return false;
         }
     };
+    
+    /**
+     * Go back
+     */
+    this.goBack = function () {
+          window.history.back();
+    };
 
 
     /**
@@ -12734,19 +12741,10 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                         var yesterday = (Math.round(new Date().getTime() / 1000)) - (24 * 3600);
                         var isNew = v.creationTime > yesterday ? true : false;
                         // Create min/max value
-                        switch (v.probeType) {
-                            case 'switchColor_red':
-                                minMax = {min: 0, max: 255};
-                                break;
-                             case 'switchColor_green':
-                                minMax = {min: 0, max: 255};
-                                break;
-                            case 'switchColor_blue':
-                                minMax = {min: 0, max: 255};
-                                break;
-                            default:
-                                minMax = {min: 0, max: 99};
-                                break;
+                        if(cfg.knob_255.indexOf(v.probeType) > -1){
+                             minMax = {min: 0, max: 255};
+                        }else{
+                             minMax = {min: 0, max: 99};
                         }
                         if (v.deviceType === 'thermostat') {
                             minMax = (v.metrics.scaleTitle === '°F' ? {min: 41, max: 104} : {min: 5, max: 40});
@@ -13811,18 +13809,19 @@ myApp.filter('hasNode', function () {
     };
 });
 /**
+ * DEPRECATED
  * Get segment from url
  */
-myApp.filter('getUrlSegment', function ($location) {
-    return function (segment) {
-        var ret = false;
-        var data = $location.path().split('/');
-        if (data[segment]) {
-            ret = data[segment];
-        }
-        return ret;
-    };
-});
+//myApp.filter('getUrlSegment', function ($location) {
+//    return function (segment) {
+//        var ret = false;
+//        var data = $location.path().split('/');
+//        if (data[segment]) {
+//            ret = data[segment];
+//        }
+//        return ret;
+//    };
+//});
 /**
  * Get current time
  */
@@ -13890,8 +13889,7 @@ myApp.filter('getElementIcon', function (cfg) {
                     }
                     break;
                 case 'thermostat':
-                    //icon = cfg.img.icons + (level == 'on' ? 'switch-on.png' : 'switch-off.png');
-                    icon = cfg.img.icons + 'thermostat.png';
+                    con = cfg.img.icons + 'thermostat.png';
                     break;
 
                 case 'energy':
@@ -14118,11 +14116,9 @@ myApp.filter('isTodayFromUnix', function () {
         var sec = (d.getSeconds() < 10 ? '0' + d.getSeconds() : d.getSeconds());
 
         if (d.toDateString() == (new Date()).toDateString()) {
-            //return hrs + ':' + min + ':' + sec;
             return hrs + ':' + min;
 
         } else {
-            //return day + '.' + mon + '.' + year + ' ' + hrs + ':' + min + ':' + sec;
             return day + '.' + mon + '.' + year;
         }
     };
@@ -14524,7 +14520,6 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
      */
     $scope.lang_list = cfg.lang_list;
     // Set language
-    //$scope.lang = cfg.lang;
     $scope.getLang = function () {
         if ($scope.user) {
             $scope.lang = $scope.user.lang;
@@ -14541,19 +14536,16 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         // Is lang in language list?
         var lang = (cfg.lang_list.indexOf(lang) > -1 ? lang : cfg.lang);
         dataFactory.getLanguageFile(lang).then(function (response) {
-            //$scope.languages = response.data;
             angular.extend($scope.languages, response.data);
         }, function (error) {});
     };
     // Get language lines
     $scope._t = function (key) {
-        //return cfg.route.t[key]||key;
         return dataService.getLangLine(key, $scope.languages);
     };
 
     // Watch for lang change
     $scope.$watch('lang', function () {
-        //angular.extend($scope.languages, $scope.cfg.route.t);
         $scope.loadLang($scope.lang);
     });
 
@@ -14731,7 +14723,6 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
 
     // Extend existing alert (WARNING) dialog
     if (!alertify.alertWarning) {
-        //define a new errorAlert base on alert
         alertify.dialog('alertWarning', function factory() {
             return{
                 build: function () {
@@ -14935,7 +14926,6 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
      * Run command
      */
     $scope.runCmd = function (cmd, id) {
-        //var widgetId = '#Widget_' + id;
         dataFactory.runApiCmd(cmd).then(function (response) {
             var index = _.findIndex($scope.dataHolder.devices.all, {id: id});
             if ($scope.dataHolder.devices.all[index]) {
@@ -14983,7 +14973,6 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
             dataFactory.putApi('devices', v.id, {visibility: visibility}).then(function (response) {
                  $scope.loading = false;
-                  //dataService.showNotifier({message: $scope._t('success_updated')});
                   $scope.reloadData();
             }, function (error) {
                 alertify.alertError($scope._t('error_update_data'));
@@ -14995,7 +14984,6 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
      * Set exact value for cmd command
      */
     $scope.setExactCmd = function (v, type, run) {
-        //console.log(type)
         var count;
         var val = parseInt(v.metrics.level);
         var min = parseInt(v.minMax.min, 10);
@@ -15020,9 +15008,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
         }
 
         var cmd = v.id + '/command/exact?level=' + count;
-        //if (count < 100 && count > 0) {
         v.metrics.level = count;
-        //}
         if (run) {
             $scope.runCmd(cmd);
         }
@@ -15192,7 +15178,6 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
      * Show RGB modal window
      */
     $scope.loadRgbWheel = function (input) {
-        //$(target).modal();
         $scope.input = input;
         var bCanPreview = true; // can preview
 
@@ -15637,7 +15622,7 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
             myCache.remove('devices');
             myCache.remove('devices/' + deviceId);
             myCache.remove('locations');
-            $window.history.back();
+            dataFactory.goBack();
 
         }, function (error) {
             alertify.alertError($scope._t('error_update_data'));
@@ -16163,9 +16148,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
             dataFactory.installOnlineModule(data, 'online_update').then(function (response) {
                 $scope.loading = false;
                 dataService.showNotifier({message: $scope._t(response.data.data.key)});
-                //$timeout(function () {
                 $route.reload();
-                //}, 3000);
 
             }, function (error) {
                 $scope.loading = false;
@@ -16187,9 +16170,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
         var modules = _.chain(data)
                 .flatten()
                 .filter(function (item) {
-                    //$scope.dataHolder.modules.ids.push(item.id);
                     $scope.dataHolder.modules.ids[item.id] = {version: item.version};
-                    //$scope.dataHolder.modules.all[item.id] = item;
                     var isHidden = false;
                     var items = [];
                     if ($scope.getHiddenApps().indexOf(item.moduleName) > -1) {
@@ -16251,8 +16232,6 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                 .filter(function (item) {
                     var isHidden = false;
                     var obj = {};
-                    //obj[item.file] = 'dfdf';
-                    //angular.extend()
                     $scope.dataHolder.onlineModules.ids[item.modulename] = {version: item.version, file: item.file, patchnotes: item.patchnotes};
                     if ($scope.getHiddenApps().indexOf(item.modulename) > -1) {
                         if ($scope.user.role !== 1) {
@@ -16427,7 +16406,6 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
         angular.extend($scope.dataHolder.onlineModules, {hideInstalled: status});
         $cookies.hideInstalledApps = status;
         $scope.reloadData();
-        //$window.location.reload();
     };
 
     /**
@@ -16437,7 +16415,6 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
         if (!filter) {
             angular.extend($scope.dataHolder.onlineModules, {filter: {}});
             $cookies.filterAppsOnline = angular.toJson({});
-            //delete $cookies['filterAppsOnline'];
         } else {
             angular.extend($scope.dataHolder.onlineModules, {filter: filter});
             $cookies.filterAppsOnline = angular.toJson(filter);
@@ -16457,11 +16434,7 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
             dataFactory.postToRemote($scope.cfg.online_module_installed_url, {id: module.id});
             $scope.loading = false;
             dataService.showNotifier({message: $scope._t(response.data.data.key)});
-            //$timeout(function () {
-            //$scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t(response.data.data.key)};
-
             window.location = '#/module/post/' + module.modulename;
-            //}, 3000);
 
         }, function (error) {
             $scope.loading = false;
@@ -16570,7 +16543,6 @@ myAppController.controller('AppLocalDetailController', function ($scope, $routeP
     function loadOnlineModules(moduleName) {
         dataFactory.getRemoteData($scope.cfg.online_module_url).then(function (response) {
             $scope.isOnline = _.findWhere(response.data, {modulename: moduleName});
-            ;
         }, function (error) {
         });
     }
@@ -16699,9 +16671,7 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
         dataFactory.installOnlineModule(data, 'online_install').then(function (response) {
             dataFactory.postToRemote($scope.cfg.online_module_installed_url, {id: module.id});
             dataService.showNotifier({message: $scope._t(response.data.data.key)});
-            //$timeout(function () {
-            window.location = '#/module/post/' + module.modulename;
-            //}, 3000);
+           window.location = '#/module/post/' + module.modulename;
 
         }, function (error) {
             $scope.loading = false;
@@ -16726,8 +16696,6 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
             $scope.loadComments($routeParams.id);
             input.content = '';
             input.name = '';
-            /*$timeout(function () {}, 3000);*/
-
         }, function (error) {
             $scope.loading = false;
             alertify.alertError($scope._t('comment_add_failed'));
@@ -17001,11 +16969,8 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
             moduleUrl: $scope.cfg.online_module_download_url + module.file
         };
         dataFactory.installOnlineModule(data, 'online_install').then(function (response) {
-            //dataFactory.postToRemote($scope.cfg.online_module_installed_url, {id: module.id});
             dataService.showNotifier({message: $scope._t(response.data.data.key)});
-            //$timeout(function () {
             window.location = '#/module/post/' + module.modulename + '/' + $routeParams.id;
-            //}, 3000);
 
         }, function (error) {
             $scope.loading = false;
@@ -17021,7 +16986,6 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
      * Set dependencies
      */
     function setDependencies(dependencies) {
-        //var dependencies = ['Cron', 'Sonos', 'RGB'/*, 'YandexProbki', 'Wunderground'*/];
         if (!_.isArray(dependencies)) {
             return;
         }
@@ -17057,8 +17021,6 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
                             $scope.moduleId.submit = false;
                             $scope.moduleId.dependency.activate[k] = $scope.moduleId.instances[k];
                         }
-
-                        //$scope.moduleId.dependency.activate[k] = instances[k];
                     } else {
                         $scope.moduleId.submit = false;
                         $scope.moduleId.dependency.add[k] = {
@@ -17907,13 +17869,17 @@ myAppController.controller('ZwaveAddController', function ($scope, $routeParams,
      * Load z-wave devices
      */
     $scope.loadData = function (brandname, lang) {
+         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApiLocal('device.' + lang + '.json').then(function (response) {
+            $scope.loading = false;
             $scope.manufacturers = _.uniq(response.data, 'brandname');
             if (brandname) {
                 $scope.zwaveDevices = _.where(response.data, {brandname: brandname});
                 $scope.manufacturer = brandname;
             }
-        }, function (error) {});
+        }, function (error) {
+            alertify.alertError($scope._t('error_load_data')).set('onok', function(closeEvent){dataService.goBack();} ); 
+        });
     };
     $scope.loadData($routeParams.brandname, $scope.lang);
 });
@@ -17935,11 +17901,7 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
     };
     $scope.goEdit = [];
     $scope.zWaveDevices = {};
-
-//    $scope.modelName = [];
-//    $scope.modelRoom = {};
-//
-//    $scope.rooms = [];
+    
     /**
      * Set tab
      */
@@ -17949,7 +17911,7 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
         $scope.activeTab = tabId;
         $cookies.tab_network = tabId;
     };
-    $scope.setTab()
+    $scope.setTab();
 
     /**
      * Load data
@@ -17958,32 +17920,17 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('devices').then(function (response) {
             $scope.loading = false;
-            zwaveApiData(response.data.data.devices);
-            loadLocations();
-            if( _.size(response.data.data.devices) < 1){
-                
-                $scope.devices.show = false;
-                    alertify.alertWarning($scope._t('no_device_installed')); 
-                }
-
+            zwaveApiData(response.data.data.devices); 
         }, function (error) {
             $scope.loading = false;
-            alertify.alertError($scope._t('error_load_data'));
+              $scope.devices.show = false;
+               alertify.alertError($scope._t('error_load_data')).set('onok', function(closeEvent){dataService.goBack();} );
         });
     };
     $scope.loadData();
 
 
     /// --- Private functions --- ///
-    /**
-     * Load locations
-     */
-    function loadLocations() {
-        dataFactory.getApi('locations').then(function (response) {
-            $scope.rooms = response.data.data;
-        }, function (error) {});
-    }
-    ;
     /**
      * Get zwaveApiData
      */
@@ -18091,6 +18038,10 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
 
                 }
             });
+            if( _.size($scope.zWaveDevices) < 1){
+                $scope.devices.show = false;
+                    alertify.alertWarning($scope._t('no_device_installed')).set('onok', function(closeEvent){dataService.goBack();} ); 
+                }
             // Count device batteries
             for (i = 0; i < $scope.devices.batteries.length; ++i) {
                 var battery = $scope.devices.batteries[i];
@@ -18103,7 +18054,7 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
 
             }
         }, function (error) {
-            alertify.alertError($scope._t('error_load_data'));
+             alertify.alertError($scope._t('error_load_data')).set('onok', function(closeEvent){dataService.goBack();} );
         });
     }
     ;
@@ -18219,7 +18170,7 @@ myAppController.controller('ZwaveExcludeController', function ($scope, $location
 /**
  * Zwave manage detail controller
  */
-myAppController.controller('ZwaveManageIdController', function ($scope, $window, $routeParams, $timeout, $filter, $location, dataFactory, dataService, myCache) {
+myAppController.controller('ZwaveManageIdController', function ($scope, $window, $routeParams,$q, $filter, $location, dataFactory, dataService, myCache) {
     $scope.zwaveConfig = {
         nodeId: $routeParams.nodeId,
         nohistory: $routeParams.nohistory
@@ -18228,28 +18179,74 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
     $scope.zWaveDevice = [];
     $scope.devices = [];
     $scope.formInput = {
+        show: true,
+        newRoom: '',
         elements: {},
         room: 0,
         deviceName: false
     };
     $scope.rooms = [];
-
+    
     /**
-     * Load data
+     * Load all promises
      */
-    $scope.loadConfigData = function (nodeId) {
+    $scope.allSettled = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataFactory.getApi('devices',null,true).then(function (response) {
-            $scope.loading = false;
-            zwaveConfigApiData(nodeId, response.data.data.devices);
-            loadConfigLocations();
+        var promises = [
+            dataFactory.getApi('devices', null, true),
+            dataFactory.getApi('locations',null,true)
+        ];
 
-        }, function (error) {
+        $q.allSettled(promises).then(function (response) {
+            var devices = response[0];
+            var locations = response[1];
+           
             $scope.loading = false;
-            alertify.alertError($scope._t('error_load_data'));
+            // Error message
+            if (devices.state === 'rejected') {
+                $scope.loading = false;
+                $scope.formInput.show = false;
+                alertify.alertError($scope._t('error_load_data')).set('onok', function(closeEvent){dataService.goBack();} ); 
+                return;
+            }
+             // Success - devices
+            if (devices.state === 'fulfilled') {
+                zwaveConfigApiData($scope.zwaveConfig.nodeId, devices.value.data.data.devices);
+            }
+            // Success - locations
+            if (locations.state === 'fulfilled') {
+                 $scope.rooms = dataService.getRooms(locations.value.data.data).indexBy('id').value();
+                
+            }
+           
         });
     };
-    $scope.loadConfigData($scope.zwaveConfig.nodeId);
+    $scope.allSettled();
+    
+    /**
+     * Add room
+     */
+    $scope.addRoom = function (room) {
+        if (!room) {
+            return;
+        }
+        var input = {
+            id: 0,
+            title: room
+        };
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        dataFactory.storeApi('locations', input.id, input).then(function (response) {
+            $scope.loading = false;
+            dataService.showNotifier({message: $scope._t('success_updated')});
+            $scope.formInput.newRoom = '';
+             $scope.allSettled();
+        }, function (error) {
+            alertify.alertError($scope._t('error_update_data'));
+            $scope.loading = false;
+
+        });
+
+    };
 
     /**
      * Update all devices
@@ -18277,19 +18274,11 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
         if (angular.isDefined($routeParams.nohistory)) {
             $location.path('/zwave/devices');
         } else {
-            $window.history.back();
+             dataFactory.goBack();
         }
     };
 
     /// --- Private functions --- ///
-
-
-    function loadConfigLocations() {
-        dataFactory.getApi('locations').then(function (response) {
-            $scope.rooms = response.data.data;
-        }, function (error) {});
-    }
-    ;
     /**
      * Get zwaveApiData
      */
@@ -19560,7 +19549,8 @@ myAppController.controller('RoomController', function ($scope, $q, $cookies, $fi
         cnt: {
             devices: {}
         },
-        showHidden: ($cookies.showHiddenEl ? $filter('toBool')($cookies.showHiddenEl) : false)
+        showHidden: ($cookies.showHiddenEl ? $filter('toBool')($cookies.showHiddenEl) : false),
+        orderBy: ($cookies.roomsOrderBy ? $cookies.roomsOrderBy : 'titleASC')
     };
     
     $scope.devices = {
@@ -19605,6 +19595,15 @@ myAppController.controller('RoomController', function ($scope, $q, $cookies, $fi
         });
     };
     $scope.allSettled();
+    
+    /**
+     * Set order by
+     */
+    $scope.setOrderBy = function (key) {
+        angular.extend($scope.rooms, {orderBy: key});
+        $cookies.roomsOrderBy = key;
+        $scope.allSettled();
+    };
 });
 /**
  * Room config controller
@@ -19751,7 +19750,6 @@ myAppController.controller('RoomConfigEditController', function ($scope, $routeP
                 removeRoomIdFromDevice(response.data, $scope.devicesToRemove);
                 myCache.remove('locations');
                 myCache.remove('devices');
-                //$scope.loadData(id);
                 dataService.showNotifier({message: $scope._t('success_updated')});
                 $location.path('/config-rooms');
             }
@@ -19913,9 +19911,10 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
 /**
  * List of users
  */
-myAppController.controller('ManagementUserController', function ($scope, dataFactory, dataService, myCache) {
+myAppController.controller('ManagementUserController', function ($scope,$cookies,dataFactory, dataService, myCache) {
     $scope.userProfiles = {
-        all: false
+        all: false,
+        orderBy: ($cookies.usersOrderBy ? $cookies.usersOrderBy : 'titleASC')
     };
     /**
      * Load profiles
@@ -19931,6 +19930,15 @@ myAppController.controller('ManagementUserController', function ($scope, dataFac
         });
     };
     $scope.loadProfiles();
+    
+    /**
+     * Set order by
+     */
+    $scope.setOrderBy = function (key) {
+        angular.extend($scope.userProfiles, {orderBy: key});
+        $cookies.usersOrderBy = key;
+        $scope.loadProfiles();
+    };
 
     /**
      * Delete an user
@@ -20688,7 +20696,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
                 return;
             }
             dataService.showNotifier({message: $scope._t('success_updated')});
-            $window.history.back();
+             dataFactory.goBack();
 
         }, function(error) {
             alertify.alertError($scope._t('error_update_data'));
@@ -20869,7 +20877,6 @@ myAppController.controller('AuthLoginController', function ($scope, $location, $
      * Login proccess
      */
     $scope.login = function (input) {
-        input.password = input.password;
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         $scope.alert = {message: false};
         dataFactory.logInApi(input).then(function (response) {
@@ -20921,9 +20928,7 @@ myAppController.controller('AuthLoginController', function ($scope, $location, $
     if ($routeParams.login && $routeParams.password) {
         $scope.login($routeParams);
     } else if (dataService.getRememberMe() && !$scope.auth.firstaccess) {
-        //if(!$scope.auth.firstaccess){
         $scope.login(dataService.getRememberMe());
-        //}
         // only ask for session forwarding if user is not logged out before or the request comes from trusted hosts
     } else if (typeof $routeParams.logout === 'undefined' ||
             !$routeParams.logout ||
@@ -21099,7 +21104,6 @@ myAppController.controller('LogoutController', function ($scope, dataService, da
         });
     };
     $scope.logout();
-
 });
 // device filter for device select menu
 function devices_htmlSelect_filter(ZWaveAPIData,span,dev,type) {

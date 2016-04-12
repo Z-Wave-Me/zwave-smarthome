@@ -3,7 +3,7 @@
      <bb-loader></bb-loader>
     <!-- Zwave navigation -->
     <div ng-include="'app/views/zwave/navi.html'"></div>
-    <div class="app-row app-row-report app-row-zwave clearfix">
+    <div class="app-row app-row-report app-row-zwave clearfix" ng-if="devices.show">
          <div id="row_zwave_{{v.id}}" class="report-entry" ng-repeat="v in zWaveDevices | orderBy:'title':false">
              <div class="report-col report-body zwave-devices">
                 <span class="network-zwave-title noelements" ng-if="v.elements.length < 1">{{v.title}} (#{{v.id}}) </span>
@@ -20,7 +20,7 @@
             </div>
          <div class="report-col report-ctrl" ng-if="elementAccess(cfg.role_access.network)">
              <div class="btn-group">
-             <a class="btn btn-default" href="#zwave/devices/{{v.id}}" title="{{_t('lb_configuration')}}" ng-if_="v.cfg.length > 0">
+             <a class="btn btn-default" href="#zwave/devices/{{v.id}}" title="{{_t('lb_configuration')}}">
                 <i class="fa fa-cog text-primary"></i>
             </a>
              <a class="btn btn-default" href="#zwave/exclude/{{v.id}}" title="{{_t('lb_remove')}}">
