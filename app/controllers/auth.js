@@ -157,7 +157,6 @@ myAppController.controller('AuthLoginController', function ($scope, $location, $
      * Login proccess
      */
     $scope.login = function (input) {
-        //input.password = input.password;
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         $scope.alert = {message: false};
         dataFactory.logInApi(input).then(function (response) {
@@ -209,9 +208,7 @@ myAppController.controller('AuthLoginController', function ($scope, $location, $
     if ($routeParams.login && $routeParams.password) {
         $scope.login($routeParams);
     } else if (dataService.getRememberMe() && !$scope.auth.firstaccess) {
-        //if(!$scope.auth.firstaccess){
         $scope.login(dataService.getRememberMe());
-        //}
         // only ask for session forwarding if user is not logged out before or the request comes from trusted hosts
     } else if (typeof $routeParams.logout === 'undefined' ||
             !$routeParams.logout ||
@@ -387,5 +384,4 @@ myAppController.controller('LogoutController', function ($scope, dataService, da
         });
     };
     $scope.logout();
-
 });

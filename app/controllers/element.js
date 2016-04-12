@@ -168,7 +168,6 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
      * Run command
      */
     $scope.runCmd = function (cmd, id) {
-        //var widgetId = '#Widget_' + id;
         dataFactory.runApiCmd(cmd).then(function (response) {
             var index = _.findIndex($scope.dataHolder.devices.all, {id: id});
             if ($scope.dataHolder.devices.all[index]) {
@@ -216,7 +215,6 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
             dataFactory.putApi('devices', v.id, {visibility: visibility}).then(function (response) {
                  $scope.loading = false;
-                  //dataService.showNotifier({message: $scope._t('success_updated')});
                   $scope.reloadData();
             }, function (error) {
                 alertify.alertError($scope._t('error_update_data'));
@@ -228,7 +226,6 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
      * Set exact value for cmd command
      */
     $scope.setExactCmd = function (v, type, run) {
-        //console.log(type)
         var count;
         var val = parseInt(v.metrics.level);
         var min = parseInt(v.minMax.min, 10);
@@ -253,9 +250,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
         }
 
         var cmd = v.id + '/command/exact?level=' + count;
-        //if (count < 100 && count > 0) {
         v.metrics.level = count;
-        //}
         if (run) {
             $scope.runCmd(cmd);
         }
@@ -425,7 +420,6 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
      * Show RGB modal window
      */
     $scope.loadRgbWheel = function (input) {
-        //$(target).modal();
         $scope.input = input;
         var bCanPreview = true; // can preview
 
@@ -870,7 +864,7 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
             myCache.remove('devices');
             myCache.remove('devices/' + deviceId);
             myCache.remove('locations');
-            $window.history.back();
+            dataFactory.goBack();
 
         }, function (error) {
             alertify.alertError($scope._t('error_update_data'));

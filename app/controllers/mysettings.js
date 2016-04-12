@@ -160,7 +160,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
                 return;
             }
             dataService.showNotifier({message: $scope._t('success_updated')});
-            $window.history.back();
+             dataFactory.goBack();
 
         }, function(error) {
             alertify.alertError($scope._t('error_update_data'));
