@@ -24,6 +24,9 @@
                     <a class="text-danger" href="" ng-if="m.type == 'failed' || m.type == 'config'" ng-click="toExpert('/expert/#help/' + v.id, _t('redirect_to_expert'))" >
                         <span  ng-bind="m.error"></span> <i class="fa fa-external-link"></i>
                     </a>
+                    <!-- <button class="btn btn-default" ng-if="m.type == 'failed' || m.type == 'config'" ng-click="toExpert('/expert/#help/' + v.id, _t('redirect_to_expert'))" >
+                         <i class="fa fa-cog text-warning"></i> <span class="btn-name">{{m.error}}</span>
+                    </button>--> 
                 </span>
                 <span ng-if="isMobile">
                     <span  class="text-danger" ng-if="m.type == 'failed' || m.type == 'config'" ng-bind="m.error"></span>
