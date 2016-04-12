@@ -3,7 +3,7 @@
      <bb-loader></bb-loader>
     <!-- Zwave navigation -->
     <div ng-include="'app/views/zwave/navi.html'"></div>
-    <div class="app-row app-row-report app-row-zwave clearfix">
+    <div class="app-row app-row-report app-row-zwave clearfix" ng-if="devices.show">
          <div id="row_zwave_network_{{v.id}}" class="report-entry" ng-repeat="v in zWaveDevices | orderBy:'title':false" ng-if="v.messages">
              <div class="report-col report-body zwave-network">
                 <span class="network-zwave-title noelements clickable" ng-if="v.elements.length < 1">{{v.title|cutText:true:25}} (#{{v.id}}) </span>

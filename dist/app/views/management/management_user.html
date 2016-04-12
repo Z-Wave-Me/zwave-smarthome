@@ -4,8 +4,35 @@
 </h2>
 <div class="accordion-entry-ctrl" ng-class="" ng-if="expand.user" ng-controller="ManagementUserController">
     <bb-loader></bb-loader>
+    <div class="page-control form-inline">
+         <div class="btn-group btn-goup-block btn-goup-1">
+                <button class="btn btn-default" ng-click="expandNavi('roomsOrderBy', $event)">
+                    <i class="fa fa-sort-alpha-asc"></i> 
+                    <span class="btn-name">{{_t(userProfiles.orderBy) | cutText:true:15}}</span>
+                </button>
+            </div>
+            <div class="input-group">
+                <input type="text" ng-model="q" class="form-control form-search" value="{{q}}">
+                <span class="input-group-addon"><i class="fa fa-search"></i></span> 
+            </div>
+        </div>
+     
+        <!-- Page subnavi  sort by -->
+      <div class="page-navi" ng-if="naviExpanded.roomsOrderBy">
+        <div class="page-navi-in">
+            <div class="page-navi-content">
+                 <p class="page-navi-title"> {{_t('sortby')}}</p>
+                <a class="btn btn-default btn-tag" href="" 
+                        ng-repeat="(k,v) in cfg.orderby.users"
+                       ng-click="setOrderBy(k)"
+                       ng-class="userProfiles.orderBy == k ? 'active': ''">
+                     {{_t(k) | cutText:true:30}}
+                 </a>
+            </div>
+        </div>
+    </div>
     <div class="app-row app-row-report app-row-user clearfix">
-         <div id="row_user_{{v.id}}" class="report-entry" ng-repeat="v in userProfiles.all">
+         <div id="row_user_{{v.id}}" class="report-entry" ng-repeat="v in userProfiles.all|orderBy:cfg.orderby.users[userProfiles.orderBy]| filter:q  track by v.id">
             <div class="report-col report-media">
              <img class="report-img" ng-src="storage/img/icons/user.png" alt="{{v.name}}" /> 
            </div>

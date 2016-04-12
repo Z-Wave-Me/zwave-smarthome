@@ -1,62 +1,86 @@
 <!-- Zwave manage config view -->
 <div ng-controller="ZwaveManageIdController" class="mobile-padding">
     <bb-loader></bb-loader> 
-    <div ng-show="formInput">
-    <h1>(#{{zWaveDevice.id}}) {{formInput.deviceName}}</h1>
-    <!-- Zwave config form -->
- <form name="form_network_config" id="form_profile" class="form form-page" ng-submit="updateAllDevices(formInput)" novalidate>
-        <fieldset>
+    <div ng-show="formInput.show">
+        <h1>(#{{zWaveDevice.id}}) {{formInput.deviceName}}</h1>
+        <!-- Zwave config form -->
+        <form name="form_network_config" id="form_profile" class="form form-page" ng-submit="updateAllDevices(formInput)" novalidate>
+            <fieldset>
                 <label ng-bind="_t('rename_device')"></label>
                 <input name="device_name" id="device_name" type="text" class="form-control" value="{{formInput.deviceName}}" ng-model="formInput.deviceName" />
             </fieldset>
-        <div ng-if="devices.length > 0">
-            <fieldset>
-                <!-- Rooms -->
-                <div class="form-group form-inline">
-                    <label ng-bind="_t('devices_to_room')"></label><br />
-                    <select class="form-control" name="to_room" id="to_room" ng-model="formInput.room">
-                       <option ng-repeat="v in rooms" ng-selected_="input.location == v.id" value="{{v.id}}" ng-if="v.id !== 0" ng-bind="(v.id === 0 ? _t(v.title) : v.title)"></option>
-                    </select>
-                </div>
-            </fieldset>
-            <fieldset>
-            <div class="form-group form-inline zwave-hidden-{{formInput.elements[e.id].permanently_hidden}}" ng-repeat="e in devices | orderBy:'title':false track by e.id" ng-init="dev[e.id] = e">
-
-                <h3>
-                    <img class="report-img-s" ng-src="{{e.metrics.icon|getElementIcon:e:e.level}}" alt="img" />
-                     <span ng-bind="formInput.elements[e.id].metrics.title"></span>
-                </h3>
+            <div ng-if="devices.length > 0">
+                <fieldset>
+                    <!-- Add room -->
                     <div class="form-group form-inline">
+                        <div class="input-group">
+                            <input name="appstore_token" id="appstore_token" class="form-control" placeholder="{{_t('lb_add_room')}}" ng-model="formInput.newRoom" /> 
+                           <span class="input-group-addon clickable" title="{{_t('add_new')}}" ng-click="addRoom(formInput.newRoom)">
+                               <i class="fa fa-plus text-success"></i>
+                           </span> 
+                        </div>
+                    </div>
+                    <!-- Rooms -->
+                    <div class="form-group form-inline">
+                        <label class="display-block" ng-bind="_t('devices_to_room')"></label>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default" 
+                                    ng-click="expandNavi('devidDropDown', $event)">
+                                {{rooms[formInput.room].title|cutText:true:20}} <i class="fa fa-caret-down"></i>
+                            </button>
+                            <div class="app-dropdown app-dropdown-left" ng-if="naviExpanded.devidDropDown">
+                                <ul>
+                                    <li class="clickable" 
+                                        ng-click="formInput.room = v.id"
+                                        ng-repeat="v in rooms">
+                                        <a>
+                                            <img class="navi-img" ng-src="{{v.img_src}}" alt="img" /> 
+                                            {{v.title|cutText:true:20}} <i class="fa fa-check menu-arrow" ng-if="formInput.room == v.id"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div class="form-group form-inline zwave-hidden-{{formInput.elements[e.id].permanently_hidden}}" ng-repeat="e in devices| orderBy:'title':false track by e.id" ng-init="dev[e.id] = e">
+
+                        <h3>
+                            <img class="report-img-s" ng-src="{{e.metrics.icon|getElementIcon:e:e.level}}" alt="img" />
+                            <span ng-bind="formInput.elements[e.id].metrics.title"></span>
+                        </h3>
+                        <div class="form-group form-inline">
                             <input type="text" name="title_{{$index}}" id="title_{{$index}}" class="form-control" ng-model="formInput.elements[e.id].metrics.title" value="{{formInput.elements[e.id].metrics.title}}" />
-                             <!-- <button class="btn btn-primary" ng-click="updateDevice(dev[e.id])" ng-bind="_t('rename_element')"></button> --> 
-                             <span class="mobile-block">
-                             <input type="checkbox" name="permanently_hidden_{{$index}}" id="permanently_hidden_{{$index}}" ng-model="formInput.elements[e.id].permanently_hidden" ng-checked="formInput.elements[e.id].permanently_hidden" />
-                             <label>{{_t('lb_deactivate')}}</label>
+                            <!-- <button class="btn btn-primary" ng-click="updateDevice(dev[e.id])" ng-bind="_t('rename_element')"></button> --> 
+                            <span class="mobile-block">
+                                <input type="checkbox" name="permanently_hidden_{{$index}}" id="permanently_hidden_{{$index}}" ng-model="formInput.elements[e.id].permanently_hidden" ng-checked="formInput.elements[e.id].permanently_hidden" />
+                                <label>{{_t('lb_deactivate')}}</label>
                             </span>
                             <!-- <a class="btn" href="" 
                                  ng-click="updateDevice({id: e.id,permanently_hidden: e.permanently_hidden ? false : true})" 
                                  ng-bind="e.permanently_hidden ? _t('show_element') : _t('hide_element')"
                                  ng-class="e.permanently_hidden ? 'btn-danger' : 'btn-primary'"> </a> --> 
-                     </div>
-                </div>
+                        </div>
+                    </div>
 
-                 <div class="form-group form-inline">
-                 <a class="btn btn-primary" href="#deviceconfig/{{zWaveDevice.id}}" title="{{_t('hardware_konfiguration')}}" ng-if="zWaveDevice.cfg.length > 0">
-                               <i class="fa fa-wrench"></i> <span class="btn-name" ng-bind="_t('hardware_konfiguration')"></span>
-                           </a>
-                </div>
+                    <div class="form-group form-inline">
+                        <a class="btn btn-primary" href="#deviceconfig/{{zWaveDevice.id}}" title="{{_t('hardware_konfiguration')}}" ng-if="zWaveDevice.cfg.length > 0">
+                            <i class="fa fa-wrench"></i> <span class="btn-name" ng-bind="_t('hardware_konfiguration')"></span>
+                        </a>
+                    </div>
+                </fieldset>
+            </div>
+            <fieldset class="submit-entry">
+                <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" ng-if="!nohistory" bb-go-back>
+                    <i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span>
+                </button>
+                <button type="submit" class="btn btn-submit" title="{{_t('lb_save')}}">
+                    <i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_save')}}</span>
+                </button>
+
             </fieldset>
-         </div>
-        <fieldset class="submit-entry">
-            <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" ng-if="!nohistory" bb-go-back>
-                <i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span>
-            </button>
-            <button type="submit" class="btn btn-submit" title="{{_t('lb_save')}}">
-                <i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_save')}}</span>
-            </button>
-            
-        </fieldset>
-    </form>
+        </form>
     </div>
     <div class="device-logo" ng-include="'app/views/zwave/zwave_nav.html'"></div>
 </div> <!-- /ng-controller --> 
