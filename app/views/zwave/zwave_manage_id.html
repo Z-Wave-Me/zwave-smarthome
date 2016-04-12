@@ -11,6 +11,15 @@
             </fieldset>
             <div ng-if="devices.length > 0">
                 <fieldset>
+                    <!-- Add room -->
+                    <div class="form-group form-inline">
+                        <div class="input-group">
+                            <input name="appstore_token" id="appstore_token" class="form-control" placeholder="{{_t('lb_add_room')}}" ng-model="formInput.newRoom" /> 
+                           <span class="input-group-addon clickable" title="{{_t('add_new')}}" ng-click="addRoom(formInput.newRoom)">
+                               <i class="fa fa-plus text-success"></i>
+                           </span> 
+                        </div>
+                    </div>
                     <!-- Rooms -->
                     <div class="form-group form-inline">
                         <label class="display-block" ng-bind="_t('devices_to_room')"></label>

@@ -376,6 +376,7 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
     $scope.devices = [];
     $scope.formInput = {
         show: true,
+        newRoom: '',
         elements: {},
         room: 0,
         deviceName: false
@@ -389,7 +390,7 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
             dataFactory.getApi('devices', null, true),
-            dataFactory.getApi('locations')
+            dataFactory.getApi('locations',null,true)
         ];
 
         $q.allSettled(promises).then(function (response) {
@@ -417,6 +418,31 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
         });
     };
     $scope.allSettled();
+    
+    /**
+     * Add room
+     */
+    $scope.addRoom = function (room) {
+        if (!room) {
+            return;
+        }
+        var input = {
+            id: 0,
+            title: room
+        };
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        dataFactory.storeApi('locations', input.id, input).then(function (response) {
+            $scope.loading = false;
+            dataService.showNotifier({message: $scope._t('success_updated')});
+            $scope.formInput.newRoom = '';
+             $scope.allSettled();
+        }, function (error) {
+            alertify.alertError($scope._t('error_update_data'));
+            $scope.loading = false;
+
+        });
+
+    };
 
     /**
      * Update all devices
