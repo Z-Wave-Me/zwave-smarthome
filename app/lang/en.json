@@ -1,5 +1,10 @@
 {
     "newtrans": "---",
+    "skins": "Skins",
+    "reloading_page": "Reloading page...",
+    "error_file_download": "Unable to download file",
+    "upgrade": "Upgrade",
+    "success_file_download": "File successfully downloaded",
     "---": "newtrans",
     "no_events": "Sorry, there are no events to show.",
     "no_cameras": "Sorry, there are no cameras available.",
