@@ -333,9 +333,11 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * Get lang line
      */
     function getLangLine(key, languages) {
-        if (angular.isObject(languages)) {
+       if (angular.isObject(languages)) {
             if (angular.isDefined(languages[key])) {
                 return languages[key] !== '' ? languages[key] : key;
+            }else{
+                return key;
             }
         }else{
             return cfg.route.t[key]||key; 
