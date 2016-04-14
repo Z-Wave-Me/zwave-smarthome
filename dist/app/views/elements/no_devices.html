@@ -1,6 +1,7 @@
 <!-- No devices view -->
- <h2>{{_t('no_device_installed')}}</h2>
-<div class="form-page welcome-entry">
+ <h2>{{_t('no_device_installed')}} </h2>
+ 
+<div class="form-page welcome-entry" ng-if="elementAccess(cfg.role_access.admin)">
     <div class="fieldset">
         <div class="form-group">
             <span class="badge badge-number">1</span> <span class="welcome-help">{{_t('can_add_app')}}</span>
@@ -10,5 +11,8 @@
             <span class="badge badge-number">2</span> <span class="welcome-help">{{_t('can_include_device')}}</span>
              <a href="#devices" class="btn btn-default"><i class="fa fa-cogs"></i> {{_t('nav_devices')}}</a>
         </div>
+    </div>
+    <div class="fieldset submit-entry" ng-if="dataHolder.cnt.hidden > 0">
+       <button class="btn btn-default" ng-click="showHiddenEl(true)"><i class="fa fa-eye"></i> {{_t('show_hidden')}} </button>
     </div>
 </div>

@@ -2,8 +2,9 @@
 <div ng-controller="ElementBaseController">
     <bb-loader></bb-loader>
     <div ng-controller="ElementDashboardController">
-        <div ng-if="dataHolder.devices.noDashboard" ng-include="'app/views/elements/no_dashboard.html'"></div>
-         <div ng-if="dataHolder.devices.noDevices" ng-include="'app/views/elements/no_devices.html'"></div>
+         <div ng-if="elementDashboard.firstLogin" ng-include="'app/views/elements/' + elementDashboard.firstFile"></div>
+         <div ng-if="!elementDashboard.firstLogin && dataHolder.devices.noDevices" ng-include="'app/views/elements/no_devices.html'"></div>
+        <div ng-if="!elementDashboard.firstLogin && dataHolder.devices.noDashboard" ng-include="'app/views/elements/no_dashboard.html'"></div>
         <div ng-if="dataHolder.devices.show" ng-include="'app/views/elements/list.html'"></div>
     </div> <!-- /ng-controller --> 
 </div> <!-- /ng-controller --> 

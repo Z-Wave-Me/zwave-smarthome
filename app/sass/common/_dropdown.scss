@@ -28,12 +28,12 @@
         margin:0;
         list-style: none;
         li{
-            padding: $spacing 0;
+            padding: $spacing;
             border-bottom: solid 1px $dropdown-border-color;
             a{
                 display: block;
                 position:relative;
-                padding: 0 $spacing;
+                padding: 0;
                 vertical-align: middle;
                 color: $dropdown-color;
             }
@@ -42,6 +42,10 @@
                 position: absolute;
                 right: 1%;
                 display: inline-block;
+            }
+            img{
+              display: inline-block; 
+              margin: 0 $spacing 0 0;
             }
 
         }

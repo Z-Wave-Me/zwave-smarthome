@@ -7,7 +7,7 @@
             <button class="btn btn-default" ng-click="expandNavi('evFilter', $event)" ng-class="devices.find.title || currLevel ? 'active':'' ">
                 <i class="fa fa-filter"></i>
                 <span ng-if="!devices.find.title && !currLevel">{{_t('lb_show_all')}}</span>
-                 <span ng-if="devices.find.title">{{_t(devices.find.title) | cutText:true:15}}</span>
+                 <span ng-if="devices.find.title">{{devices.find.title | cutText:true:15}}</span>
                  <span ng-if="currLevel"> {{_t('lb_notify_' + currLevel)}}</span>
             </button>
          
@@ -23,22 +23,35 @@
     <!-- Page subnavi  filter-->
     <div class="page-navi" ng-if="naviExpanded.evFilter">
         <div class="page-navi-in">
-             <p class="page-navi-title">{{_t('error_type')}} </p>
+              <!--<p class="page-navi-title">{{_t('error_type')}} </p>-->
             <div class="page-navi-content">
                  <a class="btn btn-default btn-tag" ng-href="#events/level/{{v.key}}" ng-repeat="v in eventLevels" ng-class="v.key == currLevel? 'active': ''">
                      {{_t('lb_notify_' + v.val)}}
                  </a>
             </div>
              <div ng-if="devices.show">
-            <p class="page-navi-title">{{_t('lb_device')}} </p>
-            <ul>
-                <li class="page-cat-0" ng-class="v.id===devices.find.id ? 'active':''" ng-repeat="v in devices.data" >
+             <!--<p class="page-navi-title">{{_t('lb_device')}} </p>-->
+             <div class="page-navi-content">
+                 <a class="btn btn-default btn-tag" 
+                   ng-href="#events/source/{{v.id}}"
+                    ng-repeat="v in devices.data" ng-class="v.id===devices.find.id ? 'active':''"
+                     ng-if="devices.cnt.deviceEvents[v.id]">
+                     <img class="navi-img" ng-src="{{v.metrics.icon|getElementIcon:v:v.metrics.level}}" alt="img" /> 
+                     {{v.metrics.title|cutText:true:25}} <span class="item-cnt">({{devices.cnt.deviceEvents[v.id]}})</span> 
+                 </a>
+            </div>
+            <!-- <ul>
+                <li class="page-cat-0" 
+                    ng-class="v.id===devices.find.id ? 'active':''" 
+                    ng-repeat="v in devices.data"
+                     ng-if="devices.cnt.deviceEvents[v.id]">
                    <a ng-href="#events/source/{{v.id}}">
                       <img class="navi-img" ng-src="{{v.metrics.icon|getElementIcon:v:v.metrics.level}}" alt="img" />
-                      {{v.metrics.title|cutText:true:25}} <span class="page-navi-icon"><i class="fa fa-chevron-right"></i></span>
+                      {{v.metrics.title|cutText:true:25}} <span class="item-cnt">({{devices.cnt.deviceEvents[v.id]}})</span> 
+                      <span class="page-navi-icon"><i class="fa fa-chevron-right"></i></span>
                  </a>
                 </li>
-            </ul>
+            </ul>-->
          </div>
         </div>
     </div>

@@ -233,14 +233,17 @@ myApp.directive('myknob', ['$timeout', 'dataFactory', function ($timeout, dataFa
             link: function ($scope, $element) {
                 var knobInit = $scope.knobOptions() || {};
                 knobInit.step = $scope.knobStep || 1;
-                if (typeof ($scope.knobMin) !== 'undefined')
+                if (typeof ($scope.knobMin) !== 'undefined'){
                     knobInit.min = $scope.knobMin;
-                if (typeof ($scope.knobMax) !== 'undefined')
-                    knobInit.max = $scope.knobMax;
+                }
+                if (typeof ($scope.knobMax) !== 'undefined'){
+                     knobInit.max = $scope.knobMax;
+                }
                 knobInit.release = function (newValue) {
+                    console.log(knobInit)
                     $timeout(function () {
                         var old = $scope.knobData;
-                        if (old != newValue) {
+                        if (old !== newValue) {
                             $scope.knobData = newValue;
                             runCmdExact($scope.knobId, newValue);
                             $scope.$apply();

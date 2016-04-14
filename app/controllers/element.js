@@ -8,9 +8,11 @@
  */
 myAppController.controller('ElementBaseController', function ($scope, $q, $interval, $cookies, $filter, dataFactory, dataService) {
     $scope.dataHolder = {
+        firstLogin: false,
         cnt: {
             devices: 0,
-            collection: 0
+            collection: 0,
+            hidden: 0
         },
         devices: {
             noDashboard: false,
@@ -24,7 +26,8 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             tags: [],
             filter: ($cookies.filterElements ? angular.fromJson($cookies.filterElements) : {}),
             rooms: {},
-            orderBy: ($cookies.orderByElements ? $cookies.orderByElements : 'creationTimeDESC')
+            orderBy: ($cookies.orderByElements ? $cookies.orderByElements : 'creationTimeDESC'),
+            showHidden: ($cookies.showHiddenEl ? $filter('toBool')($cookies.showHiddenEl) : false)
         }
     };
     $scope.apiDataInterval = null;
@@ -59,11 +62,17 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             }
             // Success - locations
             if (locations.state === 'fulfilled') {
-                angular.extend($scope.dataHolder.devices.rooms, _.indexBy(locations.value.data.data, 'id'));
+                $scope.dataHolder.devices.rooms = dataService.getRooms(locations.value.data.data).indexBy('id').value();
             }
             // Success - devices
             if (devices.state === 'fulfilled') {
-                setDevices(dataService.getDevicesData(devices.value.data.data.devices));
+                // Count hidden apps
+                 $scope.dataHolder.cnt.hidden =  _.chain(dataService.getDevicesData(devices.value.data.data.devices,true))
+                    .flatten().where({visibility:false})
+                    .size()
+                    .value();
+                // Set devices
+                setDevices(dataService.getDevicesData(devices.value.data.data.devices,$scope.dataHolder.devices.showHidden));
 
             }
         });
@@ -133,6 +142,18 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
 
         $scope.reloadData();
     };
+    
+    /**
+     * Show hidden elements
+     */
+    $scope.showHiddenEl = function (status) {
+        angular.extend($scope.dataHolder.devices, {filter: {}});
+        $cookies.filterElements = angular.toJson({});
+        status = $filter('toBool')(status);
+        angular.extend($scope.dataHolder.devices, {showHidden: status});
+        $cookies.showHiddenEl = status;
+        $scope.reloadData();
+    };
 
     /**
      * Set order by
@@ -147,7 +168,6 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
      * Run command
      */
     $scope.runCmd = function (cmd, id) {
-        //var widgetId = '#Widget_' + id;
         dataFactory.runApiCmd(cmd).then(function (response) {
             var index = _.findIndex($scope.dataHolder.devices.all, {id: id});
             if ($scope.dataHolder.devices.all[index]) {
@@ -187,12 +207,25 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
 
         });
     };
+    
+     /**
+     * Set visibility
+     */
+    $scope.setVisibility = function (v,visibility) {
+       $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+            dataFactory.putApi('devices', v.id, {visibility: visibility}).then(function (response) {
+                 $scope.loading = false;
+                  $scope.reloadData();
+            }, function (error) {
+                alertify.alertError($scope._t('error_update_data'));
+                $scope.loading = false;
+            });
+    };
 
     /**
      * Set exact value for cmd command
      */
     $scope.setExactCmd = function (v, type, run) {
-        //console.log(type)
         var count;
         var val = parseInt(v.metrics.level);
         var min = parseInt(v.minMax.min, 10);
@@ -217,9 +250,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
         }
 
         var cmd = v.id + '/command/exact?level=' + count;
-        //if (count < 100 && count > 0) {
         v.metrics.level = count;
-        //}
         if (run) {
             $scope.runCmd(cmd);
         }
@@ -389,7 +420,6 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
      * Show RGB modal window
      */
     $scope.loadRgbWheel = function (input) {
-        //$(target).modal();
         $scope.input = input;
         var bCanPreview = true; // can preview
 
@@ -496,19 +526,6 @@ myAppController.controller('ElementSensorMultilineController', function ($scope,
         }, function (error) {
             $scope.widgetSensorMultiline.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
         });
-        // DEPRECATED
-//        return;
-//        var device = _.where($scope.dataHolder.devices.collection, {id: $scope.dataHolder.devices.find.id});
-//        if (_.isEmpty(device)) {
-//            $scope.widgetSensorMultiline.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
-//            return;
-//        }
-//        $scope.widgetSensorMultiline.find = device[0];
-//        if (_.isEmpty($scope.widgetSensorMultiline.find.metrics.sensors)) {
-//            $scope.widgetSensorMultiline.alert = {message: $scope._t('no_data'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
-//            return;
-//        }
-//        return;
     };
     $scope.loadDeviceId();
     /**
@@ -646,7 +663,7 @@ myAppController.controller('ElementClimateControlController', function ($scope, 
                     .filter(function (v) {
                         angular.extend(v,
                                 {roomTitle: $scope.dataHolder.devices.rooms[v.room].title},
-                                {roomIcon: $filter('getRoomIcon')($scope.dataHolder.devices.rooms[v.room])},
+                                {roomIcon: $scope.dataHolder.devices.rooms[v.room].img_src},
                                 {sensorLevel: $scope.widgetClimateControl.devicesId[v.mainSensor] ? $scope.widgetClimateControl.devicesId[v.mainSensor].metrics.level : null},
                                 {scaleTitle: $scope.widgetClimateControl.devicesId[v.mainSensor] ? $scope.widgetClimateControl.devicesId[v.mainSensor].metrics.scaleTitle : null}
                         );
@@ -680,8 +697,13 @@ myAppController.controller('ElementClimateControlController', function ($scope, 
 /**
  * Element dashboard controller
  */
-myAppController.controller('ElementDashboardController', function ($scope, $routeParams, $window, $location, $cookies, $filter, dataFactory, dataService, myCache) {
+myAppController.controller('ElementDashboardController', function ($scope, $routeParams) {
     $scope.dataHolder.devices.filter = {onDashboard: true};
+    $scope.elementDashboard = {
+        firstLogin: ($routeParams.firstlogin||false),
+        firstFile: ( $scope.lang === 'de'? 'first_login_de.html':'first_login_en.html')
+    };
+    
 
 });
 
@@ -696,7 +718,7 @@ myAppController.controller('ElementRoomController', function ($scope, $routePara
 /**
  * Element ID controller
  */
-myAppController.controller('ElementIdController', function ($scope, $q, $routeParams, $window, $location, dataFactory, dataService, myCache) {
+myAppController.controller('ElementIdController', function ($scope, $q, $routeParams, $window, dataFactory, dataService, myCache) {
     $scope.elementId = {
         show: false,
         appType: {},
@@ -732,15 +754,20 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
         var promises = [
             dataFactory.getApi('devices', '/' + $routeParams.id),
             dataFactory.getApi('locations'),
-            dataFactory.getApi('instances'),
-            dataFactory.getApi('devices')
+           dataFactory.getApi('devices')
+           
         ];
+        
+        if ($scope.user.role === 1) {
+            promises.push( dataFactory.getApi('instances'));
+        }
 
         $q.allSettled(promises).then(function (response) {
             var device = response[0];
             var locations = response[1];
-            var instances = response[2];
-            var devices = response[3];
+             var devices = response[2];
+            var instances = response[3];
+           
             $scope.loading = false;
             // Error message
             if (device.state === 'rejected') {
@@ -749,28 +776,30 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
             }
             // Success - locations
             if (locations.state === 'fulfilled') {
-                $scope.elementId.locations = locations.value.data.data;
-            }
-            // Success - instances
-            if (instances.state === 'fulfilled') {
-                $scope.elementId.instances = instances.value.data.data;
+                $scope.elementId.locations = dataService.getRooms(locations.value.data.data).indexBy('id').value();
             }
             // Success - devices
             if (devices.state === 'fulfilled') {
                 setTagList(devices.value.data.data.devices);
             }
+             // Success - instances
+            if (instances && instances.state === 'fulfilled') {
+                $scope.elementId.instances = instances.value.data.data;
+            }
             // Success - device
             if (device.state === 'fulfilled') {
                 var arr = [];
                 arr[0] = device.value.data.data;
-                setDevice(dataService.getDevicesData(arr).value()[0]);
+                if(!dataService.getDevicesData(arr,true).value()[0]){
+                    alertify.alertError($scope._t('error_load_data'));
+                return;
+                }
+                setDevice(dataService.getDevicesData(arr,true).value()[0]);
                 $scope.elementId.show = true;
             }
-
-
-
+            
+           
         });
-
     };
     $scope.allSettled();
 
@@ -835,7 +864,7 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
             myCache.remove('devices');
             myCache.remove('devices/' + deviceId);
             myCache.remove('locations');
-            $window.history.back();
+            dataService.goBack();
 
         }, function (error) {
             alertify.alertError($scope._t('error_update_data'));
@@ -877,6 +906,7 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
             'location': parseInt(input.location, 10),
             'tags': input.tags,
             'metrics': input.metrics,
+            'visibility': input.visibility,
             'permanently_hidden': input.permanently_hidden
         };
     }

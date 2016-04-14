@@ -87,7 +87,6 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
      */
     $scope.lang_list = cfg.lang_list;
     // Set language
-    //$scope.lang = cfg.lang;
     $scope.getLang = function () {
         if ($scope.user) {
             $scope.lang = $scope.user.lang;
@@ -104,19 +103,16 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         // Is lang in language list?
         var lang = (cfg.lang_list.indexOf(lang) > -1 ? lang : cfg.lang);
         dataFactory.getLanguageFile(lang).then(function (response) {
-            //$scope.languages = response.data;
             angular.extend($scope.languages, response.data);
         }, function (error) {});
     };
     // Get language lines
     $scope._t = function (key) {
-        //return cfg.route.t[key]||key;
         return dataService.getLangLine(key, $scope.languages);
     };
 
     // Watch for lang change
     $scope.$watch('lang', function () {
-        //angular.extend($scope.languages, $scope.cfg.route.t);
         $scope.loadLang($scope.lang);
     });
 
@@ -294,7 +290,6 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
 
     // Extend existing alert (WARNING) dialog
     if (!alertify.alertWarning) {
-        //define a new errorAlert base on alert
         alertify.dialog('alertWarning', function factory() {
             return{
                 build: function () {

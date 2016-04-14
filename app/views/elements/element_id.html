@@ -23,7 +23,7 @@
                         <div class="form-group" ng-if="elementId.appType.instance">
                             <span ng-bind="_t('lb_gen_by_module')"></span> 
                             <a class="btn btn-default" ng-href="#module/put/{{elementId.appType.instance.id}}">
-                                <strong>{{elementId.appType.instance.title}}</strong> - {{elementId.appType.instance.module}}
+                                <strong>{{elementId.appType.instance.title}}</strong>  <!--{{elementId.appType.instance.module}} -->
                             </a>
                         </div>
                         <!-- zwave -->
@@ -34,18 +34,30 @@
                         <div class="form-group" ng-if="elementId.appType.enocean">
                             {{_t('lb_gen_by')}} <a href="#enocean/manage/{{elementId.appType.enocean}}" class="btn btn-default">{{_t('enocean_device')}} #{{elementId.appType.enocean}}</a>
                         </div>
+                         <!-- Hide element -->
+                        <div class="form-group">
+                            <input type="checkbox" name="dashboard" id="dashboard" 
+                                    ng-init = "visibility.checked = !elementId.input.visibility"
+                                   ng-model="visibility.checked"
+                                  ng-change="elementId.input.visibility = !visibility.checked"
+                                   ng-checked="!elementId.input.visibility" /> <label>{{_t('hide_element')}}</label>
+                             <bb-help-text trans="_t('hide_element_info')"></bb-help-text>
+                        </div>
+                        
                    </div> 
+                  <!-- Deactivate element -->
+                        <div class="form-group" ng-if="elementAccess(cfg.role_access.admin) && elementId.appType.zwave">
+                            <input type="checkbox" name="permanently_hidden" id="permanently_hidden" value="" 
+                                   ng-model="elementId.input.permanently_hidden" 
+                                   ng-checked="elementId.input.permanently_hidden" /> <label>{{_t('lb_deactivate')}}</label>
+                             <bb-help-text trans="_t('deactivate_element_info')"></bb-help-text>
+                        </div>
                  
                     <!-- dashboard etc -->
                     <div class="form-group">
                         <div>
                             <input type="checkbox" name="dashboard" value="{{elementId.input.onDashboard}}" id="dashboard" 
                                    ng-model="elementId.input.onDashboard" ng-checked="elementId.input.onDashboard" /> <label>{{_t('lb_add_dashboard')}}</label>
-                        </div>
-                        <div ng-if="elementAccess(cfg.role_access.admin) && elementId.appType.zwave"> 
-                            <input type="checkbox" name="permanently_hidden" id="permanently_hidden" value="" 
-                                   ng-model="elementId.input.permanently_hidden" 
-                                   ng-checked="elementId.input.permanently_hidden" /> <label>{{_t('lb_permanently_hide')}}</label>
                         </div>
                         <div>
                             <input type="checkbox" name="hide_events" value="{{elementId.input.id}}" id="hide_events" 
@@ -54,7 +66,30 @@
                             <label>{{_t('lb_hide_events_device')}}</label>
                         </div>
                     </div>
-                    <!-- Rooms -->
+                     <!-- Rooms -->
+                    <div class="form-group form-inline" ng-if="elementAccess(cfg.role_access.admin)">
+                         <h3>{{_t('lb_assign_room')}}</h3>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default" 
+                                    ng-click="expandNavi('elidDropDown', $event)">
+                                {{elementId.locations[elementId.input.location].title|cutText:true:20}} <i class="fa fa-caret-down"></i>
+                            </button>
+                             <div class="app-dropdown app-dropdown-left" ng-if="naviExpanded.elidDropDown">
+                                 <ul>
+                                     <li class="clickable" 
+                                         ng-class="elementId.input.location == v.id ? 'active':''"
+                                         ng-click="elementId.input.location = v.id"
+                                         ng-repeat="v in elementId.locations">
+                                         <a>
+                                             <img class="navi-img" ng-src="{{v.img_src}}" alt="img" /> 
+                                             {{v.title|cutText:true:20}} <i class="fa fa-check menu-arrow" ng-if="elementId.input.location == v.id"></i>
+                                         </a>
+                                     </li>
+                                 </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Rooms
                     <div class="form-group form-inline" ng-if="elementAccess(cfg.role_access.admin)">
                         <label>{{_t('lb_assign_room')}} </label>
                         <select class="form-control" ng-model="elementId.input.location">
@@ -64,7 +99,7 @@
                                 {{(v.id === 0 ? _t(v.title) : v.title)}}
                             </option>
                         </select>
-                    </div>
+                    </div>-->
             </fieldset>
             <!-- <fieldset>
                  <h3>Icons</h3>

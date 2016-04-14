@@ -6,7 +6,7 @@
 /**
  * Event controller
  */
-myAppController.controller('EventController', function($scope, $routeParams, $interval, $window, $filter, $cookies, $location, dataFactory, dataService, myCache, paginationService, cfg, _) {
+myAppController.controller('EventController', function ($scope, $routeParams, $interval, $q, $filter, $cookies, dataFactory, dataService, myCache, paginationService, cfg, _) {
     $scope.page = {
         title: false
     };
@@ -32,6 +32,9 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
     };
     $scope.timeFilter = $scope.timeFilterDefault;
     $scope.devices = {
+        cnt:{
+            deviceEvents:{}
+        },
         find: {
             id: false,
             title: false,
@@ -42,66 +45,60 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
     };
     $scope.currentPage = 1;
     $scope.pageSize = cfg.page_results_events;
-    $scope.reset = function() {
+    $scope.reset = function () {
         $scope.collection = angular.copy([]);
     };
     $scope.apiDataInterval = null;
 
     // Cancel interval on page destroy
-    $scope.$on('$destroy', function() {
+    $scope.$on('$destroy', function () {
         $scope.currSource = false;
-        $scope.currLevel= false;
+        $scope.currLevel = false;
         $interval.cancel($scope.apiDataInterval);
     });
 
     /**
-     * Load devices
+     * Load all promises
      */
-    $scope.loadDevices = function() {
-        dataFactory.getApi('devices', null, true).then(function(response) {
-            var rejectType = ['battery', 'text', 'camera'];
-            var data = _.chain(response.data.data.devices)
-                    .flatten()
-                    .reject(function(v) {
-                        return rejectType.indexOf(v.deviceType) > -1 || v.permanently_hidden === true;
-                    })
-                    .indexBy('id')
-                    .value();
-            if(!_.isEmpty(data)){
-               angular.extend($scope.devices, {data: data,show: true}); 
-            }
-            
-            if (angular.isDefined($routeParams.param) && angular.isDefined($routeParams.val)) {
-                if ($routeParams.param === 'source' && !_.isEmpty(data) && data[$routeParams.val]) {
-                    angular.extend($scope.devices.find, {id: $routeParams.val}, {title: data[$routeParams.val].metrics.title});
-                    angular.extend($scope.page, {title: data[$routeParams.val].metrics.title});
-                }
-            }
-        }, function(error) {});
-    }
-    ;
-    $scope.loadDevices();
-
-    /**
-     * Load data into collection
-     */
-    $scope.loadData = function() {
-         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+    $scope.allSettled = function () {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         $scope.timeFilter = (angular.isDefined($cookies.events_timeFilter) ? angular.fromJson($cookies.events_timeFilter) : $scope.timeFilter);
         var urlParam = '?since=' + $scope.timeFilter.since;
-        dataFactory.getApi('notifications', urlParam, true).then(function(response) {
-            setData(response.data);
+
+        var promises = [
+            dataFactory.getApi('devices', null, true),
+            dataFactory.getApi('notifications', urlParam, true)
+        ];
+
+        $q.allSettled(promises).then(function (response) {
+            var devices = response[0];
+            var events = response[1];
+
             $scope.loading = false;
-        }, function(error) {
-            $scope.loading = false;
-            alertify.alertError($scope._t('error_load_data'));
+            // Error message
+            if (events.state === 'rejected') {
+                $scope.loading = false;
+                alertify.alertError($scope._t('error_load_data'));
+                return;
+            }
+            // Success - devices
+            if (devices.state === 'fulfilled') {
+                setDevices(devices.value.data.data.devices);
+            }
+
+            // Success - notifications
+            if (events.state === 'fulfilled') {
+                setEvents(events.value.data.data.notifications);
+            }
+
         });
     };
-    $scope.loadData();
+    $scope.allSettled();
     /**
      * Change time
      */
-    $scope.changeTime = function(day) {
+    $scope.changeTime = function (day) {
         switch (day) {
             case 1:
                 $scope.timeFilter = {
@@ -156,19 +153,20 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
                 break;
         }
         $cookies.events_timeFilter = angular.toJson($scope.timeFilter);
-        $scope.loadData();
+        //$scope.loadData();
+        $scope.allSettled();
     };
 
     /**
      * Refresh data
      */
-    $scope.refreshData = function() {
-        var refresh = function() {
-            dataFactory.refreshApi('notifications').then(function(response) {
-                angular.forEach(response.data.data.notifications, function(v, k) {
+    $scope.refreshData = function () {
+        var refresh = function () {
+            dataFactory.refreshApi('notifications').then(function (response) {
+                angular.forEach(response.data.data.notifications, function (v, k) {
                     $scope.collection.push(v);
                 });
-            }, function(error) {});
+            }, function (error) {});
         };
         $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
     };
@@ -176,25 +174,26 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
     /**
      * Watch for pagination change
      */
-    $scope.$watch('currentPage', function(page) {
+    $scope.$watch('currentPage', function (page) {
         paginationService.setCurrentPage(page);
     });
 
-    $scope.setCurrentPage = function(val) {
+    $scope.setCurrentPage = function (val) {
         $scope.currentPage = val;
     };
 
     /**
      * Delete event
      */
-    $scope.deleteEvent = function(id,params,message) {
-        alertify.confirm(message, function() {
+    $scope.deleteEvent = function (id, params, message) {
+        alertify.confirm(message, function () {
             $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
-            dataFactory.deleteApi('notifications', id, params).then(function(response) {
+            dataFactory.deleteApi('notifications', id, params).then(function (response) {
                 myCache.remove('notifications');
                 $scope.loading = false;
-               $scope.loadData();
-            }, function(error) {
+                $scope.allSettled();
+                //$scope.loadData();
+            }, function (error) {
                 $scope.loading = false;
                 alertify.alertError($scope._t('error_delete_data'));
             });
@@ -204,29 +203,51 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
     /**
      * Hide source events
      */
-    $scope.hideSourceEvents = function(deviceId) {
+    $scope.hideSourceEvents = function (deviceId) {
         $scope.user.hide_single_device_events = dataService.setArrayValue($scope.user.hide_single_device_events, deviceId, true);
         updateProfile($scope.user);
     };
 
     /// --- Private functions --- ///
     /**
+     * Set devices
+     */
+    function setDevices(devices) {
+        var rejectType = ['battery', 'text', 'camera'];
+        var data = _.chain(devices)
+                .flatten()
+                .reject(function (v) {
+                    return rejectType.indexOf(v.deviceType) > -1 || v.permanently_hidden === true;
+                })
+                .indexBy('id')
+                .value();
+        if (!_.isEmpty(data)) {
+            angular.extend($scope.devices, {data: data, show: true});
+        }
+
+        if (angular.isDefined($routeParams.param) && angular.isDefined($routeParams.val)) {
+            if ($routeParams.param === 'source' && !_.isEmpty(data) && data[$routeParams.val]) {
+                angular.extend($scope.devices.find, {id: $routeParams.val}, {title: data[$routeParams.val].metrics.title});
+                angular.extend($scope.page, {title: data[$routeParams.val].metrics.title});
+            }
+        }
+    }
+    /**
      * Set events data
      */
-    function setData(data) {
+    function setEvents(data) {
         $scope.collection = [];
-        $scope.eventLevels = dataService.getEventLevel(data.data.notifications, [{'key': null, 'val': 'all'}]);
-        //$scope.eventSources = dataService.getPairs(data.data.notifications, 'source', 'source');
+        $scope.eventLevels = dataService.getEventLevel(data, [{'key': null, 'val': 'all'}]);
         var filter = null;
         if (angular.isDefined($routeParams.param) && angular.isDefined($routeParams.val)) {
-            if($routeParams.param === 'source' && $routeParams.val !== ''){
+            if ($routeParams.param === 'source' && $routeParams.val !== '') {
                 $scope.currSource = $routeParams.val;
             }
-            if($routeParams.param === 'level' && $routeParams.val !== ''){
-               $scope.currLevel = $routeParams.val;
+            if ($routeParams.param === 'level' && $routeParams.val !== '') {
+                $scope.currLevel = $routeParams.val;
             }
             filter = $routeParams;
-            angular.forEach(data.data.notifications, function(v, k) {
+            angular.forEach(data, function (v, k) {
                 if (filter && angular.isDefined(v[filter.param])) {
                     if (v[filter.param] == filter.val) {
                         $scope.collection.push(v);
@@ -235,13 +256,22 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
             });
         } else if (angular.isDefined($routeParams.param) && $routeParams.param == 'source_type') {
             filter = $routeParams;
-            angular.forEach(data.data.notifications, function(v, k) {
+            angular.forEach(data, function (v, k) {
                 if (v.source == filter.source && v.type == filter.type) {
                     $scope.collection.push(v);
                 }
             });
         } else {
-            $scope.collection = data.data.notifications;
+            $scope.collection = data;
+        }
+        
+         // Count events in the device
+         $scope.devices.cnt.deviceEvents =_.countBy(data,function (v) {
+            return v.source;
+        });
+        if (_.size($scope.collection) < 1) {
+            alertify.alertWarning($scope._t('no_events'));
+            return;
         }
     }
     ;
@@ -250,14 +280,15 @@ myAppController.controller('EventController', function($scope, $routeParams, $in
      */
     function updateProfile(profileData) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        dataFactory.putApi('profiles', profileData.id, profileData).then(function(response) {
+        dataFactory.putApi('profiles', profileData.id, profileData).then(function (response) {
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
             dataService.setUser(response.data.data);
             myCache.remove('notifications');
             $scope.input = [];
-            $scope.loadData();
+            $scope.allSettled();
+            //$scope.loadData();
 
-        }, function(error) {
+        }, function (error) {
             alertify.alertError($scope._t('error_update_data'));
             $scope.loading = false;
         });

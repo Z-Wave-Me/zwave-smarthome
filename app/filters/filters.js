@@ -124,18 +124,19 @@ myApp.filter('hasNode', function () {
     };
 });
 /**
+ * DEPRECATED
  * Get segment from url
  */
-myApp.filter('getUrlSegment', function ($location) {
-    return function (segment) {
-        var ret = false;
-        var data = $location.path().split('/');
-        if (data[segment]) {
-            ret = data[segment];
-        }
-        return ret;
-    };
-});
+//myApp.filter('getUrlSegment', function ($location) {
+//    return function (segment) {
+//        var ret = false;
+//        var data = $location.path().split('/');
+//        if (data[segment]) {
+//            ret = data[segment];
+//        }
+//        return ret;
+//    };
+//});
 /**
  * Get current time
  */
@@ -203,8 +204,7 @@ myApp.filter('getElementIcon', function (cfg) {
                     }
                     break;
                 case 'thermostat':
-                    //icon = cfg.img.icons + (level == 'on' ? 'switch-on.png' : 'switch-off.png');
-                    icon = cfg.img.icons + 'thermostat.png';
+                    con = cfg.img.icons + 'thermostat.png';
                     break;
 
                 case 'energy':
@@ -333,22 +333,6 @@ myApp.filter('getBatteryIcon', function (cfg) {
 });
 
 /**
- * Get event icon
- */
-myApp.filter('getRoomIcon', function (cfg) {
-    return function (room) {
-        var icon = 'storage/img/placeholder-img.png';
-        if (room.img_type == 'default' && room.default_img) {
-            icon = 'storage/img/rooms/' + room.default_img;
-        }
-        if (room.img_type == 'user' && room.user_img) {
-            icon = cfg.server_url + cfg.api_url + 'load/image/' + room.user_img;
-        }
-        return icon;
-    };
-});
-
-/**
  * Get element category icon
  */
 myApp.filter('getElCategoryIcon', function () {
@@ -447,11 +431,9 @@ myApp.filter('isTodayFromUnix', function () {
         var sec = (d.getSeconds() < 10 ? '0' + d.getSeconds() : d.getSeconds());
 
         if (d.toDateString() == (new Date()).toDateString()) {
-            //return hrs + ':' + min + ':' + sec;
             return hrs + ':' + min;
 
         } else {
-            //return day + '.' + mon + '.' + year + ' ' + hrs + ':' + min + ':' + sec;
             return day + '.' + mon + '.' + year;
         }
     };
@@ -460,8 +442,13 @@ myApp.filter('isTodayFromUnix', function () {
  * Get current time
  */
 myApp.filter('getCurrentTime', function () {
-    return function () {
-        var d = new Date();
+    return function (timestamp) {
+         if (timestamp) {
+            var d = new Date(timestamp * 1000);
+        } else {
+             var d = new Date();
+        }
+        //var d = new Date();
         var hrs = (d.getHours() < 10 ? '0' + d.getHours() : d.getHours());
         var min = (d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes());
         var sec = (d.getSeconds() < 10 ? '0' + d.getSeconds() : d.getSeconds());

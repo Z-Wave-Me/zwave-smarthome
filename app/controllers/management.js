@@ -6,7 +6,7 @@
 /**
  * Management controller
  */
-myAppController.controller('ManagementController', function ($scope, $interval, dataFactory, dataService, myCache) {
+myAppController.controller('ManagementController', function ($scope, $interval, $q, dataFactory, dataService, myCache) {
     //Set elements to expand/collapse
     angular.copy({
         user: false,
@@ -19,7 +19,7 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
         report: false,
         appstore: false
     }, $scope.expand);
-
+    $scope.ZwaveApiData = false;
     $scope.controllerInfo = {
         uuid: null,
         isZeroUuid: false,
@@ -37,47 +37,68 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
     });
 
     /**
-     * Load ZwaveApiData
+     * Load all promises
      */
-    $scope.loadZwaveApiData = function () {
-        dataFactory.loadZwaveApiData().then(function (ZWaveAPIData) {
-            var caps = function (arr) {
-                var cap = '';
-                if (angular.isArray(arr)) {
-                    cap += (arr[3] & 0x01 ? 'S' : 's');
-                    cap += (arr[3] & 0x02 ? 'L' : 'l');
-                    cap += (arr[3] & 0x04 ? 'M' : 'm');
-                }
-                return cap;
+    $scope.allSettled = function () {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        var promises = [
+            dataFactory.loadZwaveApiData()
+        ];
 
-            };
-            $scope.controllerInfo.uuid = ZWaveAPIData.controller.data.uuid.value;
-            $scope.controllerInfo.isZeroUuid = parseInt(ZWaveAPIData.controller.data.uuid.value, 16) === 0;
-            $scope.controllerInfo.softwareRevisionVersion = ZWaveAPIData.controller.data.softwareRevisionVersion.value;
-            $scope.controllerInfo.capabillities = caps(ZWaveAPIData.controller.data.caps.value);
-            $scope.loadLicenceScratchId($scope.controllerInfo.uuid);
-        }, function (error) {});
+        $q.allSettled(promises).then(function (response) {
+            var zwave = response[0];
+            $scope.loading = false;
+            // Success - locations
+            if (zwave.state === 'fulfilled') {
+                $scope.ZwaveApiData = zwave.value;
+                setControllerInfo(zwave.value);
+            }
+        });
     };
+    $scope.allSettled();
 
-    $scope.loadZwaveApiData();
+    /// --- Private functions --- ///
+    /**
+     * Set controller info
+     */
+    function setControllerInfo(ZWaveAPIData) {
+        var caps = function (arr) {
+            var cap = '';
+            if (angular.isArray(arr)) {
+                cap += (arr[3] & 0x01 ? 'S' : 's');
+                cap += (arr[3] & 0x02 ? 'L' : 'l');
+                cap += (arr[3] & 0x04 ? 'M' : 'm');
+            }
+            return cap;
+
+        };
+        $scope.controllerInfo.uuid = ZWaveAPIData.controller.data.uuid.value;
+        $scope.controllerInfo.isZeroUuid = parseInt(ZWaveAPIData.controller.data.uuid.value, 16) === 0;
+        $scope.controllerInfo.softwareRevisionVersion = ZWaveAPIData.controller.data.softwareRevisionVersion.value;
+        $scope.controllerInfo.capabillities = caps(ZWaveAPIData.controller.data.caps.value);
+        setLicenceScratchId($scope.controllerInfo.uuid);
+
+    }
+    ;
 
     /**
-     * Load ZwaveApiData
+     * Set licence ID
      */
-    $scope.loadLicenceScratchId = function (uuid) {
+    function  setLicenceScratchId(uuid) {
         dataFactory.getRemoteData($scope.cfg.get_licence_scratchid + '?uuid=' + uuid).then(function (response) {
             $scope.controllerInfo.scratchId = response.data.scratch_id;
         }, function (error) {});
-    };
-
+    }
+    ;
 
 });
 /**
  * List of users
  */
-myAppController.controller('ManagementUserController', function ($scope, dataFactory, dataService, myCache) {
+myAppController.controller('ManagementUserController', function ($scope,$cookies,dataFactory, dataService, myCache) {
     $scope.userProfiles = {
-        all: false
+        all: false,
+        orderBy: ($cookies.usersOrderBy ? $cookies.usersOrderBy : 'titleASC')
     };
     /**
      * Load profiles
@@ -93,6 +114,15 @@ myAppController.controller('ManagementUserController', function ($scope, dataFac
         });
     };
     $scope.loadProfiles();
+    
+    /**
+     * Set order by
+     */
+    $scope.setOrderBy = function (key) {
+        angular.extend($scope.userProfiles, {orderBy: key});
+        $cookies.usersOrderBy = key;
+        $scope.loadProfiles();
+    };
 
     /**
      * Delete an user
@@ -120,25 +150,24 @@ myAppController.controller('ManagementUserController', function ($scope, dataFac
 /**
  * User detail
  */
-myAppController.controller('ManagementUserIdController', function ($scope, $routeParams, $filter, $window, dataFactory, dataService, myCache) {
+myAppController.controller('ManagementUserIdController', function ($scope, $routeParams, $filter, $q, dataFactory, dataService, myCache) {
     $scope.id = $filter('toInt')($routeParams.id);
     $scope.rooms = {};
+    $scope.show = true;
     $scope.input = {
-        id: 0,
-        name: '',
-        active: true,
-        role: 2,
-        password: '',
-        login: '',
-        lang: 'en',
-        color: '#dddddd',
-        hide_all_device_events: false,
-        hide_system_events: false,
-        hide_single_device_events: [],
-        rooms: [0],
-        default_ui: 1,
-        expert_view: false
-
+        "id": 0,
+        "role": 2,
+        "login": "",
+        "name": "",
+        "lang": "en",
+        "color": "#dddddd",
+        "dashboard": [],
+        "interval": 1000,
+        "rooms": [0],
+        "expert_view": true,
+        "hide_all_device_events": false,
+        "hide_system_events": false,
+        "hide_single_device_events": []
     };
     $scope.auth = {
         id: $routeParams.id,
@@ -148,38 +177,47 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
     };
 
     /**
-     * Load data
+     * Load all promises
      */
-    $scope.loadData = function (id) {
+    $scope.allSettledUserId = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataFactory.getApi('profiles', '/' + id, true).then(function (response) {
+        var promises = [
+            dataFactory.getApi('profiles', ($scope.id !== 0 ? '/' + $scope.id : ''), true),
+            dataFactory.getApi('locations')
+        ];
+
+        $q.allSettled(promises).then(function (response) {
+            var profile = response[0];
+            var locations = response[1];
             $scope.loading = false;
-            $scope.input = response.data.data;
-            $scope.auth.login = response.data.data.login;
-        }, function (error) {
-            $scope.input = false;
-            $scope.loading = false;
-            alertify.alertError($scope._t('error_load_data'));
+            // Error message
+            if (profile.state === 'rejected') {
+                $scope.loading = false;
+                alertify.alertError($scope._t('error_load_data'));
+                $scope.show = false;
+                return;
+            }
+            // Success - profile
+            if (profile.state === 'fulfilled') {
+                if ($scope.id !== 0) {
+                    $scope.input = profile.value.data.data;
+                    $scope.auth.login = profile.value.data.data.login;
+                }
+
+            }
+
+            // Success - locations
+            if (locations.state === 'fulfilled') {
+                $scope.rooms = dataService.getRooms(locations.value.data.data)
+                        .reject(function (v) {
+                            return (v.id === 0);
+
+                        })
+                        .value();
+            }
         });
     };
-    if ($scope.id > 0) {
-        $scope.loadData($scope.id);
-    }
-
-    /**
-     * Load Rooms
-     */
-    $scope.loadRooms = function () {
-        dataFactory.getApi('locations').then(function (response) {
-            $scope.rooms = _.filter(response.data.data, function (v) {
-                if (v.id !== 0) {
-                    return v;
-                }
-            });
-        }, function (error) {});
-    }
-    ;
-    $scope.loadRooms();
+    $scope.allSettledUserId();
     /**
      * Assign room to list
      */
@@ -219,7 +257,7 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
             var id = $filter('hasNode')(response, 'data.data.id');
             if (id) {
                 myCache.remove('profiles');
-                $scope.loadData(id);
+                $scope.reloadData();
             }
             $scope.loading = false;
             dataService.showNotifier({message: $scope._t('success_updated')});
@@ -246,12 +284,6 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
             return;
         }
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-//        var input = {
-//            id: $scope.id,
-//            login: auth.login,
-//            password: auth.password
-//
-//        };
         dataFactory.putApi('profiles_auth_update', $scope.id, $scope.auth).then(function (response) {
             $scope.loading = false;
             var data = response.data.data;
@@ -260,8 +292,6 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
                 return;
             }
             dataService.showNotifier({message: $scope._t('success_updated')});
-            //$window.history.back();
-
 
         }, function (error) {
             var message = $scope._t('error_update_data');
@@ -292,7 +322,7 @@ myAppController.controller('ManagementRemoteController', function ($scope, dataF
         }
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('instances', '/RemoteAccess').then(function (response) {
-            
+
             $scope.loading = false;
             var remoteAccess = response.data.data[0];
             console.log(remoteAccess)
@@ -448,7 +478,7 @@ myAppController.controller('ManagementFirmwareController', function ($scope, $sc
 /**
  * Restor controller
  */
-myAppController.controller('ManagementRestoreController', function ($scope, dataFactory, dataService) {
+myAppController.controller('ManagementRestoreController', function ($scope, $window,$timeout,dataFactory, dataService) {
     $scope.myFile = null;
     $scope.managementRestore = {
         confirm: false,
@@ -471,6 +501,10 @@ myAppController.controller('ManagementRestoreController', function ($scope, data
             $scope.loading = false;
             dataService.showNotifier({message: $scope._t('restore_done_reload_ui')});
             $scope.managementRestore.alert = {message: $scope._t('restore_done_reload_ui'), status: 'alert-success', icon: 'fa-check'};
+             $timeout(function () {
+                 alertify.dismissAll();
+                $window.location.reload();
+            }, 2000);
         }, function (error) {
             $scope.loading = false;
             alertify.alertError($scope._t('restore_backup_failed'));
@@ -483,7 +517,7 @@ myAppController.controller('ManagementRestoreController', function ($scope, data
 /**
  * Management factory default controller
  */
-myAppController.controller('ManagementFactoryController', function ($scope, $timeout, $window, dataFactory, dataService) {
+myAppController.controller('ManagementFactoryController', function ($scope, $window, $cookies, $cookieStore, dataFactory, dataService) {
     $scope.factoryDefault = {
         model: {
             overwriteBackupCfg: true,
@@ -497,18 +531,22 @@ myAppController.controller('ManagementFactoryController', function ($scope, $tim
      * Reset to factory
      */
     $scope.resetFactoryDefault = function (message) {
-       var params = '?useDefaultConfig=' + $scope.factoryDefault.model.overwriteBackupCfg
-                + '&resetZway='+ $scope.factoryDefault.model.resetZway
-                + '&useDefaultConfig=' + $scope.factoryDefault.model.useDefaultConfig;
+//        var params = '?useDefaultConfig=' + $scope.factoryDefault.model.overwriteBackupCfg
+//                + '&resetZway=' + $scope.factoryDefault.model.resetZway
+//                + '&useDefaultConfig=' + $scope.factoryDefault.model.useDefaultConfig;
+        var params = false;
         alertify.confirm(message, function () {
             $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('returning_factory_default')};
-            dataFactory.getApi('factory_default',params).then(function (response) {
+            dataFactory.getApi('factory_default', params).then(function (response) {
                 $scope.loading = false;
                 dataService.showNotifier({message: $scope._t('factory_default_success')});
-//                $timeout(function () {
-//                    alertify.dismissAll();
-//                    $window.location.reload();
-//                }, 3000);
+                angular.forEach($cookies, function (v, k) {
+                    $cookieStore.remove(k);
+                    //delete $cookies[k];
+                });
+                //dataService.setRememberMe(null);
+                dataService.logOut();
+                //$window.location.reload();
             }, function (error) {
                 alertify.alertError($scope._t('factory_default_error'));
                 $scope.loading = false;
@@ -583,7 +621,6 @@ myAppController.controller('ManagementAppStoreController', function ($scope, dat
  * Management report controller
  */
 myAppController.controller('ManagementReportController', function ($scope, $window, $route, dataFactory, dataService) {
-    $scope.ZwaveApiData = false;
     $scope.remoteAccess = false;
     $scope.input = {
         browser_agent: '',
@@ -599,17 +636,6 @@ myAppController.controller('ManagementReportController', function ($scope, $wind
         email: null,
         content: null
     };
-
-    /**
-     * Load ZwaveApiData
-     */
-    $scope.loadZwaveApiData = function () {
-        dataFactory.loadZwaveApiData().then(function (ZWaveAPIData) {
-            $scope.ZwaveApiData = ZWaveAPIData;
-        }, function (error) {});
-    };
-
-    $scope.loadZwaveApiData();
     /**
      * Load Remote access data
      */
@@ -647,7 +673,6 @@ myAppController.controller('ManagementReportController', function ($scope, $wind
         input.browser_version = $window.navigator.appVersion;
         input.browser_info = 'PLATFORM: ' + $window.navigator.platform + '\nUSER-AGENT: ' + $window.navigator.userAgent;
         input.shui_version = $scope.cfg.app_version;
-        //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         dataFactory.postReport(input).then(function (response) {
             $scope.loading = false;
             dataService.showNotifier({message: $scope._t('success_send_report') + ' ' + input.email});
@@ -671,10 +696,10 @@ myAppController.controller('ManagementPostfixController', function ($scope, data
      * Load postfix data
      */
     $scope.loadPostfix = function () {
-         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('postfix', null, true).then(function (response) {
-            if(_.isEmpty(response.data)){
-                 alertify.alertError($scope._t('no_data'));
+            if (_.isEmpty(response.data)) {
+                alertify.alertWarning($scope._t('no_data'));
             }
             $scope.loading = false;
             $scope.postfix.all = response.data;
@@ -684,7 +709,7 @@ myAppController.controller('ManagementPostfixController', function ($scope, data
 
         });
     };
-     $scope.loadPostfix();
+    $scope.loadPostfix();
 
 });
 /**

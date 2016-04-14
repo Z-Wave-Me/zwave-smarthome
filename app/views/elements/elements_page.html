@@ -5,10 +5,11 @@
     <div ng-if="dataHolder.devices.show && !dataHolder.devices.noDevices">
     <div class="page-control form-inline">
         <div class="btn-group btn-goup-block btn-goup-3">
-            <button class="btn btn-default" ng-click="expandNavi('elCategories', $event)" ng-class="dataHolder.devices.filter.deviceType ? 'active':'' ">
+            <button class="btn btn-default" ng-click="expandNavi('elCategories', $event)" ng-class="!_.isEmpty(dataHolder.devices.filter) ? 'active':'' ">
                 <i class="fa fa-filter"></i> 
                 <span class="btn-name" ng-if="dataHolder.devices.filter.deviceType">{{_t(dataHolder.devices.filter.deviceType) | cutText:true:15}}</span>
-                <span class="btn-name" ng-if="!dataHolder.devices.filter.deviceType">{{_t('all_elements')|cutText:true:15}}</span>
+                <span class="btn-name" ng-if="dataHolder.devices.filter.visibility === false">{{_t('hidden_elements')|cutText:true:15}}</span>
+                <span class="btn-name" ng-if="_.isEmpty(dataHolder.devices.filter)">{{_t('all_elements')|cutText:true:15}}</span>
                 <span class="btn-name item-cnt"> ({{dataHolder.cnt.collection}})</span>
             </button>
              <button class="btn btn-default" ng-click="expandNavi('elTags', $event)" ng-class="dataHolder.devices.filter.tag ? 'active':'' ">
@@ -44,6 +45,14 @@
                     </a>
                 </li>
             </ul>
+            <div class="page-navi-content">
+                <a class="btn btn-default btn-tag"  
+                   ng-click="showHiddenEl((dataHolder.devices.showHidden ? false:true))" 
+                   ng-class="dataHolder.devices.showHidden ? 'active': ''">
+                     <i class="fa fa-eye"></i> {{_t('show_hidden')}}
+                 </a>
+                
+            </div>
         </div>
     </div>
      <!-- Page subnavi  tags -->
@@ -59,7 +68,7 @@
                         ng-repeat="v in dataHolder.devices.tags" 
                         ng-click="setFilter({tag: v})" 
                         ng-class="dataHolder.devices.filter.tag == v ? 'active': ''">
-                     {{_t(v) | cutText:true:30}}
+                     {{v|cutText:true:30}}
                  </a>
             </div>
         </div>

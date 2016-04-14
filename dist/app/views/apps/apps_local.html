@@ -114,7 +114,7 @@
                                  <!-- Updgrade -->
                                 <button href="" class="btn btn-danger" title="{{_t('update_to_latest')}}" 
                                         ng-click="updateModule(dataHolder.onlineModules.ids[v.moduleName], _t('app_update_confirm'))" 
-                                        ng-if="dataHolder.onlineModules.ids[v.moduleName] && dataHolder.onlineModules.ids[v.moduleName].version != v.version">
+                                        ng-if="dataHolder.onlineModules.ids[v.moduleName] && dataHolder.onlineModules.ids[v.moduleName].status == 'upgrade'">
                                     <i class="fa fa-level-up"></i> <span class="btn-name">{{_t('update_to_latest')}}</span>
                                 </button> 
                             </div>

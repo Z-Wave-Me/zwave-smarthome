@@ -2840,14 +2840,14 @@ fieldset.submit-entry {
 }
 /* line 30, ../sass/common/_dropdown.scss */
 .app-dropdown ul li {
-  padding: 10px 0;
+  padding: 10px;
   border-bottom: solid 1px #d3d3d3;
 }
 /* line 33, ../sass/common/_dropdown.scss */
 .app-dropdown ul li a {
   display: block;
   position: relative;
-  padding: 0 10px;
+  padding: 0;
   vertical-align: middle;
   color: #333333;
 }
@@ -2857,49 +2857,54 @@ fieldset.submit-entry {
   right: 1%;
   display: inline-block;
 }
-/* line 49, ../sass/common/_dropdown.scss */
+/* line 46, ../sass/common/_dropdown.scss */
+.app-dropdown ul li img {
+  display: inline-block;
+  margin: 0 10px 0 0;
+}
+/* line 53, ../sass/common/_dropdown.scss */
 .app-dropdown ul .active a {
   color: #999999;
   font-weight: bold;
   text-decoration: underline;
   cursor: text;
 }
-/* line 56, ../sass/common/_dropdown.scss */
+/* line 60, ../sass/common/_dropdown.scss */
 .app-dropdown ul .fa {
   font-size: 120%;
   padding-right: 10px;
 }
 
-/* line 63, ../sass/common/_dropdown.scss */
+/* line 67, ../sass/common/_dropdown.scss */
 .dropdown-100 {
   width: 100%;
 }
 
-/* line 66, ../sass/common/_dropdown.scss */
+/* line 70, ../sass/common/_dropdown.scss */
 .dropdown-lang {
   min-width: 250px;
 }
-/* line 69, ../sass/common/_dropdown.scss */
+/* line 73, ../sass/common/_dropdown.scss */
 .dropdown-lang ul li {
   display: inline-block;
   padding: 5px;
   border: 0;
 }
 
-/* line 77, ../sass/common/_dropdown.scss */
+/* line 81, ../sass/common/_dropdown.scss */
 .app-dropdown-left {
   float: left;
   left: 0;
   right: auto;
 }
 
-/* line 82, ../sass/common/_dropdown.scss */
+/* line 86, ../sass/common/_dropdown.scss */
 .app-dropdown-bottom {
   top: auto;
   bottom: 100%;
 }
 
-/* line 87, ../sass/common/_dropdown.scss */
+/* line 91, ../sass/common/_dropdown.scss */
 .app-dropdown-mxh-600 {
   height: auto;
   max-height: 600px;

@@ -1,6 +1,7 @@
 <!-- Login view -->
 <div ng-controller="AuthLoginController">
     <bb-loader></bb-loader>
+     <div ng-include="'app/views/auth/auth_header.html'"></div>
     <form name="form_login" id="form_login" class="form form-page" ng-submit="login(input)" novalidate>
         <fieldset>
             <h3><span ng-bind="_t('nav_login')"></span></h3>

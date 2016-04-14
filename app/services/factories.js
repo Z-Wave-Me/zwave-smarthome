@@ -537,7 +537,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
             // something went wrong
             angular.extend(cfg.route.fatalError, {
                 message: cfg.route.t['error_zwave_network'],
-                info: cfg.route.t['try_restart_raspberry'],
+                info: cfg.route.t['how_to_resolve_zwave_errors'],
                 hide: false,
                 permanent: true
             });
