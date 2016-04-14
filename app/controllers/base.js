@@ -22,7 +22,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     $scope.hostName = $location.host();
     $scope.ZWAYSession = dataService.getZWAYSession();
     $scope.lastLogin = dataService.getLastLogin();
-    /*$scope.setSkin = function () {
+    $scope.setSkin = function () {
      if($cookies.skin && $cookies.skin !== 'default'){
      cfg.skin.active =  $cookies.skin;
      cfg.img.icons = cfg.skin.path + $cookies.skin + '/img/icons/';
@@ -32,32 +32,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
      }
      
      };
-     $scope.setSkin();*/
-    $scope.resetFatalError = function (obj) {
-        angular.extend(cfg.route.fatalError, obj || {message: false, info: false, hide: false});
-
-    };
-    // Set time
-    $scope.setTimeZone = function () {
-        if (!$scope.user) {
-            return;
-        }
-        dataFactory.getApi('timezone', null, true).then(function (response) {
-            angular.extend(cfg.route.time, {string: $filter('getCurrentTime')(response.data.data.localTimeUT)});
-            var refresh = function () {
-                dataFactory.getApi('timezone', null, true).then(function (response) {
-                    angular.extend(cfg.route.time, {string: $filter('getCurrentTime')(response.data.data.localTimeUT)});
-
-                }, function (error) {
-                    $interval.cancel($scope.timeZoneInterval);
-                });
-            };
-            $scope.timeZoneInterval = $interval(refresh, $scope.cfg.interval);
-        }, function (error) {});
-
-    };
-    $scope.setTimeZone();
-    // Set poll interval
+    $scope.setSkin();
     $scope.setPollInterval = function () {
         if (!$scope.user) {
             $scope.cfg.interval = $scope.cfg.interval;
