@@ -32,6 +32,14 @@ var config_data = {
             // Translations
             t: {}
         },
+        // Zwave - will be extended
+        'zwave': {
+                remoteId: null,
+                uuid: null,
+                softwareRevisionVersion: null,
+                capabillities: null,
+                scratchId: null
+            },
         'history_cache_interval': 300000,
         // Default auth credentials
         'default_credentials': {
@@ -70,6 +78,13 @@ var config_data = {
             'postfix': 'ZWaveAPI/Postfix',
             'timezone': 'ZAutomation/api/v1/system/time/get',
             'jb_update': 'ZAutomation/api/v1/system/time/get'
+        },
+        // List of remote api URLs
+        'api_remote': {
+            // JamesBox request
+            'jamesbox_request': 'http://dev.dev/shuiapi/jamesbox/?action=request',
+             // JamesBox update
+            'jamesbox_update': 'http://dev.dev/shuiapi/jamesbox/?action=update'
         },
         // Skin
         'skin': {
@@ -279,7 +294,7 @@ var config_data = {
         'page_results_events': 50,
         // ---------------------------------- Custom config for specifics app_type ---------------------------------- //
         // Application type : default/popp/wd
-        'app_type': 'default',
+        'app_type': 'jb',
         // Config
         'custom_cfg': {
             'default': {
@@ -343,10 +358,9 @@ var config_data = {
                 ]
             },
              'jb': {
-                'logo': 'app-logo-popp.png',
-                'hidden_apps': [
+                'logo': 'app-logo-default.png',
+                hidden_apps: [
                     'Cron',
-                    'CodeDevice',
                     'BatteryPolling',
                     'CustomUserCode',
                     'CustomUserCodeLoader',
@@ -358,6 +372,7 @@ var config_data = {
                     'SensorValueLogging',
                     'SensorsPollingLogging',
                     'YandexProbki',
+                    'CodeDevice',
                     'InfoWidget',
                     'SensorsPolling',
                     'SwitchControlGenerator',
