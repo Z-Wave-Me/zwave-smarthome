@@ -633,7 +633,7 @@ div.timepicker-picker > table.table-condensed tr td {
 /* line 6, ../sass/vendor/_alertify.scss */
 .alertify .ajs-dimmer {
   position: fixed;
-  z-index: 2300;
+  z-index: 2500;
   top: 0;
   right: 0;
   bottom: 0;
@@ -653,7 +653,7 @@ div.timepicker-picker > table.table-condensed tr td {
   bottom: 0;
   padding: 0;
   overflow-y: auto;
-  z-index: 2300;
+  z-index: 2500;
 }
 
 /* line 30, ../sass/vendor/_alertify.scss */
@@ -1591,7 +1591,7 @@ div.timepicker-picker > table.table-condensed tr td {
   position: fixed;
   width: 0;
   overflow: visible;
-  z-index: 2301;
+  z-index: 2501;
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
@@ -2949,7 +2949,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
 /* line 4, ../sass/common/_loader.scss */
 #loading {
   position: fixed;
-  z-index: 2199;
+  z-index: 2399;
   width: 260px;
   height: 50px;
   overflow: show;
@@ -2964,7 +2964,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
 /* line 17, ../sass/common/_loader.scss */
 #loading .loading-in {
   position: relative;
-  z-index: 2200;
+  z-index: 2400;
   margin: auto;
   padding: 10px;
   background-color: #FFFFFF;
@@ -3018,7 +3018,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 2000;
+  z-index: 2300;
   overflow: show;
   color: #0d0d0d;
 }
@@ -3042,7 +3042,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
 
 /* line 29, ../sass/common/_modal.scss */
 #modalHistory {
-  z-index: 2001;
+  z-index: 2301;
 }
 
 /* line 33, ../sass/common/_modal.scss */
