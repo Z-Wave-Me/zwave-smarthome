@@ -117,7 +117,7 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $co
     function jamesBoxRequest() {
         var input = {
             uuid: '6318a0d97e65da6c728daa63fe7fcea4',
-            version: '1.0.5'
+            version: '1.0.1'
         };
        
         var location =  '#/dashboard';
