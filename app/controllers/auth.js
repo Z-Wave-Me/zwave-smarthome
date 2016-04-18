@@ -15,7 +15,8 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $co
 
     $scope.zwaveCfg = {
         remoteId: null,
-        uuid: null
+        uuid: null,
+        version: null
     };
 
     if (dataService.getUser()) {
@@ -61,6 +62,7 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $co
             // Success - zwave controller
             if (zwave.state === 'fulfilled') {
                 $scope.zwaveCfg.uuid = zwave.value.controller.data.uuid.value;
+                 $scope.zwaveCfg.version = zwave.value.controller.data.softwareRevisionVersion.value;
             }
         });
     };
@@ -116,8 +118,8 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $co
      */
     function jamesBoxRequest() {
         var input = {
-            uuid: '6318a0d97e65da6c728daa63fe7fcea4',
-            version: '1.0.1'
+            uuid: $scope.zwaveCfg.uuid,
+            version: $scope.zwaveCfg.version
         };
        
         var location =  '#/dashboard';

@@ -1,14 +1,14 @@
 <!-- JamesBox update -->
 <div ng-controller="JbUpdateController">
      <bb-loader></bb-loader>
-     <div id="jamesBoxModal" class="appmodal" ng-if_="zwaveInclusion.cancelModal">
+     <div id="jamesBoxModal" class="appmodal">
         <div class="appmodal-in">
             <div class="appmodal-header">
                 <a ng-href="#dashboard" class="appmodal-close"><i class="fa fa-times"></i></a>
-                <h3>{{_t('Software update')}}</h3>
+                <h3>{{_t('jamesbox_software_upgrade')}}</h3>
             </div>
             <div class="appmodal-body">
-                <div>Your current frimware is YYY. There is a new firmware upgrade available. Would you like to update your gateway firmware to version XXX?</div>
+                <div>{{_t('jamesbox_current_firmware',{__currentfw__: jamesbox.version,__newfw__:jamesbox.versionNew})}}</div>
             </div>
             <div class="appmodal-footer">
                 <button class="btn btn-default" title="{{_t('Confirm')}}" ng-click="firmwareUpdate()">

@@ -1,5 +1,8 @@
 {
     "newtrans": "---",
+    "jamesbox_software_upgrade": "Software upgrade",
+    "jamesbox_current_firmware": "Your current frimware is __currentfw__. There is a new firmware upgrade available. Would you like to update your gateway firmware to version __newfw__?",
+    "jamesbox_autoupgrade": "The firmware will be automatically upgraded to version __newfw__ on next restart?",
     "---": "newtrans",
     "no_events": "Sorry, there are no events to show.",
     "no_cameras": "Sorry, there are no cameras available.",
