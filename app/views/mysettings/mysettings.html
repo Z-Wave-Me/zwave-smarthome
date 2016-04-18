@@ -3,6 +3,7 @@
     <bb-loader></bb-loader>
     <div ng-show="input">
         <h2 ng-bind="_t('nav_myaccess')"></h2>
+        {{_t('reptest',{__version__: 5, __newversion__: 6})}}
         <form name="form_profile" id="form_profile" class="form form-page" ng-submit="store(form_profile,input)" novalidate>
             <fieldset>
                 <div class="form-group form-inline">
