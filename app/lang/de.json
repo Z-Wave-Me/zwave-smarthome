@@ -1,7 +1,7 @@
 {
     "jamesbox_software_upgrade": "Software upgrade",
-    "jamesbox_current_firmware": "Your current frimware is __currentfw__. There is a new firmware upgrade available. Would you like to update your gateway firmware to version __newfw__?",
-    "jamesbox_autoupgrade": "The firmware will be automatically upgraded to version __newfw__ on next restart?",
+    "jamesbox_current_firmware": "Die aktuell installieret Firmware ist __currentfw__. Es ist ein neue Firmware-Aktualisierung verfügbar. Möchten Sie ihre Gateway Firmware auf die Version __newfw__ aktualisieren?",
+    "jamesbox_autoupgrade": "Die Firmware wird automatisch beim nächsten Neustart auf die Version __newfw__ aktualisert.",
     "no_events": "Sorry, there are no events to show.",
     "no_cameras": "There are no cameras available.",
     "no_rooms": "There are no rooms available.",
