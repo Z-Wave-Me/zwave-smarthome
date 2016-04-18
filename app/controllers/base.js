@@ -138,18 +138,6 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         return path[1] || 'login';
 
     };
-
-    /**
-     * Get current filter
-     */
-    $scope.getCurrFilter = function (index, val) {
-        var path = $location.path().split('/');
-
-    };
-    /**
-     * Get body ID
-     */
-    $scope.footer = 'Home footer';
     /**
      *
      * Mobile detect
