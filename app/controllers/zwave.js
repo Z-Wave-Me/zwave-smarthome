@@ -342,10 +342,20 @@ myAppController.controller('ZwaveInterviewController', function ($scope, $locati
                 switch ($scope.zwaveInterview.errorType) {
                     // Secure interview failed
                     case 'error_interview_secure_failed':
-                        alertify.alertError($scope._t('error_interview_secure_failed')).set('onok', function (closeEvent) {
-                           //$window.location.reload();
-                                   $scope.cancelConfiguration();
-                        });
+                        alertify.confirm($scope._t('configuration_complete_only') + ' ' + $scope.zwaveInterview.progress + '%' + batteryInfo + resetInfo)
+                                .setting('labels', {'cancel': $scope._t('redo_inclusion')})
+                                .set('onok', function (closeEvent) {//after clicking OK
+                                    $scope.forceInterview($scope.zwaveInterview.interviewNotDone);
+                                    $scope.startConfiguration({
+                                        nodeId: $scope.devices.find.id,
+                                        interviewDoneCnt: 0,
+                                        interviewRepeatCnt: 0,
+                                        errorType: ''});
+                                })
+                                .set('oncancel', function (closeEvent) {//after clicking Cancel
+                             alertify.dismissAll();
+                                    $location.path('/zwave/inclusion');
+                                });
                         break;
                     // Cc Version interview is not complete
                     case 'error_interview_again':
@@ -360,6 +370,7 @@ myAppController.controller('ZwaveInterviewController', function ($scope, $locati
                                         errorType: ''});
                                 })
                                 .set('oncancel', function (closeEvent) {//after clicking Cancel
+                             alertify.dismissAll();
                                     $location.path('/zwave/inclusion');
                                 });
                         break;
@@ -376,6 +387,7 @@ myAppController.controller('ZwaveInterviewController', function ($scope, $locati
                                         errorType: ''});
                                 })
                                 .set('oncancel', function (closeEvent) {//after clicking Cancel
+                             alertify.dismissAll();
                                      $location.path('/zwave/inclusion');
                                 });
                         break;
