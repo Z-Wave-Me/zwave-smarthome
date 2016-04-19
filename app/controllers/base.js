@@ -107,8 +107,8 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         }, function (error) {});
     };
     // Get language lines
-    $scope._t = function (key) {
-        return dataService.getLangLine(key, $scope.languages);
+    $scope._t = function (key,replacement) {
+       return dataService.getLangLine(key, $scope.languages,replacement);
     };
 
     // Watch for lang change
@@ -138,18 +138,6 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         return path[1] || 'login';
 
     };
-
-    /**
-     * Get current filter
-     */
-    $scope.getCurrFilter = function (index, val) {
-        var path = $location.path().split('/');
-
-    };
-    /**
-     * Get body ID
-     */
-    $scope.footer = 'Home footer';
     /**
      *
      * Mobile detect

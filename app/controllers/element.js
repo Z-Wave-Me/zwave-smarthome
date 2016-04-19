@@ -864,7 +864,7 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
             myCache.remove('devices');
             myCache.remove('devices/' + deviceId);
             myCache.remove('locations');
-            dataFactory.goBack();
+            dataService.goBack();
 
         }, function (error) {
             alertify.alertError($scope._t('error_update_data'));

@@ -470,7 +470,7 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
         if (angular.isDefined($routeParams.nohistory)) {
             $location.path('/zwave/devices');
         } else {
-             dataFactory.goBack();
+            dataService.goBack();
         }
     };
 
