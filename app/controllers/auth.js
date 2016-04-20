@@ -6,7 +6,7 @@
 /**
  * Logout controller
  */
-myAppController.controller('AuthController', function ($scope, $routeParams, $cookies, $window, $q, cfg, dataFactory, dataService, _) {
+myAppController.controller('AuthController', function ($scope, $routeParams, $location,$cookies, $window, $q, cfg, dataFactory, dataService, _) {
     $scope.auth = {
         remoteId: null,
         firstaccess: false,
@@ -21,7 +21,6 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $co
     }
 
     $scope.loginLang = (angular.isDefined($cookies.lang)) ? $cookies.lang : false;
-
     /**
      * Load all promises
      */
@@ -107,7 +106,8 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $co
         dataFactory.loadZwaveApiData().then(function (response) {
             var input = {
                 uuid: response.controller.data.uuid.value,
-                version: response.controller.data.softwareRevisionVersion.value
+                version: response.controller.data.softwareRevisionVersion.value,
+                host: $location.host()
             };
             jamesBoxRequest(input);
         }, function (error) {
@@ -122,6 +122,7 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $co
      */
     function jamesBoxRequest(input) {
         var location = '#/dashboard';
+        dataFactory.postToRemote(cfg.api_remote['jamesbox_updatelog'], input).then(function (response) {}, function (error) {});
         dataFactory.postToRemote(cfg.api_remote['jamesbox_request'], input).then(function (response) {
             if (!_.isEmpty(response.data)) {
                 location = '#/jamesbox/update';

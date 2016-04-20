@@ -82,9 +82,14 @@ var config_data = {
         // List of remote api URLs
         'api_remote': {
             // JamesBox request
-            'jamesbox_request': 'http://192.168.10.200/mv/jamesbox/?action=request',
+            'jamesbox_request': 'http://dev.dev/shuiapi/jamesbox/?action=request',
+            //'jamesbox_request': 'http://192.168.10.200/mv/jamesbox/?action=request',
              // JamesBox update
-            'jamesbox_update': 'http://192.168.10.200/mv/jamesbox/?action=update'
+             'jamesbox_update': 'http://dev.dev/shuiapi/jamesbox/?action=update',
+            //'jamesbox_update': 'http://192.168.10.200/mv/jamesbox/?action=update',
+             // JamesBox update log
+             'jamesbox_updatelog': 'http://dev.dev/shuiapi/jamesbox/?action=updatelog'
+            //'jamesbox_updatelog': 'http://192.168.10.200/mv/jamesbox/?action=updatelog'
         },
         // Skin
         'skin': {

@@ -58,7 +58,8 @@ myAppController.controller('JbUpdateController', function ($scope, $q, $location
     $scope.firmwareUpdate = function () {
         var input = {
             uuid: $scope.jamesbox.uuid,
-            confirm_exec2: 1
+            confirm_exec2: 1,
+            host: $location.host()
         };
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         dataFactory.postToRemote(cfg.api_remote['jamesbox_update'], input).then(function (response) {
