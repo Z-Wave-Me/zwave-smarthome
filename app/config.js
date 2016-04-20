@@ -88,7 +88,7 @@ var config_data = {
              'jamesbox_update': 'http://dev.dev/shuiapi/jamesbox/?action=update',
             //'jamesbox_update': 'http://192.168.10.200/mv/jamesbox/?action=update',
              // JamesBox update log
-             'jamesbox_updatelog': 'http://dev.dev/shuiapi/jamesbox/?action=updatelog'
+             'jamesbox_createlog': 'http://dev.dev/shuiapi/jamesbox/?action=createlog'
             //'jamesbox_updatelog': 'http://192.168.10.200/mv/jamesbox/?action=updatelog'
         },
         // Skin

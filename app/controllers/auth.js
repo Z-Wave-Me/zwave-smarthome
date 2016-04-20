@@ -89,7 +89,7 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
             window.location.href = $scope.cfg.expert_url;
             return;
         }
-        if (cfg.app_type === 'jb') {
+        if (cfg.app_type === 'jb' && user.role === 1) {
             getZwaveApiData();
         } else {
             window.location = location;
@@ -122,7 +122,8 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
      */
     function jamesBoxRequest(input) {
         var location = '#/dashboard';
-        dataFactory.postToRemote(cfg.api_remote['jamesbox_updatelog'], input).then(function (response) {}, function (error) {});
+        
+        dataFactory.postToRemote(cfg.api_remote['jamesbox_createlog'], input).then(function (response) {}, function (error) {});
         dataFactory.postToRemote(cfg.api_remote['jamesbox_request'], input).then(function (response) {
             if (!_.isEmpty(response.data)) {
                 location = '#/jamesbox/update';
