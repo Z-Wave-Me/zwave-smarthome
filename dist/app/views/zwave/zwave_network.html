@@ -19,19 +19,54 @@
                    </div>
             </div>
          <div class="report-col report-ctrl">
-             <div class="text-danger" ng-repeat="m in v.messages|unique:true">
-                <span ng-if="!isMobile">
+             <div ng-repeat="m in v.messages|unique:true">
+                 <div class="text-danger" >{{m.error}}</div>
+                 <button class="btn btn-default" ng-if="m.type == 'failed' || m.type == 'config'" ng-click="devices.find = v;handleModal('zwaveNetworkModal', $event)">
+                         <i class="fa fa-cog text-primary"></i> <span class="btn-name">{{_t('configure_device')}}</span>
+                    </button> 
+                
+                <!--<span ng-if="!isMobile">
                     <a class="text-danger" href="" ng-if="m.type == 'failed' || m.type == 'config'" ng-click="toExpert('/expert/#help/' + v.id, _t('redirect_to_expert'))" >
                         <span  ng-bind="m.error"></span> <i class="fa fa-external-link"></i>
                     </a>
+                    <button class="btn btn-default" ng-if="m.type == 'failed' || m.type == 'config'" ng-click="devices.find = v;handleModal('zwaveNetworkModal', $event)">
+                         <i class="fa fa-cog text-primary"></i> <span class="btn-name">{{_t('configure_device')}}</span>
+                    </button> 
                 </span>
                 <span ng-if="isMobile">
                     <span  class="text-danger" ng-if="m.type == 'failed' || m.type == 'config'" ng-bind="m.error"></span>
                 </span>
-                <span ng-if="m.type == 'battery'" ng-bind="m.error"></span>
+                <span ng-if="m.type == 'battery'" ng-bind="m.error"></span> -->
             </div>
          </div>
         </div>
       </div>
     <div class="device-logo" ng-include="'app/views/zwave/zwave_nav.html'"></div>
+    
+    <!-- Interview modal -->
+    <div id="zwaveNetworkModal" class="appmodal" ng-controller="ZwaveInterviewController" ng-if="modalArr.zwaveNetworkModal && !_.isEmpty(devices.find)">
+      <div class="appmodal-in">
+          <div class="appmodal-header">
+              <span class="appmodal-close" ng-click="cancelConfiguration($event)"><i class="fa fa-times"></i></span>
+              <h3>{{devices.find.title|cutText:true:25}} (#{{devices.find.id}})</h3>
+          </div>
+          <div class="appmodal-body">
+               <div class="alert alert-warning" ng-hide="zwaveInterview.progress > 99">
+                    <i class="fa fa-spinner fa-spin"></i> <strong>{{_t('configuring_device')}}</strong> 
+                </div>
+              <div class="progress">
+                <div class="progress-bar" 
+                     style="min-height:40px;min-width: 2em; width: {{zwaveInterview.progress}}%;"
+                     ng-class="zwaveInterview.progress < 100 ? 'progress-bar-striped active' : 'progress-bar-success'">
+                    {{zwaveInterview.progress}}%
+                </div>
+            </div>
+          </div>
+          <div class="appmodal-footer">
+              <button type="button" class="btn btn-default" ng-click="cancelConfiguration($event)">
+                  <i class="fa fa-times text-danger"></i> <span class="btn-name">{{_t('lb_cancel')}}</span>
+              </button>
+          </div>
+      </div>
+  </div>
 </div> <!-- /ng-controller --> 
