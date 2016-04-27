@@ -26,7 +26,7 @@ name | overview
 [app\controllers\management.js](app/controllers/management.md) | 
 [app\controllers\mysettings.js](app/controllers/mysettings.md) | 
 [app\controllers\room.js](app/controllers/room.md) | 
-[app\controllers\skin.js](app/controllers/skin.md) | 
+[app\controllers\skin.js](app/controllers/skin.md) | _This is the overview with some markdown included, how nice!_
 [app\controllers\zwave-inclusion.js](app/controllers/zwave-inclusion.md) | 
 [app\controllers\zwave.js](app/controllers/zwave.md) | 
 - - -
