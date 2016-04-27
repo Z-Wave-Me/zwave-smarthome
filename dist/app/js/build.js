@@ -16008,7 +16008,7 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
     }
 });
 /**
- * @module Application App controller
+ * Application App controller
  * @author Martin Vach
  */
 
@@ -17047,12 +17047,15 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
 
 });
 /**
- * Application skins controller
+ * These controllers handle all Skins actions.
+ * @module Skins
  * @author Martin Vach
  */
 
 /**
- * Skin base controller
+ * This is the Skin root controller
+ * @class SkinBaseController
+ *
  */
 myAppController.controller('SkinBaseController', function ($scope, $q, $cookies, dataFactory, _) {
     $scope.skins = {
@@ -17158,7 +17161,9 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $cookies,
 });
 
 /**
- * Skin local controller
+ * This controller handles local skins actions.
+ * @class SkinLocalController
+ *
  */
 myAppController.controller('SkinLocalController', function ($scope, $window, $route, $timeout, $cookies, dataFactory, dataService) {
     $scope.activeTab = 'local';
@@ -17206,7 +17211,9 @@ myAppController.controller('SkinLocalController', function ($scope, $window, $ro
     };
 });
 /**
- * Skin online controller
+ * This controller handles online skins actions.
+ * @class SkinOnlineController
+ *
  */
 myAppController.controller('SkinOnlineController', function ($scope, dataFactory, dataService) {
     $scope.activeTab = 'online';

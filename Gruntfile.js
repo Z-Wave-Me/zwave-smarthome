@@ -162,8 +162,8 @@ module.exports = function (grunt) {
             generate: {
                 options: {
                     contentsEnabled: true,
-                    contentsTitle: 'Example Documentation',
-                    contentsFile: 'abcd.md'
+                    contentsTitle: 'SmartHome UI Documentation',
+                    contentsFile: 'readme.md'
                     //pathFilter: /^example/,
                     //templateDir: 'path/to/my/mustache'
                 },
@@ -258,6 +258,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-jsdox');
 
     // Default task(s).
-    grunt.registerTask('default', ['clean', 'ngtemplates', 'concat', 'copy', 'cssmin']);
+    grunt.registerTask('default', ['clean', 'ngtemplates', 'concat', 'copy', 'cssmin','jsdox']);
 
 };
