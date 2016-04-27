@@ -6,195 +6,201 @@
 
 * * *
 
-### loadTokens() 
+## Class: AppBaseController
+Apps root controller
+
+### AppBaseController.loadTokens() 
 
 Load tokens
 
 
-
-### allSettled() 
+### AppBaseController.allSettled() 
 
 Load all promises
 
 
-
-### updateModule() 
+### AppBaseController.updateModule() 
 
 Update module
 
 
+### AppBaseController.setModules() 
 
-### setModules() 
-
-Set modules
-
+Set local modules
 
 
-### setOnlineModules() 
+### AppBaseController.setOnlineModules() 
 
 Set online modules
 
 
-
-### setInstances() 
+### AppBaseController.setInstances() 
 
 Set instances
 
 
 
-### setOrderBy() 
+## Class: AppLocalController
+The controller that handles all local APPs actions.
+
+### AppLocalController.setOrderBy() 
 
 Set order by
 
 
-
-### setFilter() 
+### AppLocalController.setFilter() 
 
 Set filter
 
 
-
-### deleteModule() 
+### AppLocalController.deleteModule() 
 
 Delete module
 
 
-
-### resetModule() 
+### AppLocalController.resetModule() 
 
 Reset module
 
 
 
-### setOrderBy() 
+## Class: AppOnlineController
+The controller that handles all online APPs actions.
+
+### AppOnlineController.setOrderBy() 
 
 Set order by
 
 
-
-### hideInstalled() 
+### AppOnlineController.hideInstalled() 
 
 Hide installed
 
 
-
-### setFilter() 
+### AppOnlineController.setFilter() 
 
 Set filter
 
 
-
-### installModule() 
+### AppOnlineController.installModule() 
 
 Install module
 
 
 
-### setOrderBy() 
+## Class: AppInstanceController
+The controller that handles all instances actions.
+
+### AppInstanceController.setOrderBy() 
 
 Set order by
 
 
-
-### activateInstance() 
+### AppInstanceController.activateInstance() 
 
 Activate instance
 
 
-
-### deleteInstance() 
+### AppInstanceController.deleteInstance() 
 
 Delete instance
 
 
 
-### loadCategories() 
+## Class: AppLocalDetailController
+The controller that handles local app detail actions.
+
+### AppLocalDetailController.loadCategories() 
 
 Load categories
 
 
-
-### loadModule() 
+### AppLocalDetailController.loadModule() 
 
 Load module detail
 
 
 
-### loadRemoteAccess() 
+## Class: AppOnlineDetailController
+The controller that handles on-line app detail actions.
+
+### AppOnlineDetailController.loadRemoteAccess() 
 
 Load Remote access data
 
 
-
-### loadCategories() 
+### AppOnlineDetailController.loadCategories() 
 
 Load categories
 
 
-
-### loadLocalModules() 
+### AppOnlineDetailController.loadLocalModules() 
 
 Load local modules
 
 
-
-### loadModuleId() 
+### AppOnlineDetailController.loadModuleId() 
 
 Load module detail
 
 
-
-### loadComments() 
+### AppOnlineDetailController.loadComments() 
 
 Load comments
 
 
-
-### installModule() 
+### AppOnlineDetailController.installModule() 
 
 Install module
 
 
-
-### addComment() 
+### AppOnlineDetailController.addComment() 
 
 Add comment
 
 
-
-### rateModule() 
+### AppOnlineDetailController.rateModule() 
 
 Rate module
 
 
 
-### loadCategories() 
+## Class: AppModuleAlpacaController
+The controller that handles Alpaca forms inputs and outputs.
+
+### AppModuleAlpacaController.loadCategories() 
 
 Load categories
 
 
+### AppModuleAlpacaController.postModule() 
 
-### store() 
-
-Store form data
-
+Generates the form for creating a new app instance
 
 
-### activateInstance() 
+### AppModuleAlpacaController.putModule() 
 
-Activate module instance
-
-
-
-### installModule() 
-
-Install module
+Generates the form for updating an app instance
 
 
+### AppModuleAlpacaController.store() 
 
-### setDependencies() 
+Create/Update an app instance
 
-Set dependencies
+
+### AppModuleAlpacaController.activateInstance() 
+
+Activates an instance of the module
+
+
+### AppModuleAlpacaController.installModule() 
+
+Install the module
+
+
+### AppModuleAlpacaController.setDependencies() 
+
+Set moduledependencies
 
 
 
@@ -203,10 +209,10 @@ Set dependencies
 
 
 
+**Author:** Martin Vach
 
 
 
-
-
+**Overview:** This controller handles the Local apps, Online Apps and Active apps.
 
 

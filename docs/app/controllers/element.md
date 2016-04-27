@@ -6,205 +6,228 @@
 
 * * *
 
-### allSettled() 
+## Class: ElementBaseController
+The element root controller
+
+### ElementBaseController.allSettled() 
 
 Load all promises
 
 
-
-### getDeviceById() 
+### ElementBaseController.getDeviceById() 
 
 Get device by ID
 
 
-
-### refreshDevices() 
+### ElementBaseController.refreshDevices() 
 
 Refresh data
 
 
-
-### setFilter() 
+### ElementBaseController.setFilter() 
 
 Set filter
 
 
-
-### showHiddenEl() 
+### ElementBaseController.showHiddenEl() 
 
 Show hidden elements
 
 
-
-### setOrderBy() 
+### ElementBaseController.setOrderBy() 
 
 Set order by
 
 
-
-### runCmd() 
+### ElementBaseController.runCmd() 
 
 Run command
 
 
-
-### resetDevices() 
+### ElementBaseController.resetDevices() 
 
 Reset devicse data holder
 
 
-
-### deleteHistory() 
+### ElementBaseController.deleteHistory() 
 
 Delete device history
 
 
-
-### setVisibility() 
+### ElementBaseController.setVisibility() 
 
 Set visibility
 
 
+### ElementBaseController.setExactCmd() 
 
-### setExactCmd() 
-
-Set exact value for cmd command
-
+Set exact value for the command
 
 
-### setDevices() 
+### ElementBaseController.setDevices() 
 
 Set device
 
 
 
-### loadDeviceHistory() 
+## Class: ElementHistoryController
+The controller that handles a device history.
+
+### ElementHistoryController.loadDeviceHistory() 
 
 Load device history
 
 
 
-### loadDeviceId() 
+## Class: ElementSwitchMultilevelController
+The controller that handles SwitchMultilevel element.
+
+### ElementSwitchMultilevelController.loadDeviceId() 
 
 Load single device
 
 
 
-### loadDeviceId() 
+## Class: ElementThermostatController
+The controller that handles Thermostat element.
+
+### ElementThermostatController.loadDeviceId() 
 
 Load single device
 
 
 
-### loadRgbWheel() 
+## Class: ElementSwitchRGBWController
+The controller that handles SwitchRGBW element.
+
+### ElementSwitchRGBWController.loadRgbWheel() 
 
 Show RGB modal window
 
 
-
-### loadDeviceId() 
-
-Load single device
-
-
-
-### loadDeviceId() 
+### ElementSwitchRGBWController.loadDeviceId() 
 
 Load single device
 
 
 
-### runMultilineCmd() 
+## Class: ElementSensorMultilineController
+The controller that handles SensorMultiline element.
+
+### ElementSensorMultilineController.loadDeviceId() 
+
+Load single device
+
+
+### ElementSensorMultilineController.runMultilineCmd() 
+
+Run a command request
+
+
+
+## Class: ElementCameraController
+The controller that handles Camera element.
+
+### ElementCameraController.setUrl() 
+
+Set camera url
+
+
+### ElementCameraController.loadDeviceId() 
 
 Load single device
 
 
 
-### loadDeviceId() 
+## Class: ElementTextController
+The controller that handles Text element.
+
+### ElementTextController.loadDeviceId() 
 
 Load single device
 
 
 
-### loadDeviceId() 
+## Class: ElementOpenWeatherController
+The controller that handles OpenWeather element.
+
+### ElementOpenWeatherController.loadDeviceId() 
 
 Load single device
 
 
 
-### loadDeviceId() 
+## Class: ElementClimateControlController
+The controller that handles ClimateControl element.
+
+### ElementClimateControlController.loadDeviceId() 
 
 Load single device
 
 
-
-### loadDeviceId() 
-
-Load single device
-
-
-
-### changeClimateControlMode() 
+### ElementClimateControlController.changeClimateControlMode() 
 
 Change climate element mode
 
 
 
-### allSettled() 
+## Class: ElementDashboardController
+The controller that handles elements on the dashboard.
+
+
+## Class: ElementRoomController
+The controller that handles elements in the room.
+
+
+## Class: ElementIdController
+The controller that handles element detail actions.
+
+### ElementIdController.allSettled() 
 
 Load all promises
 
 
-
-### searchMe() 
+### ElementIdController.searchMe() 
 
 Search me
 
 
-
-### addTag() 
+### ElementIdController.addTag() 
 
 Add tag to list
 
 
-
-### removeTag() 
+### ElementIdController.removeTag() 
 
 Remove tag from list
 
 
-
-### store() 
+### ElementIdController.store() 
 
 Update an item
 
 
-
-### updateProfile() 
+### ElementIdController.updateProfile() 
 
 Update profile
 
 
-
-### setDevice() 
+### ElementIdController.setDevice() 
 
 Set device
 
 
-
-### setOutput() 
+### ElementIdController.setOutput() 
 
 Set output
 
 
-
-### setTagList() 
+### ElementIdController.setTagList() 
 
 Set tag list
 
 
-
-### findText() 
+### ElementIdController.findText() 
 
 Find text
 
@@ -215,10 +238,10 @@ Find text
 
 
 
+**Author:** Martin Vach
 
 
 
-
-
+**Overview:** Controllers that handle the list of elements, as well as an element detail.
 
 

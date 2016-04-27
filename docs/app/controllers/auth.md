@@ -3,75 +3,90 @@
 
 
 
-**Members:**
-
-+ path
 
 * * *
 
-### getRemoteId() 
+## Class: AuthController
+This is the Auth root controller
+
+### AuthController.getRemoteId() 
 
 Get remote id
 
 
-
-### getFirstAccess() 
+### AuthController.getFirstAccess() 
 
 Get first access
 
 
-
-### setLoginLang() 
+### AuthController.setLoginLang() 
 
 Login language
 
 
-
-### processUser() 
+### AuthController.processUser() 
 
 Login with selected data from server response
 
 
-
-### redirectAfterLogin() 
+### AuthController.redirectAfterLogin() 
 
 Redirect
 
 
 
-### getSession() 
+## Class: AuthLoginController
+The controller that handles login process.
+
+### AuthLoginController.getSession() 
 
 Get session (ie for users holding only a session id, or users that require no login)
 
 
-
-### login() 
+### AuthLoginController.login() 
 
 Login proccess
 
 
 
-### changePassword() 
+## Class: AuthPasswordController
+The controller that handles first access and password update.
+
+### AuthPasswordController.changePassword() 
 
 Change password
 
 
 
-### sendEmail() 
+## Class: PasswordForgotController
+The controller that sends an e-mail with the link to reset forgotten passwort.
+
+### PasswordForgotController.sendEmail() 
 
 Send an email
 
 
 
-### checkToken() 
+## Class: PasswordResetController
+The controller that handles reset password actions.
+
+### PasswordResetController.checkToken() 
 
 Check a valid token
 
 
-
-### changePassword() 
+### PasswordResetController.changePassword() 
 
 Change password
+
+
+
+## Class: LogoutController
+The controller that handles logout process.
+
+### LogoutController.logout() 
+
+Logout an user
 
 
 
@@ -80,10 +95,10 @@ Change password
 
 
 
+**Author:** Martin Vach
 
 
 
-
-
+**Overview:** Controllers that handle the authentication of existing users, as well as forgot password.
 
 

@@ -6,37 +6,39 @@
 
 * * *
 
-### loadData() 
+## Class: CameraAddController
+The controller that renders a list of the cameras.
+
+### CameraAddController.loadData() 
 
 Load ip cameras
 
 
 
-### allSettled() 
+## Class: CameraManageController
+The controller that handles camera manage actions .
+
+### CameraManageController.allSettled() 
 
 Load all promises
 
 
-
-### activateInstance() 
+### CameraManageController.activateInstance() 
 
 Ictivate instance
 
 
-
-### deleteInstance() 
+### CameraManageController.deleteInstance() 
 
 Delete instance
 
 
-
-### setModules() 
+### CameraManageController.setModules() 
 
 Set modules
 
 
-
-### setInstances() 
+### CameraManageController.setInstances() 
 
 Set instances
 
@@ -47,10 +49,10 @@ Set instances
 
 
 
+**Author:** Martin Vach
 
 
 
-
-
+**Overview:** Controllers that handle all Camera actions – manage and add camera.
 
 

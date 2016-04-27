@@ -1,10 +1,12 @@
 /**
- * Application App controller
+ * @overview This controller handles the Local apps, Online Apps and Active apps.
  * @author Martin Vach
  */
 
 /**
- * App base controller
+ * Apps root controller
+ * @class AppBaseController
+ *
  */
 myAppController.controller('AppBaseController', function ($scope, $filter, $cookies, $q, $route, $routeParams, dataFactory, dataService, _) {
     angular.copy({
@@ -157,7 +159,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
 
     /// --- Private functions --- ///
     /**
-     * Set modules
+     * Set local modules
      */
     function setModules(data) {
         // Reset featured cnt
@@ -305,7 +307,8 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
 
 });
 /**
- * App local controller
+ * The controller that handles all local APPs actions.
+ * @class AppLocalController
  */
 myAppController.controller('AppLocalController', function ($scope, $filter, $cookies, $timeout, $route, $routeParams, $location, dataFactory, dataService, myCache, _) {
     $scope.activeTab = 'local';
@@ -377,8 +380,10 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
     };
 
 });
+
 /**
- * App online controller
+ * The controller that handles all online APPs actions.
+ * @class AppOnlineController
  */
 myAppController.controller('AppOnlineController', function ($scope, $filter, $cookies, $window, dataFactory, dataService, _) {
     $scope.activeTab = 'online';
@@ -441,8 +446,10 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
 
 
 });
+
 /**
- * App Instance controller
+ * The controller that handles all instances actions.
+ * @class AppInstanceController
  */
 myAppController.controller('AppInstanceController', function ($scope, $cookies, dataFactory, dataService, myCache, _) {
     $scope.activeTab = 'instance';
@@ -494,7 +501,8 @@ myAppController.controller('AppInstanceController', function ($scope, $cookies, 
 
 });
 /**
- * App local detail controller
+ * The controller that handles local app detail actions.
+ * @class AppLocalDetailController
  */
 myAppController.controller('AppLocalDetailController', function ($scope, $routeParams, $location, dataFactory, dataService, _) {
     $scope.module = [];
@@ -543,8 +551,10 @@ myAppController.controller('AppLocalDetailController', function ($scope, $routeP
     }
 
 });
+
 /**
- * App online detail controller
+ * The controller that handles on-line app detail actions.
+ * @class AppOnlineDetailController
  */
 myAppController.controller('AppOnlineDetailController', function ($scope, $routeParams, $timeout, $location, $route, $filter, myCache, dataFactory, dataService, _) {
     $scope.local = {
@@ -721,7 +731,8 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
 
 });
 /**
- * App controller - add module
+ * The controller that handles Alpaca forms inputs and outputs.
+ * @class AppModuleAlpacaController
  */
 myAppController.controller('AppModuleAlpacaController', function ($scope, $routeParams, $route, $filter, $location, $q, dataFactory, dataService, myCache, cfg) {
     $scope.showForm = false;
@@ -773,9 +784,9 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
         }, function (error) {});
     };
 
-
-
-    // Post new module instance
+    /**
+     * Generates the form for creating a new app instance
+     */
     $scope.postModule = function (id) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('modules', '/' + id + '?lang=' + $scope.lang, true).then(function (module) {
@@ -816,8 +827,10 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
             alertify.alertError($scope._t('error_load_data'));
         });
     };
-
-    // Put module instance
+    
+    /**
+     * Generates the form for updating an app instance
+     */
     $scope.putModule = function (id) {
         if (id < 1) {
             return;
@@ -879,7 +892,6 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
     /**
      * Load data
      */
-
     switch ($routeParams.action) {
         case 'put':
             $scope.putModule($routeParams.id);
@@ -891,7 +903,7 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
             break;
     }
     /**
-     * Store form data
+     * Create/Update an app instance
      */
     $scope.store = function (data) {
         var defaults = ['instanceId', 'moduleId', 'active', 'title', 'description'];
@@ -939,7 +951,7 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
         }
     };
     /**
-     * Activate module instance
+     * Activates an instance of the module
      */
     $scope.activateInstance = function (input) {
         input.active = true;
@@ -956,7 +968,7 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
     };
 
     /**
-     * Install module
+     * Install the module
      */
     $scope.installModule = function (module) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
@@ -978,7 +990,7 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
     // --- Private functions
 
     /**
-     * Set dependencies
+     * Set moduledependencies
      */
     function setDependencies(dependencies) {
         if (!_.isArray(dependencies)) {

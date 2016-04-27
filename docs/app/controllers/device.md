@@ -6,9 +6,12 @@
 
 * * *
 
-### loadEnOceanModule() 
+## Class: DeviceController
+Device root controller
 
-Load Remote access data
+### DeviceController.loadEnOceanModule() 
+
+Load EnOcean module
 
 
 
@@ -17,10 +20,10 @@ Load Remote access data
 
 
 
+**Author:** Martin Vach
 
 
 
-
-
+**Overview:** This controller handles devices submenus – Z-Wave, Camera and EnOcean.
 
 

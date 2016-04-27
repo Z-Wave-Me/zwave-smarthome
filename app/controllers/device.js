@@ -1,10 +1,12 @@
 /**
- * Application Device controller
+ * @overview This controller handles devices submenus – Z-Wave, Camera and EnOcean.
  * @author Martin Vach
  */
 
 /**
- * Device controller
+ * Device root controller
+ * @class DeviceController
+ *
  */
 myAppController.controller('DeviceController', function($scope, dataFactory) {
     $scope.enocean = {
@@ -13,7 +15,7 @@ myAppController.controller('DeviceController', function($scope, dataFactory) {
         alert: {message: false}
     };
      /**
-     * Load Remote access data
+     * Load EnOcean module
      */
     $scope.loadEnOceanModule = function() {
         dataFactory.getApi('instances',false,true).then(function(response) {

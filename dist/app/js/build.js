@@ -14448,19 +14448,21 @@ function postRenderAlpacaData(renderedForm) {
 }
 ;
 /**
- * Application base controller
+ * @overview The parent controller that stores all function used in the child controllers.
  * @author Martin Vach
  */
 
-/*** Controllers ***/
-var myAppController = angular.module('myAppController', []);
 /**
- * Base controller
+ * Angular module instance
+ */
+var myAppController = angular.module('myAppController', []);
+
+/**
+ * The app base controller. 
+ * @class BaseController
  */
 myAppController.controller('BaseController', function ($scope, $cookies, $filter, $location, $route, $window, $interval, cfg, dataFactory, dataService, myCache) {
-    /**
-     * Global scopes
-     */
+    // Global scopes
     angular.extend(cfg.route, {os: dataService.getOs()});
     $scope.cfg = cfg;
     $scope.timeZoneInterval = null;
@@ -14482,11 +14484,19 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
      
      };
      $scope.setSkin();*/
+    /**
+     * Reset a fatal error.
+     * @param {object} obj
+     * @returns {undefined}
+     */
     $scope.resetFatalError = function (obj) {
         angular.extend(cfg.route.fatalError, obj || {message: false, info: false, hide: false});
 
     };
-    // Set time
+    /**
+     * Set a time
+     * @returns {undefined}
+     */
     $scope.setTimeZone = function () {
         if (!$scope.user) {
             return;
@@ -14506,7 +14516,10 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
 
     };
     $scope.setTimeZone();
-    // Set poll interval
+    /**
+     * Set poll interval
+     * @returns {undefined}
+     */
     $scope.setPollInterval = function () {
         if (!$scope.user) {
             $scope.cfg.interval = $scope.cfg.interval;
@@ -14516,6 +14529,14 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
 
     };
     $scope.setPollInterval();
+    
+    /**
+     * Allow to access page elements by role.
+     * 
+     * @param {array} roles
+     * @param {boolean} mobile
+     * @returns {Boolean}
+     */
     $scope.elementAccess = function (roles, mobile) {
         if (!$scope.user) {
             return false;
@@ -14531,11 +14552,12 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         return true;
     };
 
-    /**
-     * Language settings
-     */
+   
     $scope.lang_list = cfg.lang_list;
-    // Set language
+    /**
+     * Get a language key from the cookie or set a default language.
+     * @returns {undefined}
+     */
     $scope.getLang = function () {
         if ($scope.user) {
             $scope.lang = $scope.user.lang;
@@ -14547,7 +14569,11 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     $scope.getLang();
     $cookies.lang = $scope.lang;
 
-    // Load language files
+    /**
+     * Load an language file
+     * @param {string} lang
+     * @returns {undefined}
+     */
     $scope.loadLang = function (lang) {
         // Is lang in language list?
         var lang = (cfg.lang_list.indexOf(lang) > -1 ? lang : cfg.lang);
@@ -14555,22 +14581,38 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
             angular.extend($scope.languages, response.data);
         }, function (error) {});
     };
-    // Get language lines
+    /**
+     * Get a language line by key.
+     * @param {type} key
+     * @param {type} replacement
+     * @returns {unresolved}
+     */
     $scope._t = function (key,replacement) {
        return dataService.getLangLine(key, $scope.languages,replacement);
     };
 
-    // Watch for lang change
+   /**
+    * Watch for lang changes
+    */
     $scope.$watch('lang', function () {
         $scope.loadLang($scope.lang);
     });
 
-    // Order by
+    /**
+     * Order by
+     * @param {string} field
+     * @returns {undefined}
+     */
     $scope.orderBy = function (field) {
         $scope.predicate = field;
         $scope.reverse = !$scope.reverse;
     };
-    // Route match
+    
+    /**
+     * Check if route match the pattern.
+     * @param {string} path
+     * @returns {Boolean}
+     */
     $scope.routeMatch = function (path) {
         if ($route.current && $route.current.regexp) {
             return $route.current.regexp.test(path);
@@ -14579,35 +14621,40 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     };
 
 
-    /**
-     * Get body ID
-     */
+   /**
+    * Get body ID
+    * @returns {String}
+    */
     $scope.getBodyId = function () {
         var path = $location.path().split('/');
         return path[1] || 'login';
 
     };
-    /**
-     *
-     * Mobile detect
-     */
+    // Mobile detect
     $scope.isMobile = dataService.isMobile(navigator.userAgent || navigator.vendor || window.opera);
-    /*
-     * Menu active class
+    
+    /**
+     * Check if the route match the given param and set active class in the element.
+     * @param {string} route
+     * @returns {String}
      */
     $scope.isActive = function (route) {
         return (route === $scope.getBodyId() ? 'active' : '');
     };
 
     /**
-     *Reload data
+     * Causes $route service to reload the current route even if $location hasn't changed.
+     * @returns {undefined}
      */
     $scope.reloadData = function () {
         myCache.removeAll();
         $route.reload();
     };
+    
     /**
      * Redirect to given url
+     * @param {string} url
+     * @returns {undefined}
      */
     $scope.redirectToRoute = function (url) {
         if (url) {
@@ -14615,7 +14662,8 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         }
     };
     /**
-     * Get app logo
+     * Get an app logo according to app_type settings
+     * @returns {String}
      */
     $scope.getAppLogo = function () {
         var logo = cfg.img.logo + 'app-logo-default.png';
@@ -14625,7 +14673,8 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         return logo;
     };
     /**
-     * Get hidden apps array by app_type
+     * Get an array of the hidden apps according to app_type settings
+     * @returns {Array}
      */
     $scope.getHiddenApps = function () {
         var apps = [];
@@ -14637,6 +14686,8 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
 
     /**
      * Get array from custom config
+     * @param {string} key
+     * @returns {Array}
      */
     $scope.getCustomCfgArr = function (key) {
         if (cfg.custom_cfg[cfg.app_type]) {
@@ -14647,6 +14698,9 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
 
     /**
      * Redirect to Expert
+     * @param {string} url
+     * @param {string} message
+     * @returns {undefined}
      */
     $scope.toExpert = function (url, message) {
         alertify.confirm(message, function () {
@@ -14654,11 +14708,14 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
             $window.open(url, '_blank');
         }).set('labels', {ok: $scope._t('goahead')});
     };
-
+    $scope.naviExpanded = {};
     /**
      * Expand/collapse navigation
+     * @param {string} key
+     * @param {object} $event
+     * @param {boolean} status
+     * @returns {undefined}
      */
-    $scope.naviExpanded = {};
     $scope.expandNavi = function (key, $event, status) {
         if ($scope.naviExpanded[key]) {
             $scope.naviExpanded = {};
@@ -14673,7 +14730,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         }
         $event.stopPropagation();
     };
-    // Collaps element/menu when clicking outside
+    // Collapse element/menu when clicking outside
     window.onclick = function () {
         if ($scope.naviExpanded) {
             angular.copy({}, $scope.naviExpanded);
@@ -14681,10 +14738,14 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         }
     };
 
-    /**
-     * Open/close modal
-     */
     $scope.modalArr = {};
+    /**
+     * Open/close a modal window
+     * @param {string} key
+     * @param {object} $event
+     * @param {boolean} status
+     * @returns {undefined}
+     */
     $scope.handleModal = function (key, $event, status) {
         if (typeof status === 'boolean') {
             $scope.modalArr[key] = status;
@@ -14694,18 +14755,18 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
 
         $event.stopPropagation();
     };
-    /**
-     * Expand/collapse element
-     */
     $scope.expand = {};
+    /**
+     * Expand/collapse an element
+     * @param {string} key
+     * @returns {undefined}
+     */
     $scope.expandElement = function (key) {
         $scope.expand[key] = !($scope.expand[key]);
     };
 
 
-    /**
-     * Alertify defaults
-     */
+    // Alertify defaults
     alertify.defaults.glossary.title = cfg.app_name;
     alertify.defaults.glossary.ok = 'OK';
     alertify.defaults.glossary.cancel = 'CANCEL';
@@ -14744,12 +14805,13 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
 });
 
 /**
- * Application controllers
+ * @overview The uncategorized controllers.
  * @author Martin Vach
  */
 
 /**
- * Not found controller
+ * The controller that handles 404 Not found response.
+ * @class 404Controller
  */
 myAppController.controller('404Controller', function($scope, cfg) {
     angular.extend(cfg.route.fatalError, {
@@ -14761,12 +14823,13 @@ myAppController.controller('404Controller', function($scope, cfg) {
 
 
 /**
- * Application Element controller
+ * @overview Controllers that handle the list of elements, as well as an element detail.
  * @author Martin Vach
  */
 
 /**
- * Elemt base controller 
+ * The element root controller
+ * @class ElementBaseController
  */
 myAppController.controller('ElementBaseController', function ($scope, $q, $interval, $cookies, $filter, dataFactory, dataService) {
     $scope.dataHolder = {
@@ -14985,7 +15048,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
     };
 
     /**
-     * Set exact value for cmd command
+     * Set exact value for the command
      */
     $scope.setExactCmd = function (v, type, run) {
         var count;
@@ -15072,7 +15135,8 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
 });
 
 /**
- * Element SensorMultiline controller
+ * The controller that handles a device history.
+ * @class ElementHistoryController
  */
 myAppController.controller('ElementHistoryController', function ($scope, dataFactory, dataService, _) {
     $scope.widgetHistory = {
@@ -15114,7 +15178,8 @@ myAppController.controller('ElementHistoryController', function ($scope, dataFac
 });
 
 /**
- * Element SwitchMultilevelController controller
+ * The controller that handles SwitchMultilevel element.
+ * @class ElementSwitchMultilevelController
  */
 myAppController.controller('ElementSwitchMultilevelController', function ($scope) {
     $scope.widgetSwitchMultilevel = {
@@ -15142,7 +15207,8 @@ myAppController.controller('ElementSwitchMultilevelController', function ($scope
 });
 
 /**
- * Element thermostat controller
+ * The controller that handles Thermostat element.
+ * @class ElementThermostatController
  */
 myAppController.controller('ElementThermostatController', function ($scope) {
     $scope.widgetThermostat = {
@@ -15169,7 +15235,8 @@ myAppController.controller('ElementThermostatController', function ($scope) {
 });
 
 /**
- * Element SwitchRGBW controller
+ * The controller that handles SwitchRGBW element.
+ * @class ElementSwitchRGBWController
  */
 myAppController.controller('ElementSwitchRGBWController', function ($scope, dataFactory) {
     $scope.widgetSwitchRGBW = {
@@ -15264,7 +15331,8 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
 
 
 /**
- * Element SensorMultiline controller
+ * The controller that handles SensorMultiline element.
+ * @class ElementSensorMultilineController
  */
 myAppController.controller('ElementSensorMultilineController', function ($scope, $timeout, dataFactory, dataService) {
     $scope.widgetSensorMultiline = {
@@ -15291,7 +15359,7 @@ myAppController.controller('ElementSensorMultilineController', function ($scope,
     };
     $scope.loadDeviceId();
     /**
-     * Load single device
+     * Run a command request
      */
     $scope.runMultilineCmd = function (cmd, id) {
         $scope.runCmd(cmd, id);
@@ -15304,7 +15372,8 @@ myAppController.controller('ElementSensorMultilineController', function ($scope,
 });
 
 /**
- * Element Camera controller
+ * The controller that handles Camera element.
+ * @class ElementCameraController
  */
 myAppController.controller('ElementCameraController', function ($scope, $interval) {
     $scope.widgetCamera = {
@@ -15314,7 +15383,9 @@ myAppController.controller('ElementCameraController', function ($scope, $interva
 
     $scope.url = undefined;
     $scope.refreshInterval = undefined;
-
+    /**
+     * Set camera url
+     */
     $scope.setUrl = function () {
         var url = $scope.widgetCamera.find.metrics.url;
         if ($scope.widgetCamera.find.metrics.autoRefresh === true) {
@@ -15348,7 +15419,8 @@ myAppController.controller('ElementCameraController', function ($scope, $interva
 });
 
 /**
- * Element text controller
+ * The controller that handles Text element.
+ * @class ElementTextController
  */
 myAppController.controller('ElementTextController', function ($scope) {
     $scope.widgetText = {
@@ -15373,7 +15445,8 @@ myAppController.controller('ElementTextController', function ($scope) {
 });
 
 /**
- * Element OpenWeather controller
+ * The controller that handles OpenWeather element.
+ * @class ElementOpenWeatherController
  */
 myAppController.controller('ElementOpenWeatherController', function ($scope) {
     $scope.widgetOpenWeather = {
@@ -15398,7 +15471,8 @@ myAppController.controller('ElementOpenWeatherController', function ($scope) {
 });
 
 /**
- * Element ClimateControl controller
+ * The controller that handles ClimateControl element.
+ * @class ElementClimateControlController
  */
 myAppController.controller('ElementClimateControlController', function ($scope, $filter, dataFactory) {
     $scope.widgetClimateControl = {
@@ -15457,7 +15531,8 @@ myAppController.controller('ElementClimateControlController', function ($scope, 
 });
 
 /**
- * Element dashboard controller
+ * The controller that handles elements on the dashboard.
+ * @class ElementDashboardController
  */
 myAppController.controller('ElementDashboardController', function ($scope, $routeParams) {
     $scope.dataHolder.devices.filter = {onDashboard: true};
@@ -15470,7 +15545,8 @@ myAppController.controller('ElementDashboardController', function ($scope, $rout
 });
 
 /**
- * Element room controller
+ * The controller that handles elements in the room.
+ * @class ElementRoomController
  */
 myAppController.controller('ElementRoomController', function ($scope, $routeParams, $window, $location, $cookies, $filter, dataFactory, dataService, myCache) {
     $scope.dataHolder.devices.filter = {location: parseInt($routeParams.id)};
@@ -15478,7 +15554,8 @@ myAppController.controller('ElementRoomController', function ($scope, $routePara
 });
 
 /**
- * Element ID controller
+ * The controller that handles element detail actions.
+ * @class ElementIdController
  */
 myAppController.controller('ElementIdController', function ($scope, $q, $routeParams, $window, dataFactory, dataService, myCache) {
     $scope.elementId = {
@@ -16008,12 +16085,14 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
     }
 });
 /**
- * Application App controller
+ * @overview This controller handles the Local apps, Online Apps and Active apps.
  * @author Martin Vach
  */
 
 /**
- * App base controller
+ * Apps root controller
+ * @class AppBaseController
+ *
  */
 myAppController.controller('AppBaseController', function ($scope, $filter, $cookies, $q, $route, $routeParams, dataFactory, dataService, _) {
     angular.copy({
@@ -16166,7 +16245,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
 
     /// --- Private functions --- ///
     /**
-     * Set modules
+     * Set local modules
      */
     function setModules(data) {
         // Reset featured cnt
@@ -16314,7 +16393,8 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
 
 });
 /**
- * App local controller
+ * The controller that handles all local APPs actions.
+ * @class AppLocalController
  */
 myAppController.controller('AppLocalController', function ($scope, $filter, $cookies, $timeout, $route, $routeParams, $location, dataFactory, dataService, myCache, _) {
     $scope.activeTab = 'local';
@@ -16386,8 +16466,10 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
     };
 
 });
+
 /**
- * App online controller
+ * The controller that handles all online APPs actions.
+ * @class AppOnlineController
  */
 myAppController.controller('AppOnlineController', function ($scope, $filter, $cookies, $window, dataFactory, dataService, _) {
     $scope.activeTab = 'online';
@@ -16450,8 +16532,10 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
 
 
 });
+
 /**
- * App Instance controller
+ * The controller that handles all instances actions.
+ * @class AppInstanceController
  */
 myAppController.controller('AppInstanceController', function ($scope, $cookies, dataFactory, dataService, myCache, _) {
     $scope.activeTab = 'instance';
@@ -16503,7 +16587,8 @@ myAppController.controller('AppInstanceController', function ($scope, $cookies, 
 
 });
 /**
- * App local detail controller
+ * The controller that handles local app detail actions.
+ * @class AppLocalDetailController
  */
 myAppController.controller('AppLocalDetailController', function ($scope, $routeParams, $location, dataFactory, dataService, _) {
     $scope.module = [];
@@ -16552,8 +16637,10 @@ myAppController.controller('AppLocalDetailController', function ($scope, $routeP
     }
 
 });
+
 /**
- * App online detail controller
+ * The controller that handles on-line app detail actions.
+ * @class AppOnlineDetailController
  */
 myAppController.controller('AppOnlineDetailController', function ($scope, $routeParams, $timeout, $location, $route, $filter, myCache, dataFactory, dataService, _) {
     $scope.local = {
@@ -16730,7 +16817,8 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
 
 });
 /**
- * App controller - add module
+ * The controller that handles Alpaca forms inputs and outputs.
+ * @class AppModuleAlpacaController
  */
 myAppController.controller('AppModuleAlpacaController', function ($scope, $routeParams, $route, $filter, $location, $q, dataFactory, dataService, myCache, cfg) {
     $scope.showForm = false;
@@ -16782,9 +16870,9 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
         }, function (error) {});
     };
 
-
-
-    // Post new module instance
+    /**
+     * Generates the form for creating a new app instance
+     */
     $scope.postModule = function (id) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('modules', '/' + id + '?lang=' + $scope.lang, true).then(function (module) {
@@ -16825,8 +16913,10 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
             alertify.alertError($scope._t('error_load_data'));
         });
     };
-
-    // Put module instance
+    
+    /**
+     * Generates the form for updating an app instance
+     */
     $scope.putModule = function (id) {
         if (id < 1) {
             return;
@@ -16888,7 +16978,6 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
     /**
      * Load data
      */
-
     switch ($routeParams.action) {
         case 'put':
             $scope.putModule($routeParams.id);
@@ -16900,7 +16989,7 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
             break;
     }
     /**
-     * Store form data
+     * Create/Update an app instance
      */
     $scope.store = function (data) {
         var defaults = ['instanceId', 'moduleId', 'active', 'title', 'description'];
@@ -16948,7 +17037,7 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
         }
     };
     /**
-     * Activate module instance
+     * Activates an instance of the module
      */
     $scope.activateInstance = function (input) {
         input.active = true;
@@ -16965,7 +17054,7 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
     };
 
     /**
-     * Install module
+     * Install the module
      */
     $scope.installModule = function (module) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
@@ -16987,7 +17076,7 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
     // --- Private functions
 
     /**
-     * Set dependencies
+     * Set moduledependencies
      */
     function setDependencies(dependencies) {
         if (!_.isArray(dependencies)) {
@@ -17250,12 +17339,14 @@ myAppController.controller('SkinOnlineController', function ($scope, dataFactory
     };
 });
 /**
- * Application Device controller
+ * @overview This controller handles devices submenus – Z-Wave, Camera and EnOcean.
  * @author Martin Vach
  */
 
 /**
- * Device controller
+ * Device root controller
+ * @class DeviceController
+ *
  */
 myAppController.controller('DeviceController', function($scope, dataFactory) {
     $scope.enocean = {
@@ -17264,7 +17355,7 @@ myAppController.controller('DeviceController', function($scope, dataFactory) {
         alert: {message: false}
     };
      /**
-     * Load Remote access data
+     * Load EnOcean module
      */
     $scope.loadEnOceanModule = function() {
         dataFactory.getApi('instances',false,true).then(function(response) {
@@ -18646,12 +18737,13 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
 
 
 /**
- * Application Camera controller
+ * @overview Controllers that handle all Camera actions – manage and add camera.
  * @author Martin Vach
  */
 
 /**
- * Camera add controller
+ * The controller that renders a list of the cameras.
+ * @class CameraAddController
  */
 myAppController.controller('CameraAddController', function ($scope, dataFactory, dataService, _) {
     $scope.ipcameraDevices = [];
@@ -18688,7 +18780,8 @@ myAppController.controller('CameraAddController', function ($scope, dataFactory,
 });
 
 /**
- * Camera manage controller
+ * The controller that handles camera manage actions .
+ * @class CameraManageController
  */
 myAppController.controller('CameraManageController', function ($scope, $q, dataFactory, dataService, myCache, _) {
     $scope.instances = [];
@@ -21011,12 +21104,13 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
 });
 
 /**
- * Application Auth controller
+ * @overview Controllers that handle the authentication of existing users, as well as forgot password.
  * @author Martin Vach
  */
 
 /**
- * Logout controller
+ * This is the Auth root controller
+ * @class AuthController
  */
 myAppController.controller('AuthController', function ($scope, $routeParams, $cookies, $window, dataFactory, dataService) {
     $scope.auth = {
@@ -21144,7 +21238,8 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $co
 });
 
 /**
- * Login controller
+ * The controller that handles login process.
+ * @class AuthLoginController
  */
 myAppController.controller('AuthLoginController', function ($scope, $location, $window, $routeParams, $cookies, dataFactory, dataService) {
     $scope.input = {
@@ -21186,9 +21281,9 @@ myAppController.controller('AuthLoginController', function ($scope, $location, $
         });
     };
 
-    /**
-     * Login proccess
-     */
+//    /**
+//     * Login proccess
+//     */
 //    $scope.login = function (input) {
 //        input.password = input.password;
 //        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
@@ -21212,9 +21307,8 @@ myAppController.controller('AuthLoginController', function ($scope, $location, $
 //             alertify.alertError(message);
 //        });
 //    };
-    /**
-     * Login from url, remember me or session
-     */
+
+    // Login from url, remember me or session
 
     var path = $location.path().split('/');
 
@@ -21231,7 +21325,8 @@ myAppController.controller('AuthLoginController', function ($scope, $location, $
 });
 
 /**
- * Password controller
+ * The controller that handles first access and password update.
+ * @class AuthPasswordController
  */
 myAppController.controller('AuthPasswordController', function ($scope, dataFactory, dataService) {
     $scope.input = {
@@ -21297,7 +21392,8 @@ myAppController.controller('AuthPasswordController', function ($scope, dataFacto
 });
 
 /**
- * Password forgot controller
+ * The controller that sends an e-mail with the link to reset forgotten passwort.
+ * @class PasswordForgotController
  */
 myAppController.controller('PasswordForgotController', function ($scope, $location, dataFactory) {
     $scope.passwordForgot = {
@@ -21333,7 +21429,8 @@ myAppController.controller('PasswordForgotController', function ($scope, $locati
 });
 
 /**
- * Password reset controller
+ * The controller that handles reset password actions.
+ * @class PasswordResetController
  */
 myAppController.controller('PasswordResetController', function ($scope, $routeParams, dataFactory) {
     $scope.passwordReset = {
@@ -21387,9 +21484,13 @@ myAppController.controller('PasswordResetController', function ($scope, $routePa
     };
 });
 /**
- * Logout controller
+ * The controller that handles logout process.
+ * @class LogoutController
  */
 myAppController.controller('LogoutController', function ($scope, dataService, dataFactory) {
+    /**
+     * Logout an user
+     */
     $scope.logout = function () {
         dataService.setRememberMe(null);
         dataFactory.getApi('logout').then(function (response) {
