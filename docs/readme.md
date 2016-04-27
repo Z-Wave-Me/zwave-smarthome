@@ -14,7 +14,7 @@ app/controllers
 ---
 name | overview
 :-- | :--
-[app\controllers\app.js](app\controllers\app.md) | 
+[app\controllers\app.js](app/controllers/app.md) | 
 [app\controllers\auth.js](app\controllers\auth.md) | 
 [app\controllers\base.js](app\controllers\base.md) | 
 [app\controllers\camera.js](app\controllers\camera.md) | 
