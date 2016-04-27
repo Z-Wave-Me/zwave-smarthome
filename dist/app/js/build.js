@@ -17047,13 +17047,12 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
 
 });
 /**
- * @overview This is the overview with some markdown included, how nice!
- * @author Martin Vach
+ * @module Skins
  */
 
 /**
- * Controllers that handle all Skins actions.
- * @module Skins
+ * @overview Controllers that handle all Skins actions.
+ * @author Martin Vach
  */
 
 /**

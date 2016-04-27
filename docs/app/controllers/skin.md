@@ -1,6 +1,6 @@
 # Skins
 
-Controllers that handle all Skins actions.
+
 
 
 
@@ -62,6 +62,6 @@ Upgrade skin
 
 
 
-**Overview:** This is the overview with some markdown included, how nice!
+**Overview:** Controllers that handle all Skins actions.
 
 
