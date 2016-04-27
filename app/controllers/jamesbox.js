@@ -32,6 +32,7 @@ myAppController.controller('JbUpdateController', function ($scope, $q, $location
             if (zwave.state === 'fulfilled') {
                 $scope.jamesbox.uuid = zwave.value.controller.data.uuid.value;
                 $scope.jamesbox.version = zwave.value.controller.data.softwareRevisionVersion.value;
+                 $scope.jamesBoxRequest();
             }
         });
     };
@@ -50,7 +51,7 @@ myAppController.controller('JbUpdateController', function ($scope, $q, $location
     }
     ;
 
-    $scope.jamesBoxRequest();
+   
 
     /**
      * Update firmware

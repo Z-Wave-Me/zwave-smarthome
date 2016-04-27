@@ -77,7 +77,8 @@ var config_data = {
             'factory_default': 'ZAutomation/api/v1/resetToFactoryDefault',
             'postfix': 'ZWaveAPI/Postfix',
             'timezone': 'ZAutomation/api/v1/system/time/get',
-            'jb_update': 'ZAutomation/api/v1/system/time/get'
+            'jb_update': 'ZAutomation/api/v1/system/time/get',
+            'system_info': 'ZAutomation/api/v1/system/info'
         },
         // List of remote api URLs
         'api_remote': {
@@ -87,7 +88,10 @@ var config_data = {
              // JamesBox update
              //'jamesbox_update': 'http://dev.dev/shuiapi/jamesbox/?action=update',
             'jamesbox_update': 'http://razberry.z-wave.me/z-box-update_new.php?action=update',
-             // JamesBox update log
+            // JamesBox update info
+             //'jamesbox_update': 'http://dev.dev/shuiapi/jamesbox/?action=updateinfo',
+            'jamesbox_updateinfo': 'http://razberry.z-wave.me/z-box-update_new.php?action=updateinfo',
+             // JamesBox create log
              //'jamesbox_createlog': 'http://dev.dev/shuiapi/jamesbox/?action=createlog'
             'jamesbox_createlog': 'http://razberry.z-wave.me/z-box-update_new.php?action=createlog'
         },
