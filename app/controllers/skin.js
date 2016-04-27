@@ -1,8 +1,11 @@
 /**
- * These controllers handle all Skins actions.
- * @module Skins
  * @overview This is the overview with some markdown included, how nice!
  * @author Martin Vach
+ */
+
+/**
+ * Controllers that handle all Skins actions.
+ * @module Skins
  */
 
 /**

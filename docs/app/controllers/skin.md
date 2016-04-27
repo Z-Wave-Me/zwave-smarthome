@@ -1,6 +1,6 @@
-# Global
+# Skins
 
-
+Controllers that handle all Skins actions.
 
 
 
@@ -9,17 +9,17 @@
 ## Class: SkinBaseController
 This is the Skin root controller
 
-### SkinBaseController.allSettled() 
+### Skins.SkinBaseController.allSettled() 
 
 Load all promises
 
 
-### SkinBaseController.setLocalSkins() 
+### Skins.SkinBaseController.setLocalSkins() 
 
 Set local skins
 
 
-### SkinBaseController.setOnlineSkins() 
+### Skins.SkinBaseController.setOnlineSkins() 
 
 Set online skins
 
@@ -28,12 +28,12 @@ Set online skins
 ## Class: SkinLocalController
 This controller handles local skins actions.
 
-### SkinLocalController.activateSkin() 
+### Skins.SkinLocalController.activateSkin() 
 
 Activate skin
 
 
-### SkinLocalController.removeSkin() 
+### Skins.SkinLocalController.removeSkin() 
 
 Remove skin
 
@@ -42,12 +42,12 @@ Remove skin
 ## Class: SkinOnlineController
 This controller handles online skins actions.
 
-### SkinOnlineController.downloadSkin() 
+### Skins.SkinOnlineController.downloadSkin() 
 
 Download skin
 
 
-### SkinOnlineController.upgradeSkin() 
+### Skins.SkinOnlineController.upgradeSkin() 
 
 Upgrade skin
 
