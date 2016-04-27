@@ -1,8 +1,4 @@
 /**
- * @module Skins
- */
-
-/**
  * @overview Controllers that handle all Skins actions.
  * @author Martin Vach
  */

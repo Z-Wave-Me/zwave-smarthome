@@ -1,15 +1,5 @@
 SmartHome UI Documentation
 ===
-app
----
-name | overview
-:-- | :--
-[app\app.js](app/app.md) | 
-[app\config.js](app/config.md) | 
-[app\templates.js](app/templates.md) | 
-- - -
-
-
 app/controllers
 ---
 name | overview
@@ -29,60 +19,5 @@ name | overview
 [app\controllers\skin.js](app/controllers/skin.md) | _Controllers that handle all Skins actions._
 [app\controllers\zwave-inclusion.js](app/controllers/zwave-inclusion.md) | 
 [app\controllers\zwave.js](app/controllers/zwave.md) | 
-- - -
-
-
-app/directives
----
-name | overview
-:-- | :--
-[app\directives\dir-pagination.js](app/directives/dir-pagination.md) | 
-[app\directives\directives.js](app/directives/directives.md) | 
-[app\directives\tc-angular-chartjs.js](app/directives/tc-angular-chartjs.md) | 
-- - -
-
-
-app/expertui
----
-name | overview
-:-- | :--
-[app\expertui\configuration.js](app/expertui/configuration.md) | 
-[app\expertui\directives.js](app/expertui/directives.md) | 
-[app\expertui\pyzw.js](app/expertui/pyzw.md) | 
-[app\expertui\pyzw_zwave_ui.js](app/expertui/pyzw_zwave_ui.md) | 
-[app\expertui\services.js](app/expertui/services.md) | 
-- - -
-
-
-app/filters
----
-name | overview
-:-- | :--
-[app\filters\filters.js](app/filters/filters.md) | 
-- - -
-
-
-app/jquery
----
-name | overview
-:-- | :--
-[app\jquery\postrender.js](app/jquery/postrender.md) | 
-- - -
-
-
-app/modules
----
-name | overview
-:-- | :--
-[app\modules\qAllSettled.js](app/modules/qAllSettled.md) | 
-- - -
-
-
-app/services
----
-name | overview
-:-- | :--
-[app\services\factories.js](app/services/factories.md) | 
-[app\services\services.js](app/services/services.md) | 
 - - -
 

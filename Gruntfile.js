@@ -6,7 +6,7 @@ module.exports = function (grunt) {
         // Clean dir
         clean: {
             options: {force: true},
-            build: ["dist/"]
+            build: ["dist/","docs/"]
         },
         ngtemplates: {
             app: {
@@ -167,7 +167,8 @@ module.exports = function (grunt) {
                     //pathFilter: /^example/,
                     //templateDir: 'path/to/my/mustache'
                 },
-                src: ['app/**/*.js'],
+                //src: ['app/**/*.js'],
+                src: ['app/controllers/*.js'],
                 dest: 'docs'
             }
         },
