@@ -204,7 +204,7 @@ myApp.filter('getElementIcon', function (cfg) {
                     }
                     break;
                 case 'thermostat':
-                    con = cfg.img.icons + 'thermostat.png';
+                    icon = cfg.img.icons + 'thermostat.png';
                     break;
 
                 case 'energy':
