@@ -1,6 +1,6 @@
 {
-    "newtrans": "---",
-    "---": "newtrans",
+     "redo_inclusion": "Redo inclusion",
+    "configure_device": "Configure device",
     "no_events": "Нет событий.",
     "no_cameras": "Нет камер.",
     "no_rooms": "Нет комнат.",

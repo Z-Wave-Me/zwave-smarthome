@@ -1,10 +1,11 @@
 /**
- * Application Camera controller
+ * @overview Controllers that handle all Camera actions – manage and add camera.
  * @author Martin Vach
  */
 
 /**
- * Camera add controller
+ * The controller that renders a list of the cameras.
+ * @class CameraAddController
  */
 myAppController.controller('CameraAddController', function ($scope, dataFactory, dataService, _) {
     $scope.ipcameraDevices = [];
@@ -41,7 +42,8 @@ myAppController.controller('CameraAddController', function ($scope, dataFactory,
 });
 
 /**
- * Camera manage controller
+ * The controller that handles camera manage actions .
+ * @class CameraManageController
  */
 myAppController.controller('CameraManageController', function ($scope, $q, dataFactory, dataService, myCache, _) {
     $scope.instances = [];

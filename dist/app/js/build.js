@@ -11639,7 +11639,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/zwave/zwave_network.html',
-    "<div ng-controller=ZwaveManageController><bb-loader></bb-loader><div ng-include=\"'app/views/zwave/navi.html'\"></div><div class=\"app-row app-row-report app-row-zwave clearfix\" ng-if=devices.show><div id=row_zwave_network_{{v.id}} class=report-entry ng-repeat=\"v in zWaveDevices | orderBy:'title':false\" ng-if=v.messages><div class=\"report-col report-body zwave-network\"><span class=\"network-zwave-title noelements clickable\" ng-if=\"v.elements.length < 1\">{{v.title|cutText:true:25}} (#{{v.id}})</span> <a href=\"\" class=\"network-zwave-title clickable\" ng-click=\"expandElement('accZwaveNetwork_' + v.id)\" ng-if=\"v.elements.length > 0\"><i class=fa ng-class=\"expand['accZwaveNetwork' + '_' + v.id] ? 'fa-chevron-up': 'fa-chevron-down'\"></i> {{v.title}} (#{{v.id}})</a><div ng-if=\"expand['accZwaveNetwork_' + v.id]\"><div class=\"network-zwave-element zwave-hidden-{{e.permanently_hidden}}\" ng-repeat=\"e in v.elements | orderBy:'title':false\"><a ng-href=#/element/{{e.id}}><img class=report-img-s ng-src={{e.metrics.icon|getElementIcon:e:e.level}} alt=\"img\"> {{e.title|cutText:true:25}} <span class=zwave-raquo>&raquo;</span></a></div></div></div><div class=\"report-col report-ctrl\"><div class=text-danger ng-repeat=\"m in v.messages|unique:true\"><span ng-if=!isMobile><a class=text-danger href=\"\" ng-if=\"m.type == 'failed' || m.type == 'config'\" ng-click=\"toExpert('/expert/#help/' + v.id, _t('redirect_to_expert'))\"><span ng-bind=m.error></span> <i class=\"fa fa-external-link\"></i></a></span> <span ng-if=isMobile><span class=text-danger ng-if=\"m.type == 'failed' || m.type == 'config'\" ng-bind=m.error></span></span> <span ng-if=\"m.type == 'battery'\" ng-bind=m.error></span></div></div></div></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div></div>"
+    "<div ng-controller=ZwaveManageController><bb-loader></bb-loader><div ng-include=\"'app/views/zwave/navi.html'\"></div><div class=\"app-row app-row-report app-row-zwave clearfix\" ng-if=devices.show><div id=row_zwave_network_{{v.id}} class=report-entry ng-repeat=\"v in zWaveDevices | orderBy:'title':false\" ng-if=v.messages><div class=\"report-col report-body zwave-network\"><span class=\"network-zwave-title noelements clickable\" ng-if=\"v.elements.length < 1\">{{v.title|cutText:true:25}} (#{{v.id}})</span> <a href=\"\" class=\"network-zwave-title clickable\" ng-click=\"expandElement('accZwaveNetwork_' + v.id)\" ng-if=\"v.elements.length > 0\"><i class=fa ng-class=\"expand['accZwaveNetwork' + '_' + v.id] ? 'fa-chevron-up': 'fa-chevron-down'\"></i> {{v.title}} (#{{v.id}})</a><div ng-if=\"expand['accZwaveNetwork_' + v.id]\"><div class=\"network-zwave-element zwave-hidden-{{e.permanently_hidden}}\" ng-repeat=\"e in v.elements | orderBy:'title':false\"><a ng-href=#/element/{{e.id}}><img class=report-img-s ng-src={{e.metrics.icon|getElementIcon:e:e.level}} alt=\"img\"> {{e.title|cutText:true:25}} <span class=zwave-raquo>&raquo;</span></a></div></div></div><div class=\"report-col report-ctrl\"><div ng-repeat=\"m in v.messages|unique:true\"><div class=text-danger>{{m.error}}</div><button class=\"btn btn-default\" ng-if=\"m.type == 'failed' || m.type == 'config'\" ng-click=\"devices.find = v;handleModal('zwaveNetworkModal', $event)\"><i class=\"fa fa-cog text-primary\"></i> <span class=btn-name>{{_t('configure_device')}}</span></button></div></div></div></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div><div id=zwaveNetworkModal class=appmodal ng-controller=ZwaveInterviewController ng-if=\"modalArr.zwaveNetworkModal && !_.isEmpty(devices.find)\"><div class=appmodal-in><div class=appmodal-header><span class=appmodal-close ng-click=cancelConfiguration($event)><i class=\"fa fa-times\"></i></span><h3>{{devices.find.title|cutText:true:25}} (#{{devices.find.id}})</h3></div><div class=appmodal-body><div class=\"alert alert-warning\" ng-hide=\"zwaveInterview.progress > 99\"><i class=\"fa fa-spinner fa-spin\"></i> <strong>{{_t('configuring_device')}}</strong></div><div class=progress><div class=progress-bar style=\"min-height:40px;min-width: 2em; width: {{zwaveInterview.progress}}%\" ng-class=\"zwaveInterview.progress < 100 ? 'progress-bar-striped active' : 'progress-bar-success'\">{{zwaveInterview.progress}}%</div></div></div><div class=appmodal-footer><button type=button class=\"btn btn-default\" ng-click=cancelConfiguration($event)><i class=\"fa fa-times text-danger\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button></div></div></div></div>"
   );
 
 
@@ -11661,6 +11661,11 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 /**
  * Angular $q allSettled() implementation
+ * 
+ * This method is often used in its static form on arrays of promises, in order to execute a number of operations concurrently 
+ * and be notified when they all finish, regardless of success or failure.
+ * Returns a promise that is fulfilled with an array of promise state snapshots,
+ * but only after all the original promises have settled, i.e. become either fulfilled or rejected. 
  */
 'use strict';
 
@@ -12567,8 +12572,8 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
     /**
      * Get language line by key
      */
-    this.getLangLine = function (key, languages) {
-        return getLangLine(key, languages);
+    this.getLangLine = function (key,languages,replacement) {
+        return getLangLine(key,languages,replacement);
     };
 
     /**
@@ -12614,18 +12619,18 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * Mobile device detect
      */
     this.isMobile = function (a) {
-         if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) {
+        if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) {
             return true;
         } else {
             return false;
         }
     };
-    
+
     /**
      * Go back
      */
     this.goBack = function () {
-          window.history.back();
+        window.history.back();
     };
 
 
@@ -12633,7 +12638,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * Get user data
      */
     this.getUser = function () {
-         var user = ($cookies.user !== 'undefined' ? angular.fromJson($cookies.user) : false);
+        var user = ($cookies.user !== 'undefined' ? angular.fromJson($cookies.user) : false);
         return user;
     };
 
@@ -12653,15 +12658,15 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * Unset user
      */
     this.unsetUser = function () {
-         this.setUser(null);
-         this.setZWAYSession(null);
+        this.setUser(null);
+        this.setZWAYSession(null);
     };
 
     /**
      * Get user SID (token)
      */
     this.getZWAYSession = function () {
-         return $cookies.ZWAYSession;
+        return $cookies.ZWAYSession;
     };
     /**
      * Set user SID (token)
@@ -12717,72 +12722,72 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
         $window.location.reload();
 
     };
-    
+
     /**
      * Get device data
      */
-    this.getDevicesData = function (data,showHidden) {
+    this.getDevicesData = function (data, showHidden) {
         var user = this.getUser();
         return _.chain(data)
-                    .flatten()
-                    .uniq(false, function (v) {
-                        return v.id;
-                    })
-                    .reject(function (v) {
-                        if(showHidden){
-                            return (v.deviceType === 'battery') || (v.permanently_hidden === true);
-                        }else{
-                            return (v.deviceType === 'battery') || (v.permanently_hidden === true) || (v.visibility === false);
-                        }
-                         
-                    })
-                    .filter(function (v) {
-                        var minMax;
-                        var yesterday = (Math.round(new Date().getTime() / 1000)) - (24 * 3600);
-                        var isNew = v.creationTime > yesterday ? true : false;
-                        // Create min/max value
-                        if(cfg.knob_255.indexOf(v.probeType) > -1){
-                             minMax = {min: 0, max: 255};
-                        }else{
-                             minMax = {min: 0, max: 99};
-                        }
-                        if (v.deviceType === 'thermostat') {
-                            minMax = (v.metrics.scaleTitle === '°F' ? {min: 41, max: 104} : {min: 5, max: 40});
-                        }
-                        angular.extend(v,
-                                {onDashboard: (user.dashboard.indexOf(v.id) !== -1 ? true : false)},
-                                {minMax: minMax},
-                                {hasHistory: (v.hasHistory === true ? true : false)},
-                                {imgTrans: false},
-                                {isNew: isNew},
-                                {iconPath: $filter('getElementIcon')(v.metrics.icon, v, v.metrics.level)},
-                                {updateCmd: (v.deviceType === 'switchControl' ? 'on' : 'update')}
-                        );
-                        if (v.metrics.color) {
-                            angular.extend(v.metrics, {rgbColors: 'rgb(' + v.metrics.color.r + ',' + v.metrics.color.g + ',' + v.metrics.color.b + ')'});
-                        }
-                        if (v.metrics.level) {
-                            angular.extend(v.metrics, {level: $filter('numberFixedLen')(v.metrics.level)});
-                        }
-                        return v;
-                    });
+                .flatten()
+                .uniq(false, function (v) {
+                    return v.id;
+                })
+                .reject(function (v) {
+                    if (showHidden) {
+                        return (v.deviceType === 'battery') || (v.permanently_hidden === true);
+                    } else {
+                        return (v.deviceType === 'battery') || (v.permanently_hidden === true) || (v.visibility === false);
+                    }
+
+                })
+                .filter(function (v) {
+                    var minMax;
+                    var yesterday = (Math.round(new Date().getTime() / 1000)) - (24 * 3600);
+                    var isNew = v.creationTime > yesterday ? true : false;
+                    // Create min/max value
+                    if (cfg.knob_255.indexOf(v.probeType) > -1) {
+                        minMax = {min: 0, max: 255};
+                    } else {
+                        minMax = {min: 0, max: 99};
+                    }
+                    if (v.deviceType === 'thermostat') {
+                        minMax = (v.metrics.scaleTitle === '°F' ? {min: 41, max: 104} : {min: 5, max: 40});
+                    }
+                    angular.extend(v,
+                            {onDashboard: (user.dashboard.indexOf(v.id) !== -1 ? true : false)},
+                            {minMax: minMax},
+                            {hasHistory: (v.hasHistory === true ? true : false)},
+                            {imgTrans: false},
+                            {isNew: isNew},
+                            {iconPath: $filter('getElementIcon')(v.metrics.icon, v, v.metrics.level)},
+                            {updateCmd: (v.deviceType === 'switchControl' ? 'on' : 'update')}
+                    );
+                    if (v.metrics.color) {
+                        angular.extend(v.metrics, {rgbColors: 'rgb(' + v.metrics.color.r + ',' + v.metrics.color.g + ',' + v.metrics.color.b + ')'});
+                    }
+                    if (v.metrics.level) {
+                        angular.extend(v.metrics, {level: $filter('numberFixedLen')(v.metrics.level)});
+                    }
+                    return v;
+                });
     };
-    
-     /**
+
+    /**
      * Get rooms
      */
     this.getRooms = function (data) {
         return  _.chain(data)
-                    .flatten()
-                    .filter(function (v) {
-                    v.title = (v.id === 0 ?  getLangLine(v.title) : v.title);
-                     v.img_src = 'storage/img/placeholder-img.png';
-                    if(v.id === 0){
+                .flatten()
+                .filter(function (v) {
+                    v.title = (v.id === 0 ? getLangLine(v.title) : v.title);
+                    v.img_src = 'storage/img/placeholder-img.png';
+                    if (v.id === 0) {
                         v.img_src = 'storage/img/rooms/unassigned.png';
-                    }else if(v.img_type === 'default' && v.default_img){
-                         v.img_src = 'storage/img/rooms/' + v.default_img;
-                    }else if(v.img_type === 'user' && v.user_img){
-                         v.img_src =  cfg.server_url + cfg.api_url + 'load/image/' + v.user_img;
+                    } else if (v.img_type === 'default' && v.default_img) {
+                        v.img_src = 'storage/img/rooms/' + v.default_img;
+                    } else if (v.img_type === 'user' && v.user_img) {
+                        v.img_src = cfg.server_url + cfg.api_url + 'load/image/' + v.user_img;
                     }
                     return v;
                 });
@@ -12793,7 +12798,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * Get chart data
      */
     this.getChartData = function (data, colors) {
-       if (!angular.isObject(data, colors)) {
+        if (!angular.isObject(data, colors)) {
             return null;
         }
         var currTime = (Math.round(+new Date() / 1000) - 86400);
@@ -12855,7 +12860,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * Get event level
      */
     this.getEventLevel = function (data, set) {
-       var collection = (set ? set : []);
+        var collection = (set ? set : []);
         angular.forEach(data, function (v, k) {
             collection.push({
                 'key': v.level,
@@ -12883,20 +12888,31 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
     };
 
     /// --- Private functions --- ///
-    
+
     /**
      * Get lang line
      */
-    function getLangLine(key, languages) {
+    function getLangLine(key, languages, replacement) {
+        var line = key;
         if (angular.isObject(languages)) {
             if (angular.isDefined(languages[key])) {
-                return languages[key] !== '' ? languages[key] : key;
+                line = (languages[key] !== '' ? languages[key] : key);
             }
-        }else{
-            return cfg.route.t[key]||key; 
+        } else {
+            line = (cfg.route.t[key] || key);
         }
+        return setLangLine(line, replacement);
     }
-  
+    /**
+     * Set lang line params
+     */
+    function setLangLine(line, replacement) {
+        for (var val in replacement) {
+            line = line.split(val).join(replacement[val]);
+        }
+        return line; 
+    }
+
     /**
      * Get module form data
      */
@@ -14432,19 +14448,21 @@ function postRenderAlpacaData(renderedForm) {
 }
 ;
 /**
- * Application base controller
+ * @overview The parent controller that stores all function used in the child controllers.
  * @author Martin Vach
  */
 
-/*** Controllers ***/
-var myAppController = angular.module('myAppController', []);
 /**
- * Base controller
+ * Angular module instance
+ */
+var myAppController = angular.module('myAppController', []);
+
+/**
+ * The app base controller. 
+ * @class BaseController
  */
 myAppController.controller('BaseController', function ($scope, $cookies, $filter, $location, $route, $window, $interval, cfg, dataFactory, dataService, myCache) {
-    /**
-     * Global scopes
-     */
+    // Global scopes
     angular.extend(cfg.route, {os: dataService.getOs()});
     $scope.cfg = cfg;
     $scope.timeZoneInterval = null;
@@ -14466,11 +14484,19 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
      
      };
      $scope.setSkin();*/
+    /**
+     * Reset a fatal error.
+     * @param {object} obj
+     * @returns {undefined}
+     */
     $scope.resetFatalError = function (obj) {
         angular.extend(cfg.route.fatalError, obj || {message: false, info: false, hide: false});
 
     };
-    // Set time
+    /**
+     * Set a time
+     * @returns {undefined}
+     */
     $scope.setTimeZone = function () {
         if (!$scope.user) {
             return;
@@ -14490,7 +14516,10 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
 
     };
     $scope.setTimeZone();
-    // Set poll interval
+    /**
+     * Set poll interval
+     * @returns {undefined}
+     */
     $scope.setPollInterval = function () {
         if (!$scope.user) {
             $scope.cfg.interval = $scope.cfg.interval;
@@ -14500,6 +14529,14 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
 
     };
     $scope.setPollInterval();
+    
+    /**
+     * Allow to access page elements by role.
+     * 
+     * @param {array} roles
+     * @param {boolean} mobile
+     * @returns {Boolean}
+     */
     $scope.elementAccess = function (roles, mobile) {
         if (!$scope.user) {
             return false;
@@ -14515,11 +14552,12 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         return true;
     };
 
-    /**
-     * Language settings
-     */
+   
     $scope.lang_list = cfg.lang_list;
-    // Set language
+    /**
+     * Get a language key from the cookie or set a default language.
+     * @returns {undefined}
+     */
     $scope.getLang = function () {
         if ($scope.user) {
             $scope.lang = $scope.user.lang;
@@ -14531,7 +14569,11 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     $scope.getLang();
     $cookies.lang = $scope.lang;
 
-    // Load language files
+    /**
+     * Load an language file
+     * @param {string} lang
+     * @returns {undefined}
+     */
     $scope.loadLang = function (lang) {
         // Is lang in language list?
         var lang = (cfg.lang_list.indexOf(lang) > -1 ? lang : cfg.lang);
@@ -14539,22 +14581,38 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
             angular.extend($scope.languages, response.data);
         }, function (error) {});
     };
-    // Get language lines
-    $scope._t = function (key) {
-        return dataService.getLangLine(key, $scope.languages);
+    /**
+     * Get a language line by key.
+     * @param {type} key
+     * @param {type} replacement
+     * @returns {unresolved}
+     */
+    $scope._t = function (key,replacement) {
+       return dataService.getLangLine(key, $scope.languages,replacement);
     };
 
-    // Watch for lang change
+   /**
+    * Watch for lang changes
+    */
     $scope.$watch('lang', function () {
         $scope.loadLang($scope.lang);
     });
 
-    // Order by
+    /**
+     * Order by
+     * @param {string} field
+     * @returns {undefined}
+     */
     $scope.orderBy = function (field) {
         $scope.predicate = field;
         $scope.reverse = !$scope.reverse;
     };
-    // Route match
+    
+    /**
+     * Check if route match the pattern.
+     * @param {string} path
+     * @returns {Boolean}
+     */
     $scope.routeMatch = function (path) {
         if ($route.current && $route.current.regexp) {
             return $route.current.regexp.test(path);
@@ -14563,47 +14621,40 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     };
 
 
-    /**
-     * Get body ID
-     */
+   /**
+    * Get body ID
+    * @returns {String}
+    */
     $scope.getBodyId = function () {
         var path = $location.path().split('/');
         return path[1] || 'login';
 
     };
-
-    /**
-     * Get current filter
-     */
-    $scope.getCurrFilter = function (index, val) {
-        var path = $location.path().split('/');
-
-    };
-    /**
-     * Get body ID
-     */
-    $scope.footer = 'Home footer';
-    /**
-     *
-     * Mobile detect
-     */
+    // Mobile detect
     $scope.isMobile = dataService.isMobile(navigator.userAgent || navigator.vendor || window.opera);
-    /*
-     * Menu active class
+    
+    /**
+     * Check if the route match the given param and set active class in the element.
+     * @param {string} route
+     * @returns {String}
      */
     $scope.isActive = function (route) {
         return (route === $scope.getBodyId() ? 'active' : '');
     };
 
     /**
-     *Reload data
+     * Causes $route service to reload the current route even if $location hasn't changed.
+     * @returns {undefined}
      */
     $scope.reloadData = function () {
         myCache.removeAll();
         $route.reload();
     };
+    
     /**
      * Redirect to given url
+     * @param {string} url
+     * @returns {undefined}
      */
     $scope.redirectToRoute = function (url) {
         if (url) {
@@ -14611,7 +14662,8 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         }
     };
     /**
-     * Get app logo
+     * Get an app logo according to app_type settings
+     * @returns {String}
      */
     $scope.getAppLogo = function () {
         var logo = cfg.img.logo + 'app-logo-default.png';
@@ -14621,7 +14673,8 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         return logo;
     };
     /**
-     * Get hidden apps array by app_type
+     * Get an array of the hidden apps according to app_type settings
+     * @returns {Array}
      */
     $scope.getHiddenApps = function () {
         var apps = [];
@@ -14633,6 +14686,8 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
 
     /**
      * Get array from custom config
+     * @param {string} key
+     * @returns {Array}
      */
     $scope.getCustomCfgArr = function (key) {
         if (cfg.custom_cfg[cfg.app_type]) {
@@ -14643,6 +14698,9 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
 
     /**
      * Redirect to Expert
+     * @param {string} url
+     * @param {string} message
+     * @returns {undefined}
      */
     $scope.toExpert = function (url, message) {
         alertify.confirm(message, function () {
@@ -14650,11 +14708,14 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
             $window.open(url, '_blank');
         }).set('labels', {ok: $scope._t('goahead')});
     };
-
+    $scope.naviExpanded = {};
     /**
      * Expand/collapse navigation
+     * @param {string} key
+     * @param {object} $event
+     * @param {boolean} status
+     * @returns {undefined}
      */
-    $scope.naviExpanded = {};
     $scope.expandNavi = function (key, $event, status) {
         if ($scope.naviExpanded[key]) {
             $scope.naviExpanded = {};
@@ -14669,7 +14730,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         }
         $event.stopPropagation();
     };
-    // Collaps element/menu when clicking outside
+    // Collapse element/menu when clicking outside
     window.onclick = function () {
         if ($scope.naviExpanded) {
             angular.copy({}, $scope.naviExpanded);
@@ -14677,10 +14738,14 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         }
     };
 
-    /**
-     * Open/close modal
-     */
     $scope.modalArr = {};
+    /**
+     * Open/close a modal window
+     * @param {string} key
+     * @param {object} $event
+     * @param {boolean} status
+     * @returns {undefined}
+     */
     $scope.handleModal = function (key, $event, status) {
         if (typeof status === 'boolean') {
             $scope.modalArr[key] = status;
@@ -14690,18 +14755,18 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
 
         $event.stopPropagation();
     };
-    /**
-     * Expand/collapse element
-     */
     $scope.expand = {};
+    /**
+     * Expand/collapse an element
+     * @param {string} key
+     * @returns {undefined}
+     */
     $scope.expandElement = function (key) {
         $scope.expand[key] = !($scope.expand[key]);
     };
 
 
-    /**
-     * Alertify defaults
-     */
+    // Alertify defaults
     alertify.defaults.glossary.title = cfg.app_name;
     alertify.defaults.glossary.ok = 'OK';
     alertify.defaults.glossary.cancel = 'CANCEL';
@@ -14740,12 +14805,13 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
 });
 
 /**
- * Application controllers
+ * @overview The uncategorized controllers.
  * @author Martin Vach
  */
 
 /**
- * Not found controller
+ * The controller that handles 404 Not found response.
+ * @class 404Controller
  */
 myAppController.controller('404Controller', function($scope, cfg) {
     angular.extend(cfg.route.fatalError, {
@@ -14757,12 +14823,13 @@ myAppController.controller('404Controller', function($scope, cfg) {
 
 
 /**
- * Application Element controller
+ * @overview Controllers that handle the list of elements, as well as an element detail.
  * @author Martin Vach
  */
 
 /**
- * Elemt base controller 
+ * The element root controller
+ * @class ElementBaseController
  */
 myAppController.controller('ElementBaseController', function ($scope, $q, $interval, $cookies, $filter, dataFactory, dataService) {
     $scope.dataHolder = {
@@ -14981,7 +15048,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
     };
 
     /**
-     * Set exact value for cmd command
+     * Set exact value for the command
      */
     $scope.setExactCmd = function (v, type, run) {
         var count;
@@ -15068,7 +15135,8 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
 });
 
 /**
- * Element SensorMultiline controller
+ * The controller that handles a device history.
+ * @class ElementHistoryController
  */
 myAppController.controller('ElementHistoryController', function ($scope, dataFactory, dataService, _) {
     $scope.widgetHistory = {
@@ -15110,7 +15178,8 @@ myAppController.controller('ElementHistoryController', function ($scope, dataFac
 });
 
 /**
- * Element SwitchMultilevelController controller
+ * The controller that handles SwitchMultilevel element.
+ * @class ElementSwitchMultilevelController
  */
 myAppController.controller('ElementSwitchMultilevelController', function ($scope) {
     $scope.widgetSwitchMultilevel = {
@@ -15138,7 +15207,8 @@ myAppController.controller('ElementSwitchMultilevelController', function ($scope
 });
 
 /**
- * Element thermostat controller
+ * The controller that handles Thermostat element.
+ * @class ElementThermostatController
  */
 myAppController.controller('ElementThermostatController', function ($scope) {
     $scope.widgetThermostat = {
@@ -15165,7 +15235,8 @@ myAppController.controller('ElementThermostatController', function ($scope) {
 });
 
 /**
- * Element SwitchRGBW controller
+ * The controller that handles SwitchRGBW element.
+ * @class ElementSwitchRGBWController
  */
 myAppController.controller('ElementSwitchRGBWController', function ($scope, dataFactory) {
     $scope.widgetSwitchRGBW = {
@@ -15260,7 +15331,8 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
 
 
 /**
- * Element SensorMultiline controller
+ * The controller that handles SensorMultiline element.
+ * @class ElementSensorMultilineController
  */
 myAppController.controller('ElementSensorMultilineController', function ($scope, $timeout, dataFactory, dataService) {
     $scope.widgetSensorMultiline = {
@@ -15287,7 +15359,7 @@ myAppController.controller('ElementSensorMultilineController', function ($scope,
     };
     $scope.loadDeviceId();
     /**
-     * Load single device
+     * Run a command request
      */
     $scope.runMultilineCmd = function (cmd, id) {
         $scope.runCmd(cmd, id);
@@ -15300,7 +15372,8 @@ myAppController.controller('ElementSensorMultilineController', function ($scope,
 });
 
 /**
- * Element Camera controller
+ * The controller that handles Camera element.
+ * @class ElementCameraController
  */
 myAppController.controller('ElementCameraController', function ($scope, $interval) {
     $scope.widgetCamera = {
@@ -15310,7 +15383,9 @@ myAppController.controller('ElementCameraController', function ($scope, $interva
 
     $scope.url = undefined;
     $scope.refreshInterval = undefined;
-
+    /**
+     * Set camera url
+     */
     $scope.setUrl = function () {
         var url = $scope.widgetCamera.find.metrics.url;
         if ($scope.widgetCamera.find.metrics.autoRefresh === true) {
@@ -15344,7 +15419,8 @@ myAppController.controller('ElementCameraController', function ($scope, $interva
 });
 
 /**
- * Element text controller
+ * The controller that handles Text element.
+ * @class ElementTextController
  */
 myAppController.controller('ElementTextController', function ($scope) {
     $scope.widgetText = {
@@ -15369,7 +15445,8 @@ myAppController.controller('ElementTextController', function ($scope) {
 });
 
 /**
- * Element OpenWeather controller
+ * The controller that handles OpenWeather element.
+ * @class ElementOpenWeatherController
  */
 myAppController.controller('ElementOpenWeatherController', function ($scope) {
     $scope.widgetOpenWeather = {
@@ -15394,7 +15471,8 @@ myAppController.controller('ElementOpenWeatherController', function ($scope) {
 });
 
 /**
- * Element ClimateControl controller
+ * The controller that handles ClimateControl element.
+ * @class ElementClimateControlController
  */
 myAppController.controller('ElementClimateControlController', function ($scope, $filter, dataFactory) {
     $scope.widgetClimateControl = {
@@ -15453,7 +15531,8 @@ myAppController.controller('ElementClimateControlController', function ($scope, 
 });
 
 /**
- * Element dashboard controller
+ * The controller that handles elements on the dashboard.
+ * @class ElementDashboardController
  */
 myAppController.controller('ElementDashboardController', function ($scope, $routeParams) {
     $scope.dataHolder.devices.filter = {onDashboard: true};
@@ -15466,7 +15545,8 @@ myAppController.controller('ElementDashboardController', function ($scope, $rout
 });
 
 /**
- * Element room controller
+ * The controller that handles elements in the room.
+ * @class ElementRoomController
  */
 myAppController.controller('ElementRoomController', function ($scope, $routeParams, $window, $location, $cookies, $filter, dataFactory, dataService, myCache) {
     $scope.dataHolder.devices.filter = {location: parseInt($routeParams.id)};
@@ -15474,7 +15554,8 @@ myAppController.controller('ElementRoomController', function ($scope, $routePara
 });
 
 /**
- * Element ID controller
+ * The controller that handles element detail actions.
+ * @class ElementIdController
  */
 myAppController.controller('ElementIdController', function ($scope, $q, $routeParams, $window, dataFactory, dataService, myCache) {
     $scope.elementId = {
@@ -15622,7 +15703,7 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
             myCache.remove('devices');
             myCache.remove('devices/' + deviceId);
             myCache.remove('locations');
-            dataFactory.goBack();
+            dataService.goBack();
 
         }, function (error) {
             alertify.alertError($scope._t('error_update_data'));
@@ -16004,12 +16085,14 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
     }
 });
 /**
- * Application App controller
+ * @overview This controller handles the Local apps, Online Apps and Active apps.
  * @author Martin Vach
  */
 
 /**
- * App base controller
+ * Apps root controller
+ * @class AppBaseController
+ *
  */
 myAppController.controller('AppBaseController', function ($scope, $filter, $cookies, $q, $route, $routeParams, dataFactory, dataService, _) {
     angular.copy({
@@ -16162,7 +16245,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
 
     /// --- Private functions --- ///
     /**
-     * Set modules
+     * Set local modules
      */
     function setModules(data) {
         // Reset featured cnt
@@ -16310,7 +16393,8 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
 
 });
 /**
- * App local controller
+ * The controller that handles all local APPs actions.
+ * @class AppLocalController
  */
 myAppController.controller('AppLocalController', function ($scope, $filter, $cookies, $timeout, $route, $routeParams, $location, dataFactory, dataService, myCache, _) {
     $scope.activeTab = 'local';
@@ -16382,8 +16466,10 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
     };
 
 });
+
 /**
- * App online controller
+ * The controller that handles all online APPs actions.
+ * @class AppOnlineController
  */
 myAppController.controller('AppOnlineController', function ($scope, $filter, $cookies, $window, dataFactory, dataService, _) {
     $scope.activeTab = 'online';
@@ -16446,8 +16532,10 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
 
 
 });
+
 /**
- * App Instance controller
+ * The controller that handles all instances actions.
+ * @class AppInstanceController
  */
 myAppController.controller('AppInstanceController', function ($scope, $cookies, dataFactory, dataService, myCache, _) {
     $scope.activeTab = 'instance';
@@ -16499,7 +16587,8 @@ myAppController.controller('AppInstanceController', function ($scope, $cookies, 
 
 });
 /**
- * App local detail controller
+ * The controller that handles local app detail actions.
+ * @class AppLocalDetailController
  */
 myAppController.controller('AppLocalDetailController', function ($scope, $routeParams, $location, dataFactory, dataService, _) {
     $scope.module = [];
@@ -16548,8 +16637,10 @@ myAppController.controller('AppLocalDetailController', function ($scope, $routeP
     }
 
 });
+
 /**
- * App online detail controller
+ * The controller that handles on-line app detail actions.
+ * @class AppOnlineDetailController
  */
 myAppController.controller('AppOnlineDetailController', function ($scope, $routeParams, $timeout, $location, $route, $filter, myCache, dataFactory, dataService, _) {
     $scope.local = {
@@ -16726,7 +16817,8 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
 
 });
 /**
- * App controller - add module
+ * The controller that handles Alpaca forms inputs and outputs.
+ * @class AppModuleAlpacaController
  */
 myAppController.controller('AppModuleAlpacaController', function ($scope, $routeParams, $route, $filter, $location, $q, dataFactory, dataService, myCache, cfg) {
     $scope.showForm = false;
@@ -16778,9 +16870,9 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
         }, function (error) {});
     };
 
-
-
-    // Post new module instance
+    /**
+     * Generates the form for creating a new app instance
+     */
     $scope.postModule = function (id) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('modules', '/' + id + '?lang=' + $scope.lang, true).then(function (module) {
@@ -16821,8 +16913,10 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
             alertify.alertError($scope._t('error_load_data'));
         });
     };
-
-    // Put module instance
+    
+    /**
+     * Generates the form for updating an app instance
+     */
     $scope.putModule = function (id) {
         if (id < 1) {
             return;
@@ -16884,7 +16978,6 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
     /**
      * Load data
      */
-
     switch ($routeParams.action) {
         case 'put':
             $scope.putModule($routeParams.id);
@@ -16896,7 +16989,7 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
             break;
     }
     /**
-     * Store form data
+     * Create/Update an app instance
      */
     $scope.store = function (data) {
         var defaults = ['instanceId', 'moduleId', 'active', 'title', 'description'];
@@ -16944,7 +17037,7 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
         }
     };
     /**
-     * Activate module instance
+     * Activates an instance of the module
      */
     $scope.activateInstance = function (input) {
         input.active = true;
@@ -16961,7 +17054,7 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
     };
 
     /**
-     * Install module
+     * Install the module
      */
     $scope.installModule = function (module) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
@@ -16983,7 +17076,7 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
     // --- Private functions
 
     /**
-     * Set dependencies
+     * Set moduledependencies
      */
     function setDependencies(dependencies) {
         if (!_.isArray(dependencies)) {
@@ -17043,12 +17136,14 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
 
 });
 /**
- * Application skins controller
+ * @overview Controllers that handle all Skins actions.
  * @author Martin Vach
  */
 
 /**
- * Skin base controller
+ * This is the Skin root controller
+ * @class SkinBaseController
+ *
  */
 myAppController.controller('SkinBaseController', function ($scope, $q, $cookies, dataFactory, _) {
     $scope.skins = {
@@ -17154,7 +17249,9 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $cookies,
 });
 
 /**
- * Skin local controller
+ * This controller handles local skins actions.
+ * @class SkinLocalController
+ *
  */
 myAppController.controller('SkinLocalController', function ($scope, $window, $route, $timeout, $cookies, dataFactory, dataService) {
     $scope.activeTab = 'local';
@@ -17202,7 +17299,9 @@ myAppController.controller('SkinLocalController', function ($scope, $window, $ro
     };
 });
 /**
- * Skin online controller
+ * This controller handles online skins actions.
+ * @class SkinOnlineController
+ *
  */
 myAppController.controller('SkinOnlineController', function ($scope, dataFactory, dataService) {
     $scope.activeTab = 'online';
@@ -17240,12 +17339,14 @@ myAppController.controller('SkinOnlineController', function ($scope, dataFactory
     };
 });
 /**
- * Application Device controller
+ * @overview This controller handles devices submenus – Z-Wave, Camera and EnOcean.
  * @author Martin Vach
  */
 
 /**
- * Device controller
+ * Device root controller
+ * @class DeviceController
+ *
  */
 myAppController.controller('DeviceController', function($scope, dataFactory) {
     $scope.enocean = {
@@ -17254,7 +17355,7 @@ myAppController.controller('DeviceController', function($scope, dataFactory) {
         alert: {message: false}
     };
      /**
-     * Load Remote access data
+     * Load EnOcean module
      */
     $scope.loadEnOceanModule = function() {
         dataFactory.getApi('instances',false,true).then(function(response) {
@@ -17811,21 +17912,21 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
  * Zwave select controller
  */
 myAppController.controller('ZwaveSelectController', function ($scope, $routeParams, dataFactory, dataService, _) {
-     $scope.zwaveSelect = {
-          logos: {},
-         brand: {},
-          brandName: '',
-         list: {}
-     };
-     
-     /**
+    $scope.zwaveSelect = {
+        logos: {},
+        brand: {},
+        brandName: '',
+        list: {}
+    };
+
+    /**
      * Load products - vendor logos
      */
     $scope.loadProducts = function () {
         dataFactory.getApiLocal('test/products.json').then(function (response) {
-             angular.forEach(response.data, function (v, k) {
-                 $scope.zwaveSelect.logos[v.manufacturer] = v.manufacturer_image;
-                 //angular.extend($scope.zwaveSelect.logos[v.manufacturer_id],v.manufacturer_image);
+            angular.forEach(response.data, function (v, k) {
+                $scope.zwaveSelect.logos[v.manufacturer] = v.manufacturer_image;
+                //angular.extend($scope.zwaveSelect.logos[v.manufacturer_id],v.manufacturer_image);
             });
             console.log($scope.zwaveSelect.logos)
         }, function (error) {
@@ -17842,16 +17943,16 @@ myAppController.controller('ZwaveSelectController', function ($scope, $routePara
             $scope.zwaveSelect.brand = _.uniq(response.data, 'brandname');
             if (brandname) {
                 $scope.zwaveSelect.list = _.where(response.data, {brandname: brandname});
-                if(_.isEmpty($scope.zwaveSelect.list)){
-                     $scope.loading = false;
-                     alertify.alertWarning($scope._t('no_data'));
+                if (_.isEmpty($scope.zwaveSelect.list)) {
+                    $scope.loading = false;
+                    alertify.alertWarning($scope._t('no_data'));
                 }
-                
+
                 $scope.zwaveSelect.brandName = brandname;
             }
             $scope.loading = false;
         }, function (error) {
-          alertify.alertError($scope._t('error_load_data'));
+            alertify.alertError($scope._t('error_load_data'));
         });
     };
     $scope.loadData($routeParams.brandname, $scope.lang);
@@ -17869,7 +17970,7 @@ myAppController.controller('ZwaveAddController', function ($scope, $routeParams,
      * Load z-wave devices
      */
     $scope.loadData = function (brandname, lang) {
-         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApiLocal('device.' + lang + '.json').then(function (response) {
             $scope.loading = false;
             $scope.manufacturers = _.uniq(response.data, 'brandname');
@@ -17878,7 +17979,9 @@ myAppController.controller('ZwaveAddController', function ($scope, $routeParams,
                 $scope.manufacturer = brandname;
             }
         }, function (error) {
-            alertify.alertError($scope._t('error_load_data')).set('onok', function(closeEvent){dataService.goBack();} ); 
+            alertify.alertError($scope._t('error_load_data')).set('onok', function (closeEvent) {
+                dataService.goBack();
+            });
         });
     };
     $scope.loadData($routeParams.brandname, $scope.lang);
@@ -17889,19 +17992,20 @@ myAppController.controller('ZwaveAddController', function ($scope, $routeParams,
 myAppController.controller('ZwaveManageController', function ($scope, $cookies, $filter, $window, $location, dataFactory, dataService, myCache) {
     $scope.activeTab = (angular.isDefined($cookies.tab_network) ? $cookies.tab_network : 'battery');
     $scope.batteries = {
-        'list': [],
-        'cntLess20': [],
-        'cnt0': []
+        list: [],
+        cntLess20: [],
+        cnt0: []
     };
     $scope.devices = {
-        'failed': [],
-        'batteries': [],
-        'zwave': [],
-        'show': true
+        find: {},
+        failed: [],
+        batteries: [],
+        zwave: [],
+        show: true
     };
     $scope.goEdit = [];
     $scope.zWaveDevices = {};
-    
+
     /**
      * Set tab
      */
@@ -17920,14 +18024,25 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('devices').then(function (response) {
             $scope.loading = false;
-            zwaveApiData(response.data.data.devices); 
+            zwaveApiData(response.data.data.devices);
         }, function (error) {
             $scope.loading = false;
-              $scope.devices.show = false;
-               alertify.alertError($scope._t('error_load_data')).set('onok', function(closeEvent){dataService.goBack();} );
+            $scope.devices.show = false;
+            alertify.alertError($scope._t('error_load_data')).set('onok', function (closeEvent) {
+                dataService.goBack();
+            });
         });
     };
     $scope.loadData();
+    
+     /**
+     * Run zwave CMD
+     */
+    $scope.runZwaveCmd = function (cmd) {
+        dataFactory.runZwaveCmd(cmd).then(function () {
+        }, function () {
+        });
+    };
 
 
     /// --- Private functions --- ///
@@ -18038,10 +18153,12 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
 
                 }
             });
-            if( _.size($scope.zWaveDevices) < 1){
+            if (_.size($scope.zWaveDevices) < 1) {
                 $scope.devices.show = false;
-                    alertify.alertWarning($scope._t('no_device_installed')).set('onok', function(closeEvent){dataService.goBack();} ); 
-                }
+                alertify.alertWarning($scope._t('no_device_installed')).set('onok', function (closeEvent) {
+                    dataService.goBack();
+                });
+            }
             // Count device batteries
             for (i = 0; i < $scope.devices.batteries.length; ++i) {
                 var battery = $scope.devices.batteries[i];
@@ -18054,7 +18171,9 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
 
             }
         }, function (error) {
-             alertify.alertError($scope._t('error_load_data')).set('onok', function(closeEvent){dataService.goBack();} );
+            alertify.alertError($scope._t('error_load_data')).set('onok', function (closeEvent) {
+                dataService.goBack();
+            });
         });
     }
     ;
@@ -18074,6 +18193,268 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
         }
         return true;
 
+    }
+    ;
+});
+
+/**
+ * Zwave interview controller
+ */
+myAppController.controller('ZwaveInterviewController', function ($scope, $location, $interval, dataFactory, dataService, _) {
+    $scope.zwaveInterview = {
+        cfg: {
+            checkInterviewTimeout: 3000, // miliseconds
+            checkInterviewRepeat: 3, // times
+            inexTimeout: 30000 // Inclusion/Exclusion timeout - miliseconds
+        },
+        process: false,
+        done: false,
+        nodeId: 0,
+        nodeName: '',
+        hasBattery: false,
+        progress: 0,
+        commandClassesCnt: 0,
+        interviewDoneCnt: 0,
+        interviewRepeatCnt: 0,
+        security: false,
+        securityInterview: false,
+        errorType: '',
+        interviewNotDone: {}
+    };
+    $scope.interval = {
+        api: null
+    };
+
+    /**
+     * Start configuration
+     */
+    $scope.startConfiguration = function (includedDevice) {
+        resetConfiguration(true, false, includedDevice, false, true);
+         checkInterview($scope.devices.find.id);
+        var refresh = function () {
+             $scope.forceInterview($scope.zwaveInterview.interviewNotDone);
+            var interviewRepeatCnt = $scope.zwaveInterview.interviewRepeatCnt + 1;
+            angular.extend($scope.zwaveInterview, {interviewRepeatCnt: interviewRepeatCnt});
+            // Try to comlete configuration
+            if (interviewRepeatCnt > $scope.zwaveInterview.cfg.checkInterviewRepeat && !$scope.zwaveInterview.done) {
+                $interval.cancel($scope.interval.api);
+                var resetInfo = '<div class="alert alert-warning"> <i class="fa fa-exclamation-circle"></i> ' + $scope._t('configuration_cancel') + '</div>';
+                var batteryInfo = $scope.zwaveInterview.hasBattery
+                        ? '<div class="alert alert-warning"> <i class="fa fa-exclamation-circle"></i> ' + $scope._t('error_interview_battery') + '</div>'
+                        : '';
+
+                // Error switch
+                switch ($scope.zwaveInterview.errorType) {
+                    // Secure interview failed
+                    case 'error_interview_secure_failed':
+                        alertify.confirm($scope._t('configuration_complete_only') + ' ' + $scope.zwaveInterview.progress + '%' + batteryInfo + resetInfo)
+                                .setting('labels', {'cancel': $scope._t('redo_inclusion')})
+                                .set('onok', function (closeEvent) {//after clicking OK
+                                    $scope.forceInterview($scope.zwaveInterview.interviewNotDone);
+                                    $scope.startConfiguration({
+                                        nodeId: $scope.devices.find.id,
+                                        interviewDoneCnt: 0,
+                                        interviewRepeatCnt: 0,
+                                        errorType: ''});
+                                })
+                                .set('oncancel', function (closeEvent) {//after clicking Cancel
+                             alertify.dismissAll();
+                                    $location.path('/zwave/inclusion');
+                                });
+                        break;
+                    // Cc Version interview is not complete
+                    case 'error_interview_again':
+                        alertify.confirm($scope._t('configuration_complete_only') + ' ' + $scope.zwaveInterview.progress + '%' + batteryInfo + resetInfo)
+                                .setting('labels', {'cancel': $scope._t('redo_inclusion')})
+                                .set('onok', function (closeEvent) {//after clicking OK
+                                    $scope.forceInterview($scope.zwaveInterview.interviewNotDone);
+                                    $scope.startConfiguration({
+                                        nodeId: $scope.devices.find.id,
+                                        interviewDoneCnt: 0,
+                                        interviewRepeatCnt: 0,
+                                        errorType: ''});
+                                })
+                                .set('oncancel', function (closeEvent) {//after clicking Cancel
+                             alertify.dismissAll();
+                                    $location.path('/zwave/inclusion');
+                                });
+                        break;
+                        // Cc Version interview is complete but other interviews are not complete
+                    case 'error_interview_retry':
+                        alertify.confirm($scope._t('configuration_complete_only') + ' ' + $scope.zwaveInterview.progress + '%' + batteryInfo + resetInfo)
+                                .setting('labels', {'cancel': $scope._t('redo_inclusion')})
+                                .set('onok', function (closeEvent) {//after clicking OK
+                                    $scope.forceInterview($scope.zwaveInterview.interviewNotDone);
+                                    $scope.startConfiguration({
+                                        nodeId: $scope.devices.find.id,
+                                        interviewDoneCnt: 0,
+                                        interviewRepeatCnt: 0,
+                                        errorType: ''});
+                                })
+                                .set('oncancel', function (closeEvent) {//after clicking Cancel
+                             alertify.dismissAll();
+                                     $location.path('/zwave/inclusion');
+                                });
+                        break;
+                        // Unexpected error
+                    default:
+                        alertify.alertError($scope._t('error_interview_unexpected')).set('onok', function (closeEvent) {
+                            $scope.reloadData();
+                        });
+                        break;
+
+                }
+
+                return;
+            }
+            checkInterview($scope.devices.find.id);
+        };
+        $scope.interval.api = $interval(refresh, $scope.zwaveInterview.cfg.checkInterviewTimeout);
+    };
+    if(!_.isEmpty($scope.devices.find)){
+        $scope.startConfiguration();
+    }
+    
+
+    /**
+     * Cancel configuration
+     */
+    $scope.cancelConfiguration = function (event) {
+         resetConfiguration(false, false, null, false, true);
+        $scope.devices.find = {};
+         if (event) {
+            $scope.handleModal('zwaveNetworkModal', event);
+        }
+    };
+    
+     /**
+     * Force interview
+     */
+    $scope.forceInterview = function (interviews) {
+        angular.forEach(interviews, function (v, k) {
+            $scope.runZwaveCmd(v);
+        });
+    };
+
+    /// --- Private functions --- ///
+    
+     /**
+     * Reset configuration
+     */
+    function resetConfiguration(process, done, includedDevice, cmd, cancelInterval) {
+        /// Set scope
+        angular.extend($scope.zwaveInterview,
+                {process: process, done: done, forceInterview: false, progress: 0}
+        );
+        // Set included device
+        if (_.isObject(includedDevice)) {
+            angular.extend($scope.zwaveInterview, includedDevice);
+        }
+        // Run CMD
+        if (cmd) {
+            $scope.runZwaveCmd(cmd);
+        }
+        // Cancel interval
+        if (cancelInterval) {
+            $interval.cancel($scope.interval.api);
+        }
+    }
+    ;
+
+    /**
+     * Check interview
+     */
+    function checkInterview(nodeId) {
+        $scope.zwaveInterview.commandClassesCnt = 0;
+        $scope.zwaveInterview.interviewDoneCnt = 0;
+        dataFactory.loadZwaveApiData(true).then(function (ZWaveAPIData) {
+            var node = ZWaveAPIData.devices[nodeId];
+            if (!node) {
+                return;
+            }
+            if (!ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value) {
+                return;
+            }
+
+            // Is battery operated?
+            if (angular.isDefined(ZWaveAPIData.devices[nodeId].instances)) {
+                angular.extend($scope.zwaveInterview, {hasBattery: 0x80 in ZWaveAPIData.devices[nodeId].instances[0].commandClasses});
+            }
+            for (var iId in ZWaveAPIData.devices[nodeId].instances) {
+                if (Object.keys(ZWaveAPIData.devices[nodeId].instances[iId].commandClasses).length < 1) {
+                    return;
+                }
+                angular.extend($scope.zwaveInterview, {commandClassesCnt: Object.keys(ZWaveAPIData.devices[nodeId].instances[iId].commandClasses).length});
+                for (var ccId in ZWaveAPIData.devices[nodeId].instances[iId].commandClasses) {
+                    var cmdClass = ZWaveAPIData.devices[nodeId].instances[iId].commandClasses[ccId];
+                    var id = node.instances[iId].commandClasses[ccId].name;
+                    var iData = 'devices[' + nodeId + '].instances[' + iId + '].commandClasses[' + ccId + '].Interview()';
+                    //Is Security available?
+                    if (ccId === '152') {
+                        $scope.zwaveInterview.security = true;
+                    }
+                    // Is interview done?
+                    if (cmdClass.data.interviewDone.value) {
+                        // Is security interview done?
+                        if (ccId === '152') {
+                            $scope.zwaveInterview.securityInterview = true;
+                        }
+                        // If an interview is done deleting from interviewNotDone
+                        delete $scope.zwaveInterview.interviewNotDone[id];
+                        // Extending an interview counter
+                        angular.extend($scope.zwaveInterview,
+                                {interviewDoneCnt: $scope.zwaveInterview.interviewDoneCnt + 1}
+                        );
+                    } else { // An interview is not done
+                        // Extending interviewNotDone
+                        $scope.zwaveInterview.interviewNotDone[id] = iData;
+                    }
+                }
+            }
+
+            var commandClassesCnt = $scope.zwaveInterview.commandClassesCnt;
+            var intervewDoneCnt = $scope.zwaveInterview.interviewDoneCnt;
+            var progress = ((intervewDoneCnt / commandClassesCnt) * 100).toFixed();
+            console.log('commandClassesCnt: ', commandClassesCnt);
+            console.log('intervewDoneCnt: ', intervewDoneCnt);
+            console.log('Percent %: ', progress);
+            $scope.zwaveInterview.progress = (progress < 101 ? progress : 99);
+
+            // Test if Security available and Security interview failed
+            if ($scope.zwaveInterview.security && !$scope.zwaveInterview.securityInterview) {
+                angular.extend($scope.zwaveInterview, {errorType: 'error_interview_secure_failed'});
+                return;
+            }
+
+            /**
+             * If no Security or Security ok but Interviews are not complete
+             */
+
+            if (!_.isEmpty($scope.zwaveInterview.interviewNotDone)) {
+                // If command class Version is not complet, „Force Interview Version“
+                if ($scope.zwaveInterview.interviewNotDone['Version']) {
+                    angular.extend($scope.zwaveInterview, {errorType: 'error_interview_again'});
+                    return;
+                    // If Version ok but other CC are missing, force only these command classes
+                } else {
+                    angular.extend($scope.zwaveInterview, {errorType: 'error_interview_retry'});
+                    return;
+                }
+            }
+            /**
+             * All interviews are done
+             */
+            if (progress >= 100) {
+                $scope.zwaveInterview.progress = 100;
+                resetConfiguration(false, true, null, false, true);
+                setSecureInclusion(true);
+                $scope.startManualConfiguration(nodeId);
+                return;
+                ;
+            }
+        }, function (error) {
+            return;
+        });
     }
     ;
 });
@@ -18170,7 +18551,7 @@ myAppController.controller('ZwaveExcludeController', function ($scope, $location
 /**
  * Zwave manage detail controller
  */
-myAppController.controller('ZwaveManageIdController', function ($scope, $window, $routeParams,$q, $filter, $location, dataFactory, dataService, myCache) {
+myAppController.controller('ZwaveManageIdController', function ($scope, $window, $routeParams, $q, $filter, $location, dataFactory, dataService, myCache) {
     $scope.zwaveConfig = {
         nodeId: $routeParams.nodeId,
         nohistory: $routeParams.nohistory
@@ -18186,7 +18567,7 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
         deviceName: false
     };
     $scope.rooms = [];
-    
+
     /**
      * Load all promises
      */
@@ -18194,35 +18575,37 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
             dataFactory.getApi('devices', null, true),
-            dataFactory.getApi('locations',null,true)
+            dataFactory.getApi('locations', null, true)
         ];
 
         $q.allSettled(promises).then(function (response) {
             var devices = response[0];
             var locations = response[1];
-           
+
             $scope.loading = false;
             // Error message
             if (devices.state === 'rejected') {
                 $scope.loading = false;
                 $scope.formInput.show = false;
-                alertify.alertError($scope._t('error_load_data')).set('onok', function(closeEvent){dataService.goBack();} ); 
+                alertify.alertError($scope._t('error_load_data')).set('onok', function (closeEvent) {
+                    dataService.goBack();
+                });
                 return;
             }
-             // Success - devices
+            // Success - devices
             if (devices.state === 'fulfilled') {
                 zwaveConfigApiData($scope.zwaveConfig.nodeId, devices.value.data.data.devices);
             }
             // Success - locations
             if (locations.state === 'fulfilled') {
-                 $scope.rooms = dataService.getRooms(locations.value.data.data).indexBy('id').value();
-                
+                $scope.rooms = dataService.getRooms(locations.value.data.data).indexBy('id').value();
+
             }
-           
+
         });
     };
     $scope.allSettled();
-    
+
     /**
      * Add room
      */
@@ -18239,7 +18622,7 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
             $scope.loading = false;
             dataService.showNotifier({message: $scope._t('success_updated')});
             $scope.formInput.newRoom = '';
-             $scope.allSettled();
+            $scope.allSettled();
         }, function (error) {
             alertify.alertError($scope._t('error_update_data'));
             $scope.loading = false;
@@ -18274,7 +18657,7 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
         if (angular.isDefined($routeParams.nohistory)) {
             $location.path('/zwave/devices');
         } else {
-             dataFactory.goBack();
+            dataService.goBack();
         }
     };
 
@@ -18286,7 +18669,7 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
         dataFactory.loadZwaveApiData(true).then(function (ZWaveAPIData) {
             var node = ZWaveAPIData.devices[nodeId];
             if (!node) {
-               return;
+                return;
             }
 
             $scope.zWaveDevice = {
@@ -18345,7 +18728,7 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
 
             });
         }, function (error) {
-           alertify.alertError($scope._t('error_load_data'));
+            alertify.alertError($scope._t('error_load_data'));
         });
     }
     ;
@@ -18354,12 +18737,13 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
 
 
 /**
- * Application Camera controller
+ * @overview Controllers that handle all Camera actions – manage and add camera.
  * @author Martin Vach
  */
 
 /**
- * Camera add controller
+ * The controller that renders a list of the cameras.
+ * @class CameraAddController
  */
 myAppController.controller('CameraAddController', function ($scope, dataFactory, dataService, _) {
     $scope.ipcameraDevices = [];
@@ -18396,7 +18780,8 @@ myAppController.controller('CameraAddController', function ($scope, dataFactory,
 });
 
 /**
- * Camera manage controller
+ * The controller that handles camera manage actions .
+ * @class CameraManageController
  */
 myAppController.controller('CameraManageController', function ($scope, $q, dataFactory, dataService, myCache, _) {
     $scope.instances = [];
@@ -20696,7 +21081,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
                 return;
             }
             dataService.showNotifier({message: $scope._t('success_updated')});
-             dataFactory.goBack();
+             dataService.goBack();
 
         }, function(error) {
             alertify.alertError($scope._t('error_update_data'));
@@ -20719,12 +21104,13 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
 });
 
 /**
- * Application Auth controller
+ * @overview Controllers that handle the authentication of existing users, as well as forgot password.
  * @author Martin Vach
  */
 
 /**
- * Logout controller
+ * This is the Auth root controller
+ * @class AuthController
  */
 myAppController.controller('AuthController', function ($scope, $routeParams, $cookies, $window, dataFactory, dataService) {
     $scope.auth = {
@@ -20791,6 +21177,7 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $co
         }
         dataService.setZWAYSession(user.sid);
         dataService.setUser(user);
+        dataFactory.putApi('profiles', user.id, user).then(function(response) {}, function(error) {});
         if (rememberme) {
             dataService.setRememberMe(rememberme);
         }
@@ -20851,7 +21238,8 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $co
 });
 
 /**
- * Login controller
+ * The controller that handles login process.
+ * @class AuthLoginController
  */
 myAppController.controller('AuthLoginController', function ($scope, $location, $window, $routeParams, $cookies, dataFactory, dataService) {
     $scope.input = {
@@ -20893,9 +21281,9 @@ myAppController.controller('AuthLoginController', function ($scope, $location, $
         });
     };
 
-    /**
-     * Login proccess
-     */
+//    /**
+//     * Login proccess
+//     */
 //    $scope.login = function (input) {
 //        input.password = input.password;
 //        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
@@ -20919,9 +21307,8 @@ myAppController.controller('AuthLoginController', function ($scope, $location, $
 //             alertify.alertError(message);
 //        });
 //    };
-    /**
-     * Login from url, remember me or session
-     */
+
+    // Login from url, remember me or session
 
     var path = $location.path().split('/');
 
@@ -20938,7 +21325,8 @@ myAppController.controller('AuthLoginController', function ($scope, $location, $
 });
 
 /**
- * Password controller
+ * The controller that handles first access and password update.
+ * @class AuthPasswordController
  */
 myAppController.controller('AuthPasswordController', function ($scope, dataFactory, dataService) {
     $scope.input = {
@@ -21004,7 +21392,8 @@ myAppController.controller('AuthPasswordController', function ($scope, dataFacto
 });
 
 /**
- * Password forgot controller
+ * The controller that sends an e-mail with the link to reset forgotten passwort.
+ * @class PasswordForgotController
  */
 myAppController.controller('PasswordForgotController', function ($scope, $location, dataFactory) {
     $scope.passwordForgot = {
@@ -21040,7 +21429,8 @@ myAppController.controller('PasswordForgotController', function ($scope, $locati
 });
 
 /**
- * Password reset controller
+ * The controller that handles reset password actions.
+ * @class PasswordResetController
  */
 myAppController.controller('PasswordResetController', function ($scope, $routeParams, dataFactory) {
     $scope.passwordReset = {
@@ -21094,9 +21484,13 @@ myAppController.controller('PasswordResetController', function ($scope, $routePa
     };
 });
 /**
- * Logout controller
+ * The controller that handles logout process.
+ * @class LogoutController
  */
 myAppController.controller('LogoutController', function ($scope, dataService, dataFactory) {
+    /**
+     * Logout an user
+     */
     $scope.logout = function () {
         dataService.setRememberMe(null);
         dataFactory.getApi('logout').then(function (response) {

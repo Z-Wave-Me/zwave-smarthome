@@ -1,10 +1,11 @@
 /**
- * Application jamesBox controller
+ * @overview Controllers that handle the JamesBox actions.
  * @author Martin Vach
  */
 
 /**
- * Skin base controller
+ * Load required http requests an update JamesBox record in the database.
+ * @class JbUpdateController
  */
 myAppController.controller('JbUpdateController', function ($scope, $q, $location, cfg, dataFactory, dataService, _) {
     $scope.jamesbox = {
@@ -32,28 +33,29 @@ myAppController.controller('JbUpdateController', function ($scope, $q, $location
             if (zwave.state === 'fulfilled') {
                 $scope.jamesbox.uuid = zwave.value.controller.data.uuid.value;
                 $scope.jamesbox.version = zwave.value.controller.data.softwareRevisionVersion.value;
+                 $scope.jamesBoxRequest();
             }
         });
     };
     $scope.allSettled();
 
     /**
-     * JamesBox request
+     * Load JamesBox data
      */
     $scope.jamesBoxRequest = function () {
 
         dataFactory.postToRemote(cfg.api_remote['jamesbox_request'], $scope.jamesbox).then(function (response) {
             if (!_.isEmpty(response.data)) {
-                $scope.jamesbox.versionNew = response.data[0].firmware_vesion;
+                $scope.jamesbox.versionNew = response.data[0].firmware_version;
             }
         }, function (error) { });
     }
     ;
 
-    $scope.jamesBoxRequest();
+   
 
     /**
-     * Update firmware
+     * Update JamesBox record
      */
     $scope.firmwareUpdate = function () {
         var input = {
