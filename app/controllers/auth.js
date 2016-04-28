@@ -1,10 +1,11 @@
 /**
- * Application Auth controller
+ * @overview Controllers that handle the authentication of existing users, as well as forgot password.
  * @author Martin Vach
  */
 
 /**
- * Logout controller
+ * This is the Auth root controller
+ * @class AuthController
  */
 myAppController.controller('AuthController', function ($scope, $routeParams, $location,$cookies, $window, $q, cfg, dataFactory, dataService, _) {
     $scope.auth = {
@@ -176,7 +177,8 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
 });
 
 /**
- * Login controller
+ * The controller that handles login process.
+ * @class AuthLoginController
  */
 myAppController.controller('AuthLoginController', function ($scope, $location, $window, $routeParams, $cookies, dataFactory, dataService) {
     $scope.input = {
@@ -218,9 +220,9 @@ myAppController.controller('AuthLoginController', function ($scope, $location, $
         });
     };
 
-    /**
-     * Login proccess
-     */
+//    /**
+//     * Login proccess
+//     */
 //    $scope.login = function (input) {
 //        input.password = input.password;
 //        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
@@ -244,9 +246,8 @@ myAppController.controller('AuthLoginController', function ($scope, $location, $
 //             alertify.alertError(message);
 //        });
 //    };
-    /**
-     * Login from url, remember me or session
-     */
+
+    // Login from url, remember me or session
 
     var path = $location.path().split('/');
 
@@ -263,7 +264,8 @@ myAppController.controller('AuthLoginController', function ($scope, $location, $
 });
 
 /**
- * Password controller
+ * The controller that handles first access and password update.
+ * @class AuthPasswordController
  */
 myAppController.controller('AuthPasswordController', function ($scope, dataFactory, dataService) {
     $scope.input = {
@@ -329,7 +331,8 @@ myAppController.controller('AuthPasswordController', function ($scope, dataFacto
 });
 
 /**
- * Password forgot controller
+ * The controller that sends an e-mail with the link to reset forgotten passwort.
+ * @class PasswordForgotController
  */
 myAppController.controller('PasswordForgotController', function ($scope, $location, dataFactory) {
     $scope.passwordForgot = {
@@ -365,7 +368,8 @@ myAppController.controller('PasswordForgotController', function ($scope, $locati
 });
 
 /**
- * Password reset controller
+ * The controller that handles reset password actions.
+ * @class PasswordResetController
  */
 myAppController.controller('PasswordResetController', function ($scope, $routeParams, dataFactory) {
     $scope.passwordReset = {
@@ -419,9 +423,13 @@ myAppController.controller('PasswordResetController', function ($scope, $routePa
     };
 });
 /**
- * Logout controller
+ * The controller that handles logout process.
+ * @class LogoutController
  */
 myAppController.controller('LogoutController', function ($scope, dataService, dataFactory) {
+    /**
+     * Logout an user
+     */
     $scope.logout = function () {
         dataService.setRememberMe(null);
         dataFactory.getApi('logout').then(function (response) {
