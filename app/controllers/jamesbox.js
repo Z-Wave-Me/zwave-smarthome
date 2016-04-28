@@ -7,8 +7,9 @@
  * Load required http requests an update JamesBox record in the database.
  * @class JbUpdateController
  */
-myAppController.controller('JbUpdateController', function ($scope, $q, $location, cfg, dataFactory, dataService, _) {
+myAppController.controller('JbUpdateController', function ($scope, $q, $location, cfg, dataFactory, _) {
     $scope.jamesbox = {
+        show: false,
         uuid: '',
         version: '',
         versionNew: ''
@@ -17,6 +18,7 @@ myAppController.controller('JbUpdateController', function ($scope, $q, $location
      * Load all promises
      */
     $scope.allSettled = function () {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
             dataFactory.loadZwaveApiData()
         ];
@@ -33,7 +35,7 @@ myAppController.controller('JbUpdateController', function ($scope, $q, $location
             if (zwave.state === 'fulfilled') {
                 $scope.jamesbox.uuid = zwave.value.controller.data.uuid.value;
                 $scope.jamesbox.version = zwave.value.controller.data.softwareRevisionVersion.value;
-                 $scope.jamesBoxRequest();
+                $scope.jamesBoxRequest();
             }
         });
     };
@@ -43,10 +45,13 @@ myAppController.controller('JbUpdateController', function ($scope, $q, $location
      * Load JamesBox data
      */
     $scope.jamesBoxRequest = function () {
-
+        $scope.loading = false;
         dataFactory.postToRemote(cfg.api_remote['jamesbox_request'], $scope.jamesbox).then(function (response) {
-            if (!_.isEmpty(response.data)) {
+            if (!_.isEmpty(response.data[0]) && response.data[0].exec === 'exec2') {
                 $scope.jamesbox.versionNew = response.data[0].firmware_version;
+                $scope.jamesbox.show = true; 
+            }else{
+               alertify.alertError($scope._t('There are no updates available'));
             }
         }, function (error) { });
     }

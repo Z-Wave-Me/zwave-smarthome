@@ -83,8 +83,8 @@ var config_data = {
         // List of remote api URLs
         'api_remote': {
             // JamesBox request
-            //'jamesbox_request': 'http://dev.dev/shuiapi/jamesbox/zbu_ui_handling.php?action=request',
-            'jamesbox_request': 'http://razberry.z-wave.me/zbu_ui_handling.php?action=request',
+            'jamesbox_request': 'http://dev.dev/shuiapi/jamesbox/zbu_ui_handling.php?action=request',
+            //'jamesbox_request': 'http://razberry.z-wave.me/zbu_ui_handling.php?action=request',
              // JamesBox update
              //'jamesbox_update': 'http://dev.dev/shuiapi/jamesbox/zbu_ui_handling.php?action=update',
             'jamesbox_update': 'http://razberry.z-wave.me/zbu_ui_handling.php?action=update',
