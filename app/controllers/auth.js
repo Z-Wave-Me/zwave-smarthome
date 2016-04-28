@@ -14,6 +14,10 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
         defaultProfile: false,
         fromexpert: $routeParams.fromexpert
     };
+    $scope.jamesbox = {
+        first_start_up: '',
+        count_of_reconnects: 0
+    };
 
     if (dataService.getUser()) {
         $scope.auth.form = false;
@@ -117,13 +121,28 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
         });
     }
     ;
+    
+     /**
+     * Get and update system info
+     */
+    function jamesBoxSystemInfo(uuid) {
+        dataFactory.getApi('system_info', null, true).then(function (response) {
+            var input = {
+                uuid: uuid,
+                first_start_up: response.data.data.first_start_up,
+                count_of_reconnects: response.data.data.count_of_reconnects
+            };
+            dataFactory.postToRemote(cfg.api_remote['jamesbox_updateinfo'], input).then(function (response) {}, function (error) {});
+        }, function (error) {});
+    }
+    ;
 
     /**
      * JamesBox request
      */
     function jamesBoxRequest(input) {
         var location = '#/dashboard';
-        
+        jamesBoxSystemInfo(input.uuid);
         dataFactory.postToRemote(cfg.api_remote['jamesbox_createlog'], input).then(function (response) {}, function (error) {});
         dataFactory.postToRemote(cfg.api_remote['jamesbox_request'], input).then(function (response) {
             if (!_.isEmpty(response.data)) {

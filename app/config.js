@@ -84,16 +84,16 @@ var config_data = {
         'api_remote': {
             // JamesBox request
             //'jamesbox_request': 'http://dev.dev/shuiapi/jamesbox/?action=request',
-            'jamesbox_request': 'http://razberry.z-wave.me/z-box-update_new.php?action=request',
+            'jamesbox_request': 'http://razberry.z-wave.me/zbu_ui_handling.php?action=request',
              // JamesBox update
              //'jamesbox_update': 'http://dev.dev/shuiapi/jamesbox/?action=update',
-            'jamesbox_update': 'http://razberry.z-wave.me/z-box-update_new.php?action=update',
+            'jamesbox_update': 'http://razberry.z-wave.me/zbu_ui_handling.php?action=update',
             // JamesBox update info
-             //'jamesbox_update': 'http://dev.dev/shuiapi/jamesbox/?action=updateinfo',
-            'jamesbox_updateinfo': 'http://razberry.z-wave.me/z-box-update_new.php?action=updateinfo',
+             //'jamesbox_updateinfo': 'http://dev.dev/shuiapi/jamesbox/?action=updateinfo',
+            'jamesbox_updateinfo': 'http://razberry.z-wave.me/zbu_ui_handling.php?action=updateinfo',
              // JamesBox create log
              //'jamesbox_createlog': 'http://dev.dev/shuiapi/jamesbox/?action=createlog'
-            'jamesbox_createlog': 'http://razberry.z-wave.me/z-box-update_new.php?action=createlog'
+            'jamesbox_createlog': 'http://razberry.z-wave.me/zbu_ui_handling.php?action=createlog'
         },
         // Skin
         'skin': {
