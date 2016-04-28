@@ -1,8 +1,9 @@
 {
+    "no_update_available": "There are no updates available",
     "jamesbox_software_upgrade": "Software upgrade",
     "jamesbox_current_firmware": "Die aktuell installierte Firmware ist __currentfw__. Es ist ein neue Firmware-Aktualisierung verfügbar. Möchten Sie ihre Gateway Firmware auf die Version __newfw__ aktualisieren?",
     "jamesbox_autoupgrade": "Die Firmware wird automatisch beim nächsten Neustart auf die Version __newfw__ aktualisert.",
-     "redo_inclusion": "Redo inclusion",
+    "redo_inclusion": "Redo inclusion",
     "configure_device": "Configure device",
     "no_events": "Sorry, there are no events to show.",
     "no_cameras": "There are no cameras available.",

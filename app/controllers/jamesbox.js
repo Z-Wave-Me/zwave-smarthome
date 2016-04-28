@@ -51,7 +51,7 @@ myAppController.controller('JbUpdateController', function ($scope, $q, $location
                 $scope.jamesbox.versionNew = response.data[0].firmware_version;
                 $scope.jamesbox.show = true; 
             }else{
-               alertify.alertError($scope._t('There are no updates available'));
+               alertify.alertError($scope._t('no_update_available'));
             }
         }, function (error) { });
     }
