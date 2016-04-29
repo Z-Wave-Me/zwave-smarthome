@@ -110,7 +110,7 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
         var location = '#/dashboard';
         dataFactory.loadZwaveApiData().then(function (response) {
             var input = {
-                uuid_: response.controller.data.uuid.value,
+                uuid: response.controller.data.uuid.value,
                 version: response.controller.data.softwareRevisionVersion.value,
                 host: $location.host()
             };
@@ -145,7 +145,7 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
         jamesBoxSystemInfo(input.uuid);
         dataFactory.postToRemote(cfg.api_remote['jamesbox_createlog'], input).then(function (response) {}, function (error) {});
         dataFactory.postToRemote(cfg.api_remote['jamesbox_request'], input).then(function (response) {
-            if (!_.isEmpty(response.data[0]) && response.data[0].exec2 === 1) {
+            if (!_.isEmpty(response.data[0]) && response.data[0].exec2 === '1') {
                 location = '#/jamesbox/update';
             }
             window.location = location;

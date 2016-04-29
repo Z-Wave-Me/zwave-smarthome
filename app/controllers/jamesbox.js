@@ -47,7 +47,7 @@ myAppController.controller('JbUpdateController', function ($scope, $q, $location
     $scope.jamesBoxRequest = function () {
         $scope.loading = false;
         dataFactory.postToRemote(cfg.api_remote['jamesbox_request'], $scope.jamesbox).then(function (response) {
-            if (!_.isEmpty(response.data[0]) && response.data[0].exec === 'exec2') {
+            if (!_.isEmpty(response.data[0]) && response.data[0].exec2 === '1') {
                 $scope.jamesbox.versionNew = response.data[0].firmware_version;
                 $scope.jamesbox.show = true; 
             }else{
