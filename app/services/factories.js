@@ -16,7 +16,7 @@ myAppFactory.factory('myCache', function ($cacheFactory) {
 
 /**
  * The factory that handles the Underscore library
- * @class _
+ * @class Underscore
  */
 myAppFactory.factory('_', function () {
     return window._; // assumes underscore has already been loaded on the page
