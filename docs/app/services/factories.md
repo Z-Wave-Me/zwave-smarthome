@@ -10,10 +10,6 @@
 The factory that handles angular $cacheFactory
 
 
-## Class: myCache
-The factory that handles the Underscore library
-
-
 ## Class: dataFactory
 The factory that handles all local and remote HTTP requests
 
