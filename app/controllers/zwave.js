@@ -1,10 +1,12 @@
 /**
- * Application Zwave controller
+ * @overview Controllers that handle Z-Wave devices actions.
  * @author Martin Vach
  */
 
 /**
- * Zwave select controller
+ * This is a new version of the ZwaveAddController and is not completed!!!
+ * The controller that renders Z-Wave manufacturers and devices.
+ * @class ZwaveSelectController
  */
 myAppController.controller('ZwaveSelectController', function ($scope, $routeParams, dataFactory, dataService, _) {
     $scope.zwaveSelect = {
@@ -54,7 +56,8 @@ myAppController.controller('ZwaveSelectController', function ($scope, $routePara
 });
 
 /**
- * Zwave add controller
+ * The controller that renders Z-Wave manufacturers and devices.
+ * @class ZwaveAddController
  */
 myAppController.controller('ZwaveAddController', function ($scope, $routeParams, dataFactory, dataService, _) {
     $scope.zwaveDevices = [];
@@ -81,8 +84,10 @@ myAppController.controller('ZwaveAddController', function ($scope, $routeParams,
     };
     $scope.loadData($routeParams.brandname, $scope.lang);
 });
+
 /**
- * Zwave manage controller
+ * The controller that renders and handles data in the Z-Wave/Manage section.
+ * @class ZwaveManageController
  */
 myAppController.controller('ZwaveManageController', function ($scope, $cookies, $filter, $window, $location, dataFactory, dataService, myCache) {
     $scope.activeTab = (angular.isDefined($cookies.tab_network) ? $cookies.tab_network : 'battery');
@@ -293,7 +298,8 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
 });
 
 /**
- * Zwave interview controller
+ * The controller that handles interview process in the Z-Wave/Network section.
+ * @class ZwaveInterviewController
  */
 myAppController.controller('ZwaveInterviewController', function ($scope, $location, $interval, dataFactory, dataService, _) {
     $scope.zwaveInterview = {
@@ -521,10 +527,7 @@ myAppController.controller('ZwaveInterviewController', function ($scope, $locati
                 return;
             }
 
-            /**
-             * If no Security or Security ok but Interviews are not complete
-             */
-
+            // If no Security or Security ok but Interviews are not complete
             if (!_.isEmpty($scope.zwaveInterview.interviewNotDone)) {
                 // If command class Version is not complet, „Force Interview Version“
                 if ($scope.zwaveInterview.interviewNotDone['Version']) {
@@ -536,9 +539,7 @@ myAppController.controller('ZwaveInterviewController', function ($scope, $locati
                     return;
                 }
             }
-            /**
-             * All interviews are done
-             */
+            // If no Security or Security ok but Interviews are not complete
             if (progress >= 100) {
                 $scope.zwaveInterview.progress = 100;
                 resetConfiguration(false, true, null, false, true);
@@ -554,7 +555,8 @@ myAppController.controller('ZwaveInterviewController', function ($scope, $locati
     ;
 });
 /**
- * Zwave exclude controller
+ * The controller that handles Z-Wave exclusion process.
+ * @class ZwaveInterviewController
  */
 myAppController.controller('ZwaveExcludeController', function ($scope, $location, $routeParams, $interval, dataFactory, dataService, _) {
     $scope.zWaveDevice = {
@@ -644,7 +646,8 @@ myAppController.controller('ZwaveExcludeController', function ($scope, $location
     };
 });
 /**
- * Zwave manage detail controller
+ * The controller that renders and handles configuration data for a single Z-Wave device.
+ * @class ZwaveManageIdController
  */
 myAppController.controller('ZwaveManageIdController', function ($scope, $window, $routeParams, $q, $filter, $location, dataFactory, dataService, myCache) {
     $scope.zwaveConfig = {

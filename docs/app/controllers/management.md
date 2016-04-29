@@ -6,154 +6,177 @@
 
 * * *
 
-### allSettled() 
+## Class: ManagementController
+The management root controller
+
+### ManagementController.allSettled() 
 
 Load all promises
 
 
-
-### setControllerInfo() 
+### ManagementController.setControllerInfo() 
 
 Set controller info
 
 
-
-### setLicenceScratchId() 
+### ManagementController.setLicenceScratchId() 
 
 Set licence ID
 
 
 
-### loadProfiles() 
+## Class: ManagementUserController
+The controller that renders the list of users.
+
+### ManagementUserController.loadProfiles() 
 
 Load profiles
 
 
-
-### setOrderBy() 
+### ManagementUserController.setOrderBy() 
 
 Set order by
 
 
-
-### deleteProfile() 
+### ManagementUserController.deleteProfile() 
 
 Delete an user
 
 
 
-### allSettledUserId() 
+## Class: ManagementUserIdController
+The controller that handles user detail actions.
+
+### ManagementUserIdController.allSettledUserId() 
 
 Load all promises
 
 
-
-### assignRoom() 
+### ManagementUserIdController.assignRoom() 
 
 Assign room to list
 
 
-
-### removeRoom() 
+### ManagementUserIdController.removeRoom() 
 
 Remove room from the list
 
 
-
-### store() 
+### ManagementUserIdController.store() 
 
 Create/Update an item
 
 
-
-### changeAuth() 
+### ManagementUserIdController.changeAuth() 
 
 Change auth data
 
 
 
-### loadRemoteAccess() 
+## Class: ManagementRemoteController
+The controller that renders and handles remote access data.
+
+### ManagementRemoteController.loadRemoteAccess() 
 
 Load Remote access data
 
 
-
-### putRemoteAccess() 
+### ManagementRemoteController.putRemoteAccess() 
 
 PUT Remote access
 
 
 
-### getLicense() 
+## Class: ManagementLicenceController
+The controller that handles the licence key.
+
+### ManagementLicenceController.getLicense() 
 
 Get license key
 
 
-
-### updateCapabilities() 
+### ManagementLicenceController.updateCapabilities() 
 
 Update capabilities
 
 
 
-### setAccess() 
+## Class: ManagementFirmwareController
+The controller that handles firmware update process.
+
+### ManagementFirmwareController.setAccess() 
+
+Set access
+
+
+### ManagementFirmwareController.loadRazLatest() 
 
 Load razberry latest version
 
 
 
-### loadRazLatest() 
+## Class: ManagementRestoreController
+The controller that handles restore process.
 
-Load razberry latest version
+### ManagementRestoreController.uploadFile() 
 
-
-
-### uploadFile() 
-
-Upload image
+Upload backup file
 
 
 
-### resetFactoryDefault() 
+## Class: ManagementFactoryController
+The controller that resets the system to factory default.
 
-Reset to factory
+### ManagementFactoryController.resetFactoryDefault() 
+
+Reset to factory default
 
 
 
-### appStoreLoadTokens() 
+## Class: ManagementAppStoreController
+The controller that renders and handles app store data.
+
+### ManagementAppStoreController.appStoreLoadTokens() 
 
 Load tokens
 
 
+### ManagementAppStoreController.appStoreAddToken() 
 
-### appStoreAddToken() 
-
-Create/Update an item
-
+Create/Update a token
 
 
-### appStoreRemoveToken() 
+### ManagementAppStoreController.appStoreRemoveToken() 
 
-Remove a token from the list
+Remove token from the list
 
 
 
-### loadRemoteAccess() 
+## Class: ManagementReportController
+The controller that handles bug report info.
+
+### ManagementReportController.loadRemoteAccess() 
 
 Load Remote access data
 
 
-
-### sendReport() 
+### ManagementReportController.sendReport() 
 
 Send and save report
 
 
 
-### loadPostfix() 
+## Class: ManagementPostfixController
+The controller that renders postfix data.
+
+### ManagementPostfixController.loadPostfix() 
 
 Load postfix data
 
+
+
+## Class: ManagementInfoController
+The controller that renders info data.
 
 
 
@@ -161,10 +184,10 @@ Load postfix data
 
 
 
+**Author:** Martin Vach
 
 
 
-
-
+**Overview:** Controllers that handle management actions.
 
 

@@ -168,7 +168,7 @@ module.exports = function (grunt) {
                     //templateDir: 'path/to/my/mustache'
                 },
                 //src: ['app/**/*.js'],
-                src: ['app/controllers/*.js'],
+                src: ['app/controllers/*.js','app/services/factories.js'],
                 dest: 'docs'
             }
         },

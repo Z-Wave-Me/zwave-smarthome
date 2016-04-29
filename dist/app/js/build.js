@@ -11687,26 +11687,32 @@ angular.module('qAllSettled', []).config(function($provide) {
   });
 });
 /**
- * Application factories
+ * @overview Angular factories that handle cache, Underscore and HTTP requests.
  * @author Martin Vach
  */
+
+// Angular module
 var myAppFactory = angular.module('myAppFactory', []);
 
 /**
- * Caching the river...
+ * The factory that handles angular $cacheFactory
+ * @class myCache
  */
 myAppFactory.factory('myCache', function ($cacheFactory) {
     return $cacheFactory('myData');
 });
+
 /**
- * Underscore
+ * The factory that handles the Underscore library
+ * @class myCache
  */
 myAppFactory.factory('_', function () {
     return window._; // assumes underscore has already been loaded on the page
 });
 
 /**
- * Main data factory
+ * The factory that handles all local and remote HTTP requests
+ * @class dataFactory
  */
 myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataService, cfg, _) {
     var updatedTime = Math.round(+new Date() / 1000);
@@ -11758,7 +11764,11 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
 
     /// --- Public functions --- ///
 
-    // Post api data
+    /**
+     * Handles login process
+     * @param {object} data
+     * @returns {unresolved}
+     */
     function logInApi(data) {
         return $http({
             method: "post",
@@ -11772,7 +11782,10 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
         });
     }
 
-    // Get api data
+    /**
+     * Get Z-Wave session
+     * @returns {unresolved}
+     */
     function sessionApi() {
         return $http({
             method: "get",
@@ -11786,7 +11799,9 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
     }
 
     /**
-     * Gets api local data
+     * Get local data from the storage directory
+     * @param {string} file
+     * @returns {unresolved}
      */
     function getApiLocal(file) {
         return $http({
@@ -11805,9 +11820,13 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
     }
 
     /**
-     * API data
+     * Get ZAutomation api data
+     * @param {string} api
+     * @param {string} params
+     * @param {boolean} noCache
+     * @param {boolean} fatalError
+     * @returns {unresolved}
      */
-    // Get api data
     function getApi(api, params, noCache, fatalError) {
         // Cached data
         var cacheName = api + (params || '');
@@ -11846,7 +11865,13 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
             return $q.reject(response);
         });
     }
-    // Post api data
+   /**
+    * Post ZAutomation api data
+    * @param {string} api
+    * @param {object} data
+    * @param {string} params
+    * @returns {unresolved}
+    */
     function postApi(api, data, params) {
         return $http({
             method: "post",
@@ -11863,7 +11888,14 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
         });
     }
 
-    // Put api data
+    /**
+     * Put ZAutomation api data
+     * @param {string} api
+     * @param {int} id
+     * @param {object} data
+     * @param {string} params
+     * @returns {unresolved}
+     */
     function putApi(api, id, data, params) {
         return $http({
             method: "put",
@@ -11880,7 +11912,15 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
             return $q.reject(response);
         });
     }
-    // Put api data
+    /**
+     * Put ZAutomation api data with predefined HTTP headers
+     * @param {string} api
+     * @param {int} id
+     * @param {object} data
+     * @param {object} headers
+     * @param {string} params
+     * @returns {unresolved}
+     */
     function putApiWithHeaders(api, id, data, headers, params) {
         return $http({
             method: "put",
@@ -11894,7 +11934,13 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
             return $q.reject(response);
         });
     }
-    // Put api data as form data
+    /**
+     * Put ZAutomation api data with x-www-form-urlencoded header
+     * @param {string} api
+     * @param {object} data
+     * @param {string} params
+     * @returns {unresolved}
+     */
     function putApiFormdata(api, data, params) {
         return $http({
             method: "put",
@@ -11913,7 +11959,14 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
         });
     }
 
-    // POST/PUT api data
+    /**
+     * Put or Post ZAutomation api data - depends on id
+     * @param {string} api
+     * @param {int} id
+     * @param {object} data
+     * @param {string} params
+     * @returns {unresolved}
+     */
     function storeApi(api, id, data, params) {
         return $http({
             method: id ? 'put' : 'post',
@@ -11931,7 +11984,13 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
         });
     }
 
-    // Delete api data
+    /**
+     * Delete ZAutomation api data
+     * @param {string} api
+     * @param {int} id
+     * @param {string} params
+     * @returns {unresolved}
+     */
     function deleteApi(api, id, params) {
         return $http({
             method: 'delete',
@@ -11949,7 +12008,13 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
 
     }
 
-    // Delete api data as form data
+    /**
+     * Delete ZAutomation api data with x-www-form-urlencoded header
+     * @param {string} api
+     * @param {object} data
+     * @param {string} params
+     * @returns {unresolved}
+     */
     function deleteApiFormdata(api, data, params) {
         return $http({
             method: 'delete',
@@ -11970,7 +12035,9 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
     }
 
     /**
-     * Run api command
+     * Get ZAutomation api command
+     * @param {string} cmd
+     * @returns {unresolved}
      */
     function runApiCmd(cmd) {
         return $http({
@@ -11991,7 +12058,11 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
         });
     }
 
-    // Run expert cmd
+    /**
+     * Post ZWaveAPI run command
+     * @param {type} param
+     * @returns {unresolved}
+     */
     function runExpertCmd(param) {
         return $http({
             method: 'post',
@@ -12006,7 +12077,10 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
     }
 
     /**
-     * Get config XML file
+     * Get XML from url and convert it to JSON
+     * @param {string} url
+     * @param {boolean} noCache
+     * @returns {unresolved}
      */
     function xmlToJson(url, noCache) {
         // Cached data
@@ -12037,7 +12111,9 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
     }
 
     /**
-     * Put config XML file
+     * Put XML configuration file into Configuration.xml
+     * @param {xml} data
+     * @returns {unresolved}
      */
     function putCfgXml(data) {
         return $http({
@@ -12054,28 +12130,13 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
             return $q.reject(response);
         });
     }
-    /**
-     * Get api js command
-     */
-//    function getJSCmd(cmd) {
-//        return $http({
-//            method: 'get',
-//            url: cfg.server_url + cfg.zwave_jsrun_url + cmd
-//        }).then(function(response) {
-//            //return response;
-//            if (typeof response.data === 'string') {
-//                return response;
-//            } else {// invalid response
-//                return $q.reject(response);
-//            }
-//        }, function(response) {// something went wrong
-//            return $q.reject(response);
-//        });
-//    }
 
 
     /**
-     * Get remote data
+     * Get data from the remote resource
+     * @param {string} url
+     * @param {boolean} noCache
+     * @returns {unresolved}
      */
     function getRemoteData(url, noCache) {
         // Cached data
@@ -12102,7 +12163,12 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
         });
     }
 
-    // Refresh api data
+    /**
+     * Get data from the ZAutomation api and update it
+     * @param {string} api
+     * @param {string} params
+     * @returns {unresolved}
+     */
     function refreshApi(api, params) {
         //console.log('?since=' + updatedTime)
         return $http({
@@ -12125,7 +12191,10 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
     }
 
     /**
-     * Upload file
+     * Upload a file to ZAutomation
+     * @param {type} cmd
+     * @param {type} data
+     * @returns {unresolved}
      */
     function uploadApiFile(cmd, data) {
         var uploadUrl = cfg.server_url + cmd;
@@ -12148,7 +12217,9 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
     }
 
     /**
-     * Get system cmd
+     * Get ZAutomation api system command
+     * @param {string} cmd
+     * @returns {unresolved}
      */
     function getSystemCmd(cmd) {
         return $http({
@@ -12171,7 +12242,9 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
 
 
     /**
-     * Load language file
+     * Get a file with language keys values from the app/lang directory
+     * @param {string} lang
+     * @returns {unresolved}
      */
     function getLanguageFile(lang) {
         var langFile = lang + '.json';
@@ -12198,7 +12271,10 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
     }
 
     /**
-     * Load ZwaveApiData 
+     * Get data holder from ZWaveAPI api
+     * @param {boolean} noCache
+     * @param {boolean} fatalError
+     * @returns {unresolved}
      */
     function loadZwaveApiData(noCache, fatalError) {
         // Cached data
@@ -12234,7 +12310,8 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
     }
 
     /**
-     * Refresh ZwaveApiData 
+     * Get updated data holder from the ZAutomation
+     * @returns {unresolved}
      */
     function refreshZwaveApiData() {
         return $http({
@@ -12255,7 +12332,9 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
     }
 
     /**
-     * Get updated data and join with ZwaveData
+     * Get updated ZAutomation data and join it to ZAutomation data holder
+     * @param {object} ZWaveAPIData
+     * @returns {unresolved}
      */
     function  joinedZwaveData(ZWaveAPIData) {
         var time = Math.round(+new Date() / 1000);
@@ -12303,7 +12382,9 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
 
 
     /**
-     * Run ExpertUI command
+     * Get Zwave api command
+     * @param {string} cmd
+     * @returns {unresolved}
      */
     function runZwaveCmd(cmd) {
         return $http({
@@ -12318,7 +12399,9 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
 
 
     /**
-     * Load EnOcean api data (holder)
+     * Get EnOcean data holder from the EnOceanAPI
+     * @param {boolean} noCache
+     * @returns {unresolved}
      */
     function loadEnoceanApiData(noCache) {
         // Cached data
@@ -12346,7 +12429,9 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
         });
     }
     /**
-     * Run Enocean command
+     * Get EnOcean command from the EnOceanAPI Run
+     * @param {string} cmd
+     * @returns {unresolved}
      */
     function runEnoceanCmd(cmd) {
         return $http({
@@ -12359,7 +12444,10 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
         });
     }
 
-    // Refresh Enocean data holder
+    /**
+     * Get updated Enocean data from the EnOceanAPI
+     * @returns {unresolved}
+     */
     function refreshEnoceanApiData() {
         //console.log('?since=' + updatedTime)
         return $http({
@@ -12382,7 +12470,9 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
     }
 
     /**
-     * Get license key
+     * Post licence data from the remote server
+     * @param {object} data
+     * @returns {unresolved}
      */
     function getLicense(data) {
         return $http({
@@ -12406,7 +12496,9 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
     }
 
     /**
-     * Set ZME Capabilities
+     * Post ZME Capabilities
+     * @param {object} data
+     * @returns {unresolved}
      */
     function zmeCapabilities(data) {
 //        return $q.reject(data); // Test error response
@@ -12430,7 +12522,9 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
 
     }
     /**
-     * Post report data
+     * Post a bug report on the remote server
+     * @param {object} data
+     * @returns {unresolved}
      */
     function postReport(data) {
         return $http({
@@ -12449,7 +12543,10 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
     }
 
     /**
-     * Post on remote server
+     * Post on the remote server
+     * @param {string} url
+     * @param {object} data
+     * @returns {unresolved}
      */
     function postToRemote(url, data) {
         return $http({
@@ -12468,7 +12565,10 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
     }
 
     /**
-     * Get online modules
+     * Load On-line modules from the remote server
+     * @param {object} data
+     * @param {boolean} noCache
+     * @returns {unresolved}
      */
     function getOnlineModules(data, noCache) {
         // Cached data
@@ -12498,7 +12598,10 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
     }
 
     /**
-     * Install online module
+     * Install a module from the remote server
+     * @param {object} data
+     * @param {string} api
+     * @returns {unresolved}
      */
     function installOnlineModule(data, api) {
         return $http({
@@ -12518,7 +12621,9 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
     }
 
     /**
-     * Restore from backup
+     * Resore the system from the backup file
+     * @param {object} data
+     * @returns {unresolved}
      */
     function restoreFromBck(data) {
         var uploadUrl = cfg.server_url + cfg.api['restore'];
@@ -12542,7 +12647,9 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
 
 
     /**
-     * Get help file
+     * Load a help page from the storage directory
+     * @param {string} file
+     * @returns {unresolved}
      */
     function getHelp(file) {
         return $http({
@@ -13905,7 +14012,7 @@ myApp.filter('getElementIcon', function (cfg) {
                     }
                     break;
                 case 'thermostat':
-                    con = cfg.img.icons + 'thermostat.png';
+                    icon = cfg.img.icons + 'thermostat.png';
                     break;
 
                 case 'energy':
@@ -15788,12 +15895,13 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
 });
 
 /**
- * Application Event controller
+ * @overview Handles all events.
  * @author Martin Vach
  */
 
 /**
- * Event controller
+ * The controller that renders and handles event actions.
+ * @class EventController
  */
 myAppController.controller('EventController', function ($scope, $routeParams, $interval, $q, $filter, $cookies, dataFactory, dataService, myCache, paginationService, cfg, _) {
     $scope.page = {
@@ -15960,9 +16068,7 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
         $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
     };
     $scope.refreshData();
-    /**
-     * Watch for pagination change
-     */
+    // Watch for pagination change
     $scope.$watch('currentPage', function (page) {
         paginationService.setCurrentPage(page);
     });
@@ -15990,7 +16096,7 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
     };
 
     /**
-     * Hide source events
+     * Hide an event by the source
      */
     $scope.hideSourceEvents = function (deviceId) {
         $scope.user.hide_single_device_events = dataService.setArrayValue($scope.user.hide_single_device_events, deviceId, true);
@@ -17164,9 +17270,9 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $cookies,
         }
     };
 
-    /**
-     * Get active skin
-     */
+//    /**
+//     * Get active skin
+//     */
 //    $scope.getActiveSkin = function () {
 //        if ($cookies.skin && $cookies.skin !== 'default') {
 //            $scope.skins.local.active = $cookies.skin;
@@ -17326,7 +17432,6 @@ myAppController.controller('SkinOnlineController', function ($scope, dataFactory
      * Upgrade skin
      */
     $scope.upgradeSkin = function (skin) {
-        console.log(skin)
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
 
         dataFactory.getApiLocal('skins-online.json').then(function (response) {
@@ -17375,11 +17480,13 @@ myAppController.controller('DeviceController', function($scope, dataFactory) {
     $scope.loadEnOceanModule();
 });
 /**
- * Application Zwave inclusion controller
+ * @overview Handles Z-Wave device inclusion actions.
  * @author Martin Vach
  */
+
 /**
- * Zwave include controller
+ * The controller that handles Z-Wave device inclusion process.
+ * @class ZwaveInclusionController
  */
 myAppController.controller('ZwaveInclusionController', function ($scope, $q, $routeParams, $filter, $interval, $timeout, $route, $location, dataFactory, dataService, _) {
     $scope.zwaveInclusion = {
@@ -17647,7 +17754,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
     };
 
     /**
-     * Run zwave CMD
+     * Run zwave command
      */
     $scope.runZwaveCmd = function (cmd) {
         dataFactory.runZwaveCmd(cmd).then(function () {
@@ -17858,10 +17965,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
                 return;
             }
 
-            /**
-             * If no Security or Security ok but Interviews are not complete
-             */
-
+            // If no Security or Security ok but Interviews are not complete
             if (!_.isEmpty($scope.zwaveInclusion.automatedConfiguration.includedDevice.interviewNotDone)) {
                 // If command class Version is not complet, „Force Interview Version“
                 if ($scope.zwaveInclusion.automatedConfiguration.includedDevice.interviewNotDone['Version']) {
@@ -17873,9 +17977,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
                     return;
                 }
             }
-            /**
-             * All interviews are done
-             */
+            // All interviews are done
             if (progress >= 100) {
                 $scope.zwaveInclusion.automatedConfiguration.progress = 100;
                 resetConfiguration(false, true, null, false, true);
@@ -17904,12 +18006,14 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
 
 
 /**
- * Application Zwave controller
+ * @overview Controllers that handle Z-Wave devices actions.
  * @author Martin Vach
  */
 
 /**
- * Zwave select controller
+ * This is a new version of the ZwaveAddController and is not completed!!!
+ * The controller that renders Z-Wave manufacturers and devices.
+ * @class ZwaveSelectController
  */
 myAppController.controller('ZwaveSelectController', function ($scope, $routeParams, dataFactory, dataService, _) {
     $scope.zwaveSelect = {
@@ -17959,7 +18063,8 @@ myAppController.controller('ZwaveSelectController', function ($scope, $routePara
 });
 
 /**
- * Zwave add controller
+ * The controller that renders Z-Wave manufacturers and devices.
+ * @class ZwaveAddController
  */
 myAppController.controller('ZwaveAddController', function ($scope, $routeParams, dataFactory, dataService, _) {
     $scope.zwaveDevices = [];
@@ -17986,8 +18091,10 @@ myAppController.controller('ZwaveAddController', function ($scope, $routeParams,
     };
     $scope.loadData($routeParams.brandname, $scope.lang);
 });
+
 /**
- * Zwave manage controller
+ * The controller that renders and handles data in the Z-Wave/Manage section.
+ * @class ZwaveManageController
  */
 myAppController.controller('ZwaveManageController', function ($scope, $cookies, $filter, $window, $location, dataFactory, dataService, myCache) {
     $scope.activeTab = (angular.isDefined($cookies.tab_network) ? $cookies.tab_network : 'battery');
@@ -18198,7 +18305,8 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
 });
 
 /**
- * Zwave interview controller
+ * The controller that handles interview process in the Z-Wave/Network section.
+ * @class ZwaveInterviewController
  */
 myAppController.controller('ZwaveInterviewController', function ($scope, $location, $interval, dataFactory, dataService, _) {
     $scope.zwaveInterview = {
@@ -18426,10 +18534,7 @@ myAppController.controller('ZwaveInterviewController', function ($scope, $locati
                 return;
             }
 
-            /**
-             * If no Security or Security ok but Interviews are not complete
-             */
-
+            // If no Security or Security ok but Interviews are not complete
             if (!_.isEmpty($scope.zwaveInterview.interviewNotDone)) {
                 // If command class Version is not complet, „Force Interview Version“
                 if ($scope.zwaveInterview.interviewNotDone['Version']) {
@@ -18441,9 +18546,7 @@ myAppController.controller('ZwaveInterviewController', function ($scope, $locati
                     return;
                 }
             }
-            /**
-             * All interviews are done
-             */
+            // If no Security or Security ok but Interviews are not complete
             if (progress >= 100) {
                 $scope.zwaveInterview.progress = 100;
                 resetConfiguration(false, true, null, false, true);
@@ -18459,7 +18562,8 @@ myAppController.controller('ZwaveInterviewController', function ($scope, $locati
     ;
 });
 /**
- * Zwave exclude controller
+ * The controller that handles Z-Wave exclusion process.
+ * @class ZwaveInterviewController
  */
 myAppController.controller('ZwaveExcludeController', function ($scope, $location, $routeParams, $interval, dataFactory, dataService, _) {
     $scope.zWaveDevice = {
@@ -18549,7 +18653,8 @@ myAppController.controller('ZwaveExcludeController', function ($scope, $location
     };
 });
 /**
- * Zwave manage detail controller
+ * The controller that renders and handles configuration data for a single Z-Wave device.
+ * @class ZwaveManageIdController
  */
 myAppController.controller('ZwaveManageIdController', function ($scope, $window, $routeParams, $q, $filter, $location, dataFactory, dataService, myCache) {
     $scope.zwaveConfig = {
@@ -18910,13 +19015,14 @@ myAppController.controller('CameraManageController', function ($scope, $q, dataF
 });
 
 /**
- * Application EnOcean controller
+ * @overview Controllers that handle EnOcean Services.
  * @author Martin Vach
  */
 
 
 /**
- * EnOcean devices controller
+ * The controller that renders the list of EnOcean manufacturers and devices.
+ * @class EnoceanDeviceController
  */
 myAppController.controller('EnoceanDeviceController', function($scope, $routeParams, dataFactory, dataService, _) {
     $scope.activeTab = 'devices';
@@ -18971,7 +19077,8 @@ myAppController.controller('EnoceanDeviceController', function($scope, $routePar
     $scope.loadData($routeParams.brandname);
 });
 /**
- * EnOcean assign profile controller
+ * The controller that teach-in a device by the profile.
+ * @class EnoceanAssignController
  */
 myAppController.controller('EnoceanAssignController', function($scope, $interval, dataFactory, dataService, myCache) {
     $scope.activeTab = 'assign';
@@ -19013,7 +19120,7 @@ myAppController.controller('EnoceanAssignController', function($scope, $interval
     $scope.loadIncludedDevices();
 
     /**
-     * Load profiles
+     * Load EnOcean profiles
      */
     $scope.loadProfiles = function() {
         dataFactory.xmlToJson($scope.cfg.server_url + 'config/Profiles.xml').then(function(response) {
@@ -19037,7 +19144,7 @@ myAppController.controller('EnoceanAssignController', function($scope, $interval
 
 
     /**
-     * Load API devices
+     * Load devices from the data holder
      */
     $scope.loadApiDevices = function() {
         dataFactory.getApi('devices').then(function(response) {
@@ -19169,7 +19276,7 @@ myAppController.controller('EnoceanAssignController', function($scope, $interval
     };
 
     /**
-     * Run CMD
+     * Run command
      */
     $scope.runCmd = function(cmd) {
         // Run CMD
@@ -19196,7 +19303,7 @@ myAppController.controller('EnoceanAssignController', function($scope, $interval
 
     };
     /**
-     * Assign devices to room
+     * Assign devices to the room
      */
     $scope.devicesToRoom = function(roomId, devices) {
         if (!roomId) {
@@ -19228,7 +19335,7 @@ myAppController.controller('EnoceanAssignController', function($scope, $interval
     };
 
     /**
-     * Assign profile to device
+     * Assign profile to the device
      */
     function assignProfile() {
         var profile = false;
@@ -19245,7 +19352,8 @@ myAppController.controller('EnoceanAssignController', function($scope, $interval
 
 });
 /**
- * EnOcean teach In controller
+ * The controller that teach-in a device from the list.
+ * @class EnoceanTeachinController
  */
 myAppController.controller('EnoceanTeachinController', function($scope, $routeParams, $interval, $location, dataFactory, dataService, myCache) {
     $scope.device = [];
@@ -19308,7 +19416,7 @@ myAppController.controller('EnoceanTeachinController', function($scope, $routePa
     $scope.loadLocations();
 
     /**
-     * Load API devices
+     * Load device data holder
      */
     $scope.loadApiDevices = function() {
         dataFactory.getApi('devices').then(function(response) {
@@ -19452,7 +19560,7 @@ myAppController.controller('EnoceanTeachinController', function($scope, $routePa
     };
 
     /**
-     * Run CMD
+     * Run command
      */
     $scope.runCmd = function(cmd) {
         // Run CMD
@@ -19529,7 +19637,8 @@ myAppController.controller('EnoceanTeachinController', function($scope, $routePa
     ;
 });
 /**
- * EnOcean manage  controller
+ * The controller that manage EnOcean devices.
+ * @class EnoceanManageController
  */
 myAppController.controller('EnoceanManageController', function($scope, $location, $window, dataFactory, dataService) {
     $scope.activeTab = 'manage';
@@ -19686,7 +19795,8 @@ myAppController.controller('EnoceanManageController', function($scope, $location
     ;
 });
 /**
- * EnOcean manage detail  controller
+ * The controller that handles actions on the EnOcean device.
+ * @class EnoceanManageDetailController
  */
 myAppController.controller('EnoceanManageDetailController', function($scope, $routeParams, $filter, dataFactory, dataService, myCache) {
     $scope.activeTab = 'manage';
@@ -19741,7 +19851,7 @@ myAppController.controller('EnoceanManageDetailController', function($scope, $ro
     $scope.loadData();
 
     /**
-     * Load API devices
+     * Load devices data holder
      */
     $scope.loadApiDevices = function() {
         dataFactory.getApi('devices', null, true).then(function(response) {
@@ -19840,7 +19950,7 @@ myAppController.controller('EnoceanManageDetailController', function($scope, $ro
 
 
     /**
-     * Run CMD
+     * Run command
      */
     $scope.runCmd = function(cmd) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
@@ -19897,7 +20007,8 @@ myAppController.controller('EnoceanManageDetailController', function($scope, $ro
     ;
 });
 /**
- * EnOcean controller info controller
+ * The controller that renders informations about the controller.
+ * @class EnoceanControllerController
  */
 myAppController.controller('EnoceanControllerController', function($scope, $location, dataFactory, dataService) {
     $scope.activeTab = 'controller';
@@ -19920,12 +20031,13 @@ myAppController.controller('EnoceanControllerController', function($scope, $loca
     $scope.loadData();
 });
 /**
- * Application Room controller
+ * @overview Controllers that handle room actions.
  * @author Martin Vach
  */
 
 /**
- * Room controller
+ * The room root controller
+ * @class RoomController
  */
 myAppController.controller('RoomController', function ($scope, $q, $cookies, $filter, dataFactory, dataService, _) {
     $scope.rooms = {
@@ -19991,7 +20103,8 @@ myAppController.controller('RoomController', function ($scope, $q, $cookies, $fi
     };
 });
 /**
- * Room config controller
+ * The controller that renders the list of the rooms in  the config rooms section.
+ * @class RoomConfigController
  */
 myAppController.controller('RoomConfigController', function ($scope, $q, dataFactory, dataService, myCache, _) {
     /**
@@ -20032,7 +20145,8 @@ myAppController.controller('RoomConfigController', function ($scope, $q, dataFac
     ;
 });
 /**
- * Config room detail controller
+ * The controller that renders and handles single room data.
+ * @class RoomConfigEditController
  */
 myAppController.controller('RoomConfigEditController', function ($scope, $routeParams, $filter, $location, dataFactory, dataService, myCache, _) {
     $scope.id = $filter('toInt')($routeParams.id);
@@ -20052,7 +20166,7 @@ myAppController.controller('RoomConfigEditController', function ($scope, $routeP
     $scope.myFile = false;
 
     /**
-     * Load data
+     * Load rooms
      */
     $scope.loadData = function (id) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
@@ -20073,7 +20187,7 @@ myAppController.controller('RoomConfigEditController', function ($scope, $routeP
     }
 
     /**
-     * Upload image
+     * Upload an image
      */
     $scope.uploadFile = function (files) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('uploading')};
@@ -20120,7 +20234,7 @@ myAppController.controller('RoomConfigEditController', function ($scope, $routeP
     };
 
     /**
-     * Create/Update an item
+     * Create new or update a location
      */
     $scope.store = function (form, input) {
         if (form.$invalid) {
@@ -20200,12 +20314,13 @@ myAppController.controller('RoomConfigEditController', function ($scope, $routeP
 
 });
 /**
- * Application Management controller
+ * @overview Controllers that handle management actions.
  * @author Martin Vach
  */
 
 /**
- * Management controller
+ * The management root controller
+ * @class ManagementController
  */
 myAppController.controller('ManagementController', function ($scope, $interval, $q, dataFactory, dataService, myCache) {
     //Set elements to expand/collapse
@@ -20294,7 +20409,8 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
 
 });
 /**
- * List of users
+ * The controller that renders the list of users.
+ * @class ManagementUserController
  */
 myAppController.controller('ManagementUserController', function ($scope,$cookies,dataFactory, dataService, myCache) {
     $scope.userProfiles = {
@@ -20349,7 +20465,8 @@ myAppController.controller('ManagementUserController', function ($scope,$cookies
 
 });
 /**
- * User detail
+ * The controller that handles user detail actions.
+ * @class ManagementUserIdController
  */
 myAppController.controller('ManagementUserIdController', function ($scope, $routeParams, $filter, $q, dataFactory, dataService, myCache) {
     $scope.id = $filter('toInt')($routeParams.id);
@@ -20510,7 +20627,8 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
 
 });
 /**
- * Remote access controller
+ * The controller that renders and handles remote access data.
+ * @class ManagementRemoteController
  */
 myAppController.controller('ManagementRemoteController', function ($scope, dataFactory, dataService) {
     $scope.remoteAccess = false;
@@ -20564,7 +20682,8 @@ myAppController.controller('ManagementRemoteController', function ($scope, dataF
     };
 });
 /**
- * Licence controller
+ * The controller that handles the licence key.
+ * @class ManagementLicenceController
  */
 myAppController.controller('ManagementLicenceController', function ($scope, dataFactory) {
     $scope.proccessLicence = false;
@@ -20634,7 +20753,8 @@ myAppController.controller('ManagementLicenceController', function ($scope, data
     ;
 });
 /**
- * Firmware update controller
+ * The controller that handles firmware update process.
+ * @class ManagementFirmwareController
  */
 myAppController.controller('ManagementFirmwareController', function ($scope, $sce, $timeout, dataFactory) {
     $scope.firmwareUpdateUrl = $sce.trustAsResourceUrl('http://' + $scope.hostName + ':8084/cgi-bin/main.cgi');
@@ -20644,7 +20764,7 @@ myAppController.controller('ManagementFirmwareController', function ($scope, $sc
         url: $sce.trustAsResourceUrl('http://' + $scope.hostName + ':8084/cgi-bin/main.cgi')
     };
     /**
-     * Load razberry latest version
+     * Set access
      */
     $scope.setAccess = function (param, loader) {
         if (loader) {
@@ -20677,7 +20797,8 @@ myAppController.controller('ManagementFirmwareController', function ($scope, $sc
     //$scope.loadRazLatest();
 });
 /**
- * Restor controller
+ * The controller that handles restore process.
+ * @class ManagementRestoreController
  */
 myAppController.controller('ManagementRestoreController', function ($scope, $window,$timeout,dataFactory, dataService) {
     $scope.myFile = null;
@@ -20688,7 +20809,7 @@ myAppController.controller('ManagementRestoreController', function ($scope, $win
     };
 
     /**
-     * Upload image
+     * Upload backup file
      */
     $scope.uploadFile = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('restore_wait')};
@@ -20716,7 +20837,8 @@ myAppController.controller('ManagementRestoreController', function ($scope, $win
 });
 
 /**
- * Management factory default controller
+ * The controller that resets the system to factory default.
+ * @class ManagementFactoryController
  */
 myAppController.controller('ManagementFactoryController', function ($scope, $window, $cookies, $cookieStore, dataFactory, dataService) {
     $scope.factoryDefault = {
@@ -20729,7 +20851,7 @@ myAppController.controller('ManagementFactoryController', function ($scope, $win
 
     };
     /**
-     * Reset to factory
+     * Reset to factory default
      */
     $scope.resetFactoryDefault = function (message) {
 //        var params = '?useDefaultConfig=' + $scope.factoryDefault.model.overwriteBackupCfg
@@ -20757,7 +20879,8 @@ myAppController.controller('ManagementFactoryController', function ($scope, $win
 
 });
 /**
- * App Store controller
+ * The controller that renders and handles app store data.
+ * @class ManagementAppStoreController
  */
 myAppController.controller('ManagementAppStoreController', function ($scope, dataFactory, dataService) {
     $scope.appStore = {
@@ -20780,7 +20903,7 @@ myAppController.controller('ManagementAppStoreController', function ($scope, dat
     $scope.appStoreLoadTokens();
 
     /**
-     * Create/Update an item
+     * Create/Update a token
      */
     $scope.appStoreAddToken = function () {
         if ($scope.appStore.input.token === '') {
@@ -20800,7 +20923,7 @@ myAppController.controller('ManagementAppStoreController', function ($scope, dat
     };
 
     /**
-     * Remove a token from the list
+     * Remove token from the list
      */
     $scope.appStoreRemoveToken = function (token, message) {
         alertify.confirm(message, function () {
@@ -20819,7 +20942,8 @@ myAppController.controller('ManagementAppStoreController', function ($scope, dat
 
 });
 /**
- * Management report controller
+ * The controller that handles bug report info.
+ * @class ManagementReportController
  */
 myAppController.controller('ManagementReportController', function ($scope, $window, $route, dataFactory, dataService) {
     $scope.remoteAccess = false;
@@ -20887,7 +21011,8 @@ myAppController.controller('ManagementReportController', function ($scope, $wind
 
 });
 /**
- * Management postfix controller
+ * The controller that renders postfix data.
+ * @class ManagementPostfixController
  */
 myAppController.controller('ManagementPostfixController', function ($scope, dataFactory, _) {
     $scope.postfix = {
@@ -20914,18 +21039,20 @@ myAppController.controller('ManagementPostfixController', function ($scope, data
 
 });
 /**
- * Management info controller
+ * The controller that renders info data.
+ * @class ManagementInfoController
  */
 myAppController.controller('ManagementInfoController', function ($scope, dataFactory, dataService) {
 
 });
 /**
- * Application MySettings controller
+ * @overview Handles user actions.
  * @author Martin Vach
  */
 
 /**
- * My Access
+ * The controller that renders and handles user data.
+ * @class MySettingsController
  */
 myAppController.controller('MySettingsController', function($scope, $window, $cookies,$timeout,$filter,$q,dataFactory, dataService, myCache) {
     $scope.id = $scope.user.id;
@@ -20935,9 +21062,9 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
     $scope.trustMyNetwork = true;
     
     
-     /**
-     * Trust my network
-     */
+//     /**
+//     * Trust my network
+//     */
 //    $scope.loadTrustMyNetwork = function() {
 //        dataFactory.getApi('trust_my_network').then(function (response) {
 //            $scope.trustMyNetwork = response.data.data.trustMyNetwork;
@@ -20982,7 +21109,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
     $scope.allSettled();  
     
     /**
-     * Assign device to list
+     * Assign device to the list
      */
     $scope.assignDevice = function(assign) {
         $scope.input.hide_single_device_events.push(assign);
@@ -21004,7 +21131,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
     };
 
     /**
-     * Create/Update an item
+     * Create/Update a profile
      */
     $scope.store = function(form,input) {
         if (form.$invalid) {
@@ -21039,9 +21166,9 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
         });
     };
     
-     /**
-     * Set Trust my network
-     */
+//     /**
+//     * Set Trust my network
+//     */
 //    $scope.setTrustMyNetwork = function(trustMyNetwork) {
 //       $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
 //                dataFactory.putApi('trust_my_network', null, {trustMyNetwork: trustMyNetwork}).then(function (response) {

@@ -1,9 +1,11 @@
 /**
- * Application Zwave inclusion controller
+ * @overview Handles Z-Wave device inclusion actions.
  * @author Martin Vach
  */
+
 /**
- * Zwave include controller
+ * The controller that handles Z-Wave device inclusion process.
+ * @class ZwaveInclusionController
  */
 myAppController.controller('ZwaveInclusionController', function ($scope, $q, $routeParams, $filter, $interval, $timeout, $route, $location, dataFactory, dataService, _) {
     $scope.zwaveInclusion = {
@@ -271,7 +273,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
     };
 
     /**
-     * Run zwave CMD
+     * Run zwave command
      */
     $scope.runZwaveCmd = function (cmd) {
         dataFactory.runZwaveCmd(cmd).then(function () {
@@ -482,10 +484,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
                 return;
             }
 
-            /**
-             * If no Security or Security ok but Interviews are not complete
-             */
-
+            // If no Security or Security ok but Interviews are not complete
             if (!_.isEmpty($scope.zwaveInclusion.automatedConfiguration.includedDevice.interviewNotDone)) {
                 // If command class Version is not complet, „Force Interview Version“
                 if ($scope.zwaveInclusion.automatedConfiguration.includedDevice.interviewNotDone['Version']) {
@@ -497,9 +496,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
                     return;
                 }
             }
-            /**
-             * All interviews are done
-             */
+            // All interviews are done
             if (progress >= 100) {
                 $scope.zwaveInclusion.automatedConfiguration.progress = 100;
                 resetConfiguration(false, true, null, false, true);
