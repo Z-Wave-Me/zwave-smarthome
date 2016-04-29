@@ -11,13 +11,21 @@ name | overview
 [app\controllers\controllers.js](app/controllers/controllers.md) | _The uncategorized controllers._
 [app\controllers\device.js](app/controllers/device.md) | _This controller handles devices submenus – Z-Wave, Camera and EnOcean._
 [app\controllers\element.js](app/controllers/element.md) | _Controllers that handle the list of elements, as well as an element detail._
-[app\controllers\enocean.js](app/controllers/enocean.md) | 
-[app\controllers\event.js](app/controllers/event.md) | 
-[app\controllers\management.js](app/controllers/management.md) | 
-[app\controllers\mysettings.js](app/controllers/mysettings.md) | 
-[app\controllers\room.js](app/controllers/room.md) | 
+[app\controllers\enocean.js](app/controllers/enocean.md) | _Controllers that handle EnOcean Services._
+[app\controllers\event.js](app/controllers/event.md) | _Handles all events._
+[app\controllers\management.js](app/controllers/management.md) | _Controllers that handle management actions._
+[app\controllers\mysettings.js](app/controllers/mysettings.md) | _Handles user actions._
+[app\controllers\room.js](app/controllers/room.md) | _Controllers that handle room actions._
 [app\controllers\skin.js](app/controllers/skin.md) | _Controllers that handle all Skins actions._
-[app\controllers\zwave-inclusion.js](app/controllers/zwave-inclusion.md) | 
-[app\controllers\zwave.js](app/controllers/zwave.md) | 
+[app\controllers\zwave-inclusion.js](app/controllers/zwave-inclusion.md) | _Handles Z-Wave device inclusion actions._
+[app\controllers\zwave.js](app/controllers/zwave.md) | _Controllers that handle Z-Wave devices actions._
+- - -
+
+
+app/services
+---
+name | overview
+:-- | :--
+[app\services\factories.js](app/services/factories.md) | _Angular factories that handle cache, Underscore and HTTP requests._
 - - -
 

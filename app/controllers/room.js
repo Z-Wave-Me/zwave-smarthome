@@ -1,10 +1,11 @@
 /**
- * Application Room controller
+ * @overview Controllers that handle room actions.
  * @author Martin Vach
  */
 
 /**
- * Room controller
+ * The room root controller
+ * @class RoomController
  */
 myAppController.controller('RoomController', function ($scope, $q, $cookies, $filter, dataFactory, dataService, _) {
     $scope.rooms = {
@@ -70,7 +71,8 @@ myAppController.controller('RoomController', function ($scope, $q, $cookies, $fi
     };
 });
 /**
- * Room config controller
+ * The controller that renders the list of the rooms in  the config rooms section.
+ * @class RoomConfigController
  */
 myAppController.controller('RoomConfigController', function ($scope, $q, dataFactory, dataService, myCache, _) {
     /**
@@ -111,7 +113,8 @@ myAppController.controller('RoomConfigController', function ($scope, $q, dataFac
     ;
 });
 /**
- * Config room detail controller
+ * The controller that renders and handles single room data.
+ * @class RoomConfigEditController
  */
 myAppController.controller('RoomConfigEditController', function ($scope, $routeParams, $filter, $location, dataFactory, dataService, myCache, _) {
     $scope.id = $filter('toInt')($routeParams.id);
@@ -131,7 +134,7 @@ myAppController.controller('RoomConfigEditController', function ($scope, $routeP
     $scope.myFile = false;
 
     /**
-     * Load data
+     * Load rooms
      */
     $scope.loadData = function (id) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
@@ -152,7 +155,7 @@ myAppController.controller('RoomConfigEditController', function ($scope, $routeP
     }
 
     /**
-     * Upload image
+     * Upload an image
      */
     $scope.uploadFile = function (files) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('uploading')};
@@ -199,7 +202,7 @@ myAppController.controller('RoomConfigEditController', function ($scope, $routeP
     };
 
     /**
-     * Create/Update an item
+     * Create new or update a location
      */
     $scope.store = function (form, input) {
         if (form.$invalid) {

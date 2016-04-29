@@ -6,49 +6,45 @@
 
 * * *
 
-### allSettled() 
+## Class: EventController
+The controller that renders and handles event actions.
+
+### EventController.allSettled() 
 
 Load all promises
 
 
-
-### changeTime() 
+### EventController.changeTime() 
 
 Change time
 
 
-
-### refreshData() 
+### EventController.refreshData() 
 
 Refresh data
 
 
-
-### deleteEvent() 
+### EventController.deleteEvent() 
 
 Delete event
 
 
+### EventController.hideSourceEvents() 
 
-### hideSourceEvents() 
-
-Hide source events
-
+Hide an event by the source
 
 
-### setDevices() 
+### EventController.setDevices() 
 
 Set devices
 
 
-
-### setEvents() 
+### EventController.setEvents() 
 
 Set events data
 
 
-
-### updateProfile() 
+### EventController.updateProfile() 
 
 Update profile
 
@@ -59,10 +55,10 @@ Update profile
 
 
 
+**Author:** Martin Vach
 
 
 
-
-
+**Overview:** Handles all events.
 
 

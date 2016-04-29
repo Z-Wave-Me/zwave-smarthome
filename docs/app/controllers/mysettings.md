@@ -6,37 +6,35 @@
 
 * * *
 
-### allSettled() 
+## Class: MySettingsController
+The controller that renders and handles user data.
+
+### MySettingsController.allSettled() 
 
 Load all promises
 
 
+### MySettingsController.assignDevice() 
 
-### assignDevice() 
-
-Assign device to list
-
+Assign device to the list
 
 
-### removeDevice() 
+### MySettingsController.removeDevice() 
 
 Remove device from the list
 
 
+### MySettingsController.store() 
 
-### store() 
-
-Create/Update an item
-
+Create/Update a profile
 
 
-### changePassword() 
+### MySettingsController.changePassword() 
 
 Change password
 
 
-
-### loadDevices() 
+### MySettingsController.loadDevices() 
 
 Load devices
 
@@ -47,10 +45,10 @@ Load devices
 
 
 
+**Author:** Martin Vach
 
 
 
-
-
+**Overview:** Handles user actions.
 
 

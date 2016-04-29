@@ -6,73 +6,73 @@
 
 * * *
 
-### allSettled() 
+## Class: RoomController
+The room root controller
+
+### RoomController.allSettled() 
 
 Load all promises
 
 
-
-### setOrderBy() 
+### RoomController.setOrderBy() 
 
 Set order by
 
 
 
-### deleteRoom() 
+## Class: RoomConfigController
+The controller that renders the list of the rooms in  the config rooms section.
+
+### RoomConfigController.deleteRoom() 
 
 Delete a room
 
 
-
-### removeRoomIdFromDevice() 
+### RoomConfigController.removeRoomIdFromDevice() 
 
 Remove room id from device
 
 
 
-### loadData() 
+## Class: RoomConfigEditController
+The controller that renders and handles single room data.
 
-Load data
+### RoomConfigEditController.loadData() 
 
-
-
-### uploadFile() 
-
-Upload image
+Load rooms
 
 
+### RoomConfigEditController.uploadFile() 
 
-### assignDevice() 
+Upload an image
+
+
+### RoomConfigEditController.assignDevice() 
 
 Assign device to room
 
 
-
-### removeDevice() 
+### RoomConfigEditController.removeDevice() 
 
 Remove device from the room
 
 
+### RoomConfigEditController.store() 
 
-### store() 
-
-Create/Update an item
-
+Create new or update a location
 
 
-### loadDevices() 
+### RoomConfigEditController.loadDevices() 
 
 Load devices
 
 
-
-### saveRoomIdIntoDevice() 
+### RoomConfigEditController.saveRoomIdIntoDevice() 
 
 Save room id into device
 
 
-
-### removeRoomIdFromDevice() 
+### RoomConfigEditController.removeRoomIdFromDevice() 
 
 Remove room id from device
 
@@ -83,10 +83,10 @@ Remove room id from device
 
 
 
+**Author:** Martin Vach
 
 
 
-
-
+**Overview:** Controllers that handle room actions.
 
 

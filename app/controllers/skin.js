@@ -27,9 +27,9 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $cookies,
         }
     };
 
-    /**
-     * Get active skin
-     */
+//    /**
+//     * Get active skin
+//     */
 //    $scope.getActiveSkin = function () {
 //        if ($cookies.skin && $cookies.skin !== 'default') {
 //            $scope.skins.local.active = $cookies.skin;
@@ -189,7 +189,6 @@ myAppController.controller('SkinOnlineController', function ($scope, dataFactory
      * Upgrade skin
      */
     $scope.upgradeSkin = function (skin) {
-        console.log(skin)
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
 
         dataFactory.getApiLocal('skins-online.json').then(function (response) {

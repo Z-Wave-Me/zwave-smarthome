@@ -1,24 +1,30 @@
 /**
- * Application factories
+ * @overview Angular factories that handle cache, Underscore and HTTP requests.
  * @author Martin Vach
  */
+
+// Angular module
 var myAppFactory = angular.module('myAppFactory', []);
 
 /**
- * Caching the river...
+ * The factory that handles angular $cacheFactory
+ * @class myCache
  */
 myAppFactory.factory('myCache', function ($cacheFactory) {
     return $cacheFactory('myData');
 });
+
 /**
- * Underscore
+ * The factory that handles the Underscore library
+ * @class Underscore
  */
 myAppFactory.factory('_', function () {
     return window._; // assumes underscore has already been loaded on the page
 });
 
 /**
- * Main data factory
+ * The factory that handles all local and remote HTTP requests
+ * @class dataFactory
  */
 myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataService, cfg, _) {
     var updatedTime = Math.round(+new Date() / 1000);
@@ -70,7 +76,11 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
 
     /// --- Public functions --- ///
 
-    // Post api data
+    /**
+     * Handles login process
+     * @param {object} data
+     * @returns {unresolved}
+     */
     function logInApi(data) {
         return $http({
             method: "post",
@@ -84,7 +94,10 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
         });
     }
 
-    // Get api data
+    /**
+     * Get Z-Wave session
+     * @returns {unresolved}
+     */
     function sessionApi() {
         return $http({
             method: "get",
@@ -98,7 +111,9 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
     }
 
     /**
-     * Gets api local data
+     * Get local data from the storage directory
+     * @param {string} file
+     * @returns {unresolved}
      */
     function getApiLocal(file) {
         return $http({
@@ -117,9 +132,13 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
     }
 
     /**
-     * API data
+     * Get ZAutomation api data
+     * @param {string} api
+     * @param {string} params
+     * @param {boolean} noCache
+     * @param {boolean} fatalError
+     * @returns {unresolved}
      */
-    // Get api data
     function getApi(api, params, noCache, fatalError) {
         // Cached data
         var cacheName = api + (params || '');
@@ -158,7 +177,13 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
             return $q.reject(response);
         });
     }
-    // Post api data
+   /**
+    * Post ZAutomation api data
+    * @param {string} api
+    * @param {object} data
+    * @param {string} params
+    * @returns {unresolved}
+    */
     function postApi(api, data, params) {
         return $http({
             method: "post",
@@ -175,7 +200,14 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
         });
     }
 
-    // Put api data
+    /**
+     * Put ZAutomation api data
+     * @param {string} api
+     * @param {int} id
+     * @param {object} data
+     * @param {string} params
+     * @returns {unresolved}
+     */
     function putApi(api, id, data, params) {
         return $http({
             method: "put",
@@ -192,7 +224,15 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
             return $q.reject(response);
         });
     }
-    // Put api data
+    /**
+     * Put ZAutomation api data with predefined HTTP headers
+     * @param {string} api
+     * @param {int} id
+     * @param {object} data
+     * @param {object} headers
+     * @param {string} params
+     * @returns {unresolved}
+     */
     function putApiWithHeaders(api, id, data, headers, params) {
         return $http({
             method: "put",
@@ -206,7 +246,13 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
             return $q.reject(response);
         });
     }
-    // Put api data as form data
+    /**
+     * Put ZAutomation api data with x-www-form-urlencoded header
+     * @param {string} api
+     * @param {object} data
+     * @param {string} params
+     * @returns {unresolved}
+     */
     function putApiFormdata(api, data, params) {
         return $http({
             method: "put",
@@ -225,7 +271,14 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
         });
     }
 
-    // POST/PUT api data
+    /**
+     * Put or Post ZAutomation api data - depends on id
+     * @param {string} api
+     * @param {int} id
+     * @param {object} data
+     * @param {string} params
+     * @returns {unresolved}
+     */
     function storeApi(api, id, data, params) {
         return $http({
             method: id ? 'put' : 'post',
@@ -243,7 +296,13 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
         });
     }
 
-    // Delete api data
+    /**
+     * Delete ZAutomation api data
+     * @param {string} api
+     * @param {int} id
+     * @param {string} params
+     * @returns {unresolved}
+     */
     function deleteApi(api, id, params) {
         return $http({
             method: 'delete',
@@ -261,7 +320,13 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
 
     }
 
-    // Delete api data as form data
+    /**
+     * Delete ZAutomation api data with x-www-form-urlencoded header
+     * @param {string} api
+     * @param {object} data
+     * @param {string} params
+     * @returns {unresolved}
+     */
     function deleteApiFormdata(api, data, params) {
         return $http({
             method: 'delete',
@@ -282,7 +347,9 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
     }
 
     /**
-     * Run api command
+     * Get ZAutomation api command
+     * @param {string} cmd
+     * @returns {unresolved}
      */
     function runApiCmd(cmd) {
         return $http({
@@ -303,7 +370,11 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
         });
     }
 
-    // Run expert cmd
+    /**
+     * Post ZWaveAPI run command
+     * @param {type} param
+     * @returns {unresolved}
+     */
     function runExpertCmd(param) {
         return $http({
             method: 'post',
@@ -318,7 +389,10 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
     }
 
     /**
-     * Get config XML file
+     * Get XML from url and convert it to JSON
+     * @param {string} url
+     * @param {boolean} noCache
+     * @returns {unresolved}
      */
     function xmlToJson(url, noCache) {
         // Cached data
@@ -349,7 +423,9 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
     }
 
     /**
-     * Put config XML file
+     * Put XML configuration file into Configuration.xml
+     * @param {xml} data
+     * @returns {unresolved}
      */
     function putCfgXml(data) {
         return $http({
@@ -366,28 +442,13 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
             return $q.reject(response);
         });
     }
-    /**
-     * Get api js command
-     */
-//    function getJSCmd(cmd) {
-//        return $http({
-//            method: 'get',
-//            url: cfg.server_url + cfg.zwave_jsrun_url + cmd
-//        }).then(function(response) {
-//            //return response;
-//            if (typeof response.data === 'string') {
-//                return response;
-//            } else {// invalid response
-//                return $q.reject(response);
-//            }
-//        }, function(response) {// something went wrong
-//            return $q.reject(response);
-//        });
-//    }
 
 
     /**
-     * Get remote data
+     * Get data from the remote resource
+     * @param {string} url
+     * @param {boolean} noCache
+     * @returns {unresolved}
      */
     function getRemoteData(url, noCache) {
         // Cached data
@@ -414,7 +475,12 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
         });
     }
 
-    // Refresh api data
+    /**
+     * Get data from the ZAutomation api and update it
+     * @param {string} api
+     * @param {string} params
+     * @returns {unresolved}
+     */
     function refreshApi(api, params) {
         //console.log('?since=' + updatedTime)
         return $http({
@@ -437,7 +503,10 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
     }
 
     /**
-     * Upload file
+     * Upload a file to ZAutomation
+     * @param {type} cmd
+     * @param {type} data
+     * @returns {unresolved}
      */
     function uploadApiFile(cmd, data) {
         var uploadUrl = cfg.server_url + cmd;
@@ -460,7 +529,9 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
     }
 
     /**
-     * Get system cmd
+     * Get ZAutomation api system command
+     * @param {string} cmd
+     * @returns {unresolved}
      */
     function getSystemCmd(cmd) {
         return $http({
@@ -483,7 +554,9 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
 
 
     /**
-     * Load language file
+     * Get a file with language keys values from the app/lang directory
+     * @param {string} lang
+     * @returns {unresolved}
      */
     function getLanguageFile(lang) {
         var langFile = lang + '.json';
@@ -510,7 +583,10 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
     }
 
     /**
-     * Load ZwaveApiData 
+     * Get data holder from ZWaveAPI api
+     * @param {boolean} noCache
+     * @param {boolean} fatalError
+     * @returns {unresolved}
      */
     function loadZwaveApiData(noCache, fatalError) {
         // Cached data
@@ -546,7 +622,8 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
     }
 
     /**
-     * Refresh ZwaveApiData 
+     * Get updated data holder from the ZAutomation
+     * @returns {unresolved}
      */
     function refreshZwaveApiData() {
         return $http({
@@ -567,7 +644,9 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
     }
 
     /**
-     * Get updated data and join with ZwaveData
+     * Get updated ZAutomation data and join it to ZAutomation data holder
+     * @param {object} ZWaveAPIData
+     * @returns {unresolved}
      */
     function  joinedZwaveData(ZWaveAPIData) {
         var time = Math.round(+new Date() / 1000);
@@ -615,7 +694,9 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
 
 
     /**
-     * Run ExpertUI command
+     * Get Zwave api command
+     * @param {string} cmd
+     * @returns {unresolved}
      */
     function runZwaveCmd(cmd) {
         return $http({
@@ -630,7 +711,9 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
 
 
     /**
-     * Load EnOcean api data (holder)
+     * Get EnOcean data holder from the EnOceanAPI
+     * @param {boolean} noCache
+     * @returns {unresolved}
      */
     function loadEnoceanApiData(noCache) {
         // Cached data
@@ -658,7 +741,9 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
         });
     }
     /**
-     * Run Enocean command
+     * Get EnOcean command from the EnOceanAPI Run
+     * @param {string} cmd
+     * @returns {unresolved}
      */
     function runEnoceanCmd(cmd) {
         return $http({
@@ -671,7 +756,10 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
         });
     }
 
-    // Refresh Enocean data holder
+    /**
+     * Get updated Enocean data from the EnOceanAPI
+     * @returns {unresolved}
+     */
     function refreshEnoceanApiData() {
         //console.log('?since=' + updatedTime)
         return $http({
@@ -694,7 +782,9 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
     }
 
     /**
-     * Get license key
+     * Post licence data from the remote server
+     * @param {object} data
+     * @returns {unresolved}
      */
     function getLicense(data) {
         return $http({
@@ -718,7 +808,9 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
     }
 
     /**
-     * Set ZME Capabilities
+     * Post ZME Capabilities
+     * @param {object} data
+     * @returns {unresolved}
      */
     function zmeCapabilities(data) {
 //        return $q.reject(data); // Test error response
@@ -742,7 +834,9 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
 
     }
     /**
-     * Post report data
+     * Post a bug report on the remote server
+     * @param {object} data
+     * @returns {unresolved}
      */
     function postReport(data) {
         return $http({
@@ -761,7 +855,10 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
     }
 
     /**
-     * Post on remote server
+     * Post on the remote server
+     * @param {string} url
+     * @param {object} data
+     * @returns {unresolved}
      */
     function postToRemote(url, data) {
         return $http({
@@ -780,7 +877,10 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
     }
 
     /**
-     * Get online modules
+     * Load On-line modules from the remote server
+     * @param {object} data
+     * @param {boolean} noCache
+     * @returns {unresolved}
      */
     function getOnlineModules(data, noCache) {
         // Cached data
@@ -810,7 +910,10 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
     }
 
     /**
-     * Install online module
+     * Install a module from the remote server
+     * @param {object} data
+     * @param {string} api
+     * @returns {unresolved}
      */
     function installOnlineModule(data, api) {
         return $http({
@@ -830,7 +933,9 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
     }
 
     /**
-     * Restore from backup
+     * Resore the system from the backup file
+     * @param {object} data
+     * @returns {unresolved}
      */
     function restoreFromBck(data) {
         var uploadUrl = cfg.server_url + cfg.api['restore'];
@@ -854,7 +959,9 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
 
 
     /**
-     * Get help file
+     * Load a help page from the storage directory
+     * @param {string} file
+     * @returns {unresolved}
      */
     function getHelp(file) {
         return $http({

@@ -6,127 +6,130 @@
 
 * * *
 
-### loadProducts() 
+## Class: ZwaveSelectController
+This is a new version of the ZwaveAddController and is not completed!!!The controller that renders Z-Wave manufacturers and devices.
+
+### ZwaveSelectController.loadProducts() 
 
 Load products - vendor logos
 
 
-
-### loadData() 
-
-Load z-wave devices
-
-
-
-### loadData() 
+### ZwaveSelectController.loadData() 
 
 Load z-wave devices
 
 
 
-### setTab() 
+## Class: ZwaveAddController
+The controller that renders Z-Wave manufacturers and devices.
+
+### ZwaveAddController.loadData() 
+
+Load z-wave devices
+
+
+
+## Class: ZwaveManageController
+The controller that renders and handles data in the Z-Wave/Manage section.
+
+### ZwaveManageController.setTab() 
 
 Set tab
 
 
-
-### loadData() 
+### ZwaveManageController.loadData() 
 
 Load data
 
 
-
-### runZwaveCmd() 
+### ZwaveManageController.runZwaveCmd() 
 
 Run zwave CMD
 
 
-
-### zwaveApiData() 
+### ZwaveManageController.zwaveApiData() 
 
 Get zwaveApiData
 
 
-
-### isInterviewDone() 
+### ZwaveManageController.isInterviewDone() 
 
 notInterviewDevices
 
 
 
-### startConfiguration() 
+## Class: ZwaveInterviewController
+The controller that handles interview process in the Z-Wave/Network section.
+
+### ZwaveInterviewController.startConfiguration() 
 
 Start configuration
 
 
-
-### cancelConfiguration() 
+### ZwaveInterviewController.cancelConfiguration() 
 
 Cancel configuration
 
 
-
-### forceInterview() 
+### ZwaveInterviewController.forceInterview() 
 
 Force interview
 
 
-
-### resetConfiguration() 
+### ZwaveInterviewController.resetConfiguration() 
 
 Reset configuration
 
 
-
-### checkInterview() 
+### ZwaveInterviewController.checkInterview() 
 
 Check interview
 
 
 
-### loadZwaveApiData() 
+## Class: ZwaveInterviewController
+The controller that handles Z-Wave exclusion process.
+
+### ZwaveInterviewController.loadZwaveApiData() 
 
 Load z-wave devices
 
 
-
-### refreshZwaveApiData() 
+### ZwaveInterviewController.refreshZwaveApiData() 
 
 Refresh z-wave devices
 
 
-
-### runZwaveCmd() 
+### ZwaveInterviewController.runZwaveCmd() 
 
 Run ExpertUI command
 
 
-
-### removeFailedNode() 
+### ZwaveInterviewController.removeFailedNode() 
 
 Run ExpertUI command - remove failed node
 
 
 
-### allSettled() 
+## Class: ZwaveManageIdController
+The controller that renders and handles configuration data for a single Z-Wave device.
+
+### ZwaveManageIdController.allSettled() 
 
 Load all promises
 
 
-
-### addRoom() 
+### ZwaveManageIdController.addRoom() 
 
 Add room
 
 
-
-### updateAllDevices() 
+### ZwaveManageIdController.updateAllDevices() 
 
 Update all devices
 
 
-
-### zwaveConfigApiData() 
+### ZwaveManageIdController.zwaveConfigApiData() 
 
 Get zwaveApiData
 
@@ -137,10 +140,10 @@ Get zwaveApiData
 
 
 
+**Author:** Martin Vach
 
 
 
-
-
+**Overview:** Controllers that handle Z-Wave devices actions.
 
 

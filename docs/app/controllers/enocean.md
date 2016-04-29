@@ -6,259 +6,240 @@
 
 * * *
 
-### loadEnOceanModule() 
+## Class: EnoceanDeviceController
+The controller that renders the list of EnOcean manufacturers and devices.
+
+### EnoceanDeviceController.loadEnOceanModule() 
 
 Load Remote access data
 
 
-
-### loadData() 
+### EnoceanDeviceController.loadData() 
 
 Load z-wave devices
 
 
 
-### loadIncludedDevices() 
+## Class: EnoceanAssignController
+The controller that teach-in a device by the profile.
+
+### EnoceanAssignController.loadIncludedDevices() 
 
 Load included devices
 
 
+### EnoceanAssignController.loadProfiles() 
 
-### loadProfiles() 
-
-Load profiles
-
+Load EnOcean profiles
 
 
-### loadLocations() 
+### EnoceanAssignController.loadLocations() 
 
 Load locations
 
 
+### EnoceanAssignController.loadApiDevices() 
 
-### loadApiDevices() 
-
-Load API devices
-
+Load devices from the data holder
 
 
-### loadDevice() 
+### EnoceanAssignController.loadDevice() 
 
 Assign profile
 
 
-
-### refreshData() 
+### EnoceanAssignController.refreshData() 
 
 Refresh data
 
 
-
-### findDevice() 
+### EnoceanAssignController.findDevice() 
 
 Find last included device
 
 
+### EnoceanAssignController.runCmd() 
 
-### runCmd() 
-
-Run CMD
-
+Run command
 
 
-### updateDevice() 
+### EnoceanAssignController.updateDevice() 
 
 Update device
 
 
+### EnoceanAssignController.devicesToRoom() 
 
-### devicesToRoom() 
-
-Assign devices to room
-
+Assign devices to the room
 
 
-### assignProfile() 
+### EnoceanAssignController.assignProfile() 
 
-Assign profile to device
+Assign profile to the device
 
 
 
-### loadIncludedDevices() 
+## Class: EnoceanTeachinController
+The controller that teach-in a device from the list.
+
+### EnoceanTeachinController.loadIncludedDevices() 
 
 Load included devices
 
 
-
-### loadProfiles() 
+### EnoceanTeachinController.loadProfiles() 
 
 Load profiles
 
 
-
-### loadLocations() 
+### EnoceanTeachinController.loadLocations() 
 
 Load locations
 
 
+### EnoceanTeachinController.loadApiDevices() 
 
-### loadApiDevices() 
-
-Load API devices
-
+Load device data holder
 
 
-### loadDevice() 
+### EnoceanTeachinController.loadDevice() 
 
 Load single device
 
 
-
-### refreshData() 
+### EnoceanTeachinController.refreshData() 
 
 Refresh data
 
 
-
-### findDevice() 
+### EnoceanTeachinController.findDevice() 
 
 Find last included device
 
 
+### EnoceanTeachinController.runCmd() 
 
-### runCmd() 
-
-Run CMD
-
+Run command
 
 
-### updateDevice() 
+### EnoceanTeachinController.updateDevice() 
 
 Update device
 
 
-
-### devicesToRoom() 
+### EnoceanTeachinController.devicesToRoom() 
 
 Assign devices to room
 
 
-
-### assignProfile() 
+### EnoceanTeachinController.assignProfile() 
 
 Assign profile to device
 
 
 
-### loadApiDevices() 
+## Class: EnoceanManageController
+The controller that manage EnOcean devices.
+
+### EnoceanManageController.loadApiDevices() 
 
 Load API devices
 
 
-
-### loadProfiles() 
+### EnoceanManageController.loadProfiles() 
 
 Load profiles
 
 
-
-### loadData() 
+### EnoceanManageController.loadData() 
 
 Load enocean data
 
 
-
-### runCmd() 
+### EnoceanManageController.runCmd() 
 
 Run CMD
 
 
-
-### deleteDevice() 
+### EnoceanManageController.deleteDevice() 
 
 Delete device
 
 
-
-### setDevices() 
+### EnoceanManageController.setDevices() 
 
 Set devices
 
 
-
-### assignProfile() 
+### EnoceanManageController.assignProfile() 
 
 Assign profile to device
 
 
-
-### getElements() 
+### EnoceanManageController.getElements() 
 
 Get elements
 
 
 
-### loadProfiles() 
+## Class: EnoceanManageDetailController
+The controller that handles actions on the EnOcean device.
+
+### EnoceanManageDetailController.loadProfiles() 
 
 Load profiles
 
 
-
-### loadData() 
+### EnoceanManageDetailController.loadData() 
 
 Load enocean data
 
 
+### EnoceanManageDetailController.loadApiDevices() 
 
-### loadApiDevices() 
-
-Load API devices
-
+Load devices data holder
 
 
-### store() 
+### EnoceanManageDetailController.store() 
 
 Store device data
 
 
-
-### updateDevice() 
+### EnoceanManageDetailController.updateDevice() 
 
 Update device
 
 
-
-### devicesToRoom() 
+### EnoceanManageDetailController.devicesToRoom() 
 
 Assign devices to room
 
 
+### EnoceanManageDetailController.runCmd() 
 
-### runCmd() 
-
-Run CMD
-
+Run command
 
 
-### setDevices() 
+### EnoceanManageDetailController.setDevices() 
 
 Set devices
 
 
-
-### assignProfile() 
+### EnoceanManageDetailController.assignProfile() 
 
 Assign profile to device
 
 
-
-### loadLocations() 
+### EnoceanManageDetailController.loadLocations() 
 
 Load locations
 
 
 
-### loadData() 
+## Class: EnoceanControllerController
+The controller that renders informations about the controller.
+
+### EnoceanControllerController.loadData() 
 
 Load enocean data
 
@@ -269,10 +250,10 @@ Load enocean data
 
 
 
+**Author:** Martin Vach
 
 
 
-
-
+**Overview:** Controllers that handle EnOcean Services.
 
 

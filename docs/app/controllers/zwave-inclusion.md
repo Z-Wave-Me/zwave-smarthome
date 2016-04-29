@@ -6,109 +6,95 @@
 
 * * *
 
-### allSettled() 
+## Class: ZwaveInclusionController
+The controller that handles Z-Wave device inclusion process.
+
+### ZwaveInclusionController.allSettled() 
 
 Load all promises
 
 
-
-### refreshZwaveApiData() 
+### ZwaveInclusionController.refreshZwaveApiData() 
 
 Refresh ZwaveApiData
 
 
-
-### startStopExclusion() 
+### ZwaveInclusionController.startStopExclusion() 
 
 Start/Stop Exclusion
 
 
-
-### startStopInclusion() 
+### ZwaveInclusionController.startStopInclusion() 
 
 Start/Stop Inclusion
 
 
-
-### startConfiguration() 
+### ZwaveInclusionController.startConfiguration() 
 
 Start configuration
 
 
-
-### startManualConfiguration() 
+### ZwaveInclusionController.startManualConfiguration() 
 
 Start manual configuration
 
 
-
-### cancelManualConfiguration() 
+### ZwaveInclusionController.cancelManualConfiguration() 
 
 Cancel manual configuration
 
 
+### ZwaveInclusionController.runZwaveCmd() 
 
-### runZwaveCmd() 
-
-Run zwave CMD
-
+Run zwave command
 
 
-### forceInterview() 
+### ZwaveInclusionController.forceInterview() 
 
 Force interview
 
 
-
-### setDeviceId() 
+### ZwaveInclusionController.setDeviceId() 
 
 Set device by ID
 
 
-
-### setSecureInclusion() 
+### ZwaveInclusionController.setSecureInclusion() 
 
 Set secure inclusion
 
 
-
-### setZWaveAPIData() 
+### ZwaveInclusionController.setZWaveAPIData() 
 
 Set ZWave API Data
 
 
-
-### updateController() 
+### ZwaveInclusionController.updateController() 
 
 Update controller data
 
 
-
-### resetExclusion() 
+### ZwaveInclusionController.resetExclusion() 
 
 Reset exclusion
 
 
-
-### resetInclusion() 
+### ZwaveInclusionController.resetInclusion() 
 
 Reset inclusion
 
 
-
-### resetConfiguration() 
+### ZwaveInclusionController.resetConfiguration() 
 
 Reset automated configuration
 
 
-
-### checkInterview() 
+### ZwaveInclusionController.checkInterview() 
 
 Check interview
 
 
-
-### resetManualConfiguration() 
+### ZwaveInclusionController.resetManualConfiguration() 
 
 Reset manual configuration
 
@@ -119,10 +105,10 @@ Reset manual configuration
 
 
 
+**Author:** Martin Vach
 
 
 
-
-
+**Overview:** Handles Z-Wave device inclusion actions.
 
 
