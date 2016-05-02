@@ -1,15 +1,7 @@
 /**
- * dirPagination - AngularJS module for paginating (almost) anything.
- * 
- * 
- * Credit to https://groups.google.com/d/msg/angular/an9QpzqIYiM/r8v-3W1X5vcJ
- * for the idea on how to dynamically invoke the ng-repeat directive.
- *
- * Created by Michael on 04/05/14.
+ * @overview ngularJS module for paginating (almost) anything.
+ * @author Created by Michael on 04/05/14.
  */
-
-//angular.module('myApp')
-//   .directive('dirPaginate', function($compile, $parse, $timeout, paginationService) {
 myApp.directive('dirPaginate', function($compile, $parse, $timeout, paginationService) {
         return  {
             priority: 5000, //High priority means it will execute first

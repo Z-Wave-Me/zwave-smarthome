@@ -13136,27 +13136,13 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
 });
 
 /**
- * Application directives
+ * @overview Common Angular directives that are used within the views.
  * @author Martin Vach
  */
-myApp.directive('testDir', function () {
-    return {
-        restrict: "E",
-        replace: true,
-        template: '<p>This is a test directive</p>'
-    };
-});
 
-myApp.directive('logIt', function () {
-    return {
-        link: function (scope, elem, attrs) {
-            console.log(attrs.logIt);
-        }
-    };
-}
-);
 /**
- * History go back
+ * Window history back
+ * @function bbGoBack
  */
 myApp.directive('bbGoBack', ['$window', function ($window) {
         return {
@@ -13170,7 +13156,8 @@ myApp.directive('bbGoBack', ['$window', function ($window) {
     }]);
 
 /**
- * Page loader directive
+ * Displays a page loader
+ * @function bbLoader
  */
 myApp.directive('bbLoader', function () {
     return {
@@ -13183,7 +13170,8 @@ myApp.directive('bbLoader', function () {
 });
 
 /**
- * Alert directive
+ * Displays an alert message within the div
+ * @function bbAlert
  */
 myApp.directive('bbAlert', function () {
     return {
@@ -13197,7 +13185,8 @@ myApp.directive('bbAlert', function () {
 });
 
 /**
- * Alerttext  directive
+ * Displays an alert message within the span
+ * @function bbAlertText
  */
 myApp.directive('bbAlertText', function () {
     return {
@@ -13211,7 +13200,8 @@ myApp.directive('bbAlertText', function () {
 });
 
 /**
- * Help directive
+ * Displays a HTML help page
+ * @function bbHelp
  */
 myApp.directive('bbHelp', function ($sce, dataFactory, cfg) {
     var trusted = {};
@@ -13257,7 +13247,8 @@ myApp.directive('bbHelp', function ($sce, dataFactory, cfg) {
 });
 
 /**
- * Help text directive
+ * Displays a help text
+ * @function bbHelpText
  */
 myApp.directive('bbHelpText', function () {
     return {
@@ -13273,7 +13264,8 @@ myApp.directive('bbHelpText', function () {
 });
 
 /**
- * Show validation error
+ * Displays a validation error
+ * @function bbValidator
  */
 myApp.directive('bbValidator', function ($window) {
     return {
@@ -13289,7 +13281,8 @@ myApp.directive('bbValidator', function ($window) {
 });
 
 /**
- * Compare ompare two values
+ * Compare two values
+ * @function bbCompareTo
  */
 myApp.directive("bbCompareTo", function () {
     return {
@@ -13313,36 +13306,7 @@ myApp.directive("bbCompareTo", function () {
     };
 });
 
-/**
- * Hide collapsed navi after click on mobile devices
- */
-myApp.directive('collapseNavbar', function () {
-    return {
-        restrict: 'A',
-        link: function (scope, element, attrs) {
-            $(element).click(function () {
-                $("#nav_collapse").removeClass("in").addClass("collapse");
-            });
-        }
-    };
-});
-/**
- * Go back
- */
-myApp.directive('goBack', ['$window', function ($window) {
-        return {
-            restrict: 'A',
-            link: function (scope, elem, attrs) {
-                elem.bind('click', function () {
-                    $window.history.back();
-                });
-            }
-        };
-    }]);
-
-/**
- * Knob directive
- */
+// Knob directive
 myApp.directive('knob', function () {
     return {
         restrict: 'A',
@@ -13352,6 +13316,10 @@ myApp.directive('knob', function () {
     };
 });
 
+/**
+ * Displays a knob 
+ * @function myknob
+ */
 myApp.directive('myknob', ['$timeout', 'dataFactory', function ($timeout, dataFactory, dataService) {
         'use strict';
 
@@ -13398,9 +13366,7 @@ myApp.directive('myknob', ['$timeout', 'dataFactory', function ($timeout, dataFa
             }
         };
 
-        /**
-         * Run command exact value
-         */
+        //Run command exact value
         function runCmdExact(id, val) {
             //console.log('Knob from directive:',val)
             var cmd = id + '/command/exact?level=' + val;
@@ -13410,43 +13376,10 @@ myApp.directive('myknob', ['$timeout', 'dataFactory', function ($timeout, dataFa
         }
         ;
     }]);
+
 /**
- * Bootstrap tooltip
- */
-myApp.directive('tooltip', function () {
-    return {
-        restrict: 'A',
-        link: function (scope, element, attrs) {
-            $(element).hover(function () {
-                // on mouseenter
-                $(element).tooltip('show');
-            }, function () {
-                // on mouseleave
-                $(element).tooltip('hide');
-            });
-        }
-    };
-});
-/**
- * Bootstrap Popover window
- */
-myApp.directive('customPopover', function () {
-    return {
-        restrict: 'A',
-        template: '<span>{{label}}</span>',
-        link: function (scope, el, attrs) {
-            scope.label = attrs.popoverLabel;
-            $(el).popover({
-                trigger: 'click',
-                html: true,
-                content: attrs.popoverHtml,
-                placement: attrs.popoverPlacement
-            });
-        }
-    };
-});
-/**
- * Confirm dialog after click
+ * Displays a confirm dialog after click
+ * @function ngConfirmClick
  */
 myApp.directive('ngConfirmClick', [
     function () {
@@ -13467,7 +13400,8 @@ myApp.directive('ngConfirmClick', [
 ]);
 
 /**
- * Upload file
+ * Upload a file
+ * @function fileModel
  */
 myApp.directive('fileModel', ['$parse', function ($parse) {
         return {
@@ -13485,64 +13419,9 @@ myApp.directive('fileModel', ['$parse', function ($parse) {
         };
     }]);
 
-myApp.directive('infiniteScroll', [
-    '$rootScope', '$window', '$timeout', function ($rootScope, $window, $timeout) {
-        return {
-            link: function (scope, elem, attrs) {
-                var checkWhenEnabled, handler, scrollDistance, scrollEnabled;
-                $window = angular.element($window);
-                scrollDistance = 0;
-                if (attrs.infiniteScrollDistance != null) {
-                    scope.$watch(attrs.infiniteScrollDistance, function (value) {
-                        return scrollDistance = parseInt(value, 10);
-                    });
-                }
-                scrollEnabled = true;
-                checkWhenEnabled = false;
-                if (attrs.infiniteScrollDisabled != null) {
-                    scope.$watch(attrs.infiniteScrollDisabled, function (value) {
-                        scrollEnabled = !value;
-                        if (scrollEnabled && checkWhenEnabled) {
-                            checkWhenEnabled = false;
-                            return handler();
-                        }
-                    });
-                }
-                handler = function () {
-                    var elementBottom, remaining, shouldScroll, windowBottom;
-                    windowBottom = $window.height() + $window.scrollTop();
-                    elementBottom = elem.offset().top + elem.height();
-                    remaining = elementBottom - windowBottom;
-                    shouldScroll = remaining <= $window.height() * scrollDistance;
-                    if (shouldScroll && scrollEnabled) {
-                        if ($rootScope.$$phase) {
-                            return scope.$eval(attrs.infiniteScroll);
-                        } else {
-                            return scope.$apply(attrs.infiniteScroll);
-                        }
-                    } else if (shouldScroll) {
-                        return checkWhenEnabled = true;
-                    }
-                };
-                $window.on('scroll', handler);
-                scope.$on('$destroy', function () {
-                    return $window.off('scroll', handler);
-                });
-                return $timeout((function () {
-                    if (attrs.infiniteScrollImmediateCheck) {
-                        if (scope.$eval(attrs.infiniteScrollImmediateCheck)) {
-                            return handler();
-                        }
-                    } else {
-                        return handler();
-                    }
-                }), 0);
-            }
-        };
-    }
-]);
 /**
- * Key event directive
+ * Catch a key event
+ * @function bbKeyEvent
  */
 myApp.directive('bbKeyEvent', function () {
     return function (scope, element, attrs) {
