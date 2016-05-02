@@ -6,7 +6,7 @@
 
 * * *
 
-## Class: DeviceController
+## DeviceController
 Device root controller
 
 ### DeviceController.loadEnOceanModule() 

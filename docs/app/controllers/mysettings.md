@@ -6,7 +6,7 @@
 
 * * *
 
-## Class: MySettingsController
+## MySettingsController
 The controller that renders and handles user data.
 
 ### MySettingsController.allSettled() 

@@ -6,7 +6,7 @@
 
 * * *
 
-## Class: ZwaveSelectController
+## ZwaveSelectController
 This is a new version of the ZwaveAddController and is not completed!!!The controller that renders Z-Wave manufacturers and devices.
 
 ### ZwaveSelectController.loadProducts() 
@@ -20,7 +20,7 @@ Load z-wave devices
 
 
 
-## Class: ZwaveAddController
+## ZwaveAddController
 The controller that renders Z-Wave manufacturers and devices.
 
 ### ZwaveAddController.loadData() 
@@ -29,7 +29,7 @@ Load z-wave devices
 
 
 
-## Class: ZwaveManageController
+## ZwaveManageController
 The controller that renders and handles data in the Z-Wave/Manage section.
 
 ### ZwaveManageController.setTab() 
@@ -58,7 +58,7 @@ notInterviewDevices
 
 
 
-## Class: ZwaveInterviewController
+## ZwaveInterviewController
 The controller that handles interview process in the Z-Wave/Network section.
 
 ### ZwaveInterviewController.startConfiguration() 
@@ -87,7 +87,7 @@ Check interview
 
 
 
-## Class: ZwaveInterviewController
+## ZwaveInterviewController
 The controller that handles Z-Wave exclusion process.
 
 ### ZwaveInterviewController.loadZwaveApiData() 
@@ -111,7 +111,7 @@ Run ExpertUI command - remove failed node
 
 
 
-## Class: ZwaveManageIdController
+## ZwaveManageIdController
 The controller that renders and handles configuration data for a single Z-Wave device.
 
 ### ZwaveManageIdController.allSettled() 

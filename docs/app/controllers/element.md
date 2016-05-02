@@ -6,7 +6,7 @@
 
 * * *
 
-## Class: ElementBaseController
+## ElementBaseController
 The element root controller
 
 ### ElementBaseController.allSettled() 
@@ -70,7 +70,7 @@ Set device
 
 
 
-## Class: ElementHistoryController
+## ElementHistoryController
 The controller that handles a device history.
 
 ### ElementHistoryController.loadDeviceHistory() 
@@ -79,7 +79,7 @@ Load device history
 
 
 
-## Class: ElementSwitchMultilevelController
+## ElementSwitchMultilevelController
 The controller that handles SwitchMultilevel element.
 
 ### ElementSwitchMultilevelController.loadDeviceId() 
@@ -88,7 +88,7 @@ Load single device
 
 
 
-## Class: ElementThermostatController
+## ElementThermostatController
 The controller that handles Thermostat element.
 
 ### ElementThermostatController.loadDeviceId() 
@@ -97,7 +97,7 @@ Load single device
 
 
 
-## Class: ElementSwitchRGBWController
+## ElementSwitchRGBWController
 The controller that handles SwitchRGBW element.
 
 ### ElementSwitchRGBWController.loadRgbWheel() 
@@ -111,7 +111,7 @@ Load single device
 
 
 
-## Class: ElementSensorMultilineController
+## ElementSensorMultilineController
 The controller that handles SensorMultiline element.
 
 ### ElementSensorMultilineController.loadDeviceId() 
@@ -125,7 +125,7 @@ Run a command request
 
 
 
-## Class: ElementCameraController
+## ElementCameraController
 The controller that handles Camera element.
 
 ### ElementCameraController.setUrl() 
@@ -139,7 +139,7 @@ Load single device
 
 
 
-## Class: ElementTextController
+## ElementTextController
 The controller that handles Text element.
 
 ### ElementTextController.loadDeviceId() 
@@ -148,7 +148,7 @@ Load single device
 
 
 
-## Class: ElementOpenWeatherController
+## ElementOpenWeatherController
 The controller that handles OpenWeather element.
 
 ### ElementOpenWeatherController.loadDeviceId() 
@@ -157,7 +157,7 @@ Load single device
 
 
 
-## Class: ElementClimateControlController
+## ElementClimateControlController
 The controller that handles ClimateControl element.
 
 ### ElementClimateControlController.loadDeviceId() 
@@ -171,15 +171,15 @@ Change climate element mode
 
 
 
-## Class: ElementDashboardController
+## ElementDashboardController
 The controller that handles elements on the dashboard.
 
 
-## Class: ElementRoomController
+## ElementRoomController
 The controller that handles elements in the room.
 
 
-## Class: ElementIdController
+## ElementIdController
 The controller that handles element detail actions.
 
 ### ElementIdController.allSettled() 

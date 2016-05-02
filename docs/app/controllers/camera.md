@@ -6,7 +6,7 @@
 
 * * *
 
-## Class: CameraAddController
+## CameraAddController
 The controller that renders a list of the cameras.
 
 ### CameraAddController.loadData() 
@@ -15,7 +15,7 @@ Load ip cameras
 
 
 
-## Class: CameraManageController
+## CameraManageController
 The controller that handles camera manage actions .
 
 ### CameraManageController.allSettled() 

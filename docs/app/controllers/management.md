@@ -6,7 +6,7 @@
 
 * * *
 
-## Class: ManagementController
+## ManagementController
 The management root controller
 
 ### ManagementController.allSettled() 
@@ -25,7 +25,7 @@ Set licence ID
 
 
 
-## Class: ManagementUserController
+## ManagementUserController
 The controller that renders the list of users.
 
 ### ManagementUserController.loadProfiles() 
@@ -44,7 +44,7 @@ Delete an user
 
 
 
-## Class: ManagementUserIdController
+## ManagementUserIdController
 The controller that handles user detail actions.
 
 ### ManagementUserIdController.allSettledUserId() 
@@ -73,7 +73,7 @@ Change auth data
 
 
 
-## Class: ManagementRemoteController
+## ManagementRemoteController
 The controller that renders and handles remote access data.
 
 ### ManagementRemoteController.loadRemoteAccess() 
@@ -87,7 +87,7 @@ PUT Remote access
 
 
 
-## Class: ManagementLicenceController
+## ManagementLicenceController
 The controller that handles the licence key.
 
 ### ManagementLicenceController.getLicense() 
@@ -101,7 +101,7 @@ Update capabilities
 
 
 
-## Class: ManagementFirmwareController
+## ManagementFirmwareController
 The controller that handles firmware update process.
 
 ### ManagementFirmwareController.setAccess() 
@@ -115,7 +115,7 @@ Load razberry latest version
 
 
 
-## Class: ManagementRestoreController
+## ManagementRestoreController
 The controller that handles restore process.
 
 ### ManagementRestoreController.uploadFile() 
@@ -124,7 +124,7 @@ Upload backup file
 
 
 
-## Class: ManagementFactoryController
+## ManagementFactoryController
 The controller that resets the system to factory default.
 
 ### ManagementFactoryController.resetFactoryDefault() 
@@ -133,7 +133,7 @@ Reset to factory default
 
 
 
-## Class: ManagementAppStoreController
+## ManagementAppStoreController
 The controller that renders and handles app store data.
 
 ### ManagementAppStoreController.appStoreLoadTokens() 
@@ -152,7 +152,7 @@ Remove token from the list
 
 
 
-## Class: ManagementReportController
+## ManagementReportController
 The controller that handles bug report info.
 
 ### ManagementReportController.loadRemoteAccess() 
@@ -166,7 +166,7 @@ Send and save report
 
 
 
-## Class: ManagementPostfixController
+## ManagementPostfixController
 The controller that renders postfix data.
 
 ### ManagementPostfixController.loadPostfix() 
@@ -175,7 +175,7 @@ Load postfix data
 
 
 
-## Class: ManagementInfoController
+## ManagementInfoController
 The controller that renders info data.
 
 

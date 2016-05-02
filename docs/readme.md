@@ -27,5 +27,6 @@ app/services
 name | overview
 :-- | :--
 [app\services\factories.js](app/services/factories.md) | _Angular factories that handle cache, Underscore and HTTP requests._
+[app\services\services.js](app/services/services.md) | _Stores methods that are used within controllers._
 - - -
 

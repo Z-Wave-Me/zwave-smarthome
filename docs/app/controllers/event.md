@@ -6,7 +6,7 @@
 
 * * *
 
-## Class: EventController
+## EventController
 The controller that renders and handles event actions.
 
 ### EventController.allSettled() 

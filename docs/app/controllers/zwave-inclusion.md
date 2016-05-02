@@ -6,7 +6,7 @@
 
 * * *
 
-## Class: ZwaveInclusionController
+## ZwaveInclusionController
 The controller that handles Z-Wave device inclusion process.
 
 ### ZwaveInclusionController.allSettled() 

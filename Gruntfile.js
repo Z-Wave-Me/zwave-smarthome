@@ -163,12 +163,12 @@ module.exports = function (grunt) {
                 options: {
                     contentsEnabled: true,
                     contentsTitle: 'SmartHome UI Documentation',
-                    contentsFile: 'readme.md'
+                    contentsFile: 'readme.md',
                     //pathFilter: /^example/,
-                    //templateDir: 'path/to/my/mustache'
+                    templateDir: 'docstemplates'
                 },
                 //src: ['app/**/*.js'],
-                src: ['app/controllers/*.js','app/services/factories.js'],
+                src: ['app/controllers/*.js','app/services/*.js'],
                 dest: 'docs'
             }
         },

@@ -6,11 +6,15 @@
 
 * * *
 
-## Class: myCache
+## myCache
 The factory that handles angular $cacheFactory
 
 
-## Class: dataFactory
+## Underscore
+The factory that handles the Underscore library
+
+
+## dataFactory
 The factory that handles all local and remote HTTP requests
 
 ### dataFactory.logInApi(data) 
@@ -19,7 +23,7 @@ Handles login process
 
 **Parameters**
 
-**data**: `object`, Handles login process
+**data**: `object`
 
 **Returns**: `unresolved`
 
@@ -35,7 +39,7 @@ Get local data from the storage directory
 
 **Parameters**
 
-**file**: `string`, Get local data from the storage directory
+**file**: `string`
 
 **Returns**: `unresolved`
 
@@ -45,13 +49,13 @@ Get ZAutomation api data
 
 **Parameters**
 
-**api**: `string`, Get ZAutomation api data
+**api**: `string`
 
-**params**: `string`, Get ZAutomation api data
+**params**: `string`
 
-**noCache**: `boolean`, Get ZAutomation api data
+**noCache**: `boolean`
 
-**fatalError**: `boolean`, Get ZAutomation api data
+**fatalError**: `boolean`
 
 **Returns**: `unresolved`
 
@@ -61,11 +65,11 @@ Post ZAutomation api data
 
 **Parameters**
 
-**api**: `string`, Post ZAutomation api data
+**api**: `string`
 
-**data**: `object`, Post ZAutomation api data
+**data**: `object`
 
-**params**: `string`, Post ZAutomation api data
+**params**: `string`
 
 **Returns**: `unresolved`
 
@@ -75,13 +79,13 @@ Put ZAutomation api data
 
 **Parameters**
 
-**api**: `string`, Put ZAutomation api data
+**api**: `string`
 
-**id**: `int`, Put ZAutomation api data
+**id**: `int`
 
-**data**: `object`, Put ZAutomation api data
+**data**: `object`
 
-**params**: `string`, Put ZAutomation api data
+**params**: `string`
 
 **Returns**: `unresolved`
 
@@ -91,15 +95,15 @@ Put ZAutomation api data with predefined HTTP headers
 
 **Parameters**
 
-**api**: `string`, Put ZAutomation api data with predefined HTTP headers
+**api**: `string`
 
-**id**: `int`, Put ZAutomation api data with predefined HTTP headers
+**id**: `int`
 
-**data**: `object`, Put ZAutomation api data with predefined HTTP headers
+**data**: `object`
 
-**headers**: `object`, Put ZAutomation api data with predefined HTTP headers
+**headers**: `object`
 
-**params**: `string`, Put ZAutomation api data with predefined HTTP headers
+**params**: `string`
 
 **Returns**: `unresolved`
 
@@ -109,11 +113,11 @@ Put ZAutomation api data with x-www-form-urlencoded header
 
 **Parameters**
 
-**api**: `string`, Put ZAutomation api data with x-www-form-urlencoded header
+**api**: `string`
 
-**data**: `object`, Put ZAutomation api data with x-www-form-urlencoded header
+**data**: `object`
 
-**params**: `string`, Put ZAutomation api data with x-www-form-urlencoded header
+**params**: `string`
 
 **Returns**: `unresolved`
 
@@ -123,13 +127,13 @@ Put or Post ZAutomation api data - depends on id
 
 **Parameters**
 
-**api**: `string`, Put or Post ZAutomation api data - depends on id
+**api**: `string`
 
-**id**: `int`, Put or Post ZAutomation api data - depends on id
+**id**: `int`
 
-**data**: `object`, Put or Post ZAutomation api data - depends on id
+**data**: `object`
 
-**params**: `string`, Put or Post ZAutomation api data - depends on id
+**params**: `string`
 
 **Returns**: `unresolved`
 
@@ -139,11 +143,11 @@ Delete ZAutomation api data
 
 **Parameters**
 
-**api**: `string`, Delete ZAutomation api data
+**api**: `string`
 
-**id**: `int`, Delete ZAutomation api data
+**id**: `int`
 
-**params**: `string`, Delete ZAutomation api data
+**params**: `string`
 
 **Returns**: `unresolved`
 
@@ -153,11 +157,11 @@ Delete ZAutomation api data with x-www-form-urlencoded header
 
 **Parameters**
 
-**api**: `string`, Delete ZAutomation api data with x-www-form-urlencoded header
+**api**: `string`
 
-**data**: `object`, Delete ZAutomation api data with x-www-form-urlencoded header
+**data**: `object`
 
-**params**: `string`, Delete ZAutomation api data with x-www-form-urlencoded header
+**params**: `string`
 
 **Returns**: `unresolved`
 
@@ -167,7 +171,7 @@ Get ZAutomation api command
 
 **Parameters**
 
-**cmd**: `string`, Get ZAutomation api command
+**cmd**: `string`
 
 **Returns**: `unresolved`
 
@@ -177,7 +181,7 @@ Post ZWaveAPI run command
 
 **Parameters**
 
-**param**: `type`, Post ZWaveAPI run command
+**param**: `type`
 
 **Returns**: `unresolved`
 
@@ -187,9 +191,9 @@ Get XML from url and convert it to JSON
 
 **Parameters**
 
-**url**: `string`, Get XML from url and convert it to JSON
+**url**: `string`
 
-**noCache**: `boolean`, Get XML from url and convert it to JSON
+**noCache**: `boolean`
 
 **Returns**: `unresolved`
 
@@ -199,7 +203,7 @@ Put XML configuration file into Configuration.xml
 
 **Parameters**
 
-**data**: `xml`, Put XML configuration file into Configuration.xml
+**data**: `xml`
 
 **Returns**: `unresolved`
 
@@ -209,9 +213,9 @@ Get data from the remote resource
 
 **Parameters**
 
-**url**: `string`, Get data from the remote resource
+**url**: `string`
 
-**noCache**: `boolean`, Get data from the remote resource
+**noCache**: `boolean`
 
 **Returns**: `unresolved`
 
@@ -221,9 +225,9 @@ Get data from the ZAutomation api and update it
 
 **Parameters**
 
-**api**: `string`, Get data from the ZAutomation api and update it
+**api**: `string`
 
-**params**: `string`, Get data from the ZAutomation api and update it
+**params**: `string`
 
 **Returns**: `unresolved`
 
@@ -233,9 +237,9 @@ Upload a file to ZAutomation
 
 **Parameters**
 
-**cmd**: `type`, Upload a file to ZAutomation
+**cmd**: `type`
 
-**data**: `type`, Upload a file to ZAutomation
+**data**: `type`
 
 **Returns**: `unresolved`
 
@@ -245,7 +249,7 @@ Get ZAutomation api system command
 
 **Parameters**
 
-**cmd**: `string`, Get ZAutomation api system command
+**cmd**: `string`
 
 **Returns**: `unresolved`
 
@@ -255,7 +259,7 @@ Get a file with language keys values from the app/lang directory
 
 **Parameters**
 
-**lang**: `string`, Get a file with language keys values from the app/lang directory
+**lang**: `string`
 
 **Returns**: `unresolved`
 
@@ -265,9 +269,9 @@ Get data holder from ZWaveAPI api
 
 **Parameters**
 
-**noCache**: `boolean`, Get data holder from ZWaveAPI api
+**noCache**: `boolean`
 
-**fatalError**: `boolean`, Get data holder from ZWaveAPI api
+**fatalError**: `boolean`
 
 **Returns**: `unresolved`
 
@@ -283,7 +287,7 @@ Get updated ZAutomation data and join it to ZAutomation data holder
 
 **Parameters**
 
-**ZWaveAPIData**: `object`, Get updated ZAutomation data and join it to ZAutomation data holder
+**ZWaveAPIData**: `object`
 
 **Returns**: `unresolved`
 
@@ -293,7 +297,7 @@ Get Zwave api command
 
 **Parameters**
 
-**cmd**: `string`, Get Zwave api command
+**cmd**: `string`
 
 **Returns**: `unresolved`
 
@@ -303,7 +307,7 @@ Get EnOcean data holder from the EnOceanAPI
 
 **Parameters**
 
-**noCache**: `boolean`, Get EnOcean data holder from the EnOceanAPI
+**noCache**: `boolean`
 
 **Returns**: `unresolved`
 
@@ -313,7 +317,7 @@ Get EnOcean command from the EnOceanAPI Run
 
 **Parameters**
 
-**cmd**: `string`, Get EnOcean command from the EnOceanAPI Run
+**cmd**: `string`
 
 **Returns**: `unresolved`
 
@@ -329,7 +333,7 @@ Post licence data from the remote server
 
 **Parameters**
 
-**data**: `object`, Post licence data from the remote server
+**data**: `object`
 
 **Returns**: `unresolved`
 
@@ -339,7 +343,7 @@ Post ZME Capabilities
 
 **Parameters**
 
-**data**: `object`, Post ZME Capabilities
+**data**: `object`
 
 **Returns**: `unresolved`
 
@@ -349,7 +353,7 @@ Post a bug report on the remote server
 
 **Parameters**
 
-**data**: `object`, Post a bug report on the remote server
+**data**: `object`
 
 **Returns**: `unresolved`
 
@@ -359,9 +363,9 @@ Post on the remote server
 
 **Parameters**
 
-**url**: `string`, Post on the remote server
+**url**: `string`
 
-**data**: `object`, Post on the remote server
+**data**: `object`
 
 **Returns**: `unresolved`
 
@@ -371,9 +375,9 @@ Load On-line modules from the remote server
 
 **Parameters**
 
-**data**: `object`, Load On-line modules from the remote server
+**data**: `object`
 
-**noCache**: `boolean`, Load On-line modules from the remote server
+**noCache**: `boolean`
 
 **Returns**: `unresolved`
 
@@ -383,9 +387,9 @@ Install a module from the remote server
 
 **Parameters**
 
-**data**: `object`, Install a module from the remote server
+**data**: `object`
 
-**api**: `string`, Install a module from the remote server
+**api**: `string`
 
 **Returns**: `unresolved`
 
@@ -395,7 +399,7 @@ Resore the system from the backup file
 
 **Parameters**
 
-**data**: `object`, Resore the system from the backup file
+**data**: `object`
 
 **Returns**: `unresolved`
 
@@ -405,7 +409,7 @@ Load a help page from the storage directory
 
 **Parameters**
 
-**file**: `string`, Load a help page from the storage directory
+**file**: `string`
 
 **Returns**: `unresolved`
 

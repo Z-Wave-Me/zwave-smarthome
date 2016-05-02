@@ -6,7 +6,7 @@
 
 * * *
 
-## Class: BaseController
+## BaseController
 The app base controller.
 
 ### BaseController.resetFatalError(obj) 
@@ -15,7 +15,7 @@ Reset a fatal error.
 
 **Parameters**
 
-**obj**: `object`, Reset a fatal error.
+**obj**: `object`
 
 **Returns**: `undefined`
 
@@ -37,9 +37,9 @@ Allow to access page elements by role.
 
 **Parameters**
 
-**roles**: `array`, Allow to access page elements by role.
+**roles**: `array`
 
-**mobile**: `boolean`, Allow to access page elements by role.
+**mobile**: `boolean`
 
 **Returns**: `Boolean`
 
@@ -55,7 +55,7 @@ Load an language file
 
 **Parameters**
 
-**lang**: `string`, Load an language file
+**lang**: `string`
 
 **Returns**: `undefined`
 
@@ -65,7 +65,7 @@ Order by
 
 **Parameters**
 
-**field**: `string`, Order by
+**field**: `string`
 
 **Returns**: `undefined`
 
@@ -75,7 +75,7 @@ Check if route match the pattern.
 
 **Parameters**
 
-**path**: `string`, Check if route match the pattern.
+**path**: `string`
 
 **Returns**: `Boolean`
 
@@ -91,7 +91,7 @@ Check if the route match the given param and set active class in the element.
 
 **Parameters**
 
-**route**: `string`, Check if the route match the given param and set active class in the element.
+**route**: `string`
 
 **Returns**: `String`
 
@@ -107,7 +107,7 @@ Redirect to given url
 
 **Parameters**
 
-**url**: `string`, Redirect to given url
+**url**: `string`
 
 **Returns**: `undefined`
 
@@ -129,7 +129,7 @@ Get array from custom config
 
 **Parameters**
 
-**key**: `string`, Get array from custom config
+**key**: `string`
 
 **Returns**: `Array`
 
@@ -139,9 +139,9 @@ Redirect to Expert
 
 **Parameters**
 
-**url**: `string`, Redirect to Expert
+**url**: `string`
 
-**message**: `string`, Redirect to Expert
+**message**: `string`
 
 **Returns**: `undefined`
 
@@ -151,11 +151,11 @@ Expand/collapse navigation
 
 **Parameters**
 
-**key**: `string`, Expand/collapse navigation
+**key**: `string`
 
-**$event**: `object`, Expand/collapse navigation
+**$event**: `object`
 
-**status**: `boolean`, Expand/collapse navigation
+**status**: `boolean`
 
 **Returns**: `undefined`
 
@@ -165,11 +165,11 @@ Open/close a modal window
 
 **Parameters**
 
-**key**: `string`, Open/close a modal window
+**key**: `string`
 
-**$event**: `object`, Open/close a modal window
+**$event**: `object`
 
-**status**: `boolean`, Open/close a modal window
+**status**: `boolean`
 
 **Returns**: `undefined`
 
@@ -179,7 +179,7 @@ Expand/collapse an element
 
 **Parameters**
 
-**key**: `string`, Expand/collapse an element
+**key**: `string`
 
 **Returns**: `undefined`
 

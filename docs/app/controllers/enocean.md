@@ -6,7 +6,7 @@
 
 * * *
 
-## Class: EnoceanDeviceController
+## EnoceanDeviceController
 The controller that renders the list of EnOcean manufacturers and devices.
 
 ### EnoceanDeviceController.loadEnOceanModule() 
@@ -20,7 +20,7 @@ Load z-wave devices
 
 
 
-## Class: EnoceanAssignController
+## EnoceanAssignController
 The controller that teach-in a device by the profile.
 
 ### EnoceanAssignController.loadIncludedDevices() 
@@ -79,7 +79,7 @@ Assign profile to the device
 
 
 
-## Class: EnoceanTeachinController
+## EnoceanTeachinController
 The controller that teach-in a device from the list.
 
 ### EnoceanTeachinController.loadIncludedDevices() 
@@ -138,7 +138,7 @@ Assign profile to device
 
 
 
-## Class: EnoceanManageController
+## EnoceanManageController
 The controller that manage EnOcean devices.
 
 ### EnoceanManageController.loadApiDevices() 
@@ -182,7 +182,7 @@ Get elements
 
 
 
-## Class: EnoceanManageDetailController
+## EnoceanManageDetailController
 The controller that handles actions on the EnOcean device.
 
 ### EnoceanManageDetailController.loadProfiles() 
@@ -236,7 +236,7 @@ Load locations
 
 
 
-## Class: EnoceanControllerController
+## EnoceanControllerController
 The controller that renders informations about the controller.
 
 ### EnoceanControllerController.loadData() 
