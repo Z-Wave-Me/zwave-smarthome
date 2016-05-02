@@ -26,9 +26,9 @@ app/directives
 ---
 name | overview
 :-- | :--
-[app\directives\dir-pagination.js](app/directives/dir-pagination.md) | 
+[app\directives\dir-pagination.js](app/directives/dir-pagination.md) | _AngularJS module for paginating (almost) anything._
 [app\directives\directives.js](app/directives/directives.md) | _Common Angular directives that are used within the views._
-[app\directives\tc-angular-chartjs.js](app/directives/tc-angular-chartjs.md) | 
+[app\directives\tc-angular-chartjs.js](app/directives/tc-angular-chartjs.md) | _Angular directive that is used to handle charts._
 - - -
 
 

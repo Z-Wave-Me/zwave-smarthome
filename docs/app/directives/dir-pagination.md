@@ -45,10 +45,10 @@ Given the position in the sequence of pagination links [i], figure out what page
 
 
 
+**Author:** Created by Michael.
 
 
 
-
-
+**Overview:** AngularJS module for paginating (almost) anything.
 
 

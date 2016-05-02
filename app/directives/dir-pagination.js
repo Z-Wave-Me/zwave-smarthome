@@ -1,6 +1,6 @@
 /**
- * @overview ngularJS module for paginating (almost) anything.
- * @author Created by Michael on 04/05/14.
+ * @overview AngularJS module for paginating (almost) anything.
+ * @author Created by Michael.
  */
 myApp.directive('dirPaginate', function($compile, $parse, $timeout, paginationService) {
         return  {

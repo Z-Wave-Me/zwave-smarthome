@@ -13439,17 +13439,9 @@ myApp.directive('bbKeyEvent', function () {
 
 
 /**
- * dirPagination - AngularJS module for paginating (almost) anything.
- * 
- * 
- * Credit to https://groups.google.com/d/msg/angular/an9QpzqIYiM/r8v-3W1X5vcJ
- * for the idea on how to dynamically invoke the ng-repeat directive.
- *
- * Created by Michael on 04/05/14.
+ * @overview AngularJS module for paginating (almost) anything.
+ * @author Created by Michael.
  */
-
-//angular.module('myApp')
-//   .directive('dirPaginate', function($compile, $parse, $timeout, paginationService) {
 myApp.directive('dirPaginate', function($compile, $parse, $timeout, paginationService) {
         return  {
             priority: 5000, //High priority means it will execute first
@@ -13671,9 +13663,8 @@ myApp.directive('dirPaginate', function($compile, $parse, $timeout, paginationSe
         };
     });
 /**
- * tc-angular-chartjs - v1.0.2 - 2014-07-17
- * Copyright (c) 2014 Carl Craig <carlcraig@3c-studios.com>
- * Dual licensed with the Apache-2.0 or MIT license.
+ * @overview Angular directive that is used to handle charts.
+ * @author Carl Craig <carlcraig@3c-studios.com>.
  */
 myApp.directive("tcChartjs", [ "TcChartjsFactory", function(TcChartjsFactory) {
     return new TcChartjsFactory();
