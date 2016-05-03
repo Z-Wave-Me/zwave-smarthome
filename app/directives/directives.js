@@ -5,7 +5,7 @@
 
 /**
  * Window history back
- * @function bbGoBack
+ * @class bbGoBack
  */
 myApp.directive('bbGoBack', ['$window', function ($window) {
         return {
@@ -20,7 +20,7 @@ myApp.directive('bbGoBack', ['$window', function ($window) {
 
 /**
  * Displays a page loader
- * @function bbLoader
+ * @class bbLoader
  */
 myApp.directive('bbLoader', function () {
     return {
@@ -34,7 +34,7 @@ myApp.directive('bbLoader', function () {
 
 /**
  * Displays an alert message within the div
- * @function bbAlert
+ * @class bbAlert
  */
 myApp.directive('bbAlert', function () {
     return {
@@ -49,7 +49,7 @@ myApp.directive('bbAlert', function () {
 
 /**
  * Displays an alert message within the span
- * @function bbAlertText
+ * @class bbAlertText
  */
 myApp.directive('bbAlertText', function () {
     return {
@@ -64,7 +64,7 @@ myApp.directive('bbAlertText', function () {
 
 /**
  * Displays a HTML help page
- * @function bbHelp
+ * @class bbHelp
  */
 myApp.directive('bbHelp', function ($sce, dataFactory, cfg) {
     var trusted = {};
@@ -111,7 +111,7 @@ myApp.directive('bbHelp', function ($sce, dataFactory, cfg) {
 
 /**
  * Displays a help text
- * @function bbHelpText
+ * @class bbHelpText
  */
 myApp.directive('bbHelpText', function () {
     return {
@@ -128,7 +128,7 @@ myApp.directive('bbHelpText', function () {
 
 /**
  * Displays a validation error
- * @function bbValidator
+ * @class bbValidator
  */
 myApp.directive('bbValidator', function ($window) {
     return {
@@ -145,7 +145,7 @@ myApp.directive('bbValidator', function ($window) {
 
 /**
  * Compare two values
- * @function bbCompareTo
+ * @class bbCompareTo
  */
 myApp.directive("bbCompareTo", function () {
     return {
@@ -181,7 +181,7 @@ myApp.directive('knob', function () {
 
 /**
  * Displays a knob 
- * @function myknob
+ * @class myknob
  */
 myApp.directive('myknob', ['$timeout', 'dataFactory', function ($timeout, dataFactory, dataService) {
         'use strict';
@@ -229,7 +229,12 @@ myApp.directive('myknob', ['$timeout', 'dataFactory', function ($timeout, dataFa
             }
         };
 
-        //Run command exact value
+        /**
+         * Run command exact value
+         * @param {int} id
+         * @param {int} val
+         * @returns {undefined}
+         */
         function runCmdExact(id, val) {
             //console.log('Knob from directive:',val)
             var cmd = id + '/command/exact?level=' + val;
@@ -242,7 +247,7 @@ myApp.directive('myknob', ['$timeout', 'dataFactory', function ($timeout, dataFa
 
 /**
  * Displays a confirm dialog after click
- * @function ngConfirmClick
+ * @class ngConfirmClick
  */
 myApp.directive('ngConfirmClick', [
     function () {
@@ -264,7 +269,7 @@ myApp.directive('ngConfirmClick', [
 
 /**
  * Upload a file
- * @function fileModel
+ * @class fileModel
  */
 myApp.directive('fileModel', ['$parse', function ($parse) {
         return {
@@ -284,7 +289,7 @@ myApp.directive('fileModel', ['$parse', function ($parse) {
 
 /**
  * Catch a key event
- * @function bbKeyEvent
+ * @class bbKeyEvent
  */
 myApp.directive('bbKeyEvent', function () {
     return function (scope, element, attrs) {

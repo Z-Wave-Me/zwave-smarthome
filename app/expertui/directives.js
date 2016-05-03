@@ -1,11 +1,22 @@
 /**
- * ExpertUI directives
+ * @overview Angular directives that are used in device hardware configuration view.
  * @author Martin Vach
  */
 
-
+/**
+ * Renders configuration form inputs
+ * @class expertCommandInput
+ */
 myApp.directive('expertCommandInput', function($filter) {
-    // Get text input
+    /**
+     * Renders text input
+     * @param {text} label
+     * @param {mixed} value
+     * @param {int} min
+     * @param {int} max
+     * @param {string} name
+     * @returns {String}
+     */
     function getText(label, value, min, max, name) {
         var input = '';
         var inName = $filter('stringToSlug')(name ? name : label);
@@ -13,7 +24,14 @@ myApp.directive('expertCommandInput', function($filter) {
         input += '<input class="form-control" name="' + inName + '" type="text" class="form-control" value="' + value + '" title=" min: ' + min + ', max: ' + max + '" />';
         return input;
     }
-    // Get node
+    /**
+     * Renders node select input 
+     * @param {string} label
+     * @param {object} devices
+     * @param {string} currValue
+     * @param {string} name
+     * @returns {String}
+     */
     function getNode(label, devices, currValue, name) {
         var input = '';
         var inName = $filter('stringToSlug')(name ? name : label);
@@ -31,7 +49,16 @@ myApp.directive('expertCommandInput', function($filter) {
         return input;
     }
 
-    // Get enumerators
+    /**
+     * Renders enumerators
+     * @param {string} label
+     * @param {object} enums
+     * @param {int} defaultValue
+     * @param {string} name
+     * @param {boolean} hideRadio
+     * @param {int} currValue
+     * @returns {undefined|String}
+     */
     function getEnum(label, enums, defaultValue, name, hideRadio,currValue) {
         
         var input = '';
@@ -107,7 +134,15 @@ myApp.directive('expertCommandInput', function($filter) {
         return input;
     }
 
-    // Get dropdown list
+    /**
+     * Renders dropdown list
+     * @param {string} label
+     * @param {object} enums
+     * @param {string} defaultValue
+     * @param {string} name
+     * @param {string} currValue
+     * @returns {String}
+     */
     function getDropdown(label, enums, defaultValue, name,currValue) {
         var input = '';
         var cValue = (currValue !== undefined ? currValue : defaultValue);
@@ -136,7 +171,15 @@ myApp.directive('expertCommandInput', function($filter) {
         return input;
     }
 
-    // Get constant 
+    /**
+     * Renders constant select
+     * @param {string} label
+     * @param {string} type
+     * @param {string} defaultValue
+     * @param {string} name
+     * @param {string} currValue
+     * @returns {String}
+     */
     function getConstant(label, type, defaultValue, name,currValue) {
         var input = '';
         var inName = $filter('stringToSlug')(name ? name : label);
@@ -155,7 +198,13 @@ myApp.directive('expertCommandInput', function($filter) {
         input += '<em>Constant type</em>';
         return input;
     }
-    // Get string
+    /**
+     * Renders string input
+     * @param {string} label
+     * @param {string} value
+     * @param {string} name
+     * @returns {String}
+     */
     function getString(label, value, name) {
         var input = '';
         var inName = $filter('stringToSlug')(name ? name : label);
@@ -164,15 +213,22 @@ myApp.directive('expertCommandInput', function($filter) {
         return input;
     }
     
-    // Get bitset
-    function getBitset(label, enums, defaultValue, name, hideRadio,currValue) {
+    /**
+     * Renders bitset input
+     * @returns {String}
+     */
+    function getBitset() {
         
-        var input = 'Bitset';
+        var input = '';
         
         return input;
     }
 
-    // Get default
+    /**
+     * Renders default label
+     * @param {string} label
+     * @returns {String}
+     */
     function getDefault(label) {
 
         var input = '';
@@ -237,7 +293,10 @@ myApp.directive('expertCommandInput', function($filter) {
 
     };
 });
-
+/**
+ * Renders configuration default value
+ * @class configDefaultValue
+ */
 myApp.directive('configDefaultValue', function() {
     return {
         restrict: "E",
@@ -284,7 +343,13 @@ myApp.directive('configDefaultValue', function() {
 
     };
 
-    // Get enumerators
+    /**
+     * Renders enumerators
+     * @param {object} enums
+     * @param {string} defaultValue
+     * @param {string} showDefaultValue
+     * @returns {string}
+     */
     function getEnum(enums, defaultValue,showDefaultValue) {
         //console.log(enums)
         var input = showDefaultValue;
@@ -317,7 +382,10 @@ myApp.directive('configDefaultValue', function() {
         return input;
     }
 });
-
+/**
+ * Renders configuration title input
+ * @class configValueTitle
+ */
 myApp.directive('configValueTitle', function() {
     return {
         restrict: "A",
@@ -360,7 +428,12 @@ myApp.directive('configValueTitle', function() {
 
     };
 
-    // Get enumerators
+    /**
+     * Renders enumerators
+     * @param {object} enums
+     * @param {string} showValue
+     * @returns {string}
+     */
     function getEnum(enums, showValue) {
         //console.log(enums)
         var input = showValue;

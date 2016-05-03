@@ -1,10 +1,20 @@
 SmartHome UI Documentation
 ===
+app
+---
+name | overview
+:-- | :--
+[app\app.js](app/app.md) | _This is used to handle angular modules, routes and other settings._
+[app\config.js](app/config.md) | _The main configuration file._
+[app\templates.js](app/templates.md) | _This is used to store the compiled and compressed views._
+- - -
+
+
 app/controllers
 ---
 name | overview
 :-- | :--
-[app\controllers\app.js](app/controllers/app.md) | _This controller handles the Local apps, Online Apps and Active apps._
+[app\controllers\app.js](app/controllers/app.md) | _Controllers that handle the Local apps, Online Apps and Active apps._
 [app\controllers\auth.js](app/controllers/auth.md) | _Controllers that handle the authentication of existing users, as well as forgot password._
 [app\controllers\base.js](app/controllers/base.md) | _The parent controller that stores all function used in the child controllers._
 [app\controllers\camera.js](app/controllers/camera.md) | _Controllers that handle all Camera actions – manage and add camera._
@@ -29,6 +39,18 @@ name | overview
 [app\directives\dir-pagination.js](app/directives/dir-pagination.md) | _AngularJS module for paginating (almost) anything._
 [app\directives\directives.js](app/directives/directives.md) | _Common Angular directives that are used within the views._
 [app\directives\tc-angular-chartjs.js](app/directives/tc-angular-chartjs.md) | _Angular directive that is used to handle charts._
+- - -
+
+
+app/expertui
+---
+name | overview
+:-- | :--
+[app\expertui\configuration.js](app/expertui/configuration.md) | _Handles actions in the device hardware configuration._
+[app\expertui\directives.js](app/expertui/directives.md) | _Angular directives that are used in device hardware configuration view._
+[app\expertui\pyzw.js](app/expertui/pyzw.md) | _Functions used to render the configuration arrays._
+[app\expertui\pyzw_zwave_ui.js](app/expertui/pyzw_zwave_ui.md) | _Functions used to render the configuration JSON._
+[app\expertui\services.js](app/expertui/services.md) | _Common functions that are used within device hardware configuration_
 - - -
 
 

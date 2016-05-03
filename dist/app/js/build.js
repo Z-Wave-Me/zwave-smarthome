@@ -10715,11 +10715,14 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
 }));
 
 /**
- * Application base
+ * @overview This is used to handle angular modules, routes and other settings.
  * @author Martin Vach
  */
 
-//Define an angular module for our app
+/**
+ * Define an angular module for our app
+ * @function myApp
+ */
 var myApp = angular.module('myApp', [
     'ngRoute',
     'ngCookies',
@@ -10733,10 +10736,7 @@ var myApp = angular.module('myApp', [
 
 ]);
 
-/**
- * App configuration
- */
-
+// App configuration
 var config_module = angular.module('myAppConfig', []);
 var appCookies = angular.injector(['ngCookies']).get('$cookies');
 var appUser = false;
@@ -10767,7 +10767,10 @@ angular.forEach(config_data, function (key, value) {
     config_module.constant(value, key);
 });
 
-//Define Routing for app
+/**
+ * Define Angular routes
+ * @function $routeProvider
+ */
 myApp.config(['$routeProvider', function ($routeProvider) {
         var cfg = config_data.cfg;
         $routeProvider.
@@ -11042,7 +11045,8 @@ myApp.config(['$routeProvider', function ($routeProvider) {
     }]);
 
 /**
- * Run
+ * Angular run function
+ * @function run
  */
 myApp.run(function ($rootScope, $location, dataService, cfg) {
     // Run ubderscore js in views
@@ -11078,7 +11082,10 @@ myApp.run(function ($rootScope, $location, dataService, cfg) {
     });
 });
 
-// Intercepting HTTP calls with AngularJS.
+/**
+ * Intercepting HTTP calls with AngularJS.
+ * @function config
+ */
 myApp.config(function ($provide, $httpProvider, cfg) {
     $httpProvider.defaults.timeout = 5000;
     // Intercept http calls.
@@ -13143,7 +13150,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
 
 /**
  * Window history back
- * @function bbGoBack
+ * @class bbGoBack
  */
 myApp.directive('bbGoBack', ['$window', function ($window) {
         return {
@@ -13158,7 +13165,7 @@ myApp.directive('bbGoBack', ['$window', function ($window) {
 
 /**
  * Displays a page loader
- * @function bbLoader
+ * @class bbLoader
  */
 myApp.directive('bbLoader', function () {
     return {
@@ -13172,7 +13179,7 @@ myApp.directive('bbLoader', function () {
 
 /**
  * Displays an alert message within the div
- * @function bbAlert
+ * @class bbAlert
  */
 myApp.directive('bbAlert', function () {
     return {
@@ -13187,7 +13194,7 @@ myApp.directive('bbAlert', function () {
 
 /**
  * Displays an alert message within the span
- * @function bbAlertText
+ * @class bbAlertText
  */
 myApp.directive('bbAlertText', function () {
     return {
@@ -13202,7 +13209,7 @@ myApp.directive('bbAlertText', function () {
 
 /**
  * Displays a HTML help page
- * @function bbHelp
+ * @class bbHelp
  */
 myApp.directive('bbHelp', function ($sce, dataFactory, cfg) {
     var trusted = {};
@@ -13249,7 +13256,7 @@ myApp.directive('bbHelp', function ($sce, dataFactory, cfg) {
 
 /**
  * Displays a help text
- * @function bbHelpText
+ * @class bbHelpText
  */
 myApp.directive('bbHelpText', function () {
     return {
@@ -13266,7 +13273,7 @@ myApp.directive('bbHelpText', function () {
 
 /**
  * Displays a validation error
- * @function bbValidator
+ * @class bbValidator
  */
 myApp.directive('bbValidator', function ($window) {
     return {
@@ -13283,7 +13290,7 @@ myApp.directive('bbValidator', function ($window) {
 
 /**
  * Compare two values
- * @function bbCompareTo
+ * @class bbCompareTo
  */
 myApp.directive("bbCompareTo", function () {
     return {
@@ -13319,7 +13326,7 @@ myApp.directive('knob', function () {
 
 /**
  * Displays a knob 
- * @function myknob
+ * @class myknob
  */
 myApp.directive('myknob', ['$timeout', 'dataFactory', function ($timeout, dataFactory, dataService) {
         'use strict';
@@ -13367,7 +13374,12 @@ myApp.directive('myknob', ['$timeout', 'dataFactory', function ($timeout, dataFa
             }
         };
 
-        //Run command exact value
+        /**
+         * Run command exact value
+         * @param {int} id
+         * @param {int} val
+         * @returns {undefined}
+         */
         function runCmdExact(id, val) {
             //console.log('Knob from directive:',val)
             var cmd = id + '/command/exact?level=' + val;
@@ -13380,7 +13392,7 @@ myApp.directive('myknob', ['$timeout', 'dataFactory', function ($timeout, dataFa
 
 /**
  * Displays a confirm dialog after click
- * @function ngConfirmClick
+ * @class ngConfirmClick
  */
 myApp.directive('ngConfirmClick', [
     function () {
@@ -13402,7 +13414,7 @@ myApp.directive('ngConfirmClick', [
 
 /**
  * Upload a file
- * @function fileModel
+ * @class fileModel
  */
 myApp.directive('fileModel', ['$parse', function ($parse) {
         return {
@@ -13422,7 +13434,7 @@ myApp.directive('fileModel', ['$parse', function ($parse) {
 
 /**
  * Catch a key event
- * @function bbKeyEvent
+ * @class bbKeyEvent
  */
 myApp.directive('bbKeyEvent', function () {
     return function (scope, element, attrs) {
@@ -13759,7 +13771,8 @@ myApp.filter('stripTags', function () {
     };
 });
 /**
- * Cut text into x chars
+ * Shorten the text to the specified number of characters
+ * @function cutText
  */
 myApp.filter('cutText', function () {
     return function (value, wordwise, max, tail) {
@@ -13785,6 +13798,7 @@ myApp.filter('cutText', function () {
 });
 /**
  * Convert val to int
+ * @function toInt
  */
 myApp.filter('toInt', function () {
     return function (val, a) {
@@ -13798,6 +13812,7 @@ myApp.filter('toInt', function () {
 
 /**
  * Convert val to bool
+ * @function toBool
  */
 myApp.filter('toBool', function () {
     return function (val) {
@@ -13807,6 +13822,7 @@ myApp.filter('toBool', function () {
 
 /**
  * Get type of a Javascript variable
+ * @function typeOf
  */
 myApp.filter('typeOf', function () {
     return function (obj) {
@@ -13815,7 +13831,8 @@ myApp.filter('typeOf', function () {
 });
 
 /**
- * Set the max dec. lenghth
+ * Set max length of the number entered
+ * @function numberFixedLen
  */
 myApp.filter('numberFixedLen', function () {
     return function (val) {
@@ -13841,7 +13858,8 @@ myApp.filter('numberFixedLen', function () {
 });
 
 /**
- * Check if JSON keys/nodes exist
+ * Check if an object exists and has a node.
+ * @function hasNode
  */
 myApp.filter('hasNode', function () {
     return function (obj, path) {
@@ -13861,21 +13879,8 @@ myApp.filter('hasNode', function () {
     };
 });
 /**
- * DEPRECATED
- * Get segment from url
- */
-//myApp.filter('getUrlSegment', function ($location) {
-//    return function (segment) {
-//        var ret = false;
-//        var data = $location.path().split('/');
-//        if (data[segment]) {
-//            ret = data[segment];
-//        }
-//        return ret;
-//    };
-//});
-/**
- * Get current time
+ * Builds an element icon path
+ * @function getElementIcon
  */
 myApp.filter('getElementIcon', function (cfg) {
     return function (input, device, level) {
@@ -14001,7 +14006,8 @@ myApp.filter('getElementIcon', function (cfg) {
 });
 
 /**
- * Get event icon
+ * Builds an event icon path
+ * @function getEventIcon
  */
 myApp.filter('getEventIcon', function (cfg) {
     return function (input, message) {
@@ -14043,7 +14049,8 @@ myApp.filter('getEventIcon', function (cfg) {
 });
 
 /**
- * Get battery icon
+ * Builds a battery icon path
+ * @function getBatteryIcon
  */
 myApp.filter('getBatteryIcon', function (cfg) {
     return function (input) {
@@ -14070,7 +14077,8 @@ myApp.filter('getBatteryIcon', function (cfg) {
 });
 
 /**
- * Get element category icon
+ * Get a category icon in the Elements sections
+ * @function getElCategoryIcon
  */
 myApp.filter('getElCategoryIcon', function () {
     return function (input) {
@@ -14096,7 +14104,8 @@ myApp.filter('getElCategoryIcon', function () {
 });
 
 /**
- * Get App category icon
+ * Get a category icon in the APPs sections
+ * @function getAppCategoryIcon
  */
 myApp.filter('getAppCategoryIcon', function () {
     return function (input) {
@@ -14132,7 +14141,8 @@ myApp.filter('getAppCategoryIcon', function () {
 });
 
 /**
- * Get max level
+ * Get max level by probeType from the devices data holder
+ * @function getMaxLevel
  */
 myApp.filter('getMaxLevel', function () {
     return function (input, probeType) {
@@ -14151,7 +14161,8 @@ myApp.filter('getMaxLevel', function () {
 });
 
 /**
- * Today from unix - ExpertUI filter
+ * Today from unix - ExpertUI filter used in the device hardware configuration
+ * @function isTodayFromUnix
  */
 myApp.filter('isTodayFromUnix', function () {
     return function (input) {
@@ -14176,7 +14187,8 @@ myApp.filter('isTodayFromUnix', function () {
     };
 });
 /**
- * Get current time
+ * Get current time in the hrs:min:sec format
+ * @function getCurrentTime
  */
 myApp.filter('getCurrentTime', function () {
     return function (timestamp) {
@@ -14194,7 +14206,8 @@ myApp.filter('getCurrentTime', function () {
     };
 });
 /**
- * Get current time
+ * Get a day from the unix timstamp for filtering events
+ * @function unixStartOfDay
  */
 myApp.filter('unixStartOfDay', function () {
     return function (input, value) {
@@ -14218,6 +14231,7 @@ myApp.filter('unixStartOfDay', function () {
 });
 /**
  * If is today display h:m otherwise d:m:y
+ * @function isToday
  */
 myApp.filter('isToday', function () {
     return function (input, fromunix, days, yesterday) {
@@ -14261,7 +14275,8 @@ myApp.filter('isToday', function () {
 });
 
 /**
- * If is today display h:m otherwise d:m:y
+ * Renders an event date - If is today display h:m otherwise d:m:y
+ * @function eventDate
  */
 myApp.filter('eventDate', function () {
     return function (input) {
@@ -14284,6 +14299,7 @@ myApp.filter('eventDate', function () {
 
 /**
  * Convert MySql DateTime stamp into JavaScript's Date format
+ * @function mysqlToUnixTs
  */
 myApp.filter('mysqlToUnixTs', function () {
     return function (input) {
@@ -14296,7 +14312,8 @@ myApp.filter('mysqlToUnixTs', function () {
 });
 
 /**
- * Get only unique values
+ * Set an object with unique key-values only
+ * @function unique
  */
 myApp.filter('unique', function () {
     return function (items, filterOn) {
@@ -14337,6 +14354,7 @@ myApp.filter('unique', function () {
 });
 /**
  * Get uri segment
+ * @function uri
  */
 myApp.filter('uri', function ($location) {
     return {
@@ -14361,7 +14379,8 @@ myApp.filter('uri', function ($location) {
 });
 
 /**
- * Display device name
+ * Build a device name
+ * @function deviceName
  */
 myApp.filter('deviceName', function () {
     return function (deviceId, device) {
@@ -14378,6 +14397,7 @@ myApp.filter('deviceName', function () {
 
 /**
  * Convert text to slug
+ * @function deviceName
  */
 myApp.filter('stringToSlug', function () {
     return function (str) {
@@ -16125,7 +16145,7 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
     }
 });
 /**
- * @overview This controller handles the Local apps, Online Apps and Active apps.
+ * @overview Controllers that handle the Local apps, Online Apps and Active apps.
  * @author Martin Vach
  */
 
@@ -21560,7 +21580,19 @@ myAppController.controller('LogoutController', function ($scope, dataService, da
     };
     $scope.logout();
 });
-// device filter for device select menu
+/**
+ * @overview Functions used to render the configuration arrays.
+ * @author Unknown
+ */
+
+/**
+ * Device filter for device select menu
+ * @param {object} ZWaveAPIData
+ * @param {string} span
+ * @param {string} dev
+ * @param {string} type
+ * @returns {Boolean}
+ */
 function devices_htmlSelect_filter(ZWaveAPIData,span,dev,type) {
 	// return true means to skip this node
 	switch(type) {
@@ -21587,7 +21619,12 @@ function devices_htmlSelect_filter(ZWaveAPIData,span,dev,type) {
 	}
 };
 
-// returns array with default values: first value from the enum, minimum value for range, empty string for string, first nodeId for node, default schedule for the climate_schedule
+/**
+ * Returns array with default values: first value from the enum, minimum value for range, empty string for string, first nodeId for node, default schedule for the climate_schedule
+ * @param {object} ZWaveAPIData
+ * @param {object} method
+ * @returns {Array}
+ */
 function method_defaultValues(ZWaveAPIData,method) {
      
 	function method_defaultValue(val) {
@@ -21624,7 +21661,11 @@ function method_defaultValues(ZWaveAPIData,method) {
 	return parameters;
 };
 
-// represent array with number, string and array elements in reversible way: use eval('[' + return_value + ']') to rever back to an array
+/**
+ * Represent array with number, string and array elements in reversible way: use eval('[' + return_value + ']') to rever back to an array
+ * @param {array} arr
+ * @returns {String}
+ */
 function repr_array(arr) {
 	var repr='';
 	for (var indx in arr) {
@@ -21651,9 +21692,11 @@ function repr_array(arr) {
 	return repr;
 };
 
-/*
-	Array unique
-*/
+/**
+ * Array unique
+ * @param {array} arr
+ * @returns {Array}
+ */
 function array_unique(arr) {
 	var newArray = new Array();
 
@@ -21665,7 +21708,20 @@ function array_unique(arr) {
 	}
 	return newArray;
 };
+/**
+ * @overview Functions used to render the configuration JSON.
+ * @author Unknown
+ */
 var _methods_specs_rendered = null;
+/**
+ * Get method spec
+ * @param {object} ZWaveAPIData
+ * @param {string} devId
+ * @param {string} instId
+ * @param {string} ccId
+ * @param {string} method
+ * @returns {getMethodSpec.methods}
+ */
 function getMethodSpec(ZWaveAPIData,devId, instId, ccId, method) {
 	if (_methods_specs_rendered === null)
         renderAllMethodSpec(ZWaveAPIData);
@@ -21687,7 +21743,11 @@ function getMethodSpec(ZWaveAPIData,devId, instId, ccId, method) {
 		return null;
 	}
 }
-
+/**
+ * Renders all method spec
+ * @param {object} ZWaveAPIData
+ * @returns {undefined}
+ */
 function renderAllMethodSpec(ZWaveAPIData) {
 	_methods_specs_rendered = {};
 	
@@ -21701,7 +21761,12 @@ function renderAllMethodSpec(ZWaveAPIData) {
 		}
 	}
 }
-
+/**
+ * Renders method spec
+ * @param {string} ccId
+ * @param {object} data
+ * @returns {object}
+  */
 function renderMethodSpec(ccId, data) {
 	switch (ccId) {
 
@@ -28870,13 +28935,24 @@ function X2JS(config) {
 }
 
 /**
- * ExpertUI directives
+ * @overview Angular directives that are used in device hardware configuration view.
  * @author Martin Vach
  */
 
-
+/**
+ * Renders configuration form inputs
+ * @class expertCommandInput
+ */
 myApp.directive('expertCommandInput', function($filter) {
-    // Get text input
+    /**
+     * Renders text input
+     * @param {text} label
+     * @param {mixed} value
+     * @param {int} min
+     * @param {int} max
+     * @param {string} name
+     * @returns {String}
+     */
     function getText(label, value, min, max, name) {
         var input = '';
         var inName = $filter('stringToSlug')(name ? name : label);
@@ -28884,7 +28960,14 @@ myApp.directive('expertCommandInput', function($filter) {
         input += '<input class="form-control" name="' + inName + '" type="text" class="form-control" value="' + value + '" title=" min: ' + min + ', max: ' + max + '" />';
         return input;
     }
-    // Get node
+    /**
+     * Renders node select input 
+     * @param {string} label
+     * @param {object} devices
+     * @param {string} currValue
+     * @param {string} name
+     * @returns {String}
+     */
     function getNode(label, devices, currValue, name) {
         var input = '';
         var inName = $filter('stringToSlug')(name ? name : label);
@@ -28902,7 +28985,16 @@ myApp.directive('expertCommandInput', function($filter) {
         return input;
     }
 
-    // Get enumerators
+    /**
+     * Renders enumerators
+     * @param {string} label
+     * @param {object} enums
+     * @param {int} defaultValue
+     * @param {string} name
+     * @param {boolean} hideRadio
+     * @param {int} currValue
+     * @returns {undefined|String}
+     */
     function getEnum(label, enums, defaultValue, name, hideRadio,currValue) {
         
         var input = '';
@@ -28978,7 +29070,15 @@ myApp.directive('expertCommandInput', function($filter) {
         return input;
     }
 
-    // Get dropdown list
+    /**
+     * Renders dropdown list
+     * @param {string} label
+     * @param {object} enums
+     * @param {string} defaultValue
+     * @param {string} name
+     * @param {string} currValue
+     * @returns {String}
+     */
     function getDropdown(label, enums, defaultValue, name,currValue) {
         var input = '';
         var cValue = (currValue !== undefined ? currValue : defaultValue);
@@ -29007,7 +29107,15 @@ myApp.directive('expertCommandInput', function($filter) {
         return input;
     }
 
-    // Get constant 
+    /**
+     * Renders constant select
+     * @param {string} label
+     * @param {string} type
+     * @param {string} defaultValue
+     * @param {string} name
+     * @param {string} currValue
+     * @returns {String}
+     */
     function getConstant(label, type, defaultValue, name,currValue) {
         var input = '';
         var inName = $filter('stringToSlug')(name ? name : label);
@@ -29026,7 +29134,13 @@ myApp.directive('expertCommandInput', function($filter) {
         input += '<em>Constant type</em>';
         return input;
     }
-    // Get string
+    /**
+     * Renders string input
+     * @param {string} label
+     * @param {string} value
+     * @param {string} name
+     * @returns {String}
+     */
     function getString(label, value, name) {
         var input = '';
         var inName = $filter('stringToSlug')(name ? name : label);
@@ -29035,15 +29149,22 @@ myApp.directive('expertCommandInput', function($filter) {
         return input;
     }
     
-    // Get bitset
-    function getBitset(label, enums, defaultValue, name, hideRadio,currValue) {
+    /**
+     * Renders bitset input
+     * @returns {String}
+     */
+    function getBitset() {
         
-        var input = 'Bitset';
+        var input = '';
         
         return input;
     }
 
-    // Get default
+    /**
+     * Renders default label
+     * @param {string} label
+     * @returns {String}
+     */
     function getDefault(label) {
 
         var input = '';
@@ -29108,7 +29229,10 @@ myApp.directive('expertCommandInput', function($filter) {
 
     };
 });
-
+/**
+ * Renders configuration default value
+ * @class configDefaultValue
+ */
 myApp.directive('configDefaultValue', function() {
     return {
         restrict: "E",
@@ -29155,7 +29279,13 @@ myApp.directive('configDefaultValue', function() {
 
     };
 
-    // Get enumerators
+    /**
+     * Renders enumerators
+     * @param {object} enums
+     * @param {string} defaultValue
+     * @param {string} showDefaultValue
+     * @returns {string}
+     */
     function getEnum(enums, defaultValue,showDefaultValue) {
         //console.log(enums)
         var input = showDefaultValue;
@@ -29188,7 +29318,10 @@ myApp.directive('configDefaultValue', function() {
         return input;
     }
 });
-
+/**
+ * Renders configuration title input
+ * @class configValueTitle
+ */
 myApp.directive('configValueTitle', function() {
     return {
         restrict: "A",
@@ -29231,7 +29364,12 @@ myApp.directive('configValueTitle', function() {
 
     };
 
-    // Get enumerators
+    /**
+     * Renders enumerators
+     * @param {object} enums
+     * @param {string} showValue
+     * @returns {string}
+     */
     function getEnum(enums, showValue) {
         //console.log(enums)
         var input = showValue;
@@ -29267,19 +29405,30 @@ myApp.directive('configValueTitle', function() {
 
 
 /**
- * ExpertUI services
+ * @overview Common functions that are used within device hardware configuration
  * @author Martin Vach
+ */
+
+/**
+ * Angular module initialization
+ * @class expertService
  */
 myAppService.service('expertService', function($filter) {
     /// --- Public functions --- ///
+    
     /**
      * Get language line by key
+     * @param {string} key
+     * @param {object} languages
+     * @returns {unresolved}
      */
     this.getLangLine = function(key, languages) {
         return getLangLine(key, languages);
     };
     /**
      * Get config navigation devices
+     * @param {object} ZWaveAPIData
+     * @returns {unresolved}
      */
     this.configGetNav = function(ZWaveAPIData) {
         return configGetNav(ZWaveAPIData);
@@ -29287,43 +29436,79 @@ myAppService.service('expertService', function($filter) {
 
     /**
      * Get language from zddx
+     * @param {object} node
+     * @param {string} lang
+     * @returns {unresolved}
      */
     this.configGetZddxLang = function(node, lang) {
         return configGetZddxLang(node, lang);
     };
     /**
      * Get xml config param
+     * @param {object} cfgXml
+     * @param {int} nodeId
+     * @param {string} instance
+     * @param {string} commandClass
+     * @param {string} command
+     * @returns {unresolved}
      */
     this.getCfgXmlParam = function(cfgXml, nodeId, instance, commandClass, command) {
         return getCfgXmlParam(cfgXml, nodeId, instance, commandClass, command);
     };
     /**
      * Config cont
+     * @param {object} node
+     * @param {int} nodeId
+     * @param {object} zddXml
+     * @param {object} cfgXml
+     * @param {string} lang
+     * @param {object} languages
+     * @returns {unresolved}
      */
     this.configConfigCont = function(node, nodeId, zddXml, cfgXml, lang, languages) {
         return configConfigCont(node, nodeId, zddXml, cfgXml, lang, languages);
     };
     /**
-     *  Switch all cont
+     * Switch all cont
+     * @param {object} node
+     * @param {int} nodeId
+     * @param {object} ZWaveAPIData
+     * @param {object} cfgXml
+     * @returns {unresolved}
      */
     this.configSwitchAllCont = function(node, nodeId, ZWaveAPIData, cfgXml) {
         return configSwitchAllCont(node, nodeId, ZWaveAPIData, cfgXml);
     };
     /**
      * Protection cont
+     * @param {object} node
+     * @param {int} nodeId
+     * @param {object} ZWaveAPIData
+     * @param {object} cfgXml
+     * @returns {unresolved}
      */
     this.configProtectionCont = function(node, nodeId, ZWaveAPIData, cfgXml) {
         return configProtectionCont(node, nodeId, ZWaveAPIData, cfgXml);
     };
-    /**
-     * Wakeup cont
-     */
+   /**
+    * Wakeup cont
+    * @param {object} node
+    * @param {int} nodeId
+    * @param {object} ZWaveAPIData
+    * @param {object} cfgXml
+    * @returns {unresolved}
+    */
     this.configWakeupCont = function(node, nodeId, ZWaveAPIData, cfgXml) {
         return configWakeupCont(node, nodeId, ZWaveAPIData, cfgXml);
     };
 
     /**
-     *Build config XML file
+     * Build config XML file
+     * @param {object} data
+     * @param {object} cfgXml
+     * @param {int} id
+     * @param {string} commandclass
+     * @returns {unresolved}
      */
     this.buildCfgXml = function(data, cfgXml, id, commandclass) {
         return buildCfgXml(data, cfgXml, id, commandclass);
@@ -29996,8 +30181,13 @@ myAppService.service('expertService', function($filter) {
 });
 
 /**
- * Device configuration controller from ExpertUI
+ * @overview Handles actions in the device hardware configuration.
  * @author Martin Vach
+ */
+
+/**
+ * The controller that handles outputs and inputs.
+ * @class ConfigConfigurationController
  */
 myAppController.controller('ConfigConfigurationController', function($scope, $routeParams, $location, $interval, $filter, $timeout, dataFactory, dataService, expertService) {
     
@@ -30019,7 +30209,9 @@ myAppController.controller('ConfigConfigurationController', function($scope, $ro
         $interval.cancel($scope.apiDataInterval);
     });
 
-    // Load data
+    /**
+     * Load data
+     */
     $scope.load = function(nodeId) {
         dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
             var node = ZWaveAPIData.devices[nodeId];
@@ -30067,9 +30259,6 @@ myAppController.controller('ConfigConfigurationController', function($scope, $ro
 
     /**
      * Update from device action
-     *
-     * @param {string} cmd
-     * @returns {undefined}
      */
     $scope.updateFromDevice = function(cmd,hasBattery) {
          $scope.loading = {status:'loading-spin',icon:'fa-spinner fa-spin', message:$scope._t('updating')};

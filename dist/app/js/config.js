@@ -1,3 +1,7 @@
+/**
+ * @overview The main configuration file.
+ * @author Martin Vach
+ */
 var config_data = {
     'cfg': {
         //Application name

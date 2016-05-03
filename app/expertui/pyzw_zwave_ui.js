@@ -1,4 +1,17 @@
+/**
+ * @overview Functions used to render the configuration JSON.
+ * @author Unknown
+ */
 var _methods_specs_rendered = null;
+/**
+ * Get method spec
+ * @param {object} ZWaveAPIData
+ * @param {string} devId
+ * @param {string} instId
+ * @param {string} ccId
+ * @param {string} method
+ * @returns {getMethodSpec.methods}
+ */
 function getMethodSpec(ZWaveAPIData,devId, instId, ccId, method) {
 	if (_methods_specs_rendered === null)
         renderAllMethodSpec(ZWaveAPIData);
@@ -20,7 +33,11 @@ function getMethodSpec(ZWaveAPIData,devId, instId, ccId, method) {
 		return null;
 	}
 }
-
+/**
+ * Renders all method spec
+ * @param {object} ZWaveAPIData
+ * @returns {undefined}
+ */
 function renderAllMethodSpec(ZWaveAPIData) {
 	_methods_specs_rendered = {};
 	
@@ -34,7 +51,12 @@ function renderAllMethodSpec(ZWaveAPIData) {
 		}
 	}
 }
-
+/**
+ * Renders method spec
+ * @param {string} ccId
+ * @param {object} data
+ * @returns {object}
+  */
 function renderMethodSpec(ccId, data) {
 	switch (ccId) {
 

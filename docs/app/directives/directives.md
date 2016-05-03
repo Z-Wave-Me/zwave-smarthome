@@ -6,76 +6,64 @@
 
 * * *
 
-### bbGoBack() 
-
+## bbGoBack
 Window history back
 
 
-
-### bbLoader() 
-
+## bbLoader
 Displays a page loader
 
 
-
-### bbAlert() 
-
+## bbAlert
 Displays an alert message within the div
 
 
-
-### bbAlertText() 
-
+## bbAlertText
 Displays an alert message within the span
 
 
-
-### bbHelp() 
-
+## bbHelp
 Displays a HTML help page
 
 
-
-### bbHelpText() 
-
+## bbHelpText
 Displays a help text
 
 
-
-### bbValidator() 
-
+## bbValidator
 Displays a validation error
 
 
-
-### bbCompareTo() 
-
+## bbCompareTo
 Compare two values
 
 
-
-### myknob() 
-
+## myknob
 Displays a knob
 
+### myknob.runCmdExact(id, val) 
+
+Run command exact value
+
+**Parameters**
+
+**id**: `int`
+
+**val**: `int`
+
+**Returns**: `undefined`
 
 
-### ngConfirmClick() 
-
+## ngConfirmClick
 Displays a confirm dialog after click
 
 
-
-### fileModel() 
-
+## fileModel
 Upload a file
 
 
-
-### bbKeyEvent() 
-
+## bbKeyEvent
 Catch a key event
-
 
 
 

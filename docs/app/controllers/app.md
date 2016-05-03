@@ -213,6 +213,6 @@ Set moduledependencies
 
 
 
-**Overview:** This controller handles the Local apps, Online Apps and Active apps.
+**Overview:** Controllers that handle the Local apps, Online Apps and Active apps.
 
 

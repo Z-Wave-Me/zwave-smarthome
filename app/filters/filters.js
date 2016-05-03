@@ -529,7 +529,8 @@ myApp.filter('isToday', function () {
 });
 
 /**
- * If is today display h:m otherwise d:m:y
+ * Renders an event date - If is today display h:m otherwise d:m:y
+ * @function eventDate
  */
 myApp.filter('eventDate', function () {
     return function (input) {
@@ -552,6 +553,7 @@ myApp.filter('eventDate', function () {
 
 /**
  * Convert MySql DateTime stamp into JavaScript's Date format
+ * @function mysqlToUnixTs
  */
 myApp.filter('mysqlToUnixTs', function () {
     return function (input) {
@@ -564,7 +566,8 @@ myApp.filter('mysqlToUnixTs', function () {
 });
 
 /**
- * Get only unique values
+ * Set an object with unique key-values only
+ * @function unique
  */
 myApp.filter('unique', function () {
     return function (items, filterOn) {
@@ -605,6 +608,7 @@ myApp.filter('unique', function () {
 });
 /**
  * Get uri segment
+ * @function uri
  */
 myApp.filter('uri', function ($location) {
     return {
@@ -629,7 +633,8 @@ myApp.filter('uri', function ($location) {
 });
 
 /**
- * Display device name
+ * Build a device name
+ * @function deviceName
  */
 myApp.filter('deviceName', function () {
     return function (deviceId, device) {
@@ -646,6 +651,7 @@ myApp.filter('deviceName', function () {
 
 /**
  * Convert text to slug
+ * @function deviceName
  */
 myApp.filter('stringToSlug', function () {
     return function (str) {
