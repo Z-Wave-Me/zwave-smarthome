@@ -1,3 +1,14 @@
+**Overview:** Angular directives that are used in device hardware configuration view.
+
+
+
+**Author:** Martin Vach
+
+
+
+
+* * *
+
 # Global
 
 

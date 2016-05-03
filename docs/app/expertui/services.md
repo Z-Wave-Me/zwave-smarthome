@@ -1,3 +1,14 @@
+**Overview:** Common functions that are used within device hardware configuration
+
+
+
+**Author:** Martin Vach
+
+
+
+
+* * *
+
 # Global
 
 

@@ -1,3 +1,14 @@
+**Overview:** Angular factories that handle cache, Underscore and HTTP requests.
+
+
+
+**Author:** Martin Vach
+
+
+
+
+* * *
+
 # Global
 
 

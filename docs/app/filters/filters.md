@@ -1,3 +1,14 @@
+**Overview:** Filters that are used to format data within views and controllers.
+
+
+
+**Author:** Martin Vach
+
+
+
+
+* * *
+
 # Global
 
 

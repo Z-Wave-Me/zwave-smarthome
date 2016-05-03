@@ -1,3 +1,14 @@
+**Overview:** Handles actions in the device hardware configuration.
+
+
+
+**Author:** Martin Vach
+
+
+
+
+* * *
+
 # Global
 
 

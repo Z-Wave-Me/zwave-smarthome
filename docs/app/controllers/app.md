@@ -1,3 +1,14 @@
+**Overview:** Controllers that handle the Local apps, Online Apps and Active apps.
+
+
+
+**Author:** Martin Vach
+
+
+
+
+* * *
+
 # Global
 
 

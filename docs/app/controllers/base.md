@@ -1,3 +1,14 @@
+**Overview:** The parent controller that stores all function used in the child controllers.
+
+
+
+**Author:** Martin Vach
+
+
+
+
+* * *
+
 # Global
 
 

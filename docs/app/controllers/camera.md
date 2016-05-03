@@ -1,3 +1,14 @@
+**Overview:** Controllers that handle all Camera actions – manage and add camera.
+
+
+
+**Author:** Martin Vach
+
+
+
+
+* * *
+
 # Global
 
 

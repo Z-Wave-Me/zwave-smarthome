@@ -1,3 +1,14 @@
+**Overview:** Common Angular directives that are used within the views.
+
+
+
+**Author:** Martin Vach
+
+
+
+
+* * *
+
 # Global
 
 

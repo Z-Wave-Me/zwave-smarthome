@@ -1,3 +1,14 @@
+**Overview:** Handles Z-Wave device inclusion actions.
+
+
+
+**Author:** Martin Vach
+
+
+
+
+* * *
+
 # Global
 
 

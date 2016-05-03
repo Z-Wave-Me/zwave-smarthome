@@ -1,3 +1,14 @@
+**Overview:** Functions used to render the configuration arrays.
+
+
+
+**Author:** Unknown
+
+
+
+
+* * *
+
 # Global
 
 

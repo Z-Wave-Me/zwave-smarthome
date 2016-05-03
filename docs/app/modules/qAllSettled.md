@@ -1,3 +1,14 @@
+**Overview:** Angular module qAllSettled executes a number of operations concurrently.
+
+
+
+
+
+
+
+
+* * *
+
 # Global
 
 

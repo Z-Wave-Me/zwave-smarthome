@@ -1,3 +1,14 @@
+**Overview:** Controllers that handle the authentication of existing users, as well as forgot password.
+
+
+
+**Author:** Martin Vach
+
+
+
+
+* * *
+
 # Global
 
 

@@ -1,3 +1,14 @@
+**Overview:** AngularJS module for paginating (almost) anything.
+
+
+
+**Author:** Created by Michael.
+
+
+
+
+* * *
+
 # Global
 
 
