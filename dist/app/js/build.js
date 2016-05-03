@@ -11660,15 +11660,16 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 }]);
 
 /**
- * Angular $q allSettled() implementation
- * 
+ * @overview Angular module qAllSettled executes a number of operations concurrently.
+ */
+'use strict';
+/**
  * This method is often used in its static form on arrays of promises, in order to execute a number of operations concurrently 
  * and be notified when they all finish, regardless of success or failure.
  * Returns a promise that is fulfilled with an array of promise state snapshots,
- * but only after all the original promises have settled, i.e. become either fulfilled or rejected. 
+ * but only after all the original promises have settled, i.e. become either fulfilled or rejected.
+ * @method qAllSettled
  */
-'use strict';
-
 angular.module('qAllSettled', []).config(function($provide) {
   $provide.decorator('$q', function($delegate) {
     var $q = $delegate;
@@ -13732,11 +13733,13 @@ myApp.directive("tcChartjs", [ "TcChartjsFactory", function(TcChartjsFactory) {
     };
 });
 /**
- * App filters
+ * @overview Filters that are used to format data within views and controllers.
  * @author Martin Vach
  */
+
 /**
- * Display HTML tags in scope
+ * Allow to display html tags in the scope
+ * @function toTrusted
  */
 myApp.filter('toTrusted', ['$sce', function ($sce) {
         return function (text) {
@@ -13748,6 +13751,7 @@ myApp.filter('toTrusted', ['$sce', function ($sce) {
     }]);
 /**
  * Strip HTML tags from input
+ * @function stripTags
  */
 myApp.filter('stripTags', function () {
     return function (text) {
@@ -14394,6 +14398,11 @@ myApp.filter('stringToSlug', function () {
         return str;
     };
 });
+/**
+ * @overview Receives data from the Alpaca form and stores them on the server.
+ * @author Martin Vach,Niels Roche 
+ */
+
 /**
  * POST/PUT data from Alpaca form
  * @returns false

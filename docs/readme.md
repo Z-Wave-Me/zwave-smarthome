@@ -32,6 +32,30 @@ name | overview
 - - -
 
 
+app/filters
+---
+name | overview
+:-- | :--
+[app\filters\filters.js](app/filters/filters.md) | _Filters that are used to format data within views and controllers._
+- - -
+
+
+app/jquery
+---
+name | overview
+:-- | :--
+[app\jquery\postrender.js](app/jquery/postrender.md) | _Receives data from the Alpaca form and stores them on the server._
+- - -
+
+
+app/modules
+---
+name | overview
+:-- | :--
+[app\modules\qAllSettled.js](app/modules/qAllSettled.md) | _Angular module qAllSettled executes a number of operations concurrently._
+- - -
+
+
 app/services
 ---
 name | overview

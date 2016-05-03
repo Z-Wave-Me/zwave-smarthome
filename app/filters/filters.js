@@ -1,9 +1,11 @@
 /**
- * App filters
+ * @overview Filters that are used to format data within views and controllers.
  * @author Martin Vach
  */
+
 /**
- * Display HTML tags in scope
+ * Allow to display html tags in the scope
+ * @function toTrusted
  */
 myApp.filter('toTrusted', ['$sce', function ($sce) {
         return function (text) {
@@ -15,6 +17,7 @@ myApp.filter('toTrusted', ['$sce', function ($sce) {
     }]);
 /**
  * Strip HTML tags from input
+ * @function stripTags
  */
 myApp.filter('stripTags', function () {
     return function (text) {
@@ -22,7 +25,8 @@ myApp.filter('stripTags', function () {
     };
 });
 /**
- * Cut text into x chars
+ * Shorten the text to the specified number of characters
+ * @function cutText
  */
 myApp.filter('cutText', function () {
     return function (value, wordwise, max, tail) {
@@ -48,6 +52,7 @@ myApp.filter('cutText', function () {
 });
 /**
  * Convert val to int
+ * @function toInt
  */
 myApp.filter('toInt', function () {
     return function (val, a) {
@@ -61,6 +66,7 @@ myApp.filter('toInt', function () {
 
 /**
  * Convert val to bool
+ * @function toBool
  */
 myApp.filter('toBool', function () {
     return function (val) {
@@ -70,6 +76,7 @@ myApp.filter('toBool', function () {
 
 /**
  * Get type of a Javascript variable
+ * @function typeOf
  */
 myApp.filter('typeOf', function () {
     return function (obj) {
@@ -78,7 +85,8 @@ myApp.filter('typeOf', function () {
 });
 
 /**
- * Set the max dec. lenghth
+ * Set max length of the number entered
+ * @function numberFixedLen
  */
 myApp.filter('numberFixedLen', function () {
     return function (val) {
@@ -104,7 +112,8 @@ myApp.filter('numberFixedLen', function () {
 });
 
 /**
- * Check if JSON keys/nodes exist
+ * Check if an object exists and has a node.
+ * @function hasNode
  */
 myApp.filter('hasNode', function () {
     return function (obj, path) {
@@ -124,21 +133,8 @@ myApp.filter('hasNode', function () {
     };
 });
 /**
- * DEPRECATED
- * Get segment from url
- */
-//myApp.filter('getUrlSegment', function ($location) {
-//    return function (segment) {
-//        var ret = false;
-//        var data = $location.path().split('/');
-//        if (data[segment]) {
-//            ret = data[segment];
-//        }
-//        return ret;
-//    };
-//});
-/**
- * Get current time
+ * Builds an element icon path
+ * @function getElementIcon
  */
 myApp.filter('getElementIcon', function (cfg) {
     return function (input, device, level) {
@@ -264,7 +260,8 @@ myApp.filter('getElementIcon', function (cfg) {
 });
 
 /**
- * Get event icon
+ * Builds an event icon path
+ * @function getEventIcon
  */
 myApp.filter('getEventIcon', function (cfg) {
     return function (input, message) {
@@ -306,7 +303,8 @@ myApp.filter('getEventIcon', function (cfg) {
 });
 
 /**
- * Get battery icon
+ * Builds a battery icon path
+ * @function getBatteryIcon
  */
 myApp.filter('getBatteryIcon', function (cfg) {
     return function (input) {
@@ -333,7 +331,8 @@ myApp.filter('getBatteryIcon', function (cfg) {
 });
 
 /**
- * Get element category icon
+ * Get a category icon in the Elements sections
+ * @function getElCategoryIcon
  */
 myApp.filter('getElCategoryIcon', function () {
     return function (input) {
@@ -359,7 +358,8 @@ myApp.filter('getElCategoryIcon', function () {
 });
 
 /**
- * Get App category icon
+ * Get a category icon in the APPs sections
+ * @function getAppCategoryIcon
  */
 myApp.filter('getAppCategoryIcon', function () {
     return function (input) {
@@ -395,7 +395,8 @@ myApp.filter('getAppCategoryIcon', function () {
 });
 
 /**
- * Get max level
+ * Get max level by probeType from the devices data holder
+ * @function getMaxLevel
  */
 myApp.filter('getMaxLevel', function () {
     return function (input, probeType) {
@@ -414,7 +415,8 @@ myApp.filter('getMaxLevel', function () {
 });
 
 /**
- * Today from unix - ExpertUI filter
+ * Today from unix - ExpertUI filter used in the device hardware configuration
+ * @function isTodayFromUnix
  */
 myApp.filter('isTodayFromUnix', function () {
     return function (input) {
@@ -439,7 +441,8 @@ myApp.filter('isTodayFromUnix', function () {
     };
 });
 /**
- * Get current time
+ * Get current time in the hrs:min:sec format
+ * @function getCurrentTime
  */
 myApp.filter('getCurrentTime', function () {
     return function (timestamp) {
@@ -457,7 +460,8 @@ myApp.filter('getCurrentTime', function () {
     };
 });
 /**
- * Get current time
+ * Get a day from the unix timstamp for filtering events
+ * @function unixStartOfDay
  */
 myApp.filter('unixStartOfDay', function () {
     return function (input, value) {
@@ -481,6 +485,7 @@ myApp.filter('unixStartOfDay', function () {
 });
 /**
  * If is today display h:m otherwise d:m:y
+ * @function isToday
  */
 myApp.filter('isToday', function () {
     return function (input, fromunix, days, yesterday) {

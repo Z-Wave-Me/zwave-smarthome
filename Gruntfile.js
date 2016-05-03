@@ -168,7 +168,7 @@ module.exports = function (grunt) {
                     templateDir: 'docstemplates'
                 },
                 //src: ['app/**/*.js'],
-                src: ['app/controllers/*.js','app/services/*.js','app/directives/*.js'],
+                src: ['app/controllers/*.js','app/services/*.js','app/directives/*.js','app/modules/*.js','app/jquery/*.js','app/filters/*.js'],
                 dest: 'docs'
             }
         },
