@@ -33,16 +33,16 @@
                                 <div class="widget-ctrl ctrl-right clearfix">
                                      <div class="btn-group">
                                         <!-- Activate -->
-                                        <button href="" class="btn btn-default" ng-if="v.name !== skins.local.active" ng-click="activateSkin(v)">
-                                            <i class="fa fa-fire text-success"></i> <span class="btn-name">{{_t('Activate')}}</span>
+                                        <button href="" class="btn btn-default" title="{{_t('lb_activate')}}" ng-if="v.name !== skins.local.active" ng-click="activateSkin(v)">
+                                            <i class="fa fa-fire text-success"></i> <span class="btn-name">{{_t('lb_activate')}}</span>
                                         </button> 
                                         <!-- Is active -->
-                                        <button class="btn btn-disabled" disabled ng-if="v.name === skins.local.active">
-                                            <i class="fa fa-check"></i> <span class="btn-name_">{{_t('Active')}}</span>
+                                        <button class="btn btn-disabled" title="{{_t('lb_active')}}" disabled ng-if="v.name === skins.local.active">
+                                            <i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_active')}}</span>
                                         </button> 
                                          <!-- Delete -->
-                                        <button class="btn btn-default" ng-click="removeSkin(v, _t('app_delete_confirm'))" ng-hide="v.name === skins.local.active" ng-if="v.name !== 'default'">
-                                            <i class="fa fa-remove text-danger"></i> <span class="btn-name" ng-bind="_t('lb_remove')"></span>
+                                        <button class="btn btn-default" title="{{_t('lb_remove')}}" ng-click="removeSkin(v, _t('app_delete_confirm'))" ng-hide="v.name === skins.local.active" ng-if="v.name !== 'default'">
+                                            <i class="fa fa-remove text-danger"></i> <span class="btn-name">{{_t('lb_remove')}}</span>
                                         </button>
                                    </div>
                                 </div>
