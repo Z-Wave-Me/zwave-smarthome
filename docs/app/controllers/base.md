@@ -197,13 +197,3 @@ Expand/collapse an element
 
 
 * * *
-
-
-
-**Author:** Martin Vach
-
-
-
-**Overview:** The parent controller that stores all function used in the child controllers.
-
-

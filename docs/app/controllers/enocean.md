@@ -258,13 +258,3 @@ Load enocean data
 
 
 * * *
-
-
-
-**Author:** Martin Vach
-
-
-
-**Overview:** Controllers that handle EnOcean Services.
-
-

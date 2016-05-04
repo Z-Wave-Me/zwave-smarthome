@@ -62,13 +62,3 @@ Renders method spec
 
 
 * * *
-
-
-
-**Author:** Unknown
-
-
-
-**Overview:** Functions used to render the configuration JSON.
-
-

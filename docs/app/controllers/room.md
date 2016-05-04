@@ -91,13 +91,3 @@ Remove room id from device
 
 
 * * *
-
-
-
-**Author:** Martin Vach
-
-
-
-**Overview:** Controllers that handle room actions.
-
-

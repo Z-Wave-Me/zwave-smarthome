@@ -25,13 +25,3 @@ This method is often used in its static form on arrays of promises, in order to 
 
 
 * * *
-
-
-
-
-
-
-
-**Overview:** Angular module qAllSettled executes a number of operations concurrently.
-
-

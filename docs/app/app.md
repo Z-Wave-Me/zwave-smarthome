@@ -43,13 +43,3 @@ Intercepting HTTP calls with AngularJS.
 
 
 * * *
-
-
-
-**Author:** Martin Vach
-
-
-
-**Overview:** This is used to handle angular modules, routes and other settings.
-
-

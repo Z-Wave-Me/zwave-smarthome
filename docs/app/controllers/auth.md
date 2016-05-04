@@ -103,13 +103,3 @@ Logout an user
 
 
 * * *
-
-
-
-**Author:** Martin Vach
-
-
-
-**Overview:** Controllers that handle the authentication of existing users, as well as forgot password.
-
-

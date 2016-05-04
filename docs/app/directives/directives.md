@@ -79,13 +79,3 @@ Catch a key event
 
 
 * * *
-
-
-
-**Author:** Martin Vach
-
-
-
-**Overview:** Common Angular directives that are used within the views.
-
-

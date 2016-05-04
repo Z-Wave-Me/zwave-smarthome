@@ -177,13 +177,3 @@ Renders enumerators
 
 
 * * *
-
-
-
-**Author:** Martin Vach
-
-
-
-**Overview:** Angular directives that are used in device hardware configuration view.
-
-

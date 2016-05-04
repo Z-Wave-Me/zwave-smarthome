@@ -53,13 +53,3 @@ Load devices
 
 
 * * *
-
-
-
-**Author:** Martin Vach
-
-
-
-**Overview:** Handles user actions.
-
-

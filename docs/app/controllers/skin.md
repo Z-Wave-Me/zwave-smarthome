@@ -66,13 +66,3 @@ Upgrade skin
 
 
 * * *
-
-
-
-**Author:** Martin Vach
-
-
-
-**Overview:** Controllers that handle all Skins actions.
-
-

@@ -71,13 +71,3 @@ Array unique
 
 
 * * *
-
-
-
-**Author:** Unknown
-
-
-
-**Overview:** Functions used to render the configuration arrays.
-
-

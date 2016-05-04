@@ -163,13 +163,3 @@ Convert text to slug
 
 
 * * *
-
-
-
-**Author:** Martin Vach
-
-
-
-**Overview:** Filters that are used to format data within views and controllers.
-
-

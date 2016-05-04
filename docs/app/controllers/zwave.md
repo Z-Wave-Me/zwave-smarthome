@@ -148,13 +148,3 @@ Get zwaveApiData
 
 
 * * *
-
-
-
-**Author:** Martin Vach
-
-
-
-**Overview:** Controllers that handle Z-Wave devices actions.
-
-

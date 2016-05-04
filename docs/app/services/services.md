@@ -283,13 +283,3 @@ Remove array value
 
 
 * * *
-
-
-
-**Author:** Martin Vach
-
-
-
-**Overview:** Stores methods that are used within controllers.
-
-

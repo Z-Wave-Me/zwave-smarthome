@@ -246,13 +246,3 @@ Find text
 
 
 * * *
-
-
-
-**Author:** Martin Vach
-
-
-
-**Overview:** Controllers that handle the list of elements, as well as an element detail.
-
-

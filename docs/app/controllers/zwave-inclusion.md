@@ -113,13 +113,3 @@ Reset manual configuration
 
 
 * * *
-
-
-
-**Author:** Martin Vach
-
-
-
-**Overview:** Handles Z-Wave device inclusion actions.
-
-

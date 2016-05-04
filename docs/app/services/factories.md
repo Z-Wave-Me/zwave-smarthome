@@ -427,13 +427,3 @@ Load a help page from the storage directory
 
 
 * * *
-
-
-
-**Author:** Martin Vach
-
-
-
-**Overview:** Angular factories that handle cache, Underscore and HTTP requests.
-
-

@@ -58,13 +58,3 @@ Set all conts
 
 
 * * *
-
-
-
-**Author:** Martin Vach
-
-
-
-**Overview:** Handles actions in the device hardware configuration.
-
-

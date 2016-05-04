@@ -217,13 +217,3 @@ Set moduledependencies
 
 
 * * *
-
-
-
-**Author:** Martin Vach
-
-
-
-**Overview:** Controllers that handle the Local apps, Online Apps and Active apps.
-
-

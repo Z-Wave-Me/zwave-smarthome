@@ -209,13 +209,3 @@ Build cfg XML file
 
 
 * * *
-
-
-
-**Author:** Martin Vach
-
-
-
-**Overview:** Common functions that are used within device hardware configuration
-
-

@@ -63,13 +63,3 @@ Update profile
 
 
 * * *
-
-
-
-**Author:** Martin Vach
-
-
-
-**Overview:** Handles all events.
-
-

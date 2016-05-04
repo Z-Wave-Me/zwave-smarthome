@@ -33,13 +33,3 @@ Build form data
 
 
 * * *
-
-
-
-**Author:** Martin Vach,Niels Roche
-
-
-
-**Overview:** Receives data from the Alpaca form and stores them on the server.
-
-

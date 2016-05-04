@@ -192,13 +192,3 @@ The controller that renders info data.
 
 
 * * *
-
-
-
-**Author:** Martin Vach
-
-
-
-**Overview:** Controllers that handle management actions.
-
-
