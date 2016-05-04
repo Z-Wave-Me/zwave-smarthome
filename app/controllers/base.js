@@ -1,17 +1,19 @@
 /**
- * Application base controller
+ * @overview The parent controller that stores all function used in the child controllers.
  * @author Martin Vach
  */
 
-/*** Controllers ***/
-var myAppController = angular.module('myAppController', []);
 /**
- * Base controller
+ * Angular module instance
+ */
+var myAppController = angular.module('myAppController', []);
+
+/**
+ * The app base controller. 
+ * @class BaseController
  */
 myAppController.controller('BaseController', function ($scope, $cookies, $filter, $location, $route, $window, $interval, cfg, dataFactory, dataService, myCache) {
-    /**
-     * Global scopes
-     */
+    // Global scopes
     angular.extend(cfg.route, {os: dataService.getOs()});
     $scope.cfg = cfg;
     $scope.timeZoneInterval = null;
@@ -23,16 +25,52 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     $scope.ZWAYSession = dataService.getZWAYSession();
     $scope.lastLogin = dataService.getLastLogin();
     $scope.setSkin = function () {
-     if($cookies.skin && $cookies.skin !== 'default'){
-     cfg.skin.active =  $cookies.skin;
-     cfg.img.icons = cfg.skin.path + $cookies.skin + '/img/icons/';
-     cfg.img.logo = cfg.skin.path + $cookies.skin + '/img/logo/';
-     //$("link[id='main_css']").attr('href', 'storage/skins/defaultzip/main.css');
-     $("link[id='main_css']").attr('href', cfg.skin.path + $cookies.skin + '/main.css');
-     }
-     
-     };
+        if ($cookies.skin && $cookies.skin !== 'default') {
+            cfg.skin.active = $cookies.skin;
+            cfg.img.icons = cfg.skin.path + $cookies.skin + '/img/icons/';
+            cfg.img.logo = cfg.skin.path + $cookies.skin + '/img/logo/';
+            //$("link[id='main_css']").attr('href', 'storage/skins/defaultzip/main.css');
+            $("link[id='main_css']").attr('href', cfg.skin.path + $cookies.skin + '/main.css');
+        }
+
+    };
     $scope.setSkin();
+    /**
+     * Reset a fatal error.
+     * @param {object} obj
+     * @returns {undefined}
+     */
+    $scope.resetFatalError = function (obj) {
+        angular.extend(cfg.route.fatalError, obj || {message: false, info: false, hide: false});
+
+    };
+    /**
+     * Set a time
+     * @returns {undefined}
+     */
+    $scope.setTimeZone = function () {
+        if (!$scope.user) {
+            return;
+        }
+        dataFactory.getApi('timezone', null, true).then(function (response) {
+            angular.extend(cfg.route.time, {string: $filter('getCurrentTime')(response.data.data.localTimeUT)});
+            var refresh = function () {
+                dataFactory.getApi('timezone', null, true).then(function (response) {
+                    angular.extend(cfg.route.time, {string: $filter('getCurrentTime')(response.data.data.localTimeUT)});
+
+                }, function (error) {
+                    $interval.cancel($scope.timeZoneInterval);
+                });
+            };
+            $scope.timeZoneInterval = $interval(refresh, $scope.cfg.interval);
+        }, function (error) {});
+
+    };
+    $scope.setTimeZone();
+    /**
+     * Set poll interval
+     * @returns {undefined}
+     */
     $scope.setPollInterval = function () {
         if (!$scope.user) {
             $scope.cfg.interval = $scope.cfg.interval;
@@ -42,6 +80,14 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
 
     };
     $scope.setPollInterval();
+
+    /**
+     * Allow to access page elements by role.
+     * 
+     * @param {array} roles
+     * @param {boolean} mobile
+     * @returns {Boolean}
+     */
     $scope.elementAccess = function (roles, mobile) {
         if (!$scope.user) {
             return false;
@@ -57,11 +103,12 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         return true;
     };
 
-    /**
-     * Language settings
-     */
+
     $scope.lang_list = cfg.lang_list;
-    // Set language
+    /**
+     * Get a language key from the cookie or set a default language.
+     * @returns {undefined}
+     */
     $scope.getLang = function () {
         if ($scope.user) {
             $scope.lang = $scope.user.lang;
@@ -73,7 +120,11 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     $scope.getLang();
     $cookies.lang = $scope.lang;
 
-    // Load language files
+    /**
+     * Load an language file
+     * @param {string} lang
+     * @returns {undefined}
+     */
     $scope.loadLang = function (lang) {
         // Is lang in language list?
         var lang = (cfg.lang_list.indexOf(lang) > -1 ? lang : cfg.lang);
@@ -81,22 +132,38 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
             angular.extend($scope.languages, response.data);
         }, function (error) {});
     };
-    // Get language lines
-    $scope._t = function (key) {
-        return dataService.getLangLine(key, $scope.languages);
+    /**
+     * Get a language line by key.
+     * @param {type} key
+     * @param {type} replacement
+     * @returns {unresolved}
+     */
+    $scope._t = function (key, replacement) {
+        return dataService.getLangLine(key, $scope.languages, replacement);
     };
 
-    // Watch for lang change
+    /**
+     * Watch for lang changes
+     */
     $scope.$watch('lang', function () {
         $scope.loadLang($scope.lang);
     });
 
-    // Order by
+    /**
+     * Order by
+     * @param {string} field
+     * @returns {undefined}
+     */
     $scope.orderBy = function (field) {
         $scope.predicate = field;
         $scope.reverse = !$scope.reverse;
     };
-    // Route match
+
+    /**
+     * Check if route match the pattern.
+     * @param {string} path
+     * @returns {Boolean}
+     */
     $scope.routeMatch = function (path) {
         if ($route.current && $route.current.regexp) {
             return $route.current.regexp.test(path);
@@ -107,45 +174,38 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
 
     /**
      * Get body ID
+     * @returns {String}
      */
     $scope.getBodyId = function () {
         var path = $location.path().split('/');
         return path[1] || 'login';
 
     };
-
-    /**
-     * Get current filter
-     */
-    $scope.getCurrFilter = function (index, val) {
-        var path = $location.path().split('/');
-
-    };
-    /**
-     * Get body ID
-     */
-    $scope.footer = 'Home footer';
-    /**
-     *
-     * Mobile detect
-     */
+    // Mobile detect
     $scope.isMobile = dataService.isMobile(navigator.userAgent || navigator.vendor || window.opera);
-    /*
-     * Menu active class
+
+    /**
+     * Check if the route match the given param and set active class in the element.
+     * @param {string} route
+     * @returns {String}
      */
     $scope.isActive = function (route) {
         return (route === $scope.getBodyId() ? 'active' : '');
     };
 
     /**
-     *Reload data
+     * Causes $route service to reload the current route even if $location hasn't changed.
+     * @returns {undefined}
      */
     $scope.reloadData = function () {
         myCache.removeAll();
         $route.reload();
     };
+
     /**
      * Redirect to given url
+     * @param {string} url
+     * @returns {undefined}
      */
     $scope.redirectToRoute = function (url) {
         if (url) {
@@ -153,7 +213,8 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         }
     };
     /**
-     * Get app logo
+     * Get an app logo according to app_type settings
+     * @returns {String}
      */
     $scope.getAppLogo = function () {
         var logo = cfg.img.logo + 'app-logo-default.png';
@@ -163,7 +224,8 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         return logo;
     };
     /**
-     * Get hidden apps array by app_type
+     * Get an array of the hidden apps according to app_type settings
+     * @returns {Array}
      */
     $scope.getHiddenApps = function () {
         var apps = [];
@@ -175,6 +237,8 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
 
     /**
      * Get array from custom config
+     * @param {string} key
+     * @returns {Array}
      */
     $scope.getCustomCfgArr = function (key) {
         if (cfg.custom_cfg[cfg.app_type]) {
@@ -185,6 +249,9 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
 
     /**
      * Redirect to Expert
+     * @param {string} url
+     * @param {string} message
+     * @returns {undefined}
      */
     $scope.toExpert = function (url, message) {
         alertify.confirm(message, function () {
@@ -192,11 +259,14 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
             $window.open(url, '_blank');
         }).set('labels', {ok: $scope._t('goahead')});
     };
-
+    $scope.naviExpanded = {};
     /**
      * Expand/collapse navigation
+     * @param {string} key
+     * @param {object} $event
+     * @param {boolean} status
+     * @returns {undefined}
      */
-    $scope.naviExpanded = {};
     $scope.expandNavi = function (key, $event, status) {
         if ($scope.naviExpanded[key]) {
             $scope.naviExpanded = {};
@@ -211,7 +281,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         }
         $event.stopPropagation();
     };
-    // Collaps element/menu when clicking outside
+    // Collapse element/menu when clicking outside
     window.onclick = function () {
         if ($scope.naviExpanded) {
             angular.copy({}, $scope.naviExpanded);
@@ -219,10 +289,14 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         }
     };
 
-    /**
-     * Open/close modal
-     */
     $scope.modalArr = {};
+    /**
+     * Open/close a modal window
+     * @param {string} key
+     * @param {object} $event
+     * @param {boolean} status
+     * @returns {undefined}
+     */
     $scope.handleModal = function (key, $event, status) {
         if (typeof status === 'boolean') {
             $scope.modalArr[key] = status;
@@ -232,18 +306,18 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
 
         $event.stopPropagation();
     };
-    /**
-     * Expand/collapse element
-     */
     $scope.expand = {};
+    /**
+     * Expand/collapse an element
+     * @param {string} key
+     * @returns {undefined}
+     */
     $scope.expandElement = function (key) {
         $scope.expand[key] = !($scope.expand[key]);
     };
 
 
-    /**
-     * Alertify defaults
-     */
+    // Alertify defaults
     alertify.defaults.glossary.title = cfg.app_name;
     alertify.defaults.glossary.ok = 'OK';
     alertify.defaults.glossary.cancel = 'CANCEL';

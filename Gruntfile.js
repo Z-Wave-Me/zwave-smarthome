@@ -1,42 +1,40 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         // Clean dir
         clean: {
-            options: { force: true },
-            build: ["dist/"]
+            options: {force: true},
+            build: ["dist/","docs/"]
         },
-        ngtemplates:  {
-            app:        {
-                 options: {
+        ngtemplates: {
+            app: {
+                options: {
                     standalone: true,
                     module: 'myAppTemplates',
                     htmlmin: {
-                        collapseBooleanAttributes:      true,
-                        collapseWhitespace:             true,
-                        removeAttributeQuotes:          true,
-                        removeComments:                 true, // Only if you don't use comment directives! 
-                        removeEmptyAttributes:          true,
-                        removeRedundantAttributes:      true,
-                        removeScriptTypeAttributes:     true,
-                        removeStyleLinkTypeAttributes:  true
-}
+                        collapseBooleanAttributes: true,
+                        collapseWhitespace: true,
+                        removeAttributeQuotes: true,
+                        removeComments: true, // Only if you don't use comment directives! 
+                        removeEmptyAttributes: true,
+                        removeRedundantAttributes: true,
+                        removeScriptTypeAttributes: true,
+                        removeStyleLinkTypeAttributes: true
+                    }
                 },
-                
-              src:      'app/views/**/*.html',
-              dest:     'dist/app/js/templates.js'
+                src: 'app/views/**/*.html',
+                dest: 'dist/app/js/templates.js'
             }
-          },
-        
+        },
         // Concat
         concat: {
             indexhtml: {
                 src: ['index.tpl.html'],
                 dest: 'dist/index.html'
             },
-             css: {
+            css: {
                 src: [
                     'app/css/bootstrap.css',
                     'app/css/main.css',
@@ -67,7 +65,7 @@ module.exports = function(grunt) {
                     'vendor/angular/angular-1.2.28/angular-route.min.js',
                     'vendor/angular/angular-1.2.28/angular-cookies.min.js',
                     'vendor/dragdrop/angular-drag-and-drop-lists.js',
-                     // Bootstrap
+                    // Bootstrap
                     'vendor/bootstrap/bootstrap.min.js',
                     'vendor/bootstrap/plugins/bootstrap-datetimepicker.js',
                     // APP
@@ -88,7 +86,7 @@ module.exports = function(grunt) {
                     'app/controllers/event.js',
                     'app/controllers/app.js',
                     'app/controllers/skin.js',
-                    'app/controllers/device.js', 
+                    'app/controllers/device.js',
                     'app/controllers/zwave-inclusion.js',
                     'app/controllers/zwave.js',
                     'app/controllers/camera.js',
@@ -116,13 +114,13 @@ module.exports = function(grunt) {
                         src: [
                             '!app/views/_test/**',
                             'app/img/**',
-                           'app/img/**',
+                            'app/img/**',
                             'app/views/**',
                             'app/lang/**'
                         ], dest: 'dist/'
                     },
                     //{expand:true,src: ['../zwave-api/storage/data/z_en.json'], dest: 'storage/data/',flatten: true},
-                     {expand:true,src: ['app/config.js'], dest: 'dist/app/js/',flatten: true},
+                    {expand: true, src: ['app/config.js'], dest: 'dist/app/js/', flatten: true},
                     {src: ['storage/img/**'], dest: 'dist/'},
                     {src: ['storage/demo/**'], dest: 'dist/'},
                     {src: ['storage/data/**'], dest: 'dist/'}
@@ -131,68 +129,79 @@ module.exports = function(grunt) {
             fonts: {
                 files: [
                     {src: ['app/fonts/**'], dest: 'dist/'},
-                    {expand:true,src: ['app/css/font-awesome-4.4.0/fonts/*'], dest: 'dist/app/fonts/',flatten: true}
+                    {expand: true, src: ['app/css/font-awesome-4.4.0/fonts/*'], dest: 'dist/app/fonts/', flatten: true}
                 ]
             },
             angmap: {
                 files: [
-                    {expand:true,src: ['vendor/angular/angular-1.2.16/angular-cookies.min.js.map'], dest: 'dist/app/js/',flatten: true},
-                     //{expand:true,src: ['vendor/angular/angular-1.2.16/angular.min.js.map'], dest: 'dist/app/js/',flatten: true},
-                      //{expand:true,src: ['vendor/angular/angular-1.2.16/angular-route.min.js.map'], dest: 'dist/app/js/',flatten: true}
+                    {expand: true, src: ['vendor/angular/angular-1.2.16/angular-cookies.min.js.map'], dest: 'dist/app/js/', flatten: true},
+                    //{expand:true,src: ['vendor/angular/angular-1.2.16/angular.min.js.map'], dest: 'dist/app/js/',flatten: true},
+                    //{expand:true,src: ['vendor/angular/angular-1.2.16/angular-route.min.js.map'], dest: 'dist/app/js/',flatten: true}
                 ]
             }
         },
-        
         //CSSS min
         cssmin: {
             my_target: {
                 options: {
                     banner: '/* Minified css file */',
                     keepSpecialComments: 0
-              },
-              files: [
-                  {
-                    expand: true,
-                    cwd: 'dist/app/css/',
-                    src: ['*.css', '!*.min.css'],
-                    dest: 'dist/app/css/',
-                    ext: '.css'
-                }
-               ]
+                },
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'dist/app/css/',
+                        src: ['*.css', '!*.min.css'],
+                        dest: 'dist/app/css/',
+                        ext: '.css'
+                    }
+                ]
+            }
+        },
+        jsdox: {
+            generate: {
+                options: {
+                    contentsEnabled: true,
+                    contentsTitle: 'SmartHome UI Documentation',
+                    contentsFile: 'readme.md',
+                    //pathFilter: /^example/,
+                    templateDir: 'docstemplates'
+                },
+                src: ['app/**/*.js'],
+                //src: ['app/controllers/*.js','app/services/*.js','app/directives/*.js','app/modules/*.js','app/jquery/*.js','app/filters/*.js'],
+                dest: 'docs'
             }
         },
         remove: {
             options: {
-              trace: true
+                trace: true
             },
             //fileList: ['path_to_file_1.extension', 'path_to_file_2.extension'],
             dirList: [
-                'dist/app/views/_test/', 
+                'dist/app/views/_test/',
                 'dist/storage/data/_test/'
             ]
-         },
-        
+        },
         // HTML min
         htmlmin: {
-             dist: {
+            dist: {
                 options: {
                     removeComments: true,
                     collapseWhitespace: true
                 },
                 files: {
-                  'dist/abc.html': 'index.html'
+                    'dist/abc.html': 'index.html'
                 }
             },
             multiple: {
                 files: [{
-                    expand: true,
-                    cwd: 'app/views',
-                    src: '**/*.html',
-                    dest: 'dist/views'
-                }]
+                        expand: true,
+                        cwd: 'app/views',
+                        src: '**/*.html',
+                        dest: 'dist/views'
+                    }]
             }
         },
-        
         sass: {
             dist: {
                 options: {
@@ -204,13 +213,10 @@ module.exports = function(grunt) {
                 }
             }
         },
-        
-        
         watch: {
             files: "app/css/sass/**",
             tasks: ["sass"]
         },
-        
         // Uglify
         uglify: {
             options: {
@@ -224,16 +230,15 @@ module.exports = function(grunt) {
         },
         'string-replace': {
             dist: {
-              files: {
-                'dist/app/js/config.js': 'app/config.js',
-              },
-             
-            options: {
-              replacements: [{
-                pattern: /'server_url': (.*?) /ig,
-                replacement: '\'server_url\': \'/\''
-              }]
-            }
+                files: {
+                    'dist/app/js/config.js': 'app/config.js',
+                },
+                options: {
+                    replacements: [{
+                            pattern: /'server_url': (.*?) /ig,
+                            replacement: '\'server_url\': \'/\''
+                        }]
+                }
             }
         }
     });
@@ -250,9 +255,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-string-replace');
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-remove');
-     grunt.loadNpmTasks('grunt-angular-templates');
+    grunt.loadNpmTasks('grunt-angular-templates');
+    grunt.loadNpmTasks('grunt-jsdox');
 
     // Default task(s).
-    grunt.registerTask('default', ['clean','ngtemplates','concat','copy','cssmin']);
+    grunt.registerTask('default', ['clean', 'ngtemplates', 'concat', 'copy', 'cssmin','jsdox']);
 
 };

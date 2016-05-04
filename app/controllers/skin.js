@@ -1,10 +1,12 @@
 /**
- * Application skins controller
+ * @overview Controllers that handle all Skins actions.
  * @author Martin Vach
  */
 
 /**
- * Skin base controller
+ * This is the Skin root controller
+ * @class SkinBaseController
+ *
  */
 myAppController.controller('SkinBaseController', function ($scope, $q, $cookies, dataFactory, _) {
     $scope.skins = {
@@ -25,9 +27,9 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $cookies,
         }
     };
 
-    /**
-     * Get active skin
-     */
+//    /**
+//     * Get active skin
+//     */
 //    $scope.getActiveSkin = function () {
 //        if ($cookies.skin && $cookies.skin !== 'default') {
 //            $scope.skins.local.active = $cookies.skin;
@@ -110,7 +112,9 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $cookies,
 });
 
 /**
- * Skin local controller
+ * This controller handles local skins actions.
+ * @class SkinLocalController
+ *
  */
 myAppController.controller('SkinLocalController', function ($scope, $window, $route, $timeout, $cookies, dataFactory, dataService) {
     $scope.activeTab = 'local';
@@ -158,7 +162,9 @@ myAppController.controller('SkinLocalController', function ($scope, $window, $ro
     };
 });
 /**
- * Skin online controller
+ * This controller handles online skins actions.
+ * @class SkinOnlineController
+ *
  */
 myAppController.controller('SkinOnlineController', function ($scope, dataFactory, dataService) {
     $scope.activeTab = 'online';
@@ -183,7 +189,6 @@ myAppController.controller('SkinOnlineController', function ($scope, dataFactory
      * Upgrade skin
      */
     $scope.upgradeSkin = function (skin) {
-        console.log(skin)
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
 
         dataFactory.getApiLocal('skins-online.json').then(function (response) {

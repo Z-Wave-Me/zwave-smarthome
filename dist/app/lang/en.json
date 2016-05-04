@@ -1,6 +1,8 @@
 {
     "newtrans": "---",
-    "---": "newtrans",
+     "---": "newtrans",
+    "redo_inclusion": "Redo inclusion",
+    "configure_device": "Configure device",
     "no_events": "Sorry, there are no events to show.",
     "no_cameras": "Sorry, there are no cameras available.",
     "no_rooms": "Sorry, there are no rooms available.",

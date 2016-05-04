@@ -1,4 +1,16 @@
-// device filter for device select menu
+/**
+ * @overview Functions used to render the configuration arrays.
+ * @author Unknown
+ */
+
+/**
+ * Device filter for device select menu
+ * @param {object} ZWaveAPIData
+ * @param {string} span
+ * @param {string} dev
+ * @param {string} type
+ * @returns {Boolean}
+ */
 function devices_htmlSelect_filter(ZWaveAPIData,span,dev,type) {
 	// return true means to skip this node
 	switch(type) {
@@ -25,7 +37,12 @@ function devices_htmlSelect_filter(ZWaveAPIData,span,dev,type) {
 	}
 };
 
-// returns array with default values: first value from the enum, minimum value for range, empty string for string, first nodeId for node, default schedule for the climate_schedule
+/**
+ * Returns array with default values: first value from the enum, minimum value for range, empty string for string, first nodeId for node, default schedule for the climate_schedule
+ * @param {object} ZWaveAPIData
+ * @param {object} method
+ * @returns {Array}
+ */
 function method_defaultValues(ZWaveAPIData,method) {
      
 	function method_defaultValue(val) {
@@ -62,7 +79,11 @@ function method_defaultValues(ZWaveAPIData,method) {
 	return parameters;
 };
 
-// represent array with number, string and array elements in reversible way: use eval('[' + return_value + ']') to rever back to an array
+/**
+ * Represent array with number, string and array elements in reversible way: use eval('[' + return_value + ']') to rever back to an array
+ * @param {array} arr
+ * @returns {String}
+ */
 function repr_array(arr) {
 	var repr='';
 	for (var indx in arr) {
@@ -89,9 +110,11 @@ function repr_array(arr) {
 	return repr;
 };
 
-/*
-	Array unique
-*/
+/**
+ * Array unique
+ * @param {array} arr
+ * @returns {Array}
+ */
 function array_unique(arr) {
 	var newArray = new Array();
 

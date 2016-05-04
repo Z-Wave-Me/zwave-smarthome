@@ -1,3 +1,12 @@
+/**
+ * @overview The main configuration file.
+ * @author Martin Vach
+ */
+
+/**
+ * Configuration object
+ * @class config_data
+ */
 var config_data = {
     'cfg': {
         //Application name

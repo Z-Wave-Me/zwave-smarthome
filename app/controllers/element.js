@@ -1,10 +1,11 @@
 /**
- * Application Element controller
+ * @overview Controllers that handle the list of elements, as well as an element detail.
  * @author Martin Vach
  */
 
 /**
- * Elemt base controller 
+ * The element root controller
+ * @class ElementBaseController
  */
 myAppController.controller('ElementBaseController', function ($scope, $q, $interval, $cookies, $filter, dataFactory, dataService) {
     $scope.dataHolder = {
@@ -223,7 +224,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
     };
 
     /**
-     * Set exact value for cmd command
+     * Set exact value for the command
      */
     $scope.setExactCmd = function (v, type, run) {
         var count;
@@ -310,7 +311,8 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
 });
 
 /**
- * Element SensorMultiline controller
+ * The controller that handles a device history.
+ * @class ElementHistoryController
  */
 myAppController.controller('ElementHistoryController', function ($scope, dataFactory, dataService, _) {
     $scope.widgetHistory = {
@@ -352,7 +354,8 @@ myAppController.controller('ElementHistoryController', function ($scope, dataFac
 });
 
 /**
- * Element SwitchMultilevelController controller
+ * The controller that handles SwitchMultilevel element.
+ * @class ElementSwitchMultilevelController
  */
 myAppController.controller('ElementSwitchMultilevelController', function ($scope) {
     $scope.widgetSwitchMultilevel = {
@@ -380,7 +383,8 @@ myAppController.controller('ElementSwitchMultilevelController', function ($scope
 });
 
 /**
- * Element thermostat controller
+ * The controller that handles Thermostat element.
+ * @class ElementThermostatController
  */
 myAppController.controller('ElementThermostatController', function ($scope) {
     $scope.widgetThermostat = {
@@ -407,7 +411,8 @@ myAppController.controller('ElementThermostatController', function ($scope) {
 });
 
 /**
- * Element SwitchRGBW controller
+ * The controller that handles SwitchRGBW element.
+ * @class ElementSwitchRGBWController
  */
 myAppController.controller('ElementSwitchRGBWController', function ($scope, dataFactory) {
     $scope.widgetSwitchRGBW = {
@@ -502,7 +507,8 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
 
 
 /**
- * Element SensorMultiline controller
+ * The controller that handles SensorMultiline element.
+ * @class ElementSensorMultilineController
  */
 myAppController.controller('ElementSensorMultilineController', function ($scope, $timeout, dataFactory, dataService) {
     $scope.widgetSensorMultiline = {
@@ -529,7 +535,7 @@ myAppController.controller('ElementSensorMultilineController', function ($scope,
     };
     $scope.loadDeviceId();
     /**
-     * Load single device
+     * Run a command request
      */
     $scope.runMultilineCmd = function (cmd, id) {
         $scope.runCmd(cmd, id);
@@ -542,7 +548,8 @@ myAppController.controller('ElementSensorMultilineController', function ($scope,
 });
 
 /**
- * Element Camera controller
+ * The controller that handles Camera element.
+ * @class ElementCameraController
  */
 myAppController.controller('ElementCameraController', function ($scope, $interval) {
     $scope.widgetCamera = {
@@ -552,7 +559,9 @@ myAppController.controller('ElementCameraController', function ($scope, $interva
 
     $scope.url = undefined;
     $scope.refreshInterval = undefined;
-
+    /**
+     * Set camera url
+     */
     $scope.setUrl = function () {
         var url = $scope.widgetCamera.find.metrics.url;
         if ($scope.widgetCamera.find.metrics.autoRefresh === true) {
@@ -586,7 +595,8 @@ myAppController.controller('ElementCameraController', function ($scope, $interva
 });
 
 /**
- * Element text controller
+ * The controller that handles Text element.
+ * @class ElementTextController
  */
 myAppController.controller('ElementTextController', function ($scope) {
     $scope.widgetText = {
@@ -611,7 +621,8 @@ myAppController.controller('ElementTextController', function ($scope) {
 });
 
 /**
- * Element OpenWeather controller
+ * The controller that handles OpenWeather element.
+ * @class ElementOpenWeatherController
  */
 myAppController.controller('ElementOpenWeatherController', function ($scope) {
     $scope.widgetOpenWeather = {
@@ -636,7 +647,8 @@ myAppController.controller('ElementOpenWeatherController', function ($scope) {
 });
 
 /**
- * Element ClimateControl controller
+ * The controller that handles ClimateControl element.
+ * @class ElementClimateControlController
  */
 myAppController.controller('ElementClimateControlController', function ($scope, $filter, dataFactory) {
     $scope.widgetClimateControl = {
@@ -695,7 +707,8 @@ myAppController.controller('ElementClimateControlController', function ($scope, 
 });
 
 /**
- * Element dashboard controller
+ * The controller that handles elements on the dashboard.
+ * @class ElementDashboardController
  */
 myAppController.controller('ElementDashboardController', function ($scope, $routeParams) {
     $scope.dataHolder.devices.filter = {onDashboard: true};
@@ -708,7 +721,8 @@ myAppController.controller('ElementDashboardController', function ($scope, $rout
 });
 
 /**
- * Element room controller
+ * The controller that handles elements in the room.
+ * @class ElementRoomController
  */
 myAppController.controller('ElementRoomController', function ($scope, $routeParams, $window, $location, $cookies, $filter, dataFactory, dataService, myCache) {
     $scope.dataHolder.devices.filter = {location: parseInt($routeParams.id)};
@@ -716,7 +730,8 @@ myAppController.controller('ElementRoomController', function ($scope, $routePara
 });
 
 /**
- * Element ID controller
+ * The controller that handles element detail actions.
+ * @class ElementIdController
  */
 myAppController.controller('ElementIdController', function ($scope, $q, $routeParams, $window, dataFactory, dataService, myCache) {
     $scope.elementId = {
