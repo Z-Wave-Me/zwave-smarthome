@@ -40,6 +40,7 @@ myAppController.controller('SkinBaseController', function ($scope, $q,$timeout, 
 
     /**
      * Load all promises
+     * @returns {undefined}
      */
     $scope.allSettled = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
@@ -76,6 +77,26 @@ myAppController.controller('SkinBaseController', function ($scope, $q,$timeout, 
 
     };
     $scope.allSettled();
+    
+    
+    
+    /**
+     * Upgrade skin
+     * @param {object} skin
+     * @returns {undefined}
+     */
+    $scope.upgradeSkin = function (skin) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
+        dataFactory.getApiLocal('skins-online.json').then(function (response) {
+            $timeout(function () {
+                $scope.loading = false;
+                dataService.showNotifier({message: $scope._t('success_file_download')});
+            }, 2000);
+        }, function (error) {
+            $scope.loading = false;
+            alertify.alertError($scope._t('error_file_download'));
+        });
+    };
 
     /// --- Private functions --- ///
 
@@ -125,25 +146,6 @@ myAppController.controller('SkinBaseController', function ($scope, $q,$timeout, 
         ;
         $scope.skins.online.show = true;
     };
-    
-    /**
-     * Upgrade skin
-     * @param {object} skin
-     * @returns {undefined}
-     */
-    $scope.upgradeSkin = function (skin) {
-        console.log(skin)
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
-        dataFactory.getApiLocal('skins-online.json').then(function (response) {
-            $timeout(function () {
-                $scope.loading = false;
-                dataService.showNotifier({message: $scope._t('success_file_download')});
-            }, 2000);
-        }, function (error) {
-            $scope.loading = false;
-            alertify.alertError($scope._t('error_file_download'));
-        });
-    };
 
 });
 
@@ -157,6 +159,8 @@ myAppController.controller('SkinLocalController', function ($scope, $window, $ro
 
     /**
      * Activate skin
+     * @param {object} skin
+     * @returns {undefined}
      */
     $scope.activateSkin = function (skin) {
         //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
@@ -180,6 +184,9 @@ myAppController.controller('SkinLocalController', function ($scope, $window, $ro
 
     /**
      * Remove skin
+     * @param {object} skin
+     * @param {string} message
+     * @returns {undefined}
      */
     $scope.removeSkin = function (skin, message) {
         alertify.confirm(message, function () {
@@ -207,9 +214,10 @@ myAppController.controller('SkinOnlineController', function ($scope, $timeout, d
 
     /**
      * Download skin
+     * @param {object} skin
+     * @returns {undefined}
      */
     $scope.downloadSkin = function (skin) {
-        console.log(skin)
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
         dataFactory.getApiLocal('skins-online.json').then(function (response) {
             $timeout(function () {
