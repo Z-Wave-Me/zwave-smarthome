@@ -40,6 +40,12 @@
                                         <button class="btn btn-disabled" title="{{_t('lb_active')}}" disabled ng-if="v.name === skins.local.active">
                                             <i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_active')}}</span>
                                         </button> 
+                                         <!-- Upgrade -->
+                                        <button class="btn btn-danger" title="{{_t('upgrade')}}" 
+                                                ng-click="upgradeSkin(skins.online.all[v.name])" 
+                                                ng-if="skins.online.all[v.name] && skins.online.all[v.name].status === 'notequal'">
+                                             <i class="fa fa-level-up"></i> <span class="btn-name">{{_t('upgrade')}}</span>
+                                        </button>
                                          <!-- Delete -->
                                         <button class="btn btn-default" title="{{_t('lb_remove')}}" ng-click="removeSkin(v, _t('app_delete_confirm'))" ng-hide="v.name === skins.local.active" ng-if="v.name !== 'default'">
                                             <i class="fa fa-remove text-danger"></i> <span class="btn-name">{{_t('lb_remove')}}</span>

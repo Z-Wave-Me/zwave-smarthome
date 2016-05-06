@@ -8,7 +8,7 @@
  * @class SkinBaseController
  *
  */
-myAppController.controller('SkinBaseController', function ($scope, $q, $cookies, dataFactory, _) {
+myAppController.controller('SkinBaseController', function ($scope, $q,$timeout, dataFactory,dataService, _) {
     $scope.skins = {
         local: {
             all: {},
@@ -52,9 +52,15 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $cookies,
             // console.log(response)
             var localSkins = response[0];
             var onlineSkins = response[1];
+            $scope.loading = false;
             // Error message
-            if (localSkins.state === 'rejected' || onlineSkins.state === 'rejected') {
+            if (localSkins.state === 'rejected' && $scope.routeMatch('/skins/local')) {
                 alertify.alertError($scope._t('error_load_data'));
+                return;
+            }
+            if (onlineSkins.state === 'rejected' && $scope.routeMatch('/skins/online')) {
+                alertify.alertError($scope._t('error_load_data'));
+                return;
             }
             // Success - local skins
             if (localSkins.state === 'fulfilled') {
@@ -65,8 +71,6 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $cookies,
             if (onlineSkins.state === 'fulfilled') {
                 setOnlineSkins(onlineSkins.value.data.data);
             }
-
-            $scope.loading = false;
 
         });
 
@@ -109,21 +113,10 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $cookies,
                     // Set icon path
                     v.icon = (v.icon == '' ? 'storage/img/placeholder-img.png' : $scope.cfg.online_skin_storage + v.icon);
                     // Set status
-                    v.status = 'download';
+                    v.status = (_.isEmpty($scope.skins.local.all) ? 'error':'download');
+                    // Compare local and online versions
                     if ($scope.skins.local.all[v.name]) {
-                        v.status = 'installed';
-                        // Compare local and online versions
-                        if ($scope.skins.local.all[v.name].version !== v.version) {
-                            var localVersion = $scope.skins.local.all[v.name].version.toString().split('.'),
-                                onlineVersion = v.version.toString().split('.');
-
-                            for (var i = 0; i < localVersion.length; i++) {
-                                if ((parseInt(localVersion[i], 10) < parseInt(onlineVersion[i], 10)) || ((parseInt(localVersion[i], 10) <= parseInt(onlineVersion[i], 10)) && (!localVersion[i + 1] && onlineVersion[i + 1] && parseInt(onlineVersion[i + 1], 10) > 0))) {
-                                   v.status = 'upgrade';
-                                    break;
-                                }
-                            }
-                        }
+                        v.status = dataService.compareVersions($scope.skins.local.all[v.name].version,v.version);
                     }
                     return v;
                 })
@@ -131,6 +124,25 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $cookies,
                 .value();
         ;
         $scope.skins.online.show = true;
+    };
+    
+    /**
+     * Upgrade skin
+     * @param {object} skin
+     * @returns {undefined}
+     */
+    $scope.upgradeSkin = function (skin) {
+        console.log(skin)
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
+        dataFactory.getApiLocal('skins-online.json').then(function (response) {
+            $timeout(function () {
+                $scope.loading = false;
+                dataService.showNotifier({message: $scope._t('success_file_download')});
+            }, 2000);
+        }, function (error) {
+            $scope.loading = false;
+            alertify.alertError($scope._t('error_file_download'));
+        });
     };
 
 });
@@ -211,20 +223,4 @@ myAppController.controller('SkinOnlineController', function ($scope, $timeout, d
 
     };
 
-    /**
-     * Upgrade skin
-     */
-    $scope.upgradeSkin = function (skin) {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
-
-        dataFactory.getApiLocal('skins-online.json').then(function (response) {
-            $timeout(function () {
-                $scope.loading = false;
-                dataService.showNotifier({message: $scope._t('success_file_download')});
-            }, 2000);
-        }, function (error) {
-            $scope.loading = false;
-            alertify.alertError($scope._t('error_file_download'));
-        });
-    };
 });

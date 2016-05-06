@@ -30,18 +30,17 @@
                             <div class="widget-footer">
                                 <div class="widget-ctrl ctrl-left">&nbsp;</div>
                                 <div class="widget-ctrl ctrl-right clearfix">
-                                  
-                                    <div class="btn-group">
+                                  <div class="btn-group">
                                         <!-- Download -->
                                         <button class="btn btn-default" title="{{_t('lb_download')}}" ng-if="v.status === 'download'" ng-click="downloadSkin(v)">
                                              <i class="fa fa-download text-success"></i> <span class="btn-name">{{_t('lb_download')}}</span>
                                         </button>
                                         <!-- Upgrade -->
-                                         <button class="btn btn-danger" title="{{_t('upgrade')}}" ng-if="v.status === 'upgrade'" ng-click="upgradeSkin(v)">
+                                         <button class="btn btn-danger" title="{{_t('upgrade')}}" ng-if="v.status === 'notequal'" ng-click="upgradeSkin(v)">
                                              <i class="fa fa-level-up"></i> <span class="btn-name">{{_t('upgrade')}}</span>
                                         </button>
                                         <!-- Installed -->
-                                        <button class="btn btn-disabled" title="{{_t('installed')}}" disabled ng-if="v.status === 'installed'">
+                                        <button class="btn btn-disabled" title="{{_t('installed')}}" disabled ng-if="v.status === 'equal'">
                                              <i class="fa fa-check"></i> <span class="btn-name">{{_t('installed')}}</span>
                                         </button> 
                                     </div>

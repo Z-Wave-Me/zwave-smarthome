@@ -12,7 +12,7 @@ var myAppService = angular.module('myAppService', []);
  */
 myAppService.service('dataService', function ($filter, $log, $cookies, $window, cfg, _) {
     /// --- Public functions --- ///
-    
+
     /**
      * Get a language string by key
      * @param {string} key
@@ -20,8 +20,8 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @param {object} replacement
      * @returns {unresolved}
      */
-    this.getLangLine = function (key,languages,replacement) {
-        return getLangLine(key,languages,replacement);
+    this.getLangLine = function (key, languages, replacement) {
+        return getLangLine(key, languages, replacement);
     };
 
     /**
@@ -382,6 +382,29 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
         return profile;
     };
 
+    /**
+     * Compare whether two versions of a resource are the same
+     * @param {string} v1
+     * @param {string} v2
+     * @returns {Boolean}
+     */
+    this.compareVersions = function (v1, v2) {
+        var status = 'equal';
+        if (!v1 || !v2) {
+           return 'error';
+        }
+        v1 = v1.toString().split('.'),
+       v2 = v2.toString().split('.');
+
+        for (var i = 0; i < v1.length; i++) {
+            if ((parseInt(v1[i], 10) < parseInt(v2[i], 10)) || ((parseInt(v1[i], 10) <= parseInt(v2[i], 10)) && (!v1[i + 1] && v2[i + 1] && parseInt(v2[i + 1], 10) > 0))) {
+               status = 'notequal';
+                break;
+            }
+        }
+        return status;
+    };
+
     /// --- Private functions --- ///
 
     /**
@@ -405,7 +428,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
         for (var val in replacement) {
             line = line.split(val).join(replacement[val]);
         }
-        return line; 
+        return line;
     }
 
     /**
