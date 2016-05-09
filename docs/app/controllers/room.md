@@ -1,3 +1,14 @@
+**Overview:** Controllers that handle room actions.
+
+
+
+**Author:** Martin Vach
+
+
+
+
+* * *
+
 # Global
 
 
@@ -6,7 +17,7 @@
 
 * * *
 
-## Class: RoomController
+## RoomController
 The room root controller
 
 ### RoomController.allSettled() 
@@ -20,7 +31,7 @@ Set order by
 
 
 
-## Class: RoomConfigController
+## RoomConfigController
 The controller that renders the list of the rooms in  the config rooms section.
 
 ### RoomConfigController.deleteRoom() 
@@ -34,7 +45,7 @@ Remove room id from device
 
 
 
-## Class: RoomConfigEditController
+## RoomConfigEditController
 The controller that renders and handles single room data.
 
 ### RoomConfigEditController.loadData() 
@@ -80,13 +91,3 @@ Remove room id from device
 
 
 * * *
-
-
-
-**Author:** Martin Vach
-
-
-
-**Overview:** Controllers that handle room actions.
-
-

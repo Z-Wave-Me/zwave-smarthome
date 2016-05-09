@@ -1,5 +1,5 @@
 /**
- * @overview This controller handles the Local apps, Online Apps and Active apps.
+ * @overview Controllers that handle the Local apps, Online Apps and Active apps.
  * @author Martin Vach
  */
 

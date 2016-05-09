@@ -1,3 +1,14 @@
+**Overview:** Controllers that handle all Camera actions – manage and add camera.
+
+
+
+**Author:** Martin Vach
+
+
+
+
+* * *
+
 # Global
 
 
@@ -6,7 +17,7 @@
 
 * * *
 
-## Class: CameraAddController
+## CameraAddController
 The controller that renders a list of the cameras.
 
 ### CameraAddController.loadData() 
@@ -15,7 +26,7 @@ Load ip cameras
 
 
 
-## Class: CameraManageController
+## CameraManageController
 The controller that handles camera manage actions .
 
 ### CameraManageController.allSettled() 
@@ -46,13 +57,3 @@ Set instances
 
 
 * * *
-
-
-
-**Author:** Martin Vach
-
-
-
-**Overview:** Controllers that handle all Camera actions – manage and add camera.
-
-

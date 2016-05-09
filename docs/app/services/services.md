@@ -1,3 +1,14 @@
+**Overview:** Stores methods that are used within controllers.
+
+
+
+**Author:** Martin Vach
+
+
+
+
+* * *
+
 # Global
 
 
@@ -6,175 +17,265 @@
 
 * * *
 
-### getLangLine() 
+## dataService
+Angular module initialization
 
-Get language line by key
+### dataService.getLangLine(key, languages, replacement) 
 
+Get a language string by key
 
+**Parameters**
 
-### showNotifier() 
+**key**: `string`
 
-Show notifier
+**languages**: `object`
 
+**replacement**: `object`
 
+**Returns**: `unresolved`
 
-### logError() 
+### dataService.showNotifier(notifier) 
 
-Log error
+Render alertify notifier
 
+**Parameters**
 
+**notifier**: `object`
 
-### getOs() 
+**Returns**: `undefined`
+
+### dataService.logError(error, message) 
+
+Log error in the console
+
+**Parameters**
+
+**error**: `string`
+
+**message**: `string`
+
+**Returns**: `undefined`
+
+### dataService.getOs() 
 
 Get OS (operating system)
 
+**Returns**: `String`
 
+### dataService.isMobile(a) 
 
-### isMobile() 
+Detect a mobile device
 
-Mobile device detect
+**Parameters**
 
+**a**: `string`
 
+**Returns**: `Boolean`
 
-### goBack() 
+### dataService.goBack() 
 
-Go back
+Window history go back
 
+**Returns**: `undefined`
 
+### dataService.getUser() 
 
-### getUser() 
+Get user data from cookies
 
-Get user data
+**Returns**: `Array | Boolean`
 
-
-
-### setUser() 
+### dataService.setUser(data) 
 
 Set user data
 
+**Parameters**
 
+**data**: `object`
 
-### unsetUser() 
+**Returns**: `Boolean | Object`
 
-Unset user
+### dataService.unsetUser() 
 
+Unset user data - delete user cookies
 
+**Returns**: `undefined`
 
-### getZWAYSession() 
+### dataService.getZWAYSession() 
 
-Get user SID (token)
+Get ZWAY session
 
+**Returns**: `string`
 
+### dataService.setZWAYSession(sid) 
 
-### setZWAYSession() 
+Set ZWAY session
 
-Set user SID (token)
+**Parameters**
 
+**sid**: `string`
 
+**Returns**: `Boolean | Object`
 
-### getLastLogin() 
+### dataService.getLastLogin() 
 
-Get last login
+Get last login info
 
+**Returns**: `Sring | Boolean`
 
+### dataService.setLastLogin(val) 
 
-### getRememberMe() 
+Set last login
+
+**Parameters**
+
+**val**: `string`
+
+**Returns**: `undefined`
+
+### dataService.getRememberMe() 
 
 Get remember me
 
+**Returns**: `Object | Boolean`
 
-
-### setRememberMe() 
+### dataService.setRememberMe(data) 
 
 Set remember me
 
+**Parameters**
 
+**data**: `object`
 
-### logOut() 
+**Returns**: `Boolean | Object`
 
-Logout
+### dataService.logOut() 
 
+Logout from the system
 
+**Returns**: `undefined`
 
-### getDevicesData() 
+### dataService.getDevicesData(data, showHidden) 
 
-Get device data
+Get devices -  filtered data from devices dataholder
 
+**Parameters**
 
+**data**: `object`
 
-### getRooms() 
+**showHidden**: `boolean`
 
-Get rooms
+**Returns**: `unresolved`
 
+### dataService.getRooms(data) 
 
+Get rooms - filtered data from locations dataholder
 
-### getChartData() 
+**Parameters**
 
-Get chart data
+**data**: `object`
 
+**Returns**: `unresolved`
 
+### dataService.getChartData(data, colors) 
 
-### getModuleFormData() 
+Renders the chart data
 
-Get module form data
+**Parameters**
 
+**data**: `object`
 
+**colors**: `object`
 
-### getModuleConfigInputs() 
+**Returns**: `Object | NULL`
 
-Get module config input
+### dataService.getModuleFormData(module, data) 
 
+Renders Alpaca module data
 
+**Parameters**
 
-### setArrayValue() 
+**module**: `object`
 
-Set array value
+**data**: `object`
 
+**Returns**: `unresolved`
 
+### dataService.getModuleConfigInputs(module, params, namespaces) 
 
-### getEventLevel() 
+Renders module config data
+
+**Parameters**
+
+**module**: `object`
+
+**params**: `string`
+
+**namespaces**: `object`
+
+**Returns**: `unresolved`
+
+### dataService.setArrayValue(data, key, add) 
+
+Angular module initialization
+
+**Parameters**
+
+**data**: `object`
+
+**key**: `string`
+
+**add**: `boolean`
+
+**Returns**: `Array`
+
+### dataService.getEventLevel(data, set) 
 
 Get event level
 
+**Parameters**
+
+**data**: `object`
+
+**set**: `array`
+
+**Returns**: `unresolved`
+
+### dataService.setEnoProfile(data) 
+
+Renders EnOcean profile
+
+**Parameters**
+
+**data**: `object`
+
+**Returns**: `unresolved`
+
+### dataService.getLangLine() 
+
+Get a language string by key
 
 
-### setEnoProfile() 
-
-Set EnOcean profile
-
-
-
-### getLangLine() 
-
-Get lang line
-
-
-
-### setLangLine() 
+### dataService.setLangLine() 
 
 Set lang line params
 
 
+### dataService.getModuleFormData() 
 
-### getModuleFormData() 
-
-Get module form data
-
+Renders Alpaca module data
 
 
-### replaceModuleFormData() 
+### dataService.replaceModuleFormData() 
 
 Replace module object
 
 
-
-### addArrayValue() 
+### dataService.addArrayValue() 
 
 Add array value
 
 
-
-### removeArrayValue() 
+### dataService.removeArrayValue() 
 
 Remove array value
 
@@ -182,13 +283,3 @@ Remove array value
 
 
 * * *
-
-
-
-
-
-
-
-
-
-

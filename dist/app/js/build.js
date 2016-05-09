@@ -10715,11 +10715,14 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
 }));
 
 /**
- * Application base
+ * @overview This is used to handle angular modules, routes and other settings.
  * @author Martin Vach
  */
 
-//Define an angular module for our app
+/**
+ * Define an angular module for our app
+ * @function myApp
+ */
 var myApp = angular.module('myApp', [
     'ngRoute',
     'ngCookies',
@@ -10733,10 +10736,7 @@ var myApp = angular.module('myApp', [
 
 ]);
 
-/**
- * App configuration
- */
-
+// App configuration
 var config_module = angular.module('myAppConfig', []);
 var appCookies = angular.injector(['ngCookies']).get('$cookies');
 var appUser = false;
@@ -10767,7 +10767,10 @@ angular.forEach(config_data, function (key, value) {
     config_module.constant(value, key);
 });
 
-//Define Routing for app
+/**
+ * Define Angular routes
+ * @function $routeProvider
+ */
 myApp.config(['$routeProvider', function ($routeProvider) {
         var cfg = config_data.cfg;
         $routeProvider.
@@ -11042,7 +11045,8 @@ myApp.config(['$routeProvider', function ($routeProvider) {
     }]);
 
 /**
- * Run
+ * Angular run function
+ * @function run
  */
 myApp.run(function ($rootScope, $location, dataService, cfg) {
     // Run ubderscore js in views
@@ -11078,7 +11082,10 @@ myApp.run(function ($rootScope, $location, dataService, cfg) {
     });
 });
 
-// Intercepting HTTP calls with AngularJS.
+/**
+ * Intercepting HTTP calls with AngularJS.
+ * @function config
+ */
 myApp.config(function ($provide, $httpProvider, cfg) {
     $httpProvider.defaults.timeout = 5000;
     // Intercept http calls.
@@ -11660,15 +11667,16 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 }]);
 
 /**
- * Angular $q allSettled() implementation
- * 
+ * @overview Angular module qAllSettled executes a number of operations concurrently.
+ */
+'use strict';
+/**
  * This method is often used in its static form on arrays of promises, in order to execute a number of operations concurrently 
  * and be notified when they all finish, regardless of success or failure.
  * Returns a promise that is fulfilled with an array of promise state snapshots,
- * but only after all the original promises have settled, i.e. become either fulfilled or rejected. 
+ * but only after all the original promises have settled, i.e. become either fulfilled or rejected.
+ * @method qAllSettled
  */
-'use strict';
-
 angular.module('qAllSettled', []).config(function($provide) {
   $provide.decorator('$q', function($delegate) {
     var $q = $delegate;
@@ -11704,7 +11712,7 @@ myAppFactory.factory('myCache', function ($cacheFactory) {
 
 /**
  * The factory that handles the Underscore library
- * @class _
+ * @class Underscore
  */
 myAppFactory.factory('_', function () {
     return window._; // assumes underscore has already been loaded on the page
@@ -12666,25 +12674,35 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
 
 
 /**
- * Application services
+ * @overview Stores methods that are used within controllers.
  * @author Martin Vach
  */
+
+// Angular module
 var myAppService = angular.module('myAppService', []);
 
 /**
- * Device service
+ * Angular module initialization
+ * @class dataService
  */
 myAppService.service('dataService', function ($filter, $log, $cookies, $window, cfg, _) {
     /// --- Public functions --- ///
+    
     /**
-     * Get language line by key
+     * Get a language string by key
+     * @param {string} key
+     * @param {object} languages
+     * @param {object} replacement
+     * @returns {unresolved}
      */
     this.getLangLine = function (key,languages,replacement) {
         return getLangLine(key,languages,replacement);
     };
 
     /**
-     * Show notifier
+     * Render alertify notifier
+     * @param {object} notifier
+     * @returns {undefined}
      */
     this.showNotifier = function (notifier) {
         var param = _.defaults(notifier, {position: 'top-right', message: false, type: 'success', wait: 5});
@@ -12696,7 +12714,10 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
 
 
     /**
-     * Log error
+     * Log error in the console
+     * @param {string} error
+     * @param {string} message
+     * @returns {undefined}
      */
     this.logError = function (error, message) {
         message = message || 'ERROR:';
@@ -12705,6 +12726,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
 
     /**
      * Get OS (operating system)
+     * @returns {String}
      */
     this.getOs = function () {
         if (navigator && navigator.userAgent && navigator.userAgent != null)
@@ -12723,7 +12745,9 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
 
 
     /**
-     * Mobile device detect
+     * Detect a mobile device
+     * @param {string} a
+     * @returns {Boolean}
      */
     this.isMobile = function (a) {
         if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) {
@@ -12734,7 +12758,8 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
     };
 
     /**
-     * Go back
+     * Window history go back
+     * @returns {undefined}
      */
     this.goBack = function () {
         window.history.back();
@@ -12742,7 +12767,8 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
 
 
     /**
-     * Get user data
+     * Get user data from cookies
+     * @returns {Array|Boolean}
      */
     this.getUser = function () {
         var user = ($cookies.user !== 'undefined' ? angular.fromJson($cookies.user) : false);
@@ -12751,6 +12777,8 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
 
     /**
      * Set user data
+     * @param {object} data
+     * @returns {Boolean|Object}
      */
     this.setUser = function (data) {
         if (!data) {
@@ -12762,7 +12790,8 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
     };
 
     /**
-     * Unset user
+     * Unset user data - delete user cookies
+     * @returns {undefined}
      */
     this.unsetUser = function () {
         this.setUser(null);
@@ -12770,13 +12799,16 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
     };
 
     /**
-     * Get user SID (token)
+     * Get ZWAY session
+     * @returns {string}
      */
     this.getZWAYSession = function () {
         return $cookies.ZWAYSession;
     };
     /**
-     * Set user SID (token)
+     * Set ZWAY session
+     * @param {string} sid
+     * @returns {Boolean|Object}
      */
     this.setZWAYSession = function (sid) {
         if (!sid) {
@@ -12786,14 +12818,17 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
         $cookies.ZWAYSession = sid;
     };
     /**
-     * Get last login
+     * Get last login info
+     * @returns {Sring|Boolean}
      */
     this.getLastLogin = function () {
         return $cookies.lastLogin !== 'undefined' ? $cookies.lastLogin : false;
     };
 
-    /*
+    /**
      * Set last login
+     * @param {string} val
+     * @returns {undefined}
      */
     this.setLastLogin = function (val) {
         $cookies.lastLogin = val;
@@ -12801,6 +12836,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
 
     /**
      * Get remember me
+     * @returns {Object|Boolean}
      */
     this.getRememberMe = function () {
         var user = ($cookies.rememberme !== 'undefined' ? angular.fromJson($cookies.rememberme) : false);
@@ -12809,6 +12845,8 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
 
     /**
      * Set remember me
+     * @param {object} data
+     * @returns {Boolean|Object}
      */
     this.setRememberMe = function (data) {
         if (!data) {
@@ -12820,7 +12858,8 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
     };
 
     /**
-     * Logout
+     * Logout from the system
+     * @returns {undefined}
      */
     this.logOut = function () {
         this.setUser(null);
@@ -12831,7 +12870,10 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
     };
 
     /**
-     * Get device data
+     * Get devices -  filtered data from devices dataholder
+     * @param {object} data
+     * @param {boolean} showHidden
+     * @returns {unresolved}
      */
     this.getDevicesData = function (data, showHidden) {
         var user = this.getUser();
@@ -12881,7 +12923,9 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
     };
 
     /**
-     * Get rooms
+     * Get rooms - filtered data from locations dataholder
+     * @param {object} data
+     * @returns {unresolved}
      */
     this.getRooms = function (data) {
         return  _.chain(data)
@@ -12902,7 +12946,10 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
     };
 
     /**
-     * Get chart data
+     * Renders the chart data
+     * @param {object} data
+     * @param {object} colors
+     * @returns {Object|NULL}
      */
     this.getChartData = function (data, colors) {
         if (!angular.isObject(data, colors)) {
@@ -12939,21 +12986,32 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
     };
 
     /**
-     * Get module form data
+     * Renders Alpaca module data
+     * @param {object} module
+     * @param {object} data
+     * @returns {unresolved}
      */
     this.getModuleFormData = function (module, data) {
         return getModuleFormData(module, data);
     };
 
     /**
-     * Get module config input
+     * Renders module config data
+     * @param {object} module
+     * @param {string} params
+     * @param {object} namespaces
+     * @returns {unresolved}
      */
     this.getModuleConfigInputs = function (module, params, namespaces) {
         return getModuleConfigInputs(module, params, namespaces);
     };
 
     /**
-     * Set array value
+     * 
+     * @param {object} data
+     * @param {string} key
+     * @param {boolean} add
+     * @returns {Array}
      */
     this.setArrayValue = function (data, key, add) {
         if (add) {
@@ -12965,6 +13023,9 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
 
     /**
      * Get event level
+     * @param {object} data
+     * @param {array} set
+     * @returns {unresolved}
      */
     this.getEventLevel = function (data, set) {
         var collection = (set ? set : []);
@@ -12979,7 +13040,9 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
     };
 
     /**
-     * Set EnOcean profile
+     * Renders EnOcean profile
+     * @param {object} data
+     * @returns {unresolved}
      */
     this.setEnoProfile = function (data) {
         var profile = {};
@@ -12997,7 +13060,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
     /// --- Private functions --- ///
 
     /**
-     * Get lang line
+     * Get a language string by key
      */
     function getLangLine(key, languages, replacement) {
         var line = key;
@@ -13021,7 +13084,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
     }
 
     /**
-     * Get module form data
+     * Renders Alpaca module data
      */
     function getModuleFormData(module, data) {
         var collection = {
@@ -13081,27 +13144,13 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
 });
 
 /**
- * Application directives
+ * @overview Common Angular directives that are used within the views.
  * @author Martin Vach
  */
-myApp.directive('testDir', function () {
-    return {
-        restrict: "E",
-        replace: true,
-        template: '<p>This is a test directive</p>'
-    };
-});
 
-myApp.directive('logIt', function () {
-    return {
-        link: function (scope, elem, attrs) {
-            console.log(attrs.logIt);
-        }
-    };
-}
-);
 /**
- * History go back
+ * Window history back
+ * @class bbGoBack
  */
 myApp.directive('bbGoBack', ['$window', function ($window) {
         return {
@@ -13115,7 +13164,8 @@ myApp.directive('bbGoBack', ['$window', function ($window) {
     }]);
 
 /**
- * Page loader directive
+ * Displays a page loader
+ * @class bbLoader
  */
 myApp.directive('bbLoader', function () {
     return {
@@ -13128,7 +13178,8 @@ myApp.directive('bbLoader', function () {
 });
 
 /**
- * Alert directive
+ * Displays an alert message within the div
+ * @class bbAlert
  */
 myApp.directive('bbAlert', function () {
     return {
@@ -13142,7 +13193,8 @@ myApp.directive('bbAlert', function () {
 });
 
 /**
- * Alerttext  directive
+ * Displays an alert message within the span
+ * @class bbAlertText
  */
 myApp.directive('bbAlertText', function () {
     return {
@@ -13156,7 +13208,8 @@ myApp.directive('bbAlertText', function () {
 });
 
 /**
- * Help directive
+ * Displays a HTML help page
+ * @class bbHelp
  */
 myApp.directive('bbHelp', function ($sce, dataFactory, cfg) {
     var trusted = {};
@@ -13202,7 +13255,8 @@ myApp.directive('bbHelp', function ($sce, dataFactory, cfg) {
 });
 
 /**
- * Help text directive
+ * Displays a help text
+ * @class bbHelpText
  */
 myApp.directive('bbHelpText', function () {
     return {
@@ -13218,7 +13272,8 @@ myApp.directive('bbHelpText', function () {
 });
 
 /**
- * Show validation error
+ * Displays a validation error
+ * @class bbValidator
  */
 myApp.directive('bbValidator', function ($window) {
     return {
@@ -13234,7 +13289,8 @@ myApp.directive('bbValidator', function ($window) {
 });
 
 /**
- * Compare ompare two values
+ * Compare two values
+ * @class bbCompareTo
  */
 myApp.directive("bbCompareTo", function () {
     return {
@@ -13258,36 +13314,7 @@ myApp.directive("bbCompareTo", function () {
     };
 });
 
-/**
- * Hide collapsed navi after click on mobile devices
- */
-myApp.directive('collapseNavbar', function () {
-    return {
-        restrict: 'A',
-        link: function (scope, element, attrs) {
-            $(element).click(function () {
-                $("#nav_collapse").removeClass("in").addClass("collapse");
-            });
-        }
-    };
-});
-/**
- * Go back
- */
-myApp.directive('goBack', ['$window', function ($window) {
-        return {
-            restrict: 'A',
-            link: function (scope, elem, attrs) {
-                elem.bind('click', function () {
-                    $window.history.back();
-                });
-            }
-        };
-    }]);
-
-/**
- * Knob directive
- */
+// Knob directive
 myApp.directive('knob', function () {
     return {
         restrict: 'A',
@@ -13297,6 +13324,10 @@ myApp.directive('knob', function () {
     };
 });
 
+/**
+ * Displays a knob 
+ * @class myknob
+ */
 myApp.directive('myknob', ['$timeout', 'dataFactory', function ($timeout, dataFactory, dataService) {
         'use strict';
 
@@ -13345,6 +13376,9 @@ myApp.directive('myknob', ['$timeout', 'dataFactory', function ($timeout, dataFa
 
         /**
          * Run command exact value
+         * @param {int} id
+         * @param {int} val
+         * @returns {undefined}
          */
         function runCmdExact(id, val) {
             //console.log('Knob from directive:',val)
@@ -13355,43 +13389,10 @@ myApp.directive('myknob', ['$timeout', 'dataFactory', function ($timeout, dataFa
         }
         ;
     }]);
+
 /**
- * Bootstrap tooltip
- */
-myApp.directive('tooltip', function () {
-    return {
-        restrict: 'A',
-        link: function (scope, element, attrs) {
-            $(element).hover(function () {
-                // on mouseenter
-                $(element).tooltip('show');
-            }, function () {
-                // on mouseleave
-                $(element).tooltip('hide');
-            });
-        }
-    };
-});
-/**
- * Bootstrap Popover window
- */
-myApp.directive('customPopover', function () {
-    return {
-        restrict: 'A',
-        template: '<span>{{label}}</span>',
-        link: function (scope, el, attrs) {
-            scope.label = attrs.popoverLabel;
-            $(el).popover({
-                trigger: 'click',
-                html: true,
-                content: attrs.popoverHtml,
-                placement: attrs.popoverPlacement
-            });
-        }
-    };
-});
-/**
- * Confirm dialog after click
+ * Displays a confirm dialog after click
+ * @class ngConfirmClick
  */
 myApp.directive('ngConfirmClick', [
     function () {
@@ -13412,7 +13413,8 @@ myApp.directive('ngConfirmClick', [
 ]);
 
 /**
- * Upload file
+ * Upload a file
+ * @class fileModel
  */
 myApp.directive('fileModel', ['$parse', function ($parse) {
         return {
@@ -13430,64 +13432,9 @@ myApp.directive('fileModel', ['$parse', function ($parse) {
         };
     }]);
 
-myApp.directive('infiniteScroll', [
-    '$rootScope', '$window', '$timeout', function ($rootScope, $window, $timeout) {
-        return {
-            link: function (scope, elem, attrs) {
-                var checkWhenEnabled, handler, scrollDistance, scrollEnabled;
-                $window = angular.element($window);
-                scrollDistance = 0;
-                if (attrs.infiniteScrollDistance != null) {
-                    scope.$watch(attrs.infiniteScrollDistance, function (value) {
-                        return scrollDistance = parseInt(value, 10);
-                    });
-                }
-                scrollEnabled = true;
-                checkWhenEnabled = false;
-                if (attrs.infiniteScrollDisabled != null) {
-                    scope.$watch(attrs.infiniteScrollDisabled, function (value) {
-                        scrollEnabled = !value;
-                        if (scrollEnabled && checkWhenEnabled) {
-                            checkWhenEnabled = false;
-                            return handler();
-                        }
-                    });
-                }
-                handler = function () {
-                    var elementBottom, remaining, shouldScroll, windowBottom;
-                    windowBottom = $window.height() + $window.scrollTop();
-                    elementBottom = elem.offset().top + elem.height();
-                    remaining = elementBottom - windowBottom;
-                    shouldScroll = remaining <= $window.height() * scrollDistance;
-                    if (shouldScroll && scrollEnabled) {
-                        if ($rootScope.$$phase) {
-                            return scope.$eval(attrs.infiniteScroll);
-                        } else {
-                            return scope.$apply(attrs.infiniteScroll);
-                        }
-                    } else if (shouldScroll) {
-                        return checkWhenEnabled = true;
-                    }
-                };
-                $window.on('scroll', handler);
-                scope.$on('$destroy', function () {
-                    return $window.off('scroll', handler);
-                });
-                return $timeout((function () {
-                    if (attrs.infiniteScrollImmediateCheck) {
-                        if (scope.$eval(attrs.infiniteScrollImmediateCheck)) {
-                            return handler();
-                        }
-                    } else {
-                        return handler();
-                    }
-                }), 0);
-            }
-        };
-    }
-]);
 /**
- * Key event directive
+ * Catch a key event
+ * @class bbKeyEvent
  */
 myApp.directive('bbKeyEvent', function () {
     return function (scope, element, attrs) {
@@ -13505,17 +13452,9 @@ myApp.directive('bbKeyEvent', function () {
 
 
 /**
- * dirPagination - AngularJS module for paginating (almost) anything.
- * 
- * 
- * Credit to https://groups.google.com/d/msg/angular/an9QpzqIYiM/r8v-3W1X5vcJ
- * for the idea on how to dynamically invoke the ng-repeat directive.
- *
- * Created by Michael on 04/05/14.
+ * @overview AngularJS module for paginating (almost) anything.
+ * @author Created by Michael.
  */
-
-//angular.module('myApp')
-//   .directive('dirPaginate', function($compile, $parse, $timeout, paginationService) {
 myApp.directive('dirPaginate', function($compile, $parse, $timeout, paginationService) {
         return  {
             priority: 5000, //High priority means it will execute first
@@ -13737,9 +13676,8 @@ myApp.directive('dirPaginate', function($compile, $parse, $timeout, paginationSe
         };
     });
 /**
- * tc-angular-chartjs - v1.0.2 - 2014-07-17
- * Copyright (c) 2014 Carl Craig <carlcraig@3c-studios.com>
- * Dual licensed with the Apache-2.0 or MIT license.
+ * @overview Angular directive that is used to handle charts.
+ * @author Carl Craig <carlcraig@3c-studios.com>.
  */
 myApp.directive("tcChartjs", [ "TcChartjsFactory", function(TcChartjsFactory) {
     return new TcChartjsFactory();
@@ -13807,11 +13745,13 @@ myApp.directive("tcChartjs", [ "TcChartjsFactory", function(TcChartjsFactory) {
     };
 });
 /**
- * App filters
+ * @overview Filters that are used to format data within views and controllers.
  * @author Martin Vach
  */
+
 /**
- * Display HTML tags in scope
+ * Allow to display html tags in the scope
+ * @function toTrusted
  */
 myApp.filter('toTrusted', ['$sce', function ($sce) {
         return function (text) {
@@ -13823,6 +13763,7 @@ myApp.filter('toTrusted', ['$sce', function ($sce) {
     }]);
 /**
  * Strip HTML tags from input
+ * @function stripTags
  */
 myApp.filter('stripTags', function () {
     return function (text) {
@@ -13830,7 +13771,8 @@ myApp.filter('stripTags', function () {
     };
 });
 /**
- * Cut text into x chars
+ * Shorten the text to the specified number of characters
+ * @function cutText
  */
 myApp.filter('cutText', function () {
     return function (value, wordwise, max, tail) {
@@ -13856,6 +13798,7 @@ myApp.filter('cutText', function () {
 });
 /**
  * Convert val to int
+ * @function toInt
  */
 myApp.filter('toInt', function () {
     return function (val, a) {
@@ -13869,6 +13812,7 @@ myApp.filter('toInt', function () {
 
 /**
  * Convert val to bool
+ * @function toBool
  */
 myApp.filter('toBool', function () {
     return function (val) {
@@ -13878,6 +13822,7 @@ myApp.filter('toBool', function () {
 
 /**
  * Get type of a Javascript variable
+ * @function typeOf
  */
 myApp.filter('typeOf', function () {
     return function (obj) {
@@ -13886,7 +13831,8 @@ myApp.filter('typeOf', function () {
 });
 
 /**
- * Set the max dec. lenghth
+ * Set max length of the number entered
+ * @function numberFixedLen
  */
 myApp.filter('numberFixedLen', function () {
     return function (val) {
@@ -13912,7 +13858,8 @@ myApp.filter('numberFixedLen', function () {
 });
 
 /**
- * Check if JSON keys/nodes exist
+ * Check if an object exists and has a node.
+ * @function hasNode
  */
 myApp.filter('hasNode', function () {
     return function (obj, path) {
@@ -13932,21 +13879,8 @@ myApp.filter('hasNode', function () {
     };
 });
 /**
- * DEPRECATED
- * Get segment from url
- */
-//myApp.filter('getUrlSegment', function ($location) {
-//    return function (segment) {
-//        var ret = false;
-//        var data = $location.path().split('/');
-//        if (data[segment]) {
-//            ret = data[segment];
-//        }
-//        return ret;
-//    };
-//});
-/**
- * Get current time
+ * Builds an element icon path
+ * @function getElementIcon
  */
 myApp.filter('getElementIcon', function (cfg) {
     return function (input, device, level) {
@@ -14072,7 +14006,8 @@ myApp.filter('getElementIcon', function (cfg) {
 });
 
 /**
- * Get event icon
+ * Builds an event icon path
+ * @function getEventIcon
  */
 myApp.filter('getEventIcon', function (cfg) {
     return function (input, message) {
@@ -14114,7 +14049,8 @@ myApp.filter('getEventIcon', function (cfg) {
 });
 
 /**
- * Get battery icon
+ * Builds a battery icon path
+ * @function getBatteryIcon
  */
 myApp.filter('getBatteryIcon', function (cfg) {
     return function (input) {
@@ -14141,7 +14077,8 @@ myApp.filter('getBatteryIcon', function (cfg) {
 });
 
 /**
- * Get element category icon
+ * Get a category icon in the Elements sections
+ * @function getElCategoryIcon
  */
 myApp.filter('getElCategoryIcon', function () {
     return function (input) {
@@ -14167,7 +14104,8 @@ myApp.filter('getElCategoryIcon', function () {
 });
 
 /**
- * Get App category icon
+ * Get a category icon in the APPs sections
+ * @function getAppCategoryIcon
  */
 myApp.filter('getAppCategoryIcon', function () {
     return function (input) {
@@ -14203,7 +14141,8 @@ myApp.filter('getAppCategoryIcon', function () {
 });
 
 /**
- * Get max level
+ * Get max level by probeType from the devices data holder
+ * @function getMaxLevel
  */
 myApp.filter('getMaxLevel', function () {
     return function (input, probeType) {
@@ -14222,7 +14161,8 @@ myApp.filter('getMaxLevel', function () {
 });
 
 /**
- * Today from unix - ExpertUI filter
+ * Today from unix - ExpertUI filter used in the device hardware configuration
+ * @function isTodayFromUnix
  */
 myApp.filter('isTodayFromUnix', function () {
     return function (input) {
@@ -14247,7 +14187,8 @@ myApp.filter('isTodayFromUnix', function () {
     };
 });
 /**
- * Get current time
+ * Get current time in the hrs:min:sec format
+ * @function getCurrentTime
  */
 myApp.filter('getCurrentTime', function () {
     return function (timestamp) {
@@ -14265,7 +14206,8 @@ myApp.filter('getCurrentTime', function () {
     };
 });
 /**
- * Get current time
+ * Get a day from the unix timstamp for filtering events
+ * @function unixStartOfDay
  */
 myApp.filter('unixStartOfDay', function () {
     return function (input, value) {
@@ -14289,6 +14231,7 @@ myApp.filter('unixStartOfDay', function () {
 });
 /**
  * If is today display h:m otherwise d:m:y
+ * @function isToday
  */
 myApp.filter('isToday', function () {
     return function (input, fromunix, days, yesterday) {
@@ -14332,7 +14275,8 @@ myApp.filter('isToday', function () {
 });
 
 /**
- * If is today display h:m otherwise d:m:y
+ * Renders an event date - If is today display h:m otherwise d:m:y
+ * @function eventDate
  */
 myApp.filter('eventDate', function () {
     return function (input) {
@@ -14355,6 +14299,7 @@ myApp.filter('eventDate', function () {
 
 /**
  * Convert MySql DateTime stamp into JavaScript's Date format
+ * @function mysqlToUnixTs
  */
 myApp.filter('mysqlToUnixTs', function () {
     return function (input) {
@@ -14367,7 +14312,8 @@ myApp.filter('mysqlToUnixTs', function () {
 });
 
 /**
- * Get only unique values
+ * Set an object with unique key-values only
+ * @function unique
  */
 myApp.filter('unique', function () {
     return function (items, filterOn) {
@@ -14408,6 +14354,7 @@ myApp.filter('unique', function () {
 });
 /**
  * Get uri segment
+ * @function uri
  */
 myApp.filter('uri', function ($location) {
     return {
@@ -14432,7 +14379,8 @@ myApp.filter('uri', function ($location) {
 });
 
 /**
- * Display device name
+ * Build a device name
+ * @function deviceName
  */
 myApp.filter('deviceName', function () {
     return function (deviceId, device) {
@@ -14449,6 +14397,7 @@ myApp.filter('deviceName', function () {
 
 /**
  * Convert text to slug
+ * @function deviceName
  */
 myApp.filter('stringToSlug', function () {
     return function (str) {
@@ -14469,6 +14418,11 @@ myApp.filter('stringToSlug', function () {
         return str;
     };
 });
+/**
+ * @overview Receives data from the Alpaca form and stores them on the server.
+ * @author Martin Vach,Niels Roche 
+ */
+
 /**
  * POST/PUT data from Alpaca form
  * @returns false
@@ -16191,7 +16145,7 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
     }
 });
 /**
- * @overview This controller handles the Local apps, Online Apps and Active apps.
+ * @overview Controllers that handle the Local apps, Online Apps and Active apps.
  * @author Martin Vach
  */
 
@@ -21626,7 +21580,19 @@ myAppController.controller('LogoutController', function ($scope, dataService, da
     };
     $scope.logout();
 });
-// device filter for device select menu
+/**
+ * @overview Functions used to render the configuration arrays.
+ * @author Unknown
+ */
+
+/**
+ * Device filter for device select menu
+ * @param {object} ZWaveAPIData
+ * @param {string} span
+ * @param {string} dev
+ * @param {string} type
+ * @returns {Boolean}
+ */
 function devices_htmlSelect_filter(ZWaveAPIData,span,dev,type) {
 	// return true means to skip this node
 	switch(type) {
@@ -21653,7 +21619,12 @@ function devices_htmlSelect_filter(ZWaveAPIData,span,dev,type) {
 	}
 };
 
-// returns array with default values: first value from the enum, minimum value for range, empty string for string, first nodeId for node, default schedule for the climate_schedule
+/**
+ * Returns array with default values: first value from the enum, minimum value for range, empty string for string, first nodeId for node, default schedule for the climate_schedule
+ * @param {object} ZWaveAPIData
+ * @param {object} method
+ * @returns {Array}
+ */
 function method_defaultValues(ZWaveAPIData,method) {
      
 	function method_defaultValue(val) {
@@ -21690,7 +21661,11 @@ function method_defaultValues(ZWaveAPIData,method) {
 	return parameters;
 };
 
-// represent array with number, string and array elements in reversible way: use eval('[' + return_value + ']') to rever back to an array
+/**
+ * Represent array with number, string and array elements in reversible way: use eval('[' + return_value + ']') to rever back to an array
+ * @param {array} arr
+ * @returns {String}
+ */
 function repr_array(arr) {
 	var repr='';
 	for (var indx in arr) {
@@ -21717,9 +21692,11 @@ function repr_array(arr) {
 	return repr;
 };
 
-/*
-	Array unique
-*/
+/**
+ * Array unique
+ * @param {array} arr
+ * @returns {Array}
+ */
 function array_unique(arr) {
 	var newArray = new Array();
 
@@ -21731,7 +21708,20 @@ function array_unique(arr) {
 	}
 	return newArray;
 };
+/**
+ * @overview Functions used to render the configuration JSON.
+ * @author Unknown
+ */
 var _methods_specs_rendered = null;
+/**
+ * Get method spec
+ * @param {object} ZWaveAPIData
+ * @param {string} devId
+ * @param {string} instId
+ * @param {string} ccId
+ * @param {string} method
+ * @returns {getMethodSpec.methods}
+ */
 function getMethodSpec(ZWaveAPIData,devId, instId, ccId, method) {
 	if (_methods_specs_rendered === null)
         renderAllMethodSpec(ZWaveAPIData);
@@ -21753,7 +21743,11 @@ function getMethodSpec(ZWaveAPIData,devId, instId, ccId, method) {
 		return null;
 	}
 }
-
+/**
+ * Renders all method spec
+ * @param {object} ZWaveAPIData
+ * @returns {undefined}
+ */
 function renderAllMethodSpec(ZWaveAPIData) {
 	_methods_specs_rendered = {};
 	
@@ -21767,7 +21761,12 @@ function renderAllMethodSpec(ZWaveAPIData) {
 		}
 	}
 }
-
+/**
+ * Renders method spec
+ * @param {string} ccId
+ * @param {object} data
+ * @returns {object}
+  */
 function renderMethodSpec(ccId, data) {
 	switch (ccId) {
 
@@ -28936,13 +28935,24 @@ function X2JS(config) {
 }
 
 /**
- * ExpertUI directives
+ * @overview Angular directives that are used in device hardware configuration view.
  * @author Martin Vach
  */
 
-
+/**
+ * Renders configuration form inputs
+ * @class expertCommandInput
+ */
 myApp.directive('expertCommandInput', function($filter) {
-    // Get text input
+    /**
+     * Renders text input
+     * @param {text} label
+     * @param {mixed} value
+     * @param {int} min
+     * @param {int} max
+     * @param {string} name
+     * @returns {String}
+     */
     function getText(label, value, min, max, name) {
         var input = '';
         var inName = $filter('stringToSlug')(name ? name : label);
@@ -28950,7 +28960,14 @@ myApp.directive('expertCommandInput', function($filter) {
         input += '<input class="form-control" name="' + inName + '" type="text" class="form-control" value="' + value + '" title=" min: ' + min + ', max: ' + max + '" />';
         return input;
     }
-    // Get node
+    /**
+     * Renders node select input 
+     * @param {string} label
+     * @param {object} devices
+     * @param {string} currValue
+     * @param {string} name
+     * @returns {String}
+     */
     function getNode(label, devices, currValue, name) {
         var input = '';
         var inName = $filter('stringToSlug')(name ? name : label);
@@ -28968,7 +28985,16 @@ myApp.directive('expertCommandInput', function($filter) {
         return input;
     }
 
-    // Get enumerators
+    /**
+     * Renders enumerators
+     * @param {string} label
+     * @param {object} enums
+     * @param {int} defaultValue
+     * @param {string} name
+     * @param {boolean} hideRadio
+     * @param {int} currValue
+     * @returns {undefined|String}
+     */
     function getEnum(label, enums, defaultValue, name, hideRadio,currValue) {
         
         var input = '';
@@ -29044,7 +29070,15 @@ myApp.directive('expertCommandInput', function($filter) {
         return input;
     }
 
-    // Get dropdown list
+    /**
+     * Renders dropdown list
+     * @param {string} label
+     * @param {object} enums
+     * @param {string} defaultValue
+     * @param {string} name
+     * @param {string} currValue
+     * @returns {String}
+     */
     function getDropdown(label, enums, defaultValue, name,currValue) {
         var input = '';
         var cValue = (currValue !== undefined ? currValue : defaultValue);
@@ -29073,7 +29107,15 @@ myApp.directive('expertCommandInput', function($filter) {
         return input;
     }
 
-    // Get constant 
+    /**
+     * Renders constant select
+     * @param {string} label
+     * @param {string} type
+     * @param {string} defaultValue
+     * @param {string} name
+     * @param {string} currValue
+     * @returns {String}
+     */
     function getConstant(label, type, defaultValue, name,currValue) {
         var input = '';
         var inName = $filter('stringToSlug')(name ? name : label);
@@ -29092,7 +29134,13 @@ myApp.directive('expertCommandInput', function($filter) {
         input += '<em>Constant type</em>';
         return input;
     }
-    // Get string
+    /**
+     * Renders string input
+     * @param {string} label
+     * @param {string} value
+     * @param {string} name
+     * @returns {String}
+     */
     function getString(label, value, name) {
         var input = '';
         var inName = $filter('stringToSlug')(name ? name : label);
@@ -29101,15 +29149,22 @@ myApp.directive('expertCommandInput', function($filter) {
         return input;
     }
     
-    // Get bitset
-    function getBitset(label, enums, defaultValue, name, hideRadio,currValue) {
+    /**
+     * Renders bitset input
+     * @returns {String}
+     */
+    function getBitset() {
         
-        var input = 'Bitset';
+        var input = '';
         
         return input;
     }
 
-    // Get default
+    /**
+     * Renders default label
+     * @param {string} label
+     * @returns {String}
+     */
     function getDefault(label) {
 
         var input = '';
@@ -29174,7 +29229,10 @@ myApp.directive('expertCommandInput', function($filter) {
 
     };
 });
-
+/**
+ * Renders configuration default value
+ * @class configDefaultValue
+ */
 myApp.directive('configDefaultValue', function() {
     return {
         restrict: "E",
@@ -29221,7 +29279,13 @@ myApp.directive('configDefaultValue', function() {
 
     };
 
-    // Get enumerators
+    /**
+     * Renders enumerators
+     * @param {object} enums
+     * @param {string} defaultValue
+     * @param {string} showDefaultValue
+     * @returns {string}
+     */
     function getEnum(enums, defaultValue,showDefaultValue) {
         //console.log(enums)
         var input = showDefaultValue;
@@ -29254,7 +29318,10 @@ myApp.directive('configDefaultValue', function() {
         return input;
     }
 });
-
+/**
+ * Renders configuration title input
+ * @class configValueTitle
+ */
 myApp.directive('configValueTitle', function() {
     return {
         restrict: "A",
@@ -29297,7 +29364,12 @@ myApp.directive('configValueTitle', function() {
 
     };
 
-    // Get enumerators
+    /**
+     * Renders enumerators
+     * @param {object} enums
+     * @param {string} showValue
+     * @returns {string}
+     */
     function getEnum(enums, showValue) {
         //console.log(enums)
         var input = showValue;
@@ -29333,19 +29405,30 @@ myApp.directive('configValueTitle', function() {
 
 
 /**
- * ExpertUI services
+ * @overview Common functions that are used within device hardware configuration
  * @author Martin Vach
+ */
+
+/**
+ * Angular module initialization
+ * @class expertService
  */
 myAppService.service('expertService', function($filter) {
     /// --- Public functions --- ///
+    
     /**
      * Get language line by key
+     * @param {string} key
+     * @param {object} languages
+     * @returns {unresolved}
      */
     this.getLangLine = function(key, languages) {
         return getLangLine(key, languages);
     };
     /**
      * Get config navigation devices
+     * @param {object} ZWaveAPIData
+     * @returns {unresolved}
      */
     this.configGetNav = function(ZWaveAPIData) {
         return configGetNav(ZWaveAPIData);
@@ -29353,43 +29436,79 @@ myAppService.service('expertService', function($filter) {
 
     /**
      * Get language from zddx
+     * @param {object} node
+     * @param {string} lang
+     * @returns {unresolved}
      */
     this.configGetZddxLang = function(node, lang) {
         return configGetZddxLang(node, lang);
     };
     /**
      * Get xml config param
+     * @param {object} cfgXml
+     * @param {int} nodeId
+     * @param {string} instance
+     * @param {string} commandClass
+     * @param {string} command
+     * @returns {unresolved}
      */
     this.getCfgXmlParam = function(cfgXml, nodeId, instance, commandClass, command) {
         return getCfgXmlParam(cfgXml, nodeId, instance, commandClass, command);
     };
     /**
      * Config cont
+     * @param {object} node
+     * @param {int} nodeId
+     * @param {object} zddXml
+     * @param {object} cfgXml
+     * @param {string} lang
+     * @param {object} languages
+     * @returns {unresolved}
      */
     this.configConfigCont = function(node, nodeId, zddXml, cfgXml, lang, languages) {
         return configConfigCont(node, nodeId, zddXml, cfgXml, lang, languages);
     };
     /**
-     *  Switch all cont
+     * Switch all cont
+     * @param {object} node
+     * @param {int} nodeId
+     * @param {object} ZWaveAPIData
+     * @param {object} cfgXml
+     * @returns {unresolved}
      */
     this.configSwitchAllCont = function(node, nodeId, ZWaveAPIData, cfgXml) {
         return configSwitchAllCont(node, nodeId, ZWaveAPIData, cfgXml);
     };
     /**
      * Protection cont
+     * @param {object} node
+     * @param {int} nodeId
+     * @param {object} ZWaveAPIData
+     * @param {object} cfgXml
+     * @returns {unresolved}
      */
     this.configProtectionCont = function(node, nodeId, ZWaveAPIData, cfgXml) {
         return configProtectionCont(node, nodeId, ZWaveAPIData, cfgXml);
     };
-    /**
-     * Wakeup cont
-     */
+   /**
+    * Wakeup cont
+    * @param {object} node
+    * @param {int} nodeId
+    * @param {object} ZWaveAPIData
+    * @param {object} cfgXml
+    * @returns {unresolved}
+    */
     this.configWakeupCont = function(node, nodeId, ZWaveAPIData, cfgXml) {
         return configWakeupCont(node, nodeId, ZWaveAPIData, cfgXml);
     };
 
     /**
-     *Build config XML file
+     * Build config XML file
+     * @param {object} data
+     * @param {object} cfgXml
+     * @param {int} id
+     * @param {string} commandclass
+     * @returns {unresolved}
      */
     this.buildCfgXml = function(data, cfgXml, id, commandclass) {
         return buildCfgXml(data, cfgXml, id, commandclass);
@@ -30062,8 +30181,13 @@ myAppService.service('expertService', function($filter) {
 });
 
 /**
- * Device configuration controller from ExpertUI
+ * @overview Handles actions in the device hardware configuration.
  * @author Martin Vach
+ */
+
+/**
+ * The controller that handles outputs and inputs.
+ * @class ConfigConfigurationController
  */
 myAppController.controller('ConfigConfigurationController', function($scope, $routeParams, $location, $interval, $filter, $timeout, dataFactory, dataService, expertService) {
     
@@ -30085,7 +30209,9 @@ myAppController.controller('ConfigConfigurationController', function($scope, $ro
         $interval.cancel($scope.apiDataInterval);
     });
 
-    // Load data
+    /**
+     * Load data
+     */
     $scope.load = function(nodeId) {
         dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
             var node = ZWaveAPIData.devices[nodeId];
@@ -30133,9 +30259,6 @@ myAppController.controller('ConfigConfigurationController', function($scope, $ro
 
     /**
      * Update from device action
-     *
-     * @param {string} cmd
-     * @returns {undefined}
      */
     $scope.updateFromDevice = function(cmd,hasBattery) {
          $scope.loading = {status:'loading-spin',icon:'fa-spinner fa-spin', message:$scope._t('updating')};

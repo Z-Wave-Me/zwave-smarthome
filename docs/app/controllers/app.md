@@ -1,3 +1,14 @@
+**Overview:** Controllers that handle the Local apps, Online Apps and Active apps.
+
+
+
+**Author:** Martin Vach
+
+
+
+
+* * *
+
 # Global
 
 
@@ -6,7 +17,7 @@
 
 * * *
 
-## Class: AppBaseController
+## AppBaseController
 Apps root controller
 
 ### AppBaseController.loadTokens() 
@@ -40,7 +51,7 @@ Set instances
 
 
 
-## Class: AppLocalController
+## AppLocalController
 The controller that handles all local APPs actions.
 
 ### AppLocalController.setOrderBy() 
@@ -64,7 +75,7 @@ Reset module
 
 
 
-## Class: AppOnlineController
+## AppOnlineController
 The controller that handles all online APPs actions.
 
 ### AppOnlineController.setOrderBy() 
@@ -88,7 +99,7 @@ Install module
 
 
 
-## Class: AppInstanceController
+## AppInstanceController
 The controller that handles all instances actions.
 
 ### AppInstanceController.setOrderBy() 
@@ -107,7 +118,7 @@ Delete instance
 
 
 
-## Class: AppLocalDetailController
+## AppLocalDetailController
 The controller that handles local app detail actions.
 
 ### AppLocalDetailController.loadCategories() 
@@ -121,7 +132,7 @@ Load module detail
 
 
 
-## Class: AppOnlineDetailController
+## AppOnlineDetailController
 The controller that handles on-line app detail actions.
 
 ### AppOnlineDetailController.loadRemoteAccess() 
@@ -165,7 +176,7 @@ Rate module
 
 
 
-## Class: AppModuleAlpacaController
+## AppModuleAlpacaController
 The controller that handles Alpaca forms inputs and outputs.
 
 ### AppModuleAlpacaController.loadCategories() 
@@ -206,13 +217,3 @@ Set moduledependencies
 
 
 * * *
-
-
-
-**Author:** Martin Vach
-
-
-
-**Overview:** This controller handles the Local apps, Online Apps and Active apps.
-
-

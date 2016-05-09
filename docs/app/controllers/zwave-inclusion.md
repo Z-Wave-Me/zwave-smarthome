@@ -1,3 +1,14 @@
+**Overview:** Handles Z-Wave device inclusion actions.
+
+
+
+**Author:** Martin Vach
+
+
+
+
+* * *
+
 # Global
 
 
@@ -6,7 +17,7 @@
 
 * * *
 
-## Class: ZwaveInclusionController
+## ZwaveInclusionController
 The controller that handles Z-Wave device inclusion process.
 
 ### ZwaveInclusionController.allSettled() 
@@ -102,13 +113,3 @@ Reset manual configuration
 
 
 * * *
-
-
-
-**Author:** Martin Vach
-
-
-
-**Overview:** Handles Z-Wave device inclusion actions.
-
-

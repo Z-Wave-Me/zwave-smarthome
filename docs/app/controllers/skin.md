@@ -1,3 +1,14 @@
+**Overview:** Controllers that handle all Skins actions.
+
+
+
+**Author:** Martin Vach
+
+
+
+
+* * *
+
 # Global
 
 
@@ -6,7 +17,7 @@
 
 * * *
 
-## Class: SkinBaseController
+## SkinBaseController
 This is the Skin root controller
 
 ### SkinBaseController.allSettled() 
@@ -25,7 +36,7 @@ Set online skins
 
 
 
-## Class: SkinLocalController
+## SkinLocalController
 This controller handles local skins actions.
 
 ### SkinLocalController.activateSkin() 
@@ -39,7 +50,7 @@ Remove skin
 
 
 
-## Class: SkinOnlineController
+## SkinOnlineController
 This controller handles online skins actions.
 
 ### SkinOnlineController.downloadSkin() 
@@ -55,13 +66,3 @@ Upgrade skin
 
 
 * * *
-
-
-
-**Author:** Martin Vach
-
-
-
-**Overview:** Controllers that handle all Skins actions.
-
-

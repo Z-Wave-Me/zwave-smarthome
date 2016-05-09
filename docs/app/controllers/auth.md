@@ -1,3 +1,14 @@
+**Overview:** Controllers that handle the authentication of existing users, as well as forgot password.
+
+
+
+**Author:** Martin Vach
+
+
+
+
+* * *
+
 # Global
 
 
@@ -6,7 +17,7 @@
 
 * * *
 
-## Class: AuthController
+## AuthController
 This is the Auth root controller
 
 ### AuthController.getRemoteId() 
@@ -35,7 +46,7 @@ Redirect
 
 
 
-## Class: AuthLoginController
+## AuthLoginController
 The controller that handles login process.
 
 ### AuthLoginController.getSession() 
@@ -49,7 +60,7 @@ Login proccess
 
 
 
-## Class: AuthPasswordController
+## AuthPasswordController
 The controller that handles first access and password update.
 
 ### AuthPasswordController.changePassword() 
@@ -58,7 +69,7 @@ Change password
 
 
 
-## Class: PasswordForgotController
+## PasswordForgotController
 The controller that sends an e-mail with the link to reset forgotten passwort.
 
 ### PasswordForgotController.sendEmail() 
@@ -67,7 +78,7 @@ Send an email
 
 
 
-## Class: PasswordResetController
+## PasswordResetController
 The controller that handles reset password actions.
 
 ### PasswordResetController.checkToken() 
@@ -81,7 +92,7 @@ Change password
 
 
 
-## Class: LogoutController
+## LogoutController
 The controller that handles logout process.
 
 ### LogoutController.logout() 
@@ -92,13 +103,3 @@ Logout an user
 
 
 * * *
-
-
-
-**Author:** Martin Vach
-
-
-
-**Overview:** Controllers that handle the authentication of existing users, as well as forgot password.
-
-

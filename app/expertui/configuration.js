@@ -1,6 +1,11 @@
 /**
- * Device configuration controller from ExpertUI
+ * @overview Handles actions in the device hardware configuration.
  * @author Martin Vach
+ */
+
+/**
+ * The controller that handles outputs and inputs.
+ * @class ConfigConfigurationController
  */
 myAppController.controller('ConfigConfigurationController', function($scope, $routeParams, $location, $interval, $filter, $timeout, dataFactory, dataService, expertService) {
     
@@ -22,7 +27,9 @@ myAppController.controller('ConfigConfigurationController', function($scope, $ro
         $interval.cancel($scope.apiDataInterval);
     });
 
-    // Load data
+    /**
+     * Load data
+     */
     $scope.load = function(nodeId) {
         dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
             var node = ZWaveAPIData.devices[nodeId];
@@ -70,9 +77,6 @@ myAppController.controller('ConfigConfigurationController', function($scope, $ro
 
     /**
      * Update from device action
-     *
-     * @param {string} cmd
-     * @returns {undefined}
      */
     $scope.updateFromDevice = function(cmd,hasBattery) {
          $scope.loading = {status:'loading-spin',icon:'fa-spinner fa-spin', message:$scope._t('updating')};

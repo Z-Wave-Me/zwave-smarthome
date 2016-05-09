@@ -1,3 +1,14 @@
+**Overview:** Handles all events.
+
+
+
+**Author:** Martin Vach
+
+
+
+
+* * *
+
 # Global
 
 
@@ -6,7 +17,7 @@
 
 * * *
 
-## Class: EventController
+## EventController
 The controller that renders and handles event actions.
 
 ### EventController.allSettled() 
@@ -52,13 +63,3 @@ Update profile
 
 
 * * *
-
-
-
-**Author:** Martin Vach
-
-
-
-**Overview:** Handles all events.
-
-

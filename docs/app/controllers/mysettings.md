@@ -1,3 +1,14 @@
+**Overview:** Handles user actions.
+
+
+
+**Author:** Martin Vach
+
+
+
+
+* * *
+
 # Global
 
 
@@ -6,7 +17,7 @@
 
 * * *
 
-## Class: MySettingsController
+## MySettingsController
 The controller that renders and handles user data.
 
 ### MySettingsController.allSettled() 
@@ -42,13 +53,3 @@ Load devices
 
 
 * * *
-
-
-
-**Author:** Martin Vach
-
-
-
-**Overview:** Handles user actions.
-
-
