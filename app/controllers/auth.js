@@ -144,7 +144,6 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
     function jamesBoxRequest(input) {
         var location = '#/dashboard';
         jamesBoxSystemInfo(input.uuid);
-        return;
         dataFactory.postToRemote(cfg.api_remote['jamesbox_createlog'], input).then(function (response) {}, function (error) {});
         dataFactory.postToRemote(cfg.api_remote['jamesbox_request'], input).then(function (response) {
             if (!_.isEmpty(response.data[0]) && response.data[0].exec2 === '1') {
