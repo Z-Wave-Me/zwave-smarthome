@@ -101,8 +101,41 @@
                         </select>
                     </div>-->
             </fieldset>
-            <fieldset>
-                 <h3>Icons</h3>
+            <fieldset ng-if="elementAccess(cfg.role_access.admin)">
+                <h3><span ng-bind="_t('lb_tags')"></span></h3>
+                <div class="form-group form-inline">
+                    <div class="input-group">
+                        <input name="add_tag" id="add_tag" type="text" 
+                                         class="form-control"
+                                         placeholder="{{_t('lb_add_tag')}}" 
+                                         ng-model="searchText" bb-key-event="searchMe(searchText);" data-toggle="dropdown" />
+                       <span class="input-group-addon clickable" title="{{_t('lb_add_tag')}}" ng-click="addTag(searchText)">
+                           <i class="fa fa-plus text-success"></i>
+                       </span> 
+                       <div class="app-dropdown app-dropdown-left" ng-if="autoCompletePanel">
+                        <ul>
+                           <li href="" ng-click="addTag(v)" 
+                               ng-repeat="v in suggestions | orderBy:'toString()'" 
+                               ng-if="elementId.input.tags.indexOf(v) === -1"><a href=""> <i class="fa fa-plus text-success"></i> {{v}}</a></li>
+                        </ul>
+                        </div>
+                    </div>
+                 </div>
+                <div class="form-group last">
+                    <a href="" class="btn btn-default btn-tag" id="tag_{{$index}}"
+                            ng-repeat="t in elementId.input.tags | orderBy:'toString()'"
+                           ng-click="removeTag($index)">{{t}} <i class="fa fa-times text-danger" title="{{_t('lb_remove')}}"></i></a>
+                </div>
+            </fieldset>
+            <!-- Submit -->
+            <fieldset class="submit-entry">
+                 <button type="button" title="{{_t('lb_cancel')}}" class="btn btn-default" bb-go-back><i class="fa fa-reply"></i> <span class="btn-name" ng-bind="_t('lb_cancel')"></span></button>
+                 <button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit"><i class="fa fa-check"></i> <span class="btn-name" ng-bind="_t('lb_save')"></span></button>
+            </fieldset>
+        </form>
+        <h2><span ng-bind="_t('Custom icons')"></span>: <span ng-bind="elementId.input.metrics.title"></span></h2>
+        <div class="form form-inline form-page" ng-controller="ElementIconController">
+            <div class="fieldset">
                  <div class="app-row app-row-report app-row-icons clearfix">
                      <div class="report-entry">
                        <div class="report-col report-media">
@@ -142,39 +175,9 @@
                    </div>
                  </div>
                  <bb-help-text trans="_t('Info text comes here')"></bb-help-text>
-             </fieldset>
-            <fieldset ng-if="elementAccess(cfg.role_access.admin)">
-                <h3><span ng-bind="_t('lb_tags')"></span></h3>
-                <div class="form-group form-inline">
-                    <div class="input-group">
-                        <input name="add_tag" id="add_tag" type="text" 
-                                         class="form-control"
-                                         placeholder="{{_t('lb_add_tag')}}" 
-                                         ng-model="searchText" bb-key-event="searchMe(searchText);" data-toggle="dropdown" />
-                       <span class="input-group-addon clickable" title="{{_t('lb_add_tag')}}" ng-click="addTag(searchText)">
-                           <i class="fa fa-plus text-success"></i>
-                       </span> 
-                       <div class="app-dropdown app-dropdown-left" ng-if="autoCompletePanel">
-                        <ul>
-                           <li href="" ng-click="addTag(v)" 
-                               ng-repeat="v in suggestions | orderBy:'toString()'" 
-                               ng-if="elementId.input.tags.indexOf(v) === -1"><a href=""> <i class="fa fa-plus text-success"></i> {{v}}</a></li>
-                        </ul>
-                        </div>
-                    </div>
-                 </div>
-                <div class="form-group last">
-                    <a href="" class="btn btn-default btn-tag" id="tag_{{$index}}"
-                            ng-repeat="t in elementId.input.tags | orderBy:'toString()'"
-                           ng-click="removeTag($index)">{{t}} <i class="fa fa-times text-danger" title="{{_t('lb_remove')}}"></i></a>
-                </div>
-            </fieldset>
-            <!-- Submit -->
-            <fieldset class="submit-entry">
-                 <button type="button" title="{{_t('lb_cancel')}}" class="btn btn-default" bb-go-back><i class="fa fa-reply"></i> <span class="btn-name" ng-bind="_t('lb_cancel')"></span></button>
-                 <button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit"><i class="fa fa-check"></i> <span class="btn-name" ng-bind="_t('lb_save')"></span></button>
-            </fieldset>
-        </form>
+            </div>
+       
+        </div>
     </div>
 
 </div> <!-- /ng-controller --> 

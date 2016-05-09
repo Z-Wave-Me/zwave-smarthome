@@ -746,21 +746,6 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
     $scope.suggestions = [];
     $scope.autoCompletePanel = false;
 
-    $scope.icons = [
-        {
-            default: $scope.cfg.img.icons + 'switch-off.png',
-            custom: $scope.cfg.img.icons + 'dimmer-off.png'
-        },
-        {
-            default: $scope.cfg.img.icons + 'switch-on.png',
-            custom: false
-        },
-        {
-            default: $scope.cfg.img.icons + 'temperature.png',
-            custom: $scope.cfg.img.icons + 'dimmer-half.png'
-        }
-    ];
-
     /**
      * Load all promises
      */
@@ -961,4 +946,25 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
     }
     ;
 
+});
+
+/**
+ * The controller that handles custom icon actions in the elemt detail view.
+ * @class ElementIconController
+ */
+myAppController.controller('ElementIconController', function ($scope, $q, $routeParams, $window, dataFactory, dataService, myCache) {
+    $scope.icons = [
+        {
+            default: $scope.cfg.img.icons + 'switch-off.png',
+            custom: $scope.cfg.img.icons + 'dimmer-off.png'
+        },
+        {
+            default: $scope.cfg.img.icons + 'switch-on.png',
+            custom: false
+        },
+        {
+            default: $scope.cfg.img.icons + 'temperature.png',
+            custom: $scope.cfg.img.icons + 'dimmer-half.png'
+        }
+    ];
 });
