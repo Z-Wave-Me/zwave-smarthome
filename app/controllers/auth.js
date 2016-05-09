@@ -129,6 +129,7 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
         dataFactory.getApi('system_info', null, true).then(function (response) {
             var input = {
                 uuid: uuid,
+                host: $location.host(),
                 first_start_up: response.data.data.first_start_up,
                 count_of_reconnects: response.data.data.count_of_reconnects
             };
@@ -143,6 +144,7 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
     function jamesBoxRequest(input) {
         var location = '#/dashboard';
         jamesBoxSystemInfo(input.uuid);
+        return;
         dataFactory.postToRemote(cfg.api_remote['jamesbox_createlog'], input).then(function (response) {}, function (error) {});
         dataFactory.postToRemote(cfg.api_remote['jamesbox_request'], input).then(function (response) {
             if (!_.isEmpty(response.data[0]) && response.data[0].exec2 === '1') {
