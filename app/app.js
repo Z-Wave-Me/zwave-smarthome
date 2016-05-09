@@ -155,12 +155,14 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                 //Local skins
                 when('/skins/local', {
                     templateUrl: 'app/views/skins/skins_local.html',
-                    requireLogin: true
+                    requireLogin: true,
+                     roles: cfg.role_access.skins_local
                 }).
                 //Online skins
                 when('/skins/online', {
                     templateUrl: 'app/views/skins/skins_online.html',
-                    requireLogin: true
+                    requireLogin: true,
+                     roles: cfg.role_access.skins_online
                 }).
                 //Devices_
                 when('/devices', {

@@ -1,4 +1,4 @@
-<div class="tabs-wrap form-inline">
+<div class="tabs-wrap form-inline" ng-if="elementAccess(cfg.role_access.admin)">
     <div class="btn-group btn-goup-tabs btn-tabs-2">
         <a class="btn btn-default" href="#skins/local" ng-class="activeTab == 'local' ? 'active' : ''">
             <i class="fa fa-cloud-download"></i> <span class="btn-name">{{_t('Local skins')}}</span>

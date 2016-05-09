@@ -167,6 +167,8 @@ var config_data = {
             apps: [1],
             apps_local: [1],
             apps_online: [1],
+            skins_local: [1,2,3],
+            skins_online: [1],
             module: [1],
             devices: [1],
             myaccess: [1, 2, 3],

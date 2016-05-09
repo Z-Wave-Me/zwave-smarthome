@@ -952,7 +952,7 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
  * The controller that handles custom icon actions in the elemt detail view.
  * @class ElementIconController
  */
-myAppController.controller('ElementIconController', function ($scope, $timeout, $window, dataFactory, dataService) {
+myAppController.controller('ElementIconController', function ($scope, $timeout, dataFactory, dataService) {
     $scope.icons = {
         find: {},
         all: [{

@@ -213,14 +213,21 @@ myAppController.controller('SkinOnlineController', function ($scope, $timeout, d
     $scope.activeTab = 'online';
 
     /**
-     * Upload icon
+     * Download skin
      * @param {object} skin
      * @returns {undefined}
      */
-    $scope.uploadIcon = function (icon) {
+    $scope.downloadSkin = function (skin) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
-        
-
+        dataFactory.getApiLocal('skins-online.json').then(function (response) {
+            $timeout(function () {
+                $scope.loading = false;
+                dataService.showNotifier({message: $scope._t('success_file_download')});
+            }, 2000);
+        }, function (error) {
+            $scope.loading = false;
+            alertify.alertError($scope._t('error_file_download'));
+        });
     };
 
 });
