@@ -68,12 +68,12 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             // Success - devices
             if (devices.state === 'fulfilled') {
                 // Count hidden apps
-                 $scope.dataHolder.cnt.hidden =  _.chain(dataService.getDevicesData(devices.value.data.data.devices,true))
-                    .flatten().where({visibility:false})
-                    .size()
-                    .value();
+                $scope.dataHolder.cnt.hidden = _.chain(dataService.getDevicesData(devices.value.data.data.devices, true))
+                        .flatten().where({visibility: false})
+                        .size()
+                        .value();
                 // Set devices
-                setDevices(dataService.getDevicesData(devices.value.data.data.devices,$scope.dataHolder.devices.showHidden));
+                setDevices(dataService.getDevicesData(devices.value.data.data.devices, $scope.dataHolder.devices.showHidden));
 
             }
         });
@@ -143,7 +143,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
 
         $scope.reloadData();
     };
-    
+
     /**
      * Show hidden elements
      */
@@ -208,19 +208,19 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
 
         });
     };
-    
-     /**
+
+    /**
      * Set visibility
      */
-    $scope.setVisibility = function (v,visibility) {
-       $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-            dataFactory.putApi('devices', v.id, {visibility: visibility}).then(function (response) {
-                 $scope.loading = false;
-                  $scope.reloadData();
-            }, function (error) {
-                alertify.alertError($scope._t('error_update_data'));
-                $scope.loading = false;
-            });
+    $scope.setVisibility = function (v, visibility) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        dataFactory.putApi('devices', v.id, {visibility: visibility}).then(function (response) {
+            $scope.loading = false;
+            $scope.reloadData();
+        }, function (error) {
+            alertify.alertError($scope._t('error_update_data'));
+            $scope.loading = false;
+        });
     };
 
     /**
@@ -299,9 +299,9 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
         }
         if (_.isEmpty($scope.dataHolder.devices.collection)) {
             if ($scope.routeMatch('/dashboard')) {
-                 $scope.dataHolder.devices.noDashboard = true;
-            }else{
-               $scope.dataHolder.devices.noDevices = true; 
+                $scope.dataHolder.devices.noDashboard = true;
+            } else {
+                $scope.dataHolder.devices.noDevices = true;
             }
         }
         $scope.dataHolder.cnt.collection = _.size($scope.dataHolder.devices.collection);
@@ -713,10 +713,10 @@ myAppController.controller('ElementClimateControlController', function ($scope, 
 myAppController.controller('ElementDashboardController', function ($scope, $routeParams) {
     $scope.dataHolder.devices.filter = {onDashboard: true};
     $scope.elementDashboard = {
-        firstLogin: ($routeParams.firstlogin||false),
-        firstFile: ( $scope.lang === 'de'? 'first_login_de.html':'first_login_en.html')
+        firstLogin: ($routeParams.firstlogin || false),
+        firstFile: ($scope.lang === 'de' ? 'first_login_de.html' : 'first_login_en.html')
     };
-    
+
 
 });
 
@@ -754,20 +754,20 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
         var promises = [
             dataFactory.getApi('devices', '/' + $routeParams.id),
             dataFactory.getApi('locations'),
-           dataFactory.getApi('devices')
-           
+            dataFactory.getApi('devices')
+
         ];
-        
+
         if ($scope.user.role === 1) {
-            promises.push( dataFactory.getApi('instances'));
+            promises.push(dataFactory.getApi('instances'));
         }
 
         $q.allSettled(promises).then(function (response) {
             var device = response[0];
             var locations = response[1];
-             var devices = response[2];
+            var devices = response[2];
             var instances = response[3];
-           
+
             $scope.loading = false;
             // Error message
             if (device.state === 'rejected') {
@@ -782,7 +782,7 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
             if (devices.state === 'fulfilled') {
                 setTagList(devices.value.data.data.devices);
             }
-             // Success - instances
+            // Success - instances
             if (instances && instances.state === 'fulfilled') {
                 $scope.elementId.instances = instances.value.data.data;
             }
@@ -790,15 +790,15 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
             if (device.state === 'fulfilled') {
                 var arr = [];
                 arr[0] = device.value.data.data;
-                if(!dataService.getDevicesData(arr,true).value()[0]){
+                if (!dataService.getDevicesData(arr, true).value()[0]) {
                     alertify.alertError($scope._t('error_load_data'));
-                return;
+                    return;
                 }
-                setDevice(dataService.getDevicesData(arr,true).value()[0]);
+                setDevice(dataService.getDevicesData(arr, true).value()[0]);
                 $scope.elementId.show = true;
             }
-            
-           
+
+
         });
     };
     $scope.allSettled();
@@ -952,19 +952,82 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
  * The controller that handles custom icon actions in the elemt detail view.
  * @class ElementIconController
  */
-myAppController.controller('ElementIconController', function ($scope, $q, $routeParams, $window, dataFactory, dataService, myCache) {
-    $scope.icons = [
-        {
-            default: $scope.cfg.img.icons + 'switch-off.png',
-            custom: $scope.cfg.img.icons + 'dimmer-off.png'
-        },
-        {
-            default: $scope.cfg.img.icons + 'switch-on.png',
-            custom: false
-        },
-        {
-            default: $scope.cfg.img.icons + 'temperature.png',
-            custom: $scope.cfg.img.icons + 'dimmer-half.png'
-        }
-    ];
+myAppController.controller('ElementIconController', function ($scope, $timeout, $window, dataFactory, dataService) {
+    $scope.icons = {
+        find: {},
+        all: [{
+                id: 1,
+                default: $scope.cfg.img.icons + 'switch-off.png',
+                custom: $scope.cfg.img.icons + 'dimmer-off.png'
+            },
+            {
+                id: 2,
+                default: $scope.cfg.img.icons + 'switch-on.png',
+                custom: false
+            },
+            {
+                id: 3,
+                default: $scope.cfg.img.icons + 'temperature.png',
+                custom: $scope.cfg.img.icons + 'dimmer-half.png'
+            }]
+    };
+    /**
+     * Uplaoad an icon
+     * @param {object} files
+     * @returns {undefined}
+     */
+    $scope.uploadIcon = function (files) {
+        alertify.dismissAll();
+        var icon = $scope.icons.find;
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('uploading')};
+        var cmd = $scope.cfg.api_url + 'upload/file';
+        var fd = new FormData();
+        //fd.append('file_upload', $scope.myFile);
+        console.log(icon)
+        fd.append('files_files', files[0]);
+        dataFactory.getApiLocal('skins-online.json').then(function (response) {
+            $scope.icons.find = {};
+            var index = _.findIndex($scope.icons.all, function (v) {
+                return v.id == icon.id
+            });
+            $timeout(function () {
+                $scope.icons.all[index].custom = $scope.cfg.img.icons + 'new.png';
+                $scope.loading = false;
+                dataService.showNotifier({message: $scope._t('success_upload')});
+            }, 2000);
+
+        }, function (error) {
+            scope.icons.find = {};
+            alertify.alertError($scope._t('error_upload'));
+            $scope.loading = false;
+        });
+
+    };
+    /**
+     * Delete an icon
+     * @param {object} icon
+     * @param {string} message
+     * @returns {undefined}
+     */
+    $scope.deleteIcon = function (icon, message) {
+        alertify.dismissAll();
+        alertify.confirm(message, function () {
+            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
+            dataFactory.getApiLocal('skins-online.json').then(function (response) {
+                var index = _.findIndex($scope.icons.all, function (v) {
+                    return v.id == icon.id
+                });
+                //delete $scope.skins.local.all[skin.name];
+                $scope.icons.all[index].custom = false;
+                $scope.loading = false;
+                dataService.showNotifier({message: $scope._t('delete_successful')});
+
+                //$route.reload();
+            }, function (error) {
+                $scope.loading = false;
+                alertify.alertError($scope._t('error_delete_data'));
+            });
+        });
+
+    };
 });

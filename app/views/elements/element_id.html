@@ -135,6 +135,7 @@
         </form>
         <h2><span ng-bind="_t('Custom icons')"></span>: <span ng-bind="elementId.input.metrics.title"></span></h2>
         <div class="form form-inline form-page" ng-controller="ElementIconController">
+            <bb-loader></bb-loader>
             <div class="fieldset">
                  <div class="app-row app-row-report app-row-icons clearfix">
                      <div class="report-entry">
@@ -152,7 +153,7 @@
                              &nbsp;
                          </div>
                    </div>
-                     <div class="report-entry" ng-repeat="v in icons">
+                     <div class="report-entry" ng-repeat="v in icons.all">
                        <div class="report-col report-media">
                            <img class="report-img" ng-src="{{v.default}}" alt="{{v.type}}"/>
                              
@@ -165,12 +166,15 @@
                            <img class="report-img img-opacity-50" ng-src="{{cfg.img.icons }}cancel.png" ng-if="!v.custom"  alt="img"/>
                        </div>
                          <div class="report-col report-ctrl">
-                             <button href="" class="btn btn-default" ng-click="uploadIcon(v, 'online_install')">
+                              <!--<button href="" class="btn btn-default" ng-click="_uploadIcon(v)">
                                     <i class="fa fa-upload text-success"></i>
-                                </button> 
-                            <button title="{{_t('lb_remove')}}" class="btn btn-default" ng-disabled="!v.custom" ng-click="removeIcon()">
+                                </button>-->
+                             <input class="inputfile" type="file" name="file" id="file{{v.id}}" ng-click="icons.find = v" onchange="angular.element(this).scope().uploadIcon(this.files)" />
+                             <label for="file{{v.id}}" class="btn btn-default" ng-click="icons.find = v"> <i class="fa fa-upload text-success"></i></label>
+                            <button title="{{_t('lb_remove')}}" class="btn btn-default" ng-disabled="!v.custom" ng-click="deleteIcon(v, _t('lb_delete_confirm'),$index)">
                                 <i class="fa fa-remove text-danger"></i>
                             </button>
+                             
                          </div>
                    </div>
                  </div>
