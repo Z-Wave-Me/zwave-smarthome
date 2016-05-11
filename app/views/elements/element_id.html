@@ -170,7 +170,7 @@
                                     <i class="fa fa-upload text-success"></i>
                                 </button>-->
                              <input class="inputfile" type="file" name="file" id="file{{v.id}}" ng-click="icons.find = v" onchange="angular.element(this).scope().uploadIcon(this.files)" />
-                             <label for="file{{v.id}}" class="btn btn-default" ng-click="icons.find = v"> <i class="fa fa-upload text-success"></i></label>
+                             <label for="file{{v.id}}" class="btn btn-default" title="{{_t('lb_upload_image')}}" ng-click="icons.find = v"><i class="fa fa-upload text-success"></i></label>
                             <button title="{{_t('lb_remove')}}" class="btn btn-default" ng-disabled="!v.custom" ng-click="deleteIcon(v, _t('lb_delete_confirm'),$index)">
                                 <i class="fa fa-remove text-danger"></i>
                             </button>
