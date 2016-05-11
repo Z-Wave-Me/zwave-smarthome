@@ -134,7 +134,7 @@
             </fieldset>
         </form>
         <h2><span ng-bind="_t('Custom icons')"></span>: <span ng-bind="elementId.input.metrics.title"></span></h2>
-        <div class="form form-inline form-page" ng-controller="ElementIconController">
+       <div class="form form-inline form-page" ng-controller="ElementIconController">
             <bb-loader></bb-loader>
             <div class="fieldset">
                  <div class="app-row app-row-report app-row-icons clearfix">
@@ -174,6 +174,7 @@
                             <button title="{{_t('lb_remove')}}" class="btn btn-default" ng-disabled="!v.custom" ng-click="deleteIcon(v, _t('lb_delete_confirm'),$index)">
                                 <i class="fa fa-remove text-danger"></i>
                             </button>
+                             <div ng-if="icons.upload[v.id]">{{icons.upload[v.id]|cutText:true:30}}</div>
                              
                          </div>
                    </div>

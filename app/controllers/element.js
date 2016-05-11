@@ -955,6 +955,7 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
 myAppController.controller('ElementIconController', function ($scope, $timeout, dataFactory, dataService) {
     $scope.icons = {
         find: {},
+        upload: {},
         all: [{
                 id: 1,
                 default: $scope.cfg.img.icons + 'switch-off.png',
@@ -977,14 +978,19 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
      * @returns {undefined}
      */
     $scope.uploadIcon = function (files) {
-        alertify.dismissAll();
-        var icon = $scope.icons.find;
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('uploading')};
-        var cmd = $scope.cfg.api_url + 'upload/file';
-        var fd = new FormData();
-        //fd.append('file_upload', $scope.myFile);
-        console.log(icon)
+        // Clear all alerts and file name selected
+        alertify.dismissAll();
+        $scope.icons.upload = {};
+        // Set local variables
+        var icon = $scope.icons.find,
+            fd = new FormData();
+        //var cmd = $scope.cfg.api_url + 'upload/file';
+        // Set selected file name
+        $scope.icons.upload[icon.id] = files[0].name;
+        // Set form data
         fd.append('files_files', files[0]);
+        // Atempt to upload a file
         dataFactory.getApiLocal('skins-online.json').then(function (response) {
             $scope.icons.find = {};
             var index = _.findIndex($scope.icons.all, function (v) {
