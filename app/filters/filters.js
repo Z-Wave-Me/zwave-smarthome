@@ -57,7 +57,7 @@ myApp.filter('cutText', function () {
 myApp.filter('toInt', function () {
     return function (val, a) {
         a = typeof a !== 'undefined' ? a : 10;
-        if (val === null || val==='' || isNaN(val)) {
+        if (val === null || val === '' || isNaN(val)) {
             return 0;
         }
         return parseInt(val, a);
@@ -81,6 +81,45 @@ myApp.filter('toBool', function () {
 myApp.filter('typeOf', function () {
     return function (obj) {
         return {}.toString.call(obj).split(' ')[1].slice(0, -1).toLowerCase();
+    };
+});
+
+/**
+ * Get a file extension from the path
+ * @function fileExtension
+ */
+myApp.filter('fileExtension', function () {
+    return function (path) {
+        // extract file name from full path ...
+        // (supports `\\` and `/` separators)
+        var basename = path.split(/[\\/]/).pop(),
+                // get last position of `.`                                      
+                pos = basename.lastIndexOf(".");
+        // if file name is empty or ...
+        //  `.` not found (-1) or comes first (0)
+        if (basename === '' || pos < 1) {
+            return '';
+        }
+
+        // extract extension ignoring `.`
+        return basename.slice(pos + 1);
+    };
+});
+
+/**
+ * Convert file size in bytes to human readable with a scale type
+ * @function fileSizeString
+ */
+myApp.filter('fileSizeString', function () {
+    return function (bytes) {
+        var i = -1;
+    var byteUnits = [' kB', ' MB', ' GB', ' TB', 'PB', 'EB', 'ZB', 'YB'];
+    do {
+        bytes = bytes / 1024;
+        i++;
+    } while (bytes > 1024);
+
+    return Math.max(bytes, 0.1).toFixed(1) + byteUnits[i];
     };
 });
 
@@ -156,7 +195,7 @@ myApp.filter('getElementIcon', function (cfg) {
                     break;
 
                 case 'window':
-                    if (typeof(level) === 'number') {
+                    if (typeof (level) === 'number') {
                         if (level == 0) {
                             icon = cfg.img.icons + 'window-down.png';
                         } else if (level >= 99) {
@@ -446,10 +485,10 @@ myApp.filter('isTodayFromUnix', function () {
  */
 myApp.filter('getCurrentTime', function () {
     return function (timestamp) {
-         if (timestamp) {
+        if (timestamp) {
             var d = new Date(timestamp * 1000);
         } else {
-             var d = new Date();
+            var d = new Date();
         }
         //var d = new Date();
         var hrs = (d.getHours() < 10 ? '0' + d.getHours() : d.getHours());
@@ -558,10 +597,10 @@ myApp.filter('eventDate', function () {
 myApp.filter('mysqlToUnixTs', function () {
     return function (input) {
         //function parses mysql datetime string and returns javascript Date object
-    //input has to be in this format: 2007-06-05 15:26:02
-    var regex=/^([0-9]{2,4})-([0-1][0-9])-([0-3][0-9]) (?:([0-2][0-9]):([0-5][0-9]):([0-5][0-9]))?$/;
-    var parts=input.replace(regex,"$1 $2 $3 $4 $5 $6").split(' ');
-    return Math.floor(new Date(parts[0],parts[1]-1,parts[2],parts[3],parts[4],parts[5]).getTime() / 1000);
+        //input has to be in this format: 2007-06-05 15:26:02
+        var regex = /^([0-9]{2,4})-([0-1][0-9])-([0-3][0-9]) (?:([0-2][0-9]):([0-5][0-9]):([0-5][0-9]))?$/;
+        var parts = input.replace(regex, "$1 $2 $3 $4 $5 $6").split(' ');
+        return Math.floor(new Date(parts[0], parts[1] - 1, parts[2], parts[3], parts[4], parts[5]).getTime() / 1000);
     };
 });
 
