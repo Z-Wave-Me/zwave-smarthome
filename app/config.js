@@ -90,6 +90,21 @@ var config_data = {
             'icons': 'storage/img/icons/',
             'skin_screenshot': 'app/css/'
         },
+        // Upload settings
+        'upload': {
+            'room': {
+                size: 512000,//Bytes
+                type:['image/jpeg','image/gif'],
+                extension:['jpg','jpeg','gif'],
+                dimension:'200 x 200'//px
+            },
+            'icon': {
+                size: 30000,//Bytes
+                type:['image/png','image/jpeg','image/gif'],
+                extension:['png','jpg','jpeg','gif'],
+                dimension:'64 x 64'//px
+            }
+        },
         // Api url
         'expert_url': '/expert',
         // Api url

@@ -1,5 +1,5 @@
 <!-- Config rooms edit -->
-<div ng-controller="RoomConfigEditController" class="mobile-padding">
+<div ng-controller="RoomConfigIdController" class="mobile-padding">
     <bb-loader></bb-loader>
 
     <div ng-show="input">
@@ -21,6 +21,7 @@
             <fieldset class="mobile-hide">
                 <h3><span ng-bind="_t('lb_select_image')"></span></h3>
                 <div class="clearfix">
+                    <div class="form-group">
                     <img class="room-img-upload form-control-img" 
                              ng-repeat="v in defaultImages"
                              ng-click="input.default_img = v;input.img_type = 'default'" 
@@ -32,16 +33,27 @@
                              ng-class="input.img_type == 'user' ? 'control-active':''" 
                              ng-src="{{userImageUrl + input.user_img}}" 
                              ng-if="input.user_img" />
+                         </div>
                 </div>
             </fieldset>
             <fieldset class="mobile-hide">
-                <h3><span ng-bind="_t('lb_upload_image')"></span></h3>
+                 <!-- <h3><span ng-bind="_t('lb_upload_image')"></span></h3>-->  
                 <div>
                   <div class="form-group">
-                       <bb-help-text trans="_t('room_image_upload_info')"></bb-help-text>
+                      
                          <!--<input type="file" class="form-control_" file-model="myFile" /><br />-->  
-                         <input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)"/>
-                         <!--<button type="button" class="btn btn-primary" id="btn_upload_img" ng-click="uploadFile()"><i class="fa fa-upload"></i> <span ng-bind="_t('lb_upload_image')"></span></button>-->  
+                          <!--<input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)"/>-->  
+                         <!--<button type="button" class="btn btn-primary" id="btn_upload_img" ng-click="uploadFile()"><i class="fa fa-upload"></i> <span ng-bind="_t('lb_upload_image')"></span></button>-->
+                         <input class="inputfile" type="file" name="file" id="file{{v.id}}" 
+                                ng-click="icons.find = v" 
+                                onchange="angular.element(this).scope().uploadFile(this.files)" />
+                             <label for="file{{v.id}}" class="btn btn-default" title="{{_t('lb_upload_image')}}" 
+                                    ng-click="icons.find = v">
+                                 <i class="fa fa-upload text-success"></i> {{_t('lb_upload_image')}}
+                             </label>
+                         <div ng-if="file.upload">{{file.upload|cutText:true:30}}</div>
+                          <bb-help-text trans="_t('upload_file_info',{'__size__':file.info.maxSize,'__extensions__': file.info.extensions})"></bb-help-text>
+                        <bb-help-text trans="_t('image_recommended_dimension',{'__dimension__':cfg.upload.room.dimension})"></bb-help-text>
                     </div>
                 </div>
             </fieldset>

@@ -1,6 +1,12 @@
 {
     "newtrans": "---",
-     "---": "newtrans",
+    "upload_format_unsupported": "The (__extension__)  format is not supported.",
+    "upload_allowed_formats": "The uploaded file must be in one of the following formats: __extensions__",
+    "upload_allowed_size": "The uploaded file must be smaller than __size__.",
+    "upload_size_is": "Current size is __size__",
+    "upload_file_info": "The uploaded file must be smaller than __size__ and in one of the following formats: __extensions__.",
+    "image_recommended_dimension": "The recommended dimension of the images is __dimension__ px.",
+    "---": "newtrans",
     "redo_inclusion": "Redo inclusion",
     "configure_device": "Configure device",
     "no_events": "Sorry, there are no events to show.",

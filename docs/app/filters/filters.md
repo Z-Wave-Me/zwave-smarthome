@@ -53,6 +53,18 @@ Get type of a Javascript variable
 
 
 
+### fileExtension() 
+
+Get a file extension from the path
+
+
+
+### fileSizeString() 
+
+Convert file size in bytes to human readable with a scale type
+
+
+
 ### numberFixedLen() 
 
 Set max length of the number entered

@@ -281,7 +281,7 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     roles: cfg.role_access.config_rooms
                 }).
                 when('/config-rooms/:id', {
-                    templateUrl: 'app/views/rooms/config_rooms_edit.html',
+                    templateUrl: 'app/views/rooms/config_rooms_id.html',
                     requireLogin: true,
                     roles: cfg.role_access.config_rooms_id
                 }).
