@@ -690,7 +690,7 @@ myApp.filter('deviceName', function () {
 
 /**
  * Convert text to slug
- * @function deviceName
+ * @function stringToSlug
  */
 myApp.filter('stringToSlug', function () {
     return function (str) {

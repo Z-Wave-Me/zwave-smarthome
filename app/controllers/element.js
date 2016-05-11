@@ -952,7 +952,7 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
  * The controller that handles custom icon actions in the elemt detail view.
  * @class ElementIconController
  */
-myAppController.controller('ElementIconController', function ($scope, $timeout, dataFactory, dataService) {
+myAppController.controller('ElementIconController', function ($scope, $timeout, $filter, cfg,dataFactory, dataService) {
     $scope.icons = {
         find: {},
         upload: {},
@@ -970,14 +970,45 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
                 id: 3,
                 default: $scope.cfg.img.icons + 'temperature.png',
                 custom: $scope.cfg.img.icons + 'dimmer-half.png'
-            }]
+            }],
+        info: {
+            maxSize: $filter('fileSizeString')(cfg.upload.icon.size),
+            extensions: cfg.upload.icon.extension.toString()
+        }
     };
+    /**
+     *  Load icons
+     */
+    $scope.loadIcons = function () {
+       console.log(dataService.getDeviceIcons($scope.elementId.input))
+
+    };
+    $scope.loadIcons();
     /**
      * Uplaoad an icon
      * @param {object} files
      * @returns {undefined}
      */
     $scope.uploadIcon = function (files) {
+        // Check allowed file formats
+        //if(cfg.upload.room.type.indexOf(files[0].type) === -1){
+        if (cfg.upload.icon.extension.indexOf($filter('fileExtension')(files[0].name)) === -1) {
+            alertify.alertError(
+                    $scope._t('upload_format_unsupported', {'__extension__': $filter('fileExtension')(files[0].name)}) + ' ' +
+                    $scope._t('upload_allowed_formats', {'__extensions__': $scope.icons.info.extensions})
+                    );
+            return;
+
+        }
+        // Check allowed file size
+        if (files[0].size > cfg.upload.icon.size) {
+            alertify.alertError(
+                    $scope._t('upload_allowed_size', {'__size__': $scope.icons.info.maxSize}) + ' ' +
+                    $scope._t('upload_size_is', {'__size__': $filter('fileSizeString')(files[0].size)})
+                    );
+            return;
+
+        }
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('uploading')};
         // Clear all alerts and file name selected
         alertify.dismissAll();
@@ -997,7 +1028,7 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
                 return v.id == icon.id
             });
             $timeout(function () {
-                $scope.icons.all[index].custom = $scope.cfg.img.icons + 'new.png';
+                $scope.icons.all[index].custom = $scope.cfg.img.icons + files[0].name;
                 $scope.loading = false;
                 dataService.showNotifier({message: $scope._t('success_upload')});
             }, 2000);

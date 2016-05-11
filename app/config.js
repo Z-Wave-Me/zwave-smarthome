@@ -99,7 +99,7 @@ var config_data = {
                 dimension:'200 x 200'//px
             },
             'icon': {
-                size: 30000,//Bytes
+                size: 30720,//Bytes
                 type:['image/png','image/jpeg','image/gif'],
                 extension:['png','jpg','jpeg','gif'],
                 dimension:'64 x 64'//px

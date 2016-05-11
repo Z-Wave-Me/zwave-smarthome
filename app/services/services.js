@@ -246,6 +246,22 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                     return v;
                 });
     };
+    
+    /**
+     * Get an object with element icons
+     * @param {object} data
+     * @returns {object}
+     */
+    this.getElementIcons = function (data) {
+        var obj = {
+            preset: {
+                icon: cfg.img.icons + 'placeholder.png'
+            },
+            custom: {}
+        };
+        return obj;
+
+    };
 
     /**
      * Get rooms - filtered data from locations dataholder
