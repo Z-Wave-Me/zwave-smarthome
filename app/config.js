@@ -88,6 +88,7 @@ var config_data = {
         'img': {
             'logo': 'storage/img/logo/',
             'icons': 'storage/img/icons/',
+            'custom_icons': 'user/icons/',
             'skin_screenshot': 'app/css/'
         },
         // Upload settings

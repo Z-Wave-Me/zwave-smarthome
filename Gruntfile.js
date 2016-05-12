@@ -86,6 +86,7 @@ module.exports = function (grunt) {
                     'app/controllers/event.js',
                     'app/controllers/app.js',
                     'app/controllers/skin.js',
+                    'app/controllers/icon.js',
                     'app/controllers/device.js',
                     'app/controllers/zwave-inclusion.js',
                     'app/controllers/zwave.js',

@@ -55,11 +55,11 @@ myAppController.controller('SkinBaseController', function ($scope, $q,$timeout, 
             var onlineSkins = response[1];
             $scope.loading = false;
             // Error message
-            if (localSkins.state === 'rejected' && $scope.routeMatch('/skins/local')) {
+            if (localSkins.state === 'rejected' && $scope.routeMatch('/customize/skinslocal')) {
                 alertify.alertError($scope._t('error_load_data'));
                 return;
             }
-            if (onlineSkins.state === 'rejected' && $scope.routeMatch('/skins/online')) {
+            if (onlineSkins.state === 'rejected' && $scope.routeMatch('/customize/skinsonline')) {
                 alertify.alertError($scope._t('error_load_data'));
                 return;
             }
@@ -155,8 +155,6 @@ myAppController.controller('SkinBaseController', function ($scope, $q,$timeout, 
  *
  */
 myAppController.controller('SkinLocalController', function ($scope, $window, $route, $timeout, $cookies, dataFactory, dataService) {
-    $scope.activeTab = 'local';
-
     /**
      * Activate skin
      * @param {object} skin
@@ -210,8 +208,6 @@ myAppController.controller('SkinLocalController', function ($scope, $window, $ro
  *
  */
 myAppController.controller('SkinOnlineController', function ($scope, $timeout, dataFactory, dataService) {
-    $scope.activeTab = 'online';
-
     /**
      * Download skin
      * @param {object} skin

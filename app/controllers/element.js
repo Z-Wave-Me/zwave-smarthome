@@ -980,7 +980,7 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
      *  Load icons
      */
     $scope.loadIcons = function () {
-       console.log(dataService.getDeviceIcons($scope.elementId.input))
+       console.log(dataService.getElementIcons($scope.elementId.input))
 
     };
     $scope.loadIcons();

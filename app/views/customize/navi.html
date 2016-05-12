@@ -1,0 +1,13 @@
+<div class="tabs-wrap form-inline" ng-if="elementAccess(cfg.role_access.admin)">
+    <div class="btn-group btn-goup-tabs btn-tabs-3">
+        <a class="btn btn-default" href="#customize/skinslocal" ng-class="routeMatch('/customize/skinslocal') ? 'active' : ''">
+            <i class="fa fa-cloud-download"></i> <span class="btn-name">{{_t('local_skins')}}</span>
+        </a>
+        <a class="btn btn-default" href="#customize/skinsonline" ng-class="routeMatch('/customize/skinsonline') ? 'active' : ''">
+            <i class="fa fa-globe"></i> <span class="btn-name">{{_t('online_skins')}}</span>
+        </a>
+         <a class="btn btn-default" href="#customize/icons" ng-class="routeMatch('/customize/icons') ? 'active' : ''">
+            <i class="fa fa-image"></i> <span class="btn-name">{{_t('custom_icons')}}</span>
+        </a>
+    </div>
+</div>

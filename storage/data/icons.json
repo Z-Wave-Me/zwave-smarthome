@@ -1,0 +1,24 @@
+{
+    "status": 200,
+    "message": "OK 200",
+    "error": null,
+    "data": [
+        {
+            "file": "cat-box-icon.png"
+        }, {
+            "file": "cat-cage-icon.png"
+        },
+        {
+            "file": "cat-clean-icon.png"
+        },
+        {
+            "file": "cat-drunk-icon.png"
+        },
+        {
+            "file": "cat-eyes-icon.png"
+        },
+        {
+            "file": "cat-fight-icon.png"
+        }
+    ]
+}
