@@ -136,6 +136,7 @@
         <h2><span ng-bind="_t('custom_icons')"></span>: <span ng-bind="elementId.input.metrics.title"></span></h2>
        <div class="form form-inline form-page" ng-controller="ElementIconController">
             <bb-loader></bb-loader>
+            <pre>{{icons.all|json}}</pre>
             <div class="fieldset">
                  <div class="app-row app-row-report app-row-icons clearfix">
                      <div class="report-entry">
@@ -153,28 +154,28 @@
                              &nbsp;
                          </div>
                    </div>
-                     <div class="report-entry" ng-repeat="v in icons.all">
+                     <div class="report-entry" ng-repeat="(k,v) in icons.all.default">
                        <div class="report-col report-media">
-                           <img class="report-img" ng-src="{{v.default}}" alt="{{v.type}}"/>
+                           <img class="report-img" ng-src="{{cfg.img.icons + v}}" alt="{{v}}"/>
                              
                        </div>
                          <div class="report-col report-body">
-                            <i class="fa fa-long-arrow-right" ng-if="v.custom"></i>
+                            <i class="fa fa-long-arrow-right" ng-if="icons.all.custom[k]"></i>
                        </div>
                        <div class="report-col report-media">
-                            <img class="report-img" ng-src="{{v.custom}}" ng-if="v.custom" alt="{{v.type}}"/>
-                           <img class="report-img img-opacity-50" ng-src="{{cfg.img.icons }}cancel.png" ng-if="!v.custom"  alt="img"/>
+                            <img class="report-img" ng-src="{{cfg.img.custom_icons + icons.all.custom[k]}}" ng-if="icons.all.custom[k]" alt="{{v.type}}"/>
+                           <img class="report-img img-opacity-50" ng-src="{{cfg.img.icons }}cancel.png" ng-if="!icons.all.custom[k]"  alt="img"/>
                        </div>
                          <div class="report-col report-ctrl">
                               <!--<button href="" class="btn btn-default" ng-click="_uploadIcon(v)">
                                     <i class="fa fa-upload text-success"></i>
                                 </button>-->
-                             <input class="inputfile" type="file" name="file" id="file{{v.id}}" ng-click="icons.find = v" onchange="angular.element(this).scope().uploadIcon(this.files)" />
-                             <label for="file{{v.id}}" class="btn btn-default" title="{{_t('lb_upload_image')}}" ng-click="icons.find = v"><i class="fa fa-upload text-success"></i></label>
-                            <button title="{{_t('lb_remove')}}" class="btn btn-default" ng-disabled="!v.custom" ng-click="deleteIcon(v, _t('lb_delete_confirm'),$index)">
+                             <input class="inputfile" type="file" name="file" id="file{{v.id}}" ng-click="icons.find = k" onchange="angular.element(this).scope().uploadIcon(this.files)" />
+                             <label for="file{{v.id}}" class="btn btn-default" title="{{_t('lb_upload_image')}}" ng-click="icons.find = k"><i class="fa fa-upload text-success"></i></label>
+                            <button title="{{_t('lb_remove')}}" class="btn btn-default" ng-disabled="!icons.all.custom[k]" ng-click="deleteIcon(k, _t('lb_delete_confirm'),$index)">
                                 <i class="fa fa-remove text-danger"></i>
                             </button>
-                             <div ng-if="icons.upload[v.id]">{{icons.upload[v.id]|cutText:true:30}}</div>
+                             <div ng-if="icons.upload[k]">{{icons.upload[k]|cutText:true:30}}</div>
                              
                          </div>
                    </div>

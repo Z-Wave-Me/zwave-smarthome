@@ -69,6 +69,7 @@ module.exports = function (grunt) {
                     'vendor/bootstrap/bootstrap.min.js',
                     'vendor/bootstrap/plugins/bootstrap-datetimepicker.js',
                     // APP
+                    'app/icons.js',
                     'app/app.js',
                     'dist/app/js/templates.js',
                     'app/modules/qAllSettled.js',

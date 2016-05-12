@@ -10,7 +10,7 @@ var myAppService = angular.module('myAppService', []);
  * Angular module initialization
  * @class dataService
  */
-myAppService.service('dataService', function ($filter, $log, $cookies, $window, cfg, _) {
+myAppService.service('dataService', function ($filter, $log, $cookies, $window, cfg,cfgicons, _) {
     /// --- Public functions --- ///
 
     /**
@@ -249,17 +249,31 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
     
     /**
      * Get an object with element icons
-     * @param {object} data
+     * @param {object} element
      * @returns {object}
      */
-    this.getElementIcons = function (data) {
-        var obj = {
-            preset: {
-                icon: cfg.img.icons + 'placeholder.png'
+    this.getElementIcons = function (element) {
+        var icons = {
+            default: {
+                default: 'placeholder.png'
             },
-            custom: {}
+            custom: {
+                on: 'cat-box-icon.png'
+            }
         };
-        return obj;
+        if(element.metrics.icon && cfgicons.element.icon[element.metrics.icon]){
+            icons.default =  getByIcon(cfgicons.element.icon[element.metrics.icon]);
+        }
+        //console.log(element)
+        // Get icons by elemnt.metrics.icon
+        function getByIcon(obj){
+            if(obj.level){
+                return obj.level;
+            }
+           return obj;
+             //console.log(cfgicons.element.icon[key])
+        };
+        return icons;
 
     };
 

@@ -954,23 +954,9 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
  */
 myAppController.controller('ElementIconController', function ($scope, $timeout, $filter, cfg,dataFactory, dataService) {
     $scope.icons = {
-        find: {},
+        find: false,
         upload: {},
-        all: [{
-                id: 1,
-                default: $scope.cfg.img.icons + 'switch-off.png',
-                custom: $scope.cfg.img.icons + 'dimmer-off.png'
-            },
-            {
-                id: 2,
-                default: $scope.cfg.img.icons + 'switch-on.png',
-                custom: false
-            },
-            {
-                id: 3,
-                default: $scope.cfg.img.icons + 'temperature.png',
-                custom: $scope.cfg.img.icons + 'dimmer-half.png'
-            }],
+        all: {},
         info: {
             maxSize: $filter('fileSizeString')(cfg.upload.icon.size),
             extensions: cfg.upload.icon.extension.toString()
@@ -981,6 +967,7 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
      */
     $scope.loadIcons = function () {
        console.log(dataService.getElementIcons($scope.elementId.input))
+        $scope.icons.all = dataService.getElementIcons($scope.elementId.input);
 
     };
     $scope.loadIcons();
@@ -1018,20 +1005,23 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
             fd = new FormData();
         //var cmd = $scope.cfg.api_url + 'upload/file';
         // Set selected file name
-        $scope.icons.upload[icon.id] = files[0].name;
+        $scope.icons.upload[icon] = files[0].name;
         // Set form data
         fd.append('files_files', files[0]);
+        
         // Atempt to upload a file
         dataFactory.getApiLocal('skins-online.json').then(function (response) {
-            $scope.icons.find = {};
-            var index = _.findIndex($scope.icons.all, function (v) {
-                return v.id == icon.id
-            });
+            $scope.icons.find = false;
+             
+//            var index = _.findIndex($scope.icons.all, function (v) {
+//                return v.id == icon.id
+//            });
             $timeout(function () {
-                $scope.icons.all[index].custom = $scope.cfg.img.icons + files[0].name;
+                $scope.icons.all.custom[icon] = $scope.icons.upload[icon];
+               console.log($scope.icons.all.custom)
                 $scope.loading = false;
                 dataService.showNotifier({message: $scope._t('success_upload')});
-            }, 2000);
+            }, 1000);
 
         }, function (error) {
             scope.icons.find = {};
@@ -1046,16 +1036,17 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
      * @param {string} message
      * @returns {undefined}
      */
-    $scope.deleteIcon = function (icon, message) {
+    $scope.deleteIcon = function (key, message) {
+        console.log(key)
+        //return;
         alertify.dismissAll();
         alertify.confirm(message, function () {
             $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
             dataFactory.getApiLocal('skins-online.json').then(function (response) {
-                var index = _.findIndex($scope.icons.all, function (v) {
-                    return v.id == icon.id
+                $scope.icons.all.custom =_.reject($scope.icons.all.custom, function(v,k){
+                    return k === key; 
                 });
-                //delete $scope.skins.local.all[skin.name];
-                $scope.icons.all[index].custom = false;
+                
                 $scope.loading = false;
                 dataService.showNotifier({message: $scope._t('delete_successful')});
 

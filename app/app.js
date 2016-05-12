@@ -46,8 +46,12 @@ appHttp.get('app/lang/' + config_data.cfg.route.lang + '.json').success(function
 
 });
 
-// Create a config file
+// Create a config constant
 angular.forEach(config_data, function (key, value) {
+    config_module.constant(value, key);
+});
+// Create an icon constant
+angular.forEach(icon_data, function (key, value) {
     config_module.constant(value, key);
 });
 
