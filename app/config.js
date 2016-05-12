@@ -82,7 +82,7 @@ var config_data = {
         // Skin
         'skin': {
             'active': 'default',
-            'path': 'storage/skins/'
+            'path': 'user/skins/'
         },
         // List of image pathes
         'img': {

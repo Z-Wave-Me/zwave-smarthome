@@ -7,7 +7,7 @@
  * The controller that renders and upload icons.
  * @class CustomIconController
  */
-myAppController.controller('CustomIconController', function ($scope,$filter, cfg,dataFactory, dataService, _) {
+myAppController.controller('CustomIconController', function ($scope,$filter,$timeout,cfg,dataFactory, dataService, _) {
     $scope.icons = {
         find: {},
         upload: false,
@@ -33,11 +33,11 @@ myAppController.controller('CustomIconController', function ($scope,$filter, cfg
     $scope.loadIcons();
     
     /**
-     * Upload an image file
+     * Upload an icon file
      * @param {object} files
      * @returns {undefined}
      */
-    $scope.uploadFile = function (files) {
+    $scope.uploadIcon = function (files) {
         // Check allowed file formats
         //if(cfg.upload.room.type.indexOf(files[0].type) === -1){
         if (cfg.upload.icon.extension.indexOf($filter('fileExtension')(files[0].name)) === -1) {
@@ -70,13 +70,9 @@ myAppController.controller('CustomIconController', function ($scope,$filter, cfg
         // Set form data
         fd.append('files_files', files[0]);
         // Atempt to upload a file
-        dataFactory.getApiLocal('skins-online.json').then(function (response) {
-            $scope.icons.find = {};
-            var index = _.findIndex($scope.icons.all, function (v) {
-                return v.id == icon.id
-            });
+        dataFactory.getApiLocal('icons.json').then(function (response) {
             $timeout(function () {
-                $scope.icons.all[index].custom = $scope.cfg.img.icons + files[0].name;
+                $scope.icons.all.push({'file':files[0].name});
                 $scope.loading = false;
                 dataService.showNotifier({message: $scope._t('success_upload')});
             }, 2000);
@@ -86,5 +82,29 @@ myAppController.controller('CustomIconController', function ($scope,$filter, cfg
             alertify.alertError($scope._t('error_upload'));
             $scope.loading = false;
         });
+    };
+    
+     /**
+     * Delete an icon
+     * @param {object} icon
+     * @param {string} message
+     * @returns {undefined}
+     */
+    $scope.deleteIcon = function (icon, message) {
+        alertify.dismissAll();
+        alertify.confirm(message, function () {
+            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
+            dataFactory.getApiLocal('icons.json').then(function (response) {
+                $scope.loading = false;
+                $scope.icons.all =_.reject($scope.icons.all, function(v){  return v.file === icon.file; });
+                dataService.showNotifier({message: $scope._t('delete_successful')});
+
+                //$route.reload();
+            }, function (error) {
+                $scope.loading = false;
+                alertify.alertError($scope._t('error_delete_data'));
+            });
+        });
+
     };
 });

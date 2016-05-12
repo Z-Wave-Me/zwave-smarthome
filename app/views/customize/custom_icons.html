@@ -7,16 +7,36 @@
             <div class="fieldset">
                  <input class="inputfile" type="file" name="file" id="file{{v.id}}" 
                                 ng-click="icons.find = v" 
-                                onchange="angular.element(this).scope().uploadFile(this.files)" />
+                                onchange="angular.element(this).scope().uploadIcon(this.files)" />
                              <label for="file{{v.id}}" class="btn btn-success" title="{{_t('lb_upload_image')}}" 
                                     ng-click="icons.find = v">
-                                 <i class="fa fa-upload"></i> {{_t('lb_upload_image')}}
+                                 <i class="fa fa-upload"></i> {{_t('upload_icon')}}
                              </label>
-                         <div ng-if="file.upload">{{file.upload|cutText:true:30}}</div>
+                         <div ng-if="icons.upload">{{icons.upload|cutText:true:30}}</div>
                   <bb-help-text trans="_t('upload_file_info',{'__size__':icons.info.maxSize,'__extensions__': icons.info.extensions})"></bb-help-text>
                   <bb-help-text trans="_t('image_recommended_dimension',{'__dimension__':cfg.upload.icon.dimension})"></bb-help-text>
             </div>
        
+        </div>
+    <!--<pre>{{icons.all|json}}</pre>-->
+    <div class="app-row app-row-reportclearfix">
+             <div class="report-entry" ng-repeat="v in icons.all|unique: 'file'">
+                 <div class="report-col report-media">
+                    <img class="report-img" ng-src="{{cfg.img.custom_icons + v.file}}" />
+                 </div>
+                 <div class="report-col report-body">
+                     {{v.file}}
+                 </div>
+                 <div class="report-col report-ctrl report-ctrl-3">
+                      <div class="btn-group">
+                       <button title="{{_t('lb_remove')}}" 
+                               class="btn btn-default"
+                               ng-click="deleteIcon(v, _t('lb_delete_confirm'))">
+                           <i class="fa fa-remove text-danger"></i>
+                       </button>
+                    </div>
+                 </div>
+              </div>
         </div>
 
 </div> <!-- /ng-controller --> 
