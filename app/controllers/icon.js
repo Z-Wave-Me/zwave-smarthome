@@ -78,7 +78,7 @@ myAppController.controller('CustomIconController', function ($scope,$filter,$tim
             }, 2000);
 
         }, function (error) {
-            scope.icons.find = {};
+            $scope.icons.find = {};
             alertify.alertError($scope._t('error_upload'));
             $scope.loading = false;
         });

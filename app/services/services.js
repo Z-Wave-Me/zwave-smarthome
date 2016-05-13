@@ -257,21 +257,39 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
             default: {
                 default: 'placeholder.png'
             },
-            custom: {
-                on: 'cat-box-icon.png'
-            }
+            custom: {}
         };
-        if(element.metrics.icon && cfgicons.element.icon[element.metrics.icon]){
-            icons.default =  getByIcon(cfgicons.element.icon[element.metrics.icon]);
+        var iconKey = $filter('hasNode')(element,'metrics.icon');
+        // Set custom icons
+         if(element.custom_icons && _.size(element.custom_icons) > 0){
+            icons.custom =  element.custom_icons;
+        }
+        // Set default icons by metrics.icon
+        if(iconKey){
+            if ((/^https?:\/\//.test(iconKey))) { // If icon is an url (weather) then custom icons not allowed
+                icons = {};
+            } else if ((/\.(png|gif|jpe?g)$/).test(iconKey)) {
+                 if (iconKey.indexOf('/') > -1) {// If icon is sytem icon then custom icons not allowed
+                     icons = {};
+                } else {
+                    icons.default.default = iconKey;
+                }
+            }else{
+                if(cfgicons.element.icon[iconKey]){
+                   icons.default =  getByIcon(cfgicons.element.icon[iconKey]);   
+                }
+              
+            }
+            
         }
         //console.log(element)
         // Get icons by elemnt.metrics.icon
         function getByIcon(obj){
+            // Has level icons?
             if(obj.level){
                 return obj.level;
             }
            return obj;
-             //console.log(cfgicons.element.icon[key])
         };
         return icons;
 
