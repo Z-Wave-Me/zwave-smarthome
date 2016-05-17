@@ -99,10 +99,7 @@ var config_data = {
             'jamesbox_update': 'http://razberry.z-wave.me/zbu_ui_handling.php?action=update',
             // JamesBox update info
              //'jamesbox_updateinfo': 'http://dev.dev/jamesbox/zbu_ui_handling.php?action=updateinfo',
-            'jamesbox_updateinfo': 'http://razberry.z-wave.me/zbu_ui_handling.php?action=updateinfo',
-             // JamesBox create log
-             //'jamesbox_createlog': 'http://dev.dev/jamesbox/zbu_ui_handling.php?action=createlog'
-            'jamesbox_createlog': 'http://razberry.z-wave.me/zbu_ui_handling.php?action=createlog'
+            'jamesbox_updateinfo': 'http://razberry.z-wave.me/zbu_ui_handling.php?action=updateinfo'
         },
         // Skin
         'skin': {

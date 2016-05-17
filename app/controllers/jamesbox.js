@@ -10,6 +10,7 @@
 myAppController.controller('JbUpdateController', function ($scope, $q, $location, cfg, dataFactory, _) {
     $scope.jamesbox = {
         show: false,
+        rule_id: '',
         uuid: '',
         version: '',
         versionNew: ''
@@ -47,8 +48,9 @@ myAppController.controller('JbUpdateController', function ($scope, $q, $location
     $scope.jamesBoxRequest = function () {
         $scope.loading = false;
         dataFactory.postToRemote(cfg.api_remote['jamesbox_request'], $scope.jamesbox).then(function (response) {
-            if (!_.isEmpty(response.data[0]) && response.data[0].exec2 === '1') {
-                $scope.jamesbox.versionNew = response.data[0].firmware_version;
+            if (!_.isEmpty(response.data)) {
+                $scope.jamesbox.versionNew = response.data.firmware_version;
+                $scope.jamesbox.rule_id = response.data.rule_id;
                 $scope.jamesbox.show = true; 
             }else{
                alertify.alertError($scope._t('no_update_available'));
@@ -65,8 +67,7 @@ myAppController.controller('JbUpdateController', function ($scope, $q, $location
     $scope.firmwareUpdate = function () {
         var input = {
             uuid: $scope.jamesbox.uuid,
-            confirm_exec2: 1,
-            host: $location.host()
+            rule_id: $scope.jamesbox.rule_id
         };
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         dataFactory.postToRemote(cfg.api_remote['jamesbox_update'], input).then(function (response) {
@@ -77,7 +78,11 @@ myAppController.controller('JbUpdateController', function ($scope, $q, $location
                         $location.path("/dashboard");
                     });
         }, function (error) {
-            alertify.alertError($scope._t('Something went wrong. Please restart this process.'));
+            var message = $scope._t('error_update_data');
+            if(error.status === 409){
+                message = $scope._t('jamesbox_update_exists');
+            }
+            alertify.alertError($scope._t(message));
             $scope.loading = false;
         });
     };

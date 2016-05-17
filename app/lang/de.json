@@ -3,6 +3,7 @@
     "jamesbox_software_upgrade": "Software upgrade",
     "jamesbox_current_firmware": "Die aktuell installierte Firmware ist __currentfw__. Es ist ein neue Firmware-Aktualisierung verfügbar. Möchten Sie ihre Gateway Firmware auf die Version __newfw__ aktualisieren?",
     "jamesbox_autoupgrade": "Die Firmware wird automatisch beim nächsten Neustart auf die Version __newfw__ aktualisert.",
+    "jamesbox_update_exists": "Confirmation already exists. Please unplug and plug your BOX from the power.",
     "redo_inclusion": "Redo inclusion",
     "configure_device": "Configure device",
     "no_events": "Sorry, there are no events to show.",
