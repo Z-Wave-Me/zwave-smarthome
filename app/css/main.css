@@ -1843,28 +1843,33 @@ a:focus {
 }
 
 /* line 125, ../sass/common/_body.scss */
+.bcg-success {
+  background-color: #dff0d8;
+}
+
+/* line 128, ../sass/common/_body.scss */
 .bcg-active.false, .bcg-danger {
   background-color: #f2dede;
 }
 
-/* line 129, ../sass/common/_body.scss */
+/* line 132, ../sass/common/_body.scss */
 .clickable {
   cursor: pointer;
 }
 
-/* line 133, ../sass/common/_body.scss */
+/* line 136, ../sass/common/_body.scss */
 .text-supp {
   font-style: italic;
   color: #595959;
 }
 
-/* line 138, ../sass/common/_body.scss */
+/* line 141, ../sass/common/_body.scss */
 .badge {
   padding: 5px;
   margin-right: 5px;
 }
 
-/* line 142, ../sass/common/_body.scss */
+/* line 145, ../sass/common/_body.scss */
 .help-text {
   display: block;
   font-size: 95%;
@@ -1872,17 +1877,17 @@ a:focus {
   margin: 5px 0;
 }
 
-/* line 148, ../sass/common/_body.scss */
+/* line 151, ../sass/common/_body.scss */
 .help-text.inline {
   display: inline;
 }
 
-/* line 152, ../sass/common/_body.scss */
+/* line 155, ../sass/common/_body.scss */
 .display-block {
   display: block;
 }
 
-/* line 155, ../sass/common/_body.scss */
+/* line 158, ../sass/common/_body.scss */
 .badge-number {
   background-color: #a6a6a6;
   color: #FFFFFF;
@@ -2127,44 +2132,50 @@ img {
 }
 
 /* line 35, ../sass/common/_images.scss */
+.element-icon-img {
+  max-width: 48px;
+  max-height: 48px;
+}
+
+/* line 39, ../sass/common/_images.scss */
 .skin-preview-img {
   max-width: 120px;
   max-height: 120px;
   border: solid 4px #FFFFFF;
 }
 
-/* line 40, ../sass/common/_images.scss */
+/* line 44, ../sass/common/_images.scss */
 .skin-image-detail {
   max-width: 300px;
   max-height: 300px;
   border: solid 4px #cccccc;
 }
 
-/* line 45, ../sass/common/_images.scss */
+/* line 49, ../sass/common/_images.scss */
 .include-image-detail {
   max-width: 128px;
   max-height: 128px;
 }
 
-/* line 50, ../sass/common/_images.scss */
+/* line 54, ../sass/common/_images.scss */
 .product-img {
   max-width: 64px;
   max-height: 64px;
 }
 
-/* line 54, ../sass/common/_images.scss */
+/* line 58, ../sass/common/_images.scss */
 .room-image-preview {
   border: solid 6px #d3d3d3;
   width: 130px;
   height: 130px;
 }
 
-/* line 61, ../sass/common/_images.scss */
+/* line 65, ../sass/common/_images.scss */
 .has-device-false .room-image-preview {
   opacity: 0.5;
 }
 
-/* line 65, ../sass/common/_images.scss */
+/* line 69, ../sass/common/_images.scss */
 .room-img-upload {
   display: inline-block;
   max-width: 70px;
@@ -2172,20 +2183,20 @@ img {
   margin: 5px;
 }
 
-/* line 71, ../sass/common/_images.scss */
+/* line 75, ../sass/common/_images.scss */
 .report-img-s {
   display: inline-block;
   max-width: 32px;
   max-height: 32px;
 }
 
-/* line 76, ../sass/common/_images.scss */
+/* line 80, ../sass/common/_images.scss */
 .lang-img {
   max-width: 32px;
   max-height: 32px;
 }
 
-/* line 80, ../sass/common/_images.scss */
+/* line 84, ../sass/common/_images.scss */
 .img-opacity-50 {
   opacity: 0.5;
   filter: alpha(opacity=50);
@@ -3322,93 +3333,87 @@ http://codepen.io/MattIn4D/pen/LiKFC
   width: 30px;
 }
 
-/* Home widget
+/* Custom icons
 -------------------------------------------------- */
-/*.home-widget{
-    .widget-entry{
-        padding: 0;
-
-        .widget-block{
-            margin: 0 !important;
-                          border: solid 1px #e2e2e2;
-        }
-    }
+/* line 153, ../sass/modules/_elements.scss */
+.element-icon-list {
+  border-bottom: solid 1px #d3d3d3;
+  margin: 10px;
 }
-.hidden-switch-multilevel{}
+/* line 156, ../sass/modules/_elements.scss */
+.element-icon-list .element-icon-img {
+  display: inline-block;
+  margin: 10px;
+}
 
-.hidden-sensor-multilevel{}
-
-.hidden-sensor-multilevel-linear{}
-
-.hidden-camera{}*/
 /* OpenWeather widget
 ----------------------------------------------------*/
-/* line 173, ../sass/modules/_elements.scss */
+/* line 164, ../sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline table td {
   text-align: left;
   padding: 5px 0;
 }
 
-/* line 178, ../sass/modules/_elements.scss */
+/* line 169, ../sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline table td:first-child {
   padding-left: 20px;
   vertical-align: top;
 }
 
-/* line 183, ../sass/modules/_elements.scss */
+/* line 174, ../sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline h4 {
   display: inline;
 }
 
-/* line 187, ../sass/modules/_elements.scss */
+/* line 178, ../sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline .text-center {
   margin: 10px 0;
 }
 
 /* Text widget
 -----------------------------------------------------*/
-/* line 193, ../sass/modules/_elements.scss */
+/* line 184, ../sass/modules/_elements.scss */
 .widget-body.text-widget h3 {
   font-weight: bold;
 }
 
-/* line 197, ../sass/modules/_elements.scss */
+/* line 188, ../sass/modules/_elements.scss */
 .widget-body.text-widget-no-img {
   padding-left: 15px;
 }
 
-/* line 201, ../sass/modules/_elements.scss */
+/* line 192, ../sass/modules/_elements.scss */
 .widget-control.text {
   width: 95%;
 }
 
-/* line 205, ../sass/modules/_elements.scss */
+/* line 196, ../sass/modules/_elements.scss */
 .text-widget-modal.modal-dialog {
   text-align: center;
 }
 
-/* line 209, ../sass/modules/_elements.scss */
+/* line 200, ../sass/modules/_elements.scss */
 img.widget-promo-image {
   max-height: 200px;
   margin-bottom: 10px;
 }
 
-/* line 214, ../sass/modules/_elements.scss */
+/* line 205, ../sass/modules/_elements.scss */
 .widget-promo-text {
   text-align: left;
 }
 
-/* line 218, ../sass/modules/_elements.scss */
+/* line 209, ../sass/modules/_elements.scss */
 .widget-control.text a {
   font-weight: normal;
 }
 
-/* line 222, ../sass/modules/_elements.scss */
+/* line 213, ../sass/modules/_elements.scss */
 .widget-control.text a:hover {
   text-decoration: none;
 }
 
-/* line 226, ../sass/modules/_elements.scss */
+/* line 217, ../sass/modules/_elements.scss */
 .widget-control.text a:after {
   content: "\f1ea";
   font-family: FontAwesome;
@@ -3421,13 +3426,13 @@ img.widget-promo-image {
 
 /* MultilevelSensor widget
 -----------------------------------------------------*/
-/* line 238, ../sass/modules/_elements.scss */
+/* line 229, ../sass/modules/_elements.scss */
 .widget-body .element-hidden.hidden-sensor-multiline.multiline-sensor {
   padding: 10px 0;
   height: auto;
 }
 
-/* line 243, ../sass/modules/_elements.scss */
+/* line 234, ../sass/modules/_elements.scss */
 .hidden-sensor-multiline .widget-image {
   position: relative;
   top: 0;
@@ -3436,43 +3441,43 @@ img.widget-promo-image {
   height: 25px;
 }
 
-/* line 251, ../sass/modules/_elements.scss */
+/* line 242, ../sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline.multiline-sensor table td:first-child {
   padding-left: 5px;
 }
 
-/* line 255, ../sass/modules/_elements.scss */
+/* line 246, ../sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline.multiline-sensor table td {
   width: inherit;
   padding: 5px 5px 5px 10px;
 }
 
-/* line 260, ../sass/modules/_elements.scss */
+/* line 251, ../sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline.multiline-sensor table tr:nth-child(odd) {
   background-color: #f9f9f9;
 }
 
 /* ToggleButton widget
 --------------------------------------------------------*/
-/* line 267, ../sass/modules/_elements.scss */
+/* line 258, ../sass/modules/_elements.scss */
 .toggleButton .widget-body div.widget-control.control-right.ng-scope > div > button.btn.btn-default.btn-sm {
   cursor: default;
 }
 
 /* RGB color wheel
 --------------------------------------------------------*/
-/* line 274, ../sass/modules/_elements.scss */
+/* line 265, ../sass/modules/_elements.scss */
 .wheel-colorpicker .col-rgb {
   margin: 0 auto;
   text-align: center;
 }
-/* line 278, ../sass/modules/_elements.scss */
+/* line 269, ../sass/modules/_elements.scss */
 .wheel-colorpicker #wheel_picker {
   margin: 0 auto;
   text-align: center;
   cursor: pointer;
 }
-/* line 283, ../sass/modules/_elements.scss */
+/* line 274, ../sass/modules/_elements.scss */
 .wheel-colorpicker #wheel_picker_preview {
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -3480,7 +3485,7 @@ img.widget-promo-image {
   height: 40px;
   line-height: 35px;
 }
-/* line 289, ../sass/modules/_elements.scss */
+/* line 280, ../sass/modules/_elements.scss */
 .wheel-colorpicker #wheel_picker_preview #wheel_picker_preview_spin {
   background-color: #fff;
 }
@@ -4490,33 +4495,39 @@ img.widget-promo-image {
     height: 124px;
   }
 
+  /* line 244, ../sass/responsive/_mq_shared.scss */
+  .element-icon-img {
+    max-width: 32px;
+    max-height: 32px;
+  }
+
   /* Apps
   -------------------------------------------------- */
-  /* line 248, ../sass/responsive/_mq_shared.scss */
+  /* line 252, ../sass/responsive/_mq_shared.scss */
   .widget-entry-app .widget-entry-in {
     min-height: 1px;
     height: 110px;
   }
-  /* line 251, ../sass/responsive/_mq_shared.scss */
+  /* line 255, ../sass/responsive/_mq_shared.scss */
   .widget-entry-app .widget-entry-in .widget-footer {
     margin: 10px 0 0 0;
   }
 
   /* Apps
   -------------------------------------------------- */
-  /* line 261, ../sass/responsive/_mq_shared.scss */
+  /* line 265, ../sass/responsive/_mq_shared.scss */
   .widget-entry-skin .widget-entry-in {
     min-height: 1px;
     height: 120px;
   }
-  /* line 264, ../sass/responsive/_mq_shared.scss */
+  /* line 268, ../sass/responsive/_mq_shared.scss */
   .widget-entry-skin .widget-entry-in .widget-footer {
     margin: 10px 0 0 0;
   }
 
   /* App detail
   -------------------------------------------------- */
-  /* line 272, ../sass/responsive/_mq_shared.scss */
+  /* line 276, ../sass/responsive/_mq_shared.scss */
   .app-detail-img {
     float: left;
     position: relative;
@@ -4524,57 +4535,57 @@ img.widget-promo-image {
     width: 148px;
   }
 
-  /* line 277, ../sass/responsive/_mq_shared.scss */
+  /* line 281, ../sass/responsive/_mq_shared.scss */
   .app-detail-body {
     margin: 0 0 0 148px;
   }
 
   /* Devices
   -------------------------------------------------- */
-  /* line 283, ../sass/responsive/_mq_shared.scss */
+  /* line 287, ../sass/responsive/_mq_shared.scss */
   .vendor-entry {
     width: 20%;
   }
 
-  /* line 286, ../sass/responsive/_mq_shared.scss */
+  /* line 290, ../sass/responsive/_mq_shared.scss */
   .app-detail-body {
     margin: 0 0 0 148px;
   }
 
   /* Rooms
   -------------------------------------------------- */
-  /* line 292, ../sass/responsive/_mq_shared.scss */
+  /* line 296, ../sass/responsive/_mq_shared.scss */
   .room-entry {
     width: 33.33333%;
   }
 
   /* Footer
   -------------------------------------------------- */
-  /* line 299, ../sass/responsive/_mq_shared.scss */
+  /* line 303, ../sass/responsive/_mq_shared.scss */
   #footer #footer_in {
     height: 40px;
     line-height: 40px;
   }
 
-  /* line 305, ../sass/responsive/_mq_shared.scss */
+  /* line 309, ../sass/responsive/_mq_shared.scss */
   #footer {
     display: none;
   }
 
   /* Auth
   -------------------------------------------------- */
-  /* line 312, ../sass/responsive/_mq_shared.scss */
+  /* line 316, ../sass/responsive/_mq_shared.scss */
   #page_login .container, #page_password .container, #page_passwordforgot .container, #page_passwordreset .container {
     max-width: 500px;
   }
 
   /* Others
   -------------------------------------------------- */
-  /* line 319, ../sass/responsive/_mq_shared.scss */
+  /* line 323, ../sass/responsive/_mq_shared.scss */
   .timestamp {
     font-size: 90% !important;
   }
-  /* line 321, ../sass/responsive/_mq_shared.scss */
+  /* line 325, ../sass/responsive/_mq_shared.scss */
   .timestamp .fa {
     font-size: 90% !important;
   }
@@ -4851,33 +4862,39 @@ img.widget-promo-image {
     height: 124px;
   }
 
+  /* line 244, ../sass/responsive/_mq_shared.scss */
+  .element-icon-img {
+    max-width: 32px;
+    max-height: 32px;
+  }
+
   /* Apps
   -------------------------------------------------- */
-  /* line 248, ../sass/responsive/_mq_shared.scss */
+  /* line 252, ../sass/responsive/_mq_shared.scss */
   .widget-entry-app .widget-entry-in {
     min-height: 1px;
     height: 110px;
   }
-  /* line 251, ../sass/responsive/_mq_shared.scss */
+  /* line 255, ../sass/responsive/_mq_shared.scss */
   .widget-entry-app .widget-entry-in .widget-footer {
     margin: 10px 0 0 0;
   }
 
   /* Apps
   -------------------------------------------------- */
-  /* line 261, ../sass/responsive/_mq_shared.scss */
+  /* line 265, ../sass/responsive/_mq_shared.scss */
   .widget-entry-skin .widget-entry-in {
     min-height: 1px;
     height: 120px;
   }
-  /* line 264, ../sass/responsive/_mq_shared.scss */
+  /* line 268, ../sass/responsive/_mq_shared.scss */
   .widget-entry-skin .widget-entry-in .widget-footer {
     margin: 10px 0 0 0;
   }
 
   /* App detail
   -------------------------------------------------- */
-  /* line 272, ../sass/responsive/_mq_shared.scss */
+  /* line 276, ../sass/responsive/_mq_shared.scss */
   .app-detail-img {
     float: left;
     position: relative;
@@ -4885,57 +4902,57 @@ img.widget-promo-image {
     width: 148px;
   }
 
-  /* line 277, ../sass/responsive/_mq_shared.scss */
+  /* line 281, ../sass/responsive/_mq_shared.scss */
   .app-detail-body {
     margin: 0 0 0 148px;
   }
 
   /* Devices
   -------------------------------------------------- */
-  /* line 283, ../sass/responsive/_mq_shared.scss */
+  /* line 287, ../sass/responsive/_mq_shared.scss */
   .vendor-entry {
     width: 20%;
   }
 
-  /* line 286, ../sass/responsive/_mq_shared.scss */
+  /* line 290, ../sass/responsive/_mq_shared.scss */
   .app-detail-body {
     margin: 0 0 0 148px;
   }
 
   /* Rooms
   -------------------------------------------------- */
-  /* line 292, ../sass/responsive/_mq_shared.scss */
+  /* line 296, ../sass/responsive/_mq_shared.scss */
   .room-entry {
     width: 25%;
   }
 
   /* Footer
   -------------------------------------------------- */
-  /* line 299, ../sass/responsive/_mq_shared.scss */
+  /* line 303, ../sass/responsive/_mq_shared.scss */
   #footer #footer_in {
     height: 40px;
     line-height: 40px;
   }
 
-  /* line 305, ../sass/responsive/_mq_shared.scss */
+  /* line 309, ../sass/responsive/_mq_shared.scss */
   #footer {
     display: none;
   }
 
   /* Auth
   -------------------------------------------------- */
-  /* line 312, ../sass/responsive/_mq_shared.scss */
+  /* line 316, ../sass/responsive/_mq_shared.scss */
   #page_login .container, #page_password .container, #page_passwordforgot .container, #page_passwordreset .container {
     max-width: 500px;
   }
 
   /* Others
   -------------------------------------------------- */
-  /* line 319, ../sass/responsive/_mq_shared.scss */
+  /* line 323, ../sass/responsive/_mq_shared.scss */
   .timestamp {
     font-size: 90% !important;
   }
-  /* line 321, ../sass/responsive/_mq_shared.scss */
+  /* line 325, ../sass/responsive/_mq_shared.scss */
   .timestamp .fa {
     font-size: 90% !important;
   }

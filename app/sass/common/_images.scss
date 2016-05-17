@@ -32,6 +32,10 @@ img {
     max-height: $app-detail-img;
     @include appBorderRadius(50%);
 }
+.element-icon-img{
+    max-width: $element-icon-img;
+    max-height: $element-icon-img;
+}
 .skin-preview-img{
     max-width: $skin-img;
     max-height: $skin-img;

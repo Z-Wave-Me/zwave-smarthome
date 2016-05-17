@@ -122,6 +122,9 @@ a {
         font-size: $app-updatetime-icon-size; 
     }
 }
+.bcg-success{
+    background-color: $app-bcg-success;
+}
 .bcg-active.false,.bcg-danger{
     background-color: $app-bcg-danger;
 }

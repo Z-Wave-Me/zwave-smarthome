@@ -955,10 +955,10 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
  */
 myAppController.controller('ElementIconController', function ($scope, $timeout, $filter, cfg, dataFactory, dataService) {
     $scope.icons = {
-        find: false,
-        uploadedFileName: {},
+        selected: false,
+        uploadedFileName: false,
         all: {},
-        uploadedt: {},
+        uploaded: {},
         info: {
             maxSize: $filter('fileSizeString')(cfg.upload.icon.size),
             extensions: cfg.upload.icon.extension.toString()
@@ -976,12 +976,10 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
     /**
      *  Load already uploaded icons
      */
-    $scope.loadUploadedIcons = function (key, modal, event) {
-        $scope.icons.find = key;
+    $scope.loadUploadedIcons = function () {
         // Atempt to load data
         dataFactory.getApiLocal('icons.json').then(function (response) {
             // Open a modal window
-            $scope.handleModal(modal, event);
             $scope.icons.uploaded = response.data.data;
         }, function (error) {
             alertify.alertError($scope._t('error_load_data'));
@@ -989,37 +987,47 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
         });
 
     };
+     $scope.loadUploadedIcons();
     /**
-     * Set default icon
+     * Set selected icon
      */
-    $scope.setDefaultIcon = function (icon) {
+    $scope.setSelectedIcon = function (icon) {
         if (!icon) {
             return;
         }
-        $scope.icons.find = icon;
+        $scope.icons.selected= icon;
     };
     /**
-     * Set a uploaded icon
+     * Set a custom icon with uploaded icon
      */
-    $scope.setUploadedIcon = function (icon) {
+    $scope.setCustomIcon = function (icon) {
+        // Delete an icon if is not defined
         if (!icon) {
-            //$scope.icons.all.custom = _.omit($scope.icons.all.custom, $scope.icons.find);
-            delete $scope.icons.all.custom[$scope.icons.find];
             return;
         }
-        $scope.icons.all.custom[$scope.icons.find] = icon;
+        // Add an icon
+        $scope.icons.all.custom[$scope.icons.selected] = icon;
+
+    };
+    /**
+     * Remove a custom icon
+     */
+    $scope.removeCustomIcon = function (icon) {
+        // Delete an icon if is not defined
+        if (!icon) {
+            return;
+        }
+         delete $scope.icons.all.custom[icon];
 
     };
 
     /**
-     *  Update an icon with already uploaded icon
+     *  Update a custom icons with already uploaded icons
      */
-    $scope.updateWithUploaded = function (modal, event) {
-        // Close a modal window
-        $scope.handleModal(modal, event);
-
+    $scope.updateWithCustomIcon = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         dataFactory.putApi('devices', $scope.elementId.input.id, setOutput($scope.elementId.input, $scope.icons.all.custom)).then(function (response) {
+             $scope.icons.selected = false;
             $scope.loading = false;
             dataService.showNotifier({message: $scope._t('success_updated')});
         }, function (error) {
@@ -1028,13 +1036,13 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
         });
     };
     /**
-     *  Cancel a window with uploaded icons
+     *  Cancel all updates and hide a list with uploaded icons
      */
-    $scope.cancelUploaded = function (modal, event) {
+    $scope.cancelUpdate = function (modal, event) {
         // Reset icons
         $scope.loadCfgIcons();
-        // Close a modal window
-        $scope.handleModal(modal, event);
+        // Set selected icon to false
+        $scope.icons.selected = false;
     };
     /**
      * Uplaoad an icon
@@ -1064,57 +1072,28 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('uploading')};
         // Clear all alerts and file name selected
         alertify.dismissAll();
-        $scope.icons.uploadedFileName = {};
+        $scope.icons.uploadedFileName = false;
         // Set local variables
-        var icon = $scope.icons.find,
+        var icon = $scope.icons.selected,
                 fd = new FormData();
-        //var cmd = $scope.cfg.api_url + 'upload/file';
+       
         // Set selected file name
-        $scope.icons.uploadedFileName[icon] = files[0].name;
+        $scope.icons.uploadedFileName = files[0].name;
         // Set form data
         fd.append('files_files', files[0]);
 
         // Atempt to upload a file
         dataFactory.getApiLocal('skins-online.json').then(function (response) {
-            $scope.icons.find = false;
             $timeout(function () {
-                $scope.icons.all.custom[icon] = $scope.icons.uploadedFileName[icon];
-                console.log($scope.icons.all.custom)
+                $scope.icons.uploaded.push({file: $scope.icons.uploadedFileName});
+                $scope.icons.all.custom[icon] = $scope.icons.uploadedFileName;
                 $scope.loading = false;
                 dataService.showNotifier({message: $scope._t('success_upload')});
             }, 1000);
 
         }, function (error) {
-            scope.icons.find = {};
             alertify.alertError($scope._t('error_upload'));
             $scope.loading = false;
-        });
-
-    };
-
-    /**
-     * Delete an icon
-     * @param {string} key
-     * @param {string} message
-     * @returns {undefined}
-     */
-    $scope.deleteIcon = function (key, message) {
-        if (!$scope.icons.all.custom[key]) {
-            return;
-        }
-        alertify.dismissAll();
-        alertify.confirm(message, function () {
-            delete $scope.icons.all.custom[key];
-            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
-            dataFactory.putApi('devices', $scope.elementId.input.id, setOutput($scope.elementId.input, $scope.icons.all.custom)).then(function (response) {
-                $scope.loading = false;
-                dataService.showNotifier({message: $scope._t('delete_successful')});
-
-                //$route.reload();
-            }, function (error) {
-                $scope.loading = false;
-                alertify.alertError($scope._t('error_delete_data'));
-            });
         });
 
     };
