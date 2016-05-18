@@ -969,7 +969,7 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
      * @returns {undefined}
      */
     $scope.loadCfgIcons = function () {
-        $scope.icons.all = dataService.getElementIcons($scope.elementId.input);
+        $scope.icons.all = dataService.getSingleElementIcons($scope.elementId.input);
 
     };
     $scope.loadCfgIcons();

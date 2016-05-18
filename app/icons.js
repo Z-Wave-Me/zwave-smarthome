@@ -1,5 +1,5 @@
 /**
- * @overview The default icons.
+ * @overview The object with default icons.
  * @author Martin Vach
  */
 

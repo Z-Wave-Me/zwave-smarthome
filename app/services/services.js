@@ -249,6 +249,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                             {iconPath: $filter('getElementIcon')(v.metrics.icon, v, v.metrics.level)},
                             {updateCmd: (v.deviceType === 'switchControl' ? 'on' : 'update')}
                     );
+            console.log(assignElementIcon(v));
                     if (v.metrics.color) {
                         angular.extend(v.metrics, {rgbColors: 'rgb(' + v.metrics.color.r + ',' + v.metrics.color.g + ',' + v.metrics.color.b + ')'});
                     }
@@ -260,11 +261,46 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
     };
     
     /**
+     * Assign an icon to the element
+     * @param {object} element
+     * @returns {string}
+     */
+    function assignElementIcon(element) {
+        var icon =  'placeholder.png';
+        var iconKey = $filter('hasNode')(element,'metrics.icon');
+        if(iconKey){
+           //console.log(iconKey,cfgicons.element.icon[iconKey]); 
+           if ((/^https?:\/\//.test(iconKey))) {
+                return iconKey;
+            } else if ((/\.(png|gif|jpe?g)$/).test(iconKey)) {
+                if (iconKey.indexOf('/') > -1) {
+                     return iconKey;
+                } else {
+                   return cfg.img.icons + iconKey;
+                }
+            }
+            
+            switch (iconKey) {
+                // multilevel
+                 case 'multilevel':
+                     icon = 'multilevel';
+                 break;
+                 // default
+                default:
+                break;
+            }
+        }
+         //console.log(icon); 
+        return cfg.img.icons + icon;
+
+    };
+    
+    /**
      * Get an object with element icons
      * @param {object} element
      * @returns {object}
      */
-    this.getElementIcons = function (element) {
+    this.getSingleElementIcons = function (element) {
         var icons = {
             default: {
                 default: 'placeholder.png'
