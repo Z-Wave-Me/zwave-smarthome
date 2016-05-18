@@ -7,37 +7,65 @@
  * The controller that renders and upload icons.
  * @class CustomIconController
  */
-myAppController.controller('CustomIconController', function ($scope, $filter, $timeout, cfg, dataFactory, dataService, _) {
+myAppController.controller('CustomIconController', function ($scope, $filter, $timeout, $q, cfg, dataFactory, dataService, _) {
     $scope.icons = {
+        show: true,
         find: {},
         upload: false,
         all: {},
+        used: {
+            device: {},
+            test: []
+        },
         info: {
             maxSize: $filter('fileSizeString')(cfg.upload.icon.size),
             extensions: cfg.upload.icon.extension.toString()
         }
     };
     /**
-     *  Load icons
+     * Load all promises
+     * @returns {undefined}
      */
-    $scope.loadIcons = function () {
-        // Atempt to load data
-        dataFactory.getApiLocal('icons.json').then(function (response) {
-            $scope.icons.all = response.data.data;
-        }, function (error) {
-            alertify.alertError($scope._t('error_load_data'));
-            $scope.loading = false;
-        });
+    $scope.allSettled = function () {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        var promises = [
+            dataFactory.getApiLocal('icons.json'),
+            dataFactory.getApi('devices', null, true)
+        ];
 
+        $q.allSettled(promises).then(function (response) {
+            var icons = response[0];
+            var devices = response[1];
+
+            $scope.loading = false;
+            // Error message
+            if (icons.state === 'rejected' || devices.state === 'rejected') {
+                $scope.icons.show = false;
+                alertify.alertError($scope._t('error_load_data'));
+                return;
+            }
+            // Success - icons
+            if (icons.state === 'fulfilled') {
+                $scope.icons.all = icons.value.data.data;
+            }
+            // Success - devices
+            if (devices.state === 'fulfilled') {
+                $scope.icons.used.device = iconUsedInDevice(devices.value.data.data.devices);
+            }
+
+
+        });
     };
-    $scope.loadIcons();
+    $scope.allSettled();
 
     /**
-     * Upload an icon file
+     * Check and validate an uploaded file
      * @param {object} files
      * @returns {undefined}
      */
-    $scope.uploadIcon = function (files) {
+    $scope.checkUploadedFile = function (files) {
+        // Extends files object with a new property
+        files[0].newName = dataService.uploadFileNewName(files[0].name);
         // Check allowed file formats
         //if(cfg.upload.room.type.indexOf(files[0].type) === -1){
         if (cfg.upload.icon.extension.indexOf($filter('fileExtension')(files[0].name)) === -1) {
@@ -69,7 +97,7 @@ myAppController.controller('CustomIconController', function ($scope, $filter, $t
     };
 
     /**
-     * Delete an icon
+     * Delete an icon from the storage
      * @param {object} icon
      * @param {string} message
      * @returns {undefined}
@@ -105,9 +133,9 @@ myAppController.controller('CustomIconController', function ($scope, $filter, $t
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('uploading')};
         // Clear all alerts and file name selected
         alertify.dismissAll();
-        $scope.icons.upload = false;
         // Set local variables
-        var fd = new FormData();
+        var fd = new FormData(),
+                input = {file: files[0].name, device: []};
         //var cmd = $scope.cfg.api_url + 'upload/file';
         // Set selected file name
         $scope.icons.upload = files[0].name;
@@ -117,7 +145,7 @@ myAppController.controller('CustomIconController', function ($scope, $filter, $t
         dataFactory.getApiLocal('icons.json').then(function (response) {
             $timeout(function () {
                 if (!_.findWhere($scope.icons.all, {file: files[0].name})) {
-                    $scope.icons.all.push({'file': files[0].name});
+                    $scope.icons.all.push(input);
                 }
                 $scope.loading = false;
                 dataService.showNotifier({message: $scope._t('success_upload')});
@@ -128,6 +156,35 @@ myAppController.controller('CustomIconController', function ($scope, $filter, $t
             alertify.alertError($scope._t('error_upload'));
             $scope.loading = false;
         });
+    }
+    ;
+    /**
+     * Build an object with icons that are used in devices
+     * @param {object} devices
+     * @returns {object}
+     */
+    function iconUsedInDevice(devices) {
+        var output = {};
+        angular.forEach(devices, function (v, k) {
+            // For testing purposes
+            if (v.id === 'ZWayVDev_zway_9-0-37') {
+                v.custom_icons = {on: 'cat-box-icon.png', off: 'cat-cage-icon.png'};
+            } else if (v.id === 'Multiline_18') {
+                v.custom_icons = {'default': 'cat-cage-icon.png'};
+            }
+            // Device has custom icons
+            if (v.custom_icons) {
+                angular.forEach(v.custom_icons, function (iv, ik) {
+                    if (output[iv]) {
+                        //icon[iv] = [v.id];
+                       output[iv].push(v.id);
+                    }else{
+                        output[iv] = [v.id]; 
+                    }
+                });
+            }
+        });
+         return output;
     }
     ;
 });

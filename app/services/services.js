@@ -193,6 +193,18 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
         $window.location.reload();
 
     };
+    
+    /**
+     * Build a new file name without invalid chars 
+     * @param {string} fileName
+     * @returns {string}
+     */
+    this.uploadFileNewName = function (fileName) {
+        var name = fileName.split('.').slice(0, -1).join('.');
+        return $filter('stringToSlug')(name) + '.' + $filter('fileExtension')(fileName);
+        
+
+    };
 
     /**
      * Get devices -  filtered data from devices dataholder
@@ -266,10 +278,10 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
         }
         // Set default icons by metrics.icon
         if(iconKey){
-            if ((/^https?:\/\//.test(iconKey))) { // If icon is an url (weather) then custom icons not allowed
+            if ((/^https?:\/\//.test(iconKey))) { // If icon is the url (weather) then custom icons are not allowed
                 icons = {};
             } else if ((/\.(png|gif|jpe?g)$/).test(iconKey)) {
-                 if (iconKey.indexOf('/') > -1) {// If icon is sytem icon then custom icons not allowed
+                 if (iconKey.indexOf('/') > -1) {// If an icon is the sytem icon then custom icons are not allowed
                      icons = {};
                 } else {
                     icons.default.default = iconKey;

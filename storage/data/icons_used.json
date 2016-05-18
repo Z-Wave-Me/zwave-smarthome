@@ -1,0 +1,18 @@
+{
+    "status": 200,
+    "message": "OK 200",
+    "error": null,
+    "data": [
+        {
+            "file": "cat-box-icon.png",
+            "device": []
+        }, {
+            "file": "cat-cage-icon.png",
+            "device": []
+        },
+        {
+            "file": "cat-clean-icon.png",
+            "device": []
+        }
+    ]
+}

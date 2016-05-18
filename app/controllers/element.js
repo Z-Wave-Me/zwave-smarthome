@@ -1030,8 +1030,12 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
      * @returns {undefined}
      */
     $scope.updateWithCustomIcon = function () {
+        var input = {
+            id: $scope.elementId.input.id,
+            custom_icons: $scope.icons.all.custom
+        };
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        dataFactory.putApi('devices', $scope.elementId.input.id, setInput($scope.elementId.input, $scope.icons.all.custom)).then(function (response) {
+        dataFactory.putApi('devices', $scope.elementId.input.id, input).then(function (response) {
             $scope.icons.selected = false;
             $scope.loading = false;
             dataService.showNotifier({message: $scope._t('success_updated')});
@@ -1051,11 +1055,13 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
         $scope.icons.selected = false;
     };
     /**
-     * Attempt to upload an icon
+     * Check and validate an uploaded file
      * @param {object} files
      * @returns {undefined}
      */
-    $scope.uploadIcon = function (files) {
+    $scope.checkUploadedFile = function (files) {
+        // Extends files object with a new property
+        files[0].newName = dataService.uploadFileNewName(files[0].name);
         // Check allowed file formats
         //if(cfg.upload.room.type.indexOf(files[0].type) === -1){
         if (cfg.upload.icon.extension.indexOf($filter('fileExtension')(files[0].name)) === -1) {
@@ -1099,6 +1105,7 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
         alertify.dismissAll();
         // Set local variables
         var fd = new FormData();
+        var input = {file: files[0].name, device: []};
         // Set selected file name
         $scope.icons.uploadedFileName = files[0].name;
         // Set form data
@@ -1108,9 +1115,9 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
         dataFactory.getApiLocal('icons.json').then(function (response) {
             $timeout(function () {
                 if (!_.findWhere($scope.icons.uploaded, {file: files[0].name})) {
-                    $scope.icons.uploaded.push({file: $scope.icons.uploadedFileName});
+                    $scope.icons.uploaded.push({file: files[0].name});
                 }
-                $scope.icons.all.custom[$scope.icons.selected] = $scope.icons.uploadedFileName;
+                $scope.icons.all.custom[$scope.icons.selected] = files[0].name;
                 $scope.loading = false;
                 dataService.showNotifier({message: $scope._t('success_upload')});
             }, 1000);
@@ -1123,16 +1130,45 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
     ;
 
     /**
-     * Creates an object with input data for a HTTP request
-     * @param {object} input
-     * @param {object} icons
-     * @returns {object}
+     * ???
      */
-    function setInput(input, icons) {
-        return {
-            'id': input.id,
-            'custom_icons': icons
-        };
+    function updateUploaded(input) {
+        var output = [];
+        angular.forEach(input.custom_icons, function (v, k) {
+
+            var index = _.findIndex($scope.icons.uploaded, {file: v});
+            if (index === -1) {
+                return;
+            }
+            if ($scope.icons.uploaded[index].device.indexOf(input.id) === -1) {
+                $scope.icons.uploaded[index].device.push(input.id);
+            }
+            if (!_.findWhere(output, {file: v})) {
+                output.push({file: $scope.icons.uploaded[index].file, device: $scope.icons.uploaded[index].device});
+            }
+        });
+        console.log(output);
+    }
+    ;
+
+    /**
+     * ???
+     */
+    function removeDeviceFromUploaded(input) {
+        var output = [];
+        angular.forEach(input.isset_icons, function (v, k) {
+            var index = _.findIndex($scope.icons.uploaded, {file: v});
+            if (index === -1) {
+                return;
+            }
+            if ($scope.icons.uploaded[index].device.indexOf(input.id) === -1) {
+                $scope.icons.uploaded[index].device.push(input.id);
+            }
+            if (!_.findWhere(output, {file: v})) {
+                output.push({file: $scope.icons.uploaded[index].file, device: $scope.icons.uploaded[index].device});
+            }
+        });
+        console.log(output);
     }
     ;
 });
