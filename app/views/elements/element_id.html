@@ -142,7 +142,7 @@
                 <h2>{{_t('custom_icons')}}</h2>
                 
             </div>
-             <pre>{{icons|json}}</pre>
+              <!--<pre>{{icons|json}}</pre>-->
             <div class="fieldset">
                  <div class="app-row app-row-report app-row-icons clearfix">
                      <div class="report-entry">
@@ -198,7 +198,7 @@
                  </div>
             </div>
               <!-- The list of icons -->
-            <div ng-if_="icons.selected">
+            <div ng-if="icons.selected">
                 <!-- The list of uploaded icons -->
                 <div class="fieldset_ element-icon-list">
                     <img class="element-icon-img clickable" ng-click="setCustomIcon(v.file)" ng-src="{{cfg.img.custom_icons + v.file}}" ng-repeat="v in icons.uploaded" /> 
@@ -229,64 +229,6 @@
             </div>
        
         </div>
-            
-            <!-- Interview modal -->
-            <div id="elCustomIconModal" class="appmodal" ng-if="modalArr.elCustomIconModal">
-              <div class="appmodal-in">
-                  <div class="appmodal-header">
-                      <span class="appmodal-close" ng-click="cancelUploaded('elCustomIconModal', $event)"><i class="fa fa-times"></i></span>
-                      <h3>{{elementId.input.metrics.title|cutText:true:25}}</h3>
-                  </div>
-                  <div class="appmodal-body">
-                      <pre>{{icons|json}}</pre>
-                        <div class="app-row app-row-report app-row-icons clearfix">
-                            <div class="report-entry clickable" ng-repeat="(k,v) in icons.all.default" ng-click="setSelectedIcon(k)">
-                              <div class="report-col report-media">
-                                  <img class="report-img" ng-src="{{cfg.img.icons + v}}" alt="{{v}}"/>
-                               </div>
-                                <div class="report-col report-body">
-                                   <i class="fa fa-long-arrow-right" ng-if="icons.all.custom[k]"></i>
-                              </div>
-                              <div class="report-col report-media">
-                                   <img class="report-img" ng-src="{{cfg.img.custom_icons + icons.all.custom[k]}}" ng-if="icons.all.custom[k]" alt="{{v.type}}"/>
-                                  <img class="report-img img-opacity-50" ng-src="{{cfg.img.icons }}cancel.png" ng-if="!icons.all.custom[k]"  alt="img"/>
-                              </div>
-                                <div class="report-col report-ctrl">
-                                    <i class="fa fa-check fa-2x text-success" ng-if="k === icons.selected"></i>
-                                     <button title="{{_t('lb_remove')}}" class="btn btn-default" ng-disabled="!icons.all.custom[k]" ng-click="deleteIcon(k, _t('lb_delete_confirm'),$index)">
-                                        <i class="fa fa-remove text-danger"></i>
-                                    </button>
-                              </div>
-                          </div>
-                        </div>
-                      <!--Selected icon: {{icons.find}}
-                        <pre>{{icons.uploaded|json}}</pre>-->
-                        <img class="report-img clickable img-opacity-50" ng-src="{{cfg.img.icons }}cancel.png" alt="img" ng-click="setUploadedIcon(false)" />
-                        <img class="report-img clickable" ng-click="setUploadedIcon(v.file)" ng-src="{{cfg.img.custom_icons + v.file}}" ng-repeat="v in icons.uploaded" />
-                         <div class="form form-inline form-page">
-                         <div class="fieldset">
-                            <input class="inputfile" type="file" name="file" id="file{{v.id}}" 
-                                           onchange="angular.element(this).scope().uploadIcon(this.files)" />
-                                        <label for="file{{v.id}}" class="btn btn-success" title="{{_t('lb_upload_image')}}">
-                                            <i class="fa fa-upload"></i> {{_t('upload_icon')}}
-                                        </label>
-                                    <div ng-if="icons.uploadedFileName">{{icons.uploadedFileName|cutText:true:30}}</div>
-                             <bb-help-text trans="_t('upload_file_info',{'__size__':icons.info.maxSize,'__extensions__': icons.info.extensions})"></bb-help-text>
-                             <bb-help-text trans="_t('image_recommended_dimension',{'__dimension__':cfg.upload.icon.dimension})"></bb-help-text>
-                       </div>
-                      </div>
-                            
-                  </div>
-                  <div class="appmodal-footer">
-                      <button type="button" title="{{_t('lb_cancel')}}" class="btn btn-default" ng-click="cancelUpdate('elCustomIconModal', $event)">
-                          <i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span>
-                      </button>
-                       <button type="button" title="{{_t('lb_save')}}" class="btn btn-submit" ng-click="updateWithUploaded('elCustomIconModal', $event)">
-                           <i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_save')}}</span>
-                       </button>
-                  </div>
-              </div>
-          </div>
         </div>
     </div>
 

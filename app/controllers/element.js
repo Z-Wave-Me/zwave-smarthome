@@ -965,7 +965,8 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
         }
     };
     /**
-     *  Load icons from config
+     * Load icons from config
+     * @returns {undefined}
      */
     $scope.loadCfgIcons = function () {
         $scope.icons.all = dataService.getElementIcons($scope.elementId.input);
@@ -974,12 +975,12 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
     $scope.loadCfgIcons();
 
     /**
-     *  Load already uploaded icons
+     * Load already uploaded icons
+     * @returns {undefined}
      */
     $scope.loadUploadedIcons = function () {
         // Atempt to load data
         dataFactory.getApiLocal('icons.json').then(function (response) {
-            // Open a modal window
             $scope.icons.uploaded = response.data.data;
         }, function (error) {
             alertify.alertError($scope._t('error_load_data'));
@@ -987,47 +988,51 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
         });
 
     };
-     $scope.loadUploadedIcons();
+    $scope.loadUploadedIcons();
     /**
      * Set selected icon
+     * @param {string} icon
+     * @returns {undefined}
      */
     $scope.setSelectedIcon = function (icon) {
         if (!icon) {
             return;
         }
-        $scope.icons.selected= icon;
+        $scope.icons.selected = icon;
     };
     /**
-     * Set a custom icon with uploaded icon
+     * Set a custom icon with an icon from the list
+     * @param {string} icon
+     * @returns {undefined}
      */
     $scope.setCustomIcon = function (icon) {
-        // Delete an icon if is not defined
         if (!icon) {
             return;
         }
-        // Add an icon
         $scope.icons.all.custom[$scope.icons.selected] = icon;
 
     };
     /**
      * Remove a custom icon
+     * @param {string} icon
+     * @returns {undefined}
      */
     $scope.removeCustomIcon = function (icon) {
-        // Delete an icon if is not defined
         if (!icon) {
             return;
         }
-         delete $scope.icons.all.custom[icon];
+        delete $scope.icons.all.custom[icon];
 
     };
 
     /**
-     *  Update a custom icons with already uploaded icons
+     * Update custom icons with selected icons from the list
+     * @returns {undefined}
      */
     $scope.updateWithCustomIcon = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        dataFactory.putApi('devices', $scope.elementId.input.id, setOutput($scope.elementId.input, $scope.icons.all.custom)).then(function (response) {
-             $scope.icons.selected = false;
+        dataFactory.putApi('devices', $scope.elementId.input.id, setInput($scope.elementId.input, $scope.icons.all.custom)).then(function (response) {
+            $scope.icons.selected = false;
             $scope.loading = false;
             dataService.showNotifier({message: $scope._t('success_updated')});
         }, function (error) {
@@ -1036,16 +1041,17 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
         });
     };
     /**
-     *  Cancel all updates and hide a list with uploaded icons
+     * Cancel all updates and hide a list with uploaded icons
+     * @returns {undefined}
      */
-    $scope.cancelUpdate = function (modal, event) {
+    $scope.cancelUpdate = function () {
         // Reset icons
         $scope.loadCfgIcons();
         // Set selected icon to false
         $scope.icons.selected = false;
     };
     /**
-     * Uplaoad an icon
+     * Attempt to upload an icon
      * @param {object} files
      * @returns {undefined}
      */
@@ -1069,24 +1075,42 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
             return;
 
         }
+        // Check if uploaded filename already exists
+        if (_.findWhere($scope.icons.uploaded, {file: files[0].name})) {
+            // Displays a confirm dialog and on OK atempt to upload file
+            alertify.confirm($scope._t('uploaded_file_exists', {__file__: files[0].name})).set('onok', function (closeEvent) {
+                uploadFile(files);
+            });
+        } else {
+            uploadFile(files);
+        }
+
+    };
+    /// --- Private functions --- ///
+
+    /**
+     * Upload a file
+     * @param {object} files
+     * @returns {undefined}
+     */
+    function uploadFile(files) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('uploading')};
         // Clear all alerts and file name selected
         alertify.dismissAll();
-        $scope.icons.uploadedFileName = false;
         // Set local variables
-        var icon = $scope.icons.selected,
-                fd = new FormData();
-       
+        var fd = new FormData();
         // Set selected file name
         $scope.icons.uploadedFileName = files[0].name;
         // Set form data
         fd.append('files_files', files[0]);
 
         // Atempt to upload a file
-        dataFactory.getApiLocal('skins-online.json').then(function (response) {
+        dataFactory.getApiLocal('icons.json').then(function (response) {
             $timeout(function () {
-                $scope.icons.uploaded.push({file: $scope.icons.uploadedFileName});
-                $scope.icons.all.custom[icon] = $scope.icons.uploadedFileName;
+                if (!_.findWhere($scope.icons.uploaded, {file: files[0].name})) {
+                    $scope.icons.uploaded.push({file: $scope.icons.uploadedFileName});
+                }
+                $scope.icons.all.custom[$scope.icons.selected] = $scope.icons.uploadedFileName;
                 $scope.loading = false;
                 dataService.showNotifier({message: $scope._t('success_upload')});
             }, 1000);
@@ -1095,14 +1119,16 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
             alertify.alertError($scope._t('error_upload'));
             $scope.loading = false;
         });
-
-    };
-    /// --- Private functions --- ///
+    }
+    ;
 
     /**
-     * Set output
+     * Creates an object with input data for a HTTP request
+     * @param {object} input
+     * @param {object} icons
+     * @returns {object}
      */
-    function setOutput(input, icons) {
+    function setInput(input, icons) {
         return {
             'id': input.id,
             'custom_icons': icons

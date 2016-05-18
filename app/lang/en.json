@@ -5,6 +5,7 @@
     "online_skins": "Online skins",
     "custom_icons": "Custom icons",
     "upload_icon": "Upload icon",
+    "uploaded_file_exists": "The uploaded file (__file__) already exists. Do you want to overwrite it?",
     "skins": "Skins",
     "reloading_page": "Reloading page...",
     "error_file_download": "Unable to download file",
