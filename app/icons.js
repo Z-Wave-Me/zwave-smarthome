@@ -14,9 +14,7 @@ var icon_data = {
                 door: {
                     level: {
                         open: 'door-open.png',
-                        closed: 'door-closed.png',
-                        on: 'door-open.png',
-                        off: 'door-closed.png'
+                        closed: 'door-closed.png'
                     }
                 },
                 window: {
@@ -25,9 +23,7 @@ var icon_data = {
                         half: 'window-half.png',
                         up: 'window-up.png',
                         open: 'window-open.png',
-                        closed: 'window-open.png',
-                        on: 'door-open.png',
-                        off: 'window-closed.png'
+                        closed: 'window-open.png'
                     }
                 },
                 switch : {
@@ -97,6 +93,11 @@ var icon_data = {
                 },
                 new: {
                      default: 'new.png'
+                }
+            },
+            deviceType: {
+                switchControl: {
+                    default: 'switch-control.png'
                 }
             }
         }

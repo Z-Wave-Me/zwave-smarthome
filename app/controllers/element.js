@@ -110,7 +110,8 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
                         angular.extend($scope.dataHolder.devices.all[index],
                                 {metrics: v.metrics},
                                 {imgTrans: false},
-                                {iconPath: $filter('getElementIcon')(v.metrics.icon, v, v.metrics.level)},
+                                //{iconPath: $filter('getElementIcon')(v.metrics.icon, v, v.metrics.level)},
+                                 {iconPath: dataService.assignElementIcon(v)},
                                 {updateTime: v.updateTime}
                         );
                         console.log('Updating from server response: device ID: ' + v.id + ', metrics.level: ' + v.metrics.level + ', updateTime: ' + v.updateTime + ', iconPath: ' + $filter('getElementIcon')(v.metrics.icon, v, v.metrics.level))
