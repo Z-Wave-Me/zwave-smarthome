@@ -1,9 +1,12 @@
 {
     "newtrans": "---",
     "---": "newtrans",
+    "jamesbox_not_update": "Ask me next login",
+    "update_now": "Update NOW",
+    "jamesbox_update_info": "Please make sure to keep the controller powered during the firmware update. You see on the UI once the firmware update is completed.",
     "no_update_available": "There are no updates available",
     "jamesbox_software_upgrade": "Software upgrade",
-    "jamesbox_current_firmware": "Your current firmware is __currentfw__. There is a new firmware upgrade available. Would you like to update your gateway firmware to version __newfw__?",
+    "jamesbox_current_firmware": "Your current firmware is __currentfw__. There is a new firmware available. Would you like to update your gateway firmware to version __newfw__?",
     "jamesbox_autoupgrade": "The firmware will be automatically upgraded to version __newfw__ on next restart.",
     "jamesbox_update_exists": "Confirmation already exists. Please unplug and plug your BOX from the power.",
     "redo_inclusion": "Redo inclusion",

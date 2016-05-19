@@ -1,4 +1,7 @@
 {
+    "jamesbox_not_update": "Ask me next login",
+    "update_now": "Update NOW",
+    "jamesbox_update_info": "Please make sure to keep the controller powered during the firmware update. You see on the UI once the firmware update is completed.",
     "no_update_available": "There are no updates available",
     "jamesbox_software_upgrade": "Software upgrade",
     "jamesbox_current_firmware": "Die aktuell installierte Firmware ist __currentfw__. Es ist ein neue Firmware-Aktualisierung verfügbar. Möchten Sie ihre Gateway Firmware auf die Version __newfw__ aktualisieren?",

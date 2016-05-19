@@ -4,18 +4,21 @@
      <div id="jamesBoxModal" class="appmodal" ng-if="jamesbox.show">
         <div class="appmodal-in">
             <div class="appmodal-header">
-                <a ng-href="#dashboard" class="appmodal-close"><i class="fa fa-times"></i></a>
+                <!--<a ng-href="#dashboard" class="appmodal-close"><i class="fa fa-times"></i></a>-->
                 <h3>{{_t('jamesbox_software_upgrade')}}</h3>
             </div>
             <div class="appmodal-body">
                 <div>{{_t('jamesbox_current_firmware',{__currentfw__: jamesbox.version,__newfw__:jamesbox.versionNew})}}</div>
+                <div class="alert alert-warning"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{_t('jamesbox_update_info')}}</div>
+                <div class="text-center">
+                     <button class="btn btn-submit btn-lg" title="{{_t('update_now')}}" ng-click="firmwareUpdate()">
+                <i class="fa fa-check"></i> {{_t('update_now')}}
+            </button>
+                </div>
             </div>
             <div class="appmodal-footer">
-                <button class="btn btn-default" title="{{_t('Confirm')}}" ng-click="firmwareUpdate()">
-                <i class="fa fa-check text-success"></i> <span class="btn-name">{{_t('Confirm')}}</span>
-            </button>
-             <a ng-href="#dashboard" class="btn btn-default" title="{{_t('Ask me next login')}}">
-                     <span class="btn-name">{{_t('Ask me next login')}}</span> <i class="fa fa-arrow-right text-primary"></i>  
+             <a ng-href="#dashboard" class="btn btn-default" title="{{_t('jamesbox_not_update')}}">
+                     <span class="btn-name">{{_t('jamesbox_not_update')}}</span> <i class="fa fa-arrow-right"></i>  
                 </a>
             </div>
         </div>

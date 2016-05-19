@@ -373,7 +373,7 @@ var config_data = {
                 ]
             },
              'jb': {
-                'logo': 'app-logo-default.png',
+                'logo': 'app-logo-popp.png',
                 hidden_apps: [
                     'Cron',
                     'BatteryPolling',
