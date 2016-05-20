@@ -47,9 +47,6 @@ myAppController.controller('RoomController', function ($scope, $q, $cookies, $fi
             // Success - locations
             if (locations.state === 'fulfilled') {
                 $scope.rooms.all = dataService.getRooms(locations.value.data.data).value();
-                if (_.size($scope.rooms.all) < 2) {
-                    alertify.alertWarning($scope._t('no_rooms'));
-                }
             }
             // Success - devices
             if (devices.state === 'fulfilled') {
