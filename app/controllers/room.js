@@ -288,7 +288,7 @@ myAppController.controller('RoomConfigIdController', function ($scope, $routePar
             $scope.devicesAssigned = [];
             var devices = dataService.getDevicesData(response.data.data.devices).value();
             _.filter(devices, function (v) {
-                if (v.location == locationId) {
+                if (locationId > 0 && v.location === locationId) {
                     $scope.devicesAssigned.push(v.id);
                 }
                 if (v.location == 0 || v.location == locationId) {
