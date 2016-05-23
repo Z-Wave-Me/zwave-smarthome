@@ -56,6 +56,10 @@ body {
     max-width:$app-container-w;
 
 }
+.block-50{
+    @include appFloat(left);
+    width: 50%; 
+}
 /* Page navigation
 -------------------------------------------------- */
 .page-navi{

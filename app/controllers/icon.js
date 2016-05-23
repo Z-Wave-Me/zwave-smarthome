@@ -5,9 +5,9 @@
 
 /**
  * The controller that renders and upload icons.
- * @class CustomIconController
+ * @class LocalIconController
  */
-myAppController.controller('CustomIconController', function ($scope, $filter, $timeout, $q, cfg, dataFactory, dataService, _) {
+myAppController.controller('LocalIconController', function ($scope, $filter, $timeout, $q, cfg, dataFactory, dataService, _) {
     $scope.icons = {
         show: true,
         find: {},
@@ -20,6 +20,10 @@ myAppController.controller('CustomIconController', function ($scope, $filter, $t
         info: {
             maxSize: $filter('fileSizeString')(cfg.upload.icon.size),
             extensions: cfg.upload.icon.extension.toString()
+        },
+        infoPacked: {
+            maxSize: $filter('fileSizeString')(cfg.upload.icon_packed.size),
+            extensions: cfg.upload.icon_packed.extension.toString()
         }
     };
     /**
@@ -61,25 +65,25 @@ myAppController.controller('CustomIconController', function ($scope, $filter, $t
     /**
      * Check and validate an uploaded file
      * @param {object} files
+     * @param {object} info
      * @returns {undefined}
      */
-    $scope.checkUploadedFile = function (files) {
+    $scope.checkUploadedFile = function (files, info) {
         // Extends files object with a new property
         files[0].newName = dataService.uploadFileNewName(files[0].name);
         // Check allowed file formats
-        //if(cfg.upload.room.type.indexOf(files[0].type) === -1){
-        if (cfg.upload.icon.extension.indexOf($filter('fileExtension')(files[0].name)) === -1) {
+        if (info.extension.indexOf($filter('fileExtension')(files[0].name)) === -1) {
             alertify.alertError(
                     $scope._t('upload_format_unsupported', {'__extension__': $filter('fileExtension')(files[0].name)}) + ' ' +
-                    $scope._t('upload_allowed_formats', {'__extensions__': $scope.icons.info.extensions})
+                    $scope._t('upload_allowed_formats', {'__extensions__': info.extension.toString()})
                     );
             return;
 
         }
         // Check allowed file size
-        if (files[0].size > cfg.upload.icon.size) {
+        if (files[0].size > info.size) {
             alertify.alertError(
-                    $scope._t('upload_allowed_size', {'__size__': $scope.icons.info.maxSize}) + ' ' +
+                    $scope._t('upload_allowed_size', {'__size__': $filter('fileSizeString')(info.size)}) + ' ' +
                     $scope._t('upload_size_is', {'__size__': $filter('fileSizeString')(files[0].size)})
                     );
             return;
@@ -177,14 +181,59 @@ myAppController.controller('CustomIconController', function ($scope, $filter, $t
                 angular.forEach(v.custom_icons, function (iv, ik) {
                     if (output[iv]) {
                         //icon[iv] = [v.id];
-                       output[iv].push(v.id);
-                    }else{
-                        output[iv] = [v.id]; 
+                        output[iv].push(v.id);
+                    } else {
+                        output[iv] = [v.id];
                     }
                 });
             }
         });
-         return output;
+        return output;
     }
     ;
+});
+
+/**
+ * The controller that renders and download icons from the app store.
+ * @class OnlineIconController
+ */
+myAppController.controller('OnlineIconController', function ($scope, $filter, $timeout, $q, $location, cfg, dataFactory, dataService, _) {
+    $scope.iconsOnline = {
+        all: {},
+        find: {}
+    };
+     $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+    // Atempt to get a object
+    dataFactory.getApiLocal('icons_online.json').then(function (response) {
+        $scope.loading = false;
+        if(_.size(response.data.data < 1)){
+             alertify.alertError($scope._t('no_data'));
+             return;
+        }
+        setOnlineIcons(response.data.data);
+    }, function (error) {
+        alertify.alertError($scope._t('error_load_data'));
+        $scope.loading = false;
+    });
+    
+    /// --- Private functions --- ///
+    
+     /**
+     * Set online icons $scope
+     * @param {object} response
+     * @returns {undefined}
+     */
+    function setOnlineIcons(response) {
+        $scope.iconsOnline.all = _.chain(response)
+                .flatten()
+                .filter(function (v) {
+                    // Set skin download path
+                    v.download = $scope.cfg.online_icon_storage + v.file;
+                    // Set icon path
+                    v.icon = (v.icon === '' ? 'storage/img/placeholder-img.png' : $scope.cfg.online_icon_storage + v.icon);
+                    return v;
+                })
+                .indexBy('name')
+                .value();
+    };
 });

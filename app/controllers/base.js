@@ -13,7 +13,9 @@ var myAppController = angular.module('myAppController', []);
  * @class BaseController
  */
 myAppController.controller('BaseController', function ($scope, $cookies, $filter, $location, $route, $window, $interval, cfg, cfgicons,dataFactory, dataService, myCache) {
+  
     // Global scopes
+    $scope.$location = $location;
     angular.extend(cfg.route, {os: dataService.getOs()});
     $scope.cfg = cfg;
     $scope.timeZoneInterval = null;
@@ -24,6 +26,10 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     $scope.hostName = $location.host();
     $scope.ZWAYSession = dataService.getZWAYSession();
     $scope.lastLogin = dataService.getLastLogin();
+    /**
+     * Set current skin
+     * @returns {undefined}
+     */
     $scope.setSkin = function () {
         if ($cookies.skin && $cookies.skin !== 'default') {
             cfg.skin.active = $cookies.skin;

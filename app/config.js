@@ -20,6 +20,8 @@ var config_data = {
         'interval': 3000,
         // Route - will be extended
         'route': {
+            // Current location
+            location: {},
             // Time zone
             time:{
                 string: false,
@@ -104,6 +106,12 @@ var config_data = {
                 type:['image/png','image/jpeg','image/gif'],
                 extension:['png','jpg','jpeg','gif'],
                 dimension:'64 x 64'//px
+            },
+            'icon_packed': {
+                size: 2097152,//Bytes
+                type:['application/x-zip-compressed','application/x-gzip'],
+                extension:['zip','gz'],
+                dimension:'64 x 64'//px
             }
         },
         // Api url
@@ -142,6 +150,9 @@ var config_data = {
         // Online skins storage
         'online_skin_storage': 'http://hrix.net/developer-console/storage/skins/',
         // 'online_skin_storage': 'http://dev.dev/developer-console/storage/skins/',
+        // Online icon storage
+        'online_icon_storage': 'http://hrix.net/developer-console/storage/skins/',
+        // 'online_icon_storage': 'http://dev.dev/developer-console/storage/skins/',
         // Online module download url
         'blacklist_url': 'https://hrix.net/blacklist.json',
         // Post report url

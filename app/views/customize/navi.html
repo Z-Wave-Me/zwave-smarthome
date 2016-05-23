@@ -1,13 +1,48 @@
 <div class="tabs-wrap form-inline" ng-if="elementAccess(cfg.role_access.admin)">
-    <div class="btn-group btn-goup-tabs btn-tabs-3">
-        <a class="btn btn-default" href="#customize/skinslocal" ng-class="routeMatch('/customize/skinslocal') ? 'active' : ''">
-            <i class="fa fa-cloud-download"></i> <span class="btn-name">{{_t('local_skins')}}</span>
-        </a>
-        <a class="btn btn-default" href="#customize/skinsonline" ng-class="routeMatch('/customize/skinsonline') ? 'active' : ''">
-            <i class="fa fa-globe"></i> <span class="btn-name">{{_t('online_skins')}}</span>
-        </a>
-         <a class="btn btn-default" href="#customize/icons" ng-class="routeMatch('/customize/icons') ? 'active' : ''">
-            <i class="fa fa-image"></i> <span class="btn-name">{{_t('custom_icons')}}</span>
-        </a>
+    <div class="btn-group btn-goup-tabs btn-tabs-2">
+        <button class="btn btn-default" title="{{_t('local')}}"  
+                ng-click="expandNavi('cstLocalDropDown', $event)" 
+                ng-switch="$location.path()"
+                ng-class="routeMatch('/customize/skinslocal') || routeMatch('/customize/iconslocal') ? 'active' : ''">
+                <span ng-switch-when="/customize/skinslocal"> <i class="fa fa-file-code-o"></i> <span class="btn-name">{{_t('local_skins')}}</span></span>
+                 <span ng-switch-when="/customize/iconslocal"> <i class="fa fa-file-image-o"></i> <span class="btn-name">{{_t('local_icons')}}</span></span>
+                <span ng-switch-default> <i class="fa fa-cloud-download"></i> <span class="btn-name">{{_t('local')}}</span></span>
+           
+        </button>
+         <div class="app-dropdown dropdown-50 app-dropdown-left" ng-if="naviExpanded['cstLocalDropDown']">
+            <ul>
+                <li>
+                    <a ng-href="#customize/skinslocal"> <i class="fa fa-file-code-o"></i> <span ng-bind="_t('skins')"></span></a>
+                </li>
+                <li>
+                    <a ng-href="#customize/iconslocal"><i class="fa fa-file-image-o"></i> <span ng-bind="_t('icons')"></span></a>
+                </li>
+
+            </ul>
+        </div>
+         <!--<a class="btn btn-default" href="#customize/icons" title="{{_t('icons')}}" ng-class="routeMatch('/customize/icons') ? 'active' : ''">
+            <i class="fa fa-image"></i> <span class="btn-name">{{_t('icons')}}</span>
+        </a>-->
+        <button class="btn btn-default" title="{{_t('online')}}" 
+                ng-click="expandNavi('cstOnlineDropDown', $event)"
+                ng-switch="$location.path()"
+                ng-class="routeMatch('/customize/skinsonline') || routeMatch('/customize/iconsonline') ? 'active' : ''">
+            
+                <span ng-switch-when="/customize/skinsonline"> <i class="fa fa-file-code-o"></i> <span class="btn-name">{{_t('online_skins')}}</span></span>
+                 <span ng-switch-when="/customize/iconsonline"> <i class="fa fa-file-image-o"></i> <span class="btn-name">{{_t('online_icons')}}</span></span>
+                <span ng-switch-default> <i class="fa fa-globe"></i> <span class="btn-name">{{_t('online')}}</span></span>
+        </button>
+          <div class="app-dropdown dropdown-50" ng-if="naviExpanded['cstOnlineDropDown']">
+            <ul>
+                <li>
+                    <a ng-href="#customize/skinsonline"> <i class="fa fa-file-code-o"></i> <span ng-bind="_t('skins')"></span></a>
+                </li>
+                <li>
+                    <a ng-href="#customize/iconsonline"><i class="fa fa-file-image-o"></i> <span ng-bind="_t('icons')"></span></a>
+                </li>
+
+            </ul>
+        </div>
     </div>
+   
 </div>

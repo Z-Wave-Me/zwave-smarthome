@@ -169,8 +169,14 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                      roles: cfg.role_access.skins_online
                 }).
                   //Custom icons
-                when('/customize/icons', {
-                    templateUrl: 'app/views/customize/custom_icons.html',
+                when('/customize/iconslocal', {
+                    templateUrl: 'app/views/customize/icons_local.html',
+                    requireLogin: true,
+                     roles: cfg.role_access.skins_online
+                }).
+                //Online icons
+                when('/customize/iconsonline', {
+                    templateUrl: 'app/views/customize/icons_online.html',
                     requireLogin: true,
                      roles: cfg.role_access.skins_online
                 }).
