@@ -47,9 +47,6 @@ myAppController.controller('RoomController', function ($scope, $q, $cookies, $fi
             // Success - locations
             if (locations.state === 'fulfilled') {
                 $scope.rooms.all = dataService.getRooms(locations.value.data.data).value();
-                if (_.size($scope.rooms.all) < 2) {
-                    alertify.alertWarning($scope._t('no_rooms'));
-                }
             }
             // Success - devices
             if (devices.state === 'fulfilled') {
@@ -291,7 +288,7 @@ myAppController.controller('RoomConfigIdController', function ($scope, $routePar
             $scope.devicesAssigned = [];
             var devices = dataService.getDevicesData(response.data.data.devices).value();
             _.filter(devices, function (v) {
-                if (v.location == locationId) {
+                if (locationId > 0 && v.location === locationId) {
                     $scope.devicesAssigned.push(v.id);
                 }
                 if (v.location == 0 || v.location == locationId) {
