@@ -356,6 +356,11 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
   );
 
 
+  $templateCache.put('app/views/jamesbox/update.html',
+    "<div ng-controller=JbUpdateController><bb-loader></bb-loader><div id=jamesBoxModal class=appmodal ng-if=jamesbox.show><div class=appmodal-in><div class=appmodal-header><h3>{{_t('jamesbox_software_upgrade')}}</h3></div><div class=appmodal-body><div>{{_t('jamesbox_current_firmware',{__currentfw__: jamesbox.version,__newfw__:jamesbox.versionNew})}}</div><div class=\"alert alert-warning\"><i class=\"fa fa-exclamation-circle\" aria-hidden=true></i> {{_t('jamesbox_update_info')}}</div><div class=text-center><button class=\"btn btn-submit btn-lg\" title=\"{{_t('update_now')}}\" ng-click=firmwareUpdate()><i class=\"fa fa-check\"></i> {{_t('update_now')}}</button></div></div><div class=appmodal-footer><a ng-href=#dashboard class=\"btn btn-default\" title=\"{{_t('jamesbox_not_update')}}\"><span class=btn-name>{{_t('jamesbox_not_update')}}</span> <i class=\"fa fa-arrow-right\"></i></a></div></div></div></div>"
+  );
+
+
   $templateCache.put('app/views/management/management.html',
     "<div ng-controller=ManagementController class=mobile-padding><div class=accordion-entry ng-include=\"'app/views/management/management_user.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_remote.html'\"></div><div class=accordion-entry ng-if=\"controllerInfo.uuid && !isMobile\" ng-hide=\"cfg.app_type === 'popp' || cfg.app_type === 'jb'\" ng-include=\"'app/views/management/management_licence.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_backup.html'\" ng-if=!isMobile></div><div class=accordion-entry ng-include=\"'app/views/management/management_restore.html'\" ng-if=!isMobile></div><div class=accordion-entry ng-include=\"'app/views/management/management_factory.html'\"></div><div class=accordion-entry ng-if=!isMobile ng-hide=\"cfg.app_type === 'wd' || cfg.app_type === 'jb'\" ng-include=\"'app/views/management/management_firmware.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_appstore.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_report.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_info.html'\"></div></div>"
   );

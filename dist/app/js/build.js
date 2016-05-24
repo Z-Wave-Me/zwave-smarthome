@@ -11033,6 +11033,10 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                 when('/passwordforgot/reset/:token?', {
                     templateUrl: 'app/views/auth/password_reset.html'
                 }).
+                //Jamesbox update
+                when('/jamesbox/update', {
+                    templateUrl: 'app/views/jamesbox/update.html'
+                }).
                 //Login
                 when('/logout', {
                     templateUrl: 'app/views/auth/logout.html',
@@ -11497,6 +11501,11 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
   $templateCache.put('app/views/include.html',
     "<h2>Without Track-By</h2><ul><li ng-repeat=\"friend in friendsOne\" bn-log-dom-creation=Without>{{ friend.id }} &mdash; {{ friend.name }}</li></ul><h2>With Track-By</h2><ul><li ng-repeat=\"friend in friendsTwo track by friend.id\" bn-log-dom-creation=With>{{ friend.id }} &mdash; {{ friend.name }}</li></ul>"
+  );
+
+
+  $templateCache.put('app/views/jamesbox/update.html',
+    "<div ng-controller=JbUpdateController><bb-loader></bb-loader><div id=jamesBoxModal class=appmodal ng-if=jamesbox.show><div class=appmodal-in><div class=appmodal-header><h3>{{_t('jamesbox_software_upgrade')}}</h3></div><div class=appmodal-body><div>{{_t('jamesbox_current_firmware',{__currentfw__: jamesbox.version,__newfw__:jamesbox.versionNew})}}</div><div class=\"alert alert-warning\"><i class=\"fa fa-exclamation-circle\" aria-hidden=true></i> {{_t('jamesbox_update_info')}}</div><div class=text-center><button class=\"btn btn-submit btn-lg\" title=\"{{_t('update_now')}}\" ng-click=firmwareUpdate()><i class=\"fa fa-check\"></i> {{_t('update_now')}}</button></div></div><div class=appmodal-footer><a ng-href=#dashboard class=\"btn btn-default\" title=\"{{_t('jamesbox_not_update')}}\"><span class=btn-name>{{_t('jamesbox_not_update')}}</span> <i class=\"fa fa-arrow-right\"></i></a></div></div></div></div>"
   );
 
 
@@ -14883,6 +14892,96 @@ myAppController.controller('404Controller', function($scope, cfg) {
 });
 
 
+/**
+ * @overview Controllers that handle the JamesBox actions.
+ * @author Martin Vach
+ */
+
+/**
+ * Load required http requests an update JamesBox record in the database.
+ * @class JbUpdateController
+ */
+myAppController.controller('JbUpdateController', function ($scope, $q, $location, cfg, dataFactory, _) {
+    $scope.jamesbox = {
+        show: false,
+        rule_id: '',
+        uuid: '',
+        version: '',
+        versionNew: ''
+    };
+    /**
+     * Load all promises
+     */
+    $scope.allSettled = function () {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        var promises = [
+            dataFactory.loadZwaveApiData()
+        ];
+
+        $q.allSettled(promises).then(function (response) {
+            var zwave = response[0];
+            $scope.loading = false;
+            // Error message
+            if (zwave.state === 'rejected') {
+                alertify.alertError($scope._t('error_load_data'));
+            }
+
+            // Success - zwave controller
+            if (zwave.state === 'fulfilled') {
+                $scope.jamesbox.uuid = zwave.value.controller.data.uuid.value;
+                $scope.jamesbox.version = zwave.value.controller.data.softwareRevisionVersion.value;
+                $scope.jamesBoxRequest();
+            }
+        });
+    };
+    $scope.allSettled();
+
+    /**
+     * Load JamesBox data
+     */
+    $scope.jamesBoxRequest = function () {
+        $scope.loading = false;
+        dataFactory.postToRemote(cfg.api_remote['jamesbox_request'], $scope.jamesbox).then(function (response) {
+            if (!_.isEmpty(response.data)) {
+                $scope.jamesbox.versionNew = response.data.firmware_version;
+                $scope.jamesbox.rule_id = response.data.rule_id;
+                $scope.jamesbox.show = true; 
+            }else{
+               alertify.alertError($scope._t('no_update_available'));
+            }
+        }, function (error) { });
+    }
+    ;
+
+   
+
+    /**
+     * Update JamesBox record
+     */
+    $scope.firmwareUpdate = function () {
+        var input = {
+            uuid: $scope.jamesbox.uuid,
+            rule_id: $scope.jamesbox.rule_id
+        };
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        dataFactory.postToRemote(cfg.api_remote['jamesbox_update'], input).then(function (response) {
+            $scope.loading = false;
+            alertify.alertWarning($scope._t('jamesbox_autoupgrade', {__newfw__: $scope.jamesbox.versionNew}))
+                    .set('onok', function (closeEvent) {
+                        alertify.dismissAll();
+                        $location.path("/dashboard");
+                    });
+        }, function (error) {
+            var message = $scope._t('error_update_data');
+            if(error.status === 409){
+                message = $scope._t('jamesbox_update_exists');
+            }
+            alertify.alertError($scope._t(message));
+            $scope.loading = false;
+        });
+    };
+
+});
 /**
  * @overview Controllers that handle the list of elements, as well as an element detail.
  * @author Martin Vach
@@ -21193,12 +21292,16 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
  * This is the Auth root controller
  * @class AuthController
  */
-myAppController.controller('AuthController', function ($scope, $routeParams, $cookies, $window, dataFactory, dataService) {
+myAppController.controller('AuthController', function ($scope, $routeParams, $location,$cookies, $window, $q, cfg, dataFactory, dataService, _) {
     $scope.auth = {
         remoteId: null,
         firstaccess: false,
         defaultProfile: false,
         fromexpert: $routeParams.fromexpert
+    };
+    $scope.jamesbox = {
+        first_start_up: '',
+        count_of_reconnects: 0
     };
 
     if (dataService.getUser()) {
@@ -21208,37 +21311,38 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $co
     }
 
     $scope.loginLang = (angular.isDefined($cookies.lang)) ? $cookies.lang : false;
-    $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-
     /**
-     * Get remote id
+     * Load all promises
      */
-    $scope.getRemoteId = function () {
-        dataFactory.getApi('remote_id').then(function (response) {
-            if (response.data.data.remote_id && response.data.data.remote_id !== '') {
-                $scope.auth.remoteId = response.data.data.remote_id;
+    $scope.allSettled = function () {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        var promises = [
+            dataFactory.getApi('remote_id'),
+            dataFactory.getApi('firstaccess')
+        ];
+
+        $q.allSettled(promises).then(function (response) {
+            var remoteId = response[0];
+            var firstAccess = response[1];
+            $scope.loading = false;
+            // Error message
+            if (firstAccess.state === 'rejected') {
+                alertify.alertError($scope._t('error_load_data'));
+            }
+
+            // Success - remote ID
+            if (remoteId.state === 'fulfilled') {
+                $scope.auth.remoteId = remoteId.value.data.data.remote_id;
+            }
+
+            // Success - first access
+            if (firstAccess.state === 'fulfilled') {
+                $scope.auth.firstaccess = firstAccess.value.data.data.firstaccess;
+                $scope.auth.defaultProfile = firstAccess.value.data.data.defaultProfile;
             }
         });
     };
-    $scope.getRemoteId();
-
-    /**
-     * Get first access
-     */
-    $scope.getFirstAccess = function () {
-
-        dataFactory.getApi('firstaccess').then(function (response) {
-            $scope.auth.firstaccess = response.data.data.firstaccess;
-            $scope.auth.defaultProfile = response.data.data.defaultProfile;
-            $scope.loading = false;
-        }, function (error) {
-            $scope.loading = false;
-            alertify.alertError($scope._t('error_load_data'));
-
-        });
-
-    };
-    $scope.getFirstAccess();
+    $scope.allSettled();
 
     /**
      * Login language
@@ -21258,7 +21362,7 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $co
         }
         dataService.setZWAYSession(user.sid);
         dataService.setUser(user);
-        dataFactory.putApi('profiles', user.id, user).then(function(response) {}, function(error) {});
+        dataFactory.putApi('profiles', user.id, user).then(function (response) {}, function (error) {});
         if (rememberme) {
             dataService.setRememberMe(rememberme);
         }
@@ -21275,8 +21379,63 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $co
             window.location.href = $scope.cfg.expert_url;
             return;
         }
-        window.location = location;
-        $window.location.reload();
+        if (cfg.app_type === 'jb' && user.role === 1) {
+            getZwaveApiData();
+        } else {
+            window.location = location;
+            $window.location.reload();
+        }
+    };
+
+    /// --- Private functions --- ///
+    /**
+     * Gez zwave api data
+     */
+    function getZwaveApiData() {
+        var location = '#/dashboard';
+        dataFactory.loadZwaveApiData().then(function (response) {
+            var input = {
+                uuid: response.controller.data.uuid.value
+            };
+            jamesBoxRequest(input);
+        }, function (error) {
+            window.location = location;
+            $window.location.reload();
+        });
+    }
+    ;
+    
+     /**
+     * Get and update system info
+     */
+    function jamesBoxSystemInfo(uuid) {
+        dataFactory.getApi('system_info', null, true).then(function (response) {
+            var input = {
+                uuid: uuid,
+                first_start_up: response.data.data.first_start_up,
+                count_of_reconnects: response.data.data.count_of_reconnects
+            };
+            dataFactory.postToRemote(cfg.api_remote['jamesbox_updateinfo'], input).then(function (response) {}, function (error) {});
+        }, function (error) {});
+    }
+    ;
+
+    /**
+     * JamesBox request
+     */
+    function jamesBoxRequest(input) {
+        var location = '#/dashboard';
+        jamesBoxSystemInfo(input.uuid);
+        dataFactory.postToRemote(cfg.api_remote['jamesbox_request'], input).then(function (response) {
+           if (!_.isEmpty(response.data)) {
+                location = '#/jamesbox/update';
+            }
+            window.location = location;
+            $window.location.reload();
+        }, function (error) {
+            window.location = location;
+            $window.location.reload();
+        });
     };
 
 

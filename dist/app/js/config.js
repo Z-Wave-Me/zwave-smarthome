@@ -41,6 +41,14 @@ var config_data = {
             // Translations
             t: {}
         },
+        // Zwave - will be extended
+        'zwave': {
+                remoteId: null,
+                uuid: null,
+                softwareRevisionVersion: null,
+                capabillities: null,
+                scratchId: null
+            },
         'history_cache_interval': 300000,
         // Default auth credentials
         'default_credentials': {
@@ -77,7 +85,21 @@ var config_data = {
             'firstaccess': 'ZAutomation/api/v1/system/first-access',
             'factory_default': 'ZAutomation/api/v1/resetToFactoryDefault',
             'postfix': 'ZWaveAPI/Postfix',
-            'timezone': 'ZAutomation/api/v1/system/time/get'
+            'timezone': 'ZAutomation/api/v1/system/time/get',
+            'jb_update': 'ZAutomation/api/v1/system/time/get',
+            'system_info': 'ZAutomation/api/v1/system/info'
+        },
+        // List of remote api URLs
+        'api_remote': {
+            // JamesBox request
+            //'jamesbox_request': 'http://dev.dev/jamesbox/zbu_ui_handling.php?action=request',
+            'jamesbox_request': 'http://razberry.z-wave.me/zbu_ui_handling.php?action=request',
+             // JamesBox update
+             //'jamesbox_update': 'http://dev.dev/jamesbox/zbu_ui_handling.php?action=update',
+            'jamesbox_update': 'http://razberry.z-wave.me/zbu_ui_handling.php?action=update',
+            // JamesBox update info
+             //'jamesbox_updateinfo': 'http://dev.dev/jamesbox/zbu_ui_handling.php?action=updateinfo',
+            'jamesbox_updateinfo': 'http://razberry.z-wave.me/zbu_ui_handling.php?action=updateinfo'
         },
         // Skin
         'skin': {
@@ -287,7 +309,7 @@ var config_data = {
         'page_results_events': 50,
         // ---------------------------------- Custom config for specifics app_type ---------------------------------- //
         // Application type : default/popp/wd
-        'app_type': 'default',
+        'app_type': 'jb',
         // Config
         'custom_cfg': {
             'default': {
@@ -352,9 +374,8 @@ var config_data = {
             },
              'jb': {
                 'logo': 'app-logo-popp.png',
-                'hidden_apps': [
+                hidden_apps: [
                     'Cron',
-                    'CodeDevice',
                     'BatteryPolling',
                     'CustomUserCode',
                     'CustomUserCodeLoader',
@@ -366,6 +387,7 @@ var config_data = {
                     'SensorValueLogging',
                     'SensorsPollingLogging',
                     'YandexProbki',
+                    'CodeDevice',
                     'InfoWidget',
                     'SensorsPolling',
                     'SwitchControlGenerator',

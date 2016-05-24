@@ -23,6 +23,7 @@ name | overview
 [app\controllers\element.js](app/controllers/element.md) | _Controllers that handle the list of elements, as well as an element detail._
 [app\controllers\enocean.js](app/controllers/enocean.md) | _Controllers that handle EnOcean Services._
 [app\controllers\event.js](app/controllers/event.md) | _Handles all events._
+[app\controllers\jamesbox.js](app/controllers/jamesbox.md) | _Controllers that handle the JamesBox actions._
 [app\controllers\management.js](app/controllers/management.md) | _Controllers that handle management actions._
 [app\controllers\mysettings.js](app/controllers/mysettings.md) | _Handles user actions._
 [app\controllers\room.js](app/controllers/room.md) | _Controllers that handle room actions._

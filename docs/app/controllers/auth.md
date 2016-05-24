@@ -20,14 +20,9 @@
 ## AuthController
 This is the Auth root controller
 
-### AuthController.getRemoteId() 
+### AuthController.allSettled() 
 
-Get remote id
-
-
-### AuthController.getFirstAccess() 
-
-Get first access
+Load all promises
 
 
 ### AuthController.setLoginLang() 
@@ -43,6 +38,21 @@ Login with selected data from server response
 ### AuthController.redirectAfterLogin() 
 
 Redirect
+
+
+### AuthController.getZwaveApiData() 
+
+Gez zwave api data
+
+
+### AuthController.jamesBoxSystemInfo() 
+
+Get and update system info
+
+
+### AuthController.jamesBoxRequest() 
+
+JamesBox request
 
 
 
