@@ -86,6 +86,11 @@ body {
     width: $room-img-preview;
     height:$room-img-preview;
 }
+.customize-preview-img{
+    width: $customize-img;
+     max-width: $customize-img;
+    max-height: $customize-img/2;
+}
 
 /* Input
 -------------------------------------------------- */
@@ -263,16 +268,24 @@ input[type=radio] {
     }
 }
 
-/* Apps
+/* Customize
 -------------------------------------------------- */
-.widget-entry-skin{
+.widget-entry-customize{
     .widget-entry-in{
         min-height: 1px;
-        height: $skin-widget-col-h;
-        .widget-footer{
+        height: $customize-widget-col-h;
+        text-align: center;
+        .widget-img{
+           position:static;
+
+        }
+        .widget-content{
             margin: $spacing 0 0 0;
 
         }
+        .widget-footer{
+            margin: $spacing 0 0 0;
+          }
     }
 }
 /* App detail

@@ -65,10 +65,11 @@ $navi-img: 32px;
 $report-img: 60px;
 $widget-img: 64px;
 $app-detail-img:128px;
-$skin-img: 120px;
 $element-icon-img: 48px;
-$skin-detail-img: 300px;
+$customize-img: 120px;
+$customize-detail-img: 300px;
 $include-detail-img:128px;
+$customize-icon-preview-img:64px;
 $product-img: 64px;
 $vendor-img: 80px;
 $room-img-upload: 70px;
@@ -89,8 +90,9 @@ $element-widget-col-h: 150px;
 //Apps
 $app-widget-col-h: 120px;
 
-//Skins
-$skin-widget-col-h: 120px;
+//Customize
+$customize-widget-col-h: 120px;
+$customize-icon-preview-h: 300px;
 
 //Room
 $room-col-w: 50%;
@@ -327,8 +329,8 @@ $element-widget-btn-on-color: lighten($widget-color, 40%);
 $element-widget-img-update-border-color: $app-border-color;
 $element-widget-isnew-border-color: lighten($app-brand-success,20%);
 
-// Skin
-$skin-border-color: $app-border-color;
+// Customiz
+$customize-border-color: $app-border-color;
 // Room
 $room-border-color: $app-border-color;
 

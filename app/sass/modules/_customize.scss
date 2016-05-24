@@ -1,12 +1,12 @@
-/* Apps
+/* Customize
 -------------------------------------------------- */
-.widget-entry-skin{
+.widget-entry-customize{
     .widget-entry-in{
-        min-height: $skin-widget-col-h;
+        min-height: $customize-widget-col-h;
         height: auto;
         .widget-img{
             //position: absolute;
-            top: 0;
+            top: $spacing;
             left: 0;
 
         }
@@ -14,7 +14,7 @@
             display: none;
         }
         .widget-content{
-            margin: $spacing-double 0 0 $skin-img + $spacing;
+            margin: $spacing-double 0 0 $customize-img + $spacing;
         }
         .bottom-aligner{
             display: none;
@@ -35,7 +35,8 @@
         }
     }
 }
-#skins_local,#skins_online{
+
+.app-row-customize{
     .widget-warning{
         .widget-img{
             opacity: 0.4;
@@ -44,17 +45,26 @@
         }
         .widget-title{
             h3{
-              color: lighten($widget-heading-color,40%) !important;
+                color: lighten($widget-heading-color,40%) !important;
             }
         }
     }
 }
 
-/* Skin detail
+/* Customize detail
 -------------------------------------------------- */
-.skin-detail-img{
+.customize-detail-img{
     text-align: center;
 }
-.skin-detail-perex{
+.customize-detail-perex{
     margin: $spacing 0;
+}
+.customize-icon-list{
+    border-top: solid 1px $modal-border-color;
+    height: $customize-icon-preview-h;
+    overflow: scroll;
+    .customize-icon-preview {
+        display: inline-block;
+        margin: 10px;
+    }
 }

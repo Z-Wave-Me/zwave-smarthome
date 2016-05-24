@@ -216,6 +216,24 @@ myAppController.controller('OnlineIconController', function ($scope, $filter, $t
         $scope.loading = false;
     });
     
+    /**
+     * Download an icon set
+     * @param {object} icon
+     * @returns {undefined}
+     */
+    $scope.downloadIconSet = function (icon) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
+        dataFactory.getApiLocal('icons_online.json').then(function (response) {
+            $timeout(function () {
+                $scope.loading = false;
+                dataService.showNotifier({message: $scope._t('success_file_download')});
+            }, 2000);
+        }, function (error) {
+            $scope.loading = false;
+            alertify.alertError($scope._t('error_file_download'));
+        });
+    };
+    
     /// --- Private functions --- ///
     
      /**
