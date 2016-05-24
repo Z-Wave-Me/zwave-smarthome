@@ -471,7 +471,7 @@ myAppController.controller('ManagementFirmwareController', function ($scope, $sc
         });
     };
     /**
-     * Load razberry latest version
+     * Load latest version
      */
     $scope.loadRazLatest = function () {
         dataFactory.getRemoteData($scope.cfg.raz_latest_version_url).then(function (response) {
