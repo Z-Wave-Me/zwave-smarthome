@@ -25,7 +25,7 @@
     "app_average_scored": "Bewertung im Durchschnitt",
     "error_missing_licence": "Fehlende Lizenz.",
     "info_missing_licence": "Bitte geben Sie Ihre Lizenz ein oder kaufen Sie eine wenn Sie für dieses Gerät noch keine besitzen.",
-    "how_to_resolve_zwave_errors": "Bitte überprüfen Sie <br/> 1.) ob der Controller (UZB, RaZberry,..) korrekt angeschlossen ist, <br/> 2.) in der App 'Z-Wave Netzwerksteuerung' der richtige Port gesetzt ist <br/>(UZB: '/dev/ttyACM0', RaZberry: '/dev/ttyAMA0', UZB-Windows: '\\\\\\\\.\\\\COM3', Z-Stick: '/dev/ttyUSB0', embedded boxes: '/dev/ttyS0' or '/dev/ttyS1') <br/> 3.) die App aktiv ist. Falls nicht können Sie diese unter Menü > Anwendungen > Aktiv aktivieren bzw. unter Menü > Anwendungen > Lokal neu hinzufügen. <br/>Dazu muss unter Menü > Meine Einstellungen die Expertenansicht aktiviert sein.",
+    "how_to_resolve_zwave_errors": "Bitte überprüfen Sie <br/> 1.) ob der Controller korrekt angeschlossen ist, <br/> 2.) in der App 'Z-Wave Netzwerksteuerung' der richtige Port gesetzt ist <br/>(UZB: '/dev/ttyACM0', Box: '/dev/ttyAMA0', UZB-Windows: '\\\\\\\\.\\\\COM3', Z-Stick: '/dev/ttyUSB0', embedded boxes: '/dev/ttyS0' or '/dev/ttyS1') <br/> 3.) die App aktiv ist. Falls nicht können Sie diese unter Menü > Anwendungen > Aktiv aktivieren bzw. unter Menü > Anwendungen > Lokal neu hinzufügen. <br/>Dazu muss unter Menü > Meine Einstellungen die Expertenansicht aktiviert sein.",
     "war_dependency_module_add": "Bitte fügen Sie folgende App hinzu",
     "war_dependency_module_activate": "Bitte aktivieren Sie",
     "war_dependency_module_install": "Bitte installieren Sie",

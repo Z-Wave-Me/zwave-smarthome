@@ -46,7 +46,7 @@
     "app_average_scored": "The average number of points scored",
     "error_missing_licence": "Missing License.",
     "info_missing_licence": "Please apply your License or buy one if you dont have any license for this device.",
-    "how_to_resolve_zwave_errors": "Please check <br/>1.) if the controller (UZB, RaZberry,..) is plugged in correctly, <br/>2.) that in the app 'Z-Wave Network Access' the right port is entered <br/>(UZB: '/dev/ttyACM0', RaZberry: '/dev/ttyAMA0', UZB-Windows: '\\\\\\\\.\\\\COM3', Z-Stick: '/dev/ttyUSB0', embedded boxes: '/dev/ttyS0' or '/dev/ttyS1') <br/>3.) the app is aktiv. If not you could activate it under Menu > Apps > Activ or add a new one under Menu > Apps > Local. <br/>The Setting 'Expert View' needs to be active under Menu > My Settings.",
+    "how_to_resolve_zwave_errors": "Please check <br/>1.) if the controller is plugged in correctly, <br/>2.) that in the app 'Z-Wave Network Access' the right port is entered <br/>(UZB: '/dev/ttyACM0', Box: '/dev/ttyAMA0', UZB-Windows: '\\\\\\\\.\\\\COM3', Z-Stick: '/dev/ttyUSB0', embedded boxes: '/dev/ttyS0' or '/dev/ttyS1') <br/>3.) the app is aktiv. If not you could activate it under Menu > Apps > Activ or add a new one under Menu > Apps > Local. <br/>The Setting 'Expert View' needs to be active under Menu > My Settings.",
     "war_dependency_module_add": "Please add APP for",
     "war_dependency_module_activate": "Please activate",
     "war_dependency_module_install": "Please install",
