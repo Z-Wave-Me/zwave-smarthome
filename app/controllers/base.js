@@ -35,6 +35,20 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
      
      };
      $scope.setSkin();*/
+
+
+    /**
+     * Check if route match the pattern.
+     * @param {string} path
+     * @returns {Boolean}
+     */
+    $scope.routeMatch = function (path) {
+        if ($route.current && $route.current.regexp) {
+            return $route.current.regexp.test(path);
+        }
+        return false;
+    };
+
     /**
      * Reset a fatal error.
      * @param {object} obj
@@ -57,9 +71,22 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
             var refresh = function () {
                 dataFactory.getApi('timezone', null, true).then(function (response) {
                     angular.extend(cfg.route.time, {string: $filter('getCurrentTime')(response.data.data.localTimeUT)});
-
                 }, function (error) {
-                    $interval.cancel($scope.timeZoneInterval);
+                    if (!error.status || error.status === 0) {
+                        var fatalArray = {
+                            message: $scope._t('connection_refused'),
+                            info: $scope._t('connection_refused_info'),
+                            permanent: true,
+                            hide: true
+                        };
+                        if ($scope.routeMatch('/jamesbox/update')) {
+                            fatalArray.message = $scope._t('jamesbox_connection_refused');
+                            fatalArray.info = $scope._t('jamesbox_connection_refused_info');
+                            fatalArray.icon = cfg.route.fatalError.icon_jamesbox;
+                        }
+                        angular.extend(cfg.route.fatalError, fatalArray);
+                    }
+                    //$interval.cancel($scope.timeZoneInterval);
                 });
             };
             $scope.timeZoneInterval = $interval(refresh, $scope.cfg.interval);
@@ -80,7 +107,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
 
     };
     $scope.setPollInterval();
-    
+
     /**
      * Allow to access page elements by role.
      * 
@@ -103,7 +130,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         return true;
     };
 
-   
+
     $scope.lang_list = cfg.lang_list;
     /**
      * Get a language key from the cookie or set a default language.
@@ -138,13 +165,13 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
      * @param {type} replacement
      * @returns {unresolved}
      */
-    $scope._t = function (key,replacement) {
-       return dataService.getLangLine(key, $scope.languages,replacement);
+    $scope._t = function (key, replacement) {
+        return dataService.getLangLine(key, $scope.languages, replacement);
     };
 
-   /**
-    * Watch for lang changes
-    */
+    /**
+     * Watch for lang changes
+     */
     $scope.$watch('lang', function () {
         $scope.loadLang($scope.lang);
     });
@@ -158,24 +185,11 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         $scope.predicate = field;
         $scope.reverse = !$scope.reverse;
     };
-    
+
     /**
-     * Check if route match the pattern.
-     * @param {string} path
-     * @returns {Boolean}
+     * Get body ID
+     * @returns {String}
      */
-    $scope.routeMatch = function (path) {
-        if ($route.current && $route.current.regexp) {
-            return $route.current.regexp.test(path);
-        }
-        return false;
-    };
-
-
-   /**
-    * Get body ID
-    * @returns {String}
-    */
     $scope.getBodyId = function () {
         var path = $location.path().split('/');
         return path[1] || 'login';
@@ -183,7 +197,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     };
     // Mobile detect
     $scope.isMobile = dataService.isMobile(navigator.userAgent || navigator.vendor || window.opera);
-    
+
     /**
      * Check if the route match the given param and set active class in the element.
      * @param {string} route
@@ -201,7 +215,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         myCache.removeAll();
         $route.reload();
     };
-    
+
     /**
      * Redirect to given url
      * @param {string} url

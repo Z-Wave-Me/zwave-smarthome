@@ -32,7 +32,9 @@ var config_data = {
                 message: false,
                 info: false,
                 permanent: false, // Permanently displayed
-                hide: false // Hide page content
+                hide: false, // Hide page content
+                icon: 'fa-exclamation-triangle',
+                icon_jamesbox: 'fa-spinner fa-spin'
             },
             // App lang
             lang: 'en',

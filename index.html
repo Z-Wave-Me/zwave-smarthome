@@ -144,7 +144,12 @@
         </div><!-- /#header --> 
         <!-- Ang Content Container -->
         <div id="main_content" class="container">
-            <div ng-if="cfg.route.fatalError.message" ng-include="'app/views/error.html'"></div>
+            <div ng-if="cfg.route.fatalError.message">
+                <div class="app-fatal-error">
+                    <div class="fatal-error-message"><i class="fa {{cfg.route.fatalError.icon}} fa-lg"></i> {{cfg.route.fatalError.message}}</div>
+                    <div class="fatal-error-info" ng-if="cfg.route.fatalError.info" ng-bind-html="cfg.route.fatalError.info|toTrusted"></div>
+                </div>
+            </div>
             <div id="view_content" ng-hide="cfg.route.fatalError.hide" ng-view></div>
         </div>
         <div class="clearfix"></div>

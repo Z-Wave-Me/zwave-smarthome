@@ -1810,61 +1810,55 @@ a:focus {
   margin: 0 0 20px 0;
   background-color: #FFFFFF;
   border: solid 1px #d9534f;
-  position: relative;
 }
-/* line 99, ../sass/common/_body.scss */
-.app-fatal-error .fatal-error-img {
-  position: absolute;
-  top: 15px;
-  left: 10px;
-}
-/* line 105, ../sass/common/_body.scss */
+/* line 98, ../sass/common/_body.scss */
 .app-fatal-error .fatal-error-message {
   color: #d9534f;
   font-weight: bold;
   font-size: 120%;
 }
-/* line 110, ../sass/common/_body.scss */
+/* line 103, ../sass/common/_body.scss */
 .app-fatal-error .fatal-error-info {
+  margin: 10px 0 0 0;
   color: #000000;
   font-size: 105%;
 }
 
 /* Others
 -------------------------------------------------- */
-/* line 118, ../sass/common/_body.scss */
+/* line 112, ../sass/common/_body.scss */
 .timestamp {
   color: #333333;
   font-size: 17px;
 }
-/* line 121, ../sass/common/_body.scss */
+/* line 115, ../sass/common/_body.scss */
 .timestamp .fa {
   font-size: 110%;
 }
 
-/* line 125, ../sass/common/_body.scss */
+/* line 119, ../sass/common/_body.scss */
 .bcg-active.false, .bcg-danger {
   background-color: #f2dede;
 }
 
-/* line 129, ../sass/common/_body.scss */
+/* line 123, ../sass/common/_body.scss */
 .clickable {
   cursor: pointer;
 }
 
-/* line 133, ../sass/common/_body.scss */
+/* line 127, ../sass/common/_body.scss */
 .text-supp {
   font-style: italic;
   color: #595959;
 }
 
-/* line 138, ../sass/common/_body.scss */
+/* line 132, ../sass/common/_body.scss */
 .badge {
   padding: 5px;
   margin-right: 5px;
 }
 
-/* line 142, ../sass/common/_body.scss */
+/* line 136, ../sass/common/_body.scss */
 .help-text {
   display: block;
   font-size: 95%;
@@ -1872,17 +1866,17 @@ a:focus {
   margin: 5px 0;
 }
 
-/* line 148, ../sass/common/_body.scss */
+/* line 142, ../sass/common/_body.scss */
 .help-text.inline {
   display: inline;
 }
 
-/* line 152, ../sass/common/_body.scss */
+/* line 146, ../sass/common/_body.scss */
 .display-block {
   display: block;
 }
 
-/* line 155, ../sass/common/_body.scss */
+/* line 149, ../sass/common/_body.scss */
 .badge-number {
   background-color: #a6a6a6;
   color: #FFFFFF;

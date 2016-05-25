@@ -9,11 +9,13 @@
  */
 myAppController.controller('JbUpdateController', function ($scope, $q, $location, cfg, dataFactory, _) {
     $scope.jamesbox = {
-        show: false,
+        showConfirm: false,
+        showUpdate: false,
         rule_id: '',
         uuid: '',
         version: '',
-        versionNew: ''
+        versionNew: '',
+        interval: null
     };
     /**
      * Load all promises
@@ -47,19 +49,21 @@ myAppController.controller('JbUpdateController', function ($scope, $q, $location
      */
     $scope.jamesBoxRequest = function () {
         $scope.loading = false;
+        // REMOVE
         dataFactory.postToRemote(cfg.api_remote['jamesbox_request'], $scope.jamesbox).then(function (response) {
             if (!_.isEmpty(response.data)) {
                 $scope.jamesbox.versionNew = response.data.firmware_version;
                 $scope.jamesbox.rule_id = response.data.rule_id;
-                $scope.jamesbox.show = true; 
-            }else{
-               alertify.alertError($scope._t('no_update_available'));
+                $scope.jamesbox.showConfirm = true;
+            } else {
+                alertify.alertError($scope._t('no_update_available')).set('onok', function(closeEvent){ 
+                     alertify.dismissAll();
+                     $location.path("/dashboard");
+                });
             }
         }, function (error) { });
     }
     ;
-
-   
 
     /**
      * Update JamesBox record
@@ -72,14 +76,11 @@ myAppController.controller('JbUpdateController', function ($scope, $q, $location
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         dataFactory.postToRemote(cfg.api_remote['jamesbox_update'], input).then(function (response) {
             $scope.loading = false;
-            alertify.alertWarning($scope._t('jamesbox_autoupgrade', {__newfw__: $scope.jamesbox.versionNew}))
-                    .set('onok', function (closeEvent) {
-                        alertify.dismissAll();
-                        $location.path("/dashboard");
-                    });
+            $scope.jamesbox.showConfirm = false;
+            $scope.jamesbox.showUpdate = true;
         }, function (error) {
             var message = $scope._t('error_update_data');
-            if(error.status === 409){
+            if (error.status === 409) {
                 message = $scope._t('jamesbox_update_exists');
             }
             alertify.alertError($scope._t(message));
