@@ -281,7 +281,7 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     roles: cfg.role_access.config_rooms
                 }).
                 when('/config-rooms/:id', {
-                    templateUrl: 'app/views/rooms/config_rooms_edit.html',
+                    templateUrl: 'app/views/rooms/config_rooms_id.html',
                     requireLogin: true,
                     roles: cfg.role_access.config_rooms_id
                 }).
@@ -343,7 +343,7 @@ myApp.run(function ($rootScope, $location, dataService, cfg) {
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
         var user;
         // Reset fatal error messages
-        if (!cfg.route.fatalError.permanent) {
+        if (cfg.route.message && !cfg.route.fatalError.permanent) {
             angular.extend(cfg.route.fatalError, {
                 message: false,
                 info: false,

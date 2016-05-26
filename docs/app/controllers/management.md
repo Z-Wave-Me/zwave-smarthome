@@ -122,7 +122,7 @@ Set access
 
 ### ManagementFirmwareController.loadRazLatest() 
 
-Load razberry latest version
+Load latest version
 
 
 

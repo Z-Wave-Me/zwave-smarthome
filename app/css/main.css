@@ -2644,7 +2644,7 @@ img {
   width: 33.33333%;
 }
 
-/* Form
+/* Form 
 -------------------------------------------------- */
 /* line 3, ../sass/common/_form.scss */
 .form-control {
@@ -2743,31 +2743,46 @@ input[type=radio] {
 }
 
 /* line 81, ../sass/common/_form.scss */
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+/* line 90, ../sass/common/_form.scss */
+.inputfile + label {
+  cursor: pointer;
+}
+
+/* line 94, ../sass/common/_form.scss */
 fieldset, .fieldset {
   padding: 10px;
 }
 
-/* line 84, ../sass/common/_form.scss */
+/* line 97, ../sass/common/_form.scss */
 .isrequired {
   font-weight: bold !important;
 }
 
-/* line 88, ../sass/common/_form.scss */
+/* line 101, ../sass/common/_form.scss */
 .isrequired::before {
   content: "*";
 }
 
-/* line 92, ../sass/common/_form.scss */
+/* line 105, ../sass/common/_form.scss */
 .form-control-sm {
   width: 30% !important;
 }
 
-/* line 96, ../sass/common/_form.scss */
+/* line 109, ../sass/common/_form.scss */
 .form-control-md {
   width: 50% !important;
 }
 
-/* line 100, ../sass/common/_form.scss */
+/* line 113, ../sass/common/_form.scss */
 .submit-entry {
   text-align: right;
   display: block;
@@ -2775,23 +2790,23 @@ fieldset, .fieldset {
   border-top: solid 1px #e7e7e7;
 }
 
-/* line 108, ../sass/common/_form.scss */
+/* line 121, ../sass/common/_form.scss */
 fieldset.submit-entry {
   margin: 0 !important;
 }
 
-/* line 111, ../sass/common/_form.scss */
+/* line 124, ../sass/common/_form.scss */
 .form-control-hidden {
   display: none !important;
 }
 
-/* line 114, ../sass/common/_form.scss */
+/* line 127, ../sass/common/_form.scss */
 .form-control-img {
   cursor: pointer;
   border: solid 4px transparent;
 }
 
-/* line 119, ../sass/common/_form.scss */
+/* line 132, ../sass/common/_form.scss */
 .control-active {
   border: solid 4px black !important;
 }

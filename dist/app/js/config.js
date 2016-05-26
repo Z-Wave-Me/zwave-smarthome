@@ -32,7 +32,9 @@ var config_data = {
                 message: false,
                 info: false,
                 permanent: false, // Permanently displayed
-                hide: false // Hide page content
+                hide: false, // Hide page content
+                icon: 'fa-exclamation-triangle',
+                icon_jamesbox: 'fa-spinner fa-spin'
             },
             // App lang
             lang: 'en',
@@ -112,6 +114,21 @@ var config_data = {
             'icons': 'storage/img/icons/',
             'skin_screenshot': 'app/css/'
         },
+        // Upload settings
+        'upload': {
+            'room': {
+                size: 512000,//Bytes
+                type:['image/jpeg','image/gif'],
+                extension:['jpg','jpeg','gif'],
+                dimension:'200 x 200'//px
+            },
+            'icon': {
+                size: 30000,//Bytes
+                type:['image/png','image/jpeg','image/gif'],
+                extension:['png','jpg','jpeg','gif'],
+                dimension:'64 x 64'//px
+            }
+        },
         // Api url
         'expert_url': '/expert',
         // Api url
@@ -156,7 +173,7 @@ var config_data = {
         'get_licence_scratchid': 'https://hrix.net/shuiapi/licence/',
         // Url to get a license key
         'license_url': 'https://hrix.net/shuiapi/licence/upgrade.php',
-        // Razberry latest version
+        // Raz latest version
         'raz_latest_version_url': 'https://razberry.z-wave.me/z-way/razberry/latest/VERSION',
         // Find z-wave me box
         'find_zwaveme_zbox': 'https://find.z-wave.me/',

@@ -10997,7 +10997,7 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     roles: cfg.role_access.config_rooms
                 }).
                 when('/config-rooms/:id', {
-                    templateUrl: 'app/views/rooms/config_rooms_edit.html',
+                    templateUrl: 'app/views/rooms/config_rooms_id.html',
                     requireLogin: true,
                     roles: cfg.role_access.config_rooms_id
                 }).
@@ -11059,7 +11059,7 @@ myApp.run(function ($rootScope, $location, dataService, cfg) {
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
         var user;
         // Reset fatal error messages
-        if (!cfg.route.fatalError.permanent) {
+        if (cfg.route.message && !cfg.route.fatalError.permanent) {
             angular.extend(cfg.route.fatalError, {
                 message: false,
                 info: false,
@@ -11479,11 +11479,6 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
   );
 
 
-  $templateCache.put('app/views/error.html',
-    "<div class=app-fatal-error><img class=fatal-error-img ng-src={{cfg.img.icons}}fatal-error.png alt=\"{{v.type}}\"><div class=fatal-error-message>{{cfg.route.fatalError.message}}</div><div class=fatal-error-info ng-if=cfg.route.fatalError.info ng-bind-html=cfg.route.fatalError.info|toTrusted></div></div>"
-  );
-
-
   $templateCache.put('app/views/events/dropdown.html',
     "<div class=\"btn-group group-event-dropdown\"><button type=button class=\"btn btn-default\" title=\"{{_t('lb_settings')}}\" ng-click=\"expandNavi('evDropDown_' + $index, $event)\"><i class=\"fa fa-caret-down\"></i></button><div class=\"app-dropdown dropdown-events\" ng-if=\"naviExpanded['evDropDown' + '_' + $index]\"><ul><li><a ng-href=#events><i class=\"fa fa-eye\"></i> <span ng-bind=\"_t('lb_show_all')\"></span></a></li><li><a ng-href=#events/source/{{v.source}}><i class=\"fa fa-check\"></i> <span ng-bind=\"_t('lb_events_source')\"></span></a></li><li><a ng-href=#events/type/{{v.type}}><i class=\"fa fa-check-square\"></i> <span ng-bind=\"_t('lb_events_type')\"></span></a></li><li><a ng-href=\"#events/source_type?source={{v.source}}&type={{v.type}}\"><i class=\"fa fa-check-circle\"></i> <span ng-bind=\"_t('lb_events_source_type')\"></span></a></li><li ng-if=\"elementAccess(cfg.role_access.element) && (cfg.events_clickable.indexOf(v.level) > -1) && (v.source && v.message)\"><a href=#element/{{v.source}}><i class=\"fa fa-cog\"></i> <span ng-bind=\"_t('lb_source_cfg')\"></span></a></li><li><a href=\"\" ng-click=hideSourceEvents(v.source) ng-if=\"user.hide_single_device_events.indexOf(v.source) === -1\"><i class=\"fa fa-minus-circle text-danger\"></i> <span ng-bind=\"_t('lb_hide_events_source')\"></span></a></li><li ng-if=elementAccess(cfg.role_access.event_delete)><a href=\"\" ng-click=\"deleteEvent(v.id, '?uid=' + v.h,_t('lb_delete_confirm'))\" ng-if=\"v.level == 'error' || v.level == 'notification'\"><i class=\"fa fa-times text-danger\"></i> <span ng-bind=\"_t('lb_delete_event')\"></span></a></li></ul></div></div>"
   );
@@ -11505,7 +11500,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/jamesbox/update.html',
-    "<div ng-controller=JbUpdateController><bb-loader></bb-loader><div id=jamesBoxModal class=appmodal ng-if=jamesbox.show><div class=appmodal-in><div class=appmodal-header><h3>{{_t('jamesbox_software_upgrade')}}</h3></div><div class=appmodal-body><div>{{_t('jamesbox_current_firmware',{__currentfw__: jamesbox.version,__newfw__:jamesbox.versionNew})}}</div><div class=\"alert alert-warning\"><i class=\"fa fa-exclamation-circle\" aria-hidden=true></i> {{_t('jamesbox_update_info')}}</div><div class=text-center><button class=\"btn btn-submit btn-lg\" title=\"{{_t('update_now')}}\" ng-click=firmwareUpdate()><i class=\"fa fa-check\"></i> {{_t('update_now')}}</button></div></div><div class=appmodal-footer><a ng-href=#dashboard class=\"btn btn-default\" title=\"{{_t('jamesbox_not_update')}}\"><span class=btn-name>{{_t('jamesbox_not_update')}}</span> <i class=\"fa fa-arrow-right\"></i></a></div></div></div></div>"
+    "<div ng-controller=JbUpdateController><bb-loader></bb-loader><div id=jamesBoxConfirmModal class=appmodal ng-if=jamesbox.showConfirm><div class=appmodal-in><div class=appmodal-header><h3>{{_t('jamesbox_software_upgrade')}}</h3></div><div class=appmodal-body><div class=\"alert alert-warning\">{{_t('jamesbox_current_firmware', {__currentfw__: jamesbox.version, __newfw__: jamesbox.versionNew})}}</div><div class=text-center><button class=\"btn btn-submit btn-lg\" title=\"{{_t('update_now')}}\" ng-click=firmwareUpdate()><i class=\"fa fa-check\"></i> {{_t('update_now')}}</button></div></div><div class=appmodal-footer><a ng-href=#dashboard class=\"btn btn-default\" title=\"{{_t('jamesbox_not_update')}}\"><span class=btn-name>{{_t('jamesbox_not_update')}}</span> <i class=\"fa fa-arrow-right\"></i></a></div></div></div><div id=jamesBoxUpdateModal class=appmodal ng-if=jamesbox.showUpdate><div class=appmodal-in><div class=appmodal-header><h3>{{_t('jamesbox_software_upgrade')}}</h3></div><div class=appmodal-body><div id=jamesboxUpdateInfo><div id=updateTimeout>{{_t('jamesbox_update_update_timeout')}}</div><div>{{_t('jamesbox_update_follow_steps')}}</div></div><ol><li class=jamesboxUpdateInfoList>{{_t('jamesbox_update_1')}}</li><li class=jamesboxUpdateInfoList>{{_t('jamesbox_update_2')}}</li><li class=jamesboxUpdateInfoList>{{_t('jamesbox_update_3')}}</li></ol><div class=\"alert alert-warning\"><i class=\"fa fa-exclamation-circle\"></i> {{_t('jamesbox_update_attention')}}</div></div></div></div></div>"
   );
 
 
@@ -11589,8 +11584,8 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
   );
 
 
-  $templateCache.put('app/views/rooms/config_rooms_edit.html',
-    "<div ng-controller=RoomConfigEditController class=mobile-padding><bb-loader></bb-loader><div ng-show=input><h2><span ng-bind=\"_t('lb_room')\"></span>: <span ng-show=\"input.id > 0\">(#{{input.id}})</span> <span ng-bind=input.title></span></h2><form name=form_room id=form_room class=\"form form-page\" ng-submit=store(form_room,input) novalidate><fieldset><h3><span ng-bind=\"_t('lb_name')\"></span></h3><div><div class=form-group><input name=title id=title class=form-control placeholder=\"{{_t('lb_room_name')}}\" value={{input.title}} ng-model=input.title ng-blur=\"titleBlur = true\" ng-required=\"true\"><bb-validator input-name=form_room.title.$error.required trans=_t(&quot;field_required&quot;) has-blur=titleBlur></bb-validator></div></div></fieldset><fieldset class=mobile-hide><h3><span ng-bind=\"_t('lb_select_image')\"></span></h3><div class=clearfix><img class=\"room-img-upload form-control-img\" ng-repeat=\"v in defaultImages\" ng-click=\"input.default_img = v;input.img_type = 'default'\" ng-class=\"input.img_type == 'default' && v == input.default_img ? 'control-active':''\" ng-src=storage/img/rooms/{{v}} alt=\"{{v}}\"> <img class=\"room-img-upload form-control-img\" ng-click=\"input.user_img = input.user_img;input.img_type = 'user'\" ng-class=\"input.img_type == 'user' ? 'control-active':''\" ng-src=\"{{userImageUrl + input.user_img}}\" ng-if=\"input.user_img\"></div></fieldset><fieldset class=mobile-hide><h3><span ng-bind=\"_t('lb_upload_image')\"></span></h3><div><div class=form-group><bb-help-text trans=\"_t('room_image_upload_info')\"></bb-help-text><input type=file name=file onchange=\"angular.element(this).scope().uploadFile(this.files)\"></div></div></fieldset><fieldset><h3><span ng-bind=\"_t('lb_devices_in_room')\"></span></h3><div class=device-available-block><a href=\"\" class=\"btn btn-default btn-tag\" title=\"{{_t('lb_remove')}}\" ng-repeat=\"d in devices\" ng-if=\"devicesAssigned.indexOf(d.id) > -1 && d.location !== 0\" ng-click=removeDevice(d)>{{d.metrics.title|cutText:true:20}} <i class=\"fa fa-times text-danger\"></i></a></div></fieldset><fieldset><h3>{{_t('lb_available_devices')}}</h3><div class=device-available-block><a href=\"\" class=\"btn btn-default btn-tag\" title=\"{{_t('add_new')}}\" ng-repeat=\"d in devices\" ng-if=\"devicesAssigned.indexOf(d.id) === -1 || d.location === 0\" ng-click=assignDevice(d)>{{d.metrics.title|cutText:true:20}} <i class=\"fa fa-plus text-success\"></i></a></div></fieldset><fieldset class=submit-entry><button type=button class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <button type=submit class=\"btn btn-submit\" title=\"{{_t('lb_save')}}\" ng-disabled=form_room.$invalid><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></fieldset></form></div></div>"
+  $templateCache.put('app/views/rooms/config_rooms_id.html',
+    "<div ng-controller=RoomConfigIdController class=mobile-padding><bb-loader></bb-loader><div ng-show=input><h2><span ng-bind=\"_t('lb_room')\"></span>: <span ng-show=\"input.id > 0\">(#{{input.id}})</span> <span ng-bind=input.title></span></h2><form name=form_room id=form_room class=\"form form-page\" ng-submit=store(form_room,input) novalidate><fieldset><h3><span ng-bind=\"_t('lb_name')\"></span></h3><div><div class=form-group><input name=title id=title class=form-control placeholder=\"{{_t('lb_room_name')}}\" value={{input.title}} ng-model=input.title ng-blur=\"titleBlur = true\" ng-required=\"true\"><bb-validator input-name=form_room.title.$error.required trans=_t(&quot;field_required&quot;) has-blur=titleBlur></bb-validator></div></div></fieldset><fieldset class=mobile-hide><h3><span ng-bind=\"_t('lb_select_image')\"></span></h3><div class=clearfix><div class=form-group><img class=\"room-img-upload form-control-img\" ng-repeat=\"v in defaultImages\" ng-click=\"input.default_img = v;input.img_type = 'default'\" ng-class=\"input.img_type == 'default' && v == input.default_img ? 'control-active':''\" ng-src=storage/img/rooms/{{v}} alt=\"{{v}}\"> <img class=\"room-img-upload form-control-img\" ng-click=\"input.user_img = input.user_img;input.img_type = 'user'\" ng-class=\"input.img_type == 'user' ? 'control-active':''\" ng-src=\"{{userImageUrl + input.user_img}}\" ng-if=\"input.user_img\"></div></div></fieldset><fieldset class=mobile-hide><div><div class=form-group><input class=inputfile type=file name=file id=file{{v.id}} ng-click=\"icons.find = v\" onchange=\"angular.element(this).scope().uploadFile(this.files)\"><label for=file{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_upload_image')}}\" ng-click=\"icons.find = v\"><i class=\"fa fa-upload text-success\"></i> {{_t('lb_upload_image')}}</label><div ng-if=file.upload>{{file.upload|cutText:true:30}}</div><bb-help-text trans=\"_t('upload_file_info',{'__size__':file.info.maxSize,'__extensions__': file.info.extensions})\"></bb-help-text><bb-help-text trans=\"_t('image_recommended_dimension',{'__dimension__':cfg.upload.room.dimension})\"></bb-help-text></div></div></fieldset><fieldset><h3><span ng-bind=\"_t('lb_devices_in_room')\"></span></h3><div class=device-available-block><a href=\"\" class=\"btn btn-default btn-tag\" title=\"{{_t('lb_remove')}}\" ng-repeat=\"d in devices\" ng-if=\"devicesAssigned.indexOf(d.id) > -1 && d.location !== 0\" ng-click=removeDevice(d)>{{d.metrics.title|cutText:true:20}} <i class=\"fa fa-times text-danger\"></i></a></div></fieldset><fieldset><h3>{{_t('lb_available_devices')}}</h3><div class=device-available-block><a href=\"\" class=\"btn btn-default btn-tag\" title=\"{{_t('add_new')}}\" ng-repeat=\"d in devices\" ng-if=\"devicesAssigned.indexOf(d.id) === -1 || d.location === 0\" ng-click=assignDevice(d)>{{d.metrics.title|cutText:true:20}} <i class=\"fa fa-plus text-success\"></i></a></div></fieldset><fieldset class=submit-entry><button type=button class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <button type=submit class=\"btn btn-submit\" title=\"{{_t('lb_save')}}\" ng-disabled=form_room.$invalid><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></fieldset></form></div></div>"
   );
 
 
@@ -12696,7 +12691,7 @@ var myAppService = angular.module('myAppService', []);
  */
 myAppService.service('dataService', function ($filter, $log, $cookies, $window, cfg, _) {
     /// --- Public functions --- ///
-    
+
     /**
      * Get a language string by key
      * @param {string} key
@@ -12704,8 +12699,8 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @param {object} replacement
      * @returns {unresolved}
      */
-    this.getLangLine = function (key,languages,replacement) {
-        return getLangLine(key,languages,replacement);
+    this.getLangLine = function (key, languages, replacement) {
+        return getLangLine(key, languages, replacement);
     };
 
     /**
@@ -12750,6 +12745,23 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
             return 'any';
         }
         return 'any';
+    };
+
+    /**
+     * Get OS (operating system)
+     * @returns {String}
+     */
+    this.isIeEdge = function () {
+        var isIE = /*@cc_on!@*/false || !!document.documentMode;
+        if(isIE){
+            return true;
+        }
+        // Edge 20+
+        var isEdge = !isIE && !!window.StyleMedia;
+        if(isEdge){
+            return true;
+        }
+        return false;
     };
 
 
@@ -13089,7 +13101,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
         for (var val in replacement) {
             line = line.split(val).join(replacement[val]);
         }
-        return line; 
+        return line;
     }
 
     /**
@@ -13812,7 +13824,7 @@ myApp.filter('cutText', function () {
 myApp.filter('toInt', function () {
     return function (val, a) {
         a = typeof a !== 'undefined' ? a : 10;
-        if (val === null || val==='' || isNaN(val)) {
+        if (val === null || val === '' || isNaN(val)) {
             return 0;
         }
         return parseInt(val, a);
@@ -13836,6 +13848,45 @@ myApp.filter('toBool', function () {
 myApp.filter('typeOf', function () {
     return function (obj) {
         return {}.toString.call(obj).split(' ')[1].slice(0, -1).toLowerCase();
+    };
+});
+
+/**
+ * Get a file extension from the path
+ * @function fileExtension
+ */
+myApp.filter('fileExtension', function () {
+    return function (path) {
+        // extract file name from full path ...
+        // (supports `\\` and `/` separators)
+        var basename = path.split(/[\\/]/).pop(),
+                // get last position of `.`                                      
+                pos = basename.lastIndexOf(".");
+        // if file name is empty or ...
+        //  `.` not found (-1) or comes first (0)
+        if (basename === '' || pos < 1) {
+            return '';
+        }
+
+        // extract extension ignoring `.`
+        return basename.slice(pos + 1);
+    };
+});
+
+/**
+ * Convert file size in bytes to human readable with a scale type
+ * @function fileSizeString
+ */
+myApp.filter('fileSizeString', function () {
+    return function (bytes) {
+        var i = -1;
+    var byteUnits = [' kB', ' MB', ' GB', ' TB', 'PB', 'EB', 'ZB', 'YB'];
+    do {
+        bytes = bytes / 1024;
+        i++;
+    } while (bytes > 1024);
+
+    return Math.max(bytes, 0.1).toFixed(1) + byteUnits[i];
     };
 });
 
@@ -13911,7 +13962,7 @@ myApp.filter('getElementIcon', function (cfg) {
                     break;
 
                 case 'window':
-                    if (typeof(level) === 'number') {
+                    if (typeof (level) === 'number') {
                         if (level == 0) {
                             icon = cfg.img.icons + 'window-down.png';
                         } else if (level >= 99) {
@@ -14201,10 +14252,10 @@ myApp.filter('isTodayFromUnix', function () {
  */
 myApp.filter('getCurrentTime', function () {
     return function (timestamp) {
-         if (timestamp) {
+        if (timestamp) {
             var d = new Date(timestamp * 1000);
         } else {
-             var d = new Date();
+            var d = new Date();
         }
         //var d = new Date();
         var hrs = (d.getHours() < 10 ? '0' + d.getHours() : d.getHours());
@@ -14313,10 +14364,10 @@ myApp.filter('eventDate', function () {
 myApp.filter('mysqlToUnixTs', function () {
     return function (input) {
         //function parses mysql datetime string and returns javascript Date object
-    //input has to be in this format: 2007-06-05 15:26:02
-    var regex=/^([0-9]{2,4})-([0-1][0-9])-([0-3][0-9]) (?:([0-2][0-9]):([0-5][0-9]):([0-5][0-9]))?$/;
-    var parts=input.replace(regex,"$1 $2 $3 $4 $5 $6").split(' ');
-    return Math.floor(new Date(parts[0],parts[1]-1,parts[2],parts[3],parts[4],parts[5]).getTime() / 1000);
+        //input has to be in this format: 2007-06-05 15:26:02
+        var regex = /^([0-9]{2,4})-([0-1][0-9])-([0-3][0-9]) (?:([0-2][0-9]):([0-5][0-9]):([0-5][0-9]))?$/;
+        var parts = input.replace(regex, "$1 $2 $3 $4 $5 $6").split(' ');
+        return Math.floor(new Date(parts[0], parts[1] - 1, parts[2], parts[3], parts[4], parts[5]).getTime() / 1000);
     };
 });
 
@@ -14553,7 +14604,22 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
      }
      
      };
+     
      $scope.setSkin();*/
+
+
+    /**
+     * Check if route match the pattern.
+     * @param {string} path
+     * @returns {Boolean}
+     */
+    $scope.routeMatch = function (path) {
+        if ($route.current && $route.current.regexp) {
+            return $route.current.regexp.test(path);
+        }
+        return false;
+    };
+
     /**
      * Reset a fatal error.
      * @param {object} obj
@@ -14576,9 +14642,22 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
             var refresh = function () {
                 dataFactory.getApi('timezone', null, true).then(function (response) {
                     angular.extend(cfg.route.time, {string: $filter('getCurrentTime')(response.data.data.localTimeUT)});
-
                 }, function (error) {
-                    $interval.cancel($scope.timeZoneInterval);
+                    if (!error.status || error.status === 0) {
+                        var fatalArray = {
+                            message: $scope._t('connection_refused'),
+                            info: $scope._t('connection_refused_info'),
+                            permanent: true,
+                            hide: true
+                        };
+                        if ($scope.routeMatch('/jamesbox/update')) {
+                            fatalArray.message = $scope._t('jamesbox_connection_refused');
+                            fatalArray.info = $scope._t('jamesbox_connection_refused_info',{__reload_begintag__:'<div>', __reload_endtag__:'</div>', __attention_begintag__:'<div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i>', __attention_endtag__:'<div>'});
+                            fatalArray.icon = cfg.route.fatalError.icon_jamesbox;
+                        }
+                        angular.extend(cfg.route.fatalError, fatalArray);
+                    }
+                    //$interval.cancel($scope.timeZoneInterval);
                 });
             };
             $scope.timeZoneInterval = $interval(refresh, $scope.cfg.interval);
@@ -14599,7 +14678,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
 
     };
     $scope.setPollInterval();
-    
+
     /**
      * Allow to access page elements by role.
      * 
@@ -14622,7 +14701,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         return true;
     };
 
-   
+
     $scope.lang_list = cfg.lang_list;
     /**
      * Get a language key from the cookie or set a default language.
@@ -14657,16 +14736,24 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
      * @param {type} replacement
      * @returns {unresolved}
      */
-    $scope._t = function (key,replacement) {
-       return dataService.getLangLine(key, $scope.languages,replacement);
+    $scope._t = function (key, replacement) {
+        return dataService.getLangLine(key, $scope.languages, replacement);
     };
 
-   /**
-    * Watch for lang changes
-    */
+    /**
+     * Watch for lang changes
+     */
     $scope.$watch('lang', function () {
         $scope.loadLang($scope.lang);
     });
+    
+    // IF IE or Edge displays an message
+    if (dataService.isIeEdge()) {
+        angular.extend(cfg.route.fatalError, {
+            message: cfg.route.t['ie_edge_not_supported'],
+            info: cfg.route.t['ie_edge_not_supported_info']
+        });
+    }
 
     /**
      * Order by
@@ -14677,24 +14764,11 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         $scope.predicate = field;
         $scope.reverse = !$scope.reverse;
     };
-    
+
     /**
-     * Check if route match the pattern.
-     * @param {string} path
-     * @returns {Boolean}
+     * Get body ID
+     * @returns {String}
      */
-    $scope.routeMatch = function (path) {
-        if ($route.current && $route.current.regexp) {
-            return $route.current.regexp.test(path);
-        }
-        return false;
-    };
-
-
-   /**
-    * Get body ID
-    * @returns {String}
-    */
     $scope.getBodyId = function () {
         var path = $location.path().split('/');
         return path[1] || 'login';
@@ -14702,7 +14776,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     };
     // Mobile detect
     $scope.isMobile = dataService.isMobile(navigator.userAgent || navigator.vendor || window.opera);
-    
+
     /**
      * Check if the route match the given param and set active class in the element.
      * @param {string} route
@@ -14720,7 +14794,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         myCache.removeAll();
         $route.reload();
     };
-    
+
     /**
      * Redirect to given url
      * @param {string} url
@@ -14903,11 +14977,13 @@ myAppController.controller('404Controller', function($scope, cfg) {
  */
 myAppController.controller('JbUpdateController', function ($scope, $q, $location, cfg, dataFactory, _) {
     $scope.jamesbox = {
-        show: false,
+        showConfirm: false,
+        showUpdate: false,
         rule_id: '',
         uuid: '',
         version: '',
-        versionNew: ''
+        versionNew: '',
+        interval: null
     };
     /**
      * Load all promises
@@ -14941,19 +15017,21 @@ myAppController.controller('JbUpdateController', function ($scope, $q, $location
      */
     $scope.jamesBoxRequest = function () {
         $scope.loading = false;
+        // REMOVE
         dataFactory.postToRemote(cfg.api_remote['jamesbox_request'], $scope.jamesbox).then(function (response) {
             if (!_.isEmpty(response.data)) {
                 $scope.jamesbox.versionNew = response.data.firmware_version;
                 $scope.jamesbox.rule_id = response.data.rule_id;
-                $scope.jamesbox.show = true; 
-            }else{
-               alertify.alertError($scope._t('no_update_available'));
+                $scope.jamesbox.showConfirm = true;
+            } else {
+                alertify.alertError($scope._t('no_update_available')).set('onok', function(closeEvent){ 
+                     alertify.dismissAll();
+                     $location.path("/dashboard");
+                });
             }
         }, function (error) { });
     }
     ;
-
-   
 
     /**
      * Update JamesBox record
@@ -14966,14 +15044,11 @@ myAppController.controller('JbUpdateController', function ($scope, $q, $location
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         dataFactory.postToRemote(cfg.api_remote['jamesbox_update'], input).then(function (response) {
             $scope.loading = false;
-            alertify.alertWarning($scope._t('jamesbox_autoupgrade', {__newfw__: $scope.jamesbox.versionNew}))
-                    .set('onok', function (closeEvent) {
-                        alertify.dismissAll();
-                        $location.path("/dashboard");
-                    });
+            $scope.jamesbox.showConfirm = false;
+            $scope.jamesbox.showUpdate = true;
         }, function (error) {
             var message = $scope._t('error_update_data');
-            if(error.status === 409){
+            if (error.status === 409) {
                 message = $scope._t('jamesbox_update_exists');
             }
             alertify.alertError($scope._t(message));
@@ -20102,13 +20177,14 @@ myAppController.controller('RoomController', function ($scope, $q, $cookies, $fi
         showHidden: ($cookies.showHiddenEl ? $filter('toBool')($cookies.showHiddenEl) : false),
         orderBy: ($cookies.roomsOrderBy ? $cookies.roomsOrderBy : 'titleASC')
     };
-    
+
     $scope.devices = {
-         all: {}
+        all: {}
     };
 
     /**
      * Load all promises
+     * @returns {undefined}
      */
     $scope.allSettled = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
@@ -20131,23 +20207,22 @@ myAppController.controller('RoomController', function ($scope, $q, $cookies, $fi
             // Success - locations
             if (locations.state === 'fulfilled') {
                 $scope.rooms.all = dataService.getRooms(locations.value.data.data).value();
-                if( _.size($scope.rooms.all) < 2){
-                    alertify.alertWarning($scope._t('no_rooms')); 
-                }
             }
             // Success - devices
             if (devices.state === 'fulfilled') {
                 $scope.devices.all = dataService.getDevicesData(devices.value.data.data.devices, $scope.rooms.showHidden).value();
-                $scope.rooms.cnt.devices =_.countBy( $scope.devices.all,function (v) {
+                $scope.rooms.cnt.devices = _.countBy($scope.devices.all, function (v) {
                     return v.location;
                 });
             }
         });
     };
     $scope.allSettled();
-    
+
     /**
      * Set order by
+     * @param {string} key
+     * @returns {undefined}
      */
     $scope.setOrderBy = function (key) {
         angular.extend($scope.rooms, {orderBy: key});
@@ -20162,6 +20237,9 @@ myAppController.controller('RoomController', function ($scope, $q, $cookies, $fi
 myAppController.controller('RoomConfigController', function ($scope, $q, dataFactory, dataService, myCache, _) {
     /**
      * Delete a room
+     * @param {int} roomId
+     * @param {string} message
+     * @returns {undefined}
      */
     $scope.deleteRoom = function (roomId, message) {
         alertify.confirm(message, function () {
@@ -20172,7 +20250,7 @@ myAppController.controller('RoomConfigController', function ($scope, $q, dataFac
                 myCache.remove('locations');
                 myCache.remove('devices');
                 dataService.showNotifier({message: $scope._t('delete_successful')});
-               $scope.reloadData();
+                $scope.reloadData();
 
             }, function (error) {
                 $scope.loading = false;
@@ -20184,7 +20262,9 @@ myAppController.controller('RoomConfigController', function ($scope, $q, dataFac
     /// --- Private functions --- ///
 
     /**
-     * Remove room id from device
+     * Remove room id from a device
+     * @param {object} devices
+     * @returns {undefined}
      */
     function removeRoomIdFromDevice(devices) {
         angular.forEach(devices, function (v, k) {
@@ -20199,9 +20279,9 @@ myAppController.controller('RoomConfigController', function ($scope, $q, dataFac
 });
 /**
  * The controller that renders and handles single room data.
- * @class RoomConfigEditController
+ * @class RoomConfigIdController
  */
-myAppController.controller('RoomConfigEditController', function ($scope, $routeParams, $filter, $location, dataFactory, dataService, myCache, _) {
+myAppController.controller('RoomConfigIdController', function ($scope, $routeParams, $filter, $location, cfg, dataFactory, dataService, myCache, _) {
     $scope.id = $filter('toInt')($routeParams.id);
     $scope.input = {
         'id': 0,
@@ -20216,11 +20296,19 @@ myAppController.controller('RoomConfigEditController', function ($scope, $routeP
     $scope.devicesToRemove = [];
     $scope.defaultImages = $scope.cfg.room_images;
     $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/image/';
-    $scope.myFile = false;
+    $scope.file = {
+        upload: false,
+        info: {
+            maxSize: $filter('fileSizeString')(cfg.upload.room.size),
+            extensions: cfg.upload.room.extension.toString()
+        }
+    };
 
-    /**
-     * Load rooms
-     */
+   /**
+    * Load a data holder with rooms
+    * @param {int} id
+    * @returns {undefined}
+    */
     $scope.loadData = function (id) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('locations', '/' + id, true).then(function (response) {
@@ -20240,14 +20328,41 @@ myAppController.controller('RoomConfigEditController', function ($scope, $routeP
     }
 
     /**
-     * Upload an image
+     * Upload an image file
+     * @param {object} files
+     * @returns {undefined}
      */
     $scope.uploadFile = function (files) {
+        // Check allowed file formats
+        //if(cfg.upload.room.type.indexOf(files[0].type) === -1){
+        if (cfg.upload.room.extension.indexOf($filter('fileExtension')(files[0].name)) === -1) {
+            alertify.alertError(
+                    $scope._t('upload_format_unsupported', {'__extension__': $filter('fileExtension')(files[0].name)}) + ' ' +
+                    $scope._t('upload_allowed_formats', {'__extensions__': $scope.file.info.extensions})
+                    );
+            return;
+
+        }
+        // Check allowed file size
+        if (files[0].size > cfg.upload.room.size) {
+            alertify.alertError(
+                    $scope._t('upload_allowed_size', {'__size__': $scope.file.info.maxSize}) + ' ' +
+                    $scope._t('upload_size_is', {'__size__': $filter('fileSizeString')(files[0].size)})
+                    );
+            return;
+
+        }
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('uploading')};
-        var cmd = $scope.cfg.api_url + 'upload/file';
-        var fd = new FormData();
-        //fd.append('file_upload', $scope.myFile);
+        // Clear all alerts and file name selected
+        alertify.dismissAll();
+        $scope.file.upload = false;
+        // Set local variables
+        var cmd = $scope.cfg.api_url + 'upload/file',
+                fd = new FormData();
+        // Set selected file name
+        $scope.file.upload = files[0].name;
         fd.append('files_files', files[0]);
+        // Atempt to upload a file
         dataFactory.uploadApiFile(cmd, fd).then(function (response) {
             $scope.loading = false;
             $scope.input.user_img = response.data.data;
@@ -20259,9 +20374,11 @@ myAppController.controller('RoomConfigEditController', function ($scope, $routeP
         });
     };
 
-    /**
-     * Assign device to room
-     */
+   /**
+    * Assign device to a room
+    * @param {object} device
+    * @returns {undefined}
+    */
     $scope.assignDevice = function (device) {
         device.location = null;
         $scope.devicesAssigned.push(device.id);
@@ -20270,6 +20387,8 @@ myAppController.controller('RoomConfigEditController', function ($scope, $routeP
 
     /**
      * Remove device from the room
+     * @param {object} device
+     * @returns {undefined}
      */
     $scope.removeDevice = function (device) {
         var oldList = $scope.devicesAssigned;
@@ -20287,7 +20406,10 @@ myAppController.controller('RoomConfigEditController', function ($scope, $routeP
     };
 
     /**
-     * Create new or update a location
+     * Create new or update an existing location
+     * @param {object} form
+     * @param {object} input
+     * @returns {undefined}
      */
     $scope.store = function (form, input) {
         if (form.$invalid) {
@@ -20299,7 +20421,7 @@ myAppController.controller('RoomConfigEditController', function ($scope, $routeP
             var id = $filter('hasNode')(response, 'data.data.id');
             if (id) {
                 saveRoomIdIntoDevice(response.data, $scope.devicesAssigned);
-                removeRoomIdFromDevice(response.data, $scope.devicesToRemove);
+                removeRoomIdFromDevice($scope.devicesToRemove);
                 myCache.remove('locations');
                 myCache.remove('devices');
                 dataService.showNotifier({message: $scope._t('success_updated')});
@@ -20318,13 +20440,15 @@ myAppController.controller('RoomConfigEditController', function ($scope, $routeP
     /// --- Private functions --- ///
     /**
      * Load devices
+     * @param {int} locationId
+     * @returns {undefined}
      */
     function loadDevices(locationId) {
         dataFactory.getApi('devices').then(function (response) {
             $scope.devicesAssigned = [];
             var devices = dataService.getDevicesData(response.data.data.devices).value();
             _.filter(devices, function (v) {
-                if (v.location == locationId) {
+                if (locationId > 0 && v.location === locationId) {
                     $scope.devicesAssigned.push(v.id);
                 }
                 if (v.location == 0 || v.location == locationId) {
@@ -20337,6 +20461,9 @@ myAppController.controller('RoomConfigEditController', function ($scope, $routeP
 
     /**
      * Save room id into device
+     * @param {object} data
+     * @param {object} devices
+     * @returns {undefined}
      */
     function saveRoomIdIntoDevice(data, devices) {
         angular.forEach(devices, function (v, k) {
@@ -20352,8 +20479,10 @@ myAppController.controller('RoomConfigEditController', function ($scope, $routeP
 
     /**
      * Remove room id from device
+     * @param {object} devices
+     * @returns {undefined}
      */
-    function removeRoomIdFromDevice(data, devices) {
+    function removeRoomIdFromDevice(devices) {
         angular.forEach(devices, function (v, k) {
             dataFactory.putApi('devices', v, {'location': 0}).then(function (response) {
             }, function (error) {
@@ -20839,7 +20968,7 @@ myAppController.controller('ManagementFirmwareController', function ($scope, $sc
         });
     };
     /**
-     * Load razberry latest version
+     * Load latest version
      */
     $scope.loadRazLatest = function () {
         dataFactory.getRemoteData($scope.cfg.raz_latest_version_url).then(function (response) {

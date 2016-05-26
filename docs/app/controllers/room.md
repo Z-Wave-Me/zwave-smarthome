@@ -24,69 +24,131 @@ The room root controller
 
 Load all promises
 
+**Returns**: `undefined`
 
-### RoomController.setOrderBy() 
+### RoomController.setOrderBy(key) 
 
 Set order by
 
+**Parameters**
+
+**key**: `string`
+
+**Returns**: `undefined`
 
 
 ## RoomConfigController
 The controller that renders the list of the rooms in  the config rooms section.
 
-### RoomConfigController.deleteRoom() 
+### RoomConfigController.deleteRoom(roomId, message) 
 
 Delete a room
 
+**Parameters**
 
-### RoomConfigController.removeRoomIdFromDevice() 
+**roomId**: `int`
 
-Remove room id from device
+**message**: `string`
+
+**Returns**: `undefined`
+
+### RoomConfigController.removeRoomIdFromDevice(devices) 
+
+Remove room id from a device
+
+**Parameters**
+
+**devices**: `object`
+
+**Returns**: `undefined`
 
 
-
-## RoomConfigEditController
+## RoomConfigIdController
 The controller that renders and handles single room data.
 
-### RoomConfigEditController.loadData() 
+### RoomConfigIdController.loadData(id) 
 
-Load rooms
+Load a data holder with rooms
 
+**Parameters**
 
-### RoomConfigEditController.uploadFile() 
+**id**: `int`
 
-Upload an image
+**Returns**: `undefined`
 
+### RoomConfigIdController.uploadFile(files) 
 
-### RoomConfigEditController.assignDevice() 
+Upload an image file
 
-Assign device to room
+**Parameters**
 
+**files**: `object`
 
-### RoomConfigEditController.removeDevice() 
+**Returns**: `undefined`
+
+### RoomConfigIdController.assignDevice(device) 
+
+Assign device to a room
+
+**Parameters**
+
+**device**: `object`
+
+**Returns**: `undefined`
+
+### RoomConfigIdController.removeDevice(device) 
 
 Remove device from the room
 
+**Parameters**
 
-### RoomConfigEditController.store() 
+**device**: `object`
 
-Create new or update a location
+**Returns**: `undefined`
 
+### RoomConfigIdController.store(form, input) 
 
-### RoomConfigEditController.loadDevices() 
+Create new or update an existing location
+
+**Parameters**
+
+**form**: `object`
+
+**input**: `object`
+
+**Returns**: `undefined`
+
+### RoomConfigIdController.loadDevices(locationId) 
 
 Load devices
 
+**Parameters**
 
-### RoomConfigEditController.saveRoomIdIntoDevice() 
+**locationId**: `int`
+
+**Returns**: `undefined`
+
+### RoomConfigIdController.saveRoomIdIntoDevice(data, devices) 
 
 Save room id into device
 
+**Parameters**
 
-### RoomConfigEditController.removeRoomIdFromDevice() 
+**data**: `object`
+
+**devices**: `object`
+
+**Returns**: `undefined`
+
+### RoomConfigIdController.removeRoomIdFromDevice(devices) 
 
 Remove room id from device
 
+**Parameters**
+
+**devices**: `object`
+
+**Returns**: `undefined`
 
 
 

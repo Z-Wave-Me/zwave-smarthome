@@ -20,6 +20,16 @@
 ## BaseController
 The app base controller.
 
+### BaseController.routeMatch(path) 
+
+Check if route match the pattern.
+
+**Parameters**
+
+**path**: `string`
+
+**Returns**: `Boolean`
+
 ### BaseController.resetFatalError(obj) 
 
 Reset a fatal error.
@@ -79,16 +89,6 @@ Order by
 **field**: `string`
 
 **Returns**: `undefined`
-
-### BaseController.routeMatch(path) 
-
-Check if route match the pattern.
-
-**Parameters**
-
-**path**: `string`
-
-**Returns**: `Boolean`
 
 ### BaseController.getBodyId() 
 

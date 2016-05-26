@@ -62,6 +62,12 @@ Get OS (operating system)
 
 **Returns**: `String`
 
+### dataService.isIeEdge() 
+
+Get OS (operating system)
+
+**Returns**: `String`
+
 ### dataService.isMobile(a) 
 
 Detect a mobile device
