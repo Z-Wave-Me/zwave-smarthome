@@ -34,6 +34,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
      }
      
      };
+     
      $scope.setSkin();*/
     /**
      * Reset a fatal error.
@@ -80,7 +81,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
 
     };
     $scope.setPollInterval();
-    
+
     /**
      * Allow to access page elements by role.
      * 
@@ -103,7 +104,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         return true;
     };
 
-   
+
     $scope.lang_list = cfg.lang_list;
     /**
      * Get a language key from the cookie or set a default language.
@@ -138,16 +139,24 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
      * @param {type} replacement
      * @returns {unresolved}
      */
-    $scope._t = function (key,replacement) {
-       return dataService.getLangLine(key, $scope.languages,replacement);
+    $scope._t = function (key, replacement) {
+        return dataService.getLangLine(key, $scope.languages, replacement);
     };
 
-   /**
-    * Watch for lang changes
-    */
+    /**
+     * Watch for lang changes
+     */
     $scope.$watch('lang', function () {
         $scope.loadLang($scope.lang);
     });
+    
+    // IF IE or Edge displays an message
+    if (dataService.isIeEdge()) {
+        angular.extend(cfg.route.fatalError, {
+            message: cfg.route.t['ie_edge_not_supported'],
+            info: cfg.route.t['ie_edge_not_supported_info']
+        });
+    }
 
     /**
      * Order by
@@ -158,7 +167,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         $scope.predicate = field;
         $scope.reverse = !$scope.reverse;
     };
-    
+
     /**
      * Check if route match the pattern.
      * @param {string} path
@@ -172,10 +181,10 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     };
 
 
-   /**
-    * Get body ID
-    * @returns {String}
-    */
+    /**
+     * Get body ID
+     * @returns {String}
+     */
     $scope.getBodyId = function () {
         var path = $location.path().split('/');
         return path[1] || 'login';
@@ -183,7 +192,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     };
     // Mobile detect
     $scope.isMobile = dataService.isMobile(navigator.userAgent || navigator.vendor || window.opera);
-    
+
     /**
      * Check if the route match the given param and set active class in the element.
      * @param {string} route
@@ -201,7 +210,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         myCache.removeAll();
         $route.reload();
     };
-    
+
     /**
      * Redirect to given url
      * @param {string} url

@@ -12,7 +12,7 @@ var myAppService = angular.module('myAppService', []);
  */
 myAppService.service('dataService', function ($filter, $log, $cookies, $window, cfg, _) {
     /// --- Public functions --- ///
-    
+
     /**
      * Get a language string by key
      * @param {string} key
@@ -20,8 +20,8 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @param {object} replacement
      * @returns {unresolved}
      */
-    this.getLangLine = function (key,languages,replacement) {
-        return getLangLine(key,languages,replacement);
+    this.getLangLine = function (key, languages, replacement) {
+        return getLangLine(key, languages, replacement);
     };
 
     /**
@@ -66,6 +66,23 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
             return 'any';
         }
         return 'any';
+    };
+
+    /**
+     * Get OS (operating system)
+     * @returns {String}
+     */
+    this.isIeEdge = function () {
+        var isIE = /*@cc_on!@*/false || !!document.documentMode;
+        if(isIE){
+            return true;
+        }
+        // Edge 20+
+        var isEdge = !isIE && !!window.StyleMedia;
+        if(isEdge){
+            return true;
+        }
+        return false;
     };
 
 
@@ -405,7 +422,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
         for (var val in replacement) {
             line = line.split(val).join(replacement[val]);
         }
-        return line; 
+        return line;
     }
 
     /**

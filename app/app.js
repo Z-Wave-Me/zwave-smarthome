@@ -339,7 +339,7 @@ myApp.run(function ($rootScope, $location, dataService, cfg) {
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
         var user;
         // Reset fatal error messages
-        if (!cfg.route.fatalError.permanent) {
+        if (cfg.route.message && !cfg.route.fatalError.permanent) {
             angular.extend(cfg.route.fatalError, {
                 message: false,
                 info: false,
