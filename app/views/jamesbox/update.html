@@ -9,7 +9,7 @@
                 <h3>{{_t('jamesbox_software_upgrade')}}</h3>
             </div>
             <div class="appmodal-body">
-                <div>{{_t('jamesbox_current_firmware', {__currentfw__: jamesbox.version, __newfw__: jamesbox.versionNew})}}</div>
+                <div class="alert alert-warning">{{_t('jamesbox_current_firmware', {__currentfw__: jamesbox.version, __newfw__: jamesbox.versionNew})}}</div>
                 <div class="text-center">
                     <button class="btn btn-submit btn-lg" title="{{_t('update_now')}}" ng-click="firmwareUpdate()">
                         <i class="fa fa-check"></i> {{_t('update_now')}}
@@ -30,12 +30,16 @@
                 <h3>{{_t('jamesbox_software_upgrade')}}</h3>
             </div>
             <div class="appmodal-body">
-                <div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i>  {{_t('jamesbox_update_info')}}</div>
+                <div id ="jamesboxUpdateInfo">
+                    <div id="updateTimeout">{{_t('jamesbox_update_update_timeout')}}</div>
+                    <div>{{_t('jamesbox_update_follow_steps')}}</div>
+                </div>
                 <ol>
-                    <li>{{_t('jamesbox_update_1')}}</li>
-                    <li>{{_t('jamesbox_update_2')}}</li>
-                    <li>{{_t('jamesbox_update_3')}}</li>  
+                    <li class="jamesboxUpdateInfoList">{{_t('jamesbox_update_1')}}</li>
+                    <li class="jamesboxUpdateInfoList">{{_t('jamesbox_update_2')}}</li>
+                    <li class="jamesboxUpdateInfoList">{{_t('jamesbox_update_3')}}</li>  
                 </ol>
+                <div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i>  {{_t('jamesbox_update_attention')}}</div>
             </div>
         </div>
     </div>

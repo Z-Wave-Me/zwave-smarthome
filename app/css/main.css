@@ -3107,6 +3107,26 @@ http://codepen.io/MattIn4D/pen/LiKFC
   overflow: auto;
 }
 
+/* Modal James Box
+-------------------------------------------------- */
+/* line 97, ../sass/common/_modal.scss */
+#jamesBoxUpdateModal #updateTimeout {
+  text-align: center;
+  font-weight: bold;
+  margin: 15px 0;
+  font-size: 16px;
+}
+
+/* line 104, ../sass/common/_modal.scss */
+#jamesBoxUpdateModal ol {
+  margin: 15px 0;
+}
+
+/* line 108, ../sass/common/_modal.scss */
+#jamesBoxUpdateModal li.jamesboxUpdateInfoList {
+  margin: 0 0 5px 0;
+}
+
 /* Pagination
 -------------------------------------------------- */
 /* line 3, ../sass/common/_pagination.scss */
