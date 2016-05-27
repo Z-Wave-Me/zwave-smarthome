@@ -1,5 +1,6 @@
 {
     "ie_edge_not_supported": "Sorry, but SmartHome does not support Internet explorer and Edge. Please use Firefox, Chrome, Safari or Opera.",
+    "ie_edge_not_supported_info": "Please use Firefox, Chrome, Safari or Opera",
     "upload_format_unsupported": "The (__extension__)  format is not supported.",
     "upload_allowed_formats": "The uploaded file must be in one of the following formats: __extensions__",
     "upload_allowed_size": "The uploaded file must be smaller than __size__.",
