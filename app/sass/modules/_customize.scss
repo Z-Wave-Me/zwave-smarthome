@@ -54,7 +54,9 @@
 /* Customize detail
 -------------------------------------------------- */
 .customize-detail-img{
+    padding: $spacing 0;
     text-align: center;
+     border-top: solid 1px $modal-border-color;
 }
 .customize-detail-perex{
     margin: $spacing 0;
@@ -65,6 +67,6 @@
     overflow: scroll;
     .customize-icon-preview {
         display: inline-block;
-        margin: 10px;
+        margin: $spacing;
     }
 }

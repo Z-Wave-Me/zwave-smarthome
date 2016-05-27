@@ -145,14 +145,20 @@ var config_data = {
         // Online module rating create url
         'online_module_rating_create_url': 'https://developer.z-wave.me/?uri=api-rating-create',
         // Online skins url
-        'online_skin_url': 'http://hrix.net/developer-console/?uri=skins',
-        //'online_skin_url': 'http://dev.dev/developer-console/?uri=skins',
+        'online_skin_url': 'http://hrix.net/developer-console/?uri=api-skins',
+        //'online_skin_url': 'http://dev.dev/developer-console/?uri=api-skins',
         // Online skins storage
         'online_skin_storage': 'http://hrix.net/developer-console/storage/skins/',
         // 'online_skin_storage': 'http://dev.dev/developer-console/storage/skins/',
+        // Online icons url
+        'online_icon_url': 'http://hrix.net/developer-console/?uri=api-icons',
+        //'online_icon_url': 'http://dev.dev/developer-console/?uri=api-icons',
+        // Online icon preview url
+        'online_icon_preview_url': 'http://hrix.net/developer-console/?uri=api-iconpreview',
+        //'online_icon_preview_url': 'http://dev.dev/developer-console/?uri=api-iconpreview',
         // Online icon storage
-        'online_icon_storage': 'http://hrix.net/developer-console/storage/skins/',
-        // 'online_icon_storage': 'http://dev.dev/developer-console/storage/skins/',
+        'online_icon_storage': 'http://hrix.net/developer-console/storage/icons/',
+        //'online_icon_storage': 'http://dev.dev/developer-console/storage/icons/',
         // Online module download url
         'blacklist_url': 'https://hrix.net/blacklist.json',
         // Post report url

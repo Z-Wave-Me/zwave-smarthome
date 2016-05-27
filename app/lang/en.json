@@ -1,6 +1,9 @@
 {
     "newtrans": "---",
     "customize": "Customize",
+    "license": "License",
+    "author": "Author",
+    "version": "Version",
     "icons": "Icons",
     "local_icons": "Local icons",
     "online_icons": "Online icons",

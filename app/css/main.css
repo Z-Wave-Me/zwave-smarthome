@@ -3705,21 +3705,23 @@ img.widget-promo-image {
 -------------------------------------------------- */
 /* line 56, ../sass/modules/_customize.scss */
 .customize-detail-img {
+  padding: 10px 0;
   text-align: center;
+  border-top: solid 1px #d3d3d3;
 }
 
-/* line 59, ../sass/modules/_customize.scss */
+/* line 61, ../sass/modules/_customize.scss */
 .customize-detail-perex {
   margin: 10px 0;
 }
 
-/* line 62, ../sass/modules/_customize.scss */
+/* line 64, ../sass/modules/_customize.scss */
 .customize-icon-list {
   border-top: solid 1px #d3d3d3;
   height: 300px;
   overflow: scroll;
 }
-/* line 66, ../sass/modules/_customize.scss */
+/* line 68, ../sass/modules/_customize.scss */
 .customize-icon-list .customize-icon-preview {
   display: inline-block;
   margin: 10px;

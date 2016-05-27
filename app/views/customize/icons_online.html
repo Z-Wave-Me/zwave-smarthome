@@ -11,7 +11,7 @@
             <div class="widget-entry-in">
                 <!-- Widget img -->
                 <div class="widget-img">
-                    <img class="customize-preview-img clickable" ng-src="{{v.icon}}" alt="{{v.title}}" ng-click="iconsOnline.find = v;handleModal('iconOnlineModal', $event)" />
+                    <img class="customize-preview-img clickable" ng-src="{{v.icon}}" alt="{{v.title}}" ng-click="handleOnlineIconModal(v,'iconOnlineModal', $event)" />
                 </div>
 
                 <!-- Widget header -->
@@ -19,7 +19,7 @@
                 <div class="widget-content">
                     <!-- Widget title -->
                     <div class="widget-title">
-                        <h3 class="clickable" ng-click="iconsOnline.find = v;handleModal('iconOnlineModal', $event)">
+                        <h3 class="clickable" ng-click="handleOnlineIconModal(v,'iconOnlineModal', $event)">
                             {{v.title|cutText:true:20}}  <span class="btn-name">&raquo;</span>
                         </h3>
                     </div>
@@ -48,49 +48,16 @@
                 <h3>{{iconsOnline.find.title}}</h3>
             </div>
             <div class="appmodal-body">
-                <p class="customize-detail-perex">{{iconsOnline.find.description}}</p>
                 <p class="customize-detail-list" ng-if="iconsOnline.find.author">
-                    <i class="fa fa-user"></i>
+                    <strong>{{_t('author')}}:</strong> 
                     <span ng-if="!iconsOnline.find.homepage"> {{iconsOnline.find.author}}</span>
                     <a ng-href="{{iconsOnline.find.homepage}}" ng-if="iconsOnline.find.homepage"> {{iconsOnline.find.author}}</a> 
                 </p>
-                <p class="customize-detail-list">
-                    <i class="fa fa-info-circle"></i> {{iconsOnline.find.version}}
+                <p class="customize-detail-list" ng-if="iconsOnline.find.license">
+                    <strong>{{_t('license')}}:</strong> {{iconsOnline.find.license}}
                 </p>
                 <div class="customize-icon-list">
-                    <img class="customize-icon-preview" ng-src="{{cfg.img.custom_icons + v}}" ng-repeat="v in iconsOnline.find.preview" /> 
-                    <img class="customize-icon-preview" ng-src="{{cfg.img.custom_icons + v}}" ng-repeat="v in iconsOnline.find.preview" /> 
-                    <img class="customize-icon-preview" ng-src="{{cfg.img.custom_icons + v}}" ng-repeat="v in iconsOnline.find.preview" /> 
-                    <img class="customize-icon-preview" ng-src="{{cfg.img.custom_icons + v}}" ng-repeat="v in iconsOnline.find.preview" /> 
-                    <img class="customize-icon-preview" ng-src="{{cfg.img.custom_icons + v}}" ng-repeat="v in iconsOnline.find.preview" /> 
-                    <img class="customize-icon-preview" ng-src="{{cfg.img.custom_icons + v}}" ng-repeat="v in iconsOnline.find.preview" /> 
-                    <img class="customize-icon-preview" ng-src="{{cfg.img.custom_icons + v}}" ng-repeat="v in iconsOnline.find.preview" /> 
-                    <img class="customize-icon-preview" ng-src="{{cfg.img.custom_icons + v}}" ng-repeat="v in iconsOnline.find.preview" /> 
-                    <img class="customize-icon-preview" ng-src="{{cfg.img.custom_icons + v}}" ng-repeat="v in iconsOnline.find.preview" /> 
-                    <img class="customize-icon-preview" ng-src="{{cfg.img.custom_icons + v}}" ng-repeat="v in iconsOnline.find.preview" /> 
-                    <img class="customize-icon-preview" ng-src="{{cfg.img.custom_icons + v}}" ng-repeat="v in iconsOnline.find.preview" />
-                     <img class="customize-icon-preview" ng-src="{{cfg.img.custom_icons + v}}" ng-repeat="v in iconsOnline.find.preview" /> 
-                    <img class="customize-icon-preview" ng-src="{{cfg.img.custom_icons + v}}" ng-repeat="v in iconsOnline.find.preview" /> 
-                    <img class="customize-icon-preview" ng-src="{{cfg.img.custom_icons + v}}" ng-repeat="v in iconsOnline.find.preview" /> 
-                    <img class="customize-icon-preview" ng-src="{{cfg.img.custom_icons + v}}" ng-repeat="v in iconsOnline.find.preview" /> 
-                    <img class="customize-icon-preview" ng-src="{{cfg.img.custom_icons + v}}" ng-repeat="v in iconsOnline.find.preview" /> 
-                    <img class="customize-icon-preview" ng-src="{{cfg.img.custom_icons + v}}" ng-repeat="v in iconsOnline.find.preview" /> 
-                    <img class="customize-icon-preview" ng-src="{{cfg.img.custom_icons + v}}" ng-repeat="v in iconsOnline.find.preview" /> 
-                    <img class="customize-icon-preview" ng-src="{{cfg.img.custom_icons + v}}" ng-repeat="v in iconsOnline.find.preview" /> 
-                    <img class="customize-icon-preview" ng-src="{{cfg.img.custom_icons + v}}" ng-repeat="v in iconsOnline.find.preview" /> 
-                    <img class="customize-icon-preview" ng-src="{{cfg.img.custom_icons + v}}" ng-repeat="v in iconsOnline.find.preview" /> 
-                    <img class="customize-icon-preview" ng-src="{{cfg.img.custom_icons + v}}" ng-repeat="v in iconsOnline.find.preview" /> 
-                     <img class="customize-icon-preview" ng-src="{{cfg.img.custom_icons + v}}" ng-repeat="v in iconsOnline.find.preview" /> 
-                    <img class="customize-icon-preview" ng-src="{{cfg.img.custom_icons + v}}" ng-repeat="v in iconsOnline.find.preview" /> 
-                    <img class="customize-icon-preview" ng-src="{{cfg.img.custom_icons + v}}" ng-repeat="v in iconsOnline.find.preview" /> 
-                    <img class="customize-icon-preview" ng-src="{{cfg.img.custom_icons + v}}" ng-repeat="v in iconsOnline.find.preview" /> 
-                    <img class="customize-icon-preview" ng-src="{{cfg.img.custom_icons + v}}" ng-repeat="v in iconsOnline.find.preview" /> 
-                    <img class="customize-icon-preview" ng-src="{{cfg.img.custom_icons + v}}" ng-repeat="v in iconsOnline.find.preview" /> 
-                    <img class="customize-icon-preview" ng-src="{{cfg.img.custom_icons + v}}" ng-repeat="v in iconsOnline.find.preview" /> 
-                    <img class="customize-icon-preview" ng-src="{{cfg.img.custom_icons + v}}" ng-repeat="v in iconsOnline.find.preview" /> 
-                    <img class="customize-icon-preview" ng-src="{{cfg.img.custom_icons + v}}" ng-repeat="v in iconsOnline.find.preview" /> 
-                    <img class="customize-icon-preview" ng-src="{{cfg.img.custom_icons + v}}" ng-repeat="v in iconsOnline.find.preview" /> 
-                    <img class="customize-icon-preview" ng-src="{{cfg.img.custom_icons + v}}" ng-repeat="v in iconsOnline.find.preview" /> 
+                    <img class="customize-icon-preview" ng-src="{{cfg.online_icon_storage + iconsOnline.find.name + '/' + v}}" ng-repeat="v in iconsOnline.preview" />
                 </div>
             </div>
             <!--<div class="appmodal-footer">

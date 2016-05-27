@@ -200,21 +200,51 @@ myAppController.controller('LocalIconController', function ($scope, $filter, $ti
 myAppController.controller('OnlineIconController', function ($scope, $filter, $timeout, $q, $location, cfg, dataFactory, dataService, _) {
     $scope.iconsOnline = {
         all: {},
-        find: {}
+        find: {},
+        preview: {}
     };
-     $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-    // Atempt to get a object
-    dataFactory.getApiLocal('icons_online.json').then(function (response) {
-        $scope.loading = false;
-        if(_.size(response.data.data < 1)){
-             alertify.alertError($scope._t('no_data'));
-             return;
-        }
-        setOnlineIcons(response.data.data);
-    }, function (error) {
-        alertify.alertError($scope._t('error_load_data'));
-        $scope.loading = false;
-    });
+   /**
+    * Load on-line icons
+    * @returns {undefined}
+    */
+    $scope.loadOnlineIcons = function () {
+         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        dataFactory.getRemoteData(cfg.online_icon_url).then(function (response) {
+            $scope.loading = false;
+            if (_.size(response.data.data) < 1) {
+                alertify.alertError($scope._t('no_data'));
+                return;
+            }
+            setOnlineIcons(response.data.data);
+        }, function (error) {
+            alertify.alertError($scope._t('error_load_data'));
+            $scope.loading = false;
+        });
+    };
+    $scope.loadOnlineIcons();
+
+
+    /**
+     * Open a modal window and load icon previews
+     * @returns {undefined}
+     */
+    $scope.handleOnlineIconModal = function (icon,modal,event) {
+        $scope.iconsOnline.find = icon;
+        $scope.handleModal(modal, event);
+         dataFactory.getRemoteData(cfg.online_icon_preview_url + '/' + icon.name).then(function (response) {
+              if (_.size(response.data.data) < 1) {
+                alertify.alertError($scope._t('no_data'));
+                return;
+            }
+            $scope.iconsOnline.preview = response.data.data;
+
+        }, function (error) {
+             alertify.alertError($scope._t('error_load_data'));
+            $scope.loading = false;
+        });
+
+    };
+
     
     /**
      * Download an icon set
@@ -233,10 +263,11 @@ myAppController.controller('OnlineIconController', function ($scope, $filter, $t
             alertify.alertError($scope._t('error_file_download'));
         });
     };
-    
+
+
     /// --- Private functions --- ///
-    
-     /**
+
+    /**
      * Set online icons $scope
      * @param {object} response
      * @returns {undefined}
@@ -248,10 +279,11 @@ myAppController.controller('OnlineIconController', function ($scope, $filter, $t
                     // Set skin download path
                     v.download = $scope.cfg.online_icon_storage + v.file;
                     // Set icon path
-                    v.icon = (v.icon === '' ? 'storage/img/placeholder-img.png' : $scope.cfg.online_icon_storage + v.icon);
+                    v.icon = (!v.icon  ||  v.icon === '' ? 'storage/img/placeholder-img.png' : $scope.cfg.online_icon_storage + v.icon);
                     return v;
                 })
                 .indexBy('name')
                 .value();
-    };
+    }
+    ;
 });

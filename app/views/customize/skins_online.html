@@ -58,19 +58,18 @@
             <h3>{{skins.online.find.title}}</h3>
         </div>
         <div class="appmodal-body">
-            <div class="customize-detail-img">
-                 <img class="customize-image-detail" ng-src="{{skins.online.find.icon}}" alt="{{skins.online.find.title}}" />
-            </div>
-            
-             <p class="customize-detail-perex">{{skins.online.find.description}}</p>
+              <p class="customize-detail-perex">{{skins.online.find.description}}</p>
               <p class="customize-detail-list" ng-if="skins.online.find.author">
-                            <i class="fa fa-user"></i>
+                             <strong>{{_t('author')}}:</strong> 
                             <span ng-if="!skins.online.find.homepage"> {{skins.online.find.author}}</span>
                             <a ng-href="{{skins.online.find.homepage}}" ng-if="skins.online.find.homepage"> {{skins.online.find.author}}</a> 
                         </p>
                 <p class="customize-detail-list">
-                        <i class="fa fa-info-circle"></i> {{skins.online.find.version}}
+                         <strong>{{_t('version')}}:</strong>  {{skins.online.find.version}}
                 </p>
+                <div class="customize-detail-img">
+                 <img class="customize-image-detail" ng-src="{{skins.online.find.icon}}" alt="{{skins.online.find.title}}" />
+            </div>
         </div>
         <!--<div class="appmodal-footer">
             <button type="button" class="btn btn-default" ng-click="handleModal('doorLockControlModal', $event)"><i class="fa fa-times text-danger"></i> {{_t('lb_close')}}</button>
