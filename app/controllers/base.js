@@ -80,7 +80,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
                             permanent: true,
                             hide: true
                         };
-                        if ($scope.routeMatch('/jamesbox/update')) {
+                        if ($scope.routeMatch('/boxupdate')) {
                             fatalArray.message = $scope._t('jamesbox_connection_refused');
                             fatalArray.info = $scope._t('jamesbox_connection_refused_info',{__reload_begintag__:'<div>', __reload_endtag__:'</div>', __attention_begintag__:'<div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i>', __attention_endtag__:'<div>'});
                             fatalArray.icon = cfg.route.fatalError.icon_jamesbox;

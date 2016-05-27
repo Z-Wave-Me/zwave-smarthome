@@ -318,7 +318,7 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     templateUrl: 'app/views/auth/password_reset.html'
                 }).
                 //Jamesbox update
-                when('/jamesbox/update', {
+                when('/boxupdate', {
                     templateUrl: 'app/views/jamesbox/update.html'
                 }).
                 //Login

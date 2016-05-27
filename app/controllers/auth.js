@@ -143,7 +143,7 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
         jamesBoxSystemInfo(input.uuid);
         dataFactory.postToRemote(cfg.api_remote['jamesbox_request'], input).then(function (response) {
            if (!_.isEmpty(response.data)) {
-                location = '#/jamesbox/update';
+                location = '#/boxupdate';
             }
             window.location = location;
             $window.location.reload();
