@@ -85,6 +85,29 @@ myApp.filter('typeOf', function () {
 });
 
 /**
+ * Convert a dec value to hex
+ * @function dec2hex
+ */
+myApp.filter('dec2hex', function () {
+    return function (i) {
+       var result = "0000";
+        if (i >= 0 && i <= 15) {
+            result = "000" + i.toString(16);
+        }
+        else if (i >= 16 && i <= 255) {
+            result = "00" + i.toString(16);
+        }
+        else if (i >= 256 && i <= 4095) {
+            result = "0" + i.toString(16);
+        }
+        else if (i >= 4096 && i <= 65535) {
+            result = i.toString(16);
+        }
+        return result;
+    };
+});
+
+/**
  * Get a file extension from the path
  * @function fileExtension
  */

@@ -7,7 +7,7 @@
  * The management root controller
  * @class ManagementController
  */
-myAppController.controller('ManagementController', function ($scope, $interval, $q, dataFactory, dataService, myCache) {
+myAppController.controller('ManagementController', function ($scope, $interval, $q, $filter,dataFactory, dataService, myCache) {
     //Set elements to expand/collapse
     angular.copy({
         user: false,
@@ -27,7 +27,8 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
         softwareRevisionVersion: null,
         softwareLatestVersion: null,
         capabillities: null,
-        scratchId: null
+        scratchId: null,
+        showLicence: false
     };
 
     $scope.zwaveDataInterval = null;
@@ -73,10 +74,14 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
             return cap;
 
         };
+        var nodeLimit = function (str) {
+            return parseInt(str, 16) > 0x00 ? false : true;
+        };
         $scope.controllerInfo.uuid = ZWaveAPIData.controller.data.uuid.value;
         $scope.controllerInfo.isZeroUuid = parseInt(ZWaveAPIData.controller.data.uuid.value, 16) === 0;
         $scope.controllerInfo.softwareRevisionVersion = ZWaveAPIData.controller.data.softwareRevisionVersion.value;
         $scope.controllerInfo.capabillities = caps(ZWaveAPIData.controller.data.caps.value);
+        $scope.controllerInfo.showLicence = nodeLimit($filter('dec2hex')($scope.controllerInfo.uuid).slice(-2));
         setLicenceScratchId($scope.controllerInfo.uuid);
 
     }
@@ -97,7 +102,7 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
  * The controller that renders the list of users.
  * @class ManagementUserController
  */
-myAppController.controller('ManagementUserController', function ($scope,$cookies,dataFactory, dataService, myCache) {
+myAppController.controller('ManagementUserController', function ($scope, $cookies, dataFactory, dataService, myCache) {
     $scope.userProfiles = {
         all: false,
         orderBy: ($cookies.usersOrderBy ? $cookies.usersOrderBy : 'titleASC')
@@ -116,7 +121,7 @@ myAppController.controller('ManagementUserController', function ($scope,$cookies
         });
     };
     $scope.loadProfiles();
-    
+
     /**
      * Set order by
      */
@@ -370,7 +375,8 @@ myAppController.controller('ManagementRemoteController', function ($scope, dataF
  * The controller that handles the licence key.
  * @class ManagementLicenceController
  */
-myAppController.controller('ManagementLicenceController', function ($scope, dataFactory) {
+myAppController.controller('ManagementLicenceController', function ($scope, $filter, dataFactory) {
+
     $scope.proccessLicence = false;
     $scope.proccessVerify = {
         'message': false,
@@ -381,8 +387,10 @@ myAppController.controller('ManagementLicenceController', function ($scope, data
         'status': 'is-hidden'
     };
     $scope.inputLicence = {
+        "show": false,
         "scratch_id": $scope.controllerInfo.scratchId
     };
+
     /**
      * Get license key
      */
@@ -485,7 +493,7 @@ myAppController.controller('ManagementFirmwareController', function ($scope, $sc
  * The controller that handles restore process.
  * @class ManagementRestoreController
  */
-myAppController.controller('ManagementRestoreController', function ($scope, $window,$timeout,dataFactory, dataService) {
+myAppController.controller('ManagementRestoreController', function ($scope, $window, $timeout, dataFactory, dataService) {
     $scope.myFile = null;
     $scope.managementRestore = {
         confirm: false,
@@ -508,8 +516,8 @@ myAppController.controller('ManagementRestoreController', function ($scope, $win
             $scope.loading = false;
             dataService.showNotifier({message: $scope._t('restore_done_reload_ui')});
             $scope.managementRestore.alert = {message: $scope._t('restore_done_reload_ui'), status: 'alert-success', icon: 'fa-check'};
-             $timeout(function () {
-                 alertify.dismissAll();
+            $timeout(function () {
+                alertify.dismissAll();
                 $window.location.reload();
             }, 2000);
         }, function (error) {
