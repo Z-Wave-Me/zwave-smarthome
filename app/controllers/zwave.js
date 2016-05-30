@@ -91,14 +91,14 @@ myAppController.controller('ZwaveAddController', function ($scope, $routeParams,
  */
 myAppController.controller('ZwaveManageController', function ($scope, $cookies, $filter, $window, $location, dataFactory, dataService, myCache) {
     $scope.activeTab = (angular.isDefined($cookies.tab_network) ? $cookies.tab_network : 'battery');
-    $scope.batteries = {
+    /*$scope.batteries = {
         list: [],
         cntLess20: [],
         cnt0: []
-    };
+    };*/
     $scope.devices = {
         find: {},
-        failed: [],
+        //failed: [],
         batteries: [],
         zwave: [],
         show: true
@@ -163,7 +163,8 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
                 $scope.zWaveDevices[k] = {
                     id: k,
                     title: v.data.givenName.value || 'Device ' + '_' + k,
-                    icon: null,
+                    do_interview: false,
+                    is_failed: false,
                     cfg: [],
                     elements: [],
                     messages: []
@@ -221,22 +222,10 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
                                 });
                             }
                         }
-                        // Not interview
-                        if (!interviewDone) {
-                            $scope.zWaveDevices[nodeId]['messages'].push({
-                                type: 'config',
-                                error: $scope._t('lb_not_configured')
-
-                            });
-
-                            obj['messages'].push({
-                                type: 'config',
-                                error: $scope._t('lb_not_configured')
-
-                            });
-                        }
                         // Is failed
                         if (isFailed) {
+                            $scope.zWaveDevices[nodeId]['is_failed'] = true;
+                            $scope.zWaveDevices[nodeId]['do_interview'] = false;
                             $scope.zWaveDevices[nodeId]['messages'].push({
                                 type: 'failed',
                                 error: $scope._t('lb_is_failed')
@@ -247,8 +236,26 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
                                 error: $scope._t('lb_is_failed')
 
                             });
+                            return;
                         }
-                        $scope.devices.failed.push(obj);
+                        // Not interview
+                        if (!interviewDone) {
+                            $scope.zWaveDevices[nodeId]['do_interview'] = true;
+                            $scope.zWaveDevices[nodeId]['messages'].push({
+                                type: 'config',
+                                error: $scope._t('lb_not_configured')
+
+                            });
+
+                            obj['messages'].push({
+                                type: 'config',
+                                error: $scope._t('lb_not_configured')
+
+                            });
+                            //obj['do_interview'] = true;
+                        }
+                        
+                        //$scope.devices.failed.push(obj);
                     }
 
                 }
@@ -260,7 +267,7 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
                 });
             }
             // Count device batteries
-            for (i = 0; i < $scope.devices.batteries.length; ++i) {
+            /*for (i = 0; i < $scope.devices.batteries.length; ++i) {
                 var battery = $scope.devices.batteries[i];
                 if (battery.level < 1) {
                     $scope.batteries.cnt0.push(battery.id);
@@ -269,7 +276,7 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
                     $scope.batteries.cntLess20.push(battery.id);
                 }
 
-            }
+            }*/
         }, function (error) {
             alertify.alertError($scope._t('error_load_data')).set('onok', function (closeEvent) {
                 dataService.goBack();
@@ -539,18 +546,25 @@ myAppController.controller('ZwaveInterviewController', function ($scope, $locati
                     return;
                 }
             }
-            // If no Security or Security ok but Interviews are not complete
+            // If interview is complete
             if (progress >= 100) {
                 $scope.zwaveInterview.progress = 100;
                 resetConfiguration(false, true, null, false, true);
-                setSecureInclusion(true);
-                $scope.startManualConfiguration(nodeId);
+                //setSecureInclusion(true);
+                //$scope.startManualConfiguration(nodeId);
                 return;
                 ;
             }
         }, function (error) {
             return;
         });
+    };
+    
+     /**
+     * Set secure inclusion
+     */
+    function setSecureInclusion(status) {
+        $scope.runZwaveCmd('controller.data.secureInclusion=' + status);
     }
     ;
 });

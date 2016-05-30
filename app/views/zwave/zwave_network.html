@@ -20,9 +20,9 @@
             </div>
          <div class="report-col report-ctrl">
              <div ng-repeat="m in v.messages|unique:true">
-                 <div class="text-danger" >{{m.error}}</div>
-                 <button class="btn btn-default" ng-if="m.type == 'failed' || m.type == 'config'" ng-click="devices.find = v;handleModal('zwaveNetworkModal', $event)">
-                         <i class="fa fa-cog text-primary"></i> <span class="btn-name">{{_t('configure_device')}}</span>
+                 <div class="text-danger" ng-if="m.type !== 'config'">{{m.error}}</div>
+                 <button class="btn btn-default" ng-if="!v.is_failed && v.do_interview" ng-click="devices.find = v;handleModal('zwaveNetworkModal', $event)">
+                         <i class="fa fa-refresh text-primary"></i> <span class="btn-name">{{_t('configure_device')}}</span>
                     </button> 
                 
                 <!--<span ng-if="!isMobile">
