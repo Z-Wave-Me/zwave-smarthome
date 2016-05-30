@@ -95,7 +95,7 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
             return;
         }
         if (cfg.app_type === 'jb' && user.role === 1) {
-            getZwaveApiData();
+            getZwaveApiData(location);
         } else {
             window.location = location;
             $window.location.reload();
@@ -106,13 +106,13 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
     /**
      * Gez zwave api data
      */
-    function getZwaveApiData() {
-        var location = '#/dashboard';
+    function getZwaveApiData(location) {
+        //var location = '#/dashboard';
         dataFactory.loadZwaveApiData().then(function (response) {
             var input = {
                 uuid: response.controller.data.uuid.value
             };
-            jamesBoxRequest(input);
+            jamesBoxRequest(input,location);
         }, function (error) {
             window.location = location;
             $window.location.reload();
@@ -138,8 +138,8 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
     /**
      * JamesBox request
      */
-    function jamesBoxRequest(input) {
-        var location = '#/dashboard';
+    function jamesBoxRequest(input,location) {
+        //var location = '#/dashboard';
         jamesBoxSystemInfo(input.uuid);
         dataFactory.postToRemote(cfg.api_remote['jamesbox_request'], input).then(function (response) {
            if (!_.isEmpty(response.data)) {
