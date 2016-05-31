@@ -86,8 +86,8 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
         $scope.controllerInfo.capabillities = caps(ZWaveAPIData.controller.data.caps.value);
         $scope.controllerInfo.capsLimited = nodeLimit($filter('dec2hex')(ZWaveAPIData.controller.data.caps.value[2]).slice(-2));
         setLicenceScratchId($scope.controllerInfo.uuid);
-        console.log(ZWaveAPIData.controller.data.caps.value);
-         console.log('Limited: ', $scope.controllerInfo.capsLimited);
+        //console.log(ZWaveAPIData.controller.data.caps.value);
+         //console.log('Limited: ', $scope.controllerInfo.capsLimited);
 
     }
     ;
