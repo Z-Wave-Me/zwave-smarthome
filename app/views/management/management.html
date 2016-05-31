@@ -8,7 +8,7 @@
 
     <!-- ///////////////////////////// Licence key ///////////////////////////// -->
     <div class="accordion-entry" 
-         ng-if="controllerInfo.showLicence && !isMobile" 
+         ng-if="!controllerInfo.capsLimited && !isMobile" 
          ng-hide="cfg.app_type === 'popp' || cfg.app_type === 'jb'"
          ng-include="'app/views/management/management_licence.html'"></div>
     

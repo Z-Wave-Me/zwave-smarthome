@@ -28,7 +28,10 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
         softwareLatestVersion: null,
         capabillities: null,
         scratchId: null,
-        showLicence: false
+        capsLimited: false,
+        showLicence: true,
+        disableLicenceInput: false
+        
     };
 
     $scope.zwaveDataInterval = null;
@@ -81,8 +84,10 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
         $scope.controllerInfo.isZeroUuid = parseInt(ZWaveAPIData.controller.data.uuid.value, 16) === 0;
         $scope.controllerInfo.softwareRevisionVersion = ZWaveAPIData.controller.data.softwareRevisionVersion.value;
         $scope.controllerInfo.capabillities = caps(ZWaveAPIData.controller.data.caps.value);
-        $scope.controllerInfo.showLicence = nodeLimit($filter('dec2hex')($scope.controllerInfo.uuid).slice(-2));
+        $scope.controllerInfo.capsLimited = nodeLimit($filter('dec2hex')(ZWaveAPIData.controller.data.caps.value[2]).slice(-2));
         setLicenceScratchId($scope.controllerInfo.uuid);
+        console.log(ZWaveAPIData.controller.data.caps.value);
+         console.log('Limited: ', $scope.controllerInfo.capsLimited);
 
     }
     ;
