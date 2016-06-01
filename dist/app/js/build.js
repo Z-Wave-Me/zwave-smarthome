@@ -11034,7 +11034,7 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     templateUrl: 'app/views/auth/password_reset.html'
                 }).
                 //Jamesbox update
-                when('/jamesbox/update', {
+                when('/boxupdate', {
                     templateUrl: 'app/views/jamesbox/update.html'
                 }).
                 //Login
@@ -11505,7 +11505,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/management/management.html',
-    "<div ng-controller=ManagementController class=mobile-padding><div class=accordion-entry ng-include=\"'app/views/management/management_user.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_remote.html'\"></div><div class=accordion-entry ng-if=\"controllerInfo.uuid && !isMobile\" ng-hide=\"cfg.app_type === 'popp' || cfg.app_type === 'jb'\" ng-include=\"'app/views/management/management_licence.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_backup.html'\" ng-if=!isMobile></div><div class=accordion-entry ng-include=\"'app/views/management/management_restore.html'\" ng-if=!isMobile></div><div class=accordion-entry ng-include=\"'app/views/management/management_factory.html'\"></div><div class=accordion-entry ng-if=!isMobile ng-hide=\"cfg.app_type === 'wd' || cfg.app_type === 'jb'\" ng-include=\"'app/views/management/management_firmware.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_appstore.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_report.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_info.html'\"></div></div>"
+    "<div ng-controller=ManagementController class=mobile-padding><div class=accordion-entry ng-include=\"'app/views/management/management_user.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_remote.html'\"></div><div class=accordion-entry ng-if=handleLicense.show ng-include=\"'app/views/management/management_licence.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_backup.html'\" ng-if=!isMobile></div><div class=accordion-entry ng-include=\"'app/views/management/management_restore.html'\" ng-if=!isMobile></div><div class=accordion-entry ng-include=\"'app/views/management/management_factory.html'\"></div><div class=accordion-entry ng-if=!isMobile ng-hide=\"cfg.app_type === 'wd' || cfg.app_type === 'jb'\" ng-include=\"'app/views/management/management_firmware.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_appstore.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_report.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_info.html'\"></div></div>"
   );
 
 
@@ -11535,7 +11535,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/management/management_licence.html',
-    "<h2 class=accordion-entry-title ng-click=\"expandElement('licence')\"><i class=\"fa fa-key\"></i> <span ng-bind=\"_t('licence_upgrade')\"></span> <i class=\"fa accordion-arrow\" ng-class=\"expand.licence  ? 'fa-chevron-up':'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-class=\"\" ng-if=expand.licence ng-controller=ManagementLicenceController><bb-loader></bb-loader><form name=form_licence id=form_password class=\"form form-page\" ng-submit=getLicense(inputLicence) novalidate><fieldset><div class=\"alert alert-danger\" ng-if=controllerInfo.isZeroUuid><i class=\"fa fa-plug\"></i> {{_t('replug_device')}}</div><p>{{_t('licence_upgrade_key')}}</p><p class=form-inline><label>{{_t('licence_key_insert')}}:</label><input class=\"form-control form-control-sm\" name=scratch_id id=scratch_id value={{inputLicence.scratch_id}} ng-disabled=controllerInfo.isZeroUuid ng-model=\"inputLicence.scratch_id\"></p><div><p ng-if=proccessVerify.message><i ng-class=proccessVerify.status></i> <strong ng-bind=proccessVerify.message></strong></p><p ng-if=proccessUpdate.message><i ng-class=proccessUpdate.status></i> <strong ng-bind=proccessUpdate.message></strong></p></div></fieldset><fieldset class=submit-entry><button type=submit class=\"btn btn-submit\" title=\"{{_t('btn_licence_verify')}}\" ng-disabled=\"proccessLicence || controllerInfo.isZeroUuid\"><i class=\"fa fa-share\"></i> <span class=btn-name>{{_t('btn_licence_verify')}}</span></button></fieldset></form></div>"
+    "<h2 class=accordion-entry-title ng-click=\"expandElement('licence')\"><i class=\"fa fa-key\"></i> <span ng-bind=\"_t('licence_upgrade')\"></span> <i class=\"fa accordion-arrow\" ng-class=\"expand.licence  ? 'fa-chevron-up':'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-class=\"\" ng-if=expand.licence ng-controller=ManagementLicenceController><bb-loader></bb-loader><form name=form_licence id=form_password class=\"form form-page\" ng-submit=getLicense(inputLicence) novalidate><fieldset><div class=\"alert alert-danger\" ng-if=handleLicense.replug><i class=\"fa fa-plug\"></i> {{_t('replug_device')}}</div><p>{{_t('licence_upgrade_key')}}</p><p class=form-inline><label>{{_t('licence_key_insert')}}:</label><input class=\"form-control form-control-sm\" name=scratch_id id=scratch_id value={{inputLicence.scratch_id}} ng-disabled=handleLicense.disabled ng-model=\"inputLicence.scratch_id\"></p><div><p ng-if=proccessVerify.message><i ng-class=proccessVerify.status></i> <strong ng-bind=proccessVerify.message></strong></p><p ng-if=proccessUpdate.message><i ng-class=proccessUpdate.status></i> <strong ng-bind=proccessUpdate.message></strong></p></div></fieldset><fieldset class=submit-entry><button type=submit class=\"btn btn-submit\" title=\"{{_t('btn_licence_verify')}}\" ng-disabled=\"proccessLicence || controllerInfo.isZeroUuid\"><i class=\"fa fa-share\"></i> <span class=btn-name>{{_t('btn_licence_verify')}}</span></button></fieldset></form></div>"
   );
 
 
@@ -11650,7 +11650,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/zwave/zwave_network.html',
-    "<div ng-controller=ZwaveManageController><bb-loader></bb-loader><div ng-include=\"'app/views/zwave/navi.html'\"></div><div class=\"app-row app-row-report app-row-zwave clearfix\" ng-if=devices.show><div id=row_zwave_network_{{v.id}} class=report-entry ng-repeat=\"v in zWaveDevices | orderBy:'title':false\" ng-if=v.messages><div class=\"report-col report-body zwave-network\"><span class=\"network-zwave-title noelements clickable\" ng-if=\"v.elements.length < 1\">{{v.title|cutText:true:25}} (#{{v.id}})</span> <a href=\"\" class=\"network-zwave-title clickable\" ng-click=\"expandElement('accZwaveNetwork_' + v.id)\" ng-if=\"v.elements.length > 0\"><i class=fa ng-class=\"expand['accZwaveNetwork' + '_' + v.id] ? 'fa-chevron-up': 'fa-chevron-down'\"></i> {{v.title}} (#{{v.id}})</a><div ng-if=\"expand['accZwaveNetwork_' + v.id]\"><div class=\"network-zwave-element zwave-hidden-{{e.permanently_hidden}}\" ng-repeat=\"e in v.elements | orderBy:'title':false\"><a ng-href=#/element/{{e.id}}><img class=report-img-s ng-src={{e.metrics.icon|getElementIcon:e:e.level}} alt=\"img\"> {{e.title|cutText:true:25}} <span class=zwave-raquo>&raquo;</span></a></div></div></div><div class=\"report-col report-ctrl\"><div ng-repeat=\"m in v.messages|unique:true\"><div class=text-danger>{{m.error}}</div><button class=\"btn btn-default\" ng-if=\"m.type == 'failed' || m.type == 'config'\" ng-click=\"devices.find = v;handleModal('zwaveNetworkModal', $event)\"><i class=\"fa fa-cog text-primary\"></i> <span class=btn-name>{{_t('configure_device')}}</span></button></div></div></div></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div><div id=zwaveNetworkModal class=appmodal ng-controller=ZwaveInterviewController ng-if=\"modalArr.zwaveNetworkModal && !_.isEmpty(devices.find)\"><div class=appmodal-in><div class=appmodal-header><span class=appmodal-close ng-click=cancelConfiguration($event)><i class=\"fa fa-times\"></i></span><h3>{{devices.find.title|cutText:true:25}} (#{{devices.find.id}})</h3></div><div class=appmodal-body><div class=\"alert alert-warning\" ng-hide=\"zwaveInterview.progress > 99\"><i class=\"fa fa-spinner fa-spin\"></i> <strong>{{_t('configuring_device')}}</strong></div><div class=progress><div class=progress-bar style=\"min-height:40px;min-width: 2em; width: {{zwaveInterview.progress}}%\" ng-class=\"zwaveInterview.progress < 100 ? 'progress-bar-striped active' : 'progress-bar-success'\">{{zwaveInterview.progress}}%</div></div></div><div class=appmodal-footer><button type=button class=\"btn btn-default\" ng-click=cancelConfiguration($event)><i class=\"fa fa-times text-danger\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button></div></div></div></div>"
+    "<div ng-controller=ZwaveManageController><bb-loader></bb-loader><div ng-include=\"'app/views/zwave/navi.html'\"></div><div class=\"app-row app-row-report app-row-zwave clearfix\" ng-if=devices.show><div id=row_zwave_network_{{v.id}} class=report-entry ng-repeat=\"v in zWaveDevices | orderBy:'title':false\" ng-if=v.messages><div class=\"report-col report-body zwave-network\"><span class=\"network-zwave-title noelements clickable\" ng-if=\"v.elements.length < 1\">{{v.title|cutText:true:25}} (#{{v.id}})</span> <a href=\"\" class=\"network-zwave-title clickable\" ng-click=\"expandElement('accZwaveNetwork_' + v.id)\" ng-if=\"v.elements.length > 0\"><i class=fa ng-class=\"expand['accZwaveNetwork' + '_' + v.id] ? 'fa-chevron-up': 'fa-chevron-down'\"></i> {{v.title}} (#{{v.id}})</a><div ng-if=\"expand['accZwaveNetwork_' + v.id]\"><div class=\"network-zwave-element zwave-hidden-{{e.permanently_hidden}}\" ng-repeat=\"e in v.elements | orderBy:'title':false\"><a ng-href=#/element/{{e.id}}><img class=report-img-s ng-src={{e.metrics.icon|getElementIcon:e:e.level}} alt=\"img\"> {{e.title|cutText:true:25}} <span class=zwave-raquo>&raquo;</span></a></div></div></div><div class=\"report-col report-ctrl\"><div ng-repeat=\"m in v.messages|unique:true\"><div class=text-danger ng-if=\"m.type !== 'config'\">{{m.error}}</div><button class=\"btn btn-default\" ng-if=\"!v.is_failed && v.do_interview\" ng-click=\"devices.find = v;handleModal('zwaveNetworkModal', $event)\"><i class=\"fa fa-refresh text-primary\"></i> <span class=btn-name>{{_t('configure_device')}}</span></button></div></div></div></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div><div id=zwaveNetworkModal class=appmodal ng-controller=ZwaveInterviewController ng-if=\"modalArr.zwaveNetworkModal && !_.isEmpty(devices.find)\"><div class=appmodal-in><div class=appmodal-header><span class=appmodal-close ng-click=cancelConfiguration($event)><i class=\"fa fa-times\"></i></span><h3>{{devices.find.title|cutText:true:25}} (#{{devices.find.id}})</h3></div><div class=appmodal-body><div class=\"alert alert-warning\" ng-hide=\"zwaveInterview.progress > 99\"><i class=\"fa fa-spinner fa-spin\"></i> <strong>{{_t('configuring_device')}}</strong></div><div class=progress><div class=progress-bar style=\"min-height:40px;min-width: 2em; width: {{zwaveInterview.progress}}%\" ng-class=\"zwaveInterview.progress < 100 ? 'progress-bar-striped active' : 'progress-bar-success'\">{{zwaveInterview.progress}}%</div></div></div><div class=appmodal-footer><button type=button class=\"btn btn-default\" ng-click=cancelConfiguration($event)><i class=\"fa fa-times text-danger\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button></div></div></div></div>"
   );
 
 
@@ -13852,6 +13852,29 @@ myApp.filter('typeOf', function () {
 });
 
 /**
+ * Convert a dec value to hex
+ * @function dec2hex
+ */
+myApp.filter('dec2hex', function () {
+    return function (i) {
+       var result = "0000";
+        if (i >= 0 && i <= 15) {
+            result = "000" + i.toString(16);
+        }
+        else if (i >= 16 && i <= 255) {
+            result = "00" + i.toString(16);
+        }
+        else if (i >= 256 && i <= 4095) {
+            result = "0" + i.toString(16);
+        }
+        else if (i >= 4096 && i <= 65535) {
+            result = i.toString(16);
+        }
+        return result;
+    };
+});
+
+/**
  * Get a file extension from the path
  * @function fileExtension
  */
@@ -14650,7 +14673,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
                             permanent: true,
                             hide: true
                         };
-                        if ($scope.routeMatch('/jamesbox/update')) {
+                        if ($scope.routeMatch('/boxupdate')) {
                             fatalArray.message = $scope._t('jamesbox_connection_refused');
                             fatalArray.info = $scope._t('jamesbox_connection_refused_info',{__reload_begintag__:'<div>', __reload_endtag__:'</div>', __attention_begintag__:'<div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i>', __attention_endtag__:'<div>'});
                             fatalArray.icon = cfg.route.fatalError.icon_jamesbox;
@@ -18226,14 +18249,14 @@ myAppController.controller('ZwaveAddController', function ($scope, $routeParams,
  */
 myAppController.controller('ZwaveManageController', function ($scope, $cookies, $filter, $window, $location, dataFactory, dataService, myCache) {
     $scope.activeTab = (angular.isDefined($cookies.tab_network) ? $cookies.tab_network : 'battery');
-    $scope.batteries = {
+    /*$scope.batteries = {
         list: [],
         cntLess20: [],
         cnt0: []
-    };
+    };*/
     $scope.devices = {
         find: {},
-        failed: [],
+        //failed: [],
         batteries: [],
         zwave: [],
         show: true
@@ -18298,7 +18321,8 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
                 $scope.zWaveDevices[k] = {
                     id: k,
                     title: v.data.givenName.value || 'Device ' + '_' + k,
-                    icon: null,
+                    do_interview: false,
+                    is_failed: false,
                     cfg: [],
                     elements: [],
                     messages: []
@@ -18356,22 +18380,10 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
                                 });
                             }
                         }
-                        // Not interview
-                        if (!interviewDone) {
-                            $scope.zWaveDevices[nodeId]['messages'].push({
-                                type: 'config',
-                                error: $scope._t('lb_not_configured')
-
-                            });
-
-                            obj['messages'].push({
-                                type: 'config',
-                                error: $scope._t('lb_not_configured')
-
-                            });
-                        }
                         // Is failed
                         if (isFailed) {
+                            $scope.zWaveDevices[nodeId]['is_failed'] = true;
+                            $scope.zWaveDevices[nodeId]['do_interview'] = false;
                             $scope.zWaveDevices[nodeId]['messages'].push({
                                 type: 'failed',
                                 error: $scope._t('lb_is_failed')
@@ -18382,8 +18394,26 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
                                 error: $scope._t('lb_is_failed')
 
                             });
+                            return;
                         }
-                        $scope.devices.failed.push(obj);
+                        // Not interview
+                        if (!interviewDone) {
+                            $scope.zWaveDevices[nodeId]['do_interview'] = true;
+                            $scope.zWaveDevices[nodeId]['messages'].push({
+                                type: 'config',
+                                error: $scope._t('lb_not_configured')
+
+                            });
+
+                            obj['messages'].push({
+                                type: 'config',
+                                error: $scope._t('lb_not_configured')
+
+                            });
+                            //obj['do_interview'] = true;
+                        }
+                        
+                        //$scope.devices.failed.push(obj);
                     }
 
                 }
@@ -18395,7 +18425,7 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
                 });
             }
             // Count device batteries
-            for (i = 0; i < $scope.devices.batteries.length; ++i) {
+            /*for (i = 0; i < $scope.devices.batteries.length; ++i) {
                 var battery = $scope.devices.batteries[i];
                 if (battery.level < 1) {
                     $scope.batteries.cnt0.push(battery.id);
@@ -18404,7 +18434,7 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
                     $scope.batteries.cntLess20.push(battery.id);
                 }
 
-            }
+            }*/
         }, function (error) {
             alertify.alertError($scope._t('error_load_data')).set('onok', function (closeEvent) {
                 dataService.goBack();
@@ -18674,18 +18704,25 @@ myAppController.controller('ZwaveInterviewController', function ($scope, $locati
                     return;
                 }
             }
-            // If no Security or Security ok but Interviews are not complete
+            // If interview is complete
             if (progress >= 100) {
                 $scope.zwaveInterview.progress = 100;
                 resetConfiguration(false, true, null, false, true);
-                setSecureInclusion(true);
-                $scope.startManualConfiguration(nodeId);
+                //setSecureInclusion(true);
+                //$scope.startManualConfiguration(nodeId);
                 return;
                 ;
             }
         }, function (error) {
             return;
         });
+    };
+    
+     /**
+     * Set secure inclusion
+     */
+    function setSecureInclusion(status) {
+        $scope.runZwaveCmd('controller.data.secureInclusion=' + status);
     }
     ;
 });
@@ -20504,7 +20541,7 @@ myAppController.controller('RoomConfigIdController', function ($scope, $routePar
  * The management root controller
  * @class ManagementController
  */
-myAppController.controller('ManagementController', function ($scope, $interval, $q, dataFactory, dataService, myCache) {
+myAppController.controller('ManagementController', function ($scope, $interval, $q, $filter, cfg, dataFactory, dataService, myCache) {
     //Set elements to expand/collapse
     angular.copy({
         user: false,
@@ -20524,7 +20561,14 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
         softwareRevisionVersion: null,
         softwareLatestVersion: null,
         capabillities: null,
-        scratchId: null
+        scratchId: null,
+        capsLimited: false
+
+    };
+    $scope.handleLicense = {
+        show: true,
+        disabled: false,
+        replug: false
     };
 
     $scope.zwaveDataInterval = null;
@@ -20570,31 +20614,87 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
             return cap;
 
         };
+        var nodeLimit = function (str) {
+            return parseInt(str, 16) > 0x00 ? false : true;
+        };
         $scope.controllerInfo.uuid = ZWaveAPIData.controller.data.uuid.value;
         $scope.controllerInfo.isZeroUuid = parseInt(ZWaveAPIData.controller.data.uuid.value, 16) === 0;
         $scope.controllerInfo.softwareRevisionVersion = ZWaveAPIData.controller.data.softwareRevisionVersion.value;
         $scope.controllerInfo.capabillities = caps(ZWaveAPIData.controller.data.caps.value);
-        setLicenceScratchId($scope.controllerInfo.uuid);
+        $scope.controllerInfo.capsLimited = nodeLimit($filter('dec2hex')(ZWaveAPIData.controller.data.caps.value[2]).slice(-2));
+        setLicenceScratchId($scope.controllerInfo);
+        //console.log(ZWaveAPIData.controller.data.caps.value);
+        //console.log('Limited: ', $scope.controllerInfo.capsLimited);
 
     }
     ;
-
     /**
      * Set licence ID
+     * @param {object} controllerInfo
+     * @returns {undefined}
      */
-    function  setLicenceScratchId(uuid) {
-        dataFactory.getRemoteData($scope.cfg.get_licence_scratchid + '?uuid=' + uuid).then(function (response) {
+    function  setLicenceScratchId(controllerInfo) {
+        dataFactory.getRemoteData($scope.cfg.get_licence_scratchid + '?uuid=' + controllerInfo.uuid).then(function (response) {
             $scope.controllerInfo.scratchId = response.data.scratch_id;
-        }, function (error) {});
+            handleLicense($scope.controllerInfo)
+        }, function (error) {
+            handleLicense($scope.controllerInfo);
+            alertify.alertError($scope._t('error_license_request'));
+        });
     }
     ;
+    /**
+     * Show or hide licencese block
+     * @param {object} controllerInfo
+     * @returns {undefined}
+     */
+    function handleLicense(controllerInfo) {
+        //controllerInfo.uuid = null;
+        //controllerInfo.scratchId = null;
+        //controllerInfo.capsLimited = true;
+        //console.log('Hide license: ', cfg.app_type)
+        //console.log('isMobile: ', $scope.isMobile)
+        //console.log('controllerInfo: ', controllerInfo)
+        // Hide license if 
+        // forbidden, mobile device, not uuid
+        if ((cfg.license_forbidden.indexOf(cfg.app_type) > -1) || $scope.isMobile || !controllerInfo.uuid) {
+            //console.log('Hide license if: forbidden, mobile device, not uuid')
+            $scope.handleLicense.show = false;
+            return;
+        }
+
+        // Hide license if
+        // Controller UUID = string and scratchId  is NOT found  and cap unlimited
+        if (!controllerInfo.scratchId && !controllerInfo.capsLimited) {
+             //console.log('Hide license if: Controller UUID = string and scratchId  is NOT found  and cap unlimited')
+            $scope.handleLicense.show = false;
+            return;
+        }
+        
+        // Show modal if
+        // Controller UUID = string and scratchId  is NOT found  and cap limited
+        if (!controllerInfo.scratchId && controllerInfo.capsLimited) {
+             //console.log('Show modal if: Controller UUID = string and scratchId  is NOT found  and cap limited')
+              alertify.alertWarning($scope._t('info_missing_licence'));
+        }
+
+        // Disable input and show unplug message
+        if (controllerInfo.isZeroUuid) {
+             //console.log('Disable input and show unplug message')
+            $scope.handleLicense.disabled = true;
+            $scope.handleLicense.replug = true;
+            return;
+        }
+        //$scope.handleLicense.show = true;
+        //console.log('handleLicense: ', $scope.handleLicense)
+    }
 
 });
 /**
  * The controller that renders the list of users.
  * @class ManagementUserController
  */
-myAppController.controller('ManagementUserController', function ($scope,$cookies,dataFactory, dataService, myCache) {
+myAppController.controller('ManagementUserController', function ($scope, $cookies, dataFactory, dataService, myCache) {
     $scope.userProfiles = {
         all: false,
         orderBy: ($cookies.usersOrderBy ? $cookies.usersOrderBy : 'titleASC')
@@ -20613,7 +20713,7 @@ myAppController.controller('ManagementUserController', function ($scope,$cookies
         });
     };
     $scope.loadProfiles();
-    
+
     /**
      * Set order by
      */
@@ -20868,6 +20968,7 @@ myAppController.controller('ManagementRemoteController', function ($scope, dataF
  * @class ManagementLicenceController
  */
 myAppController.controller('ManagementLicenceController', function ($scope, dataFactory) {
+
     $scope.proccessLicence = false;
     $scope.proccessVerify = {
         'message': false,
@@ -20878,8 +20979,10 @@ myAppController.controller('ManagementLicenceController', function ($scope, data
         'status': 'is-hidden'
     };
     $scope.inputLicence = {
+        "show": false,
         "scratch_id": $scope.controllerInfo.scratchId
     };
+
     /**
      * Get license key
      */
@@ -20982,7 +21085,7 @@ myAppController.controller('ManagementFirmwareController', function ($scope, $sc
  * The controller that handles restore process.
  * @class ManagementRestoreController
  */
-myAppController.controller('ManagementRestoreController', function ($scope, $window,$timeout,dataFactory, dataService) {
+myAppController.controller('ManagementRestoreController', function ($scope, $window, $timeout, dataFactory, dataService) {
     $scope.myFile = null;
     $scope.managementRestore = {
         confirm: false,
@@ -21005,8 +21108,8 @@ myAppController.controller('ManagementRestoreController', function ($scope, $win
             $scope.loading = false;
             dataService.showNotifier({message: $scope._t('restore_done_reload_ui')});
             $scope.managementRestore.alert = {message: $scope._t('restore_done_reload_ui'), status: 'alert-success', icon: 'fa-check'};
-             $timeout(function () {
-                 alertify.dismissAll();
+            $timeout(function () {
+                alertify.dismissAll();
                 $window.location.reload();
             }, 2000);
         }, function (error) {
@@ -21017,7 +21120,6 @@ myAppController.controller('ManagementRestoreController', function ($scope, $win
 
     };
 });
-
 /**
  * The controller that resets the system to factory default.
  * @class ManagementFactoryController
@@ -21509,7 +21611,7 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
             return;
         }
         if (cfg.app_type === 'jb' && user.role === 1) {
-            getZwaveApiData();
+            getZwaveApiData(location);
         } else {
             window.location = location;
             $window.location.reload();
@@ -21520,13 +21622,13 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
     /**
      * Gez zwave api data
      */
-    function getZwaveApiData() {
-        var location = '#/dashboard';
+    function getZwaveApiData(location) {
+        //var location = '#/dashboard';
         dataFactory.loadZwaveApiData().then(function (response) {
             var input = {
                 uuid: response.controller.data.uuid.value
             };
-            jamesBoxRequest(input);
+            jamesBoxRequest(input,location);
         }, function (error) {
             window.location = location;
             $window.location.reload();
@@ -21552,12 +21654,12 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
     /**
      * JamesBox request
      */
-    function jamesBoxRequest(input) {
-        var location = '#/dashboard';
+    function jamesBoxRequest(input,location) {
+        //var location = '#/dashboard';
         jamesBoxSystemInfo(input.uuid);
         dataFactory.postToRemote(cfg.api_remote['jamesbox_request'], input).then(function (response) {
            if (!_.isEmpty(response.data)) {
-                location = '#/jamesbox/update';
+                location = '#/boxupdate';
             }
             window.location = location;
             $window.location.reload();

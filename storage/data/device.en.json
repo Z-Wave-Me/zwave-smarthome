@@ -615,11 +615,6 @@
         "prep": "Insert the battery",
         "inclusion_type": "unsecure"
     },
-
-
-
-
-
     {
         "id": "725-0154-0100-0201-03-04-05-01-00",
         "name": "Popp Smoke Detector",
@@ -676,7 +671,6 @@
         "prep": "Make sure the module is plugged into the Smoke Detector Head.",
         "inclusion_type": "secure"
     },
-
     {
         "id": "POPE004407",
         "name": "Carbon Monoxide Sensor",
@@ -746,7 +740,7 @@
         "product_image": "POPE012501.png",
         "prep": "Make sure the strike lock is already mounted on the final place and is powered, either by a 9V battery or from a power supply",
         "inclusion_type": "secure"
-    }, 
+    },
     {
         "id": "POPE009501",
         "name": "Flow Stop",
@@ -760,11 +754,11 @@
         "product_image": "POPE009501.png",
         "prep": "You must not move the rocker arm manually without unlocking it mechanically pulling on the ring on the bottom side of the enclosure.",
         "inclusion_type": "secure"
-    },  
+    },
     {
         "id": "POPE010101",
         "name": "TRV with Temperature Sensor",
-        "desc": "The Flow Stop allows turning on/off ball valves used to control water or gas flow. ",
+        "desc": "This Thermostat Radiator Valve control warm water head radiators and reports the room temperature",
         "productcode": "POPE010101",
         "wake": "Short Push Middle button",
         "inc": "Keep pushed the middle button until you see an 'M' in the display. Now push the middle button short again to include the device.",
@@ -774,8 +768,8 @@
         "product_image": "POPE010101.png",
         "prep": " You should mount the device to the radiator before including. After pushing the middle button the device will calibrate itself to the valve. This wil take few seconds.",
         "inclusion_type": "secure"
-    },   
-     {
+    },
+    {
         "id": "POPE009006",
         "name": "Smart Plug IP 20",
         "desc": "The Smart Plug allows to control a load up to 3500W. A virtual power meter will calculate the power consumed based on the predefined load level.",
@@ -789,7 +783,7 @@
         "prep": "",
         "inclusion_type": "secure"
     },
-     {
+    {
         "id": "POPE009105",
         "name": "Smart Plug IP 44",
         "desc": "The Smart Plug allows to control a load up to 3500W. A virtual power meter will calculate the power consumed based on the predefined load level.",
@@ -803,6 +797,4 @@
         "prep": "",
         "inclusion_type": "secure"
     }
-   
-    
 ]

@@ -277,6 +277,11 @@ var config_data = {
             'find.z-wave.me',
             'find.popp.eu'
         ],
+        // List of the forbidden licence app types
+        'license_forbidden': [
+            'popp',
+            'jb'
+        ],
         // List of range values 0 - 255
         'knob_255': [
             'switchColor_red',
