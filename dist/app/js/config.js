@@ -149,7 +149,7 @@ var config_data = {
         'get_licence_scratchid': 'https://hrix.net/shuiapi/licence/',
         // Url to get a license key
         'license_url': 'https://hrix.net/shuiapi/licence/upgrade.php',
-        // Razberry latest version
+        // Raz latest version
         'raz_latest_version_url': 'https://razberry.z-wave.me/z-way/razberry/latest/VERSION',
         // Find z-wave me box
         'find_zwaveme_zbox': 'https://find.z-wave.me/',
@@ -252,6 +252,11 @@ var config_data = {
         'find_hosts': [
             'find.z-wave.me',
             'find.popp.eu'
+        ],
+        // List of the forbidden licence app types
+        'license_forbidden': [
+            'popp',
+            'jb'
         ],
         // List of range values 0 - 255
         'knob_255': [

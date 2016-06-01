@@ -1,7 +1,7 @@
 {
     "newtrans": "---",
-    "error_license_request": "Unable to load a license key from the remote server.",
      "---": "newtrans",
+    "error_license_request": "Unable to load a license key from the remote server.",
     "ie_edge_not_supported": "Sorry, but SmartHome does not support Internet explorer and Edge.",
     "ie_edge_not_supported_info": "Please use Firefox, Chrome, Safari or Opera",
     "upload_format_unsupported": "The (__extension__)  format is not supported.",

@@ -1,4 +1,5 @@
 {
+    "error_license_request": "Unable to load a license key from the remote server.",
     "ie_edge_not_supported": "Sorry, but SmartHome does not support Internet explorer and Edge. Please use Firefox, Chrome, Safari or Opera.",
     "upload_format_unsupported": "The (__extension__)  format is not supported.",
     "upload_allowed_formats": "The uploaded file must be in one of the following formats: __extensions__",

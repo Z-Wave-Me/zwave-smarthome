@@ -53,6 +53,12 @@ Get type of a Javascript variable
 
 
 
+### dec2hex() 
+
+Convert a dec value to hex
+
+
+
 ### fileExtension() 
 
 Get a file extension from the path
