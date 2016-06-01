@@ -7,7 +7,7 @@
  * The management root controller
  * @class ManagementController
  */
-myAppController.controller('ManagementController', function ($scope, $interval, $q, $filter,dataFactory, dataService, myCache) {
+myAppController.controller('ManagementController', function ($scope, $interval, $q, $filter, cfg, dataFactory, dataService, myCache) {
     //Set elements to expand/collapse
     angular.copy({
         user: false,
@@ -28,10 +28,13 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
         softwareLatestVersion: null,
         capabillities: null,
         scratchId: null,
-        capsLimited: false,
-        showLicence: true,
-        disableLicenceInput: false
-        
+        capsLimited: false
+
+    };
+    $scope.handleLicense = {
+        show: true,
+        disabled: false,
+        replug: false
     };
 
     $scope.zwaveDataInterval = null;
@@ -85,22 +88,72 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
         $scope.controllerInfo.softwareRevisionVersion = ZWaveAPIData.controller.data.softwareRevisionVersion.value;
         $scope.controllerInfo.capabillities = caps(ZWaveAPIData.controller.data.caps.value);
         $scope.controllerInfo.capsLimited = nodeLimit($filter('dec2hex')(ZWaveAPIData.controller.data.caps.value[2]).slice(-2));
-        setLicenceScratchId($scope.controllerInfo.uuid);
+        setLicenceScratchId($scope.controllerInfo);
         //console.log(ZWaveAPIData.controller.data.caps.value);
-         //console.log('Limited: ', $scope.controllerInfo.capsLimited);
+        //console.log('Limited: ', $scope.controllerInfo.capsLimited);
 
     }
     ;
-
     /**
      * Set licence ID
+     * @param {object} controllerInfo
+     * @returns {undefined}
      */
-    function  setLicenceScratchId(uuid) {
-        dataFactory.getRemoteData($scope.cfg.get_licence_scratchid + '?uuid=' + uuid).then(function (response) {
+    function  setLicenceScratchId(controllerInfo) {
+        dataFactory.getRemoteData($scope.cfg.get_licence_scratchid + '?uuid=' + controllerInfo.uuid).then(function (response) {
             $scope.controllerInfo.scratchId = response.data.scratch_id;
-        }, function (error) {});
+            handleLicense($scope.controllerInfo)
+        }, function (error) {
+            handleLicense($scope.controllerInfo);
+            alertify.alertError($scope._t('error_license_request'));
+        });
     }
     ;
+    /**
+     * Show or hide licencese block
+     * @param {object} controllerInfo
+     * @returns {undefined}
+     */
+    function handleLicense(controllerInfo) {
+        //controllerInfo.uuid = null;
+        //controllerInfo.scratchId = null;
+        //controllerInfo.capsLimited = true;
+        //console.log('Hide license: ', cfg.app_type)
+        //console.log('isMobile: ', $scope.isMobile)
+        //console.log('controllerInfo: ', controllerInfo)
+        // Hide license if 
+        // forbidden, mobile device, not uuid
+        if ((cfg.license_forbidden.indexOf(cfg.app_type) > -1) || $scope.isMobile || !controllerInfo.uuid) {
+            //console.log('Hide license if: forbidden, mobile device, not uuid')
+            $scope.handleLicense.show = false;
+            return;
+        }
+
+        // Hide license if
+        // Controller UUID = string and scratchId  is NOT found  and cap unlimited
+        if (!controllerInfo.scratchId && !controllerInfo.capsLimited) {
+             //console.log('Hide license if: Controller UUID = string and scratchId  is NOT found  and cap unlimited')
+            $scope.handleLicense.show = false;
+            return;
+        }
+        
+        // Show modal if
+        // Controller UUID = string and scratchId  is NOT found  and cap limited
+        if (!controllerInfo.scratchId && controllerInfo.capsLimited) {
+             //console.log('Show modal if: Controller UUID = string and scratchId  is NOT found  and cap limited')
+              alertify.alertWarning($scope._t('info_missing_licence'));
+        }
+
+        // Disable input and show unplug message
+        if (controllerInfo.isZeroUuid) {
+             //console.log('Disable input and show unplug message')
+            $scope.handleLicense.disabled = true;
+            $scope.handleLicense.replug = true;
+            return;
+        }
+        //$scope.handleLicense.show = true;
+        //console.log('handleLicense: ', $scope.handleLicense)
+    }
 
 });
 /**
@@ -380,7 +433,7 @@ myAppController.controller('ManagementRemoteController', function ($scope, dataF
  * The controller that handles the licence key.
  * @class ManagementLicenceController
  */
-myAppController.controller('ManagementLicenceController', function ($scope, $filter, dataFactory) {
+myAppController.controller('ManagementLicenceController', function ($scope, dataFactory) {
 
     $scope.proccessLicence = false;
     $scope.proccessVerify = {
@@ -533,7 +586,6 @@ myAppController.controller('ManagementRestoreController', function ($scope, $win
 
     };
 });
-
 /**
  * The controller that resets the system to factory default.
  * @class ManagementFactoryController
