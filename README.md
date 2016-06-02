@@ -2,6 +2,22 @@ SmartHome UI
 ===============
 
 This User Interfaces allows to operate a Smart Home Network based on Z-Wave devices. It utilizes the software architecture "Z-Way", certified as Z-Wave Plus Controller.
+## v1.4.2
+#### New features
+- POPP hub support.
+- Handling license improvement.
+- Rooms: Validation during image upload process.
+- Z-Wave devices/Config: Added possibility to create a new room - issue #122.
+- Z-Wave devices/Network: Added possibility to configure a device (Force interview).
+
+#### Fixes
+- New room get all not assigned devices #127.
+- Peoples don't like popup windows in rooms #126.
+- Add description to the module #104.
+
+#### Changes
+- Z-Wave devices/Config: Rooms select is replaced with dropdown.
+
 ## v1.4.1
 #### Fixes
 - lost active apps #125

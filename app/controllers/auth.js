@@ -1,17 +1,22 @@
 /**
- * Application Auth controller
+ * @overview Controllers that handle the authentication of existing users, as well as forgot password.
  * @author Martin Vach
  */
 
 /**
- * Logout controller
+ * This is the Auth root controller
+ * @class AuthController
  */
-myAppController.controller('AuthController', function ($scope, $routeParams, $cookies, $window, dataFactory, dataService) {
+myAppController.controller('AuthController', function ($scope, $routeParams, $location,$cookies, $window, $q, cfg, dataFactory, dataService, _) {
     $scope.auth = {
         remoteId: null,
         firstaccess: false,
         defaultProfile: false,
         fromexpert: $routeParams.fromexpert
+    };
+    $scope.jamesbox = {
+        first_start_up: '',
+        count_of_reconnects: 0
     };
 
     if (dataService.getUser()) {
@@ -21,37 +26,38 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $co
     }
 
     $scope.loginLang = (angular.isDefined($cookies.lang)) ? $cookies.lang : false;
-    $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-
     /**
-     * Get remote id
+     * Load all promises
      */
-    $scope.getRemoteId = function () {
-        dataFactory.getApi('remote_id').then(function (response) {
-            if (response.data.data.remote_id && response.data.data.remote_id !== '') {
-                $scope.auth.remoteId = response.data.data.remote_id;
+    $scope.allSettled = function () {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        var promises = [
+            dataFactory.getApi('remote_id'),
+            dataFactory.getApi('firstaccess')
+        ];
+
+        $q.allSettled(promises).then(function (response) {
+            var remoteId = response[0];
+            var firstAccess = response[1];
+            $scope.loading = false;
+            // Error message
+            if (firstAccess.state === 'rejected') {
+                alertify.alertError($scope._t('error_load_data'));
+            }
+
+            // Success - remote ID
+            if (remoteId.state === 'fulfilled') {
+                $scope.auth.remoteId = remoteId.value.data.data.remote_id;
+            }
+
+            // Success - first access
+            if (firstAccess.state === 'fulfilled') {
+                $scope.auth.firstaccess = firstAccess.value.data.data.firstaccess;
+                $scope.auth.defaultProfile = firstAccess.value.data.data.defaultProfile;
             }
         });
     };
-    $scope.getRemoteId();
-
-    /**
-     * Get first access
-     */
-    $scope.getFirstAccess = function () {
-
-        dataFactory.getApi('firstaccess').then(function (response) {
-            $scope.auth.firstaccess = response.data.data.firstaccess;
-            $scope.auth.defaultProfile = response.data.data.defaultProfile;
-            $scope.loading = false;
-        }, function (error) {
-            $scope.loading = false;
-            alertify.alertError($scope._t('error_load_data'));
-
-        });
-
-    };
-    $scope.getFirstAccess();
+    $scope.allSettled();
 
     /**
      * Login language
@@ -71,6 +77,7 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $co
         }
         dataService.setZWAYSession(user.sid);
         dataService.setUser(user);
+        dataFactory.putApi('profiles', user.id, user).then(function (response) {}, function (error) {});
         if (rememberme) {
             dataService.setRememberMe(rememberme);
         }
@@ -87,8 +94,63 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $co
             window.location.href = $scope.cfg.expert_url;
             return;
         }
-        window.location = location;
-        $window.location.reload();
+        if (cfg.app_type === 'jb' && user.role === 1) {
+            getZwaveApiData(location);
+        } else {
+            window.location = location;
+            $window.location.reload();
+        }
+    };
+
+    /// --- Private functions --- ///
+    /**
+     * Gez zwave api data
+     */
+    function getZwaveApiData(location) {
+        //var location = '#/dashboard';
+        dataFactory.loadZwaveApiData().then(function (response) {
+            var input = {
+                uuid: response.controller.data.uuid.value
+            };
+            jamesBoxRequest(input,location);
+        }, function (error) {
+            window.location = location;
+            $window.location.reload();
+        });
+    }
+    ;
+    
+     /**
+     * Get and update system info
+     */
+    function jamesBoxSystemInfo(uuid) {
+        dataFactory.getApi('system_info', null, true).then(function (response) {
+            var input = {
+                uuid: uuid,
+                first_start_up: response.data.data.first_start_up,
+                count_of_reconnects: response.data.data.count_of_reconnects
+            };
+            dataFactory.postToRemote(cfg.api_remote['jamesbox_updateinfo'], input).then(function (response) {}, function (error) {});
+        }, function (error) {});
+    }
+    ;
+
+    /**
+     * JamesBox request
+     */
+    function jamesBoxRequest(input,location) {
+        //var location = '#/dashboard';
+        jamesBoxSystemInfo(input.uuid);
+        dataFactory.postToRemote(cfg.api_remote['jamesbox_request'], input).then(function (response) {
+           if (!_.isEmpty(response.data)) {
+                location = '#/boxupdate';
+            }
+            window.location = location;
+            $window.location.reload();
+        }, function (error) {
+            window.location = location;
+            $window.location.reload();
+        });
     };
 
 
@@ -131,7 +193,8 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $co
 });
 
 /**
- * Login controller
+ * The controller that handles login process.
+ * @class AuthLoginController
  */
 myAppController.controller('AuthLoginController', function ($scope, $location, $window, $routeParams, $cookies, dataFactory, dataService) {
     $scope.input = {
@@ -157,7 +220,6 @@ myAppController.controller('AuthLoginController', function ($scope, $location, $
      * Login proccess
      */
     $scope.login = function (input) {
-        input.password = input.password;
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         $scope.alert = {message: false};
         dataFactory.logInApi(input).then(function (response) {
@@ -174,9 +236,9 @@ myAppController.controller('AuthLoginController', function ($scope, $location, $
         });
     };
 
-    /**
-     * Login proccess
-     */
+//    /**
+//     * Login proccess
+//     */
 //    $scope.login = function (input) {
 //        input.password = input.password;
 //        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
@@ -200,18 +262,15 @@ myAppController.controller('AuthLoginController', function ($scope, $location, $
 //             alertify.alertError(message);
 //        });
 //    };
-    /**
-     * Login from url, remember me or session
-     */
+
+    // Login from url, remember me or session
 
     var path = $location.path().split('/');
 
     if ($routeParams.login && $routeParams.password) {
         $scope.login($routeParams);
     } else if (dataService.getRememberMe() && !$scope.auth.firstaccess) {
-        //if(!$scope.auth.firstaccess){
         $scope.login(dataService.getRememberMe());
-        //}
         // only ask for session forwarding if user is not logged out before or the request comes from trusted hosts
     } else if (typeof $routeParams.logout === 'undefined' ||
             !$routeParams.logout ||
@@ -221,7 +280,8 @@ myAppController.controller('AuthLoginController', function ($scope, $location, $
 });
 
 /**
- * Password controller
+ * The controller that handles first access and password update.
+ * @class AuthPasswordController
  */
 myAppController.controller('AuthPasswordController', function ($scope, dataFactory, dataService) {
     $scope.input = {
@@ -287,7 +347,8 @@ myAppController.controller('AuthPasswordController', function ($scope, dataFacto
 });
 
 /**
- * Password forgot controller
+ * The controller that sends an e-mail with the link to reset forgotten passwort.
+ * @class PasswordForgotController
  */
 myAppController.controller('PasswordForgotController', function ($scope, $location, dataFactory) {
     $scope.passwordForgot = {
@@ -323,7 +384,8 @@ myAppController.controller('PasswordForgotController', function ($scope, $locati
 });
 
 /**
- * Password reset controller
+ * The controller that handles reset password actions.
+ * @class PasswordResetController
  */
 myAppController.controller('PasswordResetController', function ($scope, $routeParams, dataFactory) {
     $scope.passwordReset = {
@@ -377,9 +439,13 @@ myAppController.controller('PasswordResetController', function ($scope, $routePa
     };
 });
 /**
- * Logout controller
+ * The controller that handles logout process.
+ * @class LogoutController
  */
 myAppController.controller('LogoutController', function ($scope, dataService, dataFactory) {
+    /**
+     * Logout an user
+     */
     $scope.logout = function () {
         dataService.setRememberMe(null);
         dataFactory.getApi('logout').then(function (response) {
@@ -387,5 +453,4 @@ myAppController.controller('LogoutController', function ($scope, dataService, da
         });
     };
     $scope.logout();
-
 });

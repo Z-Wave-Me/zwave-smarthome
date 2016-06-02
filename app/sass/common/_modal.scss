@@ -91,3 +91,20 @@
     max-height: 200px;
     overflow: auto;
 }
+
+/* Modal James Box
+-------------------------------------------------- */
+#jamesBoxUpdateModal #updateTimeout {
+    text-align: center;
+    font-weight: bold;
+    margin: 15px 0;
+    font-size: 16px;
+}
+
+#jamesBoxUpdateModal ol {
+        margin: 15px 0;
+}
+
+#jamesBoxUpdateModal li.jamesboxUpdateInfoList {
+        margin: 0 0 5px 0;
+}

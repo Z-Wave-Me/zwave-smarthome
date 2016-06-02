@@ -8,7 +8,7 @@
     <form name="form_licence" id="form_password" class="form form-page" ng-submit="getLicense(inputLicence)" novalidate>
         <fieldset>
             <!-- password -->
-            <div class="alert alert-danger" ng-if="controllerInfo.isZeroUuid"><i class="fa fa-plug"></i> {{_t('replug_device')}}</div>
+            <div class="alert alert-danger" ng-if="handleLicense.replug"><i class="fa fa-plug"></i> {{_t('replug_device')}}</div>
             <p>{{_t('licence_upgrade_key')}}</p>
             <p class="form-inline">
             <label>{{_t('licence_key_insert')}}:</label>
@@ -18,7 +18,7 @@
                 name="scratch_id"
                 id="scratch_id" 
                 value="{{inputLicence.scratch_id}}" 
-                ng-disabled="controllerInfo.isZeroUuid"
+                ng-disabled="handleLicense.disabled"
                 ng-model="inputLicence.scratch_id" />
              </p>
             <div>

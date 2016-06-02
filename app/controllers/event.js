@@ -1,10 +1,11 @@
 /**
- * Application Event controller
+ * @overview Handles all events.
  * @author Martin Vach
  */
 
 /**
- * Event controller
+ * The controller that renders and handles event actions.
+ * @class EventController
  */
 myAppController.controller('EventController', function ($scope, $routeParams, $interval, $q, $filter, $cookies, dataFactory, dataService, myCache, paginationService, cfg, _) {
     $scope.page = {
@@ -171,9 +172,7 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
         $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
     };
     $scope.refreshData();
-    /**
-     * Watch for pagination change
-     */
+    // Watch for pagination change
     $scope.$watch('currentPage', function (page) {
         paginationService.setCurrentPage(page);
     });
@@ -201,7 +200,7 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
     };
 
     /**
-     * Hide source events
+     * Hide an event by the source
      */
     $scope.hideSourceEvents = function (deviceId) {
         $scope.user.hide_single_device_events = dataService.setArrayValue($scope.user.hide_single_device_events, deviceId, true);

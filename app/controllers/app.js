@@ -1,10 +1,12 @@
 /**
- * Application App controller
+ * @overview Controllers that handle the Local apps, Online Apps and Active apps.
  * @author Martin Vach
  */
 
 /**
- * App base controller
+ * Apps root controller
+ * @class AppBaseController
+ *
  */
 myAppController.controller('AppBaseController', function ($scope, $filter, $cookies, $q, $route, $routeParams, dataFactory, dataService, _) {
     angular.copy({
@@ -143,9 +145,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
             dataFactory.installOnlineModule(data, 'online_update').then(function (response) {
                 $scope.loading = false;
                 dataService.showNotifier({message: $scope._t(response.data.data.key)});
-                //$timeout(function () {
                 $route.reload();
-                //}, 3000);
 
             }, function (error) {
                 $scope.loading = false;
@@ -159,7 +159,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
 
     /// --- Private functions --- ///
     /**
-     * Set modules
+     * Set local modules
      */
     function setModules(data) {
         // Reset featured cnt
@@ -167,9 +167,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
         var modules = _.chain(data)
                 .flatten()
                 .filter(function (item) {
-                    //$scope.dataHolder.modules.ids.push(item.id);
                     $scope.dataHolder.modules.ids[item.id] = {version: item.version};
-                    //$scope.dataHolder.modules.all[item.id] = item;
                     var isHidden = false;
                     var items = [];
                     if ($scope.getHiddenApps().indexOf(item.moduleName) > -1) {
@@ -231,8 +229,6 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                 .filter(function (item) {
                     var isHidden = false;
                     var obj = {};
-                    //obj[item.file] = 'dfdf';
-                    //angular.extend()
                     $scope.dataHolder.onlineModules.ids[item.modulename] = {version: item.version, file: item.file, patchnotes: item.patchnotes};
                     if ($scope.getHiddenApps().indexOf(item.modulename) > -1) {
                         if ($scope.user.role !== 1) {
@@ -311,7 +307,8 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
 
 });
 /**
- * App local controller
+ * The controller that handles all local APPs actions.
+ * @class AppLocalController
  */
 myAppController.controller('AppLocalController', function ($scope, $filter, $cookies, $timeout, $route, $routeParams, $location, dataFactory, dataService, myCache, _) {
     $scope.activeTab = 'local';
@@ -383,8 +380,10 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
     };
 
 });
+
 /**
- * App online controller
+ * The controller that handles all online APPs actions.
+ * @class AppOnlineController
  */
 myAppController.controller('AppOnlineController', function ($scope, $filter, $cookies, $window, dataFactory, dataService, _) {
     $scope.activeTab = 'online';
@@ -407,7 +406,6 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
         angular.extend($scope.dataHolder.onlineModules, {hideInstalled: status});
         $cookies.hideInstalledApps = status;
         $scope.reloadData();
-        //$window.location.reload();
     };
 
     /**
@@ -417,7 +415,6 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
         if (!filter) {
             angular.extend($scope.dataHolder.onlineModules, {filter: {}});
             $cookies.filterAppsOnline = angular.toJson({});
-            //delete $cookies['filterAppsOnline'];
         } else {
             angular.extend($scope.dataHolder.onlineModules, {filter: filter});
             $cookies.filterAppsOnline = angular.toJson(filter);
@@ -437,11 +434,7 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
             dataFactory.postToRemote($scope.cfg.online_module_installed_url, {id: module.id});
             $scope.loading = false;
             dataService.showNotifier({message: $scope._t(response.data.data.key)});
-            //$timeout(function () {
-            //$scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t(response.data.data.key)};
-
             window.location = '#/module/post/' + module.modulename;
-            //}, 3000);
 
         }, function (error) {
             $scope.loading = false;
@@ -453,8 +446,10 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
 
 
 });
+
 /**
- * App Instance controller
+ * The controller that handles all instances actions.
+ * @class AppInstanceController
  */
 myAppController.controller('AppInstanceController', function ($scope, $cookies, dataFactory, dataService, myCache, _) {
     $scope.activeTab = 'instance';
@@ -506,7 +501,8 @@ myAppController.controller('AppInstanceController', function ($scope, $cookies, 
 
 });
 /**
- * App local detail controller
+ * The controller that handles local app detail actions.
+ * @class AppLocalDetailController
  */
 myAppController.controller('AppLocalDetailController', function ($scope, $routeParams, $location, dataFactory, dataService, _) {
     $scope.module = [];
@@ -550,14 +546,15 @@ myAppController.controller('AppLocalDetailController', function ($scope, $routeP
     function loadOnlineModules(moduleName) {
         dataFactory.getRemoteData($scope.cfg.online_module_url).then(function (response) {
             $scope.isOnline = _.findWhere(response.data, {modulename: moduleName});
-            ;
         }, function (error) {
         });
     }
 
 });
+
 /**
- * App online detail controller
+ * The controller that handles on-line app detail actions.
+ * @class AppOnlineDetailController
  */
 myAppController.controller('AppOnlineDetailController', function ($scope, $routeParams, $timeout, $location, $route, $filter, myCache, dataFactory, dataService, _) {
     $scope.local = {
@@ -679,9 +676,7 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
         dataFactory.installOnlineModule(data, 'online_install').then(function (response) {
             dataFactory.postToRemote($scope.cfg.online_module_installed_url, {id: module.id});
             dataService.showNotifier({message: $scope._t(response.data.data.key)});
-            //$timeout(function () {
-            window.location = '#/module/post/' + module.modulename;
-            //}, 3000);
+           window.location = '#/module/post/' + module.modulename;
 
         }, function (error) {
             $scope.loading = false;
@@ -706,8 +701,6 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
             $scope.loadComments($routeParams.id);
             input.content = '';
             input.name = '';
-            /*$timeout(function () {}, 3000);*/
-
         }, function (error) {
             $scope.loading = false;
             alertify.alertError($scope._t('comment_add_failed'));
@@ -738,7 +731,8 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
 
 });
 /**
- * App controller - add module
+ * The controller that handles Alpaca forms inputs and outputs.
+ * @class AppModuleAlpacaController
  */
 myAppController.controller('AppModuleAlpacaController', function ($scope, $routeParams, $route, $filter, $location, $q, dataFactory, dataService, myCache, cfg) {
     $scope.showForm = false;
@@ -790,9 +784,9 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
         }, function (error) {});
     };
 
-
-
-    // Post new module instance
+    /**
+     * Generates the form for creating a new app instance
+     */
     $scope.postModule = function (id) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('modules', '/' + id + '?lang=' + $scope.lang, true).then(function (module) {
@@ -833,8 +827,10 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
             alertify.alertError($scope._t('error_load_data'));
         });
     };
-
-    // Put module instance
+    
+    /**
+     * Generates the form for updating an app instance
+     */
     $scope.putModule = function (id) {
         if (id < 1) {
             return;
@@ -896,7 +892,6 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
     /**
      * Load data
      */
-
     switch ($routeParams.action) {
         case 'put':
             $scope.putModule($routeParams.id);
@@ -908,7 +903,7 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
             break;
     }
     /**
-     * Store form data
+     * Create/Update an app instance
      */
     $scope.store = function (data) {
         var defaults = ['instanceId', 'moduleId', 'active', 'title', 'description'];
@@ -956,7 +951,7 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
         }
     };
     /**
-     * Activate module instance
+     * Activates an instance of the module
      */
     $scope.activateInstance = function (input) {
         input.active = true;
@@ -973,7 +968,7 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
     };
 
     /**
-     * Install module
+     * Install the module
      */
     $scope.installModule = function (module) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
@@ -981,11 +976,8 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
             moduleUrl: $scope.cfg.online_module_download_url + module.file
         };
         dataFactory.installOnlineModule(data, 'online_install').then(function (response) {
-            //dataFactory.postToRemote($scope.cfg.online_module_installed_url, {id: module.id});
             dataService.showNotifier({message: $scope._t(response.data.data.key)});
-            //$timeout(function () {
             window.location = '#/module/post/' + module.modulename + '/' + $routeParams.id;
-            //}, 3000);
 
         }, function (error) {
             $scope.loading = false;
@@ -998,10 +990,9 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
     // --- Private functions
 
     /**
-     * Set dependencies
+     * Set moduledependencies
      */
     function setDependencies(dependencies) {
-        //var dependencies = ['Cron', 'Sonos', 'RGB'/*, 'YandexProbki', 'Wunderground'*/];
         if (!_.isArray(dependencies)) {
             return;
         }
@@ -1037,8 +1028,6 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
                             $scope.moduleId.submit = false;
                             $scope.moduleId.dependency.activate[k] = $scope.moduleId.instances[k];
                         }
-
-                        //$scope.moduleId.dependency.activate[k] = instances[k];
                     } else {
                         $scope.moduleId.submit = false;
                         $scope.moduleId.dependency.add[k] = {

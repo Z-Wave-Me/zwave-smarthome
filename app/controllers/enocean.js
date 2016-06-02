@@ -1,11 +1,12 @@
 /**
- * Application EnOcean controller
+ * @overview Controllers that handle EnOcean Services.
  * @author Martin Vach
  */
 
 
 /**
- * EnOcean devices controller
+ * The controller that renders the list of EnOcean manufacturers and devices.
+ * @class EnoceanDeviceController
  */
 myAppController.controller('EnoceanDeviceController', function($scope, $routeParams, dataFactory, dataService, _) {
     $scope.activeTab = 'devices';
@@ -60,7 +61,8 @@ myAppController.controller('EnoceanDeviceController', function($scope, $routePar
     $scope.loadData($routeParams.brandname);
 });
 /**
- * EnOcean assign profile controller
+ * The controller that teach-in a device by the profile.
+ * @class EnoceanAssignController
  */
 myAppController.controller('EnoceanAssignController', function($scope, $interval, dataFactory, dataService, myCache) {
     $scope.activeTab = 'assign';
@@ -102,7 +104,7 @@ myAppController.controller('EnoceanAssignController', function($scope, $interval
     $scope.loadIncludedDevices();
 
     /**
-     * Load profiles
+     * Load EnOcean profiles
      */
     $scope.loadProfiles = function() {
         dataFactory.xmlToJson($scope.cfg.server_url + 'config/Profiles.xml').then(function(response) {
@@ -126,7 +128,7 @@ myAppController.controller('EnoceanAssignController', function($scope, $interval
 
 
     /**
-     * Load API devices
+     * Load devices from the data holder
      */
     $scope.loadApiDevices = function() {
         dataFactory.getApi('devices').then(function(response) {
@@ -258,7 +260,7 @@ myAppController.controller('EnoceanAssignController', function($scope, $interval
     };
 
     /**
-     * Run CMD
+     * Run command
      */
     $scope.runCmd = function(cmd) {
         // Run CMD
@@ -285,7 +287,7 @@ myAppController.controller('EnoceanAssignController', function($scope, $interval
 
     };
     /**
-     * Assign devices to room
+     * Assign devices to the room
      */
     $scope.devicesToRoom = function(roomId, devices) {
         if (!roomId) {
@@ -317,7 +319,7 @@ myAppController.controller('EnoceanAssignController', function($scope, $interval
     };
 
     /**
-     * Assign profile to device
+     * Assign profile to the device
      */
     function assignProfile() {
         var profile = false;
@@ -334,7 +336,8 @@ myAppController.controller('EnoceanAssignController', function($scope, $interval
 
 });
 /**
- * EnOcean teach In controller
+ * The controller that teach-in a device from the list.
+ * @class EnoceanTeachinController
  */
 myAppController.controller('EnoceanTeachinController', function($scope, $routeParams, $interval, $location, dataFactory, dataService, myCache) {
     $scope.device = [];
@@ -397,7 +400,7 @@ myAppController.controller('EnoceanTeachinController', function($scope, $routePa
     $scope.loadLocations();
 
     /**
-     * Load API devices
+     * Load device data holder
      */
     $scope.loadApiDevices = function() {
         dataFactory.getApi('devices').then(function(response) {
@@ -541,7 +544,7 @@ myAppController.controller('EnoceanTeachinController', function($scope, $routePa
     };
 
     /**
-     * Run CMD
+     * Run command
      */
     $scope.runCmd = function(cmd) {
         // Run CMD
@@ -618,7 +621,8 @@ myAppController.controller('EnoceanTeachinController', function($scope, $routePa
     ;
 });
 /**
- * EnOcean manage  controller
+ * The controller that manage EnOcean devices.
+ * @class EnoceanManageController
  */
 myAppController.controller('EnoceanManageController', function($scope, $location, $window, dataFactory, dataService) {
     $scope.activeTab = 'manage';
@@ -775,7 +779,8 @@ myAppController.controller('EnoceanManageController', function($scope, $location
     ;
 });
 /**
- * EnOcean manage detail  controller
+ * The controller that handles actions on the EnOcean device.
+ * @class EnoceanManageDetailController
  */
 myAppController.controller('EnoceanManageDetailController', function($scope, $routeParams, $filter, dataFactory, dataService, myCache) {
     $scope.activeTab = 'manage';
@@ -830,7 +835,7 @@ myAppController.controller('EnoceanManageDetailController', function($scope, $ro
     $scope.loadData();
 
     /**
-     * Load API devices
+     * Load devices data holder
      */
     $scope.loadApiDevices = function() {
         dataFactory.getApi('devices', null, true).then(function(response) {
@@ -929,7 +934,7 @@ myAppController.controller('EnoceanManageDetailController', function($scope, $ro
 
 
     /**
-     * Run CMD
+     * Run command
      */
     $scope.runCmd = function(cmd) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
@@ -986,7 +991,8 @@ myAppController.controller('EnoceanManageDetailController', function($scope, $ro
     ;
 });
 /**
- * EnOcean controller info controller
+ * The controller that renders informations about the controller.
+ * @class EnoceanControllerController
  */
 myAppController.controller('EnoceanControllerController', function($scope, $location, dataFactory, dataService) {
     $scope.activeTab = 'controller';

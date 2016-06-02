@@ -1,4 +1,4 @@
-/* Form
+/* Form 
 -------------------------------------------------- */
 .form-control {
     font-size: $app-input-font-size;
@@ -76,6 +76,19 @@ input[type=radio] {
     label{
         font-weight: normal;
     }
+}
+
+.inputfile{
+  // display: inline-block !important;
+  width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+.inputfile + label {
+    cursor: pointer;
 }
 
 fieldset, .fieldset{

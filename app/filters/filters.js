@@ -1,9 +1,11 @@
 /**
- * App filters
+ * @overview Filters that are used to format data within views and controllers.
  * @author Martin Vach
  */
+
 /**
- * Display HTML tags in scope
+ * Allow to display html tags in the scope
+ * @function toTrusted
  */
 myApp.filter('toTrusted', ['$sce', function ($sce) {
         return function (text) {
@@ -15,6 +17,7 @@ myApp.filter('toTrusted', ['$sce', function ($sce) {
     }]);
 /**
  * Strip HTML tags from input
+ * @function stripTags
  */
 myApp.filter('stripTags', function () {
     return function (text) {
@@ -22,7 +25,8 @@ myApp.filter('stripTags', function () {
     };
 });
 /**
- * Cut text into x chars
+ * Shorten the text to the specified number of characters
+ * @function cutText
  */
 myApp.filter('cutText', function () {
     return function (value, wordwise, max, tail) {
@@ -48,11 +52,12 @@ myApp.filter('cutText', function () {
 });
 /**
  * Convert val to int
+ * @function toInt
  */
 myApp.filter('toInt', function () {
     return function (val, a) {
         a = typeof a !== 'undefined' ? a : 10;
-        if (val === null || val==='' || isNaN(val)) {
+        if (val === null || val === '' || isNaN(val)) {
             return 0;
         }
         return parseInt(val, a);
@@ -61,6 +66,7 @@ myApp.filter('toInt', function () {
 
 /**
  * Convert val to bool
+ * @function toBool
  */
 myApp.filter('toBool', function () {
     return function (val) {
@@ -70,6 +76,7 @@ myApp.filter('toBool', function () {
 
 /**
  * Get type of a Javascript variable
+ * @function typeOf
  */
 myApp.filter('typeOf', function () {
     return function (obj) {
@@ -78,7 +85,70 @@ myApp.filter('typeOf', function () {
 });
 
 /**
- * Set the max dec. lenghth
+ * Convert a dec value to hex
+ * @function dec2hex
+ */
+myApp.filter('dec2hex', function () {
+    return function (i) {
+       var result = "0000";
+        if (i >= 0 && i <= 15) {
+            result = "000" + i.toString(16);
+        }
+        else if (i >= 16 && i <= 255) {
+            result = "00" + i.toString(16);
+        }
+        else if (i >= 256 && i <= 4095) {
+            result = "0" + i.toString(16);
+        }
+        else if (i >= 4096 && i <= 65535) {
+            result = i.toString(16);
+        }
+        return result;
+    };
+});
+
+/**
+ * Get a file extension from the path
+ * @function fileExtension
+ */
+myApp.filter('fileExtension', function () {
+    return function (path) {
+        // extract file name from full path ...
+        // (supports `\\` and `/` separators)
+        var basename = path.split(/[\\/]/).pop(),
+                // get last position of `.`                                      
+                pos = basename.lastIndexOf(".");
+        // if file name is empty or ...
+        //  `.` not found (-1) or comes first (0)
+        if (basename === '' || pos < 1) {
+            return '';
+        }
+
+        // extract extension ignoring `.`
+        return basename.slice(pos + 1);
+    };
+});
+
+/**
+ * Convert file size in bytes to human readable with a scale type
+ * @function fileSizeString
+ */
+myApp.filter('fileSizeString', function () {
+    return function (bytes) {
+        var i = -1;
+    var byteUnits = [' kB', ' MB', ' GB', ' TB', 'PB', 'EB', 'ZB', 'YB'];
+    do {
+        bytes = bytes / 1024;
+        i++;
+    } while (bytes > 1024);
+
+    return Math.max(bytes, 0.1).toFixed(1) + byteUnits[i];
+    };
+});
+
+/**
+ * Set max length of the number entered
+ * @function numberFixedLen
  */
 myApp.filter('numberFixedLen', function () {
     return function (val) {
@@ -104,7 +174,8 @@ myApp.filter('numberFixedLen', function () {
 });
 
 /**
- * Check if JSON keys/nodes exist
+ * Check if an object exists and has a node.
+ * @function hasNode
  */
 myApp.filter('hasNode', function () {
     return function (obj, path) {
@@ -124,20 +195,8 @@ myApp.filter('hasNode', function () {
     };
 });
 /**
- * Get segment from url
- */
-myApp.filter('getUrlSegment', function ($location) {
-    return function (segment) {
-        var ret = false;
-        var data = $location.path().split('/');
-        if (data[segment]) {
-            ret = data[segment];
-        }
-        return ret;
-    };
-});
-/**
- * Get current time
+ * Builds an element icon path
+ * @function getElementIcon
  */
 myApp.filter('getElementIcon', function (cfg) {
     return function (input, device, level) {
@@ -159,7 +218,7 @@ myApp.filter('getElementIcon', function (cfg) {
                     break;
 
                 case 'window':
-                    if (typeof(level) === 'number') {
+                    if (typeof (level) === 'number') {
                         if (level == 0) {
                             icon = cfg.img.icons + 'window-down.png';
                         } else if (level >= 99) {
@@ -203,7 +262,6 @@ myApp.filter('getElementIcon', function (cfg) {
                     }
                     break;
                 case 'thermostat':
-                    //icon = cfg.img.icons + (level == 'on' ? 'switch-on.png' : 'switch-off.png');
                     icon = cfg.img.icons + 'thermostat.png';
                     break;
 
@@ -264,7 +322,8 @@ myApp.filter('getElementIcon', function (cfg) {
 });
 
 /**
- * Get event icon
+ * Builds an event icon path
+ * @function getEventIcon
  */
 myApp.filter('getEventIcon', function (cfg) {
     return function (input, message) {
@@ -306,7 +365,8 @@ myApp.filter('getEventIcon', function (cfg) {
 });
 
 /**
- * Get battery icon
+ * Builds a battery icon path
+ * @function getBatteryIcon
  */
 myApp.filter('getBatteryIcon', function (cfg) {
     return function (input) {
@@ -333,7 +393,8 @@ myApp.filter('getBatteryIcon', function (cfg) {
 });
 
 /**
- * Get element category icon
+ * Get a category icon in the Elements sections
+ * @function getElCategoryIcon
  */
 myApp.filter('getElCategoryIcon', function () {
     return function (input) {
@@ -359,7 +420,8 @@ myApp.filter('getElCategoryIcon', function () {
 });
 
 /**
- * Get App category icon
+ * Get a category icon in the APPs sections
+ * @function getAppCategoryIcon
  */
 myApp.filter('getAppCategoryIcon', function () {
     return function (input) {
@@ -395,7 +457,8 @@ myApp.filter('getAppCategoryIcon', function () {
 });
 
 /**
- * Get max level
+ * Get max level by probeType from the devices data holder
+ * @function getMaxLevel
  */
 myApp.filter('getMaxLevel', function () {
     return function (input, probeType) {
@@ -414,7 +477,8 @@ myApp.filter('getMaxLevel', function () {
 });
 
 /**
- * Today from unix - ExpertUI filter
+ * Today from unix - ExpertUI filter used in the device hardware configuration
+ * @function isTodayFromUnix
  */
 myApp.filter('isTodayFromUnix', function () {
     return function (input) {
@@ -431,24 +495,23 @@ myApp.filter('isTodayFromUnix', function () {
         var sec = (d.getSeconds() < 10 ? '0' + d.getSeconds() : d.getSeconds());
 
         if (d.toDateString() == (new Date()).toDateString()) {
-            //return hrs + ':' + min + ':' + sec;
             return hrs + ':' + min;
 
         } else {
-            //return day + '.' + mon + '.' + year + ' ' + hrs + ':' + min + ':' + sec;
             return day + '.' + mon + '.' + year;
         }
     };
 });
 /**
- * Get current time
+ * Get current time in the hrs:min:sec format
+ * @function getCurrentTime
  */
 myApp.filter('getCurrentTime', function () {
     return function (timestamp) {
-         if (timestamp) {
+        if (timestamp) {
             var d = new Date(timestamp * 1000);
         } else {
-             var d = new Date();
+            var d = new Date();
         }
         //var d = new Date();
         var hrs = (d.getHours() < 10 ? '0' + d.getHours() : d.getHours());
@@ -459,7 +522,8 @@ myApp.filter('getCurrentTime', function () {
     };
 });
 /**
- * Get current time
+ * Get a day from the unix timstamp for filtering events
+ * @function unixStartOfDay
  */
 myApp.filter('unixStartOfDay', function () {
     return function (input, value) {
@@ -483,6 +547,7 @@ myApp.filter('unixStartOfDay', function () {
 });
 /**
  * If is today display h:m otherwise d:m:y
+ * @function isToday
  */
 myApp.filter('isToday', function () {
     return function (input, fromunix, days, yesterday) {
@@ -526,7 +591,8 @@ myApp.filter('isToday', function () {
 });
 
 /**
- * If is today display h:m otherwise d:m:y
+ * Renders an event date - If is today display h:m otherwise d:m:y
+ * @function eventDate
  */
 myApp.filter('eventDate', function () {
     return function (input) {
@@ -549,19 +615,21 @@ myApp.filter('eventDate', function () {
 
 /**
  * Convert MySql DateTime stamp into JavaScript's Date format
+ * @function mysqlToUnixTs
  */
 myApp.filter('mysqlToUnixTs', function () {
     return function (input) {
         //function parses mysql datetime string and returns javascript Date object
-    //input has to be in this format: 2007-06-05 15:26:02
-    var regex=/^([0-9]{2,4})-([0-1][0-9])-([0-3][0-9]) (?:([0-2][0-9]):([0-5][0-9]):([0-5][0-9]))?$/;
-    var parts=input.replace(regex,"$1 $2 $3 $4 $5 $6").split(' ');
-    return Math.floor(new Date(parts[0],parts[1]-1,parts[2],parts[3],parts[4],parts[5]).getTime() / 1000);
+        //input has to be in this format: 2007-06-05 15:26:02
+        var regex = /^([0-9]{2,4})-([0-1][0-9])-([0-3][0-9]) (?:([0-2][0-9]):([0-5][0-9]):([0-5][0-9]))?$/;
+        var parts = input.replace(regex, "$1 $2 $3 $4 $5 $6").split(' ');
+        return Math.floor(new Date(parts[0], parts[1] - 1, parts[2], parts[3], parts[4], parts[5]).getTime() / 1000);
     };
 });
 
 /**
- * Get only unique values
+ * Set an object with unique key-values only
+ * @function unique
  */
 myApp.filter('unique', function () {
     return function (items, filterOn) {
@@ -602,6 +670,7 @@ myApp.filter('unique', function () {
 });
 /**
  * Get uri segment
+ * @function uri
  */
 myApp.filter('uri', function ($location) {
     return {
@@ -626,7 +695,8 @@ myApp.filter('uri', function ($location) {
 });
 
 /**
- * Display device name
+ * Build a device name
+ * @function deviceName
  */
 myApp.filter('deviceName', function () {
     return function (deviceId, device) {
@@ -643,6 +713,7 @@ myApp.filter('deviceName', function () {
 
 /**
  * Convert text to slug
+ * @function deviceName
  */
 myApp.filter('stringToSlug', function () {
     return function (str) {

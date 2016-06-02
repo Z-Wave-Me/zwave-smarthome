@@ -1,9 +1,12 @@
 /**
- * Application base
+ * @overview This is used to handle angular modules, routes and other settings.
  * @author Martin Vach
  */
 
-//Define an angular module for our app
+/**
+ * Define an angular module for our app
+ * @function myApp
+ */
 var myApp = angular.module('myApp', [
     'ngRoute',
     'ngCookies',
@@ -17,10 +20,7 @@ var myApp = angular.module('myApp', [
 
 ]);
 
-/**
- * App configuration
- */
-
+// App configuration
 var config_module = angular.module('myAppConfig', []);
 var appCookies = angular.injector(['ngCookies']).get('$cookies');
 var appUser = false;
@@ -51,7 +51,10 @@ angular.forEach(config_data, function (key, value) {
     config_module.constant(value, key);
 });
 
-//Define Routing for app
+/**
+ * Define Angular routes
+ * @function $routeProvider
+ */
 myApp.config(['$routeProvider', function ($routeProvider) {
         var cfg = config_data.cfg;
         $routeProvider.
@@ -204,7 +207,7 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                 }).
                 //Zwave devices
                 when('/zwave/devices', {
-                    templateUrl: 'app/views/zwave/zwave_devices.html',
+                    templateUrl: 'app/views/zwave/zwave_manage.html',
                     requireLogin: true
                 }).
                 //Zwave devices config
@@ -278,7 +281,7 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     roles: cfg.role_access.config_rooms
                 }).
                 when('/config-rooms/:id', {
-                    templateUrl: 'app/views/rooms/config_rooms_edit.html',
+                    templateUrl: 'app/views/rooms/config_rooms_id.html',
                     requireLogin: true,
                     roles: cfg.role_access.config_rooms_id
                 }).
@@ -314,6 +317,10 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                 when('/passwordforgot/reset/:token?', {
                     templateUrl: 'app/views/auth/password_reset.html'
                 }).
+                //Jamesbox update
+                when('/boxupdate', {
+                    templateUrl: 'app/views/jamesbox/update.html'
+                }).
                 //Login
                 when('/logout', {
                     templateUrl: 'app/views/auth/logout.html',
@@ -326,7 +333,8 @@ myApp.config(['$routeProvider', function ($routeProvider) {
     }]);
 
 /**
- * Run
+ * Angular run function
+ * @function run
  */
 myApp.run(function ($rootScope, $location, dataService, cfg) {
     // Run ubderscore js in views
@@ -335,7 +343,7 @@ myApp.run(function ($rootScope, $location, dataService, cfg) {
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
         var user;
         // Reset fatal error messages
-        if (!cfg.route.fatalError.permanent) {
+        if (cfg.route.message && !cfg.route.fatalError.permanent) {
             angular.extend(cfg.route.fatalError, {
                 message: false,
                 info: false,
@@ -362,7 +370,10 @@ myApp.run(function ($rootScope, $location, dataService, cfg) {
     });
 });
 
-// Intercepting HTTP calls with AngularJS.
+/**
+ * Intercepting HTTP calls with AngularJS.
+ * @function config
+ */
 myApp.config(function ($provide, $httpProvider, cfg) {
     $httpProvider.defaults.timeout = 5000;
     // Intercept http calls.

@@ -1,10 +1,11 @@
 /**
- * Application MySettings controller
+ * @overview Handles user actions.
  * @author Martin Vach
  */
 
 /**
- * My Access
+ * The controller that renders and handles user data.
+ * @class MySettingsController
  */
 myAppController.controller('MySettingsController', function($scope, $window, $cookies,$timeout,$filter,$q,dataFactory, dataService, myCache) {
     $scope.id = $scope.user.id;
@@ -14,9 +15,9 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
     $scope.trustMyNetwork = true;
     
     
-     /**
-     * Trust my network
-     */
+//     /**
+//     * Trust my network
+//     */
 //    $scope.loadTrustMyNetwork = function() {
 //        dataFactory.getApi('trust_my_network').then(function (response) {
 //            $scope.trustMyNetwork = response.data.data.trustMyNetwork;
@@ -61,7 +62,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
     $scope.allSettled();  
     
     /**
-     * Assign device to list
+     * Assign device to the list
      */
     $scope.assignDevice = function(assign) {
         $scope.input.hide_single_device_events.push(assign);
@@ -83,7 +84,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
     };
 
     /**
-     * Create/Update an item
+     * Create/Update a profile
      */
     $scope.store = function(form,input) {
         if (form.$invalid) {
@@ -118,9 +119,9 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
         });
     };
     
-     /**
-     * Set Trust my network
-     */
+//     /**
+//     * Set Trust my network
+//     */
 //    $scope.setTrustMyNetwork = function(trustMyNetwork) {
 //       $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
 //                dataFactory.putApi('trust_my_network', null, {trustMyNetwork: trustMyNetwork}).then(function (response) {
@@ -160,7 +161,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
                 return;
             }
             dataService.showNotifier({message: $scope._t('success_updated')});
-            $window.history.back();
+             dataService.goBack();
 
         }, function(error) {
             alertify.alertError($scope._t('error_update_data'));

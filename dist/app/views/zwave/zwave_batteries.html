@@ -3,7 +3,7 @@
      <bb-loader></bb-loader>
     <!-- Zwave navigation -->
     <div ng-include="'app/views/zwave/navi.html'"></div>
-     <div class="app-row app-row-report app-row-battery clearfix">
+     <div class="app-row app-row-report app-row-battery clearfix"  ng-if="devices.show">
          <div id="row_battery_{{v.id}}" class="report-entry" ng-repeat="v in devices.batteries| orderBy:'level':false">
              <div class="report-col report-media">
                      <img class="report-img" ng-src="{{v.metrics.level|getBatteryIcon}}" alt="img" />

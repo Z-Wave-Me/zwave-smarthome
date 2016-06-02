@@ -1,0 +1,54 @@
+{{#overview}}**Overview:** {{{overview}}}{{/overview}}
+
+{{#copyright}}*{{copyright}}*{{/copyright}}
+
+{{#author}}**Author:** {{author}}{{/author}}
+
+{{#license}}**License:** {{license}} {{/license}}
+
+{{#version}}**Version:** {{version}}{{/version}}
+* * *
+
+{{#modules}}
+{{#name}}
+# {{name}}
+{{/name}}
+
+{{#description}}{{{description}}}{{/description}}
+
+{{#hasRequires}}
+**Requires:**
+
+{{#requires}}
++ {{{req}}}
+{{/requires}}
+{{/hasRequires}}
+
+{{#hasMembers}}
+**Members:**
+
+{{#members}}
++ {{{member}}}
+{{/members}}
+{{/hasMembers}}
+
+{{#examples}}
+**Example:**
+```js
+{{{examples}}}
+```
+
+{{/examples}}
+* * *
+
+{{#functions}}
+{{> function}}
+
+{{/functions}}
+{{#classes}}
+{{> class}}
+
+{{/classes}}
+
+{{/modules}}
+* * *

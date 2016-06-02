@@ -1,4 +1,9 @@
 /**
+ * @overview Receives data from the Alpaca form and stores them on the server.
+ * @author Martin Vach,Niels Roche 
+ */
+
+/**
  * POST/PUT data from Alpaca form
  * @returns false
  */

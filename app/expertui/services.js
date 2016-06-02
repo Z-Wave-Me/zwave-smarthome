@@ -1,17 +1,28 @@
 /**
- * ExpertUI services
+ * @overview Common functions that are used within device hardware configuration
  * @author Martin Vach
+ */
+
+/**
+ * Angular module initialization
+ * @class expertService
  */
 myAppService.service('expertService', function($filter) {
     /// --- Public functions --- ///
+    
     /**
      * Get language line by key
+     * @param {string} key
+     * @param {object} languages
+     * @returns {unresolved}
      */
     this.getLangLine = function(key, languages) {
         return getLangLine(key, languages);
     };
     /**
      * Get config navigation devices
+     * @param {object} ZWaveAPIData
+     * @returns {unresolved}
      */
     this.configGetNav = function(ZWaveAPIData) {
         return configGetNav(ZWaveAPIData);
@@ -19,43 +30,79 @@ myAppService.service('expertService', function($filter) {
 
     /**
      * Get language from zddx
+     * @param {object} node
+     * @param {string} lang
+     * @returns {unresolved}
      */
     this.configGetZddxLang = function(node, lang) {
         return configGetZddxLang(node, lang);
     };
     /**
      * Get xml config param
+     * @param {object} cfgXml
+     * @param {int} nodeId
+     * @param {string} instance
+     * @param {string} commandClass
+     * @param {string} command
+     * @returns {unresolved}
      */
     this.getCfgXmlParam = function(cfgXml, nodeId, instance, commandClass, command) {
         return getCfgXmlParam(cfgXml, nodeId, instance, commandClass, command);
     };
     /**
      * Config cont
+     * @param {object} node
+     * @param {int} nodeId
+     * @param {object} zddXml
+     * @param {object} cfgXml
+     * @param {string} lang
+     * @param {object} languages
+     * @returns {unresolved}
      */
     this.configConfigCont = function(node, nodeId, zddXml, cfgXml, lang, languages) {
         return configConfigCont(node, nodeId, zddXml, cfgXml, lang, languages);
     };
     /**
-     *  Switch all cont
+     * Switch all cont
+     * @param {object} node
+     * @param {int} nodeId
+     * @param {object} ZWaveAPIData
+     * @param {object} cfgXml
+     * @returns {unresolved}
      */
     this.configSwitchAllCont = function(node, nodeId, ZWaveAPIData, cfgXml) {
         return configSwitchAllCont(node, nodeId, ZWaveAPIData, cfgXml);
     };
     /**
      * Protection cont
+     * @param {object} node
+     * @param {int} nodeId
+     * @param {object} ZWaveAPIData
+     * @param {object} cfgXml
+     * @returns {unresolved}
      */
     this.configProtectionCont = function(node, nodeId, ZWaveAPIData, cfgXml) {
         return configProtectionCont(node, nodeId, ZWaveAPIData, cfgXml);
     };
-    /**
-     * Wakeup cont
-     */
+   /**
+    * Wakeup cont
+    * @param {object} node
+    * @param {int} nodeId
+    * @param {object} ZWaveAPIData
+    * @param {object} cfgXml
+    * @returns {unresolved}
+    */
     this.configWakeupCont = function(node, nodeId, ZWaveAPIData, cfgXml) {
         return configWakeupCont(node, nodeId, ZWaveAPIData, cfgXml);
     };
 
     /**
-     *Build config XML file
+     * Build config XML file
+     * @param {object} data
+     * @param {object} cfgXml
+     * @param {int} id
+     * @param {string} commandclass
+     * @returns {unresolved}
      */
     this.buildCfgXml = function(data, cfgXml, id, commandclass) {
         return buildCfgXml(data, cfgXml, id, commandclass);

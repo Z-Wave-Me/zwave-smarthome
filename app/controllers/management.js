@@ -1,12 +1,13 @@
 /**
- * Application Management controller
+ * @overview Controllers that handle management actions.
  * @author Martin Vach
  */
 
 /**
- * Management controller
+ * The management root controller
+ * @class ManagementController
  */
-myAppController.controller('ManagementController', function ($scope, $interval, $q, dataFactory, dataService, myCache) {
+myAppController.controller('ManagementController', function ($scope, $interval, $q, $filter, cfg, dataFactory, dataService, myCache) {
     //Set elements to expand/collapse
     angular.copy({
         user: false,
@@ -26,7 +27,14 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
         softwareRevisionVersion: null,
         softwareLatestVersion: null,
         capabillities: null,
-        scratchId: null
+        scratchId: null,
+        capsLimited: false
+
+    };
+    $scope.handleLicense = {
+        show: true,
+        disabled: false,
+        replug: false
     };
 
     $scope.zwaveDataInterval = null;
@@ -72,32 +80,90 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
             return cap;
 
         };
+        var nodeLimit = function (str) {
+            return parseInt(str, 16) > 0x00 ? false : true;
+        };
         $scope.controllerInfo.uuid = ZWaveAPIData.controller.data.uuid.value;
         $scope.controllerInfo.isZeroUuid = parseInt(ZWaveAPIData.controller.data.uuid.value, 16) === 0;
         $scope.controllerInfo.softwareRevisionVersion = ZWaveAPIData.controller.data.softwareRevisionVersion.value;
         $scope.controllerInfo.capabillities = caps(ZWaveAPIData.controller.data.caps.value);
-        setLicenceScratchId($scope.controllerInfo.uuid);
+        $scope.controllerInfo.capsLimited = nodeLimit($filter('dec2hex')(ZWaveAPIData.controller.data.caps.value[2]).slice(-2));
+        setLicenceScratchId($scope.controllerInfo);
+        //console.log(ZWaveAPIData.controller.data.caps.value);
+        //console.log('Limited: ', $scope.controllerInfo.capsLimited);
 
     }
     ;
-
     /**
      * Set licence ID
+     * @param {object} controllerInfo
+     * @returns {undefined}
      */
-    function  setLicenceScratchId(uuid) {
-        dataFactory.getRemoteData($scope.cfg.get_licence_scratchid + '?uuid=' + uuid).then(function (response) {
+    function  setLicenceScratchId(controllerInfo) {
+        dataFactory.getRemoteData($scope.cfg.get_licence_scratchid + '?uuid=' + controllerInfo.uuid).then(function (response) {
             $scope.controllerInfo.scratchId = response.data.scratch_id;
-        }, function (error) {});
+            handleLicense($scope.controllerInfo)
+        }, function (error) {
+            handleLicense($scope.controllerInfo);
+            alertify.alertError($scope._t('error_license_request'));
+        });
     }
     ;
+    /**
+     * Show or hide licencese block
+     * @param {object} controllerInfo
+     * @returns {undefined}
+     */
+    function handleLicense(controllerInfo) {
+        //controllerInfo.uuid = null;
+        //controllerInfo.scratchId = null;
+        //controllerInfo.capsLimited = true;
+        //console.log('Hide license: ', cfg.app_type)
+        //console.log('isMobile: ', $scope.isMobile)
+        //console.log('controllerInfo: ', controllerInfo)
+        // Hide license if 
+        // forbidden, mobile device, not uuid
+        if ((cfg.license_forbidden.indexOf(cfg.app_type) > -1) || $scope.isMobile || !controllerInfo.uuid) {
+            //console.log('Hide license if: forbidden, mobile device, not uuid')
+            $scope.handleLicense.show = false;
+            return;
+        }
+
+        // Hide license if
+        // Controller UUID = string and scratchId  is NOT found  and cap unlimited
+        if (!controllerInfo.scratchId && !controllerInfo.capsLimited) {
+             //console.log('Hide license if: Controller UUID = string and scratchId  is NOT found  and cap unlimited')
+            $scope.handleLicense.show = false;
+            return;
+        }
+        
+        // Show modal if
+        // Controller UUID = string and scratchId  is NOT found  and cap limited
+        if (!controllerInfo.scratchId && controllerInfo.capsLimited) {
+             //console.log('Show modal if: Controller UUID = string and scratchId  is NOT found  and cap limited')
+              alertify.alertWarning($scope._t('info_missing_licence'));
+        }
+
+        // Disable input and show unplug message
+        if (controllerInfo.isZeroUuid) {
+             //console.log('Disable input and show unplug message')
+            $scope.handleLicense.disabled = true;
+            $scope.handleLicense.replug = true;
+            return;
+        }
+        //$scope.handleLicense.show = true;
+        //console.log('handleLicense: ', $scope.handleLicense)
+    }
 
 });
 /**
- * List of users
+ * The controller that renders the list of users.
+ * @class ManagementUserController
  */
-myAppController.controller('ManagementUserController', function ($scope, dataFactory, dataService, myCache) {
+myAppController.controller('ManagementUserController', function ($scope, $cookies, dataFactory, dataService, myCache) {
     $scope.userProfiles = {
-        all: false
+        all: false,
+        orderBy: ($cookies.usersOrderBy ? $cookies.usersOrderBy : 'titleASC')
     };
     /**
      * Load profiles
@@ -113,6 +179,15 @@ myAppController.controller('ManagementUserController', function ($scope, dataFac
         });
     };
     $scope.loadProfiles();
+
+    /**
+     * Set order by
+     */
+    $scope.setOrderBy = function (key) {
+        angular.extend($scope.userProfiles, {orderBy: key});
+        $cookies.usersOrderBy = key;
+        $scope.loadProfiles();
+    };
 
     /**
      * Delete an user
@@ -138,7 +213,8 @@ myAppController.controller('ManagementUserController', function ($scope, dataFac
 
 });
 /**
- * User detail
+ * The controller that handles user detail actions.
+ * @class ManagementUserIdController
  */
 myAppController.controller('ManagementUserIdController', function ($scope, $routeParams, $filter, $q, dataFactory, dataService, myCache) {
     $scope.id = $filter('toInt')($routeParams.id);
@@ -299,7 +375,8 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
 
 });
 /**
- * Remote access controller
+ * The controller that renders and handles remote access data.
+ * @class ManagementRemoteController
  */
 myAppController.controller('ManagementRemoteController', function ($scope, dataFactory, dataService) {
     $scope.remoteAccess = false;
@@ -353,9 +430,11 @@ myAppController.controller('ManagementRemoteController', function ($scope, dataF
     };
 });
 /**
- * Licence controller
+ * The controller that handles the licence key.
+ * @class ManagementLicenceController
  */
 myAppController.controller('ManagementLicenceController', function ($scope, dataFactory) {
+
     $scope.proccessLicence = false;
     $scope.proccessVerify = {
         'message': false,
@@ -366,8 +445,10 @@ myAppController.controller('ManagementLicenceController', function ($scope, data
         'status': 'is-hidden'
     };
     $scope.inputLicence = {
+        "show": false,
         "scratch_id": $scope.controllerInfo.scratchId
     };
+
     /**
      * Get license key
      */
@@ -423,7 +504,8 @@ myAppController.controller('ManagementLicenceController', function ($scope, data
     ;
 });
 /**
- * Firmware update controller
+ * The controller that handles firmware update process.
+ * @class ManagementFirmwareController
  */
 myAppController.controller('ManagementFirmwareController', function ($scope, $sce, $timeout, dataFactory) {
     $scope.firmwareUpdateUrl = $sce.trustAsResourceUrl('http://' + $scope.hostName + ':8084/cgi-bin/main.cgi');
@@ -433,7 +515,7 @@ myAppController.controller('ManagementFirmwareController', function ($scope, $sc
         url: $sce.trustAsResourceUrl('http://' + $scope.hostName + ':8084/cgi-bin/main.cgi')
     };
     /**
-     * Load razberry latest version
+     * Set access
      */
     $scope.setAccess = function (param, loader) {
         if (loader) {
@@ -455,7 +537,7 @@ myAppController.controller('ManagementFirmwareController', function ($scope, $sc
         });
     };
     /**
-     * Load razberry latest version
+     * Load latest version
      */
     $scope.loadRazLatest = function () {
         dataFactory.getRemoteData($scope.cfg.raz_latest_version_url).then(function (response) {
@@ -466,9 +548,10 @@ myAppController.controller('ManagementFirmwareController', function ($scope, $sc
     //$scope.loadRazLatest();
 });
 /**
- * Restor controller
+ * The controller that handles restore process.
+ * @class ManagementRestoreController
  */
-myAppController.controller('ManagementRestoreController', function ($scope, $window,$timeout,dataFactory, dataService) {
+myAppController.controller('ManagementRestoreController', function ($scope, $window, $timeout, dataFactory, dataService) {
     $scope.myFile = null;
     $scope.managementRestore = {
         confirm: false,
@@ -477,7 +560,7 @@ myAppController.controller('ManagementRestoreController', function ($scope, $win
     };
 
     /**
-     * Upload image
+     * Upload backup file
      */
     $scope.uploadFile = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('restore_wait')};
@@ -491,8 +574,8 @@ myAppController.controller('ManagementRestoreController', function ($scope, $win
             $scope.loading = false;
             dataService.showNotifier({message: $scope._t('restore_done_reload_ui')});
             $scope.managementRestore.alert = {message: $scope._t('restore_done_reload_ui'), status: 'alert-success', icon: 'fa-check'};
-             $timeout(function () {
-                 alertify.dismissAll();
+            $timeout(function () {
+                alertify.dismissAll();
                 $window.location.reload();
             }, 2000);
         }, function (error) {
@@ -503,9 +586,9 @@ myAppController.controller('ManagementRestoreController', function ($scope, $win
 
     };
 });
-
 /**
- * Management factory default controller
+ * The controller that resets the system to factory default.
+ * @class ManagementFactoryController
  */
 myAppController.controller('ManagementFactoryController', function ($scope, $window, $cookies, $cookieStore, dataFactory, dataService) {
     $scope.factoryDefault = {
@@ -518,7 +601,7 @@ myAppController.controller('ManagementFactoryController', function ($scope, $win
 
     };
     /**
-     * Reset to factory
+     * Reset to factory default
      */
     $scope.resetFactoryDefault = function (message) {
 //        var params = '?useDefaultConfig=' + $scope.factoryDefault.model.overwriteBackupCfg
@@ -546,7 +629,8 @@ myAppController.controller('ManagementFactoryController', function ($scope, $win
 
 });
 /**
- * App Store controller
+ * The controller that renders and handles app store data.
+ * @class ManagementAppStoreController
  */
 myAppController.controller('ManagementAppStoreController', function ($scope, dataFactory, dataService) {
     $scope.appStore = {
@@ -569,7 +653,7 @@ myAppController.controller('ManagementAppStoreController', function ($scope, dat
     $scope.appStoreLoadTokens();
 
     /**
-     * Create/Update an item
+     * Create/Update a token
      */
     $scope.appStoreAddToken = function () {
         if ($scope.appStore.input.token === '') {
@@ -589,7 +673,7 @@ myAppController.controller('ManagementAppStoreController', function ($scope, dat
     };
 
     /**
-     * Remove a token from the list
+     * Remove token from the list
      */
     $scope.appStoreRemoveToken = function (token, message) {
         alertify.confirm(message, function () {
@@ -608,7 +692,8 @@ myAppController.controller('ManagementAppStoreController', function ($scope, dat
 
 });
 /**
- * Management report controller
+ * The controller that handles bug report info.
+ * @class ManagementReportController
  */
 myAppController.controller('ManagementReportController', function ($scope, $window, $route, dataFactory, dataService) {
     $scope.remoteAccess = false;
@@ -676,7 +761,8 @@ myAppController.controller('ManagementReportController', function ($scope, $wind
 
 });
 /**
- * Management postfix controller
+ * The controller that renders postfix data.
+ * @class ManagementPostfixController
  */
 myAppController.controller('ManagementPostfixController', function ($scope, dataFactory, _) {
     $scope.postfix = {
@@ -703,7 +789,8 @@ myAppController.controller('ManagementPostfixController', function ($scope, data
 
 });
 /**
- * Management info controller
+ * The controller that renders info data.
+ * @class ManagementInfoController
  */
 myAppController.controller('ManagementInfoController', function ($scope, dataFactory, dataService) {
 
