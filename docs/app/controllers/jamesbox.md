@@ -35,6 +35,16 @@ Load JamesBox data
 Update JamesBox record
 
 
+### JbUpdateController.cancelUpdate() 
+
+Update JamesBox record
+
+
+### JbUpdateController.systemReboot() 
+
+reboot system
+
+
 
 
 * * *

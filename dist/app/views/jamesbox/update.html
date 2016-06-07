@@ -40,6 +40,16 @@
                     <li class="jamesboxUpdateInfoList">{{_t('jamesbox_update_3')}}</li>  
                 </ol>
                 <div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i>  {{_t('jamesbox_update_attention')}}</div>
+                <div class="text-center">
+                    <button class="btn btn-submit btn-lg" title="{{_t('reboot_now')}}" ng-click="systemReboot()">
+                        <i class="fa fa-check"></i> {{_t('reboot_now')}}
+                    </button>
+                </div>
+            </div>
+            <div class="appmodal-footer">
+                <button class="btn btn-default" title="{{_t('jamesbox_not_update')}}" ng-click="cancelUpdate()">
+                    <span class="btn-name">{{_t('jamesbox_not_update')}}</span> <i class="fa fa-arrow-right"></i>
+                </button>
             </div>
         </div>
     </div>

@@ -1,6 +1,9 @@
 {
     "newtrans": "---",
      "---": "newtrans",
+    "rebooting": "Restarting ...",
+    "reboot_now": "Restart NOW",
+    "jamesbox_update_manuel_restart": "Restart is not supported. Please replug the power supply for 5 seconds or press the hardware reset button (see user manual) to force a POPP Hub restart.",
     "error_license_request": "Unable to load a license key from the remote server.",
     "ie_edge_not_supported": "Sorry, but SmartHome does not support Internet explorer and Edge.",
     "ie_edge_not_supported_info": "Please use Firefox, Chrome, Safari or Opera",
@@ -15,7 +18,7 @@
     "jamesbox_connection_refused": "Please wait, the update is in progress ...",
     "jamesbox_connection_refused_info": "__reload_begintag__ Try to reload the page after some minutes to get back to the Smart Home UI.__reload_endtag__ __attention_begintag__ ATTENTION: Please don't remove the power supply during the update. __attention_endtag__",
     "update_now": "Update NOW",
-    "jamesbox_update_1": "Please replug the power supply for 5 seconds or press the hardware reset button (see user manual) to force a POPP Hub restart.",
+    "jamesbox_update_1": "Press 'Restart NOW' Button.",
     "jamesbox_update_2": "The firmware will be upgraded automatically during the restart.",
     "jamesbox_update_3": "The update will take about 5 - 10 minutes. In this time the Smart Home UI won't be reachable.",
     "jamesbox_update_attention": "ATTENTION: Please don't remove the power supply of the POPP Hub as long the update is in progress. This could lead to irreparable damage on the hard- and software.",

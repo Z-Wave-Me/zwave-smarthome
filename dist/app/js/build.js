@@ -11500,7 +11500,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/jamesbox/update.html',
-    "<div ng-controller=JbUpdateController><bb-loader></bb-loader><div id=jamesBoxConfirmModal class=appmodal ng-if=jamesbox.showConfirm><div class=appmodal-in><div class=appmodal-header><h3>{{_t('jamesbox_software_upgrade')}}</h3></div><div class=appmodal-body><div class=\"alert alert-warning\">{{_t('jamesbox_current_firmware', {__currentfw__: jamesbox.version, __newfw__: jamesbox.versionNew})}}</div><div class=text-center><button class=\"btn btn-submit btn-lg\" title=\"{{_t('update_now')}}\" ng-click=firmwareUpdate()><i class=\"fa fa-check\"></i> {{_t('update_now')}}</button></div></div><div class=appmodal-footer><a ng-href=#dashboard class=\"btn btn-default\" title=\"{{_t('jamesbox_not_update')}}\"><span class=btn-name>{{_t('jamesbox_not_update')}}</span> <i class=\"fa fa-arrow-right\"></i></a></div></div></div><div id=jamesBoxUpdateModal class=appmodal ng-if=jamesbox.showUpdate><div class=appmodal-in><div class=appmodal-header><h3>{{_t('jamesbox_software_upgrade')}}</h3></div><div class=appmodal-body><div id=jamesboxUpdateInfo><div id=updateTimeout>{{_t('jamesbox_update_update_timeout')}}</div><div>{{_t('jamesbox_update_follow_steps')}}</div></div><ol><li class=jamesboxUpdateInfoList>{{_t('jamesbox_update_1')}}</li><li class=jamesboxUpdateInfoList>{{_t('jamesbox_update_2')}}</li><li class=jamesboxUpdateInfoList>{{_t('jamesbox_update_3')}}</li></ol><div class=\"alert alert-warning\"><i class=\"fa fa-exclamation-circle\"></i> {{_t('jamesbox_update_attention')}}</div></div></div></div></div>"
+    "<div ng-controller=JbUpdateController><bb-loader></bb-loader><div id=jamesBoxConfirmModal class=appmodal ng-if=jamesbox.showConfirm><div class=appmodal-in><div class=appmodal-header><h3>{{_t('jamesbox_software_upgrade')}}</h3></div><div class=appmodal-body><div class=\"alert alert-warning\">{{_t('jamesbox_current_firmware', {__currentfw__: jamesbox.version, __newfw__: jamesbox.versionNew})}}</div><div class=text-center><button class=\"btn btn-submit btn-lg\" title=\"{{_t('update_now')}}\" ng-click=firmwareUpdate()><i class=\"fa fa-check\"></i> {{_t('update_now')}}</button></div></div><div class=appmodal-footer><a ng-href=#dashboard class=\"btn btn-default\" title=\"{{_t('jamesbox_not_update')}}\"><span class=btn-name>{{_t('jamesbox_not_update')}}</span> <i class=\"fa fa-arrow-right\"></i></a></div></div></div><div id=jamesBoxUpdateModal class=appmodal ng-if=jamesbox.showUpdate><div class=appmodal-in><div class=appmodal-header><h3>{{_t('jamesbox_software_upgrade')}}</h3></div><div class=appmodal-body><div id=jamesboxUpdateInfo><div id=updateTimeout>{{_t('jamesbox_update_update_timeout')}}</div><div>{{_t('jamesbox_update_follow_steps')}}</div></div><ol><li class=jamesboxUpdateInfoList>{{_t('jamesbox_update_1')}}</li><li class=jamesboxUpdateInfoList>{{_t('jamesbox_update_2')}}</li><li class=jamesboxUpdateInfoList>{{_t('jamesbox_update_3')}}</li></ol><div class=\"alert alert-warning\"><i class=\"fa fa-exclamation-circle\"></i> {{_t('jamesbox_update_attention')}}</div><div class=text-center><button class=\"btn btn-submit btn-lg\" title=\"{{_t('reboot_now')}}\" ng-click=systemReboot()><i class=\"fa fa-check\"></i> {{_t('reboot_now')}}</button></div></div><div class=appmodal-footer><button class=\"btn btn-default\" title=\"{{_t('jamesbox_not_update')}}\" ng-click=cancelUpdate()><span class=btn-name>{{_t('jamesbox_not_update')}}</span> <i class=\"fa fa-arrow-right\"></i></button></div></div></div></div>"
   );
 
 
@@ -12926,7 +12926,8 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                     }
                     angular.extend(v,
                             {onDashboard: (user.dashboard.indexOf(v.id) !== -1 ? true : false)},
-                            {minMax: minMax},
+                            {creatorId: _.isString(v.creatorId) ? v.creatorId.replace(/[^0-9]/g, '') : v.creatorId},
+                             {minMax: minMax},
                             {hasHistory: (v.hasHistory === true ? true : false)},
                             {imgTrans: false},
                             {isNew: isNew},
@@ -15079,6 +15080,43 @@ myAppController.controller('JbUpdateController', function ($scope, $q, $location
         });
     };
 
+    /**
+     * Update JamesBox record
+     */
+    $scope.cancelUpdate = function () {
+        var input = {
+            uuid: $scope.jamesbox.uuid,
+            rule_id: $scope.jamesbox.rule_id
+        };
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        dataFactory.postToRemote(cfg.api_remote['jamesbox_cancel_update'], input).then(function (response) {
+            $scope.loading = false;
+            $location.path("/dashboard");
+        }, function (error) {
+            $scope.loading = false;
+            var message = $scope._t('error_update_data');
+            alertify.alertError($scope._t(message)).set('onok', function(closeEvent){
+                 alertify.dismissAll();
+                 $location.path("/dashboard");
+            });
+        });
+    };
+
+    /**
+     * reboot system
+     */
+    $scope.systemReboot = function () {
+        
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('rebooting')};
+        dataFactory.getApi(cfg.api['system_reboot']).then(function (response) {
+            // do something
+        }, function (error) {
+            var message = $scope._t('jamesbox_update_manuel_restart');
+            alertify.alertError($scope._t(message));
+            $scope.loading = false;
+        });
+    };
+
 });
 /**
  * @overview Controllers that handle the list of elements, as well as an element detail.
@@ -15815,7 +15853,7 @@ myAppController.controller('ElementRoomController', function ($scope, $routePara
  * The controller that handles element detail actions.
  * @class ElementIdController
  */
-myAppController.controller('ElementIdController', function ($scope, $q, $routeParams, $window, dataFactory, dataService, myCache) {
+myAppController.controller('ElementIdController', function ($scope, $q, $routeParams, $filter, dataFactory, dataService, myCache) {
     $scope.elementId = {
         show: false,
         appType: {},
@@ -15985,7 +16023,7 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
         } else if (device.id.indexOf(findZenoStr) > -1) {
             $scope.elementId.appType['enocean'] = device.id.split(findZenoStr)[1].split('_')[0];
         } else {
-            var instance = _.findWhere($scope.elementId.instances, {id: device.creatorId});
+            var instance = _.findWhere($scope.elementId.instances, {id: $filter('toInt')(device.creatorId)});
             if (instance && instance['moduleId'] != 'ZWave') {
                 $scope.elementId.appType['instance'] = instance;
 
