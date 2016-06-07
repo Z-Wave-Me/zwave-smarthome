@@ -2667,6 +2667,11 @@ img {
   width: 33.33333%;
 }
 
+/* line 125, ../sass/common/_button.scss */
+.btn-tabs-4 .btn {
+  width: 25%;
+}
+
 /* Form 
 -------------------------------------------------- */
 /* line 3, ../sass/common/_form.scss */

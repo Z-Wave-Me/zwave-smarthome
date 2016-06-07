@@ -38,7 +38,7 @@
                 <div class="report-col report-media">
                     <img class="report-img" ng-src="{{cfg.img.custom_icons + v.file}}" />
                 </div>
-                <div class="report-col report-body">
+                <div class="report-col report-body" title="{{v.file}}">
                     <span>{{v.file}}</span>
                     <span ng-if="icons.used.device[v.file]">used in <a ng-href="#element/{{d}}" ng-repeat="d in icons.used.device[v.file]">
                             <strong>{{d|cutText:true:20}},</strong> </a>
