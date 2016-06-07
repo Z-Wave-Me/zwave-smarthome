@@ -507,12 +507,14 @@ myApp.filter('isTodayFromUnix', function () {
  * @function getCurrentTime
  */
 myApp.filter('getCurrentTime', function () {
-    return function (timestamp) {
-        if (timestamp) {
-            var d = new Date(timestamp * 1000);
+    return function (input) {
+        if (input.localTimeUT) {
+            var d = new Date(input.localTimeUT * 1000);
         } else {
             var d = new Date();
         }
+       // d.setTime( d.getTime() - 2);
+       
         //var d = new Date();
         var hrs = (d.getHours() < 10 ? '0' + d.getHours() : d.getHours());
         var min = (d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes());
