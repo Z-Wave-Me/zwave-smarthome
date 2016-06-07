@@ -68,10 +68,10 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
             return;
         }
         dataFactory.getApi('timezone', null, true).then(function (response) {
-            angular.extend(cfg.route.time, {string: $filter('getCurrentTime')(response.data.data)});
+            angular.extend(cfg.route.time, {string: $filter('setTimeFromBox')(response.data.data)});
             var refresh = function () {
                 dataFactory.getApi('timezone', null, true).then(function (response) {
-                    angular.extend(cfg.route.time, {string: $filter('getCurrentTime')(response.data.data)});
+                    angular.extend(cfg.route.time, {string: $filter('setTimeFromBox')(response.data.data)});
                 }, function (error) {
                     if (!error.status || error.status === 0) {
                         var fatalArray = {
