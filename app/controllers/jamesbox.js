@@ -88,4 +88,41 @@ myAppController.controller('JbUpdateController', function ($scope, $q, $location
         });
     };
 
+    /**
+     * Update JamesBox record
+     */
+    $scope.cancelUpdate = function () {
+        var input = {
+            uuid: $scope.jamesbox.uuid,
+            rule_id: $scope.jamesbox.rule_id
+        };
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        dataFactory.postToRemote(cfg.api_remote['jamesbox_cancel_update'], input).then(function (response) {
+            $scope.loading = false;
+            $location.path("/dashboard");
+        }, function (error) {
+            $scope.loading = false;
+            var message = $scope._t('error_update_data');
+            alertify.alertError($scope._t(message)).set('onok', function(closeEvent){
+                 alertify.dismissAll();
+                 $location.path("/dashboard");
+            });
+        });
+    };
+
+    /**
+     * reboot system
+     */
+    $scope.systemReboot = function () {
+        
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('rebooting')};
+        dataFactory.getApi(cfg.api['system_reboot']).then(function (response) {
+            // do something
+        }, function (error) {
+            var message = $scope._t('jamesbox_update_manuel_restart');
+            alertify.alertError($scope._t(message));
+            $scope.loading = false;
+        });
+    };
+
 });
