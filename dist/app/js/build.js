@@ -12940,6 +12940,9 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                     if (v.metrics.level) {
                         angular.extend(v.metrics, {level: $filter('numberFixedLen')(v.metrics.level)});
                     }
+                     if (v.metrics.scaleTitle) {
+                        angular.extend(v.metrics, {scaleTitle: getLangLine(v.metrics.scaleTitle)});
+                    }
                     return v;
                 });
     };
@@ -14271,24 +14274,48 @@ myApp.filter('isTodayFromUnix', function () {
     };
 });
 /**
+ * Get time from the box and displays it in the hrs:min:sec format
+ * @function getCurrentTime
+ */
+myApp.filter('setTimeFromBox', function () {
+    return function (input) {
+        if (input.localTimeUT) {
+            var d = new Date(input.localTimeUT * 1000);
+           } else {
+            var d = new Date();
+        }
+        // Convert to ISO
+        // 2016-06-07T11:49:51.000Z
+         return d.toISOString().substring(11, d.toISOString().indexOf('.'));
+    };
+});
+/**
+ * DEPRECATED
  * Get current time in the hrs:min:sec format
  * @function getCurrentTime
  */
-myApp.filter('getCurrentTime', function () {
-    return function (timestamp) {
-        if (timestamp) {
-            var d = new Date(timestamp * 1000);
-        } else {
-            var d = new Date();
-        }
-        //var d = new Date();
-        var hrs = (d.getHours() < 10 ? '0' + d.getHours() : d.getHours());
-        var min = (d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes());
-        var sec = (d.getSeconds() < 10 ? '0' + d.getSeconds() : d.getSeconds());
-        var time = hrs + ':' + min + ':' + sec;
-        return time;
-    };
-});
+//myApp.filter('getCurrentTime', function () {
+//    return function (input) {
+//        if (input.localTimeUT) {
+//            var d = new Date(input.localTimeUT * 1000);
+//            if(input.localTimeZoneOffset > 0){
+//                 d.setHours(d.getHours() + Math.abs(input.localTimeZoneOffset));
+//            }else if(input.localTimeZoneOffset < 0){
+//                 d.setHours(d.getHours() - Math.abs(input.localTimeZoneOffset));
+//            }
+//            // 2016-06-07T11:49:51.000Z
+//            
+//        } else {
+//            var d = new Date();
+//        }
+//        //var d = new Date();
+//        var hrs = (d.getHours() < 10 ? '0' + d.getHours() : d.getHours());
+//        var min = (d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes());
+//        var sec = (d.getSeconds() < 10 ? '0' + d.getSeconds() : d.getSeconds());
+//        var time = hrs + ':' + min + ':' + sec;
+//        return time;
+//    };
+//});
 /**
  * Get a day from the unix timstamp for filtering events
  * @function unixStartOfDay
@@ -14662,10 +14689,10 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
             return;
         }
         dataFactory.getApi('timezone', null, true).then(function (response) {
-            angular.extend(cfg.route.time, {string: $filter('getCurrentTime')(response.data.data.localTimeUT)});
+            angular.extend(cfg.route.time, {string: $filter('setTimeFromBox')(response.data.data)});
             var refresh = function () {
                 dataFactory.getApi('timezone', null, true).then(function (response) {
-                    angular.extend(cfg.route.time, {string: $filter('getCurrentTime')(response.data.data.localTimeUT)});
+                    angular.extend(cfg.route.time, {string: $filter('setTimeFromBox')(response.data.data)});
                 }, function (error) {
                     if (!error.status || error.status === 0) {
                         var fatalArray = {
