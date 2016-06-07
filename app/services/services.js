@@ -261,6 +261,9 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                     if (v.metrics.level) {
                         angular.extend(v.metrics, {level: $filter('numberFixedLen')(v.metrics.level)});
                     }
+                     if (v.metrics.scaleTitle) {
+                        angular.extend(v.metrics, {scaleTitle: getLangLine(v.metrics.scaleTitle)});
+                    }
                     return v;
                 });
     };
