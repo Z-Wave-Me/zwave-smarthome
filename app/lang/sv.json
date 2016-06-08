@@ -1,4 +1,6 @@
 {
+    "jamesbox_remove_confirm": "Remove Confirmation ...",
+    "jamesbox_confirm": "Send Confirmation ...",
     "rebooting": "Restarting ...",
     "reboot_now": "Restart NOW",
     "jamesbox_update_manuel_restart": "Restart is not supported. Please replug the power supply for 5 seconds or press the hardware reset button (see user manual) to force a POPP Hub restart.",
