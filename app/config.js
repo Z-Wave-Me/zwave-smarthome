@@ -145,8 +145,8 @@ var config_data = {
         // Online module rating create url
         'online_module_rating_create_url': 'https://developer.z-wave.me/?uri=api-rating-create',
         // Online skins url
-        //'online_skin_url': 'http://hrix.net/developer-console/?uri=api-skins',
-        'online_skin_url': 'http://dev.dev/developer-console/?uri=api-skins',
+        'online_skin_url': 'http://hrix.net/developer-console/?uri=api-skins',
+        //'online_skin_url': 'http://dev.dev/developer-console/?uri=api-skins',
         // Online icons url
         'online_icon_url': 'http://hrix.net/developer-console/?uri=api-icons',
         //'online_icon_url': 'http://dev.dev/developer-console/?uri=api-icons',

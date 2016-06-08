@@ -27,17 +27,6 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $timeout,
         }
     };
 
-//    /**
-//     * Get active skin
-//     */
-//    $scope.getActiveSkin = function () {
-//        if ($cookies.skin && $cookies.skin !== 'default') {
-//            $scope.skins.local.active = $cookies.skin;
-//        }
-//    };
-//    $scope.getActiveSkin();
-
-
     /**
      * Load all promises
      * @returns {undefined}
