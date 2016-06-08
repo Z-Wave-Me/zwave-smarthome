@@ -53,6 +53,16 @@
 
 /* Customize detail
 -------------------------------------------------- */
+.customize-detail{
+    padding: $spacing;
+    margin: $spacing 0;
+    max-height: $customize-modal-content-h;
+    overflow: auto;
+}
+.customize-detail-title{
+    font-weight: bold;
+    font-size: 110%;
+}
 .customize-detail-img{
     padding: $spacing 0;
     text-align: center;

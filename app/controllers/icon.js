@@ -275,13 +275,6 @@ myAppController.controller('OnlineIconController', function ($scope, $filter, $t
     function setOnlineIcons(response) {
         $scope.iconsOnline.all = _.chain(response)
                 .flatten()
-                .filter(function (v) {
-                    // Set skin download path
-                    v.download = $scope.cfg.online_icon_storage + v.file;
-                    // Set icon path
-                    v.icon = (!v.icon  ||  v.icon === '' ? 'storage/img/placeholder-img.png' : $scope.cfg.online_icon_storage + v.icon);
-                    return v;
-                })
                 .indexBy('name')
                 .value();
     }

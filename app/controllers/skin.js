@@ -8,7 +8,7 @@
  * @class SkinBaseController
  *
  */
-myAppController.controller('SkinBaseController', function ($scope, $q,$timeout, dataFactory,dataService, _) {
+myAppController.controller('SkinBaseController', function ($scope, $q, $timeout, dataFactory, dataService, _) {
     $scope.skins = {
         local: {
             all: {},
@@ -77,9 +77,9 @@ myAppController.controller('SkinBaseController', function ($scope, $q,$timeout, 
 
     };
     $scope.allSettled();
-    
-    
-    
+
+
+
     /**
      * Upgrade skin
      * @param {object} skin
@@ -105,7 +105,7 @@ myAppController.controller('SkinBaseController', function ($scope, $q,$timeout, 
      * @param {object} response
      * @returns {undefined}
      */
-   function setLocalSkins(response) {
+    function setLocalSkins(response) {
         $scope.skins.local.all = _.chain(response)
                 .flatten()
                 .filter(function (v) {
@@ -118,7 +118,8 @@ myAppController.controller('SkinBaseController', function ($scope, $q,$timeout, 
                 .value();
         ;
         $scope.skins.local.show = true;
-    };
+    }
+    ;
 
     /**
      * Set online skins $scope
@@ -129,15 +130,11 @@ myAppController.controller('SkinBaseController', function ($scope, $q,$timeout, 
         $scope.skins.online.all = _.chain(response)
                 .flatten()
                 .filter(function (v) {
-                    // Set skin download path
-                    v.download = $scope.cfg.online_skin_storage + v.file;
-                    // Set icon path
-                    v.icon = (v.icon == '' ? 'storage/img/placeholder-img.png' : $scope.cfg.online_skin_storage + v.icon);
                     // Set status
-                    v.status = (_.isEmpty($scope.skins.local.all) ? 'error':'download');
+                    v.status = (_.isEmpty($scope.skins.local.all) ? 'error' : 'download');
                     // Compare local and online versions
                     if ($scope.skins.local.all[v.name]) {
-                        v.status = dataService.compareVersions($scope.skins.local.all[v.name].version,v.version);
+                        v.status = dataService.compareVersions($scope.skins.local.all[v.name].version, v.version);
                     }
                     return v;
                 })
@@ -145,7 +142,8 @@ myAppController.controller('SkinBaseController', function ($scope, $q,$timeout, 
                 .value();
         ;
         $scope.skins.online.show = true;
-    };
+    }
+    ;
 
 });
 

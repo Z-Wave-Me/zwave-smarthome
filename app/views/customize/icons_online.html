@@ -11,7 +11,7 @@
             <div class="widget-entry-in">
                 <!-- Widget img -->
                 <div class="widget-img">
-                    <img class="customize-preview-img clickable" ng-src="{{v.icon}}" alt="{{v.title}}" ng-click="handleOnlineIconModal(v,'iconOnlineModal', $event)" />
+                    <img class="customize-preview-img clickable" ng-src="{{v.icon_path}}" alt="{{v.title}}" ng-click="handleOnlineIconModal(v,'iconOnlineModal', $event)" />
                 </div>
 
                 <!-- Widget header -->
@@ -45,9 +45,10 @@
         <div class="appmodal-in">
             <div class="appmodal-header">
                 <span class="appmodal-close" ng-click="handleModal('iconOnlineModal', $event)"><i class="fa fa-times"></i></span>
-                <h3>{{iconsOnline.find.title}}</h3>
+                <h3>{{iconsOnline.find.title|cutText:true:30}}</h3>
             </div>
-            <div class="appmodal-body">
+            <div class="appmodal-body customize-detail">
+                 <p class="customize-detail-title">{{iconsOnline.find.title}}</p>
                 <p class="customize-detail-list" ng-if="iconsOnline.find.author">
                     <strong>{{_t('author')}}:</strong> 
                     <span ng-if="!iconsOnline.find.homepage"> {{iconsOnline.find.author}}</span>
@@ -57,12 +58,20 @@
                     <strong>{{_t('license')}}:</strong> {{iconsOnline.find.license}}
                 </p>
                 <div class="customize-icon-list">
-                    <img class="customize-icon-preview" ng-src="{{cfg.online_icon_storage + iconsOnline.find.name + '/' + v}}" ng-repeat="v in iconsOnline.preview" />
+                    <img class="customize-icon-preview" ng-src="{{iconsOnline.find.preview_path + v}}" ng-repeat="v in iconsOnline.preview" />
                 </div>
             </div>
-            <!--<div class="appmodal-footer">
-                <button type="button" class="btn btn-default" ng-click="handleModal('doorLockControlModal', $event)"><i class="fa fa-times text-danger"></i> {{_t('lb_close')}}</button>
-            </div>-->
+            <div class="appmodal-footer">
+                <!-- Close --> 
+                <button type="button" class="btn btn-default" ng-click="handleModal('iconOnlineModal', $event)">
+                    <i class="fa fa-times text-danger"></i> <span class="btn-name">{{_t('lb_close')}}</span>
+                </button>
+                <!-- Download --> 
+                <button href="" class="btn btn-submit" title="{{_t('lb_download')}}" 
+                       ng-click="handleModal('iconOnlineModal', $event);downloadIconSet(iconsOnline.find)">
+                    <i class="fa fa-download"></i> <span class="btn-name">{{_t('lb_download')}}</span>
+                </button>
+        </div>
         </div>
     </div>
 </div> <!-- /ng-controller --> 

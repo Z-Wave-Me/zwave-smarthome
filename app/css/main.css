@@ -3126,7 +3126,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 /* line 63, ../sass/common/_modal.scss */
 .appmodal-header h3 {
-  font-size: 120%;
+  font-size: 110%;
   margin: 0;
   color: #404040;
 }
@@ -3709,24 +3709,38 @@ img.widget-promo-image {
 /* Customize detail
 -------------------------------------------------- */
 /* line 56, ../sass/modules/_customize.scss */
+.customize-detail {
+  padding: 10px;
+  margin: 10px 0;
+  max-height: 600px;
+  overflow: auto;
+}
+
+/* line 62, ../sass/modules/_customize.scss */
+.customize-detail-title {
+  font-weight: bold;
+  font-size: 110%;
+}
+
+/* line 66, ../sass/modules/_customize.scss */
 .customize-detail-img {
   padding: 10px 0;
   text-align: center;
   border-top: solid 1px #d3d3d3;
 }
 
-/* line 61, ../sass/modules/_customize.scss */
+/* line 71, ../sass/modules/_customize.scss */
 .customize-detail-perex {
   margin: 10px 0;
 }
 
-/* line 64, ../sass/modules/_customize.scss */
+/* line 74, ../sass/modules/_customize.scss */
 .customize-icon-list {
   border-top: solid 1px #d3d3d3;
   height: 300px;
   overflow: scroll;
 }
-/* line 68, ../sass/modules/_customize.scss */
+/* line 78, ../sass/modules/_customize.scss */
 .customize-icon-list .customize-icon-preview {
   display: inline-block;
   margin: 10px;
@@ -4356,7 +4370,6 @@ img.widget-promo-image {
 
   /* line 89, ../sass/responsive/_mq_shared.scss */
   .customize-preview-img {
-    width: 300px;
     max-width: 300px;
     max-height: 150px;
   }
@@ -4747,7 +4760,6 @@ img.widget-promo-image {
 
   /* line 89, ../sass/responsive/_mq_shared.scss */
   .customize-preview-img {
-    width: 300px;
     max-width: 300px;
     max-height: 150px;
   }
