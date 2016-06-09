@@ -53,6 +53,12 @@ Get type of a Javascript variable
 
 
 
+### dec2hex() 
+
+Convert a dec value to hex
+
+
+
 ### fileExtension() 
 
 Get a file extension from the path
@@ -121,7 +127,13 @@ Today from unix - ExpertUI filter used in the device hardware configuration
 
 ### getCurrentTime() 
 
-Get current time in the hrs:min:sec format
+Get time from the box and displays it in the hrs:min:sec format
+
+
+
+### getCurrentTime() 
+
+DEPRECATEDGet current time in the hrs:min:sec format
 
 
 

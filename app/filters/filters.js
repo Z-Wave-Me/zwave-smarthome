@@ -85,6 +85,29 @@ myApp.filter('typeOf', function () {
 });
 
 /**
+ * Convert a dec value to hex
+ * @function dec2hex
+ */
+myApp.filter('dec2hex', function () {
+    return function (i) {
+       var result = "0000";
+        if (i >= 0 && i <= 15) {
+            result = "000" + i.toString(16);
+        }
+        else if (i >= 16 && i <= 255) {
+            result = "00" + i.toString(16);
+        }
+        else if (i >= 256 && i <= 4095) {
+            result = "0" + i.toString(16);
+        }
+        else if (i >= 4096 && i <= 65535) {
+            result = i.toString(16);
+        }
+        return result;
+    };
+});
+
+/**
  * Get a file extension from the path
  * @function fileExtension
  */
@@ -480,24 +503,48 @@ myApp.filter('isTodayFromUnix', function () {
     };
 });
 /**
+ * Get time from the box and displays it in the hrs:min:sec format
+ * @function getCurrentTime
+ */
+myApp.filter('setTimeFromBox', function () {
+    return function (input) {
+        if (input.localTimeUT) {
+            var d = new Date(input.localTimeUT * 1000);
+           } else {
+            var d = new Date();
+        }
+        // Convert to ISO
+        // 2016-06-07T11:49:51.000Z
+         return d.toISOString().substring(11, d.toISOString().indexOf('.'));
+    };
+});
+/**
+ * DEPRECATED
  * Get current time in the hrs:min:sec format
  * @function getCurrentTime
  */
-myApp.filter('getCurrentTime', function () {
-    return function (timestamp) {
-        if (timestamp) {
-            var d = new Date(timestamp * 1000);
-        } else {
-            var d = new Date();
-        }
-        //var d = new Date();
-        var hrs = (d.getHours() < 10 ? '0' + d.getHours() : d.getHours());
-        var min = (d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes());
-        var sec = (d.getSeconds() < 10 ? '0' + d.getSeconds() : d.getSeconds());
-        var time = hrs + ':' + min + ':' + sec;
-        return time;
-    };
-});
+//myApp.filter('getCurrentTime', function () {
+//    return function (input) {
+//        if (input.localTimeUT) {
+//            var d = new Date(input.localTimeUT * 1000);
+//            if(input.localTimeZoneOffset > 0){
+//                 d.setHours(d.getHours() + Math.abs(input.localTimeZoneOffset));
+//            }else if(input.localTimeZoneOffset < 0){
+//                 d.setHours(d.getHours() - Math.abs(input.localTimeZoneOffset));
+//            }
+//            // 2016-06-07T11:49:51.000Z
+//            
+//        } else {
+//            var d = new Date();
+//        }
+//        //var d = new Date();
+//        var hrs = (d.getHours() < 10 ? '0' + d.getHours() : d.getHours());
+//        var min = (d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes());
+//        var sec = (d.getSeconds() < 10 ? '0' + d.getSeconds() : d.getSeconds());
+//        var time = hrs + ':' + min + ':' + sec;
+//        return time;
+//    };
+//});
 /**
  * Get a day from the unix timstamp for filtering events
  * @function unixStartOfDay

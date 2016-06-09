@@ -11033,6 +11033,10 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                 when('/passwordforgot/reset/:token?', {
                     templateUrl: 'app/views/auth/password_reset.html'
                 }).
+                //Jamesbox update
+                when('/boxupdate', {
+                    templateUrl: 'app/views/jamesbox/update.html'
+                }).
                 //Login
                 when('/logout', {
                     templateUrl: 'app/views/auth/logout.html',
@@ -11055,7 +11059,7 @@ myApp.run(function ($rootScope, $location, dataService, cfg) {
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
         var user;
         // Reset fatal error messages
-        if (!cfg.route.fatalError.permanent) {
+        if (cfg.route.message && !cfg.route.fatalError.permanent) {
             angular.extend(cfg.route.fatalError, {
                 message: false,
                 info: false,
@@ -11475,11 +11479,6 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
   );
 
 
-  $templateCache.put('app/views/error.html',
-    "<div class=app-fatal-error><img class=fatal-error-img ng-src={{cfg.img.icons}}fatal-error.png alt=\"{{v.type}}\"><div class=fatal-error-message>{{cfg.route.fatalError.message}}</div><div class=fatal-error-info ng-if=cfg.route.fatalError.info ng-bind-html=cfg.route.fatalError.info|toTrusted></div></div>"
-  );
-
-
   $templateCache.put('app/views/events/dropdown.html',
     "<div class=\"btn-group group-event-dropdown\"><button type=button class=\"btn btn-default\" title=\"{{_t('lb_settings')}}\" ng-click=\"expandNavi('evDropDown_' + $index, $event)\"><i class=\"fa fa-caret-down\"></i></button><div class=\"app-dropdown dropdown-events\" ng-if=\"naviExpanded['evDropDown' + '_' + $index]\"><ul><li><a ng-href=#events><i class=\"fa fa-eye\"></i> <span ng-bind=\"_t('lb_show_all')\"></span></a></li><li><a ng-href=#events/source/{{v.source}}><i class=\"fa fa-check\"></i> <span ng-bind=\"_t('lb_events_source')\"></span></a></li><li><a ng-href=#events/type/{{v.type}}><i class=\"fa fa-check-square\"></i> <span ng-bind=\"_t('lb_events_type')\"></span></a></li><li><a ng-href=\"#events/source_type?source={{v.source}}&type={{v.type}}\"><i class=\"fa fa-check-circle\"></i> <span ng-bind=\"_t('lb_events_source_type')\"></span></a></li><li ng-if=\"elementAccess(cfg.role_access.element) && (cfg.events_clickable.indexOf(v.level) > -1) && (v.source && v.message)\"><a href=#element/{{v.source}}><i class=\"fa fa-cog\"></i> <span ng-bind=\"_t('lb_source_cfg')\"></span></a></li><li><a href=\"\" ng-click=hideSourceEvents(v.source) ng-if=\"user.hide_single_device_events.indexOf(v.source) === -1\"><i class=\"fa fa-minus-circle text-danger\"></i> <span ng-bind=\"_t('lb_hide_events_source')\"></span></a></li><li ng-if=elementAccess(cfg.role_access.event_delete)><a href=\"\" ng-click=\"deleteEvent(v.id, '?uid=' + v.h,_t('lb_delete_confirm'))\" ng-if=\"v.level == 'error' || v.level == 'notification'\"><i class=\"fa fa-times text-danger\"></i> <span ng-bind=\"_t('lb_delete_event')\"></span></a></li></ul></div></div>"
   );
@@ -11500,8 +11499,13 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
   );
 
 
+  $templateCache.put('app/views/jamesbox/update.html',
+    "<div ng-controller=JbUpdateController><bb-loader></bb-loader><div id=jamesBoxConfirmModal class=appmodal ng-if=jamesbox.showConfirm><div class=appmodal-in><div class=appmodal-header><h3>{{_t('jamesbox_software_upgrade')}}</h3></div><div class=appmodal-body><div class=\"alert alert-warning\">{{_t('jamesbox_current_firmware', {__currentfw__: jamesbox.version, __newfw__: jamesbox.versionNew})}}</div><div class=text-center><button class=\"btn btn-submit btn-lg\" title=\"{{_t('update_now')}}\" ng-click=firmwareUpdate()><i class=\"fa fa-check\"></i> {{_t('update_now')}}</button></div></div><div class=appmodal-footer><a ng-href=#dashboard class=\"btn btn-default\" title=\"{{_t('jamesbox_not_update')}}\"><span class=btn-name>{{_t('jamesbox_not_update')}}</span> <i class=\"fa fa-arrow-right\"></i></a></div></div></div><div id=jamesBoxUpdateModal class=appmodal ng-if=jamesbox.showUpdate><div class=appmodal-in><div class=appmodal-header><h3>{{_t('jamesbox_software_upgrade')}}</h3></div><div class=appmodal-body><div id=jamesboxUpdateInfo><div id=updateTimeout>{{_t('jamesbox_update_update_timeout')}}</div><div>{{_t('jamesbox_update_follow_steps')}}</div></div><ol><li class=jamesboxUpdateInfoList>{{_t('jamesbox_update_1')}}</li><li class=jamesboxUpdateInfoList>{{_t('jamesbox_update_2')}}</li><li class=jamesboxUpdateInfoList>{{_t('jamesbox_update_3')}}</li></ol><div class=\"alert alert-warning\"><i class=\"fa fa-exclamation-circle\"></i> {{_t('jamesbox_update_attention')}}</div><div class=text-center><button class=\"btn btn-submit btn-lg\" title=\"{{_t('reboot_now')}}\" ng-click=systemReboot()><i class=\"fa fa-check\"></i> {{_t('reboot_now')}}</button></div></div><div class=appmodal-footer><button class=\"btn btn-default\" title=\"{{_t('jamesbox_not_update')}}\" ng-click=cancelUpdate()><span class=btn-name>{{_t('jamesbox_not_update')}}</span> <i class=\"fa fa-arrow-right\"></i></button></div></div></div></div>"
+  );
+
+
   $templateCache.put('app/views/management/management.html',
-    "<div ng-controller=ManagementController class=mobile-padding><div class=accordion-entry ng-include=\"'app/views/management/management_user.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_remote.html'\"></div><div class=accordion-entry ng-if=\"controllerInfo.uuid && !isMobile\" ng-hide=\"cfg.app_type === 'popp' || cfg.app_type === 'jb'\" ng-include=\"'app/views/management/management_licence.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_backup.html'\" ng-if=!isMobile></div><div class=accordion-entry ng-include=\"'app/views/management/management_restore.html'\" ng-if=!isMobile></div><div class=accordion-entry ng-include=\"'app/views/management/management_factory.html'\"></div><div class=accordion-entry ng-if=!isMobile ng-hide=\"cfg.app_type === 'wd' || cfg.app_type === 'jb'\" ng-include=\"'app/views/management/management_firmware.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_appstore.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_report.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_info.html'\"></div></div>"
+    "<div ng-controller=ManagementController class=mobile-padding><div class=accordion-entry ng-include=\"'app/views/management/management_user.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_remote.html'\"></div><div class=accordion-entry ng-if=handleLicense.show ng-include=\"'app/views/management/management_licence.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_backup.html'\" ng-if=!isMobile></div><div class=accordion-entry ng-include=\"'app/views/management/management_restore.html'\" ng-if=!isMobile></div><div class=accordion-entry ng-include=\"'app/views/management/management_factory.html'\"></div><div class=accordion-entry ng-if=!isMobile ng-hide=\"cfg.app_type === 'wd' || cfg.app_type === 'jb'\" ng-include=\"'app/views/management/management_firmware.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_appstore.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_report.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_info.html'\"></div></div>"
   );
 
 
@@ -11531,7 +11535,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/management/management_licence.html',
-    "<h2 class=accordion-entry-title ng-click=\"expandElement('licence')\"><i class=\"fa fa-key\"></i> <span ng-bind=\"_t('licence_upgrade')\"></span> <i class=\"fa accordion-arrow\" ng-class=\"expand.licence  ? 'fa-chevron-up':'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-class=\"\" ng-if=expand.licence ng-controller=ManagementLicenceController><bb-loader></bb-loader><form name=form_licence id=form_password class=\"form form-page\" ng-submit=getLicense(inputLicence) novalidate><fieldset><div class=\"alert alert-danger\" ng-if=controllerInfo.isZeroUuid><i class=\"fa fa-plug\"></i> {{_t('replug_device')}}</div><p>{{_t('licence_upgrade_key')}}</p><p class=form-inline><label>{{_t('licence_key_insert')}}:</label><input class=\"form-control form-control-sm\" name=scratch_id id=scratch_id value={{inputLicence.scratch_id}} ng-disabled=controllerInfo.isZeroUuid ng-model=\"inputLicence.scratch_id\"></p><div><p ng-if=proccessVerify.message><i ng-class=proccessVerify.status></i> <strong ng-bind=proccessVerify.message></strong></p><p ng-if=proccessUpdate.message><i ng-class=proccessUpdate.status></i> <strong ng-bind=proccessUpdate.message></strong></p></div></fieldset><fieldset class=submit-entry><button type=submit class=\"btn btn-submit\" title=\"{{_t('btn_licence_verify')}}\" ng-disabled=\"proccessLicence || controllerInfo.isZeroUuid\"><i class=\"fa fa-share\"></i> <span class=btn-name>{{_t('btn_licence_verify')}}</span></button></fieldset></form></div>"
+    "<h2 class=accordion-entry-title ng-click=\"expandElement('licence')\"><i class=\"fa fa-key\"></i> <span ng-bind=\"_t('licence_upgrade')\"></span> <i class=\"fa accordion-arrow\" ng-class=\"expand.licence  ? 'fa-chevron-up':'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-class=\"\" ng-if=expand.licence ng-controller=ManagementLicenceController><bb-loader></bb-loader><form name=form_licence id=form_password class=\"form form-page\" ng-submit=getLicense(inputLicence) novalidate><fieldset><div class=\"alert alert-danger\" ng-if=handleLicense.replug><i class=\"fa fa-plug\"></i> {{_t('replug_device')}}</div><p>{{_t('licence_upgrade_key')}}</p><p class=form-inline><label>{{_t('licence_key_insert')}}:</label><input class=\"form-control form-control-sm\" name=scratch_id id=scratch_id value={{inputLicence.scratch_id}} ng-disabled=handleLicense.disabled ng-model=\"inputLicence.scratch_id\"></p><div><p ng-if=proccessVerify.message><i ng-class=proccessVerify.status></i> <strong ng-bind=proccessVerify.message></strong></p><p ng-if=proccessUpdate.message><i ng-class=proccessUpdate.status></i> <strong ng-bind=proccessUpdate.message></strong></p></div></fieldset><fieldset class=submit-entry><button type=submit class=\"btn btn-submit\" title=\"{{_t('btn_licence_verify')}}\" ng-disabled=\"proccessLicence || controllerInfo.isZeroUuid\"><i class=\"fa fa-share\"></i> <span class=btn-name>{{_t('btn_licence_verify')}}</span></button></fieldset></form></div>"
   );
 
 
@@ -11646,7 +11650,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/zwave/zwave_network.html',
-    "<div ng-controller=ZwaveManageController><bb-loader></bb-loader><div ng-include=\"'app/views/zwave/navi.html'\"></div><div class=\"app-row app-row-report app-row-zwave clearfix\" ng-if=devices.show><div id=row_zwave_network_{{v.id}} class=report-entry ng-repeat=\"v in zWaveDevices | orderBy:'title':false\" ng-if=v.messages><div class=\"report-col report-body zwave-network\"><span class=\"network-zwave-title noelements clickable\" ng-if=\"v.elements.length < 1\">{{v.title|cutText:true:25}} (#{{v.id}})</span> <a href=\"\" class=\"network-zwave-title clickable\" ng-click=\"expandElement('accZwaveNetwork_' + v.id)\" ng-if=\"v.elements.length > 0\"><i class=fa ng-class=\"expand['accZwaveNetwork' + '_' + v.id] ? 'fa-chevron-up': 'fa-chevron-down'\"></i> {{v.title}} (#{{v.id}})</a><div ng-if=\"expand['accZwaveNetwork_' + v.id]\"><div class=\"network-zwave-element zwave-hidden-{{e.permanently_hidden}}\" ng-repeat=\"e in v.elements | orderBy:'title':false\"><a ng-href=#/element/{{e.id}}><img class=report-img-s ng-src={{e.metrics.icon|getElementIcon:e:e.level}} alt=\"img\"> {{e.title|cutText:true:25}} <span class=zwave-raquo>&raquo;</span></a></div></div></div><div class=\"report-col report-ctrl\"><div ng-repeat=\"m in v.messages|unique:true\"><div class=text-danger>{{m.error}}</div><button class=\"btn btn-default\" ng-if=\"m.type == 'failed' || m.type == 'config'\" ng-click=\"devices.find = v;handleModal('zwaveNetworkModal', $event)\"><i class=\"fa fa-cog text-primary\"></i> <span class=btn-name>{{_t('configure_device')}}</span></button></div></div></div></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div><div id=zwaveNetworkModal class=appmodal ng-controller=ZwaveInterviewController ng-if=\"modalArr.zwaveNetworkModal && !_.isEmpty(devices.find)\"><div class=appmodal-in><div class=appmodal-header><span class=appmodal-close ng-click=cancelConfiguration($event)><i class=\"fa fa-times\"></i></span><h3>{{devices.find.title|cutText:true:25}} (#{{devices.find.id}})</h3></div><div class=appmodal-body><div class=\"alert alert-warning\" ng-hide=\"zwaveInterview.progress > 99\"><i class=\"fa fa-spinner fa-spin\"></i> <strong>{{_t('configuring_device')}}</strong></div><div class=progress><div class=progress-bar style=\"min-height:40px;min-width: 2em; width: {{zwaveInterview.progress}}%\" ng-class=\"zwaveInterview.progress < 100 ? 'progress-bar-striped active' : 'progress-bar-success'\">{{zwaveInterview.progress}}%</div></div></div><div class=appmodal-footer><button type=button class=\"btn btn-default\" ng-click=cancelConfiguration($event)><i class=\"fa fa-times text-danger\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button></div></div></div></div>"
+    "<div ng-controller=ZwaveManageController><bb-loader></bb-loader><div ng-include=\"'app/views/zwave/navi.html'\"></div><div class=\"app-row app-row-report app-row-zwave clearfix\" ng-if=devices.show><div id=row_zwave_network_{{v.id}} class=report-entry ng-repeat=\"v in zWaveDevices | orderBy:'title':false\" ng-if=v.messages><div class=\"report-col report-body zwave-network\"><span class=\"network-zwave-title noelements clickable\" ng-if=\"v.elements.length < 1\">{{v.title|cutText:true:25}} (#{{v.id}})</span> <a href=\"\" class=\"network-zwave-title clickable\" ng-click=\"expandElement('accZwaveNetwork_' + v.id)\" ng-if=\"v.elements.length > 0\"><i class=fa ng-class=\"expand['accZwaveNetwork' + '_' + v.id] ? 'fa-chevron-up': 'fa-chevron-down'\"></i> {{v.title}} (#{{v.id}})</a><div ng-if=\"expand['accZwaveNetwork_' + v.id]\"><div class=\"network-zwave-element zwave-hidden-{{e.permanently_hidden}}\" ng-repeat=\"e in v.elements | orderBy:'title':false\"><a ng-href=#/element/{{e.id}}><img class=report-img-s ng-src={{e.metrics.icon|getElementIcon:e:e.level}} alt=\"img\"> {{e.title|cutText:true:25}} <span class=zwave-raquo>&raquo;</span></a></div></div></div><div class=\"report-col report-ctrl\"><div ng-repeat=\"m in v.messages|unique:true\"><div class=text-danger ng-if=\"m.type !== 'config'\">{{m.error}}</div><button class=\"btn btn-default\" ng-if=\"!v.is_failed && v.do_interview\" ng-click=\"devices.find = v;handleModal('zwaveNetworkModal', $event)\"><i class=\"fa fa-refresh text-primary\"></i> <span class=btn-name>{{_t('configure_device')}}</span></button></div></div></div></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div><div id=zwaveNetworkModal class=appmodal ng-controller=ZwaveInterviewController ng-if=\"modalArr.zwaveNetworkModal && !_.isEmpty(devices.find)\"><div class=appmodal-in><div class=appmodal-header><span class=appmodal-close ng-click=cancelConfiguration($event)><i class=\"fa fa-times\"></i></span><h3>{{devices.find.title|cutText:true:25}} (#{{devices.find.id}})</h3></div><div class=appmodal-body><div class=\"alert alert-warning\" ng-hide=\"zwaveInterview.progress > 99\"><i class=\"fa fa-spinner fa-spin\"></i> <strong>{{_t('configuring_device')}}</strong></div><div class=progress><div class=progress-bar style=\"min-height:40px;min-width: 2em; width: {{zwaveInterview.progress}}%\" ng-class=\"zwaveInterview.progress < 100 ? 'progress-bar-striped active' : 'progress-bar-success'\">{{zwaveInterview.progress}}%</div></div></div><div class=appmodal-footer><button type=button class=\"btn btn-default\" ng-click=cancelConfiguration($event)><i class=\"fa fa-times text-danger\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button></div></div></div></div>"
   );
 
 
@@ -12687,7 +12691,7 @@ var myAppService = angular.module('myAppService', []);
  */
 myAppService.service('dataService', function ($filter, $log, $cookies, $window, cfg, _) {
     /// --- Public functions --- ///
-    
+
     /**
      * Get a language string by key
      * @param {string} key
@@ -12695,8 +12699,8 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @param {object} replacement
      * @returns {unresolved}
      */
-    this.getLangLine = function (key,languages,replacement) {
-        return getLangLine(key,languages,replacement);
+    this.getLangLine = function (key, languages, replacement) {
+        return getLangLine(key, languages, replacement);
     };
 
     /**
@@ -12741,6 +12745,23 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
             return 'any';
         }
         return 'any';
+    };
+
+    /**
+     * Get OS (operating system)
+     * @returns {String}
+     */
+    this.isIeEdge = function () {
+        var isIE = /*@cc_on!@*/false || !!document.documentMode;
+        if(isIE){
+            return true;
+        }
+        // Edge 20+
+        var isEdge = !isIE && !!window.StyleMedia;
+        if(isEdge){
+            return true;
+        }
+        return false;
     };
 
 
@@ -12905,7 +12926,8 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                     }
                     angular.extend(v,
                             {onDashboard: (user.dashboard.indexOf(v.id) !== -1 ? true : false)},
-                            {minMax: minMax},
+                            {creatorId: _.isString(v.creatorId) ? v.creatorId.replace(/[^0-9]/g, '') : v.creatorId},
+                             {minMax: minMax},
                             {hasHistory: (v.hasHistory === true ? true : false)},
                             {imgTrans: false},
                             {isNew: isNew},
@@ -12917,6 +12939,9 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                     }
                     if (v.metrics.level) {
                         angular.extend(v.metrics, {level: $filter('numberFixedLen')(v.metrics.level)});
+                    }
+                     if (v.metrics.scaleTitle) {
+                        angular.extend(v.metrics, {scaleTitle: getLangLine(v.metrics.scaleTitle)});
                     }
                     return v;
                 });
@@ -13080,7 +13105,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
         for (var val in replacement) {
             line = line.split(val).join(replacement[val]);
         }
-        return line; 
+        return line;
     }
 
     /**
@@ -13831,6 +13856,29 @@ myApp.filter('typeOf', function () {
 });
 
 /**
+ * Convert a dec value to hex
+ * @function dec2hex
+ */
+myApp.filter('dec2hex', function () {
+    return function (i) {
+       var result = "0000";
+        if (i >= 0 && i <= 15) {
+            result = "000" + i.toString(16);
+        }
+        else if (i >= 16 && i <= 255) {
+            result = "00" + i.toString(16);
+        }
+        else if (i >= 256 && i <= 4095) {
+            result = "0" + i.toString(16);
+        }
+        else if (i >= 4096 && i <= 65535) {
+            result = i.toString(16);
+        }
+        return result;
+    };
+});
+
+/**
  * Get a file extension from the path
  * @function fileExtension
  */
@@ -14226,24 +14274,48 @@ myApp.filter('isTodayFromUnix', function () {
     };
 });
 /**
+ * Get time from the box and displays it in the hrs:min:sec format
+ * @function getCurrentTime
+ */
+myApp.filter('setTimeFromBox', function () {
+    return function (input) {
+        if (input.localTimeUT) {
+            var d = new Date(input.localTimeUT * 1000);
+           } else {
+            var d = new Date();
+        }
+        // Convert to ISO
+        // 2016-06-07T11:49:51.000Z
+         return d.toISOString().substring(11, d.toISOString().indexOf('.'));
+    };
+});
+/**
+ * DEPRECATED
  * Get current time in the hrs:min:sec format
  * @function getCurrentTime
  */
-myApp.filter('getCurrentTime', function () {
-    return function (timestamp) {
-        if (timestamp) {
-            var d = new Date(timestamp * 1000);
-        } else {
-            var d = new Date();
-        }
-        //var d = new Date();
-        var hrs = (d.getHours() < 10 ? '0' + d.getHours() : d.getHours());
-        var min = (d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes());
-        var sec = (d.getSeconds() < 10 ? '0' + d.getSeconds() : d.getSeconds());
-        var time = hrs + ':' + min + ':' + sec;
-        return time;
-    };
-});
+//myApp.filter('getCurrentTime', function () {
+//    return function (input) {
+//        if (input.localTimeUT) {
+//            var d = new Date(input.localTimeUT * 1000);
+//            if(input.localTimeZoneOffset > 0){
+//                 d.setHours(d.getHours() + Math.abs(input.localTimeZoneOffset));
+//            }else if(input.localTimeZoneOffset < 0){
+//                 d.setHours(d.getHours() - Math.abs(input.localTimeZoneOffset));
+//            }
+//            // 2016-06-07T11:49:51.000Z
+//            
+//        } else {
+//            var d = new Date();
+//        }
+//        //var d = new Date();
+//        var hrs = (d.getHours() < 10 ? '0' + d.getHours() : d.getHours());
+//        var min = (d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes());
+//        var sec = (d.getSeconds() < 10 ? '0' + d.getSeconds() : d.getSeconds());
+//        var time = hrs + ':' + min + ':' + sec;
+//        return time;
+//    };
+//});
 /**
  * Get a day from the unix timstamp for filtering events
  * @function unixStartOfDay
@@ -14583,7 +14655,22 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
      }
      
      };
+     
      $scope.setSkin();*/
+
+
+    /**
+     * Check if route match the pattern.
+     * @param {string} path
+     * @returns {Boolean}
+     */
+    $scope.routeMatch = function (path) {
+        if ($route.current && $route.current.regexp) {
+            return $route.current.regexp.test(path);
+        }
+        return false;
+    };
+
     /**
      * Reset a fatal error.
      * @param {object} obj
@@ -14602,13 +14689,26 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
             return;
         }
         dataFactory.getApi('timezone', null, true).then(function (response) {
-            angular.extend(cfg.route.time, {string: $filter('getCurrentTime')(response.data.data.localTimeUT)});
+            angular.extend(cfg.route.time, {string: $filter('setTimeFromBox')(response.data.data)});
             var refresh = function () {
                 dataFactory.getApi('timezone', null, true).then(function (response) {
-                    angular.extend(cfg.route.time, {string: $filter('getCurrentTime')(response.data.data.localTimeUT)});
-
+                    angular.extend(cfg.route.time, {string: $filter('setTimeFromBox')(response.data.data)});
                 }, function (error) {
-                    $interval.cancel($scope.timeZoneInterval);
+                    if (!error.status || error.status === 0) {
+                        var fatalArray = {
+                            message: $scope._t('connection_refused'),
+                            info: $scope._t('connection_refused_info'),
+                            permanent: true,
+                            hide: true
+                        };
+                        if ($scope.routeMatch('/boxupdate')) {
+                            fatalArray.message = $scope._t('jamesbox_connection_refused');
+                            fatalArray.info = $scope._t('jamesbox_connection_refused_info',{__reload_begintag__:'<div>', __reload_endtag__:'</div>', __attention_begintag__:'<div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i>', __attention_endtag__:'<div>'});
+                            fatalArray.icon = cfg.route.fatalError.icon_jamesbox;
+                        }
+                        angular.extend(cfg.route.fatalError, fatalArray);
+                    }
+                    //$interval.cancel($scope.timeZoneInterval);
                 });
             };
             $scope.timeZoneInterval = $interval(refresh, $scope.cfg.interval);
@@ -14629,7 +14729,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
 
     };
     $scope.setPollInterval();
-    
+
     /**
      * Allow to access page elements by role.
      * 
@@ -14652,7 +14752,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         return true;
     };
 
-   
+
     $scope.lang_list = cfg.lang_list;
     /**
      * Get a language key from the cookie or set a default language.
@@ -14687,16 +14787,24 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
      * @param {type} replacement
      * @returns {unresolved}
      */
-    $scope._t = function (key,replacement) {
-       return dataService.getLangLine(key, $scope.languages,replacement);
+    $scope._t = function (key, replacement) {
+        return dataService.getLangLine(key, $scope.languages, replacement);
     };
 
-   /**
-    * Watch for lang changes
-    */
+    /**
+     * Watch for lang changes
+     */
     $scope.$watch('lang', function () {
         $scope.loadLang($scope.lang);
     });
+    
+    // IF IE or Edge displays an message
+    if (dataService.isIeEdge()) {
+        angular.extend(cfg.route.fatalError, {
+            message: cfg.route.t['ie_edge_not_supported'],
+            info: cfg.route.t['ie_edge_not_supported_info']
+        });
+    }
 
     /**
      * Order by
@@ -14707,24 +14815,11 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         $scope.predicate = field;
         $scope.reverse = !$scope.reverse;
     };
-    
+
     /**
-     * Check if route match the pattern.
-     * @param {string} path
-     * @returns {Boolean}
+     * Get body ID
+     * @returns {String}
      */
-    $scope.routeMatch = function (path) {
-        if ($route.current && $route.current.regexp) {
-            return $route.current.regexp.test(path);
-        }
-        return false;
-    };
-
-
-   /**
-    * Get body ID
-    * @returns {String}
-    */
     $scope.getBodyId = function () {
         var path = $location.path().split('/');
         return path[1] || 'login';
@@ -14732,7 +14827,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     };
     // Mobile detect
     $scope.isMobile = dataService.isMobile(navigator.userAgent || navigator.vendor || window.opera);
-    
+
     /**
      * Check if the route match the given param and set active class in the element.
      * @param {string} route
@@ -14750,7 +14845,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         myCache.removeAll();
         $route.reload();
     };
-    
+
     /**
      * Redirect to given url
      * @param {string} url
@@ -14922,6 +15017,132 @@ myAppController.controller('404Controller', function($scope, cfg) {
 });
 
 
+/**
+ * @overview Controllers that handle the JamesBox actions.
+ * @author Martin Vach
+ */
+
+/**
+ * Load required http requests an update JamesBox record in the database.
+ * @class JbUpdateController
+ */
+myAppController.controller('JbUpdateController', function ($scope, $q, $location, cfg, dataFactory, _) {
+    $scope.jamesbox = {
+        showConfirm: false,
+        showUpdate: false,
+        rule_id: '',
+        uuid: '',
+        version: '',
+        versionNew: '',
+        interval: null
+    };
+    /**
+     * Load all promises
+     */
+    $scope.allSettled = function () {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        var promises = [
+            dataFactory.loadZwaveApiData()
+        ];
+
+        $q.allSettled(promises).then(function (response) {
+            var zwave = response[0];
+            $scope.loading = false;
+            // Error message
+            if (zwave.state === 'rejected') {
+                alertify.alertError($scope._t('error_load_data'));
+            }
+
+            // Success - zwave controller
+            if (zwave.state === 'fulfilled') {
+                $scope.jamesbox.uuid = zwave.value.controller.data.uuid.value;
+                $scope.jamesbox.version = zwave.value.controller.data.softwareRevisionVersion.value;
+                $scope.jamesBoxRequest();
+            }
+        });
+    };
+    $scope.allSettled();
+
+    /**
+     * Load JamesBox data
+     */
+    $scope.jamesBoxRequest = function () {
+        $scope.loading = false;
+        // REMOVE
+        dataFactory.postToRemote(cfg.api_remote['jamesbox_request'], $scope.jamesbox).then(function (response) {
+            if (!_.isEmpty(response.data)) {
+                $scope.jamesbox.versionNew = response.data.firmware_version;
+                $scope.jamesbox.rule_id = response.data.rule_id;
+                $scope.jamesbox.showConfirm = true;
+            } else {
+                alertify.alertError($scope._t('no_update_available')).set('onok', function(closeEvent){ 
+                     alertify.dismissAll();
+                     $location.path("/dashboard");
+                });
+            }
+        }, function (error) { });
+    }
+    ;
+
+    /**
+     * Update JamesBox record
+     */
+    $scope.firmwareUpdate = function () {
+        var input = {
+            uuid: $scope.jamesbox.uuid,
+            rule_id: $scope.jamesbox.rule_id
+        };
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('jamesbox_confirm')};
+        dataFactory.postToRemote(cfg.api_remote['jamesbox_update'], input).then(function (response) {
+            $scope.loading = false;
+            $scope.jamesbox.showConfirm = false;
+            $scope.jamesbox.showUpdate = true;
+        }, function (error) {
+            var message = $scope._t('error_update_data');
+            if (error.status === 409) {
+                message = $scope._t('jamesbox_update_exists');
+            }
+            alertify.alertError($scope._t(message));
+            $scope.loading = false;
+        });
+    };
+
+    /**
+     * Update JamesBox record
+     */
+    $scope.cancelUpdate = function () {
+        var input = {
+            uuid: $scope.jamesbox.uuid,
+            rule_id: $scope.jamesbox.rule_id
+        };
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('jamesbox_remove_confirm')};
+        dataFactory.postToRemote(cfg.api_remote['jamesbox_cancel_update'], input).then(function (response) {
+            $scope.loading = false;
+            $location.path("/dashboard");
+        }, function (error) {
+            $scope.loading = false;
+            var message = $scope._t('error_update_data');
+            alertify.alertError($scope._t(message)).set('onok', function(closeEvent){
+                 alertify.dismissAll();
+                 $location.path("/dashboard");
+            });
+        });
+    };
+
+    /**
+     * reboot system
+     */
+    $scope.systemReboot = function () {
+        dataFactory.getApi('system_reboot').then(function (response) {
+            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('rebooting')};
+        }, function (error) {
+            var message = $scope._t('jamesbox_update_manuel_restart');
+            alertify.alertError($scope._t(message));
+            $scope.loading = false;
+        });
+    };
+
+});
 /**
  * @overview Controllers that handle the list of elements, as well as an element detail.
  * @author Martin Vach
@@ -15657,7 +15878,7 @@ myAppController.controller('ElementRoomController', function ($scope, $routePara
  * The controller that handles element detail actions.
  * @class ElementIdController
  */
-myAppController.controller('ElementIdController', function ($scope, $q, $routeParams, $window, dataFactory, dataService, myCache) {
+myAppController.controller('ElementIdController', function ($scope, $q, $routeParams, $filter, dataFactory, dataService, myCache) {
     $scope.elementId = {
         show: false,
         appType: {},
@@ -15827,7 +16048,7 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
         } else if (device.id.indexOf(findZenoStr) > -1) {
             $scope.elementId.appType['enocean'] = device.id.split(findZenoStr)[1].split('_')[0];
         } else {
-            var instance = _.findWhere($scope.elementId.instances, {id: device.creatorId});
+            var instance = _.findWhere($scope.elementId.instances, {id: $filter('toInt')(device.creatorId)});
             if (instance && instance['moduleId'] != 'ZWave') {
                 $scope.elementId.appType['instance'] = instance;
 
@@ -18091,14 +18312,14 @@ myAppController.controller('ZwaveAddController', function ($scope, $routeParams,
  */
 myAppController.controller('ZwaveManageController', function ($scope, $cookies, $filter, $window, $location, dataFactory, dataService, myCache) {
     $scope.activeTab = (angular.isDefined($cookies.tab_network) ? $cookies.tab_network : 'battery');
-    $scope.batteries = {
+    /*$scope.batteries = {
         list: [],
         cntLess20: [],
         cnt0: []
-    };
+    };*/
     $scope.devices = {
         find: {},
-        failed: [],
+        //failed: [],
         batteries: [],
         zwave: [],
         show: true
@@ -18163,7 +18384,8 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
                 $scope.zWaveDevices[k] = {
                     id: k,
                     title: v.data.givenName.value || 'Device ' + '_' + k,
-                    icon: null,
+                    do_interview: false,
+                    is_failed: false,
                     cfg: [],
                     elements: [],
                     messages: []
@@ -18221,22 +18443,10 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
                                 });
                             }
                         }
-                        // Not interview
-                        if (!interviewDone) {
-                            $scope.zWaveDevices[nodeId]['messages'].push({
-                                type: 'config',
-                                error: $scope._t('lb_not_configured')
-
-                            });
-
-                            obj['messages'].push({
-                                type: 'config',
-                                error: $scope._t('lb_not_configured')
-
-                            });
-                        }
                         // Is failed
                         if (isFailed) {
+                            $scope.zWaveDevices[nodeId]['is_failed'] = true;
+                            $scope.zWaveDevices[nodeId]['do_interview'] = false;
                             $scope.zWaveDevices[nodeId]['messages'].push({
                                 type: 'failed',
                                 error: $scope._t('lb_is_failed')
@@ -18247,8 +18457,26 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
                                 error: $scope._t('lb_is_failed')
 
                             });
+                            return;
                         }
-                        $scope.devices.failed.push(obj);
+                        // Not interview
+                        if (!interviewDone) {
+                            $scope.zWaveDevices[nodeId]['do_interview'] = true;
+                            $scope.zWaveDevices[nodeId]['messages'].push({
+                                type: 'config',
+                                error: $scope._t('lb_not_configured')
+
+                            });
+
+                            obj['messages'].push({
+                                type: 'config',
+                                error: $scope._t('lb_not_configured')
+
+                            });
+                            //obj['do_interview'] = true;
+                        }
+                        
+                        //$scope.devices.failed.push(obj);
                     }
 
                 }
@@ -18260,7 +18488,7 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
                 });
             }
             // Count device batteries
-            for (i = 0; i < $scope.devices.batteries.length; ++i) {
+            /*for (i = 0; i < $scope.devices.batteries.length; ++i) {
                 var battery = $scope.devices.batteries[i];
                 if (battery.level < 1) {
                     $scope.batteries.cnt0.push(battery.id);
@@ -18269,7 +18497,7 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
                     $scope.batteries.cntLess20.push(battery.id);
                 }
 
-            }
+            }*/
         }, function (error) {
             alertify.alertError($scope._t('error_load_data')).set('onok', function (closeEvent) {
                 dataService.goBack();
@@ -18539,18 +18767,25 @@ myAppController.controller('ZwaveInterviewController', function ($scope, $locati
                     return;
                 }
             }
-            // If no Security or Security ok but Interviews are not complete
+            // If interview is complete
             if (progress >= 100) {
                 $scope.zwaveInterview.progress = 100;
                 resetConfiguration(false, true, null, false, true);
-                setSecureInclusion(true);
-                $scope.startManualConfiguration(nodeId);
+                //setSecureInclusion(true);
+                //$scope.startManualConfiguration(nodeId);
                 return;
                 ;
             }
         }, function (error) {
             return;
         });
+    };
+    
+     /**
+     * Set secure inclusion
+     */
+    function setSecureInclusion(status) {
+        $scope.runZwaveCmd('controller.data.secureInclusion=' + status);
     }
     ;
 });
@@ -20072,9 +20307,6 @@ myAppController.controller('RoomController', function ($scope, $q, $cookies, $fi
             // Success - locations
             if (locations.state === 'fulfilled') {
                 $scope.rooms.all = dataService.getRooms(locations.value.data.data).value();
-                if (_.size($scope.rooms.all) < 2) {
-                    alertify.alertWarning($scope._t('no_rooms'));
-                }
             }
             // Success - devices
             if (devices.state === 'fulfilled') {
@@ -20316,7 +20548,7 @@ myAppController.controller('RoomConfigIdController', function ($scope, $routePar
             $scope.devicesAssigned = [];
             var devices = dataService.getDevicesData(response.data.data.devices).value();
             _.filter(devices, function (v) {
-                if (v.location == locationId) {
+                if (locationId > 0 && v.location === locationId) {
                     $scope.devicesAssigned.push(v.id);
                 }
                 if (v.location == 0 || v.location == locationId) {
@@ -20372,7 +20604,7 @@ myAppController.controller('RoomConfigIdController', function ($scope, $routePar
  * The management root controller
  * @class ManagementController
  */
-myAppController.controller('ManagementController', function ($scope, $interval, $q, dataFactory, dataService, myCache) {
+myAppController.controller('ManagementController', function ($scope, $interval, $q, $filter, cfg, dataFactory, dataService, myCache) {
     //Set elements to expand/collapse
     angular.copy({
         user: false,
@@ -20392,7 +20624,14 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
         softwareRevisionVersion: null,
         softwareLatestVersion: null,
         capabillities: null,
-        scratchId: null
+        scratchId: null,
+        capsLimited: false
+
+    };
+    $scope.handleLicense = {
+        show: true,
+        disabled: false,
+        replug: false
     };
 
     $scope.zwaveDataInterval = null;
@@ -20438,31 +20677,87 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
             return cap;
 
         };
+        var nodeLimit = function (str) {
+            return parseInt(str, 16) > 0x00 ? false : true;
+        };
         $scope.controllerInfo.uuid = ZWaveAPIData.controller.data.uuid.value;
         $scope.controllerInfo.isZeroUuid = parseInt(ZWaveAPIData.controller.data.uuid.value, 16) === 0;
         $scope.controllerInfo.softwareRevisionVersion = ZWaveAPIData.controller.data.softwareRevisionVersion.value;
         $scope.controllerInfo.capabillities = caps(ZWaveAPIData.controller.data.caps.value);
-        setLicenceScratchId($scope.controllerInfo.uuid);
+        $scope.controllerInfo.capsLimited = nodeLimit($filter('dec2hex')(ZWaveAPIData.controller.data.caps.value[2]).slice(-2));
+        setLicenceScratchId($scope.controllerInfo);
+        //console.log(ZWaveAPIData.controller.data.caps.value);
+        //console.log('Limited: ', $scope.controllerInfo.capsLimited);
 
     }
     ;
-
     /**
      * Set licence ID
+     * @param {object} controllerInfo
+     * @returns {undefined}
      */
-    function  setLicenceScratchId(uuid) {
-        dataFactory.getRemoteData($scope.cfg.get_licence_scratchid + '?uuid=' + uuid).then(function (response) {
+    function  setLicenceScratchId(controllerInfo) {
+        dataFactory.getRemoteData($scope.cfg.get_licence_scratchid + '?uuid=' + controllerInfo.uuid).then(function (response) {
             $scope.controllerInfo.scratchId = response.data.scratch_id;
-        }, function (error) {});
+            handleLicense($scope.controllerInfo)
+        }, function (error) {
+            handleLicense($scope.controllerInfo);
+            alertify.alertError($scope._t('error_license_request'));
+        });
     }
     ;
+    /**
+     * Show or hide licencese block
+     * @param {object} controllerInfo
+     * @returns {undefined}
+     */
+    function handleLicense(controllerInfo) {
+        //controllerInfo.uuid = null;
+        //controllerInfo.scratchId = null;
+        //controllerInfo.capsLimited = true;
+        //console.log('Hide license: ', cfg.app_type)
+        //console.log('isMobile: ', $scope.isMobile)
+        //console.log('controllerInfo: ', controllerInfo)
+        // Hide license if 
+        // forbidden, mobile device, not uuid
+        if ((cfg.license_forbidden.indexOf(cfg.app_type) > -1) || $scope.isMobile || !controllerInfo.uuid) {
+            //console.log('Hide license if: forbidden, mobile device, not uuid')
+            $scope.handleLicense.show = false;
+            return;
+        }
+
+        // Hide license if
+        // Controller UUID = string and scratchId  is NOT found  and cap unlimited
+        if (!controllerInfo.scratchId && !controllerInfo.capsLimited) {
+             //console.log('Hide license if: Controller UUID = string and scratchId  is NOT found  and cap unlimited')
+            $scope.handleLicense.show = false;
+            return;
+        }
+        
+        // Show modal if
+        // Controller UUID = string and scratchId  is NOT found  and cap limited
+        if (!controllerInfo.scratchId && controllerInfo.capsLimited) {
+             //console.log('Show modal if: Controller UUID = string and scratchId  is NOT found  and cap limited')
+              alertify.alertWarning($scope._t('info_missing_licence'));
+        }
+
+        // Disable input and show unplug message
+        if (controllerInfo.isZeroUuid) {
+             //console.log('Disable input and show unplug message')
+            $scope.handleLicense.disabled = true;
+            $scope.handleLicense.replug = true;
+            return;
+        }
+        //$scope.handleLicense.show = true;
+        //console.log('handleLicense: ', $scope.handleLicense)
+    }
 
 });
 /**
  * The controller that renders the list of users.
  * @class ManagementUserController
  */
-myAppController.controller('ManagementUserController', function ($scope,$cookies,dataFactory, dataService, myCache) {
+myAppController.controller('ManagementUserController', function ($scope, $cookies, dataFactory, dataService, myCache) {
     $scope.userProfiles = {
         all: false,
         orderBy: ($cookies.usersOrderBy ? $cookies.usersOrderBy : 'titleASC')
@@ -20481,7 +20776,7 @@ myAppController.controller('ManagementUserController', function ($scope,$cookies
         });
     };
     $scope.loadProfiles();
-    
+
     /**
      * Set order by
      */
@@ -20736,6 +21031,7 @@ myAppController.controller('ManagementRemoteController', function ($scope, dataF
  * @class ManagementLicenceController
  */
 myAppController.controller('ManagementLicenceController', function ($scope, dataFactory) {
+
     $scope.proccessLicence = false;
     $scope.proccessVerify = {
         'message': false,
@@ -20746,8 +21042,10 @@ myAppController.controller('ManagementLicenceController', function ($scope, data
         'status': 'is-hidden'
     };
     $scope.inputLicence = {
+        "show": false,
         "scratch_id": $scope.controllerInfo.scratchId
     };
+
     /**
      * Get license key
      */
@@ -20836,7 +21134,7 @@ myAppController.controller('ManagementFirmwareController', function ($scope, $sc
         });
     };
     /**
-     * Load razberry latest version
+     * Load latest version
      */
     $scope.loadRazLatest = function () {
         dataFactory.getRemoteData($scope.cfg.raz_latest_version_url).then(function (response) {
@@ -20850,7 +21148,7 @@ myAppController.controller('ManagementFirmwareController', function ($scope, $sc
  * The controller that handles restore process.
  * @class ManagementRestoreController
  */
-myAppController.controller('ManagementRestoreController', function ($scope, $window,$timeout,dataFactory, dataService) {
+myAppController.controller('ManagementRestoreController', function ($scope, $window, $timeout, dataFactory, dataService) {
     $scope.myFile = null;
     $scope.managementRestore = {
         confirm: false,
@@ -20873,8 +21171,8 @@ myAppController.controller('ManagementRestoreController', function ($scope, $win
             $scope.loading = false;
             dataService.showNotifier({message: $scope._t('restore_done_reload_ui')});
             $scope.managementRestore.alert = {message: $scope._t('restore_done_reload_ui'), status: 'alert-success', icon: 'fa-check'};
-             $timeout(function () {
-                 alertify.dismissAll();
+            $timeout(function () {
+                alertify.dismissAll();
                 $window.location.reload();
             }, 2000);
         }, function (error) {
@@ -20885,7 +21183,6 @@ myAppController.controller('ManagementRestoreController', function ($scope, $win
 
     };
 });
-
 /**
  * The controller that resets the system to factory default.
  * @class ManagementFactoryController
@@ -21289,12 +21586,16 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
  * This is the Auth root controller
  * @class AuthController
  */
-myAppController.controller('AuthController', function ($scope, $routeParams, $cookies, $window, dataFactory, dataService) {
+myAppController.controller('AuthController', function ($scope, $routeParams, $location,$cookies, $window, $q, cfg, dataFactory, dataService, _) {
     $scope.auth = {
         remoteId: null,
         firstaccess: false,
         defaultProfile: false,
         fromexpert: $routeParams.fromexpert
+    };
+    $scope.jamesbox = {
+        first_start_up: '',
+        count_of_reconnects: 0
     };
 
     if (dataService.getUser()) {
@@ -21304,37 +21605,38 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $co
     }
 
     $scope.loginLang = (angular.isDefined($cookies.lang)) ? $cookies.lang : false;
-    $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-
     /**
-     * Get remote id
+     * Load all promises
      */
-    $scope.getRemoteId = function () {
-        dataFactory.getApi('remote_id').then(function (response) {
-            if (response.data.data.remote_id && response.data.data.remote_id !== '') {
-                $scope.auth.remoteId = response.data.data.remote_id;
+    $scope.allSettled = function () {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        var promises = [
+            dataFactory.getApi('remote_id'),
+            dataFactory.getApi('firstaccess')
+        ];
+
+        $q.allSettled(promises).then(function (response) {
+            var remoteId = response[0];
+            var firstAccess = response[1];
+            $scope.loading = false;
+            // Error message
+            if (firstAccess.state === 'rejected') {
+                alertify.alertError($scope._t('error_load_data'));
+            }
+
+            // Success - remote ID
+            if (remoteId.state === 'fulfilled') {
+                $scope.auth.remoteId = remoteId.value.data.data.remote_id;
+            }
+
+            // Success - first access
+            if (firstAccess.state === 'fulfilled') {
+                $scope.auth.firstaccess = firstAccess.value.data.data.firstaccess;
+                $scope.auth.defaultProfile = firstAccess.value.data.data.defaultProfile;
             }
         });
     };
-    $scope.getRemoteId();
-
-    /**
-     * Get first access
-     */
-    $scope.getFirstAccess = function () {
-
-        dataFactory.getApi('firstaccess').then(function (response) {
-            $scope.auth.firstaccess = response.data.data.firstaccess;
-            $scope.auth.defaultProfile = response.data.data.defaultProfile;
-            $scope.loading = false;
-        }, function (error) {
-            $scope.loading = false;
-            alertify.alertError($scope._t('error_load_data'));
-
-        });
-
-    };
-    $scope.getFirstAccess();
+    $scope.allSettled();
 
     /**
      * Login language
@@ -21354,7 +21656,7 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $co
         }
         dataService.setZWAYSession(user.sid);
         dataService.setUser(user);
-        dataFactory.putApi('profiles', user.id, user).then(function(response) {}, function(error) {});
+        dataFactory.putApi('profiles', user.id, user).then(function (response) {}, function (error) {});
         if (rememberme) {
             dataService.setRememberMe(rememberme);
         }
@@ -21371,8 +21673,63 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $co
             window.location.href = $scope.cfg.expert_url;
             return;
         }
-        window.location = location;
-        $window.location.reload();
+        if (cfg.app_type === 'jb' && user.role === 1) {
+            getZwaveApiData(location);
+        } else {
+            window.location = location;
+            $window.location.reload();
+        }
+    };
+
+    /// --- Private functions --- ///
+    /**
+     * Gez zwave api data
+     */
+    function getZwaveApiData(location) {
+        //var location = '#/dashboard';
+        dataFactory.loadZwaveApiData().then(function (response) {
+            var input = {
+                uuid: response.controller.data.uuid.value
+            };
+            jamesBoxRequest(input,location);
+        }, function (error) {
+            window.location = location;
+            $window.location.reload();
+        });
+    }
+    ;
+    
+     /**
+     * Get and update system info
+     */
+    function jamesBoxSystemInfo(uuid) {
+        dataFactory.getApi('system_info', null, true).then(function (response) {
+            var input = {
+                uuid: uuid,
+                first_start_up: response.data.data.first_start_up,
+                count_of_reconnects: response.data.data.count_of_reconnects
+            };
+            dataFactory.postToRemote(cfg.api_remote['jamesbox_updateinfo'], input).then(function (response) {}, function (error) {});
+        }, function (error) {});
+    }
+    ;
+
+    /**
+     * JamesBox request
+     */
+    function jamesBoxRequest(input,location) {
+        //var location = '#/dashboard';
+        jamesBoxSystemInfo(input.uuid);
+        dataFactory.postToRemote(cfg.api_remote['jamesbox_request'], input).then(function (response) {
+           if (!_.isEmpty(response.data)) {
+                location = '#/boxupdate';
+            }
+            window.location = location;
+            $window.location.reload();
+        }, function (error) {
+            window.location = location;
+            $window.location.reload();
+        });
     };
 
 

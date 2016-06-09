@@ -83,6 +83,7 @@ module.exports = function (grunt) {
                     'app/jquery/postrender.js',
                     'app/controllers/base.js',
                     'app/controllers/controllers.js',
+                    'app/controllers/jamesbox.js',
                     'app/controllers/element.js',
                     'app/controllers/event.js',
                     'app/controllers/app.js',

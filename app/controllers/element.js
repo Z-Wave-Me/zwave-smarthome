@@ -734,7 +734,7 @@ myAppController.controller('ElementRoomController', function ($scope, $routePara
  * The controller that handles element detail actions.
  * @class ElementIdController
  */
-myAppController.controller('ElementIdController', function ($scope, $q, $routeParams, $window, dataFactory, dataService, myCache) {
+myAppController.controller('ElementIdController', function ($scope, $q, $routeParams, $filter, dataFactory, dataService, myCache) {
     $scope.elementId = {
         show: false,
         appType: {},
@@ -890,7 +890,7 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
         } else if (device.id.indexOf(findZenoStr) > -1) {
             $scope.elementId.appType['enocean'] = device.id.split(findZenoStr)[1].split('_')[0];
         } else {
-            var instance = _.findWhere($scope.elementId.instances, {id: device.creatorId});
+            var instance = _.findWhere($scope.elementId.instances, {id: $filter('toInt')(device.creatorId)});
             if (instance && instance['moduleId'] != 'ZWave') {
                 $scope.elementId.appType['instance'] = instance;
 

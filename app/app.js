@@ -335,6 +335,10 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                 when('/passwordforgot/reset/:token?', {
                     templateUrl: 'app/views/auth/password_reset.html'
                 }).
+                //Jamesbox update
+                when('/boxupdate', {
+                    templateUrl: 'app/views/jamesbox/update.html'
+                }).
                 //Login
                 when('/logout', {
                     templateUrl: 'app/views/auth/logout.html',
@@ -357,7 +361,7 @@ myApp.run(function ($rootScope, $location, dataService, cfg) {
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
         var user;
         // Reset fatal error messages
-        if (!cfg.route.fatalError.permanent) {
+        if (cfg.route.message && !cfg.route.fatalError.permanent) {
             angular.extend(cfg.route.fatalError, {
                 message: false,
                 info: false,

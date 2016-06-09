@@ -32,7 +32,9 @@ var config_data = {
                 message: false,
                 info: false,
                 permanent: false, // Permanently displayed
-                hide: false // Hide page content
+                hide: false, // Hide page content
+                icon: 'fa-exclamation-triangle',
+                icon_jamesbox: 'fa-spinner fa-spin'
             },
             // App lang
             lang: 'en',
@@ -41,6 +43,14 @@ var config_data = {
             // Translations
             t: {}
         },
+        // Zwave - will be extended
+        'zwave': {
+                remoteId: null,
+                uuid: null,
+                softwareRevisionVersion: null,
+                capabillities: null,
+                scratchId: null
+            },
         'history_cache_interval': 300000,
         // Default auth credentials
         'default_credentials': {
@@ -77,7 +87,24 @@ var config_data = {
             'firstaccess': 'ZAutomation/api/v1/system/first-access',
             'factory_default': 'ZAutomation/api/v1/resetToFactoryDefault',
             'postfix': 'ZWaveAPI/Postfix',
-            'timezone': 'ZAutomation/api/v1/system/time/get'
+            'timezone': 'ZAutomation/api/v1/system/time/get',
+            'system_info': 'ZAutomation/api/v1/system/info',
+            'system_reboot': 'ZAutomation/api/v1/system/reboot'
+        },
+        // List of remote api URLs
+        'api_remote': {
+            // JamesBox request
+            //'jamesbox_request': 'http://dev.dev/jamesbox/zbu_ui_handling.php?action=request',
+            'jamesbox_request': 'http://razberry.z-wave.me/zbu_ui_handling.php?action=request',
+             // JamesBox update
+             //'jamesbox_update': 'http://dev.dev/jamesbox/zbu_ui_handling.php?action=update',
+            'jamesbox_update': 'http://razberry.z-wave.me/zbu_ui_handling.php?action=update',
+            // JamesBox update info
+             //'jamesbox_updateinfo': 'http://dev.dev/jamesbox/zbu_ui_handling.php?action=updateinfo',
+            'jamesbox_updateinfo': 'http://razberry.z-wave.me/zbu_ui_handling.php?action=updateinfo',
+            // JamesBox cancel update
+             //'jamesbox_cancel_update: 'http://dev.dev/jamesbox/zbu_ui_handling.php?action=cancelupdate',
+            'jamesbox_cancel_update': 'http://razberry.z-wave.me/zbu_ui_handling.php?action=cancelupdate'
         },
         // Skin
         'skin': {
@@ -149,7 +176,7 @@ var config_data = {
         'get_licence_scratchid': 'https://hrix.net/shuiapi/licence/',
         // Url to get a license key
         'license_url': 'https://hrix.net/shuiapi/licence/upgrade.php',
-        // Razberry latest version
+        // Raz latest version
         'raz_latest_version_url': 'https://razberry.z-wave.me/z-way/razberry/latest/VERSION',
         // Find z-wave me box
         'find_zwaveme_zbox': 'https://find.z-wave.me/',
@@ -253,6 +280,11 @@ var config_data = {
             'find.z-wave.me',
             'find.popp.eu'
         ],
+        // List of the forbidden licence app types
+        'license_forbidden': [
+            'popp',
+            'jb'
+        ],
         // List of range values 0 - 255
         'knob_255': [
             'switchColor_red',
@@ -301,7 +333,7 @@ var config_data = {
         // Results per events page
         'page_results_events': 50,
         // ---------------------------------- Custom config for specifics app_type ---------------------------------- //
-        // Application type : default/popp/wd
+        // Application type : default/popp/jb/wd
         'app_type': 'default',
         // Config
         'custom_cfg': {
@@ -367,9 +399,8 @@ var config_data = {
             },
              'jb': {
                 'logo': 'app-logo-popp.png',
-                'hidden_apps': [
+                hidden_apps: [
                     'Cron',
-                    'CodeDevice',
                     'BatteryPolling',
                     'CustomUserCode',
                     'CustomUserCodeLoader',
@@ -381,6 +412,7 @@ var config_data = {
                     'SensorValueLogging',
                     'SensorsPollingLogging',
                     'YandexProbki',
+                    'CodeDevice',
                     'InfoWidget',
                     'SensorsPolling',
                     'SwitchControlGenerator',

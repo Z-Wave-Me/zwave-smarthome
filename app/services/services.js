@@ -68,6 +68,23 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
         return 'any';
     };
 
+    /**
+     * Get OS (operating system)
+     * @returns {String}
+     */
+    this.isIeEdge = function () {
+        var isIE = /*@cc_on!@*/false || !!document.documentMode;
+        if(isIE){
+            return true;
+        }
+        // Edge 20+
+        var isEdge = !isIE && !!window.StyleMedia;
+        if(isEdge){
+            return true;
+        }
+        return false;
+    };
+
 
     /**
      * Detect a mobile device
@@ -253,7 +270,8 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                     }
                     angular.extend(v,
                             {onDashboard: (user.dashboard.indexOf(v.id) !== -1 ? true : false)},
-                            {minMax: minMax},
+                            {creatorId: _.isString(v.creatorId) ? v.creatorId.replace(/[^0-9]/g, '') : v.creatorId},
+                             {minMax: minMax},
                             {hasHistory: (v.hasHistory === true ? true : false)},
                             {imgTrans: false},
                             {isNew: isNew},
@@ -266,6 +284,9 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                     }
                     if (v.metrics.level) {
                         angular.extend(v.metrics, {level: $filter('numberFixedLen')(v.metrics.level)});
+                    }
+                     if (v.metrics.scaleTitle) {
+                        angular.extend(v.metrics, {scaleTitle: getLangLine(v.metrics.scaleTitle)});
                     }
                     return v;
                 });

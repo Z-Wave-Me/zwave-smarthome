@@ -97,6 +97,11 @@ Reset configuration
 Check interview
 
 
+### ZwaveInterviewController.setSecureInclusion() 
+
+Set secure inclusion
+
+
 
 ## ZwaveInterviewController
 The controller that handles Z-Wave exclusion process.

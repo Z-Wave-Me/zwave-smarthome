@@ -1810,34 +1810,28 @@ a:focus {
   margin: 0 0 20px 0;
   background-color: #FFFFFF;
   border: solid 1px #d9534f;
-  position: relative;
 }
-/* line 99, ../sass/common/_body.scss */
-.app-fatal-error .fatal-error-img {
-  position: absolute;
-  top: 15px;
-  left: 10px;
-}
-/* line 105, ../sass/common/_body.scss */
+/* line 98, ../sass/common/_body.scss */
 .app-fatal-error .fatal-error-message {
   color: #d9534f;
   font-weight: bold;
   font-size: 120%;
 }
-/* line 110, ../sass/common/_body.scss */
+/* line 103, ../sass/common/_body.scss */
 .app-fatal-error .fatal-error-info {
+  margin: 10px 0 0 0;
   color: #000000;
   font-size: 105%;
 }
 
 /* Others
 -------------------------------------------------- */
-/* line 118, ../sass/common/_body.scss */
+/* line 112, ../sass/common/_body.scss */
 .timestamp {
   color: #333333;
   font-size: 17px;
 }
-/* line 121, ../sass/common/_body.scss */
+/* line 115, ../sass/common/_body.scss */
 .timestamp .fa {
   font-size: 110%;
 }
@@ -3153,6 +3147,26 @@ http://codepen.io/MattIn4D/pen/LiKFC
   margin: 10px 0;
   max-height: 200px;
   overflow: auto;
+}
+
+/* Modal James Box
+-------------------------------------------------- */
+/* line 97, ../sass/common/_modal.scss */
+#jamesBoxUpdateModal #updateTimeout {
+  text-align: center;
+  font-weight: bold;
+  margin: 15px 0;
+  font-size: 16px;
+}
+
+/* line 104, ../sass/common/_modal.scss */
+#jamesBoxUpdateModal ol {
+  margin: 15px 0;
+}
+
+/* line 108, ../sass/common/_modal.scss */
+#jamesBoxUpdateModal li.jamesboxUpdateInfoList {
+  margin: 0 0 5px 0;
 }
 
 /* Pagination

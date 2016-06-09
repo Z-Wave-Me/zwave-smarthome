@@ -7,12 +7,16 @@
  * This is the Auth root controller
  * @class AuthController
  */
-myAppController.controller('AuthController', function ($scope, $routeParams, $cookies, $window, dataFactory, dataService) {
+myAppController.controller('AuthController', function ($scope, $routeParams, $location,$cookies, $window, $q, cfg, dataFactory, dataService, _) {
     $scope.auth = {
         remoteId: null,
         firstaccess: false,
         defaultProfile: false,
         fromexpert: $routeParams.fromexpert
+    };
+    $scope.jamesbox = {
+        first_start_up: '',
+        count_of_reconnects: 0
     };
 
     if (dataService.getUser()) {
@@ -22,37 +26,38 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $co
     }
 
     $scope.loginLang = (angular.isDefined($cookies.lang)) ? $cookies.lang : false;
-    $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-
     /**
-     * Get remote id
+     * Load all promises
      */
-    $scope.getRemoteId = function () {
-        dataFactory.getApi('remote_id').then(function (response) {
-            if (response.data.data.remote_id && response.data.data.remote_id !== '') {
-                $scope.auth.remoteId = response.data.data.remote_id;
+    $scope.allSettled = function () {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        var promises = [
+            dataFactory.getApi('remote_id'),
+            dataFactory.getApi('firstaccess')
+        ];
+
+        $q.allSettled(promises).then(function (response) {
+            var remoteId = response[0];
+            var firstAccess = response[1];
+            $scope.loading = false;
+            // Error message
+            if (firstAccess.state === 'rejected') {
+                alertify.alertError($scope._t('error_load_data'));
+            }
+
+            // Success - remote ID
+            if (remoteId.state === 'fulfilled') {
+                $scope.auth.remoteId = remoteId.value.data.data.remote_id;
+            }
+
+            // Success - first access
+            if (firstAccess.state === 'fulfilled') {
+                $scope.auth.firstaccess = firstAccess.value.data.data.firstaccess;
+                $scope.auth.defaultProfile = firstAccess.value.data.data.defaultProfile;
             }
         });
     };
-    $scope.getRemoteId();
-
-    /**
-     * Get first access
-     */
-    $scope.getFirstAccess = function () {
-
-        dataFactory.getApi('firstaccess').then(function (response) {
-            $scope.auth.firstaccess = response.data.data.firstaccess;
-            $scope.auth.defaultProfile = response.data.data.defaultProfile;
-            $scope.loading = false;
-        }, function (error) {
-            $scope.loading = false;
-            alertify.alertError($scope._t('error_load_data'));
-
-        });
-
-    };
-    $scope.getFirstAccess();
+    $scope.allSettled();
 
     /**
      * Login language
@@ -72,7 +77,7 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $co
         }
         dataService.setZWAYSession(user.sid);
         dataService.setUser(user);
-        dataFactory.putApi('profiles', user.id, user).then(function(response) {}, function(error) {});
+        dataFactory.putApi('profiles', user.id, user).then(function (response) {}, function (error) {});
         if (rememberme) {
             dataService.setRememberMe(rememberme);
         }
@@ -89,8 +94,63 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $co
             window.location.href = $scope.cfg.expert_url;
             return;
         }
-        window.location = location;
-        $window.location.reload();
+        if (cfg.app_type === 'jb' && user.role === 1) {
+            getZwaveApiData(location);
+        } else {
+            window.location = location;
+            $window.location.reload();
+        }
+    };
+
+    /// --- Private functions --- ///
+    /**
+     * Gez zwave api data
+     */
+    function getZwaveApiData(location) {
+        //var location = '#/dashboard';
+        dataFactory.loadZwaveApiData().then(function (response) {
+            var input = {
+                uuid: response.controller.data.uuid.value
+            };
+            jamesBoxRequest(input,location);
+        }, function (error) {
+            window.location = location;
+            $window.location.reload();
+        });
+    }
+    ;
+    
+     /**
+     * Get and update system info
+     */
+    function jamesBoxSystemInfo(uuid) {
+        dataFactory.getApi('system_info', null, true).then(function (response) {
+            var input = {
+                uuid: uuid,
+                first_start_up: response.data.data.first_start_up,
+                count_of_reconnects: response.data.data.count_of_reconnects
+            };
+            dataFactory.postToRemote(cfg.api_remote['jamesbox_updateinfo'], input).then(function (response) {}, function (error) {});
+        }, function (error) {});
+    }
+    ;
+
+    /**
+     * JamesBox request
+     */
+    function jamesBoxRequest(input,location) {
+        //var location = '#/dashboard';
+        jamesBoxSystemInfo(input.uuid);
+        dataFactory.postToRemote(cfg.api_remote['jamesbox_request'], input).then(function (response) {
+           if (!_.isEmpty(response.data)) {
+                location = '#/boxupdate';
+            }
+            window.location = location;
+            $window.location.reload();
+        }, function (error) {
+            window.location = location;
+            $window.location.reload();
+        });
     };
 
 

@@ -30,10 +30,25 @@ Load all promises
 Set controller info
 
 
-### ManagementController.setLicenceScratchId() 
+### ManagementController.setLicenceScratchId(controllerInfo) 
 
 Set licence ID
 
+**Parameters**
+
+**controllerInfo**: `object`
+
+**Returns**: `undefined`
+
+### ManagementController.handleLicense(controllerInfo) 
+
+Show or hide licencese block
+
+**Parameters**
+
+**controllerInfo**: `object`
+
+**Returns**: `undefined`
 
 
 ## ManagementUserController
@@ -122,7 +137,7 @@ Set access
 
 ### ManagementFirmwareController.loadRazLatest() 
 
-Load razberry latest version
+Load latest version
 
 
 

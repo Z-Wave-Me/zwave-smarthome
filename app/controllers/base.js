@@ -27,20 +27,33 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     $scope.ZWAYSession = dataService.getZWAYSession();
     $scope.lastLogin = dataService.getLastLogin();
     /**
-     * Set current skin
+     * Set app skin
      * @returns {undefined}
      */
     $scope.setSkin = function () {
-        if ($cookies.skin && $cookies.skin !== 'default') {
-            cfg.skin.active = $cookies.skin;
-            cfg.img.icons = cfg.skin.path + $cookies.skin + '/img/icons/';
-            cfg.img.logo = cfg.skin.path + $cookies.skin + '/img/logo/';
-            //$("link[id='main_css']").attr('href', 'storage/skins/defaultzip/main.css');
-            $("link[id='main_css']").attr('href', cfg.skin.path + $cookies.skin + '/main.css');
+     if($cookies.skin && $cookies.skin !== 'default'){
+        cfg.skin.active =  $cookies.skin;
+        cfg.img.icons = cfg.skin.path + $cookies.skin + '/img/icons/';
+        cfg.img.logo = cfg.skin.path + $cookies.skin + '/img/logo/';
+        //$("link[id='main_css']").attr('href', 'storage/skins/defaultzip/main.css');
+        $("link[id='main_css']").attr('href', cfg.skin.path + $cookies.skin + '/main.css');
         }
+     };
+     $scope.setSkin();
 
+
+    /**
+     * Check if route match the pattern.
+     * @param {string} path
+     * @returns {Boolean}
+     */
+    $scope.routeMatch = function (path) {
+        if ($route.current && $route.current.regexp) {
+            return $route.current.regexp.test(path);
+        }
+        return false;
     };
-    $scope.setSkin();
+
     /**
      * Reset a fatal error.
      * @param {object} obj
@@ -59,13 +72,26 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
             return;
         }
         dataFactory.getApi('timezone', null, true).then(function (response) {
-            angular.extend(cfg.route.time, {string: $filter('getCurrentTime')(response.data.data.localTimeUT)});
+            angular.extend(cfg.route.time, {string: $filter('setTimeFromBox')(response.data.data)});
             var refresh = function () {
                 dataFactory.getApi('timezone', null, true).then(function (response) {
-                    angular.extend(cfg.route.time, {string: $filter('getCurrentTime')(response.data.data.localTimeUT)});
-
+                    angular.extend(cfg.route.time, {string: $filter('setTimeFromBox')(response.data.data)});
                 }, function (error) {
-                    $interval.cancel($scope.timeZoneInterval);
+                    if (!error.status || error.status === 0) {
+                        var fatalArray = {
+                            message: $scope._t('connection_refused'),
+                            info: $scope._t('connection_refused_info'),
+                            permanent: true,
+                            hide: true
+                        };
+                        if ($scope.routeMatch('/boxupdate')) {
+                            fatalArray.message = $scope._t('jamesbox_connection_refused');
+                            fatalArray.info = $scope._t('jamesbox_connection_refused_info',{__reload_begintag__:'<div>', __reload_endtag__:'</div>', __attention_begintag__:'<div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i>', __attention_endtag__:'<div>'});
+                            fatalArray.icon = cfg.route.fatalError.icon_jamesbox;
+                        }
+                        angular.extend(cfg.route.fatalError, fatalArray);
+                    }
+                    //$interval.cancel($scope.timeZoneInterval);
                 });
             };
             $scope.timeZoneInterval = $interval(refresh, $scope.cfg.interval);
@@ -154,6 +180,14 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     $scope.$watch('lang', function () {
         $scope.loadLang($scope.lang);
     });
+    
+    // IF IE or Edge displays an message
+    if (dataService.isIeEdge()) {
+        angular.extend(cfg.route.fatalError, {
+            message: cfg.route.t['ie_edge_not_supported'],
+            info: cfg.route.t['ie_edge_not_supported_info']
+        });
+    }
 
     /**
      * Order by
@@ -164,19 +198,6 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         $scope.predicate = field;
         $scope.reverse = !$scope.reverse;
     };
-
-    /**
-     * Check if route match the pattern.
-     * @param {string} path
-     * @returns {Boolean}
-     */
-    $scope.routeMatch = function (path) {
-        if ($route.current && $route.current.regexp) {
-            return $route.current.regexp.test(path);
-        }
-        return false;
-    };
-
 
     /**
      * Get body ID
