@@ -74,12 +74,12 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      */
     this.isIeEdge = function () {
         var isIE = /*@cc_on!@*/false || !!document.documentMode;
-        if(isIE){
+        if (isIE) {
             return true;
         }
         // Edge 20+
         var isEdge = !isIE && !!window.StyleMedia;
-        if(isEdge){
+        if (isEdge) {
             return true;
         }
         return false;
@@ -271,7 +271,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                     angular.extend(v,
                             {onDashboard: (user.dashboard.indexOf(v.id) !== -1 ? true : false)},
                             {creatorId: _.isString(v.creatorId) ? v.creatorId.replace(/[^0-9]/g, '') : v.creatorId},
-                             {minMax: minMax},
+                            {minMax: minMax},
                             {hasHistory: (v.hasHistory === true ? true : false)},
                             {imgTrans: false},
                             {isNew: isNew},
@@ -285,7 +285,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                     if (v.metrics.level) {
                         angular.extend(v.metrics, {level: $filter('numberFixedLen')(v.metrics.level)});
                     }
-                     if (v.metrics.scaleTitle) {
+                    if (v.metrics.scaleTitle) {
                         angular.extend(v.metrics, {scaleTitle: getLangLine(v.metrics.scaleTitle)});
                     }
                     return v;
@@ -368,6 +368,22 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                     return v;
                 });
 
+    };
+
+    /**
+     * Get local skins - filtered data from skin dataholder
+     * @param {object} data
+     * @returns {unresolved}
+     */
+    this.getLocalSkins = function (data) {
+        return  _.chain(data)
+                .flatten()
+                .filter(function (v) {
+                    // Set icon path
+                    var screenshotPath = v.name !== 'default' ? cfg.skin.path + v.name : cfg.img.skin_screenshot;
+                    v.icon = (!v.icon ? 'storage/img/placeholder-img.png' : screenshotPath + '/screenshot.png');
+                    return v;
+                });
     };
 
     /**
@@ -598,7 +614,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                     break;
             }
         }
-        
+
         // Build an object with icons
         function setIcon(defaultIcon, customIcon) {
             // Test

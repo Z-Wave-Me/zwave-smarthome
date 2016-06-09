@@ -14,13 +14,13 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $timeout,
             all: {},
             find: {},
             active: $scope.cfg.skin.active,
-            show: false
+            show: true
         },
         online: {
             all: {},
             find: {},
             ids: {},
-            show: false
+            show: true
         },
         installed: {
             all: {}
@@ -46,15 +46,17 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $timeout,
             // Error message
             if (localSkins.state === 'rejected' && $scope.routeMatch('/customize/skinslocal')) {
                 alertify.alertError($scope._t('error_load_data'));
+                $scope.skins.local.show = false;
                 return;
             }
             if (onlineSkins.state === 'rejected' && $scope.routeMatch('/customize/skinsonline')) {
                 alertify.alertError($scope._t('error_load_data'));
+                 $scope.skins.online.show = false;
                 return;
             }
             // Success - local skins
             if (localSkins.state === 'fulfilled') {
-                setLocalSkins(localSkins.value.data.data);
+                $scope.skins.local.all = dataService.getLocalSkins(localSkins.value.data.data).indexBy('name').value();
             }
 
             // Success - online skins
@@ -90,27 +92,6 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $timeout,
     /// --- Private functions --- ///
 
     /**
-     * Set local skins $scope
-     * @param {object} response
-     * @returns {undefined}
-     */
-    function setLocalSkins(response) {
-        $scope.skins.local.all = _.chain(response)
-                .flatten()
-                .filter(function (v) {
-                    // Set icon path
-                    var iconPath = v.name !== 'default' ? $scope.cfg.skin.path + v.name : $scope.cfg.img.skin_screenshot;
-                    v.icon = (!v.icon ? 'storage/img/placeholder-img.png' : iconPath + '/screenshot.png');
-                    return v;
-                })
-                .indexBy('name')
-                .value();
-        ;
-        $scope.skins.local.show = true;
-    }
-    ;
-
-    /**
      * Set online skins $scope
      * @param {object} response
      * @returns {undefined}
@@ -130,7 +111,7 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $timeout,
                 .indexBy('name')
                 .value();
         ;
-        $scope.skins.online.show = true;
+       
     }
     ;
 

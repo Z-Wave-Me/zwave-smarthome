@@ -1836,34 +1836,34 @@ a:focus {
   font-size: 110%;
 }
 
-/* line 125, ../sass/common/_body.scss */
+/* line 119, ../sass/common/_body.scss */
 .bcg-success {
   background-color: #dff0d8;
 }
 
-/* line 128, ../sass/common/_body.scss */
+/* line 122, ../sass/common/_body.scss */
 .bcg-active.false, .bcg-danger {
   background-color: #f2dede;
 }
 
-/* line 132, ../sass/common/_body.scss */
+/* line 126, ../sass/common/_body.scss */
 .clickable {
   cursor: pointer;
 }
 
-/* line 136, ../sass/common/_body.scss */
+/* line 130, ../sass/common/_body.scss */
 .text-supp {
   font-style: italic;
   color: #595959;
 }
 
-/* line 141, ../sass/common/_body.scss */
+/* line 135, ../sass/common/_body.scss */
 .badge {
   padding: 5px;
   margin-right: 5px;
 }
 
-/* line 145, ../sass/common/_body.scss */
+/* line 139, ../sass/common/_body.scss */
 .help-text {
   display: block;
   font-size: 95%;
@@ -1871,17 +1871,17 @@ a:focus {
   margin: 5px 0;
 }
 
-/* line 151, ../sass/common/_body.scss */
+/* line 145, ../sass/common/_body.scss */
 .help-text.inline {
   display: inline;
 }
 
-/* line 155, ../sass/common/_body.scss */
+/* line 149, ../sass/common/_body.scss */
 .display-block {
   display: block;
 }
 
-/* line 158, ../sass/common/_body.scss */
+/* line 152, ../sass/common/_body.scss */
 .badge-number {
   background-color: #a6a6a6;
   color: #FFFFFF;

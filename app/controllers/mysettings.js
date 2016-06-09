@@ -7,9 +7,14 @@
  * The controller that renders and handles user data.
  * @class MySettingsController
  */
-myAppController.controller('MySettingsController', function($scope, $window, $cookies,$timeout,$filter,$q,dataFactory, dataService, myCache) {
+myAppController.controller('MySettingsController', function($scope, $window, $cookies,$timeout,$filter,$q,cfg,dataFactory, dataService, myCache) {
     $scope.id = $scope.user.id;
     $scope.devices = {};
+    $scope.skins = {
+        all:{},
+        active: cfg.skin.active,
+        show: true
+    };
     $scope.input = false;
     $scope.newPassword = null;
     $scope.trustMyNetwork = true;
@@ -35,12 +40,14 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
     $scope.allSettled = function () {
         var promises = [
              dataFactory.getApi('profiles', '/' + $scope.id, true),
-            dataFactory.getApi('devices', null, true)
+            dataFactory.getApi('devices', null, true),
+             dataFactory.getApiLocal('skins.json')
         ];
 
         $q.allSettled(promises).then(function (response) {
             var profile = response[0];
             var devices = response[1];
+             var skins = response[2];
 
             $scope.loading = false;
             // Error message
@@ -52,10 +59,17 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
             // Success - profile
             if (profile.state === 'fulfilled') {
                  $scope.input = profile.value.data.data;
+                  $scope.input.skin = $scope.skins.active;
             }
             // Success - devices
             if (devices.state === 'fulfilled') {
                $scope.devices = devices.value.data.data.devices;
+            }
+             // Success - skins
+            if (skins.state === 'fulfilled') {
+               //$scope.skins.all = _.indexBy(skins.value.data.data,'name');
+               $scope.skins.all = dataService.getLocalSkins(skins.value.data.data).indexBy('name').value();
+               
             }
         });
     };
@@ -101,11 +115,13 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
 
             $scope.loading = false;
             $cookies.lang = input.lang;
+             $cookies.skin = input.skin;
             myCache.remove('profiles');
             dataService.setUser(data);
              dataService.showNotifier({message: $scope._t('success_updated')});
              $timeout(function () {
-                 alertify.dismissAll();
+                 $scope.loading = {status: 'loading-spin', icon: '--', message: $scope._t('reloading_page')};
+                alertify.dismissAll();
                 $window.location.reload();
             }, 2000);
 

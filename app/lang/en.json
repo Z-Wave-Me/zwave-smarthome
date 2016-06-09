@@ -1,5 +1,6 @@
 {
     "newtrans": "---",
+    "skin": "Skin",
     "customize": "Customize",
     "license": "License",
     "author": "Author",
@@ -21,7 +22,6 @@
     "error_file_download": "Unable to download file",
     "upgrade": "Upgrade",
     "success_file_download": "File successfully downloaded",
-    "---": "newtrans",
     "---": "newtrans",
     "jamesbox_remove_confirm": "Remove Confirmation ...",
     "jamesbox_confirm": "Send Confirmation ...",
