@@ -11014,7 +11014,6 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                 //Login
                 when('/login', {
                     redirectTo: '/'
-                            //templateUrl: 'app/views/login/login.html',
                 }).
                 //Password
                 when('/password', {
@@ -11039,12 +11038,13 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                 }).
                 //Login
                 when('/logout', {
-                    templateUrl: 'app/views/auth/logout.html',
+                    template: ' ',
+                    controller: 'LogoutController',
                     requireLogin: true
                 }).
                 otherwise({
-                    templateUrl: 'app/views/error.html',
-                    controller: '404Controller'
+                    template: ' ',
+                    controller: 'Error404Controller'
                 });
     }]);
 
@@ -11059,7 +11059,7 @@ myApp.run(function ($rootScope, $location, dataService, cfg) {
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
         var user;
         // Reset fatal error messages
-        if (cfg.route.message && !cfg.route.fatalError.permanent) {
+        if (cfg.route.fatalError.message && !cfg.route.fatalError.permanent) {
             angular.extend(cfg.route.fatalError, {
                 message: false,
                 info: false,
@@ -11491,11 +11491,6 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
   $templateCache.put('app/views/expertui/configuration.html',
     "<div ng-controller=ConfigConfigurationController class=mobile-padding><bb-loader></bb-loader><div ng-show=\"deviceId > 0\"><h1>(#{{deviceId}}) <span ng-bind=deviceName></span></h1><div class=cfg-block id=config_cont ng-if=configCont><h2>{{_t('configurations_list')}}</h2><div class=alert-list><p class=\"text-danger text-alert-list\" ng-repeat=\"v in configCont\" ng-if=\"v.configCconfigValue != v.configZwaveValue\">{{v.label}}: {{_t('value_changed_to')}} <strong config-value-title collection=v show_value=v.configCconfigValue></strong> {{_t('value_not_stored_indevice')}}</p></div><div class=cfg-block-content ng-init=\"formName = 'form_config'\"><form name={{formName}} id={{formName}} class=form role=form ng-submit=\"submitApplyConfigCfg(formName,{'id': deviceId,'instance': '0','commandclass': '70','command': 'Set'}, configCont, hasBattery)\" novalidate><div class=cfg-control-content id=cfg_control_{{v.confNum}} ng-repeat=\"v in configCont\"><div class=form-inline><expert-command-input collection=v div_id=$index default_value=v.defaultValue show_default_value=v.showDefaultValue curr_value=v.configCconfigValue></expert-command-input></div><div class=\"text-danger text-alert\" ng-if=\"v.configCconfigValue != v.configZwaveValue\" title=\"Val: {{v.configCconfigValue}} | Device: {{v.configZwaveValue}}\"><i class=\"fa fa-exclamation-triangle\"></i> {{_t('value_changed_to')}} <strong config-value-title collection=v show_value=v.configCconfigValue></strong> {{_t('value_not_stored_indevice')}}</div><p class=cfg-info><span class=is-updated-{{v.isUpdated}}>{{_t('updated')}}: {{v.updateTime}}</span> <span>| {{_t('default_value_is')}}:<config-default-value collection=v show_default_value=v.showDefaultValue default_value=v.defaultValue></config-default-value></span> <span ng-if=v.description>| <a href=\"\" ng-click=\"goInfo = !goInfo\"><i class=\"fa fa-info-circle\"></i></a> <em ng-show=goInfo>{{v.description}}</em></span></p><button type=button class=\"btn btn-info spin-true\" ng-click=\"submitApplyConfigCfg(formName, {'id': deviceId, 'instance': '0', 'commandclass': '70', 'command': 'Set'}, configCont, hasBattery,v.confNum)\">{{_t('apply_config_into_device')}} <i class=\"fa fa-spinner fa-spin\"></i></button></div><fieldset class=submit-entry><button type=button class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <a class=\"btn btn-primary\" title=\"{{_t('btn_update_from_device')}}\" ng-click=\"updateFromDeviceCfg('devices[' + deviceId + '].instances[0].commandClasses[0x70].Get', configCont,deviceId)\"><i class=\"fa fa-refresh\"></i> <span class=btn-name>{{_t('btn_update_from_device')}}</span></a> <button type=submit title=\"{{_t('apply_config')}}\" class=\"btn btn-submit\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('apply_config')}}</span></button></fieldset></form></div></div><div class=cfg-block id=wakeup_cont ng-if=wakeupCont><h2>{{_t('wakeup_list')}}</h2><div class=cfg-block-content ng-init=\"formName = 'form_wakeup'\"><form name={{formName}} id={{formName}} class=form role=form ng-submit=\"submitApplyConfigCfg(formName,{'id': deviceId,'instance': '0','commandclass': '84','command': 'Set'}, wakeupCont, hasBattery)\" novalidate><div class=clearfix></div><div class=cfg-control-content><div ng-repeat=\"v in wakeupCont.params\"><div class=form-inline><expert-command-input collection=v values=wakeupCont.values[0] devices=devices get-node-devices=getNodeDevices curr_value=wakeupCont.configCconfigValue curr_node_value=wakeupCont.configCconfigNodeValue name=wakeupCont.name></expert-command-input></div></div><div class=clearfix></div><p class=cfg-info><span class=is-updated-{{wakeupCont.isUpdated}}>{{_t('updated')}}: {{wakeupCont.updateTime}}</span> <span>| {{_t('default_value_is')}}:<config-default-value collection=v show_default_value=wakeupCont.showDefaultValue default_value=wakeupCont.defaultValue></config-default-value></span></p></div><fieldset class=submit-entry><button type=button class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <a href=\"\" class=\"btn btn-primary\" title=\"{{_t('btn_update_from_device')}}\" ng-click=\"updateFromDevice(wakeupCont.cmd + '.Get()',hasBattery)\"><i class=\"fa fa-refresh\"></i> <span class=btn-name>{{_t('btn_update_from_device')}}</span></a> <button type=submit title=\"{{_t('apply_config')}}\" class=\"btn btn-submit\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('apply_config')}}</span></button></fieldset></form></div></div><div class=cfg-block id=switchall_cont ng-if=switchAllCont><h2>{{_t('switchall_list')}}</h2><div class=cfg-block-content ng-init=\"formName = 'form_switch_all'\"><form name={{formName}} id={{formName}} class=form role=form ng-submit=\"submitApplyConfigCfg(formName,{'id': deviceId,'instance': '0','commandclass': '27','command': 'Set'}, switchAllCont, hasBattery)\" novalidate><div class=cfg-control-content ng-repeat=\"v in switchAllCont.params\"><div class=form-inline><expert-command-input collection=v values=switchAllCont.values[0] default_value=switchAllCont.defaultValue curr_value=switchAllCont.configCconfigValue name=switchAllCont.name is_dropdown=1></expert-command-input></div><p class=cfg-info><span class=is-updated-{{switchAllCont.isUpdated}}>{{_t('updated')}}: {{switchAllCont.updateTime}}</span> <span>| {{_t('default_value_is')}}:<config-default-value collection=v show_default_value=switchAllCont.showDefaultValue default_value=switchAllCont.defaultValue></config-default-value></span></p></div><fieldset class=submit-entry><button type=button class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <a class=\"btn btn-primary\" title=\"{{_t('btn_update_from_device')}}\" ng-click=\"updateFromDevice(switchAllCont.cmd + '.Get()',hasBattery)\"><i class=\"fa fa-refresh\"></i> <span class=btn-name>{{_t('btn_update_from_device')}}</span></a> <button type=submit title=\"{{_t('apply_config')}}\" class=\"btn btn-submit\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('apply_config')}}</span></button></fieldset></form></div></div><div class=cfg-block id=protection_cont ng-if=protectionCont><h2>{{_t('protection_list')}}</h2><div class=cfg-block-content ng-init=\"formName = 'form_protection_list'\"><form name={{formName}} id={{formName}} class=form role=form ng-submit=\"submitApplyConfigCfg(formName,{'id': deviceId,'instance': '0','commandclass': '75','command': 'Set'}, protectionCont, hasBattery)\" novalidate><div class=cfg-control-content ng-repeat=\"v in protectionCont.params\"><div class=form-inline><expert-command-input collection=v values=protectionCont.values[0] default_value=protectionCont.defaultValue curr_value=protectionCont.configCconfigValue name=protectionCont.name is_dropdown=1></expert-command-input></div><p class=cfg-info><span class=is-updated-{{protectionCont.isUpdated}}>{{_t('updated')}}: {{protectionCont.updateTime}}</span> <span>| {{_t('default_value_is')}}:<config-default-value collection=v show_default_value=protectionCont.showDefaultValue default_value=protectionCont.defaultValue></config-default-value></span></p></div><fieldset class=submit-entry><button type=button class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <a class=\"btn btn-primary\" title=\"{{_t('btn_update_from_device')}}\" ng-click=\"updateFromDevice(protectionCont.cmd + '.Get()',hasBattery)\"><i class=\"fa fa-refresh\"></i> <span class=btn-name>{{_t('btn_update_from_device')}}</span></a> <button title=\"{{_t('apply_config')}}\" type=submit class=\"btn btn-submit\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('apply_config')}}</span></button></fieldset></form></div></div></div></div>"
-  );
-
-
-  $templateCache.put('app/views/include.html',
-    "<h2>Without Track-By</h2><ul><li ng-repeat=\"friend in friendsOne\" bn-log-dom-creation=Without>{{ friend.id }} &mdash; {{ friend.name }}</li></ul><h2>With Track-By</h2><ul><li ng-repeat=\"friend in friendsTwo track by friend.id\" bn-log-dom-creation=With>{{ friend.id }} &mdash; {{ friend.name }}</li></ul>"
   );
 
 
@@ -15006,11 +15001,11 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
 
 /**
  * The controller that handles 404 Not found response.
- * @class 404Controller
+ * @class Error404Controller
  */
-myAppController.controller('404Controller', function($scope, cfg) {
+myAppController.controller('Error404Controller', function($scope, cfg) {
     angular.extend(cfg.route.fatalError, {
-        message: $scope._t('error_404'),
+        message: cfg.route.t['error_404'],
         hide: true
     });
 
