@@ -73,7 +73,7 @@ myAppController.controller('JbUpdateController', function ($scope, $q, $location
             uuid: $scope.jamesbox.uuid,
             rule_id: $scope.jamesbox.rule_id
         };
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('jamesbox_confirm')};
         dataFactory.postToRemote(cfg.api_remote['jamesbox_update'], input).then(function (response) {
             $scope.loading = false;
             $scope.jamesbox.showConfirm = false;
@@ -96,7 +96,7 @@ myAppController.controller('JbUpdateController', function ($scope, $q, $location
             uuid: $scope.jamesbox.uuid,
             rule_id: $scope.jamesbox.rule_id
         };
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('jamesbox_remove_confirm')};
         dataFactory.postToRemote(cfg.api_remote['jamesbox_cancel_update'], input).then(function (response) {
             $scope.loading = false;
             $location.path("/dashboard");
@@ -114,10 +114,8 @@ myAppController.controller('JbUpdateController', function ($scope, $q, $location
      * reboot system
      */
     $scope.systemReboot = function () {
-        
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('rebooting')};
-        dataFactory.getApi(cfg.api['system_reboot']).then(function (response) {
-            // do something
+        dataFactory.getApi('system_reboot').then(function (response) {
+            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('rebooting')};
         }, function (error) {
             var message = $scope._t('jamesbox_update_manuel_restart');
             alertify.alertError($scope._t(message));

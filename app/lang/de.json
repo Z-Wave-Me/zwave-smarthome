@@ -1,4 +1,6 @@
 {
+    "jamesbox_remove_confirm": "Entferne Bestätigung ...",
+    "jamesbox_confirm": "Sende Bestätigung ...",
     "rebooting": "Wird neu gestartet ...",
     "reboot_now": "Neustart",
     "jamesbox_update_manuel_restart": "Die Neustartfunktion wird nicht unterstützt. Bitte trennen Sie die Stromversorgung des Popp Hub für 5 Sekunden oder betätigen sie den Hardware Reset Button (siehe Anleitung), um das POPP Hub neu zu starten.",
