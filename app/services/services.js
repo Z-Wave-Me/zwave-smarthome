@@ -237,13 +237,19 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                     var yesterday = (Math.round(new Date().getTime() / 1000)) - (24 * 3600);
                     var isNew = v.creationTime > yesterday ? true : false;
                     // Create min/max value
-                    if (cfg.knob_255.indexOf(v.probeType) > -1) {
+                    if(cfg.knob_255.indexOf(v.probeType) > -1){
                         minMax = {min: 0, max: 255};
+                    } else if (v.deviceType === 'thermostat') {
+                        minMax = (v.metrics.scaleTitle === '°F' ? {min: 41, max: 104} : {min: 5, max: 40});
                     } else {
                         minMax = {min: 0, max: 99};
                     }
-                    if (v.deviceType === 'thermostat') {
-                        minMax = (v.metrics.scaleTitle === '°F' ? {min: 41, max: 104} : {min: 5, max: 40});
+                    // Limit min/max with device metrics
+                    if (typeof(v.metrics.max) === 'number') {
+                        minMax.max = v.metrics.max;
+                    }
+                    if (typeof(v.metrics.min) === 'number') {
+                        minMax.min = v.metrics.min;
                     }
                     angular.extend(v,
                             {onDashboard: (user.dashboard.indexOf(v.id) !== -1 ? true : false)},
