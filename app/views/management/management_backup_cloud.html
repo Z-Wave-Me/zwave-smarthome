@@ -1,0 +1,21 @@
+<!-- Admin backup view -->
+<h2 class="accordion-entry-title" ng-click="expandElement('cloud')">
+    <i class="fa fa-cloud-download"></i> <span ng-bind="_t('backup_cloud')"></span>
+     <i class="fa accordion-arrow" ng-class="expand.backup  ? 'fa-chevron-up':'fa-chevron-down'"></i>
+</h2>
+<div class="accordion-entry-ctrl" ng-if_="expand.cloud" ng-controller="ManagementCloudController">
+    <div class="form form-inline form-page">
+        <div class="fieldset">
+             <p>{{_t('Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.')}}</p>
+             <input type="checkbox" name="cloud_confirm" value="1" id="cloud_confirm" ng-click="managementCloud.confirm = !managementCloud.confirm" /> 
+             <span ng-bind="_t('turnon_cloud')"></span>
+        </div>
+        <div class="fieldset submit-entry">
+            <a class="btn btn-submit" ng-href="{{cfg.server_url + cfg.api.backup}}" title="{{_t('send_access_tocloud')}}" 
+               ng-disabled="!managementCloud.confirm"
+               ng-click="sendAccessToCloud()">
+                <i class="fa fa-envelope"></i> <span class="btn-name">{{_t('send_access_tocloud')}}</span>
+            </a>
+        </div>
+    </div>
+</div>

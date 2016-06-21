@@ -1,5 +1,8 @@
 {
     "newtrans": "---",
+    "backup_cloud": "Backup to the cloud",
+    "turnon_cloud": "Turn on the cloud backup",
+    "send_access_tocloud": "Send Access to Cloud Backup to my Mail",
     "---": "newtrans",
     "jamesbox_remove_confirm": "Remove Confirmation ...",
     "jamesbox_confirm": "Send Confirmation ...",

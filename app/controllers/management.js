@@ -547,6 +547,42 @@ myAppController.controller('ManagementFirmwareController', function ($scope, $sc
     };
     //$scope.loadRazLatest();
 });
+
+
+/**
+ * The controller that handles a backup to the cloud.
+ * @class ManagementCloudController
+ */
+myAppController.controller('ManagementCloudController', function ($scope, dataFactory, dataService) {
+    $scope.managementCloud = {
+        confirm: false,
+        alert: {message: false, status: 'is-hidden', icon: false},
+        process: false
+    };
+    
+    /**
+     * Send an access to the cloud
+     */
+    $scope.sendAccessToCloud = function () {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        return;
+        dataFactory.getApi('firmwareupdate', param, true).then(function (response) {
+            if (loader) {
+                $scope.firmwareUpdate.show = true;
+                $timeout(function () {
+                    $scope.loading = false;
+                    $scope.firmwareUpdate.loaded = true;
+                }, 5000);
+            }
+
+        }, function (error) {
+            $scope.loading = false;
+            alertify.alertError($scope._t('error_load_data'));
+
+        });
+    };
+
+});
 /**
  * The controller that handles restore process.
  * @class ManagementRestoreController
