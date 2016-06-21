@@ -4,6 +4,7 @@
      <i class="fa accordion-arrow" ng-class="expand.backup  ? 'fa-chevron-up':'fa-chevron-down'"></i>
 </h2>
 <div class="accordion-entry-ctrl" ng-if_="expand.cloud" ng-controller="ManagementCloudController">
+    <bb-loader></bb-loader>
     <div class="form form-inline form-page">
         <div class="fieldset">
              <p>{{_t('Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.')}}</p>
@@ -11,11 +12,11 @@
              <span ng-bind="_t('turnon_cloud')"></span>
         </div>
         <div class="fieldset submit-entry">
-            <a class="btn btn-submit" ng-href="{{cfg.server_url + cfg.api.backup}}" title="{{_t('send_access_tocloud')}}" 
+            <button class="btn btn-submit" type="button" title="{{_t('send_access_tocloud')}}" 
                ng-disabled="!managementCloud.confirm"
                ng-click="sendAccessToCloud()">
                 <i class="fa fa-envelope"></i> <span class="btn-name">{{_t('send_access_tocloud')}}</span>
-            </a>
+            </button>
         </div>
     </div>
 </div>

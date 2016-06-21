@@ -132,21 +132,21 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
         // Hide license if
         // Controller UUID = string and scratchId  is NOT found  and cap unlimited
         if (!controllerInfo.scratchId && !controllerInfo.capsLimited) {
-             //console.log('Hide license if: Controller UUID = string and scratchId  is NOT found  and cap unlimited')
+            //console.log('Hide license if: Controller UUID = string and scratchId  is NOT found  and cap unlimited')
             $scope.handleLicense.show = false;
             return;
         }
-        
+
         // Show modal if
         // Controller UUID = string and scratchId  is NOT found  and cap limited
         if (!controllerInfo.scratchId && controllerInfo.capsLimited) {
-             //console.log('Show modal if: Controller UUID = string and scratchId  is NOT found  and cap limited')
-              alertify.alertWarning($scope._t('info_missing_licence'));
+            //console.log('Show modal if: Controller UUID = string and scratchId  is NOT found  and cap limited')
+            alertify.alertWarning($scope._t('info_missing_licence'));
         }
 
         // Disable input and show unplug message
         if (controllerInfo.isZeroUuid) {
-             //console.log('Disable input and show unplug message')
+            //console.log('Disable input and show unplug message')
             $scope.handleLicense.disabled = true;
             $scope.handleLicense.replug = true;
             return;
@@ -553,31 +553,27 @@ myAppController.controller('ManagementFirmwareController', function ($scope, $sc
  * The controller that handles a backup to the cloud.
  * @class ManagementCloudController
  */
-myAppController.controller('ManagementCloudController', function ($scope, dataFactory, dataService) {
+myAppController.controller('ManagementCloudController', function ($scope, $timeout,dataFactory, dataService) {
     $scope.managementCloud = {
         confirm: false,
         alert: {message: false, status: 'is-hidden', icon: false},
         process: false
     };
-    
+
     /**
      * Send an access to the cloud
      */
     $scope.sendAccessToCloud = function () {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        return;
-        dataFactory.getApi('firmwareupdate', param, true).then(function (response) {
-            if (loader) {
-                $scope.firmwareUpdate.show = true;
-                $timeout(function () {
-                    $scope.loading = false;
-                    $scope.firmwareUpdate.loaded = true;
-                }, 5000);
-            }
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('sending')};
+        dataFactory.getApiLocal('device.de.json').then(function (response) {
+            $timeout(function () {
+                $scope.loading = false;
+                dataService.showNotifier({message: $scope._t('email_sent')});
+            }, 2000);
 
         }, function (error) {
             $scope.loading = false;
-            alertify.alertError($scope._t('error_load_data'));
+            alertify.alertError($scope._t('send_email_error'));
 
         });
     };
