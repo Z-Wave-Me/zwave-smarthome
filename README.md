@@ -10,7 +10,7 @@ This User Interfaces allows to operate a Smart Home Network based on Z-Wave devi
 - ???.
 
 #### Changes
-- ???.
+- Concatenate css and scss files on DEV environment.
 
 ## v1.4.2
 #### New features
