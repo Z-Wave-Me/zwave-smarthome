@@ -12,6 +12,7 @@
                  (#{{v.nodeId}}) {{v.nodeName}}
             </div>
          <div class="report-col report-ctrl">
+             <i class="fa {{v.awake|getAwakeIcon}}" ng-show="v.awake"></i> 
             <span class="text-success" ng-show="v.metrics.level >= 80">{{v.metrics.level}} %</span>
                         <span class="text-default" ng-show="v.metrics.level < 80 && v.metrics.level > 20">{{v.metrics.level}} %</span>
                         <span class="text-danger" ng-show="v.metrics.level <= 20"><i class="fa fa-exclamation-triangle"></i> {{v.metrics.level}} %</span>

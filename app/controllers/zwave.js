@@ -89,7 +89,7 @@ myAppController.controller('ZwaveAddController', function ($scope, $routeParams,
  * The controller that renders and handles data in the Z-Wave/Manage section.
  * @class ZwaveManageController
  */
-myAppController.controller('ZwaveManageController', function ($scope, $cookies, $filter, $window, $location, dataFactory, dataService, myCache) {
+myAppController.controller('ZwaveManageController', function ($scope, $cookies, $filter, $location, dataFactory, dataService, myCache) {
     $scope.activeTab = (angular.isDefined($cookies.tab_network) ? $cookies.tab_network : 'battery');
     /*$scope.batteries = {
         list: [],
@@ -165,6 +165,7 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
                     title: v.data.givenName.value || 'Device ' + '_' + k,
                     do_interview: false,
                     is_failed: false,
+                    awake: false,
                     cfg: [],
                     elements: [],
                     messages: []
@@ -188,17 +189,23 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
                         var interviewDone = isInterviewDone(node, nodeId);
                         var isFailed = node.data.isFailed.value;
                         var hasBattery = 0x80 in node.instances[0].commandClasses;
+                        var isListening = node.data.isListening.value;
+                        var isFLiRS = !isListening && (node.data.sensor250.value || node.data.sensor1000.value);
+                        var isAwake = node.data.isAwake.value;
                         var obj = {};
+                       
                         obj['id'] = v.id;
                         obj['visibility'] = v.visibility;
                         obj['permanently_hidden'] = v.permanently_hidden;
                         obj['nodeId'] = nodeId;
                         obj['nodeName'] = node.data.givenName.value || 'Device ' + '_' + k,
-                                obj['title'] = v.metrics.title;
+                         obj['awake'] = awakeCont(isAwake, isListening, isFLiRS),
+                        obj['title'] = v.metrics.title;
                         obj['deviceType'] = v.deviceType;
                         obj['level'] = $filter('toInt')(v.metrics.level);
                         obj['metrics'] = v.metrics;
                         obj['messages'] = [];
+                         $scope.zWaveDevices[nodeId]['awake'] =  awakeCont(isAwake, isListening, isFLiRS);
                         if (v.deviceType !== 'battery') {
                             $scope.devices.zwave.push(obj);
                             $scope.zWaveDevices[nodeId]['elements'].push(obj);
@@ -302,6 +309,14 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
 
     }
     ;
+    // Get Awake Cont
+    function awakeCont(isAwake, isListening, isFLiRS) {
+        var awake_cont = false;
+        if (!isListening && !isFLiRS){
+             awake_cont = isAwake ? 'awake' : 'sleep';
+        }
+        return awake_cont;
+    }
 });
 
 /**
