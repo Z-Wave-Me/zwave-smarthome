@@ -231,12 +231,13 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
         var val = parseInt(v.metrics.level);
         var min = parseInt(v.minMax.min, 10);
         var max = parseInt(v.minMax.max, 10);
+        var step = parseFloat(v.minMax.step);
         switch (type) {
             case '-':
-                count = val - 1;
+                count = val - step;
                 break;
             case '+':
-                count = val + 1;
+                count = val + step;
                 break;
             default:
                 count = parseInt(type, 10);

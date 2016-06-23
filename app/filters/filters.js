@@ -461,18 +461,9 @@ myApp.filter('getAppCategoryIcon', function () {
  * @function getMaxLevel
  */
 myApp.filter('getMaxLevel', function () {
-    return function (input, probeType) {
-        var levelVal = 100;
-        switch (probeType) {
-            case 'test':
-                levelVal = (input < 255 ? input : 255);
-                break;
-
-            default:
-                levelVal = (input < 100 ? input : 100);
-                break;
-        }
-        return levelVal;
+    return function (input, maxLevel) {
+        maxLevel = maxLevel || 100;
+        return Math.min(input,maxLevel);
     };
 });
 
