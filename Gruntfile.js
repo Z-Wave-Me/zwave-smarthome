@@ -36,9 +36,9 @@ module.exports = function (grunt) {
             },
             css: {
                 src: [
-                    'app/css/bootstrap.css',
-                    'app/css/main.css',
-                    'app/css/font-awesome-4.4.0/css/font-awesome.min.css'
+                    //'app/css/bootstrap.css',
+                    //'app/css/font-awesome-4.4.0/css/font-awesome.min.css',
+                    'app/css/main.css'
                 ],
                 dest: 'dist/app/css/build.css'
             },
@@ -129,8 +129,8 @@ module.exports = function (grunt) {
             },
             fonts: {
                 files: [
-                    {src: ['app/fonts/**'], dest: 'dist/'},
-                    {expand: true, src: ['app/css/font-awesome-4.4.0/fonts/*'], dest: 'dist/app/fonts/', flatten: true}
+                    {src: ['app/fonts/**'], dest: 'dist/'}
+                    //{expand: true, src: ['app/css/font-awesome-4.4.0/fonts/*'], dest: 'dist/app/fonts/', flatten: true}
                 ]
             },
             angmap: {
