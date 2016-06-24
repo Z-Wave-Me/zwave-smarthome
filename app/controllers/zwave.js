@@ -89,14 +89,10 @@ myAppController.controller('ZwaveAddController', function ($scope, $routeParams,
  * The controller that renders and handles data in the Z-Wave/Manage section.
  * @class ZwaveManageController
  */
-myAppController.controller('ZwaveManageController', function ($scope, $cookies, $filter, $location, dataFactory, dataService, myCache) {
+myAppController.controller('ZwaveManageController', function ($scope, $cookies, $filter, $location, $q, dataFactory, dataService, myCache) {
     $scope.activeTab = (angular.isDefined($cookies.tab_network) ? $cookies.tab_network : 'battery');
-    /*$scope.batteries = {
-     list: [],
-     cntLess20: [],
-     cnt0: []
-     };*/
     $scope.devices = {
+        zw: {},
         find: {},
         //failed: [],
         batteries: [],
@@ -116,6 +112,55 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
         $cookies.tab_network = tabId;
     };
     $scope.setTab();
+
+    /**
+     * Load all promises
+     */
+    $scope.allSettled = function () {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        var promises = [
+            dataFactory.loadZwaveApiData(false),
+            dataFactory.getApi('devices')
+        ];
+
+        $q.allSettled(promises).then(function (response) {
+            var devices = response[0];
+            var elements = response[1];
+            $scope.loading = false;
+            // Error message
+            if (devices.state === 'rejected') {
+                $scope.loading = false;
+                alertify.alertError($scope._t('error_load_data'));
+                return;
+            }
+            // Success - zwave devices
+            if (devices.state === 'fulfilled') {
+                 $scope.devices.zw = setZwaveApiData(devices.value);
+            }
+            // Success - elements
+            if (elements.state === 'fulfilled') {
+                setElements(elements.value.data.data.devices);
+            }
+        });
+    };
+    $scope.allSettled();
+
+    /**
+     * Load elements
+     */
+    $scope.loadElements = function () {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        dataFactory.getApi('devices').then(function (response) {
+            $scope.loading = false;
+            getZwaveElements(response.data.data.devices);
+        }, function (error) {
+            $scope.loading = false;
+            alertify.alertError($scope._t('error_load_data')).set('onok', function (closeEvent) {
+                dataService.goBack();
+            });
+        });
+    };
+    //$scope.loadElements();
 
     /**
      * Load data
@@ -146,6 +191,136 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
 
 
     /// --- Private functions --- ///
+    /**
+     * Set zwave devices
+     * @param {array} elements
+     * @returns {undefined}
+     */
+    function setZwaveApiData(ZWaveAPIData) {
+        var obj = {};
+        var controllerNodeId,
+                interviewDone,
+                isFailed,
+                hasBattery,
+                lastReceive,
+                lastSend,
+                lastCommunication,
+                isListening,
+                isFLiRS,
+                isAwake,
+                hasWakeup,
+                sleepingSince,
+                lastWakeup,
+                interval,
+                batteryCharge;
+        controllerNodeId = ZWaveAPIData.controller.data.nodeId.value;
+        angular.forEach(ZWaveAPIData.devices, function (node, nodeId) {
+            if (nodeId == 255 || nodeId == controllerNodeId || node.data.isVirtual.value) {
+                return;
+            }
+            interviewDone = isInterviewDone(node, nodeId);
+            isFailed = node.data.isFailed.value;
+            hasBattery = 0x80 in node.instances[0].commandClasses;
+            lastReceive = parseInt(node.data.lastReceived.updateTime, 10) || 0;
+            lastSend = parseInt(node.data.lastSend.updateTime, 10) || 0;
+            lastCommunication = (lastSend > lastReceive) ? lastSend : lastReceive;
+            isListening = node.data.isListening.value;
+            isFLiRS = !isListening && (node.data.sensor250.value || node.data.sensor1000.value);
+            isAwake = node.data.isAwake.value;
+            hasWakeup = 0x84 in node.instances[0].commandClasses;
+            sleepingSince = 0;
+            lastWakeup = 0;
+            interval = 0;
+            if (!isListening && hasWakeup) {
+                sleepingSince = parseInt(node.instances[0].commandClasses[0x84].data.lastSleep.value, 10);
+                lastWakeup = parseInt(node.instances[0].commandClasses[0x84].data.lastWakeup.value, 10);
+                interval = parseInt(node.instances[0].commandClasses[0x84].data.interval.value, 10);
+            }
+            //0x80 = 128
+            batteryCharge = $filter('hasNode')(node, 'instances.0.commandClasses.128.data.last.value');//parseInt(node.instances[0].commandClasses[0x80].data.last.value);
+            obj[nodeId] = {
+                id: parseInt(nodeId),
+                title: node.data.givenName.value || 'Device ' + '_' + nodeId,
+                hasBattery: hasBattery,
+                batteryCharge: (batteryCharge === null ? null : parseInt(batteryCharge)),
+                do_interview: interviewDone,
+                is_failed: isFailed,
+                sleeping: sleepingCont(isListening, hasWakeup, sleepingSince, lastWakeup, interval),
+                awake: awakeCont(isAwake, isListening, isFLiRS),
+                date: $filter('isTodayFromUnix')(lastCommunication),
+                cfg: [],
+                elements: {},
+                messages: []
+            };
+            // Low battery level
+            if (hasBattery && interviewDone) {
+                var batteryCharge = parseInt(node.instances[0].commandClasses[0x80].data.last.value);
+                if (batteryCharge <= 20) {
+                    obj[nodeId]['messages'].push({
+                        type: 'battery',
+                        error: $scope._t('lb_low_battery') + ' (' + batteryCharge + '%)'
+                    });
+                }
+            }
+            // Is failed
+            if (isFailed) {
+                //obj[nodeId]['do_interview'] = false;
+//                $scope.zWaveDevices[nodeId]['is_failed'] = true;
+//                $scope.zWaveDevices[nodeId]['do_interview'] = false;
+//                $scope.zWaveDevices[nodeId]['messages'].push({
+//                    type: 'failed',
+//                    error: $scope._t('lb_is_failed')
+//
+//                });
+                obj[nodeId]['messages'].push({
+                    type: 'failed',
+                    error: $scope._t('lb_is_failed')
+
+                });
+                return;
+            }
+
+            // Not interview
+            if (!interviewDone) {
+                  obj[nodeId]['do_interview'] = true;
+//                $scope.zWaveDevices[nodeId]['messages'].push({
+//                    type: 'config',
+//                    error: $scope._t('lb_not_configured')
+//
+//                });
+
+                 obj[nodeId]['messages'].push({
+                    type: 'config',
+                    error: $scope._t('lb_not_configured')
+
+                });
+                //obj['do_interview'] = true;
+            }
+        });
+        return obj;
+    }
+    /**
+     * Set elements created by zWave device
+     * @param {array} elements
+     * @returns {undefined}
+     */
+    function setElements(elements) {
+         var findZwaveStr, cmd, nodeId;
+        angular.forEach(elements, function (v, k) {
+           findZwaveStr = v.id.split('_');
+            if (findZwaveStr[0] === 'ZWayVDev' && findZwaveStr[1] === 'zway') {
+                cmd = findZwaveStr[findZwaveStr.length - 1].split('-');
+                nodeId = cmd[0];
+                if($scope.devices.zw[nodeId]){
+                    $scope.devices.zw[nodeId]['elements'][v.id]= v;
+                }
+                //$scope.devices.zw[nodeId];
+                //console.log($scope.devices.zw[nodeId])
+            }
+
+
+        });
+    }
     /**
      * Get zwaveApiData
      */

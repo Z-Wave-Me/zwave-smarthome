@@ -41,6 +41,34 @@
          </div>
         </div>
       </div>
+    
+    NEW
+    <div class="app-row app-row-report app-row-zwave clearfix">
+         <div id="row_zwave_network_{{v.id}}" class="report-entry" ng-repeat="v in devices.zw | orderBy:'title':false" ng-if="_.size(v.messages) > 0">
+             <div class="report-col report-body zwave-network">
+                <span class="network-zwave-title noelements clickable" ng-if="_.size(v.elements) < 1">{{v.title|cutText:true:25}} (#{{v.id}}) </span>
+                <a href="" class="network-zwave-title clickable" ng-click="expandElement('accZwaveNetwork_' + v.id)" ng-if="_.size(v.elements) > 0">
+                    <i class="fa" ng-class="expand['accZwaveNetwork' + '_' + v.id] ? 'fa-chevron-up': 'fa-chevron-down'"></i> {{v.title}} (#{{v.id}})
+                 </a>
+                 <div ng-if="expand['accZwaveNetwork_' + v.id]">
+                 <div class="network-zwave-element zwave-hidden-{{e.permanently_hidden}}" ng-repeat="e in v.elements | orderBy:'metrics.title':false">
+                     <a ng-href="#/element/{{e.id}}">
+                         <img class="report-img-s" ng-src="{{e.metrics.icon|getElementIcon:e:e.level}}" alt="img" /> {{e.metrics.title|cutText:true:25}} <span class="zwave-raquo">&raquo;</span>
+                     </a>
+                   </div>
+                   </div>
+            </div>
+         <div class="report-col report-ctrl">
+             <div ng-repeat="m in v.messages|unique:true">
+                 <div class="text-danger" ng-if="m.type !== 'config'">{{m.error}}</div>
+                 <button class="btn btn-default" ng-if="!v.is_failed && v.do_interview" ng-click="devices.find = v;handleModal('zwaveNetworkModal', $event)">
+                         <i class="fa fa-refresh text-primary"></i> <span class="btn-name">{{_t('configure_device')}}</span>
+                    </button>
+            </div>
+         </div>
+        </div>
+      </div>
+    
     <div class="device-logo" ng-include="'app/views/zwave/zwave_nav.html'"></div>
     
     <!-- Interview modal -->
