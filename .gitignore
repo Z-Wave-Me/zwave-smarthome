@@ -6,7 +6,7 @@
 upload.php
 .sass-cache*
 /app/css/.sass-cache/*
-/app/css/bootstrap/*
-/app/css/fontawesome/*
+/app/css/vendor/bootstrap/*
+/app/css/vendor/fontawesome/*
 /node_modules/*
 npm-debug.log
