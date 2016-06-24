@@ -92,10 +92,10 @@ myAppController.controller('ZwaveAddController', function ($scope, $routeParams,
 myAppController.controller('ZwaveManageController', function ($scope, $cookies, $filter, $location, dataFactory, dataService, myCache) {
     $scope.activeTab = (angular.isDefined($cookies.tab_network) ? $cookies.tab_network : 'battery');
     /*$scope.batteries = {
-        list: [],
-        cntLess20: [],
-        cnt0: []
-    };*/
+     list: [],
+     cntLess20: [],
+     cnt0: []
+     };*/
     $scope.devices = {
         find: {},
         //failed: [],
@@ -134,8 +134,8 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
         });
     };
     $scope.loadData();
-    
-     /**
+
+    /**
      * Run zwave CMD
      */
     $scope.runZwaveCmd = function (cmd) {
@@ -165,7 +165,9 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
                     title: v.data.givenName.value || 'Device ' + '_' + k,
                     do_interview: false,
                     is_failed: false,
+                    sleeping: false,
                     awake: false,
+                    date: false,
                     cfg: [],
                     elements: [],
                     messages: []
@@ -189,23 +191,39 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
                         var interviewDone = isInterviewDone(node, nodeId);
                         var isFailed = node.data.isFailed.value;
                         var hasBattery = 0x80 in node.instances[0].commandClasses;
+                        var lastReceive = parseInt(node.data.lastReceived.updateTime, 10) || 0;
+                        var lastSend = parseInt(node.data.lastSend.updateTime, 10) || 0;
+                        var lastCommunication = (lastSend > lastReceive) ? lastSend : lastReceive;
                         var isListening = node.data.isListening.value;
                         var isFLiRS = !isListening && (node.data.sensor250.value || node.data.sensor1000.value);
                         var isAwake = node.data.isAwake.value;
+                        var hasWakeup = 0x84 in node.instances[0].commandClasses;
+                        var sleepingSince = 0;
+                        var lastWakeup = 0;
+                        var interval = 0;
+                        if (!isListening && hasWakeup) {
+                            sleepingSince = parseInt(node.instances[0].commandClasses[0x84].data.lastSleep.value, 10);
+                            lastWakeup = parseInt(node.instances[0].commandClasses[0x84].data.lastWakeup.value, 10);
+                            interval = parseInt(node.instances[0].commandClasses[0x84].data.interval.value, 10);
+                        }
                         var obj = {};
-                       
+
                         obj['id'] = v.id;
                         obj['visibility'] = v.visibility;
                         obj['permanently_hidden'] = v.permanently_hidden;
                         obj['nodeId'] = nodeId;
                         obj['nodeName'] = node.data.givenName.value || 'Device ' + '_' + k,
-                         obj['awake'] = awakeCont(isAwake, isListening, isFLiRS),
-                        obj['title'] = v.metrics.title;
+                                obj['sleeping'] = sleepingCont(isListening, hasWakeup, sleepingSince, lastWakeup, interval),
+                                obj['awake'] = awakeCont(isAwake, isListening, isFLiRS),
+                                obj['date'] = $filter('isTodayFromUnix')(lastCommunication),
+                                obj['title'] = v.metrics.title;
                         obj['deviceType'] = v.deviceType;
                         obj['level'] = $filter('toInt')(v.metrics.level);
                         obj['metrics'] = v.metrics;
                         obj['messages'] = [];
-                         $scope.zWaveDevices[nodeId]['awake'] =  awakeCont(isAwake, isListening, isFLiRS);
+                        $scope.zWaveDevices[nodeId]['sleeping'] = obj.sleeping;
+                        $scope.zWaveDevices[nodeId]['date'] = obj.date;
+                        $scope.zWaveDevices[nodeId]['awake'] = obj.awake;
                         if (v.deviceType !== 'battery') {
                             $scope.devices.zwave.push(obj);
                             $scope.zWaveDevices[nodeId]['elements'].push(obj);
@@ -261,7 +279,7 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
                             });
                             //obj['do_interview'] = true;
                         }
-                        
+
                         //$scope.devices.failed.push(obj);
                     }
 
@@ -275,15 +293,15 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
             }
             // Count device batteries
             /*for (i = 0; i < $scope.devices.batteries.length; ++i) {
-                var battery = $scope.devices.batteries[i];
-                if (battery.level < 1) {
-                    $scope.batteries.cnt0.push(battery.id);
-                }
-                if (battery.level > 0 && battery.level < 20) {
-                    $scope.batteries.cntLess20.push(battery.id);
-                }
-
-            }*/
+             var battery = $scope.devices.batteries[i];
+             if (battery.level < 1) {
+             $scope.batteries.cnt0.push(battery.id);
+             }
+             if (battery.level > 0 && battery.level < 20) {
+             $scope.batteries.cntLess20.push(battery.id);
+             }
+             
+             }*/
         }, function (error) {
             alertify.alertError($scope._t('error_load_data')).set('onok', function (closeEvent) {
                 dataService.goBack();
@@ -312,10 +330,30 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
     // Get Awake Cont
     function awakeCont(isAwake, isListening, isFLiRS) {
         var awake_cont = false;
-        if (!isListening && !isFLiRS){
-             awake_cont = isAwake ? 'awake' : 'sleep';
+        if (!isListening && !isFLiRS) {
+            awake_cont = isAwake ? 'awake' : 'sleep';
         }
         return awake_cont;
+    }
+    // Get Sleeping Cont
+    function sleepingCont(isListening, hasWakeup, sleepingSince, lastWakeup, interval) {
+        var sleeping_cont;
+        if (!isListening && hasWakeup) {
+            var approx = '';
+            if (isNaN(sleepingSince) || sleepingSince < lastWakeup) {
+                sleepingSince = lastWakeup;
+                if (!isNaN(lastWakeup))
+                    approx = '~';
+            }
+            ;
+            if (interval == 0) {
+                interval = NaN; // to indicate that interval and hence next wakeup are unknown
+            }
+            var lastSleep = $filter('isTodayFromUnix')(sleepingSince);
+            var nextWakeup = $filter('isTodayFromUnix')(sleepingSince + interval);
+            sleeping_cont = approx + lastSleep + ' &#8594; ' + approx + nextWakeup;
+        }
+        return sleeping_cont;
     }
 });
 
@@ -353,9 +391,9 @@ myAppController.controller('ZwaveInterviewController', function ($scope, $locati
      */
     $scope.startConfiguration = function (includedDevice) {
         resetConfiguration(true, false, includedDevice, false, true);
-         checkInterview($scope.devices.find.id);
+        checkInterview($scope.devices.find.id);
         var refresh = function () {
-             $scope.forceInterview($scope.zwaveInterview.interviewNotDone);
+            $scope.forceInterview($scope.zwaveInterview.interviewNotDone);
             var interviewRepeatCnt = $scope.zwaveInterview.interviewRepeatCnt + 1;
             angular.extend($scope.zwaveInterview, {interviewRepeatCnt: interviewRepeatCnt});
             // Try to comlete configuration
@@ -381,11 +419,11 @@ myAppController.controller('ZwaveInterviewController', function ($scope, $locati
                                         errorType: ''});
                                 })
                                 .set('oncancel', function (closeEvent) {//after clicking Cancel
-                             alertify.dismissAll();
+                                    alertify.dismissAll();
                                     $location.path('/zwave/inclusion');
                                 });
                         break;
-                    // Cc Version interview is not complete
+                        // Cc Version interview is not complete
                     case 'error_interview_again':
                         alertify.confirm($scope._t('configuration_complete_only') + ' ' + $scope.zwaveInterview.progress + '%' + batteryInfo + resetInfo)
                                 .setting('labels', {'cancel': $scope._t('redo_inclusion')})
@@ -398,7 +436,7 @@ myAppController.controller('ZwaveInterviewController', function ($scope, $locati
                                         errorType: ''});
                                 })
                                 .set('oncancel', function (closeEvent) {//after clicking Cancel
-                             alertify.dismissAll();
+                                    alertify.dismissAll();
                                     $location.path('/zwave/inclusion');
                                 });
                         break;
@@ -415,8 +453,8 @@ myAppController.controller('ZwaveInterviewController', function ($scope, $locati
                                         errorType: ''});
                                 })
                                 .set('oncancel', function (closeEvent) {//after clicking Cancel
-                             alertify.dismissAll();
-                                     $location.path('/zwave/inclusion');
+                                    alertify.dismissAll();
+                                    $location.path('/zwave/inclusion');
                                 });
                         break;
                         // Unexpected error
@@ -434,23 +472,23 @@ myAppController.controller('ZwaveInterviewController', function ($scope, $locati
         };
         $scope.interval.api = $interval(refresh, $scope.zwaveInterview.cfg.checkInterviewTimeout);
     };
-    if(!_.isEmpty($scope.devices.find)){
+    if (!_.isEmpty($scope.devices.find)) {
         $scope.startConfiguration();
     }
-    
+
 
     /**
      * Cancel configuration
      */
     $scope.cancelConfiguration = function (event) {
-         resetConfiguration(false, false, null, false, true);
+        resetConfiguration(false, false, null, false, true);
         $scope.devices.find = {};
-         if (event) {
+        if (event) {
             $scope.handleModal('zwaveNetworkModal', event);
         }
     };
-    
-     /**
+
+    /**
      * Force interview
      */
     $scope.forceInterview = function (interviews) {
@@ -460,8 +498,8 @@ myAppController.controller('ZwaveInterviewController', function ($scope, $locati
     };
 
     /// --- Private functions --- ///
-    
-     /**
+
+    /**
      * Reset configuration
      */
     function resetConfiguration(process, done, includedDevice, cmd, cancelInterval) {
@@ -573,9 +611,10 @@ myAppController.controller('ZwaveInterviewController', function ($scope, $locati
         }, function (error) {
             return;
         });
-    };
-    
-     /**
+    }
+    ;
+
+    /**
      * Set secure inclusion
      */
     function setSecureInclusion(status) {

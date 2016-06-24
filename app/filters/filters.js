@@ -464,7 +464,7 @@ myApp.filter('getAwakeIcon', function () {
     return function (input) {
        switch (input) {
             case 'awake':
-                return 'fa-sun-o text-warning';
+                return 'fa-certificate color-orange';
             case 'sleep':
                return 'fa-moon-o text-primary';
             default:

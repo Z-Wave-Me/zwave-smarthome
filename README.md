@@ -4,7 +4,7 @@ SmartHome UI
 This User Interfaces allows to operate a Smart Home Network based on Z-Wave devices. It utilizes the software architecture "Z-Way", certified as Z-Wave Plus Controller.
 ## v1.4.3
 #### New features
-- ???.
+- Added status info in Device Battery Management #119.
 
 #### Fixes
 - ???.

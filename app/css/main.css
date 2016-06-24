@@ -10364,19 +10364,26 @@ h4 {
   font-size: 80%;
 }
 
+/* Colors
+-------------------------------------------------- */
+/* line 71, ../sass/common/_body.scss */
+.color-orange {
+  color: orange;
+}
+
 /* Links
 -------------------------------------------------- */
-/* line 72, ../sass/common/_body.scss */
+/* line 76, ../sass/common/_body.scss */
 a {
   color: #333333;
   text-decoration: none;
 }
-/* line 76, ../sass/common/_body.scss */
+/* line 80, ../sass/common/_body.scss */
 a:hover, a:focus {
   color: #1a1a1a;
   text-decoration: underline;
 }
-/* line 81, ../sass/common/_body.scss */
+/* line 85, ../sass/common/_body.scss */
 a:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
@@ -10385,7 +10392,7 @@ a:focus {
 
 /* Fatal error
 -------------------------------------------------- */
-/* line 91, ../sass/common/_body.scss */
+/* line 95, ../sass/common/_body.scss */
 .app-fatal-error {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -10395,13 +10402,13 @@ a:focus {
   background-color: #FFFFFF;
   border: solid 1px #d9534f;
 }
-/* line 98, ../sass/common/_body.scss */
+/* line 102, ../sass/common/_body.scss */
 .app-fatal-error .fatal-error-message {
   color: #d9534f;
   font-weight: bold;
   font-size: 120%;
 }
-/* line 103, ../sass/common/_body.scss */
+/* line 107, ../sass/common/_body.scss */
 .app-fatal-error .fatal-error-info {
   margin: 10px 0 0 0;
   color: #000000;
@@ -10410,39 +10417,39 @@ a:focus {
 
 /* Others
 -------------------------------------------------- */
-/* line 112, ../sass/common/_body.scss */
+/* line 116, ../sass/common/_body.scss */
 .timestamp {
   color: #333333;
   font-size: 17px;
 }
-/* line 115, ../sass/common/_body.scss */
+/* line 119, ../sass/common/_body.scss */
 .timestamp .fa {
   font-size: 110%;
 }
 
-/* line 119, ../sass/common/_body.scss */
+/* line 123, ../sass/common/_body.scss */
 .bcg-active.false, .bcg-danger {
   background-color: #f2dede;
 }
 
-/* line 123, ../sass/common/_body.scss */
+/* line 127, ../sass/common/_body.scss */
 .clickable {
   cursor: pointer;
 }
 
-/* line 127, ../sass/common/_body.scss */
+/* line 131, ../sass/common/_body.scss */
 .text-supp {
   font-style: italic;
   color: #595959;
 }
 
-/* line 132, ../sass/common/_body.scss */
+/* line 136, ../sass/common/_body.scss */
 .badge {
   padding: 5px;
   margin-right: 5px;
 }
 
-/* line 136, ../sass/common/_body.scss */
+/* line 140, ../sass/common/_body.scss */
 .help-text {
   display: block;
   font-size: 95%;
@@ -10450,17 +10457,17 @@ a:focus {
   margin: 5px 0;
 }
 
-/* line 142, ../sass/common/_body.scss */
+/* line 146, ../sass/common/_body.scss */
 .help-text.inline {
   display: inline;
 }
 
-/* line 146, ../sass/common/_body.scss */
+/* line 150, ../sass/common/_body.scss */
 .display-block {
   display: block;
 }
 
-/* line 149, ../sass/common/_body.scss */
+/* line 153, ../sass/common/_body.scss */
 .badge-number {
   background-color: #a6a6a6;
   color: #FFFFFF;
@@ -11050,6 +11057,10 @@ img {
 /* line 27, ../sass/common/_report.scss */
 .report-entry .report-ctrl-3 {
   min-width: 160px;
+}
+/* line 30, ../sass/common/_report.scss */
+.report-entry .report-col-w30 {
+  width: 30%;
 }
 
 /* Table
@@ -12486,48 +12497,55 @@ img.widget-promo-image {
   font-weight: bold;
 }
 
+/* Mangement
+-------------------------------------------------- */
+/*.app-row-battery{
+    .report-body{
+        width: 30%;
+    }
+}*/
 /* Configuration
 -------------------------------------------------- */
-/* line 156, ../sass/modules/_devices.scss */
+/* line 163, ../sass/modules/_devices.scss */
 .table-cfg-interview th {
   width: 25%;
 }
 
-/* line 159, ../sass/modules/_devices.scss */
+/* line 166, ../sass/modules/_devices.scss */
 .cfg-block {
   margin: 0 0 20px 0;
   padding: 0 0 20px 0;
 }
 
-/* line 164, ../sass/modules/_devices.scss */
+/* line 171, ../sass/modules/_devices.scss */
 .cfg-block h4 {
   font-size: 16px;
 }
 
-/* line 168, ../sass/modules/_devices.scss */
+/* line 175, ../sass/modules/_devices.scss */
 .cfg-control-content {
   padding: 10px;
   margin: 10px 0;
 }
 
-/* line 172, ../sass/modules/_devices.scss */
+/* line 179, ../sass/modules/_devices.scss */
 .cfg-info {
   margin: 10px 0 0 0;
   padding: 10px 0 0 0;
   border-top: solid 1px #d3d3d3;
 }
 
-/* line 177, ../sass/modules/_devices.scss */
+/* line 184, ../sass/modules/_devices.scss */
 .commads-is-current {
   text-decoration: underline;
 }
 
-/* line 180, ../sass/modules/_devices.scss */
+/* line 187, ../sass/modules/_devices.scss */
 #wakeup_cont .form-inline {
   float: left;
 }
 
-/* line 183, ../sass/modules/_devices.scss */
+/* line 190, ../sass/modules/_devices.scss */
 .spin-true .fa-spin {
   display: none;
 }
@@ -13139,40 +13157,46 @@ img.widget-promo-image {
     margin: 0 0 0 148px;
   }
 
+  /* line 292, ../sass/responsive/_mq_shared.scss */
+  .app-row-battery .report-battery-info div {
+    display: inline-block;
+    padding: 0 10px 0 0;
+  }
+
   /* Rooms
   -------------------------------------------------- */
-  /* line 292, ../sass/responsive/_mq_shared.scss */
+  /* line 301, ../sass/responsive/_mq_shared.scss */
   .room-entry {
     width: 33.33333%;
   }
 
   /* Footer
   -------------------------------------------------- */
-  /* line 299, ../sass/responsive/_mq_shared.scss */
+  /* line 308, ../sass/responsive/_mq_shared.scss */
   #footer #footer_in {
     height: 40px;
     line-height: 40px;
   }
 
-  /* line 305, ../sass/responsive/_mq_shared.scss */
+  /* line 314, ../sass/responsive/_mq_shared.scss */
   #footer {
     display: none;
   }
 
   /* Auth
   -------------------------------------------------- */
-  /* line 312, ../sass/responsive/_mq_shared.scss */
+  /* line 321, ../sass/responsive/_mq_shared.scss */
   #page_login .container, #page_password .container, #page_passwordforgot .container, #page_passwordreset .container {
     max-width: 500px;
   }
 
   /* Others
   -------------------------------------------------- */
-  /* line 319, ../sass/responsive/_mq_shared.scss */
+  /* line 328, ../sass/responsive/_mq_shared.scss */
   .timestamp {
     font-size: 90% !important;
   }
-  /* line 321, ../sass/responsive/_mq_shared.scss */
+  /* line 330, ../sass/responsive/_mq_shared.scss */
   .timestamp .fa {
     font-size: 90% !important;
   }
@@ -13500,40 +13524,46 @@ img.widget-promo-image {
     margin: 0 0 0 148px;
   }
 
+  /* line 292, ../sass/responsive/_mq_shared.scss */
+  .app-row-battery .report-battery-info div {
+    display: inline-block;
+    padding: 0 10px 0 0;
+  }
+
   /* Rooms
   -------------------------------------------------- */
-  /* line 292, ../sass/responsive/_mq_shared.scss */
+  /* line 301, ../sass/responsive/_mq_shared.scss */
   .room-entry {
     width: 25%;
   }
 
   /* Footer
   -------------------------------------------------- */
-  /* line 299, ../sass/responsive/_mq_shared.scss */
+  /* line 308, ../sass/responsive/_mq_shared.scss */
   #footer #footer_in {
     height: 40px;
     line-height: 40px;
   }
 
-  /* line 305, ../sass/responsive/_mq_shared.scss */
+  /* line 314, ../sass/responsive/_mq_shared.scss */
   #footer {
     display: none;
   }
 
   /* Auth
   -------------------------------------------------- */
-  /* line 312, ../sass/responsive/_mq_shared.scss */
+  /* line 321, ../sass/responsive/_mq_shared.scss */
   #page_login .container, #page_password .container, #page_passwordforgot .container, #page_passwordreset .container {
     max-width: 500px;
   }
 
   /* Others
   -------------------------------------------------- */
-  /* line 319, ../sass/responsive/_mq_shared.scss */
+  /* line 328, ../sass/responsive/_mq_shared.scss */
   .timestamp {
     font-size: 90% !important;
   }
-  /* line 321, ../sass/responsive/_mq_shared.scss */
+  /* line 330, ../sass/responsive/_mq_shared.scss */
   .timestamp .fa {
     font-size: 90% !important;
   }
