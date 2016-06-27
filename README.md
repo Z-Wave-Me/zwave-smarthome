@@ -10,6 +10,7 @@ This User Interfaces allows to operate a Smart Home Network based on Z-Wave devi
 - ???.
 
 #### Changes
+- Refactored zwave device management.
 - Improve handling of min/max values for multilevel knob widget.
 - Concatenate css and scss files on DEV environment.
 

@@ -107,7 +107,7 @@
 }
 .zwave-hidden-true{
     a{
-        color: $app-body-disabled-color;
+        color: $app-body-disabled-color !important;
         cursor: text; 
         text-decoration: line-through;
         &:hover{
@@ -149,14 +149,6 @@
         }
     }
 }
-
-/* Mangement
--------------------------------------------------- */
-/*.app-row-battery{
-    .report-body{
-        width: 30%;
-    }
-}*/
 
 /* Configuration
 -------------------------------------------------- */
