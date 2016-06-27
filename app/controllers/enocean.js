@@ -9,7 +9,6 @@
  * @class EnoceanDeviceController
  */
 myAppController.controller('EnoceanDeviceController', function($scope, $routeParams, dataFactory, dataService, _) {
-    $scope.activeTab = 'devices';
     $scope.hasEnOcean = false;
     $scope.enoceanDevices = [];
     $scope.manufacturers = [];
@@ -65,7 +64,6 @@ myAppController.controller('EnoceanDeviceController', function($scope, $routePar
  * @class EnoceanAssignController
  */
 myAppController.controller('EnoceanAssignController', function($scope, $interval, dataFactory, dataService, myCache) {
-    $scope.activeTab = 'assign';
     $scope.profile = false;
     $scope.device = [];
     $scope.includedDevices = [];
@@ -625,7 +623,6 @@ myAppController.controller('EnoceanTeachinController', function($scope, $routePa
  * @class EnoceanManageController
  */
 myAppController.controller('EnoceanManageController', function($scope, $location, $window, dataFactory, dataService) {
-    $scope.activeTab = 'manage';
     $scope.goEdit = [];
     $scope.apiDevices = [];
     $scope.enoceanDevices = {};
@@ -783,7 +780,6 @@ myAppController.controller('EnoceanManageController', function($scope, $location
  * @class EnoceanManageDetailController
  */
 myAppController.controller('EnoceanManageDetailController', function($scope, $routeParams, $filter, dataFactory, dataService, myCache) {
-    $scope.activeTab = 'manage';
     $scope.nodeId = $routeParams.deviceId;
     $scope.enoceanDevice = [];
     $scope.enoceanProfiles = {};
@@ -995,7 +991,6 @@ myAppController.controller('EnoceanManageDetailController', function($scope, $ro
  * @class EnoceanControllerController
  */
 myAppController.controller('EnoceanControllerController', function($scope, $location, dataFactory, dataService) {
-    $scope.activeTab = 'controller';
     $scope.controller = false;
     $scope.controllerShow = ['APIVersion', 'AppDescription', 'AppVersion', 'ChipID', 'ChipVersion'];
 

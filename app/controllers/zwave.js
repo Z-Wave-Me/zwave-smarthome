@@ -123,7 +123,8 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
             }
             // Success - elements
             if (elements.state === 'fulfilled') {
-                setElements(elements.value.data.data.devices);
+                //setElements(elements.value.data.data.devices);
+                setElements(dataService.getDevicesData(elements.value.data.data.devices,false));
             }
         });
     };
@@ -238,8 +239,8 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
      * @returns {undefined}
      */
     function setElements(elements) {
-         var findZwaveStr, cmd, nodeId;
-        angular.forEach(elements, function (v, k) {
+        var findZwaveStr, cmd, nodeId;
+        angular.forEach(elements.value(), function (v, k) {
            findZwaveStr = v.id.split('_');
             if (findZwaveStr[0] === 'ZWayVDev' && findZwaveStr[1] === 'zway') {
                 cmd = findZwaveStr[findZwaveStr.length - 1].split('-');
