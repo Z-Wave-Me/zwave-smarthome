@@ -1,15 +1,23 @@
 <!-- Elements 1 view -->
 <div ng-controller="ElementBaseController">
     <bb-loader></bb-loader>
-     <div ng-if="dataHolder.devices.noDevices" ng-include="'app/views/elements/no_devices.html'"></div>
+    <div ng-if="dataHolder.devices.noDevices" ng-include="'app/views/elements/no_devices.html'"></div>
     <div ng-if="dataHolder.devices.show && !dataHolder.devices.noDevices">
     <div class="page-control form-inline">
-        <div class="btn-group btn-goup-block btn-goup-3">
-            <button class="btn btn-default" ng-click="expandNavi('elCategories', $event)" ng-class="!_.isEmpty(dataHolder.devices.filter) ? 'active':'' ">
+        <div class="btn-group btn-goup-block btn-goup-4">
+            <button class="btn btn-default" ng-click="setFilter()" ng-if="! _.isEmpty(dataHolder.devices.filter)">
+                <i class="fa fa-times"></i> 
+            </button>
+            <button class="btn btn-default" ng-click="expandNavi('elRooms', $event)" ng-class="_.isUndefined(dataHolder.devices.filter.location) ? '':'active' ">
+                <i class="fa fa-building-o"></i> 
+                <span class="btn-name" ng-if="! _.isUndefined(dataHolder.devices.filter.location)">{{_t(dataHolder.devices.rooms[dataHolder.devices.filter.location].title) | cutText:true:15}}</span>
+                <span class="btn-name" ng-if="_.isUndefined(dataHolder.devices.filter.location)">{{_t('all_rooms')|cutText:true:15}}</span>
+            </button>
+            <button class="btn btn-default" ng-click="expandNavi('elCategories', $event)" ng-class="dataHolder.devices.filter.deviceType ? 'active':'' ">
                 <i class="fa fa-filter"></i> 
                 <span class="btn-name" ng-if="dataHolder.devices.filter.deviceType">{{_t(dataHolder.devices.filter.deviceType) | cutText:true:15}}</span>
                 <span class="btn-name" ng-if="dataHolder.devices.filter.visibility === false">{{_t('hidden_elements')|cutText:true:15}}</span>
-                <span class="btn-name" ng-if="_.isEmpty(dataHolder.devices.filter)">{{_t('all_elements')|cutText:true:15}}</span>
+                <span class="btn-name" ng-if="! dataHolder.devices.filter.deviceType">{{_t('all_elements')|cutText:true:15}}</span>
                 <span class="btn-name item-cnt"> ({{dataHolder.cnt.collection}})</span>
             </button>
              <button class="btn btn-default" ng-click="expandNavi('elTags', $event)" ng-class="dataHolder.devices.filter.tag ? 'active':'' ">
@@ -28,12 +36,33 @@
             <span class="input-group-addon"><i class="fa fa-search"></i></span> 
         </div>
     </div>
+    <!-- Page subnavi locations -->
+    <div class="page-navi" ng-if="naviExpanded.elRooms">
+        <div class="page-navi-in">
+            <ul>
+                <li class="page-location-all" ng-class="_.isEmpty(dataHolder.devices.filter) == true ? 'active': ''">
+                   <a href="" ng-click="setFilter({location: undefined})">
+                       <img class="report-img img-circle" src="storage/img/placeholder-img.png" />
+                       {{_t('all_rooms')}} <span class="item-cnt">({{dataHolder.cnt.devices}})</span> 
+                       <span class="page-navi-icon"><i class="fa fa-chevron-right"></i></span>
+                   </a>
+                </li>
+                <li class="page-location-{{v}}" ng-repeat="v in dataHolder.devices.rooms" ng-class="dataHolder.devices.filter.location == v.id ? 'active': ''">
+                   <a href="" ng-click="setFilter({location: v.id})"> 
+                     <img class="report-img img-circle" ng-src="{{v.img_src}}" />
+                     {{ (_t(v.title) || v.title) | cutText:true:30}} <span class="item-cnt">({{ (v.namespaces|findById:'devices_all').params.length || 0 }})</span> 
+                     <span class="page-navi-icon"><i class="fa fa-chevron-right"></i></span>
+                   </a>
+                </li>
+            </ul>
+        </div>
+    </div>
      <!-- Page subnavi  categories -->
     <div class="page-navi" ng-if="naviExpanded.elCategories">
         <div class="page-navi-in">
             <ul>
                 <li class="page-cat-0" ng-class="_.isEmpty(dataHolder.devices.filter) == true ? 'active': ''">
-                   <a href="" ng-click="setFilter()">
+                   <a href="" ng-click="setFilter({deviceType: undefined})">
                        <i class="fa fa-check-circle-o"></i> {{_t('all_elements')}} <span class="item-cnt">({{dataHolder.cnt.devices}})</span> 
                        <span class="page-navi-icon"><i class="fa fa-chevron-right"></i></span>
                    </a>
@@ -60,7 +89,7 @@
         <div class="page-navi-in">
             <div class="page-navi-content">
                 <a class="btn btn-default btn-tag"  
-                   ng-click="setFilter()" 
+                   ng-click="setFilter({tag: undefined})" 
                    ng-class="_.isEmpty(dataHolder.devices.filter) == true ? 'active': ''">
                      {{_t('all_elements')}}
                  </a>
@@ -87,7 +116,6 @@
             </div>
         </div>
     </div>
-     
-    <div ng-include="'app/views/elements/list.html'"></div>
-  </div>
+    <div ng-if="dataHolder.devices.collection.length == 0" ng-include="'app/views/elements/no_elements_found.html'"></div>
+    <div ng-if="dataHolder.devices.collection.length > 0" ng-include="'app/views/elements/list.html'"></div>
 </div> <!-- /ng-controller --> 

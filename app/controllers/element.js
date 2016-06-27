@@ -133,14 +133,20 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
      * Set filter
      */
     $scope.setFilter = function (filter) {
-        if (!filter) {
-            angular.extend($scope.dataHolder.devices, {filter: {}});
-            $cookies.filterElements = angular.toJson({});
-        } else {
-            angular.extend($scope.dataHolder.devices, {filter: filter});
-            $cookies.filterElements = angular.toJson(filter);
+        var newFilter = {};
+        if (filter) {
+            // Merge new filter with existing filters
+            newFilter = angular.extend({}, $scope.dataHolder.devices.filter, filter);
+            // Remove empty/undefined filters
+            _.each(newFilter,function(value,key,list) {
+                if (typeof(value) === 'undefined') {
+                    delete list[key];
+                }
+            });
         }
-
+        // Set cookie and scope
+        angular.extend($scope.dataHolder.devices, {filter: newFilter});
+        $cookies.filterElements = angular.toJson(newFilter);
         $scope.reloadData();
     };
     
@@ -282,28 +288,29 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
 
         $scope.dataHolder.cnt.devices = devices.size().value();
 
-        //All devices
+        //All devices - check if there are no devices yet
         $scope.dataHolder.devices.all = devices.value();
         if (_.isEmpty($scope.dataHolder.devices.all)) {
             $scope.dataHolder.devices.noDevices = true;
             return;
         }
         // Collection
-        if ('tag' in $scope.dataHolder.devices.filter) {
-            $scope.dataHolder.devices.collection = _.filter($scope.dataHolder.devices.all, function (v) {
-                if (v.tags.indexOf($scope.dataHolder.devices.filter.tag) > -1) {
-                    return v;
+        $scope.dataHolder.devices.collection = _.filter($scope.dataHolder.devices.all,function (device) {
+            // Check if device matches all filter criteria
+            var match = _.every($scope.dataHolder.devices.filter,function(filterValue,filterKey) {
+                if (filterKey === 'tag') {
+                    if (device.tags.indexOf(filterValue) > -1) {
+                        return true; 
+                    }
+                } else if (filterValue === device[filterKey]) {
+                    return true;
                 }
+                return false;
             });
-        } else {
-            $scope.dataHolder.devices.collection = _.where($scope.dataHolder.devices.all, $scope.dataHolder.devices.filter);
-        }
-        if (_.isEmpty($scope.dataHolder.devices.collection)) {
-            if ($scope.routeMatch('/dashboard')) {
-                 $scope.dataHolder.devices.noDashboard = true;
-            }else{
-               $scope.dataHolder.devices.noDevices = true; 
-            }
+            return match;
+        });
+        if ($scope.routeMatch('/dashboard') && _.isEmpty($scope.dataHolder.devices.collection)) {
+            $scope.dataHolder.devices.noDashboard = true;
         }
         $scope.dataHolder.cnt.collection = _.size($scope.dataHolder.devices.collection);
     }
