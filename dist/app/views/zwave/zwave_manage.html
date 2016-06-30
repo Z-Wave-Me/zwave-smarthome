@@ -3,21 +3,26 @@
      <bb-loader></bb-loader>
     <!-- Zwave navigation -->
     <div ng-include="'app/views/zwave/navi.html'"></div>
-    <div class="app-row app-row-report app-row-zwave clearfix" ng-if="devices.show">
-         <div id="row_zwave_{{v.id}}" class="report-entry" ng-repeat="v in zWaveDevices | orderBy:'title':false">
+    <div class="app-row app-row-report app-row-zwave clearfix">
+         <div id="row_zwave_{{v.id}}" class="report-entry" ng-repeat="v in devices.zw | orderBy:'title':false">
              <div class="report-col report-body zwave-devices">
-                <span class="network-zwave-title noelements" ng-if="v.elements.length < 1">{{v.title}} (#{{v.id}}) </span>
-                <a href="" class="network-zwave-title" ng-click="expandElement('accZwave_' + v.id)" ng-if="v.elements.length > 0">
-                           <i class="fa" ng-class="expand['accZwave' + '_' + v.id] ? 'fa-chevron-up': 'fa-chevron-down'"></i> {{v.title}} (#{{v.id}})
-                        </a>
-                        <div ng-if="expand['accZwave_' + v.id]">
-                        <div class="network-zwave-element zwave-hidden-{{e.permanently_hidden}}" ng-repeat="e in v.elements | orderBy:'title':false">
-                            <a ng-href="#/element/{{e.id}}">
-                                <img class="report-img-s" ng-src="{{e.metrics.icon|getElementIcon:e:e.level}}" alt="img" /> {{e.title|cutText:true:25}} <span class="zwave-raquo">&raquo;</span>
-                            </a>
-                          </div>
-                          </div>
-            </div>
+                  <div class="btn-group">
+                    <span class="network-zwave-title noelements" ng-if="_.size(v.elements) < 1">{{v.title}} (#{{v.id}}) </span>
+                    <a href="" class="network-zwave-title" ng-click="expandNavi('accZwaveManage_' + v.id, $event)" ng-if="_.size(v.elements) > 0">
+                        <i class="fa" ng-class="naviExpanded['accZwaveManage_' + v.id] ? 'fa-chevron-up' : 'fa-chevron-down'"></i> {{v.title}} (#{{v.id}})
+                    </a>
+                    <div class="app-dropdown app-dropdown-left" ng-if="naviExpanded['accZwaveManage_' + v.id]">
+                        <ul>
+                            <li class="clickable zwave-hidden-{{e.permanently_hidden}}" 
+                                ng-repeat="e in v.elements| orderBy:'metrics.title':false">
+                                <a ng-href="#/element/{{e.id}}">
+                                    <img class="report-img-s" ng-src="{{e.metrics.icon|getElementIcon:e:e.level}}" alt="img" /> {{e.metrics.title|cutText:true:20}} <span class="zwave-raquo">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+             </div>
          <div class="report-col report-ctrl" ng-if="elementAccess(cfg.role_access.network)">
              <div class="btn-group">
              <a class="btn btn-default" href="#zwave/devices/{{v.id}}" title="{{_t('lb_configuration')}}">
