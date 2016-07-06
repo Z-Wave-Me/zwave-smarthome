@@ -17,7 +17,7 @@
 
 * * *
 
-## 404Controller
+## Error404Controller
 The controller that handles 404 Not found response.
 
 

@@ -237,18 +237,27 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                     var yesterday = (Math.round(new Date().getTime() / 1000)) - (24 * 3600);
                     var isNew = v.creationTime > yesterday ? true : false;
                     // Create min/max value
-                    if (cfg.knob_255.indexOf(v.probeType) > -1) {
-                        minMax = {min: 0, max: 255};
+                    if(cfg.knob_255.indexOf(v.probeType) > -1){
+                        minMax = {min: 0, max: 255, step: 1 };
+                    } else if (v.deviceType === 'thermostat') {
+                        minMax = (v.metrics.scaleTitle === '°F' ? {min: 41, max: 104, step: 1} : {min: 5, max: 40, step: 0.5 });
                     } else {
-                        minMax = {min: 0, max: 99};
+                        minMax = {min: 0, max: 99, step: 1};
                     }
-                    if (v.deviceType === 'thermostat') {
-                        minMax = (v.metrics.scaleTitle === '°F' ? {min: 41, max: 104} : {min: 5, max: 40});
+                    // Limit min/max with device metrics
+                    if (typeof(v.metrics.max) !== 'undefined') {
+                        minMax.max = v.metrics.max;
+                    }
+                    if (typeof(v.metrics.min) !== 'undefined') {
+                        minMax.min = v.metrics.min;
+                    }
+                    if (typeof(v.metrics.step) !== 'undefined') {
+                        minMax.step = v.metrics.step;
                     }
                     angular.extend(v,
                             {onDashboard: (user.dashboard.indexOf(v.id) !== -1 ? true : false)},
                             {creatorId: _.isString(v.creatorId) ? v.creatorId.replace(/[^0-9]/g, '') : v.creatorId},
-                             {minMax: minMax},
+                            {minMax: minMax},
                             {hasHistory: (v.hasHistory === true ? true : false)},
                             {imgTrans: false},
                             {isNew: isNew},

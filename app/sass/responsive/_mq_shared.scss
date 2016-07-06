@@ -204,7 +204,7 @@ input[type=radio] {
     .widget-entry-in{
         //height: $widget-col-h;
         border-color: $widget-border-color;
-         border: solid 1px $widget-border-color;
+        border: solid 1px $widget-border-color;
         margin: $spacing;
         .widget-header {
             .widget-icon{
@@ -218,21 +218,21 @@ input[type=radio] {
 }
 
 .widget-success{
-/*    .widget-entry-in{
-        border: solid 4px $widget-success-border-color;
-    }*/
+    /*    .widget-entry-in{
+            border: solid 4px $widget-success-border-color;
+        }*/
 }
 
 .widget-warning{
-/*    .widget-entry-in{
-    border: solid 4px $widget-warning-border-color;
-    }*/
+    /*    .widget-entry-in{
+        border: solid 4px $widget-warning-border-color;
+        }*/
 }
 
 .widget-danger{
-/*    .widget-entry-in{
-     border: solid 4px $widget-danger-border-color;
-    }*/
+    /*    .widget-entry-in{
+         border: solid 4px $widget-danger-border-color;
+        }*/
 }
 /* Elements
 -------------------------------------------------- */
@@ -285,6 +285,14 @@ input[type=radio] {
 }
 .app-detail-body{
     margin: 0 0 0 $app-detail-img + $spacing-double;
+}
+
+
+.report-battery-info{
+    div{
+        display: inline-block;
+        padding: 0 $spacing 0 0;
+    }
 }
 
 /* Rooms

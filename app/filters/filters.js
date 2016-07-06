@@ -457,22 +457,31 @@ myApp.filter('getAppCategoryIcon', function () {
 });
 
 /**
+ * Get an icon for awake/sleep status
+ * @function getMaxLevel
+ */
+myApp.filter('getAwakeIcon', function () {
+    return function (input) {
+       switch (input) {
+            case 'awake':
+                return 'fa-certificate color-orange';
+            case 'sleep':
+               return 'fa-moon-o text-primary';
+            default:
+               return '';
+        }
+        
+    };
+});
+
+/**
  * Get max level by probeType from the devices data holder
  * @function getMaxLevel
  */
 myApp.filter('getMaxLevel', function () {
-    return function (input, probeType) {
-        var levelVal = 100;
-        switch (probeType) {
-            case 'test':
-                levelVal = (input < 255 ? input : 255);
-                break;
-
-            default:
-                levelVal = (input < 100 ? input : 100);
-                break;
-        }
-        return levelVal;
+    return function (input, maxLevel) {
+        maxLevel = maxLevel || 100;
+        return Math.min(input,maxLevel);
     };
 });
 

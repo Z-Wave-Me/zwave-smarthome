@@ -3,44 +3,40 @@
      <bb-loader></bb-loader>
     <!-- Zwave navigation -->
     <div ng-include="'app/views/zwave/navi.html'"></div>
-    <div class="app-row app-row-report app-row-zwave clearfix" ng-if="devices.show">
-         <div id="row_zwave_network_{{v.id}}" class="report-entry" ng-repeat="v in zWaveDevices | orderBy:'title':false" ng-if="v.messages">
+    <div class="app-row app-row-report app-row-zwave clearfix">
+         <div id="row_zwave_network_{{v.id}}" class="report-entry" 
+              ng-repeat="v in devices.zw | orderBy:'title':false"
+                   ng-class="v.isFailed ? 'bcg-danger': ''" 
+              ng-if="_.size(v.messages) > 0">
              <div class="report-col report-body zwave-network">
-                <span class="network-zwave-title noelements clickable" ng-if="v.elements.length < 1">{{v.title|cutText:true:25}} (#{{v.id}}) </span>
-                <a href="" class="network-zwave-title clickable" ng-click="expandElement('accZwaveNetwork_' + v.id)" ng-if="v.elements.length > 0">
-                    <i class="fa" ng-class="expand['accZwaveNetwork' + '_' + v.id] ? 'fa-chevron-up': 'fa-chevron-down'"></i> {{v.title}} (#{{v.id}})
-                 </a>
-                 <div ng-if="expand['accZwaveNetwork_' + v.id]">
-                 <div class="network-zwave-element zwave-hidden-{{e.permanently_hidden}}" ng-repeat="e in v.elements | orderBy:'title':false">
-                     <a ng-href="#/element/{{e.id}}">
-                         <img class="report-img-s" ng-src="{{e.metrics.icon|getElementIcon:e:e.level}}" alt="img" /> {{e.title|cutText:true:25}} <span class="zwave-raquo">&raquo;</span>
-                     </a>
-                   </div>
-                   </div>
+                  <span class="network-zwave-title noelements" ng-if="_.size(v.elements) < 1">{{v.title}} (#{{v.id}}) </span>
+                 <div class="btn-group"  ng-if="_.size(v.elements) > 0">
+                   <a href="" class="network-zwave-title" ng-click="expandNavi('accZwaveManage_' + v.id, $event)">
+                        <i class="fa" ng-class="naviExpanded['accZwaveManage_' + v.id] ? 'fa-chevron-up' : 'fa-chevron-down'"></i> {{v.title}} (#{{v.id}})
+                    </a>
+                    <div class="app-dropdown app-dropdown-left" ng-if="naviExpanded['accZwaveManage_' + v.id]">
+                        <ul>
+                            <li class="clickable zwave-hidden-{{e.permanently_hidden}}" 
+                                ng-repeat="e in v.elements| orderBy:'metrics.title':false">
+                                <a ng-href="#/element/{{e.id}}" title="{{e.metrics.title}}">
+                                    <img class="report-img-s" ng-src="{{e.metrics.icon|getElementIcon:e:e.level}}" alt="img" /> {{e.metrics.title|cutText:true:20}} <span class="zwave-raquo">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
          <div class="report-col report-ctrl">
              <div ng-repeat="m in v.messages|unique:true">
                  <div class="text-danger" ng-if="m.type !== 'config'">{{m.error}}</div>
-                 <button class="btn btn-default" ng-if="!v.is_failed && v.do_interview" ng-click="devices.find = v;handleModal('zwaveNetworkModal', $event)">
+                 <button class="btn btn-default" ng-if="!v.interviewDone  && !v.isFailed" ng-click="devices.find = v;handleModal('zwaveNetworkModal', $event)">
                          <i class="fa fa-refresh text-primary"></i> <span class="btn-name">{{_t('configure_device')}}</span>
-                    </button> 
-                
-                <!--<span ng-if="!isMobile">
-                    <a class="text-danger" href="" ng-if="m.type == 'failed' || m.type == 'config'" ng-click="toExpert('/expert/#help/' + v.id, _t('redirect_to_expert'))" >
-                        <span  ng-bind="m.error"></span> <i class="fa fa-external-link"></i>
-                    </a>
-                    <button class="btn btn-default" ng-if="m.type == 'failed' || m.type == 'config'" ng-click="devices.find = v;handleModal('zwaveNetworkModal', $event)">
-                         <i class="fa fa-cog text-primary"></i> <span class="btn-name">{{_t('configure_device')}}</span>
-                    </button> 
-                </span>
-                <span ng-if="isMobile">
-                    <span  class="text-danger" ng-if="m.type == 'failed' || m.type == 'config'" ng-bind="m.error"></span>
-                </span>
-                <span ng-if="m.type == 'battery'" ng-bind="m.error"></span> -->
+                    </button>
             </div>
          </div>
         </div>
       </div>
+    
     <div class="device-logo" ng-include="'app/views/zwave/zwave_nav.html'"></div>
     
     <!-- Interview modal -->

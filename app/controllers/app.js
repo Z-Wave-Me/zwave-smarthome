@@ -311,9 +311,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
  * @class AppLocalController
  */
 myAppController.controller('AppLocalController', function ($scope, $filter, $cookies, $timeout, $route, $routeParams, $location, dataFactory, dataService, myCache, _) {
-    $scope.activeTab = 'local';
-    //$scope.dataHolder.modules.filter = {featured: true};
-    $scope.dataHolder.modules.filter = ($cookies.filterAppsLocal ? angular.fromJson($cookies.filterAppsLocal) : {featured: true});
+   $scope.dataHolder.modules.filter = ($cookies.filterAppsLocal ? angular.fromJson($cookies.filterAppsLocal) : {featured: true});
     /**
      * Set order by
      */
@@ -386,7 +384,6 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
  * @class AppOnlineController
  */
 myAppController.controller('AppOnlineController', function ($scope, $filter, $cookies, $window, dataFactory, dataService, _) {
-    $scope.activeTab = 'online';
     $scope.dataHolder.onlineModules.filter = ($cookies.filterAppsOnline ? angular.fromJson($cookies.filterAppsOnline) : {featured: true});
 
     /**
@@ -452,7 +449,6 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
  * @class AppInstanceController
  */
 myAppController.controller('AppInstanceController', function ($scope, $cookies, dataFactory, dataService, myCache, _) {
-    $scope.activeTab = 'instance';
     /**
      * Set order by
      */
