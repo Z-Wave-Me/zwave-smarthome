@@ -543,19 +543,29 @@ myAppController.controller('ManagementFirmwareController', function ($scope, $sc
 
 /**
  * The controller that handles a backup to the cloud.
- * @class ManagementCloudController
+ * @class ManagementCloudBackupController
  */
-myAppController.controller('ManagementCloudController', function ($scope, $timeout,dataFactory, dataService) {
+myAppController.controller('ManagementCloudBackupController', function ($scope, $timeout, dataFactory, dataService) {
     $scope.managementCloud = {
-        confirm: false,
+        input: {
+            active: 0,
+            email: $scope.user.email,
+            email_log: 2
+        },
         alert: {message: false, status: 'is-hidden', icon: false},
         process: false
+    };
+    
+    /**
+     * Send an access to the cloud
+     */
+    $scope.activateCloudBackup = function () {
     };
 
     /**
      * Send an access to the cloud
      */
-    $scope.sendAccessToCloud = function () {
+    $scope.storeCloudBackup = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('sending')};
         dataFactory.getApiLocal('device.de.json').then(function (response) {
             $timeout(function () {

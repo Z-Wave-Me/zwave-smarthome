@@ -1,0 +1,35 @@
+<!-- Admin backup view -->
+<h2 class="accordion-entry-title" ng-click="expandElement('cloud')">
+    <i class="fa fa-cloud-download"></i> <span ng-bind="_t('backup_cloud')"></span>
+    <i class="fa accordion-arrow" ng-class="expand.backup ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+</h2>
+<div class="accordion-entry-ctrl" ng-if_="expand.cloud" ng-controller="ManagementCloudBackupController">
+    <bb-loader></bb-loader>
+     <form name="form_rcloud_backup" id="form_rcloud_backup" class="form form-page" ng-submit="storeCloudBackup()" novalidate>
+        <fieldset>
+            <p>{{_t('Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.')}}</p>
+            <button class="btn btn-default" ng-class="managementCloud.input.active ? 'active':''" ng-click="activateCloudBackup()">{{_t('turnon_cloud')}}</button>
+         </fieldset>
+        <fieldset>
+            <!-- email -->
+            <div class="form-group form-inline ">
+                <label class="display-block">{{_t('lb_email')}}: </label>
+                <input name="email" id="email" type="email" class="form-control" value="{{managementCloud.input.email}}" ng-model="managementCloud.input.email" />
+
+            </div>
+            <div class="form-group">
+                <input type="radio" name="email_log" value="0" id="email_log_0" ng-model="managementCloud.input.email_log" ng-checked="managementCloud.input.email_log === 0" /> 
+                <label ng-bind="_t('no_email_log')"></label><br />
+                <input type="radio" name="email_log" value="1" id="email_log_1" ng-model="managementCloud.input.email_log" ng-checked="managementCloud.input.email_log === 1" /> 
+                <label ng-bind="_t('email_log_error')"></label><br />
+                <input type="radio" name="email_log" value="2" id="email_log_2" ng-model="managementCloud.input.email_log" ng-checked="managementCloud.input.email_log === 2" /> 
+                <label ng-bind="_t('email_log_all')"></label>
+            </div>
+        </fieldset>
+        <fieldset  class="submit-entry">
+            <button type="submit" class="btn btn-submit" title="{{_t('lb_save')}}">
+                <i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_save')}}</span>
+            </button>
+        </fieldset >
+    </form>
+</div>
