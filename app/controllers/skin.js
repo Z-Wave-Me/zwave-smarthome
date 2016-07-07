@@ -34,7 +34,7 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $timeout,
     $scope.allSettled = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
-            dataFactory.getApiLocal('skins.json'),
+            dataFactory.getApi('skins'),
             dataFactory.getRemoteData($scope.cfg.online_skin_url)
         ];
 
@@ -78,7 +78,7 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $timeout,
      */
     $scope.upgradeSkin = function (skin) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
-        dataFactory.getApiLocal('skins-online.json').then(function (response) {
+        dataFactory.putApi('skins','/' + skin.name, skin).then(function (response) {
             $timeout(function () {
                 $scope.loading = false;
                 dataService.showNotifier({message: $scope._t('success_file_download')});
@@ -130,8 +130,10 @@ myAppController.controller('SkinLocalController', function ($scope, $window, $ro
      */
     $scope.activateSkin = function (skin) {
         //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        
+        $scope.user.skin = skin.name;
 
-        dataFactory.getApiLocal('skins-online.json').then(function (response) {
+        dataFactory.putApi('profiles', $scope.user.id, $scope.user).then(function (response) {
             $cookies.skin = skin.name;
             dataService.showNotifier({message: $scope._t('success_updated')});
             //return;
@@ -157,7 +159,7 @@ myAppController.controller('SkinLocalController', function ($scope, $window, $ro
     $scope.removeSkin = function (skin, message) {
         alertify.confirm(message, function () {
             $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
-            dataFactory.getApiLocal('skins-online.json').then(function (response) {
+            dataFactory.deleteApi('skins', skin.name).then(function (response) {
                 delete $scope.skins.local.all[skin.name];
                 $scope.loading = false;
                 dataService.showNotifier({message: $scope._t('delete_successful')});
@@ -183,7 +185,7 @@ myAppController.controller('SkinOnlineController', function ($scope, $timeout, d
      */
     $scope.downloadSkin = function (skin) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
-        dataFactory.getApiLocal('skins-online.json').then(function (response) {
+        dataFactory.postApi('skins', skin).then(function (response) {
             $timeout(function () {
                 $scope.loading = false;
                 dataService.showNotifier({message: $scope._t('success_file_download')});

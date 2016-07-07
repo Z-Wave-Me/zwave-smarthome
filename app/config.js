@@ -91,7 +91,8 @@ var config_data = {
             'postfix': 'ZWaveAPI/Postfix',
             'timezone': 'ZAutomation/api/v1/system/time/get',
             'system_info': 'ZAutomation/api/v1/system/info',
-            'system_reboot': 'ZAutomation/api/v1/system/reboot'
+            'system_reboot': 'ZAutomation/api/v1/system/reboot',
+            'skins': 'ZAutomation/api/v1/skins'
         },
         // List of remote api URLs
         'api_remote': {
