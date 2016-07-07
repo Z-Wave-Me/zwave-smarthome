@@ -115,6 +115,12 @@ Get a category icon in the APPs sections
 
 ### getMaxLevel() 
 
+Get an icon for awake/sleep status
+
+
+
+### getMaxLevel() 
+
 Get max level by probeType from the devices data holder
 
 

@@ -12,7 +12,7 @@ var config_data = {
         //Application name
         'app_name': 'SmartHome UI',
         // Application version
-        'app_version': '1.4.2',
+        'app_version': '1.4.3',
         // Server base url
         'server_url': '/',
         //'server_url': 'http://192.168.10.119:8083/',

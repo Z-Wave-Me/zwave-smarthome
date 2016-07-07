@@ -308,6 +308,14 @@ input[type=radio] {
     margin: 0 0 0 $app-detail-img + $spacing-double;
 }
 
+
+.report-battery-info{
+    div{
+        display: inline-block;
+        padding: 0 $spacing 0 0;
+    }
+}
+
 /* Rooms
 -------------------------------------------------- */
 .room-entry{

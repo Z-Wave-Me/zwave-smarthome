@@ -5,11 +5,11 @@
 
 /**
  * The controller that handles 404 Not found response.
- * @class 404Controller
+ * @class Error404Controller
  */
-myAppController.controller('404Controller', function($scope, cfg) {
+myAppController.controller('Error404Controller', function($scope, cfg) {
     angular.extend(cfg.route.fatalError, {
-        message: $scope._t('error_404'),
+        message: cfg.route.t['error_404'],
         hide: true
     });
 

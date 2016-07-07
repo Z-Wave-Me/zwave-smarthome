@@ -35,12 +35,12 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         cfg.skin.active =  $scope.user.skin;
         cfg.img.icons = cfg.skin.path + $scope.user.skin + '/img/icons/';
         cfg.img.logo = cfg.skin.path + $scope.user.skin + '/img/logo/';
-        //$("link[id='main_css']").attr('href', 'storage/skins/defaultzip/main.css');
+     //$("link[id='main_css']").attr('href', 'storage/skins/defaultzip/main.css');
         $("link[id='main_css']").attr('href', cfg.skin.path + $scope.user.skin + '/main.css');
-        }
+     }
      };
      $scope.setSkin();
-
+     
 
     /**
      * Check if route match the pattern.

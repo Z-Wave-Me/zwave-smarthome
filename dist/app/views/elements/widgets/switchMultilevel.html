@@ -48,5 +48,5 @@
     </div>
 </div>
 <div class="widget-ctrl ctrl-right widget-ctrl-click"  ng-click="dataHolder.devices.find = v;handleModal('switchMultilevelModal', $event)">
-      <i class="fa fa-caret-down" title="{{_t('lb_settings')}}"></i> <span class="widget-level">{{v.metrics.level | getMaxLevel:v.probeType}}</span> <span class="widget-scale">{{v.metrics.scaleTitle}}</span>
+      <i class="fa fa-caret-down" title="{{_t('lb_settings')}}"></i> <span class="widget-level">{{v.metrics.level | getMaxLevel:v.minMax.max}}</span> <span class="widget-scale">{{v.metrics.scaleTitle}}</span>
 </div>

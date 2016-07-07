@@ -316,7 +316,6 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                 //Login
                 when('/login', {
                     redirectTo: '/'
-                            //templateUrl: 'app/views/login/login.html',
                 }).
                 //Password
                 when('/password', {
@@ -341,12 +340,13 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                 }).
                 //Login
                 when('/logout', {
-                    templateUrl: 'app/views/auth/logout.html',
+                    template: ' ',
+                    controller: 'LogoutController',
                     requireLogin: true
                 }).
                 otherwise({
-                    templateUrl: 'app/views/error.html',
-                    controller: '404Controller'
+                    template: ' ',
+                    controller: 'Error404Controller'
                 });
     }]);
 
@@ -361,7 +361,7 @@ myApp.run(function ($rootScope, $location, dataService, cfg) {
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
         var user;
         // Reset fatal error messages
-        if (cfg.route.message && !cfg.route.fatalError.permanent) {
+        if (cfg.route.fatalError.message && !cfg.route.fatalError.permanent) {
             angular.extend(cfg.route.fatalError, {
                 message: false,
                 info: false,
