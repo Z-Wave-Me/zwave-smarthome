@@ -36,7 +36,7 @@
                                              <i class="fa fa-download text-success"></i> <span class="btn-name">{{_t('lb_download')}}</span>
                                         </button>
                                         <!-- Upgrade -->
-                                         <button class="btn btn-danger" title="{{_t('upgrade')}}" ng-if="v.status === 'notequal'" ng-click="upgradeSkin(v)">
+                                         <button class="btn btn-danger" title="{{_t('upgrade')}}" ng-if="v.status === 'notequal'" ng-click="uupdateSkin(v)">
                                              <i class="fa fa-level-up"></i> <span class="btn-name">{{_t('upgrade')}}</span>
                                         </button>
                                         <!-- Installed -->
@@ -86,7 +86,7 @@
             <!-- Upgrade -->
             <button class="btn btn-danger" title="{{_t('upgrade')}}" 
                     ng-if="skins.online.find.status === 'notequal'" 
-                    ng-click="handleModal('skinOnlineModal', $event);upgradeSkin(skins.online.find)">
+                    ng-click="handleModal('skinOnlineModal', $event);updateSkin(skins.online.find)">
                 <i class="fa fa-level-up"></i> <span class="btn-name">{{_t('upgrade')}}</span>
            </button>
         </div>

@@ -8,12 +8,12 @@
  * @class SkinBaseController
  *
  */
-myAppController.controller('SkinBaseController', function ($scope, $q, $timeout, dataFactory, dataService, _) {
+myAppController.controller('SkinBaseController', function ($scope, $q, $timeout, cfg,dataFactory, dataService, _) {
     $scope.skins = {
         local: {
             all: {},
             find: {},
-            active: $scope.cfg.skin.active,
+            active: cfg.skin.active,
             show: true
         },
         online: {
@@ -45,12 +45,12 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $timeout,
             $scope.loading = false;
             // Error message
             if (localSkins.state === 'rejected' && $scope.routeMatch('/customize/skinslocal')) {
-                alertify.alertError($scope._t('error_load_data'));
+                alertify.alertError($scope._t('failed_to_load_skins'));
                 $scope.skins.local.show = false;
                 return;
             }
             if (onlineSkins.state === 'rejected' && $scope.routeMatch('/customize/skinsonline')) {
-                alertify.alertError($scope._t('error_load_data'));
+                alertify.alertError($scope._t('failed_to_load_skins'));
                  $scope.skins.online.show = false;
                 return;
             }
@@ -72,20 +72,21 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $timeout,
 
 
     /**
-     * Upgrade skin
+     * Update skin
      * @param {object} skin
      * @returns {undefined}
      */
-    $scope.upgradeSkin = function (skin) {
+    $scope.updateSkin = function (skin) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
         dataFactory.putApi('skins','/' + skin.name, skin).then(function (response) {
             $timeout(function () {
                 $scope.loading = false;
-                dataService.showNotifier({message: $scope._t('success_file_download')});
+                dataService.showNotifier({message: $scope._t('skin_update_successful')});
             }, 2000);
         }, function (error) {
             $scope.loading = false;
-            alertify.alertError($scope._t('error_file_download'));
+             var langkey = (error.data.error ? error.data.error : 'error_file_download');
+            alertify.alertError($scope._t(langkey));
         });
     };
 
@@ -129,14 +130,9 @@ myAppController.controller('SkinLocalController', function ($scope, $window, $ro
      * @returns {undefined}
      */
     $scope.activateSkin = function (skin) {
-        //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        
         $scope.user.skin = skin.name;
-
         dataFactory.putApi('profiles', $scope.user.id, $scope.user).then(function (response) {
-            $cookies.skin = skin.name;
-            dataService.showNotifier({message: $scope._t('success_updated')});
-            //return;
+            dataService.showNotifier({message: $scope._t('skin_activate_successful')});
             $timeout(function () {
                 $scope.loading = {status: 'loading-spin', icon: '--', message: $scope._t('reloading_page')};
                 alertify.dismissAll();
@@ -145,7 +141,7 @@ myAppController.controller('SkinLocalController', function ($scope, $window, $ro
             $scope.loading = false;
         }, function (error) {
             $scope.loading = false;
-            alertify.alertError($scope._t('error_update_data'));
+            alertify.alertError($scope._t('failed_to_activate_skin'));
         });
     };
 
@@ -162,12 +158,13 @@ myAppController.controller('SkinLocalController', function ($scope, $window, $ro
             dataFactory.deleteApi('skins', skin.name).then(function (response) {
                 delete $scope.skins.local.all[skin.name];
                 $scope.loading = false;
-                dataService.showNotifier({message: $scope._t('delete_successful')});
+                dataService.showNotifier({message: $scope._t('skin_delete_successful')});
 
                 //$route.reload();
             }, function (error) {
                 $scope.loading = false;
-                alertify.alertError($scope._t('error_delete_data'));
+                 var langkey = (error.data.error ? error.data.error : 'error_delete_data');
+                alertify.alertError($scope._t(langkey));
             });
         });
     };
@@ -188,11 +185,12 @@ myAppController.controller('SkinOnlineController', function ($scope, $timeout, d
         dataFactory.postApi('skins', skin).then(function (response) {
             $timeout(function () {
                 $scope.loading = false;
-                dataService.showNotifier({message: $scope._t('success_file_download')});
+                dataService.showNotifier({message: $scope._t('skin_installation_successful')});
             }, 2000);
         }, function (error) {
             $scope.loading = false;
-            alertify.alertError($scope._t('error_file_download'));
+            var langkey = (error.data.error ? error.data.error : 'error_file_download');
+            alertify.alertError($scope._t(langkey));
         });
     };
 

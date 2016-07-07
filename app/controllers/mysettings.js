@@ -41,13 +41,13 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
         var promises = [
              dataFactory.getApi('profiles', '/' + $scope.id, true),
             dataFactory.getApi('devices', null, true),
-             dataFactory.getApiLocal('skins.json')
+              dataFactory.getApi('skins')
         ];
 
         $q.allSettled(promises).then(function (response) {
             var profile = response[0];
             var devices = response[1];
-             var skins = response[2];
+             var localSkins = response[2];
 
             $scope.loading = false;
             // Error message
@@ -66,9 +66,10 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
                $scope.devices = devices.value.data.data.devices;
             }
              // Success - skins
-            if (skins.state === 'fulfilled') {
+            if (localSkins.state === 'fulfilled') {
                //$scope.skins.all = _.indexBy(skins.value.data.data,'name');
-               $scope.skins.all = dataService.getLocalSkins(skins.value.data.data).indexBy('name').value();
+               //$scope.skins.all = dataService.getLocalSkins(localSkins.value.data.data).indexBy('name').value();
+               $scope.skins.all = dataService.getLocalSkins(localSkins.value.data.data).indexBy('name').value();
                
             }
         });
@@ -106,18 +107,18 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
         }
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         dataFactory.putApi('profiles', input.id, input).then(function(response) {
-            var data = response.data.data;
+            /*var data = response.data.data;
             if (!data) {
                 alertify.alertError($scope._t('error_update_data'));
                 $scope.loading = false;
                 return;
-            }
+            }*/
 
             $scope.loading = false;
             $cookies.lang = input.lang;
-             $cookies.skin = input.skin;
-            myCache.remove('profiles');
-            dataService.setUser(data);
+             //$scope.user.skin = input.skin;
+            //myCache.remove('profiles');
+            //dataService.setUser(data);
              dataService.showNotifier({message: $scope._t('success_updated')});
              $timeout(function () {
                  $scope.loading = {status: 'loading-spin', icon: '--', message: $scope._t('reloading_page')};

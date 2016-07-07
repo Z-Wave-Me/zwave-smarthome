@@ -42,7 +42,7 @@
                                         </button> 
                                         <!-- Upgrade -->
                                         <button class="btn btn-danger" title="{{_t('upgrade')}}" 
-                                                ng-click="upgradeSkin(skins.online.all[v.name])" 
+                                                ng-click="updateSkin(skins.online.all[v.name])" 
                                                 ng-if="skins.online.all[v.name] && skins.online.all[v.name].status === 'notequal'">
                                             <i class="fa fa-level-up"></i> <span class="btn-name">{{_t('upgrade')}}</span>
                                         </button>
@@ -93,7 +93,7 @@
                      <!-- Upgrade -->
                     <button class="btn btn-danger" title="{{_t('upgrade')}}" 
                             ng-if="skins.online.all[skins.local.find.name] && skins.online.all[skins.local.find.name].status === 'notequal'" 
-                            ng-click="handleModal('skinLocalModal', $event);upgradeSkin(skins.online.all[skins.local.find.name])">
+                            ng-click="handleModal('skinLocalModal', $event);updateSkin(skins.online.all[skins.local.find.name])">
                         <i class="fa fa-level-up"></i> <span class="btn-name">{{_t('upgrade')}}</span>
                    </button>
                 </div>
