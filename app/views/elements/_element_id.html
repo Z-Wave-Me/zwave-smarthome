@@ -1,0 +1,235 @@
+<!-- Element view -->
+<div ng-controller="ElementIdController" class="mobile-padding">
+    <bb-loader></bb-loader>
+    <div ng-if="elementId.show">
+        <h2><span ng-bind="_t('lb_cfg_view')"></span>: <span ng-bind="elementId.input.metrics.title"></span></h2>
+        <form name="form_element" id="form_element" class="form form-page" autocomplete="off" ng-submit="store(elementId.input)" novalidate>
+            <fieldset ng-if="elementAccess(cfg.role_access.admin)">
+                 <p class="form-control-static">
+                            <span ng-bind="_t('element_id')"></span>: <strong ng-bind="elementId.input.id"></strong>
+                        </p>
+                <div class="form-group_">
+                    <label>{{_t('lb_element_name')}}:</label>
+                    <input name="title" id="title" type="text" 
+                           class="form-control" value="{{elementId.input.metrics.title}}" placeholder="{{_t('lb_element_name')}}" 
+                           ng-model="elementId.input.metrics.title" />
+                </div>
+            </fieldset>
+            <fieldset>
+                <h3><span ng-bind="_t('lb_configuration')"></span></h3>
+                 <!-- App type -->
+                   <div ng-if="elementAccess(cfg.role_access.admin)">
+                        <!-- instance -->
+                        <div class="form-group" ng-if="elementId.appType.instance">
+                            <span ng-bind="_t('lb_gen_by_module')"></span> 
+                            <a class="btn btn-default" ng-href="#module/put/{{elementId.appType.instance.id}}">
+                                <strong>{{elementId.appType.instance.title}}</strong>  <!--{{elementId.appType.instance.module}} -->
+                            </a>
+                        </div>
+                        <!-- zwave -->
+                        <div class="form-group" ng-if="elementId.appType.zwave">
+                            {{_t('lb_gen_by')}} <a href="#zwave/devices/{{elementId.appType.zwave}}" class="btn btn-default">{{_t('lb_zwave_device')}} #{{elementId.appType.zwave}}</a>
+                        </div>
+                        <!-- enocean -->
+                        <div class="form-group" ng-if="elementId.appType.enocean">
+                            {{_t('lb_gen_by')}} <a href="#enocean/manage/{{elementId.appType.enocean}}" class="btn btn-default">{{_t('enocean_device')}} #{{elementId.appType.enocean}}</a>
+                        </div>
+                         <!-- Hide element -->
+                        <div class="form-group">
+                            <input type="checkbox" name="dashboard" id="dashboard" 
+                                    ng-init = "visibility.checked = !elementId.input.visibility"
+                                   ng-model="visibility.checked"
+                                  ng-change="elementId.input.visibility = !visibility.checked"
+                                   ng-checked="!elementId.input.visibility" /> <label>{{_t('hide_element')}}</label>
+                             <bb-help-text trans="_t('hide_element_info')"></bb-help-text>
+                        </div>
+                        
+                   </div> 
+                  <!-- Deactivate element -->
+                        <div class="form-group" ng-if="elementAccess(cfg.role_access.admin) && elementId.appType.zwave">
+                            <input type="checkbox" name="permanently_hidden" id="permanently_hidden" value="" 
+                                   ng-model="elementId.input.permanently_hidden" 
+                                   ng-checked="elementId.input.permanently_hidden" /> <label>{{_t('lb_deactivate')}}</label>
+                             <bb-help-text trans="_t('deactivate_element_info')"></bb-help-text>
+                        </div>
+                 
+                    <!-- dashboard etc -->
+                    <div class="form-group">
+                        <div>
+                            <input type="checkbox" name="dashboard" value="{{elementId.input.onDashboard}}" id="dashboard" 
+                                   ng-model="elementId.input.onDashboard" ng-checked="elementId.input.onDashboard" /> <label>{{_t('lb_add_dashboard')}}</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="hide_events" value="{{elementId.input.id}}" id="hide_events" 
+                                   ng-model="elementId.input.hide_events" 
+                                   ng-checked="user.hide_single_device_events.indexOf(elementId.input.id) === -1 ? false : true" /> 
+                            <label>{{_t('lb_hide_events_device')}}</label>
+                        </div>
+                    </div>
+                     <!-- Rooms -->
+                    <div class="form-group form-inline" ng-if="elementAccess(cfg.role_access.admin)">
+                         <h3>{{_t('lb_assign_room')}}</h3>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default" 
+                                    ng-click="expandNavi('elidDropDown', $event)">
+                                {{elementId.locations[elementId.input.location].title|cutText:true:20}} <i class="fa fa-caret-down"></i>
+                            </button>
+                             <div class="app-dropdown app-dropdown-left" ng-if="naviExpanded.elidDropDown">
+                                 <ul>
+                                     <li class="clickable" 
+                                         ng-class="elementId.input.location == v.id ? 'active':''"
+                                         ng-click="elementId.input.location = v.id"
+                                         ng-repeat="v in elementId.locations">
+                                         <a>
+                                             <img class="navi-img" ng-src="{{v.img_src}}" alt="img" /> 
+                                             {{v.title|cutText:true:20}} <i class="fa fa-check menu-arrow" ng-if="elementId.input.location == v.id"></i>
+                                         </a>
+                                     </li>
+                                 </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Rooms
+                    <div class="form-group form-inline" ng-if="elementAccess(cfg.role_access.admin)">
+                        <label>{{_t('lb_assign_room')}} </label>
+                        <select class="form-control" ng-model="elementId.input.location">
+                            <option ng-repeat="v in elementId.locations" 
+                                     value="{{v.id}}" 
+                                    ng-selected="elementId.input.location == v.id">
+                                {{(v.id === 0 ? _t(v.title) : v.title)}}
+                            </option>
+                        </select>
+                    </div>-->
+            </fieldset>
+            <fieldset ng-if="elementAccess(cfg.role_access.admin)">
+                <h3><span ng-bind="_t('lb_tags')"></span></h3>
+                <div class="form-group form-inline">
+                    <div class="input-group">
+                        <input name="add_tag" id="add_tag" type="text" 
+                                         class="form-control"
+                                         placeholder="{{_t('lb_add_tag')}}" 
+                                         ng-model="searchText" bb-key-event="searchMe(searchText);" data-toggle="dropdown" />
+                       <span class="input-group-addon clickable" title="{{_t('lb_add_tag')}}" ng-click="addTag(searchText)">
+                           <i class="fa fa-plus text-success"></i>
+                       </span> 
+                       <div class="app-dropdown app-dropdown-left" ng-if="autoCompletePanel">
+                        <ul>
+                           <li href="" ng-click="addTag(v)" 
+                               ng-repeat="v in suggestions | orderBy:'toString()'" 
+                               ng-if="elementId.input.tags.indexOf(v) === -1"><a href=""> <i class="fa fa-plus text-success"></i> {{v}}</a></li>
+                        </ul>
+                        </div>
+                    </div>
+                 </div>
+                <div class="form-group last">
+                    <a href="" class="btn btn-default btn-tag" id="tag_{{$index}}"
+                            ng-repeat="t in elementId.input.tags | orderBy:'toString()'"
+                           ng-click="removeTag($index)">{{t}} <i class="fa fa-times text-danger" title="{{_t('lb_remove')}}"></i></a>
+                </div>
+            </fieldset>
+            <!-- Submit -->
+            <fieldset class="submit-entry">
+                 <button type="button" title="{{_t('lb_cancel')}}" class="btn btn-default" bb-go-back><i class="fa fa-reply"></i> <span class="btn-name" ng-bind="_t('lb_cancel')"></span></button>
+                 <button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit"><i class="fa fa-check"></i> <span class="btn-name" ng-bind="_t('lb_save')"></span></button>
+            </fieldset>
+        </form>
+        
+        <div ng-controller="ElementIconController">
+       
+       <div class="form form-inline form-page" ng-if="!_.isEmpty(icons.all)">
+            <bb-loader></bb-loader>
+            <div class="fieldset">
+                <h2>{{_t('custom_icons')}}</h2>
+                
+            </div>
+              <!--<pre>{{icons|json}}</pre>-->
+            <div class="fieldset">
+                 <div class="app-row app-row-report app-row-icons clearfix">
+                     <div class="report-entry">
+                       <div class="report-col report-media">
+                          Default
+                             
+                       </div>
+                         <div class="report-col report-body">
+                            &nbsp;
+                       </div>
+                       <div class="report-col report-media">
+                            Custom
+                       </div>
+                         <div class="report-col report-ctrl">
+                             &nbsp;
+                         </div>
+                   </div>
+                     <div class="report-entry clickable"
+                          ng-class="k=== icons.selected ? 'bcg-success' : ''"
+                          ng-repeat="(k,v) in icons.all.default" 
+                          ng-click="setSelectedIcon(k)">
+                       <!-- Default icon -->
+                       <div class="report-col report-media">
+                           <img class="report-img" ng-src="{{cfg.img.icons + v}}" alt="{{v}}"/>
+                       </div>
+                        <!-- Arrow -->
+                         <div class="report-col report-body">
+                            <i class="fa fa-long-arrow-right" ng-if="icons.all.custom[k]"></i>
+                       </div>
+                       <!-- Custom icon -->
+                       <div class="report-col report-media">
+                            <img class="report-img" ng-src="{{cfg.img.custom_icons + icons.all.custom[k]}}" ng-if="icons.all.custom[k]" alt="{{v.type}}"/>
+                           <img class="report-img img-opacity-50" ng-src="{{cfg.img.icons }}cancel.png" ng-if="!icons.all.custom[k]"  alt="img"/>
+                       </div>
+                       <!-- Actions -->
+                         <div class="report-col report-ctrl">
+                              <!-- Update a default icon -->
+                              <button title="{{_t('lb_update')}}" class="btn btn-default"
+                                      ng-disabled ="icons.selected === k" 
+                                      ng-click="setSelectedIcon(k)">
+                                <i class="fa fa-pencil text-primary"></i>
+                            </button>
+                               <!-- Remove a custom icon -->
+                              <button title="{{_t('lb_remove')}}" class="btn btn-default"
+                                      ng-if="icons.selected && icons.all.custom[k]" 
+                                      ng-disabled="!icons.all.custom[k]" 
+                                      ng-click="removeCustomIcon(k)">
+                                <i class="fa fa-ban text-danger"></i>
+                            </button>
+                             
+                         </div>
+                   </div>
+                 </div>
+            </div>
+              <!-- The list of icons -->
+            <div ng-if="icons.selected">
+                <!-- The list of uploaded icons -->
+                <div class="fieldset_ element-icon-list">
+                    <img class="element-icon-img clickable" ng-click="setCustomIcon(v.file)" ng-src="{{cfg.img.custom_icons + v.file}}" ng-repeat="v in icons.uploaded" /> 
+                </div>
+                <!-- Upload a custom icon -->
+                <div class="fieldset">
+                    <input class="inputfile" type="file" name="file" id="file{{v.id}}" 
+                                   onchange="angular.element(this).scope().checkUploadedFile(this.files)" />
+                                <label for="file{{v.id}}" class="btn btn-success" title="{{_t('lb_upload_image')}}">
+                                    <i class="fa fa-upload"></i> {{_t('upload_icon')}}
+                                </label>
+                            <div ng-if="icons.uploadedFileName">{{icons.uploadedFileName|cutText:true:30}}</div>
+                     <bb-help-text trans="_t('upload_file_info',{'__size__':icons.info.maxSize,'__extensions__': icons.info.extensions})"></bb-help-text>
+                     <bb-help-text trans="_t('image_recommended_dimension',{'__dimension__':cfg.upload.icon.dimension})"></bb-help-text>
+                </div>
+            <!-- Submit -->
+            <fieldset class="submit-entry">
+                 <!-- Cancel -->
+                 <button type="button" title="{{_t('lb_cancel')}}" class="btn btn-default" ng-click="cancelUpdate()">
+                    <i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span>
+                </button>
+                  <!-- Save -->
+                 <button type="button" title="{{_t('lb_save')}}" class="btn btn-submit" ng-click="updateWithCustomIcon()">
+                     <i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_save')}}</span>
+                 </button>
+            </fieldset>
+                
+            </div>
+       
+        </div>
+        </div>
+    </div>
+
+</div> <!-- /ng-controller --> 
