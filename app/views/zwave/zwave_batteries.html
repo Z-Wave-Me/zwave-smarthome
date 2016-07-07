@@ -1,22 +1,49 @@
 <!-- Zwave battery view -->
 <div ng-controller="ZwaveManageController">
-     <bb-loader></bb-loader>
+    <bb-loader></bb-loader>
     <!-- Zwave navigation -->
     <div ng-include="'app/views/zwave/navi.html'"></div>
-     <div class="app-row app-row-report app-row-battery clearfix"  ng-if="devices.show">
-         <div id="row_battery_{{v.id}}" class="report-entry" ng-repeat="v in devices.batteries| orderBy:'level':false">
-             <div class="report-col report-media">
-                     <img class="report-img" ng-src="{{v.metrics.level|getBatteryIcon}}" alt="img" />
-                 </div>
-             <div class="report-col report-body">
-                 (#{{v.nodeId}}) {{v.nodeName}}
+    <div class="app-row app-row-report app-row-zwave clearfix">
+        <div id="row_battery_{{v.id}}" class="report-entry" ng-repeat="v in devices.zw| orderBy:'title':false" ng-if="v.hasBattery">
+            <div class="report-col report-media">
+                <img class="report-img" ng-src="{{v.batteryCharge|getBatteryIcon}}" alt="img" />
             </div>
-         <div class="report-col report-ctrl">
-            <span class="text-success" ng-show="v.metrics.level >= 80">{{v.metrics.level}} %</span>
-                        <span class="text-default" ng-show="v.metrics.level < 80 && v.metrics.level > 20">{{v.metrics.level}} %</span>
-                        <span class="text-danger" ng-show="v.metrics.level <= 20"><i class="fa fa-exclamation-triangle"></i> {{v.metrics.level}} %</span>
-         </div>
+            <div class="report-col report-body report-col-w30">
+                <span class="network-zwave-title noelements" ng-if="_.size(v.elements) < 1">{{v.title}} (#{{v.id}}) </span>
+                 <div class="btn-group"  ng-if="_.size(v.elements) > 0">
+                   <a href="" class="network-zwave-title" ng-click="expandNavi('accZwaveManage_' + v.id, $event)">
+                        <i class="fa" ng-class="naviExpanded['accZwaveManage_' + v.id] ? 'fa-chevron-up' : 'fa-chevron-down'"></i> {{v.title}} (#{{v.id}})
+                    </a>
+                    <div class="app-dropdown app-dropdown-left" ng-if="naviExpanded['accZwaveManage_' + v.id]">
+                        <ul>
+                            <li class="clickable zwave-hidden-{{e.permanently_hidden}}" 
+                                ng-repeat="e in v.elements| orderBy:'metrics.title':false">
+                                <a ng-href="#/element/{{e.id}}" title="{{e.metrics.title}}">
+                                    <img class="report-img-s" ng-src="{{e.metrics.icon|getElementIcon:e:e.level}}" alt="img" /> {{e.metrics.title|cutText:true:20}} <span class="zwave-raquo">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="report-col report-battery-info">
+                <div  ng-if="v.date"><i class="fa fa-clock-o"></i> {{v.date}}</div>
+                <div ng-if="v.awake">
+                    <i class="fa {{v.awake|getAwakeIcon}}"></i>
+                    <span ng-if="v.sleeping" ng-bind-html="v.sleeping | toTrusted"></span>  
+                </div>
+
+
+
+            </div>
+            <div class="report-col report-ctrl">
+
+                <span class="text-success" ng-show="v.batteryCharge >= 80">{{v.batteryCharge}} %</span>
+                <span class="text-default" ng-show="v.batteryCharge < 80 && v.batteryCharge > 20">{{v.batteryCharge}} %</span>
+                <span class="text-danger" ng-show="v.batteryCharge <= 20"><i class="fa fa-exclamation-triangle"></i> {{v.batteryCharge}} %</span>
+            </div>
         </div>
-      </div>
+    </div>
+
     <div class="device-logo" ng-include="'app/views/zwave/zwave_nav.html'"></div>
 </div> <!-- /ng-controller --> 

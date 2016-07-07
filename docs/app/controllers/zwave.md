@@ -43,14 +43,9 @@ Load z-wave devices
 ## ZwaveManageController
 The controller that renders and handles data in the Z-Wave/Manage section.
 
-### ZwaveManageController.setTab() 
+### ZwaveManageController.allSettled() 
 
-Set tab
-
-
-### ZwaveManageController.loadData() 
-
-Load data
+Load all promises
 
 
 ### ZwaveManageController.runZwaveCmd() 
@@ -58,14 +53,29 @@ Load data
 Run zwave CMD
 
 
-### ZwaveManageController.zwaveApiData() 
+### ZwaveManageController.setZwaveApiData(elements) 
 
-Get zwaveApiData
+Set zwave devices
 
+**Parameters**
+
+**elements**: `array`
+
+**Returns**: `undefined`
+
+### ZwaveManageController.setElements(elements) 
+
+Set elements created by zWave device
+
+**Parameters**
+
+**elements**: `array`
+
+**Returns**: `undefined`
 
 ### ZwaveManageController.isInterviewDone() 
 
-notInterviewDevices
+Has a device an interview done?
 
 
 

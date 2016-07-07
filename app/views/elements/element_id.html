@@ -135,15 +135,14 @@
                         <input name="add_tag" id="add_tag" type="text" 
                                          class="form-control"
                                          placeholder="{{_t('lb_add_tag')}}" 
-                                         ng-model="searchText" bb-key-event="searchMe(searchText);" data-toggle="dropdown" />
-                       <span class="input-group-addon clickable" title="{{_t('lb_add_tag')}}" ng-click="addTag(searchText)">
+                                         ng-model="search.text" bb-key-event="searchMe()" data-toggle="dropdown" />
+                       <span class="input-group-addon clickable" title="{{_t('lb_add_tag')}}" ng-click="addTag()">
                            <i class="fa fa-plus text-success"></i>
                        </span> 
-                       <div class="app-dropdown app-dropdown-left" ng-if="autoCompletePanel">
+                       <div class="app-dropdown app-dropdown-left" ng-if="suggestions.length">
                         <ul>
                            <li href="" ng-click="addTag(v)" 
-                               ng-repeat="v in suggestions | orderBy:'toString()'" 
-                               ng-if="elementId.input.tags.indexOf(v) === -1"><a href=""> <i class="fa fa-plus text-success"></i> {{v}}</a></li>
+                               ng-repeat="v in suggestions | orderBy:'toString()'"><a href=""> <i class="fa fa-plus text-success"></i> {{v}}</a></li>
                         </ul>
                         </div>
                     </div>
@@ -162,4 +161,4 @@
         </form>
     </div>
 
-</div> <!-- /ng-controller --> 
+</div> <!-- /ng-controller -->

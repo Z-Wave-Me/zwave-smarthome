@@ -32,7 +32,7 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
 
     };
     $scope.handleLicense = {
-        show: true,
+        show: false,
         disabled: false,
         replug: false
     };
@@ -115,12 +115,6 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
      * @returns {undefined}
      */
     function handleLicense(controllerInfo) {
-        //controllerInfo.uuid = null;
-        //controllerInfo.scratchId = null;
-        //controllerInfo.capsLimited = true;
-        //console.log('Hide license: ', cfg.app_type)
-        //console.log('isMobile: ', $scope.isMobile)
-        //console.log('controllerInfo: ', controllerInfo)
         // Hide license if 
         // forbidden, mobile device, not uuid
         if ((cfg.license_forbidden.indexOf(cfg.app_type) > -1) || $scope.isMobile || !controllerInfo.uuid) {
@@ -149,10 +143,8 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
             //console.log('Disable input and show unplug message')
             $scope.handleLicense.disabled = true;
             $scope.handleLicense.replug = true;
-            return;
         }
-        //$scope.handleLicense.show = true;
-        //console.log('handleLicense: ', $scope.handleLicense)
+        $scope.handleLicense.show = true;
     }
 
 });

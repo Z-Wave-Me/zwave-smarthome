@@ -12,28 +12,17 @@
                      <!--<myknob knob-data="v.level" knob-options="knobopt"></myknob> -->
                             <input 
                                 type="text" 
-                                value="{{widgetSwitchMultilevel.find.metrics.level|getMaxLevel:widgetSwitchMultilevel.find.probeType}}" 
+                                value="{{widgetSwitchMultilevel.find.metrics.level|getMaxLevel:widgetSwitchMultilevel.find.minMax.max}}" 
                                 class="dial widget-level-knob" 
                                 data-width="160" 
                                 data-height="160" 
-                                data-min="0"
-                                data-max="255" 
+                                knob-step="widgetSwitchMultilevel.find.minMax.step" 
+                                knob-min="widgetSwitchMultilevel.find.minMax.min" 
+                                knob-max="widgetSwitchMultilevel.find.minMax.max" 
                                 knob-id="widgetSwitchMultilevel.find.id" 
                                 knob-data="widgetSwitchMultilevel.find.metrics.level" 
                                 knob-options="knobopt" 
-                                ng-model="widgetSwitchMultilevel.find.metrics.level" myknob ng-if="cfg.knob_255.indexOf(widgetSwitchMultilevel.find.probeType) > -1" /> 
-                            <input 
-                                type="text" 
-                                value="{{widgetSwitchMultilevel.find.metrics.level|getMaxLevel:widgetSwitchMultilevel.find.probeType}}" 
-                                class="dial widget-level-knob" 
-                                data-width="160" 
-                                data-height="160" 
-                                data-min="0"
-                                data-max="99" 
-                                knob-id="widgetSwitchMultilevel.find.id" 
-                                knob-data="widgetSwitchMultilevel.find.metrics.level" 
-                                knob-options="knobopt" 
-                                ng-model="widgetSwitchMultilevel.find.metrics.level" myknob ng-if="cfg.knob_255.indexOf(widgetSwitchMultilevel.find.probeType) === -1" />
+                                ng-model="widgetSwitchMultilevel.find.metrics.level" myknob /> 
                 </div>
                 <div class="knob-col knob-btn">
                     <p>
