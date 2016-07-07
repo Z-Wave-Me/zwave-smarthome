@@ -34,7 +34,7 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $timeout,
     $scope.allSettled = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
-            dataFactory.getApi('skins'),
+            dataFactory.getApi('skins',null,true),
             dataFactory.getRemoteData($scope.cfg.online_skin_url)
         ];
 
@@ -123,7 +123,7 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $timeout,
  * @class SkinLocalController
  *
  */
-myAppController.controller('SkinLocalController', function ($scope, $window, $route, $timeout, $cookies, dataFactory, dataService) {
+myAppController.controller('SkinLocalController', function ($scope, $window, $route, $timeout, dataFactory, dataService) {
     /**
      * Activate skin
      * @param {object} skin
@@ -132,6 +132,14 @@ myAppController.controller('SkinLocalController', function ($scope, $window, $ro
     $scope.activateSkin = function (skin) {
         $scope.user.skin = skin.name;
         dataFactory.putApi('profiles', $scope.user.id, $scope.user).then(function (response) {
+            var data = response.data.data;
+            if (!data) {
+                alertify.alertError($scope._t('error_update_data'));
+                $scope.loading = false;
+                return;
+            }
+           
+            dataService.setUser(data);
             dataService.showNotifier({message: $scope._t('skin_activate_successful')});
             $timeout(function () {
                 $scope.loading = {status: 'loading-spin', icon: '--', message: $scope._t('reloading_page')};
@@ -183,10 +191,11 @@ myAppController.controller('SkinOnlineController', function ($scope, $timeout, d
     $scope.downloadSkin = function (skin) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
         dataFactory.postApi('skins', skin).then(function (response) {
-            $timeout(function () {
-                $scope.loading = false;
+             $scope.loading = false;
                 dataService.showNotifier({message: $scope._t('skin_installation_successful')});
-            }, 2000);
+                if($scope.skins.online.all[skin.name]){
+                   $scope.skins.online.all[skin.name].status = 'equal'; 
+                }
         }, function (error) {
             $scope.loading = false;
             var langkey = (error.data.error ? error.data.error : 'error_file_download');

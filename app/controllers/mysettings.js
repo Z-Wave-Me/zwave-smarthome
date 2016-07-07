@@ -107,18 +107,18 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
         }
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         dataFactory.putApi('profiles', input.id, input).then(function(response) {
-            /*var data = response.data.data;
+            var data = response.data.data;
             if (!data) {
                 alertify.alertError($scope._t('error_update_data'));
                 $scope.loading = false;
                 return;
-            }*/
+            }
 
             $scope.loading = false;
             $cookies.lang = input.lang;
              //$scope.user.skin = input.skin;
-            //myCache.remove('profiles');
-            //dataService.setUser(data);
+            myCache.remove('profiles');
+            dataService.setUser(data);
              dataService.showNotifier({message: $scope._t('success_updated')});
              $timeout(function () {
                  $scope.loading = {status: 'loading-spin', icon: '--', message: $scope._t('reloading_page')};
