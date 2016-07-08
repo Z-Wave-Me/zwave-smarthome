@@ -20,6 +20,8 @@ var config_data = {
         'interval': 3000,
         // Route - will be extended
         'route': {
+            // Current location
+            location: {},
             // Time zone
             time:{
                 string: false,
@@ -89,7 +91,8 @@ var config_data = {
             'postfix': 'ZWaveAPI/Postfix',
             'timezone': 'ZAutomation/api/v1/system/time/get',
             'system_info': 'ZAutomation/api/v1/system/info',
-            'system_reboot': 'ZAutomation/api/v1/system/reboot'
+            'system_reboot': 'ZAutomation/api/v1/system/reboot',
+            'skins': 'ZAutomation/api/v1/skins'
         },
         // List of remote api URLs
         'api_remote': {
@@ -109,12 +112,13 @@ var config_data = {
         // Skin
         'skin': {
             'active': 'default',
-            'path': 'storage/skins/'
+            'path': 'user/skins/'
         },
         // List of image pathes
         'img': {
             'logo': 'storage/img/logo/',
             'icons': 'storage/img/icons/',
+            'custom_icons': 'user/icons/',
             'skin_screenshot': 'app/css/'
         },
         // Upload settings
@@ -126,9 +130,15 @@ var config_data = {
                 dimension:'200 x 200'//px
             },
             'icon': {
-                size: 30000,//Bytes
+                size: 30720,//Bytes
                 type:['image/png','image/jpeg','image/gif'],
                 extension:['png','jpg','jpeg','gif'],
+                dimension:'64 x 64'//px
+            },
+            'icon_packed': {
+                size: 2097152,//Bytes
+                type:['application/x-zip-compressed','application/x-gzip'],
+                extension:['zip','gz'],
                 dimension:'64 x 64'//px
             }
         },
@@ -163,9 +173,14 @@ var config_data = {
         // Online module rating create url
         'online_module_rating_create_url': 'https://developer.z-wave.me/?uri=api-rating-create',
         // Online skins url
-        'online_skin_url': 'http://hrix.net/modules_new/?uri=skins',
-        // Online skins storage
-        'online_skin_storage': 'http://hrix.net/modules_new/storage/skins/',
+        'online_skin_url': 'http://hrix.net/developer-console/?uri=api-skins',
+        //'online_skin_url': 'http://dev.dev/developer-console/?uri=api-skins',
+        // Online icons url
+        'online_icon_url': 'http://hrix.net/developer-console/?uri=api-icons',
+        //'online_icon_url': 'http://dev.dev/developer-console/?uri=api-icons',
+        // Online icon preview url
+        'online_icon_preview_url': 'http://hrix.net/developer-console/?uri=api-iconpreview',
+        //'online_icon_preview_url': 'http://dev.dev/developer-console/?uri=api-iconpreview',
         // Online module download url
         'blacklist_url': 'https://hrix.net/blacklist.json',
         // Post report url
@@ -207,6 +222,8 @@ var config_data = {
             apps: [1],
             apps_local: [1],
             apps_online: [1],
+            skins_local: [1,2,3],
+            skins_online: [1],
             module: [1],
             devices: [1],
             myaccess: [1, 2, 3],

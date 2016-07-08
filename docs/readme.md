@@ -6,6 +6,7 @@ name | overview
 :-- | :--
 [app\app.js](app/app.md) | _This is used to handle angular modules, routes and other settings._
 [app\config.js](app/config.md) | _The main configuration file._
+[app\icons.js](app/icons.md) | _The object with default icons._
 [app\templates.js](app/templates.md) | _This is used to store the compiled and compressed views._
 - - -
 
@@ -23,6 +24,7 @@ name | overview
 [app\controllers\element.js](app/controllers/element.md) | _Controllers that handle the list of elements, as well as an element detail._
 [app\controllers\enocean.js](app/controllers/enocean.md) | _Controllers that handle EnOcean Services._
 [app\controllers\event.js](app/controllers/event.md) | _Handles all events._
+[app\controllers\icon.js](app/controllers/icon.md) | _Controllers that handle all custom icon actions – displays and uploads._
 [app\controllers\jamesbox.js](app/controllers/jamesbox.md) | _Controllers that handle the JamesBox actions._
 [app\controllers\management.js](app/controllers/management.md) | _Controllers that handle management actions._
 [app\controllers\mysettings.js](app/controllers/mysettings.md) | _Handles user actions._

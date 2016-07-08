@@ -244,5 +244,93 @@ Find text
 
 
 
+## ElementIconController
+The controller that handles custom icon actions in the elemt detail view.
+
+### ElementIconController.loadCfgIcons() 
+
+Load icons from config
+
+**Returns**: `undefined`
+
+### ElementIconController.loadUploadedIcons() 
+
+Load already uploaded icons
+
+**Returns**: `undefined`
+
+### ElementIconController.setSelectedIcon(icon) 
+
+Set selected icon
+
+**Parameters**
+
+**icon**: `string`
+
+**Returns**: `undefined`
+
+### ElementIconController.setCustomIcon(icon) 
+
+Set a custom icon with an icon from the list
+
+**Parameters**
+
+**icon**: `string`
+
+**Returns**: `undefined`
+
+### ElementIconController.removeCustomIcon(icon) 
+
+Remove a custom icon
+
+**Parameters**
+
+**icon**: `string`
+
+**Returns**: `undefined`
+
+### ElementIconController.updateWithCustomIcon() 
+
+Update custom icons with selected icons from the list
+
+**Returns**: `undefined`
+
+### ElementIconController.cancelUpdate() 
+
+Cancel all updates and hide a list with uploaded icons
+
+**Returns**: `undefined`
+
+### ElementIconController.checkUploadedFile(files) 
+
+Check and validate an uploaded file
+
+**Parameters**
+
+**files**: `object`
+
+**Returns**: `undefined`
+
+### ElementIconController.uploadFile(files) 
+
+Upload a file
+
+**Parameters**
+
+**files**: `object`
+
+**Returns**: `undefined`
+
+### ElementIconController.updateUploaded() 
+
+???
+
+
+### ElementIconController.removeDeviceFromUploaded() 
+
+???
+
+
+
 
 * * *
