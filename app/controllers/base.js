@@ -30,16 +30,16 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
      * Set app skin
      * @returns {undefined}
      */
-    $scope.setSkin = function () {
-     if($scope.user && $scope.user.skin !== 'default'){
-        cfg.skin.active =  $scope.user.skin;
-        cfg.img.icons = cfg.skin.path + $scope.user.skin + '/img/icons/';
-        cfg.img.logo = cfg.skin.path + $scope.user.skin + '/img/logo/';
-     //$("link[id='main_css']").attr('href', 'storage/skins/defaultzip/main.css');
-        $("link[id='main_css']").attr('href', cfg.skin.path + $scope.user.skin + '/main.css');
-     }
-     };
-     $scope.setSkin();
+//    $scope.setSkin = function () {
+//     if($scope.user && $scope.user.skin !== 'default'){
+//        cfg.skin.active =  $scope.user.skin;
+//        cfg.img.icons = cfg.skin.path + $scope.user.skin + '/img/icons/';
+//        cfg.img.logo = cfg.skin.path + $scope.user.skin + '/img/logo/';
+//     //$("link[id='main_css']").attr('href', 'storage/skins/defaultzip/main.css');
+//        $("link[id='main_css']").attr('href', cfg.skin.path + $scope.user.skin + '/main.css');
+//     }
+//     };
+//     $scope.setSkin();
      
 
     /**
