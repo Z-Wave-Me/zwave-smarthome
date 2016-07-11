@@ -87,13 +87,17 @@
                     <div class="widget-content">
                         <!-- Widget title -->
                          <div class="widget-title">
-                            <h3><a href="#apps/local/{{v.id}}" ng-bind="v.defaults.title|cutText:true:20"></a>  <span class="btn-name">&raquo;</span></h3>
+                            <h3><a href="#apps/local/{{v.id}}" ng-bind="v.defaults.title|cutText:true:25"></a>  <span class="btn-name">&raquo;</span></h3>
                         </div>
                         <hr class="bottom-aligner" />
                         <!-- Widget footer -->
                          <div class="widget-footer">
-                            <div class="widget-ctrl ctrl-left">&nbsp;</div>
+                            <div class="widget-ctrl ctrl-left"> 
+                                <!-- Has instance -->
+                                       <span ng-if="v.hasInstance"><i class="fa fa-fire text-success"></i> ({{v.hasInstance}})</span>
+                            </div>
                             <div class="widget-ctrl ctrl-right clearfix">
+                               
                                  <div class="btn-group">
                                      <!-- Add -->
                                  <a ng-href="#module/post/{{v.id}}" class="btn btn-default" title="{{_t('lb_add_app')}}">

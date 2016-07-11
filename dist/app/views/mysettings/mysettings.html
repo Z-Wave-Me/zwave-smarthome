@@ -32,16 +32,29 @@
                        </span>
                         <!--<span ng-bind="input.lang"></span>-->
                     </div>
-                    <!-- colors  
-                    <div class="form-group">
-                        <label>{{_t('lb_profile_color')}}: </label>
-                         <span class="mobile-block">
-                        <span ng-repeat="v in cfg.profile_colors" >
-                            <input class="form-control-hidden" type="radio" name="color" value="{{v}}" ng-model="input.color" ng-checked="input.color == v" />
-                            <span class="form-control-img profile-color" style="background-color: {{v}}" ng-click="input.color = v" ng-class="v == input.color ? 'control-active':''">&nbsp;</span> 
-                        </span>
-                       </span>
-                    </div>-->
+                    <!-- skin  -->
+                    <div class="form-group form-inline" ng-if="skins.show">
+                        <label>{{_t('skin')}}: </label>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default" 
+                                    ng-click="expandNavi('mysettingsSkin', $event)">
+                                {{skins.all[input.skin].title|cutText:true:20}} <i class="fa fa-caret-down"></i>
+                            </button>
+                            <div class="app-dropdown app-dropdown-left" ng-if="naviExpanded.mysettingsSkin">
+                                <ul>
+                                    <li class="clickable" 
+                                        ng-click="input.skin = v.name"
+                                        ng-repeat="v in skins.all">
+                                        <a>
+                                            <img class="navi-img" ng-src="{{v.icon}}" alt="img" /> 
+                                            {{v.title|cutText:true:20}} <i class="fa fa-check menu-arrow" ng-if="input.skin === v.name"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                         
+                    </div>
                     <!-- interval -->
                     <div class="form-group form-inline">
                         <label>{{_t('lb_interval')}} ({{_t('miliseconds')}}): </label>

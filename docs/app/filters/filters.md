@@ -185,7 +185,7 @@ Build a device name
 
 
 
-### deviceName() 
+### stringToSlug() 
 
 Convert text to slug
 

@@ -1,4 +1,6 @@
 {
+    "active_apps": "Active Apps",
+    "singleton_with_instance": "You can have only one installation of __module_title__. If you want to reinstall or uninstall this app go to Active Apps.",
     "jamesbox_remove_confirm": "Entferne Bestätigung ...",
     "jamesbox_confirm": "Sende Bestätigung ...",
     "rebooting": "Wird neu gestartet ...",
