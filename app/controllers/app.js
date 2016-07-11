@@ -54,6 +54,9 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
         },
         instances: {
             all: {},
+            cnt: {
+                modules: 0
+            },
             orderBy: ($cookies.orderByAppsInstances ? $cookies.orderByAppsInstances : 'creationTimeDESC')
         }
     };
@@ -114,20 +117,21 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                     $scope.dataHolder.modules.categories = cat[$scope.lang] ? _.indexBy(cat[$scope.lang], 'id') : _.indexBy(cat[$scope.cfg.lang], 'id');
                 }
             }
+            // Success - instances
+            if (instances.state === 'fulfilled') {
+                setInstances(instances.value.data.data);
+            }
 
             // Success - modules
             if (modules.state === 'fulfilled') {
-                setModules(modules.value.data.data);
+                setModules(modules.value.data.data, $scope.dataHolder.instances.all);
             }
 
             // Success - online modules
             if (onlineModules.state === 'fulfilled') {
                 setOnlineModules(onlineModules.value.data.data)
             }
-            // Success - instances
-            if (instances.state === 'fulfilled') {
-                setInstances(instances.value.data.data);
-            }
+
 
         });
     };
@@ -161,7 +165,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
     /**
      * Set local modules
      */
-    function setModules(data) {
+    function setModules(data, instances) {
         // Reset featured cnt
         $scope.dataHolder.modules.cnt.featured = 0;
         var modules = _.chain(data)
@@ -202,6 +206,9 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                         } else {
                             angular.extend(item, {featured: false});
                         }
+                        // Has already instance ?
+                        angular.extend(item, {hasInstance: $scope.dataHolder.instances.cnt.modules[item.id]||0});
+                        
                         return items;
                     }
                 });
@@ -292,6 +299,9 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
      * Set instances
      */
     function setInstances(data) {
+        $scope.dataHolder.instances.cnt.modules = _.countBy(data, function (v) {
+                                    return v.moduleId;
+                                });
         $scope.dataHolder.instances.all = _.reject(data, function (v) {
             if ($scope.getHiddenApps().indexOf(v.moduleId) > -1) {
                 if ($scope.user.role !== 1) {
@@ -815,7 +825,7 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
                 $scope.showForm = true;
                 $scope.loading = false;
                 // Is singelton and has already instance?
-                if(module.data.data.singleton && _.findWhere(instances.data.data,{moduleId:id})){
+                if (module.data.data.singleton && _.findWhere(instances.data.data, {moduleId: id})) {
                     $scope.moduleId.singletonActive = true;
                     return;
                 }
