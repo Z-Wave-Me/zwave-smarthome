@@ -375,7 +375,8 @@ myAppController.controller('PasswordForgotController', function ($scope, $locati
                 $scope.loading = false;
             });
         }, function (error) {
-            alertify.alertError($scope._t('error_500'));
+            var langKey = (error.status === 404 ? 'email_notfound':'error_500');
+            alertify.alertError($scope._t(langKey));
             $scope.loading = false;
         });
 
