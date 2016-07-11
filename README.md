@@ -7,7 +7,7 @@ This User Interfaces allows to operate a Smart Home Network based on Z-Wave devi
 - Added status info in Device Battery Management #119.
 
 #### Fixes
-- ???.
+- Apps: Display warning message if installed app is the singelton and already has an instance.
 
 #### Changes
 - Refactored zwave device management.
