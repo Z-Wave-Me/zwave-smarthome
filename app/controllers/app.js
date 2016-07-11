@@ -210,7 +210,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                         angular.extend(item, {hasInstance: $scope.dataHolder.instances.cnt.modules[item.id]||0});
                          
                         //Tooltip description
-                        angular.extend(item, {toolTipDescription: $filter('stripTags')($filter('cutText')(item.defaults.description,true,255))});
+                        angular.extend(item, {toolTipDescription: $filter('stripTags')(item.defaults.description)});
                         
                         return items;
                     }
@@ -282,7 +282,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                         item.featured = false;
                     }
                      //Tooltip description
-                        angular.extend(item, {toolTipDescription: $filter('stripTags')($filter('cutText')(item.description,true,255))});
+                        angular.extend(item, {toolTipDescription: $filter('stripTags')(item.description)});
                     return item;
                 }).reject(function (v) {
             return v.isHidden === true;
