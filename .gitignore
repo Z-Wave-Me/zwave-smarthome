@@ -9,4 +9,5 @@ upload.php
 /app/css/vendor/bootstrap/*
 /app/css/vendor/fontawesome/*
 /node_modules/*
+/user/*
 npm-debug.log
