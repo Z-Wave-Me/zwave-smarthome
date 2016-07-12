@@ -78,7 +78,7 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $timeout,
      */
     $scope.updateSkin = function (skin) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
-        dataFactory.putApi('skins','/' + skin.name, skin).then(function (response) {
+        dataFactory.putApi('skins_update','/' + skin.name, skin).then(function (response) {
             $timeout(function () {
                 $scope.loading = false;
                 dataService.showNotifier({message: $scope._t('skin_update_successful')});
@@ -123,24 +123,17 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $timeout,
  * @class SkinLocalController
  *
  */
-myAppController.controller('SkinLocalController', function ($scope, $window, $route, $timeout, dataFactory, dataService) {
+myAppController.controller('SkinLocalController', function ($scope, $window, $cookies, $timeout, dataFactory, dataService) {
     /**
      * Activate skin
      * @param {object} skin
      * @returns {undefined}
      */
     $scope.activateSkin = function (skin) {
-        $scope.user.skin = skin.name;
-        dataFactory.putApi('profiles', $scope.user.id, $scope.user).then(function (response) {
-            var data = response.data.data;
-            if (!data) {
-                alertify.alertError($scope._t('error_update_data'));
-                $scope.loading = false;
-                return;
-            }
-           
-            dataService.setUser(data);
+        //$scope.user.skin = skin.name;
+        dataFactory.putApi('skins', skin.name, {active:true}).then(function (response) {
             dataService.showNotifier({message: $scope._t('skin_activate_successful')});
+            $cookies.skin = skin.name;
             $timeout(function () {
                 $scope.loading = {status: 'loading-spin', icon: '--', message: $scope._t('reloading_page')};
                 alertify.dismissAll();
@@ -190,7 +183,7 @@ myAppController.controller('SkinOnlineController', function ($scope, $timeout, d
      */
     $scope.downloadSkin = function (skin) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
-        dataFactory.postApi('skins', skin).then(function (response) {
+        dataFactory.postApi('skins_install', skin).then(function (response) {
              $scope.loading = false;
                 dataService.showNotifier({message: $scope._t('skin_installation_successful')});
                 if($scope.skins.online.all[skin.name]){

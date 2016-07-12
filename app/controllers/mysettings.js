@@ -119,6 +119,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
              //$scope.user.skin = input.skin;
             myCache.remove('profiles');
             dataService.setUser(data);
+            $scope.activateSkin(input.skin)
              dataService.showNotifier({message: $scope._t('success_updated')});
              $timeout(function () {
                  $scope.loading = {status: 'loading-spin', icon: '--', message: $scope._t('reloading_page')};
@@ -134,6 +135,18 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
              alertify.alertError(message);
             $scope.loading = false;
         });
+    };
+    
+     /**
+     * Activate skin
+     * @param {object} skin
+     * @returns {undefined}
+     */
+    $scope.activateSkin = function (skinName) {
+        //$scope.user.skin = skin.name;
+        dataFactory.putApi('skins', skinName, {active:true}).then(function (response) {
+            $cookies.skin = skinName;
+        }, function (error) {});
     };
     
 //     /**
