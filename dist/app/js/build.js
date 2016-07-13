@@ -15045,7 +15045,6 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
 
         } else {
             dataFactory.getApi('skins_active').then(function (response) {
-                console.log(response.data.data.name)
                 if (response.data.data.name !== 'default') {
                     cfg.skin.active = response.data.data.name;
                     cfg.img.icons = cfg.skin.path + response.data.data.name + '/img/icons/';
@@ -16544,6 +16543,22 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
 
     };
     $scope.loadUploadedIcons();
+    /**
+     * Load already uploaded icons
+     * @returns {undefined}
+     */
+    $scope._loadUploadedIcons = function () {
+        // Atempt to load data
+        dataFactory.getApiLocal('icons_1.json').then(function (response) {
+            console.log(response)
+            //$scope.icons.uploaded = response.data.data;
+        }, function (error) {
+            alertify.alertError($scope._t('error_load_data'));
+            $scope.loading = false;
+        });
+
+    };
+    $scope._loadUploadedIcons();
     /**
      * Set selected icon
      * @param {string} icon

@@ -6,7 +6,7 @@ module.exports = function (grunt) {
         // Clean dir
         clean: {
             options: {force: true},
-            build: ["dist/","docs/"]
+            build: ["dist/", "docs/"]
         },
         ngtemplates: {
             app: {
@@ -124,7 +124,7 @@ module.exports = function (grunt) {
                     },
                     //{expand:true,src: ['../zwave-api/storage/data/z_en.json'], dest: 'storage/data/',flatten: true},
                     {expand: true, src: ['app/config.js'], dest: 'dist/app/js/', flatten: true},
-                     {expand: true, src: ['app/css/screenshot.png'], dest: 'dist/app/css/', flatten: true},
+                    {expand: true, src: ['app/css/screenshot.png'], dest: 'dist/app/css/', flatten: true},
                     {src: ['storage/img/**'], dest: 'dist/'},
                     {src: ['storage/demo/**'], dest: 'dist/'},
                     {src: ['storage/data/**'], dest: 'dist/'}
@@ -246,6 +246,9 @@ module.exports = function (grunt) {
             }
         }
     });
+    grunt.registerTask('skinFolder', 'Creates an empty file', function () {
+        grunt.file.write('dist/user/skins/.keep', '');
+    });
 
     // Load the plugin that provides the "uglify" task.
     grunt.loadNpmTasks('grunt-contrib-clean');
@@ -263,6 +266,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-jsdox');
 
     // Default task(s).
-    grunt.registerTask('default', ['clean', 'ngtemplates', 'concat', 'copy', 'cssmin','jsdox']);
+    grunt.registerTask('default', ['clean', 'ngtemplates', 'concat', 'copy', 'cssmin', 'jsdox', 'skinFolder']);
 
 };
