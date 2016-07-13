@@ -249,6 +249,9 @@ module.exports = function (grunt) {
     grunt.registerTask('skinFolder', 'Creates an empty file', function () {
         grunt.file.write('dist/user/skins/.keep', '');
     });
+     grunt.registerTask('iconFolder', 'Creates an empty file', function () {
+        grunt.file.write('dist/user/icons/.keep', '');
+    });
 
     // Load the plugin that provides the "uglify" task.
     grunt.loadNpmTasks('grunt-contrib-clean');
@@ -266,6 +269,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-jsdox');
 
     // Default task(s).
-    grunt.registerTask('default', ['clean', 'ngtemplates', 'concat', 'copy', 'cssmin', 'jsdox', 'skinFolder']);
+    grunt.registerTask('default', ['clean', 'ngtemplates', 'concat', 'copy', 'cssmin', 'jsdox', 'skinFolder','iconFolder']);
 
 };
