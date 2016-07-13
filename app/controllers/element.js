@@ -992,6 +992,22 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
     };
     $scope.loadUploadedIcons();
     /**
+     * Load already uploaded icons
+     * @returns {undefined}
+     */
+    $scope._loadUploadedIcons = function () {
+        // Atempt to load data
+        dataFactory.getApiLocal('icons_1.json').then(function (response) {
+            console.log(response)
+            //$scope.icons.uploaded = response.data.data;
+        }, function (error) {
+            alertify.alertError($scope._t('error_load_data'));
+            $scope.loading = false;
+        });
+
+    };
+    $scope._loadUploadedIcons();
+    /**
      * Set selected icon
      * @param {string} icon
      * @returns {undefined}

@@ -40,7 +40,6 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
 
         } else {
             dataFactory.getApi('skins_active').then(function (response) {
-                console.log(response.data.data.name)
                 if (response.data.data.name !== 'default') {
                     cfg.skin.active = response.data.data.name;
                     cfg.img.icons = cfg.skin.path + response.data.data.name + '/img/icons/';
