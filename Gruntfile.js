@@ -124,6 +124,7 @@ module.exports = function (grunt) {
                     },
                     //{expand:true,src: ['../zwave-api/storage/data/z_en.json'], dest: 'storage/data/',flatten: true},
                     {expand: true, src: ['app/config.js'], dest: 'dist/app/js/', flatten: true},
+                     {expand: true, src: ['app/css/screenshot.png'], dest: 'dist/app/css/', flatten: true},
                     {src: ['storage/img/**'], dest: 'dist/'},
                     {src: ['storage/demo/**'], dest: 'dist/'},
                     {src: ['storage/data/**'], dest: 'dist/'}

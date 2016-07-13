@@ -92,7 +92,10 @@ var config_data = {
             'timezone': 'ZAutomation/api/v1/system/time/get',
             'system_info': 'ZAutomation/api/v1/system/info',
             'system_reboot': 'ZAutomation/api/v1/system/reboot',
-            'skins': 'ZAutomation/api/v1/skins'
+            'skins': 'ZAutomation/api/v1/skins',
+            'skins_install': 'ZAutomation/api/v1/skins/install',
+            'skins_update': 'ZAutomation/api/v1/skins/update',
+            'skins_active': 'ZAutomation/api/v1/skins/active'
         },
         // List of remote api URLs
         'api_remote': {

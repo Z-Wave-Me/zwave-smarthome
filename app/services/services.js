@@ -389,8 +389,8 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                 .flatten()
                 .filter(function (v) {
                     // Set icon path
-                    var screenshotPath = v.name !== 'default' ? cfg.skin.path + v.name : cfg.img.skin_screenshot;
-                    v.icon = (!v.icon ? 'storage/img/placeholder-img.png' : screenshotPath + '/screenshot.png');
+                    var screenshotPath = v.name !== 'default' ? cfg.skin.path + v.name + '/' : cfg.img.skin_screenshot;
+                    v.icon = (!v.icon ? 'storage/img/placeholder-img.png' : screenshotPath + 'screenshot.png');
                     return v;
                 });
     };

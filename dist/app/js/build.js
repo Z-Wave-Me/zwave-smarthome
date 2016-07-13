@@ -13202,8 +13202,8 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                 .flatten()
                 .filter(function (v) {
                     // Set icon path
-                    var screenshotPath = v.name !== 'default' ? cfg.skin.path + v.name : cfg.img.skin_screenshot;
-                    v.icon = (!v.icon ? 'storage/img/placeholder-img.png' : screenshotPath + '/screenshot.png');
+                    var screenshotPath = v.name !== 'default' ? cfg.skin.path + v.name + '/' : cfg.img.skin_screenshot;
+                    v.icon = (!v.icon ? 'storage/img/placeholder-img.png' : screenshotPath + 'screenshot.png');
                     return v;
                 });
     };
@@ -15017,8 +15017,8 @@ var myAppController = angular.module('myAppController', []);
  * The app base controller. 
  * @class BaseController
  */
-myAppController.controller('BaseController', function ($scope, $cookies, $filter, $location, $route, $window, $interval, cfg, cfgicons,dataFactory, dataService, myCache) {
-  
+myAppController.controller('BaseController', function ($scope, $cookies, $filter, $location, $route, $window, $interval, cfg, cfgicons, dataFactory, dataService, myCache) {
+
     // Global scopes
     $scope.$location = $location;
     angular.extend(cfg.route, {os: dataService.getOs()});
@@ -15036,16 +15036,36 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
      * @returns {undefined}
      */
     $scope.setSkin = function () {
-     if($scope.user && $scope.user.skin !== 'default'){
-        cfg.skin.active =  $scope.user.skin;
-        cfg.img.icons = cfg.skin.path + $scope.user.skin + '/img/icons/';
-        cfg.img.logo = cfg.skin.path + $scope.user.skin + '/img/logo/';
-     //$("link[id='main_css']").attr('href', 'storage/skins/defaultzip/main.css');
-        $("link[id='main_css']").attr('href', cfg.skin.path + $scope.user.skin + '/main.css');
-     }
-     };
-     $scope.setSkin();
-     
+        if ($cookies.skin && $cookies.skin !=='default') {
+            cfg.skin.active = $cookies.skin;
+            cfg.img.icons = cfg.skin.path + $cookies.skin + '/img/icons/';
+            cfg.img.logo = cfg.skin.path + $cookies.skin + '/img/logo/';
+            //$("link[id='main_css']").attr('href', 'storage/skins/defaultzip/main.css');
+            $("link[id='main_css']").attr('href', cfg.skin.path + $cookies.skin + '/main.css');
+
+        } else {
+            dataFactory.getApi('skins_active').then(function (response) {
+                console.log(response.data.data.name)
+                if (response.data.data.name !== 'default') {
+                    cfg.skin.active = response.data.data.name;
+                    cfg.img.icons = cfg.skin.path + response.data.data.name + '/img/icons/';
+                    cfg.img.logo = cfg.skin.path + response.data.data.name + '/img/logo/';
+                    //$("link[id='main_css']").attr('href', 'storage/skins/defaultzip/main.css');
+                    $("link[id='main_css']").attr('href', cfg.skin.path + response.data.data.name + '/main.css');
+                }
+            }, function (error) {});
+        }
+
+//     if($scope.user && $scope.user.skin !== 'default'){
+//        cfg.skin.active =  $scope.user.skin;
+//        cfg.img.icons = cfg.skin.path + $scope.user.skin + '/img/icons/';
+//        cfg.img.logo = cfg.skin.path + $scope.user.skin + '/img/logo/';
+//     //$("link[id='main_css']").attr('href', 'storage/skins/defaultzip/main.css');
+//        $("link[id='main_css']").attr('href', cfg.skin.path + $scope.user.skin + '/main.css');
+//     }
+    };
+    $scope.setSkin();
+
 
     /**
      * Check if route match the pattern.
@@ -15091,7 +15111,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
                         };
                         if ($scope.routeMatch('/boxupdate')) {
                             fatalArray.message = $scope._t('jamesbox_connection_refused');
-                            fatalArray.info = $scope._t('jamesbox_connection_refused_info',{__reload_begintag__:'<div>', __reload_endtag__:'</div>', __attention_begintag__:'<div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i>', __attention_endtag__:'<div>'});
+                            fatalArray.info = $scope._t('jamesbox_connection_refused_info', {__reload_begintag__: '<div>', __reload_endtag__: '</div>', __attention_begintag__: '<div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i>', __attention_endtag__: '<div>'});
                             fatalArray.icon = cfg.route.fatalError.icon_jamesbox;
                         }
                         angular.extend(cfg.route.fatalError, fatalArray);
@@ -15185,7 +15205,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     $scope.$watch('lang', function () {
         $scope.loadLang($scope.lang);
     });
-    
+
     // IF IE or Edge displays an message
     if (dataService.isIeEdge()) {
         angular.extend(cfg.route.fatalError, {
@@ -18130,7 +18150,7 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $timeout,
      */
     $scope.updateSkin = function (skin) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
-        dataFactory.putApi('skins','/' + skin.name, skin).then(function (response) {
+        dataFactory.putApi('skins_update','/' + skin.name, skin).then(function (response) {
             $timeout(function () {
                 $scope.loading = false;
                 dataService.showNotifier({message: $scope._t('skin_update_successful')});
@@ -18175,24 +18195,17 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $timeout,
  * @class SkinLocalController
  *
  */
-myAppController.controller('SkinLocalController', function ($scope, $window, $route, $timeout, dataFactory, dataService) {
+myAppController.controller('SkinLocalController', function ($scope, $window, $cookies, $timeout, dataFactory, dataService) {
     /**
      * Activate skin
      * @param {object} skin
      * @returns {undefined}
      */
     $scope.activateSkin = function (skin) {
-        $scope.user.skin = skin.name;
-        dataFactory.putApi('profiles', $scope.user.id, $scope.user).then(function (response) {
-            var data = response.data.data;
-            if (!data) {
-                alertify.alertError($scope._t('error_update_data'));
-                $scope.loading = false;
-                return;
-            }
-           
-            dataService.setUser(data);
+        //$scope.user.skin = skin.name;
+        dataFactory.putApi('skins', skin.name, {active:true}).then(function (response) {
             dataService.showNotifier({message: $scope._t('skin_activate_successful')});
+            $cookies.skin = skin.name;
             $timeout(function () {
                 $scope.loading = {status: 'loading-spin', icon: '--', message: $scope._t('reloading_page')};
                 alertify.dismissAll();
@@ -18242,7 +18255,7 @@ myAppController.controller('SkinOnlineController', function ($scope, $timeout, d
      */
     $scope.downloadSkin = function (skin) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
-        dataFactory.postApi('skins', skin).then(function (response) {
+        dataFactory.postApi('skins_install', skin).then(function (response) {
              $scope.loading = false;
                 dataService.showNotifier({message: $scope._t('skin_installation_successful')});
                 if($scope.skins.online.all[skin.name]){
@@ -22377,6 +22390,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
              //$scope.user.skin = input.skin;
             myCache.remove('profiles');
             dataService.setUser(data);
+            $scope.activateSkin(input.skin)
              dataService.showNotifier({message: $scope._t('success_updated')});
              $timeout(function () {
                  $scope.loading = {status: 'loading-spin', icon: '--', message: $scope._t('reloading_page')};
@@ -22392,6 +22406,18 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
              alertify.alertError(message);
             $scope.loading = false;
         });
+    };
+    
+     /**
+     * Activate skin
+     * @param {object} skin
+     * @returns {undefined}
+     */
+    $scope.activateSkin = function (skinName) {
+        //$scope.user.skin = skin.name;
+        dataFactory.putApi('skins', skinName, {active:true}).then(function (response) {
+            $cookies.skin = skinName;
+        }, function (error) {});
     };
     
 //     /**
