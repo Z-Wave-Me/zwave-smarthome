@@ -23,6 +23,9 @@
         font-weight: bold;
         border-bottom: solid 1px $dropdown-border-color;
     }
+    .app-dropdown-content{
+        padding: $spacing;
+    }
     ul{
         padding: 0;
         margin:0;

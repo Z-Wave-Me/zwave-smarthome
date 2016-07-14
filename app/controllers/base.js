@@ -315,6 +315,37 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
             $scope.$apply();
         }
     };
+    
+    
+    /**
+     * Expand/collapse navigation/dropdown without hidding after click
+     * @param {string} key
+     * @param {object} $event
+     * @param {boolean} status
+     * @returns {undefined}
+     */
+    $scope.naviExpandedNotHide = {};
+    $scope.expandNaviNotHide = function (key, $event, status) {
+        if ($scope.naviExpandedNotHide[key]) {
+            $scope.naviExpandedNotHide = {};
+            $event.stopPropagation();
+            return;
+        }
+        $scope.naviExpandedNotHide = {};
+        if (typeof status === 'boolean') {
+            $scope.naviExpandedNotHide[key] = status;
+        } else {
+            $scope.naviExpandedNotHide[key] = !$scope.naviExpandedNotHide[key];
+        }
+        $event.stopPropagation();
+    };
+    // Collapse element/menu when clicking outside
+    window.onclick = function () {
+        if ($scope.naviExpanded) {
+            angular.copy({}, $scope.naviExpanded);
+            $scope.$apply();
+        }
+    };
 
     $scope.modalArr = {};
     /**

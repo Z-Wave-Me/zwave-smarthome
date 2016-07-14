@@ -225,6 +225,9 @@ input[type=radio] {
         }
     }
 }
+.widget-zwave{
+     width: $widget-zwave-col-w;
+}
 
 .widget-success{
     /*    .widget-entry-in{

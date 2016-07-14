@@ -1,0 +1,25 @@
+/* Zwave management
+-------------------------------------------------- */
+.widget-zwave-wrap{
+    margin: $spacing-double $spacing;
+    padding: $spacing;
+    background-color: #e7e7e7;
+}
+.widget-zwave-ctrl{
+    .widget-entry-in{
+        padding: 0;
+        height: auto !important
+    }
+}
+.widget-zwave-footer{
+   
+    margin: 0 $spacing;
+    //.widget-zwave-footer-in{
+         //border: solid 1px red;
+        //padding: $spacing-double;
+        .widget-zwave-50{
+            float: left;
+            width: 50%;
+        }
+    //}
+}
