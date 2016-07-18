@@ -552,7 +552,8 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
             // Assign icon by metrics.icon
             var iconArray = setIcon(cfgicons.element.icon[iconKey], element.custom_icons);
             if (!iconArray) {
-                cfg.img.icons + icon;
+                // set default
+                return icon;
             }
             switch (iconKey) {
                 // door
