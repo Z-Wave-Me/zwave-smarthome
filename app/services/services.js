@@ -284,7 +284,6 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                             {hasHistory: (v.hasHistory === true ? true : false)},
                             {imgTrans: false},
                             {isNew: isNew},
-                    //{iconPath: $filter('getElementIcon')(v.metrics.icon, v, v.metrics.level)},
                             {iconPath: assignElementIcon(v)},
                             {updateCmd: (v.deviceType === 'switchControl' ? 'on' : 'update')}
                     );
@@ -552,7 +551,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
             // Assign icon by metrics.icon
             var iconArray = setIcon(cfgicons.element.icon[iconKey], element.custom_icons);
             if (!iconArray) {
-                cfg.img.icons + icon;
+                return icon;
             }
             switch (iconKey) {
                 // door
@@ -579,6 +578,22 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                     break;
                     // motion
                 case 'motion':
+                    icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+                    break;
+                 // alarm
+                case 'alarm':
+                    icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+                    break;
+                 // CO alarm
+                case 'CO_alarm':
+                    icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+                    break;
+                 // tamper
+                case 'tamper':
+                    icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+                    break;
+                 // smoke
+                case 'smoke':
                     icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
                     break;
                     // blinds

@@ -132,19 +132,21 @@ myAppController.controller('EnoceanAssignController', function($scope, $interval
         dataFactory.getApi('devices').then(function(response) {
             $scope.apiDevices = [];
             var findZenoStr = "ZEnoVDev_zeno_x";
-            angular.forEach(response.data.data.devices, function(v, k) {
+             var elements = dataService.getDevicesData(response.data.data.devices,false);
+            angular.forEach(elements.value(), function(v, k) {
                 if (v.id.indexOf(findZenoStr) === -1) {
                     return;
                 }
                 var cmd = v.id.split(findZenoStr)[1].split('_');
                 var zenoId = cmd[0];
                 if (zenoId == $scope.lastIncludedDevice.id) {
-                    var obj = {};
-                    obj['id'] = v.id;
+                    var obj = v;
                     obj['title'] = v.metrics.title;
+                    /*obj['id'] = v.id;
+                    
                     obj['permanently_hidden'] = v.permanently_hidden;
                     obj['visibility'] = v.visibility;
-                    obj['metrics'] = v.metrics;
+                    obj['metrics'] = v.metrics;*/
                     $scope.apiDevices.push(obj);
                 }
 
@@ -404,7 +406,8 @@ myAppController.controller('EnoceanTeachinController', function($scope, $routePa
         dataFactory.getApi('devices').then(function(response) {
             $scope.apiDevices = [];
             var findZenoStr = "ZEnoVDev_zeno_x";
-            angular.forEach(response.data.data.devices, function(v, k) {
+             var elements = dataService.getDevicesData(response.data.data.devices,false);
+            angular.forEach(elements.value(), function(v, k) {
                 if (v.id.indexOf(findZenoStr) === -1) {
                     return;
                 }
@@ -412,12 +415,12 @@ myAppController.controller('EnoceanTeachinController', function($scope, $routePa
                 var cmd = v.id.split(findZenoStr)[1].split('_');
                 var zenoId = cmd[0];
                 if (zenoId == $scope.lastIncludedDevice.id) {
-                    var obj = {};
-                    obj['id'] = v.id;
+                    var obj = v;
+                    //obj['id'] = v.id;
                     obj['title'] = v.metrics.title;
-                    obj['permanently_hidden'] = v.permanently_hidden;
+                    /*obj['permanently_hidden'] = v.permanently_hidden;
                     obj['visibility'] = v.visibility;
-                    obj['metrics'] = v.metrics;
+                    obj['metrics'] = v.metrics;*/
                     $scope.apiDevices.push(obj);
                 }
 
@@ -632,7 +635,7 @@ myAppController.controller('EnoceanManageController', function($scope, $location
      */
     $scope.loadApiDevices = function() {
         dataFactory.getApi('devices').then(function(response) {
-            $scope.apiDevices = response.data.data.devices;
+            $scope.apiDevices = dataService.getDevicesData(response.data.data.devices,false)
         }, function(error) {});
     };
     $scope.loadApiDevices();
@@ -762,11 +765,11 @@ myAppController.controller('EnoceanManageController', function($scope, $location
             var cmd = v.id.split(findZenoStr)[1].split('_');
             var zenoId = cmd[0];
             if (zenoId == nodeId) {
-                var obj = {};
-                obj['id'] = v.id;
+                var obj = v;
                 obj['title'] = v.metrics.title;
+                /*obj['id'] = v.id;
                 obj['permanently_hidden'] = v.permanently_hidden;
-                obj['metrics'] = v.metrics;
+                obj['metrics'] = v.metrics;*/
                 elements.push(obj);
             }
 
@@ -837,19 +840,21 @@ myAppController.controller('EnoceanManageDetailController', function($scope, $ro
         dataFactory.getApi('devices', null, true).then(function(response) {
             $scope.apiDevices = [];
             var findZenoStr = "ZEnoVDev_zeno_";
-            angular.forEach(response.data.data.devices, function(v, k) {
+            var elements = dataService.getDevicesData(response.data.data.devices,false);
+            angular.forEach(elements.value(), function(v, k) {
                 if (v.id.indexOf(findZenoStr) === -1) {
                     return;
                 }
                 var cmd = v.id.split(findZenoStr)[1].split('_');
                 var zenoId = cmd[0];
                 if (zenoId == $scope.nodeId) {
-                    var obj = {};
-                    obj['id'] = v.id;
+                    var obj = v;
+                    obj['level'] = $filter('toInt')(v.metrics.level);
+                    /*obj['id'] = v.id;
                     obj['permanently_hidden'] = v.permanently_hidden;
                     obj['visibility'] = v.visibility;
                     obj['level'] = $filter('toInt')(v.metrics.level);
-                    obj['metrics'] = v.metrics;
+                    obj['metrics'] = v.metrics;*/
                     $scope.apiDevices.push(obj);
                 }
 

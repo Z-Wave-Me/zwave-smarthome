@@ -195,131 +195,132 @@ myApp.filter('hasNode', function () {
     };
 });
 /**
+ * DEPRECATED
  * Builds an element icon path
  * @function getElementIcon
  */
-myApp.filter('getElementIcon', function (cfg) {
-    return function (input, device, level) {
-        var icon = cfg.img.icons + 'placeholder.png';
-
-        if (input) {
-            if ((/^https?:\/\//.test(input))) {
-                return input;
-            } else if ((/\.(png|gif|jpe?g)$/).test(input)) {
-                if (input.indexOf('/') > -1) {
-                    return input;
-                } else {
-                    return cfg.img.icons + input;
-                }
-            }
-            switch (input) {
-                case 'door':
-                    icon = cfg.img.icons + (level == 'open' || level == 'on' ? 'door-open.png' : 'door-closed.png');
-                    break;
-
-                case 'window':
-                    if (typeof (level) === 'number') {
-                        if (level == 0) {
-                            icon = cfg.img.icons + 'window-down.png';
-                        } else if (level >= 99) {
-                            icon = cfg.img.icons + 'window-up.png';
-                        } else {
-                            icon = cfg.img.icons + 'window-half.png';
-                        }
-                    } else {
-                        icon = cfg.img.icons + (level == 'open' || level == 'on' ? 'window-open.png' : 'window-closed.png');
-                    }
-                    break;
-                case 'doorlockcontrol':
-                    icon = cfg.img.icons + 'lock-closed.png';
-                    break;
-
-                case 'switch':
-                    icon = cfg.img.icons + (level == 'on' ? 'switch-on.png' : 'switch-off.png');
-                    break;
-
-                case 'motion':
-                    icon = cfg.img.icons + (level == 'on' ? 'motion-on.png' : 'motion-off.png');
-                    break;
-
-                case 'blinds':
-                    if (level == 0) {
-                        icon = cfg.img.icons + 'blind-down.png';
-                    } else if (level >= 99) {
-                        icon = cfg.img.icons + 'blind-up.png';
-                    } else {
-                        icon = cfg.img.icons + 'blind-half.png';
-                    }
-                    break;
-
-                case 'multilevel':
-                    if (level == 0) {
-                        icon = cfg.img.icons + 'dimmer-off.png';
-                    } else if (level >= 99) {
-                        icon = cfg.img.icons + 'dimmer-on.png';
-                    } else {
-                        icon = cfg.img.icons + 'dimmer-half.png';
-                    }
-                    break;
-                case 'thermostat':
-                    icon = cfg.img.icons + 'thermostat.png';
-                    break;
-
-                case 'energy':
-                    icon = cfg.img.icons + 'energy.png';
-                    break;
-
-                case 'meter':
-                    icon = cfg.img.icons + 'meter.png';
-                    break;
-
-                case 'temperature':
-                    icon = cfg.img.icons + 'temperature.png';
-                    break;
-
-                case 'camera':
-                    icon = cfg.img.icons + 'camera.png';
-                    break;
-                case 'smoke':
-                    icon = cfg.img.icons + 'smoke.png';
-                    break;
-                case 'alarm':
-                    icon = cfg.img.icons + 'alarm.png';
-                    break;
-                case 'battery':
-                    icon = cfg.img.icons + 'battery.png';
-                    break;
-                case 'luminosity':
-                    icon = cfg.img.icons + 'luminosity.png';
-                    break;
-                case 'humidity':
-                    icon = cfg.img.icons + 'humidity.png';
-                    break;
-                case 'ultraviolet':
-                    icon = cfg.img.icons + 'ultraviolet.png';
-                    break;
-                case 'barometer':
-                    icon = cfg.img.icons + 'barometer.png';
-                    break;
-                case 'new':
-                    icon = cfg.img.icons + 'new.png';
-                    break;
-                default:
-                    break;
-            }
-
-        } else {
-            switch (device.deviceType) {
-                case 'switchControl':
-                    icon = cfg.img.icons + 'switch-control.png';
-                    break;
-                default:
-                    break;
-            }
-        }
-        return icon;
-    };
-});
+//myApp.filter('getElementIcon', function (cfg) {
+//    return function (input, device, level) {
+//        var icon = cfg.img.icons + 'placeholder.png';
+//
+//        if (input) {
+//            if ((/^https?:\/\//.test(input))) {
+//                return input;
+//            } else if ((/\.(png|gif|jpe?g)$/).test(input)) {
+//                if (input.indexOf('/') > -1) {
+//                    return input;
+//                } else {
+//                    return cfg.img.icons + input;
+//                }
+//            }
+//            switch (input) {
+//                case 'door':
+//                    icon = cfg.img.icons + (level == 'open' || level == 'on' ? 'door-open.png' : 'door-closed.png');
+//                    break;
+//
+//                case 'window':
+//                    if (typeof (level) === 'number') {
+//                        if (level == 0) {
+//                            icon = cfg.img.icons + 'window-down.png';
+//                        } else if (level >= 99) {
+//                            icon = cfg.img.icons + 'window-up.png';
+//                        } else {
+//                            icon = cfg.img.icons + 'window-half.png';
+//                        }
+//                    } else {
+//                        icon = cfg.img.icons + (level == 'open' || level == 'on' ? 'window-open.png' : 'window-closed.png');
+//                    }
+//                    break;
+//                case 'doorlockcontrol':
+//                    icon = cfg.img.icons + 'lock-closed.png';
+//                    break;
+//
+//                case 'switch':
+//                    icon = cfg.img.icons + (level == 'on' ? 'switch-on.png' : 'switch-off.png');
+//                    break;
+//
+//                case 'motion':
+//                    icon = cfg.img.icons + (level == 'on' ? 'motion-on.png' : 'motion-off.png');
+//                    break;
+//
+//                case 'blinds':
+//                    if (level == 0) {
+//                        icon = cfg.img.icons + 'blind-down.png';
+//                    } else if (level >= 99) {
+//                        icon = cfg.img.icons + 'blind-up.png';
+//                    } else {
+//                        icon = cfg.img.icons + 'blind-half.png';
+//                    }
+//                    break;
+//
+//                case 'multilevel':
+//                    if (level == 0) {
+//                        icon = cfg.img.icons + 'dimmer-off.png';
+//                    } else if (level >= 99) {
+//                        icon = cfg.img.icons + 'dimmer-on.png';
+//                    } else {
+//                        icon = cfg.img.icons + 'dimmer-half.png';
+//                    }
+//                    break;
+//                case 'thermostat':
+//                    icon = cfg.img.icons + 'thermostat.png';
+//                    break;
+//
+//                case 'energy':
+//                    icon = cfg.img.icons + 'energy.png';
+//                    break;
+//
+//                case 'meter':
+//                    icon = cfg.img.icons + 'meter.png';
+//                    break;
+//
+//                case 'temperature':
+//                    icon = cfg.img.icons + 'temperature.png';
+//                    break;
+//
+//                case 'camera':
+//                    icon = cfg.img.icons + 'camera.png';
+//                    break;
+//                case 'smoke':
+//                    icon = cfg.img.icons + 'smoke.png';
+//                    break;
+//                case 'alarm':
+//                    icon = cfg.img.icons + 'alarm.png';
+//                    break;
+//                case 'battery':
+//                    icon = cfg.img.icons + 'battery.png';
+//                    break;
+//                case 'luminosity':
+//                    icon = cfg.img.icons + 'luminosity.png';
+//                    break;
+//                case 'humidity':
+//                    icon = cfg.img.icons + 'humidity.png';
+//                    break;
+//                case 'ultraviolet':
+//                    icon = cfg.img.icons + 'ultraviolet.png';
+//                    break;
+//                case 'barometer':
+//                    icon = cfg.img.icons + 'barometer.png';
+//                    break;
+//                case 'new':
+//                    icon = cfg.img.icons + 'new.png';
+//                    break;
+//                default:
+//                    break;
+//            }
+//
+//        } else {
+//            switch (device.deviceType) {
+//                case 'switchControl':
+//                    icon = cfg.img.icons + 'switch-control.png';
+//                    break;
+//                default:
+//                    break;
+//            }
+//        }
+//        return icon;
+//    };
+//});
 
 /**
  * Builds an event icon path
