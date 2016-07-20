@@ -71,10 +71,18 @@ var icon_data = {
                     default: 'camera.png'
                 },
                 smoke: {
-                     default: 'smoke.png'
+                     level: {
+                          on: 'smoke-on.png',
+                          off: 'smoke-off.png'
+                      }
+
                 },
                 alarm: {
-                     default: 'alarm.png'
+                     level: {
+                          on: 'alarm-on.png',
+                          off: 'alarm-off.png'
+                      }
+
                 },
                 battery: {
                      default: 'battery.png'
@@ -93,6 +101,20 @@ var icon_data = {
                 },
                 new: {
                      default: 'new.png'
+                },
+                CO_alarm: {
+                     level: {
+                          on: 'co-alarm-on.png',
+                          off: 'co-alarm-off.png'
+                      }
+
+                },
+               tamper: {
+                     level: {
+                          on: 'tamper-on.png',
+                          off: 'tamper-off.png'
+                      }
+
                 }
             },
             deviceType: {

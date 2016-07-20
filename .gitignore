@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /.gitignore
+=======
+.gitignore
+>>>>>>> ec3991a39f217d9d57dce7ffa5c76515da899152
 /_project/*
 /nbproject/*
 /upload/*

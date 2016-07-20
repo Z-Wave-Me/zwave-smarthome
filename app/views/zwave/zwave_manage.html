@@ -16,7 +16,8 @@
                             <li class="clickable zwave-hidden-{{e.permanently_hidden}}" 
                                 ng-repeat="e in v.elements| orderBy:'metrics.title':false">
                                 <a ng-href="#/element/{{e.id}}">
-                                    <img class="report-img-s" ng-src="{{e.metrics.icon|getElementIcon:e:e.level}}" alt="img" /> {{e.metrics.title|cutText:true:20}} <span class="zwave-raquo">&raquo;</span>
+                                    <img class="report-img-s" ng-src="{{e.iconPath}}" alt="img" /> 
+                                    {{e.metrics.title|cutText:true:20}} <span class="zwave-raquo">&raquo;</span>
                                 </a>
                             </li>
                         </ul>

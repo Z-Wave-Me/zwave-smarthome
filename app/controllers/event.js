@@ -85,7 +85,8 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
             }
             // Success - devices
             if (devices.state === 'fulfilled') {
-                setDevices(devices.value.data.data.devices);
+                //setDevices(devices.value.data.data.devices);
+                setDevices(dataService.getDevicesData(devices.value.data.data.devices,false));
             }
 
             // Success - notifications
@@ -213,9 +214,7 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
      */
     function setDevices(devices) {
         var rejectType = ['battery', 'text', 'camera'];
-        var data = _.chain(devices)
-                .flatten()
-                .reject(function (v) {
+        var data = devices.reject(function (v) {
                     return rejectType.indexOf(v.deviceType) > -1 || v.permanently_hidden === true;
                 })
                 .indexBy('id')

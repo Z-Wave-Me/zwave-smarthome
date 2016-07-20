@@ -11,50 +11,64 @@
                 <h2 ng-bind="input.moduleTitle"></h2>
                 <p class="app-detail-perex" ng-bind-html="moduleId.find.defaults.description | toTrusted"></p>
                 <p class="app-detail-list" ng-if="moduleId.categoryName">
-                            <i class="fa fa-list"></i> <span ng-bind="moduleId.categoryName"></span>
-                        </p>
+                    <i class="fa fa-list"></i> <span ng-bind="moduleId.categoryName"></span>
+                </p>
                 <p class="app-detail-list" ng-if="moduleId.find.author">
                     <i class="fa fa-user"></i>
                     <span ng-show="!moduleId.find.homepage" ng-bind="moduleId.find.author"></span>
                     <a ng-href="{{moduleId.find.homepage}}" ng-if="moduleId.find.homepage" ng-bind="moduleId.find.author"></a> 
                 </p>
                 <p class="app-detail-list" ng-if="moduleId.find.version">
-                            <i class="fa fa-info-circle"></i> <span class="app-version" ng-bind="moduleId.find.version"></span>
-                            <span class="label"
-                                  ng-class="moduleId.find.maturity == 'stable' ? 'label-success' : 'label-warning'"
-                                  >{{moduleId.find.maturity}}</span>
-                        </p>
-                  <p class="app-detail-list" ng-if="moduleId.find.dependencies.length > 0">
-                            <i class="fa fa-link"></i> <strong>{{_t('dependent_modules')}}:</strong> <span ng-repeat="i in moduleId.find.dependencies">{{i}}, </span>
-                        </p>
-                  <!-- Module dependencies - activate -->
-                  <div class="alert alert-warning" ng-if="!_.isEmpty(moduleId.dependency.activate)">
-                          <p>{{_t('war_dependency_module_activate')}}</p>
-                            <a href="" class="btn btn-default btn-tag"
-                                   ng-repeat="v in moduleId.dependency.activate"
-                                  ng-click="activateInstance(v)">{{v.moduleId}} <i class="fa fa-fire text-success" title="{{_t('lb_activate')}}"></i></a>
-                        </div>
-                  <!-- Module dependencies - add -->
-                  <div class="alert alert-warning" ng-if="!_.isEmpty(moduleId.dependency.add)">
-                          <p>{{_t('war_dependency_module_add')}}</p>
-                            <a ng-href="#module/post/{{v.modulename}}/{{input.moduleId}}" class="btn btn-default btn-tag"
-                                   ng-repeat="v in moduleId.dependency.add">{{v.modulename}} <i class="fa fa-plus text-success" title="{{_t('lb_add_app')}}"></i></a>
-                        </div>
-                   <!-- Module dependencies - download -->
-                   <div class="alert alert-warning" ng-if="!_.isEmpty(moduleId.dependency.download)">
-                          <p>{{_t('war_dependency_module_install')}}</p>
-                          <a href="" class="btn btn-default btn-tag"
-                                   ng-repeat="v in moduleId.dependency.download"
-                                   ng-click="installModule(v)">{{v.modulename}} <i class="fa fa-download text-success" title="{{_t('lb_download')}}"></i></a>
-                      </div>
-                      <div class="form-group">
-                            
-                        </div>
+                    <i class="fa fa-info-circle"></i> <span class="app-version" ng-bind="moduleId.find.version"></span>
+                    <span class="label"
+                          ng-class="moduleId.find.maturity == 'stable' ? 'label-success' : 'label-warning'"
+                          >{{moduleId.find.maturity}}</span>
+                </p>
+                <p class="app-detail-list" ng-if="moduleId.find.dependencies.length > 0">
+                    <i class="fa fa-link"></i> <strong>{{_t('dependent_modules')}}:</strong> <span ng-repeat="i in moduleId.find.dependencies">{{i}}, </span>
+                </p>
+                <!-- Module dependencies - activate -->
+                <div class="alert alert-warning" ng-if="!_.isEmpty(moduleId.dependency.activate)">
+                    <p>{{_t('war_dependency_module_activate')}}</p>
+                    <a href="" class="btn btn-default btn-tag"
+                       ng-repeat="v in moduleId.dependency.activate"
+                       ng-click="activateInstance(v)">{{v.moduleId}} <i class="fa fa-fire text-success" title="{{_t('lb_activate')}}"></i></a>
+                </div>
+                <!-- Module dependencies - add -->
+                <div class="alert alert-warning" ng-if="!_.isEmpty(moduleId.dependency.add)">
+                    <p>{{_t('war_dependency_module_add')}}</p>
+                    <a ng-href="#module/post/{{v.modulename}}/{{input.moduleId}}" class="btn btn-default btn-tag"
+                       ng-repeat="v in moduleId.dependency.add">{{v.modulename}} <i class="fa fa-plus text-success" title="{{_t('lb_add_app')}}"></i></a>
+                </div>
+                <!-- Module dependencies - download -->
+                <div class="alert alert-warning" ng-if="!_.isEmpty(moduleId.dependency.download)">
+                    <p>{{_t('war_dependency_module_install')}}</p>
+                    <a href="" class="btn btn-default btn-tag"
+                       ng-repeat="v in moduleId.dependency.download"
+                       ng-click="installModule(v)">{{v.modulename}} <i class="fa fa-download text-success" title="{{_t('lb_download')}}"></i></a>
+                </div>
+                <div class="form-group">
+
+                </div>
             </div>
         </div>
-        
+        <!-- Singelton and has an instance -->
+        <div ng-if="moduleId.singletonActive">
+            <div class="fieldset clearfix">
+                <div class="alert alert-warning">
+                    <i class="fa fa-exclamation-circle"></i> {{_t('singleton_with_instance',{__module_title__:input.moduleTitle})}}
+                </div>
+            </div>
+            <div class="fieldset submit-entry">
+                <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back><i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span></button>
+                <a class="btn btn-submit" title="{{_t('lb_active')}}" href="#apps/instance">
+                    <i class="fa fa-fire"></i> <span class="btn-name">{{_t('active_apps')}}</span>
+                </a>
+            </div>
+        </div>
+
         <!-- Module form -->
-        <form id="form_module">
+        <form id="form_module" ng-if="!moduleId.singletonActive">
             <input name="instanceId" id="instanceId" type="hidden" class="form-control" value="{{input.instanceId}}" />
             <input name="moduleId" id="moduleId" type="hidden" class="form-control" value="{{input.moduleId}}" />
             <fieldset>

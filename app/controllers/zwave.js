@@ -704,7 +704,8 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
             }
             // Success - devices
             if (devices.state === 'fulfilled') {
-                zwaveConfigApiData($scope.zwaveConfig.nodeId, devices.value.data.data.devices);
+                  var elements = dataService.getDevicesData(devices.value.data.data.devices,false);
+                zwaveConfigApiData($scope.zwaveConfig.nodeId, elements.value() );
             }
             // Success - locations
             if (locations.state === 'fulfilled') {
@@ -776,6 +777,7 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
      * Get zwaveApiData
      */
     function zwaveConfigApiData(nodeId, devices) {
+        console.log(devices)
         dataFactory.loadZwaveApiData(true).then(function (ZWaveAPIData) {
             var node = ZWaveAPIData.devices[nodeId];
             if (!node) {
@@ -825,13 +827,14 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
                 var iId = cmd[1];
                 var ccId = cmd[2];
                 if (zwaveId == nodeId) {
-                    var obj = {};
+                    var obj = v;
+                    /*var obj = {};
                     obj['id'] = v.id;
                     obj['permanently_hidden'] = v.permanently_hidden;
                     obj['visibility'] = v.visibility;
                     obj['level'] = $filter('toInt')(v.metrics.level);
                     obj['metrics'] = v.metrics;
-                    obj['location'] = v.location;
+                    obj['location'] = v.location;*/
                     $scope.formInput.elements[v.id] = obj;
                     $scope.devices.push(obj);
                 }
