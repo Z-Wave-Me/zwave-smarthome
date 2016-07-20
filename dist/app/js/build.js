@@ -10787,10 +10787,18 @@ var icon_data = {
                     default: 'camera.png'
                 },
                 smoke: {
-                     default: 'smoke.png'
+                     level: {
+                          on: 'smoke-on.png',
+                          off: 'smoke-off.png'
+                      }
+
                 },
                 alarm: {
-                     default: 'alarm.png'
+                     level: {
+                          on: 'alarm-on.png',
+                          off: 'alarm-off.png'
+                      }
+
                 },
                 battery: {
                      default: 'battery.png'
@@ -10809,6 +10817,20 @@ var icon_data = {
                 },
                 new: {
                      default: 'new.png'
+                },
+                CO_alarm: {
+                     level: {
+                          on: 'co-alarm-on.png',
+                          off: 'co-alarm-off.png'
+                      }
+
+                },
+               tamper: {
+                     level: {
+                          on: 'tamper-on.png',
+                          off: 'tamper-off.png'
+                      }
+
                 }
             },
             deviceType: {
@@ -11509,7 +11531,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/elements/widgets/multiButtonModal.html',
-    "<div id=multiButtonModal class=appmodal ng-controller=ElementSensorMultilineController ng-if=modalArr.multiButtonModal><div class=appmodal-in><div class=appmodal-header><span class=appmodal-close ng-click=\"handleModal('multiButtonModal', $event)\"><i class=\"fa fa-times\"></i></span><h3>{{widgetSensorMultiline.find.metrics.title}}</h3></div><div class=appmodal-body><bb-alert alert=widgetSensorMultiline.alert></bb-alert><div class=multiline-entry ng-if=widgetSensorMultiline.find><table class=\"table table-report table-condensed\"><tbody><tr ng-repeat=\"n in widgetSensorMultiline.find.metrics.sensors track by n.id\"><td class=td-img><img id=widget_multiline_img_{{n.id}} class=report-img ng-src={{n.metrics.icon|getElementIcon:n:n.metrics.level}} alt=\"img\"></td><td><span ng-bind=\"n.metrics.title\"></td><td class=\"text-right tbl-widget-ctrl\"><a class=widget-history href=\"\" ng-click=\"getDeviceById(n.id);handleModal('modalHistory', $event)\" ng-if=n.hasHistory><i class=\"fa fa-history\"></i></a>&nbsp;<div class=btn-group ng-if=\"n.deviceType==='switchBinary'\"><button class=\"btn btn-off\" data-ng-click=\"runMultilineCmd(n.id + '/command/off', n.id)\" ng-class=\"n.metrics.level =='off' ? 'btn-primary': 'btn-default'\" title=\"{{_t('lb_off')}}\"><span class=widget-btn-symbol>0</span></button> <button class=\"btn btn-on\" data-ng-click=\"runMultilineCmd(n.id + '/command/on', n.id)\" ng-class=\"n.metrics.level =='on' ? 'btn-primary': 'btn-default'\" title=\"{{_t('lb_on')}}\"><span class=widget-btn-symbol>I</span></button></div><div class=btn-group ng-if=\"n.deviceType==='toggleButton'\"><button class=\"btn btn-default btn-label-on\" ng-click=\"runCmd(n.id + '/command/on')\" title=\"{{_t('lb_on')}}\">{{_t('lb_on')}}</button></div></td></tr></tbody></table></div></div></div></div>"
+    "<div id=multiButtonModal class=appmodal ng-controller=ElementSensorMultilineController ng-if=modalArr.multiButtonModal><div class=appmodal-in><div class=appmodal-header><span class=appmodal-close ng-click=\"handleModal('multiButtonModal', $event)\"><i class=\"fa fa-times\"></i></span><h3>{{widgetSensorMultiline.find.metrics.title}}</h3></div><div class=appmodal-body><bb-alert alert=widgetSensorMultiline.alert></bb-alert><div class=multiline-entry ng-if=widgetSensorMultiline.find><table class=\"table table-report table-condensed\"><tbody><tr ng-repeat=\"n in widgetSensorMultiline.find.metrics.sensors track by n.id\"><td class=td-img><img id=widget_multiline_img_{{n.id}} class=report-img ng-src={{n.iconPath}} alt=\"img\"></td><td><span ng-bind=\"n.metrics.title\"></td><td class=\"text-right tbl-widget-ctrl\"><a class=widget-history href=\"\" ng-click=\"getDeviceById(n.id);handleModal('modalHistory', $event)\" ng-if=n.hasHistory><i class=\"fa fa-history\"></i></a>&nbsp;<div class=btn-group ng-if=\"n.deviceType==='switchBinary'\"><button class=\"btn btn-off\" data-ng-click=\"runMultilineCmd(n.id + '/command/off', n.id)\" ng-class=\"n.metrics.level =='off' ? 'btn-primary': 'btn-default'\" title=\"{{_t('lb_off')}}\"><span class=widget-btn-symbol>0</span></button> <button class=\"btn btn-on\" data-ng-click=\"runMultilineCmd(n.id + '/command/on', n.id)\" ng-class=\"n.metrics.level =='on' ? 'btn-primary': 'btn-default'\" title=\"{{_t('lb_on')}}\"><span class=widget-btn-symbol>I</span></button></div><div class=btn-group ng-if=\"n.deviceType==='toggleButton'\"><button class=\"btn btn-default btn-label-on\" ng-click=\"runCmd(n.id + '/command/on')\" title=\"{{_t('lb_on')}}\">{{_t('lb_on')}}</button></div></td></tr></tbody></table></div></div></div></div>"
   );
 
 
@@ -11534,7 +11556,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/elements/widgets/sensorMultilineModal.html',
-    "<div id=sensorMultilineModal class=appmodal ng-controller=ElementSensorMultilineController ng-if=modalArr.sensorMultilineModal><div class=appmodal-in><div class=appmodal-header><span class=appmodal-close ng-click=\"handleModal('sensorMultilineModal', $event)\"><i class=\"fa fa-times\"></i></span><h3>{{widgetSensorMultiline.find.metrics.title}}</h3></div><div class=appmodal-body><bb-alert alert=widgetSensorMultiline.alert></bb-alert><div class=multiline-entry ng-if=widgetSensorMultiline.find.metrics.sensors><table class=\"table table-report table-condensed\"><tbody><tr ng-repeat=\"n in widgetSensorMultiline.find.metrics.sensors track by n.id\"><td class=td-img><img id=widget_multiline_img_{{n.id}} class=report-img ng-src={{n.metrics.icon|getElementIcon:n:n.metrics.level}} alt=\"img\"></td><td><span ng-bind=\"n.metrics.title\"><br></td><td><strong>{{n.metrics.level | numberFixedLen}} {{n.metrics.scaleTitle}}</strong></td><td class=\"text-right tbl-widget-ctrl\"><a class=widget-history href=\"\" ng-click=\"getDeviceById(n.id);handleModal('modalHistory', $event)\" ng-if=n.hasHistory><i class=\"fa fa-history\"></i></a>&nbsp; <button class=\"btn btn-default\" ng-click=\"runCmd(n.id + '/command/update')\" ng-if=\"cfg.element_update_time_btn.indexOf(n.deviceType) > - 1 && n.updateTime\"><i class=\"fa fa-clock-o\"></i> <span class=widget-update-time>{{n.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span></button></td></tr></tbody></table></div></div></div></div>"
+    "<div id=sensorMultilineModal class=appmodal ng-controller=ElementSensorMultilineController ng-if=modalArr.sensorMultilineModal><div class=appmodal-in><div class=appmodal-header><span class=appmodal-close ng-click=\"handleModal('sensorMultilineModal', $event)\"><i class=\"fa fa-times\"></i></span><h3>{{widgetSensorMultiline.find.metrics.title}}</h3></div><div class=appmodal-body><bb-alert alert=widgetSensorMultiline.alert></bb-alert><div class=multiline-entry ng-if=widgetSensorMultiline.find.metrics.sensors><table class=\"table table-report table-condensed\"><tbody><tr ng-repeat=\"n in widgetSensorMultiline.find.metrics.sensors track by n.id\"><td class=td-img><img id=widget_multiline_img_{{n.id}} class=report-img ng-src={{n.iconPath}} alt=\"img\"></td><td><span ng-bind=\"n.metrics.title\"><br></td><td><strong>{{n.metrics.level | numberFixedLen}} {{n.metrics.scaleTitle}}</strong></td><td class=\"text-right tbl-widget-ctrl\"><a class=widget-history href=\"\" ng-click=\"getDeviceById(n.id);handleModal('modalHistory', $event)\" ng-if=n.hasHistory><i class=\"fa fa-history\"></i></a>&nbsp; <button class=\"btn btn-default\" ng-click=\"runCmd(n.id + '/command/update')\" ng-if=\"cfg.element_update_time_btn.indexOf(n.deviceType) > - 1 && n.updateTime\"><i class=\"fa fa-clock-o\"></i> <span class=widget-update-time>{{n.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span></button></td></tr></tbody></table></div></div></div></div>"
   );
 
 
@@ -11594,7 +11616,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/enocean/assign.html',
-    "<div ng-controller=EnoceanAssignController class=mobile-padding><div ng-include=\"'app/views/enocean/navi.html'\"></div><bb-loader></bb-loader><div class=tab-content><div class=\"col-device app-border app-gradient app-shadow\"><table class=\"table table-report table-inclusion\"><tbody><tr><td><span class=\"badge badge-number\">1</span></td><td><strong ng-bind=\"_t('assign_profile')\"></strong><div class=form-group><select name=enoceanProfiles class=form-control ng-model=profile ng-change=loadDevice(profile) ng-disabled=\"inclusion.promisc || inclusion.done\"><option value={{manProfile}} ng-repeat=\"v in enoceanProfiles| orderBy:'_funcDescription'\" ng-init=\"manProfile = {rorg:v._rorg,funcId: v._func,typeId: v._type}\">{{v._funcDescription}} | rorg: {{v._rorg}} | func: {{v._func}} | type: {{v._type}}</option></select></div></td></tr><tr><td><span class=\"badge badge-number\">2</span></td><td><strong ng-bind=\"_t('teach_in')\"></strong><div class=alert ng-if=inclusion.message ng-class=inclusion.status><i class=fa ng-class=inclusion.icon></i> <span ng-bind-html=\"inclusion.message | toTrusted\"></span> <button class=\"btn btn-danger\" ng-if=\"!inclusion.done && inclusion.promisc\" ng-click=\"runCmd('controller.data.promisc=false')\"><i class=\"fa fa-ban\"></i> <span class=btn-name>{{_t('stop_teachin')}}</span></button> <button class=\"btn btn-success\" ng-if=\"!inclusion.done && !inclusion.promisc\" ng-click=\"runCmd('controller.data.promisc=true')\"><i class=\"fa fa-plug\"></i> <span class=btn-name>{{_t('start_teachin')}}</span></button></div></td></tr><tr><td><span class=\"badge badge-number\">3</span></td><td><strong ng-bind=\"_t('lb_settings')\"></strong><form name=form_enocean_config id=form_enocean_config class=\"form form-page\" ng-if=inclusion.config novalidate><fieldset><div class=\"form-group form-inline\"><input name=enocean_name id=enocean_name class=\"form-control form-control-md\" ng-model=lastIncludedDevice.name value=\"{{lastIncludedDevice.name}}\"> <button class=\"btn btn-primary\" ng-click=\"runCmd('devices[\\'x' + lastIncludedDevice.id + '\\'].data.givenName=\\'' + lastIncludedDevice.name + '\\'')\" ng-bind=\"_t('rename_device')\"></button></div></fieldset><div class=\"alert alert-warning\" ng-if=\"apiDevices.length < 1\"><i class=\"fa fa-exclamation-circle\"></i> <span ng-bind=\"_t('enocean_no_settings')\"></span></div><fieldset ng-if=apiDevices><div class=\"form-group form-inline\" ng-repeat=\"e in apiDevices| orderBy:'title':false\" ng-init=\"dev[e.id] = e\"><h3><img id=widget_img_{{v.id}} class=report-img ng-src={{e.metrics.icon|getElementIcon:e:e.level}} alt=\"img\"> <span ng-bind=dev[e.id].metrics.title></span></h3><div><input name=fdf class=\"form-control form-control-md\" ng-model=dev[e.id].metrics.title value=\"{{dev[e.id].metrics.title}}\"> <button class=\"btn btn-primary\" ng-click=updateDevice(dev[e.id]) ng-bind=\"_t('rename_element')\"></button> <button class=btn ng-click=\"updateDevice({id: e.id, permanently_hidden: e.permanently_hidden ? false : true})\" ng-bind=\"e.permanently_hidden ? _t('show_element') : _t('hide_element')\" ng-class=\"e.permanently_hidden ? 'btn-danger' : 'btn-info'\"></button></div></div></fieldset><fieldset ng-if=apiDevices><div class=\"form-group form-inline\" ng-if=rooms><h3><i class=\"fa fa-chevron-down\"></i> <span ng-bind=\"_t('devices_to_room')\"></span></h3><select class=form-control ng-model=modelRoom><option value=\"\">------</option><option ng-repeat=\"v in rooms\" ng-selected_=\"input.location == v.id\" value={{v.id}} ng-bind=v.title></option></select><button class=\"btn btn-primary\" ng-click=\"devicesToRoom(modelRoom, apiDevices)\" ng-bind=\"_t('lb_save')\"></button></div></fieldset></form></td></tr></tbody></table></div><div class=\"submit-entry save-continue\" ng-if=inclusion.done><a href=#enocean/manage class=\"btn btn-info\">{{_t('continue')}} <i class=\"fa fa-chevron-right\"></i></a></div></div><div class=device-logo ng-include=\"'app/views/enocean/enocean_nav.html'\"></div></div>"
+    "<div ng-controller=EnoceanAssignController class=mobile-padding><div ng-include=\"'app/views/enocean/navi.html'\"></div><bb-loader></bb-loader><div class=tab-content><div class=\"col-device app-border app-gradient app-shadow\"><table class=\"table table-report table-inclusion\"><tbody><tr><td><span class=\"badge badge-number\">1</span></td><td><strong ng-bind=\"_t('assign_profile')\"></strong><div class=form-group><select name=enoceanProfiles class=form-control ng-model=profile ng-change=loadDevice(profile) ng-disabled=\"inclusion.promisc || inclusion.done\"><option value={{manProfile}} ng-repeat=\"v in enoceanProfiles| orderBy:'_funcDescription'\" ng-init=\"manProfile = {rorg:v._rorg,funcId: v._func,typeId: v._type}\">{{v._funcDescription}} | rorg: {{v._rorg}} | func: {{v._func}} | type: {{v._type}}</option></select></div></td></tr><tr><td><span class=\"badge badge-number\">2</span></td><td><strong ng-bind=\"_t('teach_in')\"></strong><div class=alert ng-if=inclusion.message ng-class=inclusion.status><i class=fa ng-class=inclusion.icon></i> <span ng-bind-html=\"inclusion.message | toTrusted\"></span> <button class=\"btn btn-danger\" ng-if=\"!inclusion.done && inclusion.promisc\" ng-click=\"runCmd('controller.data.promisc=false')\"><i class=\"fa fa-ban\"></i> <span class=btn-name>{{_t('stop_teachin')}}</span></button> <button class=\"btn btn-success\" ng-if=\"!inclusion.done && !inclusion.promisc\" ng-click=\"runCmd('controller.data.promisc=true')\"><i class=\"fa fa-plug\"></i> <span class=btn-name>{{_t('start_teachin')}}</span></button></div></td></tr><tr><td><span class=\"badge badge-number\">3</span></td><td><strong ng-bind=\"_t('lb_settings')\"></strong><form name=form_enocean_config id=form_enocean_config class=\"form form-page\" ng-if=inclusion.config novalidate><fieldset><div class=\"form-group form-inline\"><input name=enocean_name id=enocean_name class=\"form-control form-control-md\" ng-model=lastIncludedDevice.name value=\"{{lastIncludedDevice.name}}\"> <button class=\"btn btn-primary\" ng-click=\"runCmd('devices[\\'x' + lastIncludedDevice.id + '\\'].data.givenName=\\'' + lastIncludedDevice.name + '\\'')\" ng-bind=\"_t('rename_device')\"></button></div></fieldset><div class=\"alert alert-warning\" ng-if=\"apiDevices.length < 1\"><i class=\"fa fa-exclamation-circle\"></i> <span ng-bind=\"_t('enocean_no_settings')\"></span></div><fieldset ng-if=apiDevices><div class=\"form-group form-inline\" ng-repeat=\"e in apiDevices| orderBy:'title':false\" ng-init=\"dev[e.id] = e\"><h3><img id=widget_img_{{v.id}} class=report-img ng-src={{e.iconPath}} alt=\"img\"> <span ng-bind=dev[e.id].metrics.title></span></h3><div><input name=fdf class=\"form-control form-control-md\" ng-model=dev[e.id].metrics.title value=\"{{dev[e.id].metrics.title}}\"> <button class=\"btn btn-primary\" ng-click=updateDevice(dev[e.id]) ng-bind=\"_t('rename_element')\"></button> <button class=btn ng-click=\"updateDevice({id: e.id, permanently_hidden: e.permanently_hidden ? false : true})\" ng-bind=\"e.permanently_hidden ? _t('show_element') : _t('hide_element')\" ng-class=\"e.permanently_hidden ? 'btn-danger' : 'btn-info'\"></button></div></div></fieldset><fieldset ng-if=apiDevices><div class=\"form-group form-inline\" ng-if=rooms><h3><i class=\"fa fa-chevron-down\"></i> <span ng-bind=\"_t('devices_to_room')\"></span></h3><select class=form-control ng-model=modelRoom><option value=\"\">------</option><option ng-repeat=\"v in rooms\" ng-selected_=\"input.location == v.id\" value={{v.id}} ng-bind=v.title></option></select><button class=\"btn btn-primary\" ng-click=\"devicesToRoom(modelRoom, apiDevices)\" ng-bind=\"_t('lb_save')\"></button></div></fieldset></form></td></tr></tbody></table></div><div class=\"submit-entry save-continue\" ng-if=inclusion.done><a href=#enocean/manage class=\"btn btn-info\">{{_t('continue')}} <i class=\"fa fa-chevron-right\"></i></a></div></div><div class=device-logo ng-include=\"'app/views/enocean/enocean_nav.html'\"></div></div>"
   );
 
 
@@ -11614,12 +11636,12 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/enocean/manage.html',
-    "<div ng-controller=EnoceanManageController class=mobile-padding><bb-loader></bb-loader><div ng-include=\"'app/views/enocean/navi.html'\"></div><div ng-if=enoceanDevices><table class=\"table table-condensed table-report\"><tbody><tr id=enocean_row_{{v.id}} ng-repeat=\"v in enoceanDevices track by v.id\"><td class=text-left><a href=\"\" class=network-zwave-title ng-click=\"goEdit[v.id] = !goEdit[v.id]\"><i class=fa ng-class=\"goEdit[v.id] ? 'fa-chevron-up': 'fa-chevron-down'\"></i> <span ng-bind=v.givenName></span> (#{{v.id}})</a><div class=network-zwave-element ng-repeat=\"e in v.elements| orderBy:'title':false\" ng-if=goEdit[v.id]><img class=report-img ng-src={{e.metrics.icon|getElementIcon:e:e.level}} alt=\"img\"> <span class=network-hidden-{{e.permanently_hidden}} ng-bind=e.title></span></div></td><td class=td-action><div class=btn-group><a href=#enocean/manage/x{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_configuration')}}\"><i class=\"fa fa-cog\"></i></a> <button title=\"{{_t('lb_remove')}}\" class=\"btn btn-default\" ng-click=\"deleteDevice(v.id, '#enocean_row_' + v.id, _t('lb_delete_confirm'))\"><i class=\"fa fa-remove text-danger\"></i></button></div></td></tr></tbody></table></div><div class=device-logo ng-include=\"'app/views/enocean/enocean_nav.html'\"></div></div>"
+    "<div ng-controller=EnoceanManageController class=mobile-padding><bb-loader></bb-loader><div ng-include=\"'app/views/enocean/navi.html'\"></div><div ng-if=enoceanDevices><table class=\"table table-condensed table-report\"><tbody><tr id=enocean_row_{{v.id}} ng-repeat=\"v in enoceanDevices track by v.id\"><td class=text-left><a href=\"\" class=network-zwave-title ng-click=\"goEdit[v.id] = !goEdit[v.id]\"><i class=fa ng-class=\"goEdit[v.id] ? 'fa-chevron-up': 'fa-chevron-down'\"></i> <span ng-bind=v.givenName></span> (#{{v.id}})</a><div class=network-zwave-element ng-repeat=\"e in v.elements| orderBy:'title':false\" ng-if=goEdit[v.id]><img class=report-img ng-src={{e.iconPath}} alt=\"img\"> <span class=network-hidden-{{e.permanently_hidden}} ng-bind=e.title></span></div></td><td class=td-action><div class=btn-group><a href=#enocean/manage/x{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_configuration')}}\"><i class=\"fa fa-cog\"></i></a> <button title=\"{{_t('lb_remove')}}\" class=\"btn btn-default\" ng-click=\"deleteDevice(v.id, '#enocean_row_' + v.id, _t('lb_delete_confirm'))\"><i class=\"fa fa-remove text-danger\"></i></button></div></td></tr></tbody></table></div><div class=device-logo ng-include=\"'app/views/enocean/enocean_nav.html'\"></div></div>"
   );
 
 
   $templateCache.put('app/views/enocean/manage_detail.html',
-    "<div ng-controller=EnoceanManageDetailController class=mobile-padding><bb-loader></bb-loader><div ng-include=\"'app/views/enocean/navi.html'\"></div><div class=tab-content><h2><span ng-bind=\"_t('enocean_device')\"></span>: {{input.name}} (#{{input.id}})</h2><form name=form_enocean_edit id=form_enocean_edit class=\"form form-page\" ng-submit=store(input) novalidate><fieldset><h3><i class=\"fa fa-chevron-down\"></i> <span ng-bind=\"_t('lb_name')\"></span></h3><div class=form-group><input name=name id=name class=form-control value={{input.name}} ng-model=\"input.name\"></div><h3><i class=\"fa fa-chevron-down\"></i> <span ng-bind=\"_t('select_profile')\"></span></h3><div class=form-group><select name=enoceanProfiles class=form-control ng-model=input.profileId><option value={{manProfile}} ng-repeat=\"v in enoceanProfiles | orderBy:'_funcDescription'\" ng-init=\"manProfile = {rorg:v._rorg,funcId: v._func,typeId: v._type}\" ng-selected=\"v.id == input.deviceProfileId\" ng-if=\"input.rorg == v.rorgInt\">{{v._funcDescription}} | rorg: {{v._rorg}} | func: {{v._func}} | type: {{v._type}}</option></select></div></fieldset><fieldset class=submit-entry><button type=submit class=\"btn btn-submit\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></fieldset></form><form name=form_enocean_config id=form_enocean_config class=\"form form-page\" novalidate ng-if=apiDevices><fieldset><div class=\"form-group form-inline\" ng-repeat=\"e in apiDevices | orderBy:'title':false\" ng-init=\"dev[e.id] = e\"><h3><img id=widget_img_{{v.id}} class=report-img ng-src={{e.metrics.icon|getElementIcon:e:e.level}} alt=\"img\"> <span ng-bind=dev[e.id].metrics.title></span></h3><div><input name=fdf class=\"form-control form-control-md\" ng-model=dev[e.id].metrics.title value=\"{{dev[e.id].metrics.title}}\"> <button class=\"btn btn-primary\" ng-click=updateDevice(dev[e.id]) ng-bind=\"_t('rename_element')\"></button> <button class=btn ng-click=\"updateDevice({id: e.id,permanently_hidden: e.permanently_hidden ? false : true})\" ng-bind=\"e.permanently_hidden ? _t('show_element') : _t('hide_element')\" ng-class=\"e.permanently_hidden ? 'btn-danger' : 'btn-info'\"></button></div></div></fieldset><fieldset><div class=\"form-group form-inline\"><h3><i class=\"fa fa-chevron-down\"></i> <span ng-bind=\"_t('devices_to_room')\"></span></h3><select class=form-control ng-model=modelRoom><option ng-repeat=\"v in rooms\" value={{v.id}} ng-bind=\"(v.id === 0 ? _t(v.title) : v.title)\"></option></select><button class=\"btn btn-primary\" ng-click=\"devicesToRoom(modelRoom, apiDevices)\" ng-bind=\"_t('lb_save')\"></button></div></fieldset></form><div class=\"fieldset submit-entry\"><button class=\"btn btn-submit\" title=\"{{_t('continue')}}\" bb-go-back><span class=btn-name>{{_t('continue')}}</span> <i class=\"fa fa-chevron-right\"></i></button></div></div><div class=device-logo ng-include=\"'app/views/enocean/enocean_nav.html'\"></div></div>"
+    "<div ng-controller=EnoceanManageDetailController class=mobile-padding><bb-loader></bb-loader><div ng-include=\"'app/views/enocean/navi.html'\"></div><div class=tab-content><h2><span ng-bind=\"_t('enocean_device')\"></span>: {{input.name}} (#{{input.id}})</h2><form name=form_enocean_edit id=form_enocean_edit class=\"form form-page\" ng-submit=store(input) novalidate><fieldset><h3><i class=\"fa fa-chevron-down\"></i> <span ng-bind=\"_t('lb_name')\"></span></h3><div class=form-group><input name=name id=name class=form-control value={{input.name}} ng-model=\"input.name\"></div><h3><i class=\"fa fa-chevron-down\"></i> <span ng-bind=\"_t('select_profile')\"></span></h3><div class=form-group><select name=enoceanProfiles class=form-control ng-model=input.profileId><option value={{manProfile}} ng-repeat=\"v in enoceanProfiles | orderBy:'_funcDescription'\" ng-init=\"manProfile = {rorg:v._rorg,funcId: v._func,typeId: v._type}\" ng-selected=\"v.id == input.deviceProfileId\" ng-if=\"input.rorg == v.rorgInt\">{{v._funcDescription}} | rorg: {{v._rorg}} | func: {{v._func}} | type: {{v._type}}</option></select></div></fieldset><fieldset class=submit-entry><button type=submit class=\"btn btn-submit\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></fieldset></form><form name=form_enocean_config id=form_enocean_config class=\"form form-page\" novalidate ng-if=apiDevices><fieldset><div class=\"form-group form-inline\" ng-repeat=\"e in apiDevices | orderBy:'title':false\" ng-init=\"dev[e.id] = e\"><h3><img id=widget_img_{{v.id}} class=report-img ng-src={{e.iconPath}} alt=\"img\"> <span ng-bind=dev[e.id].metrics.title></span></h3><div><input name=fdf class=\"form-control form-control-md\" ng-model=dev[e.id].metrics.title value=\"{{dev[e.id].metrics.title}}\"> <button class=\"btn btn-primary\" ng-click=updateDevice(dev[e.id]) ng-bind=\"_t('rename_element')\"></button> <button class=btn ng-click=\"updateDevice({id: e.id,permanently_hidden: e.permanently_hidden ? false : true})\" ng-bind=\"e.permanently_hidden ? _t('show_element') : _t('hide_element')\" ng-class=\"e.permanently_hidden ? 'btn-danger' : 'btn-info'\"></button></div></div></fieldset><fieldset><div class=\"form-group form-inline\"><h3><i class=\"fa fa-chevron-down\"></i> <span ng-bind=\"_t('devices_to_room')\"></span></h3><select class=form-control ng-model=modelRoom><option ng-repeat=\"v in rooms\" value={{v.id}} ng-bind=\"(v.id === 0 ? _t(v.title) : v.title)\"></option></select><button class=\"btn btn-primary\" ng-click=\"devicesToRoom(modelRoom, apiDevices)\" ng-bind=\"_t('lb_save')\"></button></div></fieldset></form><div class=\"fieldset submit-entry\"><button class=\"btn btn-submit\" title=\"{{_t('continue')}}\" bb-go-back><span class=btn-name>{{_t('continue')}}</span> <i class=\"fa fa-chevron-right\"></i></button></div></div><div class=device-logo ng-include=\"'app/views/enocean/enocean_nav.html'\"></div></div>"
   );
 
 
@@ -11629,7 +11651,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/enocean/teachin.html',
-    "<div ng-controller=EnoceanTeachinController class=mobile-padding><bb-loader></bb-loader><div class=\"form form-inline form-page\"><div class=\"fieldset clearfix\"><div class=include-device-img ng-if=device.image><img class=include-image-detail ng-src=storage/img/enocean/devices/{{device.image}} alt=img ng-if=\"device.image\"></div><div class=include-device-body><h1 ng-if=!device.name ng-bind=\"_t('teach_in')\"></h1><h1 ng-if=device.name ng-bind=device.name></h1><p ng-if=device.description ng-bind=device.description></p></div></div><div class=\"fieldset clearfix\"><table class=\"table table-report table-inclusion\"><tbody><tr><td><span class=\"badge badge-number\">1</span></td><td><div class=alert ng-if=inclusion.message ng-class=inclusion.status><i class=fa ng-class=inclusion.icon></i> <span ng-bind-html=\"inclusion.message | toTrusted\"></span> <button class=\"btn btn-danger\" ng-if=\"!inclusion.done && inclusion.promisc\" ng-click=\"runCmd('controller.data.promisc=false')\"><i class=\"fa fa-ban\"></i> <span class=btn-name>{{_t('stop_teachin')}}</span></button> <button class=\"btn btn-success\" ng-if=\"!inclusion.done && !inclusion.promisc\" ng-click=\"runCmd('controller.data.promisc=true')\"><i class=\"fa fa-plug\"></i> <span class=btn-name>{{_t('start_teachin')}}</span></button></div></td></tr><tr><td><span class=\"badge badge-number\">2</span></td><td><strong ng-bind=\"_t('lb_settings')\"></strong><form name=form_enocean_config id=form_enocean_config class=\"form form-page\" ng-if=inclusion.config novalidate><fieldset><div class=\"form-group form-inline\"><input name=enocean_name id=enocean_name class=\"form-control form-control-md\" ng-model=lastIncludedDevice.name value=\"{{lastIncludedDevice.name}}\"> <button class=\"btn btn-primary\" ng-click=\"runCmd('devices[\\'x' + lastIncludedDevice.id + '\\'].data.givenName=\\'' + lastIncludedDevice.name + '\\'')\" ng-bind=\"_t('rename_device')\"></button></div></fieldset><div class=\"alert alert-warning\" ng-if=\"apiDevices.length < 1\"><i class=\"fa fa-exclamation-circle\"></i> <span ng-bind=\"_t('enocean_no_settings')\"></span></div><fieldset ng-if=apiDevices><div class=\"form-group form-inline\" ng-repeat=\"e in apiDevices | orderBy:'title':false\" ng-init=\"dev[e.id] = e\"><h3><img id=widget_img_{{v.id}} class=report-img ng-src={{e.metrics.icon|getElementIcon:e:e.level}} alt=\"img\"> <span ng-bind=dev[e.id].metrics.title></span></h3><div><input name=fdf class=\"form-control form-control-md\" ng-model=dev[e.id].metrics.title value=\"{{dev[e.id].metrics.title}}\"> <button class=\"btn btn-primary\" ng-click=updateDevice(dev[e.id]) ng-bind=\"_t('rename_element')\"></button> <button class=btn ng-click=\"updateDevice({id: e.id,permanently_hidden: e.permanently_hidden ? false : true})\" ng-bind=\"e.permanently_hidden ? _t('show_element') : _t('hide_element')\" ng-class=\"e.permanently_hidden ? 'btn-danger' : 'btn-info'\"></button></div></div></fieldset><fieldset ng-if=apiDevices><div class=\"form-group form-inline\" ng-if=rooms><h3><i class=\"fa fa-chevron-down\"></i> <span ng-bind=\"_t('devices_to_room')\"></span></h3><select class=form-control ng-model=modelRoom><option value=\"\">------</option><option ng-repeat=\"v in rooms\" ng-selected_=\"input.location == v.id\" value={{v.id}} ng-bind=v.title></option></select><button class=\"btn btn-primary\" ng-click=\"devicesToRoom(modelRoom, apiDevices)\" ng-bind=\"_t('lb_save')\"></button></div></fieldset></form></td></tr></tbody></table></div><div class=\"fieldset submit-entry\"><a href=#enocean/manage class=\"btn btn-submit\"><span class=btn-name>{{_t('manage_enocean_devices')}}</span> <i class=\"fa fa-chevron-right\"></i></a></div></div><div class=device-logo ng-include=\"'app/views/enocean/enocean_nav.html'\"></div></div>"
+    "<div ng-controller=EnoceanTeachinController class=mobile-padding><bb-loader></bb-loader><div class=\"form form-inline form-page\"><div class=\"fieldset clearfix\"><div class=include-device-img ng-if=device.image><img class=include-image-detail ng-src=storage/img/enocean/devices/{{device.image}} alt=img ng-if=\"device.image\"></div><div class=include-device-body><h1 ng-if=!device.name ng-bind=\"_t('teach_in')\"></h1><h1 ng-if=device.name ng-bind=device.name></h1><p ng-if=device.description ng-bind=device.description></p></div></div><div class=\"fieldset clearfix\"><table class=\"table table-report table-inclusion\"><tbody><tr><td><span class=\"badge badge-number\">1</span></td><td><div class=alert ng-if=inclusion.message ng-class=inclusion.status><i class=fa ng-class=inclusion.icon></i> <span ng-bind-html=\"inclusion.message | toTrusted\"></span> <button class=\"btn btn-danger\" ng-if=\"!inclusion.done && inclusion.promisc\" ng-click=\"runCmd('controller.data.promisc=false')\"><i class=\"fa fa-ban\"></i> <span class=btn-name>{{_t('stop_teachin')}}</span></button> <button class=\"btn btn-success\" ng-if=\"!inclusion.done && !inclusion.promisc\" ng-click=\"runCmd('controller.data.promisc=true')\"><i class=\"fa fa-plug\"></i> <span class=btn-name>{{_t('start_teachin')}}</span></button></div></td></tr><tr><td><span class=\"badge badge-number\">2</span></td><td><strong ng-bind=\"_t('lb_settings')\"></strong><form name=form_enocean_config id=form_enocean_config class=\"form form-page\" ng-if=inclusion.config novalidate><fieldset><div class=\"form-group form-inline\"><input name=enocean_name id=enocean_name class=\"form-control form-control-md\" ng-model=lastIncludedDevice.name value=\"{{lastIncludedDevice.name}}\"> <button class=\"btn btn-primary\" ng-click=\"runCmd('devices[\\'x' + lastIncludedDevice.id + '\\'].data.givenName=\\'' + lastIncludedDevice.name + '\\'')\" ng-bind=\"_t('rename_device')\"></button></div></fieldset><div class=\"alert alert-warning\" ng-if=\"apiDevices.length < 1\"><i class=\"fa fa-exclamation-circle\"></i> <span ng-bind=\"_t('enocean_no_settings')\"></span></div><fieldset ng-if=apiDevices><div class=\"form-group form-inline\" ng-repeat=\"e in apiDevices | orderBy:'title':false\" ng-init=\"dev[e.id] = e\"><h3><img id=widget_img_{{v.id}} class=report-img ng-src={{e.iconPath}} alt=\"img\"> <span ng-bind=dev[e.id].metrics.title></span></h3><div><input name=fdf class=\"form-control form-control-md\" ng-model=dev[e.id].metrics.title value=\"{{dev[e.id].metrics.title}}\"> <button class=\"btn btn-primary\" ng-click=updateDevice(dev[e.id]) ng-bind=\"_t('rename_element')\"></button> <button class=btn ng-click=\"updateDevice({id: e.id,permanently_hidden: e.permanently_hidden ? false : true})\" ng-bind=\"e.permanently_hidden ? _t('show_element') : _t('hide_element')\" ng-class=\"e.permanently_hidden ? 'btn-danger' : 'btn-info'\"></button></div></div></fieldset><fieldset ng-if=apiDevices><div class=\"form-group form-inline\" ng-if=rooms><h3><i class=\"fa fa-chevron-down\"></i> <span ng-bind=\"_t('devices_to_room')\"></span></h3><select class=form-control ng-model=modelRoom><option value=\"\">------</option><option ng-repeat=\"v in rooms\" ng-selected_=\"input.location == v.id\" value={{v.id}} ng-bind=v.title></option></select><button class=\"btn btn-primary\" ng-click=\"devicesToRoom(modelRoom, apiDevices)\" ng-bind=\"_t('lb_save')\"></button></div></fieldset></form></td></tr></tbody></table></div><div class=\"fieldset submit-entry\"><a href=#enocean/manage class=\"btn btn-submit\"><span class=btn-name>{{_t('manage_enocean_devices')}}</span> <i class=\"fa fa-chevron-right\"></i></a></div></div><div class=device-logo ng-include=\"'app/views/enocean/enocean_nav.html'\"></div></div>"
   );
 
 
@@ -11639,7 +11661,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/events/events.html',
-    "<div ng-controller=EventController><bb-loader></bb-loader><div class=\"page-control form-inline\"><div class=\"btn-group btn-goup-block btn-goup-2\"><button class=\"btn btn-default\" ng-click=\"expandNavi('evFilter', $event)\" ng-class=\"devices.find.title || currLevel ? 'active':'' \"><i class=\"fa fa-filter\"></i> <span ng-if=\"!devices.find.title && !currLevel\">{{_t('lb_show_all')}}</span> <span ng-if=devices.find.title>{{devices.find.title | cutText:true:15}}</span> <span ng-if=currLevel>{{_t('lb_notify_' + currLevel)}}</span></button> <button class=\"btn btn-default\" ng-click=\"expandNavi('evDays', $event)\" ng-switch=timeFilter.day><i class=\"fa fa-calendar-check-o\"></i> <span ng-switch-when=2>{{_t('lb_yesterday')}}</span> <span ng-switch-when=7>7 {{_t('lb_days')}}</span> <span ng-switch-default>{{_t('lb_today')}}</span></button></div></div><div class=page-navi ng-if=naviExpanded.evFilter><div class=page-navi-in><div class=page-navi-content><a class=\"btn btn-default btn-tag\" ng-href=#events/level/{{v.key}} ng-repeat=\"v in eventLevels\" ng-class=\"v.key == currLevel? 'active': ''\">{{_t('lb_notify_' + v.val)}}</a></div><div ng-if=devices.show><div class=page-navi-content><a class=\"btn btn-default btn-tag\" ng-href=#events/source/{{v.id}} ng-repeat=\"v in devices.data\" ng-class=\"v.id===devices.find.id ? 'active':''\" ng-if=devices.cnt.deviceEvents[v.id]><img class=navi-img ng-src={{v.metrics.icon|getElementIcon:v:v.metrics.level}} alt=\"img\"> {{v.metrics.title|cutText:true:25}} <span class=item-cnt>({{devices.cnt.deviceEvents[v.id]}})</span></a></div></div></div></div><div class=page-navi ng-if=naviExpanded.evDays><div class=page-navi-in><div class=page-navi-content><a class=\"btn btn-default btn-tag\" href=\"\" ng-class=\"timeFilter.day == 1 ? 'active': ''\" ng-click=changeTime(1)>{{_t('lb_today')}}</a> <a class=\"btn btn-default btn-tag\" href=\"\" ng-class=\"timeFilter.day == 2 ? 'active': ''\" ng-click=changeTime(2)>{{_t('lb_yesterday')}}</a> <a class=\"btn btn-default btn-tag\" href=\"\" ng-class=\"timeFilter.day == 7 ? 'active': ''\" ng-click=changeTime(7)>7 {{_t('lb_days')}}</a></div></div></div><div class=info-lert ng-if=\"devices.find.id && collection.length < 1\"><i class=\"fa fa-info-circle text-info\"></i> {{_t('device_no_event')}}.</div><div class=info-lert ng-if=\"user.hide_all_device_events || user.hide_system_events\"><i class=\"fa fa-info-circle text-info\"></i> <span ng-bind=\"_t('events_hidden')\"></span></div><div class=\"app-row app-row-report app-row-event clearfix\"><div class=\"report-entry event-level-{{v.level}}\" dir-paginate=\"v in collection | orderBy: '-timestamp' | itemsPerPage: pageSize\" current-page=currentPage id=row_{{v.id}}><div class=\"report-col report-media\"><img id=event_img_{{v.id}} class=report-img ng-src={{v.type|getEventIcon:v.message}} alt=\"{{v.type}}\"></div><div class=\"report-col report-body\"><span class=\"text-supp event-date\" title=\"{{v.timestamp| date:'dd.MM.yyyy H:mm'}}\" ng-bind=\"v.timestamp | eventDate\"></span> <span class=hide-on-mobile>|</span> <span ng-if=\"v.source && v.message\"><a ng-href=#element/{{v.source}} ng-if=\"elementAccess(cfg.role_access.element) && (cfg.events_clickable.indexOf(v.level) > -1)\"><span ng-if=\"v.message | hasNode:'l'\"><span ng-bind=v.message.dev></span> {{_t('lb_is')}} <strong ng-bind=v.message.l></strong></span> <span ng-if=\"!(v.message | hasNode:'l')\" ng-bind=v.message></span></a> <span ng-if=\"!elementAccess(cfg.role_access.element) || (cfg.events_clickable.indexOf(v.level) === -1)\"><span ng-if=\"v.message | hasNode:'l'\"><span ng-bind=v.message.dev></span> {{_t('lb_is')}} <strong ng-bind=v.message.l></strong></span> <span ng-if=\"!(v.message | hasNode:'l')\" ng-bind=v.message></span></span></span> <span class=report-message ng-bind=v.message ng-if=\"!v.source && !v.message\"></span></div><div class=\"report-col report-ctrl\" ng-include=\"'app/views/events/dropdown.html'\"></div></div></div><div class=\"text-center mobile-padding\" ng-if=\"collection.length > 0\"><dir-pagination-controls boundary-links=true></dir-pagination-controls></div></div>"
+    "<div ng-controller=EventController><bb-loader></bb-loader><div class=\"page-control form-inline\"><div class=\"btn-group btn-goup-block btn-goup-2\"><button class=\"btn btn-default\" ng-click=\"expandNavi('evFilter', $event)\" ng-class=\"devices.find.title || currLevel ? 'active':'' \"><i class=\"fa fa-filter\"></i> <span ng-if=\"!devices.find.title && !currLevel\">{{_t('lb_show_all')}}</span> <span ng-if=devices.find.title>{{devices.find.title | cutText:true:15}}</span> <span ng-if=currLevel>{{_t('lb_notify_' + currLevel)}}</span></button> <button class=\"btn btn-default\" ng-click=\"expandNavi('evDays', $event)\" ng-switch=timeFilter.day><i class=\"fa fa-calendar-check-o\"></i> <span ng-switch-when=2>{{_t('lb_yesterday')}}</span> <span ng-switch-when=7>7 {{_t('lb_days')}}</span> <span ng-switch-default>{{_t('lb_today')}}</span></button></div></div><div class=page-navi ng-if=naviExpanded.evFilter><div class=page-navi-in><div class=page-navi-content><a class=\"btn btn-default btn-tag\" ng-href=#events/level/{{v.key}} ng-repeat=\"v in eventLevels\" ng-class=\"v.key == currLevel? 'active': ''\">{{_t('lb_notify_' + v.val)}}</a></div><div ng-if=devices.show><div class=page-navi-content><a class=\"btn btn-default btn-tag\" ng-href=#events/source/{{v.id}} ng-repeat=\"v in devices.data\" ng-class=\"v.id===devices.find.id ? 'active':''\" ng-if=devices.cnt.deviceEvents[v.id]><img class=navi-img ng-src={{v.iconPath}} alt=\"img\"> {{v.metrics.title|cutText:true:25}} <span class=item-cnt>({{devices.cnt.deviceEvents[v.id]}})</span></a></div></div></div></div><div class=page-navi ng-if=naviExpanded.evDays><div class=page-navi-in><div class=page-navi-content><a class=\"btn btn-default btn-tag\" href=\"\" ng-class=\"timeFilter.day == 1 ? 'active': ''\" ng-click=changeTime(1)>{{_t('lb_today')}}</a> <a class=\"btn btn-default btn-tag\" href=\"\" ng-class=\"timeFilter.day == 2 ? 'active': ''\" ng-click=changeTime(2)>{{_t('lb_yesterday')}}</a> <a class=\"btn btn-default btn-tag\" href=\"\" ng-class=\"timeFilter.day == 7 ? 'active': ''\" ng-click=changeTime(7)>7 {{_t('lb_days')}}</a></div></div></div><div class=info-lert ng-if=\"devices.find.id && collection.length < 1\"><i class=\"fa fa-info-circle text-info\"></i> {{_t('device_no_event')}}.</div><div class=info-lert ng-if=\"user.hide_all_device_events || user.hide_system_events\"><i class=\"fa fa-info-circle text-info\"></i> <span ng-bind=\"_t('events_hidden')\"></span></div><div class=\"app-row app-row-report app-row-event clearfix\"><div class=\"report-entry event-level-{{v.level}}\" dir-paginate=\"v in collection | orderBy: '-timestamp' | itemsPerPage: pageSize\" current-page=currentPage id=row_{{v.id}}><div class=\"report-col report-media\"><img id=event_img_{{v.id}} class=report-img ng-src={{v.type|getEventIcon:v.message}} alt=\"{{v.type}}\"></div><div class=\"report-col report-body\"><span class=\"text-supp event-date\" title=\"{{v.timestamp| date:'dd.MM.yyyy H:mm'}}\" ng-bind=\"v.timestamp | eventDate\"></span> <span class=hide-on-mobile>|</span> <span ng-if=\"v.source && v.message\"><a ng-href=#element/{{v.source}} ng-if=\"elementAccess(cfg.role_access.element) && (cfg.events_clickable.indexOf(v.level) > -1)\"><span ng-if=\"v.message | hasNode:'l'\"><span ng-bind=v.message.dev></span> {{_t('lb_is')}} <strong ng-bind=v.message.l></strong></span> <span ng-if=\"!(v.message | hasNode:'l')\" ng-bind=v.message></span></a> <span ng-if=\"!elementAccess(cfg.role_access.element) || (cfg.events_clickable.indexOf(v.level) === -1)\"><span ng-if=\"v.message | hasNode:'l'\"><span ng-bind=v.message.dev></span> {{_t('lb_is')}} <strong ng-bind=v.message.l></strong></span> <span ng-if=\"!(v.message | hasNode:'l')\" ng-bind=v.message></span></span></span> <span class=report-message ng-bind=v.message ng-if=\"!v.source && !v.message\"></span></div><div class=\"report-col report-ctrl\" ng-include=\"'app/views/events/dropdown.html'\"></div></div></div><div class=\"text-center mobile-padding\" ng-if=\"collection.length > 0\"><dir-pagination-controls boundary-links=true></dir-pagination-controls></div></div>"
   );
 
 
@@ -11754,7 +11776,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/zwave/zwave_batteries.html',
-    "<div ng-controller=ZwaveManageController><bb-loader></bb-loader><div ng-include=\"'app/views/zwave/navi.html'\"></div><div class=\"app-row app-row-report app-row-zwave clearfix\"><div id=row_battery_{{v.id}} class=report-entry ng-repeat=\"v in devices.zw| orderBy:'title':false\" ng-if=v.hasBattery><div class=\"report-col report-media\"><img class=report-img ng-src={{v.batteryCharge|getBatteryIcon}} alt=\"img\"></div><div class=\"report-col report-body report-col-w30\"><span class=\"network-zwave-title noelements\" ng-if=\"_.size(v.elements) < 1\">{{v.title}} (#{{v.id}})</span><div class=btn-group ng-if=\"_.size(v.elements) > 0\"><a href=\"\" class=network-zwave-title ng-click=\"expandNavi('accZwaveManage_' + v.id, $event)\"><i class=fa ng-class=\"naviExpanded['accZwaveManage_' + v.id] ? 'fa-chevron-up' : 'fa-chevron-down'\"></i> {{v.title}} (#{{v.id}})</a><div class=\"app-dropdown app-dropdown-left\" ng-if=\"naviExpanded['accZwaveManage_' + v.id]\"><ul><li class=\"clickable zwave-hidden-{{e.permanently_hidden}}\" ng-repeat=\"e in v.elements| orderBy:'metrics.title':false\"><a ng-href=#/element/{{e.id}} title={{e.metrics.title}}><img class=report-img-s ng-src={{e.metrics.icon|getElementIcon:e:e.level}} alt=\"img\"> {{e.metrics.title|cutText:true:20}} <span class=zwave-raquo>&raquo;</span></a></li></ul></div></div></div><div class=\"report-col report-battery-info\"><div ng-if=v.date><i class=\"fa fa-clock-o\"></i> {{v.date}}</div><div ng-if=v.awake><i class=\"fa {{v.awake|getAwakeIcon}}\"></i> <span ng-if=v.sleeping ng-bind-html=\"v.sleeping | toTrusted\"></span></div></div><div class=\"report-col report-ctrl\"><span class=text-success ng-show=\"v.batteryCharge >= 80\">{{v.batteryCharge}} %</span> <span class=text-default ng-show=\"v.batteryCharge < 80 && v.batteryCharge > 20\">{{v.batteryCharge}} %</span> <span class=text-danger ng-show=\"v.batteryCharge <= 20\"><i class=\"fa fa-exclamation-triangle\"></i> {{v.batteryCharge}} %</span></div></div></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div></div>"
+    "<div ng-controller=ZwaveManageController><bb-loader></bb-loader><div ng-include=\"'app/views/zwave/navi.html'\"></div><div class=\"app-row app-row-report app-row-zwave clearfix\"><div id=row_battery_{{v.id}} class=report-entry ng-repeat=\"v in devices.zw| orderBy:'title':false\" ng-if=v.hasBattery><div class=\"report-col report-media\"><img class=report-img ng-src={{v.batteryCharge|getBatteryIcon}} alt=\"img\"></div><div class=\"report-col report-body report-col-w30\"><span class=\"network-zwave-title noelements\" ng-if=\"_.size(v.elements) < 1\">{{v.title}} (#{{v.id}})</span><div class=btn-group ng-if=\"_.size(v.elements) > 0\"><a href=\"\" class=network-zwave-title ng-click=\"expandNavi('accZwaveManage_' + v.id, $event)\"><i class=fa ng-class=\"naviExpanded['accZwaveManage_' + v.id] ? 'fa-chevron-up' : 'fa-chevron-down'\"></i> {{v.title}} (#{{v.id}})</a><div class=\"app-dropdown app-dropdown-left\" ng-if=\"naviExpanded['accZwaveManage_' + v.id]\"><ul><li class=\"clickable zwave-hidden-{{e.permanently_hidden}}\" ng-repeat=\"e in v.elements| orderBy:'metrics.title':false\"><a ng-href=#/element/{{e.id}} title={{e.metrics.title}}><img class=report-img-s ng-src={{e.iconPath}} alt=\"img\"> {{e.metrics.title|cutText:true:20}} <span class=zwave-raquo>&raquo;</span></a></li></ul></div></div></div><div class=\"report-col report-battery-info\"><div ng-if=v.date><i class=\"fa fa-clock-o\"></i> {{v.date}}</div><div ng-if=v.awake><i class=\"fa {{v.awake|getAwakeIcon}}\"></i> <span ng-if=v.sleeping ng-bind-html=\"v.sleeping | toTrusted\"></span></div></div><div class=\"report-col report-ctrl\"><span class=text-success ng-show=\"v.batteryCharge >= 80\">{{v.batteryCharge}} %</span> <span class=text-default ng-show=\"v.batteryCharge < 80 && v.batteryCharge > 20\">{{v.batteryCharge}} %</span> <span class=text-danger ng-show=\"v.batteryCharge <= 20\"><i class=\"fa fa-exclamation-triangle\"></i> {{v.batteryCharge}} %</span></div></div></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div></div>"
   );
 
 
@@ -11769,12 +11791,12 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/zwave/zwave_manage.html',
-    "<div ng-controller=ZwaveManageController><bb-loader></bb-loader><div ng-include=\"'app/views/zwave/navi.html'\"></div><div class=\"app-row app-row-report app-row-zwave clearfix\"><div id=row_zwave_{{v.id}} class=report-entry ng-repeat=\"v in devices.zw | orderBy:'title':false\"><div class=\"report-col report-body zwave-devices\"><div class=btn-group><span class=\"network-zwave-title noelements\" ng-if=\"_.size(v.elements) < 1\">{{v.title}} (#{{v.id}})</span> <a href=\"\" class=network-zwave-title ng-click=\"expandNavi('accZwaveManage_' + v.id, $event)\" ng-if=\"_.size(v.elements) > 0\"><i class=fa ng-class=\"naviExpanded['accZwaveManage_' + v.id] ? 'fa-chevron-up' : 'fa-chevron-down'\"></i> {{v.title}} (#{{v.id}})</a><div class=\"app-dropdown app-dropdown-left\" ng-if=\"naviExpanded['accZwaveManage_' + v.id]\"><ul><li class=\"clickable zwave-hidden-{{e.permanently_hidden}}\" ng-repeat=\"e in v.elements| orderBy:'metrics.title':false\"><a ng-href=#/element/{{e.id}}><img class=report-img-s ng-src={{e.metrics.icon|getElementIcon:e:e.level}} alt=\"img\"> {{e.metrics.title|cutText:true:20}} <span class=zwave-raquo>&raquo;</span></a></li></ul></div></div></div><div class=\"report-col report-ctrl\" ng-if=elementAccess(cfg.role_access.network)><div class=btn-group><a class=\"btn btn-default\" href=#zwave/devices/{{v.id}} title=\"{{_t('lb_configuration')}}\"><i class=\"fa fa-cog text-primary\"></i></a> <a class=\"btn btn-default\" href=#zwave/exclude/{{v.id}} title=\"{{_t('lb_remove')}}\"><i class=\"fa fa-remove text-danger\"></i></a></div></div></div></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div></div>"
+    "<div ng-controller=ZwaveManageController><bb-loader></bb-loader><div ng-include=\"'app/views/zwave/navi.html'\"></div><div class=\"app-row app-row-report app-row-zwave clearfix\"><div id=row_zwave_{{v.id}} class=report-entry ng-repeat=\"v in devices.zw | orderBy:'title':false\"><div class=\"report-col report-body zwave-devices\"><div class=btn-group><span class=\"network-zwave-title noelements\" ng-if=\"_.size(v.elements) < 1\">{{v.title}} (#{{v.id}})</span> <a href=\"\" class=network-zwave-title ng-click=\"expandNavi('accZwaveManage_' + v.id, $event)\" ng-if=\"_.size(v.elements) > 0\"><i class=fa ng-class=\"naviExpanded['accZwaveManage_' + v.id] ? 'fa-chevron-up' : 'fa-chevron-down'\"></i> {{v.title}} (#{{v.id}})</a><div class=\"app-dropdown app-dropdown-left\" ng-if=\"naviExpanded['accZwaveManage_' + v.id]\"><ul><li class=\"clickable zwave-hidden-{{e.permanently_hidden}}\" ng-repeat=\"e in v.elements| orderBy:'metrics.title':false\"><a ng-href=#/element/{{e.id}}><img class=report-img-s ng-src={{e.iconPath}} alt=\"img\"> {{e.metrics.title|cutText:true:20}} <span class=zwave-raquo>&raquo;</span></a></li></ul></div></div></div><div class=\"report-col report-ctrl\" ng-if=elementAccess(cfg.role_access.network)><div class=btn-group><a class=\"btn btn-default\" href=#zwave/devices/{{v.id}} title=\"{{_t('lb_configuration')}}\"><i class=\"fa fa-cog text-primary\"></i></a> <a class=\"btn btn-default\" href=#zwave/exclude/{{v.id}} title=\"{{_t('lb_remove')}}\"><i class=\"fa fa-remove text-danger\"></i></a></div></div></div></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div></div>"
   );
 
 
   $templateCache.put('app/views/zwave/zwave_manage_id.html',
-    "<div ng-controller=ZwaveManageIdController class=mobile-padding><bb-loader></bb-loader><div ng-show=formInput.show><h1>(#{{zWaveDevice.id}}) {{formInput.deviceName}}</h1><form name=form_network_config id=form_profile class=\"form form-page\" ng-submit=updateAllDevices(formInput) novalidate><fieldset><label ng-bind=\"_t('rename_device')\"></label><input name=device_name id=device_name class=form-control value={{formInput.deviceName}} ng-model=\"formInput.deviceName\"></fieldset><div ng-if=\"devices.length > 0\"><fieldset><div class=\"form-group form-inline\"><div class=input-group><input name=appstore_token id=appstore_token class=form-control placeholder=\"{{_t('lb_add_room')}}\" ng-model=\"formInput.newRoom\"> <span class=\"input-group-addon clickable\" title=\"{{_t('add_new')}}\" ng-click=addRoom(formInput.newRoom)><i class=\"fa fa-plus text-success\"></i></span></div></div><div class=\"form-group form-inline\"><label class=display-block ng-bind=\"_t('devices_to_room')\"></label><div class=btn-group><button type=button class=\"btn btn-default\" ng-click=\"expandNavi('devidDropDown', $event)\">{{rooms[formInput.room].title|cutText:true:20}} <i class=\"fa fa-caret-down\"></i></button><div class=\"app-dropdown app-dropdown-left\" ng-if=naviExpanded.devidDropDown><ul><li class=clickable ng-click=\"formInput.room = v.id\" ng-repeat=\"v in rooms\"><a><img class=navi-img ng-src={{v.img_src}} alt=\"img\"> {{v.title|cutText:true:20}} <i class=\"fa fa-check menu-arrow\" ng-if=\"formInput.room == v.id\"></i></a></li></ul></div></div></div></fieldset><fieldset><div class=\"form-group form-inline zwave-hidden-{{formInput.elements[e.id].permanently_hidden}}\" ng-repeat=\"e in devices| orderBy:'title':false track by e.id\" ng-init=\"dev[e.id] = e\"><h3><img class=report-img-s ng-src={{e.metrics.icon|getElementIcon:e:e.level}} alt=\"img\"> <span ng-bind=formInput.elements[e.id].metrics.title></span></h3><div class=\"form-group form-inline\"><input name=title_{{$index}} id=title_{{$index}} class=form-control ng-model=formInput.elements[e.id].metrics.title value=\"{{formInput.elements[e.id].metrics.title}}\"> <span class=mobile-block><input type=checkbox name=permanently_hidden_{{$index}} id=permanently_hidden_{{$index}} ng-model=formInput.elements[e.id].permanently_hidden ng-checked=\"formInput.elements[e.id].permanently_hidden\"><label>{{_t('lb_deactivate')}}</label></span></div></div><div class=\"form-group form-inline\"><a class=\"btn btn-primary\" href=#deviceconfig/{{zWaveDevice.id}} title=\"{{_t('hardware_konfiguration')}}\" ng-if=\"zWaveDevice.cfg.length > 0\"><i class=\"fa fa-wrench\"></i> <span class=btn-name ng-bind=\"_t('hardware_konfiguration')\"></span></a></div></fieldset></div><fieldset class=submit-entry><button type=button class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\" ng-if=!nohistory bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <button type=submit class=\"btn btn-submit\" title=\"{{_t('lb_save')}}\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></fieldset></form></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div></div>"
+    "<div ng-controller=ZwaveManageIdController class=mobile-padding><bb-loader></bb-loader><div ng-show=formInput.show><h1>(#{{zWaveDevice.id}}) {{formInput.deviceName}}</h1><form name=form_network_config id=form_profile class=\"form form-page\" ng-submit=updateAllDevices(formInput) novalidate><fieldset><label ng-bind=\"_t('rename_device')\"></label><input name=device_name id=device_name class=form-control value={{formInput.deviceName}} ng-model=\"formInput.deviceName\"></fieldset><div ng-if=\"devices.length > 0\"><fieldset><div class=\"form-group form-inline\"><div class=input-group><input name=appstore_token id=appstore_token class=form-control placeholder=\"{{_t('lb_add_room')}}\" ng-model=\"formInput.newRoom\"> <span class=\"input-group-addon clickable\" title=\"{{_t('add_new')}}\" ng-click=addRoom(formInput.newRoom)><i class=\"fa fa-plus text-success\"></i></span></div></div><div class=\"form-group form-inline\"><label class=display-block ng-bind=\"_t('devices_to_room')\"></label><div class=btn-group><button type=button class=\"btn btn-default\" ng-click=\"expandNavi('devidDropDown', $event)\">{{rooms[formInput.room].title|cutText:true:20}} <i class=\"fa fa-caret-down\"></i></button><div class=\"app-dropdown app-dropdown-left\" ng-if=naviExpanded.devidDropDown><ul><li class=clickable ng-click=\"formInput.room = v.id\" ng-repeat=\"v in rooms\"><a><img class=navi-img ng-src={{v.img_src}} alt=\"img\"> {{v.title|cutText:true:20}} <i class=\"fa fa-check menu-arrow\" ng-if=\"formInput.room == v.id\"></i></a></li></ul></div></div></div></fieldset><fieldset><div class=\"form-group form-inline zwave-hidden-{{formInput.elements[e.id].permanently_hidden}}\" ng-repeat=\"e in devices| orderBy:'title':false track by e.id\" ng-init=\"dev[e.id] = e\"><h3><img class=report-img-s ng-src={{e.iconPath}} alt=\"img\"> <span ng-bind=formInput.elements[e.id].metrics.title></span></h3><div class=\"form-group form-inline\"><input name=title_{{$index}} id=title_{{$index}} class=form-control ng-model=formInput.elements[e.id].metrics.title value=\"{{formInput.elements[e.id].metrics.title}}\"> <span class=mobile-block><input type=checkbox name=permanently_hidden_{{$index}} id=permanently_hidden_{{$index}} ng-model=formInput.elements[e.id].permanently_hidden ng-checked=\"formInput.elements[e.id].permanently_hidden\"><label>{{_t('lb_deactivate')}}</label></span></div></div><div class=\"form-group form-inline\"><a class=\"btn btn-primary\" href=#deviceconfig/{{zWaveDevice.id}} title=\"{{_t('hardware_konfiguration')}}\" ng-if=\"zWaveDevice.cfg.length > 0\"><i class=\"fa fa-wrench\"></i> <span class=btn-name ng-bind=\"_t('hardware_konfiguration')\"></span></a></div></fieldset></div><fieldset class=submit-entry><button type=button class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\" ng-if=!nohistory bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <button type=submit class=\"btn btn-submit\" title=\"{{_t('lb_save')}}\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></fieldset></form></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div></div>"
   );
 
 
@@ -11784,7 +11806,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/zwave/zwave_network.html',
-    "<div ng-controller=ZwaveManageController><bb-loader></bb-loader><div ng-include=\"'app/views/zwave/navi.html'\"></div><div class=\"app-row app-row-report app-row-zwave clearfix\"><div id=row_zwave_network_{{v.id}} class=report-entry ng-repeat=\"v in devices.zw | orderBy:'title':false\" ng-class=\"v.isFailed ? 'bcg-danger': ''\" ng-if=\"_.size(v.messages) > 0\"><div class=\"report-col report-body zwave-network\"><span class=\"network-zwave-title noelements\" ng-if=\"_.size(v.elements) < 1\">{{v.title}} (#{{v.id}})</span><div class=btn-group ng-if=\"_.size(v.elements) > 0\"><a href=\"\" class=network-zwave-title ng-click=\"expandNavi('accZwaveManage_' + v.id, $event)\"><i class=fa ng-class=\"naviExpanded['accZwaveManage_' + v.id] ? 'fa-chevron-up' : 'fa-chevron-down'\"></i> {{v.title}} (#{{v.id}})</a><div class=\"app-dropdown app-dropdown-left\" ng-if=\"naviExpanded['accZwaveManage_' + v.id]\"><ul><li class=\"clickable zwave-hidden-{{e.permanently_hidden}}\" ng-repeat=\"e in v.elements| orderBy:'metrics.title':false\"><a ng-href=#/element/{{e.id}} title={{e.metrics.title}}><img class=report-img-s ng-src={{e.metrics.icon|getElementIcon:e:e.level}} alt=\"img\"> {{e.metrics.title|cutText:true:20}} <span class=zwave-raquo>&raquo;</span></a></li></ul></div></div></div><div class=\"report-col report-ctrl\"><div ng-repeat=\"m in v.messages|unique:true\"><div class=text-danger ng-if=\"m.type !== 'config'\">{{m.error}}</div><button class=\"btn btn-default\" ng-if=\"!v.interviewDone  && !v.isFailed\" ng-click=\"devices.find = v;handleModal('zwaveNetworkModal', $event)\"><i class=\"fa fa-refresh text-primary\"></i> <span class=btn-name>{{_t('configure_device')}}</span></button></div></div></div></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div><div id=zwaveNetworkModal class=appmodal ng-controller=ZwaveInterviewController ng-if=\"modalArr.zwaveNetworkModal && !_.isEmpty(devices.find)\"><div class=appmodal-in><div class=appmodal-header><span class=appmodal-close ng-click=cancelConfiguration($event)><i class=\"fa fa-times\"></i></span><h3>{{devices.find.title|cutText:true:25}} (#{{devices.find.id}})</h3></div><div class=appmodal-body><div class=\"alert alert-warning\" ng-hide=\"zwaveInterview.progress > 99\"><i class=\"fa fa-spinner fa-spin\"></i> <strong>{{_t('configuring_device')}}</strong></div><div class=progress><div class=progress-bar style=\"min-height:40px;min-width: 2em; width: {{zwaveInterview.progress}}%\" ng-class=\"zwaveInterview.progress < 100 ? 'progress-bar-striped active' : 'progress-bar-success'\">{{zwaveInterview.progress}}%</div></div></div><div class=appmodal-footer><button type=button class=\"btn btn-default\" ng-click=cancelConfiguration($event)><i class=\"fa fa-times text-danger\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button></div></div></div></div>"
+    "<div ng-controller=ZwaveManageController><bb-loader></bb-loader><div ng-include=\"'app/views/zwave/navi.html'\"></div><div class=\"app-row app-row-report app-row-zwave clearfix\"><div id=row_zwave_network_{{v.id}} class=report-entry ng-repeat=\"v in devices.zw | orderBy:'title':false\" ng-class=\"v.isFailed ? 'bcg-danger': ''\" ng-if=\"_.size(v.messages) > 0\"><div class=\"report-col report-body zwave-network\"><span class=\"network-zwave-title noelements\" ng-if=\"_.size(v.elements) < 1\">{{v.title}} (#{{v.id}})</span><div class=btn-group ng-if=\"_.size(v.elements) > 0\"><a href=\"\" class=network-zwave-title ng-click=\"expandNavi('accZwaveManage_' + v.id, $event)\"><i class=fa ng-class=\"naviExpanded['accZwaveManage_' + v.id] ? 'fa-chevron-up' : 'fa-chevron-down'\"></i> {{v.title}} (#{{v.id}})</a><div class=\"app-dropdown app-dropdown-left\" ng-if=\"naviExpanded['accZwaveManage_' + v.id]\"><ul><li class=\"clickable zwave-hidden-{{e.permanently_hidden}}\" ng-repeat=\"e in v.elements| orderBy:'metrics.title':false\"><a ng-href=#/element/{{e.id}} title={{e.metrics.title}}><img class=report-img-s ng-src={{e.iconPath}} alt=\"img\"> {{e.metrics.title|cutText:true:20}} <span class=zwave-raquo>&raquo;</span></a></li></ul></div></div></div><div class=\"report-col report-ctrl\"><div ng-repeat=\"m in v.messages|unique:true\"><div class=text-danger ng-if=\"m.type !== 'config'\">{{m.error}}</div><button class=\"btn btn-default\" ng-if=\"!v.interviewDone  && !v.isFailed\" ng-click=\"devices.find = v;handleModal('zwaveNetworkModal', $event)\"><i class=\"fa fa-refresh text-primary\"></i> <span class=btn-name>{{_t('configure_device')}}</span></button></div></div></div></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div><div id=zwaveNetworkModal class=appmodal ng-controller=ZwaveInterviewController ng-if=\"modalArr.zwaveNetworkModal && !_.isEmpty(devices.find)\"><div class=appmodal-in><div class=appmodal-header><span class=appmodal-close ng-click=cancelConfiguration($event)><i class=\"fa fa-times\"></i></span><h3>{{devices.find.title|cutText:true:25}} (#{{devices.find.id}})</h3></div><div class=appmodal-body><div class=\"alert alert-warning\" ng-hide=\"zwaveInterview.progress > 99\"><i class=\"fa fa-spinner fa-spin\"></i> <strong>{{_t('configuring_device')}}</strong></div><div class=progress><div class=progress-bar style=\"min-height:40px;min-width: 2em; width: {{zwaveInterview.progress}}%\" ng-class=\"zwaveInterview.progress < 100 ? 'progress-bar-striped active' : 'progress-bar-success'\">{{zwaveInterview.progress}}%</div></div></div><div class=appmodal-footer><button type=button class=\"btn btn-default\" ng-click=cancelConfiguration($event)><i class=\"fa fa-times text-danger\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button></div></div></div></div>"
   );
 
 
@@ -13097,7 +13119,6 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                             {hasHistory: (v.hasHistory === true ? true : false)},
                             {imgTrans: false},
                             {isNew: isNew},
-                    //{iconPath: $filter('getElementIcon')(v.metrics.icon, v, v.metrics.level)},
                             {iconPath: assignElementIcon(v)},
                             {updateCmd: (v.deviceType === 'switchControl' ? 'on' : 'update')}
                     );
@@ -13365,7 +13386,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
             // Assign icon by metrics.icon
             var iconArray = setIcon(cfgicons.element.icon[iconKey], element.custom_icons);
             if (!iconArray) {
-                cfg.img.icons + icon;
+                return icon;
             }
             switch (iconKey) {
                 // door
@@ -13392,6 +13413,22 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                     break;
                     // motion
                 case 'motion':
+                    icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+                    break;
+                 // alarm
+                case 'alarm':
+                    icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+                    break;
+                 // CO alarm
+                case 'CO_alarm':
+                    icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+                    break;
+                 // tamper
+                case 'tamper':
+                    icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+                    break;
+                 // smoke
+                case 'smoke':
                     icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
                     break;
                     // blinds
@@ -14341,131 +14378,132 @@ myApp.filter('hasNode', function () {
     };
 });
 /**
+ * DEPRECATED
  * Builds an element icon path
  * @function getElementIcon
  */
-myApp.filter('getElementIcon', function (cfg) {
-    return function (input, device, level) {
-        var icon = cfg.img.icons + 'placeholder.png';
-
-        if (input) {
-            if ((/^https?:\/\//.test(input))) {
-                return input;
-            } else if ((/\.(png|gif|jpe?g)$/).test(input)) {
-                if (input.indexOf('/') > -1) {
-                    return input;
-                } else {
-                    return cfg.img.icons + input;
-                }
-            }
-            switch (input) {
-                case 'door':
-                    icon = cfg.img.icons + (level == 'open' || level == 'on' ? 'door-open.png' : 'door-closed.png');
-                    break;
-
-                case 'window':
-                    if (typeof (level) === 'number') {
-                        if (level == 0) {
-                            icon = cfg.img.icons + 'window-down.png';
-                        } else if (level >= 99) {
-                            icon = cfg.img.icons + 'window-up.png';
-                        } else {
-                            icon = cfg.img.icons + 'window-half.png';
-                        }
-                    } else {
-                        icon = cfg.img.icons + (level == 'open' || level == 'on' ? 'window-open.png' : 'window-closed.png');
-                    }
-                    break;
-                case 'doorlockcontrol':
-                    icon = cfg.img.icons + 'lock-closed.png';
-                    break;
-
-                case 'switch':
-                    icon = cfg.img.icons + (level == 'on' ? 'switch-on.png' : 'switch-off.png');
-                    break;
-
-                case 'motion':
-                    icon = cfg.img.icons + (level == 'on' ? 'motion-on.png' : 'motion-off.png');
-                    break;
-
-                case 'blinds':
-                    if (level == 0) {
-                        icon = cfg.img.icons + 'blind-down.png';
-                    } else if (level >= 99) {
-                        icon = cfg.img.icons + 'blind-up.png';
-                    } else {
-                        icon = cfg.img.icons + 'blind-half.png';
-                    }
-                    break;
-
-                case 'multilevel':
-                    if (level == 0) {
-                        icon = cfg.img.icons + 'dimmer-off.png';
-                    } else if (level >= 99) {
-                        icon = cfg.img.icons + 'dimmer-on.png';
-                    } else {
-                        icon = cfg.img.icons + 'dimmer-half.png';
-                    }
-                    break;
-                case 'thermostat':
-                    icon = cfg.img.icons + 'thermostat.png';
-                    break;
-
-                case 'energy':
-                    icon = cfg.img.icons + 'energy.png';
-                    break;
-
-                case 'meter':
-                    icon = cfg.img.icons + 'meter.png';
-                    break;
-
-                case 'temperature':
-                    icon = cfg.img.icons + 'temperature.png';
-                    break;
-
-                case 'camera':
-                    icon = cfg.img.icons + 'camera.png';
-                    break;
-                case 'smoke':
-                    icon = cfg.img.icons + 'smoke.png';
-                    break;
-                case 'alarm':
-                    icon = cfg.img.icons + 'alarm.png';
-                    break;
-                case 'battery':
-                    icon = cfg.img.icons + 'battery.png';
-                    break;
-                case 'luminosity':
-                    icon = cfg.img.icons + 'luminosity.png';
-                    break;
-                case 'humidity':
-                    icon = cfg.img.icons + 'humidity.png';
-                    break;
-                case 'ultraviolet':
-                    icon = cfg.img.icons + 'ultraviolet.png';
-                    break;
-                case 'barometer':
-                    icon = cfg.img.icons + 'barometer.png';
-                    break;
-                case 'new':
-                    icon = cfg.img.icons + 'new.png';
-                    break;
-                default:
-                    break;
-            }
-
-        } else {
-            switch (device.deviceType) {
-                case 'switchControl':
-                    icon = cfg.img.icons + 'switch-control.png';
-                    break;
-                default:
-                    break;
-            }
-        }
-        return icon;
-    };
-});
+//myApp.filter('getElementIcon', function (cfg) {
+//    return function (input, device, level) {
+//        var icon = cfg.img.icons + 'placeholder.png';
+//
+//        if (input) {
+//            if ((/^https?:\/\//.test(input))) {
+//                return input;
+//            } else if ((/\.(png|gif|jpe?g)$/).test(input)) {
+//                if (input.indexOf('/') > -1) {
+//                    return input;
+//                } else {
+//                    return cfg.img.icons + input;
+//                }
+//            }
+//            switch (input) {
+//                case 'door':
+//                    icon = cfg.img.icons + (level == 'open' || level == 'on' ? 'door-open.png' : 'door-closed.png');
+//                    break;
+//
+//                case 'window':
+//                    if (typeof (level) === 'number') {
+//                        if (level == 0) {
+//                            icon = cfg.img.icons + 'window-down.png';
+//                        } else if (level >= 99) {
+//                            icon = cfg.img.icons + 'window-up.png';
+//                        } else {
+//                            icon = cfg.img.icons + 'window-half.png';
+//                        }
+//                    } else {
+//                        icon = cfg.img.icons + (level == 'open' || level == 'on' ? 'window-open.png' : 'window-closed.png');
+//                    }
+//                    break;
+//                case 'doorlockcontrol':
+//                    icon = cfg.img.icons + 'lock-closed.png';
+//                    break;
+//
+//                case 'switch':
+//                    icon = cfg.img.icons + (level == 'on' ? 'switch-on.png' : 'switch-off.png');
+//                    break;
+//
+//                case 'motion':
+//                    icon = cfg.img.icons + (level == 'on' ? 'motion-on.png' : 'motion-off.png');
+//                    break;
+//
+//                case 'blinds':
+//                    if (level == 0) {
+//                        icon = cfg.img.icons + 'blind-down.png';
+//                    } else if (level >= 99) {
+//                        icon = cfg.img.icons + 'blind-up.png';
+//                    } else {
+//                        icon = cfg.img.icons + 'blind-half.png';
+//                    }
+//                    break;
+//
+//                case 'multilevel':
+//                    if (level == 0) {
+//                        icon = cfg.img.icons + 'dimmer-off.png';
+//                    } else if (level >= 99) {
+//                        icon = cfg.img.icons + 'dimmer-on.png';
+//                    } else {
+//                        icon = cfg.img.icons + 'dimmer-half.png';
+//                    }
+//                    break;
+//                case 'thermostat':
+//                    icon = cfg.img.icons + 'thermostat.png';
+//                    break;
+//
+//                case 'energy':
+//                    icon = cfg.img.icons + 'energy.png';
+//                    break;
+//
+//                case 'meter':
+//                    icon = cfg.img.icons + 'meter.png';
+//                    break;
+//
+//                case 'temperature':
+//                    icon = cfg.img.icons + 'temperature.png';
+//                    break;
+//
+//                case 'camera':
+//                    icon = cfg.img.icons + 'camera.png';
+//                    break;
+//                case 'smoke':
+//                    icon = cfg.img.icons + 'smoke.png';
+//                    break;
+//                case 'alarm':
+//                    icon = cfg.img.icons + 'alarm.png';
+//                    break;
+//                case 'battery':
+//                    icon = cfg.img.icons + 'battery.png';
+//                    break;
+//                case 'luminosity':
+//                    icon = cfg.img.icons + 'luminosity.png';
+//                    break;
+//                case 'humidity':
+//                    icon = cfg.img.icons + 'humidity.png';
+//                    break;
+//                case 'ultraviolet':
+//                    icon = cfg.img.icons + 'ultraviolet.png';
+//                    break;
+//                case 'barometer':
+//                    icon = cfg.img.icons + 'barometer.png';
+//                    break;
+//                case 'new':
+//                    icon = cfg.img.icons + 'new.png';
+//                    break;
+//                default:
+//                    break;
+//            }
+//
+//        } else {
+//            switch (device.deviceType) {
+//                case 'switchControl':
+//                    icon = cfg.img.icons + 'switch-control.png';
+//                    break;
+//                default:
+//                    break;
+//            }
+//        }
+//        return icon;
+//    };
+//});
 
 /**
  * Builds an event icon path
@@ -15643,11 +15681,10 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
                         angular.extend($scope.dataHolder.devices.all[index],
                                 {metrics: v.metrics},
                                 {imgTrans: false},
-                                //{iconPath: $filter('getElementIcon')(v.metrics.icon, v, v.metrics.level)},
-                                 {iconPath: dataService.assignElementIcon(v)},
+                                {iconPath: dataService.assignElementIcon(v)},
                                 {updateTime: v.updateTime}
                         );
-                        console.log('Updating from server response: device ID: ' + v.id + ', metrics.level: ' + v.metrics.level + ', updateTime: ' + v.updateTime + ', iconPath: ' + $filter('getElementIcon')(v.metrics.icon, v, v.metrics.level))
+                        //console.log('Updating from server response: device ID: ' + v.id + ', metrics.level: ' + v.metrics.level + ', updateTime: ' + v.updateTime);
                     });
                 }
                 if (response.data.data.structureChanged === true) {
@@ -16063,7 +16100,7 @@ myAppController.controller('ElementSensorMultilineController', function ($scope,
                 $scope.widgetSensorMultiline.alert = {message: $scope._t('no_data'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
                 return;
             }
-
+           $scope.widgetSensorMultiline.find.metrics.sensors = dataService.getDevicesData(response.data.data.metrics.sensors).value();
         }, function (error) {
             $scope.widgetSensorMultiline.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
         });
@@ -16794,7 +16831,8 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
             }
             // Success - devices
             if (devices.state === 'fulfilled') {
-                setDevices(devices.value.data.data.devices);
+                //setDevices(devices.value.data.data.devices);
+                setDevices(dataService.getDevicesData(devices.value.data.data.devices,false));
             }
 
             // Success - notifications
@@ -16922,9 +16960,7 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
      */
     function setDevices(devices) {
         var rejectType = ['battery', 'text', 'camera'];
-        var data = _.chain(devices)
-                .flatten()
-                .reject(function (v) {
+        var data = devices.reject(function (v) {
                     return rejectType.indexOf(v.deviceType) > -1 || v.permanently_hidden === true;
                 })
                 .indexBy('id')
@@ -19834,7 +19870,8 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
             }
             // Success - devices
             if (devices.state === 'fulfilled') {
-                zwaveConfigApiData($scope.zwaveConfig.nodeId, devices.value.data.data.devices);
+                  var elements = dataService.getDevicesData(devices.value.data.data.devices,false);
+                zwaveConfigApiData($scope.zwaveConfig.nodeId, elements.value() );
             }
             // Success - locations
             if (locations.state === 'fulfilled') {
@@ -19906,6 +19943,7 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
      * Get zwaveApiData
      */
     function zwaveConfigApiData(nodeId, devices) {
+        console.log(devices)
         dataFactory.loadZwaveApiData(true).then(function (ZWaveAPIData) {
             var node = ZWaveAPIData.devices[nodeId];
             if (!node) {
@@ -19955,13 +19993,14 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
                 var iId = cmd[1];
                 var ccId = cmd[2];
                 if (zwaveId == nodeId) {
-                    var obj = {};
+                    var obj = v;
+                    /*var obj = {};
                     obj['id'] = v.id;
                     obj['permanently_hidden'] = v.permanently_hidden;
                     obj['visibility'] = v.visibility;
                     obj['level'] = $filter('toInt')(v.metrics.level);
                     obj['metrics'] = v.metrics;
-                    obj['location'] = v.location;
+                    obj['location'] = v.location;*/
                     $scope.formInput.elements[v.id] = obj;
                     $scope.devices.push(obj);
                 }
@@ -20283,19 +20322,21 @@ myAppController.controller('EnoceanAssignController', function($scope, $interval
         dataFactory.getApi('devices').then(function(response) {
             $scope.apiDevices = [];
             var findZenoStr = "ZEnoVDev_zeno_x";
-            angular.forEach(response.data.data.devices, function(v, k) {
+             var elements = dataService.getDevicesData(response.data.data.devices,false);
+            angular.forEach(elements.value(), function(v, k) {
                 if (v.id.indexOf(findZenoStr) === -1) {
                     return;
                 }
                 var cmd = v.id.split(findZenoStr)[1].split('_');
                 var zenoId = cmd[0];
                 if (zenoId == $scope.lastIncludedDevice.id) {
-                    var obj = {};
-                    obj['id'] = v.id;
+                    var obj = v;
                     obj['title'] = v.metrics.title;
+                    /*obj['id'] = v.id;
+                    
                     obj['permanently_hidden'] = v.permanently_hidden;
                     obj['visibility'] = v.visibility;
-                    obj['metrics'] = v.metrics;
+                    obj['metrics'] = v.metrics;*/
                     $scope.apiDevices.push(obj);
                 }
 
@@ -20555,7 +20596,8 @@ myAppController.controller('EnoceanTeachinController', function($scope, $routePa
         dataFactory.getApi('devices').then(function(response) {
             $scope.apiDevices = [];
             var findZenoStr = "ZEnoVDev_zeno_x";
-            angular.forEach(response.data.data.devices, function(v, k) {
+             var elements = dataService.getDevicesData(response.data.data.devices,false);
+            angular.forEach(elements.value(), function(v, k) {
                 if (v.id.indexOf(findZenoStr) === -1) {
                     return;
                 }
@@ -20563,12 +20605,12 @@ myAppController.controller('EnoceanTeachinController', function($scope, $routePa
                 var cmd = v.id.split(findZenoStr)[1].split('_');
                 var zenoId = cmd[0];
                 if (zenoId == $scope.lastIncludedDevice.id) {
-                    var obj = {};
-                    obj['id'] = v.id;
+                    var obj = v;
+                    //obj['id'] = v.id;
                     obj['title'] = v.metrics.title;
-                    obj['permanently_hidden'] = v.permanently_hidden;
+                    /*obj['permanently_hidden'] = v.permanently_hidden;
                     obj['visibility'] = v.visibility;
-                    obj['metrics'] = v.metrics;
+                    obj['metrics'] = v.metrics;*/
                     $scope.apiDevices.push(obj);
                 }
 
@@ -20783,7 +20825,7 @@ myAppController.controller('EnoceanManageController', function($scope, $location
      */
     $scope.loadApiDevices = function() {
         dataFactory.getApi('devices').then(function(response) {
-            $scope.apiDevices = response.data.data.devices;
+            $scope.apiDevices = dataService.getDevicesData(response.data.data.devices,false)
         }, function(error) {});
     };
     $scope.loadApiDevices();
@@ -20913,11 +20955,11 @@ myAppController.controller('EnoceanManageController', function($scope, $location
             var cmd = v.id.split(findZenoStr)[1].split('_');
             var zenoId = cmd[0];
             if (zenoId == nodeId) {
-                var obj = {};
-                obj['id'] = v.id;
+                var obj = v;
                 obj['title'] = v.metrics.title;
+                /*obj['id'] = v.id;
                 obj['permanently_hidden'] = v.permanently_hidden;
-                obj['metrics'] = v.metrics;
+                obj['metrics'] = v.metrics;*/
                 elements.push(obj);
             }
 
@@ -20988,19 +21030,21 @@ myAppController.controller('EnoceanManageDetailController', function($scope, $ro
         dataFactory.getApi('devices', null, true).then(function(response) {
             $scope.apiDevices = [];
             var findZenoStr = "ZEnoVDev_zeno_";
-            angular.forEach(response.data.data.devices, function(v, k) {
+            var elements = dataService.getDevicesData(response.data.data.devices,false);
+            angular.forEach(elements.value(), function(v, k) {
                 if (v.id.indexOf(findZenoStr) === -1) {
                     return;
                 }
                 var cmd = v.id.split(findZenoStr)[1].split('_');
                 var zenoId = cmd[0];
                 if (zenoId == $scope.nodeId) {
-                    var obj = {};
-                    obj['id'] = v.id;
+                    var obj = v;
+                    obj['level'] = $filter('toInt')(v.metrics.level);
+                    /*obj['id'] = v.id;
                     obj['permanently_hidden'] = v.permanently_hidden;
                     obj['visibility'] = v.visibility;
                     obj['level'] = $filter('toInt')(v.metrics.level);
-                    obj['metrics'] = v.metrics;
+                    obj['metrics'] = v.metrics;*/
                     $scope.apiDevices.push(obj);
                 }
 

@@ -40,7 +40,7 @@ module.exports = function (grunt) {
                     //'app/css/font-awesome-4.4.0/css/font-awesome.min.css',
                     'app/css/main.css'
                 ],
-                dest: 'dist/app/css/build.css'
+                dest: 'dist/app/css/main.css'
             },
             js: {
                 src: [

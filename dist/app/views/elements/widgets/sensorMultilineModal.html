@@ -18,7 +18,7 @@
                         </tr> -->
                         <tr ng-repeat="n in widgetSensorMultiline.find.metrics.sensors track by n.id">
                             <td class="td-img">
-                                <img id="widget_multiline_img_{{n.id}}" class="report-img" ng-src="{{n.metrics.icon|getElementIcon:n:n.metrics.level}}" alt="img" />
+                                <img id="widget_multiline_img_{{n.id}}" class="report-img" ng-src="{{n.iconPath}}" alt="img" />
                             </td>
                             <td>
                                 <span ng-bind="n.metrics.title"/></span><br />
