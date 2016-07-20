@@ -311,6 +311,7 @@ var config_data = {
         // Order by
         orderby: {
             elements: {
+                'updateTimeDESC': '-updateTime',
                 'creationTimeDESC': '-creationTime',
                 'creationTimeASC': 'creationTime',
                 'titleASC': 'metrics.title',
