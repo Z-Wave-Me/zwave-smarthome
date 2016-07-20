@@ -201,9 +201,9 @@ myAppController.controller('LocalIconController', function ($scope, $filter, $ti
         var output = {};
         angular.forEach(devices, function (v, k) {
             // For testing purposes
-            if (v.id === 'ZWayVDev_zway_9-0-37') {
+            if (v.id === 'ZWayVDev_zway_2-0-156-0-A') {
                 v.custom_icons = {on: 'cat-box-icon.png', off: 'cat-cage-icon.png'};
-            } else if (v.id === 'Multiline_18') {
+            } else if (v.id === 'ZWayVDev_zway_2-0-49-3') {
                 v.custom_icons = {'default': 'cat-cage-icon.png'};
             }
             // Device has custom icons

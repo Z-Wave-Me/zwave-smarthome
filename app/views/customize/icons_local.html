@@ -70,8 +70,8 @@
                 </div>
                 <div class="report-col report-body" title="{{v.file}}">
                     <span>{{v.file}}</span>
-                    <span ng-if="icons.used.device[v.file]">used in <a ng-href="#element/{{d}}" ng-repeat="d in icons.used.device[v.file]">
-                            <strong>{{d|cutText:true:20}},</strong> </a>
+                    <span class="text-danger" ng-if="icons.used.device[v.file]"> | used in: <a class="text-danger" ng-href="#element/{{d}}" ng-repeat="d in icons.used.device[v.file]">
+                            {{d|cutText:true:20}}</a>
                     </span>   
                 </div>
                 <div class="report-col report-ctrl report-ctrl-3">
