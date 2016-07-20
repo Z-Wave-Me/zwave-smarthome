@@ -4,21 +4,27 @@
     "error": null,
     "data": [
         {
-            "file": "cat-box-icon.png"
+            "file": "cat-box-icon.png",
+            "source": "packet_1"
         }, {
-            "file": "cat-cage-icon.png"
+            "file": "cat-cage-icon.png",
+            "source": "packet_1"
         },
         {
-            "file": "cat-clean-icon.png"
+            "file": "cat-clean-icon.png",
+            "source": "packet_2"
         },
         {
-            "file": "cat-drunk-icon.png"
+            "file": "cat-drunk-icon.png",
+            "source": "packet_2"
         },
         {
-            "file": "cat-eyes-icon.png"
+            "file": "cat-eyes-icon.png",
+            "source": "custom"
         },
         {
-            "file": "cat-fight-icon.png"
+            "file": "cat-fight-icon.png",
+            "source": "custom" 
         }
     ]
 }
