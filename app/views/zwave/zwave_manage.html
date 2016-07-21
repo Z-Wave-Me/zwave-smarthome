@@ -8,14 +8,16 @@
              <div class="report-col report-body zwave-devices">
                   <div class="btn-group">
                     <span class="network-zwave-title noelements" ng-if="_.size(v.elements) < 1">{{v.title}} (#{{v.id}}) </span>
-                    <a href="" class="network-zwave-title" ng-click="expandNavi('accZwaveManage_' + v.id, $event)" ng-if="_.size(v.elements) > 0">
+                    <a href="" class="network-zwave-title"
+                       ng-click="expandNavi('accZwaveManage_' + v.id, $event)" ng-if="_.size(v.elements) > 0">
                         <i class="fa" ng-class="naviExpanded['accZwaveManage_' + v.id] ? 'fa-chevron-up' : 'fa-chevron-down'"></i> {{v.title}} (#{{v.id}})
+                        <span class="label label-success" ng-if="v.security"><i class="fa fa-shield"></i> {{_t('secure')}}</span>
                     </a>
-                    <div class="app-dropdown app-dropdown-left" ng-if="naviExpanded['accZwaveManage_' + v.id]">
+                   <div class="app-dropdown app-dropdown-left" ng-if="naviExpanded['accZwaveManage_' + v.id]">
                         <ul>
                             <li class="clickable zwave-hidden-{{e.permanently_hidden}}" 
                                 ng-repeat="e in v.elements| orderBy:'metrics.title':false">
-                                <a ng-href="#/element/{{e.id}}">
+                                <a ng-href="#/element/{{e.id}}" title="{{e.metrics.title}}">
                                     <img class="report-img-s" ng-src="{{e.iconPath}}" alt="img" /> 
                                     {{e.metrics.title|cutText:true:20}} <span class="zwave-raquo">&raquo;</span>
                                 </a>
