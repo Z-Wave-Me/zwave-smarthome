@@ -253,7 +253,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
 
         var cmd = v.id + '/command/exact?level=' + count;
         v.metrics.level = count;
-         console.log('ElementBaseController.setExactCmd - Sending request: ', cmd)
+         //console.log('ElementBaseController.setExactCmd - Sending request: ', cmd)
         //if (run) {
             $scope.runCmd(cmd);
        // }
