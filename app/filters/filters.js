@@ -195,6 +195,16 @@ myApp.filter('hasNode', function () {
     };
 });
 /**
+ * Output integer with leading zeros
+ * @function zeroFill
+ */
+myApp.filter('zeroFill', function () {
+    return function (num, len) {
+        len = len||10;
+       return (Array(len).join("0") + num).slice(-len);
+    };
+});
+/**
  * DEPRECATED
  * Builds an element icon path
  * @function getElementIcon

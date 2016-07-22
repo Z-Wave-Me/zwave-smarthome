@@ -112,7 +112,7 @@ $device-vendor-w: 33.33333%;
 $zindex-alertify: 2500;
 $zindex-loader: 2400;
 $zindex-header: 2100;
-$zindex-page-navi: 1900;
+$zindex-page-navi: 2101;
 $zindex-dropdown: 1100;
 $zindex-modal: 2300;
 $zindex-footer: 2100;
@@ -340,7 +340,7 @@ $badge-number-bcg-color: lighten($app-body-color, 60%);
 $badge-number-color: #FFFFFF;
 
 // Comments and ratings
-$rating-color: lighten($app-body-color,70%);
+$rating-color: lighten($app-body-color,50%);
 $rating-israted-color: lighten(#f0ad4e,10%);
 $comment-even-bcg-color:  #E9E9E9;
 $comment-color: $app-body-color;
