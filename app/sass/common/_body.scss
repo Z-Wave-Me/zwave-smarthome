@@ -28,6 +28,7 @@ body {
     line-height: $app-line-height-base;
     color: $app-body-color;
     background-color: $app-body-bcg-color;
+   
 }
 
 // Reset fonts for relevant elements
@@ -40,6 +41,12 @@ textarea {
     line-height: inherit;
 }
 
+/* Wallpaper
+-------------------------------------------------- */
+body {
+    background-image: url('wallpaper.png'); 
+   
+}
 /* Typo
 -------------------------------------------------- */
 h1, h2, h3,h4{
