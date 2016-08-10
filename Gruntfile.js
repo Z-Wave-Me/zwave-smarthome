@@ -129,6 +129,12 @@ module.exports = function (grunt) {
                     {src: ['storage/data/**'], dest: 'dist/'}
                 ]
             },
+            cssorig: {
+                files: [
+                    {src: ['app/css/main.css'], dest: 'app/css/main.css.orig'}
+                    //{expand: true, src: ['app/css/font-awesome-4.4.0/fonts/*'], dest: 'dist/app/fonts/', flatten: true}
+                ]
+            },
             fonts: {
                 files: [
                     {src: ['app/fonts/**'], dest: 'dist/'}

@@ -83,6 +83,12 @@ Check if an object exists and has a node.
 
 
 
+### zeroFill() 
+
+Output integer with leading zeros
+
+
+
 ### getElementIcon() 
 
 DEPRECATEDBuilds an element icon path
