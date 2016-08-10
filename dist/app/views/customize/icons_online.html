@@ -1,0 +1,77 @@
+<!-- Online icons -->
+<div ng-controller="OnlineIconController">
+    <bb-loader></bb-loader>
+    <!-- navigation -->
+    <div ng-include="'app/views/customize/navi.html'"></div>
+    <!-- list -->
+    <div class="app-row app-row-widget app-row-customize clearfix">
+        <div class="widget-entry widget-entry-customize"
+             id="icon_online_{{v.id}}"
+             ng-repeat="v in iconsOnline.all track by v.id">
+            <div class="widget-entry-in">
+                <!-- Widget img -->
+                <div class="widget-img">
+                    <img class="customize-preview-img clickable" ng-src="{{v.icon_path}}" alt="{{v.title}}" ng-click="handleOnlineIconModal(v,'iconOnlineModal', $event)" />
+                </div>
+
+                <!-- Widget header -->
+                <div class="widget-header"></div>
+                <div class="widget-content">
+                    <!-- Widget title -->
+                    <div class="widget-title">
+                        <h3 class="clickable" title="{{v.title}}" ng-click="handleOnlineIconModal(v,'iconOnlineModal', $event)">
+                            {{v.title|cutText:true:25}}  <span class="btn-name">&raquo;</span>
+                        </h3>
+                    </div>
+                    <hr class="bottom-aligner" />
+                    <!-- Widget footer -->
+                    <div class="widget-footer">
+                        <div class="widget-ctrl ctrl-left">&nbsp;</div>
+                        <div class="widget-ctrl ctrl-right clearfix">
+                            <div class="btn-group">
+                                <!-- Download -->
+                                <button class="btn btn-default" title="{{_t('lb_download')}}" ng-click="downloadIconSet(v)">
+                                    <i class="fa fa-download text-success"></i> <span class="btn-name">{{_t('lb_download')}}</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.widget-entry-in --> 
+        </div><!-- /.widget-entry --> 
+    </div><!-- /.app-row --> 
+    <!-- Modal --> 
+    <div id="iconOnlineModal" class="appmodal" ng-if="modalArr.iconOnlineModal">
+        <div class="appmodal-in">
+            <div class="appmodal-header">
+                <span class="appmodal-close" ng-click="handleModal('iconOnlineModal', $event)"><i class="fa fa-times"></i></span>
+                <h3>{{iconsOnline.find.title|cutText:true:30}}</h3>
+            </div>
+            <div class="appmodal-body customize-detail">
+                 <p class="customize-detail-title">{{iconsOnline.find.title}}</p>
+                <p class="customize-detail-list" ng-if="iconsOnline.find.author">
+                    <strong>{{_t('author')}}:</strong> 
+                    <span ng-if="!iconsOnline.find.homepage"> {{iconsOnline.find.author}}</span>
+                    <a ng-href="{{iconsOnline.find.homepage}}" ng-if="iconsOnline.find.homepage"> {{iconsOnline.find.author}}</a> 
+                </p>
+                <p class="customize-detail-list" ng-if="iconsOnline.find.license">
+                    <strong>{{_t('license')}}:</strong> {{iconsOnline.find.license}}
+                </p>
+                <div class="customize-icon-list">
+                    <img class="customize-icon-preview" ng-src="{{iconsOnline.find.preview_path + v}}" ng-repeat="v in iconsOnline.preview" />
+                </div>
+            </div>
+            <div class="appmodal-footer">
+                <!-- Close --> 
+                <button type="button" class="btn btn-default" ng-click="handleModal('iconOnlineModal', $event)">
+                    <i class="fa fa-times text-danger"></i> <span class="btn-name">{{_t('lb_close')}}</span>
+                </button>
+                <!-- Download --> 
+                <button href="" class="btn btn-submit" title="{{_t('lb_download')}}" 
+                       ng-click="handleModal('iconOnlineModal', $event);downloadIconSet(iconsOnline.find)">
+                    <i class="fa fa-download"></i> <span class="btn-name">{{_t('lb_download')}}</span>
+                </button>
+        </div>
+        </div>
+    </div>
+</div> <!-- /ng-controller --> 

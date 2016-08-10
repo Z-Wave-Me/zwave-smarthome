@@ -73,9 +73,9 @@ Set elements created by zWave device
 
 **Returns**: `undefined`
 
-### ZwaveManageController.isInterviewDone() 
+### ZwaveManageController.getInstances() 
 
-Has a device an interview done?
+Get selected instances status
 
 
 

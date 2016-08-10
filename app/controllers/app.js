@@ -8,7 +8,7 @@
  * @class AppBaseController
  *
  */
-myAppController.controller('AppBaseController', function ($scope, $filter, $cookies, $q, $route, $routeParams, dataFactory, dataService, _) {
+myAppController.controller('AppBaseController', function ($scope, $filter, $cookies, $q, $route, dataFactory, dataService, _) {
     angular.copy({
         appsCategories: false
     }, $scope.expand);
@@ -54,6 +54,9 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
         },
         instances: {
             all: {},
+            cnt: {
+                modules: 0
+            },
             orderBy: ($cookies.orderByAppsInstances ? $cookies.orderByAppsInstances : 'creationTimeDESC')
         }
     };
@@ -114,20 +117,21 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                     $scope.dataHolder.modules.categories = cat[$scope.lang] ? _.indexBy(cat[$scope.lang], 'id') : _.indexBy(cat[$scope.cfg.lang], 'id');
                 }
             }
+            // Success - instances
+            if (instances.state === 'fulfilled') {
+                setInstances(instances.value.data.data);
+            }
 
             // Success - modules
             if (modules.state === 'fulfilled') {
-                setModules(modules.value.data.data);
+                setModules(modules.value.data.data, $scope.dataHolder.instances.all);
             }
 
             // Success - online modules
             if (onlineModules.state === 'fulfilled') {
                 setOnlineModules(onlineModules.value.data.data)
             }
-            // Success - instances
-            if (instances.state === 'fulfilled') {
-                setInstances(instances.value.data.data);
-            }
+
 
         });
     };
@@ -161,7 +165,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
     /**
      * Set local modules
      */
-    function setModules(data) {
+    function setModules(data, instances) {
         // Reset featured cnt
         $scope.dataHolder.modules.cnt.featured = 0;
         var modules = _.chain(data)
@@ -202,6 +206,12 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                         } else {
                             angular.extend(item, {featured: false});
                         }
+                        // Has already instance ?
+                        angular.extend(item, {hasInstance: $scope.dataHolder.instances.cnt.modules[item.id]||0});
+                         
+                        //Tooltip description
+                        angular.extend(item, {toolTipDescription: $filter('stripTags')(item.defaults.description)});
+                        
                         return items;
                     }
                 });
@@ -246,10 +256,10 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                                 item['status'] = 'upgrade';
                             } else {
                                 var localVersion = $scope.dataHolder.modules.ids[item.modulename].version.toString().split('.'),
-                                    onlineVersion = item.version.toString().split('.');
-                                
+                                        onlineVersion = item.version.toString().split('.');
+
                                 for (var i = 0; i < localVersion.length; i++) {
-                                    if ((parseInt(localVersion[i], 10) < parseInt(onlineVersion[i], 10)) || ((parseInt(localVersion[i], 10) <= parseInt(onlineVersion[i], 10)) && (!localVersion[i+1] && onlineVersion[i+1] && parseInt(onlineVersion[i+1], 10) > 0))) {
+                                    if ((parseInt(localVersion[i], 10) < parseInt(onlineVersion[i], 10)) || ((parseInt(localVersion[i], 10) <= parseInt(onlineVersion[i], 10)) && (!localVersion[i + 1] && onlineVersion[i + 1] && parseInt(onlineVersion[i + 1], 10) > 0))) {
                                         item['status'] = 'upgrade';
                                         break;
                                     }
@@ -260,7 +270,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                     } else {
                         item['status'] = 'download';
                     }
-                    
+
                     $scope.dataHolder.onlineModules.ids[item.modulename].status = item.status;
                     angular.extend(item, {isHidden: isHidden});
 
@@ -271,6 +281,9 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                     } else {
                         item.featured = false;
                     }
+                    item.installedSort = $filter('zeroFill')(item.installed);
+                     //Tooltip description
+                     angular.extend(item, {toolTipDescription: $filter('stripTags')(item.description)});
                     return item;
                 }).reject(function (v) {
             return v.isHidden === true;
@@ -286,11 +299,15 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
         // Count collection
         $scope.dataHolder.onlineModules.cnt.collection = _.size($scope.dataHolder.onlineModules.all);
         $scope.loading = false;
-    };
+    }
+    ;
     /**
      * Set instances
      */
     function setInstances(data) {
+        $scope.dataHolder.instances.cnt.modules = _.countBy(data, function (v) {
+                                    return v.moduleId;
+                                });
         $scope.dataHolder.instances.all = _.reject(data, function (v) {
             if ($scope.getHiddenApps().indexOf(v.moduleId) > -1) {
                 if ($scope.user.role !== 1) {
@@ -303,7 +320,8 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                 return false;
             }
         });
-    };
+    }
+    ;
 
 });
 /**
@@ -311,7 +329,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
  * @class AppLocalController
  */
 myAppController.controller('AppLocalController', function ($scope, $filter, $cookies, $timeout, $route, $routeParams, $location, dataFactory, dataService, myCache, _) {
-   $scope.dataHolder.modules.filter = ($cookies.filterAppsLocal ? angular.fromJson($cookies.filterAppsLocal) : {featured: true});
+    $scope.dataHolder.modules.filter = ($cookies.filterAppsLocal ? angular.fromJson($cookies.filterAppsLocal) : {featured: true});
     /**
      * Set order by
      */
@@ -672,7 +690,7 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
         dataFactory.installOnlineModule(data, 'online_install').then(function (response) {
             dataFactory.postToRemote($scope.cfg.online_module_installed_url, {id: module.id});
             dataService.showNotifier({message: $scope._t(response.data.data.key)});
-           window.location = '#/module/post/' + module.modulename;
+            window.location = '#/module/post/' + module.modulename;
 
         }, function (error) {
             $scope.loading = false;
@@ -749,6 +767,7 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
         fromapp: $routeParams.fromapp,
         find: {},
         categoryName: null,
+        singletonActive: false,
         modules: {},
         instances: {},
         dependency: {
@@ -785,45 +804,55 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
      */
     $scope.postModule = function (id) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataFactory.getApi('modules', '/' + id + '?lang=' + $scope.lang, true).then(function (module) {
-            // get module postRender data
-            var modulePR = null;
-            if (angular.isString(module.data.data.postRender) && module.data.data.postRender.indexOf('function') === 0) {
-                modulePR = module.data.data.postRender;
-            }
-            var formData = dataService.getModuleFormData(module.data.data, module.data.data.defaults);
-            var langCode = (angular.isDefined(cfg.lang_codes[$scope.lang]) ? cfg.lang_codes[$scope.lang] : null);
-            $scope.input = {
-                'modulePostrender': modulePR,
-                'instanceId': 0,
-                'moduleId': id,
-                'active': true,
-                'title': $filter('hasNode')(formData, 'data.title'),
-                'description': $filter('hasNode')(formData, 'data.description'),
-                'moduleTitle': $filter('hasNode')(formData, 'data.title'),
-                'icon': $filter('hasNode')(module, 'data.data.icon'),
-                'moduleName': $filter('hasNode')(module, 'data.data.moduleName'),
-                'category': module.data.data.category
-            };
-            angular.extend($scope.moduleId, {find: module.data.data});
-            $scope.loadCategories(module.data.data.category);
-            setDependencies(module.data.data.dependencies);
-            $scope.showForm = true;
-            $scope.loading = false;
-            if (!$filter('hasNode')(formData, 'options.fields') || !$filter('hasNode')(formData, 'schema.properties')) {
-                $scope.alpacaData = false;
-                return;
-            }
-            $.alpaca.setDefaultLocale(langCode);
-            $('#alpaca_data').alpaca(formData);
+        dataFactory.getApi('instances', null, true).then(function (instances) {
+            dataFactory.getApi('modules', '/' + id + '?lang=' + $scope.lang, true).then(function (module) {
+                // get module postRender data
+                var modulePR = null;
+                if (angular.isString(module.data.data.postRender) && module.data.data.postRender.indexOf('function') === 0) {
+                    modulePR = module.data.data.postRender;
+                }
+                var formData = dataService.getModuleFormData(module.data.data, module.data.data.defaults);
+                var langCode = (angular.isDefined(cfg.lang_codes[$scope.lang]) ? cfg.lang_codes[$scope.lang] : null);
+                $scope.input = {
+                    'modulePostrender': modulePR,
+                    'instanceId': 0,
+                    'moduleId': id,
+                    'active': true,
+                    'title': $filter('hasNode')(formData, 'data.title'),
+                    'description': $filter('hasNode')(formData, 'data.description'),
+                    'moduleTitle': $filter('hasNode')(formData, 'data.title'),
+                    'icon': $filter('hasNode')(module, 'data.data.icon'),
+                    'moduleName': $filter('hasNode')(module, 'data.data.moduleName'),
+                    'category': module.data.data.category
+                };
+                angular.extend($scope.moduleId, {find: module.data.data});
+                $scope.loadCategories(module.data.data.category);
+                setDependencies(module.data.data.dependencies);
+                $scope.showForm = true;
+                $scope.loading = false;
+                // Is singelton and has already instance?
+                if (module.data.data.singleton && _.findWhere(instances.data.data, {moduleId: id})) {
+                    $scope.moduleId.singletonActive = true;
+                    return;
+                }
+                if (!$filter('hasNode')(formData, 'options.fields') || !$filter('hasNode')(formData, 'schema.properties')) {
+                    $scope.alpacaData = false;
+                    return;
+                }
+                $.alpaca.setDefaultLocale(langCode);
+                $('#alpaca_data').alpaca(formData);
 
 
+            }, function (error) {
+                $scope.loading = false;
+                alertify.alertError($scope._t('error_load_data'));
+            });
         }, function (error) {
-            $scope.loading = false;
             alertify.alertError($scope._t('error_load_data'));
+            $scope.loading = false;
         });
     };
-    
+
     /**
      * Generates the form for updating an app instance
      */
@@ -878,8 +907,8 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
                 $scope.loading = false;
             });
         }, function (error) {
+            alertify.alertError($scope._t('error_load_data'));
             $scope.loading = false;
-            $location.path('/error/' + error.status);
         });
 
     };

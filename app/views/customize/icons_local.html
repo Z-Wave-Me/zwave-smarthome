@@ -1,0 +1,60 @@
+<!-- Local icons -->
+<div ng-controller="LocalIconController">
+    <bb-loader></bb-loader>
+    <!-- Skins navigation -->
+    <div ng-include="'app/views/customize/navi.html'"></div>
+    <div ng-if="icons.show">
+        <div class="form form-inline form-page clearfix">
+            <!-- Single icons -->
+            <div class="fieldset block-50">
+                <input class="inputfile" type="file" name="file" id="file{{v.id}}" 
+                       ng-click="icons.find = v" 
+                       onchange="angular.element(this).scope().checkUploadedFile(this.files,angular.element(this).scope().cfg.upload.icon)" />
+                <label for="file{{v.id}}" class="btn btn-success" title="{{_t('lb_upload_image')}}" 
+                       ng-click="icons.find = v">
+                    <i class="fa fa-upload"></i> {{_t('upload_single_icon')}}
+                </label>
+                <bb-help-text trans="_t('upload_file_info',{'__size__':icons.info.maxSize,'__extensions__': icons.info.extensions})"></bb-help-text>
+                <bb-help-text trans="_t('image_recommended_dimension',{'__dimension__':cfg.upload.icon.dimension})"></bb-help-text>
+            </div>
+            <!-- Zipped icons -->
+            <div class="fieldset block-50">
+                <input class="inputfile" type="file" name="file_packed" id="file_packed{{v.id}}" 
+                       ng-click="icons.find = v" 
+                       onchange="angular.element(this).scope().checkUploadedFile(this.files,angular.element(this).scope().cfg.upload.icon_packed)" />
+                <label for="file_packed{{v.id}}" class="btn btn-primary" title="{{_t('lb_upload_image')}}" 
+                       ng-click="icons.find = v">
+                    <i class="fa fa-upload"></i> {{_t('upload_packed_icon')}}
+                </label>
+                
+                <bb-help-text trans="_t('upload_file_info',{'__size__':icons.infoPacked.maxSize,'__extensions__': icons.infoPacked.extensions})"></bb-help-text>
+                <bb-help-text trans="_t('image_recommended_dimension',{'__dimension__':cfg.upload.icon_packed.dimension})"></bb-help-text>
+            </div>
+        </div>
+        <div ng-if="icons.upload">{{icons.upload|cutText:true:30}}</div>
+        <!--<pre>{{icons.all|json}}</pre>-->
+        <div class="app-row app-row-reportclearfix">
+            <div class="report-entry" ng-repeat="v in icons.all|unique: 'file'">
+                <div class="report-col report-media">
+                    <img class="report-img" ng-src="{{cfg.img.custom_icons + v.file}}" />
+                </div>
+                <div class="report-col report-body" title="{{v.file}}">
+                    <span>{{v.file}}</span>
+                    <span ng-if="icons.used.device[v.file]">used in <a ng-href="#element/{{d}}" ng-repeat="d in icons.used.device[v.file]">
+                            <strong>{{d|cutText:true:20}},</strong> </a>
+                    </span>   
+                </div>
+                <div class="report-col report-ctrl report-ctrl-3">
+                    <div class="btn-group">
+                        <button title="{{_t('lb_remove')}}" 
+                                class="btn btn-default"
+                                ng-disabled="icons.used.device[v.file]"
+                                ng-click="deleteIcon(v, _t('lb_delete_confirm'))">
+                            <i class="fa fa-remove text-danger"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- /ng-controller --> 

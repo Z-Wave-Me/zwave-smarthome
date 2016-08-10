@@ -39,6 +39,7 @@
 
         <script src="vendor/alpaca/1.5.14/bootstrap/alpaca.min.js"></script>
         <!-- App js -->
+         <script src="app/icons.js"></script>
         <script src="app/app.js"></script>
         <script src="app/templates.js"></script>
         <script src="app/modules/qAllSettled.js"></script>
@@ -57,6 +58,7 @@
         <script src="app/controllers/event.js"></script>
         <script src="app/controllers/app.js"></script> 
         <script src="app/controllers/skin.js"></script>
+         <script src="app/controllers/icon.js"></script>
         <script src="app/controllers/device.js"></script>
          <script src="app/controllers/zwave-inclusion.js"></script>
         <script src="app/controllers/zwave.js"></script>
@@ -117,10 +119,10 @@
                             <li class="subnavi-config-rooms" ng-class="isActive('config-rooms')" ng-if="elementAccess(cfg.role_access.config_rooms)">
                                 <a href="#config-rooms"><i class="fa fa-building-o"></i> {{_t('nav_rooms')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
                             </li>
-                             <!-- Skins  -->
-                             <!--<li class="subnavi-report" ng-class="isActive('skins')">
-                                <a href="#skins/local"><i class="fa fa-puzzle-piece"></i> {{_t('skins')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                            </li>-->
+                             <!-- Customize 
+                            <li class="subnavi-report" ng-class="isActive('customize')" ng-if="elementAccess(cfg.role_access.skins_local)">
+                                <a href="#customize/skinslocal"><i class="fa fa-puzzle-piece"></i> {{_t('customize')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                            </li> -->
                             <!-- My access -->
                             <li class="subnavi-myaccess" ng-class="isActive('myaccess')" ng-if="elementAccess(cfg.role_access.myaccess)">
                                 <a href="#myaccess"><i class="fa fa-user"></i> {{_t('nav_myaccess')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>

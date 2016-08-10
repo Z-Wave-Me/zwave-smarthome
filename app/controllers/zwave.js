@@ -162,13 +162,17 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
                 sleepingSince,
                 lastWakeup,
                 interval,
-                batteryCharge;
+                batteryCharge,
+                instance,
+                security;
         controllerNodeId = ZWaveAPIData.controller.data.nodeId.value;
         angular.forEach(ZWaveAPIData.devices, function (node, nodeId) {
             if (nodeId == 255 || nodeId == controllerNodeId || node.data.isVirtual.value) {
                 return;
             }
-            interviewDone = isInterviewDone(node);
+            instance = getInstances(node);
+            interviewDone = instance.interviewDone;
+            security = instance.security;
             isFailed = node.data.isFailed.value;
             hasBattery = 0x80 in node.instances[0].commandClasses;
             lastReceive = parseInt(node.data.lastReceived.updateTime, 10) || 0;
@@ -194,6 +198,7 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
                 hasBattery: hasBattery,
                 batteryCharge: (batteryCharge === null ? null : parseInt(batteryCharge)),
                 interviewDone: interviewDone,
+                security: security,
                 isFailed: isFailed,
                 sleeping: sleepingCont(isListening, hasWakeup, sleepingSince, lastWakeup, interval),
                 awake: awakeCont(isAwake, isListening, isFLiRS),
@@ -253,21 +258,28 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
 
         });
     }
-
-
-    /**
-     * Has a device an interview done?
+     /**
+     * Get selected instances status
      */
-    function isInterviewDone(node) {
+    function getInstances(node) {
+        var instance = {
+            interviewDone: true,
+            security: false
+        };
         for (var iId in node.instances) {
             for (var ccId in node.instances[iId].commandClasses) {
+                
+                var ccName = node.instances[iId].commandClasses[ccId].name;
                 var isDone = node.instances[iId].commandClasses[ccId].data.interviewDone.value;
+                if (ccName === 'Security') {
+                    instance.security = isDone;
+                }
                 if (isDone == false) {
-                    return false;
+                    instance.interviewDone = false;
                 }
             }
         }
-        return true;
+       return instance;
 
     }
     ;
@@ -704,7 +716,8 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
             }
             // Success - devices
             if (devices.state === 'fulfilled') {
-                zwaveConfigApiData($scope.zwaveConfig.nodeId, devices.value.data.data.devices);
+                  var elements = dataService.getDevicesData(devices.value.data.data.devices,false);
+                zwaveConfigApiData($scope.zwaveConfig.nodeId, elements.value() );
             }
             // Success - locations
             if (locations.state === 'fulfilled') {
@@ -776,6 +789,7 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
      * Get zwaveApiData
      */
     function zwaveConfigApiData(nodeId, devices) {
+        console.log(devices)
         dataFactory.loadZwaveApiData(true).then(function (ZWaveAPIData) {
             var node = ZWaveAPIData.devices[nodeId];
             if (!node) {
@@ -825,13 +839,14 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
                 var iId = cmd[1];
                 var ccId = cmd[2];
                 if (zwaveId == nodeId) {
-                    var obj = {};
+                    var obj = v;
+                    /*var obj = {};
                     obj['id'] = v.id;
                     obj['permanently_hidden'] = v.permanently_hidden;
                     obj['visibility'] = v.visibility;
                     obj['level'] = $filter('toInt')(v.metrics.level);
                     obj['metrics'] = v.metrics;
-                    obj['location'] = v.location;
+                    obj['location'] = v.location;*/
                     $scope.formInput.elements[v.id] = obj;
                     $scope.devices.push(obj);
                 }

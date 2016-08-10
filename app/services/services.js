@@ -10,7 +10,7 @@ var myAppService = angular.module('myAppService', []);
  * Angular module initialization
  * @class dataService
  */
-myAppService.service('dataService', function ($filter, $log, $cookies, $window, cfg, _) {
+myAppService.service('dataService', function ($filter, $log, $cookies, $window, cfg, cfgicons, _) {
     /// --- Public functions --- ///
 
     /**
@@ -74,12 +74,12 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      */
     this.isIeEdge = function () {
         var isIE = /*@cc_on!@*/false || !!document.documentMode;
-        if(isIE){
+        if (isIE) {
             return true;
         }
         // Edge 20+
         var isEdge = !isIE && !!window.StyleMedia;
-        if(isEdge){
+        if (isEdge) {
             return true;
         }
         return false;
@@ -212,6 +212,29 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
     };
 
     /**
+     * Build a new file name without invalid chars 
+     * @param {string} fileName
+     * @returns {string}
+     */
+    this.uploadFileNewName = function (fileName) {
+        var name = fileName.split('.').slice(0, -1).join('.');
+        return $filter('stringToSlug')(name) + '.' + $filter('fileExtension')(fileName);
+
+
+    };
+
+    /**
+     * Assign an icon to the element
+     * @param {object} element
+     * @returns {string}
+     */
+    this.assignElementIcon = function (element) {
+        return assignElementIcon(element);
+
+
+    };
+
+    /**
      * Get devices -  filtered data from devices dataholder
      * @param {object} data
      * @param {boolean} showHidden
@@ -261,7 +284,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                             {hasHistory: (v.hasHistory === true ? true : false)},
                             {imgTrans: false},
                             {isNew: isNew},
-                            {iconPath: $filter('getElementIcon')(v.metrics.icon, v, v.metrics.level)},
+                            {iconPath: assignElementIcon(v)},
                             {updateCmd: (v.deviceType === 'switchControl' ? 'on' : 'update')}
                     );
                     if (v.metrics.color) {
@@ -270,11 +293,66 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                     if (v.metrics.level) {
                         angular.extend(v.metrics, {level: $filter('numberFixedLen')(v.metrics.level)});
                     }
-                     if (v.metrics.scaleTitle) {
+                    if (v.metrics.scaleTitle) {
                         angular.extend(v.metrics, {scaleTitle: getLangLine(v.metrics.scaleTitle)});
                     }
                     return v;
                 });
+    };
+
+    /**
+     * Get an object with element icons
+     * @param {object} element
+     * @returns {object}
+     */
+    this.getSingleElementIcons = function (element) {
+        var icons = {
+            default: {
+                default: 'placeholder.png'
+            },
+            custom: {}
+        };
+        var iconKey = $filter('hasNode')(element, 'metrics.icon');
+        // Set custom icons
+        if (element.custom_icons && _.size(element.custom_icons) > 0) {
+            icons.custom = element.custom_icons;
+        }
+        // Set default icons by metrics.icon
+        if (iconKey && iconKey !== '') {
+            if ((/^https?:\/\//.test(iconKey))) { // If icon is the url (weather) then custom icons are not allowed
+                icons = {};
+            } else if ((/\.(png|gif|jpe?g)$/).test(iconKey)) {
+                if (iconKey.indexOf('/') > -1) {// If an icon is the sytem icon then custom icons are not allowed
+                    icons = {};
+                } else {
+                    icons.default.default = iconKey;
+                }
+            } else {
+                if (cfgicons.element.icon[iconKey]) {
+                    icons.default = setDefaultIcon(cfgicons.element.icon[iconKey]);
+                }
+
+            }
+
+        }
+        // Set default icons by deviceType
+        else {
+            if (cfgicons.element.deviceType[element.deviceType]) {
+                icons.default = setDefaultIcon(cfgicons.element.deviceType[element.deviceType]);
+            }
+        }
+
+        // Build an object with default icons
+        function setDefaultIcon(obj) {
+            // Has level icons?
+            if (obj.level) {
+                return obj.level;
+            }
+            return obj;
+        }
+        ;
+        return icons;
+
     };
 
     /**
@@ -298,6 +376,22 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                     return v;
                 });
 
+    };
+
+    /**
+     * Get local skins - filtered data from skin dataholder
+     * @param {object} data
+     * @returns {unresolved}
+     */
+    this.getLocalSkins = function (data) {
+        return  _.chain(data)
+                .flatten()
+                .filter(function (v) {
+                    // Set icon path
+                    var screenshotPath = v.name !== 'default' ? cfg.skin.path + v.name : cfg.img.skin_screenshot;
+                    v.icon = (!v.icon ? 'storage/img/placeholder-img.png' : screenshotPath + '/screenshot.png');
+                    return v;
+                });
     };
 
     /**
@@ -412,7 +506,160 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
         return profile;
     };
 
+    /**
+     * Compare whether two versions of a resource are the same
+     * @param {string} v1
+     * @param {string} v2
+     * @returns {Boolean}
+     */
+    this.compareVersions = function (v1, v2) {
+        var status = 'equal';
+        if (!v1 || !v2) {
+            return 'error';
+        }
+        v1 = v1.toString().split('.'),
+                v2 = v2.toString().split('.');
+
+        for (var i = 0; i < v1.length; i++) {
+            if ((parseInt(v1[i], 10) < parseInt(v2[i], 10)) || ((parseInt(v1[i], 10) <= parseInt(v2[i], 10)) && (!v1[i + 1] && v2[i + 1] && parseInt(v2[i + 1], 10) > 0))) {
+                status = 'notequal';
+                break;
+            }
+        }
+        return status;
+    };
+
     /// --- Private functions --- ///
+    /**
+     * Assign an icon to the element
+     */
+    function assignElementIcon(element) {
+        var icon = cfg.img.icons + 'placeholder.png';
+        var iconKey = $filter('hasNode')(element, 'metrics.icon');
+        // Set icons by metrics.icon
+        if (iconKey && iconKey !== '') {
+            // The icon has a full path 
+            if ((/^https?:\/\//.test(iconKey))) {
+                return iconKey;
+            } else if ((/\.(png|gif|jpe?g)$/).test(iconKey)) {
+                if (iconKey.indexOf('/') > -1) {
+                    return iconKey;
+                } else {
+                    return cfg.img.icons + iconKey;
+                }
+            }
+            // Assign icon by metrics.icon
+            var iconArray = setIcon(cfgicons.element.icon[iconKey], element.custom_icons);
+            if (!iconArray) {
+                return icon;
+            }
+            switch (iconKey) {
+                // door
+                case 'door':
+                    icon = (element.metrics.level === 'open' || element.metrics.level === 'on' ? iconArray.open : iconArray.closed);
+                    break;
+                    // window
+                case 'window':
+                    if (typeof (element.metrics.level) === 'number') {
+                        if (element.metrics.level === 0) {
+                            icon = iconArray.down;
+                        } else if (element.metrics.level >= 99) {
+                            icon = iconArray.up;
+                        } else {
+                            icon = iconArray.half;
+                        }
+                    } else {
+                        icon = (element.metrics.level === 'open' || element.metrics.level === 'on' ? iconArray.open : iconArray.closed);
+                    }
+                    break;
+                    // switch
+                case 'switch':
+                    icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+                    break;
+                    // motion
+                case 'motion':
+                    icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+                    break;
+                 // alarm
+                case 'alarm':
+                    icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+                    break;
+                 // CO alarm
+                case 'CO_alarm':
+                    icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+                    break;
+                 // tamper
+                case 'tamper':
+                    icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+                    break;
+                 // smoke
+                case 'smoke':
+                    icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+                    break;
+                    // blinds
+                case 'blinds':
+                    if (element.metrics.level === 0) {
+                        icon = iconArray.down;
+                    } else if (element.metrics.level >= 99) {
+                        icon = iconArray.up;
+                    } else {
+                        icon = iconArray.half;
+                    }
+                    break;
+                    // multilevel
+                case 'multilevel':
+                    if (element.metrics.level === 0) {
+                        icon = iconArray.off;
+                    } else if (element.metrics.level >= 99) {
+                        icon = iconArray.on;
+                    } else {
+                        icon = iconArray.half;
+                    }
+                    break;
+                    // default
+                default:
+                    icon = iconArray.default;
+                    break;
+            }
+        }
+        // Set icons by deviceType
+        else {
+            var iconArray = setIcon(cfgicons.element.deviceType[element.deviceType], element.custom_icons);
+            if (!iconArray) {
+                cfg.img.icons + icon;
+            }
+            switch (element.deviceType) {
+                // switchControl
+                case 'switchControl':
+                    icon = iconArray.default;
+                    break;
+                    // default
+                default:
+                    break;
+            }
+        }
+
+        // Build an object with icons
+        function setIcon(defaultIcon, customIcon) {
+            // Test
+            //customIcon = {on: 'cat-drunk-icon.png', off: 'cat-fight-icon.png'};
+            // Icon is not defined
+            if (!defaultIcon) {
+                return false;
+            }
+            var obj = {};
+            angular.forEach(defaultIcon.level || defaultIcon, function (v, k) {
+                // If a custom icon exists set it otherwise set a default icon
+                obj[k] = (_.isObject(customIcon) && customIcon[k] ? cfg.img.custom_icons + customIcon[k] : cfg.img.icons + v);
+            });
+            return obj;
+        }
+        ;
+        //console.log(icon); 
+        return icon;
+
+    }
+    ;
 
     /**
      * Get a language string by key

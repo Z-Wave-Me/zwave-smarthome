@@ -40,7 +40,7 @@ module.exports = function (grunt) {
                     //'app/css/font-awesome-4.4.0/css/font-awesome.min.css',
                     'app/css/main.css'
                 ],
-                dest: 'dist/app/css/build.css'
+                dest: 'dist/app/css/main.css'
             },
             js: {
                 src: [
@@ -69,6 +69,7 @@ module.exports = function (grunt) {
                     'vendor/bootstrap/bootstrap.min.js',
                     'vendor/bootstrap/plugins/bootstrap-datetimepicker.js',
                     // APP
+                    'app/icons.js',
                     'app/app.js',
                     'dist/app/js/templates.js',
                     'app/modules/qAllSettled.js',
@@ -87,6 +88,7 @@ module.exports = function (grunt) {
                     'app/controllers/event.js',
                     'app/controllers/app.js',
                     'app/controllers/skin.js',
+                    'app/controllers/icon.js',
                     'app/controllers/device.js',
                     'app/controllers/zwave-inclusion.js',
                     'app/controllers/zwave.js',
@@ -125,6 +127,16 @@ module.exports = function (grunt) {
                     {src: ['storage/img/**'], dest: 'dist/'},
                     {src: ['storage/demo/**'], dest: 'dist/'},
                     {src: ['storage/data/**'], dest: 'dist/'}
+                ]
+            },
+            cssorig: {
+                files: [
+                    {src: ['app/css/main.css'], dest: 'app/css/main.css.orig'}
+                ]
+            },
+            images: {
+                files: [
+                    {src: ['app/css/wallpaper.png'], dest: 'dist/app/css/wallpaper.png'}
                 ]
             },
             fonts: {

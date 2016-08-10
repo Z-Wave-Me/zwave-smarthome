@@ -32,15 +32,23 @@ img {
     max-height: $app-detail-img;
     @include appBorderRadius(50%);
 }
-.skin-preview-img{
-    max-width: $skin-img;
-    max-height: $skin-img;
-    border: solid 4px $widget-img-border-color;
+.element-icon-img{
+    max-width: $element-icon-img;
+    max-height: $element-icon-img;
 }
-.skin-image-detail{
-    max-width: $skin-detail-img;
-    max-height: $skin-detail-img;
-    border: solid 4px $skin-border-color;
+.customize-preview-img{
+    max-width: $customize-img;
+    max-height: $customize-img;
+    border: solid 4px $customize-border-color;
+}
+.customize-image-detail{
+    max-width: $customize-detail-img;
+    max-height: $customize-detail-img;
+    border: solid 4px $customize-border-color;
+}
+.customize-icon-preview{
+     max-width: $customize-icon-preview-img;
+    max-height: $customize-icon-preview-img;
 }
 .include-image-detail{
     max-width: $include-detail-img;

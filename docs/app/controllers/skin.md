@@ -24,44 +24,67 @@ This is the Skin root controller
 
 Load all promises
 
+**Returns**: `undefined`
 
-### SkinBaseController.setLocalSkins() 
+### SkinBaseController.updateSkin(skin) 
 
-Set local skins
+Update skin
 
+**Parameters**
 
-### SkinBaseController.setOnlineSkins() 
+**skin**: `object`
 
-Set online skins
+**Returns**: `undefined`
 
+### SkinBaseController.setOnlineSkins(response) 
+
+Set online skins $scope
+
+**Parameters**
+
+**response**: `object`
+
+**Returns**: `undefined`
 
 
 ## SkinLocalController
 This controller handles local skins actions.
 
-### SkinLocalController.activateSkin() 
+### SkinLocalController.activateSkin(skin) 
 
 Activate skin
 
+**Parameters**
 
-### SkinLocalController.removeSkin() 
+**skin**: `object`
+
+**Returns**: `undefined`
+
+### SkinLocalController.removeSkin(skin, message) 
 
 Remove skin
 
+**Parameters**
+
+**skin**: `object`
+
+**message**: `string`
+
+**Returns**: `undefined`
 
 
 ## SkinOnlineController
 This controller handles online skins actions.
 
-### SkinOnlineController.downloadSkin() 
+### SkinOnlineController.downloadSkin(skin) 
 
 Download skin
 
+**Parameters**
 
-### SkinOnlineController.upgradeSkin() 
+**skin**: `object`
 
-Upgrade skin
-
+**Returns**: `undefined`
 
 
 

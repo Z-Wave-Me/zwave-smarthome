@@ -12,8 +12,10 @@ var myAppController = angular.module('myAppController', []);
  * The app base controller. 
  * @class BaseController
  */
-myAppController.controller('BaseController', function ($scope, $cookies, $filter, $location, $route, $window, $interval, cfg, dataFactory, dataService, myCache) {
+myAppController.controller('BaseController', function ($scope, $cookies, $filter, $location, $route, $window, $interval, cfg, cfgicons,dataFactory, dataService, myCache) {
+  
     // Global scopes
+    $scope.$location = $location;
     angular.extend(cfg.route, {os: dataService.getOs()});
     $scope.cfg = cfg;
     $scope.timeZoneInterval = null;
@@ -24,19 +26,21 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     $scope.hostName = $location.host();
     $scope.ZWAYSession = dataService.getZWAYSession();
     $scope.lastLogin = dataService.getLastLogin();
-    /*$scope.setSkin = function () {
-     if($cookies.skin && $cookies.skin !== 'default'){
-     cfg.skin.active =  $cookies.skin;
-     cfg.img.icons = cfg.skin.path + $cookies.skin + '/img/icons/';
-     cfg.img.logo = cfg.skin.path + $cookies.skin + '/img/logo/';
-     //$("link[id='main_css']").attr('href', 'storage/skins/defaultzip/main.css');
-     $("link[id='main_css']").attr('href', cfg.skin.path + $cookies.skin + '/main.css');
-     }
+    /**
+     * Set app skin
+     * @returns {undefined}
+     */
+//    $scope.setSkin = function () {
+//     if($scope.user && $scope.user.skin !== 'default'){
+//        cfg.skin.active =  $scope.user.skin;
+//        cfg.img.icons = cfg.skin.path + $scope.user.skin + '/img/icons/';
+//        cfg.img.logo = cfg.skin.path + $scope.user.skin + '/img/logo/';
+//     //$("link[id='main_css']").attr('href', 'storage/skins/defaultzip/main.css');
+//        $("link[id='main_css']").attr('href', cfg.skin.path + $scope.user.skin + '/main.css');
+//     }
+//     };
+//     $scope.setSkin();
      
-     };
-     
-     $scope.setSkin();*/
-
 
     /**
      * Check if route match the pattern.

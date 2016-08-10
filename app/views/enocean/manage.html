@@ -12,7 +12,7 @@
                                 <i class="fa" ng-class="goEdit[v.id] ? 'fa-chevron-up': 'fa-chevron-down'"></i> <span ng-bind="v.givenName"></span> (#{{v.id}}) 
                             </a>
                             <div class="network-zwave-element" ng-repeat="e in v.elements| orderBy:'title':false" ng-if="goEdit[v.id]">
-                                <img class="report-img" ng-src="{{e.metrics.icon|getElementIcon:e:e.level}}" alt="img" /> 
+                                <img class="report-img" ng-src="{{e.iconPath}}" alt="img" /> 
                                 <span class="network-hidden-{{e.permanently_hidden}}" ng-bind="e.title"></span>
                             </div>
                         </td>

@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <!-- CSS -->
-        <link media="screen" type="text/css" rel="stylesheet" href="app/css/build.css">
+        <link media="screen" type="text/css" rel="stylesheet" href="app/css/main.css">
          <!-- App config -->
         <script src="app/js/config.js"></script>
         <!-- JS -->
@@ -53,10 +53,10 @@
                             <li class="subnavi-config-rooms" ng-class="isActive('config-rooms')" ng-if="elementAccess(cfg.role_access.config_rooms)">
                                 <a href="#config-rooms"><i class="fa fa-building-o"></i> {{_t('nav_rooms')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
                             </li>
-                             <!-- Skins  -->
-                             <!--<li class="subnavi-report" ng-class="isActive('skins')">
-                                <a href="#skins/local"><i class="fa fa-puzzle-piece"></i> {{_t('skins')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                            </li>-->
+                             <!-- Customize 
+                            <li class="subnavi-report" ng-class="isActive('customize')" ng-if="elementAccess(cfg.role_access.skins_local)">
+                                <a href="#customize/skinslocal"><i class="fa fa-puzzle-piece"></i> {{_t('customize')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                            </li> -->
                             <!-- My access -->
                             <li class="subnavi-myaccess" ng-class="isActive('myaccess')" ng-if="elementAccess(cfg.role_access.myaccess)">
                                 <a href="#myaccess"><i class="fa fa-user"></i> {{_t('nav_myaccess')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>

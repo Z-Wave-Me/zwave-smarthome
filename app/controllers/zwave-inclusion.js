@@ -344,9 +344,13 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
             console.log('lastIncludedDevice: ', deviceIncId);
             if (deviceIncId != null) {
                 var givenName = 'Device_' + deviceIncId;
+                var cmd = false;
+                 if (data.devices[deviceIncId].data.givenName.value === '' || data.devices[deviceIncId].data.givenName.value === null) {
+                     cmd = 'devices[' + deviceIncId + '].data.givenName.value=\'' + givenName + '\'';
+                 }
                 resetInclusion(false, true, false, true);
                 //dataService.showNotifier({message: $scope._t('lb_new_device_found')});
-                resetConfiguration(true, false, {nodeId: deviceIncId}, 'devices[' + deviceIncId + '].data.givenName.value=\'' + givenName + '\'', true);
+                resetConfiguration(true, false, {nodeId: deviceIncId}, cmd, true);
                 $scope.startConfiguration({nodeId: deviceIncId});
 
             }

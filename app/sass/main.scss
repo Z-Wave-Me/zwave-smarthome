@@ -19,6 +19,9 @@
 @import "vendor/_jquery.fileupload";
 @import "vendor/_alpaca";
 @import "vendor/_alertify"; 
+/*==================================================
+=            SmartHomeUI                         =
+==================================================*/
 // Common
 @import "common/_gird"; 
 @import "common/_body";
@@ -43,10 +46,10 @@
 @import "modules/_elements";
 @import "modules/_events";
 @import "modules/_apps";
-@import "modules/_skins";
+@import "modules/_customize";
 @import "modules/_rooms";
 @import "modules/_devices";
-@import "modules/_auth";
+@import "modules/_auth"; 
 
 // Enocean
 //@import "common/_enocean";

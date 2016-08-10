@@ -160,6 +160,26 @@ Logout from the system
 
 **Returns**: `undefined`
 
+### dataService.uploadFileNewName(fileName) 
+
+Build a new file name without invalid chars
+
+**Parameters**
+
+**fileName**: `string`
+
+**Returns**: `string`
+
+### dataService.assignElementIcon(element) 
+
+Assign an icon to the element
+
+**Parameters**
+
+**element**: `object`
+
+**Returns**: `string`
+
 ### dataService.getDevicesData(data, showHidden) 
 
 Get devices -  filtered data from devices dataholder
@@ -172,9 +192,29 @@ Get devices -  filtered data from devices dataholder
 
 **Returns**: `unresolved`
 
+### dataService.getSingleElementIcons(element) 
+
+Get an object with element icons
+
+**Parameters**
+
+**element**: `object`
+
+**Returns**: `object`
+
 ### dataService.getRooms(data) 
 
 Get rooms - filtered data from locations dataholder
+
+**Parameters**
+
+**data**: `object`
+
+**Returns**: `unresolved`
+
+### dataService.getLocalSkins(data) 
+
+Get local skins - filtered data from skin dataholder
 
 **Parameters**
 
@@ -255,6 +295,23 @@ Renders EnOcean profile
 **data**: `object`
 
 **Returns**: `unresolved`
+
+### dataService.compareVersions(v1, v2) 
+
+Compare whether two versions of a resource are the same
+
+**Parameters**
+
+**v1**: `string`
+
+**v2**: `string`
+
+**Returns**: `Boolean`
+
+### dataService.assignElementIcon() 
+
+Assign an icon to the element
+
 
 ### dataService.getLangLine() 
 

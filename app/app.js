@@ -46,8 +46,12 @@ appHttp.get('app/lang/' + config_data.cfg.route.lang + '.json').success(function
 
 });
 
-// Create a config file
+// Create a config constant
 angular.forEach(config_data, function (key, value) {
+    config_module.constant(value, key);
+});
+// Create an icon constant
+angular.forEach(icon_data, function (key, value) {
     config_module.constant(value, key);
 });
 
@@ -153,14 +157,28 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     roles: cfg.role_access.module
                 }).
                 //Local skins
-                when('/skins/local', {
-                    templateUrl: 'app/views/skins/skins_local.html',
-                    requireLogin: true
+                when('/customize/skinslocal', {
+                    templateUrl: 'app/views/customize/skins_local.html',
+                    requireLogin: true,
+                     roles: cfg.role_access.skins_local
                 }).
                 //Online skins
-                when('/skins/online', {
-                    templateUrl: 'app/views/skins/skins_online.html',
-                    requireLogin: true
+                when('/customize/skinsonline', {
+                    templateUrl: 'app/views/customize/skins_online.html',
+                    requireLogin: true,
+                     roles: cfg.role_access.skins_online
+                }).
+                  //Custom icons
+                when('/customize/iconslocal', {
+                    templateUrl: 'app/views/customize/icons_local.html',
+                    requireLogin: true,
+                     roles: cfg.role_access.skins_online
+                }).
+                //Online icons
+                when('/customize/iconsonline', {
+                    templateUrl: 'app/views/customize/icons_online.html',
+                    requireLogin: true,
+                     roles: cfg.role_access.skins_online
                 }).
                 //Devices_
                 when('/devices', {
