@@ -23,6 +23,7 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
     $scope.ZwaveApiData = false;
     $scope.controllerInfo = {
         uuid: null,
+        remoteId: null,
         isZeroUuid: false,
         softwareRevisionVersion: null,
         softwareLatestVersion: null,
@@ -31,6 +32,7 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
         capsLimited: false
 
     };
+    $scope.remoteAccess = false;
     $scope.handleLicense = {
         show: false,
         disabled: false,
@@ -50,17 +52,44 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
     $scope.allSettled = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
-            dataFactory.loadZwaveApiData()
+            dataFactory.loadZwaveApiData(),
+            dataFactory.getApi('instances', '/RemoteAccess')
         ];
 
         $q.allSettled(promises).then(function (response) {
             var zwave = response[0];
+            var remote = response[1];
             $scope.loading = false;
-            // Success - locations
+            // Error
+            if (remote.state === 'rejected') {
+                alertify.alertError($scope._t('remote_access_not_installed'));
+                return;
+            }
+            // Success - zwave
             if (zwave.state === 'fulfilled') {
                 $scope.ZwaveApiData = zwave.value;
                 setControllerInfo(zwave.value);
             }
+            // Success - remote
+            if (remote.state === 'fulfilled') {
+                $scope.loading = false;
+                var remoteAccess = remote.value.data.data[0];
+                if (Object.keys(remoteAccess).length < 1) {
+                    alertify.alertError($scope._t('error_load_data'));
+                }
+                if (!remoteAccess.active) {
+                    alertify.alertWarning($scope._t('remote_access_not_active'));
+                    return;
+                }
+                if (!remoteAccess.params.userId) {
+                    alertify.alertError($scope._t('error_remote_access_init'));
+                    return;
+                }
+                remoteAccess.params.pass = null;
+                $scope.remoteAccess = remoteAccess;
+                $scope.controllerInfo.remoteId = remoteAccess.params.userId;
+            }
+
         });
     };
     $scope.allSettled();
@@ -371,55 +400,7 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
  * @class ManagementRemoteController
  */
 myAppController.controller('ManagementRemoteController', function ($scope, dataFactory, dataService) {
-    $scope.remoteAccess = false;
-    /**
-     * Load Remote access data
-     */
-    $scope.loadRemoteAccess = function () {
-        if (!$scope.elementAccess($scope.cfg.role_access.remote_access)) {
-            return;
-        }
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataFactory.getApi('instances', '/RemoteAccess').then(function (response) {
-
-            $scope.loading = false;
-            var remoteAccess = response.data.data[0];
-            console.log(remoteAccess)
-            if (Object.keys(remoteAccess).length < 1) {
-                alertify.alertError($scope._t('error_load_data'));
-            }
-            if (!remoteAccess.active) {
-                alertify.alertWarning($scope._t('remote_access_not_active'));
-                return;
-            }
-            if (!remoteAccess.params.userId) {
-                alertify.alertError($scope._t('error_remote_access_init'));
-                return;
-            }
-            remoteAccess.params.pass = null;
-            $scope.remoteAccess = remoteAccess;
-        }, function (error) {
-            $scope.loading = false;
-            alertify.alertError($scope._t('remote_access_not_installed'));
-        });
-    };
-
-    $scope.loadRemoteAccess();
-
-    /**
-     * PUT Remote access
-     */
-    $scope.putRemoteAccess = function (input) {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        dataFactory.putApi('instances', input.id, input).then(function (response) {
-            $scope.loading = false;
-            dataService.showNotifier({message: $scope._t('success_updated')});
-        }, function (error) {
-            alertify.alertError($scope._t('error_update_data'));
-            $scope.loading = false;
-        });
-
-    };
+    
 });
 /**
  * The controller that handles the licence key.
@@ -539,8 +520,6 @@ myAppController.controller('ManagementFirmwareController', function ($scope, $sc
     };
     //$scope.loadRazLatest();
 });
-
-
 /**
  * The controller that handles a backup to the cloud.
  * @class ManagementCloudBackupController
@@ -548,34 +527,80 @@ myAppController.controller('ManagementFirmwareController', function ($scope, $sc
 myAppController.controller('ManagementCloudBackupController', function ($scope, $timeout, dataFactory, dataService) {
     $scope.managementCloud = {
         input: {
-            active: 0,
+            remote_id: $scope.controllerInfo.remoteId,
+            active: false,
             email: $scope.user.email,
-            email_log: 2
+            email_log: 0
         },
         alert: {message: false, status: 'is-hidden', icon: false},
         process: false
     };
-    
-    /**
-     * Send an access to the cloud
-     */
-    $scope.activateCloudBackup = function () {
-    };
 
     /**
-     * Send an access to the cloud
+     * Load cloud backup settings
      */
-    $scope.storeCloudBackup = function () {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('sending')};
+    $scope.loadCloudBackup = function () {
+         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+         dataFactory.getApiLocal('device.de.json').then(function (response) {
+           $scope.loading = false;
+           var response = {
+            remote_id: $scope.controllerInfo.remoteId,
+            active: false,
+            email: '',
+            email_log: 0
+        };
+        response.email = (response.email||$scope.user.email);
+        //angular.extend($scope.managementCloud.input,_.omit(response,'remote_id'));
+
+        }, function (error) {
+            $scope.loading = false;
+            alertify.alertError($scope._t('error_load_data'));
+
+        });
+        
+    };
+    $scope.loadCloudBackup();
+
+    /**
+     * Send an access to the cloud API
+     */
+    $scope.activateCloudBackup = function (active) {
+       var input = {
+            remote_id: $scope.controllerInfo.remoteId,
+            active: (active ? true : false)
+        };
+         $scope.managementCloud.input.active = input.active;
+         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         dataFactory.getApiLocal('device.de.json').then(function (response) {
             $timeout(function () {
                 $scope.loading = false;
-                dataService.showNotifier({message: $scope._t('email_sent')});
+                dataService.showNotifier({message: $scope._t('success_updated')});
+                //$scope.loadCloudBackup();
             }, 2000);
 
         }, function (error) {
             $scope.loading = false;
-            alertify.alertError($scope._t('send_email_error'));
+            alertify.alertError($scope._t('rror_update_data'));
+
+        });
+    };
+
+    /**
+     * Send an access to the cloud API
+     */
+    $scope.updateCloudBackup = function (input) {
+        input.email_log = parseInt(input.email_log);
+        console.log(input)
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        dataFactory.getApiLocal('device.de.json').then(function (response) {
+            $timeout(function () {
+                $scope.loading = false;
+                dataService.showNotifier({message: $scope._t('success_updated')});
+            }, 2000);
+
+        }, function (error) {
+            $scope.loading = false;
+            alertify.alertError($scope._t('rror_update_data'));
 
         });
     };
@@ -748,16 +773,16 @@ myAppController.controller('ManagementReportController', function ($scope, $wind
     /**
      * Load Remote access data
      */
-    $scope.loadRemoteAccess = function () {
-        if (!$scope.elementAccess($scope.cfg.role_access.remote_access)) {
-            return;
-        }
-        dataFactory.getApi('instances', '/RemoteAccess').then(function (response) {
-            $scope.remoteAccess = response.data.data[0];
-        }, function (error) {});
-    };
-
-    $scope.loadRemoteAccess();
+//    $scope.loadRemoteAccess = function () {
+//        if (!$scope.elementAccess($scope.cfg.role_access.remote_access)) {
+//            return;
+//        }
+//        dataFactory.getApi('instances', '/RemoteAccess').then(function (response) {
+//            $scope.remoteAccess = response.data.data[0];
+//        }, function (error) {});
+//    };
+//
+//    $scope.loadRemoteAccess();
 
     /**
      * Send and save report
@@ -792,34 +817,6 @@ myAppController.controller('ManagementReportController', function ($scope, $wind
         });
 
     };
-
-});
-/**
- * The controller that renders postfix data.
- * @class ManagementPostfixController
- */
-myAppController.controller('ManagementPostfixController', function ($scope, dataFactory, _) {
-    $scope.postfix = {
-        all: {}
-    };
-    /**
-     * Load postfix data
-     */
-    $scope.loadPostfix = function () {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataFactory.getApi('postfix', null, true).then(function (response) {
-            if (_.isEmpty(response.data)) {
-                alertify.alertWarning($scope._t('no_data'));
-            }
-            $scope.loading = false;
-            $scope.postfix.all = response.data;
-        }, function (error) {
-            $scope.loading = false;
-            alertify.alertError($scope._t('error_load_data'));
-
-        });
-    };
-    $scope.loadPostfix();
 
 });
 /**
