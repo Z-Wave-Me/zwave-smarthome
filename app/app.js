@@ -199,9 +199,15 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     requireLogin: true,
                     roles: cfg.role_access.devices
                 }).
-                //Zwave select manufacturer/device
-                when('/zwave/select/:brandname?', {
-                    templateUrl: 'app/views/zwave/zwave_select.html',
+                //Zwave select vendors
+                when('/zwave/vendors', {
+                    templateUrl: 'app/views/zwave/zwave_vendors.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
+                }).
+                //Zwave select devices by vendor name
+                when('/zwave/vendors/:name', {
+                    templateUrl: 'app/views/zwave/zwave_vendors_id.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices
                 }).

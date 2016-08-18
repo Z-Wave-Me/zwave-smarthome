@@ -4,6 +4,123 @@
  */
 
 /**
+ * The controller that renders Z-Wave vendors.
+ * @class ZwaveVendorController
+ */
+myAppController.controller('ZwaveVendorController', function ($scope, $routeParams, dataFactory, dataService, _) {
+    $scope.zwaveSelect = {
+        logos: {},
+        brand: {},
+        brandName: '',
+        list: {}
+    };
+    
+    $scope.zwaveProducts = {
+        vendors: {},
+        all: {},
+        find:{}
+    };
+    /**
+     * Load z-wave devices
+     */
+    $scope.loadProducts = function (brandname, lang) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        //dataFactory.getApiLocal('device.' + lang + '.json').then(function (response) {
+        dataFactory.getApiLocal('devices.json').then(function (response) {
+            $scope.zwaveSelect.brand = _.uniq(response.data, 'brandname');
+            if (brandname) {
+                $scope.zwaveSelect.list = _.where(response.data, {brandname: brandname});
+                if (_.isEmpty($scope.zwaveSelect.list)) {
+                    $scope.loading = false;
+                    alertify.alertWarning($scope._t('no_data'));
+                }
+
+                $scope.zwaveSelect.brandName = brandname;
+            }
+            $scope.loading = false;
+        }, function (error) {
+            alertify.alertError($scope._t('error_load_data'));
+        });
+    };
+    $scope.loadProducts($routeParams.brandname, $scope.lang);
+    /**
+     * Load z-wave devices
+     */
+    $scope.loadData = function (brandname, lang) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        //dataFactory.getApiLocal('device.' + lang + '.json').then(function (response) {
+        dataFactory.getApiLocal('devices.json').then(function (response) {
+            $scope.waveProducts.vendors = _.uniq(response.data, 'brandname');
+            if (brandname) {
+                $scope.zwaveSelect.list = _.where(response.data, {brandname: brandname});
+                if (_.isEmpty($scope.zwaveSelect.list)) {
+                    $scope.loading = false;
+                    alertify.alertWarning($scope._t('no_data'));
+                }
+
+                $scope.zwaveSelect.brandName = brandname;
+            }
+            $scope.loading = false;
+        }, function (error) {
+            alertify.alertError($scope._t('error_load_data'));
+        });
+    };
+    //$scope.loadData($routeParams.brandname, $scope.lang);
+});
+
+/**
+ * The controller that renders Z-Wave devices by vendor.
+ * @class ZwaveVendorIdController
+ */
+myAppController.controller('ZwaveVendorIdController', function ($scope, $routeParams, dataFactory, dataService, _) {
+    $scope.zwaveSelect = {
+        logos: {},
+        brand: {},
+        brandName: '',
+        list: {}
+    };
+
+    /**
+     * Load products - vendor logos
+     */
+    $scope.loadProducts = function () {
+        dataFactory.getApiLocal('test/products.json').then(function (response) {
+            angular.forEach(response.data, function (v, k) {
+                $scope.zwaveSelect.logos[v.manufacturer] = v.manufacturer_image;
+                //angular.extend($scope.zwaveSelect.logos[v.manufacturer_id],v.manufacturer_image);
+            });
+            console.log($scope.zwaveSelect.logos)
+        }, function (error) {
+        });
+    };
+    $scope.loadProducts($routeParams.brandname);
+    /**
+     * Load z-wave devices
+     */
+    $scope.loadData = function (brandname, lang) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        //dataFactory.getApiLocal('device.' + lang + '.json').then(function (response) {
+        dataFactory.getApiLocal('test/devicedatabase.json').then(function (response) {
+            $scope.zwaveSelect.brand = _.uniq(response.data, 'brandname');
+            if (brandname) {
+                $scope.zwaveSelect.list = _.where(response.data, {brandname: brandname});
+                if (_.isEmpty($scope.zwaveSelect.list)) {
+                    $scope.loading = false;
+                    alertify.alertWarning($scope._t('no_data'));
+                }
+
+                $scope.zwaveSelect.brandName = brandname;
+            }
+            $scope.loading = false;
+        }, function (error) {
+            alertify.alertError($scope._t('error_load_data'));
+        });
+    };
+    $scope.loadData($routeParams.brandname, $scope.lang);
+});
+
+/**
+ * DEPRECATED
  * This is a new version of the ZwaveAddController and is not completed!!!
  * The controller that renders Z-Wave manufacturers and devices.
  * @class ZwaveSelectController
