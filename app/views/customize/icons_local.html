@@ -3,13 +3,15 @@
     <bb-loader></bb-loader>
     <!-- Skins navigation -->
     <div ng-include="'app/views/customize/navi.html'"></div>
+    <div class="alert alert-warning">This is a new feature, but is still under progress (only Demo Data). Feel free to play around and test it.</div>
     <div ng-if="icons.show">
+        <!-- Upload -->
         <div class="form form-inline form-page clearfix">
             <!-- Single icons -->
             <div class="fieldset block-50">
                 <input class="inputfile" type="file" name="file" id="file{{v.id}}" 
                        ng-click="icons.find = v" 
-                       onchange="angular.element(this).scope().checkUploadedFile(this.files,angular.element(this).scope().cfg.upload.icon)" />
+                       onchange="angular.element(this).scope().checkUploadedFile(this.files, angular.element(this).scope().cfg.upload.icon)" />
                 <label for="file{{v.id}}" class="btn btn-success" title="{{_t('lb_upload_image')}}" 
                        ng-click="icons.find = v">
                     <i class="fa fa-upload"></i> {{_t('upload_single_icon')}}
@@ -21,18 +23,46 @@
             <div class="fieldset block-50">
                 <input class="inputfile" type="file" name="file_packed" id="file_packed{{v.id}}" 
                        ng-click="icons.find = v" 
-                       onchange="angular.element(this).scope().checkUploadedFile(this.files,angular.element(this).scope().cfg.upload.icon_packed)" />
+                       onchange="angular.element(this).scope().checkUploadedFile(this.files, angular.element(this).scope().cfg.upload.icon_packed)" />
                 <label for="file_packed{{v.id}}" class="btn btn-primary" title="{{_t('lb_upload_image')}}" 
                        ng-click="icons.find = v">
                     <i class="fa fa-upload"></i> {{_t('upload_packed_icon')}}
                 </label>
-                
+
                 <bb-help-text trans="_t('upload_file_info',{'__size__':icons.infoPacked.maxSize,'__extensions__': icons.infoPacked.extensions})"></bb-help-text>
                 <bb-help-text trans="_t('image_recommended_dimension',{'__dimension__':cfg.upload.icon_packed.dimension})"></bb-help-text>
             </div>
         </div>
         <div ng-if="icons.upload">{{icons.upload|cutText:true:30}}</div>
-        <!--<pre>{{icons.all|json}}</pre>-->
+        <!-- Control -->
+        <div class="page-control form-inline">
+            <div class="btn-group btn-goup-block btn-goup-1">
+                <button class="btn btn-default" ng-click="expandNavi('iconsLocalFilter', $event)" ng-class="icons.filter.source ? 'active' : ''">
+                    <i class="fa fa-filter"></i>
+                    <span ng-if="!icons.filter.source">{{_t('lb_show_all')}}</span>
+                    <span ng-if="icons.filter.source">{{icons.filter.source| cutText:true:30}}</span>
+                </button>
+            </div>
+        </div>
+        <!-- Page subnavi  filter-->
+        <div class="page-navi" ng-if="naviExpanded.iconsLocalFilter">
+            <div class="page-navi-in">
+                <div class="page-navi-content">
+                    <a class="btn btn-default btn-tag"
+                        ng-click="setFilter()"
+                       ng-class="icons.filter.source ? '' : 'active'">
+                        {{_t('lb_show_all')}}
+                    </a>
+                    <a class="btn btn-default btn-tag" 
+                       ng-repeat="(k,v) in icons.source"
+                           ng-click="setFilter({source: k})"
+                       ng-class="k === icons.filter.source ? 'active' : ''">
+                        {{k|cutText:true:30}} <span class="item-cnt">({{v}})</span> 
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- List-->
         <div class="app-row app-row-reportclearfix">
             <div class="report-entry" ng-repeat="v in icons.all|unique: 'file'">
                 <div class="report-col report-media">
@@ -40,8 +70,8 @@
                 </div>
                 <div class="report-col report-body" title="{{v.file}}">
                     <span>{{v.file}}</span>
-                    <span ng-if="icons.used.device[v.file]">used in <a ng-href="#element/{{d}}" ng-repeat="d in icons.used.device[v.file]">
-                            <strong>{{d|cutText:true:20}},</strong> </a>
+                    <span class="text-danger" ng-if="icons.used.device[v.file]"> | used in: <a class="text-danger" ng-href="#element/{{d}}" ng-repeat="d in icons.used.device[v.file]">
+                            {{d|cutText:true:20}}</a>
                     </span>   
                 </div>
                 <div class="report-col report-ctrl report-ctrl-3">

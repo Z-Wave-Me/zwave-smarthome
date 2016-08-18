@@ -12,7 +12,7 @@ var config_data = {
         //Application name
         'app_name': 'SmartHome UI',
         // Application version
-        'app_version': '1.4.4',
+        'app_version': '1.5.0',
         // Server base url
         'server_url': '/',
         //'server_url': 'http://192.168.10.119:8083/',
@@ -92,7 +92,11 @@ var config_data = {
             'timezone': 'ZAutomation/api/v1/system/time/get',
             'system_info': 'ZAutomation/api/v1/system/info',
             'system_reboot': 'ZAutomation/api/v1/system/reboot',
-            'skins': 'ZAutomation/api/v1/skins'
+            'skins': 'ZAutomation/api/v1/skins',
+            'skins_install': 'ZAutomation/api/v1/skins/install',
+            'skins_update': 'ZAutomation/api/v1/skins/update',
+            'skins_active': 'ZAutomation/api/v1/skins/active',
+            'skins_reset': 'ZAutomation/api/v1/skins/setToDefault'
         },
         // List of remote api URLs
         'api_remote': {
@@ -222,8 +226,7 @@ var config_data = {
             apps: [1],
             apps_local: [1],
             apps_online: [1],
-            skins_local: [1,2,3],
-            skins_online: [1],
+            customize: [1],
             module: [1],
             devices: [1],
             myaccess: [1, 2, 3],

@@ -8,7 +8,7 @@
  * @class SkinBaseController
  *
  */
-myAppController.controller('SkinBaseController', function ($scope, $q, $timeout, cfg,dataFactory, dataService, _) {
+myAppController.controller('SkinBaseController', function ($scope, $q, $timeout, cfg, dataFactory, dataService, _) {
     $scope.skins = {
         local: {
             all: {},
@@ -34,7 +34,7 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $timeout,
     $scope.allSettled = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
-            dataFactory.getApi('skins',null,true),
+            dataFactory.getApi('skins', null, true),
             dataFactory.getRemoteData($scope.cfg.online_skin_url)
         ];
 
@@ -51,7 +51,7 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $timeout,
             }
             if (onlineSkins.state === 'rejected' && $scope.routeMatch('/customize/skinsonline')) {
                 alertify.alertError($scope._t('failed_to_load_skins'));
-                 $scope.skins.online.show = false;
+                $scope.skins.online.show = false;
                 return;
             }
             // Success - local skins
@@ -78,14 +78,14 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $timeout,
      */
     $scope.updateSkin = function (skin) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
-        dataFactory.putApi('skins','/' + skin.name, skin).then(function (response) {
+        dataFactory.putApi('skins_update', '/' + skin.name, skin).then(function (response) {
             $timeout(function () {
                 $scope.loading = false;
                 dataService.showNotifier({message: $scope._t('skin_update_successful')});
             }, 2000);
         }, function (error) {
             $scope.loading = false;
-             var langkey = (error.data.error ? error.data.error : 'error_file_download');
+            var langkey = (error.data.error ? error.data.error : 'error_file_download');
             alertify.alertError($scope._t(langkey));
         });
     };
@@ -112,7 +112,7 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $timeout,
                 .indexBy('name')
                 .value();
         ;
-       
+
     }
     ;
 
@@ -123,24 +123,17 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $timeout,
  * @class SkinLocalController
  *
  */
-myAppController.controller('SkinLocalController', function ($scope, $window, $route, $timeout, dataFactory, dataService) {
+myAppController.controller('SkinLocalController', function ($scope, $window, $cookies, $timeout, dataFactory, dataService) {
     /**
      * Activate skin
      * @param {object} skin
      * @returns {undefined}
      */
     $scope.activateSkin = function (skin) {
-        $scope.user.skin = skin.name;
-        dataFactory.putApi('profiles', $scope.user.id, $scope.user).then(function (response) {
-            var data = response.data.data;
-            if (!data) {
-                alertify.alertError($scope._t('error_update_data'));
-                $scope.loading = false;
-                return;
-            }
-           
-            dataService.setUser(data);
+        //$scope.user.skin = skin.name;
+        dataFactory.putApi('skins', skin.name, {active: true}).then(function (response) {
             dataService.showNotifier({message: $scope._t('skin_activate_successful')});
+            $cookies.skin = skin.name;
             $timeout(function () {
                 $scope.loading = {status: 'loading-spin', icon: '--', message: $scope._t('reloading_page')};
                 alertify.dismissAll();
@@ -171,7 +164,7 @@ myAppController.controller('SkinLocalController', function ($scope, $window, $ro
                 //$route.reload();
             }, function (error) {
                 $scope.loading = false;
-                 var langkey = (error.data.error ? error.data.error : 'error_delete_data');
+                var langkey = (error.data.error ? error.data.error : 'error_delete_data');
                 alertify.alertError($scope._t(langkey));
             });
         });
@@ -190,17 +183,45 @@ myAppController.controller('SkinOnlineController', function ($scope, $timeout, d
      */
     $scope.downloadSkin = function (skin) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
-        dataFactory.postApi('skins', skin).then(function (response) {
-             $scope.loading = false;
-                dataService.showNotifier({message: $scope._t('skin_installation_successful')});
-                if($scope.skins.online.all[skin.name]){
-                   $scope.skins.online.all[skin.name].status = 'equal'; 
-                }
+        dataFactory.postApi('skins_install', skin).then(function (response) {
+            $scope.loading = false;
+            dataService.showNotifier({message: $scope._t('skin_installation_successful')});
+            if ($scope.skins.online.all[skin.name]) {
+                $scope.skins.online.all[skin.name].status = 'equal';
+            }
         }, function (error) {
             $scope.loading = false;
             var langkey = (error.data.error ? error.data.error : 'error_file_download');
             alertify.alertError($scope._t(langkey));
         });
     };
+
+});
+
+/**
+ * This controller handles reset skin proccess.
+ * @class SkinOnlineController
+ *
+ */
+myAppController.controller('SkinToDefaultController', function ($scope, $cookies, dataFactory, dataService) {
+    /**
+     * Download skin
+     * @param {object} skin
+     * @returns {undefined}
+     */
+    $scope.resetToDefault = function () {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        dataFactory.getApi('skins_reset', null, true).then(function (response) {
+            //dataService.setRememberMe(null);
+            dataFactory.getApi('logout').then(function (response) {
+                delete $cookies['skin'];
+                dataService.logOut();
+            });
+        }, function (error) {
+            $scope.loading = false;
+            alertify.alertError($scope._t('error_update_data'));
+        });
+    };
+    $scope.resetToDefault();
 
 });

@@ -10,11 +10,6 @@
 myAppController.controller('MySettingsController', function($scope, $window, $cookies,$timeout,$filter,$q,cfg,dataFactory, dataService, myCache) {
     $scope.id = $scope.user.id;
     $scope.devices = {};
-    $scope.skins = {
-        all:{},
-        active: cfg.skin.active,
-        show: false
-    };
     $scope.input = false;
     $scope.newPassword = null;
     $scope.trustMyNetwork = true;
@@ -41,13 +36,11 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
         var promises = [
              dataFactory.getApi('profiles', '/' + $scope.id, true),
             dataFactory.getApi('devices', null, true)
-              //dataFactory.getApi('skins')
         ];
 
         $q.allSettled(promises).then(function (response) {
             var profile = response[0];
             var devices = response[1];
-             var localSkins = response[2];
 
             $scope.loading = false;
             // Error message
@@ -59,18 +52,11 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
             // Success - profile
             if (profile.state === 'fulfilled') {
                  $scope.input = profile.value.data.data;
-                  $scope.input.skin = $scope.skins.active;
             }
             // Success - devices
             if (devices.state === 'fulfilled') {
                $scope.devices = devices.value.data.data.devices;
             }
-             // Success - skins
-//            if (localSkins.state === 'fulfilled') {
-//               $scope.skins.all = dataService.getLocalSkins(localSkins.value.data.data).indexBy('name').value();
-//               $scope.skins.show = true;
-//               
-//            }
         });
     };
     $scope.allSettled();  
@@ -115,7 +101,6 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
 
             $scope.loading = false;
             $cookies.lang = input.lang;
-             //$scope.user.skin = input.skin;
             myCache.remove('profiles');
             dataService.setUser(data);
              dataService.showNotifier({message: $scope._t('success_updated')});
@@ -158,11 +143,6 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
         if (form.$invalid) {
             return;
         }
-//       if (!newPassword || newPassword === '' || newPassword === $scope.cfg.default_credentials.password) {
-//            alertify.alertError($scope._t('enter_valid_password'));
-//            $scope.loading = false;
-//            return;
-//        }
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         var input = {
             id: $scope.id,

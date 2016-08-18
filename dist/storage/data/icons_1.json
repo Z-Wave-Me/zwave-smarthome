@@ -1,0 +1,15 @@
+{
+    "status": 200,
+    "message": "OK 200",
+    "error": null,
+    "data": [
+        {
+            "switch-off.png": [
+                "user/icons/1/switch-off.png",
+                "user/icons/2/switch-off.png"
+            ]
+        }, {
+            "switch-on.png": []
+        }
+    ]
+}

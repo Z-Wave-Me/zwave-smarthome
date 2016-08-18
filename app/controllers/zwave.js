@@ -789,7 +789,6 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
      * Get zwaveApiData
      */
     function zwaveConfigApiData(nodeId, devices) {
-        console.log(devices)
         dataFactory.loadZwaveApiData(true).then(function (ZWaveAPIData) {
             var node = ZWaveAPIData.devices[nodeId];
             if (!node) {
