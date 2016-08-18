@@ -7,18 +7,22 @@
  * The controller that renders Z-Wave vendors.
  * @class ZwaveVendorController
  */
-myAppController.controller('ZwaveVendorController', function ($scope, $routeParams, dataFactory, dataService, _) {
+myAppController.controller('ZwaveVendorController', function ($scope, $routeParams, cfg,dataFactory, dataService, _) {
     $scope.zwaveSelect = {
         logos: {},
         brand: {},
         brandName: '',
         list: {}
     };
-    
+
     $scope.zwaveProducts = {
+        cnt: {
+            vendorProducts: {
+            }
+        },
         vendors: {},
         all: {},
-        find:{}
+        find: {}
     };
     /**
      * Load z-wave devices
@@ -27,17 +31,61 @@ myAppController.controller('ZwaveVendorController', function ($scope, $routePara
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         //dataFactory.getApiLocal('device.' + lang + '.json').then(function (response) {
         dataFactory.getApiLocal('devices.json').then(function (response) {
-            $scope.zwaveSelect.brand = _.uniq(response.data, 'brandname');
-            if (brandname) {
-                $scope.zwaveSelect.list = _.where(response.data, {brandname: brandname});
-                if (_.isEmpty($scope.zwaveSelect.list)) {
-                    $scope.loading = false;
-                    alertify.alertWarning($scope._t('no_data'));
-                }
-
-                $scope.zwaveSelect.brandName = brandname;
-            }
             $scope.loading = false;
+            //$scope.zwaveProducts.vendors = _.uniq(response.data, 'brandname');
+            lang = lang.toUpperCase();
+            var products = _.chain(response.data)
+                    .flatten()
+                    .map(function (v) {
+                        var obj = {};
+                        /*
+                         "id": "211-0115-0100-0001-03-03-2a-01-02",
+                         "name": "Key Fob",
+                         "desc": "Key Fob with 4 buttons",
+                         "productcode": "",
+                         "wake": "Push all four buttons for 5 seconds until the green LEDs starts blinking slowly (Management Mode). Now hit button 2",
+                         "inc": "Short Click on Button 1 until red\/green LED blinks",
+                         "exc": "Push all four buttons for 5 seconds until the green LEDs starts blinking slowly (Management Mode). Now hit button 2",
+                         "brandname": "Z-Wave.Me",
+                         "brand_image": "Z-WaveMe.png",
+                         "product_image": "211-0115-0100-0001-03-03-2a-01-02.png",
+                         "prep": "Short Click on Button 1 must start red\/green blinking ot indicate that the device is in factory default an ready to be included",
+                         "inclusion_type": "secure"
+                         */
+//                         var obj = {
+//                             id: v.certification_ID,
+//                             brandname: v.brandname
+//                         }; 
+                        return {
+                            id: v.certification_ID,
+                            name: v.Name,
+                            productcode: v.product_code,
+                            wake: v.wake_EN,
+                            inc: v.inc_EN,
+                            exc: v.exc_EN,
+                            brandname: v.brandname,
+                            brand_image: v.brandname_image,
+                            product_image: v.certification_ID + '.png',
+                            prep: v.prep_EN,
+                            inclusion_type: v.inc_type,
+                            zwplus: v.zwplus,
+                            frequency: v.frequency,
+                            ignore_ui: v.ignore_ui,
+                            reset: v.ResetDescription_EN
+                            
+                        };
+                    });
+            // Count vendor products
+            $scope.zwaveProducts.cnt.vendorProducts = products.countBy(function (v) {
+                return v.brandname;
+            }).value();
+            $scope.zwaveProducts.vendors = products.uniq('brandname').map(function (v) {
+                        return {
+                             brandname: v.brandname,
+                            brand_image: v.brand_image
+                        };
+            }).value();
+            $scope.zwaveProducts.all = products.where(null).value();
         }, function (error) {
             alertify.alertError($scope._t('error_load_data'));
         });
@@ -236,12 +284,12 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
             }
             // Success - zwave devices
             if (devices.state === 'fulfilled') {
-                 $scope.devices.zw = setZwaveApiData(devices.value);
+                $scope.devices.zw = setZwaveApiData(devices.value);
             }
             // Success - elements
             if (elements.state === 'fulfilled') {
                 //setElements(elements.value.data.data.devices);
-                setElements(dataService.getDevicesData(elements.value.data.data.devices,false));
+                setElements(dataService.getDevicesData(elements.value.data.data.devices, false));
             }
         });
     };
@@ -363,19 +411,19 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
     function setElements(elements) {
         var findZwaveStr, cmd, nodeId;
         angular.forEach(elements.value(), function (v, k) {
-           findZwaveStr = v.id.split('_');
+            findZwaveStr = v.id.split('_');
             if (findZwaveStr[0] === 'ZWayVDev' && findZwaveStr[1] === 'zway') {
                 cmd = findZwaveStr[findZwaveStr.length - 1].split('-');
                 nodeId = cmd[0];
-                if($scope.devices.zw[nodeId]){
-                    $scope.devices.zw[nodeId]['elements'][v.id]= v;
+                if ($scope.devices.zw[nodeId]) {
+                    $scope.devices.zw[nodeId]['elements'][v.id] = v;
                 }
             }
 
 
         });
     }
-     /**
+    /**
      * Get selected instances status
      */
     function getInstances(node) {
@@ -385,7 +433,7 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
         };
         for (var iId in node.instances) {
             for (var ccId in node.instances[iId].commandClasses) {
-                
+
                 var ccName = node.instances[iId].commandClasses[ccId].name;
                 var isDone = node.instances[iId].commandClasses[ccId].data.interviewDone.value;
                 if (ccName === 'Security') {
@@ -396,7 +444,7 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
                 }
             }
         }
-       return instance;
+        return instance;
 
     }
     ;
@@ -833,8 +881,8 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
             }
             // Success - devices
             if (devices.state === 'fulfilled') {
-                  var elements = dataService.getDevicesData(devices.value.data.data.devices,false);
-                zwaveConfigApiData($scope.zwaveConfig.nodeId, elements.value() );
+                var elements = dataService.getDevicesData(devices.value.data.data.devices, false);
+                zwaveConfigApiData($scope.zwaveConfig.nodeId, elements.value());
             }
             // Success - locations
             if (locations.state === 'fulfilled') {
@@ -957,12 +1005,12 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
                 if (zwaveId == nodeId) {
                     var obj = v;
                     /*var obj = {};
-                    obj['id'] = v.id;
-                    obj['permanently_hidden'] = v.permanently_hidden;
-                    obj['visibility'] = v.visibility;
-                    obj['level'] = $filter('toInt')(v.metrics.level);
-                    obj['metrics'] = v.metrics;
-                    obj['location'] = v.location;*/
+                     obj['id'] = v.id;
+                     obj['permanently_hidden'] = v.permanently_hidden;
+                     obj['visibility'] = v.visibility;
+                     obj['level'] = $filter('toInt')(v.metrics.level);
+                     obj['metrics'] = v.metrics;
+                     obj['location'] = v.location;*/
                     $scope.formInput.elements[v.id] = obj;
                     $scope.devices.push(obj);
                 }
