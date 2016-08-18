@@ -26,6 +26,16 @@ Load all promises
 
 **Returns**: `undefined`
 
+### LocalIconController.setFilter(val) 
+
+Delete an icon from the storage
+
+**Parameters**
+
+**val**: `string`
+
+**Returns**: `undefined`
+
 ### LocalIconController.checkUploadedFile(files, info) 
 
 Check and validate an uploaded file
@@ -57,6 +67,16 @@ Upload a file
 **Parameters**
 
 **files**: `object`
+
+**Returns**: `undefined`
+
+### LocalIconController.setIcons(icons) 
+
+Set list with uploaded icons
+
+**Parameters**
+
+**icons**: `object`
 
 **Returns**: `undefined`
 

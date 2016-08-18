@@ -12,7 +12,7 @@ var config_data = {
         //Application name
         'app_name': 'SmartHome UI',
         // Application version
-        'app_version': '1.4.3',
+        'app_version': '1.5.0',
         // Server base url
         'server_url': '/',
         //'server_url': 'http://192.168.10.119:8083/',
@@ -95,7 +95,8 @@ var config_data = {
             'skins': 'ZAutomation/api/v1/skins',
             'skins_install': 'ZAutomation/api/v1/skins/install',
             'skins_update': 'ZAutomation/api/v1/skins/update',
-            'skins_active': 'ZAutomation/api/v1/skins/active'
+            'skins_active': 'ZAutomation/api/v1/skins/active',
+            'skins_reset': 'ZAutomation/api/v1/skins/setToDefault'
         },
         // List of remote api URLs
         'api_remote': {
@@ -225,8 +226,7 @@ var config_data = {
             apps: [1],
             apps_local: [1],
             apps_online: [1],
-            skins_local: [1,2,3],
-            skins_online: [1],
+            customize: [1],
             module: [1],
             devices: [1],
             myaccess: [1, 2, 3],
@@ -314,6 +314,7 @@ var config_data = {
         // Order by
         orderby: {
             elements: {
+                'updateTimeDESC': '-updateTime',
                 'creationTimeDESC': '-creationTime',
                 'creationTimeASC': 'creationTime',
                 'titleASC': 'metrics.title',
@@ -324,6 +325,7 @@ var config_data = {
                 'titleDESC': '-defaults.title'
             },
             appsonline: {
+                'mostPopularDESC': '-installedSort',
                 'mostRatedDESC': '-rating',
                 'creationTimeDESC': '-id',
                 'creationTimeASC': 'id',
