@@ -205,8 +205,8 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     requireLogin: true,
                     roles: cfg.role_access.devices
                 }).
-                //Zwave select devices by vendor name
-                when('/zwave/vendors/:name', {
+                //Zwave select devices by vendor id
+                when('/zwave/vendors/:id', {
                     templateUrl: 'app/views/zwave/zwave_vendors_id.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices

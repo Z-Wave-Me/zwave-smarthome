@@ -123,7 +123,9 @@ var config_data = {
             'logo': 'storage/img/logo/',
             'icons': 'storage/img/icons/',
             'custom_icons': 'user/icons/',
-            'skin_screenshot': 'app/css/'
+            'skin_screenshot': 'app/css/',
+             'zwavedevices': 'storage/img/zwave/zwavedevices/',
+             'zwavevendors': 'storage/img/zwave/zwavevendors/'
         },
         // Upload settings
         'upload': {
@@ -219,6 +221,8 @@ var config_data = {
         'lang': 'en', // !!!!Do not change it
         // List of supported languages
         'lang_list': ['en', 'de', 'ru', 'cn', 'fr', 'cz', 'sk', 'sv'],
+        // List of supported languages in the zwave products
+        'zwaveproducts_langs': ['en', 'de'],
         // Role access
         'role_access': {
             admin: [1],
