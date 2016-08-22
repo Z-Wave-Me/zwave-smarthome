@@ -393,6 +393,38 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                     return v;
                 });
     };
+    
+    /**
+     * Get zwave devices - filtered data from devices dataholder
+     * @param {object} data
+     * @returns {unresolved}
+     */
+    this.getZwaveDevices = function (data,lang) {
+         lang = cfg.zwaveproducts_langs.indexOf(lang) > -1 ? lang.toUpperCase() : cfg.lang.toUpperCase();
+        return  _.chain(data)
+                .flatten()
+                .map(function (v) {
+                        return {
+                            id: v.certification_ID,
+                            name: v.Name,
+                            productcode: v.product_code,
+                            wake: v['wake_' + lang] || v['wake_EN'],
+                            inc: v['inc_' + lang] || v['inc_EN'],
+                            exc: v['exc_' + lang] || v['exc_EN'],
+                            brandname: v.brandname,
+                            brandid: v.brandname_image,
+                            brand_image: (v.brandname_image ? cfg.img.zwavevendors + v.brandname_image : false),
+                            product_image: (v.certification_ID ? cfg.img.zwavedevices + v.certification_ID + '.png' : false),
+                            prep: v['prep_' + lang] || v['prep_EN'],
+                            inclusion_type: v.inc_type,
+                            zwplus: v.zwplus,
+                            frequency: v.frequency,
+                            ignore_ui: v.ignore_ui,
+                            reset: v['ResetDescription_' + lang] || v['ResetDescription_EN']
+
+                        };
+                    })
+    };
 
     /**
      * Renders the chart data

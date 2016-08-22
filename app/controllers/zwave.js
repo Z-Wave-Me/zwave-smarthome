@@ -62,7 +62,7 @@ myAppController.controller('ZwaveVendorIdController', function ($scope, $routePa
         dataFactory.getApiLocal('devices.json').then(function (response) {
             $scope.loading = false;
             //$scope.zwaveProducts.vendors = _.uniq(response.data, 'brandname');
-            lang = cfg.zwaveproducts_langs.indexOf(lang) > -1 ? lang.toUpperCase() : cfg.lang.toUpperCase();
+            //lang = cfg.zwaveproducts_langs.indexOf(lang) > -1 ? lang.toUpperCase() : cfg.lang.toUpperCase();
             var products = _.chain(response.data)
                     .flatten()
                     .map();
@@ -77,25 +77,6 @@ myAppController.controller('ZwaveVendorIdController', function ($scope, $routePa
              $scope.zwaveProducts.vendor = vendors.findWhere({brandid: $routeParams.id}).value();
             $scope.zwaveProducts.all = products
                     .map(function (v) {
-                        var obj = {};
-                        /*
-                         "id": "211-0115-0100-0001-03-03-2a-01-02",
-                         "name": "Key Fob",
-                         "desc": "Key Fob with 4 buttons",
-                         "productcode": "",
-                         "wake": "Push all four buttons for 5 seconds until the green LEDs starts blinking slowly (Management Mode). Now hit button 2",
-                         "inc": "Short Click on Button 1 until red\/green LED blinks",
-                         "exc": "Push all four buttons for 5 seconds until the green LEDs starts blinking slowly (Management Mode). Now hit button 2",
-                         "brandname": "Z-Wave.Me",
-                         "brand_image": "Z-WaveMe.png",
-                         "product_image": "211-0115-0100-0001-03-03-2a-01-02.png",
-                         "prep": "Short Click on Button 1 must start red\/green blinking ot indicate that the device is in factory default an ready to be included",
-                         "inclusion_type": "secure"
-                         */
-//                         var obj = {
-//                             id: v.certification_ID,
-//                             brandname: v.brandname
-//                         }; 
                         return {
                             id: v.certification_ID,
                             name: v.Name,
