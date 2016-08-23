@@ -17,6 +17,8 @@ Marcel Kermer
 - Elements: Sorting by last updated.
 
 #### Fixes
+- Strange sting on widget #180
+- Infinite loop on login #184.
 - Elements: Fixed knob bug.
 
 #### Changes
