@@ -69,10 +69,10 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
     /**
      * Load all promises
      */
-    $scope.allSettled = function () {
+    $scope.allSettled = function (lang) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
-            dataFactory.getApiLocal('device.' + $scope.lang + '.json'),
+            dataFactory.getApiLocal('devices.json'),
             dataFactory.loadZwaveApiData(true)
         ];
 
@@ -88,7 +88,12 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
             // Success - device by id
             if ($routeParams.id) {
                 if (deviceId.state === 'fulfilled') {
-                    setDeviceId(_.findWhere(deviceId.value.data, {id: $routeParams.id}));
+                    //setDeviceId(_.findWhere(deviceId.value.data, {id: $routeParams.id}));
+                    var device = dataService.getZwaveProducts(deviceId.value.data, lang)
+                            .findWhere({id: $routeParams.id})
+                            .value();
+                    setDeviceId(device);
+
                 }
             }
             // Success - ZWaveAPIData
@@ -101,7 +106,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
         });
 
     };
-    $scope.allSettled();
+    $scope.allSettled($scope.lang);
 
     /**
      * Refresh ZwaveApiData
@@ -130,7 +135,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
                 if ($scope.zwaveInclusion.exclusionProcess.process && !$scope.zwaveInclusion.exclusionProcess.done) {
                     resetExclusion(false, false, 'controller.RemoveNodeFromNetwork(0)', true);
                     alertify.alertWarning($scope._t('error_exclusion_time'));
-                     $scope.reloadData();
+                    $scope.reloadData();
                 }
 
             }, $scope.zwaveInclusion.cfg.inexTimeout);
@@ -146,7 +151,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
      * Start/Stop Inclusion
      */
     $scope.startStopInclusion = function (process) {
-       if (process) {
+        if (process) {
             setSecureInclusion($scope.zwaveInclusion.device.secureInclusion);
             resetInclusion(process, false, 'controller.AddNodeToNetwork(1)');
             $scope.refreshZwaveApiData();
@@ -155,7 +160,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
                 if ($scope.zwaveInclusion.inclusionProcess.process && !$scope.zwaveInclusion.inclusionProcess.done) {
                     resetInclusion(false, false, 'controller.AddNodeToNetwork(0)', true);
                     alertify.alertWarning($scope._t('error_inclusion_time'));
-                     $scope.reloadData();
+                    $scope.reloadData();
                 }
 
             }, $scope.zwaveInclusion.cfg.inexTimeout);
@@ -193,7 +198,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
                             $scope.startStopExclusion(true);
                         });
                         break;
-                    // Cc Version interview is not complete
+                        // Cc Version interview is not complete
                     case 'error_interview_again':
                         alertify.confirm($scope._t('configuration_complete_only') + ' ' + $scope.zwaveInclusion.automatedConfiguration.progress + '%' + batteryInfo)
                                 .setting('labels', {'ok': $scope._t('try_again_complete')})
@@ -263,11 +268,11 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
     $scope.cancelManualConfiguration = function (reset) {
         $scope.zwaveInclusion.cancelModal = false;
         resetConfiguration(false, false, null, false, true);
-        if(reset){
-             $scope.startStopExclusion(true);
-        }else{
+        if (reset) {
+            $scope.startStopExclusion(true);
+        } else {
             $scope.startManualConfiguration($scope.zwaveInclusion.automatedConfiguration.includedDevice.nodeId);
-             
+
         }
 
     };
@@ -345,9 +350,9 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
             if (deviceIncId != null) {
                 var givenName = 'Device_' + deviceIncId;
                 var cmd = false;
-                 if (data.devices[deviceIncId].data.givenName.value === '' || data.devices[deviceIncId].data.givenName.value === null) {
-                     cmd = 'devices[' + deviceIncId + '].data.givenName.value=\'' + givenName + '\'';
-                 }
+                if (data.devices[deviceIncId].data.givenName.value === '' || data.devices[deviceIncId].data.givenName.value === null) {
+                    cmd = 'devices[' + deviceIncId + '].data.givenName.value=\'' + givenName + '\'';
+                }
                 resetInclusion(false, true, false, true);
                 //dataService.showNotifier({message: $scope._t('lb_new_device_found')});
                 resetConfiguration(true, false, {nodeId: deviceIncId}, cmd, true);
@@ -506,7 +511,8 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
                 resetConfiguration(false, true, null, false, true);
                 setSecureInclusion(true);
                 $scope.startManualConfiguration(nodeId);
-                return;;
+                return;
+                ;
             }
         }, function (error) {
             return;
