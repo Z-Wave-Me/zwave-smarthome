@@ -90,17 +90,14 @@ myApp.filter('typeOf', function () {
  */
 myApp.filter('dec2hex', function () {
     return function (i) {
-       var result = "0000";
+        var result = "0000";
         if (i >= 0 && i <= 15) {
             result = "000" + i.toString(16);
-        }
-        else if (i >= 16 && i <= 255) {
+        } else if (i >= 16 && i <= 255) {
             result = "00" + i.toString(16);
-        }
-        else if (i >= 256 && i <= 4095) {
+        } else if (i >= 256 && i <= 4095) {
             result = "0" + i.toString(16);
-        }
-        else if (i >= 4096 && i <= 65535) {
+        } else if (i >= 4096 && i <= 65535) {
             result = i.toString(16);
         }
         return result;
@@ -136,13 +133,13 @@ myApp.filter('fileExtension', function () {
 myApp.filter('fileSizeString', function () {
     return function (bytes) {
         var i = -1;
-    var byteUnits = [' kB', ' MB', ' GB', ' TB', 'PB', 'EB', 'ZB', 'YB'];
-    do {
-        bytes = bytes / 1024;
-        i++;
-    } while (bytes > 1024);
+        var byteUnits = [' kB', ' MB', ' GB', ' TB', 'PB', 'EB', 'ZB', 'YB'];
+        do {
+            bytes = bytes / 1024;
+            i++;
+        } while (bytes > 1024);
 
-    return Math.max(bytes, 0.1).toFixed(1) + byteUnits[i];
+        return Math.max(bytes, 0.1).toFixed(1) + byteUnits[i];
     };
 });
 
@@ -200,8 +197,8 @@ myApp.filter('hasNode', function () {
  */
 myApp.filter('zeroFill', function () {
     return function (num, len) {
-        len = len||10;
-       return (Array(len).join("0") + num).slice(-len);
+        len = len || 10;
+        return (Array(len).join("0") + num).slice(-len);
     };
 });
 /**
@@ -473,15 +470,15 @@ myApp.filter('getAppCategoryIcon', function () {
  */
 myApp.filter('getAwakeIcon', function () {
     return function (input) {
-       switch (input) {
+        switch (input) {
             case 'awake':
                 return 'fa-certificate color-orange';
             case 'sleep':
-               return 'fa-moon-o text-primary';
+                return 'fa-moon-o text-primary';
             default:
-               return '';
+                return '';
         }
-        
+
     };
 });
 
@@ -492,7 +489,7 @@ myApp.filter('getAwakeIcon', function () {
 myApp.filter('getMaxLevel', function () {
     return function (input, maxLevel) {
         maxLevel = maxLevel || 100;
-        return Math.min(input,maxLevel);
+        return Math.min(input, maxLevel);
     };
 });
 
@@ -530,12 +527,12 @@ myApp.filter('setTimeFromBox', function () {
     return function (input) {
         if (input.localTimeUT) {
             var d = new Date(input.localTimeUT * 1000);
-           } else {
+        } else {
             var d = new Date();
         }
         // Convert to ISO
         // 2016-06-07T11:49:51.000Z
-         return d.toISOString().substring(11, d.toISOString().indexOf('.'));
+        return d.toISOString().substring(11, d.toISOString().indexOf('.'));
     };
 });
 /**
@@ -595,6 +592,9 @@ myApp.filter('unixStartOfDay', function () {
  */
 myApp.filter('isToday', function () {
     return function (input, fromunix, days, yesterday) {
+        if (new Date(input) === "Invalid Date" && isNaN(new Date(input))) {
+            return '';
+        };
         if (fromunix) {
             var d = new Date(input * 1000);
             var startDate = new Date(input * 1000);  // 2000-01-01
