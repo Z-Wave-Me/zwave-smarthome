@@ -7,7 +7,7 @@
     <div class="vendor-entry" ng-repeat="v in zwaveVendors.all| orderBy:'brandname' track by $index">
         <a ng-href="#zwave/vendors/{{v.brandid}}" class="vendor-list" title="{{v.brandname}}">
             <p class="vendor-image" ng-if="v.brandname_image">
-                <img ng-src="{{v.brandname_image}}" alt="{{v.brandname|cutText:true:20}}" />
+                <img ng-src="{{cfg.img.zwavevendors + v.brandname_image}}" alt="{{v.brandname|cutText:true:20}}" />
 
             </p>
             <p class="vendor-image" title="{{v.brandname}}" ng-if="!v.brandname_image">

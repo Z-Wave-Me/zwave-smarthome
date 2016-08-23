@@ -395,11 +395,11 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
     };
     
     /**
-     * Get zwave devices - filtered data from devices dataholder
+     * Get zwave products - filtered data from devices dataholder
      * @param {object} data
      * @returns {unresolved}
      */
-    this.getZwaveDevices = function (data,lang) {
+    this.getZwaveProducts = function (data,lang) {
          lang = cfg.zwaveproducts_langs.indexOf(lang) > -1 ? lang.toUpperCase() : cfg.lang.toUpperCase();
         return  _.chain(data)
                 .flatten()
@@ -412,7 +412,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                             inc: v['inc_' + lang] || v['inc_EN'],
                             exc: v['exc_' + lang] || v['exc_EN'],
                             brandname: v.brandname,
-                            brandid: v.brandname_image,
+                            brandid: v.brandid,
                             brand_image: (v.brandname_image ? cfg.img.zwavevendors + v.brandname_image : false),
                             product_image: (v.certification_ID ? cfg.img.zwavedevices + v.certification_ID + '.png' : false),
                             prep: v['prep_' + lang] || v['prep_EN'],
@@ -423,7 +423,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                             reset: v['ResetDescription_' + lang] || v['ResetDescription_EN']
 
                         };
-                    })
+                    });
     };
 
     /**

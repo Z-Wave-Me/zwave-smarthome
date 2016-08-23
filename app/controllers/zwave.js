@@ -24,7 +24,7 @@ myAppController.controller('ZwaveVendorController', function ($scope, $routePara
         //dataFactory.getApiLocal('device.' + lang + '.json').then(function (response) {
         dataFactory.getApiLocal('vendors.json').then(function (response) {
             $scope.loading = false;
-           $scope.zwaveVendors.all = response.data;
+            $scope.zwaveVendors.all = response.data;
         }, function (error) {
             alertify.alertError($scope._t('error_load_data'));
         });
@@ -36,12 +36,71 @@ myAppController.controller('ZwaveVendorController', function ($scope, $routePara
  * The controller that renders Z-Wave devices by vendor.
  * @class ZwaveVendorIdController
  */
-myAppController.controller('ZwaveVendorIdController', function ($scope, $routeParams, cfg,dataFactory, dataService, _) {
+myAppController.controller('ZwaveVendorIdController', function ($scope, $routeParams, $q,cfg, dataFactory, dataService, _) {
     $scope.zwaveProducts = {
         all: {},
-         vendors: {},
+        vendors: {},
         vendor: {}
     };
+    /**
+     * Load all promises
+     */
+    $scope.allSettled = function (brandId,lang) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        var promises = [
+            dataFactory.getApiLocal('vendors.json'),
+            dataFactory.getApiLocal('devices.json')
+        ];
+
+        $q.allSettled(promises).then(function (response) {
+            var vendors = response[0];
+            var products = response[1];
+            $scope.loading = false;
+            // Error message
+            if (vendors.state === 'rejected' || products.state === 'rejected') {
+                alertify.alertError($scope._t('error_load_data'));
+                return;
+            }
+
+            // Success - vendors
+            if (vendors.state === 'fulfilled') {
+               $scope.zwaveProducts.vendors = vendors.value.data;
+               $scope.zwaveProducts.vendor = _.findWhere($scope.zwaveProducts.vendors,{brandid: $routeParams.id});
+            }
+            // Success - products
+            if (products.state === 'fulfilled') {
+                 $scope.zwaveProducts.all = dataService.getZwaveProducts(products.value.data,lang).value();
+//               $scope.zwaveProducts.all = _.chain(products.value.data)
+//                .flatten()
+//                .map(function (v) {
+//                        return {
+//                            id: v.certification_ID,
+//                            name: v.Name,
+//                            productcode: v.product_code,
+//                            wake: v['wake_' + lang] || v['wake_EN'],
+//                            inc: v['inc_' + lang] || v['inc_EN'],
+//                            exc: v['exc_' + lang] || v['exc_EN'],
+//                            brandname: v.brandname,
+//                            brandid: v.brandid,
+//                            brand_image: (v.brandname_image ? cfg.img.zwavevendors + v.brandname_image : false),
+//                            product_image: (v.certification_ID ? cfg.img.zwavedevices + v.certification_ID + '.png' : false),
+//                            prep: v['prep_' + lang] || v['prep_EN'],
+//                            inclusion_type: v.inc_type,
+//                            zwplus: v.zwplus,
+//                            frequency: v.frequency,
+//                            ignore_ui: v.ignore_ui,
+//                            reset: v['ResetDescription_' + lang] || v['ResetDescription_EN']
+//
+//                        };
+//                    })
+//                    .where({brandid: brandId})
+//                    .value();
+            }
+
+
+        });
+    };
+    $scope.allSettled($routeParams.id,$scope.lang);
     /**
      * Load z-wave devices
      */
@@ -63,7 +122,7 @@ myAppController.controller('ZwaveVendorIdController', function ($scope, $routePa
                 };
             });
             $scope.zwaveProducts.vendors = vendors.value();
-             $scope.zwaveProducts.vendor = vendors.findWhere({brandid: $routeParams.id}).value();
+            $scope.zwaveProducts.vendor = vendors.findWhere({brandid: $routeParams.id}).value();
             $scope.zwaveProducts.all = products
                     .map(function (v) {
                         return {
@@ -74,7 +133,7 @@ myAppController.controller('ZwaveVendorIdController', function ($scope, $routePa
                             inc: v['inc_' + lang] || v['inc_EN'],
                             exc: v['exc_' + lang] || v['exc_EN'],
                             brandname: v.brandname,
-                            brandid: v.brandname_image,
+                            brandid: v.brandid,
                             brand_image: (v.brandname_image ? cfg.img.zwavevendors + v.brandname_image : false),
                             product_image: (v.certification_ID ? cfg.img.zwavedevices + v.certification_ID + '.png' : false),
                             prep: v['prep_' + lang] || v['prep_EN'],
@@ -91,8 +150,8 @@ myAppController.controller('ZwaveVendorIdController', function ($scope, $routePa
             alertify.alertError($scope._t('error_load_data'));
         });
     };
-    
-    $scope.loadProducts($routeParams.id, $scope.lang);
+
+   // $scope.loadProducts($routeParams.id, $scope.lang);
 });
 
 /**
