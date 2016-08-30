@@ -1,0 +1,33 @@
+<!-- Admin firmware view -->
+<h2 class="accordion-entry-title" ng-click="expandElement('firmware')">
+    <i class="fa fa-level-up"></i> <span ng-bind="_t('firmware_update')"></span>
+    <i class="fa accordion-arrow" ng-class="expand.firmware ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+</h2>
+<div class="accordion-entry-ctrl" ng-if="expand.firmware" ng-controller="ManagementFirmwareController">
+    <bb-loader></bb-loader>
+    <div class="form form-page" >
+        <div class="fieldset">
+            <p class="form-control-static">
+                <span ng-bind="_t('current_firmware')"></span>: <strong ng-bind="controllerInfo.softwareRevisionVersion"></strong>
+            </p>
+            <div class="form-group">
+                <bb-help-text trans="_t('jb_upgrade_info')"></bb-help-text>
+            </div>
+        </div>
+ 
+    </div>
+
+    <!-- firmwareUpdateModal -->
+    <div id="firmwareUpdateModal" class="appmodal appmodal-100" ng-if="modalArr.firmwareUpdateModal && firmwareUpdate.show">
+        <div class="appmodal-in">
+            <div class="appmodal-header">
+                <span class="appmodal-close" ng-click="setAccess('?allow_access=0');handleModal('firmwareUpdateModal', $event)"><i class="fa fa-times"></i></span>
+                <h3>{{_t('firmware_update')}}</h3>
+            </div>
+            <div class="appmodal-body text-center">
+               <iframe ng-src="{{firmwareUpdate.url}}" height="600" style="width: 100%;" ng-if="firmwareUpdate.loaded"></iframe> 
+            </div>
+        </div>
+    </div>
+
+</div>
