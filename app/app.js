@@ -431,6 +431,7 @@ myApp.config(function ($provide, $httpProvider, cfg) {
                 dataService.logError(rejection);
                 if (rejection.status == 401) {
                     if (path[1] !== '') {
+                        dataService.setRememberMe(null);
                         dataService.logOut();
 
                     }
