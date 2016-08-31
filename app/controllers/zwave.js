@@ -9,6 +9,7 @@
  */
 myAppController.controller('ZwaveVendorController', function ($scope, $routeParams, cfg, dataFactory, dataService, _) {
     $scope.zwaveVendors = {
+        frequency: false,
         cnt: {
             vendorProducts: {
             }
@@ -16,6 +17,17 @@ myAppController.controller('ZwaveVendorController', function ($scope, $routePara
         all: {},
         find: {}
     };
+    /**
+     * Load z-wave data
+     */
+    $scope.loadZwdata = function () {
+        dataFactory.loadZwaveApiData().then(function (response) {
+           $scope.zwaveVendors.frequency = response.controller.data.frequency.value;
+        }, function (error) {
+            alertify.alertError($scope._t('error_load_data'));
+        });
+    };
+    $scope.loadZwdata();
     /**
      * Load z-wave devices an parse vendors
      */
@@ -76,8 +88,6 @@ myAppController.controller('ZwaveVendorIdController', function ($scope, $routePa
                     $scope.zwaveProducts.frequency = zwdata.value.controller.data.frequency.value;
                     where.frequencyid =  $scope.zwaveProducts.frequency;
                 }
-               // frequency = zwdata.value.controller.data.frequency.value ? zwdata.value.controller.data.frequency.value : false
-                console.log(where)
             }
 
             // Success - vendors
