@@ -3,7 +3,13 @@
     <bb-loader></bb-loader>
      <div class="text-center device-autodetect" ng-include="'app/views/zwave/zwave_vendors_autodetect.html'"></div>
         <h3>
-            <button class="btn btn-default" bb-go-back><i class="fa fa-arrow-left"></i></button> {{zwaveProducts.vendor.brandname}}
+            <button class="btn btn-default" bb-go-back><i class="fa fa-arrow-left"></i></button> 
+            <strong>{{zwaveProducts.vendor.brandname}}</strong>
+            |  {{_t('products')}} <span class="badge text-primary">{{zwaveProducts.cnt}}</span>
+            |  {{_t('frequency')}} <span class="badge">{{zwaveProducts.frequency}}</span>
+            <em ng-class="zwaveProducts.cnt == 0 ? 'text-danger': '' ">
+               
+            </em>
         </h3> 
         <div class="app-row app-row-report app-row-zwaveadd clearfix">
             <div id="row_zwaveadd_{{v.id}}" class="report-entry" ng-repeat="v in zwaveProducts.all | orderBy:'name' track by $index">
@@ -12,7 +18,7 @@
                     <img class="product-img" ng-src="storage/img/placeholder-img.png" alt="img" ng-if="!v.product_image" />
                 </div>
                 <div class="report-col report-body">
-                    {{v.name}}
+                    {{v.name}} <span class="label label-info">{{v.frequencyid}}</span> 
                 </div>
                 <div class="report-col report-ctrl">
                     <a href="#zwave/inclusion/{{v.id}}" class="btn btn-default" title="{{_t('lb_include_device')}}">

@@ -418,6 +418,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                             prep: v['prep_' + lang] || v['prep_EN'],
                             inclusion_type: (v.inc_type === 'secure' ? v.inc_type : 'unsecure'),
                             zwplus: v.zwplus,
+                            frequencyid: v.frequencyid,
                             frequency: v.frequency,
                             ignore_ui: v.ignore_ui,
                             reset: v['ResetDescription_' + lang] || v['ResetDescription_EN']

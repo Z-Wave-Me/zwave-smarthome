@@ -39,6 +39,8 @@ myAppController.controller('ZwaveVendorController', function ($scope, $routePara
 myAppController.controller('ZwaveVendorIdController', function ($scope, $routeParams, $q,cfg, dataFactory, dataService, _) {
     $scope.zwaveProducts = {
         all: {},
+        cnt: 0,
+        frequency: false,
         vendors: {},
         vendor: {}
     };
@@ -48,18 +50,34 @@ myAppController.controller('ZwaveVendorIdController', function ($scope, $routePa
     $scope.allSettled = function (brandId,lang) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
+            dataFactory.loadZwaveApiData(),
             dataFactory.getApiLocal('vendors.json'),
             dataFactory.getApiLocal('devices.json')
+            
         ];
 
         $q.allSettled(promises).then(function (response) {
-            var vendors = response[0];
-            var products = response[1];
+            var where = {
+                brandid: brandId
+            };
+            var zwdata = response[0];
+            var vendors = response[1];
+            var products = response[2];
+            
             $scope.loading = false;
             // Error message
             if (vendors.state === 'rejected' || products.state === 'rejected') {
                 alertify.alertError($scope._t('error_load_data'));
                 return;
+            }
+             // Success - zwdata
+            if (zwdata.state === 'fulfilled') {
+                if(zwdata.value.controller.data.frequency.value){
+                    $scope.zwaveProducts.frequency = zwdata.value.controller.data.frequency.value;
+                    where.frequencyid =  $scope.zwaveProducts.frequency;
+                }
+               // frequency = zwdata.value.controller.data.frequency.value ? zwdata.value.controller.data.frequency.value : false
+                console.log(where)
             }
 
             // Success - vendors
@@ -70,8 +88,9 @@ myAppController.controller('ZwaveVendorIdController', function ($scope, $routePa
             // Success - products
             if (products.state === 'fulfilled') {
                  $scope.zwaveProducts.all = dataService.getZwaveProducts(products.value.data,lang)
-                 .where({brandid: brandId})
+                 .where(where)
                  .value();
+                 $scope.zwaveProducts.cnt = _.size($scope.zwaveProducts.all);
             }
 
 

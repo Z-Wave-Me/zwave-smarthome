@@ -11,6 +11,7 @@ Marcel Kermer
 
 ## v1.5.0
 #### New features
+- More products in the Z-Wave devices.
 - Skins.
 - Add update time to toggle button #167.
 - Online Apps: Sorting by most popular.
