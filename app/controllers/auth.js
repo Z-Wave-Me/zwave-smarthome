@@ -24,6 +24,14 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
         window.location = '#/dashboard';
         return;
     }
+    // IF IE or Edge displays an message
+    if (dataService.isIeEdge()) {
+        angular.extend(cfg.route.fatalError, {
+            message: cfg.route.t['ie_edge_not_supported'],
+            info: cfg.route.t['ie_edge_not_supported_info']
+        });
+    }
+
 
     $scope.loginLang = (angular.isDefined($cookies.lang)) ? $cookies.lang : false;
     /**
