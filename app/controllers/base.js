@@ -199,15 +199,6 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     $scope.$watch('lang', function () {
         $scope.loadLang($scope.lang);
     });
-
-    // IF IE or Edge displays an message
-    if (dataService.isIeEdge()) {
-        angular.extend(cfg.route.fatalError, {
-            message: cfg.route.t['ie_edge_not_supported'],
-            info: cfg.route.t['ie_edge_not_supported_info']
-        });
-    }
-
     /**
      * Order by
      * @param {string} field
