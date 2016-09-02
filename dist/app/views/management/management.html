@@ -25,6 +25,9 @@
             ng-if="!isMobile"
             ng-hide="cfg.app_type === 'wd' || cfg.app_type === 'jb'"
          ng-include="'app/views/management/management_firmware.html'"></div>
+    <div class="accordion-entry" 
+            ng-if="cfg.app_type === 'jb'"
+           ng-include="'app/views/management/management_firmware_jb.html'"></div>
 
     <!-- ///////////////////////////// App Store access ///////////////////////////// -->
     <div class="accordion-entry" ng-include="'app/views/management/management_appstore.html'"></div>

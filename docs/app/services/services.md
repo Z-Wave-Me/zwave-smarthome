@@ -222,6 +222,16 @@ Get local skins - filtered data from skin dataholder
 
 **Returns**: `unresolved`
 
+### dataService.getZwaveProducts(data) 
+
+Get zwave products - filtered data from devices dataholder
+
+**Parameters**
+
+**data**: `object`
+
+**Returns**: `unresolved`
+
 ### dataService.getChartData(data, colors) 
 
 Renders the chart data

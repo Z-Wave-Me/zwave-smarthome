@@ -1,4 +1,7 @@
 {
+    "frequency": "Frequency",
+    "products": "Products",
+    "jb_upgrade_info": "The firmware update will be provided automatically after reboot when available. You need only to confirm this update.",
     "mostPopularDESC": "Most popular",
     "secure": "Secure",
     "active_apps": "Active Apps",
