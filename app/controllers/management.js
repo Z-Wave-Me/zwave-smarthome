@@ -583,8 +583,8 @@ myAppController.controller('ManagementTimezoneController', function ($scope, $ti
     /**
      * Update instance
      */
-    $scope.updateInstance = function () {
-        var input = $scope.handleTimezone.instance;
+    $scope.updateInstance = function (input) {
+        //var input = $scope.handleTimezone.instance;
         if (input.id) {
             dataFactory.putApi('instances', input.id, input).then(function (response) {
                 alertify.confirm($scope._t('timezone_alert'))
@@ -597,7 +597,6 @@ myAppController.controller('ManagementTimezoneController', function ($scope, $ti
                 alertify.alertError($scope._t('error_update_data'));
             });
         }
-
     };
     
      /**
