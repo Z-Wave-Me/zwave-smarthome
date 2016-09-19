@@ -5,7 +5,7 @@
 
     <!-- ///////////////////////////// Remote access ///////////////////////////// -->
     <div class="accordion-entry" ng-include="'app/views/management/management_remote.html'"></div>
-
+    
     <!-- ///////////////////////////// License key ///////////////////////////// -->
     <div class="accordion-entry" 
          ng-if="handleLicense.show" 
@@ -14,9 +14,11 @@
     <!-- ///////////////////////////// Backup ///////////////////////////// -->
      <div class="accordion-entry" ng-include="'app/views/management/management_backup.html'" ng-if="!isMobile"></div>
      
-     <!-- ///////////////////////////// Backup to the cloud ///////////////////////////// -->
-     <div class="accordion-entry" ng-include="'app/views/management/management_backup_cloud.html'" ng-if="!isMobile"></div>
-    
+      <!-- ///////////////////////////// Timezone ///////////////////////////// -->
+     <div class="accordion-entry" 
+          ng-include="'app/views/management/management_timezone.html'"
+          ng-if="cfg.app_type === 'jb' && handleTimezone.show"></div>
+     
      <!-- ///////////////////////////// Restore ///////////////////////////// -->
      <div class="accordion-entry" ng-include="'app/views/management/management_restore.html'" ng-if="!isMobile"></div>
      

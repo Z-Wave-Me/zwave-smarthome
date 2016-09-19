@@ -37,6 +37,11 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
         replug: false
     };
 
+    $scope.handleTimezone = {
+        instance: {},
+        show: false
+    };
+
     $scope.zwaveDataInterval = null;
     // Cancel interval on page destroy
     $scope.$on('$destroy', function () {
@@ -50,16 +55,23 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
     $scope.allSettled = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
-            dataFactory.loadZwaveApiData()
+            dataFactory.loadZwaveApiData(),
+            dataFactory.getApi('instances', '/ZMEOpenWRT')
         ];
 
         $q.allSettled(promises).then(function (response) {
             var zwave = response[0];
+            var timezone = response[1];
             $scope.loading = false;
-            // Success - locations
+            // Success - api data
             if (zwave.state === 'fulfilled') {
                 $scope.ZwaveApiData = zwave.value;
                 setControllerInfo(zwave.value);
+            }
+            // Success - timezone
+            if (timezone.state === 'fulfilled' && timezone.value.data.data[0].active === true) {
+                $scope.handleTimezone.show = true;
+                $scope.handleTimezone.instance = timezone.value.data.data[0];
             }
         });
     };
@@ -539,35 +551,65 @@ myAppController.controller('ManagementFirmwareController', function ($scope, $sc
     };
     //$scope.loadRazLatest();
 });
-
-
 /**
  * The controller that handles a backup to the cloud.
- * @class ManagementCloudController
+ * @class ManagementTimezoneController
  */
-myAppController.controller('ManagementCloudController', function ($scope, $timeout,dataFactory, dataService) {
-    $scope.managementCloud = {
-        confirm: false,
-        alert: {message: false, status: 'is-hidden', icon: false},
-        process: false
+myAppController.controller('ManagementTimezoneController', function ($scope, $timeout, dataFactory, dataService) {
+    $scope.managementTimezone = {
+        labels: {},
+        enums: {}
     };
 
     /**
-     * Send an access to the cloud
+     * Load module detail
      */
-    $scope.sendAccessToCloud = function () {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('sending')};
-        dataFactory.getApiLocal('device.de.json').then(function (response) {
-            $timeout(function () {
-                $scope.loading = false;
-                dataService.showNotifier({message: $scope._t('email_sent')});
-            }, 2000);
+    $scope.loadModule = function (id) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        dataFactory.getApi('modules', '/ZMEOpenWRT').then(function (response) {
+            $scope.loading = false;
+            $scope.managementTimezone.enums = response.data.data.schema.properties.timezone.enum;
+            $scope.managementTimezone.labels = response.data.data.options.fields.timezone.optionLabels;
 
+            //console.log($scope.handleTimezone)
+            //console.log($scope.managementTimezone)
         }, function (error) {
             $scope.loading = false;
-            alertify.alertError($scope._t('send_email_error'));
-
+            alertify.alertError($scope._t('error_load_data'));
         });
+    };
+    $scope.loadModule();
+
+    /**
+     * Update instance
+     */
+    $scope.updateInstance = function () {
+        var input = $scope.handleTimezone.instance;
+        if (input.id) {
+            dataFactory.putApi('instances', input.id, input).then(function (response) {
+                alertify.confirm($scope._t('timezone_alert'))
+                        .setting('labels', {'ok': $scope._t('yes'),'cancel': $scope._t('lb_cancel')})
+                        .set('onok', function (closeEvent) {//after clicking OK
+                                $scope.systemReboot();
+                        });
+
+            }, function (error) {
+                alertify.alertError($scope._t('error_update_data'));
+            });
+        }
+
+    };
+    
+     /**
+     * System rebboot
+     */
+    $scope.systemReboot = function () {
+         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('system_rebooting')};
+            dataFactory.getApi('system_reboot').then(function (response) {
+            }, function (error) {
+                alertify.alertError($scope._t('error_system_reboot'));
+            });
+
     };
 
 });
