@@ -46,8 +46,12 @@ appHttp.get('app/lang/' + config_data.cfg.route.lang + '.json').success(function
 
 });
 
-// Create a config file
+// Create a config constant
 angular.forEach(config_data, function (key, value) {
+    config_module.constant(value, key);
+});
+// Create an icon constant
+angular.forEach(icon_data, function (key, value) {
     config_module.constant(value, key);
 });
 
@@ -153,14 +157,35 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     roles: cfg.role_access.module
                 }).
                 //Local skins
-                when('/skins/local', {
-                    templateUrl: 'app/views/skins/skins_local.html',
-                    requireLogin: true
+                when('/customize/skinslocal', {
+                    templateUrl: 'app/views/customize/skins_local.html',
+                    requireLogin: true,
+                     roles: cfg.role_access.customize
                 }).
                 //Online skins
-                when('/skins/online', {
-                    templateUrl: 'app/views/skins/skins_online.html',
-                    requireLogin: true
+                when('/customize/skinsonline', {
+                    templateUrl: 'app/views/customize/skins_online.html',
+                    requireLogin: true,
+                     roles: cfg.role_access.customize
+                }).
+                //Online skins
+                when('/skinreset', {
+                     template: ' ',
+                      controller: 'SkinToDefaultController',
+                    requireLogin: true,
+                     roles: cfg.role_access.customize
+                }).
+                  //Custom icons
+                when('/customize/iconslocal', {
+                    templateUrl: 'app/views/customize/icons_local.html',
+                    requireLogin: true,
+                     roles: cfg.role_access.customize
+                }).
+                //Online icons
+                when('/customize/iconsonline', {
+                    templateUrl: 'app/views/customize/icons_online.html',
+                    requireLogin: true,
+                     roles: cfg.role_access.customize
                 }).
                 //Devices_
                 when('/devices', {
@@ -174,9 +199,15 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     requireLogin: true,
                     roles: cfg.role_access.devices
                 }).
-                //Zwave select manufacturer/device
-                when('/zwave/select/:brandname?', {
-                    templateUrl: 'app/views/zwave/zwave_select.html',
+                //Zwave select vendors
+                when('/zwave/vendors', {
+                    templateUrl: 'app/views/zwave/zwave_vendors.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
+                }).
+                //Zwave select devices by vendor id
+                when('/zwave/vendors/:id', {
+                    templateUrl: 'app/views/zwave/zwave_vendors_id.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices
                 }).
@@ -400,6 +431,7 @@ myApp.config(function ($provide, $httpProvider, cfg) {
                 dataService.logError(rejection);
                 if (rejection.status == 401) {
                     if (path[1] !== '') {
+                        dataService.setRememberMe(null);
                         dataService.logOut();
 
                     }

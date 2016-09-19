@@ -68,12 +68,12 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             // Success - devices
             if (devices.state === 'fulfilled') {
                 // Count hidden apps
-                 $scope.dataHolder.cnt.hidden =  _.chain(dataService.getDevicesData(devices.value.data.data.devices,true))
-                    .flatten().where({visibility:false})
-                    .size()
-                    .value();
+                $scope.dataHolder.cnt.hidden = _.chain(dataService.getDevicesData(devices.value.data.data.devices, true))
+                        .flatten().where({visibility: false})
+                        .size()
+                        .value();
                 // Set devices
-                setDevices(dataService.getDevicesData(devices.value.data.data.devices,$scope.dataHolder.devices.showHidden));
+                setDevices(dataService.getDevicesData(devices.value.data.data.devices, $scope.dataHolder.devices.showHidden));
 
             }
         });
@@ -110,10 +110,10 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
                         angular.extend($scope.dataHolder.devices.all[index],
                                 {metrics: v.metrics},
                                 {imgTrans: false},
-                                {iconPath: $filter('getElementIcon')(v.metrics.icon, v, v.metrics.level)},
+                                {iconPath: dataService.assignElementIcon(v)},
                                 {updateTime: v.updateTime}
                         );
-                        console.log('Updating from server response: device ID: ' + v.id + ', metrics.level: ' + v.metrics.level + ', updateTime: ' + v.updateTime + ', iconPath: ' + $filter('getElementIcon')(v.metrics.icon, v, v.metrics.level))
+                        //console.log('Updating from server response: device ID: ' + v.id + ', metrics.level: ' + v.metrics.level + ', updateTime: ' + v.updateTime);
                     });
                 }
                 if (response.data.data.structureChanged === true) {
@@ -143,7 +143,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
 
         $scope.reloadData();
     };
-    
+
     /**
      * Show hidden elements
      */
@@ -208,19 +208,19 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
 
         });
     };
-    
-     /**
+
+    /**
      * Set visibility
      */
-    $scope.setVisibility = function (v,visibility) {
-       $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-            dataFactory.putApi('devices', v.id, {visibility: visibility}).then(function (response) {
-                 $scope.loading = false;
-                  $scope.reloadData();
-            }, function (error) {
-                alertify.alertError($scope._t('error_update_data'));
-                $scope.loading = false;
-            });
+    $scope.setVisibility = function (v, visibility) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        dataFactory.putApi('devices', v.id, {visibility: visibility}).then(function (response) {
+            $scope.loading = false;
+            $scope.reloadData();
+        }, function (error) {
+            alertify.alertError($scope._t('error_update_data'));
+            $scope.loading = false;
+        });
     };
 
     /**
@@ -253,11 +253,12 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
 
         var cmd = v.id + '/command/exact?level=' + count;
         v.metrics.level = count;
-        if (run) {
+         //console.log('ElementBaseController.setExactCmd - Sending request: ', cmd)
+        //if (run) {
             $scope.runCmd(cmd);
-        }
+       // }
 
-        return cmd;
+        //return cmd;
     };
 
     /// --- Private functions --- ///
@@ -300,9 +301,9 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
         }
         if (_.isEmpty($scope.dataHolder.devices.collection)) {
             if ($scope.routeMatch('/dashboard')) {
-                 $scope.dataHolder.devices.noDashboard = true;
-            }else{
-               $scope.dataHolder.devices.noDevices = true; 
+                $scope.dataHolder.devices.noDashboard = true;
+            } else {
+                $scope.dataHolder.devices.noDevices = true;
             }
         }
         $scope.dataHolder.cnt.collection = _.size($scope.dataHolder.devices.collection);
@@ -529,7 +530,7 @@ myAppController.controller('ElementSensorMultilineController', function ($scope,
                 $scope.widgetSensorMultiline.alert = {message: $scope._t('no_data'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
                 return;
             }
-
+           $scope.widgetSensorMultiline.find.metrics.sensors = dataService.getDevicesData(response.data.data.metrics.sensors).value();
         }, function (error) {
             $scope.widgetSensorMultiline.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
         });
@@ -714,10 +715,10 @@ myAppController.controller('ElementClimateControlController', function ($scope, 
 myAppController.controller('ElementDashboardController', function ($scope, $routeParams) {
     $scope.dataHolder.devices.filter = {onDashboard: true};
     $scope.elementDashboard = {
-        firstLogin: ($routeParams.firstlogin||false),
-        firstFile: ( $scope.lang === 'de'? 'first_login_de.html':'first_login_en.html')
+        firstLogin: ($routeParams.firstlogin || false),
+        firstFile: ($scope.lang === 'de' ? 'first_login_de.html' : 'first_login_en.html')
     };
-    
+
 
 });
 
@@ -748,21 +749,6 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
     };
     $scope.suggestions = [];
 
-    $scope.icons = [
-        {
-            default: $scope.cfg.img.icons + 'switch-off.png',
-            custom: $scope.cfg.img.icons + 'dimmer-off.png'
-        },
-        {
-            default: $scope.cfg.img.icons + 'switch-on.png',
-            custom: false
-        },
-        {
-            default: $scope.cfg.img.icons + 'temperature.png',
-            custom: $scope.cfg.img.icons + 'dimmer-half.png'
-        }
-    ];
-
     /**
      * Load all promises
      */
@@ -771,20 +757,20 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
         var promises = [
             dataFactory.getApi('devices', '/' + $routeParams.id),
             dataFactory.getApi('locations'),
-           dataFactory.getApi('devices')
-           
+            dataFactory.getApi('devices')
+
         ];
-        
+
         if ($scope.user.role === 1) {
-            promises.push( dataFactory.getApi('instances'));
+            promises.push(dataFactory.getApi('instances'));
         }
 
         $q.allSettled(promises).then(function (response) {
             var device = response[0];
             var locations = response[1];
-             var devices = response[2];
+            var devices = response[2];
             var instances = response[3];
-           
+
             $scope.loading = false;
             // Error message
             if (device.state === 'rejected') {
@@ -799,7 +785,7 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
             if (devices.state === 'fulfilled') {
                 setTagList(devices.value.data.data.devices);
             }
-             // Success - instances
+            // Success - instances
             if (instances && instances.state === 'fulfilled') {
                 $scope.elementId.instances = instances.value.data.data;
             }
@@ -807,15 +793,15 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
             if (device.state === 'fulfilled') {
                 var arr = [];
                 arr[0] = device.value.data.data;
-                if(!dataService.getDevicesData(arr,true).value()[0]){
+                if (!dataService.getDevicesData(arr, true).value()[0]) {
                     alertify.alertError($scope._t('error_load_data'));
-                return;
+                    return;
                 }
-                setDevice(dataService.getDevicesData(arr,true).value()[0]);
+                setDevice(dataService.getDevicesData(arr, true).value()[0]);
                 $scope.elementId.show = true;
             }
-            
-           
+
+
         });
     };
     $scope.allSettled();
@@ -886,7 +872,7 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
             $scope.loading = false;
         });
         return;
-    }
+    };
 
     /// --- Private functions --- ///
     /**
@@ -897,6 +883,7 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
         var findZenoStr = "ZEnoVDev_zeno_x";
         var zwaveId = false;
         $scope.elementId.input = device;
+        //$scope.elementId.input.custom_icons = { on: 'Modem-icon.png',off: 'Stop-icon.png'};
         if (device.id.indexOf(findZwaveStr) > -1) {
             zwaveId = device.id.split(findZwaveStr)[1].split('-')[0];
             $scope.elementId.appType['zwave'] = zwaveId.replace(/[^0-9]/g, '');
@@ -962,4 +949,228 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
     }
     ;
 
+});
+
+/**
+ * The controller that handles custom icon actions in the elemt detail view.
+ * @class ElementIconController
+ */
+myAppController.controller('ElementIconController', function ($scope, $timeout, $filter, cfg, dataFactory, dataService) {
+    $scope.icons = {
+        selected: false,
+        uploadedFileName: false,
+        all: {},
+        uploaded: {},
+        info: {
+            maxSize: $filter('fileSizeString')(cfg.upload.icon.size),
+            extensions: cfg.upload.icon.extension.toString()
+        }
+    };
+    /**
+     * Load icons from config
+     * @returns {undefined}
+     */
+    $scope.loadCfgIcons = function () {
+        $scope.icons.all = dataService.getSingleElementIcons($scope.elementId.input);
+
+    };
+    $scope.loadCfgIcons();
+
+    /**
+     * Load already uploaded icons
+     * @returns {undefined}
+     */
+    $scope.loadUploadedIcons = function () {
+        // Atempt to load data
+        dataFactory.getApiLocal('icons.json').then(function (response) {
+            $scope.icons.uploaded = response.data.data;
+        }, function (error) {
+            alertify.alertError($scope._t('error_load_data'));
+            $scope.loading = false;
+        });
+
+    };
+    $scope.loadUploadedIcons();
+    /**
+     * Set selected icon
+     * @param {string} icon
+     * @returns {undefined}
+     */
+    $scope.setSelectedIcon = function (icon) {
+        if (!icon) {
+            return;
+        }
+        $scope.icons.selected = icon;
+    };
+    /**
+     * Set a custom icon with an icon from the list
+     * @param {string} icon
+     * @returns {undefined}
+     */
+    $scope.setCustomIcon = function (icon) {
+        if (!icon) {
+            return;
+        }
+        $scope.icons.all.custom[$scope.icons.selected] = icon;
+
+    };
+    /**
+     * Remove a custom icon
+     * @param {string} icon
+     * @returns {undefined}
+     */
+    $scope.removeCustomIcon = function (icon) {
+        if (!icon) {
+            return;
+        }
+        delete $scope.icons.all.custom[icon];
+
+    };
+
+    /**
+     * Update custom icons with selected icons from the list
+     * @returns {undefined}
+     */
+    $scope.updateWithCustomIcon = function () {
+        var input = {
+            id: $scope.elementId.input.id,
+            custom_icons: $scope.icons.all.custom
+        };
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        dataFactory.putApi('devices', $scope.elementId.input.id, input).then(function (response) {
+            $scope.icons.selected = false;
+            $scope.loading = false;
+            dataService.showNotifier({message: $scope._t('success_updated')});
+        }, function (error) {
+            $scope.loading = false;
+            alertify.alertError($scope._t('error_update_data'));
+        });
+    };
+    /**
+     * Cancel all updates and hide a list with uploaded icons
+     * @returns {undefined}
+     */
+    $scope.cancelUpdate = function () {
+        // Reset icons
+        $scope.loadCfgIcons();
+        // Set selected icon to false
+        $scope.icons.selected = false;
+    };
+    /**
+     * Check and validate an uploaded file
+     * @param {object} files
+     * @returns {undefined}
+     */
+    $scope.checkUploadedFile = function (files) {
+        // Extends files object with a new property
+        files[0].newName = dataService.uploadFileNewName(files[0].name);
+        // Check allowed file formats
+        //if(cfg.upload.room.type.indexOf(files[0].type) === -1){
+        if (cfg.upload.icon.extension.indexOf($filter('fileExtension')(files[0].name)) === -1) {
+            alertify.alertError(
+                    $scope._t('upload_format_unsupported', {'__extension__': $filter('fileExtension')(files[0].name)}) + ' ' +
+                    $scope._t('upload_allowed_formats', {'__extensions__': $scope.icons.info.extensions})
+                    );
+            return;
+
+        }
+        // Check allowed file size
+        if (files[0].size > cfg.upload.icon.size) {
+            alertify.alertError(
+                    $scope._t('upload_allowed_size', {'__size__': $scope.icons.info.maxSize}) + ' ' +
+                    $scope._t('upload_size_is', {'__size__': $filter('fileSizeString')(files[0].size)})
+                    );
+            return;
+
+        }
+        // Check if uploaded filename already exists
+        if (_.findWhere($scope.icons.uploaded, {file: files[0].name})) {
+            // Displays a confirm dialog and on OK atempt to upload file
+            alertify.confirm($scope._t('uploaded_file_exists', {__file__: files[0].name})).set('onok', function (closeEvent) {
+                uploadFile(files);
+            });
+        } else {
+            uploadFile(files);
+        }
+
+    };
+    /// --- Private functions --- ///
+
+    /**
+     * Upload a file
+     * @param {object} files
+     * @returns {undefined}
+     */
+    function uploadFile(files) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('uploading')};
+        // Clear all alerts and file name selected
+        alertify.dismissAll();
+        // Set local variables
+        var fd = new FormData();
+        var input = {file: files[0].name, device: []};
+        // Set selected file name
+        $scope.icons.uploadedFileName = files[0].name;
+        // Set form data
+        fd.append('files_files', files[0]);
+
+        // Atempt to upload a file
+        dataFactory.getApiLocal('icons.json').then(function (response) {
+            $timeout(function () {
+                if (!_.findWhere($scope.icons.uploaded, {file: files[0].name})) {
+                    $scope.icons.uploaded.push({file: files[0].name});
+                }
+                $scope.icons.all.custom[$scope.icons.selected] = files[0].name;
+                $scope.loading = false;
+                dataService.showNotifier({message: $scope._t('success_upload')});
+            }, 1000);
+
+        }, function (error) {
+            alertify.alertError($scope._t('error_upload'));
+            $scope.loading = false;
+        });
+    }
+    ;
+
+    /**
+     * ???
+     */
+    function updateUploaded(input) {
+        var output = [];
+        angular.forEach(input.custom_icons, function (v, k) {
+
+            var index = _.findIndex($scope.icons.uploaded, {file: v});
+            if (index === -1) {
+                return;
+            }
+            if ($scope.icons.uploaded[index].device.indexOf(input.id) === -1) {
+                $scope.icons.uploaded[index].device.push(input.id);
+            }
+            if (!_.findWhere(output, {file: v})) {
+                output.push({file: $scope.icons.uploaded[index].file, device: $scope.icons.uploaded[index].device});
+            }
+        });
+        console.log(output);
+    }
+    ;
+
+    /**
+     * ???
+     */
+    function removeDeviceFromUploaded(input) {
+        var output = [];
+        angular.forEach(input.isset_icons, function (v, k) {
+            var index = _.findIndex($scope.icons.uploaded, {file: v});
+            if (index === -1) {
+                return;
+            }
+            if ($scope.icons.uploaded[index].device.indexOf(input.id) === -1) {
+                $scope.icons.uploaded[index].device.push(input.id);
+            }
+            if (!_.findWhere(output, {file: v})) {
+                output.push({file: $scope.icons.uploaded[index].file, device: $scope.icons.uploaded[index].device});
+            }
+        });
+        console.log(output);
+    }
+    ;
 });

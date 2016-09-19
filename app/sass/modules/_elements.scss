@@ -148,25 +148,16 @@
     }
 }
 
-/* Home widget
+/* Custom icons
 -------------------------------------------------- */
-/*.home-widget{
-    .widget-entry{
-        padding: 0;
-
-        .widget-block{
-            margin: 0 !important;
-                          border: solid 1px #e2e2e2;
-        }
+.element-icon-list{
+    border-bottom: solid 1px $app-border-color;
+    margin: $spacing;
+    .element-icon-img{
+        display: inline-block;
+        margin: $spacing;
     }
 }
-.hidden-switch-multilevel{}
-
-.hidden-sensor-multilevel{}
-
-.hidden-sensor-multilevel-linear{}
-
-.hidden-camera{}*/
 
 /* OpenWeather widget
 ----------------------------------------------------*/

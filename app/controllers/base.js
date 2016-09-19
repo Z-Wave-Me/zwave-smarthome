@@ -12,8 +12,10 @@ var myAppController = angular.module('myAppController', []);
  * The app base controller. 
  * @class BaseController
  */
-myAppController.controller('BaseController', function ($scope, $cookies, $filter, $location, $route, $window, $interval, cfg, dataFactory, dataService, myCache) {
+myAppController.controller('BaseController', function ($scope, $cookies, $filter, $location, $route, $window, $interval, cfg, cfgicons, dataFactory, dataService, myCache) {
+
     // Global scopes
+    $scope.$location = $location;
     angular.extend(cfg.route, {os: dataService.getOs()});
     $scope.cfg = cfg;
     $scope.timeZoneInterval = null;
@@ -24,18 +26,39 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     $scope.hostName = $location.host();
     $scope.ZWAYSession = dataService.getZWAYSession();
     $scope.lastLogin = dataService.getLastLogin();
-    /*$scope.setSkin = function () {
-     if($cookies.skin && $cookies.skin !== 'default'){
-     cfg.skin.active =  $cookies.skin;
-     cfg.img.icons = cfg.skin.path + $cookies.skin + '/img/icons/';
-     cfg.img.logo = cfg.skin.path + $cookies.skin + '/img/logo/';
-     //$("link[id='main_css']").attr('href', 'storage/skins/defaultzip/main.css');
-     $("link[id='main_css']").attr('href', cfg.skin.path + $cookies.skin + '/main.css');
-     }
-     
-     };
-     
-     $scope.setSkin();*/
+    /**
+     * Set app skin
+     * @returns {undefined}
+     */
+    $scope.setSkin = function () {
+        if ($cookies.skin && $cookies.skin !=='default') {
+            cfg.skin.active = $cookies.skin;
+            cfg.img.icons = cfg.skin.path + $cookies.skin + '/img/icons/';
+            cfg.img.logo = cfg.skin.path + $cookies.skin + '/img/logo/';
+            //$("link[id='main_css']").attr('href', 'storage/skins/defaultzip/main.css');
+            $("link[id='main_css']").attr('href', cfg.skin.path + $cookies.skin + '/main.css');
+
+        } else {
+            dataFactory.getApi('skins_active').then(function (response) {
+                if (response.data.data.name !== 'default') {
+                    cfg.skin.active = response.data.data.name;
+                    cfg.img.icons = cfg.skin.path + response.data.data.name + '/img/icons/';
+                    cfg.img.logo = cfg.skin.path + response.data.data.name + '/img/logo/';
+                    //$("link[id='main_css']").attr('href', 'storage/skins/defaultzip/main.css');
+                    $("link[id='main_css']").attr('href', cfg.skin.path + response.data.data.name + '/main.css');
+                }
+            }, function (error) {});
+        }
+
+//     if($scope.user && $scope.user.skin !== 'default'){
+//        cfg.skin.active =  $scope.user.skin;
+//        cfg.img.icons = cfg.skin.path + $scope.user.skin + '/img/icons/';
+//        cfg.img.logo = cfg.skin.path + $scope.user.skin + '/img/logo/';
+//     //$("link[id='main_css']").attr('href', 'storage/skins/defaultzip/main.css');
+//        $("link[id='main_css']").attr('href', cfg.skin.path + $scope.user.skin + '/main.css');
+//     }
+    };
+    $scope.setSkin();
 
 
     /**
@@ -82,7 +105,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
                         };
                         if ($scope.routeMatch('/boxupdate')) {
                             fatalArray.message = $scope._t('jamesbox_connection_refused');
-                            fatalArray.info = $scope._t('jamesbox_connection_refused_info',{__reload_begintag__:'<div>', __reload_endtag__:'</div>', __attention_begintag__:'<div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i>', __attention_endtag__:'<div>'});
+                            fatalArray.info = $scope._t('jamesbox_connection_refused_info', {__reload_begintag__: '<div>', __reload_endtag__: '</div>', __attention_begintag__: '<div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i>', __attention_endtag__: '<div>'});
                             fatalArray.icon = cfg.route.fatalError.icon_jamesbox;
                         }
                         angular.extend(cfg.route.fatalError, fatalArray);
@@ -176,15 +199,6 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     $scope.$watch('lang', function () {
         $scope.loadLang($scope.lang);
     });
-    
-    // IF IE or Edge displays an message
-    if (dataService.isIeEdge()) {
-        angular.extend(cfg.route.fatalError, {
-            message: cfg.route.t['ie_edge_not_supported'],
-            info: cfg.route.t['ie_edge_not_supported_info']
-        });
-    }
-
     /**
      * Order by
      * @param {string} field

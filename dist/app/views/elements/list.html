@@ -5,8 +5,7 @@
          ng-repeat="v in dataHolder.devices.collection| filter:q | orderBy: cfg.orderby.elements[dataHolder.devices.orderBy] track by v.id">
         <div class="widget-entry-in">
             <!-- Widget icon -->
-            <!--  <img class="widget-icon" ng-src="{{v.metrics.icon|getElementIcon:v:levelVal[v.id]}}" alt="img" />-->
-            <div class="widget-img">
+            <div class="widget-img" title="{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}">
                 <img class="widget-preview-img widget-icon-update img-circle trans-{{v.imgTrans}}" ng-src="{{v.iconPath}}" alt="img" ng-click="runCmd(v.id + '/command/' + v.updateCmd)" ng-if="cfg.element_update_icon.indexOf(v.deviceType) > -1" />
                 <img class="widget-preview-img img-circle" ng-src="{{v.iconPath}}" alt="img" ng-if="cfg.element_update_icon.indexOf(v.deviceType) === -1" />
             </div>
@@ -22,7 +21,7 @@
                 <!-- Widget title -->
                 <div class="widget-title">
                     <span class="widget-room"><span ng-if="v.location !== 0">{{dataHolder.devices.rooms[v.location].title|cutText:true:25}}</span>&nbsp;</span>
-                    <h3>{{v.metrics.title|cutText:true:25}}</h3>
+                    <h3 title="{{v.metrics.title}}">{{v.metrics.title|cutText:true:25}}</h3>
                 </div>
                 <hr class="bottom-aligner" />
                 <!-- Widget footer -->

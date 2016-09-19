@@ -36,22 +36,10 @@
                    ng-href="#events/source/{{v.id}}"
                     ng-repeat="v in devices.data" ng-class="v.id===devices.find.id ? 'active':''"
                      ng-if="devices.cnt.deviceEvents[v.id]">
-                     <img class="navi-img" ng-src="{{v.metrics.icon|getElementIcon:v:v.metrics.level}}" alt="img" /> 
+                     <img class="navi-img" ng-src="{{v.iconPath}}" alt="img" /> 
                      {{v.metrics.title|cutText:true:25}} <span class="item-cnt">({{devices.cnt.deviceEvents[v.id]}})</span> 
                  </a>
             </div>
-            <!-- <ul>
-                <li class="page-cat-0" 
-                    ng-class="v.id===devices.find.id ? 'active':''" 
-                    ng-repeat="v in devices.data"
-                     ng-if="devices.cnt.deviceEvents[v.id]">
-                   <a ng-href="#events/source/{{v.id}}">
-                      <img class="navi-img" ng-src="{{v.metrics.icon|getElementIcon:v:v.metrics.level}}" alt="img" />
-                      {{v.metrics.title|cutText:true:25}} <span class="item-cnt">({{devices.cnt.deviceEvents[v.id]}})</span> 
-                      <span class="page-navi-icon"><i class="fa fa-chevron-right"></i></span>
-                 </a>
-                </li>
-            </ul>-->
          </div>
         </div>
     </div>

@@ -86,7 +86,7 @@
                     <!-- Widget img -->
                     <div class="widget-img">
                         <a ng-href="#apps/online/{{v.id}}">
-                             <img class="widget-preview-img" alt="{{v.title}}" 
+                             <img class="widget-preview-img" alt="{{v.title}}" title="{{v.toolTipDescription}}"
                              ng-src="{{v.icon ? onlineMediaUrl + v.icon : 'storage/img/placeholder-img.png'}}" 
                              ng-click="redirectToRoute(dataHolder.modules.ids[v.modulename] ? false : 'apps/online/' + v.id)" />
                         </a>
@@ -96,7 +96,7 @@
                     <div class="widget-content">
                         <!-- Widget title -->
                          <div class="widget-title">
-                             <h3><a ng-href="#apps/online/{{v.id}}">{{v.title|cutText:true:20}} <span class="btn-name">&raquo;</span></a></h3>
+                             <h3><a ng-href="#apps/online/{{v.id}}" title="{{v.title}}">{{v.title|cutText:true:25}} <span class="btn-name">&raquo;</span></a></h3>
                               
                         </div>
                         <hr class="bottom-aligner" />
@@ -107,9 +107,12 @@
                                     <i class="fa widget-rating" title="{{r}}"
                                      ng-class="r > v.rating ? 'fa-star-o' : 'fa-star israted'" 
                                     ng-repeat="r in dataHolder.onlineModules.ratingRange"></i>
+                                   <span class="widget-rating"> | <i class="fa fa-download"></i> {{v.installed}}&times;</span>   
                                  </div>
+                                
                              </div>
                             <div class="widget-ctrl ctrl-right">
+                                 
                                 <div class="btn-group group-apps">
                                  <!-- Download -->
                                 <button href="" class="btn btn-default" title="{{_t('lb_download')}}" ng-click="installModule(v, 'online_install')" ng-if="!dataHolder.modules.ids[v.modulename]">

@@ -14,36 +14,18 @@
             "name": "blank",
             "title": "Skin My Blank",
             "description": "Sea agam perfecto ei. Ut eum tractatos quaerendum, ius quas voluptatum et. Illud congue his ut, in sea putent principes repudiandae. Pro aeque instructior mediocritatem cu, usu eius facilis an, at sed timeam vocibus. Novum integre his ea, est mollis persequeris cu.",
-            "version": "1.0.3",
+            "version": "1.0.0",
             "icon": true,
             "author": "Joe Green",
-            "homepage": "http://www.zwave.eu"
+            "homepage": "http://www.joegreen.com"
         },
         {
             "name": "blue",
             "title": "Blue Super Skin",
             "description": "Sea agam perfecto ei. Ut eum tractatos quaerendum, ius quas voluptatum et. Illud congue his ut, in sea putent principes repudiandae. Pro aeque instructior mediocritatem cu, usu eius facilis an, at sed timeam vocibus. Novum integre his ea, est mollis persequeris cu.",
-            "version": "1.0.3",
+            "version": "1.1.2",
             "icon": true,
-             "author": "Joe Blue",
-            "homepage": "http://www.blueskin.com"
-        },
-        {
-            "name": "red",
-            "title": "Red Blood SmartHome Theme",
-            "description": "Sea agam perfecto ei. Ut eum tractatos quaerendum, ius quas voluptatum et. Illud congue his ut, in sea putent principes repudiandae. Pro aeque instructior mediocritatem cu, usu eius facilis an, at sed timeam vocibus. Novum integre his ea, est mollis persequeris cu.",
-            "version": "1.3.0",
-            "icon": false,
-            "author": "Anna Bllod",
-            "homepage": "http://www.redblood.eu"
-        },
-         {
-            "name": "komsa",
-            "title": "KOMSA skin",
-            "description": "Sea agam perfecto ei. Ut eum tractatos quaerendum, ius quas voluptatum et. Illud congue his ut, in sea putent principes repudiandae. Pro aeque instructior mediocritatem cu, usu eius facilis an, at sed timeam vocibus. Novum integre his ea, est mollis persequeris cu.",
-            "version": "1.3.0",
-            "icon": true,
-            "author": "Komsa",
-            "homepage": "http://www.komsa.eu"
+             "author": "Anna Blue",
+            "homepage": "http://www.annablue.com"
         }]
 }

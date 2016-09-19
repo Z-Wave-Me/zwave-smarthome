@@ -1,4 +1,3 @@
-#.gitignore
 /_project/*
 /nbproject/*
 /upload/*
@@ -10,3 +9,5 @@ upload.php
 /app/css/vendor/fontawesome/*
 /node_modules/*
 npm-debug.log
+*.iml
+/.idea

@@ -60,7 +60,7 @@
                                     <div class="form-group form-inline" ng-repeat="e in apiDevices | orderBy:'title':false" ng-init="dev[e.id] = e">
 
                                         <h3>
-                                            <img id="widget_img_{{v.id}}" class="report-img" ng-src="{{e.metrics.icon|getElementIcon:e:e.level}}" alt="img" />
+                                            <img id="widget_img_{{v.id}}" class="report-img" ng-src="{{e.iconPath}}" alt="img" />
                                              <span ng-bind="dev[e.id].metrics.title"></span>
                                         </h3>
                                             <div>

@@ -6,7 +6,7 @@ module.exports = function (grunt) {
         // Clean dir
         clean: {
             options: {force: true},
-            build: ["dist/","docs/"]
+            build: ["dist/", "docs/"]
         },
         ngtemplates: {
             app: {
@@ -40,7 +40,7 @@ module.exports = function (grunt) {
                     //'app/css/font-awesome-4.4.0/css/font-awesome.min.css',
                     'app/css/main.css'
                 ],
-                dest: 'dist/app/css/build.css'
+                dest: 'dist/app/css/main.css'
             },
             js: {
                 src: [
@@ -69,6 +69,7 @@ module.exports = function (grunt) {
                     'vendor/bootstrap/bootstrap.min.js',
                     'vendor/bootstrap/plugins/bootstrap-datetimepicker.js',
                     // APP
+                    'app/icons.js',
                     'app/app.js',
                     'dist/app/js/templates.js',
                     'app/modules/qAllSettled.js',
@@ -87,6 +88,7 @@ module.exports = function (grunt) {
                     'app/controllers/event.js',
                     'app/controllers/app.js',
                     'app/controllers/skin.js',
+                    'app/controllers/icon.js',
                     'app/controllers/device.js',
                     'app/controllers/zwave-inclusion.js',
                     'app/controllers/zwave.js',
@@ -122,9 +124,20 @@ module.exports = function (grunt) {
                     },
                     //{expand:true,src: ['../zwave-api/storage/data/z_en.json'], dest: 'storage/data/',flatten: true},
                     {expand: true, src: ['app/config.js'], dest: 'dist/app/js/', flatten: true},
+                    {expand: true, src: ['app/css/screenshot.png'], dest: 'dist/app/css/', flatten: true},
                     {src: ['storage/img/**'], dest: 'dist/'},
                     {src: ['storage/demo/**'], dest: 'dist/'},
                     {src: ['storage/data/**'], dest: 'dist/'}
+                ]
+            },
+            cssorig: {
+                files: [
+                    {src: ['app/css/main.css'], dest: 'app/css/main.css.orig'}
+                ]
+            },
+            images: {
+                files: [
+                    {src: ['app/css/wallpaper.png'], dest: 'dist/app/css/wallpaper.png'}
                 ]
             },
             fonts: {
@@ -243,6 +256,12 @@ module.exports = function (grunt) {
             }
         }
     });
+    grunt.registerTask('skinFolder', 'Creates an empty file', function () {
+        grunt.file.write('dist/user/skins/.keep', '');
+    });
+     grunt.registerTask('iconFolder', 'Creates an empty file', function () {
+        grunt.file.write('dist/user/icons/.keep', '');
+    });
 
     // Load the plugin that provides the "uglify" task.
     grunt.loadNpmTasks('grunt-contrib-clean');
@@ -260,6 +279,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-jsdox');
 
     // Default task(s).
-    grunt.registerTask('default', ['clean', 'ngtemplates', 'concat', 'copy', 'cssmin','jsdox']);
+    grunt.registerTask('default', ['clean', 'ngtemplates', 'concat', 'copy', 'cssmin', 'jsdox', 'skinFolder','iconFolder']);
 
 };

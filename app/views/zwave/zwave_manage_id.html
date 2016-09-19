@@ -47,7 +47,7 @@
                     <div class="form-group form-inline zwave-hidden-{{formInput.elements[e.id].permanently_hidden}}" ng-repeat="e in devices| orderBy:'title':false track by e.id" ng-init="dev[e.id] = e">
 
                         <h3>
-                            <img class="report-img-s" ng-src="{{e.metrics.icon|getElementIcon:e:e.level}}" alt="img" />
+                            <img class="report-img-s" ng-src="{{e.iconPath}}" alt="img" /> 
                             <span ng-bind="formInput.elements[e.id].metrics.title"></span>
                         </h3>
                         <div class="form-group form-inline">

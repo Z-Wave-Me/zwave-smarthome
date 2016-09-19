@@ -1,13 +1,37 @@
 SmartHome UI
 ===============
+## LICENSE
+Copyright (C) 2016 z-wave.Me
 
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 This User Interfaces allows to operate a Smart Home Network based on Z-Wave devices. It utilizes the software architecture "Z-Way", certified as Z-Wave Plus Controller.
+
+## Project leader
+Marcel Kermer
+
+## v1.5.0
+#### New features
+- More products in the Z-Wave devices.
+- Skins.
+- Add update time to toggle button #167.
+- Online Apps: Sorting by most popular.
+- Elements: Sorting by last updated.
+
+#### Fixes
+- Strange sting on widget #180
+- Infinite loop on login #184.
+- Elements: Fixed knob bug.
+
+#### Changes
+- Removed filter getElementIcon and replaced with service assignElementIcon.
+
 ## v1.4.3
 #### New features
+- Added an indicator for local apps with instance.
 - Added status info in Device Battery Management #119.
 
 #### Fixes
-- ???.
+- Apps: Display warning message if installed app is the singelton and already has an instance.
 
 #### Changes
 - Refactored zwave device management.

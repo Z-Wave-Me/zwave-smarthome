@@ -7,7 +7,7 @@
  * The controller that renders and handles user data.
  * @class MySettingsController
  */
-myAppController.controller('MySettingsController', function($scope, $window, $cookies,$timeout,$filter,$q,dataFactory, dataService, myCache) {
+myAppController.controller('MySettingsController', function($scope, $window, $cookies,$timeout,$filter,$q,cfg,dataFactory, dataService, myCache) {
     $scope.id = $scope.user.id;
     $scope.devices = {};
     $scope.input = false;
@@ -105,7 +105,8 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
             dataService.setUser(data);
              dataService.showNotifier({message: $scope._t('success_updated')});
              $timeout(function () {
-                 alertify.dismissAll();
+                 $scope.loading = {status: 'loading-spin', icon: '--', message: $scope._t('reloading_page')};
+                alertify.dismissAll();
                 $window.location.reload();
             }, 2000);
 
@@ -142,11 +143,6 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
         if (form.$invalid) {
             return;
         }
-//       if (!newPassword || newPassword === '' || newPassword === $scope.cfg.default_credentials.password) {
-//            alertify.alertError($scope._t('enter_valid_password'));
-//            $scope.loading = false;
-//            return;
-//        }
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         var input = {
             id: $scope.id,

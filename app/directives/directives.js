@@ -207,11 +207,14 @@ myApp.directive('myknob', ['$timeout', 'dataFactory', function ($timeout, dataFa
                 if (typeof ($scope.knobMax) !== 'undefined'){
                      knobInit.max = $scope.knobMax;
                 }
+               
                 knobInit.release = function (newValue) {
-                    console.log(knobInit)
+                    //console.log(knobInit)
                     $timeout(function () {
                         var old = $scope.knobData;
-                        if (old !== newValue) {
+                        //console.log('myKnob directive - Bafore request new/old: ',newValue, old)
+                        if (old != newValue) {
+                             //console.log('myKnob directive - Sending request new/old: ',newValue, old)
                             $scope.knobData = newValue;
                             runCmdExact($scope.knobId, newValue);
                             $scope.$apply();
@@ -221,7 +224,7 @@ myApp.directive('myknob', ['$timeout', 'dataFactory', function ($timeout, dataFa
 
                 $scope.$watch('knobData', function (newValue, oldValue) {
                     if (newValue != oldValue) {
-                        $($element).val(newValue).change();
+                         $($element).val(newValue).change();
                     }
                 });
 
@@ -239,6 +242,7 @@ myApp.directive('myknob', ['$timeout', 'dataFactory', function ($timeout, dataFa
             //console.log('Knob from directive:',val)
             var cmd = id + '/command/exact?level=' + val;
             dataFactory.runApiCmd(cmd).then(function (response) {
+                //console.log('myKnob directive - request success: ',cmd)
             }, function (error) {});
             return;
         }
