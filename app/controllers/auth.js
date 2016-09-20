@@ -205,7 +205,7 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
  * The controller that handles login process.
  * @class AuthLoginController
  */
-myAppController.controller('AuthLoginController', function ($scope, $location, $window, $routeParams, $cookies, dataFactory, dataService) {
+myAppController.controller('AuthLoginController', function ($scope, $location, $window, $routeParams, $cookies, dataFactory, dataService,_) {
     $scope.input = {
         password: '',
         login: '',
@@ -232,9 +232,14 @@ myAppController.controller('AuthLoginController', function ($scope, $location, $
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         $scope.alert = {message: false};
         dataFactory.logInApi(input).then(function (response) {
-            var rememberme = (input.rememberme ? input : null);
-            $scope.redirectAfterLogin(true, response.data.data, input.password, rememberme);
-
+            var rememberme = (input.rememberme ? input : null); 
+            var location = '#/dashboard';
+            var profile = response.data.data;
+            if(response.data.data.showWelcome){
+                 location = '#/dashboard/firstlogin';
+                 profile = _.omit(profile, 'showWelcome');
+            }
+            $scope.redirectAfterLogin(true, profile, input.password, rememberme, location);
         }, function (error) {
             $scope.loading = false;
             var message = $scope._t('error_load_data');
@@ -420,8 +425,7 @@ myAppController.controller('AuthPasswordController', function ($scope, $q, $wind
                             hide: true
                         };
          angular.extend(cfg.route.fatalError, fatalArray);
-        dataFactory.getApi('system_reboot').then(function (response) {
-            console.log('Rebooting')
+        dataFactory.getApi('system_reboot','?firstaccess=true').then(function (response) {
 //            $timeout(function () {
 //                $scope.loading = false;
 //                window.location = '#/?logout';
