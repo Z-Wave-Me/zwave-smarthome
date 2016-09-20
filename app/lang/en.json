@@ -1,6 +1,7 @@
 {
     "newtrans": "---",
     "---": "newtrans",
+    "connection_refused_reboot": "The system will be rebooted and connection will be closed. Try to reload the page after some minutes to get back to the Smart Home UI.",
     "timezone_not_installed": "Time Zone Management is not installed. Please add new 'Time Zone' ( Apps > local > Time zone and access from WAN > +New App ) app in local Apps.",
     "wan_port_access": "Allow access to the Smart Home UI from WAN port",
     "wan_port_access_info": "Open access from port we assume to look in the Internet. If you connect WAN port to your local network and you feel safe to open access from it.",
