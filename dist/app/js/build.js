@@ -11375,12 +11375,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/auth/auth_password.html',
-    "<div ng-controller=AuthPasswordController><bb-loader></bb-loader><div ng-include=\"'app/views/auth/auth_header.html'\"></div><div class=\"alert alert-warning\"><i class=\"fa fa-exclamation-circle\"></i> {{_t('password_info')}}</div><form name=form_password id=form_password class=\"form form-page\" ng-submit=\"changePassword(form_password, input)\" novalidate><fieldset><p class=form-control-static><span ng-bind=\"_t('lb_login')\"></span>: <strong ng-bind=cfg.default_credentials.login></strong></p></fieldset><fieldset><label class=isrequired>{{_t('lb_new_password')}}:</label><input name=password id=password type=password class=form-control ng-model=input.password ng-blur=\"passwordBlur = true\" ng-required=true ng-minlength=\"6\"><bb-validator input-name=form_password.password.$error.required trans=_t(&quot;field_required&quot;) has-blur=passwordBlur></bb-validator><bb-validator input-name=form_password.password.$error.minlength trans=_t(&quot;password_valid&quot;) has-blur=passwordBlur></bb-validator></fieldset><fieldset><label class=isrequired>{{_t('confirm_password')}}:</label><input name=password_confirm id=password_confirm type=password class=form-control ng-blur=\"passwordConfirmBlur = true\" ng-model=input.passwordConfirm bb-compare-to=\"password\"><bb-validator input-name=form_password.password_confirm.$error.compareto trans=_t(&quot;passwords_must_match&quot;) has-blur=passwordConfirmBlur></bb-validator></fieldset><fieldset><div class=form-group><label>{{_t('lb_email')}}:</label><input name=email id=email type=email class=form-control ng-model=input.email ng-blur=\"emailBlur = true\"><bb-validator input-name=form_password.email.$error.required trans=_t(&quot;field_required&quot;) has-blur=emailBlur></bb-validator><bb-validator input-name=form_password.email.$error.email trans=_t(&quot;email_invalid&quot;) has-blur=emailBlur></bb-validator></div><bb-help-text trans=\"_t('password_email_info')\"></bb-help-text></fieldset><fieldset class=submit-entry><button type=submit class=\"btn btn-submit\" title=\"{{_t('lb_enter')}}\" ng-disabled=form_password.$invalid><i class=\"fa fa-check\"></i> <span ng-bind=\"_t('lb_submit')\"></span></button></fieldset></form></div>"
-  );
-
-
-  $templateCache.put('app/views/auth/logout.html',
-    "<div ng-controller=LogoutController class=mobile-padding><bb-loader></bb-loader></div>"
+    "<div ng-controller=AuthPasswordController><bb-loader></bb-loader><div ng-include=\"'app/views/auth/auth_header.html'\"></div><div class=\"alert alert-warning\"><i class=\"fa fa-exclamation-circle\"></i> {{_t('password_info')}}</div><form name=form_password id=form_password class=\"form form-page\" ng-submit=\"changePassword(form_password, input,handleTimezone.instance)\" novalidate><fieldset><p class=form-control-static><span ng-bind=\"_t('lb_login')\"></span>: <strong ng-bind=cfg.default_credentials.login></strong></p></fieldset><fieldset><label class=isrequired>{{_t('lb_new_password')}}:</label><input name=password id=password type=password class=form-control ng-model=input.password ng-blur=\"passwordBlur = true\" ng-required=true ng-minlength=\"6\"><bb-validator input-name=form_password.password.$error.required trans=_t(&quot;field_required&quot;) has-blur=passwordBlur></bb-validator><bb-validator input-name=form_password.password.$error.minlength trans=_t(&quot;password_valid&quot;) has-blur=passwordBlur></bb-validator></fieldset><fieldset><label class=isrequired>{{_t('confirm_password')}}:</label><input name=password_confirm id=password_confirm type=password class=form-control ng-blur=\"passwordConfirmBlur = true\" ng-model=input.passwordConfirm bb-compare-to=\"password\"><bb-validator input-name=form_password.password_confirm.$error.compareto trans=_t(&quot;passwords_must_match&quot;) has-blur=passwordConfirmBlur></bb-validator></fieldset><fieldset><div class=form-group><label>{{_t('lb_email')}}:</label><input name=email id=email type=email class=form-control ng-model=input.email ng-blur=\"emailBlur = true\"><bb-validator input-name=form_password.email.$error.required trans=_t(&quot;field_required&quot;) has-blur=emailBlur></bb-validator><bb-validator input-name=form_password.email.$error.email trans=_t(&quot;email_invalid&quot;) has-blur=emailBlur></bb-validator></div><bb-help-text trans=\"_t('password_email_info')\"></bb-help-text></fieldset><fieldset ng-if=\"cfg.app_type === 'jb' && handleTimezone.show\"><div class=form-group><label>{{_t('timezone_select')}}</label><select class=form-control ng-model=handleTimezone.instance.params.timezone><option value={{v}} ng-repeat=\"v in managementTimezone.enums track by $index\" ng-selected=\"v === handleTimezone.instance.params.timezone\">{{managementTimezone.labels[$index]}}</option></select><bb-help-text trans=\"_t('timezone_info')\"></bb-help-text></div><div class=form-group><div><input type=checkbox name=wan_port_access id=wan_port_access value=true ng-model=handleTimezone.instance.params.wan_port_access ng-checked=\"handleTimezone.instance.params.wan_port_access\"><label ng-bind=\"_t('wan_port_access')\"></label><bb-help-text trans=\"_t('wan_port_access_info')\"></bb-help-text></div></div></fieldset><fieldset class=submit-entry><button type=submit class=\"btn btn-submit\" title=\"{{_t('lb_enter')}}\" ng-disabled=form_password.$invalid><i class=\"fa fa-check\"></i> <span ng-bind=\"_t('lb_submit')\"></span></button></fieldset></form></div>"
   );
 
 
@@ -11690,7 +11685,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/management/management.html',
-    "<div ng-controller=ManagementController class=mobile-padding><div class=accordion-entry ng-include=\"'app/views/management/management_user.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_remote.html'\"></div><div class=accordion-entry ng-if=handleLicense.show ng-include=\"'app/views/management/management_licence.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_backup.html'\" ng-if=!isMobile></div><div class=accordion-entry ng-include=\"'app/views/management/management_restore.html'\" ng-if=!isMobile></div><div class=accordion-entry ng-include=\"'app/views/management/management_factory.html'\"></div><div class=accordion-entry ng-if=!isMobile ng-hide=\"cfg.app_type === 'wd' || cfg.app_type === 'jb'\" ng-include=\"'app/views/management/management_firmware.html'\"></div><div class=accordion-entry ng-if=\"cfg.app_type === 'jb'\" ng-include=\"'app/views/management/management_firmware_jb.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_appstore.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_report.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_info.html'\"></div></div>"
+    "<div ng-controller=ManagementController class=mobile-padding><div class=accordion-entry ng-include=\"'app/views/management/management_user.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_remote.html'\"></div><div class=accordion-entry ng-if=handleLicense.show ng-include=\"'app/views/management/management_licence.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_backup.html'\" ng-if=!isMobile></div><div class=accordion-entry ng-include=\"'app/views/management/management_timezone.html'\" ng-if=\"cfg.app_type === 'jb'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_restore.html'\" ng-if=!isMobile></div><div class=accordion-entry ng-include=\"'app/views/management/management_factory.html'\"></div><div class=accordion-entry ng-if=!isMobile ng-hide=\"cfg.app_type === 'wd' || cfg.app_type === 'jb'\" ng-include=\"'app/views/management/management_firmware.html'\"></div><div class=accordion-entry ng-if=\"cfg.app_type === 'jb'\" ng-include=\"'app/views/management/management_firmware_jb.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_appstore.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_report.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_info.html'\"></div></div>"
   );
 
 
@@ -11700,7 +11695,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/management/management_backup.html',
-    "<h2 class=accordion-entry-title ng-click=\"expandElement('backup')\"><i class=\"fa fa-cloud-download\"></i> <span ng-bind=\"_t('backup')\"></span> <i class=\"fa accordion-arrow\" ng-class=\"expand.backup  ? 'fa-chevron-up':'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-if=expand.backup><div class=\"form form-inline form-page\"><div class=fieldset><p>{{_t('backup_info')}}</p></div><div class=\"fieldset submit-entry\"><a class=\"btn btn-submit\" ng-href=\"{{cfg.server_url + cfg.api.backup}}\" title=\"{{_t('nm_backup_download')}}\"><i class=\"fa fa-cloud-download\"></i> <span class=btn-name>{{_t('nm_backup_download')}}</span></a></div></div></div>"
+    "<h2 class=accordion-entry-title ng-click=\"expandElement('backup')\"><i class=\"fa fa-download\"></i> <span ng-bind=\"_t('backup')\"></span> <i class=\"fa accordion-arrow\" ng-class=\"expand.backup  ? 'fa-chevron-up':'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-if=expand.backup><div class=\"form form-inline form-page\"><div class=fieldset><p>{{_t('backup_info')}}</p></div><div class=\"fieldset submit-entry\"><a class=\"btn btn-submit\" ng-href=\"{{cfg.server_url + cfg.api.backup}}\" title=\"{{_t('nm_backup_download')}}\"><i class=\"fa fa-download\"></i> <span class=btn-name>{{_t('nm_backup_download')}}</span></a></div></div></div>"
   );
 
 
@@ -11745,7 +11740,12 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/management/management_restore.html',
-    "<h2 class=accordion-entry-title ng-click=\"expandElement('restore')\"><i class=\"fa fa-repeat\"></i> <span ng-bind=\"_t('nm_restore_backup_upload')\"></span> <i class=\"fa accordion-arrow\" ng-class=\"expand.restore  ? 'fa-chevron-up':'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-if=expand.restore ng-controller=ManagementRestoreController><bb-loader></bb-loader><div class=\"form form-page\"><div class=fieldset><bb-alert alert=managementRestore.alert></bb-alert><div ng-hide=managementRestore.alert.message><div class=\"alert alert-warning\"><input type=checkbox name=restore_confirm value=1 id=restore_confirm ng-click=\"managementRestore.confirm = !managementRestore.confirm\"> <span ng-bind=\"_t('are_you_sure_restore')\"></span></div><div class=form-group ng-show=managementRestore.confirm><input type=file class=form-control_ file-model=\"myFile\"></div></div></div><div class=\"fieldset submit-entry\"><button type=button class=\"btn btn-submit\" title=\"{{_t('nm_restore_pick_up')}}\" ng-click=uploadFile() ng-disabled=\"!managementRestore.confirm || managementRestore.alert.message\"><i class=\"fa fa-download\"></i> <span class=btn-name>{{_t('nm_restore_pick_up')}}</span></button></div></div></div>"
+    "<h2 class=accordion-entry-title ng-click=\"expandElement('restore')\"><i class=\"fa fa-repeat\"></i> <span ng-bind=\"_t('nm_restore_backup_upload')\"></span> <i class=\"fa accordion-arrow\" ng-class=\"expand.restore  ? 'fa-chevron-up':'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-if=expand.restore ng-controller=ManagementRestoreController><bb-loader></bb-loader><div class=\"form form-page\"><div class=fieldset><bb-alert alert=managementRestore.alert></bb-alert><div ng-hide=managementRestore.alert.message><div class=\"alert alert-warning\"><input type=checkbox name=restore_confirm value=1 id=restore_confirm ng-click=\"managementRestore.confirm = !managementRestore.confirm\"> <span ng-bind=\"_t('are_you_sure_restore')\"></span></div><div class=form-group ng-show=managementRestore.confirm><input type=file class=form-control_ file-model=\"myFile\"></div></div></div><div class=\"fieldset submit-entry\"><button type=button class=\"btn btn-submit\" title=\"{{_t('nm_restore_pick_up')}}\" ng-click=uploadFile() ng-disabled=\"!managementRestore.confirm || managementRestore.alert.message\"><i class=\"fa fa-upload\"></i> <span class=btn-name>{{_t('nm_restore_pick_up')}}</span></button></div></div></div>"
+  );
+
+
+  $templateCache.put('app/views/management/management_timezone.html',
+    "<h2 class=accordion-entry-title ng-click=\"expandElement('timezone')\"><i class=\"fa fa-clock-o\"></i> <span ng-bind=\"_t('timezone')\"></span> <i class=\"fa accordion-arrow\" ng-class=\"expand.timezone ? 'fa-chevron-up' : 'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-class=\"\" ng-if=expand.timezone ng-controller=ManagementTimezoneController><bb-loader></bb-loader><form name=form_timezone id=form_password class=\"form form-page\" ng-if=handleTimezone.show ng-submit=updateInstance(handleTimezone.instance) novalidate><fieldset><div class=\"form-group form-inline\"><label>{{_t('timezone_select')}}</label><select class=form-control ng-model=handleTimezone.instance.params.timezone><option value={{v}} ng-repeat=\"v in managementTimezone.enums track by $index\" ng-selected=\"v === handleTimezone.instance.params.timezone\">{{managementTimezone.labels[$index]}}</option></select><bb-help-text trans=\"_t('timezone_info')\"></bb-help-text></div><div class=form-group><div><input type=checkbox name=wan_port_access id=wan_port_access value=true ng-model=handleTimezone.instance.params.wan_port_access ng-checked=\"handleTimezone.instance.params.wan_port_access\"><label ng-bind=\"_t('wan_port_access')\"></label><bb-help-text trans=\"_t('wan_port_access_info')\"></bb-help-text></div></div></fieldset><fieldset class=submit-entry><button type=submit class=\"btn btn-submit\" title=\"{{_t('set_timezone')}}\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('set_timezone')}}</span></button></fieldset></form><div class=\"alert alert-warning\" ng-bind=\"_t('timezone_not_installed')\" ng-if=!handleTimezone.show></div></div>"
   );
 
 
@@ -15042,7 +15042,7 @@ var postRenderAlpaca = function (renderedForm) {
 
         // call postRender function from module
         if (typeof (modulePostRender) == 'function') {
-            modulePostRender();
+            $(document).ready(modulePostRender());
         }
     }
 
@@ -21790,6 +21790,11 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
         replug: false
     };
 
+    $scope.handleTimezone = {
+        instance: {},
+        show: false
+    };
+
     $scope.zwaveDataInterval = null;
     // Cancel interval on page destroy
     $scope.$on('$destroy', function () {
@@ -21803,16 +21808,23 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
     $scope.allSettled = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
-            dataFactory.loadZwaveApiData()
+            dataFactory.loadZwaveApiData(),
+            dataFactory.getApi('instances', '/ZMEOpenWRT')
         ];
 
         $q.allSettled(promises).then(function (response) {
             var zwave = response[0];
+            var timezone = response[1];
             $scope.loading = false;
-            // Success - locations
+            // Success - api data
             if (zwave.state === 'fulfilled') {
                 $scope.ZwaveApiData = zwave.value;
                 setControllerInfo(zwave.value);
+            }
+            // Success - timezone
+            if (timezone.state === 'fulfilled' && timezone.value.data.data[0].active === true) {
+                $scope.handleTimezone.show = true;
+                $scope.handleTimezone.instance = timezone.value.data.data[0];
             }
         });
     };
@@ -21879,19 +21891,21 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
         // Hide license if
         // Controller UUID = string and scratchId  is NOT found  and cap unlimited
         if (!controllerInfo.scratchId && !controllerInfo.capsLimited) {
-             //console.log('Hide license if: Controller UUID = string and scratchId  is NOT found  and cap unlimited')
+            //console.log('Hide license if: Controller UUID = string and scratchId  is NOT found  and cap unlimited')
             $scope.handleLicense.show = false;
             return;
         }
-        
+
         // Show modal if
         // Controller UUID = string and scratchId  is NOT found  and cap limited
         if (!controllerInfo.scratchId && controllerInfo.capsLimited) {
-              alertify.alertWarning($scope._t('info_missing_licence'));
+            //console.log('Show modal if: Controller UUID = string and scratchId  is NOT found  and cap limited')
+            alertify.alertWarning($scope._t('info_missing_licence'));
         }
 
         // Disable input and show unplug message
         if (controllerInfo.isZeroUuid) {
+            //console.log('Disable input and show unplug message')
             $scope.handleLicense.disabled = true;
             $scope.handleLicense.replug = true;
         }
@@ -22291,6 +22305,67 @@ myAppController.controller('ManagementFirmwareController', function ($scope, $sc
     //$scope.loadRazLatest();
 });
 /**
+ * The controller that handles a backup to the cloud.
+ * @class ManagementTimezoneController
+ */
+myAppController.controller('ManagementTimezoneController', function ($scope, $timeout, dataFactory, dataService) {
+    $scope.managementTimezone = {
+        labels: {},
+        enums: {}
+    };
+
+    /**
+     * Load module detail
+     */
+    $scope.loadModule = function (id) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        dataFactory.getApi('modules', '/ZMEOpenWRT').then(function (response) {
+            $scope.loading = false;
+            $scope.managementTimezone.enums = response.data.data.schema.properties.timezone.enum;
+            $scope.managementTimezone.labels = response.data.data.options.fields.timezone.optionLabels;
+
+            //console.log($scope.handleTimezone)
+            //console.log($scope.managementTimezone)
+        }, function (error) {
+            $scope.loading = false;
+            alertify.alertError($scope._t('error_load_data'));
+        });
+    };
+    $scope.loadModule();
+
+    /**
+     * Update instance
+     */
+    $scope.updateInstance = function (input) {
+        //var input = $scope.handleTimezone.instance;
+        if (input.id) {
+            dataFactory.putApi('instances', input.id, input).then(function (response) {
+                alertify.confirm($scope._t('timezone_alert'))
+                        .setting('labels', {'ok': $scope._t('yes'),'cancel': $scope._t('lb_cancel')})
+                        .set('onok', function (closeEvent) {//after clicking OK
+                                $scope.systemReboot();
+                        });
+
+            }, function (error) {
+                alertify.alertError($scope._t('error_update_data'));
+            });
+        }
+    };
+    
+     /**
+     * System rebboot
+     */
+    $scope.systemReboot = function () {
+         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('system_rebooting')};
+            dataFactory.getApi('system_reboot').then(function (response) {
+            }, function (error) {
+                alertify.alertError($scope._t('error_system_reboot'));
+            });
+
+    };
+
+});
+/**
  * The controller that handles restore process.
  * @class ManagementRestoreController
  */
@@ -22538,6 +22613,7 @@ myAppController.controller('ManagementPostfixController', function ($scope, data
 myAppController.controller('ManagementInfoController', function ($scope, dataFactory, dataService) {
 
 });
+
 /**
  * @overview Handles user actions.
  * @author Martin Vach
@@ -22728,7 +22804,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
  * This is the Auth root controller
  * @class AuthController
  */
-myAppController.controller('AuthController', function ($scope, $routeParams, $location,$cookies, $window, $q, cfg, dataFactory, dataService, _) {
+myAppController.controller('AuthController', function ($scope, $routeParams, $location, $cookies, $window, $q, cfg, dataFactory, dataService, _) {
     $scope.auth = {
         remoteId: null,
         firstaccess: false,
@@ -22841,15 +22917,15 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
             var input = {
                 uuid: response.controller.data.uuid.value
             };
-            jamesBoxRequest(input,location);
+            jamesBoxRequest(input, location);
         }, function (error) {
             window.location = location;
             $window.location.reload();
         });
     }
     ;
-    
-     /**
+
+    /**
      * Get and update system info
      */
     function jamesBoxSystemInfo(uuid) {
@@ -22867,11 +22943,11 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
     /**
      * JamesBox request
      */
-    function jamesBoxRequest(input,location) {
+    function jamesBoxRequest(input, location) {
         //var location = '#/dashboard';
         jamesBoxSystemInfo(input.uuid);
         dataFactory.postToRemote(cfg.api_remote['jamesbox_request'], input).then(function (response) {
-           if (!_.isEmpty(response.data)) {
+            if (!_.isEmpty(response.data)) {
                 location = '#/boxupdate';
             }
             window.location = location;
@@ -22880,7 +22956,8 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
             window.location = location;
             $window.location.reload();
         });
-    };
+    }
+    ;
 
 
     /**
@@ -22925,7 +23002,7 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
  * The controller that handles login process.
  * @class AuthLoginController
  */
-myAppController.controller('AuthLoginController', function ($scope, $location, $window, $routeParams, $cookies, dataFactory, dataService) {
+myAppController.controller('AuthLoginController', function ($scope, $location, $window, $routeParams, $cookies, dataFactory, dataService,_) {
     $scope.input = {
         password: '',
         login: '',
@@ -22952,9 +23029,14 @@ myAppController.controller('AuthLoginController', function ($scope, $location, $
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         $scope.alert = {message: false};
         dataFactory.logInApi(input).then(function (response) {
-            var rememberme = (input.rememberme ? input : null);
-            $scope.redirectAfterLogin(true, response.data.data, input.password, rememberme);
-
+            var rememberme = (input.rememberme ? input : null); 
+            var location = '#/dashboard';
+            var profile = response.data.data;
+            if(response.data.data.showWelcome){
+                 location = '#/dashboard/firstlogin';
+                 profile = _.omit(profile, 'showWelcome');
+            }
+            $scope.redirectAfterLogin(true, profile, input.password, rememberme, location);
         }, function (error) {
             $scope.loading = false;
             var message = $scope._t('error_load_data');
@@ -23012,18 +23094,54 @@ myAppController.controller('AuthLoginController', function ($scope, $location, $
  * The controller that handles first access and password update.
  * @class AuthPasswordController
  */
-myAppController.controller('AuthPasswordController', function ($scope, dataFactory, dataService) {
+myAppController.controller('AuthPasswordController', function ($scope, $q, $window, cfg, dataFactory, dataService) {
     $scope.input = {
-        id: $scope.auth.defaultProfile.id,
+        id: 1,//$scope.auth.defaultProfile.id,
         password: '',
         passwordConfirm: '',
         email: '',
         trust_my_network: false
     };
+    $scope.handleTimezone = {
+        instance: {},
+        show: false
+    };
+    $scope.managementTimezone = {
+        labels: {},
+        enums: {}
+    };
+
+    /**
+     * Load all promises
+     */
+    $scope.allSettled = function () {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        var promises = [
+            dataFactory.getApi('instances', '/ZMEOpenWRT'),
+            dataFactory.getApi('modules', '/ZMEOpenWRT')
+        ];
+
+        $q.allSettled(promises).then(function (response) {
+            var instance = response[0];
+            var timezone = response[1];
+            $scope.loading = false;
+            // Success - instance
+            if (instance.state === 'fulfilled' && instance.value.data.data[0].active === true) {
+                $scope.handleTimezone.show = true;
+                $scope.handleTimezone.instance = instance.value.data.data[0];
+            }
+            // Success - timezone
+            if (timezone.state === 'fulfilled') {
+                $scope.managementTimezone.enums = timezone.value.data.data.schema.properties.timezone.enum;
+                $scope.managementTimezone.labels = timezone.value.data.data.options.fields.timezone.optionLabels;
+            }
+        });
+    };
+    $scope.allSettled();
     /**
      * Change password
      */
-    $scope.changePassword = function (form, input) {
+    $scope.changePassword = function (form, input, instance) {
         if (form.$invalid) {
             return;
         }
@@ -23049,7 +23167,12 @@ myAppController.controller('AuthPasswordController', function ($scope, dataFacto
             profile['lang'] = $scope.loginLang;
             // Update profile
             dataFactory.putApiWithHeaders('profiles', input.id, profile, headers).then(function (response) {
-                $scope.redirectAfterLogin(true, $scope.auth.defaultProfile, input.password, false, '#/dashboard/firstlogin');
+                if (cfg.app_type === 'jb' && $scope.handleTimezone.show) {
+                    $scope.updateInstance(instance);
+                } else {
+                    $scope.redirectAfterLogin(true, $scope.auth.defaultProfile, input.password, false, '#/dashboard/firstlogin');
+                }
+
                 // Update trust my network
                 /*dataFactory.putApiWithHeaders('trust_my_network', null, {trustMyNetwork: input.trust_my_network}, headers).then(function (response) {
                  $scope.redirectAfterLogin(input.trust_my_network, $scope.auth.defaultProfile, input.password);
@@ -23071,6 +23194,45 @@ myAppController.controller('AuthPasswordController', function ($scope, dataFacto
             alertify.alertError(message);
             $scope.loading = false;
         });
+    };
+
+    /**
+     * Update instance
+     */
+    $scope.updateInstance = function (input) {
+        //var input = $scope.handleTimezone.instance;
+        if (input.id) {
+            dataFactory.putApi('instances', input.id, input).then(function (response) {
+                $scope.systemReboot();
+            }, function (error) {
+                alertify.alertError($scope._t('error_update_data'));
+            });
+        }
+    };
+
+    /**
+     * System rebboot
+     */
+    $scope.systemReboot = function () {
+        //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('system_rebooting')};
+        var fatalArray = {
+                            message: $scope._t('system_rebooting'),
+                            info: $scope._t('connection_refused_reboot'),
+                            permanent: true,
+                            hide: true
+                        };
+         angular.extend(cfg.route.fatalError, fatalArray);
+        dataFactory.getApi('system_reboot','?firstaccess=true').then(function (response) {
+//            $timeout(function () {
+//                $scope.loading = false;
+//                window.location = '#/?logout';
+//                $window.location.reload();
+//                
+//            }, 10000);
+        }, function (error) {
+            alertify.alertError($scope._t('error_system_reboot'));
+        });
+
     };
 
 });
@@ -23104,7 +23266,7 @@ myAppController.controller('PasswordForgotController', function ($scope, $locati
                 $scope.loading = false;
             });
         }, function (error) {
-            var langKey = (error.status === 404 ? 'email_notfound':'error_500');
+            var langKey = (error.status === 404 ? 'email_notfound' : 'error_500');
             alertify.alertError($scope._t(langKey));
             $scope.loading = false;
         });
