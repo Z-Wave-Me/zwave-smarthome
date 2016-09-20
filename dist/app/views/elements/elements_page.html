@@ -1,21 +1,20 @@
 <!-- Elements 1 view -->
 <div ng-controller="ElementBaseController">
     <bb-loader></bb-loader>
-     <div ng-if="dataHolder.devices.noDevices" ng-include="'app/views/elements/no_devices.html'"></div>
-    <div ng-if="dataHolder.devices.show && !dataHolder.devices.noDevices">
+    <!-- Filter -->
     <div class="page-control form-inline">
         <div class="btn-group btn-goup-block btn-goup-3">
-            <button class="btn btn-default" ng-click="expandNavi('elCategories', $event)" ng-class="!_.isEmpty(dataHolder.devices.filter) ? 'active':'' ">
+            <button class="btn btn-default" ng-click="expandNavi('elCategories', $event)" ng-class="!_.isEmpty(dataHolder.devices.filter) ? 'active':''">
                 <i class="fa fa-filter"></i> 
                 <span class="btn-name" ng-if="dataHolder.devices.filter.deviceType">{{_t(dataHolder.devices.filter.deviceType) | cutText:true:15}}</span>
-                <span class="btn-name" ng-if="dataHolder.devices.filter.visibility === false">{{_t('hidden_elements')|cutText:true:15}}</span>
-                <span class="btn-name" ng-if="_.isEmpty(dataHolder.devices.filter)">{{_t('all_elements')|cutText:true:15}}</span>
+                <span class="btn-name" ng-if="dataHolder.devices.filter.visibility === false">{{_t('hidden_elements') | cutText:true:15}}</span>
+                <span class="btn-name" ng-if="_.isEmpty(dataHolder.devices.filter)">{{_t('all_elements') | cutText:true:15}}</span>
                 <span class="btn-name item-cnt"> ({{dataHolder.cnt.collection}})</span>
             </button>
-             <button class="btn btn-default" ng-click="expandNavi('elTags', $event)" ng-class="dataHolder.devices.filter.tag ? 'active':'' ">
+            <button class="btn btn-default" ng-click="expandNavi('elTags', $event)" ng-class="dataHolder.devices.filter.tag ? 'active':''">
                 <i class="fa fa-tags"></i>
                 <span class="btn-name" ng-if="dataHolder.devices.filter.tag">{{dataHolder.devices.filter.tag|cutText:true:15}}</span>
-               <span class="btn-name" ng-if="!dataHolder.devices.filter.tag">{{_t('lb_tags')}}</span>
+                <span class="btn-name" ng-if="!dataHolder.devices.filter.tag">{{_t('lb_tags')}}</span>
             </button>
             <button class="btn btn-default" ng-click="expandNavi('elOrderBy', $event)">
                 <i class="fa fa-sort-alpha-asc"></i> 
@@ -28,15 +27,15 @@
             <span class="input-group-addon"><i class="fa fa-search"></i></span> 
         </div>
     </div>
-     <!-- Page subnavi  categories -->
+    <!-- Page subnavi  categories -->
     <div class="page-navi" ng-if="naviExpanded.elCategories">
         <div class="page-navi-in">
             <ul>
                 <li class="page-cat-0" ng-class="_.isEmpty(dataHolder.devices.filter) == true ? 'active': ''">
-                   <a href="" ng-click="setFilter()">
-                       <i class="fa fa-check-circle-o"></i> {{_t('all_elements')}} <span class="item-cnt">({{dataHolder.cnt.devices}})</span> 
-                       <span class="page-navi-icon"><i class="fa fa-chevron-right"></i></span>
-                   </a>
+                    <a href="" ng-click="setFilter()">
+                        <i class="fa fa-check-circle-o"></i> {{_t('all_elements')}} <span class="item-cnt">({{dataHolder.cnt.devices}})</span> 
+                        <span class="page-navi-icon"><i class="fa fa-chevron-right"></i></span>
+                    </a>
                 </li>
                 <li class="page-cat-{{v}}" ng-repeat="(v,k) in dataHolder.devices.deviceType" ng-class="dataHolder.devices.filter.deviceType == v ? 'active': ''">
                     <a href="" ng-click="setFilter({deviceType: v})"> 
@@ -49,45 +48,48 @@
                 <a class="btn btn-default btn-tag"  
                    ng-click="showHiddenEl((dataHolder.devices.showHidden ? false:true))" 
                    ng-class="dataHolder.devices.showHidden ? 'active': ''">
-                     <i class="fa fa-eye"></i> {{_t('show_hidden')}}
-                 </a>
-                
+                    <i class="fa fa-eye"></i> {{_t('show_hidden')}}
+                </a>
+
             </div>
         </div>
     </div>
-     <!-- Page subnavi  tags -->
-      <div class="page-navi" ng-if="naviExpanded.elTags">
+    <!-- Page subnavi  tags -->
+    <div class="page-navi" ng-if="naviExpanded.elTags">
         <div class="page-navi-in">
             <div class="page-navi-content">
                 <a class="btn btn-default btn-tag"  
                    ng-click="setFilter()" 
                    ng-class="_.isEmpty(dataHolder.devices.filter) == true ? 'active': ''">
-                     {{_t('all_elements')}}
-                 </a>
+                    {{_t('all_elements')}}
+                </a>
                 <a class="btn btn-default btn-tag"
-                        ng-repeat="v in dataHolder.devices.tags|orderBy:'toString()'" 
-                        ng-click="setFilter({tag: v})" 
-                        ng-class="dataHolder.devices.filter.tag == v ? 'active': ''">
-                     {{v|cutText:true:30}}
-                 </a>
+                   ng-repeat="v in dataHolder.devices.tags|orderBy:'toString()'" 
+                   ng-click="setFilter({tag: v})" 
+                   ng-class="dataHolder.devices.filter.tag == v ? 'active': ''">
+                    {{v|cutText:true:30}}
+                </a>
             </div>
         </div>
     </div>
-     <!-- Page subnavi  sort by -->
-      <div class="page-navi" ng-if="naviExpanded.elOrderBy">
+    <!-- Page subnavi  sort by -->
+    <div class="page-navi" ng-if="naviExpanded.elOrderBy">
         <div class="page-navi-in">
             <div class="page-navi-content">
-                 <p class="page-navi-title"> {{_t('sortby')}}</p>
+                <p class="page-navi-title"> {{_t('sortby')}}</p>
                 <a class="btn btn-default btn-tag" href="" 
-                        ng-repeat="(k,v) in cfg.orderby.elements"
-                       ng-click="setOrderBy(k)"
-                       ng-class="dataHolder.devices.orderBy == k ? 'active': ''">
-                     {{_t(k) | cutText:true:30}}
-                 </a>
+                   ng-repeat="(k,v) in cfg.orderby.elements"
+                   ng-click="setOrderBy(k)"
+                   ng-class="dataHolder.devices.orderBy == k ? 'active': ''">
+                    {{_t(k) | cutText:true:30}}
+                </a>
             </div>
         </div>
     </div>
-     
-    <div ng-include="'app/views/elements/list.html'"></div>
-  </div>
+    <!-- No devices -->
+    <div ng-if="dataHolder.devices.noDevices" ng-include="'app/views/elements/no_devices.html'"></div>
+    <!-- Device list -->
+    <div ng-if="dataHolder.devices.show && !dataHolder.devices.noDevices">
+        <div ng-include="'app/views/elements/list.html'"></div>
+    </div>
 </div> <!-- /ng-controller --> 
