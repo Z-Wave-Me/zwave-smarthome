@@ -395,6 +395,7 @@ myAppController.controller('ManagementCloudBackupController', function ($scope, 
     $scope.managementCloud = {
         alert: {message: false, status: 'is-hidden', icon: false},
         show: false,
+        type: 'day',
         labels: {
             weekDays: []
         },
@@ -456,9 +457,19 @@ myAppController.controller('ManagementCloudBackupController', function ($scope, 
     $scope.allCloudSettled();
     
     /**
+     * Set scheduler type
+     */
+    $scope.setSchedulerType = function (type) {
+       $scope.managementCloud.type = type;
+    };
+    
+    /**
      * Update instance
      */
-    $scope.updateInstance = function (input) {
+    $scope.updateInstance = function (form,input) {
+        if (form.$invalid) {
+            return;
+        }
         console.log(input)
         return;
         if (input.id) {
