@@ -6,13 +6,14 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <!-- CSS -->
-        <link media="screen" type="text/css" rel="stylesheet" href="app/css/main.css">
+        <link id="main_css" media="screen" type="text/css" rel="stylesheet" href="app/css/main.css">
          <!-- App config -->
         <script src="app/js/config.js"></script>
         <!-- JS -->
         <script src="app/js/build.js"></script>
     </head>
-    <body id="page_{{getBodyId()}}" class="app-type-{{cfg.app_type}} is-mobile-{{isMobile}} os-{{cfg.route.os}} profile-{{user.color.substring(1)}}">
+     <body id="page_{{getBodyId()}}" class="app-type-{{cfg.app_type}} is-mobile-{{isMobile}} os-{{cfg.route.os}} profile-{{user.color.substring(1)}}">
+        <a class="skinreset" href="#skinreset">Reset skin to default</a>
         <div id="header" ng-if="user">
             <div id="main_navigation_wrap">
                 <div id="main_navigation" class="container">
@@ -53,10 +54,10 @@
                             <li class="subnavi-config-rooms" ng-class="isActive('config-rooms')" ng-if="elementAccess(cfg.role_access.config_rooms)">
                                 <a href="#config-rooms"><i class="fa fa-building-o"></i> {{_t('nav_rooms')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
                             </li>
-                             <!-- Customize 
-                            <li class="subnavi-report" ng-class="isActive('customize')" ng-if="elementAccess(cfg.role_access.skins_local)">
+                             <!-- Customize -->
+                            <li class="subnavi-report" ng-class="isActive('customize')" ng-if="elementAccess(cfg.role_access.customize)">
                                 <a href="#customize/skinslocal"><i class="fa fa-puzzle-piece"></i> {{_t('customize')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                            </li> -->
+                            </li> 
                             <!-- My access -->
                             <li class="subnavi-myaccess" ng-class="isActive('myaccess')" ng-if="elementAccess(cfg.role_access.myaccess)">
                                 <a href="#myaccess"><i class="fa fa-user"></i> {{_t('nav_myaccess')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
@@ -76,7 +77,7 @@
         </div><!-- /#header --> 
         <!-- Ang Content Container -->
         <div id="main_content" class="container">
-             <div ng-if="cfg.route.fatalError.message">
+            <div ng-if="cfg.route.fatalError.message">
                 <div class="app-fatal-error">
                     <div class="fatal-error-message"><i class="fa {{cfg.route.fatalError.icon}} fa-lg"></i> {{cfg.route.fatalError.message}}</div>
                     <div class="fatal-error-info" ng-if="cfg.route.fatalError.info" ng-bind-html="cfg.route.fatalError.info|toTrusted"></div>

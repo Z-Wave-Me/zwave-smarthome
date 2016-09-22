@@ -388,10 +388,43 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                 .flatten()
                 .filter(function (v) {
                     // Set icon path
-                    var screenshotPath = v.name !== 'default' ? cfg.skin.path + v.name : cfg.img.skin_screenshot;
-                    v.icon = (!v.icon ? 'storage/img/placeholder-img.png' : screenshotPath + '/screenshot.png');
+                    var screenshotPath = v.name !== 'default' ? cfg.skin.path + v.name + '/' : cfg.img.skin_screenshot;
+                    v.icon = (!v.icon ? 'storage/img/placeholder-img.png' : screenshotPath + 'screenshot.png');
                     return v;
                 });
+    };
+    
+    /**
+     * Get zwave products - filtered data from devices dataholder
+     * @param {object} data
+     * @returns {unresolved}
+     */
+    this.getZwaveProducts = function (data,lang) {
+         lang = cfg.zwaveproducts_langs.indexOf(lang) > -1 ? lang.toUpperCase() : cfg.lang.toUpperCase();
+        return  _.chain(data)
+                .flatten()
+                .map(function (v) {
+                        return {
+                            id: v.certification_ID,
+                            name: v.Name,
+                            productcode: v.product_code,
+                            wake: v['wake_' + lang] || v['wake_EN'],
+                            inc: v['inc_' + lang] || v['inc_EN'],
+                            exc: v['exc_' + lang] || v['exc_EN'],
+                            brandname: v.brandname,
+                            brandid: v.brandid,
+                            brand_image: (v.brandname_image ? cfg.img.zwavevendors + v.brandname_image : false),
+                            product_image: (v.certification_ID ? cfg.img.zwavedevices + v.certification_ID + '.png' : false),
+                            prep: v['prep_' + lang] || v['prep_EN'],
+                            inclusion_type: (v.inc_type === 'secure' ? v.inc_type : 'unsecure'),
+                            zwplus: v.zwplus,
+                            frequencyid: v.frequencyid,
+                            frequency: v.frequency,
+                            ignore_ui: v.ignore_ui,
+                            reset: v['ResetDescription_' + lang] || v['ResetDescription_EN']
+
+                        };
+                    });
     };
 
     /**
@@ -551,6 +584,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
             // Assign icon by metrics.icon
             var iconArray = setIcon(cfgicons.element.icon[iconKey], element.custom_icons);
             if (!iconArray) {
+                // set default
                 return icon;
             }
             switch (iconKey) {

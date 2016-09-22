@@ -79,6 +79,7 @@
         
     </head>
     <body id="page_{{getBodyId()}}" class="app-type-{{cfg.app_type}} is-mobile-{{isMobile}} os-{{cfg.route.os}} profile-{{user.color.substring(1)}}">
+        <a class="skinreset" href="#skinreset">Reset skin to default</a>
         <div id="header" ng-if="user">
             <div id="main_navigation_wrap">
                 <div id="main_navigation" class="container">
@@ -119,10 +120,10 @@
                             <li class="subnavi-config-rooms" ng-class="isActive('config-rooms')" ng-if="elementAccess(cfg.role_access.config_rooms)">
                                 <a href="#config-rooms"><i class="fa fa-building-o"></i> {{_t('nav_rooms')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
                             </li>
-                             <!-- Customize 
-                            <li class="subnavi-report" ng-class="isActive('customize')" ng-if="elementAccess(cfg.role_access.skins_local)">
+                             <!-- Customize -->
+                            <li class="subnavi-report" ng-class="isActive('customize')" ng-if="elementAccess(cfg.role_access.customize)">
                                 <a href="#customize/skinslocal"><i class="fa fa-puzzle-piece"></i> {{_t('customize')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                            </li> -->
+                            </li> 
                             <!-- My access -->
                             <li class="subnavi-myaccess" ng-class="isActive('myaccess')" ng-if="elementAccess(cfg.role_access.myaccess)">
                                 <a href="#myaccess"><i class="fa fa-user"></i> {{_t('nav_myaccess')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>

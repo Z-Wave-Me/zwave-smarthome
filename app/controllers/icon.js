@@ -13,6 +13,8 @@ myAppController.controller('LocalIconController', function ($scope, $filter, $ti
         find: {},
         upload: false,
         all: {},
+        source: {},
+        filter: {},
         used: {
             device: {},
             test: []
@@ -50,7 +52,8 @@ myAppController.controller('LocalIconController', function ($scope, $filter, $ti
             }
             // Success - icons
             if (icons.state === 'fulfilled') {
-                $scope.icons.all = icons.value.data.data;
+               // $scope.icons.all = icons.value.data.data;
+                setIcons(icons.value.data.data);
             }
             // Success - devices
             if (devices.state === 'fulfilled') {
@@ -61,6 +64,16 @@ myAppController.controller('LocalIconController', function ($scope, $filter, $ti
         });
     };
     $scope.allSettled();
+    
+    /**
+     * Delete an icon from the storage
+     * @param {string} val
+     * @returns {undefined}
+     */
+    $scope.setFilter = function (val) {
+        $scope.icons.filter = (val||false);
+        $scope.allSettled();
+    };
 
     /**
      * Check and validate an uploaded file
@@ -163,6 +176,23 @@ myAppController.controller('LocalIconController', function ($scope, $filter, $ti
     }
     ;
     /**
+     * Set list with uploaded icons
+     * @param {object} icons
+     * @returns {undefined}
+     */
+    function setIcons(icons){
+        var data = _.chain(icons)
+                .flatten()
+                .filter(function (v) {
+                    return v;
+                });
+         // Count apps in categories
+         $scope.icons.source = data.countBy(function (v) {
+            return v.source;
+        }).value();
+        $scope.icons.all = data.where($scope.icons.filter).value();
+    }
+    /**
      * Build an object with icons that are used in devices
      * @param {object} devices
      * @returns {object}
@@ -171,9 +201,9 @@ myAppController.controller('LocalIconController', function ($scope, $filter, $ti
         var output = {};
         angular.forEach(devices, function (v, k) {
             // For testing purposes
-            if (v.id === 'ZWayVDev_zway_9-0-37') {
+            if (v.id === 'ZWayVDev_zway_2-0-156-0-A') {
                 v.custom_icons = {on: 'cat-box-icon.png', off: 'cat-cage-icon.png'};
-            } else if (v.id === 'Multiline_18') {
+            } else if (v.id === 'ZWayVDev_zway_2-0-49-3') {
                 v.custom_icons = {'default': 'cat-cage-icon.png'};
             }
             // Device has custom icons

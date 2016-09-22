@@ -1,0 +1,23 @@
+<!-- Zwave device view -->
+<div ng-controller="ZwaveVendorController">
+    <bb-loader></bb-loader>
+   
+    <div class="text-center device-autodetect" ng-include="'app/views/zwave/zwave_vendors_autodetect.html'"></div>
+    <div class="clearfix">
+    <div class="vendor-entry" 
+         ng-repeat="v in zwaveVendors.all| orderBy:'brandname' track by $index"
+         ng-if="v.frequencies.indexOf(zwaveVendors.frequency) > -1">
+        <a ng-href="#zwave/vendors/{{v.brandid}}" class="vendor-list" title="{{v.brandname}}">
+            <p class="vendor-image" ng-if="v.brandname_image">
+                <img ng-src="{{cfg.img.zwavevendors + v.brandname_image}}" alt="{{v.brandname|cutText:true:20}}" />
+
+            </p>
+            <p class="vendor-image" title="{{v.brandname}}" ng-if="!v.brandname_image">
+                <span>{{v.brandname|cutText:true:20}}</span>
+            </p>
+        </a>
+    </div>
+    </div>
+    <div class="device-logo" ng-include="'app/views/zwave/zwave_nav.html'"></div>
+</div> <!-- /ng-controller --> 
+

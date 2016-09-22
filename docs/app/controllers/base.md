@@ -20,6 +20,12 @@
 ## BaseController
 The app base controller.
 
+### BaseController.setSkin() 
+
+Set app skin
+
+**Returns**: `undefined`
+
 ### BaseController.routeMatch(path) 
 
 Check if route match the pattern.

@@ -141,6 +141,25 @@ Load latest version
 
 
 
+## ManagementTimezoneController
+The controller that handles a backup to the cloud.
+
+### ManagementTimezoneController.loadModule() 
+
+Load module detail
+
+
+### ManagementTimezoneController.updateInstance() 
+
+Update instance
+
+
+### ManagementTimezoneController.systemReboot() 
+
+System rebboot
+
+
+
 ## ManagementRestoreController
 The controller that handles restore process.
 

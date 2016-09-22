@@ -12,7 +12,7 @@ var config_data = {
         //Application name
         'app_name': 'SmartHome UI',
         // Application version
-        'app_version': '1.4.4',
+        'app_version': '1.5.0',
         // Server base url
         'server_url': '/',
         //'server_url': 'http://192.168.10.119:8083/',
@@ -23,7 +23,7 @@ var config_data = {
             // Current location
             location: {},
             // Time zone
-            time:{
+            time: {
                 string: false,
                 timestamp: false
             },
@@ -47,12 +47,12 @@ var config_data = {
         },
         // Zwave - will be extended
         'zwave': {
-                remoteId: null,
-                uuid: null,
-                softwareRevisionVersion: null,
-                capabillities: null,
-                scratchId: null
-            },
+            remoteId: null,
+            uuid: null,
+            softwareRevisionVersion: null,
+            capabillities: null,
+            scratchId: null
+        },
         'history_cache_interval': 300000,
         // Default auth credentials
         'default_credentials': {
@@ -92,21 +92,25 @@ var config_data = {
             'timezone': 'ZAutomation/api/v1/system/time/get',
             'system_info': 'ZAutomation/api/v1/system/info',
             'system_reboot': 'ZAutomation/api/v1/system/reboot',
-            'skins': 'ZAutomation/api/v1/skins'
+            'skins': 'ZAutomation/api/v1/skins',
+            'skins_install': 'ZAutomation/api/v1/skins/install',
+            'skins_update': 'ZAutomation/api/v1/skins/update',
+            'skins_active': 'ZAutomation/api/v1/skins/active',
+            'skins_reset': 'ZAutomation/api/v1/skins/setToDefault'
         },
         // List of remote api URLs
         'api_remote': {
             // JamesBox request
             //'jamesbox_request': 'http://dev.dev/jamesbox/zbu_ui_handling.php?action=request',
             'jamesbox_request': 'http://razberry.z-wave.me/zbu_ui_handling.php?action=request',
-             // JamesBox update
-             //'jamesbox_update': 'http://dev.dev/jamesbox/zbu_ui_handling.php?action=update',
+            // JamesBox update
+            //'jamesbox_update': 'http://dev.dev/jamesbox/zbu_ui_handling.php?action=update',
             'jamesbox_update': 'http://razberry.z-wave.me/zbu_ui_handling.php?action=update',
             // JamesBox update info
-             //'jamesbox_updateinfo': 'http://dev.dev/jamesbox/zbu_ui_handling.php?action=updateinfo',
+            //'jamesbox_updateinfo': 'http://dev.dev/jamesbox/zbu_ui_handling.php?action=updateinfo',
             'jamesbox_updateinfo': 'http://razberry.z-wave.me/zbu_ui_handling.php?action=updateinfo',
             // JamesBox cancel update
-             //'jamesbox_cancel_update: 'http://dev.dev/jamesbox/zbu_ui_handling.php?action=cancelupdate',
+            //'jamesbox_cancel_update: 'http://dev.dev/jamesbox/zbu_ui_handling.php?action=cancelupdate',
             'jamesbox_cancel_update': 'http://razberry.z-wave.me/zbu_ui_handling.php?action=cancelupdate'
         },
         // Skin
@@ -119,27 +123,29 @@ var config_data = {
             'logo': 'storage/img/logo/',
             'icons': 'storage/img/icons/',
             'custom_icons': 'user/icons/',
-            'skin_screenshot': 'app/css/'
+            'skin_screenshot': 'app/css/',
+            'zwavedevices': 'storage/img/zwave/zwavedevices/',
+            'zwavevendors': 'storage/img/zwave/zwavevendors/'
         },
         // Upload settings
         'upload': {
             'room': {
-                size: 512000,//Bytes
-                type:['image/jpeg','image/gif'],
-                extension:['jpg','jpeg','gif'],
-                dimension:'200 x 200'//px
+                size: 512000, //Bytes
+                type: ['image/jpeg', 'image/gif'],
+                extension: ['jpg', 'jpeg', 'gif'],
+                dimension: '200 x 200'//px
             },
             'icon': {
-                size: 30720,//Bytes
-                type:['image/png','image/jpeg','image/gif'],
-                extension:['png','jpg','jpeg','gif'],
-                dimension:'64 x 64'//px
+                size: 30720, //Bytes
+                type: ['image/png', 'image/jpeg', 'image/gif'],
+                extension: ['png', 'jpg', 'jpeg', 'gif'],
+                dimension: '64 x 64'//px
             },
             'icon_packed': {
-                size: 2097152,//Bytes
-                type:['application/x-zip-compressed','application/x-gzip'],
-                extension:['zip','gz'],
-                dimension:'64 x 64'//px
+                size: 2097152, //Bytes
+                type: ['application/x-zip-compressed', 'application/x-gzip'],
+                extension: ['zip', 'gz'],
+                dimension: '64 x 64'//px
             }
         },
         // Api url
@@ -215,6 +221,8 @@ var config_data = {
         'lang': 'en', // !!!!Do not change it
         // List of supported languages
         'lang_list': ['en', 'de', 'ru', 'cn', 'fr', 'cz', 'sk', 'sv'],
+        // List of supported languages in the zwave products
+        'zwaveproducts_langs': ['en', 'de'],
         // Role access
         'role_access': {
             admin: [1],
@@ -222,8 +230,7 @@ var config_data = {
             apps: [1],
             apps_local: [1],
             apps_online: [1],
-            skins_local: [1,2,3],
-            skins_online: [1],
+            customize: [1],
             module: [1],
             devices: [1],
             myaccess: [1, 2, 3],
@@ -330,7 +337,7 @@ var config_data = {
                 'titleDESC': '-title',
                 'updateTimeDESC': '-updateTime'
             },
-             instances: {
+            instances: {
                 'creationTimeDESC': '-creationTime',
                 'creationTimeASC': 'creationTime',
                 'titleASC': 'title',
@@ -344,6 +351,21 @@ var config_data = {
                 'titleASC': 'name',
                 'titleDESC': '-name'
             }
+        },
+        // List of frequencies
+        frequency: {
+            EU: 'Europe',
+            RU: 'Russia',
+            IN: 'India',
+            CN: 'China',
+            MY: 'Malaysia',
+            ANZ_BR: 'Australia / New Zealan',
+            HK: 'Hong Kong',
+            KR: 'South Korea',
+            JP: 'Japan',
+            US: 'U.S./Canada/Mexico',
+            IL: 'Israel',
+            BR: 'Brazil'
         },
         // List of climate states
         climate_state: ['frostProtection', 'energySave', 'comfort', 'schedule'],
@@ -416,7 +438,7 @@ var config_data = {
                     'ScheduledScene'
                 ]
             },
-             'jb': {
+            'jb': {
                 'logo': 'app-logo-popp.png',
                 hidden_apps: [
                     'Cron',

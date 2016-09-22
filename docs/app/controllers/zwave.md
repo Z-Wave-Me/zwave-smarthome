@@ -17,17 +17,26 @@
 
 * * *
 
-## ZwaveSelectController
-This is a new version of the ZwaveAddController and is not completed!!!The controller that renders Z-Wave manufacturers and devices.
+## ZwaveVendorController
+The controller that renders Z-Wave vendors.
 
-### ZwaveSelectController.loadProducts() 
+### ZwaveVendorController.loadZwdata() 
 
-Load products - vendor logos
+Load z-wave data
 
 
-### ZwaveSelectController.loadData() 
+### ZwaveVendorController.loadVendors() 
 
-Load z-wave devices
+Load z-wave devices an parse vendors
+
+
+
+## ZwaveVendorIdController
+The controller that renders Z-Wave devices by vendor.
+
+### ZwaveVendorIdController.allSettled() 
+
+Load all promises
 
 
 

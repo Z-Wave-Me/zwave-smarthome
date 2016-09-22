@@ -6,13 +6,22 @@ Copyright (C) 2016 z-wave.Me
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 This User Interfaces allows to operate a Smart Home Network based on Z-Wave devices. It utilizes the software architecture "Z-Way", certified as Z-Wave Plus Controller.
 
-## v1.4.4
+## Project leader
+Marcel Kermer
+
+## v1.5.0
 #### New features
+- Time zone on the first access page (POPP only).
+- More products in the Z-Wave devices.
+- Skins.
 - Add update time to toggle button #167.
 - Online Apps: Sorting by most popular.
 - Elements: Sorting by last updated.
 
 #### Fixes
+- Filter function in elements prevents further use of UI elements #185.
+- Strange sting on widget #180.
+- Infinite loop on login #184.
 - Elements: Fixed knob bug.
 
 #### Changes

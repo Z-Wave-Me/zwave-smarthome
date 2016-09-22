@@ -1,0 +1,36 @@
+<!-- Zwave device view -->
+<div ng-controller="ZwaveVendorIdController">
+    <bb-loader></bb-loader>
+     <div class="text-center device-autodetect" ng-include="'app/views/zwave/zwave_vendors_autodetect.html'"></div>
+        <h3>
+            <button class="btn btn-default" bb-go-back><i class="fa fa-arrow-left"></i></button> 
+            <strong>{{zwaveProducts.vendor.brandname}}</strong>
+            |  {{_t('products')}} <span class="badge text-primary">{{zwaveProducts.cnt}}</span>
+            |  {{_t('frequency')}} <span class="badge">{{zwaveProducts.frequency}}</span>
+            <em ng-class="zwaveProducts.cnt == 0 ? 'text-danger': '' ">
+               
+            </em>
+        </h3> 
+        <div class="app-row app-row-report app-row-zwaveadd clearfix">
+            <div id="row_zwaveadd_{{v.id}}" class="report-entry" ng-repeat="v in zwaveProducts.all | orderBy:'name' track by $index">
+                <div class="report-col report-media">
+                    <img class="product-img" ng-src="{{v.product_image}}" alt="img" ng-if="v.product_image" />
+                    <img class="product-img" ng-src="storage/img/placeholder-img.png" alt="img" ng-if="!v.product_image" />
+                </div>
+                <div class="report-col report-body">
+                    {{v.name}} <span class="label label-info">{{v.frequencyid}}</span> 
+                </div>
+                <div class="report-col report-ctrl">
+                    <a href="#zwave/inclusion/{{v.id}}" class="btn btn-default" title="{{_t('lb_include_device')}}">
+                        <i class="fa fa-plug text-primary"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="fieldset submit-entry">
+            <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}"  bb-go-back>
+                <i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span>
+            </button>
+        </div>
+</div> <!-- /ng-controller --> 
+

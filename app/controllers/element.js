@@ -974,7 +974,7 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
         $scope.icons.all = dataService.getSingleElementIcons($scope.elementId.input);
 
     };
-    //$scope.loadCfgIcons();
+    $scope.loadCfgIcons();
 
     /**
      * Load already uploaded icons
@@ -990,7 +990,7 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
         });
 
     };
-    //$scope.loadUploadedIcons();
+    $scope.loadUploadedIcons();
     /**
      * Set selected icon
      * @param {string} icon
