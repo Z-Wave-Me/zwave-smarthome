@@ -400,7 +400,7 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
  * @class ManagementRemoteController
  */
 myAppController.controller('ManagementRemoteController', function ($scope, dataFactory, dataService) {
-    
+
 });
 /**
  * The controller that handles the licence key.
@@ -533,31 +533,37 @@ myAppController.controller('ManagementCloudBackupController', function ($scope, 
             email_log: 0
         },
         alert: {message: false, status: 'is-hidden', icon: false},
-        process: false
+        process: false,
+        scheduler: {
+            d: '21',//string
+            wd: 2,//int
+            h: '01',//string
+            m: '30'//string
+        }
     };
 
     /**
      * Load cloud backup settings
      */
     $scope.loadCloudBackup = function () {
-         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-         dataFactory.getApiLocal('device.de.json').then(function (response) {
-           $scope.loading = false;
-           var response = {
-            remote_id: $scope.controllerInfo.remoteId,
-            active: false,
-            email: '',
-            email_log: 0
-        };
-        response.email = (response.email||$scope.user.email);
-        //angular.extend($scope.managementCloud.input,_.omit(response,'remote_id'));
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        dataFactory.getApiLocal('device.de.json').then(function (response) {
+            $scope.loading = false;
+            var response = {
+                remote_id: $scope.controllerInfo.remoteId,
+                active: false,
+                email: '',
+                email_log: 0
+            };
+            response.email = (response.email || $scope.user.email);
+            //angular.extend($scope.managementCloud.input,_.omit(response,'remote_id'));
 
         }, function (error) {
             $scope.loading = false;
             alertify.alertError($scope._t('error_load_data'));
 
         });
-        
+
     };
     $scope.loadCloudBackup();
 
@@ -565,12 +571,12 @@ myAppController.controller('ManagementCloudBackupController', function ($scope, 
      * Send an access to the cloud API
      */
     $scope.activateCloudBackup = function (active) {
-       var input = {
+        var input = {
             remote_id: $scope.controllerInfo.remoteId,
             active: (active ? true : false)
         };
-         $scope.managementCloud.input.active = input.active;
-         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        $scope.managementCloud.input.active = input.active;
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         dataFactory.getApiLocal('device.de.json').then(function (response) {
             $timeout(function () {
                 $scope.loading = false;
