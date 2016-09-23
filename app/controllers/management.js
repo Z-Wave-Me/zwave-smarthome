@@ -395,16 +395,7 @@ myAppController.controller('ManagementCloudBackupController', function ($scope, 
     $scope.managementCloud = {
         alert: {message: false, status: 'is-hidden', icon: false},
         show: false,
-        type: 'day',
-        labels: {
-            weekDays: []
-        },
-        enums: {
-            minutes: [],
-            hours: [],
-            weekDays: [],
-            days: []
-        },
+        module:[],
         instance: {},
         process: false
     };
@@ -446,86 +437,39 @@ myAppController.controller('ManagementCloudBackupController', function ($scope, 
             }
             // Success - module
             if (module.state === 'fulfilled') {
-                $scope.managementCloud.enums.minutes = module.value.data.data.schema.properties.minutes.enum;
-                $scope.managementCloud.enums.hours = module.value.data.data.schema.properties.hours.enum;
-                $scope.managementCloud.enums.weekDays = module.value.data.data.schema.properties.weekDays.enum;
-                $scope.managementCloud.enums.days = module.value.data.data.schema.properties.days.enum;
-                $scope.managementCloud.labels.weekDays = module.value.data.data.options.fields.weekDays.optionLabels;
+                // Module
+                $scope.managementCloud.module = module.value.data.data;
             }
         });
     };
     $scope.allCloudSettled();
-    
+
     /**
      * Set scheduler type
      */
     $scope.setSchedulerType = function (type) {
-       $scope.managementCloud.type = type;
+        $scope.managementCloud.instance.params.scheduler = type;
     };
-    
+
     /**
      * Update instance
      */
-    $scope.updateInstance = function (form,input) {
+    $scope.updateInstance = function (form, input) {
         if (form.$invalid) {
             return;
         }
-        console.log(input)
-        return;
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         if (input.id) {
             dataFactory.putApi('instances', input.id, input).then(function (response) {
-                
-
+                 dataService.showNotifier({message: $scope._t('success_updated')});
+                  $scope.loading = false;
+                  $scope.allCloudSettled();
             }, function (error) {
                 alertify.alertError($scope._t('error_update_data'));
+                $scope.loading = false;
             });
         }
     };
-
-    /**
-     * Send an access to the cloud API
-     */
-//    $scope.activateCloudBackup = function (active) {
-//        var input = {
-//            remote_id: $scope.controllerInfo.remoteId,
-//            active: (active ? true : false)
-//        };
-//        $scope.managementCloud.input.active = input.active;
-//        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-//        dataFactory.getApiLocal('device.de.json').then(function (response) {
-//            $timeout(function () {
-//                $scope.loading = false;
-//                dataService.showNotifier({message: $scope._t('success_updated')});
-//                //$scope.loadCloudBackup();
-//            }, 2000);
-//
-//        }, function (error) {
-//            $scope.loading = false;
-//            alertify.alertError($scope._t('rror_update_data'));
-//
-//        });
-//    };
-
-    /**
-     * Send an access to the cloud API
-     */
-//    $scope.updateCloudBackup = function (input) {
-//        //input.params.email_log = parseInt(input.email_log);
-//        console.log(input)
-//        return;
-//        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-//        dataFactory.getApiLocal('device.de.json').then(function (response) {
-//            $timeout(function () {
-//                $scope.loading = false;
-//                dataService.showNotifier({message: $scope._t('success_updated')});
-//            }, 2000);
-//
-//        }, function (error) {
-//            $scope.loading = false;
-//            alertify.alertError($scope._t('rror_update_data'));
-//
-//        });
-//    };
 
 });
 /**

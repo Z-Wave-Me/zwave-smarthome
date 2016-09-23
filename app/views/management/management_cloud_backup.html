@@ -12,87 +12,80 @@
         <fieldset>
             <!-- email -->
             <div class="form-group form-inline">
-                <label>{{_t('lb_email')}}: </label>
+                <label>{{managementCloud.module.options.fields.email.label}}: </label>
                 <input name="email" id="email" type="email" class="form-control" 
                        value="{{managementCloud.instance.params.email}}" 
-                       ng-model="managementCloud.instance.params.email" 
+                       ng-model="managementCloud.instance.params.email"
+                       ng-required="true"
                        ng-blur="emailBlur = true" />
+                <bb-validator input-name='form_cloud_backup.email.$error.required' trans='_t("field_required")' has-blur='emailBlur'></bb-validator> 
                 <bb-validator input-name='form_cloud_backup.email.$error.email' trans='_t("email_invalid")' has-blur='emailBlur'></bb-validator> 
 
             </div>
             <!-- email log -->
             <div class="form-group">
-                <input type="radio" name="email_log" value="0" id="email_log_0" 
-                       ng-model="managementCloud.instance.params.email_log" 
-                       ng-checked="managementCloud.instance.params.email_log === 0" /> 
-                <label ng-bind="_t('no_email_log')"></label><br />
-                <input type="radio" name="email_log" value="1" id="email_log_1" 
-                       ng-model="managementCloud.instance.params.email_log" 
-                       ng-checked="managementCloud.instance.params.email_log === 1" /> 
-                <label ng-bind="_t('email_log_error')"></label><br />
-                <input type="radio" name="email_log" value="2" id="email_log_2" 
-                       ng-model="managementCloud.instance.params.email_log" 
-                       ng-checked="managementCloud.instance.params.email_log === 2" /> 
-                <label ng-bind="_t('email_log_all')"></label>
+                <h4>{{managementCloud.module.options.fields.email_log.label}}</h4>
+                <div ng-repeat="v in managementCloud.module.schema.properties.email_log.enum track by $index">
+                    <input type="radio" name="email_log" value="{{v}}" id="email_log_{{v}}"
+                           ng-model="managementCloud.instance.params.email_log" 
+                           ng-checked="managementCloud.instance.params.email_log === v" />
+                    <label>{{managementCloud.module.options.fields.email_log.optionLabels[$index]}}</label>
+                </div>
             </div>
         </fieldset>
-        <fieldset ng-if_="managementCloud.instance.params.user_active">
-            <h3>Scheduler</h3>
+        <fieldset ng-if="managementCloud.instance.params.user_active">
             <div class="btn-group">
-                <button class="btn btn-default" title="{{_t('daily')}}"
-                        ng-class="managementCloud.type === 'day' ? 'active':''"
-                        ng-click="setSchedulerType('day')"
-                        >{{_t('daily')}}</button>
-                <button class="btn btn-default" title="{{_t('weekly')}}"
-                         ng-class="managementCloud.type === 'week' ? 'active':''"
-                        ng-click="setSchedulerType('week')"
-                        >{{_t('weekly')}}</button>
-                <button class="btn btn-default" title="{{_t('monthly')}}"
-                         ng-class="managementCloud.type === 'month' ? 'active':''"
-                        ng-click="setSchedulerType('month')"
-                        >{{_t('monthly')}}</button> 
+                <button class="btn btn-default" title="{{_t('daily')}}" type="button"
+                        ng-repeat="v in managementCloud.module.schema.properties.scheduler.enum track by $index"
+                        ng-class="v === managementCloud.instance.params.scheduler ? 'active' : ''"
+                        ng-click="setSchedulerType(v)"
+                        >{{managementCloud.module.options.fields.scheduler.optionLabels[$index]}}</button>
             </div>
-            <div class="form-group form-inline">
-                <!-- Day -->
-                <label>{{_t('hour')}}</label>
+            <div class="form-group form-inline form-block">
+                <!-- Hours -->
+                <span ng-if="managementCloud.module.options.fields.hours.dependencies.scheduler.indexOf(managementCloud.instance.params.scheduler) > -1">
+                <label>{{managementCloud.module.options.fields.hours.label}}</label>
                 <select class="form-control" ng-model="managementCloud.instance.params.hours">
                     <option value="{{v}}" 
-                            ng-repeat="v in managementCloud.enums.hours track by $index"
+                            ng-repeat="v in managementCloud.module.schema.properties.hours.enum track by $index"
                             ng-selected="v === managementCloud.instance.params.hours">
                         {{v}}
                     </option>
                 </select>
-                <!-- Minute -->
-                <label>{{_t('minute')}}</label>
+                 </span>
+                <!-- Minutes -->
+                <span ng-if="managementCloud.module.options.fields.minutes.dependencies.scheduler.indexOf(managementCloud.instance.params.scheduler) > -1">
+                 <label>{{managementCloud.module.options.fields.minutes.label}}</label>
                 <select class="form-control" ng-model="managementCloud.instance.params.minutes">
                     <option value="{{v}}" 
-                            ng-repeat="v in managementCloud.enums.minutes track by $index"
+                            ng-repeat="v in managementCloud.module.schema.properties.minutes.enum track by $index"
                             ng-selected="v === managementCloud.instance.params.minutes">
                         {{v}}
                     </option>
                 </select>
-                <!--Week -->
-                <span ng-if="managementCloud.type === 'week'">
-                <label>{{_t('weekday')}}</label>
-                <select class="form-control" ng-model="managementCloud.instance.params.weekDays">
-                    <option value="{{v}}" 
-                            ng-repeat="v in managementCloud.enums.weekDays track by $index"
-                            ng-selected="v === managementCloud.instance.params.weekDays">
-                        {{managementCloud.labels.weekDays[$index]}}
-                    </option>
-                </select>
-                </span>
-                <!--Month -->
-                <span ng-if="managementCloud.type === 'month'">
-                <label>{{_t('month')}}</label>
-                <select class="form-control" ng-model="managementCloud.instance.params.days">
-                    <option value="{{v}}" 
-                            ng-repeat="v in managementCloud.enums.days track by $index"
-                            ng-selected="v === managementCloud.instance.params.days">
-                        {{v}}
-                    </option>
-                </select>
                  </span>
+                <!--Weekdays -->
+                 <span ng-if="managementCloud.module.options.fields.weekDays.dependencies.scheduler.indexOf(managementCloud.instance.params.scheduler) > -1">
+                <label>{{managementCloud.module.options.fields.weekDays.label}}</label>
+                    <select class="form-control" ng-model="managementCloud.instance.params.weekDays">
+                        <option value="{{v}}" 
+                                ng-repeat="v in managementCloud.module.schema.properties.weekDays.enum track by $index"
+                                ng-selected="v.toString() === managementCloud.instance.params.weekDays">
+                            {{managementCloud.module.options.fields.weekDays.optionLabels[$index]}}
+                        </option>
+                    </select>
+                 </span>
+                <!--Days -->
+                <span ng-if="managementCloud.module.options.fields.days.dependencies.scheduler.indexOf(managementCloud.instance.params.scheduler) > -1">
+                    <label>{{managementCloud.module.options.fields.days.label}}</label>
+                    <select class="form-control" ng-model="managementCloud.instance.params.days">
+                        <option value="{{v}}" 
+                                ng-repeat="v in managementCloud.module.schema.properties.days.enum track by $index"
+                                ng-selected="v === managementCloud.instance.params.days">
+                            {{v}}
+                        </option>
+                    </select>
+                </span>
             </div>
         </fieldset>
         <fieldset  class="submit-entry">

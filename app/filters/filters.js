@@ -65,6 +65,16 @@ myApp.filter('toInt', function () {
 });
 
 /**
+ * Convert val to string
+ * @function toString
+ */
+myApp.filter('toString', function () {
+    return function (val) {
+        return val.toString();
+    };
+});
+
+/**
  * Convert val to bool
  * @function toBool
  */
