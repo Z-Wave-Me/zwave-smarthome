@@ -94,7 +94,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
             angular.extend(cfg.route.time, {string: $filter('setTimeFromBox')(response.data.data)});
 
             var refresh = function () {
-                console.log($http.pendingRequests.length)
+                //console.log($http.pendingRequests.length)
                 if ($http.pendingRequests.length > cfg.pending_requests_limit) {
                     var fatalArray = {
                         type: 'network',
