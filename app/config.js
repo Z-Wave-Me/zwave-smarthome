@@ -31,6 +31,7 @@ var config_data = {
             os: 'unknown',
             // Route fatal error
             fatalError: {
+                type: 'system',// system|network
                 message: false,
                 info: false,
                 permanent: false, // Permanently displayed

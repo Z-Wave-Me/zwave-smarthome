@@ -376,6 +376,7 @@ myApp.run(function ($rootScope, $location, dataService, cfg) {
         // Reset fatal error messages
         if (cfg.route.fatalError.message && !cfg.route.fatalError.permanent) {
             angular.extend(cfg.route.fatalError, {
+                type: 'system',
                 message: false,
                 info: false,
                 hide: false

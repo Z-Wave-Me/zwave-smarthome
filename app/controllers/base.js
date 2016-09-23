@@ -95,9 +95,13 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
             var refresh = function () {
                 dataFactory.getApi('timezone', null, true).then(function (response) {
                     angular.extend(cfg.route.time, {string: $filter('setTimeFromBox')(response.data.data)});
+                    if(cfg.route.fatalError.type === 'network'){
+                        $window.location.reload();
+                    }
                 }, function (error) {
                     if (!error.status || error.status === 0) {
                         var fatalArray = {
+                            type: 'network',
                             message: $scope._t('connection_refused'),
                             info: $scope._t('connection_refused_info'),
                             permanent: true,
