@@ -102,14 +102,23 @@ Change auth data
 ## ManagementRemoteController
 The controller that renders and handles remote access data.
 
-### ManagementRemoteController.loadRemoteAccess() 
 
-Load Remote access data
+## ManagementCloudBackupController
+The controller that handles a backup to the cloud.
+
+### ManagementCloudBackupController.allCloudSettled() 
+
+Load all promises
 
 
-### ManagementRemoteController.putRemoteAccess() 
+### ManagementCloudBackupController.setSchedulerType() 
 
-PUT Remote access
+Set scheduler type
+
+
+### ManagementCloudBackupController.updateInstance() 
+
+Update instance
 
 
 
@@ -200,23 +209,9 @@ Remove token from the list
 ## ManagementReportController
 The controller that handles bug report info.
 
-### ManagementReportController.loadRemoteAccess() 
-
-Load Remote access data
-
-
 ### ManagementReportController.sendReport() 
 
 Send and save report
-
-
-
-## ManagementPostfixController
-The controller that renders postfix data.
-
-### ManagementPostfixController.loadPostfix() 
-
-Load postfix data
 
 
 

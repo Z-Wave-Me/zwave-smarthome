@@ -41,6 +41,12 @@ Convert val to int
 
 
 
+### toString() 
+
+Convert val to string
+
+
+
 ### toBool() 
 
 Convert val to bool

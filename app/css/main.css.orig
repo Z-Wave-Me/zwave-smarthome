@@ -11445,6 +11445,11 @@ fieldset.submit-entry {
   border: solid 4px black !important;
 }
 
+/* line 135, ../sass/common/_form.scss */
+.form-block {
+  margin: 10px 0 0 0;
+}
+
 /* Dropdown
 -------------------------------------------------- */
 /* line 3, ../sass/common/_dropdown.scss */
