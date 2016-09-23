@@ -18,6 +18,8 @@ var config_data = {
         //'server_url': 'http://192.168.10.119:8083/',
         // Interval in miliseconds to refresh data
         'interval': 3000,
+        // Displays a connection error After reaching the limit
+        'pending_requests_limit': 10,
         // Route - will be extended
         'route': {
             // Current location
