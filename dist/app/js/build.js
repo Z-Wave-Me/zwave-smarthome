@@ -11220,6 +11220,7 @@ myApp.run(function ($rootScope, $location, dataService, cfg) {
         // Reset fatal error messages
         if (cfg.route.fatalError.message && !cfg.route.fatalError.permanent) {
             angular.extend(cfg.route.fatalError, {
+                type: 'system',
                 message: false,
                 info: false,
                 hide: false
@@ -15127,7 +15128,7 @@ var myAppController = angular.module('myAppController', []);
  * The app base controller. 
  * @class BaseController
  */
-myAppController.controller('BaseController', function ($scope, $cookies, $filter, $location, $route, $window, $interval, cfg, cfgicons, dataFactory, dataService, myCache) {
+myAppController.controller('BaseController', function ($scope, $cookies, $filter, $location, $route, $window, $interval, $http, cfg, cfgicons, dataFactory, dataService, myCache) {
 
     // Global scopes
     $scope.$location = $location;
@@ -15146,7 +15147,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
      * @returns {undefined}
      */
     $scope.setSkin = function () {
-        if ($cookies.skin && $cookies.skin !=='default') {
+        if ($cookies.skin && $cookies.skin !== 'default') {
             cfg.skin.active = $cookies.skin;
             cfg.img.icons = cfg.skin.path + $cookies.skin + '/img/icons/';
             cfg.img.logo = cfg.skin.path + $cookies.skin + '/img/logo/';
@@ -15207,24 +15208,45 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         }
         dataFactory.getApi('timezone', null, true).then(function (response) {
             angular.extend(cfg.route.time, {string: $filter('setTimeFromBox')(response.data.data)});
+
             var refresh = function () {
+                console.log($http.pendingRequests.length)
+                if ($http.pendingRequests.length > cfg.pending_requests_limit) {
+                    var fatalArray = {
+                        type: 'network',
+                        message: $scope._t('connection_refused'),
+                        info: $scope._t('connection_refused_info'),
+                        permanent: true,
+                        hide: true
+                    };
+                    if ($scope.routeMatch('/boxupdate')) {
+                        fatalArray.message = $scope._t('jamesbox_connection_refused');
+                        fatalArray.info = $scope._t('jamesbox_connection_refused_info', {__reload_begintag__: '<div>', __reload_endtag__: '</div>', __attention_begintag__: '<div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i>', __attention_endtag__: '<div>'});
+                        fatalArray.icon = cfg.route.fatalError.icon_jamesbox;
+                    }
+                    angular.extend(cfg.route.fatalError, fatalArray);
+                }
                 dataFactory.getApi('timezone', null, true).then(function (response) {
                     angular.extend(cfg.route.time, {string: $filter('setTimeFromBox')(response.data.data)});
-                }, function (error) {
-                    if (!error.status || error.status === 0) {
-                        var fatalArray = {
-                            message: $scope._t('connection_refused'),
-                            info: $scope._t('connection_refused_info'),
-                            permanent: true,
-                            hide: true
-                        };
-                        if ($scope.routeMatch('/boxupdate')) {
-                            fatalArray.message = $scope._t('jamesbox_connection_refused');
-                            fatalArray.info = $scope._t('jamesbox_connection_refused_info', {__reload_begintag__: '<div>', __reload_endtag__: '</div>', __attention_begintag__: '<div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i>', __attention_endtag__: '<div>'});
-                            fatalArray.icon = cfg.route.fatalError.icon_jamesbox;
-                        }
-                        angular.extend(cfg.route.fatalError, fatalArray);
+                    if (cfg.route.fatalError.type === 'network') {
+                        $window.location.reload();
                     }
+                }, function (error) {
+//                    if (!error.status || error.status === 0) {
+//                        var fatalArray = {
+//                            type: 'network',
+//                            message: $scope._t('connection_refused'),
+//                            info: $scope._t('connection_refused_info'),
+//                            permanent: true,
+//                            hide: true
+//                        };
+//                        if ($scope.routeMatch('/boxupdate')) {
+//                            fatalArray.message = $scope._t('jamesbox_connection_refused');
+//                            fatalArray.info = $scope._t('jamesbox_connection_refused_info', {__reload_begintag__: '<div>', __reload_endtag__: '</div>', __attention_begintag__: '<div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i>', __attention_endtag__: '<div>'});
+//                            fatalArray.icon = cfg.route.fatalError.icon_jamesbox;
+//                        }
+//                        angular.extend(cfg.route.fatalError, fatalArray);
+//                    }
                     //$interval.cancel($scope.timeZoneInterval);
                 });
             };
