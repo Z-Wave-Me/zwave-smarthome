@@ -11,6 +11,11 @@
          ng-if="handleLicense.show" 
          ng-include="'app/views/management/management_licence.html'"></div>
     
+     <!-- ///////////////////////////// Local Access ///////////////////////////// -->
+     <div class="accordion-entry" 
+          ng-include="'app/views/management/management_local.html'"
+          ng-if="cfg.app_type === 'jb'"></div>
+    
     <!-- ///////////////////////////// Backup ///////////////////////////// -->
      <div class="accordion-entry" ng-include="'app/views/management/management_backup.html'" ng-if="!isMobile"></div>
      

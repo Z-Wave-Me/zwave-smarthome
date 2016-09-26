@@ -114,14 +114,11 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
                 dataFactory.getApi('timezone', null, true).then(function (response) {
                     angular.extend(cfg.route.time, {string: $filter('setTimeFromBox')(response.data.data)});
                     if (cfg.route.fatalError.type === 'network') {
-
                         dataFactory.sessionApi().then(function (sessionRes) {
                             var user = sessionRes.data.data;
-
                             if (sessionRes.data.data) {
                                 dataService.setZWAYSession(user.sid);
                                 dataService.setUser(user);
-
                                 if (dataService.getUser()) {
                                     $window.location.reload();
                                     //$q.defer().promise;
