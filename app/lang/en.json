@@ -1,9 +1,10 @@
 {
     "newtrans": "---",
+     "---": "newtrans",
+    "works_with_internet": "Works only with internet access",
     "local_access_manage": "Local Access",
     "local_access_activate": "Activate local access",
     "local_access_not_installed": "Local Access is not installed. Please add new 'Local Access' in the Apps > local > Time zone and access from WAN > +New App.",
-    "---": "newtrans",
     "connection_refused_reboot": "The system will be rebooted and connection will be closed. Try to reload the page after some minutes to get back to the Smart Home UI.",
     "timezone_not_installed": "Time Zone Management is not installed. Please add new 'Time Zone' ( Apps > local > Time zone and access from WAN > +New App ) app in local Apps.",
     "wan_port_access": "Allow access to the Smart Home UI from WAN port",
