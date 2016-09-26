@@ -85,7 +85,7 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
         }
         dataService.setZWAYSession(user.sid);
         dataService.setUser(user);
-        dataFactory.putApi('profiles', user.id, user).then(function (response) {}, function (error) {});
+        //dataFactory.putApi('profiles', user.id, user).then(function (response) {}, function (error) {});
         if (rememberme) {
             dataService.setRememberMe(rememberme);
         }

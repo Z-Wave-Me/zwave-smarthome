@@ -82,6 +82,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         angular.extend(cfg.route.fatalError, obj || {message: false, info: false, hide: false});
 
     };
+
     /**
      * Set a time
      * @returns {undefined}
@@ -113,7 +114,25 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
                 dataFactory.getApi('timezone', null, true).then(function (response) {
                     angular.extend(cfg.route.time, {string: $filter('setTimeFromBox')(response.data.data)});
                     if (cfg.route.fatalError.type === 'network') {
-                        $window.location.reload();
+
+                        dataFactory.sessionApi().then(function (sessionRes) {
+                            var user = sessionRes.data.data;
+
+                            if (sessionRes.data.data) {
+                                dataService.setZWAYSession(user.sid);
+                                dataService.setUser(user);
+
+                                if (dataService.getUser()) {
+                                    $window.location.reload();
+                                    //$q.defer().promise;
+                                    //return;
+                                }
+                            }
+
+                        }, function (error) {
+                            //$q.defer().promise;
+                        });
+
                     }
                 }, function (error) {
                     if (!error.status || error.status === 0) {
