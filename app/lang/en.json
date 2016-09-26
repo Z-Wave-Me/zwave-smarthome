@@ -1,9 +1,10 @@
 {
     "newtrans": "---",
+     "---": "newtrans",
+    "works_with_internet": "Works only with internet access",
     "local_access_manage": "Local Ethernet Access",
     "local_access_activate": "Enable Ethernet access ",
     "local_access_not_installed": "Local Ethernet Access configuration wasn't found. Please activate it by adding 'Time zone and access from home network' in 'Apps > local > Time zone and access from home network > +New App'.",
-    "---": "newtrans",
     "connection_refused_reboot": "The system will be rebooted and connection will be closed. Try to reload the page after some minutes to get back to the Smart Home UI, if it doesn't will be triggered automatically.",
     "timezone_not_installed": "Time Zone configuration wasn't found. Please activate it by adding 'Time zone and access from home network' in 'Apps > local > Time zone and access from home network > +New App'.",
     "wan_port_access": "Allow access from home network by Ethernet",

@@ -1,4 +1,5 @@
 {
+    "works_with_internet": "Works only with internet access",
     "local_access_manage": "Ethernet-Zugang",
     "local_access_activate": "Ethernet-Zugang aktivieren",
     "local_access_not_installed": "Die Konfiguration für den Ethernet-Zugang konnte nicht gefunden werden. Bitte aktivieren sie diese durch hinzufügen der App 'Zeitzone und Ethernet-Zugang' unter 'Anwendungen > Lokal > Zeitzone und Ethernet-Zugang > +Neue App'.",
@@ -44,7 +45,7 @@
     "jamesbox_update_attention": "ACHTUNG: Bitte trennen Sie während der Aktualisierung nicht die Stromversorgung des POPP Hub. Dies kann zu Schäden an Hard- und Software führen.",
     "update_now": "Jetzt Aktualisieren",
     "jamesbox_not_update": "Beim nächsten Login",
-    "jamesbox_update_update_timeout":"Ihre Bestätigung läuft in 5 Minuten ab. ",
+    "jamesbox_update_update_timeout": "Ihre Bestätigung läuft in 5 Minuten ab. ",
     "jamesbox_update_follow_steps": "Bitte befolgen Sie die folgenden Schritte, um die Firmware ihres POPP Hub zu updaten:",
     "no_update_available": "Es sind keine Aktualisierungen verfügbar.",
     "jamesbox_software_upgrade": "Software Aktualisierung",
