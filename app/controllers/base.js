@@ -190,6 +190,19 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         }
         return true;
     };
+    /**
+     * Check if value is in array
+     * 
+     * @param {array} array
+     * @param {mixed} value
+     * @returns {Boolean}
+     */
+    $scope.isInArray = function (array,value) {
+        if (array.indexOf(value) > -1) {
+            return true;
+        }
+        return false;
+    };
 
 
     $scope.lang_list = cfg.lang_list;
