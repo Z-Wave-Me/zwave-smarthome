@@ -15114,7 +15114,7 @@ function postRenderAlpacaData(renderedForm) {
 var myAppController = angular.module('myAppController', []);
 
 /**
- * The app base controller. 
+ * The app base controller.
  * @class BaseController
  */
 myAppController.controller('BaseController', function ($scope, $cookies, $filter, $location, $route, $window, $interval, $http, cfg, cfgicons, dataFactory, dataService, myCache) {
@@ -15152,7 +15152,8 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
                     //$("link[id='main_css']").attr('href', 'storage/skins/defaultzip/main.css');
                     $("link[id='main_css']").attr('href', cfg.skin.path + response.data.data.name + '/main.css');
                 }
-            }, function (error) {});
+            }, function (error) {
+            });
         }
 
 //     if($scope.user && $scope.user.skin !== 'default'){
@@ -15247,7 +15248,12 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
                         };
                         if ($scope.routeMatch('/boxupdate')) {
                             fatalArray.message = $scope._t('jamesbox_connection_refused');
-                            fatalArray.info = $scope._t('jamesbox_connection_refused_info', {__reload_begintag__: '<div>', __reload_endtag__: '</div>', __attention_begintag__: '<div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i>', __attention_endtag__: '<div>'});
+                            fatalArray.info = $scope._t('jamesbox_connection_refused_info', {
+                                __reload_begintag__: '<div>',
+                                __reload_endtag__: '</div>',
+                                __attention_begintag__: '<div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i>',
+                                __attention_endtag__: '<div>'
+                            });
                             fatalArray.icon = cfg.route.fatalError.icon_jamesbox;
                         }
                         angular.extend(cfg.route.fatalError, fatalArray);
@@ -15256,7 +15262,8 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
                 });
             };
             $scope.timeZoneInterval = $interval(refresh, $scope.cfg.interval);
-        }, function (error) {});
+        }, function (error) {
+        });
 
     };
     $scope.setTimeZone();
@@ -15276,7 +15283,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
 
     /**
      * Allow to access page elements by role.
-     * 
+     *
      * @param {array} roles
      * @param {boolean} mobile
      * @returns {Boolean}
@@ -15297,12 +15304,12 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     };
     /**
      * Check if value is in array
-     * 
+     *
      * @param {array} array
      * @param {mixed} value
      * @returns {Boolean}
      */
-    $scope.isInArray = function (array,value) {
+    $scope.isInArray = function (array, value) {
         if (array.indexOf(value) > -1) {
             return true;
         }
@@ -15336,7 +15343,8 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         var lang = (cfg.lang_list.indexOf(lang) > -1 ? lang : cfg.lang);
         dataFactory.getLanguageFile(lang).then(function (response) {
             angular.extend($scope.languages, response.data);
-        }, function (error) {});
+        }, function (error) {
+        });
     };
     /**
      * Get a language line by key.
@@ -15518,11 +15526,11 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     if (!alertify.alertError) {
         //define a new errorAlert base on alert
         alertify.dialog('alertError', function factory() {
-            return{
+            return {
                 build: function () {
                     var errorHeader = '<span class="fa fa-exclamation-triangle fa-lg text-danger" '
-                            + 'style="vertical-align:middle;">'
-                            + '</span> ' + cfg.app_name + ' - ERROR';
+                        + 'style="vertical-align:middle;">'
+                        + '</span> ' + cfg.app_name + ' - ERROR';
                     this.setHeader(errorHeader);
                 }
             };
@@ -15532,17 +15540,16 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     // Extend existing alert (WARNING) dialog
     if (!alertify.alertWarning) {
         alertify.dialog('alertWarning', function factory() {
-            return{
+            return {
                 build: function () {
                     var errorHeader = '<span class="fa fa-exclamation-circle fa-lg text-warning" '
-                            + 'style="vertical-align:middle;">'
-                            + '</span> ' + cfg.app_name + ' - WARNING';
+                        + 'style="vertical-align:middle;">'
+                        + '</span> ' + cfg.app_name + ' - WARNING';
                     this.setHeader(errorHeader);
                 }
             };
         }, true, 'alert');
     }
-
 
 
 });
