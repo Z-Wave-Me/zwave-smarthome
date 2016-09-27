@@ -11037,19 +11037,13 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     requireLogin: true,
                     roles: cfg.role_access.devices
                 }).
-                //Zwave add
-                when('/zwave/add/:brandname?', {
-                    templateUrl: 'app/views/zwave/zwave_add.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.devices
-                }).
                 //Zwave select vendors
                 when('/zwave/vendors', {
                     templateUrl: 'app/views/zwave/zwave_vendors.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices
                 }).
-                //Zwave select devices by vendor id
+                //Zwave select devices by vendor id 
                 when('/zwave/vendors/:id', {
                     templateUrl: 'app/views/zwave/zwave_vendors_id.html',
                     requireLogin: true,
@@ -11376,12 +11370,12 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/auth/auth_password.html',
-    "<div ng-controller=AuthPasswordController><bb-loader></bb-loader><div ng-include=\"'app/views/auth/auth_header.html'\"></div><div class=\"alert alert-warning\"><i class=\"fa fa-exclamation-circle\"></i> {{_t('password_info')}}</div><form name=form_password id=form_password class=\"form form-page\" ng-submit=\"changePassword(form_password, input,handleTimezone.instance)\" novalidate><fieldset><p class=form-control-static><span ng-bind=\"_t('lb_login')\"></span>: <strong ng-bind=cfg.default_credentials.login></strong></p></fieldset><fieldset><label class=isrequired>{{_t('lb_new_password')}}:</label><input name=password id=password type=password class=form-control ng-model=input.password ng-blur=\"passwordBlur = true\" ng-required=true ng-minlength=\"6\"><bb-validator input-name=form_password.password.$error.required trans=_t(&quot;field_required&quot;) has-blur=passwordBlur></bb-validator><bb-validator input-name=form_password.password.$error.minlength trans=_t(&quot;password_valid&quot;) has-blur=passwordBlur></bb-validator></fieldset><fieldset><label class=isrequired>{{_t('confirm_password')}}:</label><input name=password_confirm id=password_confirm type=password class=form-control ng-blur=\"passwordConfirmBlur = true\" ng-model=input.passwordConfirm bb-compare-to=\"password\"><bb-validator input-name=form_password.password_confirm.$error.compareto trans=_t(&quot;passwords_must_match&quot;) has-blur=passwordConfirmBlur></bb-validator></fieldset><fieldset><div class=form-group><label>{{_t('lb_email')}}:</label><input name=email id=email type=email class=form-control ng-model=input.email ng-blur=\"emailBlur = true\"><bb-validator input-name=form_password.email.$error.required trans=_t(&quot;field_required&quot;) has-blur=emailBlur></bb-validator><bb-validator input-name=form_password.email.$error.email trans=_t(&quot;email_invalid&quot;) has-blur=emailBlur></bb-validator></div><bb-help-text trans=\"_t('password_email_info')\"></bb-help-text></fieldset><fieldset ng-if=\"cfg.app_type === 'jb' && handleTimezone.show\"><div class=form-group><label>{{_t('timezone_select')}}</label><select class=form-control ng-model=handleTimezone.instance.params.timezone><option value={{v}} ng-repeat=\"v in managementTimezone.enums track by $index\" ng-selected=\"v === handleTimezone.instance.params.timezone\">{{managementTimezone.labels[$index]}}</option></select><bb-help-text trans=\"_t('timezone_info')\"></bb-help-text></div><div class=form-group><div><input type=checkbox name=wan_port_access id=wan_port_access value=true ng-model=handleTimezone.instance.params.wan_port_access ng-checked=\"handleTimezone.instance.params.wan_port_access\"><label ng-bind=\"_t('wan_port_access')\"></label><bb-help-text trans=\"_t('wan_port_access_info')\"></bb-help-text></div></div></fieldset><fieldset class=submit-entry><button type=submit class=\"btn btn-submit\" title=\"{{_t('lb_enter')}}\" ng-disabled=form_password.$invalid><i class=\"fa fa-check\"></i> <span ng-bind=\"_t('lb_submit')\"></span></button></fieldset></form></div>"
+    "<div ng-controller=AuthPasswordController><bb-loader></bb-loader><div ng-include=\"'app/views/auth/auth_header.html'\"></div><div class=\"alert alert-warning\"><i class=\"fa fa-exclamation-circle\"></i> {{_t('password_info')}}</div><form name=form_password id=form_password class=\"form form-page\" ng-submit=\"changePassword(form_password, input,handleTimezone.instance)\" novalidate><fieldset><p class=form-control-static><span ng-bind=\"_t('lb_login')\"></span>: <strong ng-bind=cfg.default_credentials.login></strong></p></fieldset><fieldset><label class=isrequired>{{_t('lb_new_password')}}:</label><input name=password id=password type=password class=form-control ng-model=input.password ng-blur=\"passwordBlur = true\" ng-required=true ng-minlength=\"6\"><bb-validator input-name=form_password.password.$error.required trans=_t(&quot;field_required&quot;) has-blur=passwordBlur></bb-validator><bb-validator input-name=form_password.password.$error.minlength trans=_t(&quot;password_valid&quot;) has-blur=passwordBlur></bb-validator></fieldset><fieldset><label class=isrequired>{{_t('confirm_password')}}:</label><input name=password_confirm id=password_confirm type=password class=form-control ng-blur=\"passwordConfirmBlur = true\" ng-model=input.passwordConfirm bb-compare-to=\"password\"><bb-validator input-name=form_password.password_confirm.$error.compareto trans=_t(&quot;passwords_must_match&quot;) has-blur=passwordConfirmBlur></bb-validator></fieldset><fieldset><div class=form-group><label>{{_t('lb_email')}}:</label><input name=email id=email type=email class=form-control ng-model=input.email ng-blur=\"emailBlur = true\"><bb-validator input-name=form_password.email.$error.required trans=_t(&quot;field_required&quot;) has-blur=emailBlur></bb-validator><bb-validator input-name=form_password.email.$error.email trans=_t(&quot;email_invalid&quot;) has-blur=emailBlur></bb-validator></div><bb-help-text trans=\"_t('password_email_info')\"></bb-help-text></fieldset><fieldset ng-if=\"cfg.app_type === 'jb' && handleTimezone.show\"><div class=form-group><label>{{_t('timezone_select')}}</label><select class=form-control ng-model=handleTimezone.instance.params.timezone><option value={{v}} ng-repeat=\"v in managementTimezone.enums track by $index\" ng-selected=\"v === handleTimezone.instance.params.timezone\">{{managementTimezone.labels[$index]}}</option></select><bb-help-text trans=\"_t('timezone_info')\"></bb-help-text></div></fieldset><fieldset class=submit-entry><button type=submit class=\"btn btn-submit\" title=\"{{_t('lb_enter')}}\" ng-disabled=form_password.$invalid><i class=\"fa fa-check\"></i> <span ng-bind=\"_t('lb_submit')\"></span></button></fieldset></form></div>"
   );
 
 
   $templateCache.put('app/views/auth/password_forgot.html',
-    "<div ng-controller=PasswordForgotController class=mobile-padding><bb-loader></bb-loader><bb-alert alert=passwordForgot.alert></bb-alert><form name=form_password id=form_password class=\"form form-page\" ng-submit=\"sendEmail(form_password, passwordForgot)\" novalidate ng-hide=\"passwordForgot.alert.status == 'alert-success'\"><fieldset><h3><i class=\"fa fa-chevron-down\"></i> {{_t('password_forgot_info')}}</h3><div class=form-group><label class=isrequired>{{_t('lb_email')}}:</label><input name=email id=email type=email class=form-control ng-model=passwordForgot.input.email ng-blur=\"emailBlur = true\" ng-required=\"true\"><bb-validator input-name=form_password.email.$error.required trans=_t(&quot;field_required&quot;) has-blur=emailBlur></bb-validator><bb-validator input-name=form_password.email.$error.email trans=_t(&quot;email_invalid&quot;) has-blur=emailBlur></bb-validator></div></fieldset><fieldset class=submit-entry><button type=button class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <button type=submit class=\"btn btn-submit\" title=\"{{_t('lb_submit')}}\" ng-disabled=form_password.$invalid><i class=\"fa fa-check\"></i> <span class=btn-name ng-bind=\"_t('lb_submit')\"></span></button></fieldset></form></div>"
+    "<div ng-controller=PasswordForgotController class=mobile-padding><bb-loader></bb-loader><bb-alert alert=passwordForgot.alert></bb-alert><form name=form_password id=form_password class=\"form form-page\" ng-submit=\"sendEmail(form_password, passwordForgot)\" novalidate ng-hide=\"passwordForgot.alert.status == 'alert-success'\"><fieldset><h3>{{_t('password_forgot_info')}}</h3><div class=form-group><label class=isrequired>{{_t('lb_email')}}:</label><input name=email id=email type=email class=form-control ng-model=passwordForgot.input.email ng-blur=\"emailBlur = true\" ng-required=\"true\"><bb-validator input-name=form_password.email.$error.required trans=_t(&quot;field_required&quot;) has-blur=emailBlur></bb-validator><bb-validator input-name=form_password.email.$error.email trans=_t(&quot;email_invalid&quot;) has-blur=emailBlur></bb-validator></div><bb-help-text trans=\"_t('works_with_internet')\"></bb-help-text></fieldset><fieldset class=submit-entry><button type=button class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <button type=submit class=\"btn btn-submit\" title=\"{{_t('lb_submit')}}\" ng-disabled=form_password.$invalid><i class=\"fa fa-check\"></i> <span class=btn-name ng-bind=\"_t('lb_submit')\"></span></button></fieldset></form></div>"
   );
 
 
@@ -11686,7 +11680,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/management/management.html',
-    "<div ng-controller=ManagementController class=mobile-padding><div class=accordion-entry ng-include=\"'app/views/management/management_user.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_remote.html'\"></div><div class=accordion-entry ng-if=handleLicense.show ng-include=\"'app/views/management/management_licence.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_backup.html'\" ng-if=!isMobile></div><div class=accordion-entry ng-include=\"'app/views/management/management_timezone.html'\" ng-if=\"cfg.app_type === 'jb'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_restore.html'\" ng-if=!isMobile></div><div class=accordion-entry ng-include=\"'app/views/management/management_factory.html'\"></div><div class=accordion-entry ng-if=!isMobile ng-hide=\"cfg.app_type === 'wd' || cfg.app_type === 'jb'\" ng-include=\"'app/views/management/management_firmware.html'\"></div><div class=accordion-entry ng-if=\"cfg.app_type === 'jb'\" ng-include=\"'app/views/management/management_firmware_jb.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_appstore.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_report.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_info.html'\"></div></div>"
+    "<div ng-controller=ManagementController class=mobile-padding><div class=accordion-entry ng-include=\"'app/views/management/management_user.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_remote.html'\"></div><div class=accordion-entry ng-if=handleLicense.show ng-include=\"'app/views/management/management_licence.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_local.html'\" ng-if=\"cfg.app_type === 'jb'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_backup.html'\" ng-if=!isMobile></div><div class=accordion-entry ng-include=\"'app/views/management/management_timezone.html'\" ng-if=\"cfg.app_type === 'jb'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_restore.html'\" ng-if=!isMobile></div><div class=accordion-entry ng-include=\"'app/views/management/management_factory.html'\"></div><div class=accordion-entry ng-if=\"!isMobile && !isInArray(['popp','jb'],cfg.app_type)\" ng-include=\"'app/views/management/management_firmware.html'\"></div><div class=accordion-entry ng-if=\"cfg.app_type === 'jb'\" ng-include=\"'app/views/management/management_firmware_jb.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_appstore.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_report.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_info.html'\"></div></div>"
   );
 
 
@@ -11725,6 +11719,11 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
   );
 
 
+  $templateCache.put('app/views/management/management_local.html',
+    "<h2 class=accordion-entry-title ng-click=\"expandElement('local')\"><i class=\"fa fa-database\"></i> <span ng-bind=\"_t('local_access_manage')\"></span> <i class=\"fa accordion-arrow\" ng-class=\"expand.local ? 'fa-chevron-up' : 'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-class=\"\" ng-if=expand.local ng-controller=ManagementLocalController><bb-loader></bb-loader><form name=form_local id=form_local class=\"form form-page\" ng-if=handleTimezone.show ng-submit=updateInstance(handleTimezone.instance)><fieldset><p>{{_t('wan_port_access_info')}}</p><div class=form-group><div><input type=checkbox name=wan_port_access id=wan_port_access value=true ng-model=handleTimezone.instance.params.wan_port_access ng-checked=\"handleTimezone.instance.params.wan_port_access\"><label ng-bind=\"_t('local_access_activate')\"></label><bb-help-text trans=\"_t('timezone_info')\"></bb-help-text></div></div></fieldset><fieldset class=submit-entry><button type=submit class=\"btn btn-submit\" title=\"{{_t('lb_save')}}\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></fieldset></form><div class=\"alert alert-warning\" ng-bind=\"_t('local_access_not_installed')\" ng-if=!handleTimezone.show></div></div>"
+  );
+
+
   $templateCache.put('app/views/management/management_postfix.html',
     "<h2 class=accordion-entry-title ng-click=\"expandElement('apppostfix')\"><i class=\"fa fa-list-alt\"></i> <span ng-bind=\"_t('patched_devices')\"></span> <i class=\"fa accordion-arrow\" ng-class=\"expand.appinfo ? 'fa-chevron-up' : 'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-if=expand.apppostfix ng-controller=ManagementPostfixController><div class=\"form form-inline form-page\"><div class=fieldset><table class=\"table table-report\"><tbody><tr ng-repeat=\"v in postfix.all\"><td>{{v.product}}</td></tr></tbody></table></div></div></div>"
   );
@@ -11746,7 +11745,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/management/management_timezone.html',
-    "<h2 class=accordion-entry-title ng-click=\"expandElement('timezone')\"><i class=\"fa fa-clock-o\"></i> <span ng-bind=\"_t('timezone')\"></span> <i class=\"fa accordion-arrow\" ng-class=\"expand.timezone ? 'fa-chevron-up' : 'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-class=\"\" ng-if=expand.timezone ng-controller=ManagementTimezoneController><bb-loader></bb-loader><form name=form_timezone id=form_password class=\"form form-page\" ng-if=handleTimezone.show ng-submit=updateInstance(handleTimezone.instance) novalidate><fieldset><div class=\"form-group form-inline\"><label>{{_t('timezone_select')}}</label><select class=form-control ng-model=handleTimezone.instance.params.timezone><option value={{v}} ng-repeat=\"v in managementTimezone.enums track by $index\" ng-selected=\"v === handleTimezone.instance.params.timezone\">{{managementTimezone.labels[$index]}}</option></select><bb-help-text trans=\"_t('timezone_info')\"></bb-help-text></div><div class=form-group><div><input type=checkbox name=wan_port_access id=wan_port_access value=true ng-model=handleTimezone.instance.params.wan_port_access ng-checked=\"handleTimezone.instance.params.wan_port_access\"><label ng-bind=\"_t('wan_port_access')\"></label><bb-help-text trans=\"_t('wan_port_access_info')\"></bb-help-text></div></div></fieldset><fieldset class=submit-entry><button type=submit class=\"btn btn-submit\" title=\"{{_t('set_timezone')}}\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('set_timezone')}}</span></button></fieldset></form><div class=\"alert alert-warning\" ng-bind=\"_t('timezone_not_installed')\" ng-if=!handleTimezone.show></div></div>"
+    "<h2 class=accordion-entry-title ng-click=\"expandElement('timezone')\"><i class=\"fa fa-clock-o\"></i> <span ng-bind=\"_t('timezone')\"></span> <i class=\"fa accordion-arrow\" ng-class=\"expand.timezone ? 'fa-chevron-up' : 'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-class=\"\" ng-if=expand.timezone ng-controller=ManagementTimezoneController><bb-loader></bb-loader><form name=form_timezone id=form_password class=\"form form-page\" ng-if=handleTimezone.show ng-submit=updateInstance(handleTimezone.instance) novalidate><fieldset><div class=\"form-group form-inline\"><label>{{_t('timezone_select')}}</label><select class=form-control ng-model=handleTimezone.instance.params.timezone><option value={{v}} ng-repeat=\"v in managementTimezone.enums track by $index\" ng-selected=\"v === handleTimezone.instance.params.timezone\">{{managementTimezone.labels[$index]}}</option></select><bb-help-text trans=\"_t('timezone_info')\"></bb-help-text></div></fieldset><fieldset class=submit-entry><button type=submit class=\"btn btn-submit\" title=\"{{_t('set_timezone')}}\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('set_timezone')}}</span></button></fieldset></form><div class=\"alert alert-warning\" ng-bind=\"_t('timezone_not_installed')\" ng-if=!handleTimezone.show></div></div>"
   );
 
 
@@ -11790,11 +11789,6 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
   );
 
 
-  $templateCache.put('app/views/zwave/zwave_add.html',
-    "<div ng-controller=ZwaveAddController><bb-loader></bb-loader><div class=\"text-center device-autodetect\"><a href=#zwave/inclusion class=\"btn btn-default btn-lg btn-block\" title=\"{{_t('lb_zwave_autodetect')}}\"><i class=\"fa fa-plug text-success\"></i> <span class=btn-name>{{_t('lb_zwave_autodetect')}}</span></a></div><div class=\"app-row app-row-vendor clearfix\" ng-hide=zwaveDevices><div class=vendor-entry ng-repeat=\"v in manufacturers\"><a ng-href=#zwave/add/{{v.brandname}} class=vendor-list><p class=vendor-image><img ng-src=storage/img/zwave/vendors/{{v.brand_image}} alt=img ng-show=\"v.brandname\"></p></a></div></div><div ng-if=manufacturer><h3><button class=\"btn btn-default\" bb-go-back><i class=\"fa fa-arrow-left\"></i></button> {{manufacturer}}</h3><div class=\"app-row app-row-report app-row-zwaveadd clearfix\"><div id=row_zwaveadd_{{v.id}} class=report-entry ng-repeat=\"(k,v) in zwaveDevices\"><div class=\"report-col report-media\"><img class=product-img ng-src=storage/img/zwave/devices/{{v.product_image}} alt=img ng-if=\"v.product_image\"> <img class=product-img ng-src=storage/img/zwave/vendors/{{v.brand_image}} alt=img ng-if=\"!v.product_image\"></div><div class=\"report-col report-body\">{{v.name}}</div><div class=\"report-col report-ctrl\"><a href=#zwave/inclusion/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_include_device')}}\"><i class=\"fa fa-plug text-primary\"></i></a></div></div></div></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div></div>"
-  );
-
-
   $templateCache.put('app/views/zwave/zwave_batteries.html',
     "<div ng-controller=ZwaveManageController><bb-loader></bb-loader><div ng-include=\"'app/views/zwave/navi.html'\"></div><div class=\"app-row app-row-report app-row-zwave clearfix\"><div id=row_battery_{{v.id}} class=report-entry ng-repeat=\"v in devices.zw| orderBy:'title':false\" ng-if=v.hasBattery><div class=\"report-col report-media\"><img class=report-img ng-src={{v.batteryCharge|getBatteryIcon}} alt=\"img\"></div><div class=\"report-col report-body report-col-w30\"><span class=\"network-zwave-title noelements\" ng-if=\"_.size(v.elements) < 1\">{{v.title}} (#{{v.id}})</span><div class=btn-group ng-if=\"_.size(v.elements) > 0\"><a href=\"\" class=network-zwave-title ng-click=\"expandNavi('accZwaveManage_' + v.id, $event)\"><i class=fa ng-class=\"naviExpanded['accZwaveManage_' + v.id] ? 'fa-chevron-up' : 'fa-chevron-down'\"></i> {{v.title}} (#{{v.id}})</a><div class=\"app-dropdown app-dropdown-left\" ng-if=\"naviExpanded['accZwaveManage_' + v.id]\"><ul><li class=\"clickable zwave-hidden-{{e.permanently_hidden}}\" ng-repeat=\"e in v.elements| orderBy:'metrics.title':false\"><a ng-href=#/element/{{e.id}} title={{e.metrics.title}}><img class=report-img-s ng-src={{e.iconPath}} alt=\"img\"> {{e.metrics.title|cutText:true:20}} <span class=zwave-raquo>&raquo;</span></a></li></ul></div></div></div><div class=\"report-col report-battery-info\"><div ng-if=v.date><i class=\"fa fa-clock-o\"></i> {{v.date}}</div><div ng-if=v.awake><i class=\"fa {{v.awake|getAwakeIcon}}\"></i> <span ng-if=v.sleeping ng-bind-html=\"v.sleeping | toTrusted\"></span></div></div><div class=\"report-col report-ctrl\"><span class=text-success ng-show=\"v.batteryCharge >= 80\">{{v.batteryCharge}} %</span> <span class=text-default ng-show=\"v.batteryCharge < 80 && v.batteryCharge > 20\">{{v.batteryCharge}} %</span> <span class=text-danger ng-show=\"v.batteryCharge <= 20\"><i class=\"fa fa-exclamation-triangle\"></i> {{v.batteryCharge}} %</span></div></div></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div></div>"
   );
@@ -11827,11 +11821,6 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
   $templateCache.put('app/views/zwave/zwave_network.html',
     "<div ng-controller=ZwaveManageController><bb-loader></bb-loader><div ng-include=\"'app/views/zwave/navi.html'\"></div><div class=\"app-row app-row-report app-row-zwave clearfix\"><div id=row_zwave_network_{{v.id}} class=report-entry ng-repeat=\"v in devices.zw | orderBy:'title':false\" ng-class=\"v.isFailed ? 'bcg-danger': ''\" ng-if=\"_.size(v.messages) > 0\"><div class=\"report-col report-body zwave-network\"><span class=\"network-zwave-title noelements\" ng-if=\"_.size(v.elements) < 1\">{{v.title}} (#{{v.id}})</span><div class=btn-group ng-if=\"_.size(v.elements) > 0\"><a href=\"\" class=network-zwave-title ng-click=\"expandNavi('accZwaveManage_' + v.id, $event)\"><i class=fa ng-class=\"naviExpanded['accZwaveManage_' + v.id] ? 'fa-chevron-up' : 'fa-chevron-down'\"></i> {{v.title}} (#{{v.id}})</a><div class=\"app-dropdown app-dropdown-left\" ng-if=\"naviExpanded['accZwaveManage_' + v.id]\"><ul><li class=\"clickable zwave-hidden-{{e.permanently_hidden}}\" ng-repeat=\"e in v.elements| orderBy:'metrics.title':false\"><a ng-href=#/element/{{e.id}} title={{e.metrics.title}}><img class=report-img-s ng-src={{e.iconPath}} alt=\"img\"> {{e.metrics.title|cutText:true:20}} <span class=zwave-raquo>&raquo;</span></a></li></ul></div></div></div><div class=\"report-col report-ctrl\"><div ng-repeat=\"m in v.messages|unique:true\"><div class=text-danger ng-if=\"m.type !== 'config'\">{{m.error}}</div><button class=\"btn btn-default\" ng-if=\"!v.interviewDone  && !v.isFailed\" ng-click=\"devices.find = v;handleModal('zwaveNetworkModal', $event)\"><i class=\"fa fa-refresh text-primary\"></i> <span class=btn-name>{{_t('configure_device')}}</span></button></div></div></div></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div><div id=zwaveNetworkModal class=appmodal ng-controller=ZwaveInterviewController ng-if=\"modalArr.zwaveNetworkModal && !_.isEmpty(devices.find)\"><div class=appmodal-in><div class=appmodal-header><span class=appmodal-close ng-click=cancelConfiguration($event)><i class=\"fa fa-times\"></i></span><h3>{{devices.find.title|cutText:true:25}} (#{{devices.find.id}})</h3></div><div class=appmodal-body><div class=\"alert alert-warning\" ng-hide=\"zwaveInterview.progress > 99\"><i class=\"fa fa-spinner fa-spin\"></i> <strong>{{_t('configuring_device')}}</strong></div><div class=progress><div class=progress-bar style=\"min-height:40px;min-width: 2em; width: {{zwaveInterview.progress}}%\" ng-class=\"zwaveInterview.progress < 100 ? 'progress-bar-striped active' : 'progress-bar-success'\">{{zwaveInterview.progress}}%</div></div></div><div class=appmodal-footer><button type=button class=\"btn btn-default\" ng-click=cancelConfiguration($event)><i class=\"fa fa-times text-danger\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button></div></div></div></div>"
-  );
-
-
-  $templateCache.put('app/views/zwave/zwave_select.html',
-    "<div ng-controller=ZwaveSelectController><bb-loader></bb-loader><div class=\"text-center device-autodetect\" ng-if=_.isEmpty(zwaveSelect.list)><a href=#zwave/inclusion class=\"btn btn-default btn-lg btn-block\" title=\"{{_t('lb_zwave_autodetect')}}\"><i class=\"fa fa-plug text-success\"></i> <span class=btn-name>{{_t('lb_zwave_autodetect')}}</span></a></div><div class=\"app-row app-row-vendor clearfix\" ng-if=_.isEmpty(zwaveSelect.list) ng-include=\"'app/views/zwave/zwave_select_brand.html'\"></div><div ng-if=!_.isEmpty(zwaveSelect.list) ng-include=\"'app/views/zwave/zwave_select_list.html'\"></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div></div>"
   );
 
 
@@ -15198,6 +15187,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         angular.extend(cfg.route.fatalError, obj || {message: false, info: false, hide: false});
 
     };
+
     /**
      * Set a time
      * @returns {undefined}
@@ -15229,7 +15219,22 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
                 dataFactory.getApi('timezone', null, true).then(function (response) {
                     angular.extend(cfg.route.time, {string: $filter('setTimeFromBox')(response.data.data)});
                     if (cfg.route.fatalError.type === 'network') {
-                        $window.location.reload();
+                        dataFactory.sessionApi().then(function (sessionRes) {
+                            var user = sessionRes.data.data;
+                            if (sessionRes.data.data) {
+                                dataService.setZWAYSession(user.sid);
+                                dataService.setUser(user);
+                                if (dataService.getUser()) {
+                                    $window.location.reload();
+                                    //$q.defer().promise;
+                                    //return;
+                                }
+                            }
+
+                        }, function (error) {
+                            //$q.defer().promise;
+                        });
+
                     }
                 }, function (error) {
                     if (!error.status || error.status === 0) {
@@ -15289,6 +15294,19 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
             return false;
         }
         return true;
+    };
+    /**
+     * Check if value is in array
+     * 
+     * @param {array} array
+     * @param {mixed} value
+     * @returns {Boolean}
+     */
+    $scope.isInArray = function (array,value) {
+        if (array.indexOf(value) > -1) {
+            return true;
+        }
+        return false;
     };
 
 
@@ -19443,36 +19461,6 @@ myAppController.controller('ZwaveVendorIdController', function ($scope, $routePa
 });
 
 /**
- * The controller that renders Z-Wave manufacturers and devices.
- * @class ZwaveAddController
- */
-myAppController.controller('ZwaveAddController', function ($scope, $routeParams, dataFactory, dataService, _) {
-    $scope.zwaveDevices = [];
-    $scope.deviceVendor = false;
-    $scope.manufacturers = [];
-    $scope.manufacturer = false;
-    /**
-     * Load z-wave devices
-     */
-    $scope.loadData = function (brandname, lang) {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataFactory.getApiLocal('device.' + lang + '.json').then(function (response) {
-            $scope.loading = false;
-            $scope.manufacturers = _.uniq(response.data, 'brandname');
-            if (brandname) {
-                $scope.zwaveDevices = _.where(response.data, {brandname: brandname});
-                $scope.manufacturer = brandname;
-            }
-        }, function (error) {
-            alertify.alertError($scope._t('error_load_data')).set('onok', function (closeEvent) {
-                dataService.goBack();
-            });
-        });
-    };
-    $scope.loadData($routeParams.brandname, $scope.lang);
-});
-
-/**
  * The controller that renders and handles data in the Z-Wave/Manage section.
  * @class ZwaveManageController
  */
@@ -22209,6 +22197,44 @@ myAppController.controller('ManagementRemoteController', function ($scope, dataF
     };
 });
 /**
+ * The controller that renders and handles local access.
+ * @class ManagementLocalController
+ */
+myAppController.controller('ManagementLocalController', function ($scope, dataFactory, dataService) {
+    
+
+     /**
+     * Update instance
+     */
+    $scope.updateInstance = function (input) {
+        //var input = $scope.handleTimezone.instance;
+        if (input.id) {
+            dataFactory.putApi('instances', input.id, input).then(function (response) {
+                alertify.confirm($scope._t('timezone_alert'))
+                        .setting('labels', {'ok': $scope._t('yes'),'cancel': $scope._t('lb_cancel')})
+                        .set('onok', function (closeEvent) {//after clicking OK
+                                $scope.systemReboot();
+                        });
+
+            }, function (error) {
+                alertify.alertError($scope._t('error_update_data'));
+            });
+        }
+    };
+    
+     /**
+     * System rebboot
+     */
+    $scope.systemReboot = function () {
+         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('system_rebooting')};
+            dataFactory.getApi('system_reboot').then(function (response) {
+            }, function (error) {
+                alertify.alertError($scope._t('error_system_reboot'));
+            });
+
+    };
+});
+/**
  * The controller that handles the licence key.
  * @class ManagementLicenceController
  */
@@ -22904,7 +22930,7 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
         }
         dataService.setZWAYSession(user.sid);
         dataService.setUser(user);
-        dataFactory.putApi('profiles', user.id, user).then(function (response) {}, function (error) {});
+        //dataFactory.putApi('profiles', user.id, user).then(function (response) {}, function (error) {});
         if (rememberme) {
             dataService.setRememberMe(rememberme);
         }

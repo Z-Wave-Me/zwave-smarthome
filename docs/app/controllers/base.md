@@ -70,6 +70,18 @@ Allow to access page elements by role.
 
 **Returns**: `Boolean`
 
+### BaseController.isInArray(array, value) 
+
+Check if value is in array
+
+**Parameters**
+
+**array**: `array`
+
+**value**: `mixed`
+
+**Returns**: `Boolean`
+
 ### BaseController.getLang() 
 
 Get a language key from the cookie or set a default language.
