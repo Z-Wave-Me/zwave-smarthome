@@ -49,6 +49,10 @@ Displays a validation error
 Compare two values
 
 
+## bbCompareTo
+Parse value as int
+
+
 ## myknob
 Displays a knob
 

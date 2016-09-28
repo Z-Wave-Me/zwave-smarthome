@@ -375,6 +375,7 @@
     "lb_days": "Tage",
     "no_data": "Die abgefragten Daten existieren nicht.",
     "lb_rooms_access": "Zugang zu Räumen:",
+    "lb_allow_access_to_all_rooms":"Hat Zugang zu allen Räumen",
     "lb_disable_rooms": "Deaktiviere 'Zugang zu Räumen'",
     "lb_allow_rooms": "Erlaube Zugang zu allen Räumen",
     "lb_available_rooms": "Verfügbare Räume",

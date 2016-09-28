@@ -11755,7 +11755,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/management/management_user_id.html',
-    "<div ng-controller=ManagementUserIdController class=mobile-padding><bb-loader></bb-loader><div ng-if=show><h2><span ng-bind=\"_t('lb_user')\"></span>: <span ng-show=\"input.id > 0\">(#{{input.id}})</span> <span ng-bind=input.name></span></h2><form name=form_profile id=form_profile class=\"form form-page\" ng-submit=store(form_profile,input) novalidate><fieldset><div class=\"form-group form-inline\"><label class=\"isrequired display-block\">{{_t('lb_name')}}:</label><input name=name id=name class=form-control value={{input.name}} ng-model=input.name ng-blur=\"nameBlur = true\" ng-required=\"true\"><bb-validator input-name=form_profile.name.$error.required trans=_t(&quot;field_required&quot;) has-blur=nameBlur></bb-validator></div><div class=\"form-group form-inline\"><label class=display-block>{{_t('lb_email')}}:</label><input name=email id=email type=email class=form-control value={{input.email}} ng-model=input.email ng-blur=\"emailBlur = true\"><bb-validator input-name=form_profile.email.$error.email trans=_t(&quot;email_invalid&quot;) has-blur=emailBlur></bb-validator></div></fieldset><fieldset ng-if=\"id == 0\"><div class=form-group><label class=isrequired>{{_t('lb_login')}}:</label><input name=login id=login class=\"form-control form-control-sm\" value={{input.login}} ng-model=input.login g-blur=\"loginBlur = true\" ng-required=\"true\"><bb-validator input-name=form_profile.name.$error.required trans=_t(&quot;field_required&quot;) has-blur=loginBlur></bb-validator></div><div class=form-group><label class=isrequired>{{_t('lb_password')}}:</label><input name=password id=password type=password class=\"form-control form-control-sm\" ng-model=input.password ng-blur=\"passwordBlur = true\" ng-required=true ng-minlength=\"6\"><bb-validator input-name=form_profile.password.$error.required trans=_t(&quot;field_required&quot;) has-blur=passwordBlur></bb-validator><bb-validator input-name=form_profile.password.$error.minlength trans=_t(&quot;password_valid&quot;) has-blur=passwordBlur></bb-validator></div><div class=form-group><label class=isrequired>{{_t('confirm_password')}}:</label><input name=password_confirm id=password_confirm type=password class=\"form-control form-control-sm\" ng-blur=\"passwordConfirmBlur = true\" ng-model=input.passwordConfirm bb-compare-to=\"password\"><bb-validator input-name=form_profile.password_confirm.$error.compareto trans=_t(&quot;passwords_must_match&quot;) has-blur=passwordConfirmBlur></bb-validator></div></fieldset><fieldset><h3><span ng-bind=\"_t('lb_settings')\"></span></h3><div><div class=\"form-group form-inline\" ng-if=\"user.id != id\"><label>{{_t('lb_role')}}:</label><input type=radio name=role value=1 ng-model=input.role ng-checked=\"input.role == 1\"> {{_t('lb_admin')}}<input type=radio name=role value=2 ng-model=input.role ng-checked=\"input.role == 2\"> {{_t('lb_user')}}<input type=radio name=role value=3 ng-model=input.role ng-checked=\"input.role == 3\"> {{_t('lb_local')}}<input type=radio name=role value=4 ng-model=input.role ng-checked=\"input.role == 4\"> {{_t('lb_anonymous')}}</div><div class=\"form-group form-inline\"><label>{{_t('lb_language')}}:</label><span ng-repeat=\"v in cfg.lang_list\"><input class=form-control-hidden type=radio name=color value={{v}} ng-model=input.lang ng-checked=\"input.color == v\"> <img class=\"form-control-img profile-lang\" ng-click=\"input.lang = v\" ng-class=\"v == input.lang ? 'control-active':''\" ng-src=app/img/flags/{{v}}.png alt=\"{{ v}}\"></span> <span ng-bind=input.lang></span></div><div class=form-group><label>{{_t('lb_profile_color')}}:</label><span ng-repeat=\"v in cfg.profile_colors\"><input class=form-control-hidden type=radio name=color value={{v}} ng-model=input.color ng-checked=\"input.color == v\"> <span class=\"form-control-img profile-color\" style=\"background-color: {{v}}\" ng-click=\"input.color = v\" ng-class=\"v == input.color ? 'control-active':''\">&nbsp;</span></span> <span ng-bind=input.color></span></div></div></fieldset><fieldset><h3>{{_t('lb_allow_rooms')}}</h3><div><div class=device-available-block><a href=\"\" class=\"btn btn-default btn-tag\" ng-repeat=\"d in rooms\" ng-if=\"input.rooms.indexOf(d.id) > -1\" ng-click=removeRoom(d.id)>{{d.title|cutText:true:20}} <i class=\"fa fa-times text-danger\"></i></a></div><h3>{{_t('lb_available_rooms')}}</h3><div class=device-available-block><a href=\"\" class=\"btn btn-default btn-tag\" ng-repeat=\"d in rooms\" ng-if=\"input.rooms.indexOf(d.id) === -1\" ng-click=assignRoom(d.id)>{{d.title|cutText:true:20}} <i class=\"fa fa-plus text-success\"></i></a></div></div></fieldset><fieldset class=submit-entry><button type=button class=\"btn btn-default\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <button type=submit class=\"btn btn-submit\" ng-disabled=form_profile.$invalid><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></fieldset></form><div ng-if=\"id > 0\"><h2 ng-bind=\"_t('local_access')\"></h2><form name=form_password id=form_password class=\"form form-page\" ng-submit=changeAuth(form_password) novalidate><fieldset><div class=\"form-group form-inline\"><label class=\"isrequired display-block\">{{_t('lb_login')}}: <em>{{input.login}}</em></label><input name=login id=login class=form-control ng-model=auth.login ng-blur=\"loginBlur = true\" ng-required=\"true\"><bb-validator input-name=form_password.name.$error.required trans=_t(&quot;field_required&quot;) has-blur=loginBlur></bb-validator></div><div class=\"form-group form-inline\"><label class=\"isrequired display-block\">{{_t('lb_new_password')}}:</label><input name=password id=password type=password class=form-control ng-model=auth.password ng-blur=\"passwordBlur = true\" ng-required=true ng-minlength=\"6\"><bb-validator input-name=form_password.password.$error.required trans=_t(&quot;field_required&quot;) has-blur=passwordBlur></bb-validator><bb-validator input-name=form_password.password.$error.minlength trans=_t(&quot;password_valid&quot;) has-blur=passwordBlur></bb-validator></div><div class=\"form-group form-inline\"><label class=\"isrequired display-block\">{{_t('confirm_password')}}:</label><input name=password_confirm id=password_confirm type=password class=form-control ng-blur=\"passwordConfirmBlur = true\" ng-model=input.passwordConfirm bb-compare-to=\"password\"><bb-validator input-name=form_password.password_confirm.$error.compareto trans=_t(&quot;passwords_must_match&quot;) has-blur=passwordConfirmBlur></bb-validator></div></fieldset><fieldset class=submit-entry><button type=button class=\"btn btn-default\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <button type=submit class=\"btn btn-submit\" ng-disabled=form_password.$invalid><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_submit')}}</span></button></fieldset></form></div></div></div>"
+    "<div ng-controller=ManagementUserIdController class=mobile-padding><bb-loader></bb-loader><div ng-if=show><h2><span ng-bind=\"_t('lb_user')\"></span>: <span ng-show=\"input.id > 0\">(#{{input.id}})</span> <span ng-bind=input.name></span></h2><form name=form_profile id=form_profile class=\"form form-page\" ng-submit=store(form_profile,input) novalidate><fieldset><div class=\"form-group form-inline\"><label class=\"isrequired display-block\">{{_t('lb_name')}}:</label><input name=name id=name class=form-control value={{input.name}} ng-model=input.name ng-blur=\"nameBlur = true\" ng-required=\"true\"><bb-validator input-name=form_profile.name.$error.required trans=_t(&quot;field_required&quot;) has-blur=nameBlur></bb-validator></div><div class=\"form-group form-inline\"><label class=display-block>{{_t('lb_email')}}:</label><input name=email id=email type=email class=form-control value={{input.email}} ng-model=input.email ng-blur=\"emailBlur = true\"><bb-validator input-name=form_profile.email.$error.email trans=_t(&quot;email_invalid&quot;) has-blur=emailBlur></bb-validator></div></fieldset><fieldset ng-if=\"id == 0\"><div class=form-group><label class=isrequired>{{_t('lb_login')}}:</label><input name=login id=login class=\"form-control form-control-sm\" value={{input.login}} ng-model=input.login g-blur=\"loginBlur = true\" ng-required=\"true\"><bb-validator input-name=form_profile.name.$error.required trans=_t(&quot;field_required&quot;) has-blur=loginBlur></bb-validator></div><div class=form-group><label class=isrequired>{{_t('lb_password')}}:</label><input name=password id=password type=password class=\"form-control form-control-sm\" ng-model=input.password ng-blur=\"passwordBlur = true\" ng-required=true ng-minlength=\"6\"><bb-validator input-name=form_profile.password.$error.required trans=_t(&quot;field_required&quot;) has-blur=passwordBlur></bb-validator><bb-validator input-name=form_profile.password.$error.minlength trans=_t(&quot;password_valid&quot;) has-blur=passwordBlur></bb-validator></div><div class=form-group><label class=isrequired>{{_t('confirm_password')}}:</label><input name=password_confirm id=password_confirm type=password class=\"form-control form-control-sm\" ng-blur=\"passwordConfirmBlur = true\" ng-model=input.passwordConfirm bb-compare-to=\"password\"><bb-validator input-name=form_profile.password_confirm.$error.compareto trans=_t(&quot;passwords_must_match&quot;) has-blur=passwordConfirmBlur></bb-validator></div></fieldset><fieldset><h3><span ng-bind=\"_t('lb_settings')\"></span></h3><div><div class=\"form-group form-inline\" ng-if=\"user.id != id\"><label>{{_t('lb_role')}}:</label><input type=radio name=role value=1 ng-model=input.role ng-checked=\"input.role == 1\" bb-integer> {{_t('lb_admin')}}<input type=radio name=role value=2 ng-model=input.role ng-checked=\"input.role == 2\" bb-integer> {{_t('lb_user')}}<input type=radio name=role value=3 ng-model=input.role ng-checked=\"input.role == 3\" bb-integer> {{_t('lb_local')}}<input type=radio name=role value=4 ng-model=input.role ng-checked=\"input.role == 4\" bb-integer> {{_t('lb_anonymous')}}</div><div class=\"form-group form-inline\"><label>{{_t('lb_language')}}:</label><span ng-repeat=\"v in cfg.lang_list\"><input class=form-control-hidden type=radio name=color value={{v}} ng-model=input.lang ng-checked=\"input.color == v\"> <img class=\"form-control-img profile-lang\" ng-click=\"input.lang = v\" ng-class=\"v == input.lang ? 'control-active':''\" ng-src=app/img/flags/{{v}}.png alt=\"{{ v}}\"></span> <span ng-bind=input.lang></span></div></div></fieldset><fieldset ng-if=\"input.role === 1\"><h3>{{_t('lb_allow_access_to_all_rooms')}}</h3></fieldset><fieldset ng-if=\"input.role !== 1\"><h3>{{_t('lb_allow_rooms')}}</h3><div><div class=device-available-block><a href=\"\" class=\"btn btn-default btn-tag\" ng-repeat=\"d in rooms\" ng-if=\"input.rooms.indexOf(d.id) > -1\" ng-click=removeRoom(d.id)>{{d.title|cutText:true:20}} <i class=\"fa fa-times text-danger\"></i></a></div><h3>{{_t('lb_available_rooms')}}</h3><div class=device-available-block><a href=\"\" class=\"btn btn-default btn-tag\" ng-repeat=\"d in rooms\" ng-if=\"input.rooms.indexOf(d.id) === -1\" ng-click=assignRoom(d.id)>{{d.title|cutText:true:20}} <i class=\"fa fa-plus text-success\"></i></a></div></div></fieldset><fieldset class=submit-entry><button type=button class=\"btn btn-default\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <button type=submit class=\"btn btn-submit\" ng-disabled=form_profile.$invalid><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></fieldset></form><div ng-if=\"id > 0\"><h2 ng-bind=\"_t('local_access')\"></h2><form name=form_password id=form_password class=\"form form-page\" ng-submit=changeAuth(form_password) novalidate><fieldset><div class=\"form-group form-inline\"><label class=\"isrequired display-block\">{{_t('lb_login')}}: <em>{{input.login}}</em></label><input name=login id=login class=form-control ng-model=auth.login ng-blur=\"loginBlur = true\" ng-required=\"true\"><bb-validator input-name=form_password.name.$error.required trans=_t(&quot;field_required&quot;) has-blur=loginBlur></bb-validator></div><div class=\"form-group form-inline\"><label class=\"isrequired display-block\">{{_t('lb_new_password')}}:</label><input name=password id=password type=password class=form-control ng-model=auth.password ng-blur=\"passwordBlur = true\" ng-required=true ng-minlength=\"6\"><bb-validator input-name=form_password.password.$error.required trans=_t(&quot;field_required&quot;) has-blur=passwordBlur></bb-validator><bb-validator input-name=form_password.password.$error.minlength trans=_t(&quot;password_valid&quot;) has-blur=passwordBlur></bb-validator></div><div class=\"form-group form-inline\"><label class=\"isrequired display-block\">{{_t('confirm_password')}}:</label><input name=password_confirm id=password_confirm type=password class=form-control ng-blur=\"passwordConfirmBlur = true\" ng-model=input.passwordConfirm bb-compare-to=\"password\"><bb-validator input-name=form_password.password_confirm.$error.compareto trans=_t(&quot;passwords_must_match&quot;) has-blur=passwordConfirmBlur></bb-validator></div></fieldset><fieldset class=submit-entry><button type=button class=\"btn btn-default\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <button type=submit class=\"btn btn-submit\" ng-disabled=form_password.$invalid><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_submit')}}</span></button></fieldset></form></div></div></div>"
   );
 
 
@@ -13794,6 +13794,20 @@ myApp.directive("bbCompareTo", function () {
             otherInput.$parsers.push(function (value) {
                 ctrl.$setValidity("compareto", value === ctrl.$viewValue);
                 return value;
+            });
+        }
+    };
+});
+/**
+ * Parse value as int
+ * @class bbCompareTo
+ */
+myApp.directive('bbInteger', function(){
+    return {
+        require: 'ngModel',
+        link: function(scope, ele, attr, ctrl){
+            ctrl.$parsers.unshift(function(viewValue){
+                return parseInt(viewValue, 10);
             });
         }
     };
@@ -21996,7 +22010,7 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
         "color": "#dddddd",
         "dashboard": [],
         "interval": 1000,
-        "rooms": [0],
+        "rooms": [],
         "expert_view": true,
         "hide_all_device_events": false,
         "hide_system_events": false,
@@ -22036,7 +22050,6 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
                     $scope.input = profile.value.data.data;
                     $scope.auth.login = profile.value.data.data.login;
                 }
-
             }
 
             // Success - locations
@@ -22051,14 +22064,41 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
         });
     };
     $scope.allSettledUserId();
+
+    /**
+     * Watch for the role change
+     */
+    /*$scope.$watch('input.role', function () {
+        if($scope.input.role === 1){
+            $scope.input.rooms = [0];
+        }
+        console.log($scope.input.role)
+    });*/
     /**
      * Assign room to list
      */
     $scope.assignRoom = function (assign) {
-        $scope.input.rooms.push(assign);
-        return;
-
+        if($scope.input.role !== 1) {
+            $scope.input.rooms.push(assign);
+        }
     };
+
+    /*$scope.prepareRooms = function () {
+        return;
+        var globalRoomIndex = $scope.input.rooms.indexOf(0);
+        //var roomIds = _.map(locations.value.data.data, function(location){});
+
+        if ($scope.input.role === 1 && globalRoomIndex === -1) {
+            $scope.input.rooms = [0];
+        } else if ($scope.input.role !== 1 && globalRoomIndex > -1){
+            if ($scope.input.id === 0) {
+                $scope.input.rooms = [];
+            } else {
+                $scope.input.rooms.splice(globalRoomIndex, 1);
+            }
+        }
+        return;
+    };*/
 
     /**
      * Remove room from the list
@@ -22081,11 +22121,16 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
         if (form.$invalid) {
             return;
         }
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         if ($scope.id == 0) {
             input.password = input.password;
         }
-        input.role = parseInt(input.role, 10);
+        if (input.role === 1) {
+            input.rooms = [0];
+        }
+        //input.role = parseInt(input.role, 10);
+        //console.log(input);
+        //return;
         dataFactory.storeApi('profiles', input.id, input).then(function (response) {
             var id = $filter('hasNode')(response, 'data.data.id');
             if (id) {
@@ -22159,7 +22204,6 @@ myAppController.controller('ManagementRemoteController', function ($scope, dataF
 
             $scope.loading = false;
             var remoteAccess = response.data.data[0];
-            console.log(remoteAccess)
             if (Object.keys(remoteAccess).length < 1) {
                 alertify.alertError($scope._t('error_load_data'));
             }
