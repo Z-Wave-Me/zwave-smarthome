@@ -15114,7 +15114,7 @@ function postRenderAlpacaData(renderedForm) {
 var myAppController = angular.module('myAppController', []);
 
 /**
- * The app base controller. 
+ * The app base controller.
  * @class BaseController
  */
 myAppController.controller('BaseController', function ($scope, $cookies, $filter, $location, $route, $window, $interval, $http, cfg, cfgicons, dataFactory, dataService, myCache) {
@@ -15276,7 +15276,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
 
     /**
      * Allow to access page elements by role.
-     * 
+     *
      * @param {array} roles
      * @param {boolean} mobile
      * @returns {Boolean}
@@ -15297,7 +15297,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     };
     /**
      * Check if value is in array
-     * 
+     *
      * @param {array} array
      * @param {mixed} value
      * @returns {Boolean}
