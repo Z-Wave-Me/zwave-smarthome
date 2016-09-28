@@ -3,7 +3,7 @@
     <i class="fa fa-cloud-download"></i> <span ng-bind="_t('backup_cloud')"></span>
     <i class="fa accordion-arrow" ng-class="expand.backup ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
 </h2>
-<div class="accordion-entry-ctrl" ng-if_="expand.cloud" ng-controller="ManagementCloudBackupController">
+<div class="accordion-entry-ctrl" ng-if="expand.cloud" ng-controller="ManagementCloudBackupController">
     <bb-loader></bb-loader>
     <bb-alert alert="managementCloud.alert"></bb-alert>
     <form name="form_cloud_backup" id="form_cloud_backup" class="form form-page" 
