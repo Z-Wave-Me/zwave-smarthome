@@ -47,10 +47,10 @@
                      <!-- role -->
                     <div class="form-group form-inline" ng-if="user.id != id">
                         <label>{{_t('lb_role')}}:</label> </br>
-                        <input type="radio" name="role" value="1" ng-model="input.role" ng-checked="input.role == 1" /> {{_t('lb_admin')}} </br>
-                        <input type="radio" name="role" value="2" ng-model="input.role" ng-checked="input.role == 2" /> {{_t('lb_user')}} </br> 
-                        <input type="radio" name="role" value="3" ng-model="input.role" ng-checked="input.role == 3" /> {{_t('lb_local')}} </br>
-                        <input type="radio" name="role" value="4" ng-model="input.role" ng-checked="input.role == 4" /> {{_t('lb_anonymous')}}
+                        <input type="radio" name="role" value="1" ng-model="input.role" ng-checked="input.role == 1; parseRoleToInt(input.role); prepareRooms()"/> {{_t('lb_admin')}} </br>
+                        <input type="radio" name="role" value="2" ng-model="input.role" ng-checked="input.role == 2; parseRoleToInt(input.role); prepareRooms()"/> {{_t('lb_user')}} </br>
+                        <input type="radio" name="role" value="3" ng-model="input.role" ng-checked="input.role == 3; parseRoleToInt(input.role); prepareRooms()"/> {{_t('lb_local')}} </br>
+                        <input type="radio" name="role" value="4" ng-model="input.role" ng-checked="input.role == 4; parseRoleToInt(input.role); prepareRooms()"/> {{_t('lb_anonymous')}}
                     </div>
                     <!-- lang -->
                     <div class="form-group form-inline">
@@ -74,7 +74,11 @@
                 </div>
             </fieldset>
 
-            <fieldset>
+            <fieldset ng-if="input.role === 1">
+                <h3>{{_t('lb_allow_access_to_all_rooms')}}</h3>
+            </fieldset>
+
+            <fieldset ng-if="input.role !== 1">
                 <h3>{{_t('lb_allow_rooms')}}</h3>
                 <div>
                      <div class="device-available-block">

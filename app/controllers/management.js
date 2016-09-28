@@ -233,7 +233,7 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
         "color": "#dddddd",
         "dashboard": [],
         "interval": 1000,
-        "rooms": [0],
+        "rooms": [],
         "expert_view": true,
         "hide_all_device_events": false,
         "hide_system_events": false,
@@ -273,7 +273,6 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
                     $scope.input = profile.value.data.data;
                     $scope.auth.login = profile.value.data.data.login;
                 }
-
             }
 
             // Success - locations
@@ -294,7 +293,29 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
     $scope.assignRoom = function (assign) {
         $scope.input.rooms.push(assign);
         return;
+    };
 
+    $scope.prepareRooms = function () {
+        var globalRoomIndex = $scope.input.rooms.indexOf(0);
+        //var roomIds = _.map(locations.value.data.data, function(location){});
+
+        if ($scope.input.role === 1 && globalRoomIndex === -1) {
+            $scope.input.rooms = [0];
+        } else if ($scope.input.role !== 1 && globalRoomIndex > -1){
+            if ($scope.input.id === 0) {
+                $scope.input.rooms = [];
+            } else {
+                $scope.input.rooms.splice(globalRoomIndex, 1);
+            }
+        }
+        return;
+    };
+
+    $scope.parseRoleToInt = function (role) {
+        if (!_.isNumber(role)) {
+            $scope.input.role = parseInt(role, 10);
+        }
+        return;
     };
 
     /**
