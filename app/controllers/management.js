@@ -287,15 +287,27 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
         });
     };
     $scope.allSettledUserId();
+
+    /**
+     * Watch for the role change
+     */
+    /*$scope.$watch('input.role', function () {
+        if($scope.input.role === 1){
+            $scope.input.rooms = [0];
+        }
+        console.log($scope.input.role)
+    });*/
     /**
      * Assign room to list
      */
     $scope.assignRoom = function (assign) {
-        $scope.input.rooms.push(assign);
-        return;
+        if($scope.input.role !== 1) {
+            $scope.input.rooms.push(assign);
+        }
     };
 
-    $scope.prepareRooms = function () {
+    /*$scope.prepareRooms = function () {
+        return;
         var globalRoomIndex = $scope.input.rooms.indexOf(0);
         //var roomIds = _.map(locations.value.data.data, function(location){});
 
@@ -309,14 +321,7 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
             }
         }
         return;
-    };
-
-    $scope.parseRoleToInt = function (role) {
-        if (!_.isNumber(role)) {
-            $scope.input.role = parseInt(role, 10);
-        }
-        return;
-    };
+    };*/
 
     /**
      * Remove room from the list
@@ -339,11 +344,16 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
         if (form.$invalid) {
             return;
         }
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         if ($scope.id == 0) {
             input.password = input.password;
         }
-        input.role = parseInt(input.role, 10);
+        if (input.role === 1) {
+            input.rooms = [0];
+        }
+        //input.role = parseInt(input.role, 10);
+        //console.log(input);
+        //return;
         dataFactory.storeApi('profiles', input.id, input).then(function (response) {
             var id = $filter('hasNode')(response, 'data.data.id');
             if (id) {
@@ -417,7 +427,6 @@ myAppController.controller('ManagementRemoteController', function ($scope, dataF
 
             $scope.loading = false;
             var remoteAccess = response.data.data[0];
-            console.log(remoteAccess)
             if (Object.keys(remoteAccess).length < 1) {
                 alertify.alertError($scope._t('error_load_data'));
             }
