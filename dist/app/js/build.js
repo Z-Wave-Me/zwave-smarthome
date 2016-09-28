@@ -22069,10 +22069,13 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
      * Watch for the role change
      */
     /*$scope.$watch('input.role', function () {
+        //var globalRoomIndex = $scope.input.rooms.indexOf(0);
         if($scope.input.role === 1){
             $scope.input.rooms = [0];
+        }else{
+            $scope.input.rooms = $scope.input.rooms.length > 0  ? $scope.input.rooms : [];
+            //$scope.input.rooms = []
         }
-        console.log($scope.input.role)
     });*/
     /**
      * Assign room to list
@@ -22121,14 +22124,16 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
         if (form.$invalid) {
             return;
         }
-        //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        var globalRoomIndex = input.rooms.indexOf(0);
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         if ($scope.id == 0) {
             input.password = input.password;
         }
         if (input.role === 1) {
             input.rooms = [0];
+        }else if(globalRoomIndex > -1){
+            input.rooms.splice(globalRoomIndex, 1);
         }
-        //input.role = parseInt(input.role, 10);
         //console.log(input);
         //return;
         dataFactory.storeApi('profiles', input.id, input).then(function (response) {
