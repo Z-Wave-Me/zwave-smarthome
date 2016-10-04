@@ -1,6 +1,7 @@
 {
     "newtrans": "---",
      "---": "newtrans",
+    "lb_allow_access_to_all_rooms":"Has Access to all rooms",
     "works_with_internet": "Works only with internet access",
     "local_access_manage": "Local Ethernet Access",
     "local_access_activate": "Enable Ethernet access ",
@@ -14,7 +15,7 @@
     "yes": "Yes",
     "timezone": "Time Zone",
     "timezone_select": "Select your time zone",
-    "timezone_info": "You will need to REBOOT your POPP to apply the setting.",
+    "timezone_info": "You will need to REBOOT your POPP hub to apply the setting.",
     "set_timezone": "Set time zone",
     "timezone_alert": "Reboot is necessary to apply your changes. Do you want to reboot now?",
     "frequency": "Frequency",
