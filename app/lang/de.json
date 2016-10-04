@@ -1,5 +1,6 @@
 {
-    "works_with_internet": "Works only with internet access",
+    "lb_allow_access_to_all_rooms":"Hat Zugang zu allen Räumen",
+    "works_with_internet": "Funktioniert nur mit Internetverbindung",
     "local_access_manage": "Ethernet-Zugang",
     "local_access_activate": "Ethernet-Zugang aktivieren",
     "local_access_not_installed": "Die Konfiguration für den Ethernet-Zugang konnte nicht gefunden werden. Bitte aktivieren sie diese durch hinzufügen der App 'Zeitzone und Ethernet-Zugang' unter 'Anwendungen > Lokal > Zeitzone und Ethernet-Zugang > +Neue App'.",
