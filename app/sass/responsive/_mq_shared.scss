@@ -41,7 +41,11 @@ body {
         li{
             a{
                 padding: 0 $spacing;
+                span{
+                    left:50px;
+                }
             }
+
 
         }
     }
