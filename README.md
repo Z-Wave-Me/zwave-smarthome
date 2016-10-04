@@ -19,6 +19,7 @@ Marcel Kermer
 - Elements: Sorting by last updated.
 
 #### Fixes
+- Text in preferences menu not aligned #189.
 - Filter function in elements prevents further use of UI elements #185.
 - Strange sting on widget #180.
 - Infinite loop on login #184.
