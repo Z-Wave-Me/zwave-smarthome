@@ -715,10 +715,7 @@ myAppController.controller('ElementClimateControlController', function ($scope, 
 myAppController.controller('ElementSecurityControlController', function ($scope, $filter, dataFactory) {
     $scope.widgetSecurityControl = {
         find: {},
-        rooms: {},
-        alert: {message: false, status: 'is-hidden', icon: false},
-        model: [],
-        devicesId: _.indexBy($scope.dataHolder.devices.all, 'id')
+        alert: {message: false, status: 'is-hidden', icon: false}
     };
 
     /**
@@ -727,24 +724,11 @@ myAppController.controller('ElementSecurityControlController', function ($scope,
     $scope.loadDeviceId = function () {
         dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function (response) {
             var lastTriggerList = response.data.data.metrics.lastTriggerList;
-            console.log(lastTriggerList)
             if (_.isEmpty(lastTriggerList)) {
                 $scope.widgetSecurityControl.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
                 return;
             }
             $scope.widgetSecurityControl.find = lastTriggerList;
-            /*$scope.widgetClimateControl.rooms = _.chain(device.metrics.rooms)
-                .flatten()
-                .filter(function (v) {
-                    angular.extend(v,
-                        {roomTitle: $scope.dataHolder.devices.rooms[v.room].title},
-                        {roomIcon: $scope.dataHolder.devices.rooms[v.room].img_src},
-                        {sensorLevel: $scope.widgetClimateControl.devicesId[v.mainSensor] ? $scope.widgetClimateControl.devicesId[v.mainSensor].metrics.level : null},
-                        {scaleTitle: $scope.widgetClimateControl.devicesId[v.mainSensor] ? $scope.widgetClimateControl.devicesId[v.mainSensor].metrics.scaleTitle : null}
-                    );
-                    return v;
-                })
-                .value();*/
 
 
         }, function (error) {
@@ -752,21 +736,6 @@ myAppController.controller('ElementSecurityControlController', function ($scope,
         });
     };
     $scope.loadDeviceId();
-
-    /**
-     * Change climate element mode
-     */
-    $scope.changeClimateControlMode = function (input) {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        dataFactory.runApiCmd(input.cmd).then(function (response) {
-            $scope.widgetClimateControl.alert = {message: false};
-            $scope.loadDeviceId();
-        }, function (error) {
-            $scope.widgetClimateControl.alert = {message: $scope._t('error_update_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
-            $scope.loading = false;
-        });
-
-    };
 });
 
 /**
