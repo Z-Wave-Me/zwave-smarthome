@@ -1,4 +1,16 @@
 {
+
+    "upload_backup": "Upload backup",
+    "cloud_not_installed": "Cloud Backup is not installed. Please add new Cloud Backup in the Apps > local > Cloud Backup.",
+    "cloud_not_active": "Cloud Backup is not active. Please activate it in the Apps > Active > Cloud Backup.",
+    "email_sent": "Email was successfully sent. Please check your mailbox",
+    "send_email_error": "Unable to send email",
+    "backup_cloud": "Backup to the cloud",
+    "turnon_cloud": "Turn on cloud backup",
+    "turnoff_cloud": "Turn off cloud backup",
+    "no_email_log": "Do not send me log by email",
+    "email_log_error": "Send me error log only by email",
+    "email_log_all": "Send me error log and notifivations by email",
     "lb_allow_access_to_all_rooms":"Hat Zugang zu allen Räumen",
     "works_with_internet": "Funktioniert nur mit Internetverbindung",
     "local_access_manage": "Ethernet-Zugang",

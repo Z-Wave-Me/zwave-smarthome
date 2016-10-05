@@ -24,6 +24,8 @@ var config_data = {
         'route': {
             // Current location
             location: {},
+            // Server name
+            serverName: '',
             // Time zone
             time: {
                 string: false,

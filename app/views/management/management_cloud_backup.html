@@ -86,6 +86,12 @@
                         </option>
                     </select>
                 </span>
+                <!-- Manual -->
+                <div ng-if="managementCloud.instance.params.scheduler === '0'">
+                    <a class="btn btn-default" ng-href="{{managementCloud.module.defaults.api}}" title="{{_t('upload_backup')}}">
+                        <i class="fa fa-cloud-upload"></i> <span class="btn-name">{{_t('upload_backup')}}</span>
+                    </a>
+                 </div>
             </div>
         </fieldset>
         <fieldset  class="submit-entry">

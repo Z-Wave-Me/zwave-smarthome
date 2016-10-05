@@ -367,6 +367,7 @@ myApp.run(function ($rootScope, $location, dataService, cfg) {
     // Route Access Control and Authentication
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
         var user;
+        cfg.route.serverName =  $location.protocol() + '//' +  $location.host() + '/';
         // Reset fatal error messages
         if (cfg.route.fatalError.message && !cfg.route.fatalError.permanent) {
             angular.extend(cfg.route.fatalError, {
