@@ -122,6 +122,20 @@ Update instance
 
 
 
+## ManagementLocalController
+The controller that renders and handles local access.
+
+### ManagementLocalController.updateInstance() 
+
+Update instance
+
+
+### ManagementLocalController.systemReboot() 
+
+System rebboot
+
+
+
 ## ManagementLicenceController
 The controller that handles the licence key.
 

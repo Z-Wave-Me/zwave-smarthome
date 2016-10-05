@@ -17,7 +17,7 @@ var postRenderAlpaca = function (renderedForm) {
 
         // call postRender function from module
         if (typeof (modulePostRender) == 'function') {
-            $(document).ready(modulePostRender());
+            $(document).ready(modulePostRender(renderedForm));
         }
     }
 

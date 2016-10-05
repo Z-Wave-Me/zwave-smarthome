@@ -709,6 +709,36 @@ myAppController.controller('ElementClimateControlController', function ($scope, 
 });
 
 /**
+ * The controller that handles Security Control  module.
+ * @class ElementSecurityControlController
+ */
+myAppController.controller('ElementSecurityControlController', function ($scope, $filter, dataFactory) {
+    $scope.widgetSecurityControl = {
+        find: {},
+        alert: {message: false, status: 'is-hidden', icon: false}
+    };
+
+    /**
+     * Load single device
+     */
+    $scope.loadDeviceId = function () {
+        dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function (response) {
+            var lastTriggerList = response.data.data.metrics.lastTriggerList;
+            if (_.isEmpty(lastTriggerList)) {
+                $scope.widgetSecurityControl.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+                return;
+            }
+            $scope.widgetSecurityControl.find = lastTriggerList;
+
+
+        }, function (error) {
+            $scope.widgetSecurityControl.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+        });
+    };
+    $scope.loadDeviceId();
+});
+
+/**
  * The controller that handles elements on the dashboard.
  * @class ElementDashboardController
  */

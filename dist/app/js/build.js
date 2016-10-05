@@ -11037,19 +11037,13 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     requireLogin: true,
                     roles: cfg.role_access.devices
                 }).
-                //Zwave add
-                when('/zwave/add/:brandname?', {
-                    templateUrl: 'app/views/zwave/zwave_add.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.devices
-                }).
                 //Zwave select vendors
                 when('/zwave/vendors', {
                     templateUrl: 'app/views/zwave/zwave_vendors.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices
                 }).
-                //Zwave select devices by vendor id
+                //Zwave select devices by vendor id 
                 when('/zwave/vendors/:id', {
                     templateUrl: 'app/views/zwave/zwave_vendors_id.html',
                     requireLogin: true,
@@ -11376,12 +11370,12 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/auth/auth_password.html',
-    "<div ng-controller=AuthPasswordController><bb-loader></bb-loader><div ng-include=\"'app/views/auth/auth_header.html'\"></div><div class=\"alert alert-warning\"><i class=\"fa fa-exclamation-circle\"></i> {{_t('password_info')}}</div><form name=form_password id=form_password class=\"form form-page\" ng-submit=\"changePassword(form_password, input,handleTimezone.instance)\" novalidate><fieldset><p class=form-control-static><span ng-bind=\"_t('lb_login')\"></span>: <strong ng-bind=cfg.default_credentials.login></strong></p></fieldset><fieldset><label class=isrequired>{{_t('lb_new_password')}}:</label><input name=password id=password type=password class=form-control ng-model=input.password ng-blur=\"passwordBlur = true\" ng-required=true ng-minlength=\"6\"><bb-validator input-name=form_password.password.$error.required trans=_t(&quot;field_required&quot;) has-blur=passwordBlur></bb-validator><bb-validator input-name=form_password.password.$error.minlength trans=_t(&quot;password_valid&quot;) has-blur=passwordBlur></bb-validator></fieldset><fieldset><label class=isrequired>{{_t('confirm_password')}}:</label><input name=password_confirm id=password_confirm type=password class=form-control ng-blur=\"passwordConfirmBlur = true\" ng-model=input.passwordConfirm bb-compare-to=\"password\"><bb-validator input-name=form_password.password_confirm.$error.compareto trans=_t(&quot;passwords_must_match&quot;) has-blur=passwordConfirmBlur></bb-validator></fieldset><fieldset><div class=form-group><label>{{_t('lb_email')}}:</label><input name=email id=email type=email class=form-control ng-model=input.email ng-blur=\"emailBlur = true\"><bb-validator input-name=form_password.email.$error.required trans=_t(&quot;field_required&quot;) has-blur=emailBlur></bb-validator><bb-validator input-name=form_password.email.$error.email trans=_t(&quot;email_invalid&quot;) has-blur=emailBlur></bb-validator></div><bb-help-text trans=\"_t('password_email_info')\"></bb-help-text></fieldset><fieldset ng-if=\"cfg.app_type === 'jb' && handleTimezone.show\"><div class=form-group><label>{{_t('timezone_select')}}</label><select class=form-control ng-model=handleTimezone.instance.params.timezone><option value={{v}} ng-repeat=\"v in managementTimezone.enums track by $index\" ng-selected=\"v === handleTimezone.instance.params.timezone\">{{managementTimezone.labels[$index]}}</option></select><bb-help-text trans=\"_t('timezone_info')\"></bb-help-text></div><div class=form-group><div><input type=checkbox name=wan_port_access id=wan_port_access value=true ng-model=handleTimezone.instance.params.wan_port_access ng-checked=\"handleTimezone.instance.params.wan_port_access\"><label ng-bind=\"_t('wan_port_access')\"></label><bb-help-text trans=\"_t('wan_port_access_info')\"></bb-help-text></div></div></fieldset><fieldset class=submit-entry><button type=submit class=\"btn btn-submit\" title=\"{{_t('lb_enter')}}\" ng-disabled=form_password.$invalid><i class=\"fa fa-check\"></i> <span ng-bind=\"_t('lb_submit')\"></span></button></fieldset></form></div>"
+    "<div ng-controller=AuthPasswordController><bb-loader></bb-loader><div ng-include=\"'app/views/auth/auth_header.html'\"></div><div class=\"alert alert-warning\"><i class=\"fa fa-exclamation-circle\"></i> {{_t('password_info')}}</div><form name=form_password id=form_password class=\"form form-page\" ng-submit=\"changePassword(form_password, input,handleTimezone.instance)\" novalidate><fieldset><p class=form-control-static><span ng-bind=\"_t('lb_login')\"></span>: <strong ng-bind=cfg.default_credentials.login></strong></p></fieldset><fieldset><label class=isrequired>{{_t('lb_new_password')}}:</label><input name=password id=password type=password class=form-control ng-model=input.password ng-blur=\"passwordBlur = true\" ng-required=true ng-minlength=\"6\"><bb-validator input-name=form_password.password.$error.required trans=_t(&quot;field_required&quot;) has-blur=passwordBlur></bb-validator><bb-validator input-name=form_password.password.$error.minlength trans=_t(&quot;password_valid&quot;) has-blur=passwordBlur></bb-validator></fieldset><fieldset><label class=isrequired>{{_t('confirm_password')}}:</label><input name=password_confirm id=password_confirm type=password class=form-control ng-blur=\"passwordConfirmBlur = true\" ng-model=input.passwordConfirm bb-compare-to=\"password\"><bb-validator input-name=form_password.password_confirm.$error.compareto trans=_t(&quot;passwords_must_match&quot;) has-blur=passwordConfirmBlur></bb-validator></fieldset><fieldset><div class=form-group><label>{{_t('lb_email')}}:</label><input name=email id=email type=email class=form-control ng-model=input.email ng-blur=\"emailBlur = true\"><bb-validator input-name=form_password.email.$error.required trans=_t(&quot;field_required&quot;) has-blur=emailBlur></bb-validator><bb-validator input-name=form_password.email.$error.email trans=_t(&quot;email_invalid&quot;) has-blur=emailBlur></bb-validator></div><bb-help-text trans=\"_t('password_email_info')\"></bb-help-text></fieldset><fieldset ng-if=\"cfg.app_type === 'jb' && handleTimezone.show\"><div class=form-group><label>{{_t('timezone_select')}}</label><select class=form-control ng-model=handleTimezone.instance.params.timezone><option value={{v}} ng-repeat=\"v in managementTimezone.enums track by $index\" ng-selected=\"v === handleTimezone.instance.params.timezone\">{{managementTimezone.labels[$index]}}</option></select><bb-help-text trans=\"_t('timezone_info')\"></bb-help-text></div><div class=form-group><div><input type=checkbox name=wan_port_access id=wan_port_access value=true ng-model=handleTimezone.instance.params.wan_port_access ng-checked=\"handleTimezone.instance.params.wan_port_access\"><label ng-bind=\"_t('local_access_activate')\"></label><bb-help-text trans=\"_t('timezone_info')\"></bb-help-text></div></div></fieldset><fieldset class=submit-entry><button type=submit class=\"btn btn-submit\" title=\"{{_t('lb_enter')}}\" ng-disabled=form_password.$invalid><i class=\"fa fa-check\"></i> <span ng-bind=\"_t('lb_submit')\"></span></button></fieldset></form></div>"
   );
 
 
   $templateCache.put('app/views/auth/password_forgot.html',
-    "<div ng-controller=PasswordForgotController class=mobile-padding><bb-loader></bb-loader><bb-alert alert=passwordForgot.alert></bb-alert><form name=form_password id=form_password class=\"form form-page\" ng-submit=\"sendEmail(form_password, passwordForgot)\" novalidate ng-hide=\"passwordForgot.alert.status == 'alert-success'\"><fieldset><h3><i class=\"fa fa-chevron-down\"></i> {{_t('password_forgot_info')}}</h3><div class=form-group><label class=isrequired>{{_t('lb_email')}}:</label><input name=email id=email type=email class=form-control ng-model=passwordForgot.input.email ng-blur=\"emailBlur = true\" ng-required=\"true\"><bb-validator input-name=form_password.email.$error.required trans=_t(&quot;field_required&quot;) has-blur=emailBlur></bb-validator><bb-validator input-name=form_password.email.$error.email trans=_t(&quot;email_invalid&quot;) has-blur=emailBlur></bb-validator></div></fieldset><fieldset class=submit-entry><button type=button class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <button type=submit class=\"btn btn-submit\" title=\"{{_t('lb_submit')}}\" ng-disabled=form_password.$invalid><i class=\"fa fa-check\"></i> <span class=btn-name ng-bind=\"_t('lb_submit')\"></span></button></fieldset></form></div>"
+    "<div ng-controller=PasswordForgotController class=mobile-padding><bb-loader></bb-loader><bb-alert alert=passwordForgot.alert></bb-alert><form name=form_password id=form_password class=\"form form-page\" ng-submit=\"sendEmail(form_password, passwordForgot)\" novalidate ng-hide=\"passwordForgot.alert.status == 'alert-success'\"><fieldset><h3>{{_t('password_forgot_info')}}</h3><div class=form-group><label class=isrequired>{{_t('lb_email')}}:</label><input name=email id=email type=email class=form-control ng-model=passwordForgot.input.email ng-blur=\"emailBlur = true\" ng-required=\"true\"><bb-validator input-name=form_password.email.$error.required trans=_t(&quot;field_required&quot;) has-blur=emailBlur></bb-validator><bb-validator input-name=form_password.email.$error.email trans=_t(&quot;email_invalid&quot;) has-blur=emailBlur></bb-validator></div><bb-help-text trans=\"_t('works_with_internet')\"></bb-help-text></fieldset><fieldset class=submit-entry><button type=button class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <button type=submit class=\"btn btn-submit\" title=\"{{_t('lb_submit')}}\" ng-disabled=form_password.$invalid><i class=\"fa fa-check\"></i> <span class=btn-name ng-bind=\"_t('lb_submit')\"></span></button></fieldset></form></div>"
   );
 
 
@@ -11686,7 +11680,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/management/management.html',
-    "<div ng-controller=ManagementController class=mobile-padding><div class=accordion-entry ng-include=\"'app/views/management/management_user.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_remote.html'\"></div><div class=accordion-entry ng-if=handleLicense.show ng-include=\"'app/views/management/management_licence.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_backup.html'\" ng-if=!isMobile></div><div class=accordion-entry ng-include=\"'app/views/management/management_cloud_backup.html'\" ng-if=!isMobile></div><div class=accordion-entry ng-include=\"'app/views/management/management_timezone.html'\" ng-if=\"cfg.app_type === 'jb'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_restore.html'\" ng-if=!isMobile></div><div class=accordion-entry ng-include=\"'app/views/management/management_factory.html'\"></div><div class=accordion-entry ng-if=!isMobile ng-hide=\"cfg.app_type === 'wd' || cfg.app_type === 'jb'\" ng-include=\"'app/views/management/management_firmware.html'\"></div><div class=accordion-entry ng-if=\"cfg.app_type === 'jb'\" ng-include=\"'app/views/management/management_firmware_jb.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_appstore.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_report.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_info.html'\"></div></div>"
+    "<div ng-controller=ManagementController class=mobile-padding><div class=accordion-entry ng-include=\"'app/views/management/management_user.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_remote.html'\"></div><div class=accordion-entry ng-if=handleLicense.show ng-include=\"'app/views/management/management_licence.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_local.html'\" ng-if=\"cfg.app_type === 'jb'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_backup.html'\" ng-if=!isMobile></div><div class=accordion-entry ng-include=\"'app/views/management/management_timezone.html'\" ng-if=\"cfg.app_type === 'jb'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_restore.html'\" ng-if=!isMobile></div><div class=accordion-entry ng-include=\"'app/views/management/management_factory.html'\"></div><div class=accordion-entry ng-if=\"!isMobile && !isInArray(['popp','jb'],cfg.app_type)\" ng-include=\"'app/views/management/management_firmware.html'\"></div><div class=accordion-entry ng-if=\"cfg.app_type === 'jb'\" ng-include=\"'app/views/management/management_firmware_jb.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_appstore.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_report.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_info.html'\"></div></div>"
   );
 
 
@@ -11697,11 +11691,6 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
   $templateCache.put('app/views/management/management_backup.html',
     "<h2 class=accordion-entry-title ng-click=\"expandElement('backup')\"><i class=\"fa fa-download\"></i> <span ng-bind=\"_t('backup')\"></span> <i class=\"fa accordion-arrow\" ng-class=\"expand.backup  ? 'fa-chevron-up':'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-if=expand.backup><div class=\"form form-inline form-page\"><div class=fieldset><p>{{_t('backup_info')}}</p></div><div class=\"fieldset submit-entry\"><a class=\"btn btn-submit\" ng-href=\"{{cfg.server_url + cfg.api.backup}}\" title=\"{{_t('nm_backup_download')}}\"><i class=\"fa fa-download\"></i> <span class=btn-name>{{_t('nm_backup_download')}}</span></a></div></div></div>"
-  );
-
-
-  $templateCache.put('app/views/management/management_cloud_backup.html',
-    "<h2 class=accordion-entry-title ng-click=\"expandElement('cloud')\"><i class=\"fa fa-cloud-download\"></i> <span ng-bind=\"_t('backup_cloud')\"></span> <i class=\"fa accordion-arrow\" ng-class=\"expand.backup ? 'fa-chevron-up' : 'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-if_=expand.cloud ng-controller=ManagementCloudBackupController><bb-loader></bb-loader><bb-alert alert=managementCloud.alert></bb-alert><form name=form_cloud_backup id=form_cloud_backup class=\"form form-page\" ng-if=managementCloud.show ng-submit=\"updateInstance(form_cloud_backup, managementCloud.instance)\" novalidate><fieldset><div class=\"form-group form-inline\"><label>{{managementCloud.module.options.fields.email.label}}:</label><input name=email id=email type=email class=form-control value={{managementCloud.instance.params.email}} ng-model=managementCloud.instance.params.email ng-required=true ng-blur=\"emailBlur = true\"><bb-validator input-name=form_cloud_backup.email.$error.required trans=_t(&quot;field_required&quot;) has-blur=emailBlur></bb-validator><bb-validator input-name=form_cloud_backup.email.$error.email trans=_t(&quot;email_invalid&quot;) has-blur=emailBlur></bb-validator></div><div class=form-group><h4>{{managementCloud.module.options.fields.email_log.label}}</h4><div ng-repeat=\"v in managementCloud.module.schema.properties.email_log.enum track by $index\"><input type=radio name=email_log value={{v}} id=email_log_{{v}} ng-model=managementCloud.instance.params.email_log ng-checked=\"managementCloud.instance.params.email_log === v\"><label>{{managementCloud.module.options.fields.email_log.optionLabels[$index]}}</label></div></div></fieldset><fieldset ng-if=managementCloud.instance.params.user_active><div class=btn-group><button class=\"btn btn-default\" title=\"{{_t('daily')}}\" type=button ng-repeat=\"v in managementCloud.module.schema.properties.scheduler.enum track by $index\" ng-class=\"v === managementCloud.instance.params.scheduler ? 'active' : ''\" ng-click=setSchedulerType(v)>{{managementCloud.module.options.fields.scheduler.optionLabels[$index]}}</button></div><div class=\"form-group form-inline form-block\"><span ng-if=\"managementCloud.module.options.fields.hours.dependencies.scheduler.indexOf(managementCloud.instance.params.scheduler) > -1\"><label>{{managementCloud.module.options.fields.hours.label}}</label><select class=form-control ng-model=managementCloud.instance.params.hours><option value={{v}} ng-repeat=\"v in managementCloud.module.schema.properties.hours.enum track by $index\" ng-selected=\"v === managementCloud.instance.params.hours\">{{v}}</option></select></span> <span ng-if=\"managementCloud.module.options.fields.minutes.dependencies.scheduler.indexOf(managementCloud.instance.params.scheduler) > -1\"><label>{{managementCloud.module.options.fields.minutes.label}}</label><select class=form-control ng-model=managementCloud.instance.params.minutes><option value={{v}} ng-repeat=\"v in managementCloud.module.schema.properties.minutes.enum track by $index\" ng-selected=\"v === managementCloud.instance.params.minutes\">{{v}}</option></select></span> <span ng-if=\"managementCloud.module.options.fields.weekDays.dependencies.scheduler.indexOf(managementCloud.instance.params.scheduler) > -1\"><label>{{managementCloud.module.options.fields.weekDays.label}}</label><select class=form-control ng-model=managementCloud.instance.params.weekDays><option value={{v}} ng-repeat=\"v in managementCloud.module.schema.properties.weekDays.enum track by $index\" ng-selected=\"v.toString() === managementCloud.instance.params.weekDays\">{{managementCloud.module.options.fields.weekDays.optionLabels[$index]}}</option></select></span> <span ng-if=\"managementCloud.module.options.fields.days.dependencies.scheduler.indexOf(managementCloud.instance.params.scheduler) > -1\"><label>{{managementCloud.module.options.fields.days.label}}</label><select class=form-control ng-model=managementCloud.instance.params.days><option value={{v}} ng-repeat=\"v in managementCloud.module.schema.properties.days.enum track by $index\" ng-selected=\"v === managementCloud.instance.params.days\">{{v}}</option></select></span></div></fieldset><fieldset class=submit-entry><button type=submit class=\"btn btn-submit\" title=\"{{_t('lb_save')}}\" ng-disabled=form_cloud_backup.$invalid><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></fieldset></form></div>"
   );
 
 
@@ -11730,6 +11719,16 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
   );
 
 
+  $templateCache.put('app/views/management/management_local.html',
+    "<h2 class=accordion-entry-title ng-click=\"expandElement('local')\"><i class=\"fa fa-database\"></i> <span ng-bind=\"_t('local_access_manage')\"></span> <i class=\"fa accordion-arrow\" ng-class=\"expand.local ? 'fa-chevron-up' : 'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-class=\"\" ng-if=expand.local ng-controller=ManagementLocalController><bb-loader></bb-loader><form name=form_local id=form_local class=\"form form-page\" ng-if=handleTimezone.show ng-submit=updateInstance(handleTimezone.instance)><fieldset><p>{{_t('wan_port_access_info')}}</p><div class=form-group><div><input type=checkbox name=wan_port_access id=wan_port_access value=true ng-model=handleTimezone.instance.params.wan_port_access ng-checked=\"handleTimezone.instance.params.wan_port_access\"><label ng-bind=\"_t('local_access_activate')\"></label><bb-help-text trans=\"_t('timezone_info')\"></bb-help-text></div></div></fieldset><fieldset class=submit-entry><button type=submit class=\"btn btn-submit\" title=\"{{_t('lb_save')}}\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></fieldset></form><div class=\"alert alert-warning\" ng-bind=\"_t('local_access_not_installed')\" ng-if=!handleTimezone.show></div></div>"
+  );
+
+
+  $templateCache.put('app/views/management/management_postfix.html',
+    "<h2 class=accordion-entry-title ng-click=\"expandElement('apppostfix')\"><i class=\"fa fa-list-alt\"></i> <span ng-bind=\"_t('patched_devices')\"></span> <i class=\"fa accordion-arrow\" ng-class=\"expand.appinfo ? 'fa-chevron-up' : 'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-if=expand.apppostfix ng-controller=ManagementPostfixController><div class=\"form form-inline form-page\"><div class=fieldset><table class=\"table table-report\"><tbody><tr ng-repeat=\"v in postfix.all\"><td>{{v.product}}</td></tr></tbody></table></div></div></div>"
+  );
+
+
   $templateCache.put('app/views/management/management_remote.html',
     "<h2 class=accordion-entry-title ng-click=\"expandElement('remote')\"><i class=\"fa fa-wifi\"></i> <span ng-bind=\"_t('remote_access_manage')\"></span> <i class=\"fa accordion-arrow\" ng-class=\"expand.remote  ? 'fa-chevron-up':'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-class=\"\" ng-if=expand.remote ng-controller=ManagementRemoteController><bb-loader></bb-loader><form name=form_remote id=form_remote class=\"form form-page\" ng-if=remoteAccess ng-submit=\"putRemoteAccess(remoteAccess, newRemoteAccessPassword)\" novalidate><fieldset><p ng-bind=\"_t('remote_access_info')\"></p><div ng-if=remoteAccess><div class=form-group><p class=form-control-static><span ng-bind=\"_t('remote_access_id')\"></span>: <strong ng-bind=remoteAccess.params.userId></strong></p></div><div class=form-group><div><input type=checkbox name=remote_access value=true id=remote_access ng-model=remoteAccess.params.zbwStatus ng-checked=\"remoteAccess.params.zbwStatus\"><label ng-bind=\"_t('remote_access')\"></label><div class=\"alert alert-warning\" ng-bind=\"_t('remote_access_warning')\" ng-if=!remoteAccess.params.zbwStatus></div></div><div><input type=checkbox name=remote_support value=true id=remote_support ng-model=remoteAccess.params.sshStatus ng-checked=\"remoteAccess.params.sshStatus\"><label ng-bind=\"_t('remote_access_support')\"></label></div></div></div></fieldset><fieldset class=submit-entry><button type=submit class=\"btn btn-submit\" title=\"{{_t('lb_save')}}\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></fieldset></form></div>"
   );
@@ -11746,7 +11745,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/management/management_timezone.html',
-    "<h2 class=accordion-entry-title ng-click=\"expandElement('timezone')\"><i class=\"fa fa-clock-o\"></i> <span ng-bind=\"_t('timezone')\"></span> <i class=\"fa accordion-arrow\" ng-class=\"expand.timezone ? 'fa-chevron-up' : 'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-class=\"\" ng-if=expand.timezone ng-controller=ManagementTimezoneController><bb-loader></bb-loader><form name=form_timezone id=form_password class=\"form form-page\" ng-if=handleTimezone.show ng-submit=updateInstance(handleTimezone.instance) novalidate><fieldset><div class=\"form-group form-inline\"><label>{{_t('timezone_select')}}</label><select class=form-control ng-model=handleTimezone.instance.params.timezone><option value={{v}} ng-repeat=\"v in managementTimezone.enums track by $index\" ng-selected=\"v === handleTimezone.instance.params.timezone\">{{managementTimezone.labels[$index]}}</option></select><bb-help-text trans=\"_t('timezone_info')\"></bb-help-text></div><div class=form-group><div><input type=checkbox name=wan_port_access id=wan_port_access value=true ng-model=handleTimezone.instance.params.wan_port_access ng-checked=\"handleTimezone.instance.params.wan_port_access\"><label ng-bind=\"_t('wan_port_access')\"></label><bb-help-text trans=\"_t('wan_port_access_info')\"></bb-help-text></div></div></fieldset><fieldset class=submit-entry><button type=submit class=\"btn btn-submit\" title=\"{{_t('set_timezone')}}\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('set_timezone')}}</span></button></fieldset></form><div class=\"alert alert-warning\" ng-bind=\"_t('timezone_not_installed')\" ng-if=!handleTimezone.show></div></div>"
+    "<h2 class=accordion-entry-title ng-click=\"expandElement('timezone')\"><i class=\"fa fa-clock-o\"></i> <span ng-bind=\"_t('timezone')\"></span> <i class=\"fa accordion-arrow\" ng-class=\"expand.timezone ? 'fa-chevron-up' : 'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-class=\"\" ng-if=expand.timezone ng-controller=ManagementTimezoneController><bb-loader></bb-loader><form name=form_timezone id=form_password class=\"form form-page\" ng-if=handleTimezone.show ng-submit=updateInstance(handleTimezone.instance) novalidate><fieldset><div class=\"form-group form-inline\"><label>{{_t('timezone_select')}}</label><select class=form-control ng-model=handleTimezone.instance.params.timezone><option value={{v}} ng-repeat=\"v in managementTimezone.enums track by $index\" ng-selected=\"v === handleTimezone.instance.params.timezone\">{{managementTimezone.labels[$index]}}</option></select><bb-help-text trans=\"_t('timezone_info')\"></bb-help-text></div></fieldset><fieldset class=submit-entry><button type=submit class=\"btn btn-submit\" title=\"{{_t('set_timezone')}}\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('set_timezone')}}</span></button></fieldset></form><div class=\"alert alert-warning\" ng-bind=\"_t('timezone_not_installed')\" ng-if=!handleTimezone.show></div></div>"
   );
 
 
@@ -11756,7 +11755,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/management/management_user_id.html',
-    "<div ng-controller=ManagementUserIdController class=mobile-padding><bb-loader></bb-loader><div ng-if=show><h2><span ng-bind=\"_t('lb_user')\"></span>: <span ng-show=\"input.id > 0\">(#{{input.id}})</span> <span ng-bind=input.name></span></h2><form name=form_profile id=form_profile class=\"form form-page\" ng-submit=store(form_profile,input) novalidate><fieldset><div class=\"form-group form-inline\"><label class=\"isrequired display-block\">{{_t('lb_name')}}:</label><input name=name id=name class=form-control value={{input.name}} ng-model=input.name ng-blur=\"nameBlur = true\" ng-required=\"true\"><bb-validator input-name=form_profile.name.$error.required trans=_t(&quot;field_required&quot;) has-blur=nameBlur></bb-validator></div><div class=\"form-group form-inline\"><label class=display-block>{{_t('lb_email')}}:</label><input name=email id=email type=email class=form-control value={{input.email}} ng-model=input.email ng-blur=\"emailBlur = true\"><bb-validator input-name=form_profile.email.$error.email trans=_t(&quot;email_invalid&quot;) has-blur=emailBlur></bb-validator></div></fieldset><fieldset ng-if=\"id == 0\"><div class=form-group><label class=isrequired>{{_t('lb_login')}}:</label><input name=login id=login class=\"form-control form-control-sm\" value={{input.login}} ng-model=input.login g-blur=\"loginBlur = true\" ng-required=\"true\"><bb-validator input-name=form_profile.name.$error.required trans=_t(&quot;field_required&quot;) has-blur=loginBlur></bb-validator></div><div class=form-group><label class=isrequired>{{_t('lb_password')}}:</label><input name=password id=password type=password class=\"form-control form-control-sm\" ng-model=input.password ng-blur=\"passwordBlur = true\" ng-required=true ng-minlength=\"6\"><bb-validator input-name=form_profile.password.$error.required trans=_t(&quot;field_required&quot;) has-blur=passwordBlur></bb-validator><bb-validator input-name=form_profile.password.$error.minlength trans=_t(&quot;password_valid&quot;) has-blur=passwordBlur></bb-validator></div><div class=form-group><label class=isrequired>{{_t('confirm_password')}}:</label><input name=password_confirm id=password_confirm type=password class=\"form-control form-control-sm\" ng-blur=\"passwordConfirmBlur = true\" ng-model=input.passwordConfirm bb-compare-to=\"password\"><bb-validator input-name=form_profile.password_confirm.$error.compareto trans=_t(&quot;passwords_must_match&quot;) has-blur=passwordConfirmBlur></bb-validator></div></fieldset><fieldset><h3><span ng-bind=\"_t('lb_settings')\"></span></h3><div><div class=\"form-group form-inline\" ng-if=\"user.id != id\"><label>{{_t('lb_role')}}:</label><input type=radio name=role value=1 ng-model=input.role ng-checked=\"input.role == 1\"> {{_t('lb_admin')}}<input type=radio name=role value=2 ng-model=input.role ng-checked=\"input.role == 2\"> {{_t('lb_user')}}<input type=radio name=role value=3 ng-model=input.role ng-checked=\"input.role == 3\"> {{_t('lb_local')}}<input type=radio name=role value=4 ng-model=input.role ng-checked=\"input.role == 4\"> {{_t('lb_anonymous')}}</div><div class=\"form-group form-inline\"><label>{{_t('lb_language')}}:</label><span ng-repeat=\"v in cfg.lang_list\"><input class=form-control-hidden type=radio name=color value={{v}} ng-model=input.lang ng-checked=\"input.color == v\"> <img class=\"form-control-img profile-lang\" ng-click=\"input.lang = v\" ng-class=\"v == input.lang ? 'control-active':''\" ng-src=app/img/flags/{{v}}.png alt=\"{{ v}}\"></span> <span ng-bind=input.lang></span></div><div class=form-group><label>{{_t('lb_profile_color')}}:</label><span ng-repeat=\"v in cfg.profile_colors\"><input class=form-control-hidden type=radio name=color value={{v}} ng-model=input.color ng-checked=\"input.color == v\"> <span class=\"form-control-img profile-color\" style=\"background-color: {{v}}\" ng-click=\"input.color = v\" ng-class=\"v == input.color ? 'control-active':''\">&nbsp;</span></span> <span ng-bind=input.color></span></div></div></fieldset><fieldset><h3>{{_t('lb_allow_rooms')}}</h3><div><div class=device-available-block><a href=\"\" class=\"btn btn-default btn-tag\" ng-repeat=\"d in rooms\" ng-if=\"input.rooms.indexOf(d.id) > -1\" ng-click=removeRoom(d.id)>{{d.title|cutText:true:20}} <i class=\"fa fa-times text-danger\"></i></a></div><h3>{{_t('lb_available_rooms')}}</h3><div class=device-available-block><a href=\"\" class=\"btn btn-default btn-tag\" ng-repeat=\"d in rooms\" ng-if=\"input.rooms.indexOf(d.id) === -1\" ng-click=assignRoom(d.id)>{{d.title|cutText:true:20}} <i class=\"fa fa-plus text-success\"></i></a></div></div></fieldset><fieldset class=submit-entry><button type=button class=\"btn btn-default\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <button type=submit class=\"btn btn-submit\" ng-disabled=form_profile.$invalid><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></fieldset></form><div ng-if=\"id > 0\"><h2 ng-bind=\"_t('local_access')\"></h2><form name=form_password id=form_password class=\"form form-page\" ng-submit=changeAuth(form_password) novalidate><fieldset><div class=\"form-group form-inline\"><label class=\"isrequired display-block\">{{_t('lb_login')}}: <em>{{input.login}}</em></label><input name=login id=login class=form-control ng-model=auth.login ng-blur=\"loginBlur = true\" ng-required=\"true\"><bb-validator input-name=form_password.name.$error.required trans=_t(&quot;field_required&quot;) has-blur=loginBlur></bb-validator></div><div class=\"form-group form-inline\"><label class=\"isrequired display-block\">{{_t('lb_new_password')}}:</label><input name=password id=password type=password class=form-control ng-model=auth.password ng-blur=\"passwordBlur = true\" ng-required=true ng-minlength=\"6\"><bb-validator input-name=form_password.password.$error.required trans=_t(&quot;field_required&quot;) has-blur=passwordBlur></bb-validator><bb-validator input-name=form_password.password.$error.minlength trans=_t(&quot;password_valid&quot;) has-blur=passwordBlur></bb-validator></div><div class=\"form-group form-inline\"><label class=\"isrequired display-block\">{{_t('confirm_password')}}:</label><input name=password_confirm id=password_confirm type=password class=form-control ng-blur=\"passwordConfirmBlur = true\" ng-model=input.passwordConfirm bb-compare-to=\"password\"><bb-validator input-name=form_password.password_confirm.$error.compareto trans=_t(&quot;passwords_must_match&quot;) has-blur=passwordConfirmBlur></bb-validator></div></fieldset><fieldset class=submit-entry><button type=button class=\"btn btn-default\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <button type=submit class=\"btn btn-submit\" ng-disabled=form_password.$invalid><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_submit')}}</span></button></fieldset></form></div></div></div>"
+    "<div ng-controller=ManagementUserIdController class=mobile-padding><bb-loader></bb-loader><div ng-if=show><h2><span ng-bind=\"_t('lb_user')\"></span>: <span ng-show=\"input.id > 0\">(#{{input.id}})</span> <span ng-bind=input.name></span></h2><form name=form_profile id=form_profile class=\"form form-page\" ng-submit=store(form_profile,input) novalidate><fieldset><div class=\"form-group form-inline\"><label class=\"isrequired display-block\">{{_t('lb_name')}}:</label><input name=name id=name class=form-control value={{input.name}} ng-model=input.name ng-blur=\"nameBlur = true\" ng-required=\"true\"><bb-validator input-name=form_profile.name.$error.required trans=_t(&quot;field_required&quot;) has-blur=nameBlur></bb-validator></div><div class=\"form-group form-inline\"><label class=display-block>{{_t('lb_email')}}:</label><input name=email id=email type=email class=form-control value={{input.email}} ng-model=input.email ng-blur=\"emailBlur = true\"><bb-validator input-name=form_profile.email.$error.email trans=_t(&quot;email_invalid&quot;) has-blur=emailBlur></bb-validator></div></fieldset><fieldset ng-if=\"id == 0\"><div class=form-group><label class=isrequired>{{_t('lb_login')}}:</label><input name=login id=login class=\"form-control form-control-sm\" value={{input.login}} ng-model=input.login g-blur=\"loginBlur = true\" ng-required=\"true\"><bb-validator input-name=form_profile.name.$error.required trans=_t(&quot;field_required&quot;) has-blur=loginBlur></bb-validator></div><div class=form-group><label class=isrequired>{{_t('lb_password')}}:</label><input name=password id=password type=password class=\"form-control form-control-sm\" ng-model=input.password ng-blur=\"passwordBlur = true\" ng-required=true ng-minlength=\"6\"><bb-validator input-name=form_profile.password.$error.required trans=_t(&quot;field_required&quot;) has-blur=passwordBlur></bb-validator><bb-validator input-name=form_profile.password.$error.minlength trans=_t(&quot;password_valid&quot;) has-blur=passwordBlur></bb-validator></div><div class=form-group><label class=isrequired>{{_t('confirm_password')}}:</label><input name=password_confirm id=password_confirm type=password class=\"form-control form-control-sm\" ng-blur=\"passwordConfirmBlur = true\" ng-model=input.passwordConfirm bb-compare-to=\"password\"><bb-validator input-name=form_profile.password_confirm.$error.compareto trans=_t(&quot;passwords_must_match&quot;) has-blur=passwordConfirmBlur></bb-validator></div></fieldset><fieldset><h3><span ng-bind=\"_t('lb_settings')\"></span></h3><div><div class=\"form-group form-inline\" ng-if=\"user.id != id\"><label>{{_t('lb_role')}}:</label><input type=radio name=role value=1 ng-model=input.role ng-checked=\"input.role == 1\" bb-integer> {{_t('lb_admin')}}<input type=radio name=role value=2 ng-model=input.role ng-checked=\"input.role == 2\" bb-integer> {{_t('lb_user')}}<input type=radio name=role value=3 ng-model=input.role ng-checked=\"input.role == 3\" bb-integer> {{_t('lb_local')}}<input type=radio name=role value=4 ng-model=input.role ng-checked=\"input.role == 4\" bb-integer> {{_t('lb_anonymous')}}</div><div class=\"form-group form-inline\"><label>{{_t('lb_language')}}:</label><span ng-repeat=\"v in cfg.lang_list\"><input class=form-control-hidden type=radio name=color value={{v}} ng-model=input.lang ng-checked=\"input.color == v\"> <img class=\"form-control-img profile-lang\" ng-click=\"input.lang = v\" ng-class=\"v == input.lang ? 'control-active':''\" ng-src=app/img/flags/{{v}}.png alt=\"{{ v}}\"></span> <span ng-bind=input.lang></span></div></div></fieldset><fieldset ng-if=\"input.role === 1\"><h3>{{_t('lb_allow_access_to_all_rooms')}}</h3></fieldset><fieldset ng-if=\"input.role !== 1\"><h3>{{_t('lb_allow_rooms')}}</h3><div><div class=device-available-block><a href=\"\" class=\"btn btn-default btn-tag\" ng-repeat=\"d in rooms\" ng-if=\"input.rooms.indexOf(d.id) > -1\" ng-click=removeRoom(d.id)>{{d.title|cutText:true:20}} <i class=\"fa fa-times text-danger\"></i></a></div><h3>{{_t('lb_available_rooms')}}</h3><div class=device-available-block><a href=\"\" class=\"btn btn-default btn-tag\" ng-repeat=\"d in rooms\" ng-if=\"input.rooms.indexOf(d.id) === -1\" ng-click=assignRoom(d.id)>{{d.title|cutText:true:20}} <i class=\"fa fa-plus text-success\"></i></a></div></div></fieldset><fieldset class=submit-entry><button type=button class=\"btn btn-default\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <button type=submit class=\"btn btn-submit\" ng-disabled=form_profile.$invalid><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></fieldset></form><div ng-if=\"id > 0\"><h2 ng-bind=\"_t('local_access')\"></h2><form name=form_password id=form_password class=\"form form-page\" ng-submit=changeAuth(form_password) novalidate><fieldset><div class=\"form-group form-inline\"><label class=\"isrequired display-block\">{{_t('lb_login')}}: <em>{{input.login}}</em></label><input name=login id=login class=form-control ng-model=auth.login ng-blur=\"loginBlur = true\" ng-required=\"true\"><bb-validator input-name=form_password.name.$error.required trans=_t(&quot;field_required&quot;) has-blur=loginBlur></bb-validator></div><div class=\"form-group form-inline\"><label class=\"isrequired display-block\">{{_t('lb_new_password')}}:</label><input name=password id=password type=password class=form-control ng-model=auth.password ng-blur=\"passwordBlur = true\" ng-required=true ng-minlength=\"6\"><bb-validator input-name=form_password.password.$error.required trans=_t(&quot;field_required&quot;) has-blur=passwordBlur></bb-validator><bb-validator input-name=form_password.password.$error.minlength trans=_t(&quot;password_valid&quot;) has-blur=passwordBlur></bb-validator></div><div class=\"form-group form-inline\"><label class=\"isrequired display-block\">{{_t('confirm_password')}}:</label><input name=password_confirm id=password_confirm type=password class=form-control ng-blur=\"passwordConfirmBlur = true\" ng-model=input.passwordConfirm bb-compare-to=\"password\"><bb-validator input-name=form_password.password_confirm.$error.compareto trans=_t(&quot;passwords_must_match&quot;) has-blur=passwordConfirmBlur></bb-validator></div></fieldset><fieldset class=submit-entry><button type=button class=\"btn btn-default\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <button type=submit class=\"btn btn-submit\" ng-disabled=form_password.$invalid><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_submit')}}</span></button></fieldset></form></div></div></div>"
   );
 
 
@@ -11787,11 +11786,6 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
   $templateCache.put('app/views/zwave/navi.html',
     "<div class=\"tabs-wrap form-inline\" ng-if=devices.show><div class=\"btn-group btn-goup-tabs btn-tabs-3\"><a class=\"btn btn-default\" href=#zwave/devices title=\"{{_t('lb_zwave_devices')}}\" ng-class=\"routeMatch('/zwave/devices') ? 'active' : ''\"><i class=\"fa fa-wifi\"></i> <span class=btn-name>{{_t('lb_zwave_devices')}}</span></a> <a class=\"btn btn-default\" href=#zwave/batteries title=\"{{_t('lb_battery_status')}}\" ng-class=\"routeMatch('/zwave/batteries') ? 'active' : ''\" ng-if=elementAccess(cfg.role_access.network)><i class=\"fa fa-bolt\"></i> <span class=btn-name>{{_t('lb_battery_status')}}</span></a> <a class=\"btn btn-default\" href=#zwave/network title=\"{{_t('lb_network_status')}}\" ng-class=\"routeMatch('/zwave/network') ? 'active' : ''\" ng-if=elementAccess(cfg.role_access.network)><i class=\"fa fa-sitemap\"></i> <span class=btn-name>{{_t('lb_network_status')}}</span></a></div></div>"
-  );
-
-
-  $templateCache.put('app/views/zwave/zwave_add.html',
-    "<div ng-controller=ZwaveAddController><bb-loader></bb-loader><div class=\"text-center device-autodetect\"><a href=#zwave/inclusion class=\"btn btn-default btn-lg btn-block\" title=\"{{_t('lb_zwave_autodetect')}}\"><i class=\"fa fa-plug text-success\"></i> <span class=btn-name>{{_t('lb_zwave_autodetect')}}</span></a></div><div class=\"app-row app-row-vendor clearfix\" ng-hide=zwaveDevices><div class=vendor-entry ng-repeat=\"v in manufacturers\"><a ng-href=#zwave/add/{{v.brandname}} class=vendor-list><p class=vendor-image><img ng-src=storage/img/zwave/vendors/{{v.brand_image}} alt=img ng-show=\"v.brandname\"></p></a></div></div><div ng-if=manufacturer><h3><button class=\"btn btn-default\" bb-go-back><i class=\"fa fa-arrow-left\"></i></button> {{manufacturer}}</h3><div class=\"app-row app-row-report app-row-zwaveadd clearfix\"><div id=row_zwaveadd_{{v.id}} class=report-entry ng-repeat=\"(k,v) in zwaveDevices\"><div class=\"report-col report-media\"><img class=product-img ng-src=storage/img/zwave/devices/{{v.product_image}} alt=img ng-if=\"v.product_image\"> <img class=product-img ng-src=storage/img/zwave/vendors/{{v.brand_image}} alt=img ng-if=\"!v.product_image\"></div><div class=\"report-col report-body\">{{v.name}}</div><div class=\"report-col report-ctrl\"><a href=#zwave/inclusion/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_include_device')}}\"><i class=\"fa fa-plug text-primary\"></i></a></div></div></div></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div></div>"
   );
 
 
@@ -11827,11 +11821,6 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
   $templateCache.put('app/views/zwave/zwave_network.html',
     "<div ng-controller=ZwaveManageController><bb-loader></bb-loader><div ng-include=\"'app/views/zwave/navi.html'\"></div><div class=\"app-row app-row-report app-row-zwave clearfix\"><div id=row_zwave_network_{{v.id}} class=report-entry ng-repeat=\"v in devices.zw | orderBy:'title':false\" ng-class=\"v.isFailed ? 'bcg-danger': ''\" ng-if=\"_.size(v.messages) > 0\"><div class=\"report-col report-body zwave-network\"><span class=\"network-zwave-title noelements\" ng-if=\"_.size(v.elements) < 1\">{{v.title}} (#{{v.id}})</span><div class=btn-group ng-if=\"_.size(v.elements) > 0\"><a href=\"\" class=network-zwave-title ng-click=\"expandNavi('accZwaveManage_' + v.id, $event)\"><i class=fa ng-class=\"naviExpanded['accZwaveManage_' + v.id] ? 'fa-chevron-up' : 'fa-chevron-down'\"></i> {{v.title}} (#{{v.id}})</a><div class=\"app-dropdown app-dropdown-left\" ng-if=\"naviExpanded['accZwaveManage_' + v.id]\"><ul><li class=\"clickable zwave-hidden-{{e.permanently_hidden}}\" ng-repeat=\"e in v.elements| orderBy:'metrics.title':false\"><a ng-href=#/element/{{e.id}} title={{e.metrics.title}}><img class=report-img-s ng-src={{e.iconPath}} alt=\"img\"> {{e.metrics.title|cutText:true:20}} <span class=zwave-raquo>&raquo;</span></a></li></ul></div></div></div><div class=\"report-col report-ctrl\"><div ng-repeat=\"m in v.messages|unique:true\"><div class=text-danger ng-if=\"m.type !== 'config'\">{{m.error}}</div><button class=\"btn btn-default\" ng-if=\"!v.interviewDone  && !v.isFailed\" ng-click=\"devices.find = v;handleModal('zwaveNetworkModal', $event)\"><i class=\"fa fa-refresh text-primary\"></i> <span class=btn-name>{{_t('configure_device')}}</span></button></div></div></div></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div><div id=zwaveNetworkModal class=appmodal ng-controller=ZwaveInterviewController ng-if=\"modalArr.zwaveNetworkModal && !_.isEmpty(devices.find)\"><div class=appmodal-in><div class=appmodal-header><span class=appmodal-close ng-click=cancelConfiguration($event)><i class=\"fa fa-times\"></i></span><h3>{{devices.find.title|cutText:true:25}} (#{{devices.find.id}})</h3></div><div class=appmodal-body><div class=\"alert alert-warning\" ng-hide=\"zwaveInterview.progress > 99\"><i class=\"fa fa-spinner fa-spin\"></i> <strong>{{_t('configuring_device')}}</strong></div><div class=progress><div class=progress-bar style=\"min-height:40px;min-width: 2em; width: {{zwaveInterview.progress}}%\" ng-class=\"zwaveInterview.progress < 100 ? 'progress-bar-striped active' : 'progress-bar-success'\">{{zwaveInterview.progress}}%</div></div></div><div class=appmodal-footer><button type=button class=\"btn btn-default\" ng-click=cancelConfiguration($event)><i class=\"fa fa-times text-danger\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button></div></div></div></div>"
-  );
-
-
-  $templateCache.put('app/views/zwave/zwave_select.html',
-    "<div ng-controller=ZwaveSelectController><bb-loader></bb-loader><div class=\"text-center device-autodetect\" ng-if=_.isEmpty(zwaveSelect.list)><a href=#zwave/inclusion class=\"btn btn-default btn-lg btn-block\" title=\"{{_t('lb_zwave_autodetect')}}\"><i class=\"fa fa-plug text-success\"></i> <span class=btn-name>{{_t('lb_zwave_autodetect')}}</span></a></div><div class=\"app-row app-row-vendor clearfix\" ng-if=_.isEmpty(zwaveSelect.list) ng-include=\"'app/views/zwave/zwave_select_brand.html'\"></div><div ng-if=!_.isEmpty(zwaveSelect.list) ng-include=\"'app/views/zwave/zwave_select_list.html'\"></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div></div>"
   );
 
 
@@ -13809,6 +13798,20 @@ myApp.directive("bbCompareTo", function () {
         }
     };
 });
+/**
+ * Parse value as int
+ * @class bbCompareTo
+ */
+myApp.directive('bbInteger', function(){
+    return {
+        require: 'ngModel',
+        link: function(scope, ele, attr, ctrl){
+            ctrl.$parsers.unshift(function(viewValue){
+                return parseInt(viewValue, 10);
+            });
+        }
+    };
+});
 
 // Knob directive
 myApp.directive('knob', function () {
@@ -14307,16 +14310,6 @@ myApp.filter('toInt', function () {
             return 0;
         }
         return parseInt(val, a);
-    };
-});
-
-/**
- * Convert val to string
- * @function toString
- */
-myApp.filter('toString', function () {
-    return function (val) {
-        return val.toString();
     };
 });
 
@@ -15053,7 +15046,7 @@ var postRenderAlpaca = function (renderedForm) {
 
         // call postRender function from module
         if (typeof (modulePostRender) == 'function') {
-            $(document).ready(modulePostRender());
+            $(document).ready(modulePostRender(renderedForm));
         }
     }
 
@@ -15135,7 +15128,7 @@ function postRenderAlpacaData(renderedForm) {
 var myAppController = angular.module('myAppController', []);
 
 /**
- * The app base controller. 
+ * The app base controller.
  * @class BaseController
  */
 myAppController.controller('BaseController', function ($scope, $cookies, $filter, $location, $route, $window, $interval, $http, cfg, cfgicons, dataFactory, dataService, myCache) {
@@ -15208,6 +15201,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         angular.extend(cfg.route.fatalError, obj || {message: false, info: false, hide: false});
 
     };
+
     /**
      * Set a time
      * @returns {undefined}
@@ -15239,7 +15233,22 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
                 dataFactory.getApi('timezone', null, true).then(function (response) {
                     angular.extend(cfg.route.time, {string: $filter('setTimeFromBox')(response.data.data)});
                     if (cfg.route.fatalError.type === 'network') {
-                        $window.location.reload();
+                        dataFactory.sessionApi().then(function (sessionRes) {
+                            var user = sessionRes.data.data;
+                            if (sessionRes.data.data) {
+                                dataService.setZWAYSession(user.sid);
+                                dataService.setUser(user);
+                                if (dataService.getUser()) {
+                                    $window.location.reload();
+                                    //$q.defer().promise;
+                                    //return;
+                                }
+                            }
+
+                        }, function (error) {
+                            //$q.defer().promise;
+                        });
+
                     }
                 }, function (error) {
                     if (!error.status || error.status === 0) {
@@ -15281,7 +15290,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
 
     /**
      * Allow to access page elements by role.
-     * 
+     *
      * @param {array} roles
      * @param {boolean} mobile
      * @returns {Boolean}
@@ -15299,6 +15308,19 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
             return false;
         }
         return true;
+    };
+    /**
+     * Check if value is in array
+     *
+     * @param {array} array
+     * @param {mixed} value
+     * @returns {Boolean}
+     */
+    $scope.isInArray = function (array,value) {
+        if (array.indexOf(value) > -1) {
+            return true;
+        }
+        return false;
     };
 
 
@@ -19453,36 +19475,6 @@ myAppController.controller('ZwaveVendorIdController', function ($scope, $routePa
 });
 
 /**
- * The controller that renders Z-Wave manufacturers and devices.
- * @class ZwaveAddController
- */
-myAppController.controller('ZwaveAddController', function ($scope, $routeParams, dataFactory, dataService, _) {
-    $scope.zwaveDevices = [];
-    $scope.deviceVendor = false;
-    $scope.manufacturers = [];
-    $scope.manufacturer = false;
-    /**
-     * Load z-wave devices
-     */
-    $scope.loadData = function (brandname, lang) {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataFactory.getApiLocal('device.' + lang + '.json').then(function (response) {
-            $scope.loading = false;
-            $scope.manufacturers = _.uniq(response.data, 'brandname');
-            if (brandname) {
-                $scope.zwaveDevices = _.where(response.data, {brandname: brandname});
-                $scope.manufacturer = brandname;
-            }
-        }, function (error) {
-            alertify.alertError($scope._t('error_load_data')).set('onok', function (closeEvent) {
-                dataService.goBack();
-            });
-        });
-    };
-    $scope.loadData($routeParams.brandname, $scope.lang);
-});
-
-/**
  * The controller that renders and handles data in the Z-Wave/Manage section.
  * @class ZwaveManageController
  */
@@ -21808,7 +21800,6 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
     $scope.ZwaveApiData = false;
     $scope.controllerInfo = {
         uuid: null,
-        remoteId: null,
         isZeroUuid: false,
         softwareRevisionVersion: null,
         softwareLatestVersion: null,
@@ -21817,7 +21808,6 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
         capsLimited: false
 
     };
-    $scope.remoteAccess = false;
     $scope.handleLicense = {
         show: false,
         disabled: false,
@@ -22020,7 +22010,7 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
         "color": "#dddddd",
         "dashboard": [],
         "interval": 1000,
-        "rooms": [0],
+        "rooms": [],
         "expert_view": true,
         "hide_all_device_events": false,
         "hide_system_events": false,
@@ -22060,7 +22050,6 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
                     $scope.input = profile.value.data.data;
                     $scope.auth.login = profile.value.data.data.login;
                 }
-
             }
 
             // Success - locations
@@ -22075,14 +22064,44 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
         });
     };
     $scope.allSettledUserId();
+
+    /**
+     * Watch for the role change
+     */
+    /*$scope.$watch('input.role', function () {
+        //var globalRoomIndex = $scope.input.rooms.indexOf(0);
+        if($scope.input.role === 1){
+            $scope.input.rooms = [0];
+        }else{
+            $scope.input.rooms = $scope.input.rooms.length > 0  ? $scope.input.rooms : [];
+            //$scope.input.rooms = []
+        }
+    });*/
     /**
      * Assign room to list
      */
     $scope.assignRoom = function (assign) {
-        $scope.input.rooms.push(assign);
-        return;
-
+        if($scope.input.role !== 1) {
+            $scope.input.rooms.push(assign);
+        }
     };
+
+    /*$scope.prepareRooms = function () {
+        return;
+        var globalRoomIndex = $scope.input.rooms.indexOf(0);
+        //var roomIds = _.map(locations.value.data.data, function(location){});
+
+        if ($scope.input.role === 1 && globalRoomIndex === -1) {
+            $scope.input.rooms = [0];
+        } else if ($scope.input.role !== 1 && globalRoomIndex > -1){
+            if ($scope.input.id === 0) {
+                $scope.input.rooms = [];
+            } else {
+                $scope.input.rooms.splice(globalRoomIndex, 1);
+            }
+        }
+        return;
+    };*/
 
     /**
      * Remove room from the list
@@ -22105,11 +22124,18 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
         if (form.$invalid) {
             return;
         }
+        var globalRoomIndex = input.rooms.indexOf(0);
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         if ($scope.id == 0) {
             input.password = input.password;
         }
-        input.role = parseInt(input.role, 10);
+        if (input.role === 1) {
+            input.rooms = [0];
+        }else if(globalRoomIndex > -1){
+            input.rooms.splice(globalRoomIndex, 1);
+        }
+        //console.log(input);
+        //return;
         dataFactory.storeApi('profiles', input.id, input).then(function (response) {
             var id = $filter('hasNode')(response, 'data.data.id');
             if (id) {
@@ -22170,92 +22196,92 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
  * @class ManagementRemoteController
  */
 myAppController.controller('ManagementRemoteController', function ($scope, dataFactory, dataService) {
-
-});
-/**
- * The controller that handles a backup to the cloud.
- * @class ManagementCloudBackupController
- */
-myAppController.controller('ManagementCloudBackupController', function ($scope, $timeout, $q, dataFactory, dataService) {
-    $scope.managementCloud = {
-        alert: {message: false, status: 'is-hidden', icon: false},
-        show: false,
-        module:[],
-        instance: {},
-        process: false
-    };
+    $scope.remoteAccess = false;
     /**
-     * Load all promises
+     * Load Remote access data
      */
-    $scope.allCloudSettled = function () {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        var promises = [
-            dataFactory.getApi('instances', '/CloudBackup'),
-            dataFactory.getApi('modules', '/CloudBackup')
-        ];
-
-        $q.allSettled(promises).then(function (response) {
-            $scope.loading = false;
-            var instance = response[0];
-            var module = response[1];
-            // Error message
-            if (instance.state === 'rejected') {
-                $scope.managementCloud.alert = {message: $scope._t('cloud_not_installed'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
-                alertify.alertWarning($scope._t('cloud_not_installed'));
-                return;
-            }
-
-            if (module.state === 'rejected') {
-                alertify.alertError($scope._t('error_load_data'));
-                return;
-            }
-
-            // Success - api data
-            if (instance.state === 'fulfilled') {
-                if (!instance.value.data.data[0].active) {
-                    $scope.managementCloud.alert = {message: $scope._t('cloud_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
-                    alertify.alertWarning($scope._t('cloud_not_active'));
-                    return;
-                }
-                $scope.managementCloud.show = true;
-                $scope.managementCloud.instance = instance.value.data.data[0];
-            }
-            // Success - module
-            if (module.state === 'fulfilled') {
-                // Module
-                $scope.managementCloud.module = module.value.data.data;
-            }
-        });
-    };
-    $scope.allCloudSettled();
-
-    /**
-     * Set scheduler type
-     */
-    $scope.setSchedulerType = function (type) {
-        $scope.managementCloud.instance.params.scheduler = type;
-    };
-
-    /**
-     * Update instance
-     */
-    $scope.updateInstance = function (form, input) {
-        if (form.$invalid) {
+    $scope.loadRemoteAccess = function () {
+        if (!$scope.elementAccess($scope.cfg.role_access.remote_access)) {
             return;
         }
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        dataFactory.getApi('instances', '/RemoteAccess').then(function (response) {
+
+            $scope.loading = false;
+            var remoteAccess = response.data.data[0];
+            if (Object.keys(remoteAccess).length < 1) {
+                alertify.alertError($scope._t('error_load_data'));
+            }
+            if (!remoteAccess.active) {
+                alertify.alertWarning($scope._t('remote_access_not_active'));
+                return;
+            }
+            if (!remoteAccess.params.userId) {
+                alertify.alertError($scope._t('error_remote_access_init'));
+                return;
+            }
+            remoteAccess.params.pass = null;
+            $scope.remoteAccess = remoteAccess;
+        }, function (error) {
+            $scope.loading = false;
+            alertify.alertError($scope._t('remote_access_not_installed'));
+        });
+    };
+
+    $scope.loadRemoteAccess();
+
+    /**
+     * PUT Remote access
+     */
+    $scope.putRemoteAccess = function (input) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        dataFactory.putApi('instances', input.id, input).then(function (response) {
+            $scope.loading = false;
+            dataService.showNotifier({message: $scope._t('success_updated')});
+        }, function (error) {
+            alertify.alertError($scope._t('error_update_data'));
+            $scope.loading = false;
+        });
+
+    };
+});
+/**
+ * The controller that renders and handles local access.
+ * @class ManagementLocalController
+ */
+myAppController.controller('ManagementLocalController', function ($scope, dataFactory, dataService) {
+    
+
+     /**
+     * Update instance
+     */
+    $scope.updateInstance = function (input) {
+        //var input = $scope.handleTimezone.instance;
         if (input.id) {
             dataFactory.putApi('instances', input.id, input).then(function (response) {
-                 dataService.showNotifier({message: $scope._t('success_updated')});
-                  $scope.loading = false;
-                  $scope.allCloudSettled();
+                alertify.confirm($scope._t('timezone_alert'))
+                        .setting('labels', {'ok': $scope._t('yes'),'cancel': $scope._t('lb_cancel')})
+                        .set('onok', function (closeEvent) {//after clicking OK
+                                $scope.systemReboot();
+                        });
+
             }, function (error) {
                 alertify.alertError($scope._t('error_update_data'));
-                $scope.loading = false;
             });
         }
     };
+    
+     /**
+     * System rebboot
+     */
+    $scope.systemReboot = function () {
+         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('system_rebooting')};
+            dataFactory.getApi('system_reboot').then(function (response) {
+            }, function (error) {
+                alertify.alertError($scope._t('error_system_reboot'));
+            });
 
+    };
 });
 /**
  * The controller that handles the licence key.
@@ -22412,9 +22438,9 @@ myAppController.controller('ManagementTimezoneController', function ($scope, $ti
         if (input.id) {
             dataFactory.putApi('instances', input.id, input).then(function (response) {
                 alertify.confirm($scope._t('timezone_alert'))
-                        .setting('labels', {'ok': $scope._t('yes'), 'cancel': $scope._t('lb_cancel')})
+                        .setting('labels', {'ok': $scope._t('yes'),'cancel': $scope._t('lb_cancel')})
                         .set('onok', function (closeEvent) {//after clicking OK
-                            $scope.systemReboot();
+                                $scope.systemReboot();
                         });
 
             }, function (error) {
@@ -22422,16 +22448,16 @@ myAppController.controller('ManagementTimezoneController', function ($scope, $ti
             });
         }
     };
-
-    /**
+    
+     /**
      * System rebboot
      */
     $scope.systemReboot = function () {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('system_rebooting')};
-        dataFactory.getApi('system_reboot').then(function (response) {
-        }, function (error) {
-            alertify.alertError($scope._t('error_system_reboot'));
-        });
+         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('system_rebooting')};
+            dataFactory.getApi('system_reboot').then(function (response) {
+            }, function (error) {
+                alertify.alertError($scope._t('error_system_reboot'));
+            });
 
     };
 
@@ -22603,16 +22629,16 @@ myAppController.controller('ManagementReportController', function ($scope, $wind
     /**
      * Load Remote access data
      */
-//    $scope.loadRemoteAccess = function () {
-//        if (!$scope.elementAccess($scope.cfg.role_access.remote_access)) {
-//            return;
-//        }
-//        dataFactory.getApi('instances', '/RemoteAccess').then(function (response) {
-//            $scope.remoteAccess = response.data.data[0];
-//        }, function (error) {});
-//    };
-//
-//    $scope.loadRemoteAccess();
+    $scope.loadRemoteAccess = function () {
+        if (!$scope.elementAccess($scope.cfg.role_access.remote_access)) {
+            return;
+        }
+        dataFactory.getApi('instances', '/RemoteAccess').then(function (response) {
+            $scope.remoteAccess = response.data.data[0];
+        }, function (error) {});
+    };
+
+    $scope.loadRemoteAccess();
 
     /**
      * Send and save report
@@ -22647,6 +22673,34 @@ myAppController.controller('ManagementReportController', function ($scope, $wind
         });
 
     };
+
+});
+/**
+ * The controller that renders postfix data.
+ * @class ManagementPostfixController
+ */
+myAppController.controller('ManagementPostfixController', function ($scope, dataFactory, _) {
+    $scope.postfix = {
+        all: {}
+    };
+    /**
+     * Load postfix data
+     */
+    $scope.loadPostfix = function () {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        dataFactory.getApi('postfix', null, true).then(function (response) {
+            if (_.isEmpty(response.data)) {
+                alertify.alertWarning($scope._t('no_data'));
+            }
+            $scope.loading = false;
+            $scope.postfix.all = response.data;
+        }, function (error) {
+            $scope.loading = false;
+            alertify.alertError($scope._t('error_load_data'));
+
+        });
+    };
+    $scope.loadPostfix();
 
 });
 /**
@@ -22925,7 +22979,7 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
         }
         dataService.setZWAYSession(user.sid);
         dataService.setUser(user);
-        dataFactory.putApi('profiles', user.id, user).then(function (response) {}, function (error) {});
+        //dataFactory.putApi('profiles', user.id, user).then(function (response) {}, function (error) {});
         if (rememberme) {
             dataService.setRememberMe(rememberme);
         }

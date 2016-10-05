@@ -235,7 +235,7 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
         "color": "#dddddd",
         "dashboard": [],
         "interval": 1000,
-        "rooms": [0],
+        "rooms": [],
         "expert_view": true,
         "hide_all_device_events": false,
         "hide_system_events": false,
@@ -275,7 +275,6 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
                     $scope.input = profile.value.data.data;
                     $scope.auth.login = profile.value.data.data.login;
                 }
-
             }
 
             // Success - locations
@@ -290,14 +289,44 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
         });
     };
     $scope.allSettledUserId();
+
+    /**
+     * Watch for the role change
+     */
+    /*$scope.$watch('input.role', function () {
+        //var globalRoomIndex = $scope.input.rooms.indexOf(0);
+        if($scope.input.role === 1){
+            $scope.input.rooms = [0];
+        }else{
+            $scope.input.rooms = $scope.input.rooms.length > 0  ? $scope.input.rooms : [];
+            //$scope.input.rooms = []
+        }
+    });*/
     /**
      * Assign room to list
      */
     $scope.assignRoom = function (assign) {
-        $scope.input.rooms.push(assign);
-        return;
-
+        if($scope.input.role !== 1) {
+            $scope.input.rooms.push(assign);
+        }
     };
+
+    /*$scope.prepareRooms = function () {
+        return;
+        var globalRoomIndex = $scope.input.rooms.indexOf(0);
+        //var roomIds = _.map(locations.value.data.data, function(location){});
+
+        if ($scope.input.role === 1 && globalRoomIndex === -1) {
+            $scope.input.rooms = [0];
+        } else if ($scope.input.role !== 1 && globalRoomIndex > -1){
+            if ($scope.input.id === 0) {
+                $scope.input.rooms = [];
+            } else {
+                $scope.input.rooms.splice(globalRoomIndex, 1);
+            }
+        }
+        return;
+    };*/
 
     /**
      * Remove room from the list
@@ -320,11 +349,18 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
         if (form.$invalid) {
             return;
         }
+        var globalRoomIndex = input.rooms.indexOf(0);
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         if ($scope.id == 0) {
             input.password = input.password;
         }
-        input.role = parseInt(input.role, 10);
+        if (input.role === 1) {
+            input.rooms = [0];
+        }else if(globalRoomIndex > -1){
+            input.rooms.splice(globalRoomIndex, 1);
+        }
+        //console.log(input);
+        //return;
         dataFactory.storeApi('profiles', input.id, input).then(function (response) {
             var id = $filter('hasNode')(response, 'data.data.id');
             if (id) {
@@ -385,92 +421,92 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
  * @class ManagementRemoteController
  */
 myAppController.controller('ManagementRemoteController', function ($scope, dataFactory, dataService) {
-
-});
-/**
- * The controller that handles a backup to the cloud.
- * @class ManagementCloudBackupController
- */
-myAppController.controller('ManagementCloudBackupController', function ($scope, $timeout, $q, dataFactory, dataService) {
-    $scope.managementCloud = {
-        alert: {message: false, status: 'is-hidden', icon: false},
-        show: false,
-        module:[],
-        instance: {},
-        process: false
-    };
+    $scope.remoteAccess = false;
     /**
-     * Load all promises
+     * Load Remote access data
      */
-    $scope.allCloudSettled = function () {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        var promises = [
-            dataFactory.getApi('instances', '/CloudBackup'),
-            dataFactory.getApi('modules', '/CloudBackup')
-        ];
-
-        $q.allSettled(promises).then(function (response) {
-            $scope.loading = false;
-            var instance = response[0];
-            var module = response[1];
-            // Error message
-            if (instance.state === 'rejected') {
-                $scope.managementCloud.alert = {message: $scope._t('cloud_not_installed'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
-                alertify.alertWarning($scope._t('cloud_not_installed'));
-                return;
-            }
-
-            if (module.state === 'rejected') {
-                alertify.alertError($scope._t('error_load_data'));
-                return;
-            }
-
-            // Success - api data
-            if (instance.state === 'fulfilled') {
-                if (!instance.value.data.data[0].active) {
-                    $scope.managementCloud.alert = {message: $scope._t('cloud_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
-                    alertify.alertWarning($scope._t('cloud_not_active'));
-                    return;
-                }
-                $scope.managementCloud.show = true;
-                $scope.managementCloud.instance = instance.value.data.data[0];
-            }
-            // Success - module
-            if (module.state === 'fulfilled') {
-                // Module
-                $scope.managementCloud.module = module.value.data.data;
-            }
-        });
-    };
-    $scope.allCloudSettled();
-
-    /**
-     * Set scheduler type
-     */
-    $scope.setSchedulerType = function (type) {
-        $scope.managementCloud.instance.params.scheduler = type;
-    };
-
-    /**
-     * Update instance
-     */
-    $scope.updateInstance = function (form, input) {
-        if (form.$invalid) {
+    $scope.loadRemoteAccess = function () {
+        if (!$scope.elementAccess($scope.cfg.role_access.remote_access)) {
             return;
         }
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        dataFactory.getApi('instances', '/RemoteAccess').then(function (response) {
+
+            $scope.loading = false;
+            var remoteAccess = response.data.data[0];
+            if (Object.keys(remoteAccess).length < 1) {
+                alertify.alertError($scope._t('error_load_data'));
+            }
+            if (!remoteAccess.active) {
+                alertify.alertWarning($scope._t('remote_access_not_active'));
+                return;
+            }
+            if (!remoteAccess.params.userId) {
+                alertify.alertError($scope._t('error_remote_access_init'));
+                return;
+            }
+            remoteAccess.params.pass = null;
+            $scope.remoteAccess = remoteAccess;
+        }, function (error) {
+            $scope.loading = false;
+            alertify.alertError($scope._t('remote_access_not_installed'));
+        });
+    };
+
+    $scope.loadRemoteAccess();
+
+    /**
+     * PUT Remote access
+     */
+    $scope.putRemoteAccess = function (input) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        dataFactory.putApi('instances', input.id, input).then(function (response) {
+            $scope.loading = false;
+            dataService.showNotifier({message: $scope._t('success_updated')});
+        }, function (error) {
+            alertify.alertError($scope._t('error_update_data'));
+            $scope.loading = false;
+        });
+
+    };
+});
+/**
+ * The controller that renders and handles local access.
+ * @class ManagementLocalController
+ */
+myAppController.controller('ManagementLocalController', function ($scope, dataFactory, dataService) {
+
+
+     /**
+     * Update instance
+     */
+    $scope.updateInstance = function (input) {
+        //var input = $scope.handleTimezone.instance;
         if (input.id) {
             dataFactory.putApi('instances', input.id, input).then(function (response) {
-                 dataService.showNotifier({message: $scope._t('success_updated')});
-                  $scope.loading = false;
-                  $scope.allCloudSettled();
+                alertify.confirm($scope._t('timezone_alert'))
+                        .setting('labels', {'ok': $scope._t('yes'),'cancel': $scope._t('lb_cancel')})
+                        .set('onok', function (closeEvent) {//after clicking OK
+                                $scope.systemReboot();
+                        });
+
             }, function (error) {
                 alertify.alertError($scope._t('error_update_data'));
-                $scope.loading = false;
             });
         }
     };
 
+     /**
+     * System rebboot
+     */
+    $scope.systemReboot = function () {
+         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('system_rebooting')};
+            dataFactory.getApi('system_reboot').then(function (response) {
+            }, function (error) {
+                alertify.alertError($scope._t('error_system_reboot'));
+            });
+
+    };
 });
 /**
  * The controller that handles the licence key.
@@ -627,9 +663,9 @@ myAppController.controller('ManagementTimezoneController', function ($scope, $ti
         if (input.id) {
             dataFactory.putApi('instances', input.id, input).then(function (response) {
                 alertify.confirm($scope._t('timezone_alert'))
-                        .setting('labels', {'ok': $scope._t('yes'), 'cancel': $scope._t('lb_cancel')})
+                        .setting('labels', {'ok': $scope._t('yes'),'cancel': $scope._t('lb_cancel')})
                         .set('onok', function (closeEvent) {//after clicking OK
-                            $scope.systemReboot();
+                                $scope.systemReboot();
                         });
 
             }, function (error) {
@@ -637,16 +673,16 @@ myAppController.controller('ManagementTimezoneController', function ($scope, $ti
             });
         }
     };
-
-    /**
+    
+     /**
      * System rebboot
      */
     $scope.systemReboot = function () {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('system_rebooting')};
-        dataFactory.getApi('system_reboot').then(function (response) {
-        }, function (error) {
-            alertify.alertError($scope._t('error_system_reboot'));
-        });
+         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('system_rebooting')};
+            dataFactory.getApi('system_reboot').then(function (response) {
+            }, function (error) {
+                alertify.alertError($scope._t('error_system_reboot'));
+            });
 
     };
 
@@ -818,16 +854,16 @@ myAppController.controller('ManagementReportController', function ($scope, $wind
     /**
      * Load Remote access data
      */
-//    $scope.loadRemoteAccess = function () {
-//        if (!$scope.elementAccess($scope.cfg.role_access.remote_access)) {
-//            return;
-//        }
-//        dataFactory.getApi('instances', '/RemoteAccess').then(function (response) {
-//            $scope.remoteAccess = response.data.data[0];
-//        }, function (error) {});
-//    };
-//
-//    $scope.loadRemoteAccess();
+    $scope.loadRemoteAccess = function () {
+        if (!$scope.elementAccess($scope.cfg.role_access.remote_access)) {
+            return;
+        }
+        dataFactory.getApi('instances', '/RemoteAccess').then(function (response) {
+            $scope.remoteAccess = response.data.data[0];
+        }, function (error) {});
+    };
+
+    $scope.loadRemoteAccess();
 
     /**
      * Send and save report
@@ -865,9 +901,122 @@ myAppController.controller('ManagementReportController', function ($scope, $wind
 
 });
 /**
+ * The controller that renders postfix data.
+ * @class ManagementPostfixController
+ */
+myAppController.controller('ManagementPostfixController', function ($scope, dataFactory, _) {
+    $scope.postfix = {
+        all: {}
+    };
+    /**
+     * Load postfix data
+     */
+    $scope.loadPostfix = function () {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        dataFactory.getApi('postfix', null, true).then(function (response) {
+            if (_.isEmpty(response.data)) {
+                alertify.alertWarning($scope._t('no_data'));
+            }
+            $scope.loading = false;
+            $scope.postfix.all = response.data;
+        }, function (error) {
+            $scope.loading = false;
+            alertify.alertError($scope._t('error_load_data'));
+
+        });
+    };
+    $scope.loadPostfix();
+
+});
+/**
  * The controller that renders info data.
  * @class ManagementInfoController
  */
 myAppController.controller('ManagementInfoController', function ($scope, dataFactory, dataService) {
+
+});
+/**
+ * The controller that handles a backup to the cloud.
+ * @class ManagementCloudBackupController
+ */
+myAppController.controller('ManagementCloudBackupController', function ($scope, $timeout, $q, dataFactory, dataService) {
+    $scope.managementCloud = {
+        alert: {message: false, status: 'is-hidden', icon: false},
+        show: false,
+        module:[],
+        instance: {},
+        process: false
+    };
+    /**
+     * Load all promises
+     */
+    $scope.allCloudSettled = function () {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        var promises = [
+            dataFactory.getApi('instances', '/CloudBackup'),
+            dataFactory.getApi('modules', '/CloudBackup')
+        ];
+
+        $q.allSettled(promises).then(function (response) {
+            $scope.loading = false;
+            var instance = response[0];
+            var module = response[1];
+            // Error message
+            if (instance.state === 'rejected') {
+                $scope.managementCloud.alert = {message: $scope._t('cloud_not_installed'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                alertify.alertWarning($scope._t('cloud_not_installed'));
+                return;
+            }
+
+            if (module.state === 'rejected') {
+                alertify.alertError($scope._t('error_load_data'));
+                return;
+            }
+
+            // Success - api data
+            if (instance.state === 'fulfilled') {
+                if (!instance.value.data.data[0].active) {
+                    $scope.managementCloud.alert = {message: $scope._t('cloud_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                    alertify.alertWarning($scope._t('cloud_not_active'));
+                    return;
+                }
+                $scope.managementCloud.show = true;
+                $scope.managementCloud.instance = instance.value.data.data[0];
+            }
+            // Success - module
+            if (module.state === 'fulfilled') {
+                // Module
+                $scope.managementCloud.module = module.value.data.data;
+            }
+        });
+    };
+    $scope.allCloudSettled();
+
+    /**
+     * Set scheduler type
+     */
+    $scope.setSchedulerType = function (type) {
+        $scope.managementCloud.instance.params.scheduler = type;
+    };
+
+    /**
+     * Update instance
+     */
+    $scope.updateInstance = function (form, input) {
+        if (form.$invalid) {
+            return;
+        }
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        if (input.id) {
+            dataFactory.putApi('instances', input.id, input).then(function (response) {
+                dataService.showNotifier({message: $scope._t('success_updated')});
+                $scope.loading = false;
+                $scope.allCloudSettled();
+            }, function (error) {
+                alertify.alertError($scope._t('error_update_data'));
+                $scope.loading = false;
+            });
+        }
+    };
 
 });

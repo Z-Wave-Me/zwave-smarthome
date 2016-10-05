@@ -10636,26 +10636,31 @@ a:focus {
   vertical-align: middle;
   color: #333333;
 }
-/* line 111, ../sass/common/_header.scss */
+/* line 109, ../sass/common/_header.scss */
+#sub_navigation_in ul li a span {
+  display: inline-block;
+  position: absolute;
+  left: 60px;
+}
+/* line 116, ../sass/common/_header.scss */
 #sub_navigation_in ul li .subnavi-arrow {
   position: absolute;
   right: 1%;
   display: inline-block;
 }
-/* line 119, ../sass/common/_header.scss */
+/* line 124, ../sass/common/_header.scss */
 #sub_navigation_in ul .active a {
   color: #b3b3b3;
   font-weight: bold;
   text-decoration: underline;
 }
-/* line 124, ../sass/common/_header.scss */
+/* line 129, ../sass/common/_header.scss */
 #sub_navigation_in ul .active .fa {
   color: #b3b3b3;
 }
-/* line 128, ../sass/common/_header.scss */
+/* line 133, ../sass/common/_header.scss */
 #sub_navigation_in ul .fa {
   color: #666666;
-  padding-right: 7px;
 }
 
 /* Footer
@@ -12951,21 +12956,25 @@ img.widget-promo-image {
   #sub_navigation_in ul li a {
     padding: 0 10px;
   }
+  /* line 44, ../sass/responsive/_mq_shared.scss */
+  #sub_navigation_in ul li a span {
+    left: 50px;
+  }
 
   /* Gird
   -------------------------------------------------- */
-  /* line 51, ../sass/responsive/_mq_shared.scss */
+  /* line 55, ../sass/responsive/_mq_shared.scss */
   #main_content {
     margin-top: 70px;
     margin-bottom: 60px;
   }
 
-  /* line 55, ../sass/responsive/_mq_shared.scss */
+  /* line 59, ../sass/responsive/_mq_shared.scss */
   .container {
     max-width: 100%;
   }
 
-  /* line 59, ../sass/responsive/_mq_shared.scss */
+  /* line 63, ../sass/responsive/_mq_shared.scss */
   .block-50 {
     float: left;
     position: relative;
@@ -12975,31 +12984,31 @@ img.widget-promo-image {
 
   /* Page navigation
   -------------------------------------------------- */
-  /* line 67, ../sass/responsive/_mq_shared.scss */
+  /* line 71, ../sass/responsive/_mq_shared.scss */
   .page-navi ul li {
     display: block;
     float: left;
     width: 33.33333%;
   }
-  /* line 71, ../sass/responsive/_mq_shared.scss */
+  /* line 75, ../sass/responsive/_mq_shared.scss */
   .page-navi ul li a {
     min-height: 30px;
     margin: auto 10px;
   }
-  /* line 76, ../sass/responsive/_mq_shared.scss */
+  /* line 80, ../sass/responsive/_mq_shared.scss */
   .page-navi ul li .page-navi-icon {
     display: none !important;
   }
 
   /* Images
   -------------------------------------------------- */
-  /* line 85, ../sass/responsive/_mq_shared.scss */
+  /* line 89, ../sass/responsive/_mq_shared.scss */
   .room-image-preview {
     width: 170px;
     height: 170px;
   }
 
-  /* line 89, ../sass/responsive/_mq_shared.scss */
+  /* line 93, ../sass/responsive/_mq_shared.scss */
   .customize-preview-img {
     max-width: 300px;
     max-height: 150px;
@@ -13007,12 +13016,12 @@ img.widget-promo-image {
 
   /* Input
   -------------------------------------------------- */
-  /* line 97, ../sass/responsive/_mq_shared.scss */
+  /* line 101, ../sass/responsive/_mq_shared.scss */
   .form-control {
     padding: 6px 12px;
   }
 
-  /* line 100, ../sass/responsive/_mq_shared.scss */
+  /* line 104, ../sass/responsive/_mq_shared.scss */
   input[type=checkbox] {
     -ms-transform: scale(1.2);
     /* IE */
@@ -13024,7 +13033,7 @@ img.widget-promo-image {
     /* Opera */
   }
 
-  /* line 106, ../sass/responsive/_mq_shared.scss */
+  /* line 110, ../sass/responsive/_mq_shared.scss */
   input[type=radio] {
     transform: scale(1.2, 1.2);
     -moz-transform: scale(1.2, 1.2);
@@ -13035,30 +13044,30 @@ img.widget-promo-image {
 
   /* Button
   -------------------------------------------------- */
-  /* line 117, ../sass/responsive/_mq_shared.scss */
+  /* line 121, ../sass/responsive/_mq_shared.scss */
   .btn .fa, .btn-device-admin .fa {
     font-size: 120%;
   }
 
-  /* line 121, ../sass/responsive/_mq_shared.scss */
+  /* line 125, ../sass/responsive/_mq_shared.scss */
   .btn-goup-block {
     width: auto !important;
     display: inline-block;
     margin: 0;
   }
-  /* line 125, ../sass/responsive/_mq_shared.scss */
+  /* line 129, ../sass/responsive/_mq_shared.scss */
   .btn-goup-block .btn {
     width: auto !important;
   }
 
-  /* line 129, ../sass/responsive/_mq_shared.scss */
+  /* line 133, ../sass/responsive/_mq_shared.scss */
   .btn-tag {
     display: inline-block;
     position: static;
     font-size: 100%;
     margin: 0 10px 10px 0;
   }
-  /* line 134, ../sass/responsive/_mq_shared.scss */
+  /* line 138, ../sass/responsive/_mq_shared.scss */
   .btn-tag .fa {
     position: static;
     margin: 0 0 0 10px;
@@ -13067,76 +13076,76 @@ img.widget-promo-image {
 
   /* Modal
   -------------------------------------------------- */
-  /* line 143, ../sass/responsive/_mq_shared.scss */
+  /* line 147, ../sass/responsive/_mq_shared.scss */
   .appmodal .appmodal-in {
     width: 60%;
   }
 
-  /* line 149, ../sass/responsive/_mq_shared.scss */
+  /* line 153, ../sass/responsive/_mq_shared.scss */
   .appmodal-header .appmodal-close {
     font-size: 140%;
   }
 
   /* Modal with knob
   -------------------------------------------------- */
-  /* line 155, ../sass/responsive/_mq_shared.scss */
+  /* line 159, ../sass/responsive/_mq_shared.scss */
   .app-row-knob {
     display: table;
     width: 100%;
   }
-  /* line 158, ../sass/responsive/_mq_shared.scss */
+  /* line 162, ../sass/responsive/_mq_shared.scss */
   .app-row-knob .knob-col {
     display: table-cell;
     vertical-align: middle;
     padding: 10px;
     width: 50%;
   }
-  /* line 164, ../sass/responsive/_mq_shared.scss */
+  /* line 168, ../sass/responsive/_mq_shared.scss */
   .app-row-knob .knob-ctrl {
     text-align: right;
   }
-  /* line 167, ../sass/responsive/_mq_shared.scss */
+  /* line 171, ../sass/responsive/_mq_shared.scss */
   .app-row-knob .knob-btn {
     text-align: left;
   }
 
   /* Dropdown
   -------------------------------------------------- */
-  /* line 174, ../sass/responsive/_mq_shared.scss */
+  /* line 178, ../sass/responsive/_mq_shared.scss */
   .app-dropdown {
     min-width: 360px;
   }
 
-  /* line 179, ../sass/responsive/_mq_shared.scss */
+  /* line 183, ../sass/responsive/_mq_shared.scss */
   .app-dropdown.dropdown-lang {
     min-width: 250px;
   }
-  /* line 182, ../sass/responsive/_mq_shared.scss */
+  /* line 186, ../sass/responsive/_mq_shared.scss */
   .app-dropdown.dropdown-lang ul li {
     padding: 5px;
   }
 
   /* Report
   -------------------------------------------------- */
-  /* line 193, ../sass/responsive/_mq_shared.scss */
+  /* line 197, ../sass/responsive/_mq_shared.scss */
   .report-img {
     max-width: 40px;
     max-height: 40px;
   }
 
-  /* line 199, ../sass/responsive/_mq_shared.scss */
+  /* line 203, ../sass/responsive/_mq_shared.scss */
   .app-row-zwave .report-entry .report-ctrl {
     vertical-align: top !important;
   }
 
   /* Widgets
   -------------------------------------------------- */
-  /* line 206, ../sass/responsive/_mq_shared.scss */
+  /* line 210, ../sass/responsive/_mq_shared.scss */
   .app-row-widget {
     margin: -10px;
   }
 
-  /* line 209, ../sass/responsive/_mq_shared.scss */
+  /* line 213, ../sass/responsive/_mq_shared.scss */
   .widget-entry {
     float: left;
     position: relative;
@@ -13144,33 +13153,33 @@ img.widget-promo-image {
     border: 0;
     width: 50%;
   }
-  /* line 213, ../sass/responsive/_mq_shared.scss */
+  /* line 217, ../sass/responsive/_mq_shared.scss */
   .widget-entry .widget-entry-in {
     border-color: #FFFFFF;
     border: solid 1px #FFFFFF;
     margin: 10px;
   }
-  /* line 220, ../sass/responsive/_mq_shared.scss */
+  /* line 224, ../sass/responsive/_mq_shared.scss */
   .widget-entry .widget-entry-in .widget-header .widget-icon .fa {
     padding: 0 0 0 5px;
     font-size: 140%;
   }
 
-  /* line 229, ../sass/responsive/_mq_shared.scss */
+  /* line 233, ../sass/responsive/_mq_shared.scss */
   .widget-success {
     /*    .widget-entry-in{
             border: solid 4px $widget-success-border-color;
         }*/
   }
 
-  /* line 235, ../sass/responsive/_mq_shared.scss */
+  /* line 239, ../sass/responsive/_mq_shared.scss */
   .widget-warning {
     /*    .widget-entry-in{
         border: solid 4px $widget-warning-border-color;
         }*/
   }
 
-  /* line 241, ../sass/responsive/_mq_shared.scss */
+  /* line 245, ../sass/responsive/_mq_shared.scss */
   .widget-danger {
     /*    .widget-entry-in{
          border: solid 4px $widget-danger-border-color;
@@ -13179,12 +13188,12 @@ img.widget-promo-image {
 
   /* Elements
   -------------------------------------------------- */
-  /* line 249, ../sass/responsive/_mq_shared.scss */
+  /* line 253, ../sass/responsive/_mq_shared.scss */
   .widget-entry-element .widget-entry-in {
     height: 124px;
   }
 
-  /* line 253, ../sass/responsive/_mq_shared.scss */
+  /* line 257, ../sass/responsive/_mq_shared.scss */
   .element-icon-img {
     max-width: 32px;
     max-height: 32px;
@@ -13192,40 +13201,40 @@ img.widget-promo-image {
 
   /* Apps
   -------------------------------------------------- */
-  /* line 261, ../sass/responsive/_mq_shared.scss */
+  /* line 265, ../sass/responsive/_mq_shared.scss */
   .widget-entry-app .widget-entry-in {
     min-height: 1px;
     height: 110px;
   }
-  /* line 264, ../sass/responsive/_mq_shared.scss */
+  /* line 268, ../sass/responsive/_mq_shared.scss */
   .widget-entry-app .widget-entry-in .widget-footer {
     margin: 10px 0 0 0;
   }
 
   /* Customize
   -------------------------------------------------- */
-  /* line 274, ../sass/responsive/_mq_shared.scss */
+  /* line 278, ../sass/responsive/_mq_shared.scss */
   .widget-entry-customize .widget-entry-in {
     min-height: 1px;
     height: 250px;
     text-align: center;
   }
-  /* line 278, ../sass/responsive/_mq_shared.scss */
+  /* line 282, ../sass/responsive/_mq_shared.scss */
   .widget-entry-customize .widget-entry-in .widget-img {
     position: static;
   }
-  /* line 282, ../sass/responsive/_mq_shared.scss */
+  /* line 286, ../sass/responsive/_mq_shared.scss */
   .widget-entry-customize .widget-entry-in .widget-content {
     margin: 10px 0 0 0;
   }
-  /* line 286, ../sass/responsive/_mq_shared.scss */
+  /* line 290, ../sass/responsive/_mq_shared.scss */
   .widget-entry-customize .widget-entry-in .widget-footer {
     margin: 10px 0 0 0;
   }
 
   /* App detail
   -------------------------------------------------- */
-  /* line 293, ../sass/responsive/_mq_shared.scss */
+  /* line 297, ../sass/responsive/_mq_shared.scss */
   .app-detail-img {
     float: left;
     position: relative;
@@ -13233,24 +13242,24 @@ img.widget-promo-image {
     width: 148px;
   }
 
-  /* line 298, ../sass/responsive/_mq_shared.scss */
+  /* line 302, ../sass/responsive/_mq_shared.scss */
   .app-detail-body {
     margin: 0 0 0 148px;
   }
 
   /* Devices
   -------------------------------------------------- */
-  /* line 304, ../sass/responsive/_mq_shared.scss */
+  /* line 308, ../sass/responsive/_mq_shared.scss */
   .vendor-entry {
     width: 20%;
   }
 
-  /* line 307, ../sass/responsive/_mq_shared.scss */
+  /* line 311, ../sass/responsive/_mq_shared.scss */
   .app-detail-body {
     margin: 0 0 0 148px;
   }
 
-  /* line 313, ../sass/responsive/_mq_shared.scss */
+  /* line 317, ../sass/responsive/_mq_shared.scss */
   .report-battery-info div {
     display: inline-block;
     padding: 0 10px 0 0;
@@ -13258,38 +13267,38 @@ img.widget-promo-image {
 
   /* Rooms
   -------------------------------------------------- */
-  /* line 321, ../sass/responsive/_mq_shared.scss */
+  /* line 325, ../sass/responsive/_mq_shared.scss */
   .room-entry {
     width: 33.33333%;
   }
 
   /* Footer
   -------------------------------------------------- */
-  /* line 328, ../sass/responsive/_mq_shared.scss */
+  /* line 332, ../sass/responsive/_mq_shared.scss */
   #footer #footer_in {
     height: 40px;
     line-height: 40px;
   }
 
-  /* line 334, ../sass/responsive/_mq_shared.scss */
+  /* line 338, ../sass/responsive/_mq_shared.scss */
   #footer {
     display: none;
   }
 
   /* Auth
   -------------------------------------------------- */
-  /* line 341, ../sass/responsive/_mq_shared.scss */
+  /* line 345, ../sass/responsive/_mq_shared.scss */
   #page_login .container, #page_password .container, #page_passwordforgot .container, #page_passwordreset .container {
     max-width: 500px;
   }
 
   /* Others
   -------------------------------------------------- */
-  /* line 348, ../sass/responsive/_mq_shared.scss */
+  /* line 352, ../sass/responsive/_mq_shared.scss */
   .timestamp {
     font-size: 90% !important;
   }
-  /* line 350, ../sass/responsive/_mq_shared.scss */
+  /* line 354, ../sass/responsive/_mq_shared.scss */
   .timestamp .fa {
     font-size: 90% !important;
   }
@@ -13347,21 +13356,25 @@ img.widget-promo-image {
   #sub_navigation_in ul li a {
     padding: 0 10px;
   }
+  /* line 44, ../sass/responsive/_mq_shared.scss */
+  #sub_navigation_in ul li a span {
+    left: 50px;
+  }
 
   /* Gird
   -------------------------------------------------- */
-  /* line 51, ../sass/responsive/_mq_shared.scss */
+  /* line 55, ../sass/responsive/_mq_shared.scss */
   #main_content {
     margin-top: 70px;
     margin-bottom: 60px;
   }
 
-  /* line 55, ../sass/responsive/_mq_shared.scss */
+  /* line 59, ../sass/responsive/_mq_shared.scss */
   .container {
     max-width: 1200px;
   }
 
-  /* line 59, ../sass/responsive/_mq_shared.scss */
+  /* line 63, ../sass/responsive/_mq_shared.scss */
   .block-50 {
     float: left;
     position: relative;
@@ -13371,31 +13384,31 @@ img.widget-promo-image {
 
   /* Page navigation
   -------------------------------------------------- */
-  /* line 67, ../sass/responsive/_mq_shared.scss */
+  /* line 71, ../sass/responsive/_mq_shared.scss */
   .page-navi ul li {
     display: block;
     float: left;
     width: 33.33333%;
   }
-  /* line 71, ../sass/responsive/_mq_shared.scss */
+  /* line 75, ../sass/responsive/_mq_shared.scss */
   .page-navi ul li a {
     min-height: 30px;
     margin: auto 10px;
   }
-  /* line 76, ../sass/responsive/_mq_shared.scss */
+  /* line 80, ../sass/responsive/_mq_shared.scss */
   .page-navi ul li .page-navi-icon {
     display: none !important;
   }
 
   /* Images
   -------------------------------------------------- */
-  /* line 85, ../sass/responsive/_mq_shared.scss */
+  /* line 89, ../sass/responsive/_mq_shared.scss */
   .room-image-preview {
     width: 200px;
     height: 200px;
   }
 
-  /* line 89, ../sass/responsive/_mq_shared.scss */
+  /* line 93, ../sass/responsive/_mq_shared.scss */
   .customize-preview-img {
     max-width: 300px;
     max-height: 150px;
@@ -13403,12 +13416,12 @@ img.widget-promo-image {
 
   /* Input
   -------------------------------------------------- */
-  /* line 97, ../sass/responsive/_mq_shared.scss */
+  /* line 101, ../sass/responsive/_mq_shared.scss */
   .form-control {
     padding: 6px 12px;
   }
 
-  /* line 100, ../sass/responsive/_mq_shared.scss */
+  /* line 104, ../sass/responsive/_mq_shared.scss */
   input[type=checkbox] {
     -ms-transform: scale(1.2);
     /* IE */
@@ -13420,7 +13433,7 @@ img.widget-promo-image {
     /* Opera */
   }
 
-  /* line 106, ../sass/responsive/_mq_shared.scss */
+  /* line 110, ../sass/responsive/_mq_shared.scss */
   input[type=radio] {
     transform: scale(1.2, 1.2);
     -moz-transform: scale(1.2, 1.2);
@@ -13431,30 +13444,30 @@ img.widget-promo-image {
 
   /* Button
   -------------------------------------------------- */
-  /* line 117, ../sass/responsive/_mq_shared.scss */
+  /* line 121, ../sass/responsive/_mq_shared.scss */
   .btn .fa, .btn-device-admin .fa {
     font-size: 120%;
   }
 
-  /* line 121, ../sass/responsive/_mq_shared.scss */
+  /* line 125, ../sass/responsive/_mq_shared.scss */
   .btn-goup-block {
     width: auto !important;
     display: inline-block;
     margin: 0;
   }
-  /* line 125, ../sass/responsive/_mq_shared.scss */
+  /* line 129, ../sass/responsive/_mq_shared.scss */
   .btn-goup-block .btn {
     width: auto !important;
   }
 
-  /* line 129, ../sass/responsive/_mq_shared.scss */
+  /* line 133, ../sass/responsive/_mq_shared.scss */
   .btn-tag {
     display: inline-block;
     position: static;
     font-size: 100%;
     margin: 0 10px 10px 0;
   }
-  /* line 134, ../sass/responsive/_mq_shared.scss */
+  /* line 138, ../sass/responsive/_mq_shared.scss */
   .btn-tag .fa {
     position: static;
     margin: 0 0 0 10px;
@@ -13463,76 +13476,76 @@ img.widget-promo-image {
 
   /* Modal
   -------------------------------------------------- */
-  /* line 143, ../sass/responsive/_mq_shared.scss */
+  /* line 147, ../sass/responsive/_mq_shared.scss */
   .appmodal .appmodal-in {
     width: 60%;
   }
 
-  /* line 149, ../sass/responsive/_mq_shared.scss */
+  /* line 153, ../sass/responsive/_mq_shared.scss */
   .appmodal-header .appmodal-close {
     font-size: 140%;
   }
 
   /* Modal with knob
   -------------------------------------------------- */
-  /* line 155, ../sass/responsive/_mq_shared.scss */
+  /* line 159, ../sass/responsive/_mq_shared.scss */
   .app-row-knob {
     display: table;
     width: 100%;
   }
-  /* line 158, ../sass/responsive/_mq_shared.scss */
+  /* line 162, ../sass/responsive/_mq_shared.scss */
   .app-row-knob .knob-col {
     display: table-cell;
     vertical-align: middle;
     padding: 10px;
     width: 50%;
   }
-  /* line 164, ../sass/responsive/_mq_shared.scss */
+  /* line 168, ../sass/responsive/_mq_shared.scss */
   .app-row-knob .knob-ctrl {
     text-align: right;
   }
-  /* line 167, ../sass/responsive/_mq_shared.scss */
+  /* line 171, ../sass/responsive/_mq_shared.scss */
   .app-row-knob .knob-btn {
     text-align: left;
   }
 
   /* Dropdown
   -------------------------------------------------- */
-  /* line 174, ../sass/responsive/_mq_shared.scss */
+  /* line 178, ../sass/responsive/_mq_shared.scss */
   .app-dropdown {
     min-width: 380px;
   }
 
-  /* line 179, ../sass/responsive/_mq_shared.scss */
+  /* line 183, ../sass/responsive/_mq_shared.scss */
   .app-dropdown.dropdown-lang {
     min-width: 250px;
   }
-  /* line 182, ../sass/responsive/_mq_shared.scss */
+  /* line 186, ../sass/responsive/_mq_shared.scss */
   .app-dropdown.dropdown-lang ul li {
     padding: 5px;
   }
 
   /* Report
   -------------------------------------------------- */
-  /* line 193, ../sass/responsive/_mq_shared.scss */
+  /* line 197, ../sass/responsive/_mq_shared.scss */
   .report-img {
     max-width: 40px;
     max-height: 40px;
   }
 
-  /* line 199, ../sass/responsive/_mq_shared.scss */
+  /* line 203, ../sass/responsive/_mq_shared.scss */
   .app-row-zwave .report-entry .report-ctrl {
     vertical-align: top !important;
   }
 
   /* Widgets
   -------------------------------------------------- */
-  /* line 206, ../sass/responsive/_mq_shared.scss */
+  /* line 210, ../sass/responsive/_mq_shared.scss */
   .app-row-widget {
     margin: -10px;
   }
 
-  /* line 209, ../sass/responsive/_mq_shared.scss */
+  /* line 213, ../sass/responsive/_mq_shared.scss */
   .widget-entry {
     float: left;
     position: relative;
@@ -13540,33 +13553,33 @@ img.widget-promo-image {
     border: 0;
     width: 33.33333%;
   }
-  /* line 213, ../sass/responsive/_mq_shared.scss */
+  /* line 217, ../sass/responsive/_mq_shared.scss */
   .widget-entry .widget-entry-in {
     border-color: #FFFFFF;
     border: solid 1px #FFFFFF;
     margin: 10px;
   }
-  /* line 220, ../sass/responsive/_mq_shared.scss */
+  /* line 224, ../sass/responsive/_mq_shared.scss */
   .widget-entry .widget-entry-in .widget-header .widget-icon .fa {
     padding: 0 0 0 5px;
     font-size: 140%;
   }
 
-  /* line 229, ../sass/responsive/_mq_shared.scss */
+  /* line 233, ../sass/responsive/_mq_shared.scss */
   .widget-success {
     /*    .widget-entry-in{
             border: solid 4px $widget-success-border-color;
         }*/
   }
 
-  /* line 235, ../sass/responsive/_mq_shared.scss */
+  /* line 239, ../sass/responsive/_mq_shared.scss */
   .widget-warning {
     /*    .widget-entry-in{
         border: solid 4px $widget-warning-border-color;
         }*/
   }
 
-  /* line 241, ../sass/responsive/_mq_shared.scss */
+  /* line 245, ../sass/responsive/_mq_shared.scss */
   .widget-danger {
     /*    .widget-entry-in{
          border: solid 4px $widget-danger-border-color;
@@ -13575,12 +13588,12 @@ img.widget-promo-image {
 
   /* Elements
   -------------------------------------------------- */
-  /* line 249, ../sass/responsive/_mq_shared.scss */
+  /* line 253, ../sass/responsive/_mq_shared.scss */
   .widget-entry-element .widget-entry-in {
     height: 124px;
   }
 
-  /* line 253, ../sass/responsive/_mq_shared.scss */
+  /* line 257, ../sass/responsive/_mq_shared.scss */
   .element-icon-img {
     max-width: 32px;
     max-height: 32px;
@@ -13588,40 +13601,40 @@ img.widget-promo-image {
 
   /* Apps
   -------------------------------------------------- */
-  /* line 261, ../sass/responsive/_mq_shared.scss */
+  /* line 265, ../sass/responsive/_mq_shared.scss */
   .widget-entry-app .widget-entry-in {
     min-height: 1px;
     height: 110px;
   }
-  /* line 264, ../sass/responsive/_mq_shared.scss */
+  /* line 268, ../sass/responsive/_mq_shared.scss */
   .widget-entry-app .widget-entry-in .widget-footer {
     margin: 10px 0 0 0;
   }
 
   /* Customize
   -------------------------------------------------- */
-  /* line 274, ../sass/responsive/_mq_shared.scss */
+  /* line 278, ../sass/responsive/_mq_shared.scss */
   .widget-entry-customize .widget-entry-in {
     min-height: 1px;
     height: 250px;
     text-align: center;
   }
-  /* line 278, ../sass/responsive/_mq_shared.scss */
+  /* line 282, ../sass/responsive/_mq_shared.scss */
   .widget-entry-customize .widget-entry-in .widget-img {
     position: static;
   }
-  /* line 282, ../sass/responsive/_mq_shared.scss */
+  /* line 286, ../sass/responsive/_mq_shared.scss */
   .widget-entry-customize .widget-entry-in .widget-content {
     margin: 10px 0 0 0;
   }
-  /* line 286, ../sass/responsive/_mq_shared.scss */
+  /* line 290, ../sass/responsive/_mq_shared.scss */
   .widget-entry-customize .widget-entry-in .widget-footer {
     margin: 10px 0 0 0;
   }
 
   /* App detail
   -------------------------------------------------- */
-  /* line 293, ../sass/responsive/_mq_shared.scss */
+  /* line 297, ../sass/responsive/_mq_shared.scss */
   .app-detail-img {
     float: left;
     position: relative;
@@ -13629,24 +13642,24 @@ img.widget-promo-image {
     width: 148px;
   }
 
-  /* line 298, ../sass/responsive/_mq_shared.scss */
+  /* line 302, ../sass/responsive/_mq_shared.scss */
   .app-detail-body {
     margin: 0 0 0 148px;
   }
 
   /* Devices
   -------------------------------------------------- */
-  /* line 304, ../sass/responsive/_mq_shared.scss */
+  /* line 308, ../sass/responsive/_mq_shared.scss */
   .vendor-entry {
     width: 20%;
   }
 
-  /* line 307, ../sass/responsive/_mq_shared.scss */
+  /* line 311, ../sass/responsive/_mq_shared.scss */
   .app-detail-body {
     margin: 0 0 0 148px;
   }
 
-  /* line 313, ../sass/responsive/_mq_shared.scss */
+  /* line 317, ../sass/responsive/_mq_shared.scss */
   .report-battery-info div {
     display: inline-block;
     padding: 0 10px 0 0;
@@ -13654,38 +13667,38 @@ img.widget-promo-image {
 
   /* Rooms
   -------------------------------------------------- */
-  /* line 321, ../sass/responsive/_mq_shared.scss */
+  /* line 325, ../sass/responsive/_mq_shared.scss */
   .room-entry {
     width: 25%;
   }
 
   /* Footer
   -------------------------------------------------- */
-  /* line 328, ../sass/responsive/_mq_shared.scss */
+  /* line 332, ../sass/responsive/_mq_shared.scss */
   #footer #footer_in {
     height: 40px;
     line-height: 40px;
   }
 
-  /* line 334, ../sass/responsive/_mq_shared.scss */
+  /* line 338, ../sass/responsive/_mq_shared.scss */
   #footer {
     display: none;
   }
 
   /* Auth
   -------------------------------------------------- */
-  /* line 341, ../sass/responsive/_mq_shared.scss */
+  /* line 345, ../sass/responsive/_mq_shared.scss */
   #page_login .container, #page_password .container, #page_passwordforgot .container, #page_passwordreset .container {
     max-width: 500px;
   }
 
   /* Others
   -------------------------------------------------- */
-  /* line 348, ../sass/responsive/_mq_shared.scss */
+  /* line 352, ../sass/responsive/_mq_shared.scss */
   .timestamp {
     font-size: 90% !important;
   }
-  /* line 350, ../sass/responsive/_mq_shared.scss */
+  /* line 354, ../sass/responsive/_mq_shared.scss */
   .timestamp .fa {
     font-size: 90% !important;
   }

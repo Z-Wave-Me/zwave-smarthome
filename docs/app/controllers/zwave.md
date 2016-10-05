@@ -40,15 +40,6 @@ Load all promises
 
 
 
-## ZwaveAddController
-The controller that renders Z-Wave manufacturers and devices.
-
-### ZwaveAddController.loadData() 
-
-Load z-wave devices
-
-
-
 ## ZwaveManageController
 The controller that renders and handles data in the Z-Wave/Manage section.
 
