@@ -11,9 +11,8 @@ Marcel Kermer
 
 ## v1.5.0
 #### New features
-- Time zone on the first access page (POPP only).
+- Time zone on the first access page and in the management (POPP only).
 - More products in the Z-Wave devices.
-- Skins.
 - Add update time to toggle button #167.
 - Online Apps: Sorting by most popular.
 - Elements: Sorting by last updated.
