@@ -148,7 +148,7 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
             // Success - elements
             if (elements.state === 'fulfilled') {
                 //setElements(elements.value.data.data.devices);
-                setElements(dataService.getDevicesData(elements.value.data.data.devices, false));
+                setElements(dataService.getDevicesData(elements.value.data.data.devices, false,true));
             }
         });
     };
@@ -740,7 +740,7 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
             }
             // Success - devices
             if (devices.state === 'fulfilled') {
-                var elements = dataService.getDevicesData(devices.value.data.data.devices, false);
+                var elements = dataService.getDevicesData(devices.value.data.data.devices, false,true);
                 zwaveConfigApiData($scope.zwaveConfig.nodeId, elements.value());
             }
             // Success - locations
