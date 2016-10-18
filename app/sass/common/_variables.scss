@@ -107,6 +107,11 @@ $badge-number-w: 32px;
 //Devices
 $device-vendor-w: 33.33333%;
 
+//Switch buton
+$switch-btn-w: 72px;
+$switch-btn-h: 40px;
+$switch-btn-slider: 32px;
+
 /*-------------------------------------*/
 // Z:INDEX
 $zindex-alertify: 2500;
@@ -330,7 +335,7 @@ $element-widget-btn-on-color: lighten($widget-color, 40%);
 $element-widget-img-update-border-color: $app-border-color;
 $element-widget-isnew-border-color: lighten($app-brand-success,20%);
 
-// Customiz
+// Customize
 $customize-border-color: $app-border-color;
 // Room
 $room-border-color: $app-border-color;

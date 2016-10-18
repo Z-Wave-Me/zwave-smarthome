@@ -141,6 +141,16 @@ input[type=radio] {
         font-size: $app-btn-tag-icon-size;
     }
 }
+/* Switch button
+-------------------------------------------------- */
+.switch {
+  width: $switch-btn-w;
+  height: $switch-btn-h;
+}
+.slider:before {
+  height: $switch-btn-slider;
+  width:$switch-btn-slider;
+}
 /* Modal
 -------------------------------------------------- */
 .appmodal { 
