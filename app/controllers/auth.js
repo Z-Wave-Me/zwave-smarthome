@@ -340,7 +340,10 @@ myAppController.controller('AuthPasswordController', function ($scope, $q, $wind
             }
         });
     };
-    $scope.allSettled();
+    if($scope.isInArray(['jb'],cfg.app_type)){
+        $scope.allSettled();
+    }
+
     /**
      * Change password
      */
