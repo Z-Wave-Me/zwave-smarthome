@@ -16,6 +16,7 @@ myAppController.controller('ConfigConfigurationController', function($scope, $ro
     };
     $scope.apiDataInterval = null;
     // Config vars
+    $scope.hasConfigurationCc = false;
     $scope.deviceZddx = [];
     $scope.configCont;
     $scope.switchAllCont;
@@ -262,6 +263,14 @@ myAppController.controller('ConfigConfigurationController', function($scope, $ro
     function setCont(node, nodeId, zddXml, ZWaveAPIData, refresh) {
         if (!zddXml) {
             $scope.noZddx = true;
+            // Loop throught instances
+            angular.forEach(node.instances, function (instance, instanceId) {
+                if (instance.commandClasses[112]) {
+
+                    $scope.hasConfigurationCc =  configurationCc(instance.commandClasses[112], instanceId,nodeId, ZWaveAPIData);
+                    return;
+                }
+            });
         }
         dataFactory.xmlToJson($scope.cfg.server_url + $scope.cfg.cfg_xml_url, true).then(function(cfgXml) {
             $scope.configCont = expertService.configConfigCont(node, nodeId, zddXml, cfgXml, $scope.lang, $scope.languages);
@@ -278,5 +287,35 @@ myAppController.controller('ConfigConfigurationController', function($scope, $ro
             $scope.switchAllCont = expertService.configSwitchAllCont(node, nodeId, ZWaveAPIData, null);
         });
     }
+
+    /**
+     * Set configuration command class
+     * @param commandClass
+     * @param instanceId
+     * @param nodeId
+     * @param ZWaveAPIData
+     * @returns {{}}
+     */
+    function configurationCc(commandClass, instanceId,nodeId, ZWaveAPIData) {
+        //console.log(node);
+
+        var ccId = 112;
+        var methods = getMethodSpec(ZWaveAPIData, nodeId, instanceId, ccId, null);
+        var command = expertService.configGetCommands(methods, ZWaveAPIData);
+        var obj = {};
+        obj['nodeId'] = nodeId;
+        obj['rowId'] = 'row_' + nodeId + '_' + instanceId + '_' + ccId;
+        obj['instanceId'] = instanceId;
+        obj['ccId'] = ccId;
+        obj['cmd'] = 'devices[' + nodeId + '].instances[' + instanceId + '].commandClasses[' + ccId + ']';
+        obj['cmdData'] = ZWaveAPIData.devices[nodeId].instances[instanceId].commandClasses[ccId].data;
+        obj['cmdDataIn'] = ZWaveAPIData.devices[nodeId].instances[instanceId].data;
+        obj['commandClass'] = commandClass.name;
+        obj['command'] = command;
+        obj['updateTime'] = ZWaveAPIData.updateTime;
+        return obj;
+    }
 });
+
+
 

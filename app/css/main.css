@@ -12701,6 +12701,43 @@ img.widget-promo-image {
   margin-bottom: 10px;
 }
 
+/* Expert Commands
+-------------------------------------------------- */
+/*#row_commands .thumbnail{
+  width: 100%;
+}
+#row_commands .thumbnail:hover{
+  border: solid 1px #6BA2C8;
+}
+#row_commands .thumbnail-title a{
+  color: #012F49;
+  font-weight: bold;
+}
+
+#row_commands img{
+  vertical-align: top !important;
+}*/
+/* line 18, ../sass/modules/_commands.scss */
+.commands-data {
+  padding: 10px 0;
+}
+
+/* line 23, ../sass/modules/_commands.scss */
+.commands-data-control {
+  padding: 10px;
+  background-color: #e7e7e7;
+}
+
+/* line 27, ../sass/modules/_commands.scss */
+.commands-data-control .form-group {
+  margin-bottom: 10px;
+}
+
+/* line 30, ../sass/modules/_commands.scss */
+.commands-title-block {
+  display: block;
+}
+
 /* POPP css
 -------------------------------------------------- */
 /* line 5, ../sass/common/_app_popp.scss */

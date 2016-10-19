@@ -50,6 +50,24 @@ myAppService.service('expertService', function($filter) {
         return getCfgXmlParam(cfgXml, nodeId, instance, commandClass, command);
     };
     /**
+     * Get expert commands
+     * @param methods
+     * @param ZWaveAPIData
+     * @returns {*}
+     */
+    this.configGetCommands = function(methods, ZWaveAPIData) {
+        return configGetCommands(methods, ZWaveAPIData);
+    };
+    /**
+     *  Get interview ommands
+     * @param node
+     * @param updateTime
+     * @returns {*}
+     */
+    this.configGetInterviewCommands = function(node, updateTime) {
+        return configGetInterviewCommands(node, updateTime);
+    };
+    /**
      * Config cont
      * @param {object} node
      * @param {int} nodeId
@@ -121,6 +139,54 @@ myAppService.service('expertService', function($filter) {
         return key;
     }
     ;
+
+    /**
+     *  Get expert commands
+     */
+    function configGetCommands(methods, ZWaveAPIData) {
+        var methodsArr = [];
+        angular.forEach(methods, function(params, method) {
+            //str.split(',');
+            var cmd = {};
+            var values = repr_array(method_defaultValues(ZWaveAPIData, methods[method]));
+            cmd['data'] = {
+                'method': method,
+                'params': methods[method],
+                'values': method_defaultValues(ZWaveAPIData, methods[method])
+            };
+            cmd['method'] = method;
+            cmd['params'] = methods[method];
+            cmd['values'] = repr_array(method_defaultValues(ZWaveAPIData, methods[method]));
+            methodsArr.push(cmd);
+        });
+        return methodsArr;
+    }
+
+    /**
+     *  Get interview Commands
+     */
+    function configGetInterviewCommands(node, updateTime) {
+        var interviews = [];
+        for (var iId in node.instances) {
+            var cnt = 0;
+            for (var ccId in node.instances[iId].commandClasses) {
+                var obj = {};
+                obj['iId'] = iId;
+                obj['ccId'] = ccId;
+                obj['ccName'] = node.instances[iId].commandClasses[ccId].name;
+                obj['interviewDone'] = node.instances[iId].commandClasses[ccId].data.interviewDone.value;
+                obj['cmdData'] = node.instances[iId].commandClasses[ccId].data;
+                obj['cmdDataIn'] = node.instances[iId].data;
+                obj['updateTime'] = updateTime;
+                interviews.push(obj);
+                cnt++;
+            }
+            ;
+        }
+        ;
+        return interviews;
+    }
+
 
     /**
      *  Get config navigation devices

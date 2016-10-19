@@ -16,6 +16,7 @@ Marcel Kermer
 - Add update time to toggle button #167.
 - Online Apps: Sorting by most popular.
 - Elements: Sorting by last updated.
+- Added the generic Confguration Dialog to Hardware Configuration if no ZDDX file is present.
 
 #### Fixes
 - Text in preferences menu not aligned #189.

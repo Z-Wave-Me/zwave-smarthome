@@ -1,0 +1,32 @@
+/* Expert Commands
+-------------------------------------------------- */
+/*#row_commands .thumbnail{
+  width: 100%;
+}
+#row_commands .thumbnail:hover{
+  border: solid 1px #6BA2C8;
+}
+#row_commands .thumbnail-title a{
+  color: #012F49;
+  font-weight: bold;
+}
+
+#row_commands img{
+  vertical-align: top !important;
+}*/
+
+.commands-data{
+  padding: $spacing 0;
+  //border-top: solid 1px #9fd8ef;
+}
+
+.commands-data-control{
+  padding: $spacing;
+  background-color: $form-submit-entry-bcg-color;
+}
+.commands-data-control .form-group{
+  margin-bottom: $spacing;
+}
+.commands-title-block{
+  display: block;
+}

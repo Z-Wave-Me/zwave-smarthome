@@ -6,6 +6,44 @@
     <div ng-show="deviceId > 0">
         <h1>(#{{deviceId}}) <span ng-bind="deviceName"></span></h1> 
          <!--<div class="alert alert-warning" ng-show="!configCont"><i class="fa fa-exclamation-triangle"></i> {{_t('no_zddx_file')}}</div>-->
+        <!-- Generic configuration fom expert commands -->
+        <div class="cfg-block"  ng-if="hasConfigurationCc.command" ng-controller="ConfigCommandsController">
+            <h2>{{hasConfigurationCc.commandClass}}</h2>
+            <div class="commands-data"
+                 ng-repeat="c in hasConfigurationCc.command| orderBy:predicate:reverse"
+                 ng-init="formName = 'form_' + c.data.method + '_' + v.rowId">
+
+                <form
+                        name="{{formName}}"
+                        id="{{formName}}"
+                        class="form form_commands"
+                        role="form"
+                        ng-submit="submitExpertCommndsForm(formName, hasConfigurationCc.cmd + '.' + c.data.method)"
+                        novalidate>
+                    <div class="commands-data-control">
+                        <div class="form-inline" ng-repeat="(pk,p) in c.data.params">
+                            <expert-command-input
+                                    collection='p'
+                                    values='c.data.values[pk]'
+                                    devices='devices'
+                                    name='c.data.method'
+                                    get-node-devices='getNodeDevices'
+                            ></expert-command-input>
+                            <!-- {{pk}} {{p}}
+                            {{c.data.values[pk]}}-->
+
+                        </div>
+                        <button
+                                type="submit"
+                                class="btn btn-primary"
+                                id="btn_update_{{ v.rowId}}"
+                        >{{c.data.method}}</button>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
 
         <!-- config_cont -->
         <div class="cfg-block" id="config_cont" ng-if="configCont">
