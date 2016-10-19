@@ -35,7 +35,7 @@ myAppController.controller('LocalIconController', function ($scope, $filter, $ti
     $scope.allSettled = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
-            dataFactory.getApiLocal('icons.json'),
+            dataFactory.getApi('icons', null, true),
             dataFactory.getApi('devices', null, true)
         ];
 
@@ -123,7 +123,7 @@ myAppController.controller('LocalIconController', function ($scope, $filter, $ti
         alertify.dismissAll();
         alertify.confirm(message, function () {
             $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
-            dataFactory.getApiLocal('icons.json').then(function (response) {
+            dataFactory.deleteApi('icons', icon.file).then(function (response) {
                 $scope.loading = false;
                 $scope.icons.all = _.reject($scope.icons.all, function (v) {
                     return v.file === icon.file;
@@ -153,13 +153,12 @@ myAppController.controller('LocalIconController', function ($scope, $filter, $ti
         // Set local variables
         var fd = new FormData(),
                 input = {file: files[0].name, device: []};
-        //var cmd = $scope.cfg.api_url + 'upload/file';
         // Set selected file name
         $scope.icons.upload = files[0].name;
         // Set form data
         fd.append('files_files', files[0]);
         // Atempt to upload a file
-        dataFactory.getApiLocal('icons.json').then(function (response) {
+        dataFactory.uploadApiFile(cfg.api.icons_upload, fd).then(function (response) {
             $timeout(function () {
                 if (!_.findWhere($scope.icons.all, {file: files[0].name})) {
                     $scope.icons.all.push(input);
@@ -283,7 +282,7 @@ myAppController.controller('OnlineIconController', function ($scope, $filter, $t
      */
     $scope.downloadIconSet = function (icon) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
-        dataFactory.getApiLocal('icons_online.json').then(function (response) {
+        dataFactory.postApi('icons_install', icon).then(function (response) {
             $timeout(function () {
                 $scope.loading = false;
                 dataService.showNotifier({message: $scope._t('success_file_download')});

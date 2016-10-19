@@ -981,7 +981,7 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
      */
     $scope.loadUploadedIcons = function () {
         // Atempt to load data
-        dataFactory.getApiLocal('icons.json').then(function (response) {
+        dataFactory.getApi('icons', null, true).then(function (response) {
             $scope.icons.uploaded = response.data.data;
         }, function (error) {
             alertify.alertError($scope._t('error_load_data'));
@@ -1032,11 +1032,11 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
      */
     $scope.updateWithCustomIcon = function () {
         var input = {
-            id: $scope.elementId.input.id,
-            custom_icons: $scope.icons.all.custom
+            customicons: $scope.icons.all.custom
         };
+        var id = $scope.elementId.input.id;
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        dataFactory.putApi('devices', $scope.elementId.input.id, input).then(function (response) {
+        dataFactory.putApi('customicon', id, input, '?icon').then(function (response) {
             $scope.icons.selected = false;
             $scope.loading = false;
             dataService.showNotifier({message: $scope._t('success_updated')});
