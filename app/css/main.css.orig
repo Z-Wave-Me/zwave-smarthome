@@ -11380,12 +11380,12 @@ textarea {
   min-height: 150px;
 }
 
-/* line 19, ../sass/common/_form.scss */
+/* line 20, ../sass/common/_form.scss */
 label {
   font-size: 105%;
 }
 
-/* line 22, ../sass/common/_form.scss */
+/* line 24, ../sass/common/_form.scss */
 input[type=checkbox] {
   -ms-transform: scale(2);
   /* IE */
@@ -11399,7 +11399,7 @@ input[type=checkbox] {
   margin: 0 10px 0;
 }
 
-/* line 30, ../sass/common/_form.scss */
+/* line 33, ../sass/common/_form.scss */
 input[type=radio] {
   transform: scale(1.8, 1.8);
   -moz-transform: scale(1.8, 1.8);
@@ -11410,7 +11410,7 @@ input[type=radio] {
   margin: 0 10px 0;
 }
 
-/* line 42, ../sass/common/_form.scss */
+/* line 45, ../sass/common/_form.scss */
 .os-iphone input[type=checkbox], .os-ipad input[type=checkbox], .os-ipod input[type=checkbox] {
   -ms-transform: scale(1.3);
   /* IE */
@@ -11423,7 +11423,7 @@ input[type=radio] {
   padding: 10px;
   margin: 0 10px 0;
 }
-/* line 50, ../sass/common/_form.scss */
+/* line 53, ../sass/common/_form.scss */
 .os-iphone input[type=radio], .os-ipad input[type=radio], .os-ipod input[type=radio] {
   transform: scale(1.2, 1.2);
   -moz-transform: scale(1.2, 1.2);
@@ -11434,29 +11434,29 @@ input[type=radio] {
   margin: 0 10px 0;
 }
 
-/* line 62, ../sass/common/_form.scss */
+/* line 64, ../sass/common/_form.scss */
 .form-page {
   margin-bottom: 20px;
   background-color: #FFFFFF;
   border: solid 1px #e7e7e7;
 }
-/* line 67, ../sass/common/_form.scss */
+/* line 70, ../sass/common/_form.scss */
 .form-page .form-group {
   border-bottom: solid 1px #e7e7e7;
   padding-bottom: 10px;
 }
-/* line 70, ../sass/common/_form.scss */
+/* line 73, ../sass/common/_form.scss */
 .form-page .form-group.last {
   border-bottom: 0;
   padding-bottom: 0;
   margin-bottom: 0;
 }
-/* line 76, ../sass/common/_form.scss */
+/* line 79, ../sass/common/_form.scss */
 .form-page label {
   font-weight: normal;
 }
 
-/* line 81, ../sass/common/_form.scss */
+/* line 84, ../sass/common/_form.scss */
 .inputfile {
   width: 0.1px;
   height: 0.1px;
@@ -11466,37 +11466,37 @@ input[type=radio] {
   z-index: -1;
 }
 
-/* line 90, ../sass/common/_form.scss */
+/* line 94, ../sass/common/_form.scss */
 .inputfile + label {
   cursor: pointer;
 }
 
-/* line 94, ../sass/common/_form.scss */
+/* line 98, ../sass/common/_form.scss */
 fieldset, .fieldset {
   padding: 10px;
 }
 
-/* line 97, ../sass/common/_form.scss */
+/* line 102, ../sass/common/_form.scss */
 .isrequired {
   font-weight: bold !important;
 }
 
-/* line 101, ../sass/common/_form.scss */
+/* line 107, ../sass/common/_form.scss */
 .isrequired::before {
   content: "*";
 }
 
-/* line 105, ../sass/common/_form.scss */
+/* line 111, ../sass/common/_form.scss */
 .form-control-sm {
   width: 30% !important;
 }
 
-/* line 109, ../sass/common/_form.scss */
+/* line 115, ../sass/common/_form.scss */
 .form-control-md {
   width: 50% !important;
 }
 
-/* line 113, ../sass/common/_form.scss */
+/* line 119, ../sass/common/_form.scss */
 .submit-entry {
   text-align: right;
   display: block;
@@ -11504,25 +11504,32 @@ fieldset, .fieldset {
   border-top: solid 1px #e7e7e7;
 }
 
-/* line 121, ../sass/common/_form.scss */
+/* line 127, ../sass/common/_form.scss */
 fieldset.submit-entry {
   margin: 0 !important;
 }
 
-/* line 124, ../sass/common/_form.scss */
+/* line 131, ../sass/common/_form.scss */
 .form-control-hidden {
   display: none !important;
 }
 
-/* line 127, ../sass/common/_form.scss */
+/* line 135, ../sass/common/_form.scss */
 .form-control-img {
   cursor: pointer;
   border: solid 4px transparent;
 }
 
-/* line 132, ../sass/common/_form.scss */
+/* line 141, ../sass/common/_form.scss */
 .control-active {
   border: solid 4px black !important;
+}
+
+/* Config form
+-------------------------------------------------- */
+/* line 148, ../sass/common/_form.scss */
+#form_wakeup select, #form_wakeup .label-node {
+  visibility: hidden;
 }
 
 /* Dropdown
@@ -12699,6 +12706,43 @@ img.widget-promo-image {
 #page_login .login-lang, #page_password .login-lang, #page_passwordforgot .login-lang, #page_passwordreset .login-lang {
   text-align: right;
   margin-bottom: 10px;
+}
+
+/* Expert Commands
+-------------------------------------------------- */
+/*#row_commands .thumbnail{
+  width: 100%;
+}
+#row_commands .thumbnail:hover{
+  border: solid 1px #6BA2C8;
+}
+#row_commands .thumbnail-title a{
+  color: #012F49;
+  font-weight: bold;
+}
+
+#row_commands img{
+  vertical-align: top !important;
+}*/
+/* line 18, ../sass/modules/_commands.scss */
+.commands-data {
+  padding: 10px 0;
+}
+
+/* line 23, ../sass/modules/_commands.scss */
+.commands-data-control {
+  padding: 10px;
+  background-color: #e7e7e7;
+}
+
+/* line 27, ../sass/modules/_commands.scss */
+.commands-data-control .form-group {
+  margin-bottom: 10px;
+}
+
+/* line 30, ../sass/modules/_commands.scss */
+.commands-title-block {
+  display: block;
 }
 
 /* POPP css
