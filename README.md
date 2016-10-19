@@ -26,6 +26,7 @@ Marcel Kermer
 - Elements: Fixed knob bug.
 
 #### Changes
+- Hardvare configuration: Removed targed node from wakeup time settings.
 - Removed filter getElementIcon and replaced with service assignElementIcon.
 
 ## v1.4.3

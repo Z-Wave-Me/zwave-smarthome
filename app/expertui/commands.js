@@ -88,7 +88,7 @@ myAppController.controller('ConfigCommandsController', function ($scope, $routeP
         var request = cmd + '(' + dataJoined.join() + ')';
         //dataService.runCmd(request, false, $scope._t('error_handling_data'));
         dataFactory.runExpertCmd(request, true).then(function(response){
-
+            dataService.showNotifier({message: $scope._t('success_updated')});
         },function(error) {
             alertify.alertError($scope._t('error_update_data'));
         });
