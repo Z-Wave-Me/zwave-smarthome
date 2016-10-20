@@ -36,6 +36,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
 
     }
     return({
+        pingServer: pingServer,
         logInApi: logInApi,
         sessionApi: sessionApi,
         getApiLocal: getApiLocal,
@@ -75,6 +76,23 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
     });
 
     /// --- Public functions --- ///
+    /**
+     * Handles login process
+     * @param {string} url
+     * @returns {unresolved}
+     */
+    function pingServer(url) {
+        return $http({
+            method: "get",
+            url: url
+        }).then(function (response) {
+            return response;
+        }, function (response) {// something went wrong
+            //return response;
+            return $q.reject(response);
+        });
+    }
+
 
     /**
      * Handles login process

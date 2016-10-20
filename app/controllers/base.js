@@ -12,7 +12,7 @@ var myAppController = angular.module('myAppController', []);
  * The app base controller.
  * @class BaseController
  */
-myAppController.controller('BaseController', function ($scope, $cookies, $filter, $location, $route, $window, $interval, $http, cfg, cfgicons, dataFactory, dataService, myCache) {
+myAppController.controller('BaseController', function ($scope, $rootScope,$cookies, $filter, $location, $route, $window, $interval, $http, cfg, cfgicons, dataFactory, dataService, myCache) {
 
     // Global scopes
     $scope.$location = $location;
@@ -84,6 +84,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     };
 
     /**
+     * DEPRECATED
      * Set a time
      * @returns {undefined}
      */
@@ -154,7 +155,147 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         }, function (error) {});
 
     };
-    $scope.setTimeZone();
+    //$scope.setTimeZone();
+
+
+    /**
+     * Set a timestamp
+     * @returns {undefined}
+     */
+    $scope.setTimeStamp = function () {
+        if (!$scope.user) {
+            return;
+        }
+        dataFactory.getApi('time', null, true).then(function (response) {
+            $interval.cancel($scope.timeZoneInterval);
+            angular.extend(cfg.route.time, {string: $filter('setTimeFromBox')(response.data.data.localTimeUT)},
+                {timestamp: response.data.data.localTimeUT});
+
+            var refresh = function () {
+
+                cfg.route.time.timestamp += (cfg.interval < 1000 ? 1 : cfg.interval/1000)
+                cfg.route.time.string = $filter('setTimeFromBox')(cfg.route.time.timestamp)
+                // console.log($filter('setTimeFromBox')(cfg.route.time.timestamp))
+                // console.log(cfg.route.time.timestamp)
+                console.log('Refreshing: ',cfg.route.time.string )
+                var pending = _.findWhere($http.pendingRequests,{url: '/ZAutomation/api/v1/system/time/get'})
+
+                if(pending){
+                    console.log('Pending: ', pending)
+                    var fatalArray = {
+                        type: 'network',
+                        message: $scope._t('connection_refused'),
+                        info: $scope._t('connection_refused_info'),
+                        permanent: true,
+                        hide: true
+                    };
+                    if ($scope.routeMatch('/boxupdate')) {
+                        fatalArray.message = $scope._t('jamesbox_connection_refused');
+                        fatalArray.info = $scope._t('jamesbox_connection_refused_info', {__reload_begintag__: '<div>', __reload_endtag__: '</div>', __attention_begintag__: '<div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i>', __attention_endtag__: '<div>'});
+                        fatalArray.icon = cfg.route.fatalError.icon_jamesbox;
+                    }
+                    angular.extend(cfg.route.fatalError, fatalArray);
+                }else{
+                    if (cfg.route.fatalError.type === 'network') {
+                        console.log('Remove the fucking error message');
+                        dataFactory.sessionApi().then(function (sessionRes) {
+                            var user = sessionRes.data.data;
+                            if (sessionRes.data.data) {
+                                dataService.setZWAYSession(user.sid);
+                                dataService.setUser(user);
+                                if (dataService.getUser()) {
+                                    $window.location.reload();
+                                    //$q.defer().promise;
+                                    //return;
+                                }
+                            }
+
+                        }, function (error) {
+                            //$q.defer().promise;
+                        });
+                    }
+                }
+
+            };
+            $scope.timeZoneInterval = $interval(refresh, $scope.cfg.interval);
+        }, function (error) {
+            /*var ping = function () {
+
+                dataFactory.pingServer(cfg.api.ping).then(function (response) {
+                    $interval.cancel($scope.pingInterval);
+                }, function (error) {
+                    console.log('PING.... error')
+                    var fatalArray = {
+                        type: 'network',
+                        message: $scope._t('connection_refused'),
+                        info: $scope._t('connection_refused_info'),
+                        permanent: true,
+                        hide: true
+                    };
+                    angular.extend(cfg.route.fatalError, fatalArray);
+                });
+            };
+            $scope.pingInterval = $interval(ping, 3000);*/
+
+        });
+
+    };
+
+
+    $rootScope.$on("$routeChangeStart", function(current,previous) {
+
+        $scope.setTimeStamp();
+        // console.log(current)
+        // console.log(previous)
+        //console.log( "Route Change:", $location.path());
+        console.log( "Route Change:", $location.path());
+        console.log($http.pendingRequests)
+        return;
+        var pending = _.findWhere($http.pendingRequests,{url: '/ZAutomation/api/v1/system/time/get'})
+        console.log('Pending: ', pending)
+        if(pending){
+            var ping = function () {
+
+                dataFactory.pingServer(cfg.api.ping).then(function (response) {
+                    $interval.cancel($scope.pingInterval);
+                }, function (error) {
+                    console.log('PING.... error')
+                    var fatalArray = {
+                        type: 'network',
+                        message: $scope._t('connection_refused'),
+                        info: $scope._t('connection_refused_info'),
+                        permanent: true,
+                        hide: true
+                    };
+                    angular.extend(cfg.route.fatalError, fatalArray);
+                });
+            };
+            $scope.pingInterval = $interval(ping, 3000);
+        }
+        return;
+        dataFactory.pingServer(cfg.api.ping).then(function (response) {
+            console.log(response)
+        }, function (error) {
+            //if (!error.status || error.status === 0) {
+                var fatalArray = {
+                    type: 'network',
+                    message: $scope._t('connection_refused'),
+                    info: $scope._t('connection_refused_info'),
+                    permanent: true,
+                    hide: true
+                };
+                if ($scope.routeMatch('/boxupdate')) {
+                    fatalArray.message = $scope._t('jamesbox_connection_refused');
+                    fatalArray.info = $scope._t('jamesbox_connection_refused_info', {__reload_begintag__: '<div>', __reload_endtag__: '</div>', __attention_begintag__: '<div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i>', __attention_endtag__: '<div>'});
+                    fatalArray.icon = cfg.route.fatalError.icon_jamesbox;
+                }
+                angular.extend(cfg.route.fatalError, fatalArray);
+           // }
+
+
+        });
+    });
+
     /**
      * Set poll interval
      * @returns {undefined}
