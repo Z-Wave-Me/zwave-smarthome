@@ -168,6 +168,13 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     requireLogin: true,
                      roles: cfg.role_access.customize
                 }).
+                //Online skins
+                when('/skinreset', {
+                     template: ' ',
+                      controller: 'SkinToDefaultController',
+                    requireLogin: true,
+                     roles: cfg.role_access.customize
+                }).
                   //Custom icons
                 when('/customize/iconslocal', {
                     templateUrl: 'app/views/customize/icons_local.html',
