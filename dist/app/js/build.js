@@ -12309,7 +12309,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
      */
     function putCfgXml(data) {
         return $http({
-            method: "PUT",
+            method: "POST",
             url: cfg.server_url + cfg.cfg_xml_url,
             data: data,
             headers: {
