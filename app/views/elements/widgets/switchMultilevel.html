@@ -17,7 +17,7 @@
         </button>
          <!-- Max -->
         <button class="btn" id="btn_max_{{ v.id}}"
-            data-ng-click="runCmdExact(v.id, v.minMax.max, v.minMax.min, v.minMax.max)"
+            data-ng-click="setExactCmd( v,v.minMax.max)"
             ng-class="v.metrics.level == v.minMax.max ? 'btn-primary': 'btn-default'"
             title="{{_t('lb_on')}}">
             <i class="fa fa-arrow-up"></i>
@@ -25,14 +25,14 @@
     </div>
     <!-- blind -->
     <div class="btn-group" ng-if="v.probeType == 'motor'">
-        <button 
+        <button
             class="btn btn-off" id="btn_off_{{ v.id}}"
             data-ng-click="runCmd(v.id + '/command/off', v.id)"
             ng-class="v.metrics.level < 1 ? 'btn-primary': 'btn-default'"
             title="{{_t('lb_down')}}">
             <i class="fa fa-arrow-down"></i>
         </button>
-        <button 
+        <button
             class="btn btn btn-on" id="btn_on_{{ v.id}}"
             data-ng-click="runCmd(v.id + '/command/on', v.id)"
             ng-class="v.metrics.level > 0 ? 'btn-primary': 'btn-default'"
