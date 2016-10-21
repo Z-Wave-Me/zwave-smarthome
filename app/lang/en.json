@@ -1,6 +1,7 @@
 {
     "newtrans": "---",
      "---": "newtrans",
+    "show_more_apps":"Show more apps",
     "lb_allow_access_to_all_rooms":"Has Access to all rooms",
     "works_with_internet": "Works only with internet access",
     "local_access_manage": "Local Ethernet Access",
