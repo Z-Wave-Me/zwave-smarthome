@@ -312,39 +312,20 @@ myApp.config(['$routeProvider', function ($routeProvider) {
  * @function run
  */
 myApp.run(function ($rootScope, $location, dataService, cfg) {
-    // Run ubderscore js in views
+    // Run underscore js in views
     $rootScope._ = _;
-    // Route Access Control and Authentication
+
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
         var user;
-        // Reset fatal error messages
-        if (cfg.route.fatalError.message && !cfg.route.fatalError.permanent) {
-            angular.extend(cfg.route.fatalError, {
-                type: 'system',
-                message: false,
-                info: false,
-                hide: false
-            });
-        }
-        // Is login required?
-        if (next.requireLogin) {
-            user = dataService.getUser();
-            if (!user) {
-                $location.path('/');
-                return;
-            }
-            if (next.roles && angular.isArray(next.roles)) {
-                if (next.roles.indexOf(user.role) === -1) {
-                    $location.path('/error403');
-                    return;
-                   /* angular.extend(cfg.route.fatalError, {
-                        message: cfg.route.t['error_403'],
-                        hide: true
-                    });
-                    return;*/
-                }
-            }
-        }
+        /**
+         * Reset fatal error object
+         */
+        dataService.resetFatalError();
+
+        /**
+         * Check if access is allowed for the page
+         */
+        dataService.isAccessAllowed(next);
     });
 });
 
@@ -388,10 +369,10 @@ myApp.config(function ($provide, $httpProvider) {
                     dataService.logError(rejection);
                     $location.path('/error403');
                     /*angular.extend(cfg.route.fatalError, {
-                        message: cfg.route.t['error_403'],
-                        hide: true
-                    });
-                    console.log(cfg.route.fatalError)*/
+                     message: cfg.route.t['error_403'],
+                     hide: true
+                     });
+                     console.log(cfg.route.fatalError)*/
 
                     return $q.reject(rejection);
                 } else {

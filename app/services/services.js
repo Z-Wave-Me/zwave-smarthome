@@ -10,7 +10,7 @@ var myAppService = angular.module('myAppService', []);
  * Angular module initialization
  * @class dataService
  */
-myAppService.service('dataService', function ($filter, $log, $cookies, $window, cfg, cfgicons, _) {
+myAppService.service('dataService', function ($filter, $log, $cookies, $window, $location,cfg, cfgicons, _) {
     /// --- Public functions --- ///
     /**
      * Resets the fatal error object
@@ -26,6 +26,38 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                 hide: false
             });
         }
+    };
+
+    /**
+     * Check if access is allowed for the page
+     * @param {object} next
+     * @returns {undefined}
+     */
+    this.isAccessAllowed = function (next) {
+        if (next.requireLogin) {
+            var user = this.getUser();
+            if (!user) {
+                $location.path('/');
+                return;
+            }
+            if (next.roles && angular.isArray(next.roles)) {
+                if (next.roles.indexOf(user.role) === -1) {
+                    $location.path('/error403');
+                    return;
+                }
+            }
+        }
+    };
+
+    /**
+     * Set timestamp and ping server if request fails
+     * @param {object} next
+     * @returns {undefined}
+     */
+    this.setTimeStamp = function () {
+       /* dataFactory.getApi('timezone', null, true).then(function (response) {
+
+        }, function (error) {});*/
     };
 
     /**
