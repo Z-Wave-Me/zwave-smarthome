@@ -11,6 +11,7 @@ Marcel Kermer
 
 ## v1.5.0
 #### New features
+- Apps: Added button Add more apps if filter feature apps is preselected.git
 - Time zone on the first access page and in the management (POPP only).
 - More products in the Z-Wave devices.
 - Add update time to toggle button #167.
