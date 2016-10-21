@@ -367,16 +367,14 @@ myApp.run(function ($rootScope, $location, dataService, cfg) {
     // Route Access Control and Authentication
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
         var user;
-        // Reset fatal error messages
-        if (cfg.route.fatalError.message && !cfg.route.fatalError.permanent) {
-            angular.extend(cfg.route.fatalError, {
-                type: 'system',
-                message: false,
-                info: false,
-                hide: false
-            });
-        }
-        // Is login required?
+        /**
+         * Reset fatal error messages
+         */
+        dataService.resetFatalError();
+
+        /**
+         * Check if user authentication is required
+         */
         if (next.requireLogin) {
             user = dataService.getUser();
             if (!user) {
@@ -434,7 +432,7 @@ myApp.config(function ($provide, $httpProvider, cfg) {
 
                 } else if (rejection.status == 403) {
                     dataService.logError(rejection);
-                    
+
                     angular.extend(cfg.route.fatalError, {
                         message: cfg.route.t['error_403'],
                         hide: true

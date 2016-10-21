@@ -12,6 +12,21 @@ var myAppService = angular.module('myAppService', []);
  */
 myAppService.service('dataService', function ($filter, $log, $cookies, $window, cfg, cfgicons, _) {
     /// --- Public functions --- ///
+    /**
+     * Resets the fatal error object
+     * @param {object} notifier
+     * @returns {undefined}
+     */
+    this.resetFatalError = function () {
+        if (cfg.route.fatalError.message && !cfg.route.fatalError.permanent) {
+            angular.extend(cfg.route.fatalError, {
+                type: 'system',
+                message: 'Test from service',
+                info: false,
+                hide: false
+            });
+        }
+    };
 
     /**
      * Get a language string by key
