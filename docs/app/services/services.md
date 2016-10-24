@@ -20,6 +20,16 @@
 ## dataService
 Angular module initialization
 
+### dataService.resetFatalError(notifier) 
+
+Resets the fatal error object
+
+**Parameters**
+
+**notifier**: `object`
+
+**Returns**: `undefined`
+
 ### dataService.getLangLine(key, languages, replacement) 
 
 Get a language string by key

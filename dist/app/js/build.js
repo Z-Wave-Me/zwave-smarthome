@@ -10904,302 +10904,252 @@ angular.forEach(icon_data, function (key, value) {
  * @function $routeProvider
  */
 myApp.config(['$routeProvider', function ($routeProvider) {
-        var cfg = config_data.cfg;
-        $routeProvider.
-                // Login
-                when('/', {
-                    templateUrl: 'app/views/auth/auth.html'
-                }).
-                // Home
-                when('/home', {
-                    redirectTo: '/dashboard'
-                }).
-                // Elements Dashboard
-                when('/dashboard/:firstlogin?', {
-                    templateUrl: 'app/views/elements/elements_dashboard.html',
-                    requireLogin: true
-                }).
-                // Elements list
-                when('/elements', {
-                    templateUrl: 'app/views/elements/elements_page.html',
-                    requireLogin: true
-                }).
-                // Element id
-                when('/element/:id', {
-                    templateUrl: 'app/views/elements/element_id.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.element
-                }).
-                // Rooms
-                when('/rooms', {
-                    templateUrl: 'app/views/rooms/rooms.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.rooms
-                }).
-                // Elements rooms
-                when('/rooms/:id', {
-                    templateUrl: 'app/views/elements/elements_room.html',
-                    requireLogin: true
-                }).
-                // Events
-                when('/events/:param?/:val?', {
-                    templateUrl: 'app/views/events/events.html',
-                    requireLogin: true
-                }).
-                //Admin
-                when('/admin', {
-                    templateUrl: 'app/views/management/management.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.admin
-                }).
-                //Admin detail
-                when('/admin/user/:id', {
-                    templateUrl: 'app/views/management/management_user_id.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.admin_user
-                }).
-                //My Access
-                when('/myaccess', {
-                    templateUrl: 'app/views/mysettings/mysettings.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.myaccess
-                }).
-                //Apps local
-                when('/apps/local', {
-                    templateUrl: 'app/views/apps/apps_local.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.apps
-                }).
-                //Apps - local detail
-                when('/apps/local/:id', {
-                    templateUrl: 'app/views/apps/apps_local_id.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.apps_local
-                }).
-                //Apps online
-                when('/apps/online', {
-                    templateUrl: 'app/views/apps/apps_online.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.apps
-                }).
-                //Apps - online detail
-                when('/apps/online/:id', {
-                    templateUrl: 'app/views/apps/apps_online_id.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.apps_online
-                }).
-                //Apps -instance
-                when('/apps/instance', {
-                    templateUrl: 'app/views/apps/apps_instance.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.apps_online
-                }).
-                //Module
-                when('/module/:action/:id/:fromapp?', {
-                    templateUrl: 'app/views/apps/app_module_alpaca.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.module
-                }).
-                //Local skins
-                when('/customize/skinslocal', {
-                    templateUrl: 'app/views/customize/skins_local.html',
-                    requireLogin: true,
-                     roles: cfg.role_access.customize
-                }).
-                //Online skins
-                when('/customize/skinsonline', {
-                    templateUrl: 'app/views/customize/skins_online.html',
-                    requireLogin: true,
-                     roles: cfg.role_access.customize
-                }).
-                //Online skins
-                when('/skinreset', {
-                     template: ' ',
-                      controller: 'SkinToDefaultController',
-                    requireLogin: true,
-                     roles: cfg.role_access.customize
-                }).
-                  //Custom icons
-                when('/customize/iconslocal', {
-                    templateUrl: 'app/views/customize/icons_local.html',
-                    requireLogin: true,
-                     roles: cfg.role_access.customize
-                }).
-                //Online icons
-                when('/customize/iconsonline', {
-                    templateUrl: 'app/views/customize/icons_online.html',
-                    requireLogin: true,
-                     roles: cfg.role_access.customize
-                }).
-                //Devices_
-                when('/devices', {
-                    templateUrl: 'app/views/devices/devices.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.devices
-                }).
-                //Zwave select vendors
-                when('/zwave/vendors', {
-                    templateUrl: 'app/views/zwave/zwave_vendors.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.devices
-                }).
-                //Zwave select devices by vendor id 
-                when('/zwave/vendors/:id', {
-                    templateUrl: 'app/views/zwave/zwave_vendors_id.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.devices
-                }).
-                //Include Zwave device
-                when('/zwave/inclusion/:id?', {
-                    templateUrl: 'app/views/zwave/zwave_inclusion.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.devices_include
-                }).
-                //Include Zwave device
-                when('/zwave/interview/:id', {
-                    templateUrl: 'app/views/zwave/zwave_interview.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.devices_include
-                }).
-                // DEPRECATED
-                //Include Zwave device
-                when('/zwave/include/:device?', {
-                    templateUrl: 'app/views/zwave/zwave_include.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.devices_include
-                }).
-                //Include Zwave device
-                when('/zwave/exclude/:id', {
-                    templateUrl: 'app/views/zwave/zwave_exclude.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.devices_include
-                }).
-                //Zwave devices
-                when('/zwave/devices', {
-                    templateUrl: 'app/views/zwave/zwave_manage.html',
-                    requireLogin: true
-                }).
-                //Zwave devices config
-                when('/zwave/devices/:nodeId/:nohistory?', {
-                    templateUrl: 'app/views/zwave/zwave_manage_id.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.network_config_id
-                }).
-                //Zwave battery
-                when('/zwave/batteries', {
-                    templateUrl: 'app/views/zwave/zwave_batteries.html',
-                    requireLogin: true
-                }).
-                //Zwave Network
-                when('/zwave/network', {
-                    templateUrl: 'app/views/zwave/zwave_network.html',
-                    requireLogin: true
-                }).
-                //Camera add
-                when('/camera/add', {
-                    templateUrl: 'app/views/camera/camera_add.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.devices
-                }).
-                //Camera manage
-                when('/camera/manage', {
-                    templateUrl: 'app/views/camera/camera_manage.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.devices
-                }).
-                //Enocean Devices
-                when('/enocean/devices/:brandname?', {
-                    templateUrl: 'app/views/enocean/devices.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.devices
-                }).
-                //Enocean Teach-In
-                when('/enocean/teachin/:device', {
-                    templateUrl: 'app/views/enocean/teachin.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.devices
-                }).
-                //Enocean devices
-                when('/enocean/manage', {
-                    templateUrl: 'app/views/enocean/manage.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.devices
-                }).
-                //Enocean device manage
-                when('/enocean/manage/:deviceId', {
-                    templateUrl: 'app/views/enocean/manage_detail.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.devices
-                }).
-                //Enocean controller
-                when('/enocean/controller', {
-                    templateUrl: 'app/views/enocean/controller.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.devices
-                }).
-                //Enocean assign profile
-                when('/enocean/assign', {
-                    templateUrl: 'app/views/enocean/assign.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.devices
-                }).
-                //Rooms
-                when('/config-rooms', {
-                    templateUrl: 'app/views/rooms/config_rooms.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.config_rooms
-                }).
-                when('/config-rooms/:id', {
-                    templateUrl: 'app/views/rooms/config_rooms_id.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.config_rooms_id
-                }).
-                //Device configuration
-                when('/deviceconfig/:nodeId', {
-                    templateUrl: 'app/views/expertui/configuration.html',
-                    requireLogin: true
-                }).
-                //Report
-                when('/report', {
-                    templateUrl: 'app/views/report/report.html',
-                    requireLogin: true
-                }).
-                //Login
-                when('/login', {
-                    redirectTo: '/'
-                }).
-                //Password
-                when('/password', {
-                    templateUrl: 'app/views/auth/password.html',
-                    requireLogin: true
-                }).
-                //Password
-                when('/passwordchange', {
-                    templateUrl: 'app/views/auth/password_change.html'
-                }).
-                //Password forgot
-                when('/passwordforgot', {
-                    templateUrl: 'app/views/auth/password_forgot.html'
-                }).
-                //Password reset
-                when('/passwordforgot/reset/:token?', {
-                    templateUrl: 'app/views/auth/password_reset.html'
-                }).
-                //Jamesbox update
-                when('/boxupdate', {
-                    templateUrl: 'app/views/jamesbox/update.html'
-                }).
-                //Login
-                when('/logout', {
-                    template: ' ',
-                    controller: 'LogoutController',
-                    requireLogin: true
-                }).
-                otherwise({
-                    template: ' ',
-                    controller: 'Error404Controller'
-                });
-    }]);
+    var cfg = config_data.cfg;
+    $routeProvider.// Login
+    when('/', {
+        templateUrl: 'app/views/auth/auth.html'
+    }).// Home
+    when('/home', {
+        redirectTo: '/dashboard'
+    }).// Elements Dashboard
+    when('/dashboard/:firstlogin?', {
+        templateUrl: 'app/views/elements/elements_dashboard.html',
+        requireLogin: true
+    }).// Elements list
+    when('/elements', {
+        templateUrl: 'app/views/elements/elements_page.html',
+        requireLogin: true
+    }).// Element id
+    when('/element/:id', {
+        templateUrl: 'app/views/elements/element_id.html',
+        requireLogin: true,
+        roles: cfg.role_access.element
+    }).// Rooms
+    when('/rooms', {
+        templateUrl: 'app/views/rooms/rooms.html',
+        requireLogin: true,
+        roles: cfg.role_access.rooms
+    }).// Elements rooms
+    when('/rooms/:id', {
+        templateUrl: 'app/views/elements/elements_room.html',
+        requireLogin: true
+    }).// Events
+    when('/events/:param?/:val?', {
+        templateUrl: 'app/views/events/events.html',
+        requireLogin: true
+    }).//Admin
+    when('/admin', {
+        templateUrl: 'app/views/management/management.html',
+        requireLogin: true,
+        roles: cfg.role_access.admin
+    }).//Admin detail
+    when('/admin/user/:id', {
+        templateUrl: 'app/views/management/management_user_id.html',
+        requireLogin: true,
+        roles: cfg.role_access.admin_user
+    }).//My Access
+    when('/myaccess', {
+        templateUrl: 'app/views/mysettings/mysettings.html',
+        requireLogin: true,
+        roles: cfg.role_access.myaccess
+    }).//Apps local
+    when('/apps/local', {
+        templateUrl: 'app/views/apps/apps_local.html',
+        requireLogin: true,
+        roles: cfg.role_access.apps
+    }).//Apps - local detail
+    when('/apps/local/:id', {
+        templateUrl: 'app/views/apps/apps_local_id.html',
+        requireLogin: true,
+        roles: cfg.role_access.apps_local
+    }).//Apps online
+    when('/apps/online', {
+        templateUrl: 'app/views/apps/apps_online.html',
+        requireLogin: true,
+        roles: cfg.role_access.apps
+    }).//Apps - online detail
+    when('/apps/online/:id', {
+        templateUrl: 'app/views/apps/apps_online_id.html',
+        requireLogin: true,
+        roles: cfg.role_access.apps_online
+    }).//Apps -instance
+    when('/apps/instance', {
+        templateUrl: 'app/views/apps/apps_instance.html',
+        requireLogin: true,
+        roles: cfg.role_access.apps_online
+    }).//Module
+    when('/module/:action/:id/:fromapp?', {
+        templateUrl: 'app/views/apps/app_module_alpaca.html',
+        requireLogin: true,
+        roles: cfg.role_access.module
+    }).//Local skins
+    when('/customize/skinslocal', {
+        templateUrl: 'app/views/customize/skins_local.html',
+        requireLogin: true,
+        roles: cfg.role_access.customize
+    }).//Online skins
+    when('/customize/skinsonline', {
+        templateUrl: 'app/views/customize/skins_online.html',
+        requireLogin: true,
+        roles: cfg.role_access.customize
+    }).//Online skins
+    when('/skinreset', {
+        template: ' ',
+        controller: 'SkinToDefaultController',
+        requireLogin: true,
+        roles: cfg.role_access.customize
+    }).//Custom icons
+    when('/customize/iconslocal', {
+        templateUrl: 'app/views/customize/icons_local.html',
+        requireLogin: true,
+        roles: cfg.role_access.customize
+    }).//Online icons
+    when('/customize/iconsonline', {
+        templateUrl: 'app/views/customize/icons_online.html',
+        requireLogin: true,
+        roles: cfg.role_access.customize
+    }).//Devices_
+    when('/devices', {
+        templateUrl: 'app/views/devices/devices.html',
+        requireLogin: true,
+        roles: cfg.role_access.devices
+    }).//Zwave select vendors
+    when('/zwave/vendors', {
+        templateUrl: 'app/views/zwave/zwave_vendors.html',
+        requireLogin: true,
+        roles: cfg.role_access.devices
+    }).//Zwave select devices by vendor id
+    when('/zwave/vendors/:id', {
+        templateUrl: 'app/views/zwave/zwave_vendors_id.html',
+        requireLogin: true,
+        roles: cfg.role_access.devices
+    }).//Include Zwave device
+    when('/zwave/inclusion/:id?', {
+        templateUrl: 'app/views/zwave/zwave_inclusion.html',
+        requireLogin: true,
+        roles: cfg.role_access.devices_include
+    }).//Include Zwave device
+    when('/zwave/interview/:id', {
+        templateUrl: 'app/views/zwave/zwave_interview.html',
+        requireLogin: true,
+        roles: cfg.role_access.devices_include
+    }).// DEPRECATED
+    //Include Zwave device
+    when('/zwave/include/:device?', {
+        templateUrl: 'app/views/zwave/zwave_include.html',
+        requireLogin: true,
+        roles: cfg.role_access.devices_include
+    }).//Include Zwave device
+    when('/zwave/exclude/:id', {
+        templateUrl: 'app/views/zwave/zwave_exclude.html',
+        requireLogin: true,
+        roles: cfg.role_access.devices_include
+    }).//Zwave devices
+    when('/zwave/devices', {
+        templateUrl: 'app/views/zwave/zwave_manage.html',
+        requireLogin: true
+    }).//Zwave devices config
+    when('/zwave/devices/:nodeId/:nohistory?', {
+        templateUrl: 'app/views/zwave/zwave_manage_id.html',
+        requireLogin: true,
+        roles: cfg.role_access.network_config_id
+    }).//Zwave battery
+    when('/zwave/batteries', {
+        templateUrl: 'app/views/zwave/zwave_batteries.html',
+        requireLogin: true
+    }).//Zwave Network
+    when('/zwave/network', {
+        templateUrl: 'app/views/zwave/zwave_network.html',
+        requireLogin: true
+    }).//Camera add
+    when('/camera/add', {
+        templateUrl: 'app/views/camera/camera_add.html',
+        requireLogin: true,
+        roles: cfg.role_access.devices
+    }).//Camera manage
+    when('/camera/manage', {
+        templateUrl: 'app/views/camera/camera_manage.html',
+        requireLogin: true,
+        roles: cfg.role_access.devices
+    }).//Enocean Devices
+    when('/enocean/devices/:brandname?', {
+        templateUrl: 'app/views/enocean/devices.html',
+        requireLogin: true,
+        roles: cfg.role_access.devices
+    }).//Enocean Teach-In
+    when('/enocean/teachin/:device', {
+        templateUrl: 'app/views/enocean/teachin.html',
+        requireLogin: true,
+        roles: cfg.role_access.devices
+    }).//Enocean devices
+    when('/enocean/manage', {
+        templateUrl: 'app/views/enocean/manage.html',
+        requireLogin: true,
+        roles: cfg.role_access.devices
+    }).//Enocean device manage
+    when('/enocean/manage/:deviceId', {
+        templateUrl: 'app/views/enocean/manage_detail.html',
+        requireLogin: true,
+        roles: cfg.role_access.devices
+    }).//Enocean controller
+    when('/enocean/controller', {
+        templateUrl: 'app/views/enocean/controller.html',
+        requireLogin: true,
+        roles: cfg.role_access.devices
+    }).//Enocean assign profile
+    when('/enocean/assign', {
+        templateUrl: 'app/views/enocean/assign.html',
+        requireLogin: true,
+        roles: cfg.role_access.devices
+    }).//Rooms
+    when('/config-rooms', {
+        templateUrl: 'app/views/rooms/config_rooms.html',
+        requireLogin: true,
+        roles: cfg.role_access.config_rooms
+    }).when('/config-rooms/:id', {
+        templateUrl: 'app/views/rooms/config_rooms_id.html',
+        requireLogin: true,
+        roles: cfg.role_access.config_rooms_id
+    }).//Device configuration
+    when('/deviceconfig/:nodeId', {
+        templateUrl: 'app/views/expertui/configuration.html',
+        requireLogin: true
+    }).//Report
+    when('/report', {
+        templateUrl: 'app/views/report/report.html',
+        requireLogin: true
+    }).//Login
+    when('/login', {
+        redirectTo: '/'
+    }).//Password
+    when('/password', {
+        templateUrl: 'app/views/auth/password.html',
+        requireLogin: true
+    }).//Password
+    when('/passwordchange', {
+        templateUrl: 'app/views/auth/password_change.html'
+    }).//Password forgot
+    when('/passwordforgot', {
+        templateUrl: 'app/views/auth/password_forgot.html'
+    }).//Password reset
+    when('/passwordforgot/reset/:token?', {
+        templateUrl: 'app/views/auth/password_reset.html'
+    }).//Jamesbox update
+    when('/boxupdate', {
+        templateUrl: 'app/views/jamesbox/update.html'
+    }).//Login
+    when('/logout', {
+        template: ' ',
+        controller: 'LogoutController',
+        requireLogin: true
+    }).//Error 403
+    when('/error403', {
+        templateUrl: 'app/views/error_403.html'
+    }).otherwise({
+        template: ' ',
+        controller: 'Error404Controller'
+    });
+}]);
 
 /**
  * Angular run function
@@ -11229,11 +11179,13 @@ myApp.run(function ($rootScope, $location, dataService, cfg) {
             }
             if (next.roles && angular.isArray(next.roles)) {
                 if (next.roles.indexOf(user.role) === -1) {
-                    angular.extend(cfg.route.fatalError, {
+                    $location.path('/error403');
+                    return;
+                   /* angular.extend(cfg.route.fatalError, {
                         message: cfg.route.t['error_403'],
                         hide: true
                     });
-                    return;
+                    return;*/
                 }
             }
         }
@@ -11244,7 +11196,7 @@ myApp.run(function ($rootScope, $location, dataService, cfg) {
  * Intercepting HTTP calls with AngularJS.
  * @function config
  */
-myApp.config(function ($provide, $httpProvider, cfg) {
+myApp.config(function ($provide, $httpProvider) {
     $httpProvider.defaults.timeout = 5000;
     // Intercept http calls.
     $provide.factory('MyHttpInterceptor', function ($q, $location, dataService) {
@@ -11278,12 +11230,12 @@ myApp.config(function ($provide, $httpProvider, cfg) {
 
                 } else if (rejection.status == 403) {
                     dataService.logError(rejection);
-                    
-                    angular.extend(cfg.route.fatalError, {
+                    $location.path('/error403');
+                    /*angular.extend(cfg.route.fatalError, {
                         message: cfg.route.t['error_403'],
                         hide: true
                     });
-                    console.log(cfg.route.fatalError)
+                    console.log(cfg.route.fatalError)*/
 
                     return $q.reject(rejection);
                 } else {
@@ -11315,7 +11267,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/apps/apps_local.html',
-    "<div ng-controller=AppBaseController><bb-loader></bb-loader><div ng-controller=AppLocalController id=apps_local><div ng-include=\"'app/views/apps/navi.html'\"></div><div class=\"page-control form-inline\"><div class=\"btn-group btn-goup-block btn-goup-2\"><button class=\"btn btn-default\" ng-click=\"expandNavi('appsCategories', $event)\" ng-class=\"!_.isEmpty(dataHolder.modules.filter) ? 'active':'' \"><i class=\"fa fa-filter\"></i> <span class=btn-name ng-if=dataHolder.modules.filter.category>{{dataHolder.modules.categories[dataHolder.modules.filter.category].name|cutText:true:30}}</span> <span class=btn-name ng-if=dataHolder.modules.filter.featured>{{_t('featured_apps')}}</span> <span class=btn-name ng-if=_.isEmpty(dataHolder.modules.filter)>{{_t('all_apps')}}</span> <span class=\"btn-name item-cnt\">({{dataHolder.modules.cnt.collection}})</span></button> <button class=\"btn btn-default\" ng-click=\"expandNavi('appsLocalOrderBy', $event)\"><i class=\"fa fa-sort-alpha-asc\"></i> <span class=btn-name>{{_t(dataHolder.modules.orderBy) | cutText:true:15}}</span></button></div><div class=input-group><input ng-model=q class=\"form-control form-search\" value={{q}}> <span class=input-group-addon><i class=\"fa fa-search\"></i></span></div></div><div class=page-navi ng-if=naviExpanded.appsCategories><div class=page-navi-in><ul><li class=page-cat-0 ng-class=\"_.isEmpty(dataHolder.modules.filter) == true ? 'active': ''\"><a href=\"\" ng-click=setFilter()><i class=\"fa fa-check-circle-o\"></i> {{_t('all_apps')}} <span class=item-cnt>({{dataHolder.modules.cnt.apps}})</span> <span class=page-navi-icon><i class=\"fa fa-chevron-right\"></i></span></a></li><li class=page-cat-0 ng-class=\"dataHolder.modules.filter.featured == true ? 'active': ''\"><a href=\"\" ng-click=\"setFilter({featured: true})\"><i class=\"fa fa-thumbs-o-up\"></i> {{_t('featured_apps')}} <span class=item-cnt>({{dataHolder.modules.cnt.featured}})</span> <span class=page-navi-icon><i class=\"fa fa-chevron-right\"></i></span></a></li><li class=page-cat-{{v.id}} ng-repeat=\"v in dataHolder.modules.categories\" ng-if=\"dataHolder.modules.cats.indexOf(v.id) > -1 && dataHolder.modules.cnt.appsCat[v.id]\" ng-class=\"dataHolder.modules.filter.category == v.id ? 'active': ''\"><a href=\"\" ng-click=\"setFilter({category: v.id})\"><i class=\"fa {{v.id|getAppCategoryIcon}}\"></i> {{v.name|cutText:true:30}} <span class=item-cnt>({{dataHolder.modules.cnt.appsCat[v.id]}})</span> <span class=page-navi-icon><i class=\"fa fa-chevron-right\"></i></span></a></li></ul></div></div><div class=page-navi ng-if=naviExpanded.appsLocalOrderBy><div class=page-navi-in><div class=page-navi-content><p class=page-navi-title>{{_t('sortby')}}</p><a class=\"btn btn-default btn-tag\" href=\"\" ng-repeat=\"(k,v) in cfg.orderby.appslocal\" ng-click=setOrderBy(k) ng-class=\"dataHolder.modules.orderBy == k ? 'active': ''\">{{_t(k) | cutText:true:30}}</a></div></div></div><div class=\"app-row app-row-widget clearfix\"><div class=\"widget-entry widget-entry-app\" id=local_module_{{v.id}} ng-repeat=\"v in dataHolder.modules.all|orderBy:cfg.orderby.appslocal[dataHolder.modules.orderBy] | filter:q  track by v.id\" ng-class=\"{'widget-danger': dataHolder.onlineModules.ids[v.id] && dataHolder.onlineModules.ids[v.id].version != v.version}\"><div class=widget-entry-in><div class=widget-img><a href=#apps/local/{{v.id}} title={{v.toolTipDescription}}><img class=widget-preview-img ng-src=\"{{moduleMediaUrl + v.moduleName + '/' + v.icon}}\" ng-if=v.icon alt=\"{{v.defaults.title}}\"> <img class=widget-preview-img ng-src=storage/img/placeholder-img.png ng-if=!v.icon alt=\"{{v.defaults.title}}\"></a></div><div class=widget-header></div><div class=widget-content><div class=widget-title><h3><a href=#apps/local/{{v.id}} title={{v.defaults.title}} ng-bind=v.defaults.title|cutText:true:25></a> <span class=btn-name>&raquo;</span></h3></div><hr class=\"bottom-aligner\"><div class=widget-footer><div class=\"widget-ctrl ctrl-left\"><span ng-if=v.hasInstance><i class=\"fa fa-fire text-success\"></i> ({{v.hasInstance}})</span></div><div class=\"widget-ctrl ctrl-right clearfix\"><div class=btn-group><a ng-href=#module/post/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_add_app')}}\"><i class=\"fa fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('lb_add_app')\"></span></a> <button class=\"btn btn-default\" title=\"{{_t('lb_remove')}}\" ng-click=\"deleteModule({'id': v.id}, _t('app_delete_confirm'),'#local_module_' + v.id)\" ng-if=\"v.custom && !v.hasReset\"><i class=\"fa fa-remove text-danger\"></i> <span class=btn-name ng-bind=\"_t('lb_remove')\"></span></button> <button class=\"btn btn-default\" title=\"{{_t('reset')}}\" ng-click=\"resetModule({'id': v.id}, _t('app_reset_confirm'),'#local_module_' + v.id)\" ng-if=\"v.custom && v.hasReset\"><i class=\"fa fa-remove fa-refresh text-warning\"></i> <span class=btn-name ng-bind=\"_t('reset')\"></span></button> <button href=\"\" class=\"btn btn-danger\" title=\"{{_t('update_to_latest')}}\" ng-click=\"updateModule(dataHolder.onlineModules.ids[v.moduleName], _t('app_update_confirm'))\" ng-if=\"dataHolder.onlineModules.ids[v.moduleName] && dataHolder.onlineModules.ids[v.moduleName].status == 'upgrade'\"><i class=\"fa fa-level-up\"></i> <span class=btn-name>{{_t('update_to_latest')}}</span></button></div></div></div></div></div></div></div></div></div>"
+    "<div ng-controller=AppBaseController><bb-loader></bb-loader><div ng-controller=AppLocalController id=apps_local><div ng-include=\"'app/views/apps/navi.html'\"></div><div class=\"page-control form-inline\"><div class=\"btn-group btn-goup-block btn-goup-2\"><button class=\"btn btn-default\" ng-click=\"expandNavi('appsCategories', $event)\" ng-class=\"!_.isEmpty(dataHolder.modules.filter) ? 'active':'' \"><i class=\"fa fa-filter\"></i> <span class=btn-name ng-if=dataHolder.modules.filter.category>{{dataHolder.modules.categories[dataHolder.modules.filter.category].name|cutText:true:30}}</span> <span class=btn-name ng-if=dataHolder.modules.filter.featured>{{_t('featured_apps')}}</span> <span class=btn-name ng-if=_.isEmpty(dataHolder.modules.filter)>{{_t('all_apps')}}</span> <span class=\"btn-name item-cnt\">({{dataHolder.modules.cnt.collection}})</span></button> <button class=\"btn btn-default\" ng-click=\"expandNavi('appsLocalOrderBy', $event)\"><i class=\"fa fa-sort-alpha-asc\"></i> <span class=btn-name>{{_t(dataHolder.modules.orderBy) | cutText:true:15}}</span></button></div><div class=input-group><input ng-model=q class=\"form-control form-search\" value={{q}}> <span class=input-group-addon><i class=\"fa fa-search\"></i></span></div></div><div class=page-navi ng-if=naviExpanded.appsCategories><div class=page-navi-in><ul><li class=page-cat-0 ng-class=\"_.isEmpty(dataHolder.modules.filter) == true ? 'active': ''\"><a href=\"\" ng-click=setFilter()><i class=\"fa fa-check-circle-o\"></i> {{_t('all_apps')}} <span class=item-cnt>({{dataHolder.modules.cnt.apps}})</span> <span class=page-navi-icon><i class=\"fa fa-chevron-right\"></i></span></a></li><li class=page-cat-0 ng-class=\"dataHolder.modules.filter.featured == true ? 'active': ''\"><a href=\"\" ng-click=\"setFilter({featured: true})\"><i class=\"fa fa-thumbs-o-up\"></i> {{_t('featured_apps')}} <span class=item-cnt>({{dataHolder.modules.cnt.featured}})</span> <span class=page-navi-icon><i class=\"fa fa-chevron-right\"></i></span></a></li><li class=page-cat-{{v.id}} ng-repeat=\"v in dataHolder.modules.categories\" ng-if=\"dataHolder.modules.cats.indexOf(v.id) > -1 && dataHolder.modules.cnt.appsCat[v.id]\" ng-class=\"dataHolder.modules.filter.category == v.id ? 'active': ''\"><a href=\"\" ng-click=\"setFilter({category: v.id})\"><i class=\"fa {{v.id|getAppCategoryIcon}}\"></i> {{v.name|cutText:true:30}} <span class=item-cnt>({{dataHolder.modules.cnt.appsCat[v.id]}})</span> <span class=page-navi-icon><i class=\"fa fa-chevron-right\"></i></span></a></li></ul></div></div><div class=page-navi ng-if=naviExpanded.appsLocalOrderBy><div class=page-navi-in><div class=page-navi-content><p class=page-navi-title>{{_t('sortby')}}</p><a class=\"btn btn-default btn-tag\" href=\"\" ng-repeat=\"(k,v) in cfg.orderby.appslocal\" ng-click=setOrderBy(k) ng-class=\"dataHolder.modules.orderBy == k ? 'active': ''\">{{_t(k) | cutText:true:30}}</a></div></div></div><div class=\"app-row app-row-widget clearfix\"><div class=\"widget-entry widget-entry-app\" id=local_module_{{v.id}} ng-repeat=\"v in dataHolder.modules.all|orderBy:cfg.orderby.appslocal[dataHolder.modules.orderBy] | filter:q  track by v.id\" ng-class=\"{'widget-danger': dataHolder.onlineModules.ids[v.id] && dataHolder.onlineModules.ids[v.id].version != v.version}\"><div class=widget-entry-in><div class=widget-img><a href=#apps/local/{{v.id}} title={{v.toolTipDescription}}><img class=widget-preview-img ng-src=\"{{moduleMediaUrl + v.moduleName + '/' + v.icon}}\" ng-if=v.icon alt=\"{{v.defaults.title}}\"> <img class=widget-preview-img ng-src=storage/img/placeholder-img.png ng-if=!v.icon alt=\"{{v.defaults.title}}\"></a></div><div class=widget-header></div><div class=widget-content><div class=widget-title><h3><a href=#apps/local/{{v.id}} title={{v.defaults.title}} ng-bind=v.defaults.title|cutText:true:25></a> <span class=btn-name>&raquo;</span></h3></div><hr class=\"bottom-aligner\"><div class=widget-footer><div class=\"widget-ctrl ctrl-left\"><span ng-if=v.hasInstance><i class=\"fa fa-fire text-success\"></i> ({{v.hasInstance}})</span></div><div class=\"widget-ctrl ctrl-right clearfix\"><div class=btn-group><a ng-href=#module/post/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_add_app')}}\"><i class=\"fa fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('lb_add_app')\"></span></a> <button class=\"btn btn-default\" title=\"{{_t('lb_remove')}}\" ng-click=\"deleteModule({'id': v.id}, _t('app_delete_confirm'),'#local_module_' + v.id)\" ng-if=\"v.custom && !v.hasReset\"><i class=\"fa fa-remove text-danger\"></i> <span class=btn-name ng-bind=\"_t('lb_remove')\"></span></button> <button class=\"btn btn-default\" title=\"{{_t('reset')}}\" ng-click=\"resetModule({'id': v.id}, _t('app_reset_confirm'),'#local_module_' + v.id)\" ng-if=\"v.custom && v.hasReset\"><i class=\"fa fa-remove fa-refresh text-warning\"></i> <span class=btn-name ng-bind=\"_t('reset')\"></span></button> <button href=\"\" class=\"btn btn-danger\" title=\"{{_t('update_to_latest')}}\" ng-click=\"updateModule(dataHolder.onlineModules.ids[v.moduleName], _t('app_update_confirm'))\" ng-if=\"dataHolder.onlineModules.ids[v.moduleName] && dataHolder.onlineModules.ids[v.moduleName].status == 'upgrade'\"><i class=\"fa fa-level-up\"></i> <span class=btn-name>{{_t('update_to_latest')}}</span></button></div></div></div></div></div></div></div><div class=text-right ng-if=\"dataHolder.modules.filter.featured == true\"><button class=\"btn btn-default\" ng-click=setFilter()><i class=\"fa fa-search-plus text-success\"></i> {{_t('show_more_apps')}}</button></div></div></div>"
   );
 
 
@@ -11325,7 +11277,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/apps/apps_online.html',
-    "<div ng-controller=AppBaseController><bb-loader></bb-loader><div ng-controller=AppOnlineController id=apps_online><div ng-include=\"'app/views/apps/navi.html'\"></div><div class=\"page-control form-inline\"><div class=\"btn-group btn-goup-block btn-goup-2\"><button class=\"btn btn-default\" ng-click=\"expandNavi('appsCategories', $event)\" ng-class=\"!_.isEmpty(dataHolder.onlineModules.filter) ? 'active':'' \"><i class=\"fa fa-filter\"></i> <span class=btn-name ng-if=dataHolder.onlineModules.filter.category>{{dataHolder.modules.categories[dataHolder.onlineModules.filter.category].name|cutText:true:30}}</span> <span class=btn-name ng-if=dataHolder.onlineModules.filter.featured>{{_t('featured_apps')}}</span> <span class=btn-name ng-if=_.isEmpty(dataHolder.onlineModules.filter)>{{_t('all_apps')}}</span> <span class=\"btn-name item-cnt\">({{dataHolder.onlineModules.cnt.collection}})</span></button> <button class=\"btn btn-default\" ng-click=\"expandNavi('appsOnlineOrderBy', $event)\"><i class=\"fa fa-sort-alpha-asc\"></i> <span class=btn-name>{{_t(dataHolder.onlineModules.orderBy) | cutText:true:15}}</span></button></div><div class=input-group><input ng-model=q class=\"form-control form-search\" value={{q}}> <span class=input-group-addon><i class=\"fa fa-search\"></i></span></div></div><div class=page-navi ng-if=naviExpanded.appsCategories><div class=page-navi-in><ul><li class=page-cat-0 ng-class=\"_.isEmpty(dataHolder.onlineModules.filter) == true ? 'active': ''\"><a href=\"\" ng-click=setFilter()><i class=\"fa fa-check-circle-o\"></i> {{_t('all_apps')}} <span class=\"btn-name item-cnt\">({{dataHolder.onlineModules.cnt.apps}})</span> <span class=page-navi-icon><i class=\"fa fa-chevron-right\"></i></span></a></li><li class=page-cat-0 ng-class=\"dataHolder.onlineModules.filter.featured == true ? 'active': ''\"><a href=\"\" ng-click=\"setFilter({featured: true})\"><i class=\"fa fa-thumbs-o-up\"></i> {{_t('featured_apps')}} <span class=item-cnt>({{dataHolder.onlineModules.cnt.featured}})</span> <span class=page-navi-icon><i class=\"fa fa-chevron-right\"></i></span></a></li><li class=page-cat-{{v.id}} ng-repeat=\"v in dataHolder.modules.categories\" ng-if=dataHolder.onlineModules.cnt.appsCat[v.id] ng-class=\"dataHolder.onlineModules.filter.category == v.id ? 'active': ''\"><a href=\"\" ng-click=\"setFilter({category: v.id})\" ng-switch=v.id><i class=\"fa {{v.id|getAppCategoryIcon}}\"></i> {{v.name|cutText:true:30}} <span class=item-cnt>({{dataHolder.onlineModules.cnt.appsCat[v.id]}})</span> <span class=page-navi-icon><i class=\"fa fa-chevron-right\"></i></span></a></li></ul><div class=page-navi-content><a class=\"btn btn-default btn-tag\" ng-click=\"hideInstalled((dataHolder.onlineModules.hideInstalled ? false:true))\" ng-class=\"dataHolder.onlineModules.hideInstalled ? 'active': ''\"><i class=\"fa fa-eye-slash\"></i> {{_t('hide_installed_apps')}}</a></div></div></div><div class=page-navi ng-if=naviExpanded.appsOnlineOrderBy><div class=page-navi-in><div class=page-navi-content><p class=page-navi-title>{{_t('sortby')}}</p><a class=\"btn btn-default btn-tag\" href=\"\" ng-repeat=\"(k,v) in cfg.orderby.appsonline\" ng-click=setOrderBy(k) ng-class=\"dataHolder.onlineModules.orderBy == k ? 'active': ''\">{{_t(k) | cutText:true:30}}</a></div></div></div><div class=\"app-row app-row-widget clearfix\"><div class=\"widget-entry widget-entry-app\" ng-class=\"{'widget-warning': dataHolder.modules.ids[v.modulename],'widget-danger': dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version != v.version}\" ng-repeat=\"v in dataHolder.onlineModules.all| orderBy: cfg.orderby.appsonline[dataHolder.onlineModules.orderBy] | filter:q track by v.id\" ng-hide=\"v.status !== 'download' && dataHolder.onlineModules.hideInstalled\"><div class=widget-entry-in><div class=widget-img><a ng-href=#apps/online/{{v.id}}><img class=widget-preview-img alt={{v.title}} title={{v.toolTipDescription}} ng-src=\"{{v.icon ? onlineMediaUrl + v.icon : 'storage/img/placeholder-img.png'}}\" ng-click=\"redirectToRoute(dataHolder.modules.ids[v.modulename] ? false : 'apps/online/' + v.id)\"></a></div><div class=widget-header></div><div class=widget-content><div class=widget-title><h3><a ng-href=#apps/online/{{v.id}} title={{v.title}}>{{v.title|cutText:true:25}} <span class=btn-name>&raquo;</span></a></h3></div><hr class=\"bottom-aligner\"><div class=widget-footer><div class=\"widget-ctrl ctrl-left\"><div class=rating-group><i class=\"fa widget-rating\" title={{r}} ng-class=\"r > v.rating ? 'fa-star-o' : 'fa-star israted'\" ng-repeat=\"r in dataHolder.onlineModules.ratingRange\"></i> <span class=widget-rating>| <i class=\"fa fa-download\"></i> {{v.installed}}&times;</span></div></div><div class=\"widget-ctrl ctrl-right\"><div class=\"btn-group group-apps\"><button href=\"\" class=\"btn btn-default\" title=\"{{_t('lb_download')}}\" ng-click=\"installModule(v, 'online_install')\" ng-if=!dataHolder.modules.ids[v.modulename]><i class=\"fa fa-download text-success\"></i> <span class=btn-name>{{_t('lb_download')}}</span></button> <button class=\"btn btn-disabled\" disabled title=\"{{_t('installed')}}\" ng-if=\"dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version == v.version\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('installed')}}</span></button> <button href=\"\" class=\"btn btn-danger\" title=\"{{_t('update_to_latest')}}\" ng-click=\"updateModule(v, _t('app_update_confirm'))\" ng-if=\"dataHolder.modules.ids[v.modulename] && v.status == 'upgrade' \"><i class=\"fa fa-level-up\"></i> <span class=btn-name>{{_t('update_to_latest')}}</span></button></div></div></div></div></div></div></div></div></div>"
+    "<div ng-controller=AppBaseController><bb-loader></bb-loader><div ng-controller=AppOnlineController id=apps_online><div ng-include=\"'app/views/apps/navi.html'\"></div><div class=\"page-control form-inline\"><div class=\"btn-group btn-goup-block btn-goup-2\"><button class=\"btn btn-default\" ng-click=\"expandNavi('appsCategories', $event)\" ng-class=\"!_.isEmpty(dataHolder.onlineModules.filter) ? 'active':'' \"><i class=\"fa fa-filter\"></i> <span class=btn-name ng-if=dataHolder.onlineModules.filter.category>{{dataHolder.modules.categories[dataHolder.onlineModules.filter.category].name|cutText:true:30}}</span> <span class=btn-name ng-if=dataHolder.onlineModules.filter.featured>{{_t('featured_apps')}}</span> <span class=btn-name ng-if=_.isEmpty(dataHolder.onlineModules.filter)>{{_t('all_apps')}}</span> <span class=\"btn-name item-cnt\">({{dataHolder.onlineModules.cnt.collection}})</span></button> <button class=\"btn btn-default\" ng-click=\"expandNavi('appsOnlineOrderBy', $event)\"><i class=\"fa fa-sort-alpha-asc\"></i> <span class=btn-name>{{_t(dataHolder.onlineModules.orderBy) | cutText:true:15}}</span></button></div><div class=input-group><input ng-model=q class=\"form-control form-search\" value={{q}}> <span class=input-group-addon><i class=\"fa fa-search\"></i></span></div></div><div class=page-navi ng-if=naviExpanded.appsCategories><div class=page-navi-in><ul><li class=page-cat-0 ng-class=\"_.isEmpty(dataHolder.onlineModules.filter) == true ? 'active': ''\"><a href=\"\" ng-click=setFilter()><i class=\"fa fa-check-circle-o\"></i> {{_t('all_apps')}} <span class=\"btn-name item-cnt\">({{dataHolder.onlineModules.cnt.apps}})</span> <span class=page-navi-icon><i class=\"fa fa-chevron-right\"></i></span></a></li><li class=page-cat-0 ng-class=\"dataHolder.onlineModules.filter.featured == true ? 'active': ''\"><a href=\"\" ng-click=\"setFilter({featured: true})\"><i class=\"fa fa-thumbs-o-up\"></i> {{_t('featured_apps')}} <span class=item-cnt>({{dataHolder.onlineModules.cnt.featured}})</span> <span class=page-navi-icon><i class=\"fa fa-chevron-right\"></i></span></a></li><li class=page-cat-{{v.id}} ng-repeat=\"v in dataHolder.modules.categories\" ng-if=dataHolder.onlineModules.cnt.appsCat[v.id] ng-class=\"dataHolder.onlineModules.filter.category == v.id ? 'active': ''\"><a href=\"\" ng-click=\"setFilter({category: v.id})\" ng-switch=v.id><i class=\"fa {{v.id|getAppCategoryIcon}}\"></i> {{v.name|cutText:true:30}} <span class=item-cnt>({{dataHolder.onlineModules.cnt.appsCat[v.id]}})</span> <span class=page-navi-icon><i class=\"fa fa-chevron-right\"></i></span></a></li></ul><div class=page-navi-content><a class=\"btn btn-default btn-tag\" ng-click=\"hideInstalled((dataHolder.onlineModules.hideInstalled ? false:true))\" ng-class=\"dataHolder.onlineModules.hideInstalled ? 'active': ''\"><i class=\"fa fa-eye-slash\"></i> {{_t('hide_installed_apps')}}</a></div></div></div><div class=page-navi ng-if=naviExpanded.appsOnlineOrderBy><div class=page-navi-in><div class=page-navi-content><p class=page-navi-title>{{_t('sortby')}}</p><a class=\"btn btn-default btn-tag\" href=\"\" ng-repeat=\"(k,v) in cfg.orderby.appsonline\" ng-click=setOrderBy(k) ng-class=\"dataHolder.onlineModules.orderBy == k ? 'active': ''\">{{_t(k) | cutText:true:30}}</a></div></div></div><div class=\"app-row app-row-widget clearfix\"><div class=\"widget-entry widget-entry-app\" ng-class=\"{'widget-warning': dataHolder.modules.ids[v.modulename],'widget-danger': dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version != v.version}\" ng-repeat=\"v in dataHolder.onlineModules.all| orderBy: cfg.orderby.appsonline[dataHolder.onlineModules.orderBy] | filter:q track by v.id\" ng-hide=\"v.status !== 'download' && dataHolder.onlineModules.hideInstalled\"><div class=widget-entry-in><div class=widget-img><a ng-href=#apps/online/{{v.id}}><img class=widget-preview-img alt={{v.title}} title={{v.toolTipDescription}} ng-src=\"{{v.icon ? onlineMediaUrl + v.icon : 'storage/img/placeholder-img.png'}}\" ng-click=\"redirectToRoute(dataHolder.modules.ids[v.modulename] ? false : 'apps/online/' + v.id)\"></a></div><div class=widget-header></div><div class=widget-content><div class=widget-title><h3><a ng-href=#apps/online/{{v.id}} title={{v.title}}>{{v.title|cutText:true:25}} <span class=btn-name>&raquo;</span></a></h3></div><hr class=\"bottom-aligner\"><div class=widget-footer><div class=\"widget-ctrl ctrl-left\"><div class=rating-group><i class=\"fa widget-rating\" title={{r}} ng-class=\"r > v.rating ? 'fa-star-o' : 'fa-star israted'\" ng-repeat=\"r in dataHolder.onlineModules.ratingRange\"></i> <span class=widget-rating>| <i class=\"fa fa-download\"></i> {{v.installed}}&times;</span></div></div><div class=\"widget-ctrl ctrl-right\"><div class=\"btn-group group-apps\"><button href=\"\" class=\"btn btn-default\" title=\"{{_t('lb_download')}}\" ng-click=\"installModule(v, 'online_install')\" ng-if=!dataHolder.modules.ids[v.modulename]><i class=\"fa fa-download text-success\"></i> <span class=btn-name>{{_t('lb_download')}}</span></button> <button class=\"btn btn-disabled\" disabled title=\"{{_t('installed')}}\" ng-if=\"dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version == v.version\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('installed')}}</span></button> <button href=\"\" class=\"btn btn-danger\" title=\"{{_t('update_to_latest')}}\" ng-click=\"updateModule(v, _t('app_update_confirm'))\" ng-if=\"dataHolder.modules.ids[v.modulename] && v.status == 'upgrade' \"><i class=\"fa fa-level-up\"></i> <span class=btn-name>{{_t('update_to_latest')}}</span></button></div></div></div></div></div></div></div><div class=text-right ng-if=\"dataHolder.onlineModules.filter.featured == true\"><button class=\"btn btn-default\" ng-click=setFilter()><i class=\"fa fa-search-plus text-success\"></i> {{_t('show_more_apps')}}</button></div></div></div>"
   );
 
 
@@ -11666,6 +11618,11 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
   $templateCache.put('app/views/enocean/teachin.html',
     "<div ng-controller=EnoceanTeachinController class=mobile-padding><bb-loader></bb-loader><div class=\"form form-inline form-page\"><div class=\"fieldset clearfix\"><div class=include-device-img ng-if=device.image><img class=include-image-detail ng-src=storage/img/enocean/devices/{{device.image}} alt=img ng-if=\"device.image\"></div><div class=include-device-body><h1 ng-if=!device.name ng-bind=\"_t('teach_in')\"></h1><h1 ng-if=device.name ng-bind=device.name></h1><p ng-if=device.description ng-bind=device.description></p></div></div><div class=\"fieldset clearfix\"><table class=\"table table-report table-inclusion\"><tbody><tr><td><span class=\"badge badge-number\">1</span></td><td><div class=alert ng-if=inclusion.message ng-class=inclusion.status><i class=fa ng-class=inclusion.icon></i> <span ng-bind-html=\"inclusion.message | toTrusted\"></span> <button class=\"btn btn-danger\" ng-if=\"!inclusion.done && inclusion.promisc\" ng-click=\"runCmd('controller.data.promisc=false')\"><i class=\"fa fa-ban\"></i> <span class=btn-name>{{_t('stop_teachin')}}</span></button> <button class=\"btn btn-success\" ng-if=\"!inclusion.done && !inclusion.promisc\" ng-click=\"runCmd('controller.data.promisc=true')\"><i class=\"fa fa-plug\"></i> <span class=btn-name>{{_t('start_teachin')}}</span></button></div></td></tr><tr><td><span class=\"badge badge-number\">2</span></td><td><strong ng-bind=\"_t('lb_settings')\"></strong><form name=form_enocean_config id=form_enocean_config class=\"form form-page\" ng-if=inclusion.config novalidate><fieldset><div class=\"form-group form-inline\"><input name=enocean_name id=enocean_name class=\"form-control form-control-md\" ng-model=lastIncludedDevice.name value=\"{{lastIncludedDevice.name}}\"> <button class=\"btn btn-primary\" ng-click=\"runCmd('devices[\\'x' + lastIncludedDevice.id + '\\'].data.givenName=\\'' + lastIncludedDevice.name + '\\'')\" ng-bind=\"_t('rename_device')\"></button></div></fieldset><div class=\"alert alert-warning\" ng-if=\"apiDevices.length < 1\"><i class=\"fa fa-exclamation-circle\"></i> <span ng-bind=\"_t('enocean_no_settings')\"></span></div><fieldset ng-if=apiDevices><div class=\"form-group form-inline\" ng-repeat=\"e in apiDevices | orderBy:'title':false\" ng-init=\"dev[e.id] = e\"><h3><img id=widget_img_{{v.id}} class=report-img ng-src={{e.iconPath}} alt=\"img\"> <span ng-bind=dev[e.id].metrics.title></span></h3><div><input name=fdf class=\"form-control form-control-md\" ng-model=dev[e.id].metrics.title value=\"{{dev[e.id].metrics.title}}\"> <button class=\"btn btn-primary\" ng-click=updateDevice(dev[e.id]) ng-bind=\"_t('rename_element')\"></button> <button class=btn ng-click=\"updateDevice({id: e.id,permanently_hidden: e.permanently_hidden ? false : true})\" ng-bind=\"e.permanently_hidden ? _t('show_element') : _t('hide_element')\" ng-class=\"e.permanently_hidden ? 'btn-danger' : 'btn-info'\"></button></div></div></fieldset><fieldset ng-if=apiDevices><div class=\"form-group form-inline\" ng-if=rooms><h3><i class=\"fa fa-chevron-down\"></i> <span ng-bind=\"_t('devices_to_room')\"></span></h3><select class=form-control ng-model=modelRoom><option value=\"\">------</option><option ng-repeat=\"v in rooms\" ng-selected_=\"input.location == v.id\" value={{v.id}} ng-bind=v.title></option></select><button class=\"btn btn-primary\" ng-click=\"devicesToRoom(modelRoom, apiDevices)\" ng-bind=\"_t('lb_save')\"></button></div></fieldset></form></td></tr></tbody></table></div><div class=\"fieldset submit-entry\"><a href=#enocean/manage class=\"btn btn-submit\"><span class=btn-name>{{_t('manage_enocean_devices')}}</span> <i class=\"fa fa-chevron-right\"></i></a></div></div><div class=device-logo ng-include=\"'app/views/enocean/enocean_nav.html'\"></div></div>"
+  );
+
+
+  $templateCache.put('app/views/error_403.html',
+    "<div class=app-fatal-error><div class=fatal-error-message><i class=\"fa fa-exclamation-triangle fa-lg\"></i> {{_t('error_403')}}</div></div>"
   );
 
 
@@ -12491,12 +12448,15 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
             }
         }, function (response) {
             // something went wrong
-            angular.extend(cfg.route.fatalError, {
-                message: cfg.route.t['error_zwave_network'],
-                info: cfg.route.t['how_to_resolve_zwave_errors'],
-                hide: false,
-                permanent: true
-            });
+            if(response.status !== 403){
+                angular.extend(cfg.route.fatalError, {
+                    message: cfg.route.t['error_zwave_network'],
+                    info: cfg.route.t['how_to_resolve_zwave_errors'],
+                    hide: false,
+                    permanent: true
+                });
+            }
+
             return $q.reject(response);
         });
     }
@@ -12871,6 +12831,22 @@ var myAppService = angular.module('myAppService', []);
  */
 myAppService.service('dataService', function ($filter, $log, $cookies, $window, cfg, cfgicons, _) {
     /// --- Public functions --- ///
+
+    /**
+     * Resets the fatal error object
+     * @param {object} notifier
+     * @returns {undefined}
+     */
+    this.resetFatalError = function () {
+        if (cfg.route.fatalError.message && !cfg.route.fatalError.permanent) {
+            angular.extend(cfg.route.fatalError, {
+                type: 'system',
+                message: 'Test from service',
+                info: false,
+                hide: false
+            });
+        }
+    };
 
     /**
      * Get a language string by key
