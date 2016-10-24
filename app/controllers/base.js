@@ -35,7 +35,6 @@ myAppController.controller('BaseController', function ($scope, $rootScope,$cooki
             cfg.skin.active = $cookies.skin;
             cfg.img.icons = cfg.skin.path + $cookies.skin + '/img/icons/';
             cfg.img.logo = cfg.skin.path + $cookies.skin + '/img/logo/';
-            //$("link[id='main_css']").attr('href', 'storage/skins/defaultzip/main.css');
             $("link[id='main_css']").attr('href', cfg.skin.path + $cookies.skin + '/main.css');
 
         } else {
@@ -44,19 +43,10 @@ myAppController.controller('BaseController', function ($scope, $rootScope,$cooki
                     cfg.skin.active = response.data.data.name;
                     cfg.img.icons = cfg.skin.path + response.data.data.name + '/img/icons/';
                     cfg.img.logo = cfg.skin.path + response.data.data.name + '/img/logo/';
-                    //$("link[id='main_css']").attr('href', 'storage/skins/defaultzip/main.css');
                     $("link[id='main_css']").attr('href', cfg.skin.path + response.data.data.name + '/main.css');
                 }
             }, function (error) {});
         }
-
-//     if($scope.user && $scope.user.skin !== 'default'){
-//        cfg.skin.active =  $scope.user.skin;
-//        cfg.img.icons = cfg.skin.path + $scope.user.skin + '/img/icons/';
-//        cfg.img.logo = cfg.skin.path + $scope.user.skin + '/img/logo/';
-//     //$("link[id='main_css']").attr('href', 'storage/skins/defaultzip/main.css');
-//        $("link[id='main_css']").attr('href', cfg.skin.path + $scope.user.skin + '/main.css');
-//     }
     };
     $scope.setSkin();
 
@@ -84,82 +74,7 @@ myAppController.controller('BaseController', function ($scope, $rootScope,$cooki
     };
 
     /**
-     * DEPRECATED
-     * Set a time
-     * @returns {undefined}
-     */
-    $scope.setTimeZone = function () {
-        if (!$scope.user) {
-            return;
-        }
-        dataFactory.getApi('timezone', null, true).then(function (response) {
-            angular.extend(cfg.route.time, {string: $filter('setTimeFromBox')(response.data.data)});
-
-            var refresh = function () {
-//                console.log($http.pendingRequests.length)
-//                if ($http.pendingRequests.length > cfg.pending_requests_limit) {
-//                    var fatalArray = {
-//                        type: 'network',
-//                        message: $scope._t('connection_refused'),
-//                        info: $scope._t('connection_refused_info'),
-//                        permanent: true,
-//                        hide: true
-//                    };
-//                    if ($scope.routeMatch('/boxupdate')) {
-//                        fatalArray.message = $scope._t('jamesbox_connection_refused');
-//                        fatalArray.info = $scope._t('jamesbox_connection_refused_info', {__reload_begintag__: '<div>', __reload_endtag__: '</div>', __attention_begintag__: '<div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i>', __attention_endtag__: '<div>'});
-//                        fatalArray.icon = cfg.route.fatalError.icon_jamesbox;
-//                    }
-//                    angular.extend(cfg.route.fatalError, fatalArray);
-//                }
-                dataFactory.getApi('timezone', null, true).then(function (response) {
-                    angular.extend(cfg.route.time, {string: $filter('setTimeFromBox')(response.data.data)});
-                    if (cfg.route.fatalError.type === 'network') {
-                        dataFactory.sessionApi().then(function (sessionRes) {
-                            var user = sessionRes.data.data;
-                            if (sessionRes.data.data) {
-                                dataService.setZWAYSession(user.sid);
-                                dataService.setUser(user);
-                                if (dataService.getUser()) {
-                                    $window.location.reload();
-                                    //$q.defer().promise;
-                                    //return;
-                                }
-                            }
-
-                        }, function (error) {
-                            //$q.defer().promise;
-                        });
-
-                    }
-                }, function (error) {
-                    if (!error.status || error.status === 0) {
-                        var fatalArray = {
-                            type: 'network',
-                            message: $scope._t('connection_refused'),
-                            info: $scope._t('connection_refused_info'),
-                            permanent: true,
-                            hide: true
-                        };
-                        if ($scope.routeMatch('/boxupdate')) {
-                            fatalArray.message = $scope._t('jamesbox_connection_refused');
-                            fatalArray.info = $scope._t('jamesbox_connection_refused_info', {__reload_begintag__: '<div>', __reload_endtag__: '</div>', __attention_begintag__: '<div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i>', __attention_endtag__: '<div>'});
-                            fatalArray.icon = cfg.route.fatalError.icon_jamesbox;
-                        }
-                        angular.extend(cfg.route.fatalError, fatalArray);
-                    }
-                    //$interval.cancel($scope.timeZoneInterval);
-                });
-            };
-            $scope.timeZoneInterval = $interval(refresh, $scope.cfg.interval);
-        }, function (error) {});
-
-    };
-    //$scope.setTimeZone();
-
-
-    /**
-     * Set a timestamp
+     * Set timestamp and ping server if request fails
      * @returns {undefined}
      */
     $scope.setTimeStamp = function () {
@@ -172,16 +87,10 @@ myAppController.controller('BaseController', function ($scope, $rootScope,$cooki
                 {timestamp: response.data.data.localTimeUT});
 
             var refresh = function () {
-
                 cfg.route.time.timestamp += (cfg.interval < 1000 ? 1 : cfg.interval/1000)
                 cfg.route.time.string = $filter('setTimeFromBox')(cfg.route.time.timestamp)
-                // console.log($filter('setTimeFromBox')(cfg.route.time.timestamp))
-                // console.log(cfg.route.time.timestamp)
-                console.log('Refreshing: ',cfg.route.time.string )
                 var pending = _.findWhere($http.pendingRequests,{url: '/ZAutomation/api/v1/system/time/get'})
-
                 if(pending){
-                    console.log('Pending: ', pending)
                     var fatalArray = {
                         type: 'network',
                         message: $scope._t('connection_refused'),
@@ -205,95 +114,35 @@ myAppController.controller('BaseController', function ($scope, $rootScope,$cooki
                                 dataService.setUser(user);
                                 if (dataService.getUser()) {
                                     $window.location.reload();
-                                    //$q.defer().promise;
-                                    //return;
                                 }
                             }
 
-                        }, function (error) {
-                            //$q.defer().promise;
-                        });
+                        }, function (error) {});
                     }
                 }
 
             };
             $scope.timeZoneInterval = $interval(refresh, $scope.cfg.interval);
-        }, function (error) {
-            /*var ping = function () {
-
-                dataFactory.pingServer(cfg.api.ping).then(function (response) {
-                    $interval.cancel($scope.pingInterval);
-                }, function (error) {
-                    console.log('PING.... error')
-                    var fatalArray = {
-                        type: 'network',
-                        message: $scope._t('connection_refused'),
-                        info: $scope._t('connection_refused_info'),
-                        permanent: true,
-                        hide: true
-                    };
-                    angular.extend(cfg.route.fatalError, fatalArray);
-                });
-            };
-            $scope.pingInterval = $interval(ping, 3000);*/
-
-        });
+        }, function (error) {});
 
     };
 
-
-    $rootScope.$on("$routeChangeStart", function(current,previous) {
-
-        //$scope.setTimeStamp();
-        // console.log(current)
-        // console.log(previous)
-        //console.log( "Route Change:", $location.path());
-        //console.log( "Route Change:", $location.path());
-        //console.log($http.pendingRequests)
-        return;
-        var pending = _.findWhere($http.pendingRequests,{url: '/ZAutomation/api/v1/system/time/get'})
-        console.log('Pending: ', pending)
-        if(pending){
-            var ping = function () {
-
-                dataFactory.pingServer(cfg.api.ping).then(function (response) {
-                    $interval.cancel($scope.pingInterval);
-                }, function (error) {
-                    console.log('PING.... error')
-                    var fatalArray = {
-                        type: 'network',
-                        message: $scope._t('connection_refused'),
-                        info: $scope._t('connection_refused_info'),
-                        permanent: true,
-                        hide: true
-                    };
-                    angular.extend(cfg.route.fatalError, fatalArray);
-                });
-            };
-            $scope.pingInterval = $interval(ping, 3000);
-        }
-        return;
-        dataFactory.pingServer(cfg.api.ping).then(function (response) {
-            console.log(response)
-        }, function (error) {
-            //if (!error.status || error.status === 0) {
-                var fatalArray = {
-                    type: 'network',
-                    message: $scope._t('connection_refused'),
-                    info: $scope._t('connection_refused_info'),
-                    permanent: true,
-                    hide: true
-                };
-                if ($scope.routeMatch('/boxupdate')) {
-                    fatalArray.message = $scope._t('jamesbox_connection_refused');
-                    fatalArray.info = $scope._t('jamesbox_connection_refused_info', {__reload_begintag__: '<div>', __reload_endtag__: '</div>', __attention_begintag__: '<div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i>', __attention_endtag__: '<div>'});
-                    fatalArray.icon = cfg.route.fatalError.icon_jamesbox;
-                }
-                angular.extend(cfg.route.fatalError, fatalArray);
-           // }
-
-
-        });
+    /**
+     * Route change start
+     */
+    $rootScope.$on("$routeChangeStart", function(event, next, current) {
+        /**
+         * Reset fatal error object
+         */
+        dataService.resetFatalError();
+        /**
+         * Check if access is allowed for the page
+         */
+        dataService.isAccessAllowed(next);
+        /**
+         * Set timestamp and ping server if request fails
+         */
+        $scope.setTimeStamp();
     });
 
     /**
