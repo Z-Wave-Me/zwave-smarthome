@@ -10,7 +10,7 @@
 var config_data = {
     'cfg': {
         //Application name
-        'app_name': 'SmartHome UI',
+        'app_name': 'SmartHome UI ',
         // Application version
         'app_version': '1.5.0',
         // Server base url
