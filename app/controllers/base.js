@@ -244,12 +244,12 @@ myAppController.controller('BaseController', function ($scope, $rootScope,$cooki
 
     $rootScope.$on("$routeChangeStart", function(current,previous) {
 
-        $scope.setTimeStamp();
+        //$scope.setTimeStamp();
         // console.log(current)
         // console.log(previous)
         //console.log( "Route Change:", $location.path());
-        console.log( "Route Change:", $location.path());
-        console.log($http.pendingRequests)
+        //console.log( "Route Change:", $location.path());
+        //console.log($http.pendingRequests)
         return;
         var pending = _.findWhere($http.pendingRequests,{url: '/ZAutomation/api/v1/system/time/get'})
         console.log('Pending: ', pending)

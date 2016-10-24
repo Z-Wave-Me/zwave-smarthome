@@ -311,7 +311,7 @@ myApp.config(['$routeProvider', function ($routeProvider) {
  * Angular run function
  * @function run
  */
-myApp.run(function ($rootScope, $location, dataService, cfg) {
+myApp.run(function ($rootScope, $location, dataService, dataFactory,cfg) {
     // Run underscore js in views
     $rootScope._ = _;
 
@@ -326,6 +326,7 @@ myApp.run(function ($rootScope, $location, dataService, cfg) {
          * Check if access is allowed for the page
          */
         dataService.isAccessAllowed(next);
+        dataFactory.handleTimeStamp();
     });
 });
 

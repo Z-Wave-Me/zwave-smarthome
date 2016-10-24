@@ -26,7 +26,7 @@ myAppFactory.factory('_', function () {
  * The factory that handles all local and remote HTTP requests
  * @class dataFactory
  */
-myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataService, cfg, _) {
+myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $interval,dataService, cfg, _) {
     var updatedTime = Math.round(+new Date() / 1000);
     var lang = cfg.lang;
     var ZWAYSession = dataService.getZWAYSession();
@@ -35,7 +35,9 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
         lang = user.lang;
 
     }
+    var pingInterval = null;
     return({
+        handleTimeStamp: handleTimeStamp,
         pingServer: pingServer,
         logInApi: logInApi,
         sessionApi: sessionApi,
@@ -77,7 +79,45 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
 
     /// --- Public functions --- ///
     /**
-     * Handles login process
+    * Set timestamp and ping server if request fails
+    * @param {string} url
+    * @returns {unresolved}
+    */
+    function handleTimeStamp() {
+         $interval.cancel(pingInterval);
+        return $http({
+            method: "get",
+            url: cfg.server_url + cfg.api['time']
+        }).then(function (response) {
+            angular.extend(cfg.route.time, {string: $filter('setTimeFromBox')(response.data.data.localTimeUT)},
+                {timestamp: response.data.data.localTimeUT});
+            var refresh = function () {
+                var pending = _.findWhere($http.pendingRequests,{url: cfg.api['pending']});
+                cfg.route.time.timestamp += (cfg.interval < 1000 ? 1 : cfg.interval / 1000)
+                cfg.route.time.string = $filter('setTimeFromBox')(cfg.route.time.timestamp)
+                // console.log($filter('setTimeFromBox')(cfg.route.time.timestamp))
+                // console.log(cfg.route.time.timestamp)
+                console.log('Refreshing: ', cfg.route.time.string)
+                if(pending){
+                    console.log('Pending: ', pending)
+
+                    angular.extend(cfg.route.fatalError, fatalArray);
+                }else{
+                    if (cfg.route.fatalError.type === 'network') {
+                        console.log('Remove the fucking error message');
+                    }
+                }
+
+            };
+            pingInterval = $interval(refresh, cfg.interval);
+            return response;
+        }, function (response) {// something went wrong
+            //return response;
+            return $q.reject(response);
+        });
+    }
+    /**
+     * Connect to the specified url
      * @param {string} url
      * @returns {unresolved}
      */
