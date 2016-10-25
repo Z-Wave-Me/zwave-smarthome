@@ -203,5 +203,11 @@ Convert text to slug
 
 
 
+### setConfigValue() 
+
+Set a hardware configuration value
+
+
+
 
 * * *

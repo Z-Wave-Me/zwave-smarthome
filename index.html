@@ -75,6 +75,7 @@
         <script src="app/expertui/directives.js"></script>
         <script src="app/expertui/services.js"></script>
         <script src="app/expertui/configuration.js"></script>
+        <script src="app/expertui/commands.js"></script>
         
         
     </head>
@@ -121,7 +122,7 @@
                                 <a href="#config-rooms"><i class="fa fa-building-o"></i> <span>{{_t('nav_rooms')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
                             </li>
                              <!-- Customize -->
-                            <li class="subnavi-report" ng-class="isActive('customize')" 
+                            <li class="subnavi-report" ng-class="isActive('customize')"
                                 ng-if="elementAccess(cfg.role_access.customize) && !isInArray(['popp','jb'],cfg.app_type)">
                                 <a href="#customize/skinslocal"><i class="fa fa-puzzle-piece"></i> <span>{{_t('customize')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
                             </li>

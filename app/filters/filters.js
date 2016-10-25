@@ -788,3 +788,19 @@ myApp.filter('stringToSlug', function () {
         return str;
     };
 });
+
+
+/**
+ * Set a hardware configuration value
+ * @function setConfigValue
+ */
+myApp.filter('setConfigValue', function () {
+    return function (value) {
+        if (isNaN(parseInt(value))) {
+            return '\'' + value + '\'';
+        } else {
+            return value;
+        }
+
+    };
+});

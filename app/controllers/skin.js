@@ -182,6 +182,7 @@ myAppController.controller('SkinOnlineController', function ($scope, $timeout, d
      * @returns {undefined}
      */
     $scope.downloadSkin = function (skin) {
+        skin.active = false;
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
         dataFactory.postApi('skins_install', skin).then(function (response) {
             $scope.loading = false;

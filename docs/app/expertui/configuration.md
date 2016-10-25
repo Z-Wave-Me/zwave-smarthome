@@ -55,6 +55,22 @@ Set zwave data
 Set all conts
 
 
+### ConfigConfigurationController.configurationCc(commandClass, instanceId, nodeId, ZWaveAPIData) 
+
+Set configuration command class
+
+**Parameters**
+
+**commandClass**: 
+
+**instanceId**: 
+
+**nodeId**: 
+
+**ZWaveAPIData**: 
+
+**Returns**: `Object`
+
 
 
 * * *

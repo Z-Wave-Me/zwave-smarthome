@@ -134,5 +134,12 @@
             </div>
         </div>
 
+        <!-- Show more apps -->
+        <div class="text-right" ng-if="dataHolder.onlineModules.filter.featured == true">
+            <button class="btn btn-default"  ng-click="setFilter()">
+                <i class="fa fa-search-plus text-success"></i> {{_t('show_more_apps')}}
+            </button>
+        </div>
+
     </div> <!-- /ng-controller --> 
 </div> <!-- /ng-controller --> 

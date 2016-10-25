@@ -57,10 +57,12 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
     $scope.allSettled = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
-            dataFactory.loadZwaveApiData(),
-            dataFactory.getApi('instances', '/ZMEOpenWRT')
-        ];
+            dataFactory.loadZwaveApiData()
 
+        ];
+        if($scope.isInArray(['jb'],cfg.app_type)){
+            promises.push(dataFactory.getApi('instances', '/ZMEOpenWRT'));
+        }
         $q.allSettled(promises).then(function (response) {
             var zwave = response[0];
             var timezone = response[1];
@@ -70,11 +72,14 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
                 $scope.ZwaveApiData = zwave.value;
                 setControllerInfo(zwave.value);
             }
-            // Success - timezone
-            if (timezone.state === 'fulfilled' && timezone.value.data.data[0].active === true) {
-                $scope.handleTimezone.show = true;
-                $scope.handleTimezone.instance = timezone.value.data.data[0];
+            if(timezone){
+                // Success - timezone
+                if (timezone.state === 'fulfilled' && timezone.value.data.data[0].active === true) {
+                    $scope.handleTimezone.show = true;
+                    $scope.handleTimezone.instance = timezone.value.data.data[0];
+                }
             }
+
         });
     };
     $scope.allSettled();
@@ -627,7 +632,7 @@ myAppController.controller('ManagementFirmwareController', function ($scope, $sc
     //$scope.loadRazLatest();
 });
 /**
- * The controller that handles a backup to the cloud.
+ * The controller that handles a timezone.
  * @class ManagementTimezoneController
  */
 myAppController.controller('ManagementTimezoneController', function ($scope, $timeout, dataFactory, dataService) {
@@ -969,7 +974,7 @@ myAppController.controller('ManagementCloudBackupController', function ($scope, 
             }
 
             if (module.state === 'rejected') {
-                alertify.alertError($scope._t('error_load_data'));
+                alertify.alertWarning($scope._t('cloud_not_installed'));
                 return;
             }
 

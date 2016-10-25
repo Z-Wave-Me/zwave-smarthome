@@ -9,14 +9,19 @@ This User Interfaces allows to operate a Smart Home Network based on Z-Wave devi
 ## Project leader
 Marcel Kermer
 
+## v1.6.0
+#### New features
+- Skins: The Skin is a software package redefining all visual elements of your mobile and browser interface.
+
 ## v1.5.0
 #### New features
-- Time zone on the first access page (POPP only).
+- Apps: Added button Add more apps if filter feature apps is preselected.git
+- Time zone on the first access page and in the management (POPP only).
 - More products in the Z-Wave devices.
-- Skins.
 - Add update time to toggle button #167.
 - Online Apps: Sorting by most popular.
 - Elements: Sorting by last updated.
+- Added the generic Confguration Dialog to Hardware Configuration if no ZDDX file is present.
 
 #### Fixes
 - Text in preferences menu not aligned #189.
@@ -26,6 +31,7 @@ Marcel Kermer
 - Elements: Fixed knob bug.
 
 #### Changes
+- Hardvare configuration: Removed targed node from wakeup time settings.
 - Removed filter getElementIcon and replaced with service assignElementIcon.
 
 ## v1.4.3

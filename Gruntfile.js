@@ -105,6 +105,7 @@ module.exports = function (grunt) {
                     'app/expertui/directives.js',
                     'app/expertui/services.js',
                     'app/expertui/configuration.js',
+                    'app/expertui/commands.js'
                 ],
                 dest: 'dist/app/js/build.js'
             }

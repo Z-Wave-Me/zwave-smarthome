@@ -102,23 +102,14 @@ Change auth data
 ## ManagementRemoteController
 The controller that renders and handles remote access data.
 
+### ManagementRemoteController.loadRemoteAccess() 
 
-## ManagementCloudBackupController
-The controller that handles a backup to the cloud.
-
-### ManagementCloudBackupController.allCloudSettled() 
-
-Load all promises
+Load Remote access data
 
 
-### ManagementCloudBackupController.setSchedulerType() 
+### ManagementRemoteController.putRemoteAccess() 
 
-Set scheduler type
-
-
-### ManagementCloudBackupController.updateInstance() 
-
-Update instance
+PUT Remote access
 
 
 
@@ -165,7 +156,7 @@ Load latest version
 
 
 ## ManagementTimezoneController
-The controller that handles a backup to the cloud.
+The controller that handles a timezone.
 
 ### ManagementTimezoneController.loadModule() 
 
@@ -223,14 +214,47 @@ Remove token from the list
 ## ManagementReportController
 The controller that handles bug report info.
 
+### ManagementReportController.loadRemoteAccess() 
+
+Load Remote access data
+
+
 ### ManagementReportController.sendReport() 
 
 Send and save report
 
 
 
+## ManagementPostfixController
+The controller that renders postfix data.
+
+### ManagementPostfixController.loadPostfix() 
+
+Load postfix data
+
+
+
 ## ManagementInfoController
 The controller that renders info data.
+
+
+## ManagementCloudBackupController
+The controller that handles a backup to the cloud.
+
+### ManagementCloudBackupController.allCloudSettled() 
+
+Load all promises
+
+
+### ManagementCloudBackupController.setSchedulerType() 
+
+Set scheduler type
+
+
+### ManagementCloudBackupController.updateInstance() 
+
+Update instance
+
 
 
 

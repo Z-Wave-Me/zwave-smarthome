@@ -182,6 +182,15 @@ Change climate element mode
 
 
 
+## ElementSecurityControlController
+The controller that handles Security Control  module.
+
+### ElementSecurityControlController.loadDeviceId() 
+
+Load single device
+
+
+
 ## ElementDashboardController
 The controller that handles elements on the dashboard.
 
