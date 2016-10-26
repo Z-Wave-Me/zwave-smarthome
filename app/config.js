@@ -96,7 +96,7 @@ var config_data = {
             'skins_install': 'ZAutomation/api/v1/skins/install',
             'skins_update': 'ZAutomation/api/v1/skins/update',
             'skins_active': 'ZAutomation/api/v1/skins/active',
-            'skins_reset': 'ZAutomation/api/v1/skins/setToDefault'
+            'skins_reset': 'ZAutomation/api/v1/skins/setToDefault',
             'icons': 'ZAutomation/api/v1/icons',
             'icons_install': 'ZAutomation/api/v1/icons/install',
             'customicon': 'ZAutomation/api/v1/devices',
