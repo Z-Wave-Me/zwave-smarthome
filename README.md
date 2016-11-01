@@ -12,6 +12,10 @@ Marcel Kermer
 #### New features
 - Skins: The Skin is a software package redefining all visual elements of your mobile and browser interface.
 
+## v1.5.1
+#### Fixes
+- Displays Firmware Update in  POPP version.
+
 ## v1.5.0
 #### New features
 - Apps: Added button Add more apps if filter feature apps is preselected.git
