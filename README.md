@@ -8,9 +8,9 @@ This User Interfaces allows to operate a Smart Home Network based on Z-Wave devi
 
 ## Project leader
 Marcel Kermer
-#### Fixes
+## v1.6.0
 #### New features
-- Management: Display firmware update in the POPP version.
+- Skins: The Skin is a software package redefining all visual elements of your mobile and browser interface.
 
 ## v1.5.0
 #### New features
