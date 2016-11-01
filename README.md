@@ -9,6 +9,10 @@ This User Interfaces allows to operate a Smart Home Network based on Z-Wave devi
 ## Project leader
 Marcel Kermer
 
+## v1.5.1
+#### Fixes
+- Displays Firmware Update int POPP version.
+
 ## v1.5.0
 #### New features
 - Time zone on the first access page and in the management (POPP only).
