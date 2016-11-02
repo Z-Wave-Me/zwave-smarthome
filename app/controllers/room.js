@@ -202,6 +202,7 @@ myAppController.controller('RoomConfigIdController', function ($scope, $routePar
         // Set selected file name
         $scope.file.upload = files[0].name;
         fd.append('files_files', files[0]);
+        console.log(fd);
         // Atempt to upload a file
         dataFactory.uploadApiFile(cmd, fd).then(function (response) {
             $scope.loading = false;
