@@ -14,6 +14,22 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
     /// --- Public functions --- ///
 
     /**
+     * Resets the fatal error object
+     * @param {object} notifier
+     * @returns {undefined}
+     */
+    this.resetFatalError = function () {
+        if (cfg.route.fatalError.message && !cfg.route.fatalError.permanent) {
+            angular.extend(cfg.route.fatalError, {
+                type: 'system',
+                message: 'Test from service',
+                info: false,
+                hide: false
+            });
+        }
+    };
+
+    /**
      * Get a language string by key
      * @param {string} key
      * @param {object} languages
@@ -240,7 +256,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @param {boolean} showHidden
      * @returns {unresolved}
      */
-    this.getDevicesData = function (data, showHidden) {
+    this.getDevicesData = function (data, showHidden,showAll) {
         var user = this.getUser();
         return _.chain(data)
                 .flatten()
@@ -248,9 +264,11 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                     return v.id;
                 })
                 .reject(function (v) {
-                    if (showHidden) {
+                    if (showAll) {
+                        return (v.deviceType === 'battery');
+                    } else if (showHidden) {
                         return (v.deviceType === 'battery') || (v.permanently_hidden === true);
-                    } else {
+                    }else {
                         return (v.deviceType === 'battery') || (v.permanently_hidden === true) || (v.visibility === false);
                     }
 
@@ -392,6 +410,39 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                     v.icon = (!v.icon ? 'storage/img/placeholder-img.png' : screenshotPath + 'screenshot.png');
                     return v;
                 });
+    };
+    
+    /**
+     * Get zwave products - filtered data from devices dataholder
+     * @param {object} data
+     * @returns {unresolved}
+     */
+    this.getZwaveProducts = function (data,lang) {
+         lang = cfg.zwaveproducts_langs.indexOf(lang) > -1 ? lang.toUpperCase() : cfg.lang.toUpperCase();
+        return  _.chain(data)
+                .flatten()
+                .map(function (v) {
+                        return {
+                            id: v.certification_ID,
+                            name: v.Name,
+                            productcode: v.product_code,
+                            wake: v['wake_' + lang] || v['wake_EN'],
+                            inc: v['inc_' + lang] || v['inc_EN'],
+                            exc: v['exc_' + lang] || v['exc_EN'],
+                            brandname: v.brandname,
+                            brandid: v.brandid,
+                            brand_image: (v.brandname_image ? cfg.img.zwavevendors + v.brandname_image : false),
+                            product_image: (v.certification_ID ? cfg.img.zwavedevices + v.certification_ID + '.png' : false),
+                            prep: v['prep_' + lang] || v['prep_EN'],
+                            inclusion_type: (v.inc_type === 'secure' ? v.inc_type : 'unsecure'),
+                            zwplus: v.zwplus,
+                            frequencyid: v.frequencyid,
+                            frequency: v.frequency,
+                            ignore_ui: v.ignore_ui,
+                            reset: v['ResetDescription_' + lang] || v['ResetDescription_EN']
+
+                        };
+                    });
     };
 
     /**

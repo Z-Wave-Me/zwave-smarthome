@@ -20,6 +20,16 @@
 ## dataService
 Angular module initialization
 
+### dataService.resetFatalError(notifier) 
+
+Resets the fatal error object
+
+**Parameters**
+
+**notifier**: `object`
+
+**Returns**: `undefined`
+
 ### dataService.getLangLine(key, languages, replacement) 
 
 Get a language string by key
@@ -215,6 +225,16 @@ Get rooms - filtered data from locations dataholder
 ### dataService.getLocalSkins(data) 
 
 Get local skins - filtered data from skin dataholder
+
+**Parameters**
+
+**data**: `object`
+
+**Returns**: `unresolved`
+
+### dataService.getZwaveProducts(data) 
+
+Get zwave products - filtered data from devices dataholder
 
 **Parameters**
 

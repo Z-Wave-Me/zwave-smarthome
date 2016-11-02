@@ -87,5 +87,19 @@ Download skin
 **Returns**: `undefined`
 
 
+## SkinOnlineController
+This controller handles reset skin proccess.
+
+### SkinOnlineController.resetToDefault(skin) 
+
+Download skin
+
+**Parameters**
+
+**skin**: `object`
+
+**Returns**: `undefined`
+
+
 
 * * *

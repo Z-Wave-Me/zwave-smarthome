@@ -1,0 +1,32 @@
+<!-- Admin timezone view -->
+<h2 class="accordion-entry-title" ng-click="expandElement('timezone')">
+    <i class="fa fa-clock-o"></i> <span ng-bind="_t('timezone')"></span> 
+    <i class="fa accordion-arrow" ng-class="expand.timezone ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+</h2>
+<div class="accordion-entry-ctrl" ng-class="" ng-if="expand.timezone" ng-controller="ManagementTimezoneController">
+    <bb-loader></bb-loader>
+    <form name="form_timezone" id="form_password" class="form form-page"
+          ng-if="handleTimezone.show"
+          ng-submit="updateInstance(handleTimezone.instance)" novalidate>
+        <fieldset>
+            <div class="form-group form-inline">
+            <label>{{_t('timezone_select')}}</label>
+            <select class="form-control" ng-model="handleTimezone.instance.params.timezone">
+                <option value="{{v}}" 
+                        ng-repeat="v in managementTimezone.enums track by $index"
+                        ng-selected="v === handleTimezone.instance.params.timezone">
+                    {{managementTimezone.labels[$index]}}
+                </option>
+            </select>
+            <bb-help-text trans="_t('timezone_info')"></bb-help-text>
+            </div>
+          </fieldset>
+        <fieldset class="submit-entry">
+            <button type="submit" class="btn btn-submit" title="{{_t('set_timezone')}}">
+                <i class="fa fa-check"></i> <span class="btn-name">{{_t('set_timezone')}}</span>
+            </button>
+        </fieldset>
+    </form>
+    <div class="alert alert-warning" ng-bind="_t('timezone_not_installed')" ng-if="!handleTimezone.show"></div>
+
+</div>

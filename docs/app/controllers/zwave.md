@@ -17,26 +17,26 @@
 
 * * *
 
-## ZwaveSelectController
-This is a new version of the ZwaveAddController and is not completed!!!The controller that renders Z-Wave manufacturers and devices.
+## ZwaveVendorController
+The controller that renders Z-Wave vendors.
 
-### ZwaveSelectController.loadProducts() 
+### ZwaveVendorController.loadZwdata() 
 
-Load products - vendor logos
-
-
-### ZwaveSelectController.loadData() 
-
-Load z-wave devices
+Load z-wave data
 
 
+### ZwaveVendorController.loadVendors() 
 
-## ZwaveAddController
-The controller that renders Z-Wave manufacturers and devices.
+Load z-wave devices an parse vendors
 
-### ZwaveAddController.loadData() 
 
-Load z-wave devices
+
+## ZwaveVendorIdController
+The controller that renders Z-Wave devices by vendor.
+
+### ZwaveVendorIdController.allSettled() 
+
+Load all promises
 
 
 
@@ -73,9 +73,9 @@ Set elements created by zWave device
 
 **Returns**: `undefined`
 
-### ZwaveManageController.isInterviewDone() 
+### ZwaveManageController.getInstances() 
 
-Has a device an interview done?
+Get selected instances status
 
 
 

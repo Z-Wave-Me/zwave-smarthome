@@ -9,10 +9,10 @@
 var myAppController = angular.module('myAppController', []);
 
 /**
- * The app base controller. 
+ * The app base controller.
  * @class BaseController
  */
-myAppController.controller('BaseController', function ($scope, $cookies, $filter, $location, $route, $window, $interval, cfg, cfgicons, dataFactory, dataService, myCache) {
+myAppController.controller('BaseController', function ($scope, $cookies, $filter, $location, $route, $window, $interval, $http, cfg, cfgicons, dataFactory, dataService, myCache) {
 
     // Global scopes
     $scope.$location = $location;
@@ -31,7 +31,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
      * @returns {undefined}
      */
     $scope.setSkin = function () {
-        if ($cookies.skin && $cookies.skin !=='default') {
+        if ($cookies.skin && $cookies.skin !== 'default') {
             cfg.skin.active = $cookies.skin;
             cfg.img.icons = cfg.skin.path + $cookies.skin + '/img/icons/';
             cfg.img.logo = cfg.skin.path + $cookies.skin + '/img/logo/';
@@ -82,6 +82,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         angular.extend(cfg.route.fatalError, obj || {message: false, info: false, hide: false});
 
     };
+
     /**
      * Set a time
      * @returns {undefined}
@@ -92,12 +93,48 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         }
         dataFactory.getApi('timezone', null, true).then(function (response) {
             angular.extend(cfg.route.time, {string: $filter('setTimeFromBox')(response.data.data)});
+
             var refresh = function () {
+//                console.log($http.pendingRequests.length)
+//                if ($http.pendingRequests.length > cfg.pending_requests_limit) {
+//                    var fatalArray = {
+//                        type: 'network',
+//                        message: $scope._t('connection_refused'),
+//                        info: $scope._t('connection_refused_info'),
+//                        permanent: true,
+//                        hide: true
+//                    };
+//                    if ($scope.routeMatch('/boxupdate')) {
+//                        fatalArray.message = $scope._t('jamesbox_connection_refused');
+//                        fatalArray.info = $scope._t('jamesbox_connection_refused_info', {__reload_begintag__: '<div>', __reload_endtag__: '</div>', __attention_begintag__: '<div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i>', __attention_endtag__: '<div>'});
+//                        fatalArray.icon = cfg.route.fatalError.icon_jamesbox;
+//                    }
+//                    angular.extend(cfg.route.fatalError, fatalArray);
+//                }
                 dataFactory.getApi('timezone', null, true).then(function (response) {
                     angular.extend(cfg.route.time, {string: $filter('setTimeFromBox')(response.data.data)});
+                    if (cfg.route.fatalError.type === 'network') {
+                        dataFactory.sessionApi().then(function (sessionRes) {
+                            var user = sessionRes.data.data;
+                            if (sessionRes.data.data) {
+                                dataService.setZWAYSession(user.sid);
+                                dataService.setUser(user);
+                                if (dataService.getUser()) {
+                                    $window.location.reload();
+                                    //$q.defer().promise;
+                                    //return;
+                                }
+                            }
+
+                        }, function (error) {
+                            //$q.defer().promise;
+                        });
+
+                    }
                 }, function (error) {
                     if (!error.status || error.status === 0) {
                         var fatalArray = {
+                            type: 'network',
                             message: $scope._t('connection_refused'),
                             info: $scope._t('connection_refused_info'),
                             permanent: true,
@@ -134,7 +171,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
 
     /**
      * Allow to access page elements by role.
-     * 
+     *
      * @param {array} roles
      * @param {boolean} mobile
      * @returns {Boolean}
@@ -152,6 +189,19 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
             return false;
         }
         return true;
+    };
+    /**
+     * Check if value is in array
+     *
+     * @param {array} array
+     * @param {mixed} value
+     * @returns {Boolean}
+     */
+    $scope.isInArray = function (array,value) {
+        if (array.indexOf(value) > -1) {
+            return true;
+        }
+        return false;
     };
 
 
@@ -199,15 +249,6 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     $scope.$watch('lang', function () {
         $scope.loadLang($scope.lang);
     });
-
-    // IF IE or Edge displays an message
-    if (dataService.isIeEdge()) {
-        angular.extend(cfg.route.fatalError, {
-            message: cfg.route.t['ie_edge_not_supported'],
-            info: cfg.route.t['ie_edge_not_supported_info']
-        });
-    }
-
     /**
      * Order by
      * @param {string} field

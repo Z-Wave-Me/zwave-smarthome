@@ -7,7 +7,7 @@
  * This is the Auth root controller
  * @class AuthController
  */
-myAppController.controller('AuthController', function ($scope, $routeParams, $location,$cookies, $window, $q, cfg, dataFactory, dataService, _) {
+myAppController.controller('AuthController', function ($scope, $routeParams, $location, $cookies, $window, $q, cfg, dataFactory, dataService, _) {
     $scope.auth = {
         remoteId: null,
         firstaccess: false,
@@ -24,6 +24,14 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
         window.location = '#/dashboard';
         return;
     }
+    // IF IE or Edge displays an message
+    if (dataService.isIeEdge()) {
+        angular.extend(cfg.route.fatalError, {
+            message: cfg.route.t['ie_edge_not_supported'],
+            info: cfg.route.t['ie_edge_not_supported_info']
+        });
+    }
+
 
     $scope.loginLang = (angular.isDefined($cookies.lang)) ? $cookies.lang : false;
     /**
@@ -77,7 +85,7 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
         }
         dataService.setZWAYSession(user.sid);
         dataService.setUser(user);
-        dataFactory.putApi('profiles', user.id, user).then(function (response) {}, function (error) {});
+        //dataFactory.putApi('profiles', user.id, user).then(function (response) {}, function (error) {});
         if (rememberme) {
             dataService.setRememberMe(rememberme);
         }
@@ -112,15 +120,15 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
             var input = {
                 uuid: response.controller.data.uuid.value
             };
-            jamesBoxRequest(input,location);
+            jamesBoxRequest(input, location);
         }, function (error) {
             window.location = location;
             $window.location.reload();
         });
     }
     ;
-    
-     /**
+
+    /**
      * Get and update system info
      */
     function jamesBoxSystemInfo(uuid) {
@@ -138,11 +146,11 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
     /**
      * JamesBox request
      */
-    function jamesBoxRequest(input,location) {
+    function jamesBoxRequest(input, location) {
         //var location = '#/dashboard';
         jamesBoxSystemInfo(input.uuid);
         dataFactory.postToRemote(cfg.api_remote['jamesbox_request'], input).then(function (response) {
-           if (!_.isEmpty(response.data)) {
+            if (!_.isEmpty(response.data)) {
                 location = '#/boxupdate';
             }
             window.location = location;
@@ -151,7 +159,8 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
             window.location = location;
             $window.location.reload();
         });
-    };
+    }
+    ;
 
 
     /**
@@ -196,7 +205,7 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
  * The controller that handles login process.
  * @class AuthLoginController
  */
-myAppController.controller('AuthLoginController', function ($scope, $location, $window, $routeParams, $cookies, dataFactory, dataService) {
+myAppController.controller('AuthLoginController', function ($scope, $location, $window, $routeParams, $cookies, dataFactory, dataService,_) {
     $scope.input = {
         password: '',
         login: '',
@@ -223,9 +232,14 @@ myAppController.controller('AuthLoginController', function ($scope, $location, $
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         $scope.alert = {message: false};
         dataFactory.logInApi(input).then(function (response) {
-            var rememberme = (input.rememberme ? input : null);
-            $scope.redirectAfterLogin(true, response.data.data, input.password, rememberme);
-
+            var rememberme = (input.rememberme ? input : null); 
+            var location = '#/dashboard';
+            var profile = response.data.data;
+            if(response.data.data.showWelcome){
+                 location = '#/dashboard/firstlogin';
+                 profile = _.omit(profile, 'showWelcome');
+            }
+            $scope.redirectAfterLogin(true, profile, input.password, rememberme, location);
         }, function (error) {
             $scope.loading = false;
             var message = $scope._t('error_load_data');
@@ -283,18 +297,57 @@ myAppController.controller('AuthLoginController', function ($scope, $location, $
  * The controller that handles first access and password update.
  * @class AuthPasswordController
  */
-myAppController.controller('AuthPasswordController', function ($scope, dataFactory, dataService) {
+myAppController.controller('AuthPasswordController', function ($scope, $q, $window, cfg, dataFactory, dataService) {
     $scope.input = {
-        id: $scope.auth.defaultProfile.id,
+        id: 1,//$scope.auth.defaultProfile.id,
         password: '',
         passwordConfirm: '',
         email: '',
         trust_my_network: false
     };
+    $scope.handleTimezone = {
+        instance: {},
+        show: false
+    };
+    $scope.managementTimezone = {
+        labels: {},
+        enums: {}
+    };
+
+    /**
+     * Load all promises
+     */
+    $scope.allSettled = function () {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        var promises = [
+            dataFactory.getApi('instances', '/ZMEOpenWRT'),
+            dataFactory.getApi('modules', '/ZMEOpenWRT')
+        ];
+
+        $q.allSettled(promises).then(function (response) {
+            var instance = response[0];
+            var timezone = response[1];
+            $scope.loading = false;
+            // Success - instance
+            if (instance.state === 'fulfilled' && instance.value.data.data[0].active === true) {
+                $scope.handleTimezone.show = true;
+                $scope.handleTimezone.instance = instance.value.data.data[0];
+            }
+            // Success - timezone
+            if (timezone.state === 'fulfilled') {
+                $scope.managementTimezone.enums = timezone.value.data.data.schema.properties.timezone.enum;
+                $scope.managementTimezone.labels = timezone.value.data.data.options.fields.timezone.optionLabels;
+            }
+        });
+    };
+    if($scope.isInArray(['jb'],cfg.app_type)){
+        $scope.allSettled();
+    }
+
     /**
      * Change password
      */
-    $scope.changePassword = function (form, input) {
+    $scope.changePassword = function (form, input, instance) {
         if (form.$invalid) {
             return;
         }
@@ -320,7 +373,12 @@ myAppController.controller('AuthPasswordController', function ($scope, dataFacto
             profile['lang'] = $scope.loginLang;
             // Update profile
             dataFactory.putApiWithHeaders('profiles', input.id, profile, headers).then(function (response) {
-                $scope.redirectAfterLogin(true, $scope.auth.defaultProfile, input.password, false, '#/dashboard/firstlogin');
+                if (cfg.app_type === 'jb' && $scope.handleTimezone.show) {
+                    $scope.updateInstance(instance);
+                } else {
+                    $scope.redirectAfterLogin(true, $scope.auth.defaultProfile, input.password, false, '#/dashboard/firstlogin');
+                }
+
                 // Update trust my network
                 /*dataFactory.putApiWithHeaders('trust_my_network', null, {trustMyNetwork: input.trust_my_network}, headers).then(function (response) {
                  $scope.redirectAfterLogin(input.trust_my_network, $scope.auth.defaultProfile, input.password);
@@ -342,6 +400,45 @@ myAppController.controller('AuthPasswordController', function ($scope, dataFacto
             alertify.alertError(message);
             $scope.loading = false;
         });
+    };
+
+    /**
+     * Update instance
+     */
+    $scope.updateInstance = function (input) {
+        //var input = $scope.handleTimezone.instance;
+        if (input.id) {
+            dataFactory.putApi('instances', input.id, input).then(function (response) {
+                $scope.systemReboot();
+            }, function (error) {
+                alertify.alertError($scope._t('error_update_data'));
+            });
+        }
+    };
+
+    /**
+     * System rebboot
+     */
+    $scope.systemReboot = function () {
+        //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('system_rebooting')};
+        var fatalArray = {
+                            message: $scope._t('system_rebooting'),
+                            info: $scope._t('connection_refused_reboot'),
+                            permanent: true,
+                            hide: true
+                        };
+         angular.extend(cfg.route.fatalError, fatalArray);
+        dataFactory.getApi('system_reboot','?firstaccess=true').then(function (response) {
+//            $timeout(function () {
+//                $scope.loading = false;
+//                window.location = '#/?logout';
+//                $window.location.reload();
+//                
+//            }, 10000);
+        }, function (error) {
+            alertify.alertError($scope._t('error_system_reboot'));
+        });
+
     };
 
 });
@@ -375,7 +472,7 @@ myAppController.controller('PasswordForgotController', function ($scope, $locati
                 $scope.loading = false;
             });
         }, function (error) {
-            var langKey = (error.status === 404 ? 'email_notfound':'error_500');
+            var langKey = (error.status === 404 ? 'email_notfound' : 'error_500');
             alertify.alertError($scope._t(langKey));
             $scope.loading = false;
         });

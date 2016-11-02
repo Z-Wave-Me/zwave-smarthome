@@ -36,7 +36,7 @@ myApp.directive('expertCommandInput', function($filter) {
         var input = '';
         var inName = $filter('stringToSlug')(name ? name : label);
         
-        input += '<label>' + label + '</label> ';
+        input += '<label class="label-node">' + label + '</label> ';
         input += '<select name="select_' + inName + '" class="form-control">';
         input += '<option value="1">Z-Way</option>';
         angular.forEach(devices, function(v, k) {

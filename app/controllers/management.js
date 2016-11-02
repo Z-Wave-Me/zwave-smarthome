@@ -37,6 +37,11 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
         replug: false
     };
 
+    $scope.handleTimezone = {
+        instance: {},
+        show: false
+    };
+
     $scope.zwaveDataInterval = null;
     // Cancel interval on page destroy
     $scope.$on('$destroy', function () {
@@ -51,16 +56,28 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
             dataFactory.loadZwaveApiData()
-        ];
 
+        ];
+        if($scope.isInArray(['jb'],cfg.app_type)){
+            promises.push(dataFactory.getApi('instances', '/ZMEOpenWRT'));
+        }
         $q.allSettled(promises).then(function (response) {
             var zwave = response[0];
+            var timezone = response[1];
             $scope.loading = false;
-            // Success - locations
+            // Success - api data
             if (zwave.state === 'fulfilled') {
                 $scope.ZwaveApiData = zwave.value;
                 setControllerInfo(zwave.value);
             }
+            if(timezone){
+                // Success - timezone
+                if (timezone.state === 'fulfilled' && timezone.value.data.data[0].active === true) {
+                    $scope.handleTimezone.show = true;
+                    $scope.handleTimezone.instance = timezone.value.data.data[0];
+                }
+            }
+
         });
     };
     $scope.allSettled();
@@ -126,19 +143,21 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
         // Hide license if
         // Controller UUID = string and scratchId  is NOT found  and cap unlimited
         if (!controllerInfo.scratchId && !controllerInfo.capsLimited) {
-             //console.log('Hide license if: Controller UUID = string and scratchId  is NOT found  and cap unlimited')
+            //console.log('Hide license if: Controller UUID = string and scratchId  is NOT found  and cap unlimited')
             $scope.handleLicense.show = false;
             return;
         }
-        
+
         // Show modal if
         // Controller UUID = string and scratchId  is NOT found  and cap limited
         if (!controllerInfo.scratchId && controllerInfo.capsLimited) {
-              alertify.alertWarning($scope._t('info_missing_licence'));
+            //console.log('Show modal if: Controller UUID = string and scratchId  is NOT found  and cap limited')
+            alertify.alertWarning($scope._t('info_missing_licence'));
         }
 
         // Disable input and show unplug message
         if (controllerInfo.isZeroUuid) {
+            //console.log('Disable input and show unplug message')
             $scope.handleLicense.disabled = true;
             $scope.handleLicense.replug = true;
         }
@@ -219,7 +238,7 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
         "color": "#dddddd",
         "dashboard": [],
         "interval": 1000,
-        "rooms": [0],
+        "rooms": [],
         "expert_view": true,
         "hide_all_device_events": false,
         "hide_system_events": false,
@@ -259,7 +278,6 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
                     $scope.input = profile.value.data.data;
                     $scope.auth.login = profile.value.data.data.login;
                 }
-
             }
 
             // Success - locations
@@ -274,14 +292,44 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
         });
     };
     $scope.allSettledUserId();
+
+    /**
+     * Watch for the role change
+     */
+    /*$scope.$watch('input.role', function () {
+        //var globalRoomIndex = $scope.input.rooms.indexOf(0);
+        if($scope.input.role === 1){
+            $scope.input.rooms = [0];
+        }else{
+            $scope.input.rooms = $scope.input.rooms.length > 0  ? $scope.input.rooms : [];
+            //$scope.input.rooms = []
+        }
+    });*/
     /**
      * Assign room to list
      */
     $scope.assignRoom = function (assign) {
-        $scope.input.rooms.push(assign);
-        return;
-
+        if($scope.input.role !== 1) {
+            $scope.input.rooms.push(assign);
+        }
     };
+
+    /*$scope.prepareRooms = function () {
+        return;
+        var globalRoomIndex = $scope.input.rooms.indexOf(0);
+        //var roomIds = _.map(locations.value.data.data, function(location){});
+
+        if ($scope.input.role === 1 && globalRoomIndex === -1) {
+            $scope.input.rooms = [0];
+        } else if ($scope.input.role !== 1 && globalRoomIndex > -1){
+            if ($scope.input.id === 0) {
+                $scope.input.rooms = [];
+            } else {
+                $scope.input.rooms.splice(globalRoomIndex, 1);
+            }
+        }
+        return;
+    };*/
 
     /**
      * Remove room from the list
@@ -304,11 +352,18 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
         if (form.$invalid) {
             return;
         }
+        var globalRoomIndex = input.rooms.indexOf(0);
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         if ($scope.id == 0) {
             input.password = input.password;
         }
-        input.role = parseInt(input.role, 10);
+        if (input.role === 1) {
+            input.rooms = [0];
+        }else if(globalRoomIndex > -1){
+            input.rooms.splice(globalRoomIndex, 1);
+        }
+        //console.log(input);
+        //return;
         dataFactory.storeApi('profiles', input.id, input).then(function (response) {
             var id = $filter('hasNode')(response, 'data.data.id');
             if (id) {
@@ -382,7 +437,6 @@ myAppController.controller('ManagementRemoteController', function ($scope, dataF
 
             $scope.loading = false;
             var remoteAccess = response.data.data[0];
-            console.log(remoteAccess)
             if (Object.keys(remoteAccess).length < 1) {
                 alertify.alertError($scope._t('error_load_data'));
             }
@@ -416,6 +470,44 @@ myAppController.controller('ManagementRemoteController', function ($scope, dataF
             alertify.alertError($scope._t('error_update_data'));
             $scope.loading = false;
         });
+
+    };
+});
+/**
+ * The controller that renders and handles local access.
+ * @class ManagementLocalController
+ */
+myAppController.controller('ManagementLocalController', function ($scope, dataFactory, dataService) {
+    
+
+     /**
+     * Update instance
+     */
+    $scope.updateInstance = function (input) {
+        //var input = $scope.handleTimezone.instance;
+        if (input.id) {
+            dataFactory.putApi('instances', input.id, input).then(function (response) {
+                alertify.confirm($scope._t('timezone_alert'))
+                        .setting('labels', {'ok': $scope._t('yes'),'cancel': $scope._t('lb_cancel')})
+                        .set('onok', function (closeEvent) {//after clicking OK
+                                $scope.systemReboot();
+                        });
+
+            }, function (error) {
+                alertify.alertError($scope._t('error_update_data'));
+            });
+        }
+    };
+    
+     /**
+     * System rebboot
+     */
+    $scope.systemReboot = function () {
+         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('system_rebooting')};
+            dataFactory.getApi('system_reboot').then(function (response) {
+            }, function (error) {
+                alertify.alertError($scope._t('error_system_reboot'));
+            });
 
     };
 });
@@ -536,6 +628,67 @@ myAppController.controller('ManagementFirmwareController', function ($scope, $sc
         });
     };
     //$scope.loadRazLatest();
+});
+/**
+ * The controller that handles a backup to the cloud.
+ * @class ManagementTimezoneController
+ */
+myAppController.controller('ManagementTimezoneController', function ($scope, $timeout, dataFactory, dataService) {
+    $scope.managementTimezone = {
+        labels: {},
+        enums: {}
+    };
+
+    /**
+     * Load module detail
+     */
+    $scope.loadModule = function (id) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        dataFactory.getApi('modules', '/ZMEOpenWRT').then(function (response) {
+            $scope.loading = false;
+            $scope.managementTimezone.enums = response.data.data.schema.properties.timezone.enum;
+            $scope.managementTimezone.labels = response.data.data.options.fields.timezone.optionLabels;
+
+            //console.log($scope.handleTimezone)
+            //console.log($scope.managementTimezone)
+        }, function (error) {
+            $scope.loading = false;
+            alertify.alertError($scope._t('error_load_data'));
+        });
+    };
+    $scope.loadModule();
+
+    /**
+     * Update instance
+     */
+    $scope.updateInstance = function (input) {
+        //var input = $scope.handleTimezone.instance;
+        if (input.id) {
+            dataFactory.putApi('instances', input.id, input).then(function (response) {
+                alertify.confirm($scope._t('timezone_alert'))
+                        .setting('labels', {'ok': $scope._t('yes'),'cancel': $scope._t('lb_cancel')})
+                        .set('onok', function (closeEvent) {//after clicking OK
+                                $scope.systemReboot();
+                        });
+
+            }, function (error) {
+                alertify.alertError($scope._t('error_update_data'));
+            });
+        }
+    };
+    
+     /**
+     * System rebboot
+     */
+    $scope.systemReboot = function () {
+         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('system_rebooting')};
+            dataFactory.getApi('system_reboot').then(function (response) {
+            }, function (error) {
+                alertify.alertError($scope._t('error_system_reboot'));
+            });
+
+    };
+
 });
 /**
  * The controller that handles restore process.

@@ -126,3 +126,77 @@
         width: 25%;
     }
 }
+
+/* Switch button
+---------- http://www.w3schools.com/howto/howto_css_switch.asp
+-------------------------------------------------- */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: $switch-btn-w;
+    //width: 60px;
+    height: $switch-btn-h;
+    //height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fff;
+    border: solid 1px $btn-border-color;
+    //box-shadow: inset 0 3px 3px rgba(0, 0, 0, 0.125);
+    //@include appGradientDanger();
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: $switch-btn-slider;
+    width:$switch-btn-slider;
+   /* height: 26px;
+    width: 26px;*/
+    left: 4px;
+    bottom: 3px;
+    background-color: $app-brand-danger;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    //background-color: green;
+}
+input:checked + .slider:before {
+    background-color: $app-brand-success;
+
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px $app-brand-success;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 4px;
+}
+
+.slider.round:before {
+    border-radius: 4px;
+}
+
+/* Switch */

@@ -113,6 +113,20 @@ PUT Remote access
 
 
 
+## ManagementLocalController
+The controller that renders and handles local access.
+
+### ManagementLocalController.updateInstance() 
+
+Update instance
+
+
+### ManagementLocalController.systemReboot() 
+
+System rebboot
+
+
+
 ## ManagementLicenceController
 The controller that handles the licence key.
 
@@ -138,6 +152,25 @@ Set access
 ### ManagementFirmwareController.loadRazLatest() 
 
 Load latest version
+
+
+
+## ManagementTimezoneController
+The controller that handles a backup to the cloud.
+
+### ManagementTimezoneController.loadModule() 
+
+Load module detail
+
+
+### ManagementTimezoneController.updateInstance() 
+
+Update instance
+
+
+### ManagementTimezoneController.systemReboot() 
+
+System rebboot
 
 
 

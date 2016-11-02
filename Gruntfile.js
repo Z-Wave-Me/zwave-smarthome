@@ -105,6 +105,7 @@ module.exports = function (grunt) {
                     'app/expertui/directives.js',
                     'app/expertui/services.js',
                     'app/expertui/configuration.js',
+                    'app/expertui/commands.js'
                 ],
                 dest: 'dist/app/js/build.js'
             }
@@ -128,6 +129,16 @@ module.exports = function (grunt) {
                     {src: ['storage/img/**'], dest: 'dist/'},
                     {src: ['storage/demo/**'], dest: 'dist/'},
                     {src: ['storage/data/**'], dest: 'dist/'}
+                ]
+            },
+            cssorig: {
+                files: [
+                    {src: ['app/css/main.css'], dest: 'app/css/main.css.orig'}
+                ]
+            },
+            images: {
+                files: [
+                    {src: ['app/css/wallpaper.png'], dest: 'dist/app/css/wallpaper.png'}
                 ]
             },
             fonts: {

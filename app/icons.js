@@ -23,7 +23,9 @@ var icon_data = {
                         half: 'window-half.png',
                         up: 'window-up.png',
                         open: 'window-open.png',
-                        closed: 'window-open.png'
+                        closed: 'window-closed.png',
+                        on: 'window-open.png',
+                        off: 'window-closed.png'
                     }
                 },
                 switch : {

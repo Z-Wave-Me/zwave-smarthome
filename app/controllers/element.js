@@ -253,11 +253,12 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
 
         var cmd = v.id + '/command/exact?level=' + count;
         v.metrics.level = count;
-        if (run) {
+         //console.log('ElementBaseController.setExactCmd - Sending request: ', cmd)
+        //if (run) {
             $scope.runCmd(cmd);
-        }
+       // }
 
-        return cmd;
+        //return cmd;
     };
 
     /// --- Private functions --- ///
@@ -705,6 +706,36 @@ myAppController.controller('ElementClimateControlController', function ($scope, 
         });
 
     };
+});
+
+/**
+ * The controller that handles Security Control  module.
+ * @class ElementSecurityControlController
+ */
+myAppController.controller('ElementSecurityControlController', function ($scope, $filter, dataFactory) {
+    $scope.widgetSecurityControl = {
+        find: {},
+        alert: {message: false, status: 'is-hidden', icon: false}
+    };
+
+    /**
+     * Load single device
+     */
+    $scope.loadDeviceId = function () {
+        dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function (response) {
+            var lastTriggerList = response.data.data.metrics.lastTriggerList;
+            if (_.isEmpty(lastTriggerList)) {
+                $scope.widgetSecurityControl.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+                return;
+            }
+            $scope.widgetSecurityControl.find = lastTriggerList;
+
+
+        }, function (error) {
+            $scope.widgetSecurityControl.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+        });
+    };
+    $scope.loadDeviceId();
 });
 
 /**

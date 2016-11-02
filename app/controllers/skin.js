@@ -78,7 +78,7 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $timeout,
      */
     $scope.updateSkin = function (skin) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
-        dataFactory.putApi('skins_update', '/' + skin.name, skin).then(function (response) {
+        dataFactory.putApi('skins_update', skin.name, skin).then(function (response) {
             $timeout(function () {
                 $scope.loading = false;
                 dataService.showNotifier({message: $scope._t('skin_update_successful')});
@@ -182,6 +182,7 @@ myAppController.controller('SkinOnlineController', function ($scope, $timeout, d
      * @returns {undefined}
      */
     $scope.downloadSkin = function (skin) {
+        skin.active = false;
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
         dataFactory.postApi('skins_install', skin).then(function (response) {
             $scope.loading = false;

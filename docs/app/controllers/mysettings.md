@@ -40,16 +40,6 @@ Remove device from the list
 Create/Update a profile
 
 
-### MySettingsController.activateSkin(skin) 
-
-Activate skin
-
-**Parameters**
-
-**skin**: `object`
-
-**Returns**: `undefined`
-
 ### MySettingsController.changePassword() 
 
 Change password

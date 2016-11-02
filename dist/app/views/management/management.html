@@ -5,15 +5,25 @@
 
     <!-- ///////////////////////////// Remote access ///////////////////////////// -->
     <div class="accordion-entry" ng-include="'app/views/management/management_remote.html'"></div>
-
+    
     <!-- ///////////////////////////// License key ///////////////////////////// -->
     <div class="accordion-entry" 
          ng-if="handleLicense.show" 
          ng-include="'app/views/management/management_licence.html'"></div>
     
+     <!-- ///////////////////////////// Local Access ///////////////////////////// -->
+     <div class="accordion-entry" 
+          ng-include="'app/views/management/management_local.html'"
+          ng-if="cfg.app_type === 'jb'"></div>
+    
     <!-- ///////////////////////////// Backup ///////////////////////////// -->
      <div class="accordion-entry" ng-include="'app/views/management/management_backup.html'" ng-if="!isMobile"></div>
-    
+     
+      <!-- ///////////////////////////// Timezone ///////////////////////////// -->
+     <div class="accordion-entry" 
+          ng-include="'app/views/management/management_timezone.html'"
+          ng-if="cfg.app_type === 'jb'"></div>
+     
      <!-- ///////////////////////////// Restore ///////////////////////////// -->
      <div class="accordion-entry" ng-include="'app/views/management/management_restore.html'" ng-if="!isMobile"></div>
      
@@ -22,9 +32,11 @@
 
     <!-- ///////////////////////////// Firmware update ///////////////////////////// --> 
     <div class="accordion-entry" 
-            ng-if="!isMobile"
-            ng-hide="cfg.app_type === 'wd' || cfg.app_type === 'jb'"
+            ng-if="!isMobile && !isInArray(['popp','jb'],cfg.app_type)"
          ng-include="'app/views/management/management_firmware.html'"></div>
+    <div class="accordion-entry" 
+            ng-if="cfg.app_type === 'jb'"
+           ng-include="'app/views/management/management_firmware_jb.html'"></div>
 
     <!-- ///////////////////////////// App Store access ///////////////////////////// -->
     <div class="accordion-entry" ng-include="'app/views/management/management_appstore.html'"></div>

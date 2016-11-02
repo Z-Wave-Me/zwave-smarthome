@@ -107,9 +107,12 @@
                                     <i class="fa widget-rating" title="{{r}}"
                                      ng-class="r > v.rating ? 'fa-star-o' : 'fa-star israted'" 
                                     ng-repeat="r in dataHolder.onlineModules.ratingRange"></i>
+                                   <span class="widget-rating"> | <i class="fa fa-download"></i> {{v.installed}}&times;</span>   
                                  </div>
+                                
                              </div>
                             <div class="widget-ctrl ctrl-right">
+                                 
                                 <div class="btn-group group-apps">
                                  <!-- Download -->
                                 <button href="" class="btn btn-default" title="{{_t('lb_download')}}" ng-click="installModule(v, 'online_install')" ng-if="!dataHolder.modules.ids[v.modulename]">
@@ -129,6 +132,13 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- Show more apps -->
+        <div class="text-right" ng-if="dataHolder.onlineModules.filter.featured == true">
+            <button class="btn btn-default"  ng-click="setFilter()">
+                <i class="fa fa-search-plus text-success"></i> {{_t('show_more_apps')}}
+            </button>
         </div>
 
     </div> <!-- /ng-controller --> 

@@ -83,6 +83,12 @@ Check if an object exists and has a node.
 
 
 
+### zeroFill() 
+
+Output integer with leading zeros
+
+
+
 ### getElementIcon() 
 
 DEPRECATEDBuilds an element icon path
@@ -188,6 +194,12 @@ Build a device name
 ### stringToSlug() 
 
 Convert text to slug
+
+
+
+### setConfigValue() 
+
+Set a hardware configuration value
 
 
 

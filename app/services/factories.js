@@ -429,7 +429,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
      */
     function putCfgXml(data) {
         return $http({
-            method: "PUT",
+            method: "POST",
             url: cfg.server_url + cfg.cfg_xml_url,
             data: data,
             headers: {
@@ -611,12 +611,15 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
             }
         }, function (response) {
             // something went wrong
-            angular.extend(cfg.route.fatalError, {
-                message: cfg.route.t['error_zwave_network'],
-                info: cfg.route.t['how_to_resolve_zwave_errors'],
-                hide: false,
-                permanent: true
-            });
+            if(response.status !== 403){
+                angular.extend(cfg.route.fatalError, {
+                    message: cfg.route.t['error_zwave_network'],
+                    info: cfg.route.t['how_to_resolve_zwave_errors'],
+                    hide: false,
+                    permanent: true
+                });
+            }
+
             return $q.reject(response);
         });
     }

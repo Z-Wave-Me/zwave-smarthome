@@ -72,6 +72,30 @@ Get xml config param
 
 **Returns**: `unresolved`
 
+### expertService.configGetCommands(methods, ZWaveAPIData) 
+
+Get expert commands
+
+**Parameters**
+
+**methods**: 
+
+**ZWaveAPIData**: 
+
+**Returns**: `*`
+
+### expertService.configGetInterviewCommands(node, updateTime) 
+
+Get interview ommands
+
+**Parameters**
+
+**node**: 
+
+**updateTime**: 
+
+**Returns**: `*`
+
 ### expertService.configConfigCont(node, nodeId, zddXml, cfgXml, lang, languages) 
 
 Config cont
@@ -159,6 +183,16 @@ Build config XML file
 ### expertService.getLangLine() 
 
 Get language line by key
+
+
+### expertService.configGetCommands() 
+
+Get expert commands
+
+
+### expertService.configGetInterviewCommands() 
+
+Get interview Commands
 
 
 ### expertService.configGetNav() 
