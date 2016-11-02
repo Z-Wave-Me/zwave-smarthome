@@ -728,8 +728,8 @@ myAppController.controller('ElementSecurityControlController', function ($scope,
                 $scope.widgetSecurityControl.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
                 return;
             }
-            $scope.widgetSecurityControl.find = lastTriggerList;
 
+            $scope.widgetSecurityControl.find = lastTriggerList;
 
         }, function (error) {
             $scope.widgetSecurityControl.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
