@@ -159,13 +159,16 @@ myAppController.controller('LocalIconController', function ($scope, $filter, $ti
         fd.append('files_files', files[0]);
         // Atempt to upload a file
         dataFactory.uploadApiFile(cfg.api.icons_upload, fd).then(function (response) {
-            $timeout(function () {
+            $scope.loading = false;
+            dataService.showNotifier({message: $scope._t('success_upload')});
+            $scope.allSettled();
+            /*$timeout(function () {
                 if (!_.findWhere($scope.icons.all, {file: files[0].name})) {
                     $scope.icons.all.push(input);
                 }
                 $scope.loading = false;
                 dataService.showNotifier({message: $scope._t('success_upload')});
-            }, 2000);
+            }, 2000);*/
 
         }, function (error) {
             $scope.icons.find = {};
