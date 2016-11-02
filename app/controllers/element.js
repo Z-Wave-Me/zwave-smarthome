@@ -1087,11 +1087,12 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
         $scope.icons.selected = false;
     };
     /**
+     * todo: deprecated
      * Check and validate an uploaded file
      * @param {object} files
      * @returns {undefined}
      */
-    $scope.checkUploadedFile = function (files) {
+    /*$scope.checkUploadedFile = function (files) {
         // Extends files object with a new property
         files[0].newName = dataService.uploadFileNewName(files[0].name);
         // Check allowed file formats
@@ -1123,15 +1124,16 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
             uploadFile(files);
         }
 
-    };
+    };*/
     /// --- Private functions --- ///
 
     /**
+     * todo: deprecated
      * Upload a file
      * @param {object} files
      * @returns {undefined}
      */
-    function uploadFile(files) {
+    /*function uploadFile(files) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('uploading')};
         // Clear all alerts and file name selected
         alertify.dismissAll();
@@ -1159,12 +1161,12 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
             $scope.loading = false;
         });
     }
-    ;
+    ;*/
 
     /**
-     * ???
+     * todo: deprecated
      */
-    function updateUploaded(input) {
+    /*function updateUploaded(input) {
         var output = [];
         angular.forEach(input.custom_icons, function (v, k) {
 
@@ -1181,12 +1183,12 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
         });
         console.log(output);
     }
-    ;
+    ;*/
 
     /**
-     * ???
+     * todo: deprecated
      */
-    function removeDeviceFromUploaded(input) {
+    /*function removeDeviceFromUploaded(input) {
         var output = [];
         angular.forEach(input.isset_icons, function (v, k) {
             var index = _.findIndex($scope.icons.uploaded, {file: v});
@@ -1202,5 +1204,5 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
         });
         console.log(output);
     }
-    ;
+    ;*/
 });

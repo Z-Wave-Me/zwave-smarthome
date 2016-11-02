@@ -1,6 +1,8 @@
 {
     "newtrans": "---",
-     "---": "newtrans",
+    "---": "newtrans",
+    "custom_icons_no_available":"There are no custom icons uploaded.",
+    "manage_custom_icons":"Manage custom icons",
     "show_more_apps":"Show more apps",
     "lb_allow_access_to_all_rooms":"Has Access to all rooms",
     "works_with_internet": "Works only with internet access",

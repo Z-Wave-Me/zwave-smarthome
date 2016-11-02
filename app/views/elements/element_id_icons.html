@@ -4,10 +4,14 @@
         <bb-loader></bb-loader>
         <div class="fieldset">
             <h2>{{_t('custom_icons')}}</h2>
+            <div class="alert alert-warning" ng-if="_.isEmpty(icons.uploaded)">
+                <i class="fa fa-exclamation-circle"></i> {{_t('custom_icons_no_available')}}
+                <a href="#/customize/iconslocal" class="btn btn-primary"><i class="fa fa-upload"></i> {{_t('upload_icon')}}</a>
+            </div>
 
         </div>
         <!--<pre>{{icons|json}}</pre>-->
-        <div class="fieldset">
+        <div class="fieldset" ng-if="!_.isEmpty(icons.uploaded)">
             <div class="app-row app-row-report app-row-icons clearfix">
                 <div class="report-entry">
                     <div class="report-col report-media">
@@ -64,14 +68,17 @@
             </div>
         </div>
         <!-- The list of icons -->
-        <div ng-if="icons.selected">
+        <div ng-if="icons.selected && !_.isEmpty(icons.uploaded)">
             <!-- The list of uploaded icons -->
             <div class="fieldset_ element-icon-list">
                 <img class="element-icon-img clickable" ng-click="setCustomIcon(v.file)"
                      ng-src="{{cfg.img.custom_icons + v.file}}" ng-repeat="v in icons.uploaded"/>
             </div>
-            <!-- Upload a custom icon -->
+            <!-- Manage custom icons -->
             <div class="fieldset">
+            <a href="#/customize/iconslocal" class="btn btn-primary"><i class="fa fa-image"></i> {{_t('manage_custom_icons')}}</a>
+            </div>
+            <!--<div class="fieldset">
                 <input class="inputfile" type="file" name="file" id="file{{v.id}}"
                        onchange="angular.element(this).scope().checkUploadedFile(this.files)"/>
                 <label for="file{{v.id}}" class="btn btn-success" title="{{_t('lb_upload_image')}}">
@@ -82,7 +89,7 @@
                         trans="_t('upload_file_info',{'__size__':icons.info.maxSize,'__extensions__': icons.info.extensions})"></bb-help-text>
                 <bb-help-text
                         trans="_t('image_recommended_dimension',{'__dimension__':cfg.upload.icon.dimension})"></bb-help-text>
-            </div>
+            </div>-->
             <!-- Submit -->
             <fieldset class="submit-entry">
                 <!-- Cancel -->

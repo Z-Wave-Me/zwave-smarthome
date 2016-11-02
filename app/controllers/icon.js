@@ -66,12 +66,12 @@ myAppController.controller('LocalIconController', function ($scope, $filter, $ti
     $scope.allSettled();
     
     /**
-     * Delete an icon from the storage
+     * Set a filter
      * @param {string} val
      * @returns {undefined}
      */
     $scope.setFilter = function (val) {
-        $scope.icons.filter = (val||false);
+        $scope.icons.filter = (val||{});
         $scope.allSettled();
     };
 
@@ -125,10 +125,11 @@ myAppController.controller('LocalIconController', function ($scope, $filter, $ti
             $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
             dataFactory.deleteApi('icons', icon.file).then(function (response) {
                 $scope.loading = false;
-                $scope.icons.all = _.reject($scope.icons.all, function (v) {
+                /*$scope.icons.all = _.reject($scope.icons.all, function (v) {
                     return v.file === icon.file;
-                });
+                });*/
                 dataService.showNotifier({message: $scope._t('delete_successful')});
+                $scope.allSettled();
 
                 //$route.reload();
             }, function (error) {
@@ -162,13 +163,6 @@ myAppController.controller('LocalIconController', function ($scope, $filter, $ti
             $scope.loading = false;
             dataService.showNotifier({message: $scope._t('success_upload')});
             $scope.allSettled();
-            /*$timeout(function () {
-                if (!_.findWhere($scope.icons.all, {file: files[0].name})) {
-                    $scope.icons.all.push(input);
-                }
-                $scope.loading = false;
-                dataService.showNotifier({message: $scope._t('success_upload')});
-            }, 2000);*/
 
         }, function (error) {
             $scope.icons.find = {};
@@ -188,11 +182,18 @@ myAppController.controller('LocalIconController', function ($scope, $filter, $ti
                 .filter(function (v) {
                     return v;
                 });
-         // Count apps in categories
+        // Count apps in categories
          $scope.icons.source = data.countBy(function (v) {
             return v.source;
         }).value();
-        $scope.icons.all = data.where($scope.icons.filter).value();
+        var icons = data.where($scope.icons.filter).value();
+        // If filter and no result show all icons
+        if(!_.isEmpty($scope.icons.filter) && _.isEmpty(icons)){
+            $scope.icons.filter = {};
+            $scope.icons.all = data.value();
+            return;
+        }
+        $scope.icons.all = icons;
     }
     /**
      * Build an object with icons that are used in devices
@@ -286,10 +287,8 @@ myAppController.controller('OnlineIconController', function ($scope, $filter, $t
     $scope.downloadIconSet = function (icon) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
         dataFactory.postApi('icons_install', icon).then(function (response) {
-            $timeout(function () {
-                $scope.loading = false;
-                dataService.showNotifier({message: $scope._t('success_file_download')});
-            }, 2000);
+            dataService.showNotifier({message: $scope._t('success_file_download')});
+            $location.path('/customize/iconslocal');
         }, function (error) {
             $scope.loading = false;
             alertify.alertError($scope._t('error_file_download'));
