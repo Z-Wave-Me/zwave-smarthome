@@ -204,14 +204,14 @@ myAppController.controller('LocalIconController', function ($scope, $filter, $ti
         var output = {};
         angular.forEach(devices, function (v, k) {
             // For testing purposes
-            if (v.id === 'ZWayVDev_zway_2-0-156-0-A') {
+           /* if (v.id === 'ZWayVDev_zway_2-0-156-0-A') {
                 v.custom_icons = {on: 'cat-box-icon.png', off: 'cat-cage-icon.png'};
             } else if (v.id === 'ZWayVDev_zway_2-0-49-3') {
                 v.custom_icons = {'default': 'cat-cage-icon.png'};
-            }
+            }*/
             // Device has custom icons
-            if (v.custom_icons) {
-                angular.forEach(v.custom_icons, function (iv, ik) {
+            if (v.customIcons) {
+                angular.forEach(v.customIcons, function (iv, ik) {
                     if (output[iv]) {
                         //icon[iv] = [v.id];
                         output[iv].push(v.id);
