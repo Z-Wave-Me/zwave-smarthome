@@ -16,6 +16,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             hidden: 0
         },
         devices: {
+            switchButton: [],
             noDashboard: false,
             noDevices: false,
             show: true,

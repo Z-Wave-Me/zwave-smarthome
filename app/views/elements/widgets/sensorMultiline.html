@@ -38,7 +38,10 @@
     <div class="widget-ctrl ctrl-left">
         <div class="switch-wrap">
             <label class="switch">
-                <input type="checkbox">
+                <input type="checkbox"
+                       ng-checked="v.metrics.level === 'cOn'"
+                       ng-model="dataHolder.devices.switchButton[v.id]"
+                       ng-change="runCmd(v.id + '/command/' + (dataHolder.devices.switchButton[v.id] ? 'cOn':'cOff'), v.id)" />
                 <div class="slider round"></div>
             </label>
 
@@ -46,12 +49,12 @@
         <div class="btn-group">
             <button class="btn btn-off"
                     ng-class="v.metrics.level=='close' ? 'btn-primary': 'btn-default'"
-                    ng-click_="runCmd(v.id + '/command/cReset', v.id)">
+                    ng-click="runCmd(v.id + '/command/cReset', v.id)">
                 <i class="fa fa-refresh"></i>
             </button>
             <button class="btn btn-on"
                     ng-class="v.metrics.level =='open' ? 'btn-primary': 'btn-default'"
-                    ng-click_="runCmd(v.id + '/command/automationToggle', v.id)">
+                    ng-click="runCmd(v.id + '/command/automationToggle', v.id)">
                 <i class="fa fa-clock-o"></i>
             </button>
         </div>
