@@ -58,7 +58,6 @@ myAppController.controller('LocalIconController', function ($scope, $filter, $ti
             // Success - devices
             if (devices.state === 'fulfilled') {
                 $scope.icons.used.device = iconUsedInDevice(devices.value.data.data.devices);
-                console.log($scope.icons.used.device)
             }
 
 
