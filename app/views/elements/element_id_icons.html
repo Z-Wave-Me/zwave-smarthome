@@ -41,11 +41,12 @@
                         <i class="fa fa-long-arrow-right" ng-if="icons.all.custom[k]"></i>
                     </div>
                     <!-- Custom icon -->
-                    <div class="report-col report-media">
-                        <img class="report-img" ng-src="{{cfg.img.custom_icons + icons.all.custom[k]}}"
-                             ng-if="icons.all.custom[k]" alt="{{v.type}}"/>
+                    <div class="report-col report-media"
+                         ng-init="iconSet = (icons.all.custom.level[k] || icons.all.custom[k])">
+                        <img class="report-img" ng-src="{{cfg.img.custom_icons + iconSet}}"
+                             ng-if="iconSet" alt="{{v.type}}"/>
                         <img class="report-img img-opacity-50" ng-src="{{cfg.img.icons }}cancel.png"
-                             ng-if="!icons.all.custom[k]" alt="img"/>
+                             ng-if="!iconSet" alt="img"/>
                     </div>
                     <!-- Actions -->
                     <div class="report-col report-ctrl">

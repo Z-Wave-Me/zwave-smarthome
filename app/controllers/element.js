@@ -1063,10 +1063,21 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
      * @returns {undefined}
      */
     $scope.updateWithCustomIcon = function () {
+        var customicons = function(icons,custom){
+            var obj = {};
+            if(icons['default']){
+                return custom;
+            }else{
+                obj['level'] = custom;
+                return obj;
+            }
+        }
         var input = {
-            customicons: $scope.icons.all.custom
+            customicons: customicons($scope.icons.all.default,$scope.icons.all.custom)
         };
         var id = $scope.elementId.input.id;
+        /*console.log(input)
+        return;*/
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         dataFactory.putApi('customicon', id, input, '?icon').then(function (response) {
             $scope.icons.selected = false;
