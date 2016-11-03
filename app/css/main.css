@@ -11062,6 +11062,17 @@ img {
   width: 30% !important;
 }
 
+/* Device discreteSensor
+-------------------------------------------------- */
+/* line 111, ../sass/common/_widget.scss */
+.discreteSensor .ctrl-left {
+  width: 30% !important;
+}
+/* line 114, ../sass/common/_widget.scss */
+.discreteSensor .ctrl-right {
+  width: 70% !important;
+}
+
 /* Report
 -------------------------------------------------- */
 /* line 3, ../sass/common/_report.scss */

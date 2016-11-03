@@ -677,7 +677,11 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                         icon = iconArray.half;
                     }
                     break;
-                    // default
+                    // gesture
+                case 'gesture':
+                    icon = (iconArray[element.metrics.state] || iconArray['press']);
+                    break;
+                // default
                 default:
                     icon = iconArray.default;
                     break;

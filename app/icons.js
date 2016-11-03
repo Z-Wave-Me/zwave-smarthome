@@ -28,7 +28,7 @@ var icon_data = {
                         off: 'window-closed.png'
                     }
                 },
-                switch : {
+                switch: {
                     level: {
                         on: 'switch-on.png',
                         off: 'switch-off.png'
@@ -58,64 +58,80 @@ var icon_data = {
                     default: 'lock-closed.png'
                 },
                 thermostat: {
-                     default: 'thermostat.png'
+                    default: 'thermostat.png'
                 },
                 energy: {
-                     default: 'energy.png'
+                    default: 'energy.png'
                 },
                 meter: {
-                     default: 'meter.png'
+                    default: 'meter.png'
                 },
                 temperature: {
-                     default: 'temperature.png'
+                    default: 'temperature.png'
                 },
                 camera: {
                     default: 'camera.png'
                 },
                 smoke: {
-                     level: {
-                          on: 'smoke-on.png',
-                          off: 'smoke-off.png'
-                      }
+                    level: {
+                        on: 'smoke-on.png',
+                        off: 'smoke-off.png'
+                    }
 
                 },
                 alarm: {
-                     level: {
-                          on: 'alarm-on.png',
-                          off: 'alarm-off.png'
-                      }
+                    level: {
+                        on: 'alarm-on.png',
+                        off: 'alarm-off.png'
+                    }
 
                 },
                 battery: {
-                     default: 'battery.png'
+                    default: 'battery.png'
                 },
                 luminosity: {
-                     default: 'luminosity.png'
+                    default: 'luminosity.png'
                 },
                 humidity: {
-                     default: 'humidity.png'
+                    default: 'humidity.png'
                 },
                 ultraviolet: {
-                     default: 'ultraviolet.png'
+                    default: 'ultraviolet.png'
                 },
                 barometer: {
-                     default: 'barometer.png'
+                    default: 'barometer.png'
                 },
                 new: {
-                     default: 'new.png'
+                    default: 'new.png'
                 },
                 CO_alarm: {
-                     level: {
-                          on: 'co-alarm-on.png',
-                          off: 'co-alarm-off.png'
-                      }
+                    level: {
+                        on: 'co-alarm-on.png',
+                        off: 'co-alarm-off.png'
+                    }
 
                 },
-               tamper: {
-                     level: {
-                          on: 'tamper-on.png',
-                          off: 'tamper-off.png'
-                      }
+                tamper: {
+                    level: {
+                        on: 'tamper-on.png',
+                        off: 'tamper-off.png'
+                    }
+
+                },
+                gesture: {
+                    level: {
+                        press: 'press.png',// pressed / gedrückt
+                        hold: 'hold.png',// hold / gedrückt gehalten
+                        release: 'release.png',// released / losgelassen
+                        swipe_up: 'swipe-up.png',// swiped / berührt
+                        swipe_down: 'swipe-down.png',// swiped / berührt
+                        swipe_left: 'swipe-left.png',// swiped / berührt
+                        swipe_right: 'swipe-right.png',// swiped / berührt
+                        swipe_top_left_to_bottom_right: 'swipe-top-left-to-bottom-right.png',// swiped / berührt
+                        swipe_top_right_to_bottom_left: 'swipe-top-right-to-bottom-left.png',// swiped / berührt
+                        swipe_bottom_left_to_top_right: 'swipe-bottom-left-to-top-right.png',// swiped / berührt
+                        swipe_bottom_right_to_top_left: 'swipe-bottom-right-to-top-left.png'// swiped / berührt
+                    }
 
                 }
             },
