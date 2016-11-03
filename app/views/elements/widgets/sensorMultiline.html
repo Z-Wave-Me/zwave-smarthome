@@ -46,12 +46,12 @@
         <div class="btn-group">
             <button class="btn btn-off"
                     ng-class="v.metrics.level=='close' ? 'btn-primary': 'btn-default'"
-                    ng-click_="runCmd(v.id + '/command/close', v.id)">
+                    ng-click_="runCmd(v.id + '/command/cReset', v.id)">
                 <i class="fa fa-refresh"></i>
             </button>
             <button class="btn btn-on"
                     ng-class="v.metrics.level =='open' ? 'btn-primary': 'btn-default'"
-                    ng-click_="runCmd(v.id + '/command/open', v.id)">
+                    ng-click_="runCmd(v.id + '/command/automationToggle', v.id)">
                 <i class="fa fa-clock-o"></i>
             </button>
         </div>
