@@ -332,8 +332,8 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
         };
         var iconKey = $filter('hasNode')(element, 'metrics.icon');
         // Set custom icons
-        if (element.custom_icons && _.size(element.custom_icons) > 0) {
-            icons.custom = element.custom_icons;
+        if (_.size(element.customIcons) > 0) {
+            icons.custom = element.customIcons;
         }
         // Set default icons by metrics.icon
         if (iconKey && iconKey !== '') {
@@ -587,8 +587,17 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
     function assignElementIcon(element) {
         var icon = cfg.img.icons + 'placeholder.png';
         var iconKey = $filter('hasNode')(element, 'metrics.icon');
+        switch (element.deviceType) {
+            // switchControl
+            case 'switchControl':
+                //icon = iconArray.default;
+                return iconArray.default;
+            // default
+            default:
+                break;
+        }
         // Set icons by metrics.icon
-        if (iconKey && iconKey !== '') {
+        //if (iconKey && iconKey !== '') {
             // The icon has a full path 
             if ((/^https?:\/\//.test(iconKey))) {
                 return iconKey;
@@ -600,7 +609,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                 }
             }
             // Assign icon by metrics.icon
-            var iconArray = setIcon(cfgicons.element.icon[iconKey], element.custom_icons);
+            var iconArray = setIcon(cfgicons.element.icon[iconKey], element.customIcons,element.id);
             if (!iconArray) {
                 // set default
                 return icon;
@@ -673,10 +682,12 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                     icon = iconArray.default;
                     break;
             }
-        }
+        //}
         // Set icons by deviceType
-        else {
-            var iconArray = setIcon(cfgicons.element.deviceType[element.deviceType], element.custom_icons);
+        /*else {
+
+            var iconArray = setIcon(cfgicons.element.deviceType[element.deviceType], element.customIcons,element.id);
+            console.log(element.id,iconArray)
             if (!iconArray) {
                 cfg.img.icons + icon;
             }
@@ -689,25 +700,53 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                 default:
                     break;
             }
-        }
+        }*/
 
         // Build an object with icons
-        function setIcon(defaultIcon, customIcon) {
+        function setIcon(defaultIcon, customIcon,id) {
+
+
+            //console.log(defaultIcon, customIcon)
+            //console.log('---------------------------')
             // Test
             //customIcon = {on: 'cat-drunk-icon.png', off: 'cat-fight-icon.png'};
-            // Icon is not defined
-            if (!defaultIcon) {
-                return false;
-            }
             var obj = {};
-            angular.forEach(defaultIcon.level || defaultIcon, function (v, k) {
+            if (!_.isEmpty(customIcon)) {
+                angular.forEach(customIcon.level || customIcon, function (v, k) {
+                    // If a custom icon exists set it otherwise set a default icon
+                    obj[k] = cfg.img.custom_icons + v;
+                });
+            }else {
+                if(defaultIcon){
+                    angular.forEach(defaultIcon.level || defaultIcon, function (v, k) {
+                        // If a custom icon exists set it otherwise set a default icon
+                        obj[k] = cfg.img.icons + v;
+                    });
+                }else{
+                    return false;
+                }
+            }
+            //console.log(obj)
+            /*angular.forEach(defaultIcon.level || defaultIcon, function (v, k) {
                 // If a custom icon exists set it otherwise set a default icon
                 obj[k] = (_.isObject(customIcon) && customIcon[k] ? cfg.img.custom_icons + customIcon[k] : cfg.img.icons + v);
-            });
+            });*/
+            // Icon is not defined
+            /*if (!defaultIcon) {
+                return false;
+            }*/
+
+           /* angular.forEach(defaultIcon.level || defaultIcon, function (v, k) {
+                // If a custom icon exists set it otherwise set a default icon
+                obj[k] = (_.isObject(customIcon) && customIcon[k] ? cfg.img.custom_icons + customIcon[k] : cfg.img.icons + v);
+            });*/
+            if(id === 'Multiline_19'){
+                //console.log(obj)
+                //console.log(id)
+            }
             return obj;
         }
         ;
-        //console.log(icon); 
         return icon;
 
     }
