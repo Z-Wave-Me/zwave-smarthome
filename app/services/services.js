@@ -710,7 +710,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @param {object} customIcon
      * @returns {*}
      */
-    function setIcon(defaultIcon, customIcon) {
+    function setIcon(defaultIcon, customIcon,id) {
         var obj = {};
         customIcon = customIcon.level || customIcon
         if (defaultIcon) {
@@ -720,6 +720,11 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
             });
             return obj;
         } else {
+            // If a custom icon exists set it otherwise set false
+            if(!_.isEmpty(customIcon.default)){
+                obj['default'] = cfg.img.custom_icons + customIcon['default'];
+                return obj;
+            }
             return false;
         }
 
