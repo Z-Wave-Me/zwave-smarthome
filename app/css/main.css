@@ -12206,6 +12206,12 @@ img.widget-promo-image {
 
 /* RGB color wheel
 --------------------------------------------------------*/
+/* line 264, ../sass/modules/_elements.scss */
+.wheel-colorpicker {
+  /*#wheel_picker_selected_spin{
+      background-color: #fff;
+  }*/
+}
 /* line 265, ../sass/modules/_elements.scss */
 .wheel-colorpicker .col-rgb {
   margin: 0 auto;
@@ -12218,16 +12224,12 @@ img.widget-promo-image {
   cursor: pointer;
 }
 /* line 274, ../sass/modules/_elements.scss */
-.wheel-colorpicker #wheel_picker_preview {
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin: 0 0 20px 0;
-  height: 40px;
-  line-height: 35px;
-}
-/* line 280, ../sass/modules/_elements.scss */
-.wheel-colorpicker #wheel_picker_preview #wheel_picker_preview_spin {
-  background-color: #fff;
+.wheel-colorpicker #wheel_picker_selected, .wheel-colorpicker #wheel_picker_preview {
+  /*border: 1px solid #ccc;
+  border-radius: 4px;*/
+  margin: 0;
+  height: 80px;
+  line-height: 80px;
 }
 
 /* Events

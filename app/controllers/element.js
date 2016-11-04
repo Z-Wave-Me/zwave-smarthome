@@ -421,7 +421,9 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
     $scope.widgetSwitchRGBW = {
         find: {},
         alert: {message: false, status: 'is-hidden', icon: false},
-        process: false
+        process: false,
+        previewColor: 'rgb(255, 255, 255)',
+        selectedColor: 'rgb(255, 255, 255)'
     };
 
     /**
@@ -443,8 +445,9 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
         image.src = 'app/img/colorwheel.png';
 
         var defaultColor = "rgb(" + input.metrics.color.r + ", " + input.metrics.color.g + ", " + input.metrics.color.b + ")";
-        $('#wheel_picker_preview').css('backgroundColor', defaultColor);
-
+        //$('#wheel_picker_preview').css('backgroundColor', defaultColor);
+        $scope.widgetSwitchRGBW.selectedColor = defaultColor;
+        $scope.widgetSwitchRGBW.previewColor = defaultColor;
         $('#wheel_picker').mousemove(function (e) { // mouse move handler
             if (bCanPreview) {
                 // get coordinates of current position
@@ -458,13 +461,8 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
 
                 // update preview color
                 var pixelColor = "rgb(" + pixel[0] + ", " + pixel[1] + ", " + pixel[2] + ")";
-
-                if (pixelColor == 'rgb(0, 0, 0)') {
-                    $('#wheel_picker_preview').css('backgroundColor', defaultColor);
-
-                } else {
-                    $('#wheel_picker_preview').css('backgroundColor', pixelColor);
-                }
+                pixelColor = (pixelColor == 'rgb(0, 0, 0)' ? $scope.widgetSwitchRGBW.selectedColor : pixelColor);
+                $scope.widgetSwitchRGBW.previewColor = pixelColor;
 
                 // update controls
                 $('#rVal').val('R: ' + pixel[0]);
@@ -475,13 +473,24 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
         });
 
         $('#wheel_picker').click(function (e) { // click event handler
-            bCanPreview = !bCanPreview;
-            if (!bCanPreview) {
+           // bCanPreview = true;//!bCanPreview;
+            if (bCanPreview) {
                 var cmdColor = $('#rgbVal').val().split(',');
                 var cmd = input.id + '/command/exact?red=' + cmdColor[0] + '&green=' + cmdColor[1] + '&blue=' + cmdColor[2] + '';
+                var rgbColors = 'rgb('+ cmdColor[0]+',' + cmdColor[1] + ',' + cmdColor[2] +')';
+                var rgbColorsObj = {
+                    r: cmdColor[0],
+                    g: cmdColor[1],
+                    b: cmdColor[2]
+                };
                 $scope.widgetSwitchRGBW.process = true;
                 dataFactory.runApiCmd(cmd).then(function (response) {
+                    var findIndex = _.findIndex($scope.dataHolder.devices.collection, {id: input.id});
+                   //angular.extend($scope.dataHolder.devices.collection[findIndex ].metrics,{rgbColors: rgbColors});
+                    angular.extend($scope.dataHolder.devices.collection[findIndex ].metrics.color,rgbColorsObj);
+                    angular.extend(input.metrics.color,rgbColorsObj);
                     $scope.widgetSwitchRGBW.process = false;
+                    $scope.widgetSwitchRGBW.selectedColor = rgbColors;
                 }, function (error) {
                     $scope.widgetSwitchRGBW.process = false;
                     $scope.widgetSwitchRGBW.alert = {message: $scope._t('error_update_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
