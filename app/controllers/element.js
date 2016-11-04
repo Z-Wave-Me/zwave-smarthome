@@ -1065,7 +1065,9 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
     $scope.updateWithCustomIcon = function () {
         var customicons = function(icons,custom){
             var obj = {};
-            if(icons['default']){
+            if(_.isEmpty(custom)){
+                return obj;
+            }else if(icons['default']){
                 return custom;
             }else{
                 obj['level'] = custom;
