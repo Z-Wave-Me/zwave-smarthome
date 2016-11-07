@@ -203,5 +203,11 @@ Set a hardware configuration value
 
 
 
+### etRgbColors() 
+
+Set rgb colors
+
+
+
 
 * * *

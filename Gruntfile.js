@@ -69,7 +69,6 @@ module.exports = function (grunt) {
                     'vendor/bootstrap/bootstrap.min.js',
                     'vendor/bootstrap/plugins/bootstrap-datetimepicker.js',
                     // APP
-                    'app/icons.js',
                     'app/app.js',
                     'dist/app/js/templates.js',
                     'app/modules/qAllSettled.js',
@@ -125,6 +124,7 @@ module.exports = function (grunt) {
                     },
                     //{expand:true,src: ['../zwave-api/storage/data/z_en.json'], dest: 'storage/data/',flatten: true},
                     {expand: true, src: ['app/config.js'], dest: 'dist/app/js/', flatten: true},
+                    {expand: true, src: ['app/icons.js'], dest: 'dist/app/js/', flatten: true},
                     {expand: true, src: ['app/css/screenshot.png'], dest: 'dist/app/css/', flatten: true},
                     {src: ['storage/img/**'], dest: 'dist/'},
                     {src: ['storage/demo/**'], dest: 'dist/'},

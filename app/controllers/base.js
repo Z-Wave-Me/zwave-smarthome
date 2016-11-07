@@ -106,7 +106,6 @@ myAppController.controller('BaseController', function ($scope, $rootScope,$cooki
                     angular.extend(cfg.route.fatalError, fatalArray);
                 }else{
                     if (cfg.route.fatalError.type === 'network') {
-                        console.log('Remove the fucking error message');
                         dataFactory.sessionApi().then(function (sessionRes) {
                             var user = sessionRes.data.data;
                             if (sessionRes.data.data) {

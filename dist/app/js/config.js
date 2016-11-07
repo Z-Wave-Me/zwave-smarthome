@@ -92,14 +92,19 @@ var config_data = {
             'firstaccess': 'ZAutomation/api/v1/system/first-access',
             'factory_default': 'ZAutomation/api/v1/resetToFactoryDefault',
             'postfix': 'ZWaveAPI/Postfix',
-            'timezone': 'ZAutomation/api/v1/system/time/get',
+            'time': 'ZAutomation/api/v1/system/time/get',
             'system_info': 'ZAutomation/api/v1/system/info',
             'system_reboot': 'ZAutomation/api/v1/system/reboot',
             'skins': 'ZAutomation/api/v1/skins',
             'skins_install': 'ZAutomation/api/v1/skins/install',
             'skins_update': 'ZAutomation/api/v1/skins/update',
             'skins_active': 'ZAutomation/api/v1/skins/active',
-            'skins_reset': 'ZAutomation/api/v1/skins/setToDefault'
+            'skins_reset': 'ZAutomation/api/v1/skins/setToDefault',
+            'ping': '/ZAutomation/api/v1/system/time/get',
+            'icons': 'ZAutomation/api/v1/icons',
+            'icons_install': 'ZAutomation/api/v1/icons/install',
+            'customicon': 'ZAutomation/api/v1/devices',
+            'icons_upload': 'ZAutomation/api/v1/icons/upload'
         },
         // List of remote api URLs
         'api_remote': {

@@ -46,9 +46,9 @@ Reset a fatal error.
 
 **Returns**: `undefined`
 
-### BaseController.setTimeZone() 
+### BaseController.setTimeStamp() 
 
-Set a time
+Set timestamp and ping server if request fails
 
 **Returns**: `undefined`
 

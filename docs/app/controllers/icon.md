@@ -28,7 +28,7 @@ Load all promises
 
 ### LocalIconController.setFilter(val) 
 
-Delete an icon from the storage
+Set a filter
 
 **Parameters**
 
