@@ -794,3 +794,14 @@ myApp.filter('setConfigValue', function () {
 
     };
 });
+
+/**
+ * Set rgb colors
+ * @function etRgbColors
+ */
+myApp.filter('setRgbColors', function () {
+    return function (color) {
+        return 'rgb('+ color.r +',' + color.g  + ',' + color.b  +')';
+
+    };
+});

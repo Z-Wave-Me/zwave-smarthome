@@ -3,7 +3,6 @@
     <bb-loader></bb-loader>
     <!-- Skins navigation -->
     <div ng-include="'app/views/customize/navi.html'"></div>
-    <div class="alert alert-warning">This is a new feature, but is still under progress (only Demo Data). Feel free to play around and test it.</div>
     <div ng-if="icons.show">
         <!-- Upload -->
         <div class="form form-inline form-page clearfix">
@@ -33,7 +32,9 @@
                 <bb-help-text trans="_t('image_recommended_dimension',{'__dimension__':cfg.upload.icon_packed.dimension})"></bb-help-text>
             </div>
         </div>
-        <div ng-if="icons.upload">{{icons.upload|cutText:true:30}}</div>
+        <!--<div ng-if="icons.upload">{{icons.upload|cutText:true:30}}</div>-->
+        <!-- Control and list -->
+        <div ng-if="!_.isEmpty(icons.all)">
         <!-- Control -->
         <div class="page-control form-inline">
             <div class="btn-group btn-goup-block btn-goup-1">
@@ -66,10 +67,10 @@
         <div class="app-row app-row-reportclearfix">
             <div class="report-entry" ng-repeat="v in icons.all|unique: 'file'">
                 <div class="report-col report-media">
-                    <img class="report-img" ng-src="{{cfg.img.custom_icons + v.file}}" />
+                    <img class="report-img"  alt="{{v.file}}"  title="{{v.file}}" ng-src="{{cfg.img.custom_icons + v.file}}" />
                 </div>
                 <div class="report-col report-body" title="{{v.file}}">
-                    <span>{{v.file}}</span>
+                    <span>{{v.source}}</span>
                     <span class="text-danger" ng-if="icons.used.device[v.file]"> | used in: <a class="text-danger" ng-href="#element/{{d}}" ng-repeat="d in icons.used.device[v.file]">
                             {{d|cutText:true:20}}</a>
                     </span>   
@@ -85,6 +86,7 @@
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </div>
 </div> <!-- /ng-controller --> 

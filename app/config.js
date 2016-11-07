@@ -101,6 +101,10 @@ var config_data = {
             'skins_active': 'ZAutomation/api/v1/skins/active',
             'skins_reset': 'ZAutomation/api/v1/skins/setToDefault',
             'ping': '/ZAutomation/api/v1/system/time/get',
+            'icons': 'ZAutomation/api/v1/icons',
+            'icons_install': 'ZAutomation/api/v1/icons/install',
+            'customicon': 'ZAutomation/api/v1/devices',
+            'icons_upload': 'ZAutomation/api/v1/icons/upload'
         },
         // List of remote api URLs
         'api_remote': {
