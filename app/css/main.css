@@ -12308,36 +12308,42 @@ img.widget-promo-image {
 }
 
 /* line 47, ../sass/modules/_apps.scss */
-#apps_online .widget-warning .widget-img {
+#apps_online .widget-warning .widget-img, #apps_instances .widget-warning .widget-img {
   opacity: 0.4;
   filter: alpha(opacity=40);
 }
 /* line 54, ../sass/modules/_apps.scss */
-#apps_online .widget-warning .widget-title h3 a {
+#apps_online .widget-warning .widget-title h3 a, #apps_instances .widget-warning .widget-title h3 a {
   color: #a6a6a6 !important;
 }
 /* line 62, ../sass/modules/_apps.scss */
-#apps_online .widget-warning .widget-footer .rating-group .widget-rating {
+#apps_online .widget-warning .widget-footer .rating-group .widget-rating, #apps_instances .widget-warning .widget-footer .rating-group .widget-rating {
   color: #a6a6a6;
 }
 /* line 64, ../sass/modules/_apps.scss */
-#apps_online .widget-warning .widget-footer .rating-group .widget-rating.israted {
+#apps_online .widget-warning .widget-footer .rating-group .widget-rating.israted, #apps_instances .widget-warning .widget-footer .rating-group .widget-rating.israted {
   color: #f8d9ac;
+}
+
+/* line 75, ../sass/modules/_apps.scss */
+#apps_instances .widget-warning .widget-entry-in {
+  border-color: #eba5a3 !important;
+  border-width: 4px;
 }
 
 /* App detail
 -------------------------------------------------- */
-/* line 77, ../sass/modules/_apps.scss */
+/* line 86, ../sass/modules/_apps.scss */
 .app-detail-img {
   margin: 0 0 10px 0;
 }
 
-/* line 81, ../sass/modules/_apps.scss */
+/* line 90, ../sass/modules/_apps.scss */
 .app-detail-body h2 {
   margin: 20px 0 10px 0;
 }
 
-/* line 85, ../sass/modules/_apps.scss */
+/* line 94, ../sass/modules/_apps.scss */
 .app-detail-list {
   border-top: solid 1px #d3d3d3;
   margin: 10px 0 0 0;
@@ -12346,20 +12352,20 @@ img.widget-promo-image {
 
 /* Apps rating
 -------------------------------------------------- */
-/* line 93, ../sass/modules/_apps.scss */
+/* line 102, ../sass/modules/_apps.scss */
 .module-rating {
   font-size: 150%;
   padding: 0 10px 0 0;
   color: #8c8c8c;
 }
-/* line 97, ../sass/modules/_apps.scss */
+/* line 106, ../sass/modules/_apps.scss */
 .module-rating.israted {
   color: #f4c37d;
 }
 
 /* Apps comments
 -------------------------------------------------- */
-/* line 103, ../sass/modules/_apps.scss */
+/* line 112, ../sass/modules/_apps.scss */
 .comment-entry {
   margin: 0 0 10px 0;
   padding: 10px;
@@ -12367,7 +12373,7 @@ img.widget-promo-image {
   color: #0d0d0d;
   font-size: 100%;
 }
-/* line 109, ../sass/modules/_apps.scss */
+/* line 118, ../sass/modules/_apps.scss */
 .comment-entry .comment-header {
   font-style: italic;
   font-size: 95%;
@@ -12375,7 +12381,7 @@ img.widget-promo-image {
   margin: 0 0 5px 0;
 }
 
-/* line 119, ../sass/modules/_apps.scss */
+/* line 128, ../sass/modules/_apps.scss */
 .comment-entry.even {
   background-color: #E9E9E9;
 }

@@ -13,6 +13,10 @@ Marcel Kermer
 - Custom icons: Possibility to upload and assign custom icons for devices.
 - Skins: The Skin is a software package redefining all visual elements of your mobile and browser interface.
 
+#### Changes
+- Displaying active APPS as widgets.
+- Caching online modules.
+
 ## v1.5.1
 #### Fixes
 - Displays Firmware Update in  POPP version.

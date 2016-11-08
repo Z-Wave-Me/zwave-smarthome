@@ -1,7 +1,7 @@
 <!-- Instance view -->
 <div ng-controller="AppBaseController">
      <bb-loader></bb-loader>
-    <div ng-controller="AppInstanceController">
+    <div ng-controller="AppInstanceController" id="apps_instances">
          <!-- Apps navigation -->
         <div ng-include="'app/views/apps/navi.html'"></div>
         <div class="page-control form-inline">
@@ -30,7 +30,71 @@
               </div>
           </div>
       </div>
-        <div class="app-row app-row-report app-row-event clearfix">
+
+        <div class="app-row app-row-widget clearfix">
+            <div class="widget-entry widget-entry-app"
+                 id="instance_{{$index}}"
+                 ng-repeat="v in dataHolder.instances.all|orderBy:cfg.orderby.instances[dataHolder.instances.orderBy] | filter:q track by v.id"
+                 ng-class="v.active || 'widget-warning'"
+                 ng-if="dataHolder.modules.cameraIds.indexOf(v.moduleId) === -1">
+                <div class="widget-entry-in">
+                    <!-- Widget img -->
+                    <div class="widget-img">
+                        <a href="#module/put/{{v.id}}" title="{{v.title}}">
+                            <img class="widget-preview-img" ng-src="{{moduleMediaUrl + v.moduleId + '/' + dataHolder.modules.imgs[v.moduleId]}}" ng-if="dataHolder.modules.imgs[v.moduleId]" alt="img" />
+                            <img class="widget-preview-img" ng-src="storage/img/placeholder-img.png" ng-if="!dataHolder.modules.imgs[v.moduleId]" alt="img" />
+                        </a>
+                    </div>
+                    <!-- Widget header -->
+                    <div class="widget-header"></div>
+                    <div class="widget-content">
+                        <!-- Widget title -->
+                        <div class="widget-title">
+                            <h3>
+                                <a href="#module/put/{{v.id}}" title="{{v.title}}">{{v.title|cutText:true:25}} <span class="btn-name">&raquo;</span></a>
+                            </h3>
+                        </div>
+                        <hr class="bottom-aligner" />
+                        <!-- Widget footer -->
+                        <div class="widget-footer">
+                            <div class="widget-ctrl ctrl-left">
+                                <!-- Has instance -->
+                                <span ng-if="v.hasInstance"><i class="fa fa-fire text-success"></i> ({{v.hasInstance}})</span>
+                            </div>
+                            <div class="widget-ctrl ctrl-right clearfix">
+                                <div class="btn-group">
+                                    <a ng-href="#module/put/{{v.id}}" class="btn btn-default" title="{{_t('lb_settings')}}">
+                                        <i class="fa fa-cog"></i>
+                                    </a>
+                                    <button title="{{_t('lb_deactivate')}}"
+                                            class="btn btn-default" href=""
+                                            ng-if="v.active"
+                                            ng-class="v.active ? 'active' : ''"
+                                            ng-click="activateInstance(v, false)">
+                                        <i class="fa fa-fire text-success"></i>
+                                    </button>
+                                    <button title="{{_t('lb_activate')}}"
+                                            class="btn btn-default"
+                                            ng-if="!v.active"
+                                            ng-click="activateInstance(v, true)">
+                                        <i class="fa fa-power-off text-danger"></i>
+                                    </button>
+                                    <button title="{{_t('lb_remove')}}"
+                                            class="btn btn-default"
+                                            ng-click="deleteInstance('#instance_' + $index, {'id': v.id}, _t('lb_delete_confirm'))">
+                                        <i class="fa fa-remove text-danger"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.widget-entry-in -->
+            </div><!-- /.widget-entry -->
+        </div><!-- /.app-row -->
+
+
+
+        <!--<div class="app-row app-row-report app-row-event clearfix">
              <div class="report-entry bcg-active"
                 id="instance_{{$index}}" 
                 ng-repeat="v in dataHolder.instances.all|orderBy:cfg.orderby.instances[dataHolder.instances.orderBy] | filter:q track by v.id" 
@@ -69,6 +133,6 @@
                     </div>
                  </div>
               </div>
-        </div>
+        </div>-->
     </div> <!-- /ng-controller --> 
 </div> <!-- /ng-controller --> 
