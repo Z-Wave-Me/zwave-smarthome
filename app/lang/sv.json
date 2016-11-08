@@ -1,4 +1,6 @@
 {
+    "activeASC": "Inactive",
+    "activeDESC": "Active",
     "button": "Button",
     "gesture": "Gesture",
     "press": "pressed",

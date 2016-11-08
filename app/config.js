@@ -347,6 +347,8 @@ var config_data = {
                 'updateTimeDESC': '-updateTime'
             },
             instances: {
+                'activeDESC': '-active',
+                'activeASC': 'active',
                 'creationTimeDESC': '-creationTime',
                 'creationTimeASC': 'creationTime',
                 'titleASC': 'title',
