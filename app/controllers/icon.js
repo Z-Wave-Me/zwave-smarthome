@@ -13,7 +13,10 @@ myAppController.controller('LocalIconController', function ($scope, $filter, $ti
         find: {},
         upload: false,
         all: {},
-        source: {},
+        source: {
+            cnt:{},
+            title: {}
+        },
         filter: {},
         used: {
             device: {},
@@ -180,10 +183,12 @@ myAppController.controller('LocalIconController', function ($scope, $filter, $ti
         var data = _.chain(icons)
                 .flatten()
                 .filter(function (v) {
+                    v.source_title = (!v.source_title ? 'Custom': v.source_title);
+                    $scope.icons.source.title[v.source] = v.source_title;
                     return v;
                 });
         // Count apps in categories
-         $scope.icons.source = data.countBy(function (v) {
+         $scope.icons.source.cnt = data.countBy(function (v) {
             return v.source;
         }).value();
         var icons = data.where($scope.icons.filter).value();
