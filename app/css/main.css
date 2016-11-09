@@ -10686,7 +10686,7 @@ a:focus {
   display: none;
 }
 
-/* Images
+/* Images dimensions
 -------------------------------------------------- */
 /* line 3, ../sass/common/_images.scss */
 img {
@@ -10813,6 +10813,16 @@ img {
 .img-opacity-50 {
   opacity: 0.5;
   filter: alpha(opacity=50);
+}
+
+/* Image list
+-------------------------------------------------- */
+/* line 96, ../sass/common/_images.scss */
+.imglist-entry {
+  width: 50%;
+  float: left;
+  position: relative;
+  min-height: 1px;
 }
 
 /* Page navigation

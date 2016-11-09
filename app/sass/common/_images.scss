@@ -1,4 +1,4 @@
-/* Images
+/* Images dimensions
 -------------------------------------------------- */
 img {
     vertical-align: middle;
@@ -89,4 +89,11 @@ img {
     opacity: 0.5;
     filter: alpha(opacity=50);
 
+}
+
+/* Image list
+-------------------------------------------------- */
+.imglist-entry{
+    width: $room-col-w;
+    @include appFloat(left);
 }
