@@ -10815,14 +10815,16 @@ img {
   filter: alpha(opacity=50);
 }
 
-/* Image list
--------------------------------------------------- */
-/* line 96, ../sass/common/_images.scss */
-.imglist-entry {
-  width: 50%;
-  float: left;
-  position: relative;
-  min-height: 1px;
+/* line 94, ../sass/common/_images.scss */
+.imglist-img {
+  max-width: 40px;
+  max-height: 40px;
+}
+
+/* line 99, ../sass/common/_images.scss */
+.imglist-img-preview {
+  max-width: 64px;
+  max-height: 64px;
 }
 
 /* Page navigation
@@ -11553,6 +11555,24 @@ fieldset.submit-entry {
   visibility: hidden;
 }
 
+/* Image list
+-------------------------------------------------- */
+/* line 6, ../sass/common/_imglist.scss */
+.app-row-imglist {
+  border: solid 1px #cccccc;
+  background-color: #FFFFFF;
+}
+
+/* line 10, ../sass/common/_imglist.scss */
+.imglist-entry {
+  width: 40px;
+  height: 40px;
+  float: left;
+  position: relative;
+  min-height: 1px;
+  margin: 10px;
+}
+
 /* Dropdown
 -------------------------------------------------- */
 /* line 3, ../sass/common/_dropdown.scss */
@@ -11665,6 +11685,105 @@ fieldset.submit-entry {
   height: auto;
   max-height: 600px;
   overflow-x: hidden;
+}
+
+/* Info window
+-------------------------------------------------- */
+/* line 3, ../sass/common/_infowindow.scss */
+.infowindow-wrap {
+  position: relative;
+}
+
+/* line 7, ../sass/common/_infowindow.scss */
+.infowindow {
+  font-size: 90%;
+  position: absolute;
+  z-index: 1100;
+  min-width: 200px;
+  text-align: left;
+  background-color: #FFFFFF;
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  -moz-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  border: 1px solid #cccccc;
+  background-clip: padding-box;
+  color: #0d0d0d;
+}
+/* line 18, ../sass/common/_infowindow.scss */
+.infowindow .infowindow-in {
+  padding: 10px;
+}
+
+/* line 23, ../sass/common/_infowindow.scss */
+.infowindow::after {
+  content: " ";
+  position: absolute;
+  margin-left: -10px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent;
+}
+
+/* line 32, ../sass/common/_infowindow.scss */
+.infowindow.right {
+  top: -5px;
+  left: 105%;
+}
+
+/* line 37, ../sass/common/_infowindow.scss */
+.infowindow.right::after {
+  top: 50%;
+  right: 100%;
+  /* To the left of the tooltip */
+  border-color: transparent black transparent transparent;
+}
+
+/* line 43, ../sass/common/_infowindow.scss */
+.infowindow.left {
+  top: -5px;
+  right: 105%;
+}
+
+/* line 48, ../sass/common/_infowindow.scss */
+.infowindow.left::after {
+  top: 50%;
+  left: 100%;
+  /* To the right of the tooltip */
+  border-color: transparent transparent transparent black;
+}
+
+/* line 54, ../sass/common/_infowindow.scss */
+.infowindow.top {
+  width: 200px;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -100px;
+  /* Use half of the width to center the tooltip */
+}
+
+/* line 61, ../sass/common/_infowindow.scss */
+.infowindow.top::after {
+  top: 100%;
+  /* At the bottom of the tooltip */
+  left: 50%;
+  border-color: black transparent transparent transparent;
+}
+
+/* line 68, ../sass/common/_infowindow.scss */
+.infowindow.bottom {
+  width: 200px;
+  top: 100%;
+  left: 50%;
+  margin-left: -100px;
+  /* Use half of the width to center the tooltip */
+}
+
+/* line 75, ../sass/common/_infowindow.scss */
+.infowindow.bottom::after {
+  bottom: 100%;
+  /* At the top of the window */
+  left: 50%;
+  border-color: transparent transparent black transparent;
 }
 
 /* Accordion

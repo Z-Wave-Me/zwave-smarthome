@@ -1,8 +1,9 @@
 {
     "newtrans": "---",
+    "used_in": "Used in",
+    "---": "newtrans",
     "activeASC": "Inactive",
     "activeDESC": "Active",
-    "---": "newtrans",
     "button": "Button",
     "gesture": "Gesture",
     "press": "pressed",

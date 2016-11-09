@@ -6,7 +6,8 @@
             <h2>{{_t('custom_icons')}}</h2>
             <div class="alert alert-warning" ng-if="_.isEmpty(icons.uploaded)">
                 <i class="fa fa-exclamation-circle"></i> {{_t('custom_icons_no_available')}}
-                <a href="#/customize/iconslocal" class="btn btn-primary"><i class="fa fa-upload"></i> {{_t('upload_icon')}}</a>
+                <a href="#/customize/iconslocal" class="btn btn-primary"><i class="fa fa-upload"></i>
+                    {{_t('upload_icon')}}</a>
             </div>
 
         </div>
@@ -69,13 +70,23 @@
         <!-- The list of icons -->
         <div ng-if="icons.selected && !_.isEmpty(icons.uploaded)">
             <!-- The list of uploaded icons -->
-            <div class="fieldset_ element-icon-list">
-                <img class="element-icon-img clickable" ng-click="setCustomIcon(v.file)"
-                     ng-src="{{cfg.img.custom_icons + v.file}}" ng-repeat="v in icons.uploaded"/>
+            <div class="fieldset">
+            <div class="app-row clearfix app-row-imglist">
+                <div class="imglist-entry"
+                     ng-repeat="v in icons.uploaded| orderBy : '-timestamp' track by $index">
+                    <div class="imglist-entry-in infowindow-wrap">
+                        <!-- Image-->
+                        <img class="imglist-img clickable" ng-click="setCustomIcon(v.file)"
+                             ng-src="{{cfg.img.custom_icons + v.file}}"/>
+
+                    </div>
+                </div>
+            </div>
             </div>
             <!-- Manage custom icons -->
             <div class="fieldset">
-            <a href="#/customize/iconslocal" class="btn btn-primary"><i class="fa fa-image"></i> {{_t('manage_custom_icons')}}</a>
+                <a href="#/customize/iconslocal" class="btn btn-primary"><i class="fa fa-image"></i>
+                    {{_t('manage_custom_icons')}}</a>
             </div>
             <!--<div class="fieldset">
                 <input class="inputfile" type="file" name="file" id="file{{v.id}}"

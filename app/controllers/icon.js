@@ -216,7 +216,8 @@ myAppController.controller('LocalIconController', function ($scope, $filter, $ti
             }*/
             // Device has custom icons
             if (v.customIcons) {
-                angular.forEach(v.customIcons, function (iv, ik) {
+                angular.forEach(v.customIcons.level || v.customIcons, function (iv, ik) {
+                    console.log(iv)
                     if (output[iv]) {
                         //icon[iv] = [v.id];
                         output[iv].push(v.id);

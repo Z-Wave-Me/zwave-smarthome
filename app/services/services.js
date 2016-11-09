@@ -652,7 +652,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
             // switchControl
             case 'switchControl':
                 //icon = iconArray.default;
-                var iconArray = setIcon(cfgicons.element.deviceType['switchControl'], element.customIcons, element.id);
+                iconArray = setIcon(cfgicons.element.deviceType['switchControl'], element.customIcons, element.id);
                 return iconArray.default;
             // default
             default:

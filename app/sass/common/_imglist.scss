@@ -1,0 +1,15 @@
+/* Image list
+-------------------------------------------------- */
+// Settings
+$infowindow-w: 200px;
+// CSS
+.app-row-imglist{
+    border: solid 1px $imglist-border-color;
+    background-color: $imglist-background-color;
+}
+.imglist-entry{
+    width: $imglist-img;
+    height: $imglist-img;
+    @include appFloat(left);
+    margin: 10px;
+}

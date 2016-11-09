@@ -91,9 +91,12 @@ img {
 
 }
 
-/* Image list
--------------------------------------------------- */
-.imglist-entry{
-    width: $room-col-w;
-    @include appFloat(left);
+.imglist-img{
+    max-width: $imglist-img;
+    max-height:$imglist-img;
+}
+
+.imglist-img-preview{
+    max-width: $imglist-img-preview;
+    max-height:$imglist-img-preview;
 }
