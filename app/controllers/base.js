@@ -105,15 +105,11 @@ myAppController.controller('BaseController', function ($scope, $rootScope,$cooki
      * Handle HTTP pending
      */
     $scope.handlePending = function () {
-        var timeout = 2000;//(cnt === 0 ? 1000 : 1000 * cnt);
         var countUp = function() {
            var pending = _.findWhere($http.pendingRequests,{url: '/ZAutomation/api/v1/system/time/get'});
             handleError(pending);
-
-
-
         }
-        $timeout(countUp, timeout);
+        $timeout(countUp, cfg.pending_timeout_limit);
 
         /**
          * Handle error message
