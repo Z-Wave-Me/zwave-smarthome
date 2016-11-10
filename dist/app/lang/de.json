@@ -1,4 +1,6 @@
 {
+    "button": "Taste",
+    "gesture": "Geste",
     "press": "gedrückt",
     "hold": "gedrückt gehalten",
     "release": "losgelassen",
