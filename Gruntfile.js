@@ -72,6 +72,7 @@ module.exports = function (grunt) {
                     'app/app.js',
                     'dist/app/js/templates.js',
                     'app/modules/qAllSettled.js',
+                    'app/modules/httpLatency.js',
                     'app/config/settings.js',
                     'app/services/factories.js',
                     'app/services/services.js',
