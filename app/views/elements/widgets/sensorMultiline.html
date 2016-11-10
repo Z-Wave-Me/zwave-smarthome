@@ -28,7 +28,7 @@
             </button>
         </div>
     </div>
-    <div class="widget-ctrl ctrl-right widget-ctrl-click" ng-click="dataHolder.devices.find = v;handleModal('climateControlModal', $event)">
+	<div class="widget-ctrl ctrl-right widget-ctrl-click" ng-click="dataHolder.devices.find = v;handleModal('climateControlModal', $event)">
         <i class="fa fa-caret-down" title="{{_t('lb_settings')}}"></i> <strong>{{_t('nav_rooms')}}</strong>
     </div>
 </div>
@@ -36,29 +36,34 @@
 <!-- securityControl -->
 <div ng-if="v.metrics.multilineType === 'securityControl'">
     <div class="widget-ctrl ctrl-left">
-        <div class="switch-wrap">
-            <label class="switch">
-                <input type="checkbox"
-                       ng-checked="v.metrics.Clevel === 'cOn'"
-                       ng-model="dataHolder.devices.switchButton[v.id]"
-                       ng-change="runCmd(v.id + '/command/' + (dataHolder.devices.switchButton[v.id] ? 'cOn':'cOff'), v.id)" />
-                <div class="slider round"></div>
-            </label>
-
-        </div>
+         <div class="btn-group">
+        <button class="btn btn-off" id="btn_off_{{ v.id}}"
+            data-ng-click="runCmd(v.id + '/command/cOff', v.id)"
+            ng-class="v.metrics.Clevel =='cOff' ? 'btn-primary': 'btn-default'"
+            title="{{_t('lb_off')}}">
+            <span class="widget-btn-symbol">0</span>
+        </button>
+        <button class="btn btn-on" id="btn_on_{{ v.id}}"
+            data-ng-click="runCmd(v.id + '/command/cOn', v.id)"
+            ng-class="v.metrics.Clevel =='cOn' ? 'btn-primary': 'btn-default'"
+            title="{{_t('lb_on')}}">
+            <span class="widget-btn-symbol">I</span>
+        </button>
+    </div>
         <div class="btn-group">
             <button class="btn btn-off"
-                    ng-class="v.metrics.level=='close' ? 'btn-primary': 'btn-default'"
+                    ng-class="v.metrics.Rlevel=='on' ? 'btn-primary': 'btn-default'"
                     ng-click="runCmd(v.id + '/command/cReset', v.id)">
                 <i class="fa fa-refresh"></i>
             </button>
             <button class="btn btn-on"
-                    ng-class="v.metrics.level =='open' ? 'btn-primary': 'btn-default'"
+                    ng-class="v.metrics.Alevel =='on' ? 'btn-primary': 'btn-default'"
                     ng-click="runCmd(v.id + '/command/automationToggle', v.id)">
                 <i class="fa fa-clock-o"></i>
             </button>
         </div>
     </div>
+	
     <div class="widget-ctrl ctrl-right widget-ctrl-click" title="{{_t('lb_settings')}}" ng-click="dataHolder.devices.find = v;handleModal('securityControlModal', $event)">
         <i class="fa fa-caret-down"></i>
     </div>
