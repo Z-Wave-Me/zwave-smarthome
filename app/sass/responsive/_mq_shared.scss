@@ -332,6 +332,16 @@ input[type=radio] {
 
 /* Rooms
 -------------------------------------------------- */
+.widget-entry-room{
+    .widget-entry-in{
+        min-height: 1px;
+        height: $room-widget-col-h;
+        .widget-footer{
+            margin: $spacing 0 0 0;
+
+        }
+    }
+}
 .room-entry{
     width: $room-col-w;
 }

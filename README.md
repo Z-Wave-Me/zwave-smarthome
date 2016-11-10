@@ -15,6 +15,7 @@ Marcel Kermer
 - Skins: The Skin is a software package redefining all visual elements of your mobile and browser interface.
 
 #### Changes
+- Displaying rooms as widgets.
 - Displaying active APPS as widgets.
 - Caching online modules.
 

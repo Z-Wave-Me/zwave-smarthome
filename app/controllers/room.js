@@ -29,7 +29,7 @@ myAppController.controller('RoomController', function ($scope, $q, $cookies, $fi
     $scope.allSettled = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
-            dataFactory.getApi('locations'),
+            dataFactory.getApi('locations', null, true),
             dataFactory.getApi('devices', null, true)
         ];
 
@@ -69,12 +69,7 @@ myAppController.controller('RoomController', function ($scope, $q, $cookies, $fi
         $cookies.roomsOrderBy = key;
         $scope.allSettled();
     };
-});
-/**
- * The controller that renders the list of the rooms in  the config rooms section.
- * @class RoomConfigController
- */
-myAppController.controller('RoomConfigController', function ($scope, $q, dataFactory, dataService, myCache, _) {
+
     /**
      * Delete a room
      * @param {int} roomId
@@ -87,10 +82,11 @@ myAppController.controller('RoomConfigController', function ($scope, $q, dataFac
             dataFactory.deleteApi('locations', roomId).then(function (response) {
                 $scope.loading = false;
                 removeRoomIdFromDevice(_.where($scope.devices.all, {location: roomId}));
-                myCache.remove('locations');
-                myCache.remove('devices');
+                //myCache.remove('locations');
+                //myCache.remove('devices');
                 dataService.showNotifier({message: $scope._t('delete_successful')});
                 $scope.reloadData();
+                //$scope.allSettled();
 
             }, function (error) {
                 $scope.loading = false;
@@ -266,7 +262,7 @@ myAppController.controller('RoomConfigIdController', function ($scope, $routePar
                 myCache.remove('locations');
                 myCache.remove('devices');
                 dataService.showNotifier({message: $scope._t('success_updated')});
-                $location.path('/config-rooms');
+                $location.path('/rooms');
             }
 
 
