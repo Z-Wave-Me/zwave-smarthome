@@ -12,7 +12,7 @@ var myAppController = angular.module('myAppController', []);
  * The app base controller.
  * @class BaseController
  */
-myAppController.controller('BaseController', function ($scope, $rootScope,$cookies, $filter, $location, $route, $window, $interval, $http, cfg, cfgicons, dataFactory, dataService, myCache) {
+myAppController.controller('BaseController', function ($scope, $rootScope,$cookies, $filter, $location, $route, $window, $interval, $timeout,$http, cfg, cfgicons, dataFactory, dataService, myCache) {
 
     // Global scopes
     $scope.$location = $location;
@@ -85,40 +85,15 @@ myAppController.controller('BaseController', function ($scope, $rootScope,$cooki
             $interval.cancel($scope.timeZoneInterval);
             angular.extend(cfg.route.time, {string: $filter('setTimeFromBox')(response.data.data.localTimeUT)},
                 {timestamp: response.data.data.localTimeUT});
+            var cnt = 0;
 
             var refresh = function () {
-                cfg.route.time.timestamp += (cfg.interval < 1000 ? 1 : cfg.interval/1000)
-                cfg.route.time.string = $filter('setTimeFromBox')(cfg.route.time.timestamp)
-                var pending = _.findWhere($http.pendingRequests,{url: '/ZAutomation/api/v1/system/time/get'})
-                if(pending){
-                    var fatalArray = {
-                        type: 'network',
-                        message: $scope._t('connection_refused'),
-                        info: $scope._t('connection_refused_info'),
-                        permanent: true,
-                        hide: true
-                    };
-                    if ($scope.routeMatch('/boxupdate')) {
-                        fatalArray.message = $scope._t('jamesbox_connection_refused');
-                        fatalArray.info = $scope._t('jamesbox_connection_refused_info', {__reload_begintag__: '<div>', __reload_endtag__: '</div>', __attention_begintag__: '<div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i>', __attention_endtag__: '<div>'});
-                        fatalArray.icon = cfg.route.fatalError.icon_jamesbox;
-                    }
-                    angular.extend(cfg.route.fatalError, fatalArray);
-                }else{
-                    if (cfg.route.fatalError.type === 'network') {
-                        dataFactory.sessionApi().then(function (sessionRes) {
-                            var user = sessionRes.data.data;
-                            if (sessionRes.data.data) {
-                                dataService.setZWAYSession(user.sid);
-                                dataService.setUser(user);
-                                if (dataService.getUser()) {
-                                    $window.location.reload();
-                                }
-                            }
+                cfg.route.time.timestamp += (cfg.interval < 1000 ? 1 : cfg.interval/1000);
+                cfg.route.time.string = $filter('setTimeFromBox')(cfg.route.time.timestamp);
+                $scope.handlePending();
+                cnt++;
 
-                        }, function (error) {});
-                    }
-                }
+
 
             };
             $scope.timeZoneInterval = $interval(refresh, $scope.cfg.interval);
@@ -127,7 +102,56 @@ myAppController.controller('BaseController', function ($scope, $rootScope,$cooki
     };
 
     /**
-     * Route change start
+     * Handle HTTP pending
+     */
+    $scope.handlePending = function () {
+        var countUp = function() {
+           var pending = _.findWhere($http.pendingRequests,{url: '/ZAutomation/api/v1/system/time/get'});
+            handleError(pending);
+        }
+        $timeout(countUp, cfg.pending_timeout_limit);
+
+        /**
+         * Handle error message
+         * @param {object} pending
+         */
+        function handleError(pending){
+            if(pending){
+                console.log(pending);
+                var fatalArray = {
+                    type: 'network',
+                    message: $scope._t('connection_refused'),
+                    info: $scope._t('connection_refused_info'),
+                    permanent: true,
+                    hide: true
+                };
+                if ($scope.routeMatch('/boxupdate')) {
+                    fatalArray.message = $scope._t('jamesbox_connection_refused');
+                    fatalArray.info = $scope._t('jamesbox_connection_refused_info', {__reload_begintag__: '<div>', __reload_endtag__: '</div>', __attention_begintag__: '<div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i>', __attention_endtag__: '<div>'});
+                    fatalArray.icon = cfg.route.fatalError.icon_jamesbox;
+                }
+                angular.extend(cfg.route.fatalError, fatalArray);
+            }else{
+                if (cfg.route.fatalError.type === 'network') {
+                    dataFactory.sessionApi().then(function (sessionRes) {
+                        var user = sessionRes.data.data;
+                        if (sessionRes.data.data) {
+                            dataService.setZWAYSession(user.sid);
+                            dataService.setUser(user);
+                            if (dataService.getUser()) {
+                                $window.location.reload();
+                            }
+                        }
+
+                    }, function (error) {});
+                }
+            }
+        }
+
+    };
+
+    /**
+     * Route on change start
      */
     $rootScope.$on("$routeChangeStart", function(event, next, current) {
         /**

@@ -10,8 +10,13 @@ This User Interfaces allows to operate a Smart Home Network based on Z-Wave devi
 Marcel Kermer
 ## v1.6.0
 #### New features
+- Apps/Active: Sorting by active/inactive apps.
 - Custom icons: Possibility to upload and assign custom icons for devices.
 - Skins: The Skin is a software package redefining all visual elements of your mobile and browser interface.
+
+#### Changes
+- Displaying active APPS as widgets.
+- Caching online modules.
 
 ## v1.5.1
 #### Fixes

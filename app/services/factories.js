@@ -909,7 +909,6 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
         // Cached data
         var cacheName = 'cache_' + cfg.online_module_url;
         var cached = myCache.get(cacheName);
-
         if (!noCache && cached) {
             var deferred = $q.defer();
             deferred.resolve(cached);
@@ -925,6 +924,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
                 'Accept-Language': lang
             }
         }).then(function (response) {
+            myCache.put(cacheName, response);
             return response;
         }, function (error) {// something went wrong
 

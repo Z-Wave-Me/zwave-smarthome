@@ -3,6 +3,7 @@
  * @author Martin Vach
  */
 
+
 /**
  * Define an angular module for our app
  * @function myApp
@@ -16,7 +17,8 @@ var myApp = angular.module('myApp', [
     'myAppService',
     'dndLists',
     'qAllSettled',
-    'myAppTemplates'
+    'myAppTemplates',
+    'httpLatency'
 
 ]);
 
