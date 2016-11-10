@@ -11074,14 +11074,14 @@ img {
   width: 30% !important;
 }
 
-/* Device discreteSensor
+/* Device sensorDiscrete
 -------------------------------------------------- */
 /* line 111, ../sass/common/_widget.scss */
-.discreteSensor .ctrl-left {
+.sensorDiscrete .ctrl-left {
   width: 30% !important;
 }
 /* line 114, ../sass/common/_widget.scss */
-.discreteSensor .ctrl-right {
+.sensorDiscrete .ctrl-right {
   width: 70% !important;
 }
 

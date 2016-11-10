@@ -1,4 +1,6 @@
 {
+    "button": "Button",
+    "gesture": "Gesture",
     "press": "pressed",
     "hold": "hold",
     "release": "released",
