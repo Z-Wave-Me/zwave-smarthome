@@ -13,10 +13,10 @@ Marcel Kermer
 - Apps/Active: Sorting by active/inactive apps.
 - Custom icons: Possibility to upload and assign custom icons for devices.
 - Skins: The Skin is a software package redefining all visual elements of your mobile and browser interface.
-- add new widget type sensorDiscrete
+- New widget type sensorDiscrete.
 
 #### Changes
-- Displaying rooms as widgets.
+- Rooms: displayed as widgets, removed from the config menu.
 - Displaying active APPS as widgets.
 - Caching online modules.
 

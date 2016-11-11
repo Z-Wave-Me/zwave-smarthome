@@ -93,8 +93,8 @@
                                 </div>
                                 <button title="{{_t('lb_remove')}}"
                                         class="btn btn-default"
-                                        ng-hide="icons.used.device[v.file]"
-                                        ng-click="deleteIcon(v, _t('lb_delete_confirm'))">
+                                        ng-hide_="icons.used.device[v.file]"
+                                        ng-click="deleteIcon(v, (icons.used.device[v.file] ? _t('remove_icon_confirm_device') :_t('remove_icon_confirm_device')))">
                                     <i class="fa fa-remove text-danger"></i> <span class="btn-name">{{_t('lb_remove')}}</span>
                                 </button>
                             </div>

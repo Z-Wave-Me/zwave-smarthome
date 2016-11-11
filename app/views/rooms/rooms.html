@@ -41,9 +41,8 @@
             <div class="widget-entry-in">
                 <!-- Widget img -->
                 <div class="widget-img">
-                    <a ng-href="#apps/online/{{v.id}}">
-                        <img class="widget-preview-img" alt="{{v.title}}"
-                             ng-src="{{v.img_src}}" />
+                    <a ng-href="#/rooms{{(rooms.cnt.devices[v.id] ? '/' + v.id : '')}}" ng-disabled="!rooms.cnt.devices[v.id]" title="{{_t('lb_devices_room')}} {{v.title}}">
+                        <img class="widget-preview-img" ng-src="{{v.img_src}}" alt="img" />
                     </a>
                 </div>
                 <!-- Widget header -->

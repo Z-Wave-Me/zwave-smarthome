@@ -39,7 +39,7 @@
         <div class="switch-wrap">
             <label class="switch">
                 <input type="checkbox"
-                       ng-checked="v.metrics.level === 'cOn'"
+                       ng-checked="v.metrics.Clevel === 'cOn'"
                        ng-model="dataHolder.devices.switchButton[v.id]"
                        ng-change="runCmd(v.id + '/command/' + (dataHolder.devices.switchButton[v.id] ? 'cOn':'cOff'), v.id)" />
                 <div class="slider round"></div>
@@ -48,17 +48,18 @@
         </div>
         <div class="btn-group">
             <button class="btn btn-off"
-                    ng-class="v.metrics.level=='close' ? 'btn-primary': 'btn-default'"
+                    ng-class="v.metrics.Rlevel=='on' ? 'btn-primary': 'btn-default'"
                     ng-click="runCmd(v.id + '/command/cReset', v.id)">
                 <i class="fa fa-refresh"></i>
             </button>
             <button class="btn btn-on"
-                    ng-class="v.metrics.level =='open' ? 'btn-primary': 'btn-default'"
+                    ng-class="v.metrics.Alevel =='on' ? 'btn-primary': 'btn-default'"
                     ng-click="runCmd(v.id + '/command/automationToggle', v.id)">
                 <i class="fa fa-clock-o"></i>
             </button>
         </div>
     </div>
+	
     <div class="widget-ctrl ctrl-right widget-ctrl-click" title="{{_t('lb_settings')}}" ng-click="dataHolder.devices.find = v;handleModal('securityControlModal', $event)">
         <i class="fa fa-caret-down"></i>
     </div>

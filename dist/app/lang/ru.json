@@ -1,4 +1,8 @@
 {
+    "edit": "Edit",
+    "used_in": "Used in",
+    "activeASC": "Inactive",
+    "activeDESC": "Active",
     "button": "Button",
     "gesture": "Gesture",
     "press": "pressed",

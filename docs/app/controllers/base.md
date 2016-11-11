@@ -52,6 +52,20 @@ Set timestamp and ping server if request fails
 
 **Returns**: `undefined`
 
+### BaseController.handlePending() 
+
+Handle HTTP pending
+
+
+### BaseController.handleError(pending) 
+
+Handle error message
+
+**Parameters**
+
+**pending**: `object`
+
+
 ### BaseController.setPollInterval() 
 
 Set poll interval
