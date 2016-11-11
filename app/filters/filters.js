@@ -525,8 +525,8 @@ myApp.filter('isTodayFromUnix', function () {
  */
 myApp.filter('setTimeFromBox', function () {
     return function (input) {
-        if (input.localTimeUT) {
-            var d = new Date(input.localTimeUT * 1000);
+        if (input) {
+            var d = new Date(input * 1000);
         } else {
             var d = new Date();
         }
@@ -791,6 +791,17 @@ myApp.filter('setConfigValue', function () {
         } else {
             return value;
         }
+
+    };
+});
+
+/**
+ * Set rgb colors
+ * @function etRgbColors
+ */
+myApp.filter('setRgbColors', function () {
+    return function (color) {
+        return 'rgb('+ color.r +',' + color.g  + ',' + color.b  +')';
 
     };
 });

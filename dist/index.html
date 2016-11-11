@@ -9,6 +9,7 @@
         <link id="main_css" media="screen" type="text/css" rel="stylesheet" href="app/css/main.css">
          <!-- App config -->
         <script src="app/js/config.js"></script>
+        <script src="app/js/icons.js"></script>
         <!-- JS -->
         <script src="app/js/build.js"></script>
     </head>
@@ -51,9 +52,9 @@
                             <a href="#devices"><i class="fa fa-cogs"></i> <span>{{_t('nav_devices')}} </span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
                         </li>
                         <!-- Config rooms -->
-                        <li class="subnavi-config-rooms" ng-class="isActive('config-rooms')" ng-if="elementAccess(cfg.role_access.config_rooms)">
+                        <!--<li class="subnavi-config-rooms" ng-class="isActive('config-rooms')" ng-if="elementAccess(cfg.role_access.config_rooms)">
                             <a href="#config-rooms"><i class="fa fa-building-o"></i> <span>{{_t('nav_rooms')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                        </li>
+                        </li>-->
                         <!-- Customize -->
                         <li class="subnavi-report" ng-class="isActive('customize')"
                             ng-if="elementAccess(cfg.role_access.customize) && !isInArray(['popp','jb'],cfg.app_type)">

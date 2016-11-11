@@ -28,6 +28,16 @@ The factory that handles the Underscore library
 ## dataFactory
 The factory that handles all local and remote HTTP requests
 
+### dataFactory.pingServer(url) 
+
+Connect to the specified url
+
+**Parameters**
+
+**url**: `string`
+
+**Returns**: `unresolved`
+
 ### dataFactory.logInApi(data) 
 
 Handles login process

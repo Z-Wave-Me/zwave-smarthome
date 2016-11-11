@@ -1,0 +1,80 @@
+/* Info window
+/* http://www.w3schools.com/css/css_tooltip.asp
+-------------------------------------------------- */
+.infowindow-wrap{
+    position: relative;
+}
+
+.infowindow{
+    font-size: $infowindow-font-size;
+    position: absolute;
+    z-index: $zindex-infowindow;
+    min-width: $infowindow-w;
+    text-align: left;
+    background-color: $infowindow-bcg-color;
+    @include appBoxShadow($infowindow-box-shadow);
+    border: 1px solid $infowindow-border-color;
+    background-clip: padding-box;
+    color: $infowindow-color;
+    .infowindow-in{
+        padding: $spacing;
+    }
+}
+// Arrow
+.infowindow::after {
+    content: " ";
+    position: absolute;
+    margin-left: -10px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent;
+}
+// Right
+.infowindow.right{
+        top: -5px;
+        left: 105%;
+    }
+// Right arrow
+.infowindow.right::after {
+    top: 50%;
+    right: 100%; /* To the left of the tooltip */
+    border-color: transparent black transparent transparent;
+}
+// Left
+.infowindow.left{
+        top: -5px;
+        right: 105%;
+    }
+// Left arrow
+.infowindow.left::after {
+    top: 50%;
+    left: 100%; /* To the right of the tooltip */
+    border-color: transparent transparent transparent black;
+}
+// Top
+.infowindow.top{
+    width: $infowindow-w;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -$infowindow-w/2; /* Use half of the width to center the tooltip */
+}
+// Top arrow
+.infowindow.top::after {
+   top: 100%; /* At the bottom of the tooltip */
+    left: 50%;
+    border-color: black transparent transparent transparent;
+}
+
+// Bottom
+.infowindow.bottom{
+    width: $infowindow-w;
+    top: 100%;
+    left: 50%;
+    margin-left: -$infowindow-w/2; /* Use half of the width to center the tooltip */
+}
+// Bottom arrow
+.infowindow.bottom::after {
+    bottom: 100%;  /* At the top of the window */
+    left: 50%;
+    border-color: transparent transparent black transparent;
+}

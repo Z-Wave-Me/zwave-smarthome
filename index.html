@@ -12,6 +12,7 @@
        
         <!-- App config -->
         <script src="app/config.js"></script>
+        <script src="app/icons.js"></script>
         <!-- jQuery js -->
         <script src="vendor/jquery/jquery-1.11.3.min.js"></script>
         <script src="vendor/jquery/jquery-ui.min.js"></script>
@@ -39,10 +40,10 @@
 
         <script src="vendor/alpaca/1.5.14/bootstrap/alpaca.min.js"></script>
         <!-- App js -->
-         <script src="app/icons.js"></script>
         <script src="app/app.js"></script>
         <script src="app/templates.js"></script>
         <script src="app/modules/qAllSettled.js"></script>
+        <script src="app/modules/httpLatency.js"></script>
         <script src="app/services/factories.js"></script>
         <script src="app/services/services.js"></script>
         <script src="app/directives/directives.js"></script>
@@ -118,9 +119,9 @@
                                 <a href="#devices"><i class="fa fa-cogs"></i> <span>{{_t('nav_devices')}} </span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
                             </li>
                             <!-- Config rooms -->
-                            <li class="subnavi-config-rooms" ng-class="isActive('config-rooms')" ng-if="elementAccess(cfg.role_access.config_rooms)">
+                            <!--<li class="subnavi-config-rooms" ng-class="isActive('config-rooms')" ng-if="elementAccess(cfg.role_access.config_rooms)">
                                 <a href="#config-rooms"><i class="fa fa-building-o"></i> <span>{{_t('nav_rooms')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                            </li>
+                            </li>-->
                              <!-- Customize -->
                             <li class="subnavi-report" ng-class="isActive('customize')"
                                 ng-if="elementAccess(cfg.role_access.customize) && !isInArray(['popp','jb'],cfg.app_type)">
