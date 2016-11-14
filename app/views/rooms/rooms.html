@@ -1,5 +1,5 @@
 <!-- Rooms view -->
-<div ng-controller="RoomController" class="mobile-padding">
+<div ng-controller="RoomController">
     <bb-loader></bb-loader>
     <div class="page-control form-inline">
          <div class="btn-group btn-goup-block btn-goup-1">
@@ -28,6 +28,8 @@
             </div>
         </div>
     </div>
+
+    <!-- OLD -->
     <div class="app-row app-row-room clearfix" ng-if="rooms.show">
         <div class="room-entry has-device-{{rooms.cnt.devices[v.id]||'false'}}" 
              id="panel_{{$index}}"

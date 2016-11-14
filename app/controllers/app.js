@@ -85,7 +85,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
         var promises = [
             dataFactory.getApi('modules_categories'),
             dataFactory.getApi('modules', null, true),
-            dataFactory.getOnlineModules({token: _.values(tokens)}, true),
+            dataFactory.getOnlineModules({token: _.values(tokens)}),
             dataFactory.getApi('instances', null, true)
         ];
 

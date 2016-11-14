@@ -78,6 +78,7 @@ app/modules
 ---
 name | overview
 :-- | :--
+[app\modules\httpLatency.js](app/modules/httpLatency.md) | _Angular module httpLatency simulates Latency for AngularJS $http Calls with Response Interceptorsy._
 [app\modules\qAllSettled.js](app/modules/qAllSettled.md) | _Angular module qAllSettled executes a number of operations concurrently._
 - - -
 

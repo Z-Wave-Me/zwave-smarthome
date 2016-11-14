@@ -36,11 +36,7 @@ Set order by
 
 **Returns**: `undefined`
 
-
-## RoomConfigController
-The controller that renders the list of the rooms in  the config rooms section.
-
-### RoomConfigController.deleteRoom(roomId, message) 
+### RoomController.deleteRoom(roomId, message) 
 
 Delete a room
 
@@ -52,7 +48,7 @@ Delete a room
 
 **Returns**: `undefined`
 
-### RoomConfigController.removeRoomIdFromDevice(devices) 
+### RoomController.removeRoomIdFromDevice(devices) 
 
 Remove room id from a device
 

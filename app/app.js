@@ -3,6 +3,7 @@
  * @author Martin Vach
  */
 
+
 /**
  * Define an angular module for our app
  * @function myApp
@@ -16,7 +17,8 @@ var myApp = angular.module('myApp', [
     'myAppService',
     'dndLists',
     'qAllSettled',
-    'myAppTemplates'
+    'myAppTemplates',
+    'httpLatency'
 
 ]);
 
@@ -311,42 +313,24 @@ myApp.config(['$routeProvider', function ($routeProvider) {
  * Angular run function
  * @function run
  */
-myApp.run(function ($rootScope, $location, dataService, cfg) {
-    // Run ubderscore js in views
+myApp.run(function ($rootScope, $location, dataService, dataFactory,cfg) {
+    // Run underscore js in views
     $rootScope._ = _;
-    // Route Access Control and Authentication
-    $rootScope.$on("$routeChangeStart", function (event, next, current) {
-        var user;
-        cfg.route.serverName =  $location.protocol() + '//' +  $location.host() + '/';
-        // Reset fatal error messages
-        if (cfg.route.fatalError.message && !cfg.route.fatalError.permanent) {
-            angular.extend(cfg.route.fatalError, {
-                type: 'system',
-                message: false,
-                info: false,
-                hide: false
-            });
-        }
-        // Is login required?
-        if (next.requireLogin) {
-            user = dataService.getUser();
-            if (!user) {
-                $location.path('/');
-                return;
-            }
-            if (next.roles && angular.isArray(next.roles)) {
-                if (next.roles.indexOf(user.role) === -1) {
-                    $location.path('/error403');
-                    return;
-                   /* angular.extend(cfg.route.fatalError, {
-                        message: cfg.route.t['error_403'],
-                        hide: true
-                    });
-                    return;*/
-                }
-            }
-        }
-    });
+    /**
+     * todo: deprecated
+     */
+   /* $rootScope.$on("$routeChangeStart", function (event, next, current) {
+        /!**
+         * Reset fatal error object
+         *!/
+        dataService.resetFatalError();
+
+        /!**
+         * Check if access is allowed for the page
+         *!/
+        dataService.isAccessAllowed(next);
+
+    });*/
 });
 
 /**
@@ -377,7 +361,25 @@ myApp.config(function ($provide, $httpProvider) {
             // On response failture
             responseError: function (rejection) {
                 dataService.logError(rejection);
-                if (rejection.status == 401) {
+                switch(rejection.status){
+                    case 401:
+                        if (path[1] !== '') {
+                            dataService.setRememberMe(null);
+                            dataService.logOut();
+                            break;
+
+                        }
+                     case 403:
+                        dataService.logError(rejection);
+                        $location.path('/error403');
+                        break;
+
+                }
+                return $q.reject(rejection);
+                /**
+                 * todo: deprecated
+                 */
+                /*if (rejection.status == 401) {
                     if (path[1] !== '') {
                         dataService.setRememberMe(null);
                         dataService.logOut();
@@ -388,17 +390,12 @@ myApp.config(function ($provide, $httpProvider) {
                 } else if (rejection.status == 403) {
                     dataService.logError(rejection);
                     $location.path('/error403');
-                    /*angular.extend(cfg.route.fatalError, {
-                        message: cfg.route.t['error_403'],
-                        hide: true
-                    });
-                    console.log(cfg.route.fatalError)*/
 
                     return $q.reject(rejection);
                 } else {
                     // Return the promise rejection.
                     return $q.reject(rejection);
-                }
+                }*/
             }
         };
     });

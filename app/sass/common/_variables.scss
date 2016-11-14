@@ -46,6 +46,9 @@ $page-navi-h: 50px;
 $dropdown-w: 300px;
 $dropdown-lang-w: 250px;
 
+// Info window
+$infowindow-w: 100%;
+
 // Overflow H
 $app-overflow-h: 500px;
 
@@ -76,6 +79,8 @@ $room-img-upload: 70px;
 $room-img-preview: 130px;
 $report-img-s: 32px;
 $lang-img: 32px;
+$imglist-img: 40px;
+$imglist-img-preview: 64px;
 
 // Footer
 $footer-h: 50px;
@@ -97,6 +102,7 @@ $customize-modal-content-h: 600px;
 
 //Room
 $room-col-w: 50%;
+$room-widget-col-h: 120px;
 
 //Login
 $auth-page-w: 500px;
@@ -119,6 +125,7 @@ $zindex-loader: 2400;
 $zindex-header: 2100;
 $zindex-page-navi: 2101;
 $zindex-dropdown: 1100;
+$zindex-infowindow: 1100;
 $zindex-modal: 2300;
 $zindex-footer: 2100;
 $zindex-m-footer: 2130;
@@ -159,6 +166,7 @@ $page-navi-icon-size: 130%;
 $modal-close-size: 180%;
 $modal-heading-font-size: 110%;
 $dropdown-font-size: 110%;
+$infowindow-font-size: 90%;
 $dropdown-icon-size: 120%;
 $accordion-heading-font-size: 120%;
 $accordion-icon-size: 130%;
@@ -244,6 +252,11 @@ $dropdown-color: $app-a-color;
 $dropdown-border-color: $app-border-color;
 $dropdown-icon-color: lighten($dropdown-color, 20%);
 $dropdown-heading-color: $app-heading-color;
+
+// Info window
+$infowindow-bcg-color: #FFFFFF;
+$infowindow-color: $app-body-color;
+$infowindow-border-color: $app-border-color;
 
 // Accordion
 $accordion-bcg-color: #FFFFFF;
@@ -351,6 +364,9 @@ $comment-even-bcg-color:  #E9E9E9;
 $comment-color: $app-body-color;
 $comment-header-color:  lighten($comment-color, 20%);
 
+// Image list
+$imglist-border-color: $app-border-color;
+$imglist-background-color: #FFFFFF;
 
 /*-------------------------------------*/
 // EFFECTS
@@ -362,6 +378,7 @@ $app-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
 $app-mainsubnavi-box-shadow: $app-box-shadow;
 $page-navi-box-shadow: $app-box-shadow;
 $dropdown-box-shadow: $app-box-shadow;
+$infowindow-box-shadow: $app-box-shadow;
 $element-widget-btn-box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
 
 // Loader fade out

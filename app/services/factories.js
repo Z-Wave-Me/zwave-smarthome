@@ -26,7 +26,7 @@ myAppFactory.factory('_', function () {
  * The factory that handles all local and remote HTTP requests
  * @class dataFactory
  */
-myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataService, cfg, _) {
+myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $interval,dataService, cfg, _) {
     var updatedTime = Math.round(+new Date() / 1000);
     var lang = cfg.lang;
     var ZWAYSession = dataService.getZWAYSession();
@@ -35,7 +35,9 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
         lang = user.lang;
 
     }
+    var pingInterval = null;
     return({
+         pingServer: pingServer,
         logInApi: logInApi,
         sessionApi: sessionApi,
         getApiLocal: getApiLocal,
@@ -75,6 +77,24 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
     });
 
     /// --- Public functions --- ///
+
+    /**
+     * Connect to the specified url
+     * @param {string} url
+     * @returns {unresolved}
+     */
+    function pingServer(url) {
+        return $http({
+            method: "get",
+            url: url
+        }).then(function (response) {
+            return response;
+        }, function (response) {// something went wrong
+            //return response;
+            return $q.reject(response);
+        });
+    }
+
 
     /**
      * Handles login process
@@ -889,7 +909,6 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
         // Cached data
         var cacheName = 'cache_' + cfg.online_module_url;
         var cached = myCache.get(cacheName);
-
         if (!noCache && cached) {
             var deferred = $q.defer();
             deferred.resolve(cached);
@@ -905,6 +924,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, dataS
                 'Accept-Language': lang
             }
         }).then(function (response) {
+            myCache.put(cacheName, response);
             return response;
         }, function (error) {// something went wrong
 

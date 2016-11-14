@@ -30,6 +30,36 @@ Resets the fatal error object
 
 **Returns**: `undefined`
 
+### dataService.isAccessAllowed(next) 
+
+Check if access is allowed for the page
+
+**Parameters**
+
+**next**: `object`
+
+**Returns**: `undefined`
+
+### dataService.setTimeStamp(next) 
+
+Set timestamp and ping server if request fails
+
+**Parameters**
+
+**next**: `object`
+
+**Returns**: `undefined`
+
+### dataService.resetFatalError(notifier) 
+
+Resets the fatal error object
+
+**Parameters**
+
+**notifier**: `object`
+
+**Returns**: `undefined`
+
 ### dataService.getLangLine(key, languages, replacement) 
 
 Get a language string by key
@@ -332,6 +362,18 @@ Compare whether two versions of a resource are the same
 
 Assign an icon to the element
 
+
+### dataService.setIcon(defaultIcon, customIcon) 
+
+Build an object with icons
+
+**Parameters**
+
+**defaultIcon**: `object`
+
+**customIcon**: `object`
+
+**Returns**: `*`
 
 ### dataService.getLangLine() 
 

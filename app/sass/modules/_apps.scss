@@ -42,7 +42,7 @@
 
 }
 
-#apps_online{
+#apps_online,#apps_instances{
     .widget-warning{
         .widget-img{
             opacity: 0.4;
@@ -70,6 +70,15 @@
         }
     }
 }
+#apps_instances{
+    .widget-warning{
+        .widget-entry-in{
+            border-color: $widget-danger-border-color !important;
+            border-width: 4px;
+        }
+    }
+}
+
 
 
 /* App detail

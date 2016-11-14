@@ -31,7 +31,7 @@
         </div>
     </div>
         
-     <div class="app-row app-row-report app-row-room clearfix" ng-controller="RoomConfigController">
+     <div class="app-row app-row-report app-row-room clearfix">
          <div id="row_{{v.id}}" class="report-entry" ng-repeat="v in rooms.all|orderBy:cfg.orderby.rooms[rooms.orderBy] | filter:q  track by v.id" ng-if="v.id !== 0">
             <div class="report-col report-media">
              <img class="report-img img-circle" ng-src="{{v.img_src}}" />
