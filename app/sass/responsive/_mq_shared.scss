@@ -41,7 +41,11 @@ body {
         li{
             a{
                 padding: 0 $spacing;
+                span{
+                    left:50px;
+                }
             }
+
 
         }
     }
@@ -136,6 +140,16 @@ input[type=radio] {
         margin: 0 0 0 $spacing;
         font-size: $app-btn-tag-icon-size;
     }
+}
+/* Switch button
+-------------------------------------------------- */
+.switch {
+  width: $switch-btn-w;
+  height: $switch-btn-h;
+}
+.slider:before {
+  height: $switch-btn-slider;
+  width:$switch-btn-slider;
 }
 /* Modal
 -------------------------------------------------- */
@@ -321,6 +335,16 @@ input[type=radio] {
 
 /* Rooms
 -------------------------------------------------- */
+.widget-entry-room{
+    .widget-entry-in{
+        min-height: 1px;
+        height: $room-widget-col-h;
+        .widget-footer{
+            margin: $spacing 0 0 0;
+
+        }
+    }
+}
 .room-entry{
     width: $room-col-w;
 }

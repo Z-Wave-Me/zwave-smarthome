@@ -12,6 +12,7 @@
        
         <!-- App config -->
         <script src="app/config.js"></script>
+        <script src="app/icons.js"></script>
         <!-- jQuery js -->
         <script src="vendor/jquery/jquery-1.11.3.min.js"></script>
         <script src="vendor/jquery/jquery-ui.min.js"></script>
@@ -39,10 +40,10 @@
 
         <script src="vendor/alpaca/1.5.14/bootstrap/alpaca.min.js"></script>
         <!-- App js -->
-         <script src="app/icons.js"></script>
         <script src="app/app.js"></script>
         <script src="app/templates.js"></script>
         <script src="app/modules/qAllSettled.js"></script>
+        <script src="app/modules/httpLatency.js"></script>
         <script src="app/services/factories.js"></script>
         <script src="app/services/services.js"></script>
         <script src="app/directives/directives.js"></script>
@@ -75,10 +76,12 @@
         <script src="app/expertui/directives.js"></script>
         <script src="app/expertui/services.js"></script>
         <script src="app/expertui/configuration.js"></script>
+        <script src="app/expertui/commands.js"></script>
         
         
     </head>
     <body id="page_{{getBodyId()}}" class="app-type-{{cfg.app_type}} is-mobile-{{isMobile}} os-{{cfg.route.os}} profile-{{user.color.substring(1)}}">
+        <a class="skinreset" href="#skinreset">Reset skin to default</a>
         <div id="header" ng-if="user">
             <div id="main_navigation_wrap">
                 <div id="main_navigation" class="container">
@@ -109,31 +112,32 @@
                         <ul>
                             <!-- Apps -->
                             <li class="subnavi-apps" ng-class="isActive('apps')" ng-if="elementAccess(cfg.role_access.apps)">
-                                <a href="#apps/local"><i class="fa fa-cubes"></i> {{_t('nav_apps')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                                <a href="#apps/local"><i class="fa fa-cubes"></i> <span>{{_t('nav_apps')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
                             </li>
                             <!-- Devices -->
                             <li class="subnavi-devices" ng-class="isActive('devices')" ng-if="elementAccess(cfg.role_access.devices)">
-                                <a href="#devices"><i class="fa fa-cogs"></i> {{_t('nav_devices')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                                <a href="#devices"><i class="fa fa-cogs"></i> <span>{{_t('nav_devices')}} </span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
                             </li>
                             <!-- Config rooms -->
-                            <li class="subnavi-config-rooms" ng-class="isActive('config-rooms')" ng-if="elementAccess(cfg.role_access.config_rooms)">
-                                <a href="#config-rooms"><i class="fa fa-building-o"></i> {{_t('nav_rooms')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                            <!--<li class="subnavi-config-rooms" ng-class="isActive('config-rooms')" ng-if="elementAccess(cfg.role_access.config_rooms)">
+                                <a href="#config-rooms"><i class="fa fa-building-o"></i> <span>{{_t('nav_rooms')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                            </li>-->
+                             <!-- Customize -->
+                            <li class="subnavi-report" ng-class="isActive('customize')"
+                                ng-if="elementAccess(cfg.role_access.customize) && !isInArray(['popp','jb'],cfg.app_type)">
+                                <a href="#customize/skinslocal"><i class="fa fa-puzzle-piece"></i> <span>{{_t('customize')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
                             </li>
-                             <!-- Customize 
-                            <li class="subnavi-report" ng-class="isActive('customize')" ng-if="elementAccess(cfg.role_access.skins_local)">
-                                <a href="#customize/skinslocal"><i class="fa fa-puzzle-piece"></i> {{_t('customize')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                            </li> -->
                             <!-- My access -->
                             <li class="subnavi-myaccess" ng-class="isActive('myaccess')" ng-if="elementAccess(cfg.role_access.myaccess)">
-                                <a href="#myaccess"><i class="fa fa-user"></i> {{_t('nav_myaccess')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                                <a href="#myaccess"><i class="fa fa-user"></i>  <span>{{_t('nav_myaccess')}}</span><i class="fa fa-chevron-right subnavi-arrow"></i></a>
                             </li>
                             <!-- Management -->
                             <li class="subnavi-admin" ng-class="isActive('admin')" ng-if="elementAccess(cfg.role_access.admin)">
-                                <a href="#admin"><i class="fa fa-wrench"></i> {{_t('management')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                                <a href="#admin"><i class="fa fa-wrench"></i> <span>{{_t('management')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
                             </li>
                             <!-- Logout -->
                             <li class="subnavi-logout" ng-if="elementAccess(null, isMobile)">
-                                <a href="#logout"><i class="fa fa-sign-out"></i> {{_t('nav_logout')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                                <a href="#logout"><i class="fa fa-sign-out"></i> <span>{{_t('nav_logout')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
                             </li>
                         </ul>
                     </div>

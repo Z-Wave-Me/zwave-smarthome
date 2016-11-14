@@ -1,6 +1,6 @@
 <!-- Admin backup view -->
 <h2 class="accordion-entry-title" ng-click="expandElement('backup')">
-    <i class="fa fa-cloud-download"></i> <span ng-bind="_t('backup')"></span>
+    <i class="fa fa-download"></i> <span ng-bind="_t('backup')"></span>
      <i class="fa accordion-arrow" ng-class="expand.backup  ? 'fa-chevron-up':'fa-chevron-down'"></i>
 </h2>
 <div class="accordion-entry-ctrl" ng-if="expand.backup">
@@ -10,7 +10,7 @@
         </div>
         <div class="fieldset submit-entry">
             <a class="btn btn-submit" ng-href="{{cfg.server_url + cfg.api.backup}}" title="{{_t('nm_backup_download')}}">
-                <i class="fa fa-cloud-download"></i> <span class="btn-name">{{_t('nm_backup_download')}}</span>
+                <i class="fa fa-download"></i> <span class="btn-name">{{_t('nm_backup_download')}}</span>
             </a>
         </div>
     </div>

@@ -49,6 +49,7 @@ app/expertui
 ---
 name | overview
 :-- | :--
+[app\expertui\commands.js](app/expertui/commands.md) | _Handles expert commands  in the device hardware configuration._
 [app\expertui\configuration.js](app/expertui/configuration.md) | _Handles actions in the device hardware configuration._
 [app\expertui\directives.js](app/expertui/directives.md) | _Angular directives that are used in device hardware configuration view._
 [app\expertui\pyzw.js](app/expertui/pyzw.md) | _Functions used to render the configuration arrays._
@@ -77,6 +78,7 @@ app/modules
 ---
 name | overview
 :-- | :--
+[app\modules\httpLatency.js](app/modules/httpLatency.md) | _Angular module httpLatency simulates Latency for AngularJS $http Calls with Response Interceptorsy._
 [app\modules\qAllSettled.js](app/modules/qAllSettled.md) | _Angular module qAllSettled executes a number of operations concurrently._
 - - -
 

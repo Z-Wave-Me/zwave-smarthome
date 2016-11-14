@@ -129,7 +129,14 @@
                     </div>
             </div><!-- /.widget-entry-in --> 
         </div><!-- /.widget-entry --> 
-      </div><!-- /.app-row --> 
+      </div><!-- /.app-row -->
+        <!-- Show more apps -->
+        <div class="text-right" ng-if="dataHolder.modules.filter.featured == true">
+            <button class="btn btn-default"  ng-click="setFilter()">
+                <i class="fa fa-search-plus text-success"></i> {{_t('show_more_apps')}}
+            </button>
+        </div>
+
 
     </div> <!-- /ng-controller --> 
 </div> <!-- /ng-controller --> 

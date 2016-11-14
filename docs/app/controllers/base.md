@@ -20,6 +20,12 @@
 ## BaseController
 The app base controller.
 
+### BaseController.setSkin() 
+
+Set app skin
+
+**Returns**: `undefined`
+
 ### BaseController.routeMatch(path) 
 
 Check if route match the pattern.
@@ -40,11 +46,25 @@ Reset a fatal error.
 
 **Returns**: `undefined`
 
-### BaseController.setTimeZone() 
+### BaseController.setTimeStamp() 
 
-Set a time
+Set timestamp and ping server if request fails
 
 **Returns**: `undefined`
+
+### BaseController.handlePending() 
+
+Handle HTTP pending
+
+
+### BaseController.handleError(pending) 
+
+Handle error message
+
+**Parameters**
+
+**pending**: `object`
+
 
 ### BaseController.setPollInterval() 
 
@@ -61,6 +81,18 @@ Allow to access page elements by role.
 **roles**: `array`
 
 **mobile**: `boolean`
+
+**Returns**: `Boolean`
+
+### BaseController.isInArray(array, value) 
+
+Check if value is in array
+
+**Parameters**
+
+**array**: `array`
+
+**value**: `mixed`
 
 **Returns**: `Boolean`
 

@@ -1,13 +1,11 @@
-#.gitignore
 /_project/*
 /nbproject/*
 /upload/*
-/app/core/config.js
-upload.php
 .sass-cache*
 /app/css/.sass-cache/*
 /app/css/vendor/bootstrap/*
 /app/css/vendor/fontawesome/*
 /node_modules/*
-/user/*
 npm-debug.log
+*.iml
+/.idea

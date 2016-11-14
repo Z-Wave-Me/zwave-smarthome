@@ -182,6 +182,15 @@ Change climate element mode
 
 
 
+## ElementSecurityControlController
+The controller that handles Security Control  module.
+
+### ElementSecurityControlController.loadDeviceId() 
+
+Load single device
+
+
+
 ## ElementDashboardController
 The controller that handles elements on the dashboard.
 
@@ -300,36 +309,6 @@ Update custom icons with selected icons from the list
 Cancel all updates and hide a list with uploaded icons
 
 **Returns**: `undefined`
-
-### ElementIconController.checkUploadedFile(files) 
-
-Check and validate an uploaded file
-
-**Parameters**
-
-**files**: `object`
-
-**Returns**: `undefined`
-
-### ElementIconController.uploadFile(files) 
-
-Upload a file
-
-**Parameters**
-
-**files**: `object`
-
-**Returns**: `undefined`
-
-### ElementIconController.updateUploaded() 
-
-???
-
-
-### ElementIconController.removeDeviceFromUploaded() 
-
-???
-
 
 
 

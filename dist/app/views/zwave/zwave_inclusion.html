@@ -4,7 +4,7 @@
     <div class="form form-inline form-page">
         <div class="fieldset clearfix">
             <div class="include-device-img">
-                <img class="include-image-detail" ng-src="storage/img/zwave/devices/{{zwaveInclusion.device.find.product_image}}" alt="img" ng-if="zwaveInclusion.device.find.product_image" /> 
+                <img class="include-image-detail" ng-src="{{zwaveInclusion.device.find.product_image}}" alt="img" ng-if="zwaveInclusion.device.find.product_image" /> 
             </div>
             <div class="include-device-body">
                 <h1 ng-if="zwaveInclusion.device.find">{{zwaveInclusion.device.find.brandname + ' ' + zwaveInclusion.device.find.name}}</h1> 

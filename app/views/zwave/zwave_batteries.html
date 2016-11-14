@@ -16,10 +16,12 @@
                     </a>
                     <div class="app-dropdown app-dropdown-left" ng-if="naviExpanded['accZwaveManage_' + v.id]">
                         <ul>
-                            <li class="clickable zwave-hidden-{{e.permanently_hidden}}" 
+                            <li class="clickable zwave-hidden-{{e.permanently_hidden}}"
+                                ng-init="elUrl = (e.permanently_hidden ? '': '#/element/' + e.id)"
                                 ng-repeat="e in v.elements| orderBy:'metrics.title':false">
-                                <a ng-href="#/element/{{e.id}}" title="{{e.metrics.title}}">
-                                    <img class="report-img-s" ng-src="{{e.metrics.icon|getElementIcon:e:e.level}}" alt="img" /> {{e.metrics.title|cutText:true:20}} <span class="zwave-raquo">&raquo;</span>
+                                <a ng-href="{{elUrl}}" title="{{e.metrics.title}}">
+                                    <img class="report-img-s" ng-src="{{e.iconPath}}" alt="img" /> 
+                                    {{e.metrics.title|cutText:true:20}} <span class="zwave-raquo">&raquo;</span>
                                 </a>
                             </li>
                         </ul>

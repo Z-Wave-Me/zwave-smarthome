@@ -16,6 +16,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             hidden: 0
         },
         devices: {
+            switchButton: [],
             noDashboard: false,
             noDevices: false,
             show: true,
@@ -110,11 +111,10 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
                         angular.extend($scope.dataHolder.devices.all[index],
                                 {metrics: v.metrics},
                                 {imgTrans: false},
-                                //{iconPath: $filter('getElementIcon')(v.metrics.icon, v, v.metrics.level)},
-                                 {iconPath: dataService.assignElementIcon(v)},
+                                {iconPath: dataService.assignElementIcon(v)},
                                 {updateTime: v.updateTime}
                         );
-                        console.log('Updating from server response: device ID: ' + v.id + ', metrics.level: ' + v.metrics.level + ', updateTime: ' + v.updateTime + ', iconPath: ' + $filter('getElementIcon')(v.metrics.icon, v, v.metrics.level))
+                        //console.log('Updating from server response: device ID: ' + v.id + ', metrics.level: ' + v.metrics.level + ', updateTime: ' + v.updateTime);
                     });
                 }
                 if (response.data.data.structureChanged === true) {
@@ -254,11 +254,12 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
 
         var cmd = v.id + '/command/exact?level=' + count;
         v.metrics.level = count;
-        if (run) {
+         //console.log('ElementBaseController.setExactCmd - Sending request: ', cmd)
+        //if (run) {
             $scope.runCmd(cmd);
-        }
+       // }
 
-        return cmd;
+        //return cmd;
     };
 
     /// --- Private functions --- ///
@@ -420,7 +421,9 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
     $scope.widgetSwitchRGBW = {
         find: {},
         alert: {message: false, status: 'is-hidden', icon: false},
-        process: false
+        process: false,
+        previewColor: 'rgb(255, 255, 255)',
+        selectedColor: 'rgb(255, 255, 255)'
     };
 
     /**
@@ -442,8 +445,9 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
         image.src = 'app/img/colorwheel.png';
 
         var defaultColor = "rgb(" + input.metrics.color.r + ", " + input.metrics.color.g + ", " + input.metrics.color.b + ")";
-        $('#wheel_picker_preview').css('backgroundColor', defaultColor);
-
+        //$('#wheel_picker_preview').css('backgroundColor', defaultColor);
+        $scope.widgetSwitchRGBW.selectedColor = defaultColor;
+        $scope.widgetSwitchRGBW.previewColor = defaultColor;
         $('#wheel_picker').mousemove(function (e) { // mouse move handler
             if (bCanPreview) {
                 // get coordinates of current position
@@ -457,13 +461,8 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
 
                 // update preview color
                 var pixelColor = "rgb(" + pixel[0] + ", " + pixel[1] + ", " + pixel[2] + ")";
-
-                if (pixelColor == 'rgb(0, 0, 0)') {
-                    $('#wheel_picker_preview').css('backgroundColor', defaultColor);
-
-                } else {
-                    $('#wheel_picker_preview').css('backgroundColor', pixelColor);
-                }
+                pixelColor = (pixelColor == 'rgb(0, 0, 0)' ? $scope.widgetSwitchRGBW.selectedColor : pixelColor);
+                $scope.widgetSwitchRGBW.previewColor = pixelColor;
 
                 // update controls
                 $('#rVal').val('R: ' + pixel[0]);
@@ -474,13 +473,24 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
         });
 
         $('#wheel_picker').click(function (e) { // click event handler
-            bCanPreview = !bCanPreview;
-            if (!bCanPreview) {
+           // bCanPreview = true;//!bCanPreview;
+            if (bCanPreview) {
                 var cmdColor = $('#rgbVal').val().split(',');
                 var cmd = input.id + '/command/exact?red=' + cmdColor[0] + '&green=' + cmdColor[1] + '&blue=' + cmdColor[2] + '';
+                var rgbColors = 'rgb('+ cmdColor[0]+',' + cmdColor[1] + ',' + cmdColor[2] +')';
+                var rgbColorsObj = {
+                    r: cmdColor[0],
+                    g: cmdColor[1],
+                    b: cmdColor[2]
+                };
                 $scope.widgetSwitchRGBW.process = true;
                 dataFactory.runApiCmd(cmd).then(function (response) {
+                    var findIndex = _.findIndex($scope.dataHolder.devices.collection, {id: input.id});
+                   //angular.extend($scope.dataHolder.devices.collection[findIndex ].metrics,{rgbColors: rgbColors});
+                    angular.extend($scope.dataHolder.devices.collection[findIndex ].metrics.color,rgbColorsObj);
+                    angular.extend(input.metrics.color,rgbColorsObj);
                     $scope.widgetSwitchRGBW.process = false;
+                    $scope.widgetSwitchRGBW.selectedColor = rgbColors;
                 }, function (error) {
                     $scope.widgetSwitchRGBW.process = false;
                     $scope.widgetSwitchRGBW.alert = {message: $scope._t('error_update_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
@@ -530,7 +540,7 @@ myAppController.controller('ElementSensorMultilineController', function ($scope,
                 $scope.widgetSensorMultiline.alert = {message: $scope._t('no_data'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
                 return;
             }
-
+           $scope.widgetSensorMultiline.find.metrics.sensors = dataService.getDevicesData(response.data.data.metrics.sensors).value();
         }, function (error) {
             $scope.widgetSensorMultiline.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
         });
@@ -706,6 +716,36 @@ myAppController.controller('ElementClimateControlController', function ($scope, 
         });
 
     };
+});
+
+/**
+ * The controller that handles Security Control  module.
+ * @class ElementSecurityControlController
+ */
+myAppController.controller('ElementSecurityControlController', function ($scope, $filter, dataFactory) {
+    $scope.widgetSecurityControl = {
+        find: {},
+        alert: {message: false, status: 'is-hidden', icon: false}
+    };
+
+    /**
+     * Load single device
+     */
+    $scope.loadDeviceId = function () {
+        dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function (response) {
+            var lastTriggerList = response.data.data.metrics.lastTriggerList;
+            if (_.isEmpty(lastTriggerList)) {
+                $scope.widgetSecurityControl.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+                return;
+            }
+
+            $scope.widgetSecurityControl.find = lastTriggerList;
+
+        }, function (error) {
+            $scope.widgetSecurityControl.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+        });
+    };
+    $scope.loadDeviceId();
 });
 
 /**
@@ -974,7 +1014,7 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
         $scope.icons.all = dataService.getSingleElementIcons($scope.elementId.input);
 
     };
-    //$scope.loadCfgIcons();
+    $scope.loadCfgIcons();
 
     /**
      * Load already uploaded icons
@@ -982,7 +1022,7 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
      */
     $scope.loadUploadedIcons = function () {
         // Atempt to load data
-        dataFactory.getApiLocal('icons.json').then(function (response) {
+        dataFactory.getApi('icons', null, true).then(function (response) {
             $scope.icons.uploaded = response.data.data;
         }, function (error) {
             alertify.alertError($scope._t('error_load_data'));
@@ -990,7 +1030,7 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
         });
 
     };
-    //$scope.loadUploadedIcons();
+    $scope.loadUploadedIcons();
     /**
      * Set selected icon
      * @param {string} icon
@@ -1032,12 +1072,25 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
      * @returns {undefined}
      */
     $scope.updateWithCustomIcon = function () {
+        var customicons = function(icons,custom){
+            var obj = {};
+            if(_.isEmpty(custom)){
+                return obj;
+            }else if(icons['default']){
+                return custom;
+            }else{
+                obj['level'] = custom;
+                return obj;
+            }
+        }
         var input = {
-            id: $scope.elementId.input.id,
-            custom_icons: $scope.icons.all.custom
+            customicons: customicons($scope.icons.all.default,$scope.icons.all.custom)
         };
+        var id = $scope.elementId.input.id;
+        /*console.log(input)
+        return;*/
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        dataFactory.putApi('devices', $scope.elementId.input.id, input).then(function (response) {
+        dataFactory.putApi('customicon', id, input, '?icon').then(function (response) {
             $scope.icons.selected = false;
             $scope.loading = false;
             dataService.showNotifier({message: $scope._t('success_updated')});
@@ -1057,11 +1110,12 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
         $scope.icons.selected = false;
     };
     /**
+     * todo: deprecated
      * Check and validate an uploaded file
      * @param {object} files
      * @returns {undefined}
      */
-    $scope.checkUploadedFile = function (files) {
+    /*$scope.checkUploadedFile = function (files) {
         // Extends files object with a new property
         files[0].newName = dataService.uploadFileNewName(files[0].name);
         // Check allowed file formats
@@ -1093,15 +1147,16 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
             uploadFile(files);
         }
 
-    };
+    };*/
     /// --- Private functions --- ///
 
     /**
+     * todo: deprecated
      * Upload a file
      * @param {object} files
      * @returns {undefined}
      */
-    function uploadFile(files) {
+    /*function uploadFile(files) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('uploading')};
         // Clear all alerts and file name selected
         alertify.dismissAll();
@@ -1129,12 +1184,12 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
             $scope.loading = false;
         });
     }
-    ;
+    ;*/
 
     /**
-     * ???
+     * todo: deprecated
      */
-    function updateUploaded(input) {
+    /*function updateUploaded(input) {
         var output = [];
         angular.forEach(input.custom_icons, function (v, k) {
 
@@ -1151,12 +1206,12 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
         });
         console.log(output);
     }
-    ;
+    ;*/
 
     /**
-     * ???
+     * todo: deprecated
      */
-    function removeDeviceFromUploaded(input) {
+    /*function removeDeviceFromUploaded(input) {
         var output = [];
         angular.forEach(input.isset_icons, function (v, k) {
             var index = _.findIndex($scope.icons.uploaded, {file: v});
@@ -1172,5 +1227,5 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
         });
         console.log(output);
     }
-    ;
+    ;*/
 });

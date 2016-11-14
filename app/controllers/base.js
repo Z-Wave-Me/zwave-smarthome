@@ -9,11 +9,11 @@
 var myAppController = angular.module('myAppController', []);
 
 /**
- * The app base controller. 
+ * The app base controller.
  * @class BaseController
  */
-myAppController.controller('BaseController', function ($scope, $cookies, $filter, $location, $route, $window, $interval, cfg, cfgicons,dataFactory, dataService, myCache) {
-  
+myAppController.controller('BaseController', function ($scope, $rootScope,$cookies, $filter, $location, $route, $window, $interval, $timeout,$http, cfg, cfgicons, dataFactory, dataService, myCache) {
+
     // Global scopes
     $scope.$location = $location;
     angular.extend(cfg.route, {os: dataService.getOs()});
@@ -30,17 +30,26 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
      * Set app skin
      * @returns {undefined}
      */
-//    $scope.setSkin = function () {
-//     if($scope.user && $scope.user.skin !== 'default'){
-//        cfg.skin.active =  $scope.user.skin;
-//        cfg.img.icons = cfg.skin.path + $scope.user.skin + '/img/icons/';
-//        cfg.img.logo = cfg.skin.path + $scope.user.skin + '/img/logo/';
-//     //$("link[id='main_css']").attr('href', 'storage/skins/defaultzip/main.css');
-//        $("link[id='main_css']").attr('href', cfg.skin.path + $scope.user.skin + '/main.css');
-//     }
-//     };
-//     $scope.setSkin();
-     
+    $scope.setSkin = function () {
+        if ($cookies.skin && $cookies.skin !== 'default') {
+            cfg.skin.active = $cookies.skin;
+            cfg.img.icons = cfg.skin.path + $cookies.skin + '/img/icons/';
+            cfg.img.logo = cfg.skin.path + $cookies.skin + '/img/logo/';
+            $("link[id='main_css']").attr('href', cfg.skin.path + $cookies.skin + '/main.css');
+
+        } else {
+            dataFactory.getApi('skins_active').then(function (response) {
+                if (response.data.data.name !== 'default') {
+                    cfg.skin.active = response.data.data.name;
+                    cfg.img.icons = cfg.skin.path + response.data.data.name + '/img/icons/';
+                    cfg.img.logo = cfg.skin.path + response.data.data.name + '/img/logo/';
+                    $("link[id='main_css']").attr('href', cfg.skin.path + response.data.data.name + '/main.css');
+                }
+            }, function (error) {});
+        }
+    };
+    $scope.setSkin();
+
 
     /**
      * Check if route match the pattern.
@@ -63,42 +72,102 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
         angular.extend(cfg.route.fatalError, obj || {message: false, info: false, hide: false});
 
     };
+
     /**
-     * Set a time
+     * Set timestamp and ping server if request fails
      * @returns {undefined}
      */
-    $scope.setTimeZone = function () {
+    $scope.setTimeStamp = function () {
         if (!$scope.user) {
             return;
         }
-        dataFactory.getApi('timezone', null, true).then(function (response) {
-            angular.extend(cfg.route.time, {string: $filter('setTimeFromBox')(response.data.data)});
+        dataFactory.getApi('time', null, true).then(function (response) {
+            $interval.cancel($scope.timeZoneInterval);
+            angular.extend(cfg.route.time, {string: $filter('setTimeFromBox')(response.data.data.localTimeUT)},
+                {timestamp: response.data.data.localTimeUT});
+            var cnt = 0;
+
             var refresh = function () {
-                dataFactory.getApi('timezone', null, true).then(function (response) {
-                    angular.extend(cfg.route.time, {string: $filter('setTimeFromBox')(response.data.data)});
-                }, function (error) {
-                    if (!error.status || error.status === 0) {
-                        var fatalArray = {
-                            message: $scope._t('connection_refused'),
-                            info: $scope._t('connection_refused_info'),
-                            permanent: true,
-                            hide: true
-                        };
-                        if ($scope.routeMatch('/boxupdate')) {
-                            fatalArray.message = $scope._t('jamesbox_connection_refused');
-                            fatalArray.info = $scope._t('jamesbox_connection_refused_info',{__reload_begintag__:'<div>', __reload_endtag__:'</div>', __attention_begintag__:'<div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i>', __attention_endtag__:'<div>'});
-                            fatalArray.icon = cfg.route.fatalError.icon_jamesbox;
-                        }
-                        angular.extend(cfg.route.fatalError, fatalArray);
-                    }
-                    //$interval.cancel($scope.timeZoneInterval);
-                });
+                cfg.route.time.timestamp += (cfg.interval < 1000 ? 1 : cfg.interval/1000);
+                cfg.route.time.string = $filter('setTimeFromBox')(cfg.route.time.timestamp);
+                $scope.handlePending();
+                cnt++;
+
+
+
             };
             $scope.timeZoneInterval = $interval(refresh, $scope.cfg.interval);
         }, function (error) {});
 
     };
-    $scope.setTimeZone();
+
+    /**
+     * Handle HTTP pending
+     */
+    $scope.handlePending = function () {
+        var countUp = function() {
+           var pending = _.findWhere($http.pendingRequests,{url: '/ZAutomation/api/v1/system/time/get'});
+            handleError(pending);
+        }
+        $timeout(countUp, cfg.pending_timeout_limit);
+
+        /**
+         * Handle error message
+         * @param {object} pending
+         */
+        function handleError(pending){
+            if(pending){
+                console.log(pending);
+                var fatalArray = {
+                    type: 'network',
+                    message: $scope._t('connection_refused'),
+                    info: $scope._t('connection_refused_info'),
+                    permanent: true,
+                    hide: true
+                };
+                if ($scope.routeMatch('/boxupdate')) {
+                    fatalArray.message = $scope._t('jamesbox_connection_refused');
+                    fatalArray.info = $scope._t('jamesbox_connection_refused_info', {__reload_begintag__: '<div>', __reload_endtag__: '</div>', __attention_begintag__: '<div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i>', __attention_endtag__: '<div>'});
+                    fatalArray.icon = cfg.route.fatalError.icon_jamesbox;
+                }
+                angular.extend(cfg.route.fatalError, fatalArray);
+            }else{
+                if (cfg.route.fatalError.type === 'network') {
+                    dataFactory.sessionApi().then(function (sessionRes) {
+                        var user = sessionRes.data.data;
+                        if (sessionRes.data.data) {
+                            dataService.setZWAYSession(user.sid);
+                            dataService.setUser(user);
+                            if (dataService.getUser()) {
+                                $window.location.reload();
+                            }
+                        }
+
+                    }, function (error) {});
+                }
+            }
+        }
+
+    };
+
+    /**
+     * Route on change start
+     */
+    $rootScope.$on("$routeChangeStart", function(event, next, current) {
+        /**
+         * Reset fatal error object
+         */
+        dataService.resetFatalError();
+        /**
+         * Check if access is allowed for the page
+         */
+        dataService.isAccessAllowed(next);
+        /**
+         * Set timestamp and ping server if request fails
+         */
+        $scope.setTimeStamp();
+    });
+
     /**
      * Set poll interval
      * @returns {undefined}
@@ -115,7 +184,7 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
 
     /**
      * Allow to access page elements by role.
-     * 
+     *
      * @param {array} roles
      * @param {boolean} mobile
      * @returns {Boolean}
@@ -133,6 +202,19 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
             return false;
         }
         return true;
+    };
+    /**
+     * Check if value is in array
+     *
+     * @param {array} array
+     * @param {mixed} value
+     * @returns {Boolean}
+     */
+    $scope.isInArray = function (array,value) {
+        if (array.indexOf(value) > -1) {
+            return true;
+        }
+        return false;
     };
 
 
@@ -180,15 +262,6 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
     $scope.$watch('lang', function () {
         $scope.loadLang($scope.lang);
     });
-    
-    // IF IE or Edge displays an message
-    if (dataService.isIeEdge()) {
-        angular.extend(cfg.route.fatalError, {
-            message: cfg.route.t['ie_edge_not_supported'],
-            info: cfg.route.t['ie_edge_not_supported_info']
-        });
-    }
-
     /**
      * Order by
      * @param {string} field
@@ -305,37 +378,6 @@ myAppController.controller('BaseController', function ($scope, $cookies, $filter
             $scope.naviExpanded[key] = status;
         } else {
             $scope.naviExpanded[key] = !$scope.naviExpanded[key];
-        }
-        $event.stopPropagation();
-    };
-    // Collapse element/menu when clicking outside
-    window.onclick = function () {
-        if ($scope.naviExpanded) {
-            angular.copy({}, $scope.naviExpanded);
-            $scope.$apply();
-        }
-    };
-    
-    
-    /**
-     * Expand/collapse navigation/dropdown without hidding after click
-     * @param {string} key
-     * @param {object} $event
-     * @param {boolean} status
-     * @returns {undefined}
-     */
-    $scope.naviExpandedNotHide = {};
-    $scope.expandNaviNotHide = function (key, $event, status) {
-        if ($scope.naviExpandedNotHide[key]) {
-            $scope.naviExpandedNotHide = {};
-            $event.stopPropagation();
-            return;
-        }
-        $scope.naviExpandedNotHide = {};
-        if (typeof status === 'boolean') {
-            $scope.naviExpandedNotHide[key] = status;
-        } else {
-            $scope.naviExpandedNotHide[key] = !$scope.naviExpandedNotHide[key];
         }
         $event.stopPropagation();
     };

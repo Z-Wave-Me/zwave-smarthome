@@ -46,6 +46,9 @@ $page-navi-h: 50px;
 $dropdown-w: 300px;
 $dropdown-lang-w: 250px;
 
+// Info window
+$infowindow-w: 100%;
+
 // Overflow H
 $app-overflow-h: 500px;
 
@@ -76,6 +79,8 @@ $room-img-upload: 70px;
 $room-img-preview: 130px;
 $report-img-s: 32px;
 $lang-img: 32px;
+$imglist-img: 40px;
+$imglist-img-preview: 64px;
 
 // Footer
 $footer-h: 50px;
@@ -98,6 +103,7 @@ $customize-modal-content-h: 600px;
 
 //Room
 $room-col-w: 50%;
+$room-widget-col-h: 120px;
 
 //Login
 $auth-page-w: 500px;
@@ -108,13 +114,19 @@ $badge-number-w: 32px;
 //Devices
 $device-vendor-w: 33.33333%;
 
+//Switch buton
+$switch-btn-w: 72px;
+$switch-btn-h: 40px;
+$switch-btn-slider: 32px;
+
 /*-------------------------------------*/
 // Z:INDEX
 $zindex-alertify: 2500;
 $zindex-loader: 2400;
 $zindex-header: 2100;
-$zindex-page-navi: 1900;
+$zindex-page-navi: 2101;
 $zindex-dropdown: 1100;
+$zindex-infowindow: 1100;
 $zindex-modal: 2300;
 $zindex-footer: 2100;
 $zindex-m-footer: 2130;
@@ -155,6 +167,7 @@ $page-navi-icon-size: 130%;
 $modal-close-size: 180%;
 $modal-heading-font-size: 110%;
 $dropdown-font-size: 110%;
+$infowindow-font-size: 90%;
 $dropdown-icon-size: 120%;
 $accordion-heading-font-size: 120%;
 $accordion-icon-size: 130%;
@@ -240,6 +253,11 @@ $dropdown-color: $app-a-color;
 $dropdown-border-color: $app-border-color;
 $dropdown-icon-color: lighten($dropdown-color, 20%);
 $dropdown-heading-color: $app-heading-color;
+
+// Info window
+$infowindow-bcg-color: #FFFFFF;
+$infowindow-color: $app-body-color;
+$infowindow-border-color: $app-border-color;
 
 // Accordion
 $accordion-bcg-color: #FFFFFF;
@@ -331,7 +349,7 @@ $element-widget-btn-on-color: lighten($widget-color, 40%);
 $element-widget-img-update-border-color: $app-border-color;
 $element-widget-isnew-border-color: lighten($app-brand-success,20%);
 
-// Customiz
+// Customize
 $customize-border-color: $app-border-color;
 // Room
 $room-border-color: $app-border-color;
@@ -341,12 +359,15 @@ $badge-number-bcg-color: lighten($app-body-color, 60%);
 $badge-number-color: #FFFFFF;
 
 // Comments and ratings
-$rating-color: lighten($app-body-color,70%);
+$rating-color: lighten($app-body-color,50%);
 $rating-israted-color: lighten(#f0ad4e,10%);
 $comment-even-bcg-color:  #E9E9E9;
 $comment-color: $app-body-color;
 $comment-header-color:  lighten($comment-color, 20%);
 
+// Image list
+$imglist-border-color: $app-border-color;
+$imglist-background-color: #FFFFFF;
 
 /*-------------------------------------*/
 // EFFECTS
@@ -358,6 +379,7 @@ $app-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
 $app-mainsubnavi-box-shadow: $app-box-shadow;
 $page-navi-box-shadow: $app-box-shadow;
 $dropdown-box-shadow: $app-box-shadow;
+$infowindow-box-shadow: $app-box-shadow;
 $element-widget-btn-box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
 
 // Loader fade out

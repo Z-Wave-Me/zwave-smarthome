@@ -9,7 +9,7 @@
            ng-if="elementAccess(cfg.role_access.admin)">
             <i class="fa fa-globe"></i> <span class="btn-name">{{_t('online_skins')}}</span>
         </a>
-        <a class="btn btn-default" title="{{_t('local_icons')}}" href="#customize/iconslocal" 
+        <a class="btn btn-default" title="{{_t('local_icons')}}" href="#customize/iconslocal"
            ng-class="routeMatch('/customize/iconslocal') ? 'active' : ''"
            ng-if="elementAccess(cfg.role_access.admin)">
             <i class="fa fa-image"></i> <span class="btn-name">{{_t('local_icons')}}</span>

@@ -1,7 +1,50 @@
 SmartHome UI
 ===============
+## LICENSE
+Copyright (C) 2016 z-wave.Me
 
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 This User Interfaces allows to operate a Smart Home Network based on Z-Wave devices. It utilizes the software architecture "Z-Way", certified as Z-Wave Plus Controller.
+
+## Project leader
+Marcel Kermer
+## v1.6.0
+#### New features
+- Apps/Active: Sorting by active/inactive apps.
+- Custom icons: Possibility to upload and assign custom icons for devices.
+- Skins: The Skin is a software package redefining all visual elements of your mobile and browser interface.
+- New widget type sensorDiscrete.
+
+#### Changes
+- Rooms: displayed as widgets, removed from the config menu.
+- Displaying active APPS as widgets.
+- Caching online modules.
+
+## v1.5.1
+#### Fixes
+- Displays Firmware Update in  POPP version.
+
+## v1.5.0
+#### New features
+- Apps: Added button Add more apps if filter feature apps is preselected.git
+- Time zone on the first access page and in the management (POPP only).
+- More products in the Z-Wave devices.
+- Add update time to toggle button #167.
+- Online Apps: Sorting by most popular.
+- Elements: Sorting by last updated.
+- Added the generic Confguration Dialog to Hardware Configuration if no ZDDX file is present.
+
+#### Fixes
+- Text in preferences menu not aligned #189.
+- Filter function in elements prevents further use of UI elements #185.
+- Strange sting on widget #180.
+- Infinite loop on login #184.
+- Elements: Fixed knob bug.
+
+#### Changes
+- Hardvare configuration: Removed targed node from wakeup time settings.
+- Removed filter getElementIcon and replaced with service assignElementIcon.
+
 ## v1.4.3
 #### New features
 - Added an indicator for local apps with instance.

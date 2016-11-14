@@ -85,7 +85,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
         var promises = [
             dataFactory.getApi('modules_categories'),
             dataFactory.getApi('modules', null, true),
-            dataFactory.getOnlineModules({token: _.values(tokens)}, true),
+            dataFactory.getOnlineModules({token: _.values(tokens)}),
             dataFactory.getApi('instances', null, true)
         ];
 
@@ -281,8 +281,9 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                     } else {
                         item.featured = false;
                     }
+                    item.installedSort = $filter('zeroFill')(item.installed);
                      //Tooltip description
-                        angular.extend(item, {toolTipDescription: $filter('stripTags')(item.description)});
+                     angular.extend(item, {toolTipDescription: $filter('stripTags')(item.description)});
                     return item;
                 }).reject(function (v) {
             return v.isHidden === true;

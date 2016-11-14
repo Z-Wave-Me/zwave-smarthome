@@ -4,85 +4,109 @@
  */
 
 /**
- * This is a new version of the ZwaveAddController and is not completed!!!
- * The controller that renders Z-Wave manufacturers and devices.
- * @class ZwaveSelectController
+ * The controller that renders Z-Wave vendors.
+ * @class ZwaveVendorController
  */
-myAppController.controller('ZwaveSelectController', function ($scope, $routeParams, dataFactory, dataService, _) {
-    $scope.zwaveSelect = {
-        logos: {},
-        brand: {},
-        brandName: '',
-        list: {}
-    };
-
-    /**
-     * Load products - vendor logos
-     */
-    $scope.loadProducts = function () {
-        dataFactory.getApiLocal('test/products.json').then(function (response) {
-            angular.forEach(response.data, function (v, k) {
-                $scope.zwaveSelect.logos[v.manufacturer] = v.manufacturer_image;
-                //angular.extend($scope.zwaveSelect.logos[v.manufacturer_id],v.manufacturer_image);
-            });
-            console.log($scope.zwaveSelect.logos)
-        }, function (error) {
-        });
-    };
-    $scope.loadProducts($routeParams.brandname);
-    /**
-     * Load z-wave devices
-     */
-    $scope.loadData = function (brandname, lang) {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        //dataFactory.getApiLocal('device.' + lang + '.json').then(function (response) {
-        dataFactory.getApiLocal('test/devicedatabase.json').then(function (response) {
-            $scope.zwaveSelect.brand = _.uniq(response.data, 'brandname');
-            if (brandname) {
-                $scope.zwaveSelect.list = _.where(response.data, {brandname: brandname});
-                if (_.isEmpty($scope.zwaveSelect.list)) {
-                    $scope.loading = false;
-                    alertify.alertWarning($scope._t('no_data'));
-                }
-
-                $scope.zwaveSelect.brandName = brandname;
+myAppController.controller('ZwaveVendorController', function ($scope, $routeParams, cfg, dataFactory, dataService, _) {
+    $scope.zwaveVendors = {
+        frequency: false,
+        cnt: {
+            vendorProducts: {
             }
-            $scope.loading = false;
+        },
+        all: {},
+        find: {}
+    };
+    /**
+     * Load z-wave data
+     */
+    $scope.loadZwdata = function () {
+        dataFactory.loadZwaveApiData().then(function (response) {
+           $scope.zwaveVendors.frequency = response.controller.data.frequency.value;
         }, function (error) {
             alertify.alertError($scope._t('error_load_data'));
         });
     };
-    $scope.loadData($routeParams.brandname, $scope.lang);
+    $scope.loadZwdata();
+    /**
+     * Load z-wave devices an parse vendors
+     */
+    $scope.loadVendors = function () {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        //dataFactory.getApiLocal('device.' + lang + '.json').then(function (response) {
+        dataFactory.getApiLocal('vendors.json').then(function (response) {
+            $scope.loading = false;
+            $scope.zwaveVendors.all = response.data;
+        }, function (error) {
+            alertify.alertError($scope._t('error_load_data'));
+        });
+    };
+    $scope.loadVendors();
 });
 
 /**
- * The controller that renders Z-Wave manufacturers and devices.
- * @class ZwaveAddController
+ * The controller that renders Z-Wave devices by vendor.
+ * @class ZwaveVendorIdController
  */
-myAppController.controller('ZwaveAddController', function ($scope, $routeParams, dataFactory, dataService, _) {
-    $scope.zwaveDevices = [];
-    $scope.deviceVendor = false;
-    $scope.manufacturers = [];
-    $scope.manufacturer = false;
+myAppController.controller('ZwaveVendorIdController', function ($scope, $routeParams, $q,cfg, dataFactory, dataService, _) {
+    $scope.zwaveProducts = {
+        all: {},
+        cnt: 0,
+        frequency: false,
+        vendors: {},
+        vendor: {}
+    };
     /**
-     * Load z-wave devices
+     * Load all promises
      */
-    $scope.loadData = function (brandname, lang) {
+    $scope.allSettled = function (brandId,lang) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataFactory.getApiLocal('device.' + lang + '.json').then(function (response) {
+        var promises = [
+            dataFactory.loadZwaveApiData(),
+            dataFactory.getApiLocal('vendors.json'),
+            dataFactory.getApiLocal('devices.json')
+            
+        ];
+
+        $q.allSettled(promises).then(function (response) {
+            var where = {
+                brandid: brandId
+            };
+            var zwdata = response[0];
+            var vendors = response[1];
+            var products = response[2];
+            
             $scope.loading = false;
-            $scope.manufacturers = _.uniq(response.data, 'brandname');
-            if (brandname) {
-                $scope.zwaveDevices = _.where(response.data, {brandname: brandname});
-                $scope.manufacturer = brandname;
+            // Error message
+            if (vendors.state === 'rejected' || products.state === 'rejected') {
+                alertify.alertError($scope._t('error_load_data'));
+                return;
             }
-        }, function (error) {
-            alertify.alertError($scope._t('error_load_data')).set('onok', function (closeEvent) {
-                dataService.goBack();
-            });
+             // Success - zwdata
+            if (zwdata.state === 'fulfilled') {
+                if(zwdata.value.controller.data.frequency.value){
+                    $scope.zwaveProducts.frequency = zwdata.value.controller.data.frequency.value;
+                    where.frequencyid =  $scope.zwaveProducts.frequency;
+                }
+            }
+
+            // Success - vendors
+            if (vendors.state === 'fulfilled') {
+               $scope.zwaveProducts.vendors = vendors.value.data;
+               $scope.zwaveProducts.vendor = _.findWhere($scope.zwaveProducts.vendors,{brandid: brandId});
+            }
+            // Success - products
+            if (products.state === 'fulfilled') {
+                 $scope.zwaveProducts.all = dataService.getZwaveProducts(products.value.data,lang)
+                 .where(where)
+                 .value();
+                 $scope.zwaveProducts.cnt = _.size($scope.zwaveProducts.all);
+            }
+
+
         });
     };
-    $scope.loadData($routeParams.brandname, $scope.lang);
+    $scope.allSettled($routeParams.id,$scope.lang);
 });
 
 /**
@@ -119,12 +143,12 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
             }
             // Success - zwave devices
             if (devices.state === 'fulfilled') {
-                 $scope.devices.zw = setZwaveApiData(devices.value);
+                $scope.devices.zw = setZwaveApiData(devices.value);
             }
             // Success - elements
             if (elements.state === 'fulfilled') {
                 //setElements(elements.value.data.data.devices);
-                setElements(dataService.getDevicesData(elements.value.data.data.devices,false));
+                setElements(dataService.getDevicesData(elements.value.data.data.devices, false,true));
             }
         });
     };
@@ -162,13 +186,17 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
                 sleepingSince,
                 lastWakeup,
                 interval,
-                batteryCharge;
+                batteryCharge,
+                instance,
+                security;
         controllerNodeId = ZWaveAPIData.controller.data.nodeId.value;
         angular.forEach(ZWaveAPIData.devices, function (node, nodeId) {
             if (nodeId == 255 || nodeId == controllerNodeId || node.data.isVirtual.value) {
                 return;
             }
-            interviewDone = isInterviewDone(node);
+            instance = getInstances(node);
+            interviewDone = instance.interviewDone;
+            security = instance.security;
             isFailed = node.data.isFailed.value;
             hasBattery = 0x80 in node.instances[0].commandClasses;
             lastReceive = parseInt(node.data.lastReceived.updateTime, 10) || 0;
@@ -194,6 +222,7 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
                 hasBattery: hasBattery,
                 batteryCharge: (batteryCharge === null ? null : parseInt(batteryCharge)),
                 interviewDone: interviewDone,
+                security: security,
                 isFailed: isFailed,
                 sleeping: sleepingCont(isListening, hasWakeup, sleepingSince, lastWakeup, interval),
                 awake: awakeCont(isAwake, isListening, isFLiRS),
@@ -241,33 +270,40 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
     function setElements(elements) {
         var findZwaveStr, cmd, nodeId;
         angular.forEach(elements.value(), function (v, k) {
-           findZwaveStr = v.id.split('_');
+            findZwaveStr = v.id.split('_');
             if (findZwaveStr[0] === 'ZWayVDev' && findZwaveStr[1] === 'zway') {
                 cmd = findZwaveStr[findZwaveStr.length - 1].split('-');
                 nodeId = cmd[0];
-                if($scope.devices.zw[nodeId]){
-                    $scope.devices.zw[nodeId]['elements'][v.id]= v;
+                if ($scope.devices.zw[nodeId]) {
+                    $scope.devices.zw[nodeId]['elements'][v.id] = v;
                 }
             }
 
 
         });
     }
-
-
     /**
-     * Has a device an interview done?
+     * Get selected instances status
      */
-    function isInterviewDone(node) {
+    function getInstances(node) {
+        var instance = {
+            interviewDone: true,
+            security: false
+        };
         for (var iId in node.instances) {
             for (var ccId in node.instances[iId].commandClasses) {
+
+                var ccName = node.instances[iId].commandClasses[ccId].name;
                 var isDone = node.instances[iId].commandClasses[ccId].data.interviewDone.value;
+                if (ccName === 'Security') {
+                    instance.security = isDone;
+                }
                 if (isDone == false) {
-                    return false;
+                    instance.interviewDone = false;
                 }
             }
         }
-        return true;
+        return instance;
 
     }
     ;
@@ -704,7 +740,8 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
             }
             // Success - devices
             if (devices.state === 'fulfilled') {
-                zwaveConfigApiData($scope.zwaveConfig.nodeId, devices.value.data.data.devices);
+                var elements = dataService.getDevicesData(devices.value.data.data.devices, false,true);
+                zwaveConfigApiData($scope.zwaveConfig.nodeId, elements.value());
             }
             // Success - locations
             if (locations.state === 'fulfilled') {
@@ -825,13 +862,14 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
                 var iId = cmd[1];
                 var ccId = cmd[2];
                 if (zwaveId == nodeId) {
-                    var obj = {};
-                    obj['id'] = v.id;
-                    obj['permanently_hidden'] = v.permanently_hidden;
-                    obj['visibility'] = v.visibility;
-                    obj['level'] = $filter('toInt')(v.metrics.level);
-                    obj['metrics'] = v.metrics;
-                    obj['location'] = v.location;
+                    var obj = v;
+                    /*var obj = {};
+                     obj['id'] = v.id;
+                     obj['permanently_hidden'] = v.permanently_hidden;
+                     obj['visibility'] = v.visibility;
+                     obj['level'] = $filter('toInt')(v.metrics.level);
+                     obj['metrics'] = v.metrics;
+                     obj['location'] = v.location;*/
                     $scope.formInput.elements[v.id] = obj;
                     $scope.devices.push(obj);
                 }
