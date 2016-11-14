@@ -1,4 +1,6 @@
 {
+    "cloud_activate": "Activate cloud backup",
+    "download_backup_computer": "Download backup to your computer",
     "edit": "Edit",
     "used_in": "Used in",
     "activeASC": "Inactive",
@@ -18,7 +20,6 @@
     "swipe_bottom_right_to_top_left": "swiped",
     "custom_icons_no_available":"There are no custom icons uploaded.",
     "manage_custom_icons":"Manage custom icons",
-
     "upload_backup": "Upload backup",
     "cloud_not_installed": "Cloud Backup is not installed. Please add new Cloud Backup in the Apps > local > Cloud Backup.",
     "cloud_not_active": "Cloud Backup is not active. Please activate it in the Apps > Active > Cloud Backup.",

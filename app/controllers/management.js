@@ -980,11 +980,11 @@ myAppController.controller('ManagementCloudBackupController', function ($scope, 
 
             // Success - api data
             if (instance.state === 'fulfilled') {
-                if (!instance.value.data.data[0].active) {
+                /*if (!instance.value.data.data[0].active) {
                     $scope.managementCloud.alert = {message: $scope._t('cloud_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
                     alertify.alertWarning($scope._t('cloud_not_active'));
                     return;
-                }
+                }*/
                 $scope.managementCloud.show = true;
                 $scope.managementCloud.instance = instance.value.data.data[0];
             }
@@ -1002,6 +1002,26 @@ myAppController.controller('ManagementCloudBackupController', function ($scope, 
      */
     $scope.setSchedulerType = function (type) {
         $scope.managementCloud.instance.params.scheduler = type;
+    };
+
+    /**
+     * Activate cloud backup
+     */
+    $scope.activateCloudBackup = function (input, activeStatus) {
+        input.active = activeStatus;
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        if (input.id) {
+            dataFactory.putApi('instances', input.id, input).then(function (response) {
+                dataService.showNotifier({message: $scope._t('success_updated')});
+                $scope.loading = false;
+                $scope.allCloudSettled();
+
+            }, function (error) {
+                alertify.alertError($scope._t('error_update_data'));
+                $scope.loading = false;
+            });
+        }
+
     };
 
     /**
