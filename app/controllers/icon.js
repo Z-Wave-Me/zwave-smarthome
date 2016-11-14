@@ -19,8 +19,7 @@ myAppController.controller('LocalIconController', function ($scope, $filter, $ti
         },
         filter: {},
         used: {
-            device: {},
-            test: []
+            device: {}
         },
         info: {
             maxSize: $filter('fileSizeString')(cfg.upload.icon.size),
@@ -208,18 +207,14 @@ myAppController.controller('LocalIconController', function ($scope, $filter, $ti
     function iconUsedInDevice(devices) {
         var output = {};
         angular.forEach(devices, function (v, k) {
-            // For testing purposes
-           /* if (v.id === 'ZWayVDev_zway_2-0-156-0-A') {
-                v.custom_icons = {on: 'cat-box-icon.png', off: 'cat-cage-icon.png'};
-            } else if (v.id === 'ZWayVDev_zway_2-0-49-3') {
-                v.custom_icons = {'default': 'cat-cage-icon.png'};
-            }*/
             // Device has custom icons
             if (v.customIcons) {
                 angular.forEach(v.customIcons.level || v.customIcons, function (iv, ik) {
                     if (output[iv]) {
-                        //icon[iv] = [v.id];
-                        output[iv].push(v.id);
+                        if(!output[iv].indexOf(v.id)){
+                            output[iv].push(v.id);
+                        }
+
                     } else {
                         output[iv] = [v.id];
                     }
