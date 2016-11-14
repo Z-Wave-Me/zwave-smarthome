@@ -16,8 +16,6 @@ Marcel Kermer
 - New widget type sensorDiscrete.
 
 #### Changes
-- Rooms: displayed as widgets, removed from the config menu.
-- Displaying active APPS as widgets.
 - Caching online modules.
 
 ## v1.5.1
