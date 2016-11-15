@@ -251,6 +251,11 @@ Load all promises
 Set scheduler type
 
 
+### ManagementCloudBackupController.activateCloudBackup() 
+
+Activate cloud backup
+
+
 ### ManagementCloudBackupController.updateInstance() 
 
 Update instance

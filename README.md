@@ -11,10 +11,11 @@ Marcel Kermer
 
 ## v1.6.0
 #### New features
-- Apps/Active: Sorting by active/inactive apps.
+- Cloud Backup: Gives possibility to upload and store your backups on the remote server.
 - Custom icons: Possibility to upload and assign custom icons for devices.
-- Skins: The Skin is a software package redefining all visual elements of your mobile and browser interface.
-- New widget type sensorDiscrete.
+- Skins: A Skin is a CSS style that allow to change the appearance of the SmartHome UI.
+- New widget type sensorDiscrete:  N-State visualisation of CentralScene commands.
+- Apps/Active: Sorting by active/inactive apps.
 
 #### Changes
 - Caching online modules.
