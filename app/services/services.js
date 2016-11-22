@@ -644,7 +644,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
         var icon = cfg.img.icons + 'placeholder.png';
         var iconKey = $filter('hasNode')(element, 'metrics.icon');
         // Assign icon by metrics.icon
-        var iconArray = setIcon(cfgicons.element.icon[iconKey], element.customIcons, element.id);
+        var iconArray = setIcon(cfgicons.element.icon[iconKey], element.customIcons || {});
         /**
          * Set icons by deviceType
          */
@@ -652,7 +652,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
             // switchControl
             case 'switchControl':
                 //icon = iconArray.default;
-                iconArray = setIcon(cfgicons.element.deviceType['switchControl'], element.customIcons, element.id);
+                iconArray = setIcon(cfgicons.element.deviceType['switchControl'], element.customIcons || {});
                 return iconArray.default;
             // default
             default:
@@ -759,7 +759,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @param {object} customIcon
      * @returns {*}
      */
-    function setIcon(defaultIcon, customIcon,id) {
+    function setIcon(defaultIcon, customIcon) {
         var obj = {};
         customIcon = customIcon.level || customIcon
         if (defaultIcon) {
