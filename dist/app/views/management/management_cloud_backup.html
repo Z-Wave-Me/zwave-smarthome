@@ -53,13 +53,13 @@
             </div>
         </fieldset>
         <fieldset ng-if="managementCloud.instance.params.user_active">
-            <div class="btn-group">
+            <p class="btn-group">
                 <button class="btn btn-default" title="{{_t('daily')}}" type="button"
                         ng-repeat="v in managementCloud.module.schema.properties.scheduler.enum track by $index"
                         ng-class="v === managementCloud.instance.params.scheduler ? 'active' : ''"
                         ng-click="setSchedulerType(v)"
                         >{{managementCloud.module.options.fields.scheduler.optionLabels[$index]}}</button>
-            </div>
+            </p>
             <div class="form-group form-inline form-block">
                 <!-- Hours -->
                 <span ng-if="managementCloud.module.options.fields.hours.dependencies.scheduler.indexOf(managementCloud.instance.params.scheduler) > -1">
