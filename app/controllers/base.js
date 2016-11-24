@@ -416,6 +416,19 @@ myAppController.controller('BaseController', function ($scope, $rootScope,$cooki
         $scope.expand[key] = !($scope.expand[key]);
     };
 
+    $scope.rowSpinner = [];
+    /**
+     * Toggle row spinner
+     * @param {string} key
+     * @returns {undefined}
+     */
+    $scope.toggleRowSpinner = function (key) {
+        if (!key) {
+            $scope.rowSpinner = [];
+            return;
+        }
+        $scope.rowSpinner[key] = !$scope.rowSpinner[key];
+    };
 
     // Alertify defaults
     alertify.defaults.glossary.title = cfg.app_name;

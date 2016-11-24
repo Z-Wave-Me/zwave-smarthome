@@ -10512,6 +10512,11 @@ a:focus {
   border-radius: 50%;
 }
 
+/* line 186, ../sass/common/_body.scss */
+.icon-hidden {
+  visibility: hidden;
+}
+
 /* Header
 -------------------------------------------------- */
 /* line 3, ../sass/common/_header.scss */
@@ -14136,3 +14141,5 @@ img.widget-promo-image {
     float: none;
   }
 }
+
+/*# sourceMappingURL=main.css.map */

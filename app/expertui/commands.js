@@ -95,9 +95,10 @@ myAppController.controller('ConfigCommandsController', function ($scope, $routeP
      * @param {string} form
      * @param {string} cmd
      */
-    $scope.submitExpertCommndsForm = function (form, cmd) {
+    $scope.submitExpertCommndsForm = function (form, cmd,v) {
         var data = $('#' + form).serializeArray();
         var dataJoined = [];
+
         angular.forEach(data, function (v, k) {
             if (v.value === 'N/A') {
                 return;
@@ -105,11 +106,19 @@ myAppController.controller('ConfigCommandsController', function ($scope, $routeP
             dataJoined.push($filter('setConfigValue')(v.value));
 
         });
+        var paramInput  = dataJoined[0];
+        //console.log(paramInput)
+        $scope.toggleRowSpinner('row_' + paramInput);
+        //console.log($scope.rowSpinner)
+        //var obj = $scope.ccConfiguration.all[paramInput];
+        //console.log(obj)
         var request = cmd + '(' + dataJoined.join() + ')';
         //dataService.runCmd(request, false, $scope._t('error_handling_data'));
         dataFactory.runExpertCmd(request, true).then(function(response){
             dataService.showNotifier({message: $scope._t('success_updated')});
+            $timeout($scope.toggleRowSpinner, $scope.cfg.interval);
         },function(error) {
+            $scope.toggleRowSpinner();
             alertify.alertError($scope._t('error_update_data'));
         });
 

@@ -12,7 +12,7 @@
                         id="{{formName}}"
                         class="form form_commands"
                         role="form"
-                        ng-submit="submitExpertCommndsForm(formName, hasConfigurationCc.cmd + '.' + c.data.method)"
+                        ng-submit="submitExpertCommndsForm(formName, hasConfigurationCc.cmd + '.' + c.data.method,c)"
                         novalidate>
                     <div class="commands-data-control">
                         <div class="form-inline" ng-repeat="(pk,p) in c.data.params">
@@ -47,12 +47,14 @@
                     <th>{{_t('date')}}</th>
                     <th>{{_t('size')}}</th>
                     <th>{{_t('value')}}</th>
+                    <th>&nbsp;</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr class="{{v.isEqual ? 'na':'bcg-success'}}"
                     ng-repeat="v in ccConfiguration.all track by $index">
                     <td>
+
                         {{v.param}}
                     </td>
                     <td>
@@ -64,6 +66,11 @@
                     <td>
                         {{v.val || '-'}}
                     </td>
+                    <td>
+                        <bb-row-spinner
+                                spinner="rowSpinner[v.rowId]"
+                                icon="'fa-minus icon-hidden'">
+                        </bb-row-spinner></td>
                 </tr>
                 </tbody>
 
