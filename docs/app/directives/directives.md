@@ -25,6 +25,10 @@ Window history back
 Displays a page loader
 
 
+## bbRowSpinner
+Displays a spinner
+
+
 ## bbAlert
 Displays an alert message within the div
 

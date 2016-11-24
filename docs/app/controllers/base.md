@@ -226,6 +226,16 @@ Expand/collapse an element
 
 **Returns**: `undefined`
 
+### BaseController.toggleRowSpinner(key) 
+
+Toggle row spinner
+
+**Parameters**
+
+**key**: `string`
+
+**Returns**: `undefined`
+
 
 
 * * *

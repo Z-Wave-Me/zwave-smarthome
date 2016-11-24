@@ -11512,7 +11512,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/expertui/commands.html',
-    "<div class=cfg-block ng-controller=ConfigCommandsController><div class=row><div class=col-md-6><h2>{{hasConfigurationCc.commandClass}}</h2><div class=commands-data ng-repeat=\"c in hasConfigurationCc.command| orderBy:predicate:reverse\" ng-init=\"formName = 'form_' + c.data.method + '_' + v.rowId\"><form name={{formName}} id={{formName}} class=\"form form_commands\" role=form ng-submit=\"submitExpertCommndsForm(formName, hasConfigurationCc.cmd + '.' + c.data.method)\" novalidate><div class=commands-data-control><div class=form-inline ng-repeat=\"(pk,p) in c.data.params\"><expert-command-input collection=p values=c.data.values[pk] devices=devices name=c.data.method get-node-devices=getNodeDevices></expert-command-input></div><button type=submit class=\"btn btn-primary\" id=\"btn_update_{{ v.rowId}}\">{{c.data.method}}</button></div></form></div></div><div class=col-md-6><table class=\"table _table-report\"><thead><tr><th>{{_t('param')}}</th><th>{{_t('date')}}</th><th>{{_t('size')}}</th><th>{{_t('value')}}</th></tr></thead><tbody><tr class=\"{{v.isEqual ? 'na':'bcg-success'}}\" ng-repeat=\"v in ccConfiguration.all track by $index\"><td>{{v.param}}</td><td><span ng-class=\"v.isUpdated ? 'color-green':'color-red'\">{{v.updateTime | isTodayFromUnix}}</span></td><td>{{v.size || '-'}}</td><td>{{v.val || '-'}}</td></tr></tbody></table></div></div></div>"
+    "<div class=cfg-block ng-controller=ConfigCommandsController><div class=row><div class=col-md-6><h2>{{hasConfigurationCc.commandClass}}</h2><div class=commands-data ng-repeat=\"c in hasConfigurationCc.command| orderBy:predicate:reverse\" ng-init=\"formName = 'form_' + c.data.method + '_' + v.rowId\"><form name={{formName}} id={{formName}} class=\"form form_commands\" role=form ng-submit=\"submitExpertCommndsForm(formName, hasConfigurationCc.cmd + '.' + c.data.method,c)\" novalidate><div class=commands-data-control><div class=form-inline ng-repeat=\"(pk,p) in c.data.params\"><expert-command-input collection=p values=c.data.values[pk] devices=devices name=c.data.method get-node-devices=getNodeDevices></expert-command-input></div><button type=submit class=\"btn btn-primary\" id=\"btn_update_{{ v.rowId}}\">{{c.data.method}}</button></div></form></div></div><div class=col-md-6><table class=\"table _table-report\"><thead><tr><th>{{_t('param')}}</th><th>{{_t('date')}}</th><th>{{_t('size')}}</th><th>{{_t('value')}}</th><th>&nbsp;</th></tr></thead><tbody><tr class=\"{{v.isEqual ? 'na':'bcg-success'}}\" ng-repeat=\"v in ccConfiguration.all track by $index\"><td>{{v.param}}</td><td><span ng-class=\"v.isUpdated ? 'color-green':'color-red'\">{{v.updateTime | isTodayFromUnix}}</span></td><td>{{v.size || '-'}}</td><td>{{v.val || '-'}}</td><td><bb-row-spinner spinner=rowSpinner[v.rowId] icon=\"'fa-minus icon-hidden'\"></bb-row-spinner></td></tr></tbody></table></div></div></div>"
   );
 
 
@@ -13651,6 +13651,28 @@ myApp.directive('bbLoader', function () {
 });
 
 /**
+* Displays a spinner
+* @class bbRowSpinner
+*/
+myApp.directive('bbRowSpinner', function () {
+    return {
+        restrict: "E",
+        replace: true,
+        scope: {
+            label: '=',
+            spinner: '=',
+            icon: '='
+        },
+        template: '<span title="{{label}}"><span class="btn-spin">' +
+        '<i class="fa" ng-class="spinner ? \'fa-spinner fa-spin\':icon"></i>' +
+        '</span> ' +
+        '<span class="btn-label" ng-if="label">' +
+        '{{label}}' +
+        '</span></span>'
+    };
+});
+
+/**
  * Displays an alert message within the div
  * @class bbAlert
  */
@@ -15561,6 +15583,19 @@ myAppController.controller('BaseController', function ($scope, $rootScope,$cooki
         $scope.expand[key] = !($scope.expand[key]);
     };
 
+    $scope.rowSpinner = [];
+    /**
+     * Toggle row spinner
+     * @param {string} key
+     * @returns {undefined}
+     */
+    $scope.toggleRowSpinner = function (key) {
+        if (!key) {
+            $scope.rowSpinner = [];
+            return;
+        }
+        $scope.rowSpinner[key] = !$scope.rowSpinner[key];
+    };
 
     // Alertify defaults
     alertify.defaults.glossary.title = cfg.app_name;
@@ -32736,9 +32771,10 @@ myAppController.controller('ConfigCommandsController', function ($scope, $routeP
      * @param {string} form
      * @param {string} cmd
      */
-    $scope.submitExpertCommndsForm = function (form, cmd) {
+    $scope.submitExpertCommndsForm = function (form, cmd,v) {
         var data = $('#' + form).serializeArray();
         var dataJoined = [];
+
         angular.forEach(data, function (v, k) {
             if (v.value === 'N/A') {
                 return;
@@ -32746,11 +32782,19 @@ myAppController.controller('ConfigCommandsController', function ($scope, $routeP
             dataJoined.push($filter('setConfigValue')(v.value));
 
         });
+        var paramInput  = dataJoined[0];
+        //console.log(paramInput)
+        $scope.toggleRowSpinner('row_' + paramInput);
+        //console.log($scope.rowSpinner)
+        //var obj = $scope.ccConfiguration.all[paramInput];
+        //console.log(obj)
         var request = cmd + '(' + dataJoined.join() + ')';
         //dataService.runCmd(request, false, $scope._t('error_handling_data'));
         dataFactory.runExpertCmd(request, true).then(function(response){
             dataService.showNotifier({message: $scope._t('success_updated')});
+            $timeout($scope.toggleRowSpinner, $scope.cfg.interval);
         },function(error) {
+            $scope.toggleRowSpinner();
             alertify.alertError($scope._t('error_update_data'));
         });
 
