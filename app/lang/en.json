@@ -1,5 +1,9 @@
 {
     "newtrans": "---",
+    "param": "Param",
+    "date": "Date",
+    "size": "Size",
+    "value": "Value",
     "---": "newtrans",
     "cloud_activate": "Activate cloud backup",
     "download_backup_computer": "Download backup to your computer",

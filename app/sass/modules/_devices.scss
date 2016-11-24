@@ -182,3 +182,15 @@
 .spin-true .fa-spin{
     display: none;
 }
+
+.cc-config{
+    &.not-equal{
+        background-color: $app-bcg-success;
+    }
+    .is-updated{
+        &.false{
+            color: red;
+        }
+    }
+
+}

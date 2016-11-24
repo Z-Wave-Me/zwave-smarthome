@@ -512,6 +512,7 @@ myApp.filter('isTodayFromUnix', function () {
         if (isNaN(input)) {
             return '?';
         }
+
         var d = new Date(input * 1000);
         var day = (d.getDate() < 10 ? '0' + d.getDate() : d.getDate());
         var mon = d.getMonth() + 1; //Months are zero based

@@ -11548,9 +11548,14 @@ fieldset.submit-entry {
   border: solid 4px black !important;
 }
 
+/* line 144, ../sass/common/_form.scss */
+.form-block {
+  margin: 10px 0 0 0;
+}
+
 /* Config form
 -------------------------------------------------- */
-/* line 148, ../sass/common/_form.scss */
+/* line 151, ../sass/common/_form.scss */
 #form_wakeup select, #form_wakeup .label-node {
   visibility: hidden;
 }
@@ -12893,6 +12898,15 @@ img.widget-promo-image {
 /* line 182, ../sass/modules/_devices.scss */
 .spin-true .fa-spin {
   display: none;
+}
+
+/* line 187, ../sass/modules/_devices.scss */
+.cc-config.not-equal {
+  background-color: #dff0d8;
+}
+/* line 191, ../sass/modules/_devices.scss */
+.cc-config .is-updated.false {
+  color: red;
 }
 
 /* Login
