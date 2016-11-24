@@ -20,6 +20,15 @@
 ## ConfigCommandsController
 The controller that handles outputs and inputs.
 
+### ConfigCommandsController.refreshZwaveData(ZWaveAPIData) 
+
+Refresh zwave data
+
+**Parameters**
+
+**ZWaveAPIData**: `object`
+
+
 ### ConfigCommandsController.submitExpertCommndsForm(form, cmd) 
 
 Submit expert commands form
