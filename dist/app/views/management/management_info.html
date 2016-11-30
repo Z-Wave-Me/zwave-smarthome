@@ -24,20 +24,11 @@
                 </tbody>
             </table>
         </div>
-        <div class="fieldset" ng-switch="lang">
+        <div class="fieldset">
             <h3>{{_t('translation')}}</h3>
-            <div ng-switch-when="cz">
-                {{_t('url')}}: http://smarterhome.sk/ <br />
-                {{_t('lb_email')}}: info@smarterhome.sk <br />
-                {{_t('contact_person')}}: Ing.Slavomir Petras <br />
+            <div>
+                {{_t('management_trans_info')}}
             </div>
-            <div ng-switch-when="sk">
-                {{_t('url')}}: http://smarterhome.sk/ <br />
-                {{_t('lb_email')}}: info@smarterhome.sk <br />
-                {{_t('contact_person')}}: Ing.Slavomir Petras <br />
-            </div> 
-            <div ng-switch-default>{{_t('management_trans_info')}}</div>
-
         </div>
     </div>
 </div>
