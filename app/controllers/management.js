@@ -1004,6 +1004,17 @@ myAppController.controller('ManagementCloudBackupController', function ($scope, 
         $scope.managementCloud.instance.params.scheduler = type;
     };
 
+    $scope.downLoadBackup = function() {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        dataService.getApi('backup').then(function(response) {
+            $scope.loading = false;
+            console.log(response);
+        }, function(error) {
+            console.log(error);
+            $scope.loading = false;
+        });
+    }
+
     /**
      * Activate cloud backup
      */
