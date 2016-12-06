@@ -192,24 +192,23 @@ var config_data = {
         'online_module_rating_create_url': 'https://developer.z-wave.me/?uri=api-rating-create',
         // Online skins url
         //'online_skin_url': 'http://developer.z-wave.me/?uri=api-skins',
-        'online_skin_url': 'http://hrix.net/developer-console/?uri=api-skins',
+        'online_skin_url': 'https://developer.z-wave.me/?uri=api-skins',
         //'online_skin_url': 'http://dev.dev/developer-console/?uri=api-skins',
         // Online icons url
-        'online_icon_url': 'http://hrix.net/developer-console/?uri=api-icons',
+        'online_icon_url': 'https://developer.z-wave.me/?uri=api-icons',
         //'online_icon_url': 'http://dev.dev/developer-console/?uri=api-icons',
         // Online icon preview url
-        'online_icon_preview_url': 'http://hrix.net/developer-console/?uri=api-iconpreview',
+        'online_icon_preview_url': 'https://developer.z-wave.me/?uri=api-iconpreview',
         //'online_icon_preview_url': 'http://dev.dev/developer-console/?uri=api-iconpreview',
         // Online module download url
-        'blacklist_url': 'https://hrix.net/blacklist.json',
         // Post report url
-        'post_report_url': 'https://hrix.net/shuiapi/report/',
+        'post_report_url': 'https://service.z-wave.me/report/',
         // Postpassword url
-        'post_password_request_url': 'https://hrix.net/shuiapi/password/',
+        'post_password_request_url': 'https://service.z-wave.me/password/',
         // Get licence scratch id
-        'get_licence_scratchid': 'https://hrix.net/shuiapi/licence/',
+        'get_licence_scratchid': 'https://service.z-wave.me/licence/',
         // Url to get a license key
-        'license_url': 'https://hrix.net/shuiapi/licence/upgrade.php',
+        'license_url': 'https://service.z-wave.me/licence/upgrade.php',
         // Raz latest version
         'raz_latest_version_url': 'https://razberry.z-wave.me/z-way/razberry/latest/VERSION',
         // Find z-wave me box
