@@ -13,9 +13,16 @@
         <fieldset>
             <p>{{_t('backup_info')}}</p>
             <div class="btn-group">
-                <a class="btn btn-default" ng-href="{{cfg.server_url + cfg.api.backup}}" title="{{_t('nm_backup_download')}}">
+                <!--<a class="btn btn-default" ng-href="{{cfg.server_url + cfg.api.backup}}" title="{{_t('nm_backup_download')}}">
                     <i class="fa fa-download"></i> <span class="btn-name">{{_t('download_backup_computer')}}</span>
-                </a>
+                </a>-->
+
+                <button class="btn btn-default" type="button" title="{{_t('nm_backup_download')}}"
+                        ng-click="downLoadBackup()">
+                    <i class="fa fa-download"></i>
+                    <span class="btn-name">{{_t('download_backup_computer')}}</span>
+                </button>
+
                 <button class="btn btn-default" type="button" title="{{_t('cloud_activate')}}"
                         ng-click="activateCloudBackup(managementCloud.instance,(managementCloud.instance.active ? false : true))"
                         ng-class="managementCloud.instance.active ? 'active' : ''">
