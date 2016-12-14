@@ -944,13 +944,14 @@ myAppController.controller('ManagementInfoController', function ($scope, dataFac
  * The controller that handles a backup to the cloud.
  * @class ManagementCloudBackupController
  */
-myAppController.controller('ManagementCloudBackupController', function ($scope, $timeout, $q, dataFactory, dataService) {
+myAppController.controller('ManagementCloudBackupController', function ($scope, $timeout, $q, $window, dataFactory, dataService) {
     $scope.managementCloud = {
         alert: {message: false, status: 'is-hidden', icon: false},
         show: false,
         module:[],
         instance: {},
-        process: false
+        process: false,
+        email: ""
     };
     /**
      * Load all promises
@@ -959,34 +960,48 @@ myAppController.controller('ManagementCloudBackupController', function ($scope, 
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
             dataFactory.getApi('instances', '/CloudBackup'),
-            dataFactory.getApi('modules', '/CloudBackup')
+            dataFactory.getApi('modules', '/CloudBackup'),
+            dataFactory.getApi('profiles', '/' +  $scope.user.id, true)
         ];
 
         $q.allSettled(promises).then(function (response) {
             $scope.loading = false;
             var instance = response[0];
             var module = response[1];
+            var profile = response[2];
+
+
+            console.log(profile.value.data.data.email);
+            console.log(instance);
+            console.log(module);
+            var message = "";
+
+            if(profile.value.data.data.email === '') {
+                $scope.managementCloud.alert = {message: $scope._t('email_not_set'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                return;
+            } else {
+                $scope.managementCloud.email = profile.value.data.data.email;
+            }
+
             // Error message
             if (instance.state === 'rejected') {
-                $scope.managementCloud.alert = {message: $scope._t('cloud_not_installed'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
-                alertify.alertWarning($scope._t('cloud_not_installed'));
                 return;
             }
 
             if (module.state === 'rejected') {
-                alertify.alertWarning($scope._t('cloud_not_installed'));
                 return;
             }
 
             // Success - api data
             if (instance.state === 'fulfilled') {
-                /*if (!instance.value.data.data[0].active) {
+                if (!instance.value.data.data[0].active) {
                     $scope.managementCloud.alert = {message: $scope._t('cloud_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
-                    alertify.alertWarning($scope._t('cloud_not_active'));
-                    return;
-                }*/
-                $scope.managementCloud.show = true;
+                } else {
+                    $scope.managementCloud.alert = false;
+                }
+
                 $scope.managementCloud.instance = instance.value.data.data[0];
+                $scope.managementCloud.show = true;
             }
             // Success - module
             if (module.state === 'fulfilled') {
@@ -1006,11 +1021,22 @@ myAppController.controller('ManagementCloudBackupController', function ($scope, 
 
     $scope.downLoadBackup = function() {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataService.getApi('backup').then(function(response) {
+        dataFactory.getApi('backup').then(function(response) {
             $scope.loading = false;
-            console.log(response);
         }, function(error) {
-            console.log(error);
+            $scope.loading = false;
+        });
+    }
+
+    $scope.manualCloudBackup = function() {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        dataFactory.getApi('cloudbackup').then(function(response) {
+            console.log(response.data.message);
+            dataService.showNotifier({message: response.data.message});
+            $scope.loading = false;
+        }, function(error) {
+            console.log(error.data.message);
+            dataService.showNotifier({message: error.data.message, type: 'error'});
             $scope.loading = false;
         });
     }
@@ -1019,20 +1045,23 @@ myAppController.controller('ManagementCloudBackupController', function ($scope, 
      * Activate cloud backup
      */
     $scope.activateCloudBackup = function (input, activeStatus) {
-        input.active = activeStatus;
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        if (input.id) {
-            dataFactory.putApi('instances', input.id, input).then(function (response) {
-                dataService.showNotifier({message: $scope._t('success_updated')});
-                $scope.loading = false;
-                $scope.allCloudSettled();
 
-            }, function (error) {
-                alertify.alertError($scope._t('error_update_data'));
-                $scope.loading = false;
-            });
+        if(_.isEmpty(input)) {
+            $scope.createInstance();
+        } else {
+            input.active = activeStatus;
+            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+            if (input.id) {
+                 dataFactory.putApi('instances', input.id, input).then(function (response) {
+                    dataService.showNotifier({message: $scope._t('success_updated'), type: 'error'});
+                    $scope.loading = false;
+                    $scope.allCloudSettled();
+                 }, function (error) {
+                    alertify.alertError($scope._t('error_update_data'));
+                    $scope.loading = false;
+                 });
+             }
         }
-
     };
 
     /**
@@ -1054,5 +1083,31 @@ myAppController.controller('ManagementCloudBackupController', function ($scope, 
             });
         }
     };
+
+    /**
+     * Create instance
+     */
+    $scope.createInstance = function() {
+        var inputData = {
+            "instanceId":"0",
+            "moduleId":"CloudBackup",
+            "active":"true",
+            "title":"CloudBackup",
+            "params":{
+                "email": $scope.managementCloud.email
+            }
+        };
+
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        dataFactory.postApi('instances', inputData).then(function (response) {
+            $scope.loading = false
+            dataService.showNotifier({message: $scope._t('reloading_page')});
+            $window.location.reload();
+        }, function (error) {
+            alertify.alertError($scope._t('error_update_data'));
+            $scope.loading = false;
+        });
+    }
+
 
 });
