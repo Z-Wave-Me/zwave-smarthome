@@ -108,7 +108,8 @@ var config_data = {
             'icons': 'ZAutomation/api/v1/icons',
             'icons_install': 'ZAutomation/api/v1/icons/install',
             'customicon': 'ZAutomation/api/v1/devices',
-            'icons_upload': 'ZAutomation/api/v1/icons/upload'
+            'icons_upload': 'ZAutomation/api/v1/icons/upload',
+            'cloudbackup': 'CloudBackupAPI/Backup'
         },
         // List of remote api URLs
         'api_remote': {
@@ -396,6 +397,7 @@ var config_data = {
                 'logo': 'app-logo-default.png',
                 hidden_apps: [
                     'Cron',
+                    'CloudBackup',
                     'BatteryPolling',
                     'CustomUserCode',
                     'CustomUserCodeLoader',
@@ -426,6 +428,7 @@ var config_data = {
                 'logo': 'app-logo-popp.png',
                 'hidden_apps': [
                     'Cron',
+                    'CloudBackup',
                     'CodeDevice',
                     'BatteryPolling',
                     'CustomUserCode',
@@ -456,6 +459,7 @@ var config_data = {
                 'logo': 'app-logo-popp.png',
                 hidden_apps: [
                     'Cron',
+                    'CloudBackup',
                     'BatteryPolling',
                     'CustomUserCode',
                     'CustomUserCodeLoader',
@@ -486,6 +490,7 @@ var config_data = {
                 'logo': 'app-logo-wd.png',
                 'hidden_apps': [
                     'Cron',
+                    'CloudBackup',
                     'BatteryPolling',
                     'CodeDevice',
                     'CustomUserCode',

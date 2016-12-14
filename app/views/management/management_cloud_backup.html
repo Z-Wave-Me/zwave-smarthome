@@ -6,8 +6,7 @@
 <div class="accordion-entry-ctrl" ng-if="expand.cloud" ng-controller="ManagementCloudBackupController">
     <bb-loader></bb-loader>
     <bb-alert alert="managementCloud.alert"></bb-alert>
-    <form name="form_cloud_backup" id="form_cloud_backup" class="form form-page" 
-          ng-if="managementCloud.show"
+    <form name="form_cloud_backup" id="form_cloud_backup" class="form form-page"
           ng-submit="updateInstance(form_cloud_backup, managementCloud.instance)" novalidate>
         <!-- Manual backup -->
         <fieldset>
@@ -25,10 +24,19 @@
 
                 <button class="btn btn-default" type="button" title="{{_t('cloud_activate')}}"
                         ng-click="activateCloudBackup(managementCloud.instance,(managementCloud.instance.active ? false : true))"
-                        ng-class="managementCloud.instance.active ? 'active' : ''">
+                        ng-class="managementCloud.instance.active ? 'active' : ''"
+                        ng-disabled="managementCloud.email === ''? true : false">
                     <i class="fa fa-cloud"  ng-class="managementCloud.instance.active ? 'text-success' : 'text-danger'"></i>
                     <span class="btn-name">{{_t('cloud_activate')}}</span>
                 </button>
+
+                <!--<button class="btn btn-default" type="button" title="{{_t('nm_backup_download')}}"
+                        ng-if="!managementCloud.show"
+                        ng-click="createInstance()">
+                    <i class="fa fa-plus"></i>
+                    <span class="btn-name">{{ _t('install_module',{__module__ : 'CloudBackup'}) }}</span>
+                </button>-->
+
             </div>
 
         </fieldset>
@@ -36,24 +44,26 @@
         <!-- Cloud backup -->
         <div ng-if="managementCloud.instance.active === true">
         <fieldset>
+            <!-- CloudBackup frontend -->
+            <div class="form-group form-inline">
+                <a class="btn btn-default" href="https://service.z-wave.me/cloudbackup/" target="_blank" title="{{_t('online_cloudbackup')}}">
+                    <i class="fa fa-cloud-download"></i> <span class="btn-name">{{_t('online_cloudbackup')}}</span>
+                </a>
+            </div>
             <!-- email -->
             <div class="form-group form-inline">
                 <label>{{managementCloud.module.options.fields.email.label}}: </label>
-                <input name="email" id="email" type="email" class="form-control" 
-                       value="{{managementCloud.instance.params.email}}" 
-                       ng-model="managementCloud.instance.params.email"
-                       ng-required="true"
-                       ng-blur="emailBlur = true" />
-                <bb-validator input-name='form_cloud_backup.email.$error.required' trans='_t("field_required")' has-blur='emailBlur'></bb-validator> 
-                <bb-validator input-name='form_cloud_backup.email.$error.email' trans='_t("email_invalid")' has-blur='emailBlur'></bb-validator> 
-
+                <input name="email" id="email" type="email" class="form-control" disabled="disabled"
+                       value="{{managementCloud.email}}"
+                       ng-model="managementCloud.email"
+                />
             </div>
             <!-- email log -->
             <div class="form-group">
                 <h4>{{managementCloud.module.options.fields.email_log.label}}</h4>
                 <div ng-repeat="v in managementCloud.module.schema.properties.email_log.enum track by $index">
                     <input type="radio" name="email_log" value="{{v}}" id="email_log_{{v}}"
-                           ng-model="managementCloud.instance.params.email_log" 
+                           ng-model="managementCloud.instance.params.email_log"
                            ng-checked="managementCloud.instance.params.email_log === v" />
                     <label>{{managementCloud.module.options.fields.email_log.optionLabels[$index]}}</label>
                 </div>
@@ -71,7 +81,7 @@
                 <!-- Hours -->
                 <span ng-if="managementCloud.module.options.fields.hours.dependencies.scheduler.indexOf(managementCloud.instance.params.scheduler) > -1">
                 <label>{{managementCloud.module.options.fields.hours.label}}</label>
-                <select class="form-control" ng-model="managementCloud.instance.params.hours">
+                <select class="form-control" ng-model="managementCloud.instance.params.hours" ng-required="true">
                     <option value="{{v}}" 
                             ng-repeat="v in managementCloud.module.schema.properties.hours.enum track by $index"
                             ng-selected="v === managementCloud.instance.params.hours">
@@ -82,7 +92,7 @@
                 <!-- Minutes -->
                 <span ng-if="managementCloud.module.options.fields.minutes.dependencies.scheduler.indexOf(managementCloud.instance.params.scheduler) > -1">
                  <label>{{managementCloud.module.options.fields.minutes.label}}</label>
-                <select class="form-control" ng-model="managementCloud.instance.params.minutes">
+                <select class="form-control" ng-model="managementCloud.instance.params.minutes" ng-required="true">
                     <option value="{{v}}" 
                             ng-repeat="v in managementCloud.module.schema.properties.minutes.enum track by $index"
                             ng-selected="v === managementCloud.instance.params.minutes">
@@ -93,7 +103,7 @@
                 <!--Weekdays -->
                  <span ng-if="managementCloud.module.options.fields.weekDays.dependencies.scheduler.indexOf(managementCloud.instance.params.scheduler) > -1">
                 <label>{{managementCloud.module.options.fields.weekDays.label}}</label>
-                    <select class="form-control" ng-model="managementCloud.instance.params.weekDays">
+                    <select class="form-control" ng-model="managementCloud.instance.params.weekDays" ng-required="true">
                         <option value="{{v}}" 
                                 ng-repeat="v in managementCloud.module.schema.properties.weekDays.enum track by $index"
                                 ng-selected="v.toString() === managementCloud.instance.params.weekDays">
@@ -104,7 +114,7 @@
                 <!--Days -->
                 <span ng-if="managementCloud.module.options.fields.days.dependencies.scheduler.indexOf(managementCloud.instance.params.scheduler) > -1">
                     <label>{{managementCloud.module.options.fields.days.label}}</label>
-                    <select class="form-control" ng-model="managementCloud.instance.params.days">
+                    <select class="form-control" ng-model="managementCloud.instance.params.days"  ng-required="true">
                         <option value="{{v}}" 
                                 ng-repeat="v in managementCloud.module.schema.properties.days.enum track by $index"
                                 ng-selected="v === managementCloud.instance.params.days">
@@ -114,9 +124,12 @@
                 </span>
                 <!-- Manual -->
                 <div ng-if="managementCloud.instance.params.scheduler === '0'">
-                    <a class="btn btn-default" ng-href="{{managementCloud.module.defaults.api}}" title="{{_t('upload_backup')}}">
+                    <button class="btn btn-default"
+                            title="{{_t('upload_backup')}}"
+                            type="button"
+                            ng-click="manualCloudBackup()">
                         <i class="fa fa-cloud-upload"></i> <span class="btn-name">{{_t('upload_backup')}}</span>
-                    </a>
+                    </button>
                  </div>
             </div>
         </fieldset>

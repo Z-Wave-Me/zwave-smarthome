@@ -13,6 +13,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
     $scope.input = false;
     $scope.newPassword = null;
     $scope.trustMyNetwork = true;
+    $scope.lastEmail = "";
     
     
 //     /**
@@ -29,7 +30,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
 //            });
 //    };
 
- /**
+    /**
      * Load all promises
      */
     $scope.allSettled = function () {
@@ -51,7 +52,8 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
             }
             // Success - profile
             if (profile.state === 'fulfilled') {
-                 $scope.input = profile.value.data.data;
+                $scope.input = profile.value.data.data;
+                $scope.lastEmail = $scope.input.email;
             }
             // Success - devices
             if (devices.state === 'fulfilled') {
@@ -59,7 +61,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
             }
         });
     };
-    $scope.allSettled();  
+    $scope.allSettled();
     
     /**
      * Assign device to the list
@@ -67,8 +69,8 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
     $scope.assignDevice = function(assign) {
         $scope.input.hide_single_device_events.push(assign);
         return;
-
     };
+
     /**
      * Remove device from the list
      */
@@ -90,6 +92,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
         if (form.$invalid) {
             return;
         }
+
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         dataFactory.putApi('profiles', input.id, input).then(function(response) {
             var data = response.data.data;
@@ -97,6 +100,31 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
                 alertify.alertError($scope._t('error_update_data'));
                 $scope.loading = false;
                 return;
+            }
+
+            // Email change update e-mail cloudbackup
+            if($scope.lastEmail != $scope.input.email) {
+                var promises = [
+                    dataFactory.getApi('instances', '/CloudBackup')
+                ];
+
+                $q.allSettled(promises).then(function (response) {
+                    var instance = response[0];
+
+                    if (instance.state === 'rejected') {
+                        return;
+                    }
+
+                    if (instance.state === 'fulfilled') {
+                        var input = instance.value.data.data[0];
+                        input.params.email = $scope.input.email;
+                        dataFactory.putApi('instances', input.id, input).then(function (response) {
+                            $scope.lastEmail = $scope.input.email
+                        }, function (error) {
+                            alertify.alertError($scope._t('error_update_data'));
+                        });
+                    }
+                });
             }
 
             $scope.loading = false;
