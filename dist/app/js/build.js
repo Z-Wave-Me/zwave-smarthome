@@ -11470,7 +11470,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/elements/list.html',
-    "<div class=\"app-row app-row-widget app-row-element clearfix\"><div id=Widget_{{v.id}} class=\"widget-entry widget-entry-element {{v.deviceType}} {{v.metrics.multilineType}}\" ng-class=\"{'widget-success': v.isNew}\" ng-repeat=\"v in dataHolder.devices.collection| filter:q | orderBy: cfg.orderby.elements[dataHolder.devices.orderBy] track by v.id\"><div class=widget-entry-in><div class=widget-img title=\"{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}\"><img class=\"widget-preview-img widget-icon-update img-circle trans-{{v.imgTrans}}\" ng-src={{v.iconPath}} alt=img ng-click=\"runCmd(v.id + '/command/' + v.updateCmd)\" ng-if=\"cfg.element_update_icon.indexOf(v.deviceType) > -1\"> <img class=\"widget-preview-img img-circle\" ng-src={{v.iconPath}} alt=img ng-if=\"cfg.element_update_icon.indexOf(v.deviceType) === -1\"></div><div class=widget-header><a class=\"widget-icon widget-hidden\" href=\"\" ng-click=setVisibility(v,true) ng-if=!v.visibility><i class=\"fa fa-eye-slash\"></i></a> <a class=\"widget-icon widget-history\" href=\"\" title=\"{{_t('history')}}\" ng-click=\"dataHolder.devices.find = v;handleModal('modalHistory', $event)\" ng-if=v.hasHistory><i class=\"fa fa-history\"></i></a> <a class=\"widget-icon widget-config\" href=#element/{{v.id}} title=\"{{_t('lb_cfg_view')}}\" ng-if=elementAccess(cfg.role_access.element)><i class=\"fa fa-cog\"></i></a></div><div class=widget-content><div class=widget-title><span class=widget-room><span ng-if=\"v.location !== 0\">{{dataHolder.devices.rooms[v.location].title|cutText:true:25}}</span>&nbsp;</span><h3 title={{v.metrics.title}}>{{v.metrics.title|cutText:true:25}}</h3></div><hr class=\"bottom-aligner\"><div class=widget-footer ng-switch=v.deviceType><div ng-switch-when=switchMultilevel><div ng-include=\"'app/views/elements/widgets/switchMultilevel.html'\"></div></div><div ng-switch-when=switchBinary><div ng-include=\"'app/views/elements/widgets/switchBinary.html'\"></div></div><div ng-switch-when=switchRGBW><div ng-include=\"'app/views/elements/widgets/switchRGBW.html'\"></div></div><div ng-switch-when=doorlock><div ng-include=\"'app/views/elements/widgets/doorlock.html'\"></div></div><div ng-switch-when=doorLockControl><div ng-include=\"'app/views/elements/widgets/doorLockControl.html'\"></div></div><div ng-switch-when=toggleButton><div ng-include=\"'app/views/elements/widgets/toggleButton.html'\"></div></div><div ng-switch-when=sensorMultilevel><div ng-include=\"'app/views/elements/widgets/sensorMultilevel.html'\"></div></div><div ng-switch-when=sensorBinary><div ng-include=\"'app/views/elements/widgets/sensorBinary.html'\"></div></div><div ng-switch-when=thermostat><div ng-include=\"'app/views/elements/widgets/thermostat.html'\"></div></div><div ng-switch-when=camera><div ng-include=\"'app/views/elements/widgets/camera.html'\"></div></div><div ng-switch-when=text><div ng-include=\"'app/views/elements/widgets/text.html'\"></div></div><div ng-switch-when=switchControl><div ng-include=\"'app/views/elements/widgets/switchControl.html'\"></div></div><div ng-switch-when=sensorMultiline><div ng-include=\"'app/views/elements/widgets/sensorMultiline.html'\"></div></div><div ng-switch-default><div ng-include=\"'app/views/elements/widgets/default.html'\"></div></div></div></div></div></div></div><div ng-include=\"'app/views/elements/widgets/historyModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/switchMultilevelModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/thermostatModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/sensorMultilineModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/openWeatherModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/multiButtonModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/textModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/cameraModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/climateControlModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/doorLockControlModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/switchRGBWModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/securityControlModal.html'\"></div>"
+    "<div class=\"app-row app-row-widget app-row-element clearfix\"><div id=Widget_{{v.id}} class=\"widget-entry widget-entry-element {{v.deviceType}} {{v.metrics.multilineType}}\" ng-class=\"{'widget-success': v.isNew}\" ng-repeat=\"v in dataHolder.devices.collection| filter:q | orderBy: cfg.orderby.elements[dataHolder.devices.orderBy] track by v.id\"><div class=widget-entry-in><div class=widget-img title=\"{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}\"><img class=\"widget-preview-img widget-icon-update img-circle trans-{{v.imgTrans}}\" ng-src={{v.iconPath}} alt=img ng-click=\"runCmd(v.id + '/command/' + v.updateCmd)\" ng-if=\"cfg.element_update_icon.indexOf(v.deviceType) > -1\"> <img class=\"widget-preview-img img-circle\" ng-src={{v.iconPath}} alt=img ng-if=\"cfg.element_update_icon.indexOf(v.deviceType) === -1\"></div><div class=widget-header><a class=\"widget-icon widget-hidden\" href=\"\" ng-click=setVisibility(v,true) ng-if=!v.visibility><i class=\"fa fa-eye-slash\"></i></a> <a class=\"widget-icon widget-history\" href=\"\" title=\"{{_t('chart')}}\" ng-click=\"dataHolder.devices.find = v;handleModal('modalIntchart', $event)\" ng-if=\"v.metrics.intchartUrl\"><i class=\"fa fa-line-chart\"></i></a> <a class=\"widget-icon widget-history\" href=\"\" title=\"{{_t('history')}}\" ng-click=\"dataHolder.devices.find = v;handleModal('modalHistory', $event)\" ng-if=v.hasHistory><i class=\"fa fa-history\"></i></a> <a class=\"widget-icon widget-config\" href=#element/{{v.id}} title=\"{{_t('lb_cfg_view')}}\" ng-if=elementAccess(cfg.role_access.element)><i class=\"fa fa-cog\"></i></a></div><div class=widget-content><div class=widget-title><span class=widget-room><span ng-if=\"v.location !== 0\">{{dataHolder.devices.rooms[v.location].title|cutText:true:25}}</span>&nbsp;</span><h3 title={{v.metrics.title}}>{{v.metrics.title|cutText:true:25}}</h3></div><hr class=\"bottom-aligner\"><div class=widget-footer ng-switch=v.deviceType><div ng-switch-when=switchMultilevel><div ng-include=\"'app/views/elements/widgets/switchMultilevel.html'\"></div></div><div ng-switch-when=switchBinary><div ng-include=\"'app/views/elements/widgets/switchBinary.html'\"></div></div><div ng-switch-when=switchRGBW><div ng-include=\"'app/views/elements/widgets/switchRGBW.html'\"></div></div><div ng-switch-when=doorlock><div ng-include=\"'app/views/elements/widgets/doorlock.html'\"></div></div><div ng-switch-when=doorLockControl><div ng-include=\"'app/views/elements/widgets/doorLockControl.html'\"></div></div><div ng-switch-when=toggleButton><div ng-include=\"'app/views/elements/widgets/toggleButton.html'\"></div></div><div ng-switch-when=sensorMultilevel><div ng-include=\"'app/views/elements/widgets/sensorMultilevel.html'\"></div></div><div ng-switch-when=sensorBinary><div ng-include=\"'app/views/elements/widgets/sensorBinary.html'\"></div></div><div ng-switch-when=thermostat><div ng-include=\"'app/views/elements/widgets/thermostat.html'\"></div></div><div ng-switch-when=camera><div ng-include=\"'app/views/elements/widgets/camera.html'\"></div></div><div ng-switch-when=text><div ng-include=\"'app/views/elements/widgets/text.html'\"></div></div><div ng-switch-when=switchControl><div ng-include=\"'app/views/elements/widgets/switchControl.html'\"></div></div><div ng-switch-when=sensorMultiline><div ng-include=\"'app/views/elements/widgets/sensorMultiline.html'\"></div></div><div ng-switch-default><div ng-include=\"'app/views/elements/widgets/default.html'\"></div></div></div></div></div></div></div><div ng-include=\"'app/views/elements/widgets/intchartModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/historyModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/switchMultilevelModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/thermostatModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/sensorMultilineModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/openWeatherModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/multiButtonModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/textModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/cameraModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/climateControlModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/doorLockControlModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/switchRGBWModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/securityControlModal.html'\"></div>"
   );
 
 
@@ -11526,6 +11526,12 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
   $templateCache.put('app/views/elements/widgets/doorlock.html',
     "<div class=\"widget-ctrl ctrl-left\">&nbsp;</div><div class=\"widget-ctrl ctrl-right widget-ctrl-click\"><div class=btn-group><button class=\"btn btn-off\" ng-class=\"v.metrics.level=='close' ? 'btn-primary': 'btn-default'\" data-ng-click=\"runCmd(v.id + '/command/close', v.id)\"><i class=\"fa fa-lock\"></i></button> <button class=\"btn btn-on\" ng-class=\"v.metrics.level =='open' ? 'btn-primary': 'btn-default'\" data-ng-click=\"runCmd(v.id + '/command/open', v.id)\"><i class=\"fa fa-unlock\"></i></button></div></div>"
+  );
+  
+  
+  // inserted intchart
+  $templateCache.put('app/views/elements/widgets/intchartModal.html',
+	"<div id=modalIntchart class=appmodal ng-controller=ElementChartController ng-if=modalArr.modalIntchart><div class=appmodal-in style=\"min-height:128px\"><div class=appmodal-header><span class=appmodal-close ng-click=\"handleModal('modalIntchart', $event)\"><i class=\"fa fa-times\"></i></span><h3>{{widgetChart.find.metrics.title}}</h3></div><div class=\"appmodal-body text-center\"><bb-alert alert=widgetChart.alert></bb-alert><div ng-if=widgetChart.hasURL ng-include=widgetChart.url></div></div></div></div>"
   );
 
 
@@ -16044,6 +16050,77 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
         $scope.dataHolder.cnt.collection = _.size($scope.dataHolder.devices.collection);
     }
     ;
+
+});
+
+/**
+ * The controller that handles a device chart.
+ * @class ElementChartController
+ */
+myAppController.controller('ElementChartController', function ($scope, $sce, dataFactory, $interval) {
+    $scope.widgetChart = {
+        find: {},
+        alert: {message: false, status: 'is-hidden', icon: false},
+        hasURL : false,
+        intchartUrl : '',
+        url : {},
+        time : 0,
+        chartOptions: {
+            // Chart.js options can go here.
+            //responsive: true
+        }
+    };
+
+    /**
+     * Reload chart url
+     */
+    $scope.reloadUrl = function () {	
+    	dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function (response) { 	
+        	var device = response.data.data;
+       
+            if($scope.widgetChart.time < device.metrics.intchartTime){   
+                $scope.widgetChart.find = device;             
+                $scope.widgetChart.intchartUrl = device.metrics.intchartUrl + '&' + new Date().getTime();
+                $scope.widgetChart.time = device.metrics.intchartTime;
+                
+                $scope.widgetChart.url = $sce.trustAsResourceUrl($scope.widgetChart.intchartUrl);  	
+            } 
+        });
+    };
+    
+    /**
+     * Load device
+     */
+    $scope.loadDeviceUrl = function () {  	
+    	$scope.widgetChart.alert = {message: $scope._t('loading'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};  	
+        
+    	dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function (response) {
+        	var device = response.data.data;  	
+            if (!device) {
+                $scope.widgetChart.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+                return;
+            }       
+            $scope.widgetChart.find = device;
+            
+            if (!device.metrics.intchartUrl){
+                $scope.widgetChart.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+                return;
+            }
+            
+            $scope.widgetChart.hasURL = true;
+            $scope.widgetChart.intchartUrl = device.metrics.intchartUrl;
+            $scope.widgetChart.time = device.metrics.intchartTime;
+            $scope.widgetChart.url = $sce.trustAsResourceUrl($scope.widgetChart.intchartUrl);
+ 
+            $scope.refreshInterval = $interval($scope.reloadUrl, $scope.cfg.interval);
+  
+            $scope.widgetChart.alert = {message: false}; 
+            
+        }, function (error) {
+        	$scope.widgetChart.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+        });
+    };
+    $scope.loadDeviceUrl();
 
 });
 
