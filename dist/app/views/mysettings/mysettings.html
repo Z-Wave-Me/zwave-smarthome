@@ -13,7 +13,7 @@
                 </div>
                 <div class="form-group form-inline">
                     <!-- email -->
-                 <label class="display-block">{{_t('lb_email')}}: </label>
+                 <label class="display-block">{{_t('lb_email')}}:</label>
                  <input name="email" id="email" type="email" class="form-control" value="{{input.email}}" ng-model="input.email" ng-blur="emailBlur = true" />
                   <bb-validator input-name='form_profile.email.$error.email' trans='_t("email_invalid")' has-blur='emailBlur'></bb-validator> 
                  </div>
