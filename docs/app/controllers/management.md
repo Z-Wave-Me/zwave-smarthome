@@ -261,6 +261,11 @@ Activate cloud backup
 Update instance
 
 
+### ManagementCloudBackupController.createInstance() 
+
+Create instance
+
+
 
 
 * * *
