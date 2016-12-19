@@ -65,6 +65,15 @@ Run zwave command
 Force interview
 
 
+### ZwaveInclusionController.setSecureInclusion(cmd) 
+
+Set inclusion as Secure/Unsecure.state=true Set as secure.state=false Set as unsecure.
+
+**Parameters**
+
+**cmd**: `string`
+
+
 ### ZwaveInclusionController.setDeviceId() 
 
 Set device by ID
