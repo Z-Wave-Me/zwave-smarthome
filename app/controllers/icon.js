@@ -236,6 +236,35 @@ myAppController.controller('OnlineIconController', function ($scope, $filter, $t
         find: {},
         preview: {}
     };
+    $scope.iconsLocalSource = {};
+
+    /**
+     * Load all promises
+     * @returns {undefined}
+     */
+
+    $scope.allSettled = function () {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        var promises = [
+            dataFactory.getApi('icons', null, true)
+        ];
+
+        $q.allSettled(promises).then(function (response) {
+            var icons = response[0];
+            console.log(icons);
+            // Error message
+            if (icons.state === 'rejected') {
+                alertify.alertError($scope._t('error_load_data'));
+                return;
+            }
+            // Success - icons
+            if (icons.state === 'fulfilled') {
+                setLocalIcons(icons.value.data.data);
+            }
+        });
+    };
+    $scope.allSettled();
+
    /**
     * Load on-line icons
     * @returns {undefined}
@@ -255,7 +284,6 @@ myAppController.controller('OnlineIconController', function ($scope, $filter, $t
         });
     };
     $scope.loadOnlineIcons();
-
 
     /**
      * Open a modal window and load icon previews
@@ -295,7 +323,6 @@ myAppController.controller('OnlineIconController', function ($scope, $filter, $t
         });
     };
 
-
     /// --- Private functions --- ///
 
     /**
@@ -306,8 +333,41 @@ myAppController.controller('OnlineIconController', function ($scope, $filter, $t
     function setOnlineIcons(response) {
         $scope.iconsOnline.all = _.chain(response)
                 .flatten()
+                .filter(function(v) {
+                    v.status = 'download';
+                    _.each($scope.iconsLocalSource, function(ils) {
+                        if(ils.id === v.id && ils.source === v.name) {
+                            v.status = 'installed';
+                        }
+                    });
+                    return v;
+                })
                 .indexBy('name')
                 .value();
+    };
+
+    /**
+     * Set online icons $scope
+     * @param {object} response
+     * @returns {undefined}
+     */
+    function setLocalIcons(response) {
+
+        $scope.iconsLocalSource = Object.keys(_.groupBy(response, function(icon){
+            return icon.source;
+        })).map(function(icon) {
+            return {
+                "id": getId(icon),
+                "source": getSource(icon)
+            };
+        });
     }
-    ;
+
+    function getSource(source) {
+        return source.substring(0, source.lastIndexOf("_"));
+    }
+
+    function getId(source) {
+        return source.substring(source.lastIndexOf("_") + 1, source.length);
+    }
 });

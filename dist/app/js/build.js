@@ -11526,6 +11526,11 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
   );
 
 
+  $templateCache.put('app/views/management/__management_cloud_backup.html',
+    "<h2 class=accordion-entry-title ng-click=\"expandElement('cloud')\"><i class=\"fa fa-download\"></i> <span ng-bind=\"_t('backup')\"></span> <i class=\"fa accordion-arrow\" ng-class=\"expand.backup ? 'fa-chevron-up' : 'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-if=expand.cloud ng-controller=ManagementCloudBackupController><bb-loader></bb-loader><bb-alert alert=managementCloud.alert></bb-alert><form name=form_cloud_backup id=form_cloud_backup class=\"form form-page\" ng-submit=\"updateInstance(form_cloud_backup, managementCloud.instance)\" novalidate><fieldset><p>{{_t('backup_info')}}</p><div class=btn-group><button class=\"btn btn-default\" type=button title=\"{{_t('nm_backup_download')}}\" ng-click=downLoadBackup()><i class=\"fa fa-download\"></i> <span class=btn-name>{{_t('download_backup_computer')}}</span></button> <button class=\"btn btn-default\" type=button title=\"{{_t('activate_module',{__module__ : 'CloudBackup'})}}\" ng-click=\"activateCloudBackup(managementCloud.instance,(managementCloud.instance.active ? false : true))\" ng-class=\"managementCloud.instance.active ? 'active' : ''\" ng-disabled=\"managementCloud.email === ''? true : false\"><i class=\"fa fa-cloud\" ng-class=\"managementCloud.instance.active ? 'text-success' : 'text-danger'\"></i> <span class=btn-name>{{_t('activate_module',{__module__ : 'CloudBackup'})}}</span></button></div></fieldset><div ng-if=\"managementCloud.instance.active === true\"><fieldset><div class=\"form-group form-inline\"><a class=\"btn btn-default\" href=https://service.z-wave.me/cloudbackup/ target=_blank title=\"{{_t('online_cloudbackup')}}\"><i class=\"fa fa-cloud-download\"></i> <span class=btn-name>{{_t('online_cloudbackup')}}</span></a></div><div class=\"form-group form-inline\"><label>{{managementCloud.module.options.fields.email.label}}:</label><input name=email id=email type=email class=form-control disabled value={{managementCloud.email}} ng-model=\"managementCloud.email\"></div><div class=form-group><h4>{{managementCloud.module.options.fields.email_log.label}}</h4><div ng-repeat=\"v in managementCloud.module.schema.properties.email_log.enum track by $index\"><input type=radio name=email_log value={{v}} id=email_log_{{v}} ng-model=managementCloud.instance.params.email_log ng-checked=\"managementCloud.instance.params.email_log === v\"><label>{{managementCloud.module.options.fields.email_log.optionLabels[$index]}}</label></div></div></fieldset><fieldset ng-if=managementCloud.instance.params.user_active><p class=btn-group><button class=\"btn btn-default\" title=\"{{_t('daily')}}\" type=button ng-repeat=\"v in managementCloud.module.schema.properties.scheduler.enum track by $index\" ng-class=\"v === managementCloud.instance.params.scheduler ? 'active' : ''\" ng-click=setSchedulerType(v)>{{managementCloud.module.options.fields.scheduler.optionLabels[$index]}}</button></p><div class=\"form-group form-inline form-block\"><span ng-if=\"managementCloud.module.options.fields.hours.dependencies.scheduler.indexOf(managementCloud.instance.params.scheduler) > -1\"><label>{{managementCloud.module.options.fields.hours.label}}</label><select class=form-control ng-model=managementCloud.instance.params.hours ng-required=true><option value={{v}} ng-repeat=\"v in managementCloud.module.schema.properties.hours.enum track by $index\" ng-selected=\"v === managementCloud.instance.params.hours\">{{v}}</option></select></span> <span ng-if=\"managementCloud.module.options.fields.minutes.dependencies.scheduler.indexOf(managementCloud.instance.params.scheduler) > -1\"><label>{{managementCloud.module.options.fields.minutes.label}}</label><select class=form-control ng-model=managementCloud.instance.params.minutes ng-required=true><option value={{v}} ng-repeat=\"v in managementCloud.module.schema.properties.minutes.enum track by $index\" ng-selected=\"v === managementCloud.instance.params.minutes\">{{v}}</option></select></span> <span ng-if=\"managementCloud.module.options.fields.weekDays.dependencies.scheduler.indexOf(managementCloud.instance.params.scheduler) > -1\"><label>{{managementCloud.module.options.fields.weekDays.label}}</label><select class=form-control ng-model=managementCloud.instance.params.weekDays ng-required=true><option value={{v}} ng-repeat=\"v in managementCloud.module.schema.properties.weekDays.enum track by $index\" ng-selected=\"v.toString() === managementCloud.instance.params.weekDays\">{{managementCloud.module.options.fields.weekDays.optionLabels[$index]}}</option></select></span> <span ng-if=\"managementCloud.module.options.fields.days.dependencies.scheduler.indexOf(managementCloud.instance.params.scheduler) > -1\"><label>{{managementCloud.module.options.fields.days.label}}</label><select class=form-control ng-model=managementCloud.instance.params.days ng-required=true><option value={{v}} ng-repeat=\"v in managementCloud.module.schema.properties.days.enum track by $index\" ng-selected=\"v === managementCloud.instance.params.days\">{{v}}</option></select></span><div ng-if=\"managementCloud.instance.params.scheduler === '0'\"><button class=\"btn btn-default\" title=\"{{_t('upload_backup')}}\" type=button ng-click=manualCloudBackup()><i class=\"fa fa-cloud-upload\"></i> <span class=btn-name>{{_t('upload_backup')}}</span></button></div></div></fieldset><fieldset class=submit-entry><button type=submit class=\"btn btn-submit\" title=\"{{_t('lb_save')}}\" ng-disabled=form_cloud_backup.$invalid><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></fieldset></div></form></div>"
+  );
+
+
   $templateCache.put('app/views/management/_management_backup.html',
     "<h2 class=accordion-entry-title ng-click=\"expandElement('backup')\"><i class=\"fa fa-download\"></i> <span ng-bind=\"_t('backup')\"></span> <i class=\"fa accordion-arrow\" ng-class=\"expand.backup  ? 'fa-chevron-up':'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-if=expand.backup><div class=\"form form-inline form-page\"><div class=fieldset><p>{{_t('backup_info')}}</p></div><div class=\"fieldset submit-entry\"><a class=\"btn btn-submit\" ng-href=\"{{cfg.server_url + cfg.api.backup}}\" title=\"{{_t('nm_backup_download')}}\"><i class=\"fa fa-download\"></i> <span class=btn-name>{{_t('nm_backup_download')}}</span></a></div></div></div>"
   );
@@ -11536,8 +11541,13 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
   );
 
 
+  $templateCache.put('app/views/management/_management_restore.html',
+    "<h2 class=accordion-entry-title ng-click=\"expandElement('restore')\"><i class=\"fa fa-repeat\"></i> <span ng-bind=\"_t('nm_restore_backup_upload')\"></span> <i class=\"fa accordion-arrow\" ng-class=\"expand.restore  ? 'fa-chevron-up':'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-if=expand.restore ng-controller=ManagementRestoreController><bb-loader></bb-loader><div class=\"form form-page\"><div class=fieldset><bb-alert alert=managementRestore.alert></bb-alert><div ng-hide=managementRestore.alert.message><div class=\"alert alert-warning\"><input type=checkbox name=restore_confirm value=1 id=restore_confirm ng-click=\"managementRestore.confirm = !managementRestore.confirm\"> <span ng-bind=\"_t('are_you_sure_restore')\"></span></div><div class=form-group ng-show=managementRestore.confirm><input type=file class=form-control_ file-model=\"myFile\"></div></div></div><div class=\"fieldset submit-entry\"><button type=button class=\"btn btn-submit\" title=\"{{_t('nm_restore_pick_up')}}\" ng-click=uploadFile() ng-disabled=\"!managementRestore.confirm || managementRestore.alert.message\"><i class=\"fa fa-upload\"></i> <span class=btn-name>{{_t('nm_restore_pick_up')}}</span></button></div></div></div>"
+  );
+
+
   $templateCache.put('app/views/management/management.html',
-    "<div ng-controller=ManagementController class=mobile-padding><div class=accordion-entry ng-include=\"'app/views/management/management_user.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_remote.html'\"></div><div class=accordion-entry ng-if=handleLicense.show ng-include=\"'app/views/management/management_licence.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_local.html'\" ng-if=\"cfg.app_type === 'jb'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_cloud_backup.html'\" ng-if=!isMobile></div><div class=accordion-entry ng-include=\"'app/views/management/management_timezone.html'\" ng-if=\"cfg.app_type === 'jb'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_restore.html'\" ng-if=!isMobile></div><div class=accordion-entry ng-include=\"'app/views/management/management_factory.html'\"></div><div class=accordion-entry ng-if=\"!isMobile && !isInArray(['wd','jb'],cfg.app_type)\" ng-include=\"'app/views/management/management_firmware.html'\"></div><div class=accordion-entry ng-if=\"cfg.app_type === 'jb'\" ng-include=\"'app/views/management/management_firmware_jb.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_appstore.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_report.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_info.html'\"></div></div>"
+    "<div ng-controller=ManagementController class=mobile-padding><div class=accordion-entry ng-include=\"'app/views/management/management_user.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_remote.html'\"></div><div class=accordion-entry ng-if=handleLicense.show ng-include=\"'app/views/management/management_licence.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_local.html'\" ng-if=\"cfg.app_type === 'jb'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_timezone.html'\" ng-if=\"cfg.app_type === 'jb'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_backup_restore.html'\" ng-if=!isMobile></div><div class=accordion-entry ng-include=\"'app/views/management/management_factory.html'\"></div><div class=accordion-entry ng-if=\"!isMobile && !isInArray(['wd','jb'],cfg.app_type)\" ng-include=\"'app/views/management/management_firmware.html'\"></div><div class=accordion-entry ng-if=\"cfg.app_type === 'jb'\" ng-include=\"'app/views/management/management_firmware_jb.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_appstore.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_report.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_info.html'\"></div></div>"
   );
 
 
@@ -11546,8 +11556,8 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
   );
 
 
-  $templateCache.put('app/views/management/management_cloud_backup.html',
-    "<h2 class=accordion-entry-title ng-click=\"expandElement('cloud')\"><i class=\"fa fa-download\"></i> <span ng-bind=\"_t('backup')\"></span> <i class=\"fa accordion-arrow\" ng-class=\"expand.backup ? 'fa-chevron-up' : 'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-if=expand.cloud ng-controller=ManagementCloudBackupController><bb-loader></bb-loader><bb-alert alert=managementCloud.alert></bb-alert><form name=form_cloud_backup id=form_cloud_backup class=\"form form-page\" ng-if=managementCloud.show ng-submit=\"updateInstance(form_cloud_backup, managementCloud.instance)\" novalidate><fieldset><p>{{_t('backup_info')}}</p><div class=btn-group><button class=\"btn btn-default\" type=button title=\"{{_t('nm_backup_download')}}\" ng-click=downLoadBackup()><i class=\"fa fa-download\"></i> <span class=btn-name>{{_t('download_backup_computer')}}</span></button> <button class=\"btn btn-default\" type=button title=\"{{_t('cloud_activate')}}\" ng-click=\"activateCloudBackup(managementCloud.instance,(managementCloud.instance.active ? false : true))\" ng-class=\"managementCloud.instance.active ? 'active' : ''\"><i class=\"fa fa-cloud\" ng-class=\"managementCloud.instance.active ? 'text-success' : 'text-danger'\"></i> <span class=btn-name>{{_t('cloud_activate')}}</span></button></div></fieldset><div ng-if=\"managementCloud.instance.active === true\"><fieldset><div class=\"form-group form-inline\"><label>{{managementCloud.module.options.fields.email.label}}:</label><input name=email id=email type=email class=form-control value={{managementCloud.instance.params.email}} ng-model=managementCloud.instance.params.email ng-required=true ng-blur=\"emailBlur = true\"><bb-validator input-name=form_cloud_backup.email.$error.required trans=_t(&quot;field_required&quot;) has-blur=emailBlur></bb-validator><bb-validator input-name=form_cloud_backup.email.$error.email trans=_t(&quot;email_invalid&quot;) has-blur=emailBlur></bb-validator></div><div class=form-group><h4>{{managementCloud.module.options.fields.email_log.label}}</h4><div ng-repeat=\"v in managementCloud.module.schema.properties.email_log.enum track by $index\"><input type=radio name=email_log value={{v}} id=email_log_{{v}} ng-model=managementCloud.instance.params.email_log ng-checked=\"managementCloud.instance.params.email_log === v\"><label>{{managementCloud.module.options.fields.email_log.optionLabels[$index]}}</label></div></div></fieldset><fieldset ng-if=managementCloud.instance.params.user_active><p class=btn-group><button class=\"btn btn-default\" title=\"{{_t('daily')}}\" type=button ng-repeat=\"v in managementCloud.module.schema.properties.scheduler.enum track by $index\" ng-class=\"v === managementCloud.instance.params.scheduler ? 'active' : ''\" ng-click=setSchedulerType(v)>{{managementCloud.module.options.fields.scheduler.optionLabels[$index]}}</button></p><div class=\"form-group form-inline form-block\"><span ng-if=\"managementCloud.module.options.fields.hours.dependencies.scheduler.indexOf(managementCloud.instance.params.scheduler) > -1\"><label>{{managementCloud.module.options.fields.hours.label}}</label><select class=form-control ng-model=managementCloud.instance.params.hours><option value={{v}} ng-repeat=\"v in managementCloud.module.schema.properties.hours.enum track by $index\" ng-selected=\"v === managementCloud.instance.params.hours\">{{v}}</option></select></span> <span ng-if=\"managementCloud.module.options.fields.minutes.dependencies.scheduler.indexOf(managementCloud.instance.params.scheduler) > -1\"><label>{{managementCloud.module.options.fields.minutes.label}}</label><select class=form-control ng-model=managementCloud.instance.params.minutes><option value={{v}} ng-repeat=\"v in managementCloud.module.schema.properties.minutes.enum track by $index\" ng-selected=\"v === managementCloud.instance.params.minutes\">{{v}}</option></select></span> <span ng-if=\"managementCloud.module.options.fields.weekDays.dependencies.scheduler.indexOf(managementCloud.instance.params.scheduler) > -1\"><label>{{managementCloud.module.options.fields.weekDays.label}}</label><select class=form-control ng-model=managementCloud.instance.params.weekDays><option value={{v}} ng-repeat=\"v in managementCloud.module.schema.properties.weekDays.enum track by $index\" ng-selected=\"v.toString() === managementCloud.instance.params.weekDays\">{{managementCloud.module.options.fields.weekDays.optionLabels[$index]}}</option></select></span> <span ng-if=\"managementCloud.module.options.fields.days.dependencies.scheduler.indexOf(managementCloud.instance.params.scheduler) > -1\"><label>{{managementCloud.module.options.fields.days.label}}</label><select class=form-control ng-model=managementCloud.instance.params.days><option value={{v}} ng-repeat=\"v in managementCloud.module.schema.properties.days.enum track by $index\" ng-selected=\"v === managementCloud.instance.params.days\">{{v}}</option></select></span><div ng-if=\"managementCloud.instance.params.scheduler === '0'\"><a class=\"btn btn-default\" ng-href={{managementCloud.module.defaults.api}} title=\"{{_t('upload_backup')}}\"><i class=\"fa fa-cloud-upload\"></i> <span class=btn-name>{{_t('upload_backup')}}</span></a></div></div></fieldset><fieldset class=submit-entry><button type=submit class=\"btn btn-submit\" title=\"{{_t('lb_save')}}\" ng-disabled=form_cloud_backup.$invalid><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></fieldset></div></form></div>"
+  $templateCache.put('app/views/management/management_backup_restore.html',
+    "<h2 class=accordion-entry-title ng-click=\"expandElement('backup_restore')\"><i class=\"fa fa-download\"></i> <span ng-bind=\"_t('backup_restore')\"></span> <i class=\"fa accordion-arrow\" ng-class=\"expand.backup_restore ? 'fa-chevron-up' : 'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-if=expand.backup_restore ng-controller=ManagementCloudBackupController><bb-loader></bb-loader><form name=form_cloud_backup id=form_cloud_backup class=\"form form-page\" ng-submit=\"updateInstance(form_cloud_backup, managementCloud.instance)\" novalidate><fieldset><h3>{{_t('cloudbackup')}}</h3><p ng-bind-html=\"_t('cloudbackup_info', {__email__ : managementCloud.email === '' ? '<b>'+_t('not_set')+'</b>' : '<b>'+managementCloud.email+'</b>'}) | toTrusted\"></p><bb-alert alert=managementCloud.alert></bb-alert><button class=\"btn btn-default\" type=button title=\"{{_t('activate_module',{__module__ : 'CloudBackup'})}}\" ng-click=\"activateCloudBackup(managementCloud.instance,(managementCloud.instance.active ? false : true))\" ng-class=\"managementCloud.instance.active ? 'active' : ''\" ng-disabled=\"managementCloud.email === ''? true : false\"><i class=\"fa fa-cloud\" ng-class=\"managementCloud.instance.active ? 'text-success' : 'text-danger'\"></i> <span class=btn-name>{{_t('activate_module',{__module__ : 'CloudBackup'})}}</span></button></fieldset><div ng-if=\"managementCloud.instance.active === true\"><fieldset><div class=\"form-group form-inline\" style=\"visibility: hidden\"><label>{{managementCloud.module.options.fields.email.label}}:</label><input name=email id=email type=email class=form-control disabled value={{managementCloud.email}} ng-model=\"managementCloud.email\"></div><div class=form-group><h4>{{managementCloud.module.options.fields.email_log.label}}</h4><div ng-repeat=\"v in managementCloud.module.schema.properties.email_log.enum track by $index\"><input type=radio name=email_log value={{v}} id=email_log_{{v}} ng-model=managementCloud.instance.params.email_log ng-checked=\"managementCloud.instance.params.email_log === v\"><label>{{managementCloud.module.options.fields.email_log.optionLabels[$index]}}</label></div></div></fieldset><fieldset ng-if=managementCloud.instance.params.user_active><p class=btn-group><button class=\"btn btn-default\" title=\"{{_t('daily')}}\" type=button ng-repeat=\"v in managementCloud.module.schema.properties.scheduler.enum track by $index\" ng-class=\"v === managementCloud.instance.params.scheduler ? 'active' : ''\" ng-click=setSchedulerType(v)>{{managementCloud.module.options.fields.scheduler.optionLabels[$index]}}</button></p><div class=\"form-group form-inline form-block\"><span ng-if=\"managementCloud.module.options.fields.hours.dependencies.scheduler.indexOf(managementCloud.instance.params.scheduler) > -1\"><label>{{managementCloud.module.options.fields.hours.label}}</label><select class=form-control ng-model=managementCloud.instance.params.hours ng-required=true><option value={{v}} ng-repeat=\"v in managementCloud.module.schema.properties.hours.enum track by $index\" ng-selected=\"v === managementCloud.instance.params.hours\">{{v}}</option></select></span> <span ng-if=\"managementCloud.module.options.fields.minutes.dependencies.scheduler.indexOf(managementCloud.instance.params.scheduler) > -1\"><label>{{managementCloud.module.options.fields.minutes.label}}</label><select class=form-control ng-model=managementCloud.instance.params.minutes ng-required=true><option value={{v}} ng-repeat=\"v in managementCloud.module.schema.properties.minutes.enum track by $index\" ng-selected=\"v === managementCloud.instance.params.minutes\">{{v}}</option></select></span> <span ng-if=\"managementCloud.module.options.fields.weekDays.dependencies.scheduler.indexOf(managementCloud.instance.params.scheduler) > -1\"><label>{{managementCloud.module.options.fields.weekDays.label}}</label><select class=form-control ng-model=managementCloud.instance.params.weekDays ng-required=true><option value={{v}} ng-repeat=\"v in managementCloud.module.schema.properties.weekDays.enum track by $index\" ng-selected=\"v.toString() === managementCloud.instance.params.weekDays\">{{managementCloud.module.options.fields.weekDays.optionLabels[$index]}}</option></select></span> <span ng-if=\"managementCloud.module.options.fields.days.dependencies.scheduler.indexOf(managementCloud.instance.params.scheduler) > -1\"><label>{{managementCloud.module.options.fields.days.label}}</label><select class=form-control ng-model=managementCloud.instance.params.days ng-required=true><option value={{v}} ng-repeat=\"v in managementCloud.module.schema.properties.days.enum track by $index\" ng-selected=\"v === managementCloud.instance.params.days\">{{v}}</option></select></span><div ng-if=\"managementCloud.instance.params.scheduler === '0'\"><button class=\"btn btn-default\" title=\"{{_t('upload_backup')}}\" type=button ng-click=manualCloudBackup()><i class=\"fa fa-cloud-upload\"></i> <span class=btn-name>{{_t('upload_backup')}}</span></button></div></div></fieldset><fieldset class=submit-entry><button type=submit class=\"btn btn-submit\" title=\"{{_t('lb_save')}}\" ng-disabled=form_cloud_backup.$invalid><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></fieldset></div></form><div class=\"form form-page\"><fieldset><h3>{{_t('local_backup')}}</h3><p ng-bind-html=\"_t('backup_info', {__link__ : 'http://'+hostName+':8083/expert/#/network/control'}) | toTrusted\"></p><button class=\"btn btn-default\" type=button title=\"{{_t('nm_backup_download')}}\" ng-click=downLoadBackup()><i class=\"fa fa-download\"></i> <span class=btn-name>{{_t('download_backup_computer')}}</span></button></fieldset></div></div><div class=accordion-entry-ctrl ng-if=expand.backup_restore ng-controller=ManagementRestoreController><bb-loader></bb-loader><div class=\"form form-page\"><div class=fieldset><h3>{{_t('restore')}}</h3><p ng-bind-html=\"_t('restore_info') | toTrusted\">{{_t('restore_info')}}<div class=\"form-group form-inline\"><a class=\"btn btn-default\" href=https://service.z-wave.me/cloudbackup/ target=_blank title=\"{{_t('online_cloudbackup')}}\"><i class=\"fa fa-cloud-download\"></i> <span class=btn-name>{{_t('online_cloudbackup')}}</span></a></div></p><bb-alert alert=managementRestore.alert></bb-alert><div ng-hide=managementRestore.alert.message><div class=\"alert alert-warning\"><input type=checkbox name=restore_confirm value=1 id=restore_confirm ng-click=\"managementRestore.confirm = !managementRestore.confirm\"> <span ng-bind-html=\"_t('are_you_sure_restore', {__link__ : 'http://'+hostName+':8083/expert/#/network/control'}) | toTrusted\"></span></div><div class=form-group ng-show=managementRestore.confirm><input type=file class=form-control_ file-model=\"myFile\"></div></div></div><div class=\"fieldset submit-entry\"><button type=button class=\"btn btn-submit\" title=\"{{_t('nm_restore_pick_up')}}\" ng-click=uploadFile() ng-disabled=\"!managementRestore.confirm || managementRestore.alert.message\"><i class=\"fa fa-upload\"></i> <span class=btn-name>{{_t('nm_restore_pick_up')}}</span></button></div></div></div>"
   );
 
 
@@ -11588,11 +11598,6 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
   $templateCache.put('app/views/management/management_report.html',
     "<h2 class=accordion-entry-title ng-click=\"expandElement('report')\"><i class=\"fa fa-bug\"></i> <span ng-bind=\"_t('nav_report')\"></span> <i class=\"fa accordion-arrow\" ng-class=\"expand.report  ? 'fa-chevron-up':'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-if=expand.report ng-controller=ManagementReportController><bb-loader></bb-loader><form name=form_report id=form_profile class=\"form form-page\" ng-submit=sendReport(form_report,input) novalidate><fieldset><div class=\"alert alert-warning\"><i class=\"fa fa-exclamation-circle\"></i> {{_t('bugreport_info')}}</div><div class=form-group><textarea name=content id=content class=\"form-control report-content\" ng-blur=\"contentBlur = true\" ng-model=input.content ng-required=true></textarea><bb-validator input-name=form_report.content.$error.required trans=_t(&quot;field_required&quot;) has-blur=contentBlur></bb-validator></div><div class=\"form-group form-inline last\"><label>{{_t('lb_email')}}:</label><input name=email id=email type=email class=form-control value={{input.email}} ng-blur=\"emailBlur = true\" ng-model=input.email ng-required=\"true\"><bb-validator input-name=form_report.email.$error.required trans=_t(&quot;email_invalid&quot;) has-blur=emailBlur></bb-validator></div></fieldset><fieldset class=submit-entry><button type=submit class=\"btn btn-submit\" title=\"{{_t('lb_submit')}}\" ng-disabled=form_report.$invalid><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_submit')}}</span></button></fieldset></form></div>"
-  );
-
-
-  $templateCache.put('app/views/management/management_restore.html',
-    "<h2 class=accordion-entry-title ng-click=\"expandElement('restore')\"><i class=\"fa fa-repeat\"></i> <span ng-bind=\"_t('nm_restore_backup_upload')\"></span> <i class=\"fa accordion-arrow\" ng-class=\"expand.restore  ? 'fa-chevron-up':'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-if=expand.restore ng-controller=ManagementRestoreController><bb-loader></bb-loader><div class=\"form form-page\"><div class=fieldset><bb-alert alert=managementRestore.alert></bb-alert><div ng-hide=managementRestore.alert.message><div class=\"alert alert-warning\"><input type=checkbox name=restore_confirm value=1 id=restore_confirm ng-click=\"managementRestore.confirm = !managementRestore.confirm\"> <span ng-bind=\"_t('are_you_sure_restore')\"></span></div><div class=form-group ng-show=managementRestore.confirm><input type=file class=form-control_ file-model=\"myFile\"></div></div></div><div class=\"fieldset submit-entry\"><button type=button class=\"btn btn-submit\" title=\"{{_t('nm_restore_pick_up')}}\" ng-click=uploadFile() ng-disabled=\"!managementRestore.confirm || managementRestore.alert.message\"><i class=\"fa fa-upload\"></i> <span class=btn-name>{{_t('nm_restore_pick_up')}}</span></button></div></div></div>"
   );
 
 
@@ -21919,8 +21924,7 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
         remote: false,
         licence: false,
         firmware: false,
-        backup: false,
-        restore: false,
+        backup_restore: false,
         info: false,
         report: false,
         appstore: false
@@ -22155,8 +22159,8 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
         id: $routeParams.id,
         login: null,
         password: null
-
     };
+    $scope.lastEmail = "";
 
     /**
      * Load all promises
@@ -22184,17 +22188,18 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
                 if ($scope.id !== 0) {
                     $scope.input = profile.value.data.data;
                     $scope.auth.login = profile.value.data.data.login;
+                    $scope.lastEmail = profile.value.data.data.email;
                 }
             }
 
             // Success - locations
             if (locations.state === 'fulfilled') {
                 $scope.rooms = dataService.getRooms(locations.value.data.data)
-                        .reject(function (v) {
-                            return (v.id === 0);
+                    .reject(function (v) {
+                        return (v.id === 0);
 
-                        })
-                        .value();
+                    })
+                    .value();
             }
         });
     };
@@ -22204,14 +22209,14 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
      * Watch for the role change
      */
     /*$scope.$watch('input.role', function () {
-        //var globalRoomIndex = $scope.input.rooms.indexOf(0);
-        if($scope.input.role === 1){
-            $scope.input.rooms = [0];
-        }else{
-            $scope.input.rooms = $scope.input.rooms.length > 0  ? $scope.input.rooms : [];
-            //$scope.input.rooms = []
-        }
-    });*/
+     //var globalRoomIndex = $scope.input.rooms.indexOf(0);
+     if($scope.input.role === 1){
+     $scope.input.rooms = [0];
+     }else{
+     $scope.input.rooms = $scope.input.rooms.length > 0  ? $scope.input.rooms : [];
+     //$scope.input.rooms = []
+     }
+     });*/
     /**
      * Assign room to list
      */
@@ -22222,21 +22227,21 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
     };
 
     /*$scope.prepareRooms = function () {
-        return;
-        var globalRoomIndex = $scope.input.rooms.indexOf(0);
-        //var roomIds = _.map(locations.value.data.data, function(location){});
+     return;
+     var globalRoomIndex = $scope.input.rooms.indexOf(0);
+     //var roomIds = _.map(locations.value.data.data, function(location){});
 
-        if ($scope.input.role === 1 && globalRoomIndex === -1) {
-            $scope.input.rooms = [0];
-        } else if ($scope.input.role !== 1 && globalRoomIndex > -1){
-            if ($scope.input.id === 0) {
-                $scope.input.rooms = [];
-            } else {
-                $scope.input.rooms.splice(globalRoomIndex, 1);
-            }
-        }
-        return;
-    };*/
+     if ($scope.input.role === 1 && globalRoomIndex === -1) {
+     $scope.input.rooms = [0];
+     } else if ($scope.input.role !== 1 && globalRoomIndex > -1){
+     if ($scope.input.id === 0) {
+     $scope.input.rooms = [];
+     } else {
+     $scope.input.rooms.splice(globalRoomIndex, 1);
+     }
+     }
+     return;
+     };*/
 
     /**
      * Remove room from the list
@@ -22277,6 +22282,32 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
                 myCache.remove('profiles');
                 $scope.reloadData();
             }
+
+            // Email change --> update e-mail cloudbackup if instance exist
+            if($scope.lastEmail != input.email) {
+                var promises = [
+                    dataFactory.getApi('instances', '/CloudBackup')
+                ];
+
+                $q.allSettled(promises).then(function (response) {
+                    var instance = response[0];
+
+                    if (instance.state === 'rejected') {
+                        return;
+                    }
+
+                    if (instance.state === 'fulfilled') {
+                        var instanceData = instance.value.data.data[0];
+                        instanceData.params.email = input.email;
+                        dataFactory.putApi('instances', instanceData.id, instanceData).then(function (response) {
+                            $scope.lastEmail = input.email
+                        }, function (error) {
+                            alertify.alertError($scope._t('error_update_data'));
+                        });
+                    }
+                });
+            }
+
             $scope.loading = false;
             dataService.showNotifier({message: $scope._t('success_updated')});
             window.location = '#/admin';
@@ -22387,7 +22418,7 @@ myAppController.controller('ManagementRemoteController', function ($scope, dataF
 myAppController.controller('ManagementLocalController', function ($scope, dataFactory, dataService) {
 
 
-     /**
+    /**
      * Update instance
      */
     $scope.updateInstance = function (input) {
@@ -22395,10 +22426,10 @@ myAppController.controller('ManagementLocalController', function ($scope, dataFa
         if (input.id) {
             dataFactory.putApi('instances', input.id, input).then(function (response) {
                 alertify.confirm($scope._t('timezone_alert'))
-                        .setting('labels', {'ok': $scope._t('yes'),'cancel': $scope._t('lb_cancel')})
-                        .set('onok', function (closeEvent) {//after clicking OK
-                                $scope.systemReboot();
-                        });
+                    .setting('labels', {'ok': $scope._t('yes'),'cancel': $scope._t('lb_cancel')})
+                    .set('onok', function (closeEvent) {//after clicking OK
+                        $scope.systemReboot();
+                    });
 
             }, function (error) {
                 alertify.alertError($scope._t('error_update_data'));
@@ -22406,15 +22437,15 @@ myAppController.controller('ManagementLocalController', function ($scope, dataFa
         }
     };
 
-     /**
+    /**
      * System rebboot
      */
     $scope.systemReboot = function () {
-         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('system_rebooting')};
-            dataFactory.getApi('system_reboot').then(function (response) {
-            }, function (error) {
-                alertify.alertError($scope._t('error_system_reboot'));
-            });
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('system_rebooting')};
+        dataFactory.getApi('system_reboot').then(function (response) {
+        }, function (error) {
+            alertify.alertError($scope._t('error_system_reboot'));
+        });
 
     };
 });
@@ -22573,26 +22604,26 @@ myAppController.controller('ManagementTimezoneController', function ($scope, $ti
         if (input.id) {
             dataFactory.putApi('instances', input.id, input).then(function (response) {
                 alertify.confirm($scope._t('timezone_alert'))
-                        .setting('labels', {'ok': $scope._t('yes'),'cancel': $scope._t('lb_cancel')})
-                        .set('onok', function (closeEvent) {//after clicking OK
-                                $scope.systemReboot();
-                        });
+                    .setting('labels', {'ok': $scope._t('yes'),'cancel': $scope._t('lb_cancel')})
+                    .set('onok', function (closeEvent) {//after clicking OK
+                        $scope.systemReboot();
+                    });
 
             }, function (error) {
                 alertify.alertError($scope._t('error_update_data'));
             });
         }
     };
-    
-     /**
+
+    /**
      * System rebboot
      */
     $scope.systemReboot = function () {
-         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('system_rebooting')};
-            dataFactory.getApi('system_reboot').then(function (response) {
-            }, function (error) {
-                alertify.alertError($scope._t('error_system_reboot'));
-            });
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('system_rebooting')};
+        dataFactory.getApi('system_reboot').then(function (response) {
+        }, function (error) {
+            alertify.alertError($scope._t('error_system_reboot'));
+        });
 
     };
 
@@ -22806,9 +22837,7 @@ myAppController.controller('ManagementReportController', function ($scope, $wind
             alertify.alertError($scope._t('error_send_report'));
             $scope.loading = false;
         });
-
     };
-
 });
 /**
  * The controller that renders postfix data.
@@ -22849,13 +22878,14 @@ myAppController.controller('ManagementInfoController', function ($scope, dataFac
  * The controller that handles a backup to the cloud.
  * @class ManagementCloudBackupController
  */
-myAppController.controller('ManagementCloudBackupController', function ($scope, $timeout, $q, dataFactory, dataService) {
+myAppController.controller('ManagementCloudBackupController', function ($scope, $timeout, $q, $window, dataFactory, dataService) {
     $scope.managementCloud = {
         alert: {message: false, status: 'is-hidden', icon: false},
         show: false,
         module:[],
         instance: {},
-        process: false
+        process: false,
+        email: ""
     };
     /**
      * Load all promises
@@ -22864,34 +22894,44 @@ myAppController.controller('ManagementCloudBackupController', function ($scope, 
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
             dataFactory.getApi('instances', '/CloudBackup'),
-            dataFactory.getApi('modules', '/CloudBackup')
+            dataFactory.getApi('modules', '/CloudBackup'),
+            dataFactory.getApi('profiles', '/' +  $scope.user.id, true)
         ];
 
         $q.allSettled(promises).then(function (response) {
             $scope.loading = false;
             var instance = response[0];
             var module = response[1];
+            var profile = response[2];
+
+            var message = "";
+
+            if(profile.value.data.data.email === '') {
+                $scope.managementCloud.alert = {message: $scope._t('email_not_set'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                return;
+            } else {
+                $scope.managementCloud.email = profile.value.data.data.email;
+            }
+
             // Error message
             if (instance.state === 'rejected') {
-                $scope.managementCloud.alert = {message: $scope._t('cloud_not_installed'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
-                alertify.alertWarning($scope._t('cloud_not_installed'));
                 return;
             }
 
             if (module.state === 'rejected') {
-                alertify.alertWarning($scope._t('cloud_not_installed'));
                 return;
             }
 
             // Success - api data
             if (instance.state === 'fulfilled') {
-                /*if (!instance.value.data.data[0].active) {
+                if (!instance.value.data.data[0].active) {
                     $scope.managementCloud.alert = {message: $scope._t('cloud_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
-                    alertify.alertWarning($scope._t('cloud_not_active'));
-                    return;
-                }*/
-                $scope.managementCloud.show = true;
+                } else {
+                    $scope.managementCloud.alert = false;
+                }
+
                 $scope.managementCloud.instance = instance.value.data.data[0];
+                $scope.managementCloud.show = true;
             }
             // Success - module
             if (module.state === 'fulfilled') {
@@ -22911,33 +22951,47 @@ myAppController.controller('ManagementCloudBackupController', function ($scope, 
 
     $scope.downLoadBackup = function() {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataService.getApi('backup').then(function(response) {
+        dataFactory.getApi('backup').then(function(response) {
             $scope.loading = false;
-            console.log(response);
         }, function(error) {
-            console.log(error);
             $scope.loading = false;
         });
-    }
+    };
+
+    $scope.manualCloudBackup = function() {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        dataFactory.getApi('cloudbackup').then(function(response) {
+            dataService.showNotifier({message: response.data.message});
+            $scope.loading = false;
+        }, function(error) {
+            dataService.showNotifier({message: error.data.message, type: 'error'});
+            $scope.loading = false;
+        });
+    };
 
     /**
      * Activate cloud backup
      */
     $scope.activateCloudBackup = function (input, activeStatus) {
-        input.active = activeStatus;
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        if (input.id) {
-            dataFactory.putApi('instances', input.id, input).then(function (response) {
-                dataService.showNotifier({message: $scope._t('success_updated')});
-                $scope.loading = false;
-                $scope.allCloudSettled();
 
-            }, function (error) {
-                alertify.alertError($scope._t('error_update_data'));
-                $scope.loading = false;
-            });
+        if(_.isEmpty(input)) {
+            $scope.createInstance();
+        } else {
+            input.active = activeStatus;
+            input.params.email = $scope.managementCloud.email;
+            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+            if (input.id) {
+                dataFactory.putApi('instances', input.id, input).then(function (response) {
+                    dataService.showNotifier({message: $scope._t('success_updated')});
+                    $scope.loading = false;
+                    $scope.allCloudSettled();
+                }, function (error) {
+                    alertify.alertError($scope._t('error_update_data'));
+                    alertify.dismissAll();
+                    $scope.loading = false;
+                });
+            }
         }
-
     };
 
     /**
@@ -22947,6 +23001,7 @@ myAppController.controller('ManagementCloudBackupController', function ($scope, 
         if (form.$invalid) {
             return;
         }
+        input.params.email = $scope.managementCloud.email;
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         if (input.id) {
             dataFactory.putApi('instances', input.id, input).then(function (response) {
@@ -22955,11 +23010,37 @@ myAppController.controller('ManagementCloudBackupController', function ($scope, 
                 $scope.allCloudSettled();
             }, function (error) {
                 alertify.alertError($scope._t('error_update_data'));
+                alertify.dismissAll();
                 $scope.loading = false;
             });
         }
     };
 
+    /**
+     * Create instance
+     */
+    $scope.createInstance = function() {
+        var inputData = {
+            "instanceId":"0",
+            "moduleId":"CloudBackup",
+            "active":"true",
+            "title":"CloudBackup",
+            "params":{
+                "email": $scope.managementCloud.email
+            }
+        };
+
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        dataFactory.postApi('instances', inputData).then(function (response) {
+            $scope.loading = false
+            dataService.showNotifier({message: $scope._t('reloading_page')});
+            $window.location.reload();
+        }, function (error) {
+            alertify.alertError($scope._t('error_update_data'));
+            alertify.dismissAll();
+            $scope.loading = false;
+        });
+    }
 });
 
 /**
@@ -22977,8 +23058,9 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
     $scope.input = false;
     $scope.newPassword = null;
     $scope.trustMyNetwork = true;
-    
-    
+    $scope.lastEmail = "";
+
+
 //     /**
 //     * Trust my network
 //     */
@@ -22993,12 +23075,12 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
 //            });
 //    };
 
- /**
+    /**
      * Load all promises
      */
     $scope.allSettled = function () {
         var promises = [
-             dataFactory.getApi('profiles', '/' + $scope.id, true),
+            dataFactory.getApi('profiles', '/' + $scope.id, true),
             dataFactory.getApi('devices', null, true)
         ];
 
@@ -23015,24 +23097,25 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
             }
             // Success - profile
             if (profile.state === 'fulfilled') {
-                 $scope.input = profile.value.data.data;
+                $scope.input = profile.value.data.data;
+                $scope.lastEmail = profile.value.data.data.email;
             }
             // Success - devices
             if (devices.state === 'fulfilled') {
-               $scope.devices = devices.value.data.data.devices;
+                $scope.devices = devices.value.data.data.devices;
             }
         });
     };
-    $scope.allSettled();  
-    
+    $scope.allSettled();
+
     /**
      * Assign device to the list
      */
     $scope.assignDevice = function(assign) {
         $scope.input.hide_single_device_events.push(assign);
         return;
-
     };
+
     /**
      * Remove device from the list
      */
@@ -23054,6 +23137,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
         if (form.$invalid) {
             return;
         }
+
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         dataFactory.putApi('profiles', input.id, input).then(function(response) {
             var data = response.data.data;
@@ -23063,13 +23147,38 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
                 return;
             }
 
+            // Email change --> update e-mail cloudbackup if instance exist
+            if($scope.lastEmail != input.email) {
+                var promises = [
+                    dataFactory.getApi('instances', '/CloudBackup')
+                ];
+
+                $q.allSettled(promises).then(function (response) {
+                    var instance = response[0];
+
+                    if (instance.state === 'rejected') {
+                        return;
+                    }
+
+                    if (instance.state === 'fulfilled') {
+                        var instanceData = instance.value.data.data[0];
+                        instanceData.params.email = input.email;
+                        dataFactory.putApi('instances', instanceData.id, instanceData).then(function (response) {
+                            $scope.lastEmail = input.email
+                        }, function (error) {
+                            alertify.alertError($scope._t('error_update_data'));
+                        });
+                    }
+                });
+            }
+
             $scope.loading = false;
             $cookies.lang = input.lang;
             myCache.remove('profiles');
             dataService.setUser(data);
-             dataService.showNotifier({message: $scope._t('success_updated')});
-             $timeout(function () {
-                 $scope.loading = {status: 'loading-spin', icon: '--', message: $scope._t('reloading_page')};
+            dataService.showNotifier({message: $scope._t('success_updated')});
+            $timeout(function () {
+                $scope.loading = {status: 'loading-spin', icon: '--', message: $scope._t('reloading_page')};
                 alertify.dismissAll();
                 $window.location.reload();
             }, 2000);
@@ -23079,11 +23188,11 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
             if (error.status == 409) {
                 message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error) : message);
             }
-             alertify.alertError(message);
+            alertify.alertError(message);
             $scope.loading = false;
         });
     };
-    
+
 //     /**
 //     * Set Trust my network
 //     */
@@ -23098,7 +23207,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
 //                    return;
 //                });
 //    };
-   
+
 
     /**
      * Change password
@@ -23121,7 +23230,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
                 return;
             }
             dataService.showNotifier({message: $scope._t('success_updated')});
-             dataService.goBack();
+            dataService.goBack();
 
         }, function(error) {
             alertify.alertError($scope._t('error_update_data'));

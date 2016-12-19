@@ -19,14 +19,17 @@
     <!-- ///////////////////////////// Backup ///////////////////////////// -->
      <!--<div class="accordion-entry" ng-include="'app/views/management/management_backup.html'" ng-if="!isMobile"></div>-->
      <!-- ///////////////////////////// Backup to the cloud ///////////////////////////// -->
-     <div class="accordion-entry" ng-include="'app/views/management/management_cloud_backup.html'" ng-if="!isMobile"></div>
+     <!--<div class="accordion-entry" ng-include="'app/views/management/management_cloud_backup.html'" ng-if="!isMobile"></div>-->
       <!-- ///////////////////////////// Timezone ///////////////////////////// -->
      <div class="accordion-entry" 
           ng-include="'app/views/management/management_timezone.html'"
           ng-if="cfg.app_type === 'jb'"></div>
      
      <!-- ///////////////////////////// Restore ///////////////////////////// -->
-     <div class="accordion-entry" ng-include="'app/views/management/management_restore.html'" ng-if="!isMobile"></div>
+     <!--<div class="accordion-entry" ng-include="'app/views/management/management_restore.html'" ng-if="!isMobile"></div>-->
+
+    <!-- ///////////////////////////// Backup & Restore ///////////////////////////// -->
+    <div class="accordion-entry" ng-include="'app/views/management/management_backup_restore.html'" ng-if="!isMobile"></div>
      
      <!-- ///////////////////////////// Factory default  ///////////////////////////// -->
      <div class="accordion-entry" ng-include="'app/views/management/management_factory.html'"></div>
