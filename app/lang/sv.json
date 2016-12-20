@@ -612,5 +612,7 @@
     "protection_list": "Skyddsinställningar",
     "restore_backup_chip": "Återställ även information om nätverkstopologin (Läs manualen först!)",
     "switchall_list": "'Växla alla'- Inställningar",
-    "wakeup_list": "Uppvakningsinställningar "
+    "wakeup_list": "Uppvakningsinställningar ",
+    "lb_ready_include_secure" : "Ready to include secure.",
+    "lb_ready_include_unsecure" : "Ready to include unsecure."
 }

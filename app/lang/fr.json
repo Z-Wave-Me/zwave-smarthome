@@ -608,5 +608,7 @@
     "lb_s": "Sud",
     "lb_sw": "Sud-Ouest",
     "lb_w": "Ouest",
-    "lb_nw": "Nord-Ouest"
+    "lb_nw": "Nord-Ouest",
+    "lb_ready_include_secure" : "Ready to include secure.",
+    "lb_ready_include_unsecure" : "Ready to include unsecure."
 }

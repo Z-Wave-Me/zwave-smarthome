@@ -588,5 +588,7 @@
     "lb_s": "南",
     "lb_sw": "西南",
     "lb_w": "西",
-    "lb_nw": "西北"
+    "lb_nw": "西北",
+        "lb_ready_include_secure" : "Ready to include secure.",
+    "lb_ready_include_unsecure" : "Ready to include unsecure."
 }

@@ -608,5 +608,7 @@
     "lb_s": "Jih",
     "lb_sw": "Jiho-západ",
     "lb_w": "Západ",
-    "lb_nw": "Severo-západ"
+    "lb_nw": "Severo-západ",
+    "lb_ready_include_secure" : "Ready to include secure.",
+    "lb_ready_include_unsecure" : "Ready to include unsecure."
 }

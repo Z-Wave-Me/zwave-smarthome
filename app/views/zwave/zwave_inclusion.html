@@ -55,36 +55,42 @@
                             <!-- Header --> 
                             <h3>{{_t('lb_inclusion_progress')}}</h3>
                             <!-- Secure/Unsecure  -->
-                            <div>
-                                {{_t('nm_force_unsecure')}}
-                                <div class="btn-group">
+                        
+                            <div class="btn-group">
                                     <!-- Secure -->
-                                    <button type="button" class="btn btn-primary" id="btn_force_secure_lock"
+                                    <button type="button" class="btn btn-primary btn-lg" id="btn_force_secure_lock"
                                             ng-class="zwaveInclusion.controller.secureInclusion ? 'active' : ''"
                                             ng-click="setSecureInclusion('controller.data.secureInclusion=true')"
                                             ng-disabled="[1, 2, 3, 4, 5, 6, 7].indexOf(zwaveInclusion.controller.controllerState) > -1">
-                                        <i class="fa fa-lock"></i> <span class="btn-name">{{_t('btn_secure')}}</span>
+                                        <i class="fa fa-lock"></i> <span class="btn-name"></span>
                                     </button>
                                     <!-- Unsecure -->
-                                    <button type="button" class="btn btn-primary" id="btn_force_unsecure_lock"
+                                    <button type="button" class="btn btn-primary btn-lg" id="btn_force_unsecure_lock"
                                             ng-class="!zwaveInclusion.controller.secureInclusion ? 'active' : ''"
                                             ng-click="setSecureInclusion('controller.data.secureInclusion=false')"
                                             ng-disabled="[1, 2, 3, 4, 5, 6, 7].indexOf(zwaveInclusion.controller.controllerState) > -1">
-                                        <i class="fa fa-unlock"></i> <span class="btn-name">{{_t('btn_unsecure')}}</span>
+                                        <i class="fa fa-unlock"></i> <span class="btn-name"></span>
                                     </button>
-                                </div>
-                            </div>
-                            <span class="line"></span>
+                                
                             <button class="btn btn-success btn-lg" title="{{_t('btn_inclusion_start')}}" 
                                     ng-disabled="zwaveInclusion.exclusionProcess.process || zwaveInclusion.automatedConfiguration.includedDevice.nodeId > 0"
                                     ng-click="startStopInclusion(true)">
                                 <i class="fa fa-plug"></i> <span class="btn-name">{{_t('btn_inclusion_start')}}</span>
                             </button>
                         </div>
+                        </div>
                         <!-- Process -->
                         <div class="inclusion-process" ng-if="zwaveInclusion.inclusionProcess.process">
                             <div class="alert alert-warning">
-                                <i class="fa fa-spinner fa-spin"></i> {{_t('lb_ready_include')}} {{zwaveInclusion.device.find.inc}} 
+                                <i class="fa fa-spinner fa-spin"></i> 
+                                <span ng-if="zwaveInclusion.controller.secureInclusion">
+                                {{_t('lb_ready_include_secure')}} {{zwaveInclusion.device.find.inc}} 
+                                </span>   
+                                <span ng-if="!zwaveInclusion.controller.secureInclusion">
+                                {{_t('lb_ready_include_unsecure')}} {{zwaveInclusion.device.find.inc}} 
+                                </span>   
+                                
+
                                 <button class="btn btn-danger btn-lg" title="{{_t('btn_inclusion_stop')}}"
                                         ng-click="startStopInclusion(false)">
                                     <i class="fa fa-ban"></i> <span class="btn-name">{{_t('btn_inclusion_stop')}}</span>

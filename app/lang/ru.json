@@ -614,5 +614,7 @@
     "lb_s": "Юг",
     "lb_sw": "Юго-запад",
     "lb_w": "Запад",
-    "lb_nw": "Северо-запад"
+    "lb_nw": "Северо-запад",
+    "lb_ready_include_secure" : "Ready to include secure.",
+    "lb_ready_include_unsecure" : "Ready to include unsecure."
 }

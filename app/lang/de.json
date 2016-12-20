@@ -622,5 +622,7 @@
     "lb_s": "Süd",
     "lb_sw": "Südwest",
     "lb_w": "West",
-    "lb_nw": "Nordwest"
+    "lb_nw": "Nordwest",
+    "lb_ready_include_secure" : "Bereit zum verschlüsselten Anlernen (Inklusion)",
+    "lb_ready_include_unsecure" : "RBereit zum unverschlüsselten Anlernen (Inklusion)."
 }
