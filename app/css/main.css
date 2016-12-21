@@ -8813,6 +8813,21 @@ a:focus {
   outline-offset: -2px;
 }
 
+a.link-dotted {
+  color: #333333;
+  border-bottom: 1px dotted #333333;
+}
+
+a.link-dotted:hover, a.link-dotted:focus {
+  border-bottom: 1px solid #1a1a1a;
+  text-decoration: none;
+}
+
+a.link-underline {
+  color: #333333;
+  text-decoration: underline;
+}
+
 /* Fatal error
 -------------------------------------------------- */
 .app-fatal-error {

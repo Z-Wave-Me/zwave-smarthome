@@ -24,16 +24,8 @@
 
         </fieldset>
         <!-- Cloud backup -->
-        <div ng-if="managementCloud.instance.active === true">
+        <div ng-if="managementCloud.instance.active === true && managementCloud.instance.user_active === true">
             <fieldset>
-                <!-- email -->
-                <div class="form-group form-inline" style="visibility: hidden;">
-                    <label>{{managementCloud.module.options.fields.email.label}}: </label>
-                    <input name="email" id="email" type="email" class="form-control" disabled="disabled"
-                           value="{{managementCloud.email}}"
-                           ng-model="managementCloud.email"
-                    />
-                </div>
                 <!-- email log -->
                 <div class="form-group">
                     <h4>{{managementCloud.module.options.fields.email_log.label}}</h4>

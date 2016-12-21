@@ -363,10 +363,20 @@ myAppController.controller('OnlineIconController', function ($scope, $filter, $t
         });
     }
 
+    /**
+     * Get source/name from source
+     * @param {object} source
+     * @returns {undefined}
+     */
     function getSource(source) {
         return source.substring(0, source.lastIndexOf("_"));
     }
 
+    /**
+     * Get id from source
+     * @param {object} source
+     * @returns {undefined}
+     */
     function getId(source) {
         return source.substring(source.lastIndexOf("_") + 1, source.length);
     }

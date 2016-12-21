@@ -616,5 +616,7 @@
     "lb_w": "Запад",
     "lb_nw": "Северо-запад",
     "lb_ready_include_secure" : "Ready to include secure.",
-    "lb_ready_include_unsecure" : "Ready to include unsecure."
+    "lb_ready_include_unsecure" : "Ready to include unsecure.",
+    "error_no_scracthid_caps_unlimited": "License upgrade not possible!",
+    "error_mobile_device_not_supported": "License upgrade for mobile devices not supported!"
 }

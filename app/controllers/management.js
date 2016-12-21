@@ -33,6 +33,7 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
     };
     $scope.remoteAccess = false;
     $scope.handleLicense = {
+        alert: {message: false, status: 'is-hidden', icon: false},
         show: false,
         disabled: false,
         replug: false
@@ -106,34 +107,34 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
         $scope.controllerInfo.softwareRevisionVersion = ZWaveAPIData.controller.data.softwareRevisionVersion.value;
         $scope.controllerInfo.capabillities = caps(ZWaveAPIData.controller.data.caps.value);
         $scope.controllerInfo.capsLimited = nodeLimit($filter('dec2hex')(ZWaveAPIData.controller.data.caps.value[2]).slice(-2));
-        setLicenceScratchId($scope.controllerInfo);
+        //setLicenceScratchId($scope.controllerInfo);
         //console.log(ZWaveAPIData.controller.data.caps.value);
         //console.log('Limited: ', $scope.controllerInfo.capsLimited);
 
-    }
-    ;
+    };
+
     /**
      * Set licence ID
      * @param {object} controllerInfo
      * @returns {undefined}
      */
-    function  setLicenceScratchId(controllerInfo) {
+    /*function  setLicenceScratchId(controllerInfo) {
         dataFactory.getRemoteData($scope.cfg.get_licence_scratchid + '?uuid=' + controllerInfo.uuid).then(function (response) {
             $scope.controllerInfo.scratchId = response.data.scratch_id;
             handleLicense($scope.controllerInfo)
         }, function (error) {
             handleLicense($scope.controllerInfo);
-            alertify.alertError($scope._t('error_license_request'));
+            //alertify.alertError($scope._t('error_license_request'));
         });
-    }
-    ;
+    };*/
+
     /**
      * Show or hide licencese block
      * @param {object} controllerInfo
      * @returns {undefined}
      */
-    function handleLicense(controllerInfo) {
-        // Hide license if 
+    /*function handleLicense(controllerInfo) {
+        // Hide license if
         // forbidden, mobile device, not uuid
         if ((cfg.license_forbidden.indexOf(cfg.app_type) > -1) || $scope.isMobile || !controllerInfo.uuid) {
             //console.log('Hide license if: forbidden, mobile device, not uuid')
@@ -163,7 +164,7 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
             $scope.handleLicense.replug = true;
         }
         $scope.handleLicense.show = true;
-    }
+    }*/
 
 });
 /**
@@ -543,7 +544,7 @@ myAppController.controller('ManagementLocalController', function ($scope, dataFa
  * The controller that handles the licence key.
  * @class ManagementLicenceController
  */
-myAppController.controller('ManagementLicenceController', function ($scope, dataFactory) {
+myAppController.controller('ManagementLicenceController', function ($scope, cfg, dataFactory) {
 
     $scope.proccessLicence = false;
     $scope.proccessVerify = {
@@ -558,6 +559,64 @@ myAppController.controller('ManagementLicenceController', function ($scope, data
         "show": false,
         "scratch_id": $scope.controllerInfo.scratchId
     };
+
+    /**
+    * Set licence ID
+    * @param {object} controllerInfo
+    * @returns {undefined}
+    */
+    $scope.setLicenceScratchId = function(controllerInfo) {
+        dataFactory.getRemoteData($scope.cfg.get_licence_scratchid + '?uuid=' + controllerInfo.uuid).then(function (response) {
+            $scope.controllerInfo.scratchId = response.data.scratch_id;
+            handleLicense($scope.controllerInfo)
+        }, function (error) {
+            handleLicense($scope.controllerInfo);
+            $scope.handleLicense.alert = {message: $scope._t('error_license_request'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+            //alertify.alertError($scope._t('error_license_request'));
+        });
+    };
+    $scope.setLicenceScratchId($scope.controllerInfo);
+
+    /**
+    * Show or hide licencese block
+    * @param {object} controllerInfo
+    * @returns {undefined}
+    */
+    function handleLicense(controllerInfo) {
+        // Hide license if
+        // forbidden, mobile device, not uuid
+        if ((cfg.license_forbidden.indexOf(cfg.app_type) > -1) || $scope.isMobile || !controllerInfo.uuid) {
+            //console.log('Hide license if: forbidden, mobile device, not uuid')
+            $scope.handleLicense.alert = {message: $scope._t('error_mobile_device_not_supported'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+            $scope.handleLicense.show = false;
+            return;
+        }
+
+        // Hide license if
+        // Controller UUID = string and scratchId  is NOT found  and cap unlimited
+        if (!controllerInfo.scratchId && !controllerInfo.capsLimited) {
+            //console.log('Hide license if: Controller UUID = string and scratchId  is NOT found  and cap unlimited')
+            $scope.handleLicense.alert = {message: $scope._t('error_no_scracthid_caps_unlimited'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+            $scope.handleLicense.show = false;
+            return;
+        }
+
+        // Show modal if
+        // Controller UUID = string and scratchId  is NOT found  and cap limited
+        if (!controllerInfo.scratchId && controllerInfo.capsLimited) {
+            //console.log('Show modal if: Controller UUID = string and scratchId  is NOT found  and cap limited')
+            $scope.handleLicense.alert = {message: $scope._t('info_missing_licence'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+            //alertify.alertWarning($scope._t('info_missing_licence'));
+        }
+
+        // Disable input and show unplug message
+        if (controllerInfo.isZeroUuid) {
+            //console.log('Disable input and show unplug message')
+            $scope.handleLicense.disabled = true;
+            $scope.handleLicense.replug = true;
+        }
+        $scope.handleLicense.show = true;
+    }
 
     /**
      * Get license key
@@ -968,7 +1027,7 @@ myAppController.controller('ManagementInfoController', function ($scope, dataFac
  * The controller that handles a backup to the cloud.
  * @class ManagementCloudBackupController
  */
-myAppController.controller('ManagementCloudBackupController', function ($scope, $timeout, $q, $window, dataFactory, dataService) {
+myAppController.controller('ManagementCloudBackupController', function ($scope, $timeout, $q, cfg, $window, dataFactory, dataService) {
     $scope.managementCloud = {
         alert: {message: false, status: 'is-hidden', icon: false},
         show: false,
@@ -1039,15 +1098,35 @@ myAppController.controller('ManagementCloudBackupController', function ($scope, 
         $scope.managementCloud.instance.params.scheduler = type;
     };
 
+
+    /**
+     * Start backup and get backup.file
+     */
     $scope.downLoadBackup = function() {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataFactory.getApi('backup').then(function(response) {
+        dataFactory.getRemoteData(cfg.server_url + cfg.api.backup).then(function(response) {
             $scope.loading = false;
+            var headers = response.headers(),
+                filenameRegex = /.*filename=([\'\"]?)([^\"]+)\1/,
+                matches = filenameRegex.exec(headers['content-disposition']),
+                file = new Blob([JSON.stringify(response.data)], {type: 'application/json'}),
+                fileURL = URL.createObjectURL(file),
+                a = document.createElement('a');
+
+            a.href = fileURL;
+            a.target = '_blank';
+            a.download = matches[2];
+            document.body.appendChild(a);
+            a.click();
         }, function(error) {
+            alertify.alertError($scope._t('error_backup'));
             $scope.loading = false;
         });
     };
 
+    /**
+     * Start cloud backup
+     */
     $scope.manualCloudBackup = function() {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('cloudbackup').then(function(response) {
