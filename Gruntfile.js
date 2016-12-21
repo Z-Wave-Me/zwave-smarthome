@@ -3,6 +3,8 @@ module.exports = function (grunt) {
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        // Banner
+        banner: 'Copyright:  Z-Wave Europe, Created: <%= grunt.template.today("dd-mm-yyyy HH:MM:ss") %>',
         // Clean dir
         clean: {
             options: {force: true},
@@ -160,7 +162,7 @@ module.exports = function (grunt) {
         cssmin: {
             my_target: {
                 options: {
-                    banner: '/* Minified css file */',
+                    banner: '/* <%= banner %> */',
                     keepSpecialComments: 0
                 },
                 files: [
@@ -188,72 +190,23 @@ module.exports = function (grunt) {
                 dest: 'docs'
             }
         },
-        remove: {
-            options: {
-                trace: true
-            },
-            //fileList: ['path_to_file_1.extension', 'path_to_file_2.extension'],
-            dirList: [
-                'dist/app/views/_test/',
-                'dist/storage/data/_test/'
-            ]
-        },
-        // HTML min
-        htmlmin: {
-            dist: {
+        usebanner: {
+            jscss: {
                 options: {
-                    removeComments: true,
-                    collapseWhitespace: true
+                    position: 'top',
+                    banner: '/* <%= banner %> */'
                 },
                 files: {
-                    'dist/abc.html': 'index.html'
+                    src: [ 'dist/app/js/templates.js','dist/app/js/config.js','dist/app/js/build.js','dist/app/js/icons.js']
                 }
             },
-            multiple: {
-                files: [{
-                        expand: true,
-                        cwd: 'app/views',
-                        src: '**/*.html',
-                        dest: 'dist/views'
-                    }]
-            }
-        },
-        sass: {
-            dist: {
+            html: {
                 options: {
-                    style: 'expanded'
+                    position: 'top',
+                    banner: '<!-- <%= banner %> -->'
                 },
                 files: {
-                    'app/css/bootstrap.css': 'app/css/sass/bootstrap.scss',
-                    'app/css/main.css': 'app/css/sass/main.scss'
-                }
-            }
-        },
-        watch: {
-            files: "app/css/sass/**",
-            tasks: ["sass"]
-        },
-        // Uglify
-        uglify: {
-            options: {
-                banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n',
-                compress: true
-            },
-            build: {
-                src: ['app/js/*'],
-                dest: 'dist/app/js/build.min.js'
-            }
-        },
-        'string-replace': {
-            dist: {
-                files: {
-                    'dist/app/js/config.js': 'app/config.js',
-                },
-                options: {
-                    replacements: [{
-                            pattern: /'server_url': (.*?) /ig,
-                            replacement: '\'server_url\': \'/\''
-                        }]
+                    src: [ 'dist/index.html']
                 }
             }
         }
@@ -279,8 +232,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-remove');
     grunt.loadNpmTasks('grunt-angular-templates');
     grunt.loadNpmTasks('grunt-jsdox');
+    grunt.loadNpmTasks('grunt-banner');
 
     // Default task(s).
-    grunt.registerTask('default', ['clean', 'ngtemplates', 'concat', 'copy', 'cssmin', 'jsdox', 'skinFolder','iconFolder']);
+    grunt.registerTask('default', ['clean', 'ngtemplates', 'concat', 'copy', 'cssmin', 'jsdox', 'skinFolder','iconFolder','usebanner']);
 
 };
