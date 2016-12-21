@@ -245,7 +245,7 @@
     "installed": "Installiert",
     "retry": "Wiederholen",
     "lb_your_notes": "Platz für Ihre Notizen ...",
-    "backup_info": "Das Backup sichert alle Gerätenamen, Applikation-Einstellungen, Konfigurationen, Bilder etc. Informationen über das Z-Wave Netzwerk und dort vorhandene Geräte werden immer automatisch beim Start des Controllers ermittelt und können daher nicht einfach durch ein Restore überschrieben werden. De Z-Wave Geräteliste wird durch Inklusive, Exclusion oder Controller-Reset verändert. Die Informationen über die Z-Wave Geräte im Netz kann auch aus wiederhergestellt werden. Dazu ist allerdings spezielles Wissen notwendig. Daher ist diese Funktion nur in der Z-Wave Experten-Oberfläche unter Netzwerk-Controller verfügbar.",
+    "backup_info": "Das Backup sichert alle Gerätenamen, Applikation-Einstellungen, Konfigurationen, Bilder etc. Informationen über das Z-Wave Netzwerk und dort vorhandene Geräte werden immer automatisch beim Start des Controllers ermittelt und können daher nicht einfach durch ein Restore überschrieben werden. De Z-Wave Geräteliste wird durch Inklusive, Exclusion oder Controller-Reset verändert. Die Informationen über die Z-Wave Geräte im Netz kann auch aus wiederhergestellt werden. Dazu ist allerdings spezielles Wissen notwendig. Daher ist diese Funktion nur in der Z-Wave Experten-Oberfläche unter <a href='__link__' class='link-dotted'>Netzwerk-Controller</a> verfügbar.",
     "device_exists": "Das Gerät existiert bereits. Bitte erneut installieren.",
     "backup": "Backup",
     "enocean_no_settings": "Für dieses Gerät gibt es keine Einstellungen.",
@@ -274,7 +274,7 @@
     "nm_backup_title": "Sicherung und Wiederherstellung",
     "nm_backup_download": "Sicherung-Datei erzeugen",
     "nm_restore_backup_upload": "Wiederherstellung",
-    "are_you_sure_restore": "Sind Sie sicher, das die Z_Wave Netzwerkkonfiguration überschrieben werden soll? Wurde eine Datensicherung durchgeführt? Hinweis: Ein vollständig zurückgesetzter Controller kann mit der .zab-Backupdatei nicht wiederhergestellt werden. Nutzen Sie dazu bitte die Backup / Restore Funktion der ExpertUI. Aktivieren Sie dazu 'Überschreibe Netzwerkinformation im Z-Wave Transceiver' während des Restore. (nicht empfohlen)",
+    "are_you_sure_restore": "Sind Sie sicher, das die Z_Wave Netzwerkkonfiguration überschrieben werden soll? Wurde eine Datensicherung durchgeführt? Hinweis: Ein vollständig zurückgesetzter Controller kann mit der .zab-Backupdatei nicht wiederhergestellt werden. Nutzen Sie dazu bitte die <a href='__link__' class='link-dotted'>Backup / Restore</a> Funktion der ExpertUI. Aktivieren Sie dazu 'Überschreibe Netzwerkinformation im Z-Wave Transceiver' während des Restore. (nicht empfohlen)",
     "restore_backup_chip": "Z-Wave Netzwerkkonfiguration ebenfalls überschreiben (Bitte informieren Sie sich über diesen Schritt genau!)",
     "nm_restore_pick_up": "Datei hochladen",
     "restore_backup_failed": "Wiederherstellung war nicht erfolgreich.",
@@ -622,5 +622,7 @@
     "lb_s": "Süd",
     "lb_sw": "Südwest",
     "lb_w": "West",
-    "lb_nw": "Nordwest"
+    "lb_nw": "Nordwest",
+    "error_no_scracthid_caps_unlimited": "License upgrade not possible!",
+    "error_mobile_device_not_supported": "License upgrade for mobile devices not supported!"
 }

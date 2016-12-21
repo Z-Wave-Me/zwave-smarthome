@@ -237,7 +237,7 @@
     "installed": "Installerad",
     "retry": "Försök igen",
     "lb_your_notes": "Utrymme för dina anteckningar ...",
-    "backup_info": "A backup file will be created that includes all custom configurations, downloaded apps and Z-Wave controller data. You should store this on your computer. A completely reseted controller couldn't be restored with this backup. Please use the backup / restore functionality from the ExpertUI under Network > Controller instead.",
+    "backup_info": "The backup saves all device names, icons, apps, settings, etc. Informations about Z-Wave nodes present in the network are determined automatically on boot up and can not be changed using a backup. Hence, after a Factory reset all information about the network are gone regardless of any backup. Restoring a Z-wave network with all its Node Ids and its topology from a backup file is possible but requires special caution and knowledge. A dedicated backup/restore function - <a href='__link__' class='link-dotted'>available in the Z-Wave expert User Interface</a> - is required for such an operation.",
     "device_exists": "Enheten existerar redan. Avinstallera enheten och installera den igen.",
     "backup": "Backup",
     "enocean_no_settings": "Det finns inga instaällningar för denna enhet",
@@ -612,5 +612,7 @@
     "protection_list": "Skyddsinställningar",
     "restore_backup_chip": "Återställ även information om nätverkstopologin (Läs manualen först!)",
     "switchall_list": "'Växla alla'- Inställningar",
-    "wakeup_list": "Uppvakningsinställningar "
+    "wakeup_list": "Uppvakningsinställningar ",
+    "error_no_scracthid_caps_unlimited": "License upgrade not possible!",
+    "error_mobile_device_not_supported": "License upgrade for mobile devices not supported!"
 }

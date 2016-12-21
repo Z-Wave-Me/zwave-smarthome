@@ -614,5 +614,7 @@
     "lb_s": "Юг",
     "lb_sw": "Юго-запад",
     "lb_w": "Запад",
-    "lb_nw": "Северо-запад"
+    "lb_nw": "Северо-запад",
+    "error_no_scracthid_caps_unlimited": "License upgrade not possible!",
+    "error_mobile_device_not_supported": "License upgrade for mobile devices not supported!"
 }
