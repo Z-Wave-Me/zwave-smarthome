@@ -69,14 +69,15 @@
             </div>
         </div>
     </div>
-
+    <div ng-if="dataHolder.modules.cnt.appsCatFeatured[dataHolder.modules.filter.category] > 0">
     <h1 style="margin: 0px 0px 10px 10px;">{{_t('featured_apps')}}</h1>
     <span style=" display:block; width:100%; height: 4px; float: left; background-color: #80ad80" ></span>
     <div class="app-row app-row-widget clearfix">
 
         <div class="widget-entry widget-entry-app"
              id="local_module_{{v.id}}"
-             ng-repeat="v in dataHolder.modules.featured|orderBy:cfg.orderby.appslocal[dataHolder.modules.orderBy] | filter:q  track by v.id"
+             ng-repeat="v in dataHolder.modules.all|orderBy:cfg.orderby.appslocal[dataHolder.modules.orderBy] | filter:q  track by v.id"
+             ng-if="v.featured"
              ng-class="{'widget-danger': dataHolder.onlineModules.ids[v.id] && dataHolder.onlineModules.ids[v.id].version != v.version}">
             <div class="widget-entry-in">
                 <!-- Widget img -->
@@ -133,8 +134,9 @@
                 </div>
             </div><!-- /.widget-entry-in -->
         </div><!-- /.widget-entry -->
-
     </div>
+    </div>
+
         <h1 style="margin: 30px 0px 10px 10px;">{{dataHolder.modules.categories[dataHolder.modules.filter.category].name|cutText:true:30}}</h1>
         <h1 style="margin: 30px 0px 10px 10px;" ng-if="_.isEmpty(dataHolder.modules.filter)">{{_t('all_apps')}}</h1>
         <span style=" display:block; width:100%; height: 4px; float: left; background-color: #80ad80" ></span>

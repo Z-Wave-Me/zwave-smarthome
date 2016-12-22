@@ -618,5 +618,7 @@
     "lb_ready_include_secure" : "Ready to include secure.",
     "lb_ready_include_unsecure" : "Ready to include unsecure.",
     "error_no_scracthid_caps_unlimited": "License upgrade not possible!",
-    "error_mobile_device_not_supported": "License upgrade for mobile devices not supported!"
+    "error_mobile_device_not_supported": "License upgrade for mobile devices not supported!",
+    "btn_update_device_database" : "Update device database",
+    "device_database_info": "Update the device database."
 }

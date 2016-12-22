@@ -20,6 +20,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                 apps: 0,
                 collection: 0,
                 appsCat: 0,
+                appsCatFeatured: 0,
                 featured: 0
             },
             all: {},
@@ -41,6 +42,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                 apps: 0,
                 collection: 0,
                 appsCat: 0,
+                appsCatFeatured: 0,
                 featured: 0
             },
             ratingRange: _.range(1, 6),
@@ -221,10 +223,19 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                         return items;
                     }
                 });
+
         // Count apps in categories
         $scope.dataHolder.modules.cnt.appsCat = modules.countBy(function (v) {
             return v.category;
         }).value();
+
+        // Count featured apps in categories
+        $scope.dataHolder.modules.cnt.appsCatFeatured = modules.countBy(function (v) {
+            if(v.featured) {
+                return v.category;
+            }
+        }).value();
+
         // Count all apps
         $scope.dataHolder.modules.cnt.apps = modules.size().value();
 
@@ -304,6 +315,13 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
             return v.category;
         }).value();
 
+        // Count featured apps in categories
+        $scope.dataHolder.onlineModules.cnt.appsCatFeatured = onlineModules.countBy(function (v) {
+            if(v.featured) {
+                return v.category;
+            }
+        }).value();
+
         // Count all apps
         $scope.dataHolder.onlineModules.cnt.apps = onlineModules.size().value();
         $scope.dataHolder.onlineModules.all = onlineModules.where($scope.dataHolder.onlineModules.filter).value();
@@ -360,7 +378,6 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
             angular.extend($scope.dataHolder.modules, {filter: filter});
             $cookies.filterAppsLocal = angular.toJson(filter);
         }
-
         $scope.reloadData();
     };
 

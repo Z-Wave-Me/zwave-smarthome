@@ -28,12 +28,13 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
         softwareLatestVersion: null,
         capabillities: null,
         scratchId: null,
-        capsLimited: false
-
+        capsLimited: false,
+        manufacturerId: null
     };
     $scope.remoteAccess = false;
     $scope.handleLicense = {
         alert: {message: false, status: 'is-hidden', icon: false},
+        error: true,
         show: false,
         disabled: false,
         replug: false
@@ -58,20 +59,20 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
             dataFactory.loadZwaveApiData()
-
         ];
         if($scope.isInArray(['jb'],cfg.app_type)){
             promises.push(dataFactory.getApi('instances', '/ZMEOpenWRT'));
         }
         $q.allSettled(promises).then(function (response) {
             var zwave = response[0];
-            var timezone = response[1];
+            var timezone = response[2];
             $scope.loading = false;
             // Success - api data
             if (zwave.state === 'fulfilled') {
                 $scope.ZwaveApiData = zwave.value;
                 setControllerInfo(zwave.value);
             }
+
             if(timezone){
                 // Success - timezone
                 if (timezone.state === 'fulfilled' && timezone.value.data.data[0].active === true) {
@@ -105,12 +106,12 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
         $scope.controllerInfo.uuid = ZWaveAPIData.controller.data.uuid.value;
         $scope.controllerInfo.isZeroUuid = parseInt(ZWaveAPIData.controller.data.uuid.value, 16) === 0;
         $scope.controllerInfo.softwareRevisionVersion = ZWaveAPIData.controller.data.softwareRevisionVersion.value;
+        $scope.controllerInfo.manufacturerId = ZWaveAPIData.controller.data.manufacturerId.value;
         $scope.controllerInfo.capabillities = caps(ZWaveAPIData.controller.data.caps.value);
         $scope.controllerInfo.capsLimited = nodeLimit($filter('dec2hex')(ZWaveAPIData.controller.data.caps.value[2]).slice(-2));
-        //setLicenceScratchId($scope.controllerInfo);
+        setLicenceScratchId($scope.controllerInfo);
         //console.log(ZWaveAPIData.controller.data.caps.value);
         //console.log('Limited: ', $scope.controllerInfo.capsLimited);
-
     };
 
     /**
@@ -118,53 +119,68 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
      * @param {object} controllerInfo
      * @returns {undefined}
      */
-    /*function  setLicenceScratchId(controllerInfo) {
+    function  setLicenceScratchId(controllerInfo) {
         dataFactory.getRemoteData($scope.cfg.get_licence_scratchid + '?uuid=' + controllerInfo.uuid).then(function (response) {
             $scope.controllerInfo.scratchId = response.data.scratch_id;
+            $scope.handleLicense.error = false
             handleLicense($scope.controllerInfo)
         }, function (error) {
             handleLicense($scope.controllerInfo);
+            $scope.handleLicense.alert = {message: $scope._t('error_license_request'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
             //alertify.alertError($scope._t('error_license_request'));
         });
-    };*/
+    };
 
     /**
      * Show or hide licencese block
      * @param {object} controllerInfo
      * @returns {undefined}
      */
-    /*function handleLicense(controllerInfo) {
-        // Hide license if
-        // forbidden, mobile device, not uuid
-        if ((cfg.license_forbidden.indexOf(cfg.app_type) > -1) || $scope.isMobile || !controllerInfo.uuid) {
-            //console.log('Hide license if: forbidden, mobile device, not uuid')
-            $scope.handleLicense.show = false;
-            return;
-        }
+    function handleLicense(controllerInfo) {
 
-        // Hide license if
-        // Controller UUID = string and scratchId  is NOT found  and cap unlimited
-        if (!controllerInfo.scratchId && !controllerInfo.capsLimited) {
-            //console.log('Hide license if: Controller UUID = string and scratchId  is NOT found  and cap unlimited')
-            $scope.handleLicense.show = false;
-            return;
-        }
+        //Razberry/RaZ = 327
+        //UZB/ZME = 277
 
-        // Show modal if
-        // Controller UUID = string and scratchId  is NOT found  and cap limited
-        if (!controllerInfo.scratchId && controllerInfo.capsLimited) {
-            //console.log('Show modal if: Controller UUID = string and scratchId  is NOT found  and cap limited')
-            alertify.alertWarning($scope._t('info_missing_licence'));
-        }
+        $scope.handleLicense.show = false;
+        if($scope.controllerInfo.manufacturerId === 277) {
+            // Hide license if
+            // forbidden, mobile device, not uuid
+            if ((cfg.license_forbidden.indexOf(cfg.app_type) > -1) || $scope.isMobile || !controllerInfo.uuid) {
+                //console.log('Hide license if: forbidden, mobile device, not uuid')
+                $scope.handleLicense.show = false;
+                return;
+            }
 
-        // Disable input and show unplug message
-        if (controllerInfo.isZeroUuid) {
-            //console.log('Disable input and show unplug message')
-            $scope.handleLicense.disabled = true;
-            $scope.handleLicense.replug = true;
+            // check if error (request faild)
+            if ($scope.handleLicense.error && !controllerInfo.scratchId && !controllerInfo.capsLimited) {
+                $scope.handleLicense.show = true;
+                return;
+            }
+
+            // Hide license if
+            // Controller UUID = string and scratchId  is NOT found  and cap unlimited
+            if (!controllerInfo.scratchId && !controllerInfo.capsLimited) {
+                //console.log('Hide license if: Controller UUID = string and scratchId  is NOT found  and cap unlimited');
+                $scope.handleLicense.show = false;
+                return;
+            }
+
+            // Show modal if
+            // Controller UUID = string and scratchId  is NOT found  and cap limited
+            if (!controllerInfo.scratchId && controllerInfo.capsLimited) {
+                //console.log('Show modal if: Controller UUID = string and scratchId  is NOT found  and cap limited');
+                alertify.alertWarning($scope._t('info_missing_licence'));
+            }
+
+            // Disable input and show unplug message
+            if (controllerInfo.isZeroUuid) {
+                //console.log('Disable input and show unplug message');
+                $scope.handleLicense.disabled = true;
+                $scope.handleLicense.replug = true;
+            }
+            $scope.handleLicense.show = true;
         }
-        $scope.handleLicense.show = true;
-    }*/
+    }
 
 });
 /**
@@ -561,99 +577,6 @@ myAppController.controller('ManagementLicenceController', function ($scope, cfg,
     };
 
     /**
-    * Set licence ID
-    * @param {object} controllerInfo
-    * @returns {undefined}
-    */
-    $scope.setLicenceScratchId = function(controllerInfo) {
-        dataFactory.getRemoteData($scope.cfg.get_licence_scratchid + '?uuid=' + controllerInfo.uuid).then(function (response) {
-            $scope.controllerInfo.scratchId = response.data.scratch_id;
-            handleLicense($scope.controllerInfo)
-        }, function (error) {
-            handleLicense($scope.controllerInfo);
-            $scope.handleLicense.alert = {message: $scope._t('error_license_request'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
-            //alertify.alertError($scope._t('error_license_request'));
-        });
-    };
-    $scope.setLicenceScratchId($scope.controllerInfo);
-
-    /**
-    * Show or hide licencese block
-    * @param {object} controllerInfo
-    * @returns {undefined}
-    */
-    function handleLicense(controllerInfo) {
-        // Hide license if
-        // forbidden, mobile device, not uuid
-        if ((cfg.license_forbidden.indexOf(cfg.app_type) > -1) || $scope.isMobile || !controllerInfo.uuid) {
-            //console.log('Hide license if: forbidden, mobile device, not uuid')
-            $scope.handleLicense.alert = {message: $scope._t('error_mobile_device_not_supported'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
-            $scope.handleLicense.show = false;
-            return;
-        }
-
-        // Hide license if
-        // Controller UUID = string and scratchId  is NOT found  and cap unlimited
-        if (!controllerInfo.scratchId && !controllerInfo.capsLimited) {
-            //console.log('Hide license if: Controller UUID = string and scratchId  is NOT found  and cap unlimited')
-            $scope.handleLicense.alert = {message: $scope._t('error_no_scracthid_caps_unlimited'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
-            $scope.handleLicense.show = false;
-            return;
-        }
-
-        // Show modal if
-        // Controller UUID = string and scratchId  is NOT found  and cap limited
-        if (!controllerInfo.scratchId && controllerInfo.capsLimited) {
-            //console.log('Show modal if: Controller UUID = string and scratchId  is NOT found  and cap limited')
-            $scope.handleLicense.alert = {message: $scope._t('info_missing_licence'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
-            //alertify.alertWarning($scope._t('info_missing_licence'));
-        }
-
-        // Disable input and show unplug message
-        if (controllerInfo.isZeroUuid) {
-            //console.log('Disable input and show unplug message')
-            $scope.handleLicense.disabled = true;
-            $scope.handleLicense.replug = true;
-        }
-        $scope.handleLicense.show = true;
-    }
-
-    /**
-     * Get license key
-     */
-    $scope.getLicense = function (inputLicence) {
-        // Clear messages
-        $scope.proccessVerify.message = false;
-        $scope.proccessUpdate.message = false;
-        if (!inputLicence.scratch_id) {
-            return;
-        }
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('verifying_licence_key')};
-        $scope.proccessVerify = {'message': $scope._t('verifying_licence_key'), 'status': 'fa fa-spinner fa-spin'};
-        $scope.proccessLicence = true;
-        var input = {
-            'uuid': $scope.controllerInfo.uuid,
-            'scratch': inputLicence.scratch_id
-        };
-        dataFactory.getLicense(input).then(function (response) {
-            $scope.proccessVerify = {'message': $scope._t('success_licence_key'), 'status': 'fa fa-check text-success'};
-            $scope.loading = false;
-            // Update capabilities
-            updateCapabilities(response);
-        }, function (error) {
-            var message = $scope._t('error_no_licence_key');
-            if (error.status == 404) {
-                var message = $scope._t('error_404_licence_key');
-            }
-            $scope.loading = false;
-            alertify.alertError(message);
-            $scope.proccessVerify = {'message': message, 'status': 'fa fa-exclamation-triangle text-danger'};
-            $scope.proccessLicence = false;
-
-        });
-    };
-
-    /**
      * Update capabilities
      */
     function updateCapabilities(data) {
@@ -676,7 +599,7 @@ myAppController.controller('ManagementLicenceController', function ($scope, cfg,
  * The controller that handles firmware update process.
  * @class ManagementFirmwareController
  */
-myAppController.controller('ManagementFirmwareController', function ($scope, $sce, $timeout, dataFactory) {
+myAppController.controller('ManagementFirmwareController', function ($scope, $sce, $timeout, dataFactory, dataService) {
     $scope.firmwareUpdateUrl = $sce.trustAsResourceUrl('http://' + $scope.hostName + ':8084/cgi-bin/main.cgi');
     $scope.firmwareUpdate = {
         show: false,
@@ -715,6 +638,22 @@ myAppController.controller('ManagementFirmwareController', function ($scope, $sc
         });
     };
     //$scope.loadRazLatest();
+
+    /**
+     * update device database
+     */
+    $scope.updateDeviceDatabase = function() {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+
+        dataFactory.getApi('uodateDeviceDatabase').then(function(response) {
+            dataService.showNotifier({message: $scope._t('success_updated')});
+            alertify.dismissAll();
+        }, function(error) {
+            $scope.loading = false;
+            alertify.alertError($scope._t('error_load_data'));
+            alertify.dismissAll();
+        });
+    };
 });
 /**
  * The controller that handles a timezone.

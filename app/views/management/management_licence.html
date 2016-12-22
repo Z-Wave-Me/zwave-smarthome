@@ -6,7 +6,7 @@
 <div class="accordion-entry-ctrl" ng-class="" ng-if="expand.licence" ng-controller="ManagementLicenceController">
      <bb-loader></bb-loader>
     <bb-alert alert="handleLicense.alert"></bb-alert>
-    <form name="form_licence" id="form_password" class="form form-page" ng-submit="getLicense(inputLicence)" ng-if="handleLicense.show" novalidate>
+    <form name="form_licence" id="form_password" class="form form-page" ng-submit="getLicense(inputLicence)" ng-if="!handleLicense.error" novalidate>
         <fieldset>
             <!-- password -->
             <div class="alert alert-danger" ng-if="handleLicense.replug"><i class="fa fa-plug"></i> {{_t('replug_device')}}</div>

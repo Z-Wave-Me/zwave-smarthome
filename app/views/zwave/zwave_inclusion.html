@@ -62,7 +62,7 @@
                             <button type="button" class="btn btn-primary btn-lg" id="btn_force_unsecure_lock"
                                     ng-class="!zwaveInclusion.controller.secureInclusion ? 'active' : ''"
                                     ng-click="setSecureInclusion('controller.data.secureInclusion=' + (zwaveInclusion.controller.secureInclusion ? 'false' : 'true'))"
-                                    ng-disabled_="[1, 2, 3, 4, 5, 6, 7].indexOf(zwaveInclusion.controller.controllerState) > -1">
+                                    ng-disabled="zwaveInclusion.exclusionProcess.process">
                                 <i ng-if="!zwaveInclusion.controller.secureInclusion" class="fa fa-unlock"></i>
                                 <i ng-if="zwaveInclusion.controller.secureInclusion" class="fa fa-lock"></i>
                             </button>
