@@ -130,11 +130,6 @@ System rebboot
 ## ManagementLicenceController
 The controller that handles the licence key.
 
-### ManagementLicenceController.getLicense() 
-
-Get license key
-
-
 ### ManagementLicenceController.updateCapabilities() 
 
 Update capabilities
@@ -152,6 +147,11 @@ Set access
 ### ManagementFirmwareController.loadRazLatest() 
 
 Load latest version
+
+
+### ManagementFirmwareController.updateDeviceDatabase() 
+
+update device database
 
 
 
@@ -249,6 +249,16 @@ Load all promises
 ### ManagementCloudBackupController.setSchedulerType() 
 
 Set scheduler type
+
+
+### ManagementCloudBackupController.downLoadBackup() 
+
+Start backup and get backup.file
+
+
+### ManagementCloudBackupController.manualCloudBackup() 
+
+Start cloud backup
 
 
 ### ManagementCloudBackupController.activateCloudBackup() 

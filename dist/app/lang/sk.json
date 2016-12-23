@@ -186,7 +186,7 @@
     "password_valid": "Password should be minimum 6 characters",
     "password_info": "You are still using the default password. However, this is very unsecure and we recommend to change it.",
     "enter_valid_password": "Please enter a valid password",
-    "featured_apps": "Featured apps",
+    "featured_apps": "Featured Apps",
     "frostProtection": "Frost Protection",
     "goahead": "Go Ahead",
     "reset": "Reset",
@@ -237,7 +237,7 @@
     "installed": "Nainštalovaný",
     "retry": "Znovu",
     "lb_your_notes": "Miesto pre vaše poznámky ...",
-    "backup_info": "A backup file will be created that includes all custom configurations, downloaded apps and Z-Wave controller data. You should store this on your computer. A completely reseted controller couldn't be restored with this backup. Please use the backup / restore functionality from the ExpertUI under Network > Controller instead.",
+    "backup_info": "The backup saves all device names, icons, apps, settings, etc. Informations about Z-Wave nodes present in the network are determined automatically on boot up and can not be changed using a backup. Hence, after a Factory reset all information about the network are gone regardless of any backup. Restoring a Z-wave network with all its Node Ids and its topology from a backup file is possible but requires special caution and knowledge. A dedicated backup/restore function - <a href='__link__' class='link-dotted'>available in the Z-Wave expert User Interface</a> - is required for such an operation.",
     "device_exists": "Zariadenie už existuje. Odinštaluj zariadenie a potom ho znova nainštaluj.",
     "backup": "Záloha",
     "enocean_no_settings": "Toto zariadenie sa nedá nastaviť",
@@ -608,5 +608,11 @@
     "lb_s": "Juh",
     "lb_sw": "Juho-západ",
     "lb_w": "Západ",
-    "lb_nw": "Severo-západ"
+    "lb_nw": "Severo-západ",
+    "error_no_scracthid_caps_unlimited": "License upgrade not possible!",
+    "error_mobile_device_not_supported": "License upgrade for mobile devices not supported!",
+    "lb_ready_include_secure" : "Ready to include secure.",
+    "lb_ready_include_unsecure" : "Ready to include unsecure.",
+    "btn_update_device_database" : "Update device database",
+    "device_database_info": "Update the device database."
 }

@@ -142,6 +142,26 @@ Set online icons $scope
 
 **Returns**: `undefined`
 
+### OnlineIconController.getSource(source) 
+
+Get source/name from source
+
+**Parameters**
+
+**source**: `object`
+
+**Returns**: `undefined`
+
+### OnlineIconController.getId(source) 
+
+Get id from source
+
+**Parameters**
+
+**source**: `object`
+
+**Returns**: `undefined`
+
 
 
 * * *

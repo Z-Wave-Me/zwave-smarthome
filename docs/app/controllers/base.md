@@ -52,19 +52,17 @@ Set timestamp and ping server if request fails
 
 **Returns**: `undefined`
 
+### BaseController.reloadAfterError() 
+
+Set user session and reload page after connection error
+
+**Returns**: `undefined`
+
 ### BaseController.handlePending() 
 
 Handle HTTP pending
 
-
-### BaseController.handleError(pending) 
-
-Handle error message
-
-**Parameters**
-
-**pending**: `object`
-
+**Returns**: `undefined`
 
 ### BaseController.setPollInterval() 
 
