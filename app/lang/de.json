@@ -2,7 +2,7 @@
 
     "cloudbackup": "Cloud Backup",
     "local_backup": "Datensicherung",
-    "cloudbackup_info": "Cloud sichert bis u 3 Kopien Ihrer Daten automatisch auf unserem Server (mittels SSL Verschlüsselung). Sollten Sie das nicht wünschen dann deaktivieren Sie dieser Funktion. Der Zugriff auf die Sicherungskopien erfordert eine gültige Emailadresse des Administrators. Die aktuell dafür hinterlegt Adresse ist __email__. Diese Adresse kann bei der Nutzereinstellungen für ‚admin‘ geändert werden.",
+    "cloudbackup_info": "Cloud sichert bis zu 3 Kopien Ihrer Daten automatisch auf unserem Server (mittels SSL Verschlüsselung). Sollten Sie das nicht wünschen dann deaktivieren Sie dieser Funktion. Der Zugriff auf die Sicherungskopien erfordert eine gültige Emailadresse des Administrators. Die aktuell dafür hinterlegt Adresse ist __email__. Diese Adresse kann bei der Nutzereinstellungen für ‚admin‘ geändert werden.",
     "restore_info": "Die Wiederherstellungsfunktion benötigt eine Sicherungskopie auf ihrem PC. Sie können Sicherungskopien aus der Cloud über ihre Emailadresse abrufen.",
     "not_set": "nicht gesetzt",
     "restore": "Wiederherstellung",
