@@ -176,20 +176,6 @@ module.exports = function (grunt) {
                 ]
             }
         },
-        jsdox: {
-            generate: {
-                options: {
-                    contentsEnabled: true,
-                    contentsTitle: 'SmartHome UI Documentation',
-                    contentsFile: 'readme.md',
-                    //pathFilter: /^example/,
-                    templateDir: 'docstemplates'
-                },
-                src: ['app/**/*.js'],
-                //src: ['app/controllers/*.js','app/services/*.js','app/directives/*.js','app/modules/*.js','app/jquery/*.js','app/filters/*.js'],
-                dest: 'docs'
-            }
-        },
         usebanner: {
             jscss: {
                 options: {
@@ -231,10 +217,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-remove');
     grunt.loadNpmTasks('grunt-angular-templates');
-    grunt.loadNpmTasks('grunt-jsdox');
     grunt.loadNpmTasks('grunt-banner');
 
     // Default task(s).
-    grunt.registerTask('default', ['clean', 'ngtemplates', 'concat', 'copy', 'cssmin', 'jsdox', 'skinFolder','iconFolder','usebanner']);
+    grunt.registerTask('default', ['clean', 'ngtemplates', 'concat', 'copy', 'cssmin', 'skinFolder','iconFolder','usebanner']);
 
 };

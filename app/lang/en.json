@@ -1,5 +1,7 @@
 {
     "newtrans": "---",
+    "cloudbackup_active": "Cloud Backup active",
+    "cloudbackup_inactive" : "Cloud Backup inactive",
     "param": "Param",
     "date": "Date",
     "size": "Size",
