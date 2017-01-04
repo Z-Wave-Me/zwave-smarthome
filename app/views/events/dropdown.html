@@ -30,7 +30,7 @@
                     </a>
                 </li>
                 <li ng-if="elementAccess(cfg.role_access.event_delete)">
-                    <a href=""ng-click="deleteEvent(v.id, '?uid=' + v.h,_t('lb_delete_confirm'))" ng-if="v.level == 'error' || v.level == 'notification'">
+                    <a href=""ng-click="deleteEvent(v.id,'',_t('lb_delete_confirm'))" ng-if="v.level == 'error' || v.level == 'notification'">
                         <i class="fa fa-times text-danger"></i> <span  ng-bind="_t('lb_delete_event')" ></span>
                     </a>
                 </li>
