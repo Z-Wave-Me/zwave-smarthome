@@ -4,7 +4,7 @@ module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         // Banner
-        banner: 'Copyright:  Z-Wave Europe, Created: <%= grunt.template.today("dd-mm-yyyy HH:MM:ss") %>',
+        banner: 'Copyright:  Z-Wave Europe GmbH, Created: <%= grunt.template.today("dd-mm-yyyy HH:MM:ss") %>',
         // Clean dir
         clean: {
             options: {force: true},
