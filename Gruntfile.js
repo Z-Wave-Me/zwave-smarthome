@@ -121,7 +121,7 @@ module.exports = function (grunt) {
                             '!app/views/_test/**',
                             'app/img/**',
                             'app/img/**',
-                            'app/views/**',
+                            //'app/views/**',
                             'app/lang/**'
                         ], dest: 'dist/'
                     },
