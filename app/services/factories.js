@@ -503,11 +503,6 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
      */
     function refreshApi(api, params) {
         //console.log('?since=' + updatedTime)
-
-        if (api === 'notifications' && updatedTime.toString().length === 10) {
-            updatedTime = updatedTime * 1000;
-        }
-
         return $http({
             method: 'get',
             url: cfg.server_url + cfg.api[api] + '?since=' + updatedTime + (params ? params : ''),

@@ -27,8 +27,8 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
     //$scope.profileData = [];
     $scope.currLevel = false;
     $scope.timeFilterDefault = {
-        since: $filter('unixStartOfDay')() * 1000,
-        to: $filter('unixStartOfDay')('+', 86400) * 1000,
+        since: $filter('unixStartOfDay')(),
+        to: $filter('unixStartOfDay')('+', 86400),
         day: 1
     };
     $scope.timeFilter = $scope.timeFilterDefault;
@@ -104,50 +104,50 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
         switch (day) {
             case 1:
                 $scope.timeFilter = {
-                    since: $filter('unixStartOfDay')() *1000,
-                    to: $filter('unixStartOfDay')('+', 86400) *1000,
+                    since: $filter('unixStartOfDay')(),
+                    to: $filter('unixStartOfDay')('+', 86400),
                     day: day
                 };
                 break;
             case 2:
                 $scope.timeFilter = {
-                    since: $filter('unixStartOfDay')('-', 86400) *1000,
-                    to: $filter('unixStartOfDay')() *1000,
+                    since: $filter('unixStartOfDay')('-', 86400),
+                    to: $filter('unixStartOfDay')(),
                     day: day
                 };
                 break;
             case 3:
                 $scope.timeFilter = {
-                    since: $filter('unixStartOfDay')('-', (86400 * 2)) *1000,
-                    to: $filter('unixStartOfDay')('-', 86400) *1000,
+                    since: $filter('unixStartOfDay')('-', (86400 * 2)),
+                    to: $filter('unixStartOfDay')('-', 86400),
                     day: day
                 };
                 break;
             case 4:
                 $scope.timeFilter = {
-                    since: $filter('unixStartOfDay')('-', (86400 * 3)) *1000,
-                    to: $filter('unixStartOfDay')('-', (86400 * 2)) *1000,
+                    since: $filter('unixStartOfDay')('-', (86400 * 3)),
+                    to: $filter('unixStartOfDay')('-', (86400 * 2)),
                     day: day
                 };
                 break;
             case 5:
                 $scope.timeFilter = {
-                    since: $filter('unixStartOfDay')('-', (86400 * 4)) *1000,
-                    to: $filter('unixStartOfDay')('-', (86400 * 3)) *1000,
+                    since: $filter('unixStartOfDay')('-', (86400 * 4)),
+                    to: $filter('unixStartOfDay')('-', (86400 * 3)),
                     day: day
                 };
                 break;
             case 6:
                 $scope.timeFilter = {
-                    since: $filter('unixStartOfDay')('-', (86400 * 5)) *1000,
-                    to: $filter('unixStartOfDay')('-', (86400 * 4)) *1000,
+                    since: $filter('unixStartOfDay')('-', (86400 * 5)),
+                    to: $filter('unixStartOfDay')('-', (86400 * 4)),
                     day: day
                 };
                 break;
             case 7:
                 $scope.timeFilter = {
-                    since: $filter('unixStartOfDay')('-', (86400 * 6)) *1000,
-                    to: $filter('unixStartOfDay')('-', (86400 * 5)) *1000,
+                    since: $filter('unixStartOfDay')('-', (86400 * 6)),
+                    to: $filter('unixStartOfDay')('-', (86400 * 5)),
                     day: day
                 };
                 break;

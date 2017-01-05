@@ -121,9 +121,13 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
      */
     function  setLicenceScratchId(controllerInfo) {
         dataFactory.getRemoteData($scope.cfg.get_licence_scratchid + '?uuid=' + controllerInfo.uuid).then(function (response) {
-            $scope.controllerInfo.scratchId = response.data.scratch_id;
-            $scope.handleLicense.error = false
-            handleLicense($scope.controllerInfo)
+            if(response.data !== "") {
+                $scope.controllerInfo.scratchId = response.data.scratch_id;
+                $scope.handleLicense.error = false;
+            } else {
+                $scope.handleLicense.alert = {message: $scope._t('error_license_request'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+            }
+            handleLicense($scope.controllerInfo);
         }, function (error) {
             handleLicense($scope.controllerInfo);
             $scope.handleLicense.alert = {message: $scope._t('error_license_request'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
@@ -644,13 +648,43 @@ myAppController.controller('ManagementFirmwareController', function ($scope, $sc
      */
     $scope.updateDeviceDatabase = function() {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        var success = [];
+        var failed = [];
+        var count = 0;
+        dataFactory.getApi('update_device_database').then(function(response) {
+            $scope.loading = false;
+            if(response.data !== "" && !_.isEmpty(response.data)) {
+                count = response.data.length;
+                _.each(response.data, function(lang) {
+                   if(lang[Object.keys(lang)[0]]) {
+                       success.push(Object.keys(lang)[0]);
+                   } else {
+                       failed.push(Object.keys(lang)[0]);
+                   }
+               });
 
-        dataFactory.getApi('uodateDeviceDatabase').then(function(response) {
-            dataService.showNotifier({message: $scope._t('success_updated')});
-            alertify.dismissAll();
+               if(failed.length == 0) {
+                   // update device database successfull
+                   dataService.showNotifier({message: $scope._t('success_updated')});
+               } else {
+                   // check if all failed
+                   if(failed.length !== 0 && failed.length === count && success.length === 0) {
+                       alertify.alertWarning($scope._t('update_device_database_failed'));
+                   } else {
+                       strSuccess = success.join(', ');
+                       strFailed = failed.join(', ');
+                       alertify.alertWarning($scope._t('update_device_database_failed_for', {
+                           __success__: strSuccess,
+                           __failed__: strFailed
+                       }));
+                   }
+               }
+            } else {
+                alertify.alertError($scope._t('error_load_data')); // error update device database
+            }
         }, function(error) {
             $scope.loading = false;
-            alertify.alertError($scope._t('error_load_data'));
+            alertify.alertError($scope._t('error_load_data')); // error update device database
             alertify.dismissAll();
         });
     };
