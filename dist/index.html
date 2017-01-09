@@ -1,4 +1,4 @@
-<!-- Copyright:  Z-Wave Europe GmbH, Created: 04-01-2017 11:20:40 -->
+<!-- Copyright:  Z-Wave Europe GmbH, Created: 09-01-2017 11:03:16 -->
 <!doctype html>
 <html lang="en" ng-app="myApp" ng-controller="BaseController">
     <head>
@@ -80,7 +80,7 @@
     </div><!-- /#header -->
     <!-- Ang Content Container -->
     <div id="main_content" class="container">
-        <div ng-if="cfg.route.fatalError.message">
+        <div ng-if="cfg.route.fatalError.message" ng-cloak>
             <div class="app-fatal-error">
                 <div class="fatal-error-message"><i class="fa {{cfg.route.fatalError.icon}} fa-lg"></i> {{cfg.route.fatalError.message}}</div>
                 <div class="fatal-error-info" ng-if="cfg.route.fatalError.info" ng-bind-html="cfg.route.fatalError.info|toTrusted"></div>
