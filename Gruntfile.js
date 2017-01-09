@@ -113,6 +113,16 @@ module.exports = function (grunt) {
                 dest: 'dist/app/js/build.js'
             }
         },
+        json_generator: {
+            target: {
+                dest: "app/info.json",
+                options: {
+                    name: 'SmartHome UI',
+                    build: '<%= grunt.template.today("dd-mm-yyyy HH:MM:ss") %>',
+                    hash: '<%= ((new Date()).valueOf().toString()) + (Math.floor((Math.random()*1000000)+1).toString()) %>'
+                }
+            }
+        },
         // Copy
         copy: {
             main: {
@@ -138,6 +148,11 @@ module.exports = function (grunt) {
             cssorig: {
                 files: [
                     {src: ['app/css/main.css'], dest: 'app/css/main.css.orig'}
+                ]
+            },
+            info: {
+                files: [
+                    {src: ['app/info.json'], dest: 'dist/app/info.json'}
                 ]
             },
             images: {
@@ -197,11 +212,12 @@ module.exports = function (grunt) {
                 }
             }
         }
+
     });
-    grunt.registerTask('skinFolder', 'Creates an empty file', function () {
+    grunt.registerTask('skinFolder', 'Creates an empty .keep file in skins dir', function () {
         grunt.file.write('dist/user/skins/.keep', '');
     });
-     grunt.registerTask('iconFolder', 'Creates an empty file', function () {
+     grunt.registerTask('iconFolder', 'Creates an empty .keep file in icons dir', function () {
         grunt.file.write('dist/user/icons/.keep', '');
     });
 
@@ -219,8 +235,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-remove');
     grunt.loadNpmTasks('grunt-angular-templates');
     grunt.loadNpmTasks('grunt-banner');
+    grunt.loadNpmTasks('grunt-json-generator');
 
     // Default task(s).
-    grunt.registerTask('default', ['clean', 'ngtemplates', 'concat', 'copy', 'cssmin', 'skinFolder','iconFolder','usebanner']);
+    grunt.registerTask('default', ['clean', 'ngtemplates', 'concat','json_generator', 'copy', 'cssmin', 'skinFolder','iconFolder','usebanner']);
 
 };

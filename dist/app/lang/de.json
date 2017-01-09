@@ -656,5 +656,7 @@
     "lb_w": "West",
     "lb_nw": "Nordwest",
     "btn_update_device_database" : "Update device database",
-    "device_database_info": "Update the device database."
+    "device_database_info": "Update the device database.",
+    "update_device_database_failed": "Die Gerätedatenbank Aktualisierung ist fehlgeschalgen.",
+    "update_device_database_failed_for": "Aktualisierung der Gerätedatenbank war erfolgreich für __success__ aber schlug fehl für __failed__."
 }

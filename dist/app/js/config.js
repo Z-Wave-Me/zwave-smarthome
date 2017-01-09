@@ -1,4 +1,4 @@
-/* Copyright:  Z-Wave Europe GmbH, Created: 04-01-2017 11:20:40 */
+/* Copyright:  Z-Wave Europe GmbH, Created: 09-01-2017 13:26:52 */
 /**
  * @overview The main configuration file.
  * @author Martin Vach
@@ -110,7 +110,8 @@ var config_data = {
             'icons_install': 'ZAutomation/api/v1/icons/install',
             'customicon': 'ZAutomation/api/v1/devices',
             'icons_upload': 'ZAutomation/api/v1/icons/upload',
-            'cloudbackup': 'CloudBackupAPI/Backup'
+            'cloudbackup': 'CloudBackupAPI/Backup',
+            'update_device_database': 'ZWaveAPI/ZWaveDeviceInfoUpdate'
         },
         // List of remote api URLs
         'api_remote': {
@@ -204,11 +205,11 @@ var config_data = {
         //'online_icon_preview_url': 'http://dev.dev/developer-console/?uri=api-iconpreview',
         // Online module download url
         // Post report url
-        'post_report_url': 'https://service.z-wave.me/report/index.php',
+        'post_report_url': 'https://service.z-wave.me/report/',
         // Postpassword url
-        'post_password_request_url': 'https://service.z-wave.me/password/index.php',
+        'post_password_request_url': 'https://service.z-wave.me/password/',
         // Get licence scratch id
-        'get_licence_scratchid': 'https://service.z-wave.me/licence/index.php',
+        'get_licence_scratchid': 'https://service.z-wave.me/licence/',
         // Url to get a license key
         'license_url': 'https://service.z-wave.me/licence/upgrade.php',
         // Raz latest version
