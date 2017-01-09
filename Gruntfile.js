@@ -72,11 +72,12 @@ module.exports = function (grunt) {
                     'vendor/bootstrap/plugins/bootstrap-datetimepicker.js',
                     // APP
                     'app/app.js',
+                    'app/routes.js',
                     'dist/app/js/templates.js',
                     'app/modules/qAllSettled.js',
                     'app/modules/httpLatency.js',
                     'app/config/settings.js',
-                    'app/services/factories.js',
+                    'app/factories/factories.js',
                     'app/services/services.js',
                     'app/directives/directives.js',
                     'app/directives/dir-pagination.js',
