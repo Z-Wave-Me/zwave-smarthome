@@ -1,4 +1,4 @@
-/* Copyright:  Z-Wave Europe GmbH, Created: 09-01-2017 14:16:24 */
+/* Copyright:  Z-Wave Europe GmbH, Created: 09-01-2017 14:18:17 */
 /**
  * @overview The main configuration file.
  * @author Martin Vach
