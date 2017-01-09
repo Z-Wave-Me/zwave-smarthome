@@ -118,8 +118,8 @@ module.exports = function (grunt) {
                 dest: "app/info.json",
                 options: {
                     name: 'SmartHome UI',
-                    build: '<%= grunt.template.today("dd-mm-yyyy HH:MM:ss") %>',
-                    hash: '<%= ((new Date()).valueOf().toString()) + (Math.floor((Math.random()*1000000)+1).toString()) %>'
+                    built: '<%= grunt.template.today("dd-mm-yyyy HH:MM:ss") %>',
+                    timestamp: '<%= Math.floor(Date.now() / 1000) %>'
                 }
             }
         },
