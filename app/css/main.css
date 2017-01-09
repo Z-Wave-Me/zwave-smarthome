@@ -10344,11 +10344,12 @@ textarea {
 }
 
 /* Wallpaper
-
+-------------------------------------------------- */
+/* line 55, ../sass/common/_body.scss */
 body {
-    background-image: url('wallpaper.png'); 
-   
+  background-image: url("wallpaper.png");
 }
+
 /* Skin reset
 -------------------------------------------------- */
 /* line 61, ../sass/common/_body.scss */
