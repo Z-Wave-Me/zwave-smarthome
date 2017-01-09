@@ -366,9 +366,9 @@ myApp.config(function ($provide, $httpProvider) {
                         if (path[1] !== '') {
                             dataService.setRememberMe(null);
                             dataService.logOut();
-                            break;
+                         }
+                        break;
 
-                        }
                      case 403:
                         dataService.logError(rejection);
                         $location.path('/error403');
@@ -376,26 +376,6 @@ myApp.config(function ($provide, $httpProvider) {
 
                 }
                 return $q.reject(rejection);
-                /**
-                 * todo: deprecated
-                 */
-                /*if (rejection.status == 401) {
-                    if (path[1] !== '') {
-                        dataService.setRememberMe(null);
-                        dataService.logOut();
-
-                    }
-                    return $q.reject(rejection);
-
-                } else if (rejection.status == 403) {
-                    dataService.logError(rejection);
-                    $location.path('/error403');
-
-                    return $q.reject(rejection);
-                } else {
-                    // Return the promise rejection.
-                    return $q.reject(rejection);
-                }*/
             }
         };
     });
