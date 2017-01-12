@@ -84,8 +84,10 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
      * @returns {unresolved}
      */
     function pingServer(url) {
-        return $http({
+         return $http({
             method: "get",
+            timeout: 5000,
+            cancel:  $q.defer(),
             url: url
         }).then(function (response) {
             return response;

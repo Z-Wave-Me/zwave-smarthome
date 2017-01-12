@@ -82,7 +82,7 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
         if (!$scope.user) {
             return;
         }
-        dataFactory.getApi('time', null, true).then(function (response) {
+        dataFactory.pingServer( cfg.server_url + cfg.api['time']).then(function (response) {
             $interval.cancel($scope.timeZoneInterval);
             angular.extend(cfg.route.time, {string: $filter('setTimeFromBox')(response.data.data.localTimeUT)},
                 {timestamp: response.data.data.localTimeUT});
@@ -97,6 +97,19 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
             $scope.timeZoneInterval = $interval(refresh, $scope.cfg.interval);
 
         }, function (error) {
+            console.log(error)
+            if(error.status === 0){
+                var fatalArray = {
+                    type: 'network',
+                    message: $scope._t('connection_refused'),
+                    info: $scope._t('connection_refused_info'),
+                    permanent: true,
+                    hide: true
+                };
+                angular.extend(cfg.route.fatalError, fatalArray);
+
+            }
+
         });
 
     };
@@ -105,6 +118,7 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
      * @returns {undefined}
      */
     $scope.reloadAfterError = function () {
+        //return;
         if (!$scope.user) {
             return;
         }
@@ -123,7 +137,8 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
                 dataService.setZWAYSession(user.sid);
                 dataService.setUser(user);
                 if (dataService.getUser()) {
-                    $window.location.reload();
+                    $timeout(function(){ $window.location.reload();}, 5000);
+
                 }
             }
 
@@ -137,6 +152,13 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
      * @returns {undefined}
      */
     $scope.handlePending = function () {
+        angular.forEach($http.pendingRequests, function(request) {
+            if (request.cancel && request.timeout) {
+               console.log(request)
+                //request.cancel.resolve();
+            }
+        });
+        return;
         var countUp = function () {
             var pending = _.findWhere($http.pendingRequests, {url: '/ZAutomation/api/v1/system/time/get'});
             if (pending) {
