@@ -90,7 +90,7 @@ myApp.run(function ($rootScope, $location, dataService, dataFactory,cfg) {
 myApp.config(function ($provide, $httpProvider) {
     $httpProvider.defaults.timeout = 5000;
     // Intercept http calls.
-    $provide.factory('MyHttpInterceptor', function ($q, $location, dataService) {
+    $provide.factory('MyHttpInterceptor', function ($q, $location, dataService,cfg) {
         var path = $location.path().split('/');
         return {
             // On request success
@@ -110,8 +110,19 @@ myApp.config(function ($provide, $httpProvider) {
             },
             // On response failture
             responseError: function (rejection) {
-                dataService.logError(rejection);
+                //dataService.logError(rejection);
                 switch(rejection.status){
+                   /* case 1:
+                       console.log('CONNECTION ERROR');
+                        var fatalArray = {
+                            type: 'network',
+                            message: cfg.route.t['connection_refused'],
+                            info: cfg.route.t['connection_refused_info'],
+                            permanent: true,
+                            hide: true
+                        };
+                        angular.extend(cfg.route.fatalError, fatalArray);
+                        break;*/
                     case 401:
                         if (path[1] !== '') {
                             dataService.setRememberMe(null);

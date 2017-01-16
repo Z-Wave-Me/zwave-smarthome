@@ -84,8 +84,10 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
      * @returns {unresolved}
      */
     function pingServer(url) {
-        return $http({
+         return $http({
             method: "get",
+            timeout: 5000,
+            cancel:  $q.defer(),
             url: url
         }).then(function (response) {
             return response;
@@ -503,6 +505,9 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
      */
     function refreshApi(api, params) {
         //console.log('?since=' + updatedTime)
+        if (api === 'notifications' && updatedTime.toString().length === 10) {
+            updatedTime = updatedTime * 1000;
+        }
         return $http({
             method: 'get',
             url: cfg.server_url + cfg.api[api] + '?since=' + updatedTime + (params ? params : ''),

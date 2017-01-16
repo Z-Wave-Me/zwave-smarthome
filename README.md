@@ -18,6 +18,7 @@ Marcel Kermer
 - Apps/Active: Sorting by active/inactive apps.
 
 #### Changes
+- Connection error refactored.
 - Caching online modules.
 
 ## v1.5.1

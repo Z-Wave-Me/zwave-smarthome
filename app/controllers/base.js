@@ -65,14 +65,15 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
     };
 
     /**
+     * todo: deprecated
      * Reset a fatal error.
      * @param {object} obj
      * @returns {undefined}
      */
-    $scope.resetFatalError = function (obj) {
+    /*$scope.resetFatalError = function (obj) {
         angular.extend(cfg.route.fatalError, obj || {message: false, info: false, hide: false});
 
-    };
+    };*/
 
     /**
      * Set timestamp and ping server if request fails
@@ -82,7 +83,7 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
         if (!$scope.user) {
             return;
         }
-        dataFactory.getApi('time', null, true).then(function (response) {
+        dataFactory.pingServer( cfg.server_url + cfg.api['time']).then(function (response) {
             $interval.cancel($scope.timeZoneInterval);
             angular.extend(cfg.route.time, {string: $filter('setTimeFromBox')(response.data.data.localTimeUT)},
                 {timestamp: response.data.data.localTimeUT});
@@ -97,6 +98,29 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
             $scope.timeZoneInterval = $interval(refresh, $scope.cfg.interval);
 
         }, function (error) {
+            console.log(error)
+            if(error.status === 0){
+                var fatalArray = {
+                    type: 'network',
+                    message: $scope._t('connection_refused'),
+                    info: $scope._t('connection_refused_info'),
+                    permanent: true,
+                    hide: true
+                };
+                if ($scope.routeMatch('/boxupdate')) {
+                    fatalArray.message = $scope._t('jamesbox_connection_refused');
+                    fatalArray.info = $scope._t('jamesbox_connection_refused_info', {
+                        __reload_begintag__: '<div>',
+                        __reload_endtag__: '</div>',
+                        __attention_begintag__: '<div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i>',
+                        __attention_endtag__: '<div>'
+                    });
+                    fatalArray.icon = cfg.route.fatalError.icon_jamesbox;
+                }
+                angular.extend(cfg.route.fatalError, fatalArray);
+
+            }
+
         });
 
     };
@@ -105,6 +129,7 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
      * @returns {undefined}
      */
     $scope.reloadAfterError = function () {
+        //return;
         if (!$scope.user) {
             return;
         }
@@ -123,7 +148,8 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
                 dataService.setZWAYSession(user.sid);
                 dataService.setUser(user);
                 if (dataService.getUser()) {
-                    $window.location.reload();
+                    $timeout(function(){ $window.location.reload();}, 5000);
+
                 }
             }
 
@@ -133,11 +159,19 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
     };
 
     /**
+     * todo: Deprecated
      * Handle HTTP pending
      * @returns {undefined}
      */
     $scope.handlePending = function () {
-        var countUp = function () {
+       /* angular.forEach($http.pendingRequests, function(request) {
+            if (request.cancel && request.timeout) {
+               console.log(request)
+                //request.cancel.resolve();
+            }
+        });
+        return;*/
+        /*var countUp = function () {
             var pending = _.findWhere($http.pendingRequests, {url: '/ZAutomation/api/v1/system/time/get'});
             if (pending) {
                 console.log('HAS PENDING');
@@ -162,7 +196,7 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
             }
             //handleError(pending);
         }
-        $timeout(countUp, cfg.pending_timeout_limit);
+        $timeout(countUp, cfg.pending_timeout_limit);*/
 
         /**
          * todo: deprecated
@@ -226,7 +260,7 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
          * Set timestamp and ping server if request fails
          */
         $scope.setTimeStamp();
-        $scope.handlePending();
+        //$scope.handlePending();
     });
 
     /**

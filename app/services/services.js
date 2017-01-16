@@ -20,10 +20,13 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
     this.resetFatalError = function () {
         if (cfg.route.fatalError.message && !cfg.route.fatalError.permanent) {
             angular.extend(cfg.route.fatalError, {
-                type: 'system',
-                message: 'Test from service',
+                type: 'system',// system|network
+                message: false,
                 info: false,
-                hide: false
+                permanent: false, // Permanently displayed
+                hide: false, // Hide page content
+                icon: 'fa-exclamation-triangle',
+                icon_jamesbox: 'fa-spinner fa-spin'
             });
         }
     };
@@ -58,22 +61,6 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
        /* dataFactory.getApi('timezone', null, true).then(function (response) {
 
         }, function (error) {});*/
-    };
-
-    /**
-     * Resets the fatal error object
-     * @param {object} notifier
-     * @returns {undefined}
-     */
-    this.resetFatalError = function () {
-        if (cfg.route.fatalError.message && !cfg.route.fatalError.permanent) {
-            angular.extend(cfg.route.fatalError, {
-                type: 'system',
-                message: 'Test from service',
-                info: false,
-                hide: false
-            });
-        }
     };
 
     /**

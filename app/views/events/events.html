@@ -59,7 +59,7 @@
         
     <div class="app-row app-row-report app-row-event clearfix">
         <div class="report-entry event-level-{{v.level}}" 
-             dir-paginate="v in collection | orderBy: '-timestamp' | itemsPerPage: pageSize" current-page="currentPage" id="row_{{v.id}}">
+             dir-paginate="v in collection | orderBy: '-timestamp' | itemsPerPage: pageSize track by $index" current-page="currentPage" id="row_{{v.id}}">
             <div class="report-col report-media">
                 <img id="event_img_{{v.id}}" class="report-img" ng-src="{{v.type|getEventIcon:v.message}}" alt="{{v.type}}"/>
             </div>
