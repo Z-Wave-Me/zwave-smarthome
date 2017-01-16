@@ -65,7 +65,7 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         $scope.timeFilter = (angular.isDefined($cookies.events_timeFilter) ? angular.fromJson($cookies.events_timeFilter) : $scope.timeFilter);
-        var urlParam = '?since=' + $scope.timeFilter.since;
+        var urlParam = '?since=' + ($scope.timeFilter.since * 1000);
 
         var promises = [
             dataFactory.getApi('devices', null, true),
@@ -166,7 +166,8 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
         var refresh = function () {
             dataFactory.refreshApi('notifications').then(function (response) {
                 angular.forEach(response.data.data.notifications, function (v, k) {
-                    $scope.collection.push(v);
+                    //$scope.collection.push(v);
+                    setEvent(v)
                 });
             }, function (error) {});
         };
@@ -273,6 +274,18 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
         }
     }
     ;
+    /**
+     * Set data
+     */
+    function setEvent(obj) {
+        var findIndex = _.findIndex($scope.collection, {timestamp: obj.timestamp});
+        if(findIndex > -1){
+            angular.extend($scope.collection[findIndex],obj);
+
+        }else{
+            $scope.collection.push(obj);
+        }
+    }
     /**
      * Update profile
      */
