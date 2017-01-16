@@ -167,7 +167,7 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
             dataFactory.refreshApi('notifications').then(function (response) {
                 angular.forEach(response.data.data.notifications, function (v, k) {
                     //$scope.collection.push(v);
-                    setEvent(v)
+                    setEvent(v);
                 });
             }, function (error) {});
         };
