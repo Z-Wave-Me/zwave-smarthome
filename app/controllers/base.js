@@ -65,14 +65,15 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
     };
 
     /**
+     * todo: deprecated
      * Reset a fatal error.
      * @param {object} obj
      * @returns {undefined}
      */
-    $scope.resetFatalError = function (obj) {
+    /*$scope.resetFatalError = function (obj) {
         angular.extend(cfg.route.fatalError, obj || {message: false, info: false, hide: false});
 
-    };
+    };*/
 
     /**
      * Set timestamp and ping server if request fails
@@ -106,6 +107,16 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
                     permanent: true,
                     hide: true
                 };
+                if ($scope.routeMatch('/boxupdate')) {
+                    fatalArray.message = $scope._t('jamesbox_connection_refused');
+                    fatalArray.info = $scope._t('jamesbox_connection_refused_info', {
+                        __reload_begintag__: '<div>',
+                        __reload_endtag__: '</div>',
+                        __attention_begintag__: '<div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i>',
+                        __attention_endtag__: '<div>'
+                    });
+                    fatalArray.icon = cfg.route.fatalError.icon_jamesbox;
+                }
                 angular.extend(cfg.route.fatalError, fatalArray);
 
             }
@@ -148,18 +159,19 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
     };
 
     /**
+     * todo: Deprecated
      * Handle HTTP pending
      * @returns {undefined}
      */
     $scope.handlePending = function () {
-        angular.forEach($http.pendingRequests, function(request) {
+       /* angular.forEach($http.pendingRequests, function(request) {
             if (request.cancel && request.timeout) {
                console.log(request)
                 //request.cancel.resolve();
             }
         });
-        return;
-        var countUp = function () {
+        return;*/
+        /*var countUp = function () {
             var pending = _.findWhere($http.pendingRequests, {url: '/ZAutomation/api/v1/system/time/get'});
             if (pending) {
                 console.log('HAS PENDING');
@@ -184,7 +196,7 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
             }
             //handleError(pending);
         }
-        $timeout(countUp, cfg.pending_timeout_limit);
+        $timeout(countUp, cfg.pending_timeout_limit);*/
 
         /**
          * todo: deprecated
@@ -248,7 +260,7 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
          * Set timestamp and ping server if request fails
          */
         $scope.setTimeStamp();
-        $scope.handlePending();
+        //$scope.handlePending();
     });
 
     /**

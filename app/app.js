@@ -112,17 +112,17 @@ myApp.config(function ($provide, $httpProvider) {
             responseError: function (rejection) {
                 //dataService.logError(rejection);
                 switch(rejection.status){
-                    case 1:
+                   /* case 1:
                        console.log('CONNECTION ERROR');
-                        /*var fatalArray = {
+                        var fatalArray = {
                             type: 'network',
                             message: cfg.route.t['connection_refused'],
                             info: cfg.route.t['connection_refused_info'],
                             permanent: true,
                             hide: true
                         };
-                        angular.extend(cfg.route.fatalError, fatalArray);*/
-                        break;
+                        angular.extend(cfg.route.fatalError, fatalArray);
+                        break;*/
                     case 401:
                         if (path[1] !== '') {
                             dataService.setRememberMe(null);
