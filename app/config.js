@@ -208,9 +208,9 @@ var config_data = {
         // Postpassword url
         'post_password_request_url': 'https://service.z-wave.me/password/',
         // Get licence scratch id
-        'get_licence_scratchid': 'https://service.z-wave.me/licence/',
+        'get_licence_scratchid': 'https://service.z-wave.me/license/index.php',
         // Url to get a license key
-        'license_url': 'https://service.z-wave.me/licence/upgrade.php',
+        'license_url': 'https://service.z-wave.me/license/upgrade.php',
         // Raz latest version
         'raz_latest_version_url': 'https://razberry.z-wave.me/z-way/razberry/latest/VERSION',
         // Find z-wave me box

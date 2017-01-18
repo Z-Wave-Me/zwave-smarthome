@@ -599,5 +599,8 @@
     "btn_update_device_database" : "Update device database",
     "device_database_info": "Update the device database.",
     "update_device_database_failed": "Update device database failed.",
-    "update_device_database_failed_for": "Update device database was successful for __success__ but failed for __failed__."
+    "update_device_database_failed_for": "Update device database was successful for __success__ but failed for __failed__.",
+    "service_not_available": "__service__ service not available!",
+    "error_backup": "Backup failed!",
+    "success_backup": "Backup successful."
 }
