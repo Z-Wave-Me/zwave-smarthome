@@ -931,13 +931,14 @@ myAppController.controller('ManagementAppStoreController', function ($scope, dat
  * The controller that handles bug report info.
  * @class ManagementReportController
  */
-myAppController.controller('ManagementReportController', function ($scope, $window, $route, dataFactory, dataService) {
+myAppController.controller('ManagementReportController', function ($scope, $window, $route, cfg,dataFactory, dataService) {
     $scope.remoteAccess = false;
+    $scope.builtInfo = false;
     $scope.input = {
         browser_agent: '',
         browser_version: '',
         browser_info: '',
-        shui_version: '',
+        shui_version: cfg.app_version,
         zwave_vesion: '',
         controller_info: '',
         remote_id: '',
@@ -945,8 +946,24 @@ myAppController.controller('ManagementReportController', function ($scope, $wind
         remote_support_activated: 0,
         zwave_binding: 0,
         email: null,
-        content: null
+        content: null,
+        app_name:  cfg.app_name,
+        app_version: cfg.app_version,
+        app_id: cfg.app_id,
+        app_type: cfg.app_type,
+        app_built_date: '',
+        app_built_timestamp: ''
     };
+
+    /**
+     * Load app built info
+     */
+    $scope.loadAppBuiltInfo = function() {
+        dataFactory.getAppBuiltInfo().then(function(response) {
+            $scope.builtInfo = response.data;
+        }, function(error) {});
+    };
+    $scope.loadAppBuiltInfo();
     /**
      * Load Remote access data
      */
@@ -974,6 +991,10 @@ myAppController.controller('ManagementReportController', function ($scope, $wind
             input.zwave_vesion = $scope.ZwaveApiData.controller.data.softwareRevisionVersion.value;
             input.controller_info = JSON.stringify($scope.ZwaveApiData.controller.data);
         }
+        if ($scope.builtInfo) {
+            input.app_built_date = $scope.builtInfo.built;
+            input.app_built_timestamp =  $scope.builtInfo.timestamp;
+        }
         if (Object.keys($scope.remoteAccess).length > 0) {
             input.remote_activated = $scope.remoteAccess.params.actStatus ? 1 : 0;
             input.remote_support_activated = $scope.remoteAccess.params.sshStatus ? 1 : 0;
@@ -983,7 +1004,6 @@ myAppController.controller('ManagementReportController', function ($scope, $wind
         input.browser_agent = $window.navigator.appCodeName;
         input.browser_version = $window.navigator.appVersion;
         input.browser_info = 'PLATFORM: ' + $window.navigator.platform + '\nUSER-AGENT: ' + $window.navigator.userAgent;
-        input.shui_version = $scope.cfg.app_version;
         dataFactory.postReport(input).then(function (response) {
             $scope.loading = false;
             dataService.showNotifier({message: $scope._t('success_send_report') + ' ' + input.email});

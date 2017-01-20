@@ -13,6 +13,8 @@ var config_data = {
         'app_name': 'SmartHome UI ',
         // Application version
         'app_version': '1.6.0',
+        // Application ID
+        'app_id': 'SmartHomeUI',
         // Server base url
         'server_url': '/',
         //'server_url': 'http://192.168.10.119:8083/',
@@ -110,7 +112,8 @@ var config_data = {
             'customicon': 'ZAutomation/api/v1/devices',
             'icons_upload': 'ZAutomation/api/v1/icons/upload',
             'cloudbackup': 'CloudBackupAPI/Backup',
-            'update_device_database': 'ZWaveAPI/ZWaveDeviceInfoUpdate'
+            'update_device_database': 'ZWaveAPI/ZWaveDeviceInfoUpdate',
+            'app_built_info': 'app/info.json'
         },
         // List of remote api URLs
         'api_remote': {
