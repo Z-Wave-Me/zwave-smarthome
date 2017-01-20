@@ -1,5 +1,7 @@
 {
     "newtrans": "---",
+    "---": "newtrans",
+    "built_date": "Built date",
     "cloudbackup_active": "Cloud Backup active",
     "cloudbackup_inactive" : "Cloud Backup inactive",
     "cloudbackup_install" : "install Cloud Backup",
@@ -7,7 +9,6 @@
     "date": "Date",
     "size": "Size",
     "value": "Value",
-    "---": "newtrans",
     "cloudbackup": "CloudBackup",
     "local_backup": "Local backup",
     "cloudbackup_info": "Cloud backup is conveniently saving up to 3 backup files on our server (using SSL encryption). If you don’t like to see your backup file on our server, just deactivate this service. Download of backup files require admin privilege and a valid admin email address. The current E-Mail address on file for the admin is __email__. To change this please refer to the user settings of 'admin'.",

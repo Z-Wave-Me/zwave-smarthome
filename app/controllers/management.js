@@ -45,6 +45,8 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
         show: false
     };
 
+    $scope.builtInfo = false;
+
     $scope.zwaveDataInterval = null;
     // Cancel interval on page destroy
     $scope.$on('$destroy', function () {
@@ -84,6 +86,16 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
         });
     };
     $scope.allSettled();
+
+    /**
+     * Load app built info
+     */
+    $scope.loadAppBuiltInfo = function() {
+        dataFactory.getAppBuiltInfo().then(function(response) {
+            $scope.builtInfo = response.data;
+        }, function(error) {});
+    };
+    $scope.loadAppBuiltInfo();
 
     /// --- Private functions --- ///
     /**
@@ -933,7 +945,6 @@ myAppController.controller('ManagementAppStoreController', function ($scope, dat
  */
 myAppController.controller('ManagementReportController', function ($scope, $window, $route, cfg,dataFactory, dataService) {
     $scope.remoteAccess = false;
-    $scope.builtInfo = false;
     $scope.input = {
         browser_agent: '',
         browser_version: '',
@@ -955,15 +966,7 @@ myAppController.controller('ManagementReportController', function ($scope, $wind
         app_built_timestamp: ''
     };
 
-    /**
-     * Load app built info
-     */
-    $scope.loadAppBuiltInfo = function() {
-        dataFactory.getAppBuiltInfo().then(function(response) {
-            $scope.builtInfo = response.data;
-        }, function(error) {});
-    };
-    $scope.loadAppBuiltInfo();
+
     /**
      * Load Remote access data
      */
