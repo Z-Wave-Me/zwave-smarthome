@@ -73,7 +73,8 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
         getOnlineModules: getOnlineModules,
         installOnlineModule: installOnlineModule,
         restoreFromBck: restoreFromBck,
-        getHelp: getHelp
+        getHelp: getHelp,
+        getAppBuiltInfo: getAppBuiltInfo
     });
 
     /// --- Public functions --- ///
@@ -997,6 +998,26 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
             url: cfg.help_data_url + file
         }).then(function (response) {
             return response;
+        }, function (response) {// something went wrong
+            return $q.reject(response);
+        });
+
+    }
+
+    /**
+     * Get app built info
+     * @returns {unresolved}
+     */
+    function getAppBuiltInfo() {
+        return $http({
+            method: 'get',
+            url: cfg.api['app_built_info']
+        }).then(function (response) {
+            if (typeof response.data === 'object') {
+                return response;
+            } else {// invalid response
+                return $q.reject(response);
+            }
         }, function (response) {// something went wrong
             return $q.reject(response);
         });
