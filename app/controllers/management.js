@@ -596,8 +596,41 @@ myAppController.controller('ManagementLicenceController', function ($scope, cfg,
             $scope.proccessUpdate = {'message': $scope._t('error_no_capabilities'), 'status': 'fa fa-exclamation-triangle text-danger'};
             $scope.proccessLicence = false;
         });
-    }
-    ;
+    };
+
+    /**
+    * Get license key
+    */
+    $scope.getLicense = function (inputLicence) {
+        // Clear messages
+        $scope.proccessVerify.message = false;
+        $scope.proccessUpdate.message = false;
+        if (!inputLicence.scratch_id) {
+            return;
+        }
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('verifying_licence_key')};
+        $scope.proccessVerify = {'message': $scope._t('verifying_licence_key'), 'status': 'fa fa-spinner fa-spin'};
+        $scope.proccessLicence = true;
+        var input = {
+            'uuid': $scope.controllerInfo.uuid,
+            'scratch': inputLicence.scratch_id
+        };
+        dataFactory.getLicense(input).then(function (response) {
+            $scope.proccessVerify = {'message': $scope._t('success_licence_key'), 'status': 'fa fa-check text-success'};
+            $scope.loading = false;
+            // Update capabilities
+            updateCapabilities(response);
+        }, function (error) {
+            var message = $scope._t('error_no_licence_key');
+            if (error.status == 404) {
+                var message = $scope._t('error_404_licence_key');
+            }
+            $scope.loading = false;
+            alertify.alertError(message);
+            $scope.proccessVerify = {'message': message, 'status': 'fa fa-exclamation-triangle text-danger'};
+            $scope.proccessLicence = false;
+        });
+    };
 });
 /**
  * The controller that handles firmware update process.
@@ -1007,7 +1040,8 @@ myAppController.controller('ManagementCloudBackupController', function ($scope, 
         module:[],
         instance: {},
         process: false,
-        email: ""
+        email: "",
+        service_status: ""
     };
     /**
      * Load all promises
@@ -1015,7 +1049,7 @@ myAppController.controller('ManagementCloudBackupController', function ($scope, 
     $scope.allCloudSettled = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
-            dataFactory.getApi('instances', '/CloudBackup'),
+            dataFactory.getApi('instances', '/CloudBackup', true),
             dataFactory.getApi('modules', '/CloudBackup'),
             dataFactory.getApi('profiles', '/' +  $scope.user.id, true)
         ];
@@ -1053,6 +1087,14 @@ myAppController.controller('ManagementCloudBackupController', function ($scope, 
                 }
 
                 $scope.managementCloud.instance = instance.value.data.data[0];
+
+                if(!$scope.managementCloud.instance.params.service_status) {
+                    $scope.managementCloud.service_status = false;
+                    $scope.managementCloud.alert = {message: $scope._t('service_not_available', {__service__: "CloudBackup"}), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                } else {
+                    $scope.managementCloud.service_status = true;
+                    $scope.managementCloud.alert = false;
+                }
                 $scope.managementCloud.show = true;
             }
             // Success - module
@@ -1103,10 +1145,10 @@ myAppController.controller('ManagementCloudBackupController', function ($scope, 
     $scope.manualCloudBackup = function() {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('cloudbackup').then(function(response) {
-            dataService.showNotifier({message: response.data.message});
+            dataService.showNotifier({message: $scope._t('success_backup')});
             $scope.loading = false;
         }, function(error) {
-            dataService.showNotifier({message: error.data.message, type: 'error'});
+            dataService.showNotifier({message: $scope._t('error_backup'), type: 'error'});
             $scope.loading = false;
         });
     };
