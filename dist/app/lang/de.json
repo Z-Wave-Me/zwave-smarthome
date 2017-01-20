@@ -658,5 +658,8 @@
     "btn_update_device_database" : "Update device database",
     "device_database_info": "Update the device database.",
     "update_device_database_failed": "Die Gerätedatenbank Aktualisierung ist fehlgeschalgen.",
-    "update_device_database_failed_for": "Aktualisierung der Gerätedatenbank war erfolgreich für __success__ aber schlug fehl für __failed__."
+    "update_device_database_failed_for": "Aktualisierung der Gerätedatenbank war erfolgreich für __success__ aber schlug fehl für __failed__.",
+    "service_not_available": "__service__ Dienst nicht verfügbar!",
+    "error_backup": "Backup fehlgeschalgen!",
+    "success_backup": "Backup erfolgreich."
 }
