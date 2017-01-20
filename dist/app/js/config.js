@@ -1,4 +1,4 @@
-/* Copyright:  Z-Wave Europe GmbH, Created: 16-01-2017 15:06:41 */
+/* Copyright:  Z-Wave Europe GmbH, Created: 20-01-2017 11:17:26 */
 /**
  * @overview The main configuration file.
  * @author Martin Vach
@@ -205,13 +205,13 @@ var config_data = {
         //'online_icon_preview_url': 'http://dev.dev/developer-console/?uri=api-iconpreview',
         // Online module download url
         // Post report url
-        'post_report_url': 'https://service.z-wave.me/report/',
+        'post_report_url': 'https://service.z-wave.me/report/index.php',
         // Postpassword url
-        'post_password_request_url': 'https://service.z-wave.me/password/',
+        'post_password_request_url': 'https://service.z-wave.me/password/index.php',
         // Get licence scratch id
-        'get_licence_scratchid': 'https://service.z-wave.me/licence/',
+        'get_licence_scratchid': 'https://service.z-wave.me/license/index.php',
         // Url to get a license key
-        'license_url': 'https://service.z-wave.me/licence/upgrade.php',
+        'license_url': 'https://service.z-wave.me/license/upgrade.php',
         // Raz latest version
         'raz_latest_version_url': 'https://razberry.z-wave.me/z-way/razberry/latest/VERSION',
         // Find z-wave me box
