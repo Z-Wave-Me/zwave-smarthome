@@ -164,6 +164,27 @@ myApp.directive('bbValidator', function ($window) {
         template: '<div class="valid-error text-danger" ng-if="inputName && !inputName.$pristine && hasBlur">*{{trans}}</div>'
     };
 });
+/**
+* Watch for an error loading an image and to replace the src
+* @class bbValidator
+*/
+myApp.directive('errSrc', function() {
+    return {
+        link: function(scope, element, attrs) {
+            element.bind('error', function() {
+                if (attrs.src != attrs.errSrc) {
+                    attrs.$set('src', attrs.errSrc);
+                }
+            });
+            // Displays the error image when ngSrc is blank
+            attrs.$observe('ngSrc', function(value) {
+                if (!value && attrs.errSrc) {
+                    attrs.$set('src', attrs.errSrc);
+                }
+            });
+        }
+    }
+});
 
 /**
  * Compare two values
