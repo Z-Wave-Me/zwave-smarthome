@@ -5,22 +5,22 @@
 </h2>
 <div class="accordion-entry-ctrl" ng-class="" ng-if="expand.licence" ng-controller="ManagementLicenceController">
      <bb-loader></bb-loader>
-    <form name="form_licence" id="form_password" class="form form-page" ng-submit="getLicense(inputLicence)" novalidate>
+    <bb-alert alert="handleLicense.alert"></bb-alert>
+    <form name="form_licence" id="form_password" class="form form-page" ng-submit="getLicense(inputLicence)" ng-if="!handleLicense.error" novalidate>
         <fieldset>
             <!-- password -->
             <div class="alert alert-danger" ng-if="handleLicense.replug"><i class="fa fa-plug"></i> {{_t('replug_device')}}</div>
             <p>{{_t('licence_upgrade_key')}}</p>
             <p class="form-inline">
-            <label>{{_t('licence_key_insert')}}:</label>
-            <input
-                class="form-control form-control-sm" 
-                type="text" 
-                name="scratch_id"
-                id="scratch_id" 
-                value="{{inputLicence.scratch_id}}" 
-                ng-disabled="handleLicense.disabled"
-                ng-model="inputLicence.scratch_id" />
-             </p>
+                <label>{{_t('licence_key_insert')}}:</label>
+                <input class="form-control form-control-sm"
+                       type="text"
+                       name="scratch_id"
+                       id="scratch_id"
+                       value="{{inputLicence.scratch_id}}"
+                       ng-disabled="handleLicense.disabled"
+                       ng-model="inputLicence.scratch_id" />
+            </p>
             <div>
                 <p ng-if="proccessVerify.message">
                     <i class="" ng-class="proccessVerify.status"></i> <strong ng-bind="proccessVerify.message"></strong>

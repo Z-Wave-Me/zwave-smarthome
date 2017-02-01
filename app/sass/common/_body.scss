@@ -41,6 +41,15 @@ textarea {
     line-height: inherit;
 }
 
+/*
+  Allow angular.js to be loaded in body, hiding cloaked elements until
+  templates compile.  The !important is important given that there may be
+  other selectors that are more specific or come later and might alter display.
+ -------------------------------------------------- */
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
+
 /* Wallpaper
 -------------------------------------------------- */
 body {
@@ -84,6 +93,12 @@ h4 {
 .color-orange{
     color: orange;
 }
+.color-green{
+    color: green;
+}
+.color-red{
+    color: red;
+}
 /* Links
 -------------------------------------------------- */
 a {
@@ -101,6 +116,23 @@ a {
         // WebKit
         outline: 5px auto -webkit-focus-ring-color;
         outline-offset: -2px;
+    }
+
+    &.link-dotted {
+        color: $app-a-color;
+        border-bottom: 1px dotted $app-a-color;
+
+        &:hover, &:focus {
+            border-bottom: 1px solid $app-a-hover-color;
+            text-decoration: none;
+        }
+    }
+
+    &.link-underline {
+        color: $app-a-color;
+        text-decoration: underline;
+
+        //&:hover, &:focus { }
     }
 }
 /* Fatal error
@@ -176,4 +208,7 @@ a {
     height: $badge-number-w;
     font-size: $badge-number-font-size;
     border-radius: 50%;
+}
+.icon-hidden{
+    visibility: hidden;
 }

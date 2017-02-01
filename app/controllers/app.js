@@ -20,9 +20,11 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                 apps: 0,
                 collection: 0,
                 appsCat: 0,
+                appsCatFeatured: 0,
                 featured: 0
             },
             all: {},
+            featured: [],
             categories: {},
             ids: {},
             filter: {},
@@ -40,10 +42,12 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                 apps: 0,
                 collection: 0,
                 appsCat: 0,
+                appsCatFeatured: 0,
                 featured: 0
             },
             ratingRange: _.range(1, 6),
             all: {},
+            featured: [],
             ids: {},
             filter: {},
             hideInstalled: ($cookies.hideInstalledApps ? $filter('toBool')($cookies.hideInstalledApps) : false),
@@ -211,14 +215,27 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                          
                         //Tooltip description
                         angular.extend(item, {toolTipDescription: $filter('stripTags')(item.defaults.description)});
-                        
+
+                        if(item.featured) {
+                            $scope.dataHolder.modules.featured.push(item);
+                        }
+
                         return items;
                     }
                 });
+
         // Count apps in categories
         $scope.dataHolder.modules.cnt.appsCat = modules.countBy(function (v) {
             return v.category;
         }).value();
+
+        // Count featured apps in categories
+        $scope.dataHolder.modules.cnt.appsCatFeatured = modules.countBy(function (v) {
+            if(v.featured) {
+                return v.category;
+            }
+        }).value();
+
         // Count all apps
         $scope.dataHolder.modules.cnt.apps = modules.size().value();
 
@@ -281,6 +298,11 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                     } else {
                         item.featured = false;
                     }
+
+                    if(item.featured) {
+                        $scope.dataHolder.onlineModules.featured.push(item)
+                    }
+
                     item.installedSort = $filter('zeroFill')(item.installed);
                      //Tooltip description
                      angular.extend(item, {toolTipDescription: $filter('stripTags')(item.description)});
@@ -291,6 +313,13 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
         // Count apps in categories
         $scope.dataHolder.onlineModules.cnt.appsCat = onlineModules.countBy(function (v) {
             return v.category;
+        }).value();
+
+        // Count featured apps in categories
+        $scope.dataHolder.onlineModules.cnt.appsCatFeatured = onlineModules.countBy(function (v) {
+            if(v.featured) {
+                return v.category;
+            }
         }).value();
 
         // Count all apps
@@ -329,7 +358,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
  * @class AppLocalController
  */
 myAppController.controller('AppLocalController', function ($scope, $filter, $cookies, $timeout, $route, $routeParams, $location, dataFactory, dataService, myCache, _) {
-    $scope.dataHolder.modules.filter = ($cookies.filterAppsLocal ? angular.fromJson($cookies.filterAppsLocal) : {featured: true});
+    $scope.dataHolder.modules.filter = ($cookies.filterAppsLocal ? angular.fromJson($cookies.filterAppsLocal) : {});
     /**
      * Set order by
      */
@@ -349,7 +378,6 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
             angular.extend($scope.dataHolder.modules, {filter: filter});
             $cookies.filterAppsLocal = angular.toJson(filter);
         }
-
         $scope.reloadData();
     };
 
@@ -402,7 +430,7 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
  * @class AppOnlineController
  */
 myAppController.controller('AppOnlineController', function ($scope, $filter, $cookies, $window, dataFactory, dataService, _) {
-    $scope.dataHolder.onlineModules.filter = ($cookies.filterAppsOnline ? angular.fromJson($cookies.filterAppsOnline) : {featured: true});
+    $scope.dataHolder.onlineModules.filter = ($cookies.filterAppsOnline ? angular.fromJson($cookies.filterAppsOnline) : {});
 
     /**
      * Set order by

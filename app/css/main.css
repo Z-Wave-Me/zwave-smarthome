@@ -10333,83 +10333,118 @@ textarea {
   line-height: inherit;
 }
 
+/*
+  Allow angular.js to be loaded in body, hiding cloaked elements until
+  templates compile.  The !important is important given that there may be
+  other selectors that are more specific or come later and might alter display.
+ -------------------------------------------------- */
+/* line 49, ../sass/common/_body.scss */
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
 /* Wallpaper
 -------------------------------------------------- */
-/* line 46, ../sass/common/_body.scss */
+/* line 55, ../sass/common/_body.scss */
 body {
   background-image: url("wallpaper.png");
 }
 
 /* Skin reset
 -------------------------------------------------- */
-/* line 52, ../sass/common/_body.scss */
+/* line 61, ../sass/common/_body.scss */
 .skinreset {
   display: none;
 }
 
 /* Typo
 -------------------------------------------------- */
-/* line 58, ../sass/common/_body.scss */
+/* line 67, ../sass/common/_body.scss */
 h1, h2, h3, h4 {
   margin-top: 0;
   color: #404040;
 }
 
-/* line 62, ../sass/common/_body.scss */
+/* line 71, ../sass/common/_body.scss */
 h1 {
   font-size: 160%;
 }
 
-/* line 66, ../sass/common/_body.scss */
+/* line 75, ../sass/common/_body.scss */
 h2 {
   font-size: 140%;
   margin: 10px 0 5px 0;
 }
 
-/* line 71, ../sass/common/_body.scss */
+/* line 80, ../sass/common/_body.scss */
 h3 {
   font-size: 120%;
 }
 
-/* line 75, ../sass/common/_body.scss */
+/* line 84, ../sass/common/_body.scss */
 h4 {
   font-size: 110%;
 }
 
-/* line 79, ../sass/common/_body.scss */
+/* line 88, ../sass/common/_body.scss */
 .item-cnt {
   font-size: 80%;
 }
 
 /* Colors
 -------------------------------------------------- */
-/* line 84, ../sass/common/_body.scss */
+/* line 93, ../sass/common/_body.scss */
 .color-orange {
   color: orange;
 }
 
+/* line 96, ../sass/common/_body.scss */
+.color-green {
+  color: green;
+}
+
+/* line 99, ../sass/common/_body.scss */
+.color-red {
+  color: red;
+}
+
 /* Links
 -------------------------------------------------- */
-/* line 89, ../sass/common/_body.scss */
+/* line 104, ../sass/common/_body.scss */
 a {
   color: #333333;
   text-decoration: none;
 }
-/* line 93, ../sass/common/_body.scss */
+/* line 108, ../sass/common/_body.scss */
 a:hover, a:focus {
   color: #1a1a1a;
   text-decoration: underline;
 }
-/* line 98, ../sass/common/_body.scss */
+/* line 113, ../sass/common/_body.scss */
 a:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
+/* line 121, ../sass/common/_body.scss */
+a.link-dotted {
+  color: #333333;
+  border-bottom: 1px dotted #333333;
+}
+/* line 125, ../sass/common/_body.scss */
+a.link-dotted:hover, a.link-dotted:focus {
+  border-bottom: 1px solid #1a1a1a;
+  text-decoration: none;
+}
+/* line 131, ../sass/common/_body.scss */
+a.link-underline {
+  color: #333333;
+  text-decoration: underline;
+}
 
 /* Fatal error
 -------------------------------------------------- */
-/* line 108, ../sass/common/_body.scss */
+/* line 140, ../sass/common/_body.scss */
 .app-fatal-error {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -10419,13 +10454,13 @@ a:focus {
   background-color: #FFFFFF;
   border: solid 1px #d9534f;
 }
-/* line 115, ../sass/common/_body.scss */
+/* line 147, ../sass/common/_body.scss */
 .app-fatal-error .fatal-error-message {
   color: #d9534f;
   font-weight: bold;
   font-size: 120%;
 }
-/* line 120, ../sass/common/_body.scss */
+/* line 152, ../sass/common/_body.scss */
 .app-fatal-error .fatal-error-info {
   margin: 10px 0 0 0;
   color: #000000;
@@ -10434,44 +10469,44 @@ a:focus {
 
 /* Others
 -------------------------------------------------- */
-/* line 129, ../sass/common/_body.scss */
+/* line 161, ../sass/common/_body.scss */
 .timestamp {
   color: #333333;
   font-size: 17px;
 }
-/* line 132, ../sass/common/_body.scss */
+/* line 164, ../sass/common/_body.scss */
 .timestamp .fa {
   font-size: 110%;
 }
 
-/* line 136, ../sass/common/_body.scss */
+/* line 168, ../sass/common/_body.scss */
 .bcg-success {
   background-color: #dff0d8;
 }
 
-/* line 139, ../sass/common/_body.scss */
+/* line 171, ../sass/common/_body.scss */
 .bcg-active.false, .bcg-danger {
   background-color: #f2dede;
 }
 
-/* line 143, ../sass/common/_body.scss */
+/* line 175, ../sass/common/_body.scss */
 .clickable {
   cursor: pointer;
 }
 
-/* line 147, ../sass/common/_body.scss */
+/* line 179, ../sass/common/_body.scss */
 .text-supp {
   font-style: italic;
   color: #595959;
 }
 
-/* line 152, ../sass/common/_body.scss */
+/* line 184, ../sass/common/_body.scss */
 .badge {
   padding: 5px;
   margin-right: 5px;
 }
 
-/* line 156, ../sass/common/_body.scss */
+/* line 188, ../sass/common/_body.scss */
 .help-text {
   display: block;
   font-size: 95%;
@@ -10479,17 +10514,17 @@ a:focus {
   margin: 5px 0;
 }
 
-/* line 162, ../sass/common/_body.scss */
+/* line 194, ../sass/common/_body.scss */
 .help-text.inline {
   display: inline;
 }
 
-/* line 166, ../sass/common/_body.scss */
+/* line 198, ../sass/common/_body.scss */
 .display-block {
   display: block;
 }
 
-/* line 169, ../sass/common/_body.scss */
+/* line 201, ../sass/common/_body.scss */
 .badge-number {
   background-color: #a6a6a6;
   color: #FFFFFF;
@@ -10500,6 +10535,11 @@ a:focus {
   height: 32px;
   font-size: 120%;
   border-radius: 50%;
+}
+
+/* line 212, ../sass/common/_body.scss */
+.icon-hidden {
+  visibility: hidden;
 }
 
 /* Header
@@ -11548,9 +11588,14 @@ fieldset.submit-entry {
   border: solid 4px black !important;
 }
 
+/* line 144, ../sass/common/_form.scss */
+.form-block {
+  margin: 10px 0 0 0;
+}
+
 /* Config form
 -------------------------------------------------- */
-/* line 148, ../sass/common/_form.scss */
+/* line 151, ../sass/common/_form.scss */
 #form_wakeup select, #form_wakeup .label-node {
   visibility: hidden;
 }
@@ -12848,49 +12893,57 @@ img.widget-promo-image {
 #zwave_inclusion .inclusion-header h3 {
   font-weight: bold;
 }
+/* line 150, ../sass/modules/_devices.scss */
+#zwave_inclusion .inclusion-header span.line {
+  border-top: 1px solid #d3d3d3;
+  width: 100%;
+  height: 1px;
+  margin: 7px 0;
+  display: block;
+}
 
 /* Configuration
 -------------------------------------------------- */
-/* line 155, ../sass/modules/_devices.scss */
+/* line 162, ../sass/modules/_devices.scss */
 .table-cfg-interview th {
   width: 25%;
 }
 
-/* line 158, ../sass/modules/_devices.scss */
+/* line 165, ../sass/modules/_devices.scss */
 .cfg-block {
   margin: 0 0 20px 0;
   padding: 0 0 20px 0;
 }
 
-/* line 163, ../sass/modules/_devices.scss */
+/* line 170, ../sass/modules/_devices.scss */
 .cfg-block h4 {
   font-size: 16px;
 }
 
-/* line 167, ../sass/modules/_devices.scss */
+/* line 174, ../sass/modules/_devices.scss */
 .cfg-control-content {
   padding: 10px;
   margin: 10px 0;
 }
 
-/* line 171, ../sass/modules/_devices.scss */
+/* line 178, ../sass/modules/_devices.scss */
 .cfg-info {
   margin: 10px 0 0 0;
   padding: 10px 0 0 0;
   border-top: solid 1px #d3d3d3;
 }
 
-/* line 176, ../sass/modules/_devices.scss */
+/* line 183, ../sass/modules/_devices.scss */
 .commads-is-current {
   text-decoration: underline;
 }
 
-/* line 179, ../sass/modules/_devices.scss */
+/* line 186, ../sass/modules/_devices.scss */
 #wakeup_cont .form-inline {
   float: left;
 }
 
-/* line 182, ../sass/modules/_devices.scss */
+/* line 189, ../sass/modules/_devices.scss */
 .spin-true .fa-spin {
   display: none;
 }

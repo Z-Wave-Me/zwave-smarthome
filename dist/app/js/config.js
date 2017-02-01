@@ -1,3 +1,4 @@
+/* Copyright:  Z-Wave Europe GmbH, Created: 20-01-2017 15:23:37 */
 /**
  * @overview The main configuration file.
  * @author Martin Vach
@@ -13,6 +14,8 @@ var config_data = {
         'app_name': 'SmartHome UI ',
         // Application version
         'app_version': '1.6.0',
+        // Application ID
+        'app_id': 'SmartHomeUI',
         // Server base url
         'server_url': '/',
         //'server_url': 'http://192.168.10.119:8083/',
@@ -26,6 +29,8 @@ var config_data = {
         'route': {
             // Current location
             location: {},
+            // Server name
+            serverName: '',
             // Time zone
             time: {
                 string: false,
@@ -106,7 +111,10 @@ var config_data = {
             'icons': 'ZAutomation/api/v1/icons',
             'icons_install': 'ZAutomation/api/v1/icons/install',
             'customicon': 'ZAutomation/api/v1/devices',
-            'icons_upload': 'ZAutomation/api/v1/icons/upload'
+            'icons_upload': 'ZAutomation/api/v1/icons/upload',
+            'cloudbackup': 'CloudBackupAPI/Backup',
+            'update_device_database': 'ZWaveAPI/ZWaveDeviceInfoUpdate',
+            'app_built_info': 'app/info.json'
         },
         // List of remote api URLs
         'api_remote': {
@@ -190,24 +198,23 @@ var config_data = {
         'online_module_rating_create_url': 'https://developer.z-wave.me/?uri=api-rating-create',
         // Online skins url
         //'online_skin_url': 'http://developer.z-wave.me/?uri=api-skins',
-        'online_skin_url': 'http://hrix.net/developer-console/?uri=api-skins',
+        'online_skin_url': 'https://developer.z-wave.me/?uri=api-skins',
         //'online_skin_url': 'http://dev.dev/developer-console/?uri=api-skins',
         // Online icons url
-        'online_icon_url': 'http://hrix.net/developer-console/?uri=api-icons',
+        'online_icon_url': 'https://developer.z-wave.me/?uri=api-icons',
         //'online_icon_url': 'http://dev.dev/developer-console/?uri=api-icons',
         // Online icon preview url
-        'online_icon_preview_url': 'http://hrix.net/developer-console/?uri=api-iconpreview',
+        'online_icon_preview_url': 'https://developer.z-wave.me/?uri=api-iconpreview',
         //'online_icon_preview_url': 'http://dev.dev/developer-console/?uri=api-iconpreview',
         // Online module download url
-        'blacklist_url': 'https://hrix.net/blacklist.json',
         // Post report url
-        'post_report_url': 'https://hrix.net/shuiapi/report/',
+        'post_report_url': 'https://service.z-wave.me/report/index.php',
         // Postpassword url
-        'post_password_request_url': 'https://hrix.net/shuiapi/password/',
+        'post_password_request_url': 'https://service.z-wave.me/password/index.php',
         // Get licence scratch id
-        'get_licence_scratchid': 'https://hrix.net/shuiapi/licence/',
+        'get_licence_scratchid': 'https://service.z-wave.me/license/index.php',
         // Url to get a license key
-        'license_url': 'https://hrix.net/shuiapi/licence/upgrade.php',
+        'license_url': 'https://service.z-wave.me/license/upgrade.php',
         // Raz latest version
         'raz_latest_version_url': 'https://razberry.z-wave.me/z-way/razberry/latest/VERSION',
         // Find z-wave me box
@@ -395,6 +402,7 @@ var config_data = {
                 'logo': 'app-logo-default.png',
                 hidden_apps: [
                     'Cron',
+                    'CloudBackup',
                     'BatteryPolling',
                     'CustomUserCode',
                     'CustomUserCodeLoader',
@@ -425,6 +433,7 @@ var config_data = {
                 'logo': 'app-logo-popp.png',
                 'hidden_apps': [
                     'Cron',
+                    'CloudBackup',
                     'CodeDevice',
                     'BatteryPolling',
                     'CustomUserCode',
@@ -455,6 +464,7 @@ var config_data = {
                 'logo': 'app-logo-popp.png',
                 hidden_apps: [
                     'Cron',
+                    'CloudBackup',
                     'BatteryPolling',
                     'CustomUserCode',
                     'CustomUserCodeLoader',
@@ -485,6 +495,7 @@ var config_data = {
                 'logo': 'app-logo-wd.png',
                 'hidden_apps': [
                     'Cron',
+                    'CloudBackup',
                     'BatteryPolling',
                     'CodeDevice',
                     'CustomUserCode',

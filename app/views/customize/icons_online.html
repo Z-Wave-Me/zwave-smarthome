@@ -30,8 +30,12 @@
                         <div class="widget-ctrl ctrl-right clearfix">
                             <div class="btn-group">
                                 <!-- Download -->
-                                <button class="btn btn-default" title="{{_t('lb_download')}}" ng-click="downloadIconSet(v)">
+                                <button class="btn btn-default" title="{{_t('lb_download')}}" ng-if="v.status === 'download'" ng-click="downloadIconSet(v)">
                                     <i class="fa fa-download text-success"></i> <span class="btn-name">{{_t('lb_download')}}</span>
+                                </button>
+                                <!-- Installed -->
+                                <button class="btn btn-disabled" title="{{_t('installed')}}" disabled ng-if="v.status === 'installed'">
+                                    <i class="fa fa-check"></i> <span class="btn-name">{{_t('installed')}}</span>
                                 </button>
                             </div>
                         </div>
@@ -67,11 +71,16 @@
                     <i class="fa fa-times text-danger"></i> <span class="btn-name">{{_t('lb_close')}}</span>
                 </button>
                 <!-- Download --> 
-                <button href="" class="btn btn-submit" title="{{_t('lb_download')}}" 
-                       ng-click="handleModal('iconOnlineModal', $event);downloadIconSet(iconsOnline.find)">
+                <button href="" class="btn btn-submit" title="{{_t('lb_download')}}"
+                        ng-if="v.status === 'download'"
+                        ng-click="handleModal('iconOnlineModal', $event);downloadIconSet(iconsOnline.find)">
                     <i class="fa fa-download"></i> <span class="btn-name">{{_t('lb_download')}}</span>
                 </button>
-        </div>
+                <!-- Installed -->
+                <button class="btn btn-disabled" title="{{_t('installed')}}" disabled ng-if="v.status === 'installed'">
+                    <i class="fa fa-check"></i> <span class="btn-name">{{_t('installed')}}</span>
+                </button>
+            </div>
         </div>
     </div>
 </div> <!-- /ng-controller --> 

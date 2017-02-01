@@ -2,11 +2,7 @@
 <div ng-controller="RoomController">
     <bb-loader></bb-loader>
     <div class="page-control form-inline">
-         <div class="btn-group btn-goup-block btn-goup-2">
-             <a type="button" class="btn btn-submit" title="{{_t('lb_add_room')}}"  ng-href="#config-rooms/0"
-                ng-if="elementAccess(cfg.role_access.config_rooms)">
-                 <i class="fa fa-plus"></i> <span class="btn-name">{{_t('lb_add_room')}}</span>
-             </a>
+         <div class="btn-group btn-goup-block btn-goup-1">
                 <button class="btn btn-default" ng-click="expandNavi('roomsOrderBy', $event)">
                     <i class="fa fa-sort-alpha-asc"></i> 
                     <span class="btn-name">{{_t(rooms.orderBy) | cutText:true:15}}</span>
@@ -32,63 +28,9 @@
             </div>
         </div>
     </div>
-    <!-- NEW  -->
-    <div class="app-row app-row-widget clearfix">
-        <div class="widget-entry widget-entry-room"
-             ng-class="rooms.cnt.devices[v.id] || 'widget-warning'"
-             ng-hide="v.id === 0 && !rooms.cnt.devices[v.id]"
-             ng-repeat="v in rooms.all|orderBy:cfg.orderby.rooms[rooms.orderBy] | filter:q  track by v.id">
-            <div class="widget-entry-in">
-                <!-- Widget img -->
-                <div class="widget-img">
-                    <a ng-href="#/rooms{{(rooms.cnt.devices[v.id] ? '/' + v.id : '')}}" ng-disabled="!rooms.cnt.devices[v.id]" title="{{_t('lb_devices_room')}} {{v.title}}">
-                        <img class="widget-preview-img" ng-src="{{v.img_src}}" alt="img" />
-                    </a>
-                </div>
-                <!-- Widget header -->
-                <div class="widget-header"></div>
-                <!-- Widget content -->
-                <div class="widget-content">
-                    <!-- Widget title -->
-                    <div class="widget-title">
-                        <h3>
-                            <a href="#/rooms/{{v.id}}" title="{{_t('lb_devices_room')}} {{v.title}}"
-                               ng-if="rooms.cnt.devices[v.id]">
-                                {{v.title}}
-                                <span class="btn-name">&raquo;</span>
-                            </a>
-                            <span ng-if="!rooms.cnt.devices[v.id]">{{v.title}}</span>
-
-                        </h3>
-                    </div>
-                    <hr class="bottom-aligner" />
-                    <!-- Widget footer -->
-                    <div class="widget-footer">
-                        <div class="widget-ctrl ctrl-left">
-                           {{_t('nav_devices')}}: <span>{{rooms.cnt.devices[v.id] || 0}}x</span>
-                        </div>
-                        <div class="widget-ctrl ctrl-right"
-                             ng-if="elementAccess(cfg.role_access.config_rooms)">
-                            <div class="btn-group">
-                                <a class="btn btn-default" title="{{_t('edit')}}" href="#config-rooms/{{v.id}}">
-                                    <i class="fa fa-pencil text-info"></i>
-                                </a>
-                                <button class="btn btn-default" title="{{_t('lb_remove')}}"
-                                        ng-click="deleteRoom(v.id, _t('lb_delete_confirm'))"
-                                ><i class="fa fa-times text-danger"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-
-        </div>
-    </div>
 
     <!-- OLD -->
-    <!--<div class="app-row app-row-room clearfix" ng-if="abcd.rooms.show">
+    <div class="app-row app-row-room clearfix" ng-if="rooms.show">
         <div class="room-entry has-device-{{rooms.cnt.devices[v.id]||'false'}}" 
              id="panel_{{$index}}"
              ng-hide="v.id === 0 && !rooms.cnt.devices[v.id]"
@@ -112,5 +54,5 @@
             </div>
         </div>
         
-    </div>-->
+    </div>
 </div> <!-- /ng-controller --> 

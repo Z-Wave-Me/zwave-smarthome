@@ -41,10 +41,11 @@
         <script src="vendor/alpaca/1.5.14/bootstrap/alpaca.min.js"></script>
         <!-- App js -->
         <script src="app/app.js"></script>
+        <script src="app/routes.js"></script>
         <script src="app/templates.js"></script>
         <script src="app/modules/qAllSettled.js"></script>
         <script src="app/modules/httpLatency.js"></script>
-        <script src="app/services/factories.js"></script>
+        <script src="app/factories/factories.js"></script>
         <script src="app/services/services.js"></script>
         <script src="app/directives/directives.js"></script>
         <script src="app/directives/dir-pagination.js"></script>
@@ -119,9 +120,9 @@
                                 <a href="#devices"><i class="fa fa-cogs"></i> <span>{{_t('nav_devices')}} </span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
                             </li>
                             <!-- Config rooms -->
-                            <!--<li class="subnavi-config-rooms" ng-class="isActive('config-rooms')" ng-if="elementAccess(cfg.role_access.config_rooms)">
+                            <li class="subnavi-config-rooms" ng-class="isActive('config-rooms')" ng-if="elementAccess(cfg.role_access.config_rooms)">
                                 <a href="#config-rooms"><i class="fa fa-building-o"></i> <span>{{_t('nav_rooms')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                            </li>-->
+                            </li>
                              <!-- Customize -->
                             <li class="subnavi-report" ng-class="isActive('customize')"
                                 ng-if="elementAccess(cfg.role_access.customize) && !isInArray(['popp','jb'],cfg.app_type)">
@@ -146,7 +147,7 @@
         </div><!-- /#header --> 
         <!-- Ang Content Container -->
         <div id="main_content" class="container">
-            <div ng-if="cfg.route.fatalError.message">
+            <div ng-if="cfg.route.fatalError.message" ng-cloak>
                 <div class="app-fatal-error">
                     <div class="fatal-error-message"><i class="fa {{cfg.route.fatalError.icon}} fa-lg"></i> {{cfg.route.fatalError.message}}</div>
                     <div class="fatal-error-info" ng-if="cfg.route.fatalError.info" ng-bind-html="cfg.route.fatalError.info|toTrusted"></div>

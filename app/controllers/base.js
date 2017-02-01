@@ -12,7 +12,7 @@ var myAppController = angular.module('myAppController', []);
  * The app base controller.
  * @class BaseController
  */
-myAppController.controller('BaseController', function ($scope, $rootScope,$cookies, $filter, $location, $route, $window, $interval, $timeout,$http, cfg, cfgicons, dataFactory, dataService, myCache) {
+myAppController.controller('BaseController', function ($scope, $rootScope, $cookies, $filter, $location, $route, $window, $interval, $timeout, $http, cfg, cfgicons, dataFactory, dataService, myCache) {
 
     // Global scopes
     $scope.$location = $location;
@@ -45,7 +45,8 @@ myAppController.controller('BaseController', function ($scope, $rootScope,$cooki
                     cfg.img.logo = cfg.skin.path + response.data.data.name + '/img/logo/';
                     $("link[id='main_css']").attr('href', cfg.skin.path + response.data.data.name + '/main.css');
                 }
-            }, function (error) {});
+            }, function (error) {
+            });
         }
     };
     $scope.setSkin();
@@ -64,14 +65,15 @@ myAppController.controller('BaseController', function ($scope, $rootScope,$cooki
     };
 
     /**
+     * todo: deprecated
      * Reset a fatal error.
      * @param {object} obj
      * @returns {undefined}
      */
-    $scope.resetFatalError = function (obj) {
+    /*$scope.resetFatalError = function (obj) {
         angular.extend(cfg.route.fatalError, obj || {message: false, info: false, hide: false});
 
-    };
+    };*/
 
     /**
      * Set timestamp and ping server if request fails
@@ -81,43 +83,23 @@ myAppController.controller('BaseController', function ($scope, $rootScope,$cooki
         if (!$scope.user) {
             return;
         }
-        dataFactory.getApi('time', null, true).then(function (response) {
+        dataFactory.pingServer( cfg.server_url + cfg.api['time']).then(function (response) {
             $interval.cancel($scope.timeZoneInterval);
             angular.extend(cfg.route.time, {string: $filter('setTimeFromBox')(response.data.data.localTimeUT)},
                 {timestamp: response.data.data.localTimeUT});
-            var cnt = 0;
-
             var refresh = function () {
-                cfg.route.time.timestamp += (cfg.interval < 1000 ? 1 : cfg.interval/1000);
+                cfg.route.time.timestamp += (cfg.interval < 1000 ? 1 : cfg.interval / 1000);
                 cfg.route.time.string = $filter('setTimeFromBox')(cfg.route.time.timestamp);
-                $scope.handlePending();
-                cnt++;
-
-
+                if (cfg.route.fatalError.type === 'network') {
+                   $scope.reloadAfterError();
+                }
 
             };
             $scope.timeZoneInterval = $interval(refresh, $scope.cfg.interval);
-        }, function (error) {});
 
-    };
-
-    /**
-     * Handle HTTP pending
-     */
-    $scope.handlePending = function () {
-        var countUp = function() {
-           var pending = _.findWhere($http.pendingRequests,{url: '/ZAutomation/api/v1/system/time/get'});
-            handleError(pending);
-        }
-        $timeout(countUp, cfg.pending_timeout_limit);
-
-        /**
-         * Handle error message
-         * @param {object} pending
-         */
-        function handleError(pending){
-            if(pending){
-                console.log(pending);
+        }, function (error) {
+            console.log(error)
+            if(error.status === 0){
                 var fatalArray = {
                     type: 'network',
                     message: $scope._t('connection_refused'),
@@ -127,33 +109,145 @@ myAppController.controller('BaseController', function ($scope, $rootScope,$cooki
                 };
                 if ($scope.routeMatch('/boxupdate')) {
                     fatalArray.message = $scope._t('jamesbox_connection_refused');
-                    fatalArray.info = $scope._t('jamesbox_connection_refused_info', {__reload_begintag__: '<div>', __reload_endtag__: '</div>', __attention_begintag__: '<div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i>', __attention_endtag__: '<div>'});
+                    fatalArray.info = $scope._t('jamesbox_connection_refused_info', {
+                        __reload_begintag__: '<div>',
+                        __reload_endtag__: '</div>',
+                        __attention_begintag__: '<div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i>',
+                        __attention_endtag__: '<div>'
+                    });
                     fatalArray.icon = cfg.route.fatalError.icon_jamesbox;
                 }
                 angular.extend(cfg.route.fatalError, fatalArray);
-            }else{
-                if (cfg.route.fatalError.type === 'network') {
-                    dataFactory.sessionApi().then(function (sessionRes) {
-                        var user = sessionRes.data.data;
-                        if (sessionRes.data.data) {
-                            dataService.setZWAYSession(user.sid);
-                            dataService.setUser(user);
-                            if (dataService.getUser()) {
-                                $window.location.reload();
-                            }
-                        }
 
-                    }, function (error) {});
+            }
+
+        });
+
+    };
+    /**
+     * Set user session and reload page after connection error
+     * @returns {undefined}
+     */
+    $scope.reloadAfterError = function () {
+        //return;
+        if (!$scope.user) {
+            return;
+        }
+        dataFactory.sessionApi().then(function (sessionRes) {
+            var fatalArray = {
+                type: 'warning',
+                message: $scope._t('reloading_page'),
+                info: false,
+                icon: 'fa-spinner fa-spin',
+                permanent: false,
+                hide: true
+            };
+            angular.extend(cfg.route.fatalError, fatalArray);
+            var user = sessionRes.data.data;
+            if (sessionRes.data.data) {
+                dataService.setZWAYSession(user.sid);
+                dataService.setUser(user);
+                if (dataService.getUser()) {
+                    $timeout(function(){ $window.location.reload();}, 5000);
+
                 }
             }
+
+        }, function (error) {
+        });
+
+    };
+
+    /**
+     * todo: Deprecated
+     * Handle HTTP pending
+     * @returns {undefined}
+     */
+    $scope.handlePending = function () {
+       /* angular.forEach($http.pendingRequests, function(request) {
+            if (request.cancel && request.timeout) {
+               console.log(request)
+                //request.cancel.resolve();
+            }
+        });
+        return;*/
+        /*var countUp = function () {
+            var pending = _.findWhere($http.pendingRequests, {url: '/ZAutomation/api/v1/system/time/get'});
+            if (pending) {
+                console.log('HAS PENDING');
+                var fatalArray = {
+                    type: 'network',
+                    message: $scope._t('connection_refused'),
+                    info: $scope._t('connection_refused_info'),
+                    permanent: true,
+                    hide: true
+                };
+                if ($scope.routeMatch('/boxupdate')) {
+                    fatalArray.message = $scope._t('jamesbox_connection_refused');
+                    fatalArray.info = $scope._t('jamesbox_connection_refused_info', {
+                        __reload_begintag__: '<div>',
+                        __reload_endtag__: '</div>',
+                        __attention_begintag__: '<div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i>',
+                        __attention_endtag__: '<div>'
+                    });
+                    fatalArray.icon = cfg.route.fatalError.icon_jamesbox;
+                }
+                angular.extend(cfg.route.fatalError, fatalArray);
+            }
+            //handleError(pending);
         }
+        $timeout(countUp, cfg.pending_timeout_limit);*/
+
+        /**
+         * todo: deprecated
+         * Handle error message
+         * @param {object} pending
+         */
+        /*function handleError(pending) {
+            if (pending) {
+                console.log('HAS PENDING');
+                var fatalArray = {
+                    type: 'network',
+                    message: $scope._t('connection_refused'),
+                    info: $scope._t('connection_refused_info'),
+                    permanent: true,
+                    hide: true
+                };
+                if ($scope.routeMatch('/boxupdate')) {
+                    fatalArray.message = $scope._t('jamesbox_connection_refused');
+                    fatalArray.info = $scope._t('jamesbox_connection_refused_info', {
+                        __reload_begintag__: '<div>',
+                        __reload_endtag__: '</div>',
+                        __attention_begintag__: '<div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i>',
+                        __attention_endtag__: '<div>'
+                    });
+                    fatalArray.icon = cfg.route.fatalError.icon_jamesbox;
+                }
+                angular.extend(cfg.route.fatalError, fatalArray);
+            } else {
+                console.log('!!!!NO PENDING');
+                if (cfg.route.fatalError.type === 'network') {
+                 dataFactory.sessionApi().then(function (sessionRes) {
+                 var user = sessionRes.data.data;
+                 if (sessionRes.data.data) {
+                 dataService.setZWAYSession(user.sid);
+                 dataService.setUser(user);
+                 if (dataService.getUser()) {
+                 $window.location.reload();
+                 }
+                 }
+
+                 }, function (error) {});
+                 }
+            }
+        }*/
 
     };
 
     /**
      * Route on change start
      */
-    $rootScope.$on("$routeChangeStart", function(event, next, current) {
+    $rootScope.$on("$routeChangeStart", function (event, next, current) {
         /**
          * Reset fatal error object
          */
@@ -166,6 +260,7 @@ myAppController.controller('BaseController', function ($scope, $rootScope,$cooki
          * Set timestamp and ping server if request fails
          */
         $scope.setTimeStamp();
+        //$scope.handlePending();
     });
 
     /**
@@ -210,7 +305,7 @@ myAppController.controller('BaseController', function ($scope, $rootScope,$cooki
      * @param {mixed} value
      * @returns {Boolean}
      */
-    $scope.isInArray = function (array,value) {
+    $scope.isInArray = function (array, value) {
         if (array.indexOf(value) > -1) {
             return true;
         }
@@ -244,7 +339,8 @@ myAppController.controller('BaseController', function ($scope, $rootScope,$cooki
         var lang = (cfg.lang_list.indexOf(lang) > -1 ? lang : cfg.lang);
         dataFactory.getLanguageFile(lang).then(function (response) {
             angular.extend($scope.languages, response.data);
-        }, function (error) {});
+        }, function (error) {
+        });
     };
     /**
      * Get a language line by key.
@@ -416,6 +512,19 @@ myAppController.controller('BaseController', function ($scope, $rootScope,$cooki
         $scope.expand[key] = !($scope.expand[key]);
     };
 
+    $scope.rowSpinner = [];
+    /**
+     * Toggle row spinner
+     * @param {string} key
+     * @returns {undefined}
+     */
+    $scope.toggleRowSpinner = function (key) {
+        if (!key) {
+            $scope.rowSpinner = [];
+            return;
+        }
+        $scope.rowSpinner[key] = !$scope.rowSpinner[key];
+    };
 
     // Alertify defaults
     alertify.defaults.glossary.title = cfg.app_name;
@@ -426,11 +535,11 @@ myAppController.controller('BaseController', function ($scope, $rootScope,$cooki
     if (!alertify.alertError) {
         //define a new errorAlert base on alert
         alertify.dialog('alertError', function factory() {
-            return{
+            return {
                 build: function () {
                     var errorHeader = '<span class="fa fa-exclamation-triangle fa-lg text-danger" '
-                            + 'style="vertical-align:middle;">'
-                            + '</span> ' + cfg.app_name + ' - ERROR';
+                        + 'style="vertical-align:middle;">'
+                        + '</span> ' + cfg.app_name + ' - ERROR';
                     this.setHeader(errorHeader);
                 }
             };
@@ -440,17 +549,16 @@ myAppController.controller('BaseController', function ($scope, $rootScope,$cooki
     // Extend existing alert (WARNING) dialog
     if (!alertify.alertWarning) {
         alertify.dialog('alertWarning', function factory() {
-            return{
+            return {
                 build: function () {
                     var errorHeader = '<span class="fa fa-exclamation-circle fa-lg text-warning" '
-                            + 'style="vertical-align:middle;">'
-                            + '</span> ' + cfg.app_name + ' - WARNING';
+                        + 'style="vertical-align:middle;">'
+                        + '</span> ' + cfg.app_name + ' - WARNING';
                     this.setHeader(errorHeader);
                 }
             };
         }, true, 'alert');
     }
-
 
 
 });

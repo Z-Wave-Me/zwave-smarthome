@@ -6,26 +6,23 @@
  * The controller that handles outputs and inputs.
  * @class ConfigCommandsController
  */
-myAppController.controller('ConfigCommandsController', function ($scope, $routeParams, $location, $cookies, $timeout, $filter,  dataFactory,dataService, expertService, _) {
-    //$scope.devices = [];
+myAppController.controller('ConfigCommandsController', function ($scope, $routeParams, $location, $cookies, $timeout, $filter,$interval,  dataFactory,dataService, expertService, _) {
     $scope.commands = [];
     $scope.interviewCommands;
-
-    //$scope.deviceId = 0;
-    //$scope.activeTab = 'commands';
-    //$scope.activeUrl = 'configuration/commands/';
-
-    //$cookies.tab_config = $scope.activeTab;
+    $scope.ccConfiguration = {
+        all: [],
+        interval: null
+    };
 
     // Load data
     $scope.load = function (nodeId) {
         dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
-            //$scope.ZWaveAPIData = ZWaveAPIData;
-            //$scope.devices = deviceService.configGetNav(ZWaveAPIData);
             var node = ZWaveAPIData.devices[nodeId];
             if (!node) {
                 return;
             }
+            var interviewCommands = expertService.configGetInterviewCommands(node, ZWaveAPIData.updateTime);
+            var ccConfiguration = _.findWhere(interviewCommands,{ccName: "Configuration"});
             $scope.getNodeDevices = function () {
                 var devices = [];
                 angular.forEach($scope.devices, function (v, k) {
@@ -40,9 +37,13 @@ myAppController.controller('ConfigCommandsController', function ($scope, $routeP
                 });
                 return devices;
             };
-            $scope.interviewCommands = expertService.configGetInterviewCommands(node, ZWaveAPIData.updateTime);
+            $scope.interviewCommands = interviewCommands;
+            //$scope.ccConfiguration.all = _.findWhere(interviewCommands,{ccName: "Configuration"});
+            //console.log($scope.interviewCommands)
+            //console.log($scope.ccConfiguration.all)
             $scope.deviceId = nodeId;
-
+            setCcConfig(ccConfiguration);
+            $scope.refreshZwaveData(nodeId,ZWaveAPIData);
             /**
              * Expert commands
              */
@@ -71,13 +72,33 @@ myAppController.controller('ConfigCommandsController', function ($scope, $routeP
     $scope.load($routeParams.nodeId);
 
     /**
+     * Refresh zwave data
+     * @param {object} ZWaveAPIData
+     */
+    $scope.refreshZwaveData = function(nodeId,ZWaveAPIData) {
+        var refresh = function() {
+            dataFactory.joinedZwaveData(ZWaveAPIData).then(function(response) {
+                var node = ZWaveAPIData.devices[nodeId];
+                if (!node) {
+                    return;
+                }
+                var interviewCommands = expertService.configGetInterviewCommands(node, response.updateTime);
+                var ccConfiguration = _.findWhere(interviewCommands,{ccName: "Configuration"});
+                setCcConfig(ccConfiguration);
+            }, function(error) {});
+        };
+        $scope.ccConfiguration.interval = $interval(refresh, $scope.cfg.interval);
+    };
+
+    /**
      * Submit expert commands form
      * @param {string} form
      * @param {string} cmd
      */
-    $scope.submitExpertCommndsForm = function (form, cmd) {
+    $scope.submitExpertCommndsForm = function (form, cmd,v) {
         var data = $('#' + form).serializeArray();
         var dataJoined = [];
+
         angular.forEach(data, function (v, k) {
             if (v.value === 'N/A') {
                 return;
@@ -85,17 +106,52 @@ myAppController.controller('ConfigCommandsController', function ($scope, $routeP
             dataJoined.push($filter('setConfigValue')(v.value));
 
         });
+        var paramInput  = dataJoined[0];
+        //console.log(paramInput)
+        $scope.toggleRowSpinner('row_' + paramInput);
+        //console.log($scope.rowSpinner)
+        //var obj = $scope.ccConfiguration.all[paramInput];
+        //console.log(obj)
         var request = cmd + '(' + dataJoined.join() + ')';
         //dataService.runCmd(request, false, $scope._t('error_handling_data'));
         dataFactory.runExpertCmd(request, true).then(function(response){
             dataService.showNotifier({message: $scope._t('success_updated')});
+            $timeout($scope.toggleRowSpinner, $scope.cfg.interval);
         },function(error) {
+            $scope.toggleRowSpinner();
             alertify.alertError($scope._t('error_update_data'));
         });
 
     };
 
     /// --- Private functions --- ///
+    function setCcConfig(data){
+        //console.log(data.cmdData)
+        angular.forEach(data.cmdData, function (v, k) {
+            if(_.isNaN(parseInt(k))){
+                return;
+            }
+            var rowId = 'row_' + k;
+            //console.log(k)
+            var obj = {};
+            obj['rowId'] = rowId;
+            obj['param'] = k;
+            obj['size'] = v.size.value;
+            obj['val'] = v.val.value;
+            obj['updateTime'] = v.updateTime;
+            obj['isUpdated'] = (v.updateTime > v.invalidateTime ? true : false);
+            obj['isEqual'] = true;
+            var findIndex = _.findIndex($scope.ccConfiguration.all, {rowId: obj.rowId});
+            if(findIndex > -1){
+                obj['isEqual'] = _.isEqual(obj, $scope.ccConfiguration.all[findIndex]);
+                angular.extend(obj,{isEqual: _.isEqual(obj, $scope.ccConfiguration.all[findIndex])});
+               angular.extend($scope.ccConfiguration.all[findIndex],obj);
+            }else{
+                $scope.ccConfiguration.all.push(obj);
+            }
+        });
+
+    }
 
 
 });

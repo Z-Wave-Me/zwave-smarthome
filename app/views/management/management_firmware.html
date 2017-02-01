@@ -5,6 +5,20 @@
 </h2>
 <div class="accordion-entry-ctrl" ng-if="expand.firmware" ng-controller="ManagementFirmwareController">
     <bb-loader></bb-loader>
+    <form name="form_update_device_database" id="form_update_device_database" class="form form-page" ng-submit="updateDeviceDatabase()">
+        <fieldset>
+            <!-Device database->
+
+            <p class="form-control-static">
+                <span ng-bind="_t('device_database_info')"></span>
+            </p>
+        </fieldset>
+        <fieldset class="submit-entry">
+            <button type="submit" class="btn btn-submit" title="{{_t('btn_update_device_database')}}">
+                <i class="fa fa-level-up"></i> <span class="btn-name">{{_t('btn_update_device_database')}}</span>
+            </button>
+        </fieldset>
+    </form>
     <form name="form_firmware" id="form_firmware" class="form form-page" ng-submit="updateFirmware()" novalidate>
         <fieldset>
             <!-- Currentt version -->
@@ -16,6 +30,7 @@
             <div class="form-group">
                 <bb-help-text trans="_t('firmware_update_info')"></bb-help-text>
             </div>
+
         </fieldset>
         <fieldset class="submit-entry">
             <button type="button" class="btn btn-submit" title="{{_t('update_to_latest')}}"
@@ -24,7 +39,7 @@
             </button>
 
         </fieldset>
- 
+
     </form>
 
     <!-- firmwareUpdateModal -->

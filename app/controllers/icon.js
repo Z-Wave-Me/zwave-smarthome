@@ -19,8 +19,7 @@ myAppController.controller('LocalIconController', function ($scope, $filter, $ti
         },
         filter: {},
         used: {
-            device: {},
-            test: []
+            device: {}
         },
         info: {
             maxSize: $filter('fileSizeString')(cfg.upload.icon.size),
@@ -208,18 +207,14 @@ myAppController.controller('LocalIconController', function ($scope, $filter, $ti
     function iconUsedInDevice(devices) {
         var output = {};
         angular.forEach(devices, function (v, k) {
-            // For testing purposes
-           /* if (v.id === 'ZWayVDev_zway_2-0-156-0-A') {
-                v.custom_icons = {on: 'cat-box-icon.png', off: 'cat-cage-icon.png'};
-            } else if (v.id === 'ZWayVDev_zway_2-0-49-3') {
-                v.custom_icons = {'default': 'cat-cage-icon.png'};
-            }*/
             // Device has custom icons
             if (v.customIcons) {
                 angular.forEach(v.customIcons.level || v.customIcons, function (iv, ik) {
                     if (output[iv]) {
-                        //icon[iv] = [v.id];
-                        output[iv].push(v.id);
+                        if(!output[iv].indexOf(v.id)){
+                            output[iv].push(v.id);
+                        }
+
                     } else {
                         output[iv] = [v.id];
                     }
@@ -241,6 +236,35 @@ myAppController.controller('OnlineIconController', function ($scope, $filter, $t
         find: {},
         preview: {}
     };
+    $scope.iconsLocalSource = {};
+
+    /**
+     * Load all promises
+     * @returns {undefined}
+     */
+
+    $scope.allSettled = function () {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        var promises = [
+            dataFactory.getApi('icons', null, true)
+        ];
+
+        $q.allSettled(promises).then(function (response) {
+            var icons = response[0];
+            console.log(icons);
+            // Error message
+            if (icons.state === 'rejected') {
+                alertify.alertError($scope._t('error_load_data'));
+                return;
+            }
+            // Success - icons
+            if (icons.state === 'fulfilled') {
+                setLocalIcons(icons.value.data.data);
+            }
+        });
+    };
+    $scope.allSettled();
+
    /**
     * Load on-line icons
     * @returns {undefined}
@@ -260,7 +284,6 @@ myAppController.controller('OnlineIconController', function ($scope, $filter, $t
         });
     };
     $scope.loadOnlineIcons();
-
 
     /**
      * Open a modal window and load icon previews
@@ -300,7 +323,6 @@ myAppController.controller('OnlineIconController', function ($scope, $filter, $t
         });
     };
 
-
     /// --- Private functions --- ///
 
     /**
@@ -311,8 +333,51 @@ myAppController.controller('OnlineIconController', function ($scope, $filter, $t
     function setOnlineIcons(response) {
         $scope.iconsOnline.all = _.chain(response)
                 .flatten()
+                .filter(function(v) {
+                    v.status = 'download';
+                    _.each($scope.iconsLocalSource, function(ils) {
+                        if(ils.id === v.id && ils.source === v.name) {
+                            v.status = 'installed';
+                        }
+                    });
+                    return v;
+                })
                 .indexBy('name')
                 .value();
+    };
+
+    /**
+     * Set online icons $scope
+     * @param {object} response
+     * @returns {undefined}
+     */
+    function setLocalIcons(response) {
+
+        $scope.iconsLocalSource = Object.keys(_.groupBy(response, function(icon){
+            return icon.source;
+        })).map(function(icon) {
+            return {
+                "id": getId(icon),
+                "source": getSource(icon)
+            };
+        });
     }
-    ;
+
+    /**
+     * Get source/name from source
+     * @param {object} source
+     * @returns {undefined}
+     */
+    function getSource(source) {
+        return source.substring(0, source.lastIndexOf("_"));
+    }
+
+    /**
+     * Get id from source
+     * @param {object} source
+     * @returns {undefined}
+     */
+    function getId(source) {
+        return source.substring(source.lastIndexOf("_") + 1, source.length);
+    }
 });

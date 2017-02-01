@@ -20,10 +20,13 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
     this.resetFatalError = function () {
         if (cfg.route.fatalError.message && !cfg.route.fatalError.permanent) {
             angular.extend(cfg.route.fatalError, {
-                type: 'system',
-                message: 'Test from service',
+                type: 'system',// system|network
+                message: false,
                 info: false,
-                hide: false
+                permanent: false, // Permanently displayed
+                hide: false, // Hide page content
+                icon: 'fa-exclamation-triangle',
+                icon_jamesbox: 'fa-spinner fa-spin'
             });
         }
     };
@@ -58,22 +61,6 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
        /* dataFactory.getApi('timezone', null, true).then(function (response) {
 
         }, function (error) {});*/
-    };
-
-    /**
-     * Resets the fatal error object
-     * @param {object} notifier
-     * @returns {undefined}
-     */
-    this.resetFatalError = function () {
-        if (cfg.route.fatalError.message && !cfg.route.fatalError.permanent) {
-            angular.extend(cfg.route.fatalError, {
-                type: 'system',
-                message: 'Test from service',
-                info: false,
-                hide: false
-            });
-        }
     };
 
     /**
@@ -644,7 +631,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
         var icon = cfg.img.icons + 'placeholder.png';
         var iconKey = $filter('hasNode')(element, 'metrics.icon');
         // Assign icon by metrics.icon
-        var iconArray = setIcon(cfgicons.element.icon[iconKey], element.customIcons, element.id);
+        var iconArray = setIcon(cfgicons.element.icon[iconKey], element.customIcons || {});
         /**
          * Set icons by deviceType
          */
@@ -652,7 +639,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
             // switchControl
             case 'switchControl':
                 //icon = iconArray.default;
-                iconArray = setIcon(cfgicons.element.deviceType['switchControl'], element.customIcons, element.id);
+                iconArray = setIcon(cfgicons.element.deviceType['switchControl'], element.customIcons || {});
                 return iconArray.default;
             // default
             default:
@@ -759,7 +746,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @param {object} customIcon
      * @returns {*}
      */
-    function setIcon(defaultIcon, customIcon,id) {
+    function setIcon(defaultIcon, customIcon) {
         var obj = {};
         customIcon = customIcon.level || customIcon
         if (defaultIcon) {

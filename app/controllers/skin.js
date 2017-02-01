@@ -69,8 +69,6 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $timeout,
     };
     $scope.allSettled();
 
-
-
     /**
      * Update skin
      * @param {object} skin
@@ -111,11 +109,7 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $timeout,
                 })
                 .indexBy('name')
                 .value();
-        ;
-
-    }
-    ;
-
+    };
 });
 
 /**
