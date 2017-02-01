@@ -65,6 +65,16 @@ myApp.filter('toInt', function () {
 });
 
 /**
+ * Convert val to string
+ * @function toString
+ */
+myApp.filter('toString', function () {
+    return function (val) {
+        return val.toString();
+    };
+});
+
+/**
  * Convert val to bool
  * @function toBool
  */
@@ -502,6 +512,7 @@ myApp.filter('isTodayFromUnix', function () {
         if (isNaN(input)) {
             return '?';
         }
+
         var d = new Date(input * 1000);
         var day = (d.getDate() < 10 ? '0' + d.getDate() : d.getDate());
         var mon = d.getMonth() + 1; //Months are zero based
@@ -525,8 +536,8 @@ myApp.filter('isTodayFromUnix', function () {
  */
 myApp.filter('setTimeFromBox', function () {
     return function (input) {
-        if (input.localTimeUT) {
-            var d = new Date(input.localTimeUT * 1000);
+        if (input) {
+            var d = new Date(input * 1000);
         } else {
             var d = new Date();
         }
@@ -791,6 +802,17 @@ myApp.filter('setConfigValue', function () {
         } else {
             return value;
         }
+
+    };
+});
+
+/**
+ * Set rgb colors
+ * @function etRgbColors
+ */
+myApp.filter('setRgbColors', function () {
+    return function (color) {
+        return 'rgb('+ color.r +',' + color.g  + ',' + color.b  +')';
 
     };
 });

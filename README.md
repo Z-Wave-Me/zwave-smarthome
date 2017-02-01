@@ -9,12 +9,25 @@ This User Interfaces allows to operate a Smart Home Network based on Z-Wave devi
 ## Project leader
 Marcel Kermer
 
+## v1.6.0
+#### New features
+- Cloud Backup: Gives possibility to upload and store your backups on the remote server.
+- Custom icons: Possibility to upload and assign custom icons for devices.
+- Skins: A Skin is a CSS style that allow to change the appearance of the SmartHome UI.
+- New widget type sensorDiscrete:  N-State visualisation of CentralScene commands.
+- Apps/Active: Sorting by active/inactive apps.
+
+#### Changes
+- Connection error refactored.
+- Caching online modules.
+
 ## v1.5.1
 #### Fixes
-- Displays Firmware Update int POPP version.
+- Displays Firmware Update in  POPP version.
 
 ## v1.5.0
 #### New features
+- Apps: Added button Add more apps if filter feature apps is preselected.git
 - Time zone on the first access page and in the management (POPP only).
 - More products in the Z-Wave devices.
 - Add update time to toggle button #167.

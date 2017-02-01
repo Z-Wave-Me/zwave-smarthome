@@ -10333,83 +10333,118 @@ textarea {
   line-height: inherit;
 }
 
+/*
+  Allow angular.js to be loaded in body, hiding cloaked elements until
+  templates compile.  The !important is important given that there may be
+  other selectors that are more specific or come later and might alter display.
+ -------------------------------------------------- */
+/* line 49, ../sass/common/_body.scss */
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
 /* Wallpaper
 -------------------------------------------------- */
-/* line 46, ../sass/common/_body.scss */
+/* line 55, ../sass/common/_body.scss */
 body {
   background-image: url("wallpaper.png");
 }
 
 /* Skin reset
 -------------------------------------------------- */
-/* line 52, ../sass/common/_body.scss */
+/* line 61, ../sass/common/_body.scss */
 .skinreset {
   display: none;
 }
 
 /* Typo
 -------------------------------------------------- */
-/* line 58, ../sass/common/_body.scss */
+/* line 67, ../sass/common/_body.scss */
 h1, h2, h3, h4 {
   margin-top: 0;
   color: #404040;
 }
 
-/* line 62, ../sass/common/_body.scss */
+/* line 71, ../sass/common/_body.scss */
 h1 {
   font-size: 160%;
 }
 
-/* line 66, ../sass/common/_body.scss */
+/* line 75, ../sass/common/_body.scss */
 h2 {
   font-size: 140%;
   margin: 10px 0 5px 0;
 }
 
-/* line 71, ../sass/common/_body.scss */
+/* line 80, ../sass/common/_body.scss */
 h3 {
   font-size: 120%;
 }
 
-/* line 75, ../sass/common/_body.scss */
+/* line 84, ../sass/common/_body.scss */
 h4 {
   font-size: 110%;
 }
 
-/* line 79, ../sass/common/_body.scss */
+/* line 88, ../sass/common/_body.scss */
 .item-cnt {
   font-size: 80%;
 }
 
 /* Colors
 -------------------------------------------------- */
-/* line 84, ../sass/common/_body.scss */
+/* line 93, ../sass/common/_body.scss */
 .color-orange {
   color: orange;
 }
 
+/* line 96, ../sass/common/_body.scss */
+.color-green {
+  color: green;
+}
+
+/* line 99, ../sass/common/_body.scss */
+.color-red {
+  color: red;
+}
+
 /* Links
 -------------------------------------------------- */
-/* line 89, ../sass/common/_body.scss */
+/* line 104, ../sass/common/_body.scss */
 a {
   color: #333333;
   text-decoration: none;
 }
-/* line 93, ../sass/common/_body.scss */
+/* line 108, ../sass/common/_body.scss */
 a:hover, a:focus {
   color: #1a1a1a;
   text-decoration: underline;
 }
-/* line 98, ../sass/common/_body.scss */
+/* line 113, ../sass/common/_body.scss */
 a:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
+/* line 121, ../sass/common/_body.scss */
+a.link-dotted {
+  color: #333333;
+  border-bottom: 1px dotted #333333;
+}
+/* line 125, ../sass/common/_body.scss */
+a.link-dotted:hover, a.link-dotted:focus {
+  border-bottom: 1px solid #1a1a1a;
+  text-decoration: none;
+}
+/* line 131, ../sass/common/_body.scss */
+a.link-underline {
+  color: #333333;
+  text-decoration: underline;
+}
 
 /* Fatal error
 -------------------------------------------------- */
-/* line 108, ../sass/common/_body.scss */
+/* line 140, ../sass/common/_body.scss */
 .app-fatal-error {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -10419,13 +10454,13 @@ a:focus {
   background-color: #FFFFFF;
   border: solid 1px #d9534f;
 }
-/* line 115, ../sass/common/_body.scss */
+/* line 147, ../sass/common/_body.scss */
 .app-fatal-error .fatal-error-message {
   color: #d9534f;
   font-weight: bold;
   font-size: 120%;
 }
-/* line 120, ../sass/common/_body.scss */
+/* line 152, ../sass/common/_body.scss */
 .app-fatal-error .fatal-error-info {
   margin: 10px 0 0 0;
   color: #000000;
@@ -10434,44 +10469,44 @@ a:focus {
 
 /* Others
 -------------------------------------------------- */
-/* line 129, ../sass/common/_body.scss */
+/* line 161, ../sass/common/_body.scss */
 .timestamp {
   color: #333333;
   font-size: 17px;
 }
-/* line 132, ../sass/common/_body.scss */
+/* line 164, ../sass/common/_body.scss */
 .timestamp .fa {
   font-size: 110%;
 }
 
-/* line 136, ../sass/common/_body.scss */
+/* line 168, ../sass/common/_body.scss */
 .bcg-success {
   background-color: #dff0d8;
 }
 
-/* line 139, ../sass/common/_body.scss */
+/* line 171, ../sass/common/_body.scss */
 .bcg-active.false, .bcg-danger {
   background-color: #f2dede;
 }
 
-/* line 143, ../sass/common/_body.scss */
+/* line 175, ../sass/common/_body.scss */
 .clickable {
   cursor: pointer;
 }
 
-/* line 147, ../sass/common/_body.scss */
+/* line 179, ../sass/common/_body.scss */
 .text-supp {
   font-style: italic;
   color: #595959;
 }
 
-/* line 152, ../sass/common/_body.scss */
+/* line 184, ../sass/common/_body.scss */
 .badge {
   padding: 5px;
   margin-right: 5px;
 }
 
-/* line 156, ../sass/common/_body.scss */
+/* line 188, ../sass/common/_body.scss */
 .help-text {
   display: block;
   font-size: 95%;
@@ -10479,17 +10514,17 @@ a:focus {
   margin: 5px 0;
 }
 
-/* line 162, ../sass/common/_body.scss */
+/* line 194, ../sass/common/_body.scss */
 .help-text.inline {
   display: inline;
 }
 
-/* line 166, ../sass/common/_body.scss */
+/* line 198, ../sass/common/_body.scss */
 .display-block {
   display: block;
 }
 
-/* line 169, ../sass/common/_body.scss */
+/* line 201, ../sass/common/_body.scss */
 .badge-number {
   background-color: #a6a6a6;
   color: #FFFFFF;
@@ -10500,6 +10535,11 @@ a:focus {
   height: 32px;
   font-size: 120%;
   border-radius: 50%;
+}
+
+/* line 212, ../sass/common/_body.scss */
+.icon-hidden {
+  visibility: hidden;
 }
 
 /* Header
@@ -10686,7 +10726,7 @@ a:focus {
   display: none;
 }
 
-/* Images
+/* Images dimensions
 -------------------------------------------------- */
 /* line 3, ../sass/common/_images.scss */
 img {
@@ -10813,6 +10853,18 @@ img {
 .img-opacity-50 {
   opacity: 0.5;
   filter: alpha(opacity=50);
+}
+
+/* line 94, ../sass/common/_images.scss */
+.imglist-img {
+  max-width: 40px;
+  max-height: 40px;
+}
+
+/* line 99, ../sass/common/_images.scss */
+.imglist-img-preview {
+  max-width: 64px;
+  max-height: 64px;
 }
 
 /* Page navigation
@@ -11060,6 +11112,17 @@ img {
 /* line 103, ../sass/common/_widget.scss */
 .securityControl .ctrl-right {
   width: 30% !important;
+}
+
+/* Device sensorDiscrete
+-------------------------------------------------- */
+/* line 111, ../sass/common/_widget.scss */
+.sensorDiscrete .ctrl-left {
+  width: 30% !important;
+}
+/* line 114, ../sass/common/_widget.scss */
+.sensorDiscrete .ctrl-right {
+  width: 70% !important;
 }
 
 /* Report
@@ -11525,11 +11588,34 @@ fieldset.submit-entry {
   border: solid 4px black !important;
 }
 
+/* line 144, ../sass/common/_form.scss */
+.form-block {
+  margin: 10px 0 0 0;
+}
+
 /* Config form
 -------------------------------------------------- */
-/* line 148, ../sass/common/_form.scss */
+/* line 151, ../sass/common/_form.scss */
 #form_wakeup select, #form_wakeup .label-node {
   visibility: hidden;
+}
+
+/* Image list
+-------------------------------------------------- */
+/* line 6, ../sass/common/_imglist.scss */
+.app-row-imglist {
+  border: solid 1px #cccccc;
+  background-color: #FFFFFF;
+}
+
+/* line 10, ../sass/common/_imglist.scss */
+.imglist-entry {
+  width: 40px;
+  height: 40px;
+  float: left;
+  position: relative;
+  min-height: 1px;
+  margin: 10px;
 }
 
 /* Dropdown
@@ -11644,6 +11730,106 @@ fieldset.submit-entry {
   height: auto;
   max-height: 600px;
   overflow-x: hidden;
+}
+
+/* Info window
+/* http://www.w3schools.com/css/css_tooltip.asp
+-------------------------------------------------- */
+/* line 4, ../sass/common/_infowindow.scss */
+.infowindow-wrap {
+  position: relative;
+}
+
+/* line 8, ../sass/common/_infowindow.scss */
+.infowindow {
+  font-size: 90%;
+  position: absolute;
+  z-index: 1100;
+  min-width: 200px;
+  text-align: left;
+  background-color: #FFFFFF;
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  -moz-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  border: 1px solid #cccccc;
+  background-clip: padding-box;
+  color: #0d0d0d;
+}
+/* line 19, ../sass/common/_infowindow.scss */
+.infowindow .infowindow-in {
+  padding: 10px;
+}
+
+/* line 24, ../sass/common/_infowindow.scss */
+.infowindow::after {
+  content: " ";
+  position: absolute;
+  margin-left: -10px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent;
+}
+
+/* line 33, ../sass/common/_infowindow.scss */
+.infowindow.right {
+  top: -5px;
+  left: 105%;
+}
+
+/* line 38, ../sass/common/_infowindow.scss */
+.infowindow.right::after {
+  top: 50%;
+  right: 100%;
+  /* To the left of the tooltip */
+  border-color: transparent black transparent transparent;
+}
+
+/* line 44, ../sass/common/_infowindow.scss */
+.infowindow.left {
+  top: -5px;
+  right: 105%;
+}
+
+/* line 49, ../sass/common/_infowindow.scss */
+.infowindow.left::after {
+  top: 50%;
+  left: 100%;
+  /* To the right of the tooltip */
+  border-color: transparent transparent transparent black;
+}
+
+/* line 55, ../sass/common/_infowindow.scss */
+.infowindow.top {
+  width: 200px;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -100px;
+  /* Use half of the width to center the tooltip */
+}
+
+/* line 62, ../sass/common/_infowindow.scss */
+.infowindow.top::after {
+  top: 100%;
+  /* At the bottom of the tooltip */
+  left: 50%;
+  border-color: black transparent transparent transparent;
+}
+
+/* line 69, ../sass/common/_infowindow.scss */
+.infowindow.bottom {
+  width: 200px;
+  top: 100%;
+  left: 50%;
+  margin-left: -100px;
+  /* Use half of the width to center the tooltip */
+}
+
+/* line 76, ../sass/common/_infowindow.scss */
+.infowindow.bottom::after {
+  bottom: 100%;
+  /* At the top of the window */
+  left: 50%;
+  border-color: transparent transparent black transparent;
 }
 
 /* Accordion
@@ -12195,6 +12381,12 @@ img.widget-promo-image {
 
 /* RGB color wheel
 --------------------------------------------------------*/
+/* line 264, ../sass/modules/_elements.scss */
+.wheel-colorpicker {
+  /*#wheel_picker_selected_spin{
+      background-color: #fff;
+  }*/
+}
 /* line 265, ../sass/modules/_elements.scss */
 .wheel-colorpicker .col-rgb {
   margin: 0 auto;
@@ -12207,16 +12399,12 @@ img.widget-promo-image {
   cursor: pointer;
 }
 /* line 274, ../sass/modules/_elements.scss */
-.wheel-colorpicker #wheel_picker_preview {
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin: 0 0 20px 0;
-  height: 40px;
-  line-height: 35px;
-}
-/* line 280, ../sass/modules/_elements.scss */
-.wheel-colorpicker #wheel_picker_preview #wheel_picker_preview_spin {
-  background-color: #fff;
+.wheel-colorpicker #wheel_picker_selected, .wheel-colorpicker #wheel_picker_preview {
+  /*border: 1px solid #ccc;
+  border-radius: 4px;*/
+  margin: 0;
+  height: 80px;
+  line-height: 80px;
 }
 
 /* Events
@@ -12295,36 +12483,42 @@ img.widget-promo-image {
 }
 
 /* line 47, ../sass/modules/_apps.scss */
-#apps_online .widget-warning .widget-img {
+#apps_online .widget-warning .widget-img, #apps_instances .widget-warning .widget-img {
   opacity: 0.4;
   filter: alpha(opacity=40);
 }
 /* line 54, ../sass/modules/_apps.scss */
-#apps_online .widget-warning .widget-title h3 a {
+#apps_online .widget-warning .widget-title h3 a, #apps_instances .widget-warning .widget-title h3 a {
   color: #a6a6a6 !important;
 }
 /* line 62, ../sass/modules/_apps.scss */
-#apps_online .widget-warning .widget-footer .rating-group .widget-rating {
+#apps_online .widget-warning .widget-footer .rating-group .widget-rating, #apps_instances .widget-warning .widget-footer .rating-group .widget-rating {
   color: #a6a6a6;
 }
 /* line 64, ../sass/modules/_apps.scss */
-#apps_online .widget-warning .widget-footer .rating-group .widget-rating.israted {
+#apps_online .widget-warning .widget-footer .rating-group .widget-rating.israted, #apps_instances .widget-warning .widget-footer .rating-group .widget-rating.israted {
   color: #f8d9ac;
+}
+
+/* line 75, ../sass/modules/_apps.scss */
+#apps_instances .widget-warning .widget-entry-in {
+  border-color: #eba5a3 !important;
+  border-width: 4px;
 }
 
 /* App detail
 -------------------------------------------------- */
-/* line 77, ../sass/modules/_apps.scss */
+/* line 86, ../sass/modules/_apps.scss */
 .app-detail-img {
   margin: 0 0 10px 0;
 }
 
-/* line 81, ../sass/modules/_apps.scss */
+/* line 90, ../sass/modules/_apps.scss */
 .app-detail-body h2 {
   margin: 20px 0 10px 0;
 }
 
-/* line 85, ../sass/modules/_apps.scss */
+/* line 94, ../sass/modules/_apps.scss */
 .app-detail-list {
   border-top: solid 1px #d3d3d3;
   margin: 10px 0 0 0;
@@ -12333,20 +12527,20 @@ img.widget-promo-image {
 
 /* Apps rating
 -------------------------------------------------- */
-/* line 93, ../sass/modules/_apps.scss */
+/* line 102, ../sass/modules/_apps.scss */
 .module-rating {
   font-size: 150%;
   padding: 0 10px 0 0;
   color: #8c8c8c;
 }
-/* line 97, ../sass/modules/_apps.scss */
+/* line 106, ../sass/modules/_apps.scss */
 .module-rating.israted {
   color: #f4c37d;
 }
 
 /* Apps comments
 -------------------------------------------------- */
-/* line 103, ../sass/modules/_apps.scss */
+/* line 112, ../sass/modules/_apps.scss */
 .comment-entry {
   margin: 0 0 10px 0;
   padding: 10px;
@@ -12354,7 +12548,7 @@ img.widget-promo-image {
   color: #0d0d0d;
   font-size: 100%;
 }
-/* line 109, ../sass/modules/_apps.scss */
+/* line 118, ../sass/modules/_apps.scss */
 .comment-entry .comment-header {
   font-style: italic;
   font-size: 95%;
@@ -12362,7 +12556,7 @@ img.widget-promo-image {
   margin: 0 0 5px 0;
 }
 
-/* line 119, ../sass/modules/_apps.scss */
+/* line 128, ../sass/modules/_apps.scss */
 .comment-entry.even {
   background-color: #E9E9E9;
 }
@@ -12459,9 +12653,59 @@ img.widget-promo-image {
   margin: 10px;
 }
 
-/* Rooms
+/* Rooms NEW
 -------------------------------------------------- */
 /* line 4, ../sass/modules/_rooms.scss */
+.widget-entry-room .widget-entry-in {
+  min-height: 120px;
+  height: auto;
+}
+/* line 7, ../sass/modules/_rooms.scss */
+.widget-entry-room .widget-entry-in .widget-header {
+  display: none;
+}
+/* line 10, ../sass/modules/_rooms.scss */
+.widget-entry-room .widget-entry-in .widget-content {
+  margin: 20px 0 0 74px;
+}
+/* line 15, ../sass/modules/_rooms.scss */
+.widget-entry-room .widget-entry-in .widget-title h3 a {
+  font-weight: bold;
+}
+/* line 20, ../sass/modules/_rooms.scss */
+.widget-entry-room .widget-entry-in .bottom-aligner {
+  display: none;
+}
+/* line 23, ../sass/modules/_rooms.scss */
+.widget-entry-room .widget-entry-in .widget-footer {
+  margin-top: 10px;
+}
+/* line 25, ../sass/modules/_rooms.scss */
+.widget-entry-room .widget-entry-in .widget-footer .btn-name {
+  display: none !important;
+}
+
+/* line 33, ../sass/modules/_rooms.scss */
+.widget-entry-room.widget-warning .widget-img {
+  opacity: 0.4;
+  filter: alpha(opacity=40);
+}
+/* line 39, ../sass/modules/_rooms.scss */
+.widget-entry-room.widget-warning .widget-title h3 {
+  color: #a6a6a6 !important;
+}
+/* line 48, ../sass/modules/_rooms.scss */
+.widget-entry-room.widget-warning .widget-footer .rating-group .widget-rating {
+  color: #a6a6a6;
+}
+/* line 50, ../sass/modules/_rooms.scss */
+.widget-entry-room.widget-warning .widget-footer .rating-group .widget-rating.israted {
+  color: #f8d9ac;
+}
+
+/* Rooms OLD
+-------------------------------------------------- */
+/* line 61, ../sass/modules/_rooms.scss */
 .room-entry {
   width: 50%;
   float: left;
@@ -12469,16 +12713,16 @@ img.widget-promo-image {
   min-height: 1px;
 }
 
-/* line 8, ../sass/modules/_rooms.scss */
+/* line 65, ../sass/modules/_rooms.scss */
 .room-entry-in {
   text-align: center;
   padding: 10px;
 }
-/* line 11, ../sass/modules/_rooms.scss */
+/* line 68, ../sass/modules/_rooms.scss */
 .room-entry-in a {
   font-weight: bold;
 }
-/* line 14, ../sass/modules/_rooms.scss */
+/* line 71, ../sass/modules/_rooms.scss */
 .room-entry-in .entry-title-text {
   padding-right: 20px;
 }
@@ -12649,49 +12893,57 @@ img.widget-promo-image {
 #zwave_inclusion .inclusion-header h3 {
   font-weight: bold;
 }
+/* line 150, ../sass/modules/_devices.scss */
+#zwave_inclusion .inclusion-header span.line {
+  border-top: 1px solid #d3d3d3;
+  width: 100%;
+  height: 1px;
+  margin: 7px 0;
+  display: block;
+}
 
 /* Configuration
 -------------------------------------------------- */
-/* line 155, ../sass/modules/_devices.scss */
+/* line 162, ../sass/modules/_devices.scss */
 .table-cfg-interview th {
   width: 25%;
 }
 
-/* line 158, ../sass/modules/_devices.scss */
+/* line 165, ../sass/modules/_devices.scss */
 .cfg-block {
   margin: 0 0 20px 0;
   padding: 0 0 20px 0;
 }
 
-/* line 163, ../sass/modules/_devices.scss */
+/* line 170, ../sass/modules/_devices.scss */
 .cfg-block h4 {
   font-size: 16px;
 }
 
-/* line 167, ../sass/modules/_devices.scss */
+/* line 174, ../sass/modules/_devices.scss */
 .cfg-control-content {
   padding: 10px;
   margin: 10px 0;
 }
 
-/* line 171, ../sass/modules/_devices.scss */
+/* line 178, ../sass/modules/_devices.scss */
 .cfg-info {
   margin: 10px 0 0 0;
   padding: 10px 0 0 0;
   border-top: solid 1px #d3d3d3;
 }
 
-/* line 176, ../sass/modules/_devices.scss */
+/* line 183, ../sass/modules/_devices.scss */
 .commads-is-current {
   text-decoration: underline;
 }
 
-/* line 179, ../sass/modules/_devices.scss */
+/* line 186, ../sass/modules/_devices.scss */
 #wakeup_cont .form-inline {
   float: left;
 }
 
-/* line 182, ../sass/modules/_devices.scss */
+/* line 189, ../sass/modules/_devices.scss */
 .spin-true .fa-spin {
   display: none;
 }
@@ -13395,38 +13647,48 @@ img.widget-promo-image {
 
   /* Rooms
   -------------------------------------------------- */
-  /* line 335, ../sass/responsive/_mq_shared.scss */
+  /* line 336, ../sass/responsive/_mq_shared.scss */
+  .widget-entry-room .widget-entry-in {
+    min-height: 1px;
+    height: 110px;
+  }
+  /* line 339, ../sass/responsive/_mq_shared.scss */
+  .widget-entry-room .widget-entry-in .widget-footer {
+    margin: 10px 0 0 0;
+  }
+
+  /* line 345, ../sass/responsive/_mq_shared.scss */
   .room-entry {
     width: 33.33333%;
   }
 
   /* Footer
   -------------------------------------------------- */
-  /* line 342, ../sass/responsive/_mq_shared.scss */
+  /* line 352, ../sass/responsive/_mq_shared.scss */
   #footer #footer_in {
     height: 40px;
     line-height: 40px;
   }
 
-  /* line 348, ../sass/responsive/_mq_shared.scss */
+  /* line 358, ../sass/responsive/_mq_shared.scss */
   #footer {
     display: none;
   }
 
   /* Auth
   -------------------------------------------------- */
-  /* line 355, ../sass/responsive/_mq_shared.scss */
+  /* line 365, ../sass/responsive/_mq_shared.scss */
   #page_login .container, #page_password .container, #page_passwordforgot .container, #page_passwordreset .container {
     max-width: 500px;
   }
 
   /* Others
   -------------------------------------------------- */
-  /* line 362, ../sass/responsive/_mq_shared.scss */
+  /* line 372, ../sass/responsive/_mq_shared.scss */
   .timestamp {
     font-size: 90% !important;
   }
-  /* line 364, ../sass/responsive/_mq_shared.scss */
+  /* line 374, ../sass/responsive/_mq_shared.scss */
   .timestamp .fa {
     font-size: 90% !important;
   }
@@ -13809,38 +14071,48 @@ img.widget-promo-image {
 
   /* Rooms
   -------------------------------------------------- */
-  /* line 335, ../sass/responsive/_mq_shared.scss */
+  /* line 336, ../sass/responsive/_mq_shared.scss */
+  .widget-entry-room .widget-entry-in {
+    min-height: 1px;
+    height: 110px;
+  }
+  /* line 339, ../sass/responsive/_mq_shared.scss */
+  .widget-entry-room .widget-entry-in .widget-footer {
+    margin: 10px 0 0 0;
+  }
+
+  /* line 345, ../sass/responsive/_mq_shared.scss */
   .room-entry {
     width: 25%;
   }
 
   /* Footer
   -------------------------------------------------- */
-  /* line 342, ../sass/responsive/_mq_shared.scss */
+  /* line 352, ../sass/responsive/_mq_shared.scss */
   #footer #footer_in {
     height: 40px;
     line-height: 40px;
   }
 
-  /* line 348, ../sass/responsive/_mq_shared.scss */
+  /* line 358, ../sass/responsive/_mq_shared.scss */
   #footer {
     display: none;
   }
 
   /* Auth
   -------------------------------------------------- */
-  /* line 355, ../sass/responsive/_mq_shared.scss */
+  /* line 365, ../sass/responsive/_mq_shared.scss */
   #page_login .container, #page_password .container, #page_passwordforgot .container, #page_passwordreset .container {
     max-width: 500px;
   }
 
   /* Others
   -------------------------------------------------- */
-  /* line 362, ../sass/responsive/_mq_shared.scss */
+  /* line 372, ../sass/responsive/_mq_shared.scss */
   .timestamp {
     font-size: 90% !important;
   }
-  /* line 364, ../sass/responsive/_mq_shared.scss */
+  /* line 374, ../sass/responsive/_mq_shared.scss */
   .timestamp .fa {
     font-size: 90% !important;
   }

@@ -14,8 +14,7 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
         remote: false,
         licence: false,
         firmware: false,
-        backup: false,
-        restore: false,
+        backup_restore: false,
         info: false,
         report: false,
         appstore: false
@@ -23,15 +22,19 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
     $scope.ZwaveApiData = false;
     $scope.controllerInfo = {
         uuid: null,
+        remoteId: null,
         isZeroUuid: false,
         softwareRevisionVersion: null,
         softwareLatestVersion: null,
         capabillities: null,
         scratchId: null,
-        capsLimited: false
-
+        capsLimited: false,
+        manufacturerId: null
     };
+    $scope.remoteAccess = false;
     $scope.handleLicense = {
+        alert: {message: false, status: 'is-hidden', icon: false},
+        error: true,
         show: false,
         disabled: false,
         replug: false
@@ -41,6 +44,8 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
         instance: {},
         show: false
     };
+
+    $scope.builtInfo = false;
 
     $scope.zwaveDataInterval = null;
     // Cancel interval on page destroy
@@ -56,20 +61,20 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
             dataFactory.loadZwaveApiData()
-
         ];
         if($scope.isInArray(['jb'],cfg.app_type)){
             promises.push(dataFactory.getApi('instances', '/ZMEOpenWRT'));
         }
         $q.allSettled(promises).then(function (response) {
             var zwave = response[0];
-            var timezone = response[1];
+            var timezone = response[2];
             $scope.loading = false;
             // Success - api data
             if (zwave.state === 'fulfilled') {
                 $scope.ZwaveApiData = zwave.value;
                 setControllerInfo(zwave.value);
             }
+
             if(timezone){
                 // Success - timezone
                 if (timezone.state === 'fulfilled' && timezone.value.data.data[0].active === true) {
@@ -81,6 +86,16 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
         });
     };
     $scope.allSettled();
+
+    /**
+     * Load app built info
+     */
+    $scope.loadAppBuiltInfo = function() {
+        dataFactory.getAppBuiltInfo().then(function(response) {
+            $scope.builtInfo = response.data;
+        }, function(error) {});
+    };
+    $scope.loadAppBuiltInfo();
 
     /// --- Private functions --- ///
     /**
@@ -103,14 +118,14 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
         $scope.controllerInfo.uuid = ZWaveAPIData.controller.data.uuid.value;
         $scope.controllerInfo.isZeroUuid = parseInt(ZWaveAPIData.controller.data.uuid.value, 16) === 0;
         $scope.controllerInfo.softwareRevisionVersion = ZWaveAPIData.controller.data.softwareRevisionVersion.value;
+        $scope.controllerInfo.manufacturerId = ZWaveAPIData.controller.data.manufacturerId.value;
         $scope.controllerInfo.capabillities = caps(ZWaveAPIData.controller.data.caps.value);
         $scope.controllerInfo.capsLimited = nodeLimit($filter('dec2hex')(ZWaveAPIData.controller.data.caps.value[2]).slice(-2));
         setLicenceScratchId($scope.controllerInfo);
         //console.log(ZWaveAPIData.controller.data.caps.value);
         //console.log('Limited: ', $scope.controllerInfo.capsLimited);
+    };
 
-    }
-    ;
     /**
      * Set licence ID
      * @param {object} controllerInfo
@@ -118,50 +133,69 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
      */
     function  setLicenceScratchId(controllerInfo) {
         dataFactory.getRemoteData($scope.cfg.get_licence_scratchid + '?uuid=' + controllerInfo.uuid).then(function (response) {
-            $scope.controllerInfo.scratchId = response.data.scratch_id;
-            handleLicense($scope.controllerInfo)
+            if(response.data !== "") {
+                $scope.controllerInfo.scratchId = response.data.scratch_id;
+                $scope.handleLicense.error = false;
+            } else {
+                $scope.handleLicense.alert = {message: $scope._t('error_license_request'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+            }
+            handleLicense($scope.controllerInfo);
         }, function (error) {
             handleLicense($scope.controllerInfo);
-            alertify.alertError($scope._t('error_license_request'));
+            $scope.handleLicense.alert = {message: $scope._t('error_license_request'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+            //alertify.alertError($scope._t('error_license_request'));
         });
-    }
-    ;
+    };
+
     /**
      * Show or hide licencese block
      * @param {object} controllerInfo
      * @returns {undefined}
      */
     function handleLicense(controllerInfo) {
-        // Hide license if 
-        // forbidden, mobile device, not uuid
-        if ((cfg.license_forbidden.indexOf(cfg.app_type) > -1) || $scope.isMobile || !controllerInfo.uuid) {
-            //console.log('Hide license if: forbidden, mobile device, not uuid')
-            $scope.handleLicense.show = false;
-            return;
-        }
 
-        // Hide license if
-        // Controller UUID = string and scratchId  is NOT found  and cap unlimited
-        if (!controllerInfo.scratchId && !controllerInfo.capsLimited) {
-            //console.log('Hide license if: Controller UUID = string and scratchId  is NOT found  and cap unlimited')
-            $scope.handleLicense.show = false;
-            return;
-        }
+        //Razberry/RaZ = 327
+        //UZB/ZME = 277
 
-        // Show modal if
-        // Controller UUID = string and scratchId  is NOT found  and cap limited
-        if (!controllerInfo.scratchId && controllerInfo.capsLimited) {
-            //console.log('Show modal if: Controller UUID = string and scratchId  is NOT found  and cap limited')
-            alertify.alertWarning($scope._t('info_missing_licence'));
-        }
+        $scope.handleLicense.show = false;
+        if($scope.controllerInfo.manufacturerId === 277) {
+            // Hide license if
+            // forbidden, mobile device, not uuid
+            if ((cfg.license_forbidden.indexOf(cfg.app_type) > -1) || $scope.isMobile || !controllerInfo.uuid) {
+                //console.log('Hide license if: forbidden, mobile device, not uuid')
+                $scope.handleLicense.show = false;
+                return;
+            }
 
-        // Disable input and show unplug message
-        if (controllerInfo.isZeroUuid) {
-            //console.log('Disable input and show unplug message')
-            $scope.handleLicense.disabled = true;
-            $scope.handleLicense.replug = true;
+            // check if error (request faild)
+            if ($scope.handleLicense.error && !controllerInfo.scratchId && !controllerInfo.capsLimited) {
+                $scope.handleLicense.show = true;
+                return;
+            }
+
+            // Hide license if
+            // Controller UUID = string and scratchId  is NOT found  and cap unlimited
+            if (!controllerInfo.scratchId && !controllerInfo.capsLimited) {
+                //console.log('Hide license if: Controller UUID = string and scratchId  is NOT found  and cap unlimited');
+                $scope.handleLicense.show = false;
+                return;
+            }
+
+            // Show modal if
+            // Controller UUID = string and scratchId  is NOT found  and cap limited
+            if (!controllerInfo.scratchId && controllerInfo.capsLimited) {
+                //console.log('Show modal if: Controller UUID = string and scratchId  is NOT found  and cap limited');
+                alertify.alertWarning($scope._t('info_missing_licence'));
+            }
+
+            // Disable input and show unplug message
+            if (controllerInfo.isZeroUuid) {
+                //console.log('Disable input and show unplug message');
+                $scope.handleLicense.disabled = true;
+                $scope.handleLicense.replug = true;
+            }
+            $scope.handleLicense.show = true;
         }
-        $scope.handleLicense.show = true;
     }
 
 });
@@ -248,8 +282,8 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
         id: $routeParams.id,
         login: null,
         password: null
-
     };
+    $scope.lastEmail = "";
 
     /**
      * Load all promises
@@ -277,17 +311,18 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
                 if ($scope.id !== 0) {
                     $scope.input = profile.value.data.data;
                     $scope.auth.login = profile.value.data.data.login;
+                    $scope.lastEmail = profile.value.data.data.email;
                 }
             }
 
             // Success - locations
             if (locations.state === 'fulfilled') {
                 $scope.rooms = dataService.getRooms(locations.value.data.data)
-                        .reject(function (v) {
-                            return (v.id === 0);
+                    .reject(function (v) {
+                        return (v.id === 0);
 
-                        })
-                        .value();
+                    })
+                    .value();
             }
         });
     };
@@ -297,14 +332,14 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
      * Watch for the role change
      */
     /*$scope.$watch('input.role', function () {
-        //var globalRoomIndex = $scope.input.rooms.indexOf(0);
-        if($scope.input.role === 1){
-            $scope.input.rooms = [0];
-        }else{
-            $scope.input.rooms = $scope.input.rooms.length > 0  ? $scope.input.rooms : [];
-            //$scope.input.rooms = []
-        }
-    });*/
+     //var globalRoomIndex = $scope.input.rooms.indexOf(0);
+     if($scope.input.role === 1){
+     $scope.input.rooms = [0];
+     }else{
+     $scope.input.rooms = $scope.input.rooms.length > 0  ? $scope.input.rooms : [];
+     //$scope.input.rooms = []
+     }
+     });*/
     /**
      * Assign room to list
      */
@@ -315,21 +350,21 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
     };
 
     /*$scope.prepareRooms = function () {
-        return;
-        var globalRoomIndex = $scope.input.rooms.indexOf(0);
-        //var roomIds = _.map(locations.value.data.data, function(location){});
+     return;
+     var globalRoomIndex = $scope.input.rooms.indexOf(0);
+     //var roomIds = _.map(locations.value.data.data, function(location){});
 
-        if ($scope.input.role === 1 && globalRoomIndex === -1) {
-            $scope.input.rooms = [0];
-        } else if ($scope.input.role !== 1 && globalRoomIndex > -1){
-            if ($scope.input.id === 0) {
-                $scope.input.rooms = [];
-            } else {
-                $scope.input.rooms.splice(globalRoomIndex, 1);
-            }
-        }
-        return;
-    };*/
+     if ($scope.input.role === 1 && globalRoomIndex === -1) {
+     $scope.input.rooms = [0];
+     } else if ($scope.input.role !== 1 && globalRoomIndex > -1){
+     if ($scope.input.id === 0) {
+     $scope.input.rooms = [];
+     } else {
+     $scope.input.rooms.splice(globalRoomIndex, 1);
+     }
+     }
+     return;
+     };*/
 
     /**
      * Remove room from the list
@@ -370,6 +405,32 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
                 myCache.remove('profiles');
                 $scope.reloadData();
             }
+
+            // Email change --> update e-mail cloudbackup if instance exist
+            if($scope.lastEmail != input.email) {
+                var promises = [
+                    dataFactory.getApi('instances', '/CloudBackup')
+                ];
+
+                $q.allSettled(promises).then(function (response) {
+                    var instance = response[0];
+
+                    if (instance.state === 'rejected') {
+                        return;
+                    }
+
+                    if (instance.state === 'fulfilled') {
+                        var instanceData = instance.value.data.data[0];
+                        instanceData.params.email = input.email;
+                        dataFactory.putApi('instances', instanceData.id, instanceData).then(function (response) {
+                            $scope.lastEmail = input.email
+                        }, function (error) {
+                            alertify.alertError($scope._t('error_update_data'));
+                        });
+                    }
+                });
+            }
+
             $scope.loading = false;
             dataService.showNotifier({message: $scope._t('success_updated')});
             window.location = '#/admin';
@@ -478,9 +539,9 @@ myAppController.controller('ManagementRemoteController', function ($scope, dataF
  * @class ManagementLocalController
  */
 myAppController.controller('ManagementLocalController', function ($scope, dataFactory, dataService) {
-    
 
-     /**
+
+    /**
      * Update instance
      */
     $scope.updateInstance = function (input) {
@@ -488,26 +549,26 @@ myAppController.controller('ManagementLocalController', function ($scope, dataFa
         if (input.id) {
             dataFactory.putApi('instances', input.id, input).then(function (response) {
                 alertify.confirm($scope._t('timezone_alert'))
-                        .setting('labels', {'ok': $scope._t('yes'),'cancel': $scope._t('lb_cancel')})
-                        .set('onok', function (closeEvent) {//after clicking OK
-                                $scope.systemReboot();
-                        });
+                    .setting('labels', {'ok': $scope._t('yes'),'cancel': $scope._t('lb_cancel')})
+                    .set('onok', function (closeEvent) {//after clicking OK
+                        $scope.systemReboot();
+                    });
 
             }, function (error) {
                 alertify.alertError($scope._t('error_update_data'));
             });
         }
     };
-    
-     /**
+
+    /**
      * System rebboot
      */
     $scope.systemReboot = function () {
-         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('system_rebooting')};
-            dataFactory.getApi('system_reboot').then(function (response) {
-            }, function (error) {
-                alertify.alertError($scope._t('error_system_reboot'));
-            });
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('system_rebooting')};
+        dataFactory.getApi('system_reboot').then(function (response) {
+        }, function (error) {
+            alertify.alertError($scope._t('error_system_reboot'));
+        });
 
     };
 });
@@ -515,7 +576,7 @@ myAppController.controller('ManagementLocalController', function ($scope, dataFa
  * The controller that handles the licence key.
  * @class ManagementLicenceController
  */
-myAppController.controller('ManagementLicenceController', function ($scope, dataFactory) {
+myAppController.controller('ManagementLicenceController', function ($scope, cfg, dataFactory) {
 
     $scope.proccessLicence = false;
     $scope.proccessVerify = {
@@ -532,8 +593,26 @@ myAppController.controller('ManagementLicenceController', function ($scope, data
     };
 
     /**
-     * Get license key
+     * Update capabilities
      */
+    function updateCapabilities(data) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('upgrading_capabilities')};
+        $scope.proccessUpdate = {'message': $scope._t('upgrading_capabilities'), 'status': 'fa fa-spinner fa-spin'};
+        dataFactory.zmeCapabilities(data).then(function (response) {
+            $scope.loading = false;
+            $scope.proccessUpdate = {'message': $scope._t('success_capabilities'), 'status': 'fa fa-check text-success'};
+            $scope.proccessLicence = false;
+        }, function (error) {
+            $scope.loading = false;
+            alertify.alertError($scope._t('error_no_capabilities'));
+            $scope.proccessUpdate = {'message': $scope._t('error_no_capabilities'), 'status': 'fa fa-exclamation-triangle text-danger'};
+            $scope.proccessLicence = false;
+        });
+    };
+
+    /**
+    * Get license key
+    */
     $scope.getLicense = function (inputLicence) {
         // Clear messages
         $scope.proccessVerify.message = false;
@@ -562,34 +641,14 @@ myAppController.controller('ManagementLicenceController', function ($scope, data
             alertify.alertError(message);
             $scope.proccessVerify = {'message': message, 'status': 'fa fa-exclamation-triangle text-danger'};
             $scope.proccessLicence = false;
-
         });
     };
-
-    /**
-     * Update capabilities
-     */
-    function updateCapabilities(data) {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('upgrading_capabilities')};
-        $scope.proccessUpdate = {'message': $scope._t('upgrading_capabilities'), 'status': 'fa fa-spinner fa-spin'};
-        dataFactory.zmeCapabilities(data).then(function (response) {
-            $scope.loading = false;
-            $scope.proccessUpdate = {'message': $scope._t('success_capabilities'), 'status': 'fa fa-check text-success'};
-            $scope.proccessLicence = false;
-        }, function (error) {
-            $scope.loading = false;
-            alertify.alertError($scope._t('error_no_capabilities'));
-            $scope.proccessUpdate = {'message': $scope._t('error_no_capabilities'), 'status': 'fa fa-exclamation-triangle text-danger'};
-            $scope.proccessLicence = false;
-        });
-    }
-    ;
 });
 /**
  * The controller that handles firmware update process.
  * @class ManagementFirmwareController
  */
-myAppController.controller('ManagementFirmwareController', function ($scope, $sce, $timeout, dataFactory) {
+myAppController.controller('ManagementFirmwareController', function ($scope, $sce, $timeout, dataFactory, dataService) {
     $scope.firmwareUpdateUrl = $sce.trustAsResourceUrl('http://' + $scope.hostName + ':8084/cgi-bin/main.cgi');
     $scope.firmwareUpdate = {
         show: false,
@@ -628,9 +687,55 @@ myAppController.controller('ManagementFirmwareController', function ($scope, $sc
         });
     };
     //$scope.loadRazLatest();
+
+    /**
+     * update device database
+     */
+    $scope.updateDeviceDatabase = function() {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        var success = [];
+        var failed = [];
+        var count = 0;
+        dataFactory.getApi('update_device_database').then(function(response) {
+            $scope.loading = false;
+            if(response.data !== "" && !_.isEmpty(response.data)) {
+                count = response.data.length;
+                _.each(response.data, function(lang) {
+                   if(lang[Object.keys(lang)[0]]) {
+                       success.push(Object.keys(lang)[0]);
+                   } else {
+                       failed.push(Object.keys(lang)[0]);
+                   }
+               });
+
+               if(failed.length == 0) {
+                   // update device database successfull
+                   dataService.showNotifier({message: $scope._t('success_updated')});
+               } else {
+                   // check if all failed
+                   if(failed.length !== 0 && failed.length === count && success.length === 0) {
+                       alertify.alertWarning($scope._t('update_device_database_failed'));
+                   } else {
+                       strSuccess = success.join(', ');
+                       strFailed = failed.join(', ');
+                       alertify.alertWarning($scope._t('update_device_database_failed_for', {
+                           __success__: strSuccess,
+                           __failed__: strFailed
+                       }));
+                   }
+               }
+            } else {
+                alertify.alertError($scope._t('error_load_data')); // error update device database
+            }
+        }, function(error) {
+            $scope.loading = false;
+            alertify.alertError($scope._t('error_load_data')); // error update device database
+            alertify.dismissAll();
+        });
+    };
 });
 /**
- * The controller that handles a backup to the cloud.
+ * The controller that handles a timezone.
  * @class ManagementTimezoneController
  */
 myAppController.controller('ManagementTimezoneController', function ($scope, $timeout, dataFactory, dataService) {
@@ -666,26 +771,26 @@ myAppController.controller('ManagementTimezoneController', function ($scope, $ti
         if (input.id) {
             dataFactory.putApi('instances', input.id, input).then(function (response) {
                 alertify.confirm($scope._t('timezone_alert'))
-                        .setting('labels', {'ok': $scope._t('yes'),'cancel': $scope._t('lb_cancel')})
-                        .set('onok', function (closeEvent) {//after clicking OK
-                                $scope.systemReboot();
-                        });
+                    .setting('labels', {'ok': $scope._t('yes'),'cancel': $scope._t('lb_cancel')})
+                    .set('onok', function (closeEvent) {//after clicking OK
+                        $scope.systemReboot();
+                    });
 
             }, function (error) {
                 alertify.alertError($scope._t('error_update_data'));
             });
         }
     };
-    
-     /**
+
+    /**
      * System rebboot
      */
     $scope.systemReboot = function () {
-         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('system_rebooting')};
-            dataFactory.getApi('system_reboot').then(function (response) {
-            }, function (error) {
-                alertify.alertError($scope._t('error_system_reboot'));
-            });
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('system_rebooting')};
+        dataFactory.getApi('system_reboot').then(function (response) {
+        }, function (error) {
+            alertify.alertError($scope._t('error_system_reboot'));
+        });
 
     };
 
@@ -838,13 +943,13 @@ myAppController.controller('ManagementAppStoreController', function ($scope, dat
  * The controller that handles bug report info.
  * @class ManagementReportController
  */
-myAppController.controller('ManagementReportController', function ($scope, $window, $route, dataFactory, dataService) {
+myAppController.controller('ManagementReportController', function ($scope, $window, $route, cfg,dataFactory, dataService) {
     $scope.remoteAccess = false;
     $scope.input = {
         browser_agent: '',
         browser_version: '',
         browser_info: '',
-        shui_version: '',
+        shui_version: cfg.app_version,
         zwave_vesion: '',
         controller_info: '',
         remote_id: '',
@@ -852,8 +957,16 @@ myAppController.controller('ManagementReportController', function ($scope, $wind
         remote_support_activated: 0,
         zwave_binding: 0,
         email: null,
-        content: null
+        content: null,
+        app_name:  cfg.app_name,
+        app_version: cfg.app_version,
+        app_id: cfg.app_id,
+        app_type: cfg.app_type,
+        app_built_date: '',
+        app_built_timestamp: ''
     };
+
+
     /**
      * Load Remote access data
      */
@@ -881,6 +994,10 @@ myAppController.controller('ManagementReportController', function ($scope, $wind
             input.zwave_vesion = $scope.ZwaveApiData.controller.data.softwareRevisionVersion.value;
             input.controller_info = JSON.stringify($scope.ZwaveApiData.controller.data);
         }
+        if ($scope.builtInfo) {
+            input.app_built_date = $scope.builtInfo.built;
+            input.app_built_timestamp =  $scope.builtInfo.timestamp;
+        }
         if (Object.keys($scope.remoteAccess).length > 0) {
             input.remote_activated = $scope.remoteAccess.params.actStatus ? 1 : 0;
             input.remote_support_activated = $scope.remoteAccess.params.sshStatus ? 1 : 0;
@@ -890,7 +1007,6 @@ myAppController.controller('ManagementReportController', function ($scope, $wind
         input.browser_agent = $window.navigator.appCodeName;
         input.browser_version = $window.navigator.appVersion;
         input.browser_info = 'PLATFORM: ' + $window.navigator.platform + '\nUSER-AGENT: ' + $window.navigator.userAgent;
-        input.shui_version = $scope.cfg.app_version;
         dataFactory.postReport(input).then(function (response) {
             $scope.loading = false;
             dataService.showNotifier({message: $scope._t('success_send_report') + ' ' + input.email});
@@ -899,9 +1015,7 @@ myAppController.controller('ManagementReportController', function ($scope, $wind
             alertify.alertError($scope._t('error_send_report'));
             $scope.loading = false;
         });
-
     };
-
 });
 /**
  * The controller that renders postfix data.
@@ -937,4 +1051,201 @@ myAppController.controller('ManagementPostfixController', function ($scope, data
  */
 myAppController.controller('ManagementInfoController', function ($scope, dataFactory, dataService) {
 
+});
+/**
+ * The controller that handles a backup to the cloud.
+ * @class ManagementCloudBackupController
+ */
+myAppController.controller('ManagementCloudBackupController', function ($scope, $timeout, $q, cfg, $window, dataFactory, dataService) {
+    $scope.managementCloud = {
+        alert: {message: false, status: 'is-hidden', icon: false},
+        show: false,
+        module:[],
+        instance: {},
+        process: false,
+        email: "",
+        service_status: ""
+    };
+    /**
+     * Load all promises
+     */
+    $scope.allCloudSettled = function () {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        var promises = [
+            dataFactory.getApi('instances', '/CloudBackup', true),
+            dataFactory.getApi('modules', '/CloudBackup'),
+            dataFactory.getApi('profiles', '/' +  $scope.user.id, true)
+        ];
+
+        $q.allSettled(promises).then(function (response) {
+            $scope.loading = false;
+            var instance = response[0];
+            var module = response[1];
+            var profile = response[2];
+
+            var message = "";
+
+            if(profile.value.data.data.email === '') {
+                $scope.managementCloud.alert = {message: $scope._t('email_not_set'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                return;
+            } else {
+                $scope.managementCloud.email = profile.value.data.data.email;
+            }
+
+            // Error message
+            if (instance.state === 'rejected') {
+                return;
+            }
+
+            if (module.state === 'rejected') {
+                return;
+            }
+
+            // Success - api data
+            if (instance.state === 'fulfilled') {
+                if (!instance.value.data.data[0].active) {
+                    $scope.managementCloud.alert = {message: $scope._t('cloud_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                } else {
+                    $scope.managementCloud.alert = false;
+                }
+
+                $scope.managementCloud.instance = instance.value.data.data[0];
+
+                if(!$scope.managementCloud.instance.params.service_status) {
+                    $scope.managementCloud.service_status = false;
+                    $scope.managementCloud.alert = {message: $scope._t('service_not_available', {__service__: "CloudBackup"}), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                } else {
+                    $scope.managementCloud.service_status = true;
+                    $scope.managementCloud.alert = false;
+                }
+                $scope.managementCloud.show = true;
+            }
+            // Success - module
+            if (module.state === 'fulfilled') {
+                // Module
+                $scope.managementCloud.module = module.value.data.data;
+            }
+        });
+    };
+    $scope.allCloudSettled();
+
+    /**
+     * Set scheduler type
+     */
+    $scope.setSchedulerType = function (type) {
+        $scope.managementCloud.instance.params.scheduler = type;
+    };
+
+
+    /**
+     * Start backup and get backup.file
+     */
+    $scope.downLoadBackup = function() {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        dataFactory.getRemoteData(cfg.server_url + cfg.api.backup).then(function(response) {
+            $scope.loading = false;
+            var headers = response.headers(),
+                filenameRegex = /.*filename=([\'\"]?)([^\"]+)\1/,
+                matches = filenameRegex.exec(headers['content-disposition']),
+                file = new Blob([JSON.stringify(response.data)], {type: 'application/json'}),
+                fileURL = URL.createObjectURL(file),
+                a = document.createElement('a');
+
+            a.href = fileURL;
+            a.target = '_blank';
+            a.download = matches[2];
+            document.body.appendChild(a);
+            a.click();
+        }, function(error) {
+            alertify.alertError($scope._t('error_backup'));
+            $scope.loading = false;
+        });
+    };
+
+    /**
+     * Start cloud backup
+     */
+    $scope.manualCloudBackup = function() {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        dataFactory.getApi('cloudbackup').then(function(response) {
+            dataService.showNotifier({message: $scope._t('success_backup')});
+            $scope.loading = false;
+        }, function(error) {
+            dataService.showNotifier({message: $scope._t('error_backup'), type: 'error'});
+            $scope.loading = false;
+        });
+    };
+
+    /**
+     * Activate cloud backup
+     */
+    $scope.activateCloudBackup = function (input, activeStatus) {
+
+        if(_.isEmpty(input)) {
+            $scope.createInstance();
+        } else {
+            input.active = activeStatus;
+            input.params.email = $scope.managementCloud.email;
+            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+            if (input.id) {
+                dataFactory.putApi('instances', input.id, input).then(function (response) {
+                    dataService.showNotifier({message: $scope._t('success_updated')});
+                    $scope.loading = false;
+                    $scope.allCloudSettled();
+                }, function (error) {
+                    alertify.alertError($scope._t('error_update_data'));
+                    alertify.dismissAll();
+                    $scope.loading = false;
+                });
+            }
+        }
+    };
+
+    /**
+     * Update instance
+     */
+    $scope.updateInstance = function (form, input) {
+        if (form.$invalid) {
+            return;
+        }
+        input.params.email = $scope.managementCloud.email;
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        if (input.id) {
+            dataFactory.putApi('instances', input.id, input).then(function (response) {
+                dataService.showNotifier({message: $scope._t('success_updated')});
+                $scope.loading = false;
+                $scope.allCloudSettled();
+            }, function (error) {
+                alertify.alertError($scope._t('error_update_data'));
+                alertify.dismissAll();
+                $scope.loading = false;
+            });
+        }
+    };
+
+    /**
+     * Create instance
+     */
+    $scope.createInstance = function() {
+        var inputData = {
+            "instanceId":"0",
+            "moduleId":"CloudBackup",
+            "active":"true",
+            "title":"CloudBackup",
+            "params":{
+                "email": $scope.managementCloud.email
+            }
+        };
+
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        dataFactory.postApi('instances', inputData).then(function (response) {
+            $scope.loading = false
+            dataService.showNotifier({message: $scope._t('reloading_page')});
+            $window.location.reload();
+        }, function (error) {
+            alertify.alertError($scope._t('error_update_data'));
+            alertify.dismissAll();
+            $scope.loading = false;
+        });
+    }
 });

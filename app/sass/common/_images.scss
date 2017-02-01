@@ -1,4 +1,4 @@
-/* Images
+/* Images dimensions
 -------------------------------------------------- */
 img {
     vertical-align: middle;
@@ -89,4 +89,14 @@ img {
     opacity: 0.5;
     filter: alpha(opacity=50);
 
+}
+
+.imglist-img{
+    max-width: $imglist-img;
+    max-height:$imglist-img;
+}
+
+.imglist-img-preview{
+    max-width: $imglist-img-preview;
+    max-height:$imglist-img-preview;
 }

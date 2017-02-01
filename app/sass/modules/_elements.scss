@@ -271,14 +271,15 @@ img.widget-promo-image {
         text-align: center;
         cursor: pointer;
     }
-    #wheel_picker_preview{
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        margin: 0 0 20px 0;
-        height: 40px;
-        line-height: 35px;
-        #wheel_picker_preview_spin{
-            background-color: #fff;
-        }
+    #wheel_picker_selected,#wheel_picker_preview{
+        /*border: 1px solid #ccc;
+        border-radius: 4px;*/
+        margin: 0;
+        height: 80px;
+        line-height: 80px;
+
     }
+    /*#wheel_picker_selected_spin{
+        background-color: #fff;
+    }*/
 }

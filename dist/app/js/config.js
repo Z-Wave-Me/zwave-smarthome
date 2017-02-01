@@ -1,3 +1,4 @@
+/* Copyright:  Z-Wave Europe GmbH, Created: 01-02-2017 10:06:13 */
 /**
  * @overview The main configuration file.
  * @author Martin Vach
@@ -12,18 +13,24 @@ var config_data = {
         //Application name
         'app_name': 'SmartHome UI ',
         // Application version
-        'app_version': '1.5.0',
+        'app_version': '1.6.0',
+        // Application ID
+        'app_id': 'SmartHomeUI',
         // Server base url
         'server_url': '/',
         //'server_url': 'http://192.168.10.119:8083/',
         // Interval in miliseconds to refresh data
         'interval': 3000,
-        // Displays a connection error After reaching the limit
-        'pending_requests_limit': 10,
+        // Displays a connection error After reaching the limit (milisecons)
+        'pending_timeout_limit': 10000,
+        /// Set to > 0 (milisecons) to simulate latency for http Calls
+        'latency_timeout': 0,
         // Route - will be extended
         'route': {
             // Current location
             location: {},
+            // Server name
+            serverName: '',
             // Time zone
             time: {
                 string: false,
@@ -92,14 +99,22 @@ var config_data = {
             'firstaccess': 'ZAutomation/api/v1/system/first-access',
             'factory_default': 'ZAutomation/api/v1/resetToFactoryDefault',
             'postfix': 'ZWaveAPI/Postfix',
-            'timezone': 'ZAutomation/api/v1/system/time/get',
+            'time': 'ZAutomation/api/v1/system/time/get',
             'system_info': 'ZAutomation/api/v1/system/info',
             'system_reboot': 'ZAutomation/api/v1/system/reboot',
             'skins': 'ZAutomation/api/v1/skins',
             'skins_install': 'ZAutomation/api/v1/skins/install',
             'skins_update': 'ZAutomation/api/v1/skins/update',
             'skins_active': 'ZAutomation/api/v1/skins/active',
-            'skins_reset': 'ZAutomation/api/v1/skins/setToDefault'
+            'skins_reset': 'ZAutomation/api/v1/skins/setToDefault',
+            'ping': '/ZAutomation/api/v1/system/time/get',
+            'icons': 'ZAutomation/api/v1/icons',
+            'icons_install': 'ZAutomation/api/v1/icons/install',
+            'customicon': 'ZAutomation/api/v1/devices',
+            'icons_upload': 'ZAutomation/api/v1/icons/upload',
+            'cloudbackup': 'CloudBackupAPI/Backup',
+            'update_device_database': 'ZWaveAPI/ZWaveDeviceInfoUpdate',
+            'app_built_info': 'app/info.json'
         },
         // List of remote api URLs
         'api_remote': {
@@ -182,24 +197,24 @@ var config_data = {
         // Online module rating create url
         'online_module_rating_create_url': 'https://developer.z-wave.me/?uri=api-rating-create',
         // Online skins url
-        'online_skin_url': 'http://hrix.net/developer-console/?uri=api-skins',
+        //'online_skin_url': 'http://developer.z-wave.me/?uri=api-skins',
+        'online_skin_url': 'https://developer.z-wave.me/?uri=api-skins',
         //'online_skin_url': 'http://dev.dev/developer-console/?uri=api-skins',
         // Online icons url
-        'online_icon_url': 'http://hrix.net/developer-console/?uri=api-icons',
+        'online_icon_url': 'https://developer.z-wave.me/?uri=api-icons',
         //'online_icon_url': 'http://dev.dev/developer-console/?uri=api-icons',
         // Online icon preview url
-        'online_icon_preview_url': 'http://hrix.net/developer-console/?uri=api-iconpreview',
+        'online_icon_preview_url': 'https://developer.z-wave.me/?uri=api-iconpreview',
         //'online_icon_preview_url': 'http://dev.dev/developer-console/?uri=api-iconpreview',
         // Online module download url
-        'blacklist_url': 'https://hrix.net/blacklist.json',
         // Post report url
-        'post_report_url': 'https://hrix.net/shuiapi/report/',
+        'post_report_url': 'https://service.z-wave.me/report/index.php',
         // Postpassword url
-        'post_password_request_url': 'https://hrix.net/shuiapi/password/',
+        'post_password_request_url': 'https://service.z-wave.me/password/index.php',
         // Get licence scratch id
-        'get_licence_scratchid': 'https://hrix.net/shuiapi/licence/',
+        'get_licence_scratchid': 'https://service.z-wave.me/license/index.php',
         // Url to get a license key
-        'license_url': 'https://hrix.net/shuiapi/licence/upgrade.php',
+        'license_url': 'https://service.z-wave.me/license/upgrade.php',
         // Raz latest version
         'raz_latest_version_url': 'https://razberry.z-wave.me/z-way/razberry/latest/VERSION',
         // Find z-wave me box
@@ -341,6 +356,8 @@ var config_data = {
                 'updateTimeDESC': '-updateTime'
             },
             instances: {
+                'activeDESC': '-active',
+                'activeASC': 'active',
                 'creationTimeDESC': '-creationTime',
                 'creationTimeASC': 'creationTime',
                 'titleASC': 'title',
@@ -385,6 +402,7 @@ var config_data = {
                 'logo': 'app-logo-default.png',
                 hidden_apps: [
                     'Cron',
+                    'CloudBackup',
                     'BatteryPolling',
                     'CustomUserCode',
                     'CustomUserCodeLoader',
@@ -415,6 +433,7 @@ var config_data = {
                 'logo': 'app-logo-popp.png',
                 'hidden_apps': [
                     'Cron',
+                    'CloudBackup',
                     'CodeDevice',
                     'BatteryPolling',
                     'CustomUserCode',
@@ -445,6 +464,7 @@ var config_data = {
                 'logo': 'app-logo-popp.png',
                 hidden_apps: [
                     'Cron',
+                    'CloudBackup',
                     'BatteryPolling',
                     'CustomUserCode',
                     'CustomUserCodeLoader',
@@ -475,6 +495,7 @@ var config_data = {
                 'logo': 'app-logo-wd.png',
                 'hidden_apps': [
                     'Cron',
+                    'CloudBackup',
                     'BatteryPolling',
                     'CodeDevice',
                     'CustomUserCode',

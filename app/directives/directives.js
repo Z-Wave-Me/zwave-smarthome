@@ -33,6 +33,28 @@ myApp.directive('bbLoader', function () {
 });
 
 /**
+* Displays a spinner
+* @class bbRowSpinner
+*/
+myApp.directive('bbRowSpinner', function () {
+    return {
+        restrict: "E",
+        replace: true,
+        scope: {
+            label: '=',
+            spinner: '=',
+            icon: '='
+        },
+        template: '<span title="{{label}}"><span class="btn-spin">' +
+        '<i class="fa" ng-class="spinner ? \'fa-spinner fa-spin\':icon"></i>' +
+        '</span> ' +
+        '<span class="btn-label" ng-if="label">' +
+        '{{label}}' +
+        '</span></span>'
+    };
+});
+
+/**
  * Displays an alert message within the div
  * @class bbAlert
  */

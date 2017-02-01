@@ -71,6 +71,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
      */
     $scope.allSettled = function (lang) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+
         var promises = [
             dataFactory.getApiLocal('devices.json'),
             dataFactory.loadZwaveApiData(true)
@@ -111,14 +112,32 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
     /**
      * Refresh ZwaveApiData
      */
-    $scope.refreshZwaveApiData = function () {
-        var refresh = function () {
-            dataFactory.refreshZwaveApiData().then(function (response) {
-                updateController(response.data);
-            }, function (error) {
-                return;
-            });
-        };
+    $scope.refreshZwaveApiData = function (maxcnt) {
+        var cnt = 0;
+        if(typeof maxcnt !== 'undefined') {
+            var refresh = function () {
+                cnt++;
+                dataFactory.refreshZwaveApiData().then(function (response) {
+                    updateController(response.data);
+                }, function (error) {
+                    return;
+                });
+
+                if(cnt == maxcnt) {
+                    $interval.cancel($scope.interval.api);
+                    $scope.loading = false;
+                }
+            };
+        } else {
+            var refresh = function () {
+                dataFactory.refreshZwaveApiData().then(function (response) {
+                    updateController(response.data);
+                }, function (error) {
+                    return;
+                });
+            };
+        }
+
         $scope.interval.api = $interval(refresh, $scope.cfg.interval);
     };
 
@@ -152,7 +171,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
      */
     $scope.startStopInclusion = function (process) {
         if (process) {
-            setSecureInclusion($scope.zwaveInclusion.device.secureInclusion);
+            // setSecureInclusion($scope.zwaveInclusion.device.secureInclusion);
             resetInclusion(process, false, 'controller.AddNodeToNetwork(1)');
             $scope.refreshZwaveApiData();
             // If INCLUSION takes a long time and nothing happens display an alert and reset inclusion process
@@ -162,10 +181,9 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
                     alertify.alertWarning($scope._t('error_inclusion_time'));
                     $scope.reloadData();
                 }
-
             }, $scope.zwaveInclusion.cfg.inexTimeout);
         } else {
-            setSecureInclusion(true);
+            // setSecureInclusion(true);
             resetInclusion(false, false, 'controller.AddNodeToNetwork(0)', true);
             $scope.reloadData();
         }
@@ -236,17 +254,12 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
                             $scope.reloadData();
                         });
                         break;
-
                 }
-
                 return;
             }
             checkInterview(includedDevice.nodeId);
-
         };
         $scope.interval.api = $interval(refresh, $scope.zwaveInclusion.cfg.checkInterviewTimeout);
-
-
     };
 
     /**
@@ -257,9 +270,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
         $timeout(function () {
             resetManualConfiguration(false, true);
             $location.path('/zwave/devices/' + nodeId + '/nohistory');
-
         }, 5000);
-
     };
 
     /**
@@ -272,9 +283,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
             $scope.startStopExclusion(true);
         } else {
             $scope.startManualConfiguration($scope.zwaveInclusion.automatedConfiguration.includedDevice.nodeId);
-
         }
-
     };
 
     /**
@@ -295,6 +304,18 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
         });
     };
 
+    /**
+     * Set inclusion as Secure/Unsecure.
+     * state=true Set as secure.
+     * state=false Set as unsecure.
+     * @param {string} cmd
+     */
+    $scope.setSecureInclusion = function (cmd) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        $scope.runZwaveCmd(cmd);
+        $scope.refreshZwaveApiData(1);
+    };
+
     /// --- Private functions --- ///
 
     /**
@@ -312,8 +333,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
      */
     function setSecureInclusion(status) {
         $scope.runZwaveCmd('controller.data.secureInclusion=' + status);
-    }
-    ;
+    };
 
     /**
      * Set ZWave API Data
@@ -321,8 +341,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
     function setZWaveAPIData(ZWaveAPIData) {
         $scope.zwaveInclusion.controller.controllerState = ZWaveAPIData.controller.data.controllerState.value;
         $scope.zwaveInclusion.controller.secureInclusion = ZWaveAPIData.controller.data.secureInclusion.value;
-    }
-    ;
+    };
 
     /**
      * Update controller data

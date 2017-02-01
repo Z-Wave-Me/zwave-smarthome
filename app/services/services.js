@@ -10,8 +10,58 @@ var myAppService = angular.module('myAppService', []);
  * Angular module initialization
  * @class dataService
  */
-myAppService.service('dataService', function ($filter, $log, $cookies, $window, cfg, cfgicons, _) {
+myAppService.service('dataService', function ($filter, $log, $cookies, $window, $location,cfg, cfgicons, _) {
     /// --- Public functions --- ///
+    /**
+     * Resets the fatal error object
+     * @param {object} notifier
+     * @returns {undefined}
+     */
+    this.resetFatalError = function () {
+        if (cfg.route.fatalError.message && !cfg.route.fatalError.permanent) {
+            angular.extend(cfg.route.fatalError, {
+                type: 'system',// system|network
+                message: false,
+                info: false,
+                permanent: false, // Permanently displayed
+                hide: false, // Hide page content
+                icon: 'fa-exclamation-triangle',
+                icon_jamesbox: 'fa-spinner fa-spin'
+            });
+        }
+    };
+
+    /**
+     * Check if access is allowed for the page
+     * @param {object} next
+     * @returns {undefined}
+     */
+    this.isAccessAllowed = function (next) {
+        if (next.requireLogin) {
+            var user = this.getUser();
+            if (!user) {
+                $location.path('/');
+                return;
+            }
+            if (next.roles && angular.isArray(next.roles)) {
+                if (next.roles.indexOf(user.role) === -1) {
+                    $location.path('/error403');
+                    return;
+                }
+            }
+        }
+    };
+
+    /**
+     * Set timestamp and ping server if request fails
+     * @param {object} next
+     * @returns {undefined}
+     */
+    this.setTimeStamp = function () {
+       /* dataFactory.getApi('timezone', null, true).then(function (response) {
+
+        }, function (error) {});*/
+    };
 
     /**
      * Get a language string by key
@@ -54,8 +104,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @returns {String}
      */
     this.getOs = function () {
-        if (navigator && navigator.userAgent && navigator.userAgent != null)
-        {
+        if (navigator && navigator.userAgent && navigator.userAgent != null) {
             var agents = ['android', 'iemobile', 'iphone', 'ipad', 'ipod', 'opera mini', 'blackberry'];
             var ua = navigator.userAgent.toLowerCase();
             for (var i in agents) {
@@ -212,7 +261,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
     };
 
     /**
-     * Build a new file name without invalid chars 
+     * Build a new file name without invalid chars
      * @param {string} fileName
      * @returns {string}
      */
@@ -240,66 +289,70 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @param {boolean} showHidden
      * @returns {unresolved}
      */
-    this.getDevicesData = function (data, showHidden,showAll) {
+    this.getDevicesData = function (data, showHidden, showAll) {
         var user = this.getUser();
         return _.chain(data)
-                .flatten()
-                .uniq(false, function (v) {
-                    return v.id;
-                })
-                .reject(function (v) {
-                    if (showAll) {
-                        return (v.deviceType === 'battery');
-                    } else if (showHidden) {
-                        return (v.deviceType === 'battery') || (v.permanently_hidden === true);
-                    }else {
-                        return (v.deviceType === 'battery') || (v.permanently_hidden === true) || (v.visibility === false);
-                    }
+            .flatten()
+            .uniq(false, function (v) {
+                return v.id;
+            })
+            .reject(function (v) {
+                if (showAll) {
+                    return (v.deviceType === 'battery');
+                } else if (showHidden) {
+                    return (v.deviceType === 'battery') || (v.permanently_hidden === true);
+                } else {
+                    return (v.deviceType === 'battery') || (v.permanently_hidden === true) || (v.visibility === false);
+                }
 
-                })
-                .filter(function (v) {
-                    var minMax;
-                    var yesterday = (Math.round(new Date().getTime() / 1000)) - (24 * 3600);
-                    var isNew = v.creationTime > yesterday ? true : false;
-                    // Create min/max value
-                    if(cfg.knob_255.indexOf(v.probeType) > -1){
-                        minMax = {min: 0, max: 255, step: 1 };
-                    } else if (v.deviceType === 'thermostat') {
-                        minMax = (v.metrics.scaleTitle === '°F' ? {min: 41, max: 104, step: 1} : {min: 5, max: 40, step: 0.5 });
-                    } else {
-                        minMax = {min: 0, max: 99, step: 1};
-                    }
-                    // Limit min/max with device metrics
-                    if (typeof(v.metrics.max) !== 'undefined') {
-                        minMax.max = v.metrics.max;
-                    }
-                    if (typeof(v.metrics.min) !== 'undefined') {
-                        minMax.min = v.metrics.min;
-                    }
-                    if (typeof(v.metrics.step) !== 'undefined') {
-                        minMax.step = v.metrics.step;
-                    }
-                    angular.extend(v,
-                            {onDashboard: (user.dashboard.indexOf(v.id) !== -1 ? true : false)},
-                            {creatorId: _.isString(v.creatorId) ? v.creatorId.replace(/[^0-9]/g, '') : v.creatorId},
-                            {minMax: minMax},
-                            {hasHistory: (v.hasHistory === true ? true : false)},
-                            {imgTrans: false},
-                            {isNew: isNew},
-                            {iconPath: assignElementIcon(v)},
-                            {updateCmd: (v.deviceType === 'switchControl' ? 'on' : 'update')}
-                    );
-                    if (v.metrics.color) {
-                        angular.extend(v.metrics, {rgbColors: 'rgb(' + v.metrics.color.r + ',' + v.metrics.color.g + ',' + v.metrics.color.b + ')'});
-                    }
-                    if (v.metrics.level) {
-                        angular.extend(v.metrics, {level: $filter('numberFixedLen')(v.metrics.level)});
-                    }
-                    if (v.metrics.scaleTitle) {
-                        angular.extend(v.metrics, {scaleTitle: getLangLine(v.metrics.scaleTitle)});
-                    }
-                    return v;
-                });
+            })
+            .filter(function (v) {
+                var minMax;
+                var yesterday = (Math.round(new Date().getTime() / 1000)) - (24 * 3600);
+                var isNew = v.creationTime > yesterday ? true : false;
+                // Create min/max value
+                if (cfg.knob_255.indexOf(v.probeType) > -1) {
+                    minMax = {min: 0, max: 255, step: 1};
+                } else if (v.deviceType === 'thermostat') {
+                    minMax = (v.metrics.scaleTitle === '°F' ? {min: 41, max: 104, step: 1} : {
+                        min: 5,
+                        max: 40,
+                        step: 0.5
+                    });
+                } else {
+                    minMax = {min: 0, max: 99, step: 1};
+                }
+                // Limit min/max with device metrics
+                if (typeof(v.metrics.max) !== 'undefined') {
+                    minMax.max = v.metrics.max;
+                }
+                if (typeof(v.metrics.min) !== 'undefined') {
+                    minMax.min = v.metrics.min;
+                }
+                if (typeof(v.metrics.step) !== 'undefined') {
+                    minMax.step = v.metrics.step;
+                }
+                angular.extend(v,
+                    {onDashboard: (user.dashboard.indexOf(v.id) !== -1 ? true : false)},
+                    {creatorId: _.isString(v.creatorId) ? v.creatorId.replace(/[^0-9]/g, '') : v.creatorId},
+                    {minMax: minMax},
+                    {hasHistory: (v.hasHistory === true ? true : false)},
+                    {imgTrans: false},
+                    {isNew: isNew},
+                    {iconPath: assignElementIcon(v)},
+                    {updateCmd: (v.deviceType === 'switchControl' ? 'on' : 'update')}
+                );
+                if (v.metrics.color) {
+                    angular.extend(v.metrics, {rgbColors: 'rgb(' + v.metrics.color.r + ',' + v.metrics.color.g + ',' + v.metrics.color.b + ')'});
+                }
+                if (v.metrics.level) {
+                    angular.extend(v.metrics, {level: $filter('numberFixedLen')(v.metrics.level)});
+                }
+                if (v.metrics.scaleTitle) {
+                    angular.extend(v.metrics, {scaleTitle: getLangLine(v.metrics.scaleTitle)});
+                }
+                return v;
+            });
     };
 
     /**
@@ -316,8 +369,8 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
         };
         var iconKey = $filter('hasNode')(element, 'metrics.icon');
         // Set custom icons
-        if (element.custom_icons && _.size(element.custom_icons) > 0) {
-            icons.custom = element.custom_icons;
+        if (_.size(element.customIcons) > 0) {
+            icons.custom = (element.customIcons.level ?element.customIcons.level : element.customIcons);
         }
         // Set default icons by metrics.icon
         if (iconKey && iconKey !== '') {
@@ -332,6 +385,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
             } else {
                 if (cfgicons.element.icon[iconKey]) {
                     icons.default = setDefaultIcon(cfgicons.element.icon[iconKey]);
+                    //console.log(icons.default)
                 }
 
             }
@@ -346,11 +400,16 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
 
         // Build an object with default icons
         function setDefaultIcon(obj) {
+            var ret = {};
             // Has level icons?
             if (obj.level) {
                 return obj.level;
+                /*ret['level'] = obj.level;
+                return ret;*/
             }
             return obj;
+
+
         }
         ;
         return icons;
@@ -363,20 +422,20 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @returns {unresolved}
      */
     this.getRooms = function (data) {
-        return  _.chain(data)
-                .flatten()
-                .filter(function (v) {
-                    v.title = (v.id === 0 ? getLangLine(v.title) : v.title);
-                    v.img_src = 'storage/img/placeholder-img.png';
-                    if (v.id === 0) {
-                        v.img_src = 'storage/img/rooms/unassigned.png';
-                    } else if (v.img_type === 'default' && v.default_img) {
-                        v.img_src = 'storage/img/rooms/' + v.default_img;
-                    } else if (v.img_type === 'user' && v.user_img) {
-                        v.img_src = cfg.server_url + cfg.api_url + 'load/image/' + v.user_img;
-                    }
-                    return v;
-                });
+        return _.chain(data)
+            .flatten()
+            .filter(function (v) {
+                v.title = (v.id === 0 ? getLangLine(v.title) : v.title);
+                v.img_src = 'storage/img/placeholder-img.png';
+                if (v.id === 0) {
+                    v.img_src = 'storage/img/rooms/unassigned.png';
+                } else if (v.img_type === 'default' && v.default_img) {
+                    v.img_src = 'storage/img/rooms/' + v.default_img;
+                } else if (v.img_type === 'user' && v.user_img) {
+                    v.img_src = cfg.server_url + cfg.api_url + 'load/image/' + v.user_img;
+                }
+                return v;
+            });
 
     };
 
@@ -386,47 +445,47 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @returns {unresolved}
      */
     this.getLocalSkins = function (data) {
-        return  _.chain(data)
-                .flatten()
-                .filter(function (v) {
-                    // Set icon path
-                    var screenshotPath = v.name !== 'default' ? cfg.skin.path + v.name + '/' : cfg.img.skin_screenshot;
-                    v.icon = (!v.icon ? 'storage/img/placeholder-img.png' : screenshotPath + 'screenshot.png');
-                    return v;
-                });
+        return _.chain(data)
+            .flatten()
+            .filter(function (v) {
+                // Set icon path
+                var screenshotPath = v.name !== 'default' ? cfg.skin.path + v.name + '/' : cfg.img.skin_screenshot;
+                v.icon = (!v.icon ? 'storage/img/placeholder-img.png' : screenshotPath + 'screenshot.png');
+                return v;
+            });
     };
-    
+
     /**
      * Get zwave products - filtered data from devices dataholder
      * @param {object} data
      * @returns {unresolved}
      */
-    this.getZwaveProducts = function (data,lang) {
-         lang = cfg.zwaveproducts_langs.indexOf(lang) > -1 ? lang.toUpperCase() : cfg.lang.toUpperCase();
-        return  _.chain(data)
-                .flatten()
-                .map(function (v) {
-                        return {
-                            id: v.certification_ID,
-                            name: v.Name,
-                            productcode: v.product_code,
-                            wake: v['wake_' + lang] || v['wake_EN'],
-                            inc: v['inc_' + lang] || v['inc_EN'],
-                            exc: v['exc_' + lang] || v['exc_EN'],
-                            brandname: v.brandname,
-                            brandid: v.brandid,
-                            brand_image: (v.brandname_image ? cfg.img.zwavevendors + v.brandname_image : false),
-                            product_image: (v.certification_ID ? cfg.img.zwavedevices + v.certification_ID + '.png' : false),
-                            prep: v['prep_' + lang] || v['prep_EN'],
-                            inclusion_type: (v.inc_type === 'secure' ? v.inc_type : 'unsecure'),
-                            zwplus: v.zwplus,
-                            frequencyid: v.frequencyid,
-                            frequency: v.frequency,
-                            ignore_ui: v.ignore_ui,
-                            reset: v['ResetDescription_' + lang] || v['ResetDescription_EN']
+    this.getZwaveProducts = function (data, lang) {
+        lang = cfg.zwaveproducts_langs.indexOf(lang) > -1 ? lang.toUpperCase() : cfg.lang.toUpperCase();
+        return _.chain(data)
+            .flatten()
+            .map(function (v) {
+                return {
+                    id: v.certification_ID,
+                    name: v.Name,
+                    productcode: v.product_code,
+                    wake: v['wake_' + lang] || v['wake_EN'],
+                    inc: v['inc_' + lang] || v['inc_EN'],
+                    exc: v['exc_' + lang] || v['exc_EN'],
+                    brandname: v.brandname,
+                    brandid: v.brandid,
+                    brand_image: (v.brandname_image ? cfg.img.zwavevendors + v.brandname_image : false),
+                    product_image: (v.certification_ID ? cfg.img.zwavedevices + v.certification_ID + '.png' : false),
+                    prep: v['prep_' + lang] || v['prep_EN'],
+                    inclusion_type: (v.inc_type === 'secure' ? v.inc_type : 'unsecure'),
+                    zwplus: v.zwplus,
+                    frequencyid: v.frequencyid,
+                    frequency: v.frequency,
+                    ignore_ui: v.ignore_ui,
+                    reset: v['ResetDescription_' + lang] || v['ResetDescription_EN']
 
-                        };
-                    });
+                };
+            });
     };
 
     /**
@@ -443,12 +502,12 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
         var out = {
             labels: [],
             datasets: [{
-                    fillColor: colors.fillColor,
-                    strokeColor: colors.strokeColor,
-                    pointColor: colors.pointColor,
-                    pointStrokeColor: colors.pointStrokeColor,
-                    data: []
-                }]
+                fillColor: colors.fillColor,
+                strokeColor: colors.strokeColor,
+                pointColor: colors.pointColor,
+                pointStrokeColor: colors.pointStrokeColor,
+                data: []
+            }]
         };
         var cnt = 0;
         angular.forEach(data, function (v, k) {
@@ -491,7 +550,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
     };
 
     /**
-     * 
+     *
      * @param {object} data
      * @param {string} key
      * @param {boolean} add
@@ -553,7 +612,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
             return 'error';
         }
         v1 = v1.toString().split('.'),
-                v2 = v2.toString().split('.');
+            v2 = v2.toString().split('.');
 
         for (var i = 0; i < v1.length; i++) {
             if ((parseInt(v1[i], 10) < parseInt(v2[i], 10)) || ((parseInt(v1[i], 10) <= parseInt(v2[i], 10)) && (!v1[i + 1] && v2[i + 1] && parseInt(v2[i + 1], 10) > 0))) {
@@ -571,69 +630,47 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
     function assignElementIcon(element) {
         var icon = cfg.img.icons + 'placeholder.png';
         var iconKey = $filter('hasNode')(element, 'metrics.icon');
-        // Set icons by metrics.icon
-        if (iconKey && iconKey !== '') {
-            // The icon has a full path 
-            if ((/^https?:\/\//.test(iconKey))) {
+        // Assign icon by metrics.icon
+        var iconArray = setIcon(cfgicons.element.icon[iconKey], element.customIcons || {});
+        /**
+         * Set icons by deviceType
+         */
+        switch (element.deviceType) {
+            // switchControl
+            case 'switchControl':
+                //icon = iconArray.default;
+                iconArray = setIcon(cfgicons.element.deviceType['switchControl'], element.customIcons || {});
+                return iconArray.default;
+            // default
+            default:
+                break;
+        }
+        /**
+         * Set icons by metrics.icon
+         */
+        // The icon has a full path
+        if ((/^https?:\/\//.test(iconKey))) {
+            return iconKey;
+        } else if ((/\.(png|gif|jpe?g)$/).test(iconKey)) {
+            if (iconKey.indexOf('/') > -1) {
                 return iconKey;
-            } else if ((/\.(png|gif|jpe?g)$/).test(iconKey)) {
-                if (iconKey.indexOf('/') > -1) {
-                    return iconKey;
-                } else {
-                    return cfg.img.icons + iconKey;
-                }
+            } else {
+                return cfg.img.icons + iconKey;
             }
-            // Assign icon by metrics.icon
-            var iconArray = setIcon(cfgicons.element.icon[iconKey], element.custom_icons);
-            if (!iconArray) {
-                // set default
-                return icon;
-            }
-            switch (iconKey) {
-                // door
-                case 'door':
-                    icon = (element.metrics.level === 'open' || element.metrics.level === 'on' ? iconArray.open : iconArray.closed);
-                    break;
-                    // window
-                case 'window':
-                    if (typeof (element.metrics.level) === 'number') {
-                        if (element.metrics.level === 0) {
-                            icon = iconArray.down;
-                        } else if (element.metrics.level >= 99) {
-                            icon = iconArray.up;
-                        } else {
-                            icon = iconArray.half;
-                        }
-                    } else {
-                        icon = (element.metrics.level === 'open' || element.metrics.level === 'on' ? iconArray.open : iconArray.closed);
-                    }
-                    break;
-                    // switch
-                case 'switch':
-                    icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
-                    break;
-                    // motion
-                case 'motion':
-                    icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
-                    break;
-                 // alarm
-                case 'alarm':
-                    icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
-                    break;
-                 // CO alarm
-                case 'CO_alarm':
-                    icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
-                    break;
-                 // tamper
-                case 'tamper':
-                    icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
-                    break;
-                 // smoke
-                case 'smoke':
-                    icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
-                    break;
-                    // blinds
-                case 'blinds':
+        }
+
+        if (!iconArray) {
+            // set default
+            return icon;
+        }
+        switch (iconKey) {
+            // door
+            case 'door':
+                icon = (element.metrics.level === 'open' || element.metrics.level === 'on' ? iconArray.open : iconArray.closed);
+                break;
+            // window
+            case 'window':
+                if (typeof (element.metrics.level) === 'number') {
                     if (element.metrics.level === 0) {
                         icon = iconArray.down;
                     } else if (element.metrics.level >= 99) {
@@ -641,62 +678,93 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                     } else {
                         icon = iconArray.half;
                     }
-                    break;
-                    // multilevel
-                case 'multilevel':
-                    if (element.metrics.level === 0) {
-                        icon = iconArray.off;
-                    } else if (element.metrics.level >= 99) {
-                        icon = iconArray.on;
-                    } else {
-                        icon = iconArray.half;
-                    }
-                    break;
-                    // default
-                default:
-                    icon = iconArray.default;
-                    break;
-            }
-        }
-        // Set icons by deviceType
-        else {
-            var iconArray = setIcon(cfgicons.element.deviceType[element.deviceType], element.custom_icons);
-            if (!iconArray) {
-                cfg.img.icons + icon;
-            }
-            switch (element.deviceType) {
-                // switchControl
-                case 'switchControl':
-                    icon = iconArray.default;
-                    break;
-                    // default
-                default:
-                    break;
-            }
+                } else {
+                    icon = (element.metrics.level === 'open' || element.metrics.level === 'on' ? iconArray.open : iconArray.closed);
+                }
+                break;
+            // switch
+            case 'switch':
+                icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+                break;
+            // motion
+            case 'motion':
+                icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+                break;
+            // alarm
+            case 'alarm':
+                icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+                break;
+            // CO alarm
+            case 'CO_alarm':
+                icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+                break;
+            // tamper
+            case 'tamper':
+                icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+                break;
+            // smoke
+            case 'smoke':
+                icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+                break;
+            // blinds
+            case 'blinds':
+                if (element.metrics.level === 0) {
+                    icon = iconArray.down;
+                } else if (element.metrics.level >= 99) {
+                    icon = iconArray.up;
+                } else {
+                    icon = iconArray.half;
+                }
+                break;
+            // multilevel
+            case 'multilevel':
+                if (element.metrics.level === 0) {
+                    icon = iconArray.off;
+                } else if (element.metrics.level >= 99) {
+                    icon = iconArray.on;
+                } else {
+                    icon = iconArray.half;
+                }
+                break;
+            // gesture
+            case 'gesture':
+                icon = (iconArray[element.metrics.state] || iconArray['press']);
+                break;
+            // default
+            default:
+                icon = iconArray.default;
+                break;
         }
 
-        // Build an object with icons
-        function setIcon(defaultIcon, customIcon) {
-            // Test
-            //customIcon = {on: 'cat-drunk-icon.png', off: 'cat-fight-icon.png'};
-            // Icon is not defined
-            if (!defaultIcon) {
-                return false;
-            }
-            var obj = {};
-            angular.forEach(defaultIcon.level || defaultIcon, function (v, k) {
-                // If a custom icon exists set it otherwise set a default icon
-                obj[k] = (_.isObject(customIcon) && customIcon[k] ? cfg.img.custom_icons + customIcon[k] : cfg.img.icons + v);
-            });
-            return obj;
-        }
-        ;
-        //console.log(icon); 
+
         return icon;
 
     }
-    ;
+    /**
+     * Build an object with icons
+     * @param {object} defaultIcon
+     * @param {object} customIcon
+     * @returns {*}
+     */
+    function setIcon(defaultIcon, customIcon) {
+        var obj = {};
+        customIcon = customIcon.level || customIcon
+        if (defaultIcon) {
+            // If a custom icon exists set it otherwise set a default icon
+            angular.forEach(defaultIcon.level || defaultIcon, function (v, k) {
+                obj[k] = (customIcon[k] ? cfg.img.custom_icons + customIcon[k] : cfg.img.icons + v);
+            });
+            return obj;
+        } else {
+            // If a custom icon exists set it otherwise set false
+            if(!_.isEmpty(customIcon.default)){
+                obj['default'] = cfg.img.custom_icons + customIcon['default'];
+                return obj;
+            }
+            return false;
+        }
 
+    }
     /**
      * Get a language string by key
      */
@@ -711,6 +779,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
         }
         return setLangLine(line, replacement);
     }
+
     /**
      * Set lang line params
      */
@@ -744,10 +813,9 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                 continue;
             if (typeof obj[i] == 'object') {
                 objects = objects.concat(replaceModuleFormData(obj[i], keys));
-            } else if (~keys.indexOf(i) &&
-                    !angular.isArray(obj[i]) &&
-                    typeof obj[i] === 'string' &&
-                    obj[i].indexOf("function") === 0) {
+            } else if (~keys.indexOf(i) && !angular.isArray(obj[i]) &&
+                typeof obj[i] === 'string' &&
+                obj[i].indexOf("function") === 0) {
                 // overwrite old string with function                
                 // we can only pass a function as string in JSON ==> doing a real function
                 obj[i] = new Function('return ' + obj[i])();
