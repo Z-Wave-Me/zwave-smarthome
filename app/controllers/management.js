@@ -67,7 +67,7 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
         }
         $q.allSettled(promises).then(function (response) {
             var zwave = response[0];
-            var timezone = response[2];
+            var timezone = response[1];
             $scope.loading = false;
             // Success - api data
             if (zwave.state === 'fulfilled') {
