@@ -11,7 +11,7 @@ Marcel Kermer
 
 ## v1.7.0
 #### New features
--
+- Finnish translation for UI #214
 
 #### Changes
 -
