@@ -12503,19 +12503,63 @@ img.widget-promo-image {
   border-width: 4px;
 }
 
+/* Apps local
+-------------------------------------------------- */
+/* line 79, ../sass/modules/_apps.scss */
+.app-entry-local {
+  margin: 0 0 40px 0;
+}
+/* line 81, ../sass/modules/_apps.scss */
+.app-entry-local h2 {
+  padding: 0 0 10px 0;
+  font-size: 150%;
+  color: #404040;
+  font-weight: normal;
+}
+
+/* Apps online
+-------------------------------------------------- */
+/* line 92, ../sass/modules/_apps.scss */
+.app-entry-online {
+  margin: 0 0 40px 0;
+}
+/* line 96, ../sass/modules/_apps.scss */
+.app-entry-online .app-entry-cat {
+  margin: 40px 0 10px 0;
+}
+/* line 99, ../sass/modules/_apps.scss */
+.app-entry-online .app-entry-cat .app-entry-title {
+  width: 70%;
+  float: left;
+  color: #404040;
+  font-weight: normal;
+}
+/* line 105, ../sass/modules/_apps.scss */
+.app-entry-online .app-entry-cat .app-entry-title h2 {
+  font-size: 150%;
+}
+/* line 110, ../sass/modules/_apps.scss */
+.app-entry-online .app-entry-cat .app-entry-btn {
+  text-align: right;
+  width: 25%;
+  float: right;
+  display: table-cell;
+  vertical-align: bottom;
+}
+
 /* App detail
 -------------------------------------------------- */
-/* line 82, ../sass/modules/_apps.scss */
+/* line 124, ../sass/modules/_apps.scss */
 .app-detail-img {
   margin: 0 0 10px 0;
 }
 
-/* line 86, ../sass/modules/_apps.scss */
+/* line 128, ../sass/modules/_apps.scss */
 .app-detail-body h2 {
   margin: 20px 0 10px 0;
 }
 
-/* line 90, ../sass/modules/_apps.scss */
+/* line 132, ../sass/modules/_apps.scss */
 .app-detail-list {
   border-top: solid 1px #d3d3d3;
   margin: 10px 0 0 0;
@@ -12524,20 +12568,20 @@ img.widget-promo-image {
 
 /* Apps rating
 -------------------------------------------------- */
-/* line 98, ../sass/modules/_apps.scss */
+/* line 140, ../sass/modules/_apps.scss */
 .module-rating {
   font-size: 150%;
   padding: 0 10px 0 0;
   color: #8c8c8c;
 }
-/* line 102, ../sass/modules/_apps.scss */
+/* line 144, ../sass/modules/_apps.scss */
 .module-rating.israted {
   color: #f4c37d;
 }
 
 /* Apps comments
 -------------------------------------------------- */
-/* line 108, ../sass/modules/_apps.scss */
+/* line 150, ../sass/modules/_apps.scss */
 .comment-entry {
   margin: 0 0 10px 0;
   padding: 10px;
@@ -12545,7 +12589,7 @@ img.widget-promo-image {
   color: #0d0d0d;
   font-size: 100%;
 }
-/* line 114, ../sass/modules/_apps.scss */
+/* line 156, ../sass/modules/_apps.scss */
 .comment-entry .comment-header {
   font-style: italic;
   font-size: 95%;
@@ -12553,39 +12597,9 @@ img.widget-promo-image {
   margin: 0 0 5px 0;
 }
 
-/* line 124, ../sass/modules/_apps.scss */
+/* line 166, ../sass/modules/_apps.scss */
 .comment-entry.even {
   background-color: #E9E9E9;
-}
-
-/* Apps online
--------------------------------------------------- */
-/* line 3, ../sass/modules/_apps_online.scss */
-.app-entry-online {
-  margin: 0 0 40px 0;
-}
-/* line 7, ../sass/modules/_apps_online.scss */
-.app-entry-online .app-entry-cat {
-  margin: 40px 0 10px 0;
-}
-/* line 10, ../sass/modules/_apps_online.scss */
-.app-entry-online .app-entry-cat .app-entry-title {
-  width: 70%;
-  float: left;
-  color: #404040;
-  font-weight: normal;
-}
-/* line 16, ../sass/modules/_apps_online.scss */
-.app-entry-online .app-entry-cat .app-entry-title h2 {
-  font-size: 150%;
-}
-/* line 21, ../sass/modules/_apps_online.scss */
-.app-entry-online .app-entry-cat .app-entry-btn {
-  text-align: right;
-  width: 25%;
-  float: right;
-  display: table-cell;
-  vertical-align: bottom;
 }
 
 /* Customize

@@ -58,6 +58,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
         },
         instances: {
             all: {},
+            groups: {},
             cnt: {
                 modules: 0
             },
@@ -126,7 +127,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
             }
             // Success - instances
             if (instances.state === 'fulfilled') {
-                setInstances(instances.value.data.data);
+                setInstancesNew(instances.value.data.data);
             }
 
             // Success - modules
@@ -341,6 +342,47 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
         // Count collection
         $scope.dataHolder.onlineModules.cnt.collection = _.size($scope.dataHolder.onlineModules.all);
         $scope.loading = false;
+    }
+    ;
+
+    /**
+     * Set instances
+     */
+    function setInstancesNew(data) {
+        $scope.dataHolder.instances.cnt.modules = _.countBy(data, function (v) {
+            return v.moduleId;
+        });
+        _.filter(data, function (v) {
+            if(!$scope.dataHolder.instances.groups[v.moduleId]){
+                $scope.dataHolder.instances.groups[v.moduleId] = {
+                    id: v.id,
+                    moduleId: v.moduleId,
+                    title: v.title,
+                    instances: []
+                };
+            }
+        });
+
+        $scope.dataHolder.instances.all = _.chain(data)
+            .flatten()
+            .reject(function (v) {
+            if ($scope.getHiddenApps().indexOf(v.moduleId) > -1) {
+                if ($scope.user.role !== 1) {
+                    return true;
+                } else {
+                    return ($scope.user.expert_view ? false : true);
+                }
+
+            } else {
+                return false;
+            }
+        }).filter(function(v){
+                if($scope.dataHolder.instances.groups[v.moduleId]){
+                    $scope.dataHolder.instances.groups[v.moduleId].instances.push(v);
+                }
+                return v;
+            }).value();
+        console.log($scope.dataHolder.instances)
     }
     ;
     /**
