@@ -239,6 +239,7 @@ input[type=radio] {
         }
     }
 }
+
 .widget-zwave{
      width: $widget-zwave-col-w;
 }
@@ -259,6 +260,45 @@ input[type=radio] {
     /*    .widget-entry-in{
          border: solid 4px $widget-danger-border-color;
         }*/
+}
+
+/* Online widget
+-------------------------------------------------- */
+.app-entry-online{
+    .widget-entry{
+        border: 0;
+        width: 20%;
+        .widget-entry-in{
+            height: 265px;
+            .widget-img{
+                position: static;
+                text-align: center;
+                .widget-preview-img{
+
+                    max-width: 128px;
+                    max-height: 128px;
+                    width: 128px;
+                    height: 128px;
+                }
+            }
+            .widget-content {
+                margin: 20px 0 0 0;
+            }
+            .widget-title {
+               text-align: center;
+            }
+            .widget-ctrl{
+                width: 100%;
+                float: none;
+            }
+            .ctrl-left{
+                text-align: center;
+            }
+            .ctrl-right{
+               margin: 5px 0 0 0;
+            }
+        }
+    }
 }
 /* Elements
 -------------------------------------------------- */

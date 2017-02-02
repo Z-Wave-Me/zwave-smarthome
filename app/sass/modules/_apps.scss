@@ -1,5 +1,8 @@
 /* Apps
 -------------------------------------------------- */
+.app-entry-title{
+
+}
 .widget-entry-app{
     .widget-entry-in{
         min-height: $app-widget-col-h;
@@ -31,13 +34,6 @@
             }
 
         }
-        /*        .widget-ctrl{
-                    float: none;
-                    width: 100%;
-                    &.ctrl-left{
-                        display: none;
-                    }
-                }*/
     }
 
 }

@@ -1,0 +1,30 @@
+/* Apps online
+-------------------------------------------------- */
+.app-entry-online {
+  margin: 0 0 40px 0;
+
+
+  .app-entry-cat {
+    margin: 40px 0 $spacing 0;
+
+    .app-entry-title {
+      width: 70%;
+      float: left;
+
+      color: $accordion-heading-color;
+      font-weight: normal;
+      h2 {
+        font-size: 150%;
+      }
+
+    }
+    .app-entry-btn {
+      text-align: right;
+      width: 25%;
+      float: right;
+      display: table-cell;
+      vertical-align: bottom;
+    }
+  }
+
+}

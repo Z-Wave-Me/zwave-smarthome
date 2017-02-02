@@ -119,9 +119,6 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                 var cat = categories.value.data.data;
                 if (cat) {
                     $scope.dataHolder.modules.categories = cat[$scope.lang] ? _.indexBy(cat[$scope.lang], 'id') : _.indexBy(cat[$scope.cfg.lang], 'id');
-                    angular.forEach($scope.dataHolder.modules.categories,function (v,k) {
-                        angular.extend($scope.dataHolder.modules.categories[k],{onlineModules: []});
-                    });
                 }
             }
             // Success - instances
@@ -252,7 +249,6 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
      * Set online modules
      */
     function setOnlineModules(data) {
-        //console.log($scope.dataHolder.modules.categories)
         // Reset featured cnt
         $scope.dataHolder.onlineModules.cnt.featured = 0;
         var onlineModules = _.chain(data)
@@ -310,19 +306,10 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                     item.installedSort = $filter('zeroFill')(item.installed);
                      //Tooltip description
                      angular.extend(item, {toolTipDescription: $filter('stripTags')(item.description)});
-                    var hasCat = $scope.dataHolder.modules.categories[item.category];
-                    if(hasCat){
-                        $scope.dataHolder.modules.categories[item.category].onlineModules.push(item);
-                        //console.log($scope.dataHolder.modules.categories[item.category].onlineModules);
-                    }
-
-                    //angular.extend($scope.dataHolder.modules.categories[item.category], {onlineModules: []});
-                    //$scope.dataHolder.modules.categories[item.category].onlineModules = [];
                     return item;
                 }).reject(function (v) {
             return v.isHidden === true;
         });
-        console.log($scope.dataHolder.modules.categories)
         // Count apps in categories
         $scope.dataHolder.onlineModules.cnt.appsCat = onlineModules.countBy(function (v) {
             return v.category;
