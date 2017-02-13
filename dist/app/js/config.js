@@ -1,4 +1,4 @@
-/* Copyright:  Z-Wave Europe GmbH, Created: 20-01-2017 15:23:37 */
+/* Copyright:  Z-Wave Europe GmbH, Created: 13-02-2017 13:35:21 */
 /**
  * @overview The main configuration file.
  * @author Martin Vach
@@ -238,7 +238,7 @@ var config_data = {
         // Default language
         'lang': 'en', // !!!!Do not change it
         // List of supported languages
-        'lang_list': ['en', 'de', 'ru', 'cn', 'fr', 'cz', 'sk', 'sv'],
+        'lang_list': ['en', 'de', 'ru', 'cn', 'fr', 'cz', 'sk', 'sv','fi'],
         // List of supported languages in the zwave products
         'zwaveproducts_langs': ['en', 'de'],
         // Role access
@@ -269,7 +269,8 @@ var config_data = {
             'en': 'en_EN',
             'de': 'de_AT',
             'ru': 'en_EN',
-            'fr': 'fr_FR'
+            'fr': 'fr_FR',
+            'fi': 'fi_FI'
         },
         // User default
         'user_default': {
