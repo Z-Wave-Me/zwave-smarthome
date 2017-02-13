@@ -9,6 +9,16 @@ This User Interfaces allows to operate a Smart Home Network based on Z-Wave devi
 ## Project leader
 Marcel Kermer
 
+## v1.7.0
+#### New features
+- Finnish translation for UI #214
+
+#### Changes
+-
+
+#### Fixes
+-
+
 ## v1.6.0
 #### New features
 - Cloud Backup: Gives possibility to upload and store your backups on the remote server.
