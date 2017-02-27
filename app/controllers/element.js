@@ -766,8 +766,30 @@ myAppController.controller('ElementDashboardController', function ($scope, $rout
  * The controller that handles elements in the room.
  * @class ElementRoomController
  */
-myAppController.controller('ElementRoomController', function ($scope, $routeParams, $window, $location, $cookies, $filter, dataFactory, dataService, myCache) {
+myAppController.controller('ElementRoomController', function ($scope, $q, $routeParams, $window, $location, $cookies, $filter, cfg,dataFactory, dataService, myCache) {
+    $scope.room = {};
+
     $scope.dataHolder.devices.filter = {location: parseInt($routeParams.id)};
+
+    $scope.allSettled = function () {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        var promises = [
+            dataFactory.getApi('locations', '/' + $routeParams.id)
+        ];
+
+        $q.allSettled(promises).then(function (response) {
+            var location = response[0];
+            console.log(location);
+            $scope.loading = false;
+            // Success - location
+            if (location.state === 'fulfilled') {
+                var locations = [location.value.data.data];
+                $scope.room = dataService.getRooms(locations).value()[0];
+                console.log($scope.room);
+            }
+        });
+    };
+    $scope.allSettled();
 
 });
 

@@ -1157,3 +1157,8 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
     ;
 
 });
+
+myAppController.controller('AppModuleFeaturedController', function ($scope, $routeParams, $route, $filter, $location, $q, dataFactory, dataService, myCache, cfg) {
+
+
+});
