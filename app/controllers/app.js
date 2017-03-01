@@ -1160,5 +1160,106 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
 
 myAppController.controller('AppModuleFeaturedController', function ($scope, $routeParams, $route, $filter, $location, $q, dataFactory, dataService, myCache, cfg) {
 
+    $scope.slider = {
+        direction: 'right',
+        currentIndex: 0,
+        slidesperslide: 5,
+        slides: []
+    };
 
+
+    $scope.allSettled = function (tokens) {
+        var promises = [
+            dataFactory.getOnlineModules({token: _.values(tokens)})
+        ];
+
+        $q.allSettled(promises).then(function (response) {
+            var onlineModules = response[0];
+
+            // Success - online modules
+            if (onlineModules.state === 'fulfilled') {
+                prepareSlides(onlineModules.value.data.data)
+            }
+        });
+    };
+    $scope.allSettled();
+
+    function prepareSlides(data) {
+
+        var slide = [];
+
+        _.each(data, function(item) {
+            if (item.featured == 1) {
+                item.featured = true;
+            } else {
+                item.featured = false;
+            }
+            if(item.featured) {
+                slide.push(item);
+                if(slide.length >= $scope.slider.slidesperslide) {
+                    $scope.slider.slides.push(slide);
+                    slide = [];
+                }
+            }
+        });
+        if(slide.length != 0) {
+            $scope.slider.slides.push(slide);
+        }
+
+        console.log( $scope.slider.slides);
+    };
+
+    $scope.setCurrentSlideIndex = function (index) {
+        $scope.slider.direction = (index > $scope.slider.currentIndex) ? 'left' : 'right';
+        $scope.slider.currentIndex = index;
+    };
+
+    $scope.isCurrentSlideIndex = function (index) {
+        return $scope.slider.currentIndex === index;
+    };
+
+    $scope.prevSlide = function () {
+        $scope.slider.direction = 'left';
+        $scope.currentIndex = ($scope.slider.currentIndex < $scope.slider.slides.length - 1) ? ++$scope.slider.currentIndex : 0;
+    };
+
+    $scope.nextSlide = function () {
+        $scope.slider.direction = 'right';
+        $scope.currentIndex = ($scope.slider.currentIndex > 0) ? --$scope.slider.currentIndex : $scope.slider.slides.length - 1;
+    };
+
+}).animation('.slide-animation', function () {
+    return {
+        beforeAddClass: function (element, className, done) {
+            var scope = element.scope();
+
+            if (className == 'ng-hide') {
+                var finishPoint = element.parent().width();
+                if(scope.direction !== 'right') {
+                    finishPoint = -finishPoint;
+                }
+                TweenMax.to(element, 0.5, {left: finishPoint, onComplete: done });
+            }
+            else {
+                done();
+            }
+        },
+        removeClass: function (element, className, done) {
+            var scope = element.scope();
+
+            if (className == 'ng-hide') {
+                element.removeClass('ng-hide');
+
+                var startPoint = element.parent().width();
+                if(scope.direction === 'right') {
+                    startPoint = -startPoint;
+                }
+
+                TweenMax.fromTo(element, 0.5, { left: startPoint }, {left: 0, onComplete: done });
+            }
+            else {
+                done();
+            }
+        }
+    };
 });
