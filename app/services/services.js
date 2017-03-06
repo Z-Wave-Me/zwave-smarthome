@@ -290,7 +290,8 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @returns {unresolved}
      */
     this.getDevicesData = function (data, showHidden, showAll) {
-        var user = this.getUser();
+        //var user = this.getUser();
+        var user = cfg.user;
         return _.chain(data)
             .flatten()
             .uniq(false, function (v) {

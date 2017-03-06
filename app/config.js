@@ -24,6 +24,8 @@ var config_data = {
         'pending_timeout_limit': 10000,
         /// Set to > 0 (milisecons) to simulate latency for http Calls
         'latency_timeout': 0,
+        // User
+        'user': {},
         // Route - will be extended
         'route': {
             // Current location
@@ -271,15 +273,7 @@ var config_data = {
             'fr': 'fr_FR',
             'fi': 'fi_FI'
         },
-        // User default
-        'user_default': {
-            'id': 1,
-            'role': 1,
-            'color': '#dddddd',
-            'lang': 'en',
-            'interval': 3000,
-            'expert_view': false
-        },
+
         // List of profile colors
         'profile_colors': ['#dddddd', '#6c7a89', '#6494bc', '#80ad80', '#31b0d5', '#f0aD4e', '#d9534f', '#dd976e'],
         // Chart colors

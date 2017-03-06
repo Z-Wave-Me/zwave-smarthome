@@ -775,7 +775,7 @@ myAppController.controller('ElementRoomController', function ($scope, $routePara
  * The controller that handles element detail actions.
  * @class ElementIdController
  */
-myAppController.controller('ElementIdController', function ($scope, $q, $routeParams, $filter, dataFactory, dataService, myCache) {
+myAppController.controller('ElementIdController', function ($scope, $q, $routeParams, $filter, cfg,dataFactory, dataService, myCache) {
     $scope.elementId = {
         show: false,
         appType: {},
@@ -901,7 +901,9 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
         dataFactory.putApi('profiles', profileData.id, profileData).then(function (response) {
             $scope.loading = false;
             dataService.showNotifier({message: $scope._t('success_updated')});
-            dataService.setUser(response.data.data);
+            angular.extend($scope.user, response.data.data);
+            angular.extend(cfg.user, response.data.data);
+            //dataService.setUser(response.data.data);
             myCache.remove('devices');
             myCache.remove('devices/' + deviceId);
             myCache.remove('locations');

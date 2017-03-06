@@ -293,7 +293,9 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         dataFactory.putApi('profiles', profileData.id, profileData).then(function (response) {
             $scope.loading = {status: 'loading-fade', icon: 'fa-check text-success', message: $scope._t('success_updated')};
-            dataService.setUser(response.data.data);
+            angular.extend($scope.user, response.data.data);
+            angular.extend(cfg.user, response.data.data);
+            //dataService.setUser(response.data.data);
             myCache.remove('notifications');
             $scope.input = [];
             $scope.allSettled();
