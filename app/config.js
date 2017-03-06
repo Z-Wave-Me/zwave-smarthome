@@ -10,9 +10,11 @@
 var config_data = {
     'cfg': {
         //Application name
-        'app_name': 'SmartHome UI ',
+        'app_name': '@@app_name',
         // Application version
-        'app_version': '1.6.0',
+        'app_version': '@@app_version',
+        // Application (DIST) built date
+        'app_built': '@@app_built',
         // Application ID
         'app_id': 'SmartHomeUI',
         // Server base url

@@ -1,4 +1,3 @@
-/* Copyright:  Z-Wave Europe GmbH, Created: 01-03-2017 15:49:04 */
 /**
  * @overview The main configuration file.
  * @author Martin Vach
@@ -11,9 +10,11 @@
 var config_data = {
     'cfg': {
         //Application name
-        'app_name': 'SmartHome UI ',
+        'app_name': 'SmartHome UI',
         // Application version
-        'app_version': '1.6.0',
+        'app_version': '1.7.0-RC-2',
+        // Application (DIST) built date
+        'app_built': '06-03-2017 15:25:32',
         // Application ID
         'app_id': 'SmartHomeUI',
         // Server base url
@@ -25,6 +26,8 @@ var config_data = {
         'pending_timeout_limit': 10000,
         /// Set to > 0 (milisecons) to simulate latency for http Calls
         'latency_timeout': 0,
+        // User
+        'user': {},
         // Route - will be extended
         'route': {
             // Current location
@@ -272,15 +275,7 @@ var config_data = {
             'fr': 'fr_FR',
             'fi': 'fi_FI'
         },
-        // User default
-        'user_default': {
-            'id': 1,
-            'role': 1,
-            'color': '#dddddd',
-            'lang': 'en',
-            'interval': 3000,
-            'expert_view': false
-        },
+
         // List of profile colors
         'profile_colors': ['#dddddd', '#6c7a89', '#6494bc', '#80ad80', '#31b0d5', '#f0aD4e', '#d9534f', '#dd976e'],
         // Chart colors
