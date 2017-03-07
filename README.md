@@ -17,7 +17,7 @@ Marcel Kermer
 -
 
 #### Fixes
--
+- Too many icons overflow cookie size #225.
 
 ## v1.6.0
 #### New features

@@ -28,10 +28,10 @@ var appCookies = angular.injector(['ngCookies']).get('$cookies');
 var appUser = false;
 var appHttp = angular.injector(["ng"]).get("$http");
 // Attempt to get user cookie
-if (appCookies.user) {
+/*if (appCookies.user) {
     appUser = angular.fromJson(appCookies.user);
     angular.extend(config_data.cfg.route, {user: appUser});
-}
+}*/
 // Attempt to get lang cookie
 if (appCookies.lang) {
     angular.extend(config_data.cfg.route, {lang: appCookies.lang});
