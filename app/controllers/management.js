@@ -1249,3 +1249,9 @@ myAppController.controller('ManagementCloudBackupController', function ($scope, 
         });
     }
 });
+
+myAppController.controller('ManagementAddMobileDevice', function ($scope, $timeout, $q, cfg, $window, $location, dataFactory, dataService) {
+
+    $scope.qrcode = $scope.user.qrcode;
+
+});

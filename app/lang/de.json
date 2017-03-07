@@ -661,5 +661,7 @@
     "update_device_database_failed_for": "Aktualisierung der Gerätedatenbank war erfolgreich für __success__ aber schlug fehl für __failed__.",
     "service_not_available": "__service__ Dienst nicht verfügbar!",
     "error_backup": "Backup fehlgeschalgen!",
-    "success_backup": "Backup erfolgreich."
+    "success_backup": "Backup erfolgreich.",
+    "add_mobile_device": "Mobiles Gerät hinzufügen",
+    "lb_make_qrcode": "Qrcode erstellen"
 }
