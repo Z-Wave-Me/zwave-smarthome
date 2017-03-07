@@ -261,6 +261,15 @@ module.exports = function (grunt) {
                     indent: 2
                 }
             }
+        },
+        'release-it': {
+            options: {
+                pkgFiles: ['package.json'],
+                commitMessage: 'Release ' + app_cfg.name + ' ' + git_message,
+                tagName: '%s',
+                tagAnnotation: 'Release ' + app_cfg.name + ' ' + git_message,
+                buildCommand: false
+            }
         }
 
     });
@@ -288,6 +297,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-json-generator');
     grunt.loadNpmTasks('grunt-replace');
     grunt.loadNpmTasks('grunt-modify-json');
+    grunt.loadNpmTasks('grunt-release-it');
 
     // Default task(s).
     grunt.registerTask('default', ['clean', 'ngtemplates', 'concat','json_generator', 'copy', 'cssmin', 'skinFolder','iconFolder','usebanner','replace','modify_json']);

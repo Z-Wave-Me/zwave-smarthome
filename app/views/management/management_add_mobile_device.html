@@ -1,0 +1,14 @@
+<!-- Add mobile device -->
+<h2 class="accordion-entry-title" ng-click="expandElement('add_mobile_device')">
+    <i class="fa fa-mobile-phone"></i> <span ng-bind="_t('add_mobile_device')"></span>
+    <i class="fa accordion-arrow" ng-class="expand.appstore  ? 'fa-chevron-up':'fa-chevron-down'"></i>
+</h2>
+<div class="accordion-entry-ctrl" ng-if="expand.add_mobile_device" ng-controller="ManagementAddMobileDevice">
+    <div class="form form-page">
+        <div class="fieldset">
+            <div class="form-group form-inline">
+                <img ng-src="/ZAutomation/api/v1/load/image/{{qrcode}}">
+            </div>
+        </div>
+    </div>
+</div>

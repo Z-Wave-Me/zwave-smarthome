@@ -677,5 +677,7 @@
     "update_device_database_failed_for": "Laitetietokannan päivitetty onnistuneesti __success__ mutta  __failed__ epäonnistui.",
     "service_not_available": "__service__ palvelu ei ole käytettävissä!",
     "error_backup": "Varmuuskopiointi epäonnistui!",
-    "success_backup": "Varmuuskopiointi onnistui."
+    "success_backup": "Varmuuskopiointi onnistui.",
+  "add_mobile_device": "Add mobile device",
+  "lb_make_qrcode": "Make qrcode"
 }
