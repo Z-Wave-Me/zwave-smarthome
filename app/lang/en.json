@@ -309,7 +309,7 @@
     "factory_default_error": "Unable to return the system to Factory Default.",
     "firmware_update": "Firmware update",
     "current_firmware": "The current firmware version is",
-    "update_to_latest": "Update to latest",
+    "update_to_latest": "Open Updater",
     "ui_version": "UI version",
     "continue": "Continue",
     "save_continue": "Save and continue",

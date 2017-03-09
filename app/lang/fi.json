@@ -310,7 +310,7 @@
     "factory_default_error": "Järjestelmän tehdasasetuksia ei voida palauttaa.",
     "firmware_update": "Firmware-päivitys",
     "current_firmware": "Nykyinen firmware-versio on",
-    "update_to_latest": "Päivitä tuoreimpaan",
+  "update_to_latest": "Open Updater",
     "ui_version": "UI-versio",
     "continue": "Jatka",
     "save_continue": "Tallenna ja jatka",
