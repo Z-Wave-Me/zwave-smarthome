@@ -254,7 +254,7 @@
     "factory_default_error": "Impossible de retourner le système aux réglages d'usine.",
     "firmware_update": "Mise à jour du Firmware",
     "current_firmware": "La version du firmware actuel est",
-    "update_to_latest": "Mise à jour vers le plus récent",
+    "update_to_latest": "Open Updater",
     "ui_version": "Version UI",
     "continue": "Continuer",
     "save_continue": "Sauvegarder et continuer",

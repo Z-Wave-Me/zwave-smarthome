@@ -1,4 +1,4 @@
-/* Copyright:  Z-Wave Europe GmbH, Created: 07-03-2017 15:56:43 */
+/* Copyright:  Z-Wave Europe GmbH, Created: 10-03-2017 08:56:00 */
 angular.module('myAppTemplates', []).run(['$templateCache', function($templateCache) {
   'use strict';
 
@@ -407,6 +407,11 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
   );
 
 
+  $templateCache.put('app/views/management/_management_add_mobile_device.html',
+    ""
+  );
+
+
   $templateCache.put('app/views/management/_management_backup.html',
     "<h2 class=accordion-entry-title ng-click=\"expandElement('backup')\"><i class=\"fa fa-download\"></i> <span ng-bind=\"_t('backup')\"></span> <i class=\"fa accordion-arrow\" ng-class=\"expand.backup  ? 'fa-chevron-up':'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-if=expand.backup><div class=\"form form-inline form-page\"><div class=fieldset><p>{{_t('backup_info')}}</p></div><div class=\"fieldset submit-entry\"><a class=\"btn btn-submit\" ng-href=\"{{cfg.server_url + cfg.api.backup}}\" title=\"{{_t('nm_backup_download')}}\"><i class=\"fa fa-download\"></i> <span class=btn-name>{{_t('nm_backup_download')}}</span></a></div></div></div>"
   );
@@ -423,12 +428,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/management/management.html',
-    "<div ng-controller=ManagementController class=mobile-padding><div class=accordion-entry ng-include=\"'app/views/management/management_user.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_remote.html'\"></div><div class=accordion-entry ng-if=handleLicense.show ng-include=\"'app/views/management/management_licence.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_local.html'\" ng-if=\"cfg.app_type === 'jb'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_timezone.html'\" ng-if=\"cfg.app_type === 'jb'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_backup_restore.html'\" ng-if=!isMobile></div><div class=accordion-entry ng-include=\"'app/views/management/management_factory.html'\"></div><div class=accordion-entry ng-if=\"!isMobile && !isInArray(['wd','jb'],cfg.app_type)\" ng-include=\"'app/views/management/management_firmware.html'\"></div><div class=accordion-entry ng-if=\"cfg.app_type === 'jb'\" ng-include=\"'app/views/management/management_firmware_jb.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_appstore.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_report.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_add_mobile_device.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_info.html'\"></div></div>"
-  );
-
-
-  $templateCache.put('app/views/management/management_add_mobile_device.html',
-    "<h2 class=accordion-entry-title ng-click=\"expandElement('add_mobile_device')\"><i class=\"fa fa-mobile-phone\"></i> <span ng-bind=\"_t('add_mobile_device')\"></span> <i class=\"fa accordion-arrow\" ng-class=\"expand.appstore  ? 'fa-chevron-up':'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-if=expand.add_mobile_device ng-controller=ManagementAddMobileDevice><div class=\"form form-page\"><div class=fieldset><div class=\"form-group form-inline\"><img ng-src=/ZAutomation/api/v1/load/image/{{qrcode}}></div></div></div></div>"
+    "<div ng-controller=ManagementController class=mobile-padding><div class=accordion-entry ng-include=\"'app/views/management/management_user.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_remote.html'\"></div><div class=accordion-entry ng-if=handleLicense.show ng-include=\"'app/views/management/management_licence.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_local.html'\" ng-if=\"cfg.app_type === 'jb'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_timezone.html'\" ng-if=\"cfg.app_type === 'jb'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_backup_restore.html'\" ng-if=!isMobile></div><div class=accordion-entry ng-include=\"'app/views/management/management_factory.html'\"></div><div class=accordion-entry ng-if=\"!isMobile && !isInArray(['wd','jb'],cfg.app_type)\" ng-include=\"'app/views/management/management_firmware.html'\"></div><div class=accordion-entry ng-if=\"cfg.app_type === 'jb'\" ng-include=\"'app/views/management/management_firmware_jb.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_appstore.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_report.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_info.html'\"></div></div>"
   );
 
 

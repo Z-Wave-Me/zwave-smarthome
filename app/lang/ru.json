@@ -309,7 +309,7 @@
     "factory_default_error": "Невозможно сбросить систему на Заводские настройки.",
     "firmware_update": "Обновление ПО",
     "current_firmware": "Текущая версия программного обеспечения",
-    "update_to_latest": "Обновить до последней версии",
+    "update_to_latest": "Open Updater",
     "ui_version": "Версия UI",
     "continue": "Продолжить",
     "save_continue": "Сохранить и продолжить",

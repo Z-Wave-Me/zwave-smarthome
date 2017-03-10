@@ -260,7 +260,7 @@
     "factory_default_error": "Misslyckades med att återställa systemet till fabriksinställningarna.",
     "firmware_update": "Uppdatering av Firmware",
     "current_firmware": "Nuvarande firmwareversion är",
-    "update_to_latest": "Updatera till senaste",
+    "update_to_latest": "Open Updater",
     "ui_version": "UI version",
     "continue": "Fortsätt",
     "save_continue": "Spara och fortsätt",
