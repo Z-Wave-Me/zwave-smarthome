@@ -309,7 +309,7 @@
     "factory_default_error": "Unable to return the system to Factory Default.",
     "firmware_update": "Firmware update",
     "current_firmware": "The current firmware version is",
-    "update_to_latest": "Update to latest",
+    "update_to_latest": "Open Updater",
     "ui_version": "UI version",
     "continue": "Continue",
     "save_continue": "Save and continue",
@@ -676,5 +676,7 @@
     "update_device_database_failed_for": "Update device database was successful for __success__ but failed for __failed__.",
     "service_not_available": "__service__ service not available!",
     "error_backup": "Backup failed!",
-    "success_backup": "Backup successful."
+    "success_backup": "Backup successful.",
+    "add_mobile_device": "Add mobile device",
+    "lb_make_qrcode": "Make qrcode"
 }

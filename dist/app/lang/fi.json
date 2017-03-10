@@ -310,7 +310,7 @@
     "factory_default_error": "Järjestelmän tehdasasetuksia ei voida palauttaa.",
     "firmware_update": "Firmware-päivitys",
     "current_firmware": "Nykyinen firmware-versio on",
-    "update_to_latest": "Päivitä tuoreimpaan",
+  "update_to_latest": "Open Updater",
     "ui_version": "UI-versio",
     "continue": "Jatka",
     "save_continue": "Tallenna ja jatka",
@@ -677,5 +677,7 @@
     "update_device_database_failed_for": "Laitetietokannan päivitetty onnistuneesti __success__ mutta  __failed__ epäonnistui.",
     "service_not_available": "__service__ palvelu ei ole käytettävissä!",
     "error_backup": "Varmuuskopiointi epäonnistui!",
-    "success_backup": "Varmuuskopiointi onnistui."
+    "success_backup": "Varmuuskopiointi onnistui.",
+  "add_mobile_device": "Add mobile device",
+  "lb_make_qrcode": "Make qrcode"
 }

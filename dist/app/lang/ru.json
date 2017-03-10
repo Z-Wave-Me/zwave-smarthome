@@ -11,7 +11,7 @@
     "value": "Значение",
     "cloudbackup": "Облачная резервная копия",
     "local_backup": "Локальная резервная копия",
-    "cloudbackup_info": "В облаке можно хранить 3 резервные копии (зашифрованные SSL). Если вы не хотите больше хранить резервные копии в облаке, отключите эту функция. Скачать резервную копию может только администратор с заданным Email адресом. Текущий Email адрес администратора __email__. Задать Email можно в Настройки --> Управление пользователями --> Administrator", 
+    "cloudbackup_info": "В облаке можно хранить 3 резервные копии (зашифрованные SSL). Если вы не хотите больше хранить резервные копии в облаке, отключите эту функция. Скачать резервную копию может только администратор с заданным Email адресом. Текущий Email адрес администратора __email__. Задать Email можно в Настройки --> Управление пользователями --> Administrator",
     "restore_info": "Для восстановления требуется backup-файл, хранящийся на вашем компьютере. Вы можете запросить backup-файл из облака на ваш Email адрес.",
     "not_set": "не задан",
     "restore": "Восстановить",
@@ -309,7 +309,7 @@
     "factory_default_error": "Невозможно сбросить систему на Заводские настройки.",
     "firmware_update": "Обновление ПО",
     "current_firmware": "Текущая версия программного обеспечения",
-    "update_to_latest": "Обновить до последней версии",
+    "update_to_latest": "Open Updater",
     "ui_version": "Версия UI",
     "continue": "Продолжить",
     "save_continue": "Сохранить и продолжить",
@@ -676,5 +676,7 @@
     "update_device_database_failed_for": "Update device database was successful for __success__ but failed for __failed__.",
     "service_not_available": "__service__ service not available!",
     "error_backup": "Backup failed!",
-    "success_backup": "Backup successful."
+    "success_backup": "Backup successful.",
+    "add_mobile_device": "Add mobile device",
+    "lb_make_qrcode": "Make qrcode"
 }
