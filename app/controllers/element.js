@@ -314,6 +314,76 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
 });
 
 /**
+ * The controller that handles a device chart.
+ * @class ElementChartController
+ */
+myAppController.controller('ElementChartController', function ($scope, $sce, dataFactory, $interval) {
+    $scope.widgetChart = {
+        find: {},
+        alert: {message: false, status: 'is-hidden', icon: false},
+        hasURL : false,
+        intchartUrl : '',
+        url : {},
+        time : 0,
+        chartOptions: {
+            // Chart.js options can go here.
+            //responsive: true
+        }
+    };
+
+    /**
+      * Reload chart url
+      */
+    $scope.reloadUrl = function () {
+        dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function (response) {
+            var device = response.data.data;
+
+            if($scope.widgetChart.time < device.metrics.intchartTime){
+                $scope.widgetChart.find = device;
+                $scope.widgetChart.intchartUrl = device.metrics.intchartUrl + '&' + new Date().getTime();
+                $scope.widgetChart.time = device.metrics.intchartTime;
+                $scope.widgetChart.url = $sce.trustAsResourceUrl($scope.widgetChart.intchartUrl);
+            }
+        });
+    };
+
+    /**
+      * Load device
+      */
+    $scope.loadDeviceUrl = function () {
+        $scope.widgetChart.alert = {message: $scope._t('loading'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
+
+        dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function (response) {
+                var device = response.data.data;
+                if (!device) {
+                    $scope.widgetChart.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+                    return;
+                }
+                $scope.widgetChart.find = device;
+
+                if (!device.metrics.intchartUrl){
+                    $scope.widgetChart.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+                    return;
+                }
+
+                $scope.widgetChart.hasURL = true;
+                $scope.widgetChart.intchartUrl = device.metrics.intchartUrl;
+                $scope.widgetChart.time = device.metrics.intchartTime;
+                $scope.widgetChart.url = $sce.trustAsResourceUrl($scope.widgetChart.intchartUrl);
+
+                $scope.refreshInterval = $interval($scope.reloadUrl, $scope.cfg.interval);
+
+                $scope.widgetChart.alert = {message: false};
+
+            }, function (error) {
+            $scope.widgetChart.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+        });
+    };
+
+    $scope.loadDeviceUrl();
+});
+
+/**
  * The controller that handles a device history.
  * @class ElementHistoryController
  */
