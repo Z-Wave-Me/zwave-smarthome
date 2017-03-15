@@ -334,7 +334,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                     minMax.step = v.metrics.step;
                 }
                 angular.extend(v,
-                    {onDashboard: (user.dashboard.indexOf(v.id) !== -1 ? true : false)},
+                    {onDashboard: (user.dashboard && user.dashboard.indexOf(v.id) !== -1 ? true : false)},
                     {creatorId: _.isString(v.creatorId) ? v.creatorId.replace(/[^0-9]/g, '') : v.creatorId},
                     {minMax: minMax},
                     {hasHistory: (v.hasHistory === true ? true : false)},

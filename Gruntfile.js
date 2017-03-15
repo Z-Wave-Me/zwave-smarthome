@@ -57,30 +57,6 @@ module.exports = function (grunt) {
             },
             js: {
                 src: [
-                    // Vendors
-                    'vendor/jquery/jquery-1.11.3.min.js',
-                    'vendor/jquery/jquery-ui.min.js',
-                    'vendor/jquery/plugins/jquery.ui.widget.js',
-                    'vendor/jquery/plugins/jquery.iframe-transport.js',
-                    'vendor/jquery/plugins/jquery.fileupload.js',
-                    'vendor/jquery/plugins/jquery.fileupload-process.js',
-                    'vendor/jquery/plugins/jquery.fileupload-ui.js',
-                    'vendor/moment/moment-with-locales.min.js',
-                    'vendor/underscore/underscore-1.8.3/underscore-min.js',
-                    'vendor/chartjs/Chart.js',
-                    'vendor/knob/jquery.knob.js',
-                    'vendor/handlebars/handlebars-v3.0.3.min.js',
-                    'vendor/alpaca/1.5.14/bootstrap/alpaca.min.js',
-                    'vendor/alertify/alertify.min.js',
-                    // Angular
-                    'vendor/angular/angular-1.2.28/angular.min.js',
-                    'vendor/upload/angular-file-upload.min.js',
-                    'vendor/angular/angular-1.2.28/angular-route.min.js',
-                    'vendor/angular/angular-1.2.28/angular-cookies.min.js',
-                    'vendor/dragdrop/angular-drag-and-drop-lists.js',
-                    // Bootstrap
-                    'vendor/bootstrap/bootstrap.min.js',
-                    'vendor/bootstrap/plugins/bootstrap-datetimepicker.js',
                     // APP
                     'app/app.js',
                     'app/routes.js',
