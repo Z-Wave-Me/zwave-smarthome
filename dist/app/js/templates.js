@@ -1,4 +1,4 @@
-/* Copyright:  Z-Wave Europe GmbH, Created: 15-03-2017 15:01:10 */
+/* Copyright:  Z-Wave Europe GmbH, Created: 16-03-2017 10:08:42 */
 angular.module('myAppTemplates', []).run(['$templateCache', function($templateCache) {
   'use strict';
 
