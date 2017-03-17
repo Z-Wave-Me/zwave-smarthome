@@ -119,6 +119,7 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
         $scope.controllerInfo.isZeroUuid = parseInt(ZWaveAPIData.controller.data.uuid.value, 16) === 0;
         $scope.controllerInfo.softwareRevisionVersion = ZWaveAPIData.controller.data.softwareRevisionVersion.value;
         $scope.controllerInfo.manufacturerId = ZWaveAPIData.controller.data.manufacturerId.value;
+        $scope.controllerInfo.capsSubvendor = ((ZWaveAPIData.controller.data.caps.value[0] << 8) + ZWaveAPIData.controller.data.caps.value[1]);
         $scope.controllerInfo.capabillities = caps(ZWaveAPIData.controller.data.caps.value);
         $scope.controllerInfo.capsLimited = nodeLimit($filter('dec2hex')(ZWaveAPIData.controller.data.caps.value[2]).slice(-2));
         setLicenceScratchId($scope.controllerInfo);
@@ -167,15 +168,16 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
                 return;
             }
 
-            // check if error (request faild)
-            if ($scope.handleLicense.error && !controllerInfo.scratchId && !controllerInfo.capsLimited) {
+            // check if error (request failed)
+            // controllerInfo.capsSubvendor === 0 ... no licence applied
+            if (controllerInfo.capsSubvendor > 0 && $scope.handleLicense.error && !controllerInfo.scratchId && !controllerInfo.capsLimited) {
                 $scope.handleLicense.show = true;
                 return;
             }
 
             // Hide license if
             // Controller UUID = string and scratchId  is NOT found  and cap unlimited
-            if (!controllerInfo.scratchId && !controllerInfo.capsLimited) {
+            if (controllerInfo.capsSubvendor > 0 && !controllerInfo.scratchId && !controllerInfo.capsLimited) {
                 //console.log('Hide license if: Controller UUID = string and scratchId  is NOT found  and cap unlimited');
                 $scope.handleLicense.show = false;
                 return;
