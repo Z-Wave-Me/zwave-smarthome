@@ -229,7 +229,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
      */
     $scope.setExactCmd = function (v, type, run) {
         var count;
-        var val = parseInt(v.metrics.level);
+        var val = parseFloat(v.metrics.level);
         var min = parseInt(v.minMax.min, 10);
         var max = parseInt(v.minMax.max, 10);
         var step = parseFloat(v.minMax.step);
