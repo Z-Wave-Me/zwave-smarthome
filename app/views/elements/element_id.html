@@ -145,7 +145,7 @@
                         class="btn-name" ng-bind="_t('lb_save')"></span></button>
             </fieldset>
         </form>
-        <div ng-include="'app/views/elements/element_id_icons.html'"></div>
+        <div ng-if="elementAccess(cfg.role_access.admin)" ng-include="'app/views/elements/element_id_icons.html'"></div>
 
     </div>
 

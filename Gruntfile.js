@@ -115,7 +115,7 @@ module.exports = function (grunt) {
                     // ExpertUI configuration js
                     'app/expertui/pyzw.js',
                     'app/expertui/pyzw_zwave_ui.js',
-                    'vendor/xml/xml2json.js',
+                    'vendor/xml/xml2json.min.js',
                     'app/expertui/directives.js',
                     'app/expertui/services.js',
                     'app/expertui/configuration.js',
