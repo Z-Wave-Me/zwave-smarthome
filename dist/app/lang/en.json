@@ -1,5 +1,6 @@
 {
     "newtrans": "---",
+    "z_way_restart": "The system will now be automatically restarted. Redirect to login in __val__ __level__.",
     "---": "newtrans",
     "built_date": "Built date",
     "cloudbackup_active": "Cloud Backup active",
