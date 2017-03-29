@@ -1,4 +1,4 @@
-/* Copyright:  Z-Wave Europe GmbH, Created: 23-03-2017 16:30:35 */
+/* Copyright:  Z-Wave Europe GmbH, Created: 29-03-2017 12:06:57 */
 /**
  * @overview The object with default icons.
  * @author Martin Vach

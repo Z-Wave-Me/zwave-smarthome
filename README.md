@@ -11,13 +11,18 @@ Marcel Kermer
 
 ## v1.7.0
 #### New features
+- Management: Time zone settings.
 - Finnish translation for UI #214
-
-#### Changes
--
+- add QRCode for simple Add mobile device login under "My Settings" (prepared for new iOS/Android Apps)
 
 #### Fixes
 - Too many icons overflow cookie size #225.
+- fix check of ZMEOpenWRT instance in management view
+- RU translate, some fixes in EN translate
+- added a subvendor check for UZB caps to fix hidden license input
+- disable un/-secure button during auto configuration after inclusion
+- Role USER, LOCAL, ANONYMOUS isn't able to open vDev configuration #215
+- thermostat modal increase/decrease temperature 0.5 steps
 
 ## v1.6.0
 #### New features
