@@ -11,6 +11,7 @@ Marcel Kermer
 
 ## v1.7.0
 #### New features
+- Management: Time zone settings.
 - Finnish translation for UI #214
 - add QRCode for simple Add mobile device login under "My Settings" (prepared for new iOS/Android Apps)
 
