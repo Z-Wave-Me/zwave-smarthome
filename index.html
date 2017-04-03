@@ -76,7 +76,7 @@
         <!-- ExpertUI configuration js -->
         <script src="app/expertui/pyzw.js"></script>
         <script src="app/expertui/pyzw_zwave_ui.js"></script>
-        <script src="vendor/xml/xml2json.js"></script>
+        <script src="vendor/xml/xml2json.min.js"></script>
         <script src="app/expertui/directives.js"></script>
         <script src="app/expertui/services.js"></script>
         <script src="app/expertui/configuration.js"></script>
@@ -128,7 +128,7 @@
                             </li>
                              <!-- Customize -->
                             <li class="subnavi-report" ng-class="isActive('customize')"
-                                ng-if="elementAccess(cfg.role_access.customize) && !isInArray(['popp','jb'],cfg.app_type)">
+                                ng-if="elementAccess(cfg.role_access.customize)">
                                 <a href="#customize/skinslocal"><i class="fa fa-puzzle-piece"></i> <span>{{_t('customize')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
                             </li>
                             <!-- My access -->

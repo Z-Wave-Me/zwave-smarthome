@@ -20,9 +20,14 @@
      <!--<div class="accordion-entry" ng-include="'app/views/management/management_backup.html'" ng-if="!isMobile"></div>-->
      <!-- ///////////////////////////// Backup to the cloud ///////////////////////////// -->
      <!--<div class="accordion-entry" ng-include="'app/views/management/management_cloud_backup.html'" ng-if="!isMobile"></div>-->
-      <!-- ///////////////////////////// Timezone ///////////////////////////// -->
-     <div class="accordion-entry" 
-          ng-include="'app/views/management/management_timezone.html'"
+    <!-- ///////////////////////////// Timezone ///////////////////////////// -->
+    <div class="accordion-entry"
+         ng-if="cfg.app_type === 'default' || cfg.app_type === 'popp'"
+         ng-include="'app/views/management/management_timezone.html'"></div>
+      <!-- ///////////////////////////// Timezone for JB ///////////////////////////// -->
+     <div class="accordion-entry"
+
+          ng-include="'app/views/management/management_timezone_jb.html'"
           ng-if="cfg.app_type === 'jb'"></div>
      
      <!-- ///////////////////////////// Restore ///////////////////////////// -->
@@ -51,6 +56,9 @@
     <!-- ///////////////////////////// Postfix /////////////////////////////
     <div class="accordion-entry" ng-include="'app/views/management/management_postfix.html'"></div>
     -->
+
+    <!-- ///////////////////////////// Add mobile device ///////////////////////////// -->
+    <!--<div class="accordion-entry" ng-include="'app/views/management/management_add_mobile_device.html'"></div>-->
 
     <!-- ///////////////////////////// Info ///////////////////////////// -->
     <div class="accordion-entry" ng-include="'app/views/management/management_info.html'"></div>

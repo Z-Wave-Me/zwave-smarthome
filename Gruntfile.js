@@ -1,4 +1,15 @@
 module.exports = function (grunt) {
+    var pkg = grunt.file.readJSON('package.json');
+    var app_type = pkg.app_type;
+    var app_cfg = pkg.type_cfg[pkg.app_type];
+    var app_version = pkg.v;
+    var git_message = pkg.v;
+    var app_rc = (pkg.rc ? pkg.rc + 1 : 0);
+
+    if(app_rc){
+        app_version += '-RC-'+app_rc;
+        git_message += '-RC-'+pkg.rc;
+    }
 
     // Project configuration.
     grunt.initConfig({
@@ -104,7 +115,7 @@ module.exports = function (grunt) {
                     // ExpertUI configuration js
                     'app/expertui/pyzw.js',
                     'app/expertui/pyzw_zwave_ui.js',
-                    'vendor/xml/xml2json.js',
+                    'vendor/xml/xml2json.min.js',
                     'app/expertui/directives.js',
                     'app/expertui/services.js',
                     'app/expertui/configuration.js',
@@ -117,7 +128,8 @@ module.exports = function (grunt) {
             target: {
                 dest: "app/info.json",
                 options: {
-                    name: 'SmartHome UI',
+                    name: app_cfg.name,
+                    version: app_version,
                     built: '<%= grunt.template.today("dd-mm-yyyy HH:MM:ss") %>',
                     timestamp: '<%= Math.floor(Date.now() / 1000) %>'
                 }
@@ -211,6 +223,53 @@ module.exports = function (grunt) {
                     src: [ 'dist/index.html']
                 }
             }
+        },
+        replace: {
+            dist: {
+                options: {
+                    patterns: [
+                        {
+                            match: 'app_name',
+                            replacement: app_cfg.name
+                        },
+                        {
+                            match: 'app_version',
+                            replacement: app_version
+                        },
+                        {
+                            match: 'app_built',
+                            replacement: '<%= grunt.template.today("dd-mm-yyyy HH:MM:ss") %>'
+                        }
+                    ]
+                },
+                files: [
+                    {expand: true, flatten: true, src: ['app/config.js'], dest: app_cfg.dir + '/app/js/'}
+                ]
+            }
+        },
+        modify_json: {
+            file: {
+                expand: true,
+                //cwd: 'test/',
+                src: ['package.json'],
+                options: {
+                    add: true,
+                    fields: {
+                        "rc": app_rc,
+                        "built": '<%= grunt.template.today("dd-mm-yyyy HH:MM:ss") %>'
+                    },
+                    indent: 2
+                }
+            }
+        },
+        'release-it': {
+            options: {
+                pkgFiles: ['package.json'],
+                commitMessage: 'Release ' + app_cfg.name + ' ' + git_message,
+                tagName: '%s',
+                tagAnnotation: 'Release ' + app_cfg.name + ' ' + git_message,
+                buildCommand: false
+            }
         }
 
     });
@@ -236,8 +295,11 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-angular-templates');
     grunt.loadNpmTasks('grunt-banner');
     grunt.loadNpmTasks('grunt-json-generator');
+    grunt.loadNpmTasks('grunt-replace');
+    grunt.loadNpmTasks('grunt-modify-json');
+    grunt.loadNpmTasks('grunt-release-it');
 
     // Default task(s).
-    grunt.registerTask('default', ['clean', 'ngtemplates', 'concat','json_generator', 'copy', 'cssmin', 'skinFolder','iconFolder','usebanner']);
+    grunt.registerTask('default', ['clean', 'ngtemplates', 'concat','json_generator', 'copy', 'cssmin', 'skinFolder','iconFolder','usebanner','replace','modify_json']);
 
 };

@@ -260,7 +260,7 @@
     "factory_default_error": "Nelze vrátit systém k Výchozím nastavením.",
     "firmware_update": "Aktualizáacia Firmware",
     "current_firmware": "Současná verze Firmware je",
-    "update_to_latest": "Aktualizovat na nejnovější verzi",
+    "update_to_latest": "Open Updater",
     "ui_version": "UI verze",
     "continue": "Pokračovat",
     "save_continue": "Uložit a pokračovat",
@@ -622,5 +622,7 @@
     "update_device_database_failed_for": "Update device database was successful for __success__ but failed for __failed__.",
     "service_not_available": "__service__ service not available!",
     "error_backup": "Backup failed!",
-    "success_backup": "Backup successful."
+    "success_backup": "Backup successful.",
+    "add_mobile_device": "Add mobile device",
+    "lb_make_qrcode": "Make qrcode"
 }

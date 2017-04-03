@@ -162,7 +162,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @returns {Array|Boolean}
      */
     this.getUser = function () {
-        var user = ($cookies.user !== 'undefined' ? angular.fromJson($cookies.user) : false);
+        var user = ($cookies.user && !!$cookies.user && $cookies.user !== 'undefined' ? angular.fromJson($cookies.user) : false);
         return user;
     };
 
@@ -172,11 +172,12 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @returns {Boolean|Object}
      */
     this.setUser = function (data) {
-        if (!data) {
+        if (data && !!data) {
+            $cookies.user = angular.toJson(data);
+        } else {
             delete $cookies['user'];
             return false;
         }
-        $cookies.user = angular.toJson(data);
         return data;
     };
 
@@ -202,18 +203,19 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @returns {Boolean|Object}
      */
     this.setZWAYSession = function (sid) {
-        if (!sid) {
+        if (sid && !!sid) {
+            $cookies.ZWAYSession = sid;
+        } else {
             delete $cookies['ZWAYSession'];
             return false;
         }
-        $cookies.ZWAYSession = sid;
     };
     /**
      * Get last login info
      * @returns {Sring|Boolean}
      */
     this.getLastLogin = function () {
-        return $cookies.lastLogin !== 'undefined' ? $cookies.lastLogin : false;
+        return $cookies.lastLogin && !!$cookies.lastLogin && $cookies.lastLogin !== 'undefined' ? $cookies.lastLogin : false;
     };
 
     /**
@@ -230,7 +232,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @returns {Object|Boolean}
      */
     this.getRememberMe = function () {
-        var user = ($cookies.rememberme !== 'undefined' ? angular.fromJson($cookies.rememberme) : false);
+        var user = ($cookies.rememberme && !!$cookies.rememberme && $cookies.rememberme !== 'undefined' ? angular.fromJson($cookies.rememberme) : false);
         return user;
     };
 
@@ -240,11 +242,13 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @returns {Boolean|Object}
      */
     this.setRememberMe = function (data) {
-        if (!data) {
+        if (data && !!data) {
+            $cookies.rememberme = angular.toJson(data);
+        } else {
             delete $cookies['rememberme'];
             return false;
         }
-        $cookies.rememberme = angular.toJson(data);
+
         return data;
     };
 
@@ -290,7 +294,8 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @returns {unresolved}
      */
     this.getDevicesData = function (data, showHidden, showAll) {
-        var user = this.getUser();
+        //var user = this.getUser();
+        var user = cfg.user;
         return _.chain(data)
             .flatten()
             .uniq(false, function (v) {
@@ -333,7 +338,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                     minMax.step = v.metrics.step;
                 }
                 angular.extend(v,
-                    {onDashboard: (user.dashboard.indexOf(v.id) !== -1 ? true : false)},
+                    {onDashboard: (user.dashboard && user.dashboard.indexOf(v.id) !== -1 ? true : false)},
                     {creatorId: _.isString(v.creatorId) ? v.creatorId.replace(/[^0-9]/g, '') : v.creatorId},
                     {minMax: minMax},
                     {hasHistory: (v.hasHistory === true ? true : false)},
