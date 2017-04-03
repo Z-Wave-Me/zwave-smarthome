@@ -1,0 +1,49 @@
+<!-- Zwave device view -->
+<div ng-controller="ZwaveVendorDeviceController">
+    <bb-loader></bb-loader>
+    <div class="text-center device-autodetect" ng-include="'app/views/zwave/zwave_vendors_autodetect.html'"></div>
+    <h3>
+        <a href="#/zwave/vendors" class="btn btn-default"><i class="fa fa-arrow-left"></i></a>
+        <strong>{{zwaveProducts.vendor}}</strong>
+        | {{_t('products')}} <span class="badge text-primary">{{zwaveProducts.cnt}}</span>
+        | {{_t('frequency')}} <span class="badge">{{zwaveProducts.frequencyName}}</span>
+        <em ng-class="zwaveProducts.cnt == 0 ? 'text-danger': '' ">
+
+        </em>
+    </h3>
+    <table class="table table-report">
+        <tbody>
+        <tr ng-repeat="v in zwaveProducts.all | orderBy:'name' track by $index">
+            <td>
+                <a href="#zwave/inclusion/{{v.id}}">
+                <img class="product-img" ng-src="data:image/png;base64,{{v.product_image_base64}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+                </a>
+            </td>
+            <td>
+                <a href="#zwave/inclusion/{{v.id}}">
+                {{v.productcode}}
+                </a>
+            </td>
+            <td>
+                <a href="#zwave/inclusion/{{v.id}}">
+                {{v.name}}
+                </a>
+            </td>
+            <td>
+                <span class="label label-info">{{v.frequency}}</span>
+            </td>
+            <td class="td-action">
+                <a href="#zwave/inclusion/{{v.id}}" class="btn btn-default" title="{{_t('lb_include_device')}}">
+                    <i class="fa fa-plug text-primary"></i>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="fieldset submit-entry">
+        <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
+            <i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span>
+        </button>
+    </div>
+</div> <!-- /ng-controller --> 
+
