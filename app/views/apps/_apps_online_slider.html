@@ -1,0 +1,311 @@
+<!--  apps slider -->
+<!--<pre>{{dataHolder.onlineModules.all | json}}</pre>-->
+<style>
+
+    .slider_w {
+        height: 320px;
+        overflow: hidden;
+        position: relative;
+        margin-top: 20px;
+        margin: 0 auto;
+    }
+
+    .slide_w {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .arrow {
+        position: absolute;
+        z-index: 1002;
+        display: block;
+        top: 50%;
+        margin-top: -35px;
+        width: 36px;
+        height: 71px;
+        outline: none;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #EEEEEE;
+        border: 1px solid #CCCCCC;
+        text-align: center;
+        display:table;
+    }
+
+    .arrow a {
+        text-decoration: none;
+        margin: 0 auto;
+        display:table-cell;
+        vertical-align:middle;
+    }
+
+    .arrow.prev {
+        left: 20px;
+        transition: 0.2s linear all;
+    }
+
+    .arrow.next {
+        right: 20px;
+        transition: 0.2s linear all;
+    }
+
+    .arrow.prev:hover {
+        border-color: #;
+    }
+
+    .arrow.next:hover {
+        border-color: #;
+    }
+
+
+
+    /*---------------------------------------------------------
+    NAV
+    ---------------------------------------------------------*/
+
+    .nav {
+        text-align: center;
+        display: block;
+        position: absolute;
+        z-index: 1002;
+        left: 0;
+        bottom: -4px;
+        right: 0;
+        height: 48px;
+    }
+
+    .nonDraggableImage{
+        -webkit-user-drag: none;
+    }
+
+    .nav .wrapper {
+        margin: 0 auto;
+        width: 100%;
+        padding: 1em 0 .8em;
+    }
+
+    .nav ul {
+        margin: 0;
+        width: 100%;
+    }
+
+    .nav .dot, .nav .dot a {
+        display: inline-block;
+        zoom: 1;
+    }
+
+    .dots .dot {
+        position: relative;
+        margin: 0 8px;
+        width: 12px;
+        height: 12px;
+    }
+
+    .dots .dot a {
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 20px;
+        height: 20px;
+        text-indent: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        background: #EEEEEE;
+        border: 1px solid #CCCCCC;
+        outline: none;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+        -webkit-transition: background-color 0.25s, border-color 0.25s;
+        -moz-transition: background-color 0.25s, border-color 0.25s;
+        transition: background-color 0.25s, border-color 0.25s;
+    }
+
+    .dots .dot a.active {
+        border-color: #CCCCCC;
+        background-color: #dcdcdc;
+        box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    }
+</style>
+
+<div class="app-entry-online">
+    <!-- Widgets -->
+    <div class="app-row app-row-widget clearfix slider_w">
+        <div class="slide-animation nonDraggableImage" style="padding: 0 10%;"
+             ng-repeat="slides in slider.slides"
+             ng-swipe-right="nextSlide()"
+             ng-swipe-left="prevSlide()"
+             ng-hide="!isCurrentSlideIndex($index)">
+            <div class="widget-entry widget-entry-app"
+                       ng-repeat="slide in slides">
+                <div class="widget-entry-in">
+                    <!-- Widget img -->
+                    <div class="widget-img">
+                        <a ng-href="#apps/online/{{slide.id}}">
+                            <img class="widget-preview-img" alt="{{slide.title}}" title="{{slide.toolTipDescription}}"
+                                 ng-src="{{slide.icon ? onlineMediaUrl + slide.icon : 'storage/img/placeholder-img.png'}}"
+                                 ng-click="redirectToRoute(dataHolder.modules.ids[v.modulename] ? false : 'apps/online/' + slide.id)"/>
+                        </a>
+                    </div>
+                    <!-- Widget header -->
+                    <div class="widget-header"></div>
+                    <div class="widget-content">
+                        <!-- Widget title -->
+                        <div class="widget-title">
+                            <h3>
+                                <a ng-href="#apps/online/{{slide.id}}" title="{{slide.title}}">{{slide.title|cutText:true:20}}</a>
+                            </h3>
+
+                        </div>
+                        <hr class="bottom-aligner"/>
+                        <!-- Widget footer -->
+                        <div class="widget-footer">
+                            <div class="widget-ctrl ctrl-left">
+                                <div class="rating-group">
+                                    <i class="fa widget-rating" title="{{r}}"
+                                       ng-class="r > slide.rating ? 'fa-star-o' : 'fa-star israted'"
+                                       ng-repeat="r in dataHolder.onlineModules.ratingRange"></i>
+                                    <span class="widget-rating"> | <i
+                                            class="fa fa-download"></i> {{v.installed}}&times;</span>
+                                </div>
+
+                            </div>
+                            <div class="widget-ctrl ctrl-right">
+
+                                <div class="btn-group group-apps">
+                                    <!-- Download -->
+                                    <button href="" class="btn btn-default" title="{{_t('lb_download')}}"
+                                            ng-click="installModule(slide, 'online_install')"
+                                            ng-if="!dataHolder.modules.ids[v.modulename]">
+                                        <i class="fa fa-download text-success"></i> <span class="btn-name">{{_t('lb_download')}}</span>
+                                    </button>
+                                    <!-- Installed -->
+                                    <button class="btn btn-disabled" disabled title="{{_t('installed')}}"
+                                            ng-if="dataHolder.modules.ids[slide.modulename] && dataHolder.modules.ids[slide.modulename].version == slide.version">
+                                        <i class="fa fa-check"></i> <span class="btn-name">{{_t('installed')}}</span>
+                                    </button>
+                                    <!-- Updgrade -->
+                                    <button href="" class="btn btn-danger" title="{{_t('update_to_latest')}}"
+                                            ng-click="updateModule(slide, _t('app_update_confirm'))"
+                                            ng-if="dataHolder.modules.ids[slide.modulename] && slide.status == 'upgrade' ">
+                                        <i class="fa fa-level-up"></i> <span
+                                            class="btn-name">{{_t('update_to_latest')}}</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+        <span class="arrow next"><a class="fa fa-arrow-right" href="" ng-click="nextSlide()"></a></span>
+        <span class="arrow prev"><a class="fa fa-arrow-left" href="" ng-click="prevSlide()"></a></span>
+        <nav class="nav">
+            <div class="wrapper">
+                <ul class="dots">
+                    <li class="dot" ng-repeat="i in slider.slides track by $index">
+                        <a href="" ng-class="{'active':isCurrentSlideIndex($index)}"
+                           ng-click="setCurrentSlideIndex($index);">{{i.modulename}}</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
+
+
+<!--
+<div class="container slider_w">
+    <img ng-repeat="v in dataHolder.onlineModules.featured" class="slide_w slide-animation nonDraggableImage"
+         ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
+         ng-hide="!isCurrentSlideIndex($index)" ng-src="{{v.icon ? onlineMediaUrl + v.icon : 'storage/img/placeholder-img.png'}}">
+
+    <a class="arrow prev" href="" ng-click="nextSlide()"></a>
+    <a class="arrow next" href="" ng-click="prevSlide()"></a>
+    <nav class="nav">
+        <div class="wrapper">
+            <ul class="dots">
+                <li class="dot" ng-repeat="i in dataHolder.onlineModules.featured track by $index">
+                    <a href="" ng-class="{'active':isCurrentSlideIndex($index)}"
+                       ng-click="setCurrentSlideIndex($index);">{{i.modulename}}</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>-->
+
+
+
+<div class="app-entry-online">
+    <!-- Widgets -->
+    <div class="app-row app-row-widget clearfix">
+        <div class="widget-entry widget-entry-app"
+             ng-class="{'widget-warning': dataHolder.modules.ids[v.modulename],'widget-danger': dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version != v.version}"
+             ng-repeat="v in dataHolder.onlineModules.all  | orderBy: cfg.orderby.appsonline[dataHolder.onlineModules.orderBy] | filter:q track by v.id"
+             ng-if="v.featured"
+             ng-hide_="v.status !== 'download' && dataHolder.onlineModules.hideInstalled">
+            <div class="widget-entry-in">
+                <!-- Widget img -->
+                <div class="widget-img">
+                    <a ng-href="#apps/online/{{v.id}}">
+                        <img class="widget-preview-img" alt="{{v.title}}" title="{{v.toolTipDescription}}"
+                             ng-src="{{v.icon ? onlineMediaUrl + v.icon : 'storage/img/placeholder-img.png'}}"
+                             ng-click="redirectToRoute(dataHolder.modules.ids[v.modulename] ? false : 'apps/online/' + v.id)"/>
+                    </a>
+                </div>
+                <!-- Widget header -->
+                <div class="widget-header"></div>
+                <div class="widget-content">
+                    <!-- Widget title -->
+                    <div class="widget-title">
+                        <h3>
+                            <a ng-href="#apps/online/{{v.id}}" title="{{v.title}}">{{v.title|cutText:true:20}}</a>
+                        </h3>
+
+                    </div>
+                    <hr class="bottom-aligner"/>
+                    <!-- Widget footer -->
+                    <div class="widget-footer">
+                        <div class="widget-ctrl ctrl-left">
+                            <div class="rating-group">
+                                <i class="fa widget-rating" title="{{r}}"
+                                   ng-class="r > v.rating ? 'fa-star-o' : 'fa-star israted'"
+                                   ng-repeat="r in dataHolder.onlineModules.ratingRange"></i>
+                                <span class="widget-rating"> | <i
+                                        class="fa fa-download"></i> {{v.installed}}&times;</span>
+                            </div>
+
+                        </div>
+                        <div class="widget-ctrl ctrl-right">
+
+                            <div class="btn-group group-apps">
+                                <!-- Download -->
+                                <button href="" class="btn btn-default" title="{{_t('lb_download')}}"
+                                        ng-click="installModule(v, 'online_install')"
+                                        ng-if="!dataHolder.modules.ids[v.modulename]">
+                                    <i class="fa fa-download text-success"></i> <span class="btn-name">{{_t('lb_download')}}</span>
+                                </button>
+                                <!-- Installed -->
+                                <button class="btn btn-disabled" disabled title="{{_t('installed')}}"
+                                        ng-if="dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version == v.version">
+                                    <i class="fa fa-check"></i> <span class="btn-name">{{_t('installed')}}</span>
+                                </button>
+                                <!-- Updgrade -->
+                                <button href="" class="btn btn-danger" title="{{_t('update_to_latest')}}"
+                                        ng-click="updateModule(v, _t('app_update_confirm'))"
+                                        ng-if="dataHolder.modules.ids[v.modulename] && v.status == 'upgrade' ">
+                                    <i class="fa fa-level-up"></i> <span
+                                        class="btn-name">{{_t('update_to_latest')}}</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1157,7 +1157,31 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
     ;
 
 });
+/**
+ * Apps online featured controller
+ * @class AppOnlineFeaturedController
+ *
+ */
+myAppController.controller('AppOnlineFeaturedController', function ($scope, $routeParams, $route, $filter, $location, $q, dataFactory, dataService, myCache, cfg) {
+    $scope.slides = [
+        {image: 'storage/img/icons/alarm.png', description: 'Module 1'},
+        {image: 'storage/img/icons/dimmer-half.png', description: 'Module 2'},
+        {image: 'storage/img/icons/event-device-power.png', description: 'Module 3'},
+        {image: 'storage/img/icons/motion-on.png', description: 'Module 4'},
+        {image: 'storage/img/icons/switch-off.png', description: 'Module 5'},
+        {image: 'storage/img/icons/thermostat.png', description: 'Module 6'},
+        {image: 'storage/img/icons/camera.png', description: 'Module 7'},
+        {image: 'storage/img/icons/press.png', description: 'Module 8'},
+        {image: 'storage/img/icons/temperature.png', description: 'Module 9'},
+        {image: 'storage/img/icons/luminosity.png', description: 'Module 10'},
+    ];
 
+});
+/**
+ * Apps feature controller
+ * @class AppModuleFeaturedController
+ *
+ */
 myAppController.controller('AppModuleFeaturedController', function ($scope, $routeParams, $route, $filter, $location, $q, dataFactory, dataService, myCache, cfg) {
 
     $scope.slider = {
