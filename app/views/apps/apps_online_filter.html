@@ -5,10 +5,10 @@
          <!-- Apps navigation -->
         <div ng-include="'app/views/apps/navi.html'"></div>
         <!-- Online Apps control -->
-       <!-- <div ng-include="'app/views/apps/apps_online_ctrl.html'"></div>-->
+        <div  ng-if="_.isEmpty(dataHolder.onlineModules.filter)" ng-include="'app/views/apps/apps_online_slider.html'"></div>
         <!-- Online Apps control -->
-        <div ng-include="'app/views/apps/apps_online_slider.html'"></div>
-        <!-- Online Apps control -->
-        <div ng-include="'app/views/apps/apps_online_widget.html'"></div>
+        <div ng-include="'app/views/apps/apps_online_ctrl.html'"></div>
+        <!-- Online Apps widgets -->
+        <div ng-include="'app/views/apps/apps_online_filter_widget.html'"></div>
     </div> <!-- /ng-controller -->
 </div> <!-- /ng-controller --> 

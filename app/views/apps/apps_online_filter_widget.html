@@ -1,27 +1,22 @@
 <!-- Online apps widget view -->
-<div class="app-entry-online" ng-repeat="c in dataHolder.modules.categories"
-     ng-if="dataHolder.onlineModules.cnt.appsCat[c.id]">
-    <!-- Categories -->
+<div class="app-entry-online">
     <div class="app-entry-cat clearfix">
         <div class="app-entry-title">
-        <h2>{{c.name|cutText:true:30}} <span class="item-cnt">({{dataHolder.onlineModules.cnt.appsCat[c.id]}})</span>
-        </h2>
-            <div>{{c.description}}</div>
-        </div>
-        <div class="app-entry-btn">
-            <a class="btn btn-info" ng-href="#/apps/online/filter" ng-click="setFilter({category: c.id})" ng-if="_.size(c.onlineModules) > 5">
-                {{_t('show_more_apps')}} <i class="fa fa-chevron-right"></i>
-            </a>
+            <h2>
+               <small><a class="btn btn-default btn-sm" href="#apps/online" ><i class="fa fa-chevron-left"></i></a></small> &nbsp;
+                <span ng-if="dataHolder.onlineModules.filter.category">{{dataHolder.modules.categories[dataHolder.onlineModules.filter.category].name|cutText:true:30}}</span>
+                <span ng-if="_.isEmpty(dataHolder.onlineModules.filter)">{{_t('all_apps')}}</span>
+                <span class="item-cnt"> ({{dataHolder.onlineModules.cnt.collection}})</span>
+            </h2>
         </div>
 
     </div>
-
     <!-- Widgets -->
     <div class="app-row app-row-widget clearfix">
         <div class="widget-entry widget-entry-app"
              ng-class="{'widget-warning': dataHolder.modules.ids[v.modulename],'widget-danger': dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version != v.version}"
-             ng-if="v.category == c.id"
-             ng-repeat="v in c.onlineModules| limitTo: 5 | orderBy: cfg.orderby.appsonline[dataHolder.onlineModules.orderBy] | filter:q track by v.id"
+             ng-if="!v.featured"
+             ng-repeat="v in dataHolder.onlineModules.all| orderBy: cfg.orderby.appsonline[dataHolder.onlineModules.orderBy] | filter:q track by v.id"
              ng-hide="v.status !== 'download' && dataHolder.onlineModules.hideInstalled">
             <div class="widget-entry-in">
                 <!-- Widget img -->

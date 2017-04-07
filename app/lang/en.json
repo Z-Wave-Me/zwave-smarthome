@@ -53,7 +53,7 @@
     "no_email_log": "Do not send me log by email",
     "email_log_error": "Send me error log only by email",
     "email_log_all": "Send me error log and notifications by email",
-    "show_more_apps":"Show more apps",
+    "show_more_apps":"Show more",
     "lb_allow_access_to_all_rooms":"Has Access to all rooms",
     "works_with_internet": "Works only with internet access",
     "local_access_manage": "Local Ethernet Access",

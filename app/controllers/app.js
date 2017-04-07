@@ -66,6 +66,15 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
         }
     };
 
+    $scope.slider = {
+        cfg: {
+            start: 0,
+            end: 3,
+            max: 0,
+            show: 3
+        }
+    }
+
     $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
     $scope.onlineMediaUrl = $scope.cfg.online_module_img_url;
 
@@ -256,6 +265,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
         //console.log($scope.dataHolder.modules.categories)
         // Reset featured cnt
         $scope.dataHolder.onlineModules.cnt.featured = 0;
+        $scope.slider.cfg.max = 0;
         var onlineModules = _.chain(data)
                 .flatten()
                 .filter(function (item) {
@@ -300,6 +310,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                         item.featured = true;
                         // Count featured apps
                         $scope.dataHolder.onlineModules.cnt.featured += 1;
+                        $scope.slider.cfg.max += 1;
                     } else {
                         item.featured = false;
                     }
@@ -323,7 +334,6 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                 }).reject(function (v) {
             return v.isHidden === true;
         });
-        console.log($scope.dataHolder.modules.categories)
         // Count apps in categories
         $scope.dataHolder.onlineModules.cnt.appsCat = onlineModules.countBy(function (v) {
             return v.category;
@@ -382,7 +392,6 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                 }
                 return v;
             }).value();
-        console.log($scope.dataHolder.instances)
     }
     ;
     /**
@@ -484,8 +493,29 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
  * The controller that handles all online APPs actions.
  * @class AppOnlineController
  */
-myAppController.controller('AppOnlineController', function ($scope, $filter, $cookies, $window, dataFactory, dataService, _) {
+myAppController.controller('AppOnlineController', function ($scope, $filter, $cookies, $window, $routeParams,dataFactory, dataService, _) {
     $scope.dataHolder.onlineModules.filter = ($cookies.filterAppsOnline ? angular.fromJson($cookies.filterAppsOnline) : {});
+    if($routeParams['category']){
+        var filter = {category:$routeParams['category']};
+        //console.log(filter);
+        angular.extend($scope.dataHolder.onlineModules, {filter: filter});
+        $cookies.filterAppsOnline = angular.toJson(filter);
+        //$scope.setFilter({category:$routeParams['category']});
+
+    }
+
+    $scope.$on('$locationChangeSuccess',function(evt, absNewUrl, absOldUrl) {
+       /* console.log('success', evt, absNewUrl, absOldUrl);
+        if($routeParams['category']){
+            var filter = {category:$routeParams['category']};
+            //console.log(filter);
+            angular.extend($scope.dataHolder.onlineModules, {filter: filter});
+            $cookies.filterAppsOnline = angular.toJson(filter);
+            //$scope.setFilter({category:$routeParams['category']});
+
+        }*/
+    });
+
 
     /**
      * Set order by
@@ -517,8 +547,10 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
             angular.extend($scope.dataHolder.onlineModules, {filter: filter});
             $cookies.filterAppsOnline = angular.toJson(filter);
         }
-        $scope.reloadData();
+         $scope.reloadData();
     };
+
+
 
     /**
      * Install module
@@ -1162,26 +1194,105 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
  * @class AppOnlineFeaturedController
  *
  */
-myAppController.controller('AppOnlineFeaturedController', function ($scope, $routeParams, $route, $filter, $location, $q, dataFactory, dataService, myCache, cfg) {
-    $scope.slides = [
-        {image: 'storage/img/icons/alarm.png', description: 'Module 1'},
-        {image: 'storage/img/icons/dimmer-half.png', description: 'Module 2'},
-        {image: 'storage/img/icons/event-device-power.png', description: 'Module 3'},
-        {image: 'storage/img/icons/motion-on.png', description: 'Module 4'},
-        {image: 'storage/img/icons/switch-off.png', description: 'Module 5'},
-        {image: 'storage/img/icons/thermostat.png', description: 'Module 6'},
-        {image: 'storage/img/icons/camera.png', description: 'Module 7'},
-        {image: 'storage/img/icons/press.png', description: 'Module 8'},
-        {image: 'storage/img/icons/temperature.png', description: 'Module 9'},
-        {image: 'storage/img/icons/luminosity.png', description: 'Module 10'},
-    ];
+myAppController.controller('AppOnlineFeaturedController', function ($scope, _) {
+    $scope.imgReplace = {
+        364: 'storage/img/slider/01-alarm.png',
+        342: 'storage/img/slider/02-dimmer.png',
+        304: 'storage/img/slider/03-power.png',
+        222: 'storage/img/slider/04-motion.png',
+        181: 'storage/img/slider/05-switch.png',
+        158: 'storage/img/slider/06-thermostat.png',
+        154: 'storage/img/slider/07-camera.png',
+        152: 'storage/img/slider/08-rgb.png'
+    };
+    //$scope.direction = 'left';
+    //$scope.currentIndex = 0;
+    /*$scope.slides = [
+        {image: 'storage/img/slider/01-alarm.png', title: 'Alarm 1 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
+        {image: 'storage/img/slider/02-dimmer.png', title: 'Dimmer 2 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
+        {image: 'storage/img/slider/03-power.png', title: 'Power 3 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
+        {image: 'storage/img/slider/04-motion.png', title: 'Motion 4 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
+        {image: 'storage/img/slider/05-switch.png', title: 'Switch 5 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
+        {image: 'storage/img/slider/06-thermostat.png', title: 'Thermostat 6 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
+        {image: 'storage/img/slider/07-camera.png', title: 'Camera 7 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
+        {image: 'storage/img/slider/08-rgb.png', title: 'RGB 8 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
+        {image: 'storage/img/slider/09-temp.png', title: 'Temperature 9 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
+        {image: 'storage/img/slider/10-luminosity.png', title: 'Luminosity 10 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
+    ];*/
+
+   /* $scope.isCurrentSlideIndex = function (index) {
+        return $scope.currentIndex === index;
+    };*/
+
+    $scope.prevSlide = function () {
+        $scope.slider.cfg.start -= 1;
+        $scope.slider.cfg.end -= 1;
+        if($scope.slider.cfg.start < 0){
+            $scope.slider.cfg.start = 0;
+            $scope.slider.cfg.end = $scope.slider.cfg.show;
+        }
+        //$scope.direction = 'right';
+        //$scope.currentIndex = ($scope.currentIndex > 0) ? --$scope.currentIndex : $scope.slides.length - 1;
+        //console.log($scope.currentIndex)
+    };
+
+    $scope.nextSlide = function () {
+        $scope.slider.cfg.start += 1;
+        $scope.slider.cfg.end += 1;
+        if($scope.slider.cfg.end > $scope.slider.cfg.max){
+            $scope.slider.cfg.start = 0;
+            $scope.slider.cfg.end = $scope.slider.cfg.show;
+        }
+       // $scope.direction = 'left';
+        //$scope.currentIndex = ($scope.currentIndex < $scope.slides.length - 1) ? ++$scope.currentIndex : 0;
+        //console.log($scope.currentIndex)
+    };
+
+
 
 });
+    /*.animation('.slide-animation_', function () {
+        return {
+            beforeAddClass: function (element, className, done) {
+                var scope = element.scope();
+
+                if (className == 'ng-hide') {
+                    var finishPoint = element.parent().width();
+                    if(scope.direction !== 'right') {
+                        finishPoint = -finishPoint;
+                    }
+                    TweenMax.to(element, 0.5, {left: finishPoint, onComplete: done });
+                }
+                else {
+                    done();
+                }
+            },
+            removeClass: function (element, className, done) {
+                var scope = element.scope();
+
+                if (className == 'ng-hide') {
+                    element.removeClass('ng-hide');
+
+                    var startPoint = element.parent().width();
+                    if(scope.direction === 'right') {
+                        startPoint = -startPoint;
+                    }
+
+                    TweenMax.fromTo(element, 0.5, { left: startPoint }, {left: 0, onComplete: done });
+                }
+                else {
+                    done();
+                }
+            }
+        };
+    });*/
 /**
+ * todo: deprecated
  * Apps feature controller
  * @class AppModuleFeaturedController
  *
  */
+/*
 myAppController.controller('AppModuleFeaturedController', function ($scope, $routeParams, $route, $filter, $location, $q, dataFactory, dataService, myCache, cfg) {
 
     $scope.slider = {
@@ -1286,4 +1397,4 @@ myAppController.controller('AppModuleFeaturedController', function ($scope, $rou
             }
         }
     };
-});
+});*/

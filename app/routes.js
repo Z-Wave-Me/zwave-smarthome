@@ -70,9 +70,14 @@ myApp.config(['$routeProvider', function ($routeProvider) {
         templateUrl: 'app/views/apps/apps_local_id.html',
         requireLogin: true,
         roles: cfg.role_access.apps_local
-    }).//Apps online
+    }).//Apps online home
     when('/apps/online', {
         templateUrl: 'app/views/apps/apps_online.html',
+        requireLogin: true,
+        roles: cfg.role_access.apps
+    }). //Apps online filter
+    when('/apps/online/filter', {
+        templateUrl: 'app/views/apps/apps_online_filter.html',
         requireLogin: true,
         roles: cfg.role_access.apps
     }).//Apps - online detail

@@ -90,11 +90,11 @@
 /* Apps online
 -------------------------------------------------- */
 .app-entry-online {
-  margin: 0 0 40px 0;
+  margin: 0 0 $spacing-double 0;
 
 
   .app-entry-cat {
-    margin: 40px 0 $spacing 0;
+    margin: 0 0 $spacing 0;
 
     .app-entry-title {
       width: 70%;
@@ -111,10 +111,17 @@
       text-align: right;
       width: 25%;
       float: right;
-      display: table-cell;
-      vertical-align: bottom;
+      /*display: table-cell;
+      vertical-align: bottom;*/
+      .btn{
+       margin: $spacing-double 0 0 0;
+      }
     }
   }
+
+  /*&.app-entry-filter {
+    margin-top: $spacing-double;
+  }*/
 
 }
 

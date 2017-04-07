@@ -12521,11 +12521,14 @@ img.widget-promo-image {
 -------------------------------------------------- */
 /* line 92, ../sass/modules/_apps.scss */
 .app-entry-online {
-  margin: 0 0 40px 0;
+  margin: 0 0 20px 0;
+  /*&.app-entry-filter {
+    margin-top: $spacing-double;
+  }*/
 }
 /* line 96, ../sass/modules/_apps.scss */
 .app-entry-online .app-entry-cat {
-  margin: 40px 0 10px 0;
+  margin: 0 0 10px 0;
 }
 /* line 99, ../sass/modules/_apps.scss */
 .app-entry-online .app-entry-cat .app-entry-title {
@@ -12543,23 +12546,27 @@ img.widget-promo-image {
   text-align: right;
   width: 25%;
   float: right;
-  display: table-cell;
-  vertical-align: bottom;
+  /*display: table-cell;
+  vertical-align: bottom;*/
+}
+/* line 116, ../sass/modules/_apps.scss */
+.app-entry-online .app-entry-cat .app-entry-btn .btn {
+  margin: 20px 0 0 0;
 }
 
 /* App detail
 -------------------------------------------------- */
-/* line 124, ../sass/modules/_apps.scss */
+/* line 131, ../sass/modules/_apps.scss */
 .app-detail-img {
   margin: 0 0 10px 0;
 }
 
-/* line 128, ../sass/modules/_apps.scss */
+/* line 135, ../sass/modules/_apps.scss */
 .app-detail-body h2 {
   margin: 20px 0 10px 0;
 }
 
-/* line 132, ../sass/modules/_apps.scss */
+/* line 139, ../sass/modules/_apps.scss */
 .app-detail-list {
   border-top: solid 1px #d3d3d3;
   margin: 10px 0 0 0;
@@ -12568,20 +12575,20 @@ img.widget-promo-image {
 
 /* Apps rating
 -------------------------------------------------- */
-/* line 140, ../sass/modules/_apps.scss */
+/* line 147, ../sass/modules/_apps.scss */
 .module-rating {
   font-size: 150%;
   padding: 0 10px 0 0;
   color: #8c8c8c;
 }
-/* line 144, ../sass/modules/_apps.scss */
+/* line 151, ../sass/modules/_apps.scss */
 .module-rating.israted {
   color: #f4c37d;
 }
 
 /* Apps comments
 -------------------------------------------------- */
-/* line 150, ../sass/modules/_apps.scss */
+/* line 157, ../sass/modules/_apps.scss */
 .comment-entry {
   margin: 0 0 10px 0;
   padding: 10px;
@@ -12589,7 +12596,7 @@ img.widget-promo-image {
   color: #0d0d0d;
   font-size: 100%;
 }
-/* line 156, ../sass/modules/_apps.scss */
+/* line 163, ../sass/modules/_apps.scss */
 .comment-entry .comment-header {
   font-style: italic;
   font-size: 95%;
@@ -12597,7 +12604,7 @@ img.widget-promo-image {
   margin: 0 0 5px 0;
 }
 
-/* line 166, ../sass/modules/_apps.scss */
+/* line 173, ../sass/modules/_apps.scss */
 .comment-entry.even {
   background-color: #E9E9E9;
 }
@@ -13277,67 +13284,103 @@ img.widget-promo-image {
 /* Slider:  http://onehungrymind.com/build-sweet-photo-slider-angularjs-animate/
 -------------------------------------------------- */
 /* line 3, ../sass/modules/_slider.scss */
-.slider {
-  width: 1160px;
-  height: 400px;
+.app-slider {
+  width: 1170px;
+  height: 200px;
   overflow: hidden;
   position: relative;
-  background: #e6e6e6;
-  margin-top: 20px;
+  background: #EEEEEE;
+  margin: 10px 0;
 }
-
-/* line 13, ../sass/modules/_slider.scss */
-.slide {
-  position: absolute;
+/* line 11, ../sass/modules/_slider.scss */
+.app-slider .slide {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  width: 390px;
+  height: 200px;
   top: 0;
   left: 0;
 }
-/* line 17, ../sass/modules/_slider.scss */
-.slide img {
-  width: 1160px;
-  height: 400px;
+/* line 21, ../sass/modules/_slider.scss */
+.app-slider .slide img {
+  width: 390px;
+  height: 200px;
 }
-
-/* line 23, ../sass/modules/_slider.scss */
-.arrow {
+/* line 25, ../sass/modules/_slider.scss */
+.app-slider .slide .slider-label {
+  background-color: rgba(0, 0, 0, 0.2);
+  width: 100%;
+  text-align: center;
   position: absolute;
-  z-index: 1002;
-  display: block;
-  top: 50%;
-  margin-top: -35px;
-  width: 36px;
-  height: 71px;
-  outline: none;
+  left: 0;
+  bottom: 0;
+  padding: 10px;
+}
+/* line 33, ../sass/modules/_slider.scss */
+.app-slider .slide .slider-label h3 {
+  font-weight: bold;
+  font-size: 130%;
+  color: #FFFFFF;
+  text-shadow: 1px 1px 2px #969696;
+}
+/* line 39, ../sass/modules/_slider.scss */
+.app-slider .slide .slider-label .slider-footer {
+  color: #ffffff;
+}
+/* line 42, ../sass/modules/_slider.scss */
+.app-slider .slide .slider-label .slider-footer .widget-rating {
+  text-shadow: 1px 1px 2px #969696;
+  font-size: 120%;
+  padding: 0 4px 0 0;
+  color: #ffffff;
+}
+/* line 47, ../sass/modules/_slider.scss */
+.app-slider .slide .slider-label .slider-footer .widget-rating.israted {
+  color: #ffffff;
+}
+/* line 51, ../sass/modules/_slider.scss */
+.app-slider .slide .slider-label .slider-footer button {
+  margin: 0 0 0 20px;
+}
+
+/* line 62, ../sass/modules/_slider.scss */
+.slider-btn {
+  height: 100%;
+  font-size: 200%;
+  color: #fff !important;
+  border: none;
+  display: inline-block;
+  outline: 0;
+  padding: 8px 16px;
+  vertical-align: middle;
+  /*overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  background-color: inherit;*/
+  text-align: center;
   cursor: pointer;
-  background: url(../assets/img/blank.gif) no-repeat;
+  white-space: nowrap;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: 50%;
+  transform: translate(0%, -50%);
+}
+/* line 85, ../sass/modules/_slider.scss */
+.slider-btn:hover {
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
-/* line 36, ../sass/modules/_slider.scss */
-.arrow.prev {
-  opacity: 0.2;
-  left: 20px;
-  background-image: url(../assets/img/paddle_prev_999.png);
-  transition: 0.2s linear all;
+/* line 91, ../sass/modules/_slider.scss */
+.slider-btn-prev {
+  left: 0%;
+  -ms-transform: translate(0%, -50%);
 }
 
-/* line 43, ../sass/modules/_slider.scss */
-.arrow.next {
-  opacity: 0.2;
-  right: 20px;
-  background-image: url(../assets/img/paddle_next_999.png);
-  transition: 0.2s linear all;
-}
-
-/* line 50, ../sass/modules/_slider.scss */
-.arrow.prev:hover {
-  opacity: 1;
-  background-image: url(../assets/img/paddle_prev_fff.png);
-}
-
-/* line 55, ../sass/modules/_slider.scss */
-.arrow.next:hover {
-  opacity: 1;
-  background-image: url(../assets/img/paddle_next_fff.png);
+/* line 99, ../sass/modules/_slider.scss */
+.slider-btn-next {
+  right: 0%;
+  -ms-transform: translate(0%, -50%);
 }
 
 /* POPP css
