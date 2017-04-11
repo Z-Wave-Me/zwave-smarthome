@@ -18,6 +18,7 @@ textarea {
 }
 
 label {
+  font-weight: normal;
   font-size: $app-label-font-size;
 }
 
@@ -27,7 +28,7 @@ input[type=checkbox] {
   -webkit-transform: scale($checkbox-scale); /* Safari and Chrome */
   -o-transform: scale($checkbox-scale); /* Opera */
   padding: $spacing;
-  margin: 0 $spacing 0;
+  margin: 0 $spacing-half 0;
 }
 
 input[type=radio] {

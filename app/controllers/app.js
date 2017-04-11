@@ -59,6 +59,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
             all: {}
         },
         instances: {
+            expanded: ($cookies.instancesExpanded == 'true'),//$cookies.instancesExpanded,
             all: {},
             groups: {},
             cnt: {
@@ -76,6 +77,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
             show: 3
         }
     }
+    console.log($cookies.instancesExpanded);
 
     $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
     $scope.onlineMediaUrl = $scope.cfg.online_module_img_url;
@@ -622,6 +624,33 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
  * @class AppInstanceController
  */
 myAppController.controller('AppInstanceController', function ($scope, $cookies, dataFactory, dataService, myCache, _) {
+    $scope.autocomplete = {
+        source: [],
+        term: '',
+        searchInKeys: 'id,title,description,moduleId',
+        returnKeys: 'id,title,active,moduleId',
+        strLength: 2,
+        resultLength: 10
+    };
+
+    /**
+     * Expand instances
+     */
+    $scope.expandInstances = function (state) {
+        angular.forEach($scope.expand,function(v,k){
+            console.log(k)
+            $scope.expand[k] = state;
+        });
+        $cookies.instancesExpanded = state;
+    };
+
+    /**
+     * Renders search result in the list
+     */
+    $scope.searchMe = function () {
+        $scope.autocomplete.results = dataService.autocomplete($scope.dataHolder.instances.all,$scope.autocomplete);
+    }
+
     /**
      * Set order by
      */
@@ -639,7 +668,7 @@ myAppController.controller('AppInstanceController', function ($scope, $cookies, 
         if (input.id) {
             dataFactory.putApi('instances', input.id, input).then(function (response) {
                 $scope.loading = false;
-                $scope.reloadData();
+                //$scope.reloadData();
                 //$route.reload();
 
             }, function (error) {

@@ -1,12 +1,14 @@
 /* Page navigation
 -------------------------------------------------- */
 .page-control{
+    .form-group{
+        margin: 0 $spacing-double 0 0;
+    }
     text-align: right;
     margin-bottom: $spacing;
-     input{
+     input[type=text]{
        min-height: $page-control-input-h;
        line-height: $page-control-input-h;
-       padding: 0 $spacing;
     }
 } 
 

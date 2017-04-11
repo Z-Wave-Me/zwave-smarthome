@@ -3,6 +3,7 @@
 .autocomplete{
     min-width: 500px !important;
     .aoutocomplete-title{
+        display: inline-block;
         padding: 0 $spacing 0 0;
     }
     .rating-group{

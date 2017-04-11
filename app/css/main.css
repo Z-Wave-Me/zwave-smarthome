@@ -10874,14 +10874,17 @@ img {
   text-align: right;
   margin-bottom: 10px;
 }
-/* line 6, ../sass/common/_navi.scss */
-.page-control input {
-  min-height: 40px;
-  line-height: 40px;
-  padding: 0 10px;
+/* line 4, ../sass/common/_navi.scss */
+.page-control .form-group {
+  margin: 0 20px 0 0;
+}
+/* line 9, ../sass/common/_navi.scss */
+.page-control input[type=text] {
+  min-height: 22px;
+  line-height: 22px;
 }
 
-/* line 13, ../sass/common/_navi.scss */
+/* line 15, ../sass/common/_navi.scss */
 .page-navi {
   font-size: 120%;
   position: relative;
@@ -10889,7 +10892,7 @@ img {
   height: 100%;
   color: #333333;
 }
-/* line 19, ../sass/common/_navi.scss */
+/* line 21, ../sass/common/_navi.scss */
 .page-navi .page-navi-in {
   position: absolute;
   background-color: #FFFFFF;
@@ -10902,19 +10905,19 @@ img {
   left: 0;
   z-index: 2101;
 }
-/* line 29, ../sass/common/_navi.scss */
+/* line 31, ../sass/common/_navi.scss */
 .page-navi ul {
   list-style: none;
   text-align: left;
   padding: 10px;
   margin: 0;
 }
-/* line 34, ../sass/common/_navi.scss */
+/* line 36, ../sass/common/_navi.scss */
 .page-navi ul li {
   padding: 10px;
   border-bottom: solid 1px #d3d3d3;
 }
-/* line 40, ../sass/common/_navi.scss */
+/* line 42, ../sass/common/_navi.scss */
 .page-navi ul li a {
   position: relative;
   min-height: 1px;
@@ -10924,48 +10927,48 @@ img {
   display: block;
   margin: auto;
 }
-/* line 51, ../sass/common/_navi.scss */
+/* line 53, ../sass/common/_navi.scss */
 .page-navi ul li .navi-img {
   display: inline-block;
   margin: 0 10px 0 0;
 }
-/* line 56, ../sass/common/_navi.scss */
+/* line 58, ../sass/common/_navi.scss */
 .page-navi ul li .page-navi-icon {
   position: absolute;
   right: 1%;
   display: inline-block !important;
 }
-/* line 63, ../sass/common/_navi.scss */
+/* line 65, ../sass/common/_navi.scss */
 .page-navi ul .active a {
   color: #b3b3b3;
   font-weight: bold;
   text-decoration: underline;
 }
-/* line 68, ../sass/common/_navi.scss */
+/* line 70, ../sass/common/_navi.scss */
 .page-navi ul .active .fa {
   color: #b3b3b3;
 }
-/* line 73, ../sass/common/_navi.scss */
+/* line 75, ../sass/common/_navi.scss */
 .page-navi ul .fa {
   padding-right: 7px;
   color: #666666;
 }
-/* line 79, ../sass/common/_navi.scss */
+/* line 81, ../sass/common/_navi.scss */
 .page-navi .fa {
   font-size: 130%;
 }
-/* line 82, ../sass/common/_navi.scss */
+/* line 84, ../sass/common/_navi.scss */
 .page-navi .page-navi-title {
   text-align: left;
   margin: 0;
   padding: 10px 20px;
   color: #404040;
 }
-/* line 89, ../sass/common/_navi.scss */
+/* line 91, ../sass/common/_navi.scss */
 .page-navi .page-navi-content {
   padding: 10px;
 }
-/* line 92, ../sass/common/_navi.scss */
+/* line 94, ../sass/common/_navi.scss */
 .page-navi .page-navi-tag {
   border: solid 1px #d3d3d3;
   display: inline-block;
@@ -10976,20 +10979,20 @@ img {
   vertical-align: baseline;
   border-radius: 4px;
 }
-/* line 102, ../sass/common/_navi.scss */
+/* line 104, ../sass/common/_navi.scss */
 .page-navi .page-navi-tag.active {
   background-color: #d3d3d3;
   cursor: text;
 }
 
-/* line 108, ../sass/common/_navi.scss */
+/* line 110, ../sass/common/_navi.scss */
 .page-navi-in ul:before, .page-navi-in ul:after {
   display: table;
   content: "";
   line-height: 0;
 }
 
-/* line 113, ../sass/common/_navi.scss */
+/* line 115, ../sass/common/_navi.scss */
 .page-navi-in ul:after {
   clear: both;
 }
@@ -11445,10 +11448,11 @@ textarea {
 
 /* line 20, ../sass/common/_form.scss */
 label {
+  font-weight: normal;
   font-size: 105%;
 }
 
-/* line 24, ../sass/common/_form.scss */
+/* line 25, ../sass/common/_form.scss */
 input[type=checkbox] {
   -ms-transform: scale(2);
   /* IE */
@@ -11459,10 +11463,10 @@ input[type=checkbox] {
   -o-transform: scale(2);
   /* Opera */
   padding: 10px;
-  margin: 0 10px 0;
+  margin: 0 5px 0;
 }
 
-/* line 33, ../sass/common/_form.scss */
+/* line 34, ../sass/common/_form.scss */
 input[type=radio] {
   transform: scale(1.8, 1.8);
   -moz-transform: scale(1.8, 1.8);
@@ -11473,7 +11477,7 @@ input[type=radio] {
   margin: 0 10px 0;
 }
 
-/* line 45, ../sass/common/_form.scss */
+/* line 46, ../sass/common/_form.scss */
 .os-iphone input[type=checkbox], .os-ipad input[type=checkbox], .os-ipod input[type=checkbox] {
   -ms-transform: scale(1.3);
   /* IE */
@@ -11486,7 +11490,7 @@ input[type=radio] {
   padding: 10px;
   margin: 0 10px 0;
 }
-/* line 53, ../sass/common/_form.scss */
+/* line 54, ../sass/common/_form.scss */
 .os-iphone input[type=radio], .os-ipad input[type=radio], .os-ipod input[type=radio] {
   transform: scale(1.2, 1.2);
   -moz-transform: scale(1.2, 1.2);
@@ -11497,29 +11501,29 @@ input[type=radio] {
   margin: 0 10px 0;
 }
 
-/* line 64, ../sass/common/_form.scss */
+/* line 65, ../sass/common/_form.scss */
 .form-page {
   margin-bottom: 20px;
   background-color: #FFFFFF;
   border: solid 1px #e7e7e7;
 }
-/* line 70, ../sass/common/_form.scss */
+/* line 71, ../sass/common/_form.scss */
 .form-page .form-group {
   border-bottom: solid 1px #e7e7e7;
   padding-bottom: 10px;
 }
-/* line 73, ../sass/common/_form.scss */
+/* line 74, ../sass/common/_form.scss */
 .form-page .form-group.last {
   border-bottom: 0;
   padding-bottom: 0;
   margin-bottom: 0;
 }
-/* line 79, ../sass/common/_form.scss */
+/* line 80, ../sass/common/_form.scss */
 .form-page label {
   font-weight: normal;
 }
 
-/* line 84, ../sass/common/_form.scss */
+/* line 85, ../sass/common/_form.scss */
 .inputfile {
   width: 0.1px;
   height: 0.1px;
@@ -11529,37 +11533,37 @@ input[type=radio] {
   z-index: -1;
 }
 
-/* line 94, ../sass/common/_form.scss */
+/* line 95, ../sass/common/_form.scss */
 .inputfile + label {
   cursor: pointer;
 }
 
-/* line 98, ../sass/common/_form.scss */
+/* line 99, ../sass/common/_form.scss */
 fieldset, .fieldset {
   padding: 10px;
 }
 
-/* line 102, ../sass/common/_form.scss */
+/* line 103, ../sass/common/_form.scss */
 .isrequired {
   font-weight: bold !important;
 }
 
-/* line 107, ../sass/common/_form.scss */
+/* line 108, ../sass/common/_form.scss */
 .isrequired::before {
   content: "*";
 }
 
-/* line 111, ../sass/common/_form.scss */
+/* line 112, ../sass/common/_form.scss */
 .form-control-sm {
   width: 30% !important;
 }
 
-/* line 115, ../sass/common/_form.scss */
+/* line 116, ../sass/common/_form.scss */
 .form-control-md {
   width: 50% !important;
 }
 
-/* line 119, ../sass/common/_form.scss */
+/* line 120, ../sass/common/_form.scss */
 .submit-entry {
   text-align: right;
   display: block;
@@ -11567,35 +11571,35 @@ fieldset, .fieldset {
   border-top: solid 1px #e7e7e7;
 }
 
-/* line 127, ../sass/common/_form.scss */
+/* line 128, ../sass/common/_form.scss */
 fieldset.submit-entry {
   margin: 0 !important;
 }
 
-/* line 131, ../sass/common/_form.scss */
+/* line 132, ../sass/common/_form.scss */
 .form-control-hidden {
   display: none !important;
 }
 
-/* line 135, ../sass/common/_form.scss */
+/* line 136, ../sass/common/_form.scss */
 .form-control-img {
   cursor: pointer;
   border: solid 4px transparent;
 }
 
-/* line 141, ../sass/common/_form.scss */
+/* line 142, ../sass/common/_form.scss */
 .control-active {
   border: solid 4px black !important;
 }
 
-/* line 144, ../sass/common/_form.scss */
+/* line 145, ../sass/common/_form.scss */
 .form-block {
   margin: 10px 0 0 0;
 }
 
 /* Config form
 -------------------------------------------------- */
-/* line 151, ../sass/common/_form.scss */
+/* line 152, ../sass/common/_form.scss */
 #form_wakeup select, #form_wakeup .label-node {
   visibility: hidden;
 }
@@ -12097,15 +12101,16 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 /* line 5, ../sass/common/_autocomplete.scss */
 .autocomplete .aoutocomplete-title {
+  display: inline-block;
   padding: 0 10px 0 0;
 }
-/* line 10, ../sass/common/_autocomplete.scss */
+/* line 11, ../sass/common/_autocomplete.scss */
 .autocomplete .rating-group .widget-rating {
   font-size: 90%;
   padding: 0 2px 0 0;
   color: #8c8c8c;
 }
-/* line 14, ../sass/common/_autocomplete.scss */
+/* line 15, ../sass/common/_autocomplete.scss */
 .autocomplete .rating-group .widget-rating.israted {
   color: #f4c37d;
 }

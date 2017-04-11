@@ -1,5 +1,6 @@
 ﻿{
-    "z_way_restart": "The system will now be automatically restarted. Redirect to login in __val__ __level__.",
+  "expand_all": "Expand all",
+  "z_way_restart": "The system will now be automatically restarted. Redirect to login in __val__ __level__.",
     "built_date": "Buildattu",
     "cloudbackup_active": "Pilvivarmistus aktiivinen",
     "cloudbackup_inactive" : "Pilvivarmistus ei käytössä",
