@@ -376,6 +376,11 @@ var config_data = {
                 'titleDESC': '-name'
             }
         },
+        // Replace online cats
+        replace_online_cat: {
+            'automation': 'automation_basic',
+            'scheduling': 'automation_basic',
+        },
         // List of frequencies
         frequency: {
             EU: 'Europe',

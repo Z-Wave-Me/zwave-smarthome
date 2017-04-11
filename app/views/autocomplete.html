@@ -1,22 +1,32 @@
-<div ng-controller="DragDropController">
-            <div ng-repeat="(listName, list) in models.lists">
-                <h3>List {{listName}}</h3>
-                        <div dnd-list="list">
-                            <!-- The dnd-draggable directive makes an element draggable and will
-                                 transfer the object that was assigned to it. If an element was
-                                 dragged away, you have to remove it from the original list
-                                 yourself using the dnd-moved attribute -->
-                            <div ng-repeat="item in list"
-                                dnd-draggable="item"
-                                dnd-moved="list.splice($index, 1)"
-                                dnd-effect-allowed="move"
-                                dnd-selected="models.selected = item"
-                                ng-class="{'selected': models.selected === item}"
-                            >
-                                {{item.label}}
-                            </div>
-                        </div>
+<div ng-controller="AutoCompleteController">
+    <!--<pre>{{autocomplete.results|json}}</pre>-->
+    <div class="form-group form-inline text-right">
+        <div class="input-group">
+            <input name="add_tag" id="add_tag" type="text"
+                   class="form-control"
+                   placeholder="{{_t('lb_add_tag')}}"
+                   ng-model="autocomplete.term" bb-key-event="searchMe()" data-toggle="dropdown"/>
+            <span class="input-group-addon clickable" title="{{_t('lb_add_tag')}}" ng-click="addTag()">
+                       <i class="fa fa-search"></i>
+                   </span>
+            <div class="app-dropdown app-dropdown-left_ autocomplete" ng-if="autocomplete.results.length">
+                <ul>
+                    <li class="clickable" title="{{v.title}}"
+                        ng-click="redirectToRoute('apps/online/' + v.id)"
+                        ng-repeat="v in autocomplete.results | orderBy:'toString()' track by $index">
+                        <img class="report-img-s" alt="{{v.title}}"
+                             ng-src="{{v.icon ? cfg.online_module_img_url + v.icon : 'storage/img/placeholder-img.png'}}"/>
+                        <span class="aoutocomplete-title">{{v.title|cutText:true:30}}</span>&nbsp;
+                        (<span class="rating-group">
+                                    <i class="fa widget-rating" title="{{r}}"
+                                       ng-class="r > v.rating ? 'fa-star-o' : 'fa-star israted'"
+                                       ng-repeat="r in [1,2,3,4,5]"></i>
+                                    <span class="widget-rating"> | <i
+                                            class="fa fa-download"></i> {{v.installed}}&times;</span>
+                                </span>)
+                    </li>
+                </ul>
             </div>
-
-        <pre>{{ models|json}}</pre>
+        </div>
     </div>
+</div>

@@ -5,7 +5,7 @@
             <i class="fa fa-cloud-download"></i> <span class="btn-name">{{_t('lb_local_modules')}}</span>
         </a>
         <a class="btn btn-default" title="{{_t('lb_online_modules')}}" href="#apps/online" 
-           ng-class="routeMatch('/apps/online') ? 'active' : ''">
+           ng-class="routeMatch('/apps/online') ||  routeMatch('/apps/online/filter') ? 'active' : ''">
             <i class="fa fa-globe"></i> <span class="btn-name">{{_t('lb_online_modules')}}</span>
         </a>
         <a class="btn btn-default" title="{{_t('lb_active')}}" href="#apps/instance"  

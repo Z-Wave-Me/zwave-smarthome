@@ -8,7 +8,7 @@
  * @class AppBaseController
  *
  */
-myAppController.controller('AppBaseController', function ($scope, $filter, $cookies, $q, $route, dataFactory, dataService, _) {
+myAppController.controller('AppBaseController', function ($scope, $filter, $cookies, $q, $route, cfg,dataFactory, dataService, _) {
     angular.copy({
         appsCategories: false
     }, $scope.expand);
@@ -23,7 +23,8 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                 appsCatFeatured: 0,
                 featured: 0
             },
-            all: {},
+            all: [],
+            collection: [],
             featured: [],
             categories: {},
             ids: {},
@@ -46,6 +47,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                 featured: 0
             },
             ratingRange: _.range(1, 6),
+            collection: [],
             all: {},
             featured: [],
             ids: {},
@@ -188,6 +190,8 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
         var modules = _.chain(data)
                 .flatten()
                 .filter(function (item) {
+                    item.title = item.defaults.title;
+                    item.description = item.defaults.description;
                     $scope.dataHolder.modules.ids[item.id] = {version: item.version};
                     var isHidden = false;
                     var items = [];
@@ -251,10 +255,10 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
 
         // Count all apps
         $scope.dataHolder.modules.cnt.apps = modules.size().value();
-
-        $scope.dataHolder.modules.all = modules.where($scope.dataHolder.modules.filter).value();
+        $scope.dataHolder.modules.collection = modules.where($scope.dataHolder.modules.filter).value();
+        $scope.dataHolder.modules.all = modules.value();
         // Count collection
-        $scope.dataHolder.modules.cnt.collection = _.size($scope.dataHolder.modules.all);
+        $scope.dataHolder.modules.cnt.collection = _.size($scope.dataHolder.modules.collection);
     }
     ;
 
@@ -269,6 +273,10 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
         var onlineModules = _.chain(data)
                 .flatten()
                 .filter(function (item) {
+                    // Replacing categories
+                    if(cfg.replace_online_cat[item.category]){
+                        item.category = cfg.replace_online_cat[item.category];
+                    }
                     var isHidden = false;
                     var obj = {};
                     $scope.dataHolder.onlineModules.ids[item.modulename] = {version: item.version, file: item.file, patchnotes: item.patchnotes};
@@ -348,9 +356,10 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
 
         // Count all apps
         $scope.dataHolder.onlineModules.cnt.apps = onlineModules.size().value();
-        $scope.dataHolder.onlineModules.all = onlineModules.where($scope.dataHolder.onlineModules.filter).value();
+        $scope.dataHolder.onlineModules.collection = onlineModules.where($scope.dataHolder.onlineModules.filter).value();
+        $scope.dataHolder.onlineModules.all = onlineModules.value();
         // Count collection
-        $scope.dataHolder.onlineModules.cnt.collection = _.size($scope.dataHolder.onlineModules.all);
+        $scope.dataHolder.onlineModules.cnt.collection = _.size($scope.dataHolder.onlineModules.collection);
         $scope.loading = false;
     }
     ;
@@ -423,6 +432,21 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
  */
 myAppController.controller('AppLocalController', function ($scope, $filter, $cookies, $timeout, $route, $routeParams, $location, dataFactory, dataService, myCache, _) {
     $scope.dataHolder.modules.filter = ($cookies.filterAppsLocal ? angular.fromJson($cookies.filterAppsLocal) : {});
+    $scope.autocomplete = {
+        source: [],
+        term: '',
+        searchInKeys: 'id,title,description,author',
+        returnKeys: 'id,title,author,icon,moduleName,hasInstance',
+        strLength: 2,
+        resultLength: 10
+    };
+
+    /**
+     * Renders search result in the list
+     */
+    $scope.searchMe = function () {
+        $scope.autocomplete.results = dataService.autocomplete($scope.dataHolder.modules.all,$scope.autocomplete);
+    }
     /**
      * Set order by
      */
@@ -495,6 +519,22 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
  */
 myAppController.controller('AppOnlineController', function ($scope, $filter, $cookies, $window, $routeParams,dataFactory, dataService, _) {
     $scope.dataHolder.onlineModules.filter = ($cookies.filterAppsOnline ? angular.fromJson($cookies.filterAppsOnline) : {});
+    $scope.autocomplete = {
+        source: [],
+        term: '',
+        searchInKeys: 'id,title,description,author',
+        returnKeys: 'id,title,author,installed,rating,icon',
+        strLength: 2,
+        resultLength: 10
+    };
+
+    /**
+     * Renders search result in the list
+     */
+    $scope.searchMe = function () {
+        $scope.autocomplete.results = dataService.autocomplete($scope.dataHolder.onlineModules.all,$scope.autocomplete);
+    }
+
     if($routeParams['category']){
         var filter = {category:$routeParams['category']};
         //console.log(filter);
@@ -504,8 +544,8 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
 
     }
 
-    $scope.$on('$locationChangeSuccess',function(evt, absNewUrl, absOldUrl) {
-       /* console.log('success', evt, absNewUrl, absOldUrl);
+    /*$scope.$on('$locationChangeSuccess',function(evt, absNewUrl, absOldUrl) {
+        console.log('success', evt, absNewUrl, absOldUrl);
         if($routeParams['category']){
             var filter = {category:$routeParams['category']};
             //console.log(filter);
@@ -513,8 +553,8 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
             $cookies.filterAppsOnline = angular.toJson(filter);
             //$scope.setFilter({category:$routeParams['category']});
 
-        }*/
-    });
+        }
+    });*/
 
 
     /**

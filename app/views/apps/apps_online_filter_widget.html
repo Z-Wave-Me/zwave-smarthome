@@ -16,7 +16,7 @@
         <div class="widget-entry widget-entry-app"
              ng-class="{'widget-warning': dataHolder.modules.ids[v.modulename],'widget-danger': dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version != v.version}"
              ng-if="!v.featured"
-             ng-repeat="v in dataHolder.onlineModules.all| orderBy: cfg.orderby.appsonline[dataHolder.onlineModules.orderBy] | filter:q track by v.id"
+             ng-repeat="v in dataHolder.onlineModules.collection| orderBy: cfg.orderby.appsonline[dataHolder.onlineModules.orderBy] | filter:q track by v.id"
              ng-hide="v.status !== 'download' && dataHolder.onlineModules.hideInstalled">
             <div class="widget-entry-in">
                 <!-- Widget img -->

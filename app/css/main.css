@@ -12089,6 +12089,27 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-color: #d3d3d3;
 }
 
+/* Aoutocomplete
+-------------------------------------------------- */
+/* line 3, ../sass/common/_autocomplete.scss */
+.autocomplete {
+  min-width: 500px !important;
+}
+/* line 5, ../sass/common/_autocomplete.scss */
+.autocomplete .aoutocomplete-title {
+  padding: 0 10px 0 0;
+}
+/* line 10, ../sass/common/_autocomplete.scss */
+.autocomplete .rating-group .widget-rating {
+  font-size: 90%;
+  padding: 0 2px 0 0;
+  color: #8c8c8c;
+}
+/* line 14, ../sass/common/_autocomplete.scss */
+.autocomplete .rating-group .widget-rating.israted {
+  color: #f4c37d;
+}
+
 /* Elements
 -------------------------------------------------- */
 /* line 4, ../sass/modules/_elements.scss */
