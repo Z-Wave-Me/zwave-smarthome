@@ -1,6 +1,6 @@
 ﻿{
-    "newtrans": "---",
-    "---": "newtrans",
+  "expand_all": "Expand all",
+  "z_way_restart": "The system will now be automatically restarted. Redirect to login in __val__ __level__.",
     "built_date": "Buildattu",
     "cloudbackup_active": "Pilvivarmistus aktiivinen",
     "cloudbackup_inactive" : "Pilvivarmistus ei käytössä",
@@ -679,5 +679,6 @@
     "error_backup": "Varmuuskopiointi epäonnistui!",
     "success_backup": "Varmuuskopiointi onnistui.",
   "add_mobile_device": "Add mobile device",
-  "lb_make_qrcode": "Make qrcode"
+  "lb_make_qrcode": "Make qrcode",
+  "lb_clone": "Clone"
 }

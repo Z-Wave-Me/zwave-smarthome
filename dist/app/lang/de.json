@@ -1,4 +1,6 @@
 {
+    "expand_all": "Expand all",
+    "z_way_restart": "The system will now be automatically restarted. Redirect to login in __val__ __level__.",
     "built_date": "Built date",
     "cloudbackup": "Cloud Backup",
     "cloudbackup_active": "Cloud Backup aktiviert",
@@ -663,5 +665,6 @@
     "error_backup": "Backup fehlgeschalgen!",
     "success_backup": "Backup erfolgreich.",
     "add_mobile_device": "Mobiles Gerät hinzufügen",
-    "lb_make_qrcode": "Qrcode erstellen"
+    "lb_make_qrcode": "Qrcode erstellen",
+    "lb_clone": "Klonen"
 }
