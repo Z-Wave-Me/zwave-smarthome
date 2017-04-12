@@ -665,5 +665,6 @@
     "error_backup": "Backup fehlgeschalgen!",
     "success_backup": "Backup erfolgreich.",
     "add_mobile_device": "Mobiles Gerät hinzufügen",
-    "lb_make_qrcode": "Qrcode erstellen"
+    "lb_make_qrcode": "Qrcode erstellen",
+    "lb_clone": "Klonen"
 }

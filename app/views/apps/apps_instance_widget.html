@@ -45,11 +45,12 @@
                                 ng-click="activateInstance(v, true)">
                             <i class="fa fa-power-off text-danger"></i>
                         </button>
-                        <button title="{{_t('Copy instance')}}"
-                                class="btn btn-default"
-                                ng-click="activateInstance(v, true)">
-                            <i class="fa fa-copy text-info"></i>
-                        </button>
+                        <a ng-href="#module/clone/{{v.moduleId}}/false/{{v.id}}"
+                           class="btn btn-default"
+                           title="{{_t('lb_clone')}}"
+                           ng-hide="dataHolder.modules.singleton[v.moduleId].singelton">
+                            <i class="fa fa-clone"></i>
+                        </a>
                         <button title="{{_t('lb_remove')}}"
                                 class="btn btn-default"
                                 ng-click="deleteInstance('#instance_' + $index, {'id': v.id}, _t('lb_delete_confirm'))">
