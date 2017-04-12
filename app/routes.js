@@ -95,7 +95,7 @@ myApp.config(['$routeProvider', function ($routeProvider) {
         requireLogin: true,
         roles: cfg.role_access.apps_online
     }).//Module
-    when('/module/:action/:id/:fromapp?', {
+    when('/module/:action/:id/:fromapp?/:instanceId?', {
         templateUrl: 'app/views/apps/app_module_alpaca.html',
         requireLogin: true,
         roles: cfg.role_access.module

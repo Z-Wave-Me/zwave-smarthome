@@ -28,6 +28,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
             featured: [],
             categories: {},
             ids: {},
+            singleton: {},
             filter: {},
             cameraIds: [],
             imgs: [],
@@ -195,6 +196,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                     item.title = item.defaults.title;
                     item.description = item.defaults.description;
                     $scope.dataHolder.modules.ids[item.id] = {version: item.version};
+                    $scope.dataHolder.modules.singleton[item.id] = {singelton: item.singleton};
                     var isHidden = false;
                     var items = [];
                     if ($scope.getHiddenApps().indexOf(item.moduleName) > -1) {
@@ -1097,6 +1099,61 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
 
     };
 
+    /**
+     * Generates the form for clon an app instance
+     */
+    $scope.cloneModule = function (id, instanceId) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        dataFactory.getApi('instances', '/' + instanceId, true).then(function (instances) {
+            var instance = instances.data.data;
+            dataFactory.getApi('modules', '/' + id + '?lang=' + $scope.lang, true).then(function (module) {
+                // get module postRender data
+                var modulePR = null;
+                if (angular.isString(module.data.data.postRender) && module.data.data.postRender.indexOf('function') === 0) {
+                    modulePR = module.data.data.postRender;
+                }
+                var formData = dataService.getModuleFormData(module.data.data, instance.params);
+
+                var langCode = (angular.isDefined(cfg.lang_codes[$scope.lang]) ? cfg.lang_codes[$scope.lang] : null);
+                $scope.input = {
+                    'modulePostrender': modulePR,
+                    'instanceId': 0,
+                    'moduleId': id,
+                    'active': true,
+                    'title': $filter('hasNode')(formData, 'data.title'),
+                    'description': $filter('hasNode')(formData, 'data.description'),
+                    'moduleTitle': $filter('hasNode')(formData, 'data.title'),
+                    'icon': $filter('hasNode')(module, 'data.data.icon'),
+                    'moduleName': $filter('hasNode')(module, 'data.data.moduleName'),
+                    'category': module.data.data.category
+                };
+                angular.extend($scope.moduleId, {find: module.data.data});
+                $scope.loadCategories(module.data.data.category);
+                setDependencies(module.data.data.dependencies);
+                $scope.showForm = true;
+                $scope.loading = false;
+                // Is singelton and has already instance?
+                if (module.data.data.singleton && _.findWhere(instances.data.data, {moduleId: id})) {
+                    $scope.moduleId.singletonActive = true;
+                    return;
+                }
+                if (!$filter('hasNode')(formData, 'options.fields') || !$filter('hasNode')(formData, 'schema.properties')) {
+                    $scope.alpacaData = false;
+                    return;
+                }
+                $.alpaca.setDefaultLocale(langCode);
+                $('#alpaca_data').alpaca(formData);
+
+
+            }, function (error) {
+                $scope.loading = false;
+                alertify.alertError($scope._t('error_load_data'));
+            });
+        }, function (error) {
+            alertify.alertError($scope._t('error_load_data'));
+            $scope.loading = false;
+        });
+    }
 
     /**
      * Load data
@@ -1108,6 +1165,8 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
         case 'post':
             $scope.postModule($routeParams.id);
             break;
+        case 'clone':
+            $scope.cloneModule($routeParams.id, $routeParams.instanceId);
         default:
             break;
     }
