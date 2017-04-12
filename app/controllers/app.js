@@ -78,8 +78,6 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
             show: 3
         }
     }
-    console.log($cookies.instancesExpanded);
-
     $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
     $scope.onlineMediaUrl = $scope.cfg.online_module_img_url;
 
@@ -141,7 +139,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
             }
             // Success - instances
             if (instances.state === 'fulfilled') {
-                setInstancesNew(instances.value.data.data);
+                setInstances(instances.value.data.data);
             }
 
             // Success - modules
@@ -371,7 +369,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
     /**
      * Set instances
      */
-    function setInstancesNew(data) {
+    function setInstances(data) {
         $scope.dataHolder.instances.cnt.modules = _.countBy(data, function (v) {
             return v.moduleId;
         });
@@ -408,9 +406,10 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
     }
     ;
     /**
+     * todo: deprecated
      * Set instances
      */
-    function setInstances(data) {
+    /*function setInstances(data) {
         $scope.dataHolder.instances.cnt.modules = _.countBy(data, function (v) {
                                     return v.moduleId;
                                 });
@@ -427,7 +426,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
             }
         });
     }
-    ;
+    ;*/
 
 });
 /**
