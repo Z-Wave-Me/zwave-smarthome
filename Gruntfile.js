@@ -77,7 +77,7 @@ module.exports = function (grunt) {
                     'vendor/upload/angular-file-upload.min.js',
                     'vendor/angular/angular-1.2.28/angular-route.min.js',
                     'vendor/angular/angular-1.2.28/angular-cookies.min.js',
-                    'vendor/dragdrop/angular-drag-and-drop-lists.js',
+                    'vendor/dragdrop/angular-sortable-view.min.js',
                     // Bootstrap
                     'vendor/bootstrap/bootstrap.min.js',
                     'vendor/bootstrap/plugins/bootstrap-datetimepicker.js',

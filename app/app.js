@@ -15,10 +15,10 @@ var myApp = angular.module('myApp', [
     'myAppController',
     'myAppFactory',
     'myAppService',
-    'dndLists',
     'qAllSettled',
     'myAppTemplates',
-    'httpLatency'
+    'httpLatency',
+    'angular-sortable-view'
 
 ]);
 

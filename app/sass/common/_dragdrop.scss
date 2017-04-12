@@ -1,0 +1,16 @@
+/* Drag and drop
+-------------------------------------------------- */
+.dd-placeholder{
+    width: 100%;//$widget-col-w;
+    text-align: center;
+    background: whitesmoke;
+    border: 3px dashed gray;
+    box-sizing: border-box;
+    display: table;
+    &.dd-element{
+        //float: left;
+        //position: relative;
+        width: $widget-col-w;
+        height:  $element-widget-col-h;
+    }
+}

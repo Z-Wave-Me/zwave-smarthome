@@ -1,8 +1,13 @@
 <!-- Elements list -->
-<div class="app-row app-row-widget app-row-element clearfix">
+<div class="app-row app-row-widget app-row-element clearfix"
+     sv-root sv-part="dataHolder.devices.collection"
+     sv-on-sort_="dragDropMe($item, $partFrom, $partTo, $indexFrom, $indexTo)">
+    <div sv-placeholder class="dd-placeholder dd-element">&nbsp;</div>
     <div id="Widget_{{v.id}}" class="widget-entry widget-entry-element {{v.deviceType}} {{v.metrics.multilineType}}"
+         sv-element
          ng-class="{'widget-success': v.isNew}"
-         ng-repeat="v in dataHolder.devices.collection| filter:q | orderBy: cfg.orderby.elements[dataHolder.devices.orderBy] track by v.id">
+         ng-repeat="v in dataHolder.devices.collection track by v.id">
+       <!-- ng-repeat="v in dataHolder.devices.collection| filter:q | orderBy: cfg.orderby.elements[dataHolder.devices.orderBy] track by v.id"-->
         <div class="widget-entry-in">
             <!-- Widget icon -->
             <div class="widget-img" title="{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}">

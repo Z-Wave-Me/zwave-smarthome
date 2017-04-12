@@ -311,6 +311,15 @@ input[type=radio] {
     max-width: $element-icon-img;
     max-height: $element-icon-img;
 }
+/* Drag and Drop */
+.dd-placeholder{
+    &.dd-element{
+       float: left;
+        /* position: relative;*/
+        width: $widget-col-w;
+        height:  $element-widget-col-h + 20px;
+    }
+}
 
 /* Apps
 -------------------------------------------------- */

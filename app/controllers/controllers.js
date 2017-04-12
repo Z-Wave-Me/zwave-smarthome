@@ -19,11 +19,47 @@ myAppController.controller('Error404Controller', function($scope, cfg) {
  * The controller that tests drag and drop feature.
  * @class DragDropController
  */
-myAppController.controller('DragDropController', function($scope, cfg) {
-    $scope.models = {
+myAppController.controller('DragDropController', function($scope, cfg,dataFactory) {
+    $scope.dataHolder = {
+        devices: {
+            collection: []
+        }
+    }
+    $scope.modelArray = [
+        {id: 1,title: 'Title 1'},
+        {id: 2,title: 'Title 2'},
+        {id: 3,title: 'Title 3'},
+    ];
+    $scope.load = function () {
+
+        dataFactory.getApi('devices', null, true).then(function(response) {
+
+            $scope.dataHolder.devices.collection = response.data.data.devices;
+
+        }, function(error) {
+            alertify.alertError($scope._t('error_load_data'));
+        });
+    }
+    $scope.load();
+
+    $scope.dragDropMe_ = function(item, partFrom, partTo, indexFrom, indexTo){
+        //console.log(partFrom)
+        var result = [];
+        angular.forEach(partFrom, function(v,k){
+            var obj = {id: v.id,position: k};
+            result.push(obj);
+
+        });
+        console.log(result)
+
+    }
+
+   /* $scope.models = {
         selected: null,
         lists: {"A": [], "B": []}
     };
+
+
 
     // Generate initial model
     for (var i = 1; i <= 3; ++i) {
@@ -34,7 +70,9 @@ myAppController.controller('DragDropController', function($scope, cfg) {
     // Model to JSON for demo purpose
     $scope.$watch('models', function(model) {
         $scope.modelAsJson = angular.toJson(model, true);
-    }, true);
+    }, true);*/
+
+
 
 
 });
