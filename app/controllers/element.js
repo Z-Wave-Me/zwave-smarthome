@@ -34,6 +34,15 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
     };
     $scope.apiDataInterval = null;
 
+    $scope.autocomplete = {
+        source: [],
+        term: '',
+        searchInKeys: 'id,title',
+        returnKeys: 'id,title,iconPath',
+        strLength: 2,
+        resultLength: 10
+    };
+
     /**
      * Cancel interval on page destroy
      */
@@ -129,6 +138,13 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
     };
 
     $scope.refreshDevices();
+
+    /**
+     * Renders search result in the list
+     */
+    $scope.searchMe = function () {
+        $scope.autocomplete.results = dataService.autocomplete($scope.dataHolder.devices.all,$scope.autocomplete);
+    }
 
     /**
      * Set filter

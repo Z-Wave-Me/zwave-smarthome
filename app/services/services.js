@@ -386,6 +386,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                     {imgTrans: false},
                     {isNew: isNew},
                     {iconPath: assignElementIcon(v)},
+                    {title: v.metrics.title},
                     {updateCmd: (v.deviceType === 'switchControl' ? 'on' : 'update')}
                 );
                 if (v.metrics.color) {

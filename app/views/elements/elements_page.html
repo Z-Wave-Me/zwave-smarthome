@@ -22,9 +22,26 @@
             </button>
         </div>
 
-        <div class="input-group search-group">
-            <input type="text" ng-model="q" class="form-control" value="{{q}}">
-            <span class="input-group-addon"><i class="fa fa-search"></i></span> 
+        <!-- Search and autocomplete -->
+        <div class="input-group">
+            <input name="add_tag" id="add_tag" type="text"
+                   class="form-control"
+                   placeholder="{{_t('lb_search')}}"
+                   ng-model="autocomplete.term" bb-key-event="searchMe()" data-toggle="dropdown"/>
+            <span class="input-group-addon clickable" title="{{_t('lb_add_tag')}}" ng-click="addTag()">
+                       <i class="fa fa-search"></i>
+                   </span>
+            <div class="app-dropdown autocomplete" ng-if="autocomplete.results.length">
+                <ul>
+                    <li class="clickable" title="{{v.title}}"
+                        ng-click="redirectToRoute('element/' + v.id)"
+                        ng-repeat="v in autocomplete.results | orderBy:'title' track by $index">
+                        <img class="report-img-s" ng-src="{{v.iconPath}}"alt="{{v.title}}"/>
+
+                        <span class="aoutocomplete-title">{{v.title|cutText:true:30}}</span>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
     <!-- Page subnavi  categories -->
