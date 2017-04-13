@@ -479,7 +479,7 @@ myAppController.controller('ElementHistoryController', function ($scope, dataFac
  * The controller that handles a device events.
  * @class ElementEventController
  */
-myAppController.controller('ElementEventController', function ($scope, dataFactory, dataService, _) {
+myAppController.controller('ElementEventController', function ($scope,$filter, dataFactory, dataService, _) {
     $scope.widgetEvent = {
         find: {},
         alert: {message: false, status: 'is-hidden', icon: false},
@@ -497,8 +497,8 @@ myAppController.controller('ElementEventController', function ($scope, dataFacto
             return;
         }
         $scope.widgetEvent.find = device[0];
-
-        dataFactory.getApi('notifications', '?since=1491264000000', true).then(function (response) {
+        var urlParam = '?since=' + $filter('unixStartOfDay')('-', (86400 * 6));
+        dataFactory.getApi('notifications', urlParam, true).then(function (response) {
            // console.log(response.data.data.notifications.slice(1,10))
             $scope.widgetEvent.collection = response.data.data.notifications;
         }, function (error) {
