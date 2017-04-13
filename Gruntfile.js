@@ -30,7 +30,7 @@ module.exports = function (grunt) {
                         collapseBooleanAttributes: true,
                         collapseWhitespace: true,
                         removeAttributeQuotes: true,
-                        removeComments: true, // Only if you don't use comment directives! 
+                        removeComments: true, // Only if you don't use comment directives!
                         removeEmptyAttributes: true,
                         removeRedundantAttributes: true,
                         removeScriptTypeAttributes: true,
