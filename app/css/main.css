@@ -12132,6 +12132,13 @@ http://codepen.io/MattIn4D/pen/LiKFC
   height: 150px;
 }
 
+/* line 15, ../sass/common/_dragdrop.scss */
+.dd-on-start {
+  background-color: #dff0d8;
+  opacity: 0.7;
+  cursor: text;
+}
+
 /* Elements
 -------------------------------------------------- */
 /* line 4, ../sass/modules/_elements.scss */

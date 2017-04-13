@@ -41,8 +41,22 @@ myAppController.controller('DragDropController', function($scope, cfg,dataFactor
         });
     }
     $scope.load();
+    /**
+     * Function to run when when a user starts moving an element
+     * @param item -  is the item in model which started being moved
+     * @param part - is the part from which the $item originates
+     * @param index -  is the index of the $item in $part
+     * @param helper - is an object which contains the jqLite/jQuery object (as property element) of what is being dragged around
+     */
+    $scope.dragDropStart = function(item, part, index, helper){
+        console.log(helper.element.context.id)
+        angular.element('#' +  helper.element.context.id).addClass('dd-on-start');
+        //jQuery('#' +  helper.element.context.id).addClass('dd-on-start');
 
-    $scope.dragDropMe_ = function(item, partFrom, partTo, indexFrom, indexTo){
+
+    }
+
+    $scope.dragDropSort = function(item, partFrom, partTo, indexFrom, indexTo){
         //console.log(partFrom)
         var result = [];
         angular.forEach(partFrom, function(v,k){

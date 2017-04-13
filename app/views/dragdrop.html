@@ -1,7 +1,8 @@
 <div ng-controller="DragDropController">
     <div class="app-row app-row-widget app-row-element clearfix"
          sv-root sv-part="dataHolder.devices.collection"
-         sv-on-sort="dragDropMe($item, $partFrom, $partTo, $indexFrom, $indexTo)">
+         sv-on-start="dragDropStart($item, $part, $index, $helper)"
+         sv-on-sort="dragDropSort($item, $partFrom, $partTo, $indexFrom, $indexTo)">
         <div sv-placeholder class="dd-placeholder dd-element">&nbsp;</div>
         <div id="Widget_{{v.id}}" class="widget-entry widget-entry-element"
              ng-repeat="v in dataHolder.devices.collection track by $index" sv-element>

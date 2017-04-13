@@ -183,6 +183,39 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
     };
 
     /**
+     * Function to run when when a user starts moving an element
+     * @param item -  is the item in model which started being moved
+     * @param part - is the part from which the $item originates
+     * @param index -  is the index of the $item in $part
+     * @param helper - is an object which contains the jqLite/jQuery object (as property element) of what is being dragged around
+     */
+    $scope.dragDropStart = function(item, part, index, helper){
+        angular.element('#' +  helper.element.context.id).addClass('dd-on-start');
+        //jQuery('#' +  helper.element.context.id).addClass('dd-on-start');
+
+
+    }
+    /**
+     * Function to run when elements order has changed after sorting
+     * @param item - is the item in model which has been moved
+     * @param partFrom - is the part from which the $item originated
+     * @param partTo - is the part to which the $item has been moved
+     * @param indexFrom -  is the previous index of the $item in $partFrom
+     * @param indexTo -  is the index of the $item in $partTo
+     */
+    $scope.dragDropSort = function(item, partFrom, partTo, indexFrom, indexTo){
+        //console.log(partFrom)
+        var result = [];
+        angular.forEach(partFrom, function(v,k){
+            var obj = {id: v.id,position: k};
+            result.push(obj);
+
+        });
+        console.log(result)
+
+    }
+
+    /**
      * Run command
      */
     $scope.runCmd = function (cmd, id) {

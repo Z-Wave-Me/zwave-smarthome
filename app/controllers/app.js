@@ -1332,6 +1332,17 @@ myAppController.controller('AppOnlineFeaturedController', function ($scope, _) {
         154: 'storage/img/slider/07-camera.png',
         152: 'storage/img/slider/08-rgb.png'
     };
+    $scope.sliderImages = {
+        'Alexa': 'storage/img/slider/Alexa.png',
+        'IntChart': 'storage/img/slider/IntChart.png',
+        'SecurityModule': 'storage/img/slider/SecurityModule.png',
+        'ToggleDevices': 'storage/img/slider/ToggleDevices.png',
+        'ClimateControl': 'storage/img/slider/ClimateControl.png',
+        'NotificationPushover': 'storage/img/slider/NotificationPushover.png',
+        'ImportRemoteHA': 'storage/img/slider/ImportRemoteHA.png',
+        'CustomUserCode': 'storage/img/slider/CustomUserCode.png',
+        'HTTPDevice': 'storage/img/slider/HTTPDevice.png'
+    };
     //$scope.direction = 'left';
     //$scope.currentIndex = 0;
     /*$scope.slides = [
