@@ -11,12 +11,13 @@
 
 }
 .table-report{
+    background-color: $report-bcg-color;
     border: 0 !important;
     margin-bottom: 0 !important;
     tbody{
         td{
             vertical-align: middle !important;
-            background-color: $report-bcg-color;
+
         }
         .td-img{
             width: 30px;

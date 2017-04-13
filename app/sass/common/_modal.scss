@@ -108,3 +108,14 @@
 #jamesBoxUpdateModal li.jamesboxUpdateInfoList {
         margin: 0 0 5px 0;
 }
+
+/* Modal element event
+-------------------------------------------------- */
+#modalEvent{
+  .appmodal-body{
+    height: auto;
+    max-height: 500px;
+    overflow-x: hidden;
+  }
+
+}
