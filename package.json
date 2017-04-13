@@ -2,11 +2,11 @@
   "name": "SmartHome UI",
   "version": "1.7.7",
   "v": "1.7.0",
-  "rc": 16,
+  "rc": 20,
   "description": "This User Interfaces allows to operate a Smart Home Network based on Z-Wave devices.",
   "main": "index.html",
   "app_type": "default",
-  "built": "13-04-2017 14:33:26",
+  "built": "13-04-2017 16:14:11",
   "type_cfg": {
     "default": {
       "dir": "dist",
