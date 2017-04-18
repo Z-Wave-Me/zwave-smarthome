@@ -20,6 +20,7 @@
         .widget-header {
             position: relative;
             text-align: right;
+            min-height: $spacing-double;
             .widget-icon{
                 color: $widget-icon-color;
                 .fa{

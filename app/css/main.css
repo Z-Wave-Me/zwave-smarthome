@@ -11022,40 +11022,41 @@ img {
 .widget-entry .widget-entry-in .widget-header {
   position: relative;
   text-align: right;
+  min-height: 20px;
 }
-/* line 23, ../sass/common/_widget.scss */
+/* line 24, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .widget-header .widget-icon {
   color: #737373;
 }
-/* line 25, ../sass/common/_widget.scss */
+/* line 26, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .widget-header .widget-icon .fa {
   padding: 0 0 0 10px;
   font-size: 180%;
 }
-/* line 31, ../sass/common/_widget.scss */
+/* line 32, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .widget-content {
   margin: -10px 0 0 84px;
 }
-/* line 34, ../sass/common/_widget.scss */
+/* line 35, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .widget-title {
   height: 50%;
   color: #404040;
 }
-/* line 37, ../sass/common/_widget.scss */
+/* line 38, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .widget-title h3 {
   font-size: 115%;
   padding: 0;
   margin: 0;
 }
-/* line 41, ../sass/common/_widget.scss */
+/* line 42, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .widget-title h3 a {
   color: #404040;
 }
-/* line 46, ../sass/common/_widget.scss */
+/* line 47, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .widget-footer {
   height: 50%;
 }
-/* line 50, ../sass/common/_widget.scss */
+/* line 51, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .bottom-aligner {
   border: 0;
   display: inline-block;
@@ -11063,44 +11064,44 @@ img {
   vertical-align: bottom;
   width: 1px;
 }
-/* line 57, ../sass/common/_widget.scss */
+/* line 58, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .widget-ctrl-click {
   cursor: pointer;
 }
-/* line 61, ../sass/common/_widget.scss */
+/* line 62, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .widget-ctrl {
   width: 50%;
   float: left;
 }
-/* line 66, ../sass/common/_widget.scss */
+/* line 67, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .widget-ctrl.ctrl-left .btn-group, .widget-entry .widget-entry-in .widget-ctrl.ctrl-left .switch-wrap {
   float: left;
 }
-/* line 69, ../sass/common/_widget.scss */
+/* line 70, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .widget-ctrl.ctrl-left .switch-wrap {
   padding: 0 5px 0 0;
 }
-/* line 73, ../sass/common/_widget.scss */
+/* line 74, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .widget-ctrl.ctrl-right {
   float: right;
   text-align: right;
 }
-/* line 76, ../sass/common/_widget.scss */
+/* line 77, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .widget-ctrl.ctrl-right .btn-group {
   float: right;
 }
 
-/* line 83, ../sass/common/_widget.scss */
+/* line 84, ../sass/common/_widget.scss */
 .tbl-widget-ctrl .widget-history {
   color: #737373;
 }
-/* line 85, ../sass/common/_widget.scss */
+/* line 86, ../sass/common/_widget.scss */
 .tbl-widget-ctrl .widget-history .fa {
   padding: 0 0 0 10px;
   font-size: 180%;
 }
 
-/* line 92, ../sass/common/_widget.scss */
+/* line 93, ../sass/common/_widget.scss */
 .widget-success .widget-entry-in {
   border-color: #bed5be !important;
   border-width: 4px;
@@ -11108,22 +11109,22 @@ img {
 
 /* Widget securityControl
 -------------------------------------------------- */
-/* line 100, ../sass/common/_widget.scss */
+/* line 101, ../sass/common/_widget.scss */
 .securityControl .ctrl-left {
   width: 70% !important;
 }
-/* line 103, ../sass/common/_widget.scss */
+/* line 104, ../sass/common/_widget.scss */
 .securityControl .ctrl-right {
   width: 30% !important;
 }
 
 /* Device sensorDiscrete
 -------------------------------------------------- */
-/* line 111, ../sass/common/_widget.scss */
+/* line 112, ../sass/common/_widget.scss */
 .sensorDiscrete .ctrl-left {
   width: 30% !important;
 }
-/* line 114, ../sass/common/_widget.scss */
+/* line 115, ../sass/common/_widget.scss */
 .sensorDiscrete .ctrl-right {
   width: 70% !important;
 }
@@ -12765,94 +12766,44 @@ img.widget-promo-image {
   margin: 10px;
 }
 
-/* Rooms TEST
+/* Rooms
 -------------------------------------------------- */
-/* line 3, ../sass/modules/_rooms.scss */
-.room-search {
-  margin-top: 10px;
-  float: left;
-  width: 100%;
-}
-/* line 7, ../sass/modules/_rooms.scss */
-.room-search .search-group {
-  float: right;
-  width: 20%;
+/* line 4, ../sass/modules/_rooms.scss */
+.widget-entry-room .widget-entry-in {
+  min-height: 1px;
+  height: 100px;
 }
 
-/* line 13, ../sass/modules/_rooms.scss */
-.room-header {
-  width: 100%;
-  border: none;
-  float: left;
-  position: relative;
-  color: #404040;
+/* line 11, ../sass/modules/_rooms.scss */
+.room-has-device .widget-title a {
+  font-weight: bold;
 }
-/* line 19, ../sass/modules/_rooms.scss */
-.room-header .room-header-in {
-  border: 1px solid #ffffff;
-  border-width: 4px !important;
-  height: 124px;
-  padding: 10px;
-  background: transparent linear-gradient(to bottom, #f6f6f6 0%, #ffffff 77%) repeat scroll 0 0;
+
+/* line 18, ../sass/modules/_rooms.scss */
+.room-no-device .widget-header .widget-icon {
+  color: #d9d9d9 !important;
+}
+/* line 22, ../sass/modules/_rooms.scss */
+.room-no-device .widget-img {
+  opacity: 0.4;
+  filter: alpha(opacity=40);
 }
 /* line 25, ../sass/modules/_rooms.scss */
-.room-header .room-header-in .room-header-image {
-  left: 10px;
-  position: absolute;
-  top: 14px;
+.room-no-device .widget-img a {
+  /*color: lighten($widget-heading-color,40%) !important;
+  text-decoration: none;*/
+  cursor: text !important;
 }
-/* line 29, ../sass/modules/_rooms.scss */
-.room-header .room-header-in .room-header-image .room-preview-img {
-  border: 4px solid #ffffff;
-  border-radius: 50%;
-  height: 96px;
-  width: 96px;
-  max-height: 96px;
-  max-width: 96px;
-  object-fit: cover;
-}
-/* line 39, ../sass/modules/_rooms.scss */
-.room-header .room-header-in .room-header-content {
-  margin: -14px 0 0 116px;
-}
-/* line 42, ../sass/modules/_rooms.scss */
-.room-header .room-header-in .room-header-content .room-sensors {
-  position: relative;
-  margin-bottom: 10px;
-}
-/* line 46, ../sass/modules/_rooms.scss */
-.room-header .room-header-in .room-header-content .room-sensors .room-sensor {
-  font-size: 18px;
-  margin-right: 10px;
-  display: inline-block;
-}
-/* line 52, ../sass/modules/_rooms.scss */
-.room-header .room-header-in .room-header-content .room-sensors .divider-vertical {
-  border-left: 1px solid #c4c4c4;
-  border-right: 1px solid #ffffff;
-  height: 100%;
-  margin-right: 10px;
-}
-/* line 63, ../sass/modules/_rooms.scss */
-.room-header .room-header-in .room-header-content .room-header-footer .quick-slots .quick-slot {
-  display: inline-block;
-}
-/* line 65, ../sass/modules/_rooms.scss */
-.room-header .room-header-in .room-header-content .room-header-footer .quick-slots .quick-slot .btn {
-  color: #404040;
-}
-/* line 72, ../sass/modules/_rooms.scss */
-.room-header .room-header-in .room-header-header {
-  position: relative;
-  text-align: right;
-  margin-top: -4px;
-}
-/* line 77, ../sass/modules/_rooms.scss */
-.room-header .room-header-in .room-header-header .fa {
-  font-size: 140%;
+/* line 34, ../sass/modules/_rooms.scss */
+.room-no-device .widget-title h3 a {
+  color: #a6a6a6 !important;
+  text-decoration: none;
+  cursor: text !important;
 }
 
-/* line 85, ../sass/modules/_rooms.scss */
+/* Elements in Rooms
+-------------------------------------------------- */
+/* line 46, ../sass/modules/_rooms.scss */
 .full-bg-wrapper {
   position: absolute;
   left: 0;
@@ -12862,7 +12813,7 @@ img.widget-promo-image {
   min-width: 100%;
   z-index: -100;
 }
-/* line 94, ../sass/modules/_rooms.scss */
+/* line 55, ../sass/modules/_rooms.scss */
 .full-bg-wrapper .full-bg {
   position: absolute;
   top: 0;
@@ -12873,206 +12824,6 @@ img.widget-promo-image {
   height: 100%;
   filter: blur(15px);
   transform: scale(1.1);
-}
-
-/* line 107, ../sass/modules/_rooms.scss */
-.widget-room-header {
-  margin: 0 0 0 84px;
-  height: 25%;
-  text-align: right;
-}
-/* line 111, ../sass/modules/_rooms.scss */
-.widget-room-header .slots {
-  width: 100%;
-  height: 100%;
-  text-align: left;
-  position: relative;
-}
-/* line 116, ../sass/modules/_rooms.scss */
-.widget-room-header .slots .slot1 {
-  width: 25%;
-  display: inline-block;
-  color: #737373;
-}
-/* line 120, ../sass/modules/_rooms.scss */
-.widget-room-header .slots .slot1 .fa {
-  padding: 0 0 0 0;
-  font-size: 14px;
-}
-/* line 125, ../sass/modules/_rooms.scss */
-.widget-room-header .slots .slot2 {
-  width: 25%;
-  display: inline-block;
-  color: #737373;
-}
-/* line 129, ../sass/modules/_rooms.scss */
-.widget-room-header .slots .slot2 .fa {
-  padding: 0 0 0 10px;
-  font-size: 14px;
-}
-/* line 134, ../sass/modules/_rooms.scss */
-.widget-room-header .slots .slot3 {
-  width: 25%;
-  display: inline-block;
-  color: #737373;
-}
-/* line 138, ../sass/modules/_rooms.scss */
-.widget-room-header .slots .slot3 .fa {
-  padding: 0 0 0 10px;
-  font-size: 14px;
-}
-/* line 143, ../sass/modules/_rooms.scss */
-.widget-room-header .slots .slot-conf {
-  width: 18%;
-  display: inline-block;
-  text-align: right;
-}
-/* line 147, ../sass/modules/_rooms.scss */
-.widget-room-header .slots .slot-conf .widget-config {
-  color: #737373;
-}
-/* line 149, ../sass/modules/_rooms.scss */
-.widget-room-header .slots .slot-conf .widget-config .fa {
-  padding: 0 2px 0 0;
-  font-size: 14px;
-}
-/* line 155, ../sass/modules/_rooms.scss */
-.widget-room-header .slots .divider-vertical {
-  border-left: 1px solid #c4c4c4;
-  border-right: 1px solid #ffffff;
-  height: 100%;
-}
-
-/* line 164, ../sass/modules/_rooms.scss */
-.widget-room-content {
-  margin: 10px 0 0 84px;
-}
-
-/* line 168, ../sass/modules/_rooms.scss */
-.widget-room-footer {
-  text-align: right;
-}
-/* line 170, ../sass/modules/_rooms.scss */
-.widget-room-footer .slots {
-  width: 100%;
-  height: 100%;
-  text-align: left;
-  position: relative;
-  margin: 0;
-  padding: 0;
-}
-/* line 178, ../sass/modules/_rooms.scss */
-.widget-room-footer .slots .slot1 {
-  margin-right: -3px;
-  padding: 0;
-  width: 33.3333%;
-  display: inline-block;
-  box-sizing: border-box;
-}
-/* line 184, ../sass/modules/_rooms.scss */
-.widget-room-footer .slots .slot1 .btn {
-  margin: 0;
-  width: 100%;
-}
-/* line 189, ../sass/modules/_rooms.scss */
-.widget-room-footer .slots .slot2 {
-  margin-right: -3px;
-  padding: 0;
-  width: 33.3333%;
-  display: inline-block;
-  box-sizing: border-box;
-}
-/* line 195, ../sass/modules/_rooms.scss */
-.widget-room-footer .slots .slot2 .btn {
-  margin: 0;
-  width: 100%;
-}
-/* line 200, ../sass/modules/_rooms.scss */
-.widget-room-footer .slots .slot3 {
-  margin-right: -3px;
-  padding: 0;
-  width: 33.3333%;
-  display: inline-block;
-  box-sizing: border-box;
-}
-/* line 206, ../sass/modules/_rooms.scss */
-.widget-room-footer .slots .slot3 .btn {
-  margin: 0;
-  width: 100%;
-}
-
-/* Rooms NEW
--------------------------------------------------- */
-/* line 221, ../sass/modules/_rooms.scss */
-.widget-entry-room .widget-entry-in {
-  min-height: 120px;
-  height: auto;
-}
-/* line 224, ../sass/modules/_rooms.scss */
-.widget-entry-room .widget-entry-in .widget-header {
-  display: none;
-}
-/* line 227, ../sass/modules/_rooms.scss */
-.widget-entry-room .widget-entry-in .widget-content {
-  margin: 20px 0 0 74px;
-}
-/* line 232, ../sass/modules/_rooms.scss */
-.widget-entry-room .widget-entry-in .widget-title h3 a {
-  font-weight: bold;
-}
-/* line 237, ../sass/modules/_rooms.scss */
-.widget-entry-room .widget-entry-in .bottom-aligner {
-  display: none;
-}
-/* line 240, ../sass/modules/_rooms.scss */
-.widget-entry-room .widget-entry-in .widget-footer {
-  margin-top: 10px;
-}
-/* line 242, ../sass/modules/_rooms.scss */
-.widget-entry-room .widget-entry-in .widget-footer .btn-name {
-  display: none !important;
-}
-
-/* line 250, ../sass/modules/_rooms.scss */
-.widget-entry-room.widget-warning .widget-img {
-  opacity: 0.4;
-  filter: alpha(opacity=40);
-}
-/* line 256, ../sass/modules/_rooms.scss */
-.widget-entry-room.widget-warning .widget-title h3 {
-  color: #a6a6a6 !important;
-}
-/* line 265, ../sass/modules/_rooms.scss */
-.widget-entry-room.widget-warning .widget-footer .rating-group .widget-rating {
-  color: #a6a6a6;
-}
-/* line 267, ../sass/modules/_rooms.scss */
-.widget-entry-room.widget-warning .widget-footer .rating-group .widget-rating.israted {
-  color: #f8d9ac;
-}
-
-/* Rooms OLD
--------------------------------------------------- */
-/* line 278, ../sass/modules/_rooms.scss */
-.room-entry {
-  width: 50%;
-  float: left;
-  position: relative;
-  min-height: 1px;
-}
-
-/* line 282, ../sass/modules/_rooms.scss */
-.room-entry-in {
-  text-align: center;
-  padding: 10px;
-}
-/* line 285, ../sass/modules/_rooms.scss */
-.room-entry-in a {
-  font-weight: bold;
-}
-/* line 288, ../sass/modules/_rooms.scss */
-.room-entry-in .entry-title-text {
-  padding-right: 20px;
 }
 
 /* Devices
@@ -14170,42 +13921,46 @@ img.widget-promo-image {
     height: 110px;
   }
   /* line 391, ../sass/responsive/_mq_shared.scss */
+  .widget-entry-room .widget-entry-in .widget-title {
+    margin-top: 20px;
+  }
+  /* line 394, ../sass/responsive/_mq_shared.scss */
   .widget-entry-room .widget-entry-in .widget-footer {
     margin: 10px 0 0 0;
   }
 
-  /* line 397, ../sass/responsive/_mq_shared.scss */
+  /* line 400, ../sass/responsive/_mq_shared.scss */
   .room-entry {
     width: 33.33333%;
   }
 
   /* Footer
   -------------------------------------------------- */
-  /* line 404, ../sass/responsive/_mq_shared.scss */
+  /* line 407, ../sass/responsive/_mq_shared.scss */
   #footer #footer_in {
     height: 40px;
     line-height: 40px;
   }
 
-  /* line 410, ../sass/responsive/_mq_shared.scss */
+  /* line 413, ../sass/responsive/_mq_shared.scss */
   #footer {
     display: none;
   }
 
   /* Auth
   -------------------------------------------------- */
-  /* line 417, ../sass/responsive/_mq_shared.scss */
+  /* line 420, ../sass/responsive/_mq_shared.scss */
   #page_login .container, #page_password .container, #page_passwordforgot .container, #page_passwordreset .container {
     max-width: 500px;
   }
 
   /* Others
   -------------------------------------------------- */
-  /* line 424, ../sass/responsive/_mq_shared.scss */
+  /* line 427, ../sass/responsive/_mq_shared.scss */
   .timestamp {
     font-size: 90% !important;
   }
-  /* line 426, ../sass/responsive/_mq_shared.scss */
+  /* line 429, ../sass/responsive/_mq_shared.scss */
   .timestamp .fa {
     font-size: 90% !important;
   }
@@ -14653,42 +14408,46 @@ img.widget-promo-image {
     height: 110px;
   }
   /* line 391, ../sass/responsive/_mq_shared.scss */
+  .widget-entry-room .widget-entry-in .widget-title {
+    margin-top: 20px;
+  }
+  /* line 394, ../sass/responsive/_mq_shared.scss */
   .widget-entry-room .widget-entry-in .widget-footer {
     margin: 10px 0 0 0;
   }
 
-  /* line 397, ../sass/responsive/_mq_shared.scss */
+  /* line 400, ../sass/responsive/_mq_shared.scss */
   .room-entry {
     width: 25%;
   }
 
   /* Footer
   -------------------------------------------------- */
-  /* line 404, ../sass/responsive/_mq_shared.scss */
+  /* line 407, ../sass/responsive/_mq_shared.scss */
   #footer #footer_in {
     height: 40px;
     line-height: 40px;
   }
 
-  /* line 410, ../sass/responsive/_mq_shared.scss */
+  /* line 413, ../sass/responsive/_mq_shared.scss */
   #footer {
     display: none;
   }
 
   /* Auth
   -------------------------------------------------- */
-  /* line 417, ../sass/responsive/_mq_shared.scss */
+  /* line 420, ../sass/responsive/_mq_shared.scss */
   #page_login .container, #page_password .container, #page_passwordforgot .container, #page_passwordreset .container {
     max-width: 500px;
   }
 
   /* Others
   -------------------------------------------------- */
-  /* line 424, ../sass/responsive/_mq_shared.scss */
+  /* line 427, ../sass/responsive/_mq_shared.scss */
   .timestamp {
     font-size: 90% !important;
   }
-  /* line 426, ../sass/responsive/_mq_shared.scss */
+  /* line 429, ../sass/responsive/_mq_shared.scss */
   .timestamp .fa {
     font-size: 90% !important;
   }

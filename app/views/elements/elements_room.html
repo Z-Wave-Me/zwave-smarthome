@@ -1,67 +1,40 @@
-<!-- Elements dashboard view -->
-<link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet">
+<!-- Elements rooms view -->
 <div ng-controller="ElementBaseController">
     <bb-loader></bb-loader>
+    <!-- Search and autocomplete -->
+    <div class="page-control form-inline">
+
+        <div class="input-group">
+            <input name="add_tag" id="add_tag" type="text"
+                   class="form-control"
+                   placeholder="{{_t('lb_search')}}"
+                   ng-model="autocomplete.term" bb-key-event="searchMe()" data-toggle="dropdown"/>
+            <span class="input-group-addon clickable" title="{{_t('lb_add_tag')}}" ng-click="addTag()">
+                       <i class="fa fa-search"></i>
+                   </span>
+            <div class="app-dropdown autocomplete" ng-if="autocomplete.results.length">
+                <ul>
+                    <li class="clickable" title="{{v.title}}"
+                        ng-click="redirectToRoute('element/' + v.id)"
+                        ng-repeat="v in autocomplete.results | orderBy:'title' track by $index">
+                        <img class="report-img-s" ng-src="{{v.iconPath}}"alt="{{v.title}}"/>
+
+                        <span class="aoutocomplete-title">{{v.title|cutText:true:30}}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- The list -->
     <div ng-controller="ElementRoomController">
-        <div class="full-bg-wrapper"><div class="full-bg" ng-style="{'background':'url(' + room.img_src + ')', 'background-position': 'center center', 'background-size': 'cover'}"></div></div>
-        <div class="room-header">
-            <div class="room-header-in">
-                <div class="room-header-image">
-                    <img class="room-preview-img" ng-src="{{room.img_src}}">
-                </div>
-                <div class="room-header-header">
-                    <a><i class="fa fa-cog"></i></a>
-                </div>
-                <div class="room-header-content">
-                    <div class="room-title"><h1>{{_t('lb_devices_room')}} {{dataHolder.devices.rooms[dataHolder.devices.filter.location].title}}</h1></div>
-                    <div class="room-sensors">
-                        <span class="room-sensor">
-                            <i class="fa fa-tint"></i> 12 °C
-                        </span>
-                        <span class="divider-vertical"></span>
-                        <span class="room-sensor">
-                            <i class="fa fa-tint"></i> 12 °C
-                        </span>
-                        <span class="divider-vertical"></span>
-                        <span class="room-sensor">
-                            <i class="fa fa-info"></i> 12 °C
-                        </span>
-
-
-                        <!--<span class="divider-vertical"></span>
-                        <span class="room-sensor">
-                            <i class="fa fa-home"></i> 12 °C
-                        </span>-->
-                    </div>
-                    <div class="room-header-footer">
-                        <div class="quick-slots">
-                            <span class="quick-slot">
-                                <a class="btn btn-xs btn-default" title="Add quick action">
-                                    <i class="fa fa-plus"></i> Licht an/aus
-                                </a>
-                            </span>
-                            <span class="quick-slot">
-                                <a class="btn btn-xs btn-default" title="Add quick action">
-                                    <i class="fa fa-plus"></i> Licht an/aus
-                                </a>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+        <div class="full-bg-wrapper" ng-show="room.show_background && room.id != 0">
+            <div class="full-bg" ng-style="{'background':'url(' + room.img_src + ')', 'background-position': 'center center', 'background-size': 'cover'}"></div>
         </div>
-        <div class="room-search">
-            <div class="input-group search-group">
-                <input type="text" ng-model="q" class="form-control" value="{{q}}">
-                <span class="input-group-addon"><i class="fa fa-search"></i></span>
-            </div>
-        </div>
-
-
-
+        <h1>
+            <small><a class="btn btn-default btn-sm" href="#rooms"><i class="fa fa-chevron-left"></i></a></small>
+            {{_t('lb_devices_room')}} {{dataHolder.devices.rooms[dataHolder.devices.filter.location].title}}
+        </h1>
         <div ng-if="!dataHolder.devices.show" ng-include="'app/views/elements/no_elements_room.html'"></div>
         <div ng-if="dataHolder.devices.show" ng-include="'app/views/elements/list.html'"></div>
     </div> <!-- /ng-controller -->
 </div> <!-- /ng-controller -->
-

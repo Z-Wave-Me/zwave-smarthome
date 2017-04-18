@@ -1,4 +1,4 @@
-<!-- Copyright:  Z-Wave Europe GmbH, Created: 18-04-2017 08:28:27 -->
+<!-- Copyright:  Z-Wave Europe GmbH, Created: 18-04-2017 15:12:08 -->
 <!doctype html>
 <html lang="en" ng-app="myApp" ng-controller="BaseController">
     <head>
@@ -53,9 +53,9 @@
                             <a href="#devices"><i class="fa fa-cogs"></i> <span>{{_t('nav_devices')}} </span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
                         </li>
                         <!-- Config rooms -->
-                        <li class="subnavi-config-rooms" ng-class="isActive('config-rooms')" ng-if="elementAccess(cfg.role_access.config_rooms)">
+                       <!-- <li class="subnavi-config-rooms" ng-class="isActive('config-rooms')" ng-if="elementAccess(cfg.role_access.config_rooms)">
                             <a href="#config-rooms"><i class="fa fa-building-o"></i> <span>{{_t('nav_rooms')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                        </li>
+                        </li>-->
                         <!-- Customize -->
                         <li class="subnavi-report" ng-class="isActive('customize')"
                             ng-if="elementAccess(cfg.role_access.customize)">
