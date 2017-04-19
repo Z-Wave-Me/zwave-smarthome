@@ -1,0 +1,7 @@
+<!-- CSS -->
+<link id="main_css" media="screen" type="text/css" rel="stylesheet" href="app/css/main.css">
+ <!-- App config -->
+<script src="app/js/config.js"></script>
+<script src="app/js/icons.js"></script>
+<!-- JS -->
+<script src="app/js/build.js"></script>
