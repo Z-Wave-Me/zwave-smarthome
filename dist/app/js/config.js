@@ -12,9 +12,9 @@ var config_data = {
         //Application name
         'app_name': 'SmartHome UI',
         // Application version
-        'app_version': '1.7.0-RC-14',
+        'app_version': '1.7.0-RC-15',
         // Application (DIST) built date
-        'app_built': '19-04-2017 08:44:47',
+        'app_built': '19-04-2017 14:47:59',
         // Application ID
         'app_id': 'SmartHomeUI',
         // Server base url
@@ -278,9 +278,6 @@ var config_data = {
             'fr': 'fr_FR',
             'fi': 'fi_FI'
         },
-
-        // List of profile colors
-        'profile_colors': ['#dddddd', '#6c7a89', '#6494bc', '#80ad80', '#31b0d5', '#f0aD4e', '#d9534f', '#dd976e'],
         // Chart colors
         'chart_colors': {
             fillColor: 'rgba(151,187,205,0.5)',
@@ -326,6 +323,10 @@ var config_data = {
             'find.z-wave.me',
             'find.popp.eu'
         ],
+        // Redirect to the url after logout
+        'logout_redirect': {
+            'find.z-wave.me': 'https://find.zwave.me/zboxweb'
+        },
         // List of the forbidden licence app types
         'license_forbidden': [
             'popp',
