@@ -43,10 +43,10 @@ module.exports = function (grunt) {
         },
         // Concat
         concat: {
-            indexhtml: {
+            /*indexhtml: {
                 src: ['index.tpl.html'],
                 dest: 'dist/index.html'
-            },
+            },*/
             css: {
                 src: [
                     //'app/css/bootstrap.css',
@@ -224,6 +224,18 @@ module.exports = function (grunt) {
                 }
             }
         },
+        htmlbuild: {
+            dist: {
+                src: 'index.html',
+                dest: 'dist/',
+                options: {
+                    sections: {
+                        dist_head: 'app/views/dist_head.txt'
+                    }
+                }
+
+            }
+        },
         replace: {
             dist: {
                 options: {
@@ -295,11 +307,12 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-angular-templates');
     grunt.loadNpmTasks('grunt-banner');
     grunt.loadNpmTasks('grunt-json-generator');
+    grunt.loadNpmTasks('grunt-html-build');
     grunt.loadNpmTasks('grunt-replace');
     grunt.loadNpmTasks('grunt-modify-json');
     grunt.loadNpmTasks('grunt-release-it');
 
     // Default task(s).
-    grunt.registerTask('default', ['clean', 'ngtemplates', 'concat','json_generator', 'copy', 'cssmin', 'skinFolder','iconFolder','usebanner','replace','modify_json']);
+    grunt.registerTask('default', ['clean', 'ngtemplates', 'concat','json_generator', 'copy', 'cssmin', 'skinFolder','iconFolder','usebanner','htmlbuild','replace','modify_json']);
 
 };

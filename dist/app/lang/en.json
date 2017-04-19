@@ -221,7 +221,7 @@
     "password_forgot_info": "To reset your password, enter the email address.",
     "password_forgot_success": "Please check your email to confirm your password reset. ",
     "password_reset": "Reset your password",
-    "email_notfound": "Given email does not exist. Please check your emai address and try it again.",
+    "email_notfound": "Given email does not exist. Please check your email address and try it again.",
     "token_notfound": "Given key does not exist in our database",
     "backup_wait": "Creating a backup file. Please wait...",
     "backup_failed": "Backup process has failed",
