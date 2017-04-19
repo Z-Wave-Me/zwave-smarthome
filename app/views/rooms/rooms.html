@@ -13,7 +13,7 @@
                 <span class="btn-name">{{_t(rooms.orderBy) | cutText:true:15}}</span>
             </button>
         </div>
-        <div class="input-group">
+        <div class="input-group input-search">
             <input type="text" ng-model="q" class="form-control form-search" value="{{q}}">
             <span class="input-group-addon"><i class="fa fa-search"></i></span>
         </div>
@@ -52,13 +52,13 @@
                 <div class="widget-header">
                     <!-- Settings -->
                     <a class="widget-icon" href="#config-rooms/{{v.id}}"  title="{{_t('lb_update')}}"
-                       ng-show="elementAccess(cfg.role_access.config_rooms)">
+                       ng-show="elementAccess(cfg.role_access.config_rooms) && v.id != 0">
                         <i class="fa fa-cog"></i>
                     </a>
                     <!-- Remove -->
                     <a class="widget-icon clickable" title="{{_t('lb_remove')}}"
                         ng-click="deleteRoom(v.id, _t('lb_delete_confirm'))"
-                       ng-show="elementAccess(cfg.role_access.config_rooms)">
+                       ng-show="elementAccess(cfg.role_access.config_rooms) && v.id != 0">
                         <i class="fa fa-times"></i>
                     </a>
 

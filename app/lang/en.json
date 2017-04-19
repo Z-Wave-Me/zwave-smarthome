@@ -277,7 +277,7 @@
     "welcome_step2": "Select an element from the list and click on the Gear icon",
     "welcome_step3": "In the settings window check \"Add to dashboard\"",
     "welcome_go": "Add devices to dashboard",
-    "globalRoom": "No Room",
+    "globalRoom": "Not assigned to the room",
     "lb_disarm": "Disarmed",
     "lb_arm": "Armed",
     "manual_config_prepare": "Preparing for manual configuration. Please wait...",
