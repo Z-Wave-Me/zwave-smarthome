@@ -35,6 +35,14 @@
                              ng-if="input.user_img" />
                          </div>
                 </div>
+                <div class="form-group">
+                <label>
+                    <input type="checkbox" name="instances_expanded"
+                           ng-model="input.show_background"
+                           ng-checked="input.show_background" />
+                    {{_t('selected_image_background')}}
+                </label>
+                    <div>
             </fieldset>
             <fieldset class="mobile-hide">
                  <!-- <h3><span ng-bind="_t('lb_upload_image')"></span></h3>-->  

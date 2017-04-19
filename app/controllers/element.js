@@ -933,13 +933,10 @@ myAppController.controller('ElementRoomController', function ($scope, $q, $route
 
         $q.allSettled(promises).then(function (response) {
             var location = response[0];
-            console.log(location);
             $scope.loading = false;
             // Success - location
             if (location.state === 'fulfilled') {
-                var locations = [location.value.data.data];
-                $scope.room = dataService.getRooms(locations).value()[0];
-                console.log($scope.room);
+               $scope.room = dataService.getRooms([location.value.data.data]).value()[0];
             }
         });
     };

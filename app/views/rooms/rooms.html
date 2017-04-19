@@ -2,14 +2,12 @@
 <div ng-controller="RoomController">
     <bb-loader></bb-loader>
     <div class="page-control form-inline">
-        <div class="btn-group btn-goup-block btn-goup-1"
+        <div class="btn-group btn-goup-block btn-goup-2"
              ng-if="elementAccess(cfg.role_access.config_rooms)">
             <a class="btn btn-default" href="#config-rooms/0">
                 <i class="fa fa-plus "></i>
                 <span class="btn-name">{{_t('lb_add_room')}}</span>
             </a>
-        </div>
-         <div class="btn-group btn-goup-block btn-goup-1">
             <button class="btn btn-default" ng-click="expandNavi('roomsOrderBy', $event)">
                 <i class="fa fa-sort-alpha-asc"></i>
                 <span class="btn-name">{{_t(rooms.orderBy) | cutText:true:15}}</span>

@@ -1,7 +1,8 @@
 {
     "newtrans": "---",
-    "see_more":"See more",
     "---": "newtrans",
+    "selected_image_background":"Display selected image as background",
+    "see_more":"See more",
     "expand_all": "Expand all",
     "z_way_restart": "The system will now be automatically restarted. Redirect to login in __val__ __level__.",
     "built_date": "Built date",
