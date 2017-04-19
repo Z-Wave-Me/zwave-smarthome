@@ -12,9 +12,9 @@ var config_data = {
         //Application name
         'app_name': 'SmartHome UI',
         // Application version
-        'app_version': '1.7.0-RC-14',
+        'app_version': '1.7.0-RC-16',
         // Application (DIST) built date
-        'app_built': '19-04-2017 08:44:47',
+        'app_built': '19-04-2017 08:59:10',
         // Application ID
         'app_id': 'SmartHomeUI',
         // Server base url
@@ -375,6 +375,11 @@ var config_data = {
                 'titleASC': 'name',
                 'titleDESC': '-name'
             }
+        },
+        // Replace online cats
+        replace_online_cat: {
+            'automation': 'automation_basic',
+            'scheduling': 'automation_basic',
         },
         // List of frequencies
         frequency: {
