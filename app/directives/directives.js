@@ -268,8 +268,9 @@ myApp.directive('myknob', ['$timeout', 'dataFactory', function ($timeout, dataFa
                 knobInit.release = function (newValue) {
                     //console.log(knobInit)
                     $timeout(function () {
-                        var old = $scope.knobData;
-                        //console.log('myKnob directive - Bafore request new/old: ',newValue, old)
+                        var old = parseFloat($scope.knobData);
+
+                        //console.log('myKnob directive - Bafore request new/old: ', typeof newValue, typeof old);
                         if (old != newValue) {
                              //console.log('myKnob directive - Sending request new/old: ',newValue, old)
                             $scope.knobData = newValue;
@@ -279,7 +280,11 @@ myApp.directive('myknob', ['$timeout', 'dataFactory', function ($timeout, dataFa
                     });
                 };
 
-                $scope.$watch('knobData', function (newValue, oldValue) {
+                $scope.$watch('knobData', function (newValue,oldValue) {
+                    newValue =  parseFloat(newValue);
+                    oldValue =  parseFloat(oldValue);
+                    //console.log("newvalue",typeof newValue);
+                    //console.log("oldValue",typeof oldValue);
                     if (newValue != oldValue) {
                          $($element).val(newValue).change();
                     }

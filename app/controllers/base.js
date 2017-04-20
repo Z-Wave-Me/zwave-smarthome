@@ -26,6 +26,24 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
     $scope.hostName = $location.host();
     $scope.ZWAYSession = dataService.getZWAYSession();
     $scope.lastLogin = dataService.getLastLogin();
+
+    /**
+     * Extend an user
+     * @returns {undefined}
+     */
+    $scope.extendUser = function () {
+    dataFactory.getApi('profiles', '/' + $scope.user.id).then(function (response) {
+            angular.extend($scope.user, response.data.data);
+            angular.extend(cfg.user, response.data.data);
+        }, function (error) {
+        });
+
+    };
+    if($scope.user){
+        $scope.extendUser();
+    }
+
+    //dataService.getUser();
     /**
      * Set app skin
      * @returns {undefined}

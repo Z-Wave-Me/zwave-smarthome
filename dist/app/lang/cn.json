@@ -255,7 +255,7 @@
     "factory_default_error": "系统不能返回到出厂设置.",
     "firmware_update": "程序升级",
     "current_firmware": "目前版本是 ",
-    "update_to_latest": "更新至最新",
+    "update_to_latest": "Open Updater",
     "ui_version": "软件版本",
     "continue": "下一步",
     "save_continue": "保持，下一步",
@@ -603,5 +603,7 @@
     "update_device_database_failed_for": "Update device database was successful for __success__ but failed for __failed__.",
     "service_not_available": "__service__ service not available!",
     "error_backup": "Backup failed!",
-    "success_backup": "Backup successful."
+    "success_backup": "Backup successful.",
+    "add_mobile_device": "Add mobile device",
+    "lb_make_qrcode": "Make qrcode"
 }

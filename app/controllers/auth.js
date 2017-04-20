@@ -106,7 +106,7 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
             getZwaveApiData(location);
         } else {
             window.location = location;
-            $window.location.reload();
+           $window.location.reload();
         }
     };
 
@@ -205,7 +205,7 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
  * The controller that handles login process.
  * @class AuthLoginController
  */
-myAppController.controller('AuthLoginController', function ($scope, $location, $window, $routeParams, $cookies, dataFactory, dataService,_) {
+myAppController.controller('AuthLoginController', function ($scope, $location, $window, $routeParams, $cookies,cfg,dataFactory, dataService,_) {
     $scope.input = {
         password: '',
         login: '',
@@ -232,9 +232,10 @@ myAppController.controller('AuthLoginController', function ($scope, $location, $
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         $scope.alert = {message: false};
         dataFactory.logInApi(input).then(function (response) {
-            var rememberme = (input.rememberme ? input : null); 
+            //angular.extend(cfg, {user: response.data.data});
+            var rememberme = (input.rememberme ? input : null);
             var location = '#/dashboard';
-            var profile = response.data.data;
+            var profile = _.omit(response.data.data,'color','dashboard','hide_single_device_events','rooms','salt');
             if(response.data.data.showWelcome){
                  location = '#/dashboard/firstlogin';
                  profile = _.omit(profile, 'showWelcome');
