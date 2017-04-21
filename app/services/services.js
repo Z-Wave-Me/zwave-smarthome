@@ -478,23 +478,24 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
             .flatten()
             .map(function (v) {
                 return {
-                    id: v.Certification_ID,
+                    id: v.Product_Code,
                     name: v.Name,
                     productcode: v.Product_Code,
+                    certification_id: v.Certification_ID,
                     wake: v.WakeUp_Description,
                     inc: v.Inclusion_Description,
                     exc: v.Exclusion_Description,
                     brandname: v.BrandName,
                     brandid: v.BrandName,
-                    brand_image: (v.brandname_image ? cfg.img.zwavevendors + v.brandname_image : false),
-                    product_image: (v.Certification_ID ? cfg.img.zwavedevices + v.Certification_ID + '.png' : false),
+                    //brand_image: (v.brandname_image ? cfg.img.zwavevendors + v.brandname_image : false),
+                    //product_image: (v.Certification_ID ? cfg.img.zwavedevices + v.Certification_ID + '.png' : false),
                     product_image_base64: v.Product_Image_Base64,
                     prep: v.Preperation_Description,
-                    inclusion_type: (v.Secure === '1' ? 'secure' : 'unsecure'),
-                    zwplus: v.zwplus,
-                    frequencyid: v.frequencyid,
+                    secure: (v.Secure === '1'),
+                    zwplus: (v.ZWPLus === '1'),
+                    //frequencyid: v.frequencyid,
                     frequency: v.Frequency,
-                    ignore_ui: v.ignore_ui,
+                    //ignore_ui: v.ignore_ui,
                     reset: v.Reset_Description
 
                 };

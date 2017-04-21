@@ -105,8 +105,7 @@ myAppController.controller('ZwaveVendorDeviceController', function ($scope, $rou
             }*/
             // Success - products
             if (products.state === 'fulfilled') {
-                console.log(products.value.data.zwave_devices)
-                 $scope.zwaveProducts.all = dataService.getZwaveDevices(products.value.data.zwave_devices)
+                $scope.zwaveProducts.all = dataService.getZwaveDevices(products.value.data.zwave_devices)
                  .where(where)
                  .value();
                  $scope.zwaveProducts.cnt = _.size($scope.zwaveProducts.all);
