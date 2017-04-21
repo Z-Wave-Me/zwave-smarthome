@@ -12,9 +12,9 @@ var config_data = {
         //Application name
         'app_name': 'SmartHome UI',
         // Application version
-        'app_version': '1.7.0-RC-17',
+        'app_version': '1.7.0-RC-18',
         // Application (DIST) built date
-        'app_built': '19-04-2017 15:53:18',
+        'app_built': '21-04-2017 16:13:10',
         // Application ID
         'app_id': 'SmartHomeUI',
         // Server base url
@@ -116,6 +116,8 @@ var config_data = {
             'customicon': 'ZAutomation/api/v1/devices',
             'icons_upload': 'ZAutomation/api/v1/icons/upload',
             'cloudbackup': 'CloudBackupAPI/Backup',
+            'zwave_devices': 'ZWaveAPI/ZWaveDeviceInfoGet',
+            'zwave_vendors': 'http://manuals-backend.z-wave.info/export/ui_vendors.json',
             'update_device_database': 'ZWaveAPI/ZWaveDeviceInfoUpdate',
             'app_built_info': 'app/info.json',
             'configget_url': 'ZWaveAPI/ExpertConfigGet',
@@ -149,7 +151,8 @@ var config_data = {
             'custom_icons': 'user/icons/',
             'skin_screenshot': 'app/css/',
             'zwavedevices': 'storage/img/zwave/zwavedevices/',
-            'zwavevendors': 'storage/img/zwave/zwavevendors/'
+            'zwavevendors': 'storage/img/zwave/zwavevendors/',
+            'placeholder': 'storage/img/placeholder-img.png'
         },
         // Upload settings
         'upload': {
@@ -278,9 +281,6 @@ var config_data = {
             'fr': 'fr_FR',
             'fi': 'fi_FI'
         },
-
-        // List of profile colors
-        'profile_colors': ['#dddddd', '#6c7a89', '#6494bc', '#80ad80', '#31b0d5', '#f0aD4e', '#d9534f', '#dd976e'],
         // Chart colors
         'chart_colors': {
             fillColor: 'rgba(151,187,205,0.5)',
@@ -326,6 +326,10 @@ var config_data = {
             'find.z-wave.me',
             'find.popp.eu'
         ],
+        // Redirect to the url after logout
+        'logout_redirect': {
+            'find.z-wave.me': 'https://find.zwave.me/zboxweb'
+        },
         // List of the forbidden licence app types
         'license_forbidden': [
             'popp',
