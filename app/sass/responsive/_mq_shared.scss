@@ -190,6 +190,18 @@ input[type=radio] {
 
 }
 .app-dropdown{
+    .dropdown-entry{
+        display: table;
+        width: 100%
+    }
+    .dropdown-col{
+        display: table-cell;
+        vertical-align: middle;
+    }
+    .dropdown-ctrl{
+        text-align: right;
+    }
+
     &.dropdown-lang{
         min-width: $dropdown-lang-w; 
         ul{
@@ -200,6 +212,11 @@ input[type=radio] {
     }
 
 
+}
+/* Aoutocomplete
+-------------------------------------------------- */
+.autocomplete{
+   min-width: 500px !important;
 }
 
 /* Report

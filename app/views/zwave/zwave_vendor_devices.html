@@ -3,7 +3,7 @@
     <bb-loader></bb-loader>
     <div class="text-center device-autodetect" ng-include="'app/views/zwave/zwave_vendors_autodetect.html'"></div>
     <h3>
-        <a href="#/zwave/vendors" class="btn btn-default"><i class="fa fa-arrow-left"></i></a>
+        <a ng-href="#/zwave/vendors" class="btn btn-default"><i class="fa fa-arrow-left"></i></a>
         <strong>{{zwaveProducts.vendor}}</strong>
         | {{_t('products')}} <span class="badge text-primary">{{zwaveProducts.cnt}}</span>
         | {{_t('frequency')}} <span class="badge">{{zwaveProducts.frequencyName}}</span>
@@ -15,17 +15,17 @@
         <tbody>
         <tr ng-repeat="v in zwaveProducts.all | orderBy:'name' track by $index">
             <td>
-                <a href="#zwave/inclusion/{{v.id}}">
+                <a ng-href="#zwave/inclusion/{{v.id}}">
                 <img class="product-img" ng-src="data:image/png;base64,{{v.product_image_base64}}" err-src="{{cfg.img.placeholder}}" alt="img" />
                 </a>
             </td>
             <td>
-                <a href="#zwave/inclusion/{{v.id}}">
-                {{v.productcode}}
+                <a ng-href="#zwave/inclusion/{{v.id}}">
+                {{v.id}}
                 </a>
             </td>
             <td>
-                <a href="#zwave/inclusion/{{v.id}}">
+                <a ng-href="#zwave/inclusion/{{v.id}}">
                 {{v.name}}
                 </a>
             </td>
@@ -33,7 +33,7 @@
                 <span class="label label-info">{{v.frequency}}</span>
             </td>
             <td class="td-action">
-                <a href="#zwave/inclusion/{{v.id}}" class="btn btn-default" title="{{_t('lb_include_device')}}">
+                <a ng-href="#zwave/inclusion/{{v.id}}" class="btn btn-default" title="{{_t('lb_include_device')}}">
                     <i class="fa fa-plug text-primary"></i>
                 </a>
             </td>

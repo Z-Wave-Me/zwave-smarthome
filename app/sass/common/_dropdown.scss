@@ -50,6 +50,9 @@
               display: inline-block; 
               margin: 0 $spacing 0 0;
             }
+            &:hover{
+                background-color: $dropdown-hover-bcg-color;
+            }
 
         }
         .active{

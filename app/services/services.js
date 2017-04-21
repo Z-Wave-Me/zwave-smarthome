@@ -522,7 +522,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                 return {
                     id: v.Product_Code,
                     name: v.Name,
-                    productcode: v.Product_Code,
+                    //productcode: v.Product_Code,
                     certification_id: v.Certification_ID,
                     wake: v.WakeUp_Description,
                     inc: v.Inclusion_Description,

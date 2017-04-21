@@ -28,7 +28,7 @@
                    class="form-control"
                    placeholder="{{_t('lb_search')}}"
                    ng-model="autocomplete.term" bb-key-event="searchMe()" data-toggle="dropdown"/>
-            <span class="input-group-addon clickable" title="{{_t('lb_add_tag')}}" ng-click="addTag()">
+            <span class="input-group-addon clickable">
                        <i class="fa fa-search"></i>
                    </span>
             <div class="app-dropdown autocomplete" ng-if="autocomplete.results.length">

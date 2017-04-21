@@ -1,0 +1,34 @@
+<!-- Zwave control view -->
+<div class="page-control form-inline">
+
+    <!-- Search and autocomplete -->
+    <div class="input-group">
+        <!-- Search -->
+        <input name="add_tag" id="add_tag" type="text"
+               class="form-control"
+               placeholder="{{_t('lb_search')}}"
+               ng-model="autocomplete.term" bb-key-event="searchMe()" data-toggle="dropdown"/>
+        <span class="input-group-addon clickable">
+                       <i class="fa fa-search"></i>
+                   </span>
+        <!-- Autocomplete -->
+        <div class="app-dropdown autocomplete" ng-if="autocomplete.results.length">
+            <ul>
+                <li class="dropdown-entry clickable" title="{{v.name}}"
+                    ng-click="redirectToRoute('zwave/inclusion/' + v.id)"
+                    ng-repeat="v in autocomplete.results | orderBy:'name' track by $index">
+                    <span class="dropdown-col">
+                        <img class="report-img-s" ng-src="data:image/png;base64,{{v.product_image_base64}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+                         <span class="aoutocomplete-title">{{v.name|cutText:true:30}}&nbsp;
+                            <em class="item-cnt">({{v.brandname}})</em>&nbsp;
+                             <!-- <span class="label label-info">{{v.frequency}}</span>-->
+                        </span>
+                    </span>
+                    <span class="dropdown-col dropdown-ctrl">
+                            control
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
